@@ -33,6 +33,12 @@ prediction, constructor simulation or production approval. The read-only
 preflight below still requires actual creation-to-anchor runtime/getter/control
 evidence and independently reviewed configuration. No seal call is prepared.
 
+A separate [owned local construction rehearsal](DEPLOYMENT_PREPARATION.md#isolated-local-construction-rehearsal)
+can verify exact unsealed constructors/bindings and local gas. Its controlled
+dependency addresses/runtime observations are not a production inventory, native
+venue qualification or target-chain fee approval. Never adopt them into the
+public manifest or relabel existing deployment profiles.
+
 ## Current release scope
 
 One fixed ZZZ/native ETH pair, one contribution destination at a time, independent

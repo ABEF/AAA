@@ -1,0 +1,26 @@
+{
+  "status": "initial_read_only_verifier_failure_recorded",
+  "record_origin": "Contemporaneous terminal tool output and subsequent read-only inspection, recorded after the helper was corrected; this is not a raw process log or a repeated execution.",
+  "initial_helper_source_sha256": null,
+  "initial_helper_source_limitation": "The initial external helper was edited after identifying the recording defect. Its exact initial source hash was not separately archived.",
+  "exit_code": 1,
+  "exception_type": "AssertionError",
+  "exact_exception_message": "One full-cap and one exact padded simulation",
+  "failing_expectation": "The first and second archived constructor simulations were expected to contain gas [32000000, padded_gas].",
+  "observed_first_constructor": {
+    "transaction_label": "create:access",
+    "rpc_ids": [29, 30, 31],
+    "rpc_methods": ["eth_call", "eth_estimateGas", "eth_call"],
+    "archived_gas_for_all_three": 12739634,
+    "archived_later_nonce": "0x0",
+    "archived_later_gasPrice": "0x77359400"
+  },
+  "cause": "Original Node.wire retained the caller's mutable transaction dictionary. Later gas, nonce and gasPrice changes rewrote prior archived request fields. Original transport fields cannot be reconstructed as exact wire evidence.",
+  "original_rehearsal_source_sha256": "ba804ab363243762e48b478a698df538b23185d4b73351ffcb9270a0928b3eb2",
+  "original_rehearsal_evidence_preserved": true,
+  "transactions_repeated_for_review": 0,
+  "nodes_started_for_review": 0,
+  "compiler_runs_for_review": 0,
+  "resolution": "The second read-only reconciliation explicitly records this limitation while authenticating the 44 actual submissions/receipts, 39 CREATE inputs and returned runtimes, binding getters, gas and isolation. The runner's later immutable request/response snapshot fix has a separate new baseline-failing/post-fix-passing regression; the 44-transaction rehearsal was not repeated.",
+  "subsequent_receipt_review_sha256": "d70b78c036700a39b586fe0c9c89597460cde83d1609ec35c17e4cd4da6e785b"
+}

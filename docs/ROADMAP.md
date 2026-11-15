@@ -2,9 +2,11 @@
 
 The [offline construction milestone](DEPLOYMENT_PREPARATION.md) prepares current
 constructor payloads and binding order from accepted artifacts without a new
-build or public action. Next supply reviewed release inputs and qualify actual
+build or public action. The [local unsealed constructor/binding milestone](../reports/local-deployment-rehearsal-20261115/REVIEW.md)
+now has44receipts/39instances and scoped local gas evidence. Next supply reviewed release inputs and qualify actual
 creation/address/receipt/runtime bindings, complete deployment gas, live
-dependencies and independent approval. No sealing or deployment is authorized.
+dependencies and independent approval. No public deployment, sealing or
+environment rollout is authorized.
 
 The [controlled manual recovery milestone](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) is now complete:
 actual local C14/D14, park→Parked D14 and explicit outage D0 fit24M with full25%

@@ -57,7 +57,10 @@ reviews. Popldemo and served poplint remain separate from these source changes.
 The [offline deployment planner](docs/DEPLOYMENT_PREPARATION.md) now reviews
 current constructors, original size limits and bootstrap binding order using
 the accepted build. It produces unsigned, explicitly unapproved plans; actual
-deployment, sealing and live qualification remain separate.
+public deployment, sealing and live qualification remain separate. The
+[isolated local construction rehearsal](docs/DEPLOYMENT_PREPARATION.md#isolated-local-construction-rehearsal)
+records real local constructors/bindings and gas without sealing or changing
+existing environments.
 
 ## Architecture overview
 

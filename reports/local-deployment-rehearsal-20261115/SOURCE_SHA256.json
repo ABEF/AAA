@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "actual_execution_source": {
+    "scripts/rehearse-local-deployment.py": "ba804ab363243762e48b478a698df538b23185d4b73351ffcb9270a0928b3eb2",
+    "zzz_ops/abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d",
+    "zzz_ops/deployment_plan.py": "ff7e50bf3e04de5681eec65a334be9d02e8e9dfb565faa3cbb4a46e9804dc1ea"
+  },
+  "current_tool_source_sha256": {
+    "scripts/rehearse-local-deployment.py": "943978c48def8782b46bd1fb203cc94fb341042605636b4b9a46f08b19857bdd",
+    "scripts/check-local-deployment-evidence.py": "7efb7554e01b527263291b73e044c9f1d00bc150082cda0cfb5af6643021ce0e",
+    "tests_python/test_local_deployment_rehearsal.py": "0d48427669b5acd355a0db2d9d9e66ee3c3ebfac17601f9bc8af578756de01f4",
+    "tests_python/test_local_deployment_evidence.py": "11346fc313beaf01342cee5130a61b38f95f3cc88730ebf868afeb8b57aa0cf3"
+  },
+  "production_solidity_changed": false,
+  "offline_planner_changed": false,
+  "scope": "Current recorder is corrected after actual BA run; original execution and raw captures are never relabelled."
+}

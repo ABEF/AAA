@@ -221,7 +221,7 @@ ZZZ/token callbacks, periphery provenance, gas, providers or operating rollout.
 | Exact release commit and source/artifact manifest | Not approved |
 | Chain, actual configuration and dependency/runtime hashes | Not approved |
 | Authority/provider/VRF/marketplace addresses and bindings | Not selected and approved |
-| Normal compiler/dependency lock and exact constructor gas/arguments | [Offline construction planner](DEPLOYMENT_PREPARATION.md) available; no approved release-specific addresses/constructor execution/gas bundle |
+| Normal compiler/dependency lock and exact constructor gas/arguments | [Offline construction planner](DEPLOYMENT_PREPARATION.md) available; controlled local unsealed construction evidence is separate from still-unapproved release addresses/constructor execution/complete gas and fees |
 | Operating/website/metadata acceptance | Not qualified |
 | Independent security decision and remediation | Not recorded |
 | Release date, accountable owner and accepted residual risks | Not recorded |

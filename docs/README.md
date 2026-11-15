@@ -1,5 +1,10 @@
 # Documentation map
 
+The [isolated local construction record](../reports/local-deployment-rehearsal-20261115/REVIEW.md)
+supplies actual unsealed constructor/binding receipts and local gas, with original
+capture limitations explicit. Its disposable addresses/fixtures are never a
+production inventory. Use the owning guide for separate offline and local tools.
+
 For fresh constructor/size/binding preparation use the
 [offline deployment planner](DEPLOYMENT_PREPARATION.md). For an actual deployed
 graph use [production preflight](PRODUCTION_PREFLIGHT.md); an offline plan cannot

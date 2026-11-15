@@ -1,0 +1,91 @@
+{
+  "actual": {
+    "bind:buyback": {
+      "data": "0x1f5a71abe4309463fc3b65cec9c3800cf2fb9b5a5ef50bff7dbb834d50b70e3609402ff0000000000000000000000000ae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    },
+    "bind:canonical": {
+      "data": "0x1f5a71ab8793ebf778da79e95ce07a99a87738bb03de82612fccea3b04b4a321177b66b7000000000000000000000000f60ee94dad756e1528f144d1856f184758bc1fab",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    },
+    "bind:compounder": {
+      "data": "0x1f5a71ab66b6519ff03a0a77984595e84073bf99bd8c895208419e04fb44ec8a39504e240000000000000000000000000dfa80c125aa917d363787e497cf950e1bbaadb7",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    },
+    "bind:fees": {
+      "data": "0x1f5a71aba93341f4bc02ec5f35c323a55f9fd5355df1a75bdfec48a3279200374d036b0400000000000000000000000003c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    },
+    "bind:fees_canonical": {
+      "data": "0x1f5a71ab880ba1fe5e3dab66aacd02697910e5e9e5f23413023adbdbd75ab2200ba387e7000000000000000000000000698a9971dd50494b9e2c826b6adc7b898fde8434",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    },
+    "bind:liquidity": {
+      "data": "0x1f5a71abfdd9364e44808e858f9a3e3597a4c2e23cdac176e030967c91d5873fe1371bd4000000000000000000000000effbc023e576f1ece7b9c53165352044029abe75",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    },
+    "bind:lp_converter": {
+      "data": "0x05a612ec0000000000000000000000003fc6f36df142c003864e1fa586c90c6c25bb0be0",
+      "target": "0x05c2d0f16cc810acad17168446f52d60d4733062"
+    },
+    "bind:membership": {
+      "data": "0x1f5a71ab65a9a830a9b3fd817da9a168637c427a3e9b4e1107de2c6f2373548a6fbd4d55000000000000000000000000bb3b6422b58c28f5cee7451961a6c2098b91c6f4",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    },
+    "bind:migration": {
+      "data": "0x1f5a71abc470a453866446f6c45d7459b498fbe539d5cd72f9875c1ee19f3fecaa74ec7c000000000000000000000000357e9811349d86f67e507b477def7b5e9e90e938",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    },
+    "bind:nft": {
+      "data": "0x1f5a71ab86798dfd34b3cf289e7582d0460beda645ea24721422547e964271fa9bdb63e5000000000000000000000000ee893b86b3ca6ac1794f637af84f791c402d29a9",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    },
+    "bind:nft_canonical": {
+      "data": "0x1f5a71abe7c4cba8d36bbf11a32f62c7c712436629d5e6a88deaf0cafcd35798392bcc0f0000000000000000000000008a6256e557e4279bb61765e3be0bb969005902cf",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    },
+    "bind:oracle": {
+      "data": "0x1f5a71abbf820fa66fadba8f93ff177e73b8d9962881eaa782ee4924feadac7ed13eaf3800000000000000000000000075feca20691840cf46106d8d170c082c6c685150",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    },
+    "bind:pools": {
+      "data": "0x1f5a71abe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7000000000000000000000000d9d24f86dc2e8d632ba4701987b5c6c077da0819",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    },
+    "bind:protocol_policy": {
+      "data": "0x9c59ab7100000000000000000000000097c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    },
+    "bind:rewards": {
+      "data": "0x1f5a71ab84664485efed53b314d87c1de748f22d797145d85703d9f1795d90df17ad6afd00000000000000000000000005c2d0f16cc810acad17168446f52d60d4733062",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    },
+    "bind:seadrop_mint": {
+      "data": "0xd9ceb9340000000000000000000000001072e09ef5446c83fa1cf73d7fdbcc772e9e0c49",
+      "target": "0xee893b86b3ca6ac1794f637af84f791c402d29a9"
+    },
+    "bind:strategy": {
+      "data": "0x1f5a71abcbff646c6fd41643bc1b6f2d57f799f19e8feafaf21cc5deab1664dfb601170e000000000000000000000000f4b21769b176555ab46c72bb610be2d271280206",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    },
+    "bind:vault": {
+      "data": "0x1f5a71ab411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b9680000000000000000000000006e113da826ec57f968fff0f7cb7c0163b6b31db1",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    },
+    "bind:vault_canonical": {
+      "data": "0x1f5a71ab5b48b7ad60281bc6b540acdfdedc01f73c0131503d81b1b3a8f7b84943131d50000000000000000000000000122cbe831910857b6d1b1e4e95058c8cd1f42d06",
+      "target": "0xfa26e96e5f11a855d737cff71a19e133d8349e83"
+    }
+  },
+  "arbitrary_or_seal_payloads_submitted": 0,
+  "governance_payloads_independently_reencoded": 19,
+  "mode": "read_only_original_attempt1_receipts",
+  "other_bindings": [
+    "protocol_policy",
+    "lp_converter",
+    "seadrop_mint"
+  ],
+  "required_module_bindings": 16,
+  "status": "passed",
+  "transactions_repeated": 0
+}

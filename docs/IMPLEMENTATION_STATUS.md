@@ -3,8 +3,11 @@
 The [offline deployment planner](DEPLOYMENT_PREPARATION.md) supports current
 schema17/mint2/V10/execution1/LP3 construction, exact resolvable constructor
 payloads, original size gates and ordered binding/setup review. Missing inputs
-and factory-discovered addresses remain explicit. No constructor execution,
-deployed runtime, gas, actual binding or production approval is implied.
+and factory-discovered addresses remain explicit. The separate
+[local unsealed rehearsal](../reports/local-deployment-rehearsal-20261115/REVIEW.md)
+verifies current constructors/bindings and local gas under controlled dependencies,
+with its original recording limitation retained. Actual release construction,
+live dependencies, target fees and independent approval remain open.
 
 The [current manual reference fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md) is locally verified:
 25 new/3 adapted methods, exact same-reference C/D/Parked local receipts,48 normal

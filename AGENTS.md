@@ -1,16 +1,17 @@
 # AAA / ZZZ PoPL project instructions
 
-The [offline deployment planner](docs/DEPLOYMENT_PREPARATION.md) reviews fresh schema17/mint2/V10/
-execution1/LP3 constructors, original size limits and binding/setup order from
-the accepted manual-reference-swap normal build. Planned addresses are unverified
-assignments, not CREATE predictions; factory-created ledger/assets addresses
-remain getter-discovered. No RPC/signing/broadcast/seal capability is added.
-Full static payloads do not verify constructor execution, actual bindings,
-runtime immutables, gas, markets/VRF/OpenSea or operating/independent approval.
-Solidity, historical artifacts, sites/services, Anvil/journals, signer/public
-nulls and paused heartbeat remain unchanged. New focused planner verification
-and [source evidence](reports/deployment-preparation-20261115/REVIEW.md) record21passes/1Windows symlink skip,
-7independent offline Cast encodings and2actual CLI cases, with overlap explicit.
+The [isolated local construction rehearsal](reports/local-deployment-rehearsal-20261115/REVIEW.md) verifies25 current normal
+creations/19bindings,39instances and112state observations on a new owned loopback
+Anvil, with normal size limits. Total rawgas141,382,621; worst NFT full25%padding
+14,172,289/32M. No seal/publictx, old-node calls or environment adoption. The
+original BA request log has a documented preflight-field alias limitation;
+current recording snapshots exact serialized requests/responses. The corrected
+offline checker admits only trusted build pins. Eight new checks retain their
+source scopes; no unchanged suite/compiler/static/deployment rerun. The node is
+stopped and graph stays unsealed/bootstrap-owned/unconfigured. Actual release
+inputs/dependencies/gas/complete fees/operations and independent audit remain.
+The [offline planner](docs/DEPLOYMENT_PREPARATION.md) remains byte-identical and unsigned; local
+addresses/runtimes never populate production inventories or old journals.
 
 The [guarded manual reference-swap fix](reports/manual-reference-swap-fix-20261115/REVIEW.md) extends execution1/LP3 to priced
 paused manual C/D. One transaction-bound vector precedes fingerprints/harvest;

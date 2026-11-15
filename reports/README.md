@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Isolated local deployment rehearsal](local-deployment-rehearsal-20261115/REVIEW.md)
+records44 successful receipts/39instances/112 binding reads, unsealed shutdown,
+local gas and the original capture limitation. Recorder and evidence-admission
+fixes have new scoped regressions; no unchanged suite or44tx rerun. Public
+deployment, sealing, live dependencies and complete target fees remain open.
+
 [Offline deployment preparation](deployment-preparation-20261115/REVIEW.md)
 validates current constructor payloads, byte limits and binding order using the
 accepted build.21new unit checks pass/1Windows symlink check skips; independent

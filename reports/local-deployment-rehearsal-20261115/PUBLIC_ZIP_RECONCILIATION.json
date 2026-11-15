@@ -1,0 +1,19 @@
+{
+  "status": "offline_reconciliation_passed",
+  "receipts": 44,
+  "top_level_constructors": 25,
+  "bindings": 19,
+  "instances": 39,
+  "binding_observations": 112,
+  "wire_requests": 3567,
+  "total_actual_gas": 141382621,
+  "worst_padded_gas": 14172289,
+  "legacy_mutable_transaction_request_capture": true,
+  "preflight_request_fields_verified_from_original_wire": false,
+  "preflight_request_scope": "Legacy transaction dictionaries were aliased: original full-cap/estimate/padded preflight gas/nonce/gasPrice fields are source-demonstrated, not exact original wire evidence.",
+  "submission_receipt_trace_getters_verified": true,
+  "node_started": false,
+  "rpc_calls": 0,
+  "compiler_runs": 0,
+  "tests_rerun": 0
+}

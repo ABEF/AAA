@@ -1655,7 +1655,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-deployment-initcode"></a>
 
-- [ ] **[Qualify exact constructor arguments and deployment size](docs/DEPLOYMENT_PREPARATION.md)** - In progress. The offline schema17/mint2/V10/execution1/LP3 planner validates accepted normal artifacts, resolvable constructor payloads, original size limits and binding order; incomplete inputs remain blocked previews. Planned addresses are not predictions and factory children require getter discovery. Actual release constructor execution, address/runtime/reciprocal bindings, target-chain deployment gas and independent approval remain unqualified.
+- [ ] **[Qualify exact constructor arguments and deployment size](docs/DEPLOYMENT_PREPARATION.md)** - In progress. The offline planner and separate isolated local constructor/binding rehearsal cover fresh schema17/mint2/V10/execution1/LP3 using exact accepted normal objects. Local receipts, discovered helper links and deployment gas are measured without sealing and with controlled external dependencies. Actual release inputs, live constructor/dependency/runtime bindings, complete target-chain gas/fees and independent approval remain unqualified.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1672,6 +1672,7 @@ Decisions and rehearsals before real funds.
   - Fresh7 normal87-source graph passes46object and2actual carrier gates with unchanged compiler settings; runtime headroomVault133/Rewards358/Handoff32. Cold32-entry host claim measured31,085,813raw gas and exceeds12M; cold8 measured8,819,431in its controlled fixture, not universal size approval. Measure actual chain claim/pages and costs:32claim entries and8canonical rows are count limits, not gas approval. Constructor-created RewardsCanonical must match exact source/runtime/parent pins; no limit raising or older-runtime relabeling.
   - [Current accepted normal build](reports/gas-feasibility-20261111/build/production-size-gates.json) passes48gates at100closed sources/61project files. Only Oracle objects change:24,573runtime/3bytes headroom(+85bytes versus baseline),48,530creation including64argument bytes. Vault24,544/32margin unchanged. All191projectABI/storage entities match; current raw sources exactly match compiler contents. This tight pre-deployment margin remains explicit; no code-size/compiler or gas default is raised.
   - The [offline deployment preparation milestone](reports/deployment-preparation-20261115/REVIEW.md) adds a bounded unsigned construction/size/binding plan from the accepted normal build. No RPC, key, broadcast or seal operation is supported. Unresolved inputs, unobserved addresses, external constructor calls, exact runtime immutables and all live release qualifications remain separate; no unchanged suites or compiler/static checks are rerun.
+  - The [isolated local construction rehearsal](reports/local-deployment-rehearsal-20261115/REVIEW.md) verifies current normal constructors, module/helper binding order and local deployment gas on a new owned loopback chain with normal size limits. No existing Anvil, journal, site, service, public signing or sealing is touched. Controlled dependency calls/local gas do not qualify native markets, actual public constructor costs or complete fees; exact receipts/source scope and final unsealed state remain required.
 
   </details>
 
@@ -1711,4 +1712,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `55da8688687a22f121173c12c0b55c7bcd4c25bee4c2299673e4cc122092fe06`.
+Snapshot SHA-256: `751595fb5cf97241545dbf806b7f4d620992ad72c0170c55fda7f750ce0e9e04`.

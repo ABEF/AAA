@@ -134,6 +134,98 @@ Accordingly, the ledger and assets addresses are getter-discovered references,
 not promises based on fresh factory nonces. The two code-data children are
 created atomically inside the factory constructor; that distinction matters.
 
+## Isolated local construction rehearsal
+
+The separate [local rehearsal runner](../scripts/rehearse-local-deployment.py)
+creates its own disposable loopback Anvil process, port and genesis. It never
+connects to a caller-supplied RPC or the existing Anvil instance. The offline
+planner above stays unchanged and unsigned; this runner performs **local test
+transactions only**, using disposable impersonation without reading wallet keys.
+It never prepares or calls `seal()`.
+
+The rehearsal constructs the exact current normal PoPL objects, binds Policy,
+all 16 Access modules, the LP converter and SeaDrop helper, then discovers and
+checks all 39 instances. Constructor simulations and actual receipts distinguish
+expected runtime templates from the actual immutable-patched code. Internal
+children are part of their parent creation transaction, not extra deployments
+or extra gas to add again. The intended run has 25 creation transactions and
+19 binding transactions,44 in total, all with zero native value.
+
+### Controlled dependencies and gas scope
+
+The node uses Cancun, a 32M block gas ceiling and normal runtime/initcode limits,
+without code-size exemptions. External periphery dependencies are explicit
+constructor doubles; the archived exact SeaDrop runtime is seeded locally.
+Those are not public deployments or approved live dependencies. Registry's
+native runtime pins and market configuration are not qualified by these doubles.
+No live pool, price, VRF, mint phase, activation, LP, royalty or sealing campaign
+is performed by this rehearsal.
+
+Each transaction records estimated gas, a full 25% padded local limit, exact
+padded-call simulation and actual receipt gas. This is a **local construction
+and binding measurement**, not a Robinhood fee quote or spending-policy change.
+The Manager's constructor reads controlled getter doubles; real dependency
+execution costs can differ. Public deployment gas, L2 posting fees and approved
+fee ceilings remain separate. Existing12M/20M/24M operating profiles are unchanged.
+
+### Running, stopping and interpreting a rehearsal
+
+Run only from the reviewed checkout with exact accepted artifacts/dependencies
+and the reviewed local Anvil binary. Use a new output directory for each run;
+never select an old chain state, website dist, journal or existing rehearsal
+directory. The runner must verify its child process owns the loopback listener
+before mutation and retain its fresh chain/genesis identity. An occupied or
+unverified listener fails closed; it is never reset or taken over.
+
+The current launcher supports Windows and requires its exact socket/PID check;
+it does not silently skip that check on another operating system. Example from
+the repository root, with your reviewed binary and a new evidence directory:
+
+```powershell
+python scripts/rehearse-local-deployment.py --anvil "C:/reviewed-tools/anvil.exe" --output "C:/local-reviews/new-construction-run"
+```
+
+There is no RPC, key, existing-state, public-deployment or sealing option. The
+controlled role addresses, metadata URI and buyback ceiling are test inputs,
+not production choices. Output includes the process/genesis identity, dependencies,
+source pins, 44 transaction records, 25 CREATE traces, 39 instance proofs, binding
+reads, a plan reconciled to actual local addresses and shutdown evidence.
+
+The [first source-bound rehearsal](../reports/local-deployment-rehearsal-20261115/REVIEW.md)
+completed all 44 transactions. The largest was NFT construction: 11,337,831 gas
+used, with a 14,172,289 padded limit. Total receipt gas was 141,382,621 across many
+blocks, not one transaction or block. These are controlled local measurements,
+not reusable production transaction limits or ETH cost estimates.
+
+Independent review found a request-recording alias in that original run. Its
+transactions, receipts, CREATE traces and getter results reconcile, but earlier
+preflight gas/nonce/gasPrice descriptions cannot be treated as exact wire input.
+The current recorder fixes this with immutable request/response snapshots; a
+new focused regression verifies the fix without repeating the 44 transactions.
+Original captures retain their source and limitation, not a corrected label.
+
+To inspect the published capture without starting a node:
+
+```powershell
+python scripts/check-local-deployment-evidence.py --evidence reports/local-deployment-rehearsal-20261115/evidence.zip --output path/to/new-offline-result.json
+```
+
+Use a new output file in an existing directory. The checker authenticates the
+trusted build pins before reading build files, then reconciles receipts,
+constructors, runtimes and binding observations. It reports the original
+capture limitation explicitly and never supplies deployment/sealing approval.
+
+The final evidence must show `Access.isSealed()==false`, the original bootstrap
+still present, canonical state0, all module/helper links correct and no NFT/LP
+positions created. Converter and mint-helper bindings do not enable them or
+configure markets. Success never means production approved or ready to seal.
+
+On failure, preserve the output and receipts and start a new owned chain/output
+after correcting the specific cause. Do not resend into an unknown process or
+try to resume a partial rehearsal. Shutdown terminates only the child this run
+created; it never kills Anvil by name or administers the existing node. The
+[source-scoped report](../reports/local-deployment-rehearsal-20261115/REVIEW.md)
+records actual receipts, gas, verification and remaining qualifications.
 ## Remaining deployment requirements
 
 The native Registry's chain, fixed ZZZ and venue address constants must match

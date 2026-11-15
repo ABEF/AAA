@@ -1,0 +1,752 @@
+{
+  "accepted_normal_source_count": 100,
+  "actual_chain_executions_performed_by_reviewer": 0,
+  "actual_contract_instances": 39,
+  "binding_receipts": 19,
+  "cleanup": {
+    "existing_nodes_contacted": false,
+    "failure_type": null,
+    "owned_node_stopped": true,
+    "pending_submission": null,
+    "pid": 21576
+  },
+  "gas_by_transaction": [
+    {
+      "estimated_gas": 10191707,
+      "label": "create:access",
+      "padded_gas": 12739634,
+      "receipt_gas_used": 10191707,
+      "transaction_hash": "0x150a9341cfd0322702c84420ce3dff2eed242ec45e8d096b10901012189e4ffe"
+    },
+    {
+      "estimated_gas": 3545498,
+      "label": "create:protocol_policy",
+      "padded_gas": 4431873,
+      "receipt_gas_used": 3545498,
+      "transaction_hash": "0x464857e34c234d9e178237a5b4270fe43589fed5a0ca21a0b3ae3b970a0dea98"
+    },
+    {
+      "estimated_gas": 55858,
+      "label": "bind:protocol_policy",
+      "padded_gas": 69823,
+      "receipt_gas_used": 55858,
+      "transaction_hash": "0xf99f866dac159826ad929e2a42bcb82961d4bf77adfcfec500a88061b91d51e7"
+    },
+    {
+      "estimated_gas": 5357684,
+      "label": "create:migration_budget",
+      "padded_gas": 6697105,
+      "receipt_gas_used": 5357684,
+      "transaction_hash": "0x18c42738f5709b695f3fbdfd7fbf9f6cf5342765f7a3c1c2d8f9b9e74bd50e7b"
+    },
+    {
+      "estimated_gas": 4257982,
+      "label": "create:metadata_renderer",
+      "padded_gas": 5322478,
+      "receipt_gas_used": 4257982,
+      "transaction_hash": "0x36126a2a8ca718c631a65c495582bde2a3228938a479ec47deb4d21f7aa2d486"
+    },
+    {
+      "estimated_gas": 4257603,
+      "label": "create:portfolio_policy",
+      "padded_gas": 5322004,
+      "receipt_gas_used": 4257603,
+      "transaction_hash": "0x7b5f34ce401bf1e236366cbfaa535b8b6d07f97205e33a954abd862447feed3c"
+    },
+    {
+      "estimated_gas": 3264752,
+      "label": "create:rebalance_confirmation",
+      "padded_gas": 4080940,
+      "receipt_gas_used": 3264752,
+      "transaction_hash": "0x5ed00bf7a2c35e89ddb0def31394551f3c2a26eeb6b3131861044e37593148e0"
+    },
+    {
+      "estimated_gas": 9720392,
+      "label": "create:balancing_router",
+      "padded_gas": 12150490,
+      "receipt_gas_used": 9720392,
+      "transaction_hash": "0x5a9c97fc371265cc5bab2ab233df1c6d7e4ae6b372659274fe6d2126389efa84"
+    },
+    {
+      "estimated_gas": 9903405,
+      "label": "create:oracle",
+      "padded_gas": 12379257,
+      "receipt_gas_used": 9903405,
+      "transaction_hash": "0x9ffa17d0f0180c3824d656802b5be77772a5ef03e463a6b35902185e9401677a"
+    },
+    {
+      "estimated_gas": 58626,
+      "label": "bind:oracle",
+      "padded_gas": 73283,
+      "receipt_gas_used": 58626,
+      "transaction_hash": "0x75f5c56f38d6a21bb5ac165d8f3b680ea68920de5b74427181654e81a32e9278"
+    },
+    {
+      "estimated_gas": 9856542,
+      "label": "create:liquidity",
+      "padded_gas": 12320678,
+      "receipt_gas_used": 9856542,
+      "transaction_hash": "0x5fefc1db41754e80676a298f1c4eabd4f8065a04420d55f224bb7ee71c47cd95"
+    },
+    {
+      "estimated_gas": 57086,
+      "label": "bind:liquidity",
+      "padded_gas": 71358,
+      "receipt_gas_used": 57086,
+      "transaction_hash": "0x04df9b9b927712eb25b02ff4c050ba40ab4854d5e29a15e7054f593eaf786da4"
+    },
+    {
+      "estimated_gas": 5823043,
+      "label": "create:pools",
+      "padded_gas": 7278804,
+      "receipt_gas_used": 5823043,
+      "transaction_hash": "0xcd0ef46b1562bfce1babe3836650800d77da39f34a0afde3065c742510be961a"
+    },
+    {
+      "estimated_gas": 58542,
+      "label": "bind:pools",
+      "padded_gas": 73178,
+      "receipt_gas_used": 58542,
+      "transaction_hash": "0xef0384fd1c2793d5f14397c2fcb6fbbea9eb7728b9dd4f5dc79b5e71981e1c52"
+    },
+    {
+      "estimated_gas": 5270790,
+      "label": "create:strategy",
+      "padded_gas": 6588488,
+      "receipt_gas_used": 5270790,
+      "transaction_hash": "0x5fd145ca94965b6d4bb1983150f0035746fbd25994d8a1342cff1bf460a813c1"
+    },
+    {
+      "estimated_gas": 57733,
+      "label": "bind:strategy",
+      "padded_gas": 72167,
+      "receipt_gas_used": 57733,
+      "transaction_hash": "0x8c72fab168a3e4ec9b16ed63a1d2c1fa0c6770d6f5e87b8793e14ddce1fb599d"
+    },
+    {
+      "estimated_gas": 5405071,
+      "label": "create:vault",
+      "padded_gas": 6756339,
+      "receipt_gas_used": 5405071,
+      "transaction_hash": "0x9c4ff573102fd3dae2022daf65eaf787a40a52971f6ede5605a073bc45243f23"
+    },
+    {
+      "estimated_gas": 56767,
+      "label": "bind:vault",
+      "padded_gas": 70959,
+      "receipt_gas_used": 56767,
+      "transaction_hash": "0xd425f87e0d74e008c7a59b6aa826b494547f94c582b5b16fb732871c667a0ecb"
+    },
+    {
+      "estimated_gas": 9448929,
+      "label": "create:rewards",
+      "padded_gas": 11811162,
+      "receipt_gas_used": 9448929,
+      "transaction_hash": "0x1c416d505c242187ad84502c4ed87fce29fde079bb78b6f0cbe2ae02174dde92"
+    },
+    {
+      "estimated_gas": 57071,
+      "label": "bind:rewards",
+      "padded_gas": 71339,
+      "receipt_gas_used": 57071,
+      "transaction_hash": "0xaa4c1d9100d4792c0a8ef5fb0334cba307b41e6a1733b571c6a2dbfe43233365"
+    },
+    {
+      "estimated_gas": 2179891,
+      "label": "create:fees",
+      "padded_gas": 2724864,
+      "receipt_gas_used": 2179891,
+      "transaction_hash": "0xfcb25f252db16f1822a5c91a3216e94a86c121f626e6a78c65c82a9706d23232"
+    },
+    {
+      "estimated_gas": 57332,
+      "label": "bind:fees",
+      "padded_gas": 71665,
+      "receipt_gas_used": 57332,
+      "transaction_hash": "0x09784b7e96cf59d7a865806934339303ba664b2ae12121aef0a86a664d653b60"
+    },
+    {
+      "estimated_gas": 1476976,
+      "label": "create:membership",
+      "padded_gas": 1846220,
+      "receipt_gas_used": 1476976,
+      "transaction_hash": "0x5ce254e5dfd62a66a447617bebdd1ef29a8351d219fa1a22188deb7ec5ac2878"
+    },
+    {
+      "estimated_gas": 57096,
+      "label": "bind:membership",
+      "padded_gas": 71370,
+      "receipt_gas_used": 57096,
+      "transaction_hash": "0xee657e8933348a90c5f840050406570e3195b0ff77bcdd95bedd7344e78791f3"
+    },
+    {
+      "estimated_gas": 9210835,
+      "label": "create:migration",
+      "padded_gas": 11513544,
+      "receipt_gas_used": 9210835,
+      "transaction_hash": "0x3b24cdd84315f204446c992f624275c558dafa2c9d8c0c8421f4e11424f3b2d8"
+    },
+    {
+      "estimated_gas": 58475,
+      "label": "bind:migration",
+      "padded_gas": 73094,
+      "receipt_gas_used": 58475,
+      "transaction_hash": "0xc62abf2f879150101b55024afa4a87ef64e1a7144963991be422bbbacd935213"
+    },
+    {
+      "estimated_gas": 535653,
+      "label": "create:compounder",
+      "padded_gas": 669567,
+      "receipt_gas_used": 535653,
+      "transaction_hash": "0x88ca51da8e7e74a527e5e6efee2f44d63dce89eced638b9899c5f5d57cac0ddc"
+    },
+    {
+      "estimated_gas": 57576,
+      "label": "bind:compounder",
+      "padded_gas": 71970,
+      "receipt_gas_used": 57576,
+      "transaction_hash": "0x933a1afae56de7133343da305b7452d689c253a1411d76b0a36cc36215773638"
+    },
+    {
+      "estimated_gas": 1831805,
+      "label": "create:buyback",
+      "padded_gas": 2289757,
+      "receipt_gas_used": 1831805,
+      "transaction_hash": "0xe7a91c4dfb9fd3a441343e6580fe517514c993be049fe8ba2df8c4b00bc6d33d"
+    },
+    {
+      "estimated_gas": 57846,
+      "label": "bind:buyback",
+      "padded_gas": 72308,
+      "receipt_gas_used": 57846,
+      "transaction_hash": "0xac468cab6a3ce95667da0de718658145732bbbabd7195ee096528754d3359c2f"
+    },
+    {
+      "estimated_gas": 11337831,
+      "label": "create:nft",
+      "padded_gas": 14172289,
+      "receipt_gas_used": 11337831,
+      "transaction_hash": "0x96586d131641e6dce647be1aff49e4c575e3c8a6e632a6eebaee0fdac3670d6f"
+    },
+    {
+      "estimated_gas": 57382,
+      "label": "bind:nft",
+      "padded_gas": 71728,
+      "receipt_gas_used": 57382,
+      "transaction_hash": "0xb12d112a9026494eb5aa6f115f02d7f0753040bcff15d9d873f3b047f79bd8e8"
+    },
+    {
+      "estimated_gas": 3496881,
+      "label": "create:nft_canonical",
+      "padded_gas": 4371102,
+      "receipt_gas_used": 3496881,
+      "transaction_hash": "0xe3808600b8241168f141d609cd5b4835ee116a523c3693f5d462af50cc2be479"
+    },
+    {
+      "estimated_gas": 58916,
+      "label": "bind:nft_canonical",
+      "padded_gas": 73645,
+      "receipt_gas_used": 58916,
+      "transaction_hash": "0xbf0c07ee2e1fc3b693c5ed054d6c1b083f6eea879d988c46f8dd2284c19aa971"
+    },
+    {
+      "estimated_gas": 5367015,
+      "label": "create:vault_canonical",
+      "padded_gas": 6708769,
+      "receipt_gas_used": 5367015,
+      "transaction_hash": "0x00c96785f9fa83c674cead17b331c170b603c06342ab9b7679ab4bcaf760ef2e"
+    },
+    {
+      "estimated_gas": 59343,
+      "label": "bind:vault_canonical",
+      "padded_gas": 74179,
+      "receipt_gas_used": 59343,
+      "transaction_hash": "0x7a1d43dc265cdb61f8a6e0c47acccc16ecf2bd73612657aad4cfa7c9edfd6f9f"
+    },
+    {
+      "estimated_gas": 2279634,
+      "label": "create:fees_canonical",
+      "padded_gas": 2849543,
+      "receipt_gas_used": 2279634,
+      "transaction_hash": "0xe17c56b317007dcb96585f425c5a89a22d9453ea5d1e14b87a58be0d9f19ecc7"
+    },
+    {
+      "estimated_gas": 59369,
+      "label": "bind:fees_canonical",
+      "padded_gas": 74212,
+      "receipt_gas_used": 59369,
+      "transaction_hash": "0x8ca579af75a329730a392c07b43eba038dadcf15e8bd7d0b1a25e9668f2b83ee"
+    },
+    {
+      "estimated_gas": 5347142,
+      "label": "create:canonical",
+      "padded_gas": 6683928,
+      "receipt_gas_used": 5347142,
+      "transaction_hash": "0x4a8c0889a01e7dd09aa38bcd3c56480786191e75d1089a23e3781bdcc5d6f11d"
+    },
+    {
+      "estimated_gas": 58948,
+      "label": "bind:canonical",
+      "padded_gas": 73685,
+      "receipt_gas_used": 58948,
+      "transaction_hash": "0x64973d9d8e00972bf0ef8b69a8212b94f7a928dd57f6d4968df95872b2021cab"
+    },
+    {
+      "estimated_gas": 6289890,
+      "label": "create:lp_converter",
+      "padded_gas": 7862363,
+      "receipt_gas_used": 6289890,
+      "transaction_hash": "0x45523810a26435b5bf0eb30e57c6432c93a163dc764a84b333a1b0186f508610"
+    },
+    {
+      "estimated_gas": 4586560,
+      "label": "create:seadrop_mint",
+      "padded_gas": 5733200,
+      "receipt_gas_used": 4586560,
+      "transaction_hash": "0x1e17c850c619a5a2c9d602c6ec86e77db76e47e8a6770759a8c198907dd733a1"
+    },
+    {
+      "estimated_gas": 76736,
+      "label": "bind:lp_converter",
+      "padded_gas": 95920,
+      "receipt_gas_used": 73936,
+      "transaction_hash": "0xdde0826d1c71ac0274a0ab18e0b87f3529d2c82b684796058e00c29b78d1b41e"
+    },
+    {
+      "estimated_gas": 81208,
+      "label": "bind:seadrop_mint",
+      "padded_gas": 101510,
+      "receipt_gas_used": 81208,
+      "transaction_hash": "0x81a7b2451adf1b99fb0b5ef671151ef3a62101e2d1575ae6cb695e826bdd247b"
+    }
+  ],
+  "impersonations": 1,
+  "independent_graph": [
+    {
+      "address": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+      "contract": "ZZZAccessController",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 47961,
+      "role": "access",
+      "runtime_bytes": 10438,
+      "runtime_sha256": "25bead56ee3921b0ae6c9acc376a2955b2cc0eb577881ee1636bc2f781d40dec",
+      "trace_file": "01-create-access-trace.json.gz"
+    },
+    {
+      "address": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+      "contract": "ZZZProtocolPolicy",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 17819,
+      "role": "protocol_policy",
+      "runtime_bytes": 14746,
+      "runtime_sha256": "d243295d16818b2234f015964985eb2de00c6a4695caab2be3ac4c8cd64f5950",
+      "trace_file": "02-create-protocol_policy-trace.json.gz"
+    },
+    {
+      "address": "0x596b344ab09a470bc468753e7bd3dc0a9fc5ebc1",
+      "contract": "ZZZMigrationBudget",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 25161,
+      "role": "migration_budget",
+      "runtime_bytes": 24332,
+      "runtime_sha256": "7ce6012efa3581860f3017917f2660d498292e164ffc4804ac777b5eaafc319a",
+      "trace_file": "04-create-migration_budget-trace.json.gz"
+    },
+    {
+      "address": "0x82c078c9bbeda6ecd6c3cdc3dc28999a00136212",
+      "contract": "ZZZNFTMetadata",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 19876,
+      "role": "metadata_renderer",
+      "runtime_bytes": 19499,
+      "runtime_sha256": "72b15b421242d491abe68f443503f1b9a522aa33c9bc0e5386fe413dc04becfc",
+      "trace_file": "05-create-metadata_renderer-trace.json.gz"
+    },
+    {
+      "address": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+      "contract": "ZZZPortfolioPolicy",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 19880,
+      "role": "portfolio_policy",
+      "runtime_bytes": 19315,
+      "runtime_sha256": "e2f1f029d287b2a9af3cad4ab6c9a4baf60d1d813610d49389b6cd976f3807a4",
+      "trace_file": "06-create-portfolio_policy-trace.json.gz"
+    },
+    {
+      "address": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+      "contract": "ZZZRebalanceConfirmation",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 15267,
+      "role": "rebalance_confirmation",
+      "runtime_bytes": 14517,
+      "runtime_sha256": "365ba19ae96f24d9dee72369525036a3a77f3e03ffbe64a2dafcbe913c96c380",
+      "trace_file": "07-create-rebalance_confirmation-trace.json.gz"
+    },
+    {
+      "address": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+      "contract": "ZZZLPBalancer",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 45421,
+      "role": "balancing_router",
+      "runtime_bytes": 22479,
+      "runtime_sha256": "68309d54023f790f9c53fc72ce56a8dcfc23f0697f5d3c0952fc1b2ea6c7c047",
+      "trace_file": "08-create-balancing_router-trace.json.gz"
+    },
+    {
+      "address": "0x75feca20691840cf46106d8d170c082c6c685150",
+      "contract": "ZZZOracle",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 49073,
+      "role": "oracle",
+      "runtime_bytes": 24573,
+      "runtime_sha256": "adae2fbc5cae7177c5db4a5abbb7afbf07c0dcf7ab49edded5ff5d2be87f4b45",
+      "trace_file": "09-create-oracle-trace.json.gz"
+    },
+    {
+      "address": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+      "contract": "ZZZLiquidityManager",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 48375,
+      "role": "liquidity",
+      "runtime_bytes": 24475,
+      "runtime_sha256": "a86d4d7b183182516a09e2bba1aab0e0d5812df77ffcfbc516f0fd773221f62f",
+      "trace_file": "11-create-liquidity-trace.json.gz"
+    },
+    {
+      "address": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+      "contract": "ZZZPoolRegistry",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 22558,
+      "role": "pools",
+      "runtime_bytes": 10719,
+      "runtime_sha256": "13317bad92cde2d03ae3250dd146af06ca0e930ea8b26270b99fead8c0d18f25",
+      "trace_file": "13-create-pools-trace.json.gz"
+    },
+    {
+      "address": "0xf4b21769b176555ab46c72bb610be2d271280206",
+      "contract": "ZZZStrategy",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 25496,
+      "role": "strategy",
+      "runtime_bytes": 23923,
+      "runtime_sha256": "23bb2b315daee45f027542b8ab86bb34cde3954940acc51bd37f914b658504dd",
+      "trace_file": "15-create-strategy-trace.json.gz"
+    },
+    {
+      "address": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+      "contract": "ZZZVault",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 26066,
+      "role": "vault",
+      "runtime_bytes": 24544,
+      "runtime_sha256": "4b9955c8c029ab687215c2feefaacf6102ed67e641fc9b12c165faf1bc2ef3ef",
+      "trace_file": "17-create-vault-trace.json.gz"
+    },
+    {
+      "address": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+      "contract": "ZZZRewards",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 44735,
+      "role": "rewards",
+      "runtime_bytes": 24218,
+      "runtime_sha256": "faf310ff2e22acc3d999a29d6b00619254fea68418f957f0704cd6f44eb679b1",
+      "trace_file": "19-create-rewards-trace.json.gz"
+    },
+    {
+      "address": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+      "contract": "ZZZFeeController",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 10211,
+      "role": "fees",
+      "runtime_bytes": 9702,
+      "runtime_sha256": "98a0dc073b3c8c41c5da366a100485e755c8eeb8416eb360285528eb8b20679c",
+      "trace_file": "21-create-fees-trace.json.gz"
+    },
+    {
+      "address": "0xbb3b6422b58c28f5cee7451961a6c2098b91c6f4",
+      "contract": "ZZZMembership",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 7039,
+      "role": "membership",
+      "runtime_bytes": 6565,
+      "runtime_sha256": "4144e2d91010259fcd598f5df6f2935f5b5f32ebe21a76d90b4e9cacd4a9fb28",
+      "trace_file": "23-create-membership-trace.json.gz"
+    },
+    {
+      "address": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+      "contract": "ZZZMigration",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 43593,
+      "role": "migration",
+      "runtime_bytes": 23830,
+      "runtime_sha256": "3659ada882998fe946ef9660ebe2fec60eff8b97edb7acc15fa4509573f3a660",
+      "trace_file": "25-create-migration-trace.json.gz"
+    },
+    {
+      "address": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+      "contract": "ZZZCompounder",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 2637,
+      "role": "compounder",
+      "runtime_bytes": 2206,
+      "runtime_sha256": "e6382038c1f187255a6a4642ebdd8fa011234926b1101bbe9883342250b75b34",
+      "trace_file": "27-create-compounder-trace.json.gz"
+    },
+    {
+      "address": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+      "contract": "ZZZBuyback",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 8722,
+      "role": "buyback",
+      "runtime_bytes": 7877,
+      "runtime_sha256": "87741ebedf3fc94af0ad7a3dd43ac75acc4956419c70d5740427616f9725eabc",
+      "trace_file": "29-create-buyback-trace.json.gz"
+    },
+    {
+      "address": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+      "contract": "ZZZNFT",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 30965,
+      "role": "nft",
+      "runtime_bytes": 24097,
+      "runtime_sha256": "e4d044bf6fdc3ac4ff349480afb781c3ab7303e706b3d20330383b425b01b3b2",
+      "trace_file": "31-create-nft-trace.json.gz"
+    },
+    {
+      "address": "0x8a6256e557e4279bb61765e3be0bb969005902cf",
+      "contract": "ZZZNFTCanonical",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 16994,
+      "role": "nft_canonical",
+      "runtime_bytes": 15912,
+      "runtime_sha256": "3259ac3852715a79b2346164b4383fe90c028f51a826710ad5db28488b25f38a",
+      "trace_file": "33-create-nft_canonical-trace.json.gz"
+    },
+    {
+      "address": "0x122cbe831910857b6d1b1e4e95058c8cd1f42d06",
+      "contract": "ZZZVaultCanonical",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 25995,
+      "role": "vault_canonical",
+      "runtime_bytes": 24312,
+      "runtime_sha256": "7677a0c946a4c3df6b6d962031e181443d005b91e0df2698cf5d2858ccdd411c",
+      "trace_file": "35-create-vault_canonical-trace.json.gz"
+    },
+    {
+      "address": "0x698a9971dd50494b9e2c826b6adc7b898fde8434",
+      "contract": "ZZZFeesCanonical",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 11295,
+      "role": "fees_canonical",
+      "runtime_bytes": 10223,
+      "runtime_sha256": "deeb9a305c224f5ad255ed8bb60124d6d1636b9eb36af84e5ec91322db01d474",
+      "trace_file": "37-create-fees_canonical-trace.json.gz"
+    },
+    {
+      "address": "0xf60ee94dad756e1528f144d1856f184758bc1fab",
+      "contract": "ZZZCanonicalHandoff",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 25090,
+      "role": "canonical",
+      "runtime_bytes": 24400,
+      "runtime_sha256": "6624a70f3ec4490be70936126917a763b70d986c6147fb779d3a9d8138fa799e",
+      "trace_file": "39-create-canonical-trace.json.gz"
+    },
+    {
+      "address": "0x3fc6f36df142c003864e1fa586c90c6c25bb0be0",
+      "contract": "ZZZLPRewardConverter",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 29620,
+      "role": "lp_converter",
+      "runtime_bytes": 17178,
+      "runtime_sha256": "515ae4fa06d65f48cc80ad324328b9bddfe7e664413cec30636d5ea9a2a481b6",
+      "trace_file": "41-create-lp_converter-trace.json.gz"
+    },
+    {
+      "address": "0x1072e09ef5446c83fa1cf73d7fdbcc772e9e0c49",
+      "contract": "ZZZSeaDropMint",
+      "creator": "0x000000000000000000000000000000000000a0a0",
+      "initcode_bytes": 22364,
+      "role": "seadrop_mint",
+      "runtime_bytes": 20835,
+      "runtime_sha256": "9441a4e5663194c5c7c98e0605a5b5379b78fc2eaade49cd66abb9ed1a6b1e51",
+      "trace_file": "42-create-seadrop_mint-trace.json.gz"
+    },
+    {
+      "address": "0xaca10c1aced6ac676c56939dff688116cf5eb757",
+      "contract": "ZZZRoyaltyFactory",
+      "creator": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+      "initcode_bytes": 28983,
+      "role": "royalty_factory",
+      "runtime_bytes": 1893,
+      "runtime_sha256": "06dff63a051872bae70aad4960f98568bcbe3813df4a380b8b18e70466cf8e63",
+      "trace_file": "01-create-access-trace.json.gz"
+    },
+    {
+      "address": "0x87eb2a92f0a6ed7e3dcb1c6835c58dc718b315a3",
+      "contract": "ZZZActivationAssetsFactory",
+      "creator": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+      "initcode_bytes": 7534,
+      "role": "activation_assets_factory",
+      "runtime_bytes": 7480,
+      "runtime_sha256": "1d6c86ab1714017f153f72b8f0d0a34f46cce5094a14808c439ef1eba15b8a2c",
+      "trace_file": "01-create-access-trace.json.gz"
+    },
+    {
+      "address": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+      "contract": "ZZZLPBalanceMath",
+      "creator": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+      "initcode_bytes": 21977,
+      "role": "lp_balance_math",
+      "runtime_bytes": 21923,
+      "runtime_sha256": "eb46eb486ae3b8c324f8b9bda102e4cbd920b704f86069e24930fd3eb801c4f6",
+      "trace_file": "08-create-balancing_router-trace.json.gz"
+    },
+    {
+      "address": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+      "contract": "ZZZLPPositionExecutor",
+      "creator": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+      "initcode_bytes": 21582,
+      "role": "lp_position_executor",
+      "runtime_bytes": 20323,
+      "runtime_sha256": "95fb3b52dcc2dfb89cf60aa46923b49d884a47d2214bbc7a0d9901c33392dc62",
+      "trace_file": "11-create-liquidity-trace.json.gz"
+    },
+    {
+      "address": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+      "contract": "ZZZContributionPricing",
+      "creator": "0x75feca20691840cf46106d8d170c082c6c685150",
+      "initcode_bytes": 21486,
+      "role": "contribution_pricing",
+      "runtime_bytes": 20628,
+      "runtime_sha256": "dc72263d847ac92694416a8d2e7a4df0571b52b351cb7aa201a4f7365e45a7b3",
+      "trace_file": "09-create-oracle-trace.json.gz"
+    },
+    {
+      "address": "0xff333276917d1beeb12f84135305c06da80243d9",
+      "contract": "ZZZActivationAssets",
+      "creator": "0x87eb2a92f0a6ed7e3dcb1c6835c58dc718b315a3",
+      "initcode_bytes": 6724,
+      "role": "activation_assets",
+      "runtime_bytes": 5849,
+      "runtime_sha256": "5de10c1f7523f567e35066edb0697311400eaf2be1d572378206f3ca9043c711",
+      "trace_file": "13-create-pools-trace.json.gz"
+    },
+    {
+      "address": "0x4b757de8e81c15a368ea0956af0975696fd3e9e8",
+      "contract": "ZZZActivationEntry",
+      "creator": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+      "initcode_bytes": 11025,
+      "role": "activation_entry",
+      "runtime_bytes": 9863,
+      "runtime_sha256": "1afd77c54cff457838566570a853e357c9e6ce061d889f53b8fa9613ac8edcf0",
+      "trace_file": "13-create-pools-trace.json.gz"
+    },
+    {
+      "address": "0x6eff8d1c7944b792517daba844c0369c843ee290",
+      "contract": "ZZZRoyaltyRewards",
+      "creator": "0xaca10c1aced6ac676c56939dff688116cf5eb757",
+      "initcode_bytes": 25554,
+      "role": "royalty_rewards",
+      "runtime_bytes": 24524,
+      "runtime_sha256": "48093b114456dcb99f4eb911d2324cb704a19370c70ab75e1b1529a4b1d90efc",
+      "trace_file": "31-create-nft-trace.json.gz"
+    },
+    {
+      "address": "0xa52d4b656c8173fe69d300c72eb170805653bf35",
+      "contract": "ZZZClaimRouter",
+      "creator": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+      "initcode_bytes": 3539,
+      "role": "claim_router",
+      "runtime_bytes": 2885,
+      "runtime_sha256": "f75b8eb77b02e3531a2f86fea8f89876e19d30f2e43e0c4ca1d6e7e004e919db",
+      "trace_file": "31-create-nft-trace.json.gz"
+    },
+    {
+      "address": "0x4fc9eeb873f61dc6d86f587122f88d75a3d6fd48",
+      "contract": "ZZZRewardsCanonical",
+      "creator": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+      "initcode_bytes": 19393,
+      "role": "rewards_canonical",
+      "runtime_bytes": 18609,
+      "runtime_sha256": "413a67d6342d2ad60ca5e6aa0bd2844a62c110422e28088459fe777da864246f",
+      "trace_file": "19-create-rewards-trace.json.gz"
+    },
+    {
+      "address": "0xf118819c012c0181c6d42ca61ef4ed3116105087",
+      "contract": "ZZZCustodyValidation",
+      "creator": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+      "initcode_bytes": 19017,
+      "role": "custody_validation",
+      "runtime_bytes": 18284,
+      "runtime_sha256": "e0c1221812821ff15e309e05a49c69bbe39299e623312518a606fe4f570065e5",
+      "trace_file": "25-create-migration-trace.json.gz"
+    },
+    {
+      "address": "0x584f4acd4600ccad0b030cfe1634c624e5003ad2",
+      "contract": "ZZZV4RouteExecutor",
+      "creator": "0x3fc6f36df142c003864e1fa586c90c6c25bb0be0",
+      "initcode_bytes": 11322,
+      "role": "lp_v4_executor",
+      "runtime_bytes": 11164,
+      "runtime_sha256": "e03ded18706a2426a1c0f7ff4119cc1f333854a84b9df46dd4701c8457afcaed",
+      "trace_file": "41-create-lp_converter-trace.json.gz"
+    },
+    {
+      "address": "0x2ef4dee467dc3c971f4e72641b22b261bc93ab11",
+      "contract": "ZZZRoyaltyCodeData",
+      "creator": "0xaca10c1aced6ac676c56939dff688116cf5eb757",
+      "initcode_bytes": 25095,
+      "role": "royalty_data_part0",
+      "runtime_bytes": 24576,
+      "runtime_sha256": "aaa46451336dcba8994ac9dee9c51b51bcd3a15f534ca929b513fb25d045114a",
+      "trace_file": "01-create-access-trace.json.gz"
+    },
+    {
+      "address": "0x90aba8aaebad155376d12953cf37bbd7821f5438",
+      "contract": "ZZZRoyaltyCodeData",
+      "creator": "0xaca10c1aced6ac676c56939dff688116cf5eb757",
+      "initcode_bytes": 1479,
+      "role": "royalty_data_part1",
+      "runtime_bytes": 952,
+      "runtime_sha256": "aa2f36537927e6dd5c46f14e20ffefc2874bd3636de3f6fc344b5cf098f3aefd",
+      "trace_file": "01-create-access-trace.json.gz"
+    }
+  ],
+  "internal_creates": 14,
+  "limitations": [
+    "Original Node.wire retained mutable request objects: earlier simulation/estimate gas, nonce and gasPrice fields were overwritten by later transaction mutation. The first full-cap call input is source-derived, not an exact archived transport proof; original bytes are preserved.",
+    "Synthetic owned Anvil4663, not a Robinhood deployment or provider/fee qualification.",
+    "Native external dependencies are constructor-only revert/selector doubles, not admitted production runtimes.",
+    "Exact archived SeaDrop runtime is seeded with controlled storage; mint/market/VRF use is unqualified.",
+    "No seal, operating configuration, public transaction, unchanged suite or compiler was executed.",
+    "Normal compiler templates have no immutableReferences; actual runtime identity is proven through exact executed initcode, actual CREATE outputs and every recorded getCode, not an unpatched-template comparison."
+  ],
+  "mode": "read_only_existing_evidence_only",
+  "mutations": 45,
+  "original_request_alias_recording_defect": {
+    "actual_submitted_transactions_receipts_and_CREATE_outputs_authenticated": true,
+    "affected_request_types": [
+      "first full-cap eth_call",
+      "eth_estimateGas",
+      "padded eth_call late nonce/gasPrice fields"
+    ],
+    "affected_transaction_groups": 44,
+    "full_cap_gas_wire_independently_authenticated": false,
+    "second_call_padded_gas_field_preserved": true,
+    "source_derived_original_first_call_gas": 32000000
+  },
+  "poststate_getter_checks": 112,
+  "socket_ownership_observations": 90,
+  "source_stage": {
+    "scripts/rehearse-local-deployment.py": "ba804ab363243762e48b478a698df538b23185d4b73351ffcb9270a0928b3eb2",
+    "zzz_ops/abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d",
+    "zzz_ops/deployment_plan.py": "ff7e50bf3e04de5681eec65a334be9d02e8e9dfb565faa3cbb4a46e9804dc1ea"
+  },
+  "status": "receipt_and_runtime_reconciliation_passed_with_recording_limitation",
+  "submitted_transactions": 44,
+  "top_level_create_receipts": 25,
+  "total_receipt_gas": 141382621,
+  "wire_records": 3567,
+  "worst_padded_gas": 14172289
+}

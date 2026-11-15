@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "path": "evidence.zip",
+  "bytes": 24682112,
+  "sha256": "652d156817bf8a3e858c792166a61b3f46ad02a75e6b6746436d665869195837",
+  "members": 129,
+  "scope": "Complete controlled local evidence, original stages and capture limitation; no production approval",
+  "manifest_members": [
+    "PUBLIC_MANIFEST.json"
+  ]
+}

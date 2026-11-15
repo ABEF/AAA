@@ -289,6 +289,12 @@ pins. The output documents binding order and unresolved setup requirements,
 with no signer, RPC, deployment or seal call. Actual release addresses,
 constructor execution, full deployment gas and independent approval remain open.
 
+The separate [isolated local rehearsal](DEPLOYMENT_PREPARATION.md#isolated-local-construction-rehearsal)
+records actual unsealed constructor/binding receipts and39 getter-discovered
+instances under controlled external dependencies. Those local addresses and
+runtime hashes must never populate a production inventory. Live deployment
+identity, dependencies, full gas/fees and independent approval remain separate.
+
 ## Exact controller constructor size
 
 The current direct controller has three static address arguments, adding96 ABI

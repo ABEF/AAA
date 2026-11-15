@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "scope": "Current new report artifacts; excludes this manifest; archive has its own full member manifest",
+  "sha256": {
+    "EVIDENCE.json": "becbfa3d3354c65f029deb2d966e9b3c567d7d66357e73699c0dbc810e6e7ac4",
+    "evidence.zip": "652d156817bf8a3e858c792166a61b3f46ad02a75e6b6746436d665869195837",
+    "GAS_SUMMARY.json": "7a25578d415e1de4362a79adc0f79630137d9f403fff6df199a610474662c4d0",
+    "INDEPENDENT_BINDING_CALL_REVIEW.json": "9bb607a5eaecb590f853abd35e16e478187d13dd4b6ae8892307bcafb2f37bba",
+    "INDEPENDENT_INITIAL_CAPTURE_FAILURE.json": "dc74ae21727e279abdddaaf993ad75a04b1ef59c9b8d8f814d0260e605aa7122",
+    "INDEPENDENT_RECEIPT_REVIEW.json": "d70b78c036700a39b586fe0c9c89597460cde83d1609ec35c17e4cd4da6e785b",
+    "PUBLIC_ZIP_RECONCILIATION.json": "a51e04f6b6f37bc931fdcf7e7ed2bc90f2ffe9054e628ca822377a08c74e1956",
+    "REVIEW.md": "9efe1349c56d26c61134a1ff92d947140877d80b2bf176888c1a85b04d23f839",
+    "SOURCE_SHA256.json": "df9029793379dbdc88c6c199bf94753f32c100eeb2138c8e134e08e39a23994c",
+    "VERIFICATION.json": "9ed94453ca2f8970635c6aedbadefff9a226df0f20184e57f60c29a321ffaea0"
+  }
+}

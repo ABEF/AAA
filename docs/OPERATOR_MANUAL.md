@@ -586,6 +586,17 @@ submission and not production approved; live prerequisites and actual address,
 nonce, runtime, gas and binding reconciliation are separate. Follow the owning
 guide for typed inputs, output preservation and the pre-seal boundary.
 
+### Isolated local construction rehearsal
+
+Use the separate [local construction procedure](DEPLOYMENT_PREPARATION.md#isolated-local-construction-rehearsal)
+for actual constructor/binding and gas verification. It launches a fresh owned
+loopback chain, reuses exact normal objects, records local receipts and leaves
+the graph unsealed. The offline planner remains unsigned and unchanged. Do not
+point this workflow at an existing node, journal, website or public endpoint;
+controlled external dependencies do not qualify live venue/SeaDrop operation or
+Robinhood deployment fees. Follow the guide for output preservation, shutdown,
+required final reads and separate release requirements.
+
 ### Fixed ZZZ setup order
 
 For a fresh deployment, bootstrap first deploys Access and the separately
