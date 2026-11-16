@@ -1,0 +1,140 @@
+{
+  "all_eight_byte_identical_to_task_baseline": true,
+  "all_four_protected_files_preserved": true,
+  "baseline_head": "3c180f2f5a0fe3743b87184250dd2d0f96d09881",
+  "current_documentation_followups": [
+    "Shared checkpoint summary in README, PROJECT_CONTEXT, AGENTS, AUDIT_FINDINGS, IMPLEMENTATION_STATUS, ROADMAP and WORK_HANDOFF.",
+    "AGENTS later checkpoint limit paragraph; COMPONENT_STATUS checkpoint component; both EARNINGS_HISTORY scope paragraphs.",
+    "Historical lineage-checkpoints report remains source-scoped and must not be rewritten as if it included the new importer."
+  ],
+  "eight_existing_semantic_sources": {
+    "frontend_api/earnings.py": {
+      "baseline_sha256": "3da00d0be21df851483f66007e6bd2b228a57e51c26a1c7900cc985eb3a07759",
+      "byte_identical_to_task_baseline": true,
+      "lf_equal_to_head": true,
+      "semantic_lf_sha256": "3da00d0be21df851483f66007e6bd2b228a57e51c26a1c7900cc985eb3a07759",
+      "sha256": "3da00d0be21df851483f66007e6bd2b228a57e51c26a1c7900cc985eb3a07759"
+    },
+    "frontend_api/earnings_checkpoint.py": {
+      "baseline_sha256": "fe47bb6c8df5a05526a6d53bfbf1d0e881d9792c4803bc1f11442f1e18aeb621",
+      "byte_identical_to_task_baseline": true,
+      "lf_equal_to_head": true,
+      "semantic_lf_sha256": "53eda825e8abecd46774ea7dcefbdcd936005dfcf8523eb2e7eb5b6d276fd232",
+      "sha256": "fe47bb6c8df5a05526a6d53bfbf1d0e881d9792c4803bc1f11442f1e18aeb621"
+    },
+    "frontend_api/earnings_checkpoint_build.py": {
+      "baseline_sha256": "f5eca20abda61ef591d3a8dc65a50eb8275aea363e07e0ed25a3b8134d64e192",
+      "byte_identical_to_task_baseline": true,
+      "lf_equal_to_head": true,
+      "semantic_lf_sha256": "f5eca20abda61ef591d3a8dc65a50eb8275aea363e07e0ed25a3b8134d64e192",
+      "sha256": "f5eca20abda61ef591d3a8dc65a50eb8275aea363e07e0ed25a3b8134d64e192"
+    },
+    "frontend_api/earnings_checkpoint_v2.py": {
+      "baseline_sha256": "7dee675ca520ff0b84f368d479851a2e4194a830b33c59a3bced06387a714172",
+      "byte_identical_to_task_baseline": true,
+      "lf_equal_to_head": true,
+      "semantic_lf_sha256": "7dee675ca520ff0b84f368d479851a2e4194a830b33c59a3bced06387a714172",
+      "sha256": "7dee675ca520ff0b84f368d479851a2e4194a830b33c59a3bced06387a714172"
+    },
+    "frontend_api/earnings_checkpoint_v3.py": {
+      "baseline_sha256": "ab00ba2b9972d336e70f0b7559ee45903939245060e3d3b1bf081cf61b1258eb",
+      "byte_identical_to_task_baseline": true,
+      "lf_equal_to_head": true,
+      "semantic_lf_sha256": "ab00ba2b9972d336e70f0b7559ee45903939245060e3d3b1bf081cf61b1258eb",
+      "sha256": "ab00ba2b9972d336e70f0b7559ee45903939245060e3d3b1bf081cf61b1258eb"
+    },
+    "frontend_api/lineage.py": {
+      "baseline_sha256": "c693fc52f39e2451575691ab44c3394aabfcd9de12e050dd6117de8bc3d15947",
+      "byte_identical_to_task_baseline": true,
+      "lf_equal_to_head": true,
+      "semantic_lf_sha256": "3af5fb169d1843bfca7dc81460338cfde4abfec7d085bbe9972d4a49aeeab91b",
+      "sha256": "c693fc52f39e2451575691ab44c3394aabfcd9de12e050dd6117de8bc3d15947"
+    },
+    "frontend_api/service.py": {
+      "baseline_sha256": "8c656d1d02ddc8ae6f42fd1cd74202416b6fa4fab8ac9d3aa9199a2624bc43d0",
+      "byte_identical_to_task_baseline": true,
+      "lf_equal_to_head": true,
+      "semantic_lf_sha256": "9bf1ba5d5aa6cf7dde67b0301cacb64d1581540cd1d9e20a528808ecebdac7bf",
+      "sha256": "8c656d1d02ddc8ae6f42fd1cd74202416b6fa4fab8ac9d3aa9199a2624bc43d0"
+    },
+    "frontend_api/wallet_earnings.py": {
+      "baseline_sha256": "5446cc002705f878f6023b1b585c27c27c31c3731f7234780839ac64aefca520",
+      "byte_identical_to_task_baseline": true,
+      "lf_equal_to_head": true,
+      "semantic_lf_sha256": "5446cc002705f878f6023b1b585c27c27c31c3731f7234780839ac64aefca520",
+      "sha256": "5446cc002705f878f6023b1b585c27c27c31c3731f7234780839ac64aefca520"
+    }
+  },
+  "findings": [
+    {
+      "fix": "New _bind_review validates candidate-derived graph/length/target anchor/retention fields, exact envelopes and profile/cursor ranges plus appended edge shape/order/controller/retirement transaction. Canonical serialization is required before exclusive publication.",
+      "id": "IMPORT-MANIFEST-01",
+      "initial_review_artifact": "IMPORT_REVIEW_INITIAL.json",
+      "severity": "nonfinancial integrity gap",
+      "status": "resolved in inspected final producer pins",
+      "verification_scope": "Independent source inspection only; focused execution evidence belongs to parent/CLI review stages."
+    }
+  ],
+  "kind": "independent-read-only-source-review",
+  "network_requests_by_reviewer": 0,
+  "producer_source_sha256": {
+    "frontend_api/earnings_checkpoint_import.py": {
+      "bytes": 19685,
+      "semantic_lf_sha256": "326ce729718e113af7bb8f993f05c79ade3ddf5b2ac901d9a72c221ba4d71457",
+      "sha256": "326ce729718e113af7bb8f993f05c79ade3ddf5b2ac901d9a72c221ba4d71457"
+    },
+    "scripts/import-earnings-checkpoint.py": {
+      "bytes": 3226,
+      "semantic_lf_sha256": "0c3f25bad6e3f50a122f34da0bf7b24c6a14b29547b2a743e35428111c01343a",
+      "sha256": "0c3f25bad6e3f50a122f34da0bf7b24c6a14b29547b2a743e35428111c01343a"
+    }
+  },
+  "production_approved": false,
+  "protected_unrelated_files": {
+    "reports/source-checks.json": {
+      "baseline_sha256": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "byte_identical": true,
+      "sha256": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4"
+    },
+    "scripts/run-fork-checks.py": {
+      "baseline_sha256": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "byte_identical": true,
+      "sha256": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b"
+    },
+    "tests_python/test_fork_runner.py": {
+      "baseline_sha256": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "byte_identical": true,
+      "sha256": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9"
+    },
+    "tests_python/test_frontend_history.py": {
+      "baseline_sha256": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "byte_identical": true,
+      "sha256": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+    }
+  },
+  "remaining_limits": [
+    "No independent defect in exact accounting, rights, 24-hour retention or unchanged profile admission found within this source-inspection scope; this is not a guarantee of total correctness.",
+    "A reviewed prefix digest is explicit operator trust in prior evidence, not a proof of complete log history or consensus; preserve raw/WAL backups.",
+    "Full actual lifetime/maximum-state workload, archival provider depth, restore and operating qualification remain open under unchanged limits.",
+    "Producer sidecar is unapproved review evidence. Adoption still requires independent inspection and explicit configuration; no live environment is qualified."
+  ],
+  "reviewed_at_utc": "2026-11-16T18:18:27.281215+00:00",
+  "reviewed_properties": [
+    "Input format is exact original checkpoint2 or strictly shorter ordered checkpoint3, never fractional checkpoint1, same graph or arbitrary source adoption. Existing strict loaders bind source identities, contract/runtime/history origins, previously defined asset meanings and exact state grammar.",
+    "The old-prefix projection changes only its read-only decoder lineage view; all supplied objects and current Projection checkpoint remain untouched. The build-local adapter maps prefix peers to their authenticated full-graph epochs without rewriting payloads.",
+    "The imported cursor must be inside its actual operating epoch, strictly before retirement, with an original identity and exact predecessor. Complete target graph verification authenticates appended receipts, controller pairing, state root, handoff ID and canonical boundaries at both existing builder boundaries.",
+    "All target peers must retain the native ETH/fixed-ZZZ principal pair, including appended peers later than an intentionally older output cursor. Existing per-peer admissions validate descriptors/runtime/decimals; no new token reinterpretation is added.",
+    "Original2 and old3 current tails may add reviewed later royalty descriptors under unchanged loader rules; earlier retired old3 epochs and every existing descriptor are exact. Tail retirement was None in the old graph and becomes a separately authenticated appended boundary; payloads are never relabelled.",
+    "Exact LP trees, raw pending/high/low phase, direct credits, original-currency royalty tickets, prior claim/conversion books and ownership use the unchanged cumulative replay and strict output-consumer admission.",
+    "The existing full86400-second raw suffix serving gate, event/grammar/artifact/lineage bounds and work-budget defaults remain. Nested work scopes share the original outer budget rather than resetting it. Raw databases and prior artifacts are never pruned.",
+    "Target configuration cannot install a competing checkpoint; original prefix path and explicit digest are separate. Producer files are separately pinned; current consumer semantic hashes remain unchanged and cannot be caller-overridden.",
+    "prepare rechecks prefix bytes, new producer pins, semantic pins and full target graph before returning. Its standard3 output must pass the existing reader, cursor mapping and canonical anchor check in an owned temporary file.",
+    "publish now binds the canonical serialization, exact manifest envelope/false approval flags, current producer/semantic maps, candidate digest, previous prefix digest, full graph/length, target anchor, earliest serving timestamp and strict input/cursor/profile ranges.",
+    "Appended sidecar edges are ordered and match source/destination controllers and retirement transaction from the candidate graph. Anchors and retained-day claims are bounded. This is manifest consistency, not independent RPC proof.",
+    "Exclusive publication writes the unapproved review first and candidate second, documenting partial output. Existing outputs, including symlinks, are never replaced; input/output aliasing is refused. No automatic adoption, pin/restart, signer or chain/site/service changes exist."
+  ],
+  "schema": 1,
+  "source_edits_by_reviewer": 0,
+  "stage": "post-manifest-binding-fix",
+  "tests_executed_by_reviewer": 0
+}

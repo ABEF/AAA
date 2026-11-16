@@ -1,13 +1,15 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-[Lineage earnings checkpoint3](reports/lineage-checkpoints-20261116/REVIEW.md) now seeds a cumulative exact accounting
-cursor in any authenticated operating epoch and replays all later raw events.
-Collection/NFT/current-holdings wallet earnings preserve the complete24-hour
-window, transfers, prior payouts/conversions and raw LP/royalty phases. Formats1/2
-remain distinct. New source adoption requires reviewed checkpoint rebuild/re-pin;
-no contract, signer, chain/journal, service/site or heartbeat change occurs.
-Same-graph advancement is supported; new-graph prefix import and actual lifetime
-archive/provider/maximum-state/operating qualification remain open.
+[Lineage checkpoint3](reports/lineage-checkpoints-20261116/REVIEW.md) preserves exact accounting and the full raw
+24-hour window across authenticated replacements. The separate [offline prefix
+importer](reports/checkpoint-prefix-import-20261116/REVIEW.md) now extends a reviewed original checkpoint2 or shorter-graph
+checkpoint3 into a new matching graph. Existing semantic readers/builders remain
+byte-identical; no source-hash override, phase flattening or limit increase.
+Each new candidate and its producer review require independent approval before
+separate service adoption. Same-graph advancement still uses the existing builder.
+Actual archive/provider, maximum-state, restore and operating qualification remain
+open; contracts, rights, chains/journals, signer, sites/services and paused heartbeat
+are unchanged.
 
 The [16 November whole-project audit](reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
 state-file and website-profile gaps and reconciles current guidance. Production
@@ -147,7 +149,7 @@ opening, fills, operator recovery and merging.
 [Unsigned preparation](docs/ACTIVATION_PREPARATION.md) checks exact assets,
 balancing venues, prices, policy, allowance and calldata; it does not sign public transactions.
 Fresh contract inventory is schema17/mint2/residual-reinvest1/direct Entry3/royalty4 with20 callable helpers plus two inert [factory data children](docs/FACTORY_CODE_STORAGE.md). Reporting5 and exact LP tree formats remain; canonicalV10 adds original-recipient mint books. Explicit backend `mint_integration_version:2` adds pinned V10 read/claim/lineage support and rejects direct mint preparation with Use OpenSea. Omission keeps mint1/V9; source9 website and installed consumers retain their prior profiles pending explicit matching adoption. [Gas-aware claim planning](docs/CLAIM_PLANNING.md) prepares only the next exact simulated batch, preserving all remaining selections.
-[Earnings checkpoint1](docs/EARNINGS_CHECKPOINTS.md) is historical profile6-only. Fresh7 supports raw replay or explicit reviewed checkpoint2 with raw exact-tree state and a complete rolling-day suffix; lineage/other readers and live workload qualification remain open. [OpenSea qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) remains separate from ERC2981.
+[Earnings checkpoints](docs/EARNINGS_CHECKPOINTS.md) retain historical6-only format1, original7 format2 and authenticated-lineage format3. Fresh7 preserves raw exact-tree state and a complete rolling-day suffix; explicit offline prefix import extends a matching graph without rewriting old artifacts. Other readers and live workload qualification remain open. [OpenSea qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) remains separate from ERC2981.
 
 <a id="frontend-components"></a>
 

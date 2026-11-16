@@ -2909,12 +2909,21 @@ NFT's lifetime paid/earned/remaining rights reconcile at the operating cursor.
 | Build lineage earnings candidate | Complete pinned lineage API config, eligible historical full block, new output path | `python scripts/build-earnings-checkpoint.py --config /secure/lineage.json --block ELIGIBLE_BLOCK --output /archive/new.json` | Prepare reviewed earnings prefix |
 | Adopt after independent review | Exact candidate path and SHA-256; separately approved API stop/restart | `"checkpoint":{"path":"/archive/new.json","sha256":"REVIEWED_64_HEX_DIGEST"}` inside `earnings_history` | Enable bounded earnings replay |
 | Advance same graph | Existing approved pin, later eligible block, new path | Same builder with later `--block` | Prepare later reporting prefix |
-| New replacement graph | Updated authenticated peers and reviewed rebuild | Rebuild; never edit old identity | Review new deployment lineage |
+| Import matching extended graph | Complete target config with no checkpoint key, approved exact2/shorter3 path+SHA, eligible block, two new paths | `python scripts/import-earnings-checkpoint.py --config /secure/extended.json --prefix /archive/old.json --prefix-sha256 REVIEWED_64_HEX_DIGEST --block ELIGIBLE_BLOCK --output /archive/new.json --review-output /archive/import-review.json` | Prepare extended earnings candidate |
 
-No wallet or on-chain call is used. A new source version invalidates old semantic
-pins, including1/2: rebuild/review, never edit stored hashes. No automatic rollout,
-pruning or shorter-graph prefix import is implemented. Real archive/provider,
-maximum-state/long-history and restore qualification remain open.
+No wallet or on-chain call is used. Changed pinned reader/replay sources invalidate
+old semantic pins, including1/2: rebuild/review, never edit stored hashes. The separate
+importer changes no such source. The [explicit import
+procedure](EARNINGS_CHECKPOINTS.md#import-a-reviewed-prefix-into-an-extended-graph) authenticates a strictly extended graph and every appended handoff using the
+unchanged strict readers/builder. It preserves exact raw accounting and the entire
+24-hour suffix. The separate producer-review file records new tool hashes and
+false approval flags; neither file installs itself. Review and candidate are
+published exclusively but not jointly atomically: inspect/preserve both paths
+after interruption or error, then use fresh output names. Source publication
+needs no service restart. Actual adoption requires the separately authorized
+API configuration/restart above. No automatic rollout/pruning, signer or journal
+change. Real archive/provider, maximum-state/long-history and restore qualification
+remain open.
 
 ### Serve processed earnings and current-price values
 

@@ -1,0 +1,26 @@
+{
+  "baseline_source_sha256": "c60bfa6825ec08b57c6dbcc0d8121ad1acb1a59752522dbfe00f668aaa62622d",
+  "changed_nodes": [
+    "publish"
+  ],
+  "final_source_sha256": "326ce729718e113af7bb8f993f05c79ade3ddf5b2ac901d9a72c221ba4d71457",
+  "new_nodes": [
+    "_review_header",
+    "_bind_review"
+  ],
+  "recovered_prior_source": "Exact inverse of the recorded publication-only patch; accepted only after matching prior independent/test-stage SHA-256.",
+  "source_semantic_override": false,
+  "tests_rerun": 0,
+  "unchanged_ast_nodes": {
+    "_BuildEngine": "14a50f35e5522193a066c24a7e139f11af09b7786d4f385fcc8bbcac30f1d300",
+    "_ImportedPrefix": "d8f92882c39d9dd108448bcd9761e4c601bbf4400557e169f80257ed1f6bf8df",
+    "_ProjectionView": "f9f4b91185549ef89266b8cfbb370347738f682d0395136a0b5eb9e615b34d95",
+    "_canonical": "f205fe38be7f35c761464ae0f988701fed5c58ea2a73fef3cee7d7d5585edbfc",
+    "_digest": "1a9441bba2fa1b7205535aad3f9afd292bda3919d6ed8690239f5318517bb566",
+    "_old_engine": "e52f4602866f9c5eefe853e0e974cc3caf4e38782c123b704dcb0186c1d0c1fd",
+    "_read_prefix": "a240d557ef2a166ce337e4da24ee2a49463195fc4d92d2487d907b6d0c099c38",
+    "output_preflight": "27dcd88313195101e2ce2120eb7c2963d2e1af85301f496ceb2c5b446b6a5e05",
+    "prepare": "a5710e3f96c09f439acad6cab5e4b8e310650597f46f117ef59a09a6adb4bcb5",
+    "producer_sources": "921ac1fda3041bb4fc8d3372e1641bf8c2c7aa9b519d3de8c8aa65db7b0f87f2"
+  }
+}

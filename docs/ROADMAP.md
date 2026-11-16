@@ -1,13 +1,15 @@
 # Engineering roadmap
 
-[Lineage earnings checkpoint3](../reports/lineage-checkpoints-20261116/REVIEW.md) now seeds a cumulative exact accounting
-cursor in any authenticated operating epoch and replays all later raw events.
-Collection/NFT/current-holdings wallet earnings preserve the complete24-hour
-window, transfers, prior payouts/conversions and raw LP/royalty phases. Formats1/2
-remain distinct. New source adoption requires reviewed checkpoint rebuild/re-pin;
-no contract, signer, chain/journal, service/site or heartbeat change occurs.
-Same-graph advancement is supported; new-graph prefix import and actual lifetime
-archive/provider/maximum-state/operating qualification remain open.
+[Lineage checkpoint3](../reports/lineage-checkpoints-20261116/REVIEW.md) preserves exact accounting and the full raw
+24-hour window across authenticated replacements. The separate [offline prefix
+importer](../reports/checkpoint-prefix-import-20261116/REVIEW.md) now extends a reviewed original checkpoint2 or shorter-graph
+checkpoint3 into a new matching graph. Existing semantic readers/builders remain
+byte-identical; no source-hash override, phase flattening or limit increase.
+Each new candidate and its producer review require independent approval before
+separate service adoption. Same-graph advancement still uses the existing builder.
+Actual archive/provider, maximum-state, restore and operating qualification remain
+open; contracts, rights, chains/journals, signer, sites/services and paused heartbeat
+are unchanged.
 
 The [16 November whole-project audit](../reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
 state-file and website-profile gaps and reconciles current guidance. Production
@@ -212,7 +214,7 @@ Qualify the new explicit claim planner with actual worst-case currencies/fees,
 confirmation/replanning and no silent omission; bounded local planning is not a
 maximum-batch or live-wallet gas guarantee.
 Qualify actual preparation/trace/approval/claims and truthful complete holdings/
-history, unavailable states, account changes and pending recovery. Fresh7 supports complete raw exact-tree replay or explicit reviewed checkpoint2 for earnings. Qualify actual suffix workloads, archival/rotation/restore and operator approval before claiming bounded lifetime operation. Checkpoint1 remains6-only. Extend lineage/other full-history consumers and review archival/rotation/source-codec evolution.
+history, unavailable states, account changes and pending recovery. Fresh7 supports complete raw exact-tree replay or explicit reviewed checkpoint2 for earnings. Qualify actual suffix workloads, archival/rotation/restore and operator approval before claiming bounded lifetime operation. Checkpoint1 remains6-only. Checkpoint3 and explicit compatible-prefix import now cover lineage earnings; extend other full-history consumers and qualify archival/rotation/source-codec evolution.
 Fresh royalty4/reporting5/canonicalV10 retains the exact-unit cursor/cohort history and
 reviewed checkpoint rebuilds. No converter or new deployed allocator is added.
 A new service/config rollout needs stop/reconcile/dry-run/restart, not a version edit.

@@ -52,7 +52,7 @@ for a complete configured lineage, plus a complete raw24-hour suffix;
 checkpoint1 remains rejected before restoring state. The exact raw trees, high/low
 phase, direct credits, immutable ordinals and royalty4 tickets are retained.
 [Setup and recovery](EARNINGS_CHECKPOINTS.md). Full raw history stays the default;
-other consumers, future graph-prefix import, archival and actual workload
+other consumers, archival and actual workload
 qualification remain open.
 
 The historical accounting6/custody5/fee-intake1 earnings path can use a reviewed,
@@ -371,7 +371,8 @@ History is operator-maintained evidence plus pinned RPC reconciliation, not a
 cryptographic proof that every log was ingested. Default full replay and opt-in
 checkpoint suffixes both retain request limits and fail without truncation.
 Explicit checkpoint1/2 retain single-deployment earnings scope; checkpoint3 adds
-accounting7 lineage earnings. Other ownership/claim consumers, shorter-graph
-prefix import, unattended rotation and raw archival remain separate. Backfill,
+accounting7 lineage earnings. The [explicit offline importer](EARNINGS_CHECKPOINTS.md#import-a-reviewed-prefix-into-an-extended-graph) can extend an approved compatible exact2/shorter3 prefix without changing strict
+semantic readers or the full24-hour raw suffix. Other ownership/claim consumers,
+unattended rotation and raw archival remain separate. Backfill,
 reorg/load/restore rehearsals, archive providers, current feeds and frontend
 display remain qualification work; the financial-history task is still in progress.

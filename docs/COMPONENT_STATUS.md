@@ -90,8 +90,10 @@ contracts enforce principal rules. Indexer/API use confirmed state, explicit
 profiles and complete pinned history. Missing pricing/history stays unavailable.
 Earnings alone may use reviewed [checkpoint3](EARNINGS_CHECKPOINTS.md) for an
 authenticated accounting7 lineage: one exact epoch cursor plus raw later events,
-with the full rolling day retained. Other readers remain raw; future graph-prefix
-import, archive retention and actual maximum-workload operation remain open.
+with the full rolling day retained. A separate offline importer can extend a
+reviewed compatible exact2/shorter3 prefix into a matching graph without changing
+the semantic readers/builder. Other readers remain raw; archive retention and
+actual maximum-workload operation remain open.
 Fresh V10 backend reads/owned claims explicitly select mint_integration_version2
 on accounting7 with fixed SeaDrop/helper pins. Omitted/default1 stays V9;
 source9 website configuration, served accounting3 poplint and old local

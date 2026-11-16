@@ -1,5 +1,10 @@
 # Release approval record - NOT APPROVED
 
+The [offline checkpoint prefix importer](../reports/checkpoint-prefix-import-20261116/REVIEW.md) adds source capability only. Each candidate, exact input digest, producer review,
+raw-history completeness and full24-hour suffix require independent review before
+separate backend adoption. No provider/archive/maximum-state/restore qualification,
+release sign-off, deployment or running configuration is approved by this change.
+
 The [whole-project review](../reports/whole-project-audit-20261116/REVIEW.md)
 implements scoped source/tooling fixes and corrects stale audit guidance. It
 does not approve authorities, markets, services, real fees, OpenSea, VRF or

@@ -174,6 +174,8 @@ query is added merely to assemble funded claims/history.
 After changing the reviewed reader configuration, preserve raw/index/WAL data,
 verify canonical anchors and use a controlled matching-service restart; never
 rewrite deployment labels or on-chain state. The lineage fix itself changes no
-checkpoint semantic source file and checkpoints still disallow lineage. Earlier
-ABI-helper changes retain their separate explicit rebuild/re-pin requirement.
+checkpoint semantic source file; its original checkpoint1/2 lineage exclusion
+is historical. Current checkpoint3 supports authenticated accounting7 lineages,
+with [separate offline prefix import](EARNINGS_CHECKPOINTS.md#import-a-reviewed-prefix-into-an-extended-graph) for an approved matching shorter graph. Earlier ABI-helper changes retain their
+separate explicit rebuild/re-pin requirement; no hash override is introduced.
 [Correction and scoped evidence](../reports/remaining-271-20261111/VERIFICATION.md).

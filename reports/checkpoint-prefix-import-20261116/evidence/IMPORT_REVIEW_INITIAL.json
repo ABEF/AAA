@@ -1,0 +1,105 @@
+{
+  "all_eight_byte_identical_to_task_baseline": true,
+  "baseline_head": "3c180f2f5a0fe3743b87184250dd2d0f96d09881",
+  "eight_existing_semantic_sources": {
+    "frontend_api/earnings.py": {
+      "baseline_sha256": "3da00d0be21df851483f66007e6bd2b228a57e51c26a1c7900cc985eb3a07759",
+      "byte_identical_to_task_baseline": true,
+      "lf_equal_to_head": true,
+      "semantic_lf_sha256": "3da00d0be21df851483f66007e6bd2b228a57e51c26a1c7900cc985eb3a07759",
+      "sha256": "3da00d0be21df851483f66007e6bd2b228a57e51c26a1c7900cc985eb3a07759"
+    },
+    "frontend_api/earnings_checkpoint.py": {
+      "baseline_sha256": "fe47bb6c8df5a05526a6d53bfbf1d0e881d9792c4803bc1f11442f1e18aeb621",
+      "byte_identical_to_task_baseline": true,
+      "lf_equal_to_head": true,
+      "semantic_lf_sha256": "53eda825e8abecd46774ea7dcefbdcd936005dfcf8523eb2e7eb5b6d276fd232",
+      "sha256": "fe47bb6c8df5a05526a6d53bfbf1d0e881d9792c4803bc1f11442f1e18aeb621"
+    },
+    "frontend_api/earnings_checkpoint_build.py": {
+      "baseline_sha256": "f5eca20abda61ef591d3a8dc65a50eb8275aea363e07e0ed25a3b8134d64e192",
+      "byte_identical_to_task_baseline": true,
+      "lf_equal_to_head": true,
+      "semantic_lf_sha256": "f5eca20abda61ef591d3a8dc65a50eb8275aea363e07e0ed25a3b8134d64e192",
+      "sha256": "f5eca20abda61ef591d3a8dc65a50eb8275aea363e07e0ed25a3b8134d64e192"
+    },
+    "frontend_api/earnings_checkpoint_v2.py": {
+      "baseline_sha256": "7dee675ca520ff0b84f368d479851a2e4194a830b33c59a3bced06387a714172",
+      "byte_identical_to_task_baseline": true,
+      "lf_equal_to_head": true,
+      "semantic_lf_sha256": "7dee675ca520ff0b84f368d479851a2e4194a830b33c59a3bced06387a714172",
+      "sha256": "7dee675ca520ff0b84f368d479851a2e4194a830b33c59a3bced06387a714172"
+    },
+    "frontend_api/earnings_checkpoint_v3.py": {
+      "baseline_sha256": "ab00ba2b9972d336e70f0b7559ee45903939245060e3d3b1bf081cf61b1258eb",
+      "byte_identical_to_task_baseline": true,
+      "lf_equal_to_head": true,
+      "semantic_lf_sha256": "ab00ba2b9972d336e70f0b7559ee45903939245060e3d3b1bf081cf61b1258eb",
+      "sha256": "ab00ba2b9972d336e70f0b7559ee45903939245060e3d3b1bf081cf61b1258eb"
+    },
+    "frontend_api/lineage.py": {
+      "baseline_sha256": "c693fc52f39e2451575691ab44c3394aabfcd9de12e050dd6117de8bc3d15947",
+      "byte_identical_to_task_baseline": true,
+      "lf_equal_to_head": true,
+      "semantic_lf_sha256": "3af5fb169d1843bfca7dc81460338cfde4abfec7d085bbe9972d4a49aeeab91b",
+      "sha256": "c693fc52f39e2451575691ab44c3394aabfcd9de12e050dd6117de8bc3d15947"
+    },
+    "frontend_api/service.py": {
+      "baseline_sha256": "8c656d1d02ddc8ae6f42fd1cd74202416b6fa4fab8ac9d3aa9199a2624bc43d0",
+      "byte_identical_to_task_baseline": true,
+      "lf_equal_to_head": true,
+      "semantic_lf_sha256": "9bf1ba5d5aa6cf7dde67b0301cacb64d1581540cd1d9e20a528808ecebdac7bf",
+      "sha256": "8c656d1d02ddc8ae6f42fd1cd74202416b6fa4fab8ac9d3aa9199a2624bc43d0"
+    },
+    "frontend_api/wallet_earnings.py": {
+      "baseline_sha256": "5446cc002705f878f6023b1b585c27c27c31c3731f7234780839ac64aefca520",
+      "byte_identical_to_task_baseline": true,
+      "lf_equal_to_head": true,
+      "semantic_lf_sha256": "5446cc002705f878f6023b1b585c27c27c31c3731f7234780839ac64aefca520",
+      "sha256": "5446cc002705f878f6023b1b585c27c27c31c3731f7234780839ac64aefca520"
+    }
+  },
+  "findings": [
+    {
+      "description": "Publisher verifies digest, producer and semantic source pins, previous prefix digest and target anchor, but does not bind target_graph, target_graph_length or earliest_served_timestamp to the candidate. prepare produces correct values; a modified sidecar supplied directly to publish may make false graph/serving-date claims.",
+      "id": "IMPORT-MANIFEST-01",
+      "recommendation": "Validate candidate-derived sidecar fields at publication and negative-test edited fields. Validate strict prefix/cursor ranges and appended-edge order/shape; do not imply manifest itself proves chain truth.",
+      "scope": "frontend_api/earnings_checkpoint_import.py:publish",
+      "severity": "nonfinancial integrity gap",
+      "status": "open at this exact inspected source"
+    }
+  ],
+  "kind": "independent-read-only-source-review",
+  "limits": [
+    "This was a source inspection, not execution, a chain proof, maximum-state capacity or lifetime archive/provider operating qualification.",
+    "A reviewed prefix digest still represents explicit operator trust in prior evidence; no complete-log cryptographic proof is created.",
+    "Future adoption requires independent producer/candidate review and explicit service configuration; this review grants no approval."
+  ],
+  "network_requests": 0,
+  "producer_source_sha256": {
+    "frontend_api/earnings_checkpoint_import.py": {
+      "semantic_lf_sha256": "326ce729718e113af7bb8f993f05c79ade3ddf5b2ac901d9a72c221ba4d71457",
+      "sha256": "326ce729718e113af7bb8f993f05c79ade3ddf5b2ac901d9a72c221ba4d71457"
+    },
+    "scripts/import-earnings-checkpoint.py": {
+      "semantic_lf_sha256": "0c3f25bad6e3f50a122f34da0bf7b24c6a14b29547b2a743e35428111c01343a",
+      "sha256": "0c3f25bad6e3f50a122f34da0bf7b24c6a14b29547b2a743e35428111c01343a"
+    }
+  },
+  "production_approved": false,
+  "reviewed_at_utc": "2026-11-16T18:16:49.724551+00:00",
+  "reviewed_properties": [
+    "Explicit schema2 original or strictly shorter schema3 input; existing strict loaders and exact current source pins retained.",
+    "Pure truncated decoder views and build-local checkpoint adapter; installed engine configuration is not mutated.",
+    "Complete target graph authentication including appended receipt/state-root edges, original identity, strict operating input cursor and all-peer native/fixed-ZZZ pair.",
+    "Existing exact replay, current-owner claims/conversions, phase restoration and strict standard3 output admission reused without semantic edits.",
+    "Whole outer work budget, artifact/grammar/event/predecessor limits, full-day serving gate and raw-retention requirement remain.",
+    "No automatic checkpoint adoption, signature, deployment, service restart, raw pruning or financial authority change.",
+    "Separate producer sidecar pins both new producer files; semantic source identities are not overridden or relabelled.",
+    "Exclusive review-first publication documents partial-output failure and never overwrites existing outputs."
+  ],
+  "schema": 1,
+  "source_edits": 0,
+  "stage": "initial",
+  "tests_executed": 0
+}

@@ -12,9 +12,11 @@ Public deployments remain blocked.
 
 The builder chooses the format from the authenticated deployment/lineage
 profile, never from a caller's desired label. Accounting7 rejects checkpoint1 before restoring
-state; accounting6 likewise rejects checkpoint2. There is no artifact conversion,
-edited source-hash adoption, pruning or live rollout. Source changes require an
-independently reviewed rebuild/re-pin, including previously built format1 files.
+state; accounting6 likewise rejects checkpoint2. There is no cross-accounting artifact conversion, edited source-hash adoption,
+pruning or live rollout. The separate explicit offline importer below can use a
+compatible exact2/shorter3 prefix to build a new standard3 artifact. Changes to
+pinned semantic sources require independently reviewed rebuild/re-pin, including
+previously built format1 files; adding this separate importer changes none.
 
 Accounting7 backend mint profile1/default authenticates canonicalV9; explicit2
 authenticates mint2/canonicalV10 and its additional mint contract pins. Original
@@ -133,10 +135,68 @@ fresh maps per request; history-only reads do not decode the entire LP tree stat
 Same-graph advancement may move from an earlier to a later epoch cursor; keep the
 old approved artifact in the input and choose a later block. `previous_sha256`
 records provenance only. A **new subsequent handoff changes the graph** and needs
-a reviewed rebuild. Importing a shorter-graph checkpoint as an offline prefix is
-not implemented. Beyond existing raw/event/work bounds that rebuild can require
-separately reviewed scaling/prefix-import work. Do not relabel old artifacts or
-claim unlimited lifetime history. The financial-history task remains in progress.
+a reviewed new candidate. Use a complete raw rebuild, or the explicit offline
+prefix-import procedure below for a compatible original2/shorter3 artifact.
+Existing raw/event/work bounds remain; this is not unlimited lifetime history.
+The financial-history task remains in progress.
+
+## Import a reviewed prefix into an extended graph
+
+This **offline backend tool** accepts a separately approved original checkpoint2
+or strictly shorter-graph checkpoint3. It is not an HTTP operation, contract
+import or same-graph advancement. It produces a NEW standard checkpoint3 plus a
+producer-review file; it never edits or installs the prefix. Use the ordinary
+builder above for same-graph advancement.
+
+1. Preserve the approved input bytes, approval record, exact digest, old configuration
+   and consistent raw/WAL backups. Review the complete target lineage, profiles,
+   exact runtimes/assets/history anchors and appended retirement transactions.
+   The target configuration must contain **no `earnings_history.checkpoint` key**,
+   even a null one; the input prefix is supplied separately to prevent ambiguity.
+2. Check the input still matches the installed semantic source hashes. The existing
+   strict format2/3 readers validate it unchanged. Format1, incompatible sources,
+   reordered/foreign/full graphs, changed identities and invalid cursors reject.
+   A then-current prefix tail may acquire only its authenticated retirement edge;
+   it is not permission to rotate code or reinterpret old accounting. Existing
+   reviewed royalty-descriptor extension rules remain, and every target epoch
+   must prove the exact same native ETH/fixed-ZZZ principal pair.
+3. Choose a confirmed operating full-block `--block` at or after the imported cursor.
+   To serve a complete day, choose it at least86,400 chain seconds before the oldest
+   intended request snapshot. A historical cursor before a recent handoff is valid.
+   The tool authenticates all appended handoffs even if the candidate ends earlier.
+4. Use two **new distinct paths** in existing directories:
+
+```sh
+python scripts/import-earnings-checkpoint.py --config /secure/extended-lineage-api.json --prefix /archive/approved-prefix.json --prefix-sha256 REVIEWED_64_LOWERCASE_HEX_DIGEST --block ELIGIBLE_BLOCK_NUMBER --output /archive/extended-candidate.json --review-output /archive/extended-import-review.json
+```
+
+Replace every placeholder. The digest is the approved SHA-256 of the exact prefix
+bytes, without `0x`; it is **not** `reviewHash`, `custodyHash` or an on-chain input.
+No key, gas budget, wallet, contract call or signing input is needed. Offline
+`--max-seconds/--max-calls/--max-posts` keep the existing60/4096/8192 defaults and
+3600/65536/65536 maxima; nested work cannot reset an outer budget. API limits,
+32MiB artifact/codec bounds, graph and event limits remain unchanged. The review
+sidecar has a separate1MiB ceiling; it does not increase the checkpoint limit.
+5. Review both artifacts. The standard3 candidate binds unchanged consumer semantic
+   sources and `previous_sha256` to the input. The separate sidecar pins the NEW
+   importer/CLI, input/output digests and semantic sources, target graph/config hash,
+   cursor, canonical snapshot, appended handoff commitments and earliest serving
+   timestamp. All approval/install/submission flags remain false. Exact trees,
+   pending/high-low phase/direct credits, royalty cohorts and completed local payout
+   books are restored through the existing reader/builder, never totals-only copying.
+6. Independently compare collection/NFT/current-holdings earnings with reviewed raw
+   evidence, including claims/conversions/transfers and the **entire raw24-hour suffix**.
+   Approve/re-pin the candidate's standard path/SHA only through the existing explicit
+   adoption procedure. The sidecar is provenance, not a consensus/completeness proof
+   or self-approval. Actual archive, provider and maximum-state operation still need
+   qualification. Publishing this tool changes no service or configuration.
+
+Publication creates the review first and candidate second, each flushed and
+exclusively linked without overwriting existing files. The pair is **not jointly
+atomic**. Interruption, collision or a reporting error can leave one or both
+unapproved outputs. Inspect and preserve both paths; use fresh names for another
+attempt. No input, partial output, raw database or old approved artifact is deleted.
+The tool does not prune history, auto-rotate, edit source pins or raise request limits.
 
 ## Configure, build and review
 
@@ -217,7 +277,7 @@ Keep the previous artifacts/configuration and raw archive.
 | Suffix exceeds event/deadline/RPC limits | Advance through reviewed bounded stages. Never truncate events or raise public request caps to hide missing architecture. |
 | Build interrupted or RPC/currency unavailable | No candidate is approved; the previous file/config stays intact. Restore dependencies and retry with a new output name. No claim/keeper nonce recovery is changed. |
 | Source/profile upgrade invalidates semantic hashes | Rebuild through bounded raw stages with the new reviewed source and exact historical configs/archive state; then advance. A future compatible checkpoint migration needs its own reviewed codec/evidence. Never edit source hashes to relabel old state. |
-| Canonical replacement or predecessors | Use explicit checkpoint3 for accounting7 lineages. A newly added/reordered/replaced graph invalidates the prior artifact: prepare/review a new candidate; never edit its identity or source hashes. Formats1/2 still reject predecessors. |
+| Canonical replacement or predecessors | Use explicit checkpoint3 for accounting7 lineages. An appended matching graph needs a new reviewed candidate: rebuild raw or import an approved compatible exact2/shorter3 prefix offline. Reordered/replaced graphs still reject; never edit identities/source hashes. Formats1/2 cannot be installed directly for lineage. |
 
 Builder/readers preserve ordinary transaction provenance, including cross-prefix
 transaction duplication through the existing SQLite primary-key index. Raw prefix
@@ -234,4 +294,5 @@ It is not unattended rotation, archive pruning, automatic graph extension or
 operating approval. Measure realistic long-history latency/memory/storage and safe rotation/
 restore before hosting. The [financial-history task](../TODO.md#task-financial-history)
 remains in progress. [Original evidence](../reports/earnings-checkpoints-20261104/REVIEW.md);
-[current lineage implementation](../reports/lineage-checkpoints-20261116/REVIEW.md).
+[lineage implementation](../reports/lineage-checkpoints-20261116/REVIEW.md);
+[current offline import evidence](../reports/checkpoint-prefix-import-20261116/REVIEW.md).
