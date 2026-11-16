@@ -1,0 +1,751 @@
+# PoPL — Complete operator-function, moving-market and input-validity audit
+
+## 1. Objective
+
+Audit every PoPL operator function and the complete process used to prepare, authorize, execute, verify and recover each operation.
+
+The objective is to find and correct implementation defects, accounting errors, avoidable blocking conditions, manipulation opportunities, operational weaknesses and misleading instructions. Audit the Solidity implementation and its dependencies, the keeper, unsigned preparation tools, deployment configuration and operator documentation.
+
+For **each function**, understand:
+
+- What it is intended to accomplish.
+- Who may call it and through which contract.
+- Every input, including nested fields, units, decimals and valid ranges.
+- Where the operator obtains those inputs.
+- What can change between reading an input and execution.
+- Which changes should invalidate the operation and which should not.
+- How the contract validates the operation at execution.
+- Expected outputs, events, balance changes and lifecycle transitions.
+- Failure behavior, partial progress, safe retries and recovery.
+- How users, NFT holders, traders, keepers and external dependencies can influence its outcome.
+
+Evaluate normal operation, adversarial behavior and long-term management. Do not limit the investigation to examples supplied in this prompt.
+
+Do not claim that every possible case has been tested or that no adversary can ever cause a revert. Distinguish:
+
+1. Correct protective rejection.
+2. Avoidable operational friction or stale-input rejection.
+3. Griefing, starvation or permanent deadlock.
+4. Accounting corruption or unauthorized behavior.
+5. Economically harmful execution within permitted settings.
+6. Unavoidable dependency failure or an explicitly accepted trust assumption.
+
+Implement corrections that are justified and verifiable within the authorized scope. Isolate consequential unresolved decisions, explain concrete alternatives and continue independent work.
+
+## 2. Establish the actual project before auditing
+
+Inspect the current checkout, instructions, architecture, source, dependency implementations, configuration, tests, tools and current evidence.
+
+Read at least:
+
+- `AGENTS.md` and `PROJECT_CONTEXT.md`.
+- Both project READMEs where relevant to operator actions and integration boundaries.
+- The central Todo and task ledger.
+- The operator manual, function catalogue and machine-readable function reference.
+- Current LP execution, portfolio, pricing, emergency, custody, reward, royalty, minting, canonical handoff and deployment-preparation documentation.
+- Relevant recent and historical findings.
+
+Record the exact source revision and dirty state. Treat historical findings as leads, not proof of current defects. Classify them as current, fixed, superseded, accepted, externally blocked or unsupported.
+
+Reconstruct the deployed-component graph, trust boundaries, lifecycle states and actual call paths before proposing changes.
+
+Determine which deployments exist, their purpose and profile, and which consumers depend on them. Fresh source compatibility does not establish compatibility with existing deployments.
+
+Preserve unrelated work and the specifically protected files identified in repository instructions.
+
+### Execution boundaries
+
+- Work on `main`.
+- No public signing, deployment, sealing, service restart, website rollout, existing-chain reset or journal modification without separate authorization.
+- Keep the browser signer restricted to its authorized local profile and public deployment configurations disabled.
+- Keep the user-paused monitoring automation paused.
+- Never disclose credentials or credentialed endpoints.
+- Preserve existing databases, backups, Anvil state, NFTs, LP, balances and historical evidence.
+- Use isolated fixtures when execution is necessary.
+- Do not rerun unchanged tests. Reuse evidence only within its documented source and configuration scope.
+
+## 3. Verify the current operating model
+
+Confirm these rules against current source. Report discrepancies instead of silently choosing whichever version is easier to audit.
+
+### Principal and positions
+
+- Only native ETH and the fixed deployment ZZZ are contribution/principal assets.
+- One contribution pool is selected at a time.
+- Historical custody buckets are bounded.
+- A logical bucket can contain one main physical LP or an optional main plus one residual in the same pool.
+- The residual is not another destination pool and must not produce an unbounded chain of positions.
+- Both position NFTs remain under authorized custody.
+- Hybrid allocation limits apply at replacement; they are not continuously maintained portfolio weights.
+- Contributions increase the main position without recentering it, resetting its rebalance clock or changing residual liquidity.
+
+### Accounting and rewards
+
+- Contributions checkpoint incumbents, use entrant funds only, measure actual marginal deployed LP and issue shares from net added value.
+- Harvested LP revenue follows the fixed 80/10/5/5 allocation.
+- The 10% collective component is shared among eligible active NFTs; rarity affects royalties only.
+- LP accounting, conversions, claims, compound reserves, buyback reserves and principal remain distinguishable.
+- LP ZZZ-to-ETH conversion preserves the same NFT’s rights; determine precisely which conversion and claim steps are required.
+- Royalties are claimable in their original currencies and use exact-unit allocation.
+- Initial royalty opening is one hour after the official mint end, subject to current source-defined eligibility rules.
+- The full 24-hour earnings-history requirement is separate from that one-hour opening window.
+- NFT transfers carry prior unclaimed economic rights to the current owner.
+
+### Maintenance and authority
+
+- Harvesting is independent of rebalancing, compounding, buybacks and claims.
+- Compounding reinvests attributed funds into the existing geometry and may require a swap.
+- Ordinary rebalancing replaces the relevant portfolio under current trigger, cooldown, observation and execution rules.
+- Verify the current 85% centre-to-boundary trigger, ten-minute sampled confirmation, five-minute maximum observation gap, four-minute checks, one-to-five-minute jitter and twelve-hour hard cooldown.
+- Distinguish keeper-service policy from restrictions actually enforced on-chain.
+- Governance is direct, without a timelock.
+- Governance, guardian, keeper, holder, module and callback permissions remain distinct even if one human manages the project.
+- Emergency bypasses are explicit and separate from normal automation.
+
+### Recovery and longevity
+
+- Terminal exit returns actual ETH and ZZZ to rightful NFT owners through the current bounded process.
+- Exit ends LP earnings but preserves transfers, existing rewards and future royalty rights.
+- There is no external principal custody recipient or integrated bridge.
+- Canonical replacement remains separate from terminal exit.
+- Sealing fixes specified identities and implementations; reviewed operational settings remain configurable within their actual bounds.
+
+Challenge these decisions where evidence warrants it, but do not silently change custody, ownership, economic rights, token identity or accepted trust assumptions.
+
+## 4. Establish the correct market and execution model
+
+Use these distinctions throughout the audit:
+
+1. **External swaps move current price and current tick. They do not move an existing position’s lower and upper tick boundaries.**
+2. Existing geometry changes through position-management operations, not ordinary trading.
+3. Unrelated transactions cannot interleave inside one atomic EVM transaction. Analyze ordering before inclusion, sequential transactions within a block, backruns, and nested external calls separately.
+4. Concentrated liquidity does not always require a 50/50 value ratio. The required amounts depend on current price and the position’s geometry.
+5. Pausing PoPL does not pause external trading in the Uniswap pool.
+6. Reading inputs, simulating and obtaining a wallet approval do not reserve market state.
+7. A successful simulation is conditional evidence, not a guarantee of later execution.
+8. A forced operation cannot override mathematical impossibility, unavailable token transfers or hard custody invariants safely.
+
+Use authoritative primary documentation and the project’s pinned dependency implementations. Relevant starting points include:
+
+- [Solidity 0.8.26 ABI specification](https://docs.soliditylang.org/en/v0.8.26/abi-spec.html).
+- [Solidity security considerations](https://docs.soliditylang.org/en/v0.8.26/security-considerations.html).
+- [Uniswap concentrated liquidity](https://developers.uniswap.org/docs/get-started/concepts/liquidity-providers/concentrated-liquidity).
+- [Uniswap v4 PoolManager](https://developers.uniswap.org/docs/protocols/v4/concepts/poolmanager).
+- [ERC-721](https://eips.ethereum.org/EIPS/eip-721).
+- [ERC-2981](https://eips.ethereum.org/EIPS/eip-2981).
+
+Research additional topics where necessary. Explain why a practice applies to this project; do not import another protocol’s design mechanically.
+
+## 5. Build a complete function and authority inventory
+
+Generate the inventory from actual source and ABIs. Reconcile it with the documentation.
+
+Do not treat every ABI function as an operator function. Classify each exact contract-qualified overload and selector as:
+
+- Bootstrap-only.
+- Governance management.
+- Guardian.
+- Keeper.
+- NFT owner or approved operator.
+- Permissionless.
+- Fixed-module-only.
+- Authenticated callback.
+- Read-only.
+- Constructor, receive or fallback.
+- Historical compatibility or genuinely unreachable code.
+
+Identify inherited functions, generated getters, factories, helper contracts and indirect management paths.
+
+For every operator action, trace the full call graph into relevant helpers and external dependencies. Include public and holder functions that can change state used by the operator.
+
+Verify source-defined permissions rather than documentation labels. In particular, investigate permissionless harvesting and canonical progress functions; do not automatically restrict legitimate public actions.
+
+Produce an operation-to-contract map covering:
+
+- Roles, binding and sealing.
+- Pauses and restart.
+- Assets, sources, routes and venues.
+- Pool selection and contribution cutover.
+- Range and portfolio policies.
+- Harvest, compound, rebalance, conversion and burn.
+- Residual management.
+- Parking, movement and emergency recovery.
+- Collective exit.
+- Royalty administration.
+- Sale, minting, randomness and metadata.
+- Canonical replacement.
+- Operator tooling, transaction recovery and supporting reads.
+
+Any exclusion must have a source-based explanation.
+
+## 6. Create a per-function input-validity record
+
+For every management function, document every argument, including each component of nested tuples and arrays.
+
+Use this structure:
+
+| Field | Required analysis |
+|---|---|
+| Identity | Contract, exact signature, selector, source/runtime profile |
+| Purpose | Intended action and economic effect |
+| Authority | Caller, transaction sender, role, module/callback restrictions |
+| Lifecycle | Required seal, pause, canonical, principal and exit states |
+| Inputs | ABI type, signedness, width, unit, scale and bounds |
+| Provenance | Exact getter, event, reviewed configuration or calculation |
+| Read anchor | Chain, block number/hash, runtime and policy revisions |
+| Validity | What can change and whether the input remains usable |
+| Revalidation | What is checked at inclusion and after external calls |
+| Value flow | `msg.value`, approvals, spender, recipients and gas payer |
+| Outputs | Returns, events, storage and balance changes |
+| Failure | Revert, partial progress, isolated failure or unknown outcome |
+| Recovery | Reread, reprepare, retry, resume, unpause or alternate operation |
+| Evidence | Source locations, scenario coverage and verification scope |
+
+For each input, classify it as:
+
+- Immutable identity.
+- Stable position geometry.
+- Mutable market observation.
+- Policy or authorization commitment.
+- Physical custody snapshot.
+- Caller-selected economic protection.
+- Deadline or timing constraint.
+- Inclusion-time-derived state.
+
+Provide a worked example showing:
+
+**Human intent → authoritative reads → raw ABI values → simulation → expected receipt and post-state.**
+
+Examples must use declared isolated fixtures or recorded snapshots. Do not supply plausible-looking live transaction values.
+
+### Inputs that require particular attention
+
+Verify the actual ways to obtain:
+
+- NFT ID versus mint ordinal.
+- Logical bucket ID.
+- Main and residual physical position IDs.
+- Contribution pool ID and complete pool key.
+- Existing lower/upper ticks.
+- Current tick and square-root price.
+- Policy fingerprints.
+- Custody and portfolio hashes.
+- Review hashes.
+- Parking nonces and custody epochs.
+- Price observations and accepted bounds.
+- Swap direction, amount, venue and minimum output.
+- Principal, deployed-value and idle limits.
+- Claim selections, allocation cursors and distribution batches.
+
+Do not tell the operator to “get the hash” without specifying its producer, exact read or derivation, encoding, domain and expiry conditions.
+
+## 7. Audit units, decimals, encoding and hash domains
+
+Build a unit and identifier dictionary shared by contracts, Python, browser code, JSON schemas and documentation.
+
+Cover:
+
+- ETH in wei.
+- Actual ZZZ and royalty-token decimals; never assume every token uses 18.
+- Feed decimals versus token decimals.
+- USD-scaled integers and dollar-denominated limits.
+- Basis points over 10,000.
+- Uniswap fee pips over 1,000,000.
+- Directional protocol fees and the actual combined-fee calculation.
+- Signed `int24` ticks, spacing alignment and negative rounding.
+- `sqrtPriceX96`, raw token ordering and human-price inversion.
+- Liquidity `L` versus token amounts, shares and USD value.
+- Full NFT IDs, ordinals, LP token IDs, bucket IDs, pool IDs and addresses.
+- Rarity weights and normalized exact-unit allocation tickets.
+- Unix seconds versus milliseconds and local time.
+- Counts, cursors, gas units, gas prices, fee ceilings and ETH spending budgets.
+
+Test overflow, underflow, truncation, precision loss, extreme valid inputs, zero values, empty arrays, duplicate entries and exact boundaries.
+
+Reject floating-point treatment of raw amounts, liquidity or identifiers.
+
+For hashes and fingerprints:
+
+- Separate review artifacts from on-chain state commitments.
+- Separate SHA-256 artifact digests from Keccak-based identities.
+- Verify ABI encoding, ordering, domain separation and source version.
+- Explain which fields are intentionally excluded.
+- Test stale commitments, cross-chain reuse, cross-function reuse and A→B→A configuration changes.
+- Determine whether monotonic revisions prevent old approvals becoming valid again.
+
+A `reviewHash` is not authorization and does not prove an operation is economically safe.
+
+## 8. Analyze changing state across the complete action lifecycle
+
+For every operation, evaluate:
+
+1. Initial read.
+2. Review construction.
+3. Simulation.
+4. Wallet or contract-wallet approval.
+5. Submission delay.
+6. Transaction inclusion.
+7. External calls and callbacks.
+8. Receipt verification.
+9. Confirmation or reorganization.
+10. Restart and subsequent operations.
+
+Between these stages, consider:
+
+- Swaps and price changes.
+- External liquidity added or removed.
+- Activation, growth, claims and NFT transfers.
+- Harvest, compound, rebalance and other operator actions.
+- Policy, role, pause, venue, fee or source changes.
+- Partial completion of a multi-transaction workflow.
+- Deadline expiry.
+- RPC lag or inconsistent responses.
+
+For each mutation, state whether the operation should:
+
+- Continue safely.
+- Recompute a value at execution.
+- Reject and require fresh preparation.
+- Preserve partial progress.
+- Switch to a separately reviewed recovery operation.
+
+Investigate overly broad fingerprints that cause avoidable rejection and overly narrow fingerprints that permit stale execution.
+
+Do not weaken safety checks merely to make a stale review executable.
+
+## 9. Audit each operator-function family
+
+### A. Bootstrap, roles, binding and sealing
+
+Evaluate incorrect constructor identities, binding order, missing modules, mismatched tokens, wrong parents, duplicate bindings, factory interference, incomplete configuration and sealing an unusable graph.
+
+Verify:
+
+- Actual bootstrap sender versus governance.
+- Governance proposal/acceptance and abandoned transitions.
+- Keeper and guardian rotation or revocation.
+- Governance wallet changes, contract-wallet execution and delegated accounts.
+- Recovery from key loss within the actual architecture.
+- Whether runtime pins account for proxies and mutable upstream dependencies.
+- Whether every post-seal configurable setting remains reachable.
+- Which mistakes become irreversible at seal.
+
+### B. Pauses, settings and configuration changes
+
+Create a pause/restart matrix for every action.
+
+Check global pause, mint-only pause, pool operation flags, deposit flags, desired residual mode, canonical freezes and terminal states separately.
+
+For each setter:
+
+- Validate lower/upper bounds and cross-parameter compatibility.
+- Determine whether it affects existing positions, future actions or both.
+- Explain when changes take effect.
+- Identify required keeper reload/restart behavior.
+- Invalidate affected reviews and observations without invalidating unrelated work.
+- Test boundary values, repeated updates, reversals and configuration races.
+
+Every intentional pause must have an accurate restart procedure or be documented as irreversible.
+
+### C. Pool, route and price-source management
+
+Verify complete pool identity, native ETH/fixed-ZZZ ordering, fee tier, spacing, hooks, managers and supported implementations.
+
+Check switching contribution destination while historical buckets remain.
+
+Assess route admission and retirement under live positions and outstanding reserves.
+
+For prices:
+
+- Verify genuine independent sources, decimals, freshness, rounds and control identity.
+- Reject duplicated upstream exposure disguised as independent feeds.
+- Evaluate useful directional depth excluding PoPL liquidity.
+- Do not equate TVL or current active liquidity with robust execution.
+- Evaluate stale sources, publication gaps, depegs, sudden price changes and administrative upgrades.
+- Preserve the user-selected spot model unless a change is explicitly approved.
+
+Where a reference is also a swap venue, verify authenticated own-transition handling. Reject unrelated price changes, nested capture reuse and stale source/control state. Preserve the principal-as-reference exclusion.
+
+### D. Ordinary rebalance and its scheduling
+
+Verify the complete eligibility state machine:
+
+- Price orientation and centre-to-boundary calculation.
+- Physical and independent-reference corroboration.
+- Side consistency.
+- Threshold equality and rounding.
+- Cooldown.
+- Sampled confirmation and maximum observation gap.
+- Reset rules.
+- Jitter persistence and expiry.
+- Geometry-change exceptions.
+- Pending-transaction recovery.
+- Submission-time revalidation.
+
+Test repeated threshold crossings, observation delays, failed observations, provider recovery, restart, reorg, changed side, changed geometry and changed configuration.
+
+Distinguish scheduled checks from on-chain readiness.
+
+Verify that contributions do not reset stable geometry identity or rebalance timing unnecessarily.
+
+Analyze whether a trader or keeper can cheaply reset confirmation, force repeated enrollment costs or starve maintenance.
+
+Jitter is modest timing uncertainty, not front-running protection. Repeated random values are not automatically a bug; predictable or operator-rerolled delays may be.
+
+### E. Residual management and one-position/two-position transitions
+
+Audit every transition:
+
+- One main → hybrid.
+- Hybrid → hybrid.
+- Hybrid → one main.
+- Residual-only close.
+- Residual reinvestment into the existing main.
+- Full replacement into new geometry.
+- Disable desired residual mode while a residual exists.
+- Re-enable mode before consolidation.
+- No residual or zero residual liquidity.
+- Residual becomes mixed, fills or becomes inactive.
+- Main and residual both become one-sided.
+
+For each transition, account for both position IDs, geometry, liquidity, principal, fees, attributed idle and reserves.
+
+Verify at most one residual exists.
+
+Distinguish:
+
+- Closing a residual into attributed idle.
+- Consolidating it into the unchanged main.
+- Replacing both positions.
+- Disabling future residual creation.
+
+For same-main consolidation, investigate a moving current price without assuming the main boundaries move. If the main becomes unsuitable, identify whether a safe partial outcome, fresh preparation or full replacement is required.
+
+Do not promise that unchanged geometry can always accept all returned assets.
+
+Verify whether designated compound reserves are released in each phase; do not conflate them with residual principal.
+
+### F. Manual operations and emergency recovery
+
+Audit all actual guarded and forced variants.
+
+For each request field, explain its meaning, source and invalidation conditions.
+
+Evaluate:
+
+- Active and Parked inputs.
+- Exact custody hashes and portfolio commitments.
+- Nonce/epoch changes.
+- Existing and replacement ticks.
+- Explicit no-swap requests.
+- Exact swap direction, amount, venue and floors.
+- Original deadline preservation.
+- Both-leg closure.
+- Pause state before and after success.
+- Required separate unpause.
+- Failure during close, swap, mint, refund or callback.
+
+Build a table for every emergency safeguard bit and every meaningful legal combination. Verify whether each bit retains or bypasses a check.
+
+Even an unpriced forced path must preserve authority, fixed asset identity, custody, accounting, callback validation and terminal locks.
+
+Never convert a failed guarded request into a forced request automatically.
+
+Explain the maximum economic exposure of each bypass.
+
+### G. Harvesting, compounding, buybacks and conversions
+
+For each operation, distinguish principal from actual fee receipts.
+
+Verify:
+
+- Both legs are harvested where required.
+- 80/10/5/5 is applied once to actual received amounts.
+- Existing balances, donations and principal are not misclassified as fees.
+- Membership/share checkpoints protect incumbents.
+- Repeated or permissionless harvest timing cannot duplicate allocation.
+- Exact-unit rounding and phase state remain correct.
+- Internal harvests correctly coalesce with the hourly schedule using authenticated successful execution.
+- Submission alone does not advance a successful-harvest clock.
+- Compounding cannot consume claim backing or entrant funds.
+- In-range compounding service policy cannot be bypassed unintentionally by a compromised keeper.
+- Compounding does not prevent an eligible higher-priority rebalance.
+- Only ZZZ is burned; ETH buyback reserves follow the actual reviewed conversion path.
+- LP conversion preserves the originating NFT’s entitlement.
+- Claims and conversions are not counted as new income.
+
+Test tiny receipts, final indivisible units, repeated claims, partial conversions, reserve exhaustion and no economical swap route.
+
+Explain who owns compounded value and how it remains attributed through growth, replacement and exit.
+
+### H. Collective exit and holder payouts
+
+Audit every stage and its permissions:
+
+- Authorization.
+- Closure of all live positions.
+- Allocation.
+- Distribution.
+- Failed-recipient recovery.
+- Completion and post-exit reserve operations.
+
+Test 1,000 NFTs, multiple NFTs per owner, dormant NFTs, unequal shares, varying tiers and rarities, tiny balances, duplicate batches and transfers between stages.
+
+Define the ownership linearization point for payout.
+
+Handle rejecting, reentrant, blacklisted, gas-consuming or incompatible recipients without paying twice or blocking unrelated recipients.
+
+Verify partial-batch semantics. A returned success count must not be interpreted as a paid prefix.
+
+Check failed transactions, gas exhaustion, retries and reorgs.
+
+Reconcile every returned ETH and ZZZ unit with principal allocations, remaining liabilities and successful payouts.
+
+Ensure exit does not consume reward/buyback backing, reopen principal or remove future royalty rights.
+
+Explain limitations where a recipient or token makes automatic delivery impossible.
+
+### I. Royalties, sale, randomness and metadata administration
+
+Audit currency admission, capacity changes, synchronization, outages, deferred eligibility and recovery of previously unsupported receipts.
+
+Cover minting, the one-hour opening window, zero eligible NFTs, activation near the cutoff, sale-end changes and later currency registration.
+
+Verify exact-unit allocation and current-owner claims across transfers.
+
+Evaluate nonstandard, reverting, blacklisting, fee-charging, rebasing and callback-capable currencies without claiming all tokens can be made recoverable.
+
+For OpenSea/SeaDrop settings, verify supply reservations, allowlist proofs, lifetime mint counts, prices, fee recipients, gross versus net proceeds, phase transitions and unsold allocations.
+
+For VRF, verify funding, pending requests, late callbacks, provider rotation and prohibition of rerolls.
+
+Metadata administration must preserve artwork identity and distinguish Dormant, active tiers, temporarily unavailable state and LP Exited.
+
+### J. Canonical replacement
+
+Audit preparation, freezing, export/import, backing, activation, retirement, abort and restoration.
+
+Include ownership, both reward systems, exact-unit phase state, original mint counts, unsupported receipts and partial import recovery.
+
+Check duplicate, omitted, reordered and malformed rows; funding during concurrent receipts; incompatible contract holders; partial abort failures and stale proof reuse.
+
+Preserve current residual and terminal-exit restrictions.
+
+Do not infer cross-chain or post-halt recovery from same-chain functionality.
+
+## 10. Apply a market and adversarial scenario matrix
+
+Apply relevant combinations to each function, not only rebalance.
+
+### Market conditions
+
+- Sustained bull and bear trends.
+- Slow drift, abrupt gaps and extreme volatility.
+- Reversals and oscillation around every relevant boundary.
+- Thin liquidity and asymmetric directional depth.
+- External liquidity withdrawals, JIT liquidity and donations.
+- Main/residual active, inactive, mixed, filled or one-sided.
+- Reference-only displacement, destination-only displacement and opposite-side disagreement.
+- Pool fee changes and source publication during preparation.
+- No feasible trade within accepted limits.
+
+### User and operator concurrency
+
+Interleave:
+
+- Activation and growth.
+- Claims and conversions.
+- NFT transfers and marketplace sales.
+- Public harvesting.
+- Compound, rebalance and manual recovery.
+- Pauses and policy changes.
+- Exit allocation/distribution.
+- Canonical progress.
+
+Evaluate ordering before inclusion, same-block ordering and callbacks separately.
+
+### Economic attacks and game theory
+
+Analyze:
+
+- Keeper self-trading or keeper/trader collusion.
+- Pump-before-rebalance and dump-after-rebalance.
+- Sandwiches, backruns and arbitrage.
+- Flash-funded manipulation.
+- JIT fee capture.
+- Trigger/reset griefing.
+- Nonce, gas-budget and daily-spending exhaustion.
+- Repeated permitted execution losses.
+- Activation, harvest, donation and claim timing.
+- Splitting liquidity across NFTs to obtain more collective rewards.
+- Royalty cohort timing, rarity incentives and secondary transfers before payouts.
+- Cosmetic progression incentives that encourage economically harmful behavior.
+
+Quantify attacker profit after trading fees, gas, borrowing, unwind costs and inventory risk. Compare holder outcomes with appropriate passive/no-attack counterfactuals.
+
+Do not equate every mark-to-market loss with theft or assume every observable opportunity is profitable.
+
+Separate intended economic incentives from implementation exploits. Do not silently redesign approved economics.
+
+## 11. Audit code-level security and efficiency
+
+Inspect authorization, arithmetic, storage transitions, external calls and callbacks for every relevant path.
+
+Cover:
+
+- Reentrancy and cross-function reentrancy.
+- Callback sender/context authentication.
+- Approval scope and cleanup.
+- Return-value and balance-delta validation.
+- Forced ETH and unsolicited token transfers.
+- Error handling and rollback.
+- State changes before/after external calls.
+- Loop bounds and gas-sensitive progress.
+- Duplicate IDs and malformed arrays.
+- Price/fee changes at mutable boundaries.
+- Compiler, optimizer and dependency assumptions.
+- Upstream upgrades behind stable addresses/code hashes.
+- Unreachable code, stale compatibility branches and duplicated validations.
+
+Do not remove repeated checks merely because they look similar: determine which execution boundary each protects.
+
+Optimize only where behavior and security remain justified. Measure actual improvement rather than assuming shorter source means cheaper or safer execution.
+
+Respect current tight runtime and constructor size limits.
+
+## 12. Audit operator tools, diagnostics and long-term operation
+
+Trace the tools used to obtain inputs and prepare exact unsigned calldata.
+
+Verify:
+
+- Chain, block, ABI, runtime and policy pins.
+- EOA versus contract-wallet support.
+- Exact calldata preserved across simulations.
+- Original expiry is not silently extended.
+- Artifact hashes and partial-output reporting.
+- Strict integer parsing, duplicate keys, malformed JSON and unsafe paths.
+- No secrets in reports or generated artifacts.
+- No automatic unsafe fallback or configuration adoption.
+
+Audit pending-first recovery, nonce gaps, replacements, cancellations, dropped transactions, unavailable receipts and reorgs.
+
+Coordinate manual and keeper signing lanes. Evaluate multiple devices, duplicate keeper processes, stale backups and split-brain execution.
+
+Check gas and fees for cold and maximum-state operations, including callback-heavy recipients and wallet envelopes. Keep gas limits, padding, block bounds and fee ceilings distinct.
+
+Evaluate outages, throttling, wrong-chain responses, inconsistent block hashes, archive limitations, disk failures, corrupted journals and interrupted backups.
+
+Diagnostics must distinguish:
+
+- Not needed.
+- Not due.
+- Unconfigured.
+- Deliberately disabled.
+- Known safeguard rejection.
+- Dependency unavailable.
+- Unknown/opaque failure.
+- Submitted but unresolved.
+- Confirmed success, including partial batch progress.
+- Confirmed revert.
+
+For each blocked operation, provide the known failing stage and a safe next action. Do not invent an exact cause from an opaque revert.
+
+## 13. Verify guard coordination and recovery completeness
+
+Build a guard-interaction matrix covering authorization, lifecycle, pause, source validity, trigger, observation, jitter, cooldown, route, fees, additional loss, aggregate loss, deployed-value, idle and caller protections.
+
+For each guard:
+
+- Purpose and threat addressed.
+- Actual enforcement location.
+- Units and configuration bounds.
+- Other guards it overlaps with.
+- Distinct execution moment it protects.
+- Failure classification.
+- Available recovery path.
+- Whether bypass is permitted and by whom.
+
+Identify contradictory configurations, hidden stricter ceilings, stale fingerprints, cyclic dependencies and operations that can become permanently unreachable.
+
+A recovery path must not require the failed dependency unnecessarily.
+
+Preserve honest limits: safe rejection may remain necessary, and emergency authority introduces explicit trust rather than eliminating risk.
+
+## 14. Verification strategy
+
+Before testing, create a coverage ledger connecting:
+
+**Function → input → invariant → scenario → expected outcome → evidence.**
+
+Use independent arithmetic models where possible. Avoid tests that repeat the implementation’s own calculation as the expected answer.
+
+Select useful verification methods:
+
+- Focused boundary and regression tests.
+- Stateful sequences and invariant checks.
+- Differential and metamorphic checks.
+- Adversarial callbacks and token behavior.
+- Transaction-order permutations.
+- Isolated fork execution where dependency behavior matters.
+- Cold/max-state gas measurements.
+- Exact ABI encode/decode comparisons.
+- Restart, partial-progress and recovery rehearsals.
+
+Include multi-day sequences moving through one-position, hybrid, consolidation, parking, recovery and terminal exit, with activation/growth and market changes between stages.
+
+Assert balances, classified backing, ownership, shares, fees, reserve liabilities, position identity and lifecycle state—not merely transaction success.
+
+Reuse unchanged evidence within its exact scope. Run affected verification after each correction. Broaden only when changes or unresolved findings justify it.
+
+Do not weaken defaults, remove financial guards, change compiler settings or invent market depth to make a failing case pass.
+
+## 15. Implementation and documentation requirements
+
+For each finding:
+
+1. Provide a concrete reachable scenario.
+2. Identify affected functions and rights.
+3. Explain severity, likelihood and prerequisites.
+4. Separate root cause from symptoms.
+5. Present the smallest justified correction and alternatives.
+6. Implement and verify when authorized and sufficiently understood.
+7. Record residual limitations.
+
+Clearly distinguish refactoring, bug fixes, behavioral changes, economic changes and new features.
+
+Update the operator guide with practical function-level instructions:
+
+- Exact function and caller.
+- Required inputs and authoritative reads.
+- Human units and raw units.
+- Worked example.
+- What may become stale.
+- Expected output.
+- Failure and recovery.
+- Required follow-up and unpause.
+- Post-seal configurability.
+
+Keep concise lookup tables linked to detailed procedures. Update the function catalogue, Todo, feature/evidence reference and repository memory consistently.
+
+Preserve historical report scope; do not rewrite an old pass as evidence for changed code.
+
+## 16. Final deliverables and completion criteria
+
+Provide:
+
+1. The verified architecture, authority and lifecycle map.
+2. Complete function inventory with justified exclusions.
+3. Per-function input/provenance/freshness records.
+4. Units, identifiers and hash-domain reference.
+5. Market, concurrency and adversarial coverage matrix.
+6. Guard-interaction and recovery matrix.
+7. Findings with concrete evidence and status.
+8. Implemented corrections and their effects.
+9. Exact verification performed and evidence reused.
+10. Updated operator procedures.
+11. Unresolved decisions, accepted risks and external production blockers.
+
+Finish only after every inventoried operator action is assessed or explicitly marked unresolved with a precise reason.
+
+The conclusion must explain what improved, what can still block execution, which failures are protective, what recovery remains available and what cannot honestly be guaranteed.

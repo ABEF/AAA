@@ -39,7 +39,7 @@ FIELDS=('bucket','custodyHash','checks','lower','upper','swapPool','zeroForOne',
 # Static local comparisons only. Unknown RPC/decoder/revert text is never parsed.
 LOCAL_CODES=frozenset(('unsupported_selection','unsupported_parked_selection','invalid_evidence',
     'invalid_request_bounds','inconsistent_swap_fields','invalid_guarded_b','invalid_integer',
-    'simulation_header_changed','unexpected_simulation_output','gas_headroom_exceeded',
+    'simulation_header_changed','unexpected_simulation_output','gas_headroom_exceeded','frozen_gas_insufficient',
     'gas_price_exceeded','network_fee_budget_exceeded',
     'insufficient_governance_gas','reserve_abi_mismatch','helper_binding_mismatch','parked_pool_mismatch',
     'parked_live_lp_present','residual_inventory_invalid','parked_fingerprint_mismatch','pool_alias_mismatch',
@@ -70,6 +70,7 @@ LOCAL_MESSAGES={
     'simulation_header_changed':'The simulation block identity differs from its captured canonical header.',
     'unexpected_simulation_output':'The exact void simulation returned unexpected data.',
     'gas_headroom_exceeded':'The estimate does not fit the unchanged gas cap with full25% headroom.',
+    'frozen_gas_insufficient':'The original transaction gas no longer provides full25% headroom; prepare a new review.',
     'gas_price_exceeded':'The observed gas price exceeds the original reviewed price ceiling.',
     'network_fee_budget_exceeded':'The padded gas cost exceeds the original reviewed network-fee budget.',
     'insufficient_governance_gas':'Governance lacks native currency for the reviewed network-fee amount.',
@@ -241,8 +242,8 @@ def controls(snapshot):
     return result
 
 
-def simulation(p,header,block,transaction,fee,*,confirmed):
-    """One exact full call and estimate, bounded by this canonical block's gas."""
+def simulation(p,header,block,transaction,fee,*,confirmed,execution_gas=None):
+    """Probe, then verify the exact frozen unsigned envelope at this anchor."""
     raw=p.rpc.call('eth_getBlockByNumber',[hex(header['number']),False])
     if (not isinstance(raw,dict) or rpc_quantity(raw.get('number'),'manual block number')!=header['number'] or
             rpc_hash(raw.get('hash'),'manual block hash')!=header['hash'] or
@@ -254,19 +255,26 @@ def simulation(p,header,block,transaction,fee,*,confirmed):
     if p.rpc.call('eth_call',[tx,block])!='0x':raise ManualReadBlocked('unexpected_simulation_output','Manual void simulation returned unexpected data')
     estimate=rpc_quantity(p.rpc.call('eth_estimateGas',[tx,block]),'manual estimated gas',minimum=21000)
     padded=(estimate*125+99)//100
-    price=rpc_quantity(p.rpc.call('eth_gasPrice',[]),'manual gas price',minimum=1)
-    cost=padded*price
     if padded>cap:raise ManualReadBlocked('gas_headroom_exceeded','Manual review exceeds original gas/fee limits')
+    limit=padded if execution_gas is None else execution_gas
+    if type(limit) is not int or not 21000<=limit<=cap or padded>limit:
+        raise ManualReadBlocked('frozen_gas_insufficient','Manual original transaction gas is insufficient')
+    price=rpc_quantity(p.rpc.call('eth_gasPrice',[]),'manual gas price',minimum=1)
+    cost=limit*price
     if price>integer(fee['max_gas_price_wei'],positive=True):
         raise ManualReadBlocked('gas_price_exceeded','Manual review exceeds original gas/fee limits')
     if cost>integer(fee['max_network_fee_wei'],positive=True):
         raise ManualReadBlocked('network_fee_budget_exceeded','Manual review exceeds original gas/fee limits')
     balance=rpc_quantity(p.rpc.call('eth_getBalance',[transaction['from'],block]),'manual governance balance')
     if balance<cost:raise ManualReadBlocked('insufficient_governance_gas','Governance balance is below the reviewed network fee')
+    if p.rpc.call('eth_call',[{**transaction,'gas':hex(limit)},block])!='0x':
+        raise ManualReadBlocked('unexpected_simulation_output','Manual exact-gas void simulation returned unexpected data')
     return {'state':'complete_at_confirmed_snapshot' if confirmed else 'complete_at_canonical_tip',
         'finality':'confirmation_depth_only' if confirmed else 'latest_canonical_only_not_confirmed',
         'header':header,'estimated_gas':str(estimate),
-        'padded_gas':str(padded),'gas_limit_cap':str(cap),'block_gas_limit':str(block_limit),
+        'padded_gas':str(padded),'transaction_gas':str(limit),
+        'gas_strategy':'frozen_initial_padded_estimate',
+        'gas_limit_cap':str(cap),'block_gas_limit':str(block_limit),
         'gas_price_wei':str(price),'maximum_network_fee_wei':str(cost),'governance_balance_wei':str(balance)}
 
 
@@ -539,6 +547,7 @@ def prepare(read_config,policy,request,*,rpc=None,clock=None,catalog=None):
             tx={'from':governance,'to':p.contracts['principal_exit'].address,'data':data,'value':'0x0'}
             stage='initial_simulation'
             initial_simulation=simulation(p,header,block,tx,fee,confirmed=True)
+            execution_gas=int(initial_simulation['transaction_gas']);tx['gas']=hex(execution_gas)
             # Controls remain fixed; healthy market motion gets one final exact call
             # at the later canonical tip, with the original floors and deadline.
             stage='final_snapshot'
@@ -551,7 +560,7 @@ def prepare(read_config,policy,request,*,rpc=None,clock=None,catalog=None):
             final_snapshot=final.snapshot(s,governance,full=True)
             if controls(final_snapshot)!=controls(snapshot):raise ManualReadBlocked('custody_or_controls_changed','Manual custody or governed controls changed')
             stage='final_simulation'
-            final_simulation=simulation(p,latest,final_block,tx,fee,confirmed=False)
+            final_simulation=simulation(p,latest,final_block,tx,fee,confirmed=False,execution_gas=execution_gas)
             stage='final_canonicality'
             if p._header(hex(latest['number']))!=latest:raise ManualReadBlocked('final_anchor_changed','Final manual control head changed')
             p._finish(header)
@@ -578,7 +587,7 @@ def prepare(read_config,policy,request,*,rpc=None,clock=None,catalog=None):
                     'eip1898_require_canonical':True},'review':review,
                 'final_market_observations':final_snapshot,'last_head':last_head,
                 'simulation':{'initial':initial_simulation,'final':final_simulation},
-                'network_gas':{key:final_simulation[key] for key in ('padded_gas','gas_limit_cap','gas_price_wei','maximum_network_fee_wei')},
+                'network_gas':{key:final_simulation[key] for key in ('padded_gas','transaction_gas','gas_strategy','gas_limit_cap','gas_price_wei','maximum_network_fee_wei')},
                 'expires_at':min(s['deadline'],header['timestamp']+p.max_age),
                 'work_budget':{'rpc_calls':MAX_CALLS,'seconds':MAX_SECONDS,'posts':1536},
                 'limitations':['Active-state B/C/D only; no Parked emergency, floor selection, signing or future inclusion guarantee.',

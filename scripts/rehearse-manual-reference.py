@@ -6,7 +6,7 @@ It accepts only the three reviewed guarded reference-swap fixture cases.
 """
 from pathlib import Path
 import argparse,hashlib,importlib.util,json,sys
-BASE_SHA256='b03f8403eb70508b1d57f36b329a36aa82d12faaa0fd34813a1a16d59f5b7aa0'
+BASE_SHA256='fabaf02efa8654efa3d3e4c606749d2632a20b09af1a2eb12e7553583119851e'
 ROOT=Path(__file__).resolve().parents[1]
 base=Path(__file__).with_name('rehearse-manual-recovery.py')
 if hashlib.sha256(base.read_bytes()).hexdigest()!=BASE_SHA256:raise ValueError('Reviewed base launcher source differs')

@@ -1,6 +1,6 @@
 # Project Todo
 
-**Reviewed 2026-11-16 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-11-17 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
@@ -493,6 +493,7 @@ Custody, ownership and reward accounting.
   - Local implementation is not production approval. Qualify actual full-operation simulations, post-withdraw depth, floor selection, cold/maximal target gas, key/recovery procedures and independent audit before enabling a deployment. No service/site/Anvil/public transaction/deployment was performed.
   - [Manual-operation audit](reports/manual-operations-20261031/REVIEW.md): exact EmergencyRebalance inputs/retained bits, current-pool-only recovery, mode-off persistence, temporary pause/unpause and failed-step handling are indexed. Emergency swapPool is an explicit admitted venue, independent of the ordinary Balancer list. No new live authority or service fallback; actual full-call simulation/gas/operating rehearsal remains required.
   - [Manual safeguard audit](reports/manual-safeguard-audit-20261104/VERIFICATION.md): independently selectable emergency sample/cooldown options and explicit both-zero raw close floors; Active/Parked recovery, both-leg rights/reserves, retained protections and normal policy regressions verified within exact recorded scope. Fresh normal compiler/reference/static evidence replaces only changed source contexts. No deployed runtime, service, website, journal or production approval changed.
+  - [Complete operator input review](reports/operator-input-audit-20261116/INVENTORY.md) documents all92 governance/bootstrap/keeper/nominated actions and317 input leaves, including operation-specific nested meanings and fixed-versus-moving state. Converter BPS/boolean units, discarded tuple notes and struct-name-only example conflation are corrected. All61 Solidity sources/rights/financial safeguards remain unchanged; source/input coverage is not a fresh EVM campaign or independent approval.
 
   </details>
 
@@ -833,6 +834,7 @@ The data and services behind the app.
   - Failing stages distinguish input/configuration, confirmed snapshot, manifest, initial simulation, later snapshot/simulation, final canonicality, rendering and publication. First observed local authority/state/custody/geometry/gas/fee/funding/expiry causes are explicit; opaque helper/decoder/RPC failures remain unavailable, never invented as exact financial blockers.
   - Existing output including dangling symlinks is preserved before input loading. After writer entry or final reporting failure, a complete artifact may exist: expose artifact_publication_uncertain and never overwrite/delete/retry it. Bounded whitelist messages/types/stages/RPC metadata exclude raw exception/provider/input/path/credential text.
   - Management source commitments include the new shared manual source hash; preserve historical artifacts and pending journals. No contract/runtime/profile/checkpoint/health identity relabeling, signer/service/site/chain change, guard bypass selection or budget increase.
+  - [Operator-input audit](reports/operator-input-audit-20261116/REVIEW.md): manual B/C/D and explicit Parked D now prove and freeze the exact full25%-padded transaction gas at both anchors. A higher later requirement rejects; a lower estimate cannot shrink the returned gas or fee/funding envelope. Same calldata, original expiry, floors, permissions and false approval flags remain. Fresh outputs use transaction.gas/transaction_gas; old artifacts keep their source scope. Sixteen new and14 adapted focused methods pass across tool/catalogue scopes; no unchanged suites or chain rehearsal reruns.
 
   </details>
 
@@ -859,6 +861,7 @@ The data and services behind the app.
 
   - [Source-scoped review and verification](reports/operator-management-20261109/REVIEW.md): 41 new focused methods plus29 existing affected B/C/D checks, later overlapping CLI diagnostic correction, and seven independent offline ABI comparisons. No signing, nonce/journal changes, automatic batch queue or force fallback.
   - Raw closes remain price-independent; guarded resume retains reviewed financial controls. Distribution uses the explicit reviewed gas budget and a count-only result, preserving every selected ID and current-owner rights. Late cursor/owner changes cannot be pinned by the existing ABI; operator revalidation and actual receipt reconciliation remain required.
+  - [Current input/preservation review](reports/operator-input-audit-20261116/TOOLS_REVIEW.md) refuses an already occupied dangling output path before input/RPC work, preserving exclusive publication and existing artifacts. Direct-empty-code wallet support, frozen gas, cursor/current-owner semantics, off-chain expiry boundaries and all seven action permissions remain unchanged. Contract-wallet/provider/fee/actual operating qualification remains open.
 
   </details>
 
@@ -1362,6 +1365,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Fee-adjusted execution-quality1](docs/EXECUTION_QUALITY.md) is implemented locally: Strategy-owned default1% additional oracle-relative loss after actual directional core fees, governance0-10%, stronger gross/caller/operation guards retained. Explicit runtime/owner/revision readers preserve historical profiles. [Scoped verification](reports/fee-impact-policy-20261028/VERIFICATION.md) does not qualify actual markets, profitability, target gas, services or independent audit; passive/40% trigger ideas remain unimplemented; sampled confirmation1 has separate [current evidence](reports/practical-improvements-20261028/VERIFICATION.md).
   - Confirmation2 adds independently corroborated same-side physical exit and closes the automatic-width/manual-exception bypass; observed disagreement requires durable reset. Qualify actual source independence, depth, timing, gas and attacker/protocol profit. Separate manual paused-governance emergency1 permits explicit financial bypass and is an accepted governance risk, not ordinary keeper authority or anti-MEV proof. [Review](reports/independent-rebalance-20261029/REVIEW.md).
   - [Reference-execution implementation](reports/reference-execution-20261111/REVIEW.md): explicit execution-price1/LP3 supports an external reference as a swap venue with original two-source valuation, exact actual-core output/full-state proof and later live agreement/control checks. Old LP2 profiles stay separate; no financial cap,12M default, signer or environment changes. Qualify final full-operation gas, real independent sources/routes and matching consumer adoption separately.
+  - [Operator guard/economic review](reports/operator-input-audit-20261116/OPERATIONS_AND_RISKS.md) retains the service-only extra in-range compound wait, explicit emergency governance exposure and per-operation versus cumulative-loss distinction. It does not invent attacker profit or change the user-declined cumulative cap; actual authorized-key/collusion exposure and operating evidence remain review items.
 
   </details>
 
@@ -1386,6 +1390,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Fresh confirmation1 implements sampled15-minute observations with240-second checks/strictgap300; qualify receipt latency, resets and exact bindings. Hidden moves between observations remain possible. See [dedicated task](TODO.md#task-rebalance-confirmation-buffer). The40%trigger and passive second position remain discussion only.
   - Confirmation2 adds independently corroborated same-side physical exit and closes the automatic-width/manual-exception bypass; observed disagreement requires durable reset. Qualify actual source independence, depth, timing, gas and attacker/protocol profit. Separate manual paused-governance emergency1 permits explicit financial bypass and is an accepted governance risk, not ordinary keeper authority or anti-MEV proof. [Review](reports/independent-rebalance-20261029/REVIEW.md).
   - [Real market evidence](reports/market-followup-20261109/REVIEW.md) records thin exact-token USDT books and dislocated pool prices. Two provider names/admin sets do not establish independent underlying markets. Qualify shared-data/manipulation risk, quote size and reference-band compatibility; all current safeguards stay unchanged.
+  - [Moving-state audit](reports/operator-input-audit-20261116/OPERATIONS_AND_RISKS.md) distinguishes before-inclusion ordering/callbacks from impossible transaction interleaving and fixed LP bounds from moving spot. Independent-reference manipulation, useful post-withdrawal depth, JIT/sandwich/backrun and economic net-profit qualification remain open; jitter/source publication do not establish MEV immunity.
 
   </details>
 
@@ -1469,6 +1474,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Direct Entry3 campaign](reports/direct-entry-v3-20261103/VERIFICATION.md) retains owner/input/approval/callback/captured-price/rollback and transfer-right checks while removing only preliminary conversion. Fixed event wire preserves contribution history. Historical Entry2/schema8 remains inspection-only through explicit tools; source7 website/runtime/provider rollout is still open.
   - [Documentation/findings reconciliation](reports/project-consolidation-20261103/VERIFICATION.md) checks current profile, callable/Todo/link consistency and exact unchanged source/evidence. It does not rerun unchanged contract suites, change economic rights or close actual host/provider/marketplace/independent security gates.
   - [November4 project-wide review and scope](reports/comprehensive-audit-20261104/COVERAGE.md) separates current focused inspection, unchanged contract evidence and external qualification. It implements indexer anchor/replay corrections and repairs cross-repository guidance without changing economics, contracts, sites, signing or services. Not a new independent/full-suite approval.
+  - [Operator-function source/input audit](reports/operator-input-audit-20261116/REVIEW.md) maps all1016 ABI entries, actual caller boundaries, per-operation state/freshness, pause/restart, gas, error and recovery semantics. Core and additional source review found no new reproducible Solidity defect; five tool/documentation findings are corrected. Real contract-wallet envelopes, maximum-state/host/provider operation and independent security approval remain open.
 
   </details>
 
@@ -1748,4 +1754,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `b3097c038d5bc423b4d15cb02dc018cabd5d29d389c75d6c72f83e85182c2929`.
+Snapshot SHA-256: `814aafe7db041bd1beadb526fdb08e49bcfb4bcff7f1c1be7f5119e95dc77377`.

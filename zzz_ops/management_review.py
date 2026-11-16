@@ -9,6 +9,7 @@ import argparse
 import copy
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import sys
@@ -235,7 +236,7 @@ def main(argv=None):
     publishing=False
     try:
         args=parser.parse_args(argv)
-        if args.output.exists():raise ManagementBlocked('existing_output_preserved','The output already exists; preserve and inspect it or select a new filename.')
+        if os.path.lexists(args.output):raise ManagementBlocked('existing_output_preserved','The output already exists; preserve and inspect it or select a new filename.')
         config=offline.load(args.read_config);policy=offline.load(args.policy);chosen=offline.load(args.selection)
         result=prepare(config,policy,chosen);raw=offline.render(result);publishing=True
         write_exclusive(args.output,raw)

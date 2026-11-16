@@ -207,8 +207,15 @@ def render(reference, examples):
             typ = parameter['type']
             if typ.startswith('tuple'):
                 name = tuple_name(parameter)
+                # The same Solidity struct can have different operation-specific
+                # minima, fingerprint domains and example values. A shared name
+                # alone must not silently reuse another operation's instructions.
+                identity = name + ':' + hashlib.sha256(ref.canonical_json(
+                    {'parameter': parameter, 'example': value}).encode()).hexdigest()
                 anchor = 'input-' + re.sub(r'[^a-z0-9-]', '', name.lower().replace('.', '-').replace('[]', '-array'))
-                known = tuples.setdefault(name, (anchor, parameter, value))
+                if identity not in tuples and any(known[0] == anchor for known in tuples.values()):
+                    anchor += '-' + identity.rsplit(':', 1)[1][:12]
+                known = tuples.setdefault(identity, (anchor, parameter, value, name))
                 labels.append('`' + parameter['label'] + '` [' + name + '](#' + known[0] + ')')
             else:
                 labels.append('`' + parameter['label'] + ': ' + typ + '`')
@@ -271,11 +278,12 @@ def render(reference, examples):
                 arguments(f, examples['rows'][key(c, f)])
     lines += ['### Expanded tuple examples', '',
               'Fields are expanded recursively in exact ABI order. Uppercase symbols remain required snapshot/review inputs. These examples prove neither venue feasibility nor historical entitlement. Parameter semantics and bounds remain in the linked function/procedure.', '']
-    for name, (anchor, parameter, value) in sorted(tuples.items()):
+    for _, (anchor, parameter, value, name) in sorted(tuples.items()):
         lines += ['<details>', '<summary>' + name + '</summary>', '', '<a id="' + anchor + '"></a>', '',
-                  '| Field | ABI type | Example input |', '| --- | --- | --- |']
+                  '| Field | ABI type | Example input | Meaning / unit |', '| --- | --- | --- | --- |']
         def visit(p, v, label):
-            lines.append('| `' + label + '` | `' + p['canonical_type'] + '` | `' + display(v) + '` |')
+            explanation = ref._text(p.get('explanation') or 'See linked operation; no field semantics inferred from its ABI type.')
+            lines.append('| `' + label + '` | `' + p['canonical_type'] + '` | `' + display(v) + '` | ' + explanation + ' |')
             if p['type'].endswith(']'):
                 element = dict(p, type=p['type'][:p['type'].rindex('[')],
                                canonical_type=p['canonical_type'][:p['canonical_type'].rindex('[')])

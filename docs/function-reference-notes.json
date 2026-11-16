@@ -199,7 +199,15 @@
           "purpose": "Announce a cancellable same-chain replacement/draining window; no custody or rights leave. A deployed successor must already be sealed/importing and committed to this source.",
           "access": "Current governance directly, sealed canonical operating state.",
           "inputs": {
-            "0": "Explicit current chain ID, successor controller distinct from source, deployment commitment and nonzero review hash. A notice alone never authorizes a freeze/import."
+            "0": {
+              "explanation": "Explicit current chain ID, successor controller distinct from source, deployment commitment and nonzero review hash. A notice alone never authorizes a freeze/import.",
+              "fields": {
+                "destinationChain": "Exact current block.chainid uint256. Current canonical transport is same-chain only; this field does not implement bridging.",
+                "successorController": "Reviewed distinct destination controller address. A usable importer is sealed/inert and bound to this source; this notice alone does not approve or freeze it.",
+                "deploymentCommitment": "Exact destination CanonicalHandoff.deploymentCommitment() bytes32 from a reviewed matching deployment; not its address or a generic source hash.",
+                "reviewHash": "Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe."
+              }
+            }
           },
           "notes": "Starts a cancellable same-chain canonical preparation window only before collective LP exit. A terminal lpExitStarted flag permanently rejects replacement preparation."
         },
@@ -368,7 +376,30 @@
           "purpose": "Admit or reconfigure a reviewed static hookless native ETH/fixed-ZZZ pool, including compatible future fee tiers. Every funded bucket remains returnable to holders as actual ETH + ZZZ.",
           "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: exact nativeConfiguration admission/terminal-exit guards and full venue validation.",
           "inputs": {
-            "0": "key.currency0: Ordered lower-address accounting currency; address zero is native ETH.; key.currency1: Ordered higher-address currency; configureNative requires the fixed canonical ZZZ.; key.fee: Static LP fee in millionths, not percent or BPS; e.g. 10020 means 1.002% LP fee. Protocol fee is separate.; key.tickSpacing: Positive signed-int24 v4 tick spacing; must match the actual initialized pool.; key.hooks: Must be address zero for the currently supported hookless venues.; depositsEnabled: Desired contribution acceptance; only one pool may be true at a time. Must be false for post-exit Ready-phase reserve venues.; operationsEnabled: Desired ordinary maintenance/deployment acceptance; does not erase custody/history.; rangeBps: Price width in basis points; 100..9999, with orientation selected separately by Strategy.; triggerBps: Retained historical policy1 movement field, at least100 and below rangeBps; policy2 never uses it to authorize ordinary replacement.; maxSpotDeviationBps: Allowed spot-versus-oracle deviation in BPS, 1..500 and below rangeBps.; maxSlippageBps: Per-venue swap minimum guard in BPS, 1..1000 and sufficient for static LP fee. Separate from aggregate contribution/maintenance caps.; minRebalanceInterval: Cooldown seconds, 600..604800.; minDepositUSD: Pool minimum in USD18 (1 USD=10**18); actual input must satisfy both current ProtocolPolicy action minimum and this stronger pool minimum.; maxPositionUSD: Maximum cumulative admitted gross contribution per NFT in USD18, at least minDepositUSD; not current NAV or a total pool cap."
+            "0": {
+              "explanation": "key.currency0: Ordered lower-address accounting currency; address zero is native ETH.; key.currency1: Ordered higher-address currency; configureNative requires the fixed canonical ZZZ.; key.fee: Static LP fee in millionths, not percent or BPS; e.g. 10020 means 1.002% LP fee. Protocol fee is separate.; key.tickSpacing: Positive signed-int24 v4 tick spacing; must match the actual initialized pool.; key.hooks: Must be address zero for the currently supported hookless venues.; depositsEnabled: Desired contribution acceptance; only one pool may be true at a time. Must be false for post-exit Ready-phase reserve venues.; operationsEnabled: Desired ordinary maintenance/deployment acceptance; does not erase custody/history.; rangeBps: Price width in basis points; 100..9999, with orientation selected separately by Strategy.; triggerBps: Retained historical policy1 movement field, at least100 and below rangeBps; policy2 never uses it to authorize ordinary replacement.; maxSpotDeviationBps: Allowed spot-versus-oracle deviation in BPS, 1..500 and below rangeBps.; maxSlippageBps: Per-venue swap minimum guard in BPS, 1..1000 and sufficient for static LP fee. Separate from aggregate contribution/maintenance caps.; minRebalanceInterval: Cooldown seconds, 600..604800.; minDepositUSD: Pool minimum in USD18 (1 USD=10**18); actual input must satisfy both current ProtocolPolicy action minimum and this stronger pool minimum.; maxPositionUSD: Maximum cumulative admitted gross contribution per NFT in USD18, at least minDepositUSD; not current NAV or a total pool cap.",
+              "fields": {
+                "key": {
+                  "explanation": "Exact initialized native ETH/fixed-ZZZ static hookless PoolKey; recompute poolId as Keccak(abi.encode(key)).",
+                  "fields": {
+                    "currency0": "Actual ordered token0 address; native ETH is address(0), not WETH. Read the initialized PoolKey and recompute its pool ID.",
+                    "currency1": "Actual ordered token1 address; principal admission requires the one fixed ZZZ token. Read the initialized PoolKey.",
+                    "fee": "Static LP fee in millionths (10020 = 1.002%), not basis points; directional protocol fees are separate and may change.",
+                    "tickSpacing": "Positive int24 tick spacing of the initialized pool; lower/upper ticks must align. Principal admission permits 1..32767.",
+                    "hooks": "Hook address from the exact PoolKey; supported principal and v4 conversion venues require address(0)."
+                  }
+                },
+                "depositsEnabled": "True selects this as the sole contribution pool; another currently enabled destination must first be disabled. False also required for post-exit Ready reserve-only admission.",
+                "operationsEnabled": "True enables ordinary maintenance/deployment for this admitted venue. False does not erase custody, claims or existing LP.",
+                "rangeBps": "Human-price width in basis points, 100..9999; Strategy.setRangeOrientation separately selects raw/inverse price. Desired width changes existing geometry only at replacement.",
+                "triggerBps": "Historical movement field, 100..rangeBps-1. Current portfolio threshold policy does not authorize ordinary replacement from this field alone.",
+                "maxSpotDeviationBps": "Allowed spot/reference deviation in basis points, 1..500 and below rangeBps. This is distinct from source agreement and loss budgets.",
+                "maxSlippageBps": "Per-venue gross swap floor in basis points, 1..1000; key.fee must be strictly below value*100 fee-pips. Aggregate/caller/additional-loss protections remain separate.",
+                "minRebalanceInterval": "Hard ordinary rebalance cooldown in seconds, 600..604800; selected policy43200 (12h), separate from compound and harvest intervals.",
+                "minDepositUSD": "Positive USD18 pool minimum (1 USD=10**18), checked alongside the stronger current action minimum; not raw ZZZ or current pool TVL.",
+                "maxPositionUSD": "Maximum cumulative gross contribution per NFT in USD18, at least minDepositUSD; not total bucket capacity or current mark-to-market value."
+              }
+            }
           },
           "outputs": {
             "0": "Actual PoolKey-derived poolId; eligible future fee tiers remain possible."
@@ -1337,7 +1368,17 @@
           "access": "Governance only after seal; bootstrap before seal. Operating/canonical/terminal-exit guards apply.",
           "inputs": {
             "0": "Exact immutable reviewed singleton.",
-            "1": "PublicDrop in ABI order: gross native mintPriceWei, inclusive public start/end UNIX seconds, lifetime wallet limit, reviewed feeBps, restrictFeeRecipients=true. Must match helper.expectedPublicDrop() before minting."
+            "1": {
+              "explanation": "PublicDrop in ABI order: gross native mintPriceWei, inclusive public start/end UNIX seconds, lifetime wallet limit, reviewed feeBps, restrictFeeRecipients=true. Must match helper.expectedPublicDrop() before minting.",
+              "fields": {
+                "mintPrice": "Gross native ETH price in wei, uint80, from SeaDropMint.expectedPublicDrop(); not net creator proceeds or USD.",
+                "startTime": "Inclusive Unix seconds, uint48, matching configured publicStart; never browser milliseconds.",
+                "endTime": "Inclusive Unix seconds, uint48, matching publicEnd and NFT/RoyaltyRewards mintEnd; the separate royalty opening is end+3600.",
+                "maxTotalMintableByWallet": "Lifetime original-recipient mint count limit, uint16; not current wallet balance or per-transaction quantity.",
+                "feeBps": "Paid platform fee in basis points, 0..10000, included in gross price. Must match reviewed helper settings.",
+                "restrictFeeRecipients": "Must be true for the reviewed single allowed platform fee recipient; not a user-selectable payout override."
+              }
+            }
           },
           "notes": "Fixed helper validates the forwarded actual caller and exact known selector. NFT alone calls its immutable singleton with0 value. Stage/policy/upstream values must be coherent before minting; use the paused-mint operator procedure."
         },
@@ -1346,7 +1387,14 @@
           "access": "Governance only after seal; bootstrap before seal. Operating/canonical/terminal-exit guards apply.",
           "inputs": {
             "0": "Exact immutable reviewed singleton.",
-            "1": "AllowListData(merkleRoot,publicKeyURIs[],allowListURI). Review every free-team and paid-allowlist leaf, payment, lifetime cap and time window; root must match the helper."
+            "1": {
+              "explanation": "AllowListData(merkleRoot,publicKeyURIs[],allowListURI). Review every free-team and paid-allowlist leaf, payment, lifetime cap and time window; root must match the helper.",
+              "fields": {
+                "merkleRoot": "Exact independently reviewed SeaDrop free-team/paid-allowlist root; must match helper settings and all intended leaf prices, stages, caps and windows.",
+                "publicKeyURIs": "Ordered string[] of reviewed public-key/document URIs. These are published strings, not signing secrets, token addresses or automatic proof validation.",
+                "allowListURI": "Reviewed public allowlist manifest URI. URI text alone does not authenticate the on-chain root or each Merkle leaf."
+              }
+            }
           },
           "notes": "Fixed helper validates the forwarded actual caller and exact known selector. NFT alone calls its immutable singleton with0 value. Stage/policy/upstream values must be coherent before minting; use the paused-mint operator procedure."
         },
@@ -1660,8 +1708,26 @@
           "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration.",
           "inputs": {
             "0": "Actual asset address, zero for ETH.",
-            "1": "SourcePolicy(source,expectedCodeHash,independenceId,maxAge,feedDecimals); exact AggregatorV3 runtime/independent source identity, original round age 1..86400 seconds and precision <=18.",
-            "2": "Same SourcePolicy semantics, with distinct source and independenceId. Independent upstream/admin/data-market review is external, not proved by different addresses.",
+            "1": {
+              "explanation": "SourcePolicy(source,expectedCodeHash,independenceId,maxAge,feedDecimals); exact AggregatorV3 runtime/independent source identity, original round age 1..86400 seconds and precision <=18.",
+              "fields": {
+                "source": "Reviewed deployed AggregatorV3-compatible source address, not an API URL or token address; independent upstream admission is an external obligation.",
+                "expectedCodeHash": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation.",
+                "independenceId": "Nonzero bytes32 independently reviewed source identity, distinct from the other source; contract inequality cannot prove economic independence.",
+                "maxAge": "Maximum original source age in seconds, 1..86400; compare actual round updatedAt at execution. Not a new timestamp assigned by a wrapper.",
+                "feedDecimals": "Exact source decimals() result, 0..18, retained and checked against the admitted source; not token decimals or USD18."
+              }
+            },
+            "2": {
+              "explanation": "Same SourcePolicy semantics, with distinct source and independenceId. Independent upstream/admin/data-market review is external, not proved by different addresses.",
+              "fields": {
+                "source": "Reviewed deployed AggregatorV3-compatible source address, not an API URL or token address; independent upstream admission is an external obligation.",
+                "expectedCodeHash": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation.",
+                "independenceId": "Nonzero bytes32 independently reviewed source identity, distinct from the other source; contract inequality cannot prove economic independence.",
+                "maxAge": "Maximum original source age in seconds, 1..86400; compare actual round updatedAt at execution. Not a new timestamp assigned by a wrapper.",
+                "feedDecimals": "Exact source decimals() result, 0..18, retained and checked against the admitted source; not token decimals or USD18."
+              }
+            },
             "3": "Agreement band in basis points using the lower-price denominator;0 exact agreement through500 hard maximum. Selected policy 300 = 3%.",
             "4": "Nonzero actual full dual-source admission/review commitment."
           },
@@ -4245,7 +4311,21 @@
           "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
           "notes": "Pins source/router/factory/pool and review policy; adding a route does not prove liquidity or price qualification. Returns: Content-derived route ID used by later checked conversions.",
           "inputs": {
-            "0": "Typed immutable route/wrapper descriptor with actual runtime/dependency/review pins."
+            "0": {
+              "explanation": "Typed immutable route/wrapper descriptor with actual runtime/dependency/review pins.",
+              "fields": {
+                "source": "Actual nonzero LP reward token address admitted by the bound ledger; fresh Rewards admits fixed ZZZ. Raw token units use source decimals.",
+                "router": "Reviewed deployed v3 router, whose supported exactInputSingle ABI and factory relationship must match the pinned dependencies.",
+                "factory": "Reviewed deployed v3 factory, independently validated against router/pool wiring.",
+                "pool": "Actual v3 source/wrapper pool contract address, not a v4 pool ID. The immutable wrapper must be nonzero for this compatibility route.",
+                "fee": "Actual v3 pool fee in millionths, not basis points; source/wrapper/fee identity must match the factory pool.",
+                "sourceCodeHash": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation.",
+                "routerCodeHash": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation.",
+                "factoryCodeHash": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation.",
+                "poolCodeHash": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation.",
+                "reviewHash": "Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe."
+              }
+            }
           },
           "outputs": {
             "0": "Content-derived route ID used by later checked conversions."
@@ -4256,7 +4336,30 @@
           "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
           "notes": "Immutable parent-bound executor, exact currencies/dependency pins and no arbitrary recipient/calls. Returns: Typed v4 route ID, distinct from v3 identities.",
           "inputs": {
-            "0": "Typed immutable route/wrapper descriptor with actual runtime/dependency/review pins."
+            "0": {
+              "explanation": "Typed immutable route/wrapper descriptor with actual runtime/dependency/review pins.",
+              "fields": {
+                "source": "Actual nonzero LP reward token, fresh fixed ZZZ; not an arbitrary royalty payment currency.",
+                "output": "Must be address(0), native ETH paid back to the same bound LP reward ledger.",
+                "key": {
+                  "explanation": "Exact initialized hookless source/native-ETH v4 PoolKey, in currency-address order.",
+                  "fields": {
+                    "currency0": "Actual ordered token0 address; native ETH is address(0), not WETH. Read the initialized PoolKey and recompute its pool ID.",
+                    "currency1": "Actual ordered token1 address; principal admission requires the one fixed ZZZ token. Read the initialized PoolKey.",
+                    "fee": "Static LP fee in millionths (10020 = 1.002%), not basis points; directional protocol fees are separate and may change.",
+                    "tickSpacing": "Positive int24 tick spacing of the initialized pool; lower/upper ticks must align. Principal admission permits 1..32767.",
+                    "hooks": "Hook address from the exact PoolKey; supported principal and v4 conversion venues require address(0)."
+                  }
+                },
+                "poolManager": "Reviewed actual v4 PoolManager address; native balance settlement happens through this fixed core, not a pool contract.",
+                "stateView": "Reviewed StateView for the same PoolManager; verify parent/core wiring, runtime and initialized key.",
+                "sourceCodeHash": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation.",
+                "outputCodeHash": "Native ETH uses the executor NATIVE_ASSET_CODE_HASH constant, not extcodehash(address(0)); read the exact constant from the reviewed child.",
+                "poolManagerCodeHash": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation.",
+                "stateViewCodeHash": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation.",
+                "reviewHash": "Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe."
+              }
+            }
           },
           "outputs": {
             "0": "Typed v4 route ID, distinct from v3 identities."
@@ -4267,7 +4370,18 @@
           "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
           "notes": "Does not choose an arbitrary new wrapper. Native v4 conversion does not depend on an unused wrapper.",
           "inputs": {
-            "0": "Typed immutable route/wrapper descriptor with actual runtime/dependency/review pins."
+            "0": {
+              "explanation": "Typed immutable route/wrapper descriptor with actual runtime/dependency/review pins.",
+              "fields": {
+                "codeHash": "Reviewed exact immutable wrapper runtime code hash. A zero immutable wrapper disables this optional v3 compatibility path.",
+                "admin": "Reviewed proxy administrator address, or address(0) for explicitly reviewed nonproxy wrapper; zero requires every related proxy field/hash zero.",
+                "implementation": "Exact reviewed proxy implementation address reported by the selected admin; zero only in the nonproxy policy.",
+                "adminOwner": "Exact owner() of the reviewed proxy admin; zero only in the nonproxy policy. Code hashes alone do not prove upstream immutability.",
+                "adminCodeHash": "Exact reviewed admin runtime hash, or zero for the nonproxy policy.",
+                "implementationCodeHash": "Exact reviewed implementation runtime hash, or zero for the nonproxy policy.",
+                "reviewHash": "Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe."
+              }
+            }
           }
         },
         "conversionLossBps()": {
@@ -4353,7 +4467,7 @@
           "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
           "notes": "Basis points; gas separate. Cannot weaken a stronger caller minimum or rewrite already earned credits.",
           "inputs": {
-            "0": "Actual native mint payment in wei for mint validation; see operation purpose."
+            "0": "Future conversion-loss limit in basis points, 0..1000 (100=1%,1000=10%); gas separate and stronger caller minimums remain binding."
           }
         },
         "setEnabled(bool)": {
@@ -4361,7 +4475,7 @@
           "access": "Before sealing: only the current bootstrap address, not a distinct governance wallet. After sealing: only current governance with canonicalState=0 and no preparation. No waiting period; ordinary pause alone does not block configuration. Additional guards: operating canonical lifecycle and no preparation, nonReentrant.",
           "notes": "Stops conversions, not earned claims or NFT ownership; each actual operation still validates its route.",
           "inputs": {
-            "0": "Actual native mint payment in wei for mint validation; see operation purpose."
+            "0": "True enables future conversion attempts; false stops them without reading external dependencies. Neither changes NFT rights or funded claims."
           }
         },
         "setRouteEnabled(bytes32,bool)": {
@@ -4370,7 +4484,7 @@
           "notes": "Disable avoids failing dependency reads; re-enable performs full validation. Affects future reviews, not mined transactions.",
           "inputs": {
             "0": "Exact admitted conversion-route hash.",
-            "1": "Actual native mint payment in wei for mint validation; see operation purpose."
+            "1": "True revalidates and enables this admitted route; false disables it without querying failing dependencies. Not an ETH amount."
           }
         },
         "v4Executor()": {
@@ -4883,7 +4997,23 @@
           "purpose": "Manually close/optionally swap/redeploy one shared LP while globally paused, under an exact custody-bound manifest.",
           "access": "Current governance only; sealed/paused, operating, no canonical preparation/import/retirement or terminal LP exit. Nonreentrant; not a keeper fallback.",
           "inputs": {
-            "0": "EmergencyRebalance in exact ABI order: bucket(shared custody ID); custodyHash(current chain/Vault/full Position/total-share review hash); checks(retained bits1=raw trigger/cooldown,2=price agreement,4=financial loss/idle/quality,8=operations flag,16=sampled confirmation;0..31); lower/upper(raw spaced physical ticks, lower<upper); swapPool(admitted native ETH/ZZZ venue or zero for no swap); zeroForOne(true sells ETH); amountIn(exact raw swap input, zero=no swap); minimumOut(positive raw output if swapping, zero without swap); minimumLiquidity(positive raw LP floor); deadline(now..now+600); reviewHash(nonzero exact review commitment). No swap requires swapPool and minimumOut zero; amounts fit positive signed-int128 deltas. Disabled financial checks can lose almost all principal."
+            "0": {
+              "explanation": "EmergencyRebalance in exact ABI order: bucket(shared custody ID); custodyHash(current chain/Vault/full Position/total-share review hash); checks(retained bits1=raw trigger/cooldown,2=price agreement,4=financial loss/idle/quality,8=operations flag,16=sampled confirmation;0..31); lower/upper(raw spaced physical ticks, lower<upper); swapPool(admitted native ETH/ZZZ venue or zero for no swap); zeroForOne(true sells ETH); amountIn(exact raw swap input, zero=no swap); minimumOut(positive raw output if swapping, zero without swap); minimumLiquidity(positive raw LP floor); deadline(now..now+600); reviewHash(nonzero exact review commitment). No swap requires swapPool and minimumOut zero; amounts fit positive signed-int128 deltas. Disabled financial checks can lose almost all principal.",
+              "fields": {
+                "bucket": "Shared bucket ID from Vault.nftBucket(NFT_ID) or Vault.poolBucket(POOL_ID), then Vault.group(bucketId); not the collection NFT ID or LP NFT ID.",
+                "custodyHash": "Exact current Migration.emergencyCustodyHash(bucket), including chain, position, shares, nonce/epoch and current controls; not consolidationCustodyHash.",
+                "checks": "Retained-check mask uint8 0..31: 1 raw trigger/cooldown, 2 independent price bounds, 4 USD/loss/quality/idle, 8 operation flags, 16 sampled confirmation. Bits retain checks; they do not grant authority.",
+                "lower": "Signed int24 lower physical tick, aligned to pool spacing and below upper. For same-main consolidation copy Manager.ticks(mainPositionId).lower exactly; it does not follow the current tick.",
+                "upper": "Signed int24 upper physical tick, aligned to pool spacing and above lower. For same-main consolidation copy Manager.ticks(mainPositionId).upper exactly; a swap changes current price, not this boundary.",
+                "swapPool": "Exact admitted native ETH/ZZZ venue PoolKey hash, bytes32; zero for no swap. Guarded consolidation requires zero and lets reviewed routing choose at execution.",
+                "zeroForOne": "True sells currency0/native ETH for currency1/ZZZ; false sells ZZZ for ETH. Guarded consolidation supplies false because explicit swap fields must be empty.",
+                "amountIn": "Exact raw input uint128 of the selected direction; must fit supported signed deltas. Zero means no explicit swap; never a USD amount or percentage.",
+                "minimumOut": "Caller minimum raw output uint128 of the opposite currency, positive when explicitly swapping and zero for no swap; preserve original review floors.",
+                "minimumLiquidity": "Positive raw physical main liquidity L floor: added delta for same-main consolidation, new main L for full replacement. Not USD, token quantity or sum of both ranges.",
+                "deadline": "Original inclusive Unix-seconds expiry; execution requires now <= deadline <= now+600. Never extend it while reusing the same review.",
+                "reviewHash": "Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe."
+              }
+            }
           },
           "notes": "Nonpayable; submitting governance wallet/Safe pays gas. Structural fixed assets/admitted venues/Vault custody/exact deltas/shares/reward reserves remain; per-call optional financial bypass is an explicit governance trust expansion. Full failure rolls back state; gas is spent. Event records retained mask and exact request/review commitment. Context is cleared on success; system remains paused."
         },
@@ -4924,7 +5054,25 @@
           "purpose": "Harvest/close both exactly reviewed LP legs into Vault idle without releasing custody.",
           "access": "Drain-authorized governance while globally paused,before terminal exit; nonreentrant.",
           "inputs": {
-            "0": "ParkingRequest(bucketId,poolId,mainLpId,totalShares,depositUSD,custodyEpoch,nonce,token0,token1,minimum0,minimum1,deadline,reviewHash,portfolioHash). portfolioHash equals current Manager.executionPortfolioFingerprint(main), including BOTH L values. Minima are combined raw close proceeds; ETH uses wei. Paused governance may explicitly set both to zero; any positive submitted floor remains binding. Deadline fresh/reviewHash nonzero."
+            "0": {
+              "explanation": "ParkingRequest(bucketId,poolId,mainLpId,totalShares,depositUSD,custodyEpoch,nonce,token0,token1,minimum0,minimum1,deadline,reviewHash,portfolioHash). portfolioHash equals current Manager.executionPortfolioFingerprint(main), including BOTH L values. Minima are combined raw close proceeds; ETH uses wei. Paused governance may explicitly set both to zero; any positive submitted floor remains binding. Deadline fresh/reviewHash nonzero.",
+              "fields": {
+                "bucketId": "Shared bucket ID from Vault.nftBucket(NFT_ID) or Vault.poolBucket(POOL_ID), then Vault.group(bucketId); not the collection NFT ID or LP NFT ID.",
+                "poolId": "Current Vault.group(bucketId).poolId, the bytes32 Keccak PoolKey hash. External swaps change spot, not this identity.",
+                "lpTokenId": "Current Vault.group(bucketId).lpTokenId; physical main position ID, not the bucket or collection NFT ID.",
+                "totalShares": "Exact Vault.bucketTotalShares(bucketId) integer; contributions before inclusion invalidate this physical custody snapshot.",
+                "depositUSD": "Current Position.depositUSD bookkeeping integer in USD18, not current LP value; copy the exact group field.",
+                "custodyEpoch": "Current Migration.custodyEpoch(bucketId), uint64; reread after custody-changing operations.",
+                "nonce": "Current Migration.parkingNonce(bucketId), uint64; do not reuse a consumed or invalidated request.",
+                "token0": "Actual pool currency0 from PoolRegistry.accounting(poolId).key: address(0) for native ETH.",
+                "token1": "Actual pool currency1 from PoolRegistry.accounting(poolId).key: fixed ZZZ, not a currency ticker.",
+                "minimum0": "Caller-reviewed minimum raw native ETH wei received from the scope of this close; uint128, zero is an explicit raw-close choice. Scope: combined main+residual principal close; attributed idle/compound remain separately accounted.",
+                "minimum1": "Caller-reviewed minimum raw fixed-ZZZ units received from the scope of this close; uint128, use admitted ZZZ decimals, zero is explicit. Scope: combined main+residual principal close; attributed idle/compound remain separately accounted.",
+                "deadline": "Original inclusive Unix-seconds expiry; execution requires now <= deadline <= now+600. Never extend it while reusing the same review.",
+                "reviewHash": "Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe.",
+                "portfolioHash": "LiquidityManager.executionPortfolioFingerprint(lpTokenId), including both physical legs and their liquidity. Capture after pause; a new contribution can invalidate it, while an ordinary outside swap does not change fixed position ticks/L."
+              }
+            }
           },
           "notes": "Custody4 appends portfolioHash; old custody3 calldata incompatible. Compounding can invalidate review. No USD-oracle prerequisite,external recipient or holder distribution."
         },
@@ -4939,7 +5087,25 @@
           "purpose": "Manually remove only the reviewed residual LP into Vault idle while preserving the main and all NFT rights.",
           "access": "Selected governance only; sealed/globally paused, operating canonical lifecycle without preparation or terminal LP exit; nonreentrant.",
           "inputs": {
-            "0": "ParkingRequest(bucketId,poolId,mainLpId,totalShares,depositUSD,custodyEpoch,parkingNonce,token0,token1,minimum0,minimum1,deadline,reviewHash,portfolioHash). Exact current main/associated residual, shares and L-sensitive Manager.executionPortfolioFingerprint; token0 native ETH and token1 fixed ZZZ. Minima cover residual principal receipts ONLY (wei/raw ZZZ), both may explicitly be zero for a raw paused-governance close; positive submitted floors still bind; deadline now..now+600; nonzero review commitment."
+            "0": {
+              "explanation": "ParkingRequest(bucketId,poolId,mainLpId,totalShares,depositUSD,custodyEpoch,parkingNonce,token0,token1,minimum0,minimum1,deadline,reviewHash,portfolioHash). Exact current main/associated residual, shares and L-sensitive Manager.executionPortfolioFingerprint; token0 native ETH and token1 fixed ZZZ. Minima cover residual principal receipts ONLY (wei/raw ZZZ), both may explicitly be zero for a raw paused-governance close; positive submitted floors still bind; deadline now..now+600; nonzero review commitment.",
+              "fields": {
+                "bucketId": "Shared bucket ID from Vault.nftBucket(NFT_ID) or Vault.poolBucket(POOL_ID), then Vault.group(bucketId); not the collection NFT ID or LP NFT ID.",
+                "poolId": "Current Vault.group(bucketId).poolId, the bytes32 Keccak PoolKey hash. External swaps change spot, not this identity.",
+                "lpTokenId": "Current Vault.group(bucketId).lpTokenId; physical main position ID, not the bucket or collection NFT ID.",
+                "totalShares": "Exact Vault.bucketTotalShares(bucketId) integer; contributions before inclusion invalidate this physical custody snapshot.",
+                "depositUSD": "Current Position.depositUSD bookkeeping integer in USD18, not current LP value; copy the exact group field.",
+                "custodyEpoch": "Current Migration.custodyEpoch(bucketId), uint64; reread after custody-changing operations.",
+                "nonce": "Current Migration.parkingNonce(bucketId), uint64; do not reuse a consumed or invalidated request.",
+                "token0": "Actual pool currency0 from PoolRegistry.accounting(poolId).key: address(0) for native ETH.",
+                "token1": "Actual pool currency1 from PoolRegistry.accounting(poolId).key: fixed ZZZ, not a currency ticker.",
+                "minimum0": "Caller-reviewed minimum raw native ETH wei received from the scope of this close; uint128, zero is an explicit raw-close choice. Scope: residual principal only; main remains unchanged.",
+                "minimum1": "Caller-reviewed minimum raw fixed-ZZZ units received from the scope of this close; uint128, use admitted ZZZ decimals, zero is explicit. Scope: residual principal only; main remains unchanged.",
+                "deadline": "Original inclusive Unix-seconds expiry; execution requires now <= deadline <= now+600. Never extend it while reusing the same review.",
+                "reviewHash": "Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe.",
+                "portfolioHash": "LiquidityManager.executionPortfolioFingerprint(lpTokenId), including both physical legs and their liquidity. Capture after pause; a new contribution can invalidate it, while an ordinary outside swap does not change fixed position ticks/L."
+              }
+            }
           },
           "notes": "Shares the parking review nonce/custody epoch, both advanced on success. Harvested fees are allocated80/10/5/5 before burning residual principal. Requires unchanged main owner/key/ticks/L, bucket fields except idle, Registry/policy controls and governance/pause through callbacks. Desired mode remains unchanged; setMode(false) first to keep future adjustments single. Mixed residuals are accepted. Failure/minima/late callback rolls back all effects; no USD/swap/operations-enabled dependency or keeper automation."
         },
@@ -4954,7 +5120,23 @@
           "purpose": "Close only the residual/recover attributed idle and increase the SAME main, then atomically apply residual OFF.",
           "access": "Current governance only; sealed/paused, operating, no preparation/canonical/terminal lock; nonreentrant and rechecked after callbacks.",
           "inputs": {
-            "0": "EmergencyRebalance in exact ABI order: bucket(shared custody account); custodyHash(current Migration.consolidationCustodyHash after pause, including recovery nonce/epoch and policy controls); checks(guarded14; forced0..31 retained bits1 raw trigger/cooldown,2 independent price agreement,4 value/quality/idle limits,8 operation flags,16 sampled evidence); lower/upper(EXACT existing main ticks); swapPool/zeroForOne/amountIn/minimumOut(guarded zero/false/0/0 for automatic reviewed routing, forced explicit admitted venue/direction/raw input/positive output or zero no-swap); minimumLiquidity(positive ADDED main liquidity delta, not total L/USD); deadline(now..now+600); reviewHash(nonzero source-bound commitment). No range/destination/custody-recipient change and no compound-reserve release.",
+            "0": {
+              "explanation": "EmergencyRebalance in exact ABI order: bucket(shared custody account); custodyHash(current Migration.consolidationCustodyHash after pause, including recovery nonce/epoch and policy controls); checks(guarded14; forced0..31 retained bits1 raw trigger/cooldown,2 independent price agreement,4 value/quality/idle limits,8 operation flags,16 sampled evidence); lower/upper(EXACT existing main ticks); swapPool/zeroForOne/amountIn/minimumOut(guarded zero/false/0/0 for automatic reviewed routing, forced explicit admitted venue/direction/raw input/positive output or zero no-swap); minimumLiquidity(positive ADDED main liquidity delta, not total L/USD); deadline(now..now+600); reviewHash(nonzero source-bound commitment). No range/destination/custody-recipient change and no compound-reserve release.",
+              "fields": {
+                "bucket": "Shared bucket ID from Vault.nftBucket(NFT_ID) or Vault.poolBucket(POOL_ID), then Vault.group(bucketId); not the collection NFT ID or LP NFT ID.",
+                "custodyHash": "Exact current Migration.consolidationCustodyHash(bucket), including nonce/epoch/policy controls; not emergencyCustodyHash.",
+                "checks": "Retained-check mask uint8 0..31: 1 raw trigger/cooldown, 2 independent price bounds, 4 USD/loss/quality/idle, 8 operation flags, 16 sampled confirmation. Bits retain checks; they do not grant authority.",
+                "lower": "Signed int24 lower physical tick, aligned to pool spacing and below upper. For same-main consolidation copy Manager.ticks(mainPositionId).lower exactly; it does not follow the current tick.",
+                "upper": "Signed int24 upper physical tick, aligned to pool spacing and above lower. For same-main consolidation copy Manager.ticks(mainPositionId).upper exactly; a swap changes current price, not this boundary.",
+                "swapPool": "Exact admitted native ETH/ZZZ venue PoolKey hash, bytes32; zero for no swap. Guarded consolidation requires zero and lets reviewed routing choose at execution.",
+                "zeroForOne": "True sells currency0/native ETH for currency1/ZZZ; false sells ZZZ for ETH. Guarded consolidation supplies false because explicit swap fields must be empty.",
+                "amountIn": "Exact raw input uint128 of the selected direction; must fit supported signed deltas. Zero means no explicit swap; never a USD amount or percentage.",
+                "minimumOut": "Caller minimum raw output uint128 of the opposite currency, positive when explicitly swapping and zero for no swap; preserve original review floors.",
+                "minimumLiquidity": "Positive raw physical main liquidity L floor: added delta for same-main consolidation, new main L for full replacement. Not USD, token quantity or sum of both ranges.",
+                "deadline": "Original inclusive Unix-seconds expiry; execution requires now <= deadline <= now+600. Never extend it while reusing the same review.",
+                "reviewHash": "Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe."
+              }
+            },
             "1": "False requires guarded checks14 and zero explicit-swap fields; true deliberately selects the exact swap/mask. Caller remains current paused governance in both modes."
           },
           "notes": "No keeper grant/timer/compound interval for guarded manual execution. Both-leg fees are separated before close; post-swap main fees are harvested. Same main ID/ticks/centre/rebalance clock/shares; positive added L and exact counts/balances. No designated compound release. OFF completion invalidates old samples even alreadyOFF; separate range mismatch remains. Shared recovery nonce/epoch and compound clock advance; context clears; pause remains. Full failure atomically rolls back; network gas separate. Force may lose nearly all value or increase an inactive main without recentering."
@@ -9005,7 +9187,26 @@
           "purpose": "Capture reviewed future stage settings and an explicit current price without changing upstream SeaDrop.",
           "access": "Governance only after seal; bootstrap before seal. Operating/canonical/terminal-exit guards apply.",
           "inputs": {
-            "0": "MintConfig in ABI order: teamAllocation (initial20 free units), allowlistAllocation (initial500 paid units), publicWalletLimit (lifetime count), feeBps (reviewed paid platform basis points), maxBatch (1..10), teamStart/teamEnd, allowlistStart/allowlistEnd, publicStart/publicEnd (inclusive UNIX seconds with strictly disjoint stages), releaseUnusedTeamToPublic (initialfalse; retain unminted team reserve), merkleRoot (reviewed free-team/paid-allowlist proofs; zero only when both allocations are zero), feeRecipient (exact approved platform address), allowedPayersHash (Keccak of ABI-encoded sorted bounded reviewed payer array, including explicit empty array). Team+allowlist<=1000; issued counts never reset. Unused allowlist capacity rolls into public.",
+            "0": {
+              "explanation": "MintConfig in ABI order: teamAllocation (initial20 free units), allowlistAllocation (initial500 paid units), publicWalletLimit (lifetime count), feeBps (reviewed paid platform basis points), maxBatch (1..10), teamStart/teamEnd, allowlistStart/allowlistEnd, publicStart/publicEnd (inclusive UNIX seconds with strictly disjoint stages), releaseUnusedTeamToPublic (initialfalse; retain unminted team reserve), merkleRoot (reviewed free-team/paid-allowlist proofs; zero only when both allocations are zero), feeRecipient (exact approved platform address), allowedPayersHash (Keccak of ABI-encoded sorted bounded reviewed payer array, including explicit empty array). Team+allowlist<=1000; issued counts never reset. Unused allowlist capacity rolls into public.",
+              "fields": {
+                "teamAllocation": "Reserved free-team NFT count, uint16, initially20; cannot fall below already issued team count; team+allowlist<=1000.",
+                "allowlistAllocation": "Paid allowlist NFT count, uint16, initially500; cannot fall below issued allowlist count. Unused allowance rolls into public.",
+                "publicWalletLimit": "Lifetime original-recipient count ceiling, 1..1000; transfers do not restore mint quota.",
+                "feeBps": "Reviewed paid platform share in basis points, 0..10000, included in gross governed mint price.",
+                "maxBatch": "Maximum NFTs in one mint callback, 1..10; engineering ceiling is not actual VRF/payment/gas qualification.",
+                "teamStart": "Positive inclusive Unix seconds uint48; at or before teamEnd.",
+                "teamEnd": "Inclusive Unix seconds uint48; strictly below allowlistStart.",
+                "allowlistStart": "Inclusive Unix seconds uint48; strictly after teamEnd and at or before allowlistEnd.",
+                "allowlistEnd": "Inclusive Unix seconds uint48; strictly below publicStart.",
+                "publicStart": "Inclusive Unix seconds uint48; strictly after allowlistEnd and at or before publicEnd.",
+                "publicEnd": "Inclusive final Unix seconds uint48; match NFT.setMintEnd and public-drop end. The separate royalty opening is end+3600.",
+                "releaseUnusedTeamToPublic": "False initially preserves unminted free-team slots; true releases unused team capacity. Issued history never resets.",
+                "merkleRoot": "Independently reviewed shared free-team/paid-allowlist root with correct phase leaves; zero allowed only when both reserved allocations are zero.",
+                "feeRecipient": "Exact reviewed nonzero platform recipient; match the one allowed upstream recipient, not creator proceeds or royalty receiver.",
+                "allowedPayersHash": "Keccak-256 of abi.encode(address[]) of sorted unique reviewed nonzero payer addresses, maximum16; use the encoded empty array for no payers, not bytes32(0)."
+              }
+            },
             "1": "Exact expected current ProtocolPolicy paid mint price in wei; a price change before execution rejects this configuration.",
             "2": "Nonzero source-bound manifest review hash; independently verify every proof/leaf and intended platform terms."
           },

@@ -646,6 +646,8 @@ counts and bindings remain historical. No deployment/site/service/signing change
 
 ## Operator documentation maintenance
 
+The [operator-input audit](reports/operator-input-audit-20261116/REVIEW.md) covers92 management/nominated actions and317 input leaves. Function notes support strict nested tuple fields; expanded examples must retain operation-specific semantics, not deduplicate by struct name alone. All61 Solidity sources remain unchanged. Manual B/C/D/Parked reviews now freeze transaction.gas/transaction_gas at both anchors with full25% padding; padded_gas is a per-anchor required minimum, not permission to lower the frozen envelope. Preserve historical artifacts/receipts and false approval flags; source publication changes no live configuration.
+
 The maintained manual's short four-column call tables cover every current ABI
 function, constructor and receive hook. `docs/operator-call-examples.json` binds
 its complete function reference. For function/input/permission/value changes,

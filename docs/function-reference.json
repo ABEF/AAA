@@ -28296,7 +28296,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "5fac9b9217830388e7b6914fa0079a2bb20b72d0ee39adf3a6f989f67909081a",
+  "notes_sha256": "c2f281ea770be45dadc2e267e5039063032890a3aee580f4a83c108c38578d5d",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -29309,7 +29309,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Exact current block.chainid uint256. Current canonical transport is same-chain only; this field does not implement bridging."
                 },
                 {
                   "position": 1,
@@ -29318,7 +29318,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Reviewed distinct destination controller address. A usable importer is sealed/inert and bound to this source; this notice alone does not approve or freeze it."
                 },
                 {
                   "position": 2,
@@ -29327,7 +29327,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact destination CanonicalHandoff.deploymentCommitment() bytes32 from a reviewed matching deployment; not its address or a generic source hash."
                 },
                 {
                   "position": 3,
@@ -29336,7 +29336,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe."
                 }
               ]
             }
@@ -40006,7 +40006,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Actual nonzero LP reward token address admitted by the bound ledger; fresh Rewards admits fixed ZZZ. Raw token units use source decimals."
                 },
                 {
                   "position": 1,
@@ -40015,7 +40015,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Reviewed deployed v3 router, whose supported exactInputSingle ABI and factory relationship must match the pinned dependencies."
                 },
                 {
                   "position": 2,
@@ -40024,7 +40024,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Reviewed deployed v3 factory, independently validated against router/pool wiring."
                 },
                 {
                   "position": 3,
@@ -40033,7 +40033,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Actual v3 source/wrapper pool contract address, not a v4 pool ID. The immutable wrapper must be nonzero for this compatibility route."
                 },
                 {
                   "position": 4,
@@ -40042,7 +40042,7 @@
                   "type": "uint24",
                   "canonical_type": "uint24",
                   "internal_type": "uint24",
-                  "explanation": null
+                  "explanation": "Actual v3 pool fee in millionths, not basis points; source/wrapper/fee identity must match the factory pool."
                 },
                 {
                   "position": 5,
@@ -40051,7 +40051,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation."
                 },
                 {
                   "position": 6,
@@ -40060,7 +40060,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation."
                 },
                 {
                   "position": 7,
@@ -40069,7 +40069,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation."
                 },
                 {
                   "position": 8,
@@ -40078,7 +40078,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation."
                 },
                 {
                   "position": 9,
@@ -40087,7 +40087,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe."
                 }
               ]
             }
@@ -40131,7 +40131,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Actual nonzero LP reward token, fresh fixed ZZZ; not an arbitrary royalty payment currency."
                 },
                 {
                   "position": 1,
@@ -40140,7 +40140,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Must be address(0), native ETH paid back to the same bound LP reward ledger."
                 },
                 {
                   "position": 2,
@@ -40149,7 +40149,7 @@
                   "type": "tuple",
                   "canonical_type": "(address,address,uint24,int24,address)",
                   "internal_type": "struct PoolKey",
-                  "explanation": null,
+                  "explanation": "Exact initialized hookless source/native-ETH v4 PoolKey, in currency-address order.",
                   "components": [
                     {
                       "position": 0,
@@ -40158,7 +40158,7 @@
                       "type": "address",
                       "canonical_type": "address",
                       "internal_type": "address",
-                      "explanation": null
+                      "explanation": "Actual ordered token0 address; native ETH is address(0), not WETH. Read the initialized PoolKey and recompute its pool ID."
                     },
                     {
                       "position": 1,
@@ -40167,7 +40167,7 @@
                       "type": "address",
                       "canonical_type": "address",
                       "internal_type": "address",
-                      "explanation": null
+                      "explanation": "Actual ordered token1 address; principal admission requires the one fixed ZZZ token. Read the initialized PoolKey."
                     },
                     {
                       "position": 2,
@@ -40176,7 +40176,7 @@
                       "type": "uint24",
                       "canonical_type": "uint24",
                       "internal_type": "uint24",
-                      "explanation": null
+                      "explanation": "Static LP fee in millionths (10020 = 1.002%), not basis points; directional protocol fees are separate and may change."
                     },
                     {
                       "position": 3,
@@ -40185,7 +40185,7 @@
                       "type": "int24",
                       "canonical_type": "int24",
                       "internal_type": "int24",
-                      "explanation": null
+                      "explanation": "Positive int24 tick spacing of the initialized pool; lower/upper ticks must align. Principal admission permits 1..32767."
                     },
                     {
                       "position": 4,
@@ -40194,7 +40194,7 @@
                       "type": "address",
                       "canonical_type": "address",
                       "internal_type": "address",
-                      "explanation": null
+                      "explanation": "Hook address from the exact PoolKey; supported principal and v4 conversion venues require address(0)."
                     }
                   ]
                 },
@@ -40205,7 +40205,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Reviewed actual v4 PoolManager address; native balance settlement happens through this fixed core, not a pool contract."
                 },
                 {
                   "position": 4,
@@ -40214,7 +40214,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Reviewed StateView for the same PoolManager; verify parent/core wiring, runtime and initialized key."
                 },
                 {
                   "position": 5,
@@ -40223,7 +40223,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation."
                 },
                 {
                   "position": 6,
@@ -40232,7 +40232,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Native ETH uses the executor NATIVE_ASSET_CODE_HASH constant, not extcodehash(address(0)); read the exact constant from the reviewed child."
                 },
                 {
                   "position": 7,
@@ -40241,7 +40241,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation."
                 },
                 {
                   "position": 8,
@@ -40250,7 +40250,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation."
                 },
                 {
                   "position": 9,
@@ -40259,7 +40259,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe."
                 }
               ]
             }
@@ -40303,7 +40303,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Reviewed exact immutable wrapper runtime code hash. A zero immutable wrapper disables this optional v3 compatibility path."
                 },
                 {
                   "position": 1,
@@ -40312,7 +40312,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Reviewed proxy administrator address, or address(0) for explicitly reviewed nonproxy wrapper; zero requires every related proxy field/hash zero."
                 },
                 {
                   "position": 2,
@@ -40321,7 +40321,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Exact reviewed proxy implementation address reported by the selected admin; zero only in the nonproxy policy."
                 },
                 {
                   "position": 3,
@@ -40330,7 +40330,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Exact owner() of the reviewed proxy admin; zero only in the nonproxy policy. Code hashes alone do not prove upstream immutability."
                 },
                 {
                   "position": 4,
@@ -40339,7 +40339,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact reviewed admin runtime hash, or zero for the nonproxy policy."
                 },
                 {
                   "position": 5,
@@ -40348,7 +40348,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact reviewed implementation runtime hash, or zero for the nonproxy policy."
                 },
                 {
                   "position": 6,
@@ -40357,7 +40357,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe."
                 }
               ]
             }
@@ -40744,7 +40744,7 @@
               "type": "uint16",
               "canonical_type": "uint16",
               "internal_type": "uint16",
-              "explanation": "Actual native mint payment in wei for mint validation; see operation purpose."
+              "explanation": "Future conversion-loss limit in basis points, 0..1000 (100=1%,1000=10%); gas separate and stronger caller minimums remain binding."
             }
           ],
           "outputs": [],
@@ -40767,7 +40767,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": "Actual native mint payment in wei for mint validation; see operation purpose."
+              "explanation": "True enables future conversion attempts; false stops them without reading external dependencies. Neither changes NFT rights or funded claims."
             }
           ],
           "outputs": [],
@@ -40799,7 +40799,7 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": "Actual native mint payment in wei for mint validation; see operation purpose."
+              "explanation": "True revalidates and enables this admitted route; false disables it without querying failing dependencies. Not an ETH amount."
             }
           ],
           "outputs": [],
@@ -43446,7 +43446,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Shared bucket ID from Vault.nftBucket(NFT_ID) or Vault.poolBucket(POOL_ID), then Vault.group(bucketId); not the collection NFT ID or LP NFT ID."
                 },
                 {
                   "position": 1,
@@ -43455,7 +43455,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Current Vault.group(bucketId).poolId, the bytes32 Keccak PoolKey hash. External swaps change spot, not this identity."
                 },
                 {
                   "position": 2,
@@ -43464,7 +43464,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Current Vault.group(bucketId).lpTokenId; physical main position ID, not the bucket or collection NFT ID."
                 },
                 {
                   "position": 3,
@@ -43473,7 +43473,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Exact Vault.bucketTotalShares(bucketId) integer; contributions before inclusion invalidate this physical custody snapshot."
                 },
                 {
                   "position": 4,
@@ -43482,7 +43482,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Current Position.depositUSD bookkeeping integer in USD18, not current LP value; copy the exact group field."
                 },
                 {
                   "position": 5,
@@ -43491,7 +43491,7 @@
                   "type": "uint64",
                   "canonical_type": "uint64",
                   "internal_type": "uint64",
-                  "explanation": null
+                  "explanation": "Current Migration.custodyEpoch(bucketId), uint64; reread after custody-changing operations."
                 },
                 {
                   "position": 6,
@@ -43500,7 +43500,7 @@
                   "type": "uint64",
                   "canonical_type": "uint64",
                   "internal_type": "uint64",
-                  "explanation": null
+                  "explanation": "Current Migration.parkingNonce(bucketId), uint64; do not reuse a consumed or invalidated request."
                 },
                 {
                   "position": 7,
@@ -43509,7 +43509,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Actual pool currency0 from PoolRegistry.accounting(poolId).key: address(0) for native ETH."
                 },
                 {
                   "position": 8,
@@ -43518,7 +43518,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Actual pool currency1 from PoolRegistry.accounting(poolId).key: fixed ZZZ, not a currency ticker."
                 },
                 {
                   "position": 9,
@@ -43527,7 +43527,7 @@
                   "type": "uint128",
                   "canonical_type": "uint128",
                   "internal_type": "uint128",
-                  "explanation": null
+                  "explanation": "Caller-reviewed minimum raw native ETH wei received from the scope of this close; uint128, zero is an explicit raw-close choice. Scope: residual principal only; main remains unchanged."
                 },
                 {
                   "position": 10,
@@ -43536,7 +43536,7 @@
                   "type": "uint128",
                   "canonical_type": "uint128",
                   "internal_type": "uint128",
-                  "explanation": null
+                  "explanation": "Caller-reviewed minimum raw fixed-ZZZ units received from the scope of this close; uint128, use admitted ZZZ decimals, zero is explicit. Scope: residual principal only; main remains unchanged."
                 },
                 {
                   "position": 11,
@@ -43545,7 +43545,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Original inclusive Unix-seconds expiry; execution requires now <= deadline <= now+600. Never extend it while reusing the same review."
                 },
                 {
                   "position": 12,
@@ -43554,7 +43554,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe."
                 },
                 {
                   "position": 13,
@@ -43563,7 +43563,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "LiquidityManager.executionPortfolioFingerprint(lpTokenId), including both physical legs and their liquidity. Capture after pause; a new contribution can invalidate it, while an ordinary outside swap does not change fixed position ticks/L."
                 }
               ]
             }
@@ -43638,7 +43638,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Shared bucket ID from Vault.nftBucket(NFT_ID) or Vault.poolBucket(POOL_ID), then Vault.group(bucketId); not the collection NFT ID or LP NFT ID."
                 },
                 {
                   "position": 1,
@@ -43647,7 +43647,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact current Migration.consolidationCustodyHash(bucket), including nonce/epoch/policy controls; not emergencyCustodyHash."
                 },
                 {
                   "position": 2,
@@ -43656,7 +43656,7 @@
                   "type": "uint8",
                   "canonical_type": "uint8",
                   "internal_type": "uint8",
-                  "explanation": null
+                  "explanation": "Retained-check mask uint8 0..31: 1 raw trigger/cooldown, 2 independent price bounds, 4 USD/loss/quality/idle, 8 operation flags, 16 sampled confirmation. Bits retain checks; they do not grant authority."
                 },
                 {
                   "position": 3,
@@ -43665,7 +43665,7 @@
                   "type": "int24",
                   "canonical_type": "int24",
                   "internal_type": "int24",
-                  "explanation": null
+                  "explanation": "Signed int24 lower physical tick, aligned to pool spacing and below upper. For same-main consolidation copy Manager.ticks(mainPositionId).lower exactly; it does not follow the current tick."
                 },
                 {
                   "position": 4,
@@ -43674,7 +43674,7 @@
                   "type": "int24",
                   "canonical_type": "int24",
                   "internal_type": "int24",
-                  "explanation": null
+                  "explanation": "Signed int24 upper physical tick, aligned to pool spacing and above lower. For same-main consolidation copy Manager.ticks(mainPositionId).upper exactly; a swap changes current price, not this boundary."
                 },
                 {
                   "position": 5,
@@ -43683,7 +43683,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact admitted native ETH/ZZZ venue PoolKey hash, bytes32; zero for no swap. Guarded consolidation requires zero and lets reviewed routing choose at execution."
                 },
                 {
                   "position": 6,
@@ -43692,7 +43692,7 @@
                   "type": "bool",
                   "canonical_type": "bool",
                   "internal_type": "bool",
-                  "explanation": null
+                  "explanation": "True sells currency0/native ETH for currency1/ZZZ; false sells ZZZ for ETH. Guarded consolidation supplies false because explicit swap fields must be empty."
                 },
                 {
                   "position": 7,
@@ -43701,7 +43701,7 @@
                   "type": "uint128",
                   "canonical_type": "uint128",
                   "internal_type": "uint128",
-                  "explanation": null
+                  "explanation": "Exact raw input uint128 of the selected direction; must fit supported signed deltas. Zero means no explicit swap; never a USD amount or percentage."
                 },
                 {
                   "position": 8,
@@ -43710,7 +43710,7 @@
                   "type": "uint128",
                   "canonical_type": "uint128",
                   "internal_type": "uint128",
-                  "explanation": null
+                  "explanation": "Caller minimum raw output uint128 of the opposite currency, positive when explicitly swapping and zero for no swap; preserve original review floors."
                 },
                 {
                   "position": 9,
@@ -43719,7 +43719,7 @@
                   "type": "uint128",
                   "canonical_type": "uint128",
                   "internal_type": "uint128",
-                  "explanation": null
+                  "explanation": "Positive raw physical main liquidity L floor: added delta for same-main consolidation, new main L for full replacement. Not USD, token quantity or sum of both ranges."
                 },
                 {
                   "position": 10,
@@ -43728,7 +43728,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Original inclusive Unix-seconds expiry; execution requires now <= deadline <= now+600. Never extend it while reusing the same review."
                 },
                 {
                   "position": 11,
@@ -43737,7 +43737,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe."
                 }
               ]
             },
@@ -43981,7 +43981,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Shared bucket ID from Vault.nftBucket(NFT_ID) or Vault.poolBucket(POOL_ID), then Vault.group(bucketId); not the collection NFT ID or LP NFT ID."
                 },
                 {
                   "position": 1,
@@ -43990,7 +43990,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact current Migration.emergencyCustodyHash(bucket), including chain, position, shares, nonce/epoch and current controls; not consolidationCustodyHash."
                 },
                 {
                   "position": 2,
@@ -43999,7 +43999,7 @@
                   "type": "uint8",
                   "canonical_type": "uint8",
                   "internal_type": "uint8",
-                  "explanation": null
+                  "explanation": "Retained-check mask uint8 0..31: 1 raw trigger/cooldown, 2 independent price bounds, 4 USD/loss/quality/idle, 8 operation flags, 16 sampled confirmation. Bits retain checks; they do not grant authority."
                 },
                 {
                   "position": 3,
@@ -44008,7 +44008,7 @@
                   "type": "int24",
                   "canonical_type": "int24",
                   "internal_type": "int24",
-                  "explanation": null
+                  "explanation": "Signed int24 lower physical tick, aligned to pool spacing and below upper. For same-main consolidation copy Manager.ticks(mainPositionId).lower exactly; it does not follow the current tick."
                 },
                 {
                   "position": 4,
@@ -44017,7 +44017,7 @@
                   "type": "int24",
                   "canonical_type": "int24",
                   "internal_type": "int24",
-                  "explanation": null
+                  "explanation": "Signed int24 upper physical tick, aligned to pool spacing and above lower. For same-main consolidation copy Manager.ticks(mainPositionId).upper exactly; a swap changes current price, not this boundary."
                 },
                 {
                   "position": 5,
@@ -44026,7 +44026,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact admitted native ETH/ZZZ venue PoolKey hash, bytes32; zero for no swap. Guarded consolidation requires zero and lets reviewed routing choose at execution."
                 },
                 {
                   "position": 6,
@@ -44035,7 +44035,7 @@
                   "type": "bool",
                   "canonical_type": "bool",
                   "internal_type": "bool",
-                  "explanation": null
+                  "explanation": "True sells currency0/native ETH for currency1/ZZZ; false sells ZZZ for ETH. Guarded consolidation supplies false because explicit swap fields must be empty."
                 },
                 {
                   "position": 7,
@@ -44044,7 +44044,7 @@
                   "type": "uint128",
                   "canonical_type": "uint128",
                   "internal_type": "uint128",
-                  "explanation": null
+                  "explanation": "Exact raw input uint128 of the selected direction; must fit supported signed deltas. Zero means no explicit swap; never a USD amount or percentage."
                 },
                 {
                   "position": 8,
@@ -44053,7 +44053,7 @@
                   "type": "uint128",
                   "canonical_type": "uint128",
                   "internal_type": "uint128",
-                  "explanation": null
+                  "explanation": "Caller minimum raw output uint128 of the opposite currency, positive when explicitly swapping and zero for no swap; preserve original review floors."
                 },
                 {
                   "position": 9,
@@ -44062,7 +44062,7 @@
                   "type": "uint128",
                   "canonical_type": "uint128",
                   "internal_type": "uint128",
-                  "explanation": null
+                  "explanation": "Positive raw physical main liquidity L floor: added delta for same-main consolidation, new main L for full replacement. Not USD, token quantity or sum of both ranges."
                 },
                 {
                   "position": 10,
@@ -44071,7 +44071,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Original inclusive Unix-seconds expiry; execution requires now <= deadline <= now+600. Never extend it while reusing the same review."
                 },
                 {
                   "position": 11,
@@ -44080,7 +44080,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe."
                 }
               ]
             }
@@ -44444,7 +44444,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Shared bucket ID from Vault.nftBucket(NFT_ID) or Vault.poolBucket(POOL_ID), then Vault.group(bucketId); not the collection NFT ID or LP NFT ID."
                 },
                 {
                   "position": 1,
@@ -44453,7 +44453,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Current Vault.group(bucketId).poolId, the bytes32 Keccak PoolKey hash. External swaps change spot, not this identity."
                 },
                 {
                   "position": 2,
@@ -44462,7 +44462,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Current Vault.group(bucketId).lpTokenId; physical main position ID, not the bucket or collection NFT ID."
                 },
                 {
                   "position": 3,
@@ -44471,7 +44471,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Exact Vault.bucketTotalShares(bucketId) integer; contributions before inclusion invalidate this physical custody snapshot."
                 },
                 {
                   "position": 4,
@@ -44480,7 +44480,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Current Position.depositUSD bookkeeping integer in USD18, not current LP value; copy the exact group field."
                 },
                 {
                   "position": 5,
@@ -44489,7 +44489,7 @@
                   "type": "uint64",
                   "canonical_type": "uint64",
                   "internal_type": "uint64",
-                  "explanation": null
+                  "explanation": "Current Migration.custodyEpoch(bucketId), uint64; reread after custody-changing operations."
                 },
                 {
                   "position": 6,
@@ -44498,7 +44498,7 @@
                   "type": "uint64",
                   "canonical_type": "uint64",
                   "internal_type": "uint64",
-                  "explanation": null
+                  "explanation": "Current Migration.parkingNonce(bucketId), uint64; do not reuse a consumed or invalidated request."
                 },
                 {
                   "position": 7,
@@ -44507,7 +44507,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Actual pool currency0 from PoolRegistry.accounting(poolId).key: address(0) for native ETH."
                 },
                 {
                   "position": 8,
@@ -44516,7 +44516,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Actual pool currency1 from PoolRegistry.accounting(poolId).key: fixed ZZZ, not a currency ticker."
                 },
                 {
                   "position": 9,
@@ -44525,7 +44525,7 @@
                   "type": "uint128",
                   "canonical_type": "uint128",
                   "internal_type": "uint128",
-                  "explanation": null
+                  "explanation": "Caller-reviewed minimum raw native ETH wei received from the scope of this close; uint128, zero is an explicit raw-close choice. Scope: combined main+residual principal close; attributed idle/compound remain separately accounted."
                 },
                 {
                   "position": 10,
@@ -44534,7 +44534,7 @@
                   "type": "uint128",
                   "canonical_type": "uint128",
                   "internal_type": "uint128",
-                  "explanation": null
+                  "explanation": "Caller-reviewed minimum raw fixed-ZZZ units received from the scope of this close; uint128, use admitted ZZZ decimals, zero is explicit. Scope: combined main+residual principal close; attributed idle/compound remain separately accounted."
                 },
                 {
                   "position": 11,
@@ -44543,7 +44543,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Original inclusive Unix-seconds expiry; execution requires now <= deadline <= now+600. Never extend it while reusing the same review."
                 },
                 {
                   "position": 12,
@@ -44552,7 +44552,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe."
                 },
                 {
                   "position": 13,
@@ -44561,7 +44561,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "LiquidityManager.executionPortfolioFingerprint(lpTokenId), including both physical legs and their liquidity. Capture after pause; a new contribution can invalidate it, while an ordinary outside swap does not change fixed position ticks/L."
                 }
               ]
             }
@@ -49175,7 +49175,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact independently reviewed SeaDrop free-team/paid-allowlist root; must match helper settings and all intended leaf prices, stages, caps and windows."
                 },
                 {
                   "position": 1,
@@ -49184,7 +49184,7 @@
                   "type": "string[]",
                   "canonical_type": "string[]",
                   "internal_type": "string[]",
-                  "explanation": null
+                  "explanation": "Ordered string[] of reviewed public-key/document URIs. These are published strings, not signing secrets, token addresses or automatic proof validation."
                 },
                 {
                   "position": 2,
@@ -49193,7 +49193,7 @@
                   "type": "string",
                   "canonical_type": "string",
                   "internal_type": "string",
-                  "explanation": null
+                  "explanation": "Reviewed public allowlist manifest URI. URI text alone does not authenticate the on-chain root or each Merkle leaf."
                 }
               ]
             }
@@ -49405,7 +49405,7 @@
                   "type": "uint80",
                   "canonical_type": "uint80",
                   "internal_type": "uint80",
-                  "explanation": null
+                  "explanation": "Gross native ETH price in wei, uint80, from SeaDropMint.expectedPublicDrop(); not net creator proceeds or USD."
                 },
                 {
                   "position": 1,
@@ -49414,7 +49414,7 @@
                   "type": "uint48",
                   "canonical_type": "uint48",
                   "internal_type": "uint48",
-                  "explanation": null
+                  "explanation": "Inclusive Unix seconds, uint48, matching configured publicStart; never browser milliseconds."
                 },
                 {
                   "position": 2,
@@ -49423,7 +49423,7 @@
                   "type": "uint48",
                   "canonical_type": "uint48",
                   "internal_type": "uint48",
-                  "explanation": null
+                  "explanation": "Inclusive Unix seconds, uint48, matching publicEnd and NFT/RoyaltyRewards mintEnd; the separate royalty opening is end+3600."
                 },
                 {
                   "position": 3,
@@ -49432,7 +49432,7 @@
                   "type": "uint16",
                   "canonical_type": "uint16",
                   "internal_type": "uint16",
-                  "explanation": null
+                  "explanation": "Lifetime original-recipient mint count limit, uint16; not current wallet balance or per-transaction quantity."
                 },
                 {
                   "position": 4,
@@ -49441,7 +49441,7 @@
                   "type": "uint16",
                   "canonical_type": "uint16",
                   "internal_type": "uint16",
-                  "explanation": null
+                  "explanation": "Paid platform fee in basis points, 0..10000, included in gross price. Must match reviewed helper settings."
                 },
                 {
                   "position": 5,
@@ -49450,7 +49450,7 @@
                   "type": "bool",
                   "canonical_type": "bool",
                   "internal_type": "bool",
-                  "explanation": null
+                  "explanation": "Must be true for the reviewed single allowed platform fee recipient; not a user-selectable payout override."
                 }
               ]
             }
@@ -51814,7 +51814,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Reviewed deployed AggregatorV3-compatible source address, not an API URL or token address; independent upstream admission is an external obligation."
                 },
                 {
                   "position": 1,
@@ -51823,7 +51823,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation."
                 },
                 {
                   "position": 2,
@@ -51832,7 +51832,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Nonzero bytes32 independently reviewed source identity, distinct from the other source; contract inequality cannot prove economic independence."
                 },
                 {
                   "position": 3,
@@ -51841,7 +51841,7 @@
                   "type": "uint32",
                   "canonical_type": "uint32",
                   "internal_type": "uint32",
-                  "explanation": null
+                  "explanation": "Maximum original source age in seconds, 1..86400; compare actual round updatedAt at execution. Not a new timestamp assigned by a wrapper."
                 },
                 {
                   "position": 4,
@@ -51850,7 +51850,7 @@
                   "type": "uint8",
                   "canonical_type": "uint8",
                   "internal_type": "uint8",
-                  "explanation": null
+                  "explanation": "Exact source decimals() result, 0..18, retained and checked against the admitted source; not token decimals or USD18."
                 }
               ]
             },
@@ -51870,7 +51870,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Reviewed deployed AggregatorV3-compatible source address, not an API URL or token address; independent upstream admission is an external obligation."
                 },
                 {
                   "position": 1,
@@ -51879,7 +51879,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation."
                 },
                 {
                   "position": 2,
@@ -51888,7 +51888,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Nonzero bytes32 independently reviewed source identity, distinct from the other source; contract inequality cannot prove economic independence."
                 },
                 {
                   "position": 3,
@@ -51897,7 +51897,7 @@
                   "type": "uint32",
                   "canonical_type": "uint32",
                   "internal_type": "uint32",
-                  "explanation": null
+                  "explanation": "Maximum original source age in seconds, 1..86400; compare actual round updatedAt at execution. Not a new timestamp assigned by a wrapper."
                 },
                 {
                   "position": 4,
@@ -51906,7 +51906,7 @@
                   "type": "uint8",
                   "canonical_type": "uint8",
                   "internal_type": "uint8",
-                  "explanation": null
+                  "explanation": "Exact source decimals() result, 0..18, retained and checked against the admitted source; not token decimals or USD18."
                 }
               ]
             },
@@ -52507,7 +52507,7 @@
                   "type": "tuple",
                   "canonical_type": "(address,address,uint24,int24,address)",
                   "internal_type": "struct PoolKey",
-                  "explanation": null,
+                  "explanation": "Exact initialized native ETH/fixed-ZZZ static hookless PoolKey; recompute poolId as Keccak(abi.encode(key)).",
                   "components": [
                     {
                       "position": 0,
@@ -52516,7 +52516,7 @@
                       "type": "address",
                       "canonical_type": "address",
                       "internal_type": "address",
-                      "explanation": null
+                      "explanation": "Actual ordered token0 address; native ETH is address(0), not WETH. Read the initialized PoolKey and recompute its pool ID."
                     },
                     {
                       "position": 1,
@@ -52525,7 +52525,7 @@
                       "type": "address",
                       "canonical_type": "address",
                       "internal_type": "address",
-                      "explanation": null
+                      "explanation": "Actual ordered token1 address; principal admission requires the one fixed ZZZ token. Read the initialized PoolKey."
                     },
                     {
                       "position": 2,
@@ -52534,7 +52534,7 @@
                       "type": "uint24",
                       "canonical_type": "uint24",
                       "internal_type": "uint24",
-                      "explanation": null
+                      "explanation": "Static LP fee in millionths (10020 = 1.002%), not basis points; directional protocol fees are separate and may change."
                     },
                     {
                       "position": 3,
@@ -52543,7 +52543,7 @@
                       "type": "int24",
                       "canonical_type": "int24",
                       "internal_type": "int24",
-                      "explanation": null
+                      "explanation": "Positive int24 tick spacing of the initialized pool; lower/upper ticks must align. Principal admission permits 1..32767."
                     },
                     {
                       "position": 4,
@@ -52552,7 +52552,7 @@
                       "type": "address",
                       "canonical_type": "address",
                       "internal_type": "address",
-                      "explanation": null
+                      "explanation": "Hook address from the exact PoolKey; supported principal and v4 conversion venues require address(0)."
                     }
                   ]
                 },
@@ -52563,7 +52563,7 @@
                   "type": "bool",
                   "canonical_type": "bool",
                   "internal_type": "bool",
-                  "explanation": null
+                  "explanation": "True selects this as the sole contribution pool; another currently enabled destination must first be disabled. False also required for post-exit Ready reserve-only admission."
                 },
                 {
                   "position": 2,
@@ -52572,7 +52572,7 @@
                   "type": "bool",
                   "canonical_type": "bool",
                   "internal_type": "bool",
-                  "explanation": null
+                  "explanation": "True enables ordinary maintenance/deployment for this admitted venue. False does not erase custody, claims or existing LP."
                 },
                 {
                   "position": 3,
@@ -52581,7 +52581,7 @@
                   "type": "uint16",
                   "canonical_type": "uint16",
                   "internal_type": "uint16",
-                  "explanation": null
+                  "explanation": "Human-price width in basis points, 100..9999; Strategy.setRangeOrientation separately selects raw/inverse price. Desired width changes existing geometry only at replacement."
                 },
                 {
                   "position": 4,
@@ -52590,7 +52590,7 @@
                   "type": "uint16",
                   "canonical_type": "uint16",
                   "internal_type": "uint16",
-                  "explanation": null
+                  "explanation": "Historical movement field, 100..rangeBps-1. Current portfolio threshold policy does not authorize ordinary replacement from this field alone."
                 },
                 {
                   "position": 5,
@@ -52599,7 +52599,7 @@
                   "type": "uint16",
                   "canonical_type": "uint16",
                   "internal_type": "uint16",
-                  "explanation": null
+                  "explanation": "Allowed spot/reference deviation in basis points, 1..500 and below rangeBps. This is distinct from source agreement and loss budgets."
                 },
                 {
                   "position": 6,
@@ -52608,7 +52608,7 @@
                   "type": "uint16",
                   "canonical_type": "uint16",
                   "internal_type": "uint16",
-                  "explanation": null
+                  "explanation": "Per-venue gross swap floor in basis points, 1..1000; key.fee must be strictly below value*100 fee-pips. Aggregate/caller/additional-loss protections remain separate."
                 },
                 {
                   "position": 7,
@@ -52617,7 +52617,7 @@
                   "type": "uint32",
                   "canonical_type": "uint32",
                   "internal_type": "uint32",
-                  "explanation": null
+                  "explanation": "Hard ordinary rebalance cooldown in seconds, 600..604800; selected policy43200 (12h), separate from compound and harvest intervals."
                 },
                 {
                   "position": 8,
@@ -52626,7 +52626,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Positive USD18 pool minimum (1 USD=10**18), checked alongside the stronger current action minimum; not raw ZZZ or current pool TVL."
                 },
                 {
                   "position": 9,
@@ -52635,7 +52635,7 @@
                   "type": "uint256",
                   "canonical_type": "uint256",
                   "internal_type": "uint256",
-                  "explanation": null
+                  "explanation": "Maximum cumulative gross contribution per NFT in USD18, at least minDepositUSD; not total bucket capacity or current mark-to-market value."
                 }
               ]
             }
@@ -60748,7 +60748,7 @@
                   "type": "uint16",
                   "canonical_type": "uint16",
                   "internal_type": "uint16",
-                  "explanation": null
+                  "explanation": "Reserved free-team NFT count, uint16, initially20; cannot fall below already issued team count; team+allowlist<=1000."
                 },
                 {
                   "position": 1,
@@ -60757,7 +60757,7 @@
                   "type": "uint16",
                   "canonical_type": "uint16",
                   "internal_type": "uint16",
-                  "explanation": null
+                  "explanation": "Paid allowlist NFT count, uint16, initially500; cannot fall below issued allowlist count. Unused allowance rolls into public."
                 },
                 {
                   "position": 2,
@@ -60766,7 +60766,7 @@
                   "type": "uint16",
                   "canonical_type": "uint16",
                   "internal_type": "uint16",
-                  "explanation": null
+                  "explanation": "Lifetime original-recipient count ceiling, 1..1000; transfers do not restore mint quota."
                 },
                 {
                   "position": 3,
@@ -60775,7 +60775,7 @@
                   "type": "uint16",
                   "canonical_type": "uint16",
                   "internal_type": "uint16",
-                  "explanation": null
+                  "explanation": "Reviewed paid platform share in basis points, 0..10000, included in gross governed mint price."
                 },
                 {
                   "position": 4,
@@ -60784,7 +60784,7 @@
                   "type": "uint8",
                   "canonical_type": "uint8",
                   "internal_type": "uint8",
-                  "explanation": null
+                  "explanation": "Maximum NFTs in one mint callback, 1..10; engineering ceiling is not actual VRF/payment/gas qualification."
                 },
                 {
                   "position": 5,
@@ -60793,7 +60793,7 @@
                   "type": "uint48",
                   "canonical_type": "uint48",
                   "internal_type": "uint48",
-                  "explanation": null
+                  "explanation": "Positive inclusive Unix seconds uint48; at or before teamEnd."
                 },
                 {
                   "position": 6,
@@ -60802,7 +60802,7 @@
                   "type": "uint48",
                   "canonical_type": "uint48",
                   "internal_type": "uint48",
-                  "explanation": null
+                  "explanation": "Inclusive Unix seconds uint48; strictly below allowlistStart."
                 },
                 {
                   "position": 7,
@@ -60811,7 +60811,7 @@
                   "type": "uint48",
                   "canonical_type": "uint48",
                   "internal_type": "uint48",
-                  "explanation": null
+                  "explanation": "Inclusive Unix seconds uint48; strictly after teamEnd and at or before allowlistEnd."
                 },
                 {
                   "position": 8,
@@ -60820,7 +60820,7 @@
                   "type": "uint48",
                   "canonical_type": "uint48",
                   "internal_type": "uint48",
-                  "explanation": null
+                  "explanation": "Inclusive Unix seconds uint48; strictly below publicStart."
                 },
                 {
                   "position": 9,
@@ -60829,7 +60829,7 @@
                   "type": "uint48",
                   "canonical_type": "uint48",
                   "internal_type": "uint48",
-                  "explanation": null
+                  "explanation": "Inclusive Unix seconds uint48; strictly after allowlistEnd and at or before publicEnd."
                 },
                 {
                   "position": 10,
@@ -60838,7 +60838,7 @@
                   "type": "uint48",
                   "canonical_type": "uint48",
                   "internal_type": "uint48",
-                  "explanation": null
+                  "explanation": "Inclusive final Unix seconds uint48; match NFT.setMintEnd and public-drop end. The separate royalty opening is end+3600."
                 },
                 {
                   "position": 11,
@@ -60847,7 +60847,7 @@
                   "type": "bool",
                   "canonical_type": "bool",
                   "internal_type": "bool",
-                  "explanation": null
+                  "explanation": "False initially preserves unminted free-team slots; true releases unused team capacity. Issued history never resets."
                 },
                 {
                   "position": 12,
@@ -60856,7 +60856,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Independently reviewed shared free-team/paid-allowlist root with correct phase leaves; zero allowed only when both reserved allocations are zero."
                 },
                 {
                   "position": 13,
@@ -60865,7 +60865,7 @@
                   "type": "address",
                   "canonical_type": "address",
                   "internal_type": "address",
-                  "explanation": null
+                  "explanation": "Exact reviewed nonzero platform recipient; match the one allowed upstream recipient, not creator proceeds or royalty receiver."
                 },
                 {
                   "position": 14,
@@ -60874,7 +60874,7 @@
                   "type": "bytes32",
                   "canonical_type": "bytes32",
                   "internal_type": "bytes32",
-                  "explanation": null
+                  "explanation": "Keccak-256 of abi.encode(address[]) of sorted unique reviewed nonzero payer addresses, maximum16; use the encoded empty array for no payers, not bytes32(0)."
                 }
               ]
             },

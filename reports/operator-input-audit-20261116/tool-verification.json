@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-11-16T22:59:02.049369+00:00",
+  "starting_commit": "72e519797659158eb48cfe5da582fb8c88b90bfa",
+  "scope": "tool portion only; per-stage execution recorded in task tool results",
+  "source_sha256": {
+    "zzz_ops/manual_lp_review.py": "232626539ad5a0f86e9eebf57987bfe8845c478906cc8c550fe077ffdd690b00",
+    "zzz_ops/management_review.py": "72ada1acf8d767096c1ae2041b3fc7b97b14decce233ee6d3791d2afe95acc35",
+    "scripts/rehearse-manual-recovery.py": "fabaf02efa8654efa3d3e4c606749d2632a20b09af1a2eb12e7553583119851e",
+    "scripts/rehearse-manual-reference.py": "52f94c917b8a489bdf534572dedd848847f20c49b372b81607f1d4385e0e5895",
+    "tests_python/test_manual_lp_frozen_gas.py": "473381be30759d158c6f32b9879fea0f2021e8da4e9fe504a6ef8262a77ec093",
+    "tests_python/test_manual_lp_review.py": "cebc4babce16c8d36d40c144f24b3dbfb6f624a9392bc49e95edd42b76b7d28b",
+    "tests_python/test_parked_manual_lp_review.py": "f460c8767722b25af09f1582c3da9ee56c309d2f6210378c6a56f577a178bbde",
+    "tests_python/test_manual_lp_diagnostics.py": "25793d4742a95d58087530fc7a5ea1f58bfdced7d36be5682e6a35bad752a786"
+  },
+  "new_methods_passed": [
+    "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_exact_gas_is_frozen_across_healthy_lower_cost_market_change",
+    "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_initial_exact_gas_failure_is_not_hidden_by_successful_cap_probe",
+    "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_final_cost_increase_cannot_silently_raise_transaction_gas",
+    "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_final_fee_budget_uses_frozen_gas_not_cheaper_new_estimate",
+    "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_final_exact_gas_return_must_still_match_void_abi",
+    "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_frozen_budget_still_requires_final_block_capacity",
+    "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_parked_schema2_also_freezes_gas_without_enabling_active_guards",
+    "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_management_dangling_output_is_preserved_before_any_input_or_rpc",
+    "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_owned_rehearsal_preserves_current_gas_and_explicit_old_artifacts",
+    "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_strict_reference_wrapper_accepts_only_the_exact_updated_base_source"
+  ],
+  "adapted_methods_passed": [
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_exact_b_c_d_calls_and_floor_meanings",
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_d_preharvest_lower_bound_never_replaces_full_source_call_spendability",
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_all_rpc_contract_reads_use_confirmed_or_final_canonical_hash_without_latest_fallback",
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting",
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_healthy_trading_and_new_price_rounds_keep_original_manifest_and_revalidate_twice",
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_latest_retained_guard_failure_refuses_without_fallback_or_third_probe",
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_block_gas_limit_bounds_both_reviews_and_network_envelope_is_separate",
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_contract_or_delegated_governance_requires_unsupported_outer_envelope_before_funding",
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_last_head_deadline_after_final_estimate_refuses_without_resimulation",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_schema2_parked_d_exact_static_call_and_disclosure",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_execution1_lp3_profile_and_late_source_controls",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_controls_failure_is_distinct_from_final_simulation",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_canonicality_reorg_and_local_input_mutation_are_identified"
+  ],
+  "unique_passed_count": 24,
+  "stages": [
+    {
+      "actual_methods": 8,
+      "result": "5 pass/3 fixture-hook assertion failures; hook timing corrected, no production guard relaxation"
+    },
+    {
+      "actual_methods": 8,
+      "result": "all pass after fixture timing correction"
+    },
+    {
+      "actual_methods": 12,
+      "result": "all pass; one separately requested nonexistent name caused loader error and ran no method"
+    },
+    {
+      "actual_methods": 2,
+      "result": "both intended Parked source/control methods pass"
+    },
+    {
+      "actual_methods": 2,
+      "result": "new owned-helper compatibility and wrapper-pin methods pass"
+    }
+  ],
+  "limitations": [
+    "Final source pins identify delivered files, not identical test-module bytes for earlier stages; the last two new test methods were added afterward. Production manual helper bytes stayed unchanged through the successful stages.",
+    "No unchanged suite/compiler/static/browser/actual-chain/public-RPC/service/journal/nonce/signing/deployment/sealing action.",
+    "This is controlled injected-wire evidence, not target-chain gas/market/provider or independent acceptance."
+  ],
+  "baseline_reproduction": "tool-baseline.json",
+  "report": "TOOLS_REVIEW.md"
+}

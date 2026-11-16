@@ -357,11 +357,20 @@ def _parameters(items, side, notes):
         if len(values) > 1:
             raise ReferenceError('Ambiguous parameter explanation')
         accepted.update(key for key in candidates if key in notes)
+        explanation = values[0] if values else None
+        fields = {}
+        if isinstance(explanation, dict):
+            if (set(explanation) != {'explanation', 'fields'} or
+                    not item['type'].startswith('tuple') or
+                    not isinstance(explanation['fields'], dict)):
+                raise ReferenceError('Invalid nested parameter explanation')
+            fields = explanation['fields']
+            explanation = explanation['explanation']
         parameter = {'position': index, 'name': name, 'label': name or positional,
             'type': item['type'], 'canonical_type': canonical_type(item), 'internal_type': item.get('internalType', item['type']),
-            'explanation': _explanation(values[0], positional) if values else None}
+            'explanation': _explanation(explanation, positional)}
         if item['type'].startswith('tuple'):
-            parameter['components'] = _parameters(item['components'], 'fields', {})
+            parameter['components'] = _parameters(item['components'], 'fields', fields)
         result.append(parameter)
     if set(notes) != accepted:
         raise ReferenceError('Unknown parameter explanation: ' + ', '.join(sorted(set(notes) - accepted)))
@@ -514,7 +523,7 @@ def render_markdown(reference):
                 lines.append('| `' + _text(item['signature']) + '`<br>' + item['state_mutability'] + ' | ' + purpose + ' | ' +
                     _text(item['access']) + ' | ' + _params(item['inputs']) + ' | ' + _params(item['outputs']) + ' |')
     lines += ['', '<a id="maintenance"></a>', '', '## Coverage and maintenance', '',
-        'The machine-readable [reference snapshot](function-reference.json) retains full ABI, canonical signatures, source hashes, reviewed explanations and uncovered explanations. [Explanation inputs](function-reference-notes.json) are the editable source. `python scripts/generate-function-reference.py --check` checks current source bindings and deterministic generated content without compiling or rerunning contract tests.', '',
+        'The machine-readable [reference snapshot](function-reference.json) retains full ABI, canonical signatures, source hashes, reviewed explanations and uncovered explanations. [Explanation inputs](function-reference-notes.json) are the editable source. A tuple note may use `{"explanation":"...","fields":{"fieldName":"..."}}`; nested tuple fields use the same structure and must match ABI names/positions exactly. Plain string notes remain supported. Operator tuple leaves now explain their own units and validity; other rows must still be read with their full operation context. `python scripts/generate-function-reference.py --check` checks current source bindings and deterministic generated content without compiling or rerunning contract tests.', '',
         'After a contract change, first obtain source-matching compiler input/output and normal size evidence, update the explanations, then regenerate. Unchanged source needs only the documentation check. A stale ABI, unknown note, duplicate signature, unexpected contract or altered generated file fails that check.', '',
         'From the repository root, edit `docs/function-reference-notes.json`, then replace these example artifact paths with the reviewed matching files. Use `python3` if that is the Python command in your environment. This command imports existing compiler evidence; it does not compile or rerun contract tests.', '',
         '```text',

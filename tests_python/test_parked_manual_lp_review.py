@@ -83,10 +83,10 @@ class ParkedManualLPReviewTests(unittest.TestCase):
         self.assertEqual(int(result['snapshot']['custody_hash'],16), values[1])
         self.assertEqual(int(result['review']['review_hash'],16), values[11])
         self.assertEqual(self.f.gov, tx['from']);self.assertEqual(self.c['principal_exit'],tx['to'])
-        self.assertNotIn('gas', tx);self.assertNotIn('nonce', tx)
+        self.assertEqual(hex(125000),tx['gas']);self.assertNotIn('nonce', tx)
         self.assertEqual('125000', result['network_gas']['padded_gas'])
-        self.assertEqual(2,len(self.rpc.simulations));self.assertEqual(2,len(self.rpc.estimates))
-        self.assertEqual(self.rpc.simulations[0][0],self.rpc.simulations[1][0])
+        self.assertEqual(4,len(self.rpc.simulations));self.assertEqual(2,len(self.rpc.estimates))
+        self.assertEqual(self.rpc.simulations[1][0],self.rpc.simulations[3][0])
         self.assertFalse(result['ready_for_submission']);self.assertFalse(result['production_approved'])
         self.assertTrue(self.catalog.check(result['review'])['artifact_matches'])
 
@@ -260,10 +260,10 @@ class ParkedManualLPReviewTests(unittest.TestCase):
                     result=self.prepare()
                     self.assertEqual(1,result['snapshot']['execution_price']['source_revision'])
                     self.assertEqual(1,result['final_market_observations']['execution_price']['source_revision'])
-                    self.assertEqual(2,len(self.rpc.simulations))
+                    self.assertEqual(4,len(self.rpc.simulations))
                 else:
                     with self.assertRaises((ValueError,RpcError)):self.prepare()
-                    self.assertEqual(1 if variant=='revision' else 0,len(self.rpc.simulations))
+                    self.assertEqual(2 if variant=='revision' else 0,len(self.rpc.simulations))
                 self.assertEqual([],self.calls('priceBounds(address)'))
 
     def test_every_parked_control_is_rechecked_at_later_canonical_tip(self):
@@ -295,7 +295,7 @@ class ParkedManualLPReviewTests(unittest.TestCase):
                     if variant=='runtime':self.f.f.rpc.codes[self.c['liquidity']]='0x6000'
                 self.rpc.after_estimate=change
                 with self.assertRaises((RpcError,ValueError)):self.prepare()
-                self.assertEqual(1,len(self.rpc.simulations))
+                self.assertEqual(2,len(self.rpc.simulations))
 
     def test_noncanonical_missing_getters_never_become_zero(self):
         for method in ('secondaryId(uint256)','portfolioFingerprint(uint256)','executionPortfolioFingerprint(uint256)'):

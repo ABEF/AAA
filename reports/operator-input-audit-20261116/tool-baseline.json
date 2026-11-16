@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "kind": "read_only_baseline_reproduction",
+  "baseline_commit": "72e519797659158eb48cfe5da582fb8c88b90bfa",
+  "source_sha256": "9c139431fcb98e0d0b09fff0b8fdd2ef31bfef12f77de85cb617d801a5399697",
+  "operation": "schema1/actionB/checks14",
+  "injected_rpc_only": true,
+  "test_methods_executed": 0,
+  "public_rpc_or_signing": false,
+  "simulation_calls": 2,
+  "simulation_gas": [
+    "0xf4240",
+    "0xf4240"
+  ],
+  "estimate_calls": 2,
+  "returned_transaction_has_gas": false,
+  "reported_final_padded_gas": "125000",
+  "interpretation": "Both anchors were called at 1M gas; the reported 125k padded limit was not called or frozen in the unsigned transaction."
+}

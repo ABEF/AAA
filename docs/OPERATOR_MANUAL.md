@@ -271,9 +271,12 @@ at `da24f65` adds CLI and receipt evidence for that baseline. The
 separately owns the changed source's results. Target-provider, complete-fee and
 contract-wallet acceptance remain open.
 
-The seven management actions preserve exact calldata and frozen transaction gas.
-Manual B/C/D and Parked D preserve exact calldata with bounded gas/fee envelopes
-rechecked at each snapshot. Manual reviews retain25% estimate headroom.
+The seven management actions, manual B/C/D and Parked D preserve exact calldata
+and **frozen transaction gas**, called at both review snapshots. Use the returned
+`transaction.gas` / `network_gas.transaction_gas`; per-anchor `padded_gas` is the
+required minimum, not permission to lower the frozen limit. A later requirement
+above that limit rejects with `frozen_gas_insufficient`; a lower estimate cannot
+understate the reviewed maximum fee or funding. Full25% headroom remains.
 Their [failure diagnostics](MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)
 now show the failing stage and known local cause, including authority/lifecycle,
 geometry, stale custody, original gas/fee limits, funding and expiry. Unexplained
@@ -1311,6 +1314,42 @@ edit its journal. No keeper restart is inherently required for an on-chain
 getter change, but independently approved service/client ceilings and pending
 work must be reconciled before new execution. Pool spot/per-swap/retained-value,
 conversion1%, maintenance and additional-loss settings remain unchanged.
+
+## Read input units and validity
+
+The [complete source/input audit](../reports/operator-input-audit-20261116/REVIEW.md)
+distinguishes92 governance/bootstrap/keeper/nominated actions from the complete
+ABI's reads, holder rights and module/callback endpoints. The
+[per-function inventory](../reports/operator-input-audit-20261116/INVENTORY.md)
+and [moving-state/guard matrix](../reports/operator-input-audit-20261116/OPERATIONS_AND_RISKS.md)
+provide authority, input source, invalidation, effect and recovery context.
+This is source review, not proof that every combination was dynamically tested.
+
+| Input | Obtain/interpret it | What can change before inclusion |
+| --- | --- | --- |
+| Full NFT ID | `NFT.tokenAtOrdinal(ordinal)`, then `ownerOf(id)` | Transfer changes authorized owner; an ordinal is not a token ID. |
+| Logical bucket / physical LP | `Vault.nftBucket(id)` / `group(bucket)` / actual Manager portfolio | Replacement changes LP IDs; contribution increases main L. Never substitute bucket for LP ID. |
+| Existing lower/upper | `Manager.ticks(mainId)` | Bounds stay fixed through swaps; current tick/sqrt price and required ratio move. Reread after replacement. |
+| Stable geometry hash | `Manager.portfolioFingerprint(mainId)` | Excludes L so ordinary growth does not reset observations. It is not a physical emergency snapshot. |
+| Physical custody hash | Selected operation's `emergencyCustodyHash` or `consolidationCustodyHash`; Manager `executionPortfolioFingerprint` | Physical L changes can invalidate it; consolidation also binds its nonce/epoch/control. Reprepare instead of substituting another hash domain. |
+| Policy/review fingerprints | Exact policy getter or source-bound review producer | A review hash identifies evidence, not authority. Source/control/revision changes can require a fresh review even after values are restored. |
+| Amounts / minima | ETH wei, authenticated token decimals, USD18, or raw L as the ABI requires | Added L for compound/same-main; new L for replacement/resume. Never sum different currencies or L across ranges. |
+| Percentages / time | BPS over10,000; pool fees in pips over1,000,000; Unix seconds | The stricter independent venue/user/value/idle/source guards still apply. Gas is separate. |
+| Gas / expiry | Exact returned gas and original review deadline | Two simulations reserve no state or nonce. Begin/allocation/distribution artifact expiry is off-chain only. |
+
+Examples are templates, not current executable values. `$100` is
+`100000000000000000000` USD18; `0.01 ETH` is `10000000000000000` wei;
+`300` loss BPS is3%. A `10020` pool fee is1.002% LP fee before its actual
+directional protocol fee. ZZZ raw amounts require its authenticated decimals.
+Emergency mask bits **retain** checks;0 does not disable authority/custody or
+make an impossible trade safe. The expanded call tables now show separate
+per-field meanings and operation-specific examples even for the same struct.
+
+After a source change adopt matching reviewed preparers deliberately; keep old
+artifacts/journals unchanged. Recover the original pending hash before a retry.
+Guarded rejection after a real market or custody change can be correct. Same-main
+consolidation already reinvests atomically and modeOFF is applied; no second LP
+call is required. Full replacement is a different action when geometry must change.
 
 ## Before every management operation
 
@@ -4515,7 +4554,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [PortfolioPolicy.maximumResidualBps](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `pool: bytes32` | `maximumResidualBps(POOL_ID)` | Read maximum residual bps |
 | `R` [PortfolioPolicy.minimumMainBps](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `pool: bytes32` | `minimumMainBps(POOL_ID)` | Read minimum main bps |
 | `R` [PortfolioPolicy.modeReviewHash](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `input0: bytes32` | `modeReviewHash(POOL_ID)` | Read mode review hash |
-| `R` [PortfolioPolicy.range](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `c` [PoolConfig](#input-poolconfig)<br>`referenceX96: uint160`<br>`orientation: uint8` | `range([["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "DEPOSITS_ENABLED", "OPERATIONS_ENABLED", "RANGE_BPS", "TRIGGER_BPS", "MAX_SPOT_DEVIATION_BPS", "MAX_SLIPPAGE_BPS", "MIN_REBALANCE_INTERVAL", "MIN_DEPOSIT_USD", "MAX_POSITION_USD"], REFERENCE_X96, ORIENTATION)` | Read range |
+| `R` [PortfolioPolicy.range](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `c` [PoolConfig](#input-poolconfig-89a1cfd481b0)<br>`referenceX96: uint160`<br>`orientation: uint8` | `range([["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "DEPOSITS_ENABLED", "OPERATIONS_ENABLED", "RANGE_BPS", "TRIGGER_BPS", "MAX_SPOT_DEVIATION_BPS", "MAX_SLIPPAGE_BPS", "MIN_REBALANCE_INTERVAL", "MIN_DEPOSIT_USD", "MAX_POSITION_USD"], REFERENCE_X96, ORIENTATION)` | Read range |
 | `R` [PortfolioPolicy.residualGapSpacings](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `pool: bytes32` | `residualGapSpacings(POOL_ID)` | Read residual gap spacings |
 | `R` [PortfolioPolicy.residualRange](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `pool: bytes32`<br>`current: uint160`<br>`mainLower: int24`<br>`mainUpper: int24`<br>`residual0: bool` | `residualRange(POOL_ID, CURRENT, MAIN_LOWER, MAIN_UPPER, RESIDUAL0)` | Read residual range |
 | `R` [PortfolioPolicy.residualReviewHash](CONTRACT_FUNCTIONS.md#zzzportfoliopolicy) | `input0: bytes32` | `residualReviewHash(POOL_ID)` | Read residual review hash |
@@ -4594,7 +4633,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
-| `G` [Oracle.setDualFeed](CONTRACT_FUNCTIONS.md#zzzoracle) | `token: address`<br>`primary` [ZZZOracle.SourcePolicy](#input-zzzoracle-sourcepolicy)<br>`secondary` [ZZZOracle.SourcePolicy](#input-zzzoracle-sourcepolicy)<br>`maxDeviationBps: uint16`<br>`reviewHash: bytes32` | `setDualFeed(ZZZ_ADDRESS, ["PRIMARY_FEED_ADDRESS", "PRIMARY_CODE_HASH", "PRIMARY_INDEPENDENCE_ID", "PRIMARY_MAX_AGE", "PRIMARY_FEED_DECIMALS"], ["SECONDARY_FEED_ADDRESS", "SECONDARY_CODE_HASH", "SECONDARY_INDEPENDENCE_ID", "SECONDARY_MAX_AGE", "SECONDARY_FEED_DECIMALS"], 300, REVIEW_HASH)` | Configure independent price sources |
+| `G` [Oracle.setDualFeed](CONTRACT_FUNCTIONS.md#zzzoracle) | `token: address`<br>`primary` [ZZZOracle.SourcePolicy](#input-zzzoracle-sourcepolicy)<br>`secondary` [ZZZOracle.SourcePolicy](#input-zzzoracle-sourcepolicy-3cafc86a58ce)<br>`maxDeviationBps: uint16`<br>`reviewHash: bytes32` | `setDualFeed(ZZZ_ADDRESS, ["PRIMARY_FEED_ADDRESS", "PRIMARY_CODE_HASH", "PRIMARY_INDEPENDENCE_ID", "PRIMARY_MAX_AGE", "PRIMARY_FEED_DECIMALS"], ["SECONDARY_FEED_ADDRESS", "SECONDARY_CODE_HASH", "SECONDARY_INDEPENDENCE_ID", "SECONDARY_MAX_AGE", "SECONDARY_FEED_DECIMALS"], 300, REVIEW_HASH)` | Configure independent price sources |
 | `G` [Oracle.setExecutionSource](CONTRACT_FUNCTIONS.md#zzzoracle) | `source: address`<br>`enabled: bool`<br>`expectedCodeHash: bytes32`<br>`reviewHash: bytes32` | `setExecutionSource(COMPOSITE_READER_ADDRESS, true, READER_RUNTIME_HASH, SOURCE_REVIEW_HASH)` | Configure reviewed execution source |
 | `G` [Oracle.setSequencerFeed](CONTRACT_FUNCTIONS.md#zzzoracle) | `source: address`<br>`expectedCodeHash: bytes32`<br>`reviewHash: bytes32` | `setSequencerFeed(SOURCE_ADDRESS, EXPECTED_CODE_HASH, REVIEW_HASH)` | Configure sequencer outage guard |
 
@@ -5122,11 +5161,11 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `G` [Migration.park](CONTRACT_FUNCTIONS.md#zzzmigration) | `r` [ZZZMigration.ParkingRequest](#input-zzzmigration-parkingrequest) | `park(["BUCKET_ID", "POOL_ID", "LP_TOKEN_ID", "TOTAL_SHARES", "DEPOSIT_USD", "CUSTODY_EPOCH", "CURRENT_NONCE", "0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "MINIMUM0", "MINIMUM1", "UNIX_DEADLINE", "REVIEW_HASH", "PORTFOLIO_HASH"])` | Close LP into attributed idle |
-| `G` [Migration.closeResidual](CONTRACT_FUNCTIONS.md#zzzmigration) | `r` [ZZZMigration.ParkingRequest](#input-zzzmigration-parkingrequest) | `closeResidual(["BUCKET_ID", "POOL_ID", "LP_TOKEN_ID", "TOTAL_SHARES", "DEPOSIT_USD", "CUSTODY_EPOCH", "CURRENT_NONCE", "0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "MINIMUM0", "MINIMUM1", "UNIX_DEADLINE", "REVIEW_HASH", "PORTFOLIO_HASH"])` | Close residual; retain main |
+| `G` [Migration.closeResidual](CONTRACT_FUNCTIONS.md#zzzmigration) | `r` [ZZZMigration.ParkingRequest](#input-zzzmigration-parkingrequest-9ddf4a5cd872) | `closeResidual(["BUCKET_ID", "POOL_ID", "LP_TOKEN_ID", "TOTAL_SHARES", "DEPOSIT_USD", "CUSTODY_EPOCH", "CURRENT_NONCE", "0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "MINIMUM0", "MINIMUM1", "UNIX_DEADLINE", "REVIEW_HASH", "PORTFOLIO_HASH"])` | Close residual; retain main |
 | `G` [Migration.consolidateResidual](CONTRACT_FUNCTIONS.md#zzzmigration) | `request` [EmergencyRebalance](#input-emergencyrebalance)<br>`forced: bool` | `consolidateResidual(["BUCKET_ID", "CONSOLIDATION_CUSTODY_HASH", "14", "CURRENT_MAIN_LOWER_TICK", "CURRENT_MAIN_UPPER_TICK", "0x0000000000000000000000000000000000000000000000000000000000000000", false, "0", "0", "MINIMUM_ADDED_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"], false)` | Reinvest residual into same main |
 | `G` [Migration.resume](CONTRACT_FUNCTIONS.md#zzzmigration) | `id: uint256`<br>`pool: bytes32`<br>`minimum: uint128`<br>`deadline: uint256` | `resume(BUCKET_ID, POOL_ID, MINIMUM, UNIX_DEADLINE)` | Redeploy parked LP principal |
 | `G` [Migration.moveFunds](CONTRACT_FUNCTIONS.md#zzzmigration) | `id: uint256`<br>`pool: bytes32`<br>`minimum: uint128`<br>`deadline: uint256` | `moveFunds(BUCKET_ID, POOL_ID, MINIMUM, UNIX_DEADLINE)` | Move LP between admitted pools |
-| `G` [Migration.emergencyRebalance](CONTRACT_FUNCTIONS.md#zzzmigration) | `request` [EmergencyRebalance](#input-emergencyrebalance) | `emergencyRebalance(["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"])` | Force reviewed emergency consolidation |
+| `G` [Migration.emergencyRebalance](CONTRACT_FUNCTIONS.md#zzzmigration) | `request` [EmergencyRebalance](#input-emergencyrebalance-ad5166df574a) | `emergencyRebalance(["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"])` | Force reviewed emergency consolidation |
 | `G` [Migration.beginCollectiveExit](CONTRACT_FUNCTIONS.md#zzzmigration) | `reviewHash: bytes32` | `beginCollectiveExit(REVIEW_HASH)` | Start irreversible holder return |
 | `G` [Migration.closeBucket](CONTRACT_FUNCTIONS.md#zzzmigration) | `bucket: uint256`<br>`minimumETH: uint256`<br>`minimumZZZ: uint256`<br>`deadline: uint256` | `closeBucket(BUCKET_ID, MINIMUM_ETH_WEI, MINIMUM_ZZZ, UNIX_DEADLINE)` | Close terminal principal bucket |
 | `G` [Migration.allocatePrincipal](CONTRACT_FUNCTIONS.md#zzzmigration) | `maximum: uint256` | `allocatePrincipal(MAXIMUM)` | Allocate terminal holder principal |
@@ -5612,7 +5651,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
-| `M` [V4RouteExecutor.addRoute](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | `policy` [ZZZV4RouteExecutor.Policy](#input-zzzv4routeexecutor-policy) | `addRoute(["SOURCE_ADDRESS", "OUTPUT_ADDRESS", ["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "POOL_MANAGER_ADDRESS", "STATE_VIEW_ADDRESS", "SOURCE_CODE_HASH", "OUTPUT_CODE_HASH", "POOL_MANAGER_CODE_HASH", "STATE_VIEW_CODE_HASH", "REVIEW_HASH"])` | Admit reviewed swap route |
+| `M` [V4RouteExecutor.addRoute](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | `policy` [ZZZV4RouteExecutor.Policy](#input-zzzv4routeexecutor-policy-468a198462fa) | `addRoute(["SOURCE_ADDRESS", "OUTPUT_ADDRESS", ["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "POOL_MANAGER_ADDRESS", "STATE_VIEW_ADDRESS", "SOURCE_CODE_HASH", "OUTPUT_CODE_HASH", "POOL_MANAGER_CODE_HASH", "STATE_VIEW_CODE_HASH", "REVIEW_HASH"])` | Admit reviewed swap route |
 | `M` [V4RouteExecutor.execute](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | `id: bytes32`<br>`amountIn: uint256`<br>`minimumOut: uint256`<br>`deadline: uint256`<br>`value: wei` (separate) | `execute(REVIEWED_ROUTE_ID, AMOUNT_IN, MINIMUM_OUT, UNIX_DEADLINE); value=SETTLEMENT_WEI wei` | Execute authenticated conversion route |
 | `M` [V4RouteExecutor.setRouteEnabled](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | `id: bytes32`<br>`enabled: bool` | `setRouteEnabled(REVIEWED_ROUTE_ID, false)` | Enable or disable reviewed route |
 | `C` [V4RouteExecutor.unlockCallback](CONTRACT_FUNCTIONS.md#zzzv4routeexecutor) | `payload: bytes` | `unlockCallback(PAYLOAD)` | Settle authenticated core callback |
@@ -5629,18 +5668,18 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `R` [CustodyValidation.access](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | None | `access()` | Read access |
-| `R` [CustodyValidation.captureConsolidation](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `r` [EmergencyRebalance](#input-emergencyrebalance)<br>`forced: bool` | `captureConsolidation(["BUCKET_ID", "CONSOLIDATION_CUSTODY_HASH", "14", "CURRENT_MAIN_LOWER_TICK", "CURRENT_MAIN_UPPER_TICK", "0x0000000000000000000000000000000000000000000000000000000000000000", false, "0", "0", "MINIMUM_ADDED_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"], false)` | Capture same-main consolidation proof |
+| `R` [CustodyValidation.captureConsolidation](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `r` [EmergencyRebalance](#input-emergencyrebalance-d438d031b205)<br>`forced: bool` | `captureConsolidation(["BUCKET_ID", "CONSOLIDATION_CUSTODY_HASH", "14", "CURRENT_MAIN_LOWER_TICK", "CURRENT_MAIN_UPPER_TICK", "0x0000000000000000000000000000000000000000000000000000000000000000", false, "0", "0", "MINIMUM_ADDED_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"], false)` | Capture same-main consolidation proof |
 | `R` [CustodyValidation.captureResidualClose](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `encoded: bytes` | `captureResidualClose(ENCODED_PARKING_REQUEST)` | Capture raw residual-close proof |
 | `R` [CustodyValidation.consolidationCustodyHash](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `bucket: uint256` | `consolidationCustodyHash(BUCKET_ID)` | Read consolidation custody hash |
-| `R` [CustodyValidation.consolidationEmergencyFingerprint](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `request` [EmergencyRebalance](#input-emergencyrebalance) | `consolidationEmergencyFingerprint(["BUCKET_ID", "CONSOLIDATION_CUSTODY_HASH", "14", "CURRENT_MAIN_LOWER_TICK", "CURRENT_MAIN_UPPER_TICK", "0x0000000000000000000000000000000000000000000000000000000000000000", false, "0", "0", "MINIMUM_ADDED_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"])` | Read forced consolidation context |
+| `R` [CustodyValidation.consolidationEmergencyFingerprint](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `request` [EmergencyRebalance](#input-emergencyrebalance-f5e1cc12739a) | `consolidationEmergencyFingerprint(["BUCKET_ID", "CONSOLIDATION_CUSTODY_HASH", "14", "CURRENT_MAIN_LOWER_TICK", "CURRENT_MAIN_UPPER_TICK", "0x0000000000000000000000000000000000000000000000000000000000000000", false, "0", "0", "MINIMUM_ADDED_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"])` | Read forced consolidation context |
 | `R` [CustodyValidation.emergencyCustodyHash](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `bucket: uint256` | `emergencyCustodyHash(BUCKET_ID)` | Read emergency custody identity |
-| `R` [CustodyValidation.emergencyFingerprint](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `request` [EmergencyRebalance](#input-emergencyrebalance) | `emergencyFingerprint(["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"])` | Read emergency fingerprint |
+| `R` [CustodyValidation.emergencyFingerprint](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `request` [EmergencyRebalance](#input-emergencyrebalance-31ee79ed44cb) | `emergencyFingerprint(["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"])` | Read emergency fingerprint |
 | `R` [CustodyValidation.migration](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | None | `migration()` | Read migration |
 | `R` [CustodyValidation.residualMainFingerprint](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `bucket: uint256` | `residualMainFingerprint(BUCKET_ID)` | Read residual main fingerprint |
-| `R` [CustodyValidation.validateEmergency](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `r` [EmergencyRebalance](#input-emergencyrebalance) | `validateEmergency(["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"])` | Validate full emergency request |
+| `R` [CustodyValidation.validateEmergency](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `r` [EmergencyRebalance](#input-emergencyrebalance-f70a67c0dc65) | `validateEmergency(["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"])` | Validate full emergency request |
 | `R` [CustodyValidation.validateParking](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `encoded: bytes` | `validateParking(ENCODED)` | Read validate parking |
 | `R` [CustodyValidation.validateZZZ](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `token: address`<br>`codeHash: bytes32`<br>`reviewHash: bytes32` | `validateZZZ(FIXED_ZZZ_ADDRESS, TOKEN_CODE_HASH, REVIEW_HASH)` | Validate fixed ZZZ binding |
-| `R` [CustodyValidation.verifyConsolidation](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `r` [EmergencyRebalance](#input-emergencyrebalance)<br>`forced: bool`<br>`beforeState` [ZZZCustodyValidation.Consolidation](#input-zzzcustodyvalidation-consolidation) | `verifyConsolidation(["BUCKET_ID", "CONSOLIDATION_CUSTODY_HASH", "14", "CURRENT_MAIN_LOWER_TICK", "CURRENT_MAIN_UPPER_TICK", "0x0000000000000000000000000000000000000000000000000000000000000000", false, "0", "0", "MINIMUM_ADDED_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"], false, ["CAPTURED_MAIN_HASH", "CAPTURED_MAIN_LIQUIDITY", "CAPTURED_SECONDARY_ID", "CAPTURED_RESIDUAL_COUNT"])` | Verify same-main consolidation result |
+| `R` [CustodyValidation.verifyConsolidation](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `r` [EmergencyRebalance](#input-emergencyrebalance-d438d031b205)<br>`forced: bool`<br>`beforeState` [ZZZCustodyValidation.Consolidation](#input-zzzcustodyvalidation-consolidation) | `verifyConsolidation(["BUCKET_ID", "CONSOLIDATION_CUSTODY_HASH", "14", "CURRENT_MAIN_LOWER_TICK", "CURRENT_MAIN_UPPER_TICK", "0x0000000000000000000000000000000000000000000000000000000000000000", false, "0", "0", "MINIMUM_ADDED_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"], false, ["CAPTURED_MAIN_HASH", "CAPTURED_MAIN_LIQUIDITY", "CAPTURED_SECONDARY_ID", "CAPTURED_RESIDUAL_COUNT"])` | Verify same-main consolidation result |
 | `R` [CustodyValidation.verifyResidualClose](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `encoded: bytes`<br>`beforeState` [ZZZCustodyValidation.ResidualClose](#input-zzzcustodyvalidation-residualclose) | `verifyResidualClose(ENCODED_PARKING_REQUEST, ["CAPTURED_MAIN_HASH", "PREVIOUS_IDLE_ETH", "PREVIOUS_IDLE_ZZZ", "RESIDUAL_ID"])` | Verify raw residual-close receipts |
 
 </details>
@@ -5835,10 +5874,10 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [V4SpotPriceFeed.ethFeedDecimals](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `ethFeedDecimals()` | Read ETH source precision |
 | `R` [V4SpotPriceFeed.executionAsset](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `executionAsset()` | Read execution asset identity |
 | `R` [V4SpotPriceFeed.executionMarket](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `executionMarket()` | Read live reference market |
-| `R` [V4SpotPriceFeed.executionProof](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | `captured` [MarketState](#input-marketstate) | `executionProof(["CAPTURED_SQRT_PRICE_X96", "CAPTURED_TICK", "PROTOCOL_FEE", "LP_FEE", "CAPTURED_LIQUIDITY"])` | Read captured live proof |
+| `R` [V4SpotPriceFeed.executionProof](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | `captured` [MarketState](#input-marketstate-7916958edd04) | `executionProof(["CAPTURED_SQRT_PRICE_X96", "CAPTURED_TICK", "PROTOCOL_FEE", "LP_FEE", "CAPTURED_LIQUIDITY"])` | Read captured live proof |
 | `R` [V4SpotPriceFeed.latestRoundData](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `latestRoundData()` | Read composite spot observation |
 | `R` [V4SpotPriceFeed.poolId](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `poolId()` | Read reference pool identity |
-| `R` [V4SpotPriceFeed.roundAt](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | `state` [MarketState](#input-marketstate) | `roundAt(["CAPTURED_SQRT_PRICE_X96", "CAPTURED_TICK", "PROTOCOL_FEE", "LP_FEE", "CAPTURED_LIQUIDITY"])` | Read hypothetical captured round |
+| `R` [V4SpotPriceFeed.roundAt](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | `state` [MarketState](#input-marketstate-24e8d149128c) | `roundAt(["CAPTURED_SQRT_PRICE_X96", "CAPTURED_TICK", "PROTOCOL_FEE", "LP_FEE", "CAPTURED_LIQUIDITY"])` | Read hypothetical captured round |
 | `R` [V4SpotPriceFeed.zzzDecimals](CONTRACT_FUNCTIONS.md#zzzv4spotpricefeed) | None | `zzzDecimals()` | Read fixed ZZZ precision |
 
 </details>
@@ -5898,13 +5937,13 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-allowlistdata"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `input1` | `(bytes32,string[],string)` | `["REVIEWED_TEAM_ALLOWLIST_ROOT", ["REVIEWED_PUBLIC_KEY_URI"], "SOURCE_BOUND_PROOF_MANIFEST_URI"]` |
-| `input1.merkleRoot` | `bytes32` | `REVIEWED_TEAM_ALLOWLIST_ROOT` |
-| `input1.publicKeyURIs` | `string[]` | `["REVIEWED_PUBLIC_KEY_URI"]` |
-| `input1.publicKeyURIs[0]` | `string` | `REVIEWED_PUBLIC_KEY_URI` |
-| `input1.allowListURI` | `string` | `SOURCE_BOUND_PROOF_MANIFEST_URI` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `input1` | `(bytes32,string[],string)` | `["REVIEWED_TEAM_ALLOWLIST_ROOT", ["REVIEWED_PUBLIC_KEY_URI"], "SOURCE_BOUND_PROOF_MANIFEST_URI"]` | AllowListData(merkleRoot,publicKeyURIs[],allowListURI). Review every free-team and paid-allowlist leaf, payment, lifetime cap and time window; root must match the helper. |
+| `input1.merkleRoot` | `bytes32` | `REVIEWED_TEAM_ALLOWLIST_ROOT` | Exact independently reviewed SeaDrop free-team/paid-allowlist root; must match helper settings and all intended leaf prices, stages, caps and windows. |
+| `input1.publicKeyURIs` | `string[]` | `["REVIEWED_PUBLIC_KEY_URI"]` | Ordered string[] of reviewed public-key/document URIs. These are published strings, not signing secrets, token addresses or automatic proof validation. |
+| `input1.publicKeyURIs[0]` | `string` | `REVIEWED_PUBLIC_KEY_URI` | Ordered string[] of reviewed public-key/document URIs. These are published strings, not signing secrets, token addresses or automatic proof validation. |
+| `input1.allowListURI` | `string` | `SOURCE_BOUND_PROOF_MANIFEST_URI` | Reviewed public allowlist manifest URI. URI text alone does not authenticate the on-chain root or each Merkle leaf. |
 
 </details>
 
@@ -5913,21 +5952,44 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-canonicalnftrecord"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `value` | `(uint256,address,uint8,uint8,uint8,uint8,uint256,uint256,uint256,uint256,address,uint8)` | `["ID", "OWNER_ADDRESS", "RARITY", "COLOR", "PALETTE", "PATTERN", "REQUEST_ID", "REQUEST_EPOCH", "RARITY_WORD", "COLOR_WORD", "ORIGINAL_MINT_RECIPIENT_ADDRESS", "SOURCE_MINT_STAGE"]` |
-| `value.id` | `uint256` | `ID` |
-| `value.owner` | `address` | `OWNER_ADDRESS` |
-| `value.rarity` | `uint8` | `RARITY` |
-| `value.color` | `uint8` | `COLOR` |
-| `value.palette` | `uint8` | `PALETTE` |
-| `value.pattern` | `uint8` | `PATTERN` |
-| `value.requestId` | `uint256` | `REQUEST_ID` |
-| `value.requestEpoch` | `uint256` | `REQUEST_EPOCH` |
-| `value.rarityWord` | `uint256` | `RARITY_WORD` |
-| `value.colorWord` | `uint256` | `COLOR_WORD` |
-| `value.originalRecipient` | `address` | `ORIGINAL_MINT_RECIPIENT_ADDRESS` |
-| `value.mintStage` | `uint8` | `SOURCE_MINT_STAGE` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `value` | `(uint256,address,uint8,uint8,uint8,uint8,uint256,uint256,uint256,uint256,address,uint8)` | `["ID", "OWNER_ADDRESS", "RARITY", "COLOR", "PALETTE", "PATTERN", "REQUEST_ID", "REQUEST_EPOCH", "RARITY_WORD", "COLOR_WORD", "ORIGINAL_MINT_RECIPIENT_ADDRESS", "SOURCE_MINT_STAGE"]` | CanonicalNFTRecord in ABI order: id,currentOwner,rarity,color,palette,pattern,requestId,requestEpoch,rarityWord,colorWord,ORIGINAL mint recipient,mintStage. Preserve current owner separately from original buyer; stage1/2/3 reconstructs helper quotas. |
+| `value.id` | `uint256` | `ID` | See linked operation; no field semantics inferred from its ABI type. |
+| `value.owner` | `address` | `OWNER_ADDRESS` | See linked operation; no field semantics inferred from its ABI type. |
+| `value.rarity` | `uint8` | `RARITY` | See linked operation; no field semantics inferred from its ABI type. |
+| `value.color` | `uint8` | `COLOR` | See linked operation; no field semantics inferred from its ABI type. |
+| `value.palette` | `uint8` | `PALETTE` | See linked operation; no field semantics inferred from its ABI type. |
+| `value.pattern` | `uint8` | `PATTERN` | See linked operation; no field semantics inferred from its ABI type. |
+| `value.requestId` | `uint256` | `REQUEST_ID` | See linked operation; no field semantics inferred from its ABI type. |
+| `value.requestEpoch` | `uint256` | `REQUEST_EPOCH` | See linked operation; no field semantics inferred from its ABI type. |
+| `value.rarityWord` | `uint256` | `RARITY_WORD` | See linked operation; no field semantics inferred from its ABI type. |
+| `value.colorWord` | `uint256` | `COLOR_WORD` | See linked operation; no field semantics inferred from its ABI type. |
+| `value.originalRecipient` | `address` | `ORIGINAL_MINT_RECIPIENT_ADDRESS` | See linked operation; no field semantics inferred from its ABI type. |
+| `value.mintStage` | `uint8` | `SOURCE_MINT_STAGE` | See linked operation; no field semantics inferred from its ABI type. |
+
+</details>
+
+<details>
+<summary>EmergencyRebalance</summary>
+
+<a id="input-emergencyrebalance-31ee79ed44cb"></a>
+
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `request` | `(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)` | `["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"]` | Exact EmergencyRebalance(bucket,custodyHash,retained-check mask,ticks,swap details,min main L,deadline,reviewHash). |
+| `request.bucket` | `uint256` | `BUCKET_ID` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.custodyHash` | `bytes32` | `CUSTODY_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.checks` | `uint8` | `31` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.lower` | `int24` | `LOWER_TICK` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.upper` | `int24` | `UPPER_TICK` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.swapPool` | `bytes32` | `SWAP_POOL` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.zeroForOne` | `bool` | `ZERO_FOR_ONE` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.amountIn` | `uint128` | `AMOUNT_IN` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.minimumOut` | `uint128` | `MINIMUM_OUT` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.minimumLiquidity` | `uint128` | `MINIMUM_LIQUIDITY` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.deadline` | `uint256` | `UNIX_DEADLINE` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.reviewHash` | `bytes32` | `REVIEW_HASH` | See linked operation; no field semantics inferred from its ABI type. |
 
 </details>
 
@@ -5936,21 +5998,145 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-emergencyrebalance"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `request` | `(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)` | `["BUCKET_ID", "CONSOLIDATION_CUSTODY_HASH", "14", "CURRENT_MAIN_LOWER_TICK", "CURRENT_MAIN_UPPER_TICK", "0x0000000000000000000000000000000000000000000000000000000000000000", false, "0", "0", "MINIMUM_ADDED_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"]` |
-| `request.bucket` | `uint256` | `BUCKET_ID` |
-| `request.custodyHash` | `bytes32` | `CONSOLIDATION_CUSTODY_HASH` |
-| `request.checks` | `uint8` | `14` |
-| `request.lower` | `int24` | `CURRENT_MAIN_LOWER_TICK` |
-| `request.upper` | `int24` | `CURRENT_MAIN_UPPER_TICK` |
-| `request.swapPool` | `bytes32` | `0x0000000000000000000000000000000000000000000000000000000000000000` |
-| `request.zeroForOne` | `bool` | `false` |
-| `request.amountIn` | `uint128` | `0` |
-| `request.minimumOut` | `uint128` | `0` |
-| `request.minimumLiquidity` | `uint128` | `MINIMUM_ADDED_LIQUIDITY` |
-| `request.deadline` | `uint256` | `UNIX_DEADLINE` |
-| `request.reviewHash` | `bytes32` | `REVIEW_HASH` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `request` | `(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)` | `["BUCKET_ID", "CONSOLIDATION_CUSTODY_HASH", "14", "CURRENT_MAIN_LOWER_TICK", "CURRENT_MAIN_UPPER_TICK", "0x0000000000000000000000000000000000000000000000000000000000000000", false, "0", "0", "MINIMUM_ADDED_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"]` | EmergencyRebalance in exact ABI order: bucket(shared custody account); custodyHash(current Migration.consolidationCustodyHash after pause, including recovery nonce/epoch and policy controls); checks(guarded14; forced0..31 retained bits1 raw trigger/cooldown,2 independent price agreement,4 value/quality/idle limits,8 operation flags,16 sampled evidence); lower/upper(EXACT existing main ticks); swapPool/zeroForOne/amountIn/minimumOut(guarded zero/false/0/0 for automatic reviewed routing, forced explicit admitted venue/direction/raw input/positive output or zero no-swap); minimumLiquidity(positive ADDED main liquidity delta, not total L/USD); deadline(now..now+600); reviewHash(nonzero source-bound commitment). No range/destination/custody-recipient change and no compound-reserve release. |
+| `request.bucket` | `uint256` | `BUCKET_ID` | Shared bucket ID from Vault.nftBucket(NFT_ID) or Vault.poolBucket(POOL_ID), then Vault.group(bucketId); not the collection NFT ID or LP NFT ID. |
+| `request.custodyHash` | `bytes32` | `CONSOLIDATION_CUSTODY_HASH` | Exact current Migration.consolidationCustodyHash(bucket), including nonce/epoch/policy controls; not emergencyCustodyHash. |
+| `request.checks` | `uint8` | `14` | Retained-check mask uint8 0..31: 1 raw trigger/cooldown, 2 independent price bounds, 4 USD/loss/quality/idle, 8 operation flags, 16 sampled confirmation. Bits retain checks; they do not grant authority. |
+| `request.lower` | `int24` | `CURRENT_MAIN_LOWER_TICK` | Signed int24 lower physical tick, aligned to pool spacing and below upper. For same-main consolidation copy Manager.ticks(mainPositionId).lower exactly; it does not follow the current tick. |
+| `request.upper` | `int24` | `CURRENT_MAIN_UPPER_TICK` | Signed int24 upper physical tick, aligned to pool spacing and above lower. For same-main consolidation copy Manager.ticks(mainPositionId).upper exactly; a swap changes current price, not this boundary. |
+| `request.swapPool` | `bytes32` | `0x0000000000000000000000000000000000000000000000000000000000000000` | Exact admitted native ETH/ZZZ venue PoolKey hash, bytes32; zero for no swap. Guarded consolidation requires zero and lets reviewed routing choose at execution. |
+| `request.zeroForOne` | `bool` | `false` | True sells currency0/native ETH for currency1/ZZZ; false sells ZZZ for ETH. Guarded consolidation supplies false because explicit swap fields must be empty. |
+| `request.amountIn` | `uint128` | `0` | Exact raw input uint128 of the selected direction; must fit supported signed deltas. Zero means no explicit swap; never a USD amount or percentage. |
+| `request.minimumOut` | `uint128` | `0` | Caller minimum raw output uint128 of the opposite currency, positive when explicitly swapping and zero for no swap; preserve original review floors. |
+| `request.minimumLiquidity` | `uint128` | `MINIMUM_ADDED_LIQUIDITY` | Positive raw physical main liquidity L floor: added delta for same-main consolidation, new main L for full replacement. Not USD, token quantity or sum of both ranges. |
+| `request.deadline` | `uint256` | `UNIX_DEADLINE` | Original inclusive Unix-seconds expiry; execution requires now &lt;= deadline &lt;= now+600. Never extend it while reusing the same review. |
+| `request.reviewHash` | `bytes32` | `REVIEW_HASH` | Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe. |
+
+</details>
+
+<details>
+<summary>EmergencyRebalance</summary>
+
+<a id="input-emergencyrebalance-ad5166df574a"></a>
+
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `request` | `(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)` | `["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"]` | EmergencyRebalance in exact ABI order: bucket(shared custody ID); custodyHash(current chain/Vault/full Position/total-share review hash); checks(retained bits1=raw trigger/cooldown,2=price agreement,4=financial loss/idle/quality,8=operations flag,16=sampled confirmation;0..31); lower/upper(raw spaced physical ticks, lower&lt;upper); swapPool(admitted native ETH/ZZZ venue or zero for no swap); zeroForOne(true sells ETH); amountIn(exact raw swap input, zero=no swap); minimumOut(positive raw output if swapping, zero without swap); minimumLiquidity(positive raw LP floor); deadline(now..now+600); reviewHash(nonzero exact review commitment). No swap requires swapPool and minimumOut zero; amounts fit positive signed-int128 deltas. Disabled financial checks can lose almost all principal. |
+| `request.bucket` | `uint256` | `BUCKET_ID` | Shared bucket ID from Vault.nftBucket(NFT_ID) or Vault.poolBucket(POOL_ID), then Vault.group(bucketId); not the collection NFT ID or LP NFT ID. |
+| `request.custodyHash` | `bytes32` | `CUSTODY_HASH` | Exact current Migration.emergencyCustodyHash(bucket), including chain, position, shares, nonce/epoch and current controls; not consolidationCustodyHash. |
+| `request.checks` | `uint8` | `31` | Retained-check mask uint8 0..31: 1 raw trigger/cooldown, 2 independent price bounds, 4 USD/loss/quality/idle, 8 operation flags, 16 sampled confirmation. Bits retain checks; they do not grant authority. |
+| `request.lower` | `int24` | `LOWER_TICK` | Signed int24 lower physical tick, aligned to pool spacing and below upper. For same-main consolidation copy Manager.ticks(mainPositionId).lower exactly; it does not follow the current tick. |
+| `request.upper` | `int24` | `UPPER_TICK` | Signed int24 upper physical tick, aligned to pool spacing and above lower. For same-main consolidation copy Manager.ticks(mainPositionId).upper exactly; a swap changes current price, not this boundary. |
+| `request.swapPool` | `bytes32` | `SWAP_POOL` | Exact admitted native ETH/ZZZ venue PoolKey hash, bytes32; zero for no swap. Guarded consolidation requires zero and lets reviewed routing choose at execution. |
+| `request.zeroForOne` | `bool` | `ZERO_FOR_ONE` | True sells currency0/native ETH for currency1/ZZZ; false sells ZZZ for ETH. Guarded consolidation supplies false because explicit swap fields must be empty. |
+| `request.amountIn` | `uint128` | `AMOUNT_IN` | Exact raw input uint128 of the selected direction; must fit supported signed deltas. Zero means no explicit swap; never a USD amount or percentage. |
+| `request.minimumOut` | `uint128` | `MINIMUM_OUT` | Caller minimum raw output uint128 of the opposite currency, positive when explicitly swapping and zero for no swap; preserve original review floors. |
+| `request.minimumLiquidity` | `uint128` | `MINIMUM_LIQUIDITY` | Positive raw physical main liquidity L floor: added delta for same-main consolidation, new main L for full replacement. Not USD, token quantity or sum of both ranges. |
+| `request.deadline` | `uint256` | `UNIX_DEADLINE` | Original inclusive Unix-seconds expiry; execution requires now &lt;= deadline &lt;= now+600. Never extend it while reusing the same review. |
+| `request.reviewHash` | `bytes32` | `REVIEW_HASH` | Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe. |
+
+</details>
+
+<details>
+<summary>EmergencyRebalance</summary>
+
+<a id="input-emergencyrebalance-d438d031b205"></a>
+
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `r` | `(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)` | `["BUCKET_ID", "CONSOLIDATION_CUSTODY_HASH", "14", "CURRENT_MAIN_LOWER_TICK", "CURRENT_MAIN_UPPER_TICK", "0x0000000000000000000000000000000000000000000000000000000000000000", false, "0", "0", "MINIMUM_ADDED_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"]` | EmergencyRebalance in exact ABI order: bucket(shared custody account); custodyHash(current Migration.consolidationCustodyHash after pause, including recovery nonce/epoch and policy controls); checks(guarded14; forced0..31 retained bits1 raw trigger/cooldown,2 independent price agreement,4 value/quality/idle limits,8 operation flags,16 sampled evidence); lower/upper(EXACT existing main ticks); swapPool/zeroForOne/amountIn/minimumOut(guarded zero/false/0/0 for automatic reviewed routing, forced explicit admitted venue/direction/raw input/positive output or zero no-swap); minimumLiquidity(positive ADDED main liquidity delta, not total L/USD); deadline(now..now+600); reviewHash(nonzero source-bound commitment). No range/destination/custody-recipient change and no compound-reserve release. |
+| `r.bucket` | `uint256` | `BUCKET_ID` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.custodyHash` | `bytes32` | `CONSOLIDATION_CUSTODY_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.checks` | `uint8` | `14` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.lower` | `int24` | `CURRENT_MAIN_LOWER_TICK` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.upper` | `int24` | `CURRENT_MAIN_UPPER_TICK` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.swapPool` | `bytes32` | `0x0000000000000000000000000000000000000000000000000000000000000000` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.zeroForOne` | `bool` | `false` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.amountIn` | `uint128` | `0` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.minimumOut` | `uint128` | `0` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.minimumLiquidity` | `uint128` | `MINIMUM_ADDED_LIQUIDITY` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.deadline` | `uint256` | `UNIX_DEADLINE` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.reviewHash` | `bytes32` | `REVIEW_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+
+</details>
+
+<details>
+<summary>EmergencyRebalance</summary>
+
+<a id="input-emergencyrebalance-f5e1cc12739a"></a>
+
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `request` | `(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)` | `["BUCKET_ID", "CONSOLIDATION_CUSTODY_HASH", "14", "CURRENT_MAIN_LOWER_TICK", "CURRENT_MAIN_UPPER_TICK", "0x0000000000000000000000000000000000000000000000000000000000000000", false, "0", "0", "MINIMUM_ADDED_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"]` | EmergencyRebalance in exact ABI order: bucket(shared custody account); custodyHash(current Migration.consolidationCustodyHash after pause, including recovery nonce/epoch and policy controls); checks(guarded14; forced0..31 retained bits1 raw trigger/cooldown,2 independent price agreement,4 value/quality/idle limits,8 operation flags,16 sampled evidence); lower/upper(EXACT existing main ticks); swapPool/zeroForOne/amountIn/minimumOut(guarded zero/false/0/0 for automatic reviewed routing, forced explicit admitted venue/direction/raw input/positive output or zero no-swap); minimumLiquidity(positive ADDED main liquidity delta, not total L/USD); deadline(now..now+600); reviewHash(nonzero source-bound commitment). No range/destination/custody-recipient change and no compound-reserve release. |
+| `request.bucket` | `uint256` | `BUCKET_ID` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.custodyHash` | `bytes32` | `CONSOLIDATION_CUSTODY_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.checks` | `uint8` | `14` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.lower` | `int24` | `CURRENT_MAIN_LOWER_TICK` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.upper` | `int24` | `CURRENT_MAIN_UPPER_TICK` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.swapPool` | `bytes32` | `0x0000000000000000000000000000000000000000000000000000000000000000` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.zeroForOne` | `bool` | `false` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.amountIn` | `uint128` | `0` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.minimumOut` | `uint128` | `0` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.minimumLiquidity` | `uint128` | `MINIMUM_ADDED_LIQUIDITY` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.deadline` | `uint256` | `UNIX_DEADLINE` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.reviewHash` | `bytes32` | `REVIEW_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+
+</details>
+
+<details>
+<summary>EmergencyRebalance</summary>
+
+<a id="input-emergencyrebalance-f70a67c0dc65"></a>
+
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `r` | `(uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32)` | `["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"]` | Existing whole-replacement EmergencyRebalance tuple in exact ABI order; preserve its original raw tick, optional swap, retained-mask and new-L floor semantics. CustodyHash is emergencyCustodyHash for full replacement, not the consolidation hash. |
+| `r.bucket` | `uint256` | `BUCKET_ID` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.custodyHash` | `bytes32` | `CUSTODY_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.checks` | `uint8` | `31` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.lower` | `int24` | `LOWER_TICK` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.upper` | `int24` | `UPPER_TICK` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.swapPool` | `bytes32` | `SWAP_POOL` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.zeroForOne` | `bool` | `ZERO_FOR_ONE` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.amountIn` | `uint128` | `AMOUNT_IN` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.minimumOut` | `uint128` | `MINIMUM_OUT` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.minimumLiquidity` | `uint128` | `MINIMUM_LIQUIDITY` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.deadline` | `uint256` | `UNIX_DEADLINE` | See linked operation; no field semantics inferred from its ABI type. |
+| `r.reviewHash` | `bytes32` | `REVIEW_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+
+</details>
+
+<details>
+<summary>MarketState</summary>
+
+<a id="input-marketstate-24e8d149128c"></a>
+
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `state` | `(uint160,int24,uint24,uint24,uint128)` | `["CAPTURED_SQRT_PRICE_X96", "CAPTURED_TICK", "PROTOCOL_FEE", "LP_FEE", "CAPTURED_LIQUIDITY"]` | MarketState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity), in exact ABI order; use the authenticated actual-core quote/observation, never estimated fields. |
+| `state.sqrtPriceX96` | `uint160` | `CAPTURED_SQRT_PRICE_X96` | See linked operation; no field semantics inferred from its ABI type. |
+| `state.tick` | `int24` | `CAPTURED_TICK` | See linked operation; no field semantics inferred from its ABI type. |
+| `state.protocolFee` | `uint24` | `PROTOCOL_FEE` | See linked operation; no field semantics inferred from its ABI type. |
+| `state.lpFee` | `uint24` | `LP_FEE` | See linked operation; no field semantics inferred from its ABI type. |
+| `state.liquidity` | `uint128` | `CAPTURED_LIQUIDITY` | See linked operation; no field semantics inferred from its ABI type. |
+
+</details>
+
+<details>
+<summary>MarketState</summary>
+
+<a id="input-marketstate-7916958edd04"></a>
+
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `captured` | `(uint160,int24,uint24,uint24,uint128)` | `["CAPTURED_SQRT_PRICE_X96", "CAPTURED_TICK", "PROTOCOL_FEE", "LP_FEE", "CAPTURED_LIQUIDITY"]` | MarketState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity), in exact ABI order; use the authenticated actual-core quote/observation, never estimated fields. |
+| `captured.sqrtPriceX96` | `uint160` | `CAPTURED_SQRT_PRICE_X96` | See linked operation; no field semantics inferred from its ABI type. |
+| `captured.tick` | `int24` | `CAPTURED_TICK` | See linked operation; no field semantics inferred from its ABI type. |
+| `captured.protocolFee` | `uint24` | `PROTOCOL_FEE` | See linked operation; no field semantics inferred from its ABI type. |
+| `captured.lpFee` | `uint24` | `LP_FEE` | See linked operation; no field semantics inferred from its ABI type. |
+| `captured.liquidity` | `uint128` | `CAPTURED_LIQUIDITY` | See linked operation; no field semantics inferred from its ABI type. |
 
 </details>
 
@@ -5959,14 +6145,14 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-marketstate"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `expectedAfter` | `(uint160,int24,uint24,uint24,uint128)` | `["POST_SWAP_SQRT_PRICE_X96", "POST_SWAP_TICK", "PROTOCOL_FEE", "LP_FEE", "POST_SWAP_LIQUIDITY"]` |
-| `expectedAfter.sqrtPriceX96` | `uint160` | `POST_SWAP_SQRT_PRICE_X96` |
-| `expectedAfter.tick` | `int24` | `POST_SWAP_TICK` |
-| `expectedAfter.protocolFee` | `uint24` | `PROTOCOL_FEE` |
-| `expectedAfter.lpFee` | `uint24` | `LP_FEE` |
-| `expectedAfter.liquidity` | `uint128` | `POST_SWAP_LIQUIDITY` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `expectedAfter` | `(uint160,int24,uint24,uint24,uint128)` | `["POST_SWAP_SQRT_PRICE_X96", "POST_SWAP_TICK", "PROTOCOL_FEE", "LP_FEE", "POST_SWAP_LIQUIDITY"]` | MarketState(sqrtPriceX96,tick,protocolFee,lpFee,liquidity), in exact ABI order; use the authenticated actual-core quote/observation, never estimated fields. |
+| `expectedAfter.sqrtPriceX96` | `uint160` | `POST_SWAP_SQRT_PRICE_X96` | See linked operation; no field semantics inferred from its ABI type. |
+| `expectedAfter.tick` | `int24` | `POST_SWAP_TICK` | See linked operation; no field semantics inferred from its ABI type. |
+| `expectedAfter.protocolFee` | `uint24` | `PROTOCOL_FEE` | See linked operation; no field semantics inferred from its ABI type. |
+| `expectedAfter.lpFee` | `uint24` | `LP_FEE` | See linked operation; no field semantics inferred from its ABI type. |
+| `expectedAfter.liquidity` | `uint128` | `POST_SWAP_LIQUIDITY` | See linked operation; no field semantics inferred from its ABI type. |
 
 </details>
 
@@ -5975,19 +6161,19 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-nftmetadatainput"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `input` | `(uint256,uint8,uint8,uint8,uint8,bool,bool,uint256,uint8,string)` | `["ID", "RARITY", "PALETTE", "PATTERN", "STAGE", "TRAITS_READY", "VALUATION_AVAILABLE", "VALUE_USD", "ROYALTY_WEIGHT", "IPFS_BASE_URI"]` |
-| `input.id` | `uint256` | `ID` |
-| `input.rarity` | `uint8` | `RARITY` |
-| `input.palette` | `uint8` | `PALETTE` |
-| `input.pattern` | `uint8` | `PATTERN` |
-| `input.stage` | `uint8` | `STAGE` |
-| `input.traitsReady` | `bool` | `TRAITS_READY` |
-| `input.valuationAvailable` | `bool` | `VALUATION_AVAILABLE` |
-| `input.valueUSD` | `uint256` | `VALUE_USD` |
-| `input.royaltyWeight` | `uint8` | `ROYALTY_WEIGHT` |
-| `input.baseURI` | `string` | `IPFS_BASE_URI` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `input` | `(uint256,uint8,uint8,uint8,uint8,bool,bool,uint256,uint8,string)` | `["ID", "RARITY", "PALETTE", "PATTERN", "STAGE", "TRAITS_READY", "VALUATION_AVAILABLE", "VALUE_USD", "ROYALTY_WEIGHT", "IPFS_BASE_URI"]` | NFTMetadataInput(id,rarity,palette,pattern,stage,traitsReady,valuationAvailable,valueUSD,royaltyWeight,baseURI); royaltyWeight reflects actual activated ledger eligibility, separate from fixed rarity trait. |
+| `input.id` | `uint256` | `ID` | See linked operation; no field semantics inferred from its ABI type. |
+| `input.rarity` | `uint8` | `RARITY` | See linked operation; no field semantics inferred from its ABI type. |
+| `input.palette` | `uint8` | `PALETTE` | See linked operation; no field semantics inferred from its ABI type. |
+| `input.pattern` | `uint8` | `PATTERN` | See linked operation; no field semantics inferred from its ABI type. |
+| `input.stage` | `uint8` | `STAGE` | See linked operation; no field semantics inferred from its ABI type. |
+| `input.traitsReady` | `bool` | `TRAITS_READY` | See linked operation; no field semantics inferred from its ABI type. |
+| `input.valuationAvailable` | `bool` | `VALUATION_AVAILABLE` | See linked operation; no field semantics inferred from its ABI type. |
+| `input.valueUSD` | `uint256` | `VALUE_USD` | See linked operation; no field semantics inferred from its ABI type. |
+| `input.royaltyWeight` | `uint8` | `ROYALTY_WEIGHT` | See linked operation; no field semantics inferred from its ABI type. |
+| `input.baseURI` | `string` | `IPFS_BASE_URI` | See linked operation; no field semantics inferred from its ABI type. |
 
 </details>
 
@@ -5996,24 +6182,50 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-poolconfig"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `config` | `((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256)` | `[["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "DEPOSITS_ENABLED", "OPERATIONS_ENABLED", "RANGE_BPS", "TRIGGER_BPS", "MAX_SPOT_DEVIATION_BPS", "MAX_SLIPPAGE_BPS", "MIN_REBALANCE_INTERVAL", "MIN_DEPOSIT_USD", "MAX_POSITION_USD"]` |
-| `config.key` | `(address,address,uint24,int24,address)` | `["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"]` |
-| `config.key.currency0` | `address` | `0x0000000000000000000000000000000000000000` |
-| `config.key.currency1` | `address` | `ZZZ_ADDRESS` |
-| `config.key.fee` | `uint24` | `FEE` |
-| `config.key.tickSpacing` | `int24` | `TICK_SPACING` |
-| `config.key.hooks` | `address` | `0x0000000000000000000000000000000000000000` |
-| `config.depositsEnabled` | `bool` | `DEPOSITS_ENABLED` |
-| `config.operationsEnabled` | `bool` | `OPERATIONS_ENABLED` |
-| `config.rangeBps` | `uint16` | `RANGE_BPS` |
-| `config.triggerBps` | `uint16` | `TRIGGER_BPS` |
-| `config.maxSpotDeviationBps` | `uint16` | `MAX_SPOT_DEVIATION_BPS` |
-| `config.maxSlippageBps` | `uint16` | `MAX_SLIPPAGE_BPS` |
-| `config.minRebalanceInterval` | `uint32` | `MIN_REBALANCE_INTERVAL` |
-| `config.minDepositUSD` | `uint256` | `MIN_DEPOSIT_USD` |
-| `config.maxPositionUSD` | `uint256` | `MAX_POSITION_USD` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `config` | `((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256)` | `[["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "DEPOSITS_ENABLED", "OPERATIONS_ENABLED", "RANGE_BPS", "TRIGGER_BPS", "MAX_SPOT_DEVIATION_BPS", "MAX_SLIPPAGE_BPS", "MIN_REBALANCE_INTERVAL", "MIN_DEPOSIT_USD", "MAX_POSITION_USD"]` | key.currency0: Ordered lower-address accounting currency; address zero is native ETH.; key.currency1: Ordered higher-address currency; configureNative requires the fixed canonical ZZZ.; key.fee: Static LP fee in millionths, not percent or BPS; e.g. 10020 means 1.002% LP fee. Protocol fee is separate.; key.tickSpacing: Positive signed-int24 v4 tick spacing; must match the actual initialized pool.; key.hooks: Must be address zero for the currently supported hookless venues.; depositsEnabled: Desired contribution acceptance; only one pool may be true at a time. Must be false for post-exit Ready-phase reserve venues.; operationsEnabled: Desired ordinary maintenance/deployment acceptance; does not erase custody/history.; rangeBps: Price width in basis points; 100..9999, with orientation selected separately by Strategy.; triggerBps: Retained historical policy1 movement field, at least100 and below rangeBps; policy2 never uses it to authorize ordinary replacement.; maxSpotDeviationBps: Allowed spot-versus-oracle deviation in BPS, 1..500 and below rangeBps.; maxSlippageBps: Per-venue swap minimum guard in BPS, 1..1000 and sufficient for static LP fee. Separate from aggregate contribution/maintenance caps.; minRebalanceInterval: Cooldown seconds, 600..604800.; minDepositUSD: Pool minimum in USD18 (1 USD=10**18); actual input must satisfy both current ProtocolPolicy action minimum and this stronger pool minimum.; maxPositionUSD: Maximum cumulative admitted gross contribution per NFT in USD18, at least minDepositUSD; not current NAV or a total pool cap. |
+| `config.key` | `(address,address,uint24,int24,address)` | `["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"]` | Exact initialized native ETH/fixed-ZZZ static hookless PoolKey; recompute poolId as Keccak(abi.encode(key)). |
+| `config.key.currency0` | `address` | `0x0000000000000000000000000000000000000000` | Actual ordered token0 address; native ETH is address(0), not WETH. Read the initialized PoolKey and recompute its pool ID. |
+| `config.key.currency1` | `address` | `ZZZ_ADDRESS` | Actual ordered token1 address; principal admission requires the one fixed ZZZ token. Read the initialized PoolKey. |
+| `config.key.fee` | `uint24` | `FEE` | Static LP fee in millionths (10020 = 1.002%), not basis points; directional protocol fees are separate and may change. |
+| `config.key.tickSpacing` | `int24` | `TICK_SPACING` | Positive int24 tick spacing of the initialized pool; lower/upper ticks must align. Principal admission permits 1..32767. |
+| `config.key.hooks` | `address` | `0x0000000000000000000000000000000000000000` | Hook address from the exact PoolKey; supported principal and v4 conversion venues require address(0). |
+| `config.depositsEnabled` | `bool` | `DEPOSITS_ENABLED` | True selects this as the sole contribution pool; another currently enabled destination must first be disabled. False also required for post-exit Ready reserve-only admission. |
+| `config.operationsEnabled` | `bool` | `OPERATIONS_ENABLED` | True enables ordinary maintenance/deployment for this admitted venue. False does not erase custody, claims or existing LP. |
+| `config.rangeBps` | `uint16` | `RANGE_BPS` | Human-price width in basis points, 100..9999; Strategy.setRangeOrientation separately selects raw/inverse price. Desired width changes existing geometry only at replacement. |
+| `config.triggerBps` | `uint16` | `TRIGGER_BPS` | Historical movement field, 100..rangeBps-1. Current portfolio threshold policy does not authorize ordinary replacement from this field alone. |
+| `config.maxSpotDeviationBps` | `uint16` | `MAX_SPOT_DEVIATION_BPS` | Allowed spot/reference deviation in basis points, 1..500 and below rangeBps. This is distinct from source agreement and loss budgets. |
+| `config.maxSlippageBps` | `uint16` | `MAX_SLIPPAGE_BPS` | Per-venue gross swap floor in basis points, 1..1000; key.fee must be strictly below value*100 fee-pips. Aggregate/caller/additional-loss protections remain separate. |
+| `config.minRebalanceInterval` | `uint32` | `MIN_REBALANCE_INTERVAL` | Hard ordinary rebalance cooldown in seconds, 600..604800; selected policy43200 (12h), separate from compound and harvest intervals. |
+| `config.minDepositUSD` | `uint256` | `MIN_DEPOSIT_USD` | Positive USD18 pool minimum (1 USD=10**18), checked alongside the stronger current action minimum; not raw ZZZ or current pool TVL. |
+| `config.maxPositionUSD` | `uint256` | `MAX_POSITION_USD` | Maximum cumulative gross contribution per NFT in USD18, at least minDepositUSD; not total bucket capacity or current mark-to-market value. |
+
+</details>
+
+<details>
+<summary>PoolConfig</summary>
+
+<a id="input-poolconfig-89a1cfd481b0"></a>
+
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `c` | `((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256)` | `[["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "DEPOSITS_ENABLED", "OPERATIONS_ENABLED", "RANGE_BPS", "TRIGGER_BPS", "MAX_SPOT_DEVIATION_BPS", "MAX_SLIPPAGE_BPS", "MIN_REBALANCE_INTERVAL", "MIN_DEPOSIT_USD", "MAX_POSITION_USD"]` | PoolConfig containing raw key/tick spacing and desired rangeBps; other fields do not authorize execution. |
+| `c.key` | `(address,address,uint24,int24,address)` | `["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"]` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.key.currency0` | `address` | `0x0000000000000000000000000000000000000000` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.key.currency1` | `address` | `ZZZ_ADDRESS` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.key.fee` | `uint24` | `FEE` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.key.tickSpacing` | `int24` | `TICK_SPACING` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.key.hooks` | `address` | `0x0000000000000000000000000000000000000000` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.depositsEnabled` | `bool` | `DEPOSITS_ENABLED` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.operationsEnabled` | `bool` | `OPERATIONS_ENABLED` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.rangeBps` | `uint16` | `RANGE_BPS` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.triggerBps` | `uint16` | `TRIGGER_BPS` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.maxSpotDeviationBps` | `uint16` | `MAX_SPOT_DEVIATION_BPS` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.maxSlippageBps` | `uint16` | `MAX_SLIPPAGE_BPS` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.minRebalanceInterval` | `uint32` | `MIN_REBALANCE_INTERVAL` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.minDepositUSD` | `uint256` | `MIN_DEPOSIT_USD` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.maxPositionUSD` | `uint256` | `MAX_POSITION_USD` | See linked operation; no field semantics inferred from its ABI type. |
 
 </details>
 
@@ -6022,14 +6234,14 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-poolkey"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `key` | `(address,address,uint24,int24,address)` | `["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"]` |
-| `key.currency0` | `address` | `0x0000000000000000000000000000000000000000` |
-| `key.currency1` | `address` | `ZZZ_ADDRESS` |
-| `key.fee` | `uint24` | `FEE` |
-| `key.tickSpacing` | `int24` | `TICK_SPACING` |
-| `key.hooks` | `address` | `0x0000000000000000000000000000000000000000` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `key` | `(address,address,uint24,int24,address)` | `["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"]` | Typed reviewed static hookless native ETH/fixed-ZZZ PoolKey. |
+| `key.currency0` | `address` | `0x0000000000000000000000000000000000000000` | See linked operation; no field semantics inferred from its ABI type. |
+| `key.currency1` | `address` | `ZZZ_ADDRESS` | See linked operation; no field semantics inferred from its ABI type. |
+| `key.fee` | `uint24` | `FEE` | See linked operation; no field semantics inferred from its ABI type. |
+| `key.tickSpacing` | `int24` | `TICK_SPACING` | See linked operation; no field semantics inferred from its ABI type. |
+| `key.hooks` | `address` | `0x0000000000000000000000000000000000000000` | See linked operation; no field semantics inferred from its ABI type. |
 
 </details>
 
@@ -6038,15 +6250,15 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-publicdrop"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `input1` | `(uint80,uint48,uint48,uint16,uint16,bool)` | `["REVIEWED_MINT_PRICE_WEI", "PUBLIC_START_UNIX", "PUBLIC_END_UNIX", "PUBLIC_LIFETIME_WALLET_LIMIT", "REVIEWED_PRIMARY_FEE_BPS", true]` |
-| `input1.mintPrice` | `uint80` | `REVIEWED_MINT_PRICE_WEI` |
-| `input1.startTime` | `uint48` | `PUBLIC_START_UNIX` |
-| `input1.endTime` | `uint48` | `PUBLIC_END_UNIX` |
-| `input1.maxTotalMintableByWallet` | `uint16` | `PUBLIC_LIFETIME_WALLET_LIMIT` |
-| `input1.feeBps` | `uint16` | `REVIEWED_PRIMARY_FEE_BPS` |
-| `input1.restrictFeeRecipients` | `bool` | `true` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `input1` | `(uint80,uint48,uint48,uint16,uint16,bool)` | `["REVIEWED_MINT_PRICE_WEI", "PUBLIC_START_UNIX", "PUBLIC_END_UNIX", "PUBLIC_LIFETIME_WALLET_LIMIT", "REVIEWED_PRIMARY_FEE_BPS", true]` | PublicDrop in ABI order: gross native mintPriceWei, inclusive public start/end UNIX seconds, lifetime wallet limit, reviewed feeBps, restrictFeeRecipients=true. Must match helper.expectedPublicDrop() before minting. |
+| `input1.mintPrice` | `uint80` | `REVIEWED_MINT_PRICE_WEI` | Gross native ETH price in wei, uint80, from SeaDropMint.expectedPublicDrop(); not net creator proceeds or USD. |
+| `input1.startTime` | `uint48` | `PUBLIC_START_UNIX` | Inclusive Unix seconds, uint48, matching configured publicStart; never browser milliseconds. |
+| `input1.endTime` | `uint48` | `PUBLIC_END_UNIX` | Inclusive Unix seconds, uint48, matching publicEnd and NFT/RoyaltyRewards mintEnd; the separate royalty opening is end+3600. |
+| `input1.maxTotalMintableByWallet` | `uint16` | `PUBLIC_LIFETIME_WALLET_LIMIT` | Lifetime original-recipient mint count limit, uint16; not current wallet balance or per-transaction quantity. |
+| `input1.feeBps` | `uint16` | `REVIEWED_PRIMARY_FEE_BPS` | Paid platform fee in basis points, 0..10000, included in gross price. Must match reviewed helper settings. |
+| `input1.restrictFeeRecipients` | `bool` | `true` | Must be true for the reviewed single allowed platform fee recipient; not a user-selectable payout override. |
 
 </details>
 
@@ -6055,16 +6267,16 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-signedmintvalidationparams"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `input2` | `(uint80,uint24,uint40,uint40,uint40,uint16,uint16)` | `["UNSUPPORTED_MIN_MINT_WEI", "UNSUPPORTED_WALLET_LIMIT", "UNSUPPORTED_MIN_START_UNIX", "UNSUPPORTED_MAX_END_UNIX", "UNSUPPORTED_STAGE_SUPPLY", "UNSUPPORTED_MIN_FEE_BPS", "UNSUPPORTED_MAX_FEE_BPS"]` |
-| `input2.minMintPrice` | `uint80` | `UNSUPPORTED_MIN_MINT_WEI` |
-| `input2.maxMaxTotalMintableByWallet` | `uint24` | `UNSUPPORTED_WALLET_LIMIT` |
-| `input2.minStartTime` | `uint40` | `UNSUPPORTED_MIN_START_UNIX` |
-| `input2.maxEndTime` | `uint40` | `UNSUPPORTED_MAX_END_UNIX` |
-| `input2.maxMaxTokenSupplyForStage` | `uint40` | `UNSUPPORTED_STAGE_SUPPLY` |
-| `input2.minFeeBps` | `uint16` | `UNSUPPORTED_MIN_FEE_BPS` |
-| `input2.maxFeeBps` | `uint16` | `UNSUPPORTED_MAX_FEE_BPS` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `input2` | `(uint80,uint24,uint40,uint40,uint40,uint16,uint16)` | `["UNSUPPORTED_MIN_MINT_WEI", "UNSUPPORTED_WALLET_LIMIT", "UNSUPPORTED_MIN_START_UNIX", "UNSUPPORTED_MAX_END_UNIX", "UNSUPPORTED_STAGE_SUPPLY", "UNSUPPORTED_MIN_FEE_BPS", "UNSUPPORTED_MAX_FEE_BPS"]` | Unsupported signed-stage bounds in exact ABI order; never enables a signer. |
+| `input2.minMintPrice` | `uint80` | `UNSUPPORTED_MIN_MINT_WEI` | See linked operation; no field semantics inferred from its ABI type. |
+| `input2.maxMaxTotalMintableByWallet` | `uint24` | `UNSUPPORTED_WALLET_LIMIT` | See linked operation; no field semantics inferred from its ABI type. |
+| `input2.minStartTime` | `uint40` | `UNSUPPORTED_MIN_START_UNIX` | See linked operation; no field semantics inferred from its ABI type. |
+| `input2.maxEndTime` | `uint40` | `UNSUPPORTED_MAX_END_UNIX` | See linked operation; no field semantics inferred from its ABI type. |
+| `input2.maxMaxTokenSupplyForStage` | `uint40` | `UNSUPPORTED_STAGE_SUPPLY` | See linked operation; no field semantics inferred from its ABI type. |
+| `input2.minFeeBps` | `uint16` | `UNSUPPORTED_MIN_FEE_BPS` | See linked operation; no field semantics inferred from its ABI type. |
+| `input2.maxFeeBps` | `uint16` | `UNSUPPORTED_MAX_FEE_BPS` | See linked operation; no field semantics inferred from its ABI type. |
 
 </details>
 
@@ -6073,17 +6285,17 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-tokengateddropstage"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `input2` | `(uint80,uint16,uint48,uint48,uint8,uint32,uint16,bool)` | `["UNSUPPORTED_MINT_PRICE_WEI", "UNSUPPORTED_WALLET_LIMIT", "UNSUPPORTED_START_UNIX", "UNSUPPORTED_END_UNIX", "UNSUPPORTED_STAGE_INDEX", "UNSUPPORTED_STAGE_SUPPLY", "UNSUPPORTED_FEE_BPS", true]` |
-| `input2.mintPrice` | `uint80` | `UNSUPPORTED_MINT_PRICE_WEI` |
-| `input2.maxTotalMintableByWallet` | `uint16` | `UNSUPPORTED_WALLET_LIMIT` |
-| `input2.startTime` | `uint48` | `UNSUPPORTED_START_UNIX` |
-| `input2.endTime` | `uint48` | `UNSUPPORTED_END_UNIX` |
-| `input2.dropStageIndex` | `uint8` | `UNSUPPORTED_STAGE_INDEX` |
-| `input2.maxTokenSupplyForStage` | `uint32` | `UNSUPPORTED_STAGE_SUPPLY` |
-| `input2.feeBps` | `uint16` | `UNSUPPORTED_FEE_BPS` |
-| `input2.restrictFeeRecipients` | `bool` | `true` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `input2` | `(uint80,uint16,uint48,uint48,uint8,uint32,uint16,bool)` | `["UNSUPPORTED_MINT_PRICE_WEI", "UNSUPPORTED_WALLET_LIMIT", "UNSUPPORTED_START_UNIX", "UNSUPPORTED_END_UNIX", "UNSUPPORTED_STAGE_INDEX", "UNSUPPORTED_STAGE_SUPPLY", "UNSUPPORTED_FEE_BPS", true]` | Unsupported token-gated stage in exact ABI order; never enables token-gated minting. |
+| `input2.mintPrice` | `uint80` | `UNSUPPORTED_MINT_PRICE_WEI` | See linked operation; no field semantics inferred from its ABI type. |
+| `input2.maxTotalMintableByWallet` | `uint16` | `UNSUPPORTED_WALLET_LIMIT` | See linked operation; no field semantics inferred from its ABI type. |
+| `input2.startTime` | `uint48` | `UNSUPPORTED_START_UNIX` | See linked operation; no field semantics inferred from its ABI type. |
+| `input2.endTime` | `uint48` | `UNSUPPORTED_END_UNIX` | See linked operation; no field semantics inferred from its ABI type. |
+| `input2.dropStageIndex` | `uint8` | `UNSUPPORTED_STAGE_INDEX` | See linked operation; no field semantics inferred from its ABI type. |
+| `input2.maxTokenSupplyForStage` | `uint32` | `UNSUPPORTED_STAGE_SUPPLY` | See linked operation; no field semantics inferred from its ABI type. |
+| `input2.feeBps` | `uint16` | `UNSUPPORTED_FEE_BPS` | See linked operation; no field semantics inferred from its ABI type. |
+| `input2.restrictFeeRecipients` | `bool` | `true` | See linked operation; no field semantics inferred from its ABI type. |
 
 </details>
 
@@ -6092,13 +6304,13 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-zzzaccesscontroller-preparationnotice"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `notice` | `(uint256,address,bytes32,bytes32)` | `["DESTINATION_CHAIN", "SUCCESSOR_CONTROLLER_ADDRESS", "DEPLOYMENT_COMMITMENT", "REVIEW_HASH"]` |
-| `notice.destinationChain` | `uint256` | `DESTINATION_CHAIN` |
-| `notice.successorController` | `address` | `SUCCESSOR_CONTROLLER_ADDRESS` |
-| `notice.deploymentCommitment` | `bytes32` | `DEPLOYMENT_COMMITMENT` |
-| `notice.reviewHash` | `bytes32` | `REVIEW_HASH` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `notice` | `(uint256,address,bytes32,bytes32)` | `["DESTINATION_CHAIN", "SUCCESSOR_CONTROLLER_ADDRESS", "DEPLOYMENT_COMMITMENT", "REVIEW_HASH"]` | Explicit current chain ID, successor controller distinct from source, deployment commitment and nonzero review hash. A notice alone never authorizes a freeze/import. |
+| `notice.destinationChain` | `uint256` | `DESTINATION_CHAIN` | Exact current block.chainid uint256. Current canonical transport is same-chain only; this field does not implement bridging. |
+| `notice.successorController` | `address` | `SUCCESSOR_CONTROLLER_ADDRESS` | Reviewed distinct destination controller address. A usable importer is sealed/inert and bound to this source; this notice alone does not approve or freeze it. |
+| `notice.deploymentCommitment` | `bytes32` | `DEPLOYMENT_COMMITMENT` | Exact destination CanonicalHandoff.deploymentCommitment() bytes32 from a reviewed matching deployment; not its address or a generic source hash. |
+| `notice.reviewHash` | `bytes32` | `REVIEW_HASH` | Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe. |
 
 </details>
 
@@ -6107,16 +6319,16 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-zzzactivationentry-request"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `request` | `(uint256,bytes32,address,uint256,uint128,uint256,bool)` | `["NFT_ID", "POOL_ID", "0x0000000000000000000000000000000000000000", "ETH_INPUT_WEI", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", false]` |
-| `request.nftId` | `uint256` | `NFT_ID` |
-| `request.poolId` | `bytes32` | `POOL_ID` |
-| `request.sourceAsset` | `address` | `0x0000000000000000000000000000000000000000` |
-| `request.amountIn` | `uint256` | `ETH_INPUT_WEI` |
-| `request.minimumLiquidity` | `uint128` | `MINIMUM_LIQUIDITY` |
-| `request.deadline` | `uint256` | `UNIX_DEADLINE` |
-| `request.increase` | `bool` | `false` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `request` | `(uint256,bytes32,address,uint256,uint128,uint256,bool)` | `["NFT_ID", "POOL_ID", "0x0000000000000000000000000000000000000000", "ETH_INPUT_WEI", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", false]` | Seven-field static Request: nftId actual canonical ID; poolId exact admitted pool; sourceAsset native zero or the fixed ZZZ, already a pool currency; amountIn raw units/wei; minimumLiquidity positive actual LP units; deadline Unix seconds through now+600; increase false activation / true growth. No pre-Vault route or conversion output minimum. |
+| `request.nftId` | `uint256` | `NFT_ID` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.poolId` | `bytes32` | `POOL_ID` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.sourceAsset` | `address` | `0x0000000000000000000000000000000000000000` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.amountIn` | `uint256` | `ETH_INPUT_WEI` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.minimumLiquidity` | `uint128` | `MINIMUM_LIQUIDITY` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.deadline` | `uint256` | `UNIX_DEADLINE` | See linked operation; no field semantics inferred from its ABI type. |
+| `request.increase` | `bool` | `false` | See linked operation; no field semantics inferred from its ABI type. |
 
 </details>
 
@@ -6125,13 +6337,13 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-zzzclaimrouter-claim-array"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `claims` | `(uint256,address,bool)[]` | `[["NFT_ID", "0x0000000000000000000000000000000000000000", false], ["NFT_ID", "0x0000000000000000000000000000000000000000", true]]` |
-| `claims[0]` | `(uint256,address,bool)` | `["NFT_ID", "0x0000000000000000000000000000000000000000", false]` |
-| `claims[0].nftId` | `uint256` | `NFT_ID` |
-| `claims[0].asset` | `address` | `0x0000000000000000000000000000000000000000` |
-| `claims[0].royalty` | `bool` | `false` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `claims` | `(uint256,address,bool)[]` | `[["NFT_ID", "0x0000000000000000000000000000000000000000", false], ["NFT_ID", "0x0000000000000000000000000000000000000000", true]]` | At most32 distinct tuples of nftId, actual asset address and royalty flag; input order determines result order. |
+| `claims[0]` | `(uint256,address,bool)` | `["NFT_ID", "0x0000000000000000000000000000000000000000", false]` | At most32 distinct tuples of nftId, actual asset address and royalty flag; input order determines result order. |
+| `claims[0].nftId` | `uint256` | `NFT_ID` | See linked operation; no field semantics inferred from its ABI type. |
+| `claims[0].asset` | `address` | `0x0000000000000000000000000000000000000000` | See linked operation; no field semantics inferred from its ABI type. |
+| `claims[0].royalty` | `bool` | `false` | See linked operation; no field semantics inferred from its ABI type. |
 
 </details>
 
@@ -6140,13 +6352,13 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-zzzcustodyvalidation-consolidation"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `beforeState` | `(bytes32,uint128,uint256,uint256)` | `["CAPTURED_MAIN_HASH", "CAPTURED_MAIN_LIQUIDITY", "CAPTURED_SECONDARY_ID", "CAPTURED_RESIDUAL_COUNT"]` |
-| `beforeState.mainHash` | `bytes32` | `CAPTURED_MAIN_HASH` |
-| `beforeState.liquidity` | `uint128` | `CAPTURED_MAIN_LIQUIDITY` |
-| `beforeState.secondary` | `uint256` | `CAPTURED_SECONDARY_ID` |
-| `beforeState.count` | `uint256` | `CAPTURED_RESIDUAL_COUNT` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `beforeState` | `(bytes32,uint128,uint256,uint256)` | `["CAPTURED_MAIN_HASH", "CAPTURED_MAIN_LIQUIDITY", "CAPTURED_SECONDARY_ID", "CAPTURED_RESIDUAL_COUNT"]` | Consolidation snapshot in exact ABI order: mainHash(mandatory unchanged pool/main/full-info/owner/centre/clock/shares/deposit/registry/policy/governance/nonce/epoch proof), liquidity(pre-operation uint128 main L), secondary(actual prior residual ID or0), count(prior global registered residual count). Only capture immediately before this same atomic call; never synthesize a proof. |
+| `beforeState.mainHash` | `bytes32` | `CAPTURED_MAIN_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+| `beforeState.liquidity` | `uint128` | `CAPTURED_MAIN_LIQUIDITY` | See linked operation; no field semantics inferred from its ABI type. |
+| `beforeState.secondary` | `uint256` | `CAPTURED_SECONDARY_ID` | See linked operation; no field semantics inferred from its ABI type. |
+| `beforeState.count` | `uint256` | `CAPTURED_RESIDUAL_COUNT` | See linked operation; no field semantics inferred from its ABI type. |
 
 </details>
 
@@ -6155,13 +6367,13 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-zzzcustodyvalidation-residualclose"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `beforeState` | `(bytes32,uint256,uint256,uint256)` | `["CAPTURED_MAIN_HASH", "PREVIOUS_IDLE_ETH", "PREVIOUS_IDLE_ZZZ", "RESIDUAL_ID"]` |
-| `beforeState.mainHash` | `bytes32` | `CAPTURED_MAIN_HASH` |
-| `beforeState.idle0` | `uint256` | `PREVIOUS_IDLE_ETH` |
-| `beforeState.idle1` | `uint256` | `PREVIOUS_IDLE_ZZZ` |
-| `beforeState.secondary` | `uint256` | `RESIDUAL_ID` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `beforeState` | `(bytes32,uint256,uint256,uint256)` | `["CAPTURED_MAIN_HASH", "PREVIOUS_IDLE_ETH", "PREVIOUS_IDLE_ZZZ", "RESIDUAL_ID"]` | Raw-close snapshot in exact ABI order: mainHash(exact unchanged main/control including L), idle0(previous attributed ETH wei), idle1(previous attributed ZZZ units), secondary(actual nonzero residual ID). Returned by captureResidualClose inside the same atomic parent call. |
+| `beforeState.mainHash` | `bytes32` | `CAPTURED_MAIN_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+| `beforeState.idle0` | `uint256` | `PREVIOUS_IDLE_ETH` | See linked operation; no field semantics inferred from its ABI type. |
+| `beforeState.idle1` | `uint256` | `PREVIOUS_IDLE_ZZZ` | See linked operation; no field semantics inferred from its ABI type. |
+| `beforeState.secondary` | `uint256` | `RESIDUAL_ID` | See linked operation; no field semantics inferred from its ABI type. |
 
 </details>
 
@@ -6170,26 +6382,26 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-zzzlpbalancemath-context"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `x` | `(bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4])` | `["TARGET", "SPOT", "LOWER", "UPPER", "AMOUNT0", "AMOUNT1", ["LOWER0", "UPPER0", "LOWER1", "UPPER1", "SCALE1", "REFERENCE_X96", "EXTRA_LOSS"], "MAIN_FLOOR", ["MARKS", "MARKS", "MARKS", "MARKS"]]` |
-| `x.target` | `bytes32` | `TARGET` |
-| `x.spot` | `uint160` | `SPOT` |
-| `x.lower` | `uint160` | `LOWER` |
-| `x.upper` | `uint160` | `UPPER` |
-| `x.amount0` | `uint256` | `AMOUNT0` |
-| `x.amount1` | `uint256` | `AMOUNT1` |
-| `x.prices` | `(uint256,uint256,uint256,uint256,uint256,uint160,uint16)` | `["LOWER0", "UPPER0", "LOWER1", "UPPER1", "SCALE1", "REFERENCE_X96", "EXTRA_LOSS"]` |
-| `x.prices.lower0` | `uint256` | `LOWER0` |
-| `x.prices.upper0` | `uint256` | `UPPER0` |
-| `x.prices.lower1` | `uint256` | `LOWER1` |
-| `x.prices.upper1` | `uint256` | `UPPER1` |
-| `x.prices.scale1` | `uint256` | `SCALE1` |
-| `x.prices.referenceX96` | `uint160` | `REFERENCE_X96` |
-| `x.prices.extraLoss` | `uint16` | `EXTRA_LOSS` |
-| `x.mainFloor` | `uint16` | `MAIN_FLOOR` |
-| `x.marks` | `uint256[4]` | `["MARKS", "MARKS", "MARKS", "MARKS"]` |
-| `x.marks[0]` | `uint256` | `MARKS` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `x` | `(bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4])` | `["TARGET", "SPOT", "LOWER", "UPPER", "AMOUNT0", "AMOUNT1", ["LOWER0", "UPPER0", "LOWER1", "UPPER1", "SCALE1", "REFERENCE_X96", "EXTRA_LOSS"], "MAIN_FLOOR", ["MARKS", "MARKS", "MARKS", "MARKS"]]` | Context(target PoolId,Q64.96 target spot and sqrt bounds,exact ETH/ZZZ budgets,independent price bounds/scales/reference/additional-loss policy,mainFloor bps,marks[price0,price1,scale0,scale1]). Partial allocation uses captured marks only; fresh trading-price guards remain separate. |
+| `x.target` | `bytes32` | `TARGET` | See linked operation; no field semantics inferred from its ABI type. |
+| `x.spot` | `uint160` | `SPOT` | See linked operation; no field semantics inferred from its ABI type. |
+| `x.lower` | `uint160` | `LOWER` | See linked operation; no field semantics inferred from its ABI type. |
+| `x.upper` | `uint160` | `UPPER` | See linked operation; no field semantics inferred from its ABI type. |
+| `x.amount0` | `uint256` | `AMOUNT0` | See linked operation; no field semantics inferred from its ABI type. |
+| `x.amount1` | `uint256` | `AMOUNT1` | See linked operation; no field semantics inferred from its ABI type. |
+| `x.prices` | `(uint256,uint256,uint256,uint256,uint256,uint160,uint16)` | `["LOWER0", "UPPER0", "LOWER1", "UPPER1", "SCALE1", "REFERENCE_X96", "EXTRA_LOSS"]` | See linked operation; no field semantics inferred from its ABI type. |
+| `x.prices.lower0` | `uint256` | `LOWER0` | See linked operation; no field semantics inferred from its ABI type. |
+| `x.prices.upper0` | `uint256` | `UPPER0` | See linked operation; no field semantics inferred from its ABI type. |
+| `x.prices.lower1` | `uint256` | `LOWER1` | See linked operation; no field semantics inferred from its ABI type. |
+| `x.prices.upper1` | `uint256` | `UPPER1` | See linked operation; no field semantics inferred from its ABI type. |
+| `x.prices.scale1` | `uint256` | `SCALE1` | See linked operation; no field semantics inferred from its ABI type. |
+| `x.prices.referenceX96` | `uint160` | `REFERENCE_X96` | See linked operation; no field semantics inferred from its ABI type. |
+| `x.prices.extraLoss` | `uint16` | `EXTRA_LOSS` | See linked operation; no field semantics inferred from its ABI type. |
+| `x.mainFloor` | `uint16` | `MAIN_FLOOR` | See linked operation; no field semantics inferred from its ABI type. |
+| `x.marks` | `uint256[4]` | `["MARKS", "MARKS", "MARKS", "MARKS"]` | See linked operation; no field semantics inferred from its ABI type. |
+| `x.marks[0]` | `uint256` | `MARKS` | See linked operation; no field semantics inferred from its ABI type. |
 
 </details>
 
@@ -6198,16 +6410,41 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-zzzlpbalancemath-prices"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `p` | `(uint256,uint256,uint256,uint256,uint256,uint160,uint16)` | `["ETH_LOWER_USD18", "ETH_UPPER_USD18", "ZZZ_LOWER_USD18", "ZZZ_UPPER_USD18", "ZZZ_RAW_SCALE", "REFERENCE_SQRT_PRICE_X96", "ADDITIONAL_LOSS_BPS"]` |
-| `p.lower0` | `uint256` | `ETH_LOWER_USD18` |
-| `p.upper0` | `uint256` | `ETH_UPPER_USD18` |
-| `p.lower1` | `uint256` | `ZZZ_LOWER_USD18` |
-| `p.upper1` | `uint256` | `ZZZ_UPPER_USD18` |
-| `p.scale1` | `uint256` | `ZZZ_RAW_SCALE` |
-| `p.referenceX96` | `uint160` | `REFERENCE_SQRT_PRICE_X96` |
-| `p.extraLoss` | `uint16` | `ADDITIONAL_LOSS_BPS` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `p` | `(uint256,uint256,uint256,uint256,uint256,uint160,uint16)` | `["ETH_LOWER_USD18", "ETH_UPPER_USD18", "ZZZ_LOWER_USD18", "ZZZ_UPPER_USD18", "ZZZ_RAW_SCALE", "REFERENCE_SQRT_PRICE_X96", "ADDITIONAL_LOSS_BPS"]` | Prices tuple(lower0,upper0,lower1,upper1,scale1,referenceX96,extraLoss). |
+| `p.lower0` | `uint256` | `ETH_LOWER_USD18` | See linked operation; no field semantics inferred from its ABI type. |
+| `p.upper0` | `uint256` | `ETH_UPPER_USD18` | See linked operation; no field semantics inferred from its ABI type. |
+| `p.lower1` | `uint256` | `ZZZ_LOWER_USD18` | See linked operation; no field semantics inferred from its ABI type. |
+| `p.upper1` | `uint256` | `ZZZ_UPPER_USD18` | See linked operation; no field semantics inferred from its ABI type. |
+| `p.scale1` | `uint256` | `ZZZ_RAW_SCALE` | See linked operation; no field semantics inferred from its ABI type. |
+| `p.referenceX96` | `uint160` | `REFERENCE_SQRT_PRICE_X96` | See linked operation; no field semantics inferred from its ABI type. |
+| `p.extraLoss` | `uint16` | `ADDITIONAL_LOSS_BPS` | See linked operation; no field semantics inferred from its ABI type. |
+
+</details>
+
+<details>
+<summary>ZZZMigration.ParkingRequest</summary>
+
+<a id="input-zzzmigration-parkingrequest-9ddf4a5cd872"></a>
+
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `r` | `(uint256,bytes32,uint256,uint256,uint256,uint64,uint64,address,address,uint128,uint128,uint256,bytes32,bytes32)` | `["BUCKET_ID", "POOL_ID", "LP_TOKEN_ID", "TOTAL_SHARES", "DEPOSIT_USD", "CUSTODY_EPOCH", "CURRENT_NONCE", "0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "MINIMUM0", "MINIMUM1", "UNIX_DEADLINE", "REVIEW_HASH", "PORTFOLIO_HASH"]` | ParkingRequest(bucketId,poolId,mainLpId,totalShares,depositUSD,custodyEpoch,parkingNonce,token0,token1,minimum0,minimum1,deadline,reviewHash,portfolioHash). Exact current main/associated residual, shares and L-sensitive Manager.executionPortfolioFingerprint; token0 native ETH and token1 fixed ZZZ. Minima cover residual principal receipts ONLY (wei/raw ZZZ), both may explicitly be zero for a raw paused-governance close; positive submitted floors still bind; deadline now..now+600; nonzero review commitment. |
+| `r.bucketId` | `uint256` | `BUCKET_ID` | Shared bucket ID from Vault.nftBucket(NFT_ID) or Vault.poolBucket(POOL_ID), then Vault.group(bucketId); not the collection NFT ID or LP NFT ID. |
+| `r.poolId` | `bytes32` | `POOL_ID` | Current Vault.group(bucketId).poolId, the bytes32 Keccak PoolKey hash. External swaps change spot, not this identity. |
+| `r.lpTokenId` | `uint256` | `LP_TOKEN_ID` | Current Vault.group(bucketId).lpTokenId; physical main position ID, not the bucket or collection NFT ID. |
+| `r.totalShares` | `uint256` | `TOTAL_SHARES` | Exact Vault.bucketTotalShares(bucketId) integer; contributions before inclusion invalidate this physical custody snapshot. |
+| `r.depositUSD` | `uint256` | `DEPOSIT_USD` | Current Position.depositUSD bookkeeping integer in USD18, not current LP value; copy the exact group field. |
+| `r.custodyEpoch` | `uint64` | `CUSTODY_EPOCH` | Current Migration.custodyEpoch(bucketId), uint64; reread after custody-changing operations. |
+| `r.nonce` | `uint64` | `CURRENT_NONCE` | Current Migration.parkingNonce(bucketId), uint64; do not reuse a consumed or invalidated request. |
+| `r.token0` | `address` | `0x0000000000000000000000000000000000000000` | Actual pool currency0 from PoolRegistry.accounting(poolId).key: address(0) for native ETH. |
+| `r.token1` | `address` | `ZZZ_ADDRESS` | Actual pool currency1 from PoolRegistry.accounting(poolId).key: fixed ZZZ, not a currency ticker. |
+| `r.minimum0` | `uint128` | `MINIMUM0` | Caller-reviewed minimum raw native ETH wei received from the scope of this close; uint128, zero is an explicit raw-close choice. Scope: residual principal only; main remains unchanged. |
+| `r.minimum1` | `uint128` | `MINIMUM1` | Caller-reviewed minimum raw fixed-ZZZ units received from the scope of this close; uint128, use admitted ZZZ decimals, zero is explicit. Scope: residual principal only; main remains unchanged. |
+| `r.deadline` | `uint256` | `UNIX_DEADLINE` | Original inclusive Unix-seconds expiry; execution requires now &lt;= deadline &lt;= now+600. Never extend it while reusing the same review. |
+| `r.reviewHash` | `bytes32` | `REVIEW_HASH` | Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe. |
+| `r.portfolioHash` | `bytes32` | `PORTFOLIO_HASH` | LiquidityManager.executionPortfolioFingerprint(lpTokenId), including both physical legs and their liquidity. Capture after pause; a new contribution can invalidate it, while an ordinary outside swap does not change fixed position ticks/L. |
 
 </details>
 
@@ -6216,23 +6453,23 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-zzzmigration-parkingrequest"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `r` | `(uint256,bytes32,uint256,uint256,uint256,uint64,uint64,address,address,uint128,uint128,uint256,bytes32,bytes32)` | `["BUCKET_ID", "POOL_ID", "LP_TOKEN_ID", "TOTAL_SHARES", "DEPOSIT_USD", "CUSTODY_EPOCH", "CURRENT_NONCE", "0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "MINIMUM0", "MINIMUM1", "UNIX_DEADLINE", "REVIEW_HASH", "PORTFOLIO_HASH"]` |
-| `r.bucketId` | `uint256` | `BUCKET_ID` |
-| `r.poolId` | `bytes32` | `POOL_ID` |
-| `r.lpTokenId` | `uint256` | `LP_TOKEN_ID` |
-| `r.totalShares` | `uint256` | `TOTAL_SHARES` |
-| `r.depositUSD` | `uint256` | `DEPOSIT_USD` |
-| `r.custodyEpoch` | `uint64` | `CUSTODY_EPOCH` |
-| `r.nonce` | `uint64` | `CURRENT_NONCE` |
-| `r.token0` | `address` | `0x0000000000000000000000000000000000000000` |
-| `r.token1` | `address` | `ZZZ_ADDRESS` |
-| `r.minimum0` | `uint128` | `MINIMUM0` |
-| `r.minimum1` | `uint128` | `MINIMUM1` |
-| `r.deadline` | `uint256` | `UNIX_DEADLINE` |
-| `r.reviewHash` | `bytes32` | `REVIEW_HASH` |
-| `r.portfolioHash` | `bytes32` | `PORTFOLIO_HASH` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `r` | `(uint256,bytes32,uint256,uint256,uint256,uint64,uint64,address,address,uint128,uint128,uint256,bytes32,bytes32)` | `["BUCKET_ID", "POOL_ID", "LP_TOKEN_ID", "TOTAL_SHARES", "DEPOSIT_USD", "CUSTODY_EPOCH", "CURRENT_NONCE", "0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "MINIMUM0", "MINIMUM1", "UNIX_DEADLINE", "REVIEW_HASH", "PORTFOLIO_HASH"]` | ParkingRequest(bucketId,poolId,mainLpId,totalShares,depositUSD,custodyEpoch,nonce,token0,token1,minimum0,minimum1,deadline,reviewHash,portfolioHash). portfolioHash equals current Manager.executionPortfolioFingerprint(main), including BOTH L values. Minima are combined raw close proceeds; ETH uses wei. Paused governance may explicitly set both to zero; any positive submitted floor remains binding. Deadline fresh/reviewHash nonzero. |
+| `r.bucketId` | `uint256` | `BUCKET_ID` | Shared bucket ID from Vault.nftBucket(NFT_ID) or Vault.poolBucket(POOL_ID), then Vault.group(bucketId); not the collection NFT ID or LP NFT ID. |
+| `r.poolId` | `bytes32` | `POOL_ID` | Current Vault.group(bucketId).poolId, the bytes32 Keccak PoolKey hash. External swaps change spot, not this identity. |
+| `r.lpTokenId` | `uint256` | `LP_TOKEN_ID` | Current Vault.group(bucketId).lpTokenId; physical main position ID, not the bucket or collection NFT ID. |
+| `r.totalShares` | `uint256` | `TOTAL_SHARES` | Exact Vault.bucketTotalShares(bucketId) integer; contributions before inclusion invalidate this physical custody snapshot. |
+| `r.depositUSD` | `uint256` | `DEPOSIT_USD` | Current Position.depositUSD bookkeeping integer in USD18, not current LP value; copy the exact group field. |
+| `r.custodyEpoch` | `uint64` | `CUSTODY_EPOCH` | Current Migration.custodyEpoch(bucketId), uint64; reread after custody-changing operations. |
+| `r.nonce` | `uint64` | `CURRENT_NONCE` | Current Migration.parkingNonce(bucketId), uint64; do not reuse a consumed or invalidated request. |
+| `r.token0` | `address` | `0x0000000000000000000000000000000000000000` | Actual pool currency0 from PoolRegistry.accounting(poolId).key: address(0) for native ETH. |
+| `r.token1` | `address` | `ZZZ_ADDRESS` | Actual pool currency1 from PoolRegistry.accounting(poolId).key: fixed ZZZ, not a currency ticker. |
+| `r.minimum0` | `uint128` | `MINIMUM0` | Caller-reviewed minimum raw native ETH wei received from the scope of this close; uint128, zero is an explicit raw-close choice. Scope: combined main+residual principal close; attributed idle/compound remain separately accounted. |
+| `r.minimum1` | `uint128` | `MINIMUM1` | Caller-reviewed minimum raw fixed-ZZZ units received from the scope of this close; uint128, use admitted ZZZ decimals, zero is explicit. Scope: combined main+residual principal close; attributed idle/compound remain separately accounted. |
+| `r.deadline` | `uint256` | `UNIX_DEADLINE` | Original inclusive Unix-seconds expiry; execution requires now &lt;= deadline &lt;= now+600. Never extend it while reusing the same review. |
+| `r.reviewHash` | `bytes32` | `REVIEW_HASH` | Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe. |
+| `r.portfolioHash` | `bytes32` | `PORTFOLIO_HASH` | LiquidityManager.executionPortfolioFingerprint(lpTokenId), including both physical legs and their liquidity. Capture after pause; a new contribution can invalidate it, while an ordinary outside swap does not change fixed position ticks/L. |
 
 </details>
 
@@ -6241,14 +6478,30 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-zzzoracle-sourcepolicy"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `primary` | `(address,bytes32,bytes32,uint32,uint8)` | `["PRIMARY_FEED_ADDRESS", "PRIMARY_CODE_HASH", "PRIMARY_INDEPENDENCE_ID", "PRIMARY_MAX_AGE", "PRIMARY_FEED_DECIMALS"]` |
-| `primary.source` | `address` | `PRIMARY_FEED_ADDRESS` |
-| `primary.expectedCodeHash` | `bytes32` | `PRIMARY_CODE_HASH` |
-| `primary.independenceId` | `bytes32` | `PRIMARY_INDEPENDENCE_ID` |
-| `primary.maxAge` | `uint32` | `PRIMARY_MAX_AGE` |
-| `primary.feedDecimals` | `uint8` | `PRIMARY_FEED_DECIMALS` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `primary` | `(address,bytes32,bytes32,uint32,uint8)` | `["PRIMARY_FEED_ADDRESS", "PRIMARY_CODE_HASH", "PRIMARY_INDEPENDENCE_ID", "PRIMARY_MAX_AGE", "PRIMARY_FEED_DECIMALS"]` | SourcePolicy(source,expectedCodeHash,independenceId,maxAge,feedDecimals); exact AggregatorV3 runtime/independent source identity, original round age 1..86400 seconds and precision &lt;=18. |
+| `primary.source` | `address` | `PRIMARY_FEED_ADDRESS` | Reviewed deployed AggregatorV3-compatible source address, not an API URL or token address; independent upstream admission is an external obligation. |
+| `primary.expectedCodeHash` | `bytes32` | `PRIMARY_CODE_HASH` | Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation. |
+| `primary.independenceId` | `bytes32` | `PRIMARY_INDEPENDENCE_ID` | Nonzero bytes32 independently reviewed source identity, distinct from the other source; contract inequality cannot prove economic independence. |
+| `primary.maxAge` | `uint32` | `PRIMARY_MAX_AGE` | Maximum original source age in seconds, 1..86400; compare actual round updatedAt at execution. Not a new timestamp assigned by a wrapper. |
+| `primary.feedDecimals` | `uint8` | `PRIMARY_FEED_DECIMALS` | Exact source decimals() result, 0..18, retained and checked against the admitted source; not token decimals or USD18. |
+
+</details>
+
+<details>
+<summary>ZZZOracle.SourcePolicy</summary>
+
+<a id="input-zzzoracle-sourcepolicy-3cafc86a58ce"></a>
+
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `secondary` | `(address,bytes32,bytes32,uint32,uint8)` | `["SECONDARY_FEED_ADDRESS", "SECONDARY_CODE_HASH", "SECONDARY_INDEPENDENCE_ID", "SECONDARY_MAX_AGE", "SECONDARY_FEED_DECIMALS"]` | Same SourcePolicy semantics, with distinct source and independenceId. Independent upstream/admin/data-market review is external, not proved by different addresses. |
+| `secondary.source` | `address` | `SECONDARY_FEED_ADDRESS` | Reviewed deployed AggregatorV3-compatible source address, not an API URL or token address; independent upstream admission is an external obligation. |
+| `secondary.expectedCodeHash` | `bytes32` | `SECONDARY_CODE_HASH` | Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation. |
+| `secondary.independenceId` | `bytes32` | `SECONDARY_INDEPENDENCE_ID` | Nonzero bytes32 independently reviewed source identity, distinct from the other source; contract inequality cannot prove economic independence. |
+| `secondary.maxAge` | `uint32` | `SECONDARY_MAX_AGE` | Maximum original source age in seconds, 1..86400; compare actual round updatedAt at execution. Not a new timestamp assigned by a wrapper. |
+| `secondary.feedDecimals` | `uint8` | `SECONDARY_FEED_DECIMALS` | Exact source decimals() result, 0..18, retained and checked against the admitted source; not token decimals or USD18. |
 
 </details>
 
@@ -6257,19 +6510,19 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-zzzrewardconverter-routepolicy"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `policy` | `(address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32)` | `["SOURCE_ADDRESS", "ROUTER_ADDRESS", "FACTORY_ADDRESS", "POOL_ADDRESS", "FEE", "SOURCE_CODE_HASH", "ROUTER_CODE_HASH", "FACTORY_CODE_HASH", "POOL_CODE_HASH", "REVIEW_HASH"]` |
-| `policy.source` | `address` | `SOURCE_ADDRESS` |
-| `policy.router` | `address` | `ROUTER_ADDRESS` |
-| `policy.factory` | `address` | `FACTORY_ADDRESS` |
-| `policy.pool` | `address` | `POOL_ADDRESS` |
-| `policy.fee` | `uint24` | `FEE` |
-| `policy.sourceCodeHash` | `bytes32` | `SOURCE_CODE_HASH` |
-| `policy.routerCodeHash` | `bytes32` | `ROUTER_CODE_HASH` |
-| `policy.factoryCodeHash` | `bytes32` | `FACTORY_CODE_HASH` |
-| `policy.poolCodeHash` | `bytes32` | `POOL_CODE_HASH` |
-| `policy.reviewHash` | `bytes32` | `REVIEW_HASH` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `policy` | `(address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32)` | `["SOURCE_ADDRESS", "ROUTER_ADDRESS", "FACTORY_ADDRESS", "POOL_ADDRESS", "FEE", "SOURCE_CODE_HASH", "ROUTER_CODE_HASH", "FACTORY_CODE_HASH", "POOL_CODE_HASH", "REVIEW_HASH"]` | Typed immutable route/wrapper descriptor with actual runtime/dependency/review pins. |
+| `policy.source` | `address` | `SOURCE_ADDRESS` | Actual nonzero LP reward token address admitted by the bound ledger; fresh Rewards admits fixed ZZZ. Raw token units use source decimals. |
+| `policy.router` | `address` | `ROUTER_ADDRESS` | Reviewed deployed v3 router, whose supported exactInputSingle ABI and factory relationship must match the pinned dependencies. |
+| `policy.factory` | `address` | `FACTORY_ADDRESS` | Reviewed deployed v3 factory, independently validated against router/pool wiring. |
+| `policy.pool` | `address` | `POOL_ADDRESS` | Actual v3 source/wrapper pool contract address, not a v4 pool ID. The immutable wrapper must be nonzero for this compatibility route. |
+| `policy.fee` | `uint24` | `FEE` | Actual v3 pool fee in millionths, not basis points; source/wrapper/fee identity must match the factory pool. |
+| `policy.sourceCodeHash` | `bytes32` | `SOURCE_CODE_HASH` | Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation. |
+| `policy.routerCodeHash` | `bytes32` | `ROUTER_CODE_HASH` | Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation. |
+| `policy.factoryCodeHash` | `bytes32` | `FACTORY_CODE_HASH` | Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation. |
+| `policy.poolCodeHash` | `bytes32` | `POOL_CODE_HASH` | Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation. |
+| `policy.reviewHash` | `bytes32` | `REVIEW_HASH` | Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe. |
 
 </details>
 
@@ -6278,16 +6531,16 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-zzzrewardconverter-wrapperpolicy"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `policy` | `(bytes32,address,address,address,bytes32,bytes32,bytes32)` | `["CODE_HASH", "ADMIN_ADDRESS", "IMPLEMENTATION_ADDRESS", "ADMIN_OWNER_ADDRESS", "ADMIN_CODE_HASH", "IMPLEMENTATION_CODE_HASH", "REVIEW_HASH"]` |
-| `policy.codeHash` | `bytes32` | `CODE_HASH` |
-| `policy.admin` | `address` | `ADMIN_ADDRESS` |
-| `policy.implementation` | `address` | `IMPLEMENTATION_ADDRESS` |
-| `policy.adminOwner` | `address` | `ADMIN_OWNER_ADDRESS` |
-| `policy.adminCodeHash` | `bytes32` | `ADMIN_CODE_HASH` |
-| `policy.implementationCodeHash` | `bytes32` | `IMPLEMENTATION_CODE_HASH` |
-| `policy.reviewHash` | `bytes32` | `REVIEW_HASH` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `policy` | `(bytes32,address,address,address,bytes32,bytes32,bytes32)` | `["CODE_HASH", "ADMIN_ADDRESS", "IMPLEMENTATION_ADDRESS", "ADMIN_OWNER_ADDRESS", "ADMIN_CODE_HASH", "IMPLEMENTATION_CODE_HASH", "REVIEW_HASH"]` | Typed immutable route/wrapper descriptor with actual runtime/dependency/review pins. |
+| `policy.codeHash` | `bytes32` | `CODE_HASH` | Reviewed exact immutable wrapper runtime code hash. A zero immutable wrapper disables this optional v3 compatibility path. |
+| `policy.admin` | `address` | `ADMIN_ADDRESS` | Reviewed proxy administrator address, or address(0) for explicitly reviewed nonproxy wrapper; zero requires every related proxy field/hash zero. |
+| `policy.implementation` | `address` | `IMPLEMENTATION_ADDRESS` | Exact reviewed proxy implementation address reported by the selected admin; zero only in the nonproxy policy. |
+| `policy.adminOwner` | `address` | `ADMIN_OWNER_ADDRESS` | Exact owner() of the reviewed proxy admin; zero only in the nonproxy policy. Code hashes alone do not prove upstream immutability. |
+| `policy.adminCodeHash` | `bytes32` | `ADMIN_CODE_HASH` | Exact reviewed admin runtime hash, or zero for the nonproxy policy. |
+| `policy.implementationCodeHash` | `bytes32` | `IMPLEMENTATION_CODE_HASH` | Exact reviewed implementation runtime hash, or zero for the nonproxy policy. |
+| `policy.reviewHash` | `bytes32` | `REVIEW_HASH` | Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe. |
 
 </details>
 
@@ -6296,24 +6549,24 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-zzzseadropmint-mintconfig"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `next` | `(uint16,uint16,uint16,uint16,uint8,uint48,uint48,uint48,uint48,uint48,uint48,bool,bytes32,address,bytes32)` | `["20", "500", "PUBLIC_LIFETIME_WALLET_LIMIT", "REVIEWED_PRIMARY_FEE_BPS", "CONFIGURED_MAX_MINT_BATCH", "TEAM_START_UNIX", "TEAM_END_UNIX", "ALLOWLIST_START_UNIX", "ALLOWLIST_END_UNIX", "PUBLIC_START_UNIX", "PUBLIC_END_UNIX", false, "REVIEWED_TEAM_ALLOWLIST_ROOT", "REVIEWED_PLATFORM_FEE_RECIPIENT_ADDRESS", "REVIEWED_SORTED_PAYERS_ARRAY_HASH"]` |
-| `next.teamAllocation` | `uint16` | `20` |
-| `next.allowlistAllocation` | `uint16` | `500` |
-| `next.publicWalletLimit` | `uint16` | `PUBLIC_LIFETIME_WALLET_LIMIT` |
-| `next.feeBps` | `uint16` | `REVIEWED_PRIMARY_FEE_BPS` |
-| `next.maxBatch` | `uint8` | `CONFIGURED_MAX_MINT_BATCH` |
-| `next.teamStart` | `uint48` | `TEAM_START_UNIX` |
-| `next.teamEnd` | `uint48` | `TEAM_END_UNIX` |
-| `next.allowlistStart` | `uint48` | `ALLOWLIST_START_UNIX` |
-| `next.allowlistEnd` | `uint48` | `ALLOWLIST_END_UNIX` |
-| `next.publicStart` | `uint48` | `PUBLIC_START_UNIX` |
-| `next.publicEnd` | `uint48` | `PUBLIC_END_UNIX` |
-| `next.releaseUnusedTeamToPublic` | `bool` | `false` |
-| `next.merkleRoot` | `bytes32` | `REVIEWED_TEAM_ALLOWLIST_ROOT` |
-| `next.feeRecipient` | `address` | `REVIEWED_PLATFORM_FEE_RECIPIENT_ADDRESS` |
-| `next.allowedPayersHash` | `bytes32` | `REVIEWED_SORTED_PAYERS_ARRAY_HASH` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `next` | `(uint16,uint16,uint16,uint16,uint8,uint48,uint48,uint48,uint48,uint48,uint48,bool,bytes32,address,bytes32)` | `["20", "500", "PUBLIC_LIFETIME_WALLET_LIMIT", "REVIEWED_PRIMARY_FEE_BPS", "CONFIGURED_MAX_MINT_BATCH", "TEAM_START_UNIX", "TEAM_END_UNIX", "ALLOWLIST_START_UNIX", "ALLOWLIST_END_UNIX", "PUBLIC_START_UNIX", "PUBLIC_END_UNIX", false, "REVIEWED_TEAM_ALLOWLIST_ROOT", "REVIEWED_PLATFORM_FEE_RECIPIENT_ADDRESS", "REVIEWED_SORTED_PAYERS_ARRAY_HASH"]` | MintConfig in ABI order: teamAllocation (initial20 free units), allowlistAllocation (initial500 paid units), publicWalletLimit (lifetime count), feeBps (reviewed paid platform basis points), maxBatch (1..10), teamStart/teamEnd, allowlistStart/allowlistEnd, publicStart/publicEnd (inclusive UNIX seconds with strictly disjoint stages), releaseUnusedTeamToPublic (initialfalse; retain unminted team reserve), merkleRoot (reviewed free-team/paid-allowlist proofs; zero only when both allocations are zero), feeRecipient (exact approved platform address), allowedPayersHash (Keccak of ABI-encoded sorted bounded reviewed payer array, including explicit empty array). Team+allowlist&lt;=1000; issued counts never reset. Unused allowlist capacity rolls into public. |
+| `next.teamAllocation` | `uint16` | `20` | Reserved free-team NFT count, uint16, initially20; cannot fall below already issued team count; team+allowlist&lt;=1000. |
+| `next.allowlistAllocation` | `uint16` | `500` | Paid allowlist NFT count, uint16, initially500; cannot fall below issued allowlist count. Unused allowance rolls into public. |
+| `next.publicWalletLimit` | `uint16` | `PUBLIC_LIFETIME_WALLET_LIMIT` | Lifetime original-recipient count ceiling, 1..1000; transfers do not restore mint quota. |
+| `next.feeBps` | `uint16` | `REVIEWED_PRIMARY_FEE_BPS` | Reviewed paid platform share in basis points, 0..10000, included in gross governed mint price. |
+| `next.maxBatch` | `uint8` | `CONFIGURED_MAX_MINT_BATCH` | Maximum NFTs in one mint callback, 1..10; engineering ceiling is not actual VRF/payment/gas qualification. |
+| `next.teamStart` | `uint48` | `TEAM_START_UNIX` | Positive inclusive Unix seconds uint48; at or before teamEnd. |
+| `next.teamEnd` | `uint48` | `TEAM_END_UNIX` | Inclusive Unix seconds uint48; strictly below allowlistStart. |
+| `next.allowlistStart` | `uint48` | `ALLOWLIST_START_UNIX` | Inclusive Unix seconds uint48; strictly after teamEnd and at or before allowlistEnd. |
+| `next.allowlistEnd` | `uint48` | `ALLOWLIST_END_UNIX` | Inclusive Unix seconds uint48; strictly below publicStart. |
+| `next.publicStart` | `uint48` | `PUBLIC_START_UNIX` | Inclusive Unix seconds uint48; strictly after allowlistEnd and at or before publicEnd. |
+| `next.publicEnd` | `uint48` | `PUBLIC_END_UNIX` | Inclusive final Unix seconds uint48; match NFT.setMintEnd and public-drop end. The separate royalty opening is end+3600. |
+| `next.releaseUnusedTeamToPublic` | `bool` | `false` | False initially preserves unminted free-team slots; true releases unused team capacity. Issued history never resets. |
+| `next.merkleRoot` | `bytes32` | `REVIEWED_TEAM_ALLOWLIST_ROOT` | Independently reviewed shared free-team/paid-allowlist root with correct phase leaves; zero allowed only when both reserved allocations are zero. |
+| `next.feeRecipient` | `address` | `REVIEWED_PLATFORM_FEE_RECIPIENT_ADDRESS` | Exact reviewed nonzero platform recipient; match the one allowed upstream recipient, not creator proceeds or royalty receiver. |
+| `next.allowedPayersHash` | `bytes32` | `REVIEWED_SORTED_PAYERS_ARRAY_HASH` | Keccak-256 of abi.encode(address[]) of sorted unique reviewed nonzero payer addresses, maximum16; use the encoded empty array for no payers, not bytes32(0). |
 
 </details>
 
@@ -6322,24 +6575,50 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-zzzv4routeexecutor-policy"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `policy` | `(address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32)` | `["SOURCE_ADDRESS", "OUTPUT_ADDRESS", ["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "POOL_MANAGER_ADDRESS", "STATE_VIEW_ADDRESS", "SOURCE_CODE_HASH", "OUTPUT_CODE_HASH", "POOL_MANAGER_CODE_HASH", "STATE_VIEW_CODE_HASH", "REVIEW_HASH"]` |
-| `policy.source` | `address` | `SOURCE_ADDRESS` |
-| `policy.output` | `address` | `OUTPUT_ADDRESS` |
-| `policy.key` | `(address,address,uint24,int24,address)` | `["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"]` |
-| `policy.key.currency0` | `address` | `0x0000000000000000000000000000000000000000` |
-| `policy.key.currency1` | `address` | `ZZZ_ADDRESS` |
-| `policy.key.fee` | `uint24` | `FEE` |
-| `policy.key.tickSpacing` | `int24` | `TICK_SPACING` |
-| `policy.key.hooks` | `address` | `0x0000000000000000000000000000000000000000` |
-| `policy.poolManager` | `address` | `POOL_MANAGER_ADDRESS` |
-| `policy.stateView` | `address` | `STATE_VIEW_ADDRESS` |
-| `policy.sourceCodeHash` | `bytes32` | `SOURCE_CODE_HASH` |
-| `policy.outputCodeHash` | `bytes32` | `OUTPUT_CODE_HASH` |
-| `policy.poolManagerCodeHash` | `bytes32` | `POOL_MANAGER_CODE_HASH` |
-| `policy.stateViewCodeHash` | `bytes32` | `STATE_VIEW_CODE_HASH` |
-| `policy.reviewHash` | `bytes32` | `REVIEW_HASH` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `policy` | `(address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32)` | `["SOURCE_ADDRESS", "OUTPUT_ADDRESS", ["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "POOL_MANAGER_ADDRESS", "STATE_VIEW_ADDRESS", "SOURCE_CODE_HASH", "OUTPUT_CODE_HASH", "POOL_MANAGER_CODE_HASH", "STATE_VIEW_CODE_HASH", "REVIEW_HASH"]` | Typed immutable route/wrapper descriptor with actual runtime/dependency/review pins. |
+| `policy.source` | `address` | `SOURCE_ADDRESS` | Actual nonzero LP reward token, fresh fixed ZZZ; not an arbitrary royalty payment currency. |
+| `policy.output` | `address` | `OUTPUT_ADDRESS` | Must be address(0), native ETH paid back to the same bound LP reward ledger. |
+| `policy.key` | `(address,address,uint24,int24,address)` | `["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"]` | Exact initialized hookless source/native-ETH v4 PoolKey, in currency-address order. |
+| `policy.key.currency0` | `address` | `0x0000000000000000000000000000000000000000` | Actual ordered token0 address; native ETH is address(0), not WETH. Read the initialized PoolKey and recompute its pool ID. |
+| `policy.key.currency1` | `address` | `ZZZ_ADDRESS` | Actual ordered token1 address; principal admission requires the one fixed ZZZ token. Read the initialized PoolKey. |
+| `policy.key.fee` | `uint24` | `FEE` | Static LP fee in millionths (10020 = 1.002%), not basis points; directional protocol fees are separate and may change. |
+| `policy.key.tickSpacing` | `int24` | `TICK_SPACING` | Positive int24 tick spacing of the initialized pool; lower/upper ticks must align. Principal admission permits 1..32767. |
+| `policy.key.hooks` | `address` | `0x0000000000000000000000000000000000000000` | Hook address from the exact PoolKey; supported principal and v4 conversion venues require address(0). |
+| `policy.poolManager` | `address` | `POOL_MANAGER_ADDRESS` | Reviewed actual v4 PoolManager address; native balance settlement happens through this fixed core, not a pool contract. |
+| `policy.stateView` | `address` | `STATE_VIEW_ADDRESS` | Reviewed StateView for the same PoolManager; verify parent/core wiring, runtime and initialized key. |
+| `policy.sourceCodeHash` | `bytes32` | `SOURCE_CODE_HASH` | Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation. |
+| `policy.outputCodeHash` | `bytes32` | `OUTPUT_CODE_HASH` | Native ETH uses the executor NATIVE_ASSET_CODE_HASH constant, not extcodehash(address(0)); read the exact constant from the reviewed child. |
+| `policy.poolManagerCodeHash` | `bytes32` | `POOL_MANAGER_CODE_HASH` | Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation. |
+| `policy.stateViewCodeHash` | `bytes32` | `STATE_VIEW_CODE_HASH` | Exact Keccak-256 runtime code hash from the reviewed deployment, rechecked on admission/use; a proxy code hash alone does not freeze its upstream implementation. |
+| `policy.reviewHash` | `bytes32` | `REVIEW_HASH` | Nonzero bytes32 provenance commitment to reviewed evidence; not authority, a live state hash or proof that execution is safe. |
+
+</details>
+
+<details>
+<summary>ZZZV4RouteExecutor.Policy</summary>
+
+<a id="input-zzzv4routeexecutor-policy-468a198462fa"></a>
+
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `policy` | `(address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32)` | `["SOURCE_ADDRESS", "OUTPUT_ADDRESS", ["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"], "POOL_MANAGER_ADDRESS", "STATE_VIEW_ADDRESS", "SOURCE_CODE_HASH", "OUTPUT_CODE_HASH", "POOL_MANAGER_CODE_HASH", "STATE_VIEW_CODE_HASH", "REVIEW_HASH"]` | Full typed policy: exact source/output, ordered PoolKey, manager/view addresses, all runtime hashes and nonzero reviewHash. Native zero asset uses the dedicated sentinel; fee and tick spacing must be valid. |
+| `policy.source` | `address` | `SOURCE_ADDRESS` | See linked operation; no field semantics inferred from its ABI type. |
+| `policy.output` | `address` | `OUTPUT_ADDRESS` | See linked operation; no field semantics inferred from its ABI type. |
+| `policy.key` | `(address,address,uint24,int24,address)` | `["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "FEE", "TICK_SPACING", "0x0000000000000000000000000000000000000000"]` | See linked operation; no field semantics inferred from its ABI type. |
+| `policy.key.currency0` | `address` | `0x0000000000000000000000000000000000000000` | See linked operation; no field semantics inferred from its ABI type. |
+| `policy.key.currency1` | `address` | `ZZZ_ADDRESS` | See linked operation; no field semantics inferred from its ABI type. |
+| `policy.key.fee` | `uint24` | `FEE` | See linked operation; no field semantics inferred from its ABI type. |
+| `policy.key.tickSpacing` | `int24` | `TICK_SPACING` | See linked operation; no field semantics inferred from its ABI type. |
+| `policy.key.hooks` | `address` | `0x0000000000000000000000000000000000000000` | See linked operation; no field semantics inferred from its ABI type. |
+| `policy.poolManager` | `address` | `POOL_MANAGER_ADDRESS` | See linked operation; no field semantics inferred from its ABI type. |
+| `policy.stateView` | `address` | `STATE_VIEW_ADDRESS` | See linked operation; no field semantics inferred from its ABI type. |
+| `policy.sourceCodeHash` | `bytes32` | `SOURCE_CODE_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+| `policy.outputCodeHash` | `bytes32` | `OUTPUT_CODE_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+| `policy.poolManagerCodeHash` | `bytes32` | `POOL_MANAGER_CODE_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+| `policy.stateViewCodeHash` | `bytes32` | `STATE_VIEW_CODE_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+| `policy.reviewHash` | `bytes32` | `REVIEW_HASH` | See linked operation; no field semantics inferred from its ABI type. |
 
 </details>
 
@@ -6348,27 +6627,27 @@ Fields are expanded recursively in exact ABI order. Uppercase symbols remain req
 
 <a id="input-zzzv4spotpricefeed-config"></a>
 
-| Field | ABI type | Example input |
-| --- | --- | --- |
-| `c` | `(address,bytes32,address,bytes32,(address,address,uint24,int24,address),bytes32,address,bytes32,address,bytes32,uint32,uint128,bytes32)` | `["REFERENCE_CORE_ADDRESS", "REFERENCE_CORE_CODE_HASH", "REFERENCE_STATE_VIEW_ADDRESS", "REFERENCE_STATE_VIEW_CODE_HASH", ["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "REFERENCE_FEE", "REFERENCE_TICK_SPACING", "0x0000000000000000000000000000000000000000"], "REFERENCE_POOL_ID", "ZZZ_ADDRESS", "ZZZ_CODE_HASH", "ETH_USD_FEED_ADDRESS", "ETH_USD_FEED_CODE_HASH", "MAX_ETH_AGE_SECONDS", "MINIMUM_ACTIVE_LIQUIDITY", "REVIEW_HASH"]` |
-| `c.core` | `address` | `REFERENCE_CORE_ADDRESS` |
-| `c.expectedCoreCodeHash` | `bytes32` | `REFERENCE_CORE_CODE_HASH` |
-| `c.stateView` | `address` | `REFERENCE_STATE_VIEW_ADDRESS` |
-| `c.expectedStateViewCodeHash` | `bytes32` | `REFERENCE_STATE_VIEW_CODE_HASH` |
-| `c.key` | `(address,address,uint24,int24,address)` | `["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "REFERENCE_FEE", "REFERENCE_TICK_SPACING", "0x0000000000000000000000000000000000000000"]` |
-| `c.key.currency0` | `address` | `0x0000000000000000000000000000000000000000` |
-| `c.key.currency1` | `address` | `ZZZ_ADDRESS` |
-| `c.key.fee` | `uint24` | `REFERENCE_FEE` |
-| `c.key.tickSpacing` | `int24` | `REFERENCE_TICK_SPACING` |
-| `c.key.hooks` | `address` | `0x0000000000000000000000000000000000000000` |
-| `c.expectedPoolId` | `bytes32` | `REFERENCE_POOL_ID` |
-| `c.zzz` | `address` | `ZZZ_ADDRESS` |
-| `c.expectedZZZCodeHash` | `bytes32` | `ZZZ_CODE_HASH` |
-| `c.ethUsdFeed` | `address` | `ETH_USD_FEED_ADDRESS` |
-| `c.expectedETHFeedCodeHash` | `bytes32` | `ETH_USD_FEED_CODE_HASH` |
-| `c.maxETHAge` | `uint32` | `MAX_ETH_AGE_SECONDS` |
-| `c.minimumLiquidity` | `uint128` | `MINIMUM_ACTIVE_LIQUIDITY` |
-| `c.reviewHash` | `bytes32` | `REVIEW_HASH` |
+| Field | ABI type | Example input | Meaning / unit |
+| --- | --- | --- | --- |
+| `c` | `(address,bytes32,address,bytes32,(address,address,uint24,int24,address),bytes32,address,bytes32,address,bytes32,uint32,uint128,bytes32)` | `["REFERENCE_CORE_ADDRESS", "REFERENCE_CORE_CODE_HASH", "REFERENCE_STATE_VIEW_ADDRESS", "REFERENCE_STATE_VIEW_CODE_HASH", ["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "REFERENCE_FEE", "REFERENCE_TICK_SPACING", "0x0000000000000000000000000000000000000000"], "REFERENCE_POOL_ID", "ZZZ_ADDRESS", "ZZZ_CODE_HASH", "ETH_USD_FEED_ADDRESS", "ETH_USD_FEED_CODE_HASH", "MAX_ETH_AGE_SECONDS", "MINIMUM_ACTIVE_LIQUIDITY", "REVIEW_HASH"]` | Config in exact ABI order: reviewed core+hash, StateView+hash, full PoolKey(currency0=native ETH0,currency1=fixed ZZZ,static fee&lt;1e6,valid tickSpacing,hooks0), expectedPoolId, fixed ZZZ+hash, ETH/USD feed+hash, maxETHAge1..86400seconds, positive uint128 minimumLiquidity, nonzero reviewHash. No production values selected. Active L does not prove depth or exclusion of PoPL LP. Proxy/admin/source independence requires separate review. |
+| `c.core` | `address` | `REFERENCE_CORE_ADDRESS` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.expectedCoreCodeHash` | `bytes32` | `REFERENCE_CORE_CODE_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.stateView` | `address` | `REFERENCE_STATE_VIEW_ADDRESS` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.expectedStateViewCodeHash` | `bytes32` | `REFERENCE_STATE_VIEW_CODE_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.key` | `(address,address,uint24,int24,address)` | `["0x0000000000000000000000000000000000000000", "ZZZ_ADDRESS", "REFERENCE_FEE", "REFERENCE_TICK_SPACING", "0x0000000000000000000000000000000000000000"]` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.key.currency0` | `address` | `0x0000000000000000000000000000000000000000` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.key.currency1` | `address` | `ZZZ_ADDRESS` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.key.fee` | `uint24` | `REFERENCE_FEE` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.key.tickSpacing` | `int24` | `REFERENCE_TICK_SPACING` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.key.hooks` | `address` | `0x0000000000000000000000000000000000000000` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.expectedPoolId` | `bytes32` | `REFERENCE_POOL_ID` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.zzz` | `address` | `ZZZ_ADDRESS` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.expectedZZZCodeHash` | `bytes32` | `ZZZ_CODE_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.ethUsdFeed` | `address` | `ETH_USD_FEED_ADDRESS` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.expectedETHFeedCodeHash` | `bytes32` | `ETH_USD_FEED_CODE_HASH` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.maxETHAge` | `uint32` | `MAX_ETH_AGE_SECONDS` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.minimumLiquidity` | `uint128` | `MINIMUM_ACTIVE_LIQUIDITY` | See linked operation; no field semantics inferred from its ABI type. |
+| `c.reviewHash` | `bytes32` | `REVIEW_HASH` | See linked operation; no field semantics inferred from its ABI type. |
 
 </details>
 

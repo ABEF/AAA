@@ -505,13 +505,21 @@ def prepare_cli(python,node,config,policy,selection,*,label,management_action=Fa
     return artifact,destination
 
 
+def reviewed_execution_gas(artifact):
+    """Keep a current frozen envelope; retain explicit historical compatibility."""
+    final=artifact['simulation']['final'];tx=artifact['transaction']
+    gas=int(final['transaction_gas'] if 'transaction_gas' in final else final['padded_gas'])
+    if 'gas' in tx:require(int(tx['gas'],16)==gas,'Reviewed transaction gas differs from the frozen envelope')
+    return gas
+
+
 def execute_review(node,case,artifact,destination):
     """Only this fresh node may execute the exact reviewed call, once."""
     tx=dict(artifact['transaction']);gov=case['governance'];pins=case['bindings']
     require(tx['from']==gov and tx['to']==pins['principal_exit']['address'] and tx['value']=='0x0'
         and tx['chainId']==hex(CHAIN),'Unsigned operation envelope differs from local governance scope')
     initial,final=artifact['simulation']['initial'],artifact['simulation']['final']
-    gas=int(final['padded_gas'] if 'padded_gas' in final else final['transaction_gas'])
+    gas=reviewed_execution_gas(artifact)
     require(int(final['gas_limit_cap'])==PROFILE_GAS and gas<=PROFILE_GAS,'Reviewed operation exceeds the unchanged24M profile')
     block={'blockHash':artifact['final_control_head']['hash'],'requireCanonical':True}
     capped={**tx,'gas':hex(PROFILE_GAS)}

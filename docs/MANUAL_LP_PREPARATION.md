@@ -6,6 +6,18 @@ reads or updates a keeper journal, chooses floors/routes, loads a signer,
 broadcasts, approves assets, extends an expiry, changes pause state, or changes a
 guarded request into a forced request.
 
+Both preparers now verify the **same exact transaction gas** at the initial
+confirmed snapshot and the later canonical tip. For manual B/C/D and Parked D,
+the initial full25%-padded estimate is frozen in `transaction.gas` and
+`network_gas.transaction_gas`. Each snapshot first uses a bounded cap-sized
+probe/estimate, then calls at that frozen limit. Its own `padded_gas` remains
+the minimum required by that snapshot's estimate: it may fall without lowering
+the transaction limit. A higher requirement refuses with
+`frozen_gas_insufficient`; funding and maximum fees use the frozen amount.
+Use the returned `transaction.gas`, not a newly selected smaller estimate.
+Old artifacts retain their original review scope and must not be rewritten.
+See the [operator-input audit](../reports/operator-input-audit-20261116/TOOLS_REVIEW.md).
+
 | Preparer | Scope |
 | --- | --- |
 | `scripts/prepare-operator-management.py` | Park, resume, raw residual close and each collective-exit step below. |

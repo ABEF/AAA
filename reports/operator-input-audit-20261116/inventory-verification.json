@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "scope": "operator catalogue/input documentation and offline generators",
+  "production_approval": false,
+  "production_solidity_changed": false,
+  "new_distinct_test_methods": 6,
+  "test_module": "tests_python.test_operator_input_annotations",
+  "final_result": {"run": 6, "passes": 6, "failures": 0, "errors": 0},
+  "original_attempt": {
+    "run": 6,
+    "passes": 5,
+    "errors": 1,
+    "cause": "One-off audit digest helper used Windows default text decoding instead of UTF-8 for the reference JSON. The helper was corrected and the reviewed example digest rebound; this was not a production signing or contract failure."
+  },
+  "additional_check": {
+    "command": "python scripts/generate-function-reference.py --check",
+    "result": "pass; exact current source bindings and deterministic reference output",
+    "contract_build_or_execution": false
+  },
+  "unchanged_tests_rerun": false,
+  "old_suites_compiler_static_chain_or_provider_runs": false,
+  "test_runner_admission": "scripts/run_python_tests.py discovers test*.py, including this new module; runner not changed or executed",
+  "limitations": [
+    "Input/authority reconciliation is not exhaustive dynamic security proof.",
+    "No live input, market/provider/contract-wallet/maximum-state or release qualification.",
+    "Root performs final operator table regeneration and deterministic checks after manual prose updates.",
+    "One-line unused import cleanup after the six-pass run does not change test behavior."
+  ]
+}

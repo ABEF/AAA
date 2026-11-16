@@ -112,12 +112,12 @@ class ManualLPDiagnosticsTests(unittest.TestCase):
     def test_final_controls_failure_is_distinct_from_final_simulation(self):
         self.rpc.after_estimate=lambda:self.f.put('principal_exit','parkingNonce(uint256)',6,7)
         self.error(RpcError,'custody_or_controls_changed','final_snapshot')
-        self.assertEqual(1,len(self.rpc.simulations))
+        self.assertEqual(2,len(self.rpc.simulations))
         self.setUp();self.rpc.final_simulation_error=RpcError('opaque final rejection secret')
         response,_=self.cli()
         self.assertEqual('final_simulation',response['stage'])
         self.assertEqual('manual_preparation_unavailable_or_invalid',response['reason'])
-        self.assertEqual(2,len(self.rpc.simulations))
+        self.assertEqual(3,len(self.rpc.simulations))
 
     def test_final_canonicality_reorg_and_local_input_mutation_are_identified(self):
         for variant,code in [('reorg','final_anchor_changed'),('input','local_inputs_changed')]:
@@ -126,7 +126,7 @@ class ManualLPDiagnosticsTests(unittest.TestCase):
                 if variant=='reorg':self.rpc.final_reorg=True
                 else:self.rpc.after_second_estimate=lambda:self.request.update(minimumLiquidity='2')
                 self.error(RpcError,code,'final_canonicality')
-                self.assertEqual(2,len(self.rpc.simulations))
+                self.assertEqual(4,len(self.rpc.simulations))
 
     def test_remote_rpc_and_work_limit_use_only_bounded_trusted_metadata(self):
         for error,reason in [(RemoteRPCError('eth_call',-32005,'rate_limited'),'rpc_rate_limited'),

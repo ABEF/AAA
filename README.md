@@ -1,5 +1,7 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+The [operator input audit](reports/operator-input-audit-20261116/REVIEW.md) covers92 governance/bootstrap/keeper/nominated actions and corrects frozen manual gas, output preservation and nested input/units documentation. All61 Solidity files, safeguards and NFT rights remain unchanged. Source/input coverage is separate from dynamic and production qualification.
+
 The [unsigned pre-seal planner](reports/preseal-planner-20261116/REVIEW.md) now prepares twelve ordered configuration
 families against the trusted current ABI. Unknown own/dependent inputs retain
 blocked/null calldata; actual bootstrap/code/state and all readiness/approval

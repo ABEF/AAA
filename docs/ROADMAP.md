@@ -1,5 +1,7 @@
 # Engineering roadmap
 
+The [operator-input review](../reports/operator-input-audit-20261116/REVIEW.md) closes confirmed unsigned-envelope and documentation defects. Continue actual market/provider, contract-wallet, maximum-state gas and operating qualification; extra keeper in-range policy remains service-only. No release gate is closed by catalogue completeness.
+
 The [unsigned pre-seal planner](../reports/preseal-planner-20261116/REVIEW.md) now prepares twelve ordered configuration
 families against the trusted current ABI. Unknown own/dependent inputs retain
 blocked/null calldata; actual bootstrap/code/state and all readiness/approval

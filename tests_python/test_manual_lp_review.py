@@ -64,7 +64,7 @@ class ManualRPC:
             data=params[0]['data']
             if data[:10] in self.void_selectors:
                 self.simulations.append(copy.deepcopy(params))
-                if len(self.simulations)%2==0 and self.final_simulation_error:raise self.final_simulation_error
+                if params[-1].get('blockHash')==self.latest_hash and self.final_simulation_error:raise self.final_simulation_error
                 if self.simulation_error:raise self.simulation_error
                 return self.output
             if self.price_failure and data[:10]==native_data('priceBounds(address)',addr(20))[:10]:
@@ -145,7 +145,7 @@ class ManualLPReviewTests(unittest.TestCase):
             with self.subTest(action=action):
                 self.request['action']=action;result=self.prepare();tx=result['transaction']
                 self.assertEqual(self.gov,tx['from']);self.assertEqual(self.c['principal_exit'],tx['to'])
-                self.assertEqual('0x0',tx['value']);self.assertNotIn('gas',tx)
+                self.assertEqual('0x0',tx['value']);self.assertEqual(hex(125000),tx['gas'])
                 self.assertEqual(hex(self.config['chain_id']),tx['chainId'])
                 self.assertEqual('125000',result['network_gas']['padded_gas'])
                 values=[int(w,16) for w in decode_words('0x'+tx['data'][10:])]
@@ -195,11 +195,11 @@ class ManualLPReviewTests(unittest.TestCase):
         self.assertGreater(int(self.request['amountIn']),int(swap['available_principal_raw'][0]))
         self.assertEqual('observed_lower_bound_excludes_future_harvest',swap['availability_scope'])
         self.assertFalse(swap['captured_amount_is_preflight_ceiling'])
-        self.assertEqual(2,len(self.rpc.simulations));self.assertEqual(2,len(self.rpc.estimates))
+        self.assertEqual(4,len(self.rpc.simulations));self.assertEqual(2,len(self.rpc.estimates))
         self.assertEqual('1000000000',result['arguments']['amountIn'])
         self.rpc.simulation_error=RpcError('source refuses unavailable post-harvest inventory')
         with self.assertRaises(RpcError):self.prepare()
-        self.assertEqual(3,len(self.rpc.simulations));self.assertEqual(2,len(self.rpc.estimates))
+        self.assertEqual(5,len(self.rpc.simulations));self.assertEqual(2,len(self.rpc.estimates))
 
     def test_retained_value_bit_requires_usd_even_when_price_agreement_bit_is_off(self):
         self.request.update(action='C',checks='4');self.rpc.price_failure=True
@@ -212,7 +212,8 @@ class ManualLPReviewTests(unittest.TestCase):
         tags={p[-1]['blockHash'] for p in read_calls}
         self.assertEqual({self.f.rpc.hash,self.rpc.latest_hash},tags)
         self.assertTrue(all(p[-1].get('requireCanonical') is True for p in read_calls))
-        self.assertEqual([self.f.rpc.hash,self.rpc.latest_hash],[p[-1]['blockHash'] for p in self.rpc.simulations])
+        self.assertEqual([self.f.rpc.hash,self.f.rpc.hash,self.rpc.latest_hash,self.rpc.latest_hash],
+            [p[-1]['blockHash'] for p in self.rpc.simulations])
         self.assertEqual([self.f.rpc.hash,self.rpc.latest_hash],[p[-1]['blockHash'] for p in self.rpc.estimates])
         self.assertFalse(any('send' in m.lower() or 'TransactionCount' in m for m,_ in self.rpc.calls))
 
@@ -230,7 +231,7 @@ class ManualLPReviewTests(unittest.TestCase):
                     if variant=='sequencer_policy':self.put('oracle','activeSequencerPolicy()','0x'+'56'*32)
                 self.rpc.after_estimate=change
                 with self.assertRaises((RpcError,ValueError)):self.prepare()
-                self.assertEqual(original,self.request);self.assertEqual(1,len(self.rpc.simulations))
+                self.assertEqual(original,self.request);self.assertEqual(2,len(self.rpc.simulations))
 
     def test_healthy_trading_and_new_price_rounds_keep_original_manifest_and_revalidate_twice(self):
         def move():
@@ -242,16 +243,16 @@ class ManualLPReviewTests(unittest.TestCase):
             result['final_market_observations']['physical']['portfolio_amounts'])
         self.assertNotEqual(result['snapshot']['financial']['price_bounds'],
             result['final_market_observations']['financial']['price_bounds'])
-        self.assertEqual(2,len(self.rpc.simulations));self.assertEqual(2,len(self.rpc.estimates))
-        self.assertEqual(self.rpc.simulations[0][0]['data'],self.rpc.simulations[1][0]['data'])
+        self.assertEqual(4,len(self.rpc.simulations));self.assertEqual(2,len(self.rpc.estimates))
+        self.assertEqual(self.rpc.simulations[1][0],self.rpc.simulations[3][0])
         self.assertEqual('4180',result['arguments']['deadline']);self.assertEqual('1',result['arguments']['minimumLiquidity'])
 
     def test_latest_retained_guard_failure_refuses_without_fallback_or_third_probe(self):
         self.rpc.after_estimate=lambda:setattr(self.q,'tick',50)
         self.rpc.final_simulation_error=RpcError('opaque minimum/retained guard failure')
         with self.assertRaises(RpcError):self.prepare()
-        self.assertEqual(2,len(self.rpc.simulations));self.assertEqual(1,len(self.rpc.estimates))
-        self.assertEqual(self.rpc.simulations[0][0]['data'],self.rpc.simulations[1][0]['data'])
+        self.assertEqual(3,len(self.rpc.simulations));self.assertEqual(1,len(self.rpc.estimates))
+        self.assertEqual(self.rpc.simulations[0][0]['data'],self.rpc.simulations[2][0]['data'])
 
     def test_governance_pause_terminal_and_preparation_are_mandatory(self):
         for method,value in [('paused()',0),('governance()',addr(41)),('lpExitStarted()',1),('preparationActive()',1)]:
@@ -308,9 +309,10 @@ class ManualLPReviewTests(unittest.TestCase):
     def test_block_gas_limit_bounds_both_reviews_and_network_envelope_is_separate(self):
         self.rpc.block_limit=200000
         result=self.prepare()
-        self.assertEqual(['0x30d40','0x30d40'],[p[0]['gas'] for p in self.rpc.simulations])
+        self.assertEqual(['0x30d40',hex(125000),'0x30d40',hex(125000)],
+            [p[0]['gas'] for p in self.rpc.simulations])
         self.assertEqual('200000',result['network_gas']['gas_limit_cap'])
-        self.assertNotIn('gas',result['transaction'])
+        self.assertEqual(hex(125000),result['transaction']['gas'])
         self.rpc.block_limit=100000
         with self.assertRaisesRegex(RpcError,'original gas/fee'):self.prepare()
 
@@ -336,7 +338,7 @@ class ManualLPReviewTests(unittest.TestCase):
         with self.assertRaises(M.UnsupportedGovernanceEnvelope):self.prepare()
         code_reads=[params for method,params in self.rpc.calls if method=='eth_getCode' and params[0]==self.gov]
         self.assertEqual([self.f.rpc.hash,self.rpc.latest_hash],[params[-1]['blockHash'] for params in code_reads])
-        self.assertEqual(1,len(self.rpc.simulations));self.assertEqual(1,len(self.rpc.estimates))
+        self.assertEqual(2,len(self.rpc.simulations));self.assertEqual(1,len(self.rpc.estimates))
         paths={key:Path(self.tmp.name)/(key+'.json') for key in ('read-config','policy','selection','output')}
         for key,value in [('read-config',self.config),('policy',self.policy),('selection',self.request)]:
             paths[key].write_bytes(O.render(value))
@@ -354,7 +356,7 @@ class ManualLPReviewTests(unittest.TestCase):
             self.f.rpc.head=111;self.rpc.extra_headers[111]=('0x'+'ef'*32,4011)
         self.rpc.after_second_estimate=advance
         with self.assertRaisesRegex(RpcError,'original deadline expired'):self.prepare()
-        self.assertEqual(2,len(self.rpc.simulations));self.assertEqual(2,len(self.rpc.estimates))
+        self.assertEqual(4,len(self.rpc.simulations));self.assertEqual(2,len(self.rpc.estimates))
 
     def test_opaque_simulation_and_malformed_void_return_never_produce_a_draft(self):
         self.rpc.simulation_error=RpcError('https://private:credential@rpc.invalid swap failure')
