@@ -1,5 +1,15 @@
 # Work handoff
 
+[16 November real-market refresh](../reports/real-market-refresh-20261116/REVIEW.md) records39 bounded read-only requests.
+Chainlink proxies still share one ETH aggregator; Pyth is stale and API3 read
+reverts. No independent ETH/ZZZ source pair or complete route is qualified.
+The larger known pool improves forward execution only; tested reverse fills
+and selected-pool compatibility remain blockers. No source, route, limit,
+provider or live environment is changed; no unchanged suite is rerun.
+Eight new report-helper checks retain their source stages. The offline verifier
+now rejects truncated/detached quotes and binds feed/anchor summaries to wire
+responses; its initial false-positive paths and correction remain explicit.
+
 The [isolated local construction rehearsal](../reports/local-deployment-rehearsal-20261115/REVIEW.md) verifies25 current normal
 creations/19bindings,39instances and112state observations on a new owned loopback
 Anvil, with normal size limits. Total rawgas141,382,621; worst NFT full25%padding

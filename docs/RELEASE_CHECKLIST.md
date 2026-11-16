@@ -1,5 +1,11 @@
 # Release approval record - NOT APPROVED
 
+[16 November external evidence](../reports/real-market-refresh-20261116/REVIEW.md) closes
+only the bounded observation milestone. No independent ETH/ZZZ price pair,
+complete activation/growth/conversion route or operating service is approved.
+Pyth publication/API3 adaptation and actual bidirectional depth/price compatibility
+remain explicit dependencies. All release sign-offs stay open.
+
 The [actual local C/D and Parked recovery rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
 passes with a real governance EOA and current mint2/V10/execution1/LP3 graph under
 controlled markets. This is local composition/gas acceptance only. Real feeds,

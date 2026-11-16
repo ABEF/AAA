@@ -1,5 +1,13 @@
 # Feature and evidence reference
 
+[16 November real-market evidence](../reports/real-market-refresh-20261116/REVIEW.md)
+adds39 actual read-only requests, exact source/block pins, six directional quote
+diagnostics and bounded pool discovery with offline independent verification.
+No live source pair or complete activation/growth/LP-conversion route qualifies.
+Eight new report-helper checks (four transport/four adversarial verifier) have
+separate recorded source stages; old tests/builds are not rerun. Contracts,
+defaults and environments are unchanged.
+
 The [offline deployment planner](DEPLOYMENT_PREPARATION.md) supports current
 schema17/mint2/V10/execution1/LP3 construction, exact resolvable constructor
 payloads, original size gates and ordered binding/setup review. Missing inputs

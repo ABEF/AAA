@@ -1,5 +1,9 @@
 # Documentation map
 
+For current external dependencies use the [16 November market refresh](../reports/real-market-refresh-20261116/REVIEW.md)
+and [service decisions](PRODUCTION_SERVICES.md). Dated captures remain separate;
+current discovery and quote diagnostics do not qualify sources, routes or services.
+
 The [isolated local construction record](../reports/local-deployment-rehearsal-20261115/REVIEW.md)
 supplies actual unsealed constructor/binding receipts and local gas, with original
 capture limitations explicit. Its disposable addresses/fixtures are never a

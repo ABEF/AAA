@@ -1,0 +1,21 @@
+{
+  "known_inventory_sha256": "35e990f33b83c00cf37e0d6da8c586ce5aed73f89d94281fa83b74a5c320caf8",
+  "known_inventory_anchor": 110324511,
+  "new_exactpair_intervals": [
+    {
+      "start": 110324512,
+      "end": 113296579,
+      "initializations": 0,
+      "canonical_closed": true
+    },
+    {
+      "start": 113296580,
+      "end": 115708674,
+      "initializations": 0,
+      "canonical_closed": true
+    }
+  ],
+  "contiguous_since_known_inventory": true,
+  "global_highest_TVL_or_crossvenue_completeness": false,
+  "provider_log_completeness_consensus_or_receipt_trie_proof": false
+}

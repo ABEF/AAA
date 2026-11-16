@@ -1,5 +1,12 @@
 # Price security and factual LP verification
 
+[16 November source/market evidence](../reports/real-market-refresh-20261116/REVIEW.md)
+still establishes no qualified independent pair. A recent canonical block or
+fresh ETH feed does not establish a recent ZZZ trade: native-v4 slot0 is the
+stored pool price and contains no last-trade timestamp. Current rawL, price
+alignment and a favorable directional quote are separate screens, not proof of
+source truth, external depth or manipulation resistance. No price policy changes.
+
 ## Reference execution and captured valuation
 
 Fresh execution-price1/LP-routing3 supports a reviewed external reference as a

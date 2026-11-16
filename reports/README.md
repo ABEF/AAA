@@ -1,5 +1,12 @@
 # Verification evidence
 
+[Real-market refresh16November](real-market-refresh-20261116/REVIEW.md) records39 paced
+read-only requests across three bounded phases, same-anchor closure, current
+source/pool observations and six directional quote diagnostics. Larger-market
+forward screens improve; tested reverse fill, selected-price compatibility and
+independent source pairs remain unqualified. Exact source/evidence pins and
+independent offline checks are retained; no unchanged suite or live change.
+
 [Isolated local deployment rehearsal](local-deployment-rehearsal-20261115/REVIEW.md)
 records44 successful receipts/39instances/112 binding reads, unsealed shutdown,
 local gas and the original capture limitation. Recorder and evidence-admission

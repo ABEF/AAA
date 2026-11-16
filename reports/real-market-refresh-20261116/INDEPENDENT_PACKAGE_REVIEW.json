@@ -1,0 +1,26 @@
+{
+  "all_manifest_members_matched": true,
+  "archive_bytes": 289771,
+  "archive_members": 90,
+  "archive_sha256": "ec687b4d1e3bc6cde830dba06620a9a6871ee5628c9f7337bac38ea025867d1e",
+  "baseline_and_final_verifier_stages_preserved": true,
+  "compiler_or_evm_runs": 0,
+  "current_source_pins_match": true,
+  "independent_reviews_preserved": [
+    "INDEPENDENT_MARKET_REVIEW.json",
+    "INDEPENDENT_DISCOVERY_REVIEW.json",
+    "INDEPENDENT_GAP_COVERAGE_REVIEW.json"
+  ],
+  "manifest_sha256": "5d65f232740bb4fc2113e530f51b37fdb614c9b84bfc10955a533da8c2fec66c",
+  "notes": [
+    "The earlier individual discovery reviews retain their narrower original scopes; the new combined review records later gap closure.",
+    "This checks package identity, source binding and consistency; it grants no live provider, source, route or release approval."
+  ],
+  "old_tests_rerun": 0,
+  "production_approved": false,
+  "raw_original_responses_matched": 39,
+  "rpc_calls": 0,
+  "standalone_snapshots_match_zip": true,
+  "status": "frozen_v2_package_verified_without_executing_verifier",
+  "verifier_executions_by_reviewer": 0
+}

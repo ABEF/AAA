@@ -1,5 +1,10 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+[Fresh market evidence](reports/real-market-refresh-20261116/REVIEW.md) still qualifies no
+independent ETH/ZZZ price pair or complete activation/conversion route. A larger
+known market improves forward quotes, but reverse execution and selected-pool
+price compatibility remain open. All safeguards and live environments stay unchanged.
+
 [Guarded manual reference swaps](reports/manual-reference-swap-fix-20261115/REVIEW.md) now authenticate their exact own-swap
 transition instead of rejecting a valid reference-venue trade. Financial,
 authority and live-source protections remain. New local C/D/Parked receipts fit

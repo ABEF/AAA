@@ -1,0 +1,36 @@
+{
+  "anchor": {
+    "chain_id": 4663,
+    "hash": "0x511e1533b62a0921e2b3723e5edcb95617621b0ec0fb7e7c184dbb59d5157b22",
+    "number": 115708674,
+    "selector": {
+      "blockHash": "0x511e1533b62a0921e2b3723e5edcb95617621b0ec0fb7e7c184dbb59d5157b22",
+      "requireCanonical": true
+    },
+    "timestamp": 1794826624
+  },
+  "current_selected_active_liquidity": "0",
+  "deployable_configuration": false,
+  "eth_primary_candidate": {
+    "address": "0x78f3556b67e17df817d51ef5a990cdaf09e8d3a9",
+    "aggregator": "0x6091e64eb7138eef066a80fd3a0d7427b91f2721",
+    "feed_decimals": 8,
+    "independenceId": null,
+    "maxAge": null,
+    "reviewHash": null,
+    "runtime_keccak256": "0xbd6f524cdc4268b6bd1bb6f77a8821faeea9c52ee9e0afa0b6d948ce82c966c2"
+  },
+  "eth_secondary": null,
+  "explicit_blockers": [
+    "No twoqualifiedindependentETH/ZZZsources",
+    "SelectedactiveL0; largestknownreferencepricebandincompatiblewithselecteddestination",
+    "No testedcomplete1000ZZZreverse/default1%conversion",
+    "Route/source/depth/ages/operations mustbe reviewed; no generated values adopted"
+  ],
+  "production_approved": false,
+  "reviewed_reference": null,
+  "reviewed_swap_routes": [],
+  "selected_pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+  "zzz_primary": null,
+  "zzz_secondary": null
+}

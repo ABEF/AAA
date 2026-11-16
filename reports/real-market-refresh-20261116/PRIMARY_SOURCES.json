@@ -1,0 +1,53 @@
+{
+  "reviewed_date": "2026-11-16",
+  "scope": "Primary documentation reviewed through web tools. These references explain interfaces and operating requirements; they do not attest feed activation, current on-chain prices, independence, costs or a production service. This file is a reference index, not a cryptographic HTML archive.",
+  "sources": [
+    {
+      "url": "https://docs.chain.link/changelog?product=Data+Feeds",
+      "supports": "Robinhood ETH/USD support is documented. Product availability does not establish two independent live services or approve PoPL policy."
+    },
+    {
+      "url": "https://docs.pyth.network/pro/contract-addresses",
+      "supports": "Robinhood Core and Pro are separately documented deployments/interfaces. They must not be treated as interchangeable readers."
+    },
+    {
+      "url": "https://docs.pyth.network/pro/sponsored-feeds",
+      "supports": "Robinhood is absent from the current documented EVM sponsored-feed list. The page recommends operating a suitable authenticated pusher; an existing contract alone does not prove timely publication.",
+      "boundary": "This is newly surfaced operational evidence, not proof the provider changed after the previous project report. No pusher, key, version or funding policy is selected."
+    },
+    {
+      "url": "https://docs.pyth.network/pro/on-chain-fees",
+      "supports": "Documented Core verification fees are distinct from transaction gas, API access and publication operation. A zero verification fee does not make a stale observation fresh."
+    },
+    {
+      "url": "https://docs.pyth.network/pro/pyth-core-upgrade",
+      "supports": "Authenticated data access and compatible publication software require service-specific review. No credential was requested, used or installed by this campaign."
+    },
+    {
+      "url": "https://docs.api3.org/dapps/integration/",
+      "supports": "Provider operation includes documented heartbeat, subscription expiry and renewal responsibilities. Published defaults do not establish an active Robinhood subscription or adequate freshness for PoPL."
+    },
+    {
+      "url": "https://docs.api3.org/dapps/integration/aggregatorv2v3interface.html",
+      "supports": "The compatibility proxy does not provide meaningful round functionality. Current PoPL round checks require separately reviewed compatible adaptation, not weakened checks."
+    },
+    {
+      "url": "https://docs.api3.org/dapps/integration/security-considerations.html",
+      "supports": "Upgrades, provider configuration and operating dependencies require separate control review. Different names or admin addresses do not prove independent price exposure."
+    },
+    {
+      "url": "https://market.api3.org/robinhood?search=ETH%2FUSD",
+      "supports": "An ETH/USD service can be researched through the official market. A displayed activation option is not evidence of an active, qualified source."
+    },
+    {
+      "url": "https://market-catalog.api3.org/",
+      "supports": "No newly authenticated exact-chain/exact-token ZZZ product was identified in the bounded catalog review.",
+      "boundary": "This is not proof that custom/private products do not exist. Historical Chainlink/Pyth catalog counts retain their original scope."
+    },
+    {
+      "url": "https://developers.uniswap.org/docs/api-reference/pool_info",
+      "supports": "The documented pool API supports chain4663 but requires API access and typed pool parameters. It did not establish an exhaustive current pool inventory or a new admitted pool for this project."
+    }
+  ],
+  "not_performed": ["commercial provider engagement", "subscription purchase", "API credential use", "price publication", "configuration adoption", "deployment", "sealing"]
+}

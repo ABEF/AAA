@@ -1,0 +1,69 @@
+{
+  "baseline": "0b31f3300d85d1a8ea86e958759a97a006c5b67f",
+  "capture_source_sha256": "f0cd1487229df7807765bca1997dfc8b013b8407709c9107cdd9ea9e432241e5",
+  "initial_capture_source_sha256": "a6241fad8b0843c0d874262b835ce4ccbcee86e0521d42e95b7e0388ff489e07",
+  "clock_only_delta_ast_equivalent": true,
+  "new_transport_methods": 4,
+  "initial_stage": {
+    "methods": 4,
+    "passes": 3,
+    "pacing_failure": 1,
+    "source": "a6241fad"
+  },
+  "clock_stage": {
+    "affected_method": 1,
+    "fixture_margin_error": 1,
+    "source": "f0cd1487"
+  },
+  "final_stage": {
+    "affected_method_passes": 1,
+    "unchanged_three_not_rerun": true,
+    "source": "f0cd1487"
+  },
+  "actual_phases": [
+    {
+      "name": "primary",
+      "methods": 33,
+      "exit_code": 0,
+      "duration_seconds": 64.38249400000495
+    },
+    {
+      "name": "recent_discovery",
+      "methods": 3,
+      "exit_code": 0,
+      "duration_seconds": 4.347492800006876
+    },
+    {
+      "name": "inventory_gap",
+      "methods": 3,
+      "exit_code": 0,
+      "duration_seconds": 4.369041199999629
+    }
+  ],
+  "total_public_read_methods": 39,
+  "old_13_qualification_tests_rerun": 0,
+  "old_test_suites_rerun": 0,
+  "EVM_tests": 0,
+  "compiler_runs": 0,
+  "public_transactions": 0,
+  "quote_gas_scope": "Freshreadonlydiagnostics use500000, not earlier200000 evidence; no sourcecall/operation gas or guard configuration changed.",
+  "source_files": {
+    "capture.py": "f0cd1487229df7807765bca1997dfc8b013b8407709c9107cdd9ea9e432241e5",
+    "discovery.py": "e62dca373ff060c0d11648b70c3d79671b1dc033b0dbab092c4bc8200669a3e1",
+    "discovery_gap.py": "3fe1d667b4ec5b4354903e494aad8341add7c957abb42f082444c9863d194ab5",
+    "analyze.py": "49afb06bef5edfcb524fd2697d26288b26b14edc11f1e0a3a60b9588f4cc9e66",
+    "verify.py": "c4d3ae7aba1a0bed3f250b9f87b6366d6cbfa8cd75fffb7f4555691630477233",
+    "transport_checks.py": "0ff5179629d7fc4b53e7e93be067047a17f5ba02c4a26806e4032ef3f36a16d0"
+  },
+  "new_verifier_methods": 4,
+  "new_total_helper_methods": 8,
+  "verifier_baseline": {
+    "expected_false_pass_regression_failures": 4,
+    "source_sha256": "1b3b7f79a65612ef821f83f7a10a522746874f38a2cc735893094ac22c530533"
+  },
+  "verifier_final": {
+    "methods": 4,
+    "passes": 4,
+    "source_sha256": "c4d3ae7aba1a0bed3f250b9f87b6366d6cbfa8cd75fffb7f4555691630477233"
+  }
+}

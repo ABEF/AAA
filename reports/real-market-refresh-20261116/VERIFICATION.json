@@ -1,0 +1,1 @@
+{"status": "PASS", "public_files": 89, "actual_read_responses": 39, "valid_results": 34, "explicit_rpc_errors": 5, "known_pool_states": 95, "quote_diagnostics": 6, "discovery_queries": 2, "new_initializations_in_checked_intervals": 0, "network_calls": 0, "EVM_runs": 0, "compiler_runs": 0, "test_suites_rerun": 0}

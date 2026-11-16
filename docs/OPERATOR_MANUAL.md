@@ -805,10 +805,13 @@ finding a provider or quote. Review these points before preparing a new policy:
 - ETH and fixedZZZ each need two reviewed USD sources, even for ETH-only input.
   The LP still contains ZZZ. Check exact ABI words, original timestamps, decimals,
   runtime/proxy controls and market/publisher independence at one pinned block.
-- The observed API3 ETH name/base is inactive and its direct round IDs are0.
-  Funding/initialization and a reviewed compatible reader are separate work.
-  Do not weaken Oracle round/age checks. Pyth zero update-fee getters do not
-  establish data access, a funded updater, gas or recovery.
+- At16November API3 ETH read reverts; current base/subscription is not refreshed.
+  Earlier13November inactive base/name observations remain dated. Activation,
+  renewal and a reviewed round-compatible reader are separate work. Do not weaken
+  Oracle round/age checks. Robinhood is absent from Pyth's documented sponsored
+  EVM list: qualify a compatible authenticated publisher, gas funding, age alerts
+  and recovery if choosing that Core service. Prior zero update-fee observations
+  do not establish free data access or operation.
 - The correct-chain outage policy remains unresolved; Chainlink no longer
   expands uptime feeds to new networks. Do not copy an Arbitrum address or
   fabricate an always-up observation.
@@ -816,8 +819,10 @@ finding a provider or quote. Review these points before preparing a new policy:
   price bands and current quote/transaction gas budgets. A tiny quote can be
   favorable yet cost more gas than its output. A zero-L gap can cross in one
   direction; unknown errors are unavailable evidence, not empty-pool proofs.
-- Selected and alternative10018 cannot jointly pass ordinary reference bands
-  at the captured block. Registering a venue alone does not make it usable.
+- The larger known market and selected destination still cannot jointly pass
+  ordinary reference bands at the16November anchor. A favorable forward quote
+  does not repair that mismatch or prove reverse liquidity. Registering a venue
+  alone does not make it usable.
   Converter rules and native principal rules remain separate; wrapperzero
   cannot gain v3 after sealing, and current automated conversion is native-v4 only.
 - Keep the3% marginal-LP budget separate from3% source agreement. Hypothetical
@@ -826,14 +831,26 @@ finding a provider or quote. Review these points before preparing a new policy:
   eleven-minute-old state while retaining its header. Use a separately qualified
   archive/trace provider; never merge a later observation into an older review.
 
-Before admission, use the [latest market qualification record](../reports/market-followup-20261109/REVIEW.md):
+Before admission, use the [16 November market qualification record](../reports/real-market-refresh-20261116/REVIEW.md):
 two proxy addresses may share one aggregator, and a deployed Pyth Core may hold
 stale data. Feed catalogs and old answers are candidate discovery, never a live
 policy. The3% source agreement bound and3% contribution cap are different tests;
 source spread consumes execution margin. Do not loosen one to hide failure of
 another. Check both swap directions at actual sizes through the complete
 operation: nonzero active L does not prove liquid ticks exist ahead. Preserve
-the exact blocker/output and re-review at a fresh canonical block.
+the exact blocker/output and re-review at a fresh canonical block. A current
+slot0 read has no last-trade timestamp; a fresh ETH update does not establish
+recent ZZZ price discovery. Keep source truth, observed stored spot, rawL ranking
+and usable external depth separate.
+
+Before selecting a secondary ETH service, record who publishes/funds/renews it,
+its actual product/reader compatibility, data/API and gas costs, age alerts and
+outage recovery. Prepare reviewed source/route manifests only after that evidence
+exists. The diagnostic candidate JSON deliberately has null policy fields and
+empty routes; it is not configuration to install. Follow the governance steps
+below, then verify full contributions and conversions with actual gas/fee budgets.
+No service restart, updater installation or route admission follows from this
+read-only refresh. [Service decision procedure](PRODUCTION_SERVICES.md#concrete-provider-requests).
 
 LP balancing admits native ETH/fixedZZZ v4 venues only. Existing v3/WETH earned
 conversion requires a nonzero reviewed immutable wrapper selected BEFORE seal,

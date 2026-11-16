@@ -1,11 +1,12 @@
 # Pool spot price multiplied by ETH/USD
 
-[13November source and market review](../reports/predeployment-qualification-20261113/markets/REVIEW.md)
-still qualifies no source pair. Shared-aggregator Chainlink proxies are one
-ETH service; Pyth is stale/disagreeing and API3 ETH inactive. No two independent
-ZZZ paths are established. Raw activeL cannot choose a truthful reference, and
-the deeper known native markets currently conflict with selected-pool bands.
-The optional reader, spot choice and every safeguard stay unchanged.
+[16 November source and market review](../reports/real-market-refresh-20261116/REVIEW.md)
+still qualifies no source pair. Chainlink proxies share one ETH aggregator;
+Pyth is stale/disagreeing and API3 read reverts. No two independent ZZZ paths are
+established. Raw activeL cannot choose a truthful reference; the deeper tested
+native market still conflicts with selected-pool bands. Stored slot0 has no
+last-trade timestamp: a fresh block or ETH update does not establish recent
+ZZZ price discovery. The optional reader, spot choice and safeguards stay unchanged.
 
 ## Scope and economic decision
 

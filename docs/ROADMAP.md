@@ -1,5 +1,11 @@
 # Engineering roadmap
 
+The [latest market milestone](../reports/real-market-refresh-20261116/REVIEW.md) refreshes
+prices, known pool states, useful-size directional diagnostics and the previously
+unscanned inventory interval. Next resolve independent ZZZ paths, an operating
+ETH secondary, bidirectional external depth and selected-pool compatibility;
+then qualify full operations and complete fees. Observation is not admission.
+
 The [offline construction milestone](DEPLOYMENT_PREPARATION.md) prepares current
 constructor payloads and binding order from accepted artifacts without a new
 build or public action. The [local unsealed constructor/binding milestone](../reports/local-deployment-rehearsal-20261115/REVIEW.md)

@@ -1,5 +1,10 @@
 # Production service decisions
 
+The [16 November refresh](../reports/real-market-refresh-20261116/REVIEW.md) adds current
+same-anchor source/pool state and directional quotes, plus two bounded discovery
+intervals. It does not repeat the earlier13-check provider qualification or admit
+a source/route/provider. No independent ETH/ZZZ pair or full operation is qualified.
+
 A dedicated direct ZZZ/USD provider is not mathematically required: the optional
 [spot composite reader](POOL_SPOT_PRICE_SOURCE.md) composes reviewed native-v4
 ETH/ZZZ spot with ETH/USD. Prefer the largest qualifying external market and
@@ -8,7 +13,7 @@ production source pair is selected; the dated provider findings below retain
 their original scope.
 
 
-The [latest qualification](../reports/predeployment-qualification-20261113/REVIEW.md)
+The [13 November provider qualification](../reports/predeployment-qualification-20261113/REVIEW.md)
 independently establishes genesis, passes all13 paced RPC checks and verifies
 specific history/logs/tiny nonpersistent simulation. Full provider capacities/
 plan/SLA/archive, exact real-market PoPL fees and operator spending approval
@@ -16,17 +21,17 @@ remain open. Current market/source failures are retained; no live endpoint,
 source/route, zero-tip policy or operating service is selected.
 [Operator procedure](OPERATOR_MANUAL.md#robinhood-rpc-fees).
 
-Reviewed2026-11-13. [Feed/market read-only qualification](../reports/market-followup-20261109/REVIEW.md) records shared-anchor20:04:50UTC observations and a separate20:18:44UTC feed follow-up, not selected live configuration. This records required capabilities and actual selection limits;
+Reviewed2026-11-16. [Feed/market read-only qualification](../reports/market-followup-20261109/REVIEW.md) records shared-anchor20:04:50UTC observations and a separate20:18:44UTC feed follow-up, not selected live configuration. This records required capabilities and actual selection limits;
 [Todo](../TODO.md) alone owns status. **No production deployment is approved.**
 
 ## Dependency inventory
 
 | Dependency | Required capability / current boundary | Procedure/evidence |
 | --- | --- | --- |
-| ETH and fixedZZZ USD prices | Two independent reviewed USD sources per asset, exact original age/round/decimals, runtime/upstream controls and300bps agreement. No usable pair: Chainlink proxies share one aggregator; Pyth is stale; API3 ETH is inactive/direct-ABI incompatible; no two fixedZZZ sources are established. Exact-token CEX books are USDT market leads, not USD feeds. The [13November refresh](../reports/predeployment-qualification-20261113/markets/REVIEW.md) retains current age541758s/Pyth disagreement1483.837986bps and source controls. | [Price security](PRICE_SECURITY.md), [latest findings](../reports/market-followup-20261109/feeds/FINDINGS.md) |
-| Optional Pyth reader | Existing immutable reader preserves original publishTime and hard86400s age ceiling. Captured age229537s and546.2675655bps disagreement fail unchanged guards. Live on-chain update-fee getters are0; authenticated data access, funded updates, gas, upstream controls and recovery remain unqualified. | [Reader policy](PYTH_PRICE_SOURCE.md), [feed evidence](../reports/market-followup-20261109/feeds/FEED_FINDINGS.json) |
+| ETH and fixedZZZ USD prices | Two independent reviewed USD sources per asset, original age/round/decimals, upstream controls and300bps agreement. At16November Chainlink proxies still share one aggregator; Pyth is stale/disagreeing and API3 read reverts. Its current base/subscription is not refreshed. No two fixedZZZ paths are approved; prior CEX books are dated leads, not USD feeds. | [Price security](PRICE_SECURITY.md), [current capture](../reports/real-market-refresh-20261116/REVIEW.md) |
+| Optional Pyth reader | Immutable reader preserves original publishTime and hard86400s age ceiling; the16November stored ETH observation fails age/agreement. Robinhood is absent from the documented sponsored EVM list: a compatible authenticated own publisher or another qualified service needs an operator, data access, gas funds, age alerts and recovery. Prior zero on-chain update-fee observations do not establish free data/operation. | [Reader policy](PYTH_PRICE_SOURCE.md), [current research](../reports/real-market-refresh-20261116/PRIMARY_SOURCES.json) |
 | Sequencer liveness | Chainlink lists no Robinhood uptime feed and says expansion to additional networks has stopped. Review an actual correct-chain outage/recovery policy; never copy another chain or synthesize always-up data. | [Primary-source findings](../reports/market-followup-20261109/feeds/FINDINGS.md), [operator procedure](OPERATOR_MANUAL.md#configure-stop-and-recover-usd-pricing---2026-10-24) |
-| Contribution/conversion markets | Actual full-input/direction/size/spot/fee/depth and gas qualification, then whole operation with independent prices. Historical9November696quote calls include23overlapping gas rechecks; tiny favorable reverse outputs are not economically useful conversion acceptance. Selected and alternative10018 cannot jointly pass ordinary principal reference bands at the anchor. Native-v4 principal and optional v3/WETH earned conversion stay separate. | [Route evidence](../reports/market-followup-20261109/routes/ROUTES_FINAL_v2.md), [pool](POOL_SELECTION.md), [typed conversion](TYPED_V4_ROUTES.md) |
+| Contribution/conversion markets | Qualify full input/direction/actual size, source and physical price bands, output, deployed LP, depth and complete gas. The larger known pool passes only forward quote-loss screens; tested1000ZZZ reverse fill and selected-destination compatibility fail. Stored spot is not recent-trade evidence. Earlier696 calls/tiny favorable outputs retain their dated scopes; no venue is enabled. | [Current diagnostics](../reports/real-market-refresh-20261116/REVIEW.md), [pool](POOL_SELECTION.md), [typed conversion](TYPED_V4_ROUTES.md) |
 | RPC/archive | Canonical hashes/ancestry, complete logs, durable historical state, trace/simulation/gas and recovery. The official endpoint retained an anchor header but refused its state roughly11minutes later; a bounded alternate-provider read recovered it. This is not provider approval. | [RPC qualification](RPC_PREPARATION_QUALIFICATION.md), [current failures](../reports/market-followup-20261109/VERIFICATION.md), [history](HISTORY_AUDIT.md) |
 | Randomness | Exact original subscription-v2.5 two-word request, proof-verifying actual coordinator, immutable lane/subscription/payment policy, funded consumer, same-request recovery/no reroll. No qualified provider yet. | [Mint/provider qualification](MINT_INTEGRATION_QUALIFICATION.md) |
 | OpenSea | Mint2 source implements free TEAM and governed-price AL/public dormant minting(default0.05ETH gross), recipient net after the actual platform fee, gas separate. The pinned SeaDrop runtime is observed; actual custom-drop onboarding, fees/payers, VRF and operating acceptance remain open. Secondary listing support is different evidence. | [Marketplace qualification](MINT_INTEGRATION_QUALIFICATION.md) |
@@ -62,10 +67,16 @@ independence, original timestamps/decimals, heartbeat/latency/outage terms, upgr
 controls, authenticated update ownership and full data/gas/funding costs. If a
 market uses USDT, require defensible USD normalization and depeg behavior.
 
-API3 is a concrete ETH alternative to discuss, with authenticated published offers,
-but its observed base/name are uninitialized. A compatible immutable reader would
-be separately reviewed work; do not remove round checks to accommodate the native
-proxy. Offers are native-wei duration-funding parameters, not guaranteed payable
-amounts or an active SLA. All observed offers have86400s heartbeat; do not presume
-that a heartbeat at the Oracle hard maximum leaves update/confirmation headroom.
-No provider was contacted, selected or paid by this qualification.
+For the ETH secondary, compare compatible authenticated Pyth Core publication
+with API3 activation plus a separately reviewed round-compatible reader. The
+current API3 read reverts;13November zero base/name observations remain historical.
+Do not remove Oracle round checks. API3 documentation describes mainnet plan
+expiry after three months and a standard86400s heartbeat; actual current offers,
+renewal, update/confirmation headroom and cost need review. An old offer is not
+a payable quote or active SLA. Pyth Core/Pro interfaces are separate products;
+the existing Core reader is not automatically compatible with Pro updates.
+
+Name the operator, choose the actual product, record data/API access and renewal
+responsibility, fund only reviewed operating costs, configure age/outage alerts
+and rehearse publication/recovery before admission. [Primary references](../reports/real-market-refresh-20261116/PRIMARY_SOURCES.json).
+No provider was commercially engaged, selected, installed, funded or paid by this qualification.
