@@ -61,7 +61,13 @@ def path_name(name):
     return name
 
 
-def admitted(name):
+def _schema(schema):
+    require(type(schema) is int and schema in (1, 2, 3, 4), 'Unsupported review bundle schema')
+    return schema
+
+
+def admitted(name, *, schema=4):
+    _schema(schema)
     path_name(name)
     parts = PurePosixPath(name).parts
     if any(p.startswith('.') for p in parts) and not name.startswith('.github/workflows/') and name != '.gitmodules':
@@ -76,7 +82,8 @@ def admitted(name):
         return PurePosixPath(name).suffix in {'.yml', '.yaml'}
     if parts[0] == 'docs':
         return name.endswith('.md') or name in {'docs/project-todo.json',
-            'docs/function-reference.json', 'docs/function-reference-notes.json'}
+            'docs/function-reference.json', 'docs/function-reference-notes.json'} or \
+            schema == 4 and name == 'docs/operator-call-examples.json'
     if parts[0] == 'config':
         return name.endswith('.example.json') or (name.startswith('config/nginx/') and name.endswith('.conf'))
     if parts[0] in CODE:
@@ -99,7 +106,8 @@ def git(root, *args, data=None):
     return result.stdout
 
 
-def frozen_files(root, commit):
+def frozen_files(root, commit, *, schema=4):
+    _schema(schema)
     require(isinstance(commit, str) and HEX40.fullmatch(commit), 'Use an exact lowercase 40-character commit')
     actual = git(root, 'rev-parse', '--verify', commit + '^{commit}').decode().strip()
     require(actual == commit, 'Commit identity mismatch')
@@ -118,7 +126,7 @@ def frozen_files(root, commit):
             gitlinks.append({'path': name, 'commit': oid})
             excluded.append({'path': name, 'reason': 'gitlink_dependency_not_bundled'})
             continue
-        if not admitted(name):
+        if not admitted(name, schema=schema):
             excluded.append({'path': name, 'reason': 'outside_review_source_allowlist'})
             continue
         require(mode in ('100644', '100755') and kind == 'blob', 'Review source must be a regular file')
@@ -147,7 +155,8 @@ def frozen_files(root, commit):
     return tree, records, gitlinks, files, sorted(excluded, key=lambda r: r['path'])
 
 
-def dependency_record(files, gitlinks):
+def dependency_record(files, gitlinks, *, schema=4):
+    _schema(schema)
     required = {'foundry.toml', 'package.json', 'package-lock.json', 'scripts/install-deps.sh'}
     require(required <= files.keys(), 'Compiler/dependency installation inputs are incomplete')
     if 'scripts/generate-artwork-library.py' in files:
@@ -158,6 +167,11 @@ def dependency_record(files, gitlinks):
     if 'scripts/generate-function-reference.py' in files:
         require({'docs/function-reference.json', 'docs/function-reference-notes.json',
                  'docs/CONTRACT_FUNCTIONS.md'} <= files.keys(), 'Callable-reference snapshot/explanations are missing')
+    if schema == 4 and {'scripts/generate-operator-reference.py', 'zzz_ops/operator_reference.py',
+                        'tests_python/test_operator_reference.py'} & files.keys():
+        require({'docs/operator-call-examples.json', 'docs/function-reference.json',
+                 'docs/function-reference-notes.json', 'docs/CONTRACT_FUNCTIONS.md',
+                 'docs/OPERATOR_MANUAL.md'} <= files.keys(), 'Operator-reference inputs are missing')
     require(not gitlinks or '.gitmodules' in files, 'Gitlink source metadata is missing')
     for name in ('package-lock.json', '.gitmodules'):
         if name in files:
@@ -396,23 +410,47 @@ absence or upgrades historical reports into evidence for this source.
 '''.encode()
 
 
-def handoff(commit, schema=3):
+def _handoff_v4(commit):
+    # Historical renderers remain byte-identical. Only this new instruction
+    # version changes fixture closure and the Git-dependent reproduction advice.
+    text = _handoff_v3(commit).decode()
+    text = text.replace('Schema 3 versions these review instructions only;',
+                        'Schema 4 versions review inputs and these instructions only;', 1)
+    text = text.replace('Schema 1 and 2 retain their original bytes and historical advice.',
+                        'Schemas 1, 2 and 3 retain their original bytes and historical advice.', 1)
+    text = text.replace('Inspect exact frozen scripts before using:', f'''This archive deliberately excludes Git metadata. Before Git-dependent checks,
+obtain an independently authenticated Git checkout at exactly `{commit}`.
+Verify its HEAD identity and byte-compare every included source file with this
+verified archive; stop on any mismatch. Run the commands below from that matching
+checkout, not from the extracted archive alone. Do not run `git init` to fabricate
+history, change the source commit or bypass the exact-blob publication check.
+Excluded files and dependency downloads still require their own trusted inputs.
+Schema4 includes the exact operator-call examples and requires the full frozen
+operator/function-reference inputs whenever their operator consumer is present.
+These inputs enable review; they are not approval or executable operator consent.
+Inspect exact frozen scripts before using:''', 1)
+    return text.encode()
+
+
+def handoff(commit, schema=4):
     """Dispatch immutable instruction versions without relabelling old archives."""
-    if type(schema) is not int or schema not in (1, 2, 3):
-        raise BundleError('Unsupported review bundle schema')
+    _schema(schema)
     if schema == 1:
         return _handoff_v1(commit)
     if schema == 2:
         return _handoff_v2(commit)
-    return _handoff_v3(commit)
+    if schema == 3:
+        return _handoff_v3(commit)
+    return _handoff_v4(commit)
 
 
-def pack(root, commit, *, schema=3):
-    tree, records, gitlinks, files, excluded = frozen_files(root, commit)
+def pack(root, commit, *, schema=4):
+    _schema(schema)
+    tree, records, gitlinks, files, excluded = frozen_files(root, commit, schema=schema)
     instructions = handoff(commit, schema)
     manifest = {'schema': schema, 'kind': 'popl-frozen-review-inputs', 'source_commit': commit,
                 'source_tree_sha1': tree, 'production_approved': False, 'tests_executed': False,
-                'files': records, 'excluded_files': excluded, 'dependencies': dependency_record(files, gitlinks),
+                'files': records, 'excluded_files': excluded, 'dependencies': dependency_record(files, gitlinks, schema=schema),
                 'handoff_sha256': digest(instructions)}
     members = {'HANDOFF.md': instructions, 'manifest.json': canonical(manifest)}
     members.update({'source/' + k: v for k, v in files.items()})
@@ -469,7 +507,7 @@ def verify(raw, expected_sha256):
         require(canonical(manifest) == members['manifest.json'], 'Manifest encoding is not canonical')
         require(set(manifest) == {'schema', 'kind', 'source_commit', 'source_tree_sha1', 'production_approved',
                                  'tests_executed', 'files', 'excluded_files', 'dependencies', 'handoff_sha256'}, 'Unknown manifest shape')
-        require(type(manifest['schema']) is int and manifest['schema'] in (1, 2, 3) and manifest['kind'] == 'popl-frozen-review-inputs' and
+        require(type(manifest['schema']) is int and manifest['schema'] in (1, 2, 3, 4) and manifest['kind'] == 'popl-frozen-review-inputs' and
                 manifest['production_approved'] is False and manifest['tests_executed'] is False and
                 HEX40.fullmatch(manifest['source_commit']) and HEX40.fullmatch(manifest['source_tree_sha1']),
                 'Invalid review manifest identity')
@@ -480,7 +518,7 @@ def verify(raw, expected_sha256):
         for record in manifest['files']:
             require(set(record) == {'path', 'mode', 'git_blob_sha1', 'size', 'sha256'}, 'Invalid source record')
             name = path_name(record['path'])
-            require(admitted(name) and name > previous, 'Source inventory is not admitted, unique and ordered')
+            require(admitted(name, schema=manifest['schema']) and name > previous, 'Source inventory is not admitted, unique and ordered')
             previous = name
             require(record['mode'] in ('100644', '100755') and type(record['size']) is int and
                     0 <= record['size'] <= MAX_FILE and HEX40.fullmatch(record['git_blob_sha1']) and
@@ -497,7 +535,7 @@ def verify(raw, expected_sha256):
         gitlinks = manifest['dependencies']['gitlinks']
         require(isinstance(gitlinks, list) and all(set(x) == {'path', 'commit'} and path_name(x['path']) and
                 HEX40.fullmatch(x['commit']) for x in gitlinks), 'Invalid gitlink inventory')
-        require(manifest['dependencies'] == dependency_record(files, gitlinks), 'Dependency identity mismatch')
+        require(manifest['dependencies'] == dependency_record(files, gitlinks, schema=manifest['schema']), 'Dependency identity mismatch')
         excluded, last = manifest['excluded_files'], ''
         require(isinstance(excluded, list) and len(excluded) <= 10000, 'Excluded inventory is oversized')
         linked = {x['path'] for x in gitlinks}
@@ -506,7 +544,7 @@ def verify(raw, expected_sha256):
             name = path_name(row['path'])
             require(name > last and name not in files, 'Excluded source is duplicate or included')
             last = name
-            require((row['reason'] == 'outside_review_source_allowlist' and not admitted(name)) or
+            require((row['reason'] == 'outside_review_source_allowlist' and not admitted(name, schema=manifest['schema'])) or
                     (row['reason'] == 'gitlink_dependency_not_bundled' and name in linked), 'Invalid source exclusion')
         require(linked == {x['path'] for x in excluded if x['reason'] == 'gitlink_dependency_not_bundled'},
                 'Excluded Gitlink inventory mismatch')

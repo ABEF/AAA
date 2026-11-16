@@ -38,8 +38,14 @@ def _finite_float(value):
 def read_json(path: str | Path, default: Any = None, *, encoding: str | None = None) -> Any:
     """Missing files use the explicit default; present malformed truth never does."""
     path = Path(path)
+    # exists() follows links and can classify a dangling entry or access failure
+    # as absence. Only a missing directory entry may create fresh defaults.
+    try:
+        path.lstat()
+    except FileNotFoundError:
+        return default
     return json.loads(path.read_text(encoding=encoding), object_pairs_hook=_unique_object,
-                      parse_constant=_reject_constant, parse_float=_finite_float) if path.exists() else default
+                      parse_constant=_reject_constant, parse_float=_finite_float)
 
 def atomic_json(path: str | Path, data: Any) -> None:
     path = Path(path)

@@ -1,0 +1,78 @@
+{
+  "schema": "popl-independent-patch-review1",
+  "reviewer": "audit_financial_contracts",
+  "reviewed_at_utc": "2026-11-16T15:55:36.568478+00:00",
+  "method": "Read actual diffs, complete changed modules/tests, constructor and caller context; no sources/tests changed and no test reruns.",
+  "classification": "Narrow fail-closed hardening and offline operator mistake prevention. No public exploit or production qualification is claimed.",
+  "status": "NO_BLOCKING_DEFECT_CONFIRMED_BY_STATIC_REVIEW",
+  "files": [
+    {
+      "repository": "contracts",
+      "path": "zzz_ops/deployment_plan.py",
+      "sha256": "7e67b8c74720768971f10548693a1757f6932032a795467601ea428941bd63f7"
+    },
+    {
+      "repository": "contracts",
+      "path": "zzz_ops/state.py",
+      "sha256": "6f2ce42cc92783a60a554fbe1e7a5b3b5fba2543562e2ebfb64766f6b5c09c9b"
+    },
+    {
+      "repository": "contracts",
+      "path": "tests_python/test_deployment_authority_inputs.py",
+      "sha256": "4f7db84f8a8b68bc8a8d57d28314e03d9e56a464af1c84ffa654e4f97b3fc15b"
+    },
+    {
+      "repository": "contracts",
+      "path": "tests_python/test_state_presence.py",
+      "sha256": "4670160b19d9dc08d124f36bd777d9efd8d1c208401ed964d15c4e06def8db3d"
+    },
+    {
+      "repository": "website",
+      "path": "deployment-transactions.js",
+      "sha256": "a0c10060f9cc345adfdd9907c50ef9f2bbb03d1bbac96942d3a72bdb554279ca"
+    },
+    {
+      "repository": "website",
+      "path": "tests/deployment-signing-profile.test.mjs",
+      "sha256": "d86996dfc9b0cf6084a9b5687196dde99a88e6275e14f4193096608c3f76efe3"
+    },
+    {
+      "repository": "website",
+      "path": "package.json",
+      "sha256": "5199072828ad109ef3e2d5f99a3744856f005853f2d30f3d0a89b20fbf00da21"
+    }
+  ],
+  "reviews": [
+    {
+      "patch": "deployment authority admission",
+      "result": "consistent",
+      "evidence": "validate normalizes all planned/input addresses first; seen excludes None and includes every known planned top-level protocol contract. Existing Access collision diagnostic remains first. Fixed native dependencies and SeaDrop reject as governance without reading build/RPC. Partial and case-mixed collisions reject. Unknown wallet and shared human governance/keeper/guardian/recipient remain allowed. Existing output-preservation and source/build gates are unchanged.",
+      "test_review": "Six new methods cover every other TOP role, every known external dependency, Access diagnostic, mixed case/partial plan, legitimate shared human roles/template, and CLI refusal before Artifacts/output. Reviewed source, not rerun."
+    },
+    {
+      "patch": "JSON state presence",
+      "result": "consistent",
+      "evidence": "lstat distinguishes a present dangling leaf link from a missing entry; only FileNotFoundError during initial lstat returns the supplied default. PermissionError/EIO propagate, as do read failures after a successful presence observation. Existing duplicate-key/nonfinite/malformed JSON parser and atomic writes are unchanged. Readable symlink configuration remains accepted.",
+      "test_review": "Seven new methods cover modeled dangling link, permission/EIO, disappear-after-lstat, actual absence/default identity/no file creation, actual dangling symlink, and readable config symlink. Actual link tests explicitly skip Windows privilege error1314 only. Reviewed source, not rerun."
+    },
+    {
+      "patch": "historical signing-profile allowlist",
+      "result": "consistent",
+      "evidence": "Constructor rejects schema4/source9, schema5/source10 and unknown/non-number schemas before signer construction, provider listeners, API preparation or RPC. Exact numeric schemas1/2/3 retain historical local coordinator capability; independent rehearsal/chain31337/http127.0.0.1 origin/RPC checks remain. Real DeploymentAPI clones and deeply freezes its validated manifest. Shared BrowserWallet remains unmodified and Anvil-only; current source9/source10 are unsigned.",
+      "test_review": "Five new tests include two validator-accepted fresh fixtures, unknown/missing/wrongly typed schemas, actual BrowserWallet construction/listener teardown for three historical schemas without sends, and independent network/origin rejection. Maintained package test list includes new file. Reviewed source, not rerun."
+    }
+  ],
+  "findings": [],
+  "limitations": [
+    "These changes prevent known invalid inputs/state interpretations; they do not authenticate a usable EOA/Safe/delegated governance wallet or discover unknown constructor-created child addresses. Live authority qualification remains separate.",
+    "The lstat check does not provide an atomic filesystem read/write transaction, reject every ancestor symlink, defeat a hostile privileged filesystem owner, or change atomic_json behavior. No such guarantee should be claimed.",
+    "The local signing constructor accepts only historical schemas1-3. This is capability narrowing, not fresh-profile browser-wallet or live public signing qualification.",
+    "No claim is made about focused test execution results; the implementing agents/root own execution evidence. Hash changes after this capture require renewed review of those differences."
+  ],
+  "unchanged_shared_signer": {
+    "path": "browser-wallet.js",
+    "sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "git_diff_empty": "website Git status inspected separately: unchanged shared signer"
+  },
+  "production_approved": false
+}

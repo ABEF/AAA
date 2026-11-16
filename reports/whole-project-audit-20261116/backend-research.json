@@ -1,0 +1,19 @@
+{
+  "utc": "2026-11-16T15:46:05.167095+00:00",
+  "host_python": "3.12.14",
+  "primary_sources": [
+    {
+      "url": "https://docs.python.org/3.11/library/pathlib.html#pathlib.Path.exists",
+      "applies": "exists follows target, so a dangling entry appears absent."
+    },
+    {
+      "url": "https://docs.python.org/3.14/library/pathlib.html#querying-file-type-and-status",
+      "applies": "Python3.14 suppresses all OSError from exists; access/I/O mocked regressions cover this supported future runtime boundary, not a claim both faults are suppressed on this host Python."
+    },
+    {
+      "url": "https://docs.python.org/3.14/library/pathlib.html#pathlib.Path.lstat",
+      "applies": "lstat inspects the link entry and does not deliberately suppress access errors."
+    }
+  ],
+  "test_scope_clarification": "All three baseline failures are portable injected-semantics regressions. The dangling-link semantics are documented for3.11; access/I/O suppression is specifically documented from3.14. Actual symlink operations were skipped because this Windows account lacks privilege1314. No real Unix filesystem/link or live keeper execution is claimed."
+}

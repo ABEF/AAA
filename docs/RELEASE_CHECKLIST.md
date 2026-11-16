@@ -1,5 +1,10 @@
 # Release approval record - NOT APPROVED
 
+The [whole-project review](../reports/whole-project-audit-20261116/REVIEW.md)
+implements scoped source/tooling fixes and corrects stale audit guidance. It
+does not approve authorities, markets, services, real fees, OpenSea, VRF or
+maximum-state operation. Keep those evidence and independent-audit gates open.
+
 [16 November external evidence](../reports/real-market-refresh-20261116/REVIEW.md) closes
 only the bounded observation milestone. No independent ETH/ZZZ price pair,
 complete activation/growth/conversion route or operating service is approved.

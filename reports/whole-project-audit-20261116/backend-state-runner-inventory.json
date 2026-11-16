@@ -1,0 +1,21 @@
+{
+  "utc": "2026-11-16T15:43:13.015407+00:00",
+  "stage": "new_module_inventory_only",
+  "execution_performed": false,
+  "tests_run": 0,
+  "registered_once": true,
+  "new_module_method_count": 7,
+  "selected_methods": [
+    "tests_python.test_state_presence.StatePresenceTests.test_access_failure_is_not_absence",
+    "tests_python.test_state_presence.StatePresenceTests.test_actual_dangling_symlink_retains_its_entry_and_target",
+    "tests_python.test_state_presence.StatePresenceTests.test_actual_readable_config_symlink_keeps_compatibility",
+    "tests_python.test_state_presence.StatePresenceTests.test_dangling_entry_is_not_a_missing_journal",
+    "tests_python.test_state_presence.StatePresenceTests.test_filesystem_failure_is_not_absence",
+    "tests_python.test_state_presence.StatePresenceTests.test_present_file_disappearing_during_read_fails_closed",
+    "tests_python.test_state_presence.StatePresenceTests.test_true_absence_keeps_the_explicit_default_and_creates_nothing"
+  ],
+  "source_sha256": {
+    "scripts\\run-keeper-tests.py": "dfc0ad6de8b5e3cad7e688f70ca2c76e2076c843b13beacc2b5089f8ac24f0e6"
+  },
+  "notice": "Inventory only; no existing or new test body executed in this stage."
+}

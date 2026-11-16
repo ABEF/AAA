@@ -1,0 +1,21 @@
+{
+  "utc": "2026-11-16T15:55:31.591590+00:00",
+  "stage": "additional_new_synthetic_git_admission",
+  "tests_run": 1,
+  "methods": [
+    "tests_python.test_review_bundle_schema4.ReviewBundleSchema4Tests.test_git_snapshot_admission_dispatches_by_explicit_archive_schema"
+  ],
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "successful": true,
+  "source_before": {
+    "zzz_ops/review_bundle.py": "439bea792ce03b97f376485589dbf69a16f68ac23f7531d835bd9c9ad5ee8eb3",
+    "tests_python/test_review_bundle_schema4.py": "bae57fd60bf89cdc8f0470427cfabc078214aaf6d94ee706b56dcefe2f344657"
+  },
+  "source_after": {
+    "zzz_ops/review_bundle.py": "439bea792ce03b97f376485589dbf69a16f68ac23f7531d835bd9c9ad5ee8eb3",
+    "tests_python/test_review_bundle_schema4.py": "bae57fd60bf89cdc8f0470427cfabc078214aaf6d94ee706b56dcefe2f344657"
+  },
+  "scope": "Only the newly added method; synthetic Git responses, not a sourceHEAD package or real Git mutation. Previous12 methods not repeated."
+}

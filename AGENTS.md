@@ -1,5 +1,11 @@
 # AAA / ZZZ PoPL project instructions
 
+The [16 November whole-project audit](reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
+state-file and website-profile gaps and reconciles current guidance. Production
+Solidity, economic rights, safeguards, gas defaults and existing environments
+are unchanged. Focused new checks and exact historical source reuse are recorded
+separately; this is internal review, not independent release approval.
+
 The [isolated metadata2 rehearsal](reports/metadata2-rehearsal-20261116/REVIEW.md)
 verifies the five changed normal constructors, three bindings and twelve actual
 instances on a new owned loopback chain. All 20 cold metadata cases pass; worst
@@ -704,7 +710,7 @@ No environment rollout or independent approval. See the single operator procedur
 - Before Python publication run `python scripts/check-python-publication.py --index`
   against exact staged blobs, then the committed revision. Local untracked imports
   never establish published closure. Main only; verify exact local/remote heads.
-- Frozen review archives default to instruction schema3. Preserve schema1/2
+- Frozen review archives default to instruction schema4. Preserve schema1/2/3
   renderers and ZIP bytes; archive versions are not contract/inventory/journal
   upgrades. Use [the package procedure](docs/FROZEN_REVIEW_BUNDLE.md).
 - Offline operator-review tooling only hashes a strict source-bound manifest and

@@ -1,0 +1,35 @@
+{
+  "utc": "2026-11-16T15:56:18.774936+00:00",
+  "findings": {
+    "BE-02": "Fresh review bundles excluded exact operator-call examples and did not require operator fixture closure, despite documented normal operator verification needing those files.",
+    "BE-03": "Source-only extraction lacks Git history required by exact-blob publication verification; new instructions now explicitly require independently authenticated exact Git checkout plus included-file byte comparison."
+  },
+  "resolution": "New default schema4 version-selects source admission and dependency closure, preserving1/2/3 excluded-file meaning, exact handoff renderers and dependency records. Only one exact documentation JSON path added. Public/private/runtime exclusions remain. No protocol/source verification provenance guard removed.",
+  "historical_evidence": "Three original synthetic baseline fixture archives independently reverified post-fix with exact hashes; not actual repository HEAD packages or protocol qualification.",
+  "verification": {
+    "new_methods": 11,
+    "adapted_existing_methods": 2,
+    "unique_passing_methods": 13,
+    "stages": [
+      "bundle-schema4-postfix.json",
+      "bundle-schema4-git-admission.json"
+    ],
+    "baseline": "bundle-schema4-baseline.json",
+    "skipped": 0,
+    "unchanged_test_methods_executed": 0,
+    "old_suites_executed": 0,
+    "solidity_tests_executed": 0,
+    "source_stages_notice": "12 passes at first post-fix test-source stage; only additional new synthetic Git-admission method ran at final test-source stage. Production review_bundle.py bytes are identical across both stages."
+  },
+  "final_source_sha256": {
+    "zzz_ops/review_bundle.py": "439bea792ce03b97f376485589dbf69a16f68ac23f7531d835bd9c9ad5ee8eb3",
+    "tests_python/test_review_bundle_schema4.py": "bae57fd60bf89cdc8f0470427cfabc078214aaf6d94ee706b56dcefe2f344657",
+    "tests_python/test_review_bundle_profiles.py": "6b15da5775179dab4ff9dcb5012b41bbd0f19e9b590f4998f1156ff7f4c4c17f",
+    "docs/FROZEN_REVIEW_BUNDLE.md": "cbfadd4bd710ef64512a47799dd2ef6cfe16596c8b9dd8d3db3d07427000fb69"
+  },
+  "unchanged_provenance_checker_sha256": "eb09d6a808d0c54bf811ce484e1c36f0ef2a3acc229696dd25a653f33ff69eb7",
+  "no_actual_head_bundle_created": true,
+  "no_install_probe_sign_deploy_service_chain_journal_heartbeat_changes": true,
+  "runner_registration": "General Python runner auto-discovers new module; curated keeper runner does not maintain review_bundle modules, so no new keeper registration.",
+  "followup": "Root integrates Todo/operator/handoff/reconciliation notes and publication. Any actual frozen package must use the final published commit, not an unpublished parent."
+}

@@ -1,0 +1,244 @@
+{
+  "generated_utc": "2026-11-16T15:46:26.530732+00:00",
+  "website_baseline_revision": "2a528696d5eaea5ebb42cfeb313836840fff5e97",
+  "scope": "Source review with specific read coverage; no claim every line/path/token/provider/marketplace was exhaustively proved. Selected sections are marked. Generated artwork bytes were not all visually reviewed; parent owns import/packager audit.",
+  "files": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "1f061130a5800067e26a92f3408efc8f6ef834ec6d6e81cea438ff00ee16a2aa",
+      "bytes": 15549,
+      "review_scope": "Applicable website authorization, profile history, signer and environment preservation requirements."
+    },
+    {
+      "file": "README.md",
+      "sha256": "5e9ea0c388ef018210b11072a476c3315fea83c99b0cde12f917ec0cebe53152",
+      "bytes": 32478,
+      "review_scope": "Current/historical consumers, demo vs integration, unsigned/public-signing boundary and acceptance gaps."
+    },
+    {
+      "file": "deployment-source10.js",
+      "sha256": "0fcb5b443fc2f3483cefe1b89b6cbd4926db4091cdd56344e6b084140fc7256e",
+      "bytes": 18912,
+      "review_scope": "Exact schema5/source10 graph, capability map, 33 runtime pins, canonical cache/concurrency, pricing/control/metadata proofs."
+    },
+    {
+      "file": "deployment-source9.js",
+      "sha256": "2a5dda0a810f8fe8eb6b8493e3b597c8a5b633a5cddb9b39537f5d78171dea44",
+      "bytes": 17822,
+      "review_scope": "Explicit source9 historical graph and read/unsigned profile, safe whole-unit codecs, policy and source validation."
+    },
+    {
+      "file": "deployment-source9-data.js",
+      "sha256": "21f891a5ccdcdf8a6cb71dfcae4558000932191fe98958926c5683a9dea631e4",
+      "bytes": 8630,
+      "review_scope": "Full current DTO validation: owner/eligibility, both physical LP legs, aggregate NAV, royalty currencies, terminal principal and lifecycle."
+    },
+    {
+      "file": "deployment-source9-prepare.js",
+      "sha256": "c067ba3bee070b007220e688050c0d03651927a54ddb03b56a1900b47250747e",
+      "bytes": 26144,
+      "review_scope": "Typed direct Entry3, exact approval, fixed ETH/ZZZ inputs, governed minima/loss floors, original-currency claims, bounded planner, gas/final simulations and expiry."
+    },
+    {
+      "file": "deployment-api.js",
+      "sha256": "82dd9fa5004b3e59801a467e01d6143c72ca9ed8020971d53e3b5b6d0644ec12",
+      "bytes": 48408,
+      "review_scope": "Manifest/endpoint admission, bounded transport, canonical provenance, stale/error handling, complete inventory/totals/history, profile dispatch and typed preparation."
+    },
+    {
+      "file": "deployment-native.js",
+      "sha256": "ee715a6d93e2a27c2999eff34142725b16b2382b0031bd57f49eb00e321969be",
+      "bytes": 11848,
+      "review_scope": "Historical native2/current3 constructor/asset/graph/cap/price interfaces kept distinct from current7."
+    },
+    {
+      "file": "deployment-session.js",
+      "sha256": "c9f193c95c96bbbd865a29760a32b8e418351a8639ed1ae9aa052fb0f4fc6482",
+      "bytes": 4661,
+      "review_scope": "Account authorization and explicit selection, revision invalidation, restore, chain/account/disconnect events and bounded requests."
+    },
+    {
+      "file": "deployment-transactions.js",
+      "sha256": "a0c10060f9cc345adfdd9907c50ef9f2bbb03d1bbac96942d3a72bdb554279ca",
+      "bytes": 10395,
+      "review_scope": "Full legacy coordinator review/submit/recovery/reconcile flow and unsigned-profile constructor capability gap."
+    },
+    {
+      "file": "deployment-view.js",
+      "sha256": "89c348cd3895ffd997d677f441fa10aa57a941e6e172763bd094b0a028af29fe",
+      "bytes": 50818,
+      "review_scope": "Current lifecycle/metadata labels, pending-artwork isolation, financial display, original-currency claims, async revision/cancel guards and signing frontdoor."
+    },
+    {
+      "file": "integration-app.js",
+      "sha256": "6eae5326427b56f9495476d9b2e53160955b28b3ec64a176fd919cd0148d6f68",
+      "bytes": 4506,
+      "review_scope": "Poplint host/config/profile boundary, null configuration, no demo fallback and bounded provider discovery."
+    },
+    {
+      "file": "integration-config.js",
+      "sha256": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300",
+      "bytes": 557,
+      "review_scope": "Read-only public null-configuration preservation check."
+    },
+    {
+      "file": "deployment-config.js",
+      "sha256": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+      "bytes": 344,
+      "review_scope": "Read-only public null-configuration preservation check."
+    },
+    {
+      "file": "wallet.js",
+      "sha256": "d39f97fe2ba6e6bcb989080bab51534f206a2f4b9cc38998312d7bd7df8cf101",
+      "bytes": 7010,
+      "review_scope": "Provider discovery/account-selection/connection boundaries, metadata escaping and omission of untrusted wallet icons."
+    },
+    {
+      "file": "browser-wallet.js",
+      "sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+      "bytes": 33406,
+      "review_scope": "Read-only inspection of transport bounds, local31337 and 32-target policy, exact review/limits, pending/recovery interfaces; no modifications or unchanged test reruns."
+    },
+    {
+      "file": "browser-client.js",
+      "sha256": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08",
+      "bytes": 19575,
+      "review_scope": "Selected sections: legacy local-mount routing, exact wallet/network/accounts and signer attachment; historical adapter is not a new current-profile integration."
+    },
+    {
+      "file": "browser-intent.js",
+      "sha256": "b815deee123120ee5bba839558f3265aacfc54552dc83655df4635bee352ac9b",
+      "bytes": 6586,
+      "review_scope": "Historical typed calldata reconstruction, exact allowances, local-only manifest and bounded claim selection."
+    },
+    {
+      "file": "local-client.js",
+      "sha256": "3d93229c7f39be9a6dade9b0937ffec2e98865ddbea89e1aba066543da613c0f",
+      "bytes": 13675,
+      "review_scope": "Selected sections: legacy local DTO and request retry/error boundaries, exact token display, not current production API source."
+    },
+    {
+      "file": "local-view.js",
+      "sha256": "3944ccf2006154151d35f528ed1c56f46f83b4a133a664c70a88cab9ed2cfb15",
+      "bytes": 47804,
+      "review_scope": "Selected rendering/financial/claim/review/artwork paths used by current view imports; historical local flows retain their old profile."
+    },
+    {
+      "file": "artworks.js",
+      "sha256": "6c6b0d5f5d5cf454c338ddb6930ba9a1d7475042d61a889102922f012ce5c42d",
+      "bytes": 9830,
+      "review_scope": "Fixed catalogue-derived image paths, no external metadata/SVG interpolation, preload bounds, confirmed-tier sound/crossfade gating."
+    },
+    {
+      "file": "palette-system.js",
+      "sha256": "9f0d0ca89cf7c968fc967b372270406504d5d67da8c0fd202466b8ebc8b7add7",
+      "bytes": 11640,
+      "review_scope": "Fixed visual identities and inventory mapping; seeded catalogue is explicitly not production randomness."
+    },
+    {
+      "file": "ui-state.js",
+      "sha256": "7fa3a79aff22e0bf7f4bc0efd8d621dfd3fe95a141327598379126988d626277",
+      "bytes": 2020,
+      "review_scope": "Demo operation resource locks/context/deadline checks and identity-preserving artwork transitions."
+    },
+    {
+      "file": "preview-store.js",
+      "sha256": "004b83c7edfc5f9e021af8f628387cc84951fe46eb961f4ad699ca9a71ad9b0f",
+      "bytes": 4682,
+      "review_scope": "Demo-only persistence bounds, immutable exact-version cache, cross-tab locking, reset epochs and revalidation inside commit lock."
+    },
+    {
+      "file": "domain.js",
+      "sha256": "418659de29f029d55db5773573a9251d9b3abb8bf8dac19eee44b3aa190a3485",
+      "bytes": 17871,
+      "review_scope": "Selected demo-only fixed economics/current-vs-historical funding policy and fixture inventory; not treated as proof of contract accounting."
+    },
+    {
+      "file": "app.js",
+      "sha256": "98399839062756e5640ca42d026247cc4999b7e1586f8fbd448fee5595161406",
+      "bytes": 44407,
+      "review_scope": "Selected DOM interpolation and source/profile dispatch paths; public simulation remains separate from confirmed financial state."
+    },
+    {
+      "file": "server.mjs",
+      "sha256": "e7fcddcf0d4d1732cc15446fae4b69024ab1a9292e3a7d9e80c3c8c45a2ce024",
+      "bytes": 3946,
+      "review_scope": "Loopback development static allowlist, methods/paths, MIME and bounded-range semantics; not production hosting acceptance."
+    },
+    {
+      "file": "build-integration.mjs",
+      "sha256": "47df577df4cfe5eb535fc7d00cd8071d6e22ed53f746ca354e28b9f1d98991c0",
+      "bytes": 6328,
+      "review_scope": "Static module/asset/host/profile packaging review only; never invoked or built."
+    },
+    {
+      "file": "deploy/popl-integration.nginx.conf",
+      "sha256": "356ecf3f7e3d771bdc01efe43e59d07b139d50b3df3847c262b4998070883582",
+      "bytes": 2116,
+      "review_scope": "Static source CSP/host/no-implicit-backend separation review; not a live server inspection or change."
+    },
+    {
+      "file": "package.json",
+      "sha256": "2ee4febb1fdbc987e1535fd7799ed613dcb76955eaec9d388f9b54aa3be94717",
+      "bytes": 2409,
+      "review_scope": "Maintained explicit runner vs actual top-level tests, found missing metadata fallback/lifecycle file."
+    },
+    {
+      "file": "tests/deployment-signing-profile.test.mjs",
+      "sha256": "d86996dfc9b0cf6084a9b5687196dde99a88e6275e14f4193096608c3f76efe3",
+      "bytes": 4216,
+      "review_scope": "Five new focused methods executed before and after the constructor fix."
+    },
+    {
+      "file": "tests/metadata-fallback.test.mjs",
+      "sha256": "5b313ffc79370841f711256a8db875107f0865505e36073142565151bf95f08a",
+      "bytes": 6566,
+      "review_scope": "Thirteen existing methods statically inventoried; found omitted from maintained runner. Not executed."
+    },
+    {
+      "file": "tests/source10-integration.test.mjs",
+      "sha256": "b9b7c836a96cb0bb70e168a11debbfda89044152f45d7279a05f12bb612b2b4c",
+      "bytes": 5199,
+      "review_scope": "Existing frontdoor/profile/null/signer evidence inspected only; not rerun."
+    },
+    {
+      "file": "tests/deployment-transactions.test.mjs",
+      "sha256": "1457af405ddc51070f701979e16936db014fa15474d59ddfad425ccdde37fd62",
+      "bytes": 10508,
+      "review_scope": "Existing legacy flow/recovery test interfaces inspected only; not rerun."
+    },
+    {
+      "file": "tests/deployment-bundle.test.mjs",
+      "sha256": "c585c7e73f752f0725c7dc7ff7c0c1a749446e5b35fae156bda1a90a51487cf2",
+      "bytes": 2036,
+      "review_scope": "Existing static module packaging tests inspected only; not rerun."
+    },
+    {
+      "file": "tests/helpers/source9-profile-fixture.mjs",
+      "sha256": "e2cccb088822112470c6710d4fa2ecab52d34d5b4b2ba8e91b657d4d66cd6224",
+      "bytes": 15698,
+      "review_scope": "Explicit synthetic graph fixture reused by new focused tests, no historical test module executed."
+    },
+    {
+      "file": "tests/helpers/source10-profile-fixture.mjs",
+      "sha256": "3ffddc8b9255e88d6328d15f4b2b50b9041e8ea4ad2500450f49511367704374",
+      "bytes": 9712,
+      "review_scope": "Explicit synthetic graph fixture reused by new focused tests, no historical test module executed."
+    }
+  ],
+  "primary_sources": [
+    "https://eips.ethereum.org/EIPS/eip-1193",
+    "https://eips.ethereum.org/EIPS/eip-6963",
+    "https://eips.ethereum.org/EIPS/eip-4906"
+  ],
+  "fresh_verification": "Five newly introduced signing-profile methods only, and syntax check for changed coordinator. Runner inventory executes zero tests.",
+  "not_executed": [
+    "unchanged npm test/browser/contract suites",
+    "build or publish",
+    "wallet signing/submission",
+    "public RPC qualification",
+    "marketplace/host acceptance",
+    "load campaign",
+    "live local chain/journal/service access"
+  ]
+}

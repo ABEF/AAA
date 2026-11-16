@@ -1,0 +1,68 @@
+{
+  "schema": "popl-independent-bundle-patch-review1",
+  "reviewer": "audit_financial_contracts",
+  "reviewed_at_utc": "2026-11-16T16:01:02.982272+00:00",
+  "status": "NO_BLOCKING_DEFECT_CONFIRMED_BY_STATIC_REVIEW",
+  "classification": "Offline review-input completeness and accurate provenance instructions; no public exploit, wallet capability, contract change or production qualification.",
+  "source_pins": {
+    "zzz_ops/review_bundle.py": "439bea792ce03b97f376485589dbf69a16f68ac23f7531d835bd9c9ad5ee8eb3",
+    "tests_python/test_review_bundle_schema4.py": "bae57fd60bf89cdc8f0470427cfabc078214aaf6d94ee706b56dcefe2f344657",
+    "tests_python/test_review_bundle_profiles.py": "6b15da5775179dab4ff9dcb5012b41bbd0f19e9b590f4998f1156ff7f4c4c17f",
+    "docs/FROZEN_REVIEW_BUNDLE.md": "cbfadd4bd710ef64512a47799dd2ef6cfe16596c8b9dd8d3db3d07427000fb69",
+    "scripts/check-python-publication.py": "eb09d6a808d0c54bf811ce484e1c36f0ef2a3acc229696dd25a653f33ff69eb7",
+    "scripts/verify.sh": "8f03d9d6d66e2bf243326ef882a539b485dfd4bfb45ae3f6b9004cb1a05558da",
+    "tests_python/test_review_bundle.py": "86828347cc75be79ef50b3bfbbf24969eeb9f0025d23c4fc1ecde77104c7512a"
+  },
+  "author_final_pin_match": {
+    "zzz_ops/review_bundle.py": true,
+    "tests_python/test_review_bundle_schema4.py": true,
+    "tests_python/test_review_bundle_profiles.py": true,
+    "docs/FROZEN_REVIEW_BUNDLE.md": true
+  },
+  "historical_renderers": "The actual Git diff leaves _handoff_v1/_handoff_v2/_handoff_v3 literal bodies unchanged. New _handoff_v4 calls the frozen v3 text then applies three specific first-occurrence replacements. Reviewed all target phrases in actual v3 source; no historical renderer was modified.",
+  "reviewed_changes": [
+    {
+      "area": "Explicit schema dispatch",
+      "assessment": "Exact integer1/2/3/4 accepted, booleans/unknown rejected. Default is4; pack passes explicit schema to frozen Git admission, dependency closure and handoff. Verify passes authenticated manifest schema to included/excluded admission and dependency recomputation. No historical admission accidentally inherits new JSON path."
+    },
+    {
+      "area": "Operator fixture closure",
+      "assessment": "Only docs/operator-call-examples.json is newly admitted, for4only. Any of three exact current generator/module/test consumers requires examples, both callable JSON inputs, CONTRACT_FUNCTIONS.md and OPERATOR_MANUAL.md. Same dependency_record is used by exporter and verifier; omitted/mutated closure is not accepted merely by rehashing source members."
+    },
+    {
+      "area": "Original bundle protections",
+      "assessment": "Committed exact40lowercase identity/Git blobs, bounded files/archive, canonical paths/modes/members, no compression/symlink, credential-marker allowlist, independent expected digest, false test/approval flags, deterministic bytes and non-replacing external publication remain unchanged."
+    },
+    {
+      "area": "Provenance instructions",
+      "assessment": "Schema4 and current guide explicitly require independently authenticated exact Git checkout, HEAD identity and byte comparison of every included source file before Git-dependent checks; no fake git init or weakening publication check. Excluded files/dependencies keep separate trust obligations. Historical instructions retain historical advice."
+    },
+    {
+      "area": "New and adapted test review",
+      "assessment": "Read11new method bodies including synthetic Git source-admission dispatch, exact JSON allowlist/private-path exclusions, missing inputs, module/test consumers, legacy golden archives, schema relabeling/removed fixture, provenance text, bool/unknown rejection; two existing profile methods adapt only changed default/unknown schema boundary. General fixture builder accepts explicit schemas and now default4 while old-specific tests remain explicit."
+    }
+  ],
+  "findings": [],
+  "reused_implementer_evidence": {
+    "path": "BUNDLE_RESULT.json",
+    "sha256": "6833572c9c5ee1ef786641cc73b6597a1feec6b3ca46a95620b5a2a8f23b95d9",
+    "original_claimed_unique_passing_methods": 13,
+    "original_scope": "Implementer executed11new and2adapted methods at two explicit test-source stages, plus reverified original synthetic schema1/2/3 golden archives. Independent reviewer did not rerun these tests.",
+    "baseline_analysis_sha256": "5f29861856ad39e23bfef37a529a60432303a911ff56fbe867dc14ba71d02d2f",
+    "legacy_fixture_archive_hashes": {
+      "1": "7242e43da2b2c6655909901e74a653521791ab4bef090e54f39e78426e11de32",
+      "2": "1c01ee5a5d83bd319630335d1d4c282d4a7b01db8fc669ac3974f33f4f5f4bef",
+      "3": "7b497cc1d7fabf864abfba89e0be686eb91351e4a0fbfb17580e99ab67b18bf1"
+    }
+  },
+  "independent_test_runs": 0,
+  "independent_source_writes": 0,
+  "limits_and_followup": [
+    "No actual final repository commit archive was created in this independent review. Future export must name the actual published commit and preserve that exact new archive/digest; unpublished parent is not current candidate.",
+    "Closure is conditional on actual current consumers being included. Archive verification cannot independently reconstruct excluded whole Git tree or authenticate the claimed commit; trusted digest and separately authenticated Git checkout remain mandatory.",
+    "Presence/hashes of operator-call examples do not establish safe examples, complete semantics, executability or operator consent. Existing generator/source review remains separate.",
+    "Historical byte equality is supported by unchanged renderer source and implementer exact synthetic golden archives, not relabelled new protocol verification or a claim that current files equal old source.",
+    "No supply-chain, binary, hosted rehearsal, live market/OpenSea/provider, signing, contract, Anvil, journal, heartbeat or independent release gate is closed by these archive-input changes."
+  ],
+  "production_approved": false
+}

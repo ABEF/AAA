@@ -1,0 +1,12 @@
+{
+  "authority-baseline.log": {
+    "archive": "authority-baseline.log.gz",
+    "raw_sha256": "19da7f338ac968e56aab954a85ab015d2272bb2b9c2b46bc0d287f9d67195634",
+    "raw_bytes": 35131
+  },
+  "bundle-schema4-baseline.log": {
+    "archive": "bundle-schema4-baseline.log.gz",
+    "raw_sha256": "9303183c0363fcdf910696a3578d1b74baa6a1973fdc0cc0b41e5bb21c499b6f",
+    "raw_bytes": 18163
+  }
+}

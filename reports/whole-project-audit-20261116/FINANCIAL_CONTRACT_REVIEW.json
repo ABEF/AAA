@@ -1,0 +1,6820 @@
+{
+  "schema": "popl-financial-contract-review1",
+  "reviewed_head": "59d02d40afac785c04cd4a5da2dfc6e4174c6880",
+  "production_approved": false,
+  "review_type": "Manual source/function-family/intercontract review plus exact existing production-source pin comparison. No new EVM, compiler, static analysis, RPC or tests were run in this workstream.",
+  "limits": [
+    "This is not a proof of absence of defects or an independent audit. Each file has explicit scope; function enumeration does not claim path-complete coverage.",
+    "Existing metadata2 pin equality permits existing evidence to retain its source scope; it does not widen constructor, gas, market, dependency or OpenSea acceptance.",
+    "No maximum-state workload, real-market failure rehearsal, public execution or external service qualification was performed.",
+    "External source independence/depth/liveness, mutable token/provider authority, host/contract-wallet behavior and complete target fees remain release obligations."
+  ],
+  "production_source_count": 61,
+  "all_current_source_pins_match_metadata2": true,
+  "new_confirmed_executable_defects": [],
+  "non_executable_consistency_items": [
+    {
+      "id": "FIN-COMMENT-1",
+      "path": "src/ZZZActivationAssets.sol",
+      "function": "admitPoolAsset",
+      "issue": "Comment still gives WETH as a possible target-pair example although fresh Registry admits native ETH/fixed ZZZ only.",
+      "disposition": "Defer comment-only metadata/pin change to coordinated source build; no reachable third contribution asset is admitted."
+    },
+    {
+      "id": "FIN-COMMENT-2",
+      "path": "src/interfaces/IZZZ.sol",
+      "function": "portfolioAmounts",
+      "issue": "Comment calls aggregate portfolio1 although fresh physical portfolio version is2.",
+      "disposition": "Defer comment-only metadata/pin change to coordinated source build; tuple/actual runtime capability remain explicit."
+    }
+  ],
+  "rejected_hypotheses": [
+    {
+      "hypothesis": "A new entrant can take old exact-unit LP rewards or use incumbent residual/compound to satisfy its execution floor.",
+      "source_basis": "Vault._join and ContributionPricing.begin/contributionNAV/finish checkpoint and exclude incumbent budgets, harvest own-swap receipts before shares/membership, and require actual marginal deployed LP. No new counterexample established."
+    },
+    {
+      "hypothesis": "Changing royalty GCD from3 or2 to1 awards new NFTs an older normalized ticket book.",
+      "source_basis": "ticketStart is cumulative raw weight; old book prefix equals old eligibleWeight/unit. Later starts normalize strictly after the old prefix. Mixed cohorts useunit1. No new counterexample established."
+    },
+    {
+      "hypothesis": "A no-swap hybrid replacement can silently create an inactive main or a third residual.",
+      "source_basis": "Manager/Executor require stored tick in main before/after ordinary replacement, prove exact Vault-owned physical L and track one associated residual; hybrid post-allocation floor is checked. No unsafe fallback is added."
+    },
+    {
+      "hypothesis": "Any caller can start terminal exit or redirect principal because several canonical completion actions are permissionless.",
+      "source_basis": "Migration begin/close/allocation/distribution remain governance-only; canonical permissionless settle/export/fund complete only an already authenticated immutable handoff and exact backing pairing. NFT-owner fallback pays current owner only."
+    },
+    {
+      "hypothesis": "Reference/execution overlap necessarily self-invalidates guarded swaps.",
+      "source_basis": "Explicit execution1 captures source vector and proves actual-core quote output and complete market post-state before settlement, retaining live proof and exact context; same-core principal destination as reference remains deliberately excluded."
+    }
+  ],
+  "accepted_or_external_boundaries": [
+    {
+      "topic": "Adversarial markets",
+      "status": "external_release_gate",
+      "detail": "Spot placement/valuation was selected by the user. Two addresses/independence IDs do not establish economic independence or usable depth. Own-principal reference is excluded; qualified external two-source markets remain absent."
+    },
+    {
+      "topic": "Compound scheduling",
+      "status": "service_policy_not_full_contract_requirement",
+      "detail": "Service waits at threshold/outside/pending geometry; on-chain compoundReady retains its own interval/raw rebalance rules. Direct authorized keeper can use the wider on-chain path. A mandatory rule would be an economic/liveness policy change."
+    },
+    {
+      "topic": "Automatic rebalance",
+      "status": "accepted_engineering_limit",
+      "detail": "600-second sampled evidence/max gap300 and service240 cadence plus jitter are not continuous price history or MEV immunity. Source failure/reference disagreement deliberately blocks ordinary swapping."
+    },
+    {
+      "topic": "Manual force",
+      "status": "accepted_governance_trust",
+      "detail": "Emergency mask0 can bypass financial/timing guards and lose nearly all principal. Auth, exact custody/accounting, fixed pair, lifecycle and typed operation constraints remain mandatory."
+    },
+    {
+      "topic": "Royalties",
+      "status": "accepted_bounded_currency_and_dependency_limit",
+      "detail": "Original-currency recovery uses reviewed registration/capacity up to64ERC20+ETH and exact conventional transfers. Unreadable currency isolation preserves old cohort; zero initial cohort requires explicit governance allocation. Malicious/frozen/unsupported tokens cannot be universally paid."
+    },
+    {
+      "topic": "VRF/OpenSea",
+      "status": "external_release_gate",
+      "detail": "Mint-order finalized draws deliberately block provider rotation and canonical handoff if an original request cannot finalize; no reroll. Live VRF/SeaDrop manifest/payment/onboarding/runtime acceptance remains required."
+    },
+    {
+      "topic": "Terminal settlement",
+      "status": "accepted_bounded_delivery_limit",
+      "detail": "Every principal raw unit is cumulative-floor allocated by bucket shares; rejecting holders are deferred/backed, governance pays batch gas, owner fallback is available. Frozen fixed ZZZ still prevents movement of that token."
+    },
+    {
+      "topic": "Gas/code size",
+      "status": "external_release_gate",
+      "detail": "No executable patch was justified during this review. Oracle3/Vault32-byte runtime margins and current20M/24M review profiles remain exact earlier evidence; no normal gate/default was raised."
+    }
+  ],
+  "primary_references": [
+    {
+      "url": "https://developers.uniswap.org/docs/protocols/v4/guides/position-manager",
+      "application": "Batched position action and delta-resolution structure corroborated; installed PositionManager/DeltaResolver code is the exact dependency authority, rather than copying documentation examples into PoPL."
+    },
+    {
+      "url": "https://docs.chain.link/vrf/v2-5/security",
+      "application": "Request-ID association, callback storage separated from follow-on reveal, no cancellation/reroll, sufficient subscription funds and target confirmation settings. Current custom ABI/coordinator checks still need actual provider qualification; do not infer Robinhood support from interface compatibility."
+    },
+    {
+      "url": "https://eips.ethereum.org/EIPS/eip-2981",
+      "application": "RoyaltyInfo requests percentage and receiver; standard does not force marketplace payment. Royalty currency follows sale currency, supporting separate original-currency funded accounting."
+    }
+  ],
+  "research_limits": "Three primary pages were read. A separate burn-liquidity documentation URL was unavailable; no claim is based on that URL. Installed implementation/source pins, not generic tutorial claims, drive the selected boundary review.",
+  "reviewed_dependencies": [
+    {
+      "path": "node_modules/@uniswap/v4-periphery/src/PositionManager.sol",
+      "sha256": "49214f7463f709c378e5bdd010697eea02c1cabb2339fbe09f2ee5395748c6e3",
+      "selected_scope": "Selected modifyLiquidities, increase/decrease, mint/burn, settle/take implementation; zero-liquidity fee collection; unique tokenId salt; ownership approvals; principal-only slippage."
+    },
+    {
+      "path": "node_modules/@uniswap/v4-periphery/src/base/DeltaResolver.sol",
+      "sha256": "cb2df93554fb4541355c6e42e346a39cd59138d919456dd5f1d500e2a5d70864",
+      "selected_scope": "Native settlement, token sync/payment, full debt/credit and absence of generic sweep in PoPL typed action construction."
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/ProtocolFeeLibrary.sol",
+      "sha256": "f8d96d9c8b5d12ab927b34551699bd7086750475f70254c9505e636f2cafe56a",
+      "selected_scope": "Actual direction-packed protocol fee, maximum pips, protocol+LP composition and rounding."
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
+      "sha256": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "selected_scope": "Selected update/transfer/mint/receiver callbacks and removal of approval on transfer; source compatibility only, not independent whole-dependency audit."
+    }
+  ],
+  "files": [
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "line_count": 77,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "common backing transport",
+      "reviewed_scope": "immutable coordinator; exact captured amount/prefund separation; accept/release/restore state; no arbitrary economic caller",
+      "declared_function_locations": [
+        {
+          "name": "_canonicalAccess",
+          "line": 18
+        },
+        {
+          "name": "_state",
+          "line": 19
+        },
+        {
+          "name": "_economic",
+          "line": 28
+        },
+        {
+          "name": "_canonicalBeginCapture",
+          "line": 29
+        },
+        {
+          "name": "_canonicalNext",
+          "line": 35
+        },
+        {
+          "name": "_canonicalBalance",
+          "line": 39
+        },
+        {
+          "name": "_canonicalAdd",
+          "line": 42
+        },
+        {
+          "name": "canonicalAssetCount",
+          "line": 46
+        },
+        {
+          "name": "canonicalBacking",
+          "line": 47
+        },
+        {
+          "name": "canonicalRelease",
+          "line": 50
+        },
+        {
+          "name": "canonicalAccept",
+          "line": 59
+        },
+        {
+          "name": "canonicalRestore",
+          "line": 64
+        },
+        {
+          "name": "_canonicalValidateBacking",
+          "line": 69
+        },
+        {
+          "name": "canonicalActivate",
+          "line": 74
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "sha256": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
+      "line_count": 232,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "raw exact LP codec",
+      "reviewed_scope": "typed seed/node validation; all weights before pending/high/low phase; NFT/bucket/membership reconciliation; fixed canonical writer; exact raw send/barrier",
+      "declared_function_locations": [
+        {
+          "name": "mintedCount",
+          "line": 12
+        },
+        {
+          "name": "mintOrdinalOf",
+          "line": 13
+        },
+        {
+          "name": "tokenAtOrdinal",
+          "line": 14
+        },
+        {
+          "name": "ACCOUNTING_VERSION",
+          "line": 17
+        },
+        {
+          "name": "bucketCount",
+          "line": 18
+        },
+        {
+          "name": "bucketAt",
+          "line": 19
+        },
+        {
+          "name": "nftBucket",
+          "line": 20
+        },
+        {
+          "name": "sharesOf",
+          "line": 21
+        },
+        {
+          "name": "bucketTotalShares",
+          "line": 22
+        },
+        {
+          "name": "eligible",
+          "line": 25
+        },
+        {
+          "name": "totalEligible",
+          "line": 26
+        },
+        {
+          "name": "activationAssets",
+          "line": 28
+        },
+        {
+          "name": "zzz",
+          "line": 29
+        },
+        {
+          "name": "_canonicalModule",
+          "line": 85
+        },
+        {
+          "name": "_state",
+          "line": 91
+        },
+        {
+          "name": "_canonicalBalance",
+          "line": 92
+        },
+        {
+          "name": "_ordinal",
+          "line": 99
+        },
+        {
+          "name": "_asset",
+          "line": 104
+        },
+        {
+          "name": "_validateZZZ",
+          "line": 108
+        },
+        {
+          "name": "_canonicalTree",
+          "line": 113
+        },
+        {
+          "name": "_counts",
+          "line": 117
+        },
+        {
+          "name": "_readBarrier",
+          "line": 122
+        },
+        {
+          "name": "canonicalBarrier",
+          "line": 125
+        },
+        {
+          "name": "canonicalSeed",
+          "line": 129
+        },
+        {
+          "name": "canonicalNode",
+          "line": 140
+        },
+        {
+          "name": "_checkNode",
+          "line": 154
+        },
+        {
+          "name": "canonicalWrite",
+          "line": 164
+        },
+        {
+          "name": "_writeSeed",
+          "line": 188
+        },
+        {
+          "name": "_writeNode",
+          "line": 210
+        },
+        {
+          "name": "canonicalSend",
+          "line": 225
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/base/ZZZModule.sol",
+      "sha256": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "line_count": 100,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "common permissions",
+      "reviewed_scope": "pre/post governance; module and keeper roles; paused/sealed operation; preparation/canonical/principal terminal separation; bounded deadlines",
+      "declared_function_locations": [
+        {
+          "name": "_checkModule",
+          "line": 26
+        },
+        {
+          "name": "_checkGovernance",
+          "line": 34
+        },
+        {
+          "name": "_checkDrainGovernance",
+          "line": 43
+        },
+        {
+          "name": "_checkOperating",
+          "line": 54
+        },
+        {
+          "name": "_checkPrincipalOperating",
+          "line": 66
+        },
+        {
+          "name": "_checkAccounting",
+          "line": 78
+        },
+        {
+          "name": "_checkKeeper",
+          "line": 85
+        },
+        {
+          "name": "_checkLive",
+          "line": 92
+        },
+        {
+          "name": "_deadline",
+          "line": 97
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "sha256": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+      "line_count": 235,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "earned LP conversion",
+      "reviewed_scope": "fixed ledger/current-owner same-NFT allocation remains in Rewards; exact source/ETH transfer; optional pinned v3 wrapper or typed v4; governed loss cap; no rescue/royalty swapping",
+      "declared_function_locations": [
+        {
+          "name": "withdraw",
+          "line": 17
+        },
+        {
+          "name": "owner",
+          "line": 19
+        },
+        {
+          "name": "getProxyAdmin",
+          "line": 20
+        },
+        {
+          "name": "getProxyImplementation",
+          "line": 21
+        },
+        {
+          "name": "configureWrapper",
+          "line": 80
+        },
+        {
+          "name": "setEnabled",
+          "line": 87
+        },
+        {
+          "name": "setConversionLossBps",
+          "line": 92
+        },
+        {
+          "name": "addRoute",
+          "line": 98
+        },
+        {
+          "name": "route",
+          "line": 105
+        },
+        {
+          "name": "addV4Route",
+          "line": 108
+        },
+        {
+          "name": "v4Route",
+          "line": 116
+        },
+        {
+          "name": "routeKind",
+          "line": 119
+        },
+        {
+          "name": "routeExists",
+          "line": 122
+        },
+        {
+          "name": "routeEnabled",
+          "line": 123
+        },
+        {
+          "name": "setRouteEnabled",
+          "line": 126
+        },
+        {
+          "name": "_pin",
+          "line": 135
+        },
+        {
+          "name": "_checkWrapper",
+          "line": 138
+        },
+        {
+          "name": "_checkRoute",
+          "line": 152
+        },
+        {
+          "name": "convert",
+          "line": 159
+        },
+        {
+          "name": "_convertV4",
+          "line": 212
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/base/ZZZSeaDropToken.sol",
+      "sha256": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+      "line_count": 85,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "NFT-keyed SeaDrop surface",
+      "reviewed_scope": "one pre-seal helper; typed supported updates; actual governance caller forwarded; disabled unsupported families; immutable single SeaDrop",
+      "declared_function_locations": [
+        {
+          "name": "mintedCount",
+          "line": 10
+        },
+        {
+          "name": "artworkBaseURI",
+          "line": 11
+        },
+        {
+          "name": "setSeaDropMint",
+          "line": 25
+        },
+        {
+          "name": "getMintStats",
+          "line": 33
+        },
+        {
+          "name": "seaDropMintRecipient",
+          "line": 38
+        },
+        {
+          "name": "_updateDrop",
+          "line": 43
+        },
+        {
+          "name": "updateAllowedSeaDrop",
+          "line": 52
+        },
+        {
+          "name": "updatePublicDrop",
+          "line": 55
+        },
+        {
+          "name": "updateAllowList",
+          "line": 58
+        },
+        {
+          "name": "updateDropURI",
+          "line": 61
+        },
+        {
+          "name": "updateCreatorPayoutAddress",
+          "line": 64
+        },
+        {
+          "name": "updateAllowedFeeRecipient",
+          "line": 67
+        },
+        {
+          "name": "updatePayer",
+          "line": 70
+        },
+        {
+          "name": "updateTokenGatedDrop",
+          "line": 74
+        },
+        {
+          "name": "updateSignedMintValidationParams",
+          "line": 77
+        },
+        {
+          "name": "maxSupply",
+          "line": 80
+        },
+        {
+          "name": "setMaxSupply",
+          "line": 81
+        },
+        {
+          "name": "baseURI",
+          "line": 82
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "sha256": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+      "line_count": 183,
+      "review_level": "manual_declaration_review",
+      "area": "interface/declaration consistency",
+      "reviewed_scope": "Declared tuple order, native identity, permission/canonical boundaries and selected matching implementations; interfaces contain no executable financial body.",
+      "declared_function_locations": [
+        {
+          "name": "governance",
+          "line": 6
+        },
+        {
+          "name": "module",
+          "line": 7
+        },
+        {
+          "name": "isSealed",
+          "line": 8
+        },
+        {
+          "name": "paused",
+          "line": 9
+        },
+        {
+          "name": "lpExitStarted",
+          "line": 10
+        },
+        {
+          "name": "startLPExit",
+          "line": 11
+        },
+        {
+          "name": "preparationActive",
+          "line": 12
+        },
+        {
+          "name": "canonicalHandoff",
+          "line": 13
+        },
+        {
+          "name": "royaltyFactory",
+          "line": 14
+        },
+        {
+          "name": "activationAssetsFactory",
+          "line": 15
+        },
+        {
+          "name": "protocolPolicy",
+          "line": 16
+        },
+        {
+          "name": "canonicalState",
+          "line": 17
+        },
+        {
+          "name": "canonicalSettling",
+          "line": 18
+        },
+        {
+          "name": "keepers",
+          "line": 19
+        },
+        {
+          "name": "moduleAuthorized",
+          "line": 20
+        },
+        {
+          "name": "keeperAuthorized",
+          "line": 21
+        },
+        {
+          "name": "canConfigure",
+          "line": 22
+        },
+        {
+          "name": "access",
+          "line": 24
+        },
+        {
+          "name": "ownerOf",
+          "line": 26
+        },
+        {
+          "name": "claimRouter",
+          "line": 27
+        },
+        {
+          "name": "mint",
+          "line": 28
+        },
+        {
+          "name": "traitsReady",
+          "line": 29
+        },
+        {
+          "name": "randomnessConfigured",
+          "line": 30
+        },
+        {
+          "name": "notifyContribution",
+          "line": 31
+        },
+        {
+          "name": "eligible",
+          "line": 34
+        },
+        {
+          "name": "totalEligible",
+          "line": 35
+        },
+        {
+          "name": "activate",
+          "line": 36
+        },
+        {
+          "name": "settleDust",
+          "line": 37
+        },
+        {
+          "name": "isAsset",
+          "line": 40
+        },
+        {
+          "name": "syncMembership",
+          "line": 41
+        },
+        {
+          "name": "syncShares",
+          "line": 42
+        },
+        {
+          "name": "creditPool",
+          "line": 43
+        },
+        {
+          "name": "allocate",
+          "line": 46
+        },
+        {
+          "name": "compoundBalance",
+          "line": 47
+        },
+        {
+          "name": "releaseCompound",
+          "line": 48
+        },
+        {
+          "name": "flushDust",
+          "line": 49
+        },
+        {
+          "name": "releaseBuyback",
+          "line": 50
+        },
+        {
+          "name": "activationEntry",
+          "line": 54
+        },
+        {
+          "name": "get",
+          "line": 55
+        },
+        {
+          "name": "accounting",
+          "line": 58
+        },
+        {
+          "name": "contributionValue",
+          "line": 59
+        },
+        {
+          "name": "validateOwner",
+          "line": 62
+        },
+        {
+          "name": "sourceValue",
+          "line": 63
+        },
+        {
+          "name": "contributionPricing",
+          "line": 66
+        },
+        {
+          "name": "priceBounds",
+          "line": 67
+        },
+        {
+          "name": "price",
+          "line": 68
+        },
+        {
+          "name": "tokenDecimals",
+          "line": 69
+        },
+        {
+          "name": "value",
+          "line": 70
+        },
+        {
+          "name": "quote",
+          "line": 71
+        },
+        {
+          "name": "referenceX96",
+          "line": 72
+        },
+        {
+          "name": "rebalanceConfirmation",
+          "line": 75
+        },
+        {
+          "name": "portfolioPolicy",
+          "line": 76
+        },
+        {
+          "name": "rebalanceReady",
+          "line": 77
+        },
+        {
+          "name": "rebalanceObservation",
+          "line": 78
+        },
+        {
+          "name": "additionalLossBps",
+          "line": 79
+        },
+        {
+          "name": "executionQualityRevision",
+          "line": 80
+        },
+        {
+          "name": "minimumOutput",
+          "line": 81
+        },
+        {
+          "name": "validateExitPrice",
+          "line": 82
+        },
+        {
+          "name": "target",
+          "line": 83
+        },
+        {
+          "name": "validatePrice",
+          "line": 84
+        },
+        {
+          "name": "needsRebalance",
+          "line": 85
+        },
+        {
+          "name": "keeperRangeTarget",
+          "line": 86
+        },
+        {
+          "name": "compoundPlan",
+          "line": 87
+        },
+        {
+          "name": "swapPlan",
+          "line": 88
+        },
+        {
+          "name": "balanceContext",
+          "line": 92
+        },
+        {
+          "name": "balance",
+          "line": 95
+        },
+        {
+          "name": "mint",
+          "line": 97
+        },
+        {
+          "name": "increase",
+          "line": 99
+        },
+        {
+          "name": "collect",
+          "line": 101
+        },
+        {
+          "name": "close",
+          "line": 102
+        },
+        {
+          "name": "swap",
+          "line": 103
+        },
+        {
+          "name": "amounts",
+          "line": 105
+        },
+        {
+          "name": "portfolioAmounts",
+          "line": 107
+        },
+        {
+          "name": "secondaryId",
+          "line": 108
+        },
+        {
+          "name": "activeSecondaryCount",
+          "line": 109
+        },
+        {
+          "name": "portfolioFingerprint",
+          "line": 111
+        },
+        {
+          "name": "executionPortfolioFingerprint",
+          "line": 112
+        },
+        {
+          "name": "positionOperator",
+          "line": 113
+        },
+        {
+          "name": "ticks",
+          "line": 114
+        },
+        {
+          "name": "spot",
+          "line": 115
+        },
+        {
+          "name": "positionManager",
+          "line": 116
+        },
+        {
+          "name": "canonicalChainId",
+          "line": 119
+        },
+        {
+          "name": "mintProceedsRecipient",
+          "line": 120
+        },
+        {
+          "name": "nftStatus",
+          "line": 121
+        },
+        {
+          "name": "group",
+          "line": 122
+        },
+        {
+          "name": "nftBucket",
+          "line": 123
+        },
+        {
+          "name": "sharesOf",
+          "line": 124
+        },
+        {
+          "name": "bucketTotalShares",
+          "line": 125
+        },
+        {
+          "name": "homePoolId",
+          "line": 126
+        },
+        {
+          "name": "poolBucket",
+          "line": 127
+        },
+        {
+          "name": "bucketCount",
+          "line": 128
+        },
+        {
+          "name": "MAX_BUCKETS",
+          "line": 129
+        },
+        {
+          "name": "bucketAt",
+          "line": 130
+        },
+        {
+          "name": "mintDormant",
+          "line": 131
+        },
+        {
+          "name": "mintPrice",
+          "line": 132
+        },
+        {
+          "name": "mintPolicyFingerprint",
+          "line": 133
+        },
+        {
+          "name": "activate",
+          "line": 134
+        },
+        {
+          "name": "increase",
+          "line": 135
+        },
+        {
+          "name": "park",
+          "line": 136
+        },
+        {
+          "name": "resume",
+          "line": 137
+        },
+        {
+          "name": "compound",
+          "line": 138
+        },
+        {
+          "name": "beginLPExit",
+          "line": 139
+        },
+        {
+          "name": "exitBucketToHolders",
+          "line": 140
+        },
+        {
+          "name": "movePool",
+          "line": 142
+        },
+        {
+          "name": "currentZZZ",
+          "line": 145
+        },
+        {
+          "name": "activePlan",
+          "line": 146
+        },
+        {
+          "name": "custodyEpoch",
+          "line": 147
+        },
+        {
+          "name": "modifyLiquidities",
+          "line": 152
+        },
+        {
+          "name": "nextTokenId",
+          "line": 153
+        },
+        {
+          "name": "getPositionLiquidity",
+          "line": 154
+        },
+        {
+          "name": "getPoolAndPositionInfo",
+          "line": 155
+        },
+        {
+          "name": "ownerOf",
+          "line": 156
+        },
+        {
+          "name": "approve",
+          "line": 157
+        },
+        {
+          "name": "poolManager",
+          "line": 158
+        },
+        {
+          "name": "permit2",
+          "line": 159
+        },
+        {
+          "name": "getSlot0",
+          "line": 162
+        },
+        {
+          "name": "poolManager",
+          "line": 163
+        },
+        {
+          "name": "approve",
+          "line": 166
+        },
+        {
+          "name": "unlock",
+          "line": 170
+        },
+        {
+          "name": "swap",
+          "line": 171
+        },
+        {
+          "name": "sync",
+          "line": 172
+        },
+        {
+          "name": "settle",
+          "line": 173
+        },
+        {
+          "name": "take",
+          "line": 174
+        },
+        {
+          "name": "latestRoundData",
+          "line": 177
+        },
+        {
+          "name": "decimals",
+          "line": 178
+        },
+        {
+          "name": "burn",
+          "line": 181
+        },
+        {
+          "name": "totalSupply",
+          "line": 182
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "line_count": 27,
+      "review_level": "manual_declaration_review",
+      "area": "interface/declaration consistency",
+      "reviewed_scope": "Declared tuple order, native identity, permission/canonical boundaries and selected matching implementations; interfaces contain no executable financial body.",
+      "declared_function_locations": [
+        {
+          "name": "canonicalCapture",
+          "line": 7
+        },
+        {
+          "name": "canonicalSettle",
+          "line": 8
+        },
+        {
+          "name": "canonicalCount",
+          "line": 9
+        },
+        {
+          "name": "canonicalExport",
+          "line": 10
+        },
+        {
+          "name": "canonicalImport",
+          "line": 11
+        },
+        {
+          "name": "canonicalAssetCount",
+          "line": 12
+        },
+        {
+          "name": "canonicalBacking",
+          "line": 13
+        },
+        {
+          "name": "canonicalRelease",
+          "line": 14
+        },
+        {
+          "name": "canonicalRestore",
+          "line": 15
+        },
+        {
+          "name": "canonicalAccept",
+          "line": 16
+        },
+        {
+          "name": "canonicalValidate",
+          "line": 17
+        },
+        {
+          "name": "canonicalActivate",
+          "line": 18
+        },
+        {
+          "name": "canonicalHandoff",
+          "line": 22
+        },
+        {
+          "name": "canonicalState",
+          "line": 24
+        },
+        {
+          "name": "canonicalSettling",
+          "line": 25
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "sha256": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "line_count": 42,
+      "review_level": "manual_declaration_review",
+      "area": "interface/declaration consistency",
+      "reviewed_scope": "Declared tuple order, native identity, permission/canonical boundaries and selected matching implementations; interfaces contain no executable financial body.",
+      "declared_function_locations": [
+        {
+          "name": "emergencyActive",
+          "line": 26
+        },
+        {
+          "name": "emergencyBucket",
+          "line": 27
+        },
+        {
+          "name": "emergencyChecks",
+          "line": 28
+        },
+        {
+          "name": "emergencyFingerprint",
+          "line": 29
+        },
+        {
+          "name": "validateEmergency",
+          "line": 30
+        },
+        {
+          "name": "emergencyRequest",
+          "line": 33
+        },
+        {
+          "name": "migrationBudget",
+          "line": 36
+        },
+        {
+          "name": "emergencyRebalance",
+          "line": 37
+        },
+        {
+          "name": "beginEmergency",
+          "line": 40
+        },
+        {
+          "name": "endEmergency",
+          "line": 41
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/interfaces/IZZZExecutionOracle.sol",
+      "sha256": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
+      "line_count": 48,
+      "review_level": "manual_declaration_review",
+      "area": "interface/declaration consistency",
+      "reviewed_scope": "Declared tuple order, native identity, permission/canonical boundaries and selected matching implementations; interfaces contain no executable financial body.",
+      "declared_function_locations": [
+        {
+          "name": "EXECUTION_SOURCE_VERSION",
+          "line": 17
+        },
+        {
+          "name": "executionAsset",
+          "line": 18
+        },
+        {
+          "name": "executionMarket",
+          "line": 19
+        },
+        {
+          "name": "roundAt",
+          "line": 20
+        },
+        {
+          "name": "executionProof",
+          "line": 21
+        },
+        {
+          "name": "EXECUTION_PRICE_VERSION",
+          "line": 30
+        },
+        {
+          "name": "executionActive",
+          "line": 31
+        },
+        {
+          "name": "validateExecution",
+          "line": 32
+        },
+        {
+          "name": "beginExecution",
+          "line": 33
+        },
+        {
+          "name": "endExecution",
+          "line": 34
+        },
+        {
+          "name": "beginManagerExecution",
+          "line": 35
+        },
+        {
+          "name": "endManagerExecution",
+          "line": 36
+        },
+        {
+          "name": "executionBounds",
+          "line": 37
+        },
+        {
+          "name": "executionReferenceX96",
+          "line": 38
+        },
+        {
+          "name": "beforeSwap",
+          "line": 39
+        },
+        {
+          "name": "afterSwap",
+          "line": 40
+        },
+        {
+          "name": "executionTarget",
+          "line": 45
+        },
+        {
+          "name": "executionValidatePrice",
+          "line": 46
+        },
+        {
+          "name": "executionMinimumOutput",
+          "line": 47
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/interfaces/IZZZNFTCanonical.sol",
+      "sha256": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
+      "line_count": 36,
+      "review_level": "manual_declaration_review",
+      "area": "interface/declaration consistency",
+      "reviewed_scope": "Declared tuple order, native identity, permission/canonical boundaries and selected matching implementations; interfaces contain no executable financial body.",
+      "declared_function_locations": [
+        {
+          "name": "access",
+          "line": 12
+        },
+        {
+          "name": "mintedCount",
+          "line": 13
+        },
+        {
+          "name": "nextToFinalize",
+          "line": 14
+        },
+        {
+          "name": "remainingToReveal",
+          "line": 15
+        },
+        {
+          "name": "rarityRemaining",
+          "line": 16
+        },
+        {
+          "name": "randomnessEpoch",
+          "line": 17
+        },
+        {
+          "name": "artworkBaseURI",
+          "line": 18
+        },
+        {
+          "name": "tokenAtOrdinal",
+          "line": 19
+        },
+        {
+          "name": "ownerOf",
+          "line": 20
+        },
+        {
+          "name": "traitsReady",
+          "line": 21
+        },
+        {
+          "name": "rarityOf",
+          "line": 22
+        },
+        {
+          "name": "colorOf",
+          "line": 23
+        },
+        {
+          "name": "paletteOf",
+          "line": 24
+        },
+        {
+          "name": "patternOf",
+          "line": 25
+        },
+        {
+          "name": "requestOf",
+          "line": 26
+        },
+        {
+          "name": "requestEpochOf",
+          "line": 27
+        },
+        {
+          "name": "canonicalRandomness",
+          "line": 28
+        },
+        {
+          "name": "canonicalArtwork",
+          "line": 29
+        },
+        {
+          "name": "seaDropMint",
+          "line": 30
+        },
+        {
+          "name": "originalMintRecipient",
+          "line": 31
+        },
+        {
+          "name": "mintStageOf",
+          "line": 32
+        },
+        {
+          "name": "canonicalWriteHeader",
+          "line": 33
+        },
+        {
+          "name": "canonicalWriteRecord",
+          "line": 34
+        },
+        {
+          "name": "canonicalWriteArtwork",
+          "line": 35
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/interfaces/IZZZProtocolPolicy.sol",
+      "sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "line_count": 37,
+      "review_level": "manual_declaration_review",
+      "area": "interface/declaration consistency",
+      "reviewed_scope": "Declared tuple order, native identity, permission/canonical boundaries and selected matching implementations; interfaces contain no executable financial body.",
+      "declared_function_locations": [
+        {
+          "name": "access",
+          "line": 17
+        },
+        {
+          "name": "PROTOCOL_POLICY_VERSION",
+          "line": 18
+        },
+        {
+          "name": "entryPolicy",
+          "line": 19
+        },
+        {
+          "name": "maintenancePolicy",
+          "line": 20
+        },
+        {
+          "name": "gasPolicy",
+          "line": 21
+        },
+        {
+          "name": "payoutGas",
+          "line": 22
+        },
+        {
+          "name": "sourceCallGas",
+          "line": 23
+        },
+        {
+          "name": "royaltySyncGas",
+          "line": 24
+        },
+        {
+          "name": "salePolicy",
+          "line": 25
+        },
+        {
+          "name": "metadataPolicy",
+          "line": 26
+        },
+        {
+          "name": "vrfPolicy",
+          "line": 27
+        },
+        {
+          "name": "vrfRevision",
+          "line": 28
+        },
+        {
+          "name": "entryFingerprint",
+          "line": 29
+        },
+        {
+          "name": "maintenanceFingerprint",
+          "line": 30
+        },
+        {
+          "name": "gasFingerprint",
+          "line": 31
+        },
+        {
+          "name": "saleFingerprint",
+          "line": 32
+        },
+        {
+          "name": "mintFingerprint",
+          "line": 33
+        },
+        {
+          "name": "metadataFingerprint",
+          "line": 34
+        },
+        {
+          "name": "configurationHash",
+          "line": 35
+        },
+        {
+          "name": "validateMintRecipient",
+          "line": 36
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/interfaces/IZZZSeaDrop.sol",
+      "sha256": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+      "line_count": 101,
+      "review_level": "manual_declaration_review",
+      "area": "interface/declaration consistency",
+      "reviewed_scope": "Declared tuple order, native identity, permission/canonical boundaries and selected matching implementations; interfaces contain no executable financial body.",
+      "declared_function_locations": [
+        {
+          "name": "mintPublic",
+          "line": 47
+        },
+        {
+          "name": "mintAllowList",
+          "line": 49
+        },
+        {
+          "name": "mintSigned",
+          "line": 51
+        },
+        {
+          "name": "mintAllowedTokenHolder",
+          "line": 53
+        },
+        {
+          "name": "getPublicDrop",
+          "line": 55
+        },
+        {
+          "name": "getCreatorPayoutAddress",
+          "line": 56
+        },
+        {
+          "name": "getAllowListMerkleRoot",
+          "line": 57
+        },
+        {
+          "name": "getAllowedFeeRecipients",
+          "line": 58
+        },
+        {
+          "name": "getFeeRecipientIsAllowed",
+          "line": 59
+        },
+        {
+          "name": "getSigners",
+          "line": 60
+        },
+        {
+          "name": "getTokenGatedAllowedTokens",
+          "line": 61
+        },
+        {
+          "name": "getPayerIsAllowed",
+          "line": 62
+        },
+        {
+          "name": "getPayers",
+          "line": 63
+        },
+        {
+          "name": "updatePublicDrop",
+          "line": 64
+        },
+        {
+          "name": "updateAllowList",
+          "line": 65
+        },
+        {
+          "name": "updateTokenGatedDrop",
+          "line": 66
+        },
+        {
+          "name": "updateDropURI",
+          "line": 67
+        },
+        {
+          "name": "updateCreatorPayoutAddress",
+          "line": 68
+        },
+        {
+          "name": "updateAllowedFeeRecipient",
+          "line": 69
+        },
+        {
+          "name": "updateSignedMintValidationParams",
+          "line": 70
+        },
+        {
+          "name": "updatePayer",
+          "line": 71
+        },
+        {
+          "name": "contractURI",
+          "line": 75
+        },
+        {
+          "name": "setContractURI",
+          "line": 76
+        },
+        {
+          "name": "baseURI",
+          "line": 77
+        },
+        {
+          "name": "setBaseURI",
+          "line": 78
+        },
+        {
+          "name": "maxSupply",
+          "line": 79
+        },
+        {
+          "name": "setMaxSupply",
+          "line": 80
+        },
+        {
+          "name": "provenanceHash",
+          "line": 81
+        },
+        {
+          "name": "setProvenanceHash",
+          "line": 82
+        },
+        {
+          "name": "updateAllowedSeaDrop",
+          "line": 89
+        },
+        {
+          "name": "mintSeaDrop",
+          "line": 90
+        },
+        {
+          "name": "getMintStats",
+          "line": 91
+        },
+        {
+          "name": "updatePublicDrop",
+          "line": 92
+        },
+        {
+          "name": "updateAllowList",
+          "line": 93
+        },
+        {
+          "name": "updateTokenGatedDrop",
+          "line": 94
+        },
+        {
+          "name": "updateDropURI",
+          "line": 95
+        },
+        {
+          "name": "updateCreatorPayoutAddress",
+          "line": 96
+        },
+        {
+          "name": "updateAllowedFeeRecipient",
+          "line": 97
+        },
+        {
+          "name": "updateSignedMintValidationParams",
+          "line": 98
+        },
+        {
+          "name": "updatePayer",
+          "line": 100
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/interfaces/IZZZV3Route.sol",
+      "sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "line_count": 25,
+      "review_level": "manual_declaration_review",
+      "area": "interface/declaration consistency",
+      "reviewed_scope": "Declared tuple order, native identity, permission/canonical boundaries and selected matching implementations; interfaces contain no executable financial body.",
+      "declared_function_locations": [
+        {
+          "name": "getPool",
+          "line": 4
+        },
+        {
+          "name": "factory",
+          "line": 6
+        },
+        {
+          "name": "token0",
+          "line": 7
+        },
+        {
+          "name": "token1",
+          "line": 8
+        },
+        {
+          "name": "fee",
+          "line": 9
+        },
+        {
+          "name": "factory",
+          "line": 22
+        },
+        {
+          "name": "exactInputSingle",
+          "line": 23
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/libraries/ExactAsset.sol",
+      "sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "line_count": 28,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "asset transfer primitive",
+      "reviewed_scope": "native distinct from ERC20; exact sender native delta; exact token delegation; no zero alias/wrapper",
+      "declared_function_locations": [
+        {
+          "name": "balance",
+          "line": 14
+        },
+        {
+          "name": "approve",
+          "line": 17
+        },
+        {
+          "name": "push",
+          "line": 20
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/libraries/ExactLPAllocation.sol",
+      "sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+      "line_count": 172,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "whole-unit weighted tree",
+      "reviewed_scope": "1024 leaves/1000 ordinals; weight settlement before changes; root outstanding; exact split; carry phase rebase; take versus preview; no money fractions",
+      "declared_function_locations": [
+        {
+          "name": "setWeight",
+          "line": 43
+        },
+        {
+          "name": "credit",
+          "line": 68
+        },
+        {
+          "name": "claimable",
+          "line": 77
+        },
+        {
+          "name": "take",
+          "line": 100
+        },
+        {
+          "name": "totalWeight",
+          "line": 111
+        },
+        {
+          "name": "weightOf",
+          "line": 112
+        },
+        {
+          "name": "outstanding",
+          "line": 113
+        },
+        {
+          "name": "split",
+          "line": 118
+        },
+        {
+          "name": "_settlePath",
+          "line": 139
+        },
+        {
+          "name": "_rebase",
+          "line": 160
+        },
+        {
+          "name": "_leaf",
+          "line": 168
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/libraries/ExactRoyaltyAllocation.sol",
+      "sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+      "line_count": 114,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "whole-unit ticket tree",
+      "reviewed_scope": "4096 leaves/3000 tickets; bounded dyadic credits; equal quotient/rotating remainder; exact ticket take and interval preview",
+      "declared_function_locations": [
+        {
+          "name": "credit",
+          "line": 15
+        },
+        {
+          "name": "addRange",
+          "line": 31
+        },
+        {
+          "name": "_add",
+          "line": 36
+        },
+        {
+          "name": "viewTicket",
+          "line": 50
+        },
+        {
+          "name": "takeTicket",
+          "line": 62
+        },
+        {
+          "name": "previewShare",
+          "line": 88
+        },
+        {
+          "name": "_overlap",
+          "line": 101
+        },
+        {
+          "name": "_validate",
+          "line": 108
+        },
+        {
+          "name": "_interval",
+          "line": 111
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/libraries/ExactToken.sol",
+      "sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "line_count": 27,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "token transfer primitive",
+      "reviewed_scope": "exact sender and receiver raw deltas; conventional-token requirement; no tax/rebase support claim",
+      "declared_function_locations": [
+        {
+          "name": "pull",
+          "line": 11
+        },
+        {
+          "name": "push",
+          "line": 19
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/libraries/ZZZArtwork.sol",
+      "sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "line_count": 30,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "finite visual data",
+      "reviewed_scope": "packed immutable catalogue and fixed palette masks; bounded renderer input; rarity-local draw mapping; visual-only semantics",
+      "declared_function_locations": [
+        {
+          "name": "item",
+          "line": 17
+        },
+        {
+          "name": "mask",
+          "line": 24
+        },
+        {
+          "name": "primaryColor",
+          "line": 26
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/libraries/ZZZPriceMath.sol",
+      "sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "line_count": 19,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "price ratio arithmetic",
+      "reviewed_scope": "dual-lower USD to raw ratio; token precision; mulDiv/sqrt/uint160 bounds; invalid extreme ratio fails closed",
+      "declared_function_locations": [
+        {
+          "name": "referenceX96",
+          "line": 10
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/libraries/ZZZTypes.sol",
+      "sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "line_count": 59,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "wire/state declarations",
+      "reviewed_scope": "fixed module domains; native pool key; strategy/cap tuple; eight-word local position; historical Outbound reserved value",
+      "declared_function_locations": [],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/libraries/ZZZV3VenueValidation.sol",
+      "sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "line_count": 22,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "optional v3 identity",
+      "reviewed_scope": "router/factory/pool/token/fee equality; short-circuit validation; no token or native authority",
+      "declared_function_locations": [
+        {
+          "name": "validate",
+          "line": 11
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "sha256": "5a1ecdd5cc309bb922943cf11e9299859f9f824e354443d5d9b7ea7600379a2c",
+      "line_count": 246,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "authority/lifecycle",
+      "reviewed_scope": "direct governance transfer; pre/post module authorization; irreversible exit; preparation/freeze/import/retirement; sealed graph and token binding",
+      "declared_function_locations": [
+        {
+          "name": "nft",
+          "line": 11
+        },
+        {
+          "name": "vault",
+          "line": 12
+        },
+        {
+          "name": "fees",
+          "line": 13
+        },
+        {
+          "name": "zzz",
+          "line": 15
+        },
+        {
+          "name": "activationAssets",
+          "line": 16
+        },
+        {
+          "name": "currentZZZ",
+          "line": 17
+        },
+        {
+          "name": "policyMetadataChanged",
+          "line": 18
+        },
+        {
+          "name": "canConfigure",
+          "line": 83
+        },
+        {
+          "name": "proposeGovernance",
+          "line": 89
+        },
+        {
+          "name": "acceptGovernance",
+          "line": 95
+        },
+        {
+          "name": "canonicalHandoff",
+          "line": 101
+        },
+        {
+          "name": "moduleAuthorized",
+          "line": 103
+        },
+        {
+          "name": "keeperAuthorized",
+          "line": 106
+        },
+        {
+          "name": "startLPExit",
+          "line": 111
+        },
+        {
+          "name": "canonicalTransition",
+          "line": 120
+        },
+        {
+          "name": "startPreparation",
+          "line": 131
+        },
+        {
+          "name": "cancelPreparation",
+          "line": 162
+        },
+        {
+          "name": "bind",
+          "line": 169
+        },
+        {
+          "name": "bindProtocolPolicy",
+          "line": 179
+        },
+        {
+          "name": "seal",
+          "line": 187
+        },
+        {
+          "name": "setKeeper",
+          "line": 217
+        },
+        {
+          "name": "setGuardian",
+          "line": 222
+        },
+        {
+          "name": "setPaused",
+          "line": 227
+        },
+        {
+          "name": "_moduleIds",
+          "line": 235
+        },
+        {
+          "name": "_notifyMetadata",
+          "line": 242
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "line_count": 141,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "contribution admission",
+      "reviewed_scope": "fixed ZZZ and native identity; revisioned source policy; zero-side reads; dependency-free disabling; conventional-token precision/pins",
+      "declared_function_locations": [
+        {
+          "name": "access",
+          "line": 9
+        },
+        {
+          "name": "policyCount",
+          "line": 45
+        },
+        {
+          "name": "policyAt",
+          "line": 46
+        },
+        {
+          "name": "isContributionAsset",
+          "line": 50
+        },
+        {
+          "name": "configureZZZ",
+          "line": 56
+        },
+        {
+          "name": "setAsset",
+          "line": 69
+        },
+        {
+          "name": "admitPoolAsset",
+          "line": 84
+        },
+        {
+          "name": "_record",
+          "line": 98
+        },
+        {
+          "name": "_validate",
+          "line": 111
+        },
+        {
+          "name": "value",
+          "line": 128
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZActivationAssetsFactory.sol",
+      "sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "line_count": 18,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "construction",
+      "reviewed_scope": "one child per registry; immutable controller factory; no custody or configuration executor",
+      "declared_function_locations": [
+        {
+          "name": "create",
+          "line": 13
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "sha256": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+      "line_count": 146,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "atomic user contribution",
+      "reviewed_scope": "owner-only reviewed entry; exact source budget/approval; transaction price capture; Vault calldata identity; post-callback owner/policy/backing",
+      "declared_function_locations": [
+        {
+          "name": "activate",
+          "line": 15
+        },
+        {
+          "name": "increase",
+          "line": 16
+        },
+        {
+          "name": "_owner",
+          "line": 58
+        },
+        {
+          "name": "_vault",
+          "line": 61
+        },
+        {
+          "name": "validateOwner",
+          "line": 68
+        },
+        {
+          "name": "sourceValue",
+          "line": 75
+        },
+        {
+          "name": "_pricing",
+          "line": 84
+        },
+        {
+          "name": "pricingContext",
+          "line": 88
+        },
+        {
+          "name": "executeReviewed",
+          "line": 98
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZBuyback.sol",
+      "sha256": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+      "line_count": 80,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "reserve consumption",
+      "reviewed_scope": "upper-valued operating budget; exact released reserve; typed swap; only fixed ZZZ burn; actual totalSupply reduction; post-callback keeper/pause",
+      "declared_function_locations": [
+        {
+          "name": "setMaximumTradeUSD",
+          "line": 31
+        },
+        {
+          "name": "setOperatingTradeUSD",
+          "line": 40
+        },
+        {
+          "name": "execute",
+          "line": 46
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "sha256": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+      "line_count": 564,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "canonical lifecycle",
+      "reviewed_scope": "six-domain ordered cutoff/settlement/export/import; row/source/root equality; exact backing transfer; atomic retire/activate; funded abort; cancelled royalty lineage",
+      "declared_function_locations": [
+        {
+          "name": "bootstrap",
+          "line": 12
+        },
+        {
+          "name": "preparationHash",
+          "line": 13
+        },
+        {
+          "name": "preparationReadyDestination",
+          "line": 14
+        },
+        {
+          "name": "preparationNotice",
+          "line": 15
+        },
+        {
+          "name": "canonicalTransition",
+          "line": 16
+        },
+        {
+          "name": "canonicalModule",
+          "line": 20
+        },
+        {
+          "name": "royaltyRewards",
+          "line": 21
+        },
+        {
+          "name": "canonicalRetire",
+          "line": 22
+        },
+        {
+          "name": "validateCancelledRoyaltyHop",
+          "line": 26
+        },
+        {
+          "name": "royaltiesOpen",
+          "line": 30
+        },
+        {
+          "name": "isAsset",
+          "line": 31
+        },
+        {
+          "name": "activationCount",
+          "line": 32
+        },
+        {
+          "name": "totalWeight",
+          "line": 33
+        },
+        {
+          "name": "sync",
+          "line": 34
+        },
+        {
+          "name": "canonicalRecoverCancelled",
+          "line": 35
+        },
+        {
+          "name": "ACCOUNTING_VERSION",
+          "line": 38
+        },
+        {
+          "name": "LP_ALLOCATION_VERSION",
+          "line": 39
+        },
+        {
+          "name": "deploymentConfigurationCommitment",
+          "line": 42
+        },
+        {
+          "name": "moduleAt",
+          "line": 127
+        },
+        {
+          "name": "_module",
+          "line": 137
+        },
+        {
+          "name": "_peer",
+          "line": 141
+        },
+        {
+          "name": "_exactLPProfile",
+          "line": 144
+        },
+        {
+          "name": "deploymentCommitment",
+          "line": 153
+        },
+        {
+          "name": "prepareImport",
+          "line": 200
+        },
+        {
+          "name": "freeze",
+          "line": 216
+        },
+        {
+          "name": "settle",
+          "line": 281
+        },
+        {
+          "name": "bindFrozen",
+          "line": 291
+        },
+        {
+          "name": "_next",
+          "line": 304
+        },
+        {
+          "name": "exportRows",
+          "line": 308
+        },
+        {
+          "name": "importRows",
+          "line": 330
+        },
+        {
+          "name": "completeImport",
+          "line": 349
+        },
+        {
+          "name": "_balance",
+          "line": 367
+        },
+        {
+          "name": "fund",
+          "line": 371
+        },
+        {
+          "name": "acceptFunding",
+          "line": 390
+        },
+        {
+          "name": "_allFunded",
+          "line": 400
+        },
+        {
+          "name": "commit",
+          "line": 408
+        },
+        {
+          "name": "activate",
+          "line": 425
+        },
+        {
+          "name": "abort",
+          "line": 447
+        },
+        {
+          "name": "cancelImport",
+          "line": 454
+        },
+        {
+          "name": "returnFunds",
+          "line": 466
+        },
+        {
+          "name": "returnFunding",
+          "line": 482
+        },
+        {
+          "name": "finishAbort",
+          "line": 492
+        },
+        {
+          "name": "cancelledRoyaltyReturnController",
+          "line": 509
+        },
+        {
+          "name": "_cancelledRestored",
+          "line": 513
+        },
+        {
+          "name": "_recoveryPeer",
+          "line": 519
+        },
+        {
+          "name": "advanceCancelledRoyaltyReturn",
+          "line": 526
+        },
+        {
+          "name": "_cancelledTarget",
+          "line": 534
+        },
+        {
+          "name": "recoverCancelledRoyalties",
+          "line": 550
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "line_count": 75,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "holder payout",
+      "reviewed_scope": "current owner for all items; bounded unique claims; repeated per-item ownership; ledger-specific authentication; atomic batch failure",
+      "declared_function_locations": [
+        {
+          "name": "claimFor",
+          "line": 9
+        },
+        {
+          "name": "claimBatch",
+          "line": 48
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZCompounder.sol",
+      "sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "line_count": 16,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "maintenance coordinator",
+      "reviewed_scope": "keeper/live/operating; deadline and positive L floor; fixed Vault call; final keeper/pause check",
+      "declared_function_locations": [
+        {
+          "name": "compound",
+          "line": 10
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "sha256": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+      "line_count": 352,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "entrant share/NAV",
+      "reviewed_scope": "captured dual bounds; exact Entry context; phase progression; incumbent versus entrant value; actual marginal deployed LP; caller/operation/idle floors; share rounding",
+      "declared_function_locations": [
+        {
+          "name": "migrationBudget",
+          "line": 10
+        },
+        {
+          "name": "executionStrategy",
+          "line": 11
+        },
+        {
+          "name": "pricingContext",
+          "line": 13
+        },
+        {
+          "name": "emergencyActive",
+          "line": 16
+        },
+        {
+          "name": "contributionLossBps",
+          "line": 17
+        },
+        {
+          "name": "lastCompound",
+          "line": 18
+        },
+        {
+          "name": "compoundInterval",
+          "line": 19
+        },
+        {
+          "name": "compoundReady",
+          "line": 22
+        },
+        {
+          "name": "validateRebalance",
+          "line": 23
+        },
+        {
+          "name": "validateResidualClose",
+          "line": 24
+        },
+        {
+          "name": "maintenanceValues",
+          "line": 25
+        },
+        {
+          "name": "checkMaintenance",
+          "line": 26
+        },
+        {
+          "name": "assertPortfolioUtilization",
+          "line": 27
+        },
+        {
+          "name": "_entry",
+          "line": 81
+        },
+        {
+          "name": "_live",
+          "line": 82
+        },
+        {
+          "name": "active",
+          "line": 85
+        },
+        {
+          "name": "validateRebalance",
+          "line": 88
+        },
+        {
+          "name": "validateResidualClose",
+          "line": 94
+        },
+        {
+          "name": "_protocolPolicy",
+          "line": 97
+        },
+        {
+          "name": "entryIdleLimit",
+          "line": 100
+        },
+        {
+          "name": "assertDeployed",
+          "line": 104
+        },
+        {
+          "name": "checkMaintenance",
+          "line": 112
+        },
+        {
+          "name": "compoundReady",
+          "line": 118
+        },
+        {
+          "name": "markMaintenance",
+          "line": 123
+        },
+        {
+          "name": "endMaintenance",
+          "line": 143
+        },
+        {
+          "name": "emergencyExecution",
+          "line": 152
+        },
+        {
+          "name": "_beginMaintenanceExecution",
+          "line": 158
+        },
+        {
+          "name": "_endMaintenanceExecution",
+          "line": 163
+        },
+        {
+          "name": "assertPortfolioUtilization",
+          "line": 171
+        },
+        {
+          "name": "_mark",
+          "line": 175
+        },
+        {
+          "name": "_pair",
+          "line": 183
+        },
+        {
+          "name": "beginEntryReviewed",
+          "line": 202
+        },
+        {
+          "name": "begin",
+          "line": 220
+        },
+        {
+          "name": "_lower",
+          "line": 240
+        },
+        {
+          "name": "_upper",
+          "line": 247
+        },
+        {
+          "name": "_pairValue",
+          "line": 253
+        },
+        {
+          "name": "valueBucket",
+          "line": 256
+        },
+        {
+          "name": "_executionValue",
+          "line": 262
+        },
+        {
+          "name": "nav",
+          "line": 266
+        },
+        {
+          "name": "idleValue",
+          "line": 276
+        },
+        {
+          "name": "contributionNav",
+          "line": 285
+        },
+        {
+          "name": "historicalValue",
+          "line": 296
+        },
+        {
+          "name": "_putUnchanged",
+          "line": 299
+        },
+        {
+          "name": "_executionStrategy",
+          "line": 302
+        },
+        {
+          "name": "_unchanged",
+          "line": 305
+        },
+        {
+          "name": "finish",
+          "line": 318
+        },
+        {
+          "name": "endEntry",
+          "line": 342
+        },
+        {
+          "name": "_clear",
+          "line": 347
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "sha256": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+      "line_count": 222,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "manual authority/manifest",
+      "reviewed_scope": "exact current main/residual custody fingerprints; fixed core/pair; paused force manifest; guarded same-main active geometry; typed minima and expiry",
+      "declared_function_locations": [
+        {
+          "name": "parkingNonce",
+          "line": 9
+        },
+        {
+          "name": "custodyEpoch",
+          "line": 10
+        },
+        {
+          "name": "currentZZZ",
+          "line": 11
+        },
+        {
+          "name": "activationAssets",
+          "line": 13
+        },
+        {
+          "name": "zzz",
+          "line": 14
+        },
+        {
+          "name": "configurationRevision",
+          "line": 15
+        },
+        {
+          "name": "executionPortfolioFingerprint",
+          "line": 17
+        },
+        {
+          "name": "activeSecondaryCount",
+          "line": 18
+        },
+        {
+          "name": "stateView",
+          "line": 19
+        },
+        {
+          "name": "controlFingerprint",
+          "line": 21
+        },
+        {
+          "name": "validateZZZ",
+          "line": 38
+        },
+        {
+          "name": "emergencyCustodyHash",
+          "line": 50
+        },
+        {
+          "name": "_emergencyCustodyHash",
+          "line": 54
+        },
+        {
+          "name": "consolidationCustodyHash",
+          "line": 62
+        },
+        {
+          "name": "_consolidationCustodyHash",
+          "line": 66
+        },
+        {
+          "name": "_control",
+          "line": 71
+        },
+        {
+          "name": "validateEmergency",
+          "line": 77
+        },
+        {
+          "name": "_request",
+          "line": 82
+        },
+        {
+          "name": "captureConsolidation",
+          "line": 90
+        },
+        {
+          "name": "verifyConsolidation",
+          "line": 102
+        },
+        {
+          "name": "_consolidation",
+          "line": 111
+        },
+        {
+          "name": "emergencyFingerprint",
+          "line": 137
+        },
+        {
+          "name": "consolidationEmergencyFingerprint",
+          "line": 143
+        },
+        {
+          "name": "_emergencyFingerprint",
+          "line": 147
+        },
+        {
+          "name": "residualMainFingerprint",
+          "line": 166
+        },
+        {
+          "name": "_residualMainFingerprint",
+          "line": 170
+        },
+        {
+          "name": "validateParking",
+          "line": 183
+        },
+        {
+          "name": "_validateParking",
+          "line": 188
+        },
+        {
+          "name": "captureResidualClose",
+          "line": 202
+        },
+        {
+          "name": "verifyResidualClose",
+          "line": 210
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "line_count": 151,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "funded LP revenue",
+      "reviewed_scope": "actual exact receipt; groups-of-20 80/10/5/5; owner-only cutoff dust; compound/buyback reserve separation; canonical callback barrier",
+      "declared_function_locations": [
+        {
+          "name": "assetCount",
+          "line": 11
+        },
+        {
+          "name": "assets",
+          "line": 11
+        },
+        {
+          "name": "creditCanonicalCutoff",
+          "line": 13
+        },
+        {
+          "name": "_balance",
+          "line": 35
+        },
+        {
+          "name": "_pull",
+          "line": 39
+        },
+        {
+          "name": "_push",
+          "line": 43
+        },
+        {
+          "name": "_approve",
+          "line": 50
+        },
+        {
+          "name": "canonicalState",
+          "line": 53
+        },
+        {
+          "name": "_vault",
+          "line": 54
+        },
+        {
+          "name": "_credit",
+          "line": 55
+        },
+        {
+          "name": "_solvent",
+          "line": 64
+        },
+        {
+          "name": "allocate",
+          "line": 68
+        },
+        {
+          "name": "flushDust",
+          "line": 91
+        },
+        {
+          "name": "_flushHomeDust",
+          "line": 98
+        },
+        {
+          "name": "releaseCompound",
+          "line": 107
+        },
+        {
+          "name": "releaseBuyback",
+          "line": 116
+        },
+        {
+          "name": "canonicalModule",
+          "line": 123
+        },
+        {
+          "name": "canonicalBarrier",
+          "line": 127
+        },
+        {
+          "name": "canonicalFlush",
+          "line": 130
+        },
+        {
+          "name": "canonicalBucketRecord",
+          "line": 131
+        },
+        {
+          "name": "canonicalWrite",
+          "line": 134
+        },
+        {
+          "name": "canonicalSend",
+          "line": 147
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "line_count": 141,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "fee reserve handoff",
+      "reviewed_scope": "captured raw versus accounted backing; cutoff dust settlement; bucket/asset rows; immutable companion transport; prefunds/restoration",
+      "declared_function_locations": [
+        {
+          "name": "_balance",
+          "line": 30
+        },
+        {
+          "name": "_push",
+          "line": 33
+        },
+        {
+          "name": "_vault",
+          "line": 40
+        },
+        {
+          "name": "canonicalCapture",
+          "line": 41
+        },
+        {
+          "name": "canonicalSettle",
+          "line": 63
+        },
+        {
+          "name": "canonicalCount",
+          "line": 74
+        },
+        {
+          "name": "canonicalExport",
+          "line": 75
+        },
+        {
+          "name": "canonicalImport",
+          "line": 86
+        },
+        {
+          "name": "canonicalAssetCount",
+          "line": 111
+        },
+        {
+          "name": "canonicalBacking",
+          "line": 112
+        },
+        {
+          "name": "canonicalRelease",
+          "line": 113
+        },
+        {
+          "name": "_accept",
+          "line": 120
+        },
+        {
+          "name": "canonicalAccept",
+          "line": 126
+        },
+        {
+          "name": "canonicalRestore",
+          "line": 130
+        },
+        {
+          "name": "canonicalValidate",
+          "line": 134
+        },
+        {
+          "name": "canonicalActivate",
+          "line": 138
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "sha256": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+      "line_count": 376,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "LP orchestration/core callback",
+      "reviewed_scope": "fixed Manager/child/core graph; one swap; exact core delta/output; own-transition proof before settlement; native allowlist; Vault-only position writes; immutable recipient",
+      "declared_function_locations": [
+        {
+          "name": "migrationBudget",
+          "line": 18
+        },
+        {
+          "name": "consolidationActive",
+          "line": 19
+        },
+        {
+          "name": "maintenanceBucket",
+          "line": 21
+        },
+        {
+          "name": "maintenancePrices",
+          "line": 22
+        },
+        {
+          "name": "enabled",
+          "line": 25
+        },
+        {
+          "name": "minimumMainBps",
+          "line": 26
+        },
+        {
+          "name": "residualRange",
+          "line": 27
+        },
+        {
+          "name": "recordApplied",
+          "line": 28
+        },
+        {
+          "name": "positionManager",
+          "line": 73
+        },
+        {
+          "name": "executionStrategy",
+          "line": 75
+        },
+        {
+          "name": "balanceContext",
+          "line": 77
+        },
+        {
+          "name": "_balanceContext",
+          "line": 80
+        },
+        {
+          "name": "_emergencyBudget",
+          "line": 87
+        },
+        {
+          "name": "beginEmergency",
+          "line": 92
+        },
+        {
+          "name": "endEmergency",
+          "line": 98
+        },
+        {
+          "name": "_retains",
+          "line": 106
+        },
+        {
+          "name": "_policySpot",
+          "line": 110
+        },
+        {
+          "name": "_executionOracle",
+          "line": 116
+        },
+        {
+          "name": "_beginPrice",
+          "line": 119
+        },
+        {
+          "name": "_beginPlacement",
+          "line": 122
+        },
+        {
+          "name": "_endPlacement",
+          "line": 127
+        },
+        {
+          "name": "spot",
+          "line": 130
+        },
+        {
+          "name": "_config",
+          "line": 133
+        },
+        {
+          "name": "_balance",
+          "line": 138
+        },
+        {
+          "name": "_sendNative",
+          "line": 141
+        },
+        {
+          "name": "_finishNativeCredit",
+          "line": 147
+        },
+        {
+          "name": "_checkPosition",
+          "line": 154
+        },
+        {
+          "name": "_portfolioPolicy",
+          "line": 161
+        },
+        {
+          "name": "_ordinaryReplacement",
+          "line": 164
+        },
+        {
+          "name": "_hybridReplacement",
+          "line": 168
+        },
+        {
+          "name": "positionOperator",
+          "line": 177
+        },
+        {
+          "name": "secondaryId",
+          "line": 178
+        },
+        {
+          "name": "activeSecondaryCount",
+          "line": 179
+        },
+        {
+          "name": "portfolioFingerprint",
+          "line": 180
+        },
+        {
+          "name": "executionPortfolioFingerprint",
+          "line": 181
+        },
+        {
+          "name": "portfolioAmounts",
+          "line": 186
+        },
+        {
+          "name": "amounts",
+          "line": 187
+        },
+        {
+          "name": "ticks",
+          "line": 188
+        },
+        {
+          "name": "executionConfig",
+          "line": 190
+        },
+        {
+          "name": "executionSpot",
+          "line": 191
+        },
+        {
+          "name": "executionOrdinaryReplacement",
+          "line": 194
+        },
+        {
+          "name": "executionHybridReplacement",
+          "line": 195
+        },
+        {
+          "name": "mint",
+          "line": 196
+        },
+        {
+          "name": "increase",
+          "line": 203
+        },
+        {
+          "name": "collect",
+          "line": 210
+        },
+        {
+          "name": "close",
+          "line": 211
+        },
+        {
+          "name": "closeSecondary",
+          "line": 214
+        },
+        {
+          "name": "swap",
+          "line": 220
+        },
+        {
+          "name": "_swapExact",
+          "line": 237
+        },
+        {
+          "name": "balance",
+          "line": 259
+        },
+        {
+          "name": "unlockCallback",
+          "line": 336
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "sha256": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+      "line_count": 292,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "LP arithmetic/financial guards",
+      "reviewed_scope": "current ratio and exact v4 debt math; captured USD floors; directional protocol+LP fee; single/hybrid scoring; aggregate maintenance/idle/main allocation; compound eligibility",
+      "declared_function_locations": [
+        {
+          "name": "access",
+          "line": 14
+        },
+        {
+          "name": "portfolioPolicy",
+          "line": 16
+        },
+        {
+          "name": "rangeOrientation",
+          "line": 17
+        },
+        {
+          "name": "additionalLossBps",
+          "line": 18
+        },
+        {
+          "name": "executionQualityRevision",
+          "line": 19
+        },
+        {
+          "name": "range",
+          "line": 21
+        },
+        {
+          "name": "stateView",
+          "line": 22
+        },
+        {
+          "name": "configurationRevision",
+          "line": 23
+        },
+        {
+          "name": "controlFingerprint",
+          "line": 24
+        },
+        {
+          "name": "minimumMainBps",
+          "line": 25
+        },
+        {
+          "name": "isNativePool",
+          "line": 26
+        },
+        {
+          "name": "activationAssets",
+          "line": 27
+        },
+        {
+          "name": "zzz",
+          "line": 28
+        },
+        {
+          "name": "lastCompound",
+          "line": 30
+        },
+        {
+          "name": "compoundInterval",
+          "line": 31
+        },
+        {
+          "name": "_access",
+          "line": 49
+        },
+        {
+          "name": "fixedZZZ",
+          "line": 51
+        },
+        {
+          "name": "nativeConfig",
+          "line": 61
+        },
+        {
+          "name": "executionTarget",
+          "line": 69
+        },
+        {
+          "name": "_executionRange",
+          "line": 76
+        },
+        {
+          "name": "policyFingerprint",
+          "line": 82
+        },
+        {
+          "name": "executionValidatePrice",
+          "line": 99
+        },
+        {
+          "name": "executionValidateExitPrice",
+          "line": 104
+        },
+        {
+          "name": "_executionValidatePrice",
+          "line": 107
+        },
+        {
+          "name": "executionPrices",
+          "line": 115
+        },
+        {
+          "name": "executionMinimumOutput",
+          "line": 123
+        },
+        {
+          "name": "executionMinimumOutputForExit",
+          "line": 128
+        },
+        {
+          "name": "_executionMinimumOutput",
+          "line": 131
+        },
+        {
+          "name": "validSpot",
+          "line": 140
+        },
+        {
+          "name": "_quoted",
+          "line": 146
+        },
+        {
+          "name": "minimumOutput",
+          "line": 150
+        },
+        {
+          "name": "maintenanceValues",
+          "line": 157
+        },
+        {
+          "name": "checkMaintenance",
+          "line": 166
+        },
+        {
+          "name": "assertPortfolioUtilization",
+          "line": 178
+        },
+        {
+          "name": "validateResidualClose",
+          "line": 193
+        },
+        {
+          "name": "validateRebalance",
+          "line": 198
+        },
+        {
+          "name": "compoundReady",
+          "line": 204
+        },
+        {
+          "name": "deploymentAmounts",
+          "line": 216
+        },
+        {
+          "name": "deploymentDebts",
+          "line": 223
+        },
+        {
+          "name": "principalAmounts",
+          "line": 229
+        },
+        {
+          "name": "_values",
+          "line": 241
+        },
+        {
+          "name": "_allocationValues",
+          "line": 244
+        },
+        {
+          "name": "_units",
+          "line": 249
+        },
+        {
+          "name": "evaluate",
+          "line": 255
+        },
+        {
+          "name": "seed",
+          "line": 269
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "sha256": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+      "line_count": 313,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "atomic venue selection",
+      "reviewed_scope": "bounded reviewed venue set; empty stop; bounded actual-core revert quotes; exact output/state; partial hybrid/full single sizing; active target; quote gas/search limits",
+      "declared_function_locations": [
+        {
+          "name": "getLiquidity",
+          "line": 13
+        },
+        {
+          "name": "liquidityManager",
+          "line": 49
+        },
+        {
+          "name": "executionPoolCount",
+          "line": 50
+        },
+        {
+          "name": "executionPoolAt",
+          "line": 51
+        },
+        {
+          "name": "deploymentAmounts",
+          "line": 54
+        },
+        {
+          "name": "principalAmounts",
+          "line": 58
+        },
+        {
+          "name": "additionalLossBps",
+          "line": 62
+        },
+        {
+          "name": "policyFingerprint",
+          "line": 67
+        },
+        {
+          "name": "configureExecutionPools",
+          "line": 73
+        },
+        {
+          "name": "configureSolver",
+          "line": 88
+        },
+        {
+          "name": "_fee",
+          "line": 95
+        },
+        {
+          "name": "_pool",
+          "line": 100
+        },
+        {
+          "name": "_pool",
+          "line": 103
+        },
+        {
+          "name": "_prices",
+          "line": 109
+        },
+        {
+          "name": "_validSpot",
+          "line": 112
+        },
+        {
+          "name": "_evaluate",
+          "line": 118
+        },
+        {
+          "name": "_minimum",
+          "line": 122
+        },
+        {
+          "name": "_seed",
+          "line": 126
+        },
+        {
+          "name": "plan",
+          "line": 134
+        },
+        {
+          "name": "planReplacement",
+          "line": 138
+        },
+        {
+          "name": "_activeTarget",
+          "line": 143
+        },
+        {
+          "name": "_tickSide",
+          "line": 147
+        },
+        {
+          "name": "_plan",
+          "line": 151
+        },
+        {
+          "name": "routePlan",
+          "line": 187
+        },
+        {
+          "name": "quoteCandidate",
+          "line": 275
+        },
+        {
+          "name": "quoteSwap",
+          "line": 297
+        },
+        {
+          "name": "unlockCallback",
+          "line": 301
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZLPPositionExecutor.sol",
+      "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+      "line_count": 332,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "physical LP custody",
+      "reviewed_scope": "typed actions only; per-id Vault ownership; exact debt and prefund isolation; main+one residual; collect/close both; same-main increase; post-callback physical tick/L checks",
+      "declared_function_locations": [
+        {
+          "name": "executionConfig",
+          "line": 13
+        },
+        {
+          "name": "executionSpot",
+          "line": 14
+        },
+        {
+          "name": "executionOrdinaryReplacement",
+          "line": 15
+        },
+        {
+          "name": "executionHybridReplacement",
+          "line": 16
+        },
+        {
+          "name": "balanceContext",
+          "line": 17
+        },
+        {
+          "name": "enabled",
+          "line": 20
+        },
+        {
+          "name": "residualRange",
+          "line": 21
+        },
+        {
+          "name": "positionManager",
+          "line": 59
+        },
+        {
+          "name": "_config",
+          "line": 60
+        },
+        {
+          "name": "_policySpot",
+          "line": 61
+        },
+        {
+          "name": "_balanceContext",
+          "line": 62
+        },
+        {
+          "name": "_hybridReplacement",
+          "line": 63
+        },
+        {
+          "name": "_sendNative",
+          "line": 64
+        },
+        {
+          "name": "_finishNativeCredit",
+          "line": 71
+        },
+        {
+          "name": "_checkPosition",
+          "line": 79
+        },
+        {
+          "name": "_main",
+          "line": 87
+        },
+        {
+          "name": "_portfolioPolicy",
+          "line": 91
+        },
+        {
+          "name": "portfolioFingerprint",
+          "line": 95
+        },
+        {
+          "name": "portfolioAmounts",
+          "line": 110
+        },
+        {
+          "name": "_approve",
+          "line": 123
+        },
+        {
+          "name": "_reset",
+          "line": 129
+        },
+        {
+          "name": "_activeMainMark",
+          "line": 134
+        },
+        {
+          "name": "_mintOrIncrease",
+          "line": 139
+        },
+        {
+          "name": "_auxiliaryPlan",
+          "line": 231
+        },
+        {
+          "name": "mint",
+          "line": 247
+        },
+        {
+          "name": "increase",
+          "line": 253
+        },
+        {
+          "name": "collect",
+          "line": 261
+        },
+        {
+          "name": "_collectOne",
+          "line": 270
+        },
+        {
+          "name": "_settleTakePair",
+          "line": 277
+        },
+        {
+          "name": "close",
+          "line": 287
+        },
+        {
+          "name": "_closeOne",
+          "line": 299
+        },
+        {
+          "name": "closeSecondary",
+          "line": 312
+        },
+        {
+          "name": "ticks",
+          "line": 324
+        },
+        {
+          "name": "amounts",
+          "line": 329
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZLPRewardConverter.sol",
+      "sha256": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+      "line_count": 11,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "LP-only conversion child",
+      "reviewed_scope": "fixed inherited ledger and optional wrapper; royalty currencies remain separate",
+      "declared_function_locations": [],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "sha256": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+      "line_count": 100,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "equal active cohort",
+      "reviewed_scope": "all historical bucket dust checkpoint before join; one-time member; Rewards post-write membership; canonical ordinal import",
+      "declared_function_locations": [
+        {
+          "name": "mintedCount",
+          "line": 7
+        },
+        {
+          "name": "tokenAtOrdinal",
+          "line": 8
+        },
+        {
+          "name": "_state",
+          "line": 27
+        },
+        {
+          "name": "_economic",
+          "line": 28
+        },
+        {
+          "name": "_canonicalNext",
+          "line": 29
+        },
+        {
+          "name": "settleDust",
+          "line": 36
+        },
+        {
+          "name": "activate",
+          "line": 56
+        },
+        {
+          "name": "canonicalCapture",
+          "line": 67
+        },
+        {
+          "name": "canonicalSettle",
+          "line": 72
+        },
+        {
+          "name": "canonicalCount",
+          "line": 73
+        },
+        {
+          "name": "canonicalExport",
+          "line": 74
+        },
+        {
+          "name": "canonicalImport",
+          "line": 80
+        },
+        {
+          "name": "canonicalValidate",
+          "line": 93
+        },
+        {
+          "name": "canonicalAssetCount",
+          "line": 96
+        },
+        {
+          "name": "canonicalActivate",
+          "line": 97
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "sha256": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed",
+      "line_count": 377,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "operator recovery/holder exit",
+      "reviewed_scope": "guarded versus explicit force masks; residual-only close and same-main consolidation; park/resume/move; terminal closing/allocation/distribution; current-owner exact payouts; failure-isolated gas batches",
+      "declared_function_locations": [
+        {
+          "name": "completeConsolidation",
+          "line": 13
+        },
+        {
+          "name": "portfolioPolicy",
+          "line": 14
+        },
+        {
+          "name": "beginLPExit",
+          "line": 17
+        },
+        {
+          "name": "exitBucketToHolders",
+          "line": 18
+        },
+        {
+          "name": "closeResidual",
+          "line": 19
+        },
+        {
+          "name": "mintedCount",
+          "line": 22
+        },
+        {
+          "name": "tokenAtOrdinal",
+          "line": 23
+        },
+        {
+          "name": "refreshMetadata",
+          "line": 24
+        },
+        {
+          "name": "policyMetadataChanged",
+          "line": 25
+        },
+        {
+          "name": "_vault",
+          "line": 95
+        },
+        {
+          "name": "_nft",
+          "line": 98
+        },
+        {
+          "name": "emergencyRebalance",
+          "line": 104
+        },
+        {
+          "name": "consolidateResidual",
+          "line": 115
+        },
+        {
+          "name": "_executeManual",
+          "line": 130
+        },
+        {
+          "name": "emergencyFingerprint",
+          "line": 143
+        },
+        {
+          "name": "emergencyRequest",
+          "line": 150
+        },
+        {
+          "name": "emergencyTarget",
+          "line": 151
+        },
+        {
+          "name": "emergencyCustodyHash",
+          "line": 154
+        },
+        {
+          "name": "consolidationCustodyHash",
+          "line": 157
+        },
+        {
+          "name": "activePlan",
+          "line": 162
+        },
+        {
+          "name": "outstandingCount",
+          "line": 163
+        },
+        {
+          "name": "settlementBucketCount",
+          "line": 164
+        },
+        {
+          "name": "settlementBucketAt",
+          "line": 165
+        },
+        {
+          "name": "configureZZZ",
+          "line": 169
+        },
+        {
+          "name": "beginCollectiveExit",
+          "line": 180
+        },
+        {
+          "name": "closeBucket",
+          "line": 217
+        },
+        {
+          "name": "allocatePrincipal",
+          "line": 247
+        },
+        {
+          "name": "claimablePrincipal",
+          "line": 284
+        },
+        {
+          "name": "distributePrincipal",
+          "line": 292
+        },
+        {
+          "name": "payCurrentOwner",
+          "line": 304
+        },
+        {
+          "name": "claimPrincipal",
+          "line": 311
+        },
+        {
+          "name": "_pay",
+          "line": 316
+        },
+        {
+          "name": "_backed",
+          "line": 333
+        },
+        {
+          "name": "moveFunds",
+          "line": 339
+        },
+        {
+          "name": "resume",
+          "line": 343
+        },
+        {
+          "name": "park",
+          "line": 347
+        },
+        {
+          "name": "closeResidual",
+          "line": 361
+        },
+        {
+          "name": "invalidateParking",
+          "line": 373
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "sha256": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+      "line_count": 439,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "operation guards",
+      "reviewed_scope": "captured starting vector and controls; compound inclusion/clock; execution-loss/idle/caller floors; explicit emergency checks; native/LP sender; source-pool confirmation identity",
+      "declared_function_locations": [
+        {
+          "name": "controlFingerprint",
+          "line": 10
+        },
+        {
+          "name": "observationFingerprint",
+          "line": 11
+        },
+        {
+          "name": "observations",
+          "line": 12
+        },
+        {
+          "name": "emergencyReady",
+          "line": 13
+        },
+        {
+          "name": "emergencyFingerprint",
+          "line": 18
+        },
+        {
+          "name": "emergencyTarget",
+          "line": 19
+        },
+        {
+          "name": "totalIdle",
+          "line": 22
+        },
+        {
+          "name": "validateOwner",
+          "line": 24
+        },
+        {
+          "name": "validateHolderExit",
+          "line": 25
+        },
+        {
+          "name": "validateContribution",
+          "line": 26
+        },
+        {
+          "name": "portfolioPolicy",
+          "line": 29
+        },
+        {
+          "name": "revision",
+          "line": 31
+        },
+        {
+          "name": "enabled",
+          "line": 32
+        },
+        {
+          "name": "positionOperator",
+          "line": 34
+        },
+        {
+          "name": "executionStrategy",
+          "line": 35
+        },
+        {
+          "name": "vault",
+          "line": 96
+        },
+        {
+          "name": "beginEmergency",
+          "line": 98
+        },
+        {
+          "name": "endEmergency",
+          "line": 106
+        },
+        {
+          "name": "validateEmergency",
+          "line": 112
+        },
+        {
+          "name": "emergencyFingerprint",
+          "line": 117
+        },
+        {
+          "name": "_skip",
+          "line": 126
+        },
+        {
+          "name": "setLossLimits",
+          "line": 129
+        },
+        {
+          "name": "setCompoundInterval",
+          "line": 141
+        },
+        {
+          "name": "compoundInterval",
+          "line": 152
+        },
+        {
+          "name": "_compoundInterval",
+          "line": 156
+        },
+        {
+          "name": "_knownPool",
+          "line": 160
+        },
+        {
+          "name": "recordComposition",
+          "line": 168
+        },
+        {
+          "name": "validateOwner",
+          "line": 171
+        },
+        {
+          "name": "importComposition",
+          "line": 174
+        },
+        {
+          "name": "_balance",
+          "line": 179
+        },
+        {
+          "name": "assertIdle",
+          "line": 182
+        },
+        {
+          "name": "validateCanonicalWriter",
+          "line": 192
+        },
+        {
+          "name": "compoundReady",
+          "line": 200
+        },
+        {
+          "name": "checkpoint",
+          "line": 205
+        },
+        {
+          "name": "maintenanceBucket",
+          "line": 228
+        },
+        {
+          "name": "maintenancePrices",
+          "line": 233
+        },
+        {
+          "name": "_portfolioPolicy",
+          "line": 238
+        },
+        {
+          "name": "_beforeMove",
+          "line": 241
+        },
+        {
+          "name": "_includeCompound",
+          "line": 265
+        },
+        {
+          "name": "_afterMove",
+          "line": 272
+        },
+        {
+          "name": "_value",
+          "line": 297
+        },
+        {
+          "name": "_pricing",
+          "line": 302
+        },
+        {
+          "name": "valueBucket",
+          "line": 305
+        },
+        {
+          "name": "nav",
+          "line": 308
+        },
+        {
+          "name": "contributionNav",
+          "line": 311
+        },
+        {
+          "name": "assertDeployed",
+          "line": 314
+        },
+        {
+          "name": "assertPut",
+          "line": 320
+        },
+        {
+          "name": "validateNativeSender",
+          "line": 332
+        },
+        {
+          "name": "validateLPReceiver",
+          "line": 342
+        },
+        {
+          "name": "mintTarget",
+          "line": 346
+        },
+        {
+          "name": "balanceContext",
+          "line": 357
+        },
+        {
+          "name": "poolTokens",
+          "line": 361
+        },
+        {
+          "name": "validateReservation",
+          "line": 365
+        },
+        {
+          "name": "validateMove",
+          "line": 371
+        },
+        {
+          "name": "validateUnwind",
+          "line": 377
+        },
+        {
+          "name": "validateHolderExit",
+          "line": 384
+        },
+        {
+          "name": "validateResidualClose",
+          "line": 390
+        },
+        {
+          "name": "validateRebalance",
+          "line": 393
+        },
+        {
+          "name": "_confirmationControl",
+          "line": 402
+        },
+        {
+          "name": "idleValue",
+          "line": 409
+        },
+        {
+          "name": "assertIdleLoss",
+          "line": 413
+        },
+        {
+          "name": "validateContribution",
+          "line": 418
+        },
+        {
+          "name": "contributionResult",
+          "line": 429
+        },
+        {
+          "name": "historicalCompoundValue",
+          "line": 436
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+      "line_count": 372,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "NFT rights/randomness",
+      "reviewed_scope": "ERC721 current ownership; pending request namespace/auth; ordered quota/artwork reveal; SeaDrop zero-value callback; activation royalty weight; lifecycle metadata; canonical raw ownership import",
+      "declared_function_locations": [
+        {
+          "name": "destinationController",
+          "line": 16
+        },
+        {
+          "name": "requestRandomWords",
+          "line": 31
+        },
+        {
+          "name": "_policy",
+          "line": 98
+        },
+        {
+          "name": "randomnessCoordinator",
+          "line": 103
+        },
+        {
+          "name": "keyHash",
+          "line": 104
+        },
+        {
+          "name": "subscriptionId",
+          "line": 105
+        },
+        {
+          "name": "requestConfirmations",
+          "line": 106
+        },
+        {
+          "name": "callbackGasLimit",
+          "line": 107
+        },
+        {
+          "name": "nativePayment",
+          "line": 108
+        },
+        {
+          "name": "randomnessConfigured",
+          "line": 109
+        },
+        {
+          "name": "randomnessEpoch",
+          "line": 110
+        },
+        {
+          "name": "policyMetadataChanged",
+          "line": 114
+        },
+        {
+          "name": "setMintPaused",
+          "line": 122
+        },
+        {
+          "name": "setMintEnd",
+          "line": 129
+        },
+        {
+          "name": "increaseRoyaltyAssetCapacity",
+          "line": 134
+        },
+        {
+          "name": "mint",
+          "line": 138
+        },
+        {
+          "name": "mintSeaDrop",
+          "line": 146
+        },
+        {
+          "name": "mintStageOf",
+          "line": 158
+        },
+        {
+          "name": "_mintDormant",
+          "line": 162
+        },
+        {
+          "name": "rawFulfillRandomWords",
+          "line": 198
+        },
+        {
+          "name": "finalizeTraits",
+          "line": 213
+        },
+        {
+          "name": "_drawArtwork",
+          "line": 232
+        },
+        {
+          "name": "notifyContribution",
+          "line": 247
+        },
+        {
+          "name": "addRoyaltyAsset",
+          "line": 254
+        },
+        {
+          "name": "royaltyInfo",
+          "line": 258
+        },
+        {
+          "name": "supportsInterface",
+          "line": 263
+        },
+        {
+          "name": "currentLPValue",
+          "line": 270
+        },
+        {
+          "name": "evolution",
+          "line": 275
+        },
+        {
+          "name": "tokenURI",
+          "line": 280
+        },
+        {
+          "name": "refreshMetadata",
+          "line": 286
+        },
+        {
+          "name": "refreshMetadataRange",
+          "line": 290
+        },
+        {
+          "name": "artworkBaseURI",
+          "line": 300
+        },
+        {
+          "name": "setBaseURI",
+          "line": 303
+        },
+        {
+          "name": "_requestKey",
+          "line": 310
+        },
+        {
+          "name": "transferFrom",
+          "line": 313
+        },
+        {
+          "name": "safeTransferFrom",
+          "line": 316
+        },
+        {
+          "name": "_update",
+          "line": 322
+        },
+        {
+          "name": "canonicalModule",
+          "line": 329
+        },
+        {
+          "name": "canonicalRandomness",
+          "line": 334
+        },
+        {
+          "name": "canonicalArtwork",
+          "line": 338
+        },
+        {
+          "name": "canonicalWriteHeader",
+          "line": 339
+        },
+        {
+          "name": "canonicalWriteRecord",
+          "line": 347
+        },
+        {
+          "name": "canonicalWriteArtwork",
+          "line": 359
+        },
+        {
+          "name": "canonicalSuccessor",
+          "line": 362
+        },
+        {
+          "name": "canonicalRetire",
+          "line": 367
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "sha256": "fcc849cfa4689f1a22e6e006d286ec73bea60e660713adc5d01b6a2f90e2245a",
+      "line_count": 281,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "NFT canonical/lifecycle codec",
+      "reviewed_scope": "source-authenticated owners/traits/requests/original recipients; exact metadata/mint policy compatibility; price-free lifecycle flags and principal settlement status",
+      "declared_function_locations": [
+        {
+          "name": "incomingSource",
+          "line": 11
+        },
+        {
+          "name": "destinationController",
+          "line": 12
+        },
+        {
+          "name": "nft",
+          "line": 15
+        },
+        {
+          "name": "access",
+          "line": 16
+        },
+        {
+          "name": "MINT_INTEGRATION_VERSION",
+          "line": 17
+        },
+        {
+          "name": "configurationValuesHash",
+          "line": 18
+        },
+        {
+          "name": "configurationHash",
+          "line": 19
+        },
+        {
+          "name": "seaDrop",
+          "line": 20
+        },
+        {
+          "name": "seaDropCodeHash",
+          "line": 21
+        },
+        {
+          "name": "originalMintRecipient",
+          "line": 22
+        },
+        {
+          "name": "assertCanonicalCount",
+          "line": 23
+        },
+        {
+          "name": "canonicalSuccessor",
+          "line": 26
+        },
+        {
+          "name": "exitPhase",
+          "line": 29
+        },
+        {
+          "name": "principalOf",
+          "line": 30
+        },
+        {
+          "name": "metadataLifecycleState",
+          "line": 54
+        },
+        {
+          "name": "metadataLifecycleContext",
+          "line": 60
+        },
+        {
+          "name": "_metadataLifecycleState",
+          "line": 66
+        },
+        {
+          "name": "_canonical",
+          "line": 95
+        },
+        {
+          "name": "_phase",
+          "line": 96
+        },
+        {
+          "name": "_position",
+          "line": 97
+        },
+        {
+          "name": "_flag",
+          "line": 98
+        },
+        {
+          "name": "_context",
+          "line": 99
+        },
+        {
+          "name": "_field",
+          "line": 115
+        },
+        {
+          "name": "_append",
+          "line": 118
+        },
+        {
+          "name": "_quoted",
+          "line": 119
+        },
+        {
+          "name": "_addressOrNull",
+          "line": 120
+        },
+        {
+          "name": "_principalStatus",
+          "line": 121
+        },
+        {
+          "name": "_lifecycleLabel",
+          "line": 130
+        },
+        {
+          "name": "canonicalCapture",
+          "line": 142
+        },
+        {
+          "name": "canonicalSettle",
+          "line": 149
+        },
+        {
+          "name": "canonicalCount",
+          "line": 150
+        },
+        {
+          "name": "canonicalExport",
+          "line": 151
+        },
+        {
+          "name": "canonicalImport",
+          "line": 172
+        },
+        {
+          "name": "_inventoryRow",
+          "line": 202
+        },
+        {
+          "name": "canonicalAssetCount",
+          "line": 207
+        },
+        {
+          "name": "deploymentConfigurationCommitment",
+          "line": 211
+        },
+        {
+          "name": "canonicalValidate",
+          "line": 226
+        },
+        {
+          "name": "canonicalActivate",
+          "line": 231
+        },
+        {
+          "name": "_sameMetadataPolicy",
+          "line": 240
+        },
+        {
+          "name": "_recordMintPolicy",
+          "line": 254
+        },
+        {
+          "name": "_mintCount",
+          "line": 262
+        },
+        {
+          "name": "_sameMintPolicy",
+          "line": 266
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "sha256": "a691196de69c40e0f2a3cd50d3efd65a5c72ae9bf5e848b300b5f1bb607faf3f",
+      "line_count": 322,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "display/lifecycle",
+      "reviewed_scope": "actual aggregate LP+idle+compound value; unavailable versus zero; LP exited distinct from dormant; receipt-confirmed royalty weight; escaped image JSON; four artwork paths and successor labels",
+      "declared_function_locations": [
+        {
+          "name": "ownerOf",
+          "line": 11
+        },
+        {
+          "name": "royaltyRewards",
+          "line": 12
+        },
+        {
+          "name": "rarityOf",
+          "line": 13
+        },
+        {
+          "name": "paletteOf",
+          "line": 14
+        },
+        {
+          "name": "patternOf",
+          "line": 15
+        },
+        {
+          "name": "traitsReady",
+          "line": 16
+        },
+        {
+          "name": "artworkBaseURI",
+          "line": 17
+        },
+        {
+          "name": "weightOf",
+          "line": 19
+        },
+        {
+          "name": "access",
+          "line": 21
+        },
+        {
+          "name": "nft",
+          "line": 22
+        },
+        {
+          "name": "metadataLifecycleState",
+          "line": 23
+        },
+        {
+          "name": "metadataLifecycleContext",
+          "line": 24
+        },
+        {
+          "name": "validateBaseURI",
+          "line": 61
+        },
+        {
+          "name": "artworkItem",
+          "line": 73
+        },
+        {
+          "name": "currentValue",
+          "line": 80
+        },
+        {
+          "name": "markedValue",
+          "line": 104
+        },
+        {
+          "name": "evolutionOf",
+          "line": 110
+        },
+        {
+          "name": "tokenMetadata",
+          "line": 120
+        },
+        {
+          "name": "_renderCanonical",
+          "line": 129
+        },
+        {
+          "name": "metadataLifecycleFingerprint",
+          "line": 139
+        },
+        {
+          "name": "_lifecycle",
+          "line": 145
+        },
+        {
+          "name": "_checkedLens",
+          "line": 149
+        },
+        {
+          "name": "_checkFlags",
+          "line": 153
+        },
+        {
+          "name": "_canonical",
+          "line": 156
+        },
+        {
+          "name": "_phase",
+          "line": 157
+        },
+        {
+          "name": "_flag",
+          "line": 158
+        },
+        {
+          "name": "_field",
+          "line": 162
+        },
+        {
+          "name": "_append",
+          "line": 165
+        },
+        {
+          "name": "_quoted",
+          "line": 166
+        },
+        {
+          "name": "_description",
+          "line": 170
+        },
+        {
+          "name": "_exitDescription",
+          "line": 189
+        },
+        {
+          "name": "_ownedCollection",
+          "line": 193
+        },
+        {
+          "name": "_markedValue",
+          "line": 198
+        },
+        {
+          "name": "_evolutionStage",
+          "line": 204
+        },
+        {
+          "name": "render",
+          "line": 213
+        },
+        {
+          "name": "_previewDescription",
+          "line": 216
+        },
+        {
+          "name": "_render",
+          "line": 224
+        },
+        {
+          "name": "_valueContext",
+          "line": 245
+        },
+        {
+          "name": "_attributes",
+          "line": 251
+        },
+        {
+          "name": "_attribute",
+          "line": 261
+        },
+        {
+          "name": "_rarity",
+          "line": 266
+        },
+        {
+          "name": "_rarityFile",
+          "line": 269
+        },
+        {
+          "name": "_color",
+          "line": 272
+        },
+        {
+          "name": "_colorFile",
+          "line": 276
+        },
+        {
+          "name": "_palette",
+          "line": 280
+        },
+        {
+          "name": "_visualAttributes",
+          "line": 289
+        },
+        {
+          "name": "_pattern",
+          "line": 304
+        },
+        {
+          "name": "_patternFile",
+          "line": 308
+        },
+        {
+          "name": "_stage",
+          "line": 312
+        },
+        {
+          "name": "_stageFile",
+          "line": 317
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+      "line_count": 582,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "pricing/execution proof",
+      "reviewed_scope": "dual USD round validation; independent-id assertion limits; bounded source calls; sequencer transitions; transient 49-word own-operation vector; exact quoted post-state before token callbacks; final live validation",
+      "declared_function_locations": [
+        {
+          "name": "fixedZZZ",
+          "line": 13
+        },
+        {
+          "name": "poolManager",
+          "line": 15
+        },
+        {
+          "name": "stateView",
+          "line": 16
+        },
+        {
+          "name": "executionStrategy",
+          "line": 17
+        },
+        {
+          "name": "sequencerPolicyCount",
+          "line": 113
+        },
+        {
+          "name": "sequencerPolicyAt",
+          "line": 114
+        },
+        {
+          "name": "setSequencerFeed",
+          "line": 119
+        },
+        {
+          "name": "_recordSequencer",
+          "line": 125
+        },
+        {
+          "name": "_sequencerData",
+          "line": 136
+        },
+        {
+          "name": "policyCount",
+          "line": 150
+        },
+        {
+          "name": "policyAt",
+          "line": 151
+        },
+        {
+          "name": "policy",
+          "line": 152
+        },
+        {
+          "name": "setDualFeed",
+          "line": 157
+        },
+        {
+          "name": "_sourceGas",
+          "line": 180
+        },
+        {
+          "name": "_boundedRead",
+          "line": 183
+        },
+        {
+          "name": "_decimals",
+          "line": 198
+        },
+        {
+          "name": "_validateSource",
+          "line": 204
+        },
+        {
+          "name": "_round",
+          "line": 211
+        },
+        {
+          "name": "_decodeRound",
+          "line": 219
+        },
+        {
+          "name": "_readBounds",
+          "line": 241
+        },
+        {
+          "name": "_agreedBounds",
+          "line": 249
+        },
+        {
+          "name": "_sequencerCheck",
+          "line": 256
+        },
+        {
+          "name": "priceBounds",
+          "line": 262
+        },
+        {
+          "name": "price",
+          "line": 275
+        },
+        {
+          "name": "tokenDecimals",
+          "line": 278
+        },
+        {
+          "name": "value",
+          "line": 283
+        },
+        {
+          "name": "quote",
+          "line": 286
+        },
+        {
+          "name": "referenceX96",
+          "line": 293
+        },
+        {
+          "name": "setExecutionSource",
+          "line": 301
+        },
+        {
+          "name": "_fixedZZZ",
+          "line": 319
+        },
+        {
+          "name": "_executionLength",
+          "line": 322
+        },
+        {
+          "name": "executionActive",
+          "line": 327
+        },
+        {
+          "name": "_loadExecution",
+          "line": 328
+        },
+        {
+          "name": "_executionWord",
+          "line": 338
+        },
+        {
+          "name": "_loadQuote",
+          "line": 345
+        },
+        {
+          "name": "_saveExecution",
+          "line": 356
+        },
+        {
+          "name": "_clearExecution",
+          "line": 368
+        },
+        {
+          "name": "_executionCaller",
+          "line": 375
+        },
+        {
+          "name": "_executionControls",
+          "line": 379
+        },
+        {
+          "name": "_captureExecution",
+          "line": 386
+        },
+        {
+          "name": "_sourceMarket",
+          "line": 407
+        },
+        {
+          "name": "_captureMarket",
+          "line": 413
+        },
+        {
+          "name": "_boundedExecutionRead",
+          "line": 427
+        },
+        {
+          "name": "_roundHash",
+          "line": 442
+        },
+        {
+          "name": "_marketHash",
+          "line": 443
+        },
+        {
+          "name": "_spotHash",
+          "line": 444
+        },
+        {
+          "name": "_executionRound",
+          "line": 447
+        },
+        {
+          "name": "_marketProof",
+          "line": 458
+        },
+        {
+          "name": "_validateExecution",
+          "line": 466
+        },
+        {
+          "name": "validateExecution",
+          "line": 487
+        },
+        {
+          "name": "beginExecution",
+          "line": 491
+        },
+        {
+          "name": "endExecution",
+          "line": 494
+        },
+        {
+          "name": "beginManagerExecution",
+          "line": 501
+        },
+        {
+          "name": "endManagerExecution",
+          "line": 516
+        },
+        {
+          "name": "executionBounds",
+          "line": 529
+        },
+        {
+          "name": "executionReferenceX96",
+          "line": 536
+        },
+        {
+          "name": "_readMarket",
+          "line": 545
+        },
+        {
+          "name": "beforeSwap",
+          "line": 553
+        },
+        {
+          "name": "afterSwap",
+          "line": 570
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+      "line_count": 186,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "pool identity/configuration",
+      "reviewed_scope": "native ETH/fixed ZZZ; pinned actual core/periphery; static hookless pools; one contribution destination; reviewed range/slippage/cap; dependency-free stop; reserve-only post-exit admission",
+      "declared_function_locations": [
+        {
+          "name": "poolManager",
+          "line": 11
+        },
+        {
+          "name": "stateView",
+          "line": 12
+        },
+        {
+          "name": "permit2",
+          "line": 13
+        },
+        {
+          "name": "exitPhase",
+          "line": 16
+        },
+        {
+          "name": "_checkNativeConfiguration",
+          "line": 51
+        },
+        {
+          "name": "configureNative",
+          "line": 65
+        },
+        {
+          "name": "disablePool",
+          "line": 82
+        },
+        {
+          "name": "applyKeeperRange",
+          "line": 95
+        },
+        {
+          "name": "_configure",
+          "line": 108
+        },
+        {
+          "name": "_setContributionPool",
+          "line": 133
+        },
+        {
+          "name": "get",
+          "line": 139
+        },
+        {
+          "name": "accounting",
+          "line": 143
+        },
+        {
+          "name": "contributionValue",
+          "line": 151
+        },
+        {
+          "name": "isNativePool",
+          "line": 162
+        },
+        {
+          "name": "_nativeBindings",
+          "line": 168
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+      "line_count": 310,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "single/hybrid geometry",
+      "reviewed_scope": "default off; main>=60/residual<=40; one positive-gap half-side residual; actual price-space threshold; policy revisions; pending application; physical proof; atomic consolidation-off",
+      "declared_function_locations": [
+        {
+          "name": "secondaryId",
+          "line": 13
+        },
+        {
+          "name": "portfolioPolicy",
+          "line": 15
+        },
+        {
+          "name": "consolidationActive",
+          "line": 16
+        },
+        {
+          "name": "strategy",
+          "line": 52
+        },
+        {
+          "name": "setMode",
+          "line": 54
+        },
+        {
+          "name": "configureResidualSide",
+          "line": 68
+        },
+        {
+          "name": "residualSideBps",
+          "line": 85
+        },
+        {
+          "name": "minimumMainBps",
+          "line": 89
+        },
+        {
+          "name": "maximumResidualBps",
+          "line": 93
+        },
+        {
+          "name": "residualGapSpacings",
+          "line": 94
+        },
+        {
+          "name": "configureMainAllocation",
+          "line": 100
+        },
+        {
+          "name": "configureResidualGap",
+          "line": 109
+        },
+        {
+          "name": "setTriggerBps",
+          "line": 121
+        },
+        {
+          "name": "recordApplied",
+          "line": 135
+        },
+        {
+          "name": "completeConsolidation",
+          "line": 154
+        },
+        {
+          "name": "_position",
+          "line": 178
+        },
+        {
+          "name": "configurationPending",
+          "line": 189
+        },
+        {
+          "name": "controlFingerprint",
+          "line": 195
+        },
+        {
+          "name": "_pool",
+          "line": 202
+        },
+        {
+          "name": "thresholdSide",
+          "line": 212
+        },
+        {
+          "name": "_ratio",
+          "line": 233
+        },
+        {
+          "name": "_ratioScale",
+          "line": 236
+        },
+        {
+          "name": "residualRange",
+          "line": 246
+        },
+        {
+          "name": "_floor",
+          "line": 289
+        },
+        {
+          "name": "range",
+          "line": 296
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZProtocolPolicy.sol",
+      "sha256": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+      "line_count": 190,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "bounded future policy",
+      "reviewed_scope": "future entry/idle/gas/sale/metadata/VRF settings; accepted mint recipient; no ownership/custody writer; pending VRF cannot rotate; revision fingerprints",
+      "declared_function_locations": [
+        {
+          "name": "mintedCount",
+          "line": 10
+        },
+        {
+          "name": "nextToFinalize",
+          "line": 11
+        },
+        {
+          "name": "royaltyRewards",
+          "line": 12
+        },
+        {
+          "name": "policyMetadataChanged",
+          "line": 13
+        },
+        {
+          "name": "entryPolicy",
+          "line": 54
+        },
+        {
+          "name": "maintenancePolicy",
+          "line": 55
+        },
+        {
+          "name": "gasPolicy",
+          "line": 56
+        },
+        {
+          "name": "payoutGas",
+          "line": 59
+        },
+        {
+          "name": "sourceCallGas",
+          "line": 60
+        },
+        {
+          "name": "royaltySyncGas",
+          "line": 61
+        },
+        {
+          "name": "salePolicy",
+          "line": 62
+        },
+        {
+          "name": "metadataPolicy",
+          "line": 63
+        },
+        {
+          "name": "vrfPolicy",
+          "line": 64
+        },
+        {
+          "name": "entryFingerprint",
+          "line": 65
+        },
+        {
+          "name": "maintenanceFingerprint",
+          "line": 66
+        },
+        {
+          "name": "gasFingerprint",
+          "line": 67
+        },
+        {
+          "name": "saleFingerprint",
+          "line": 68
+        },
+        {
+          "name": "mintFingerprint",
+          "line": 71
+        },
+        {
+          "name": "metadataFingerprint",
+          "line": 72
+        },
+        {
+          "name": "_record",
+          "line": 73
+        },
+        {
+          "name": "_review",
+          "line": 77
+        },
+        {
+          "name": "setEntryPolicy",
+          "line": 81
+        },
+        {
+          "name": "setMaintenancePolicy",
+          "line": 90
+        },
+        {
+          "name": "setGasPolicy",
+          "line": 98
+        },
+        {
+          "name": "setMintPrice",
+          "line": 108
+        },
+        {
+          "name": "proposeMintRecipient",
+          "line": 115
+        },
+        {
+          "name": "acceptMintRecipient",
+          "line": 124
+        },
+        {
+          "name": "validateMintRecipient",
+          "line": 132
+        },
+        {
+          "name": "_validRecipient",
+          "line": 133
+        },
+        {
+          "name": "setEvolutionThresholds",
+          "line": 141
+        },
+        {
+          "name": "_vrf",
+          "line": 151
+        },
+        {
+          "name": "configureRandomness",
+          "line": 161
+        },
+        {
+          "name": "rotateRandomness",
+          "line": 171
+        },
+        {
+          "name": "setRandomnessRequestSettings",
+          "line": 182
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZPythPriceFeed.sol",
+      "sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "line_count": 75,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "optional source adapter",
+      "reviewed_scope": "immutable source/code/exponent/id; bounded exact return; positive answer/confidence/age/round normalization; no synthetic freshness or update funding",
+      "declared_function_locations": [
+        {
+          "name": "latestRoundData",
+          "line": 42
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+      "line_count": 225,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "sampled trigger evidence",
+      "reviewed_scope": "same-side physical/reference threshold; stable geometry/control identity; cooldown-independent observation; bounded gap/duration; explicit reset/fault behavior; readiness and manual exception",
+      "declared_function_locations": [
+        {
+          "name": "rebalanceConfirmation",
+          "line": 13
+        },
+        {
+          "name": "needsRebalance",
+          "line": 14
+        },
+        {
+          "name": "rebalanceCondition",
+          "line": 15
+        },
+        {
+          "name": "portfolioPolicy",
+          "line": 16
+        },
+        {
+          "name": "rangeUpdatePending",
+          "line": 17
+        },
+        {
+          "name": "rangeOrientation",
+          "line": 18
+        },
+        {
+          "name": "executionQualityRevision",
+          "line": 19
+        },
+        {
+          "name": "activeKeeperRangePolicies",
+          "line": 20
+        },
+        {
+          "name": "configurationRevision",
+          "line": 22
+        },
+        {
+          "name": "activePolicy",
+          "line": 24
+        },
+        {
+          "name": "activeSequencerPolicy",
+          "line": 25
+        },
+        {
+          "name": "stateView",
+          "line": 27
+        },
+        {
+          "name": "portfolioFingerprint",
+          "line": 28
+        },
+        {
+          "name": "strategy",
+          "line": 59
+        },
+        {
+          "name": "configure",
+          "line": 63
+        },
+        {
+          "name": "setRequireReferenceExit",
+          "line": 71
+        },
+        {
+          "name": "invalidatePolicy",
+          "line": 83
+        },
+        {
+          "name": "condition",
+          "line": 90
+        },
+        {
+          "name": "_condition",
+          "line": 93
+        },
+        {
+          "name": "marketSides",
+          "line": 119
+        },
+        {
+          "name": "_referenceSide",
+          "line": 131
+        },
+        {
+          "name": "controlFingerprint",
+          "line": 140
+        },
+        {
+          "name": "observationFingerprint",
+          "line": 145
+        },
+        {
+          "name": "_controlFingerprint",
+          "line": 150
+        },
+        {
+          "name": "ready",
+          "line": 163
+        },
+        {
+          "name": "emergencyReady",
+          "line": 172
+        },
+        {
+          "name": "_ready",
+          "line": 179
+        },
+        {
+          "name": "resetObservation",
+          "line": 186
+        },
+        {
+          "name": "observe",
+          "line": 192
+        },
+        {
+          "name": "_withCooldown",
+          "line": 216
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+      "line_count": 223,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "LP exact claim ledger",
+      "reviewed_scope": "post-write shares/membership; exact asset receipt; individual/collective whole-unit trees; current-owner claims; direct liabilities; fixed-ledger conversion; no reward replay",
+      "declared_function_locations": [
+        {
+          "name": "_canonicalModule",
+          "line": 38
+        },
+        {
+          "name": "bindConverter",
+          "line": 41
+        },
+        {
+          "name": "addAsset",
+          "line": 50
+        },
+        {
+          "name": "assetCount",
+          "line": 57
+        },
+        {
+          "name": "syncShares",
+          "line": 62
+        },
+        {
+          "name": "syncMembership",
+          "line": 78
+        },
+        {
+          "name": "creditPool",
+          "line": 88
+        },
+        {
+          "name": "creditCanonicalCutoff",
+          "line": 92
+        },
+        {
+          "name": "_creditPool",
+          "line": 100
+        },
+        {
+          "name": "claimableComponents",
+          "line": 123
+        },
+        {
+          "name": "claimable",
+          "line": 132
+        },
+        {
+          "name": "allocationTree",
+          "line": 137
+        },
+        {
+          "name": "_takeComponents",
+          "line": 143
+        },
+        {
+          "name": "_solvent",
+          "line": 155
+        },
+        {
+          "name": "claim",
+          "line": 159
+        },
+        {
+          "name": "claimFor",
+          "line": 163
+        },
+        {
+          "name": "_claim",
+          "line": 167
+        },
+        {
+          "name": "convertBatch",
+          "line": 180
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "sha256": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
+      "line_count": 239,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "exact LP handoff",
+      "reviewed_scope": "raw trees and phase retained; seed-before-node; exact liability/outstanding sums; ordered source rows; backing/prefund transport; abort/restoration",
+      "declared_function_locations": [
+        {
+          "name": "assetCount",
+          "line": 13
+        },
+        {
+          "name": "assets",
+          "line": 14
+        },
+        {
+          "name": "LP_ALLOCATION_VERSION",
+          "line": 15
+        },
+        {
+          "name": "liabilities",
+          "line": 16
+        },
+        {
+          "name": "orphaned",
+          "line": 17
+        },
+        {
+          "name": "directLiabilities",
+          "line": 18
+        },
+        {
+          "name": "allocationTree",
+          "line": 19
+        },
+        {
+          "name": "canonicalBarrier",
+          "line": 20
+        },
+        {
+          "name": "canonicalSeed",
+          "line": 21
+        },
+        {
+          "name": "canonicalNode",
+          "line": 22
+        },
+        {
+          "name": "canonicalWrite",
+          "line": 23
+        },
+        {
+          "name": "canonicalSend",
+          "line": 24
+        },
+        {
+          "name": "_state",
+          "line": 55
+        },
+        {
+          "name": "_tree",
+          "line": 58
+        },
+        {
+          "name": "_identity",
+          "line": 61
+        },
+        {
+          "name": "_roots",
+          "line": 68
+        },
+        {
+          "name": "_books",
+          "line": 79
+        },
+        {
+          "name": "canonicalCapture",
+          "line": 97
+        },
+        {
+          "name": "creditCutoff",
+          "line": 117
+        },
+        {
+          "name": "canonicalSettle",
+          "line": 125
+        },
+        {
+          "name": "canonicalCount",
+          "line": 128
+        },
+        {
+          "name": "canonicalExport",
+          "line": 131
+        },
+        {
+          "name": "canonicalImport",
+          "line": 164
+        },
+        {
+          "name": "canonicalAssetCount",
+          "line": 206
+        },
+        {
+          "name": "canonicalBacking",
+          "line": 207
+        },
+        {
+          "name": "canonicalRelease",
+          "line": 208
+        },
+        {
+          "name": "_accept",
+          "line": 214
+        },
+        {
+          "name": "canonicalAccept",
+          "line": 222
+        },
+        {
+          "name": "canonicalRestore",
+          "line": 225
+        },
+        {
+          "name": "canonicalValidate",
+          "line": 229
+        },
+        {
+          "name": "canonicalActivate",
+          "line": 236
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZRoyaltyCodeData.sol",
+      "sha256": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+      "line_count": 14,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "inert code payload",
+      "reviewed_scope": "bounded runtime payload with unconditional revert prefix; no dispatcher/custody/admin",
+      "declared_function_locations": [],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZRoyaltyFactory.sol",
+      "sha256": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+      "line_count": 69,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "typed royalty construction",
+      "reviewed_scope": "two exact code-data children; hashes/length/reconstruction; typed receiver constructor; fixed canonical binding",
+      "declared_function_locations": [
+        {
+          "name": "_storePart",
+          "line": 35
+        },
+        {
+          "name": "_checkPart",
+          "line": 44
+        },
+        {
+          "name": "create",
+          "line": 49
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+      "line_count": 615,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "original-currency royalty ledger",
+      "reviewed_scope": "one-hour opening cohort; strict activation cutoff; exact GCD tickets/cursor; optional token outage isolation; pre-enrollment cutoff; whole claims; reviewed orphan recovery; canonical and late/cancelled receipts",
+      "declared_function_locations": [
+        {
+          "name": "destinationController",
+          "line": 14
+        },
+        {
+          "name": "mintedCount",
+          "line": 17
+        },
+        {
+          "name": "tokenAtOrdinal",
+          "line": 18
+        },
+        {
+          "name": "rarityOf",
+          "line": 19
+        },
+        {
+          "name": "royaltyRewards",
+          "line": 20
+        },
+        {
+          "name": "ownerOf",
+          "line": 24
+        },
+        {
+          "name": "claimRouter",
+          "line": 25
+        },
+        {
+          "name": "bindCanonicalController",
+          "line": 106
+        },
+        {
+          "name": "_canonicalAccess",
+          "line": 110
+        },
+        {
+          "name": "assetCount",
+          "line": 117
+        },
+        {
+          "name": "increaseAssetCapacity",
+          "line": 121
+        },
+        {
+          "name": "setMintEnd",
+          "line": 130
+        },
+        {
+          "name": "royaltiesOpenAt",
+          "line": 137
+        },
+        {
+          "name": "royaltiesOpen",
+          "line": 140
+        },
+        {
+          "name": "_finalizeOpening",
+          "line": 145
+        },
+        {
+          "name": "allocateUnallocated",
+          "line": 157
+        },
+        {
+          "name": "allocateAllUnallocated",
+          "line": 163
+        },
+        {
+          "name": "_allocateUnallocated",
+          "line": 167
+        },
+        {
+          "name": "_recoveryAuthority",
+          "line": 184
+        },
+        {
+          "name": "addAsset",
+          "line": 195
+        },
+        {
+          "name": "activate",
+          "line": 216
+        },
+        {
+          "name": "syncForActivation",
+          "line": 252
+        },
+        {
+          "name": "eligibleFor",
+          "line": 256
+        },
+        {
+          "name": "effectiveEligibleCount",
+          "line": 262
+        },
+        {
+          "name": "_enrollWaiting",
+          "line": 266
+        },
+        {
+          "name": "_allocationUnit",
+          "line": 274
+        },
+        {
+          "name": "_distribute",
+          "line": 281
+        },
+        {
+          "name": "_ticketShare",
+          "line": 291
+        },
+        {
+          "name": "pending",
+          "line": 300
+        },
+        {
+          "name": "_sync",
+          "line": 308
+        },
+        {
+          "name": "sync",
+          "line": 354
+        },
+        {
+          "name": "syncAll",
+          "line": 359
+        },
+        {
+          "name": "fund",
+          "line": 365
+        },
+        {
+          "name": "claim",
+          "line": 373
+        },
+        {
+          "name": "claimFor",
+          "line": 378
+        },
+        {
+          "name": "_claim",
+          "line": 383
+        },
+        {
+          "name": "claimable",
+          "line": 407
+        },
+        {
+          "name": "canonicalCapture",
+          "line": 443
+        },
+        {
+          "name": "canonicalSettle",
+          "line": 462
+        },
+        {
+          "name": "canonicalCount",
+          "line": 475
+        },
+        {
+          "name": "canonicalExport",
+          "line": 478
+        },
+        {
+          "name": "canonicalImport",
+          "line": 495
+        },
+        {
+          "name": "_markCanonical",
+          "line": 554
+        },
+        {
+          "name": "canonicalValidate",
+          "line": 559
+        },
+        {
+          "name": "canonicalActivate",
+          "line": 574
+        },
+        {
+          "name": "forwardLate",
+          "line": 586
+        },
+        {
+          "name": "canonicalRecoverCancelled",
+          "line": 598
+        },
+        {
+          "name": "_forwardRaw",
+          "line": 603
+        },
+        {
+          "name": "_sendRaw",
+          "line": 608
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZSeaDropMint.sol",
+      "sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+      "line_count": 305,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "mint/payment integration",
+      "reviewed_scope": "phase quota/original-recipient lifetime books; free team/paid allowlist/public; reserved team and rollover; pinned SeaDrop; immutable callback origin; no signed/token gated stages; exact future manifest fingerprint",
+      "declared_function_locations": [
+        {
+          "name": "access",
+          "line": 10
+        },
+        {
+          "name": "mintedCount",
+          "line": 11
+        },
+        {
+          "name": "royaltyRewards",
+          "line": 12
+        },
+        {
+          "name": "mintEnd",
+          "line": 15
+        },
+        {
+          "name": "mintEndRevision",
+          "line": 16
+        },
+        {
+          "name": "mintConfig",
+          "line": 83
+        },
+        {
+          "name": "validateBinding",
+          "line": 87
+        },
+        {
+          "name": "configure",
+          "line": 96
+        },
+        {
+          "name": "prepareUpdate",
+          "line": 124
+        },
+        {
+          "name": "beginMint",
+          "line": 162
+        },
+        {
+          "name": "finishMint",
+          "line": 192
+        },
+        {
+          "name": "validateMintReview",
+          "line": 201
+        },
+        {
+          "name": "activeFingerprint",
+          "line": 206
+        },
+        {
+          "name": "restoreMint",
+          "line": 210
+        },
+        {
+          "name": "assertCanonicalCount",
+          "line": 219
+        },
+        {
+          "name": "mintStats",
+          "line": 225
+        },
+        {
+          "name": "currentPhase",
+          "line": 230
+        },
+        {
+          "name": "configurationHash",
+          "line": 239
+        },
+        {
+          "name": "configurationValuesHash",
+          "line": 246
+        },
+        {
+          "name": "expectedPublicDrop",
+          "line": 250
+        },
+        {
+          "name": "_validatedFingerprint",
+          "line": 262
+        },
+        {
+          "name": "_payersHash",
+          "line": 282
+        },
+        {
+          "name": "_leafTerms",
+          "line": 297
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+      "line_count": 343,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "maintenance policy",
+      "reviewed_scope": "current rounded geometry; 85% threshold; actual directional fees; gross/additional floors; fresh source/spot agreement; cooldown; explicit range changes; optional bounded keeper width policy",
+      "declared_function_locations": [
+        {
+          "name": "stateView",
+          "line": 13
+        },
+        {
+          "name": "applyKeeperRange",
+          "line": 14
+        },
+        {
+          "name": "rebalanceReady",
+          "line": 59
+        },
+        {
+          "name": "rebalanceObservation",
+          "line": 60
+        },
+        {
+          "name": "setAdditionalLossBps",
+          "line": 66
+        },
+        {
+          "name": "minimumOutput",
+          "line": 76
+        },
+        {
+          "name": "minimumOutputForExit",
+          "line": 81
+        },
+        {
+          "name": "_minimumOutput",
+          "line": 84
+        },
+        {
+          "name": "_swapFee",
+          "line": 91
+        },
+        {
+          "name": "_quoted",
+          "line": 98
+        },
+        {
+          "name": "_minimum",
+          "line": 103
+        },
+        {
+          "name": "target",
+          "line": 109
+        },
+        {
+          "name": "_range",
+          "line": 115
+        },
+        {
+          "name": "setRangeOrientation",
+          "line": 119
+        },
+        {
+          "name": "setKeeperRangePolicy",
+          "line": 136
+        },
+        {
+          "name": "_rangeConfiguration",
+          "line": 161
+        },
+        {
+          "name": "_displacement",
+          "line": 167
+        },
+        {
+          "name": "keeperRangeTarget",
+          "line": 173
+        },
+        {
+          "name": "applyKeeperRange",
+          "line": 194
+        },
+        {
+          "name": "validatePrice",
+          "line": 202
+        },
+        {
+          "name": "validateExitPrice",
+          "line": 207
+        },
+        {
+          "name": "_validatePrice",
+          "line": 210
+        },
+        {
+          "name": "_checkedSpot",
+          "line": 216
+        },
+        {
+          "name": "needsRebalance",
+          "line": 224
+        },
+        {
+          "name": "rebalanceCondition",
+          "line": 234
+        },
+        {
+          "name": "_rebalanceCondition",
+          "line": 241
+        },
+        {
+          "name": "_checkedPoolTick",
+          "line": 253
+        },
+        {
+          "name": "rangeUpdatePending",
+          "line": 264
+        },
+        {
+          "name": "_rangeUpdatePending",
+          "line": 270
+        },
+        {
+          "name": "swapPlan",
+          "line": 276
+        },
+        {
+          "name": "compoundPlan",
+          "line": 284
+        },
+        {
+          "name": "_pairPrices",
+          "line": 294
+        },
+        {
+          "name": "_value",
+          "line": 303
+        },
+        {
+          "name": "_plan",
+          "line": 306
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZV4RouteExecutor.sol",
+      "sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "line_count": 168,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "earned LP conversion transport",
+      "reviewed_scope": "fixed parent/source/output/key/core; no hooks/arbitrary recipient; exact input delta; output floor; native sender accounting; post-callback code/wiring checks",
+      "declared_function_locations": [
+        {
+          "name": "addRoute",
+          "line": 55
+        },
+        {
+          "name": "setRouteEnabled",
+          "line": 62
+        },
+        {
+          "name": "route",
+          "line": 67
+        },
+        {
+          "name": "validate",
+          "line": 70
+        },
+        {
+          "name": "_validated",
+          "line": 71
+        },
+        {
+          "name": "_id",
+          "line": 77
+        },
+        {
+          "name": "_pin",
+          "line": 80
+        },
+        {
+          "name": "_asset",
+          "line": 84
+        },
+        {
+          "name": "_check",
+          "line": 88
+        },
+        {
+          "name": "execute",
+          "line": 103
+        },
+        {
+          "name": "unlockCallback",
+          "line": 135
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZV4SpotPriceFeed.sol",
+      "sha256": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+      "line_count": 184,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "optional live spot source",
+      "reviewed_scope": "native v4 identity; minimum current L; exact tick semantics; pinned ETH timestamp; no TWAP/history/depth claim; captured-state round and current state proof",
+      "declared_function_locations": [
+        {
+          "name": "config",
+          "line": 58
+        },
+        {
+          "name": "executionAsset",
+          "line": 59
+        },
+        {
+          "name": "_pin",
+          "line": 60
+        },
+        {
+          "name": "_pins",
+          "line": 64
+        },
+        {
+          "name": "_read",
+          "line": 68
+        },
+        {
+          "name": "_word",
+          "line": 78
+        },
+        {
+          "name": "_state",
+          "line": 81
+        },
+        {
+          "name": "_validateState",
+          "line": 94
+        },
+        {
+          "name": "_eth",
+          "line": 105
+        },
+        {
+          "name": "_quote",
+          "line": 116
+        },
+        {
+          "name": "_configuration",
+          "line": 132
+        },
+        {
+          "name": "executionMarket",
+          "line": 139
+        },
+        {
+          "name": "roundAt",
+          "line": 145
+        },
+        {
+          "name": "executionProof",
+          "line": 153
+        },
+        {
+          "name": "latestRoundData",
+          "line": 167
+        },
+        {
+          "name": "_roundAt",
+          "line": 170
+        },
+        {
+          "name": "_roundId",
+          "line": 178
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+      "line_count": 717,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "principal/share custody",
+      "reviewed_scope": "entrant-only join and marginal LP; incumbent checkpoints; both-leg harvesting; separate reserves/idle; main-only growth; replacement versus same-main reinvestment; parking/terminal holder exit; fixed canonical writer",
+      "declared_function_locations": [
+        {
+          "name": "positionOperator",
+          "line": 22
+        },
+        {
+          "name": "closeSecondary",
+          "line": 23
+        },
+        {
+          "name": "consolidationActive",
+          "line": 24
+        },
+        {
+          "name": "nftStatus",
+          "line": 80
+        },
+        {
+          "name": "group",
+          "line": 86
+        },
+        {
+          "name": "bucketCount",
+          "line": 90
+        },
+        {
+          "name": "bucketAt",
+          "line": 94
+        },
+        {
+          "name": "canonicalModule",
+          "line": 98
+        },
+        {
+          "name": "_registerBucket",
+          "line": 104
+        },
+        {
+          "name": "reservePool",
+          "line": 113
+        },
+        {
+          "name": "_reserve",
+          "line": 117
+        },
+        {
+          "name": "_tokens",
+          "line": 125
+        },
+        {
+          "name": "_nft",
+          "line": 129
+        },
+        {
+          "name": "_requireOwner",
+          "line": 133
+        },
+        {
+          "name": "_active",
+          "line": 138
+        },
+        {
+          "name": "_tokenBalance",
+          "line": 142
+        },
+        {
+          "name": "_receiveAssets",
+          "line": 146
+        },
+        {
+          "name": "_approvePrincipalAssets",
+          "line": 156
+        },
+        {
+          "name": "_idle",
+          "line": 162
+        },
+        {
+          "name": "_valueBucket",
+          "line": 172
+        },
+        {
+          "name": "_approveLP",
+          "line": 175
+        },
+        {
+          "name": "_put",
+          "line": 179
+        },
+        {
+          "name": "mintPrice",
+          "line": 217
+        },
+        {
+          "name": "mintProceedsRecipient",
+          "line": 220
+        },
+        {
+          "name": "mintPolicyFingerprint",
+          "line": 223
+        },
+        {
+          "name": "mintDormant",
+          "line": 226
+        },
+        {
+          "name": "activate",
+          "line": 244
+        },
+        {
+          "name": "increase",
+          "line": 270
+        },
+        {
+          "name": "_nav",
+          "line": 285
+        },
+        {
+          "name": "_join",
+          "line": 289
+        },
+        {
+          "name": "_allocate",
+          "line": 352
+        },
+        {
+          "name": "_harvest",
+          "line": 361
+        },
+        {
+          "name": "_receiveVenue",
+          "line": 369
+        },
+        {
+          "name": "collectFees",
+          "line": 392
+        },
+        {
+          "name": "_pullCompound",
+          "line": 398
+        },
+        {
+          "name": "_flushDust",
+          "line": 408
+        },
+        {
+          "name": "compound",
+          "line": 413
+        },
+        {
+          "name": "_reinvest",
+          "line": 427
+        },
+        {
+          "name": "_close",
+          "line": 442
+        },
+        {
+          "name": "_balanceUsing",
+          "line": 448
+        },
+        {
+          "name": "_idleValue",
+          "line": 470
+        },
+        {
+          "name": "_unwind",
+          "line": 474
+        },
+        {
+          "name": "_migrationCheckpoint",
+          "line": 482
+        },
+        {
+          "name": "_redeploy",
+          "line": 486
+        },
+        {
+          "name": "rebalance",
+          "line": 498
+        },
+        {
+          "name": "emergencyRebalance",
+          "line": 512
+        },
+        {
+          "name": "_rebalance",
+          "line": 529
+        },
+        {
+          "name": "beginLPExit",
+          "line": 547
+        },
+        {
+          "name": "exitBucketToHolders",
+          "line": 554
+        },
+        {
+          "name": "closeResidual",
+          "line": 582
+        },
+        {
+          "name": "park",
+          "line": 593
+        },
+        {
+          "name": "resume",
+          "line": 604
+        },
+        {
+          "name": "movePool",
+          "line": 618
+        },
+        {
+          "name": "_movePool",
+          "line": 632
+        },
+        {
+          "name": "onERC721Received",
+          "line": 650
+        },
+        {
+          "name": "canonicalWrite",
+          "line": 657
+        },
+        {
+          "name": "canonicalSend",
+          "line": 691
+        },
+        {
+          "name": "canonicalBarrier",
+          "line": 696
+        },
+        {
+          "name": "_canonicalSender",
+          "line": 700
+        },
+        {
+          "name": "_modulePools",
+          "line": 705
+        },
+        {
+          "name": "_moduleLiquidity",
+          "line": 709
+        },
+        {
+          "name": "_moduleFees",
+          "line": 713
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "sha256": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+      "line_count": 374,
+      "review_level": "manual_function_family_and_interaction_review",
+      "area": "principal/ownership handoff",
+      "reviewed_scope": "stable original ID domain; source-authenticated eight-word positions; parked zero-residual boundary; per-bucket shares; immutable token backing; funded restoration; cancelled lineage hop",
+      "declared_function_locations": [
+        {
+          "name": "ACCOUNTING_VERSION",
+          "line": 12
+        },
+        {
+          "name": "migrationBudget",
+          "line": 13
+        },
+        {
+          "name": "mintPrice",
+          "line": 14
+        },
+        {
+          "name": "sequence",
+          "line": 15
+        },
+        {
+          "name": "contributionUSD",
+          "line": 16
+        },
+        {
+          "name": "totalIdle",
+          "line": 17
+        },
+        {
+          "name": "canonicalWrite",
+          "line": 18
+        },
+        {
+          "name": "canonicalSend",
+          "line": 19
+        },
+        {
+          "name": "canonicalBarrier",
+          "line": 20
+        },
+        {
+          "name": "PORTFOLIO_VERSION",
+          "line": 22
+        },
+        {
+          "name": "tokenAtOrdinal",
+          "line": 24
+        },
+        {
+          "name": "royaltyRewards",
+          "line": 25
+        },
+        {
+          "name": "seaDropMintRecipient",
+          "line": 26
+        },
+        {
+          "name": "mintEnd",
+          "line": 29
+        },
+        {
+          "name": "mintEndRevision",
+          "line": 30
+        },
+        {
+          "name": "assetCount",
+          "line": 33
+        },
+        {
+          "name": "assets",
+          "line": 34
+        },
+        {
+          "name": "SCHEMA",
+          "line": 38
+        },
+        {
+          "name": "access",
+          "line": 39
+        },
+        {
+          "name": "phase",
+          "line": 40
+        },
+        {
+          "name": "incomingSource",
+          "line": 41
+        },
+        {
+          "name": "destinationController",
+          "line": 42
+        },
+        {
+          "name": "stateRoot",
+          "line": 43
+        },
+        {
+          "name": "exportRoot",
+          "line": 44
+        },
+        {
+          "name": "importRoot",
+          "line": 45
+        },
+        {
+          "name": "cancelledRoyaltyReturnController",
+          "line": 46
+        },
+        {
+          "name": "validateOwner",
+          "line": 96
+        },
+        {
+          "name": "validateContribution",
+          "line": 104
+        },
+        {
+          "name": "validateHolderExit",
+          "line": 119
+        },
+        {
+          "name": "mintIdentity",
+          "line": 129
+        },
+        {
+          "name": "mintPrice",
+          "line": 132
+        },
+        {
+          "name": "mintProceedsRecipient",
+          "line": 135
+        },
+        {
+          "name": "mintPolicyFingerprint",
+          "line": 140
+        },
+        {
+          "name": "_mintPolicyFingerprint",
+          "line": 143
+        },
+        {
+          "name": "validateMint",
+          "line": 150
+        },
+        {
+          "name": "bucketIdentity",
+          "line": 162
+        },
+        {
+          "name": "registerAlias",
+          "line": 165
+        },
+        {
+          "name": "canonicalCapture",
+          "line": 170
+        },
+        {
+          "name": "canonicalSettle",
+          "line": 202
+        },
+        {
+          "name": "canonicalCount",
+          "line": 203
+        },
+        {
+          "name": "canonicalExport",
+          "line": 206
+        },
+        {
+          "name": "canonicalImport",
+          "line": 228
+        },
+        {
+          "name": "canonicalAssetCount",
+          "line": 290
+        },
+        {
+          "name": "canonicalBacking",
+          "line": 291
+        },
+        {
+          "name": "canonicalRelease",
+          "line": 294
+        },
+        {
+          "name": "canonicalAccept",
+          "line": 300
+        },
+        {
+          "name": "canonicalRestore",
+          "line": 305
+        },
+        {
+          "name": "_forward",
+          "line": 312
+        },
+        {
+          "name": "canonicalValidate",
+          "line": 322
+        },
+        {
+          "name": "canonicalActivate",
+          "line": 335
+        },
+        {
+          "name": "_closedPortfolio",
+          "line": 341
+        },
+        {
+          "name": "validateCancelledRoyaltyHop",
+          "line": 349
+        },
+        {
+          "name": "_recoveryPeer",
+          "line": 369
+        }
+      ],
+      "declaration_inventory_is_not_verification": true,
+      "matches_metadata2_production_pin": true,
+      "new_runtime_or_test_evidence": false
+    }
+  ]
+}

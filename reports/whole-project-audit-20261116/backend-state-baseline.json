@@ -1,0 +1,50 @@
+{
+  "utc": "2026-11-16T15:39:28.846449+00:00",
+  "stage": "baseline_regression_before_fix",
+  "selected_methods": [
+    "tests_python.test_state_presence.StatePresenceTests.test_access_failure_is_not_absence",
+    "tests_python.test_state_presence.StatePresenceTests.test_actual_dangling_symlink_retains_its_entry_and_target",
+    "tests_python.test_state_presence.StatePresenceTests.test_actual_readable_config_symlink_keeps_compatibility",
+    "tests_python.test_state_presence.StatePresenceTests.test_dangling_entry_is_not_a_missing_journal",
+    "tests_python.test_state_presence.StatePresenceTests.test_filesystem_failure_is_not_absence",
+    "tests_python.test_state_presence.StatePresenceTests.test_present_file_disappearing_during_read_fails_closed",
+    "tests_python.test_state_presence.StatePresenceTests.test_true_absence_keeps_the_explicit_default_and_creates_nothing"
+  ],
+  "executed_methods": [
+    "tests_python.test_state_presence.StatePresenceTests.test_access_failure_is_not_absence",
+    "tests_python.test_state_presence.StatePresenceTests.test_actual_dangling_symlink_retains_its_entry_and_target",
+    "tests_python.test_state_presence.StatePresenceTests.test_actual_readable_config_symlink_keeps_compatibility",
+    "tests_python.test_state_presence.StatePresenceTests.test_dangling_entry_is_not_a_missing_journal",
+    "tests_python.test_state_presence.StatePresenceTests.test_filesystem_failure_is_not_absence",
+    "tests_python.test_state_presence.StatePresenceTests.test_present_file_disappearing_during_read_fails_closed",
+    "tests_python.test_state_presence.StatePresenceTests.test_true_absence_keeps_the_explicit_default_and_creates_nothing"
+  ],
+  "tests_run": 7,
+  "failures": [
+    "tests_python.test_state_presence.StatePresenceTests.test_access_failure_is_not_absence",
+    "tests_python.test_state_presence.StatePresenceTests.test_dangling_entry_is_not_a_missing_journal",
+    "tests_python.test_state_presence.StatePresenceTests.test_filesystem_failure_is_not_absence"
+  ],
+  "errors": [],
+  "skipped": [
+    [
+      "tests_python.test_state_presence.StatePresenceTests.test_actual_dangling_symlink_retains_its_entry_and_target",
+      "Host account cannot create Windows symbolic links; portable entry/target regression runs separately"
+    ],
+    [
+      "tests_python.test_state_presence.StatePresenceTests.test_actual_readable_config_symlink_keeps_compatibility",
+      "Host account cannot create Windows symbolic links; portable entry/target regression runs separately"
+    ]
+  ],
+  "successful": false,
+  "source_sha256": {
+    "zzz_ops/state.py": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4",
+    "tests_python/test_state_presence.py": "4670160b19d9dc08d124f36bd777d9efd8d1c208401ed964d15c4e06def8db3d"
+  },
+  "source_sha256_after": {
+    "zzz_ops/state.py": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4",
+    "tests_python/test_state_presence.py": "4670160b19d9dc08d124f36bd777d9efd8d1c208401ed964d15c4e06def8db3d"
+  },
+  "solidity_tests_executed": 0,
+  "scope": "New filesystem-presence regressions only; no old suite or live environment."
+}

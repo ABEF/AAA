@@ -28,6 +28,7 @@ MODULES=(
  'test_reference_confirmation_v2',
  'test_keeper_confirmation_priority',
  'test_state_json_integrity',
+ 'test_state_presence',
  'test_keeper_operational_integrity',
  'test_keeper_harvest_coalescing',
  'test_keeper_compound_range_policy',

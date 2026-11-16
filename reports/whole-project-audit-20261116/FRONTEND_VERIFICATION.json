@@ -1,0 +1,32 @@
+{
+  "baseline_contract_revision": "59d02d40afac785c04cd4a5da2dfc6e4174c6880",
+  "baseline_website_revision": "2a528696d5eaea5ebb42cfeb313836840fff5e97",
+  "baseline_capability_reproduction": {
+    "harness": "frontend-profile-baseline-proof.mjs",
+    "result": "Source9/schema4 directly constructed actual BrowserWallet with 30 reviewed targets and returned signing_enabled:true from an unsigned API draft; frontdoor supportsLocalSigning returned false.",
+    "wallet_reads": ["eth_accounts", "eth_chainId", "eth_getBlockByNumber"],
+    "node_reads": ["eth_chainId", "eth_getBlockByNumber", "eth_getTransactionCount"],
+    "transactions_sent": 0,
+    "source10_limit": "Schema5 constructor also accepted, but the existing 32-target BrowserWallet ceiling separately prevents actual signer construction for its 33 contract pins plus ZZZ. No source10 signing or public signing bypass is claimed.",
+    "harness_setup_corrections": ["Replaced null with in-memory durable storage fixture", "Added wallet genesis read to the synthetic provider"]
+  },
+  "new_focused_regression": {
+    "file": "tests/deployment-signing-profile.test.mjs",
+    "baseline": {"passed": 2, "failed": 3},
+    "after_fix": {"passed": 5, "failed": 0, "skipped": 0},
+    "command": "node --test tests/deployment-signing-profile.test.mjs",
+    "source_change_record": "FRONTEND_CHANGE.json",
+    "method_names": [
+      "source9 unsigned profile rejects direct coordinator construction before wallet or RPC access",
+      "source10 unsigned profile rejects direct coordinator construction before wallet or RPC access",
+      "unknown, omitted and incorrectly typed schemas cannot inherit local signing",
+      "the three admitted historical local schemas retain actual signer construction without sending",
+      "existing nonlocal restrictions remain independent of the schema capability"
+    ]
+  },
+  "syntax": {"command": "node --check deployment-transactions.js", "exit_code": 0},
+  "old_unchanged_suites_executed": [],
+  "live_build_site_service_chain_journal_actions": [],
+  "shared_signer_edited": false,
+  "public_null_configurations_edited": false
+}

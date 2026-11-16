@@ -1,5 +1,11 @@
 # Feature and evidence reference
 
+The [16 November whole-project audit](../reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
+state-file and website-profile gaps and reconciles current guidance. Production
+Solidity, economic rights, safeguards, gas defaults and existing environments
+are unchanged. Focused new checks and exact historical source reuse are recorded
+separately; this is internal review, not independent release approval.
+
 The [isolated metadata2 rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md)
 verifies five changed normal creations, three bindings, twelve actual instances
 and 63 getter/state observations. Nineteen valid cold snapshots and one exact
@@ -267,10 +273,12 @@ Current [both-flow audit](../reports/moving-market-flows-20261106/REVIEW.md) cha
 
 ## Backend and operations
 
-[Frozen review packages](FROZEN_REVIEW_BUNDLE.md) now use instruction schema3
-for current source guidance. Original1/2 instruction and ZIP bytes remain exact;
-26 focused archive/profile integrity methods pass. This versions review artifacts,
-not contract or operating profiles.
+[Frozen review packages](FROZEN_REVIEW_BUNDLE.md) now use schema4 with exact
+operator inputs and authenticated-Git reproduction instructions. Original1/2/3
+admission, instruction and ZIP semantics remain exact. The current
+[whole-project verification](../reports/whole-project-audit-20261116/VERIFICATION.md)
+records13 focused new/adapted passes; earlier26 checks retain their historical
+source scope. This versions review artifacts, not contract or operating profiles.
 
 Confirmed-read and preparation boundaries remain explicit. RPC endpoints are a
 validated immutable snapshot, budgeted convenience calls use the metered path,

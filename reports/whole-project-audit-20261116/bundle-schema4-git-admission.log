@@ -1,0 +1,6 @@
+test_git_snapshot_admission_dispatches_by_explicit_archive_schema (tests_python.test_review_bundle_schema4.ReviewBundleSchema4Tests.test_git_snapshot_admission_dispatches_by_explicit_archive_schema) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+OK

@@ -185,7 +185,7 @@ operator procedures or the sole Todo.
 | Exact-release decision and sequence | [Approval record](RELEASE_CHECKLIST.md), [roadmap](ROADMAP.md), [sole Todo maintenance](TODO_WORKFLOW.md) |
 | Actual service/deployment qualification | [Service decisions](PRODUCTION_SERVICES.md), [address inventory](DEPLOYMENT_ADDRESSES.md), [versioned preflight](PRODUCTION_PREFLIGHT.md), [RPC probes](RPC_PREPARATION_QUALIFICATION.md) |
 | Minting, randomness and content hosting | [OpenSea/VRF qualification](MINT_INTEGRATION_QUALIFICATION.md), [artwork bundle/publication](ARTWORK_PUBLICATION.md) |
-| Audit and development | [Security model](SECURITY.md), [seven audit workstreams](SECURITY_AUDIT_PLAN.md), [schema3 frozen review export, with original1/2 verification](FROZEN_REVIEW_BUNDLE.md), [development](DEVELOPMENT.md) |
+| Audit and development | [Security model](SECURITY.md), [seven audit workstreams](SECURITY_AUDIT_PLAN.md), [schema4 frozen review export, with original1/2/3 verification](FROZEN_REVIEW_BUNDLE.md), [development](DEVELOPMENT.md) |
 | Current consolidated findings | [Mechanisms, historical corrections and remaining limits](AUDIT_FINDINGS.md); task status stays in the sole Todo. |
 | Current state and evidence | [Project context](../PROJECT_CONTEXT.md), [resume instructions](WORK_HANDOFF.md), [report index](../reports/README.md), [current royalty-source evidence](../reports/royalties-in-kind-20261105/VERIFICATION.md) and [source-scoped historical catalogue](../reports/project-consolidation-20261103/REPORT_CATALOG.md) |
 

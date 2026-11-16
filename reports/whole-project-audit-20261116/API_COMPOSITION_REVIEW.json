@@ -1,0 +1,629 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-16T15:56:35.886488+00:00",
+  "scope": "Read-only API/frontend composition review. No tests/services/nodes/providers invoked, no source files edited. Methods inventory is source-read coverage, not executed behavior proof.",
+  "files": [
+    {
+      "repository": "ABEF/AAA",
+      "path": "frontend_api/service.py",
+      "sha256": "fa0fcea5183bb28b432e8477f01531354d54d5faa4a49f653ad6f768bc41e25d",
+      "bytes": 50090,
+      "lines": 756,
+      "actual_read_scope": "Full Projection configuration, canonical pinned RPC, runtime/module/version/lifecycle validation, protocol/NFT/inventory/claim/history dispatch and final-snapshot consistency checks.",
+      "function_families_read_as_source": [
+        {
+          "name": "_keys",
+          "line": 46,
+          "end_line": 48
+        },
+        {
+          "name": "_hash",
+          "line": 51,
+          "end_line": 56
+        },
+        {
+          "name": "token_id",
+          "line": 59,
+          "end_line": 66
+        },
+        {
+          "name": "_quantity",
+          "line": 69,
+          "end_line": 72
+        },
+        {
+          "name": "_bool",
+          "line": 75,
+          "end_line": 79
+        },
+        {
+          "name": "_address_word",
+          "line": 82,
+          "end_line": 91
+        }
+      ],
+      "class_methods_read_as_source": [
+        {
+          "class": "ProjectionError",
+          "methods": []
+        },
+        {
+          "class": "UnknownNFT",
+          "methods": []
+        },
+        {
+          "class": "Contract",
+          "methods": []
+        },
+        {
+          "class": "Asset",
+          "methods": []
+        },
+        {
+          "class": "Projection",
+          "methods": [
+            {
+              "name": "__init__",
+              "line": 115,
+              "end_line": 242
+            },
+            {
+              "name": "_header",
+              "line": 244,
+              "end_line": 255
+            },
+            {
+              "name": "_call",
+              "line": 257,
+              "end_line": 297
+            },
+            {
+              "name": "_position",
+              "line": 299,
+              "end_line": 306
+            },
+            {
+              "name": "_uint",
+              "line": 308,
+              "end_line": 309
+            },
+            {
+              "name": "_addr",
+              "line": 311,
+              "end_line": 312
+            },
+            {
+              "name": "_code",
+              "line": 314,
+              "end_line": 319
+            },
+            {
+              "name": "_verify_deployment",
+              "line": 321,
+              "end_line": 405
+            },
+            {
+              "name": "mint_readiness",
+              "line": 408,
+              "end_line": 410
+            },
+            {
+              "name": "protocol",
+              "line": 413,
+              "end_line": 443
+            },
+            {
+              "name": "_admitted",
+              "line": 445,
+              "end_line": 484
+            },
+            {
+              "name": "_balance",
+              "line": 486,
+              "end_line": 489
+            },
+            {
+              "name": "_snapshot",
+              "line": 491,
+              "end_line": 506
+            },
+            {
+              "name": "_fresh",
+              "line": 508,
+              "end_line": 511
+            },
+            {
+              "name": "_finish",
+              "line": 513,
+              "end_line": 526
+            },
+            {
+              "name": "_history_snapshot",
+              "line": 528,
+              "end_line": 549
+            },
+            {
+              "name": "_claimed",
+              "line": 551,
+              "end_line": 559
+            },
+            {
+              "name": "earnings",
+              "line": 562,
+              "end_line": 565
+            },
+            {
+              "name": "nft",
+              "line": 568,
+              "end_line": 707
+            },
+            {
+              "name": "collection",
+              "line": 710,
+              "end_line": 712
+            },
+            {
+              "name": "wallet_summary",
+              "line": 715,
+              "end_line": 717
+            },
+            {
+              "name": "wallet_earnings",
+              "line": 720,
+              "end_line": 724
+            },
+            {
+              "name": "wallet",
+              "line": 727,
+              "end_line": 756
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "repository": "ABEF/AAA",
+      "path": "frontend_api/activation_server.py",
+      "sha256": "75675b7f0a323036c45dc031d9714e5d31d57622229bdcff8bb28103669d276b",
+      "bytes": 5070,
+      "lines": 98,
+      "actual_read_scope": "Full HTTP activation adapter and CLI, request framing/size/JSON/host validation, admission, sanitized errors and loopback worker startup definitions; nothing started.",
+      "function_families_read_as_source": [
+        {
+          "name": "unique_object",
+          "line": 16,
+          "end_line": 21
+        },
+        {
+          "name": "reject_constant",
+          "line": 24,
+          "end_line": 25
+        },
+        {
+          "name": "handler",
+          "line": 28,
+          "end_line": 68
+        },
+        {
+          "name": "main",
+          "line": 71,
+          "end_line": 95
+        }
+      ],
+      "class_methods_read_as_source": []
+    },
+    {
+      "repository": "ABEF/AAA",
+      "path": "frontend_api/collection.py",
+      "sha256": "33ca3f1b6787625cc774eafaaaa84039347ac30984379a877d36de5e84224929",
+      "bytes": 8236,
+      "lines": 120,
+      "actual_read_scope": "Full16-row collection flow: pinned complete indexed inventory, exact owner/mint/revealed/share/custody state, governed thresholds, per-bucket two-leg verification, unavailable values and principal-return separation.",
+      "function_families_read_as_source": [
+        {
+          "name": "read",
+          "line": 17,
+          "end_line": 120
+        }
+      ],
+      "class_methods_read_as_source": []
+    },
+    {
+      "repository": "ABEF/AAA",
+      "path": "frontend_api/custody.py",
+      "sha256": "baf0ef328598d744da0e3e1daed917233445c924bf4b5172f5fd0c4b379b0d52",
+      "bytes": 1962,
+      "lines": 37,
+      "actual_read_scope": "Full shared custody helper: request/block-scoped raw row cache, physical position existence, profile-aware local identity, exact share denominator and per-request subtotal guards.",
+      "function_families_read_as_source": [
+        {
+          "name": "read",
+          "line": 10,
+          "end_line": 37
+        }
+      ],
+      "class_methods_read_as_source": []
+    },
+    {
+      "repository": "ABEF/AAA",
+      "path": "frontend_api/lifecycle.py",
+      "sha256": "1ac10191bbc0002e81fd00108512ee4844af9db2e96cef7dc462a1484b7c2235",
+      "bytes": 5223,
+      "lines": 84,
+      "actual_read_scope": "Full pinned canonical state/phase/origin/preparation/settlement and terminal LP-exit consistency checks; source commitments never auto-admit peers.",
+      "function_families_read_as_source": [
+        {
+          "name": "read_lifecycle",
+          "line": 12,
+          "end_line": 84
+        }
+      ],
+      "class_methods_read_as_source": []
+    },
+    {
+      "repository": "ABEF/AAA",
+      "path": "frontend_api/history_audit.py",
+      "sha256": "74a04ed5cbb47ab0e23794760cd83d75eeb59aa9a76a57453475bef8d6f1c912",
+      "bytes": 15336,
+      "lines": 274,
+      "actual_read_scope": "Full bounded independent-provider log-window comparison and exclusive report output: read-onlyDB, exact anchors/headers/raw logs, canonical ordering, confirmation finalcheck and explicit completeness limits.",
+      "function_families_read_as_source": [
+        {
+          "name": "require",
+          "line": 32,
+          "end_line": 34
+        },
+        {
+          "name": "digest",
+          "line": 37,
+          "end_line": 38
+        },
+        {
+          "name": "unique_object",
+          "line": 41,
+          "end_line": 46
+        },
+        {
+          "name": "load_json",
+          "line": 49,
+          "end_line": 54
+        },
+        {
+          "name": "number",
+          "line": 57,
+          "end_line": 59
+        },
+        {
+          "name": "normalize_log",
+          "line": 62,
+          "end_line": 73
+        },
+        {
+          "name": "main",
+          "line": 234,
+          "end_line": 270
+        }
+      ],
+      "class_methods_read_as_source": [
+        {
+          "class": "AuditError",
+          "methods": []
+        },
+        {
+          "class": "Inventory",
+          "methods": [
+            {
+              "name": "__init__",
+              "line": 77,
+              "end_line": 80
+            },
+            {
+              "name": "add",
+              "line": 82,
+              "end_line": 96
+            },
+            {
+              "name": "seal",
+              "line": 98,
+              "end_line": 103
+            }
+          ]
+        },
+        {
+          "class": "HistoryAudit",
+          "methods": [
+            {
+              "name": "__init__",
+              "line": 107,
+              "end_line": 125
+            },
+            {
+              "name": "header",
+              "line": 127,
+              "end_line": 131
+            },
+            {
+              "name": "run",
+              "line": 134,
+              "end_line": 167
+            },
+            {
+              "name": "compare",
+              "line": 169,
+              "end_line": 231
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "repository": "ABEF/AAA",
+      "path": "frontend_api/server.py",
+      "sha256": "36179f244bcb3a6f572cfb75c6ca90eb922d63510e9b0fa5df5bf38170bbf064",
+      "bytes": 12632,
+      "lines": 241,
+      "actual_read_scope": "Selected HTTP read/unsigned preparation routing, request parsing and service CLI. Runtime/admission/worker internals delegated to other audit workstream, not claimed verified here.",
+      "function_families_read_as_source": [
+        {
+          "name": "_unique_object",
+          "line": 21,
+          "end_line": 27
+        },
+        {
+          "name": "_reject_constant",
+          "line": 30,
+          "end_line": 31
+        },
+        {
+          "name": "_bounded_depth",
+          "line": 34,
+          "end_line": 41
+        },
+        {
+          "name": "handler",
+          "line": 44,
+          "end_line": 197
+        },
+        {
+          "name": "main",
+          "line": 204,
+          "end_line": 237
+        }
+      ],
+      "class_methods_read_as_source": [
+        {
+          "class": "ReadServer",
+          "methods": []
+        }
+      ]
+    },
+    {
+      "repository": "ABEF/AAA",
+      "path": "frontend_api/earnings.py",
+      "sha256": "c96e4acfc2782d549522134516bb4963482d7f24f3c96de824eb651f0c31aa75",
+      "bytes": 16924,
+      "lines": 231,
+      "actual_read_scope": "Constructor and profile selection examined to verify full-lineage creation-history and seven-emitter requirements used by HistoryAudit. Replay implementation not newly re-audited here.",
+      "function_families_read_as_source": [],
+      "class_methods_read_as_source": [
+        {
+          "class": "Earnings",
+          "methods": [
+            {
+              "name": "__init__",
+              "line": 10,
+              "end_line": 42
+            },
+            {
+              "name": "history_snapshot",
+              "line": 44,
+              "end_line": 50
+            },
+            {
+              "name": "finish_checkpoint",
+              "line": 52,
+              "end_line": 54
+            },
+            {
+              "name": "check_profile",
+              "line": 56,
+              "end_line": 77
+            },
+            {
+              "name": "reconcile",
+              "line": 79,
+              "end_line": 133
+            },
+            {
+              "name": "read",
+              "line": 135,
+              "end_line": 189
+            },
+            {
+              "name": "check_paid",
+              "line": 192,
+              "end_line": 231
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "repository": "ABEF/AAA-website",
+      "path": "app.js",
+      "sha256": "98399839062756e5640ca42d026247cc4999b7e1586f8fbd448fee5595161406",
+      "bytes": 44407,
+      "lines": 504,
+      "actual_read_scope": "Current main-entry/profile dispatch plus selected demo rendering/storage/event paths; explicitly distinguishes loopback oldlauncher, reviewed deployment and simulation."
+    },
+    {
+      "repository": "ABEF/AAA-website",
+      "path": "integration-app.js",
+      "sha256": "6eae5326427b56f9495476d9b2e53160955b28b3ec64a176fd919cd0148d6f68",
+      "bytes": 4506,
+      "lines": 70,
+      "actual_read_scope": "Full poplint host/profile/null-config module initialization; error stays unavailable and cannot enter demo."
+    },
+    {
+      "repository": "ABEF/AAA-website",
+      "path": "deployment-config.js",
+      "sha256": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+      "bytes": 344,
+      "lines": 5,
+      "actual_read_scope": "Full fixed public null build input; no URL/storage/wallet discovery."
+    },
+    {
+      "repository": "ABEF/AAA-website",
+      "path": "integration-config.js",
+      "sha256": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300",
+      "bytes": 557,
+      "lines": 7,
+      "actual_read_scope": "Full separate poplint null build input with explicit historical/current consumer boundaries."
+    },
+    {
+      "repository": "ABEF/AAA-website",
+      "path": "deployment-api.js",
+      "sha256": "82dd9fa5004b3e59801a467e01d6143c72ca9ed8020971d53e3b5b6d0644ec12",
+      "bytes": 48408,
+      "lines": 440,
+      "actual_read_scope": "Full consumer composition reviewed earlier: immutable manifest, canonical DTO validation, current/historical dispatch, bounded chunking, unavailable semantics and unsigned preparation."
+    },
+    {
+      "repository": "ABEF/AAA-website",
+      "path": "deployment-source10.js",
+      "sha256": "0fcb5b443fc2f3483cefe1b89b6cbd4926db4091cdd56344e6b084140fc7256e",
+      "bytes": 18912,
+      "lines": 137,
+      "actual_read_scope": "Full current schema5/mint2 runtime/graph/price/policy proofs reviewed earlier; no mint eligibility or signing inferred."
+    },
+    {
+      "repository": "ABEF/AAA-website",
+      "path": "deployment-source9-data.js",
+      "sha256": "21f891a5ccdcdf8a6cb71dfcae4558000932191fe98958926c5683a9dea631e4",
+      "bytes": 8630,
+      "lines": 94,
+      "actual_read_scope": "Full accounting7 current DTO/eligibility/physical-leg/principal lifecycle validation reviewed earlier."
+    },
+    {
+      "repository": "ABEF/AAA-website",
+      "path": "deployment-source9-prepare.js",
+      "sha256": "c067ba3bee070b007220e688050c0d03651927a54ddb03b56a1900b47250747e",
+      "bytes": 26144,
+      "lines": 240,
+      "actual_read_scope": "Full unsigned original-currency claim planner/contribution preparation and final independent simulation paths reviewed earlier; no nonce or send capability."
+    },
+    {
+      "repository": "ABEF/AAA-website",
+      "path": "deployment-session.js",
+      "sha256": "c9f193c95c96bbbd865a29760a32b8e418351a8639ed1ae9aa052fb0f4fc6482",
+      "bytes": 4661,
+      "lines": 65,
+      "actual_read_scope": "Full authorization/read-only wallet session and stale account/network invalidation reviewed earlier."
+    }
+  ],
+  "workflows": [
+    {
+      "action": "Read protocol during operating/frozen/importing/retired/terminal state",
+      "calls": [
+        "Projection.protocol",
+        "Projection._snapshot",
+        "Projection._verify_deployment(allow_locked=True)",
+        "read_lifecycle",
+        "Projection._finish"
+      ],
+      "examined_semantics": "All bindings/lifecycle/version/anchor checks precede display. Status remains possible without reward balance/price calls; mint2 coarse sale status never claims actual wallet/SeaDrop eligibility. No peer redirect or adoption.",
+      "failure": "Wrong chain/seal/code/schema/origin/phase/canonical depth or stale header rejects. No synthetic protocol status."
+    },
+    {
+      "action": "Read current NFT holdings, portfolio and metadata",
+      "calls": [
+        "Projection.nft",
+        "Projection._admitted",
+        "custody.read",
+        "portfolio_v7.read_bucket (delegated)",
+        "royalty_reporting.read (delegated)",
+        "principal_return.read (delegated)",
+        "Projection._history_snapshot",
+        "Projection._finish"
+      ],
+      "examined_semantics": "Exact owner/mintordinal/inventory crosschecks. Eligibility survives parking/exit and differs from price availability. Both physical legs verified through explicit accounting profile. Main/residual are one logical share account. Terminal current LP is zero, principal owed separate, royalties preserved. Current governed cosmetic thresholds match frontend validation.",
+      "failure": "Never-active positive available rewards reject; admitted optional token faults become unavailable via health/reporting rather than fabricated balances. Required inventories/configuration/canonical/core faults still reject. Full dependency helper semantics belong to their separately recorded audit workstreams."
+    },
+    {
+      "action": "Read complete wallet/collection totals and current-price earnings",
+      "calls": [
+        "Projection.wallet",
+        "Projection.collection",
+        "collection.read",
+        "Projection.wallet_summary/earnings dispatch",
+        "DeploymentAPI.portfolio/walletTotals/collectionPositions/walletEarnings"
+      ],
+      "examined_semantics": "Canonical history must start at NFT creation with parent/creation code checks. Complete owner lists reconcile balanceOf/mintedCount, page16 and card8 bounds; inventoryhash/pinned block prevent mixing chunks. No chunk total marketed as collection total. Original amounts remain integer units and missing prices stay unavailable.",
+      "failure": "Missing/incomplete history, reorg, stale or changed confirmed snapshot, inconsistent ownership/share/ordinal or incomplete chunk refuses financial output. Maximum1000-owner live-provider latency still requires qualification."
+    },
+    {
+      "action": "Prepare contribution or claim",
+      "calls": [
+        "activation_server.Handler.do_POST",
+        "ActivationTransactions.prepare (separate workstream)",
+        "server.Handler.do_POST",
+        "Transactions.prepare/plan_claims (separate workstream)",
+        "prepareFresh",
+        "DeploymentSession.verify"
+      ],
+      "examined_semantics": "Public reads/unsigned preparation require no wallet signature because nothing can be spent by those endpoints. User action and chain owner must agree in preparation. Only immutable reviewed profile input chooses ETH/fixedZZZ and directEntry3; original royalty currencies remain separate. Body16KiB/flat activation or bounded-depth claim JSON, strict framing/Host and sanitized errors precede bounded worker work.",
+      "failure": "No sender authentication inferred from caller-supplied wallet or proxyIP. Onchain eventual owner/permission, exactsimulatedcalldata and finalguards retain authority. No automatic resend/sign/send or public signer extension."
+    },
+    {
+      "action": "History completeness spot-audit",
+      "calls": [
+        "HistoryAudit.__init__",
+        "HistoryAudit.run",
+        "HistoryAudit.compare",
+        "Inventory.add/seal",
+        "main exclusive output"
+      ],
+      "examined_semantics": "One configured epoch/window<=128blocks with<=10000logs/8MiB and per-log bounds. Distinct reviewed provider host plus documented independence identity; compare every stored emitter/log, exact headers/parents/tx indexes and anchor/endfinality depth. SQLiteopenedmode=ro/query_only; no repair/DBcursor edits.",
+      "failure": "Samehost, wrongchain, missingcursor/blocks/logs/duplicateindices/ancestry/confirmationchanges refuse or explicit mismatch. Even matched does not prove consensus, provider honesty, complete lifetime histories or economic replay."
+    },
+    {
+      "action": "Website failure, startup, account change or missing config",
+      "calls": [
+        "app fixed DEPLOYMENT dispatch",
+        "integrationPolicy/startIntegration",
+        "DeploymentSession connect/select/restore/verify",
+        "DeploymentAPI provenance/cancel",
+        "DeploymentTransactions constructor allowlist"
+      ],
+      "examined_semantics": "Public simulation and poplint integration are separate fixedbuild identities. Nullpoplint means unavailable. Newsource9/10 cannot inherit legacy Anvil signer; schema1\u20133 remain localonly. Revision/account/network/cancel guards discard stale async work and invalidate reviews. Current confirmedartwork reflects actual LP; exit never appears dormant.",
+      "failure": "Unconfigured/malformed currentdeployment never shows demo balances. Lostdata/backend/pricefeed returns unavailable rather than zero or fabricatedentitlement. No live service/browser acceptance inferred."
+    }
+  ],
+  "error_and_permission_matrix": [
+    "Read APIs expose public confirmed information; management permissions remain onchain. Neither arbitrary requested wallet nor forwarded client identity authenticates a transaction.",
+    "Only canonical Operating permits balances/ownership. Paused/preparation Operating may retain funded claims/transfers while blocking neweconomicwork; terminalexit permanently closes neweconomicwork without removing royaltyeligibility.",
+    "Required core/module/runtime/history/canonical failures failclosed. Optional royalty-token health faults isolate unavailable currency fields where explicitly supported.",
+    "Activationpreparation port and claimpreparation port are distinct opt-in adapters. Operator proxy/config rollout must expose only reviewed unsigned endpoints; staticpoplint default has API503.",
+    "New royaltycurrency admission requires coordinated reviewed API and website descriptors; exact admittedunion mismatch intentionally refuses data. Existing docs already explain this coordination.",
+    "Canonical replacement peer addresses remain unverified commitments until separately pinned ancestry/profile/history review; no automaticRPC/URL discovery."
+  ],
+  "open_obligations": [
+    "Actual currentprofile API/proxy/service hosting and recovery, including sustained maximumhistory/1000NFT workloads, remain unqualified.",
+    "Actual independent feeds, routes, targetgas/fees and supported fundedVRF/OpenSea payments remain unqualified.",
+    "Live currentprofile wallet submission remains intentionally disabled; codepublication and localunsigned compatibility do not establish productionwallet acceptance.",
+    "Provideragreement/logwindow matching is bounded evidence, not wholehistory correctness or malicious-token transferability guarantee."
+  ],
+  "unreviewed_helper_boundaries_here": [
+    "portfolio_v5/v6/v7 detailed read/verification internals",
+    "royalty_reporting detailed percurrency accounting",
+    "principal_return detailed payoutaccounting",
+    "worker/http_runtime/admission/work_budget internals",
+    "activation/transactions detailed preparation accounting",
+    "earnings replay/price/checkpoint internals; onlyconstructorcomposition read here"
+  ],
+  "new_concrete_defects_from_these_additional_reads": [],
+  "tests_executed": 0,
+  "public_requests_made": 0,
+  "source_files_modified": [],
+  "production_approved": false
+}

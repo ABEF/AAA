@@ -1,0 +1,403 @@
+{
+  "contract_head": "59d02d40afac785c04cd4a5da2dfc6e4174c6880",
+  "website_head": "2a528696d5eaea5ebb42cfeb313836840fff5e97",
+  "branches": [
+    "main",
+    "main"
+  ],
+  "request_sha256": "21d0487ce3970842464a0fce0f6d25e56ce13124b1ce040c17459e56e80cf818",
+  "full_external_baseline_sha256": "6916705430367370cddbac5d10b875a0d5813e815ddc79a97a6c4fd458981340",
+  "full_external_baseline": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\whole-project-audit-20261116-59d02d4\\BASELINE.json",
+  "tracked_files_recorded": {
+    "contracts": 6931,
+    "website": 5891
+  },
+  "production_sources": {
+    "src/ZZZAccessController.sol": {
+      "sha256": "5a1ecdd5cc309bb922943cf11e9299859f9f824e354443d5d9b7ea7600379a2c",
+      "bytes": 14375
+    },
+    "src/ZZZActivationAssets.sol": {
+      "sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "bytes": 7913
+    },
+    "src/ZZZActivationAssetsFactory.sol": {
+      "sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "bytes": 707
+    },
+    "src/ZZZActivationEntry.sol": {
+      "sha256": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+      "bytes": 9090
+    },
+    "src/ZZZBuyback.sol": {
+      "sha256": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+      "bytes": 5111
+    },
+    "src/ZZZCanonicalHandoff.sol": {
+      "sha256": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+      "bytes": 27516
+    },
+    "src/ZZZClaimRouter.sol": {
+      "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "bytes": 3490
+    },
+    "src/ZZZCompounder.sol": {
+      "sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "bytes": 760
+    },
+    "src/ZZZContributionPricing.sol": {
+      "sha256": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+      "bytes": 21514
+    },
+    "src/ZZZCustodyValidation.sol": {
+      "sha256": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+      "bytes": 15621
+    },
+    "src/ZZZFeeController.sol": {
+      "sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "bytes": 8888
+    },
+    "src/ZZZFeesCanonical.sol": {
+      "sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "bytes": 7819
+    },
+    "src/ZZZLPBalanceMath.sol": {
+      "sha256": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+      "bytes": 20727
+    },
+    "src/ZZZLPBalancer.sol": {
+      "sha256": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+      "bytes": 21553
+    },
+    "src/ZZZLPPositionExecutor.sol": {
+      "sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+      "bytes": 19343
+    },
+    "src/ZZZLPRewardConverter.sol": {
+      "sha256": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+      "bytes": 467
+    },
+    "src/ZZZLiquidityManager.sol": {
+      "sha256": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+      "bytes": 25363
+    },
+    "src/ZZZMembership.sol": {
+      "sha256": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+      "bytes": 5466
+    },
+    "src/ZZZMigration.sol": {
+      "sha256": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed",
+      "bytes": 22700
+    },
+    "src/ZZZMigrationBudget.sol": {
+      "sha256": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+      "bytes": 26160
+    },
+    "src/ZZZNFT.sol": {
+      "sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+      "bytes": 21601
+    },
+    "src/ZZZNFTCanonical.sol": {
+      "sha256": "fcc849cfa4689f1a22e6e006d286ec73bea60e660713adc5d01b6a2f90e2245a",
+      "bytes": 17700
+    },
+    "src/ZZZNFTMetadata.sol": {
+      "sha256": "a691196de69c40e0f2a3cd50d3efd65a5c72ae9bf5e848b300b5f1bb607faf3f",
+      "bytes": 20384
+    },
+    "src/ZZZOracle.sol": {
+      "sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+      "bytes": 36495
+    },
+    "src/ZZZPoolRegistry.sol": {
+      "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+      "bytes": 11429
+    },
+    "src/ZZZPortfolioPolicy.sol": {
+      "sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+      "bytes": 18593
+    },
+    "src/ZZZProtocolPolicy.sol": {
+      "sha256": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+      "bytes": 13506
+    },
+    "src/ZZZPythPriceFeed.sol": {
+      "sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "bytes": 3558
+    },
+    "src/ZZZRebalanceConfirmation.sol": {
+      "sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+      "bytes": 14600
+    },
+    "src/ZZZRewards.sol": {
+      "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+      "bytes": 12664
+    },
+    "src/ZZZRewardsCanonical.sol": {
+      "sha256": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
+      "bytes": 13710
+    },
+    "src/ZZZRoyaltyCodeData.sol": {
+      "sha256": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+      "bytes": 596
+    },
+    "src/ZZZRoyaltyFactory.sol": {
+      "sha256": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+      "bytes": 3245
+    },
+    "src/ZZZRoyaltyRewards.sol": {
+      "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+      "bytes": 33727
+    },
+    "src/ZZZSeaDropMint.sol": {
+      "sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+      "bytes": 17560
+    },
+    "src/ZZZStrategy.sol": {
+      "sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+      "bytes": 22849
+    },
+    "src/ZZZV4RouteExecutor.sol": {
+      "sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "bytes": 9694
+    },
+    "src/ZZZV4SpotPriceFeed.sol": {
+      "sha256": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+      "bytes": 11354
+    },
+    "src/ZZZVault.sol": {
+      "sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+      "bytes": 34166
+    },
+    "src/ZZZVaultCanonical.sol": {
+      "sha256": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+      "bytes": 22027
+    },
+    "src/base/ZZZCanonicalLedger.sol": {
+      "sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "bytes": 4124
+    },
+    "src/base/ZZZExactLPRewardsCanonical.sol": {
+      "sha256": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
+      "bytes": 12147
+    },
+    "src/base/ZZZModule.sol": {
+      "sha256": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "bytes": 3303
+    },
+    "src/base/ZZZRewardConverter.sol": {
+      "sha256": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+      "bytes": 12761
+    },
+    "src/base/ZZZSeaDropToken.sol": {
+      "sha256": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+      "bytes": 3616
+    },
+    "src/interfaces/IZZZ.sol": {
+      "sha256": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+      "bytes": 11425
+    },
+    "src/interfaces/IZZZCanonical.sol": {
+      "sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "bytes": 1362
+    },
+    "src/interfaces/IZZZEmergency.sol": {
+      "sha256": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "bytes": 1594
+    },
+    "src/interfaces/IZZZExecutionOracle.sol": {
+      "sha256": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
+      "bytes": 2694
+    },
+    "src/interfaces/IZZZNFTCanonical.sol": {
+      "sha256": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
+      "bytes": 2119
+    },
+    "src/interfaces/IZZZProtocolPolicy.sol": {
+      "sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "bytes": 2287
+    },
+    "src/interfaces/IZZZSeaDrop.sol": {
+      "sha256": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+      "bytes": 5405
+    },
+    "src/interfaces/IZZZV3Route.sol": {
+      "sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "bytes": 914
+    },
+    "src/libraries/ExactAsset.sol": {
+      "sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "bytes": 1265
+    },
+    "src/libraries/ExactLPAllocation.sol": {
+      "sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+      "bytes": 8377
+    },
+    "src/libraries/ExactRoyaltyAllocation.sol": {
+      "sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+      "bytes": 5065
+    },
+    "src/libraries/ExactToken.sol": {
+      "sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "bytes": 1437
+    },
+    "src/libraries/ZZZArtwork.sol": {
+      "sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "bytes": 5570
+    },
+    "src/libraries/ZZZPriceMath.sol": {
+      "sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "bytes": 830
+    },
+    "src/libraries/ZZZTypes.sol": {
+      "sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "bytes": 2185
+    },
+    "src/libraries/ZZZV3VenueValidation.sol": {
+      "sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "bytes": 1242
+    }
+  },
+  "protected_initial_dirty_files": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "original_document_archive": {
+    "contract_files/AGENTS.md": "original-docs/876fe76246988058eeca6dd9-AGENTS.md",
+    "contract_files/PROJECT_CONTEXT.md": "original-docs/484d715575b8a483370da603-PROJECT_CONTEXT.md",
+    "contract_files/README.md": "original-docs/a9dc10c414d0657236ab39cb-README.md",
+    "contract_files/SECURITY.md": "original-docs/072bad6d5ef1d17c1d254803-SECURITY.md",
+    "contract_files/TODO.md": "original-docs/ec1611d00db4fa63afa9fa10-TODO.md",
+    "contract_files/design/nft-metadata/palette-system-v1/README.md": "original-docs/98ef0b8111275e6f16d14c4e-README.md",
+    "contract_files/docs/ACCESS_PERMISSIONS.md": "original-docs/5560253dec8c03f95d9c69e7-ACCESS_PERMISSIONS.md",
+    "contract_files/docs/ACTIVATION_ENTRY.md": "original-docs/4fe865ccb829c4d59a453f94-ACTIVATION_ENTRY.md",
+    "contract_files/docs/ACTIVATION_PREPARATION.md": "original-docs/bea3987363b568305ca491e3-ACTIVATION_PREPARATION.md",
+    "contract_files/docs/ACTIVATION_ROUTING.md": "original-docs/db2204b047556b922daf6e72-ACTIVATION_ROUTING.md",
+    "contract_files/docs/ADAPTABLE_POLICY.md": "original-docs/02aff4cff025044ddd733319-ADAPTABLE_POLICY.md",
+    "contract_files/docs/API_INGRESS.md": "original-docs/f0f4bd7fafc0172aa6907075-API_INGRESS.md",
+    "contract_files/docs/ARCHITECTURE.md": "original-docs/04f52541e6d844235e827221-ARCHITECTURE.md",
+    "contract_files/docs/ARCHITECTURE_EVOLUTION.md": "original-docs/5c557bd5dba69aaf31f15ca7-ARCHITECTURE_EVOLUTION.md",
+    "contract_files/docs/ARTWORK_PUBLICATION.md": "original-docs/9ad1381b17829be26e5e2967-ARTWORK_PUBLICATION.md",
+    "contract_files/docs/AUDIT.md": "original-docs/a324dad74343beb8491e1179-AUDIT.md",
+    "contract_files/docs/AUDIT_FINDINGS.md": "original-docs/27c96fd755e6c4e4d3530447-AUDIT_FINDINGS.md",
+    "contract_files/docs/BRIDGE_ONBOARDING.md": "original-docs/56ff1889d85f16e88901e0c7-BRIDGE_ONBOARDING.md",
+    "contract_files/docs/BROWSER_WALLET.md": "original-docs/de1d1575f154ccc69ff7d560-BROWSER_WALLET.md",
+    "contract_files/docs/CANONICAL_HANDOFF.md": "original-docs/64ed648b48f8dd2326860f24-CANONICAL_HANDOFF.md",
+    "contract_files/docs/CANONICAL_MIGRATION_DESIGN.md": "original-docs/b1c3950eec0b7fa211b0fca5-CANONICAL_MIGRATION_DESIGN.md",
+    "contract_files/docs/CHANGELOG.md": "original-docs/1225363e7140590c4cfd4b21-CHANGELOG.md",
+    "contract_files/docs/CHANGE_AND_RECOVERY.md": "original-docs/c6b7adeae8bb6adb345763e5-CHANGE_AND_RECOVERY.md",
+    "contract_files/docs/CLAIM_PLANNING.md": "original-docs/d57fd1478f82b0d0276b0241-CLAIM_PLANNING.md",
+    "contract_files/docs/CLAIM_ROUTER.md": "original-docs/dd1af20999ba0967f4e2cd94-CLAIM_ROUTER.md",
+    "contract_files/docs/COLLECTION_READS.md": "original-docs/5ef277f29f768d6898ff4a7f-COLLECTION_READS.md",
+    "contract_files/docs/COMPONENT_STATUS.md": "original-docs/0a38c8c294a22e9686b0e291-COMPONENT_STATUS.md",
+    "contract_files/docs/CONCURRENT_SERVICES.md": "original-docs/674977a57fb7f788194c45ee-CONCURRENT_SERVICES.md",
+    "contract_files/docs/CONTRACT_FUNCTIONS.md": "original-docs/ef2d6a1c0b1545fb78af1a88-CONTRACT_FUNCTIONS.md",
+    "contract_files/docs/CONTRIBUTION_MINIMUMS.md": "original-docs/53dc3fd8d80280933322b7e9-CONTRIBUTION_MINIMUMS.md",
+    "contract_files/docs/CURRENT_WEBSITE_PROFILE.md": "original-docs/b942c3c7ca4f3039859ef1c0-CURRENT_WEBSITE_PROFILE.md",
+    "contract_files/docs/CUSTODY_PARKING.md": "original-docs/fcc1727f5cff573d7244ed1f-CUSTODY_PARKING.md",
+    "contract_files/docs/DEPLOYMENT_ADDRESSES.md": "original-docs/e517fa7a7f695eb59d49b28f-DEPLOYMENT_ADDRESSES.md",
+    "contract_files/docs/DEPLOYMENT_PREPARATION.md": "original-docs/6e20107f6f8eaba484e7b5d8-DEPLOYMENT_PREPARATION.md",
+    "contract_files/docs/DEPLOYMENT_WEBSITE.md": "original-docs/8552e83fddfff49a79ee2a22-DEPLOYMENT_WEBSITE.md",
+    "contract_files/docs/DEVELOPMENT.md": "original-docs/afd9df431d7219cfa9c2d1cf-DEVELOPMENT.md",
+    "contract_files/docs/DYNAMIC_LIQUIDITY.md": "original-docs/c3d05e389fd678443034b7d7-DYNAMIC_LIQUIDITY.md",
+    "contract_files/docs/EARNINGS_CHECKPOINTS.md": "original-docs/560ea867cfe125e51389a273-EARNINGS_CHECKPOINTS.md",
+    "contract_files/docs/EARNINGS_HISTORY.md": "original-docs/38534bb6e48d4019c2352229-EARNINGS_HISTORY.md",
+    "contract_files/docs/ECONOMICS.md": "original-docs/039329329b62fb26f48debf9-ECONOMICS.md",
+    "contract_files/docs/EMERGENCY_REBALANCE.md": "original-docs/a5288846701c3fc9eb36ab99-EMERGENCY_REBALANCE.md",
+    "contract_files/docs/EXACT_LP_ALLOCATION.md": "original-docs/63c0caa378f84f41c7bb8f30-EXACT_LP_ALLOCATION.md",
+    "contract_files/docs/EXACT_ROYALTY_ALLOCATION.md": "original-docs/996c39ca1fb9c0e1bdf49029-EXACT_ROYALTY_ALLOCATION.md",
+    "contract_files/docs/EXECUTION_LOSS_POLICY.md": "original-docs/bc4545cae313869fac278e48-EXECUTION_LOSS_POLICY.md",
+    "contract_files/docs/EXECUTION_QUALITY.md": "original-docs/204391dd321c82e6e8c21daa-EXECUTION_QUALITY.md",
+    "contract_files/docs/EXTERNAL_REWARDS.md": "original-docs/702c1637dacbb636e945af7a-EXTERNAL_REWARDS.md",
+    "contract_files/docs/FACTORY_CODE_STORAGE.md": "original-docs/8d3af512ffd7913a70ca14c9-FACTORY_CODE_STORAGE.md",
+    "contract_files/docs/FRONTEND_API.md": "original-docs/2ad1c4946ad8f54810ce3f6f-FRONTEND_API.md",
+    "contract_files/docs/FRONTEND_HISTORY.md": "original-docs/80b6b199d2c9def0dc166e03-FRONTEND_HISTORY.md",
+    "contract_files/docs/FRONTEND_LIFECYCLE.md": "original-docs/8823319445f3d2139cd6cd9d-FRONTEND_LIFECYCLE.md",
+    "contract_files/docs/FRONTEND_LINEAGE.md": "original-docs/afc0906d3db48bf839582b62-FRONTEND_LINEAGE.md",
+    "contract_files/docs/FRONTEND_TRANSACTIONS.md": "original-docs/444641521139898a27fa4980-FRONTEND_TRANSACTIONS.md",
+    "contract_files/docs/FROZEN_REVIEW_BUNDLE.md": "original-docs/2a0dc0c40fd1162c3b00a86d-FROZEN_REVIEW_BUNDLE.md",
+    "contract_files/docs/GOVERNANCE.md": "original-docs/d5fca085356e2856b6b29999-GOVERNANCE.md",
+    "contract_files/docs/GOVERNED_CUSTODY_HANDOFF.md": "original-docs/2abddbd27df9ac6a52924cd6-GOVERNED_CUSTODY_HANDOFF.md",
+    "contract_files/docs/HISTORY_AUDIT.md": "original-docs/f2ea258f7d2d6a0b099f76a3-HISTORY_AUDIT.md",
+    "contract_files/docs/HOLDER_COLLECTIVE_EXIT.md": "original-docs/543b791afde56f01351989a8-HOLDER_COLLECTIVE_EXIT.md",
+    "contract_files/docs/HOLDER_PREFLIGHT.md": "original-docs/63b7467f37ffa77ea49e564b-HOLDER_PREFLIGHT.md",
+    "contract_files/docs/IDLE_AND_DUST.md": "original-docs/32937c3b0534eb9389924bb2-IDLE_AND_DUST.md",
+    "contract_files/docs/IMPLEMENTATION_STATUS.md": "original-docs/d0ed73e45d76f053a4e9538a-IMPLEMENTATION_STATUS.md",
+    "contract_files/docs/INDEXER_RECOVERY.md": "original-docs/41d9023e95ee042ea2be78b3-INDEXER_RECOVERY.md",
+    "contract_files/docs/INTEGRATION_CAMPAIGN.md": "original-docs/3b0759cedb7c4a3509ee2855-INTEGRATION_CAMPAIGN.md",
+    "contract_files/docs/KEEPER_COORDINATION.md": "original-docs/3f1a2e17a7621ff49c9c53c5-KEEPER_COORDINATION.md",
+    "contract_files/docs/KEEPER_RECOVERY.md": "original-docs/53db143e58e2c12adc81955f-KEEPER_RECOVERY.md",
+    "contract_files/docs/KEEPER_REHEARSALS.md": "original-docs/8dd7100e226330c565929bef-KEEPER_REHEARSALS.md",
+    "contract_files/docs/KEEPER_SAFEGUARDS.md": "original-docs/677ff4163b972adeca2affd3-KEEPER_SAFEGUARDS.md",
+    "contract_files/docs/LOCAL_API_REHEARSAL.md": "original-docs/3aa9fed7e828018330957afc-LOCAL_API_REHEARSAL.md",
+    "contract_files/docs/LOCAL_TEST_STACK.md": "original-docs/848efaf85534786d0236e805-LOCAL_TEST_STACK.md",
+    "contract_files/docs/LOCAL_WEBSITE.md": "original-docs/c37802f2294f69946b7bea0b-LOCAL_WEBSITE.md",
+    "contract_files/docs/LP_ETH_SETTLEMENT.md": "original-docs/e09dee821b62a91f2416dc79-LP_ETH_SETTLEMENT.md",
+    "contract_files/docs/LP_EXECUTION_POLICY.md": "original-docs/06dae4b2696577ce46a1887c-LP_EXECUTION_POLICY.md",
+    "contract_files/docs/MANUAL_LP_PREPARATION.md": "original-docs/e189a06ca41a0202d436a726-MANUAL_LP_PREPARATION.md",
+    "contract_files/docs/METADATA_LIFECYCLE.md": "original-docs/6f112fc591e0c87a32f98b60-METADATA_LIFECYCLE.md",
+    "contract_files/docs/MIGRATION_SAFETY.md": "original-docs/a6885a36a90c76310af6cc11-MIGRATION_SAFETY.md",
+    "contract_files/docs/MINT_INTEGRATION_QUALIFICATION.md": "original-docs/adc44062e5166c190bd31c6e-MINT_INTEGRATION_QUALIFICATION.md",
+    "contract_files/docs/NATIVE_ETH_ARCHITECTURE.md": "original-docs/fd3f9949eede7cc82267098a-NATIVE_ETH_ARCHITECTURE.md",
+    "contract_files/docs/NATIVE_WEBSITE_PROFILE.md": "original-docs/33682684855fddf1e2ca178e-NATIVE_WEBSITE_PROFILE.md",
+    "contract_files/docs/NFT_METADATA.md": "original-docs/ffcd43e365494a823da4096f-NFT_METADATA.md",
+    "contract_files/docs/ONE_DOLLAR_REHEARSAL.md": "original-docs/6722b7d1f4c7525493bb20db-ONE_DOLLAR_REHEARSAL.md",
+    "contract_files/docs/OPENSEA_MINT.md": "original-docs/fed44315bcbadf362a7d5ec3-OPENSEA_MINT.md",
+    "contract_files/docs/OPERATIONS.md": "original-docs/43f76a33eec7f7f8ce403c8d-OPERATIONS.md",
+    "contract_files/docs/OPERATOR_MANUAL.md": "original-docs/9d17299905af9cd4bc1bb70e-OPERATOR_MANUAL.md",
+    "contract_files/docs/OPTIONAL_PORTFOLIO_IMPLEMENTATION.md": "original-docs/eb56d9d1064ee63d12c72580-OPTIONAL_PORTFOLIO_IMPLEMENTATION.md",
+    "contract_files/docs/PAIR_MIGRATION.md": "original-docs/c0aca42407be60cd3958d69d-PAIR_MIGRATION.md",
+    "contract_files/docs/PASSIVE_INVENTORY_PLAN.md": "original-docs/1f8637bb9fa2cff2cfa996fb-PASSIVE_INVENTORY_PLAN.md",
+    "contract_files/docs/POOL_SELECTION.md": "original-docs/f4999d9aa2252b5ecaacd6b8-POOL_SELECTION.md",
+    "contract_files/docs/POOL_SPOT_PRICE_SOURCE.md": "original-docs/459c46d282d339469cde397f-POOL_SPOT_PRICE_SOURCE.md",
+    "contract_files/docs/PORTFOLIO_OPERATIONS.md": "original-docs/dc39fd0d048487e4840b5861-PORTFOLIO_OPERATIONS.md",
+    "contract_files/docs/POSITION_V3.md": "original-docs/937febbdf59441e0a2a41790-POSITION_V3.md",
+    "contract_files/docs/POSITION_V4.md": "original-docs/8cbef0875c29cd3885633202-POSITION_V4.md",
+    "contract_files/docs/POSITION_V5.md": "original-docs/09278c023dd922b43dea32db-POSITION_V5.md",
+    "contract_files/docs/POSITION_V6.md": "original-docs/544b2a1e6cf5bdcaec732c0f-POSITION_V6.md",
+    "contract_files/docs/POSITION_V7.md": "original-docs/64ecdff7a7aa4857d025504c-POSITION_V7.md",
+    "contract_files/docs/POST_SEAL_POLICY.md": "original-docs/186f75bf150f35e9e51d5fda-POST_SEAL_POLICY.md",
+    "contract_files/docs/PRICE_SECURITY.md": "original-docs/f4229a6037c83d528c242941-PRICE_SECURITY.md",
+    "contract_files/docs/PRODUCTION_PREFLIGHT.md": "original-docs/241f89294c8c276f20837c2b-PRODUCTION_PREFLIGHT.md",
+    "contract_files/docs/PRODUCTION_SERVICES.md": "original-docs/96c4263285934875d87d0c5b-PRODUCTION_SERVICES.md",
+    "contract_files/docs/PYTH_PRICE_SOURCE.md": "original-docs/6f385fb8ddbee475b78116bd-PYTH_PRICE_SOURCE.md",
+    "contract_files/docs/RANGE_POLICY_UPDATES.md": "original-docs/a1ca67343fd4f19b73cec35e-RANGE_POLICY_UPDATES.md",
+    "contract_files/docs/README.md": "original-docs/f280abcf6ae7d643e783b99d-README.md",
+    "contract_files/docs/REFERENCE_SWAP_EXECUTION.md": "original-docs/e7a0ec80771ff5710b66aecf-REFERENCE_SWAP_EXECUTION.md",
+    "contract_files/docs/RELEASE_CHECKLIST.md": "original-docs/2f860512adc2cbe219226fa2-RELEASE_CHECKLIST.md",
+    "contract_files/docs/REVENUE_SHARE.md": "original-docs/f9420ad52a948b04ea7390cb-REVENUE_SHARE.md",
+    "contract_files/docs/ROADMAP.md": "original-docs/5f401cba4d8004744c90b07b-ROADMAP.md",
+    "contract_files/docs/ROBINHOOD_GAS.md": "original-docs/30cdb4eb22658d4d0b0a84f8-ROBINHOOD_GAS.md",
+    "contract_files/docs/ROBINHOOD_POOL.md": "original-docs/616f6912965137490587a2f8-ROBINHOOD_POOL.md",
+    "contract_files/docs/ROYALTY_LAUNCH_WINDOW.md": "original-docs/5ec2ed090f30ec8e402e0315-ROYALTY_LAUNCH_WINDOW.md",
+    "contract_files/docs/ROYALTY_REPORTING.md": "original-docs/324b140d801c45e33318919b-ROYALTY_REPORTING.md",
+    "contract_files/docs/ROYALTY_SETTLEMENT.md": "original-docs/a1ce4df92baf2e4a07be094a-ROYALTY_SETTLEMENT.md",
+    "contract_files/docs/RPC_PREPARATION_QUALIFICATION.md": "original-docs/4e9004c91c2ca449c052e229-RPC_PREPARATION_QUALIFICATION.md",
+    "contract_files/docs/SECURITY.md": "original-docs/e4bb0a9d0bcf34118bd1b763-SECURITY.md",
+    "contract_files/docs/SECURITY_AUDIT_PLAN.md": "original-docs/0d0b8273518eed3baa6b2686-SECURITY_AUDIT_PLAN.md",
+    "contract_files/docs/SIMPLIFIED_RELEASE.md": "original-docs/1fde6ee60d683e5b7752c081-SIMPLIFIED_RELEASE.md",
+    "contract_files/docs/SITE_ENVIRONMENTS.md": "original-docs/5d0d89c9cf0e002303cda815-SITE_ENVIRONMENTS.md",
+    "contract_files/docs/SOURCE10_WEBSITE_PROFILE.md": "original-docs/5548586034679ae71dcaefa9-SOURCE10_WEBSITE_PROFILE.md",
+    "contract_files/docs/SOURCE9_WEBSITE_PROFILE.md": "original-docs/009b88baec15b03321236f19-SOURCE9_WEBSITE_PROFILE.md",
+    "contract_files/docs/THIRD_PASS_AUDIT_PROMPT.md": "original-docs/6e87db3e4598c04f13b96c9a-THIRD_PASS_AUDIT_PROMPT.md",
+    "contract_files/docs/TODO_WORKFLOW.md": "original-docs/34ff2cd02d8221690b25d812-TODO_WORKFLOW.md",
+    "contract_files/docs/TYPED_V4_ROUTES.md": "original-docs/17e36df9be661e40b316123f-TYPED_V4_ROUTES.md",
+    "contract_files/docs/WHOLE_PROJECT_AUDIT_PROMPT.md": "original-docs/211917238e330df298f2d3e4-WHOLE_PROJECT_AUDIT_PROMPT.md",
+    "contract_files/docs/WORK_HANDOFF.md": "original-docs/05606ac2952fc35dc3801d40-WORK_HANDOFF.md",
+    "contract_files/docs/project-todo.json": "original-docs/47d01600805d5f8eae67a760-project-todo.json",
+    "contract_files/test/legacy/README.md": "original-docs/2f9410eaf40b0cdff36a0160-README.md",
+    "contract_files/test/legacy/entry-routing2/README.md": "original-docs/6ed4078e62df9bc08761bcc3-README.md",
+    "website_files/AGENTS.md": "original-docs/b012489ad84f382b72ba737c-AGENTS.md",
+    "website_files/DEPLOYMENT_API.md": "original-docs/5d7678fa39e002d527dca8cc-DEPLOYMENT_API.md",
+    "website_files/FRONTEND_STATE.md": "original-docs/d2b39c8d88b02d0aedb9f89e-FRONTEND_STATE.md",
+    "website_files/LOCAL_INTEGRATION.md": "original-docs/c177e28e036f7969898d32c0-LOCAL_INTEGRATION.md",
+    "website_files/PROJECT_CONTEXT.md": "original-docs/c003185554ea77b254d21017-PROJECT_CONTEXT.md",
+    "website_files/README.md": "original-docs/d934447257b21b821d56f436-README.md",
+    "website_files/SITE_ENVIRONMENTS.md": "original-docs/ae1230dd68b0fcbe739b33bf-SITE_ENVIRONMENTS.md",
+    "website_files/assets/audio/README.md": "original-docs/4702a1c7e4798d34fa989713-README.md",
+    "website_files/deploy/README.md": "original-docs/14de51d22a61fe30bd2ccb68-README.md"
+  },
+  "old_chain_RPC_calls": 0
+}

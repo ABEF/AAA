@@ -1,0 +1,68 @@
+{
+  "utc": "2026-11-16T15:51:54.222555+00:00",
+  "kind": "read_only_review_bundle_investigation",
+  "unit_tests_executed": 0,
+  "frozen_head_package_created": false,
+  "source_pins": {
+    "zzz_ops/review_bundle.py": "bdf796b7e7eb0cf3ac41dfae55be766c0d9873720b2c8ee92515c5ca342a366c",
+    "zzz_ops/operator_reference.py": "679403a0df22eb3024c20a5fe07e22cff8682c11cbec622552f65ae6e2c0e91c",
+    "scripts/verify.sh": "8f03d9d6d66e2bf243326ef882a539b485dfd4bfb45ae3f6b9004cb1a05558da",
+    "scripts/check-python-publication.py": "eb09d6a808d0c54bf811ce484e1c36f0ef2a3acc229696dd25a653f33ff69eb7",
+    "docs/FROZEN_REVIEW_BUNDLE.md": "42ca9ce20bb3b40ad14427e2d1999b29ae3fa27fc4ad5b25ac8fe9ad41f86f30"
+  },
+  "operator_examples_admitted_current": false,
+  "dependent_consumer": "zzz_ops/operator_reference.py generate reads docs/operator-call-examples.json at line306; scripts/verify.sh invokes generator at line23; test_operator_reference setUpClass requires file.",
+  "closure_gap": "dependency_record closes three function-reference files, not operator examples or manual. It accepts the baseline fixture with the explicit operator consumer and examples listed as excluded.",
+  "legacy_fixture_archives": {
+    "1": {
+      "archive_sha256": "7242e43da2b2c6655909901e74a653521791ab4bef090e54f39e78426e11de32",
+      "handoff_sha256": "dc1f262561c42ce51b94c422037f818864773f5521feb17d9062dd9479e259a6",
+      "verifies": true,
+      "tests_executed": false
+    },
+    "2": {
+      "archive_sha256": "1c01ee5a5d83bd319630335d1d4c282d4a7b01db8fc669ac3974f33f4f5f4bef",
+      "handoff_sha256": "91c80897916ea5f14a2f1ed5e67dd662781579c6f8acc7ab0e86e21d1a75fad5",
+      "verifies": true,
+      "tests_executed": false
+    },
+    "3": {
+      "archive_sha256": "7b497cc1d7fabf864abfba89e0be686eb91351e4a0fbfb17580e99ab67b18bf1",
+      "handoff_sha256": "d0c622ab44d81e0723c94015346920a51411bd4d9d23e53949276d63a7a52121",
+      "verifies": true,
+      "tests_executed": false
+    }
+  },
+  "legacy_compatibility": "verify checks excluded_files using admitted; globally widening admitted would make formerly excluded examples an invalid exclusion even with old unchanged handoff bytes. Version both source admission and closure, not just handoff.",
+  "git_expectation": {
+    "schema1": "Explicitly says run commands from extracted source directory; no Git reconstruction. Historical renderer must remain unchanged.",
+    "schema3": "Says inspect exact frozen scripts and run verify.sh; contains no Git checkout/reconstruction commands. Archive omits.git; check-python-publication reads exact Git HEAD/blobs. Current guide says verify.sh reproduces candidate normal checks.",
+    "safety": "Keep publication provenance check intact; no fake git init or relaxation to working-tree imports. New instructions require an independently authenticated matching Git checkout and byte comparison with verified included bundle files before Git-dependent verification."
+  },
+  "proposed_fix": {
+    "default_schema": 4,
+    "historical_schemas_unchanged": [
+      1,
+      2,
+      3
+    ],
+    "explicit_new_admission": [
+      "docs/operator-call-examples.json"
+    ],
+    "new_closure_consumers": [
+      "scripts/generate-operator-reference.py",
+      "zzz_ops/operator_reference.py",
+      "tests_python/test_operator_reference.py"
+    ],
+    "new_closure_required": [
+      "docs/operator-call-examples.json",
+      "docs/function-reference.json",
+      "docs/function-reference-notes.json",
+      "docs/CONTRACT_FUNCTIONS.md",
+      "docs/OPERATOR_MANUAL.md"
+    ],
+    "verify": "Dispatch admitted and dependency_record by authenticated manifest schema for included and excluded records; preserve exact historical handoffs.",
+    "instructions": "New4 handoff clarifies source archive vs exact Git checkout and preserves no approval/no authority.",
+    "scope": "No Git-dependent production verifier changes, no historical report rewrite, no source package for unpublishedHEAD."
+  }
+}

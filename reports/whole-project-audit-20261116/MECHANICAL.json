@@ -1,0 +1,29 @@
+{
+  "document_files": 4,
+  "local_file_links_checked": 37,
+  "missing_local_file_links": [],
+  "source_pins_cross_checked": {
+    "zzz_ops/deployment_plan.py": "7e67b8c74720768971f10548693a1757f6932032a795467601ea428941bd63f7",
+    "zzz_ops/abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d",
+    "tests_python/test_deployment_authority_inputs.py": "4f7db84f8a8b68bc8a8d57d28314e03d9e56a464af1c84ffa654e4f97b3fc15b",
+    "zzz_ops/review_bundle.py": "439bea792ce03b97f376485589dbf69a16f68ac23f7531d835bd9c9ad5ee8eb3",
+    "tests_python/test_review_bundle_schema4.py": "bae57fd60bf89cdc8f0470427cfabc078214aaf6d94ee706b56dcefe2f344657",
+    "tests_python/test_review_bundle_profiles.py": "6b15da5775179dab4ff9dcb5012b41bbd0f19e9b590f4998f1156ff7f4c4c17f",
+    "docs/FROZEN_REVIEW_BUNDLE.md": "cbfadd4bd710ef64512a47799dd2ef6cfe16596c8b9dd8d3db3d07427000fb69"
+  },
+  "generated_todo_check": "passed; actual CLI invoked",
+  "generated_function_reference_check": {
+    "contracts": 40,
+    "functions": 963,
+    "constructors": 40,
+    "receive_hooks": 13,
+    "gaps": 0
+  },
+  "generated_operator_reference_check": {
+    "example_rows": 1016,
+    "ready_for_submission": false
+  },
+  "git_whitespace_check": "passed both tracked repository diffs with CRLF-aware whitespace",
+  "tests_executed_by_this_check": 0,
+  "limits": "File targets only; this is not hosted URL availability, all historical links or complete rendered anchor/browser verification."
+}

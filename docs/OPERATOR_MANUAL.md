@@ -1,5 +1,26 @@
 # PoPL operator manual
 
+The [16 November whole-project review](../reports/whole-project-audit-20261116/REVIEW.md)
+hardens offline governance input admission, saved-file presence and the website
+signing-profile boundary. Contract calls, permissions, economics and defaults
+stay unchanged. New source publication does not restart an operating service.
+
+**If startup encounters an unreadable, malformed or dangling state/configuration
+file:** stop and inspect the original file, permissions and reviewed backups.
+Do not delete the journal or create a fresh default to suppress the error.
+The generic reader defaults only for a genuinely absent directory entry; it
+propagates present-file read failures. Existing live keeper path/Unix lock and
+nonce checks remain. Ancestor-directory trust and file replacement races still
+require administrator-owned directories. Recover pending hashes before a
+separately reviewed source adoption; saved journal schemas are unchanged.
+
+**Website review boundary:** source9/schema4 and source10/schema5 remain unsigned
+even on Anvil. Direct construction now enforces the same boundary as the UI;
+only the existing schemas1–3 may construct the unchanged local signer. Do not
+downgrade a profile to enable signing. Both public configurations remain null.
+See the [fresh frozen-bundle procedure](FROZEN_REVIEW_BUNDLE.md) for complete
+operator examples and the independently authenticated matching Git checkout.
+
 The [daily reconciliation](../reports/daily-reconciliation-audit-20261111/REVIEW.md)
 updates current task/profile guidance and claim-planning efficiency without
 changing callable inputs, permissions or economic rules. Claim planning reuses

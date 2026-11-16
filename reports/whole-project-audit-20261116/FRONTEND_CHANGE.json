@@ -1,0 +1,14 @@
+{
+  "source_before": {
+    "deployment-transactions.js": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6",
+    "package.json": "59ab0b85808f3d45cc5d8c6e235e5950138430bb6495386645ef7951e8c30ff3"
+  },
+  "source_after": {
+    "deployment-transactions.js": "a0c10060f9cc345adfdd9907c50ef9f2bbb03d1bbac96942d3a72bdb554279ca",
+    "package.json": "2ee4febb1fdbc987e1535fd7799ed613dcb76955eaec9d388f9b54aa3be94717",
+    "tests/deployment-signing-profile.test.mjs": "d86996dfc9b0cf6084a9b5687196dde99a88e6275e14f4193096608c3f76efe3"
+  },
+  "shared_signer_and_null_configs_preserved": true,
+  "public_signing_added": false,
+  "build_service_site_or_chain_action": false
+}

@@ -21,12 +21,12 @@ def legacy_archive():
 
 
 class ReviewBundleProfileTests(unittest.TestCase):
-    def test_default_schema3_uses_current_instructions_without_claiming_approval(self):
+    def test_default_schema4_uses_current_instructions_without_claiming_approval(self):
         raw, manifest = fixtures.build()
-        self.assertEqual(manifest['schema'], 3)
+        self.assertEqual(manifest['schema'], 4)
         with zipfile.ZipFile(io.BytesIO(raw)) as archive:
             instructions = ' '.join(archive.read('HANDOFF.md').decode().split())
-        for text in ('Schema 3', 'schema17/accounting7/mint2/helper1/canonicalV10',
+        for text in ('Schema 4', 'schema17/accounting7/mint2/helper1/canonicalV10',
                      '--config config/production.example.json', '600/300',
                      '240-second', '3% total contribution', '97% marginal',
                      'conversion1%/maintenance3%', 'MUST remain blocked',
@@ -79,7 +79,7 @@ class ReviewBundleProfileTests(unittest.TestCase):
 
     def test_unknown_and_boolean_schema_values_fail_closed(self):
         raw, _ = fixtures.build()
-        for value in (0, 4, True, '3', None):
+        for value in (0, 5, True, '3', None):
             with self.subTest(schema=value):
                 changed = fixtures.rewrite(raw, mutate=lambda m: m.update(schema=value))
                 with self.assertRaises(bundle.BundleError):

@@ -46,6 +46,10 @@ is a required test fixture, not a copied historical qualification report.
 The two exact callable-reference JSON inputs and generated Markdown are also
 included. If their generator is present, omitting any of those frozen inputs
 blocks export; unrelated/private documentation JSON remains outside the allowlist.
+Fresh schema4 also includes `docs/operator-call-examples.json`. An operator
+generator, implementation or test consumer requires that file, both callable
+reference JSON files, `CONTRACT_FUNCTIONS.md` and `OPERATOR_MANUAL.md`. A missing
+input blocks export and verification; arbitrary documentation JSON is excluded.
 
 Local/untracked drafts, historical reports, `.git`, environment files, memories,
 private/live configuration, runtime state and dependency directories are excluded.
@@ -65,8 +69,15 @@ layout needs corresponding exporter review, not silent omission.
 ## Rehearsal and independent audit
 
 On an isolated unprivileged Ubuntu host, inspect `HANDOFF.md` and the scripts
-before running them. `scripts/verify.sh` reproduces the frozen candidate's normal
-checks; failures and obsolete fixtures remain findings, never automatic passes.
+before running them. The extracted archive deliberately has no Git metadata;
+`scripts/verify.sh` starts with an exact Git-blob publication check. Obtain an
+independently authenticated Git checkout at the manifest's exact source commit,
+verify its HEAD identity, and byte-compare every included source file against the
+verified archive. Stop on any mismatch. Run Git-dependent checks from that matching
+checkout, rather than the extracted archive alone. Do not use `git init` to invent
+history, claim a different source commit, or weaken the publication check. Excluded
+files and downloaded dependencies still require independent trusted inputs.
+Failures and obsolete fixtures remain findings, never automatic passes.
 `scripts/rehearse-keeper.py` uses its own disposable loopback Anvil and encrypted
 signer. That test-only venue exercises recovery mechanics; it does not qualify
 the current native production deployment or real markets and services.
@@ -78,9 +89,10 @@ single-signer fencing, alert delivery and off-host restore. A blocked example
 inventory is an expected result; do not fill unknown addresses or mark a service
 qualified to force a passing gate.
 
-New exports use **review-bundle schema3** for current instructions. Schema1 and
-schema2 retain their original handoff/archive bytes and remain verifiable with
-their historical advice. The archive version is separate from the contract,
+New exports use **review-bundle schema4** for complete operator-reference inputs
+and explicit Git-checkout instructions. Schema1, schema2 and schema3 retain their
+original admission, dependency, exclusion and handoff/archive meaning and remain
+verifiable with their historical advice. The archive version is separate from the contract,
 inventory, backend and journal profiles; exporting an old commit never upgrades it.
 
 For a frozen commit using current schema17/accounting7/mint2/helper1/canonicalV10,
@@ -91,7 +103,7 @@ fixed SeaDrop primary minting, but actual OpenSea onboarding, fee/payer terms,
 funded VRF, feeds/routes, wallets and operations remain unqualified. The unbound
 `vault_direct_v1` mint is a historical/local fixture, not the fresh launch path.
 
-Schema3 reference instructions describe the selected600/300-second confirmation
+Schema4 reference instructions describe the selected600/300-second confirmation
 window/gap,240-second service checks and3% total contribution default (97%
 marginal LP), with conversion1%/maintenance3% and stronger guards unchanged.
 These are reference settings, not observed deployed values. The exact frozen

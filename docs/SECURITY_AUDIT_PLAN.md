@@ -88,16 +88,20 @@ function. There is no timelock/scheduler machinery or advance notice window; gov
 
 ## 2. Shared LP accounting and economic manipulation
 
-**Current controls:** one physical LP serves many canonical NFTs with independent,
-nonredeemable shares. Entry checkpoints old entitlements and prices new shares at
-incumbent NAV. Compounding does not issue shares. One contribution pool may be
-selected at a time. Historical local buckets are capped at four, LP reward slots
-at 33 (32 ERC20 plus native), and royalty slots at 17 including native.
+**Current controls:** each logical bucket accounts for one main LP and at most
+one optional same-pool residual, with independent nonredeemable NFT shares.
+Entry checkpoints incumbents, increases only MAIN and prices shares at aggregate
+NAV. Compounding does not issue shares. One contribution pool is selected at a
+time; four permanent historical bucket slots remain. Fresh exact-unit LP books
+are native ETH and fixed ZZZ only. Royalties have a separate default capacity of
+16 ERC20 currencies plus ETH, expandable by reviewed governance up to64 ERC20.
+Capacity is not automatic admission, guaranteed token transferability or a new
+contribution asset. Historical fractional/multi-asset codecs remain historical.
 
 - Independently reconcile each asset across 1,000 varied NFTs: principal, idle,
   new shares, compound reserves, liabilities, paid fees and unallocated donations.
-- Exercise entry/top-up front-running, pending receipts, tiny amounts, fractional
-  carry, manipulated prices, dilution, repeated rebalances and custody migrations.
+- Exercise entry/top-up front-running, pending receipts, tiny amounts, exact-unit
+  allocation phase/cursors, manipulated prices, dilution, repeated rebalances and custody migrations.
   Prove incumbent assets cannot subsidize the captured marginal-LP entry floor
   (97% at the new default contribution cap), including conservative upper-input /
   lower-LP prices and callback changes to policy.
@@ -106,8 +110,8 @@ at 33 (32 ERC20 plus native), and royalty slots at 17 including native.
 - Separate accounting conservation from market-value losses and impermanent loss.
 - Treat attributed idle as share-backed principal, not free dust. Verify its
   reinvestment cannot alter shares, draw from another bucket or subsidize a new
-  contributor. Distinguish compound/buyback reserves, fee remainders, NFT-index
-  fractions and unsupported/quarantined deposits. No generic clear-to-address
+  contributor. Distinguish compound/buyback reserves, raw fee-split remainders, exact NFT
+  pending units/phases and unsupported/unallocated receipts. No generic clear-to-address
   function may bypass those owners or purpose restrictions.
 - For the idle-compounding candidate, verify the existing LP is increased,
   whole-bucket starting prices/cap and exact released compound are captured,
@@ -129,8 +133,8 @@ by the third pass; do not relabel this integration caveat a proved fund-drain pa
 ## 3. NFT ownership and reward distribution
 
 **Current controls:** current owners claim NFT-indexed entitlements; approvals to
-transfer do not authorize claims. Unclaimed whole balances and fractions follow
-the NFT. Activation is permanent despite artwork downgrades or custody movement.
+transfer do not authorize claims. Fresh unclaimed exact-unit balances and pending allocations follow
+the NFT; historical fractional ledgers retain their original codecs. Activation is permanent despite artwork downgrades or custody movement.
 The fixed 80/10/5/5 split uses 20-raw-unit batches (16/2/1/1); up to 19 raw units
 per boundary settlement go to incumbent owners. This exception is not a lifetime
 cap. Separate actual royalties use activated rarity weights 1/2/3; ERC-2981's
@@ -168,7 +172,7 @@ journals and budgets supplement on-chain controls, not replace them.
   and [operating rehearsals](KEEPER_REHEARSALS.md), including off-host recovery.
 
 The [operator-selected execution record](LP_EXECUTION_POLICY.md) separates the
-implemented policy3/Budget4/confirmation3 timing and LP routing2 bounded execution
+implemented policy3/Budget4/confirmation3 timing and explicit execution-price1/LP-routing3 bounded execution
 from actual market qualification. Audit both physical legs, main-only entrant
 increases, stable versus liquidity-sensitive fingerprints, full-side versus
 half-side geometry and post-cost active-main 60%/residual 40% floors. Test fill,
@@ -231,7 +235,7 @@ remain open; the timing fix alone is not a no-MEV guarantee.
 ## 5. External dependencies and revenue accounting
 
 Recovery2 allocates only reviewed admitted unallocated royalty units in their
-original currency at current active weights. Audit prior earned/deferred/fraction
+original currency at current active weights. Audit prior earned/deferred/exact-pending
 exclusion, governance pre/post lifecycle checks, same-currency backing and one-time
 event replay. No swap, unwrap, price feed or converter remains for royalties.
 Review the16default/64hard ERC20 admission capacity, governance expansion evidence and cold/faulted gas budgets, pathological-token liveness, current-owner
@@ -278,7 +282,7 @@ expand that admission. A future compatible destination needs dependency review.
   Unsupported cross-chain canonical activation must continue to fail closed;
   do not imply sealed code can acquire that design from a configuration change.
 - Audit successor admissibility, authentic owners,
-  immutable traits, eligibility/shares, per-asset liabilities/fractions, pending
+  immutable traits, eligibility/shares, per-asset liabilities/exact raw phases, pending
   VRF and in-flight/late receipts. Prove single active ownership/claim rights,
   a terminal source commit and no timeout resurrection. No principal execution
   budget, including a governance-raised cap, may haircut funded reward

@@ -1,0 +1,12 @@
+test_access_failure_is_not_absence (tests_python.test_state_presence.StatePresenceTests.test_access_failure_is_not_absence) ... ok
+test_actual_dangling_symlink_retains_its_entry_and_target (tests_python.test_state_presence.StatePresenceTests.test_actual_dangling_symlink_retains_its_entry_and_target) ... skipped 'Host account cannot create Windows symbolic links; portable entry/target regression runs separately'
+test_actual_readable_config_symlink_keeps_compatibility (tests_python.test_state_presence.StatePresenceTests.test_actual_readable_config_symlink_keeps_compatibility) ... skipped 'Host account cannot create Windows symbolic links; portable entry/target regression runs separately'
+test_dangling_entry_is_not_a_missing_journal (tests_python.test_state_presence.StatePresenceTests.test_dangling_entry_is_not_a_missing_journal) ... ok
+test_filesystem_failure_is_not_absence (tests_python.test_state_presence.StatePresenceTests.test_filesystem_failure_is_not_absence) ... ok
+test_present_file_disappearing_during_read_fails_closed (tests_python.test_state_presence.StatePresenceTests.test_present_file_disappearing_during_read_fails_closed) ... ok
+test_true_absence_keeps_the_explicit_default_and_creates_nothing (tests_python.test_state_presence.StatePresenceTests.test_true_absence_keeps_the_explicit_default_and_creates_nothing) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.011s
+
+OK (skipped=2)

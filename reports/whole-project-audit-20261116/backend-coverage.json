@@ -1,0 +1,7215 @@
+{
+  "utc": "2026-11-16T15:45:25.301473+00:00",
+  "baseline_head": "59d02d40afac785c04cd4a5da2dfc6e4174c6880",
+  "workstream": "Backend, keeper, API, history/indexer and unsigned manual operations",
+  "inventory": {
+    "frontend_api/__init__.py": {
+      "baseline_sha256": {
+        "sha256": "84dfbbce2ecec1853e266c6c8c35dfaa433ef98918b1e2186d93362d08170ba9",
+        "bytes": 84
+      },
+      "current_sha256": "84dfbbce2ecec1853e266c6c8c35dfaa433ef98918b1e2186d93362d08170ba9",
+      "line_count": 2,
+      "functions": [],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/activation.py": {
+      "baseline_sha256": {
+        "sha256": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117",
+        "bytes": 27649
+      },
+      "current_sha256": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117",
+      "line_count": 375,
+      "functions": [
+        {
+          "name": "parse",
+          "line": 28,
+          "end_line": 45
+        },
+        {
+          "name": "main",
+          "line": 352,
+          "end_line": 372
+        },
+        {
+          "name": "__init__",
+          "line": 49,
+          "end_line": 51
+        },
+        {
+          "name": "_fresh",
+          "line": 53,
+          "end_line": 57
+        },
+        {
+          "name": "_gas_review",
+          "line": 59,
+          "end_line": 62
+        },
+        {
+          "name": "_gas",
+          "line": 64,
+          "end_line": 88
+        },
+        {
+          "name": "_route",
+          "line": 90,
+          "end_line": 133
+        },
+        {
+          "name": "_trace",
+          "line": 135,
+          "end_line": 147
+        },
+        {
+          "name": "prepare",
+          "line": 150,
+          "end_line": 349
+        },
+        {
+          "name": "verify_historical",
+          "line": 139,
+          "end_line": 146
+        },
+        {
+          "name": "tx",
+          "line": 287,
+          "end_line": 293
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/activation_config.py": {
+      "baseline_sha256": {
+        "sha256": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd",
+        "bytes": 31343
+      },
+      "current_sha256": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd",
+      "line_count": 396,
+      "functions": [
+        {
+          "name": "bounded",
+          "line": 21,
+          "end_line": 24
+        },
+        {
+          "name": "hex_bytes",
+          "line": 27,
+          "end_line": 30
+        },
+        {
+          "name": "__init__",
+          "line": 34,
+          "end_line": 265
+        },
+        {
+          "name": "verify",
+          "line": 267,
+          "end_line": 396
+        },
+        {
+          "name": "read",
+          "line": 270,
+          "end_line": 271
+        },
+        {
+          "name": "read_price",
+          "line": 374,
+          "end_line": 375
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/activation_server.py": {
+      "baseline_sha256": {
+        "sha256": "75675b7f0a323036c45dc031d9714e5d31d57622229bdcff8bb28103669d276b",
+        "bytes": 5070
+      },
+      "current_sha256": "75675b7f0a323036c45dc031d9714e5d31d57622229bdcff8bb28103669d276b",
+      "line_count": 98,
+      "functions": [
+        {
+          "name": "unique_object",
+          "line": 16,
+          "end_line": 21
+        },
+        {
+          "name": "reject_constant",
+          "line": 24,
+          "end_line": 25
+        },
+        {
+          "name": "handler",
+          "line": 28,
+          "end_line": 68
+        },
+        {
+          "name": "main",
+          "line": 71,
+          "end_line": 95
+        },
+        {
+          "name": "do_POST",
+          "line": 30,
+          "end_line": 67
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/activation_trace.py": {
+      "baseline_sha256": {
+        "sha256": "3f59bef3da40ea846b407291ac7eb7d5fc3111f36c8e35a747bb8b2f250a21f5",
+        "bytes": 39843
+      },
+      "current_sha256": "3f59bef3da40ea846b407291ac7eb7d5fc3111f36c8e35a747bb8b2f250a21f5",
+      "line_count": 554,
+      "functions": [
+        {
+          "name": "selector",
+          "line": 37,
+          "end_line": 38
+        },
+        {
+          "name": "words",
+          "line": 41,
+          "end_line": 45
+        },
+        {
+          "name": "request_data",
+          "line": 48,
+          "end_line": 76
+        },
+        {
+          "name": "successful",
+          "line": 79,
+          "end_line": 82
+        },
+        {
+          "name": "child",
+          "line": 85,
+          "end_line": 90
+        },
+        {
+          "name": "event",
+          "line": 93,
+          "end_line": 101
+        },
+        {
+          "name": "static_data",
+          "line": 104,
+          "end_line": 105
+        },
+        {
+          "name": "lp_execution_frame",
+          "line": 108,
+          "end_line": 124
+        },
+        {
+          "name": "execution_price_witness",
+          "line": 127,
+          "end_line": 172
+        },
+        {
+          "name": "pricing_witness",
+          "line": 175,
+          "end_line": 361
+        },
+        {
+          "name": "measure",
+          "line": 364,
+          "end_line": 554
+        },
+        {
+          "name": "visit",
+          "line": 145,
+          "end_line": 147
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/activation_v4.py": {
+      "baseline_sha256": {
+        "sha256": "91827ad5eb3c6180a44dabba79609efe8ae2a17c080a5a93cf188603cff07ec0",
+        "bytes": 2827
+      },
+      "current_sha256": "91827ad5eb3c6180a44dabba79609efe8ae2a17c080a5a93cf188603cff07ec0",
+      "line_count": 47,
+      "functions": [
+        {
+          "name": "route_output",
+          "line": 13,
+          "end_line": 47
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/admission.py": {
+      "baseline_sha256": {
+        "sha256": "0333d6a3ad29d1d788bd6c7c74ce8cea6abdca5469b4b3a3a674dc24afc91d52",
+        "bytes": 5522
+      },
+      "current_sha256": "0333d6a3ad29d1d788bd6c7c74ce8cea6abdca5469b4b3a3a674dc24afc91d52",
+      "line_count": 128,
+      "functions": [
+        {
+          "name": "public_origin",
+          "line": 23,
+          "end_line": 35
+        },
+        {
+          "name": "client_key",
+          "line": 38,
+          "end_line": 65
+        },
+        {
+          "name": "add_arguments",
+          "line": 124,
+          "end_line": 128
+        },
+        {
+          "name": "__init__",
+          "line": 18,
+          "end_line": 20
+        },
+        {
+          "name": "__init__",
+          "line": 79,
+          "end_line": 86
+        },
+        {
+          "name": "acquire",
+          "line": 88,
+          "end_line": 121
+        },
+        {
+          "name": "release",
+          "line": 115,
+          "end_line": 120
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Trusted-proxy identity, same-origin restrictions, finite per-client buckets and active slots."
+    },
+    "frontend_api/claim_planner.py": {
+      "baseline_sha256": {
+        "sha256": "91fffda630ff2293ecbacbd10f22d68da98cf62f1d1b7c88aed45724ac13776b",
+        "bytes": 16792
+      },
+      "current_sha256": "91fffda630ff2293ecbacbd10f22d68da98cf62f1d1b7c88aed45724ac13776b",
+      "line_count": 314,
+      "functions": [
+        {
+          "name": "_opaque_execution",
+          "line": 48,
+          "end_line": 71
+        },
+        {
+          "name": "_bounded_quantity",
+          "line": 74,
+          "end_line": 80
+        },
+        {
+          "name": "_budget_refusal",
+          "line": 147,
+          "end_line": 161
+        },
+        {
+          "name": "__init__",
+          "line": 84,
+          "end_line": 88
+        },
+        {
+          "name": "assert_available",
+          "line": 90,
+          "end_line": 92
+        },
+        {
+          "name": "_cacheable",
+          "line": 94,
+          "end_line": 103
+        },
+        {
+          "name": "call",
+          "line": 105,
+          "end_line": 138
+        },
+        {
+          "name": "eth_call",
+          "line": 140,
+          "end_line": 144
+        },
+        {
+          "name": "__init__",
+          "line": 165,
+          "end_line": 166
+        },
+        {
+          "name": "plan",
+          "line": 169,
+          "end_line": 314
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Bounded selection/prefix trials, typed refusal, owner and window checks, final exact-batch revalidation."
+    },
+    "frontend_api/collection.py": {
+      "baseline_sha256": {
+        "sha256": "33ca3f1b6787625cc774eafaaaa84039347ac30984379a877d36de5e84224929",
+        "bytes": 8236
+      },
+      "current_sha256": "33ca3f1b6787625cc774eafaaaa84039347ac30984379a877d36de5e84224929",
+      "line_count": 120,
+      "functions": [
+        {
+          "name": "read",
+          "line": 17,
+          "end_line": 120
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/custody.py": {
+      "baseline_sha256": {
+        "sha256": "baf0ef328598d744da0e3e1daed917233445c924bf4b5172f5fd0c4b379b0d52",
+        "bytes": 1962
+      },
+      "current_sha256": "baf0ef328598d744da0e3e1daed917233445c924bf4b5172f5fd0c4b379b0d52",
+      "line_count": 37,
+      "functions": [
+        {
+          "name": "read",
+          "line": 10,
+          "end_line": 37
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/earnings.py": {
+      "baseline_sha256": {
+        "sha256": "c96e4acfc2782d549522134516bb4963482d7f24f3c96de824eb651f0c31aa75",
+        "bytes": 16924
+      },
+      "current_sha256": "c96e4acfc2782d549522134516bb4963482d7f24f3c96de824eb651f0c31aa75",
+      "line_count": 231,
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 10,
+          "end_line": 42
+        },
+        {
+          "name": "history_snapshot",
+          "line": 44,
+          "end_line": 50
+        },
+        {
+          "name": "finish_checkpoint",
+          "line": 52,
+          "end_line": 54
+        },
+        {
+          "name": "check_profile",
+          "line": 56,
+          "end_line": 77
+        },
+        {
+          "name": "reconcile",
+          "line": 79,
+          "end_line": 133
+        },
+        {
+          "name": "read",
+          "line": 135,
+          "end_line": 189
+        },
+        {
+          "name": "check_paid",
+          "line": 192,
+          "end_line": 231
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/earnings_checkpoint.py": {
+      "baseline_sha256": {
+        "sha256": "d1f73d205ad152f891b03790c81cd9416c9e545b8a0c30a70ec9dff45d742a78",
+        "bytes": 24926
+      },
+      "current_sha256": "d1f73d205ad152f891b03790c81cd9416c9e545b8a0c30a70ec9dff45d742a78",
+      "line_count": 383,
+      "functions": [
+        {
+          "name": "schema",
+          "line": 38,
+          "end_line": 46
+        },
+        {
+          "name": "source_identity",
+          "line": 49,
+          "end_line": 52
+        },
+        {
+          "name": "identity",
+          "line": 55,
+          "end_line": 66
+        },
+        {
+          "name": "encode",
+          "line": 69,
+          "end_line": 83
+        },
+        {
+          "name": "decode",
+          "line": 86,
+          "end_line": 122
+        },
+        {
+          "name": "_nonnegative",
+          "line": 125,
+          "end_line": 132
+        },
+        {
+          "name": "visit",
+          "line": 88,
+          "end_line": 118
+        },
+        {
+          "name": "validate_history",
+          "line": 144,
+          "end_line": 161
+        },
+        {
+          "name": "restore",
+          "line": 163,
+          "end_line": 197
+        },
+        {
+          "name": "__init__",
+          "line": 201,
+          "end_line": 240
+        },
+        {
+          "name": "_validate",
+          "line": 243,
+          "end_line": 371
+        },
+        {
+          "name": "seed",
+          "line": 373,
+          "end_line": 379
+        },
+        {
+          "name": "check_anchor",
+          "line": 381,
+          "end_line": 383
+        },
+        {
+          "name": "uint",
+          "line": 258,
+          "end_line": 258
+        },
+        {
+          "name": "currency",
+          "line": 259,
+          "end_line": 259
+        }
+      ],
+      "review_level": "selected_families_current_static",
+      "review": {
+        "families": [
+          "source identity/schema separation",
+          "tagged codec bounds",
+          "immutable checkpoint admission"
+        ],
+        "limitation": "Selected codec/identity and companion interactions; no checkpoint built, adopted or rewritten."
+      }
+    },
+    "frontend_api/earnings_checkpoint_build.py": {
+      "baseline_sha256": {
+        "sha256": "851567ffef6f32a2107e92e0341b4f749f4f3b4b428d121e159531ed4ee6af5f",
+        "bytes": 8406
+      },
+      "current_sha256": "851567ffef6f32a2107e92e0341b4f749f4f3b4b428d121e159531ed4ee6af5f",
+      "line_count": 146,
+      "functions": [
+        {
+          "name": "build",
+          "line": 27,
+          "end_line": 29
+        },
+        {
+          "name": "_build",
+          "line": 32,
+          "end_line": 113
+        },
+        {
+          "name": "confirmed_head",
+          "line": 116,
+          "end_line": 128
+        },
+        {
+          "name": "publish_candidate",
+          "line": 131,
+          "end_line": 146
+        },
+        {
+          "name": "__init__",
+          "line": 18,
+          "end_line": 24
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Explicit offline workload, per-NFT ledger reconciliation, canonical/source stability and exclusive publication."
+    },
+    "frontend_api/earnings_checkpoint_v2.py": {
+      "baseline_sha256": {
+        "sha256": "52f95d67393574b269e18e45df0c776231213b9d5e04c369533e614f490c1f49",
+        "bytes": 11878
+      },
+      "current_sha256": "52f95d67393574b269e18e45df0c776231213b9d5e04c369533e614f490c1f49",
+      "line_count": 211,
+      "functions": [
+        {
+          "name": "_uint",
+          "line": 28,
+          "end_line": 29
+        },
+        {
+          "name": "_shared",
+          "line": 32,
+          "end_line": 33
+        },
+        {
+          "name": "_weights",
+          "line": 36,
+          "end_line": 45
+        },
+        {
+          "name": "_tree",
+          "line": 48,
+          "end_line": 82
+        },
+        {
+          "name": "validate",
+          "line": 85,
+          "end_line": 172
+        },
+        {
+          "name": "_restore_tree",
+          "line": 175,
+          "end_line": 179
+        },
+        {
+          "name": "capture",
+          "line": 182,
+          "end_line": 195
+        },
+        {
+          "name": "restore",
+          "line": 198,
+          "end_line": 211
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Exact LP restoration/capture validation and separation from historical checkpoint1."
+    },
+    "frontend_api/earnings_exact_lp.py": {
+      "baseline_sha256": {
+        "sha256": "77e0694b2d800dafd5dc05e760648d0ece86304ca47abb5f05d3ff76b32bb604",
+        "bytes": 10288
+      },
+      "current_sha256": "77e0694b2d800dafd5dc05e760648d0ece86304ca47abb5f05d3ff76b32bb604",
+      "line_count": 147,
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 19,
+          "end_line": 22
+        },
+        {
+          "name": "begin",
+          "line": 24,
+          "end_line": 28
+        },
+        {
+          "name": "components",
+          "line": 30,
+          "end_line": 37
+        },
+        {
+          "name": "direct_liability",
+          "line": 39,
+          "end_line": 39
+        },
+        {
+          "name": "_take",
+          "line": 41,
+          "end_line": 48
+        },
+        {
+          "name": "__call__",
+          "line": 50,
+          "end_line": 137
+        },
+        {
+          "name": "finish",
+          "line": 139,
+          "end_line": 141
+        },
+        {
+          "name": "report",
+          "line": 143,
+          "end_line": 147
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/earnings_prices.py": {
+      "baseline_sha256": {
+        "sha256": "8ddfa2dbd260b52de3ce125c809a3a9a952491243d38549b2dead87162c24316",
+        "bytes": 8878
+      },
+      "current_sha256": "8ddfa2dbd260b52de3ce125c809a3a9a952491243d38549b2dead87162c24316",
+      "line_count": 134,
+      "functions": [
+        {
+          "name": "value_report",
+          "line": 113,
+          "end_line": 134
+        },
+        {
+          "name": "__init__",
+          "line": 9,
+          "end_line": 47
+        },
+        {
+          "name": "read",
+          "line": 50,
+          "end_line": 110
+        },
+        {
+          "name": "contract",
+          "line": 17,
+          "end_line": 19
+        },
+        {
+          "name": "read_price",
+          "line": 76,
+          "end_line": 77
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Pinned current-price availability and conservative bound; no historical/current-claimable confusion."
+    },
+    "frontend_api/earnings_replay.py": {
+      "baseline_sha256": {
+        "sha256": "8c0d10fba14d2b584f3043ec922f78f49701b27b5bde03635b52e177a4005624",
+        "bytes": 30001
+      },
+      "current_sha256": "8c0d10fba14d2b584f3043ec922f78f49701b27b5bde03635b52e177a4005624",
+      "line_count": 491,
+      "functions": [
+        {
+          "name": "require",
+          "line": 46,
+          "end_line": 48
+        },
+        {
+          "name": "royalty_profile",
+          "line": 51,
+          "end_line": 53
+        },
+        {
+          "name": "allocation_unit",
+          "line": 56,
+          "end_line": 62
+        },
+        {
+          "name": "ticket_amount",
+          "line": 65,
+          "end_line": 79
+        },
+        {
+          "name": "overlap",
+          "line": 77,
+          "end_line": 78
+        },
+        {
+          "name": "__init__",
+          "line": 83,
+          "end_line": 127
+        },
+        {
+          "name": "begin",
+          "line": 129,
+          "end_line": 156
+        },
+        {
+          "name": "add",
+          "line": 158,
+          "end_line": 162
+        },
+        {
+          "name": "earn",
+          "line": 164,
+          "end_line": 175
+        },
+        {
+          "name": "__call__",
+          "line": 177,
+          "end_line": 281
+        },
+        {
+          "name": "fee_credit",
+          "line": 283,
+          "end_line": 294
+        },
+        {
+          "name": "royalty",
+          "line": 296,
+          "end_line": 465
+        },
+        {
+          "name": "ack_exact",
+          "line": 467,
+          "end_line": 469
+        },
+        {
+          "name": "finish",
+          "line": 471,
+          "end_line": 475
+        },
+        {
+          "name": "report",
+          "line": 477,
+          "end_line": 491
+        },
+        {
+          "name": "period",
+          "line": 479,
+          "end_line": 482
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/history.py": {
+      "baseline_sha256": {
+        "sha256": "000af63258776ad42cc16c25b2638e1e0877a4217fb254f0d4fe52ba42a280cc",
+        "bytes": 22570
+      },
+      "current_sha256": "000af63258776ad42cc16c25b2638e1e0877a4217fb254f0d4fe52ba42a280cc",
+      "line_count": 340,
+      "functions": [
+        {
+          "name": "_stored_json",
+          "line": 34,
+          "end_line": 38
+        },
+        {
+          "name": "_hash",
+          "line": 41,
+          "end_line": 44
+        },
+        {
+          "name": "_quantity",
+          "line": 47,
+          "end_line": 50
+        },
+        {
+          "name": "_topic_address",
+          "line": 53,
+          "end_line": 56
+        },
+        {
+          "name": "merge_conversions",
+          "line": 79,
+          "end_line": 88
+        },
+        {
+          "name": "conversion_report",
+          "line": 91,
+          "end_line": 106
+        },
+        {
+          "name": "claimed",
+          "line": 70,
+          "end_line": 76
+        },
+        {
+          "name": "__init__",
+          "line": 110,
+          "end_line": 130
+        },
+        {
+          "name": "read",
+          "line": 132,
+          "end_line": 173
+        },
+        {
+          "name": "_read",
+          "line": 175,
+          "end_line": 340
+        },
+        {
+          "name": "interrupted",
+          "line": 158,
+          "end_line": 163
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Read-only SQLite snapshots, complete canonical interval, log chronology, transferred rights and non-income conversions."
+    },
+    "frontend_api/history_audit.py": {
+      "baseline_sha256": {
+        "sha256": "74a04ed5cbb47ab0e23794760cd83d75eeb59aa9a76a57453475bef8d6f1c912",
+        "bytes": 15336
+      },
+      "current_sha256": "74a04ed5cbb47ab0e23794760cd83d75eeb59aa9a76a57453475bef8d6f1c912",
+      "line_count": 274,
+      "functions": [
+        {
+          "name": "require",
+          "line": 32,
+          "end_line": 34
+        },
+        {
+          "name": "digest",
+          "line": 37,
+          "end_line": 38
+        },
+        {
+          "name": "unique_object",
+          "line": 41,
+          "end_line": 46
+        },
+        {
+          "name": "load_json",
+          "line": 49,
+          "end_line": 54
+        },
+        {
+          "name": "number",
+          "line": 57,
+          "end_line": 59
+        },
+        {
+          "name": "normalize_log",
+          "line": 62,
+          "end_line": 73
+        },
+        {
+          "name": "main",
+          "line": 234,
+          "end_line": 270
+        },
+        {
+          "name": "__init__",
+          "line": 77,
+          "end_line": 80
+        },
+        {
+          "name": "add",
+          "line": 82,
+          "end_line": 96
+        },
+        {
+          "name": "seal",
+          "line": 98,
+          "end_line": 103
+        },
+        {
+          "name": "__init__",
+          "line": 107,
+          "end_line": 125
+        },
+        {
+          "name": "header",
+          "line": 127,
+          "end_line": 131
+        },
+        {
+          "name": "run",
+          "line": 134,
+          "end_line": 167
+        },
+        {
+          "name": "compare",
+          "line": 169,
+          "end_line": 231
+        },
+        {
+          "name": "interrupted",
+          "line": 156,
+          "end_line": 160
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/http_runtime.py": {
+      "baseline_sha256": {
+        "sha256": "2237905a2ca33c99738e4fc0b77a42a383ff2df974b7493f27164dfd8f6f3548",
+        "bytes": 6318
+      },
+      "current_sha256": "2237905a2ca33c99738e4fc0b77a42a383ff2df974b7493f27164dfd8f6f3548",
+      "line_count": 166,
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 29,
+          "end_line": 31
+        },
+        {
+          "name": "readline",
+          "line": 33,
+          "end_line": 39
+        },
+        {
+          "name": "__getattr__",
+          "line": 41,
+          "end_line": 42
+        },
+        {
+          "name": "setup",
+          "line": 48,
+          "end_line": 58
+        },
+        {
+          "name": "_expire",
+          "line": 60,
+          "end_line": 65
+        },
+        {
+          "name": "begin_work",
+          "line": 67,
+          "end_line": 78
+        },
+        {
+          "name": "admission_rejected",
+          "line": 80,
+          "end_line": 85
+        },
+        {
+          "name": "handle_one_request",
+          "line": 87,
+          "end_line": 101
+        },
+        {
+          "name": "finish",
+          "line": 103,
+          "end_line": 113
+        },
+        {
+          "name": "__init__",
+          "line": 123,
+          "end_line": 131
+        },
+        {
+          "name": "get_request",
+          "line": 133,
+          "end_line": 136
+        },
+        {
+          "name": "process_request",
+          "line": 138,
+          "end_line": 156
+        },
+        {
+          "name": "process_request_thread",
+          "line": 158,
+          "end_line": 162
+        },
+        {
+          "name": "handle_error",
+          "line": 164,
+          "end_line": 166
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Ingress/header/body/absolute-time bounds and bounded connection admission."
+    },
+    "frontend_api/lifecycle.py": {
+      "baseline_sha256": {
+        "sha256": "1ac10191bbc0002e81fd00108512ee4844af9db2e96cef7dc462a1484b7c2235",
+        "bytes": 5223
+      },
+      "current_sha256": "1ac10191bbc0002e81fd00108512ee4844af9db2e96cef7dc462a1484b7c2235",
+      "line_count": 84,
+      "functions": [
+        {
+          "name": "read_lifecycle",
+          "line": 12,
+          "end_line": 84
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/lineage.py": {
+      "baseline_sha256": {
+        "sha256": "7b4a6b6b6d4ecf67d3f93ac5cad5a5c8bc7d70a035784fb716f4d4a8dc201281",
+        "bytes": 17398
+      },
+      "current_sha256": "7b4a6b6b6d4ecf67d3f93ac5cad5a5c8bc7d70a035784fb716f4d4a8dc201281",
+      "line_count": 259,
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 32,
+          "end_line": 88
+        },
+        {
+          "name": "_receipt",
+          "line": 91,
+          "end_line": 147
+        },
+        {
+          "name": "claimed",
+          "line": 149,
+          "end_line": 150
+        },
+        {
+          "name": "financial",
+          "line": 152,
+          "end_line": 259
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/liquidity_context.py": {
+      "baseline_sha256": {
+        "sha256": "bb9719ad15df52457692821d9f650a0c981579748c51213698876346ba864fc3",
+        "bytes": 12973
+      },
+      "current_sha256": "bb9719ad15df52457692821d9f650a0c981579748c51213698876346ba864fc3",
+      "line_count": 184,
+      "functions": [
+        {
+          "name": "signed_tick",
+          "line": 9,
+          "end_line": 14
+        },
+        {
+          "name": "contribution_context",
+          "line": 17,
+          "end_line": 184
+        },
+        {
+          "name": "read",
+          "line": 30,
+          "end_line": 31
+        },
+        {
+          "name": "active_range",
+          "line": 60,
+          "end_line": 64
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/mint_readiness.py": {
+      "baseline_sha256": {
+        "sha256": "5540de5f0c9421bf29a62d0d719d79667f82fbaed706f9781dcee47f7b80b03d",
+        "bytes": 5607
+      },
+      "current_sha256": "5540de5f0c9421bf29a62d0d719d79667f82fbaed706f9781dcee47f7b80b03d",
+      "line_count": 89,
+      "functions": [
+        {
+          "name": "sale_window",
+          "line": 5,
+          "end_line": 26
+        },
+        {
+          "name": "inspect",
+          "line": 29,
+          "end_line": 89
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/portfolio.py": {
+      "baseline_sha256": {
+        "sha256": "73df57f8212b2122e2ac04fccf6b5a25c49f3bdc5761d2eab2b7504f7a1afeec",
+        "bytes": 6832
+      },
+      "current_sha256": "73df57f8212b2122e2ac04fccf6b5a25c49f3bdc5761d2eab2b7504f7a1afeec",
+      "line_count": 106,
+      "functions": [
+        {
+          "name": "read",
+          "line": 17,
+          "end_line": 106
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/portfolio_v5.py": {
+      "baseline_sha256": {
+        "sha256": "e5da08e708ecb7072abf85bd0b3398bc2accdec29c7e44964e42b01e777f98c7",
+        "bytes": 14189
+      },
+      "current_sha256": "e5da08e708ecb7072abf85bd0b3398bc2accdec29c7e44964e42b01e777f98c7",
+      "line_count": 187,
+      "functions": [
+        {
+          "name": "verify_profile",
+          "line": 14,
+          "end_line": 54
+        },
+        {
+          "name": "read_bucket",
+          "line": 57,
+          "end_line": 85
+        },
+        {
+          "name": "contribution_context",
+          "line": 88,
+          "end_line": 187
+        },
+        {
+          "name": "number",
+          "line": 16,
+          "end_line": 17
+        },
+        {
+          "name": "binding",
+          "line": 18,
+          "end_line": 20
+        },
+        {
+          "name": "read",
+          "line": 99,
+          "end_line": 99
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/portfolio_v6.py": {
+      "baseline_sha256": {
+        "sha256": "4f44737dcffeb7630bf52d6079c69519f0e7981dd72420b7fa41ee6803410c59",
+        "bytes": 15408
+      },
+      "current_sha256": "4f44737dcffeb7630bf52d6079c69519f0e7981dd72420b7fa41ee6803410c59",
+      "line_count": 202,
+      "functions": [
+        {
+          "name": "verify_profile",
+          "line": 14,
+          "end_line": 63
+        },
+        {
+          "name": "read_bucket",
+          "line": 66,
+          "end_line": 68
+        },
+        {
+          "name": "_read_bucket_proof",
+          "line": 71,
+          "end_line": 102
+        },
+        {
+          "name": "contribution_context",
+          "line": 105,
+          "end_line": 202
+        },
+        {
+          "name": "number",
+          "line": 20,
+          "end_line": 21
+        },
+        {
+          "name": "binding",
+          "line": 22,
+          "end_line": 24
+        },
+        {
+          "name": "read",
+          "line": 116,
+          "end_line": 116
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/portfolio_v7.py": {
+      "baseline_sha256": {
+        "sha256": "28ae93df6983be4fc37267cdfadcb276d28486689840c84dd9efcf74f75b6e99",
+        "bytes": 714
+      },
+      "current_sha256": "28ae93df6983be4fc37267cdfadcb276d28486689840c84dd9efcf74f75b6e99",
+      "line_count": 18,
+      "functions": [
+        {
+          "name": "verify_profile",
+          "line": 6,
+          "end_line": 10
+        },
+        {
+          "name": "read_bucket",
+          "line": 13,
+          "end_line": 14
+        },
+        {
+          "name": "contribution_context",
+          "line": 17,
+          "end_line": 18
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/principal_return.py": {
+      "baseline_sha256": {
+        "sha256": "f26827b19f4229fe772fc494d0aa4eb5fb827c87837595fca6962957b54a762a",
+        "bytes": 2716
+      },
+      "current_sha256": "f26827b19f4229fe772fc494d0aa4eb5fb827c87837595fca6962957b54a762a",
+      "line_count": 40,
+      "functions": [
+        {
+          "name": "read",
+          "line": 7,
+          "end_line": 40
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Terminal phase/allocation/payment consistency; distinct principal vs earned rewards."
+    },
+    "frontend_api/royalty_reporting.py": {
+      "baseline_sha256": {
+        "sha256": "94985af003bd51ebd5435ea3fa43b99464483b2357e410e6b3cabaa266e4f1c3",
+        "bytes": 12871
+      },
+      "current_sha256": "94985af003bd51ebd5435ea3fa43b99464483b2357e410e6b3cabaa266e4f1c3",
+      "line_count": 189,
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 12,
+          "end_line": 30
+        },
+        {
+          "name": "balance",
+          "line": 32,
+          "end_line": 47
+        },
+        {
+          "name": "_converter",
+          "line": 49,
+          "end_line": 96
+        },
+        {
+          "name": "opening",
+          "line": 98,
+          "end_line": 109
+        },
+        {
+          "name": "read",
+          "line": 111,
+          "end_line": 189
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Original-currency profile, one-hour opening, exact ticket/eligibility, isolated unreadable assets."
+    },
+    "frontend_api/server.py": {
+      "baseline_sha256": {
+        "sha256": "36179f244bcb3a6f572cfb75c6ca90eb922d63510e9b0fa5df5bf38170bbf064",
+        "bytes": 12632
+      },
+      "current_sha256": "36179f244bcb3a6f572cfb75c6ca90eb922d63510e9b0fa5df5bf38170bbf064",
+      "line_count": 241,
+      "functions": [
+        {
+          "name": "_unique_object",
+          "line": 21,
+          "end_line": 27
+        },
+        {
+          "name": "_reject_constant",
+          "line": 30,
+          "end_line": 31
+        },
+        {
+          "name": "_bounded_depth",
+          "line": 34,
+          "end_line": 41
+        },
+        {
+          "name": "handler",
+          "line": 44,
+          "end_line": 197
+        },
+        {
+          "name": "main",
+          "line": 204,
+          "end_line": 237
+        },
+        {
+          "name": "_json",
+          "line": 50,
+          "end_line": 69
+        },
+        {
+          "name": "do_GET",
+          "line": 71,
+          "end_line": 121
+        },
+        {
+          "name": "do_POST",
+          "line": 123,
+          "end_line": 185
+        },
+        {
+          "name": "_method_not_allowed",
+          "line": 187,
+          "end_line": 188
+        },
+        {
+          "name": "log_message",
+          "line": 192,
+          "end_line": 195
+        }
+      ],
+      "review_level": "selected_families_current_static",
+      "review": {
+        "families": [
+          "Host/HTTP framing and endpoint grammar",
+          "POST content length/type/JSON/depth",
+          "sanitized API error boundaries"
+        ],
+        "limitation": "Read endpoint/request adapter review; no server started or browser acceptance run."
+      }
+    },
+    "frontend_api/service.py": {
+      "baseline_sha256": {
+        "sha256": "fa0fcea5183bb28b432e8477f01531354d54d5faa4a49f653ad6f768bc41e25d",
+        "bytes": 50090
+      },
+      "current_sha256": "fa0fcea5183bb28b432e8477f01531354d54d5faa4a49f653ad6f768bc41e25d",
+      "line_count": 756,
+      "functions": [
+        {
+          "name": "_keys",
+          "line": 46,
+          "end_line": 48
+        },
+        {
+          "name": "_hash",
+          "line": 51,
+          "end_line": 56
+        },
+        {
+          "name": "token_id",
+          "line": 59,
+          "end_line": 66
+        },
+        {
+          "name": "_quantity",
+          "line": 69,
+          "end_line": 72
+        },
+        {
+          "name": "_bool",
+          "line": 75,
+          "end_line": 79
+        },
+        {
+          "name": "_address_word",
+          "line": 82,
+          "end_line": 91
+        },
+        {
+          "name": "__init__",
+          "line": 115,
+          "end_line": 242
+        },
+        {
+          "name": "_header",
+          "line": 244,
+          "end_line": 255
+        },
+        {
+          "name": "_call",
+          "line": 257,
+          "end_line": 297
+        },
+        {
+          "name": "_position",
+          "line": 299,
+          "end_line": 306
+        },
+        {
+          "name": "_uint",
+          "line": 308,
+          "end_line": 309
+        },
+        {
+          "name": "_addr",
+          "line": 311,
+          "end_line": 312
+        },
+        {
+          "name": "_code",
+          "line": 314,
+          "end_line": 319
+        },
+        {
+          "name": "_verify_deployment",
+          "line": 321,
+          "end_line": 405
+        },
+        {
+          "name": "mint_readiness",
+          "line": 408,
+          "end_line": 410
+        },
+        {
+          "name": "protocol",
+          "line": 413,
+          "end_line": 443
+        },
+        {
+          "name": "_admitted",
+          "line": 445,
+          "end_line": 484
+        },
+        {
+          "name": "_balance",
+          "line": 486,
+          "end_line": 489
+        },
+        {
+          "name": "_snapshot",
+          "line": 491,
+          "end_line": 506
+        },
+        {
+          "name": "_fresh",
+          "line": 508,
+          "end_line": 511
+        },
+        {
+          "name": "_finish",
+          "line": 513,
+          "end_line": 526
+        },
+        {
+          "name": "_history_snapshot",
+          "line": 528,
+          "end_line": 549
+        },
+        {
+          "name": "_claimed",
+          "line": 551,
+          "end_line": 559
+        },
+        {
+          "name": "earnings",
+          "line": 562,
+          "end_line": 565
+        },
+        {
+          "name": "nft",
+          "line": 568,
+          "end_line": 707
+        },
+        {
+          "name": "collection",
+          "line": 710,
+          "end_line": 712
+        },
+        {
+          "name": "wallet_summary",
+          "line": 715,
+          "end_line": 717
+        },
+        {
+          "name": "wallet_earnings",
+          "line": 720,
+          "end_line": 724
+        },
+        {
+          "name": "wallet",
+          "line": 727,
+          "end_line": 756
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "frontend_api/transaction_gas.py": {
+      "baseline_sha256": {
+        "sha256": "35f5c2221726e8987bb1ad28a9e62034ee65a51e2696dd382d66a800c2a13d9b",
+        "bytes": 1730
+      },
+      "current_sha256": "35f5c2221726e8987bb1ad28a9e62034ee65a51e2696dd382d66a800c2a13d9b",
+      "line_count": 41,
+      "functions": [
+        {
+          "name": "configured_limit",
+          "line": 13,
+          "end_line": 17
+        },
+        {
+          "name": "observe",
+          "line": 27,
+          "end_line": 41
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Default budget vs explicitly reviewed profile, block-bound headroom and no automatic widening."
+    },
+    "frontend_api/transactions.py": {
+      "baseline_sha256": {
+        "sha256": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e",
+        "bytes": 19341
+      },
+      "current_sha256": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e",
+      "line_count": 322,
+      "functions": [
+        {
+          "name": "_fields",
+          "line": 73,
+          "end_line": 75
+        },
+        {
+          "name": "_parse",
+          "line": 78,
+          "end_line": 106
+        },
+        {
+          "name": "claim_calldata",
+          "line": 109,
+          "end_line": 116
+        },
+        {
+          "name": "_claim_results",
+          "line": 119,
+          "end_line": 128
+        },
+        {
+          "name": "__init__",
+          "line": 40,
+          "end_line": 63
+        },
+        {
+          "name": "__init__",
+          "line": 132,
+          "end_line": 134
+        },
+        {
+          "name": "_gas_review",
+          "line": 136,
+          "end_line": 139
+        },
+        {
+          "name": "_gas",
+          "line": 141,
+          "end_line": 165
+        },
+        {
+          "name": "_fresh",
+          "line": 167,
+          "end_line": 171
+        },
+        {
+          "name": "plan_claims",
+          "line": 173,
+          "end_line": 175
+        },
+        {
+          "name": "prepare",
+          "line": 178,
+          "end_line": 322
+        }
+      ],
+      "review_level": "selected_families_current_static",
+      "review": {
+        "families": [
+          "claim/mint request grammar",
+          "exact assets/ownership/entitlement",
+          "simulation/estimate/fee preparation"
+        ],
+        "limitation": "Selected preparation paths; no public signing capability or schema change."
+      }
+    },
+    "frontend_api/wallet_earnings.py": {
+      "baseline_sha256": {
+        "sha256": "beeed3835decd5d04f5e920246c1add7e36764ac911ea1c6fbb6b5c411606576",
+        "bytes": 7953
+      },
+      "current_sha256": "beeed3835decd5d04f5e920246c1add7e36764ac911ea1c6fbb6b5c411606576",
+      "line_count": 122,
+      "functions": [
+        {
+          "name": "read",
+          "line": 18,
+          "end_line": 122
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Selected current holdings, lifetime per-NFT rights, bounded chunks and explicit lineage epochs."
+    },
+    "frontend_api/worker.py": {
+      "baseline_sha256": {
+        "sha256": "a5c2c05addfeb7516638032e1c574a8437931d02cd34b3243b5bf714b1ca3b62",
+        "bytes": 13936
+      },
+      "current_sha256": "a5c2c05addfeb7516638032e1c574a8437931d02cd34b3243b5bf714b1ca3b62",
+      "line_count": 307,
+      "functions": [
+        {
+          "name": "_run",
+          "line": 21,
+          "end_line": 72
+        },
+        {
+          "name": "__init__",
+          "line": 83,
+          "end_line": 99
+        },
+        {
+          "name": "_request",
+          "line": 101,
+          "end_line": 211
+        },
+        {
+          "name": "protocol",
+          "line": 213,
+          "end_line": 214
+        },
+        {
+          "name": "mint_readiness",
+          "line": 216,
+          "end_line": 217
+        },
+        {
+          "name": "nft",
+          "line": 219,
+          "end_line": 220
+        },
+        {
+          "name": "wallet",
+          "line": 222,
+          "end_line": 223
+        },
+        {
+          "name": "wallet_summary",
+          "line": 225,
+          "end_line": 226
+        },
+        {
+          "name": "collection",
+          "line": 228,
+          "end_line": 229
+        },
+        {
+          "name": "wallet_earnings",
+          "line": 231,
+          "end_line": 232
+        },
+        {
+          "name": "earnings",
+          "line": 234,
+          "end_line": 235
+        },
+        {
+          "name": "prepare",
+          "line": 237,
+          "end_line": 240
+        },
+        {
+          "name": "plan_claims",
+          "line": 242,
+          "end_line": 245
+        },
+        {
+          "name": "__init__",
+          "line": 256,
+          "end_line": 263
+        },
+        {
+          "name": "_dispatch",
+          "line": 265,
+          "end_line": 277
+        },
+        {
+          "name": "protocol",
+          "line": 279,
+          "end_line": 280
+        },
+        {
+          "name": "mint_readiness",
+          "line": 282,
+          "end_line": 283
+        },
+        {
+          "name": "nft",
+          "line": 285,
+          "end_line": 286
+        },
+        {
+          "name": "wallet",
+          "line": 288,
+          "end_line": 289
+        },
+        {
+          "name": "wallet_summary",
+          "line": 291,
+          "end_line": 292
+        },
+        {
+          "name": "collection",
+          "line": 294,
+          "end_line": 295
+        },
+        {
+          "name": "wallet_earnings",
+          "line": 297,
+          "end_line": 298
+        },
+        {
+          "name": "earnings",
+          "line": 300,
+          "end_line": 301
+        },
+        {
+          "name": "prepare",
+          "line": 303,
+          "end_line": 304
+        },
+        {
+          "name": "plan_claims",
+          "line": 306,
+          "end_line": 307
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Fresh child request dispatch, result bounds/age, cleanup and quarantine; no signer."
+    },
+    "indexer/__init__.py": {
+      "baseline_sha256": {
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "bytes": 1
+      },
+      "current_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "line_count": 1,
+      "functions": [],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "indexer/events.py": {
+      "baseline_sha256": {
+        "sha256": "6ff5288d9606cc1bd03bde6822daa883ef66f2067b1ea7af0e3352d6e0f1b6b6",
+        "bytes": 1841
+      },
+      "current_sha256": "6ff5288d9606cc1bd03bde6822daa883ef66f2067b1ea7af0e3352d6e0f1b6b6",
+      "line_count": 38,
+      "functions": [
+        {
+          "name": "decode",
+          "line": 11,
+          "end_line": 38
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "indexer/monitor.py": {
+      "baseline_sha256": {
+        "sha256": "ef7796e5904a995c59f46346478e952400fa5010a03694f6e45ea5c7e581ec36",
+        "bytes": 21606
+      },
+      "current_sha256": "ef7796e5904a995c59f46346478e952400fa5010a03694f6e45ea5c7e581ec36",
+      "line_count": 351,
+      "functions": [
+        {
+          "name": "_header_hash",
+          "line": 25,
+          "end_line": 28
+        },
+        {
+          "name": "_header_quantity",
+          "line": 30,
+          "end_line": 36
+        },
+        {
+          "name": "_log_quantity",
+          "line": 55,
+          "end_line": 61
+        },
+        {
+          "name": "_log_hash",
+          "line": 63,
+          "end_line": 66
+        },
+        {
+          "name": "_reduce_log_range",
+          "line": 68,
+          "end_line": 88
+        },
+        {
+          "name": "main",
+          "line": 317,
+          "end_line": 349
+        },
+        {
+          "name": "__init__",
+          "line": 22,
+          "end_line": 23
+        },
+        {
+          "name": "__init__",
+          "line": 91,
+          "end_line": 153
+        },
+        {
+          "name": "next_block",
+          "line": 156,
+          "end_line": 157
+        },
+        {
+          "name": "header",
+          "line": 158,
+          "end_line": 165
+        },
+        {
+          "name": "reconcile",
+          "line": 166,
+          "end_line": 206
+        },
+        {
+          "name": "step",
+          "line": 208,
+          "end_line": 301
+        },
+        {
+          "name": "nft_owners",
+          "line": 303,
+          "end_line": 314
+        },
+        {
+          "name": "close",
+          "line": 315,
+          "end_line": 315
+        },
+        {
+          "name": "halt",
+          "line": 328,
+          "end_line": 329
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Identity admission/DDL, ancestry/reorg handling, log provenance, precommit confirmation and write boundaries."
+    },
+    "keeper/__init__.py": {
+      "baseline_sha256": {
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "bytes": 1
+      },
+      "current_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "line_count": 1,
+      "functions": [],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "keeper/compound_policy.py": {
+      "baseline_sha256": {
+        "sha256": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29",
+        "bytes": 17260
+      },
+      "current_sha256": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29",
+      "line_count": 232,
+      "functions": [
+        {
+          "name": "classify_range",
+          "line": 10,
+          "end_line": 20
+        },
+        {
+          "name": "observe",
+          "line": 23,
+          "end_line": 232
+        },
+        {
+          "name": "words",
+          "line": 51,
+          "end_line": 56
+        },
+        {
+          "name": "number",
+          "line": 57,
+          "end_line": 57
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Physical main/residual custody, ticks/L/amount fingerprints and service-only threshold policy."
+    },
+    "keeper/health.py": {
+      "baseline_sha256": {
+        "sha256": "ada01741da4119d72a7d15b7ae16a88df221755653787620a3919a9e0b430d63",
+        "bytes": 24389
+      },
+      "current_sha256": "ada01741da4119d72a7d15b7ae16a88df221755653787620a3919a9e0b430d63",
+      "line_count": 371,
+      "functions": [
+        {
+          "name": "source_hashes",
+          "line": 20,
+          "end_line": 23
+        },
+        {
+          "name": "digest",
+          "line": 26,
+          "end_line": 28
+        },
+        {
+          "name": "_uint",
+          "line": 31,
+          "end_line": 32
+        },
+        {
+          "name": "_hash",
+          "line": 35,
+          "end_line": 37
+        },
+        {
+          "name": "_health_profile_valid",
+          "line": 40,
+          "end_line": 58
+        },
+        {
+          "name": "_confirmation_bindings",
+          "line": 61,
+          "end_line": 73
+        },
+        {
+          "name": "_confirmation_roles",
+          "line": 76,
+          "end_line": 78
+        },
+        {
+          "name": "_confirmation_capabilities",
+          "line": 81,
+          "end_line": 87
+        },
+        {
+          "name": "_maintenance_policy_valid",
+          "line": 90,
+          "end_line": 104
+        },
+        {
+          "name": "observe_confirmation_health",
+          "line": 107,
+          "end_line": 149
+        },
+        {
+          "name": "confirmation_reasons",
+          "line": 152,
+          "end_line": 248
+        },
+        {
+          "name": "execution_reasons",
+          "line": 251,
+          "end_line": 346
+        },
+        {
+          "name": "summary",
+          "line": 349,
+          "end_line": 371
+        }
+      ],
+      "review_level": "selected_families_current_static",
+      "review": {
+        "families": [
+          "source hash scope",
+          "current profile admission",
+          "confirmation health observation"
+        ],
+        "limitation": "Telemetry is local file identity, not a running-code attestation."
+      }
+    },
+    "keeper/monitor.py": {
+      "baseline_sha256": {
+        "sha256": "3493db1cc884d109f4aa0d29751cd75825ef487689c342ecbc82de46b9c7b940",
+        "bytes": 191510
+      },
+      "current_sha256": "3493db1cc884d109f4aa0d29751cd75825ef487689c342ecbc82de46b9c7b940",
+      "line_count": 2807,
+      "functions": [
+        {
+          "name": "log",
+          "line": 98,
+          "end_line": 99
+        },
+        {
+          "name": "error_context",
+          "line": 101,
+          "end_line": 106
+        },
+        {
+          "name": "positive",
+          "line": 108,
+          "end_line": 109
+        },
+        {
+          "name": "rpc_quantity",
+          "line": 111,
+          "end_line": 117
+        },
+        {
+          "name": "rpc_hash",
+          "line": 119,
+          "end_line": 122
+        },
+        {
+          "name": "signer_environment",
+          "line": 124,
+          "end_line": 130
+        },
+        {
+          "name": "main",
+          "line": 2758,
+          "end_line": 2801
+        },
+        {
+          "name": "__init__",
+          "line": 133,
+          "end_line": 340
+        },
+        {
+          "name": "_validate_state",
+          "line": 342,
+          "end_line": 423
+        },
+        {
+          "name": "_submission_fee_profile",
+          "line": 425,
+          "end_line": 433
+        },
+        {
+          "name": "_fee_review",
+          "line": 436,
+          "end_line": 459
+        },
+        {
+          "name": "_validate_runtime_files",
+          "line": 461,
+          "end_line": 471
+        },
+        {
+          "name": "_validate_checkpoint",
+          "line": 473,
+          "end_line": 488
+        },
+        {
+          "name": "initialize_state",
+          "line": 490,
+          "end_line": 503
+        },
+        {
+          "name": "run_cycle",
+          "line": 505,
+          "end_line": 610
+        },
+        {
+          "name": "poll_delay",
+          "line": 612,
+          "end_line": 636
+        },
+        {
+          "name": "save",
+          "line": 638,
+          "end_line": 638
+        },
+        {
+          "name": "_observe_revert_cooldowns",
+          "line": 640,
+          "end_line": 652
+        },
+        {
+          "name": "_validate_maintenance_settings",
+          "line": 654,
+          "end_line": 684
+        },
+        {
+          "name": "_validate_maintenance_config",
+          "line": 686,
+          "end_line": 700
+        },
+        {
+          "name": "_compound_budget",
+          "line": 702,
+          "end_line": 720
+        },
+        {
+          "name": "_idle_compound_checkpoint",
+          "line": 722,
+          "end_line": 731
+        },
+        {
+          "name": "_compound_ready",
+          "line": 733,
+          "end_line": 738
+        },
+        {
+          "name": "_compound_policy_status",
+          "line": 740,
+          "end_line": 773
+        },
+        {
+          "name": "_compound_policy_allowed",
+          "line": 775,
+          "end_line": 811
+        },
+        {
+          "name": "_compound_confirmation_record",
+          "line": 813,
+          "end_line": 859
+        },
+        {
+          "name": "_compound_submission_ready",
+          "line": 861,
+          "end_line": 865
+        },
+        {
+          "name": "_validate_upkeep_policy",
+          "line": 867,
+          "end_line": 881
+        },
+        {
+          "name": "_lp_routing_snapshot",
+          "line": 883,
+          "end_line": 950
+        },
+        {
+          "name": "_validate_lp_routing",
+          "line": 952,
+          "end_line": 963
+        },
+        {
+          "name": "_observe_execution_health",
+          "line": 965,
+          "end_line": 1006
+        },
+        {
+          "name": "_confirmation_namespace",
+          "line": 1008,
+          "end_line": 1009
+        },
+        {
+          "name": "_rebalance_delay",
+          "line": 1011,
+          "end_line": 1017
+        },
+        {
+          "name": "_store_rebalance_schedule",
+          "line": 1019,
+          "end_line": 1043
+        },
+        {
+          "name": "_rebalance_due",
+          "line": 1045,
+          "end_line": 1049
+        },
+        {
+          "name": "_rebalance_due_checked",
+          "line": 1051,
+          "end_line": 1105
+        },
+        {
+          "name": "_confirmed_rebalance_due",
+          "line": 1107,
+          "end_line": 1195
+        },
+        {
+          "name": "_next_confirmation_check",
+          "line": 1197,
+          "end_line": 1210
+        },
+        {
+          "name": "_confirmation_enrollment_at",
+          "line": 1213,
+          "end_line": 1220
+        },
+        {
+          "name": "_confirmation_status",
+          "line": 1222,
+          "end_line": 1226
+        },
+        {
+          "name": "_mark_confirmation_reset",
+          "line": 1228,
+          "end_line": 1255
+        },
+        {
+          "name": "_mark_known_confirmation_resets",
+          "line": 1257,
+          "end_line": 1261
+        },
+        {
+          "name": "_rebalance_submission_ready",
+          "line": 1263,
+          "end_line": 1273
+        },
+        {
+          "name": "_adaptive_range_target",
+          "line": 1275,
+          "end_line": 1293
+        },
+        {
+          "name": "_compound_due",
+          "line": 1295,
+          "end_line": 1327
+        },
+        {
+          "name": "view",
+          "line": 1329,
+          "end_line": 1330
+        },
+        {
+          "name": "_asset",
+          "line": 1332,
+          "end_line": 1335
+        },
+        {
+          "name": "_calldata",
+          "line": 1337,
+          "end_line": 1353
+        },
+        {
+          "name": "_validate_accounting_version",
+          "line": 1355,
+          "end_line": 1397
+        },
+        {
+          "name": "lp_exit_started",
+          "line": 1399,
+          "end_line": 1408
+        },
+        {
+          "name": "preparation_active",
+          "line": 1410,
+          "end_line": 1421
+        },
+        {
+          "name": "canonical_state",
+          "line": 1423,
+          "end_line": 1436
+        },
+        {
+          "name": "_defer_for_lifecycle",
+          "line": 1438,
+          "end_line": 1447
+        },
+        {
+          "name": "_validate_signer",
+          "line": 1449,
+          "end_line": 1463
+        },
+        {
+          "name": "_validate_code_hashes",
+          "line": 1465,
+          "end_line": 1478
+        },
+        {
+          "name": "_head",
+          "line": 1480,
+          "end_line": 1488
+        },
+        {
+          "name": "_receipt_harvest_bucket",
+          "line": 1490,
+          "end_line": 1535
+        },
+        {
+          "name": "poll_pending",
+          "line": 1537,
+          "end_line": 1684
+        },
+        {
+          "name": "resolve_pending",
+          "line": 1686,
+          "end_line": 1694
+        },
+        {
+          "name": "_validate_pending_transaction",
+          "line": 1696,
+          "end_line": 1711
+        },
+        {
+          "name": "_late_lp_submission_review",
+          "line": 1713,
+          "end_line": 1783
+        },
+        {
+          "name": "submit",
+          "line": 1785,
+          "end_line": 2043
+        },
+        {
+          "name": "_configure_metadata",
+          "line": 2045,
+          "end_line": 2134
+        },
+        {
+          "name": "_metadata_hash",
+          "line": 2137,
+          "end_line": 2140
+        },
+        {
+          "name": "_validate_metadata_record",
+          "line": 2142,
+          "end_line": 2156
+        },
+        {
+          "name": "_validate_metadata_payload",
+          "line": 2158,
+          "end_line": 2179
+        },
+        {
+          "name": "_metadata_transaction",
+          "line": 2181,
+          "end_line": 2187
+        },
+        {
+          "name": "_metadata_words",
+          "line": 2189,
+          "end_line": 2191
+        },
+        {
+          "name": "_metadata_uint",
+          "line": 2193,
+          "end_line": 2196
+        },
+        {
+          "name": "_metadata_anchor",
+          "line": 2198,
+          "end_line": 2201
+        },
+        {
+          "name": "_metadata_bindings",
+          "line": 2203,
+          "end_line": 2225
+        },
+        {
+          "name": "_metadata_code_hash",
+          "line": 2227,
+          "end_line": 2233
+        },
+        {
+          "name": "_metadata_record_at",
+          "line": 2235,
+          "end_line": 2250
+        },
+        {
+          "name": "_refresh_metadata",
+          "line": 2252,
+          "end_line": 2299
+        },
+        {
+          "name": "_confirm_metadata",
+          "line": 2301,
+          "end_line": 2327
+        },
+        {
+          "name": "_address_word",
+          "line": 2330,
+          "end_line": 2332
+        },
+        {
+          "name": "_bucket_batch",
+          "line": 2334,
+          "end_line": 2350
+        },
+        {
+          "name": "_asset_word",
+          "line": 2352,
+          "end_line": 2354
+        },
+        {
+          "name": "_bucket",
+          "line": 2356,
+          "end_line": 2419
+        },
+        {
+          "name": "_sync_external",
+          "line": 2421,
+          "end_line": 2436
+        },
+        {
+          "name": "_convert_royalties",
+          "line": 2438,
+          "end_line": 2439
+        },
+        {
+          "name": "_convert_rewards",
+          "line": 2441,
+          "end_line": 2447
+        },
+        {
+          "name": "_buyback_tasks",
+          "line": 2449,
+          "end_line": 2463
+        },
+        {
+          "name": "_buyback_once",
+          "line": 2465,
+          "end_line": 2488
+        },
+        {
+          "name": "_interrupted_confirmation_bucket",
+          "line": 2490,
+          "end_line": 2510
+        },
+        {
+          "name": "_confirmation_priority",
+          "line": 2512,
+          "end_line": 2594
+        },
+        {
+          "name": "cycle",
+          "line": 2596,
+          "end_line": 2756
+        },
+        {
+          "name": "halt",
+          "line": 2773,
+          "end_line": 2774
+        },
+        {
+          "name": "health",
+          "line": 523,
+          "end_line": 550
+        },
+        {
+          "name": "read",
+          "line": 715,
+          "end_line": 716
+        },
+        {
+          "name": "read",
+          "line": 903,
+          "end_line": 906
+        },
+        {
+          "name": "read",
+          "line": 1284,
+          "end_line": 1287
+        },
+        {
+          "name": "capacity_failure",
+          "line": 1849,
+          "end_line": 1860
+        },
+        {
+          "name": "expected_identity",
+          "line": 2094,
+          "end_line": 2099
+        },
+        {
+          "name": "read",
+          "line": 757,
+          "end_line": 758
+        },
+        {
+          "name": "read",
+          "line": 833,
+          "end_line": 836
+        }
+      ],
+      "review_level": "selected_families_current_static",
+      "review": {
+        "families": [
+          "startup identity/state/runtime admission",
+          "initialize_state",
+          "run_cycle health",
+          "canonical receipt/checkpoint/nonce/fee recovery",
+          "submit and late LP/job guards",
+          "harvest receipt clock coalescing",
+          "cycle priorities/independent harvest"
+        ],
+        "limitation": "Selected current function families and caller/callee paths; not a new exhaustive line-by-line review of all metadata/confirmation internals."
+      }
+    },
+    "keeper/operation_review.py": {
+      "baseline_sha256": {
+        "sha256": "6766635fbd2cde84c0d20f999275aa834230d4dcccdda492f3cd853d77164c6a",
+        "bytes": 40693
+      },
+      "current_sha256": "6766635fbd2cde84c0d20f999275aa834230d4dcccdda492f3cd853d77164c6a",
+      "line_count": 565,
+      "functions": [
+        {
+          "name": "_header",
+          "line": 59,
+          "end_line": 63
+        },
+        {
+          "name": "_attempt",
+          "line": 66,
+          "end_line": 70
+        },
+        {
+          "name": "_row",
+          "line": 73,
+          "end_line": 77
+        },
+        {
+          "name": "_set",
+          "line": 80,
+          "end_line": 82
+        },
+        {
+          "name": "review",
+          "line": 511,
+          "end_line": 565
+        },
+        {
+          "name": "save",
+          "line": 28,
+          "end_line": 28
+        },
+        {
+          "name": "submit",
+          "line": 29,
+          "end_line": 29
+        },
+        {
+          "name": "_validate_signer",
+          "line": 30,
+          "end_line": 30
+        },
+        {
+          "name": "poll_pending",
+          "line": 31,
+          "end_line": 31
+        },
+        {
+          "name": "initialize_state",
+          "line": 32,
+          "end_line": 32
+        },
+        {
+          "name": "__init__",
+          "line": 36,
+          "end_line": 38
+        },
+        {
+          "name": "call",
+          "line": 40,
+          "end_line": 53
+        },
+        {
+          "name": "eth_call",
+          "line": 55,
+          "end_line": 56
+        },
+        {
+          "name": "__init__",
+          "line": 86,
+          "end_line": 92
+        },
+        {
+          "name": "read",
+          "line": 94,
+          "end_line": 98
+        },
+        {
+          "name": "uint",
+          "line": 100,
+          "end_line": 101
+        },
+        {
+          "name": "flag",
+          "line": 103,
+          "end_line": 106
+        },
+        {
+          "name": "pin",
+          "line": 108,
+          "end_line": 117
+        },
+        {
+          "name": "bucket",
+          "line": 119,
+          "end_line": 136
+        },
+        {
+          "name": "market",
+          "line": 138,
+          "end_line": 143
+        },
+        {
+          "name": "_harvest_ticks",
+          "line": 145,
+          "end_line": 155
+        },
+        {
+          "name": "harvest_custody",
+          "line": 157,
+          "end_line": 201
+        },
+        {
+          "name": "execution",
+          "line": 203,
+          "end_line": 208
+        },
+        {
+          "name": "budget",
+          "line": 210,
+          "end_line": 216
+        },
+        {
+          "name": "financial",
+          "line": 218,
+          "end_line": 248
+        },
+        {
+          "name": "schedule",
+          "line": 250,
+          "end_line": 260
+        },
+        {
+          "name": "simulate_action",
+          "line": 262,
+          "end_line": 331
+        },
+        {
+          "name": "operations",
+          "line": 333,
+          "end_line": 508
+        },
+        {
+          "name": "maintenance",
+          "line": 219,
+          "end_line": 224
+        },
+        {
+          "name": "gas",
+          "line": 288,
+          "end_line": 295
+        },
+        {
+          "name": "complete",
+          "line": 352,
+          "end_line": 360
+        },
+        {
+          "name": "controls",
+          "line": 547,
+          "end_line": 557
+        },
+        {
+          "name": "current_idle",
+          "line": 236,
+          "end_line": 239
+        },
+        {
+          "name": "clock",
+          "line": 476,
+          "end_line": 483
+        }
+      ],
+      "review_level": "selected_families_current_static",
+      "review": {
+        "families": [
+          "normal operation report provenance/status framing"
+        ],
+        "limitation": "Selected diagnostic paths only; opaque provider errors remain unavailable/unknown rather than invented causes."
+      }
+    },
+    "keeper/ops.py": {
+      "baseline_sha256": {
+        "sha256": "7d49446e3cee73b46c41257ee0e4dca2683bde1bf9c18772bb11538af9e7752f",
+        "bytes": 12900
+      },
+      "current_sha256": "7d49446e3cee73b46c41257ee0e4dca2683bde1bf9c18772bb11538af9e7752f",
+      "line_count": 222,
+      "functions": [
+        {
+          "name": "_read_required_json",
+          "line": 23,
+          "end_line": 30
+        },
+        {
+          "name": "_review_bucket",
+          "line": 33,
+          "end_line": 37
+        },
+        {
+          "name": "digest",
+          "line": 40,
+          "end_line": 41
+        },
+        {
+          "name": "timestamp",
+          "line": 44,
+          "end_line": 49
+        },
+        {
+          "name": "health_check",
+          "line": 52,
+          "end_line": 97
+        },
+        {
+          "name": "preflight",
+          "line": 100,
+          "end_line": 146
+        },
+        {
+          "name": "create_snapshot",
+          "line": 149,
+          "end_line": 173
+        },
+        {
+          "name": "verify_snapshot",
+          "line": 176,
+          "end_line": 190
+        },
+        {
+          "name": "main",
+          "line": 193,
+          "end_line": 219
+        }
+      ],
+      "review_level": "selected_families_current_static",
+      "review": {
+        "families": [
+          "strict required JSON",
+          "health identity and availability",
+          "read-only preflight",
+          "snapshot provenance/exclusive publication"
+        ],
+        "limitation": "No host restore/systemd rehearsal or persisted journal mutation."
+      }
+    },
+    "keeper/principal.py": {
+      "baseline_sha256": {
+        "sha256": "b602340db5c7a52ad281c6b60885e2f74cc2708b731595fac5eeb9e026da6874",
+        "bytes": 9171
+      },
+      "current_sha256": "b602340db5c7a52ad281c6b60885e2f74cc2708b731595fac5eeb9e026da6874",
+      "line_count": 172,
+      "functions": [
+        {
+          "name": "encode_batch",
+          "line": 14,
+          "end_line": 21
+        },
+        {
+          "name": "__init__",
+          "line": 25,
+          "end_line": 31
+        },
+        {
+          "name": "configure",
+          "line": 33,
+          "end_line": 74
+        },
+        {
+          "name": "_save_cursor",
+          "line": 76,
+          "end_line": 84
+        },
+        {
+          "name": "prefer_first",
+          "line": 86,
+          "end_line": 97
+        },
+        {
+          "name": "_read",
+          "line": 99,
+          "end_line": 103
+        },
+        {
+          "name": "_bindings",
+          "line": 105,
+          "end_line": 114
+        },
+        {
+          "name": "run",
+          "line": 116,
+          "end_line": 172
+        }
+      ],
+      "review_level": "selected_families_current_static",
+      "review": {
+        "families": [
+          "custody5 governance-only worker rejection",
+          "legacy configuration identity/cursors",
+          "non-mutating receipt authority"
+        ],
+        "limitation": "Historical compatibility retained; not removal or new live worker qualification."
+      }
+    },
+    "keeper/probe.py": {
+      "baseline_sha256": {
+        "sha256": "42142395fa2e43a6360644effdafab7e3be26b37b985a9bd3ae6fcd9d1374a10",
+        "bytes": 18520
+      },
+      "current_sha256": "42142395fa2e43a6360644effdafab7e3be26b37b985a9bd3ae6fcd9d1374a10",
+      "line_count": 298,
+      "functions": [
+        {
+          "name": "_remote_error",
+          "line": 23,
+          "end_line": 30
+        },
+        {
+          "name": "_approval_trace",
+          "line": 86,
+          "end_line": 119
+        },
+        {
+          "name": "probe",
+          "line": 121,
+          "end_line": 253
+        },
+        {
+          "name": "_read_config",
+          "line": 259,
+          "end_line": 271
+        },
+        {
+          "name": "main",
+          "line": 273,
+          "end_line": 295
+        },
+        {
+          "name": "__init__",
+          "line": 34,
+          "end_line": 42
+        },
+        {
+          "name": "check",
+          "line": 44,
+          "end_line": 46
+        },
+        {
+          "name": "transport",
+          "line": 48,
+          "end_line": 71
+        },
+        {
+          "name": "call",
+          "line": 73,
+          "end_line": 84
+        },
+        {
+          "name": "error",
+          "line": 257,
+          "end_line": 257
+        },
+        {
+          "name": "pairs",
+          "line": 262,
+          "end_line": 267
+        },
+        {
+          "name": "constant",
+          "line": 268,
+          "end_line": 268
+        },
+        {
+          "name": "observe",
+          "line": 149,
+          "end_line": 162
+        },
+        {
+          "name": "head",
+          "line": 170,
+          "end_line": 174
+        },
+        {
+          "name": "same_block",
+          "line": 188,
+          "end_line": 193
+        },
+        {
+          "name": "hex_result",
+          "line": 196,
+          "end_line": 204
+        },
+        {
+          "name": "reject_unknown_hash",
+          "line": 208,
+          "end_line": 214
+        },
+        {
+          "name": "receipts",
+          "line": 227,
+          "end_line": 248
+        },
+        {
+          "name": "genesis",
+          "line": 164,
+          "end_line": 168
+        },
+        {
+          "name": "approval_trace",
+          "line": 217,
+          "end_line": 219
+        },
+        {
+          "name": "tagged",
+          "line": 223,
+          "end_line": 225
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "keeper/rebalance_confirmation.py": {
+      "baseline_sha256": {
+        "sha256": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d",
+        "bytes": 11926
+      },
+      "current_sha256": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d",
+      "line_count": 166,
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 18,
+          "end_line": 39
+        },
+        {
+          "name": "validate",
+          "line": 41,
+          "end_line": 42
+        },
+        {
+          "name": "status",
+          "line": 44,
+          "end_line": 157
+        },
+        {
+          "name": "observation_due",
+          "line": 160,
+          "end_line": 166
+        },
+        {
+          "name": "read",
+          "line": 56,
+          "end_line": 59
+        },
+        {
+          "name": "pinned",
+          "line": 73,
+          "end_line": 74
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "keeper/royalties.py": {
+      "baseline_sha256": {
+        "sha256": "02e04783068eed60db827673c9c27d3a37175edd7dccfa5ddefb8b54c055904c",
+        "bytes": 17321
+      },
+      "current_sha256": "02e04783068eed60db827673c9c27d3a37175edd7dccfa5ddefb8b54c055904c",
+      "line_count": 254,
+      "functions": [
+        {
+          "name": "number",
+          "line": 16,
+          "end_line": 19
+        },
+        {
+          "name": "native_quote",
+          "line": 21,
+          "end_line": 25
+        },
+        {
+          "name": "encode_batch",
+          "line": 27,
+          "end_line": 34
+        },
+        {
+          "name": "__init__",
+          "line": 37,
+          "end_line": 108
+        },
+        {
+          "name": "scan_once",
+          "line": 110,
+          "end_line": 254
+        },
+        {
+          "name": "read",
+          "line": 132,
+          "end_line": 136
+        },
+        {
+          "name": "enabled",
+          "line": 137,
+          "end_line": 142
+        },
+        {
+          "name": "validate_snapshot",
+          "line": 207,
+          "end_line": 212
+        }
+      ],
+      "review_level": "selected_families_current_static",
+      "review": {
+        "families": [
+          "current original-currency no-conversion admission",
+          "exact LP v4 conversion configuration and identity",
+          "confirmed source anchor"
+        ],
+        "limitation": "Initial configuration/anchor paths read; remaining sizing/execution paths retain previous evidence and were not rerun."
+      }
+    },
+    "keeper/staging.py": {
+      "baseline_sha256": {
+        "sha256": "28b2b33d64a881dfdc5edafe6dc2daec4825e1729f5e97d9ee964f855aa3bae5",
+        "bytes": 4135
+      },
+      "current_sha256": "28b2b33d64a881dfdc5edafe6dc2daec4825e1729f5e97d9ee964f855aa3bae5",
+      "line_count": 69,
+      "functions": [
+        {
+          "name": "main",
+          "line": 22,
+          "end_line": 64
+        },
+        {
+          "name": "send",
+          "line": 33,
+          "end_line": 37
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "keeper/staging_observer.py": {
+      "baseline_sha256": {
+        "sha256": "f5f5e77aa62605aa54b326e88245ff5d9f8e14bf723dad359786e706cbc021ce",
+        "bytes": 2490
+      },
+      "current_sha256": "f5f5e77aa62605aa54b326e88245ff5d9f8e14bf723dad359786e706cbc021ce",
+      "line_count": 51,
+      "functions": [
+        {
+          "name": "main",
+          "line": 21,
+          "end_line": 46
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "keeper/watchdog.py": {
+      "baseline_sha256": {
+        "sha256": "ea325765224c5a187bc8cd4214ee06700a6daccca20b79690c49eb8b9524249e",
+        "bytes": 5554
+      },
+      "current_sha256": "ea325765224c5a187bc8cd4214ee06700a6daccca20b79690c49eb8b9524249e",
+      "line_count": 128,
+      "functions": [
+        {
+          "name": "_number",
+          "line": 20,
+          "end_line": 26
+        },
+        {
+          "name": "__init__",
+          "line": 30,
+          "end_line": 39
+        },
+        {
+          "name": "enabled",
+          "line": 42,
+          "end_line": 43
+        },
+        {
+          "name": "from_environment",
+          "line": 46,
+          "end_line": 76
+        },
+        {
+          "name": "pulse",
+          "line": 78,
+          "end_line": 99
+        },
+        {
+          "name": "__init__",
+          "line": 109,
+          "end_line": 111
+        },
+        {
+          "name": "call",
+          "line": 113,
+          "end_line": 117
+        },
+        {
+          "name": "eth_call",
+          "line": 119,
+          "end_line": 125
+        },
+        {
+          "name": "__getattr__",
+          "line": 127,
+          "end_line": 128
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Main-process-only systemd progress, bounded credentials and no notifications while blocked."
+    },
+    "zzz_ops/__init__.py": {
+      "baseline_sha256": {
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "bytes": 1
+      },
+      "current_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "line_count": 1,
+      "functions": [],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/abi.py": {
+      "baseline_sha256": {
+        "sha256": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d",
+        "bytes": 4195
+      },
+      "current_sha256": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d",
+      "line_count": 81,
+      "functions": [
+        {
+          "name": "keccak256",
+          "line": 14,
+          "end_line": 35
+        },
+        {
+          "name": "address",
+          "line": 37,
+          "end_line": 41
+        },
+        {
+          "name": "word",
+          "line": 43,
+          "end_line": 64
+        },
+        {
+          "name": "calldata",
+          "line": 66,
+          "end_line": 71
+        },
+        {
+          "name": "uint_result",
+          "line": 73,
+          "end_line": 76
+        },
+        {
+          "name": "decode_words",
+          "line": 78,
+          "end_line": 81
+        },
+        {
+          "name": "rol",
+          "line": 16,
+          "end_line": 17
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/deployment_plan.py": {
+      "baseline_sha256": {
+        "sha256": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df",
+        "bytes": 29866
+      },
+      "current_sha256": "7e67b8c74720768971f10548693a1757f6932032a795467601ea428941bd63f7",
+      "line_count": 372,
+      "functions": [
+        {
+          "name": "fail",
+          "line": 105,
+          "end_line": 105
+        },
+        {
+          "name": "trusted_build",
+          "line": 107,
+          "end_line": 110
+        },
+        {
+          "name": "sha",
+          "line": 111,
+          "end_line": 111
+        },
+        {
+          "name": "canonical",
+          "line": 112,
+          "end_line": 112
+        },
+        {
+          "name": "_pairs",
+          "line": 113,
+          "end_line": 118
+        },
+        {
+          "name": "decode",
+          "line": 119,
+          "end_line": 122
+        },
+        {
+          "name": "_keys",
+          "line": 123,
+          "end_line": 124
+        },
+        {
+          "name": "_address",
+          "line": 125,
+          "end_line": 129
+        },
+        {
+          "name": "_hash",
+          "line": 130,
+          "end_line": 132
+        },
+        {
+          "name": "_uint",
+          "line": 133,
+          "end_line": 136
+        },
+        {
+          "name": "template",
+          "line": 138,
+          "end_line": 140
+        },
+        {
+          "name": "validate",
+          "line": 142,
+          "end_line": 180
+        },
+        {
+          "name": "encode_constructor",
+          "line": 182,
+          "end_line": 194
+        },
+        {
+          "name": "argument_length",
+          "line": 196,
+          "end_line": 203
+        },
+        {
+          "name": "_resolve",
+          "line": 247,
+          "end_line": 254
+        },
+        {
+          "name": "construction_order",
+          "line": 256,
+          "end_line": 295
+        },
+        {
+          "name": "prepare",
+          "line": 297,
+          "end_line": 335
+        },
+        {
+          "name": "render",
+          "line": 337,
+          "end_line": 340
+        },
+        {
+          "name": "write_exclusive",
+          "line": 342,
+          "end_line": 353
+        },
+        {
+          "name": "main",
+          "line": 355,
+          "end_line": 372
+        },
+        {
+          "name": "__init__",
+          "line": 104,
+          "end_line": 104
+        },
+        {
+          "name": "__init__",
+          "line": 206,
+          "end_line": 227
+        },
+        {
+          "name": "check_sources",
+          "line": 228,
+          "end_line": 235
+        },
+        {
+          "name": "contract",
+          "line": 236,
+          "end_line": 245
+        },
+        {
+          "name": "unpack",
+          "line": 214,
+          "end_line": 216
+        },
+        {
+          "name": "error",
+          "line": 357,
+          "end_line": 357
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/errors.py": {
+      "baseline_sha256": {
+        "sha256": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+        "bytes": 992
+      },
+      "current_sha256": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+      "line_count": 24,
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 9,
+          "end_line": 14
+        },
+        {
+          "name": "__init__",
+          "line": 20,
+          "end_line": 24
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Sanitized provider and terminal workload errors."
+    },
+    "zzz_ops/ethereum_fees.py": {
+      "baseline_sha256": {
+        "sha256": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe",
+        "bytes": 2464
+      },
+      "current_sha256": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe",
+      "line_count": 57,
+      "functions": [
+        {
+          "name": "quantity",
+          "line": 10,
+          "end_line": 13
+        },
+        {
+          "name": "fee_cap",
+          "line": 16,
+          "end_line": 25
+        },
+        {
+          "name": "transaction_chain_id",
+          "line": 28,
+          "end_line": 42
+        },
+        {
+          "name": "execution_price",
+          "line": 45,
+          "end_line": 57
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Exact signed cap, EIP155 identity and canonical effective-cost derivation."
+    },
+    "zzz_ops/evidence.py": {
+      "baseline_sha256": {
+        "sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+        "bytes": 5532
+      },
+      "current_sha256": "c1885fad23031907ac509a955bd6fbfe9294dcbff94248bda9abc4368d1ad9f1",
+      "line_count": 144,
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 17,
+          "end_line": 24
+        },
+        {
+          "name": "_open",
+          "line": 27,
+          "end_line": 33
+        },
+        {
+          "name": "_owned",
+          "line": 36,
+          "end_line": 40
+        },
+        {
+          "name": "_sync_directory",
+          "line": 42,
+          "end_line": 48
+        },
+        {
+          "name": "_write_json",
+          "line": 50,
+          "end_line": 59
+        },
+        {
+          "name": "_marker",
+          "line": 61,
+          "end_line": 66
+        },
+        {
+          "name": "_sync_log",
+          "line": 68,
+          "end_line": 72
+        },
+        {
+          "name": "_failed",
+          "line": 74,
+          "end_line": 86
+        },
+        {
+          "name": "__enter__",
+          "line": 88,
+          "end_line": 105
+        },
+        {
+          "name": "read_log",
+          "line": 107,
+          "end_line": 116
+        },
+        {
+          "name": "finish",
+          "line": 118,
+          "end_line": 123
+        },
+        {
+          "name": "_close",
+          "line": 125,
+          "end_line": 131
+        },
+        {
+          "name": "__exit__",
+          "line": 133,
+          "end_line": 144
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/exact_lp.py": {
+      "baseline_sha256": {
+        "sha256": "397279d87ef7caa85f98f329277cce8da2e10ad7129d5a6e54b5d7b361129259",
+        "bytes": 4115
+      },
+      "current_sha256": "397279d87ef7caa85f98f329277cce8da2e10ad7129d5a6e54b5d7b361129259",
+      "line_count": 98,
+      "functions": [
+        {
+          "name": "uint",
+          "line": 14,
+          "end_line": 16
+        },
+        {
+          "name": "split",
+          "line": 19,
+          "end_line": 28
+        },
+        {
+          "name": "__init__",
+          "line": 32,
+          "end_line": 36
+        },
+        {
+          "name": "leaf",
+          "line": 39,
+          "end_line": 41
+        },
+        {
+          "name": "weight_of",
+          "line": 43,
+          "end_line": 43
+        },
+        {
+          "name": "total",
+          "line": 45,
+          "end_line": 45
+        },
+        {
+          "name": "_path",
+          "line": 47,
+          "end_line": 64
+        },
+        {
+          "name": "set_weight",
+          "line": 66,
+          "end_line": 81
+        },
+        {
+          "name": "credit",
+          "line": 83,
+          "end_line": 90
+        },
+        {
+          "name": "claimable",
+          "line": 92,
+          "end_line": 92
+        },
+        {
+          "name": "take",
+          "line": 94,
+          "end_line": 98
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Whole-unit allocation tree path propagation, pending phases and pure claimable reads."
+    },
+    "zzz_ops/execution_price.py": {
+      "baseline_sha256": {
+        "sha256": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2",
+        "bytes": 2280
+      },
+      "current_sha256": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2",
+      "line_count": 41,
+      "functions": [
+        {
+          "name": "version",
+          "line": 15,
+          "end_line": 18
+        },
+        {
+          "name": "observe",
+          "line": 21,
+          "end_line": 41
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/factory_code_v2.py": {
+      "baseline_sha256": {
+        "sha256": "7764d4563269ee180ad406d6c8eef1f2f33bc1048c892b8017156ef0348f32df",
+        "bytes": 6054
+      },
+      "current_sha256": "7764d4563269ee180ad406d6c8eef1f2f33bc1048c892b8017156ef0348f32df",
+      "line_count": 116,
+      "functions": [
+        {
+          "name": "_unique",
+          "line": 36,
+          "end_line": 41
+        },
+        {
+          "name": "_hash",
+          "line": 44,
+          "end_line": 44
+        },
+        {
+          "name": "split_creation",
+          "line": 47,
+          "end_line": 50
+        },
+        {
+          "name": "load_artifact",
+          "line": 53,
+          "end_line": 69
+        },
+        {
+          "name": "parse_section",
+          "line": 75,
+          "end_line": 90
+        },
+        {
+          "name": "verify_runtime_parts",
+          "line": 93,
+          "end_line": 107
+        },
+        {
+          "name": "verify_compiler_output",
+          "line": 110,
+          "end_line": 116
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/factory_code_v3.py": {
+      "baseline_sha256": {
+        "sha256": "8b27d237a39d81c2b6d3ac7a7186723569f8bef2a59ad811aca39e0b55f6665a",
+        "bytes": 5966
+      },
+      "current_sha256": "8b27d237a39d81c2b6d3ac7a7186723569f8bef2a59ad811aca39e0b55f6665a",
+      "line_count": 116,
+      "functions": [
+        {
+          "name": "_unique",
+          "line": 36,
+          "end_line": 41
+        },
+        {
+          "name": "_hash",
+          "line": 44,
+          "end_line": 44
+        },
+        {
+          "name": "split_creation",
+          "line": 47,
+          "end_line": 50
+        },
+        {
+          "name": "load_artifact",
+          "line": 53,
+          "end_line": 69
+        },
+        {
+          "name": "parse_section",
+          "line": 75,
+          "end_line": 90
+        },
+        {
+          "name": "verify_runtime_parts",
+          "line": 93,
+          "end_line": 107
+        },
+        {
+          "name": "verify_compiler_output",
+          "line": 110,
+          "end_line": 116
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/function_reference.py": {
+      "baseline_sha256": {
+        "sha256": "ae2489961d0a104a0810799d82559bfae5d02a960e4514e4892897b707759dfd",
+        "bytes": 34592
+      },
+      "current_sha256": "ae2489961d0a104a0810799d82559bfae5d02a960e4514e4892897b707759dfd",
+      "line_count": 559,
+      "functions": [
+        {
+          "name": "_pairs",
+          "line": 22,
+          "end_line": 28
+        },
+        {
+          "name": "load_json",
+          "line": 31,
+          "end_line": 32
+        },
+        {
+          "name": "_read_json_bytes",
+          "line": 35,
+          "end_line": 40
+        },
+        {
+          "name": "_load_raw_json",
+          "line": 43,
+          "end_line": 47
+        },
+        {
+          "name": "canonical_json",
+          "line": 50,
+          "end_line": 51
+        },
+        {
+          "name": "sha",
+          "line": 54,
+          "end_line": 55
+        },
+        {
+          "name": "canonical_type",
+          "line": 58,
+          "end_line": 79
+        },
+        {
+          "name": "signature",
+          "line": 82,
+          "end_line": 92
+        },
+        {
+          "name": "_hex_object",
+          "line": 95,
+          "end_line": 101
+        },
+        {
+          "name": "_source",
+          "line": 104,
+          "end_line": 113
+        },
+        {
+          "name": "_dependency_source",
+          "line": 116,
+          "end_line": 126
+        },
+        {
+          "name": "_check_sources",
+          "line": 129,
+          "end_line": 165
+        },
+        {
+          "name": "_argument_shape",
+          "line": 168,
+          "end_line": 185
+        },
+        {
+          "name": "_argument_sequence",
+          "line": 188,
+          "end_line": 193
+        },
+        {
+          "name": "_constructor_bounds",
+          "line": 196,
+          "end_line": 206
+        },
+        {
+          "name": "_normal_evidence",
+          "line": 209,
+          "end_line": 229
+        },
+        {
+          "name": "import_compiler",
+          "line": 232,
+          "end_line": 321
+        },
+        {
+          "name": "merge_notes",
+          "line": 324,
+          "end_line": 335
+        },
+        {
+          "name": "_explanation",
+          "line": 338,
+          "end_line": 343
+        },
+        {
+          "name": "_parameters",
+          "line": 346,
+          "end_line": 368
+        },
+        {
+          "name": "build_reference",
+          "line": 371,
+          "end_line": 453
+        },
+        {
+          "name": "_text",
+          "line": 456,
+          "end_line": 457
+        },
+        {
+          "name": "_params",
+          "line": 460,
+          "end_line": 477
+        },
+        {
+          "name": "render_markdown",
+          "line": 480,
+          "end_line": 525
+        },
+        {
+          "name": "write_atomic",
+          "line": 528,
+          "end_line": 538
+        },
+        {
+          "name": "generate",
+          "line": 541,
+          "end_line": 559
+        },
+        {
+          "name": "visit",
+          "line": 462,
+          "end_line": 474
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/historical_production.py": {
+      "baseline_sha256": {
+        "sha256": "daa3edd9f539e4e60722169fa5c29154b982e049788c3d42f1296c2e8dc4cd3f",
+        "bytes": 85558
+      },
+      "current_sha256": "daa3edd9f539e4e60722169fa5c29154b982e049788c3d42f1296c2e8dc4cd3f",
+      "line_count": 873,
+      "functions": [
+        {
+          "name": "allowed_artwork_palette",
+          "line": 28,
+          "end_line": 32
+        },
+        {
+          "name": "identity",
+          "line": 48,
+          "end_line": 51
+        },
+        {
+          "name": "validate",
+          "line": 85,
+          "end_line": 872
+        },
+        {
+          "name": "__init__",
+          "line": 54,
+          "end_line": 55
+        },
+        {
+          "name": "check",
+          "line": 56,
+          "end_line": 58
+        },
+        {
+          "name": "obj",
+          "line": 59,
+          "end_line": 60
+        },
+        {
+          "name": "items",
+          "line": 61,
+          "end_line": 63
+        },
+        {
+          "name": "num",
+          "line": 64,
+          "end_line": 68
+        },
+        {
+          "name": "hex",
+          "line": 69,
+          "end_line": 73
+        },
+        {
+          "name": "text",
+          "line": 74,
+          "end_line": 76
+        },
+        {
+          "name": "proof",
+          "line": 77,
+          "end_line": 83
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/holder_preflight.py": {
+      "baseline_sha256": {
+        "sha256": "369f4e55b698a6442fdea98d074f4e2eb79b23b0fe2dc74c4cca99388bf6de4c",
+        "bytes": 10984
+      },
+      "current_sha256": "369f4e55b698a6442fdea98d074f4e2eb79b23b0fe2dc74c4cca99388bf6de4c",
+      "line_count": 207,
+      "functions": [
+        {
+          "name": "integer",
+          "line": 17,
+          "end_line": 20
+        },
+        {
+          "name": "hash32",
+          "line": 23,
+          "end_line": 26
+        },
+        {
+          "name": "code_bytes",
+          "line": 29,
+          "end_line": 35
+        },
+        {
+          "name": "digest",
+          "line": 38,
+          "end_line": 39
+        },
+        {
+          "name": "scan_page",
+          "line": 42,
+          "end_line": 150
+        },
+        {
+          "name": "summarize",
+          "line": 153,
+          "end_line": 207
+        },
+        {
+          "name": "get",
+          "line": 72,
+          "end_line": 77
+        },
+        {
+          "name": "pinned",
+          "line": 79,
+          "end_line": 84
+        },
+        {
+          "name": "binding",
+          "line": 86,
+          "end_line": 98
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/log_provenance.py": {
+      "baseline_sha256": {
+        "sha256": "9edf223d19c2cc04f4829822c282ea534e24afe489016ccb90103f2ce98bb230",
+        "bytes": 2354
+      },
+      "current_sha256": "9edf223d19c2cc04f4829822c282ea534e24afe489016ccb90103f2ce98bb230",
+      "line_count": 45,
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 10,
+          "end_line": 17
+        },
+        {
+          "name": "add",
+          "line": 19,
+          "end_line": 45
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/lp_execution.py": {
+      "baseline_sha256": {
+        "sha256": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0",
+        "bytes": 6860
+      },
+      "current_sha256": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0",
+      "line_count": 101,
+      "functions": [
+        {
+          "name": "observe",
+          "line": 5,
+          "end_line": 101
+        },
+        {
+          "name": "number",
+          "line": 19,
+          "end_line": 23
+        },
+        {
+          "name": "binding",
+          "line": 24,
+          "end_line": 26
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/management_base.py": {
+      "baseline_sha256": {
+        "sha256": "28a65b9860d14c4a71f5419b535f5aeff9d844495fd630df7a70fc602e9ae98d",
+        "bytes": 5033
+      },
+      "current_sha256": "28a65b9860d14c4a71f5419b535f5aeff9d844495fd630df7a70fc602e9ae98d",
+      "line_count": 73,
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 14,
+          "end_line": 16
+        },
+        {
+          "name": "base",
+          "line": 20,
+          "end_line": 73
+        }
+      ],
+      "review_level": "selected_families_current_static",
+      "review": {
+        "families": [
+          "current governance/lifecycle/empty-code EOA boundary"
+        ],
+        "limitation": "Contract-wallet envelopes remain explicitly unsupported by this preparer."
+      }
+    },
+    "zzz_ops/management_custody.py": {
+      "baseline_sha256": {
+        "sha256": "7be6440b45c35bfcf43b6dd94f40c271c6dd9fa1519c1fcbc66a2df8fe0bac0f",
+        "bytes": 13055
+      },
+      "current_sha256": "7be6440b45c35bfcf43b6dd94f40c271c6dd9fa1519c1fcbc66a2df8fe0bac0f",
+      "line_count": 210,
+      "functions": [
+        {
+          "name": "validate",
+          "line": 29,
+          "end_line": 43
+        },
+        {
+          "name": "_pool",
+          "line": 46,
+          "end_line": 56
+        },
+        {
+          "name": "_position",
+          "line": 59,
+          "end_line": 67
+        },
+        {
+          "name": "_raw_close",
+          "line": 70,
+          "end_line": 102
+        },
+        {
+          "name": "_resume",
+          "line": 105,
+          "end_line": 180
+        },
+        {
+          "name": "observe",
+          "line": 183,
+          "end_line": 186
+        },
+        {
+          "name": "call_spec",
+          "line": 189,
+          "end_line": 210
+        }
+      ],
+      "review_level": "selected_families_current_static",
+      "review": {
+        "families": [
+          "park/raw close custody without USD dependency",
+          "resume price/policy/destination state",
+          "same physical IDs vs moving market observations"
+        ],
+        "limitation": "Selected static adapter interactions; no actual recovery rehearsal rerun."
+      }
+    },
+    "zzz_ops/management_exit.py": {
+      "baseline_sha256": {
+        "sha256": "cbecf0656a38a516769876376ed4415643033009e3ee4d157f8c940fe2e0ec74",
+        "bytes": 19329
+      },
+      "current_sha256": "cbecf0656a38a516769876376ed4415643033009e3ee4d157f8c940fe2e0ec74",
+      "line_count": 314,
+      "functions": [
+        {
+          "name": "validate",
+          "line": 28,
+          "end_line": 55
+        },
+        {
+          "name": "_owner",
+          "line": 58,
+          "end_line": 62
+        },
+        {
+          "name": "_settlement",
+          "line": 65,
+          "end_line": 77
+        },
+        {
+          "name": "_position",
+          "line": 80,
+          "end_line": 107
+        },
+        {
+          "name": "_asset",
+          "line": 110,
+          "end_line": 114
+        },
+        {
+          "name": "_terminal",
+          "line": 117,
+          "end_line": 162
+        },
+        {
+          "name": "_principal",
+          "line": 165,
+          "end_line": 171
+        },
+        {
+          "name": "observe",
+          "line": 174,
+          "end_line": 286
+        },
+        {
+          "name": "call_spec",
+          "line": 289,
+          "end_line": 314
+        }
+      ],
+      "review_level": "selected_families_current_static",
+      "review": {
+        "families": [
+          "terminal selected input grammar",
+          "settlement telescoping/counters/backing",
+          "current NFT owner and explicit governance-only distribution selection"
+        ],
+        "limitation": "Selected static interactions; underlying Solidity reviewed in the separate contract workstream."
+      }
+    },
+    "zzz_ops/management_review.py": {
+      "baseline_sha256": {
+        "sha256": "91dcadede817e1107cf0f51492f5a710bc007abe3d6b6ec725c1998b54a8f514",
+        "bytes": 19558
+      },
+      "current_sha256": "91dcadede817e1107cf0f51492f5a710bc007abe3d6b6ec725c1998b54a8f514",
+      "line_count": 261,
+      "functions": [
+        {
+          "name": "selection",
+          "line": 41,
+          "end_line": 55
+        },
+        {
+          "name": "_canonical_arguments",
+          "line": 58,
+          "end_line": 63
+        },
+        {
+          "name": "_mark_review_hash",
+          "line": 66,
+          "end_line": 70
+        },
+        {
+          "name": "_returned",
+          "line": 73,
+          "end_line": 85
+        },
+        {
+          "name": "simulate",
+          "line": 88,
+          "end_line": 127
+        },
+        {
+          "name": "_source_pins",
+          "line": 130,
+          "end_line": 134
+        },
+        {
+          "name": "prepare",
+          "line": 137,
+          "end_line": 227
+        },
+        {
+          "name": "main",
+          "line": 230,
+          "end_line": 261
+        },
+        {
+          "name": "error",
+          "line": 232,
+          "end_line": 232
+        }
+      ],
+      "review_level": "selected_families_current_static",
+      "review": {
+        "families": [
+          "exact operation selection",
+          "confirmed/final source+control identity",
+          "explicit full batch gas vs fixed padded gas",
+          "final exact simulation/provenance"
+        ],
+        "limitation": "No governance-wallet envelope or actual operating/provider qualification."
+      }
+    },
+    "zzz_ops/manual_lp_review.py": {
+      "baseline_sha256": {
+        "sha256": "9c139431fcb98e0d0b09fff0b8fdd2ef31bfef12f77de85cb617d801a5399697",
+        "bytes": 51203
+      },
+      "current_sha256": "9c139431fcb98e0d0b09fff0b8fdd2ef31bfef12f77de85cb617d801a5399697",
+      "line_count": 684,
+      "functions": [
+        {
+          "name": "digest",
+          "line": 155,
+          "end_line": 155
+        },
+        {
+          "name": "integer",
+          "line": 158,
+          "end_line": 161
+        },
+        {
+          "name": "selection",
+          "line": 164,
+          "end_line": 198
+        },
+        {
+          "name": "parked_safeguards",
+          "line": 201,
+          "end_line": 219
+        },
+        {
+          "name": "encode",
+          "line": 222,
+          "end_line": 231
+        },
+        {
+          "name": "controls",
+          "line": 234,
+          "end_line": 241
+        },
+        {
+          "name": "simulation",
+          "line": 244,
+          "end_line": 270
+        },
+        {
+          "name": "validate_policy",
+          "line": 484,
+          "end_line": 500
+        },
+        {
+          "name": "prepare",
+          "line": 503,
+          "end_line": 596
+        },
+        {
+          "name": "write_exclusive",
+          "line": 599,
+          "end_line": 611
+        },
+        {
+          "name": "_metadata",
+          "line": 614,
+          "end_line": 616
+        },
+        {
+          "name": "diagnostic",
+          "line": 619,
+          "end_line": 661
+        },
+        {
+          "name": "main",
+          "line": 664,
+          "end_line": 684
+        },
+        {
+          "name": "__init__",
+          "line": 135,
+          "end_line": 137
+        },
+        {
+          "name": "__init__",
+          "line": 142,
+          "end_line": 144
+        },
+        {
+          "name": "__init__",
+          "line": 274,
+          "end_line": 278
+        },
+        {
+          "name": "read",
+          "line": 280,
+          "end_line": 286
+        },
+        {
+          "name": "uint",
+          "line": 288,
+          "end_line": 288
+        },
+        {
+          "name": "flag",
+          "line": 289,
+          "end_line": 289
+        },
+        {
+          "name": "hashed",
+          "line": 290,
+          "end_line": 292
+        },
+        {
+          "name": "binding",
+          "line": 294,
+          "end_line": 295
+        },
+        {
+          "name": "parked_pool",
+          "line": 297,
+          "end_line": 308
+        },
+        {
+          "name": "parked_physical",
+          "line": 310,
+          "end_line": 336
+        },
+        {
+          "name": "snapshot",
+          "line": 338,
+          "end_line": 481
+        },
+        {
+          "name": "error",
+          "line": 666,
+          "end_line": 666
+        }
+      ],
+      "review_level": "selected_families_current_static",
+      "review": {
+        "families": [
+          "B/C/D and Parked D input/profile admission",
+          "Reader custody/physical/financial snapshot",
+          "confirmed/final controls comparison",
+          "void simulation/estimate/original fee ceiling",
+          "prepare expiry/publication diagnostics"
+        ],
+        "limitation": "No operation executed. Existing documented unsigned transaction omits gas; provider/actual envelope acceptance remains separate."
+      }
+    },
+    "zzz_ops/market_evidence.py": {
+      "baseline_sha256": {
+        "sha256": "b7c3be52d153590490659a86df2979866398d112f8e0f99d707437e4c659c5fd",
+        "bytes": 32596
+      },
+      "current_sha256": "b7c3be52d153590490659a86df2979866398d112f8e0f99d707437e4c659c5fd",
+      "line_count": 567,
+      "functions": [
+        {
+          "name": "require",
+          "line": 58,
+          "end_line": 60
+        },
+        {
+          "name": "same",
+          "line": 63,
+          "end_line": 66
+        },
+        {
+          "name": "number",
+          "line": 69,
+          "end_line": 71
+        },
+        {
+          "name": "elapsed",
+          "line": 74,
+          "end_line": 77
+        },
+        {
+          "name": "strict_json",
+          "line": 80,
+          "end_line": 101
+        },
+        {
+          "name": "safe_name",
+          "line": 104,
+          "end_line": 110
+        },
+        {
+          "name": "words",
+          "line": 167,
+          "end_line": 172
+        },
+        {
+          "name": "word",
+          "line": 175,
+          "end_line": 180
+        },
+        {
+          "name": "digest",
+          "line": 183,
+          "end_line": 184
+        },
+        {
+          "name": "ratio",
+          "line": 187,
+          "end_line": 192
+        },
+        {
+          "name": "selector",
+          "line": 195,
+          "end_line": 196
+        },
+        {
+          "name": "_request",
+          "line": 199,
+          "end_line": 201
+        },
+        {
+          "name": "_call",
+          "line": 204,
+          "end_line": 205
+        },
+        {
+          "name": "_wire",
+          "line": 208,
+          "end_line": 210
+        },
+        {
+          "name": "_logs",
+          "line": 213,
+          "end_line": 251
+        },
+        {
+          "name": "_runtime",
+          "line": 254,
+          "end_line": 262
+        },
+        {
+          "name": "_fee",
+          "line": 265,
+          "end_line": 270
+        },
+        {
+          "name": "_error",
+          "line": 273,
+          "end_line": 294
+        },
+        {
+          "name": "verify",
+          "line": 297,
+          "end_line": 302
+        },
+        {
+          "name": "_verify",
+          "line": 305,
+          "end_line": 447
+        },
+        {
+          "name": "_pools",
+          "line": 450,
+          "end_line": 485
+        },
+        {
+          "name": "_quotes",
+          "line": 488,
+          "end_line": 522
+        },
+        {
+          "name": "_markets",
+          "line": 525,
+          "end_line": 545
+        },
+        {
+          "name": "_discovery",
+          "line": 548,
+          "end_line": 567
+        },
+        {
+          "name": "pairs",
+          "line": 82,
+          "end_line": 87
+        },
+        {
+          "name": "constant",
+          "line": 88,
+          "end_line": 89
+        },
+        {
+          "name": "integer",
+          "line": 90,
+          "end_line": 92
+        },
+        {
+          "name": "floating",
+          "line": 93,
+          "end_line": 96
+        },
+        {
+          "name": "__init__",
+          "line": 115,
+          "end_line": 157
+        },
+        {
+          "name": "raw",
+          "line": 159,
+          "end_line": 161
+        },
+        {
+          "name": "obj",
+          "line": 163,
+          "end_line": 164
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/mint_policy_v2.py": {
+      "baseline_sha256": {
+        "sha256": "7338373e0eb90c8ee9d0188c6f8e48990a4d2ceaebbef221d487be5f38fbcdd0",
+        "bytes": 955
+      },
+      "current_sha256": "7338373e0eb90c8ee9d0188c6f8e48990a4d2ceaebbef221d487be5f38fbcdd0",
+      "line_count": 19,
+      "functions": [
+        {
+          "name": "fingerprint",
+          "line": 9,
+          "end_line": 19
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/opensea_drop.py": {
+      "baseline_sha256": {
+        "sha256": "f5434c480325b25894d613e3db7dd6a8f18b1966c8f1b9842e679d90276a474b",
+        "bytes": 22729
+      },
+      "current_sha256": "f5434c480325b25894d613e3db7dd6a8f18b1966c8f1b9842e679d90276a474b",
+      "line_count": 459,
+      "functions": [
+        {
+          "name": "canonical",
+          "line": 62,
+          "end_line": 64
+        },
+        {
+          "name": "_keys",
+          "line": 67,
+          "end_line": 69
+        },
+        {
+          "name": "_uint",
+          "line": 72,
+          "end_line": 79
+        },
+        {
+          "name": "_hex",
+          "line": 82,
+          "end_line": 87
+        },
+        {
+          "name": "_pair",
+          "line": 90,
+          "end_line": 91
+        },
+        {
+          "name": "merkle_tree",
+          "line": 94,
+          "end_line": 120
+        },
+        {
+          "name": "verify_proof",
+          "line": 123,
+          "end_line": 132
+        },
+        {
+          "name": "mint_leaf",
+          "line": 135,
+          "end_line": 144
+        },
+        {
+          "name": "address_list_hash",
+          "line": 147,
+          "end_line": 154
+        },
+        {
+          "name": "team_list_hash",
+          "line": 157,
+          "end_line": 165
+        },
+        {
+          "name": "source_identity",
+          "line": 168,
+          "end_line": 214
+        },
+        {
+          "name": "_window",
+          "line": 217,
+          "end_line": 223
+        },
+        {
+          "name": "_parameters",
+          "line": 226,
+          "end_line": 228
+        },
+        {
+          "name": "prepare",
+          "line": 231,
+          "end_line": 349
+        },
+        {
+          "name": "check",
+          "line": 352,
+          "end_line": 359
+        },
+        {
+          "name": "_pairs",
+          "line": 362,
+          "end_line": 368
+        },
+        {
+          "name": "_reject",
+          "line": 371,
+          "end_line": 372
+        },
+        {
+          "name": "decode",
+          "line": 375,
+          "end_line": 396
+        },
+        {
+          "name": "render",
+          "line": 399,
+          "end_line": 400
+        },
+        {
+          "name": "publish",
+          "line": 403,
+          "end_line": 424
+        },
+        {
+          "name": "main",
+          "line": 427,
+          "end_line": 455
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/operator_reference.py": {
+      "baseline_sha256": {
+        "sha256": "679403a0df22eb3024c20a5fe07e22cff8682c11cbec622552f65ae6e2c0e91c",
+        "bytes": 21122
+      },
+      "current_sha256": "679403a0df22eb3024c20a5fe07e22cff8682c11cbec622552f65ae6e2c0e91c",
+      "line_count": 330,
+      "functions": [
+        {
+          "name": "require",
+          "line": 60,
+          "end_line": 62
+        },
+        {
+          "name": "key",
+          "line": 65,
+          "end_line": 66
+        },
+        {
+          "name": "symbol",
+          "line": 69,
+          "end_line": 70
+        },
+        {
+          "name": "validate_value",
+          "line": 73,
+          "end_line": 114
+        },
+        {
+          "name": "check_examples",
+          "line": 117,
+          "end_line": 178
+        },
+        {
+          "name": "display",
+          "line": 181,
+          "end_line": 191
+        },
+        {
+          "name": "tuple_name",
+          "line": 194,
+          "end_line": 196
+        },
+        {
+          "name": "render",
+          "line": 199,
+          "end_line": 298
+        },
+        {
+          "name": "generate",
+          "line": 301,
+          "end_line": 318
+        },
+        {
+          "name": "main",
+          "line": 321,
+          "end_line": 330
+        },
+        {
+          "name": "arguments",
+          "line": 204,
+          "end_line": 217
+        },
+        {
+          "name": "table",
+          "line": 219,
+          "end_line": 232
+        },
+        {
+          "name": "visit",
+          "line": 277,
+          "end_line": 285
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/operator_review.py": {
+      "baseline_sha256": {
+        "sha256": "ed3d6d025286fa5284a985112dc7d07f27b0420c5d88aee4b3730780780762ad",
+        "bytes": 14363
+      },
+      "current_sha256": "ed3d6d025286fa5284a985112dc7d07f27b0420c5d88aee4b3730780780762ad",
+      "line_count": 265,
+      "functions": [
+        {
+          "name": "canonical",
+          "line": 36,
+          "end_line": 37
+        },
+        {
+          "name": "digest",
+          "line": 40,
+          "end_line": 40
+        },
+        {
+          "name": "_keys",
+          "line": 43,
+          "end_line": 44
+        },
+        {
+          "name": "_pairs",
+          "line": 47,
+          "end_line": 52
+        },
+        {
+          "name": "_reject",
+          "line": 55,
+          "end_line": 55
+        },
+        {
+          "name": "decode",
+          "line": 58,
+          "end_line": 72
+        },
+        {
+          "name": "load",
+          "line": 75,
+          "end_line": 76
+        },
+        {
+          "name": "_hex",
+          "line": 79,
+          "end_line": 83
+        },
+        {
+          "name": "_integer",
+          "line": 86,
+          "end_line": 92
+        },
+        {
+          "name": "_arguments",
+          "line": 95,
+          "end_line": 100
+        },
+        {
+          "name": "_value",
+          "line": 103,
+          "end_line": 139
+        },
+        {
+          "name": "_ordered",
+          "line": 142,
+          "end_line": 148
+        },
+        {
+          "name": "_catalog_shape",
+          "line": 151,
+          "end_line": 166
+        },
+        {
+          "name": "render",
+          "line": 169,
+          "end_line": 172
+        },
+        {
+          "name": "main",
+          "line": 241,
+          "end_line": 262
+        },
+        {
+          "name": "convert",
+          "line": 143,
+          "end_line": 147
+        },
+        {
+          "name": "__init__",
+          "line": 176,
+          "end_line": 183
+        },
+        {
+          "name": "identity",
+          "line": 185,
+          "end_line": 187
+        },
+        {
+          "name": "prepare",
+          "line": 189,
+          "end_line": 232
+        },
+        {
+          "name": "check",
+          "line": 234,
+          "end_line": 238
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/physical_portfolio.py": {
+      "baseline_sha256": {
+        "sha256": "f119b665860cb4aaa9fbebe81aa1f2564906dff8466d1febf96ea4eef46e719b",
+        "bytes": 2125
+      },
+      "current_sha256": "f119b665860cb4aaa9fbebe81aa1f2564906dff8466d1febf96ea4eef46e719b",
+      "line_count": 36,
+      "functions": [
+        {
+          "name": "physical_amounts",
+          "line": 5,
+          "end_line": 15
+        },
+        {
+          "name": "portfolio_fingerprints",
+          "line": 18,
+          "end_line": 36
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/position.py": {
+      "baseline_sha256": {
+        "sha256": "54075cb2329e6e1defb4942683378d6a3995a74a6ea5e1f239a8fcf611e30d4d",
+        "bytes": 2437
+      },
+      "current_sha256": "54075cb2329e6e1defb4942683378d6a3995a74a6ea5e1f239a8fcf611e30d4d",
+      "line_count": 51,
+      "functions": [
+        {
+          "name": "position_word_count",
+          "line": 10,
+          "end_line": 13
+        },
+        {
+          "name": "status_name",
+          "line": 16,
+          "end_line": 21
+        },
+        {
+          "name": "decode_position",
+          "line": 24,
+          "end_line": 41
+        },
+        {
+          "name": "is_local_position",
+          "line": 44,
+          "end_line": 51
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/price_policy.py": {
+      "baseline_sha256": {
+        "sha256": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958",
+        "bytes": 7148
+      },
+      "current_sha256": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958",
+      "line_count": 146,
+      "functions": [
+        {
+          "name": "number",
+          "line": 14,
+          "end_line": 23
+        },
+        {
+          "name": "digest",
+          "line": 26,
+          "end_line": 32
+        },
+        {
+          "name": "source",
+          "line": 35,
+          "end_line": 42
+        },
+        {
+          "name": "policy",
+          "line": 45,
+          "end_line": 57
+        },
+        {
+          "name": "flat",
+          "line": 60,
+          "end_line": 61
+        },
+        {
+          "name": "words",
+          "line": 64,
+          "end_line": 72
+        },
+        {
+          "name": "hash_words",
+          "line": 75,
+          "end_line": 76
+        },
+        {
+          "name": "policy_id",
+          "line": 79,
+          "end_line": 80
+        },
+        {
+          "name": "record",
+          "line": 83,
+          "end_line": 90
+        },
+        {
+          "name": "round_data",
+          "line": 93,
+          "end_line": 108
+        },
+        {
+          "name": "observe",
+          "line": 111,
+          "end_line": 146
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_observer.py": {
+      "baseline_sha256": {
+        "sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd",
+        "bytes": 50468
+      },
+      "current_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd",
+      "line_count": 792,
+      "functions": [
+        {
+          "name": "_address",
+          "line": 72,
+          "end_line": 78
+        },
+        {
+          "name": "_hash",
+          "line": 81,
+          "end_line": 84
+        },
+        {
+          "name": "_quantity",
+          "line": 87,
+          "end_line": 93
+        },
+        {
+          "name": "_uint",
+          "line": 96,
+          "end_line": 105
+        },
+        {
+          "name": "_chain_id",
+          "line": 108,
+          "end_line": 111
+        },
+        {
+          "name": "_word",
+          "line": 114,
+          "end_line": 117
+        },
+        {
+          "name": "_decode",
+          "line": 120,
+          "end_line": 133
+        },
+        {
+          "name": "_string",
+          "line": 136,
+          "end_line": 145
+        },
+        {
+          "name": "_same",
+          "line": 148,
+          "end_line": 155
+        },
+        {
+          "name": "_normalized",
+          "line": 158,
+          "end_line": 160
+        },
+        {
+          "name": "observe",
+          "line": 694,
+          "end_line": 755
+        },
+        {
+          "name": "read_manifest",
+          "line": 758,
+          "end_line": 772
+        },
+        {
+          "name": "write_observation",
+          "line": 775,
+          "end_line": 792
+        },
+        {
+          "name": "__init__",
+          "line": 164,
+          "end_line": 169
+        },
+        {
+          "name": "request",
+          "line": 171,
+          "end_line": 174
+        },
+        {
+          "name": "header",
+          "line": 176,
+          "end_line": 184
+        },
+        {
+          "name": "anchor",
+          "line": 186,
+          "end_line": 204
+        },
+        {
+          "name": "finish",
+          "line": 206,
+          "end_line": 216
+        },
+        {
+          "name": "attempt",
+          "line": 218,
+          "end_line": 224
+        },
+        {
+          "name": "read",
+          "line": 226,
+          "end_line": 240
+        },
+        {
+          "name": "typed",
+          "line": 242,
+          "end_line": 260
+        },
+        {
+          "name": "code",
+          "line": 262,
+          "end_line": 270
+        },
+        {
+          "name": "records",
+          "line": 272,
+          "end_line": 295
+        },
+        {
+          "name": "dependencies",
+          "line": 297,
+          "end_line": 314
+        },
+        {
+          "name": "tokens",
+          "line": 316,
+          "end_line": 356
+        },
+        {
+          "name": "dual_price",
+          "line": 358,
+          "end_line": 399
+        },
+        {
+          "name": "descriptor",
+          "line": 401,
+          "end_line": 405
+        },
+        {
+          "name": "wrappers",
+          "line": 407,
+          "end_line": 435
+        },
+        {
+          "name": "slot",
+          "line": 437,
+          "end_line": 440
+        },
+        {
+          "name": "liquidity",
+          "line": 442,
+          "end_line": 447
+        },
+        {
+          "name": "pools",
+          "line": 449,
+          "end_line": 468
+        },
+        {
+          "name": "sequencer",
+          "line": 470,
+          "end_line": 502
+        },
+        {
+          "name": "governance",
+          "line": 504,
+          "end_line": 549
+        },
+        {
+          "name": "sources",
+          "line": 551,
+          "end_line": 566
+        },
+        {
+          "name": "ledgers",
+          "line": 568,
+          "end_line": 589
+        },
+        {
+          "name": "nft",
+          "line": 591,
+          "end_line": 610
+        },
+        {
+          "name": "route_venue",
+          "line": 612,
+          "end_line": 631
+        },
+        {
+          "name": "routes",
+          "line": 633,
+          "end_line": 691
+        },
+        {
+          "name": "unique",
+          "line": 763,
+          "end_line": 769
+        },
+        {
+          "name": "nonfinite",
+          "line": 770,
+          "end_line": 771
+        },
+        {
+          "name": "observe_price",
+          "line": 374,
+          "end_line": 383
+        },
+        {
+          "name": "has_role",
+          "line": 526,
+          "end_line": 529
+        },
+        {
+          "name": "granted",
+          "line": 530,
+          "end_line": 531
+        },
+        {
+          "name": "checked_code",
+          "line": 377,
+          "end_line": 379
+        },
+        {
+          "name": "read_policy",
+          "line": 416,
+          "end_line": 418
+        },
+        {
+          "name": "admin_state",
+          "line": 426,
+          "end_line": 430
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_observer_v10.py": {
+      "baseline_sha256": {
+        "sha256": "40b34711155a1746e0a2703961628204d2b7a3a6b58b4151ae5422866711c72c",
+        "bytes": 2290
+      },
+      "current_sha256": "40b34711155a1746e0a2703961628204d2b7a3a6b58b4151ae5422866711c72c",
+      "line_count": 36,
+      "functions": [
+        {
+          "name": "observe",
+          "line": 20,
+          "end_line": 36
+        },
+        {
+          "name": "ledgers",
+          "line": 7,
+          "end_line": 11
+        },
+        {
+          "name": "__init__",
+          "line": 12,
+          "end_line": 14
+        },
+        {
+          "name": "typed",
+          "line": 15,
+          "end_line": 18
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_observer_v11.py": {
+      "baseline_sha256": {
+        "sha256": "69d137284a5d9c96a7b1f0b1bfaead102e73606e195d259bb4bdc29da957d14b",
+        "bytes": 2384
+      },
+      "current_sha256": "69d137284a5d9c96a7b1f0b1bfaead102e73606e195d259bb4bdc29da957d14b",
+      "line_count": 38,
+      "functions": [
+        {
+          "name": "observe",
+          "line": 22,
+          "end_line": 38
+        },
+        {
+          "name": "ledgers",
+          "line": 7,
+          "end_line": 11
+        },
+        {
+          "name": "__init__",
+          "line": 12,
+          "end_line": 14
+        },
+        {
+          "name": "typed",
+          "line": 15,
+          "end_line": 20
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_observer_v12.py": {
+      "baseline_sha256": {
+        "sha256": "7af8da17d1543af31e4ed8d3c3bdd01d5ca4c7281611b0ff9ef1c6be500645c5",
+        "bytes": 3014
+      },
+      "current_sha256": "7af8da17d1543af31e4ed8d3c3bdd01d5ca4c7281611b0ff9ef1c6be500645c5",
+      "line_count": 47,
+      "functions": [
+        {
+          "name": "observe",
+          "line": 33,
+          "end_line": 47
+        },
+        {
+          "name": "typed",
+          "line": 8,
+          "end_line": 15
+        },
+        {
+          "name": "observe_chain_extension",
+          "line": 17,
+          "end_line": 30
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_observer_v13.py": {
+      "baseline_sha256": {
+        "sha256": "7275dbdef0f6a35a660355fa6ba612e07c1d95b413960544384d38c10f9a9d10",
+        "bytes": 2796
+      },
+      "current_sha256": "7275dbdef0f6a35a660355fa6ba612e07c1d95b413960544384d38c10f9a9d10",
+      "line_count": 50,
+      "functions": [
+        {
+          "name": "observe",
+          "line": 31,
+          "end_line": 50
+        },
+        {
+          "name": "typed",
+          "line": 7,
+          "end_line": 10
+        },
+        {
+          "name": "observe_chain_extension",
+          "line": 12,
+          "end_line": 28
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_observer_v14.py": {
+      "baseline_sha256": {
+        "sha256": "5dceb961ed49f353f86b8739a0084af26d24d1fffbbc633a3bed4b8b0eab8de5",
+        "bytes": 4644
+      },
+      "current_sha256": "5dceb961ed49f353f86b8739a0084af26d24d1fffbbc633a3bed4b8b0eab8de5",
+      "line_count": 64,
+      "functions": [
+        {
+          "name": "observe",
+          "line": 52,
+          "end_line": 64
+        },
+        {
+          "name": "__init__",
+          "line": 7,
+          "end_line": 8
+        },
+        {
+          "name": "typed",
+          "line": 10,
+          "end_line": 14
+        },
+        {
+          "name": "ledgers",
+          "line": 16,
+          "end_line": 36
+        },
+        {
+          "name": "observe_chain_extension",
+          "line": 38,
+          "end_line": 49
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_observer_v15.py": {
+      "baseline_sha256": {
+        "sha256": "84f65bbc40e942d9a2a74a0e314207f5a158d10c88376a12fb8fae092287d7b0",
+        "bytes": 9725
+      },
+      "current_sha256": "84f65bbc40e942d9a2a74a0e314207f5a158d10c88376a12fb8fae092287d7b0",
+      "line_count": 133,
+      "functions": [
+        {
+          "name": "observe",
+          "line": 111,
+          "end_line": 133
+        },
+        {
+          "name": "__init__",
+          "line": 12,
+          "end_line": 14
+        },
+        {
+          "name": "typed",
+          "line": 16,
+          "end_line": 23
+        },
+        {
+          "name": "execution",
+          "line": 25,
+          "end_line": 37
+        },
+        {
+          "name": "_addresses",
+          "line": 39,
+          "end_line": 47
+        },
+        {
+          "name": "primary_mint",
+          "line": 49,
+          "end_line": 104
+        },
+        {
+          "name": "confirmation",
+          "line": 106,
+          "end_line": 108
+        },
+        {
+          "name": "capture",
+          "line": 51,
+          "end_line": 103
+        },
+        {
+          "name": "uint",
+          "line": 54,
+          "end_line": 54
+        },
+        {
+          "name": "addr",
+          "line": 55,
+          "end_line": 55
+        },
+        {
+          "name": "digest",
+          "line": 56,
+          "end_line": 56
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_observer_v4.py": {
+      "baseline_sha256": {
+        "sha256": "2354c83760f490f35738e48afe62a4eb5f54b35b2e6ba0416a2505f9dddc08bf",
+        "bytes": 17044
+      },
+      "current_sha256": "2354c83760f490f35738e48afe62a4eb5f54b35b2e6ba0416a2505f9dddc08bf",
+      "line_count": 228,
+      "functions": [
+        {
+          "name": "observe",
+          "line": 210,
+          "end_line": 228
+        },
+        {
+          "name": "__init__",
+          "line": 22,
+          "end_line": 26
+        },
+        {
+          "name": "request",
+          "line": 28,
+          "end_line": 37
+        },
+        {
+          "name": "typed",
+          "line": 39,
+          "end_line": 44
+        },
+        {
+          "name": "governance",
+          "line": 46,
+          "end_line": 58
+        },
+        {
+          "name": "ledgers",
+          "line": 60,
+          "end_line": 78
+        },
+        {
+          "name": "maintenance",
+          "line": 80,
+          "end_line": 86
+        },
+        {
+          "name": "execution",
+          "line": 88,
+          "end_line": 96
+        },
+        {
+          "name": "holder_exit",
+          "line": 98,
+          "end_line": 154
+        },
+        {
+          "name": "contribution_reservation",
+          "line": 156,
+          "end_line": 177
+        },
+        {
+          "name": "confirmation",
+          "line": 179,
+          "end_line": 207
+        },
+        {
+          "name": "uint",
+          "line": 101,
+          "end_line": 101
+        },
+        {
+          "name": "flag",
+          "line": 102,
+          "end_line": 102
+        },
+        {
+          "name": "capture",
+          "line": 103,
+          "end_line": 150
+        },
+        {
+          "name": "capture",
+          "line": 157,
+          "end_line": 176
+        },
+        {
+          "name": "capture",
+          "line": 181,
+          "end_line": 206
+        },
+        {
+          "name": "uint",
+          "line": 160,
+          "end_line": 160
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_observer_v5.py": {
+      "baseline_sha256": {
+        "sha256": "fa62d042cf95f45d1a3e90fba52e9ffb14ba964c9b992b611f50d4cfd70e00cc",
+        "bytes": 23795
+      },
+      "current_sha256": "fa62d042cf95f45d1a3e90fba52e9ffb14ba964c9b992b611f50d4cfd70e00cc",
+      "line_count": 304,
+      "functions": [
+        {
+          "name": "observe",
+          "line": 286,
+          "end_line": 304
+        },
+        {
+          "name": "__init__",
+          "line": 22,
+          "end_line": 26
+        },
+        {
+          "name": "read",
+          "line": 28,
+          "end_line": 39
+        },
+        {
+          "name": "request",
+          "line": 41,
+          "end_line": 50
+        },
+        {
+          "name": "typed",
+          "line": 52,
+          "end_line": 57
+        },
+        {
+          "name": "governance",
+          "line": 59,
+          "end_line": 71
+        },
+        {
+          "name": "ledgers",
+          "line": 73,
+          "end_line": 91
+        },
+        {
+          "name": "maintenance",
+          "line": 93,
+          "end_line": 99
+        },
+        {
+          "name": "execution",
+          "line": 101,
+          "end_line": 110
+        },
+        {
+          "name": "holder_exit",
+          "line": 112,
+          "end_line": 169
+        },
+        {
+          "name": "physical_portfolio",
+          "line": 171,
+          "end_line": 198
+        },
+        {
+          "name": "portfolio",
+          "line": 200,
+          "end_line": 227
+        },
+        {
+          "name": "confirmation",
+          "line": 229,
+          "end_line": 259
+        },
+        {
+          "name": "contribution_reservation",
+          "line": 261,
+          "end_line": 282
+        },
+        {
+          "name": "uint",
+          "line": 115,
+          "end_line": 115
+        },
+        {
+          "name": "flag",
+          "line": 116,
+          "end_line": 116
+        },
+        {
+          "name": "capture",
+          "line": 117,
+          "end_line": 165
+        },
+        {
+          "name": "uint",
+          "line": 174,
+          "end_line": 174
+        },
+        {
+          "name": "capture",
+          "line": 201,
+          "end_line": 226
+        },
+        {
+          "name": "capture",
+          "line": 231,
+          "end_line": 258
+        },
+        {
+          "name": "capture",
+          "line": 262,
+          "end_line": 281
+        },
+        {
+          "name": "uint",
+          "line": 203,
+          "end_line": 203
+        },
+        {
+          "name": "uint",
+          "line": 265,
+          "end_line": 265
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_observer_v6.py": {
+      "baseline_sha256": {
+        "sha256": "d7d9905d0ce104ce28f9f955075aa388333c2dfd98faba26acd323f78ef37623",
+        "bytes": 26269
+      },
+      "current_sha256": "d7d9905d0ce104ce28f9f955075aa388333c2dfd98faba26acd323f78ef37623",
+      "line_count": 335,
+      "functions": [
+        {
+          "name": "observe",
+          "line": 301,
+          "end_line": 302
+        },
+        {
+          "name": "_observe",
+          "line": 305,
+          "end_line": 335
+        },
+        {
+          "name": "__init__",
+          "line": 22,
+          "end_line": 26
+        },
+        {
+          "name": "read",
+          "line": 28,
+          "end_line": 39
+        },
+        {
+          "name": "request",
+          "line": 41,
+          "end_line": 50
+        },
+        {
+          "name": "typed",
+          "line": 52,
+          "end_line": 57
+        },
+        {
+          "name": "governance",
+          "line": 59,
+          "end_line": 71
+        },
+        {
+          "name": "ledgers",
+          "line": 73,
+          "end_line": 91
+        },
+        {
+          "name": "maintenance",
+          "line": 93,
+          "end_line": 99
+        },
+        {
+          "name": "execution",
+          "line": 101,
+          "end_line": 110
+        },
+        {
+          "name": "holder_exit",
+          "line": 112,
+          "end_line": 169
+        },
+        {
+          "name": "physical_portfolio",
+          "line": 171,
+          "end_line": 198
+        },
+        {
+          "name": "portfolio",
+          "line": 200,
+          "end_line": 227
+        },
+        {
+          "name": "confirmation",
+          "line": 229,
+          "end_line": 259
+        },
+        {
+          "name": "protocol_policy",
+          "line": 261,
+          "end_line": 274
+        },
+        {
+          "name": "contribution_reservation",
+          "line": 276,
+          "end_line": 297
+        },
+        {
+          "name": "uint",
+          "line": 115,
+          "end_line": 115
+        },
+        {
+          "name": "flag",
+          "line": 116,
+          "end_line": 116
+        },
+        {
+          "name": "capture",
+          "line": 117,
+          "end_line": 165
+        },
+        {
+          "name": "uint",
+          "line": 174,
+          "end_line": 174
+        },
+        {
+          "name": "capture",
+          "line": 201,
+          "end_line": 226
+        },
+        {
+          "name": "capture",
+          "line": 231,
+          "end_line": 258
+        },
+        {
+          "name": "capture",
+          "line": 263,
+          "end_line": 269
+        },
+        {
+          "name": "capture",
+          "line": 277,
+          "end_line": 296
+        },
+        {
+          "name": "uint",
+          "line": 203,
+          "end_line": 203
+        },
+        {
+          "name": "uint",
+          "line": 280,
+          "end_line": 280
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_observer_v7.py": {
+      "baseline_sha256": {
+        "sha256": "0f485bac1b84944596fece409cbf3ce6416c43bcde29db7711b7e9856807137c",
+        "bytes": 1640
+      },
+      "current_sha256": "0f485bac1b84944596fece409cbf3ce6416c43bcde29db7711b7e9856807137c",
+      "line_count": 29,
+      "functions": [
+        {
+          "name": "observe",
+          "line": 13,
+          "end_line": 29
+        },
+        {
+          "name": "typed",
+          "line": 7,
+          "end_line": 10
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_observer_v8.py": {
+      "baseline_sha256": {
+        "sha256": "10352865326afc0ed08de5830dd923b1dc9df7caab296cba99ae885669f7c784",
+        "bytes": 1688
+      },
+      "current_sha256": "10352865326afc0ed08de5830dd923b1dc9df7caab296cba99ae885669f7c784",
+      "line_count": 29,
+      "functions": [
+        {
+          "name": "observe",
+          "line": 13,
+          "end_line": 29
+        },
+        {
+          "name": "typed",
+          "line": 7,
+          "end_line": 10
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_observer_v9.py": {
+      "baseline_sha256": {
+        "sha256": "b23475cd26139801c6bd633e91e3a683fe588e17429f1b47931736ec3c1832b4",
+        "bytes": 1867
+      },
+      "current_sha256": "b23475cd26139801c6bd633e91e3a683fe588e17429f1b47931736ec3c1832b4",
+      "line_count": 30,
+      "functions": [
+        {
+          "name": "observe",
+          "line": 14,
+          "end_line": 30
+        },
+        {
+          "name": "__init__",
+          "line": 6,
+          "end_line": 8
+        },
+        {
+          "name": "typed",
+          "line": 9,
+          "end_line": 12
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_v10.py": {
+      "baseline_sha256": {
+        "sha256": "82894984f291864973c358e9dd08374910261f3f0cc641b0c73d2d69256b45b8",
+        "bytes": 1799
+      },
+      "current_sha256": "82894984f291864973c358e9dd08374910261f3f0cc641b0c73d2d69256b45b8",
+      "line_count": 28,
+      "functions": [
+        {
+          "name": "expected_bindings",
+          "line": 12,
+          "end_line": 20
+        },
+        {
+          "name": "validate",
+          "line": 21,
+          "end_line": 25
+        },
+        {
+          "name": "validate_tokens",
+          "line": 27,
+          "end_line": 28
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_v11.py": {
+      "baseline_sha256": {
+        "sha256": "4d0df8fe0dfd623b1dd5fac540e33552c4dce4d529991db51676f610abc16473",
+        "bytes": 2758
+      },
+      "current_sha256": "4d0df8fe0dfd623b1dd5fac540e33552c4dce4d529991db51676f610abc16473",
+      "line_count": 45,
+      "functions": [
+        {
+          "name": "expected_bindings",
+          "line": 17,
+          "end_line": 36
+        },
+        {
+          "name": "validate",
+          "line": 37,
+          "end_line": 42
+        },
+        {
+          "name": "validate_tokens",
+          "line": 44,
+          "end_line": 45
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_v12.py": {
+      "baseline_sha256": {
+        "sha256": "344f93fd0cf34f7bc70a0d387ec81d10c6b2ee266e805b797dd00c693cba400b",
+        "bytes": 3199
+      },
+      "current_sha256": "344f93fd0cf34f7bc70a0d387ec81d10c6b2ee266e805b797dd00c693cba400b",
+      "line_count": 53,
+      "functions": [
+        {
+          "name": "precheck_chain",
+          "line": 16,
+          "end_line": 16
+        },
+        {
+          "name": "expected_bindings",
+          "line": 19,
+          "end_line": 25
+        },
+        {
+          "name": "factory_code",
+          "line": 28,
+          "end_line": 45
+        },
+        {
+          "name": "validate",
+          "line": 48,
+          "end_line": 53
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_v13.py": {
+      "baseline_sha256": {
+        "sha256": "cf4d0e76c7583cebab8234f46c722dde4d4e25fa43d49afde2f8add65cdd7b2f",
+        "bytes": 4137
+      },
+      "current_sha256": "cf4d0e76c7583cebab8234f46c722dde4d4e25fa43d49afde2f8add65cdd7b2f",
+      "line_count": 74,
+      "functions": [
+        {
+          "name": "precheck_chain",
+          "line": 25,
+          "end_line": 26
+        },
+        {
+          "name": "expected_bindings",
+          "line": 29,
+          "end_line": 40
+        },
+        {
+          "name": "factory_code",
+          "line": 43,
+          "end_line": 66
+        },
+        {
+          "name": "validate",
+          "line": 69,
+          "end_line": 74
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_v14.py": {
+      "baseline_sha256": {
+        "sha256": "138b2c931d51ec58ca8878787b2b4b13d5c443119652869b92c7181a3245a5ec",
+        "bytes": 4731
+      },
+      "current_sha256": "138b2c931d51ec58ca8878787b2b4b13d5c443119652869b92c7181a3245a5ec",
+      "line_count": 70,
+      "functions": [
+        {
+          "name": "precheck_chain",
+          "line": 18,
+          "end_line": 18
+        },
+        {
+          "name": "expected_bindings",
+          "line": 21,
+          "end_line": 36
+        },
+        {
+          "name": "factory_code",
+          "line": 39,
+          "end_line": 59
+        },
+        {
+          "name": "validate_tokens",
+          "line": 62,
+          "end_line": 63
+        },
+        {
+          "name": "validate",
+          "line": 66,
+          "end_line": 70
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_v15.py": {
+      "baseline_sha256": {
+        "sha256": "5fcd494cd0640e8eae1a30d943ab6375751ee5a6ae37109740e54e5ee39f332d",
+        "bytes": 19992
+      },
+      "current_sha256": "5fcd494cd0640e8eae1a30d943ab6375751ee5a6ae37109740e54e5ee39f332d",
+      "line_count": 249,
+      "functions": [
+        {
+          "name": "expected_bindings",
+          "line": 33,
+          "end_line": 51
+        },
+        {
+          "name": "execution_expected",
+          "line": 54,
+          "end_line": 57
+        },
+        {
+          "name": "_execution",
+          "line": 60,
+          "end_line": 74
+        },
+        {
+          "name": "_config",
+          "line": 77,
+          "end_line": 92
+        },
+        {
+          "name": "_randomness",
+          "line": 95,
+          "end_line": 116
+        },
+        {
+          "name": "configuration_hashes",
+          "line": 119,
+          "end_line": 127
+        },
+        {
+          "name": "mint_integration",
+          "line": 130,
+          "end_line": 232
+        },
+        {
+          "name": "validate",
+          "line": 235,
+          "end_line": 249
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_v2.py": {
+      "baseline_sha256": {
+        "sha256": "109531b48b9c8a85166c9585351dc40b4b534ec5eea14c5b81d895c1b2209889",
+        "bytes": 102622
+      },
+      "current_sha256": "109531b48b9c8a85166c9585351dc40b4b534ec5eea14c5b81d895c1b2209889",
+      "line_count": 1298,
+      "functions": [
+        {
+          "name": "identity",
+          "line": 105,
+          "end_line": 108
+        },
+        {
+          "name": "_obj",
+          "line": 111,
+          "end_line": 112
+        },
+        {
+          "name": "_numeric",
+          "line": 115,
+          "end_line": 117
+        },
+        {
+          "name": "configuration_hash",
+          "line": 120,
+          "end_line": 125
+        },
+        {
+          "name": "pool_configuration",
+          "line": 128,
+          "end_line": 135
+        },
+        {
+          "name": "governance_configuration",
+          "line": 138,
+          "end_line": 145
+        },
+        {
+          "name": "fee_intake_profile",
+          "line": 148,
+          "end_line": 152
+        },
+        {
+          "name": "expected_bindings",
+          "line": 155,
+          "end_line": 245
+        },
+        {
+          "name": "_consistent_slot0",
+          "line": 248,
+          "end_line": 254
+        },
+        {
+          "name": "_equal",
+          "line": 315,
+          "end_line": 326
+        },
+        {
+          "name": "_bindings",
+          "line": 329,
+          "end_line": 337
+        },
+        {
+          "name": "_runtime",
+          "line": 340,
+          "end_line": 346
+        },
+        {
+          "name": "_bound_proof",
+          "line": 349,
+          "end_line": 362
+        },
+        {
+          "name": "_policies",
+          "line": 365,
+          "end_line": 394
+        },
+        {
+          "name": "_chain",
+          "line": 397,
+          "end_line": 493
+        },
+        {
+          "name": "_dependencies",
+          "line": 496,
+          "end_line": 523
+        },
+        {
+          "name": "_dual_price",
+          "line": 526,
+          "end_line": 584
+        },
+        {
+          "name": "_tokens",
+          "line": 587,
+          "end_line": 638
+        },
+        {
+          "name": "_pools",
+          "line": 641,
+          "end_line": 717
+        },
+        {
+          "name": "_routes",
+          "line": 720,
+          "end_line": 918
+        },
+        {
+          "name": "_obj_list",
+          "line": 921,
+          "end_line": 922
+        },
+        {
+          "name": "_wrapper",
+          "line": 925,
+          "end_line": 956
+        },
+        {
+          "name": "_authority",
+          "line": 959,
+          "end_line": 997
+        },
+        {
+          "name": "_canonical",
+          "line": 1000,
+          "end_line": 1033
+        },
+        {
+          "name": "_ledger_assets",
+          "line": 1036,
+          "end_line": 1070
+        },
+        {
+          "name": "_nft",
+          "line": 1073,
+          "end_line": 1132
+        },
+        {
+          "name": "_services",
+          "line": 1135,
+          "end_line": 1166
+        },
+        {
+          "name": "_mint_integration",
+          "line": 1169,
+          "end_line": 1218
+        },
+        {
+          "name": "validate",
+          "line": 1221,
+          "end_line": 1298
+        },
+        {
+          "name": "m",
+          "line": 166,
+          "end_line": 166
+        },
+        {
+          "name": "h",
+          "line": 167,
+          "end_line": 167
+        },
+        {
+          "name": "d",
+          "line": 168,
+          "end_line": 168
+        },
+        {
+          "name": "__init__",
+          "line": 258,
+          "end_line": 260
+        },
+        {
+          "name": "check",
+          "line": 262,
+          "end_line": 266
+        },
+        {
+          "name": "obj",
+          "line": 268,
+          "end_line": 270
+        },
+        {
+          "name": "items",
+          "line": 272,
+          "end_line": 274
+        },
+        {
+          "name": "num",
+          "line": 276,
+          "end_line": 280
+        },
+        {
+          "name": "hex",
+          "line": 282,
+          "end_line": 287
+        },
+        {
+          "name": "text",
+          "line": 289,
+          "end_line": 292
+        },
+        {
+          "name": "proof",
+          "line": 294,
+          "end_line": 308
+        },
+        {
+          "name": "keys",
+          "line": 310,
+          "end_line": 312
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_v4.py": {
+      "baseline_sha256": {
+        "sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c",
+        "bytes": 65998
+      },
+      "current_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c",
+      "line_count": 734,
+      "functions": [
+        {
+          "name": "expected_bindings",
+          "line": 32,
+          "end_line": 64
+        },
+        {
+          "name": "execution_expected",
+          "line": 67,
+          "end_line": 77
+        },
+        {
+          "name": "expected_position_ticks",
+          "line": 80,
+          "end_line": 105
+        },
+        {
+          "name": "verify_position_identity",
+          "line": 108,
+          "end_line": 126
+        },
+        {
+          "name": "_anchor",
+          "line": 129,
+          "end_line": 148
+        },
+        {
+          "name": "_contracts",
+          "line": 151,
+          "end_line": 168
+        },
+        {
+          "name": "_pools",
+          "line": 171,
+          "end_line": 227
+        },
+        {
+          "name": "_contribution_reservation",
+          "line": 230,
+          "end_line": 300
+        },
+        {
+          "name": "_execution",
+          "line": 303,
+          "end_line": 316
+        },
+        {
+          "name": "_holder_exit",
+          "line": 319,
+          "end_line": 438
+        },
+        {
+          "name": "_safe",
+          "line": 441,
+          "end_line": 444
+        },
+        {
+          "name": "confirmation_controls_allow",
+          "line": 447,
+          "end_line": 453
+        },
+        {
+          "name": "_confirmation",
+          "line": 456,
+          "end_line": 554
+        },
+        {
+          "name": "validate",
+          "line": 557,
+          "end_line": 617
+        },
+        {
+          "name": "_release_records",
+          "line": 620,
+          "end_line": 662
+        },
+        {
+          "name": "governance_configuration",
+          "line": 665,
+          "end_line": 668
+        },
+        {
+          "name": "_authority",
+          "line": 671,
+          "end_line": 685
+        },
+        {
+          "name": "_nft",
+          "line": 688,
+          "end_line": 734
+        },
+        {
+          "name": "tick_at",
+          "line": 96,
+          "end_line": 102
+        },
+        {
+          "name": "status",
+          "line": 232,
+          "end_line": 234
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_v5.py": {
+      "baseline_sha256": {
+        "sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153",
+        "bytes": 49466
+      },
+      "current_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153",
+      "line_count": 551,
+      "functions": [
+        {
+          "name": "expected_bindings",
+          "line": 37,
+          "end_line": 61
+        },
+        {
+          "name": "execution_expected",
+          "line": 64,
+          "end_line": 69
+        },
+        {
+          "name": "_execution",
+          "line": 72,
+          "end_line": 85
+        },
+        {
+          "name": "physical_amounts",
+          "line": 88,
+          "end_line": 98
+        },
+        {
+          "name": "threshold_side",
+          "line": 101,
+          "end_line": 122
+        },
+        {
+          "name": "portfolio_fingerprints",
+          "line": 125,
+          "end_line": 136
+        },
+        {
+          "name": "portfolio_control_fingerprint",
+          "line": 139,
+          "end_line": 146
+        },
+        {
+          "name": "_portfolio",
+          "line": 149,
+          "end_line": 243
+        },
+        {
+          "name": "_confirmation",
+          "line": 246,
+          "end_line": 304
+        },
+        {
+          "name": "_contracts",
+          "line": 306,
+          "end_line": 323
+        },
+        {
+          "name": "_holder_exit",
+          "line": 325,
+          "end_line": 444
+        },
+        {
+          "name": "_release_records",
+          "line": 446,
+          "end_line": 488
+        },
+        {
+          "name": "validate",
+          "line": 490,
+          "end_line": 551
+        },
+        {
+          "name": "ratio",
+          "line": 113,
+          "end_line": 115
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_v6.py": {
+      "baseline_sha256": {
+        "sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f",
+        "bytes": 77169
+      },
+      "current_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f",
+      "line_count": 836,
+      "functions": [
+        {
+          "name": "expected_bindings",
+          "line": 37,
+          "end_line": 73
+        },
+        {
+          "name": "execution_expected",
+          "line": 76,
+          "end_line": 81
+        },
+        {
+          "name": "_execution",
+          "line": 84,
+          "end_line": 97
+        },
+        {
+          "name": "physical_amounts",
+          "line": 100,
+          "end_line": 103
+        },
+        {
+          "name": "threshold_side",
+          "line": 106,
+          "end_line": 127
+        },
+        {
+          "name": "portfolio_fingerprints",
+          "line": 130,
+          "end_line": 141
+        },
+        {
+          "name": "portfolio_control_fingerprint",
+          "line": 144,
+          "end_line": 152
+        },
+        {
+          "name": "_portfolio",
+          "line": 155,
+          "end_line": 254
+        },
+        {
+          "name": "_confirmation",
+          "line": 257,
+          "end_line": 315
+        },
+        {
+          "name": "_contracts",
+          "line": 317,
+          "end_line": 334
+        },
+        {
+          "name": "_holder_exit",
+          "line": 336,
+          "end_line": 455
+        },
+        {
+          "name": "_release_records",
+          "line": 457,
+          "end_line": 502
+        },
+        {
+          "name": "validate",
+          "line": 504,
+          "end_line": 507
+        },
+        {
+          "name": "_validate",
+          "line": 510,
+          "end_line": 582
+        },
+        {
+          "name": "_protocol_policy",
+          "line": 585,
+          "end_line": 649
+        },
+        {
+          "name": "expected_position_ticks",
+          "line": 652,
+          "end_line": 677
+        },
+        {
+          "name": "_pools",
+          "line": 679,
+          "end_line": 735
+        },
+        {
+          "name": "_nft",
+          "line": 737,
+          "end_line": 803
+        },
+        {
+          "name": "_policies",
+          "line": 805,
+          "end_line": 836
+        },
+        {
+          "name": "ratio",
+          "line": 118,
+          "end_line": 120
+        },
+        {
+          "name": "mint_read",
+          "line": 623,
+          "end_line": 634
+        },
+        {
+          "name": "tick_at",
+          "line": 668,
+          "end_line": 674
+        },
+        {
+          "name": "read",
+          "line": 609,
+          "end_line": 616
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_v7.py": {
+      "baseline_sha256": {
+        "sha256": "044926fd357e631b0500a57ffa4111cefddc15b31e23d18d1c5bbadbce2abe01",
+        "bytes": 2037
+      },
+      "current_sha256": "044926fd357e631b0500a57ffa4111cefddc15b31e23d18d1c5bbadbce2abe01",
+      "line_count": 42,
+      "functions": [
+        {
+          "name": "expected_bindings",
+          "line": 17,
+          "end_line": 23
+        },
+        {
+          "name": "validate_routes",
+          "line": 26,
+          "end_line": 36
+        },
+        {
+          "name": "validate",
+          "line": 39,
+          "end_line": 42
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_v8.py": {
+      "baseline_sha256": {
+        "sha256": "345bb808c88d6bfd187ffd1ab00859c04ef6430fa0e36cf23a699414523f53c3",
+        "bytes": 1183
+      },
+      "current_sha256": "345bb808c88d6bfd187ffd1ab00859c04ef6430fa0e36cf23a699414523f53c3",
+      "line_count": 24,
+      "functions": [
+        {
+          "name": "expected_bindings",
+          "line": 16,
+          "end_line": 19
+        },
+        {
+          "name": "validate",
+          "line": 21,
+          "end_line": 24
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/production_v9.py": {
+      "baseline_sha256": {
+        "sha256": "e9ff075f489a0d4c0ea1d9061aa52f333fd6cc9e75d191f3caa2fd0c9bee9fa1",
+        "bytes": 2932
+      },
+      "current_sha256": "e9ff075f489a0d4c0ea1d9061aa52f333fd6cc9e75d191f3caa2fd0c9bee9fa1",
+      "line_count": 51,
+      "functions": [
+        {
+          "name": "expected_bindings",
+          "line": 14,
+          "end_line": 20
+        },
+        {
+          "name": "validate_routes",
+          "line": 22,
+          "end_line": 26
+        },
+        {
+          "name": "validate",
+          "line": 28,
+          "end_line": 31
+        },
+        {
+          "name": "raw_royalty_assets",
+          "line": 33,
+          "end_line": 48
+        },
+        {
+          "name": "validate_tokens",
+          "line": 50,
+          "end_line": 51
+        },
+        {
+          "name": "rows",
+          "line": 35,
+          "end_line": 35
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/protocol_policy.py": {
+      "baseline_sha256": {
+        "sha256": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3",
+        "bytes": 5907
+      },
+      "current_sha256": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3",
+      "line_count": 85,
+      "functions": [
+        {
+          "name": "observe",
+          "line": 21,
+          "end_line": 58
+        },
+        {
+          "name": "observe_mint",
+          "line": 61,
+          "end_line": 85
+        },
+        {
+          "name": "words",
+          "line": 25,
+          "end_line": 29
+        },
+        {
+          "name": "words",
+          "line": 64,
+          "end_line": 68
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/range_policy.py": {
+      "baseline_sha256": {
+        "sha256": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171",
+        "bytes": 5859
+      },
+      "current_sha256": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171",
+      "line_count": 110,
+      "functions": [
+        {
+          "name": "_number",
+          "line": 11,
+          "end_line": 14
+        },
+        {
+          "name": "_hash",
+          "line": 17,
+          "end_line": 24
+        },
+        {
+          "name": "intended",
+          "line": 27,
+          "end_line": 40
+        },
+        {
+          "name": "decode",
+          "line": 43,
+          "end_line": 61
+        },
+        {
+          "name": "observe",
+          "line": 64,
+          "end_line": 73
+        },
+        {
+          "name": "fingerprint",
+          "line": 76,
+          "end_line": 80
+        },
+        {
+          "name": "verify",
+          "line": 83,
+          "end_line": 110
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/rebalance_confirmation.py": {
+      "baseline_sha256": {
+        "sha256": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331",
+        "bytes": 17194
+      },
+      "current_sha256": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331",
+      "line_count": 236,
+      "functions": [
+        {
+          "name": "observe",
+          "line": 6,
+          "end_line": 104
+        },
+        {
+          "name": "_observe_portfolio",
+          "line": 107,
+          "end_line": 236
+        },
+        {
+          "name": "words",
+          "line": 9,
+          "end_line": 18
+        },
+        {
+          "name": "scalar",
+          "line": 19,
+          "end_line": 19
+        },
+        {
+          "name": "binding",
+          "line": 20,
+          "end_line": 22
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/review_bundle.py": {
+      "baseline_sha256": {
+        "sha256": "bdf796b7e7eb0cf3ac41dfae55be766c0d9873720b2c8ee92515c5ca342a366c",
+        "bytes": 32713
+      },
+      "current_sha256": "bdf796b7e7eb0cf3ac41dfae55be766c0d9873720b2c8ee92515c5ca342a366c",
+      "line_count": 577,
+      "functions": [
+        {
+          "name": "require",
+          "line": 38,
+          "end_line": 40
+        },
+        {
+          "name": "digest",
+          "line": 43,
+          "end_line": 44
+        },
+        {
+          "name": "canonical",
+          "line": 47,
+          "end_line": 48
+        },
+        {
+          "name": "path_name",
+          "line": 51,
+          "end_line": 61
+        },
+        {
+          "name": "admitted",
+          "line": 64,
+          "end_line": 88
+        },
+        {
+          "name": "git",
+          "line": 91,
+          "end_line": 99
+        },
+        {
+          "name": "frozen_files",
+          "line": 102,
+          "end_line": 147
+        },
+        {
+          "name": "dependency_record",
+          "line": 150,
+          "end_line": 185
+        },
+        {
+          "name": "_handoff_v1",
+          "line": 188,
+          "end_line": 242
+        },
+        {
+          "name": "_handoff_v2",
+          "line": 245,
+          "end_line": 312
+        },
+        {
+          "name": "_handoff_v3",
+          "line": 315,
+          "end_line": 396
+        },
+        {
+          "name": "handoff",
+          "line": 399,
+          "end_line": 407
+        },
+        {
+          "name": "pack",
+          "line": 410,
+          "end_line": 421
+        },
+        {
+          "name": "zip_bytes",
+          "line": 424,
+          "end_line": 435
+        },
+        {
+          "name": "strict_json",
+          "line": 438,
+          "end_line": 447
+        },
+        {
+          "name": "verify",
+          "line": 450,
+          "end_line": 521
+        },
+        {
+          "name": "publish",
+          "line": 524,
+          "end_line": 543
+        },
+        {
+          "name": "main",
+          "line": 546,
+          "end_line": 573
+        },
+        {
+          "name": "unique",
+          "line": 439,
+          "end_line": 444
+        },
+        {
+          "name": "reject_constant",
+          "line": 445,
+          "end_line": 446
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/rpc.py": {
+      "baseline_sha256": {
+        "sha256": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee",
+        "bytes": 9034
+      },
+      "current_sha256": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee",
+      "line_count": 173,
+      "functions": [
+        {
+          "name": "_unique_object",
+          "line": 19,
+          "end_line": 25
+        },
+        {
+          "name": "_reject_constant",
+          "line": 28,
+          "end_line": 29
+        },
+        {
+          "name": "_finite_float",
+          "line": 32,
+          "end_line": 36
+        },
+        {
+          "name": "_chain_quantity",
+          "line": 39,
+          "end_line": 42
+        },
+        {
+          "name": "redirect_request",
+          "line": 45,
+          "end_line": 47
+        },
+        {
+          "name": "__init__",
+          "line": 56,
+          "end_line": 75
+        },
+        {
+          "name": "active_url",
+          "line": 78,
+          "end_line": 78
+        },
+        {
+          "name": "_read_http",
+          "line": 80,
+          "end_line": 111
+        },
+        {
+          "name": "_post",
+          "line": 113,
+          "end_line": 147
+        },
+        {
+          "name": "call",
+          "line": 149,
+          "end_line": 168
+        },
+        {
+          "name": "eth_call",
+          "line": 170,
+          "end_line": 173
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Read-only methods, endpoint snapshot, chain identity, retries, redirects, parser and byte/time budgets."
+    },
+    "zzz_ops/state.py": {
+      "baseline_sha256": {
+        "sha256": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4",
+        "bytes": 3006
+      },
+      "current_sha256": "6f2ce42cc92783a60a554fbe1e7a5b3b5fba2543562e2ebfb64766f6b5c09c9b",
+      "line_count": 79,
+      "functions": [
+        {
+          "name": "integer",
+          "line": 11,
+          "end_line": 19
+        },
+        {
+          "name": "_unique_object",
+          "line": 21,
+          "end_line": 27
+        },
+        {
+          "name": "_reject_constant",
+          "line": 29,
+          "end_line": 30
+        },
+        {
+          "name": "_finite_float",
+          "line": 32,
+          "end_line": 36
+        },
+        {
+          "name": "read_json",
+          "line": 38,
+          "end_line": 48
+        },
+        {
+          "name": "atomic_json",
+          "line": 50,
+          "end_line": 68
+        },
+        {
+          "name": "process_lock",
+          "line": 71,
+          "end_line": 79
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Strict JSON and filesystem presence; atomic replacement and Unix advisory-lock boundaries."
+    },
+    "zzz_ops/tick_math.py": {
+      "baseline_sha256": {
+        "sha256": "5224a360f3fecbc9c1d42094863e74771cee8036a60d8b81647d9e6d45e0c70a",
+        "bytes": 4949
+      },
+      "current_sha256": "5224a360f3fecbc9c1d42094863e74771cee8036a60d8b81647d9e6d45e0c70a",
+      "line_count": 107,
+      "functions": [
+        {
+          "name": "sqrt_price_at_tick",
+          "line": 61,
+          "end_line": 72
+        },
+        {
+          "name": "validate_slot0",
+          "line": 75,
+          "end_line": 94
+        },
+        {
+          "name": "decode_slot0",
+          "line": 97,
+          "end_line": 107
+        }
+      ],
+      "review_level": "inventory_only_not_current_review",
+      "review": null
+    },
+    "zzz_ops/work_budget.py": {
+      "baseline_sha256": {
+        "sha256": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+        "bytes": 3633
+      },
+      "current_sha256": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+      "line_count": 116,
+      "functions": [
+        {
+          "name": "checkpoint",
+          "line": 53,
+          "end_line": 55
+        },
+        {
+          "name": "consume",
+          "line": 58,
+          "end_line": 61
+        },
+        {
+          "name": "expire_at",
+          "line": 64,
+          "end_line": 67
+        },
+        {
+          "name": "timeout",
+          "line": 70,
+          "end_line": 72
+        },
+        {
+          "name": "request_scope",
+          "line": 76,
+          "end_line": 86
+        },
+        {
+          "name": "bounded_request",
+          "line": 89,
+          "end_line": 94
+        },
+        {
+          "name": "__init__",
+          "line": 12,
+          "end_line": 20
+        },
+        {
+          "name": "check",
+          "line": 22,
+          "end_line": 28
+        },
+        {
+          "name": "consume",
+          "line": 30,
+          "end_line": 35
+        },
+        {
+          "name": "expire_at",
+          "line": 37,
+          "end_line": 47
+        },
+        {
+          "name": "bounded",
+          "line": 91,
+          "end_line": 93
+        },
+        {
+          "name": "__init__",
+          "line": 99,
+          "end_line": 100
+        },
+        {
+          "name": "call",
+          "line": 102,
+          "end_line": 106
+        },
+        {
+          "name": "eth_call",
+          "line": 108,
+          "end_line": 113
+        },
+        {
+          "name": "__getattr__",
+          "line": 115,
+          "end_line": 116
+        }
+      ],
+      "review_level": "full_file_read_current_static",
+      "review": "Nested budget propagation, expiry, RPC/post counts and terminal WorkLimit."
+    }
+  },
+  "counts": {
+    "inventoried_python_files": 114,
+    "full_file_read_static": 21,
+    "selected_family_static": 14
+  },
+  "scope_notice": "AST inventory enumerates functions but is not execution or security coverage. Only named current review families were inspected; other files retain historical source-scoped evidence and remain outside this workstream current detailed review. No whole-project security guarantee follows.",
+  "finding": {
+    "id": "BE-01",
+    "severity": "low_operational_preservation",
+    "path": "zzz_ops/state.py",
+    "problem": "exists() classified a dangling entry or suppressed filesystem access error as absence, allowing generic configuration/dry-run journal fresh defaults. Existing live keeper state/runtime and nonce admission already prevent a demonstrated signing bypass.",
+    "fix": "lstat admits only FileNotFoundError as absence; present targets must parse and other filesystem failures propagate. Valid readable generic config links remain compatible; live symlink restrictions unchanged.",
+    "evidence": [
+      "backend-state-baseline.json",
+      "backend-state-postfix.json",
+      "backend-state-runner-inventory.json"
+    ],
+    "tests": "3 new baseline regressions reproduced; 5 new methods pass after fix; 2 real-symlink methods explicitly skipped on Windows privilege1314. No unchanged methods rerun.",
+    "persistent_state_change": false
+  },
+  "changed_owned_files": [
+    "zzz_ops/state.py",
+    "tests_python/test_state_presence.py",
+    "scripts/run-keeper-tests.py"
+  ],
+  "accepted_or_unqualified_boundaries": [
+    "Read-only RPC/header trust and operator-maintained log completeness are not cryptographic completeness proofs.",
+    "Exact-unit lifetime history and immutable checkpoints retain bounded workloads; archival/checkpoint operating qualification remains open.",
+    "Full keeper requires reviewed Linux/systemd/locking/keystore setup and actual outage/recovery operation; none started here.",
+    "Manual B/C/D emits gas separately from calldata as documented; future inclusion/provider/gas acceptance remains open.",
+    "Manual preparers support empty-code governance EOAs only; Safe/delegated EOA envelopes require separate reviewed preparation.",
+    "Ordinary keeper compounding threshold policy is service-enforced in addition to independent on-chain guards; it is not immutable enforcement of all service behavior.",
+    "Real independent feeds/routes/depth/VRF/OpenSea, complete target fees, maximum state and independent audit remain release gates.",
+    "Historical compatibility modules/readers are not obsolete merely because current fresh configuration excludes their profile."
+  ],
+  "no_environment_change": [
+    "existing Anvil/chains/journals",
+    "signer/public null configuration",
+    "site/services",
+    "user-paused heartbeat",
+    "public RPC/transaction/sealing"
+  ]
+}

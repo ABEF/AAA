@@ -1,5 +1,11 @@
 # PoPL current project context
 
+The [16 November whole-project audit](reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
+state-file and website-profile gaps and reconciles current guidance. Production
+Solidity, economic rights, safeguards, gas defaults and existing environments
+are unchanged. Focused new checks and exact historical source reuse are recorded
+separately; this is internal review, not independent release approval.
+
 The [isolated metadata2 rehearsal](reports/metadata2-rehearsal-20261116/REVIEW.md)
 verifies the five changed normal constructors, three bindings and twelve actual
 instances on a new owned loopback chain. All 20 cold metadata cases pass; worst
@@ -334,7 +340,7 @@ Fresh7 raw earnings replay and explicit exact-unit checkpoint2 are implemented;
 lifetime archival/workload/recovery qualification remains open. Old checkpoint1 is6-only. Source publication
 changes no chain/site/service/journal/signer; heartbeat remains user-paused.
 
-Frozen review exports default to instruction schema3; schema1/2 instructions and
+Frozen review exports default to instruction schema4; schema1/2/3 instructions and
 archives remain byte-identical and explicitly historical. This is separate from
 contract inventory17/mint2/V10 and does not qualify a release.
 [Review package](docs/FROZEN_REVIEW_BUNDLE.md).

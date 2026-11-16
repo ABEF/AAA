@@ -1,5 +1,11 @@
 # Work handoff
 
+The [16 November whole-project audit](../reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
+state-file and website-profile gaps and reconciles current guidance. Production
+Solidity, economic rights, safeguards, gas defaults and existing environments
+are unchanged. Focused new checks and exact historical source reuse are recorded
+separately; this is internal review, not independent release approval.
+
 The [isolated metadata2 rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md)
 verifies the five changed normal constructors, three bindings and twelve actual
 instances on a new owned loopback chain. All 20 cold metadata cases pass; worst
@@ -409,8 +415,8 @@ not a price quote or a commitment to every governed setting. Re-read IDs after
 replacement, refresh reviews after settings/reorg/expiry and recover the same
 pending hash before retry. See [focused review](../reports/consolidation-races-20261106/REVIEW.md).
 
-Frozen review exports now default to instruction schema3 with unchanged original
-schema1/2 archive bytes. Use [the current package procedure](FROZEN_REVIEW_BUNDLE.md)
+Frozen review exports now default to instruction schema4 with unchanged original
+schema1/2/3 archive bytes. Use [the current package procedure](FROZEN_REVIEW_BUNDLE.md)
 and the exact committed source; archive format is not a deployment/profile update.
 
 ## Verification and remaining gates

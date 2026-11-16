@@ -170,6 +170,11 @@ def validate(raw):
     if result['inputs']['seadrop'] not in (None,SEADROP) or result['inputs']['seadrop_codehash'] not in (None,SEADROP_HASH):fail('seadrop_profile_mismatch')
     addresses=result['planned_addresses'];inputs=result['inputs']
     if inputs['governance'] is not None and inputs['governance']==addresses['access']:fail('governance_is_controller')
+    # These fixed protocol/dependency implementations are not governance wallet
+    # executors. A known collision cannot become a usable operator after seal.
+    # Unknown wallet addresses still require the separate live authority review.
+    if inputs['governance'] is not None and inputs['governance'] in seen:fail('governance_is_protocol_address')
+    if inputs['governance'] in set(NATIVE.values())|{SEADROP}:fail('governance_is_external_dependency')
     if inputs['mint_recipient'] is not None and inputs['mint_recipient'] in {addresses[k] for k in ('access','protocol_policy','vault','nft','fees','rewards','migration')} - {None}:fail('excluded_mint_recipient')
     if seen.intersection(NATIVE.values()) or SEADROP in seen:fail('planned_address_is_external_dependency')
     return result

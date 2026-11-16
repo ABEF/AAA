@@ -1,0 +1,16 @@
+{
+  "repository": "ABEF/AAA-website",
+  "branch": "main",
+  "commit": "f7dd399a4e5b5baaecd1d430a1b514f27e64b840",
+  "verified_remote_main": "f7dd399a4e5b5baaecd1d430a1b514f27e64b840",
+  "paths": [
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md",
+    "README.md",
+    "deployment-transactions.js",
+    "package.json",
+    "tests/deployment-signing-profile.test.mjs"
+  ],
+  "website_deployed": false,
+  "shared_signer_and_public_configs_unchanged": true
+}

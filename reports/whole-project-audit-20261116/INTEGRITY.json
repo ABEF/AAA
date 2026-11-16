@@ -1,0 +1,186 @@
+{
+  "schema": 1,
+  "production_approved": false,
+  "production_sources_unchanged": 61,
+  "protected_dirty_files_unchanged": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "baseline_tracked_file_checks": {
+    "contracts": 6931,
+    "website": 5891
+  },
+  "all_other_baseline_tracked_files_unchanged": true,
+  "changed_tracked_files": {
+    "contracts": [
+      {
+        "path": "AGENTS.md",
+        "before": "2790906d9444ae278dc5a979d964b2f5739b1953f5372782d651e17f0087c348",
+        "after": "14e17d3b5d994dffe99ce6df5727aec0d3206fcf27f5b333edd7cfe95be551c3"
+      },
+      {
+        "path": "PROJECT_CONTEXT.md",
+        "before": "ae7a579472d7ab0e18d8d0fb180958c2f9f5e0dcc5f3f9419ef10a49f7c5d6f4",
+        "after": "b7ff31d3de5b186f02e0e88c03f648e606c4b9b630d6f3fbe250bf1b50864905"
+      },
+      {
+        "path": "README.md",
+        "before": "f5fca93061284ef4bc4af3f403956e29b771ef5c0ef807c7794ab992767bf808",
+        "after": "6849e26b10264a8e4eac61956c2f49b1e42a1f20b3b2ceb04d0cd4bd8e86f71c"
+      },
+      {
+        "path": "TODO.md",
+        "before": "c73f799c9b49bbab952a36558e8f931a01a894061ea7835b2651517bc6d25bd9",
+        "after": "b0a7636f2a4f56871f8570916a5f45c394adc6faca4db149221b2e33094531e0"
+      },
+      {
+        "path": "docs/ACCESS_PERMISSIONS.md",
+        "before": "c00b0f7edaad148bf9104c84a97ccf67b58a68102bb6e4be7ea0d2b9f48b1f3d",
+        "after": "6820d838c80c306123b02e39854aa38ee0b88533c7bdb5874e8fb2fabe6e287f"
+      },
+      {
+        "path": "docs/API_INGRESS.md",
+        "before": "75cc1adc8dcb3151ea3d3a34933a63e4fde6351a89712b4063bdcf16b62f4d0e",
+        "after": "63b4578eefbfdcd2baac96e1cb5d908e40b762e04011b010a07af4fb347dbf69"
+      },
+      {
+        "path": "docs/AUDIT_FINDINGS.md",
+        "before": "33a0e08068f3f1eb874eddf6519a0999ecad335dd214772931fc6d8b2b568c7e",
+        "after": "1b4ef4450175dfb03b52fe408520a95050bd75883e6fb3cc65fc5d94fe0e444f"
+      },
+      {
+        "path": "docs/DEPLOYMENT_PREPARATION.md",
+        "before": "42641503c084da2af68625ac48951fa8c7ba83889cfb9aab619767f7f7bb6164",
+        "after": "c09c1724686138ae72af5bfdd25d39e510d69e081c2376671b88fc2c49fdcfdd"
+      },
+      {
+        "path": "docs/FROZEN_REVIEW_BUNDLE.md",
+        "before": "42ca9ce20bb3b40ad14427e2d1999b29ae3fa27fc4ad5b25ac8fe9ad41f86f30",
+        "after": "cbfadd4bd710ef64512a47799dd2ef6cfe16596c8b9dd8d3db3d07427000fb69"
+      },
+      {
+        "path": "docs/IMPLEMENTATION_STATUS.md",
+        "before": "6cbc4b8148c7d04c80a7addf3cea50edaa4a335dfdcef752ceab2e2272d31191",
+        "after": "294e9f080312d74cc912a77da9f730d9ccba7d10e23880ca70f4ba02b61955c5"
+      },
+      {
+        "path": "docs/OPERATOR_MANUAL.md",
+        "before": "9e3d54693384aefed4506f1c453e1e4c5d132aafc8d514e4d713442f0ee73a13",
+        "after": "404e4277f24d12186eb952309e9abbda83bcbaf0a413be61b74730da0e7329a6"
+      },
+      {
+        "path": "docs/README.md",
+        "before": "11ee12ac8dcae705a9c3a20ba943e3ec2fba8fe1849fb924bc83389eb45e63dd",
+        "after": "2aabbdb192f6a403d5a2eb34c6fd6435da3fb205bd372a9486fdebf673b569e6"
+      },
+      {
+        "path": "docs/RELEASE_CHECKLIST.md",
+        "before": "cb8e378fee561c581f043fcb01244c913d34b2e9552aa7816647b9a33b521e4e",
+        "after": "d7e670feb361af0585800ca20bd97d291d2b7ec3c9af7a322b0f5f8289505704"
+      },
+      {
+        "path": "docs/ROADMAP.md",
+        "before": "cae3e4aa04f7954aaf4d947832b8cf4f96c6e11b9cd1b3f52f85b0da73733384",
+        "after": "ef2489e85d960ec96041f1a016084cf6088a579c8a8aa81b4f773db4c17a9b97"
+      },
+      {
+        "path": "docs/SECURITY_AUDIT_PLAN.md",
+        "before": "605fe5424464d57a75fa352f0815323f13585bf3f80da510f56e1d111ad7c891",
+        "after": "6155750524dacbe24e521c81afcc1c22acddf34ea24f006f73c1afffd9a755a0"
+      },
+      {
+        "path": "docs/WORK_HANDOFF.md",
+        "before": "1977e0606835b1627505a24acf289b361e411e64395e289f8aabc3d7a299dabd",
+        "after": "35d36092f844eb46ea8ede932ad71901ded7fb3e1b9c9f77e307955dc14e1bad"
+      },
+      {
+        "path": "docs/project-todo.json",
+        "before": "05367d98e876ceac4c17ff4f005c35c6cd0417934d17b6233056ceeddcdd5c3c",
+        "after": "ffea4389a8a32c38f11f96ff59e3294e248c44f56ffdb7f98ac02057cf576062"
+      },
+      {
+        "path": "reports/README.md",
+        "before": "5f3594642c960d684fb0175156fea0dec1c812808cac424586221e95fa5ba4e2",
+        "after": "3388fba1881af38fe2105cb0360c175fd6844605c03a1bf9b9b3465c45b83ee4"
+      },
+      {
+        "path": "scripts/run-keeper-tests.py",
+        "before": "0d74a9fb456c94e2526a59e771606907fc2cf14cee97dffd420fd6d01bed8e14",
+        "after": "dfc0ad6de8b5e3cad7e688f70ca2c76e2076c843b13beacc2b5089f8ac24f0e6"
+      },
+      {
+        "path": "tests_python/test_review_bundle_profiles.py",
+        "before": "b75a9b2f44e8ccac80599401689e57b909f8506d1ea52bd871162af6a76d8bf0",
+        "after": "6b15da5775179dab4ff9dcb5012b41bbd0f19e9b590f4998f1156ff7f4c4c17f"
+      },
+      {
+        "path": "zzz_ops/deployment_plan.py",
+        "before": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df",
+        "after": "7e67b8c74720768971f10548693a1757f6932032a795467601ea428941bd63f7"
+      },
+      {
+        "path": "zzz_ops/review_bundle.py",
+        "before": "bdf796b7e7eb0cf3ac41dfae55be766c0d9873720b2c8ee92515c5ca342a366c",
+        "after": "439bea792ce03b97f376485589dbf69a16f68ac23f7531d835bd9c9ad5ee8eb3"
+      },
+      {
+        "path": "zzz_ops/state.py",
+        "before": "32e4d9ef16140a2e9265033caa525f517a02bb0e20e407bc4c365d769309c3d4",
+        "after": "6f2ce42cc92783a60a554fbe1e7a5b3b5fba2543562e2ebfb64766f6b5c09c9b"
+      }
+    ],
+    "website": [
+      {
+        "path": "AGENTS.md",
+        "before": "1f061130a5800067e26a92f3408efc8f6ef834ec6d6e81cea438ff00ee16a2aa",
+        "after": "86de1e236a7a1a560d8eac911a9fee0950e17a64443e5389b1ae600378e65357"
+      },
+      {
+        "path": "PROJECT_CONTEXT.md",
+        "before": "04973aa1993c98fe493d3f400d72a180bcdf2f578ea11c540828ca32db088cae",
+        "after": "58e5ea04de64a6c1abec24b029f4f0fffe7717d894fcaa28cb37aa564a2fb130"
+      },
+      {
+        "path": "README.md",
+        "before": "5e9ea0c388ef018210b11072a476c3315fea83c99b0cde12f917ec0cebe53152",
+        "after": "7760c378c1f1e38deb633186dae45cca38cf5ba7f64dd35f606560c1fe339538"
+      },
+      {
+        "path": "deployment-transactions.js",
+        "before": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6",
+        "after": "a0c10060f9cc345adfdd9907c50ef9f2bbb03d1bbac96942d3a72bdb554279ca"
+      },
+      {
+        "path": "package.json",
+        "before": "59ab0b85808f3d45cc5d8c6e235e5950138430bb6495386645ef7951e8c30ff3",
+        "after": "5199072828ad109ef3e2d5f99a3744856f005853f2d30f3d0a89b20fbf00da21"
+      }
+    ]
+  },
+  "shared_signer_and_public_configs_unchanged": true,
+  "historical_report_files_unchanged_except_index": true,
+  "artwork_and_media_unchanged": true,
+  "existing_state_journal_chain_service_site_or_heartbeat_actions": 0,
+  "fresh_counts": {
+    "passed_unique_methods": 29,
+    "skipped_methods": 2,
+    "new_passes": 27,
+    "adapted_passes": 2,
+    "unchanged_test_methods_run": 0
+  },
+  "catalogue_counts_recomputed": {
+    "contracts": 40,
+    "functions": 963,
+    "constructors": 40,
+    "receive_hooks": 13,
+    "fallback_hooks": 0
+  },
+  "new_source_paths": [
+    "tests_python/test_deployment_authority_inputs.py",
+    "tests_python/test_state_presence.py",
+    "tests_python/test_review_bundle_schema4.py",
+    "ABEF/AAA-website/tests/deployment-signing-profile.test.mjs"
+  ]
+}

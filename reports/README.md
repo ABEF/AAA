@@ -1,5 +1,11 @@
 # Verification evidence
 
+The [16 November whole-project audit](whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
+state-file and website-profile gaps and reconciles current guidance. Production
+Solidity, economic rights, safeguards, gas defaults and existing environments
+are unchanged. Focused new checks and exact historical source reuse are recorded
+separately; this is internal review, not independent release approval.
+
 [Selective metadata2 rehearsal](metadata2-rehearsal-20261116/REVIEW.md) records
 five changed creations, three bindings, twelve actual instances, 63 getter/state
 observations and 20 cold metadata cases. Eight receipts use 41,327,001 gas; worst

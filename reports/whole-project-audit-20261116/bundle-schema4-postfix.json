@@ -1,0 +1,79 @@
+{
+  "utc": "2026-11-16T15:54:32.437562+00:00",
+  "stage": "new_bundle_schema4_postfix",
+  "tests_run": 12,
+  "methods": [
+    "tests_python.test_review_bundle_schema4.ReviewBundleSchema4Tests.test_all_operator_generator_inputs_are_required_for_fresh_exports",
+    "tests_python.test_review_bundle_schema4.ReviewBundleSchema4Tests.test_boolean_and_unknown_schemas_remain_rejected",
+    "tests_python.test_review_bundle_schema4.ReviewBundleSchema4Tests.test_default_fresh_schema4_binds_exact_operator_examples",
+    "tests_python.test_review_bundle_schema4.ReviewBundleSchema4Tests.test_fresh_handoff_requires_authenticated_git_checkout_not_fake_history",
+    "tests_python.test_review_bundle_schema4.ReviewBundleSchema4Tests.test_fresh_verifier_refuses_removed_fixture_despite_recomputed_hashes",
+    "tests_python.test_review_bundle_schema4.ReviewBundleSchema4Tests.test_historical_schema_does_not_silently_admit_the_new_fixture",
+    "tests_python.test_review_bundle_schema4.ReviewBundleSchema4Tests.test_historical_schemas_keep_exact_bytes_and_exclusion_meaning",
+    "tests_python.test_review_bundle_schema4.ReviewBundleSchema4Tests.test_module_or_test_consumer_also_requires_its_fixture_closure",
+    "tests_python.test_review_bundle_schema4.ReviewBundleSchema4Tests.test_new_schema_cannot_be_relabelled_as_historical",
+    "tests_python.test_review_bundle_schema4.ReviewBundleSchema4Tests.test_only_exact_new_document_fixture_is_admitted",
+    "tests_python.test_review_bundle_profiles.ReviewBundleProfileTests.test_default_schema4_uses_current_instructions_without_claiming_approval",
+    "tests_python.test_review_bundle_profiles.ReviewBundleProfileTests.test_unknown_and_boolean_schema_values_fail_closed"
+  ],
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "successful": true,
+  "source_before": {
+    "zzz_ops/review_bundle.py": "439bea792ce03b97f376485589dbf69a16f68ac23f7531d835bd9c9ad5ee8eb3",
+    "tests_python/test_review_bundle_schema4.py": "9be90177dfba3cc0a5dafec4f961f4fd9405940e65d429132873beaa22cf8f36",
+    "tests_python/test_review_bundle_profiles.py": "6b15da5775179dab4ff9dcb5012b41bbd0f19e9b590f4998f1156ff7f4c4c17f",
+    "tests_python/test_review_bundle.py": "86828347cc75be79ef50b3bfbbf24969eeb9f0025d23c4fc1ecde77104c7512a",
+    "docs/FROZEN_REVIEW_BUNDLE.md": "cbfadd4bd710ef64512a47799dd2ef6cfe16596c8b9dd8d3db3d07427000fb69"
+  },
+  "source_after": {
+    "zzz_ops/review_bundle.py": "439bea792ce03b97f376485589dbf69a16f68ac23f7531d835bd9c9ad5ee8eb3",
+    "tests_python/test_review_bundle_schema4.py": "9be90177dfba3cc0a5dafec4f961f4fd9405940e65d429132873beaa22cf8f36",
+    "tests_python/test_review_bundle_profiles.py": "6b15da5775179dab4ff9dcb5012b41bbd0f19e9b590f4998f1156ff7f4c4c17f",
+    "tests_python/test_review_bundle.py": "86828347cc75be79ef50b3bfbbf24969eeb9f0025d23c4fc1ecde77104c7512a",
+    "docs/FROZEN_REVIEW_BUNDLE.md": "cbfadd4bd710ef64512a47799dd2ef6cfe16596c8b9dd8d3db3d07427000fb69"
+  },
+  "baseline_fixture_archive_reverification": {
+    "1": {
+      "archive_sha256": "7242e43da2b2c6655909901e74a653521791ab4bef090e54f39e78426e11de32",
+      "verification": {
+        "ok": true,
+        "production_approved": false,
+        "source_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_tree_sha1": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "source_files": 10,
+        "archive_sha256": "7242e43da2b2c6655909901e74a653521791ab4bef090e54f39e78426e11de32",
+        "tests_executed": false,
+        "dependencies_bundled": false
+      }
+    },
+    "2": {
+      "archive_sha256": "1c01ee5a5d83bd319630335d1d4c282d4a7b01db8fc669ac3974f33f4f5f4bef",
+      "verification": {
+        "ok": true,
+        "production_approved": false,
+        "source_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_tree_sha1": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "source_files": 10,
+        "archive_sha256": "1c01ee5a5d83bd319630335d1d4c282d4a7b01db8fc669ac3974f33f4f5f4bef",
+        "tests_executed": false,
+        "dependencies_bundled": false
+      }
+    },
+    "3": {
+      "archive_sha256": "7b497cc1d7fabf864abfba89e0be686eb91351e4a0fbfb17580e99ab67b18bf1",
+      "verification": {
+        "ok": true,
+        "production_approved": false,
+        "source_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_tree_sha1": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "source_files": 10,
+        "archive_sha256": "7b497cc1d7fabf864abfba89e0be686eb91351e4a0fbfb17580e99ab67b18bf1",
+        "tests_executed": false,
+        "dependencies_bundled": false
+      }
+    }
+  },
+  "scope": "10 new offline methods and only2 changed existing expectations. No unchanged methods, actualHEAD package, install or external request."
+}

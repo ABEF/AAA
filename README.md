@@ -1,5 +1,11 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+The [16 November whole-project audit](reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
+state-file and website-profile gaps and reconciles current guidance. Production
+Solidity, economic rights, safeguards, gas defaults and existing environments
+are unchanged. Focused new checks and exact historical source reuse are recorded
+separately; this is internal review, not independent release approval.
+
 [Current metadata2 local evidence](reports/metadata2-rehearsal-20261116/REVIEW.md)
 now covers five changed constructors, three bindings and 20 cold metadata cases.
 Normal limits hold; existing chains, sites and services remain unchanged. Real

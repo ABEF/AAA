@@ -62,7 +62,11 @@ For example, `buyback_maximum_trade_usd:"1000000000000000000000"` encodes
 limit. That constructor ceiling must be positive and fit uint128. Roles may
 share an address where the contracts allow it; production key separation and
 recovery still require review. Known prohibited mint-payee collisions are
-rejected; actual getter-discovered payees and callback behavior need live checks.
+rejected. Governance cannot equal a planned protocol instance or a fixed
+venue/token/SeaDrop dependency: these implementations cannot operate governance.
+The existing controller-specific diagnostic remains. Unknown EOAs/contract
+wallets and getter-discovered children still require live authority/callback
+review; this offline check does not authenticate wallet control.
 
 `sequencer:null` means unresolved; an explicit zero address is constructor-valid
 but does not qualify sequencer/liveness policy. The fresh LP converter uses its

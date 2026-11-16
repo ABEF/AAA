@@ -1,5 +1,11 @@
 # Engineering roadmap
 
+The [16 November whole-project audit](../reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
+state-file and website-profile gaps and reconciles current guidance. Production
+Solidity, economic rights, safeguards, gas defaults and existing environments
+are unchanged. Focused new checks and exact historical source reuse are recorded
+separately; this is internal review, not independent release approval.
+
 The [five-audit reconciliation](../reports/five-audit-reconciliation-20261116/REVIEW.md)
 fixes current artifact-family planning and offline evidence-admission gaps.
 Next qualify actual release authorities/dependencies/metadata and target fees,

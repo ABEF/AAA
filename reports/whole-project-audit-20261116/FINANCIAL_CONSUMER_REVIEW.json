@@ -1,0 +1,1323 @@
+{
+  "schema": "popl-financial-consumer-review1",
+  "reviewed_at_utc": "2026-11-16T15:55:24.238671+00:00",
+  "baseline_head": "59d02d40afac785c04cd4a5da2dfc6e4174c6880",
+  "production_approved": false,
+  "requested_files": 15,
+  "selected_additional_delegated_files": 3,
+  "files": [
+    {
+      "path": "frontend_api/activation.py",
+      "sha256": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117",
+      "matches_audit_baseline": true,
+      "lines": 375,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "typed contribution preparation",
+      "read_scope": "Strict owner/action/raw input; canonical snapshot/expiry; source and pool identity; entrant USD/caller/cap policy; exact replacement approval; two complete frozen-calldata traces; separate gas/headroom/fee/balance; final freshness.",
+      "failure_recovery_review": "RPC, trace, price, policy, custody, insufficient balance and expiry failures raise unavailable/error; approval must be confirmed before a fresh operation review; no send, auto-retry or unsafe fallback.",
+      "functions": [
+        {
+          "name": "parse",
+          "line": 28,
+          "end_line": 45
+        },
+        {
+          "name": "__init__",
+          "line": 49,
+          "end_line": 51
+        },
+        {
+          "name": "_fresh",
+          "line": 53,
+          "end_line": 57
+        },
+        {
+          "name": "_gas_review",
+          "line": 59,
+          "end_line": 62
+        },
+        {
+          "name": "_gas",
+          "line": 64,
+          "end_line": 88
+        },
+        {
+          "name": "_route",
+          "line": 90,
+          "end_line": 133
+        },
+        {
+          "name": "_trace",
+          "line": 135,
+          "end_line": 147
+        },
+        {
+          "name": "verify_historical",
+          "line": 139,
+          "end_line": 146
+        },
+        {
+          "name": "prepare",
+          "line": 150,
+          "end_line": 349
+        },
+        {
+          "name": "tx",
+          "line": 287,
+          "end_line": 293
+        },
+        {
+          "name": "main",
+          "line": 352,
+          "end_line": 372
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/source-manifest.json",
+          "sha256": "d429711f4a2aabae94ca63eaaf605aa8cfaec7033ce6469cbbdb398218c327d7",
+          "exact_file_pin_pointers": [
+            "/source_sha256/frontend_api/activation.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/activation.py",
+            "/source_sha256_after/frontend_api/activation.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/activation.py",
+            "/source_sha256_after/frontend_api/activation.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/gas-profiles-20261113/backend/ACTUAL_CONTRIBUTIONS.json",
+          "sha256": "86428d3d43b742dddb29ed6131dd6381b4c0bb66455ce79b85a3dda6c77d44f6",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/activation.py",
+            "/source_sha256_after/frontend_api/activation.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "frontend_api/activation_config.py",
+      "sha256": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd",
+      "matches_audit_baseline": true,
+      "lines": 396,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "profile/configuration binding",
+      "read_scope": "Historical versus fresh accounting/routing/pricing/review/portfolio/confirmation cross-product; fixed ETH/ZZZ input inventory; exact module/child/dependency/code/binding/source policy; same-block dual bounds; explicit gas/complete-fee policy; no configuration adoption.",
+      "failure_recovery_review": "Unknown/mismatched versions, repeated addresses, source changes, unreviewed dependency/getter/storage pins, active execution context and malformed capabilities fail closed.",
+      "functions": [
+        {
+          "name": "bounded",
+          "line": 21,
+          "end_line": 24
+        },
+        {
+          "name": "hex_bytes",
+          "line": 27,
+          "end_line": 30
+        },
+        {
+          "name": "__init__",
+          "line": 34,
+          "end_line": 265
+        },
+        {
+          "name": "verify",
+          "line": 267,
+          "end_line": 396
+        },
+        {
+          "name": "read",
+          "line": 270,
+          "end_line": 271
+        },
+        {
+          "name": "read_price",
+          "line": 374,
+          "end_line": 375
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/source-manifest.json",
+          "sha256": "d429711f4a2aabae94ca63eaaf605aa8cfaec7033ce6469cbbdb398218c327d7",
+          "exact_file_pin_pointers": [
+            "/source_sha256/frontend_api/activation_config.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/activation_config.py",
+            "/source_sha256_after/frontend_api/activation_config.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/activation_config.py",
+            "/source_sha256_after/frontend_api/activation_config.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/gas-profiles-20261113/backend/ACTUAL_CONTRIBUTIONS.json",
+          "sha256": "86428d3d43b742dddb29ed6131dd6381b4c0bb66455ce79b85a3dda6c77d44f6",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/activation_config.py",
+            "/source_sha256_after/frontend_api/activation_config.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "frontend_api/activation_trace.py",
+      "sha256": "3f59bef3da40ea846b407291ac7eb7d5fc3111f36c8e35a747bb8b2f250a21f5",
+      "matches_audit_baseline": true,
+      "lines": 554,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "actual marginal LP trace witness",
+      "read_scope": "Exact Entry/Vault/Budget/Pricing/Manager/Executor call tree; bounded frames/depth/logs; source/amount/owner/NFT event; bracketing transient execution source; incumbent/entrant phases; one balancing budget; actual position L delta; whole shares and marginal deployed USD.",
+      "failure_recovery_review": "Malformed/reordered/ambiguous trace, changed scope/rounds, incumbent budget pollution, arbitrary direct swap, no LP/marginal guard, wrong event, overuse or unsupported profile reject. Reverting quote subcalls are not globally misclassified as failed operations.",
+      "functions": [
+        {
+          "name": "selector",
+          "line": 37,
+          "end_line": 38
+        },
+        {
+          "name": "words",
+          "line": 41,
+          "end_line": 45
+        },
+        {
+          "name": "request_data",
+          "line": 48,
+          "end_line": 76
+        },
+        {
+          "name": "successful",
+          "line": 79,
+          "end_line": 82
+        },
+        {
+          "name": "child",
+          "line": 85,
+          "end_line": 90
+        },
+        {
+          "name": "event",
+          "line": 93,
+          "end_line": 101
+        },
+        {
+          "name": "static_data",
+          "line": 104,
+          "end_line": 105
+        },
+        {
+          "name": "lp_execution_frame",
+          "line": 108,
+          "end_line": 124
+        },
+        {
+          "name": "execution_price_witness",
+          "line": 127,
+          "end_line": 172
+        },
+        {
+          "name": "visit",
+          "line": 145,
+          "end_line": 147
+        },
+        {
+          "name": "pricing_witness",
+          "line": 175,
+          "end_line": 361
+        },
+        {
+          "name": "measure",
+          "line": 364,
+          "end_line": 554
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/source-manifest.json",
+          "sha256": "d429711f4a2aabae94ca63eaaf605aa8cfaec7033ce6469cbbdb398218c327d7",
+          "exact_file_pin_pointers": [
+            "/source_sha256/frontend_api/activation_trace.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/activation_trace.py",
+            "/source_sha256_after/frontend_api/activation_trace.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/activation_trace.py",
+            "/source_sha256_after/frontend_api/activation_trace.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/gas-profiles-20261113/backend/ACTUAL_CONTRIBUTIONS.json",
+          "sha256": "86428d3d43b742dddb29ed6131dd6381b4c0bb66455ce79b85a3dda6c77d44f6",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/activation_trace.py",
+            "/source_sha256_after/frontend_api/activation_trace.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "frontend_api/earnings.py",
+      "sha256": "c96e4acfc2782d549522134516bb4963482d7f24f3c96de824eb651f0c31aa75",
+      "matches_audit_baseline": true,
+      "lines": 231,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "lifetime earnings reconciliation",
+      "read_scope": "Exact pinned fee/membership emitters and capabilities; complete same-chain epochs; current owner/ordinal; shares/membership/royalty weights/cohorts and whole LP tree/direct liabilities; actual paid/conversion/current-entitlement reconciliation; current USD source marking.",
+      "failure_recovery_review": "History/epoch/anchor/denominator mismatch produces unavailable data rather than fabricated balances. Checkpoint is source/anchor-pinned and rejects lineage use. Final checkpoint/current/cutoff anchors checked.",
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 10,
+          "end_line": 42
+        },
+        {
+          "name": "history_snapshot",
+          "line": 44,
+          "end_line": 50
+        },
+        {
+          "name": "finish_checkpoint",
+          "line": 52,
+          "end_line": 54
+        },
+        {
+          "name": "check_profile",
+          "line": 56,
+          "end_line": 77
+        },
+        {
+          "name": "reconcile",
+          "line": 79,
+          "end_line": 133
+        },
+        {
+          "name": "read",
+          "line": 135,
+          "end_line": 189
+        },
+        {
+          "name": "check_paid",
+          "line": 192,
+          "end_line": 231
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/earnings.py",
+            "/source_sha256_after/frontend_api/earnings.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/earnings.py",
+            "/source_sha256_after/frontend_api/earnings.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "frontend_api/earnings_exact_lp.py",
+      "sha256": "77e0694b2d800dafd5dc05e760648d0ece86304ca47abb5f05d3ff76b32bb604",
+      "matches_audit_baseline": true,
+      "lines": 147,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "whole-unit LP event replay",
+      "read_scope": "Exact share/member post-write sync events; per-bucket weighted tree and equal membership; actual credited fee acknowledgment; claim take; zero-row and funded same-NFT conversion; direct ETH credits; preserved ordinal/tree semantics over canonical epochs.",
+      "failure_recovery_review": "Missing/repeated synchronization, old/new denominators, source-component conversion mismatch, wrong currency, post-retirement event and incomplete epochs reject.",
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 19,
+          "end_line": 22
+        },
+        {
+          "name": "begin",
+          "line": 24,
+          "end_line": 28
+        },
+        {
+          "name": "components",
+          "line": 30,
+          "end_line": 37
+        },
+        {
+          "name": "direct_liability",
+          "line": 39,
+          "end_line": 39
+        },
+        {
+          "name": "_take",
+          "line": 41,
+          "end_line": 48
+        },
+        {
+          "name": "__call__",
+          "line": 50,
+          "end_line": 137
+        },
+        {
+          "name": "finish",
+          "line": 139,
+          "end_line": 141
+        },
+        {
+          "name": "report",
+          "line": 143,
+          "end_line": 147
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/earnings_exact_lp.py",
+            "/source_sha256_after/frontend_api/earnings_exact_lp.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/earnings_exact_lp.py",
+            "/source_sha256_after/frontend_api/earnings_exact_lp.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/fee-flow-audit-20261107/readers/MANIFEST.json",
+          "sha256": "2ffdb85abd1f0b1642ce6ebd4aa4c64c8ebad2c989c807f19a04a956c4b44d4e",
+          "exact_file_pin_pointers": [
+            "/changed_source_sha256/frontend_api/earnings_exact_lp.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "frontend_api/earnings_replay.py",
+      "sha256": "8c0d10fba14d2b584f3043ec922f78f49701b27b5bde03635b52e177a4005624",
+      "matches_audit_baseline": true,
+      "lines": 491,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "funded LP/royalty history semantics",
+      "read_scope": "Typed pinned-emitter events; receipt chronology; 80/10/5/5 and carried sub20 units; exact royalty GCD tickets/rotation; one-hour opening cohort; deferred enrollment/canonical cutoff; orphan recovery; historical profiles; 24h processing time; no claims/conversions counted as income.",
+      "failure_recovery_review": "Missing acknowledgments, unknown cohort/asset, repeated allocation, wrong cutoff, cross-transaction recovery and incomplete activation/membership/share histories reject. Raw unsupported donations are not fabricated income.",
+      "functions": [
+        {
+          "name": "require",
+          "line": 46,
+          "end_line": 48
+        },
+        {
+          "name": "royalty_profile",
+          "line": 51,
+          "end_line": 53
+        },
+        {
+          "name": "allocation_unit",
+          "line": 56,
+          "end_line": 62
+        },
+        {
+          "name": "ticket_amount",
+          "line": 65,
+          "end_line": 79
+        },
+        {
+          "name": "overlap",
+          "line": 77,
+          "end_line": 78
+        },
+        {
+          "name": "__init__",
+          "line": 83,
+          "end_line": 127
+        },
+        {
+          "name": "begin",
+          "line": 129,
+          "end_line": 156
+        },
+        {
+          "name": "add",
+          "line": 158,
+          "end_line": 162
+        },
+        {
+          "name": "earn",
+          "line": 164,
+          "end_line": 175
+        },
+        {
+          "name": "__call__",
+          "line": 177,
+          "end_line": 281
+        },
+        {
+          "name": "fee_credit",
+          "line": 283,
+          "end_line": 294
+        },
+        {
+          "name": "royalty",
+          "line": 296,
+          "end_line": 465
+        },
+        {
+          "name": "ack_exact",
+          "line": 467,
+          "end_line": 469
+        },
+        {
+          "name": "finish",
+          "line": 471,
+          "end_line": 475
+        },
+        {
+          "name": "report",
+          "line": 477,
+          "end_line": 491
+        },
+        {
+          "name": "period",
+          "line": 479,
+          "end_line": 482
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/earnings_replay.py",
+            "/source_sha256_after/frontend_api/earnings_replay.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/earnings_replay.py",
+            "/source_sha256_after/frontend_api/earnings_replay.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "frontend_api/lineage.py",
+      "sha256": "7b4a6b6b6d4ecf67d3f93ac5cad5a5c8bc7d70a035784fb716f4d4a8dc201281",
+      "matches_audit_baseline": true,
+      "lines": 259,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "authenticated predecessor history",
+      "read_scope": "At most8 explicit same-chain peers/1M aggregate events; isolated predecessor accounting/mint/execution profiles; permitted shared immutable dependencies only; canonical retirement/activation event order; source root and historical code/anchors; raw claims/conversions combined once.",
+      "failure_recovery_review": "Missing original predecessor, repeated protocol address, currency precision collision, orphan receipt, incomplete logs, wrong ancestry or changed archival anchor fails closed. No peer discovery or alternate transport.",
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 32,
+          "end_line": 88
+        },
+        {
+          "name": "_receipt",
+          "line": 91,
+          "end_line": 147
+        },
+        {
+          "name": "claimed",
+          "line": 149,
+          "end_line": 150
+        },
+        {
+          "name": "financial",
+          "line": 152,
+          "end_line": 259
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/remaining-271-20261111/backend/MANIFEST.json",
+          "sha256": "63fdfef839e01c6901b0482ee7494a1991f35ec8ccbb6a4f69aa24178d7e9efa",
+          "exact_file_pin_pointers": [
+            "/source_sha256/frontend_api/lineage.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "frontend_api/portfolio_v7.py",
+      "sha256": "28ae93df6983be4fc37267cdfadcb276d28486689840c84dd9efcf74f75b6e99",
+      "matches_audit_baseline": true,
+      "lines": 18,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "explicit fresh accounting adapter",
+      "read_scope": "Delegates to policy portfolio with accounting7 only; requires exact LP allocation1; read of authenticated physical portfolio; no tuple-based relabel of accounting6.",
+      "failure_recovery_review": "Mismatched accounting or LP version fails; delegated parent/physical implementation reviewed separately and not treated as independent cryptographic proof.",
+      "functions": [
+        {
+          "name": "verify_profile",
+          "line": 6,
+          "end_line": 10
+        },
+        {
+          "name": "read_bucket",
+          "line": 13,
+          "end_line": 14
+        },
+        {
+          "name": "contribution_context",
+          "line": 17,
+          "end_line": 18
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/portfolio_v7.py",
+            "/source_sha256_after/frontend_api/portfolio_v7.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/portfolio_v7.py",
+            "/source_sha256_after/frontend_api/portfolio_v7.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "frontend_api/mint_readiness.py",
+      "sha256": "5540de5f0c9421bf29a62d0d719d79667f82fbaed706f9781dcee47f7b80b03d",
+      "matches_audit_baseline": true,
+      "lines": 89,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "sale/reveal operational reads",
+      "read_scope": "Pinned sale ledger/version/end/revision; minted/next/remaining quotas; oldest authenticated request/epoch/fulfillment; separate reveal and mint lifecycle conditions; provider funding/liveness explicitly unverified.",
+      "failure_recovery_review": "Inert importer/cancelled inventory, inconsistent quotas/request/ordinal and absent sealed randomness fail closed. Readiness does not attest OpenSea stage eligibility or provider funding.",
+      "functions": [
+        {
+          "name": "sale_window",
+          "line": 5,
+          "end_line": 26
+        },
+        {
+          "name": "inspect",
+          "line": 29,
+          "end_line": 89
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/mint_readiness.py",
+            "/source_sha256_after/frontend_api/mint_readiness.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/mint_readiness.py",
+            "/source_sha256_after/frontend_api/mint_readiness.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "frontend_api/liquidity_context.py",
+      "sha256": "bb9719ad15df52457692821d9f650a0c981579748c51213698876346ba864fc3",
+      "matches_audit_baseline": true,
+      "lines": 184,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "position/range diagnostic dispatch",
+      "read_scope": "Historical outside-only/current threshold profile dispatch; current slot0 stored tick; width/orientation/cooldown/confirmation; no promised keeper schedule; same-block source guard even for approval; unavailable versus not due.",
+      "failure_recovery_review": "Invalid range/tick/source/cooldown/condition produces diagnostic failure; fresh accounting7 uses reviewed portfolio_v7/v6 rather than old outside-only logic.",
+      "functions": [
+        {
+          "name": "signed_tick",
+          "line": 9,
+          "end_line": 14
+        },
+        {
+          "name": "contribution_context",
+          "line": 17,
+          "end_line": 184
+        },
+        {
+          "name": "read",
+          "line": 30,
+          "end_line": 31
+        },
+        {
+          "name": "active_range",
+          "line": 60,
+          "end_line": 64
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/liquidity_context.py",
+            "/source_sha256_after/frontend_api/liquidity_context.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/liquidity_context.py",
+            "/source_sha256_after/frontend_api/liquidity_context.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/gas-profiles-20261113/backend/ACTUAL_CONTRIBUTIONS.json",
+          "sha256": "86428d3d43b742dddb29ed6131dd6381b4c0bb66455ce79b85a3dda6c77d44f6",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/liquidity_context.py",
+            "/source_sha256_after/frontend_api/liquidity_context.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "zzz_ops/execution_price.py",
+      "sha256": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2",
+      "matches_audit_baseline": true,
+      "lines": 41,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "explicit transaction-price capability",
+      "read_scope": "Exact0/1 capability, pinned six roles, fixed math child and executionStrategy binding, inactive preflight context, source revision.",
+      "failure_recovery_review": "Missing/different capabilities or active context reject; no feed registration, captured-cache source, scope adoption, signing or scheduling.",
+      "functions": [
+        {
+          "name": "version",
+          "line": 15,
+          "end_line": 18
+        },
+        {
+          "name": "observe",
+          "line": 21,
+          "end_line": 41
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/source-manifest.json",
+          "sha256": "d429711f4a2aabae94ca63eaaf605aa8cfaec7033ce6469cbbdb398218c327d7",
+          "exact_file_pin_pointers": [
+            "/source_sha256/zzz_ops/execution_price.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/zzz_ops/execution_price.py",
+            "/source_sha256_after/zzz_ops/execution_price.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/zzz_ops/execution_price.py",
+            "/source_sha256_after/zzz_ops/execution_price.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "zzz_ops/lp_execution.py",
+      "sha256": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0",
+      "matches_audit_baseline": true,
+      "lines": 101,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "bounded router/quality metadata",
+      "read_scope": "Fixed controller/core/child/bindings; LP routing1/2/3 and explicit execution1 relation; 4venueround bounds; actual solver iteration/quoteGas; quality owner/caps/revision; catalog reporting.",
+      "failure_recovery_review": "Unknown profile, mismatched dependency, duplicate venue or unbounded metadata reject. Returned catalog is a snapshot and explicitly not frozen by wallet review.",
+      "functions": [
+        {
+          "name": "observe",
+          "line": 5,
+          "end_line": 101
+        },
+        {
+          "name": "number",
+          "line": 19,
+          "end_line": 23
+        },
+        {
+          "name": "binding",
+          "line": 24,
+          "end_line": 26
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/source-manifest.json",
+          "sha256": "d429711f4a2aabae94ca63eaaf605aa8cfaec7033ce6469cbbdb398218c327d7",
+          "exact_file_pin_pointers": [
+            "/source_sha256/zzz_ops/lp_execution.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/zzz_ops/lp_execution.py",
+            "/source_sha256_after/zzz_ops/lp_execution.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/zzz_ops/lp_execution.py",
+            "/source_sha256_after/zzz_ops/lp_execution.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "zzz_ops/price_policy.py",
+      "sha256": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958",
+      "matches_audit_baseline": true,
+      "lines": 146,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "exact dual source observation",
+      "read_scope": "Canonical ABI policy identity/domain; source pin/precision; source round age, answer and normalization; lower-denominator spread; independent-ID review assertion; Oracle result/fingerprint equality.",
+      "failure_recovery_review": "No timestamp/old/future/invalid round, duplicate source or mismatched policy is accepted. No spot/TWAP/provider independence or liquidity proof is inferred from two matching answers.",
+      "functions": [
+        {
+          "name": "number",
+          "line": 14,
+          "end_line": 23
+        },
+        {
+          "name": "digest",
+          "line": 26,
+          "end_line": 32
+        },
+        {
+          "name": "source",
+          "line": 35,
+          "end_line": 42
+        },
+        {
+          "name": "policy",
+          "line": 45,
+          "end_line": 57
+        },
+        {
+          "name": "flat",
+          "line": 60,
+          "end_line": 61
+        },
+        {
+          "name": "words",
+          "line": 64,
+          "end_line": 72
+        },
+        {
+          "name": "hash_words",
+          "line": 75,
+          "end_line": 76
+        },
+        {
+          "name": "policy_id",
+          "line": 79,
+          "end_line": 80
+        },
+        {
+          "name": "record",
+          "line": 83,
+          "end_line": 90
+        },
+        {
+          "name": "round_data",
+          "line": 93,
+          "end_line": 108
+        },
+        {
+          "name": "observe",
+          "line": 111,
+          "end_line": 146
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/zzz_ops/price_policy.py",
+            "/source_sha256_after/zzz_ops/price_policy.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/zzz_ops/price_policy.py",
+            "/source_sha256_after/zzz_ops/price_policy.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "zzz_ops/range_policy.py",
+      "sha256": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171",
+      "matches_audit_baseline": true,
+      "lines": 110,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "operator intended range metadata",
+      "read_scope": "Strict version1 orientation, keeper two-width policy shape/caps, pool-configuration hash excluding current width, cooldown and target consistency.",
+      "failure_recovery_review": "Future checkpoint, stale/configuration-mismatched enabled target, wrong integer/hash/ABI width or unknown version rejects; no market policy mutation.",
+      "functions": [
+        {
+          "name": "_number",
+          "line": 11,
+          "end_line": 14
+        },
+        {
+          "name": "_hash",
+          "line": 17,
+          "end_line": 24
+        },
+        {
+          "name": "intended",
+          "line": 27,
+          "end_line": 40
+        },
+        {
+          "name": "decode",
+          "line": 43,
+          "end_line": 61
+        },
+        {
+          "name": "observe",
+          "line": 64,
+          "end_line": 73
+        },
+        {
+          "name": "fingerprint",
+          "line": 76,
+          "end_line": 80
+        },
+        {
+          "name": "verify",
+          "line": 83,
+          "end_line": 110
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/zzz_ops/range_policy.py",
+            "/source_sha256_after/zzz_ops/range_policy.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/zzz_ops/range_policy.py",
+            "/source_sha256_after/zzz_ops/range_policy.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "zzz_ops/rebalance_confirmation.py",
+      "sha256": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331",
+      "matches_audit_baseline": true,
+      "lines": 236,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "sampled trigger/readiness projection",
+      "read_scope": "Historical1/2 versus current3; fixed Strategy/Budget/Vault/Portfolio graph; exact main bounds/control revisions, same-side physical/reference threshold; sample identity/time/maxgap; cooldown-independent condition versus execution readiness; pending geometry exception.",
+      "failure_recovery_review": "Contradictory fresh/raw/recorded readiness, malformed word/bool/time, missing pool/control/capability or different reference side fails unavailable; no continuous-price or jitter schedule claim.",
+      "functions": [
+        {
+          "name": "observe",
+          "line": 6,
+          "end_line": 104
+        },
+        {
+          "name": "words",
+          "line": 9,
+          "end_line": 18
+        },
+        {
+          "name": "scalar",
+          "line": 19,
+          "end_line": 19
+        },
+        {
+          "name": "binding",
+          "line": 20,
+          "end_line": 22
+        },
+        {
+          "name": "_observe_portfolio",
+          "line": 107,
+          "end_line": 236
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/zzz_ops/rebalance_confirmation.py",
+            "/source_sha256_after/zzz_ops/rebalance_confirmation.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/zzz_ops/rebalance_confirmation.py",
+            "/source_sha256_after/zzz_ops/rebalance_confirmation.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "frontend_api/portfolio_v6.py",
+      "sha256": "4f44737dcffeb7630bf52d6079c69519f0e7981dd72420b7fa41ee6803410c59",
+      "matches_audit_baseline": true,
+      "lines": 202,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "selected delegated fresh portfolio body",
+      "read_scope": "Full verify_profile/read_bucket_proof/contribution_context bodies read with accounting7 parameter; physical main+residual source adapter delegation; same stored tick/threshold evidence; modes and allocation metadata; no schedule or market proof.",
+      "failure_recovery_review": "Wrong fixed helper/runtime/profile/main identity, aggregate physical value mismatch or inconsistent confirmation rejects; actual keeper.compound_policy internals are delegated beyond this selected read.",
+      "functions": [
+        {
+          "name": "verify_profile",
+          "line": 14,
+          "end_line": 63
+        },
+        {
+          "name": "number",
+          "line": 20,
+          "end_line": 21
+        },
+        {
+          "name": "binding",
+          "line": 22,
+          "end_line": 24
+        },
+        {
+          "name": "read_bucket",
+          "line": 66,
+          "end_line": 68
+        },
+        {
+          "name": "_read_bucket_proof",
+          "line": 71,
+          "end_line": 102
+        },
+        {
+          "name": "contribution_context",
+          "line": 105,
+          "end_line": 202
+        },
+        {
+          "name": "read",
+          "line": 116,
+          "end_line": 116
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/source-manifest.json",
+          "sha256": "d429711f4a2aabae94ca63eaaf605aa8cfaec7033ce6469cbbdb398218c327d7",
+          "exact_file_pin_pointers": [
+            "/source_sha256/frontend_api/portfolio_v6.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/portfolio_v6.py",
+            "/source_sha256_after/frontend_api/portfolio_v6.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/portfolio_v6.py",
+            "/source_sha256_after/frontend_api/portfolio_v6.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "zzz_ops/exact_lp.py",
+      "sha256": "397279d87ef7caa85f98f329277cce8da2e10ad7129d5a6e54b5d7b361129259",
+      "matches_audit_baseline": true,
+      "lines": 98,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "independent exact LP arithmetic model",
+      "read_scope": "Raw whole-unit split/high-low phase; non-mutating preview versus path materialization; weight change settle/rebase; exact outstanding; bounded1000ordinal tree and uint256 arithmetic.",
+      "failure_recovery_review": "Bad width, asset, ordinal, empty supply or outstanding overflow/underflow rejects. No formal equivalence or fresh differential execution was run.",
+      "functions": [
+        {
+          "name": "uint",
+          "line": 14,
+          "end_line": 16
+        },
+        {
+          "name": "split",
+          "line": 19,
+          "end_line": 28
+        },
+        {
+          "name": "__init__",
+          "line": 32,
+          "end_line": 36
+        },
+        {
+          "name": "leaf",
+          "line": 39,
+          "end_line": 41
+        },
+        {
+          "name": "weight_of",
+          "line": 43,
+          "end_line": 43
+        },
+        {
+          "name": "total",
+          "line": 45,
+          "end_line": 45
+        },
+        {
+          "name": "_path",
+          "line": 47,
+          "end_line": 64
+        },
+        {
+          "name": "set_weight",
+          "line": 66,
+          "end_line": 81
+        },
+        {
+          "name": "credit",
+          "line": 83,
+          "end_line": 90
+        },
+        {
+          "name": "claimable",
+          "line": 92,
+          "end_line": 92
+        },
+        {
+          "name": "take",
+          "line": 94,
+          "end_line": 98
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/zzz_ops/exact_lp.py",
+            "/source_sha256_after/zzz_ops/exact_lp.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/zzz_ops/exact_lp.py",
+            "/source_sha256_after/zzz_ops/exact_lp.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    },
+    {
+      "path": "frontend_api/earnings_prices.py",
+      "sha256": "8ddfa2dbd260b52de3ce125c809a3a9a952491243d38549b2dead87162c24316",
+      "matches_audit_baseline": true,
+      "lines": 134,
+      "review_level": "manual_function_family_and_interaction_read_not_path_complete",
+      "family": "current USD display marking",
+      "read_scope": "Optional source policy and module pins; per-currency unavailable reasons; WorkLimit propagates; zero-only unpriced metrics can value0 while nonzero missing-price metrics remain null; original-earned currencies valued today.",
+      "failure_recovery_review": "Price-module/source failure is separated from raw funded earnings; missing prices never replace nonzero financial values with zero. No historic USD or realized-proceeds claim.",
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 9,
+          "end_line": 47
+        },
+        {
+          "name": "contract",
+          "line": 17,
+          "end_line": 19
+        },
+        {
+          "name": "read",
+          "line": 50,
+          "end_line": 110
+        },
+        {
+          "name": "read_price",
+          "line": 76,
+          "end_line": 77
+        },
+        {
+          "name": "value_report",
+          "line": 113,
+          "end_line": 134
+        }
+      ],
+      "source_matched_prior_evidence": [
+        {
+          "path": "reports/reference-execution-20261111/backend/python-consumers.json",
+          "sha256": "ce1d1054910c80af24322dc1899546be8ba2a8a32a98500d76b898f059d23c23",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/earnings_prices.py",
+            "/source_sha256_after/frontend_api/earnings_prices.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        },
+        {
+          "path": "reports/reference-execution-20261111/backend/actual-trace-replay.json",
+          "sha256": "da8fd0f1548d348344356a43076df084ac4abd946b68efb67991daeca3049589",
+          "exact_file_pin_pointers": [
+            "/source_sha256_before/frontend_api/earnings_prices.py",
+            "/source_sha256_after/frontend_api/earnings_prices.py"
+          ],
+          "reuse_limit": "Original selected methods/fixtures/source-stage only. File pin equality does not re-attest every transitive source or whole project; shared state.py hardening is separately reviewed."
+        }
+      ],
+      "new_tests_or_rpc": false
+    }
+  ],
+  "new_confirmed_defects": [],
+  "method": "Read all15 requested source bodies plus3 delegated arithmetic/portfolio/pricing bodies, map function families and fail-closed behavior, compare current file hashes against existing exact source manifests. No source/test edits, new test runs, RPC, compiler or deployment.",
+  "existing_evidence_limits": [
+    "Four earlier actual-reference trace replay methods retain their original source/fixture scope; no rerun or live route/provider qualification.",
+    "The13November actual ETH/ZZZ contribution profile captures retain controlled feed/depth and20M gas scope, without mainnet fees/markets.",
+    "Exact LP reader no-op conversion and source-wire evidence retains original distinct/overlapping stages.",
+    "11November predecessor-profile fix evidence retains exact lineage source and separate historical fixture corrections.",
+    "Individual file hash matches below do not imply full dependency closure unchanged after current state.py hardening; new state behavior has its own focused review/evidence."
+  ],
+  "remaining_boundaries": [
+    "Provider responses/indexer complete history are trusted observations checked against pinned code/anchors, not a consensus or log completeness proof.",
+    "Price-source economic independence, usable bidirectional depth and complete target network fees remain external release gates.",
+    "Optional checkpoint source pins, maximum lifetime/history/max-state throughput, full hosted multiclient operation and fresh deployment adoption remain separate qualification.",
+    "Original-currency royalty availability depends on admitted token behavior; no universal payout for arbitrary malicious/unreadable tokens.",
+    "Unsigned current-contract profiles remain unsigned; wallet confirmation/recovery is outside these preparation readers.",
+    "The imported helper inventory and declared function list are evidence indexes; this manual pass does not establish path-complete or formal correctness."
+  ]
+}

@@ -45,7 +45,7 @@ A read-only explorer call cannot change state. Verify the actual deployment,
 chain, ABI, caller and full ordered inputs before any write.
 
 The [function reference](CONTRACT_FUNCTIONS.md) lists every current input, output
-and caller class across38 concrete contracts. The source-scoped historical
+and caller class across40 concrete contracts. The source-scoped historical
 [authority inventory](../reports/authority-audit-20261103/AUTHORITY_INVENTORY.json)
 resolves241 mutable ABI entries to effective implementations, including inherited
 ERC721 functions, across37 concrete contracts.577 reads,37 constructors and13
