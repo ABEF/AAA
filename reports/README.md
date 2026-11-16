@@ -1,15 +1,15 @@
 # Verification evidence
 
-[Checkpoint3 and prefix import](checkpoint-prefix-import-20261116/REVIEW.md) preserve exact earnings and the full raw24-hour
-window across authenticated replacements. The separate [history recovery tool](history-recovery-20261116/REVIEW.md)
-now snapshots every current-profile raw database, verifies a reviewed manifest
-and restores into new files. Checkpoints/reviews retain exact bytes; all14
-existing semantic sources, accounting, API limits and financial safeguards stay.
-No source SQL writes, pruning, credentials in bundles or automatic adoption.
-Per-database snapshots are not one atomic graph or canonical-completeness proof.
-Actual archive/provider, maximum-state, off-host and operating qualification remain
-open. Contracts, existing chains/journals, signer, sites/services and paused
-heartbeat are unchanged.
+Current offline tooling includes [checkpoint3/prefix import](checkpoint-prefix-import-20261116/REVIEW.md), [history recovery](history-recovery-20261116/REVIEW.md)
+and a separate [deployment sequence planner](deployment-sequence-20261116/REVIEW.md). The new wrapper derives25 conditional
+top-level addresses across44 same-bootstrap-EOA transactions, including19 bindings,
+then uses the unchanged trusted constructor reviewer. No nonce reservation,
+child-address prediction, RPC, signing, deployment, sealing or live adoption.
+Exact accounting/full24h, existing14semantic sources, contracts, safeguards and
+limits remain unchanged. Factory children still require actual getters. Address/nonce
+predictions are conditional, not observations or approval. Actual release inputs,
+markets/providers, fees, authority, host/restore and independent approval remain
+open; existing chains/journals, signer, sites/services and paused heartbeat stay.
 
 The [16 November whole-project audit](whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
 state-file and website-profile gaps and reconciles current guidance. Production

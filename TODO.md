@@ -1682,7 +1682,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-deployment-initcode"></a>
 
-- [ ] **[Qualify exact constructor arguments and deployment size](docs/DEPLOYMENT_PREPARATION.md)** - In progress. The current metadata2 five changed constructors, three bindings and12 actual instances are verified in a selective isolated local rehearsal, reusing accepted normal objects. Earlier full-graph evidence retains its original source. Final release inputs/dependencies/runtime bindings, complete target-chain gas/fees and independent approval remain unqualified.
+- [ ] **[Qualify exact constructor arguments and deployment size](docs/DEPLOYMENT_PREPARATION.md)** - In progress. The current metadata2 changed constructors/bindings and cold reads have scoped isolated local evidence. A separate unsigned offline sequence wrapper now derives25 conditional top-level CREATE addresses across44 same-bootstrap-EOA transactions including19bindings, then reuses unchanged strict constructor/build/size checks. Factory children remain getter-discovered. Actual release inputs, confirmed/pending nonce/caller/code/receipt/runtime reconciliation, complete target fees and independent approval remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1704,6 +1704,7 @@ Decisions and rehearsals before real funds.
   - The current local evidence checker requires the exact112distinct expected getter/state observations, closed39constructor graph/arguments/parents and complete intended RPC/send/impersonation evidence. Inert carrier output is derived from trusted ledger bytes. Original44receipt data replays offline with the documented legacy preflight alias limitation. Preflight build refusal consumes no new rehearsal directory. No new node/deployment/gas campaign or old suite runs.
   - [Selective metadata2 rehearsal](reports/metadata2-rehearsal-20261116/REVIEW.md): five changed normal creations/three bindings/12 actual instances/63 expected getter-state observations pass on one new owned loopback node. Eight receipts use41,327,001 gas; worst full 25%padded constructor14,208,779/32M. Exact initcode/creator/trace/runtime proofs and unsealed zero-NFT state are retained; no unchanged top-level/full-suite/compiler rerun. Final actual release inputs, dependencies and complete target fees remain open.
   - [Whole-project hardening](reports/whole-project-audit-20261116/REVIEW.md) rejects governance collisions with planned protocol instances and fixed dependencies before artifact preparation. Unknown wallet control, actual creation inputs/fees and complete release construction remain unqualified; no deployment or sealing occurred.
+  - [Conditional deployment sequence](reports/deployment-sequence-20261116/REVIEW.md): public direct-EOA sender plus explicit canonical decimal nonce derives25 top-level CREATE addresses over25creations/19bindings. Frozen source graph/order, nonce overflow/exhaustion, constructor forward references, known collisions and disagreeing supplied addresses reject. Existing constructor planner/accepted source/build/ABI/size limits remain byte-identical; missing inputs stay blocked. Factory children/getter arguments are not predicted, later setup has no nonce assignment, all readiness/authority/approval flags stayfalse and no RPC/sign/deploy/seal/resume/adoption occurs. New RLP boundary vectors and exact old44receipt nonce/address witnesses verify math only, not current constructor execution/gas; no old suites/compiler/node rerun. Exact source/case stages and CLI abbreviation correction retained. Live EOA/control/code/confirmed-pending nonce, address availability, receipts, additional setup capacity, services/fees and independent release approval remain separate.
 
   </details>
 
@@ -1743,4 +1744,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `52388ae0348e3b7fde596dae39dd10f501afa6389c4402f59982e1df7a73a6bd`.
+Snapshot SHA-256: `b3b9e864b9a67b42ae7326002bd4b7823beed108027b7d1c25ff03493aaa3000`.

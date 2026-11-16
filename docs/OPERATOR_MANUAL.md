@@ -640,6 +640,36 @@ submission and not production approved; live prerequisites and actual address,
 nonce, runtime, gas and binding reconciliation are separate. Follow the owning
 guide for typed inputs, output preservation and the pre-seal boundary.
 
+### Prepare deployment addresses and nonces
+
+Use the separate [conditional sequence planner](DEPLOYMENT_SEQUENCE.md). A contract
+creation address depends on the sender and its transaction nonce; binding calls
+consume sender nonces too. This tool derives25 top-level addresses across the
+exact44-call phase and feeds them to the unchanged strict constructor reviewer.
+
+| Tool/action | Required inputs | Example | Effect |
+| --- | --- | --- | --- |
+| Prepare conditional sequence | Existing constructor JSON, public direct-EOA sender, canonical decimal starting nonce, new output file | `python scripts/prepare-deployment-sequence.py --input /review/input.json --deployer REVIEWED_PUBLIC_EOA --starting-nonce REVIEWED_DECIMAL_NONCE --output /review/new-sequence.json` | Review conditional deployment sequence |
+| Select trusted build | Explicit closed build ID | Add `--build-profile metadata2-20261116` | Select exact reviewed artifacts |
+
+Replace placeholders; no private key/RPC is used. All44 calls must be ordinary
+successful transactions from the actual same bootstrap EOA, with no unexpected
+nonce use. This is not a Safe/factory/delegated-account or resume path. Bootstrap
+is Access's actual CREATE sender; governance is not automatically a substitute.
+Existing nonnull address assignments must agree with predictions or reject.
+Factory/helper/data-child addresses remain getter-discovered and unverified.
+
+Exit0 means complete offline top-level input/sequence,2 means a blocked preview,
+1 means invalid/unavailable/uncertain publication. All remain not ready or approved.
+Preserve existing/possibly complete outputs and use a fresh path after inspection.
+The new manifest hash is not a contract reviewHash or nonce reservation. Before a
+separately authorized deployment, independently reconcile actual chain/code/caller,
+confirmed/pending nonce, CREATE receipts, getters, runtimes and all bindings.
+Changed/failed/replaced transactions require explicit reconciliation; never shift
+old saved nonces or restart a partial graph blindly. Later configuration/sealing
+is unprepared and needs additional reviewed nonce capacity. No current wallet,
+journal, service, Anvil, website or monitoring change is made by this tool.
+
 ### Isolated local construction rehearsal
 
 Use the separate [local construction procedure](DEPLOYMENT_PREPARATION.md#isolated-local-construction-rehearsal)

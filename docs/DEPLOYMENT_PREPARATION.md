@@ -52,7 +52,7 @@ do not fill production templates with invented values to obtain a pass.
 | Input group | Required review |
 | --- | --- |
 | `schema`, `profile`, `chain_id` | Integer `1`, exact `schema17/mint2/V10/execution1/LP3` and decimal string `"4663"`. The canonical home-chain argument uses that chain. A profile label cannot upgrade an old runtime. |
-| `planned_addresses` | Public, unique intended addresses for the 25 externally constructed instances. Each is null or a full `0x` address. These are operator assignments, **not calculated CREATE addresses or observed contracts**. |
+| `planned_addresses` | Public, unique intended addresses for the 25 externally constructed instances. Each is null or a full `0x` address. These are operator assignments in this component, **not calculated CREATE addresses or observed contracts**. The separate [sequence wrapper](DEPLOYMENT_SEQUENCE.md) can fill conditional top-level predictions from a public direct-EOA sender/explicit nonce. |
 | `inputs` | Governance, keeper, guardian, future mint payee, sequencer, metadata URI, fixed ZZZ, native venue dependencies, SeaDrop/code hash and buyback ceiling. The example names every key. Native venue/ZZZ and reviewed SeaDrop identities must match this fixed source profile when supplied. |
 | `qualification_evidence` | Null or 64 hexadecimal SHA-256 characters, without `0x`, for each named external-review category. A supplied digest remains unverified; the tool does not open it or approve that review. |
 
@@ -95,7 +95,7 @@ preview remains blocked where it cannot encode exact arguments. A full static
 payload still depends on proving that its assigned addresses are the actual
 addresses created in the reviewed sequence. The tool deliberately does not
 select or reserve deployment nonces, predict addresses, reconcile receipts or
-execute a resumable deployment.
+execute a resumable deployment. The separate [offline sequence wrapper](DEPLOYMENT_SEQUENCE.md) now derives conditional top-level addresses for25 creations/19 bindings and supplies them to this unchanged reviewer. It reserves no nonce, observes no account and does not predict factory children. Live reconciliation and all approval boundaries remain.
 
 Outputs distinguish exact encoded constructor arguments/full initcode from
 unresolved symbolic getter references. Fixed-width unresolved addresses can

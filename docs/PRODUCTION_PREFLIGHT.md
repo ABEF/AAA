@@ -32,7 +32,7 @@ disabled. Runtime/config/receipt provenance is never upgraded by changing a labe
 ## Prepare construction before observing deployment
 
 Use the separate [offline deployment planner](DEPLOYMENT_PREPARATION.md) for
-constructor payloads, normal byte-size limits and bootstrap binding order.
+constructor payloads, normal byte-size limits and bootstrap binding order. The separate [conditional sequence wrapper](DEPLOYMENT_SEQUENCE.md) derives25 top-level addresses from an explicitly assumed direct-EOA nonce and accounts for19 bindings; it never supplies live address/nonce evidence or predicts permissionless factory children.
 Its incomplete or complete static plan is never a deployed inventory, address
 prediction, constructor simulation or production approval. The read-only
 preflight below still requires actual creation-to-anchor runtime/getter/control

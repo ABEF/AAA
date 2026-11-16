@@ -1,0 +1,197 @@
+{
+  "baseline_head": "4a3b30dd8d85d923d97d1892568280eec8328ce1",
+  "count_scope": "18newcoremethods +20newCLI/publicationmethods withdisjointstageunion; notonefreshall38run. Originalfailedabbreviationcase preserved.",
+  "files": [
+    {
+      "lossless_gzip": true,
+      "original_bytes": 1385963,
+      "original_sha256": "fc499a937e83e2d833815abc2cd3ffd6c37e78c8838b95c169364570d7e4bee4",
+      "path": "evidence/BASELINE.json.gz",
+      "sha256": "a8ec823750e9d7580ebce5423bae17c930d79ed771a40f6c8445cb8b77a6f1a5"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 5630,
+      "original_sha256": "6f0e2f8dbf4db4653ce6dd20d839fac57af19796b8c234de33580f3eee9b1a86",
+      "path": "evidence/cast-create-vectors.json.gz",
+      "sha256": "8359aaaec85abf1acbc94f212b1f80609d33d33546415791eba097bef8804156"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 3184,
+      "original_sha256": "9b46ed9df430019e93bc7a217e437d5928c89206149c1a2c19b9e972227ddcad",
+      "path": "evidence/deployment-sequence-cli-before-abbrev.py.gz",
+      "sha256": "dfbe7a5b8da70b454b9fb7f2f67ab15c03ecaa5c1fc9116662eb8f0c7fe3fe80"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 10856,
+      "original_sha256": "eb0f9ea18b1f3c35fceaa1c5f95ea07088c2ffc6269c93cb6264bbccf461fd03",
+      "path": "evidence/FINAL_SOURCE_PINS.json.gz",
+      "sha256": "6f0392605d71f2ac148d5332a4a6595c95639ab7244c6a3f2799ee0d37dbf3cf"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 1839,
+      "original_sha256": "b114e33aea7d4ba56dd7e9121e20acb003286b33af5d92f6167b209e1020de36",
+      "path": "evidence/generate-vectors.py.gz",
+      "sha256": "1712483edf9f9d665d0f207aa778c16ff2a557706446067b2adf731bfa015f7a"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 9135,
+      "original_sha256": "46a9f962278ffc74f1ff5c062d997ce047037d488667e3b04dc015bad18279d0",
+      "path": "evidence/INDEPENDENT_SEQUENCE_REVIEW.json.gz",
+      "sha256": "2dbe7f88bf130d18ba113eb65af29c14657fd366178da61805be60d75ecdc969"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 2994,
+      "original_sha256": "19be7814f77202d7eefff78dfdd6d419ef3e1c193e0c3b4e7a2eb081b09eca65",
+      "path": "evidence/pin-sequence-cli-stages.py.gz",
+      "sha256": "93db279f9aadf7769b73413372a0e1d46b6717e53a40e3d56b1de46d0ec662b6"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 2405,
+      "original_sha256": "776e1486e61d12df6600d99361f8ad76c52814cd8c02a2333d7d82c755a9f143",
+      "path": "evidence/pin-sequence-core.py.gz",
+      "sha256": "eb4866b9b71b347e97003fb08c48c366ecbac8be68da8b3533444f77670a2088"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 1114,
+      "original_sha256": "5a4fd5a7091258dda42f8ecd8553d8b19718a60c59c0f7c6699f1483e7998eb0",
+      "path": "evidence/PRESERVATION.json.gz",
+      "sha256": "76a8c51e46c24e556e749524593d5bc37aa3377ff709907741b082a6bb715adc"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 2673,
+      "original_sha256": "e18d46bea703aaa902e28398411828a1586eee0b0824631c52eeb62216ebbfb4",
+      "path": "evidence/run-sequence-cli-stage.py.gz",
+      "sha256": "dd10a25cd91ae5a76e831c09b8a780260a3343e9c17c45e2002a849aa854a2d4"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 2883,
+      "original_sha256": "61b5ef35a5391799c15ee08435649b60bb44357fa63d0a47b8a3fe458fe69496",
+      "path": "evidence/run-sequence-core-stage.py.gz",
+      "sha256": "d885266eea2442daab79e78ceb245b5479fd813f48a96f04801f8c97a43c0470"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 1928,
+      "original_sha256": "3c191210b3265e261f1ccf900731cc5de08a3eaf99963f253ade2a7293c6b11b",
+      "path": "evidence/sequence-cli-abbreviation-fixed-01.json.gz",
+      "sha256": "2a1e1d4382b0558da73ad36c6101f4b80023e18a7bcebc875e3af8f0db5aa123"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 315,
+      "original_sha256": "253309ee56cc1f3d91758eefcf03cf06aa12654404ef58fc1fcb15f6232dcefa",
+      "path": "evidence/sequence-cli-abbreviation-fixed-01.log.gz",
+      "sha256": "ce8f811c0d5c74fa5f4f986d9151c82f7cc71f0c76c62315cb9ee50368c3fa53"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 5128,
+      "original_sha256": "85a77af0d29cf9e34de1368500db8aa7dacf384a3e5f4801f27a8b431dc74517",
+      "path": "evidence/sequence-cli-final-pins.json.gz",
+      "sha256": "579773a9d3b8d027cdcd06ee429133252b13206929f04021c7feed3a752bc720"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 8153,
+      "original_sha256": "d6b4610e7c304775f29c863635239f7b5d2fb86a6e5342175aff1382a448b641",
+      "path": "evidence/sequence-cli-remaining-01.json.gz",
+      "sha256": "673d6debc78acf9860ea466e78e95b9bdee578474b0bdf61f07bf1171f8d30e3"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 5536,
+      "original_sha256": "63d64100c98178e01941971d4e455e413e0ec2ec281f8358d641125a132b1576",
+      "path": "evidence/sequence-cli-remaining-01.log.gz",
+      "sha256": "d341ac7497fb305ff43ee723a60e7e87a2d8e584c7a4734c46330cdd32986534"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 1946,
+      "original_sha256": "5ee2c4576db3fe8c0f4bc97d30d72cfcf9cc3d835d5de1bcc45f8d347ec88938",
+      "path": "evidence/sequence-cli-representative-01.json.gz",
+      "sha256": "8adc3a46ff8c081c1c0e9dca7f55652204bfa51bbaa8e7a631c206a6f63d220f"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 327,
+      "original_sha256": "cdf352611dacae1b8204ebafcff5d24d6ac9f744a0f4830d14a3f26af5b8d730",
+      "path": "evidence/sequence-cli-representative-01.log.gz",
+      "sha256": "02f542cc9a9c96acb465a8c60572527a42c2218763c31e1efd1865bd6a3dad1b"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 9681,
+      "original_sha256": "6b240da9ab16ab3c93413513676201426c05dc99e00b711b7d48643176ad105b",
+      "path": "evidence/sequence-core-18-final-pins.json.gz",
+      "sha256": "1bec6fc19e99bab32a73a1b5b7b9b3ad1d33eed6aaba6915c2a1bcd982804be1"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 1843,
+      "original_sha256": "4a6e114c392845ea9bb1f5694929e3337a1c45be5386d977c96cee2e34c2cb0f",
+      "path": "evidence/sequence-core-baseline-capability.json.gz",
+      "sha256": "c876f686683d4c848a182bcf29deb3a28c0a8addf6931a579df8ffa717260b77"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 8210,
+      "original_sha256": "8468e5fc443c28e87d21a638d634346c95f1e2de85a30247952b87a6a4fb191b",
+      "path": "evidence/sequence-core-remaining-01.json.gz",
+      "sha256": "873d1c7dabb2d0354c00100c22e7ada1b566a96effddd5bc23ce9ec1cd4ed8d6"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 3373,
+      "original_sha256": "6f041462744fd9401848965ae210a58c8294931594833fb37dc74f631bb7d647",
+      "path": "evidence/sequence-core-remaining-01.log.gz",
+      "sha256": "dafb51bbbd2a53b392da8fa4c2ecc35ccde8d9c10cff91be87856994fd44620c"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 2005,
+      "original_sha256": "34c0745da0878d950b41d31c7e8a6eaa3d46e004351accaad82e916f387fc626",
+      "path": "evidence/sequence-core-representative-math-01.json.gz",
+      "sha256": "cf6896ab09f43f38ce007916af516d7c5925a2eaa3eaa07d851b63519950a28a"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 298,
+      "original_sha256": "680ca9b0b7551b0797ef77b5960dd8a3ffe9d5385ce0a11c574b1d6204505294",
+      "path": "evidence/sequence-core-representative-math-01.log.gz",
+      "sha256": "1a56391f70bfafa6bd86149147cdabac86dc08f0b2a386a93ec72e852904153b"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 2025,
+      "original_sha256": "98acd82fadb9a26d5dc482ce06286a0a4c67140b08f33ef0d34eb1c5cf4c9a1f",
+      "path": "evidence/sequence-core-representative-prepare-01.json.gz",
+      "sha256": "6c42ff6b67e205012ffc29f097f48ab6af0aa59a4e200d0f4c465b4ed71db6d5"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 312,
+      "original_sha256": "72f46043b471bb8ded6933d88c491a7d54ef8311b66959b4450f9c7da0b47fda",
+      "path": "evidence/sequence-core-representative-prepare-01.log.gz",
+      "sha256": "b42ee8dd6d9945157ccdff05c9df6bf229af28c0a8ab46bf5a355b8b1a128323"
+    },
+    {
+      "lossless_gzip": true,
+      "original_bytes": 2097,
+      "original_sha256": "727179aad3e506504141ebcdfc186ac439afd5729e6d843f40399009b861a498",
+      "path": "evidence/SEQUENCE_CLI_REVIEW.json.gz",
+      "sha256": "a67d1f03d35168c1c7eb2f34f99bf6a0a4ccf477d88c93d484314c3f088b2adc"
+    }
+  ],
+  "production_approved": false,
+  "unique_new_methods": 38
+}

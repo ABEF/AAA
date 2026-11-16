@@ -1,5 +1,7 @@
 # Release approval record - NOT APPROVED
 
+The [conditional deployment sequence](../reports/deployment-sequence-20261116/REVIEW.md) closes only offline top-level address/nonce preparation:25 creations/19 bindings from one assumed bootstrap EOA. It observes/reserves no nonce, predicts no factory children and approves no actual caller/code/fees/configuration/deployment/seal. Reconcile live state and all release prerequisites independently.
+
 [History recovery source](../reports/history-recovery-20261116/REVIEW.md) adds bounded offline snapshots/verification/separate restore with exact accounting and full24h retained. Individual manifests/artifacts, private path mappings, canonical ingestion, actual storage/off-host/host/runtime and maximum-state restore remain separately reviewed. No service/configuration or release sign-off is approved by this tool.
 
 The [offline checkpoint prefix importer](../reports/checkpoint-prefix-import-20261116/REVIEW.md) adds source capability only. Each candidate, exact input digest, producer review,

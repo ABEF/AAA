@@ -1,15 +1,15 @@
 # AAA / ZZZ PoPL project instructions
 
-[Checkpoint3 and prefix import](reports/checkpoint-prefix-import-20261116/REVIEW.md) preserve exact earnings and the full raw24-hour
-window across authenticated replacements. The separate [history recovery tool](reports/history-recovery-20261116/REVIEW.md)
-now snapshots every current-profile raw database, verifies a reviewed manifest
-and restores into new files. Checkpoints/reviews retain exact bytes; all14
-existing semantic sources, accounting, API limits and financial safeguards stay.
-No source SQL writes, pruning, credentials in bundles or automatic adoption.
-Per-database snapshots are not one atomic graph or canonical-completeness proof.
-Actual archive/provider, maximum-state, off-host and operating qualification remain
-open. Contracts, existing chains/journals, signer, sites/services and paused
-heartbeat are unchanged.
+Current offline tooling includes [checkpoint3/prefix import](reports/checkpoint-prefix-import-20261116/REVIEW.md), [history recovery](reports/history-recovery-20261116/REVIEW.md)
+and a separate [deployment sequence planner](reports/deployment-sequence-20261116/REVIEW.md). The new wrapper derives25 conditional
+top-level addresses across44 same-bootstrap-EOA transactions, including19 bindings,
+then uses the unchanged trusted constructor reviewer. No nonce reservation,
+child-address prediction, RPC, signing, deployment, sealing or live adoption.
+Exact accounting/full24h, existing14semantic sources, contracts, safeguards and
+limits remain unchanged. Factory children still require actual getters. Address/nonce
+predictions are conditional, not observations or approval. Actual release inputs,
+markets/providers, fees, authority, host/restore and independent approval remain
+open; existing chains/journals, signer, sites/services and paused heartbeat stay.
 
 The [16 November whole-project audit](reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
 state-file and website-profile gaps and reconciles current guidance. Production
@@ -338,6 +338,20 @@ Reviewed2026-11-16. Read [context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md) and the relevant
 [operator procedure](docs/OPERATOR_MANUAL.md) before changing behavior.
 This file is current instructions, not a report timeline.
+
+## Conditional deployment sequence source boundary
+
+The separate wrapper uses a public direct-EOA sender and explicit canonical
+decimal nonce for exactly25 CREATE transactions/19 interleaved bindings. Frozen
+current graph/order digests reject unreviewed sequence changes; nonnull manual
+addresses must match predictions. Existing constructor source/ABI/build/size and
+collision checks remain byte-identical. No internal/factory nonce prediction;
+getter-dependent arguments stay unresolved. All44 calls assume one successful
+ordinary same-bootstrap transaction each, without inserted/failed/replaced/
+authorization-list or delegated-wallet work. No live nonce/code/control proof,
+nonce adoption, setup/resume/transaction envelope or seal is added. EIP2681 bound
+rejects overflow/exhausted endpoint; reported remaining capacity does not approve
+unprepared later setup. New source publication is not a deployment workflow.
 
 ## Authorization and preservation
 
