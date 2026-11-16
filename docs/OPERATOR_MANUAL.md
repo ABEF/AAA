@@ -2882,30 +2882,60 @@ unqualified.
 
 ## Metadata lifecycle and marketplace recovery
 
-Use the [complete scenario matrix](METADATA_LIFECYCLE.md) before changing metadata
-behavior. Separate the current tier, known/unavailable valuation, LP closed,
-unpaid/paid principal and retained royalties. Exited activated NFTs currently
-show **LP exited** with Activated art, not Dormant. Never reset royalty weights,
-reopen LP or resend a financial operation to repair an image.
+Use [metadata2 rules](NFT_METADATA.md) and the [80-case matrix](METADATA_LIFECYCLE.md).
+**LP exited is not Dormant.** It retains Activated art, old rewards and royalty
+activation. Principal allocation, distribution readiness and completed payment
+have separate labels; no image repair changes entitlements or reopens LP.
 
-| Situation | Read / action | Verify and limitation |
-| --- | --- | --- |
-| Contribution confirmed, image looks old | Read `NFT.tokenURI(id)`, `NFT.currentLPValue(id)` and `NFT.evolution(id)` at a confirmed block. | Check the original successful receipt and actual LP/shares first. Pending/failed actions do not justify an upgrade. |
-| Correct on-chain JSON, marketplace still old | Anyone may call `NFT.refreshMetadata(id)`; example `refreshMetadata(EXACT_HASHED_TOKEN_ID)`. | Event-only, caller pays gas; no price/financial mutation. OpenSea still chooses ingestion/cache timing. |
-| Several NFTs need a refresh | `NFT.refreshMetadataRange(firstOrdinal,lastOrdinal)`; example `refreshMetadataRange(1,50)` only if at least50 minted. | Maximum50 inclusive mint ordinals, not token IDs. Check each actual ID and notification receipt; rotate through remaining ordinals. |
-| Parked/price-unavailable NFT looks downgraded | Read valuation availability and custody status. | Current on-chain art is labelled Activated fallback; refresh cannot repair a failed price source. Do not call it Dormant or paid principal. |
-| LP exit closed, holder not yet paid | Read `Vault.nftStatus(id)` and `Migration.principalOf(id)` plus `exitPhase()`. | LP exited means principal left LP. Allocation, paid flag and remaining ETH/ZZZ are separate; current metadata omits settlement detail. |
-| Canonical replacement or permanently closed Dormant collection | Verify canonical state/successor and exact contract identity before presentation. | Current JSON has identified lifecycle gaps. Keeper blocks new notifications in canonical non-operating states; permissionless NFT event-only refresh remains separate and does not repair the labels. |
+| Situation / function | Inputs | Example | Meaning / next check |
+| --- | --- | --- | --- |
+| `NFT.tokenURI(id)` | Actual uint256 ID | `tokenURI(EXACT_TOKEN_ID)` | Decode confirmed JSON; inspect schema2, lifecycle, availability and image. |
+| `NFTMetadata.METADATA_LIFECYCLE_VERSION()` | None | `METADATA_LIFECYCLE_VERSION()` | Must equal2 for opt-in watcher2. |
+| `NFTMetadata.metadataLifecycleFingerprint(id)` | Actual uint256 ID | `metadataLifecycleFingerprint(EXACT_TOKEN_ID)` | Read-only opaque change hash; **not reviewHash or permission**. |
+| `NFTCanonical.metadataLifecycleState(id)` | Actual uint256 ID | `metadataLifecycleState(EXACT_TOKEN_ID)` | Flags + historical assigned ETH/ZZZ + successor; not remaining balances. |
+| `NFTCanonical.metadataLifecycleContext(id)` | Actual uint256 ID | `metadataLifecycleContext(EXACT_TOKEN_ID)` | Comma-prefixed JSON fragment/label, not standalone tokenURI. |
+| `NFT.refreshMetadata(id)` | Actual uint256 ID | `refreshMetadata(EXACT_TOKEN_ID)` | Anyone may emit event-only refresh; caller pays gas. |
+| `NFT.refreshMetadataRange(firstOrdinal,lastOrdinal)` | Existing inclusive mint ordinals, max50 | `refreshMetadataRange(1,50)` if50minted | Emits each actual hashed ID; never pass ordinals as token-ID intervals. |
+| `Migration.principalOf(id)` / `exitPhase()` | Actual ID / none | `principalOf(EXACT_TOKEN_ID)` | Authoritative assignment/paid state. Assigned amounts stay historical after payment. |
 
-The optional watcher is disabled by default. It scans reveal, tier and valuation
-availability, not every numeric NAV movement, and records confirmed notification
-receipts rather than OpenSea acknowledgement. At1000NFTs/50per scan, at least20
-scan passes plus receipt/budget/priority delays are needed. Rehearse the actual
-host/collection before promising a latency. Current OpenSea documentation offers
-[ERC-4906 updates](https://docs.opensea.io/docs/updating-metadata) and a
-[queued refresh API](https://docs.opensea.io/reference/refresh_nft_metadata);
-no API client/key, service rollout or automatic marketplace-completion monitor
-is supplied by this review. Existing pause/refresh/canonical permissions remain.
+Exit start, each bucket close and final Ready emit a whole-collection ERC-4906
+event without an NFT loop. Successful principal payment emits its per-NFT event;
+failed isolated payments emit no successful notification. Preparation/cancel and
+canonical state transitions notify after committed writes. The internal
+`NFT.policyMetadataChanged()` hook accepts only bound Policy/controller/Migration,
+not your governance EOA; use public event-only refresh calls above.
+
+Never-activated NFTs remain Dormant; after terminal exit metadata separately says
+activation is permanently closed. Preparing/frozen/importing are temporary/inert
+canonical states, not permanent shutdown. Retired predecessors identify their
+verified successor; cancelled importers cannot be presented as live rights.
+Replacement does not move marketplace listings automatically.
+
+For unavailable confirmed activated NAV, the renderer and integration source use
+**Valuation unavailable · Activated fallback**. No guessed zero or last-good tier.
+For pending contributions keep the target's confirmed image, or show no image if
+there is no confirmed snapshot. Artwork changes only after confirmed LP state;
+claims/approvals do not animate evolution or mark every card as updating.
+
+The watcher stays disabled by default. To adopt lifecycle2, review exact fresh
+NFT/renderer/NFTCanonical bindings and runtimes, accounting7 and
+`METADATA_LIFECYCLE_VERSION()==2`; add `metadata_refresh.lifecycle_version:2`,
+`renderer` and `renderer_code_hash` to the reviewed watcher configuration.
+Omission/0 preserves the historical profile. Version/renderer pins are part of
+the durable identity: recover pending work under its original configuration,
+archive original journals and start only an explicitly reviewed new identity.
+Never edit/downgrade checkpoints to make them pass. Merely disabling the worker
+does not authorize new work or discard pending records. Configuration publication
+does not restart any service. See [operations](OPERATIONS.md).
+
+The fingerprint excludes numeric NAV, owner and read block/time. JSON snapshot
+block/time describe the read, not feed freshness. Watcher receipts prove mined
+notifications, not marketplace acknowledgement; at1000NFTs/50per scan at least20
+passes plus receipt/budget/priority delays remain. Qualify actual host/collection,
+read gas, content and eventual OpenSea JSON/media before promising latency.
+[OpenSea updates](https://docs.opensea.io/docs/updating-metadata).
+No API key/client, public transaction, site rollout or automatic market-adoption
+procedure is added. Old profiles/reviews/journals remain source-scoped.
 
 ## Mint and metadata
 
@@ -3837,7 +3867,7 @@ transaction value0. Artwork and shares change only after confirmed actual LP.
 
 ## Operator call tables
 
-Source-bound coverage: **959 functions, 40 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
+Source-bound coverage: **963 functions, 40 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
 
 Four columns only; explanations contain at most five words. Click a function for outputs, full caller restrictions and safety conditions. These are **unresolved input templates**, not simulated or approved transactions. Replace ALL uppercase symbols from the reviewed deployment/current snapshot. Never paste a symbol, guessed address, stale hash or illustrative setting into a wallet.
 
@@ -5108,15 +5138,17 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 #### NFTMetadata
 
 <details>
-<summary>Read functions and constants (8)</summary>
+<summary>Read functions and constants (10)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
+| `R` [NFTMetadata.METADATA_LIFECYCLE_VERSION](CONTRACT_FUNCTIONS.md#zzznftmetadata) | None | `METADATA_LIFECYCLE_VERSION()` | Read metadata capability |
 | `R` [NFTMetadata.access](CONTRACT_FUNCTIONS.md#zzznftmetadata) | None | `access()` | Read access |
 | `R` [NFTMetadata.artworkItem](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `rarity: uint8`<br>`item: uint256` | `artworkItem(RARITY, 0)` | Read artwork item |
 | `R` [NFTMetadata.currentValue](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `id: uint256` | `currentValue(NFT_ID)` | Read current value |
 | `R` [NFTMetadata.evolutionOf](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `id: uint256` | `evolutionOf(NFT_ID)` | Read canonical artwork stage |
 | `R` [NFTMetadata.markedValue](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `id: uint256` | `markedValue(NFT_ID)` | Read marked NFT liquidity |
+| `R` [NFTMetadata.metadataLifecycleFingerprint](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `id: uint256` | `metadataLifecycleFingerprint(ACTUAL_NFT_ID)` | Read lifecycle change hash |
 | `R` [NFTMetadata.render](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `input` [NFTMetadataInput](#input-nftmetadatainput) | `render(["ID", "RARITY", "PALETTE", "PATTERN", "STAGE", "TRAITS_READY", "VALUATION_AVAILABLE", "VALUE_USD", "ROYALTY_WEIGHT", "IPFS_BASE_URI"])` | Read render |
 | `R` [NFTMetadata.tokenMetadata](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `id: uint256` | `tokenMetadata(NFT_ID)` | Read canonical NFT metadata |
 | `R` [NFTMetadata.validateBaseURI](CONTRACT_FUNCTIONS.md#zzznftmetadata) | `uri: string` | `validateBaseURI(REVIEWED_ARTWORK_ROOT_URI)` | Validate artwork root syntax |
@@ -5438,7 +5470,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 #### NFTCanonical
 
 <details>
-<summary>Read functions and constants (7)</summary>
+<summary>Read functions and constants (9)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -5448,6 +5480,8 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [NFTCanonical.canonicalExport](CONTRACT_FUNCTIONS.md#zzznftcanonical) | `row: uint256` | `canonicalExport(0)` | Read canonical export |
 | `R` [NFTCanonical.canonicalValidate](CONTRACT_FUNCTIONS.md#zzznftcanonical) | None | `canonicalValidate()` | Validate imported classified backing |
 | `R` [NFTCanonical.deploymentConfigurationCommitment](CONTRACT_FUNCTIONS.md#zzznftcanonical) | None | `deploymentConfigurationCommitment()` | Read deployment policy commitment |
+| `R` [NFTCanonical.metadataLifecycleContext](CONTRACT_FUNCTIONS.md#zzznftcanonical) | `id: uint256` | `metadataLifecycleContext(ACTUAL_NFT_ID)` | Read lifecycle JSON fragment |
+| `R` [NFTCanonical.metadataLifecycleState](CONTRACT_FUNCTIONS.md#zzznftcanonical) | `id: uint256` | `metadataLifecycleState(ACTUAL_NFT_ID)` | Read lifecycle settlement flags |
 | `R` [NFTCanonical.nft](CONTRACT_FUNCTIONS.md#zzznftcanonical) | None | `nft()` | Read nft |
 
 </details>

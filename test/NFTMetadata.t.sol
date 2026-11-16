@@ -12,6 +12,7 @@ import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
 import {ZZZArtwork} from "../src/libraries/ZZZArtwork.sol";
 import {ZZZNFTMetadata, NFTMetadataInput} from "../src/ZZZNFTMetadata.sol";
+import {ZZZNFTCanonical} from "../src/ZZZNFTCanonical.sol";
 import {Ids, Position, PositionStatus, PoolConfig, PoolKey} from "../src/libraries/ZZZTypes.sol";
 import {MockAccess, MockToken, MockFeed, MockPools} from "./mocks/Mocks.sol";
 import {MockVRF} from "./mocks/MockVRF.sol";
@@ -91,6 +92,7 @@ contract NFTMetadataTest is Test {
         oracle = new ZZZOracle(address(access), address(0)); feed0 = new MockFeed(8, 1e8); feed1 = new MockFeed(8, 1e8);
         oracle.setTestFeed(address(token0), address(feed0), 3600); oracle.setTestFeed(address(token1), address(feed1), 3600);
         access.bind(Ids.NFT, address(nft)); access.bind(Ids.VAULT, address(vault));
+        access.bind(Ids.NFT_CANONICAL,address(new ZZZNFTCanonical(address(access),address(nft))));
         access.bind(Ids.LIQUIDITY, address(venue)); access.bind(Ids.FEES, address(fees));
         access.bind(Ids.POOLS, address(pools)); access.bind(Ids.ORACLE, address(oracle));
         pricePolicy = new MetadataPricePolicyMock(); access.bind(Ids.STRATEGY, address(pricePolicy));

@@ -1191,8 +1191,8 @@
           }
         },
         "policyMetadataChanged()": {
-          "purpose": "Emit collection-wide ERC4906 metadata invalidation after cosmetic threshold changes.",
-          "access": "Only fixed Access.protocolPolicy address; event only,no economic state or ownership mutation.",
+          "purpose": "Emit one collection-wide ERC-4906 refresh after a committed cosmetic, exit or canonical lifecycle change; performs no NAV read or economic write.",
+          "access": "Only the bound ProtocolPolicy, Access controller or fixed Migration module. Not a governance EOA call; permissionless refreshMetadata/refreshMetadataRange remain separate.",
           "notes": "BatchMetadataUpdate(0,uint256 max) requests external refresh; no marketplace cache timing guarantee."
         },
         "setMintEnd(uint64)": {
@@ -1484,13 +1484,30 @@
           }
         },
         "tokenMetadata(uint256)": {
-          "purpose": "Render canonical prepared artwork, traits and funded-right metadata.",
+          "purpose": "Render confirmed dynamic JSON and four-path artwork with explicit schema2 lifecycle, successor and principal allocation/payment status. LP exited uses Activated art and keeps royalty rights; unavailable NAV is labelled fallback, never fabricated zero. Snapshot time is not source freshness.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Existing canonical hashed NFT ID."
           },
           "outputs": {
             "0": "Base64 JSON data URI, with explicit valuation availability and activated royalty status; no image or right is regenerated."
+          }
+        },
+        "METADATA_LIFECYCLE_VERSION()": {
+          "purpose": "Identify explicit metadata schema2 lifecycle context; this is not a new accounting or canonical transport profile.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Exactly 2 for this renderer."
+          }
+        },
+        "metadataLifecycleFingerprint(uint256)": {
+          "purpose": "Read a price-free change fingerprint for lifecycle, principal allocation/payment and successor identity. Excludes numeric NAV, owner and snapshot time; does not authorize any operation.",
+          "access": "Anyone; requires an existing NFT and correctly bound fixed lifecycle companion.",
+          "inputs": {
+            "0": "Exact minted uint256 NFT ID, not mint ordinal."
+          },
+          "outputs": {
+            "0": "Opaque keccak256 of schema2 packed flags, historically assigned ETH/ZZZ and successor addresses. Never use as reviewHash, consent or proof of payment to an address."
           }
         }
       },
@@ -6045,6 +6062,34 @@
           "access": "Anyone; read-only.",
           "outputs": {
             "0": "Hash binding ProtocolPolicy identity/runtime/configuration and optional helper identity/runtime/local settings plus singleton identity/runtime; not a transaction approval."
+          }
+        },
+        "metadataLifecycleState(uint256)": {
+          "purpose": "Read existing lifecycle and principal books through the immutable NFT state companion without prices or state writes. Does not change canonical export/import records.",
+          "access": "Anyone; requires existing owner, current NFT/controller binding and coherent lifecycle books.",
+          "inputs": {
+            "0": "Exact minted uint256 NFT ID."
+          },
+          "outputs": {
+            "0": "Flags: version bits0-7; canonical8-15; exit phase16-23; position24-31; preparation32; exit started33; shares34; allocated35; paid36. Reserved bits37+ zero.",
+            "1": "Historically assigned ETH wei, retained after payment; zero before allocation is not final entitlement.",
+            "2": "Historically assigned fixed-ZZZ raw units, retained after payment; not remaining principal.",
+            "3": "Verified replacement controller only for retired predecessor; otherwise zero.",
+            "4": "Verified replacement NFT only for retired predecessor; otherwise zero."
+          }
+        },
+        "metadataLifecycleContext(uint256)": {
+          "purpose": "Read the same single lifecycle snapshot with schema2 JSON fields and a human label. No custody, entitlement or accounting mutation.",
+          "access": "Anyone; same fixed bindings and coherence checks as metadataLifecycleState.",
+          "inputs": {
+            "0": "Exact minted uint256 NFT ID."
+          },
+          "outputs": {
+            "0": "Comma-prefixed JSON field fragment, not standalone JSON. Snapshot block/time identify this read, not price freshness.",
+            "1": "Lifecycle label; LP exited remains distinct from Dormant and does not erase royalty rights.",
+            "2": "Same schema2 packed flags as metadataLifecycleState.",
+            "3": "Historical assigned ETH wei; not unpaid balance.",
+            "4": "Historical assigned ZZZ units; not unpaid balance."
           }
         }
       },

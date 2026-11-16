@@ -1,5 +1,11 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+[Metadata lifecycle2](reports/metadata-lifecycle-fixes-20261116/REVIEW.md) now distinguishes
+LP exited, principal allocation/payment and canonical replacement. Immediate
+refresh notifications preserve NFT/royalty rights and the four artwork paths.
+Matching watcher/integration source is opt-in; actual OpenSea/hosting acceptance
+remains open. No live environment is updated by source publication.
+
 [Fresh market evidence](reports/real-market-refresh-20261116/REVIEW.md) still qualifies no
 independent ETH/ZZZ price pair or complete activation/conversion route. A larger
 known market improves forward quotes, but reverse execution and selected-pool

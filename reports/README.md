@@ -1,5 +1,7 @@
 # Verification evidence
 
+- [Metadata lifecycle2 source fixes](metadata-lifecycle-fixes-20261116/REVIEW.md): truthful LP-exit/payment/canonical labels, bounded notifications, opt-in watcher and integration fallback. Focused changed evidence; actual OpenSea/hosting acceptance remains open.
+
 [Real-market refresh16November](real-market-refresh-20261116/REVIEW.md) records39 paced
 read-only requests across three bounded phases, same-anchor closure, current
 source/pool observations and six directional quote diagnostics. Larger-market

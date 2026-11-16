@@ -1,10 +1,11 @@
 # Engineering roadmap
 
-Before further metadata changes, use the [80-case lifecycle matrix](METADATA_LIFECYCLE.md).
-Prioritize truthful terminal/settlement/canonical presentation and bounded
-notifications; agree terminal/unavailable art and numeric-cache expectations
-separately. Then verify changed transitions and actual marketplace refresh.
-Existing artwork, rights, sources and service settings remain unchanged.
+The [metadata source milestone](../reports/metadata-lifecycle-fixes-20261116/REVIEW.md)
+closes the agreed lifecycle labels, close/payment/canonical notifications and
+unavailable-art consistency gaps in the [80-case matrix](METADATA_LIFECYCLE.md).
+Next qualify exact current bindings/read gas, content and real OpenSea retrieval,
+plus a matching-host watcher and explicit integration rollout. Source publication
+does not adopt new runtimes, services, journals or sites.
 
 The [latest market milestone](../reports/real-market-refresh-20261116/REVIEW.md) refreshes
 prices, known pool states, useful-size directional diagnostics and the previously

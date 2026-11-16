@@ -109,11 +109,11 @@ contract ZZZNFT is ERC721, ZZZSeaDropToken, ReentrancyGuard {
     function randomnessConfigured() external view returns(bool) { return _policy().vrfPolicy().configured; }
     function randomnessEpoch() public view returns(uint256) { return randomnessBaseEpoch + _policy().vrfPolicy().generation; }
 
-    /// @notice Event-only invalidation from the immutable policy. Thresholds
-    /// change appearance only; ownership, traits and earned rights stay intact.
+    /// @notice Event-only invalidation from fixed policy/lifecycle modules.
+    /// Never reads valuations or changes ownership, traits or earned rights.
     function policyMetadataChanged() external {
-        address policy=access.protocolPolicy();
-        if(policy==address(0) || msg.sender!=policy) revert Unauthorized();
+        if(msg.sender!=address(access) && msg.sender!=access.protocolPolicy() &&
+            msg.sender!=access.module(Ids.MIGRATION)) revert Unauthorized();
         emit BatchMetadataUpdate(0,type(uint256).max);
     }
 

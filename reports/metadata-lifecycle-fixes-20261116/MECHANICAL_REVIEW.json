@@ -1,0 +1,3929 @@
+{
+  "status": "PASS",
+  "scope": "Read-only existing artifact/AST/source/layout/ABI closure; no tests, compiler or analyzer execution.",
+  "source_baseline": "dd242634b7dc4d3ead6d66f8a42c857da587cf15",
+  "verification_script_sha256": "f1801517e369d78bc5f3796e91488440d520dfcab83e45467606c85412a74f0b",
+  "artifact_hashes": {
+    "baseline_input": "1dd850af6ed9ac2b31a0e41eef36fd6e363209df8b792fe286ac33fe885051dd",
+    "baseline_output": "b659f79e113d05f0a4a110031e61711ce0dcb764023d8acc4774c49d2e1bf136",
+    "normal6_input": "cd8a15e16ed96fe31b2c488d53198d04f687d9270fa8e163871c8bef35638991",
+    "normal6_output": "e3cbd59c818873e2adf766eecc7866c4b2530ac280d3b07f9c00640a6db4da0a"
+  },
+  "production_sources": [
+    {
+      "path": "src/ZZZAccessController.sol",
+      "baseline_raw_sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+      "current_raw_sha256": "5a1ecdd5cc309bb922943cf11e9299859f9f824e354443d5d9b7ea7600379a2c",
+      "baseline_lf_sha256": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+      "current_lf_sha256": "5a1ecdd5cc309bb922943cf11e9299859f9f824e354443d5d9b7ea7600379a2c",
+      "raw_changed": true,
+      "lf_changed": true
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "baseline_raw_sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "current_raw_sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "baseline_lf_sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "current_lf_sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZActivationAssetsFactory.sol",
+      "baseline_raw_sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "current_raw_sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "baseline_lf_sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "current_lf_sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "baseline_raw_sha256": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+      "current_raw_sha256": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+      "baseline_lf_sha256": "aa30ba816b1c3ee712552fc93e3341b717166787742382c32de5e20b654f3ae9",
+      "current_lf_sha256": "aa30ba816b1c3ee712552fc93e3341b717166787742382c32de5e20b654f3ae9",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZBuyback.sol",
+      "baseline_raw_sha256": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+      "current_raw_sha256": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+      "baseline_lf_sha256": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+      "current_lf_sha256": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "baseline_raw_sha256": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+      "current_raw_sha256": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+      "baseline_lf_sha256": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+      "current_lf_sha256": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "baseline_raw_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "current_raw_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "baseline_lf_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "current_lf_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZCompounder.sol",
+      "baseline_raw_sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "current_raw_sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "baseline_lf_sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "current_lf_sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "baseline_raw_sha256": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+      "current_raw_sha256": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+      "baseline_lf_sha256": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+      "current_lf_sha256": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "baseline_raw_sha256": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+      "current_raw_sha256": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+      "baseline_lf_sha256": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+      "current_lf_sha256": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "baseline_raw_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "current_raw_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "baseline_lf_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "current_lf_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "baseline_raw_sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "current_raw_sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "baseline_lf_sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "current_lf_sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "baseline_raw_sha256": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+      "current_raw_sha256": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+      "baseline_lf_sha256": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3",
+      "current_lf_sha256": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "baseline_raw_sha256": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+      "current_raw_sha256": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+      "baseline_lf_sha256": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+      "current_lf_sha256": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "baseline_raw_sha256": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+      "current_raw_sha256": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+      "baseline_lf_sha256": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031",
+      "current_lf_sha256": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZLPPositionExecutor.sol",
+      "baseline_raw_sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+      "current_raw_sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+      "baseline_lf_sha256": "dfb1aa7bc8f9ba98a74afc92c0b75cd3c6b929e7e02563fbefbecf4f2a64bc2c",
+      "current_lf_sha256": "dfb1aa7bc8f9ba98a74afc92c0b75cd3c6b929e7e02563fbefbecf4f2a64bc2c",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZLPRewardConverter.sol",
+      "baseline_raw_sha256": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+      "current_raw_sha256": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+      "baseline_lf_sha256": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+      "current_lf_sha256": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "baseline_raw_sha256": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+      "current_raw_sha256": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+      "baseline_lf_sha256": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+      "current_lf_sha256": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "baseline_raw_sha256": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+      "current_raw_sha256": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed",
+      "baseline_lf_sha256": "4fe0afe1ef2c88cb2d43a849ea7fc4c50f6d9cf0a54638bb50ea5993dc1c8302",
+      "current_lf_sha256": "e90a8ec8bc6b68e25a996d6c57075cadab837ce3f689d0952b810c8a74223a24",
+      "raw_changed": true,
+      "lf_changed": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "baseline_raw_sha256": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+      "current_raw_sha256": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+      "baseline_lf_sha256": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+      "current_lf_sha256": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "baseline_raw_sha256": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
+      "current_raw_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+      "baseline_lf_sha256": "8141e114febf3e55678ecf3c4e169a10476a1d274719e33cf3e6ba9a8a2a3d25",
+      "current_lf_sha256": "9df60d4f8a75a7dde9610d92787efc7b1bf99f4d5c1ff7bc343897458dc1e8b9",
+      "raw_changed": true,
+      "lf_changed": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "baseline_raw_sha256": "55da9efbcf31cd1502911c7336cd4ea81a02c5351672e1714f38063418613b1d",
+      "current_raw_sha256": "fcc849cfa4689f1a22e6e006d286ec73bea60e660713adc5d01b6a2f90e2245a",
+      "baseline_lf_sha256": "55da9efbcf31cd1502911c7336cd4ea81a02c5351672e1714f38063418613b1d",
+      "current_lf_sha256": "fcc849cfa4689f1a22e6e006d286ec73bea60e660713adc5d01b6a2f90e2245a",
+      "raw_changed": true,
+      "lf_changed": true
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "baseline_raw_sha256": "65cee11339ebfa00f809c39c2aa133a472e85419b535be20e8e258d3c6c7b711",
+      "current_raw_sha256": "a691196de69c40e0f2a3cd50d3efd65a5c72ae9bf5e848b300b5f1bb607faf3f",
+      "baseline_lf_sha256": "65cee11339ebfa00f809c39c2aa133a472e85419b535be20e8e258d3c6c7b711",
+      "current_lf_sha256": "a691196de69c40e0f2a3cd50d3efd65a5c72ae9bf5e848b300b5f1bb607faf3f",
+      "raw_changed": true,
+      "lf_changed": true
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "baseline_raw_sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+      "current_raw_sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+      "baseline_lf_sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+      "current_lf_sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "baseline_raw_sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+      "current_raw_sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+      "baseline_lf_sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+      "current_lf_sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "baseline_raw_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+      "current_raw_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+      "baseline_lf_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+      "current_lf_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZProtocolPolicy.sol",
+      "baseline_raw_sha256": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+      "current_raw_sha256": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+      "baseline_lf_sha256": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+      "current_lf_sha256": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZPythPriceFeed.sol",
+      "baseline_raw_sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "current_raw_sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "baseline_lf_sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "current_lf_sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "baseline_raw_sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+      "current_raw_sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+      "baseline_lf_sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+      "current_lf_sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "baseline_raw_sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+      "current_raw_sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+      "baseline_lf_sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+      "current_lf_sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "baseline_raw_sha256": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
+      "current_raw_sha256": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
+      "baseline_lf_sha256": "7333440d02697cb767d2aa84272503510e85f4875981851b1944f240a6d2d8bc",
+      "current_lf_sha256": "7333440d02697cb767d2aa84272503510e85f4875981851b1944f240a6d2d8bc",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZRoyaltyCodeData.sol",
+      "baseline_raw_sha256": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+      "current_raw_sha256": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+      "baseline_lf_sha256": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+      "current_lf_sha256": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZRoyaltyFactory.sol",
+      "baseline_raw_sha256": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+      "current_raw_sha256": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+      "baseline_lf_sha256": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+      "current_lf_sha256": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "baseline_raw_sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+      "current_raw_sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+      "baseline_lf_sha256": "dc27116d1ba2a39082cb9f2d2f49ce19d8291877722a583893368c2fec4d9b0b",
+      "current_lf_sha256": "dc27116d1ba2a39082cb9f2d2f49ce19d8291877722a583893368c2fec4d9b0b",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZSeaDropMint.sol",
+      "baseline_raw_sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+      "current_raw_sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+      "baseline_lf_sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+      "current_lf_sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "baseline_raw_sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+      "current_raw_sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+      "baseline_lf_sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+      "current_lf_sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZV4RouteExecutor.sol",
+      "baseline_raw_sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "current_raw_sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "baseline_lf_sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "current_lf_sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZV4SpotPriceFeed.sol",
+      "baseline_raw_sha256": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+      "current_raw_sha256": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+      "baseline_lf_sha256": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+      "current_lf_sha256": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "baseline_raw_sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+      "current_raw_sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+      "baseline_lf_sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+      "current_lf_sha256": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "baseline_raw_sha256": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+      "current_raw_sha256": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+      "baseline_lf_sha256": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+      "current_lf_sha256": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "baseline_raw_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "current_raw_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "baseline_lf_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "current_lf_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "baseline_raw_sha256": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
+      "current_raw_sha256": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
+      "baseline_lf_sha256": "f8feffb90832d6ea05e96793c05a02037fc7dbe8793b81a8a5a290f49bd93b74",
+      "current_lf_sha256": "f8feffb90832d6ea05e96793c05a02037fc7dbe8793b81a8a5a290f49bd93b74",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/base/ZZZModule.sol",
+      "baseline_raw_sha256": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "current_raw_sha256": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "baseline_lf_sha256": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "current_lf_sha256": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "baseline_raw_sha256": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+      "current_raw_sha256": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+      "baseline_lf_sha256": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+      "current_lf_sha256": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/base/ZZZSeaDropToken.sol",
+      "baseline_raw_sha256": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+      "current_raw_sha256": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+      "baseline_lf_sha256": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+      "current_lf_sha256": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "baseline_raw_sha256": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+      "current_raw_sha256": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+      "baseline_lf_sha256": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+      "current_lf_sha256": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "baseline_raw_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "current_raw_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "baseline_lf_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "current_lf_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "baseline_raw_sha256": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "current_raw_sha256": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "baseline_lf_sha256": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "current_lf_sha256": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/interfaces/IZZZExecutionOracle.sol",
+      "baseline_raw_sha256": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
+      "current_raw_sha256": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
+      "baseline_lf_sha256": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
+      "current_lf_sha256": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/interfaces/IZZZNFTCanonical.sol",
+      "baseline_raw_sha256": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
+      "current_raw_sha256": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
+      "baseline_lf_sha256": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
+      "current_lf_sha256": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/interfaces/IZZZProtocolPolicy.sol",
+      "baseline_raw_sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "current_raw_sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "baseline_lf_sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "current_lf_sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/interfaces/IZZZSeaDrop.sol",
+      "baseline_raw_sha256": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+      "current_raw_sha256": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+      "baseline_lf_sha256": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+      "current_lf_sha256": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/interfaces/IZZZV3Route.sol",
+      "baseline_raw_sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "current_raw_sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "baseline_lf_sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "current_lf_sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/libraries/ExactAsset.sol",
+      "baseline_raw_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "current_raw_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "baseline_lf_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "current_lf_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/libraries/ExactLPAllocation.sol",
+      "baseline_raw_sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+      "current_raw_sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+      "baseline_lf_sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+      "current_lf_sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/libraries/ExactRoyaltyAllocation.sol",
+      "baseline_raw_sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+      "current_raw_sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+      "baseline_lf_sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+      "current_lf_sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/libraries/ExactToken.sol",
+      "baseline_raw_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "current_raw_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "baseline_lf_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "current_lf_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/libraries/ZZZArtwork.sol",
+      "baseline_raw_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "current_raw_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "baseline_lf_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "current_lf_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/libraries/ZZZPriceMath.sol",
+      "baseline_raw_sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "current_raw_sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "baseline_lf_sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "current_lf_sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/libraries/ZZZTypes.sol",
+      "baseline_raw_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "current_raw_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "baseline_lf_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "current_lf_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "raw_changed": false,
+      "lf_changed": false
+    },
+    {
+      "path": "src/libraries/ZZZV3VenueValidation.sol",
+      "baseline_raw_sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "current_raw_sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "baseline_lf_sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "current_lf_sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "raw_changed": false,
+      "lf_changed": false
+    }
+  ],
+  "source_count": 61,
+  "raw_changed_count": 5,
+  "lf_changed_count": 5,
+  "closed_compiler_input_sources": 100,
+  "compiler_settings_unchanged": true,
+  "storage_and_abi_contracts": [
+    {
+      "path": "src/ZZZAccessController.sol",
+      "contract": "ICanonicalOwnerBinding",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 3,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "contract": "IContributionIdentity",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "contract": "IContributionRegistry",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "contract": "IExitIdentity",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "contract": "ZZZAccessController",
+      "declaration_kind": "contract",
+      "storage_entries": 18,
+      "semantic_storage_sha256": "7b3991d35c7ddacde3e44a36551ea50563e82d4b8185d78460b972eb50f5d5ea",
+      "old_abi_entries": 51,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "contract": "IActivationAssetsFactoryIdentity",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "contract": "ZZZActivationAssets",
+      "declaration_kind": "contract",
+      "storage_entries": 4,
+      "semantic_storage_sha256": "cb972340ea507e771e5db94df471df7c4a3f2eee7db29dbdeb3e1826b04f3022",
+      "old_abi_entries": 29,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZActivationAssetsFactory.sol",
+      "contract": "ZZZActivationAssetsFactory",
+      "declaration_kind": "contract",
+      "storage_entries": 1,
+      "semantic_storage_sha256": "2e5519165bee1d52118659093f129c7decde24e52559b8890f23db56de8c2daf",
+      "old_abi_entries": 5,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "contract": "IActivationVault",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "contract": "ZZZActivationEntry",
+      "declaration_kind": "contract",
+      "storage_entries": 2,
+      "semantic_storage_sha256": "88e585dd9e09acd8143f852aa0261873db761aabe887051433c6260c3090bf5e",
+      "old_abi_entries": 25,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZBuyback.sol",
+      "contract": "ZZZBuyback",
+      "declaration_kind": "contract",
+      "storage_entries": 3,
+      "semantic_storage_sha256": "89118996401b9c26554d71fa1a9345c655d5e92f08c19bc6dd8f1d8d6f407958",
+      "old_abi_entries": 25,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICancelledRoyaltyHop",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICancelledRoyaltyLedger",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 6,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICanonicalController",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 22,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICanonicalDeploymentConfiguration",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICanonicalExactLPProfile",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICanonicalHelpers",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 3,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ZZZCanonicalHandoff",
+      "declaration_kind": "contract",
+      "storage_entries": 19,
+      "semantic_storage_sha256": "8a260f22f09a5492a6ffd8766524b6bcd44bddce461f00b182ec9b2d479b95f0",
+      "old_abi_entries": 62,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "contract": "IZZZClaimLedger",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "contract": "ZZZClaimRouter",
+      "declaration_kind": "contract",
+      "storage_entries": 1,
+      "semantic_storage_sha256": "79a04b8573b1219ec8fb7f39948e92c78cb9cafaff1bb085df9a0911e3446ad9",
+      "old_abi_entries": 12,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZCompounder.sol",
+      "contract": "ZZZCompounder",
+      "declaration_kind": "contract",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 14,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "contract": "IPricingBudget",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 4,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "contract": "IPricingEntry",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "contract": "IPricingExecutionManager",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "contract": "IPricingMaintenanceMath",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 6,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "contract": "IPricingVault",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "contract": "ZZZContributionPricing",
+      "declaration_kind": "contract",
+      "storage_entries": 4,
+      "semantic_storage_sha256": "ed05381ee6cbe665f5fc8d96d7470fbd26b7f6037ed2a6c1ef9300802efd6ddc",
+      "old_abi_entries": 31,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "contract": "ICustodyExecutionFingerprint",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 3,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "contract": "ICustodyRegistryRevision",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "contract": "IExitTokenIdentity",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "contract": "IExitTokenRegistry",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "contract": "ILocalParkingState",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 3,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "contract": "IResidualPolicyControl",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "contract": "ZZZCustodyValidation",
+      "declaration_kind": "contract",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 19,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "contract": "ICanonicalFeeAssets",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "contract": "ICanonicalFeeCutoff",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "contract": "ZZZFeeController",
+      "declaration_kind": "contract",
+      "storage_entries": 5,
+      "semantic_storage_sha256": "e57261c2afd9c4b3d4b9a719371f38004b2ffaa5821b291657f16749f54bc42e",
+      "old_abi_entries": 35,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "declaration_kind": "contract",
+      "storage_entries": 11,
+      "semantic_storage_sha256": "e9b29b56907991121fc3391fd2555d1afd4166ee9b655802bbfaf9390fe4147f",
+      "old_abi_entries": 29,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathAssets",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathCompoundBudget",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathControls",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathMainFloor",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathNativePools",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathParent",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathPortfolio",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathRegistry",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathState",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathStrategy",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 4,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "contract": "IExecutionMathZZZ",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "contract": "ZZZLPBalanceMath",
+      "declaration_kind": "contract",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 31,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "contract": "IQuoteLiquidity",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "contract": "ZZZLPBalancer",
+      "declaration_kind": "contract",
+      "storage_entries": 5,
+      "semantic_storage_sha256": "4029c4d35d9a5e6ba0ccd5d9f97b9abb0e07c56ca7d91c1bb34e12b4da214e14",
+      "old_abi_entries": 43,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPPositionExecutor.sol",
+      "contract": "IPositionExecutionParent",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 5,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPPositionExecutor.sol",
+      "contract": "IPositionPortfolioPolicy",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPPositionExecutor.sol",
+      "contract": "ZZZLPPositionExecutor",
+      "declaration_kind": "contract",
+      "storage_entries": 6,
+      "semantic_storage_sha256": "7f65abff90c76fd8867a911f64aba81898b7af2609f94f79fe6342a63a77dd1b",
+      "old_abi_entries": 38,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLPRewardConverter.sol",
+      "contract": "ZZZLPRewardConverter",
+      "declaration_kind": "contract",
+      "storage_entries": 8,
+      "semantic_storage_sha256": "8654e1a5b129e24bb791c0f9f820d47c699fab4a3e10d703a8ebdc24c4470d28",
+      "old_abi_entries": 43,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "contract": "IGuardedConsolidation",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "contract": "IManagerPortfolioPolicy",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 4,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "contract": "IPortfolioBudget",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "contract": "IPortfolioVault",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "contract": "ZZZLiquidityManager",
+      "declaration_kind": "contract",
+      "storage_entries": 5,
+      "semantic_storage_sha256": "ee6178a0e69d7c30297a593f2a95ab6f1f3cced37669f5d79a32a572bc057f6d",
+      "old_abi_entries": 53,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "contract": "IZZZMembershipOrdinals",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "declaration_kind": "contract",
+      "storage_entries": 5,
+      "semantic_storage_sha256": "5a28651067527e0d886753837cbd3c54d542045bb6475d7e5c2ee40a0e7de793",
+      "old_abi_entries": 27,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "contract": "IHolderExitNFT",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 9,
+      "added_abi_entries": 1,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "contract": "IHolderExitVault",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 24,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "contract": "IResidualCompletion",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "contract": "IResidualStrategy",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "contract": "ZZZMigration",
+      "declaration_kind": "contract",
+      "storage_entries": 17,
+      "semantic_storage_sha256": "1ecf121c4d1d13a1300137bc1e533255c08113f688324a9ab3a9ccbd882e5f50",
+      "old_abi_entries": 74,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "contract": "IBudgetExecutionManager",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "contract": "IBudgetPortfolioPolicy",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "contract": "IBudgetPortfolioStrategy",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "contract": "IBudgetPositionOperator",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "contract": "IBudgetVaultValidation",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 3,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "contract": "IConfirmationControl",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 4,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "contract": "IEmergencyManifest",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "contract": "IMigrationIdle",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "contract": "ZZZMigrationBudget",
+      "declaration_kind": "contract",
+      "storage_entries": 12,
+      "semantic_storage_sha256": "78be5a333a86a442d2c7d1920faac899c70f6f3dcbe7445251abf99ab54cfa2d",
+      "old_abi_entries": 65,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "contract": "IZZZNFTSuccessor",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "contract": "IZZZVRFCoordinator",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "declaration_kind": "contract",
+      "storage_entries": 30,
+      "semantic_storage_sha256": "2c43eb938a13bde176fff57388c4239fb0197247bcc087ae753ea4226c894117",
+      "old_abi_entries": 118,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "contract": "INFTMintPolicy",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 9,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "contract": "INFTPolicyHandoff",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "declaration_kind": "contract",
+      "storage_entries": 1,
+      "semantic_storage_sha256": "44e91a947156589b67a357d6db80750c5f68636f89cc7aa6ffee79e2b9cddc4b",
+      "old_abi_entries": 23,
+      "added_abi_entries": 3,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "contract": "IMetadataCollection",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 7,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "contract": "IMetadataRoyaltyWeight",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "contract": "ZZZNFTMetadata",
+      "declaration_kind": "contract",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 12,
+      "added_abi_entries": 2,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "contract": "IExecutionFixedZZZ",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "contract": "IExecutionManagerIdentity",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 3,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "contract": "ZZZOracle",
+      "declaration_kind": "contract",
+      "storage_entries": 9,
+      "semantic_storage_sha256": "1402e5a069fc8230721ae7ed12ec9099c0807adf9032e7e236f0f8d03e700ce1",
+      "old_abi_entries": 55,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "contract": "ICollectiveExitPhase",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "contract": "INativeVenueBindings",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 3,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "contract": "ZZZPoolRegistry",
+      "declaration_kind": "contract",
+      "storage_entries": 4,
+      "semantic_storage_sha256": "a6d1d57e36322b25d0027eee9fc237e9cf9aa5f15bba459900cca282143400d2",
+      "old_abi_entries": 29,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "contract": "IPortfolioAssociation",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "contract": "IPortfolioConsolidation",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "contract": "IPortfolioParent",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "contract": "ZZZPortfolioPolicy",
+      "declaration_kind": "contract",
+      "storage_entries": 13,
+      "semantic_storage_sha256": "c201fa398cc7e186be28e4bcaf8fc31e1535e8720ffd0db8f692600f296285c2",
+      "old_abi_entries": 51,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZProtocolPolicy.sol",
+      "contract": "IPolicyNFT",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 4,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZProtocolPolicy.sol",
+      "contract": "ZZZProtocolPolicy",
+      "declaration_kind": "contract",
+      "storage_entries": 10,
+      "semantic_storage_sha256": "418b9de60df82c7057324d56aa6c35a9aa57c40e186147c0f3be5dbee307ae30",
+      "old_abi_entries": 56,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZPythPriceFeed.sol",
+      "contract": "ZZZPythPriceFeed",
+      "declaration_kind": "contract",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 14,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "IConfirmationLiquidity",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "IConfirmationOracle",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "IConfirmationPortfolio",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "IConfirmationRegistry",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "IConfirmationStrategy",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 8,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "contract": "ZZZRebalanceConfirmation",
+      "declaration_kind": "contract",
+      "storage_entries": 8,
+      "semantic_storage_sha256": "95e8ebfaca71889fb41a4fecab8e56051533a25c1d4f91cb2bd5f9cc649f7f95",
+      "old_abi_entries": 40,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "contract": "ZZZRewards",
+      "declaration_kind": "contract",
+      "storage_entries": 12,
+      "semantic_storage_sha256": "df28842e7d2a10a4d9b5424c6e74a8a861704dbbd7479bb16a963cd307390c9d",
+      "old_abi_entries": 59,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "IExactLPRewardsParent",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 12,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "ZZZRewardsCanonical",
+      "declaration_kind": "contract",
+      "storage_entries": 16,
+      "semantic_storage_sha256": "9566d7e1f529b2c02baaba2952372d7d9dea4e1cb98b6e1dc0c56942f63a5236",
+      "old_abi_entries": 33,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZRoyaltyCodeData.sol",
+      "contract": "ZZZRoyaltyCodeData",
+      "declaration_kind": "contract",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZRoyaltyFactory.sol",
+      "contract": "ZZZRoyaltyFactory",
+      "declaration_kind": "contract",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 11,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "contract": "IZZZRoyaltyNFTOwner",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "contract": "IZZZRoyaltyOrdinals",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 4,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "contract": "IZZZRoyaltySuccessor",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "declaration_kind": "contract",
+      "storage_entries": 41,
+      "semantic_storage_sha256": "3800fef64e81fdfd2e6a874b4cb4f2f85de7e7d1e9d57b6e3f9d3b424a9eaab4",
+      "old_abi_entries": 83,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZSeaDropMint.sol",
+      "contract": "ISeaDropMintCollection",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 3,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZSeaDropMint.sol",
+      "contract": "ISeaDropMintRoyaltyEnd",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZSeaDropMint.sol",
+      "contract": "ZZZSeaDropMint",
+      "declaration_kind": "contract",
+      "storage_entries": 14,
+      "semantic_storage_sha256": "2e3364e13a435fefbfa263cde692cc0ea7309b81341ad5788d4176aa8716dfb0",
+      "old_abi_entries": 53,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "contract": "IRangeRegistry",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "contract": "IV4FeeState",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "contract": "ZZZStrategy",
+      "declaration_kind": "contract",
+      "storage_entries": 5,
+      "semantic_storage_sha256": "1e0dff79ff1ce9802b2813b7152439fa2ec88c6ec83c0c5a3470667ed5b0fbcf",
+      "old_abi_entries": 49,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZV4RouteExecutor.sol",
+      "contract": "ZZZV4RouteExecutor",
+      "declaration_kind": "contract",
+      "storage_entries": 8,
+      "semantic_storage_sha256": "0090544b9e7af85f2e77c79e9a95d133a1885429653aacc1984592e18ca7cbc3",
+      "old_abi_entries": 26,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZV4SpotPriceFeed.sol",
+      "contract": "ZZZV4SpotPriceFeed",
+      "declaration_kind": "contract",
+      "storage_entries": 1,
+      "semantic_storage_sha256": "e55d24422eb3144a1492b84314d44c5022f4044457f213221aa677ac55ad262d",
+      "old_abi_entries": 15,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "contract": "IVaultManualContext",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "contract": "IVaultPositionOperator",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "contract": "IVaultResidualLiquidity",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "contract": "ZZZVault",
+      "declaration_kind": "contract",
+      "storage_entries": 14,
+      "semantic_storage_sha256": "6ea9f82fd9bb247cea2e01bb4b4e29c5a87e482b8d074c5fe564c76c31620194",
+      "old_abi_entries": 68,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalMintRoyalty",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalPortfolio",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalRecoveryRoute",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 9,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalVaultNFT",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 3,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalVaultRewards",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalVaultState",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 31,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "declaration_kind": "contract",
+      "storage_entries": 16,
+      "semantic_storage_sha256": "4c7711beb022dd7ce72869180fa6b2522ca8ee22783c26008efa8cc5ac198d65",
+      "old_abi_entries": 38,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "contract": "ZZZCanonicalLedger",
+      "declaration_kind": "contract",
+      "storage_entries": 7,
+      "semantic_storage_sha256": "f1b07320320f8063a542d743d2aeaf2b58ad04dbb275b1fe00589276b1983329",
+      "old_abi_entries": 10,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "IExactLPAssets",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "IExactLPMembership",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "IExactLPOrdinals",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 3,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "IExactLPPools",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "IExactLPVaultState",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 6,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "ZZZExactLPRewardsCanonical",
+      "declaration_kind": "contract",
+      "storage_entries": 11,
+      "semantic_storage_sha256": "e1ee2b46da1eb20fa00095835b0aa91425fb0b4275668342f3ca006d974024c3",
+      "old_abi_entries": 35,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/base/ZZZModule.sol",
+      "contract": "ZZZModule",
+      "declaration_kind": "contract",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 12,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "contract": "IRewardProxyAdmin",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 3,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "contract": "IRewardWrapper",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "contract": "ZZZRewardConverter",
+      "declaration_kind": "contract",
+      "storage_entries": 8,
+      "semantic_storage_sha256": "8654e1a5b129e24bb791c0f9f820d47c699fab4a3e10d703a8ebdc24c4470d28",
+      "old_abi_entries": 42,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/base/ZZZSeaDropToken.sol",
+      "contract": "ISeaDropTokenState",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/base/ZZZSeaDropToken.sol",
+      "contract": "ZZZSeaDropToken",
+      "declaration_kind": "contract",
+      "storage_entries": 1,
+      "semantic_storage_sha256": "fafe92d68260a10a6822e89bcc90ca771c583bb6331b9788fa15fce965baa051",
+      "old_abi_entries": 30,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IBurnable",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IPermit2Minimal",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IPoolManagerMinimal",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 5,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IPositionManagerMinimal",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 8,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IPriceFeed",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IStateViewMinimal",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZAccess",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 17,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZActivationEntry",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZBound",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZFees",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 5,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZLiquidity",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 17,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZMembership",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 4,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZMigration",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 3,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZNFT",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 6,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZOracle",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 7,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZPools",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 4,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZRewards",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 4,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZStrategy",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 14,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZVault",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 23,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalAccess",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 3,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalModule",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 12,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "contract": "IZZZEmergencyBudget",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 5,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "contract": "IZZZEmergencyController",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "contract": "IZZZEmergencyLiquidity",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "contract": "IZZZEmergencyVault",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZExecutionOracle.sol",
+      "contract": "IZZZExecutionOracle",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 11,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZExecutionOracle.sol",
+      "contract": "IZZZExecutionSpotSource",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 5,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZExecutionOracle.sol",
+      "contract": "IZZZExecutionStrategy",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 3,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZNFTCanonical.sol",
+      "contract": "IZZZNFTCanonicalState",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 24,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZProtocolPolicy.sol",
+      "contract": "IZZZProtocolPolicy",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 20,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZSeaDrop.sol",
+      "contract": "INonFungibleSeaDropToken",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 20,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZSeaDrop.sol",
+      "contract": "IZZZSeaDrop",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 21,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZSeaDrop.sol",
+      "contract": "IZZZSeaDropTokenMetadata",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 8,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZV3Route.sol",
+      "contract": "IV3RouteFactory",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZV3Route.sol",
+      "contract": "IV3RoutePool",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 4,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/interfaces/IZZZV3Route.sol",
+      "contract": "IV3RouteRouter",
+      "declaration_kind": "interface",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 2,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/libraries/ExactAsset.sol",
+      "contract": "ExactAsset",
+      "declaration_kind": "library",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/libraries/ExactLPAllocation.sol",
+      "contract": "ExactLPAllocation",
+      "declaration_kind": "library",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 3,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/libraries/ExactRoyaltyAllocation.sol",
+      "contract": "ExactRoyaltyAllocation",
+      "declaration_kind": "library",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/libraries/ExactToken.sol",
+      "contract": "ExactToken",
+      "declaration_kind": "library",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/libraries/ZZZArtwork.sol",
+      "contract": "ZZZArtwork",
+      "declaration_kind": "library",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 0,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/libraries/ZZZPriceMath.sol",
+      "contract": "ZZZPriceMath",
+      "declaration_kind": "library",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 1,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/libraries/ZZZTypes.sol",
+      "contract": "Ids",
+      "declaration_kind": "library",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 0,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    },
+    {
+      "path": "src/libraries/ZZZV3VenueValidation.sol",
+      "contract": "ZZZV3VenueValidation",
+      "declaration_kind": "library",
+      "storage_entries": 0,
+      "semantic_storage_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "old_abi_entries": 0,
+      "added_abi_entries": 0,
+      "existing_abi_preserved": true,
+      "constructor_inputs_preserved": true
+    }
+  ],
+  "storage_declarations_checked": 355,
+  "added_abi": [
+    {
+      "path": "src/ZZZMigration.sol",
+      "contract": "IHolderExitNFT",
+      "entries": [
+        {
+          "inputs": [],
+          "name": "policyMetadataChanged",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        }
+      ]
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "entries": [
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "metadataLifecycleContext",
+          "outputs": [
+            {
+              "internalType": "bytes",
+              "name": "context",
+              "type": "bytes"
+            },
+            {
+              "internalType": "string",
+              "name": "label",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "flags",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "ethAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "zzzAmount",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "metadataLifecycleState",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "flags",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "ethAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "zzzAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "successorController",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "successorNFT",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "length",
+              "type": "uint256"
+            }
+          ],
+          "name": "StringsInsufficientHexLength",
+          "type": "error"
+        }
+      ]
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "contract": "ZZZNFTMetadata",
+      "entries": [
+        {
+          "inputs": [],
+          "name": "METADATA_LIFECYCLE_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "metadataLifecycleFingerprint",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        }
+      ]
+    }
+  ],
+  "constructors_with_identical_inputs": 40,
+  "constructor_function_bodies_unchanged": 44,
+  "existing_canonical_methods_exact": [
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICanonicalController",
+      "function": "canonicalTransition",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "33a92a6f70a9e1b73d7cc0e950a68c06350dc58fa35ca591995782c6fd6413bc"
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICanonicalHelpers",
+      "function": "canonicalModule",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "04da54cab91ed7829327f8983f895da9bb13d2d652e9bdbb2cbd10967902aa22"
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICanonicalHelpers",
+      "function": "canonicalRetire",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "f06c38e9d80fbe575dbf5dd76e85a00214fd0be4f3fa7daa79d3cb18415bc1b0"
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ICancelledRoyaltyLedger",
+      "function": "canonicalRecoverCancelled",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "c92c5b969c59aa755433d840ae0bc507fdd3eda471089ca70d0bf8d265d93a36"
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "contract": "ZZZFeeController",
+      "function": "canonicalState",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "15a8ac67944c5d7b6fd4f6a3ac010cd03094e08a16d46c8462eedc1deafe4aa6"
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "contract": "ZZZFeeController",
+      "function": "canonicalModule",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "841ddb0a1a0cd8c9fcc624de193660b2cb56e7fe06fa4c8efca3d5db76b6739b"
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "contract": "ZZZFeeController",
+      "function": "canonicalBarrier",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "c95da5d30be23cbb5358b1cfa61e5d886d99e71fb87bfbde987ba41434c2c7c9"
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "contract": "ZZZFeeController",
+      "function": "canonicalFlush",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "8f2cad1f7e121d5bc90db443ad080c9c1dcea0131a3ad48a47c1e82fa387ca9d"
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "contract": "ZZZFeeController",
+      "function": "canonicalBucketRecord",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "1ea278042455be70ae98efafc3afc2bf6be40d91f42a807bbb6688feaaf6dd16"
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "contract": "ZZZFeeController",
+      "function": "canonicalWrite",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "b2d1f70c47ff0514039ff6dfeec9daa5461fb8d855022aed660cdde10d700372"
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "contract": "ZZZFeeController",
+      "function": "canonicalSend",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "c5192ba6148492a3f10395c4070861788922eb4762e1e0ece62875c85dc700ca"
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "function": "canonicalCapture",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "3710e14e48fcd056f5d8a6175013ed941929f2a0a49b7cdcdda9156e44c0cff7"
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "function": "canonicalSettle",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "106b1ac88942ad14671ea6a7cdf1434a27472d6d98ae7a16d39f1009053910cb"
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "function": "canonicalCount",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "367a6eea4b9470171ea47b19e1681ddb00fe4ac8ffdb15b5ad96ec847908b65e"
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "function": "canonicalExport",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "87feaaf5260b55ad2ca58924c6df15276b284a5a8b6d158c238f5b418e84e0c4"
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "function": "canonicalImport",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "36faa1c540b443b3e9dc275e366dc1cf17e61e10fb21c00c41bf4e62ddac73f8"
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "function": "canonicalAssetCount",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "ab7f110aacd5deb82e1133346d3db57944376e87985476caea0f01bb787133fd"
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "function": "canonicalBacking",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "56b5bd03a682fae6beaf75efde617ed2f1411fe610d72049ab7fccebbfdfc736"
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "function": "canonicalRelease",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "d79233b4c9c8080697e6c02f8d466c52dda768353e5fa12300b15a9ac2a05c82"
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "function": "canonicalAccept",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "21a1532f2482639ca48ca736fcee12eb122f3cea9714b89767547be96766d66b"
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "function": "canonicalRestore",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "a891cd723e574139e2e4d2aea1894107a2b3467f12a1eecae215cb5563484684"
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "function": "canonicalValidate",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "b798224a1e45410a636dcd1e3a2a65883ea80daaa6c491eecd0b71b45c4a0218"
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "function": "canonicalActivate",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "3b51240284c56e3b4ca19c581eafed1f5085172b3292baa5f4794d646f4a9818"
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "function": "canonicalCapture",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "318d7bde6d86dbf33b2a0454d95262214e749bc4587a9560adc2202418e00963"
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "function": "canonicalSettle",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "c2639183a19889f784eac0efe73dc71319a51a8c3fefc722d9f20bc38e08ead4"
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "function": "canonicalCount",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "fd6f3864a9b18654216d4adbde292b466eea48e9cfe303f0c79fc9655e16746b"
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "function": "canonicalExport",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "5712e74f4a9ce490331278942108eb1ef04e9720ac938dc88a8b76c4c4a50788"
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "function": "canonicalImport",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "afb492188601cba4e033343f005b4fd0f95e95d35c70ff4b06ad1f6c342aebda"
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "function": "canonicalValidate",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "3190a42d640f9d2ed10ac7beb2d07ffb52675dc9e2ccb0538889e5e248481f27"
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "function": "canonicalAssetCount",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "82640e3ac80882580a83f62919ee57732566d5945ff202c72f61bc2436a848ab"
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "function": "canonicalActivate",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "f40192f525d1b5dda35bed7bd9abc8e1b4b7719a094d2a531e264f20f45c1859"
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "function": "canonicalModule",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "2ae89887e0421096293c432af81009c31bea82434b0f1c17ce9d9c09df54b224"
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "function": "canonicalRandomness",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "ad2efe2b8eba2ff0470e197bc88ac80f4170801c32d87a3128a243538416637c"
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "function": "canonicalArtwork",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "650b0b20269ea4d0805e12380475f78905772e3bb1c1e433153ca3618995575f"
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "function": "canonicalWriteHeader",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "122c738f6137efd6b3cda6ff40453983564abb2c2224869a5bf4857c0d3b4862"
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "function": "canonicalWriteRecord",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "94f8e46764ec755f8c7a2084033a724155ef0745988f13da31c992352d57ef6e"
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "function": "canonicalWriteArtwork",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "15f41e83177a41898db54c6d481c242c5913660f87a050f311967aee4eba4969"
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "function": "canonicalSuccessor",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "bc27b4ad8f9f7a5c0de6c2fba774319ffa1a297e1c98ff760ced23db312f46f9"
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "function": "canonicalRetire",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "5138c52001becb381d14b51d4b7b41057351aaf6a01d1707c7fd4023eec95b5e"
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "function": "canonicalCapture",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "d20dbfe0ea7abd53ce8aef9a50cebe5c0e801fc3e297edf1c0b7c8b2cff58eae"
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "function": "canonicalSettle",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "029cd7a72f08149ff3e737e7ede492cb9a451525a17b0cbccc80c13ae3e38551"
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "function": "canonicalCount",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "a27294339de8ece0fe81d27631a45fc4991914cb7b7d48fac5a88d10c7fe4c38"
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "function": "canonicalExport",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "d324a1719c000386e62af597daa991d6b00a4f3671de96836647c71e8a5db1f2"
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "function": "canonicalImport",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "ff0035618679605d43309d0abc70e19c70a2745d1dd3484fa50de11516eb70b7"
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "function": "canonicalAssetCount",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "0fd5c0329a7b8c9dcb01b5166d9571006d751ec12681bc4a286f64a856d9d1c1"
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "function": "canonicalValidate",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "6b49efd53997458b770adaff8d52a8b13c9dc58a70a61c9377c9101c55b9df03"
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "function": "canonicalActivate",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "3ceaaa1de4fc7bbdb0fdd0e8c691e7a0520194bb0854036d64b7ff302b5dfd11"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "IExactLPRewardsParent",
+      "function": "canonicalBarrier",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "80e41ce38ff394a2b5be19dcdccf6bb993a6928037336048a130ab10a2d3f4af"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "IExactLPRewardsParent",
+      "function": "canonicalSeed",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "0f3b0a227306aacc83a0d0cadc4a1b096cc038dc0db3761fa3192330cf5f8557"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "IExactLPRewardsParent",
+      "function": "canonicalNode",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "0dd05824d420f58cce55a030be53ea58a25c2953b5182e1e52276844522000b2"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "IExactLPRewardsParent",
+      "function": "canonicalWrite",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "2c1a63a140226a570c39794a301a5425f69f9a217b5e802e7e810ab24ed199cb"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "IExactLPRewardsParent",
+      "function": "canonicalSend",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "179db31899d9c3a56383f84e1bbd4cc5f006b16b7fed0157bd169f11c13563d2"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "ZZZRewardsCanonical",
+      "function": "canonicalCapture",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "5c25eb198223d5a673b4cdcf459525f1b8688efcf5aea253ca09e7ace258cf46"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "ZZZRewardsCanonical",
+      "function": "canonicalSettle",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "23b86bfdabea9877439c0e5d8a317146a908b242033ca76924d624ae4855ce65"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "ZZZRewardsCanonical",
+      "function": "canonicalCount",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "ea87ef131860b459c0db6c97ec13b57b203d079ef5c9b2ee657422b7ed6bdac7"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "ZZZRewardsCanonical",
+      "function": "canonicalExport",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "b481cb88a7c2c0e1728ea836263e8b97da473f460f3a5d84c27a436901cb6ce2"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "ZZZRewardsCanonical",
+      "function": "canonicalImport",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "a39786eee52fb7b7ed9484aaead93883394031beb41150cbee7980eabea198bd"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "ZZZRewardsCanonical",
+      "function": "canonicalAssetCount",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "da799532de1bb2e6989c66cb54f005eea59dc179de9bc2cae575b181f0c78152"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "ZZZRewardsCanonical",
+      "function": "canonicalBacking",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "c232655f0e36fe1368882524ff5f5889f59c640ac1864a052b3fa1824aed513c"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "ZZZRewardsCanonical",
+      "function": "canonicalRelease",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "bf3ad00d2962eee072ba36868e8e5802c40b7ce6ad10cd0a376251f7c5f9915f"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "ZZZRewardsCanonical",
+      "function": "canonicalAccept",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "b6bcbe9776e99e05b1131d187f77dea59ac1fe5cf599d815c52a1981e49d5943"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "ZZZRewardsCanonical",
+      "function": "canonicalRestore",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "0ced142942b186d949b17656cf129b8e5626f1e27db5dc83ec0450fd3c43f99e"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "ZZZRewardsCanonical",
+      "function": "canonicalValidate",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "2a032988a440004a794d1d378c0428626f3aead3e8a1c52dc3b9a977c436c1f5"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "contract": "ZZZRewardsCanonical",
+      "function": "canonicalActivate",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "4628ebdc649c0e0f6ed5a45b6f42245e7f302fd4cf2314ef8ddd1af597dab968"
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "function": "canonicalCapture",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "264ce4ef84109af611e04a24d406dc98c022db7f7b0d2b8ad54eef0c110b3691"
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "function": "canonicalSettle",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "8d9998824f8ff08e83d1ccd001a69c9aaa864af0a7a9c1c470c37afb202d48a2"
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "function": "canonicalCount",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "57429060f1aff508c6a6e53e2dddb32668bc3e205993180a1176590324a12673"
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "function": "canonicalExport",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "af89467bf750a54f208273e82d7ac719490f402756490392bc8d58be9ab30333"
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "function": "canonicalImport",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "323614f72c357122d5a959416d194c23682437351499430b0dbaa6d5c9b56b6d"
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "function": "canonicalValidate",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "1f10879b8fdf415021f8e0dd3e04611c1ec7694acf8cb0b56ad1f50448287512"
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "function": "canonicalActivate",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "8d30a1f82e2ffb6b27de4713aabe3307b1552def25a7c96931bc388f1592421c"
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "function": "canonicalRecoverCancelled",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "f27ce69d84a5f9f9a5a20e6031c88f8a11a6b2a693111ae87c423e2b081a4568"
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "contract": "ZZZVault",
+      "function": "canonicalModule",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "b3e75032bc88216a91375bc5646775b75f9c2405591dc16aabd50e9c123e681c"
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "contract": "ZZZVault",
+      "function": "canonicalWrite",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "caf741d55ec50ba5ca85d2419f5e2e1b90c6a5158695822cad193093ae4702d7"
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "contract": "ZZZVault",
+      "function": "canonicalSend",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "ff8bf8e64770a5a141f66249b9cfa0404ab14c379bbea47b1fd4567a9a6140a2"
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "contract": "ZZZVault",
+      "function": "canonicalBarrier",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "f7387db496aceaa765dfe333227b9680dfb759e97fc8d7e3de9c6e7c5522703a"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalVaultState",
+      "function": "canonicalWrite",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "279ca629d61cababfa7cc7aca61863b9290713514af0d69016b4300f61c57f31"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalVaultState",
+      "function": "canonicalSend",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "1a421a7505377a8842ac63f4d3845752feeaa32a8108108df376607c1dadf79c"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ICanonicalVaultState",
+      "function": "canonicalBarrier",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "3168c73efba873cac05c5227cf8a7da90bc36e869914c80256f3691eb4a15679"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "function": "canonicalCapture",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "f3a6f4ff92e14385582778751d7806c2e483ea6a760b3317f621774f975eff11"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "function": "canonicalSettle",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "26f4bd56fbe4207e8b080554b508d37224abcda4b71fd6ca74367b3246433f0b"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "function": "canonicalCount",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "387f6c4e98289beb76b66527e70dabe9c89be557077afef2bc3111c2c2a373bf"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "function": "canonicalExport",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "8390312b62b51ccdf4ae4ed8b991c26d5a46aadffdb104511675ab030344d6dd"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "function": "canonicalImport",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "e59bc7233d322b7c63d8d5b0e6889bed2efeb167bb85305dfa1f9845dc4621c6"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "function": "canonicalAssetCount",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "0404979bdf401c8c7e88df0a349900dcbe12edbf0d001b883ba1775e6d7517e7"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "function": "canonicalBacking",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "c7382264e01206f22b7beac4cabf4668311d2ebd6ad05d973e34d64d16328967"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "function": "canonicalRelease",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "8fa501d8416a169f9445b0fdfe039eee83d3c48bda1f57a101274cc3fbd57701"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "function": "canonicalAccept",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "cb71813dbaa0e9ad458c495b583e7d46772b5f55b53086862f3480012f7cb965"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "function": "canonicalRestore",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "5442dfea0805cf29fc2f41442cea4bd3c902fcfe7f74e256776070215edf88ee"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "function": "canonicalValidate",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "967086b413997e4a2a0052626e5d6b6702e3a6915035e70c7f7017f42b81bc30"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "function": "canonicalActivate",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "9770e1c197106db573a5322948647ac650f6154f5b3148eadc926d7a1e0ec003"
+    },
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "contract": "ZZZCanonicalLedger",
+      "function": "canonicalAssetCount",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "dde0f7144f2a1e2d62502fe857580c41991a53d10fc7902e632e2812676ca85c"
+    },
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "contract": "ZZZCanonicalLedger",
+      "function": "canonicalBacking",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "5e4b4ea9f735056f38acf578948a6b619d7f3deb9ead361ee85c8a2be6f6a766"
+    },
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "contract": "ZZZCanonicalLedger",
+      "function": "canonicalRelease",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "bc79e059c7350489e1b8b926ba7fed5a750e73824f92d40baf76528d2cba7b23"
+    },
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "contract": "ZZZCanonicalLedger",
+      "function": "canonicalAccept",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "c89b16e1d085fca40ff5afa5ae7e774ebe4cd1d1818bba6258b84b89b9ee9a8c"
+    },
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "contract": "ZZZCanonicalLedger",
+      "function": "canonicalRestore",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "5c0bebb74ea58e013730d695a1d045e45f2626cb9d84c3af2fb7ae8ba2f6bf70"
+    },
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "contract": "ZZZCanonicalLedger",
+      "function": "canonicalActivate",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "b4c97ea3a9ac822dbba855b1b11cbe7df27aed0364c442009a4a2dfa40a53e9a"
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "ZZZExactLPRewardsCanonical",
+      "function": "canonicalBarrier",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "1902dcb63d109e650a0461e9c6541a562a5dbe23ecb9b1f4e9740ea5eb629e29"
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "ZZZExactLPRewardsCanonical",
+      "function": "canonicalSeed",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "646318578097c59e53e0c12b0a86eeeeb34f37f600502d2d06b0255ad2af1576"
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "ZZZExactLPRewardsCanonical",
+      "function": "canonicalNode",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "05bfb508ea80234d9d01c242721db854b5a818aee6ea8066a52a8ef4f51926c6"
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "ZZZExactLPRewardsCanonical",
+      "function": "canonicalWrite",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "ac445b43a9a49950b7d84ea9407c98c4db857ec93cb404cee9be05d5581a6d44"
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "contract": "ZZZExactLPRewardsCanonical",
+      "function": "canonicalSend",
+      "has_body": true,
+      "existing_declaration_source_sha256_lf": "c3353fd6b844fcc5c5987a23b80095758069654514308df153c937308ee4a9e3"
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZAccess",
+      "function": "canonicalHandoff",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "44a903a0557f1e9d00b6a12a6c5988ddaadd9833af89f0759fe59715ec7a10d1"
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZAccess",
+      "function": "canonicalState",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "20f1401f4c4631516f6ff1fa8a172e7396f138a9db7c94336aede504388743db"
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZAccess",
+      "function": "canonicalSettling",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "48b8ff336353a78bdb46e8347ccee00d29149a258873536968f4c5b1a0b902b9"
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "contract": "IZZZVault",
+      "function": "canonicalChainId",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "881643d7437a664a66eb937f0cff28f8a973b0fbe44163a285e4ec696c0cf023"
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalModule",
+      "function": "canonicalCapture",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "aa7783e38e60170164db5768df75262f867d01d2d29260bb9e49245d73c419ac"
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalModule",
+      "function": "canonicalSettle",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "7955f62a003917a7dd1b2a6ff51742743621e9be82641ff38a40e95152bc7627"
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalModule",
+      "function": "canonicalCount",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "10efd9fe8cb1a43aecb91ef5d29c4a0d4ba1316ae05d8a838033f27413591848"
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalModule",
+      "function": "canonicalExport",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "0e09e2982c15adf44b9e196017ce26768b6d29d718cc925c16343a58f20a8b67"
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalModule",
+      "function": "canonicalImport",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "1cb5eba3d430f46c7fe2f620872ea5bc0232f6fd3bacf065fca5d421f7c4d99b"
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalModule",
+      "function": "canonicalAssetCount",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "be796ff2440d693b35764daa0e1f0c681f5af4c2e92ee0c49c0b7ef6a3615dfb"
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalModule",
+      "function": "canonicalBacking",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "1b004ac134a6dbaedd3c6a874dd510f642203106b05aed4f915d4857ad5eb925"
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalModule",
+      "function": "canonicalRelease",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "f8d706c292ba5203574898c6a5a095b3ee11126742d00e09ec03bf49d587e114"
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalModule",
+      "function": "canonicalRestore",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "ff8262a0c161fceb0fe38e779a0d86deb9afdb4ab6d53bb8356cbf54c9b71127"
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalModule",
+      "function": "canonicalAccept",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "c2c13742b542addab61d1c11aa239ab6c8b8993b05c291c5b4aeb4faf0f7d147"
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalModule",
+      "function": "canonicalValidate",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "3ecb588373055e2a7691ec5abbbaeba8231ea0fa82517a025025abca1d84a738"
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalModule",
+      "function": "canonicalActivate",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "505ff4619f8e0304144730c15438865b441c2b53f0d708a1f412dec56214b3a3"
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalAccess",
+      "function": "canonicalHandoff",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "44a903a0557f1e9d00b6a12a6c5988ddaadd9833af89f0759fe59715ec7a10d1"
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalAccess",
+      "function": "canonicalState",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "20f1401f4c4631516f6ff1fa8a172e7396f138a9db7c94336aede504388743db"
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "contract": "IZZZCanonicalAccess",
+      "function": "canonicalSettling",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "48b8ff336353a78bdb46e8347ccee00d29149a258873536968f4c5b1a0b902b9"
+    },
+    {
+      "path": "src/interfaces/IZZZNFTCanonical.sol",
+      "contract": "IZZZNFTCanonicalState",
+      "function": "canonicalRandomness",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "03c0dd6d6a31e9bf30fa1d8dd675fd414a80d8505f4b7fa2859493989ab9643d"
+    },
+    {
+      "path": "src/interfaces/IZZZNFTCanonical.sol",
+      "contract": "IZZZNFTCanonicalState",
+      "function": "canonicalArtwork",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "3730601c44743e04a3655571d8002ff9e2a370092d35b132af1d28fdccc99ff5"
+    },
+    {
+      "path": "src/interfaces/IZZZNFTCanonical.sol",
+      "contract": "IZZZNFTCanonicalState",
+      "function": "canonicalWriteHeader",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "f1355a127a01098c44b184fdc08ac136a162c98ce129c4ad56c8824bcd5b0bcc"
+    },
+    {
+      "path": "src/interfaces/IZZZNFTCanonical.sol",
+      "contract": "IZZZNFTCanonicalState",
+      "function": "canonicalWriteRecord",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "6c02c576656bd15b3518ce7acfeaccc057d218c033056e27c2a17af6a0fe6823"
+    },
+    {
+      "path": "src/interfaces/IZZZNFTCanonical.sol",
+      "contract": "IZZZNFTCanonicalState",
+      "function": "canonicalWriteArtwork",
+      "has_body": false,
+      "existing_declaration_source_sha256_lf": "2c0f9161b99da073ef7b3bc9acc751dfa36bb111e3fc56725152439ea7292b8c"
+    }
+  ],
+  "existing_canonical_implemented_bodies_exact": 90,
+  "new_code_free_interface_declarations": [
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "ILifecycleMetadata",
+      "no_creation_or_runtime_code": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "name": "INFTLifecyclePrincipal",
+      "no_creation_or_runtime_code": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "name": "INFTLifecycleSuccessor",
+      "no_creation_or_runtime_code": true
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "name": "IMetadataLifecycleLens",
+      "no_creation_or_runtime_code": true
+    }
+  ],
+  "count_scope": "Compiler src declarations include contracts/interfaces/libraries and inherited ABI/storage repetitions; counts are not deployment instances or unique protocol storage slots.",
+  "wire_and_reward_math_sources_unchanged": [
+    "src/interfaces/IZZZ.sol",
+    "src/interfaces/IZZZCanonical.sol",
+    "src/interfaces/IZZZNFTCanonical.sol",
+    "src/libraries/ZZZTypes.sol",
+    "src/libraries/ExactLPAllocation.sol",
+    "src/libraries/ExactRoyaltyAllocation.sol",
+    "src/base/ZZZCanonicalLedger.sol",
+    "src/base/ZZZExactLPRewardsCanonical.sol"
+  ],
+  "valuation_functions_exact": [
+    {
+      "function": "currentValue",
+      "body_sha256_lf": "6569acdb5c64b6da9b7031bbb10c9df9483fab392386a409e5fac29413e9248d"
+    },
+    {
+      "function": "_markedValue",
+      "body_sha256_lf": "0880d8cbdfad25c920c5dfb0e8a88f909651df51b907b38beeb1c556ea645899"
+    },
+    {
+      "function": "_evolutionStage",
+      "body_sha256_lf": "7bca4ffad26ab439a1665d75477c3a703e9cff0451274403f376430ed602d7b8"
+    }
+  ],
+  "changed_existing_function_bodies": [
+    {
+      "path": "src/ZZZAccessController.sol",
+      "contract": "ZZZAccessController",
+      "function": "startLPExit",
+      "financial_statement_ast_equal_after_exact_notification_removal": true,
+      "baseline_removed_notifications": [],
+      "current_removed_notifications": [
+        "_notifyMetadata()"
+      ]
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "contract": "ZZZAccessController",
+      "function": "canonicalTransition",
+      "financial_statement_ast_equal_after_exact_notification_removal": true,
+      "baseline_removed_notifications": [],
+      "current_removed_notifications": [
+        "_notifyMetadata()"
+      ]
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "contract": "ZZZAccessController",
+      "function": "startPreparation",
+      "financial_statement_ast_equal_after_exact_notification_removal": true,
+      "baseline_removed_notifications": [],
+      "current_removed_notifications": [
+        "_notifyMetadata()"
+      ]
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "contract": "ZZZAccessController",
+      "function": "cancelPreparation",
+      "financial_statement_ast_equal_after_exact_notification_removal": true,
+      "baseline_removed_notifications": [],
+      "current_removed_notifications": [
+        "_notifyMetadata()"
+      ]
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "contract": "ZZZMigration",
+      "function": "closeBucket",
+      "financial_statement_ast_equal_after_exact_notification_removal": true,
+      "baseline_removed_notifications": [],
+      "current_removed_notifications": [
+        "_nft().policyMetadataChanged()"
+      ]
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "contract": "ZZZMigration",
+      "function": "allocatePrincipal",
+      "financial_statement_ast_equal_after_exact_notification_removal": true,
+      "baseline_removed_notifications": [
+        "nft.refreshMetadata(id)"
+      ],
+      "current_removed_notifications": [
+        "nft.refreshMetadata(id)",
+        "_nft().policyMetadataChanged()"
+      ]
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "contract": "ZZZMigration",
+      "function": "_pay",
+      "financial_statement_ast_equal_after_exact_notification_removal": true,
+      "baseline_removed_notifications": [],
+      "current_removed_notifications": [
+        "_nft().refreshMetadata(id)"
+      ]
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "function": "policyMetadataChanged",
+      "financial_statement_ast_equal_after_exact_notification_removal": false,
+      "baseline_removed_notifications": [],
+      "current_removed_notifications": []
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "contract": "ZZZNFTMetadata",
+      "function": "tokenMetadata",
+      "financial_statement_ast_equal_after_exact_notification_removal": false,
+      "baseline_removed_notifications": [],
+      "current_removed_notifications": []
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "contract": "ZZZNFTMetadata",
+      "function": "render",
+      "financial_statement_ast_equal_after_exact_notification_removal": false,
+      "baseline_removed_notifications": [],
+      "current_removed_notifications": []
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "contract": "ZZZNFTMetadata",
+      "function": "_visualAttributes",
+      "financial_statement_ast_equal_after_exact_notification_removal": false,
+      "baseline_removed_notifications": [],
+      "current_removed_notifications": []
+    }
+  ],
+  "new_storage_entries": 0,
+  "new_constructor_inputs": 0,
+  "new_canonical_writers": 0,
+  "new_financial_math_changes": 0,
+  "financial_statement_comparison_limit": "AST equivalence removes only exact named metadata notification ExpressionStatements. Added external notifications change gas/liveness and require separate execution qualification; this does not prove all markets or provider honesty.",
+  "protected_dirty_files": [
+    {
+      "path": "reports/source-checks.json",
+      "sha256": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/run-fork-checks.py",
+      "sha256": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "unchanged": true
+    },
+    {
+      "path": "tests_python/test_fork_runner.py",
+      "sha256": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "unchanged": true
+    },
+    {
+      "path": "tests_python/test_frontend_history.py",
+      "sha256": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "unchanged": true
+    }
+  ],
+  "website_protected_files": [
+    {
+      "path": "browser-wallet.js",
+      "sha256": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+      "unchanged": true
+    },
+    {
+      "path": "deployment-config.js",
+      "sha256": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+      "unchanged": true
+    },
+    {
+      "path": "integration-config.js",
+      "sha256": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300",
+      "unchanged": true
+    }
+  ],
+  "website_view_sha256": "89c348cd3895ffd997d677f441fa10aa57a941e6e172763bd094b0a028af29fe",
+  "current_docs": [
+    {
+      "path": "docs/METADATA_LIFECYCLE.md",
+      "raw_sha256": "8b67a2cc2e274389027c6a00fe64e4ea2ca88ec5e7422c614cfb9c68a799752b"
+    },
+    {
+      "path": "docs/NFT_METADATA.md",
+      "raw_sha256": "61ab1d8b2a50f2dc0f791773c9289efc4b83fed1edf86f49a6184ddb277580aa"
+    },
+    {
+      "path": "docs/OPERATIONS.md",
+      "raw_sha256": "e8ed78b297759d8df1555abda0f14638c86cea294a9e7ea6f3e3c46213d0a821"
+    },
+    {
+      "path": "docs/OPERATOR_MANUAL.md",
+      "raw_sha256": "273a569740f16b3de83d7e5da39a68f4d4285661421bf36c077ab4fc2ece01e9"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "raw_sha256": "8831efe065026793490baea8f9c915648290cb536ef7ff12382cecaf785ba6c1"
+    }
+  ],
+  "document_notes": [],
+  "tests_executed": 0,
+  "compiler_runs": 0,
+  "static_analyzer_runs": 0,
+  "RPC_calls": 0,
+  "deployments": 0,
+  "service_or_site_rollout": false
+}

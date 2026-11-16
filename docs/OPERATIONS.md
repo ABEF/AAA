@@ -467,12 +467,54 @@ inbox, remote reward/ACK or bridge jobs: those current modules are removed.
 
 ## Optional metadata notifications
 
-Watcher defaults disabled. Observe revealed state, current marked valuation and
-evolution at a confirmed block, then use the bounded keeper transaction/receipt
-path for metadata notifications. Up to 50mint ordinals per range notification;
-ordinals are not hashed token IDs. ERC-4906 is a notification, not proof of an
-instant marketplace cache refresh. No LP action is needed just to refresh art.
-[Metadata/hosting](NFT_METADATA.md), [artwork publication](ARTWORK_PUBLICATION.md).
+The watcher defaults disabled. Historical omission or
+`metadata_refresh.lifecycle_version:0` retains the original confirmed reveal,
+valuation-availability and evolution record. Explicit lifecycle2 additionally
+records the price-free renderer `metadataLifecycleFingerprint(id)`, so unchanged
+artwork can still notify a changed preparation/exit/allocation/payment state.
+Neither profile streams numeric NAV. Fingerprints exclude read block/time and
+price values; the metadata snapshot timestamp is not source-price freshness.
+
+For lifecycle2, review these nested `metadata_refresh` inputs before constructing
+the keeper; there is no in-process configuration reload:
+
+| Field | Required value / verification |
+| --- | --- |
+| `enabled` | Explicit `true` only after source/configuration/operating review. Default remains `false`. |
+| `lifecycle_version` | Exact integer `2`, with keeper `accounting_version:7`; omission/zero does not probe or infer it. |
+| `nft` | Exact reviewed NFT. At the confirmed scan block verify controller/module/Vault/chain/seal and ordinal limits as before. |
+| `renderer` | Exact `NFT.metadataRenderer()` address. Its `access()` must match the controller and `METADATA_LIFECYCLE_VERSION()` must return exactly2. |
+| `renderer_code_hash` | Actual independently reviewed nonzero runtime Keccak, checked at the same confirmed scan/receipt block. Do not substitute an old renderer or a source hash. |
+| Existing scan/age limits | Keep reviewed `maximum_count`, `max_per_cycle`, `max_refresh_batch` and `maximum_observation_age_blocks`; existing bounds and transaction budgets remain. |
+
+The renderer delegates only read-only lifecycle work to its Access-bound
+NFTCanonical lens. That lens's ETH/ZZZ values are original assigned principal,
+not remaining payable funds. NFT JSON distinguishes pending allocation, pending
+readiness, payable and already-paid principal. LP exited keeps Activated art;
+never-activated Dormant NFTs remain Dormant but show permanent activation closure.
+Neither image, tier nor notification authorizes economic work.
+
+Lifecycle2 identity includes the renderer and exact runtime pin. Existing legacy
+metadata identities cannot be relabelled as2, and an enabled version2 job cannot
+silently downgrade to omission/zero. Preserve original journals and resolve
+pending work under its original reviewed configuration; no automatic checkpoint
+migration or adoption is provided. Disabling a version2 watcher may inherit its
+original persisted identity solely to reconcile its pending notification; it
+does not enable another scan. Restore/review configuration instead of deleting
+state to evade an identity mismatch.
+
+Both profiles use the existing simulated/budgeted serial transaction/receipt
+path. Up to50 inclusive **mint ordinals** per range notification, not hashed token
+IDs. The durable notified baseline advances only after matching canonical receipt
+checks and a reread of execution state. Ordinary strategy pause does not block
+metadata notifications; keeper canonical lifecycle locks still stop new jobs.
+Permissionless manual NFT event-only refresh is a separate path and moves no LP.
+At1,000 NFTs/50per scan at least20 passes plus receipt/priority/budget delays are
+needed. ERC-4906 is a notification, not OpenSea acknowledgement or a refresh SLA.
+No LP action is needed to repair metadata, and no service/endpoint is enabled here.
+[Metadata/hosting](NFT_METADATA.md), [manual recovery](OPERATOR_MANUAL.md#metadata-lifecycle-and-marketplace-recovery),
+[artwork publication](ARTWORK_PUBLICATION.md). Actual supported-chain ingestion,
+asset retrieval, marketplace cache and host/restart qualification remain open.
 
 ## Stop, recovery and restart
 

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reference_sha256": "921d93016e92bb66809f4945dd9ffc12883c13565faf21ace5274045a02c5099",
+  "reference_sha256": "f9d9dae2c452f30bfda0ed6513cd3d9246e0adb07f836f88472e9a433f99f1e4",
   "rows": {
     "ZZZAccessController.constructor(address,address,address)": {
       "role": "D",
@@ -8186,6 +8186,36 @@
       "arguments": [
         "$BUCKET_ID",
         "$OPENING_SCOPE"
+      ],
+      "value": null
+    },
+    "ZZZNFTMetadata.METADATA_LIFECYCLE_VERSION()": {
+      "role": "R",
+      "short": "Read metadata capability",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZNFTMetadata.metadataLifecycleFingerprint(uint256)": {
+      "role": "R",
+      "short": "Read lifecycle change hash",
+      "arguments": [
+        "$ACTUAL_NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFTCanonical.metadataLifecycleState(uint256)": {
+      "role": "R",
+      "short": "Read lifecycle settlement flags",
+      "arguments": [
+        "$ACTUAL_NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZNFTCanonical.metadataLifecycleContext(uint256)": {
+      "role": "R",
+      "short": "Read lifecycle JSON fragment",
+      "arguments": [
+        "$ACTUAL_NFT_ID"
       ],
       "value": null
     }

@@ -1556,7 +1556,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-metadata-ops"></a>
 
-- [ ] **[Publish artwork & operate metadata refresh](docs/ARTWORK_PUBLICATION.md)** - In progress. Artwork packaging and the optional tier/availability watcher exist. The80-case lifecycle review now records exit/payment/canonical presentation gaps and cache decisions. Publish verified content, implement agreed metadata corrections and qualify actual marketplace/host refresh.
+- [ ] **[Publish artwork & operate metadata refresh](docs/ARTWORK_PUBLICATION.md)** - In progress. Metadata2 lifecycle/payment/successor presentation, immediate bounded refresh hooks and opt-in renderer-pinned watcher are implemented. Four artwork paths and all rights remain; publish verified content and qualify actual matching-host/OpenSea refresh and integration rollout.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1569,9 +1569,12 @@ Decisions and rehearsals before real funds.
   - [Current artwork correction](reports/whole-project-execution-20261029/REVIEW.md): generator/preview and2784static reference descriptions retain fixed rarity1/2/3, correcting696dormant traits without changing effective eligibility, SVGs or manifest.14artifact-policy methods and3website methods pass; every2784approvedSVG hash remains exact. Parser/strict JSON reject alternate external/active channels. Source-only: hosting/CID/marketplace refresh and website rollout remain unqualified.
   - The [catalogue admission fix](reports/remaining-271-20261111/evidence-frontend/REVIEW.md) rejects duplicate/nonfinite/overflow JSON and boolean/fractional codes or invalid/zero masks. Five distinct focused methods cover new rejection/valid controls, including optimized Python. Existing catalogue,1,000assignments, generated Solidity library and all artwork assets are unchanged; no hosting/marketplace/VRF qualification is implied.
   - [Lifecycle inventory](docs/METADATA_LIFECYCLE.md) defines80 current-source scenarios, not80fresh passes. Reconcile fixed traits, NAV tiers, valuation availability, LP/settlement/canonical lifecycle and external rendering before changing behavior; no tests or production changes accompany the inventory.
-  - Resolve close-time versus later-allocation notification, truthful unpaid/paid principal wording, never-activated NFTs after permanent shutdown, retired/source-successor labels and destination-activation refresh. Keep rights/accounting unchanged and all financial work bounded; watcher/manual refresh can bridge some timing gaps, not fix missing lifecycle fields.
-  - Decide terminal art and unavailable-art consistency separately from economic activation. Current terminal uses Activated art with LP-exited label; current on-chain unavailable fallback differs from the fresh integration no-art presentation. No return to Dormant or new image/weight is authorized by this review.
-  - Define marketplace image/trait versus numeric-NAV freshness. The watcher fingerprints stage/availability/reveal, not every numeric value; confirmed notification is not OpenSea acknowledgement. Qualify actual chain/collection/media support,20-or-more scan passes at1000/50, backlog/outage/restart/reorgs, API rate limits if selected, and eventual rendered result. No continuous-price refresh or new service is assumed.
+  - Terminal art remains Activated with a distinct LP-exited label; confirmed unavailable activated NAV uses the same labelled fallback in contract and fresh integration source. No Dormant reset, new image or royalty-weight change. Existing hosted websites remain separate.
+  - Define marketplace image/trait versus numeric-NAV freshness. Optional watcher2 adds lifecycle to stage/availability/reveal; neither profile tracks every numeric value or treats a confirmed notification as OpenSea acknowledgement. Qualify actual chain/collection/media,20-or-more scan passes at1000/50, backlog/outage/restart/reorgs, API limits if selected and eventual rendering. No continuous-price service is assumed.
+  - [Metadata2 implementation](reports/metadata-lifecycle-fixes-20261116/REVIEW.md) closes M1–M4/M6 source gaps, defines M5 snapshot/cache boundary and retains M7 Activated artwork for LP exited. Read-only lens/fingerprint reuse the fixed NFT state companion; canonical wire/accounting/storage authority unchanged. New runtimes/configuration require explicit review, not relabelling old profiles.
+  - Collection notifications occur at exit start/close/Ready and committed preparation/canonical transitions; successful principal payment notifies its NFT. Distinct permanent closed-Dormant, pending/paid principal and verified successor labels preserve all NFT/royalty rights. New focused evidence is separate from80static scenarios and historical tests.
+  - Optional metadata_refresh.lifecycle_version2 authenticates accounting7, exact renderer/runtime/version and durable identity; legacy0 remains. Website source uses labelled unavailable fallback and retains per-target confirmed-artwork gates. No public signer/config/site/service/Anvil/journal change or market qualification.
+  - M8 remains: actual Robinhood/OpenSea collection/onboarding/content/read gas, eventual JSON/media/cache result and matching-host watcher operating qualification. Numeric read snapshots/notification receipts are not price freshness or external acknowledgement.
 
   </details>
 
@@ -1723,4 +1726,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `fe0851f0669aaeeb8225a5ba068421a892e2db20878039d46f69258f4e05259f`.
+Snapshot SHA-256: `7a8f95c0fb93035facc3b66679d4b083096b9cc8e901e5fceebf0e48219f26aa`.

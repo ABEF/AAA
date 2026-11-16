@@ -2047,6 +2047,11 @@ class Keeper:
         if not isinstance(settings,dict) or type(settings.get('enabled',False)) is not bool:
             raise ValueError('metadata_refresh requires an object and explicit boolean enabled flag')
         self.metadata_enabled = settings.get('enabled',False)
+        self.metadata_lifecycle_version = settings.get('lifecycle_version',0)
+        if type(self.metadata_lifecycle_version) is not int or self.metadata_lifecycle_version not in (0,2):
+            raise ValueError('Unsupported explicit metadata lifecycle profile')
+        self.metadata_renderer = None
+        self.metadata_renderer_hash = None
         configured = settings.get('nft')
         self.metadata_nft = address(configured) if configured is not None else None
         self.metadata_maximum = positive(settings.get('maximum_count',MAX_METADATA_SUPPLY),'metadata_refresh.maximum_count')
@@ -2060,12 +2065,44 @@ class Keeper:
         if self.metadata_enabled and self.metadata_nft is None:
             raise ValueError('Enabled metadata refresh requires an explicit NFT address')
         state = self.state.get('metadata_refresh')
+        stored_identity = state.get('identity',{}) if isinstance(state,dict) else {}
+        if not isinstance(stored_identity,dict):
+            raise ValueError('Malformed persistent metadata identity')
+        if ('metadata_lifecycle_version' in stored_identity and
+                (type(stored_identity['metadata_lifecycle_version']) is not int or
+                 stored_identity['metadata_lifecycle_version'] != 2)):
+            raise ValueError('Malformed persistent metadata lifecycle version')
+        # Disabling a job may drain its original saved transaction. This does
+        # not enable new work or reinterpret a historical notification record.
+        if (not self.metadata_enabled and 'lifecycle_version' not in settings and
+                stored_identity.get('metadata_lifecycle_version') == 2):
+            self.metadata_lifecycle_version = 2
+        if self.metadata_lifecycle_version == 2:
+            if self.accounting_version != 7:
+                raise ValueError('Metadata lifecycle2 requires explicit accounting7')
+            self.metadata_renderer = address(settings.get('renderer',
+                stored_identity.get('renderer') if not self.metadata_enabled else None))
+            self.metadata_renderer_hash = settings.get('renderer_code_hash',
+                stored_identity.get('renderer_code_hash') if not self.metadata_enabled else None)
+            if (not isinstance(self.metadata_renderer_hash,str) or
+                    not re.fullmatch(r'0x[0-9a-fA-F]{64}',self.metadata_renderer_hash) or
+                    int(self.metadata_renderer_hash,16) == 0):
+                raise ValueError('Metadata lifecycle2 requires the reviewed renderer runtime')
+            self.metadata_renderer_hash = self.metadata_renderer_hash.lower()
+        elif 'renderer' in settings or 'renderer_code_hash' in settings:
+            raise ValueError('Metadata renderer settings require explicit lifecycle2')
+        def expected_identity(nft: str) -> dict[str,Any]:
+            value = {'chain_id':self.chain,'controller':self.contracts['access'],'nft':nft}
+            if self.metadata_lifecycle_version == 2:
+                value.update(metadata_lifecycle_version=2,renderer=self.metadata_renderer,
+                    renderer_code_hash=self.metadata_renderer_hash)
+            return value
         if state is not None:
             if not isinstance(state,dict) or not isinstance(state.get('identity'),dict):
                 raise ValueError('Malformed persistent metadata state')
             identity = state['identity']
             stored_nft = address(identity.get('nft'))
-            expected = {'chain_id':self.chain,'controller':self.contracts['access'],'nft':stored_nft}
+            expected = expected_identity(stored_nft)
             if type(identity.get('chain_id')) is not int or identity != expected or \
                 self.metadata_nft is not None and self.metadata_nft != stored_nft:
                 raise ValueError('Persistent metadata state belongs to another NFT deployment')
@@ -2087,8 +2124,8 @@ class Keeper:
                 if record['notification_number'] < record['observed_number']:
                     raise ValueError('Metadata notification precedes its observation')
         elif self.metadata_enabled:
-            self.state['metadata_refresh'] = {'identity':{'chain_id':self.chain,'controller':self.contracts['access'],
-                'nft':self.metadata_nft},'cursor':1,'next_first':True,'notified':{}}
+            self.state['metadata_refresh'] = {'identity':expected_identity(self.metadata_nft),
+                'cursor':1,'next_first':True,'notified':{}}
         if self.metadata_nft is not None and 'nft' in self.contracts and self.contracts['nft'] != self.metadata_nft:
             raise ValueError('Conflicting configured NFT addresses')
         pending = self.state.get('pending')
@@ -2104,6 +2141,10 @@ class Keeper:
 
     def _validate_metadata_record(self, record: Any) -> None:
         if not isinstance(record,dict): raise ValueError('Malformed metadata observation')
+        lifecycle = getattr(self,'metadata_lifecycle_version',0) == 2
+        if lifecycle != ('lifecycle_fingerprint' in record):
+            raise ValueError('Metadata record belongs to another lifecycle profile')
+        if lifecycle: self._metadata_hash(record['lifecycle_fingerprint'])
         ordinal = positive(record.get('ordinal'),'metadata ordinal')
         token = positive(record.get('token_id'),'metadata token ID',zero=True)
         if type(record.get('ordinal')) is not int or record.get('token_id') != str(token) or \
@@ -2171,6 +2212,17 @@ class Keeper:
             if self._metadata_uint(target,signature,block,*args) != expected:
                 raise RpcError('Metadata deployment binding or protocol limit mismatch')
         if self.live: self._metadata_code_hash(block)
+        if self.metadata_lifecycle_version == 2:
+            for target,signature,expected in (
+                    (self.metadata_nft,'metadataRenderer()',int(self.metadata_renderer,16)),
+                    (self.metadata_renderer,'access()',int(access,16)),
+                    (self.metadata_renderer,'METADATA_LIFECYCLE_VERSION()',2)):
+                if self._metadata_uint(target,signature,block) != expected:
+                    raise RpcError('Metadata lifecycle renderer binding or version mismatch')
+            code = self.rpc.call('eth_getCode',[self.metadata_renderer,hex(block)])
+            if (not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or
+                    '0x'+keccak256(bytes.fromhex(code[2:])).hex() != self.metadata_renderer_hash):
+                raise RpcError('Metadata lifecycle renderer runtime mismatch')
 
     def _metadata_code_hash(self, block: int) -> None:
         expected = self.config.get('code_hashes',{}).get('nft','').lower()
@@ -2191,6 +2243,9 @@ class Keeper:
             raise RpcError('Noncanonical NFT evolution ABI')
         record = {'ordinal':ordinal,'token_id':str(token),'traits_ready':bool(ready),
             'available':bool(values[0]),'stage':values[1]}
+        if self.metadata_lifecycle_version == 2:
+            fingerprint = self._metadata_uint(self.metadata_renderer,'metadataLifecycleFingerprint(uint256)',block,token)
+            record['lifecycle_fingerprint'] = '0x'+f'{fingerprint:064x}'
         self._validate_metadata_record(record)
         return record
 

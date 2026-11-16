@@ -3,7 +3,7 @@
   "source_snapshot": {
     "snapshot_schema": 3,
     "source_sha256": {
-      "src/ZZZAccessController.sol": "4c3ad2186e8c260d9bb0c878c3a1d2d1b2fc1b26c27a4f57db00ea15d50a77a6",
+      "src/ZZZAccessController.sol": "5a1ecdd5cc309bb922943cf11e9299859f9f824e354443d5d9b7ea7600379a2c",
       "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
       "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
       "src/ZZZActivationEntry.sol": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
@@ -21,11 +21,11 @@
       "src/ZZZLPRewardConverter.sol": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
       "src/ZZZLiquidityManager.sol": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
       "src/ZZZMembership.sol": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
-      "src/ZZZMigration.sol": "82e3d7c8b8a26ba6baecbd9da370347fafda1b8a4172db1b8a1df095d8f2c05e",
+      "src/ZZZMigration.sol": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed",
       "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
-      "src/ZZZNFT.sol": "29a183c08590b3d09af91d3ae365bc9b22d1f409fc29d176993b005e7a3b4e88",
-      "src/ZZZNFTCanonical.sol": "55da9efbcf31cd1502911c7336cd4ea81a02c5351672e1714f38063418613b1d",
-      "src/ZZZNFTMetadata.sol": "65cee11339ebfa00f809c39c2aa133a472e85419b535be20e8e258d3c6c7b711",
+      "src/ZZZNFT.sol": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+      "src/ZZZNFTCanonical.sol": "fcc849cfa4689f1a22e6e006d286ec73bea60e660713adc5d01b6a2f90e2245a",
+      "src/ZZZNFTMetadata.sol": "a691196de69c40e0f2a3cd50d3efd65a5c72ae9bf5e848b300b5f1bb607faf3f",
       "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
       "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
       "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
@@ -255,9 +255,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "1dd850af6ed9ac2b31a0e41eef36fd6e363209df8b792fe286ac33fe885051dd",
-    "compiler_output_sha256": "b659f79e113d05f0a4a110031e61711ce0dcb764023d8acc4774c49d2e1bf136",
-    "size_evidence_sha256": "43b3bdbe58c31893b9e648f3cc2e565e096a730f089abef4745f8fe3a7f78633",
+    "compiler_input_sha256": "cd8a15e16ed96fe31b2c488d53198d04f687d9270fa8e163871c8bef35638991",
+    "compiler_output_sha256": "e3cbd59c818873e2adf766eecc7866c4b2530ac280d3b07f9c00640a6db4da0a",
+    "size_evidence_sha256": "b67e4d9cdf645e1433bca7569c7ad5be6d46237cce944f100cff6fc8d054b07e",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -15524,6 +15524,22 @@
           "type": "error"
         },
         {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "length",
+              "type": "uint256"
+            }
+          ],
+          "name": "StringsInsufficientHexLength",
+          "type": "error"
+        },
+        {
           "inputs": [],
           "name": "Unauthorized",
           "type": "error"
@@ -15646,6 +15662,84 @@
           "type": "function"
         },
         {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "metadataLifecycleContext",
+          "outputs": [
+            {
+              "internalType": "bytes",
+              "name": "context",
+              "type": "bytes"
+            },
+            {
+              "internalType": "string",
+              "name": "label",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "flags",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "ethAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "zzzAmount",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "metadataLifecycleState",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "flags",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "ethAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "zzzAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "successorController",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "successorNFT",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
           "inputs": [],
           "name": "nft",
           "outputs": [
@@ -15659,7 +15753,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "18e7f2187f4508231855e8140927f15c64c4304761c1968a839d39ef0c680d08"
+      "abi_sha256": "e15065b266ded5f7baf6bac3984023329768683de807b93167e14d38aacacb87"
     },
     "ZZZNFTMetadata": {
       "source": "src/ZZZNFTMetadata.sol",
@@ -15689,6 +15783,19 @@
           "inputs": [],
           "name": "ValuationUnavailable",
           "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "METADATA_LIFECYCLE_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
         },
         {
           "inputs": [],
@@ -15807,6 +15914,25 @@
         {
           "inputs": [
             {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "metadataLifecycleFingerprint",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "components": [
                 {
                   "internalType": "uint256",
@@ -15908,7 +16034,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "07e32a0eda9f7e520752dc9e5b18d4e845ab83b5146bdb3600927bf41d7f6230"
+      "abi_sha256": "8b7b775dfbf802fa5539af929a895a58600ef4ea4fb439c914ad1f988cee43f1"
     },
     "ZZZOracle": {
       "source": "src/ZZZOracle.sol",
@@ -28170,7 +28296,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "e0fc04fa4707326b2cb425e6a283fc197b68a0b47e3d259a58bc1db1448ba83d",
+  "notes_sha256": "5fac9b9217830388e7b6914fa0079a2bb20b72d0ee39adf3a6f989f67909081a",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -48086,8 +48212,8 @@
           "kind": "function",
           "name": "policyMetadataChanged",
           "state_mutability": "nonpayable",
-          "purpose": "Emit collection-wide ERC4906 metadata invalidation after cosmetic threshold changes.",
-          "access": "Only fixed Access.protocolPolicy address; event only,no economic state or ownership mutation.",
+          "purpose": "Emit one collection-wide ERC-4906 refresh after a committed cosmetic, exit or canonical lifecycle change; performs no NAV read or economic write.",
+          "access": "Only the bound ProtocolPolicy, Access controller or fixed Migration module. Not a governance EOA call; permissionless refreshMetadata/refreshMetadataRange remain separate.",
           "status": "documented",
           "inputs": [],
           "outputs": [],
@@ -49804,6 +49930,144 @@
           "notes": null
         },
         {
+          "signature": "metadataLifecycleContext(uint256)",
+          "kind": "function",
+          "name": "metadataLifecycleContext",
+          "state_mutability": "view",
+          "purpose": "Read the same single lifecycle snapshot with schema2 JSON fields and a human label. No custody, entitlement or accounting mutation.",
+          "access": "Anyone; same fixed bindings and coherence checks as metadataLifecycleState.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "id",
+              "label": "id",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact minted uint256 NFT ID."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "context",
+              "label": "context",
+              "type": "bytes",
+              "canonical_type": "bytes",
+              "internal_type": "bytes",
+              "explanation": "Comma-prefixed JSON field fragment, not standalone JSON. Snapshot block/time identify this read, not price freshness."
+            },
+            {
+              "position": 1,
+              "name": "label",
+              "label": "label",
+              "type": "string",
+              "canonical_type": "string",
+              "internal_type": "string",
+              "explanation": "Lifecycle label; LP exited remains distinct from Dormant and does not erase royalty rights."
+            },
+            {
+              "position": 2,
+              "name": "flags",
+              "label": "flags",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Same schema2 packed flags as metadataLifecycleState."
+            },
+            {
+              "position": 3,
+              "name": "ethAmount",
+              "label": "ethAmount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Historical assigned ETH wei; not unpaid balance."
+            },
+            {
+              "position": 4,
+              "name": "zzzAmount",
+              "label": "zzzAmount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Historical assigned ZZZ units; not unpaid balance."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "metadataLifecycleState(uint256)",
+          "kind": "function",
+          "name": "metadataLifecycleState",
+          "state_mutability": "view",
+          "purpose": "Read existing lifecycle and principal books through the immutable NFT state companion without prices or state writes. Does not change canonical export/import records.",
+          "access": "Anyone; requires existing owner, current NFT/controller binding and coherent lifecycle books.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "id",
+              "label": "id",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact minted uint256 NFT ID."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "flags",
+              "label": "flags",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Flags: version bits0-7; canonical8-15; exit phase16-23; position24-31; preparation32; exit started33; shares34; allocated35; paid36. Reserved bits37+ zero."
+            },
+            {
+              "position": 1,
+              "name": "ethAmount",
+              "label": "ethAmount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Historically assigned ETH wei, retained after payment; zero before allocation is not final entitlement."
+            },
+            {
+              "position": 2,
+              "name": "zzzAmount",
+              "label": "zzzAmount",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Historically assigned fixed-ZZZ raw units, retained after payment; not remaining principal."
+            },
+            {
+              "position": 3,
+              "name": "successorController",
+              "label": "successorController",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Verified replacement controller only for retired predecessor; otherwise zero."
+            },
+            {
+              "position": 4,
+              "name": "successorNFT",
+              "label": "successorNFT",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Verified replacement NFT only for retired predecessor; otherwise zero."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "nft()",
           "kind": "function",
           "name": "nft",
@@ -49854,6 +50118,29 @@
             }
           ],
           "outputs": [],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "METADATA_LIFECYCLE_VERSION()",
+          "kind": "function",
+          "name": "METADATA_LIFECYCLE_VERSION",
+          "state_mutability": "view",
+          "purpose": "Identify explicit metadata schema2 lifecycle context; this is not a new accounting or canonical transport profile.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exactly 2 for this renderer."
+            }
+          ],
           "native_value": null,
           "notes": null
         },
@@ -50058,6 +50345,39 @@
           "notes": null
         },
         {
+          "signature": "metadataLifecycleFingerprint(uint256)",
+          "kind": "function",
+          "name": "metadataLifecycleFingerprint",
+          "state_mutability": "view",
+          "purpose": "Read a price-free change fingerprint for lifecycle, principal allocation/payment and successor identity. Excludes numeric NAV, owner and snapshot time; does not authorize any operation.",
+          "access": "Anyone; requires an existing NFT and correctly bound fixed lifecycle companion.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "id",
+              "label": "id",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Exact minted uint256 NFT ID, not mint ordinal."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Opaque keccak256 of schema2 packed flags, historically assigned ETH/ZZZ and successor addresses. Never use as reviewHash, consent or proof of payment to an address."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "render((uint256,uint8,uint8,uint8,uint8,bool,bool,uint256,uint8,string))",
           "kind": "function",
           "name": "render",
@@ -50187,7 +50507,7 @@
           "kind": "function",
           "name": "tokenMetadata",
           "state_mutability": "view",
-          "purpose": "Render canonical prepared artwork, traits and funded-right metadata.",
+          "purpose": "Render confirmed dynamic JSON and four-path artwork with explicit schema2 lifecycle, successor and principal allocation/payment status. LP exited uses Activated art and keeps royalty rights; unavailable NAV is labelled fallback, never fabricated zero. Snapshot time is not source freshness.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
@@ -66864,7 +67184,7 @@
   "gaps": [],
   "counts": {
     "contracts": 40,
-    "functions": 959,
+    "functions": 963,
     "constructors": 40,
     "receive_hooks": 13,
     "fallback_hooks": 0,

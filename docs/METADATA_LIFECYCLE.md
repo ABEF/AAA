@@ -1,10 +1,10 @@
 # Metadata lifecycle: scenario inventory and current behavior
 
-Reviewed 16 November 2026 against contract source `bb7099b54d4fe4fcbe416f8319aea6df1c64a59e`.
-This is an **80-case inventory and static assessment**, not 80 newly executed tests
-or proof that every possible failure is covered. Define the expected presentation
-first; then verify each transition on the exact release and marketplace.
-No contract, artwork, service, configuration or economic behavior changes here.
+Reviewed 16 November 2026: the original80-case inventory at `bb7099b` is
+retained and updated for the [metadata2 source fixes](../reports/metadata-lifecycle-fixes-20261116/REVIEW.md).
+This is **80 scenarios**, not80executed tests or exhaustive proof. Changed/new
+local checks and their limits are recorded separately; marketplace acceptance
+requires actual supported-chain retrieval and media observations.
 The sole status owner remains [the metadata Todo task](../TODO.md#task-metadata-ops).
 
 ## Direct answers
@@ -46,9 +46,9 @@ See [renderer](../src/ZZZNFTMetadata.sol) and [NFT rules](NFT_METADATA.md).
 
 ## Scenario inventory
 
-Each row defines a situation to exercise and records what source inspection
-establishes or leaves unresolved. Existing tests were read for context; none was
-run in this task. “Needs qualification” is not evidence that the behavior fails.
+Each row defines a situation to exercise and records current source behavior or
+a remaining qualification. The implementation report separates new/changed
+executed checks from unchanged evidence and static scenario coverage. “Needs qualification” is not evidence that the behavior fails.
 
 ### A. Identity, mint and reveal
 
@@ -61,7 +61,7 @@ run in this task. “Needs qualification” is not evidence that the behavior fa
 | A05 | Transfer before reveal, then finalize | The same original draw/identity follows the NFT; current ownership does not select rarity or imagery. |
 | A06 | Partial sellout, team/allowlist/public mint or sale end changes | Supply/stage eligibility changes do not alter already assigned traits. Sale timing affects royalty timing separately. |
 | A07 | Mint pause/resume while old draws remain pending | New draws can stop; original fulfillment/finalization has its own controls. No Dormant-to-Activated transition is implied. |
-| A08 | Unrevealed/dormant token remains after terminal exit | Never-activated token stays Dormant and cannot activate. Original valid draws can still finalize/reveal; no new royalty activation arises. JSON lacks the collection-wide permanent closure. |
+| A08 | Unrevealed/dormant token remains after terminal exit | Never-activated NFT stays Dormant with royalty activation false; collection exit independently exposes permanent activation_closed. Original valid draws may still reveal. |
 
 ### B. Activation and LP growth
 
@@ -108,16 +108,16 @@ run in this task. “Needs qualification” is not evidence that the behavior fa
 
 | ID | Case to exercise | Current behavior / assessment |
 | --- | --- | --- |
-| E01 | Governance starts exit while LP buckets remain open | Future contributions/mint/replacement are blocked. Existing open-bucket metadata can still show its old tier; current JSON has no “exit in progress” flag. |
-| E02 | One bucket closes while other buckets remain open | Closed bucket becomes Exited immediately; its activated NFTs return available zero/stage4. Other buckets can still hold LP. |
-| E03 | All LP closes, but allocation is delayed or incomplete | LP exited is already the live answer. Explicit per-NFT exit notifications occur later during funded-NFT allocation, creating a cache-lag interval. Enabled watcher or manual refresh can notify earlier. |
-| E04 | Allocation completes; payment has not occurred | Principal is an unpaid ETH/ZZZ entitlement, not attached LP or newly earned rewards. Metadata does not distinguish this state from paid. |
-| E05 | Governance payout batch pays the holder | Principal paid flag/amount changes in settlement accounting. Metadata has no paid-specific field/event; old fees/future royalties persist. |
-| E06 | ETH receiver or ZZZ delivery rejects; later retry succeeds | Failure/deferred delivery must not be labelled “paid” just because LP closed. Use actual principal-return accounting; metadata currently lacks that detail. |
+| E01 | Governance starts exit while LP buckets remain open | Exit start emits one collection-wide ERC-4906 notification; metadata exposes collection exit phase independently of each NFT status. No unbounded NFT loop. |
+| E02 | One bucket closes while other buckets remain open | Closing either logical bucket collects/closes its actual legs and emits a collection refresh immediately, before later allocation/payment. LP exited retains Activated artwork and royalty rights. |
+| E03 | All LP closes, but allocation is delayed or incomplete | LP exited is live after each bucket closes; the immediate collection refresh no longer waits for allocation. Final Ready transition also notifies, including a final dormant ordinal. |
+| E04 | Allocation completes; payment has not occurred | principal_return_status distinguishes awaiting_allocation, allocated_pending_readiness, payable, paid and zero_entitlement. Historical assigned amounts are separate Migration reads, not unpaid metadata balances. |
+| E05 | Governance payout batch pays the holder | Successful isolated payout commits the paid flag/backing and emits MetadataUpdate for that NFT. Failed payout reverts its event/state; current-owner delivery remains unchanged. |
+| E06 | ETH receiver or ZZZ delivery rejects; later retry succeeds | Failed isolated payment stays unpaid/payable and emits no successful payment notification; later success updates the paid flag and per-NFT metadata. Pathological receiver/token recovery remains separate. |
 | E07 | Owner uses exceptional authorized recovery/fallback | Final actual recipient/payment must be read from settlement; do not infer it from generic exit description. No new holder action is required in normal direct distribution. |
-| E08 | NFT transfers before allocation, after allocation, before payment or after payment | Unpaid principal follows the current NFT; paid principal is not recreated for a buyer. Generic terminal wording needs this distinction. |
+| E08 | NFT transfers before allocation, after allocation, before payment or after payment | Unpaid principal follows the current NFT owner; paid status remains paid after transfer and does not recreate principal. Metadata states this distinction without changing old rewards/royalties. |
 | E09 | One owner has mixed dormant/active tiers, several NFTs or zero actual proceeds | Each NFT's shares/paid state is separate. Dormant zero-share NFTs get no principal; zero proceeds is not a failed price read. Visual rarity never weights LP principal. |
-| E10 | Everything is paid, LP cannot reopen, later royalties arrive | Activated NFTs stay LP exited and royalty-eligible. “Returned principal entitlement follows this NFT” is currently unchanged even after paid; presentation should be clarified. |
+| E10 | Everything is paid, LP cannot reopen, later royalties arrive | Activated NFTs remain LP exited and royalty-eligible. principal_return_status paid or zero_entitlement prevents implying a new principal entitlement after successful settlement. |
 
 ### F. Reward, royalty and ownership boundaries
 
@@ -138,11 +138,11 @@ LP exit, with its original freeze/import/backing locks.
 
 | ID | Case to exercise | Current behavior / assessment |
 | --- | --- | --- |
-| G01 | Source prepares/freezes and parks for canonical replacement | Keeper stops new notifications in canonical non-operating states. Current renderer may show valuation unavailable rather than an explicit migration stage. |
-| G02 | Destination contains NFT ownership but incomplete reward/share imports | Importer can temporarily render Dormant/unavailable. It is not an activated release or marketplace-ready collection. |
-| G03 | Atomic source retirement and successor activation | Source emits collection refresh; destination activation lacks a direct NFT metadata notification. Manual/new watcher refresh needs qualification. |
-| G04 | Old source NFT remains visible/listed after retirement | Renderer lacks retired/successor JSON despite `canonicalSuccessor()` existing separately. Old metadata can misleadingly resemble a merely parked active collection. |
-| G05 | Import cancelled/aborted, wrong profile or partial funding | Do not market importer metadata as live rights or resume old journals under a new identity. Current renderer has no cancelled-importer label. |
+| G01 | Source prepares/freezes and parks for canonical replacement | Preparation, freeze and cancellation transitions emit collection refresh. Metadata labels replacement_preparing or canonical frozen; temporary preparation is not permanent activation closure. |
+| G02 | Destination contains NFT ownership but incomplete reward/share imports | Importer is explicitly Replacement importing and unavailable_on_this_deployment for principal; an incomplete importer is not an operating release. Existing handoff locks unchanged. |
+| G03 | Atomic source retirement and successor activation | Both committed canonical transitions emit collection refresh. Atomic retirement/activation and all prior backing/ownership conditions remain unchanged; real marketplace retrieval still needs qualification. |
+| G04 | Old source NFT remains visible/listed after retirement | Retired predecessor is Replaced with canonical_state3 and verified successor_controller/successor_nft. Never infer collection migration from matching token numbers. |
+| G05 | Import cancelled/aborted, wrong profile or partial funding | Cancelled importer is explicitly Cancelled import/canonical_state4, permanently activation_closed and not a live replacement. Wrong bindings/coherence fail closed. |
 | G06 | Successor resumes LP; watcher, API and OpenSea target new contract | Rebind exact canonical deployment/runtime/profile and fresh journal/configuration. Same token number is not sufficient identity; old listings/caches do not automatically move. |
 
 ### H. Storage and OpenSea display
@@ -161,8 +161,8 @@ LP exit, with its original freeze/import/backing locks.
 
 | ID | Case to exercise | Current behavior / assessment |
 | --- | --- | --- |
-| I01 | Watcher disabled or not deployed | No automatic market-only tier notifications. Contribution/reveal events and permissionless manual refresh remain separate. |
-| I02 | Keeper stopped for hours/days; restart with old tier checkpoints | Durable identity/cursor/pending state are validated; scan current confirmed state. Intermediate missed cosmetic tiers need not be replayed as current. Actual host rehearsal remains open. |
+| I01 | Watcher disabled or not deployed | Watcher remains disabled by default. Immediate lifecycle/contribution/reveal hooks and permissionless manual refresh are independent. Market-driven tier/availability notifications require an enabled matching watcher; numeric NAV is not streamed. |
+| I02 | Keeper stopped for hours/days; restart with old tier checkpoints | Optional lifecycle_version2 adds authenticated price-free lifecycle fingerprint to the existing confirmed checkpoint. Legacy0 stays exact; do not adopt/downgrade a saved identity by relabelling it. Host restart rehearsal remains open. |
 | I03 | Pending transaction stalls, RPC fails, rate limit or budgets exhausted | Recover pending work first; fail closed or defer new notifications. Do not mark a submission as confirmed or resend a financial action to fix metadata. |
 | I04 | Refresh observation/receipt reorganizes or ages out | Canonical observation/receipt checks invalidate stale triggers. Successful notification baseline advances only after confirmation and durable save. |
 | I05 | Crash before/after save, corrupt/lost journal or wrong deployment loaded | Preserve/recover original journal/backups; no guessed adoption. A metadata cursor is not a confirmed notification checkpoint. |
@@ -179,31 +179,27 @@ LP exit, with its original freeze/import/backing locks.
 | J03 | Invalid uint256 ID, boolean/fractional ordinal, oversized batch or duplicate request | Contract bounds and strict client parsing must remain exact. Same refresh repeated changes no balances; external refresh queues may rate-limit. |
 | J04 | Metadata refresh spam or many legitimate simultaneous updates | Event caller pays gas; it cannot choose traits or transfer funds. Bound service/API workload and avoid requiring one NFT operation per historical price sample. |
 | J05 | Renderer/module/royalty helper missing or malformed, or tokenURI gas unavailable | NAV errors have a fallback; every dependency failure is not universally caught. Actual release bindings and target marketplace read gas need qualification. |
-| J06 | Website, OpenSea and API disagree about unavailable/artwork state | On-chain uses labelled Activated fallback; fresh integration `positionArtwork` returns no art for unavailable value. Choose a consistent explicit fallback without inventing a current tier. |
+| J06 | Website, OpenSea and API disagree about unavailable/artwork state | Both contract and fresh integration source use labelled Activated fallback when confirmed activated NAV is unavailable; LP exited is separately labelled. Pending contribution targets keep last confirmed art or no art until confirmation. |
 | J07 | Shared pool market change affects several NFTs during one user's operation | Update legitimately changed confirmed values; a per-operation badge/animation remains scoped to its NFT. Claiming alone is not an evolution animation. |
 | J08 | Wrong chain, old source/profile, stale IPFS bundle or demo data is served | Fail unavailable/mismatch; never fill production reads with simulation data. Popldemo, served poplint and local source10 retain separate configuration/rollout status. |
 
-## Material findings to resolve after agreeing the presentation
+## Material finding dispositions
 
-These are static findings/design questions, not freshly reproduced exploits or
-claims that settlement accounting is broken.
-
-| Finding | Current boundary | Recommended direction |
+| Finding | Current source disposition | Remaining boundary |
 | --- | --- | --- |
-| M1: exit notification timing | Live metadata changes at bucket close; per-NFT notification occurs in later allocation. | Notify the relevant closed bucket's NFTs promptly through bounded work; do not require an unbounded loop or successful payments to refresh. |
-| M2: pending versus paid principal | JSON has zero LP and generic terminal description, no paid/remaining distinction. | Make terminal wording truthful after payment; consider a small lifecycle/settlement field only where its meaning and refresh trigger are defined. Preserve actual principal ledgers. |
-| M3: never-activated token after exit | Remains Dormant with `lp_exited:false`, although activation is permanently closed. | Keep Dormant identity but expose collection lifecycle separately; never award a royalty weight to change its picture. |
-| M4: predecessor/importer identity | Renderer lacks retired/successor/cancelled-importer labels; destination activation has no NFT refresh. | Publish accurate canonical lifecycle/successor identity and notify at activation/retirement using bounded or whole-collection events. Review locks and importer staging first. |
-| M5: image versus numeric freshness | Watcher compares reveal/availability/tier, not every numeric NAV change; JSON has a custom numeric field. OpenSea display of that field is unqualified. | Prefer marketplace image/trait freshness and live confirmed API values. Define raw-JSON numeric freshness before adding periodic paid writes. No every-tick guarantee. |
-| M6: unavailable presentation | Activated fallback on-chain, absent art in fresh integration; market outage can look like a downgrade. | Choose labelled fallback or explicitly stale last-confirmed art per surface. A renderer cannot recover an unstored last-good tier by guessing. |
-| M7: terminal artwork | Current terminal uses Activated image. | Keep it with an unmistakable exited label, or review a compatible renderer mapping/content revision before immutable binding/seal. Dormant art is a visual choice, not deactivation. |
-| M8: external acceptance | No current end-to-end OpenSea retrieval/cache/latency or matching-host watcher approval. | Rehearse actual supported-chain collection, content, lifecycle events, outage recovery and eventual rendered outcome; notification receipt alone is insufficient. |
+| M1: exit notification timing | Fixed: O(1) collection event at exit start, every bucket close and final Ready; individual event after successful payment. | Marketplace ingestion/latency unqualified. |
+| M2: pending versus paid principal | Fixed: lifecycle2 distinguishes unassigned, assigned/not-ready, payable, paid and exact zero. | Assigned amounts remain historical; use Migration/API for remaining amounts. |
+| M3: never-activated token after exit | Fixed: Dormant identity remains, with separate permanent activation_closed and collection exit phase. | No royalty activation or new redemption rights. |
+| M4: predecessor/importer identity | Fixed: explicit preparing/frozen/importing/replaced/cancelled context and verified successor; committed transitions notify. | Old listings/caches do not automatically move to the successor. |
+| M5: image versus numeric freshness | Defined/mitigated: JSON read block/time plus lifecycle fingerprint; watcher tracks reveal/tier/availability/lifecycle, not every numeric NAV movement. | Snapshot time is not price freshness or a guaranteed marketplace refresh SLA; live API remains authoritative for current financial values. |
+| M6: unavailable presentation | Fixed in source: explicit Activated fallback, preserving unconfirmed-operation artwork gates. | Existing hosted sites are unchanged; matching rollout requires review. |
+| M7: terminal artwork | Decision preserved: Activated art with unmistakable LP exited label. | No fifth image or Dormant reset. |
+| M8: external acceptance | Open: actual supported-chain collection/content retrieval, cache/media outcome, read gas and matching-host watcher. | Events/checks are not OpenSea acknowledgement or production approval. |
 
-Existing source rules already handle fixed identity, current-NAV tiering, downward
-evolution, outage availability, whole-unit settlement and a bounded/recoverable
-notification path. Reuse their unchanged source-scoped evidence. Do not rerun old
-suites merely to refresh a date. Test changed behavior and missing compositions
-only after selecting the next implementation scope.
+No custody, accounting, NFT transfer or royalty eligibility rule changes. New
+source/runtime pins require fresh configuration/review; old artifacts keep
+their original source scope. See the implementation report for exact executed
+methods and compiler/static stages. Do not rerun unchanged suites to refresh dates.
 
 ## Verification contract for each scenario
 

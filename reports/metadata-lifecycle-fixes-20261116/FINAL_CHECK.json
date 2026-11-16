@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "owned_files": 52,
+  "case_inventory": 80,
+  "existing_task_states_unchanged": 82,
+  "markdown_targets_checked": 2868,
+  "metadata_anchors_checked": 5,
+  "evidence_members_verified": 817,
+  "protected_dirty_files_unchanged": 4,
+  "closed_normal_source_pins_verified": 100,
+  "new_solidity_methods": 30,
+  "adapted_method": 1,
+  "checks": [
+    {
+      "command": [
+        "scripts/generate-function-reference.py",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "{\"checked\": true, \"contracts\": 40, \"functions\": 963, \"constructors\": 40, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}"
+    },
+    {
+      "command": [
+        "scripts/generate-operator-reference.py",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "{\"contracts\": 40, \"functions\": 963, \"constructors\": 40, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0, \"example_rows\": 1016, \"ready_for_submission\": false}"
+    },
+    {
+      "command": [
+        "scripts/sync-project-todo.py",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Project Todo verified."
+    },
+    {
+      "command": [
+        "scripts/check-slither-review.py",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\metadata-fixes-20261116-dd24263\\static\\STRICT_INPUT.json"
+      ],
+      "exit": 0,
+      "stdout": "{\"review_coverage_pass\": true, \"independent_audit\": false, \"errors\": []}"
+    }
+  ],
+  "test_reruns": 0,
+  "network_calls": 0
+}

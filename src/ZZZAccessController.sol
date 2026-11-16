@@ -15,6 +15,7 @@ interface ICanonicalOwnerBinding {
 interface IContributionIdentity { function zzz() external view returns (address); }
 interface IContributionRegistry { function activationAssets() external view returns (IContributionIdentity); }
 interface IExitIdentity { function currentZZZ() external view returns (address); }
+interface ILifecycleMetadata { function policyMetadataChanged() external; }
 
 /// @notice The selected governance wallet calls configuration directly. Its own
 /// signature/nonce policy authorizes operations; there is no timelock or generic
@@ -112,6 +113,7 @@ contract ZZZAccessController {
             preparationActive || canonicalState != 0) revert Unauthorized();
         lpExitStarted = true;
         emit LPExitStarted();
+        _notifyMetadata();
     }
     /// @dev Only the immutable coordinator may change canonical authority.
     /// Pause/unpause and ordinary governance never bypass terminal retirement.
@@ -122,6 +124,7 @@ contract ZZZAccessController {
         canonicalState = state;
         canonicalSettling = settling;
         if (clearPreparation) preparationActive = false;
+        _notifyMetadata();
     }
     /// @notice Announce a cancellable preparation window through the existing
     /// controller, without a waiting period. The source remains the sole canonical authority.
@@ -152,6 +155,7 @@ contract ZZZAccessController {
         preparationActive = true;
         emit PreparationStarted(noticeHash, nonce, notice.destinationChain, notice.successorController,
             notice.deploymentCommitment, notice.reviewHash);
+        _notifyMetadata();
     }
     /// @notice No custody or rights leave during preparation, so cancellation
     /// needs no remote proof. Exact notice binding prevents cancelling a later notice.
@@ -160,6 +164,7 @@ contract ZZZAccessController {
         if (noticeHash != preparationHash) revert InvalidConfiguration();
         preparationActive = false;
         emit PreparationCancelled(noticeHash);
+        _notifyMetadata();
     }
     function bind(bytes32 id, address implementation) external {
         if (msg.sender != bootstrap || isSealed) revert Unauthorized();
@@ -231,5 +236,11 @@ contract ZZZAccessController {
         return [Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.MEMBERSHIP,
             Ids.FEES,Ids.STRATEGY,Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,
             Ids.ORACLE,Ids.POOLS,Ids.CANONICAL,Ids.NFT_CANONICAL,Ids.VAULT_CANONICAL,Ids.FEES_CANONICAL];
+    }
+    /// @dev Fixed NFT event-only hook, after the lifecycle write. Bootstrap may
+    /// prepare an importer before its NFT binding; no external price work or loop.
+    function _notifyMetadata() private {
+        address collection=module[Ids.NFT];
+        if(collection!=address(0)) ILifecycleMetadata(collection).policyMetadataChanged();
     }
 }

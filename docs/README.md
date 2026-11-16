@@ -1,7 +1,7 @@
 # Documentation map
 
 For NFT evolution and marketplace behavior use the [metadata lifecycle matrix](METADATA_LIFECYCLE.md):
-80 scenarios, current-source assessment and explicit decisions/gaps. It complements
+80 scenarios, current-source assessment and [implemented lifecycle corrections](../reports/metadata-lifecycle-fixes-20261116/REVIEW.md). It complements
 [NFT rules](NFT_METADATA.md) and the operator procedure; it is not another Todo.
 
 For current external dependencies use the [16 November market refresh](../reports/real-market-refresh-20261116/REVIEW.md)

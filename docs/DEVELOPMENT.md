@@ -116,12 +116,12 @@ actual399-findings/47bindings internal static review coverage PASS, successful
 solc output and a later Forge host-cache CLI failure. Those are separate facts,
 not a current green workflow or independent approval. The [historical applicability
 comparison](../reports/historical-reconciliation-completion-20261029/STATIC_APPLICABILITY.json)
-records19of47then-changed source pins. The [current strict default](../reports/daily-reconciliation-audit-20261111/static-review.json)
-binds567detector records:162individually reassessed current contexts and405
-unique exact referenced-source reuses. The daily errata correct two authority
-descriptions only; the other565records are not newly reviewed. Prior spot560, contribution3558 and
-mint2 records retain their original source/transitive limitations. Earlier fee-flow532 and royalty
-recovery474 records retain their own source scopes. The checker default
+records19of47then-changed source pins. The [current strict default](../reports/metadata-lifecycle-fixes-20261116/static-review.json)
+binds569detector records:57individually reviewed current contexts and512unique
+exact fingerprint/referenced-source reuses from the prior565record. The full
+current source inventory is separately pinned. Earlier daily567/162+405,
+manual565, spot560, contribution3558, mint2 and fee-flow532 records retain
+their original source/transitive limitations. The checker default
 is a real CI input, not just a documentation link. `SlitherReviewTests` checks its
 current source inventory/descriptions on every focused/full Python run.
 After relevant Solidity/toolchain changes, update the full source-bound review
@@ -212,7 +212,7 @@ schema5/accounting3 remain explicitly historical. Local actual-v4-core portfolio
 checks are source-scoped with mock external dependencies, not live qualification. Preserve actual historical
 Anvil profiles and immutable runtimes. The following local scaffolds remain
 historical accounting3/governance2/fee1/localV4, ETH/fixedZZZ inputs,
-$100activation/$5growth,2/1/3% defaults with 10% ceilings, gas separate. Parked status
+$100activation/$5growth,3/1/3% defaults with 10% ceilings, gas separate. Parked status
 is 4, not a historical code6. Local scaffold is unsealed/local-only; it does not
 approve real addresses. The historical local-stack launcher rejects incompatible
 current pricing/native artifacts before creating state/processes. Preserve
@@ -232,6 +232,23 @@ Use those reviewed exact deployment artifacts or review and re-pin the complete
 new family; do not silently copy observations into approved configuration. See
 [Factory storage2](FACTORY_CODE_STORAGE.md) and [preflight](PRODUCTION_PREFLIGHT.md).
 No deployment is authorized by this procedure.
+
+## Metadata2 source and focused verification
+
+The [lifecycle implementation](../reports/metadata-lifecycle-fixes-20261116/VERIFICATION.md)
+adds a read-only lens/context to the existing NFTCanonical helper; the canonical
+writer, record format, constructors and module count remain. Four new read ABI
+methods plus the existing expanded internal event hook are documented in the
+generated reference. Fresh exact compiler/source/runtime pins are mandatory;
+schema17/V10 labels alone do not approve new bytes or update an old deployment.
+
+New lifecycle/notification/differential-renderer test hosts and keeper/browser
+methods target changed compositions. The old NFTMetadata fixture now binds its
+real NFTCanonical lens; only its explicitly adapted outage method is selected.
+Historical renderer bytes in the test helper are a pinned differential oracle,
+never a production artifact or current runtime. Compiler/harness failures and
+corrected attempts remain in the source-scoped record. Do not rerun unchanged
+suites simply to refresh dates; preserve exact selection and failed stages.
 
 ## Current tests versus historical compatibility
 

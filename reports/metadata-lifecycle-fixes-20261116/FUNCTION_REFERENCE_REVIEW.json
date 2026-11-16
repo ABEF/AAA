@@ -1,0 +1,138 @@
+{
+  "existing_abis_unchanged": true,
+  "added": {
+    "ZZZNFTCanonical": [
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "length",
+            "type": "uint256"
+          }
+        ],
+        "name": "StringsInsufficientHexLength",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          }
+        ],
+        "name": "metadataLifecycleContext",
+        "outputs": [
+          {
+            "internalType": "bytes",
+            "name": "context",
+            "type": "bytes"
+          },
+          {
+            "internalType": "string",
+            "name": "label",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "flags",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "ethAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "zzzAmount",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          }
+        ],
+        "name": "metadataLifecycleState",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "flags",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "ethAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "zzzAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "successorController",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "successorNFT",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ],
+    "ZZZNFTMetadata": [
+      {
+        "inputs": [],
+        "name": "METADATA_LIFECYCLE_VERSION",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          }
+        ],
+        "name": "metadataLifecycleFingerprint",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ]
+  },
+  "original_examples_unchanged": 1012,
+  "new_reads": 4,
+  "reference_sha256": "f9d9dae2c452f30bfda0ed6513cd3d9246e0adb07f836f88472e9a433f99f1e4"
+}

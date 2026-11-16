@@ -23,6 +23,7 @@ MODULES=(
  'test_keeper_checkpoint_confirmation','test_keeper_conversion_headers','test_rpc_integrity',
  'test_keeper_runner_inventory',
  'test_keeper_metadata_restart',
+ 'test_keeper_metadata_lifecycle',
  'test_keeper_confirmation_cadence',
  'test_reference_confirmation_v2',
  'test_keeper_confirmation_priority',

@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "production_baseline": "normal-6/START.json",
+  "source_sha256": {
+    "test/MetadataLifecycleSnapshots.t.sol": "3854524eb784a246622954c1d852243e77cf9044d9c3161edca78d540963b882",
+    "test/MetadataLifecycleNotifications.t.sol": "292c4061612aad80f581de9887f31051f3a91edda77f05a632ae1555ab05e12b",
+    "test/MetadataRendererCompatibility.t.sol": "d2325cb80851dac0bad7ce1cf8b7771874ee04377bfb1aee0a8732d616713be1",
+    "test/helpers/HistoricalMetadata20261115.sol": "9428ba97e7174a4c0442006137a9480deaa4eb4f61a2d36f58ca357be77a5c32",
+    "test/NFTMetadata.t.sol": "fa319793c4db9d9a9cef09e2f385079a6b4c457f3c63cdfb474c364c18781620",
+    "test/mocks/Mocks.sol": "166932393136d7c75783d5f0a396936480cc7c999ce55332c27e57526bf05180",
+    "test/HolderCollectiveExit.t.sol": "488a97be219169cd018b078f9f40ddd7e36a0d674175e0575bf05db215814640",
+    "test/helpers/CanonicalFixture.sol": "11083c645d87fafb92700c5dceb186aea2794c4f80b3fccefb58b093c97e4ec2",
+    "test/helpers/PortfolioFixture.sol": "d33823f6fd16e9e27864e49833b0c9689e8c0fd52d6fdb3670b4b98f658537b5"
+  },
+  "controller_class_body_sha256": "1386bd3d3af7e32a46cd8b8acaf2cd0e2df536f8a2c65b054cebece1c2d18e44",
+  "controller_pass_reuse": "Final test file adds only the explicit Exit read seam; tested Controller class body and all production dependencies are byte-identical to its five-pass stage.",
+  "historical_helper": {
+    "file": "test/helpers/HistoricalMetadata20261115.sol",
+    "deployment": "Public test-only linked deployment library concatenates four publicly linked immutable creation fragments; normal Foundry linking, no fs permission/manual staging.",
+    "fragment_library_names": [
+      "HistoricalMetadataChunk0",
+      "HistoricalMetadataChunk1",
+      "HistoricalMetadataChunk2",
+      "HistoricalMetadataChunk3"
+    ],
+    "creation_sha256": "592148d0f417749d4db02e0f741c27d501beb05bb1b68af3314f84ff242bc524",
+    "creation_bytes": 19844,
+    "baseline_runtime_bytes": 19499,
+    "provenance": "HISTORICAL_ORACLE_PROVENANCE.json",
+    "unused_repo_json_removed": true
+  },
+  "inherited_method_policy": "HolderCollectiveExitTest provides setup only; none of its unchanged test methods are selected or executed.",
+  "production_edits_by_harness_repair": 0
+}

@@ -3,19 +3,21 @@
 Current [profile identities](POSITION_V7.md) and [holder-return rights](HOLDER_COLLECTIVE_EXIT.md) apply; historical deployments retain their own rules.
 
 
-## Lifecycle inventory before further changes
+## Lifecycle inventory and current boundary
 
 The [80-case lifecycle matrix](METADATA_LIFECYCLE.md) separates fixed traits,
 current-NAV tiers, valuation availability, LP lifecycle, settlement and marketplace
 caches. It statically checks activation/growth, market-driven upgrades/downgrades,
 one/two-position operations, parking, partial/full exit, payout/transfer races,
-canonical replacement, publication and restart. No new tests or behavior changes
-are claimed. Exit remains **LP exited**, using Activated art; Dormant means never
-activated. Contract notification timing, paid/unpaid wording, terminal Dormant
-collection state and predecessor/successor presentation have explicit gaps.
-Watcher success is an on-chain notification, not proof OpenSea has updated.
-The matrix records the decisions and missing marketplace qualification before
-implementation; the sole [metadata task](../TODO.md#task-metadata-ops) owns progress.
+canonical replacement, publication and restart. The original static inventory and
+current implementation evidence have separate scopes. Metadata2 below adds
+explicit lifecycle/settlement presentation and notification support while
+preserving the four artwork variants and every economic right. Exit remains
+**LP exited**, using Activated art; Dormant means never activated, including a
+Dormant NFT whose future activation is permanently closed by collective exit.
+Watcher success means an on-chain notification, not that OpenSea has updated.
+Actual marketplace qualification remains open; the sole
+[metadata task](../TODO.md#task-metadata-ops) owns progress.
 
 ## Fixed royalty trait versus activation
 
@@ -23,7 +25,7 @@ Revealed metadata always reports the fixed rarity weight (Commun1 / Rare2 /
 Legendary3), including while Dormant. Unrevealed weight is the string
 `Unrevealed`, not zero or an invented rarity. Top-level `royalty_activated` reports
 whether the economic ledger has registered activation; it is not per-currency
-readiness or a payment promise. The dormant ledger remains weight0 and cannot
+readiness, canonical-deployment authority or a payment promise. The dormant ledger remains weight0 and cannot
 claim older royalties. No rarity, art path, allocation or ownership rule changes.
 [Review/evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).
 
@@ -82,7 +84,56 @@ claims remain independent; real full-collection operating qualification is open.
 Mint/activation/growth cannot restart, and canonical import/replacement is
 blocked permanently after exit begins. Historical profiles keep their old ABI.
 
-The optional keeper watcher observes confirmed-block evolution, valuation availability and reveal state and uses the existing simulated/budgeted serial transaction path. It defaults to disabled, validates the canonical deployment and live runtime pins, and separates observations from confirmed notifications. This is a separate NFT scan; LP rebalancing still operates once per shared pool. See [operating details](OPERATIONS.md#optional-metadata-notifications) and [current verification](../reports/release-hardening/README.md). Immutable artwork publication and actual marketplace cache integration remain release gates: a changed view or emitted event does not guarantee an instant external refresh.
+## Metadata2 lifecycle and settlement
+
+The fresh renderer exposes `METADATA_LIFECYCLE_VERSION() == 2`. Canonical
+`tokenURI` JSON identifies `metadata_schema:2`, its read block/time, canonical
+state, preparation, verified retired successor, collection exit phase,
+permanent activation closure and principal allocation/payment status. Frozen,
+importing, retired and cancelled deployments are described distinctly; a retired
+NFT is not presented as a second exercisable copy of successor rights.
+Snapshot block/time identify the metadata read, **not** an oracle publication or
+guarantee of price freshness. The stateless preview renderer is not an owned-NFT
+or settlement proof.
+
+The read-only [canonical lens](../src/ZZZNFTCanonical.sol)
+`metadataLifecycleState(id)` derives this information from existing books. Its
+ETH/ZZZ amounts are historical **assigned principal**, including after payment;
+they are not remaining or newly claimable rewards. JSON publishes settlement
+status rather than those raw amounts. For remaining funds, read the actual
+Migration allocation/paid ledger and `claimablePrincipal` when Ready, or the
+separate principal-return API. Missing bound lifecycle dependencies fail the
+schema2 read rather than fabricating operating/paid status. Price-valuation
+failure retains the separately labelled Activated artwork fallback.
+
+Collection lifecycle/close/readiness transitions emit ERC-4906 invalidation;
+funded-NFT allocation and successful principal payout notify the relevant NFT.
+A failed isolated payment rolls its notification back too. These event-only
+hooks do not introduce receiver callbacks, price checks or new custody rights.
+An NFT can be LP exited while allocation or distribution remains pending. Once
+paid, metadata says no principal remains payable. Existing rewards and future
+royalty eligibility remain separate; a never-activated NFT gains neither merely
+because the collection closes.
+
+The optional keeper watcher defaults disabled. Historical omission/zero metadata
+lifecycle configuration keeps its original reveal/availability/tier observations.
+Explicit `metadata_refresh.lifecycle_version:2` additionally watches the opaque
+`metadataLifecycleFingerprint(id)`: canonical/LP/preparation/settlement changes,
+not numeric NAV or read block/time. Exact accounting7, renderer address/runtime,
+NFT renderer binding, controller and version2 admission are required. An old
+notification identity cannot be relabelled or silently downgraded; disabling a
+version2 job can recover its original pending transaction without enabling new
+work. Confirmed receipt state is reread before advancing its durable baseline.
+
+This is a bounded NFT notification scan, not another LP maintenance loop or a
+numeric price stream. At 1,000 NFTs and 50 per scan, at least 20 passes plus
+shared nonce/receipt/gas/priority delays are needed. Neither a changed view nor
+a notification receipt proves an instant OpenSea refetch or rendered image.
+See [watcher configuration and recovery](OPERATIONS.md#optional-metadata-notifications),
+[manual marketplace recovery](OPERATOR_MANUAL.md#metadata-lifecycle-and-marketplace-recovery)
+and [artwork publication](ARTWORK_PUBLICATION.md). Exact content, supported-chain
+collection ingestion, actual hosting/restart and marketplace cache acceptance
+remain release requirements; no service is enabled by publishing this source.
 
 ## Separate marketplace royalties
 

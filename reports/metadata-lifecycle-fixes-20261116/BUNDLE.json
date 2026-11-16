@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "evidence_zip_sha256": "7eda78a4548ae27fdf396ad9f5e0c112e9d1bb8fb87170581463f1f32466f80f",
+  "evidence_zip_bytes": 22247786,
+  "manifest_sha256": "bd97d0df1f40459e7c3db693b345192068ceb4f07a60448d7903ea76d985b37a",
+  "members": 817,
+  "normal_compiler_output_sha256": "e3cbd59c818873e2adf766eecc7866c4b2530ac280d3b07f9c00640a6db4da0a"
+}

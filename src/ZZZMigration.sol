@@ -22,6 +22,7 @@ interface IHolderExitNFT is IZZZNFT {
     function mintedCount() external view returns(uint256);
     function tokenAtOrdinal(uint256) external view returns(uint256);
     function refreshMetadata(uint256) external;
+    function policyMetadataChanged() external;
 }
 
 /// @notice Live same-pair movement/parking, or irreversible collective principal
@@ -235,6 +236,9 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
             allocationCursor = 1;
         }
         emit BucketClosed(bucket,s.totalShares,ethAmount,zzzAmount);
+        // One collection notification, not a loop over its NFT shareholders.
+        // Includes the phase change after the final physical bucket closes.
+        _nft().policyMetadataChanged();
     }
 
     /// @notice Governance-only bounded deterministic apportionment. Cumulative
@@ -274,6 +278,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
             }
             _backed(); exitPhase = ExitPhase.Ready;
             emit PrincipalDistributionReady(remainingETH,remainingZZZ);
+            _nft().policyMetadataChanged();
         }
     }
     function claimablePrincipal(uint256 id) external view returns(uint256 ethAmount,uint256 zzzAmount) {
@@ -322,6 +327,8 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         ExactAsset.push(address(0),recipient,p.ethAmount);
         _backed();
         emit PrincipalPaid(id,owner,recipient,p.ethAmount,p.zzzAmount);
+        // A failed isolated payout rolls this notification back with payment.
+        _nft().refreshMetadata(id);
     }
     function _backed() private view {
         if(address(this).balance < remainingETH || ExactAsset.balance(currentZZZ,address(this)) < remainingZZZ) revert InvalidState();

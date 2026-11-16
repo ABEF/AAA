@@ -1,12 +1,17 @@
 # PoPL current project context
 
-The [metadata lifecycle matrix](docs/METADATA_LIFECYCLE.md) defines80 cases before further implementation:
-fixed identity, current-NAV tiers, outages, LP management, terminal payout phases,
-royalties, canonical replacement, media/cache and recovery. Current terminal
-stage is LP exited using Activated art, not Dormant; royalties remain. Static
-review identifies close-to-allocation notification lag, paid/unpaid wording,
-closed-Dormant/canonical labels and numeric/cache presentation decisions.
-No behavior/code/artwork change or test execution; OpenSea/host acceptance is open.
+The [metadata lifecycle fixes](reports/metadata-lifecycle-fixes-20261116/REVIEW.md) implement schema2 lifecycle/payment/successor
+labels and immediate bounded ERC-4906 notifications, while keeping LP exited
+distinct from Dormant and preserving royalty rights. The existing NFT state
+companion supplies price-free read-only context; canonical records, accounting7,
+schema17 and module counts stay unchanged. Optional watcher lifecycle_version2
+requires explicit renderer/runtime pins and a new reviewed journal identity;
+omission/0 retains historical behavior. Fresh source/runtime/reference review is
+required; old deployments/reviews are not relabelled. Four artwork paths remain,
+with labelled Activated fallback for unavailable or exited LP. Website source
+holds unconfirmed contribution art until confirmed state. Only changed/new
+checks are selected. OpenSea/content/host acceptance and independent approval
+remain open; no deployment/site/service/signer/Anvil/journal/heartbeat change.
 
 [16 November real-market refresh](reports/real-market-refresh-20261116/REVIEW.md) records39 bounded read-only requests.
 Chainlink proxies still share one ETH aggregator; Pyth is stale and API3 read

@@ -46,7 +46,7 @@ upload, CID, pin, immutable-base-URI decision or marketplace refresh verificatio
 Use the [80-case lifecycle matrix](METADATA_LIFECYCLE.md), not just the four
 evolution filenames. Verify unrevealed, unavailable, parked, LP-exited,
 unpaid/paid principal and predecessor/successor presentation against the exact
-profile and marketplace. Current LP-exited metadata reuses Activated art; no
+profile and marketplace. Current metadata2 LP-exited metadata reuses Activated art with a separate terminal/settlement label; no
 new terminal image has been approved or added; a distinct image needs a compatible
 renderer mapping as well as reviewed content before immutable binding/seal.
 Existing preflight rejects empty/structurally invalid roots and missing/unreviewed
