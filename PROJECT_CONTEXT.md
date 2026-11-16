@@ -1,15 +1,15 @@
 # PoPL current project context
 
-[Lineage checkpoint3](reports/lineage-checkpoints-20261116/REVIEW.md) preserves exact accounting and the full raw
-24-hour window across authenticated replacements. The separate [offline prefix
-importer](reports/checkpoint-prefix-import-20261116/REVIEW.md) now extends a reviewed original checkpoint2 or shorter-graph
-checkpoint3 into a new matching graph. Existing semantic readers/builders remain
-byte-identical; no source-hash override, phase flattening or limit increase.
-Each new candidate and its producer review require independent approval before
-separate service adoption. Same-graph advancement still uses the existing builder.
-Actual archive/provider, maximum-state, restore and operating qualification remain
-open; contracts, rights, chains/journals, signer, sites/services and paused heartbeat
-are unchanged.
+[Checkpoint3 and prefix import](reports/checkpoint-prefix-import-20261116/REVIEW.md) preserve exact earnings and the full raw24-hour
+window across authenticated replacements. The separate [history recovery tool](reports/history-recovery-20261116/REVIEW.md)
+now snapshots every current-profile raw database, verifies a reviewed manifest
+and restores into new files. Checkpoints/reviews retain exact bytes; all14
+existing semantic sources, accounting, API limits and financial safeguards stay.
+No source SQL writes, pruning, credentials in bundles or automatic adoption.
+Per-database snapshots are not one atomic graph or canonical-completeness proof.
+Actual archive/provider, maximum-state, off-host and operating qualification remain
+open. Contracts, existing chains/journals, signer, sites/services and paused
+heartbeat are unchanged.
 
 The [16 November whole-project audit](reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
 state-file and website-profile gaps and reconciles current guidance. Production

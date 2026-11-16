@@ -1,0 +1,18 @@
+{
+  "format_only_change": {
+    "file": "tests_python/test_history_recovery.py",
+    "published_sha256": "7c3b2a511ea3dd514aa6d3577d22c2889f88b65ef53d83e4f2a5207c07b3fd27",
+    "reason": "Remove extra blank line at EOF for existing strict whitespace gate.",
+    "tested_sha256": "809147f06e427f2316de4f0d6ba9b1f4bd13d24dc44ae59a885fa19dbf7115e0",
+    "whole_module_ast_sha256": "818c6913c5ceb215ee457cc45f482b4c143179db505221124bba15bf0023b35b",
+    "whole_module_ast_unchanged": true
+  },
+  "production_approved": false,
+  "publication_sources_sha256": {
+    "frontend_api/history_recovery.py": "8e10b8a4820ca29e425707e7469032a1d0d91590edadf98b0a2afb44ad4a7a3f",
+    "scripts/history-recovery.py": "ed440feac85ff49b8204469d8c3e5778dbe49f486500b00aa81f111680d1743f",
+    "tests_python/test_history_recovery.py": "7c3b2a511ea3dd514aa6d3577d22c2889f88b65ef53d83e4f2a5207c07b3fd27",
+    "tests_python/test_history_recovery_cli.py": "b8b0c1e1c928a225ab6eebcdc7a9c0188448de5c190c114e3a0d4d54ab20192b"
+  },
+  "tests_executed": 0
+}

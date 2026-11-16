@@ -92,8 +92,7 @@ Earnings alone may use reviewed [checkpoint3](EARNINGS_CHECKPOINTS.md) for an
 authenticated accounting7 lineage: one exact epoch cursor plus raw later events,
 with the full rolling day retained. A separate offline importer can extend a
 reviewed compatible exact2/shorter3 prefix into a matching graph without changing
-the semantic readers/builder. Other readers remain raw; archive retention and
-actual maximum-workload operation remain open.
+the semantic readers/builder. The separate [history recovery tool](HISTORY_RECOVERY.md) snapshots all retained raw rows and exact checkpoint/review bytes, verifies integrity and restores new files only. Other readers remain raw; actual archive retention and maximum-workload/host operation remain open.
 Fresh V10 backend reads/owned claims explicitly select mint_integration_version2
 on accounting7 with fixed SeaDrop/helper pins. Omitted/default1 stays V9;
 source9 website configuration, served accounting3 poplint and old local

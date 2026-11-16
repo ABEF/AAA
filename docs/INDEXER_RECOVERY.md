@@ -10,7 +10,7 @@ upgraded or relabeled.
 
 
 The SQLite indexer is an operator-maintained event cache, not custody or an
-independent proof of complete blockchain history. Its cursor, exact deployment
+independent proof of complete blockchain history. Current accounting7 can use the [offline history backup/restore tool](HISTORY_RECOVERY.md): retain all raw rows, include committed WAL data through SQLite snapshots and restore into new files without source schema setup or WAL checkpointing. Ordinary lock bookkeeping is allowed; no global snapshot/finality claim is made. Its cursor, exact deployment
 contract list, creation/start block and original parent hash identify one history.
 The [confirmed-history API](FRONTEND_HISTORY.md) must keep unavailable or
 incomplete history distinct from zero balances and zero earnings.

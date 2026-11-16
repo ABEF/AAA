@@ -1,15 +1,15 @@
 # AAA / ZZZ PoPL project instructions
 
-[Lineage checkpoint3](reports/lineage-checkpoints-20261116/REVIEW.md) preserves exact accounting and the full raw
-24-hour window across authenticated replacements. The separate [offline prefix
-importer](reports/checkpoint-prefix-import-20261116/REVIEW.md) now extends a reviewed original checkpoint2 or shorter-graph
-checkpoint3 into a new matching graph. Existing semantic readers/builders remain
-byte-identical; no source-hash override, phase flattening or limit increase.
-Each new candidate and its producer review require independent approval before
-separate service adoption. Same-graph advancement still uses the existing builder.
-Actual archive/provider, maximum-state, restore and operating qualification remain
-open; contracts, rights, chains/journals, signer, sites/services and paused heartbeat
-are unchanged.
+[Checkpoint3 and prefix import](reports/checkpoint-prefix-import-20261116/REVIEW.md) preserve exact earnings and the full raw24-hour
+window across authenticated replacements. The separate [history recovery tool](reports/history-recovery-20261116/REVIEW.md)
+now snapshots every current-profile raw database, verifies a reviewed manifest
+and restores into new files. Checkpoints/reviews retain exact bytes; all14
+existing semantic sources, accounting, API limits and financial safeguards stay.
+No source SQL writes, pruning, credentials in bundles or automatic adoption.
+Per-database snapshots are not one atomic graph or canonical-completeness proof.
+Actual archive/provider, maximum-state, off-host and operating qualification remain
+open. Contracts, existing chains/journals, signer, sites/services and paused
+heartbeat are unchanged.
 
 The [16 November whole-project audit](reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
 state-file and website-profile gaps and reconciles current guidance. Production
@@ -532,6 +532,19 @@ the November3 authority report below remains historical for those contexts.
   independent approval remain open. Source publication changes no environment.
 
 ## Earnings checkpoint source boundary
+
+Current accounting7 history recovery uses a separate source-pinned offline tool.
+Use SQLite backup snapshots, never source Indexer startup/SQL writes/checkpoints;
+ordinary WAL/SHM locking can occur. Preserve every retained row, exact2/3 bytes
+and full24h; storage size is not replay max_events. New exclusive directory,
+fixed relative paths, exact schema/raw identities/anchors, overlap checks and
+manifest-last false-approval publication. Restore uses independent new files and
+a typed receipt; no installation or existing DB/config/journal replacement.
+Respect byte/deadline bounds before writes, preserve partial directories, and
+use the original reviewed digest for verification. Private configs stay separate;
+the generated offline profile does not preserve the old path-based API identity.
+Source2 fixes artifact budgeting, sidecar binding, directory/inode hardening and
+typed identities; actual host/restore/provider qualification remains open.
 
 - [Checkpoint1/2/3](docs/EARNINGS_CHECKPOINTS.md) preserve distinct formats:1 for
   historical accounting6,2 for original accounting7,3 for complete accounting7

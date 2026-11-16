@@ -373,6 +373,6 @@ checkpoint suffixes both retain request limits and fail without truncation.
 Explicit checkpoint1/2 retain single-deployment earnings scope; checkpoint3 adds
 accounting7 lineage earnings. The [explicit offline importer](EARNINGS_CHECKPOINTS.md#import-a-reviewed-prefix-into-an-extended-graph) can extend an approved compatible exact2/shorter3 prefix without changing strict
 semantic readers or the full24-hour raw suffix. Other ownership/claim consumers,
-unattended rotation and raw archival remain separate. Backfill,
+unattended rotation and actual archival qualification remain separate. The [offline recovery tool](HISTORY_RECOVERY.md) snapshots every retained row and exact checkpoint/review bytes, verifies integrity and restores to new files without changing accounting or full24h. Backfill,
 reorg/load/restore rehearsals, archive providers, current feeds and frontend
 display remain qualification work; the financial-history task is still in progress.

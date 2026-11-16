@@ -282,7 +282,7 @@ Keep the previous artifacts/configuration and raw archive.
 Builder/readers preserve ordinary transaction provenance, including cross-prefix
 transaction duplication through the existing SQLite primary-key index. Raw prefix
 logs/creation header remain retained; no pruning/archive deletion is implemented.
-Restore from a consistent SQLite backup, not a copied live main file without WAL.
+For current accounting7 use the [offline recovery tool](HISTORY_RECOVERY.md) to snapshot/verify/restore all raw databases and exact checkpoint bytes. Never copy only a live main file without its committed WAL data. Historical6-only formats remain separately reviewed.
 
 ## Scope and remaining work
 
@@ -290,7 +290,7 @@ Checkpoints accelerate **earnings endpoints only**, including collection, NFT
 and current-holdings wallet chunks. Other ownership, claim-history and preparation
 paths keep their existing full-history behavior. Schema3 supports the configured
 lineage; creation/retirement/cursor archive RPC and raw databases remain required.
-It is not unattended rotation, archive pruning, automatic graph extension or
+The [offline recovery tool](HISTORY_RECOVERY.md) now implements current-profile snapshot backup, integrity verification and separate restore. It is not unattended rotation, archive pruning, automatic graph extension or
 operating approval. Measure realistic long-history latency/memory/storage and safe rotation/
 restore before hosting. The [financial-history task](../TODO.md#task-financial-history)
 remains in progress. [Original evidence](../reports/earnings-checkpoints-20261104/REVIEW.md);

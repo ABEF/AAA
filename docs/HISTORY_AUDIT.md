@@ -14,6 +14,8 @@ the seven required by [earnings replay](EARNINGS_HISTORY.md). It detects omitted
 extra or conflicting raw logs and block/cursor inconsistencies. It does not
 change a database, publish financial totals, start a service or move funds.
 
+The [offline recovery tool](HISTORY_RECOVERY.md) preserves raw databases and exact checkpoint/review bytes, verifies local integrity and restores separate copies. It does not replace this independent-provider ingestion audit or prove canonical completeness.
+
 The owning task is [financial history](../TODO.md#task-financial-history).
 [Scoped evidence](../reports/history-audit/VERIFICATION.md) covers local fixtures;
 actual provider/backfill qualification remains open. An agreeing RPC is another

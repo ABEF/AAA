@@ -158,7 +158,7 @@ authority risk and does not grant a keeper fallback or deployment approval.
 | Topic | Current guide |
 | --- | --- |
 | Confirmed reads and lifecycle | [Read API](FRONTEND_API.md), [lifecycle](FRONTEND_LIFECYCLE.md), [collection](COLLECTION_READS.md) |
-| Rewards and lifetime history | [Reviewed checkpoint1/2/3](EARNINGS_CHECKPOINTS.md), [Earnings](EARNINGS_HISTORY.md), [royalty reporting](ROYALTY_REPORTING.md), [raw claim history](FRONTEND_HISTORY.md), [same-chain lineage](FRONTEND_LINEAGE.md) |
+| Rewards and lifetime history | [Reviewed checkpoint1/2/3](EARNINGS_CHECKPOINTS.md), [Earnings](EARNINGS_HISTORY.md), [royalty reporting](ROYALTY_REPORTING.md), [raw claim history](FRONTEND_HISTORY.md), [same-chain lineage](FRONTEND_LINEAGE.md), [offline history backup/restore](HISTORY_RECOVERY.md) |
 | Unsigned user transactions | [Activation preparation](ACTIVATION_PREPARATION.md), [mint/claim preparation](FRONTEND_TRANSACTIONS.md), [gas-aware next claim batch](CLAIM_PLANNING.md) |
 | Ingress, concurrency and storage | [HTTP admission](API_INGRESS.md), [concurrent services](CONCURRENT_SERVICES.md), [indexer recovery](INDEXER_RECOVERY.md), [independent raw-history audit](HISTORY_AUDIT.md) |
 | Keeper safeguards | [Implemented protection inventory](KEEPER_SAFEGUARDS.md) - distinguish contract-enforced rules, service controls and remaining risks. |

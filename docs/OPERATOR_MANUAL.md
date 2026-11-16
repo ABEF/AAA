@@ -2925,6 +2925,39 @@ API configuration/restart above. No automatic rollout/pruning, signer or journal
 change. Real archive/provider, maximum-state/long-history and restore qualification
 remain open.
 
+### Back up, verify and restore history
+
+Use [the complete recovery procedure](HISTORY_RECOVERY.md) for current accounting7
+API/indexer history. Snapshot all configured epochs and preserve exact checkpoint
+bytes/full24-hour raw coverage. No wallet, RPC request, service restart or source
+database write is needed. The tool never force-checkpoints source WAL. Ordinary
+SQLite lock/SHM bookkeeping and legitimate concurrent writers remain separate.
+
+| Tool/action | Required inputs | Example | Effect |
+| --- | --- | --- | --- |
+| Backup raw history | Reviewed API config; new directory under an existing parent | `python scripts/history-recovery.py backup --config /secure/api.json --output /archive/history-NEW` | Snapshot all retained history |
+| Include import review | Same inputs plus exact sidecar path and externally reviewed SHA | Add `--review /archive/import-review.json --review-sha256 REVIEWED_64_LOWERCASE_HEX_DIGEST` to backup | Preserve reviewed import provenance |
+| Verify sealed package | Bundle path; independently reviewed manifest SHA | `python scripts/history-recovery.py verify --bundle /archive/history-REVIEWED --manifest-sha256 REVIEWED_MANIFEST_SHA256` | Check snapshot integrity offline |
+| Restore independent copies | Same verified bundle/SHA; another new directory | `python scripts/history-recovery.py restore --bundle /archive/history-REVIEWED --manifest-sha256 REVIEWED_MANIFEST_SHA256 --output /recovery/history-NEW` | Create separate recovery copies |
+| Review larger offline job | Deliberate bounded time/total-byte allowance | Add `--max-seconds 120 --max-bytes 2147483648` | Bound offline recovery work |
+
+Replace every placeholder. SHA-256 values have64 lowercase hex characters without
+`0x`; these are not on-chain review hashes. Defaults60seconds/1GiB, maxima3600seconds/
+1TiB; original API/event/graph/currency/checkpoint limits remain. Total bytes include
+completion metadata/restore receipt; a near-cap restore may need its own larger
+explicit allowance. Existing directories/paths are never overwritten; linked,
+reparse, ambiguous, corrupt or unexpected files fail. Keep partial directories
+after interruption and use a fresh path for retry. A manifest alone is not approval.
+
+The generated profile removes RPC URLs/private paths and is deliberately offline.
+Keep the original private configuration/credentials separately secured. Restore
+does not install it: independently review new DB/checkpoint paths, source/runtime
+and current canonical coverage before a separately authorized matching-service
+rollout. Changing paths changes API configuration identity; checkpoint graph,
+semantic pins, rights and original journals cannot be relabelled to match.
+All snapshots preserve raw history, but are not globally atomic or proof of chain
+completeness. Actual storage/off-host/host recovery still requires qualification.
+
 ### Serve processed earnings and current-price values
 
 Enable the optional `earnings_history` profile only after reviewing the

@@ -1,5 +1,7 @@
 # Release approval record - NOT APPROVED
 
+[History recovery source](../reports/history-recovery-20261116/REVIEW.md) adds bounded offline snapshots/verification/separate restore with exact accounting and full24h retained. Individual manifests/artifacts, private path mappings, canonical ingestion, actual storage/off-host/host/runtime and maximum-state restore remain separately reviewed. No service/configuration or release sign-off is approved by this tool.
+
 The [offline checkpoint prefix importer](../reports/checkpoint-prefix-import-20261116/REVIEW.md) adds source capability only. Each candidate, exact input digest, producer review,
 raw-history completeness and full24-hour suffix require independent review before
 separate backend adoption. No provider/archive/maximum-state/restore qualification,

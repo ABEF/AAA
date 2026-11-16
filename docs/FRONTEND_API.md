@@ -217,6 +217,8 @@ rolling-day suffix remain. The configuration object and public response fields
 are unchanged; missing/reorged peers, identities or suffix data fail closed. Other
 history/preparation consumers are not silently switched to checkpoints.
 
+The separate [offline history recovery tool](HISTORY_RECOVERY.md) snapshots/validates all current-profile raw databases and exact checkpoint/review bytes. It restores into new files only, preserves full24h and never installs API configuration or changes request limits. Its sanitized offline profile needs independent path/provider review before separately authorized service adoption.
+
 ## Implemented endpoint
 
 | GET path | Purpose / optional configuration |

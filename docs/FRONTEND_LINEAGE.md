@@ -139,6 +139,8 @@ cryptographic proof of log completeness or L1 finality. Reviewed replacement cod
 may differ, but it must implement the documented lifecycle/claim ABI and semantics;
 hash equality does not replace that review. The service never signs or broadcasts.
 
+The [offline recovery bundle](HISTORY_RECOVERY.md) includes every configured epoch database with per-database snapshots and overlapping-header checks. It preserves all retained raw history and exact checkpoint/review bytes. It is not one atomic graph snapshot or proof of canonical completeness; matching-service/provider admission remains separate.
+
 Actual archive-RPC availability, latency at the configured history bounds,
 retention/backups and browser integration need operating qualification under
 [hosted services](../TODO.md#task-host-services) and [live history UI](../TODO.md#task-live-history-ui).
