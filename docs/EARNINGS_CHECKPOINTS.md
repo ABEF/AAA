@@ -296,3 +296,21 @@ restore before hosting. The [financial-history task](../TODO.md#task-financial-h
 remains in progress. [Original evidence](../reports/earnings-checkpoints-20261104/REVIEW.md);
 [lineage implementation](../reports/lineage-checkpoints-20261116/REVIEW.md);
 [current offline import evidence](../reports/checkpoint-prefix-import-20261116/REVIEW.md).
+
+## Controlled collection-scale evidence
+
+The [1,000-NFT rehearsal](../reports/history-scale-rehearsal-20261116/REVIEW.md)
+passes exact checkpoint2-to-3 prefix import, backup/verification/new-file restore,
+independent whole-unit accounting and complete per-copy wallet coverage. It spans
+three controlled deployments, 900 active/100 dormant NFTs, 7,757 raw logs and
+346,800 chain seconds, including receipts before/at/after the day's exclusive
+lower boundary. Nonzero high/low LP allocation phase is retained.
+
+The original default 4,096-read refusal is retained; positive offline build/import
+uses explicit existing 65,536-call settings under the unchanged 60-second deadline.
+HTTP defaults, 16-NFT chunks, 32MiB checkpoint, codec/event/graph/currency bounds
+and recovery defaults remain unchanged. The rehearsal uses synthetic chain,
+getter and lifecycle observations; local timing excludes real-provider posts,
+network latency and complete admission cost. It does not qualify maximum lifetime
+history, all currencies/buckets/epochs, Unix/off-host restore or deployment.
+See the [operator procedure](OPERATOR_MANUAL.md#collection-scale-history-rehearsal).

@@ -1,15 +1,17 @@
 # PoPL current project context
 
-Current offline tooling includes [checkpoint3/prefix import](reports/checkpoint-prefix-import-20261116/REVIEW.md), [history recovery](reports/history-recovery-20261116/REVIEW.md)
-and a separate [deployment sequence planner](reports/deployment-sequence-20261116/REVIEW.md). The new wrapper derives25 conditional
-top-level addresses across44 same-bootstrap-EOA transactions, including19 bindings,
-then uses the unchanged trusted constructor reviewer. No nonce reservation,
-child-address prediction, RPC, signing, deployment, sealing or live adoption.
-Exact accounting/full24h, existing14semantic sources, contracts, safeguards and
-limits remain unchanged. Factory children still require actual getters. Address/nonce
-predictions are conditional, not observations or approval. Actual release inputs,
-markets/providers, fees, authority, host/restore and independent approval remain
-open; existing chains/journals, signer, sites/services and paused heartbeat stay.
+The [isolated 1,000-NFT history rehearsal](reports/history-scale-rehearsal-20261116/REVIEW.md) verifies exact earnings, claims,
+conversions and recovery across three controlled accounting7/mint2 epochs:
+900 active/100 dormant NFTs, the full raw 24-hour window and nonzero LP phase.
+All source/restored rows and checkpoint/review bytes match; bounded wallet
+reads cover all 1,000 NFTs separately in each copy (72 chunks per copy).
+The default 4,096-call checkpoint refusal is retained. The positive offline
+build/import uses the existing explicit 65,536-call allowance, with defaults,
+HTTP limits, codecs and all production sources unchanged. This is controlled
+local SQL/replay/recovery evidence, not provider/EVM, maximum-lifetime, host or
+off-host qualification. Earlier checkpoint/import/backup/deployment planners
+remain unsigned and unadopted. Existing chains, databases, journals, signer,
+sites/services and the user-paused heartbeat are unchanged.
 
 The [16 November whole-project audit](reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
 state-file and website-profile gaps and reconciles current guidance. Production

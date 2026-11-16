@@ -213,3 +213,5 @@ and [callable reference](CONTRACT_FUNCTIONS.md) describe exact procedures. Exist
 runtimes, source-scoped evidence and served websites retain their own boundaries.
 
 [Royalty launch window and currency capacity](ROYALTY_LAUNCH_WINDOW.md) owns sale end,1-hour initial cohort, locked receipts, allocate-all and reviewed expansion.
+
+[Controlled 1,000-NFT history recovery evidence](../reports/history-scale-rehearsal-20261116/REVIEW.md) records finite local scale, exact accounting, unchanged budgets and remaining operating qualification.

@@ -2988,6 +2988,34 @@ semantic pins, rights and original journals cannot be relabelled to match.
 All snapshots preserve raw history, but are not globally atomic or proof of chain
 completeness. Actual storage/off-host/host recovery still requires qualification.
 
+#### Collection-scale history rehearsal
+
+The [controlled 1,000-NFT record](../reports/history-scale-rehearsal-20261116/REVIEW.md) checks
+three same-chain epochs, 900 active/100 dormant NFTs, exact LP/royalty units,
+claims, conversions, the full 24-hour boundary, and backup/restore. It uses NEW
+synthetic databases and controlled chain observations, never your installed DBs.
+
+| Tool/action | Required inputs | Example | Effect |
+| --- | --- | --- | --- |
+| Rehearse isolated history recovery | A NEW output directory under an existing owner-controlled parent | `python -m tests_python.history_scale_rehearsal --output /review/new-scale-run` | Verify bounded synthetic recovery |
+
+Keep every failed/partial output. The recorded default checkpoint refusal uses
+4,096 reads. Positive offline construction explicitly uses the already-supported
+65,536-call ceiling and unchanged 60-second deadline; this changes no default or
+HTTP limit. Normal NFT/wallet/collection reads retain 25 seconds/1,024 calls,
+and wallet chunks stay at most 16 NFTs. The fixture's history setting is 10,000
+events; this is not a new production default. A pinned prior identical-workload
+refusal can be reused with the rehearsal's paired `--prior-refusal` and
+`--prior-refusal-sha256` arguments; it remains earlier source-scoped evidence.
+
+Do not copy the synthetic addresses, configs or timing into production. Local
+getter caching removes repeated fixture scans; it is not a live RPC cache or
+latency approval. Select actual offline budgets only after measuring the real
+provider, admission work, posts and latency. Keep existing bounds and fail closed
+if the workload cannot finish. Review restored paths and canonical coverage before
+separately authorized adoption. Off-host/Unix, maximal currencies/buckets/lineage,
+lifetime history and independent operating approval remain open.
+
 ### Serve processed earnings and current-price values
 
 Enable the optional `earnings_history` profile only after reviewing the
