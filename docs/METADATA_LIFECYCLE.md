@@ -1,5 +1,11 @@
 # Metadata lifecycle: scenario inventory and current behavior
 
+The [targeted metadata2 run](../reports/metadata2-rehearsal-20261116/REVIEW.md)
+executes 19 valid cold lifecycle/tier snapshots plus one nonexistent-token
+rejection using actual normal code and temporary read fixtures. It does not
+execute all 80 scenarios or qualify real feeds/OpenSea. Exact gas and unchanged
+state evidence remain separately scoped.
+
 Reviewed 16 November 2026: the original80-case inventory at `bb7099b` is
 retained and updated for the [metadata2 source fixes](../reports/metadata-lifecycle-fixes-20261116/REVIEW.md).
 This is **80 scenarios**, not80executed tests or exhaustive proof. Changed/new

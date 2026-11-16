@@ -1,5 +1,10 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+[Current metadata2 local evidence](reports/metadata2-rehearsal-20261116/REVIEW.md)
+now covers five changed constructors, three bindings and 20 cold metadata cases.
+Normal limits hold; existing chains, sites and services remain unchanged. Real
+release dependencies, fees and OpenSea acceptance remain open.
+
 The [five-audit consolidation](reports/five-audit-reconciliation-20261116/REVIEW.md)
 restores unsigned planning against the current metadata build and strengthens
 deployment/market evidence checks. Historical artifacts keep their original

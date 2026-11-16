@@ -1,0 +1,494 @@
+{
+  "schema": "metadata2-selective-rehearsal-verification1",
+  "status": "PASS_CONTROLLED_LOCAL_SCOPE",
+  "baseline_head": "6626d6846edccf4660ad483919e34272d1d4271c",
+  "build_profile": "metadata2-20261116",
+  "actual": {
+    "constructors": 5,
+    "bindings": 3,
+    "instances": 12,
+    "receipts": 8,
+    "binding_state_observations": 63,
+    "cold_valid_snapshots": 19,
+    "cold_exact_negative": 1,
+    "cold_RPCs": 766,
+    "recorded_RPC_responses": 1663,
+    "cold_first_SLOAD_gas": 2100,
+    "state_accounts": 23,
+    "overridden_slots": 51,
+    "owned_node_stopped": true
+  },
+  "new_offline_checks": {
+    "fixture_encoding_layout": "COLD_PREFLIGHT.json",
+    "selective_branches": "OFFLINE_BRANCH_PREFLIGHT.json",
+    "independent_actual": "INDEPENDENT_ACTUAL_REVIEW.json",
+    "independent_wire_host": "INDEPENDENT_EXTRA_REVIEW.json"
+  },
+  "unchanged_suites_compiler_static_runs": 0,
+  "unchanged_top_level_constructor_reruns": 0,
+  "required_constructor_created_children": 7,
+  "production_source_changes": 0,
+  "reused_normal_gates": 48,
+  "reused_source_inputs": 100,
+  "preservation": {
+    "production_source_count": 61,
+    "production_source_pins": {
+      "src/ZZZAccessController.sol": "5a1ecdd5cc309bb922943cf11e9299859f9f824e354443d5d9b7ea7600379a2c",
+      "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "src/ZZZActivationEntry.sol": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+      "src/ZZZBuyback.sol": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+      "src/ZZZCanonicalHandoff.sol": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+      "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+      "src/ZZZCustodyValidation.sol": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+      "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+      "src/ZZZLPBalancer.sol": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+      "src/ZZZLPPositionExecutor.sol": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+      "src/ZZZLPRewardConverter.sol": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+      "src/ZZZLiquidityManager.sol": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+      "src/ZZZMembership.sol": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+      "src/ZZZMigration.sol": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed",
+      "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+      "src/ZZZNFT.sol": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+      "src/ZZZNFTCanonical.sol": "fcc849cfa4689f1a22e6e006d286ec73bea60e660713adc5d01b6a2f90e2245a",
+      "src/ZZZNFTMetadata.sol": "a691196de69c40e0f2a3cd50d3efd65a5c72ae9bf5e848b300b5f1bb607faf3f",
+      "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+      "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+      "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+      "src/ZZZProtocolPolicy.sol": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+      "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+      "src/ZZZRewards.sol": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+      "src/ZZZRewardsCanonical.sol": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
+      "src/ZZZRoyaltyCodeData.sol": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+      "src/ZZZRoyaltyFactory.sol": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+      "src/ZZZRoyaltyRewards.sol": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+      "src/ZZZSeaDropMint.sol": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+      "src/ZZZStrategy.sol": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+      "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "src/ZZZV4SpotPriceFeed.sol": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+      "src/ZZZVault.sol": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+      "src/ZZZVaultCanonical.sol": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+      "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "src/base/ZZZExactLPRewardsCanonical.sol": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
+      "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "src/base/ZZZRewardConverter.sol": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+      "src/base/ZZZSeaDropToken.sol": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+      "src/interfaces/IZZZ.sol": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+      "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "src/interfaces/IZZZExecutionOracle.sol": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
+      "src/interfaces/IZZZNFTCanonical.sol": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
+      "src/interfaces/IZZZProtocolPolicy.sol": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "src/interfaces/IZZZSeaDrop.sol": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+      "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "src/libraries/ExactLPAllocation.sol": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+      "src/libraries/ExactRoyaltyAllocation.sol": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+      "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "src/libraries/ZZZTypes.sol": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "src/libraries/ZZZV3VenueValidation.sol": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2"
+    },
+    "all_tracked_source_tool_pins_unchanged": true,
+    "four_unrelated_dirty_pins_unchanged": {
+      "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+    },
+    "historical_report_files_unchanged": 119,
+    "historical_report_pins": {
+      "reports/metadata-lifecycle-fixes-20261116/BUNDLE.json": "2d16d38fd91ce209cc1982acbedf85b6f1d3a95fff1a33caadda1ede1ff668b5",
+      "reports/metadata-lifecycle-fixes-20261116/evidence.zip": "7eda78a4548ae27fdf396ad9f5e0c112e9d1bb8fb87170581463f1f32466f80f",
+      "reports/metadata-lifecycle-fixes-20261116/EVIDENCE_MANIFEST.json": "bd97d0df1f40459e7c3db693b345192068ceb4f07a60448d7903ea76d985b37a",
+      "reports/metadata-lifecycle-fixes-20261116/EVM_SCOPE_SUMMARY.json": "4d46e1cbec21027935c2512606c7005872d5fc7205a12be6149d618c03c40c18",
+      "reports/metadata-lifecycle-fixes-20261116/FINAL_CHECK.json": "a3a44930053d2e45f4860eca4b9dc89f90eece8ce479d4eba9a5744eb517731d",
+      "reports/metadata-lifecycle-fixes-20261116/FINAL_TEST_SOURCES.json": "a85ca06f036d243b8e4fedb1b7f955445c2f438ba9b27be8351e7bfb4cbee277",
+      "reports/metadata-lifecycle-fixes-20261116/FUNCTION_REFERENCE_REVIEW.json": "7a8875c5a79225d93da6827706638be8bf2e137994b9b31b3a9355e79c2d7c76",
+      "reports/metadata-lifecycle-fixes-20261116/INDEX_PUBLICATION_CHECK.json": "b86ccb837e887fdbf530e339fe3f10f95d58393de15d4957b794c3255ae6e324",
+      "reports/metadata-lifecycle-fixes-20261116/MECHANICAL_REVIEW.json": "7226e890b774ff9d8df4b7ae1d00880e14236c29b1a274b7ae0f5643674214c3",
+      "reports/metadata-lifecycle-fixes-20261116/REVIEW.md": "cc48e3b24749950ad260fb199d34865d270b15e9f1b6feff02e8d73736e0ad8c",
+      "reports/metadata-lifecycle-fixes-20261116/static-input.json.gz": "fdfad4f7c4d4065999302a1eb063f5573d1fb0f0ba1ef4ed0aef2e34e834f4eb",
+      "reports/metadata-lifecycle-fixes-20261116/static-review.json": "8642e5cf39c1706cffcd254a3bfefb1190b39f9197eb1ecec231d4a87afe090e",
+      "reports/metadata-lifecycle-fixes-20261116/VERIFICATION.md": "7c95e94496c8e30ca0173ef82799530cf07c5d5e70547e043eb154cbe6c8d4e1",
+      "reports/metadata-lifecycle-fixes-20261116/WEBSITE_PUBLICATION.json": "d03b70a4ddc01b52518abced8554cca5cfcb3792d56fbba19948e064f26a03cc",
+      "reports/metadata-lifecycle-fixes-20261116/build/compiler-input.json.gz": "596dbb7967cc51f0b854c8be20644facaadc15ceabe8ee2acfadf4bd8d20df41",
+      "reports/metadata-lifecycle-fixes-20261116/build/compiler-output.json.gz": "4acc319da1a5b4e8a4c112fb9a6c0832d3943d2722d2d17f30dd288c125f3a0f",
+      "reports/metadata-lifecycle-fixes-20261116/build/normal-size-evidence.json": "b67e4d9cdf645e1433bca7569c7ad5be6d46237cce944f100cff6fc8d054b07e",
+      "reports/metadata-lifecycle-fixes-20261116/build/RESULT.json": "74ee74839b689bbc08ba17bfc94bdb468e16dbd75931caddb251e1485bb92c22",
+      "reports/metadata-lifecycle-fixes-20261116/build/START.json": "966add935532fccffbbb2518fe094aabb50e456462e5e5dd3dab62c71d76b5d8",
+      "reports/five-audit-reconciliation-20261116/BUNDLE.json": "dff67eec5f420c137b4f16a0341b54222b880660ddefe60c5ecd00e055dee316",
+      "reports/five-audit-reconciliation-20261116/CLI_REVIEW.json": "55a97a8a991ecd513e8c754c1427d702f9b88eb15f40365a6e13fc37fbcfb68f",
+      "reports/five-audit-reconciliation-20261116/DEPLOYMENT_VERIFICATION.json": "dba266027245fb13d8349e63b26f615cd64ff11cab65ce6ebfb7b555bfe060d0",
+      "reports/five-audit-reconciliation-20261116/evidence.zip": "175bf8fe8e951ffb3fc8365ac68cc60fa417666eaa028a273b3b8d7f6870b1b5",
+      "reports/five-audit-reconciliation-20261116/EVIDENCE_MANIFEST.json": "a0135ff5687338984e411b6b60859e33dd6e94e3cc04b39fd63eabf437c6852d",
+      "reports/five-audit-reconciliation-20261116/FINAL_CHECK.json": "96c9d4837f9ba02568e08d9c0b671110fbbaac94a2733340c8434103ddd5dcfd",
+      "reports/five-audit-reconciliation-20261116/FINDINGS.json": "fe0486a91387cf6f3e570919dc55f5099eb6a563060d658a4adf54acd5182d25",
+      "reports/five-audit-reconciliation-20261116/INDEX.md": "98ee4f9719c2ae7ddcc7691dc80a1a6f4d5be46069839aceff0504b89adb2c7a",
+      "reports/five-audit-reconciliation-20261116/INDEX_PUBLICATION_CHECK.json": "020fb5c96fd1d31a36722ca2093cb9b43f8a744c0737edbba54c88d76a42e5c8",
+      "reports/five-audit-reconciliation-20261116/INTERNAL_IMPLEMENTATION_REVIEW.json": "bd0d0ed5a818afc858d93cb2902fdfb9275af0068e33e4dbc03a79fb05597a68",
+      "reports/five-audit-reconciliation-20261116/LEGACY_TEST_AST_DELTA.json": "2606380b1a28fa0fd669094d165075a25f4db1fe3afcf2c0d53bfa726bfeef98",
+      "reports/five-audit-reconciliation-20261116/MARKET_CLI.json": "9d307c9e7f5f8ca3f1268005c8200e18d36c4afa017a99a00d443dda30147a59",
+      "reports/five-audit-reconciliation-20261116/OBJECT_EQUIVALENCE.json": "380a6258d2e686c1453f11a2ecba49b2794730fd72e35ea074ed423f0024a131",
+      "reports/five-audit-reconciliation-20261116/PRESERVATION.json": "f759362dd9935f28cdc8c4e9a7badb67132c760b391645c827dae6325657be7e",
+      "reports/five-audit-reconciliation-20261116/PROMPT.md": "7b54be5ad895ab0332414c71e13643899620e7fc979152aab725c2acb611aab2",
+      "reports/five-audit-reconciliation-20261116/REVIEW.md": "0d00ed37f51899d18200bc46ec1234ec1bc8109f2fe87bc7dd8ea27f455e12d3",
+      "reports/five-audit-reconciliation-20261116/VERIFICATION.md": "5d22b7ed06d552b093d4e54faeb75fde10033e745bb78cc70de9a78c0f781e1a",
+      "reports/local-deployment-rehearsal-20261115/ARTIFACTS.json": "554ced0c0da76363e30f0ff5ec18100a72e64e4a8357e2125d2ec91b550fe374",
+      "reports/local-deployment-rehearsal-20261115/EVIDENCE.json": "becbfa3d3354c65f029deb2d966e9b3c567d7d66357e73699c0dbc810e6e7ac4",
+      "reports/local-deployment-rehearsal-20261115/evidence.zip": "652d156817bf8a3e858c792166a61b3f46ad02a75e6b6746436d665869195837",
+      "reports/local-deployment-rehearsal-20261115/GAS_SUMMARY.json": "7a25578d415e1de4362a79adc0f79630137d9f403fff6df199a610474662c4d0",
+      "reports/local-deployment-rehearsal-20261115/INDEPENDENT_BINDING_CALL_REVIEW.json": "9bb607a5eaecb590f853abd35e16e478187d13dd4b6ae8892307bcafb2f37bba",
+      "reports/local-deployment-rehearsal-20261115/INDEPENDENT_INITIAL_CAPTURE_FAILURE.json": "dc74ae21727e279abdddaaf993ad75a04b1ef59c9b8d8f814d0260e605aa7122",
+      "reports/local-deployment-rehearsal-20261115/INDEPENDENT_RECEIPT_REVIEW.json": "d70b78c036700a39b586fe0c9c89597460cde83d1609ec35c17e4cd4da6e785b",
+      "reports/local-deployment-rehearsal-20261115/PUBLIC_ZIP_RECONCILIATION.json": "a51e04f6b6f37bc931fdcf7e7ed2bc90f2ffe9054e628ca822377a08c74e1956",
+      "reports/local-deployment-rehearsal-20261115/REVIEW.md": "9efe1349c56d26c61134a1ff92d947140877d80b2bf176888c1a85b04d23f839",
+      "reports/local-deployment-rehearsal-20261115/SOURCE_SHA256.json": "df9029793379dbdc88c6c199bf94753f32c100eeb2138c8e134e08e39a23994c",
+      "reports/local-deployment-rehearsal-20261115/VERIFICATION.json": "9ed94453ca2f8970635c6aedbadefff9a226df0f20184e57f60c29a321ffaea0",
+      "reports/deployment-preparation-20261115/ARTIFACTS.json": "faa196b07131e559ad6ba264209797c1b0d58e220a13751bfc231521fa1cf57a",
+      "reports/deployment-preparation-20261115/INDEPENDENT_ENCODING_REVIEW.json": "449b78e22ea9b0a8eddfa760a211a68bd19ad851f74e3d93a3bc655aa7e0c2b4",
+      "reports/deployment-preparation-20261115/independent_encoding_review.py.txt": "a84aae7a229902a3bd9e4d43229f6efe19723621c0e6e128e9d83cfdf013590f",
+      "reports/deployment-preparation-20261115/REUSED_BUILD.json": "96c427aa24da2147dd83a5fef70929b361bc156c7c672cc8a1a731f4722e7bd2",
+      "reports/deployment-preparation-20261115/REVIEW.md": "8ac0a034d31beaaf976415c07ef461cd940f773ad6907f810e5e1df782cd7565",
+      "reports/deployment-preparation-20261115/SOURCE_SHA256.json": "27067df8bbe325bd677ee3af5cb0c80b8d95501e1d7d7a98aab4406593e397ff",
+      "reports/deployment-preparation-20261115/TEST_RUNNER_NOTE.json": "996ad3d0e76d4b0dfd04b3a526ac022505d0aa08a9557513136befc3a285082e",
+      "reports/deployment-preparation-20261115/TEST_SAMPLE_DELTA.json": "e4260fb7cf0a629ce00552af231851df5938868eb621593f6dc912494affec12",
+      "reports/deployment-preparation-20261115/VERIFICATION.json": "6f6aa79039b4580be386517de8a6085259fabbe5b52c191eb6790aabb2a7455f",
+      "reports/deployment-preparation-20261115/checks/focused-first/RESULT.json": "f8209f95c3e5120da8741547958cb2f61a0a3dc27202494aa9809fb2aee54ebf",
+      "reports/deployment-preparation-20261115/checks/focused-first/test-output.log": "0aa1061e74c5c43309a4ad082eff845f19f96c138881d37a8e964bcc0475e200",
+      "reports/deployment-preparation-20261115/checks/focused-first-corrected/RESULT.json": "805180dd1d7af0d8ea794864e5698cb04a4029fa8a608a3b6279fd21d5c2cb07",
+      "reports/deployment-preparation-20261115/checks/focused-first-corrected/test-output.log": "f6afbbdd16e460bfda13f8cf522a3c555830ce86102d9f9a3b64552b5f36e351",
+      "reports/deployment-preparation-20261115/checks/focused-remaining/RESULT.json": "930603b12cc8d157868ff7bea40a1e4ef7f226a48da6abbcac130a30d3e73bef",
+      "reports/deployment-preparation-20261115/checks/focused-remaining/test-output.log": "e964986080fb6bd0933f14149dc85ebd5bacda40cce94dd8b891846c10814a54",
+      "reports/deployment-preparation-20261115/checks/sample-drift-only/RESULT.json": "d437161453fdacd46b0ff7957d0b2b464f4a0f7aced555f333ea37cb3597f04b",
+      "reports/deployment-preparation-20261115/checks/sample-drift-only/test-output.log": "3446e00c49e3755bafd72744d139b813481dc5d19796642a96c21d89fb82f40b",
+      "reports/manual-reference-swap-fix-20261115/ACTUAL_RECEIPT_REVIEW.json": "8ead8e4e63f735c856923868584038cbb0ecb678834921bf1a93e6cab4e5f770",
+      "reports/manual-reference-swap-fix-20261115/ADAPTED_HOST_SCOPE.json": "6d8a85a1d64ae736546f86852b9feb0363df2a2fb34339c477385025c38c5065",
+      "reports/manual-reference-swap-fix-20261115/ARTIFACTS.json": "aeaf57fe12395c374e341c6291920d482570a21aeacd49ede28b1f619ffd364c",
+      "reports/manual-reference-swap-fix-20261115/BUNDLE.json": "dc321b617b90f2c2cc817e171385dc15d742ddee70dddcd567f9ebb0e7e06bc0",
+      "reports/manual-reference-swap-fix-20261115/CALLBACK_TRACE_PROOFS.json": "94f97274df7ba2900a5f41fbbf34d5dba3b50d15c012260f930f84c32c7d0389",
+      "reports/manual-reference-swap-fix-20261115/CALLBACK_TRACE_REVIEW.json": "8b377b810415146f7b73fe612c589701b32e0788e4d49b53fd72b18e61933625",
+      "reports/manual-reference-swap-fix-20261115/COMPLETION.json": "5468f516c5b459c97e5d3636bd8482f5807df6963e0950b531ea93c212ade3aa",
+      "reports/manual-reference-swap-fix-20261115/EVIDENCE_MANIFEST.json": "3bcfb1025226efa7f29df4130cdf62b76ef2e3987c41b3ae486cd84a8106671d",
+      "reports/manual-reference-swap-fix-20261115/FINAL_TESTS.json": "86b1b10340d086977911a4cde74d7f1068b4da555e68aeff4bd932083725ae15",
+      "reports/manual-reference-swap-fix-20261115/FUNCTION_REFERENCE_REVIEW.json": "9d5a4503e8ca0a3a9f49d6720c712185857fe7ef44690389deb42b2fcf0d3865",
+      "reports/manual-reference-swap-fix-20261115/GAS_AND_TRANSACTIONS.json": "58537adebe1f7ea52cd93868f85bc9339682965718883a8078f67d3022b28f04",
+      "reports/manual-reference-swap-fix-20261115/MECHANICAL_REVIEW.json": "0efab4ab5cfc968c4ebc05b703dbc2660467a994af852b002a19d95ba9704ba6",
+      "reports/manual-reference-swap-fix-20261115/NEW_HOST_STAGE2_DELTA.json": "66da52e6aac7949d754fdf873d3a3aa26f015204c2cc9d59ec17ffbca742bd94",
+      "reports/manual-reference-swap-fix-20261115/NEW_HOST_STAGE3_DELTA.json": "8e4a4745ca6997958355c1520ae81645a5d11bad6da776795b13d00ec4031b1f",
+      "reports/manual-reference-swap-fix-20261115/OFFLINE_REFERENCE_VERIFICATION.json": "199f94c1a613d71a71f141509bf6bf834e0dddb765465dd4cce9ca13014cee2e",
+      "reports/manual-reference-swap-fix-20261115/OFFLINE_UNIT_VERIFICATION.json": "67ae69d6abe047ff6ab6064af6e13ac0ff694e24ac63be4431ccc65ef21f600f",
+      "reports/manual-reference-swap-fix-20261115/PLAN.md": "cd3a62541d3a436d94a3ac84922f4bcaf5db299deca5e9da5df6ce203885a3ed",
+      "reports/manual-reference-swap-fix-20261115/PRESERVATION.json": "03c79b7c02ffd025050ab2eb6e8b7072c06bfed6cd176362fb211a258e89ffb3",
+      "reports/manual-reference-swap-fix-20261115/PRODUCER_SOURCES.json": "2703c0101d98bc752343daf1ff6c8195446a8644168d77fa2425cba1e8b4f1e6",
+      "reports/manual-reference-swap-fix-20261115/public-evidence.zip": "d2eb6fa25249864129149343c17699312d6f9c422f8526745906cc64de43d6b2",
+      "reports/manual-reference-swap-fix-20261115/RAW_CAPTURE_MANIFEST.json": "745bcf32036fa000edea5c5b4cc4fa136c8bea44ccf2a1fded9892ba68d9651b",
+      "reports/manual-reference-swap-fix-20261115/REVIEW.md": "a601985163d8a973f8a1383f1796adc1f03d094830f34fee57c27e4ff118628c",
+      "reports/manual-reference-swap-fix-20261115/ROOT_PACKAGED_REFERENCE_CHECK.json": "199f94c1a613d71a71f141509bf6bf834e0dddb765465dd4cce9ca13014cee2e",
+      "reports/manual-reference-swap-fix-20261115/ROOT_PACKAGED_UNIT_CHECK.json": "67ae69d6abe047ff6ab6064af6e13ac0ff694e24ac63be4431ccc65ef21f600f",
+      "reports/manual-reference-swap-fix-20261115/SOURCE_SCOPE.json": "e5af7e04f76a1f6568d32a231906ec680c3aaa5c0d39f353eedb942bb49f7203",
+      "reports/manual-reference-swap-fix-20261115/static-review.json": "48efc026ba0826f08d919cb0b64e7a0616e1b6740dd6375d52135664a2ae68c4",
+      "reports/manual-reference-swap-fix-20261115/unit-evidence.zip": "6928fa9b6c85a245651ce79a087ac0e640d3846e0547653c7802fce2f77780d5",
+      "reports/manual-reference-swap-fix-20261115/UNIT_BUNDLE.json": "9b1646209b577c8a8b5f990abb50a7d6422e854eb3ba36626526daabb14bb231",
+      "reports/manual-reference-swap-fix-20261115/UNIT_MANIFEST.json": "6176ce87a3d2aae3e7572b9cc583b77b68ab2a2fc72475acd628f6d116c34be4",
+      "reports/manual-reference-swap-fix-20261115/UNIT_METHODS.json": "bbbfcf80db547ed15b3178dc655d9530f2a3fd29e0ce5a987df1abf29271cce6",
+      "reports/manual-reference-swap-fix-20261115/VERIFICATION.md": "3e83d8d2e9a2165a793049c7185a0f7c0efc92ef6f0a57e844c0a94f3f6b96df",
+      "reports/manual-reference-swap-fix-20261115/verify_reference_evidence.py": "504c37d7aebcfdcbea57cb25cdbee8f0831f2f08d14b997b6b184b6b03670606",
+      "reports/manual-reference-swap-fix-20261115/verify_unit_evidence.py": "2a213128e1d01c752c46a8632a2ce452d7aa4e938004d8573275c981d7f20ca7",
+      "reports/manual-reference-swap-fix-20261115/WRAPPER_ADMISSION_FAILURE.json": "edddba2fae1036fbb1a5a24c74368272dfd15cfcb194618126fe12ef59c72bd1",
+      "reports/manual-reference-swap-fix-20261115/build/ARTIFACTS.json": "8adb7a01a5e159b04348baebfcb8022ed633e1cc3df55d32ad9b7367323a67b1",
+      "reports/manual-reference-swap-fix-20261115/build/ATTEMPTS.json": "6b70faeaef63cd76bd9c6b8cb4ed1e76ae91516e0326bc0bfd6025f15db5c897",
+      "reports/manual-reference-swap-fix-20261115/build/compiler-input.json.gz": "da046010ffef2efe32870d58478f11ed52a25a7932b4726768bc9fe1ef1abfd3",
+      "reports/manual-reference-swap-fix-20261115/build/compiler-output.json.gz": "d18a51c0f5d19c6abec3fbad7f50d9997c9e5b65c10ad80c7299c942234a19b4",
+      "reports/manual-reference-swap-fix-20261115/build/EQUIVALENCE.json": "b037ca48cdaa0ce982a58512e725037674150c0e68661cf176481361f7b654ee",
+      "reports/manual-reference-swap-fix-20261115/build/production-size-gates.json": "43b3bdbe58c31893b9e648f3cc2e565e096a730f089abef4745f8fe3a7f78633",
+      "reports/manual-reference-swap-fix-20261115/build/RESULT.json": "a050be172c6030403cfd107a8a87f7cc681d4babb2c21481783d22f254cfa218",
+      "reports/manual-reference-swap-fix-20261115/build/source-manifest.json": "c1fbb683be3735d4558f553acb1af0153ffaf74b808e113a760fcde30bd8af4b",
+      "reports/manual-reference-swap-fix-20261115/build/START.json": "02d9a986e74cf2b6f2dd4f36bcb58db65af21de0ab43f6acf440b62da36e9d90",
+      "reports/manual-reference-swap-fix-20261115/static/COVERAGE.json": "0782bba98a943b0efb8bbb4dd6ccd899f04b75e46b94348c6fe178c80fee206a",
+      "reports/manual-reference-swap-fix-20261115/static/detectors-only.json": "2f48a04cb1bee66e8d00284667f097b21cfd3afe4c2553e2d7dac22e9be8b55d",
+      "reports/manual-reference-swap-fix-20261115/static/DIFF_SUMMARY.json": "3f4da6a5d52e87313718ed8f4797930114c354154d6a801cc765d142f911e5f9",
+      "reports/manual-reference-swap-fix-20261115/static/EXACT_REUSE.json": "bb3698d0e54f602b0d151e3b737d866ad1a9ebef07bbfba18e03819a711764be",
+      "reports/manual-reference-swap-fix-20261115/static/EXECUTION.json": "72cdf6c8d45a2e8275bcbe511d767daeecd7d0268c4918e6097eb1a5620167ce",
+      "reports/manual-reference-swap-fix-20261115/static/REASSESSMENTS.json": "015df003c582221834f33d1362aba7b3e7f61276ee08d4111c18d7d19fa8d104",
+      "reports/manual-reference-swap-fix-20261115/build/failed-attempts/1/RESULT.json": "cd901481066a6b7e101d2bd234adb4e39135b3b67300a9d8502871545f6fcd3b",
+      "reports/manual-reference-swap-fix-20261115/build/failed-attempts/1/START.json": "3da944503413cf6d4a892a589922b11940ed0df20997dd80f6ad7261bf3c6bf3",
+      "reports/manual-reference-swap-fix-20261115/build/failed-attempts/2/RESULT.json": "8450e06281517c08faeb2643c8723e926940524adb330eccad0a48a75f443eed",
+      "reports/manual-reference-swap-fix-20261115/build/failed-attempts/2/START.json": "8031addba18455c0bc4fb373a12af7dfbcc8f9d32cd76fb4514fc30375945f3e",
+      "reports/manual-reference-swap-fix-20261115/build/failed-attempts/3/RESULT.json": "8a6ee21136e2b63ffbf4a01a44134ff0b3b5d9a864d30cad3643a2fecdd933cd",
+      "reports/manual-reference-swap-fix-20261115/build/failed-attempts/3/START.json": "71d9bf1148c006a955416bc16f180b915c423865afbb4a74be27ff9def3dd069"
+    },
+    "website_four_protected_hashes": {
+      "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+      "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+      "integration-config.js": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300",
+      "deployment-view.js": "89c348cd3895ffd997d677f441fa10aa57a941e6e172763bd094b0a028af29fe"
+    },
+    "existing_nodes_contacted": false,
+    "old_chain_state_root_equality_claimed": false,
+    "heartbeat_restarted": false,
+    "sites_services_or_signer_changed": false,
+    "source_and_docs_only_publication": true
+  },
+  "bundle": {
+    "file": "evidence.zip",
+    "sha256": "80f1644d303813e4e0807a14d574db7db7a1d33698cd1a266de707793123367a",
+    "bytes": 3905250,
+    "entries": 55,
+    "files": {
+      "attempt1/01-create-access-trace.json.gz": {
+        "bytes": 82023,
+        "sha256": "9193651c257eeda654aea3bde100876d3cdbf2f79969025474eeec8cd906a254"
+      },
+      "attempt1/01-create-access.json": {
+        "bytes": 120724,
+        "sha256": "b46907ca46a309ae603f07ea1befb9beeaee60673127861c9523af9b7e83e252"
+      },
+      "attempt1/02-create-metadata_renderer-trace.json.gz": {
+        "bytes": 29626,
+        "sha256": "ad4d8984232a2795ec870cdbdbf52d14cd94e5e8e0a85ffb5e085c7c44c1775e"
+      },
+      "attempt1/02-create-metadata_renderer.json": {
+        "bytes": 99297,
+        "sha256": "5f058ca36c5665ab42ba4c838093fe0675aa87ef83be420daf6d3345831c3330"
+      },
+      "attempt1/03-create-migration-trace.json.gz": {
+        "bytes": 52855,
+        "sha256": "c99ab76206b9770d0dd62ea2649834773936ddc11f3de721d737be758686d103"
+      },
+      "attempt1/03-create-migration.json": {
+        "bytes": 137570,
+        "sha256": "9067c6de8bfaf38ec07ee5627fbcc17f79c2118ebaa75fac9393a930e88b3064"
+      },
+      "attempt1/04-bind-migration.json": {
+        "bytes": 2911,
+        "sha256": "e15d73e65d41267ed7f9dfa0e059d7cd1bce96671333bf8d7257dff08f6c6a2e"
+      },
+      "attempt1/05-create-nft-trace.json.gz": {
+        "bytes": 59836,
+        "sha256": "3c4c6ce93aa0f38d014df977c235d0b2afce39fc1967598b1f6d202a80efbda8"
+      },
+      "attempt1/05-create-nft.json": {
+        "bytes": 113426,
+        "sha256": "d65190054b73f7877e5e61bf0cddc282d829a4d67babd9336ebed533298ecc66"
+      },
+      "attempt1/06-bind-nft.json": {
+        "bytes": 2905,
+        "sha256": "63b045f5c9b24e620fdb77bef8406fd76e7d8cc12ab76a943509ca111cc0b9f1"
+      },
+      "attempt1/07-create-nft_canonical-trace.json.gz": {
+        "bytes": 23289,
+        "sha256": "cff1ddf0f4d843865160d8ba2058f78b93ba3e05c0bf670b09feb505b1bfe21e"
+      },
+      "attempt1/07-create-nft_canonical.json": {
+        "bytes": 96837,
+        "sha256": "c5c7bd5ab6d3b678dad1eeeaf1fc7ccd82d0735c0fd0f8a1073d185552996caa"
+      },
+      "attempt1/08-bind-nft_canonical.json": {
+        "bytes": 2915,
+        "sha256": "b6249f071a6689da362445c702dc3dae5116475aeabcd097763673fa5f1b8900"
+      },
+      "attempt1/COLD_PROGRESS.json": {
+        "bytes": 1295482,
+        "sha256": "39f8ebdc0217fd5d4489eabf79b966b205c503370225eb182e4bb603c59b84be"
+      },
+      "attempt1/COLD_RESULTS.json": {
+        "bytes": 1325519,
+        "sha256": "3c31358581b7e3c396121cc370ff4f8e2da02cfd88deb83ec7a701a903d97b79"
+      },
+      "attempt1/COLD_TRACE.json": {
+        "bytes": 537516,
+        "sha256": "3791ef30325360af1edc51ce72440e178770ac1de8ec4d2729a71cc70982c978"
+      },
+      "attempt1/FIXTURES.json": {
+        "bytes": 58073,
+        "sha256": "a1347d120536af4f9f3f72cb7e69107e29967d260696d551467790f9b25bfd85"
+      },
+      "attempt1/OVERRIDES.json": {
+        "bytes": 166811,
+        "sha256": "199eca5270c6523177fc36408e2480b51d396ffdf97839fd1119e231ca52f900"
+      },
+      "attempt1/RESULT.json": {
+        "bytes": 1657,
+        "sha256": "3c64b8f6a7047b2937358f3012a0410cc67f4f1824eacb3849d30a510d4bd308"
+      },
+      "attempt1/addresses.json": {
+        "bytes": 796,
+        "sha256": "505bf6289fc0cb2c6f0ab6d8138e44f0608600a6b206627c4abfb12d2207d172"
+      },
+      "attempt1/bindings-before-cold.json": {
+        "bytes": 18035,
+        "sha256": "c553c422a3f207b2da1ca1fb2e37a731ce501112d6522ba86cdfc72c3ba5bf9a"
+      },
+      "attempt1/cold-access-manifest.json": {
+        "bytes": 6023,
+        "sha256": "25691ae49642ce4a493b93a00c031ec16dc62a9a8d23011051df36c2aaef9e1f"
+      },
+      "attempt1/cold-summary.json": {
+        "bytes": 1318433,
+        "sha256": "ad4ca29963309b546a12fed66ac9cdff1b0247dd0fb343fdc9979a7b270407d8"
+      },
+      "attempt1/controlled-fixtures.json": {
+        "bytes": 2549,
+        "sha256": "ada9ceaec32676b4b6fc9c6bdb171c4f6d04ebcd0faac320975c03776d4dc0f2"
+      },
+      "attempt1/instances.json": {
+        "bytes": 1516393,
+        "sha256": "6060d646e8d6fcc684c323454daac3341c1fabfffd58222f02fa302c87ae3791"
+      },
+      "attempt1/node/cleanup.json": {
+        "bytes": 140,
+        "sha256": "8d43f70a81698b3c268db721349d33003892d7a9e50b3aac141866efdbeb7132"
+      },
+      "attempt1/node/genesis.json": {
+        "bytes": 3468,
+        "sha256": "a4047049b55aa0fffe3371c89d1fda1c4ab33bac6a24543e1ec92fa4e3a0bb42"
+      },
+      "attempt1/node/process.json": {
+        "bytes": 839,
+        "sha256": "4ea93df4135379e368f14172012021e78cceb119ecd9103ef8bb3d5affcf7f92"
+      },
+      "attempt1/node/rpc-records.json.gz": {
+        "bytes": 2708578,
+        "sha256": "e6711d3bc667014694227689ea04fa58e0aa088358d6af69cf2ce786c53ce55f"
+      },
+      "attempt1/node/socket-ownership.json": {
+        "bytes": 2677,
+        "sha256": "38a19ed9da47b76d570b67ca2ab821c2089bcc95259123dbe42dd76c6c35308c"
+      },
+      "attempt1/source-stage.json": {
+        "bytes": 13664,
+        "sha256": "9ae5177d75b6715c91537effed9deef08259bddde969f49687996285c87c32e1"
+      },
+      "attempt1/state-after-cold.json": {
+        "bytes": 387043,
+        "sha256": "d2015766af071580dc255af20c4747ab6dba09317be088b9f70980453f8a364a"
+      },
+      "attempt1/state-before-cold.json": {
+        "bytes": 387043,
+        "sha256": "d2015766af071580dc255af20c4747ab6dba09317be088b9f70980453f8a364a"
+      },
+      "review/BASELINE.json": {
+        "bytes": 45916,
+        "sha256": "0800e1dd15820141f2a2e3b5eab0996e40fad82f966bce1b03a5ee36ec93fe2b"
+      },
+      "review/COLD_PREFLIGHT.json": {
+        "bytes": 11389,
+        "sha256": "866d2d3977572fffcf196f9946aae790cfa35d38b6c2e9ea57bae642f12d9952"
+      },
+      "review/FINAL_DELTA_REVIEW.json": {
+        "bytes": 876,
+        "sha256": "08314d36920854c0f6e986188c033ea6656eb3faf9d013c613e1845ef342c150"
+      },
+      "review/FINAL_PRE_START_REVIEW.json": {
+        "bytes": 3003,
+        "sha256": "92e9925912c1410bd0f61d9776e8c14378d6b72fd9070bdb8e70c9e56ffd8bcc"
+      },
+      "review/HOST_OBSERVER_INITIAL.json": {
+        "bytes": 432,
+        "sha256": "827038285a399d9cf8dd3a00d203fe2b0d6201d71fa3ed05aee0c3212bfde531"
+      },
+      "review/INDEPENDENT_ACTUAL_REVIEW.json": {
+        "bytes": 3850,
+        "sha256": "2b07fda85193b15c7e30e5c3cb5bacf2506951905ac2e3e3381f89cdda974a25"
+      },
+      "review/INDEPENDENT_EXTRA_REVIEW.json": {
+        "bytes": 718,
+        "sha256": "64d274f6049f514cf2bc287c6cc101f7193602d3ba1969759c694f7fd0080caa"
+      },
+      "review/INDEPENDENT_PLAN.json": {
+        "bytes": 5015,
+        "sha256": "b4eb27d6c262eb0562ee559e75efbddbe1acac846373ab47b914be58b4a910fb"
+      },
+      "review/LINE_ENDINGS.json": {
+        "bytes": 1839,
+        "sha256": "5fc7f77376625190c9c8340ba01c0398785a8b254c26cbde94aa159576d2ba7d"
+      },
+      "review/OFFLINE_BRANCH_PREFLIGHT.json": {
+        "bytes": 1625,
+        "sha256": "e2c97ff4d012fc020ece778c243d55f861484a8f48344705f65207c47bd90a66"
+      },
+      "review/PRESERVATION.json": {
+        "bytes": 24580,
+        "sha256": "2bb761d271ec7951522466ca02287ef38d0f1e0b90f90dbf1d16490a1828a93b"
+      },
+      "review/PRE_START_REVIEW.json": {
+        "bytes": 2041,
+        "sha256": "d95bbeb482503511b6dd322e9fcd5bfcd540d5f4cf06510dd334da1f74ab1b87"
+      },
+      "review/SAFETY_APPROVED.json": {
+        "bytes": 1530,
+        "sha256": "24b638e01d45637dd5ac8e517ffefcb1d11028fbadc7b9e297a3f0fb30e6e69b"
+      },
+      "scripts/approve.py": {
+        "bytes": 1830,
+        "sha256": "f055fc19d751f7a1960e39091fdc0b6fcac54a7f0ee2a2e0d4158a746ebb608a"
+      },
+      "scripts/baseline.py": {
+        "bytes": 3574,
+        "sha256": "596349be51c683f502ef3fc6e01b5a4d39bbc80c8175d1c3f93049568bcb65fd"
+      },
+      "scripts/cold_metadata.py": {
+        "bytes": 31445,
+        "sha256": "464649e30f883d499ae0ea17706dc7f8dc6771f6360584b6e5c222eab8596ed4"
+      },
+      "scripts/independent_actual_review.py": {
+        "bytes": 17132,
+        "sha256": "cc0e1a4fad3376d0bdde15f0058588bd11553d927d8a4b748d381499475c8a3b"
+      },
+      "scripts/preflight_cold.py": {
+        "bytes": 4662,
+        "sha256": "8281cffe43eb49786d5eb0a83f5dd24ce06a23ca6b573703c6793c19f6ff1882"
+      },
+      "scripts/preflight_selective.py": {
+        "bytes": 4666,
+        "sha256": "67190d200bb393594087ecbaab91b3d1f6306086fa9f9b82c4d9947fe9cae23d"
+      },
+      "scripts/reviewed_runner_224562cd.py": {
+        "bytes": 25799,
+        "sha256": "224562cd030adaff3a27eafa845d39167c9b88e71c9fe058a7414e8320d403c6"
+      },
+      "scripts/selective_constructors.py": {
+        "bytes": 25940,
+        "sha256": "b47b34366252ab195fe2253fa02ec5d9e6fc16539f942e4598435e2051d796fc"
+      }
+    }
+  },
+  "production_approved": false,
+  "public_transactions": 0,
+  "sealed": false,
+  "limits": [
+    "Controlled transient metadata snapshots and typed price/custody counterparts, no actual mint/LP/payout acceptance.",
+    "Real price-source read costs, final URI/media, actual provider/OpenSea and complete target fees remain unqualified.",
+    "Adjacent observed semantic brackets are not universal minimum/monotonicity proof.",
+    "No local address/runtime or gas observation adopted into release/configuration/journals."
+  ],
+  "documentation_checks": {
+    "todo_generated_and_check_passed": true,
+    "operator_reference_check": {
+      "functions": 963,
+      "constructors": 40,
+      "ETH_receivers": 13,
+      "examples": 1016,
+      "explanation_gaps": 0,
+      "unannotated_inputs": 0,
+      "unannotated_outputs": 0
+    },
+    "added_relative_links_checked": 29,
+    "whitespace": "Changed-file check preserves original CRLF via explicit cr-at-eol; other whitespace checks retained.",
+    "source_and_historical_preservation_rechecked": true,
+    "new_EVM_or_unchanged_tests_for_docs": 0
+  },
+  "published_artifact_sha256": {
+    "evidence.zip": "80f1644d303813e4e0807a14d574db7db7a1d33698cd1a266de707793123367a",
+    "GAS.json": "b593feafe57a853af50cca665209257b56051098e31e2b4cf50f9c3f347aa912",
+    "INDEPENDENT_REVIEW.json": "84240775508bfc9ce01dcdde12a0bc6b5d42d304ee96c5bb720367070effa9ac",
+    "REVIEW.md": "32d017620d3f4b413d71d6ea6a85fdc666f9a335141d5981b0de9cb52a60c282"
+  }
+}

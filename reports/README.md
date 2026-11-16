@@ -1,5 +1,12 @@
 # Verification evidence
 
+[Selective metadata2 rehearsal](metadata2-rehearsal-20261116/REVIEW.md) records
+five changed creations, three bindings, twelve actual instances, 63 getter/state
+observations and 20 cold metadata cases. Eight receipts use 41,327,001 gas; worst
+padded creation is 14,208,779/32M. Worst tested read is 826,831 gas, or 992,198 with
+20% padding. No compiler/unchanged suites, old-node calls, public transaction or
+seal. Actual source/provider/OpenSea qualification remains open.
+
 [Five-audit reconciliation16November](five-audit-reconciliation-20261116/REVIEW.md)
 checks the latest five substantive report families by Git publication history.
 Current artifact planning and deployment/market evidence checkers are improved;

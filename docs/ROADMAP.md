@@ -3,13 +3,16 @@
 The [five-audit reconciliation](../reports/five-audit-reconciliation-20261116/REVIEW.md)
 fixes current artifact-family planning and offline evidence-admission gaps.
 Next qualify actual release authorities/dependencies/metadata and target fees,
-then current-source constructors/operating workloads with those inputs. Reuse
-unchanged source evidence; earlier44receipt construction gas stays historical.
+then full release construction/operating workloads with those inputs. The
+[targeted metadata2 rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md) now covers five changed constructors,63 binding/state observations and 20 cold
+metadata cases locally. Reuse unchanged source evidence; earlier44receipt
+construction gas stays historical.
 
 The [metadata source milestone](../reports/metadata-lifecycle-fixes-20261116/REVIEW.md)
 closes the agreed lifecycle labels, close/payment/canonical notifications and
 unavailable-art consistency gaps in the [80-case matrix](METADATA_LIFECYCLE.md).
-Next qualify exact current bindings/read gas, content and real OpenSea retrieval,
+Current local bindings/read gas are measured in the targeted rehearsal. Next
+qualify real price-source read cost, final URI/content and OpenSea retrieval,
 plus a matching-host watcher and explicit integration rollout. Source publication
 does not adopt new runtimes, services, journals or sites.
 

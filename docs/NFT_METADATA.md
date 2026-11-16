@@ -1,5 +1,11 @@
 # NFT traits, royalties and live artwork
 
+The [selective metadata2 rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md)
+measures actual current constructor/binding code and 20 cold read snapshots on a
+fresh isolated node. Worst tested read: 826,831 gas (992,198 with 20% padding),
+using a 41-byte URI and full-width ID. Real pricing-source cost, final content,
+provider and OpenSea acceptance remain open; images and economic rights stay.
+
 Current [profile identities](POSITION_V7.md) and [holder-return rights](HOLDER_COLLECTIVE_EXIT.md) apply; historical deployments retain their own rules.
 
 

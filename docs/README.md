@@ -1,5 +1,11 @@
 # Documentation map
 
+For current changed-constructor, binding and cold metadata read measurements,
+use the [selective metadata2 rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md)
+and [operator read procedure](OPERATOR_MANUAL.md#metadata2-construction-and-cold-read-review).
+The earlier full construction capture remains historical; live release
+qualification stays separate.
+
 For the latest audit follow-through, use the [five-audit reconciliation](../reports/five-audit-reconciliation-20261116/REVIEW.md)
 and its single finding index. [Deployment preparation](DEPLOYMENT_PREPARATION.md)
 explains current/historical artifact selection and offline evidence checks.

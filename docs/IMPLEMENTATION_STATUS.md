@@ -1,5 +1,13 @@
 # Feature and evidence reference
 
+The [isolated metadata2 rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md)
+verifies five changed normal creations, three bindings, twelve actual instances
+and 63 getter/state observations. Nineteen valid cold snapshots and one exact
+nonexistent-token rejection pass. Worst padded constructor: 14,208,779/32M;
+worst tested read: 826,831 gas, or 992,198 with 20% padding. No production source
+changes, unchanged suite/compiler reruns or environment adoption. Real source,
+provider and OpenSea read costs remain separate.
+
 [Five recent audit families](../reports/five-audit-reconciliation-20261116/REVIEW.md)
 are reconciled against current source, with provenance and remaining actions in
 one finding index. Current-build unsigned preparation, complete deployment
@@ -28,7 +36,7 @@ schema17/mint2/V10/execution1/LP3 construction, exact resolvable constructor
 payloads, original size gates and ordered binding/setup review. Missing inputs
 and factory-discovered addresses remain explicit. The separate
 [local unsealed rehearsal](../reports/local-deployment-rehearsal-20261115/REVIEW.md)
-verifies current constructors/bindings and local gas under controlled dependencies,
+verifies its original constructor/binding family and local gas under controlled dependencies,
 with its original recording limitation retained. Actual release construction,
 live dependencies, target fees and independent approval remain open.
 
@@ -202,7 +210,7 @@ one-method wire producer and56API methods have separate source-scoped evidence;
 do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
 independent approval remain open. [Verification](../reports/fee-flow-audit-20261107/VERIFICATION.md).
 
-Reviewed 2026-11-13. This records implemented source, not another task list.
+Reviewed 2026-11-16. This records implemented source, not another task list.
 [Todo](../TODO.md) owns work; [release approval](RELEASE_CHECKLIST.md) remains
 **NOT APPROVED**. Existing contracts, services, websites and journals are unchanged.
 

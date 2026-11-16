@@ -1,0 +1,303 @@
+{
+  "scope": "Controlled local metadata2 selective rehearsal, not target-chain complete fees",
+  "constructors": {
+    "bind:migration": {
+      "estimate": 58475,
+      "padded": 73094,
+      "used": 58475
+    },
+    "bind:nft": {
+      "estimate": 57370,
+      "padded": 71713,
+      "used": 57370
+    },
+    "bind:nft_canonical": {
+      "estimate": 58950,
+      "padded": 73688,
+      "used": 58950
+    },
+    "create:access": {
+      "estimate": 10224549,
+      "padded": 12780687,
+      "used": 10224549
+    },
+    "create:metadata_renderer": {
+      "estimate": 5255955,
+      "padded": 6569944,
+      "used": 5255955
+    },
+    "create:migration": {
+      "estimate": 9248711,
+      "padded": 11560889,
+      "used": 9248711
+    },
+    "create:nft": {
+      "estimate": 11367023,
+      "padded": 14208779,
+      "used": 11367023
+    },
+    "create:nft_canonical": {
+      "estimate": 5055968,
+      "padded": 6319960,
+      "used": 5055968
+    }
+  },
+  "total_actual_receipt_gas": 41327001,
+  "metadata_reads": [
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 826831,
+        "nonmatching_gas": 826830
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 826831,
+      "id": "dormant_unrevealed",
+      "padded_gas": 992198,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 507394,
+        "nonmatching_gas": 507393
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 507394,
+      "id": "dormant_revealed",
+      "padded_gas": 608873,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 612020,
+        "nonmatching_gas": 612019
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 612020,
+      "id": "activated",
+      "padded_gas": 734424,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 611528,
+        "nonmatching_gas": 611527
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 611528,
+      "id": "enhanced_boundary",
+      "padded_gas": 733834,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 615043,
+        "nonmatching_gas": 615042
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 615043,
+      "id": "singularity_boundary",
+      "padded_gas": 738052,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 574153,
+        "nonmatching_gas": 574152
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 574153,
+      "id": "unavailable_price_guard",
+      "padded_gas": 688984,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 553560,
+        "nonmatching_gas": 553559
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 553560,
+      "id": "parked",
+      "padded_gas": 664272,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 636591,
+        "nonmatching_gas": 636590
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 636591,
+      "id": "exit_started_bucket_open",
+      "padded_gas": 763910,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 563585,
+        "nonmatching_gas": 563584
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 563585,
+      "id": "exit_closed_unallocated",
+      "padded_gas": 676302,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 567440,
+        "nonmatching_gas": 567439
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 567440,
+      "id": "exit_allocated_not_ready",
+      "padded_gas": 680928,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 567228,
+        "nonmatching_gas": 567227
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 567228,
+      "id": "exit_payable",
+      "padded_gas": 680674,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 566128,
+        "nonmatching_gas": 566127
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 566128,
+      "id": "exit_paid",
+      "padded_gas": 679354,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 565831,
+        "nonmatching_gas": 565830
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 565831,
+      "id": "exit_exact_zero",
+      "padded_gas": 678998,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 526952,
+        "nonmatching_gas": 526951
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 526952,
+      "id": "terminal_dormant",
+      "padded_gas": 632343,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 610753,
+        "nonmatching_gas": 610752
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 610753,
+      "id": "replacement_preparing",
+      "padded_gas": 732904,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 544527,
+        "nonmatching_gas": 544526
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 544527,
+      "id": "canonical_frozen",
+      "padded_gas": 653433,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 545524,
+        "nonmatching_gas": 545523
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 545524,
+      "id": "canonical_importing",
+      "padded_gas": 654629,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 632550,
+        "nonmatching_gas": 632549
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 632550,
+      "id": "canonical_retired",
+      "padded_gas": 759060,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "adjacent_reference_transition": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 547416,
+        "nonmatching_gas": 547415
+      },
+      "estimate_semantics_match": true,
+      "estimated_gas": 547416,
+      "id": "canonical_cancelled",
+      "padded_gas": 656900,
+      "padded_semantics_match": true,
+      "status": "controlled_read_measured"
+    },
+    {
+      "id": "invalid_nonexistent",
+      "status": "expected_exact_revert"
+    }
+  ],
+  "URI_utf8_bytes": 41,
+  "token_decimal_digits": 78,
+  "real_price_source_gas_qualified": false,
+  "production_approved": false
+}

@@ -224,7 +224,9 @@ used, with a 14,172,289 padded limit. Total receipt gas was 141,382,621 across m
 blocks, not one transaction or block. These are controlled local measurements,
 not reusable production transaction limits or ETH cost estimates. That run used
 the historical manual-reference family. Five later metadata objects changed;
-current-family constructor execution and actual target fees remain unqualified.
+the [selective metadata2 rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md) now verifies those five current constructors and required children locally.
+Final public release construction/dependencies and actual target fees remain
+unqualified.
 Do not replay44transactions merely to refresh a report date; qualify changed
 constructors and real release inputs through an authorized targeted campaign.
 
@@ -264,6 +266,34 @@ try to resume a partial rehearsal. Shutdown terminates only the child this run
 created; it never kills Anvil by name or administers the existing node. The
 [source-scoped report](../reports/local-deployment-rehearsal-20261115/REVIEW.md)
 records actual receipts, gas, verification and remaining qualifications.
+## Selective metadata2 local evidence
+
+The [current selective rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md)
+executes only the five changed top-level normal constructors: AccessController,
+NFTMetadata, Migration, NFT and NFTCanonical. Seven necessary constructor-created
+children yield 12 real instances; three Access module bindings and 63 expected
+getter/state observations are reconciled. Full initcode/runtime limits remain
+49,152/24,576bytes. Worst full 25%padded constructor14,208,779 fits 32M; eight actual
+receipts use41,327,001 gas total. These are local costs, not Nitro complete fees.
+
+Nineteen valid cold `tokenURI` snapshots plus a nonexistent-token rejection use
+actual normal code, ten distinct controlled read counterparts and temporary
+storage overlays. Full-width IDs and a 41-byte test URI yield worst 826,831 gas,
+992,198 with 20% padding. All estimate/padded responses match the exact reference;
+the cold trace records SLOAD 2100. No preset 470,966 warmed observation, fixture
+estimate or successful-but-degraded response qualifies a production read budget.
+Actual Oracle/source cost, final URI, provider/timeouts and OpenSea need their
+own read-only qualification with expected semantic fields.
+
+The source-frozen one-campaign scripts and captures are archival report evidence,
+not a new public deployment CLI. The older full-graph checker still requires its
+original 39-instance/112-observation capture; never weaken it to accept this
+different 12-instance/63-observation scope. Both families retain exact pins.
+The new node is stopped and the partial graph stays unsealed/bootstrap-owned/
+unminted. Local addresses/fixture runtime pins must never populate release
+inventories or existing journals. No service/watcher/server restart is needed
+for the report or documentation update; no running profile is adopted.
+
 ## Remaining deployment requirements
 
 The native Registry's chain, fixed ZZZ and venue address constants must match

@@ -1,0 +1,119 @@
+{
+  "actual": {
+    "status": "PASS_SCOPED_INDEPENDENT_EVIDENCE_REVIEW",
+    "source_hashes": {
+      "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\metadata2-rehearsal-20261116-6626d68\\cold_metadata.py": "464649e30f883d499ae0ea17706dc7f8dc6771f6360584b6e5c222eab8596ed4",
+      "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\metadata2-rehearsal-20261116-6626d68\\selective_constructors.py": "b47b34366252ab195fe2253fa02ec5d9e6fc16539f942e4598435e2051d796fc",
+      "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\scripts\\rehearse-local-deployment.py": "7200f6f4cd03738d71a4024efa18be6490f60344553197ec8f9d4bdb6ceed206",
+      "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d",
+      "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\deployment_plan.py": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df"
+    },
+    "actual_wire_responses": 1663,
+    "actual_receipts": 8,
+    "actual_top_level_constructions": 5,
+    "actual_internal_instances": 7,
+    "actual_instances": 12,
+    "binding_reads_checked": 63,
+    "normal_initcode_runtime_and_CREATE_addresses_independently_reconciled": true,
+    "constructor_gas": [
+      {
+        "label": "create:access",
+        "gas_used": 10224549,
+        "estimate": 10224549,
+        "padded": 12780687
+      },
+      {
+        "label": "create:metadata_renderer",
+        "gas_used": 5255955,
+        "estimate": 5255955,
+        "padded": 6569944
+      },
+      {
+        "label": "create:migration",
+        "gas_used": 9248711,
+        "estimate": 9248711,
+        "padded": 11560889
+      },
+      {
+        "label": "bind:migration",
+        "gas_used": 58475,
+        "estimate": 58475,
+        "padded": 73094
+      },
+      {
+        "label": "create:nft",
+        "gas_used": 11367023,
+        "estimate": 11367023,
+        "padded": 14208779
+      },
+      {
+        "label": "bind:nft",
+        "gas_used": 57370,
+        "estimate": 57370,
+        "padded": 71713
+      },
+      {
+        "label": "create:nft_canonical",
+        "gas_used": 5055968,
+        "estimate": 5055968,
+        "padded": 6319960
+      },
+      {
+        "label": "bind:nft_canonical",
+        "gas_used": 58950,
+        "estimate": 58950,
+        "padded": 73688
+      }
+    ],
+    "total_receipt_gas": 41327001,
+    "worst_padded_constructor": {
+      "label": "create:nft",
+      "gas_used": 11367023,
+      "estimate": 11367023,
+      "padded": 14208779
+    },
+    "valid_cold_scenarios": 19,
+    "exact_nonexistent_negative": 1,
+    "cold_RPCs": 766,
+    "first_SLOAD_gas_cost": 2100,
+    "cold_estimate_and_20pct_padded_calls_match_exact_full_reference": true,
+    "worst_cold_estimate": {
+      "id": "dormant_unrevealed",
+      "estimate": 826831,
+      "padded": 992198,
+      "adjacent": {
+        "lower_response_kind": "rpc_revert_or_failure",
+        "matching_gas": 826831,
+        "nonmatching_gas": 826830
+      }
+    },
+    "actual_account_snapshot_count": 23,
+    "actual_before_after_state_root_and_code_storage_nonce_balance_unchanged": true,
+    "owned_node_stopped_recorded": true,
+    "no_additional_node_RPC_EVM_or_tests_executed": true,
+    "production_approved": false,
+    "release_ready": false,
+    "limits": [
+      "Partial transient metadata read snapshots, not reachable sealed mint states or economic operation verification.",
+      "Cheap typed custody/price doubles exclude actual dual-feed/market/provider/OpenSea read gas.",
+      "Cold binary brackets are adjacent observed semantic transitions, not a global gas-minimum/monotonicity proof.",
+      "Constructed local addresses and runtimes are evidence only; not production inventory or legacy-environment adoption."
+    ]
+  },
+  "closure": {
+    "status": "PASS",
+    "constructor_and_binding_estimates_bound_to_raw_wire": 8,
+    "exact_actual_transaction_objects_bound_to_raw_wire": 8,
+    "exact_cold_estimates_bound_to_raw_wire": 19,
+    "actual_genesis_fixture_code_matches_snapshot": 10,
+    "observed_owned_pid": 16224,
+    "observed_fresh_port": 64112,
+    "owned_pid_currently_absent": true,
+    "fresh_port_no_listener": true,
+    "native_host_inventory_only_no_RPC": true,
+    "public_or_old_node_calls": 0,
+    "host_observer_initial_failure": "HOST_OBSERVER_INITIAL.json",
+    "raw_bindings_stage_not_repeated": true,
+    "listener_detection": "locale-independent exact fresh local address/port and zero remote endpoint; no English state label assumption"
+  }
+}

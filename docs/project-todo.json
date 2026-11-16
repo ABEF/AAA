@@ -1495,7 +1495,7 @@
           "id": "metadata-ops",
           "status": "progress",
           "title": "Publish artwork & operate metadata refresh",
-          "text": "Metadata2 lifecycle/payment/successor presentation, immediate bounded refresh hooks and opt-in renderer-pinned watcher are implemented. Four artwork paths and all rights remain; publish verified content and qualify actual matching-host/OpenSea refresh and integration rollout.",
+          "text": "Metadata2 lifecycle/settlement labels, notifications and opt-in watcher are implemented;20 controlled cold read cases and changed constructor/binding code now pass locally. Four art paths/rights remain. Qualify actual source-call gas, final content, provider/OpenSea cache refresh and matching-host integration rollout.",
           "href": "docs/ARTWORK_PUBLICATION.md",
           "acceptance": [
             "Stage live oracle/NAV thresholds, downward evolution and terminal holder-exit/stale unavailable labels; claims and migration must remain independent of metadata price reads.",
@@ -1512,7 +1512,8 @@
             "Collection notifications occur at exit start/close/Ready and committed preparation/canonical transitions; successful principal payment notifies its NFT. Distinct permanent closed-Dormant, pending/paid principal and verified successor labels preserve all NFT/royalty rights. New focused evidence is separate from80static scenarios and historical tests.",
             "Optional metadata_refresh.lifecycle_version2 authenticates accounting7, exact renderer/runtime/version and durable identity; legacy0 remains. Website source uses labelled unavailable fallback and retains per-target confirmed-artwork gates. No public signer/config/site/service/Anvil/journal change or market qualification.",
             "M8 remains: actual Robinhood/OpenSea collection/onboarding/content/read gas, eventual JSON/media/cache result and matching-host watcher operating qualification. Numeric read snapshots/notification receipts are not price freshness or external acknowledgement.",
-            "[Five-audit reconciliation](reports/five-audit-reconciliation-20261116/REVIEW.md) confirms M1–M4/M6 implementation and retained M7 rights using exact unchanged source/accepted evidence; M5 freshness/adoption and M8 real OpenSea/content/host acceptance remain explicit. Current source links point to the accepted website2a52869; both hosted environments remain unchanged."
+            "[Five-audit reconciliation](reports/five-audit-reconciliation-20261116/REVIEW.md) confirms M1–M4/M6 implementation and retained M7 rights using exact unchanged source/accepted evidence; M5 freshness/adoption and M8 real OpenSea/content/host acceptance remain explicit. Current source links point to the accepted website2a52869; both hosted environments remain unchanged.",
+            "[Metadata2 cold-read milestone](reports/metadata2-rehearsal-20261116/REVIEW.md):19 valid snapshots plus nonexistent-token rejection pass using actual normal code,78-digit ID/41-byte URI and explicit temporary controlled dependencies. All estimated/full 20%padded calls match reference JSON; worst 826,831/992,198 gas, firstSLOAD 2100. All23account states and51 overlay slots/head remain unchanged. Actual dual-feed/source gas, final URI/content and provider/OpenSea/watch-host acceptance remain unqualified; no budget/profile adoption."
           ]
         },
         {
@@ -1625,7 +1626,7 @@
           "id": "deployment-initcode",
           "status": "progress",
           "title": "Qualify exact constructor arguments and deployment size",
-          "text": "The offline planner and separate isolated local constructor/binding rehearsal cover fresh schema17/mint2/V10/execution1/LP3 using exact accepted normal objects. Local receipts, discovered helper links and deployment gas are measured without sealing and with controlled external dependencies. Actual release inputs, live constructor/dependency/runtime bindings, complete target-chain gas/fees and independent approval remain unqualified.",
+          "text": "The current metadata2 five changed constructors, three bindings and12 actual instances are verified in a selective isolated local rehearsal, reusing accepted normal objects. Earlier full-graph evidence retains its original source. Final release inputs/dependencies/runtime bindings, complete target-chain gas/fees and independent approval remain unqualified.",
           "href": "docs/DEPLOYMENT_PREPARATION.md",
           "acceptance": [
             "Historical [adaptable-policy build](reports/adaptable-policy-20261031/VERIFICATION.md) passes43normal gates at52production/31dependency sources: Vault23941runtime(635margin), Budget24339(237), Migration24556(20), NFT22192(2384). Earlier42-gate/905/286 and14/37/59-byte margins are historical source scopes; exact constructors, deployed dependencies and target gas remain qualification work.",
@@ -1643,7 +1644,7 @@
             "The [isolated local construction rehearsal](reports/local-deployment-rehearsal-20261115/REVIEW.md) verifies current normal constructors, module/helper binding order and local deployment gas on a new owned loopback chain with normal size limits. No existing Anvil, journal, site, service, public signing or sealing is touched. Controlled dependency calls/local gas do not qualify native markets, actual public constructor costs or complete fees; exact receipts/source scope and final unsealed state remain required.",
             "[Five-audit follow-through](reports/five-audit-reconciliation-20261116/REVIEW.md) restores current source planning with closed trusted metadata2-20261116 artifacts; original manual-reference-20261115 remains separately authenticated. Exact100source/39instance/48size offline review stays unsigned and unapproved. Unknown profiles/artifact mixing fail before caller-controlled build reads; no source-drift fallback.",
             "The current local evidence checker requires the exact112distinct expected getter/state observations, closed39constructor graph/arguments/parents and complete intended RPC/send/impersonation evidence. Inert carrier output is derived from trusted ledger bytes. Original44receipt data replays offline with the documented legacy preflight alias limitation. Preflight build refusal consumes no new rehearsal directory. No new node/deployment/gas campaign or old suite runs.",
-            "Five metadata objects changed after the original local construction receipt set; its gas/runtime observations remain historical. Qualify current changed constructors, final actual arguments/dependencies and complete target fees before public deployment. Do not mark this broad task complete from an offline plan or archived receipt replay."
+            "[Selective metadata2 rehearsal](reports/metadata2-rehearsal-20261116/REVIEW.md): five changed normal creations/three bindings/12 actual instances/63 expected getter-state observations pass on one new owned loopback node. Eight receipts use41,327,001 gas; worst full 25%padded constructor14,208,779/32M. Exact initcode/creator/trace/runtime proofs and unsealed zero-NFT state are retained; no unchanged top-level/full-suite/compiler rerun. Final actual release inputs, dependencies and complete target fees remain open."
           ]
         }
       ]

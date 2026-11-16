@@ -1,5 +1,14 @@
 # PoPL current project context
 
+The [isolated metadata2 rehearsal](reports/metadata2-rehearsal-20261116/REVIEW.md)
+verifies the five changed normal constructors, three bindings and twelve actual
+instances on a new owned loopback chain. All 20 cold metadata cases pass; worst
+tested read is 826,831 gas (992,198 with 20% padding), using controlled dependencies,
+a 41-byte URI and full-width ID. Real pricing/provider/OpenSea costs remain open.
+The node is stopped/unsealed; all 61 Solidity sources, old evidence, existing
+chains/journals, sites, signer and paused heartbeat remain unchanged. Never adopt
+local addresses/runtime pins or fixture read budgets as production configuration.
+
 The [five-audit reconciliation](reports/five-audit-reconciliation-20261116/REVIEW.md) separates resolved source work, accepted
 limits and remaining release evidence. The unsigned deployment planner now
 defaults to the exact trusted metadata2-20261116 build; explicit historical
@@ -10,7 +19,7 @@ summary/candidate flags while keeping approval false. Current callable counts
 and metadata-source links are corrected. All61Solidity sources,114selected
 historical report files, four unrelated dirty files, websites/signer/configs,
 Anvil/journals and paused heartbeat remain unchanged. Only affected/new offline
-checks run; actual current construction/gas, independent markets/services,
+checks run; final release construction/fees, independent markets/services,
 OpenSea/operations and independent audit remain open.
 
 The [metadata lifecycle fixes](reports/metadata-lifecycle-fixes-20261116/REVIEW.md) implement schema2 lifecycle/payment/successor

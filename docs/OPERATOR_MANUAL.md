@@ -591,9 +591,10 @@ Current planning defaults to `metadata2-20261116`; legacy
 the captured closed build identity, and admits an absent ID only with the original
 legacy pins. Neither a label nor an operator-selected `--build` directory can
 replace those trusted hashes. Historical planning also needs its old exact source
-checkout; old evidence replay does not. New metadata bytecode needs its own actual
-constructor/gas qualification before release. No compiler rerun is required merely
-to inspect accepted artifacts. [Full procedure](DEPLOYMENT_PREPARATION.md).
+checkout; old evidence replay does not. The [targeted metadata2 run](../reports/metadata2-rehearsal-20261116/REVIEW.md)
+now supplies five changed local constructor/binding and cold-read measurements.
+Final release dependencies, actual source-call cost and complete fees still need
+qualification. No compiler rerun is required merely to inspect accepted artifacts. [Full procedure](DEPLOYMENT_PREPARATION.md).
 
 The market checker accepts one dated capture schema and recomputes market rows,
 fees, quotes, gas, source/pass flags and the deliberately null/empty candidate.
@@ -628,6 +629,46 @@ point this workflow at an existing node, journal, website or public endpoint;
 controlled external dependencies do not qualify live venue/SeaDrop operation or
 Robinhood deployment fees. Follow the guide for output preservation, shutdown,
 required final reads and separate release requirements.
+
+### Metadata2 construction and cold-read review
+
+Use the [selective local evidence](../reports/metadata2-rehearsal-20261116/REVIEW.md)
+and [owning procedure](DEPLOYMENT_PREPARATION.md#selective-metadata2-local-evidence)
+for current metadata bytecode. Five creations/three bindings produce 12 real
+instances and 63 getter/state checks. Access stays unsealed/bootstrap-owned with
+no minted NFT. The test fixtures do not configure a live protocol.
+
+For a future reviewed deployment, verify these actual reads before metadata use:
+
+| Read | Expected binding/result | Purpose |
+| --- | --- | --- |
+| `NFTMetadata.access()` and `METADATA_LIFECYCLE_VERSION()` | Actual Access;2 | Verify renderer identity |
+| `NFT.access()` and `metadataRenderer()` | Same Access; reviewed renderer | Verify fixed NFT renderer |
+| `Access.module(keccak256("ZZZNFT"))` | Actual NFT | Verify collection binding |
+| `Access.module(keccak256("ZZZNFTCanonical"))`, `NFTCanonical.access()` and `nft()` | Actual lens; same Access/NFT | Verify lifecycle lens |
+| `Access.module(keccak256("ZZZMigration"))`, `Migration.validation()` | Actual Migration; constructor child | Verify settlement reader |
+| `NFT.royaltyRewards()`, ledger `nft()`/`canonicalController()` | Actual ledger; same NFT/Access | Verify royalty reader |
+| `NFT.claimRouter()`, router `nft()`/`royalties()` | Actual router; same NFT/ledger | Verify fixed claim links |
+
+These reads select no authority, create no contracts and grant no seal/deployment
+permission. Use exact reviewed actual addresses and runtime pins, not addresses
+from the disposable rehearsal. The review hash/manifest is not an authorization.
+
+For a cold metadata review, encode `NFT.tokenURI(id)` using the full uint256 ID
+and pin the confirmed block. Run separate read-only `eth_call`s with no access
+list; apply the provider's reviewed call-gas/timeout limits. Decode JSON and check
+`metadata_schema`, snapshot block/time, intended valuation availability/tier,
+lifecycle and principal status. A successful RPC alone does not prove a healthy
+priced read. Explicit unavailable/Parked fallback and `LP exited` are valid only
+for their corresponding states; no Dormant or paid status may be invented.
+
+Current controlled worst is 826,831 gas (unrevealed),992,198 with 20% padding, at a
+41-byte test URI/full-width ID. This is an observed local budget, **not a default
+change, universal minimum, real Oracle/feed cost or OpenSea limit**. Select final
+URI/content and qualify actual source/provider/marketplace responses before
+adoption. Read calls need no wallet signature or chain transaction gas payment.
+Provider computation/billing may still apply. Changing only docs requires no
+service or keeper restart; deploying/adopting new runtimes is separately reviewed.
 
 ### Fixed ZZZ setup order
 
