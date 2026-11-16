@@ -1,5 +1,13 @@
 # PoPL current project context
 
+The [metadata lifecycle matrix](docs/METADATA_LIFECYCLE.md) defines80 cases before further implementation:
+fixed identity, current-NAV tiers, outages, LP management, terminal payout phases,
+royalties, canonical replacement, media/cache and recovery. Current terminal
+stage is LP exited using Activated art, not Dormant; royalties remain. Static
+review identifies close-to-allocation notification lag, paid/unpaid wording,
+closed-Dormant/canonical labels and numeric/cache presentation decisions.
+No behavior/code/artwork change or test execution; OpenSea/host acceptance is open.
+
 [16 November real-market refresh](reports/real-market-refresh-20261116/REVIEW.md) records39 bounded read-only requests.
 Chainlink proxies still share one ETH aggregator; Pyth is stale and API3 read
 reverts. No independent ETH/ZZZ source pair or complete route is qualified.

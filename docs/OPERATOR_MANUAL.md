@@ -2880,6 +2880,33 @@ signer, deployment or service rollout is authorized. Actual OpenSea
 custom-drop acceptance, exact fee/payers, VRF and operating gas remain
 unqualified.
 
+## Metadata lifecycle and marketplace recovery
+
+Use the [complete scenario matrix](METADATA_LIFECYCLE.md) before changing metadata
+behavior. Separate the current tier, known/unavailable valuation, LP closed,
+unpaid/paid principal and retained royalties. Exited activated NFTs currently
+show **LP exited** with Activated art, not Dormant. Never reset royalty weights,
+reopen LP or resend a financial operation to repair an image.
+
+| Situation | Read / action | Verify and limitation |
+| --- | --- | --- |
+| Contribution confirmed, image looks old | Read `NFT.tokenURI(id)`, `NFT.currentLPValue(id)` and `NFT.evolution(id)` at a confirmed block. | Check the original successful receipt and actual LP/shares first. Pending/failed actions do not justify an upgrade. |
+| Correct on-chain JSON, marketplace still old | Anyone may call `NFT.refreshMetadata(id)`; example `refreshMetadata(EXACT_HASHED_TOKEN_ID)`. | Event-only, caller pays gas; no price/financial mutation. OpenSea still chooses ingestion/cache timing. |
+| Several NFTs need a refresh | `NFT.refreshMetadataRange(firstOrdinal,lastOrdinal)`; example `refreshMetadataRange(1,50)` only if at least50 minted. | Maximum50 inclusive mint ordinals, not token IDs. Check each actual ID and notification receipt; rotate through remaining ordinals. |
+| Parked/price-unavailable NFT looks downgraded | Read valuation availability and custody status. | Current on-chain art is labelled Activated fallback; refresh cannot repair a failed price source. Do not call it Dormant or paid principal. |
+| LP exit closed, holder not yet paid | Read `Vault.nftStatus(id)` and `Migration.principalOf(id)` plus `exitPhase()`. | LP exited means principal left LP. Allocation, paid flag and remaining ETH/ZZZ are separate; current metadata omits settlement detail. |
+| Canonical replacement or permanently closed Dormant collection | Verify canonical state/successor and exact contract identity before presentation. | Current JSON has identified lifecycle gaps. Keeper blocks new notifications in canonical non-operating states; permissionless NFT event-only refresh remains separate and does not repair the labels. |
+
+The optional watcher is disabled by default. It scans reveal, tier and valuation
+availability, not every numeric NAV movement, and records confirmed notification
+receipts rather than OpenSea acknowledgement. At1000NFTs/50per scan, at least20
+scan passes plus receipt/budget/priority delays are needed. Rehearse the actual
+host/collection before promising a latency. Current OpenSea documentation offers
+[ERC-4906 updates](https://docs.opensea.io/docs/updating-metadata) and a
+[queued refresh API](https://docs.opensea.io/reference/refresh_nft_metadata);
+no API client/key, service rollout or automatic marketplace-completion monitor
+is supplied by this review. Existing pause/refresh/canonical permissions remain.
+
 ## Mint and metadata
 
 For accounting7, write randomness policy through **ProtocolPolicy**, not the NFT.

@@ -1,5 +1,11 @@
 # Engineering roadmap
 
+Before further metadata changes, use the [80-case lifecycle matrix](METADATA_LIFECYCLE.md).
+Prioritize truthful terminal/settlement/canonical presentation and bounded
+notifications; agree terminal/unavailable art and numeric-cache expectations
+separately. Then verify changed transitions and actual marketplace refresh.
+Existing artwork, rights, sources and service settings remain unchanged.
+
 The [latest market milestone](../reports/real-market-refresh-20261116/REVIEW.md) refreshes
 prices, known pool states, useful-size directional diagnostics and the previously
 unscanned inventory interval. Next resolve independent ZZZ paths, an operating

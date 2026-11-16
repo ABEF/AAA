@@ -1,5 +1,12 @@
 # Feature and evidence reference
 
+The [metadata lifecycle inventory](METADATA_LIFECYCLE.md) now defines80 cases and
+statically checks the current contract/keeper/API/source10 presentation. Existing
+LP-exited/royalty behavior is confirmed by inspection, with notification timing,
+settlement/canonical labels and cache-freshness gaps explicitly recorded.
+This is documentation and source review, not new implementation or fresh runtime/
+OpenSea acceptance. No unchanged suites or live environments are touched.
+
 [16 November real-market evidence](../reports/real-market-refresh-20261116/REVIEW.md)
 adds39 actual read-only requests, exact source/block pins, six directional quote
 diagnostics and bounded pool discovery with offline independent verification.

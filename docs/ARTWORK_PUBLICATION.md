@@ -41,6 +41,18 @@ Do not select old reference JSON merely because the image hashes match; prepare
 the bundle from the reviewed source revision. This source correction is not an
 upload, CID, pin, immutable-base-URI decision or marketplace refresh verification.
 
+## Lifecycle rendering acceptance
+
+Use the [80-case lifecycle matrix](METADATA_LIFECYCLE.md), not just the four
+evolution filenames. Verify unrevealed, unavailable, parked, LP-exited,
+unpaid/paid principal and predecessor/successor presentation against the exact
+profile and marketplace. Current LP-exited metadata reuses Activated art; no
+new terminal image has been approved or added; a distinct image needs a compatible
+renderer mapping as well as reviewed content before immutable binding/seal.
+Existing preflight rejects empty/structurally invalid roots and missing/unreviewed
+path manifests; actual CID/DAG/content validation requires independent review. Access sealing alone
+is not that review. An emitted ERC-4906 event is not confirmed media retrieval.
+
 ## Publication procedure
 
 Track completion in the [metadata task](../TODO.md#task-metadata-ops). These are procedural instructions, not a second task-status list.

@@ -3,6 +3,20 @@
 Current [profile identities](POSITION_V7.md) and [holder-return rights](HOLDER_COLLECTIVE_EXIT.md) apply; historical deployments retain their own rules.
 
 
+## Lifecycle inventory before further changes
+
+The [80-case lifecycle matrix](METADATA_LIFECYCLE.md) separates fixed traits,
+current-NAV tiers, valuation availability, LP lifecycle, settlement and marketplace
+caches. It statically checks activation/growth, market-driven upgrades/downgrades,
+one/two-position operations, parking, partial/full exit, payout/transfer races,
+canonical replacement, publication and restart. No new tests or behavior changes
+are claimed. Exit remains **LP exited**, using Activated art; Dormant means never
+activated. Contract notification timing, paid/unpaid wording, terminal Dormant
+collection state and predecessor/successor presentation have explicit gaps.
+Watcher success is an on-chain notification, not proof OpenSea has updated.
+The matrix records the decisions and missing marketplace qualification before
+implementation; the sole [metadata task](../TODO.md#task-metadata-ops) owns progress.
+
 ## Fixed royalty trait versus activation
 
 Revealed metadata always reports the fixed rarity weight (Commun1 / Rare2 /

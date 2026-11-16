@@ -46,7 +46,8 @@ do not update existing contracts, services, journals or websites. Public signing
 remains disabled; the shared browser signer stays Anvil-only.
 
 [Project Todo](TODO.md) | [Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) |
-[Operator manual](docs/OPERATOR_MANUAL.md) | [Release approval](docs/RELEASE_CHECKLIST.md)
+[Operator manual](docs/OPERATOR_MANUAL.md) | [Metadata lifecycle](docs/METADATA_LIFECYCLE.md) |
+[Release approval](docs/RELEASE_CHECKLIST.md)
 
 The [current project review](reports/whole-project-review-20261111/REVIEW.md)
 records implemented repairs and decisions still needing review. The fresh
