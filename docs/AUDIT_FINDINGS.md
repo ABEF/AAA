@@ -1,17 +1,16 @@
 # Consolidated audit findings and evidence
 
-The [isolated 1,000-NFT history rehearsal](../reports/history-scale-rehearsal-20261116/REVIEW.md) verifies exact earnings, claims,
-conversions and recovery across three controlled accounting7/mint2 epochs:
-900 active/100 dormant NFTs, the full raw 24-hour window and nonzero LP phase.
-All source/restored rows and checkpoint/review bytes match; bounded wallet
-reads cover all 1,000 NFTs separately in each copy (72 chunks per copy).
-The default 4,096-call checkpoint refusal is retained. The positive offline
-build/import uses the existing explicit 65,536-call allowance, with defaults,
-HTTP limits, codecs and all production sources unchanged. This is controlled
-local SQL/replay/recovery evidence, not provider/EVM, maximum-lifetime, host or
-off-host qualification. Earlier checkpoint/import/backup/deployment planners
-remain unsigned and unadopted. Existing chains, databases, journals, signer,
-sites/services and the user-paused heartbeat are unchanged.
+The [unsigned pre-seal planner](../reports/preseal-planner-20261116/REVIEW.md) now prepares twelve ordered configuration
+families against the trusted current ABI. Unknown own/dependent inputs retain
+blocked/null calldata; actual bootstrap/code/state and all readiness/approval
+flags stay unverified/false. It includes the separate human-price orientation
+write, NFT-forwarded SeaDrop setup, declared native-pin/18-decimal consistency
+checks and explicit operating-stop diagnostics. No source contract, safeguard,
+default, signer, existing chain/DB/journal, site/service or paused heartbeat
+changes. There is no RPC/signing/deployment/sealing/adoption path. Earlier
+[1,000-NFT recovery evidence](../reports/history-scale-rehearsal-20261116/REVIEW.md) retains its finite controlled scope. Actual release
+inputs, market/provider/VRF/OpenSea/fees/operating acceptance and independent
+approval remain open; static preparation never supplies those approvals.
 
 The [16 November whole-project audit](../reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
 state-file and website-profile gaps and reconciles current guidance. Production

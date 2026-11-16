@@ -202,3 +202,10 @@ Follow [original-result recovery](MINT_INTEGRATION_QUALIFICATION.md) for provide
 outages. LP claims, royalties, transfers and independent maintenance keep their
 own existing guards. No public deployment, signing or service change is
 authorized by this procedure.
+
+The separate [unsigned pre-seal configuration planner](PRESEAL_CONFIGURATION.md) now
+validates/orders the twelve configuration families using the trusted current
+ABI, while leaving unknown inputs blocked and live-state/authority/readiness
+unverified. It includes human-price orientation and fixed NFT-forwarded
+SeaDrop setup. Constructor/sequence tools and old evidence stay unchanged;
+no configuration is installed, no seal call prepared and no release approved.

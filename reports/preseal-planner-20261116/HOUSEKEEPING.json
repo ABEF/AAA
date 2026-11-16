@@ -1,0 +1,13 @@
+{
+  "generated_todo_consistent": true,
+  "evidence_files_verified": 38,
+  "wire_members_verified": 5,
+  "local_links_checked": 3029,
+  "missing_links": [],
+  "operator_anchor": "prepare-unsigned-pre-seal-configuration",
+  "published_nullable_example_valid": true,
+  "tested_source_pins_unchanged": true,
+  "protected_dirty_files_unchanged": true,
+  "tests_executed": 0,
+  "production_approved": false
+}

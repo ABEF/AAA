@@ -137,3 +137,10 @@ wallet signer restrictions, services, websites, journals or paused monitoring.
 
 See the [source-scoped report](../reports/deployment-sequence-20261116/REVIEW.md)
 and the [single operator manual](OPERATOR_MANUAL.md#prepare-deployment-addresses-and-nonces).
+
+The separate [unsigned pre-seal configuration planner](PRESEAL_CONFIGURATION.md) now
+validates/orders the twelve configuration families using the trusted current
+ABI, while leaving unknown inputs blocked and live-state/authority/readiness
+unverified. It includes human-price orientation and fixed NFT-forwarded
+SeaDrop setup. Constructor/sequence tools and old evidence stay unchanged;
+no configuration is installed, no seal call prepared and no release approved.

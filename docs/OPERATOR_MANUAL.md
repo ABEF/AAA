@@ -670,6 +670,43 @@ old saved nonces or restart a partial graph blindly. Later configuration/sealing
 is unprepared and needs additional reviewed nonce capacity. No current wallet,
 journal, service, Anvil, website or monitoring change is made by this tool.
 
+### Prepare unsigned pre-seal configuration
+
+After reviewing constructors/bindings, use the [fresh configuration planner](PRESEAL_CONFIGURATION.md).
+It covers twelve setup families with fixed current ABI calls, actual bootstrap
+as the conditional pre-seal caller and missing inputs explicitly blocked.
+
+| Tool/action | Required inputs | Example | Effect |
+| --- | --- | --- | --- |
+| Prepare setup review | Reviewed copy of `config/preseal-preparation.example.json`; NEW output path | `python scripts/prepare-preseal.py --input /review/preseal.json --output /review/NEW-review.json` | Review conditional setup calls |
+| Pin current build | Exact supported current build | Add `--build-profile metadata2-20261116` | Freeze current ABI selection |
+| Inspect missing values | Output `missing_inputs` and each step's fields | Review `steps[].missing_inputs` | Resolve explicit setup blockers |
+| Inspect deliberate stops | Output `explicit_operating_stops` | Empty venues, converterOFF, maximumGap0 | Identify intentionally stopped operations |
+
+Keep unknowns null; exact booleans/decimal strings, nonzero code/review hashes and
+all tuple fields are explained in the owning guide. The existing OpenSea proof
+artifact is separately digest-pinned/rebuilt, not regenerated from guessed terms.
+Supply actual getter-derived helper addresses; never infer factory addresses.
+Before seal, governance is not automatically the authorized bootstrap.
+
+Pool admission is followed by `Strategy.setRangeOrientation(poolId,1)` for the
+approved ZZZ-in-ETH widths. Original-currency royalties stay separate. No loss,
+range, feed, gas or sale default is silently loosened. Exact inputs and declared
+stops are visible; static completeness is not operational readiness.
+
+Exit0 is a complete conditional unsigned review;2 is a saved blocked preview;1
+is invalid/unavailable/uncertain publication. All approval/runtime/permission
+flags remain false. Output is preserved/exclusive; inspect possible complete
+output after late failure before choosing another new path. Manifest SHA is not
+an on-chain reviewHash or permission. No nonce/gas/signature/seal is prepared.
+
+Independently verify actual fresh/unsealed/zero-mint state, bootstrap/canConfigure,
+code/getters/bindings, feeds/markets/VRF and empty upstream SeaDrop lists. Recheck
+current sale price/payee/payers/windows and future `setMintEnd` at inclusion;
+simulate and review full fees before separately authorized execution. This tool
+does not clear/restart a partial setup or adopt an old profile. Existing services,
+chains, journals, public-signing restrictions and paused monitoring remain.
+
 ### Isolated local construction rehearsal
 
 Use the separate [local construction procedure](DEPLOYMENT_PREPARATION.md#isolated-local-construction-rehearsal)

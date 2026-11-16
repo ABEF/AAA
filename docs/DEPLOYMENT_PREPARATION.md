@@ -321,3 +321,10 @@ process reports uncertain publication, inspect that exact output before retrying
 under a new name. An offline rerun changes no chain state and recovers no
 deployment; any later deployment/resume requires separately authorized tooling,
 actual receipts and fresh address/nonce/binding reconciliation.
+
+The separate [unsigned pre-seal configuration planner](PRESEAL_CONFIGURATION.md) now
+validates/orders the twelve configuration families using the trusted current
+ABI, while leaving unknown inputs blocked and live-state/authority/readiness
+unverified. It includes human-price orientation and fixed NFT-forwarded
+SeaDrop setup. Constructor/sequence tools and old evidence stay unchanged;
+no configuration is installed, no seal call prepared and no release approved.

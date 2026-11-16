@@ -300,3 +300,10 @@ weights, deterministic rotating indivisible units, and no allocated rounding
 remainder after all eligible claims. Initial holding, prefunds, zero participants,
 unsupported currencies and pathological-token failures remain distinct. CanonicalV9
 rejects older peers. Actual OpenSea, gas/workloads and independent approval remain open.
+
+The separate [unsigned pre-seal configuration planner](PRESEAL_CONFIGURATION.md) now
+validates/orders the twelve configuration families using the trusted current
+ABI, while leaving unknown inputs blocked and live-state/authority/readiness
+unverified. It includes human-price orientation and fixed NFT-forwarded
+SeaDrop setup. Constructor/sequence tools and old evidence stay unchanged;
+no configuration is installed, no seal call prepared and no release approved.
