@@ -1,5 +1,9 @@
 # Documentation map
 
+For the latest audit follow-through, use the [five-audit reconciliation](../reports/five-audit-reconciliation-20261116/REVIEW.md)
+and its single finding index. [Deployment preparation](DEPLOYMENT_PREPARATION.md)
+explains current/historical artifact selection and offline evidence checks.
+
 For NFT evolution and marketplace behavior use the [metadata lifecycle matrix](METADATA_LIFECYCLE.md):
 80 scenarios, current-source assessment and [implemented lifecycle corrections](../reports/metadata-lifecycle-fixes-20261116/REVIEW.md). It complements
 [NFT rules](NFT_METADATA.md) and the operator procedure; it is not another Todo.

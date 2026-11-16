@@ -1,0 +1,39 @@
+{
+  "scope": "Actual changed CLI entry points; offline only. Blocked preview preserves missing release inputs; replay uses original archive, no node/transactions. Overlaps new unit workflows, not extra feature count.",
+  "checks": [
+    {
+      "label": "current-plan",
+      "command": [
+        "scripts/prepare-deployment.py",
+        "--input",
+        "config/deployment-preparation.example.json",
+        "--output",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\five-audit-reconciliation-20261116-28431b3\\cli\\current-plan.json"
+      ],
+      "exit": 2,
+      "seconds": 1.2660000000032596,
+      "output_sha256": "455beba58411f9a7a35e365c3193425bfb883b839fb7bbdb62d2ddf846619725"
+    },
+    {
+      "label": "historical-replay",
+      "command": [
+        "scripts/check-local-deployment-evidence.py",
+        "--evidence",
+        "reports/local-deployment-rehearsal-20261115/evidence.zip",
+        "--output",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\five-audit-reconciliation-20261116-28431b3\\cli\\historical-replay.json"
+      ],
+      "exit": 0,
+      "seconds": 7.10899999999674,
+      "output_sha256": "7efa463dd84d10ca5f93f1cbf92ca6e78b862950e7369ce3dae6e3be20a3a0b5"
+    }
+  ],
+  "source_sha256": {
+    "zzz_ops/deployment_plan.py": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df",
+    "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+    "scripts/check-local-deployment-evidence.py": "fc3bb047ae882ce22639937acc9e589d5513b0e0db28941ac762081cddae439d"
+  },
+  "network_calls": 0,
+  "compiler_runs": 0,
+  "existing_tests_executed": 0
+}

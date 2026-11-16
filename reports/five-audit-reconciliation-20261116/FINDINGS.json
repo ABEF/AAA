@@ -1,0 +1,1738 @@
+{
+  "schema": 1,
+  "baseline": "28431b3ac63d909c9c04246de1ee68cc16a3ed5e",
+  "selection_basis": "Latest5substantive REVIEW.md report families by Git publication history; metadata80case matrix is supporting context, not a separate duplicate report.",
+  "families_newest_first": [
+    "metadata-lifecycle-fixes-20261116",
+    "real-market-refresh-20261116",
+    "local-deployment-rehearsal-20261115",
+    "deployment-preparation-20261115",
+    "manual-reference-swap-fix-20261115"
+  ],
+  "individually_reconciled_items": 57,
+  "counts": {
+    "resolved_before": 12,
+    "accepted_limit": 10,
+    "open_external": 23,
+    "superseded": 1,
+    "fixed_now": 10,
+    "open_verification": 1
+  },
+  "count_notice": "57source obligations/limits/defects, not57bugs.10fixed_now records include documentation and test maintenance; duplicated release needs map to10shared gates. Scope conditions remain in each original assessment.",
+  "findings": [
+    {
+      "id": "META-MANUAL-M1",
+      "original_id": "M1",
+      "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md; docs/METADATA_LIFECYCLE.md material finding M1",
+      "status": "resolved_before",
+      "workstream": "metadata",
+      "finding": "Exit start, each bucket close and final Ready notify without waiting for holder payout.",
+      "current_evidence": [
+        "src/ZZZAccessController.sol:110-116 and242-244: committed exit state followed by fixed event-only NFT hook",
+        "src/ZZZMigration.sol:217-241,247-281: close/readiness notifications after coherent state writes",
+        "src/ZZZNFT.sol:112-117: fixed controller/Policy/Migration callers emit O(1) whole-collection event",
+        "Accepted metadata verification:10 new notification methods, including actual exit/payment composition; no rerun"
+      ],
+      "next_action": "Reuse accepted bounded notification evidence. Actual OpenSea ingestion and latency remain M8; do not add a per-NFT unbounded close loop.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "M1",
+        "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md; docs/METADATA_LIFECYCLE.md material finding M1",
+        "status": "closed_source",
+        "category": "scope_reconciliation",
+        "finding": "Exit start, each bucket close and final Ready notify without waiting for holder payout.",
+        "current_evidence": [
+          "src/ZZZAccessController.sol:110-116 and242-244: committed exit state followed by fixed event-only NFT hook",
+          "src/ZZZMigration.sol:217-241,247-281: close/readiness notifications after coherent state writes",
+          "src/ZZZNFT.sol:112-117: fixed controller/Policy/Migration callers emit O(1) whole-collection event",
+          "Accepted metadata verification:10 new notification methods, including actual exit/payment composition; no rerun"
+        ],
+        "next_action": "Reuse accepted bounded notification evidence. Actual OpenSea ingestion and latency remain M8; do not add a per-NFT unbounded close loop."
+      }
+    },
+    {
+      "id": "META-MANUAL-M2",
+      "original_id": "M2",
+      "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md; docs/METADATA_LIFECYCLE.md material finding M2",
+      "status": "resolved_before",
+      "workstream": "metadata",
+      "finding": "Unassigned, assigned-not-ready, payable, paid and exact-zero principal are separate metadata states.",
+      "current_evidence": [
+        "src/ZZZNFTCanonical.sol:67-95 validates exit phase/allocation/paid consistency;123-131 classifies status",
+        "src/ZZZNFTMetadata.sol:174-198 uses terminal-specific descriptions without duplicating raw principal balances",
+        "src/ZZZMigration.sol:316-331 marks/debits before transfer; successful notification is inside isolated atomic payment",
+        "Accepted18 snapshot and10 notification methods retain exact controlled fixture scope"
+      ],
+      "next_action": "Keep Migration/API actual remaining values authoritative. No accounting change or old test rerun is justified.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "M2",
+        "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md; docs/METADATA_LIFECYCLE.md material finding M2",
+        "status": "closed_source",
+        "category": "scope_reconciliation",
+        "finding": "Unassigned, assigned-not-ready, payable, paid and exact-zero principal are separate metadata states.",
+        "current_evidence": [
+          "src/ZZZNFTCanonical.sol:67-95 validates exit phase/allocation/paid consistency;123-131 classifies status",
+          "src/ZZZNFTMetadata.sol:174-198 uses terminal-specific descriptions without duplicating raw principal balances",
+          "src/ZZZMigration.sol:316-331 marks/debits before transfer; successful notification is inside isolated atomic payment",
+          "Accepted18 snapshot and10 notification methods retain exact controlled fixture scope"
+        ],
+        "next_action": "Keep Migration/API actual remaining values authoritative. No accounting change or old test rerun is justified."
+      }
+    },
+    {
+      "id": "META-MANUAL-M3",
+      "original_id": "M3",
+      "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md; docs/METADATA_LIFECYCLE.md material finding M3",
+      "status": "resolved_before",
+      "workstream": "metadata",
+      "finding": "A never-activated NFT remains Dormant after terminal exit and separately reports activation closure.",
+      "current_evidence": [
+        "src/ZZZNFTMetadata.sol:199-210 weight0 stays Dormant; descriptions distinguish never-activated terminal NFTs",
+        "src/ZZZNFTCanonical.sol:110 activation_closed is terminal/canonical context, not a royalty activation",
+        "No share/royalty writes were added by metadata implementation"
+      ],
+      "next_action": "Preserve Dormant identity and zero ledger eligibility. Do not relabel it LP exited or award another NFT principal.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "M3",
+        "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md; docs/METADATA_LIFECYCLE.md material finding M3",
+        "status": "closed_source",
+        "category": "scope_reconciliation",
+        "finding": "A never-activated NFT remains Dormant after terminal exit and separately reports activation closure.",
+        "current_evidence": [
+          "src/ZZZNFTMetadata.sol:199-210 weight0 stays Dormant; descriptions distinguish never-activated terminal NFTs",
+          "src/ZZZNFTCanonical.sol:110 activation_closed is terminal/canonical context, not a royalty activation",
+          "No share/royalty writes were added by metadata implementation"
+        ],
+        "next_action": "Preserve Dormant identity and zero ledger eligibility. Do not relabel it LP exited or award another NFT principal."
+      }
+    },
+    {
+      "id": "META-MANUAL-M4",
+      "original_id": "M4",
+      "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md; docs/METADATA_LIFECYCLE.md material finding M4",
+      "status": "resolved_before",
+      "workstream": "metadata",
+      "finding": "Preparing, frozen, importing, retired predecessor and cancelled import have explicit context and notifications.",
+      "current_evidence": [
+        "src/ZZZNFTCanonical.sol:71-95 validates canonical bounds and required successor identities;132-145 labels lifecycle",
+        "src/ZZZAccessController.sol:120-167 notifies after canonical/preparation changes",
+        "src/ZZZNFTMetadata.sol:174-183 distinguishes temporary preparation from permanent activation closure",
+        "All126 old canonical declarations/90 bodies remain exact per accepted MECHANICAL_REVIEW.json"
+      ],
+      "next_action": "Adopt new exact source/runtime pins only by explicit review. Existing listings/checkpoints never move automatically to a successor.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "M4",
+        "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md; docs/METADATA_LIFECYCLE.md material finding M4",
+        "status": "closed_source",
+        "category": "scope_reconciliation",
+        "finding": "Preparing, frozen, importing, retired predecessor and cancelled import have explicit context and notifications.",
+        "current_evidence": [
+          "src/ZZZNFTCanonical.sol:71-95 validates canonical bounds and required successor identities;132-145 labels lifecycle",
+          "src/ZZZAccessController.sol:120-167 notifies after canonical/preparation changes",
+          "src/ZZZNFTMetadata.sol:174-183 distinguishes temporary preparation from permanent activation closure",
+          "All126 old canonical declarations/90 bodies remain exact per accepted MECHANICAL_REVIEW.json"
+        ],
+        "next_action": "Adopt new exact source/runtime pins only by explicit review. Existing listings/checkpoints never move automatically to a successor."
+      }
+    },
+    {
+      "id": "META-MANUAL-M5",
+      "original_id": "M5",
+      "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md; docs/METADATA_LIFECYCLE.md material finding M5",
+      "status": "accepted_limit",
+      "workstream": "metadata",
+      "finding": "Numeric NAV, visual tier, lifecycle change fingerprint and marketplace cache freshness are different facts.",
+      "current_evidence": [
+        "src/ZZZNFTCanonical.sol:102-104 exposes metadata read block/time, not feed publication",
+        "src/ZZZNFTMetadata.sol:134-148 fingerprints five price-free words and excludes NAV/read clock/owner",
+        "keeper/monitor.py:2233-2250 still samples evolution/availability plus optional lifecycle fingerprint; it is not an all-price-change stream",
+        "docs/OPERATIONS.md:469-527 documents bounded scans and shared transaction delays"
+      ],
+      "next_action": "Measure matching-host scan/backlog and marketplace latency later; do not promise per-block metadata, continuous price evidence or immediate OpenSea refresh.",
+      "remaining_release_gates": [
+        "G5",
+        "G9"
+      ],
+      "original_assessment": {
+        "id": "M5",
+        "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md; docs/METADATA_LIFECYCLE.md material finding M5",
+        "status": "defined_source_external_operation_open",
+        "category": "scope_reconciliation",
+        "finding": "Numeric NAV, visual tier, lifecycle change fingerprint and marketplace cache freshness are different facts.",
+        "current_evidence": [
+          "src/ZZZNFTCanonical.sol:102-104 exposes metadata read block/time, not feed publication",
+          "src/ZZZNFTMetadata.sol:134-148 fingerprints five price-free words and excludes NAV/read clock/owner",
+          "keeper/monitor.py:2233-2250 still samples evolution/availability plus optional lifecycle fingerprint; it is not an all-price-change stream",
+          "docs/OPERATIONS.md:469-527 documents bounded scans and shared transaction delays"
+        ],
+        "next_action": "Measure matching-host scan/backlog and marketplace latency later; do not promise per-block metadata, continuous price evidence or immediate OpenSea refresh."
+      }
+    },
+    {
+      "id": "META-MANUAL-M6",
+      "original_id": "M6",
+      "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md; docs/METADATA_LIFECYCLE.md material finding M6",
+      "status": "resolved_before",
+      "workstream": "metadata",
+      "finding": "Unavailable activated valuation uses labelled Activated fallback; pending LP targets wait for confirmed execution.",
+      "current_evidence": [
+        "src/ZZZNFTMetadata.sol:199-210 catches marked valuation failure;223-231 chooses Activated fallback art",
+        "Website commit2a528696d5eaea5ebb42cfeb313836840fff5e97 deployment-view.js:11-38 and283 holds target pending snapshot/no confirmed art marker",
+        "Website deployment-view.js raw SHA89c348cd3895ffd997d677f441fa10aa57a941e6e172763bd094b0a028af29fe matches accepted verification",
+        "Accepted13 new browser checks are reused, not rerun or counted as hosted/real wallet acceptance"
+      ],
+      "next_action": "Keep public configurations null and rollout separately reviewed. Fix stale matrix source links in D2; source publication is not site deployment.",
+      "remaining_release_gates": [
+        "G9"
+      ],
+      "original_assessment": {
+        "id": "M6",
+        "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md; docs/METADATA_LIFECYCLE.md material finding M6",
+        "status": "closed_source_rollout_open",
+        "category": "scope_reconciliation",
+        "finding": "Unavailable activated valuation uses labelled Activated fallback; pending LP targets wait for confirmed execution.",
+        "current_evidence": [
+          "src/ZZZNFTMetadata.sol:199-210 catches marked valuation failure;223-231 chooses Activated fallback art",
+          "Website commit2a528696d5eaea5ebb42cfeb313836840fff5e97 deployment-view.js:11-38 and283 holds target pending snapshot/no confirmed art marker",
+          "Website deployment-view.js raw SHA89c348cd3895ffd997d677f441fa10aa57a941e6e172763bd094b0a028af29fe matches accepted verification",
+          "Accepted13 new browser checks are reused, not rerun or counted as hosted/real wallet acceptance"
+        ],
+        "next_action": "Keep public configurations null and rollout separately reviewed. Fix stale matrix source links in D2; source publication is not site deployment."
+      }
+    },
+    {
+      "id": "META-MANUAL-M7",
+      "original_id": "M7",
+      "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md; docs/METADATA_LIFECYCLE.md material finding M7",
+      "status": "accepted_limit",
+      "workstream": "metadata",
+      "finding": "LP exited is distinct from Dormant, with Activated artwork and retained old/future royalty rights.",
+      "current_evidence": [
+        "src/ZZZNFTMetadata.sol:206 stage4;317-321 _stageFile(4) maps activated",
+        "src/ZZZNFTCanonical.sol:141 LP exited lifecycle label; no ledger mutation",
+        "Accepted actual tokenURI exit→transfer→payout composition retains royalty activation"
+      ],
+      "next_action": "No fifth image or economic deactivation. Any future different terminal art needs an explicit compatible content/renderer decision, not a silent cleanup.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "M7",
+        "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md; docs/METADATA_LIFECYCLE.md material finding M7",
+        "status": "decision_preserved",
+        "category": "scope_reconciliation",
+        "finding": "LP exited is distinct from Dormant, with Activated artwork and retained old/future royalty rights.",
+        "current_evidence": [
+          "src/ZZZNFTMetadata.sol:206 stage4;317-321 _stageFile(4) maps activated",
+          "src/ZZZNFTCanonical.sol:141 LP exited lifecycle label; no ledger mutation",
+          "Accepted actual tokenURI exit→transfer→payout composition retains royalty activation"
+        ],
+        "next_action": "No fifth image or economic deactivation. Any future different terminal art needs an explicit compatible content/renderer decision, not a silent cleanup."
+      }
+    },
+    {
+      "id": "META-MANUAL-M8",
+      "original_id": "M8",
+      "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md; docs/METADATA_LIFECYCLE.md material finding M8",
+      "status": "open_external",
+      "workstream": "metadata",
+      "finding": "OpenSea supported-chain collection intake, on-chain read gas, content retention, cache/media outcome and matching-host operation remain unqualified.",
+      "current_evidence": [
+        "reports/metadata-lifecycle-fixes-20261116/REVIEW.md What remains open",
+        "docs/METADATA_LIFECYCLE.md H01-H07,I01-I08,J05-J08",
+        "No marketplace acceptance or hosted worker was performed in accepted source checks"
+      ],
+      "next_action": "Once actual deployment/marketplace/host access is authorized, qualify exact collection/runtime/root/media, bounded tokenURI gas, watcher budgets/backlog, outages/restarts/reorgs and observed refresh latency. Independent audit remains separate.",
+      "remaining_release_gates": [
+        "G5",
+        "G9"
+      ],
+      "original_assessment": {
+        "id": "M8",
+        "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md; docs/METADATA_LIFECYCLE.md material finding M8",
+        "status": "open_external_qualification",
+        "category": "scope_reconciliation",
+        "finding": "OpenSea supported-chain collection intake, on-chain read gas, content retention, cache/media outcome and matching-host operation remain unqualified.",
+        "current_evidence": [
+          "reports/metadata-lifecycle-fixes-20261116/REVIEW.md What remains open",
+          "docs/METADATA_LIFECYCLE.md H01-H07,I01-I08,J05-J08",
+          "No marketplace acceptance or hosted worker was performed in accepted source checks"
+        ],
+        "next_action": "Once actual deployment/marketplace/host access is authorized, qualify exact collection/runtime/root/media, bounded tokenURI gas, watcher budgets/backlog, outages/restarts/reorgs and observed refresh latency. Independent audit remains separate."
+      }
+    },
+    {
+      "id": "META-MANUAL-MW1",
+      "original_id": "MW1",
+      "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md optional watcher lifecycle2",
+      "status": "resolved_before",
+      "workstream": "metadata",
+      "finding": "New lifecycle2 watcher admission is explicit; omission/0 historical behavior is not a defect.",
+      "current_evidence": [
+        "keeper/monitor.py:2045-2138 strict exact0/2 profile, accounting7, nonzero renderer runtime, exact durable identity and disabled-pending recovery",
+        "keeper/monitor.py:2199-2229 checks sealed deployment/NFT/Vault/controller/renderer/version/runtime at confirmed scan/receipt block",
+        "keeper/monitor.py:2300-2330 rereads execution records and checks anchors before candidate checkpoint",
+        "Deployment schema17 existing graph separately pins NFTCanonical/metadata_renderer roles; no unsupported automatic capability inference was added"
+      ],
+      "next_action": "Prepare reviewed new lifecycle2 config/identity only for a matching fresh graph; preserve old journals and pending recovery. No further source fix demonstrated.",
+      "remaining_release_gates": [
+        "G9"
+      ],
+      "original_assessment": {
+        "id": "MW1",
+        "origin": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md optional watcher lifecycle2",
+        "status": "closed_source_adoption_open",
+        "category": "scope_reconciliation",
+        "finding": "New lifecycle2 watcher admission is explicit; omission/0 historical behavior is not a defect.",
+        "current_evidence": [
+          "keeper/monitor.py:2045-2138 strict exact0/2 profile, accounting7, nonzero renderer runtime, exact durable identity and disabled-pending recovery",
+          "keeper/monitor.py:2199-2229 checks sealed deployment/NFT/Vault/controller/renderer/version/runtime at confirmed scan/receipt block",
+          "keeper/monitor.py:2300-2330 rereads execution records and checks anchors before candidate checkpoint",
+          "Deployment schema17 existing graph separately pins NFTCanonical/metadata_renderer roles; no unsupported automatic capability inference was added"
+        ],
+        "next_action": "Prepare reviewed new lifecycle2 config/identity only for a matching fresh graph; preserve old journals and pending recovery. No further source fix demonstrated."
+      }
+    },
+    {
+      "id": "META-MANUAL-MR1",
+      "original_id": "MR1",
+      "origin": "reports/manual-reference-swap-fix-20261115/REVIEW.md implementation and safeguards",
+      "status": "resolved_before",
+      "workstream": "manual-lp",
+      "finding": "Priced paused manual C/D use a whole-operation captured vector and exact selected actual-core output/full-state proof.",
+      "current_evidence": [
+        "src/ZZZMigrationBudget.sol:105-125 arms/validates and opens retained2/4 scope before manual movement; cleans after final verification",
+        "src/ZZZContributionPricing.sol:152-167 fixed-Budget scope ownership and begin/end; no mutable source replacement",
+        "src/ZZZCustodyValidation.sol:147-160 validates live scope but commits starting source fingerprints",
+        "src/ZZZLiquidityManager.sol:237-256,307-334,336-384 proves exact output/full expected core state before settlement and revalidates callbacks",
+        "OBJECT_EQUIVALENCE.json: six implementing objects plus Vault exact full creation/runtime templates and ABI equal accepted manual normal4→metadata normal6"
+      ],
+      "next_action": "Reuse25new/3adapted methods and nine completed adverse callback records at their exact original scope; do not rerun unchanged methods merely for a new date.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "MR1",
+        "origin": "reports/manual-reference-swap-fix-20261115/REVIEW.md implementation and safeguards",
+        "status": "closed_source_scoped_reuse",
+        "category": "scope_reconciliation",
+        "finding": "Priced paused manual C/D use a whole-operation captured vector and exact selected actual-core output/full-state proof.",
+        "current_evidence": [
+          "src/ZZZMigrationBudget.sol:105-125 arms/validates and opens retained2/4 scope before manual movement; cleans after final verification",
+          "src/ZZZContributionPricing.sol:152-167 fixed-Budget scope ownership and begin/end; no mutable source replacement",
+          "src/ZZZCustodyValidation.sol:147-160 validates live scope but commits starting source fingerprints",
+          "src/ZZZLiquidityManager.sol:237-256,307-334,336-384 proves exact output/full expected core state before settlement and revalidates callbacks",
+          "OBJECT_EQUIVALENCE.json: six implementing objects plus Vault exact full creation/runtime templates and ABI equal accepted manual normal4→metadata normal6"
+        ],
+        "next_action": "Reuse25new/3adapted methods and nine completed adverse callback records at their exact original scope; do not rerun unchanged methods merely for a new date."
+      }
+    },
+    {
+      "id": "META-MANUAL-MR2",
+      "original_id": "MR2",
+      "origin": "reports/manual-reference-swap-fix-20261115/REVIEW.md mask matrix",
+      "status": "accepted_limit",
+      "workstream": "manual-lp",
+      "finding": "Unpriced masks0/8, retained price2/value4, operations8 and timing/sample bits1/16 keep distinct deliberate meanings.",
+      "current_evidence": [
+        "src/ZZZMigrationBudget.sol:105-125 only bits2/4 open price scope",
+        "src/ZZZLiquidityManager.sol:106-136 force-mask choice stays in Manager; zero/8 does not acquire an Oracle dependency",
+        "reports/manual-reference-swap-fix-20261115/UNIT_METHODS.json and CALLBACK_TRACE_REVIEW.json preserve both directions/no-swap/sequential and actual callbacks",
+        "Parked schema2 bit1/16 unsupported eligibility remains explicitly rejected, not silently bypassed"
+      ],
+      "next_action": "Preserve explicit mask review and caller raw floors. Disabled financial checks may lose nearly all principal; never automate force fallback or imply ordinary caps are unconditional governance limits.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "MR2",
+        "origin": "reports/manual-reference-swap-fix-20261115/REVIEW.md mask matrix",
+        "status": "decision_preserved",
+        "category": "scope_reconciliation",
+        "finding": "Unpriced masks0/8, retained price2/value4, operations8 and timing/sample bits1/16 keep distinct deliberate meanings.",
+        "current_evidence": [
+          "src/ZZZMigrationBudget.sol:105-125 only bits2/4 open price scope",
+          "src/ZZZLiquidityManager.sol:106-136 force-mask choice stays in Manager; zero/8 does not acquire an Oracle dependency",
+          "reports/manual-reference-swap-fix-20261115/UNIT_METHODS.json and CALLBACK_TRACE_REVIEW.json preserve both directions/no-swap/sequential and actual callbacks",
+          "Parked schema2 bit1/16 unsupported eligibility remains explicitly rejected, not silently bypassed"
+        ],
+        "next_action": "Preserve explicit mask review and caller raw floors. Disabled financial checks may lose nearly all principal; never automate force fallback or imply ordinary caps are unconditional governance limits."
+      }
+    },
+    {
+      "id": "META-MANUAL-MR3",
+      "original_id": "MR3",
+      "origin": "reports/manual-reference-swap-fix-20261115/REVIEW.md independent-reference boundary",
+      "status": "open_external",
+      "workstream": "manual-lp",
+      "finding": "An external reference may be the swap venue, but same-core PoPL principal as its own independent reference remains excluded.",
+      "current_evidence": [
+        "Manual own-transition proof authenticates our own trade; it does not establish external source independence, market depth or MEV immunity",
+        "Accepted report explicitly retains fresh agreement, price bands, fees, actual depth, caller floors, loss and idle limits",
+        "Later real-market-refresh family still supplies no qualified independent source pair or complete route"
+      ],
+      "next_action": "Qualify actual independent sources and directional execution at post-withdrawal depth without changing caps/duplicating feeds. Legitimate economic rejection is not a reason to remove a guard.",
+      "remaining_release_gates": [
+        "G1",
+        "G2"
+      ],
+      "original_assessment": {
+        "id": "MR3",
+        "origin": "reports/manual-reference-swap-fix-20261115/REVIEW.md independent-reference boundary",
+        "status": "open_market_qualification",
+        "category": "scope_reconciliation",
+        "finding": "An external reference may be the swap venue, but same-core PoPL principal as its own independent reference remains excluded.",
+        "current_evidence": [
+          "Manual own-transition proof authenticates our own trade; it does not establish external source independence, market depth or MEV immunity",
+          "Accepted report explicitly retains fresh agreement, price bands, fees, actual depth, caller floors, loss and idle limits",
+          "Later real-market-refresh family still supplies no qualified independent source pair or complete route"
+        ],
+        "next_action": "Qualify actual independent sources and directional execution at post-withdrawal depth without changing caps/duplicating feeds. Legitimate economic rejection is not a reason to remove a guard."
+      }
+    },
+    {
+      "id": "META-MANUAL-MR4",
+      "original_id": "MR4",
+      "origin": "reports/manual-reference-swap-fix-20261115/REVIEW.md gas and operating evidence",
+      "status": "open_external",
+      "workstream": "manual-lp",
+      "finding": "Original C14/ActiveD14/ParkedD14 receipts and25% padded16,315,867/24M maximum are local source-scoped execution evidence.",
+      "current_evidence": [
+        "Original GAS_AND_TRANSACTIONS.json preserves three manual and one park receipts, original inputs/expiry, once-only submission and32M owned local blocks",
+        "Current surrounding Migration/Access/NFT runtime templates differ in OBJECT_EQUIVALENCE.json despite unchanged manual implementation objects",
+        "No Robinhood full-operation/complete-fee/max-state/contract-wallet/host acceptance follows from these local receipts"
+      ],
+      "next_action": "Retain original receipt scope and qualify final exact graph/immutable runtimes, target provider full-call fees, maximum workload and real operator/contract wallet only when authorized; do not raise defaults or relabel local20M/24M as production approval.",
+      "remaining_release_gates": [
+        "G2",
+        "G3",
+        "G9"
+      ],
+      "original_assessment": {
+        "id": "MR4",
+        "origin": "reports/manual-reference-swap-fix-20261115/REVIEW.md gas and operating evidence",
+        "status": "open_target_and_host_qualification",
+        "category": "scope_reconciliation",
+        "finding": "Original C14/ActiveD14/ParkedD14 receipts and25% padded16,315,867/24M maximum are local source-scoped execution evidence.",
+        "current_evidence": [
+          "Original GAS_AND_TRANSACTIONS.json preserves three manual and one park receipts, original inputs/expiry, once-only submission and32M owned local blocks",
+          "Current surrounding Migration/Access/NFT runtime templates differ in OBJECT_EQUIVALENCE.json despite unchanged manual implementation objects",
+          "No Robinhood full-operation/complete-fee/max-state/contract-wallet/host acceptance follows from these local receipts"
+        ],
+        "next_action": "Retain original receipt scope and qualify final exact graph/immutable runtimes, target provider full-call fees, maximum workload and real operator/contract wallet only when authorized; do not raise defaults or relabel local20M/24M as production approval."
+      }
+    },
+    {
+      "id": "META-MANUAL-MR5",
+      "original_id": "MR5",
+      "origin": "reports/manual-reference-swap-fix-20261115/REVIEW.md paused operation/recovery",
+      "status": "accepted_limit",
+      "workstream": "manual-lp",
+      "finding": "C retains exact main/ticks/rebalance clock and turns mode OFF; D replaces one main; successful manual flows remain paused.",
+      "current_evidence": [
+        "src/ZZZMigration.sol:102-141 invokes typed manual wrappers, exact consolidation validation and explicit completion without unpause",
+        "Guarded C may legitimately fail if current geometry/price/depth/floors no longer permit the reviewed operation; forced C/D is separately selected",
+        "Original stale custody/share/policy review detection and expiry are replay protection, not a broken mutable-market workflow"
+      ],
+      "next_action": "Prepare fresh unsigned reviews for changed identity/state and explicitly review force mask if emergency. Unpause is a separate governance action; do not add automatic bypass/resend.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "MR5",
+        "origin": "reports/manual-reference-swap-fix-20261115/REVIEW.md paused operation/recovery",
+        "status": "defined_operational_boundary",
+        "category": "scope_reconciliation",
+        "finding": "C retains exact main/ticks/rebalance clock and turns mode OFF; D replaces one main; successful manual flows remain paused.",
+        "current_evidence": [
+          "src/ZZZMigration.sol:102-141 invokes typed manual wrappers, exact consolidation validation and explicit completion without unpause",
+          "Guarded C may legitimately fail if current geometry/price/depth/floors no longer permit the reviewed operation; forced C/D is separately selected",
+          "Original stale custody/share/policy review detection and expiry are replay protection, not a broken mutable-market workflow"
+        ],
+        "next_action": "Prepare fresh unsigned reviews for changed identity/state and explicitly review force mask if emergency. Unpause is a separate governance action; do not add automatic bypass/resend."
+      }
+    },
+    {
+      "id": "META-MANUAL-MR6",
+      "original_id": "MR6",
+      "origin": "reports/manual-reference-swap-fix-20261115/REVIEW.md static/current runtime provenance",
+      "status": "superseded",
+      "workstream": "manual-lp",
+      "finding": "Manual565=113current+452reuse is historical; current metadata review569=57current+512reuse is source-bound current static inventory.",
+      "current_evidence": [
+        "Current strict default reports/metadata-lifecycle-fixes-20261116/static-review.json; both full and projected original analyzer inputs passed at accepted source",
+        "All48current normal size gates retained; Oracle3/Vault32/Manager101 margins remain, renderer455/NFTCanonical1446/NFT342 are new current margins",
+        "Historical565 findings do not become new current individual review or all-resolved release obligations"
+      ],
+      "next_action": "Use current normal/static pins for new release reviews. Keep old source/runtimes/archives/journals unchanged and explain exact-source reuse; no new analyzer/compiler rerun warranted.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "MR6",
+        "origin": "reports/manual-reference-swap-fix-20261115/REVIEW.md static/current runtime provenance",
+        "status": "superseded_current_inventory_historical_evidence_retained",
+        "category": "scope_reconciliation",
+        "finding": "Manual565=113current+452reuse is historical; current metadata review569=57current+512reuse is source-bound current static inventory.",
+        "current_evidence": [
+          "Current strict default reports/metadata-lifecycle-fixes-20261116/static-review.json; both full and projected original analyzer inputs passed at accepted source",
+          "All48current normal size gates retained; Oracle3/Vault32/Manager101 margins remain, renderer455/NFTCanonical1446/NFT342 are new current margins",
+          "Historical565 findings do not become new current individual review or all-resolved release obligations"
+        ],
+        "next_action": "Use current normal/static pins for new release reviews. Keep old source/runtimes/archives/journals unchanged and explain exact-source reuse; no new analyzer/compiler rerun warranted."
+      }
+    },
+    {
+      "id": "META-MANUAL-MR7",
+      "original_id": "MR7",
+      "origin": "reports/manual-reference-swap-fix-20261115/REVIEW.md preservation and evidence inspection",
+      "status": "accepted_limit",
+      "workstream": "manual-lp",
+      "finding": "Old Anvil live endpoint was unavailable; original report correctly does not claim preserved live state-root equality.",
+      "current_evidence": [
+        "reports/manual-reference-swap-fix-20261115/REVIEW.md adoption/evidence explicitly records unavailable historical RPC",
+        "Existing site/signer/configuration and protected4dirty files remain unrelated; current inspection contacted no chain/service"
+      ],
+      "next_action": "Do not probe/reset the old chain merely to retrofit equality evidence. Restore/adopt only through explicit future environment procedure.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "MR7",
+        "origin": "reports/manual-reference-swap-fix-20261115/REVIEW.md preservation and evidence inspection",
+        "status": "preserved_limitation",
+        "category": "scope_reconciliation",
+        "finding": "Old Anvil live endpoint was unavailable; original report correctly does not claim preserved live state-root equality.",
+        "current_evidence": [
+          "reports/manual-reference-swap-fix-20261115/REVIEW.md adoption/evidence explicitly records unavailable historical RPC",
+          "Existing site/signer/configuration and protected4dirty files remain unrelated; current inspection contacted no chain/service"
+        ],
+        "next_action": "Do not probe/reset the old chain merely to retrofit equality evidence. Restore/adopt only through explicit future environment procedure."
+      }
+    },
+    {
+      "id": "META-MANUAL-D1",
+      "original_id": "D1",
+      "origin": "docs/project-todo.json:380,383 → TODO.md:451,456",
+      "status": "fixed_now",
+      "workstream": "current-docs",
+      "finding": "The sole current callable-reference task still says956 functions/1009 examples although the current generated reference has963/1016.",
+      "current_evidence": [
+        "Current metadata VERIFICATION.md mechanical closure gives40contracts/963functions/40constructors/13receivers/1016examples",
+        "Ledger text calls old counts current; it is not a labelled historical scope",
+        "Manual report959/1012 counts remain historical and must not be rewritten"
+      ],
+      "next_action": "Root updates these two current ledger strings and regenerates Todo; preserve old report numbers.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "D1",
+        "origin": "docs/project-todo.json:380,383 → TODO.md:451,456",
+        "status": "documentation_correction_required",
+        "category": "stale_current_documentation",
+        "finding": "The sole current callable-reference task still says956 functions/1009 examples although the current generated reference has963/1016.",
+        "current_evidence": [
+          "Current metadata VERIFICATION.md mechanical closure gives40contracts/963functions/40constructors/13receivers/1016examples",
+          "Ledger text calls old counts current; it is not a labelled historical scope",
+          "Manual report959/1012 counts remain historical and must not be rewritten"
+        ],
+        "next_action": "Root updates these two current ledger strings and regenerates Todo; preserve old report numbers."
+      }
+    },
+    {
+      "id": "META-MANUAL-D2",
+      "original_id": "D2",
+      "origin": "docs/METADATA_LIFECYCLE.md:232-234",
+      "status": "fixed_now",
+      "workstream": "current-docs",
+      "finding": "Matrix source map links pre-fix website206892 while its current M6 behavior depends on accepted source2a52869.",
+      "current_evidence": [
+        "Current sibling website HEAD2a528696d5eaea5ebb42cfeb313836840fff5e97",
+        "Current deployment-view.js raw SHA89c348cd3895ffd997d677f441fa10aa57a941e6e172763bd094b0a028af29fe matches accepted metadata browser record",
+        "Old source206892 may remain relevant as original inventory baseline, not evidence that current fallback code existed there"
+      ],
+      "next_action": "Root distinguishes original inspected source from accepted fix source and links current view with exact immutable commit. Do not imply hosted rollout.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "D2",
+        "origin": "docs/METADATA_LIFECYCLE.md:232-234",
+        "status": "documentation_correction_required",
+        "category": "stale_current_documentation",
+        "finding": "Matrix source map links pre-fix website206892 while its current M6 behavior depends on accepted source2a52869.",
+        "current_evidence": [
+          "Current sibling website HEAD2a528696d5eaea5ebb42cfeb313836840fff5e97",
+          "Current deployment-view.js raw SHA89c348cd3895ffd997d677f441fa10aa57a941e6e172763bd094b0a028af29fe matches accepted metadata browser record",
+          "Old source206892 may remain relevant as original inventory baseline, not evidence that current fallback code existed there"
+        ],
+        "next_action": "Root distinguishes original inspected source from accepted fix source and links current view with exact immutable commit. Do not imply hosted rollout."
+      }
+    },
+    {
+      "id": "MARKET-MR-01",
+      "original_id": "MR-01",
+      "origin": "reports/real-market-refresh-20261116/VERIFICATION.md#exact-scopes; verify.py:26-46,92-105",
+      "status": "fixed_now",
+      "workstream": "market-evidence",
+      "finding": "Derived market/feed/quote/candidate flags were underchecked",
+      "current_evidence": "Exact old checker admits fabricated independent_ZZZ_pair and Pyth-qualified booleans with actual wire unchanged and internally consistent manifest. It also leaves market rows/order/counts/bands, quote pass/gas fields and candidate null/empty inputs underchecked. market/BASELINE.json retains the reproduction. New checker rebuilds the complete readable result and candidate from bounded wire and pinned historical provenance.",
+      "next_action": "Use scripts/check-market-evidence.py for stronger semantic review of this dated archive; retain original report/checker/archive byte-identically. Run only new checker regression methods. Do not interpret checker PASS as live market or release approval.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "MR-01",
+        "origin": "reports/real-market-refresh-20261116/VERIFICATION.md#exact-scopes; verify.py:26-46,92-105",
+        "current_status": "relevant evidence defect; independently reproduced and implemented in new maintained checker",
+        "evidence": "Exact old checker admits fabricated independent_ZZZ_pair and Pyth-qualified booleans with actual wire unchanged and internally consistent manifest. It also leaves market rows/order/counts/bands, quote pass/gas fields and candidate null/empty inputs underchecked. market/BASELINE.json retains the reproduction. New checker rebuilds the complete readable result and candidate from bounded wire and pinned historical provenance.",
+        "action": "Use scripts/check-market-evidence.py for stronger semantic review of this dated archive; retain original report/checker/archive byte-identically. Run only new checker regression methods. Do not interpret checker PASS as live market or release approval.",
+        "linkedTaskIDs": [
+          "dual-price-qualification",
+          "activation-assets",
+          "lp-execution-routing"
+        ]
+      }
+    },
+    {
+      "id": "MARKET-MR-02",
+      "original_id": "MR-02",
+      "origin": "reports/real-market-refresh-20261116/REVIEW.md#fresh-source-observations",
+      "status": "open_external",
+      "workstream": "market-release",
+      "finding": "Captured Chainlink proxies share one aggregator",
+      "current_evidence": "Both observed Chainlink proxies resolve to one aggregator. ZZZOracle.setDualFeed requires distinct reviewed source and independence identities; actual upstream independence remains governance review, not a code-hash inference. zzz_ops.price_policy.observe verifies exact policies, timestamps, runtimes, observations and bounds.",
+      "next_action": "Qualify a genuinely independent ETH service and its original publication/control/liveness policy. Do not create a second independence ID for the same service or weaken consensus.",
+      "remaining_release_gates": [
+        "G1"
+      ],
+      "original_assessment": {
+        "id": "MR-02",
+        "origin": "reports/real-market-refresh-20261116/REVIEW.md#fresh-source-observations",
+        "current_status": "open external dependency; current on-chain/backend safeguards correctly preserve rejection",
+        "evidence": "Both observed Chainlink proxies resolve to one aggregator. ZZZOracle.setDualFeed requires distinct reviewed source and independence identities; actual upstream independence remains governance review, not a code-hash inference. zzz_ops.price_policy.observe verifies exact policies, timestamps, runtimes, observations and bounds.",
+        "action": "Qualify a genuinely independent ETH service and its original publication/control/liveness policy. Do not create a second independence ID for the same service or weaken consensus.",
+        "linkedTaskIDs": [
+          "dual-price-qualification",
+          "creator-zzz-price"
+        ]
+      }
+    },
+    {
+      "id": "MARKET-MR-03",
+      "original_id": "MR-03",
+      "origin": "reports/real-market-refresh-20261116/REVIEW.md#fresh-source-observations; src/ZZZPythPriceFeed.sol",
+      "status": "open_external",
+      "workstream": "market-release",
+      "finding": "Pyth requires qualified publication, funding and freshness",
+      "current_evidence": "Captured Pyth age 801471 seconds and disagreement about 2409.717bps fail unchanged source guards. Immutable optional reader preserves original publishTime, exponent, confidence and hard one-day age bound; it does not publish updates. Historical stored read cannot establish a live service.",
+      "next_action": "Choose and qualify an authenticated compatible Core publisher, updater ownership, gas/data costs, alerting and outage recovery, or another independent service. Do not code a fabricated freshness fallback.",
+      "remaining_release_gates": [
+        "G1"
+      ],
+      "original_assessment": {
+        "id": "MR-03",
+        "origin": "reports/real-market-refresh-20261116/REVIEW.md#fresh-source-observations; src/ZZZPythPriceFeed.sol",
+        "current_status": "open service ownership/funding/publication qualification",
+        "evidence": "Captured Pyth age 801471 seconds and disagreement about 2409.717bps fail unchanged source guards. Immutable optional reader preserves original publishTime, exponent, confidence and hard one-day age bound; it does not publish updates. Historical stored read cannot establish a live service.",
+        "action": "Choose and qualify an authenticated compatible Core publisher, updater ownership, gas/data costs, alerting and outage recovery, or another independent service. Do not code a fabricated freshness fallback.",
+        "linkedTaskIDs": [
+          "dual-price-qualification"
+        ]
+      }
+    },
+    {
+      "id": "MARKET-MR-04",
+      "original_id": "MR-04",
+      "origin": "reports/real-market-refresh-20261116/REVIEW.md#fresh-source-observations; docs/PRODUCTION_SERVICES.md#concrete-provider-requests",
+      "status": "open_external",
+      "workstream": "market-release",
+      "finding": "API3 activation and round-compatible adaptation remain unqualified",
+      "current_evidence": "Current captured API3 read reverts; base/name/subscription were not refreshed. Documentation about plan expiry and heartbeat is not a funded current service or AggregatorV3-compatible source.",
+      "next_action": "If selected, obtain activation/renewal terms and separately review round-compatible adaptation with sufficient freshness headroom. Keep old zero-state observations dated and avoid another uninformative public read solely for date freshness.",
+      "remaining_release_gates": [
+        "G1"
+      ],
+      "original_assessment": {
+        "id": "MR-04",
+        "origin": "reports/real-market-refresh-20261116/REVIEW.md#fresh-source-observations; docs/PRODUCTION_SERVICES.md#concrete-provider-requests",
+        "current_status": "open external API3 proposal; no current base/subscription inference justified",
+        "evidence": "Current captured API3 read reverts; base/name/subscription were not refreshed. Documentation about plan expiry and heartbeat is not a funded current service or AggregatorV3-compatible source.",
+        "action": "If selected, obtain activation/renewal terms and separately review round-compatible adaptation with sufficient freshness headroom. Keep old zero-state observations dated and avoid another uninformative public read solely for date freshness.",
+        "linkedTaskIDs": [
+          "dual-price-qualification"
+        ]
+      }
+    },
+    {
+      "id": "MARKET-MR-05",
+      "original_id": "MR-05",
+      "origin": "reports/real-market-refresh-20261116/REVIEW.md#fresh-source-observations; src/ZZZV4SpotPriceFeed.sol:10-16",
+      "status": "open_external",
+      "workstream": "market-release",
+      "finding": "No two independently qualified exact-ZZZ paths",
+      "current_evidence": "No two independent fixed-ZZZ valuation paths qualified. Two ETH services multiplied by the same ZZZ/ETH spot repeat one ZZZ manipulation exposure. The optional immutable composite explicitly documents spot, not TWAP.",
+      "next_action": "Obtain exact independent ZZZ market/publisher paths and controls, or keep unavailable. No mandatory TWAP or fabricated direct branded USD feed should be introduced contrary to the selected design.",
+      "remaining_release_gates": [
+        "G1"
+      ],
+      "original_assessment": {
+        "id": "MR-05",
+        "origin": "reports/real-market-refresh-20261116/REVIEW.md#fresh-source-observations; src/ZZZV4SpotPriceFeed.sol:10-16",
+        "current_status": "open source independence blocker; spot choice intentionally preserved",
+        "evidence": "No two independent fixed-ZZZ valuation paths qualified. Two ETH services multiplied by the same ZZZ/ETH spot repeat one ZZZ manipulation exposure. The optional immutable composite explicitly documents spot, not TWAP.",
+        "action": "Obtain exact independent ZZZ market/publisher paths and controls, or keep unavailable. No mandatory TWAP or fabricated direct branded USD feed should be introduced contrary to the selected design.",
+        "linkedTaskIDs": [
+          "dual-price-qualification",
+          "creator-zzz-price",
+          "creator-market-controls"
+        ]
+      }
+    },
+    {
+      "id": "MARKET-MR-06",
+      "original_id": "MR-06",
+      "origin": "reports/real-market-refresh-20261116/REVIEW.md#markets-and-useful-size-directional-diagnostics",
+      "status": "open_external",
+      "workstream": "market-release",
+      "finding": "Selected pool has zero active liquidity at the recorded anchor",
+      "current_evidence": "Selected pool has zero active L at the anchor, and its tested forward diagnostic incurs about 14.677% gross/13.727% additional loss. Zero active L does not prove all distant ticks empty; no marginal-LP operation was performed.",
+      "next_action": "Require actual useful bidirectional depth and complete ETH/ZZZ contribution tests with real reviewed release inputs before admission. Do not synthesize depth or treat quote fill as 97% deployed LP.",
+      "remaining_release_gates": [
+        "G2"
+      ],
+      "original_assessment": {
+        "id": "MR-06",
+        "origin": "reports/real-market-refresh-20261116/REVIEW.md#markets-and-useful-size-directional-diagnostics",
+        "current_status": "open selected-destination liquidity qualification",
+        "evidence": "Selected pool has zero active L at the anchor, and its tested forward diagnostic incurs about 14.677% gross/13.727% additional loss. Zero active L does not prove all distant ticks empty; no marginal-LP operation was performed.",
+        "action": "Require actual useful bidirectional depth and complete ETH/ZZZ contribution tests with real reviewed release inputs before admission. Do not synthesize depth or treat quote fill as 97% deployed LP.",
+        "linkedTaskIDs": [
+          "activation-assets",
+          "creator-input-liquidity",
+          "pons-qualification"
+        ]
+      }
+    },
+    {
+      "id": "MARKET-MR-07",
+      "original_id": "MR-07",
+      "origin": "reports/real-market-refresh-20261116/REVIEW.md#markets-and-useful-size-directional-diagnostics",
+      "status": "open_external",
+      "workstream": "market-release",
+      "finding": "Recorded selected/reference price bands do not intersect",
+      "current_evidence": "Largest-known raw-L market has ETH-per-ZZZ price about 5.81193 times selected stored price. Their ordinary 500bps maximum reference bands do not overlap at the capture. The raw-ratio field price_ratio_to_selected is ZZZ-per-ETH, about 0.17206; inverse orientations must not be confused.",
+      "next_action": "Review a sustainable selected-destination/reference compatibility plan. Existing configurable reviewed pool selection remains available; no automatic destination switch or widened price guard is authorized.",
+      "remaining_release_gates": [
+        "G2"
+      ],
+      "original_assessment": {
+        "id": "MR-07",
+        "origin": "reports/real-market-refresh-20261116/REVIEW.md#markets-and-useful-size-directional-diagnostics",
+        "current_status": "open selected/reference price compatibility decision",
+        "evidence": "Largest-known raw-L market has ETH-per-ZZZ price about 5.81193 times selected stored price. Their ordinary 500bps maximum reference bands do not overlap at the capture. The raw-ratio field price_ratio_to_selected is ZZZ-per-ETH, about 0.17206; inverse orientations must not be confused.",
+        "action": "Review a sustainable selected-destination/reference compatibility plan. Existing configurable reviewed pool selection remains available; no automatic destination switch or widened price guard is authorized.",
+        "linkedTaskIDs": [
+          "lp-execution-routing",
+          "pons-qualification",
+          "creator-input-liquidity"
+        ]
+      }
+    },
+    {
+      "id": "MARKET-MR-08",
+      "original_id": "MR-08",
+      "origin": "reports/real-market-refresh-20261116/REVIEW.md#markets-and-useful-size-directional-diagnostics",
+      "status": "open_external",
+      "workstream": "market-release",
+      "finding": "Tested1000ZZZ reverse conversion lacks complete qualified execution",
+      "current_evidence": "Both selected and larger-known markets report incomplete input for tested 1000 ZZZ reverse fills; low-fee lead gives opaque wrapped errors. Full route/default-1% conversion acceptance is not established, and other sizes/pools remain untested rather than universally rejected.",
+      "next_action": "Qualify actual direction and affordable size, complete input/output, valuation, token/core controls and economic gas under unchanged 1% conversion cap. Preserve unknown error cause and do not claim all known-fee-above-1% routes inherently impossible.",
+      "remaining_release_gates": [
+        "G2"
+      ],
+      "original_assessment": {
+        "id": "MR-08",
+        "origin": "reports/real-market-refresh-20261116/REVIEW.md#markets-and-useful-size-directional-diagnostics",
+        "current_status": "open earned-ZZZ conversion route qualification",
+        "evidence": "Both selected and larger-known markets report incomplete input for tested 1000 ZZZ reverse fills; low-fee lead gives opaque wrapped errors. Full route/default-1% conversion acceptance is not established, and other sizes/pools remain untested rather than universally rejected.",
+        "action": "Qualify actual direction and affordable size, complete input/output, valuation, token/core controls and economic gas under unchanged 1% conversion cap. Preserve unknown error cause and do not claim all known-fee-above-1% routes inherently impossible.",
+        "linkedTaskIDs": [
+          "lp-eth-settlement",
+          "lp-execution-routing",
+          "creator-input-liquidity"
+        ]
+      }
+    },
+    {
+      "id": "MARKET-MR-09",
+      "original_id": "MR-09",
+      "origin": "reports/real-market-refresh-20261116/REVIEW.md#markets-and-useful-size-directional-diagnostics; RESULTS.json quotes",
+      "status": "open_external",
+      "workstream": "market-release",
+      "finding": "Diagnostic500k quotes are not operating-budget or full-operation evidence",
+      "current_evidence": "Six diagnostic quotes use exact 500000 read-only gas. Returned gas is quoter work, not full transaction gas or provider capacity. Nominal $100/$5 input sizes are rounded from one unqualified ETH observation, not protocol swap fractions or qualified USD values.",
+      "next_action": "Keep full PoPL operation, configured production solver bounds, 20M/24M padding and complete fee qualification separate. New checker binds all nominal inputs, gas fields and screen results without raising defaults.",
+      "remaining_release_gates": [
+        "G2",
+        "G3"
+      ],
+      "original_assessment": {
+        "id": "MR-09",
+        "origin": "reports/real-market-refresh-20261116/REVIEW.md#markets-and-useful-size-directional-diagnostics; RESULTS.json quotes",
+        "current_status": "historical diagnostic ceiling; operating gas and full-operation acceptance still open",
+        "evidence": "Six diagnostic quotes use exact 500000 read-only gas. Returned gas is quoter work, not full transaction gas or provider capacity. Nominal $100/$5 input sizes are rounded from one unqualified ETH observation, not protocol swap fractions or qualified USD values.",
+        "action": "Keep full PoPL operation, configured production solver bounds, 20M/24M padding and complete fee qualification separate. New checker binds all nominal inputs, gas fields and screen results without raising defaults.",
+        "linkedTaskIDs": [
+          "activation-assets",
+          "lp-execution-routing",
+          "lp-eth-settlement"
+        ]
+      }
+    },
+    {
+      "id": "MARKET-MR-10",
+      "original_id": "MR-10",
+      "origin": "reports/real-market-refresh-20261116/REVIEW.md#fresh-source-observations; src/ZZZV4SpotPriceFeed.sol:129-135",
+      "status": "accepted_limit",
+      "workstream": "market-release",
+      "finding": "Stored spot provides no native last-trade timestamp",
+      "current_evidence": "Pool slot0 exposes stored price without last-swap time. Current block or fresh ETH round does not prove recent ZZZ price discovery. Reader preserves ETH timestamps and binds pool observations, but current active-L floor alone is not manipulation cost or market truth.",
+      "next_action": "Review recent trade behavior, external depth excluding PoPL, independent market corroboration and stale-market alerts before source admission. Keep chosen spot design and make its limitation explicit.",
+      "remaining_release_gates": [
+        "G1",
+        "G2"
+      ],
+      "original_assessment": {
+        "id": "MR-10",
+        "origin": "reports/real-market-refresh-20261116/REVIEW.md#fresh-source-observations; src/ZZZV4SpotPriceFeed.sol:129-135",
+        "current_status": "accepted design exposure requiring operating evidence; no timestamp is fabricated",
+        "evidence": "Pool slot0 exposes stored price without last-swap time. Current block or fresh ETH round does not prove recent ZZZ price discovery. Reader preserves ETH timestamps and binds pool observations, but current active-L floor alone is not manipulation cost or market truth.",
+        "action": "Review recent trade behavior, external depth excluding PoPL, independent market corroboration and stale-market alerts before source admission. Keep chosen spot design and make its limitation explicit.",
+        "linkedTaskIDs": [
+          "dual-price-qualification",
+          "creator-market-controls"
+        ]
+      }
+    },
+    {
+      "id": "MARKET-MR-11",
+      "original_id": "MR-11",
+      "origin": "reports/real-market-refresh-20261116/REVIEW.md#inventory-gap-closed-with-explicit-limits; DISCOVERY_COVERAGE.json",
+      "status": "resolved_before",
+      "workstream": "market-release",
+      "finding": "Filtered discovery interval is stitched; global completeness unproved",
+      "current_evidence": "Known95 inventory is bound to November9. Two inclusive same-core/nativeETH/fixedZZZ queries stitch 110324512..115708674 with matching before/after headers and no logs. This is one provider's filtered response, not proof of all pools/versions, highest TVL or complete logs.",
+      "next_action": "Preserve exact inventory/range/provenance and bounded incremental discovery for a concrete future qualification need. Do not run another scan simply to update a date or expand scope claims.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "MR-11",
+        "origin": "reports/real-market-refresh-20261116/REVIEW.md#inventory-gap-closed-with-explicit-limits; DISCOVERY_COVERAGE.json",
+        "current_status": "recorded filtered interval gap closed; global completeness remains unproven",
+        "evidence": "Known95 inventory is bound to November9. Two inclusive same-core/nativeETH/fixedZZZ queries stitch 110324512..115708674 with matching before/after headers and no logs. This is one provider's filtered response, not proof of all pools/versions, highest TVL or complete logs.",
+        "action": "Preserve exact inventory/range/provenance and bounded incremental discovery for a concrete future qualification need. Do not run another scan simply to update a date or expand scope claims.",
+        "linkedTaskIDs": [
+          "lp-execution-routing",
+          "pons-qualification",
+          "creator-input-liquidity"
+        ]
+      }
+    },
+    {
+      "id": "MARKET-MR-12",
+      "original_id": "MR-12",
+      "origin": "reports/real-market-refresh-20261116/REVIEW.md#scope-and-anchor; keeper/probe.py:32-83",
+      "status": "open_external",
+      "workstream": "market-release",
+      "finding": "Bounded public reads do not approve provider capacity or SLA",
+      "current_evidence": "39 read-only requests with canonical hash closure and zero retries do not establish archive/SLA/log completeness/tracing/full-PoPL fees or twelve-confirmation finality. Current maintained probe separately retains 90-second per-endpoint work budget, 100 logical/200 actual-post limits, optional pacing and denial/rate-limit stop behavior.",
+      "next_action": "Reuse recorded compatibility evidence within scope; qualify explicit provider capacity/terms and complete target operation separately before adopting an endpoint or fees. No transport/service configuration change justified by this report family.",
+      "remaining_release_gates": [
+        "G3",
+        "G9"
+      ],
+      "original_assessment": {
+        "id": "MR-12",
+        "origin": "reports/real-market-refresh-20261116/REVIEW.md#scope-and-anchor; keeper/probe.py:32-83",
+        "current_status": "bounded read success retained; provider approval still open",
+        "evidence": "39 read-only requests with canonical hash closure and zero retries do not establish archive/SLA/log completeness/tracing/full-PoPL fees or twelve-confirmation finality. Current maintained probe separately retains 90-second per-endpoint work budget, 100 logical/200 actual-post limits, optional pacing and denial/rate-limit stop behavior.",
+        "action": "Reuse recorded compatibility evidence within scope; qualify explicit provider capacity/terms and complete target operation separately before adopting an endpoint or fees. No transport/service configuration change justified by this report family.",
+        "linkedTaskIDs": [
+          "dual-price-qualification",
+          "activation-assets"
+        ]
+      }
+    },
+    {
+      "id": "MARKET-MR-13",
+      "original_id": "MR-13",
+      "origin": "reports/real-market-refresh-20261116/REVIEW.md#required-decisions-and-evidence; CANDIDATE_CONFIG.json",
+      "status": "accepted_limit",
+      "workstream": "market-release",
+      "finding": "Candidate intentionally retains null policies and empty routes",
+      "current_evidence": "Candidate source maxAge/independence/review fields, secondary/ZZZ feeds and reviewed reference are null, routes empty and deployable/production approval false. It is not an installer or admission manifest.",
+      "next_action": "Require named human ownership, independent review, exact contracts/policies and explicit future operating adoption. New checker rejects invented candidate settings even when top-level deployable remains false.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "MR-13",
+        "origin": "reports/real-market-refresh-20261116/REVIEW.md#required-decisions-and-evidence; CANDIDATE_CONFIG.json",
+        "current_status": "intentionally unconfigured candidate; new checker enforces null/empty status",
+        "evidence": "Candidate source maxAge/independence/review fields, secondary/ZZZ feeds and reviewed reference are null, routes empty and deployable/production approval false. It is not an installer or admission manifest.",
+        "action": "Require named human ownership, independent review, exact contracts/policies and explicit future operating adoption. New checker rejects invented candidate settings even when top-level deployable remains false.",
+        "linkedTaskIDs": [
+          "dual-price-qualification",
+          "creator-zzz-price"
+        ]
+      }
+    },
+    {
+      "id": "MARKET-MR-14",
+      "original_id": "MR-14",
+      "origin": "reports/real-market-refresh-20261116/REVIEW.md#required-decisions-and-evidence; src/ZZZOracle.sol:157-176,204-243; zzz_ops/price_policy.py:109-158",
+      "status": "open_external",
+      "workstream": "market-release",
+      "finding": "Implemented source guards do not replace upstream/common-mode review",
+      "current_evidence": "Fresh source admission validates current rounds, exact code hashes/decimals, original age, reviewed independent IDs and bounded disagreement. Runtime pins on a proxy cannot by themselves freeze the implementation, controls or reporters behind it. Existing observations/runtime/proxy records are evidence, not permanent independence guarantees.",
+      "next_action": "Review upstream administration/publication/liveness and rehearse stop/recovery before enabling sources; retain live round/code/policy/fingerprint validation. No Oracle or policy weakening required.",
+      "remaining_release_gates": [
+        "G1",
+        "G4"
+      ],
+      "original_assessment": {
+        "id": "MR-14",
+        "origin": "reports/real-market-refresh-20261116/REVIEW.md#required-decisions-and-evidence; src/ZZZOracle.sol:157-176,204-243; zzz_ops/price_policy.py:109-158",
+        "current_status": "implemented safeguards retained; upstream/common-mode operating review remains open",
+        "evidence": "Fresh source admission validates current rounds, exact code hashes/decimals, original age, reviewed independent IDs and bounded disagreement. Runtime pins on a proxy cannot by themselves freeze the implementation, controls or reporters behind it. Existing observations/runtime/proxy records are evidence, not permanent independence guarantees.",
+        "action": "Review upstream administration/publication/liveness and rehearse stop/recovery before enabling sources; retain live round/code/policy/fingerprint validation. No Oracle or policy weakening required.",
+        "linkedTaskIDs": [
+          "dual-price-qualification",
+          "creator-market-controls"
+        ]
+      }
+    },
+    {
+      "id": "MARKET-MR-15",
+      "original_id": "MR-15",
+      "origin": "reports/real-market-refresh-20261116/REVIEW.md#verification-and-retained-evidence; VERIFICATION.md",
+      "status": "accepted_limit",
+      "workstream": "market-release",
+      "finding": "Historical checks retain original source scopes and overlaps",
+      "current_evidence": "Eight unique original helper methods retain initial/fixed stages, 39 RPC responses are not 39 tests, six quotes overlap the primary phase, and earlier EVM/provider/compiler checks retain their own sources. No VRF/OpenSea/authority/independent-audit obligation is solved by this family.",
+      "next_action": "Keep old reports immutable and link the new semantic-checker fix with exact source/test stages. Continue unresolved external release tasks without rerunning unchanged suites or representing historical evidence as current live acceptance.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "MR-15",
+        "origin": "reports/real-market-refresh-20261116/REVIEW.md#verification-and-retained-evidence; VERIFICATION.md",
+        "current_status": "historical verification scopes preserved rather than replayed or inflated",
+        "evidence": "Eight unique original helper methods retain initial/fixed stages, 39 RPC responses are not 39 tests, six quotes overlap the primary phase, and earlier EVM/provider/compiler checks retain their own sources. No VRF/OpenSea/authority/independent-audit obligation is solved by this family.",
+        "action": "Keep old reports immutable and link the new semantic-checker fix with exact source/test stages. Continue unresolved external release tasks without rerunning unchanged suites or representing historical evidence as current live acceptance.",
+        "linkedTaskIDs": [
+          "dual-price-qualification",
+          "activation-assets",
+          "lp-eth-settlement"
+        ]
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-01",
+      "original_id": "DEP-01",
+      "origin": [
+        "reports/deployment-preparation-20261115/REVIEW.md",
+        "reports/metadata-lifecycle-fixes-20261116/REVIEW.md"
+      ],
+      "status": "fixed_now",
+      "workstream": "deployment-build",
+      "finding": "Current planner blocked by obsolete accepted-build source pins",
+      "current_evidence": "Closed metadata2-20261116 build entry; exact5accepted artifact pins,100source closure and48normal gates; current default39instance payload plan passes.",
+      "next_action": "Use a new unsigned review with explicit accepted_build.profile; do not relabel old reviews.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "DEP-01",
+        "title": "Current planner blocked by obsolete accepted-build source pins",
+        "provenance": [
+          "reports/deployment-preparation-20261115/REVIEW.md",
+          "reports/metadata-lifecycle-fixes-20261116/REVIEW.md"
+        ],
+        "current_status": "fixed",
+        "current_evidence": "Closed metadata2-20261116 build entry; exact5accepted artifact pins,100source closure and48normal gates; current default39instance payload plan passes.",
+        "next_action": "Use a new unsigned review with explicit accepted_build.profile; do not relabel old reviews.",
+        "kind": "new_defect"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-02",
+      "original_id": "DEP-02",
+      "origin": [
+        "reports/deployment-preparation-20261115/REVIEW.md",
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "fixed_now",
+      "workstream": "deployment-build",
+      "finding": "Changing current build must not invalidate old rehearsal replay",
+      "current_evidence": "Legacy BUILD/BUILD_PINS remain exact; checker dispatches explicit trusted profile or exact legacy-only omitted identifier, before build reads. Original44receipt/112getter ZIP reconciles.",
+      "next_action": "Retain both artifact families and original immutable evidence.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "DEP-02",
+        "title": "Changing current build must not invalidate old rehearsal replay",
+        "provenance": [
+          "reports/deployment-preparation-20261115/REVIEW.md",
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "fixed",
+        "current_evidence": "Legacy BUILD/BUILD_PINS remain exact; checker dispatches explicit trusted profile or exact legacy-only omitted identifier, before build reads. Original44receipt/112getter ZIP reconciles.",
+        "next_action": "Retain both artifact families and original immutable evidence.",
+        "kind": "compatibility_obligation"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-03",
+      "original_id": "DEP-03",
+      "origin": [
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md",
+        "scripts/check-local-deployment-evidence.py"
+      ],
+      "status": "fixed_now",
+      "workstream": "local-evidence",
+      "finding": "Binding observation count accepted duplicate/missing coverage",
+      "current_evidence": "Baseline accepted112copies of one row. Checker now derives exact112unique role/signature/argument keys and values from graph/constructors, rejects deletion/duplication/expected omission/self-consistent false values.",
+      "next_action": "Keep closed expected inventory synchronized if constructor graph changes.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "DEP-03",
+        "title": "Binding observation count accepted duplicate/missing coverage",
+        "provenance": [
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md",
+          "scripts/check-local-deployment-evidence.py"
+        ],
+        "current_status": "fixed",
+        "current_evidence": "Baseline accepted112copies of one row. Checker now derives exact112unique role/signature/argument keys and values from graph/constructors, rejects deletion/duplication/expected omission/self-consistent false values.",
+        "next_action": "Keep closed expected inventory synchronized if constructor graph changes.",
+        "kind": "new_defect"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-04",
+      "original_id": "DEP-04",
+      "origin": [
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "fixed_now",
+      "workstream": "local-evidence",
+      "finding": "Build/chain labels and self-committed plan did not fully bind construction intent",
+      "current_evidence": "Strict build labels, result/process/input chain4663 and normalized input/plan hash equality. All39 constructor names/source/types/ref arguments and parent creators independently derived; manipulated unused sequencer regression now fails. Inert returned code must equal0x5f5ffd plus the trusted ledger slice, not self-provided runtime bytes.",
+      "next_action": "Require explicit new trusted entry for any future build family; self-reported plan commitments are not authority.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "DEP-04",
+        "title": "Build/chain labels and self-committed plan did not fully bind construction intent",
+        "provenance": [
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "fixed",
+        "current_evidence": "Strict build labels, result/process/input chain4663 and normalized input/plan hash equality. All39 constructor names/source/types/ref arguments and parent creators independently derived; manipulated unused sequencer regression now fails. Inert returned code must equal0x5f5ffd plus the trusted ledger slice, not self-provided runtime bytes.",
+        "next_action": "Require explicit new trusted entry for any future build family; self-reported plan commitments are not authority.",
+        "kind": "new_defect"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-05",
+      "original_id": "DEP-05",
+      "origin": [
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "fixed_now",
+      "workstream": "local-evidence",
+      "finding": "Other local mutating RPC methods escaped45-mutation counting",
+      "current_evidence": "Baseline rogue anvil_setCode, mismatched wire sender and wrong impersonation passed. Closed12read methods plus exactly two intended mutation kinds enforced; sequential exact-integer JSON-RPC envelopes, exact reviewed impersonation, closed canonical send sender/target/nonce/value/calldata/gas/gasPrice/type binding, and bounded uint256 quantities. Reset/storage/raw-send/mine variants rejected.",
+      "next_action": "Review any future added RPC method rather than expanding the allowlist generically.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "DEP-05",
+        "title": "Other local mutating RPC methods escaped45-mutation counting",
+        "provenance": [
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "fixed",
+        "current_evidence": "Baseline rogue anvil_setCode, mismatched wire sender and wrong impersonation passed. Closed12read methods plus exactly two intended mutation kinds enforced; sequential exact-integer JSON-RPC envelopes, exact reviewed impersonation, closed canonical send sender/target/nonce/value/calldata/gas/gasPrice/type binding, and bounded uint256 quantities. Reset/storage/raw-send/mine variants rejected.",
+        "next_action": "Review any future added RPC method rather than expanding the allowlist generically.",
+        "kind": "new_defect"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-06",
+      "original_id": "DEP-06",
+      "origin": [
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "fixed_now",
+      "workstream": "output-preservation",
+      "finding": "Unavailable build consumed otherwise new rehearsal output path",
+      "current_evidence": "Baseline consumed the directory before source_changed. Build/dependency preflight now precedes output creation; new failure regression preserves absent path without starting a node.",
+      "next_action": "Preserve output/receipts after any actual run; never resume unknown state automatically.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "DEP-06",
+        "title": "Unavailable build consumed otherwise new rehearsal output path",
+        "provenance": [
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "fixed",
+        "current_evidence": "Baseline consumed the directory before source_changed. Build/dependency preflight now precedes output creation; new failure regression preserves absent path without starting a node.",
+        "next_action": "Preserve output/receipts after any actual run; never resume unknown state automatically.",
+        "kind": "new_defect"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-07",
+      "original_id": "DEP-07",
+      "origin": [
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "resolved_before",
+      "workstream": "local-evidence",
+      "finding": "Immutable-patched runtime cannot equal unpatched compiler template",
+      "current_evidence": "Actual original CREATE inputs/return bytes/getCode reconcile; checker retains this method and full runtime/initcode bounds. Current offline plan labels templates explicitly.",
+      "next_action": "For a future actual release reconcile new immutable-specific runtimes from receipts/returns.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "DEP-07",
+        "title": "Immutable-patched runtime cannot equal unpatched compiler template",
+        "provenance": [
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "historically_corrected_still_applicable",
+        "current_evidence": "Actual original CREATE inputs/return bytes/getCode reconcile; checker retains this method and full runtime/initcode bounds. Current offline plan labels templates explicitly.",
+        "next_action": "For a future actual release reconcile new immutable-specific runtimes from receipts/returns.",
+        "kind": "historical_finding"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-08",
+      "original_id": "DEP-08",
+      "origin": [
+        "reports/deployment-preparation-20261115/REVIEW.md",
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "resolved_before",
+      "workstream": "output-preservation",
+      "finding": "Existing/dangling output paths and publication uncertainty",
+      "current_evidence": "Exclusive link publication and output preservation are retained; new preflight ordering fix is separate. No old output/report overwritten.",
+      "next_action": "Use new owned directories; inspect uncertain publication before retry.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "DEP-08",
+        "title": "Existing/dangling output paths and publication uncertainty",
+        "provenance": [
+          "reports/deployment-preparation-20261115/REVIEW.md",
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "historically_corrected_still_applicable",
+        "current_evidence": "Exclusive link publication and output preservation are retained; new preflight ordering fix is separate. No old output/report overwritten.",
+        "next_action": "Use new owned directories; inspect uncertain publication before retry.",
+        "kind": "historical_finding"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-09",
+      "original_id": "DEP-09",
+      "origin": [
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "accepted_limit",
+      "workstream": "local-evidence",
+      "finding": "Original mutable request alias cannot attest exact preflight fields",
+      "current_evidence": "Recorder already freezes serialized requests/responses; original archive remains untouched and strict replay still reports legacy capture true/preflight verified false.",
+      "next_action": "Use corrected recording on a separately authorized future changed-runtime rehearsal; never repair the old label.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "DEP-09",
+        "title": "Original mutable request alias cannot attest exact preflight fields",
+        "provenance": [
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "accepted_historical_evidence_limit",
+        "current_evidence": "Recorder already freezes serialized requests/responses; original archive remains untouched and strict replay still reports legacy capture true/preflight verified false.",
+        "next_action": "Use corrected recording on a separately authorized future changed-runtime rehearsal; never repair the old label.",
+        "kind": "historical_finding"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-10",
+      "original_id": "DEP-10",
+      "origin": [
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "resolved_before",
+      "workstream": "deployment-build",
+      "finding": "Evidence cannot choose its own trusted build files",
+      "current_evidence": "Closed two-entry registry checks identifiers and exact filename/hash inventories before reading compiler artifacts; forged traversal/hash/profile cases fail.",
+      "next_action": "Add reviewed source-pinned entries only; never accept arbitrary evidence-provided artifact roots/pins.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "DEP-10",
+        "title": "Evidence cannot choose its own trusted build files",
+        "provenance": [
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "historically_corrected_and_extended",
+        "current_evidence": "Closed two-entry registry checks identifiers and exact filename/hash inventories before reading compiler artifacts; forged traversal/hash/profile cases fail.",
+        "next_action": "Add reviewed source-pinned entries only; never accept arbitrary evidence-provided artifact roots/pins.",
+        "kind": "historical_finding"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-11",
+      "original_id": "DEP-11",
+      "origin": [
+        "reports/deployment-preparation-20261115/REVIEW.md"
+      ],
+      "status": "fixed_now",
+      "workstream": "deployment-build",
+      "finding": "Original planner tests encoded historical constructor sizes",
+      "current_evidence": "All22old method AST bodies/assertions preserved; explicit legacy temp source/build adapter and CLI selection. New current-profile properties cover fresh metadata objects.",
+      "next_action": "Ordinary CI may run both declared families; this task did not rerun the22old methods.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "DEP-11",
+        "title": "Original planner tests encoded historical constructor sizes",
+        "provenance": [
+          "reports/deployment-preparation-20261115/REVIEW.md"
+        ],
+        "current_status": "fixed_test_maintenance",
+        "current_evidence": "All22old method AST bodies/assertions preserved; explicit legacy temp source/build adapter and CLI selection. New current-profile properties cover fresh metadata objects.",
+        "next_action": "Ordinary CI may run both declared families; this task did not rerun the22old methods.",
+        "kind": "new_defect"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-12",
+      "original_id": "DEP-12",
+      "origin": [
+        "reports/deployment-preparation-20261115/REVIEW.md"
+      ],
+      "status": "accepted_limit",
+      "workstream": "deployment-release",
+      "finding": "Symlink regression unavailable on original Windows account",
+      "current_evidence": "Original one skip stays explicit; normal exclusive-output/publication properties retain original evidence. No unsupported platform pass inferred.",
+      "next_action": "Exercise symlink-specific case on an authorized supporting host if required for release.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "DEP-12",
+        "title": "Symlink regression unavailable on original Windows account",
+        "provenance": [
+          "reports/deployment-preparation-20261115/REVIEW.md"
+        ],
+        "current_status": "platform_coverage_limit_retained",
+        "current_evidence": "Original one skip stays explicit; normal exclusive-output/publication properties retain original evidence. No unsupported platform pass inferred.",
+        "next_action": "Exercise symlink-specific case on an authorized supporting host if required for release.",
+        "kind": "historical_finding"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-13",
+      "original_id": "DEP-13",
+      "origin": [
+        "reports/deployment-preparation-20261115/REVIEW.md",
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "open_external",
+      "workstream": "deployment-release",
+      "finding": "Actual governance/bootstrap/keeper/guardian/payee choices",
+      "current_evidence": "Offline addresses remain unverified assignments; no signer or CREATE prediction added.",
+      "next_action": "Select actual public roles/recovery/custody arrangements, reconcile actual bootstrap and constructor receipts.",
+      "remaining_release_gates": [
+        "G4"
+      ],
+      "original_assessment": {
+        "id": "DEP-13",
+        "title": "Actual governance/bootstrap/keeper/guardian/payee choices",
+        "provenance": [
+          "reports/deployment-preparation-20261115/REVIEW.md",
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "open_operator_release_inputs",
+        "current_evidence": "Offline addresses remain unverified assignments; no signer or CREATE prediction added.",
+        "next_action": "Select actual public roles/recovery/custody arrangements, reconcile actual bootstrap and constructor receipts.",
+        "kind": "obligation"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-14",
+      "original_id": "DEP-14",
+      "origin": [
+        "reports/deployment-preparation-20261115/REVIEW.md",
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "open_external",
+      "workstream": "deployment-release",
+      "finding": "Metadata URI/content/persistence and marketplace acceptance",
+      "current_evidence": "Metadata2source/normal size is accepted and URI ABI sizing is source checked. No content retention/OpenSea queued reads/media/cache outcome is qualified.",
+      "next_action": "Choose final root, review all source artwork/content retention and supported-chain OpenSea behavior.",
+      "remaining_release_gates": [
+        "G5"
+      ],
+      "original_assessment": {
+        "id": "DEP-14",
+        "title": "Metadata URI/content/persistence and marketplace acceptance",
+        "provenance": [
+          "reports/deployment-preparation-20261115/REVIEW.md",
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "open_external_qualification",
+        "current_evidence": "Metadata2source/normal size is accepted and URI ABI sizing is source checked. No content retention/OpenSea queued reads/media/cache outcome is qualified.",
+        "next_action": "Choose final root, review all source artwork/content retention and supported-chain OpenSea behavior.",
+        "kind": "obligation"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-15",
+      "original_id": "DEP-15",
+      "origin": [
+        "reports/deployment-preparation-20261115/REVIEW.md",
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "open_external",
+      "workstream": "deployment-release",
+      "finding": "Actual native periphery/token/runtime controls",
+      "current_evidence": "Source native identities remain fixed; historical constructor-only doubles do not pass real registry runtime admission.",
+      "next_action": "Review live code/getters/control/proxy behavior and release constructor arguments without treating seeded doubles as real dependencies.",
+      "remaining_release_gates": [
+        "G4"
+      ],
+      "original_assessment": {
+        "id": "DEP-15",
+        "title": "Actual native periphery/token/runtime controls",
+        "provenance": [
+          "reports/deployment-preparation-20261115/REVIEW.md",
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "open_external_qualification",
+        "current_evidence": "Source native identities remain fixed; historical constructor-only doubles do not pass real registry runtime admission.",
+        "next_action": "Review live code/getters/control/proxy behavior and release constructor arguments without treating seeded doubles as real dependencies.",
+        "kind": "obligation"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-16",
+      "original_id": "DEP-16",
+      "origin": [
+        "reports/deployment-preparation-20261115/REVIEW.md",
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "open_external",
+      "workstream": "deployment-release",
+      "finding": "Independent ETH/ZZZ pricing and usable routes",
+      "current_evidence": "No source/route admitted by this work; latest real-market report remains separate. No safeguards relaxed.",
+      "next_action": "Resolve genuine independent sources, liveness and bidirectional execution capacity at required sizes.",
+      "remaining_release_gates": [
+        "G1",
+        "G2"
+      ],
+      "original_assessment": {
+        "id": "DEP-16",
+        "title": "Independent ETH/ZZZ pricing and usable routes",
+        "provenance": [
+          "reports/deployment-preparation-20261115/REVIEW.md",
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "open_external_qualification",
+        "current_evidence": "No source/route admitted by this work; latest real-market report remains separate. No safeguards relaxed.",
+        "next_action": "Resolve genuine independent sources, liveness and bidirectional execution capacity at required sizes.",
+        "kind": "obligation"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-17",
+      "original_id": "DEP-17",
+      "origin": [
+        "reports/deployment-preparation-20261115/REVIEW.md",
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "open_external",
+      "workstream": "deployment-release",
+      "finding": "Supported randomness configuration/subscription/funding",
+      "current_evidence": "Construction succeeds unconfigured; no VRF provider/subscription/consumer/funding selected or adopted.",
+      "next_action": "Qualify actual provider, exact callback/configuration, authority and funded operation.",
+      "remaining_release_gates": [
+        "G6"
+      ],
+      "original_assessment": {
+        "id": "DEP-17",
+        "title": "Supported randomness configuration/subscription/funding",
+        "provenance": [
+          "reports/deployment-preparation-20261115/REVIEW.md",
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "open_external_qualification",
+        "current_evidence": "Construction succeeds unconfigured; no VRF provider/subscription/consumer/funding selected or adopted.",
+        "next_action": "Qualify actual provider, exact callback/configuration, authority and funded operation.",
+        "kind": "obligation"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-18",
+      "original_id": "DEP-18",
+      "origin": [
+        "reports/deployment-preparation-20261115/REVIEW.md",
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "open_external",
+      "workstream": "deployment-release",
+      "finding": "SeaDrop/OpenSea onboarding/settings/stages/fees/payers",
+      "current_evidence": "Exact archived SeaDrop runtime was seeded only locally; helper remains unconfigured. Direct NFT constructor success is not marketplace acceptance.",
+      "next_action": "Complete supported-chain onboarding, terms/upstream synchronization, mintEnd and real gross/fee/net behavior.",
+      "remaining_release_gates": [
+        "G7"
+      ],
+      "original_assessment": {
+        "id": "DEP-18",
+        "title": "SeaDrop/OpenSea onboarding/settings/stages/fees/payers",
+        "provenance": [
+          "reports/deployment-preparation-20261115/REVIEW.md",
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "open_external_qualification",
+        "current_evidence": "Exact archived SeaDrop runtime was seeded only locally; helper remains unconfigured. Direct NFT constructor success is not marketplace acceptance.",
+        "next_action": "Complete supported-chain onboarding, terms/upstream synchronization, mintEnd and real gross/fee/net behavior.",
+        "kind": "obligation"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-19",
+      "original_id": "DEP-19",
+      "origin": [
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md",
+        "reports/metadata-lifecycle-fixes-20261116/VERIFICATION.md"
+      ],
+      "status": "open_verification",
+      "workstream": "deployment-release",
+      "finding": "Current actual constructors/runtime/bindings after metadata source changes",
+      "current_evidence": "Current normal100-source build/39instance unsigned payload graph/48size checks pass; old44actual transactions retain older5-source runtime family.",
+      "next_action": "If authorized, rehearse changed accepted objects on a new owned chain and reconcile actual immutable-specific runtimes; do not relabel Nov15 receipts.",
+      "remaining_release_gates": [
+        "G8"
+      ],
+      "original_assessment": {
+        "id": "DEP-19",
+        "title": "Current actual constructors/runtime/bindings after metadata source changes",
+        "provenance": [
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md",
+          "reports/metadata-lifecycle-fixes-20261116/VERIFICATION.md"
+        ],
+        "current_status": "open_changed_runtime_execution",
+        "current_evidence": "Current normal100-source build/39instance unsigned payload graph/48size checks pass; old44actual transactions retain older5-source runtime family.",
+        "next_action": "If authorized, rehearse changed accepted objects on a new owned chain and reconcile actual immutable-specific runtimes; do not relabel Nov15 receipts.",
+        "kind": "obligation"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-20",
+      "original_id": "DEP-20",
+      "origin": [
+        "reports/deployment-preparation-20261115/REVIEW.md",
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "open_external",
+      "workstream": "deployment-release",
+      "finding": "Target deployment gas and complete posting/execution fees",
+      "current_evidence": "141382621total/14172289worst padded figures remain historical controlled local observations. No new constructor or fee work executed.",
+      "next_action": "Review final actual payload/gas/complete fees with approved provider and spending caps; do not sum internal children twice.",
+      "remaining_release_gates": [
+        "G3"
+      ],
+      "original_assessment": {
+        "id": "DEP-20",
+        "title": "Target deployment gas and complete posting/execution fees",
+        "provenance": [
+          "reports/deployment-preparation-20261115/REVIEW.md",
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "open_target_qualification",
+        "current_evidence": "141382621total/14172289worst padded figures remain historical controlled local observations. No new constructor or fee work executed.",
+        "next_action": "Review final actual payload/gas/complete fees with approved provider and spending caps; do not sum internal children twice.",
+        "kind": "obligation"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-21",
+      "original_id": "DEP-21",
+      "origin": [
+        "reports/deployment-preparation-20261115/REVIEW.md",
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "open_external",
+      "workstream": "deployment-release",
+      "finding": "Configured operational graph and pre-seal release review",
+      "current_evidence": "Plans remain unsigned/not ready/production false; no seal/configuration/service adoption, no market/VRF/route setup inferred.",
+      "next_action": "Complete reviewed pools/routes/limits/confirmation/VRF/SeaDrop/inventory and reciprocal deployed bindings before any separate sealing authorization.",
+      "remaining_release_gates": [
+        "G8",
+        "G9",
+        "G10"
+      ],
+      "original_assessment": {
+        "id": "DEP-21",
+        "title": "Configured operational graph and pre-seal release review",
+        "provenance": [
+          "reports/deployment-preparation-20261115/REVIEW.md",
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "open_operating_qualification",
+        "current_evidence": "Plans remain unsigned/not ready/production false; no seal/configuration/service adoption, no market/VRF/route setup inferred.",
+        "next_action": "Complete reviewed pools/routes/limits/confirmation/VRF/SeaDrop/inventory and reciprocal deployed bindings before any separate sealing authorization.",
+        "kind": "obligation"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-22",
+      "original_id": "DEP-22",
+      "origin": [
+        "reports/deployment-preparation-20261115/REVIEW.md",
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "open_external",
+      "workstream": "deployment-release",
+      "finding": "Hosting, restart, backups and operating recovery",
+      "current_evidence": "Isolated node shutdown and old capture integrity are not production host recovery or running service qualification.",
+      "next_action": "Rehearse matching approved host/provider/configuration/recovery and journal retention separately.",
+      "remaining_release_gates": [
+        "G9"
+      ],
+      "original_assessment": {
+        "id": "DEP-22",
+        "title": "Hosting, restart, backups and operating recovery",
+        "provenance": [
+          "reports/deployment-preparation-20261115/REVIEW.md",
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "open_operating_qualification",
+        "current_evidence": "Isolated node shutdown and old capture integrity are not production host recovery or running service qualification.",
+        "next_action": "Rehearse matching approved host/provider/configuration/recovery and journal retention separately.",
+        "kind": "obligation"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-23",
+      "original_id": "DEP-23",
+      "origin": [
+        "reports/deployment-preparation-20261115/REVIEW.md",
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "open_external",
+      "workstream": "deployment-release",
+      "finding": "Independent audit and remediation",
+      "current_evidence": "Internal scoped code/evidence checks provide no independent production approval.",
+      "next_action": "Commission independent review of exact final release artifacts, remediate and verify identified issues.",
+      "remaining_release_gates": [
+        "G10"
+      ],
+      "original_assessment": {
+        "id": "DEP-23",
+        "title": "Independent audit and remediation",
+        "provenance": [
+          "reports/deployment-preparation-20261115/REVIEW.md",
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "open_independent_release_gate",
+        "current_evidence": "Internal scoped code/evidence checks provide no independent production approval.",
+        "next_action": "Commission independent review of exact final release artifacts, remediate and verify identified issues.",
+        "kind": "obligation"
+      }
+    },
+    {
+      "id": "DEPLOY-DEP-24",
+      "original_id": "DEP-24",
+      "origin": [
+        "reports/deployment-preparation-20261115/REVIEW.md",
+        "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+      ],
+      "status": "resolved_before",
+      "workstream": "deployment-release",
+      "finding": "Permissionless factory interleaving and child addresses",
+      "current_evidence": "Getter-discovered ActivationAssets and royalty ledger remain unresolved offline; checker resolves actual captured addresses rather than assuming factory nonces.",
+      "next_action": "Continue actual getter/receipt discovery; no CREATE prediction or invented zero address.",
+      "remaining_release_gates": [],
+      "original_assessment": {
+        "id": "DEP-24",
+        "title": "Permissionless factory interleaving and child addresses",
+        "provenance": [
+          "reports/deployment-preparation-20261115/REVIEW.md",
+          "reports/local-deployment-rehearsal-20261115/REVIEW.md"
+        ],
+        "current_status": "implemented_preserved",
+        "current_evidence": "Getter-discovered ActivationAssets and royalty ledger remain unresolved offline; checker resolves actual captured addresses rather than assuming factory nonces.",
+        "next_action": "Continue actual getter/receipt discovery; no CREATE prediction or invented zero address.",
+        "kind": "obligation"
+      }
+    }
+  ],
+  "remaining_release_gates": [
+    {
+      "id": "G1",
+      "title": "Independent ETH and ZZZ valuation",
+      "owner": "Creator/team, operator and engineering",
+      "task_ids": [
+        "dual-price-qualification",
+        "creator-zzz-price"
+      ],
+      "related_rows": [
+        "META-MANUAL-MR3",
+        "MARKET-MR-02",
+        "MARKET-MR-03",
+        "MARKET-MR-04",
+        "MARKET-MR-05",
+        "MARKET-MR-10",
+        "MARKET-MR-14",
+        "DEPLOY-DEP-16"
+      ],
+      "status": "open",
+      "scope": "Release obligations may share rows. Do not sum action groups as bugs."
+    },
+    {
+      "id": "G2",
+      "title": "Usable routes, external depth and destination compatibility",
+      "owner": "Creator/team and engineering",
+      "task_ids": [
+        "activation-assets",
+        "lp-eth-settlement",
+        "creator-input-liquidity",
+        "lp-execution-routing"
+      ],
+      "related_rows": [
+        "META-MANUAL-MR3",
+        "META-MANUAL-MR4",
+        "MARKET-MR-06",
+        "MARKET-MR-07",
+        "MARKET-MR-08",
+        "MARKET-MR-09",
+        "MARKET-MR-10",
+        "DEPLOY-DEP-16"
+      ],
+      "status": "open",
+      "scope": "Release obligations may share rows. Do not sum action groups as bugs."
+    },
+    {
+      "id": "G3",
+      "title": "Provider capacity and complete target fees/gas",
+      "owner": "Operator and engineering",
+      "task_ids": [
+        "deployment-initcode",
+        "testnet-rehearsal"
+      ],
+      "related_rows": [
+        "META-MANUAL-MR4",
+        "MARKET-MR-09",
+        "MARKET-MR-12",
+        "DEPLOY-DEP-20"
+      ],
+      "status": "open",
+      "scope": "Release obligations may share rows. Do not sum action groups as bugs."
+    },
+    {
+      "id": "G4",
+      "title": "Actual authorities, bootstrap and dependency controls",
+      "owner": "Operator and creator/team",
+      "task_ids": [
+        "authorities-prices",
+        "creator-market-controls"
+      ],
+      "related_rows": [
+        "MARKET-MR-14",
+        "DEPLOY-DEP-13",
+        "DEPLOY-DEP-15"
+      ],
+      "status": "open",
+      "scope": "Release obligations may share rows. Do not sum action groups as bugs."
+    },
+    {
+      "id": "G5",
+      "title": "Metadata content, read gas and real marketplace outcome",
+      "owner": "Operator and engineering",
+      "task_ids": [
+        "metadata-ops"
+      ],
+      "related_rows": [
+        "META-MANUAL-M5",
+        "META-MANUAL-M8",
+        "DEPLOY-DEP-14"
+      ],
+      "status": "open",
+      "scope": "Release obligations may share rows. Do not sum action groups as bugs."
+    },
+    {
+      "id": "G6",
+      "title": "Supported, funded and operated randomness",
+      "owner": "Operator/provider and engineering",
+      "task_ids": [
+        "authorities-prices",
+        "nft-lifecycle",
+        "audit-release"
+      ],
+      "related_rows": [
+        "DEPLOY-DEP-17"
+      ],
+      "status": "open",
+      "scope": "Release obligations may share rows. Do not sum action groups as bugs."
+    },
+    {
+      "id": "G7",
+      "title": "Actual OpenSea/SeaDrop launch and payments",
+      "owner": "Operator/platform and engineering",
+      "task_ids": [
+        "opensea-mint"
+      ],
+      "related_rows": [
+        "DEPLOY-DEP-18"
+      ],
+      "status": "open",
+      "scope": "Release obligations may share rows. Do not sum action groups as bugs."
+    },
+    {
+      "id": "G8",
+      "title": "Current release constructors, runtime and bindings",
+      "owner": "Operator and engineering",
+      "task_ids": [
+        "deployment-initcode"
+      ],
+      "related_rows": [
+        "DEPLOY-DEP-19",
+        "DEPLOY-DEP-21"
+      ],
+      "status": "open",
+      "scope": "Release obligations may share rows. Do not sum action groups as bugs."
+    },
+    {
+      "id": "G9",
+      "title": "Current services, wallets, maximum workloads and recovery",
+      "owner": "Operator and engineering",
+      "task_ids": [
+        "host-services",
+        "keeper-recovery",
+        "testnet-rehearsal",
+        "wallet"
+      ],
+      "related_rows": [
+        "META-MANUAL-M5",
+        "META-MANUAL-M6",
+        "META-MANUAL-M8",
+        "META-MANUAL-MW1",
+        "META-MANUAL-MR4",
+        "MARKET-MR-12",
+        "DEPLOY-DEP-21",
+        "DEPLOY-DEP-22"
+      ],
+      "status": "open",
+      "scope": "Release obligations may share rows. Do not sum action groups as bugs."
+    },
+    {
+      "id": "G10",
+      "title": "Independent audit, remediation and release sign-off",
+      "owner": "Independent auditor and operator",
+      "task_ids": [
+        "audit-release",
+        "security-integration"
+      ],
+      "related_rows": [
+        "DEPLOY-DEP-21",
+        "DEPLOY-DEP-23"
+      ],
+      "status": "open",
+      "scope": "Release obligations may share rows. Do not sum action groups as bugs."
+    }
+  ],
+  "preservation": "All114selected historical report files and61Solidity files retain exact baseline bytes. No new deployment/site/service/journal adoption.",
+  "supporting_review_files": {
+    "metadata-manual/FINDINGS.json": "1e6571253480c0f1b17df5fa161a3c21d4973ab4977e754a513ef6f39786c20f",
+    "metadata-manual/OBJECT_EQUIVALENCE.json": "380a6258d2e686c1453f11a2ecba49b2794730fd72e35ea074ed423f0024a131",
+    "market/FINDINGS.json": "b6f8726eb13c96192f5260387458e3fb1b0e988f5949048dcf8b04fe85c67b21",
+    "deployment/FINDINGS.json": "b019ea701cd23ad71dae61df9e16fd5dc24c3ff9fd5fca20268be569d8dfc419",
+    "INDEPENDENT_IMPLEMENTATION_REVIEW.json": "bd0d0ed5a818afc858d93cb2902fdfb9275af0068e33e4dbc03a79fb05597a68"
+  }
+}

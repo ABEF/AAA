@@ -1,5 +1,12 @@
 # Consolidated audit findings and evidence
 
+Use the [current five-audit finding index](../reports/five-audit-reconciliation-20261116/FINDINGS.json)
+for the latest metadata, market, construction and manual-reference dispositions.
+It records origin, duplicate action groups, source evidence, fixes and open
+qualification. New trusted build selection and stronger offline checkers close
+tooling/evidence defects; they do not qualify live providers or contracts.
+The sole [Todo](../TODO.md) continues to own project status.
+
 The [manual reference-swap source fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md) resolves the reproduced
 emergency-only self-rejection: captured starting prices and exact own-swap proof
 replace comparison against a changing live fingerprint. Live freshness/agreement,
@@ -9,11 +16,12 @@ automatic fallback. Prior rejection and gas evidence keep their original scope.
 
 The [manual recovery rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) closes controlled actual
 local C/D/Parked CLI-to-receipt composition and gas measurement. The verified
-worst padded call is13,010,802/24M. It also reproduces an open emergency-only
-coupling: retaining the live price fingerprint rejects a successful swap through
-that reference even when original output/L floors are feasible. Healthy14 uses a
-separately reviewed third venue; explicit0 remains a separate outage decision,
-never an automatic workaround. Production sources/defaults remain unchanged.
+worst padded call at that original source is13,010,802/24M. It reproduced the
+then-open emergency-only fingerprint coupling; the later reference-swap fix above
+resolves it in source. That earlier healthy14 used a separately reviewed third
+venue; explicit0 remains an independent outage decision, never an automatic
+workaround. Keep each receipt/gas/runtime scope historical: later metadata
+callers changed even though the six manual-fix objects and Vault remain exact.
 
 The [44-linked-task source review](../reports/open-tasks-audit-20261113/REVIEW.md) corrects probe pacing/deadline/
 refusal handling and indexer retry amplification;20distinct new regression

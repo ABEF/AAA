@@ -1,0 +1,437 @@
+{
+  "schema": 1,
+  "baseline": "28431b3ac63d909c9c04246de1ee68cc16a3ed5e",
+  "unique_new_methods_passed": 21,
+  "unchanged_methods_executed": 0,
+  "passed_methods_with_latest_source_stage": {
+    "test_default_planner_accepts_current_metadata_build_and_tags_identity": "current-fix-focused",
+    "test_checker_rejects_duplicated_binding_observation_coverage": "current-fix-focused",
+    "test_current_complete_graph_has_exact_objects_and_original_size_limits": "current-fix-focused",
+    "test_unknown_build_rejected_before_build_filesystem_reads": "current-fix-focused",
+    "test_explicit_historical_fixture_retains_old_objects_and_source_identity": "current-fix-focused",
+    "test_original_capture_reconciles_as_legacy_without_current_relabelling": "send-and-carrier-fixed",
+    "test_deleted_binding_observation_cannot_pass": "current-fix-focused",
+    "test_missing_expected_field_cannot_disable_derived_binding_check": "current-fix-focused",
+    "test_self_consistent_wrong_expected_and_wire_value_is_rejected": "current-fix-focused",
+    "test_unknown_or_mismatched_evidence_build_rejected_before_build_read": "current-fix-focused",
+    "test_mislabelled_result_chain_rejected_before_build_read": "current-fix-focused",
+    "test_legacy_capture_cannot_smuggle_current_result_build_label": "legacy-label-newcase",
+    "test_unavailable_build_does_not_consume_rehearsal_output_folder": "output-preflight-fixed",
+    "test_rogue_rpc_mutation_cannot_hide_outside_counted_sends": "wire-and-constructor-fixed",
+    "test_constructor_arguments_derive_from_validated_inputs_not_plan_rows": "wire-and-constructor-fixed",
+    "test_wire_envelopes_and_additional_mutation_kinds_are_rejected": "wire-envelope-newcase",
+    "test_send_request_cannot_disagree_with_captured_transaction_sender": "send-and-carrier-fixed",
+    "test_impersonation_must_name_exact_reviewed_constructor_sender": "send-and-carrier-fixed",
+    "test_submission_fields_quantities_and_creation_target_are_bound": "send-and-carrier-fixed",
+    "test_inert_carrier_output_is_derived_from_trusted_ledger_bytes": "send-and-carrier-fixed",
+    "test_submission_quantity_is_bounded_uint256_and_preserves_actual_wire": "quantity-bound-newcase"
+  },
+  "stages": [
+    {
+      "stage": "baseline-current-drift",
+      "selection": [
+        "test_default_planner_accepts_current_metadata_build_and_tags_identity"
+      ],
+      "result": {
+        "selected": 1,
+        "executed": 1,
+        "failures": 0,
+        "errors": 1,
+        "skips": 0,
+        "passed": 0,
+        "source_unchanged": true,
+        "unchanged_methods_executed": 0
+      },
+      "source_sha256": {
+        "zzz_ops/deployment_plan.py": "ff7e50bf3e04de5681eec65a334be9d02e8e9dfb565faa3cbb4a46e9804dc1ea",
+        "scripts/check-local-deployment-evidence.py": "7efb7554e01b527263291b73e044c9f1d00bc150082cda0cfb5af6643021ce0e",
+        "scripts/rehearse-local-deployment.py": "943978c48def8782b46bd1fb203cc94fb341042605636b4b9a46f08b19857bdd",
+        "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+        "tests_python/test_deployment_build_profiles.py": "88c35cdff6c42de88595d848d26cdf262e95220332d16179dfcad024ec2b13ba"
+      },
+      "artifacts": {
+        "baseline-current-drift\\RESULT.json": "db49dc1ca3f57f4fb92c912c9fb427c17d782e07415573ba461a6e2a231c8409",
+        "baseline-current-drift\\START.json": "c43c47cce583646e976b6fc592c3db53665b714e382374a42a1ab3e31eefc366",
+        "baseline-current-drift\\test-output.log": "c4dee58fa989ab913c2893ab5d4f59dad3fec37dbcd3230bdc5fe9f7671d0cf1"
+      }
+    },
+    {
+      "stage": "baseline-duplicate-coverage",
+      "selection": [
+        "test_checker_rejects_duplicated_binding_observation_coverage"
+      ],
+      "result": {
+        "selected": 1,
+        "executed": 1,
+        "failures": 1,
+        "errors": 0,
+        "skips": 0,
+        "passed": 0,
+        "source_unchanged": true,
+        "unchanged_methods_executed": 0
+      },
+      "source_sha256": {
+        "zzz_ops/deployment_plan.py": "374126789d5c412f23632dfd27c9dce0c3e51688746bc0461ff56f0f943ccdef",
+        "scripts/check-local-deployment-evidence.py": "7efb7554e01b527263291b73e044c9f1d00bc150082cda0cfb5af6643021ce0e",
+        "scripts/rehearse-local-deployment.py": "b1017deb6e7a38fcf978fee5ec57c831f2d46ef594fb353e40a6af79190c7b8d",
+        "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+        "tests_python/test_deployment_build_profiles.py": "e94cf6dac5899e12da82e1bd9bfdc9232b0fb7855d6cd5373c4b027b13e87706"
+      },
+      "artifacts": {
+        "baseline-duplicate-coverage\\RESULT.json": "e175e977ab5eb5c579ea610c0f3c83030e83134b0f926cfd2254b19d832aa3e9",
+        "baseline-duplicate-coverage\\START.json": "56d1f5a0895e6cb119921eb7bfd1a53fe7a8ff732a711be94c0bea05cbc373e4",
+        "baseline-duplicate-coverage\\test-output.log": "b8be9f8f6709ad9589977b70506344204c6f8f05fecc2e27070bec1ad1453ff8"
+      }
+    },
+    {
+      "stage": "current-fix-focused",
+      "selection": [
+        "test_default_planner_accepts_current_metadata_build_and_tags_identity",
+        "test_checker_rejects_duplicated_binding_observation_coverage",
+        "test_current_complete_graph_has_exact_objects_and_original_size_limits",
+        "test_unknown_build_rejected_before_build_filesystem_reads",
+        "test_explicit_historical_fixture_retains_old_objects_and_source_identity",
+        "test_original_capture_reconciles_as_legacy_without_current_relabelling",
+        "test_deleted_binding_observation_cannot_pass",
+        "test_missing_expected_field_cannot_disable_derived_binding_check",
+        "test_self_consistent_wrong_expected_and_wire_value_is_rejected",
+        "test_unknown_or_mismatched_evidence_build_rejected_before_build_read",
+        "test_mislabelled_result_chain_rejected_before_build_read"
+      ],
+      "result": {
+        "selected": 11,
+        "executed": 11,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "passed": 11,
+        "source_unchanged": true,
+        "unchanged_methods_executed": 0
+      },
+      "source_sha256": {
+        "zzz_ops/deployment_plan.py": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df",
+        "scripts/check-local-deployment-evidence.py": "d82891967751b14ad16bc60d2709d379489b1522589f13f47beaf592002233cd",
+        "scripts/rehearse-local-deployment.py": "dd4d22826c1e86731116e44adaf6dacb1b3e3d39bbcafd6880051900969b45d5",
+        "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+        "tests_python/test_deployment_build_profiles.py": "e96baf68c7dcfee11cf23bbccb855c23fc95dd23de3ee7a42d3d8b4d052e0990"
+      },
+      "artifacts": {
+        "current-fix-focused\\RESULT.json": "17483a956f822d52be1ad5c778dda1b842dde43f2499ed985024c4550c221cb7",
+        "current-fix-focused\\START.json": "b39f7ce5c81133599664b3e17f28206f5ed78414cdaf4a87c689001452f231cf",
+        "current-fix-focused\\test-output.log": "579c14258a020166024206e8004fb6df2ae976cf486ca25635716aa40370a94b"
+      }
+    },
+    {
+      "stage": "legacy-label-newcase",
+      "selection": [
+        "test_legacy_capture_cannot_smuggle_current_result_build_label"
+      ],
+      "result": {
+        "selected": 1,
+        "executed": 1,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "passed": 1,
+        "source_unchanged": true,
+        "unchanged_methods_executed": 0
+      },
+      "source_sha256": {
+        "zzz_ops/deployment_plan.py": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df",
+        "scripts/check-local-deployment-evidence.py": "94e0d95b6e494b4ae3069f999480061c1f3b8260cbba87b25b64f194f5477904",
+        "scripts/rehearse-local-deployment.py": "dd4d22826c1e86731116e44adaf6dacb1b3e3d39bbcafd6880051900969b45d5",
+        "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+        "tests_python/test_deployment_build_profiles.py": "f1e3c0ac5094dd0011f5d80a0acaf90b1d6e69f0c2ecf6a2e98b9b1016aa2cfe",
+        "tests_python/deployment_legacy_fixture.py": "2d94ee27063dddc7d49d0519a42bd2c4efb4560cebdf0cb56f5226b4717a6b0d",
+        "tests_python/test_deployment_plan.py": "cd09014ac1bdec468efdec8159c01a7af8ecc26e7ca344065796fe5648b725c5"
+      },
+      "artifacts": {
+        "legacy-label-newcase\\RESULT.json": "6ea43545ba18c741ca0a8c6317db8f87b0d8f81171523739e3a1d74d1df2e228",
+        "legacy-label-newcase\\START.json": "3912ee74953669fb9a605d040ceb162152965dcc6feac2d8604abc3a506e6687",
+        "legacy-label-newcase\\test-output.log": "b0fae25bf3b84c13dd1a9c4baa85286b5a14b13f68bca728bb53937f7b184069"
+      }
+    },
+    {
+      "stage": "baseline-output-preflight",
+      "selection": [
+        "test_unavailable_build_does_not_consume_rehearsal_output_folder"
+      ],
+      "result": {
+        "selected": 1,
+        "executed": 1,
+        "failures": 1,
+        "errors": 0,
+        "skips": 0,
+        "passed": 0,
+        "source_unchanged": true,
+        "unchanged_methods_executed": 0
+      },
+      "source_sha256": {
+        "zzz_ops/deployment_plan.py": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df",
+        "scripts/check-local-deployment-evidence.py": "94e0d95b6e494b4ae3069f999480061c1f3b8260cbba87b25b64f194f5477904",
+        "scripts/rehearse-local-deployment.py": "dd4d22826c1e86731116e44adaf6dacb1b3e3d39bbcafd6880051900969b45d5",
+        "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+        "tests_python/test_deployment_build_profiles.py": "b0dc43e06b6b1a278ca8249fe395e6848ff5abae98f53ab0c9cc53c3e32b0547",
+        "tests_python/deployment_legacy_fixture.py": "2d94ee27063dddc7d49d0519a42bd2c4efb4560cebdf0cb56f5226b4717a6b0d",
+        "tests_python/test_deployment_plan.py": "cd09014ac1bdec468efdec8159c01a7af8ecc26e7ca344065796fe5648b725c5"
+      },
+      "artifacts": {
+        "baseline-output-preflight\\RESULT.json": "e175e977ab5eb5c579ea610c0f3c83030e83134b0f926cfd2254b19d832aa3e9",
+        "baseline-output-preflight\\START.json": "427a9fd72a282f60d107ec938ad71c6e26e77e918a89b41e815082422e9bb33d",
+        "baseline-output-preflight\\test-output.log": "e1c2946a3b84558cb6c2be51fd00c573b88594dcecd50c261123c5f007172527"
+      }
+    },
+    {
+      "stage": "output-preflight-fixed",
+      "selection": [
+        "test_unavailable_build_does_not_consume_rehearsal_output_folder"
+      ],
+      "result": {
+        "selected": 1,
+        "executed": 1,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "passed": 1,
+        "source_unchanged": true,
+        "unchanged_methods_executed": 0
+      },
+      "source_sha256": {
+        "zzz_ops/deployment_plan.py": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df",
+        "scripts/check-local-deployment-evidence.py": "94e0d95b6e494b4ae3069f999480061c1f3b8260cbba87b25b64f194f5477904",
+        "scripts/rehearse-local-deployment.py": "7200f6f4cd03738d71a4024efa18be6490f60344553197ec8f9d4bdb6ceed206",
+        "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+        "tests_python/test_deployment_build_profiles.py": "b0dc43e06b6b1a278ca8249fe395e6848ff5abae98f53ab0c9cc53c3e32b0547",
+        "tests_python/deployment_legacy_fixture.py": "2d94ee27063dddc7d49d0519a42bd2c4efb4560cebdf0cb56f5226b4717a6b0d",
+        "tests_python/test_deployment_plan.py": "cd09014ac1bdec468efdec8159c01a7af8ecc26e7ca344065796fe5648b725c5"
+      },
+      "artifacts": {
+        "output-preflight-fixed\\RESULT.json": "6ea43545ba18c741ca0a8c6317db8f87b0d8f81171523739e3a1d74d1df2e228",
+        "output-preflight-fixed\\START.json": "9cb216719ccfab61ed91086fd83aa66466af72d259ff650dbd75cec41b76e50e",
+        "output-preflight-fixed\\test-output.log": "ce351b0fe25a3f30a2d2e0ca942eeba64001e56949ea23cd6b1962040eae590a"
+      }
+    },
+    {
+      "stage": "baseline-wire-and-constructor",
+      "selection": [
+        "test_rogue_rpc_mutation_cannot_hide_outside_counted_sends",
+        "test_constructor_arguments_derive_from_validated_inputs_not_plan_rows"
+      ],
+      "result": {
+        "selected": 2,
+        "executed": 2,
+        "failures": 2,
+        "errors": 0,
+        "skips": 0,
+        "passed": 0,
+        "source_unchanged": true,
+        "unchanged_methods_executed": 0
+      },
+      "source_sha256": {
+        "zzz_ops/deployment_plan.py": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df",
+        "scripts/check-local-deployment-evidence.py": "94e0d95b6e494b4ae3069f999480061c1f3b8260cbba87b25b64f194f5477904",
+        "scripts/rehearse-local-deployment.py": "7200f6f4cd03738d71a4024efa18be6490f60344553197ec8f9d4bdb6ceed206",
+        "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+        "tests_python/test_deployment_build_profiles.py": "8bb10ce45fdc2b200fe1e58725adf54d01d6f5891fec8602b6d0af7f5cf101fa",
+        "tests_python/deployment_legacy_fixture.py": "2d94ee27063dddc7d49d0519a42bd2c4efb4560cebdf0cb56f5226b4717a6b0d",
+        "tests_python/test_deployment_plan.py": "cd09014ac1bdec468efdec8159c01a7af8ecc26e7ca344065796fe5648b725c5"
+      },
+      "artifacts": {
+        "baseline-wire-and-constructor\\RESULT.json": "800575ac5c08f4d9bd79a3e7139056cb442350d0c2a93c805694c2125d2a56f0",
+        "baseline-wire-and-constructor\\START.json": "cdb8ad1fd705fecd6d3c8c18e4c2407b6078772f442b345665e575e06b4266b1",
+        "baseline-wire-and-constructor\\test-output.log": "2c736d63b2d7420db8ca741f3e331cc386bc7e5540b8ad6d6f2ef72397ce1c23"
+      }
+    },
+    {
+      "stage": "wire-and-constructor-fixed",
+      "selection": [
+        "test_rogue_rpc_mutation_cannot_hide_outside_counted_sends",
+        "test_constructor_arguments_derive_from_validated_inputs_not_plan_rows",
+        "test_original_capture_reconciles_as_legacy_without_current_relabelling"
+      ],
+      "result": {
+        "selected": 3,
+        "executed": 3,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "passed": 3,
+        "source_unchanged": true,
+        "unchanged_methods_executed": 0
+      },
+      "source_sha256": {
+        "zzz_ops/deployment_plan.py": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df",
+        "scripts/check-local-deployment-evidence.py": "e88830c4f1168f46ad9f672492fa1fd4c42bea4cff823e6df211c0bb46a1ed6c",
+        "scripts/rehearse-local-deployment.py": "7200f6f4cd03738d71a4024efa18be6490f60344553197ec8f9d4bdb6ceed206",
+        "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+        "tests_python/test_deployment_build_profiles.py": "8bb10ce45fdc2b200fe1e58725adf54d01d6f5891fec8602b6d0af7f5cf101fa",
+        "tests_python/deployment_legacy_fixture.py": "2d94ee27063dddc7d49d0519a42bd2c4efb4560cebdf0cb56f5226b4717a6b0d",
+        "tests_python/test_deployment_plan.py": "cd09014ac1bdec468efdec8159c01a7af8ecc26e7ca344065796fe5648b725c5"
+      },
+      "artifacts": {
+        "wire-and-constructor-fixed\\RESULT.json": "b782aad3b6d4c84e28fe1d58e5aad5bf91602a8e3c0d5210001cc986f51ff6f1",
+        "wire-and-constructor-fixed\\START.json": "4d4cced2a81f100b123fb40b4c6d16ceff8559ccb5d099d1b8dacb8f4d82da64",
+        "wire-and-constructor-fixed\\test-output.log": "8db3d854c5102ede901a131419359122b5aa54162a9ff6bfce7b1c624ac8a95c"
+      }
+    },
+    {
+      "stage": "wire-envelope-newcase",
+      "selection": [
+        "test_wire_envelopes_and_additional_mutation_kinds_are_rejected"
+      ],
+      "result": {
+        "selected": 1,
+        "executed": 1,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "passed": 1,
+        "source_unchanged": true,
+        "unchanged_methods_executed": 0
+      },
+      "source_sha256": {
+        "zzz_ops/deployment_plan.py": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df",
+        "scripts/check-local-deployment-evidence.py": "e88830c4f1168f46ad9f672492fa1fd4c42bea4cff823e6df211c0bb46a1ed6c",
+        "scripts/rehearse-local-deployment.py": "7200f6f4cd03738d71a4024efa18be6490f60344553197ec8f9d4bdb6ceed206",
+        "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+        "tests_python/test_deployment_build_profiles.py": "c63f2dcfe8a6653bf7db1ca8643408067d14e554013ca0f466361900d4fd9517",
+        "tests_python/deployment_legacy_fixture.py": "2d94ee27063dddc7d49d0519a42bd2c4efb4560cebdf0cb56f5226b4717a6b0d",
+        "tests_python/test_deployment_plan.py": "cd09014ac1bdec468efdec8159c01a7af8ecc26e7ca344065796fe5648b725c5"
+      },
+      "artifacts": {
+        "wire-envelope-newcase\\RESULT.json": "6ea43545ba18c741ca0a8c6317db8f87b0d8f81171523739e3a1d74d1df2e228",
+        "wire-envelope-newcase\\START.json": "09878a0823043b40ac57b79eb46b3c7948f1ecff2be123be1ad44812da142aec",
+        "wire-envelope-newcase\\test-output.log": "48785c0e0b9276b9d543587895f0c7ffecf3cb12a9c08e5fb0cc475abb921d1b"
+      }
+    },
+    {
+      "stage": "baseline-send-and-impersonation",
+      "selection": [
+        "test_send_request_cannot_disagree_with_captured_transaction_sender",
+        "test_impersonation_must_name_exact_reviewed_constructor_sender"
+      ],
+      "result": {
+        "selected": 2,
+        "executed": 2,
+        "failures": 2,
+        "errors": 0,
+        "skips": 0,
+        "passed": 0,
+        "source_unchanged": true,
+        "unchanged_methods_executed": 0
+      },
+      "source_sha256": {
+        "zzz_ops/deployment_plan.py": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df",
+        "scripts/check-local-deployment-evidence.py": "e88830c4f1168f46ad9f672492fa1fd4c42bea4cff823e6df211c0bb46a1ed6c",
+        "scripts/rehearse-local-deployment.py": "7200f6f4cd03738d71a4024efa18be6490f60344553197ec8f9d4bdb6ceed206",
+        "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+        "tests_python/test_deployment_build_profiles.py": "3992490a5a1dcc1a98ac1f73f479ac11bba944d02369b3b817934ac9986f5e4b",
+        "tests_python/deployment_legacy_fixture.py": "2d94ee27063dddc7d49d0519a42bd2c4efb4560cebdf0cb56f5226b4717a6b0d",
+        "tests_python/test_deployment_plan.py": "cd09014ac1bdec468efdec8159c01a7af8ecc26e7ca344065796fe5648b725c5"
+      },
+      "artifacts": {
+        "baseline-send-and-impersonation\\RESULT.json": "800575ac5c08f4d9bd79a3e7139056cb442350d0c2a93c805694c2125d2a56f0",
+        "baseline-send-and-impersonation\\START.json": "15d2dbd36c7123fc63a59128c40fbde26e9939f755303697db324bc34e2be94e",
+        "baseline-send-and-impersonation\\test-output.log": "6ec7b83a7270ae3da81ffc046cbee9582907f1a38e4428fcba8140ced64edbba"
+      }
+    },
+    {
+      "stage": "send-and-carrier-fixed",
+      "selection": [
+        "test_send_request_cannot_disagree_with_captured_transaction_sender",
+        "test_impersonation_must_name_exact_reviewed_constructor_sender",
+        "test_submission_fields_quantities_and_creation_target_are_bound",
+        "test_inert_carrier_output_is_derived_from_trusted_ledger_bytes",
+        "test_original_capture_reconciles_as_legacy_without_current_relabelling"
+      ],
+      "result": {
+        "selected": 5,
+        "executed": 5,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "passed": 5,
+        "source_unchanged": true,
+        "unchanged_methods_executed": 0
+      },
+      "source_sha256": {
+        "zzz_ops/deployment_plan.py": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df",
+        "scripts/check-local-deployment-evidence.py": "e2c80587bf51732c5fb26bba2ef1a782d636fd731014d971c8431001bf843f8b",
+        "scripts/rehearse-local-deployment.py": "7200f6f4cd03738d71a4024efa18be6490f60344553197ec8f9d4bdb6ceed206",
+        "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+        "tests_python/test_deployment_build_profiles.py": "ee1f47220155b7e77b9d3a8ede546a76faf90946d57be07860b9408ddd3cde10",
+        "tests_python/deployment_legacy_fixture.py": "2d94ee27063dddc7d49d0519a42bd2c4efb4560cebdf0cb56f5226b4717a6b0d",
+        "tests_python/test_deployment_plan.py": "cd09014ac1bdec468efdec8159c01a7af8ecc26e7ca344065796fe5648b725c5"
+      },
+      "artifacts": {
+        "send-and-carrier-fixed\\RESULT.json": "343aadf9aace34fcb1088a3f1225e0cdecfa38c641b75cfc9daaa09cb841a18f",
+        "send-and-carrier-fixed\\START.json": "f5770bf5bdfd39ac9d2d3e6601a37262d50355ce217a5f6e25a1df723481736c",
+        "send-and-carrier-fixed\\test-output.log": "1de84485f846c628ec87e47e859848f27241caa15b24e29ce5e92c799826c0db"
+      }
+    },
+    {
+      "stage": "quantity-bound-newcase",
+      "selection": [
+        "test_submission_quantity_is_bounded_uint256_and_preserves_actual_wire"
+      ],
+      "result": {
+        "selected": 1,
+        "executed": 1,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "passed": 1,
+        "source_unchanged": true,
+        "unchanged_methods_executed": 0
+      },
+      "source_sha256": {
+        "zzz_ops/deployment_plan.py": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df",
+        "scripts/check-local-deployment-evidence.py": "fc3bb047ae882ce22639937acc9e589d5513b0e0db28941ac762081cddae439d",
+        "scripts/rehearse-local-deployment.py": "7200f6f4cd03738d71a4024efa18be6490f60344553197ec8f9d4bdb6ceed206",
+        "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+        "tests_python/test_deployment_build_profiles.py": "c04f20f0a63149b2577175dd57c4036d96769d5a5efbe638979adeb284d3bde2",
+        "tests_python/deployment_legacy_fixture.py": "2d94ee27063dddc7d49d0519a42bd2c4efb4560cebdf0cb56f5226b4717a6b0d",
+        "tests_python/test_deployment_plan.py": "cd09014ac1bdec468efdec8159c01a7af8ecc26e7ca344065796fe5648b725c5"
+      },
+      "artifacts": {
+        "quantity-bound-newcase\\RESULT.json": "6ea43545ba18c741ca0a8c6317db8f87b0d8f81171523739e3a1d74d1df2e228",
+        "quantity-bound-newcase\\START.json": "a60b5694f797339f13658714f16b724ae736faf2c35435dd59ff908460fcdc3d",
+        "quantity-bound-newcase\\test-output.log": "38326ce78bc833fbc58f45ff6e0c483bca2ad319e298ac6b5984a80a8d83a895"
+      }
+    }
+  ],
+  "scope": "Offline current100-source/39-instance/48-gate plan, exact trusted-family dispatch, historical112-binding/44-receipt replay and adversarial evidence admission. No constructor execution/current deployment gas qualification.",
+  "failed_regressions": {
+    "current_source_drift": 1,
+    "duplicated_binding_coverage": 1,
+    "output_path_consumed_before_build_validation": 1,
+    "unlisted_rpc_mutation": 1,
+    "self_committed_constructor_argument": 1,
+    "wire_sender_not_bound": 1,
+    "wrong_impersonation_target": 1
+  },
+  "total_method_invocations": 30,
+  "passed_invocations": 23,
+  "overlap_notice": "The original-capture positive method executes at three substantive checker source stages; this is one unique method. The final quantity-only bound has its own new boundary/176actual-wire-values property; the full archive is not rerun for that bound.",
+  "final_source_sha256": {
+    "zzz_ops/deployment_plan.py": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df",
+    "scripts/check-local-deployment-evidence.py": "fc3bb047ae882ce22639937acc9e589d5513b0e0db28941ac762081cddae439d",
+    "scripts/rehearse-local-deployment.py": "7200f6f4cd03738d71a4024efa18be6490f60344553197ec8f9d4bdb6ceed206",
+    "scripts/prepare-deployment.py": "51c84afde068a3c9a2709eebc6801d8482a00558dab28089d0c3894a2dd8cd93",
+    "tests_python/test_deployment_plan.py": "cd09014ac1bdec468efdec8159c01a7af8ecc26e7ca344065796fe5648b725c5",
+    "tests_python/deployment_legacy_fixture.py": "2d94ee27063dddc7d49d0519a42bd2c4efb4560cebdf0cb56f5226b4717a6b0d",
+    "tests_python/test_deployment_build_profiles.py": "c04f20f0a63149b2577175dd57c4036d96769d5a5efbe638979adeb284d3bde2"
+  },
+  "legacy_method_ast_delta": "LEGACY_TEST_AST_DELTA.json",
+  "production_sources_changed": 0,
+  "compiler_runs": 0,
+  "static_runs": 0,
+  "nodes_started": 0,
+  "public_rpc_calls": 0,
+  "signing_or_deployment": false,
+  "limitations": [
+    "Source-stage hashes and retained failed/success logs are authoritative; successful stages are separate and not presented as one final-source21-method run.",
+    "The exact original archive remains historical, including mutable-preflight capture limitations; final strict checker replay is not a new deployment or current gas measurement.",
+    "The closed input graph and size acceptance do not qualify real dependencies, authorities, content, fees, hosting or independent audit."
+  ]
+}

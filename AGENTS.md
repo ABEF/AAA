@@ -1,5 +1,18 @@
 # AAA / ZZZ PoPL project instructions
 
+The [five-audit reconciliation](reports/five-audit-reconciliation-20261116/REVIEW.md) separates resolved source work, accepted
+limits and remaining release evidence. The unsigned deployment planner now
+defaults to the exact trusted metadata2-20261116 build; explicit historical
+manual-reference-20261115 remains separately authenticated. Old evidence is not
+relabelled. The local checker requires the complete closed constructor/binding
+graph and submission/RPC evidence; the new dated market checker recomputes all
+summary/candidate flags while keeping approval false. Current callable counts
+and metadata-source links are corrected. All61Solidity sources,114selected
+historical report files, four unrelated dirty files, websites/signer/configs,
+Anvil/journals and paused heartbeat remain unchanged. Only affected/new offline
+checks run; actual current construction/gas, independent markets/services,
+OpenSea/operations and independent audit remain open.
+
 The [metadata lifecycle fixes](reports/metadata-lifecycle-fixes-20261116/REVIEW.md) implement schema2 lifecycle/payment/successor
 labels and immediate bounded ERC-4906 notifications, while keeping LP exited
 distinct from Dormant and preserving royalty rights. The existing NFT state
@@ -33,7 +46,7 @@ offline checker admits only trusted build pins. Eight new checks retain their
 source scopes; no unchanged suite/compiler/static/deployment rerun. The node is
 stopped and graph stays unsealed/bootstrap-owned/unconfigured. Actual release
 inputs/dependencies/gas/complete fees/operations and independent audit remain.
-The [offline planner](docs/DEPLOYMENT_PREPARATION.md) remains byte-identical and unsigned; local
+The [offline planner](docs/DEPLOYMENT_PREPARATION.md) stayed unsigned and unchanged for that recorded rehearsal; local
 addresses/runtimes never populate production inventories or old journals.
 
 The [guarded manual reference-swap fix](reports/manual-reference-swap-fix-20261115/REVIEW.md) extends execution1/LP3 to priced

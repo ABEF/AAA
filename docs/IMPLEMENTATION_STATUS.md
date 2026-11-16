@@ -1,5 +1,12 @@
 # Feature and evidence reference
 
+[Five recent audit families](../reports/five-audit-reconciliation-20261116/REVIEW.md)
+are reconciled against current source, with provenance and remaining actions in
+one finding index. Current-build unsigned preparation, complete deployment
+evidence and derived market-summary validation are corrected. No Solidity,
+authority, policy, site or service changes; prior normal/static/EVM results keep
+their exact source scope. Real release qualification is still separate.
+
 [Metadata lifecycle2](../reports/metadata-lifecycle-fixes-20261116/REVIEW.md) adds
 truthful exit/payment/canonical/preparation context, immediate bounded lifecycle
 notifications and an opt-in renderer-pinned watcher. Existing four-art mapping,

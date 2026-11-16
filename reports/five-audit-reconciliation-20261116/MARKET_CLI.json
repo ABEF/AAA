@@ -1,0 +1,27 @@
+{
+  "exit_code": 0,
+  "output": {
+    "EVM_runs": 0,
+    "actual_read_responses": 39,
+    "compiler_runs": 0,
+    "deployable_configuration": false,
+    "discovery_queries": 2,
+    "explicit_rpc_errors": 5,
+    "known_pool_states": 95,
+    "live_market_qualification": false,
+    "network_calls": 0,
+    "production_approved": false,
+    "public_files": 89,
+    "quote_diagnostics": 6,
+    "schema": "real-market-refresh-20261116/v2-semantic-closure",
+    "scope": "dated internal evidence integrity and semantic closure; not provider truth or live admission",
+    "status": "PASS",
+    "template_ready": false,
+    "valid_results": 34
+  },
+  "source_sha256": {
+    "zzz_ops/market_evidence.py": "b7c3be52d153590490659a86df2979866398d112f8e0f99d707437e4c659c5fd",
+    "scripts/check-market-evidence.py": "1cccfde62bfd7bce27fb9d1f7f7afb3bb47a6c3e66f4e1a97ae4ac9d74acb0cc",
+    "tests_python/test_market_evidence.py": "ef0ff4f8d02d74bc6d24483b7a1866d4cf35167068de5ed9b5f0014f2e1499dd"
+  }
+}

@@ -229,9 +229,10 @@ to populate this inventory.
   `_validate_metadata_record`, cursor/pending/receipt/lifecycle scheduling.
 - [API](../frontend_api/service.py), [collection](../frontend_api/collection.py):
   confirmed current value and authenticated thresholds. Website source inspected
-  at `206892ab8b93d65cae3564e71feaf4435f90cdee`:
-  [view](https://github.com/ABEF/AAA-website/blob/206892ab8b93d65cae3564e71feaf4435f90cdee/deployment-view.js),
-  [principal reader](https://github.com/ABEF/AAA-website/blob/206892ab8b93d65cae3564e71feaf4435f90cdee/deployment-source9-data.js).
+  at baseline `206892ab8b93d65cae3564e71feaf4435f90cdee`; current metadata corrections
+  are accepted at `2a528696d5eaea5ebb42cfeb313836840fff5e97`:
+  [current view](https://github.com/ABEF/AAA-website/blob/2a528696d5eaea5ebb42cfeb313836840fff5e97/deployment-view.js),
+  [principal reader](https://github.com/ABEF/AAA-website/blob/2a528696d5eaea5ebb42cfeb313836840fff5e97/deployment-source9-data.js).
   Source behavior is not a claim those profiles are deployed to either site.
 - [Preflight](../zzz_ops/production_v6.py): `_nft` content-root/manifest review;
   [current schema17 wrapper](../zzz_ops/production_v15.py).

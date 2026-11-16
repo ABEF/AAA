@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "owned_files": 38,
+  "historical_report_files_unchanged": 114,
+  "production_sources_unchanged": 61,
+  "protected_dirty_files_unchanged": 4,
+  "website_hashes_unchanged": 4,
+  "source_inventory_test_methods": {
+    "test_deployment_build_profiles": 21,
+    "test_market_evidence": 23,
+    "test_deployment_plan": 22
+  },
+  "inventory_executed_methods": 0,
+  "findings": 57,
+  "shared_release_gates": 10,
+  "existing_task_statuses_unchanged": 82,
+  "markdown_targets_checked": 2902,
+  "relevant_anchors_checked": 24,
+  "evidence_members_verified": 104,
+  "checks": [
+    {
+      "command": [
+        "scripts/generate-function-reference.py",
+        "--check"
+      ],
+      "exit": 0,
+      "output": "{\"checked\": true, \"contracts\": 40, \"functions\": 963, \"constructors\": 40, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}"
+    },
+    {
+      "command": [
+        "scripts/generate-operator-reference.py",
+        "--check"
+      ],
+      "exit": 0,
+      "output": "{\"contracts\": 40, \"functions\": 963, \"constructors\": 40, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0, \"example_rows\": 1016, \"ready_for_submission\": false}"
+    },
+    {
+      "command": [
+        "scripts/sync-project-todo.py",
+        "--check"
+      ],
+      "exit": 0,
+      "output": "Project Todo verified."
+    }
+  ],
+  "compiler_runs": 0,
+  "network_calls": 0,
+  "nodes_started": 0
+}

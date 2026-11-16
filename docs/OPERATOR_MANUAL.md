@@ -573,6 +573,38 @@ Parked4/Exited5. Historical profiles/Anvil/journals keep their own meanings.
   vault. Existing accounting3 poplint stays unconfigured and is not a profile7
   frontend. Public signing stays Anvil-only; no deployment is authorized here.
 
+### Offline audit and evidence tools
+
+These calls use local files; they cannot approve release, sign, submit or seal.
+The rehearsal row is a separate **future authorized local-chain operation**, not
+part of this reconciliation. Preserve existing chains, journals and websites.
+
+| Tool | Inputs | Example | Purpose |
+| --- | --- | --- | --- |
+| `prepare-deployment.py` | Reviewed input JSON, new output file; trusted build ID | `python scripts/prepare-deployment.py --build-profile metadata2-20261116 --input path/to/reviewed.json --output path/to/new-plan.json` | Review unsigned constructor plan |
+| `check-local-deployment-evidence.py` | Captured ZIP/directory; optional relocated trusted build directory | `python scripts/check-local-deployment-evidence.py --evidence reports/local-deployment-rehearsal-20261115/evidence.zip --output path/to/new-result.json` | Reconcile captured local construction |
+| `check-market-evidence.py` | Exact dated16November market ZIP | `python scripts/check-market-evidence.py --evidence reports/real-market-refresh-20261116/evidence.zip` | Recompute dated market summaries |
+| `rehearse-local-deployment.py` | Reviewed Anvil executable, new directory, trusted build ID | `python scripts/rehearse-local-deployment.py --build-profile metadata2-20261116 --anvil C:/reviewed-tools/anvil.exe --output C:/local-reviews/new-run` | Measure isolated constructor execution |
+
+Current planning defaults to `metadata2-20261116`; legacy
+`manual-reference-20261115` remains separately pinned. The checker selects only
+the captured closed build identity, and admits an absent ID only with the original
+legacy pins. Neither a label nor an operator-selected `--build` directory can
+replace those trusted hashes. Historical planning also needs its old exact source
+checkout; old evidence replay does not. New metadata bytecode needs its own actual
+constructor/gas qualification before release. No compiler rerun is required merely
+to inspect accepted artifacts. [Full procedure](DEPLOYMENT_PREPARATION.md).
+
+The market checker accepts one dated capture schema and recomputes market rows,
+fees, quotes, gas, source/pass flags and the deliberately null/empty candidate.
+PASS means internal semantic evidence closure. It does not authenticate provider
+truth, current prices, depth, source independence or a deployable route. All
+`production_approved`, `deployable_configuration`, `template_ready` and
+`live_market_qualification` outputs remain false. Original report files stay
+unchanged; use the [reconciliation](../reports/five-audit-reconciliation-20261116/REVIEW.md)
+for the stronger current checker. No keeper/server restart is needed to run an
+offline check; no running service is changed by publishing these tools.
+
 ### Offline deployment preparation
 
 Use the [offline construction planner](DEPLOYMENT_PREPARATION.md) before preparing
@@ -591,7 +623,7 @@ guide for typed inputs, output preservation and the pre-seal boundary.
 Use the separate [local construction procedure](DEPLOYMENT_PREPARATION.md#isolated-local-construction-rehearsal)
 for actual constructor/binding and gas verification. It launches a fresh owned
 loopback chain, reuses exact normal objects, records local receipts and leaves
-the graph unsealed. The offline planner remains unsigned and unchanged. Do not
+the graph unsealed. The offline planner remains unsigned and uses the explicitly reviewed build. Do not
 point this workflow at an existing node, journal, website or public endpoint;
 controlled external dependencies do not qualify live venue/SeaDrop operation or
 Robinhood deployment fees. Follow the guide for output preservation, shutdown,

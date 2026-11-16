@@ -3,7 +3,7 @@ from __future__ import annotations
 import contextlib,copy,io,json,os,shutil,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
-from zzz_ops import deployment_plan as D
+from tests_python.deployment_legacy_fixture import deployment_plan as D
 
 
 def complete_input():

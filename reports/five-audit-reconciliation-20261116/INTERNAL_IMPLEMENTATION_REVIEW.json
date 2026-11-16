@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-16T14:01:35.907428+00:00",
+  "baseline_head": "28431b3ac63d909c9c04246de1ee68cc16a3ed5e",
+  "kind": "Independent internal child-agent read-only implementation inspection; not independent security audit",
+  "independent_audit": false,
+  "source_pins": {
+    "zzz_ops/market_evidence.py": {
+      "sha256_raw": "b7c3be52d153590490659a86df2979866398d112f8e0f99d707437e4c659c5fd",
+      "sha256_lf": "b7c3be52d153590490659a86df2979866398d112f8e0f99d707437e4c659c5fd",
+      "bytes": 32596
+    },
+    "scripts/check-market-evidence.py": {
+      "sha256_raw": "1cccfde62bfd7bce27fb9d1f7f7afb3bb47a6c3e66f4e1a97ae4ac9d74acb0cc",
+      "sha256_lf": "1cccfde62bfd7bce27fb9d1f7f7afb3bb47a6c3e66f4e1a97ae4ac9d74acb0cc",
+      "bytes": 854
+    },
+    "zzz_ops/deployment_plan.py": {
+      "sha256_raw": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df",
+      "sha256_lf": "3900171237537c6ca07f7b02795571f6912171d354866036c9405f5b97dc17df",
+      "bytes": 29866
+    },
+    "scripts/check-local-deployment-evidence.py": {
+      "sha256_raw": "fc3bb047ae882ce22639937acc9e589d5513b0e0db28941ac762081cddae439d",
+      "sha256_lf": "fc3bb047ae882ce22639937acc9e589d5513b0e0db28941ac762081cddae439d",
+      "bytes": 25092
+    },
+    "scripts/rehearse-local-deployment.py": {
+      "sha256_raw": "7200f6f4cd03738d71a4024efa18be6490f60344553197ec8f9d4bdb6ceed206",
+      "sha256_lf": "7200f6f4cd03738d71a4024efa18be6490f60344553197ec8f9d4bdb6ceed206",
+      "bytes": 29325
+    }
+  },
+  "source_review_bracket_unchanged": true,
+  "scope": [
+    "Bounded dated market evidence semantic closure",
+    "Explicit trusted deployment build selection before build filesystem reads",
+    "Closed constructor graph and exact values",
+    "Closed local RPC envelope and actual send binding",
+    "Historical evidence compatibility without profile adoption"
+  ],
+  "initial_findings": [
+    {
+      "id": "IR1",
+      "initial_issue": "Unrecognized wire RPC methods could escape the local mutation inventory.",
+      "status": "corrected_source_inspected",
+      "current_evidence": "check_wire independently accepts only closed READ_METHODS plus anvil_impersonateAccount/eth_sendTransaction; checks contiguous exact integer IDs, request/response version, list params and successful no-error envelope. Original45-mutation inventory and ownership/chain/genesis checks still follow.",
+      "limits": "This checks recorded messages; it does not authenticate an external provider or cause RPC calls."
+    },
+    {
+      "id": "IR2",
+      "initial_issue": "Constructor identities/values were partially reconstructed from self-committed evidence arguments.",
+      "status": "corrected_source_inspected",
+      "current_evidence": "constructor_specifications derives all39 exact roles/contracts/modes/parents/ref lists from closed TOP/INTERNAL plus two inert pieces. Each instance source/concrete identity/constructor types/named argument records must match. constructor_values derives input/planned or discovered fixed graph addresses, chain/zero and exact accepted-ledger pieces before full initcode/CREATE-parent comparison.",
+      "limits": "Trace/runtime evidence is not independent EVM reexecution or proof of provider truth."
+    }
+  ],
+  "followup_findings": [
+    {
+      "id": "IR3",
+      "initial_issue": "Actual send request compared only calldata/gas, leaving from/to/value/nonce/gasPrice unbound to the captured transaction.",
+      "status": "corrected_source_inspected",
+      "current_evidence": "First impersonation params equal validated governance. check_submission has exact expected legacy request keys, canonical sender/target and calldata, uint256-bounded canonical quantities for value/gas/nonce/gasPrice and exact equality to captured transaction; transaction type remains legacy0. Existing nonce0..43, zero value, approved sender, expected binding calldata and receipt checks remain."
+    },
+    {
+      "id": "IR4",
+      "initial_issue": "Inert carrier output was compared only to evidence-supplied claimed output.",
+      "status": "corrected_source_inspected",
+      "current_evidence": "check_carrier_runtime derives returned bytes from 0x5f5ffd plus independently accepted ledger slice0/1 and requires actual CREATE output and claimed returned_runtime_hex to equal those exact bytes."
+    },
+    {
+      "id": "IR5",
+      "initial_issue": "New submission quantity parser allowed unlimited hexadecimal digit length inside a128MB evidence member.",
+      "status": "corrected_source_inspected",
+      "current_evidence": "quantity now uses canonical Ethereum hexadecimal format with at most64 hex digits (uint256); no decimal/boolean/float/negative/leading-zero fallback is accepted."
+    }
+  ],
+  "other_review_results": [
+    {
+      "area": "market_evidence",
+      "status": "no_additional_concrete_defect_identified",
+      "evidence": "Bounded ZIP members and decompression, strict duplicate/nonfinite JSON, pinned historical provenance, exact complete33+3+3 request identities, raw-response binding, independent pool/fee/feed/quote/summary/candidate recomputation. Readable sidecars must equal archive bytes. Dated scope and all approval flags remain false."
+    },
+    {
+      "area": "deployment_plan",
+      "status": "no_additional_concrete_defect_identified",
+      "evidence": "trusted_build rejects unknown identifiers before resolving build directory. Metadata2 default has independently fixed artifact hash set; historical manual-reference profile remains separate. Artifacts hashes compiler input/output before parsing; exact100-source/current raw closure, settings and48normal gates remain. Closed graph/constructor encoding/size limits and unsigned/exclusive output remain."
+    },
+    {
+      "area": "runner",
+      "status": "no_additional_concrete_defect_identified",
+      "evidence": "CLI explicitly selects a trusted build profile before output/node startup and uses matching artifact profile in offline plan/source-stage/result. Immutable serialized request/response snapshots retain precise future wire data. No runner or node was executed by this reviewer."
+    }
+  ],
+  "compatibility": {
+    "historical_binding_observations": 112,
+    "scope": "The same closed112 legacy constructor/binding observations remain defined and independently derived; this review does not add metadata2 getter observations or claim a new deployment execution.",
+    "old_profile": "manual-reference-20261115 remains explicit historical artifact profile; omission defaults apply only to old captured evidence, not fresh planner default.",
+    "fresh_profile": "metadata2-20261116 is explicit fresh planner/runner default with new exact artifact/source pins; no historical runtime/journal/evidence is relabeled.",
+    "legacy_request_alias_limitation_preserved": true,
+    "preflight_fields_independently_verified": false,
+    "explanation": "Original mutable preflight request aliasing still prevents exact original full-cap/estimate/padded gas/nonce/gasPrice verification. Corrected final submission wire/transaction/receipt equality does not retroactively fix old preflight captures. Future immutable snapshots exist but this checker still explicitly does not evaluate all preflight stage fields.",
+    "source_tests_or_deployment_repeated_by_reviewer": false
+  },
+  "remaining_limitations": [
+    "Internal evidence integrity/semantic consistency is not independent RPC/provider truth or an independent security audit.",
+    "Known coherent forged recordings are not cryptographically proven actual executions; archived hashes authenticate retained bytes, not external truth.",
+    "No new metadata2 constructor/binding deployment rehearsal or target-chain read/payout/deployment gas acceptance occurs in this pass.",
+    "Actual independent feeds/routes/depth, complete provider/fees, maximum workloads, OpenSea/content/VRF/authorities and host/contract-wallet operation remain separate release requirements.",
+    "Some historical preflight state-change assertions remain source-demonstrated or recorded flags; output explicitly preserves the unverified original preflight-field limitation.",
+    "Existing61Solidity, services/sites/public signing, existing Anvil/journals and paused heartbeat are unchanged by these helper repairs."
+  ],
+  "verification_attribution": {
+    "reviewer_executed_tests": 0,
+    "reviewer_compiler_runs": 0,
+    "reviewer_analyzer_runs": 0,
+    "reviewer_checker_runs": 0,
+    "reviewer_RPC_calls": 0,
+    "reviewer_node_or_transaction_runs": 0,
+    "other_agent_evidence": "AgentB reports21distinct new methods at retained stages, current strict legacy archive replay before final quantity-only bound, and one final quantity boundary/current176-wire-value property. This reviewer did not execute or independently re-count those tests; consume agentB exact source-stage artifacts."
+  },
+  "conclusion": "The two initial implementation gaps and three finite follow-up issues are corrected in the inspected source. No further concrete blocker identified within this read-only scope; existing qualification limitations remain."
+}

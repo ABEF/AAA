@@ -212,7 +212,7 @@ class Rehearsal:
         for role,(parent,getter)in getters.items():children[role]=self.getter(a[parent],getter)
         for i in range(2):children['royalty_data_part'+str(i)]=self.getter(children['royalty_factory'],'part'+str(i)+'()')
         all_addresses={**a,**children};require(len(set(all_addresses.values()))==39,'Discovered instances not39 distinct addresses')
-        plan=P.template();plan['planned_addresses']=dict(a);plan['inputs']=dict(self.inputs);review=P.prepare(plan);save(self.output/'actual-address-input.json',plan);save(self.output/'offline-plan.json',review)
+        plan=P.template();plan['planned_addresses']=dict(a);plan['inputs']=dict(self.inputs);review=P.prepare(plan,build_profile=self.artifacts.profile);save(self.output/'actual-address-input.json',plan);save(self.output/'offline-plan.json',review)
         rows={row['role']:row for row in review['instances']};instances=[]
         require(set(self.creates)==set(all_addresses.values()),'Exactly39 actual CREATE trace instances required')
         for role,target in all_addresses.items():
@@ -235,7 +235,7 @@ class Rehearsal:
             if row['label'].startswith('create:'):require(row['transaction']['input'].lower()==rows[row['label'][7:]]['full_initcode_hex'].lower(),'Offline planner/actual initcode differ')
         observations=self.bindings(all_addresses)
         save(self.output/'instances.json',instances);save(self.output/'bindings.json',observations)
-        return {'status':'controlled_local_constructor_and_binding_rehearsal_passed','production_approved':False,'release_ready':False,'sealed':False,'chain_id':CHAIN,'top_level_create_receipts':25,'binding_receipts':19,'total_receipts':44,'discovered_instances':39,'all_exact_normal_initcode_executions_authenticated':True,'offline_planner_top_level_payloads_match_actual':True,'worst_padded_gas':max(r['padded_gas']for r in self.receipts),'total_actual_gas':sum(int(r['receipt']['gasUsed'],16)for r in self.receipts),'production_operating_configuration_performed':False,'public_transactions':0,'existing_nodes_contacted':False}
+        return {'status':'controlled_local_constructor_and_binding_rehearsal_passed','build_profile':self.artifacts.profile,'production_approved':False,'release_ready':False,'sealed':False,'chain_id':CHAIN,'top_level_create_receipts':25,'binding_receipts':19,'total_receipts':44,'discovered_instances':39,'all_exact_normal_initcode_executions_authenticated':True,'offline_planner_top_level_payloads_match_actual':True,'worst_padded_gas':max(r['padded_gas']for r in self.receipts),'total_actual_gas':sum(int(r['receipt']['gasUsed'],16)for r in self.receipts),'production_operating_configuration_performed':False,'public_transactions':0,'existing_nodes_contacted':False}
 
     def bindings(self,a):
         results=[]
@@ -263,9 +263,13 @@ class Rehearsal:
         return results
 
 def main(argv=None):
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--anvil',required=True,type=Path);parser.add_argument('--output',required=True,type=Path);args=parser.parse_args(argv)
-    require(not os.path.lexists(args.output),'Exclusive new evidence folder required');output=args.output.resolve();require(not output.exists(),'Exclusive new evidence folder required');output.mkdir(parents=True)
-    artifacts=P.Artifacts();initial,dependencies=genesis();pins={name:sha((ROOT/name).read_bytes())for name in ('scripts/rehearse-local-deployment.py','zzz_ops/deployment_plan.py','zzz_ops/abi.py')};save(output/'dependencies.json',dependencies);save(output/'source-stage.json',{'tool_sources_sha256':pins,'request_capture':'immutable_serialized_request_and_response_snapshot','accepted_build_files_sha256':artifacts.file_pins,'source_sha256':artifacts.source_pins})
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--anvil',required=True,type=Path);parser.add_argument('--output',required=True,type=Path)
+    parser.add_argument('--build-profile',default=P.DEFAULT_BUILD_PROFILE,help='Exact trusted build identifier; never reuses historical objects implicitly.');args=parser.parse_args(argv)
+    P.trusted_build(args.build_profile)
+    require(not os.path.lexists(args.output),'Exclusive new evidence folder required');output=args.output.resolve();require(not output.exists(),'Exclusive new evidence folder required')
+    artifacts=P.Artifacts(build_profile=args.build_profile);initial,dependencies=genesis();pins={name:sha((ROOT/name).read_bytes())for name in ('scripts/rehearse-local-deployment.py','zzz_ops/deployment_plan.py','zzz_ops/abi.py')}
+    # Refused sources/dependencies must not consume an otherwise new run path.
+    output.mkdir(parents=True);save(output/'dependencies.json',dependencies);save(output/'source-stage.json',{'tool_sources_sha256':pins,'request_capture':'immutable_serialized_request_and_response_snapshot','accepted_build_profile':artifacts.profile,'accepted_build_files_sha256':artifacts.file_pins,'source_sha256':artifacts.source_pins})
     try:
         with Node(args.anvil,output/'node',initial)as node:
             case=Rehearsal(node,artifacts,output);result=case.run();artifacts.check_sources();require(all(sha((ROOT/name).read_bytes())==pin for name,pin in pins.items()),'Rehearsal source changed during actual calls');save(output/'SOURCE_UNCHANGED.json',pins);save(output/'RESULT.json',result)

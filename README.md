@@ -1,5 +1,11 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+The [five-audit consolidation](reports/five-audit-reconciliation-20261116/REVIEW.md)
+restores unsigned planning against the current metadata build and strengthens
+deployment/market evidence checks. Historical artifacts keep their original
+pins and gas scope. Financial contracts, safeguards and live environments are
+unchanged; actual release qualification remains open.
+
 [Metadata lifecycle2](reports/metadata-lifecycle-fixes-20261116/REVIEW.md) now distinguishes
 LP exited, principal allocation/payment and canonical replacement. Immediate
 refresh notifications preserve NFT/royalty rights and the four artwork paths.

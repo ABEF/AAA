@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Five-audit reconciliation16November](five-audit-reconciliation-20261116/REVIEW.md)
+checks the latest five substantive report families by Git publication history.
+Current artifact planning and deployment/market evidence checkers are improved;
+original114report files and all61Solidity files remain unchanged. Individual
+dispositions and exact new/reused verification scopes stay explicit.
+
 - [Metadata lifecycle2 source fixes](metadata-lifecycle-fixes-20261116/REVIEW.md): truthful LP-exit/payment/canonical labels, bounded notifications, opt-in watcher and integration fallback. Focused changed evidence; actual OpenSea/hosting acceptance remains open.
 
 [Real-market refresh16November](real-market-refresh-20261116/REVIEW.md) records39 paced

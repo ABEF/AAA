@@ -1,5 +1,11 @@
 # Engineering roadmap
 
+The [five-audit reconciliation](../reports/five-audit-reconciliation-20261116/REVIEW.md)
+fixes current artifact-family planning and offline evidence-admission gaps.
+Next qualify actual release authorities/dependencies/metadata and target fees,
+then current-source constructors/operating workloads with those inputs. Reuse
+unchanged source evidence; earlier44receipt construction gas stays historical.
+
 The [metadata source milestone](../reports/metadata-lifecycle-fixes-20261116/REVIEW.md)
 closes the agreed lifecycle labels, close/payment/canonical notifications and
 unavailable-art consistency gaps in the [80-case matrix](METADATA_LIFECYCLE.md).

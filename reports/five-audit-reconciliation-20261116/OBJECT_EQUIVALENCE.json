@@ -1,0 +1,249 @@
+{
+  "head": "28431b3ac63d909c9c04246de1ee68cc16a3ed5e",
+  "kind": "Read-only comparison of existing accepted normal compiler objects; no compiler or tests",
+  "prior_family": "manual-reference-swap-fix-20261115 accepted normal4",
+  "current_family": "metadata-lifecycle-fixes-20261116 accepted normal6",
+  "input_artifacts": {
+    "reports\\manual-reference-swap-fix-20261115\\build\\compiler-output.json.gz": {
+      "compressed": {
+        "sha256_raw": "d18a51c0f5d19c6abec3fbad7f50d9997c9e5b65c10ad80c7299c942234a19b4",
+        "sha256_lf": "08081810add6daa7a8e8e0cc1ad0ee19365c787e2bed5f760f806a86e143a027"
+      },
+      "decompressed_sha256": "b659f79e113d05f0a4a110031e61711ce0dcb764023d8acc4774c49d2e1bf136"
+    },
+    "reports\\metadata-lifecycle-fixes-20261116\\build\\compiler-output.json.gz": {
+      "compressed": {
+        "sha256_raw": "4acc319da1a5b4e8a4c112fb9a6c0832d3943d2722d2d17f30dd288c125f3a0f",
+        "sha256_lf": "673fd5ee2a70dc2b41c979955a0a9c9277f44bf5b61fdb916439cda5ac417ad8"
+      },
+      "decompressed_sha256": "e3cbd59c818873e2adf766eecc7866c4b2530ac280d3b07f9c00640a6db4da0a"
+    }
+  },
+  "objects": [
+    {
+      "contract": "ZZZMigrationBudget",
+      "source": "src/ZZZMigrationBudget.sol",
+      "current_source": {
+        "sha256_raw": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+        "sha256_lf": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067"
+      },
+      "creation_template_equal": true,
+      "runtime_template_equal": true,
+      "runtime_body_excluding_CBOR_equal": true,
+      "ABI_equal": true,
+      "runtime_bytes_before": 24332,
+      "runtime_bytes_current": 24332,
+      "old_runtime_template_sha256": "0eea60578fd56182c9ea0098eb4d8d0e939db88a9fa725d60c3cf950b2547053",
+      "current_runtime_template_sha256": "0eea60578fd56182c9ea0098eb4d8d0e939db88a9fa725d60c3cf950b2547053",
+      "old_creation_template_sha256": "9c94473caea3287969458ced28535f33e1dbc289f2bf7b16f024b83324760b5a",
+      "current_creation_template_sha256": "9c94473caea3287969458ced28535f33e1dbc289f2bf7b16f024b83324760b5a"
+    },
+    {
+      "contract": "ZZZContributionPricing",
+      "source": "src/ZZZContributionPricing.sol",
+      "current_source": {
+        "sha256_raw": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+        "sha256_lf": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+      },
+      "creation_template_equal": true,
+      "runtime_template_equal": true,
+      "runtime_body_excluding_CBOR_equal": true,
+      "ABI_equal": true,
+      "runtime_bytes_before": 20628,
+      "runtime_bytes_current": 20628,
+      "old_runtime_template_sha256": "54740d836ec8b154ca25673d91a4a3d5945fdbe672fa3ae32af98ad082e59795",
+      "current_runtime_template_sha256": "54740d836ec8b154ca25673d91a4a3d5945fdbe672fa3ae32af98ad082e59795",
+      "old_creation_template_sha256": "e6630d13be15b89e8f60000cac1838d2397a26706c80535d6ff0c5c9ce39bb0f",
+      "current_creation_template_sha256": "e6630d13be15b89e8f60000cac1838d2397a26706c80535d6ff0c5c9ce39bb0f"
+    },
+    {
+      "contract": "ZZZCustodyValidation",
+      "source": "src/ZZZCustodyValidation.sol",
+      "current_source": {
+        "sha256_raw": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+        "sha256_lf": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a"
+      },
+      "creation_template_equal": true,
+      "runtime_template_equal": true,
+      "runtime_body_excluding_CBOR_equal": true,
+      "ABI_equal": true,
+      "runtime_bytes_before": 18284,
+      "runtime_bytes_current": 18284,
+      "old_runtime_template_sha256": "2e7162f515168381993e32bcf9c3854729e353eadb7fba3fcfde158ecc7af56d",
+      "current_runtime_template_sha256": "2e7162f515168381993e32bcf9c3854729e353eadb7fba3fcfde158ecc7af56d",
+      "old_creation_template_sha256": "b4b1ce5228b809d0e18494eae0ef2c24ec4b36612e38157ef121c7c1ba2a755e",
+      "current_creation_template_sha256": "b4b1ce5228b809d0e18494eae0ef2c24ec4b36612e38157ef121c7c1ba2a755e"
+    },
+    {
+      "contract": "ZZZLiquidityManager",
+      "source": "src/ZZZLiquidityManager.sol",
+      "current_source": {
+        "sha256_raw": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+        "sha256_lf": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3"
+      },
+      "creation_template_equal": true,
+      "runtime_template_equal": true,
+      "runtime_body_excluding_CBOR_equal": true,
+      "ABI_equal": true,
+      "runtime_bytes_before": 24475,
+      "runtime_bytes_current": 24475,
+      "old_runtime_template_sha256": "d754f10b887c4199fad597d83d716dbb699283f0afdf0892e58c332eef52156f",
+      "current_runtime_template_sha256": "d754f10b887c4199fad597d83d716dbb699283f0afdf0892e58c332eef52156f",
+      "old_creation_template_sha256": "16369d626e0eb05b8a34eaad842c0d1c6971165b376150e7532b200e0fc66507",
+      "current_creation_template_sha256": "16369d626e0eb05b8a34eaad842c0d1c6971165b376150e7532b200e0fc66507"
+    },
+    {
+      "contract": "ZZZLPBalanceMath",
+      "source": "src/ZZZLPBalanceMath.sol",
+      "current_source": {
+        "sha256_raw": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "sha256_lf": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      },
+      "creation_template_equal": true,
+      "runtime_template_equal": true,
+      "runtime_body_excluding_CBOR_equal": true,
+      "ABI_equal": true,
+      "runtime_bytes_before": 21923,
+      "runtime_bytes_current": 21923,
+      "old_runtime_template_sha256": "9222b4d701db25e6863ffd0ad1dfca64b93ace4e749c1f76d9ebad50bad08472",
+      "current_runtime_template_sha256": "9222b4d701db25e6863ffd0ad1dfca64b93ace4e749c1f76d9ebad50bad08472",
+      "old_creation_template_sha256": "c7c5dc0f29dc139578c756c8888ce279e343378f8e4ec6c3f8501de15b034b37",
+      "current_creation_template_sha256": "c7c5dc0f29dc139578c756c8888ce279e343378f8e4ec6c3f8501de15b034b37"
+    },
+    {
+      "contract": "ZZZLPBalancer",
+      "source": "src/ZZZLPBalancer.sol",
+      "current_source": {
+        "sha256_raw": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+        "sha256_lf": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031"
+      },
+      "creation_template_equal": true,
+      "runtime_template_equal": true,
+      "runtime_body_excluding_CBOR_equal": true,
+      "ABI_equal": true,
+      "runtime_bytes_before": 22479,
+      "runtime_bytes_current": 22479,
+      "old_runtime_template_sha256": "f6f7030848d08831f8d24c1e4954d89ce1307e95dda4d11ff1b4be636e18b3be",
+      "current_runtime_template_sha256": "f6f7030848d08831f8d24c1e4954d89ce1307e95dda4d11ff1b4be636e18b3be",
+      "old_creation_template_sha256": "1e82f25af7b1003ea202e754a950f2dc09e884e056372309f33994559691765d",
+      "current_creation_template_sha256": "1e82f25af7b1003ea202e754a950f2dc09e884e056372309f33994559691765d"
+    },
+    {
+      "contract": "ZZZVault",
+      "source": "src/ZZZVault.sol",
+      "current_source": {
+        "sha256_raw": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+        "sha256_lf": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e"
+      },
+      "creation_template_equal": true,
+      "runtime_template_equal": true,
+      "runtime_body_excluding_CBOR_equal": true,
+      "ABI_equal": true,
+      "runtime_bytes_before": 24544,
+      "runtime_bytes_current": 24544,
+      "old_runtime_template_sha256": "1729fb353e7d6fa29c6fdfa8a3cf388e7de735c98c751b747c569378642fb40d",
+      "current_runtime_template_sha256": "1729fb353e7d6fa29c6fdfa8a3cf388e7de735c98c751b747c569378642fb40d",
+      "old_creation_template_sha256": "765cf73f3db80bc195581191981b28c09dd6c8f4cdca3c31333037bcf6d907c2",
+      "current_creation_template_sha256": "765cf73f3db80bc195581191981b28c09dd6c8f4cdca3c31333037bcf6d907c2"
+    },
+    {
+      "contract": "ZZZMigration",
+      "source": "src/ZZZMigration.sol",
+      "current_source": {
+        "sha256_raw": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed",
+        "sha256_lf": "e90a8ec8bc6b68e25a996d6c57075cadab837ce3f689d0952b810c8a74223a24"
+      },
+      "creation_template_equal": false,
+      "runtime_template_equal": false,
+      "runtime_body_excluding_CBOR_equal": false,
+      "ABI_equal": true,
+      "runtime_bytes_before": 23830,
+      "runtime_bytes_current": 24005,
+      "old_runtime_template_sha256": "90c98ba79e995eae8f2d5ea7cd563bd4b340347585b089f1bc1d2f4a948dd0a7",
+      "current_runtime_template_sha256": "f858106449c572bcb4b360fe0f6290290f5f4c8c73ffb5c21d0b50f35a37312f",
+      "old_creation_template_sha256": "b9cc382665f6966c2380ad69f7e2a9eda2faa870862a0aa235d8dc1ced218493",
+      "current_creation_template_sha256": "16147fedd0916a162267520e9ecb2899a33e93c733154ea26753ace727fa4315"
+    },
+    {
+      "contract": "ZZZAccessController",
+      "source": "src/ZZZAccessController.sol",
+      "current_source": {
+        "sha256_raw": "5a1ecdd5cc309bb922943cf11e9299859f9f824e354443d5d9b7ea7600379a2c",
+        "sha256_lf": "5a1ecdd5cc309bb922943cf11e9299859f9f824e354443d5d9b7ea7600379a2c"
+      },
+      "creation_template_equal": false,
+      "runtime_template_equal": false,
+      "runtime_body_excluding_CBOR_equal": false,
+      "ABI_equal": true,
+      "runtime_bytes_before": 10438,
+      "runtime_bytes_current": 10590,
+      "old_runtime_template_sha256": "7d710ac9c1b250a65c590c162109eedb354ef58e02436cb7b67c14e14cafa79c",
+      "current_runtime_template_sha256": "28a2c5978a59483ee62ea171d92a7ae11b3073ca394a314e126a09df4680dbb3",
+      "old_creation_template_sha256": "e7d41dee526a14c9541deff7a57fffb6f1b8a0aea7c38b098a4fae912fd83592",
+      "current_creation_template_sha256": "6db6aa38872c85b47c0932f2885f15b9126610eb155df5edc03b656b2eae4b9a"
+    },
+    {
+      "contract": "ZZZNFT",
+      "source": "src/ZZZNFT.sol",
+      "current_source": {
+        "sha256_raw": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+        "sha256_lf": "9df60d4f8a75a7dde9610d92787efc7b1bf99f4d5c1ff7bc343897458dc1e8b9"
+      },
+      "creation_template_equal": false,
+      "runtime_template_equal": false,
+      "runtime_body_excluding_CBOR_equal": false,
+      "ABI_equal": true,
+      "runtime_bytes_before": 24097,
+      "runtime_bytes_current": 24234,
+      "old_runtime_template_sha256": "730b9768706a6f6246320cd67c999b0c069aa0f103d7b3ae28e08e7da9dc1ec2",
+      "current_runtime_template_sha256": "c26b4c2dd431279ad2c1ebb16983955e12102fac201283edf383790a628861ed",
+      "old_creation_template_sha256": "593df6d7e5b64641085f6d6e49e8cf8f800cdc260212f2f579c47f5a52e31efe",
+      "current_creation_template_sha256": "4da8a80da741e2a5e25b241c31eef70c5044c26f687bfdfe68418514daeb4c01"
+    },
+    {
+      "contract": "ZZZNFTMetadata",
+      "source": "src/ZZZNFTMetadata.sol",
+      "current_source": {
+        "sha256_raw": "a691196de69c40e0f2a3cd50d3efd65a5c72ae9bf5e848b300b5f1bb607faf3f",
+        "sha256_lf": "a691196de69c40e0f2a3cd50d3efd65a5c72ae9bf5e848b300b5f1bb607faf3f"
+      },
+      "creation_template_equal": false,
+      "runtime_template_equal": false,
+      "runtime_body_excluding_CBOR_equal": false,
+      "ABI_equal": false,
+      "runtime_bytes_before": 19499,
+      "runtime_bytes_current": 24121,
+      "old_runtime_template_sha256": "0759ebfdc4ce679456eea5d4c84654cd43f5224e6e4fa300b96a48bc5c147fe4",
+      "current_runtime_template_sha256": "d909ebf88767b823ec5b19e0da86f99552cbb074597c0beee0511253bb80d8c2",
+      "old_creation_template_sha256": "592148d0f417749d4db02e0f741c27d501beb05bb1b68af3314f84ff242bc524",
+      "current_creation_template_sha256": "2be67a16dbd4f511f13bda009f040d522d405db7f2e5466b8e093e032cce4ffd"
+    },
+    {
+      "contract": "ZZZNFTCanonical",
+      "source": "src/ZZZNFTCanonical.sol",
+      "current_source": {
+        "sha256_raw": "fcc849cfa4689f1a22e6e006d286ec73bea60e660713adc5d01b6a2f90e2245a",
+        "sha256_lf": "fcc849cfa4689f1a22e6e006d286ec73bea60e660713adc5d01b6a2f90e2245a"
+      },
+      "creation_template_equal": false,
+      "runtime_template_equal": false,
+      "runtime_body_excluding_CBOR_equal": false,
+      "ABI_equal": false,
+      "runtime_bytes_before": 15912,
+      "runtime_bytes_current": 23130,
+      "old_runtime_template_sha256": "75f3d30da5634b7e32e2440b856ce32a62cf93672bee1788170aa412faa8af38",
+      "current_runtime_template_sha256": "b5c24509661b43106b069e4b5d8f6b99307662bc77d0aea9eee98ccb6deecc2e",
+      "old_creation_template_sha256": "440f11e27dafe00f9623b403a8c38e54eb3a5d635f2d957b65ef8651914e7161",
+      "current_creation_template_sha256": "ae8e1d6600310087c9ba7c36371bd8218b2cc1ce1f3ebff19ea9848f3f38ba6b"
+    }
+  ],
+  "scope": "All six manual-fix objects and Vault have exact equal full creation/runtime templates and ABI. The surrounding Access/Migration/NFT/renderer/lens objects differ. This supports unchanged-object evidence reuse, not relabeling prior deployed immutable runtime hashes, C/D receipts, whole-graph gas or marketplace/host acceptance as current.",
+  "executed": {
+    "compiler": 0,
+    "analyzer": 0,
+    "test_methods": 0,
+    "RPC": 0,
+    "deployment": 0,
+    "transactions": 0
+  }
+}

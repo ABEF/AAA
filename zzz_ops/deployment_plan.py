@@ -21,6 +21,20 @@ BUILD_PINS={
  'production-size-gates.json':'43b3bdbe58c31893b9e648f3cc2e565e096a730f089abef4745f8fe3a7f78633',
  'START.json':'02d9a986e74cf2b6f2dd4f36bcb58db65af21de0ab43f6acf440b62da36e9d90',
  'ARTIFACTS.json':'8adb7a01a5e159b04348baebfcb8022ed633e1cc3df55d32ad9b7367323a67b1'}
+# Historical constants stay exact for the original construction capture. A
+# profile label alone cannot adopt newer objects or reinterpret old evidence.
+LEGACY_BUILD_PROFILE='manual-reference-20261115'
+DEFAULT_BUILD_PROFILE='metadata2-20261116'
+TRUSTED_BUILDS={
+ LEGACY_BUILD_PROFILE:{'directory':BUILD,'files':BUILD_PINS,
+  'source_inventory':'source-manifest.json','source_key':'exact_source_sha256','gates':'production-size-gates.json'},
+ DEFAULT_BUILD_PROFILE:{'directory':'reports/metadata-lifecycle-fixes-20261116/build','files':{
+  'compiler-input.json.gz':'596dbb7967cc51f0b854c8be20644facaadc15ceabe8ee2acfadf4bd8d20df41',
+  'compiler-output.json.gz':'4acc319da1a5b4e8a4c112fb9a6c0832d3943d2722d2d17f30dd288c125f3a0f',
+  'normal-size-evidence.json':'b67e4d9cdf645e1433bca7569c7ad5be6d46237cce944f100cff6fc8d054b07e',
+  'RESULT.json':'74ee74839b689bbc08ba17bfc94bdb468e16dbd75931caddb251e1485bb92c22',
+  'START.json':'966add935532fccffbbb2518fe094aabb50e456462e5e5dd3dab62c71d76b5d8'},
+  'source_inventory':'START.json','source_key':'source_sha256','gates':'normal-size-evidence.json'}}
 NATIVE={
  'pool_manager':'0x8366a39cc670b4001a1121b8f6a443a643e40951',
  'position_manager':'0x58daec3116aae6d93017baaea7749052e8a04fa7',
@@ -89,6 +103,11 @@ MODULES=('vault','nft','liquidity','rewards','membership','fees','strategy','com
 class PlanError(ValueError):
     def __init__(self,code):self.code=code;super().__init__(code)
 def fail(code):raise PlanError(code)
+
+def trusted_build(profile):
+    # Admit a closed identifier before resolving or reading any build path.
+    if type(profile)is not str or profile not in TRUSTED_BUILDS:fail('unsupported_build_profile')
+    return TRUSTED_BUILDS[profile]
 def sha(raw):return hashlib.sha256(raw).hexdigest()
 def canonical(value):return json.dumps(value,sort_keys=True,separators=(',',':'),ensure_ascii=True,allow_nan=False).encode('ascii')
 def _pairs(items):
@@ -179,9 +198,10 @@ def argument_length(types,values):
     return total
 
 class Artifacts:
-    def __init__(self,root=ROOT):
-        self.root=Path(root).resolve();self.directory=self.root/BUILD;self.file_pins={};raws={}
-        for name,pin in BUILD_PINS.items():
+    def __init__(self,root=ROOT,build_profile=DEFAULT_BUILD_PROFILE):
+        spec=trusted_build(build_profile)
+        self.profile=build_profile;self.root=Path(root).resolve();self.directory=self.root/spec['directory'];self.file_pins={};raws={}
+        for name,pin in spec['files'].items():
             path=self.directory/name
             with path.open('rb') as stream:raw=stream.read(MAX_BUILD+1)
             if len(raw)>MAX_BUILD or sha(raw)!=pin:fail('accepted_build_changed')
@@ -190,14 +210,14 @@ class Artifacts:
             with gzip.GzipFile(fileobj=io.BytesIO(raws[name])) as stream:raw=stream.read(MAX_BUILD+1)
             return decode(raw,MAX_BUILD)
         self.input=unpack('compiler-input.json.gz');self.output=unpack('compiler-output.json.gz')
-        manifest=decode(raws['source-manifest.json'],MAX_BUILD);self.source_pins=manifest['exact_source_sha256']
+        manifest=decode(raws[spec['source_inventory']],MAX_BUILD);self.source_pins=manifest[spec['source_key']]
         if len(self.input['sources'])!=100 or len(self.source_pins)!=100 or set(self.input['sources'])!=set(self.source_pins):fail('source_closure')
         settings=self.input['settings']
         if settings.get('evmVersion')!='cancun' or settings.get('viaIR') is not True or settings.get('optimizer')!={'enabled':True,'runs':1,'details':{'yul':False}}:fail('compiler_settings')
         if any(error.get('severity')=='error' for error in self.output.get('errors',[])):fail('compiler_errors')
         # The hash-pinned compiler report includes a fractional elapsed-time
         # measurement; constructor/user numbers still use strict integer JSON.
-        gates=json.loads(raws['production-size-gates.json'],object_pairs_hook=_pairs,parse_constant=lambda _:fail('nonfinite_json'))['gates']
+        gates=json.loads(raws[spec['gates']],object_pairs_hook=_pairs,parse_constant=lambda _:fail('nonfinite_json'))['gates']
         if len(gates)!=48 or not all(g['runtime_ok'] and g['creation_ok'] for g in gates):fail('normal_size_gates')
         self.check_sources()
     def check_sources(self):
@@ -269,8 +289,8 @@ def construction_order():
     if len([step for step in steps if step['kind']=='bootstrap_module_binding'])!=16:fail('graph_module_bindings')
     return steps
 
-def prepare(raw,root=ROOT):
-    value=validate(raw);artifacts=Artifacts(root);rows=[];ledger=bytes.fromhex(artifacts.contract('ZZZRoyaltyRewards')[1]['evm']['bytecode']['object']);parts=(ledger[:24573],ledger[24573:])
+def prepare(raw,root=ROOT,build_profile=DEFAULT_BUILD_PROFILE):
+    value=validate(raw);artifacts=Artifacts(root,build_profile);rows=[];ledger=bytes.fromhex(artifacts.contract('ZZZRoyaltyRewards')[1]['evm']['bytecode']['object']);parts=(ledger[:24573],ledger[24573:])
     if not ledger or len(ledger)>49146:fail('royalty_code_parts')
     specs=[(role,name,'top_level',None,args,None) for role,name,args in TOP]+[(role,name,'internal_create_only',parent,args,getter) for role,name,parent,args,getter in INTERNAL]+[(f'royalty_data_part{i}','ZZZRoyaltyCodeData','inert_internal_create_only','royalty_factory',(f'd:{i}',),f'RoyaltyFactory.part{i}()') for i in range(2)]
     for role,name,mode,parent,refs,getter in specs:
@@ -293,10 +313,10 @@ def prepare(raw,root=ROOT):
         rows.append(row)
     missing=[f'inputs.{key}' for key,v in value['inputs'].items() if v is None]+[f'planned_addresses.{key}' for key,v in value['planned_addresses'].items() if v is None]
     top_complete=all(row['constructor_payload_complete'] for row in rows if row['mode']=='top_level')
-    result={'schema':1,'kind':'offline_deployment_preparation','profile':PROFILE,'offline_only':True,'ready_for_submission':False,'production_approved':False,
+    result={'schema':1,'kind':'offline_deployment_preparation','profile':PROFILE,'build_profile':artifacts.profile,'offline_only':True,'ready_for_submission':False,'production_approved':False,
         'transaction_submitted':False,'rpc_performed':False,'simulation_performed':False,'address_predictions_performed':False,
         'status':'offline_inputs_and_top_level_payloads_complete_pending_live_verification' if top_complete and not missing else 'blocked_preview_missing_inputs',
-        'input_sha256':sha(canonical(value)),'inputs':value,'accepted_build':{'directory':BUILD,'files_sha256':artifacts.file_pins,'source_count':100,'production_sources':61,'normal_size_gates':48,'compiler_settings':artifacts.input['settings']},
+        'input_sha256':sha(canonical(value)),'inputs':value,'accepted_build':{'profile':artifacts.profile,'directory':str(artifacts.directory.relative_to(artifacts.root)).replace('\\','/'),'files_sha256':artifacts.file_pins,'source_count':100,'production_sources':61,'normal_size_gates':48,'compiler_settings':artifacts.input['settings']},
         'limits':LIMITS,'counts':{'top_level':25,'internal_helpers':12,'inert_data_children':2,'total_instances':39},'instances':rows,
         'top_level_constructor_payloads_complete':top_complete,'all_instance_constructor_payloads_complete':all(row['constructor_payload_complete'] for row in rows),
         'input_assignments_complete':not missing,'binding_order_defined':True,'binding_addresses_verified':False,'construction_order':construction_order(),'missing_inputs':missing,
@@ -331,13 +351,15 @@ def main(argv=None):
     class Parser(argparse.ArgumentParser):
         def error(self,message):fail('invalid_cli_arguments')
     parser=Parser(description=__doc__);parser.add_argument('--input',required=True,type=Path);parser.add_argument('--output',required=True,type=Path)
+    parser.add_argument('--build-profile',default=DEFAULT_BUILD_PROFILE,help='Exact trusted build identifier; no automatic fallback.')
     stage='input';publishing=False
     try:
         args=parser.parse_args(argv)
+        trusted_build(args.build_profile)
         if os.path.lexists(args.output):fail('existing_output_preserved')
         with args.input.open('rb') as stream:value=decode(stream.read(MAX_INPUT+1))
-        stage='offline_preparation';result=prepare(value);stage='rendering';raw=render(result);stage='publication';publishing=True;write_exclusive(args.output,raw)
-        print(json.dumps({'created':True,'status':result['status'],'ready_for_submission':False,'top_level_constructor_payloads_complete':result['top_level_constructor_payloads_complete']}))
+        stage='offline_preparation';result=prepare(value,build_profile=args.build_profile);stage='rendering';raw=render(result);stage='publication';publishing=True;write_exclusive(args.output,raw)
+        print(json.dumps({'created':True,'status':result['status'],'build_profile':result['build_profile'],'ready_for_submission':False,'top_level_constructor_payloads_complete':result['top_level_constructor_payloads_complete']}))
         return 0 if result['top_level_constructor_payloads_complete'] and result['input_assignments_complete'] else 2
     except Exception as exc:
         reason=exc.code if type(exc) is PlanError else 'offline_preparation_unavailable'

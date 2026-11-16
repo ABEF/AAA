@@ -16,6 +16,31 @@ Use a complete checkout with the exact dependency sources installed, as describe
 in [Development](DEVELOPMENT.md). Missing or changed local source/artifact bytes
 are refused; the planner does not install packages or fetch replacement evidence.
 
+## Select the exact reviewed build
+
+The default trusted build is **`metadata2-20261116`**, using the accepted metadata
+normal compiler family. Input `profile` stays `schema17/mint2/V10/execution1/LP3`;
+the distinct build ID authenticates exact bytes. Output `build_profile` and
+`accepted_build.profile` record it. Unknown IDs, mixed artifacts or changed
+source bytes fail; there is no fallback to an older build to bypass drift.
+
+```powershell
+python scripts/prepare-deployment.py --build-profile metadata2-20261116 --input path/to/reviewed-input.json --output path/to/new-plan.json
+```
+
+The closed registry also retains **`manual-reference-20261115`** with its original
+pins. Historical planning requires that exact old source checkout; selecting it
+in the current checkout correctly refuses source drift. Old local evidence can
+still be checked offline against its authenticated historical artifacts without
+relabeling it current. A build profile, content SHA or plan manifest is not an
+on-chain `reviewHash`, permission, runtime attestation or release approval.
+
+After a future contract change, review a new exact closed compiler/source family
+and extend the trusted registry deliberately. Never rewrite existing family pins,
+copy local addresses into production inventories or install evidence-supplied
+hashes as the trust root. This Python-only fix reuses current48normal gates;
+it does not rerun constructors or refresh historical deployment gas.
+
 ## Inputs and outputs
 
 Start with the deliberately incomplete
@@ -139,11 +164,12 @@ created atomically inside the factory constructor; that distinction matters.
 The separate [local rehearsal runner](../scripts/rehearse-local-deployment.py)
 creates its own disposable loopback Anvil process, port and genesis. It never
 connects to a caller-supplied RPC or the existing Anvil instance. The offline
-planner above stays unchanged and unsigned; this runner performs **local test
+planner above stays unsigned and uses its explicitly selected trusted build;
+this runner performs **local test
 transactions only**, using disposable impersonation without reading wallet keys.
 It never prepares or calls `seal()`.
 
-The rehearsal constructs the exact current normal PoPL objects, binds Policy,
+The rehearsal constructs the exact selected trusted normal PoPL objects, binds Policy,
 all 16 Access modules, the LP converter and SeaDrop helper, then discovers and
 checks all 39 instances. Constructor simulations and actual receipts distinguish
 expected runtime templates from the actual immutable-patched code. Internal
@@ -171,7 +197,8 @@ fee ceilings remain separate. Existing12M/20M/24M operating profiles are unchang
 ### Running, stopping and interpreting a rehearsal
 
 Run only from the reviewed checkout with exact accepted artifacts/dependencies
-and the reviewed local Anvil binary. Use a new output directory for each run;
+and the reviewed local Anvil binary. Unknown build/source refusal happens before
+creating a new output directory or starting a node. Use a new directory for each run;
 never select an old chain state, website dist, journal or existing rehearsal
 directory. The runner must verify its child process owns the loopback listener
 before mutation and retain its fresh chain/genesis identity. An occupied or
@@ -182,7 +209,7 @@ it does not silently skip that check on another operating system. Example from
 the repository root, with your reviewed binary and a new evidence directory:
 
 ```powershell
-python scripts/rehearse-local-deployment.py --anvil "C:/reviewed-tools/anvil.exe" --output "C:/local-reviews/new-construction-run"
+python scripts/rehearse-local-deployment.py --build-profile metadata2-20261116 --anvil "C:/reviewed-tools/anvil.exe" --output "C:/local-reviews/new-construction-run"
 ```
 
 There is no RPC, key, existing-state, public-deployment or sealing option. The
@@ -195,7 +222,11 @@ The [first source-bound rehearsal](../reports/local-deployment-rehearsal-2026111
 completed all 44 transactions. The largest was NFT construction: 11,337,831 gas
 used, with a 14,172,289 padded limit. Total receipt gas was 141,382,621 across many
 blocks, not one transaction or block. These are controlled local measurements,
-not reusable production transaction limits or ETH cost estimates.
+not reusable production transaction limits or ETH cost estimates. That run used
+the historical manual-reference family. Five later metadata objects changed;
+current-family constructor execution and actual target fees remain unqualified.
+Do not replay44transactions merely to refresh a report date; qualify changed
+constructors and real release inputs through an authorized targeted campaign.
 
 Independent review found a request-recording alias in that original run. Its
 transactions, receipts, CREATE traces and getter results reconcile, but earlier
@@ -212,7 +243,14 @@ python scripts/check-local-deployment-evidence.py --evidence reports/local-deplo
 
 Use a new output file in an existing directory. The checker authenticates the
 trusted build pins before reading build files, then reconciles receipts,
-constructors, runtimes and binding observations. It reports the original
+constructors, runtimes, exact submitted transaction fields and all112distinct
+required binding/state observations. It independently derives constructor roles,
+arguments/parents and getter expectations from the closed graph, permits only
+the recorded read methods and intended sends/impersonation, and verifies exact
+inert carrier payloads. Deleting or duplicating observations cannot satisfy
+coverage. Captures with an explicit build ID must match its trusted files and
+plan/result identity; missing IDs are accepted only for exact historical pins.
+It reports the original
 capture limitation explicitly and never supplies deployment/sealing approval.
 
 The final evidence must show `Access.isSealed()==false`, the original bootstrap

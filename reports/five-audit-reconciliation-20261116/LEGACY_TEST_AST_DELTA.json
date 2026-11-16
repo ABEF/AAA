@@ -1,0 +1,10 @@
+{
+  "baseline": "28431b3ac63d909c9c04246de1ee68cc16a3ed5e",
+  "old_test_file_sha256": "fcd1090723b263a4f792e0a7a99c19ae78cf534d0020c122823d416f6a524e6a",
+  "current_test_file_sha256": "cd09014ac1bdec468efdec8159c01a7af8ecc26e7ca344065796fe5648b725c5",
+  "old_method_bodies_unchanged": true,
+  "preserved_old_methods": 22,
+  "old_methods_executed": 0,
+  "change": "Shared import only: explicit test-only legacy100-source temporary checkout and explicit legacy build selection. Individual assertions preserved.",
+  "adapter_sha256": "2d94ee27063dddc7d49d0519a42bd2c4efb4560cebdf0cb56f5226b4717a6b0d"
+}
