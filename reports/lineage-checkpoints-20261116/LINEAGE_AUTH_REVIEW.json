@@ -1,0 +1,22 @@
+{
+  "utc": "2026-11-16T16:27:44.024869+00:00",
+  "owned_source": "frontend_api/lineage.py",
+  "sha256": "c693fc52f39e2451575691ab44c3394aabfcd9de12e050dd6117de8bc3d15947",
+  "AST_parse_passed": true,
+  "unchanged_method_AST": [
+    "__init__",
+    "_receipt",
+    "claimed"
+  ],
+  "public_verify": "verify(current,header,block,lifecycle,*,verified_anchors=None) -> (epochs,proofs)",
+  "financial_extensions": [
+    "history_reader(source,cutoff,at_cutoff,lp_assets,royalty_assets), defaultNone/raw",
+    "verified_histories mapping populated after all checks"
+  ],
+  "refactor": "Private _verify_graph shares exact origin/order/receipt/terminal/code/creation-parent proof; public verify ends in full-header sweep, financial defers its sole sweep until history and all indexed creation/NFT identity/aggregation checks finish.",
+  "RPC_work": "No duplicate pre-history final sweep in financial; creation headers captured during graph proof are compared with indexed source history and rechecked in final full-header sweep.",
+  "unchanged_provenance": "Existing financial output keys/profile omission/epoch order and current+retired-local aggregation retained.",
+  "no_global_cache": true,
+  "no_tests_RPC_build_signing_or_environment_actions": true,
+  "coverage_limit": "Static refactor review and AST only; parent newfocused composition/authentication tests remain required."
+}

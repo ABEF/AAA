@@ -1,0 +1,692 @@
+{
+  "baseline_head": "51fc12b28de04dcbec6dfa2bd554aea753ad5027",
+  "baseline_branch": "main",
+  "original_full_external_baseline_sha256": "0d51ad9e89accb67778f2144308cb5b9530cf463d8b11c99977e5bc557b80536",
+  "original_full_external_baseline": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\BASELINE.json",
+  "production_sources": {
+    "src/ZZZAccessController.sol": "5a1ecdd5cc309bb922943cf11e9299859f9f824e354443d5d9b7ea7600379a2c",
+    "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+    "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+    "src/ZZZActivationEntry.sol": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+    "src/ZZZBuyback.sol": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+    "src/ZZZCanonicalHandoff.sol": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+    "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+    "src/ZZZCustodyValidation.sol": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+    "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+    "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+    "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+    "src/ZZZLPBalancer.sol": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+    "src/ZZZLPPositionExecutor.sol": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+    "src/ZZZLPRewardConverter.sol": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+    "src/ZZZLiquidityManager.sol": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+    "src/ZZZMembership.sol": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+    "src/ZZZMigration.sol": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed",
+    "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+    "src/ZZZNFT.sol": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+    "src/ZZZNFTCanonical.sol": "fcc849cfa4689f1a22e6e006d286ec73bea60e660713adc5d01b6a2f90e2245a",
+    "src/ZZZNFTMetadata.sol": "a691196de69c40e0f2a3cd50d3efd65a5c72ae9bf5e848b300b5f1bb607faf3f",
+    "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+    "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+    "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+    "src/ZZZProtocolPolicy.sol": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+    "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+    "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+    "src/ZZZRewards.sol": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+    "src/ZZZRewardsCanonical.sol": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
+    "src/ZZZRoyaltyCodeData.sol": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+    "src/ZZZRoyaltyFactory.sol": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+    "src/ZZZRoyaltyRewards.sol": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+    "src/ZZZSeaDropMint.sol": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+    "src/ZZZStrategy.sol": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+    "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+    "src/ZZZV4SpotPriceFeed.sol": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+    "src/ZZZVault.sol": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+    "src/ZZZVaultCanonical.sol": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+    "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+    "src/base/ZZZExactLPRewardsCanonical.sol": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
+    "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+    "src/base/ZZZRewardConverter.sol": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+    "src/base/ZZZSeaDropToken.sol": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+    "src/interfaces/IZZZ.sol": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+    "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+    "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+    "src/interfaces/IZZZExecutionOracle.sol": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
+    "src/interfaces/IZZZNFTCanonical.sol": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
+    "src/interfaces/IZZZProtocolPolicy.sol": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+    "src/interfaces/IZZZSeaDrop.sol": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+    "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+    "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+    "src/libraries/ExactLPAllocation.sol": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+    "src/libraries/ExactRoyaltyAllocation.sol": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+    "src/libraries/ZZZTypes.sol": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+    "src/libraries/ZZZV3VenueValidation.sol": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2"
+  },
+  "protected_initial_dirty_files": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "changed_baseline_tracked_files": [
+    {
+      "path": "AGENTS.md",
+      "before": "14e17d3b5d994dffe99ce6df5727aec0d3206fcf27f5b333edd7cfe95be551c3",
+      "after": "fbdc5188626fd6456f2c6aed7fb48fea46d904a5e9b1c274ec0ad61e61b55ea3"
+    },
+    {
+      "path": "PROJECT_CONTEXT.md",
+      "before": "b7ff31d3de5b186f02e0e88c03f648e606c4b9b630d6f3fbe250bf1b50864905",
+      "after": "84d1b41adad200816bd7938301aa37cd5f71e3175b9dd6b1f550e8569ab1047c"
+    },
+    {
+      "path": "README.md",
+      "before": "6849e26b10264a8e4eac61956c2f49b1e42a1f20b3b2ceb04d0cd4bd8e86f71c",
+      "after": "1b64ed3ab6fd4221303b3a6efb5fb05961d3666a31e621e63306942850699a08"
+    },
+    {
+      "path": "TODO.md",
+      "before": "b0a7636f2a4f56871f8570916a5f45c394adc6faca4db149221b2e33094531e0",
+      "after": "5c01c686a28c6848b3ca1686d144c52fa51a6bcbf2061858ce716c784a5cfee7"
+    },
+    {
+      "path": "docs/AUDIT_FINDINGS.md",
+      "before": "1b4ef4450175dfb03b52fe408520a95050bd75883e6fb3cc65fc5d94fe0e444f",
+      "after": "6f916cc10fc1898696288dc85e749112a910fa939d47f8181359f30d40fa0b44"
+    },
+    {
+      "path": "docs/COMPONENT_STATUS.md",
+      "before": "cfdee72df88e9d8bc082c09b2400e480c04b2cde1647ceda8e5819dfc2a09aec",
+      "after": "7c1cb7d1e06ad27971b4e623f172eb8ec93d74966e6c6063b409e4def296aaf6"
+    },
+    {
+      "path": "docs/EARNINGS_CHECKPOINTS.md",
+      "before": "12b3c32b38ac500f69158a1ef1a96a17431ecf8889d0b75a59ffae68100f984a",
+      "after": "f311d1709c3a600fcd7df50bf6444077f636aee1130a770b1aa62469e2eef533"
+    },
+    {
+      "path": "docs/EARNINGS_HISTORY.md",
+      "before": "c6244c76e2c09ddafd633acd8b91ae43e8b05ffde3f394afddec415f0a9c2993",
+      "after": "74ce9cdb21aed9b661250d9dce157fab649877bce06da3699895ab6f83a9d610"
+    },
+    {
+      "path": "docs/FRONTEND_API.md",
+      "before": "48ea631d0e8707fc689d8785c1a8716e29b9fec2a9f03fdacb420c5dd8824d86",
+      "after": "8401af41e47cf0e1741f2d3f813908b76eee4f184a23c08ed15e40b8fcf33727"
+    },
+    {
+      "path": "docs/FRONTEND_LINEAGE.md",
+      "before": "478f6ab306aa815c8b3a38da977b93dee74aa51df2d0c53ae5ab3b78584b2baf",
+      "after": "8d0cf287e7c7d1641fa9ae957383bc623aac861028c5a47bf3a03bfcb094794f"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "before": "294e9f080312d74cc912a77da9f730d9ccba7d10e23880ca70f4ba02b61955c5",
+      "after": "a63674fe52c535aac7891bca8a92a02a64db378d621804f272a45057ab0fd524"
+    },
+    {
+      "path": "docs/OPERATOR_MANUAL.md",
+      "before": "404e4277f24d12186eb952309e9abbda83bcbaf0a413be61b74730da0e7329a6",
+      "after": "0f2bc403d27f4007ba886777092cae919f2da813c7a3fd17b546ba8053f7cbc4"
+    },
+    {
+      "path": "docs/README.md",
+      "before": "2aabbdb192f6a403d5a2eb34c6fd6435da3fb205bd372a9486fdebf673b569e6",
+      "after": "480b711beba9fd550e7ca1abe91ec4dc3744d04e41135615757af023cf64be40"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "before": "ef2489e85d960ec96041f1a016084cf6088a579c8a8aa81b4f773db4c17a9b97",
+      "after": "90df7ceaab49d6511288a9982d297a0a009c43d34e1c8615cb3553dc4db78ffa"
+    },
+    {
+      "path": "docs/WORK_HANDOFF.md",
+      "before": "35d36092f844eb46ea8ede932ad71901ded7fb3e1b9c9f77e307955dc14e1bad",
+      "after": "ccd8473498679339a6421b68c17fbc9abba7ceeac2a4f39ad6cc184fff93e7ec"
+    },
+    {
+      "path": "docs/project-todo.json",
+      "before": "ffea4389a8a32c38f11f96ff59e3294e248c44f56ffdb7f98ac02057cf576062",
+      "after": "c7ccce2cd0a88d3ba35a94d7768708d00226c3a28fbd2b827d48e365771d9bb7"
+    },
+    {
+      "path": "frontend_api/earnings.py",
+      "before": "c96e4acfc2782d549522134516bb4963482d7f24f3c96de824eb651f0c31aa75",
+      "after": "3da00d0be21df851483f66007e6bd2b228a57e51c26a1c7900cc985eb3a07759"
+    },
+    {
+      "path": "frontend_api/earnings_checkpoint.py",
+      "before": "d1f73d205ad152f891b03790c81cd9416c9e545b8a0c30a70ec9dff45d742a78",
+      "after": "fe47bb6c8df5a05526a6d53bfbf1d0e881d9792c4803bc1f11442f1e18aeb621"
+    },
+    {
+      "path": "frontend_api/earnings_checkpoint_build.py",
+      "before": "851567ffef6f32a2107e92e0341b4f749f4f3b4b428d121e159531ed4ee6af5f",
+      "after": "f5eca20abda61ef591d3a8dc65a50eb8275aea363e07e0ed25a3b8134d64e192"
+    },
+    {
+      "path": "frontend_api/earnings_checkpoint_v2.py",
+      "before": "52f95d67393574b269e18e45df0c776231213b9d5e04c369533e614f490c1f49",
+      "after": "7dee675ca520ff0b84f368d479851a2e4194a830b33c59a3bced06387a714172"
+    },
+    {
+      "path": "frontend_api/lineage.py",
+      "before": "7b4a6b6b6d4ecf67d3f93ac5cad5a5c8bc7d70a035784fb716f4d4a8dc201281",
+      "after": "c693fc52f39e2451575691ab44c3394aabfcd9de12e050dd6117de8bc3d15947"
+    },
+    {
+      "path": "frontend_api/service.py",
+      "before": "fa0fcea5183bb28b432e8477f01531354d54d5faa4a49f653ad6f768bc41e25d",
+      "after": "8c656d1d02ddc8ae6f42fd1cd74202416b6fa4fab8ac9d3aa9199a2624bc43d0"
+    },
+    {
+      "path": "frontend_api/wallet_earnings.py",
+      "before": "beeed3835decd5d04f5e920246c1add7e36764ac911ea1c6fbb6b5c411606576",
+      "after": "5446cc002705f878f6023b1b585c27c27c31c3731f7234780839ac64aefca520"
+    },
+    {
+      "path": "reports/README.md",
+      "before": "3388fba1881af38fe2105cb0360c175fd6844605c03a1bf9b9b3465c45b83ee4",
+      "after": "1c1c9c72d95bb4c9c9239e9633333d3892abe783539c3d1922e1620e378530ec"
+    }
+  ],
+  "all_other_baseline_tracked_files_unchanged": true,
+  "new_source_files": [
+    "frontend_api/earnings_checkpoint_v3.py",
+    "tests_python/test_earnings_checkpoint_epoch_helpers.py",
+    "tests_python/test_earnings_checkpoint_lineage.py",
+    "tests_python/test_historical_checkpoint_assets.py"
+  ],
+  "baseline_tracked_file_checks": 6983,
+  "existing_chain_journal_service_site_signer_or_heartbeat_actions": 0,
+  "original_document_archive": {
+    "AGENTS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\a54ff182c7e8acf56acfd6e4b9c3ff41e2c41a31c9b211b2deb9df75d9a478f9.md",
+      "sha256": "14e17d3b5d994dffe99ce6df5727aec0d3206fcf27f5b333edd7cfe95be551c3"
+    },
+    "PROJECT_CONTEXT.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\83493f47e82b650e07ff585194e36082eeb8f8df9268a9f552a4e1a03a240237.md",
+      "sha256": "b7ff31d3de5b186f02e0e88c03f648e606c4b9b630d6f3fbe250bf1b50864905"
+    },
+    "README.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\b335630551682c19a781afebcf4d07bf978fb1f8ac04c6bf87428ed5106870f5.md",
+      "sha256": "6849e26b10264a8e4eac61956c2f49b1e42a1f20b3b2ceb04d0cd4bd8e86f71c"
+    },
+    "SECURITY.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\f6ed156e4bf5c791680662464b94ea5d753f219ee816b385f67870e2c0d7d4c7.md",
+      "sha256": "2b63c09296d8dcf99f5f0c24342a3967825c8e9798f0c0a1efc256fd881b4647"
+    },
+    "TODO.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\5c6a1301c6b59b30a040d747d065e861d3dd98bde0e5a4356d92d594e9835986.md",
+      "sha256": "b0a7636f2a4f56871f8570916a5f45c394adc6faca4db149221b2e33094531e0"
+    },
+    "docs/ACCESS_PERMISSIONS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\90d3a02618c2a69b6a86e0e469f7645c3a31b3db9a49b67910734688dd672cb7.md",
+      "sha256": "6820d838c80c306123b02e39854aa38ee0b88533c7bdb5874e8fb2fabe6e287f"
+    },
+    "docs/ACTIVATION_ENTRY.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\7302fb5cf421ee9cf16bbe0eeb1aa74c561a2591a370e90760fac0c08c78a5b6.md",
+      "sha256": "ebf46dd49f04a225382e4e03395b35f61b6d32b4caa4dd55012562cfe2b7588d"
+    },
+    "docs/ACTIVATION_PREPARATION.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\78835660a443a6d9384f2d5a93b380ac80842e3e647ec8f05ff1825ca559b04d.md",
+      "sha256": "0125c923673092778fcc23789ad964ab556357b2a78fec0cf7ec2a083121116f"
+    },
+    "docs/ACTIVATION_ROUTING.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\442d9d23b6f2b53929c329cf7e99d0e6aacfbf33c730f7604db0cd13b5ece0dc.md",
+      "sha256": "45f24c8a1f4f59b2ea4cd5022e08b9d7894231c0f83e233d244c58d6ad4fd841"
+    },
+    "docs/ADAPTABLE_POLICY.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\7e3af5e6d4e8b3ed6c41cc8b363a31345c34d24534b6e2608d29d1e4f67797b0.md",
+      "sha256": "c75e44067753749700c895f5c594e911ee48ee08ceda55175b0f6abd277633fc"
+    },
+    "docs/API_INGRESS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\d643b46b7a633b380e6631daf3a069058f62f75db39163d47561e20f1361df43.md",
+      "sha256": "63b4578eefbfdcd2baac96e1cb5d908e40b762e04011b010a07af4fb347dbf69"
+    },
+    "docs/ARCHITECTURE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\ff21b6b9a3a33e9d9056ac96882cc348d7077612b5931068f7459707b21eb3d1.md",
+      "sha256": "5523ecb9d08d04cc4a8690bfdb893855cc22ad2598814bc562af85df6cc508cb"
+    },
+    "docs/ARCHITECTURE_EVOLUTION.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\2041721a16cc62dde98701542191a9419e34bf1a4d8ca3d3720cd20edc288ff7.md",
+      "sha256": "ec3755504309d05436a6dbbd21bb29c7222866d7f5cc676ca09e1236861b73de"
+    },
+    "docs/ARTWORK_PUBLICATION.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\766cc7de8766a359c32cbd628e139bce8ddb8b159e32f2dbc16c18de99c64cd9.md",
+      "sha256": "87e3258dda8f801ec5303bf26f4b39a3d2eca861c0110d402752781789346ffc"
+    },
+    "docs/AUDIT.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\aef5c7d471327d25b89191069ce9c9c7c75dba49a7d25f636e2aa141b18867b1.md",
+      "sha256": "750d66b792415f1ec16a569294a5f7119a6397ea356ef686d7856fc6a4e1a38e"
+    },
+    "docs/AUDIT_FINDINGS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\2dd615c4e3715d1bf6641c2f9ef648b6827e7dd85a4f93246d90acadc3c607fb.md",
+      "sha256": "1b4ef4450175dfb03b52fe408520a95050bd75883e6fb3cc65fc5d94fe0e444f"
+    },
+    "docs/BRIDGE_ONBOARDING.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\fe33c18d330357344838ed1ce2d4851ecb0af0c97a1344645c592a29d73d058d.md",
+      "sha256": "8fe2b38b1fadbb2658b51ee7f92501a1a920cea802769e7014d47c5ea5286c4f"
+    },
+    "docs/BROWSER_WALLET.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\b7b9b652c0ab1ca977e9f64bc1b315e19017fcf1e095d3d4f56056db1c701df7.md",
+      "sha256": "1a1171e2dab0bab56ec65e452f1475ede3c7f29c1844a4d7df29ed1bfc29c4b4"
+    },
+    "docs/CANONICAL_HANDOFF.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\0c423227f1da65e6d1ec1e662b92170921f08c940c84ec678528a50f9b6c214d.md",
+      "sha256": "02df1a53bee782feac2b39a6a1f1068241336d0580574e13ba560bc45154fbd0"
+    },
+    "docs/CANONICAL_MIGRATION_DESIGN.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\fa2817f73d3c9b5b71bdaa53e12cf82125652f9f663524b90c439edaa2994553.md",
+      "sha256": "c48fdfd2a847603fc994316960f7e10071e9f8d5bcb1a2058fcdaebf1e2eea67"
+    },
+    "docs/CHANGELOG.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\2bfab3db5cc1baf4c6d3ff6b19901926e3bdf4411ec685dac973e5fcff1c723b.md",
+      "sha256": "1f3f86ff37a2586edb235314b553eabb1d527a0a6f33699483a95d58c050d467"
+    },
+    "docs/CHANGE_AND_RECOVERY.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\254e137582a30dbbe4726cbc6d75a00bc5c900f8398805d456661ce1f71e9b68.md",
+      "sha256": "738b5345d54fe2046834df12e25526d070e4fabcb653c64e55e19d6282329d3d"
+    },
+    "docs/CLAIM_PLANNING.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\5220b3184b47adb204d3a92452fd90f06d7f4933e6e7d350012e8e183aa1ed13.md",
+      "sha256": "6e8e699eba9c2d9f64c4fa1e6a0ed1f8dd8f8789b54469dc8eef25a0b34df29f"
+    },
+    "docs/CLAIM_ROUTER.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\801068ee5c5cf5119e50577e05be13c902d24a32ff50f316fd6e322e01eea8d6.md",
+      "sha256": "f87132d2011a794b5f1f2198d118207b066e4c47152c91939b03d65337440ce2"
+    },
+    "docs/COLLECTION_READS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\957f8ec1e40a487491782e7f21599dee4bd8483829c03c279805ef6b3362242b.md",
+      "sha256": "09316ca28b8eb5bc1a0827f413b7c50f405fa041202bc8e49e0b01f4a444f39a"
+    },
+    "docs/COMPONENT_STATUS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\113a092949891ccec6ecc779789d0299faafda12ba953a1c65ae091ad2a199de.md",
+      "sha256": "cfdee72df88e9d8bc082c09b2400e480c04b2cde1647ceda8e5819dfc2a09aec"
+    },
+    "docs/CONCURRENT_SERVICES.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\e55bb14a252f24527f21e1901e2a310fd8540e60a9649f4fd39846bdf241ee6b.md",
+      "sha256": "6516de8abd0a3d5d823a8446f1388b5ff0d7142ddc6adae4d9d97ae29862d528"
+    },
+    "docs/CONTRACT_FUNCTIONS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\6f6aa26b021f317f27774902d928d6dbbf86ddd0b7a36dbd0078626f64e173b9.md",
+      "sha256": "05fab7b6bad1c3ec2aa07ed291e58884588d3f99c8ff09ed8d44d731df026dd8"
+    },
+    "docs/CONTRIBUTION_MINIMUMS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\c81a974997ac5fe217ad150aa3667c809f07983215cf570214a7729f1f1f251f.md",
+      "sha256": "8505612f22ca212d5b1f8879a3567ad66af95673e063e30a7bf68d6c2f3fef1f"
+    },
+    "docs/CURRENT_WEBSITE_PROFILE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\e2a7d863c8cfbeeca35e84d02adac396ca370021a8a3fcab23cc2592da359661.md",
+      "sha256": "94a6d1fef6f4123d4503589ceb478434c2618344209529e273c91153a4e988ba"
+    },
+    "docs/CUSTODY_PARKING.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\895263a4c038c44877dfaecae87de57b839f43be7c06fcfe90060b50e2a3eac5.md",
+      "sha256": "31d62472f40e63cb0e4ea8f764614b46cb06fcce98e2ba1f68034cafb7de329f"
+    },
+    "docs/DEPLOYMENT_ADDRESSES.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\c5c62838711fad04f0486b3cfa94e10df4306240afccbaddfce0431858a6761f.md",
+      "sha256": "89c56a5c3954454708d8fc8cb4b954f8e489241aaecbee9d43cbf439b14f8072"
+    },
+    "docs/DEPLOYMENT_PREPARATION.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\d2395405602d374c8f2a9a6278ef1f148c17224004eefe88da0883930f023427.md",
+      "sha256": "c09c1724686138ae72af5bfdd25d39e510d69e081c2376671b88fc2c49fdcfdd"
+    },
+    "docs/DEPLOYMENT_WEBSITE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\d28bb62690ef6c2d55ff6b03d7fc4ad6162f1427f684219d9d4a6b5e111e6b37.md",
+      "sha256": "252fa9745941ef8f6e51d03a0bc6413e9012d7c278ca02009f73020194805ae4"
+    },
+    "docs/DEVELOPMENT.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\d9657425e036fb0ad2912c2c24ea793648eb86de5b40aa0844276dd08ed01d87.md",
+      "sha256": "c6bbd10394484939031cce9cd33b0bfaee2744d8447624d03aed507b1f76b093"
+    },
+    "docs/DYNAMIC_LIQUIDITY.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\384640c4dfb7002f965d2ad58774380865060404c3d44fbb5536103ddb6ae0e6.md",
+      "sha256": "93e94e3642d3cdc30c4eb149c489817ad136018e15ef536bbc508f68b42c9f14"
+    },
+    "docs/EARNINGS_CHECKPOINTS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\0c09e2bceb46296117e1dcafbf0f9e2830eebc7b0628313595ebc56bc3eaf568.md",
+      "sha256": "12b3c32b38ac500f69158a1ef1a96a17431ecf8889d0b75a59ffae68100f984a"
+    },
+    "docs/EARNINGS_HISTORY.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\d297eff5634167dba1f5a6d4099978dbd609a45ef6b88e81286ab04ec6c500d0.md",
+      "sha256": "c6244c76e2c09ddafd633acd8b91ae43e8b05ffde3f394afddec415f0a9c2993"
+    },
+    "docs/ECONOMICS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\fe93f2eedf70fb1fcf7502aba3925a91364b581ee0bd8fc4d74e8c938f078e1c.md",
+      "sha256": "27e244505326acd8f4045e997d150458df565ca34a5c51b8c8a129ebb0be888f"
+    },
+    "docs/EMERGENCY_REBALANCE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\ccd799f388e85b492d24a50de48c0fbb8ae8b947072e2ad115ca72e647633a61.md",
+      "sha256": "5e3a33fbd0be9115f8d2b684697113b46065ef7041bd53c310079e5b9f498c6a"
+    },
+    "docs/EXACT_LP_ALLOCATION.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\b019bca821858e8c8a39cc7fe83b9f9cc54072bd714f9938e5428ce86acc73b9.md",
+      "sha256": "2c77b5f0310b86c51fefa832679dc1d18b7b0914d943a21298ada41c736965f7"
+    },
+    "docs/EXACT_ROYALTY_ALLOCATION.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\f2bce5453d63eddceee9b3a93fcf4aee2ed96065883d23cc1f24ae502c105e2b.md",
+      "sha256": "b79e32086387d5bb57f5d202f97462ebedd62ba856d64727f192267b91431c3f"
+    },
+    "docs/EXECUTION_LOSS_POLICY.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\d29a8ff9e8f2447c97ae92ea99ce8b0f1f3e40bbb60830d5f6eb4a393c4e8037.md",
+      "sha256": "89ec19b820a92d07f38333a30c18b05aff281dd785d6d6432c7760b95feb7f22"
+    },
+    "docs/EXECUTION_QUALITY.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\e7060d8a98d61ee635834e216945d39cf947897298b2d3500d64dbb70814ad8a.md",
+      "sha256": "50cb8b4b35bc26fe5a9c66ec2774a359a59f0a3a6d85e4534835bc04a887461a"
+    },
+    "docs/EXTERNAL_REWARDS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\41d03199fde2350fdbf5007cfc44fb2d20ce8c7ec7fcf8cfabf037390f8a4066.md",
+      "sha256": "669ce07d88b9bd80e5174c390f602a54722fea0fa7215c834cdf57c99c15b471"
+    },
+    "docs/FACTORY_CODE_STORAGE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\14c86c6864e25811a6c2e09c8a0f310bc17e9321d687ad881f90c742b9f3dd24.md",
+      "sha256": "b209546f546e286fa94dd6f396455526a7180d48b596cf237785c2b2657fc605"
+    },
+    "docs/FRONTEND_API.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\e97c254b9431e2966de426910f1aa0c98c905cfe7a4501bad8b559500a56f2b4.md",
+      "sha256": "48ea631d0e8707fc689d8785c1a8716e29b9fec2a9f03fdacb420c5dd8824d86"
+    },
+    "docs/FRONTEND_HISTORY.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\377a3f9a4a893e04f881b24946791d22ba894ae88bc4744ddf349cb3f6014f05.md",
+      "sha256": "936aa26cb1359153e419d0598453099ba6c259c9901f9826deaaf240dfa27083"
+    },
+    "docs/FRONTEND_LIFECYCLE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\376edea22bf9a8da50752575580d7ffba989b2c4f93ad8680c3cc6376a9ea996.md",
+      "sha256": "668eb6be22de688e0994be9f5e30b99ffa40d76a9009eaf2f2f465aed2a58e7d"
+    },
+    "docs/FRONTEND_LINEAGE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\1f0f3399783881f1fe38f1d7283fa0b5d568169fc1d216e720ba731ff52aef3e.md",
+      "sha256": "478f6ab306aa815c8b3a38da977b93dee74aa51df2d0c53ae5ab3b78584b2baf"
+    },
+    "docs/FRONTEND_TRANSACTIONS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\5d84ae423e316907f5bae06ba04985e20e0956bf21920920b2590b519f2bfbf1.md",
+      "sha256": "b43c086d6cfa0c7927d39f52a38d440d2e43acc040b41ccda058d4fe3e3d8ec7"
+    },
+    "docs/FROZEN_REVIEW_BUNDLE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\f58e3c08397ee8a65ce5208bc5dcf203a649f1e357bcc00ce75f112da0c9a813.md",
+      "sha256": "cbfadd4bd710ef64512a47799dd2ef6cfe16596c8b9dd8d3db3d07427000fb69"
+    },
+    "docs/GOVERNANCE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\48bbc8ba35fcc52b1081d53af89972f5a261b225dfe2f539a06d55cd3ef7ef1c.md",
+      "sha256": "1a607059d65600f4cfdc5ea19333898a9d9638379da3cf2a7af8f1b26d081426"
+    },
+    "docs/GOVERNED_CUSTODY_HANDOFF.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\f70dcb1d4af33ea0ffe7d1a9a675dad3293af5d82b852a5e14673f9bd565a1b9.md",
+      "sha256": "8bd772e293d11a88f2235588680940b67390c63c513f2c6ba7432d54013aa996"
+    },
+    "docs/HISTORY_AUDIT.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\1815f8ef5f6f9add7da48ebe04263862bfeeb228249ee06070d0c24298bf0488.md",
+      "sha256": "1bf16c8c67c405e178a4b914e96d6f182a80e41e31efa39ef500ca1e6b7a3f62"
+    },
+    "docs/HOLDER_COLLECTIVE_EXIT.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\e303ab1b8fbcc590e8dbe4b6890cae7fba4942e132a294243128c27fc4ab19d2.md",
+      "sha256": "bf61e42ffb1bfe54c656e15db3b27763e5e54430dee2756d2a21d41b8a39fd89"
+    },
+    "docs/HOLDER_PREFLIGHT.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\264a8730d5e12fdfc4b7747774120017da64c44fa09b0f98039418b3014f2752.md",
+      "sha256": "6adb052d59c1dff32cc4617236fb66bc1c36c723152f1d496b70f22dad0194f1"
+    },
+    "docs/IDLE_AND_DUST.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\b6baf314883852c1a69bdedbf336d664e1faf3754f416b0e5126d238abe0e80c.md",
+      "sha256": "4e309bd3547bac59b0b181ca42e949782efd3a500a5e4e0be27b755ef7acc33a"
+    },
+    "docs/IMPLEMENTATION_STATUS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\f25fc4312adb72468e0cc2f3cd6297b096ddb26160de5aa3a0085551cf00532f.md",
+      "sha256": "294e9f080312d74cc912a77da9f730d9ccba7d10e23880ca70f4ba02b61955c5"
+    },
+    "docs/INDEXER_RECOVERY.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\e7750e33f50400d48320910ede747dee4b93ce55d5a44e2c1d3c31a59c846bfa.md",
+      "sha256": "1470b7c1a36800a4377af6deea3c4e09412a52af02da32dfe4c02ee3718365e0"
+    },
+    "docs/INTEGRATION_CAMPAIGN.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\f37a028ace36ac1943cb5c3183892e7f5b1bc5cfba95ddbfafee1eba1a36de93.md",
+      "sha256": "0a20c551140806170cd447cdfc8a829db89f553e81cce589a0d314bfc60727e0"
+    },
+    "docs/KEEPER_COORDINATION.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\2c490ce5166016501f49b548b4e54428df0381acc777b19a1b8516f883371636.md",
+      "sha256": "523cf42b37a0964738ed5d9f611038e21bd08de32a30f32bf5b052a3029af24a"
+    },
+    "docs/KEEPER_RECOVERY.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\5b896b0a9c8f3d43d56e795ebbb037ac458eada6ceafd793d3b2c3b5a22f1d62.md",
+      "sha256": "2816c8b9784986cb8fedaf1a9e0027051d81d74508200c7f0d43323aa3531273"
+    },
+    "docs/KEEPER_REHEARSALS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\dd14004591b089d477338ae222c0005689416ce69f8def44207b8ad1fb08c12b.md",
+      "sha256": "8fc07324a51ade4aa7a520c122f5d0db5cef4987f39c8002e4c6b8ffee0c15f6"
+    },
+    "docs/KEEPER_SAFEGUARDS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\fdb71256d15cd2abe566ed7d35453b7af072c45525ba0963ae9f65e5af479e02.md",
+      "sha256": "96b963fd3678686ee18561d3b64a3e9dafd69f6c7f4078aec1fb7493566ecdd3"
+    },
+    "docs/LOCAL_API_REHEARSAL.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\0a2d755a8fbb8557b87a3128406838b40c60232c411c90bc23f953b6cf2ad818.md",
+      "sha256": "b859d7e65eb8e0da6c89d2c195466dcf128d5066c05a031674ddfdf50419c20e"
+    },
+    "docs/LOCAL_TEST_STACK.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\a8b008fa6f7179f31034020f0f88bb8e6ce180dfdd0b75e57fa2009a43c941f7.md",
+      "sha256": "52155a587c3f342f898c61a6398fe959aaed32b985903310e8f80cedb0b28dce"
+    },
+    "docs/LOCAL_WEBSITE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\f623b1ecbcbbe3fc06e3761d7508fb376df8bb8d04239a0b9d95b4ff09c7bba7.md",
+      "sha256": "875cb135346803a99cb5793c876b20d14908e944a35162be4c4345afd34b8ba6"
+    },
+    "docs/LP_ETH_SETTLEMENT.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\da231bcf55c86d1161001446b4b1cb8d0b69d22682e87105251a193c7bbf49d0.md",
+      "sha256": "fc64d67a122f9aa045bf9ec7732915447b9202ad70bdfdd3963d4854cee7b658"
+    },
+    "docs/LP_EXECUTION_POLICY.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\9d87ca379fdbaf92e26e86f430f756dcb1165f0bf2ca9bd1cb219604766e8e3f.md",
+      "sha256": "01d0e7ae5befb286f312f6eabe0aec4a1cce4f67105f54195d4898a55b3fb041"
+    },
+    "docs/MANUAL_LP_PREPARATION.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\52a9ebd98746039b0ac7ace7e278ddca73b1fb7cceca42ecf2e0212f3d2edbf0.md",
+      "sha256": "fc6a792d37946db9c499f9638ff954154db086266f434d537ba39df880fbc3f7"
+    },
+    "docs/METADATA_LIFECYCLE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\1dd67fa3fb53dde41961b2ecb4fe184b588300f2c33695c8b031e94dd3e05761.md",
+      "sha256": "4bdb04fb8aa1ef94ee9b5840cda13d42d3da4e7b6a36cc71953d5dec7ed7f327"
+    },
+    "docs/MIGRATION_SAFETY.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\b4eea96961d4b9574f91e22e828c0ae938996cc551dcbc433892826f18dfbd92.md",
+      "sha256": "0b54ff8b2402ddf3a7c0563287956ba7d8bd5e81adf5277aea9e48b3927f5ab5"
+    },
+    "docs/MINT_INTEGRATION_QUALIFICATION.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\9336a840ad378edb1119782d5b945a62aad85997d9a5fe4369b46cfec06cbf16.md",
+      "sha256": "317247f819691093458acad5fa4526edf35ae3ce08db2a94401ab420012e9308"
+    },
+    "docs/NATIVE_ETH_ARCHITECTURE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\808a67c219154efe04d2c4eba56103bab6567f3aeddbeaabf95321e6b73f89db.md",
+      "sha256": "428b97323865f163751aeb2d1234d58781518595f5d20c649163ac8965e5729b"
+    },
+    "docs/NATIVE_WEBSITE_PROFILE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\6654605dd1e3b0b45b0d9d5f480051402854c7ce1801825001c1c49a67180bc5.md",
+      "sha256": "e237dafb30a65c6335bce0289fe0c8501b56b17651f21d4049ce4771e88ef508"
+    },
+    "docs/NFT_METADATA.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\d06fa57fe26d4f5784d6c9edba1f322e534e71dd842eeb6fd8ca774618f90992.md",
+      "sha256": "2c596d88a81a8d9a44432d0ffe519d906e87fe0f038e1cf6f46ab2d4d259d818"
+    },
+    "docs/ONE_DOLLAR_REHEARSAL.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\6ac05b1530f1b62c52fb0e69f6eb70c8f3891b05f0b44048c5bfe77f0d53d920.md",
+      "sha256": "ab6d5a100e7f08eac3bd2310c49680799eaf5e0c22df8a6a1f2b86931e4979d7"
+    },
+    "docs/OPENSEA_MINT.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\c583480caca667d7bbcee6c109f6798e7ad9e254a306c30c147dbbcd5a8e86cb.md",
+      "sha256": "1eaa7bf371043ecd3ab57fb0547c8227708085901a4d389c5c7a69e95fcaa3b3"
+    },
+    "docs/OPERATIONS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\3b441db82a6aa05a4005032fb6541cc4719b4ef8308cb78ddcfcb80a6da0bf91.md",
+      "sha256": "e8ed78b297759d8df1555abda0f14638c86cea294a9e7ea6f3e3c46213d0a821"
+    },
+    "docs/OPERATOR_MANUAL.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\7b6aab3c7fffd804ac05f7165e94a25596d60c40562a50f031acf4cdfce2b69f.md",
+      "sha256": "404e4277f24d12186eb952309e9abbda83bcbaf0a413be61b74730da0e7329a6"
+    },
+    "docs/OPTIONAL_PORTFOLIO_IMPLEMENTATION.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\90be38e9ab581792a7e9f2e2c5fd019cb6edbb44f13152c4fc236285e03879e6.md",
+      "sha256": "20566fd7d2520049bb93d3c1557bb93c641b6db0f3396b39bb7dc585c2d04351"
+    },
+    "docs/PAIR_MIGRATION.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\f11db2495f938ee98299637648dd29c7e857f4f5c7879c060cd885060de178e4.md",
+      "sha256": "71ea5834bf8ab67da884d9cc390826a2a9b16c4fe419ed1228305b36c851a0dc"
+    },
+    "docs/PASSIVE_INVENTORY_PLAN.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\29c353905539b4496f8793cabfb9fd23b33e4c5eb3d50dc37f82d13bf5826705.md",
+      "sha256": "91d65c91b11f40cdf2dc9882050c32e77428e8bd3b645cf400179e33a2bcfd5b"
+    },
+    "docs/POOL_SELECTION.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\eb97018faaf54f9bcc5985b5ced14bf270e001fef489d6d19026a29452bca23b.md",
+      "sha256": "e108a1c207fce053f61ba59826d3065f70a4607f097c68a42c48afa0e4c7cd0a"
+    },
+    "docs/POOL_SPOT_PRICE_SOURCE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\a48da3070ab6153edfa21aee477c67bf748f0c137a34dab7678f1e3854afff97.md",
+      "sha256": "43f31f38126e8c7d6aa04a00cac690c638318bbc2c3b41a3b217e91d8febd1a6"
+    },
+    "docs/PORTFOLIO_OPERATIONS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\6bbeca1b686b9536b86bdd67e6e5fcca6d9e21f473fee6df21cb5503761d001b.md",
+      "sha256": "98e654725cc27219d33051c950f2fc32c9eaba6d5d0f12e6d138315c6fa5e94a"
+    },
+    "docs/POSITION_V3.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\21590cf894db0457ec33acf8f0f5adadc5a296f6fff4393f9187372644a45d90.md",
+      "sha256": "ad2928b335ea78f5bd3e58abf352b0e52513ad8b9977bd76c366b94221b11d06"
+    },
+    "docs/POSITION_V4.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\9c5a4c6a55a754b66c02b6f5baf0ea8ee8c5583c1c56d6f74e235f39bd3c8c8e.md",
+      "sha256": "5913f9f74e3dd5ebf1cc36de914e43a3cef878ea9b9ce90376bdb189e716cbd8"
+    },
+    "docs/POSITION_V5.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\4a3afd75e5ae853a052a1c48924ccc0b6fad423082d3069d279993ba70a33071.md",
+      "sha256": "0bf4d283175cda7019e0a5d65dbb8abc2f234986e5c0088b6f29c3f5ff9f2bff"
+    },
+    "docs/POSITION_V6.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\35f1bc8f2c542144c35311c16db7e02b475273929d2d8c69ce76716ab6315c9d.md",
+      "sha256": "c5718478bcbfb5e8f37a7c89bba8de6d415610d54c878f083e5d84b64ba7b731"
+    },
+    "docs/POSITION_V7.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\0e95c467fb3fde4b79ff8c4ec385dc0bbc3365ae94c0c133689a47267a50ec05.md",
+      "sha256": "1b78b0414f9b7861261ff5d2ca0c553de7f34274729b40215ac24b2d153b8600"
+    },
+    "docs/POST_SEAL_POLICY.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\e8172e545f0c59790deb3123884e00db94a2c386a3ca20d552b33dbc7b145251.md",
+      "sha256": "338810f0e7ab69fff3842b511c5cc1323840f254e011436598082a40e12dba2f"
+    },
+    "docs/PRICE_SECURITY.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\8a3573e171ca45bf5bd47a9c87c7cfe4e1d4be0216ee99c5d47d8c381a30e580.md",
+      "sha256": "14564dad9026a242d1eb4e08c88e6ed6819cee9891481a22d49fe2da41d86ab5"
+    },
+    "docs/PRODUCTION_PREFLIGHT.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\f28365ff3235793cf3419d7fec4a2b24f5909542013efbc2b185fbd7af2e5bfd.md",
+      "sha256": "d0b5cec6140c0d20ac0486db962dfc42c92bb211d34a212910f6ccd447ab6360"
+    },
+    "docs/PRODUCTION_SERVICES.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\c65da5be62e16992412fb40b8624245978c41d8efe0adcbd6bfd544420850302.md",
+      "sha256": "21c6b0c426e2a2eac0606bb58085ea4fbd3e78ef0acd1dd798c8f8ac664eff99"
+    },
+    "docs/PYTH_PRICE_SOURCE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\6883bd08bf357b7819a220f47f1bd96c1907b961f24830b9a48bd8eebb613057.md",
+      "sha256": "2920a2365493c174d7911dc9822e3218ce6d314750f63f74ffc735f6b1053a59"
+    },
+    "docs/RANGE_POLICY_UPDATES.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\6609f5e289739e8dd5b2183de7daffde650c07a0fb576f91647822bde58790b1.md",
+      "sha256": "3fd292924d4887c383d81501fba20cab7e82d430904079c7c2c14b17adcfe171"
+    },
+    "docs/README.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\0b5ca119d2be595aa307d34512d9679e49186307ef94201e4b3dfa079aa89938.md",
+      "sha256": "2aabbdb192f6a403d5a2eb34c6fd6435da3fb205bd372a9486fdebf673b569e6"
+    },
+    "docs/REFERENCE_SWAP_EXECUTION.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\c999522c813ea02cd27499cd8bd7969660fc61b3c1d1d49a481b7f992256128e.md",
+      "sha256": "89a0d42a8ba75c20b1a765e4481141c25ba5d1bd028394816268d6bbb816a237"
+    },
+    "docs/RELEASE_CHECKLIST.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\01a313e7e929db25ac2e0b129ffdc941def6ada896f29c12dfc1f38fee77a321.md",
+      "sha256": "d7e670feb361af0585800ca20bd97d291d2b7ec3c9af7a322b0f5f8289505704"
+    },
+    "docs/REVENUE_SHARE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\1ac28996986e403068785300bb2cb7b58b065163d36dd017da3f7797d957949f.md",
+      "sha256": "e6b54914aa3041da5a3dae83faf8c63def35af9ef0124e72fe6680a98280ddcd"
+    },
+    "docs/ROADMAP.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\0d96796e2b2a475d618f28659f8bca752e1513e54ae8741220ec7b800d3777c2.md",
+      "sha256": "ef2489e85d960ec96041f1a016084cf6088a579c8a8aa81b4f773db4c17a9b97"
+    },
+    "docs/ROBINHOOD_GAS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\b03a7950b0382c62ec5b5fba5a6f2e44bbff66edd65a606333f0753f65652aae.md",
+      "sha256": "fbd6ef518d38adc51fb822af654d88d38ffc3e9831a008dcafd20e1aff2916bf"
+    },
+    "docs/ROBINHOOD_POOL.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\fdf638d786f73c28c63040f72420cedf45113e6c6e804ad08df255ed4981852a.md",
+      "sha256": "6d4f57a7f70186a48f1b1c7b2122907df79fa18c77992bea355df8a70ee8c92c"
+    },
+    "docs/ROYALTY_LAUNCH_WINDOW.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\21698c258b399ad71726f8431d9258b9102a4f231d119e0d6446c906643a15a3.md",
+      "sha256": "9fc910f1a01488b513070e9f1c1afe393c0504b04371fac18f6f2344c9fbcd7e"
+    },
+    "docs/ROYALTY_REPORTING.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\8847eb62fad7fc4668047e4899c8a560d4e40c5bfb52bb39c8efcf0c6e0a5762.md",
+      "sha256": "3036cb80f60205d67bf3cf97af8e83506f153242e2a4e89f06df278221f6fb3f"
+    },
+    "docs/ROYALTY_SETTLEMENT.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\035e9c620fcee624581e112905ceffe8782205468d5c4be866f7884330d994da.md",
+      "sha256": "a70e309f95555c16bafa361d2cfc66f51bbf387b3ca769ddf4d3c2a942cecc6b"
+    },
+    "docs/RPC_PREPARATION_QUALIFICATION.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\40b3d851498ac0114d4d9330f902543d88c05da16a721158efcdb3cb3d6428cb.md",
+      "sha256": "035edea8af9aca4ac62623a31b4677dff8656a41c24b29bb51d746e1eca73f1a"
+    },
+    "docs/SECURITY.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\2605206b7e64be69186fabc8e8fed35676e0015832ff630141aa4aecd73354e0.md",
+      "sha256": "4ad885e70d468f51c0f02d0d36fd2ab77fd6f0eea5eb2643424893b00a2ecc7a"
+    },
+    "docs/SECURITY_AUDIT_PLAN.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\d03e74e12790f14ae3b6ea7a7307727912ac80ed7726614e725db96e7176a100.md",
+      "sha256": "6155750524dacbe24e521c81afcc1c22acddf34ea24f006f73c1afffd9a755a0"
+    },
+    "docs/SIMPLIFIED_RELEASE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\c394d01c9942da676c9f64b1eeb0d985245de8c97189006c91939f4f9dbaa622.md",
+      "sha256": "969ce2bf5702edcb036bcddf32f1f48175d1d70e97e3b01d6ba17d5267a06e98"
+    },
+    "docs/SITE_ENVIRONMENTS.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\4be5e0b705e9476cdd3ab477d99aa9374a6439bc25c31717cb3a6e3e6464aac4.md",
+      "sha256": "c6ee9530e1f65c8dd157480933ea4002a1511d43c96c2b52dbe521c14507f140"
+    },
+    "docs/SOURCE10_WEBSITE_PROFILE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\c9af3be9461ed596a3c17b22807db8d911f1e7dccbd8901a46b6ba1789d286d1.md",
+      "sha256": "5cfddf853a7a0310825fcf6b7ba2fd6ec50ceacbfd9d893dd332854113ce996c"
+    },
+    "docs/SOURCE9_WEBSITE_PROFILE.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\671df9ba60944711d2e8f972f6b0a0270c997fe5280a2da4a02e1c65c989ebaa.md",
+      "sha256": "b2ef281f8f5bbc2f6a0a6d4ef796957cfa9b5036735ea43a119bdc2a1bc4b506"
+    },
+    "docs/THIRD_PASS_AUDIT_PROMPT.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\1d2df09430629559ece17dad56200d7e0a5e16562e482de614b12b15d5b2baa1.md",
+      "sha256": "bf3432e511398afd44332ef2049df45ae273a0e7c7d76d9b2bea7d7936ad2e25"
+    },
+    "docs/TODO_WORKFLOW.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\f3810616c5a7017267048c018e940b0898aaa9e3183ffdfb6b9430f77f7849c5.md",
+      "sha256": "43f898d8cde5a9e0b44531c3deedce8d78fc4458bcbeb89baacd01dc5178b580"
+    },
+    "docs/TYPED_V4_ROUTES.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\05b89eed52a871d1878b63ca9302a86451b5a6a65a59ec2a8e4ee675f554f3a7.md",
+      "sha256": "a927ed370c5a56b24e158bd84312a8963c9a27eedf68008c7410ed9da300a140"
+    },
+    "docs/WHOLE_PROJECT_AUDIT_PROMPT.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\f6cb02afe2c8d878d93700d1651265f96f5d41170d5ae3ae1c7e359ac7365b68.md",
+      "sha256": "429ff2cafb40561e3ca493a3a893848606763254c1a30a6fc532d8f4c47ffcb4"
+    },
+    "docs/WORK_HANDOFF.md": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\5169a2b1afe8e462a88309a60c1b3359b74fb165bddbb3716d5596f45bb3a58e.md",
+      "sha256": "35d36092f844eb46ea8ede932ad71901ded7fb3e1b9c9f77e307955dc14e1bad"
+    },
+    "docs/project-todo.json": {
+      "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lineage-checkpoints-20261116-51fc12b\\original-docs\\6c91fd4a3cf85078a5dabd1bd7b3d1915e63aed999621ffa32150fac167e96d4.json",
+      "sha256": "ffea4389a8a32c38f11f96ff59e3294e248c44f56ffdb7f98ac02057cf576062"
+    }
+  }
+}

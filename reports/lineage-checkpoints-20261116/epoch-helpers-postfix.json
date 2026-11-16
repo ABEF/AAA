@@ -1,0 +1,58 @@
+{
+  "stage": "postfix",
+  "selected_methods": [
+    "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_epoch_capture_rejects_incomplete_or_nonoperating_models",
+    "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_later_operating_epoch_preserves_raw_phase_without_mutating_source",
+    "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_public_checkpoint2_capture_keeps_original_epoch_restriction",
+    "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_accepts_exact_local_epoch",
+    "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_retains_local_identity_and_cutoff_guards"
+  ],
+  "tests_run": 5,
+  "failures": [],
+  "errors": [
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_accepts_exact_local_epoch",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 62, in test_shared_history_validation_accepts_exact_local_epoch\n    self.assertIsNone(common.validate_history_payload(history, anchor, engine, mints))\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\earnings_checkpoint.py\", line 147, in validate_history_payload\n    require(isinstance(key,tuple) and len(key)==2 and type(key[0]) is int and key[0] in mints and currency(key[1]) and\n                                                                                                  ^^^^^^^^\nNameError: name 'currency' is not defined\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_retains_local_identity_and_cutoff_guards (mutation='claims')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 84, in test_shared_history_validation_retains_local_identity_and_cutoff_guards\n    common.validate_history_payload(history, anchor, engine, mints)\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\earnings_checkpoint.py\", line 147, in validate_history_payload\n    require(isinstance(key,tuple) and len(key)==2 and type(key[0]) is int and key[0] in mints and currency(key[1]) and\n                                                                                                  ^^^^^^^^\nNameError: name 'currency' is not defined\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_retains_local_identity_and_cutoff_guards (mutation='count')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 84, in test_shared_history_validation_retains_local_identity_and_cutoff_guards\n    common.validate_history_payload(history, anchor, engine, mints)\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\earnings_checkpoint.py\", line 147, in validate_history_payload\n    require(isinstance(key,tuple) and len(key)==2 and type(key[0]) is int and key[0] in mints and currency(key[1]) and\n                                                                                                  ^^^^^^^^\nNameError: name 'currency' is not defined\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_retains_local_identity_and_cutoff_guards (mutation='anchor')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 84, in test_shared_history_validation_retains_local_identity_and_cutoff_guards\n    common.validate_history_payload(history, anchor, engine, mints)\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\earnings_checkpoint.py\", line 147, in validate_history_payload\n    require(isinstance(key,tuple) and len(key)==2 and type(key[0]) is int and key[0] in mints and currency(key[1]) and\n                                                                                                  ^^^^^^^^\nNameError: name 'currency' is not defined\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_retains_local_identity_and_cutoff_guards (mutation='start')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 84, in test_shared_history_validation_retains_local_identity_and_cutoff_guards\n    common.validate_history_payload(history, anchor, engine, mints)\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\earnings_checkpoint.py\", line 147, in validate_history_payload\n    require(isinstance(key,tuple) and len(key)==2 and type(key[0]) is int and key[0] in mints and currency(key[1]) and\n                                                                                                  ^^^^^^^^\nNameError: name 'currency' is not defined\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_retains_local_identity_and_cutoff_guards (mutation='conversion')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 84, in test_shared_history_validation_retains_local_identity_and_cutoff_guards\n    common.validate_history_payload(history, anchor, engine, mints)\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\earnings_checkpoint.py\", line 147, in validate_history_payload\n    require(isinstance(key,tuple) and len(key)==2 and type(key[0]) is int and key[0] in mints and currency(key[1]) and\n                                                                                                  ^^^^^^^^\nNameError: name 'currency' is not defined\n"
+    ]
+  ],
+  "skipped": [],
+  "successful": false,
+  "source_sha256": {
+    "frontend_api/earnings_checkpoint.py": "0166acbf3db2fb5ed31e870ba0770247545a423da5661795d896520c08a8c5b5",
+    "frontend_api/earnings_checkpoint_v2.py": "7dee675ca520ff0b84f368d479851a2e4194a830b33c59a3bced06387a714172",
+    "tests_python/test_earnings_checkpoint_epoch_helpers.py": "d70c0f96b537ed304af6a8ccd1603717a644edfb8ad5e5241ed1b1f2b7c7c32b",
+    "tests_python/test_earnings_checkpoint_v2_codec.py": "a43e828a8a81f21a1ef3b4e7e575173f00ac8fccd49a0403d591e00c77d4fd88",
+    "tests_python/test_exact_lp_backend.py": "bb943807e47ad5610cc7fd486cc9290a33d54ed08761c091d791984d4d047338"
+  },
+  "source_sha256_after": {
+    "frontend_api/earnings_checkpoint.py": "0166acbf3db2fb5ed31e870ba0770247545a423da5661795d896520c08a8c5b5",
+    "frontend_api/earnings_checkpoint_v2.py": "7dee675ca520ff0b84f368d479851a2e4194a830b33c59a3bced06387a714172",
+    "tests_python/test_earnings_checkpoint_epoch_helpers.py": "d70c0f96b537ed304af6a8ccd1603717a644edfb8ad5e5241ed1b1f2b7c7c32b",
+    "tests_python/test_earnings_checkpoint_v2_codec.py": "a43e828a8a81f21a1ef3b4e7e575173f00ac8fccd49a0403d591e00c77d4fd88",
+    "tests_python/test_exact_lp_backend.py": "bb943807e47ad5610cc7fd486cc9290a33d54ed08761c091d791984d4d047338"
+  },
+  "old_test_methods_executed": 0,
+  "public_or_local_RPC": 0,
+  "solidity_compilation_or_tests": 0,
+  "interpretation": "New helper functionality; missing-helper baseline errors are not security defects. Fixture setup imports no old test methods."
+}

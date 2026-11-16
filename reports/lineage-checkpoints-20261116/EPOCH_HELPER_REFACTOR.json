@@ -1,0 +1,14 @@
+{
+  "old_common_source_sha256": "d1f73d205ad152f891b03790c81cd9416c9e545b8a0c30a70ec9dff45d742a78",
+  "old_exact_source_sha256": "52f95d67393574b269e18e45df0c776231213b9d5e04c369533e614f490c1f49",
+  "new_common_source_sha256": "0166acbf3db2fb5ed31e870ba0770247545a423da5661795d896520c08a8c5b5",
+  "new_exact_source_sha256": "7dee675ca520ff0b84f368d479851a2e4194a830b33c59a3bced06387a714172",
+  "history_extraction": {
+    "old_validation_block_sha256": "9e3a2f3e8315dd58911c1956524fbc20f494c071ce143b6017d06f4bb87ab100",
+    "new_validation_block_reindented_sha256": null,
+    "exact_rule_body_preserved_after_dedent": true,
+    "new_body_dedented_sha256": "dcf5b5f6081361c009b1ede8cd27e92dc3ac345627c35083f082bcfc570a8439"
+  },
+  "public_original_epoch_guard_preserved": true,
+  "restore_bytecode_source_body_unchanged": true
+}

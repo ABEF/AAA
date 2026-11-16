@@ -38,16 +38,26 @@ class Earnings:
         self.prices = None if config['prices'] is None else Prices(config['prices'], projection, self.descriptors)
         self.checkpoint = None
         if 'checkpoint' in config:
-            from frontend_api.earnings_checkpoint import Checkpoint
+            if projection.lineage is None:
+                from frontend_api.earnings_checkpoint import Checkpoint
+            else:
+                from frontend_api.earnings_checkpoint_v3 import LineageCheckpoint as Checkpoint
             self.checkpoint = Checkpoint(config['checkpoint'], self)
 
     def history_snapshot(self, p, header, block, lp, royalties, **kwargs):
         """Only earnings uses its explicitly reviewed checkpoint; other reads stay raw."""
         if self.checkpoint is not None:
+            if getattr(self.checkpoint,'lineage_checkpoint',False):
+                return self.checkpoint.snapshot(p,header,block,lp,royalties,**kwargs)
             require(p is self.p and p.lineage is None, 'Checkpoint lineage is unsupported')
             self.checkpoint.check_anchor(p)
             kwargs['seed'] = self.checkpoint.seed()
         return p._history_snapshot(header,block,lp,royalties,**kwargs)
+
+    def replay_start(self,epochs):
+        if getattr(self.checkpoint,'lineage_checkpoint',False):
+            return self.checkpoint.replay_start(epochs)
+        return 0
 
     def finish_checkpoint(self):
         if self.checkpoint is not None:
@@ -148,8 +158,10 @@ class Earnings:
             require(owner==history.owners[identifier] and ordinal>0 and
                     p._uint('nft','tokenAtOrdinal(uint256)',ordinal,block=block)==identifier, 'Earnings NFT identity differs')
         epochs=[]
+        histories={p.contracts['access'].address:history}
         if p.lineage:
-            financial=p.lineage.financial(p,header,block,life,history,identifier,ordinal,verified_epochs=epochs)
+            financial=p.lineage.financial(p,header,block,life,history,identifier,ordinal,verified_epochs=epochs,
+                                         history_reader=self.history_snapshot,verified_histories=histories)
         else:
             require(life['predecessor_controller'] is None, 'Earnings requires complete predecessor history')
             epochs=[(p,header,None)]
@@ -161,15 +173,20 @@ class Earnings:
             model=ExactReplay(header['timestamp'],identifier)
         else:model=Replay(header['timestamp'],identifier)
         provenance=[]
-        for peer,cutoff,lower in epochs:
+        start=self.replay_start(epochs)
+        for index,(peer,cutoff,lower) in enumerate(epochs):
             checkpoint()
             at={'blockHash':cutoff['hash'],'requireCanonical':True}
             emitters=self.check_profile(peer,at)
             a,b=peer._admitted(at)
-            model.begin(emitters,a,b,lower,fee_intake_version=peer.fee_intake_version,royalty_settlement_version=royalty_profile(peer))
-            replayed=self.history_snapshot(peer,cutoff,at,a,b,consumer=model,extra_emitters=tuple(emitters.values()))
-            model.finish()
-            self.reconcile(peer,model,at,a,b,replayed.provenance['minted_count'])
+            if index < start:
+                replayed=histories[peer.contracts['access'].address]
+            else:
+                begin_lower=None if index==start and getattr(self.checkpoint,'lineage_checkpoint',False) else lower
+                model.begin(emitters,a,b,begin_lower,fee_intake_version=peer.fee_intake_version,royalty_settlement_version=royalty_profile(peer))
+                replayed=self.history_snapshot(peer,cutoff,at,a,b,consumer=model,extra_emitters=tuple(emitters.values()))
+                model.finish()
+                self.reconcile(peer,model,at,a,b,replayed.provenance['minted_count'])
             provenance.append({'controller':peer.contracts['access'].address,'history':dict(replayed.provenance),
                                'activation_cutoff':None if lower is None else {'block':lower[0],'transaction':lower[1]}})
         result=model.report(self.descriptors)

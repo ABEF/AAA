@@ -1,5 +1,14 @@
 # Verification evidence
 
+[Lineage earnings checkpoint3](lineage-checkpoints-20261116/REVIEW.md) now seeds a cumulative exact accounting
+cursor in any authenticated operating epoch and replays all later raw events.
+Collection/NFT/current-holdings wallet earnings preserve the complete24-hour
+window, transfers, prior payouts/conversions and raw LP/royalty phases. Formats1/2
+remain distinct. New source adoption requires reviewed checkpoint rebuild/re-pin;
+no contract, signer, chain/journal, service/site or heartbeat change occurs.
+Same-graph advancement is supported; new-graph prefix import and actual lifetime
+archive/provider/maximum-state/operating qualification remain open.
+
 The [16 November whole-project audit](whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
 state-file and website-profile gaps and reconciles current guidance. Production
 Solidity, economic rights, safeguards, gas defaults and existing environments

@@ -1,0 +1,38 @@
+{
+  "baseline": "51fc12b28de04dcbec6dfa2bd554aea753ad5027",
+  "production_approved": false,
+  "unique_new_passing_methods": 32,
+  "skips": 0,
+  "old_test_methods_executed": 0,
+  "groups": {
+    "epoch_helpers": 5,
+    "lineage_composition": 20,
+    "historical_asset_selection": 7
+  },
+  "source_stage_scope": "Composed explicit stages, not one fresh32-method suite; repetitions and baseline failures do not add methods.",
+  "group_summaries": [
+    "EPOCH_HELPER_RESULT.json",
+    "LINEAGE_TEST_SUMMARY.json",
+    "HISTORICAL_ASSET_REVIEW.json"
+  ],
+  "current_source_sha256": {
+    "frontend_api/earnings.py": "3da00d0be21df851483f66007e6bd2b228a57e51c26a1c7900cc985eb3a07759",
+    "frontend_api/earnings_checkpoint.py": "fe47bb6c8df5a05526a6d53bfbf1d0e881d9792c4803bc1f11442f1e18aeb621",
+    "frontend_api/earnings_checkpoint_build.py": "f5eca20abda61ef591d3a8dc65a50eb8275aea363e07e0ed25a3b8134d64e192",
+    "frontend_api/earnings_checkpoint_v2.py": "7dee675ca520ff0b84f368d479851a2e4194a830b33c59a3bced06387a714172",
+    "frontend_api/earnings_checkpoint_v3.py": "ab00ba2b9972d336e70f0b7559ee45903939245060e3d3b1bf081cf61b1258eb",
+    "frontend_api/lineage.py": "c693fc52f39e2451575691ab44c3394aabfcd9de12e050dd6117de8bc3d15947",
+    "frontend_api/service.py": "8c656d1d02ddc8ae6f42fd1cd74202416b6fa4fab8ac9d3aa9199a2624bc43d0",
+    "frontend_api/wallet_earnings.py": "5446cc002705f878f6023b1b585c27c27c31c3731f7234780839ac64aefca520",
+    "tests_python/test_earnings_checkpoint_epoch_helpers.py": "d70c0f96b537ed304af6a8ccd1603717a644edfb8ad5e5241ed1b1f2b7c7c32b",
+    "tests_python/test_earnings_checkpoint_lineage.py": "1a75d4c4a91faa5d4cc94b975899ca1c678e3e65ff7a9bcb8609bb98fb8e109c",
+    "tests_python/test_historical_checkpoint_assets.py": "507284f866bf87bca9ecd80abdf7fa9e2c56f670c1148c6f9cb6cbe3bed940ad"
+  },
+  "current_semantic_source_versions": {
+    "standalone_accounting6": 1,
+    "standalone_accounting7": 2,
+    "accounting7_lineage_cursor": 3
+  },
+  "compiler_EVM_static_browser_public_RPC_or_transactions": 0,
+  "limits": "Synthetic lifecycle/admission/getter observations; actual runtimegraph/V10 contracts/provider/max-state/host qualification remains open."
+}

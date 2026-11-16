@@ -5,18 +5,21 @@ from an immutable reviewed checkpoint plus raw recent events. It changes no
 contracts, funds, reward rights, signer or running service. Default configuration
 still uses full replay. Checkpoint1 supports explicit historical accounting6/
 custody5/fee-intake1. Explicit checkpoint2 supports fresh accounting7/LP-allocation1/
-custody5/fee-intake1 with original-currency royalty4. Neither accepts predecessor
-lineage. Public deployments remain blocked.
+custody5/fee-intake1 with original-currency royalty4. Schemas1/2 retain their
+original-deployment-only scope. New **checkpoint3** supports complete configured
+accounting7/custody5/royalty4 same-chain lineages; it never reinterprets1/2 bytes.
+Public deployments remain blocked.
 
-The builder chooses the format from the authenticated deployment profile, never
-from a caller's desired label. Accounting7 rejects checkpoint1 before restoring
+The builder chooses the format from the authenticated deployment/lineage
+profile, never from a caller's desired label. Accounting7 rejects checkpoint1 before restoring
 state; accounting6 likewise rejects checkpoint2. There is no artifact conversion,
 edited source-hash adoption, pruning or live rollout. Source changes require an
 independently reviewed rebuild/re-pin, including previously built format1 files.
 
 Accounting7 backend mint profile1/default authenticates canonicalV9; explicit2
-authenticates mint2/canonicalV10 and its additional mint contract pins. Both use
-checkpoint2's exact-LP earnings format under their own source/deployment identity.
+authenticates mint2/canonicalV10 and its additional mint contract pins. Original
+deployments use checkpoint2; a configured exact-accounting lineage uses3 under
+each peer's exact source/deployment identity.
 This is not V9-to-V10 artifact adoption: changed source, contract pins or deployment
 requires reviewed rebuild/re-pin. The checkpoint is an earnings seed, not a backup
 or restoration codec for SeaDrop phase quotas and original-mint recipient books.
@@ -54,9 +57,11 @@ high/low allocation phase, outstanding units, direct credits and orphaned units.
 It validates shares/membership against the tree geometry, every assigned whole
 unit against outstanding backing, and whole-unit earnings. It never settles or
 flattens the saved phase. Each restored request owns independent tree/maps.
-The builder checks every minted NFT's current owner, ordinal, shares, royalty
-tickets, exact LP components and claimed/converted/earned reconciliation against
-the same confirmed on-chain snapshot. Those checks do not prove complete logs
+The builder checks every minted NFT's owner, ordinal, shares, royalty tickets,
+exact LP components and claimed/converted/earned reconciliation at the operating
+checkpoint cursor. With schema3, paid amounts include every completed local
+epoch exactly once; retired sources retain aggregate book reconciliation but
+are not queried through royalty pending/claimable views after backing moved. Those checks do not prove complete logs
 or independently reveal internal phase in an operating contract; phase remains
 derived from the complete reviewed event history. Claims,
 conversions, contributions, compounding principal and imports are not new income.
@@ -69,6 +74,70 @@ exclusive lower boundary. The entire actual24-hour window is then replayed from
 raw suffix logs. No daily buckets, interpolated history or guessed timing replace
 events. Current USD prices are applied at the final confirmed request block.
 
+## Checkpoint3 across replacement contracts
+
+An **epoch** here is one canonical NFT/reward deployment, not a pool or rebalance.
+Schema3 binds the complete ordered graph (up to eight predecessors), each peer's
+mint/execution profile, exact code/emitters/assets, history identity and retirement
+transaction. The existing one-million combined configured event bound,32MiB
+artifact limit and tagged-codec/work limits remain; no request budget is raised.
+
+The artifact has one cumulative exact accounting state at an operating full-block
+cursor in any epoch, plus separate local ownership/payout/conversion histories for
+completed earlier epochs. It never sums cumulative earnings models. Raw LP trees,
+pending units/high-low phase/direct credits and royalty tickets/cursors remain.
+One restore at the cursor is followed by raw events, including all later authentic
+handoffs. Import/backing/claim/conversion is not new income.
+
+Choose `--block` by **canonical activation windows**, not by successor deployment
+date: replacement contracts can be predeployed. A full block containing a handoff
+belongs to the final operating destination at that block end; a frozen/preparing
+cursor rejects. A suitable block may be in the original or a middle deployment.
+The builder authenticates the full graph at the confirmed current head, then
+replays only as far as that historical operating cursor. It validates all NFTs
+there and all completed epoch books. Retired royalty pending/claimable views may
+revert after their backing was forwarded; lifetime paid totals instead reconcile
+against the operating cursor's actual remaining rights.
+
+For a recent replacement, choose an earlier-epoch cursor at least86,400seconds
+before the oldest snapshot to serve. The raw suffix then spans the whole rolling
+day across the handoff. A cursor after the recent handoff can still be built, but
+serving rejects until it ages; no stored day total or silent fallback fills the gap.
+
+Use the same unsigned, read-only command after reviewing the complete input:
+
+```sh
+python scripts/build-earnings-checkpoint.py --config /secure/reviewed-lineage-api.json --block ELIGIBLE_BLOCK_NUMBER --output /archive/new-lineage-checkpoint.json
+```
+
+Replace the block/path placeholders. `--max-seconds/--max-calls/--max-posts` remain
+explicit offline budgets; no gas, transaction or signing input exists. The builder
+may use the reviewed descriptor **superset** for a historical cursor before a later
+royalty-currency admission. It validates only currencies actually admitted then;
+an unknown admitted currency, bad metadata or wrong ETH/fixed-ZZZ pair still fails.
+Ordinary API reads and transaction preparation keep exact descriptor equality.
+
+Independently compare full replay with the candidate for collection/NFT/wallet
+results, transfers, prior payouts/conversions, dormant/new activations, exact units
+and complete24-hour suffix. Review/re-pin through the existing `path`/`sha256`
+object, then separately authorize the normal stop/restart procedure. This is a
+reporting artifact digest, not an on-chain `reviewHash`. Public output fields,
+current-price USD semantics and NFT ownership/economic rights are unchanged.
+
+Each read still authenticates every peer, both handoff directions, receipts,
+commitments, runtime/creation/retirement/cursor anchors and raw suffix. Completed
+prefixes use reviewed local history seeds, not unauthenticated totals; raw/WAL and
+prefix duplicate-transaction checks remain. Immutable per-section bytes restore
+fresh maps per request; history-only reads do not decode the entire LP tree state.
+
+Same-graph advancement may move from an earlier to a later epoch cursor; keep the
+old approved artifact in the input and choose a later block. `previous_sha256`
+records provenance only. A **new subsequent handoff changes the graph** and needs
+a reviewed rebuild. Importing a shorter-graph checkpoint as an offline prefix is
+not implemented. Beyond existing raw/event/work bounds that rebuild can require
+separately reviewed scaling/prefix-import work. Do not relabel old artifacts or
+claim unlimited lifetime history. The financial-history task remains in progress.
+
 ## Configure, build and review
 
 All commands run from the repository root. They are read-only RPC/database work
@@ -76,7 +145,8 @@ plus creation of a new local candidate file; no wallet or governance key is used
 The examples below are templates: replace the paths and BLOCK_NUMBER first.
 
 1. Review the exact schema2 API configuration and all seven emitters from NFT
-   creation. Use the actual archive RPC, raw database and pinned deployment.
+   creation in every configured epoch. For checkpoint3 include the entire ordered
+   predecessor list, exact peer profiles/runtime/history pins and retirement hashes. Use the actual archive RPC, raw database and pinned deployment.
    The initial config has no checkpoint key. Keep a WAL-consistent backup and
    retain previous raw/log/provider audit evidence. Do not reset the indexer.
 2. Choose a confirmed historical BLOCK_NUMBER at a full block boundary. Its
@@ -147,7 +217,7 @@ Keep the previous artifacts/configuration and raw archive.
 | Suffix exceeds event/deadline/RPC limits | Advance through reviewed bounded stages. Never truncate events or raise public request caps to hide missing architecture. |
 | Build interrupted or RPC/currency unavailable | No candidate is approved; the previous file/config stays intact. Restore dependencies and retry with a new output name. No claim/keeper nonce recovery is changed. |
 | Source/profile upgrade invalidates semantic hashes | Rebuild through bounded raw stages with the new reviewed source and exact historical configs/archive state; then advance. A future compatible checkpoint migration needs its own reviewed codec/evidence. Never edit source hashes to relabel old state. |
-| Canonical replacement or predecessors | This checkpoint profile rejects lineage. Preserve the existing explicit full-lineage reader. General lineage checkpoints require a separately reviewed extension. |
+| Canonical replacement or predecessors | Use explicit checkpoint3 for accounting7 lineages. A newly added/reordered/replaced graph invalidates the prior artifact: prepare/review a new candidate; never edit its identity or source hashes. Formats1/2 still reject predecessors. |
 
 Builder/readers preserve ordinary transaction provenance, including cross-prefix
 transaction duplication through the existing SQLite primary-key index. Raw prefix
@@ -156,10 +226,12 @@ Restore from a consistent SQLite backup, not a copied live main file without WAL
 
 ## Scope and remaining work
 
-This first milestone accelerates **earnings endpoints only**. Other ownership,
-claim-history and preparation paths keep their existing full-history behavior.
-It still needs creation-block archive RPC reads. It is not an unattended mutable
-read model, general lineage checkpoint, archive-retention solution or operating
-approval. Measure realistic long-history latency/memory/storage and safe rotation/
+Checkpoints accelerate **earnings endpoints only**, including collection, NFT
+and current-holdings wallet chunks. Other ownership, claim-history and preparation
+paths keep their existing full-history behavior. Schema3 supports the configured
+lineage; creation/retirement/cursor archive RPC and raw databases remain required.
+It is not unattended rotation, archive pruning, automatic graph extension or
+operating approval. Measure realistic long-history latency/memory/storage and safe rotation/
 restore before hosting. The [financial-history task](../TODO.md#task-financial-history)
-remains in progress. [Source evidence](../reports/earnings-checkpoints-20261104/REVIEW.md).
+remains in progress. [Original evidence](../reports/earnings-checkpoints-20261104/REVIEW.md);
+[current lineage implementation](../reports/lineage-checkpoints-20261116/REVIEW.md).

@@ -1,0 +1,79 @@
+{
+  "utc": "2026-11-16T16:46:11.758899+00:00",
+  "source_sha256": {
+    "frontend_api/earnings.py": "3da00d0be21df851483f66007e6bd2b228a57e51c26a1c7900cc985eb3a07759",
+    "frontend_api/wallet_earnings.py": "5446cc002705f878f6023b1b585c27c27c31c3731f7234780839ac64aefca520",
+    "frontend_api/earnings_checkpoint_build.py": "f5eca20abda61ef591d3a8dc65a50eb8275aea363e07e0ed25a3b8134d64e192",
+    "frontend_api/earnings_checkpoint_v3.py": "ab00ba2b9972d336e70f0b7559ee45903939245060e3d3b1bf081cf61b1258eb",
+    "frontend_api/earnings_checkpoint.py": "fe47bb6c8df5a05526a6d53bfbf1d0e881d9792c4803bc1f11442f1e18aeb621",
+    "frontend_api/earnings_checkpoint_v2.py": "7dee675ca520ff0b84f368d479851a2e4194a830b33c59a3bced06387a714172",
+    "frontend_api/lineage.py": "c693fc52f39e2451575691ab44c3394aabfcd9de12e050dd6117de8bc3d15947"
+  },
+  "baseline": "51fc12b28de04dcbec6dfa2bd554aea753ad5027",
+  "review_kind": "Independent manual source/integration/changed-test-fixture inspection; no runtime test or RPC executed by reviewer",
+  "unchanged_AST_methods": {
+    "frontend_api/earnings_checkpoint.py": {
+      "restore": true,
+      "seed": true,
+      "schema": true,
+      "source_identity": true,
+      "identity": true,
+      "encode": true,
+      "decode": true
+    },
+    "frontend_api/earnings_checkpoint_v2.py": {
+      "restore": true
+    },
+    "frontend_api/lineage.py": {
+      "__init__": true,
+      "_receipt": true,
+      "claimed": true
+    }
+  },
+  "initial_review": "LINEAGE_INTEGRATION_REVIEW_INITIAL.json",
+  "initial_findings_resolved": [
+    {
+      "id": "LCR-01",
+      "resolution": "Per-NFT exact branch uses p.accounting_version==7, no undefined extracted local."
+    },
+    {
+      "id": "LCR-02",
+      "resolution": "Every replayed epoch retains aggregate reconciliation; lifetime paid/claimable reconciliation runs only on the operating cursor where backing is live. Retired getter failure has a targeted negative fixture, not an assumed zero."
+    },
+    {
+      "id": "LCR-03",
+      "resolution": "Validated immutable encoded per-section bytes split active raw state, local payout histories and minimal identity; prefix-only reads do not deserialize all exact trees. Fresh maps are restored per call."
+    },
+    {
+      "id": "LCR-04",
+      "resolution": "Profile flags compare tagged encoded types, rejecting Python bool/int aliases."
+    },
+    {
+      "id": "LCR-05",
+      "resolution": "Completed histories bind nonzero LP/royalty claim components and conversion keys to their own admitted book."
+    },
+    {
+      "id": "LCR-06",
+      "resolution": "Cursor admission retains builder reviewed deployment block lower bound."
+    }
+  ],
+  "review_conclusions": [
+    "No further blocking correctness defect established in reviewed final source.",
+    "One cumulative exact model restored once; completed histories are local payout books, never summed income models.",
+    "Collection/NFT/wallet routes use shared checkpoint replay cursor and checkpoint-aware financial history provider.",
+    "Current-owner/inventory reads, perpeer identities/runtime/source flags, retirement receipt pairs/commitments and final canonical headers remain checked.",
+    "A pre-handoff cursor can serve a young successor while retaining the complete raw rolling day; recent cursor remains blocked until old enough.",
+    "Same-graph advancement can cross already authenticated handoffs; imports/claims/conversions do not add earned income.",
+    "Private graph refactor avoids a duplicate full-header sweep in ordinary financial reads; default noncheckpoint callers retain raw history.",
+    "Checkpoint1/2 formats and fresh-target restore restrictions remain distinct; changed semantic source pins require reviewed rebuild rather than automatic adoption."
+  ],
+  "meaningful_test_review_limit": "Inspected new controlled fresh7/mint2 SQLite/Projection/Lineage/replay fixtures and helper checks. Fixture getters partly derive from full replay, not an independent EVM truth oracle. Parent retains actual source-stage test results.",
+  "test_sensitivity_followup": "Use False for execution_version0 alias negative case; True versus0 already fails ordinary equality. This is a test-strength issue, not remaining source defect.",
+  "remaining_software_boundary": "A new later handoff changes the graph. No offline shorter-graph checkpoint import is implemented; a reviewed fresh graph rebuild is required and may exceed current1M raw-event bounds. Keep financial-history/lifetime scaling open and track explicit reviewed-prefix import/scaling separately.",
+  "remaining_qualification": [
+    "Actual V10 EVM cutover producer/composition, independent raw completeness, real archive/RPC/host support.",
+    "Maximum1000NFT/expanded currencies/eight-predecessor capacity and engineering work/file bounds remain unqualified.",
+    "No universal perpetual-history, cross-chain recovery, malicious-token liveness or production approval claim."
+  ],
+  "no_tests_RPC_contracts_signing_live_services_sites_chains_or_journals_changed": true
+}

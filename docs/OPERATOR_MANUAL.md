@@ -2554,7 +2554,7 @@ control different subcalls. Raising one does not raise the others or the network
   recover any submitted hash. Never regenerate old books from rounded balances,
   skip a monetary record or edit a journal to appear complete. Abort requires
   all transferred backing returned before reopening; source phase/books persist.
-- Raw7 earnings replay and explicit reviewed checkpoint2 are available; old
+- Raw7 earnings replay, original-deployment checkpoint2 and lineage checkpoint3 are available; old
   checkpoint1 is incompatible. Keep complete raw history/WAL/backups. Do not
   relabel old6/V8 checkpoints, runtimes, Anvil accounts or saved operations.
 
@@ -2876,9 +2876,9 @@ current3 site or old journal as the fresh native7 profile.
 
 ### Prepare and rotate an earnings checkpoint
 
-Fresh7 uses full raw exact-tree replay by default, or an explicitly reviewed checkpoint2. Preserve raw logs/WAL and never configure a checkpoint1 artifact for7. The same builder chooses format1 only for historical accounting6/5/1; it never converts or relabels a saved artifact.
+Fresh7 uses full raw exact-tree replay by default, checkpoint2 for an original deployment, or checkpoint3 for the complete configured lineage. Preserve raw logs/WAL and never configure a checkpoint1 artifact for7. The builder chooses format1 only for historical accounting6/custody5/fee-intake1; no old artifact is relabelled.
 
-Use [the exact checkpoint1/2 procedure](EARNINGS_CHECKPOINTS.md). The offline
+Use [the exact checkpoint1/2/3 procedure](EARNINGS_CHECKPOINTS.md). The offline
 `scripts/build-earnings-checkpoint.py` takes a reviewed API `--config`, confirmed
 historical `--block` and new exclusive `--output`; optional offline budgets are
 bounded separately. It creates only a candidate, without keys or contract writes.
@@ -2897,6 +2897,24 @@ approved bytes, rebuild through reviewed bounded stages, or deliberately remove
 the optional key/restart; full replay may still exceed its limits. No keeper,
 nonce journal, wallet signing, pause or on-chain role change is required. No
 installed service/configuration is changed by publishing this source.
+
+For a replacement less than24hours old, choose an eligible older-epoch block so
+the complete day remains raw across the handoff. Schema3 proves the current graph
+before selecting that cursor; frozen/retired cursor states reject. Retirement
+bookkeeping is checked without calling old royalty live-backing views, and every
+NFT's lifetime paid/earned/remaining rights reconcile at the operating cursor.
+
+| Tool/action | Required inputs | Example | Effect |
+| --- | --- | --- | --- |
+| Build lineage earnings candidate | Complete pinned lineage API config, eligible historical full block, new output path | `python scripts/build-earnings-checkpoint.py --config /secure/lineage.json --block ELIGIBLE_BLOCK --output /archive/new.json` | Prepare reviewed earnings prefix |
+| Adopt after independent review | Exact candidate path and SHA-256; separately approved API stop/restart | `"checkpoint":{"path":"/archive/new.json","sha256":"REVIEWED_64_HEX_DIGEST"}` inside `earnings_history` | Enable bounded earnings replay |
+| Advance same graph | Existing approved pin, later eligible block, new path | Same builder with later `--block` | Prepare later reporting prefix |
+| New replacement graph | Updated authenticated peers and reviewed rebuild | Rebuild; never edit old identity | Review new deployment lineage |
+
+No wallet or on-chain call is used. A new source version invalidates old semantic
+pins, including1/2: rebuild/review, never edit stored hashes. No automatic rollout,
+pruning or shorter-graph prefix import is implemented. Real archive/provider,
+maximum-state/long-history and restore qualification remain open.
 
 ### Serve processed earnings and current-price values
 

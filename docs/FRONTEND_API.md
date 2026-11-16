@@ -211,8 +211,10 @@ block/hash/digest and suffix counts while preserving all-time/24h fields and
 current-price semantics. Missing/corrupt/new-source/too-young checkpoints fail;
 default full replay remains unchanged. [Setup and recovery](EARNINGS_CHECKPOINTS.md).
 Accounting7 rejects checkpoint1 before restoring state. It supports complete
-bounded raw history or explicit reviewed checkpoint2 for earnings, retaining
-raw trees/phase/direct credits and the complete rolling-day suffix. Other
+bounded raw history, reviewed checkpoint2 for original deployments or checkpoint3
+for a complete configured lineage. Raw trees/phase/direct credits and the full
+rolling-day suffix remain. The configuration object and public response fields
+are unchanged; missing/reorged peers, identities or suffix data fail closed. Other
 history/preparation consumers are not silently switched to checkpoints.
 
 ## Implemented endpoint

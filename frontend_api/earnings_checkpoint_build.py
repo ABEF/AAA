@@ -35,7 +35,11 @@ def _build(engine, number):
     The caller must budget this explicit maintenance job, not expose it as HTTP.
     No artifact is written until all historical RPC/state checks have passed.
     """
-    p=engine.p;bound=identity(engine)
+    p=engine.p
+    if p.lineage is not None:
+        from frontend_api.earnings_checkpoint_v3 import build as build_lineage
+        return build_lineage(engine,number)
+    bound=identity(engine)
     require(type(number) is int and p.start<=number<1<<63, 'Invalid checkpoint block')
     version=schema(engine)
     sources=source_identity(version)
@@ -55,36 +59,7 @@ def _build(engine, number):
     require(not model.frozen and not model.retired and not model.royalty_custody and not model.custody_ids,
             'Canonical or historical external-custody checkpoint is unsupported')
     engine.reconcile(p,model,at,lp,royalties,history.provenance['minted_count'])
-    for ordinal,i in enumerate(model.mints,1):
-        checkpoint()
-        require(p._addr('nft','ownerOf(uint256)',i,block=at)==history.owners[i] and
-                p._uint('nft','mintOrdinalOf(uint256)',i,block=at)==ordinal and
-                p._uint('nft','tokenAtOrdinal(uint256)',ordinal,block=at)==i,
-                'Checkpoint NFT identity or ownership differs from chain')
-        bucket,shares=model.shares.get(i,(0,0))
-        require(p._uint('vault','sharesOf(uint256)',i,block=at)==shares and
-                p._uint('vault','nftBucket(uint256)',i,block=at)==bucket and
-                p._uint('royalties','weightOf(uint256)',i,block=at)==model.weights.get(i,0),
-                'Checkpoint NFT rights differ from chain')
-        if version==2:
-            require(p._uint('rewards','rewardBucket(uint256)',i,block=at)==bucket,
-                    'Checkpoint exact NFT LP bucket differs from chain')
-            for asset in lp:
-                actual=tuple(int(w,16) for w in p._call(p.contracts['rewards'].address,
-                    'claimableComponents(uint256,address)',i,asset,block=at,words=2))
-                require(actual==model.components(i,asset),'Checkpoint exact NFT LP components differ from chain')
-        if royalty_profile(p) == 4:
-            require(p._uint('royalties','ticketStart(uint256)',i,block=at)==(model.ticket_offsets[i]+1 if i in model.weights else 0),
-                    'Checkpoint exact NFT tickets differ from chain')
-        financial=dict(previously_claimed={'assets':history.claimed(i,set(engine.descriptors))},
-            lp_conversions=conversion_report(history.lp_conversions,i,engine.descriptors,{}),
-            royalty_conversions=conversion_report(history.conversions,i,engine.descriptors,{}))
-        account=SimpleNamespace(nft_id=i,totals=model.account_totals[i],scaled=model.accounts[i],
-                                cohorts=model.cohorts,weights=model.weights,
-                                activation_order=model.activation_order,royalty_opening=model.royalty_opening,
-                                initial_royalty_allocations=model.initial_royalty_allocations,
-                                ticket_offsets=model.ticket_offsets,royalty_cursors=model.royalty_cursors)
-        engine.check_paid(p,account,financial,at,lp,royalties)
+    reconcile_accounts(engine,p,model,at,lp,royalties,history)
     # Historical blocks need canonical/depth checks, not the live UI max-age rule.
     require(p._header(hex(number))==header,'Checkpoint anchor changed during construction')
     final=confirmed_head(p)
@@ -111,6 +86,42 @@ def _build(engine, number):
     raw=(json.dumps(payload,sort_keys=True,separators=(',',':'),allow_nan=False)+'\n').encode('utf-8')
     require(len(raw)<=MAX_BYTES,'Checkpoint exceeds the reviewed artifact size bound')
     return raw
+
+
+
+def reconcile_accounts(engine,p,model,at,lp,royalties,history,*,paid_history=None):
+    """Reconcile every NFT; an explicit lineage book includes each local payout once."""
+    paid_history=history if paid_history is None else paid_history
+    for ordinal,i in enumerate(model.mints,1):
+        checkpoint()
+        require(p._addr('nft','ownerOf(uint256)',i,block=at)==history.owners[i] and
+                p._uint('nft','mintOrdinalOf(uint256)',i,block=at)==ordinal and
+                p._uint('nft','tokenAtOrdinal(uint256)',ordinal,block=at)==i,
+                'Checkpoint NFT identity or ownership differs from chain')
+        bucket,shares=model.shares.get(i,(0,0))
+        require(p._uint('vault','sharesOf(uint256)',i,block=at)==shares and
+                p._uint('vault','nftBucket(uint256)',i,block=at)==bucket and
+                p._uint('royalties','weightOf(uint256)',i,block=at)==model.weights.get(i,0),
+                'Checkpoint NFT rights differ from chain')
+        if p.accounting_version==7:
+            require(p._uint('rewards','rewardBucket(uint256)',i,block=at)==bucket,
+                    'Checkpoint exact NFT LP bucket differs from chain')
+            for asset in lp:
+                actual=tuple(int(w,16) for w in p._call(p.contracts['rewards'].address,
+                    'claimableComponents(uint256,address)',i,asset,block=at,words=2))
+                require(actual==model.components(i,asset),'Checkpoint exact NFT LP components differ from chain')
+        if royalty_profile(p) == 4:
+            require(p._uint('royalties','ticketStart(uint256)',i,block=at)==(model.ticket_offsets[i]+1 if i in model.weights else 0),
+                    'Checkpoint exact NFT tickets differ from chain')
+        financial=dict(previously_claimed={'assets':paid_history.claimed(i,set(engine.descriptors))},
+            lp_conversions=conversion_report(paid_history.lp_conversions,i,engine.descriptors,{}),
+            royalty_conversions=conversion_report(paid_history.conversions,i,engine.descriptors,{}))
+        account=SimpleNamespace(nft_id=i,totals=model.account_totals[i],scaled=model.accounts[i],
+                                cohorts=model.cohorts,weights=model.weights,
+                                activation_order=model.activation_order,royalty_opening=model.royalty_opening,
+                                initial_royalty_allocations=model.initial_royalty_allocations,
+                                ticket_offsets=model.ticket_offsets,royalty_cursors=model.royalty_cursors)
+        engine.check_paid(p,account,financial,at,lp,royalties)
 
 
 def confirmed_head(p):

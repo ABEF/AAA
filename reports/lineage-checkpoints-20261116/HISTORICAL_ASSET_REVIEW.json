@@ -1,0 +1,21 @@
+{
+  "scope": "Controlled real Projection._admitted tests, no RPC/token transfer/deployment.",
+  "source_sha256": {
+    "frontend_api/service.py": "8c656d1d02ddc8ae6f42fd1cd74202416b6fa4fab8ac9d3aa9199a2624bc43d0",
+    "tests_python/test_historical_checkpoint_assets.py": "507284f866bf87bca9ecd80abdf7fa9e2c56f670c1148c6f9cb6cbe3bed940ad"
+  },
+  "unique_passes": 7,
+  "old_methods_run": 0,
+  "baseline": "Exact old method fromGit51fc rejects future descriptors by default; missing new keyword generated22 subtest error records, not22 defects.",
+  "preserved": [
+    "strict default equality",
+    "unknown actual token rejection",
+    "native order",
+    "fixed ZZZ identity",
+    "LP2 asset maximum",
+    "royalty65 maximum",
+    "actual admitted code/decimals validation",
+    "private bool validation"
+  ],
+  "source_ownership": "Only new test module written; root owns service implementation."
+}

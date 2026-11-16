@@ -1,5 +1,11 @@
 # Lifetime claims across same-chain handoffs
 
+Earnings endpoints now support reviewed [checkpoint3](EARNINGS_CHECKPOINTS.md#checkpoint3-across-replacement-contracts)
+for exact accounting7 lineages. Every live peer/receipt/commitment remains checked;
+only reviewed financial prefixes are seeded. Ordinary NFT balances, ownership,
+claim-history and transaction preparation keep their existing raw-history paths.
+No contract, automatic graph adoption or running service changes.
+
 **Mint-profile boundary:** the backend implements explicit opt-in
 `mint_integration_version:2` for accounting7/V10 reads and owned reward claims.
 On accounting7, omitted/default1 retains the historical direct-mint/V9 profile; source9 website

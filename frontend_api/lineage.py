@@ -149,10 +149,11 @@ class Lineage:
     def claimed(self, current, header, block, lifecycle, local_history, nft_id, ordinal):
         return self.financial(current, header, block, lifecycle, local_history, nft_id, ordinal)['previously_claimed']
 
-    def financial(self, current, header, block, lifecycle, local_history, nft_id, ordinal, *, verified_epochs=None):
+    def _verify_graph(self, current, header, block, lifecycle):
+        """Collect graph proofs/anchors; each caller must finish anchor checks."""
         from frontend_api.service import _hash
 
-        if local_history is None or lifecycle['predecessor_controller'] is None:
+        if current.history is None or lifecycle['predecessor_controller'] is None:
             raise HistoryError('Predecessor inventory does not match the current deployment')
         projections = [entry.projection for entry in self.entries] + [current]
         lives = []
@@ -171,12 +172,6 @@ class Lineage:
         if lives[0]['predecessor_controller'] is not None:
             raise HistoryError('Predecessor inventory omits the original deployment')
 
-        totals = {asset: amounts for (identifier, asset), amounts in local_history.claims.items()
-                  if identifier == nft_id}
-        conversions = {}
-        lp_conversions = {}
-        merge_conversions(conversions, local_history.conversions, nft_id)
-        merge_conversions(lp_conversions, local_history.lp_conversions, nft_id)
         receipts = []
         previous_order = None
         epochs = []
@@ -203,8 +198,64 @@ class Lineage:
                 for role in ('access', 'handoff'):
                     contract = peer.contracts[role]
                     peer._code(contract.address, contract.code_hash, at_cutoff)
+            anchors.append((cutoff['number'], cutoff))
+            parent = source._header(hex(source.history.start - 1))
+            created = source._header(hex(source.history.start))
+            if parent['hash'] != source.history.parent:
+                raise HistoryError('Historical creation anchor changed during replay')
+            anchors.append((source.history.start - 1, parent))
+            anchors.append((source.history.start, created))
+            receipts.append({'controller': source.contracts['access'].address,
+                             'successor_controller': destination.contracts['access'].address,
+                             **({'mint_integration_version': 2} if source.mint_integration_version == 2 else {}),
+                             **({'execution_price_version': 1} if source.execution_price_version == 1 else {}),
+                             'retirement_transaction_hash': entry.transaction,
+                             'retirement_block': cutoff['number'], 'retirement_block_hash': cutoff['hash'],
+                             'handoff_id': handoff_id, 'state_root': state_root})
+
+        return epochs + [(current, header, lower)], receipts, anchors
+
+    def verify(self, current, header, block, lifecycle, *, verified_anchors=None):
+        """Authenticate the ordered handoff graph without reading financial logs.
+
+        The caller supplies the already verified current lifecycle. Every peer,
+        receipt, terminal commitment and canonical anchor is still checked here.
+        Returned epochs describe historical windows, not trusted earnings state.
+        """
+        epochs, proofs, anchors = self._verify_graph(current, header, block, lifecycle)
+        self._check_anchors(current, anchors)
+        if verified_anchors is not None:
+            verified_anchors.extend(anchors)
+        return epochs, proofs
+
+    @staticmethod
+    def _check_anchors(current, anchors):
+        # Never return a graph/total based on an orphaned archival header after
+        # provider failover. The caller checks current depth/freshness as well.
+        for number, expected in anchors:
+            if current._header(hex(number)) != expected:
+                raise HistoryError('Historical lineage anchor changed during replay')
+
+    def financial(self, current, header, block, lifecycle, local_history, nft_id, ordinal, *,
+                  verified_epochs=None, history_reader=None, verified_histories=None):
+        if local_history is None:
+            raise HistoryError('Predecessor inventory does not match the current deployment')
+        epochs, proofs, anchors = self._verify_graph(current, header, block, lifecycle)
+        expected_headers = dict(anchors)
+        totals = {asset: amounts for (identifier, asset), amounts in local_history.claims.items()
+                  if identifier == nft_id}
+        conversions, lp_conversions = {}, {}
+        merge_conversions(conversions, local_history.conversions, nft_id)
+        merge_conversions(lp_conversions, local_history.lp_conversions, nft_id)
+        histories = {current.contracts['access'].address: local_history}
+        receipts = []
+        for (source, cutoff, _), proof in zip(epochs[:-1], proofs):
+            at_cutoff = {'blockHash': cutoff['hash'], 'requireCanonical': True}
             lp_assets, royalty_assets = source._admitted(at_cutoff)
-            history = source._history_snapshot(cutoff, at_cutoff, lp_assets, royalty_assets)
+            history = (source._history_snapshot(cutoff, at_cutoff, lp_assets, royalty_assets)
+                       if history_reader is None else
+                       history_reader(source, cutoff, at_cutoff, lp_assets, royalty_assets))
+            histories[source.contracts['access'].address] = history
             merge_conversions(conversions, history.conversions, nft_id)
             merge_conversions(lp_conversions, history.lp_conversions, nft_id)
             if nft_id is not None:
@@ -219,30 +270,17 @@ class Lineage:
                 if identifier == nft_id:
                     old_lp, old_royalties = totals.get(asset, (0, 0))
                     totals[asset] = (old_lp + lp, old_royalties + royalties)
-            anchors.append((cutoff['number'], cutoff))
-            parent = source._header(hex(source.history.start - 1))
-            created = source._header(hex(source.history.start))
+            parent = expected_headers[source.history.start - 1]
+            created = expected_headers[source.history.start]
             if (parent['hash'] != source.history.parent or
                     created['hash'] != history.provenance['start_block_hash']):
                 raise HistoryError('Historical creation anchor changed during replay')
-            anchors.append((source.history.start - 1, parent))
-            anchors.append((source.history.start, created))
-            receipts.append({'controller': source.contracts['access'].address,
-                             'successor_controller': destination.contracts['access'].address,
-                             **({'mint_integration_version': 2} if source.mint_integration_version == 2 else {}),
-                             **({'execution_price_version': 1} if source.execution_price_version == 1 else {}),
-                             'retirement_transaction_hash': entry.transaction,
-                             'retirement_block': cutoff['number'], 'retirement_block_hash': cutoff['hash'],
-                             'handoff_id': handoff_id, 'state_root': state_root,
-                             'history': dict(history.provenance)})
-
-        # Never return a total based on an orphaned archival header after a
-        # provider failover. The caller then checks current depth/freshness.
-        for number, expected in anchors:
-            if current._header(hex(number)) != expected:
-                raise HistoryError('Historical lineage anchor changed during replay')
+            receipts.append({**proof, 'history': dict(history.provenance)})
+        self._check_anchors(current, anchors)
         if verified_epochs is not None:
-            verified_epochs.extend(epochs + [(current, header, lower)])
+            verified_epochs.extend(epochs)
+        if verified_histories is not None:
+            verified_histories.update(histories)
         assets = []
         for asset, descriptor in sorted(self.descriptors.items()):
             lp, royalties = totals.get(asset, (0, 0))

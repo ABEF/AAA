@@ -1,5 +1,14 @@
 # AAA / ZZZ PoPL project instructions
 
+[Lineage earnings checkpoint3](reports/lineage-checkpoints-20261116/REVIEW.md) now seeds a cumulative exact accounting
+cursor in any authenticated operating epoch and replays all later raw events.
+Collection/NFT/current-holdings wallet earnings preserve the complete24-hour
+window, transfers, prior payouts/conversions and raw LP/royalty phases. Formats1/2
+remain distinct. New source adoption requires reviewed checkpoint rebuild/re-pin;
+no contract, signer, chain/journal, service/site or heartbeat change occurs.
+Same-graph advancement is supported; new-graph prefix import and actual lifetime
+archive/provider/maximum-state/operating qualification remain open.
+
 The [16 November whole-project audit](reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
 state-file and website-profile gaps and reconciles current guidance. Production
 Solidity, economic rights, safeguards, gas defaults and existing environments
@@ -522,9 +531,11 @@ the November3 authority report below remains historical for those contexts.
 
 ## Earnings checkpoint source boundary
 
-- [Checkpoint1/2](docs/EARNINGS_CHECKPOINTS.md) explicitly serve accounting6 or
-  accounting7/LP-allocation1 respectively, each custody5/fee-intake1 without
-  predecessors, for earnings endpoints only. Operator-pinned
+- [Checkpoint1/2/3](docs/EARNINGS_CHECKPOINTS.md) preserve distinct formats:1 for
+  historical accounting6,2 for original accounting7,3 for complete accounting7
+  lineage with an operating epoch cursor, each custody5/fee-intake1 for earnings
+  only. New3 binds every peer/profile/receipt, preserves a raw full-day suffix
+  across later handoffs and rejects old/changed graph artifacts. Operator-pinned
   immutable bytes/source/config/anchor plus bounded suffix; never automatic cache
   approval or fabricated zero. The full24-hour window remains raw; preserve
   historical scaled NFT fractions or fresh whole units/raw tree phase, dust/cohorts,
@@ -535,7 +546,7 @@ the November3 authority report below remains historical for those contexts.
   rebuild/re-pin. No pruning, running config, signer or journal change is implied.
 - Historical checkpoint1 evidence retains24new and earlier147affected cases at
   its original source stage. Current checkpoint2/manual source evidence is linked
-  above; do not sum overlapping stages. Lineage/other readers, actual workload/
+  above; do not sum overlapping stages. Other readers, new-graph prefix import, actual workload/
   archive/rotation/restore and independent approval stay open. Earlier OpenSea research
   does not verify the later mint2 implementation or approve actual Robinhood onboarding.
 

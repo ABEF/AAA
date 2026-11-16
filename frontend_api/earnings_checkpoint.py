@@ -132,6 +132,48 @@ def _nonnegative(value):
         for v in value:_nonnegative(v)
 
 
+def validate_history_payload(history, anchor, engine, mints):
+    """Validate one local epoch's history using the existing checkpoint rules.
+
+    The caller validates the anchor, minted inventory and engine identity first;
+    this shared seam does not authenticate a lineage or approve any checkpoint.
+    """
+    def currency(a):return a in engine.descriptors
+    require(isinstance(history,dict) and set(history)=={'owners','claims','conversions','lp_conversions','provenance'}
+            and set(history['owners'])==set(mints) and all(type(i) is int for i in history['owners']),
+            'Checkpoint ownership inventory differs')
+    require(all(address(a)==a for a in history['owners'].values()), 'Invalid checkpoint owner')
+    require(isinstance(history['claims'],dict), 'Invalid checkpoint claims')
+    for key,amounts in history['claims'].items():
+        require(isinstance(key,tuple) and len(key)==2 and type(key[0]) is int and key[0] in mints and currency(key[1]) and
+                isinstance(amounts,tuple) and len(amounts)==2 and all(type(n) is int and n>=0 for n in amounts),
+                'Invalid checkpoint claimed amounts')
+    for field,role in (('conversions','royalties'),('lp_conversions','rewards')):
+        require(isinstance(history[field],dict), 'Invalid checkpoint conversions')
+        for key,row in history[field].items():
+            require(isinstance(key,tuple) and len(key)==2 and type(key[0]) is int and key[0] in mints and currency(key[1]) and
+                    key[1]!='0x'+'0'*40 and isinstance(row,tuple) and len(row)==4 and
+                    all(type(n) is int and n>=0 for n in row[:3]) and row[2]>0,
+                    'Invalid checkpoint conversion amounts')
+            last=row[3]
+            require(isinstance(last,dict) and set(last)=={'ledger','block_number','block_hash','timestamp','transaction_hash','log_index'}
+                    and last['ledger']==engine.p.contracts[role].address and
+                    type(last['block_number']) is int and engine.p.history.start<=last['block_number']<=anchor['number'] and
+                    type(last['timestamp']) is int and 0<=last['timestamp']<=anchor['timestamp'] and
+                    type(last['log_index']) is int and 0<=last['log_index']<1<<63,
+                    'Invalid checkpoint conversion provenance')
+            _hash(last['block_hash']);_hash(last['transaction_hash'])
+    for name in ('logs_examined','claim_events','royalty_conversion_events','lp_conversion_events'):
+        require(type(history['provenance'].get(name)) is int and history['provenance'][name]>=0,
+                'Invalid checkpoint history counts')
+    require(history['provenance'].get('through_block')==anchor['number'] and
+            history['provenance'].get('block_hash')==anchor['hash'] and
+            history['provenance'].get('from_block')==engine.p.history.start and
+            history['provenance'].get('start_parent_hash')==engine.p.history.parent and
+            history['provenance'].get('minted_count')==len(mints), 'Checkpoint history cutoff differs')
+    _hash(history['provenance']['start_block_hash'])
+
+
 @dataclass(frozen=True)
 class Seed:
     digest: str
@@ -328,39 +370,7 @@ class Checkpoint:
                 'Invalid checkpoint collection earnings')
         require(s['frozen'] is False and s['retired'] is False, 'Canonical lifecycle checkpoint is unsupported')
         history=v['history']
-        require(isinstance(history,dict) and set(history)=={'owners','claims','conversions','lp_conversions','provenance'}
-                and set(history['owners'])==set(mints) and all(type(i) is int for i in history['owners']),
-                'Checkpoint ownership inventory differs')
-        require(all(address(a)==a for a in history['owners'].values()), 'Invalid checkpoint owner')
-        require(isinstance(history['claims'],dict), 'Invalid checkpoint claims')
-        for key,amounts in history['claims'].items():
-            require(isinstance(key,tuple) and len(key)==2 and type(key[0]) is int and key[0] in mints and currency(key[1]) and
-                    isinstance(amounts,tuple) and len(amounts)==2 and all(type(n) is int and n>=0 for n in amounts),
-                    'Invalid checkpoint claimed amounts')
-        for field,role in (('conversions','royalties'),('lp_conversions','rewards')):
-            require(isinstance(history[field],dict), 'Invalid checkpoint conversions')
-            for key,row in history[field].items():
-                require(isinstance(key,tuple) and len(key)==2 and type(key[0]) is int and key[0] in mints and currency(key[1]) and
-                        key[1]!='0x'+'0'*40 and isinstance(row,tuple) and len(row)==4 and
-                        all(type(n) is int and n>=0 for n in row[:3]) and row[2]>0,
-                        'Invalid checkpoint conversion amounts')
-                last=row[3]
-                require(isinstance(last,dict) and set(last)=={'ledger','block_number','block_hash','timestamp','transaction_hash','log_index'}
-                        and last['ledger']==engine.p.contracts[role].address and
-                        type(last['block_number']) is int and engine.p.history.start<=last['block_number']<=anchor['number'] and
-                        type(last['timestamp']) is int and 0<=last['timestamp']<=anchor['timestamp'] and
-                        type(last['log_index']) is int and 0<=last['log_index']<1<<63,
-                        'Invalid checkpoint conversion provenance')
-                _hash(last['block_hash']);_hash(last['transaction_hash'])
-        for name in ('logs_examined','claim_events','royalty_conversion_events','lp_conversion_events'):
-            require(type(history['provenance'].get(name)) is int and history['provenance'][name]>=0,
-                    'Invalid checkpoint history counts')
-        require(history['provenance'].get('through_block')==anchor['number'] and
-                history['provenance'].get('block_hash')==anchor['hash'] and
-                history['provenance'].get('from_block')==engine.p.history.start and
-                history['provenance'].get('start_parent_hash')==engine.p.history.parent and
-                history['provenance'].get('minted_count')==len(mints), 'Checkpoint history cutoff differs')
-        _hash(history['provenance']['start_block_hash'])
+        validate_history_payload(history,anchor,engine,mints)
         if version==2:
             from frontend_api.earnings_exact_lp import ExactReplay
             from frontend_api.earnings_checkpoint_v2 import validate

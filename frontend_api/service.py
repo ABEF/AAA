@@ -442,7 +442,10 @@ class Projection:
                                'deployment_block': self.start, 'deployment_block_hash': self.start_hash,
                                'configuration_sha256': self.identity, 'accounting_version': self.accounting_version}}
 
-    def _admitted(self, block: dict[str, Any], *, asset_health=None) -> tuple[list[str], list[str]]:
+    def _admitted(self, block: dict[str, Any], *, asset_health=None,
+                  historical_descriptors=False) -> tuple[list[str], list[str]]:
+        if type(historical_descriptors) is not bool:
+            raise ProjectionError('Invalid historical descriptor selection')
         admitted = []
         for role, maximum in (('rewards', 2 if self.accounting_version==7 else 33), ('royalties', 65 if self.royalty_reporting is not None and self.royalty_reporting.schema >= 4 else 17)):
             count = self._uint(role, 'assetCount()', block=block)
@@ -460,9 +463,15 @@ class Projection:
             if role == 'rewards' and (len(set(addresses)-{ZERO}) > 32 or (ZERO in addresses and addresses[0] != ZERO)):
                 raise ProjectionError('Malformed LP native settlement inventory')
             admitted.append(addresses)
-        if set().union(*map(set, admitted)) != set(self.assets):
+        observed = set().union(*map(set, admitted))
+        if not (observed <= set(self.assets) if historical_descriptors else observed == set(self.assets)):
             raise ProjectionError('Admitted assets differ from the reviewed descriptor allowlist')
         for item in self.assets.values():
+            # Offline historical checkpoint cursors can precede later royalty
+            # admission. Only already admitted tokens have historical metadata;
+            # ordinary reads and transaction preparation retain exact equality.
+            if historical_descriptors and item.address not in observed:
+                continue
             if item.address == ZERO:
                 if asset_health is not None:
                     asset_health[item.address] = True

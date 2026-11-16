@@ -1,5 +1,14 @@
 # Feature and evidence reference
 
+[Lineage earnings checkpoint3](../reports/lineage-checkpoints-20261116/REVIEW.md) now seeds a cumulative exact accounting
+cursor in any authenticated operating epoch and replays all later raw events.
+Collection/NFT/current-holdings wallet earnings preserve the complete24-hour
+window, transfers, prior payouts/conversions and raw LP/royalty phases. Formats1/2
+remain distinct. New source adoption requires reviewed checkpoint rebuild/re-pin;
+no contract, signer, chain/journal, service/site or heartbeat change occurs.
+Same-graph advancement is supported; new-graph prefix import and actual lifetime
+archive/provider/maximum-state/operating qualification remain open.
+
 The [16 November whole-project audit](../reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
 state-file and website-profile gaps and reconciles current guidance. Production
 Solidity, economic rights, safeguards, gas defaults and existing environments
@@ -293,7 +302,7 @@ and strict new-work validation does not discard a valid pending recovery intent.
 | Keeper | Fresh3 threshold/window semantics, durable jitter/reset/pending-first recovery, in-range compound wait, authenticated harvest coalescing and operation diagnostics. Raw checks during cooldown; paid observation enrollment near hard eligibility avoids waste. Late gas-enveloped full LP simulation and final policy/nonce/funding/head/deadline/day-budget checks preserve original intent before signing. |
 | Inventory | Schema17/mint2/custody5/reinvest1 validates20helpers plus2 immutable REVERT-prefixed Factory data children, both physical legs, primary mint books and exact-unit royalty4; reporting5/canonicalV10 are explicit. Schema10 converting royalties and schemas9/8/7/6 retain explicit historical inspection. Example is unqualified. |
 | Manual operation preparation | [Typed preparation](MANUAL_LP_PREPARATION.md) covers park/resume/residual-only close, all collective-exit steps, schema1 Active B/C/D and explicit schema2 Parked D. Direct empty-code governance only; exact custody/control proof, original caller floors/expiry and two exact simulations. Parked rejects Active-only bits1/16 and discloses selected2/4/8 bypasses; USD still required by4. [Manual diagnostics](MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics) expose stage/known local cause, bounded RPC/work metadata and uncertain output; opaque failures stay unknown. Successful manual artifacts remain exact; new management source commitments include the changed helper hash. No signer, queue, fallback or unpause. Distribution count/gas limits stay separate. Contract-wallet envelopes and actual provider/operator/target-gas qualification remain open. [Parked evidence](../reports/parked-recovery-preparation-20261115/REVIEW.md); [earlier seven actions](../reports/operator-management-20261109/REVIEW.md). |
-| Earnings | Separate LP/collective/royalties, current-price USD and claimable versus earned/claimed. Fresh7 replays exact whole-unit trees from complete raw history. Checkpoint1 remains6-only; explicit checkpoint2 preserves raw exact trees/pending/phase/direct rights and a complete raw24-hour suffix. Lineage/archive/workload/operating qualification remain open. Claims/conversions/imports are not income; same-currency first allocation is counted once; exact-unit cursor/cohort state must match replay and checkpoints. Missing data stays unavailable. |
+| Earnings | Separate LP/collective/royalties, current-price USD and claimable versus earned/claimed. Fresh7 replays exact whole-unit trees from complete raw history. Checkpoint1 remains6-only; explicit checkpoint2 preserves raw exact trees/pending/phase/direct rights and a complete raw24-hour suffix. Checkpoint3 adds authenticated lineage cursors; new-graph prefix import/archive/workload/operating qualification remain open. Claims/conversions/imports are not income; same-currency first allocation is counted once; exact-unit cursor/cohort state must match replay and checkpoints. Missing data stays unavailable. |
 
 Explicit fresh read/keeper configs set custody_version5 and check actual runtime.
 Keeper principal_distribution is disabled/rejected on5; governance pays/submits

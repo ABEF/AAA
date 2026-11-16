@@ -1,0 +1,8 @@
+{
+  "syntax_files": 11,
+  "maintained_new_test_selection": 32,
+  "local_path_links_checked": 3000,
+  "missing_paths": [],
+  "tests_executed": 0,
+  "scope": "Syntax/selection/file targets only; not hosted availability, every anchor or UI verification."
+}

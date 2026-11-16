@@ -1,0 +1,126 @@
+{
+  "stage": "baseline",
+  "selected_methods": [
+    "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_epoch_capture_rejects_incomplete_or_nonoperating_models",
+    "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_later_operating_epoch_preserves_raw_phase_without_mutating_source",
+    "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_public_checkpoint2_capture_keeps_original_epoch_restriction",
+    "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_accepts_exact_local_epoch",
+    "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_retains_local_identity_and_cutoff_guards"
+  ],
+  "tests_run": 5,
+  "failures": [],
+  "errors": [
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_epoch_capture_rejects_incomplete_or_nonoperating_models (field='started')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 52, in test_epoch_capture_rejects_incomplete_or_nonoperating_models\n    exact._capture_epoch(candidate)\n    ^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint_v2' has no attribute '_capture_epoch'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_epoch_capture_rejects_incomplete_or_nonoperating_models (field='frozen')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 52, in test_epoch_capture_rejects_incomplete_or_nonoperating_models\n    exact._capture_epoch(candidate)\n    ^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint_v2' has no attribute '_capture_epoch'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_epoch_capture_rejects_incomplete_or_nonoperating_models (field='retired')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 52, in test_epoch_capture_rejects_incomplete_or_nonoperating_models\n    exact._capture_epoch(candidate)\n    ^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint_v2' has no attribute '_capture_epoch'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_epoch_capture_rejects_incomplete_or_nonoperating_models (field='track_all')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 52, in test_epoch_capture_rejects_incomplete_or_nonoperating_models\n    exact._capture_epoch(candidate)\n    ^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint_v2' has no attribute '_capture_epoch'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_epoch_capture_rejects_incomplete_or_nonoperating_models (field='fee_intake_version')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 52, in test_epoch_capture_rejects_incomplete_or_nonoperating_models\n    exact._capture_epoch(candidate)\n    ^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint_v2' has no attribute '_capture_epoch'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_epoch_capture_rejects_incomplete_or_nonoperating_models (field='pending_lp_transaction')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 52, in test_epoch_capture_rejects_incomplete_or_nonoperating_models\n    exact._capture_epoch(candidate)\n    ^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint_v2' has no attribute '_capture_epoch'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_epoch_capture_rejects_incomplete_or_nonoperating_models (field='pending_share_sync')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 52, in test_epoch_capture_rejects_incomplete_or_nonoperating_models\n    exact._capture_epoch(candidate)\n    ^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint_v2' has no attribute '_capture_epoch'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_epoch_capture_rejects_incomplete_or_nonoperating_models (field='pending_member_sync')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 52, in test_epoch_capture_rejects_incomplete_or_nonoperating_models\n    exact._capture_epoch(candidate)\n    ^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint_v2' has no attribute '_capture_epoch'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_epoch_capture_rejects_incomplete_or_nonoperating_models (field='pending_lp_credit')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 52, in test_epoch_capture_rejects_incomplete_or_nonoperating_models\n    exact._capture_epoch(candidate)\n    ^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint_v2' has no attribute '_capture_epoch'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_epoch_capture_rejects_incomplete_or_nonoperating_models (field='pending_exact_allocations')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 52, in test_epoch_capture_rejects_incomplete_or_nonoperating_models\n    exact._capture_epoch(candidate)\n    ^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint_v2' has no attribute '_capture_epoch'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_epoch_capture_rejects_incomplete_or_nonoperating_models (field='deferred')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 52, in test_epoch_capture_rejects_incomplete_or_nonoperating_models\n    exact._capture_epoch(candidate)\n    ^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint_v2' has no attribute '_capture_epoch'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_epoch_capture_rejects_incomplete_or_nonoperating_models (field='pending_recovery')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 52, in test_epoch_capture_rejects_incomplete_or_nonoperating_models\n    exact._capture_epoch(candidate)\n    ^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint_v2' has no attribute '_capture_epoch'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_epoch_capture_rejects_incomplete_or_nonoperating_models (field='royalty_custody')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 52, in test_epoch_capture_rejects_incomplete_or_nonoperating_models\n    exact._capture_epoch(candidate)\n    ^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint_v2' has no attribute '_capture_epoch'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_epoch_capture_rejects_incomplete_or_nonoperating_models (field='custody_ids')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 52, in test_epoch_capture_rejects_incomplete_or_nonoperating_models\n    exact._capture_epoch(candidate)\n    ^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint_v2' has no attribute '_capture_epoch'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_later_operating_epoch_preserves_raw_phase_without_mutating_source",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 34, in test_later_operating_epoch_preserves_raw_phase_without_mutating_source\n    raw = exact._capture_epoch(model)\n          ^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint_v2' has no attribute '_capture_epoch'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_accepts_exact_local_epoch",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 62, in test_shared_history_validation_accepts_exact_local_epoch\n    self.assertIsNone(common.validate_history_payload(history, anchor, engine, mints))\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint' has no attribute 'validate_history_payload'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_retains_local_identity_and_cutoff_guards (mutation='owner')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 84, in test_shared_history_validation_retains_local_identity_and_cutoff_guards\n    common.validate_history_payload(history, anchor, engine, mints)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint' has no attribute 'validate_history_payload'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_retains_local_identity_and_cutoff_guards (mutation='mint')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 84, in test_shared_history_validation_retains_local_identity_and_cutoff_guards\n    common.validate_history_payload(history, anchor, engine, mints)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint' has no attribute 'validate_history_payload'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_retains_local_identity_and_cutoff_guards (mutation='claims')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 84, in test_shared_history_validation_retains_local_identity_and_cutoff_guards\n    common.validate_history_payload(history, anchor, engine, mints)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint' has no attribute 'validate_history_payload'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_retains_local_identity_and_cutoff_guards (mutation='count')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 84, in test_shared_history_validation_retains_local_identity_and_cutoff_guards\n    common.validate_history_payload(history, anchor, engine, mints)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint' has no attribute 'validate_history_payload'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_retains_local_identity_and_cutoff_guards (mutation='anchor')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 84, in test_shared_history_validation_retains_local_identity_and_cutoff_guards\n    common.validate_history_payload(history, anchor, engine, mints)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint' has no attribute 'validate_history_payload'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_retains_local_identity_and_cutoff_guards (mutation='start')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 84, in test_shared_history_validation_retains_local_identity_and_cutoff_guards\n    common.validate_history_payload(history, anchor, engine, mints)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint' has no attribute 'validate_history_payload'\n"
+    ],
+    [
+      "tests_python.test_earnings_checkpoint_epoch_helpers.EarningsCheckpointEpochHelperTests.test_shared_history_validation_retains_local_identity_and_cutoff_guards (mutation='conversion')",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_earnings_checkpoint_epoch_helpers.py\", line 84, in test_shared_history_validation_retains_local_identity_and_cutoff_guards\n    common.validate_history_payload(history, anchor, engine, mints)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'frontend_api.earnings_checkpoint' has no attribute 'validate_history_payload'\n"
+    ]
+  ],
+  "skipped": [],
+  "successful": false,
+  "source_sha256": {
+    "frontend_api/earnings_checkpoint.py": "d1f73d205ad152f891b03790c81cd9416c9e545b8a0c30a70ec9dff45d742a78",
+    "frontend_api/earnings_checkpoint_v2.py": "52f95d67393574b269e18e45df0c776231213b9d5e04c369533e614f490c1f49",
+    "tests_python/test_earnings_checkpoint_epoch_helpers.py": "d70c0f96b537ed304af6a8ccd1603717a644edfb8ad5e5241ed1b1f2b7c7c32b",
+    "tests_python/test_earnings_checkpoint_v2_codec.py": "a43e828a8a81f21a1ef3b4e7e575173f00ac8fccd49a0403d591e00c77d4fd88",
+    "tests_python/test_exact_lp_backend.py": "bb943807e47ad5610cc7fd486cc9290a33d54ed08761c091d791984d4d047338"
+  },
+  "source_sha256_after": {
+    "frontend_api/earnings_checkpoint.py": "d1f73d205ad152f891b03790c81cd9416c9e545b8a0c30a70ec9dff45d742a78",
+    "frontend_api/earnings_checkpoint_v2.py": "52f95d67393574b269e18e45df0c776231213b9d5e04c369533e614f490c1f49",
+    "tests_python/test_earnings_checkpoint_epoch_helpers.py": "d70c0f96b537ed304af6a8ccd1603717a644edfb8ad5e5241ed1b1f2b7c7c32b",
+    "tests_python/test_earnings_checkpoint_v2_codec.py": "a43e828a8a81f21a1ef3b4e7e575173f00ac8fccd49a0403d591e00c77d4fd88",
+    "tests_python/test_exact_lp_backend.py": "bb943807e47ad5610cc7fd486cc9290a33d54ed08761c091d791984d4d047338"
+  },
+  "old_test_methods_executed": 0,
+  "public_or_local_RPC": 0,
+  "solidity_compilation_or_tests": 0,
+  "interpretation": "New helper functionality; missing-helper baseline errors are not security defects. Fixture setup imports no old test methods."
+}

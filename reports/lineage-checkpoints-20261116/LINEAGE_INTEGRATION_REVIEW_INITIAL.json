@@ -1,0 +1,72 @@
+{
+  "utc": "2026-11-16T16:37:59.468061+00:00",
+  "stage": "Initial independently read integration; root fixes still in progress",
+  "source_sha256": {
+    "frontend_api/earnings.py": "3da00d0be21df851483f66007e6bd2b228a57e51c26a1c7900cc985eb3a07759",
+    "frontend_api/wallet_earnings.py": "5446cc002705f878f6023b1b585c27c27c31c3731f7234780839ac64aefca520",
+    "frontend_api/earnings_checkpoint_build.py": "f5eca20abda61ef591d3a8dc65a50eb8275aea363e07e0ed25a3b8134d64e192",
+    "frontend_api/earnings_checkpoint_v3.py": "95c49953141a54f57e0b0dcca61f0064d4d28cead98928fdc3faf6be13c99310",
+    "frontend_api/earnings_checkpoint.py": "fe47bb6c8df5a05526a6d53bfbf1d0e881d9792c4803bc1f11442f1e18aeb621",
+    "frontend_api/earnings_checkpoint_v2.py": "7dee675ca520ff0b84f368d479851a2e4194a830b33c59a3bced06387a714172",
+    "frontend_api/lineage.py": "c693fc52f39e2451575691ab44c3394aabfcd9de12e050dd6117de8bc3d15947",
+    "src/ZZZRoyaltyRewards.sol": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+    "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+    "src/base/ZZZExactLPRewardsCanonical.sol": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
+    "src/ZZZRewards.sol": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30"
+  },
+  "scope": [
+    "Earnings and wallet checkpoint dispatcher/history callback and shared replay start",
+    "Epoch cursor active snapshot/completed local history/suffix replay",
+    "Builder lifetime payout reconciliation versus retired on-chain read semantics",
+    "Source/profile/currency/anchor identity, bounded immutable state and negative admission"
+  ],
+  "findings": [
+    {
+      "id": "LCR-01",
+      "title": "Extracted per-NFT reconciliation referenced missing version local",
+      "status_at_read": "root corrected to p.accounting_version==7",
+      "effect": "NameError would reject every nonempty build; no fund mutation."
+    },
+    {
+      "id": "LCR-02",
+      "title": "Retired royalty paid reconciliation queries no-longer-backed views",
+      "status_at_read": "reported to root; correction and focused negative control required",
+      "reason": "canonicalRelease moves backing without deleting accounted/books; pending/claimable require actual balance>=accounted and can revert at retired cutoff. Check aggregate stored state per retired epoch; full paid-vs-actual claimable at operating cursor combines lifetime histories."
+    },
+    {
+      "id": "LCR-03",
+      "title": "Per-epoch snapshots decode entire cumulative payload repeatedly",
+      "status_at_read": "reported to root for optimization",
+      "reason": "Prefix-only snapshots and replay_start need only their own history/anchors, not every raw exact tree. Immutable encoded per-section bytes preserve isolation and avoid unnecessary repeated full-state parsing."
+    },
+    {
+      "id": "LCR-04",
+      "title": "Python equality could alias saved boolean profile flags",
+      "status_at_read": "root corrected to typed encode comparison"
+    },
+    {
+      "id": "LCR-05",
+      "title": "Completed history currency components need explicit ledger book admission",
+      "status_at_read": "root added nonzero LP/royalty and conversion-source checks"
+    },
+    {
+      "id": "LCR-06",
+      "title": "Cursor loader should retain builder reviewed-deployment lower bound",
+      "status_at_read": "reported as structural tightening, not financial exploit"
+    }
+  ],
+  "preserved_conclusions": [
+    "One cumulative exact model; local paid histories aggregated once, never income",
+    "Fresh lower=None only at authenticated checkpoint cursor; later epochs retain verified lower",
+    "Cursor can precede recent successor, preserving raw full24hour suffix across handoff",
+    "Current and completed profiles/runtime/receipt/anchor identities remain pinned",
+    "Same-graph advancement only; new graph requires rebuilt reviewed artifact",
+    "No contract, permission, custody, economic, live service or signing change"
+  ],
+  "limits": [
+    "Manual source analysis, not independent production approval",
+    "First new integration checks have not been rerun by this reviewer",
+    "Retired pending/claimable failure was established from unchanged Solidity source, not a fresh EVM transaction",
+    "Actual maximal-state/RPC/provider/operating feasibility remains open"
+  ]
+}

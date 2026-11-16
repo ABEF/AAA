@@ -43,9 +43,11 @@ def read(engine, wallet_address, block_number, offset):
                 'Earnings NFT identity differs')
         ordinals[i] = ordinal
     epochs = []
+    histories = {p.contracts['access'].address: history}
     if p.lineage:
         # Verify receipt pairs, deployment origin, cutoff chronology and anchors once.
-        p.lineage.financial(p, header, block, life, history, None, None, verified_epochs=epochs)
+        p.lineage.financial(p, header, block, life, history, None, None, verified_epochs=epochs,
+                            history_reader=engine.history_snapshot, verified_histories=histories)
     else:
         require(life['predecessor_controller'] is None, 'Complete predecessor history is required')
         epochs = [(p, header, None)]
@@ -55,31 +57,38 @@ def read(engine, wallet_address, block_number, offset):
     else:model = Replay(header['timestamp'], selected=selected)
     claims = defaultdict(lambda: [0, 0])
     conversions, lp_conversions, provenance = {}, {}, []
-    for peer, cutoff, lower in epochs:
+    start = engine.replay_start(epochs)
+    for index, (peer, cutoff, lower) in enumerate(epochs):
         checkpoint()
         at = {'blockHash': cutoff['hash'], 'requireCanonical': True}
         emitters = engine.check_profile(peer, at)
         a, b = peer._admitted(at)
-        model.begin(emitters, a, b, lower, fee_intake_version=peer.fee_intake_version,royalty_settlement_version=royalty_profile(peer))
-        replayed = engine.history_snapshot(peer, cutoff, at, a, b, consumer=model, extra_emitters=tuple(emitters.values()))
-        model.finish()
-        engine.reconcile(peer, model, at, a, b, replayed.provenance['minted_count'])
+        prefix = index < start
+        if prefix:
+            replayed = histories[peer.contracts['access'].address]
+        else:
+            begin_lower = None if index == start and getattr(engine.checkpoint, 'lineage_checkpoint', False) else lower
+            model.begin(emitters, a, b, begin_lower, fee_intake_version=peer.fee_intake_version,royalty_settlement_version=royalty_profile(peer))
+            replayed = engine.history_snapshot(peer, cutoff, at, a, b, consumer=model, extra_emitters=tuple(emitters.values()))
+            model.finish()
+            engine.reconcile(peer, model, at, a, b, replayed.provenance['minted_count'])
         for i in selected:
             ordinal = peer._uint('nft', 'mintOrdinalOf(uint256)', i, block=at)
             if i in replayed.owners:
                 require(ordinal == ordinals[i] and peer._uint('nft', 'tokenAtOrdinal(uint256)', ordinal, block=at) == i,
                         'Predecessor earnings identity differs')
-                bucket, shares = model.shares.get(i, (0, 0))
-                require(peer._uint('vault', 'sharesOf(uint256)', i, block=at) == shares and
-                        peer._uint('vault', 'nftBucket(uint256)', i, block=at) == bucket and
-                        peer._uint('royalties', 'weightOf(uint256)', i, block=at) == model.weights.get(i, 0),
-                        'Selected earnings rights differ from chain')
-                if peer.accounting_version==7:
-                    require(peer._uint('rewards','rewardBucket(uint256)',i,block=at)==bucket,'Selected exact LP bucket differs')
-                    for asset in a:
-                        actual=tuple(int(w,16) for w in peer._call(peer.contracts['rewards'].address,
-                            'claimableComponents(uint256,address)',i,asset,block=at,words=2))
-                        require(actual==model.components(i,asset),'Selected exact LP components differ')
+                if not prefix:
+                    bucket, shares = model.shares.get(i, (0, 0))
+                    require(peer._uint('vault', 'sharesOf(uint256)', i, block=at) == shares and
+                            peer._uint('vault', 'nftBucket(uint256)', i, block=at) == bucket and
+                            peer._uint('royalties', 'weightOf(uint256)', i, block=at) == model.weights.get(i, 0),
+                            'Selected earnings rights differ from chain')
+                    if peer.accounting_version==7:
+                        require(peer._uint('rewards','rewardBucket(uint256)',i,block=at)==bucket,'Selected exact LP bucket differs')
+                        for asset in a:
+                            actual=tuple(int(w,16) for w in peer._call(peer.contracts['rewards'].address,
+                                'claimableComponents(uint256,address)',i,asset,block=at,words=2))
+                            require(actual==model.components(i,asset),'Selected exact LP components differ')
             else:
                 require(ordinal == 0 and ordinals[i] > replayed.provenance['minted_count'],
                         'Missing predecessor NFT contradicts mint order')

@@ -1,0 +1,31 @@
+{
+  "stage": "postfix",
+  "selected_methods": [
+    "tests_python.test_historical_checkpoint_assets.HistoricalCheckpointAssetsTests.test_admitted_currency_runtime_and_decimals_still_fail_closed",
+    "tests_python.test_historical_checkpoint_assets.HistoricalCheckpointAssetsTests.test_default_and_explicit_false_keep_exact_descriptor_union",
+    "tests_python.test_historical_checkpoint_assets.HistoricalCheckpointAssetsTests.test_historical_future_descriptor_is_allowed_without_future_token_reads",
+    "tests_python.test_historical_checkpoint_assets.HistoricalCheckpointAssetsTests.test_historical_inventory_bounds_native_order_and_fixed_pair_are_retained",
+    "tests_python.test_historical_checkpoint_assets.HistoricalCheckpointAssetsTests.test_historical_selection_requires_an_actual_boolean",
+    "tests_python.test_historical_checkpoint_assets.HistoricalCheckpointAssetsTests.test_historical_unknown_actual_currency_is_not_admitted",
+    "tests_python.test_historical_checkpoint_assets.HistoricalCheckpointAssetsTests.test_newly_admitted_reviewed_currency_gets_full_historical_validation"
+  ],
+  "tests_run": 7,
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "successful": true,
+  "current_source_sha256": {
+    "frontend_api/service.py": "8c656d1d02ddc8ae6f42fd1cd74202416b6fa4fab8ac9d3aa9199a2624bc43d0",
+    "tests_python/test_historical_checkpoint_assets.py": "507284f866bf87bca9ecd80abdf7fa9e2c56f670c1148c6f9cb6cbe3bed940ad"
+  },
+  "current_source_sha256_after": {
+    "frontend_api/service.py": "8c656d1d02ddc8ae6f42fd1cd74202416b6fa4fab8ac9d3aa9199a2624bc43d0",
+    "tests_python/test_historical_checkpoint_assets.py": "507284f866bf87bca9ecd80abdf7fa9e2c56f670c1148c6f9cb6cbe3bed940ad"
+  },
+  "old_git_revision": null,
+  "old_service_source_sha256": null,
+  "old_default_probe": null,
+  "baseline_scope": "Exact old _admitted AST compiled in isolated namespace using current unchanged helper globals; never overwritten on disk. New keyword missing errors are capability evidence, not security defects.",
+  "old_test_methods_executed": 0,
+  "RPC_or_signing": 0
+}

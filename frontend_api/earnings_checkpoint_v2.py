@@ -183,6 +183,19 @@ def capture(model):
     """Capture one complete original-deployment all-NFT exact replay."""
     require(isinstance(model, ExactReplay) and model.track_all and model.lower is None and
             model.fee_intake_version == 1, 'Checkpoint2 needs a complete original exact LP replay')
+    return _capture_epoch(model)
+
+
+def _capture_epoch(model):
+    """Capture a complete operating epoch; the caller authenticates its lineage.
+
+    Later-epoch state is retained verbatim. This seam does not authenticate an
+    incoming handoff or permit frozen, retired, partially imported or transient
+    accounting to become a checkpoint.
+    """
+    require(isinstance(model, ExactReplay) and model.track_all and model.started and
+            model.fee_intake_version == 1,
+            'Checkpoint epoch needs a complete operating exact LP replay')
     model.finish()
     require(not model.frozen and not model.retired and model.pending_lp_transaction is None and
             not any(getattr(model, name) for name in TRANSIENT_FIELDS),

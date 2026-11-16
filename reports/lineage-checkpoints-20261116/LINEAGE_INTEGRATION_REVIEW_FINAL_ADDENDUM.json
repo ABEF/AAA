@@ -1,0 +1,56 @@
+{
+  "utc": "2026-11-16T16:59:14.957778+00:00",
+  "baseline": "51fc12b28de04dcbec6dfa2bd554aea753ad5027",
+  "prior_review": "LINEAGE_INTEGRATION_REVIEW_FINAL.json",
+  "scope": "Final narrow delta: historical descriptor admission and its new3 caller; corrected boolean alias negative control; final source-pinned report wording. Original seven-file review reused for exact unchanged pins. No reviewer reruns or source edits.",
+  "source_sha256": {
+    "frontend_api/earnings.py": "3da00d0be21df851483f66007e6bd2b228a57e51c26a1c7900cc985eb3a07759",
+    "frontend_api/wallet_earnings.py": "5446cc002705f878f6023b1b585c27c27c31c3731f7234780839ac64aefca520",
+    "frontend_api/earnings_checkpoint_build.py": "f5eca20abda61ef591d3a8dc65a50eb8275aea363e07e0ed25a3b8134d64e192",
+    "frontend_api/earnings_checkpoint_v3.py": "ab00ba2b9972d336e70f0b7559ee45903939245060e3d3b1bf081cf61b1258eb",
+    "frontend_api/earnings_checkpoint.py": "fe47bb6c8df5a05526a6d53bfbf1d0e881d9792c4803bc1f11442f1e18aeb621",
+    "frontend_api/earnings_checkpoint_v2.py": "7dee675ca520ff0b84f368d479851a2e4194a830b33c59a3bced06387a714172",
+    "frontend_api/lineage.py": "c693fc52f39e2451575691ab44c3394aabfcd9de12e050dd6117de8bc3d15947",
+    "frontend_api/service.py": "8c656d1d02ddc8ae6f42fd1cd74202416b6fa4fab8ac9d3aa9199a2624bc43d0"
+  },
+  "new_test_sha256": {
+    "tests_python/test_earnings_checkpoint_epoch_helpers.py": "d70c0f96b537ed304af6a8ccd1603717a644edfb8ad5e5241ed1b1f2b7c7c32b",
+    "tests_python/test_earnings_checkpoint_lineage.py": "1a75d4c4a91faa5d4cc94b975899ca1c678e3e65ff7a9bcb8609bb98fb8e109c",
+    "tests_python/test_historical_checkpoint_assets.py": "507284f866bf87bca9ecd80abdf7fa9e2c56f670c1148c6f9cb6cbe3bed940ad"
+  },
+  "pins_match_report_VERIFICATION": true,
+  "new_test_method_inventory": {
+    "tests_python/test_earnings_checkpoint_epoch_helpers.py": 5,
+    "tests_python/test_earnings_checkpoint_lineage.py": 20,
+    "tests_python/test_historical_checkpoint_assets.py": 7
+  },
+  "test_results_reused": {
+    "unique_composed_passes": 32,
+    "meaning": "5helper+20lineage+7real-admission selected source stages, not a single32-method final suite",
+    "skips": 0,
+    "old_methods_run": 0,
+    "reviewer_tests_executed": 0
+  },
+  "historical_admission_review": [
+    "Private keyword defaultsFalse and strictly rejects nonbool before provider work. No new HTTP/configuration flag.",
+    "Default branch retains exact on-chain admitted union versus configured descriptor equality.",
+    "Only actual observed historical assets may be a subset of reviewed descriptors when offline builder opts in; unknown observed assets still reject.",
+    "Native ordering, exact fixed-ZZZ pair, distinct inventories/count ceilings and admitted token runtime/decimal checks remain.",
+    "Future unadmitted descriptor metadata is skipped, not returned as an admitted currency. Later admission still validates its actual code/decimals at its anchor.",
+    "Production call-site scan finds only earnings_checkpoint_v3.build explicitly selectingTrue; ordinary live reads and transaction preparation remain strict."
+  ],
+  "boolean_test_resolution": "Execution-profile variant now uses False versus configured0; it catches Python bool/int alias sensitivity. Completed currency variant preserves a positive valid LP amount but rekeys it to royalty-only currency and requires the intended ledger-admission error.",
+  "documentation_review": [
+    "Report correctly labels epochs as deployments, not pools/rebalances.",
+    "Reports preserve synthetic getter/lifecycle provenance and independent-EVM/maximum-state/provider/host limits.",
+    "New-graph shorter-prefix import is explicitly not implemented and financial-history remains In progress.",
+    "No material overclaim found in current REVIEW.md and VERIFICATION.md."
+  ],
+  "remaining_limits": [
+    "Artifact hash/operator approval is not a consensus/log-completeness proof.",
+    "Same-graph cursor advancement is implemented; new-graph rebuild may exceed retained raw-event/work bounds without future reviewed-prefix import/scaling.",
+    "Actual full runtimegraph/V10 handoff producer, expanded currencies/1000NFT/eightpredecessor budgets and operating adoption remain unqualified."
+  ],
+  "final_review": "No further blocking defect established in the final eight application sources and narrow delta.",
+  "no_reviewer_application_tests_RPC_funds_signing_or_live_environment_changes": true
+}

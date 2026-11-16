@@ -587,7 +587,7 @@ The data and services behind the app.
 
 <a id="task-financial-history"></a>
 
-- [ ] **[Qualify processed earnings & current-price USD](docs/EARNINGS_HISTORY.md)** - In progress. Fresh7 supports complete raw replay or explicit reviewed checkpoint2 retaining exact ETH/ZZZ trees, pending units/high-low phase/direct credits/ordinals and original-currency royalty4 tickets. Claims/conversions/imports are not income; a complete raw24-hour suffix remains mandatory. Historical checkpoint1 is6-only. Lineage/other consumers, raw archival/rotation/restore and actual lifetime workloads remain unqualified.
+- [ ] **[Qualify processed earnings & current-price USD](docs/EARNINGS_HISTORY.md)** - In progress. Fresh7 supports raw replay, original-deployment checkpoint2 and authenticated-lineage checkpoint3. One cumulative exact epoch cursor preserves LP trees/pending/high-low phase/direct credits and original-currency royalty tickets; completed local payout books remain separate. All later handoffs and the full24-hour window stay raw. Other consumers, future-graph prefix import, raw archival/restore and actual lifetime workloads remain unqualified.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -622,6 +622,7 @@ The data and services behind the app.
   - [Checkpoint2 implementation](reports/checkpoint2-manual-20261107/REVIEW.md): schema2 source/config/anchor binding, raw exact trees/rounding phase/direct credits, all-NFT owner/share/ticket/component/paid reconciliation, bounded offline build/advance and immutable per-request restores. Full-replay/suffix, actual producer frames and corruption/reorg/old-format/atomic-output controls retain separate source scopes. No predecessor support, automatic approval/pruning, service rollout or raised request limits. [Operator procedure](docs/EARNINGS_CHECKPOINTS.md).
   - [Mint2 website consumer](reports/v10-website-20261109/REVIEW.md): local schema5/source10/accounting7/mint2/V10/33-pin reads, unsigned ETH/ZZZ contributions and exact approvals, original-currency claims and checkpoint2 history. Synthetic current-handler/browser evidence; no actual market, OpenSea, wallet or operating acceptance. Source9/V9, null public configurations, signer and all running environments remain unchanged.
   - [Per-predecessor execution profiles](docs/FRONTEND_LINEAGE.md#execution-capability-at-historical-peers) now accept exact0/1 with omitted0 and never inherit the successor flag, preserving actual LP2/LP3 runtime admission and original0 provenance shape.38distinct lineage methods have composed passing evidence with an explicitly repaired legacy fixture; this is not a real mixed-runtime EVM cutover or one fresh all38run. Checkpoints still disallow lineage; no checkpoint source change from this fix.
+  - [Lineage checkpoint3 implementation](reports/lineage-checkpoints-20261116/REVIEW.md): configured accounting7 epochs retain exact profiles/anchors/receipt commitments and current-owner/lifetime accounting. Operating cursors may predate a recent replacement, avoiding a lost rolling-day window. Retired royalty live-backing views are not queried; full current-cursor payout reconciliation remains. Same-graph advancement, bounded suffixes, independent concurrent restores and historical1/2 formats are verified at explicit source stages. New source pins require reviewed rebuild; no live adoption or unchanged suite rerun. Offline import of an approved shorter-graph prefix is not implemented, so future graph rebuilds beyond raw/event/work bounds require separate reviewed scaling; financial-history remains In progress.
 
   </details>
 
@@ -1739,4 +1740,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `e2a377f2e71fa65772fc61cc35cc9031b0cd623f13f8a7503a499612acf1a770`.
+Snapshot SHA-256: `9788ec87305fb791f36dc0a1d3387e52e147ec187120c2840393f06ed0981fe0`.

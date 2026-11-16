@@ -47,11 +47,13 @@ funded liabilities, orphaned money, selected `rewardBucket` and
 `claimableComponents`. The exact-LP raw record format introduced in V9 is retained
 inside V10: matching imports preserve pending whole units/phase/direct credits,
 not a flattened index. The formats do not make V9 and V10 peers interchangeable.
-Fresh7 may use explicit reviewed checkpoint2 plus a complete raw24-hour suffix;
+Fresh7 may use reviewed checkpoint2 for an original deployment or checkpoint3
+for a complete configured lineage, plus a complete raw24-hour suffix;
 checkpoint1 remains rejected before restoring state. The exact raw trees, high/low
 phase, direct credits, immutable ordinals and royalty4 tickets are retained.
 [Setup and recovery](EARNINGS_CHECKPOINTS.md). Full raw history stays the default;
-lineage/other consumers, archival and actual workload qualification remain open.
+other consumers, future graph-prefix import, archival and actual workload
+qualification remain open.
 
 The historical accounting6/custody5/fee-intake1 earnings path can use a reviewed,
 source/configuration-bound immutable checkpoint plus bounded raw suffix. It
@@ -368,7 +370,8 @@ entire history endpoint during a token outage.
 History is operator-maintained evidence plus pinned RPC reconciliation, not a
 cryptographic proof that every log was ingested. Default full replay and opt-in
 checkpoint suffixes both retain request limits and fail without truncation.
-Explicit checkpoint1/2 address their respective single-deployment earnings replay, not all ownership/claim
-consumers, predecessor checkpoints, unattended rotation or raw archival. Backfill,
+Explicit checkpoint1/2 retain single-deployment earnings scope; checkpoint3 adds
+accounting7 lineage earnings. Other ownership/claim consumers, shorter-graph
+prefix import, unattended rotation and raw archival remain separate. Backfill,
 reorg/load/restore rehearsals, archive providers, current feeds and frontend
 display remain qualification work; the financial-history task is still in progress.

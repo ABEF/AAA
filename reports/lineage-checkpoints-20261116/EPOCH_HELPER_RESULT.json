@@ -1,0 +1,17 @@
+{
+  "history_validation_rule_AST_identical": true,
+  "raw_capture_tail_AST_identical": true,
+  "public_restore_AST_identical": true,
+  "source_sha256": {
+    "frontend_api/earnings_checkpoint.py": "fe47bb6c8df5a05526a6d53bfbf1d0e881d9792c4803bc1f11442f1e18aeb621",
+    "frontend_api/earnings_checkpoint_v2.py": "7dee675ca520ff0b84f368d479851a2e4194a830b33c59a3bced06387a714172",
+    "tests_python/test_earnings_checkpoint_epoch_helpers.py": "d70c0f96b537ed304af6a8ccd1603717a644edfb8ad5e5241ed1b1f2b7c7c32b"
+  },
+  "postfix_stage_1": "3 new capture methods passed;2 history methods failed due extracted currency closure omission.",
+  "postfix_stage_2": "Only the2 failed history methods passed after currency closure restoration; log preserved.",
+  "stage2_log_sha256": "d6a9b27c5e136727da2bbfeebd66db6762e851a2f2112272accef21d70ee4eef",
+  "stage2_pin_limit": "Harness selection variable shadowed pin paths after successful execution; pins captured after execution. No unchanged tests rerun.",
+  "unique_passes": 5,
+  "old_test_methods_executed": 0,
+  "public_or_local_RPC": 0
+}
