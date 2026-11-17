@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "baseline": "fdb7562bf56b11d8bade612fdaf7f9a54daf118a",
+  "phase": "new regression before fix",
+  "selected": [
+    "tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_advancing_head_reorg_cannot_release_orphaned_final_review",
+    "tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_healthy_advancing_head_keeps_frozen_transaction_without_resimulation"
+  ],
+  "tests_run": 2,
+  "failures": [
+    "tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_advancing_head_reorg_cannot_release_orphaned_final_review"
+  ],
+  "errors": [],
+  "skips": [],
+  "source_before": {
+    "zzz_ops/manual_lp_review.py": "232626539ad5a0f86e9eebf57987bfe8845c478906cc8c550fe077ffdd690b00",
+    "zzz_ops/management_review.py": "72ada1acf8d767096c1ae2041b3fc7b97b14decce233ee6d3791d2afe95acc35",
+    "frontend_api/service.py": "8c656d1d02ddc8ae6f42fd1cd74202416b6fa4fab8ac9d3aa9199a2624bc43d0",
+    "tests_python/test_manual_final_anchor.py": "47ecb0f400384956b8fd07e44094fc51772be8044ee87745fe040b5d380a558a",
+    "tests_python/test_manual_lp_review.py": "3db78ca9dceb6329af7dda354eb3508987f7d7a9bbb0c900d5d24350ebc5b7d8",
+    "docs/function-reference.json": "842ab25888d466a616e359f1d9a54b530cc1991f198f60a94b1ca0468516357b",
+    "docs/operator-call-examples.json": "a0d57bb6999da3ec319900f582e834621a2c454c938a7a331a8224d9f24662a4"
+  },
+  "source_after": {
+    "zzz_ops/manual_lp_review.py": "232626539ad5a0f86e9eebf57987bfe8845c478906cc8c550fe077ffdd690b00",
+    "zzz_ops/management_review.py": "72ada1acf8d767096c1ae2041b3fc7b97b14decce233ee6d3791d2afe95acc35",
+    "frontend_api/service.py": "8c656d1d02ddc8ae6f42fd1cd74202416b6fa4fab8ac9d3aa9199a2624bc43d0",
+    "tests_python/test_manual_final_anchor.py": "47ecb0f400384956b8fd07e44094fc51772be8044ee87745fe040b5d380a558a",
+    "tests_python/test_manual_lp_review.py": "3db78ca9dceb6329af7dda354eb3508987f7d7a9bbb0c900d5d24350ebc5b7d8",
+    "docs/function-reference.json": "842ab25888d466a616e359f1d9a54b530cc1991f198f60a94b1ca0468516357b",
+    "docs/operator-call-examples.json": "a0d57bb6999da3ec319900f582e834621a2c454c938a7a331a8224d9f24662a4"
+  },
+  "source_unchanged": true,
+  "rpc": "injected",
+  "live_chain_signer_or_service": false
+}

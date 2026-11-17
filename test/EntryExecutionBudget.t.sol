@@ -39,10 +39,19 @@ contract EntryExecutionBudgetTest is PooledVaultFixture {
         uint256 incumbent = activatedPosition(); uint256 bucket = vault.nftBucket(incumbent);
         uint256 originalShares = vault.sharesOf(incumbent);
         uint256 id = _mint(bob);
-        vm.expectRevert(); _activate(bob, id, 100, 0);
+        // One-sided100 at99% is valid. Use98% to test a real shortfall against
+        // this suite's explicitly governed99% floor, not an expected success.
+        venue.setSpendBps(9800);
+        vm.expectRevert(bytes4(keccak256("Slippage()"))); _activate(bob, id, 100, 0);
         assertEq(vault.sharesOf(incumbent), originalShares);
         assertEq(vault.group(bucket).idle0 + vault.group(bucket).idle1, 20);
         assertEq(vault.sharesOf(id), 0); assertEq(membership.totalEligible(), 1);
+        assertEq(bob.balance,1 ether-0.05 ether);assertFalse(oracle.contributionPricing().active());
+        venue.setSpendBps(9900);_activate(bob,id,100,0);
+        assertEq(vault.sharesOf(incumbent),originalShares);assertEq(vault.sharesOf(id),100e18);
+        assertEq(vault.group(bucket).idle0,11);assertEq(vault.group(bucket).idle1,10);
+        assertEq(venue.a0(vault.group(bucket).lpTokenId),1089);
+        assertEq(membership.totalEligible(),2);assertFalse(oracle.contributionPricing().active());
     }
     function testLaterContributionsAlsoRequireNinetyNinePercentDeployed() public {
         venue.setSpendBps(10000); uint256 id = activatedPosition();

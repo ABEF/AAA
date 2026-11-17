@@ -554,7 +554,10 @@ separate. No signer, service restart, deployment or setting change is performed.
    nonces or other controls refuse preparation. A failed latest retained guard
    refuses the artifact; there is no third simulation or fallback loop.
 6. Revalidate through the actual operator wallet immediately before any separate
-   signing decision. The last head/deadline check follows slow RPC work, but later
+   signing decision. After the last head read, the tool re-reads the exact final
+   simulation height, even when the head advanced. An orphaned simulation anchor
+   refuses the review with `final_anchor_changed`; a healthy new head does not
+   by itself invalidate the review. The last checks follow slow RPC work, but later
    market changes, reorgs, local I/O and inclusion remain outside an atomic
    off-chain guarantee. Preserve the existing pending hash/nonce on ambiguity.
 

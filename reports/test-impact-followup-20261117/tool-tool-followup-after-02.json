@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "phase": "Three genuinely corrected between-anchor management cases plus two new actual management anchor checks",
+  "selected": [
+    "tests_python.test_management_review.ManagementReviewTests.test_healthy_market_change_preserves_exact_floor_deadline_hash_and_gas",
+    "tests_python.test_management_review.ManagementReviewTests.test_custody_change_stops_before_final_simulation",
+    "tests_python.test_management_review.ManagementReviewTests.test_allocation_cursor_and_distribution_owner_drift_require_new_review",
+    "tests_python.test_manual_final_anchor.ManagementFinalAnchorTests.test_management_already_rechecks_final_anchor_after_advancing_head",
+    "tests_python.test_manual_final_anchor.ManagementFinalAnchorTests.test_management_healthy_head_advancement_keeps_original_review"
+  ],
+  "executed": [
+    "tests_python.test_management_review.ManagementReviewTests.test_healthy_market_change_preserves_exact_floor_deadline_hash_and_gas",
+    "tests_python.test_management_review.ManagementReviewTests.test_custody_change_stops_before_final_simulation",
+    "tests_python.test_management_review.ManagementReviewTests.test_allocation_cursor_and_distribution_owner_drift_require_new_review",
+    "tests_python.test_manual_final_anchor.ManagementFinalAnchorTests.test_management_already_rechecks_final_anchor_after_advancing_head",
+    "tests_python.test_manual_final_anchor.ManagementFinalAnchorTests.test_management_healthy_head_advancement_keeps_original_review"
+  ],
+  "tests_run": 5,
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "source_before": {
+    "zzz_ops/manual_lp_review.py": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e",
+    "zzz_ops/management_review.py": "72ada1acf8d767096c1ae2041b3fc7b97b14decce233ee6d3791d2afe95acc35",
+    "zzz_ops/management_custody.py": "7be6440b45c35bfcf43b6dd94f40c271c6dd9fa1519c1fcbc66a2df8fe0bac0f",
+    "zzz_ops/management_exit.py": "cbecf0656a38a516769876376ed4415643033009e3ee4d157f8c940fe2e0ec74",
+    "tests_python/test_management_review.py": "b57b25f6c8162ea42c70b434943f90aa7be93c9dffcb21ee2dd88a1b8f5d62ff",
+    "tests_python/test_manual_final_anchor.py": "3004be81af863b03eba9711f45dd59b277978d5ae60f82a84749fe757e9d15ad",
+    "tests_python/test_manual_lp_review.py": "3db78ca9dceb6329af7dda354eb3508987f7d7a9bbb0c900d5d24350ebc5b7d8",
+    "docs/function-reference.json": "842ab25888d466a616e359f1d9a54b530cc1991f198f60a94b1ca0468516357b"
+  },
+  "source_after": {
+    "zzz_ops/manual_lp_review.py": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e",
+    "zzz_ops/management_review.py": "72ada1acf8d767096c1ae2041b3fc7b97b14decce233ee6d3791d2afe95acc35",
+    "zzz_ops/management_custody.py": "7be6440b45c35bfcf43b6dd94f40c271c6dd9fa1519c1fcbc66a2df8fe0bac0f",
+    "zzz_ops/management_exit.py": "cbecf0656a38a516769876376ed4415643033009e3ee4d157f8c940fe2e0ec74",
+    "tests_python/test_management_review.py": "b57b25f6c8162ea42c70b434943f90aa7be93c9dffcb21ee2dd88a1b8f5d62ff",
+    "tests_python/test_manual_final_anchor.py": "3004be81af863b03eba9711f45dd59b277978d5ae60f82a84749fe757e9d15ad",
+    "tests_python/test_manual_lp_review.py": "3db78ca9dceb6329af7dda354eb3508987f7d7a9bbb0c900d5d24350ebc5b7d8",
+    "docs/function-reference.json": "842ab25888d466a616e359f1d9a54b530cc1991f198f60a94b1ca0468516357b"
+  },
+  "source_unchanged": true,
+  "rpc": "injected",
+  "new_methods": 2,
+  "adapted_methods": 3,
+  "unchanged_methods_executed": 0,
+  "live_chain_signer_or_service": false
+}

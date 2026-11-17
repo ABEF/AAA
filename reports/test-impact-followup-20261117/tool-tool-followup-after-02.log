@@ -1,0 +1,10 @@
+test_healthy_market_change_preserves_exact_floor_deadline_hash_and_gas (tests_python.test_management_review.ManagementReviewTests.test_healthy_market_change_preserves_exact_floor_deadline_hash_and_gas) ... ok
+test_custody_change_stops_before_final_simulation (tests_python.test_management_review.ManagementReviewTests.test_custody_change_stops_before_final_simulation) ... ok
+test_allocation_cursor_and_distribution_owner_drift_require_new_review (tests_python.test_management_review.ManagementReviewTests.test_allocation_cursor_and_distribution_owner_drift_require_new_review) ... ok
+test_management_already_rechecks_final_anchor_after_advancing_head (tests_python.test_manual_final_anchor.ManagementFinalAnchorTests.test_management_already_rechecks_final_anchor_after_advancing_head) ... ok
+test_management_healthy_head_advancement_keeps_original_review (tests_python.test_manual_final_anchor.ManagementFinalAnchorTests.test_management_healthy_head_advancement_keeps_original_review) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 10.468s
+
+OK

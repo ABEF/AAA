@@ -1,0 +1,3 @@
+Error: Compiler run failed:
+Error: Yul exception:Cannot swap Variable _54 with Variable expr_134755_component_2: too deep in the stack by 1 slots in [ RET var_aliceETH var_ids_134627_mpos _54 var_ordinal var_nextZZZ var_aliceZZZ var_s_134608_mpos var_cumulative var_id var_supply var_carolZZZ var_carolETH expr_134755_component_1 var_nextETH var_priorZZZ var_priorETH expr_134755_component_3 expr_134755_component _52 expr_134755_component_2 ]
+memoryguard was present.

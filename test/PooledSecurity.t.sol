@@ -105,12 +105,21 @@ contract PooledSecurityTest is PooledVaultFixture {
         uint256 first=activatedPosition();uint256 second=_mint(bob);uint256 bucket=vault.nftBucket(first);
         Position memory beforeState=vault.group(bucket);uint256 oldShares=vault.bucketTotalShares(bucket);
         assertEq(beforeState.idle0+beforeState.idle1,20);
-        // $100 supplied, but the 99% venue deploys less than $99 of marginal
-        // entrant LP even though it also deploys some incumbents' idle assets.
-        vm.prank(bob);vm.expectRevert();vault.activate{value:50}(second, poolId, 50, 50, 1, block.timestamp+100);
+        // The current floor is97%, not the historical99%. Per-asset rounding
+        // at9700bps deploys48+48=96 of this100; old20idle cannot cover the gap.
+        venue.setSpendBps(9700);
+        vm.prank(bob);vm.expectRevert(bytes4(keccak256("Slippage()")));vault.activate{value:50}(second, poolId, 50, 50, 1, block.timestamp+100);
         assertEq(vault.nftBucket(second),0);assertEq(vault.sharesOf(second),0);
         assertEq(vault.bucketTotalShares(bucket),oldShares);assertEq(bob.balance,1 ether-0.05 ether);
         assertEq(vault.group(bucket).idle0,beforeState.idle0);assertEq(vault.group(bucket).lpTokenId,beforeState.lpTokenId);
+        assertEq(t1.balanceOf(bob),100000);assertFalse(membership.eligible(second));
+        assertFalse(oracle.contributionPricing().active());
+        venue.setSpendBps(9800);_activate(bob,second,50,50);
+        assertEq(venue.a0(beforeState.lpTokenId),1039);assertEq(venue.a1(beforeState.lpTokenId),1039);
+        assertEq(vault.group(bucket).idle0,11);assertEq(vault.group(bucket).idle1,11);
+        assertEq(vault.sharesOf(first),oldShares);assertEq(vault.sharesOf(second),100e18);
+        assertEq(vault.group(bucket).lastRebalance,beforeState.lastRebalance);
+        assertEq(vault.bucketCount(),1);assertTrue(membership.eligible(second));
     }
 
     function testUnattributedDonationsCannotDiluteIncumbentsOrInflateEntryPrice() public {

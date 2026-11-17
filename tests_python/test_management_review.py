@@ -89,15 +89,20 @@ class ManagementReviewTests(unittest.TestCase):
 
     def test_healthy_market_change_preserves_exact_floor_deadline_hash_and_gas(self):
         self.request.update(action='close_residual',parameters={'bucket':'7','minimum0':'13','minimum1':'17'})
-        self.rpc.after_estimate=lambda:setattr(self.h.q,'tick',50)
+        transitions=[]
+        def move():
+            transitions.append(len(self.rpc.simulations));self.h.q.tick=50
+        self.rpc.after_initial_exact=move
         out=self.prepare()
+        self.assertEqual([2],transitions)
         self.assertNotEqual(out['snapshot']['market_observations'],out['final_snapshot']['market_observations'])
         self.assertEqual('13',out['arguments']['r']['minimum0']);self.assertEqual('17',out['arguments']['r']['minimum1'])
         self.assertEqual('4180',out['arguments']['r']['deadline'])
 
     def test_custody_change_stops_before_final_simulation(self):
-        self.rpc.after_estimate=lambda:self.h.put('principal_exit','parkingNonce(uint256)',6,7)
-        with self.assertRaisesRegex(ManagementBlocked,'changed'):self.prepare()
+        self.rpc.after_initial_exact=lambda:self.h.put('principal_exit','parkingNonce(uint256)',6,7)
+        with self.assertRaisesRegex(ManagementBlocked,'changed') as caught:self.prepare()
+        self.assertEqual('final_snapshot',caught.exception.management_stage)
         self.assertEqual(2,len(self.rpc.simulations));self.assertEqual(1,len(self.rpc.estimates))
 
     def test_frozen_gas_never_increases_after_a_larger_final_estimate(self):
@@ -134,12 +139,14 @@ class ManagementReviewTests(unittest.TestCase):
 
     def test_allocation_cursor_and_distribution_owner_drift_require_new_review(self):
         self.use_exit('allocate_principal')
-        self.rpc.after_estimate=lambda:self.x.put('principal_exit','allocationCursor()',2)
-        with self.assertRaises((ValueError,RpcError)):self.prepare()
+        self.rpc.after_initial_exact=lambda:self.x.put('principal_exit','allocationCursor()',2)
+        with self.assertRaises((ValueError,RpcError)) as caught:self.prepare()
+        self.assertEqual('final_snapshot',caught.exception.management_stage)
         self.use_exit('distribute_principal')
         from tests_python.test_frontend_api import addr
-        self.rpc.after_estimate=lambda:self.x.put('nft','ownerOf(uint256)',addr(88),self.x.ids[0])
-        with self.assertRaisesRegex(ManagementBlocked,'changed'):self.prepare()
+        self.rpc.after_initial_exact=lambda:self.x.put('nft','ownerOf(uint256)',addr(88),self.x.ids[0])
+        with self.assertRaisesRegex(ManagementBlocked,'changed') as caught:self.prepare()
+        self.assertEqual('final_snapshot',caught.exception.management_stage)
 
     def test_expiry_reorg_and_late_tip_are_not_retried(self):
         self.request['expires_at']='4010'

@@ -159,4 +159,62 @@ class KeeperMaintenanceClockTests(unittest.TestCase):
             self.assertEqual(0,k.skipped_buckets);self.assertEqual(0,k.blocked_actions)
 
 
+class KeeperHarvestSubmissionFlowTests(unittest.TestCase):
+    """Reach actual submit/preflight, not a mocked scheduling callback."""
+    def setUp(self):
+        temporary=tempfile.TemporaryDirectory();self.addCleanup(temporary.cleanup)
+        self.rpc=CurrentCycleRPC(Path(temporary.name)/'current7.json')
+        self.k=Keeper(self.rpc.cfg,rpc=self.rpc)
+        self.k.state['last']['harvest:7']=self.rpc.now-3590
+        self.jobs=[];self.output='0x'
+        original=self.rpc.call
+
+        def call(method,params):
+            if method=='eth_call' and 'from' in params[0]:
+                self.jobs.append((method,copy.deepcopy(params)))
+                return self.output
+            if method=='eth_estimateGas':
+                self.jobs.append((method,copy.deepcopy(params)))
+            return original(method,params)
+
+        self.rpc.call=call
+
+    def run_cycle(self):
+        def slow_price_failure(*args,**kwargs):
+            self.rpc.now+=20
+            raise RpcError('inert price-dependent maintenance failure')
+        with patch.object(self.k,'_rebalance_due',side_effect=slow_price_failure), \
+                patch('keeper.monitor.time.time',side_effect=lambda:self.rpc.now), \
+                patch('keeper.monitor.log') as events, \
+                patch('keeper.monitor.subprocess.run',side_effect=AssertionError('signer')):
+            self.k.cycle()
+        return events
+
+    def test_price_fault_then_due_harvest_reaches_actual_bounded_dry_run(self):
+        before=copy.deepcopy(self.k.state['last'])
+        events=self.run_cycle()
+        self.assertEqual(['eth_call','eth_estimateGas'],[m for m,_ in self.jobs])
+        expected=calldata('collectFees(uint256,uint256)',7,self.rpc.now+180)
+        for _,params in self.jobs:
+            self.assertEqual(self.k.contracts['vault'],params[0]['to'])
+            self.assertEqual(expected,params[0]['data'])
+            self.assertEqual(hex(self.rpc.cfg['max_gas_limit']),params[0]['gas'])
+        dry=[call for call in events.call_args_list if call.args[0]=='dry_run']
+        self.assertEqual(1,len(dry));self.assertEqual('harvest:7',dry[0].kwargs['action'])
+        self.assertEqual('within_configured_caps',self.k.gas_review_health['last_review']['state'])
+        self.assertEqual(before,self.k.state['last'])
+        self.assertIsNone(self.k.state['pending']);self.assertEqual({},self.k.state['spent'])
+        self.assertEqual(0,self.k.skipped_buckets)
+
+    def test_bad_harvest_simulation_is_not_completion_or_a_clock_update(self):
+        self.output='0x'+'0'*64
+        before=copy.deepcopy(self.k.state['last'])
+        events=self.run_cycle()
+        self.assertEqual(['eth_call'],[m for m,_ in self.jobs])
+        self.assertFalse(any(call.args[0]=='dry_run' for call in events.call_args_list))
+        self.assertEqual(1,self.k.skipped_buckets)
+        self.assertEqual(before,self.k.state['last'])
+        self.assertIsNone(self.k.state['pending']);self.assertEqual({},self.k.state['spent'])
+
+
 if __name__=='__main__':unittest.main()

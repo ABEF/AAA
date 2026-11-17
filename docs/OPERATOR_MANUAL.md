@@ -850,6 +850,17 @@ own amounts; old idle/compound stays attributed for guarded maintenance and in
 incumbent share NAV. Retained idle still backs the same bucket. There is no
 general clear/sweep or operator dust recipient.
 
+A top-up can also reject when its checkpoint would release accumulated incumbent
+compound into idle above the entry idle ceiling. The new user's funds must not
+be used to deploy that older backing. A rejected transaction restores funds and
+reserve accounting; network gas remains spent. Read the bucket's idle/compound
+and readiness first. When ordinary maintenance is eligible, the authorized
+keeper calls `Compounder.compound(bucketId,minimumLiquidity,deadline)` with a
+positive raw-liquidity floor and fresh absolute deadline, then prepare the
+contribution again. If ordinary compounding is blocked by current geometry or
+timing, use the applicable reviewed LP recovery/rebalance procedure. Never
+silently loosen limits or turn a failed user contribution into forced maintenance.
+
 ### Restore a buyback venue after collective exit
 
 Use this only once `Migration.exitPhase()==3` (`Ready`). Every LP bucket is
@@ -4062,6 +4073,13 @@ snapshots, complete simulations and separate gas review. You explicitly choose
 floors, ticks, swap and retained safeguards; failed guarded work never switches
 to force. Healthy market motion is re-simulated, not silently re-priced by
 changing your inputs. Custody/settings changes require a new preparation.
+
+The preparer rechecks the exact simulated block after its last head read,
+including when a newer head appears. `final_anchor_changed` means discard
+that candidate and prepare again from current canonical state; do not extend
+its expiry or edit the saved artifact. Healthy head advancement can pass.
+These separate reads are not an atomic guarantee against later reorgs or
+market changes; repeat exact validation through the authorized wallet.
 
 No key, nonce, signer or pending journal is accessed. Output is a review candidate,
 not production approval or a submission instruction; verify the current network,

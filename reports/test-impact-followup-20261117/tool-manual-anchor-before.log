@@ -1,0 +1,16 @@
+test_advancing_head_reorg_cannot_release_orphaned_final_review (tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_advancing_head_reorg_cannot_release_orphaned_final_review) ... FAIL
+test_healthy_advancing_head_keeps_frozen_transaction_without_resimulation (tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_healthy_advancing_head_keeps_frozen_transaction_without_resimulation) ... ok
+
+======================================================================
+FAIL: test_advancing_head_reorg_cannot_release_orphaned_final_review (tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_advancing_head_reorg_cannot_release_orphaned_final_review)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_manual_final_anchor.py", line 41, in test_advancing_head_reorg_cannot_release_orphaned_final_review
+    with self.assertRaises(M.ManualReadBlocked) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ManualReadBlocked not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 4.756s
+
+FAILED (failures=1)

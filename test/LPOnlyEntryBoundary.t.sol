@@ -79,12 +79,14 @@ contract LPOnlyEntryBoundaryTest is PooledVaultFixture {
         assertEq(fees.accounted(address(t1)),0);
         assertEq(fees.accounted(address(0)),0);
         assertEq(rewards.liabilities(address(t1)),19);
-        assertEq(rewards.liabilities(address(0)),0);
+        assertEq(rewards.liabilities(address(0)),19);
         (uint256 treeWeight,,)=rewards.allocationTree(0);assertEq(treeWeight,2);
         assertEq(rewards.orphaned(address(t1)),0);
         assertEq(t1.balanceOf(address(fees)),211);
         assertEq(t1.balanceOf(address(rewards)),242);
-        assertEq(address(fees).balance,17);assertEq(address(rewards).balance,29);
+        // ETH is now the first principal/fee asset. Its19 earned dust units
+        // remain backed in addition to the29-unit unaccounted callback gift.
+        assertEq(address(fees).balance,17);assertEq(address(rewards).balance,48);
         assertGt(vault.sharesOf(entrant),0);
         assertFalse(oracle.contributionPricing().active());
     }

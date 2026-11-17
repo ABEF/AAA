@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "distinct_selected_passes": 29,
+  "groups": {
+    "tools": [
+      "tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_advancing_head_reorg_cannot_release_orphaned_final_review",
+      "tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_healthy_advancing_head_keeps_frozen_transaction_without_resimulation",
+      "tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_parked_emergency_reorg_uses_the_same_final_anchor_refusal",
+      "tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_reorg_cli_reports_the_cause_without_publishing_an_artifact",
+      "tests_python.test_keeper_maintenance_clock.KeeperHarvestSubmissionFlowTests.test_price_fault_then_due_harvest_reaches_actual_bounded_dry_run",
+      "tests_python.test_keeper_maintenance_clock.KeeperHarvestSubmissionFlowTests.test_bad_harvest_simulation_is_not_completion_or_a_clock_update",
+      "tests_python.test_management_review.ManagementReviewTests.test_healthy_market_change_preserves_exact_floor_deadline_hash_and_gas",
+      "tests_python.test_management_review.ManagementReviewTests.test_custody_change_stops_before_final_simulation",
+      "tests_python.test_management_review.ManagementReviewTests.test_allocation_cursor_and_distribution_owner_drift_require_new_review",
+      "tests_python.test_manual_final_anchor.ManagementFinalAnchorTests.test_management_already_rechecks_final_anchor_after_advancing_head",
+      "tests_python.test_manual_final_anchor.ManagementFinalAnchorTests.test_management_healthy_head_advancement_keeps_original_review"
+    ],
+    "physical": [
+      "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest.testAuxiliaryBurnFailureRollsBackWholeMerge()",
+      "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest.testBothLegsHarvestWithoutReplacingEitherPosition()",
+      "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest.testSecondMintFailureRollsBackOldPrincipalFeesAndCustody()"
+    ],
+    "rights": [
+      "test/RightsImpactFollowup20261117.t.sol:RightsImpactFollowup20261117Test.testImpactLastRoyaltyCurrencyFailureRollsBackCrossNFTCrossLedgerClaimsThenDrains()",
+      "test/RightsImpactFollowup20261117.t.sol:RightsImpactFollowup20261117Test.testImpactTinyHarvestCheckpointsExitTransfersAndFutureRoyaltiesDrainEveryUnit()"
+    ],
+    "lp": [
+      "test/EntryExecutionBudget.t.sol:EntryExecutionBudgetTest.testIncumbentIdleCannotSubsidizeNewNFTsExecutionBudget()",
+      "test/LPFixtureImpact20261117.t.sol:EntryFixtureImpact20261117Test.testEntryPullApprovalAndFinalResetActuallyInvokeRejectedFeedChanges()",
+      "test/LPFixtureImpact20261117.t.sol:LPFixtureImpact20261117Test.testFullCapacityMoveMintFaultRollsBackThenMoveAndReturnRemainFunded()",
+      "test/LPFixtureImpact20261117.t.sol:LPFixtureImpact20261117Test.testMarginal97BoundaryWithIncumbentIdleCompoundAndAtomicRetry()",
+      "test/LPFixtureImpact20261117.t.sol:LPFixtureImpact20261117Test.testPartialClaimsTransferGrowthAndNextHarvestKeepBothAssetsExact()",
+      "test/LPFixtureImpact20261117.t.sol:LPFixtureImpact20261117Test.testPullCallbackMustReachBothFeedMutationsAndRejectWithTypedStateError()",
+      "test/LPOnlyEntryBoundary.t.sol:LPOnlyEntryBoundaryTest.testLPPlacementDonationAndCallbackCannotCreateCrossBucketRevenue()",
+      "test/LPOnlyEntryBoundary.t.sol:LPOnlyEntryBoundaryTest.testTokenPullDonationAndCallbackCannotCreateCrossBucketRevenue()",
+      "test/PooledSecurity.t.sol:PooledSecurityTest.testIncumbentIdleCannotSatisfyNewNFTDeployedMinimum()",
+      "test/PortfolioAccounting.t.sol:PortfolioAccountingTest.testCapturedPolicyChangeAbortsMaintenance()",
+      "test/PortfolioAccounting.t.sol:PortfolioAccountingTest.testMainFloorRoundsRequiredValueUp()",
+      "test/PortfolioAccounting.t.sol:PortfolioAccountingTest.testSamePairPoolMoveKeepsOriginalObservationControl()",
+      "test/PortfolioAccounting.t.sol:PortfolioAccountingTest.testStandaloneCompoundDoesNotEnforceReplacementOnlyMainFloor()"
+    ]
+  },
+  "scope": "Finite observations at explicit source stages; not full branch/suite/market qualification",
+  "unchanged_full_suites_rerun": false,
+  "rename_only_not_counted": true
+}

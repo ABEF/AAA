@@ -48,6 +48,14 @@ the existing `./deployments` write scope and disabled FFI remain. The final
 normal build records and verifies this exact configuration delta separately
 from compiler settings and production source changes.
 
+After repairing a shared fixture, trace import/inheritance consumers and
+the intended production branches before carrying any old evidence forward.
+Check current percentage/unit expectations and callback timing; a generic
+revert or a passing setup does not establish the advertised failure. Use
+focused cross-action/physical checks for genuinely affected paths and keep
+inventory, source review and execution distinct. See the
+[impact follow-up](../reports/test-impact-followup-20261117/REVIEW.md).
+
 For current native financial fixtures, keep their execution interfaces current
 and forward actual accounting/guard math rather than returning unconditional
 success. Fund synthetic exchange/fee cash during explicit setup; do not change

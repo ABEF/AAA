@@ -63,7 +63,7 @@ contract RoyaltyLaunchWindowTest is Test {
         vm.warp(opening);vm.prank(alice);vm.expectRevert();r.claim(1,address(0));
         vm.prank(bob);assertEq(r.claim(1,address(0)),6 ether);
     }
-    function testRescheduleOnlyDuringMintAndAlwaysFullDay() public {
+    function testRescheduleOnlyDuringMintAndAlwaysFullHour() public {
         vm.warp(end);vm.prank(address(nft));r.setMintEnd(end+300);
         assertEq(r.royaltiesOpenAt(),opening+300);
         vm.warp(end+301);vm.prank(address(nft));vm.expectRevert();r.setMintEnd(end+600);

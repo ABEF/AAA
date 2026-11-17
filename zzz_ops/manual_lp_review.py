@@ -562,11 +562,13 @@ def prepare(read_config,policy,request,*,rpc=None,clock=None,catalog=None):
             stage='final_simulation'
             final_simulation=simulation(p,latest,final_block,tx,fee,confirmed=False,execution_gas=execution_gas)
             stage='final_canonicality'
-            if p._header(hex(latest['number']))!=latest:raise ManualReadBlocked('final_anchor_changed','Final manual control head changed')
             p._finish(header)
             last_number=rpc_quantity(p.rpc.call('eth_blockNumber',[]),'manual last head')
             last_head=p._header(hex(last_number));p._fresh(last_head)
-            if last_number==latest['number'] and last_head!=latest:
+            # A newer head can be on a fork that orphaned the simulated tip
+            # while preserving the older confirmed snapshot. Recheck the exact
+            # simulation anchor after reading that last head, at any height.
+            if p._header(hex(latest['number']))!=latest:
                 raise ManualReadBlocked('final_anchor_changed','Final manual control head changed after simulation')
             if (last_number<latest['number'] or last_head['timestamp']<latest['timestamp'] or
                     not last_head['timestamp']<=s['deadline']<=last_head['timestamp']+600):

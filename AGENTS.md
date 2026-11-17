@@ -1,6 +1,6 @@
 # AAA / ZZZ PoPL project instructions
 
-The [test and irreversible-setup review](reports/test-seal-deep-review-20261117/REVIEW.md) individually assesses the earlier30 and later29 focused methods, strengthens weak assertions and repairs stale execution fixtures. Fresh source rejects foreign-home Vaults, bare artwork schemes and incorrect new reservation IDs; existing pool-move aliases remain. The current trusted build is seal-boundaries-20261117. OpenSea minting still uses the NFT metadata root. Selected-release bindings, content, provider/market/operating qualification and independent approval remain open; no live environment is changed.
+The [repaired-test impact follow-up](reports/test-impact-followup-20261117/REVIEW.md) traces affected fixtures into LP maintenance, rewards, recovery, keeper submission and manual preparation. It fixes a late manual-review reorg race and stale test expectations, with source-scoped behavioral checks rather than a claimed full-suite pass. All61 Solidity sources, financial rights/defaults and live environments remain unchanged. The trusted build remains seal-boundaries-20261117; actual dependencies, operating qualification and independent approval remain open.
 
 The [unsigned pre-seal planner](reports/preseal-planner-20261116/REVIEW.md) now prepares twelve ordered configuration
 families against the trusted current ABI. Unknown own/dependent inputs retain

@@ -350,9 +350,15 @@ contract OptionalPortfolioCoreTest is Test {
         uint256 shares=vault.sharesOf(id);_move(uint160(uint256(Q96)*83/100));vm.warp(block.timestamp+43200);_prices();
         for(uint256 i;i<3;++i){strategy.rebalanceConfirmation().observe(bucket);vm.warp(block.timestamp+240);_prices();}
         strategy.rebalanceConfirmation().observe(bucket);uint256 next=positions.nextTokenId();positions.failAt(next+1,0);
-        vm.expectRevert();vault.rebalance(bucket,1,block.timestamp+100);
+        uint256[8] memory cash=_impactCash();
+        vm.expectRevert(OptionalPositions.IntentionalMintFailure.selector);vault.rebalance(bucket,1,block.timestamp+100);
         assertEq(vault.group(bucket).lpTokenId,old);assertEq(positions.getPositionLiquidity(old),oldL);
         assertEq(vault.sharesOf(id),shares);assertEq(manager.activeSecondaryCount(),0);assertEq(positions.nextTokenId(),next);
+        _assertImpactCash(cash);
+        positions.failAt(0,0);vault.rebalance(bucket,1,block.timestamp+100);
+        uint256 replacement=vault.group(bucket).lpTokenId;
+        assertTrue(replacement!=old);assertGt(manager.secondaryId(replacement),0);
+        assertEq(vault.sharesOf(id),shares);
     }
     function testGrowingMainPreservesAuxiliaryAndClocks()public{
         (uint256 id,uint256 bucket,uint256 main,uint256 aux)=_hybrid();
@@ -424,17 +430,52 @@ contract OptionalPortfolioCoreTest is Test {
         (,uint256 bucket,uint256 main,uint256 aux)=_hybrid();uint128 beforeMain=positions.getPositionLiquidity(main);
         uint128 beforeAux=positions.getPositionLiquidity(aux);policy.setMode(pool,false,keccak256("TEST SINGLE"));
         vm.warp(block.timestamp+43200);_prices();positions.failAt(0,aux);
-        vm.expectRevert();vault.rebalance(bucket,1,block.timestamp+100);
+        uint256[8] memory cash=_impactCash();
+        vm.expectRevert(OptionalPositions.IntentionalBurnFailure.selector);vault.rebalance(bucket,1,block.timestamp+100);
         assertEq(vault.group(bucket).lpTokenId,main);assertEq(manager.secondaryId(main),aux);
         assertEq(positions.getPositionLiquidity(main),beforeMain);assertEq(positions.getPositionLiquidity(aux),beforeAux);
         assertEq(manager.activeSecondaryCount(),1);
+        _assertImpactCash(cash);
+        positions.failAt(0,0);vault.rebalance(bucket,1,block.timestamp+100);
+        uint256 replacement=vault.group(bucket).lpTokenId;
+        assertTrue(replacement!=main);assertEq(manager.secondaryId(replacement),0);
+        assertEq(manager.activeSecondaryCount(),0);
+    }
+    function _impactCash()private view returns(uint256[8] memory v){
+        v=[address(core).balance,token.balanceOf(address(core)),address(vault).balance,token.balanceOf(address(vault)),
+            address(rewards).balance,token.balanceOf(address(rewards)),address(fees).balance,token.balanceOf(address(fees))];
+    }
+    function _assertImpactCash(uint256[8] memory beforeCash)private view{
+        uint256[8] memory afterCash=_impactCash();
+        for(uint256 i;i<8;++i)assertEq(afterCash[i],beforeCash[i],"failed operation changed real custody cash");
+    }
+    function _impactFees(uint256 id,uint256 bucket)private view returns(uint256[14] memory v){
+        uint256[8] memory cash=_impactCash();
+        for(uint256 i;i<2;++i){
+            address asset=i==0?address(0):address(token);
+            v[i]=cash[i];v[i+2]=cash[i+4];v[i+4]=cash[i+6];
+            v[i+6]=rewards.claimable(id,asset);v[i+8]=fees.compoundBalance(bucket,asset);
+            v[i+10]=fees.buybackBalance(asset);v[i+12]=fees.dust(bucket,asset);
+        }
     }
     function testBothLegsHarvestWithoutReplacingEitherPosition()public{
         (uint256 id,uint256 bucket,uint256 main,uint256 aux)=_hybrid();
         // Reverse enough to enter the ETH residual without crossing the main boundary.
         _move(uint160(uint256(Q96)*88/100));core.unlock(abi.encode(uint8(2),Q96));
         uint128 lm=positions.getPositionLiquidity(main);uint128 la=positions.getPositionLiquidity(aux);
+        uint256[14] memory beforeFees=_impactFees(id,bucket);
         vault.collectFees(bucket,block.timestamp+100);
+        uint256[14] memory afterFees=_impactFees(id,bucket);
+        for(uint256 i;i<2;++i){
+            uint256 received=beforeFees[i]-afterFees[i];assertGt(received,0,"no actual core fee receipt");
+            uint256 tranches=(received+beforeFees[i+12])/20;
+            assertEq(afterFees[i+12],(received+beforeFees[i+12])%20);
+            assertEq(afterFees[i+8]-beforeFees[i+8],tranches,"compound share");
+            assertEq(afterFees[i+10]-beforeFees[i+10],tranches,"buyback share");
+            assertEq(afterFees[i+6]-beforeFees[i+6],tranches*18,"sole incumbent 80+10 share");
+            assertEq(afterFees[i+2]-beforeFees[i+2],tranches*18,"funded reward receipt");
+            assertEq(afterFees[i+4]+tranches*18,beforeFees[i+4]+received,"fee cash conservation");
+        }
         for(uint256 j;j<2;++j){
             uint256 lp=j==0?main:aux;(int24 l,int24 u)=manager.ticks(lp);
             (,uint256 f0,uint256 f1)=state.getPositionInfo(PoolId.wrap(pool),address(positions),l,u,bytes32(lp));
@@ -444,6 +485,9 @@ contract OptionalPortfolioCoreTest is Test {
         assertEq(positions.getPositionLiquidity(main),lm);assertEq(positions.getPositionLiquidity(aux),la);
         uint256 beforeETH=ALICE.balance;vm.prank(ALICE);rewards.claim(id,address(0));assertGt(ALICE.balance,beforeETH);
         uint256 paid=ALICE.balance;vm.prank(ALICE);rewards.claim(id,address(0));assertEq(ALICE.balance,paid);
+        uint256 owedZZZ=rewards.claimable(id,address(token));assertGt(owedZZZ,0);
+        uint256 beforeZZZ=token.balanceOf(ALICE);vm.prank(ALICE);assertEq(rewards.claim(id,address(token)),owedZZZ);
+        assertEq(token.balanceOf(ALICE)-beforeZZZ,owedZZZ);assertEq(rewards.claimable(id,address(token)),0);
     }
     function testCollectiveExitClosesBothAndDirectlyPaysHolderKeepingRoyalties()public{
         (uint256 id,uint256 bucket,uint256 main,uint256 aux)=_hybrid();_finishRoyaltyWindow();access.setPaused(true);

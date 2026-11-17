@@ -175,3 +175,6 @@ reports/market-followup-20261109/**/*.raw whitespace=cr-at-eol,-blank-at-eol,-bl
 
 # Preserve exact test-validity, immutable-setup and original failure observations.
 reports/test-seal-deep-review-20261117/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact repaired-test impact observations and original failures.
+reports/test-impact-followup-20261117/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

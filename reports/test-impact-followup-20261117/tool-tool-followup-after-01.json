@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "baseline": "fdb7562bf56b11d8bade612fdaf7f9a54daf118a",
+  "phase": "New meaningful regression and actual keeper submission-flow checks after manual anchor fix",
+  "selected": [
+    "tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_advancing_head_reorg_cannot_release_orphaned_final_review",
+    "tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_healthy_advancing_head_keeps_frozen_transaction_without_resimulation",
+    "tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_parked_emergency_reorg_uses_the_same_final_anchor_refusal",
+    "tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_reorg_cli_reports_the_cause_without_publishing_an_artifact",
+    "tests_python.test_keeper_maintenance_clock.KeeperHarvestSubmissionFlowTests.test_price_fault_then_due_harvest_reaches_actual_bounded_dry_run",
+    "tests_python.test_keeper_maintenance_clock.KeeperHarvestSubmissionFlowTests.test_bad_harvest_simulation_is_not_completion_or_a_clock_update"
+  ],
+  "executed": [
+    "tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_advancing_head_reorg_cannot_release_orphaned_final_review",
+    "tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_healthy_advancing_head_keeps_frozen_transaction_without_resimulation",
+    "tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_parked_emergency_reorg_uses_the_same_final_anchor_refusal",
+    "tests_python.test_manual_final_anchor.ManualFinalAnchorTests.test_reorg_cli_reports_the_cause_without_publishing_an_artifact",
+    "tests_python.test_keeper_maintenance_clock.KeeperHarvestSubmissionFlowTests.test_price_fault_then_due_harvest_reaches_actual_bounded_dry_run",
+    "tests_python.test_keeper_maintenance_clock.KeeperHarvestSubmissionFlowTests.test_bad_harvest_simulation_is_not_completion_or_a_clock_update"
+  ],
+  "tests_run": 6,
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "source_before": {
+    "zzz_ops/manual_lp_review.py": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e",
+    "zzz_ops/management_review.py": "72ada1acf8d767096c1ae2041b3fc7b97b14decce233ee6d3791d2afe95acc35",
+    "frontend_api/service.py": "8c656d1d02ddc8ae6f42fd1cd74202416b6fa4fab8ac9d3aa9199a2624bc43d0",
+    "keeper/monitor.py": "e4bd5d17822b2a3ccd2c1b33e9b5b7f141909bdc417fd85b6f0785c70558f185",
+    "tests_python/test_manual_final_anchor.py": "5a0ebe38fd689355d3b7e76db4bba15d667c850c9a25657c31c3d1016c08323f",
+    "tests_python/test_manual_lp_review.py": "3db78ca9dceb6329af7dda354eb3508987f7d7a9bbb0c900d5d24350ebc5b7d8",
+    "tests_python/test_parked_manual_lp_review.py": "39bb3b32904756b6c71c887343df9eaa24653de131eba222475ad10e4c1b8590",
+    "tests_python/test_keeper_maintenance_clock.py": "1ebd22ee1a6a42ed871c66dc480e5dcb5ebb51c46ac29fe364e1027e8a3a782c",
+    "docs/function-reference.json": "842ab25888d466a616e359f1d9a54b530cc1991f198f60a94b1ca0468516357b",
+    "docs/operator-call-examples.json": "a0d57bb6999da3ec319900f582e834621a2c454c938a7a331a8224d9f24662a4"
+  },
+  "source_after": {
+    "zzz_ops/manual_lp_review.py": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e",
+    "zzz_ops/management_review.py": "72ada1acf8d767096c1ae2041b3fc7b97b14decce233ee6d3791d2afe95acc35",
+    "frontend_api/service.py": "8c656d1d02ddc8ae6f42fd1cd74202416b6fa4fab8ac9d3aa9199a2624bc43d0",
+    "keeper/monitor.py": "e4bd5d17822b2a3ccd2c1b33e9b5b7f141909bdc417fd85b6f0785c70558f185",
+    "tests_python/test_manual_final_anchor.py": "5a0ebe38fd689355d3b7e76db4bba15d667c850c9a25657c31c3d1016c08323f",
+    "tests_python/test_manual_lp_review.py": "3db78ca9dceb6329af7dda354eb3508987f7d7a9bbb0c900d5d24350ebc5b7d8",
+    "tests_python/test_parked_manual_lp_review.py": "39bb3b32904756b6c71c887343df9eaa24653de131eba222475ad10e4c1b8590",
+    "tests_python/test_keeper_maintenance_clock.py": "1ebd22ee1a6a42ed871c66dc480e5dcb5ebb51c46ac29fe364e1027e8a3a782c",
+    "docs/function-reference.json": "842ab25888d466a616e359f1d9a54b530cc1991f198f60a94b1ca0468516357b",
+    "docs/operator-call-examples.json": "a0d57bb6999da3ec319900f582e834621a2c454c938a7a331a8224d9f24662a4"
+  },
+  "source_unchanged": true,
+  "rpc": "injected",
+  "actual_EVM_chain_signer_or_service": false,
+  "unchanged_methods_executed": 0
+}

@@ -1,5 +1,7 @@
 # Verification evidence
 
+[Repaired-test impact follow-up](test-impact-followup-20261117/REVIEW.md) checks intended dependent behavior and fixes a late manual-review reorg race; source review, finite execution and remaining workload limits stay separate.
+
 The [test and irreversible-setup review](test-seal-deep-review-20261117/REVIEW.md) fixes chain/URI/reservation defects and strengthens specific test oracles. Current build is seal-boundaries-20261117; no release sign-off, deployment, service or website adoption is implied. Real dependencies, complete fees/gas, operations and independent review remain open.
 
 The [behavior follow-up](operator-behavior-followup-20261117/REVIEW.md) fixes irreversible empty-artwork sealing and keeper due-clock lag, strengthens royalty recovery checks and updates obsolete canonical test fixtures. Actual keeper revoke/replace and LP execution checks retain their stated local scope. Extra compound waiting remains service-only by explicit operator choice; production is not approved.

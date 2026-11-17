@@ -1,0 +1,323 @@
+{
+  "schema": 1,
+  "baseline": "fdb7562bf56b11d8bade612fdaf7f9a54daf118a",
+  "recorded_at_utc": "2026-11-17T10:38:33.979531+00:00",
+  "production_code_fix": "manual final simulation anchor reread after last head regardless of head advance",
+  "new_test_methods": 8,
+  "adapted_test_methods": 3,
+  "distinct_postfix_methods_passed": 11,
+  "before_fix_new_methods": {
+    "run": 2,
+    "failed": 1,
+    "passed": 1,
+    "cause": "Reorg-after-early-check wrongly released unsigned review; healthy advancement control passed."
+  },
+  "actual_metadata_only_profile_probe": true,
+  "source_function_comparisons": [
+    {
+      "path": "zzz_ops/manual_lp_review.py",
+      "function": "selection",
+      "line": 165,
+      "baseline_ast_segment_sha256": "cddb44d0ce92da8af356e2e312d664f1e6249fe1b3e1d3eccbb9e8492c07b1c6",
+      "current_ast_segment_sha256": "cddb44d0ce92da8af356e2e312d664f1e6249fe1b3e1d3eccbb9e8492c07b1c6",
+      "body_unchanged": true
+    },
+    {
+      "path": "zzz_ops/manual_lp_review.py",
+      "function": "controls",
+      "line": 235,
+      "baseline_ast_segment_sha256": "577cb5f64682cece85d4d5bc297811f29d2ed0d3b5332d379e479df07494d636",
+      "current_ast_segment_sha256": "577cb5f64682cece85d4d5bc297811f29d2ed0d3b5332d379e479df07494d636",
+      "body_unchanged": true
+    },
+    {
+      "path": "zzz_ops/manual_lp_review.py",
+      "function": "simulation",
+      "line": 245,
+      "baseline_ast_segment_sha256": "911aa2b185da483ea6b58b061b9f9bbc8c6c709f0eb10964f0aafe67dfb10da9",
+      "current_ast_segment_sha256": "911aa2b185da483ea6b58b061b9f9bbc8c6c709f0eb10964f0aafe67dfb10da9",
+      "body_unchanged": true
+    },
+    {
+      "path": "zzz_ops/manual_lp_review.py",
+      "function": "validate_policy",
+      "line": 492,
+      "baseline_ast_segment_sha256": "98819ae74fa3394a6b8e1ccec73c078652cb693e99909b47e1de6419c99eb584",
+      "current_ast_segment_sha256": "98819ae74fa3394a6b8e1ccec73c078652cb693e99909b47e1de6419c99eb584",
+      "body_unchanged": true
+    },
+    {
+      "path": "zzz_ops/manual_lp_review.py",
+      "function": "prepare",
+      "line": 511,
+      "baseline_ast_segment_sha256": "66e3fd9ca9e8dc9b8414477488c6098ac69398480df3d4fdff871aa5017d6585",
+      "current_ast_segment_sha256": "1c8816e1cfc9bd9a0bbff50df157b66fcbeb4218b5f3e12ac456ef11f6310258",
+      "body_unchanged": false
+    },
+    {
+      "path": "zzz_ops/manual_lp_review.py",
+      "function": "write_exclusive",
+      "line": 610,
+      "baseline_ast_segment_sha256": "268e6b6fd5ae54da73e053985f07fed0463c2df10991ce5e8ff9bb74a1eb93b9",
+      "current_ast_segment_sha256": "268e6b6fd5ae54da73e053985f07fed0463c2df10991ce5e8ff9bb74a1eb93b9",
+      "body_unchanged": true
+    },
+    {
+      "path": "zzz_ops/manual_lp_review.py",
+      "function": "diagnostic",
+      "line": 630,
+      "baseline_ast_segment_sha256": "37333556af09ab9d5433437a2f1945f71689a97d24d78e51a8f21dc72e64d3c1",
+      "current_ast_segment_sha256": "37333556af09ab9d5433437a2f1945f71689a97d24d78e51a8f21dc72e64d3c1",
+      "body_unchanged": true
+    },
+    {
+      "path": "zzz_ops/manual_lp_review.py",
+      "function": "main",
+      "line": 675,
+      "baseline_ast_segment_sha256": "7c23cef096ba55ccc7249107625d9a5fd370dbf36df553e53391f37314bd746d",
+      "current_ast_segment_sha256": "7c23cef096ba55ccc7249107625d9a5fd370dbf36df553e53391f37314bd746d",
+      "body_unchanged": true
+    },
+    {
+      "path": "zzz_ops/management_review.py",
+      "function": "simulate",
+      "line": 89,
+      "baseline_ast_segment_sha256": "1017c10af3da96a047d658a7e2b88bd667196c4960d87fda60d25667c12ca646",
+      "current_ast_segment_sha256": "1017c10af3da96a047d658a7e2b88bd667196c4960d87fda60d25667c12ca646",
+      "body_unchanged": true
+    },
+    {
+      "path": "zzz_ops/management_review.py",
+      "function": "prepare",
+      "line": 138,
+      "baseline_ast_segment_sha256": "3e65d62c72f6a939a1896dd1ea9f92001e7428252036ca19ed96416c6e245730",
+      "current_ast_segment_sha256": "3e65d62c72f6a939a1896dd1ea9f92001e7428252036ca19ed96416c6e245730",
+      "body_unchanged": true
+    },
+    {
+      "path": "zzz_ops/management_review.py",
+      "function": "_source_pins",
+      "line": 131,
+      "baseline_ast_segment_sha256": "05b2a3d0f05f3668a02c708ccf54b4c041e054529ef729c42c0a54d8adecd91d",
+      "current_ast_segment_sha256": "05b2a3d0f05f3668a02c708ccf54b4c041e054529ef729c42c0a54d8adecd91d",
+      "body_unchanged": true
+    },
+    {
+      "path": "zzz_ops/management_review.py",
+      "function": "main",
+      "line": 231,
+      "baseline_ast_segment_sha256": "fba253818846d179b7373f5520f6dc2d781f44a2a59ef445875cf3e61b141e97",
+      "current_ast_segment_sha256": "fba253818846d179b7373f5520f6dc2d781f44a2a59ef445875cf3e61b141e97",
+      "body_unchanged": true
+    },
+    {
+      "path": "keeper/monitor.py",
+      "function": "Keeper.cycle",
+      "line": 2596,
+      "baseline_ast_segment_sha256": "9ab9654647b7738e79c4d4ccf45e11859dad882160e24ff244b0f9c95794548e",
+      "current_ast_segment_sha256": "9ab9654647b7738e79c4d4ccf45e11859dad882160e24ff244b0f9c95794548e",
+      "body_unchanged": true
+    },
+    {
+      "path": "keeper/monitor.py",
+      "function": "Keeper.submit",
+      "line": 1785,
+      "baseline_ast_segment_sha256": "1c73a1f0e36bf04a5baeafd7be266a223ae03b91eb1f8c635ce661ff1831117a",
+      "current_ast_segment_sha256": "1c73a1f0e36bf04a5baeafd7be266a223ae03b91eb1f8c635ce661ff1831117a",
+      "body_unchanged": true
+    },
+    {
+      "path": "keeper/monitor.py",
+      "function": "Keeper._compound_due",
+      "line": 1295,
+      "baseline_ast_segment_sha256": "c03526d5239934db9d064d391106b5d02f037a4f63dd595226ecb99d27d9c961",
+      "current_ast_segment_sha256": "c03526d5239934db9d064d391106b5d02f037a4f63dd595226ecb99d27d9c961",
+      "body_unchanged": true
+    },
+    {
+      "path": "scripts/verify-normal-profile.py",
+      "function": "inspect_profile",
+      "line": 41,
+      "baseline_ast_segment_sha256": "28dd480fb77c505e38417e7316bd5d5277ee899925127f2e8f7b37ebc7831a1d",
+      "current_ast_segment_sha256": "28dd480fb77c505e38417e7316bd5d5277ee899925127f2e8f7b37ebc7831a1d",
+      "body_unchanged": true
+    },
+    {
+      "path": "zzz_ops/deployment_plan.py",
+      "function": "validate",
+      "line": 148,
+      "baseline_ast_segment_sha256": "93b6995aa179a6031894c59c12e76660323d735dd17a0731fd097374aee22beb",
+      "current_ast_segment_sha256": "93b6995aa179a6031894c59c12e76660323d735dd17a0731fd097374aee22beb",
+      "body_unchanged": true
+    },
+    {
+      "path": "zzz_ops/deployment_plan.py",
+      "function": "Artifacts.check_sources",
+      "line": 234,
+      "baseline_ast_segment_sha256": "0bcf86d67b207777a0045670d64cc9261eaae5d97b51c1297646acc3a9135f2e",
+      "current_ast_segment_sha256": "0bcf86d67b207777a0045670d64cc9261eaae5d97b51c1297646acc3a9135f2e",
+      "body_unchanged": true
+    },
+    {
+      "path": "zzz_ops/deployment_plan.py",
+      "function": "prepare",
+      "line": 303,
+      "baseline_ast_segment_sha256": "3440f9ef6dbfcec419d60f43ce5923d117ff717de0b51cfbed9610b63add6b86",
+      "current_ast_segment_sha256": "3440f9ef6dbfcec419d60f43ce5923d117ff717de0b51cfbed9610b63add6b86",
+      "body_unchanged": true
+    },
+    {
+      "path": "zzz_ops/preseal_plan.py",
+      "function": "_seal_boundary_review",
+      "line": 346,
+      "baseline_ast_segment_sha256": "e22b7d142fe5f48ad7d3842838c093f091b0aef61ce938574cb22ab8787b533f",
+      "current_ast_segment_sha256": "e22b7d142fe5f48ad7d3842838c093f091b0aef61ce938574cb22ab8787b533f",
+      "body_unchanged": true
+    },
+    {
+      "path": "zzz_ops/preseal_plan.py",
+      "function": "prepare",
+      "line": 389,
+      "baseline_ast_segment_sha256": "6cf214e5b0ea63427ca5445d576f5ae8f207a9758d013572d79fa85cb7b607c7",
+      "current_ast_segment_sha256": "6cf214e5b0ea63427ca5445d576f5ae8f207a9758d013572d79fa85cb7b607c7",
+      "body_unchanged": true
+    }
+  ],
+  "function_source_normalization": "LF-only before AST segment hashing",
+  "impact": [
+    {
+      "area": "Manual active B/C/D and explicit parked D",
+      "production_functions": [
+        "zzz_ops.manual_lp_review.prepare",
+        "simulation",
+        "Reader.snapshot",
+        "controls",
+        "diagnostic",
+        "write_exclusive"
+      ],
+      "test_roots": [
+        "test_manual_lp_frozen_gas",
+        "test_manual_lp_review",
+        "test_parked_manual_lp_review",
+        "test_manual_lp_diagnostics",
+        "test_manual_final_anchor"
+      ],
+      "consumers": [
+        "scripts/prepare-manual-lp.py",
+        "scripts/rehearse-manual-recovery.py",
+        "scripts/rehearse-manual-reference.py"
+      ],
+      "verified_purpose": "Preserve original caller/floors/calldata/expiry and frozen gas while rereading movable market state; refuse changed custody/control/runtime and unsupported caller; never publish a rejected review.",
+      "conclusion": "Confirmed final-anchor reorg race fixed. Confirmed snapshot and later simulated block are different obligations; both must survive final reads. No extra request, reprice, resimulation or force fallback added."
+    },
+    {
+      "area": "Unsigned management custody and terminal batches",
+      "production_functions": [
+        "zzz_ops.management_review.prepare",
+        "simulate",
+        "_source_pins",
+        "management_custody.observe/call_spec",
+        "management_exit.observe/call_spec"
+      ],
+      "test_roots": [
+        "test_management_review",
+        "test_management_custody",
+        "test_management_exit",
+        "test_manual_final_anchor.ManagementFinalAnchorTests"
+      ],
+      "consumers": [
+        "scripts/prepare-operator-management.py",
+        "scripts/rehearse-manual-recovery.py"
+      ],
+      "verified_purpose": "Exact park/resume/residual close/terminal-call shapes; source/control/cohort/owner drift refusal, explicit batch gas and result counts; output uncertainty distinguished from no artifact.",
+      "conclusion": "Actual production late-anchor ordering already correct; new reproduction proves refusal and healthy advancement. Three moving-market/control test hooks were premature at the first immutable hash; moved between anchors with explicit final-stage assertions. Source pin closure includes changed manual helper, so newly prepared management reviews record its new hash; old records remain historical."
+    },
+    {
+      "area": "Independent hourly harvesting and submission",
+      "production_functions": [
+        "keeper.monitor.Keeper.cycle",
+        "Keeper.submit",
+        "keeper receipt and harvest-clock authentication"
+      ],
+      "test_roots": [
+        "test_hourly_harvest",
+        "test_keeper_standalone_harvest_review",
+        "test_keeper_maintenance_clock",
+        "test_keeper_simulation_envelope",
+        "test_keeper_harvest_coalescing"
+      ],
+      "consumers": [
+        "keeper/monitor.py operating worker",
+        "keeper/operation_review.py diagnostics",
+        "scripts/run-keeper-tests.py focused runner"
+      ],
+      "verified_purpose": "Fresh clock after slow or failed maintenance, separate price-free harvest; actual void ABI/gas/cost/lifecycle preflight; clocks advance only from authenticated receipts.",
+      "conclusion": "No keeper production change. Prior scheduling tests mocked submit; two new current-accounting7 cases now reach actual dry-run submit, bounded simulation/estimate and reject malformed returns before estimate without pending/spent/clock publication. This proves Python scheduling-to-preflight composition, not EVM harvest or live signing."
+    },
+    {
+      "area": "Normal verification and trusted builds",
+      "production_functions": [
+        "scripts/verify-normal-profile.py.inspect_profile",
+        "zzz_ops.deployment_plan.validate",
+        "Artifacts.check_sources",
+        "prepare"
+      ],
+      "test_roots": [
+        "test_verification_profile",
+        "test_deployment_build_profiles",
+        "test_deployment_sequence"
+      ],
+      "consumers": [
+        "scripts/verify.sh",
+        "scripts/verify-normal-profile.py",
+        "scripts/prepare-deployment.py",
+        "zzz_ops.preseal_plan.prepare"
+      ],
+      "verified_purpose": "Exact compiler/optimizer/size/permission input contract, fresh source-bound build family and constructor graph; no unknown approval or automatic historical fallback.",
+      "conclusion": "Actual pinned Forge version/config metadata now passes the real validator with sanitized environment, confirming the preceding permission fix beyond its injected fixture. No build/compiler/test/provider invoked in that check. Current bare-scheme URI rejection, explicit historical build admission and unknown/null readiness remain intact; no new defect reproduced here."
+    },
+    {
+      "area": "Unsigned pre-seal and function/read inventory",
+      "production_functions": [
+        "zzz_ops.preseal_plan._seal_boundary_review",
+        "prepare",
+        "scripts/prepare-preseal.py completeness/publication"
+      ],
+      "test_roots": [
+        "test_preseal_plan",
+        "test_function_reference",
+        "test_operator_reference",
+        "test_operator_input_annotations"
+      ],
+      "consumers": [
+        "12-family conditional configuration reviews",
+        "seal_boundary_review constructor/read appendix",
+        "operator guide/function reference"
+      ],
+      "verified_purpose": "Current trusted ABI and constructors, target-role-correct readable selectors, unknown-input blocking, immutable source pins and false readiness/publication flags.",
+      "conclusion": "Current code reread; prior private-getter and scheme-only root mismatches are corrected at fdb7562. Preparation still performs no RPC and issues no seal calldata, authority proof or content/provider/release acceptance. No unchanged cases rerun."
+    }
+  ],
+  "protected_files": {
+    "reports/source-checks.json": {
+      "expected": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "actual": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4"
+    },
+    "scripts/run-fork-checks.py": {
+      "expected": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "actual": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b"
+    },
+    "tests_python/test_fork_runner.py": {
+      "expected": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "actual": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9"
+    },
+    "tests_python/test_frontend_history.py": {
+      "expected": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "actual": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+    }
+  },
+  "all61production_solidity_unchanged": true,
+  "unchanged_tests_rerun": false,
+  "signing_live_RPC_EVM_service_existing_state": false,
+  "independent_or_release_approval": false
+}

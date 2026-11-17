@@ -1,0 +1,239 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.26;
+
+import {HolderCollectiveExitTest} from "./HolderCollectiveExit.t.sol";
+import {MockToken} from "./mocks/Mocks.sol";
+import {ZZZClaimRouter} from "../src/ZZZClaimRouter.sol";
+import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
+import {PositionStatus} from "../src/libraries/ZZZTypes.sol";
+import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
+
+/// @dev TEST ONLY conventional six-decimal currency except a selected outbound
+/// recipient can fail. Balance reads and earlier recipients remain healthy.
+contract ImpactRecipientFaultCurrency is MockToken {
+    address public ledger;
+    address public blocked;
+    error RecipientFault();
+    constructor() MockToken(6) {}
+    function configure(address source,address recipient) external {ledger=source;blocked=recipient;}
+    function _update(address from,address to,uint256 amount) internal override {
+        super._update(from,to,amount);
+        if(from==ledger && to==blocked && amount!=0)revert RecipientFault();
+    }
+}
+
+/// @dev Real current Vault/NFT/fee/LP/royalty/claim/exit accounting with the
+/// explicitly synthetic HolderExit venue, $1 prices and controlled VRF. This
+/// proves economic composition; it is not physical-v4 or production gas evidence.
+contract RightsImpactFollowup20261117Test is HolderCollectiveExitTest {
+    address private constant CAROL=address(0xCA401);
+    struct Sequence {uint256 a;uint256 b;uint256 c;uint256 dormant;uint256 bucket;uint256 paidETH;}
+    struct PrincipalCheck {uint256 cumulative;uint256 priorETH;uint256 priorZZZ;uint256 aliceETH;uint256 aliceZZZ;uint256 carolETH;uint256 carolZZZ;uint256 supply;}
+    struct Snapshot {uint256 ethBalance;uint256 zzzBalance;uint256 badBalance;uint256 lpETH;uint256 lpZZZ;uint256 royaltyETH;uint256 royaltyBad;uint256 lpLiabilityETH;uint256 lpLiabilityZZZ;uint256 royaltyLiabilityETH;uint256 royaltyLiabilityBad;uint256 supply;uint256 venueETH;uint256 venueZZZ;}
+
+    function _impactMint(address who,uint8 rarity) private returns(uint256 id) {
+        bytes32 fingerprint=vault.mintPolicyFingerprint();vm.prank(who);
+        id=vault.mintDormant{value:0.05 ether}(fingerprint);
+        uint256 word=rarity==0?0:rarity==1?uint256(nft.rarityRemaining(0)):
+            uint256(nft.rarityRemaining(0))+nft.rarityRemaining(1);
+        vrf.fulfill(nft.requestOf(id),word,0);nft.finalizeTraits(id);
+        assertEq(nft.rarityOf(id),rarity);
+    }
+    function _impactActivate(address who,uint256 amount,uint8 rarity) private returns(uint256 id) {
+        id=_impactMint(who,rarity);vm.prank(who);
+        vault.activate{value:amount}(id,poolId,amount,amount,1,block.timestamp+100);
+        assertGt(vault.sharesOf(id),0);assertTrue(membership.eligible(id));
+        assertEq(nft.royaltyRewards().weightOf(id),uint256(rarity)+1);
+    }
+    function _impactHarvest(uint256 bucket,uint256 ethAmount,uint256 zzzAmount) private {
+        venue.setFees(ethAmount,zzzAmount);vault.collectFees(bucket,block.timestamp+100);
+        assertEq(venue.fee0(),0);assertEq(venue.fee1(),0);
+    }
+    function _impactOpenRoyalties() private {
+        nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);
+        nft.royaltyRewards().syncAll();assertTrue(nft.royaltyRewards().royaltiesOpen());
+    }
+    function _impactSendRoyalties(ZZZRoyaltyRewards ledger,uint256 amount) private {
+        (bool ok,)=address(ledger).call{value:amount}("");assertTrue(ok);ledger.sync(address(0));
+    }
+    function _impactLPsum(Sequence memory s,address asset) private view returns(uint256) {
+        return rewards.claimable(s.a,asset)+rewards.claimable(s.b,asset)+rewards.claimable(s.c,asset);
+    }
+    function _impactAssertReserves(uint256 bucket,uint256 ethAmount,uint256 zzzAmount) private view {
+        assertEq(fees.dust(bucket,address(0)),0);assertEq(fees.dust(bucket,address(token)),0);
+        assertEq(fees.compoundBalance(bucket,address(0)),0);assertEq(fees.compoundBalance(bucket,address(token)),0);
+        assertEq(fees.buybackBalance(address(0)),ethAmount);assertEq(fees.buybackBalance(address(token)),zzzAmount);
+        assertEq(fees.accounted(address(0)),ethAmount);assertEq(fees.accounted(address(token)),zzzAmount);
+        assertEq(address(fees).balance,ethAmount);assertEq(token.balanceOf(address(fees)),zzzAmount);
+    }
+
+    function testImpactTinyHarvestCheckpointsExitTransfersAndFutureRoyaltiesDrainEveryUnit() public {
+        Sequence memory s;
+        s.a=_impactActivate(alice,100 ether,0);s.b=_impactActivate(bob,300 ether,2);
+        s.bucket=vault.nftBucket(s.a);
+        _impactHarvest(s.bucket,137,251);
+        assertEq(rewards.liabilities(address(0)),108);assertEq(rewards.liabilities(address(token)),216);
+        assertEq(fees.dust(s.bucket,address(0)),17);assertEq(fees.dust(s.bucket,address(token)),11);
+        _impactGrowthCheckpoint(s);
+        s.c=_impactActivate(alice,200 ether,1);s.dormant=_impactMint(alice,1);
+        assertEq(rewards.claimable(s.c,address(0)),0);assertEq(rewards.claimable(s.c,address(token)),0);
+        assertEq(membership.totalEligible(),3);assertEq(nft.royaltyRewards().totalWeight(),6);
+        assertFalse(membership.eligible(s.dormant));assertEq(vault.sharesOf(s.dormant),0);
+        vm.prank(bob);nft.transferFrom(bob,CAROL,s.b);
+        uint256 beforeBalance=alice.balance;vm.prank(alice);s.paidETH=rewards.claim(s.a,address(0));
+        assertGt(s.paidETH,0);assertEq(alice.balance-beforeBalance,s.paidETH);
+        // The exit harvest forms four/eight full baskets and flushes its raw
+        // remainders to incumbents. Barrier dust is NOT a global 90% promise.
+        venue.setFees(83,169);ac.setPaused(true);migration.beginCollectiveExit(review);
+        migration.closeBucket(s.bucket,0,0,block.timestamp+100);
+        assertEq(_impactLPsum(s,address(0))+s.paidETH,200);
+        assertEq(_impactLPsum(s,address(token)),380);
+        _impactAssertReserves(s.bucket,10,20);
+        assertEq(migration.remainingETH(),605 ether+10);assertEq(migration.remainingZZZ(),605 ether+20);
+        _impactAllocateAndPay(s);
+        vm.prank(alice);nft.transferFrom(alice,bob,s.a);
+        vm.prank(alice);vm.expectRevert(bytes4(keccak256("Unauthorized()")));rewards.claim(s.a,address(token));
+        // Unpausing cannot reopen terminal principal or authorize harvesting.
+        ac.setPaused(false);vm.expectRevert(bytes4(keccak256("LPExitLocked()")));
+        vault.collectFees(s.bucket,block.timestamp+100);ac.setPaused(true);
+        _impactFutureRoyaltiesAndDrain(s);
+    }
+    function _impactGrowthCheckpoint(Sequence memory s) private {
+        uint256 supply=vault.bucketTotalShares(s.bucket);uint256 beforeShares=vault.sharesOf(s.a);
+        uint256 beforeBETH=rewards.claimable(s.b,address(0));uint256 beforeBZZZ=rewards.claimable(s.b,address(token));
+        vm.prank(alice);vault.increase{value:5 ether}(s.a,5 ether,5 ether,1,block.timestamp+100);
+        // Compound is incumbent principal; the entrant buys shares at the full
+        // post-checkpoint NAV (both 400 ETH/ZZZ principal plus 6/12 raw units).
+        assertEq(vault.sharesOf(s.a)-beforeShares,Math.mulDiv(supply,10 ether,800 ether+18));
+        assertEq(rewards.liabilities(address(0)),125);assertEq(rewards.liabilities(address(token)),227);
+        assertGe(rewards.claimable(s.b,address(0)),beforeBETH);assertGe(rewards.claimable(s.b,address(token)),beforeBZZZ);
+        assertEq(fees.dust(s.bucket,address(0)),0);assertEq(fees.dust(s.bucket,address(token)),0);
+        assertEq(vault.group(s.bucket).idle0,6);assertEq(vault.group(s.bucket).idle1,12);
+    }
+    function _impactAllocateAndPay(Sequence memory s) private {
+        migration.allocatePrincipal(1);migration.allocatePrincipal(32);
+        uint256[] memory ids=new uint256[](5);ids[0]=s.c;ids[1]=s.dormant;ids[2]=s.a;ids[3]=s.b;ids[4]=s.a;
+        PrincipalCheck memory p=_impactPrincipalExpectations(s);
+        uint256 beforeAlice=alice.balance;uint256 beforeCarol=CAROL.balance;
+        uint256 beforeAliceZZZ=token.balanceOf(alice);uint256 beforeCarolZZZ=token.balanceOf(CAROL);
+        assertEq(migration.distributePrincipal(ids),3);assertEq(migration.distributePrincipal(ids),0);
+        assertEq(alice.balance-beforeAlice,p.aliceETH);assertEq(CAROL.balance-beforeCarol,p.carolETH);
+        assertEq(token.balanceOf(alice)-beforeAliceZZZ,p.aliceZZZ);assertEq(token.balanceOf(CAROL)-beforeCarolZZZ,p.carolZZZ);
+        assertEq(migration.remainingETH(),0);assertEq(migration.remainingZZZ(),0);
+        assertEq(address(migration).balance,0);assertEq(token.balanceOf(address(migration)),0);
+        assertEq(address(vault).balance,0);assertEq(token.balanceOf(address(vault)),0);
+        assertEq(uint256(vault.group(s.bucket).status),uint256(PositionStatus.Exited));
+    }
+    function _impactPrincipalExpectations(Sequence memory s) private view returns(PrincipalCheck memory p){
+        p.supply=vault.bucketTotalShares(s.bucket);
+        for(uint256 ordinal=1;ordinal<=4;++ordinal){
+            uint256 id=nft.tokenAtOrdinal(ordinal);p.cumulative+=vault.sharesOf(id);
+            uint256 nextETH=Math.mulDiv(605 ether+10,p.cumulative,p.supply);
+            uint256 nextZZZ=Math.mulDiv(605 ether+20,p.cumulative,p.supply);
+            (uint256 x,uint256 y,bool allocated,bool paid)=migration.principalOf(id);
+            assertTrue(allocated);assertFalse(paid);assertEq(x,nextETH-p.priorETH);assertEq(y,nextZZZ-p.priorZZZ);
+            p.priorETH=nextETH;p.priorZZZ=nextZZZ;
+            if(id==s.b){p.carolETH+=x;p.carolZZZ+=y;}else{p.aliceETH+=x;p.aliceZZZ+=y;}
+        }
+        assertEq(p.priorETH,605 ether+10);assertEq(p.priorZZZ,605 ether+20);
+    }
+    function _impactFutureRoyaltiesAndDrain(Sequence memory s) private {
+        ZZZRoyaltyRewards royalty=nft.royaltyRewards();MockToken other=new MockToken(6);
+        nft.addRoyaltyAsset(address(other));_impactOpenRoyalties();
+        _impactSendRoyalties(royalty,42);other.mint(address(royalty),66);royalty.sync(address(other));
+        assertEq(royalty.claimable(s.a,address(0)),7);assertEq(royalty.claimable(s.b,address(0)),21);assertEq(royalty.claimable(s.c,address(0)),14);
+        assertEq(royalty.claimable(s.a,address(other)),11);assertEq(royalty.claimable(s.b,address(other)),33);assertEq(royalty.claimable(s.c,address(other)),22);
+        assertEq(royalty.claimable(s.dormant,address(0)),0);assertEq(royalty.claimable(s.dormant,address(other)),0);
+        uint256[] memory ids=new uint256[](3);ids[0]=s.a;ids[1]=s.b;ids[2]=s.c;
+        uint256 totalETH=s.paidETH;uint256 totalZZZ;
+        for(uint256 i;i<ids.length;++i){
+            uint256 id=ids[i];address owner=nft.ownerOf(id);
+            (bool available,uint256 value)=nft.currentLPValue(id);assertTrue(available);assertEq(value,0);
+            uint8 stage;(available,stage)=nft.evolution(id);assertTrue(available);assertEq(stage,4);
+            ZZZClaimRouter.Claim[] memory requests=_impactFourClaims(id,address(other));
+            uint256 beforeETH=owner.balance;uint256 beforeZZZ=token.balanceOf(owner);uint256 beforeOther=other.balanceOf(owner);
+            uint256[] memory paid=_impactRouterClaim(owner,requests);
+            assertEq(owner.balance-beforeETH,paid[0]+paid[2]);assertEq(token.balanceOf(owner)-beforeZZZ,paid[1]);assertEq(other.balanceOf(owner)-beforeOther,paid[3]);
+            totalETH+=paid[0];totalZZZ+=paid[1];
+            paid=_impactRouterClaim(owner,requests);for(uint256 j;j<paid.length;++j)assertEq(paid[j],0);
+            (uint256 principalETH,uint256 principalZZZ)=migration.claimablePrincipal(id);assertEq(principalETH,0);assertEq(principalZZZ,0);
+        }
+        assertEq(totalETH,200);assertEq(totalZZZ,380);assertEq(membership.totalEligible(),3);assertEq(royalty.totalWeight(),6);
+        _impactEmptyLedgers(s.bucket,royalty,address(other));_impactAssertReserves(s.bucket,10,20);
+        (bool dormantAvailable,uint8 dormantStage)=nft.evolution(s.dormant);assertTrue(dormantAvailable);assertEq(dormantStage,0);
+    }
+    function _impactRouterClaim(address owner,ZZZClaimRouter.Claim[] memory q) private returns(uint256[] memory){
+        ZZZClaimRouter router=nft.claimRouter();vm.prank(owner);return router.claimBatch(q);
+    }
+    function _impactFourClaims(uint256 id,address other) private view returns(ZZZClaimRouter.Claim[] memory q){
+        q=new ZZZClaimRouter.Claim[](4);q[0]=ZZZClaimRouter.Claim(id,address(0),false);q[1]=ZZZClaimRouter.Claim(id,address(token),false);
+        q[2]=ZZZClaimRouter.Claim(id,address(0),true);q[3]=ZZZClaimRouter.Claim(id,other,true);
+    }
+    function _impactEmptyLedgers(uint256 bucket,ZZZRoyaltyRewards royalty,address other) private view {
+        assertEq(rewards.liabilities(address(0)),0);assertEq(rewards.liabilities(address(token)),0);
+        assertEq(address(rewards).balance,0);assertEq(token.balanceOf(address(rewards)),0);
+        (,uint256 x,uint256 y)=rewards.allocationTree(bucket);assertEq(x,0);assertEq(y,0);
+        (,x,y)=rewards.allocationTree(0);assertEq(x,0);assertEq(y,0);
+        assertEq(royalty.liabilities(address(0)),0);assertEq(royalty.liabilities(other),0);
+        assertEq(royalty.accounted(address(0)),0);assertEq(royalty.accounted(other),0);
+        assertEq(royalty.orphaned(address(0)),0);assertEq(royalty.orphaned(other),0);
+        assertEq(address(royalty).balance,0);assertEq(MockToken(other).balanceOf(address(royalty)),0);
+        assertEq(address(nft.claimRouter()).balance,0);assertEq(token.balanceOf(address(nft.claimRouter())),0);
+        assertEq(MockToken(other).balanceOf(address(nft.claimRouter())),0);
+    }
+
+    function testImpactLastRoyaltyCurrencyFailureRollsBackCrossNFTCrossLedgerClaimsThenDrains() public {
+        Sequence memory s;s.a=_impactActivate(alice,100 ether,0);s.b=_impactActivate(alice,200 ether,1);s.c=_impactActivate(bob,300 ether,2);
+        s.bucket=vault.nftBucket(s.a);_impactHarvest(s.bucket,1200,2400);
+        ImpactRecipientFaultCurrency other=new ImpactRecipientFaultCurrency();ZZZRoyaltyRewards royalty=nft.royaltyRewards();
+        nft.addRoyaltyAsset(address(other));_impactOpenRoyalties();_impactSendRoyalties(royalty,42);
+        other.mint(address(royalty),66);royalty.sync(address(other));
+        vm.prank(bob);assertEq(royalty.claim(s.c,address(other)),33);assertEq(other.balanceOf(bob),33);
+        assertEq(royalty.liabilities(address(other)),33);
+        other.configure(address(royalty),alice);ac.setPaused(true);
+        ZZZClaimRouter.Claim[] memory q=new ZZZClaimRouter.Claim[](4);
+        q[0]=ZZZClaimRouter.Claim(s.a,address(0),false);q[1]=ZZZClaimRouter.Claim(s.a,address(0),true);
+        q[2]=ZZZClaimRouter.Claim(s.b,address(token),false);q[3]=ZZZClaimRouter.Claim(s.b,address(other),true);
+        Snapshot memory beforeState=_impactSnapshot(s,royalty,address(other));
+        assertGt(beforeState.lpETH,0);assertGt(beforeState.lpZZZ,0);assertGt(beforeState.royaltyETH,0);assertGt(beforeState.royaltyBad,0);
+        ZZZClaimRouter router=nft.claimRouter();vm.prank(alice);vm.expectRevert(ImpactRecipientFaultCurrency.RecipientFault.selector);router.claimBatch(q);
+        _impactAssertSnapshot(s,royalty,address(other),beforeState);assertEq(other.balanceOf(bob),33);
+        _impactClaimHealthySubset(s,royalty,address(other),q);
+        other.configure(address(royalty),address(0));
+        uint256[] memory ids=new uint256[](3);ids[0]=s.a;ids[1]=s.b;ids[2]=s.c;
+        for(uint256 i;i<ids.length;++i){uint256 id=ids[i];address owner=nft.ownerOf(id);
+            uint256 beforeETH=owner.balance;uint256 beforeZZZ=token.balanceOf(owner);uint256 beforeOther=other.balanceOf(owner);
+            uint256[] memory paid=_impactRouterClaim(owner,_impactFourClaims(id,address(other)));
+            assertEq(owner.balance-beforeETH,paid[0]+paid[2]);assertEq(token.balanceOf(owner)-beforeZZZ,paid[1]);assertEq(other.balanceOf(owner)-beforeOther,paid[3]);
+        }
+        _impactEmptyLedgers(s.bucket,royalty,address(other));
+        assertEq(fees.compoundBalance(s.bucket,address(0)),60);assertEq(fees.compoundBalance(s.bucket,address(token)),120);
+        assertEq(fees.buybackBalance(address(0)),60);assertEq(fees.buybackBalance(address(token)),120);
+        assertEq(fees.accounted(address(0)),120);assertEq(fees.accounted(address(token)),240);
+        assertEq(address(fees).balance,120);assertEq(token.balanceOf(address(fees)),240);
+        assertEq(vault.bucketTotalShares(s.bucket),beforeState.supply);assertEq(other.balanceOf(bob),33);
+    }
+    function _impactSnapshot(Sequence memory s,ZZZRoyaltyRewards royalty,address other) private view returns(Snapshot memory v){
+        v.ethBalance=alice.balance;v.zzzBalance=token.balanceOf(alice);v.badBalance=MockToken(other).balanceOf(alice);
+        v.lpETH=rewards.claimable(s.a,address(0));v.lpZZZ=rewards.claimable(s.b,address(token));
+        v.royaltyETH=royalty.claimable(s.a,address(0));v.royaltyBad=royalty.claimable(s.b,other);
+        v.lpLiabilityETH=rewards.liabilities(address(0));v.lpLiabilityZZZ=rewards.liabilities(address(token));
+        v.royaltyLiabilityETH=royalty.liabilities(address(0));v.royaltyLiabilityBad=royalty.liabilities(other);
+        v.supply=vault.bucketTotalShares(s.bucket);(v.venueETH,v.venueZZZ)=venue.amounts(vault.group(s.bucket).lpTokenId);
+    }
+    function _impactAssertSnapshot(Sequence memory s,ZZZRoyaltyRewards royalty,address other,Snapshot memory expected) private view {
+        assertEq(keccak256(abi.encode(_impactSnapshot(s,royalty,other))),keccak256(abi.encode(expected)));
+        assertEq(address(rewards).balance,expected.lpLiabilityETH);assertEq(token.balanceOf(address(rewards)),expected.lpLiabilityZZZ);
+        assertEq(address(royalty).balance,expected.royaltyLiabilityETH);assertEq(MockToken(other).balanceOf(address(royalty)),expected.royaltyLiabilityBad);
+        assertEq(address(nft.claimRouter()).balance,0);assertEq(token.balanceOf(address(nft.claimRouter())),0);
+    }
+    function _impactClaimHealthySubset(Sequence memory s,ZZZRoyaltyRewards royalty,address other,ZZZClaimRouter.Claim[] memory q) private {
+        ZZZClaimRouter.Claim[] memory healthy=new ZZZClaimRouter.Claim[](3);for(uint256 i;i<3;++i)healthy[i]=q[i];
+        uint256 expectedETH=rewards.claimable(s.a,address(0))+royalty.claimable(s.a,address(0));uint256 expectedZZZ=rewards.claimable(s.b,address(token));
+        uint256 beforeETH=alice.balance;uint256 beforeZZZ=token.balanceOf(alice);uint256 badOwed=royalty.claimable(s.b,other);
+        uint256[] memory paid=_impactRouterClaim(alice,healthy);
+        assertEq(alice.balance-beforeETH,expectedETH);assertEq(token.balanceOf(alice)-beforeZZZ,expectedZZZ);
+        assertEq(paid[0]+paid[1],expectedETH);assertEq(paid[2],expectedZZZ);assertEq(royalty.claimable(s.b,other),badOwed);
+        paid=_impactRouterClaim(alice,healthy);assertEq(paid[0]+paid[1]+paid[2],0);
+    }
+}

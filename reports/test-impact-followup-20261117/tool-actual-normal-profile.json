@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-17T10:31:07.871521+00:00",
+  "kind": "Actual pinned Forge version/config metadata-only through real current normal-profile validator",
+  "forge_sha256": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101",
+  "source_sha256": "c5925740a8a5a6142e54b05eecf73ea2e26fd8d6cbd514cd9c2efd1116ffe81f",
+  "foundry_toml_sha256": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72",
+  "credentials_inherited": false,
+  "raw_forge_configuration_persisted": false,
+  "build_tests_rpc_or_signing": false,
+  "success": true,
+  "result": {
+    "kind": "local_effective_normal_profile",
+    "configuration": {
+      "src": "src",
+      "test": "test",
+      "script": "script",
+      "libs": [
+        "lib",
+        "node_modules"
+      ],
+      "optimizer": true,
+      "optimizer_runs": 1,
+      "optimizer_details": {
+        "yul": false
+      },
+      "via_ir": true,
+      "evm_version": "cancun",
+      "ffi": false,
+      "allow_paths": [],
+      "libraries": [],
+      "disable_block_gas_limit": false,
+      "gas_limit": 1073741824,
+      "dynamic_test_linking": false,
+      "always_use_create_2_factory": false,
+      "code_size_limit": null,
+      "remappings": [
+        "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+        "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+        "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+        "v4-core/=node_modules/@uniswap/v4-core/",
+        "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+        "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+        "forge-std/=lib/forge-std/src/",
+        "ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+        "erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+        "forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+        "openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/"
+      ],
+      "solc": "0.8.26",
+      "profile": "default",
+      "secrets_excluded": true,
+      "out": "out",
+      "cache_path": "cache",
+      "skip": [],
+      "fs_permissions": [
+        {
+          "access": "write",
+          "path": "./deployments"
+        },
+        {
+          "access": "read",
+          "path": "./test/fixtures/seal-critical-003c8d8"
+        }
+      ]
+    },
+    "fuzz_runs": 1000,
+    "invariant": {
+      "runs": 32,
+      "depth": 128,
+      "fail_on_revert": true
+    },
+    "forge_commit": "05794498bf47257b144e2e2789a1d5bf8566be0e",
+    "forge_file_sha256": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101",
+    "source_compiler_selection": "0.8.26",
+    "compiler_binary_authenticated": false,
+    "build_or_tests_executed": false,
+    "production_approved": false
+  }
+}
