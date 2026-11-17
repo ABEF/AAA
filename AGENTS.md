@@ -1,5 +1,9 @@
 # AAA / ZZZ PoPL project instructions
 
+The [launch-workload review](reports/launch-workload-20261117/REVIEW.md) separates cold call gas, actual local estimates/full padding, maximum royalty-component state and claim batching. Capacity16 is not16 admitted currencies or an aggregate gas guarantee. Several current16-currency activation states fail the20M policy, while smaller/synchronized workloads and growth have separate evidence. Use exact selected calls, preserve all gas/financial defaults and keep maximum whole-graph/target provider/fee qualification open. New pre-seal royalty/gas reads remain unverified; no live environment is changed.
+
+
+
 The [latest five-report consolidation](reports/five-report-consolidation-20261117/REVIEW.md) separates resolved defects, retained policy and unqualified work without relabelling original reports. Current pre-seal output discloses pool-specific ordinary-operation stops; the fixed historical evidence checker preserves exact methods and weaker evidence tiers. All61 Solidity sources, financial limits/rights and live environments remain unchanged. Trusted build remains seal-boundaries-20261117; no release approval or rollout is implied.
 
 The [unsigned pre-seal planner](reports/preseal-planner-20261116/REVIEW.md) now prepares twelve ordered configuration

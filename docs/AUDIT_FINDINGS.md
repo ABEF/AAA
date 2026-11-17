@@ -7,6 +7,8 @@ policies,7 structural limits,2 historical-evidence limits,7 qualification bucket
 and2 new corrections. These categories are not test totals or release
 approvals. The [sole Todo](../TODO.md) owns project task status.
 
+Current follow-up: [Q03 launch workload](../reports/launch-workload-20261117/REVIEW.md) adds measured gas/batching boundaries and an unverified pre-seal workload checklist. Q03 remains open for maximum whole-graph state, actual selected currencies and target-chain/provider qualification. The original64-row registry and its39 resolved dispositions are preserved.
+
 ## Five reports reconciled
 
 | Original report | Current interpretation |

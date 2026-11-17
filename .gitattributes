@@ -183,3 +183,9 @@ reports/test-impact-followup-20261117/** -text whitespace=cr-at-eol,-blank-at-eo
 reports/five-report-consolidation-20261117/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 # The checker authenticates the exact raw bytes on every supported checkout.
 config/focused-evidence-1c18379.json -text
+
+# Keep native source-bound launch workload evidence and selected fixtures exact.
+reports/launch-workload-20261117/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+test/LaunchContributionCapacity20261117.t.sol -text whitespace=cr-at-eol
+test/LaunchClaimCapacity20261117.t.sol -text whitespace=cr-at-eol
+test/LaunchRoyaltyTail20261117.t.sol -text whitespace=cr-at-eol

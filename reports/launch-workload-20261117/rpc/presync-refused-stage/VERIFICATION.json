@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "label": "activation-zzz-0-pending-steady",
+  "verification_complete": false,
+  "sync12m_full20pct": true,
+  "entry20m_full20pct": false,
+  "production_approved": false,
+  "new_transactions_sent": 0,
+  "new_workflow_only": true,
+  "scope": "Optional separate public syncAll then SAME activation calldata, reconstructed from actual prestateTracer diff on two NEW isolated nodes at the same exported timestamp. Not two mined transactions, nonce/fee/market adoption, automatic worker or a required extra holder transaction.",
+  "source_state_merge": {
+    "baseline_sha256": "ede2bb4fccf0066a2208a382ffc0acc42b419fcfb17cef090099fc36ab276adc",
+    "delta_sha256": "01dbcd4581c67b22eadf860cecbb4547898884e90f5d95c90846a044d6586982",
+    "baseline_keccak256": "0x7c3546a1f11f9ad2b637d592372052141d5b27fcc0047cbb8951a582d8d6cd92",
+    "delta_keccak256": "0x334702798d1777afbc7fa67e9b85a5095d1ad6807582801e935443287db31542",
+    "nonzero_to_zero_overrides": 0,
+    "baseline_accounts": 29,
+    "delta_accounts": 69,
+    "merged_accounts": 69,
+    "harness_artifact_sha256": "b21e814b8480ea007e157e19fceff845e98bc48ca49def5ab53205550d31e5d2"
+  },
+  "before_node": {
+    "owned_node_stopped": true,
+    "new_transactions_sent": 0,
+    "genesis_sha256": "feffd7830e6cb9f1e10f5a5d35b43023a5ee82a42a600261d05b0434ebb518e0",
+    "owned_pid": 1688,
+    "command": [
+      "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\anvil.exe",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "65437",
+      "--accounts",
+      "0",
+      "--silent",
+      "--init",
+      "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\launch-workload-20261117\\completed-rpc\\presync-rpc\\activation-zzz-0-pending-steady\\before-sync\\genesis.json",
+      "--gas-limit",
+      "32000000",
+      "--chain-id",
+      "31337",
+      "--hardfork",
+      "cancun",
+      "--no-mining"
+    ],
+    "anvil_sha256": "d438383b871c726407ecc5829279bea44ceac63a712be9e010813ca0a15434b6",
+    "block": {
+      "hash": "0xd0f78be0fa5092b00766608270d08cc6e0aec16f413bf87dfc8e036ebe032ec4",
+      "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+      "miner": "0x0000000000000000000000000000000000000000",
+      "stateRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+      "receiptsRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "difficulty": "0x0",
+      "number": "0x1",
+      "gasLimit": "0x1e84800",
+      "gasUsed": "0x0",
+      "timestamp": "0xf543c",
+      "extraData": "0x",
+      "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "nonce": "0x0000000000000000",
+      "baseFeePerGas": "0x0",
+      "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+      "blobGasUsed": "0x0",
+      "excessBlobGas": "0x0",
+      "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "totalDifficulty": "0x0",
+      "size": "0x241",
+      "uncles": [],
+      "transactions": [],
+      "withdrawals": []
+    },
+    "local_chain_id": 31337,
+    "robinhood_network_qualification": false,
+    "rpc_requests": 82,
+    "rpc_records_sha256": "c6178dcab50538193c93793e63d76900ce619d847a9c3fb19796590a10a54eb5"
+  },
+  "sync": {
+    "cap": 12000000,
+    "call": {
+      "ok": true,
+      "result": "0x"
+    },
+    "estimate": {
+      "ok": true,
+      "result": "0x1baada"
+    },
+    "raw_estimate": 1813210,
+    "full20pct_padded": 2175852,
+    "exact_padded_call": {
+      "ok": true,
+      "result": "0x"
+    },
+    "trace_success": true
+  },
+  "prestate_tracer_supported": true,
+  "verification_error": "AssertionError: syncAll unexpectedly changes code/balance/nonce",
+  "finished_at_utc": "2026-11-17T12:41:08.908767+00:00",
+  "verifier_source_sha256": "32b3d1a802ffb0a91402b3ead103dfe49bb95900ce74e3efd7b78913c45419a9",
+  "base_verifier_source_sha256": "f7d1ee4de3fda6da50b336ab2d53d359f86be7d77e2af4adf40bde32ef138b70"
+}

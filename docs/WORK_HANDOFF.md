@@ -11,6 +11,8 @@ Historical artifacts/runtimes/checkpoints/journals retain their original profile
 
 ## Latest completed work
 
+- [Launch-workload review](../reports/launch-workload-20261117/REVIEW.md):19 distinct new focused methods retain separate contribution, royalty-component, claim and pre-seal scopes. Actual local calls/estimates/padding include20M activation refusals and smaller claim recovery. Capacity is not admission or whole-operation approval. New pre-seal currency/gas rows stay unverified; all defaults/source contracts/environments remain unchanged. Maximum-state whole-graph, actual assets/target fees/providers and independent approval stay open.
+
 - Consolidated five root report families selected by Git publication history,
   with original300files/37Markdown files preserved. The
   [finding registry](../reports/five-report-consolidation-20261117/RECONCILIATION.json)
@@ -24,6 +26,8 @@ Historical artifacts/runtimes/checkpoints/journals retain their original profile
   Integrity does not prove original execution, new-source behavior or release.
 - Earlier manual final-anchor, frozen-gas, artwork/chain/reservation and test
   repairs remain implemented. Follow [before-sealing boundaries](SEAL_READINESS.md).
+
+Optional existing royalty pre-sync is locally rehearsed for healthy ZZZ-pending and first-opening ETH cases; it reduces the activation peak without changing20M/defaults. It is a separate reviewed operator transaction, not an automatic worker or mandatory holder step. Faulted/maximum-state/provider/fee limits remain.
 
 ## Next work and required inputs
 

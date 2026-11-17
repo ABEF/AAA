@@ -1,0 +1,180 @@
+{
+  "lossy_method_summary": true,
+  "full_raw_external": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\launch-workload-20261117\\completed-rpc\\raw.json",
+  "raw_sha256": "5ba2ebe8aacf68c431adb286c27eb01290edbcedddcac894b9418ef24c868039",
+  "methods": [
+    {
+      "id": "test/LaunchContributionCapacity20261117.t.sol:LaunchContributionCapacity20261117Test.testLaunch16AllBurningFaultsDoNotAffectGrowth()",
+      "status": "Success",
+      "reason": null,
+      "decoded_logs": [
+        "launch.faults: 16",
+        "launch.is-growth: 1",
+        "launch.call20M.success: 1",
+        "launch.call20M.gas: 13435255",
+        "launch.full20percent.fits20M: 1",
+        "launch.completed.call-gas: 13435255",
+        "launch.completed.full20percent: 16122306"
+      ],
+      "test_kind": {
+        "Unit": {
+          "gas": 207904727
+        }
+      }
+    },
+    {
+      "id": "test/LaunchContributionCapacity20261117.t.sol:LaunchContributionCapacity20261117Test.testLaunch16AllBurningFaultsETHActivation()",
+      "status": "Success",
+      "reason": null,
+      "decoded_logs": [
+        "launch.faults: 16",
+        "launch.is-growth: 0",
+        "launch.call20M.success: 0",
+        "launch.call20M.gas: 19168141",
+        "launch.full20percent.fits20M: 0",
+        "launch.completed.call-gas: 29892851",
+        "launch.completed.full20percent: 35871422"
+      ],
+      "test_kind": {
+        "Unit": {
+          "gas": 246156555
+        }
+      }
+    },
+    {
+      "id": "test/LaunchContributionCapacity20261117.t.sol:LaunchContributionCapacity20261117Test.testLaunch16ColdEmptyETHActivation()",
+      "status": "Success",
+      "reason": null,
+      "decoded_logs": [
+        "launch.faults: 0",
+        "launch.is-growth: 0",
+        "launch.call20M.success: 1",
+        "launch.call20M.gas: 14385621",
+        "launch.full20percent.fits20M: 1",
+        "launch.completed.call-gas: 14385621",
+        "launch.completed.full20percent: 17262746"
+      ],
+      "test_kind": {
+        "Unit": {
+          "gas": 204602779
+        }
+      }
+    },
+    {
+      "id": "test/LaunchContributionCapacity20261117.t.sol:LaunchContributionCapacity20261117Test.testLaunch16ColdHealthyETHActivationAndGrowth()",
+      "status": "Success",
+      "reason": null,
+      "decoded_logs": [
+        "launch.faults: 0",
+        "launch.is-growth: 0",
+        "launch.call20M.success: 1",
+        "launch.call20M.gas: 15767459",
+        "launch.full20percent.fits20M: 1",
+        "launch.completed.call-gas: 15767459",
+        "launch.completed.full20percent: 18920951",
+        "launch.faults: 0",
+        "launch.is-growth: 1",
+        "launch.call20M.success: 1",
+        "launch.call20M.gas: 13435255",
+        "launch.full20percent.fits20M: 1",
+        "launch.completed.call-gas: 13435255",
+        "launch.completed.full20percent: 16122306"
+      ],
+      "test_kind": {
+        "Unit": {
+          "gas": 487880631
+        }
+      }
+    },
+    {
+      "id": "test/LaunchContributionCapacity20261117.t.sol:LaunchContributionCapacity20261117Test.testLaunch16ColdHealthyZZZActivationAndGrowth()",
+      "status": "Success",
+      "reason": null,
+      "decoded_logs": [
+        "launch.faults: 0",
+        "launch.is-growth: 0",
+        "launch.call20M.success: 1",
+        "launch.call20M.gas: 16180482",
+        "launch.full20percent.fits20M: 1",
+        "launch.completed.call-gas: 16180482",
+        "launch.completed.full20percent: 19416579",
+        "launch.faults: 0",
+        "launch.is-growth: 1",
+        "launch.call20M.success: 1",
+        "launch.call20M.gas: 13788413",
+        "launch.full20percent.fits20M: 1",
+        "launch.completed.call-gas: 13788413",
+        "launch.completed.full20percent: 16546096"
+      ],
+      "test_kind": {
+        "Unit": {
+          "gas": 488972050
+        }
+      }
+    },
+    {
+      "id": "test/LaunchContributionCapacity20261117.t.sol:LaunchContributionCapacity20261117Test.testLaunch16FirstOpeningAllocationETHActivation()",
+      "status": "Success",
+      "reason": null,
+      "decoded_logs": [
+        "launch.faults: 0",
+        "launch.is-growth: 0",
+        "launch.call20M.success: 1",
+        "launch.call20M.gas: 16304760",
+        "launch.full20percent.fits20M: 1",
+        "launch.completed.call-gas: 16304760",
+        "launch.completed.full20percent: 19565712"
+      ],
+      "test_kind": {
+        "Unit": {
+          "gas": 208820702
+        }
+      }
+    },
+    {
+      "id": "test/LaunchContributionCapacity20261117.t.sol:LaunchContributionCapacity20261117Test.testLaunch16OneBurningFaultETHActivation()",
+      "status": "Success",
+      "reason": null,
+      "decoded_logs": [
+        "launch.faults: 1",
+        "launch.is-growth: 0",
+        "launch.call20M.success: 1",
+        "launch.call20M.gas: 16650297",
+        "launch.full20percent.fits20M: 1",
+        "launch.completed.call-gas: 16650297",
+        "launch.completed.full20percent: 19980357"
+      ],
+      "test_kind": {
+        "Unit": {
+          "gas": 209959428
+        }
+      }
+    },
+    {
+      "id": "test/LaunchContributionCapacity20261117.t.sol:LaunchContributionCapacity20261117Test.testLaunch16RPCStateHealthyPendingAndGrowth()",
+      "status": "Success",
+      "reason": null,
+      "decoded_logs": [
+        "launch.faults: 0",
+        "launch.is-growth: 0",
+        "launch.call20M.success: 1",
+        "launch.call20M.gas: 15767459",
+        "launch.full20percent.fits20M: 1",
+        "launch.completed.call-gas: 15767459",
+        "launch.completed.full20percent: 18920951",
+        "launch.faults: 0",
+        "launch.is-growth: 1",
+        "launch.call20M.success: 1",
+        "launch.call20M.gas: 13435255",
+        "launch.full20percent.fits20M: 1",
+        "launch.completed.call-gas: 13435255",
+        "launch.completed.full20percent: 16122306"
+      ],
+      "test_kind": {
+        "Unit": {
+          "gas": 487880917
+        }
+      }
+    }
+  ]
+}

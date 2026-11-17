@@ -1,5 +1,7 @@
 # Activation and top-up preparation
 
+The [launch16 workload](../reports/launch-workload-20261117/REVIEW.md) shows that some healthy pending/first-opening activations exceed20M after the required full20% estimate margin, even when a20M body call succeeds. Two explicit existing royalty-sync-then-entry workflows fit the unchanged caps in controlled local state; they shift work into a separate optional operator transaction. [Exact procedure](OPERATOR_MANUAL.md#optional-royalty-synchronization-before-activation). New receipts/trading can change the next quote: reprepare and simulate the exact entry. No gas/default change, mandatory holder step or universal maximum-state approval is implied.
+
 ## Optional execution-price1 / LP-routing3
 
 Explicit `execution_price_version:1` requires the matching LP3 runtime graph and

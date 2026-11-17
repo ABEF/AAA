@@ -371,6 +371,8 @@ def _seal_boundary_review(construction,assigned):
         ('sale_end','royalty_rewards',['mintEnd()','mintEndRevision()','royaltiesOpenAt()','royaltiesOpen()'],'Before enabling sale, verify the final end is future at execution and matches OpenSea. Opening finalization is private: use authenticated RoyaltyOpeningFinalized event/state history; royaltiesOpen is a time predicate, not proof of finalization. An unset end may be initialized after seal; a previously configured nonzero end that expires during bootstrap cannot currently be reset, even before any mint.'),
         ('bucket_reservations','vault',['bucketCount()','bucketAt(uint256)','poolBucket(bytes32)'],'New bucket IDs must equal VaultCanonical.bucketIdentity(pool); existing registered aliases remain valid for pool moves. Inspect every retained slot before irreversible reservation; there is no unreserve and capacity stays four.'),
         ('reservation_validator','migration',['validation()'],'Before a first reservation, verify the fixed CustodyValidation parent/controller and reviewed runtime. Its public validReservationIdentity is only a read, not full pool admission or authority; an empty registered alias is not a new activation domain.'),
+        ('royalty_workload','royalty_rewards',['assetCapacity()','MAX_ERC20_ASSETS()','MAX_ASSETS()','assetCount()','assets(uint256)'],'Enumerate the actual admitted currencies, with native ETH at index0. The initial capacity is16 ERC20 currencies plus native ETH, not17 already-admitted assets; reviewed capacity can expand to64 ERC20s plus ETH. Capacity alone is not aggregate gas qualification. Measure healthy, pending-receipt and gas-consuming fault workloads before currency admission or any capacity increase, preserving exact entitlements.'),
+        ('gas_policy','protocol_policy',['gasPolicy()','payoutGas()','sourceCallGas()','royaltySyncGas()','gasFingerprint()'],'Verify actual per-call gas settings and their fingerprint. A per-currency sync budget is not a whole-transaction guarantee. Qualify aggregate work, exact calls and estimates, full20% activation-policy2 or25% maintenance headroom, selected service budgets, actual block bounds and complete fees. No gas limit, capacity, setting or operating approval is adopted by this checklist.'),
     ]
     bindings={'seadrop_binding':assigned.get('seadrop_mint'),'lp_converter_binding':assigned.get('lp_converter')}
     return {
@@ -381,6 +383,10 @@ def _seal_boundary_review(construction,assigned):
         'inert_data_scope':'Immutable accepted-code parts are byte-length/hash commitments here; exact bytes remain in the separately authenticated construction plan.',
         'checks':[{'id':key,'target_role':role,'assigned_target':assigned.get(role),
             'required_reads':reads,'requirement':requirement,'expected_binding':bindings.get(key),
+            **({'required_read_inputs':{'assets(uint256)':{'index':{'type':'uint256',
+                'format':'canonical unsigned decimal string','range':'0 <= index < observed assetCount()',
+                'first_index':'0','source':'Enumerate the observed current ledger; no count is assumed.'}}}}
+                if key=='royalty_workload' else {}),
             'status':'unverified','verified':False} for key,role,reads,requirement in checks],
         'settings_are_offline_assignments':True,
     }

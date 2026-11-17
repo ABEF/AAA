@@ -7,6 +7,8 @@ and [latest consolidation](../reports/five-report-consolidation-20261117/REVIEW.
 The trusted build remains `seal-boundaries-20261117`; current source is
 undeployed for production and NOT APPROVED. No site/service adoption is implied.
 
+The [launch-workload review](../reports/launch-workload-20261117/REVIEW.md) adds19 distinct new focused methods across contribution, royalty-component, claim and unsigned-pre-seal scopes; local RPC workflows overlap those methods. Actual call/estimate/full-padding results include refusals. No universal16-currency/1000-NFT whole-graph approval, gas/default increase or live adoption is implied.
+
 ## Current profile
 
 Fresh **accounting7 / LP-allocation1 / portfolio2 / maintenance3 / confirmation3 / compound4 /

@@ -1,5 +1,7 @@
 # Marketplace royalty settlement: original currencies
 
+The [launch-workload review](../reports/launch-workload-20261117/REVIEW.md) separates capacity16 from actual admission, expensive allocation phases, optional full-budget faults and mixed claims. Some complete activation states exceed the unchanged20M/full20% policy. Existing standalone sync can move healthy pending allocation into a separately reviewed operator transaction; no royalty conversion, new worker, automatic gas increase or entitlement change is introduced.
+
 Fresh **royalty settlement4/recovery2**, accounting7/LP-allocation1/custody5/Entry3,
 canonicalV10 and schema17. Historical accounting6/V8/schema15 remains separately pinned.
 User decision5November2026: holders claim each royalty currency as received.

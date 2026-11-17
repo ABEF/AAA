@@ -318,6 +318,26 @@ See [configuration](ACTIVATION_PREPARATION.md) and
 
 ### Explicit20M contribution and24M maintenance profiles
 
+The [launch16 review](../reports/launch-workload-20261117/REVIEW.md) demonstrates why a passing20M body call is insufficient: its fresh estimate plus full20% can still exceed20M. Several pending/initial-allocation states refuse this policy even with healthy tokens. Capacity16 means16 ERC20s plus ETH **if admitted**, not an automatic launch list or gas approval. Growth normally does not repeat royalty activation. Keep the exact preparation/estimate and margins; never widen a cap or mislabel an opaque refusal as a bad token.
+
+Before admitting currencies, read `RoyaltyRewards.assetCount()`, every `assets(index)`, `assetCapacity()` and `ProtocolPolicy.royaltySyncGas()`/`gasPolicy()`/`gasFingerprint()`. Qualify cold empty, pending/first-opening, rotated-allocation and failed-read workloads. Some rare royalty states are materially more expensive; component gas cannot be added to or substituted for a complete operation estimate. The new unsigned pre-seal rows record these reads only and remain unverified.
+
+#### Optional royalty synchronization before activation
+
+The [two-stage local rehearsal](../reports/launch-workload-20261117/REVIEW.md#tested-optional-workflow-synchronize-before-activation) makes two healthy previously over-budget activations fit the existing20M policy. It shifts allocation into a separate operator-paid transaction; it does not promise less total gas, a new worker or a third required holder transaction.
+
+| Step | Existing call / inputs | What to verify |
+| --- | --- | --- |
+| Inspect currencies | `assetCount()`, `assets(index)`, `royaltySyncGas()` | Exact admitted list and current runtime/policy |
+| Prepare synchronization | `RoyaltyRewards.syncAll()`, no arguments, zero ETH | Exact simulation, budget, full margin and fees |
+| Isolate a broken currency | `RoyaltyRewards.sync(asset)`, one actual admitted address, zero ETH | Independently reviewed healthy selection |
+| Verify confirmation | Read allocation, pending amounts and rights | Incumbents keep old funds; LP, owners and reserves unchanged |
+| Prepare activation again | Entry review against fresh state | Existing loss guards, current prices, allowance and expiry |
+
+Anyone may call sync; that grants no management or payout authority. The operator can pay this gas independently. Before the one-hour opening, sync holds receipts; at/after opening the fixed cutoff applies. `syncAll` is atomic: a bad currency can revert it. Never mark a failed sync as confirmed, skip its rights or auto-change its allowance. New receipts, activations and pool trading can occur between transactions, so prior sync is no guarantee that the next entry fits; use its exact fresh estimate. Use the live canonical ledger; canonical preparation/retirement retains its own restrictions. LP conversion and original-currency royalty claims remain separate.
+
+For claims,32 is a total NFT/asset/ledger entry ceiling. The1000-NFT stress cases include a19-entry pending mixed batch and32 LP entries that refuse12M without losing rights. Prepare the next exact smaller batch and replan after confirmation; choose healthy currencies when a selected transfer fails. Old schema1 clipping is not proof of full20% headroom. Raw fixed-ZZZ LP recovery remains distinct from normal ETH settlement and original-currency royalties.
+
 The earlier [controlled qualification](../reports/gas-profiles-20261113/REVIEW.md)
 passes all four $100/$5 contribution cases and six keeper operations at full
 padding; worst measured padded gas is18,098,846/20M and21,046,237/24M. Its keeper

@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "case": "activation-zzz-0-pending-steady",
+  "original_verification_sha256": "0618b890d865f338d6db2d894b9cdcc8b64adcfa60a3b3d00737a540e5131170",
+  "original_rpc_records_sha256": "0bd35fd27392729f301c41d1d7976c2327e13017c1fe2baebf97aef793e25783",
+  "verifier_source_sha256": "f7d1ee4de3fda6da50b336ab2d53d359f86be7d77e2af4adf40bde32ef138b70",
+  "source_forge_sha256": "5ba2ebe8aacf68c431adb286c27eb01290edbcedddcac894b9418ef24c868039",
+  "retained_trace_record_index": 96,
+  "retained_trace_request_sha256": "75966553db8a6b25626b20cfe2bf4f596bffeb500abc6108379976543bed58b6",
+  "previous_measurement_error": "ProjectionError: LP balancing did not isolate the exact entrant budget",
+  "correction": "Dormant nftBucket0 is retained; old LP identity comes from the actual early shared-bucket STATICCALL before balancing or placement.",
+  "shared_bucket": "12303348992888452224556495487210046042273313936231113355190120268912493433752",
+  "shared_main_lp": "1",
+  "traced_group_frame_index": 232,
+  "first_balancing_or_placement_frame_index": 553,
+  "traced_group_call": {
+    "type": "STATICCALL",
+    "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+    "to": "0xe8dc788818033232ef9772cb2e6622f1ec8bc840",
+    "input": "0x0bd0e7fa1b3372e195b2a8f3581029fff721a4bb1826d1d082ad904ce18b3f47abc99398",
+    "output": "0x1cd733b750148b563929026924267db60a232d9bb72e00e4f52bf76e5d3fe7a50000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000872979693e4b100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000f42440000000000000000000000000000000000000000000000000000000000000001"
+  },
+  "new_rpc_or_evm_performed": false,
+  "original_cap_decisions_unchanged": true,
+  "production_approved": false,
+  "production_trace_measurement": {
+    "measurement": {
+      "source_usd_18": 100000000000000000000,
+      "required_deployed_usd_18": 97007576572649591768,
+      "marginal_deployed_usd_18": 99908561395263002576,
+      "net_contribution_usd_18": 99909610627764006063,
+      "shares_added_raw": 99909610627764006063,
+      "lp_liquidity_added_raw": 206121632260878734028,
+      "lp_token_id": 1,
+      "converted_amount_raw": 100000000000000000000,
+      "simulation_gas_used": 15713453
+    },
+    "request": {
+      "id": 10208932130048477604581572102416770457324003744102993085740079562570564837970,
+      "pool": "0x1cd733b750148b563929026924267db60a232d9bb72e00e4f52bf76e5d3fe7a5",
+      "source": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+      "amount": 100000000000000000000,
+      "minimum_lp": 1,
+      "deadline": 1004704,
+      "increase": false,
+      "maximum_loss_bps": 300,
+      "expected_contribution_policy": "0x7534d529528b3c89edcdced662dab2fad5c0e73df69ce14c706968417f33919a",
+      "bucket": 12303348992888452224556495487210046042273313936231113355190120268912493433752,
+      "old_lp_id": 1,
+      "output": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+      "token0": "0x0000000000000000000000000000000000000000",
+      "token1": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+      "route": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "minimum_out": 0,
+      "route_kind": 0,
+      "accounting_version": 7,
+      "routing_version": 3,
+      "review_policy_version": 2,
+      "pricing_version": 2,
+      "lp_routing_version": 3,
+      "execution_price_version": 1,
+      "portfolio_version": 2,
+      "execution_quality_version": 1,
+      "execution_loss_bps": 300,
+      "maximum_idle_bps": 500,
+      "upper_input_usd": 100007810899638754400,
+      "reviewed_price_bounds": {
+        "0x0000000000000000000000000000000000000000": {
+          "lower": 1000000000000000000,
+          "upper": 1000000000000000000,
+          "fingerprint": "0x7abf068721d96396279e69e2c39b5d1840af40714d569a38e45cd9645558db73"
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a": {
+          "lower": 1000000000000000000,
+          "upper": 1000078108996387544,
+          "fingerprint": "0x13d76a0eb669fe9a8d8339592414134f56cef58878a8fdc4d228b7b9dff943eb"
+        }
+      },
+      "_contribution_amount0": 0,
+      "_contribution_amount1": 100000000000000000000,
+      "_lp_balanced": [
+        60868680452428966533,
+        39040930175335039531
+      ]
+    },
+    "gross_usd18": 100000000000000000000,
+    "context": {
+      "version": 1,
+      "contracts": {
+        "oracle": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+        "contribution_pricing": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+        "liquidity": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+        "balancing_router": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+        "lp_position_executor": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66",
+        "strategy": "0xd16d567549a2a2a2005aeacf7fb193851603dd70"
+      },
+      "execution_strategy": "0xdda0a8d7486686d36449792617565e6c474fba3f",
+      "source_revision": 2,
+      "context_active": false
+    },
+    "controlled_pool_minimum_usd18": 1000000000000000000
+  },
+  "measurement_verified": true
+}

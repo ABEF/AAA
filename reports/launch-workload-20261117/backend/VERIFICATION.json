@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "baseline_commit": "0736ce42d73f717ad62c43dabe55de70f8e82b8f",
+  "scope": "New unverified offline launch-workload checklist; current trusted ABI and exact-index input explanation. Not gas/EVM/chain/provider/market/operating qualification.",
+  "new_distinct_methods": 4,
+  "tests_run": 4,
+  "failures": [],
+  "errors": [],
+  "success": true,
+  "sources_bracketed": 448,
+  "source_changes": [],
+  "producer_sources": {
+    "zzz_ops/preseal_plan.py": "a22543919b6f722c2bab6e44d928941f34ee07beab06f2d3b37668f6a38f0aaa",
+    "scripts/prepare-preseal.py": "46ea49ae9c1177b4936bf5f04121eb3e1055487c8a3a48ecd0091c1ac022b0e3",
+    "zzz_ops/deployment_plan.py": "d8e6bc34ff7897250194bd922b2f8f2f75f4b3800579dcb12e181f2bb7cc3a62",
+    "zzz_ops/abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d",
+    "zzz_ops/opensea_drop.py": "f5434c480325b25894d613e3db7dd6a8f18b1966c8f1b9842e679d90276a474b",
+    "zzz_ops/production_v2.py": "d5d45af5a5eeefe7efe5215271606c1c52928d00bb12e1d323f7c97202a76e28"
+  },
+  "new_check_ids": [
+    "royalty_workload",
+    "gas_policy"
+  ],
+  "setup_call_count": 24,
+  "readiness_flags_all_false": true,
+  "production_solidity_and_protected_four_unchanged": true,
+  "unchanged_test_files_modified": false,
+  "unchanged_suites_rerun": false,
+  "compiler_rpc_signing_or_environment_changes": false,
+  "raw_files_sha256": {
+    "PRESEAL_WORKLOAD.json": "b77182024d49c09bb391b5edc030bbb145ef719d36d4db726b4a17decfbb5975",
+    "PRESEAL_WORKLOAD.log": "66356b25c0709945316af49776a48e175a538e5171155b06be20e136e25d8021"
+  },
+  "production_approved": false
+}

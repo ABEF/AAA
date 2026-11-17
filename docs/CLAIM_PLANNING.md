@@ -1,5 +1,7 @@
 # Gas-aware unsigned claim planning
 
+The [current1000-NFT claim stress](../reports/launch-workload-20261117/claims/REVIEW.md) includes16 ERC20 royalty currencies plus ETH and four LP accounts. A19-entry pending mixed selection and32 LP entries refuse12M atomically; smaller selected batches preserve exact payments and failed-currency recovery. Stored19-entry body success is not a universal count or RPC/fee approval. Keep the planner's fresh exact simulation and existing limits; later same-test recovery chunks are functional evidence, not independent cold transaction estimates.
+
 **Mint-profile boundary:** backend source implements explicit opt-in
 `mint_integration_version:2` on accounting7 for V10 reads and owned reward claims.
 Omitted/default1 on accounting7 retains V9; source9/schema16 website configuration

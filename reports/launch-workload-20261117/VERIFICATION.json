@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "baseline_commit": "0736ce42d73f717ad62c43dabe55de70f8e82b8f",
+  "distinct_new_focused_methods": 19,
+  "groups": {
+    "contribution": 8,
+    "royalty_component": 4,
+    "claims": 3,
+    "backend": 4
+  },
+  "group_evidence_sha256": {
+    "contributions": "501f1e1397217566b83c6860db60e3d883b9e6706df53fd706754c1506427aa3",
+    "royalty_component": "5871fa91ae6158771323b925884a344f261024fff9c62276d2c156bdf1d3d0b1",
+    "claims": "680f81a8e56188cef42828109d027b535bb69f175c909ec0e4ca7efd2de2d97d",
+    "backend": "adb6995a6fbb213e4d9e23b44447f2d64df1b773b89f65ef0ad8ece34d2309e6",
+    "rpc": "4dead677a9d87b5b69d65dcb600d188c8da66a2ead19e5d4093211123cb7c264"
+  },
+  "unique_initial_rpc_states": 9,
+  "initial_20m_full_padding_fits": 5,
+  "initial_20m_full_padding_refusals": 4,
+  "new_optional_two_stage_workflows": 2,
+  "owned_local_nodes_stopped": 13,
+  "new_workflows_overlap_tests_not_extra_feature_count": true,
+  "old_unchanged_regression_suites_rerun": false,
+  "production_solidity_files_changed": 0,
+  "normal_build_or_static_campaign_repeated": false,
+  "gas_defaults_or_financial_safeguards_changed": false,
+  "all_release_or_market_or_provider_qualification": false,
+  "production_approved": false,
+  "existing_environments_changed": false,
+  "historical_64_registry_changed": false,
+  "q03_broad_status": "open_actual_workload_and_maximum_whole_graph_qualification",
+  "scope_limits": [
+    "Controlled local31337; no real Robinhood provider/fees or external market independence",
+    "TwoNFT complete physical-v4 graph is separate from1000NFT accounting claims and811/999royalty component cases",
+    "Stored19entrybodyfit is not a universal claim gas approval",
+    "Defaultcapacity16 is not actual admission nor healthy/fault aggregate guarantee",
+    "Presync is optional separate operator work, not aggregate gas savings or additional mandatory holder transaction",
+    "Original verbose traces and failed fixture/tool stages remain hash-bound outsideGit; public summaries are explicitly lossy"
+  ]
+}

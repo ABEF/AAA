@@ -1,0 +1,1258 @@
+{
+  "schema": 1,
+  "distinct_new_methods": 3,
+  "methods": [
+    {
+      "id": "test/LaunchClaimCapacity20261117.t.sol:LaunchClaimCapacityPending20261117Test.testLaunchNineteenPendingMixedLedgerClaimsAtTwelveMillionWithSafeRecovery()",
+      "status": "Success",
+      "reason": null,
+      "host_test_body_gas_not_transaction_gas": 212307380,
+      "envelopes": [
+        {
+          "scenario": "pending17royalty+2LP:1000active:claim12M",
+          "entries": 19,
+          "gas_limit": 12000000,
+          "call_body_gas": 11998017,
+          "success": false,
+          "body_only_20pct_arithmetic": 14397621,
+          "arithmetic_is_not_RPC_estimate_or_full_transaction_approval": true
+        },
+        {
+          "scenario": "pending17royalty+2LP:1000active:claim12M / functional chunk starting0",
+          "entries": 8,
+          "gas_limit": 12000000,
+          "call_body_gas": 6566963,
+          "success": true,
+          "body_only_20pct_arithmetic": 7880356,
+          "arithmetic_is_not_RPC_estimate_or_full_transaction_approval": true
+        },
+        {
+          "scenario": "pending17royalty+2LP:1000active:claim12M / functional chunk starting8",
+          "entries": 8,
+          "gas_limit": 12000000,
+          "call_body_gas": 5201572,
+          "success": true,
+          "body_only_20pct_arithmetic": 6241887,
+          "arithmetic_is_not_RPC_estimate_or_full_transaction_approval": true
+        },
+        {
+          "scenario": "pending17royalty+2LP:1000active:claim12M / functional chunk starting16",
+          "entries": 3,
+          "gas_limit": 12000000,
+          "call_body_gas": 1990794,
+          "success": true,
+          "body_only_20pct_arithmetic": 2388953,
+          "arithmetic_is_not_RPC_estimate_or_full_transaction_approval": true
+        }
+      ],
+      "cold_footprints": [
+        {
+          "accounts": 28,
+          "recorded_slot_resets": 7840
+        },
+        {
+          "accounts": 28,
+          "recorded_slot_resets": 18250
+        },
+        {
+          "accounts": 28,
+          "recorded_slot_resets": 21305
+        },
+        {
+          "accounts": 28,
+          "recorded_slot_resets": 23776
+        }
+      ]
+    },
+    {
+      "id": "test/LaunchClaimCapacity20261117.t.sol:LaunchClaimCapacityStored20261117Test.testLaunchLastRoyaltyFaultRollsBackMixedClaimsThenHealthySubsetAndRecoveryPayExactly()",
+      "status": "Success",
+      "reason": null,
+      "host_test_body_gas_not_transaction_gas": 295835959,
+      "envelopes": [
+        {
+          "scenario": "stored17royalty+2LP:1000active:claim12M",
+          "entries": 19,
+          "gas_limit": 12000000,
+          "call_body_gas": 7766624,
+          "success": true,
+          "body_only_20pct_arithmetic": 9319949,
+          "arithmetic_is_not_RPC_estimate_or_full_transaction_approval": true
+        },
+        {
+          "scenario": "healthy18withoutfailedcurrency:claim12M",
+          "entries": 18,
+          "gas_limit": 12000000,
+          "call_body_gas": 7448523,
+          "success": true,
+          "body_only_20pct_arithmetic": 8938228,
+          "arithmetic_is_not_RPC_estimate_or_full_transaction_approval": true
+        },
+        {
+          "scenario": "recovered1originalcurrency:claim12M",
+          "entries": 1,
+          "gas_limit": 12000000,
+          "call_body_gas": 335929,
+          "success": true,
+          "body_only_20pct_arithmetic": 403115,
+          "arithmetic_is_not_RPC_estimate_or_full_transaction_approval": true
+        }
+      ],
+      "cold_footprints": [
+        {
+          "accounts": 28,
+          "recorded_slot_resets": 9410
+        },
+        {
+          "accounts": 28,
+          "recorded_slot_resets": 36689
+        },
+        {
+          "accounts": 28,
+          "recorded_slot_resets": 46416
+        }
+      ]
+    },
+    {
+      "id": "test/LaunchClaimCapacity20261117.t.sol:LaunchClaimCapacityStored20261117Test.testLaunchThirtyTwoStoredLPClaimsAtTwelveMillionAndExactCountLimit()",
+      "status": "Success",
+      "reason": null,
+      "host_test_body_gas_not_transaction_gas": 601101949,
+      "envelopes": [
+        {
+          "scenario": "32storedLP:16currentownerNFT:4buckets:claim12M",
+          "entries": 32,
+          "gas_limit": 12000000,
+          "call_body_gas": 11993764,
+          "success": false,
+          "body_only_20pct_arithmetic": 14392517,
+          "arithmetic_is_not_RPC_estimate_or_full_transaction_approval": true
+        },
+        {
+          "scenario": "32storedLP:16currentownerNFT:4buckets:claim12M / functional chunk starting0",
+          "entries": 8,
+          "gas_limit": 12000000,
+          "call_body_gas": 7828399,
+          "success": true,
+          "body_only_20pct_arithmetic": 9394079,
+          "arithmetic_is_not_RPC_estimate_or_full_transaction_approval": true
+        },
+        {
+          "scenario": "32storedLP:16currentownerNFT:4buckets:claim12M / functional chunk starting8",
+          "entries": 8,
+          "gas_limit": 12000000,
+          "call_body_gas": 3688895,
+          "success": true,
+          "body_only_20pct_arithmetic": 4426674,
+          "arithmetic_is_not_RPC_estimate_or_full_transaction_approval": true
+        },
+        {
+          "scenario": "32storedLP:16currentownerNFT:4buckets:claim12M / functional chunk starting16",
+          "entries": 8,
+          "gas_limit": 12000000,
+          "call_body_gas": 3753691,
+          "success": true,
+          "body_only_20pct_arithmetic": 4504430,
+          "arithmetic_is_not_RPC_estimate_or_full_transaction_approval": true
+        },
+        {
+          "scenario": "32storedLP:16currentownerNFT:4buckets:claim12M / functional chunk starting24",
+          "entries": 8,
+          "gas_limit": 12000000,
+          "call_body_gas": 4683213,
+          "success": true,
+          "body_only_20pct_arithmetic": 5619856,
+          "arithmetic_is_not_RPC_estimate_or_full_transaction_approval": true
+        }
+      ],
+      "cold_footprints": [
+        {
+          "accounts": 28,
+          "recorded_slot_resets": 22533
+        },
+        {
+          "accounts": 28,
+          "recorded_slot_resets": 33421
+        },
+        {
+          "accounts": 28,
+          "recorded_slot_resets": 36416
+        },
+        {
+          "accounts": 28,
+          "recorded_slot_resets": 38591
+        },
+        {
+          "accounts": 28,
+          "recorded_slot_resets": 40886
+        }
+      ]
+    }
+  ],
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2",
+    "--offline",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-path",
+    "test/LaunchClaimCapacity20261117.t.sol",
+    "--match-contract",
+    "LaunchClaimCapacity.*Test",
+    "--match-test",
+    "^testLaunch",
+    "--code-size-limit",
+    "1000000",
+    "--out",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\launch-workload-20261117\\claims\\out",
+    "--cache-path",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\launch-workload-20261117\\claims\\cache",
+    "-vvv",
+    "--json"
+  ],
+  "forge_sha256": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101",
+  "solc_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+  "final_raw_bytes": 620654817,
+  "final_raw_sha256": "17f1f9cffe533cbe65a53f582fa88064ee13e498b945e70edca4d755d0f28357",
+  "final_source_bracket_stable": true,
+  "compiled_source_proofs": {
+    "LaunchClaimCapacityPending20261117Test": {
+      "artifact_sha256": "3922473c3421624032d36e62f8aadf026eba621fedb8c101ff839c45017b17e4",
+      "compiler": "0.8.26+commit.8a97fa7a",
+      "sources": [
+        {
+          "path": "lib/forge-std/src/Base.sol",
+          "sha256": "dc5e18050f154e4211ee58a58fdd395e5feb222ef61c76184791d7f6e5405516",
+          "compiled_keccak256": "0xa3735a6618a3014e42bb4329ad143e3b2c59cd95094350202e4c4a06c9d585dd",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdAssertions.sol",
+          "sha256": "9795e71054414332c56673d60d0d868f657224a1c52ceb6c3884d7f667338095",
+          "compiled_keccak256": "0x4584f551c3a875c26423c1e50a77179bc2f9c9c1ee6d0f0c6be0f89ca5ee8270",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdChains.sol",
+          "sha256": "cdf1d76f68953a1e3be842b3a7043c0c9bca61cbff844f95cd677a4b5410bfb7",
+          "compiled_keccak256": "0xd3edaf57db178f839d97ccee0009c2b7b20f78c2adca9028a6013acb8d5b4c5e",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdCheats.sol",
+          "sha256": "a0fe96a5e188c6721ca2242241a2eeb7ad3617dd75460268fa38acfd8e3e8aa2",
+          "compiled_keccak256": "0x0fa6ec03602648b62cce41aab2096e6b7e052f2846075d967b6958dd586db746",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdConstants.sol",
+          "sha256": "ce159d02a0ed064cbf5abd717204f59036cfa4eb73b9d6e5d77c83d3fd215ea8",
+          "compiled_keccak256": "0x319ccdabfa2c0b2428301445873270ffea20f0e039d4fd5e6eeba65158e4e534",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdError.sol",
+          "sha256": "a10f8f4d12e7716942c3e20753f1ea0af0cc707ca58eaaa01da8246209ed8151",
+          "compiled_keccak256": "0xbf477b11a42d7611696956546bcfaa29317d1166bf65e402344599c05943fc77",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdInvariant.sol",
+          "sha256": "71aada0625f02eebb94c495dec0b28a575f7343f734543bde662b10f0a3ba724",
+          "compiled_keccak256": "0x4dab3021edfa9511bbdd80c48f060ef62eaf457f99eaf841f561fc2557d9a08d",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdJson.sol",
+          "sha256": "4792802533e7d8315a2287ef246d8ffea13f38f5b8966bd9545b38050f243765",
+          "compiled_keccak256": "0xbc0132abe1c2accc2867c0f03667afffdf92f3e95a581bb03c9557eaa38ea500",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdMath.sol",
+          "sha256": "473474e8608945a1c87a606ea85e6b605dcc3186d361796f60f36011964036da",
+          "compiled_keccak256": "0xd90ad4fd8aeaeb8929964e686e769fdedd5eded3fc3815df194a0ab9f91a3fb2",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdStorage.sol",
+          "sha256": "6dfa28c0a86589e51ffe4af526c2930f34d9c1a34de7897ee99a8cea0fda62be",
+          "compiled_keccak256": "0xb91ab24383a5872b894fc93325eef1add6cbbf981628f18e860068bf88bb7dcc",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdStyle.sol",
+          "sha256": "be2eea9cbe407894fd24ae1f824d03ca35ff5fe3ab684850e7190fbc098417df",
+          "compiled_keccak256": "0x43e2a8a9b9c2574dabe74f11adf6f782df218f463540e3b5b563609fe108597d",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdToml.sol",
+          "sha256": "cbb859d5c18c322f8153128504ad513d41baa29905dd9aeb0c8369d06ad8acec",
+          "compiled_keccak256": "0x58a72c765ed3f7ff6b105509689658795b8a3739b8931772a497155878381861",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdUtils.sol",
+          "sha256": "76caac7e205bb638728d078a5d3e46468190b763d2e98524d12f2041a65204f8",
+          "compiled_keccak256": "0x7274081e11c05164fd8eadde4de8305c033e58a43008dea58065f3170ccf0737",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/Test.sol",
+          "sha256": "cf5e7d5e176eac56f6514da12163ff7b9b6af57c255a399012d8b5b2459b8e9e",
+          "compiled_keccak256": "0x3dda6083a83dfa3e8526e97bcc28e862ee2442dd58fe94d5c426d65b8e38f73c",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/Vm.sol",
+          "sha256": "d03386284af495e27b9eb9f70a00c9736da6b0ed9f147b32859a1ac6b4c358a6",
+          "compiled_keccak256": "0xaae88142a348064677cf81169ea0ca706be3e99e2a0f13a01878ff8d52cf6b25",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/console.sol",
+          "sha256": "887089be32f2fbfe442d556112d2023d1037f43ea5c7d857b18c5ea3f74bfaba",
+          "compiled_keccak256": "0x4bbf47eb762cef93729d6ef15e78789957147039b113e5d4df48e3d3fd16d0f5",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/console2.sol",
+          "sha256": "2398c4aa056416dbbae6167f3443678733a35413290be51060e15d4aebd78ff9",
+          "compiled_keccak256": "0x3b8fe79f48f065a4e4d35362171304a33784c3a90febae5f2787805a438de12f",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/interfaces/IMulticall3.sol",
+          "sha256": "984896bb1275945047e9f81ea5c8c5dd331e511e9bd208b786b835f91d5bc055",
+          "compiled_keccak256": "0x7aac1389150499a922d1f9ef5749c908cef127cb2075b92fa17e9cb611263d0a",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/safeconsole.sol",
+          "sha256": "9249257fdba10bf6feea3ac74698a24694c2c568137b9e7f5b9c549e305e2edb",
+          "compiled_keccak256": "0xbef9786cb49d3eade757bad87568c49c8c8f35721f0193c95ffb055d9e466e11",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol",
+          "sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+          "compiled_keccak256": "0xd5ea07362ab630a6a3dee4285a74cf2377044ca2e4be472755ad64d7c5d4b69d",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol",
+          "sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+          "compiled_keccak256": "0x0afcb7e740d1537b252cb2676f600465ce6938398569f09ba1b9ca240dde2dfc",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol",
+          "sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+          "compiled_keccak256": "0x1a6221315ce0307746c2c4827c125d821ee796c74a676787762f4778671d4f44",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+          "sha256": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+          "compiled_keccak256": "0x19fdfb0f3b89a230e7dbd1cf416f1a6b531a3ee5db4da483f946320fc74afc0e",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol",
+          "sha256": "9f906af4cba6e7e091dc12d45e6687e1239cf82d17678198424250fd64ab96bd",
+          "compiled_keccak256": "0x86b7b71a6aedefdad89b607378eeab1dcc5389b9ea7d17346d08af01d7190994",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
+          "sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+          "compiled_keccak256": "0x74ed01eb66b923d0d0cfe3be84604ac04b76482a55f9dd655e1ef4d367f95bc2",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+          "sha256": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+          "compiled_keccak256": "0xd6fa4088198f04eef10c5bce8a2f4d60554b7ec4b987f684393c01bf79b94d9f",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+          "sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+          "compiled_keccak256": "0x982c5cb790ab941d1e04f807120a71709d4c313ba0bfc16006447ffbd27fbbd5",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
+          "sha256": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+          "compiled_keccak256": "0x6ead281d4569c26b3dee7313aefff24add906f3600b57d8aef1255a17d6b34e5",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
+          "sha256": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+          "compiled_keccak256": "0xf78f05f3b8c9f75570e85300d7b4600d7f6f6a198449273f31d44c1641adb46f",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+          "sha256": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+          "compiled_keccak256": "0x88cd5e3bee2e8c36b8d9058fbcaa81ad5704281b25634122234b55ea853d8055",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+          "sha256": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+          "compiled_keccak256": "0xf46268c37522320bb2119a5a394bc5c739a95c0c574c8d08e8c643f4d06e5c76",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol",
+          "sha256": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+          "compiled_keccak256": "0xc2dfdc8fbc8fdb142575c90568e237b809a1feaccff23e32d00131887a08dc36",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/Base64.sol",
+          "sha256": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+          "compiled_keccak256": "0xed82055e8e44241f0f55892198960452018fa743e419ba469a2583c43103965a",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/Context.sol",
+          "sha256": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+          "compiled_keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/Panic.sol",
+          "sha256": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+          "compiled_keccak256": "0xf7fe324703a64fc51702311dc51562d5cb1497734f074e4f483bfb6717572d7a",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+          "sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+          "compiled_keccak256": "0x11a5a79827df29e915a12740caf62fe21ebe27c08c9ae3e09abe9ee3ba3866d3",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/Strings.sol",
+          "sha256": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+          "compiled_keccak256": "0xad148d59f05165f9217d0a9e1ac8f772abb02ea6aaad8a756315c532bf79f9f4",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
+          "sha256": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+          "compiled_keccak256": "0x2d9dc2fe26180f74c11c13663647d38e259e45f95eb88f57b61d2160b0109d3e",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
+          "sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+          "compiled_keccak256": "0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+          "sha256": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+          "compiled_keccak256": "0x1225214420c83ebcca88f2ae2b50f053aaa7df7bd684c3e878d334627f2edfc6",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+          "sha256": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+          "compiled_keccak256": "0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
+          "sha256": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+          "compiled_keccak256": "0xb1970fac7b64e6c09611e6691791e848d5e3fe410fa5899e7df2e0afd77a99e3",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol",
+          "sha256": "e8a45eb3d57f9427fc47bbb2543c1a6a5f394113b378123ac7ca9f113a7502b4",
+          "compiled_keccak256": "0x51b9be4f5c4fd3e80cbc9631a65244a2eb2be250b6b7f128a2035080e18aee8d",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol",
+          "sha256": "9d3dbe6b742cb1ac30f57df89d879ade9649389de1165fc637114bd062d39fca",
+          "compiled_keccak256": "0x111ed3031b6990c80a93ae35dde6b6ac0b7e6af471388fdd7461e91edda9b7de",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol",
+          "sha256": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+          "compiled_keccak256": "0x4e1a11e154eb06106cb1c4598f06cca5f5ca16eaa33494ba2f0e74981123eca8",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZActivationAssets.sol",
+          "sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+          "compiled_keccak256": "0x4e5c3be4dbad89e79ae943b664ecab1043d67daba23ac5c9c91e9267087b00f8",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZActivationAssetsFactory.sol",
+          "sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+          "compiled_keccak256": "0xa63475c18c4bbd2e58cf9234eff591b150c74f76511033f443e60296d45b1e71",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZClaimRouter.sol",
+          "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+          "compiled_keccak256": "0x0d81e392f0ff769419e9c13fd31843d4644d2650be8c85b10cc4f21bf0fbf161",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZFeeController.sol",
+          "sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+          "compiled_keccak256": "0x1f991be372dba8af24084f13ce0cdeeac166471ea9517b09c40b556f3bc2a899",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZLPRewardConverter.sol",
+          "sha256": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+          "compiled_keccak256": "0x603bb1e4b90a953b0717daf3e633a70cfe9e325e1bf2829405c3587ffe6340b1",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZMembership.sol",
+          "sha256": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+          "compiled_keccak256": "0xd9d5645d65beacddaf9c833c1afd225b66ab4c483c22b62590c6c5e33ebc77c2",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZNFT.sol",
+          "sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+          "compiled_keccak256": "0x60286dd07b6a10d5d8b22f4c09387730d4b3716d6aa1eff62fe86c88801e9336",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "src/ZZZNFTMetadata.sol",
+          "sha256": "d12e430a81d3271313d854d67f7f25468384c30fc7f753eced3f315fb9e11cbe",
+          "compiled_keccak256": "0xd6c0019827f515dcde764e5ebdc3bdf145b508575199dc03cc09a6083460cc36",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZProtocolPolicy.sol",
+          "sha256": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+          "compiled_keccak256": "0x17c653768d0475e98f0af5e6c2af6a60daa110213cb7f2cfc8c94837eec6f9a5",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZRewards.sol",
+          "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+          "compiled_keccak256": "0x758858a192de81e76f4c5789e0e3fb3833135292ce4d1c3fe46691869ed46b81",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZRewardsCanonical.sol",
+          "sha256": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
+          "compiled_keccak256": "0x54fe126a08646acf8c6693b1929498c967265a491c73a9d8f7c2177a28940f7d",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "src/ZZZRoyaltyCodeData.sol",
+          "sha256": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+          "compiled_keccak256": "0x0eff3a4b7cccd5c8b4478e95ed42ce4b584b4201b1c88e194fbfa3191bec905a",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZRoyaltyFactory.sol",
+          "sha256": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+          "compiled_keccak256": "0xd796213fe972d2dfacaf2b108544cf0e0e7742efc67f4bd14aeaa4c1952a1623",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "compiled_keccak256": "0xbdc02e22620c0c36c85e9878c9bd3477e46e48b7949919bba2156dc59d3aa4e2",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "src/ZZZSeaDropMint.sol",
+          "sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+          "compiled_keccak256": "0x8443106694fd5fc168f8347e8e11f7f9601189f4e654f19623c2c34ba054fcfa",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZV4RouteExecutor.sol",
+          "sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+          "compiled_keccak256": "0x16249e041bf81e3961ccdeb5b51428daf2a6143f3dfade0376fb55696a79a7fb",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/base/ZZZCanonicalLedger.sol",
+          "sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+          "compiled_keccak256": "0xf98649f55c42a2f5d4467f1a7411b00fc11f7deb135d896a543197331f22894a",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+          "sha256": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
+          "compiled_keccak256": "0x108caf254be9ceed5d89886f33f0637820ca28288749d1b7be2ed94813c37b79",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "src/base/ZZZModule.sol",
+          "sha256": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+          "compiled_keccak256": "0xb596bc1879639fe5770c8f42d3d297bd7d06efd5a031b21694df5b122e04e676",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/base/ZZZRewardConverter.sol",
+          "sha256": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+          "compiled_keccak256": "0xe0f14533165b3a62134b1a375165b324b5f34c83032c9088384c0bd36f0acda5",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/base/ZZZSeaDropToken.sol",
+          "sha256": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+          "compiled_keccak256": "0xebc1a11054f18191ffd8f5d3ad4422b309fa4ddc546f666ba9e9a2c6122c091e",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/interfaces/IZZZ.sol",
+          "sha256": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+          "compiled_keccak256": "0xd2557a615b388a9f9b6e94168c4f9d9eefc743d31a5119f3162bf6fbb685e316",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/interfaces/IZZZCanonical.sol",
+          "sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+          "compiled_keccak256": "0x2eca0dd4b13a7db95ebb92a50b526aa326d320e02416e2b35b564d898bd911fc",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/interfaces/IZZZNFTCanonical.sol",
+          "sha256": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
+          "compiled_keccak256": "0x5bcde3baebd31be18ee1efb87b11637120f5f42733bdb8845c2d01b0bc49502b",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/interfaces/IZZZProtocolPolicy.sol",
+          "sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+          "compiled_keccak256": "0x51a55e961c1da9972b6dc9621a3d9b2c41dde7e75b50ea2a8e4b7e16ba68913e",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/interfaces/IZZZSeaDrop.sol",
+          "sha256": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+          "compiled_keccak256": "0xf07e38d66b50e6c3fd1c52bc87baf942fb88db0c35c4c3248c8d2b6c78bae75a",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/interfaces/IZZZV3Route.sol",
+          "sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+          "compiled_keccak256": "0xe90321adbfe127627c096c7c417b315b2ca02a5025246e7667e6e30f0e130dbb",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/libraries/ExactAsset.sol",
+          "sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+          "compiled_keccak256": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/libraries/ExactLPAllocation.sol",
+          "sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+          "compiled_keccak256": "0x17890d1a267f76e1f9e63cdec230e3706fe76a774f21b68ff62b1ca2eb51ca32",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/libraries/ExactRoyaltyAllocation.sol",
+          "sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+          "compiled_keccak256": "0x1262735e8f9343cb2ce022969eca9c67cc33d9d29ebac34a4fae4654d94a6450",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/libraries/ExactToken.sol",
+          "sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+          "compiled_keccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/libraries/ZZZArtwork.sol",
+          "sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+          "compiled_keccak256": "0xb64f96b35a47733af6d2446f7793036f84e69045485e5049b4d1110fc9866df8",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/libraries/ZZZTypes.sol",
+          "sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+          "compiled_keccak256": "0xad5600f1a2628035b799e20939ddcb49cd10b808afaca56afa61ef5af8748849",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/libraries/ZZZV3VenueValidation.sol",
+          "sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+          "compiled_keccak256": "0x310243c53b734b51823ad43b948f9ad6733aa8f727e38e625be90deeeba4fe13",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "test/ExactLPRewards.t.sol",
+          "sha256": "a24b3be1a9ffa7e23b6d4326906af6471712e87ef68e2ef76f42ce7eaa620b3c",
+          "compiled_keccak256": "0x6b9feed5d1c98774b4807690ce1e2a87d5295d820147db4f41a2ea915431dac3",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "test/LaunchClaimCapacity20261117.t.sol",
+          "sha256": "d2ed1c684f92e05b8dae00df2b91151b1fb2b443f46e226b6fd9c204a09f30fe",
+          "compiled_keccak256": "0x9f4740ddaa7491c5b459c475119a67a173d274d9348b0a2701a52fc7c5d19ac3",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "test/helpers/ProtocolPolicyFixture.sol",
+          "sha256": "bab9d127771ad4cf9d35db08383fb96af88a7a93b24e478d60248088976b20dd",
+          "compiled_keccak256": "0x5f9b234cfb7ff97a9883f5d46ca61aecfa90888e46afb9675302aab210d9af6b",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "test/mocks/MockVRF.sol",
+          "sha256": "1d0b672d8959ccce0530e7062f54e69ce843764e0280a5be769b12d3ac3f1d51",
+          "compiled_keccak256": "0xcb1567e0ace2ee3c56da522483a1cdebdcc6cb1f6c1a0b0b6373b8dabaca18c0",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "test/mocks/Mocks.sol",
+          "sha256": "ce43ab27d038e50bbae12a8b239f77dd973a47732ec6e0f7a78765f94534b679",
+          "compiled_keccak256": "0xefc8cbddc19ce04a01a272261ea72c596a625bcfba50a58a4efdf9b8117222c9",
+          "proof": "exact raw bytes"
+        }
+      ]
+    },
+    "LaunchClaimCapacityStored20261117Test": {
+      "artifact_sha256": "7a24a5cd2ab6e3592fe10e8c081e576521b90858a187a48e4767bb8d6b39357b",
+      "compiler": "0.8.26+commit.8a97fa7a",
+      "sources": [
+        {
+          "path": "lib/forge-std/src/Base.sol",
+          "sha256": "dc5e18050f154e4211ee58a58fdd395e5feb222ef61c76184791d7f6e5405516",
+          "compiled_keccak256": "0xa3735a6618a3014e42bb4329ad143e3b2c59cd95094350202e4c4a06c9d585dd",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdAssertions.sol",
+          "sha256": "9795e71054414332c56673d60d0d868f657224a1c52ceb6c3884d7f667338095",
+          "compiled_keccak256": "0x4584f551c3a875c26423c1e50a77179bc2f9c9c1ee6d0f0c6be0f89ca5ee8270",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdChains.sol",
+          "sha256": "cdf1d76f68953a1e3be842b3a7043c0c9bca61cbff844f95cd677a4b5410bfb7",
+          "compiled_keccak256": "0xd3edaf57db178f839d97ccee0009c2b7b20f78c2adca9028a6013acb8d5b4c5e",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdCheats.sol",
+          "sha256": "a0fe96a5e188c6721ca2242241a2eeb7ad3617dd75460268fa38acfd8e3e8aa2",
+          "compiled_keccak256": "0x0fa6ec03602648b62cce41aab2096e6b7e052f2846075d967b6958dd586db746",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdConstants.sol",
+          "sha256": "ce159d02a0ed064cbf5abd717204f59036cfa4eb73b9d6e5d77c83d3fd215ea8",
+          "compiled_keccak256": "0x319ccdabfa2c0b2428301445873270ffea20f0e039d4fd5e6eeba65158e4e534",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdError.sol",
+          "sha256": "a10f8f4d12e7716942c3e20753f1ea0af0cc707ca58eaaa01da8246209ed8151",
+          "compiled_keccak256": "0xbf477b11a42d7611696956546bcfaa29317d1166bf65e402344599c05943fc77",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdInvariant.sol",
+          "sha256": "71aada0625f02eebb94c495dec0b28a575f7343f734543bde662b10f0a3ba724",
+          "compiled_keccak256": "0x4dab3021edfa9511bbdd80c48f060ef62eaf457f99eaf841f561fc2557d9a08d",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdJson.sol",
+          "sha256": "4792802533e7d8315a2287ef246d8ffea13f38f5b8966bd9545b38050f243765",
+          "compiled_keccak256": "0xbc0132abe1c2accc2867c0f03667afffdf92f3e95a581bb03c9557eaa38ea500",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdMath.sol",
+          "sha256": "473474e8608945a1c87a606ea85e6b605dcc3186d361796f60f36011964036da",
+          "compiled_keccak256": "0xd90ad4fd8aeaeb8929964e686e769fdedd5eded3fc3815df194a0ab9f91a3fb2",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdStorage.sol",
+          "sha256": "6dfa28c0a86589e51ffe4af526c2930f34d9c1a34de7897ee99a8cea0fda62be",
+          "compiled_keccak256": "0xb91ab24383a5872b894fc93325eef1add6cbbf981628f18e860068bf88bb7dcc",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdStyle.sol",
+          "sha256": "be2eea9cbe407894fd24ae1f824d03ca35ff5fe3ab684850e7190fbc098417df",
+          "compiled_keccak256": "0x43e2a8a9b9c2574dabe74f11adf6f782df218f463540e3b5b563609fe108597d",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdToml.sol",
+          "sha256": "cbb859d5c18c322f8153128504ad513d41baa29905dd9aeb0c8369d06ad8acec",
+          "compiled_keccak256": "0x58a72c765ed3f7ff6b105509689658795b8a3739b8931772a497155878381861",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/StdUtils.sol",
+          "sha256": "76caac7e205bb638728d078a5d3e46468190b763d2e98524d12f2041a65204f8",
+          "compiled_keccak256": "0x7274081e11c05164fd8eadde4de8305c033e58a43008dea58065f3170ccf0737",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/Test.sol",
+          "sha256": "cf5e7d5e176eac56f6514da12163ff7b9b6af57c255a399012d8b5b2459b8e9e",
+          "compiled_keccak256": "0x3dda6083a83dfa3e8526e97bcc28e862ee2442dd58fe94d5c426d65b8e38f73c",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/Vm.sol",
+          "sha256": "d03386284af495e27b9eb9f70a00c9736da6b0ed9f147b32859a1ac6b4c358a6",
+          "compiled_keccak256": "0xaae88142a348064677cf81169ea0ca706be3e99e2a0f13a01878ff8d52cf6b25",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/console.sol",
+          "sha256": "887089be32f2fbfe442d556112d2023d1037f43ea5c7d857b18c5ea3f74bfaba",
+          "compiled_keccak256": "0x4bbf47eb762cef93729d6ef15e78789957147039b113e5d4df48e3d3fd16d0f5",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/console2.sol",
+          "sha256": "2398c4aa056416dbbae6167f3443678733a35413290be51060e15d4aebd78ff9",
+          "compiled_keccak256": "0x3b8fe79f48f065a4e4d35362171304a33784c3a90febae5f2787805a438de12f",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/interfaces/IMulticall3.sol",
+          "sha256": "984896bb1275945047e9f81ea5c8c5dd331e511e9bd208b786b835f91d5bc055",
+          "compiled_keccak256": "0x7aac1389150499a922d1f9ef5749c908cef127cb2075b92fa17e9cb611263d0a",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "lib/forge-std/src/safeconsole.sol",
+          "sha256": "9249257fdba10bf6feea3ac74698a24694c2c568137b9e7f5b9c549e305e2edb",
+          "compiled_keccak256": "0xbef9786cb49d3eade757bad87568c49c8c8f35721f0193c95ffb055d9e466e11",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol",
+          "sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+          "compiled_keccak256": "0xd5ea07362ab630a6a3dee4285a74cf2377044ca2e4be472755ad64d7c5d4b69d",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol",
+          "sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+          "compiled_keccak256": "0x0afcb7e740d1537b252cb2676f600465ce6938398569f09ba1b9ca240dde2dfc",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol",
+          "sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+          "compiled_keccak256": "0x1a6221315ce0307746c2c4827c125d821ee796c74a676787762f4778671d4f44",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+          "sha256": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+          "compiled_keccak256": "0x19fdfb0f3b89a230e7dbd1cf416f1a6b531a3ee5db4da483f946320fc74afc0e",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol",
+          "sha256": "9f906af4cba6e7e091dc12d45e6687e1239cf82d17678198424250fd64ab96bd",
+          "compiled_keccak256": "0x86b7b71a6aedefdad89b607378eeab1dcc5389b9ea7d17346d08af01d7190994",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
+          "sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+          "compiled_keccak256": "0x74ed01eb66b923d0d0cfe3be84604ac04b76482a55f9dd655e1ef4d367f95bc2",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+          "sha256": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+          "compiled_keccak256": "0xd6fa4088198f04eef10c5bce8a2f4d60554b7ec4b987f684393c01bf79b94d9f",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+          "sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+          "compiled_keccak256": "0x982c5cb790ab941d1e04f807120a71709d4c313ba0bfc16006447ffbd27fbbd5",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
+          "sha256": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+          "compiled_keccak256": "0x6ead281d4569c26b3dee7313aefff24add906f3600b57d8aef1255a17d6b34e5",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
+          "sha256": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+          "compiled_keccak256": "0xf78f05f3b8c9f75570e85300d7b4600d7f6f6a198449273f31d44c1641adb46f",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+          "sha256": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+          "compiled_keccak256": "0x88cd5e3bee2e8c36b8d9058fbcaa81ad5704281b25634122234b55ea853d8055",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+          "sha256": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+          "compiled_keccak256": "0xf46268c37522320bb2119a5a394bc5c739a95c0c574c8d08e8c643f4d06e5c76",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol",
+          "sha256": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+          "compiled_keccak256": "0xc2dfdc8fbc8fdb142575c90568e237b809a1feaccff23e32d00131887a08dc36",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/Base64.sol",
+          "sha256": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+          "compiled_keccak256": "0xed82055e8e44241f0f55892198960452018fa743e419ba469a2583c43103965a",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/Context.sol",
+          "sha256": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+          "compiled_keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/Panic.sol",
+          "sha256": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+          "compiled_keccak256": "0xf7fe324703a64fc51702311dc51562d5cb1497734f074e4f483bfb6717572d7a",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+          "sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+          "compiled_keccak256": "0x11a5a79827df29e915a12740caf62fe21ebe27c08c9ae3e09abe9ee3ba3866d3",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/Strings.sol",
+          "sha256": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+          "compiled_keccak256": "0xad148d59f05165f9217d0a9e1ac8f772abb02ea6aaad8a756315c532bf79f9f4",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
+          "sha256": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+          "compiled_keccak256": "0x2d9dc2fe26180f74c11c13663647d38e259e45f95eb88f57b61d2160b0109d3e",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
+          "sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+          "compiled_keccak256": "0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+          "sha256": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+          "compiled_keccak256": "0x1225214420c83ebcca88f2ae2b50f053aaa7df7bd684c3e878d334627f2edfc6",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+          "sha256": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+          "compiled_keccak256": "0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
+          "sha256": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+          "compiled_keccak256": "0xb1970fac7b64e6c09611e6691791e848d5e3fe410fa5899e7df2e0afd77a99e3",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol",
+          "sha256": "e8a45eb3d57f9427fc47bbb2543c1a6a5f394113b378123ac7ca9f113a7502b4",
+          "compiled_keccak256": "0x51b9be4f5c4fd3e80cbc9631a65244a2eb2be250b6b7f128a2035080e18aee8d",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol",
+          "sha256": "9d3dbe6b742cb1ac30f57df89d879ade9649389de1165fc637114bd062d39fca",
+          "compiled_keccak256": "0x111ed3031b6990c80a93ae35dde6b6ac0b7e6af471388fdd7461e91edda9b7de",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol",
+          "sha256": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+          "compiled_keccak256": "0x4e1a11e154eb06106cb1c4598f06cca5f5ca16eaa33494ba2f0e74981123eca8",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZActivationAssets.sol",
+          "sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+          "compiled_keccak256": "0x4e5c3be4dbad89e79ae943b664ecab1043d67daba23ac5c9c91e9267087b00f8",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZActivationAssetsFactory.sol",
+          "sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+          "compiled_keccak256": "0xa63475c18c4bbd2e58cf9234eff591b150c74f76511033f443e60296d45b1e71",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZClaimRouter.sol",
+          "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+          "compiled_keccak256": "0x0d81e392f0ff769419e9c13fd31843d4644d2650be8c85b10cc4f21bf0fbf161",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZFeeController.sol",
+          "sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+          "compiled_keccak256": "0x1f991be372dba8af24084f13ce0cdeeac166471ea9517b09c40b556f3bc2a899",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZLPRewardConverter.sol",
+          "sha256": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+          "compiled_keccak256": "0x603bb1e4b90a953b0717daf3e633a70cfe9e325e1bf2829405c3587ffe6340b1",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZMembership.sol",
+          "sha256": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+          "compiled_keccak256": "0xd9d5645d65beacddaf9c833c1afd225b66ab4c483c22b62590c6c5e33ebc77c2",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZNFT.sol",
+          "sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+          "compiled_keccak256": "0x60286dd07b6a10d5d8b22f4c09387730d4b3716d6aa1eff62fe86c88801e9336",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "src/ZZZNFTMetadata.sol",
+          "sha256": "d12e430a81d3271313d854d67f7f25468384c30fc7f753eced3f315fb9e11cbe",
+          "compiled_keccak256": "0xd6c0019827f515dcde764e5ebdc3bdf145b508575199dc03cc09a6083460cc36",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZProtocolPolicy.sol",
+          "sha256": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+          "compiled_keccak256": "0x17c653768d0475e98f0af5e6c2af6a60daa110213cb7f2cfc8c94837eec6f9a5",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZRewards.sol",
+          "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+          "compiled_keccak256": "0x758858a192de81e76f4c5789e0e3fb3833135292ce4d1c3fe46691869ed46b81",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZRewardsCanonical.sol",
+          "sha256": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
+          "compiled_keccak256": "0x54fe126a08646acf8c6693b1929498c967265a491c73a9d8f7c2177a28940f7d",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "src/ZZZRoyaltyCodeData.sol",
+          "sha256": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+          "compiled_keccak256": "0x0eff3a4b7cccd5c8b4478e95ed42ce4b584b4201b1c88e194fbfa3191bec905a",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZRoyaltyFactory.sol",
+          "sha256": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+          "compiled_keccak256": "0xd796213fe972d2dfacaf2b108544cf0e0e7742efc67f4bd14aeaa4c1952a1623",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+          "compiled_keccak256": "0xbdc02e22620c0c36c85e9878c9bd3477e46e48b7949919bba2156dc59d3aa4e2",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "src/ZZZSeaDropMint.sol",
+          "sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+          "compiled_keccak256": "0x8443106694fd5fc168f8347e8e11f7f9601189f4e654f19623c2c34ba054fcfa",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/ZZZV4RouteExecutor.sol",
+          "sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+          "compiled_keccak256": "0x16249e041bf81e3961ccdeb5b51428daf2a6143f3dfade0376fb55696a79a7fb",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/base/ZZZCanonicalLedger.sol",
+          "sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+          "compiled_keccak256": "0xf98649f55c42a2f5d4467f1a7411b00fc11f7deb135d896a543197331f22894a",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+          "sha256": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
+          "compiled_keccak256": "0x108caf254be9ceed5d89886f33f0637820ca28288749d1b7be2ed94813c37b79",
+          "proof": "exact CRLF-to-LF compiler input"
+        },
+        {
+          "path": "src/base/ZZZModule.sol",
+          "sha256": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+          "compiled_keccak256": "0xb596bc1879639fe5770c8f42d3d297bd7d06efd5a031b21694df5b122e04e676",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/base/ZZZRewardConverter.sol",
+          "sha256": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+          "compiled_keccak256": "0xe0f14533165b3a62134b1a375165b324b5f34c83032c9088384c0bd36f0acda5",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/base/ZZZSeaDropToken.sol",
+          "sha256": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+          "compiled_keccak256": "0xebc1a11054f18191ffd8f5d3ad4422b309fa4ddc546f666ba9e9a2c6122c091e",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/interfaces/IZZZ.sol",
+          "sha256": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+          "compiled_keccak256": "0xd2557a615b388a9f9b6e94168c4f9d9eefc743d31a5119f3162bf6fbb685e316",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/interfaces/IZZZCanonical.sol",
+          "sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+          "compiled_keccak256": "0x2eca0dd4b13a7db95ebb92a50b526aa326d320e02416e2b35b564d898bd911fc",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/interfaces/IZZZNFTCanonical.sol",
+          "sha256": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
+          "compiled_keccak256": "0x5bcde3baebd31be18ee1efb87b11637120f5f42733bdb8845c2d01b0bc49502b",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/interfaces/IZZZProtocolPolicy.sol",
+          "sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+          "compiled_keccak256": "0x51a55e961c1da9972b6dc9621a3d9b2c41dde7e75b50ea2a8e4b7e16ba68913e",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/interfaces/IZZZSeaDrop.sol",
+          "sha256": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+          "compiled_keccak256": "0xf07e38d66b50e6c3fd1c52bc87baf942fb88db0c35c4c3248c8d2b6c78bae75a",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/interfaces/IZZZV3Route.sol",
+          "sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+          "compiled_keccak256": "0xe90321adbfe127627c096c7c417b315b2ca02a5025246e7667e6e30f0e130dbb",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/libraries/ExactAsset.sol",
+          "sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+          "compiled_keccak256": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/libraries/ExactLPAllocation.sol",
+          "sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+          "compiled_keccak256": "0x17890d1a267f76e1f9e63cdec230e3706fe76a774f21b68ff62b1ca2eb51ca32",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/libraries/ExactRoyaltyAllocation.sol",
+          "sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+          "compiled_keccak256": "0x1262735e8f9343cb2ce022969eca9c67cc33d9d29ebac34a4fae4654d94a6450",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/libraries/ExactToken.sol",
+          "sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+          "compiled_keccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/libraries/ZZZArtwork.sol",
+          "sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+          "compiled_keccak256": "0xb64f96b35a47733af6d2446f7793036f84e69045485e5049b4d1110fc9866df8",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/libraries/ZZZTypes.sol",
+          "sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+          "compiled_keccak256": "0xad5600f1a2628035b799e20939ddcb49cd10b808afaca56afa61ef5af8748849",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "src/libraries/ZZZV3VenueValidation.sol",
+          "sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+          "compiled_keccak256": "0x310243c53b734b51823ad43b948f9ad6733aa8f727e38e625be90deeeba4fe13",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "test/ExactLPRewards.t.sol",
+          "sha256": "a24b3be1a9ffa7e23b6d4326906af6471712e87ef68e2ef76f42ce7eaa620b3c",
+          "compiled_keccak256": "0x6b9feed5d1c98774b4807690ce1e2a87d5295d820147db4f41a2ea915431dac3",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "test/LaunchClaimCapacity20261117.t.sol",
+          "sha256": "d2ed1c684f92e05b8dae00df2b91151b1fb2b443f46e226b6fd9c204a09f30fe",
+          "compiled_keccak256": "0x9f4740ddaa7491c5b459c475119a67a173d274d9348b0a2701a52fc7c5d19ac3",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "test/helpers/ProtocolPolicyFixture.sol",
+          "sha256": "bab9d127771ad4cf9d35db08383fb96af88a7a93b24e478d60248088976b20dd",
+          "compiled_keccak256": "0x5f9b234cfb7ff97a9883f5d46ca61aecfa90888e46afb9675302aab210d9af6b",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "test/mocks/MockVRF.sol",
+          "sha256": "1d0b672d8959ccce0530e7062f54e69ce843764e0280a5be769b12d3ac3f1d51",
+          "compiled_keccak256": "0xcb1567e0ace2ee3c56da522483a1cdebdcc6cb1f6c1a0b0b6373b8dabaca18c0",
+          "proof": "exact raw bytes"
+        },
+        {
+          "path": "test/mocks/Mocks.sol",
+          "sha256": "ce43ab27d038e50bbae12a8b239f77dd973a47732ec6e0f7a78765f94534b679",
+          "compiled_keccak256": "0xefc8cbddc19ce04a01a272261ea72c596a625bcfba50a58a4efdf9b8117222c9",
+          "proof": "exact raw bytes"
+        }
+      ]
+    }
+  },
+  "initial_setup_failures_not_executed_tests": [
+    {
+      "id": "test/LaunchClaimCapacity20261117.t.sol:LaunchClaimCapacityPending20261117Test.setUp()",
+      "status": "Failure",
+      "reason": "EvmError: MemoryLimitOOG"
+    },
+    {
+      "id": "test/LaunchClaimCapacity20261117.t.sol:LaunchClaimCapacityStored20261117Test.setUp()",
+      "status": "Failure",
+      "reason": "EvmError: MemoryLimitOOG"
+    }
+  ],
+  "initial_raw_sha256": "b7f2a4b047faf7714e040874e800ecc26a30f434cc6476e8c5b008c53e8ac472",
+  "production_source_changed": false,
+  "unchanged_old_tests_run": false,
+  "scope": "Test-only typed share writer; actual1000NFTs and financial/royalty/router code. Direct mint profile; no actualLP/OpenSea/source/provider/fee qualification. Initial cold funded-state calls vs later same-test functional recovery chunks stay separate."
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "path": "AGENTS.md",
+    "original_sha256": "64ca19eb10bb0da9eb2ded4d06c4ecdee937ddc540da11bba79fcc3f0b33c340",
+    "current_sha256": "3c9a35c23a8ebc59a3377d755643ee758d39596a617f6751ce575d8d38abdb2a",
+    "unchanged_lines_keep_exact_endings": true
+  },
+  {
+    "path": "PROJECT_CONTEXT.md",
+    "original_sha256": "99217c37f5de2d9f6730eb145368db58422ab8bd5c6d25c513a7f0791338b094",
+    "current_sha256": "000714b2343326ff33cbad3d863a5732d318b3f2df63b0d2bfcf7e0e5c9e9ef3",
+    "unchanged_lines_keep_exact_endings": true
+  },
+  {
+    "path": "README.md",
+    "original_sha256": "5f8e95b5e933a10cefe1a764f57b441c37d684b3d2942b191dd0639b34e88e00",
+    "current_sha256": "aaaacd50e4795580af5b55905eb712bdecbf43fa62ad242b2327e5c578f5e39f",
+    "unchanged_lines_keep_exact_endings": true
+  },
+  {
+    "path": "TODO.md",
+    "original_sha256": "16668d77a631a48f9e372db32a828191e84587dde0854251b58b8527cca66589",
+    "current_sha256": "b6f5c44386da2c2068ae012c009a932dca42af6e8da00f41123e5d81b023a8de",
+    "unchanged_lines_keep_exact_endings": true
+  },
+  {
+    "path": "docs/ACTIVATION_PREPARATION.md",
+    "original_sha256": "0125c923673092778fcc23789ad964ab556357b2a78fec0cf7ec2a083121116f",
+    "current_sha256": "666eef27b25f29a0258f246a18d39ca709cedcd10e33c906f01a380ff14cd12a",
+    "unchanged_lines_keep_exact_endings": true
+  },
+  {
+    "path": "docs/AUDIT_FINDINGS.md",
+    "original_sha256": "f25e1f3dfd0821b3b735ea567c98b4a2917b067e8fc049fdcc8b0459ef26b2cf",
+    "current_sha256": "f90dfb4aa23d2fe799fcd67288617f9ed94b42f8b6e33893ecd4c68518bcee30",
+    "unchanged_lines_keep_exact_endings": true
+  },
+  {
+    "path": "docs/CLAIM_PLANNING.md",
+    "original_sha256": "6e8e699eba9c2d9f64c4fa1e6a0ed1f8dd8f8789b54469dc8eef25a0b34df29f",
+    "current_sha256": "7e906cabb75f8dafcc6f59aaa1d213398162f27254c4def187fb0fb877c1ac9b",
+    "unchanged_lines_keep_exact_endings": true
+  },
+  {
+    "path": "docs/IMPLEMENTATION_STATUS.md",
+    "original_sha256": "75c76ab4a45e1f45c5b18ba0502ffe0a7f346871a0abe69eb6e0699709d23604",
+    "current_sha256": "f6590d1ea8c0e78c68a987c362a3e46a1b2c0847031a3ca8f790956ea8b5f029",
+    "unchanged_lines_keep_exact_endings": true
+  },
+  {
+    "path": "docs/OPERATOR_MANUAL.md",
+    "original_sha256": "5387656840149bf662a0b291bfc69614d7e60ec624f25f6af7342709c050a476",
+    "current_sha256": "4958af16aa66074b866e296e2adaacce09cd1403fd11140ee264a0cf0566cef4",
+    "unchanged_lines_keep_exact_endings": true
+  },
+  {
+    "path": "docs/PRESEAL_CONFIGURATION.md",
+    "original_sha256": "8ab88e99a7cd3cde26c8949a1bf042d2a284b76e47f19d621369dde343dce8bb",
+    "current_sha256": "3b437a2351f68fa71a35f59077fcb328c88f37e31f53094e61f76dd405c6cba9",
+    "unchanged_lines_keep_exact_endings": true
+  },
+  {
+    "path": "docs/project-todo.json",
+    "original_sha256": "0c83648d4d8e8da1c2a739f253d03dd463dd6e3620cd1504f33a176b2a6fe99c",
+    "current_sha256": "fd3f923e2433f78bbaf54bf55b60d3bcc5232ed9479e1fc4382aca30069e6156",
+    "unchanged_lines_keep_exact_endings": true
+  },
+  {
+    "path": "docs/ROYALTY_SETTLEMENT.md",
+    "original_sha256": "a70e309f95555c16bafa361d2cfc66f51bbf387b3ca769ddf4d3c2a942cecc6b",
+    "current_sha256": "a6bd63bb0fa98f3722e16a78c884a6527c62c9ae73c60eb693b208ee2684b9ca",
+    "unchanged_lines_keep_exact_endings": true
+  },
+  {
+    "path": "docs/WORK_HANDOFF.md",
+    "original_sha256": "383bd627746b6cd61d47cd6a7837077d5186606204a5c7e3d8514b372a122484",
+    "current_sha256": "c078222a4fb76c61dfec53daa91ac2635ed4b801f5f4f4a994c667722916fa38",
+    "unchanged_lines_keep_exact_endings": true
+  },
+  {
+    "path": "reports/README.md",
+    "original_sha256": "d78fda0f6001d31f6c3b14fa4aa998a5aa0fc209ae52fac9f62a31667df6dc5e",
+    "current_sha256": "c35b78cebfcb1e0684888ad719086c6a02bbad9be455b1f77adf8139eed17e77",
+    "unchanged_lines_keep_exact_endings": true
+  }
+]

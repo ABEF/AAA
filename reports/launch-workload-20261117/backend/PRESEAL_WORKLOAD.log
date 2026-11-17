@@ -1,0 +1,9 @@
+test_actual_plan_keeps_capacity_distinct_from_admitted_royalty_workload (tests_python.test_preseal_launch_workload.PresealLaunchWorkloadTests.test_actual_plan_keeps_capacity_distinct_from_admitted_royalty_workload) ... ok
+test_gas_review_remains_unverified_and_cannot_change_setup_calls_or_flags (tests_python.test_preseal_launch_workload.PresealLaunchWorkloadTests.test_gas_review_remains_unverified_and_cannot_change_setup_calls_or_flags) ... ok
+test_new_required_reads_exist_on_exact_trusted_target_abis (tests_python.test_preseal_launch_workload.PresealLaunchWorkloadTests.test_new_required_reads_exist_on_exact_trusted_target_abis) ... ok
+test_parameterized_currency_read_requires_observed_zero_based_uint256_index (tests_python.test_preseal_launch_workload.PresealLaunchWorkloadTests.test_parameterized_currency_read_requires_observed_zero_based_uint256_index) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 9.334s
+
+OK

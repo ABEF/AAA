@@ -142,3 +142,9 @@ chain/metadata/OpenSea/converter/venue/VRF/role/end/reservation reads. It remain
 blocked pending actual observation and content review, even with complete offline
 settings. Inert bytecode uses length/hash commitments, not duplicated full payloads.
 See [irreversible setup](SEAL_READINESS.md); no seal calldata is generated.
+
+## Launch royalty workload and gas reads
+
+The [launch-workload review](../reports/launch-workload-20261117/REVIEW.md) supplies separate finite gas evidence. The unsigned planner now includes unverified `royalty_workload` and `gas_policy` rows. Read the actual royalty `assetCapacity()`, `assetCount()` and `assets(index)` for every zero-based uint256 index strictly below the observed count. Capacity16 permits16 ERC20s plus ETH; it does not imply they are already admitted. Read `ProtocolPolicy.gasPolicy()`, `royaltySyncGas()`, `sourceCallGas()`, `payoutGas()` and `gasFingerprint()` from the matching deployment.
+
+Measure healthy, pending/initial-allocation and full-budget fault states for the actual list. A1M per-currency allowance is not a20M operation guarantee. Full20% activation-policy2/25% maintenance padding and actual service/block/complete-fee bounds remain;32M local diagnostics do not adopt a larger profile. All checklist flags stay false, and no RPC/configuration/seal call is added. Repeat reviewed workload qualification before later currency admission/capacity expansion.

@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "methods": [
+    {
+      "id": "test/LaunchRoyaltyTail20261117.t.sol:LaunchRoyaltyTail20261117Test.testLaunchRoyaltyTail811RotatedSixteenHealthyColdActivation()",
+      "status": "Success",
+      "reason": null,
+      "component_measurement": {
+        "label": "COMPONENT16 healthy811/weight1023 rotated cold activation gas",
+        "gas": 11814101,
+        "method": "gasleft difference around ONLY typed InKindNFT.activate(nextId); setup/assertion metering paused",
+        "not_full_entry_or_RPC_estimate": true
+      },
+      "aggregate_test_gas_kind_not_qualification": {
+        "Unit": {
+          "gas": 11818935
+        }
+      }
+    },
+    {
+      "id": "test/LaunchRoyaltyTail20261117.t.sol:LaunchRoyaltyTail20261117Test.testLaunchRoyaltyTail999MixedStockSixteenHealthyColdActivation()",
+      "status": "Success",
+      "reason": null,
+      "component_measurement": {
+        "label": "COMPONENT16 healthy999/weight1499 rotated cold activation gas",
+        "gas": 11460949,
+        "method": "gasleft difference around ONLY typed InKindNFT.activate(nextId); setup/assertion metering paused",
+        "not_full_entry_or_RPC_estimate": true
+      },
+      "aggregate_test_gas_kind_not_qualification": {
+        "Unit": {
+          "gas": 11465805
+        }
+      }
+    },
+    {
+      "id": "test/LaunchRoyaltyTail20261117.t.sol:LaunchRoyaltyTail20261117Test.testLaunchRoyaltyTailLastGasFaultDefersOnlyCurrencyThenRecoversOldCohort()",
+      "status": "Success",
+      "reason": null,
+      "component_measurement": {
+        "label": "COMPONENT16 last1Mfault/15healthy rotated cold activation gas",
+        "gas": 12074797,
+        "method": "gasleft difference around ONLY typed InKindNFT.activate(nextId); setup/assertion metering paused",
+        "not_full_entry_or_RPC_estimate": true
+      },
+      "aggregate_test_gas_kind_not_qualification": {
+        "Unit": {
+          "gas": 12079719
+        }
+      }
+    },
+    {
+      "id": "test/LaunchRoyaltyTail20261117.t.sol:LaunchRoyaltyTail20261117Test.testLaunchRoyaltyTailSixteenFirstOpeningAllocationExcludesCutoffEntrant()",
+      "status": "Success",
+      "reason": null,
+      "component_measurement": {
+        "label": "COMPONENT16 first-opening811/weight1023 cold activation gas",
+        "gas": 6407404,
+        "method": "gasleft difference around ONLY typed InKindNFT.activate(nextId); setup/assertion metering paused",
+        "not_full_entry_or_RPC_estimate": true
+      },
+      "aggregate_test_gas_kind_not_qualification": {
+        "Unit": {
+          "gas": 6094014
+        }
+      }
+    }
+  ],
+  "source": "Lossy projection of actual raw Forge result; full trace retained externally and separately hashed",
+  "full_raw_bytes": 395419087,
+  "full_raw_sha256": "aa1f9f990e864882321689ddcfc23f62aeb94bf1dd340c7c9af80264e87c9941"
+}

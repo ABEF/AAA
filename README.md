@@ -187,6 +187,8 @@ Host restart, RPC inclusion, gas and writer/checker rollout remain qualification
 Local checks, scoped source review and documentation reconciliation do not imply
 published CI, target-chain operation, independent audit or production approval.
 
+The [launch workload review](reports/launch-workload-20261117/REVIEW.md) distinguishes actual local gas estimates from body measurements.16-currency capacity does not guarantee that every activation or32-entry claim fits its budget; qualify the selected workload and use fresh bounded claim batches.
+
 ### Production approval
 
 Actual independent feeds/routes/VRF, authorities, OpenSea, current-profile website

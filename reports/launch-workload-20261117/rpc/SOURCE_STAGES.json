@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "initial_rpc_verifier": {
+    "pre_run_self_hash_captured": false,
+    "scope": "No pre-run verifier self-hash was captured; final reproducer bytes are not labelled as the initial executed source. Actual producer/raw/START/artifact pins and every request/response are independently retained. The later helper correction/offline replay affects measurement inputs, not original cap calls or decisions."
+  },
+  "presync_refused_stage": {
+    "file": "sources/verify_presync_rpc-refused-stage.py",
+    "sha256": "32b3d1a802ffb0a91402b3ead103dfe49bb95900ce74e3efd7b78913c45419a9",
+    "hash_verified_against_recorded_outcome": true,
+    "scope": "Exact recovered source bytes, including recorded LF/terminal-CRLF formatting."
+  },
+  "final_reproducers": {
+    "verify_local_rpc.py": "f7d1ee4de3fda6da50b336ab2d53d359f86be7d77e2af4adf40bde32ef138b70",
+    "verify_presync_rpc.py": "da05b7c351605681fe93c42ec6872f26d931c3ab78562ce647fd03a2803cfea9"
+  },
+  "all_genesis_source_inputs": [
+    {
+      "path": "completed-rpc/local-rpc/activation-eth-0-empty-steady/genesis.json",
+      "raw_sha256": "24f75926a4aeff5c126ee92bc93adb906bc686bbe981893540b827a3aa83c3ba",
+      "bytes": 1706467,
+      "scope": "Full owned-node input; source baseline/delta and post-sync diff authenticated in the corresponding record. Large duplicated genesis bodies not republished."
+    },
+    {
+      "path": "completed-rpc/local-rpc/activation-eth-0-pending-opening/genesis.json",
+      "raw_sha256": "40dd31d18ce62dc70a6e3c0e2978acb582ed52dce2d128e2941c0e5ffb7c2236",
+      "bytes": 1708263,
+      "scope": "Full owned-node input; source baseline/delta and post-sync diff authenticated in the corresponding record. Large duplicated genesis bodies not republished."
+    },
+    {
+      "path": "completed-rpc/local-rpc/activation-eth-0-pending-steady/genesis.json",
+      "raw_sha256": "9520e2dc80ae683986f9057d86deace67f813037d1c0e5403183e706528d425e",
+      "bytes": 1708677,
+      "scope": "Full owned-node input; source baseline/delta and post-sync diff authenticated in the corresponding record. Large duplicated genesis bodies not republished."
+    },
+    {
+      "path": "completed-rpc/local-rpc/activation-eth-1-pending-steady/genesis.json",
+      "raw_sha256": "2a5b11a718532853b7967bfa66d1f2c04d2140ce42e0c17d2a36b43ca478e6e7",
+      "bytes": 1708677,
+      "scope": "Full owned-node input; source baseline/delta and post-sync diff authenticated in the corresponding record. Large duplicated genesis bodies not republished."
+    },
+    {
+      "path": "completed-rpc/local-rpc/activation-eth-16-pending-steady/genesis.json",
+      "raw_sha256": "76228ed552299d825bcb455ad0d80e7a1d5a4d92d0eb29e717a7f5bbd502b167",
+      "bytes": 1708677,
+      "scope": "Full owned-node input; source baseline/delta and post-sync diff authenticated in the corresponding record. Large duplicated genesis bodies not republished."
+    },
+    {
+      "path": "completed-rpc/local-rpc/activation-zzz-0-pending-steady/genesis.json",
+      "raw_sha256": "feffd7830e6cb9f1e10f5a5d35b43023a5ee82a42a600261d05b0434ebb518e0",
+      "bytes": 1708677,
+      "scope": "Full owned-node input; source baseline/delta and post-sync diff authenticated in the corresponding record. Large duplicated genesis bodies not republished."
+    },
+    {
+      "path": "completed-rpc/local-rpc/growth-eth-0-pending-steady/genesis.json",
+      "raw_sha256": "6375ca62045b219276822a79bf905894ca48ab6b16e485c6b98b4a7cebca3ffd",
+      "bytes": 1749112,
+      "scope": "Full owned-node input; source baseline/delta and post-sync diff authenticated in the corresponding record. Large duplicated genesis bodies not republished."
+    },
+    {
+      "path": "completed-rpc/local-rpc/growth-eth-16-pending-steady/genesis.json",
+      "raw_sha256": "8722e17e01058d9801bf4b30eca2b0f07eb583422fd331cacf5a81034eda4741",
+      "bytes": 1707159,
+      "scope": "Full owned-node input; source baseline/delta and post-sync diff authenticated in the corresponding record. Large duplicated genesis bodies not republished."
+    },
+    {
+      "path": "completed-rpc/local-rpc/growth-zzz-0-pending-steady/genesis.json",
+      "raw_sha256": "4318af8abb4965248cf6c0c6d5d6bda7ee3afd65d7787812c76a49a9b9716444",
+      "bytes": 1749387,
+      "scope": "Full owned-node input; source baseline/delta and post-sync diff authenticated in the corresponding record. Large duplicated genesis bodies not republished."
+    },
+    {
+      "path": "completed-rpc/presync-rpc/activation-zzz-0-pending-steady/before-sync/genesis.json",
+      "raw_sha256": "feffd7830e6cb9f1e10f5a5d35b43023a5ee82a42a600261d05b0434ebb518e0",
+      "bytes": 1708677,
+      "scope": "Full owned-node input; source baseline/delta and post-sync diff authenticated in the corresponding record. Large duplicated genesis bodies not republished."
+    },
+    {
+      "path": "completed-rpc/presync-rpc-v2/activation-eth-0-pending-opening/after-sync/genesis.json",
+      "raw_sha256": "ac9925e3a7cf0a1ef29bb34963c6cb495bba8e9026599e76d45963d4bbd60154",
+      "bytes": 1711023,
+      "scope": "Full owned-node input; source baseline/delta and post-sync diff authenticated in the corresponding record. Large duplicated genesis bodies not republished."
+    },
+    {
+      "path": "completed-rpc/presync-rpc-v2/activation-eth-0-pending-opening/before-sync/genesis.json",
+      "raw_sha256": "40dd31d18ce62dc70a6e3c0e2978acb582ed52dce2d128e2941c0e5ffb7c2236",
+      "bytes": 1708263,
+      "scope": "Full owned-node input; source baseline/delta and post-sync diff authenticated in the corresponding record. Large duplicated genesis bodies not republished."
+    },
+    {
+      "path": "completed-rpc/presync-rpc-v2/activation-zzz-0-pending-steady/after-sync/genesis.json",
+      "raw_sha256": "1aca7851f9e34405a1b96821d29b97ea050c08d4180e2f8dd1d8da5b0abefc7e",
+      "bytes": 1711023,
+      "scope": "Full owned-node input; source baseline/delta and post-sync diff authenticated in the corresponding record. Large duplicated genesis bodies not republished."
+    }
+  ],
+  "source_producer": {
+    "raw_bytes": 205156786,
+    "raw_sha256": "5ba2ebe8aacf68c431adb286c27eb01290edbcedddcac894b9418ef24c868039",
+    "start_sha256": "72aa17a8ad20d262ae62638e829c5c1483230e944b81dd4e1e33d8822f56e9b2",
+    "artifact_sha256": "b21e814b8480ea007e157e19fceff845e98bc48ca49def5ab53205550d31e5d2"
+  },
+  "pre_state_hash_scope": "Harness-defined entry atomic-state fingerprint, not the entire VM; raw authenticated baseline/delta plus the explicit diff define reconstruction."
+}

@@ -1,5 +1,7 @@
 # Verification evidence
 
+[Launch-workload gas and recovery](launch-workload-20261117/REVIEW.md) adds finite16-currency contribution checks,1000-NFT claim stress, maximum royalty-component phase and explicit pre-seal workload/gas reads. Actual local estimates/full margins distinguish passes from refusals; no live provider/fee or deployment approval follows.
+
 [Latest five-report consolidation](five-report-consolidation-20261117/REVIEW.md) provides the current distinct finding registry, preserved source boundaries, new pre-seal stop diagnostics and bounded historical-evidence admission. No past test totals are added into new coverage.
 
 [Repaired-test impact follow-up](test-impact-followup-20261117/REVIEW.md) checks intended dependent behavior and fixes a late manual-review reorg race; source review, finite execution and remaining workload limits stay separate.
