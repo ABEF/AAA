@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "baseline_commit": "003c8d8dc88b60cbfbcc8caf61fa864c6487b40f",
+  "recorded_at_utc": "2026-11-17T00:13:36.458941+00:00",
+  "source_before": {
+    "docs/function-reference.json": "b9ac5644720dbb07dd6704f2a7b211f2dda2fb9b7a0236d1472bfc6204a6caca",
+    "docs/operator-call-examples.json": "745491192f0455e18e4b993702c5640662ced9e713c0bbfe4c1434f6a18ae077",
+    "scripts/rehearse-manual-recovery.py": "fabaf02efa8654efa3d3e4c606749d2632a20b09af1a2eb12e7553583119851e",
+    "scripts/rehearse-manual-reference.py": "52f94c917b8a489bdf534572dedd848847f20c49b372b81607f1d4385e0e5895",
+    "tests_python/test_manual_lp_diagnostics.py": "8938d80acec3e6b6cfa0bca2aedfca9f4651bb79c66748f0d369ff304532c2b1",
+    "tests_python/test_manual_lp_frozen_gas.py": "7097f38bc2511d0de1b68f94b37fa8ea6bb1fabd73bc6012cc0a620babd99f62",
+    "tests_python/test_manual_lp_review.py": "3db78ca9dceb6329af7dda354eb3508987f7d7a9bbb0c900d5d24350ebc5b7d8",
+    "tests_python/test_operator_input_annotations.py": "6230ad8c350bb358ca85cef943a940d38697e3c13281e8baa8f0c54591f4f74b",
+    "tests_python/test_parked_manual_lp_review.py": "39bb3b32904756b6c71c887343df9eaa24653de131eba222475ad10e4c1b8590",
+    "zzz_ops/function_reference.py": "dbe5e526d94311efb82b92f572af96c12f9fe905a3493fdd63991e12dc635834",
+    "zzz_ops/management_review.py": "72ada1acf8d767096c1ae2041b3fc7b97b14decce233ee6d3791d2afe95acc35",
+    "zzz_ops/manual_lp_review.py": "232626539ad5a0f86e9eebf57987bfe8845c478906cc8c550fe077ffdd690b00",
+    "zzz_ops/operator_reference.py": "691dc2698acd86009b4bb8856cb1b5865d529f94d7f69c61ea7ef04889f2aefb",
+    "zzz_ops/operator_review.py": "ed3d6d025286fa5284a985112dc7d07f27b0420c5d88aee4b3730780780762ad"
+  },
+  "source_after": {
+    "docs/function-reference.json": "b9ac5644720dbb07dd6704f2a7b211f2dda2fb9b7a0236d1472bfc6204a6caca",
+    "docs/operator-call-examples.json": "745491192f0455e18e4b993702c5640662ced9e713c0bbfe4c1434f6a18ae077",
+    "scripts/rehearse-manual-recovery.py": "fabaf02efa8654efa3d3e4c606749d2632a20b09af1a2eb12e7553583119851e",
+    "scripts/rehearse-manual-reference.py": "52f94c917b8a489bdf534572dedd848847f20c49b372b81607f1d4385e0e5895",
+    "tests_python/test_manual_lp_diagnostics.py": "8938d80acec3e6b6cfa0bca2aedfca9f4651bb79c66748f0d369ff304532c2b1",
+    "tests_python/test_manual_lp_frozen_gas.py": "7097f38bc2511d0de1b68f94b37fa8ea6bb1fabd73bc6012cc0a620babd99f62",
+    "tests_python/test_manual_lp_review.py": "3db78ca9dceb6329af7dda354eb3508987f7d7a9bbb0c900d5d24350ebc5b7d8",
+    "tests_python/test_operator_input_annotations.py": "6230ad8c350bb358ca85cef943a940d38697e3c13281e8baa8f0c54591f4f74b",
+    "tests_python/test_parked_manual_lp_review.py": "39bb3b32904756b6c71c887343df9eaa24653de131eba222475ad10e4c1b8590",
+    "zzz_ops/function_reference.py": "dbe5e526d94311efb82b92f572af96c12f9fe905a3493fdd63991e12dc635834",
+    "zzz_ops/management_review.py": "72ada1acf8d767096c1ae2041b3fc7b97b14decce233ee6d3791d2afe95acc35",
+    "zzz_ops/manual_lp_review.py": "232626539ad5a0f86e9eebf57987bfe8845c478906cc8c550fe077ffdd690b00",
+    "zzz_ops/operator_reference.py": "691dc2698acd86009b4bb8856cb1b5865d529f94d7f69c61ea7ef04889f2aefb",
+    "zzz_ops/operator_review.py": "ed3d6d025286fa5284a985112dc7d07f27b0420c5d88aee4b3730780780762ad"
+  },
+  "source_unchanged": true,
+  "selected": [
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting",
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_healthy_trading_and_new_price_rounds_keep_original_manifest_and_revalidate_twice",
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_latest_retained_guard_failure_refuses_without_fallback_or_third_probe",
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_contract_or_delegated_governance_requires_unsupported_outer_envelope_before_funding",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_execution1_lp3_profile_and_late_source_controls",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_controls_failure_is_distinct_from_final_simulation",
+    "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_strict_reference_wrapper_accepts_only_the_exact_updated_base_source",
+    "tests_python.test_operator_input_annotations.OperatorInputAnnotationTests.test_legacy_string_notes_keep_identical_parameter_records",
+    "tests_python.test_operator_input_annotations.OperatorInputAnnotationTests.test_shared_struct_keeps_operation_specific_examples_and_meanings"
+  ],
+  "executed": [
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting",
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_healthy_trading_and_new_price_rounds_keep_original_manifest_and_revalidate_twice",
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_latest_retained_guard_failure_refuses_without_fallback_or_third_probe",
+    "tests_python.test_manual_lp_review.ManualLPReviewTests.test_contract_or_delegated_governance_requires_unsupported_outer_envelope_before_funding",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_execution1_lp3_profile_and_late_source_controls",
+    "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip",
+    "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_controls_failure_is_distinct_from_final_simulation",
+    "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_strict_reference_wrapper_accepts_only_the_exact_updated_base_source",
+    "tests_python.test_operator_input_annotations.OperatorInputAnnotationTests.test_legacy_string_notes_keep_identical_parameter_records",
+    "tests_python.test_operator_input_annotations.OperatorInputAnnotationTests.test_shared_struct_keeps_operation_specific_examples_and_meanings"
+  ],
+  "tests_run": 10,
+  "failures": [
+    "tests_python.test_operator_input_annotations.OperatorInputAnnotationTests.test_shared_struct_keeps_operation_specific_examples_and_meanings"
+  ],
+  "errors": [],
+  "skips": [],
+  "seconds": 27.234,
+  "unchanged_methods_executed": 0,
+  "existing_chain_or_signing": false
+}

@@ -1,11 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZCustodyValidation} from "../src/ZZZCustodyValidation.sol";
 import {Test} from "forge-std/Test.sol";
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
 import {Position} from "../src/libraries/ZZZTypes.sol";
 import {Ids} from "../src/libraries/ZZZTypes.sol";
 
 contract EmptyPooledPlan {
+    // TEST ONLY: the handler is still under construction; this deployed peer
+    // supplies the real controller-bound read-only reservation predicate.
+    ZZZCustodyValidation public immutable validation;
+    constructor(address controller) { validation = new ZZZCustodyValidation(controller); }
     function activePlan(uint256) external pure returns(bytes32) {return bytes32(0);}
 }
 
@@ -21,7 +26,7 @@ contract PooledAccountingHandler is PooledVaultFixture {
     constructor() {
         setUp();
         // A constructor has no deployed runtime; use a deployed plan fixture.
-        ac.bind(Ids.MIGRATION,address(new EmptyPooledPlan()));
+        ac.bind(Ids.MIGRATION,address(new EmptyPooledPlan(address(ac))));
         mint(false); activate(0,1000,1000); mint(true);
     }
     function mint(bool second) public {
@@ -121,6 +126,16 @@ contract PooledAccountingHandler is PooledVaultFixture {
         }
         assertEq(treasury.balance,ids.length*0.05 ether);assertEq(address(vault).balance,p.idle0+donations[0]);
     }
+    function assertFundedConstructorSeed(uint256 nativeClaim,uint256 zzzClaim) external view {
+        assertEq(ids.length,2);assertEq(expectedContribution,2000e18);
+        assertGt(vault.sharesOf(ids[0]),0);assertTrue(membership.eligible(ids[0]));
+        assertEq(vault.nftBucket(ids[0]),_bucket());
+        assertEq(vault.sharesOf(ids[1]),0);assertFalse(membership.eligible(ids[1]));
+        assertEq(rewards.claimable(ids[0],address(0)),nativeClaim);
+        assertEq(rewards.claimable(ids[0],address(t1)),zzzClaim);
+        EmptyPooledPlan plan=EmptyPooledPlan(ac.module(Ids.MIGRATION));
+        assertEq(address(plan.validation().access()),address(ac));
+    }
 }
 contract ProductionAccountingInvariantTest is Test {
     PooledAccountingHandler private handler;
@@ -134,6 +149,12 @@ contract ProductionAccountingInvariantTest is Test {
         targetContract(address(handler));targetSelector(FuzzSelector(address(handler),selectors));
     }
     function invariant_pooledCustodyAndClaimsConserved() public view {handler.assertConservation();}
+    function testConstructorActivationAndHarvestReachable20261117() public {
+        handler.assertFundedConstructorSeed(0,0);
+        handler.harvest(100,200);
+        handler.assertFundedConstructorSeed(90,180);
+        handler.assertConservation();
+    }
     function testMembershipHistoryAndPausedClaims() public {
         handler.harvest(109,217);handler.activate(1,700,800);handler.topUp(0,30,40);
         handler.harvest(211,307);handler.rebalance();handler.paused(true);

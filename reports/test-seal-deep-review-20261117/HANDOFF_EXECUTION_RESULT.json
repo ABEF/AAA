@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "scope": "Four explicitly selected changed-fixture handoff methods, exact compiled-target source closure stable; global unrelated changes preserved separately.",
+  "distinct_selected_methods_passed": 4,
+  "initial_attempts_selected_zero": 2,
+  "initial_attempts_not_passes": true,
+  "unchanged_full_suites_rerun": false,
+  "source_or_code_edits_by_this_driver": false,
+  "runs": [
+    {
+      "label": "seadrop",
+      "scoped_selected_execution_pass": true,
+      "selected_method_count": 2,
+      "compiler_metadata_source_count": 114,
+      "selected_src_test_bracket_count": 64,
+      "other_compiler_bound_dependencies": 50,
+      "artifact_sha256": "699f6c83c52743b52d98bcf3763cdc3ec41f88def35940f0d1cea9363d7ba0f5",
+      "runtime_object_sha256": "253b2fd16a97acb940c4b66ab92cd19d8f41cfd9f7429fccf0bf89cca656fcb8",
+      "global_source_unchanged": false
+    },
+    {
+      "label": "canonical-v10",
+      "scoped_selected_execution_pass": true,
+      "selected_method_count": 2,
+      "compiler_metadata_source_count": 114,
+      "selected_src_test_bracket_count": 64,
+      "other_compiler_bound_dependencies": 50,
+      "artifact_sha256": "f610deea12986925703918763fc8a12e83565f110e57eb8adf30c6d88f7fcf2b",
+      "runtime_object_sha256": "d75e8915f47e0de8e6ff6b335bac228b7e3d4802f291af513580062c01030805",
+      "global_source_unchanged": false
+    }
+  ],
+  "production_approved": false
+}

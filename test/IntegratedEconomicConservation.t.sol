@@ -34,6 +34,7 @@ import {ZZZContributionPricing} from "../src/ZZZContributionPricing.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
 import {ZZZCompounder} from "../src/ZZZCompounder.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
+import {ZZZCustodyValidation} from "../src/ZZZCustodyValidation.sol";
 import {ZZZActivationAssets} from "../src/ZZZActivationAssets.sol";
 import {ZZZActivationAssetsFactory} from "../src/ZZZActivationAssetsFactory.sol";
 import {ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
@@ -82,6 +83,9 @@ contract EconomicNativeRegistry {
 /// Ghost cash totals come from actual funding/claim events or known donations;
 /// they do not recompute the production reward-index/share formulas.
 contract IntegratedEconomicConservationTest is Test {
+    // TEST ONLY: this harness is the bound Migration parent. Expose the real
+    // fixed validation child used by reservation admission; no bypass reply.
+    ZZZCustodyValidation public validation;
     using BalanceDeltaLibrary for BalanceDelta;
     MockAccess private access;
     FactualToken private token;
@@ -145,7 +149,7 @@ contract IntegratedEconomicConservationTest is Test {
         access.bind(Ids.MEMBERSHIP,address(membership));access.bind(Ids.REWARDS,address(rewards));
         access.bind(Ids.FEES,address(fees));access.bind(Ids.POOLS,address(registry));
         access.bind(Ids.LIQUIDITY,address(manager));access.bind(Ids.STRATEGY,address(new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))))));
-        access.bind(Ids.MIGRATION,address(this));access.bind(Ids.COMPOUNDER,address(compounder));
+        access.bind(Ids.MIGRATION,address(this));validation=new ZZZCustodyValidation(address(access));access.bind(Ids.COMPOUNDER,address(compounder));
         access.setKeeper(address(this),true);
         vrf=new MockVRF();ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         // Match the fixed production contribution identity before sealing. Pool

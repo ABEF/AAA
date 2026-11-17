@@ -26,6 +26,66 @@ class PresealPlanTests(unittest.TestCase):
     def rejected(self,value):
         with self.assertRaises(D.PlanError):P.prepare(value)
 
+    def test_complete_configuration_does_not_claim_irreversible_seal_readiness(self):
+        p=self.plan;r=p['seal_boundary_review']
+        self.assertTrue(p['configuration_inputs_complete'])
+        self.assertEqual('blocked_pending_live_and_content_review',r['readiness'])
+        self.assertFalse(r['all_preconditions_verified']);self.assertFalse(r['rpc_performed'])
+        self.assertIsNone(r['seal_calldata'])
+        checks={row['id']:row for row in r['checks']}
+        self.assertEqual(self.value['constructor_input']['planned_addresses']['seadrop_mint'],checks['seadrop_binding']['expected_binding'])
+        self.assertEqual(self.value['constructor_input']['planned_addresses']['lp_converter'],checks['lp_converter_binding']['expected_binding'])
+        for row in checks.values():
+            self.assertEqual('unverified',row['status']);self.assertFalse(row['verified'])
+        self.assertFalse(any('seal' in call['function'].lower() for step in p['steps'] for call in step['calls']))
+
+    def test_unknown_addresses_cannot_become_verified_constructor_or_helper_identities(self):
+        p=self.preview;r=p['seal_boundary_review']
+        self.assertFalse(p['configuration_inputs_complete'])
+        self.assertEqual(39,len(r['constructor_boundaries']))
+        self.assertTrue(all(row['assigned_address'] is None and not row['actual_identity_verified'] for row in r['constructor_boundaries']))
+        self.assertTrue(all(row['assigned_target'] is None and row['expected_binding'] is None and not row['verified'] for row in r['checks']))
+        self.assertIsNone(r['seal_calldata']);self.assertFalse(p['production_approved'])
+
+    def test_constructor_boundary_inventory_retains_exact_trusted_abi_inputs(self):
+        rows=self.plan['seal_boundary_review']['constructor_boundaries']
+        self.assertEqual(39,len({row['role'] for row in rows}))
+        artifacts=D.Artifacts()
+        for row in rows:
+            _,_,constructor=artifacts.contract(row['contract'])
+            self.assertEqual([(a['name'],a['type']) for a in constructor],[(a['name'],a['type']) for a in row['constructor_arguments']])
+            self.assertFalse(row['actual_identity_verified'])
+            if row['mode']=='inert_internal_create_only':
+                commitment=row['constructor_arguments'][0]['value']
+                self.assertEqual('accepted_inert_code_commitment',commitment['kind'])
+                self.assertGreater(commitment['bytes'],0)
+                self.assertRegex(commitment['sha256'],r'^[0-9a-f]{64}$')
+        checks={row['id']:row for row in self.plan['seal_boundary_review']['checks']}
+        self.assertIn('artworkBaseURI()',checks['artwork']['required_reads'])
+        self.assertIn('seaDropMint()',checks['seadrop_binding']['required_reads'])
+        self.assertIn('converter()',checks['lp_converter_binding']['required_reads'])
+        self.assertIn('canonicalChainId()',checks['chain']['required_reads'])
+        self.assertIn('randomnessConfigured()',checks['randomness']['required_reads'])
+        self.assertIn('currentZZZ()',checks['fixed_zzz']['required_reads'])
+
+    def test_irreversible_review_reads_are_callable_in_actual_trusted_target_abis(self):
+        # A plausible getter name can still refer to private storage. Verify the
+        # emitted operational instructions against the actual compiler ABI.
+        review=self.plan['seal_boundary_review']
+        roles={row['role']:row['contract'] for row in review['constructor_boundaries']}
+        artifacts=D.Artifacts()
+        for check in review['checks']:
+            _,obj,_=artifacts.contract(roles[check['target_role']])
+            reads={row['name']+'('+','.join(i['type'] for i in row['inputs'])+')'
+                   for row in obj['abi'] if row['type']=='function'
+                   and row['stateMutability'] in ('view','pure')}
+            for required in check['required_reads']:
+                self.assertIn(required,reads,(check['id'],check['target_role'],required))
+        sale=next(row for row in review['checks'] if row['id']=='sale_end')
+        self.assertNotIn('openingFinalized()',sale['required_reads'])
+        self.assertIn('time predicate, not proof of finalization',sale['requirement'])
+        self.assertFalse(review['rpc_performed']);self.assertIsNone(review['seal_calldata'])
+
     def test_complete_current_build_produces_only_conditional_typed_bootstrap_calls(self):
         p=self.plan
         self.assertTrue(p['configuration_inputs_complete'])

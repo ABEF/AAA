@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "phase": "Exact fixed current permission + new and adapted affected fixtures",
+  "selected": [
+    "tests_python.test_verification_profile.VerificationProfileTests.test_actual_foundry_fixture_permissions_match_effective_normal_validation",
+    "tests_python.test_verification_profile.VerificationProfileTests.test_fixture_permission_is_exact_without_extra_read_or_write_scopes",
+    "tests_python.test_verification_profile.VerificationProfileTests.test_reviewed_configuration_reads_only_version_and_config",
+    "tests_python.test_verification_profile.VerificationProfileTests.test_write_paths_and_remappings_cannot_redirect_normal_verification"
+  ],
+  "new_methods": 2,
+  "adapted_fixture_methods": 2,
+  "tests_run": 4,
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "source_before": {
+    "foundry.toml": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72",
+    "scripts/verify-normal-profile.py": "c5925740a8a5a6142e54b05eecf73ea2e26fd8d6cbd514cd9c2efd1116ffe81f",
+    "tests_python/test_verification_profile.py": "0ad4be5ea1725e3ec1a0290ba0c9705f9c34880a0c83b88292e3e225d3948a03"
+  },
+  "source_after": {
+    "foundry.toml": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72",
+    "scripts/verify-normal-profile.py": "c5925740a8a5a6142e54b05eecf73ea2e26fd8d6cbd514cd9c2efd1116ffe81f",
+    "tests_python/test_verification_profile.py": "0ad4be5ea1725e3ec1a0290ba0c9705f9c34880a0c83b88292e3e225d3948a03"
+  },
+  "source_unchanged": true,
+  "actual_forge_build_or_compiler_run": false,
+  "unrelated_suites_executed": false,
+  "production_approved": false
+}

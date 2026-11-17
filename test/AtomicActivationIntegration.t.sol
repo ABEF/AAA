@@ -40,7 +40,7 @@ abstract contract DirectEntryFixture is PooledVaultFixture {
         // Explicit native ETH/fixed18-decimal ZZZ. This venue does not model
         // actual-v4 ratio/routing; actual core suites cover that separately.
         t0=MockToken(address(0));t1=new MockToken(18);
-        venue=new VaultLiquidityMock(address(0),address(t1));ac.bind(Ids.LIQUIDITY,address(venue));
+        venue=new VaultLiquidityMock(address(0),address(t1));_configureVenue(venue);ac.bind(Ids.LIQUIDITY,address(venue));
         MockFeed feed=new MockFeed(8,1e8);
         oracle.setTestFeed(address(0),address(feed),3600);oracle.setTestFeed(address(t1),address(feed),3600);
         t1.mint(alice,10000e18);t1.mint(bob,10000e18);

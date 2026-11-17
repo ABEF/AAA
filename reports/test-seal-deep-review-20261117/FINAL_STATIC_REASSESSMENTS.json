@@ -1,0 +1,457 @@
+{
+  "schema": 1,
+  "input_sha256": "36aa87dad7e6bd0a679a727dc20bd6bd60bf12c601b8a99588986a0814eb6795",
+  "independent_audit": false,
+  "scope_proof": [
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "current_raw_sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+      "current_lf_sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+      "prior_lf_sha256": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+      "reconstructed_prior_exactly_lf": true,
+      "scope": "Only explicitly reviewed reservation predicate/facades change. Every other byte is equal after LF normalization."
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "current_raw_sha256": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b",
+      "current_lf_sha256": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b",
+      "prior_lf_sha256": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+      "reconstructed_prior_exactly_lf": true,
+      "scope": "Only explicitly reviewed reservation predicate/facades change. Every other byte is equal after LF normalization."
+    }
+  ],
+  "findings": [
+    {
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "confidence": "Medium",
+      "fingerprint": "639eb70ae268431a84d02a746f8f9b3ab3e7233e49f66dd74240706d481a6b8d",
+      "description": "Reentrancy in ZZZVault.exitBucketToHolders(uint256,uint256,uint256,uint256) (src/ZZZVault.sol#554-576):\n\tExternal calls:\n\t- _harvest(id,deadline) (src/ZZZVault.sol#562)\n\t\t- IVaultResidualLiquidity(address(manager)).closeSecondary(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#378)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#356)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#356)\n\t\t- manager.close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#377)\n\t\t- manager.collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#376)\n\t- _flushDust(id,token0,token1) (src/ZZZVault.sol#563)\n\t\t- fees.flushDust(bucketId,token0) (src/ZZZVault.sol#410)\n\t\t- fees.flushDust(bucketId,token1) (src/ZZZVault.sol#410)\n\t- _pullCompound(id) (src/ZZZVault.sol#564)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#402)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#403)\n\t- _close(id,deadline) (src/ZZZVault.sol#565)\n\t\t- IVaultResidualLiquidity(address(manager)).closeSecondary(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#378)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#356)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#356)\n\t\t- manager.close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#377)\n\t\t- manager.collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#376)\n\tExternal calls sending eth:\n\t- _harvest(id,deadline) (src/ZZZVault.sol#562)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#356)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#356)\n\t- _close(id,deadline) (src/ZZZVault.sol#565)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#356)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#356)\n\tState variables written after the call(s):\n\t- _close(id,deadline) (src/ZZZVault.sol#565)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#167)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#168)\n\t\t- p.lpTokenId = 0 (src/ZZZVault.sol#383)\n\tZZZVault.positions (src/ZZZVault.sol#30) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#657-687)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#86-88)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#80-84)\n\t- _idle(id,0,0) (src/ZZZVault.sol#570)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#167)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#168)\n\tZZZVault.positions (src/ZZZVault.sol#30) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#657-687)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#86-88)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#80-84)\n\t- p.status = PositionStatus.Exited (src/ZZZVault.sol#571)\n\tZZZVault.positions (src/ZZZVault.sol#30) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#657-687)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#86-88)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#80-84)\n\t- _close(id,deadline) (src/ZZZVault.sol#565)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#165)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#166)\n\tZZZVault.totalIdle (src/ZZZVault.sol#45) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#657-687)\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#45)\n\t- _idle(id,0,0) (src/ZZZVault.sol#570)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#165)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#166)\n\tZZZVault.totalIdle (src/ZZZVault.sol#45) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#657-687)\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#45)\n",
+      "referenced_paths": [
+        "src/ZZZVault.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZVault.sol": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "false_positive",
+      "rationale": "Current individual review: Individually reread the new combined terminal-exit write-bundle presentation. Vault.exitBucketToHolders is fixed-Migration-only/nonReentrant; it authenticates terminal holder exit, harvests/release-designated-compound/closes, checks raw caller floors, zeroes attributed idle and sets Exited before exact ETH/ZZZ push. No callback can repeat a custody write. canonicalWrite separately requires its authenticated inert import path. This report combines the previous close/zero/status bundles; no checker normalization was widened. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "Individually reread the new combined terminal-exit write-bundle presentation. Vault.exitBucketToHolders is fixed-Migration-only/nonReentrant; it authenticates terminal holder exit, harvests/release-designated-compound/closes, checks raw caller floors, zeroes attributed idle and sets Exited before exact ETH/ZZZ push. No callback can repeat a custody write. canonicalWrite separately requires its authenticated inert import path. This report combines the previous close/zero/status bundles; no checker normalization was widened.",
+      "prior_similar_fingerprint": null,
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "fingerprint": "c21481acaa7533a9b76f6ce17d78fef1bb0b3f509a327dbce083291bd04a9fdc",
+      "description": "Reentrancy in ZZZMigrationBudget._afterMove(uint256) (src/ZZZMigrationBudget.sol#274-298):\n\tExternal calls:\n\t- _pricing().endMaintenance(id) (src/ZZZMigrationBudget.sol#294)\n\tState variables written after the call(s):\n\t- delete compoundIncluded (src/ZZZMigrationBudget.sol#296)\n\tZZZMigrationBudget.compoundIncluded (src/ZZZMigrationBudget.sol#75) can be used in cross function reentrancies:\n\t- ZZZMigrationBudget._afterMove(uint256) (src/ZZZMigrationBudget.sol#274-298)\n\t- ZZZMigrationBudget._includeCompound(uint256) (src/ZZZMigrationBudget.sol#267-273)\n\t- delete snapshot (src/ZZZMigrationBudget.sol#295)\n\tZZZMigrationBudget.snapshot (src/ZZZMigrationBudget.sol#74) can be used in cross function reentrancies:\n\t- ZZZMigrationBudget._afterMove(uint256) (src/ZZZMigrationBudget.sol#274-298)\n\t- ZZZMigrationBudget._beforeMove(uint256,bool) (src/ZZZMigrationBudget.sol#243-263)\n\t- ZZZMigrationBudget._includeCompound(uint256) (src/ZZZMigrationBudget.sol#267-273)\n\t- ZZZMigrationBudget.assertDeployed(uint256) (src/ZZZMigrationBudget.sol#316-321)\n\t- ZZZMigrationBudget.maintenanceBucket() (src/ZZZMigrationBudget.sol#230-232)\n\t- ZZZMigrationBudget.maintenancePrices() (src/ZZZMigrationBudget.sol#235-239)\n\t- ZZZMigrationBudget.validateResidualClose(uint256) (src/ZZZMigrationBudget.sol#398-400)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "false_positive",
+      "rationale": "Current individual review: _afterMove remains onlyVault through checkpoint under the Vault economic mutex. Full value/control proofs precede fixed Pricing.endMaintenance and snapshot cleanup; emergency context survives until explicit final cleanup. Only reservation validation changes in this file, not this function or its fixed Pricing behavior. Prior detailed rationale retained after current source reread: _afterMove runs through onlyVault checkpoints inside Vault's nonReentrant maintenance. Financial/control checks precede fixed Pricing.endMaintenance, whose Oracle observations are STATIC, then local snapshot cleanup. Emergency scope intentionally survives until outer final manifest and explicit Budget.endEmergency. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "_afterMove remains onlyVault through checkpoint under the Vault economic mutex. Full value/control proofs precede fixed Pricing.endMaintenance and snapshot cleanup; emergency context survives until explicit final cleanup. Only reservation validation changes in this file, not this function or its fixed Pricing behavior.",
+      "prior_similar_fingerprint": "d24a9d30770440ba90b6f856cf468c024db96301821e4df6d278fb671ab3ded2",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "fingerprint": "b58b60286902febe51965433dc7b24e4db0e5cb85241b62f46214bc1692713a3",
+      "description": "Reentrancy in ZZZMigrationBudget._beforeMove(uint256,bool) (src/ZZZMigrationBudget.sol#243-263):\n\tExternal calls:\n\t- mark = _pricing().markMaintenance(id) (src/ZZZMigrationBudget.sol#257)\n\tState variables written after the call(s):\n\t- snapshot = s (src/ZZZMigrationBudget.sol#262)\n\tZZZMigrationBudget.snapshot (src/ZZZMigrationBudget.sol#74) can be used in cross function reentrancies:\n\t- ZZZMigrationBudget._afterMove(uint256) (src/ZZZMigrationBudget.sol#274-298)\n\t- ZZZMigrationBudget._beforeMove(uint256,bool) (src/ZZZMigrationBudget.sol#243-263)\n\t- ZZZMigrationBudget._includeCompound(uint256) (src/ZZZMigrationBudget.sol#267-273)\n\t- ZZZMigrationBudget.assertDeployed(uint256) (src/ZZZMigrationBudget.sol#316-321)\n\t- ZZZMigrationBudget.maintenanceBucket() (src/ZZZMigrationBudget.sol#230-232)\n\t- ZZZMigrationBudget.maintenancePrices() (src/ZZZMigrationBudget.sol#235-239)\n\t- ZZZMigrationBudget.validateResidualClose(uint256) (src/ZZZMigrationBudget.sol#398-400)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "false_positive",
+      "rationale": "Current individual review: _beforeMove rejects an existing snapshot, captures bucket/controls/limits, obtains fixed Pricing mark and requires nonzero value before assigning all required snapshot data. Its onlyVault outer maintenance lock and no-token-callback sequence are unchanged; the new reservation predicate is not called here. Prior detailed rationale retained after current source reread: Private _beforeMove runs via onlyVault under Vault's maintenance lock, rejects existing snapshot and captures limits/controls before fixed Pricing mark. Oracle capture rejects nesting and observes sources STATIC. Nonzero complete mark is required before committing snapshot; no token callback exists here. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "_beforeMove rejects an existing snapshot, captures bucket/controls/limits, obtains fixed Pricing mark and requires nonzero value before assigning all required snapshot data. Its onlyVault outer maintenance lock and no-token-callback sequence are unchanged; the new reservation predicate is not called here.",
+      "prior_similar_fingerprint": "2a422f8c7262eb7b06bbca19a78b10e4afd88b59edd0e3d14432c04a0d21c3e8",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "fingerprint": "53f0998624ca40a524b9d8d1adf46fd36bc60b64ae7090aca9b0cae98bda485b",
+      "description": "Reentrancy in ZZZMigrationBudget.endEmergency() (src/ZZZMigrationBudget.sol#108-113):\n\tExternal calls:\n\t- _pricing().emergencyExecution(emergencyBucket,false) (src/ZZZMigrationBudget.sol#111)\n\tState variables written after the call(s):\n\t- emergencyActive = false (src/ZZZMigrationBudget.sol#112)\n\tZZZMigrationBudget.emergencyActive (src/ZZZMigrationBudget.sol#53) can be used in cross function reentrancies:\n\t- ZZZMigrationBudget._afterMove(uint256) (src/ZZZMigrationBudget.sol#274-298)\n\t- ZZZMigrationBudget._beforeMove(uint256,bool) (src/ZZZMigrationBudget.sol#243-263)\n\t- ZZZMigrationBudget._skip(uint8) (src/ZZZMigrationBudget.sol#128)\n\t- ZZZMigrationBudget.balanceContext(uint256) (src/ZZZMigrationBudget.sol#359-362)\n\t- ZZZMigrationBudget.checkpoint(uint256,uint8) (src/ZZZMigrationBudget.sol#207-226)\n\t- ZZZMigrationBudget.emergencyActive (src/ZZZMigrationBudget.sol#53)\n\t- ZZZMigrationBudget.maintenanceBucket() (src/ZZZMigrationBudget.sol#230-232)\n\t- ZZZMigrationBudget.maintenancePrices() (src/ZZZMigrationBudget.sol#235-239)\n\t- ZZZMigrationBudget.mintTarget(uint256) (src/ZZZMigrationBudget.sol#348-356)\n\t- ZZZMigrationBudget.validateEmergency(uint256) (src/ZZZMigrationBudget.sol#114-118)\n\t- ZZZMigrationBudget.validateRebalance(uint256,uint128) (src/ZZZMigrationBudget.sol#401-409)\n\t- ZZZMigrationBudget.validateResidualClose(uint256) (src/ZZZMigrationBudget.sol#398-400)\n\t- delete emergencyBucket (src/ZZZMigrationBudget.sol#112)\n\tZZZMigrationBudget.emergencyBucket (src/ZZZMigrationBudget.sol#54) can be used in cross function reentrancies:\n\t- ZZZMigrationBudget.emergencyBucket (src/ZZZMigrationBudget.sol#54)\n\t- ZZZMigrationBudget.emergencyFingerprint() (src/ZZZMigrationBudget.sol#119-127)\n\t- ZZZMigrationBudget.validateEmergency(uint256) (src/ZZZMigrationBudget.sol#114-118)\n\t- delete emergencyChecks (src/ZZZMigrationBudget.sol#112)\n\tZZZMigrationBudget.emergencyChecks (src/ZZZMigrationBudget.sol#55) can be used in cross function reentrancies:\n\t- ZZZMigrationBudget._skip(uint8) (src/ZZZMigrationBudget.sol#128)\n\t- ZZZMigrationBudget.emergencyChecks (src/ZZZMigrationBudget.sol#55)\n\t- ZZZMigrationBudget.emergencyFingerprint() (src/ZZZMigrationBudget.sol#119-127)\n\t- ZZZMigrationBudget.validateRebalance(uint256,uint128) (src/ZZZMigrationBudget.sol#401-409)\n\t- delete emergencyGovernor (src/ZZZMigrationBudget.sol#112)\n\tZZZMigrationBudget.emergencyGovernor (src/ZZZMigrationBudget.sol#56) can be used in cross function reentrancies:\n\t- ZZZMigrationBudget.validateEmergency(uint256) (src/ZZZMigrationBudget.sol#114-118)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "false_positive",
+      "rationale": "Current individual review: endEmergency remains fixed-Migration-only/nonReentrant, validates active paused same governance and empty snapshot, performs fixed Pricing/Oracle ending verification before deleting emergency flags. Retaining flags during final validation is intentional. The new reservation predicate adds no emergency caller. Prior detailed rationale retained after current source reread: Budget.endEmergency is fixed-Migration-only/nonReentrant and validates active paused governance plus empty snapshot. Fixed Pricing/Oracle final validation uses STATIC downstream reads; emergency flags intentionally remain set until scope clear returns, then local deletion disarms the context. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "endEmergency remains fixed-Migration-only/nonReentrant, validates active paused same governance and empty snapshot, performs fixed Pricing/Oracle ending verification before deleting emergency flags. Retaining flags during final validation is intentional. The new reservation predicate adds no emergency caller.",
+      "prior_similar_fingerprint": "c29e38f0311bc1f6828418b85ef32ff7ed4a1ae958eccd06aa2052c0c741af04",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "fingerprint": "f7880088e15ccc875a286f65055f464c3535db0297b4c29caa6164746f4a407f",
+      "description": "ZZZMigrationBudget._beforeMove(uint256,bool).s (src/ZZZMigrationBudget.sol#246) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "false_positive",
+      "rationale": "Current individual review: Snapshot memory s has defined zero defaults. Bucket/source/limits/confirmation and complete nonzero Pricing mark are populated before storage; portfolioRevision/replacement intentionally remain zero only for the emergency branch that does not consume ordinary portfolio fields. Reservation restriction does not change this initialization. Prior detailed rationale retained after current source reread: Snapshot required bucket/source/control/limit/price/scale/idle/value fields are populated before storage assignment and value must be nonzero. portfolioRevision/replacement intentionally stay zero only in emergency, whose completion does not consume ordinary portfolio fields. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "Snapshot memory s has defined zero defaults. Bucket/source/limits/confirmation and complete nonzero Pricing mark are populated before storage; portfolioRevision/replacement intentionally remain zero only for the emergency branch that does not consume ordinary portfolio fields. Reservation restriction does not change this initialization.",
+      "prior_similar_fingerprint": "5858e3a98dd795781ad7002a407907569e0a2313d634a64c8a340377410c2a0a",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "fingerprint": "86d2d69a3f79899d6e7c841415f30ec5120c32c8c9afbdd1d1481bae8a9c1e12",
+      "description": "ZZZMigrationBudget.validateReservation(bytes32,uint256) (src/ZZZMigrationBudget.sol#367-378) ignores return value by IZZZPools(access.module(Ids.POOLS)).get(poolId) (src/ZZZMigrationBudget.sol#369)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "false_positive",
+      "rationale": "Current individual review: Pools.get is used as an admission/existence assertion via revert, not to consume a price/key. New onlyVault validation still rejects zero IDs, retains exact preexisting pool association, and for new pool associations demands the fixed Migration-created CustodyValidation identity predicate. The predicate admits only canonical-origin identity or a bounded registered alias; it does not attest full pool configuration, remaining capacity or future activation readiness. Prior detailed rationale retained after current source reread: validateReservation calls get to require registered-pool existence/admission by revert, then checks bucket association. It makes no trade or valuation; token identity and operation permission are checked separately by movement/configuration validation. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "Pools.get is used as an admission/existence assertion via revert, not to consume a price/key. New onlyVault validation still rejects zero IDs, retains exact preexisting pool association, and for new pool associations demands the fixed Migration-created CustodyValidation identity predicate. The predicate admits only canonical-origin identity or a bounded registered alias; it does not attest full pool configuration, remaining capacity or future activation readiness.",
+      "prior_similar_fingerprint": "c7afb853264e76883c6907770d2ae7a93a721050240c2aadffe1cf0a8b77b5ce",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "fingerprint": "7a54a0532cff86231ad12c3e80d4877c6bc330a72778393645960e0e03aada55",
+      "description": "ZZZMigrationBudget.validateUnwind(uint256) (src/ZZZMigrationBudget.sol#385-388) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(IZZZVault(vault()).group(id).poolId) (src/ZZZMigrationBudget.sol#387)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "false_positive",
+      "rationale": "Current individual review: validateUnwind intentionally uses Strategy.validateExitPrice as success-or-revert financial validation; it needs no returned price value. Only explicit emergency omission of the matching check skips it; custody/floors/exact receipt checks remain separate. New reservation logic changes none of that. Prior detailed rationale retained after current source reread: validateUnwind uses validateExitPrice as a success-or-revert safety assertion, not a numerical calculation. Only explicit emergency omission of bit2 skips it. Custody, raw floors, exact receipts and atomic rollback remain independent. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "validateUnwind intentionally uses Strategy.validateExitPrice as success-or-revert financial validation; it needs no returned price value. Only explicit emergency omission of the matching check skips it; custody/floors/exact receipt checks remain separate. New reservation logic changes none of that.",
+      "prior_similar_fingerprint": "7331394075169f8ff1bc24f6daf54053de0da67a74c484744b31a1f101aeb0a9",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "fingerprint": "c4a81a08f0d685a11e0dc161aace5ca083da76057e13a28e62971e80c237dc02",
+      "description": "ZZZCustodyValidation._emergencyFingerprint(EmergencyRebalance) (src/ZZZCustodyValidation.sol#159-173) ignores return value by (None,None,a) = oracle.executionBounds(c.key.currency0) (src/ZZZCustodyValidation.sol#170)\n",
+      "referenced_paths": [
+        "src/ZZZCustodyValidation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZCustodyValidation.sol": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "false_positive",
+      "rationale": "Current individual review: Emergency fingerprint needs ETH source/policy identity, while original numerical bounds are consumed independently by retained price/value helpers. oracle.validateExecution precedes both fingerprint reads. New read-only identity predicate does not alter this guarded commitment. Prior detailed rationale retained after current source reread: Emergency commitment needs the original ETH source/policy fingerprint. It explicitly fully validates execution before hashing both captured fingerprints; retained value and price guards separately consume captured bounds. Verified own-swap movement cannot replace starting identity. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "Emergency fingerprint needs ETH source/policy identity, while original numerical bounds are consumed independently by retained price/value helpers. oracle.validateExecution precedes both fingerprint reads. New read-only identity predicate does not alter this guarded commitment.",
+      "prior_similar_fingerprint": "f2e8d828b43fc7f3d5b4c1ecc6317b6872e3631eadb8f418c087e7ade516a218",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "fingerprint": "4747e0fde8a3f93752a995c648805b04ad5eda963c502473dda08fcda8b2cf01",
+      "description": "ZZZCustodyValidation._emergencyFingerprint(EmergencyRebalance) (src/ZZZCustodyValidation.sol#159-173) ignores return value by (None,None,b) = oracle.executionBounds(c.key.currency1) (src/ZZZCustodyValidation.sol#170)\n",
+      "referenced_paths": [
+        "src/ZZZCustodyValidation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZCustodyValidation.sol": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "false_positive",
+      "rationale": "Current individual review: ZZZ source identity is deliberately extracted after complete execution validation. Numerical bounds and output floors remain enforced in their own callers, so dropping unused numeric components here does not drop a financial guard. Reservation identity adds no execution-context scope. Prior detailed rationale retained after current source reread: ZZZ fingerprint enters emergency commitment after full validateExecution. Pricing/Budget and minimum-output helpers separately use original numerical bounds. Own-swap market advancement therefore preserves identity without adopting a repriced fingerprint. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "ZZZ source identity is deliberately extracted after complete execution validation. Numerical bounds and output floors remain enforced in their own callers, so dropping unused numeric components here does not drop a financial guard. Reservation identity adds no execution-context scope.",
+      "prior_similar_fingerprint": "a0c95f4f3d6ffcc8802e9f31f6c99f92995356b8d1d9727fd09cd67293df11f9",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "fingerprint": "d0cf7570ee82c67b6216d444ce021041caa1eec1e69283bc8fe61c0b51ed0eb8",
+      "description": "ZZZCustodyValidation._consolidation(uint256,bool) (src/ZZZCustodyValidation.sol#123-146) ignores return value by (None,tick,None,None) = IStateViewMinimal(ICustodyExecutionFingerprint(address(manager)).stateView()).getSlot0(p.poolId) (src/ZZZCustodyValidation.sol#137)\n",
+      "referenced_paths": [
+        "src/ZZZCustodyValidation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZCustodyValidation.sol": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "false_positive",
+      "rationale": "Current individual review: Guarded same-main consolidation uses slot0 current tick to assert active geometry; immutable lower/upper, pool/owner/liquidity and control data are verified independently. It need not consume spot sqrt/fee outputs in this helper. Added identity-only view leaves consolidation flow unchanged. Prior detailed rationale retained after current source reread: Consolidation preflight needs current tick to prove main active in guarded mode. Immutable ticks/owner/L/pool identity and controls are checked independently. Ignoring sqrt/fees here does not replace complete execution validation. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "Guarded same-main consolidation uses slot0 current tick to assert active geometry; immutable lower/upper, pool/owner/liquidity and control data are verified independently. It need not consume spot sqrt/fee outputs in this helper. Added identity-only view leaves consolidation flow unchanged.",
+      "prior_similar_fingerprint": "61a32db0b69ab47e20f799dcb08c73740cf3f7dbe31151ee98d6b00f5b555a9e",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "events-maths",
+      "impact": "Low",
+      "confidence": "Medium",
+      "fingerprint": "1048a330f0a27b43dc18145e3867a09292a914a686fe300a221e1fd6364894bb",
+      "description": "ZZZMigrationBudget.beginEmergency(uint256,uint8) (src/ZZZMigrationBudget.sol#100-107) should emit an event for: \n\t- emergencyBucket = bucket (src/ZZZMigrationBudget.sol#102) \n\t- emergencyChecks = checks (src/ZZZMigrationBudget.sol#102) \n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "informational",
+      "rationale": "Current individual review: beginEmergency arms only transaction-local context; successful outer Migration emits the reviewed request/hash/check mask. A revert erases intermediate state. No new persistent policy setter or event deficiency is introduced by reservation restriction. Prior detailed rationale retained after current source reread: beginEmergency arms a transaction-local context, not persistent governance configuration. Outer Migration emits exact request/review hashes and retained checks after successful EmergencyRebalanced/ResidualConsolidated. Reverted intermediate state disappears; another intermediate event adds no success provenance. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "beginEmergency arms only transaction-local context; successful outer Migration emits the reviewed request/hash/check mask. A revert erases intermediate state. No new persistent policy setter or event deficiency is introduced by reservation restriction.",
+      "prior_similar_fingerprint": "a7036fdfeaff5ebc220c685be4f21dcb02b29087440d51794332a98706438c25",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "fingerprint": "1ddeaf4f6fc3cf0d1450bc6b4dc398f57d0e28aa18b7f075c78843a0c9aeafca",
+      "description": "ZZZCustodyValidation.validReservationIdentity(bytes32,uint256) (src/ZZZCustodyValidation.sol#40-47) has external calls inside a loop: vault.bucketAt(i) == bucket (src/ZZZCustodyValidation.sol#45)\n",
+      "referenced_paths": [
+        "src/ZZZCustodyValidation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZCustodyValidation.sol": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "informational",
+      "rationale": "Current individual review: The newly reported bucketAt loop has a hard count>4 rejection before iteration. Each of at most four calls is a typed STATICCALL to the sealed fixed Vault raw indexed getter, with no token, market, signer or discretionary address. Predicate returns bool only and cannot register, transfer, approve, mutate custody or attest complete reservation readiness. Four extra getter calls have bounded cost; wrong/unavailable bound modules fail closed. This is a real bounded calls-in-loop tradeoff, not an unbounded loop or accepted arbitrary external callback. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "The newly reported bucketAt loop has a hard count>4 rejection before iteration. Each of at most four calls is a typed STATICCALL to the sealed fixed Vault raw indexed getter, with no token, market, signer or discretionary address. Predicate returns bool only and cannot register, transfer, approve, mutate custody or attest complete reservation readiness. Four extra getter calls have bounded cost; wrong/unavailable bound modules fail closed. This is a real bounded calls-in-loop tradeoff, not an unbounded loop or accepted arbitrary external callback.",
+      "prior_similar_fingerprint": null,
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "fingerprint": "59f272cdf93d9c91ad0b300d010dfec4e783c1953fc974f257f91f1dda4d66d6",
+      "description": "Reentrancy in ZZZMigrationBudget.checkpoint(uint256,uint8) (src/ZZZMigrationBudget.sol#207-226):\n\tExternal calls:\n\t- _beforeMove(id,false) (src/ZZZMigrationBudget.sol#221)\n\t\t- mark = _pricing().markMaintenance(id) (src/ZZZMigrationBudget.sol#257)\n\tState variables written after the call(s):\n\t- lastCompound[id] = uint64(block.timestamp) (src/ZZZMigrationBudget.sol#222)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "false_positive",
+      "rationale": "Current individual review: checkpoint is onlyVault inside nonReentrant Vault maintenance; fixed Pricing/Oracle capture completes before lastCompound records successful eligibility. Later failure rolls clock and snapshot back atomically. Phase4 manual reinvestment remains distinct from ordinary rebalance and unaffected by identity predicate. Prior detailed rationale retained after current source reread: checkpoint is onlyVault inside Vault's nonReentrant operation. _beforeMove captures through fixed Pricing/Oracle STATIC observations before successful compound-clock write. Later failures revert clock/snapshot; phase4 manual clock remains atomic and distinct from rebalance time. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "checkpoint is onlyVault inside nonReentrant Vault maintenance; fixed Pricing/Oracle capture completes before lastCompound records successful eligibility. Later failure rolls clock and snapshot back atomically. Phase4 manual reinvestment remains distinct from ordinary rebalance and unaffected by identity predicate.",
+      "prior_similar_fingerprint": "87e8f5341d57f9e8326435310a739e06668f5a591d17c357181e2ecf095cd945",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "reentrancy-events",
+      "impact": "Low",
+      "confidence": "Medium",
+      "fingerprint": "a00a7798fa88052b5fd0a69350f5c69b8b3382e8b4f09321a3a66d0244774fd6",
+      "description": "Reentrancy in ZZZMigrationBudget._afterMove(uint256) (src/ZZZMigrationBudget.sol#274-298):\n\tExternal calls:\n\t- _pricing().endMaintenance(id) (src/ZZZMigrationBudget.sol#294)\n\tEvent emitted after the call(s):\n\t- MigrationValueChecked(id,s.value,deployed,idle) (src/ZZZMigrationBudget.sol#297)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "false_positive",
+      "rationale": "Current individual review: MigrationValueChecked is emitted after fixed Pricing.endMaintenance final validation, then only local cleanup/event under onlyVault and outer Vault mutex. Values come from captured mark and verified actual poststate, not an untrusted callback return. Reservation-only source change adds no event callback. Prior detailed rationale retained after current source reread: MigrationValueChecked follows fixed Pricing.endMaintenance with only STATIC Oracle observations. onlyVault plus outer Vault nonReentrant lock prevents interleaved checkpoints. Event reports captured before/deployed/idle values after final checks, never a reentrantly adopted result. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "MigrationValueChecked is emitted after fixed Pricing.endMaintenance final validation, then only local cleanup/event under onlyVault and outer Vault mutex. Values come from captured mark and verified actual poststate, not an untrusted callback return. Reservation-only source change adds no event callback.",
+      "prior_similar_fingerprint": "4811704567200b3869ea6ed9bacaf5ad070ed15e4a8502593ef0863ff3d3791a",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "fingerprint": "380cf1f6f7d46dcdfe5f319359269f3aee0a5815386d0ef9927905b91e28d2df",
+      "description": "ZZZCustodyValidation (src/ZZZCustodyValidation.sol#25-234) should inherit from IBudgetReservationIdentity (src/ZZZMigrationBudget.sol#29)\n",
+      "referenced_paths": [
+        "src/ZZZCustodyValidation.sol",
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZCustodyValidation.sol": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b",
+        "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "informational",
+      "rationale": "Current individual review: CustodyValidation implements exact validReservationIdentity(bytes32,uint256) external-view returns(bool) as used by the new Budget facade. Migration constructs it immutably, Budget resolves the bound Migration.validation typed getter, and actual reservation writes/roles remain in Vault/Budget. Nominal interface inheritance would add no authority or execution restriction. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "CustodyValidation implements exact validReservationIdentity(bytes32,uint256) external-view returns(bool) as used by the new Budget facade. Migration constructs it immutably, Budget resolves the bound Migration.validation typed getter, and actual reservation writes/roles remain in Vault/Budget. Nominal interface inheritance would add no authority or execution restriction.",
+      "prior_similar_fingerprint": null,
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "fingerprint": "6bb453a2dc3ccf533f98d577a3e4cdce1c792982c0b24b004b673811af5f4701",
+      "description": "ZZZPortfolioPolicy (src/ZZZPortfolioPolicy.sol#20-310) should inherit from IResidualPolicyControl (src/ZZZCustodyValidation.sol#21)\n",
+      "referenced_paths": [
+        "src/ZZZCustodyValidation.sol",
+        "src/ZZZPortfolioPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZCustodyValidation.sol": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b",
+        "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "informational",
+      "rationale": "Current individual review: PortfolioPolicy already implements the exact controlFingerprint(bytes32) view. The same local interface at its unchanged line grants no authority; new identity reader is separate and does not change portfolio controls. Prior detailed rationale retained after current source reread: PortfolioPolicy.controlFingerprint implements the exact bytes32 view and includes scoped policy controls/revisions. IResidualPolicyControl grants no authority. Structural rather than explicit inheritance identifies no absent runtime function or missing permission. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "PortfolioPolicy already implements the exact controlFingerprint(bytes32) view. The same local interface at its unchanged line grants no authority; new identity reader is separate and does not change portfolio controls.",
+      "prior_similar_fingerprint": "6bb453a2dc3ccf533f98d577a3e4cdce1c792982c0b24b004b673811af5f4701",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "fingerprint": "a461ffb1e6507c3d139ab32975cfdd28bccac71b9487ca0d7e497215f549b1b0",
+      "description": "ZZZVaultCanonical (src/ZZZVaultCanonical.sol#51-374) should inherit from IBudgetVaultValidation (src/ZZZMigrationBudget.sol#23-28)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol",
+        "src/ZZZVaultCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+        "src/ZZZVaultCanonical.sol": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "informational",
+      "rationale": "Current individual review: Unchanged VaultCanonical implements the three exact downstream owner/holder-exit/contribution validation signatures with fixed caller and canonical rules. New Budget predicate is separate; nominal inheritance cannot strengthen the existing typed forwarding. Prior detailed rationale retained after current source reread: VaultCanonical implements exact validateOwner/HolderExit/Contribution signatures with its fixed Vault caller and actual canonical rules. Budget forwards authenticated module parameters. Missing explicit facade inheritance identifies no unimplemented runtime validation. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "Unchanged VaultCanonical implements the three exact downstream owner/holder-exit/contribution validation signatures with fixed caller and canonical rules. New Budget predicate is separate; nominal inheritance cannot strengthen the existing typed forwarding.",
+      "prior_similar_fingerprint": "a461ffb1e6507c3d139ab32975cfdd28bccac71b9487ca0d7e497215f549b1b0",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "fingerprint": "7bfac571a75c777a1d9e8fb9a93674dd5ff3d4b00d72a4dd8aaaba92fd4aa462",
+      "description": "ZZZMigrationBudget (src/ZZZMigrationBudget.sol#43-447) should inherit from IPortfolioBudget (src/ZZZLiquidityManager.sol#20-23)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol",
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3",
+        "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "informational",
+      "rationale": "Current individual review: Budget maintenanceBucket/maintenancePrices remain the exact IPortfolioBudget views over authenticated active snapshot. New identity admission does not mutate or expose another snapshot source, and explicit inheritance does not change those guards. Prior detailed rationale retained after current source reread: Budget maintenanceBucket/maintenancePrices exactly match IPortfolioBudget and expose the authenticated active snapshot to Manager. No new authority is created by these reads. Structural inheritance does not alter snapshot lifecycle or manual-scope cleanup. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "Budget maintenanceBucket/maintenancePrices remain the exact IPortfolioBudget views over authenticated active snapshot. New identity admission does not mutate or expose another snapshot source, and explicit inheritance does not change those guards.",
+      "prior_similar_fingerprint": "203221d9b67ae956f630d7a6fd67bda7a5c43eca9aa7c066c95cd29de16bb55e",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "fingerprint": "d40a98921f2cf85b2e15b71b90cd99f1c0e201f7d51ca4b6bfc5ebedfc2cd4fd",
+      "description": "ZZZVaultCanonical (src/ZZZVaultCanonical.sol#51-374) should inherit from IReservationOrigin (src/ZZZCustodyValidation.sol#22)\n",
+      "referenced_paths": [
+        "src/ZZZCustodyValidation.sol",
+        "src/ZZZVaultCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZCustodyValidation.sol": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b",
+        "src/ZZZVaultCanonical.sol": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "informational",
+      "rationale": "Current individual review: Unchanged VaultCanonical.bucketIdentity(bytes32) external view returns(uint256) exactly matches IReservationOrigin. The fixed preserved originChain/originVault hash supplies canonical identity through STATICCALL; there is no new identity setter or replacement trust. Nominal inheritance is unnecessary for this typed ABI call. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "Unchanged VaultCanonical.bucketIdentity(bytes32) external view returns(uint256) exactly matches IReservationOrigin. The fixed preserved originChain/originVault hash supplies canonical identity through STATICCALL; there is no new identity setter or replacement trust. Nominal inheritance is unnecessary for this typed ABI call.",
+      "prior_similar_fingerprint": null,
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "fingerprint": "77e8411e5b3f31ccbc03684fc034f1513ad98abd727794de9dc4e9c3d352789d",
+      "description": "ZZZRebalanceConfirmation (src/ZZZRebalanceConfirmation.sol#32-225) should inherit from IResidualPolicyControl (src/ZZZCustodyValidation.sol#21)\n",
+      "referenced_paths": [
+        "src/ZZZCustodyValidation.sol",
+        "src/ZZZRebalanceConfirmation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZCustodyValidation.sol": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b",
+        "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "informational",
+      "rationale": "Current individual review: RebalanceConfirmation already implements the exact controlFingerprint(bytes32) view, including reviewed observation controls. This interface coincidence requires no inheritance relation to PortfolioPolicy and changes no permissions. Prior detailed rationale retained after current source reread: RebalanceConfirmation.controlFingerprint concretely implements the exact bytes32 view consumed by IResidualPolicyControl, including scoped confirmation settings. Narrow ABI coincidence does not require shared inheritance with PortfolioPolicy or imply missing role enforcement. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "RebalanceConfirmation already implements the exact controlFingerprint(bytes32) view, including reviewed observation controls. This interface coincidence requires no inheritance relation to PortfolioPolicy and changes no permissions.",
+      "prior_similar_fingerprint": "77e8411e5b3f31ccbc03684fc034f1513ad98abd727794de9dc4e9c3d352789d",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "fingerprint": "1f2002760385ae42e0e25db9e08be8f19ffa037ae2a1a1d28837aa17fdedf975",
+      "description": "ZZZMigration (src/ZZZMigration.sol#31-376) should inherit from IEmergencyManifest (src/ZZZMigrationBudget.sol#17-20)\n",
+      "referenced_paths": [
+        "src/ZZZMigration.sol",
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigration.sol": "e90a8ec8bc6b68e25a996d6c57075cadab837ce3f689d0952b810c8a74223a24",
+        "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "informational",
+      "rationale": "Current individual review: Migration still exposes the exact emergencyFingerprint/target views; the fingerprint authenticates actual Budget and current emergency, target is read-only. Newly read immutable validation getter already exists and is not an arbitrary executor or role grant. Prior detailed rationale retained after current source reread: Migration has the exact emergencyFingerprint() external-view bytes32 and emergencyTarget() external-view int24/int24 methods required by IEmergencyManifest. emergencyFingerprint additionally restricts its caller to the actual Vault budget and validates the active emergency before returning reviewed state; emergencyTarget is a read only. Nominally inheriting the small interface is optional for the existing typed selector calls and would not add these authorization or manifest checks. The current read/write implementation, not the absent is-clause, enforces the emergency boundary. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "Migration still exposes the exact emergencyFingerprint/target views; the fingerprint authenticates actual Budget and current emergency, target is read-only. Newly read immutable validation getter already exists and is not an arbitrary executor or role grant.",
+      "prior_similar_fingerprint": "1f2002760385ae42e0e25db9e08be8f19ffa037ae2a1a1d28837aa17fdedf975",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    },
+    {
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "fingerprint": "7ae4d5db724b889d7ddbd059f546a5c049decc9ed67f44d08fe3831255303af8",
+      "description": "ZZZMigrationBudget (src/ZZZMigrationBudget.sol#43-447) should inherit from IBudgetVaultValidation (src/ZZZMigrationBudget.sol#23-28)\n",
+      "referenced_paths": [
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "informational",
+      "rationale": "Current individual review: Budget still provides the three onlyVault IBudgetVaultValidation forwarders to fixed VaultCanonical. Its separate new reservation facade preserves onlyVault and exact association checks; structural inheritance introduces no absent runtime check. Prior detailed rationale retained after current source reread: Budget concretely exposes the three IBudgetVaultValidation methods as onlyVault forwarders to fixed VaultCanonical. Canonical validation and authenticated caller data remain. It need not inherit the downstream local facade to safely implement those selectors. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "current_review_note": "Budget still provides the three onlyVault IBudgetVaultValidation forwarders to fixed VaultCanonical. Its separate new reservation facade preserves onlyVault and exact association checks; structural inheritance introduces no absent runtime check.",
+      "prior_similar_fingerprint": "5e87444fdf207f229f5b4f30c89767d813743cbc89cfe0df8024ae130d9e3b03",
+      "review_scope": "Individually current context; similarity/location shift is provenance only, not counted as exact-source reuse."
+    }
+  ]
+}

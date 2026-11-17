@@ -41,6 +41,23 @@ test/fuzz/invariant selection. It then runs Python/source checks, normal build/
 size gates and offline Solidity tests. Source/tool settings are rechecked at
 phase boundaries; this does not authenticate a compromised tool or host.
 
+The current default grants read-only access to
+`./test/fixtures/seal-critical-003c8d8` for the irreversible-configuration
+regressions. That narrow fixture read is the only new filesystem permission;
+the existing `./deployments` write scope and disabled FFI remain. The final
+normal build records and verifies this exact configuration delta separately
+from compiler settings and production source changes.
+
+For current native financial fixtures, keep their execution interfaces current
+and forward actual accounting/guard math rather than returning unconditional
+success. Fund synthetic exchange/fee cash during explicit setup; do not change
+native balances with cheatcodes inside the operation whose rollback is tested.
+Require nonzero funded state and the intended error, recipient and backing
+changes. The [test/irreversibility review](../reports/test-seal-deep-review-20261117/REVIEW.md)
+separates individually inspected methods, selected executions, historical
+compatibility fixtures and static inventories. None is a whole-suite or live
+market acceptance claim.
+
 Each invocation creates an exclusive `reports/verification.XXXXXXXX` directory
 and prints its path on completion. Optional `POPL_VERIFICATION_OUTPUT_DIR` must name a new
 directory with an existing parent. Old reports are preserved; retry into a fresh
@@ -116,12 +133,16 @@ actual399-findings/47bindings internal static review coverage PASS, successful
 solc output and a later Forge host-cache CLI failure. Those are separate facts,
 not a current green workflow or independent approval. The [historical applicability
 comparison](../reports/historical-reconciliation-completion-20261029/STATIC_APPLICABILITY.json)
-records19of47then-changed source pins. The [current strict default](../reports/operator-behavior-followup-20261117/static-review.json)
-binds570detector records:5individually reviewed current contexts and565unique
-exact fingerprint/referenced-source reuses from the prior569record. Actual
+records19of47then-changed source pins. The [current strict default](../reports/test-seal-deep-review-20261117/static-final-review.json)
+binds573detector records:22individually reviewed current contexts and551unique
+exact fingerprint/referenced-source reuses from the prior571record. Actual
 Slither reused the accepted100-source normal compiler output without compiling
-again; only AccessController changed, and all48normal size gates passed under
-unchanged compiler settings. See the [current static scope](../reports/operator-behavior-followup-20261117/STATIC_REVIEW.md).
+again; Vault, Metadata, MigrationBudget and CustodyValidation are the four
+changed production sources relative to003c8d8, and all48normal size gates pass
+under unchanged compiler settings. See the [current static scope](../reports/test-seal-deep-review-20261117/FINAL_STATIC_REVIEW.md).
+The intermediate571record/65current+506reuse stage covers only the first two
+source changes; the earlier570record/5current+565reuse stage covers the earlier
+Access artwork-seal change. Both retain their original source scopes.
 The full current source inventory is separately pinned. The earlier metadata
 569/57+512 record and earlier daily567/162+405,
 manual565, spot560, contribution3558, mint2 and fee-flow532 records retain

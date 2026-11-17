@@ -71,7 +71,7 @@ contract NativeCanonicalIntegrationTest is Test {
     }
     function _deploy(bool sealNow) private returns (System memory s) {
         s.access = new ZZZAccessController(address(this), address(this), GUARDIAN); ProtocolPolicyFixture.bind(address(s.access));
-        s.pools = new PreparationPools(address(s.access)); s.venue = new CanonicalNativeVenue(address(s.access), address(token));
+        s.pools = new PreparationPools(address(s.access)); s.venue = new CanonicalNativeVenue(address(s.access),address(token),address(0));
         s.vault = new ZZZVault(address(s.access),block.chainid,address(new ZZZMigrationBudget(address(s.access))));
         s.nft = new ZZZNFT(address(s.access), "ipfs://native-canonical-fixture/", address(new ZZZNFTMetadata(address(s.access)))); s.nft.setMintEnd(uint64(block.timestamp + 3650 days)); s.royalties = s.nft.royaltyRewards();
         s.rewards = new ZZZRewards(address(s.access)); s.fees = new ZZZFeeController(address(s.access));

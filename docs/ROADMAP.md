@@ -1,5 +1,7 @@
 # Engineering roadmap
 
+The [test and irreversible-setup review](../reports/test-seal-deep-review-20261117/REVIEW.md) fixes chain/URI/reservation defects and strengthens specific test oracles. Current build is seal-boundaries-20261117; no release sign-off, deployment, service or website adoption is implied. Real dependencies, complete fees/gas, operations and independent review remain open.
+
 The [behavior follow-up](../reports/operator-behavior-followup-20261117/REVIEW.md) closes confirmed sealing/setup and due-clock defects, and repairs stale current-behavior fixtures. Keep actual markets, provider/host, maximum-state gas, OpenSea/VRF and independent approval as the next release prerequisites. Software-only compound coordination is an accepted decision, not a pending on-chain policy change.
 
 The [operator-input review](../reports/operator-input-audit-20261116/REVIEW.md) closes confirmed unsigned-envelope and documentation defects. Continue actual market/provider, contract-wallet, maximum-state gas and operating qualification; extra keeper in-range policy remains service-only. No release gate is closed by catalogue completeness.

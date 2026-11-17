@@ -18,20 +18,20 @@ are refused; the planner does not install packages or fetch replacement evidence
 
 ## Select the exact reviewed build
 
-The default trusted build is **`operator-seal-20261117`**, using the accepted
-normal compiler family with the AccessController nonempty-artwork-root seal check.
+The default trusted build is **`seal-boundaries-20261117`**, using the accepted
+normal compiler family with chain/URI guards and the canonical reservation identity check. The previous controller artwork-root guard remains.
 Input `profile` stays `schema17/mint2/V10/execution1/LP3`;
 the distinct build ID authenticates exact bytes. Output `build_profile` and
 `accepted_build.profile` record it. Unknown IDs, mixed artifacts or changed
 source bytes fail; there is no fallback to an older build to bypass drift.
 
 ```powershell
-python scripts/prepare-deployment.py --build-profile operator-seal-20261117 --input path/to/reviewed-input.json --output path/to/new-plan.json
+python scripts/prepare-deployment.py --build-profile seal-boundaries-20261117 --input path/to/reviewed-input.json --output path/to/new-plan.json
 ```
 
-The closed registry also retains **`metadata2-20261116`** and
+The closed registry also retains **`operator-seal-20261117`**, **`metadata2-20261116`** and
 **`manual-reference-20261115`** with their original pins. Historical planning
-requires the corresponding exact old source checkout; selecting either family
+requires the corresponding exact old source checkout; selecting an older family
 in the current checkout correctly refuses source drift. Old local evidence can
 still be checked offline against its authenticated historical artifacts without
 relabeling it current. A build profile, content SHA or plan manifest is not an
@@ -41,10 +41,10 @@ After a future contract change, review a new exact closed compiler/source family
 and extend the trusted registry deliberately. Never rewrite existing family pins,
 copy local addresses into production inventories or install evidence-supplied
 hashes as the trust root. The17November build passes48normal size gates with
-the original compiler settings; only AccessController source changed. Its
+the original compiler settings; Vault, renderer, Budget and existing CustodyValidation source change. The sole Foundry configuration delta is a read permission for pinned public test fixtures. AccessController
 creation code plus96argument bytes totals48,377bytes, leaving775bytes below
 the49,152limit. This build/static verification does not rerun constructors or
-refresh historical deployment gas. See the [current source/evidence](../reports/operator-behavior-followup-20261117/REVIEW.md).
+refresh historical deployment gas. See the [current source/evidence](../reports/test-seal-deep-review-20261117/REVIEW.md).
 
 ## Inputs and outputs
 
@@ -218,12 +218,12 @@ it does not silently skip that check on another operating system. Example from
 the repository root, with your reviewed binary and a new evidence directory:
 
 ```powershell
-python scripts/rehearse-local-deployment.py --build-profile operator-seal-20261117 --anvil "C:/reviewed-tools/anvil.exe" --output "C:/local-reviews/new-construction-run"
+python scripts/rehearse-local-deployment.py --build-profile seal-boundaries-20261117 --anvil "C:/reviewed-tools/anvil.exe" --output "C:/local-reviews/new-construction-run"
 ```
 
 This example selects the new current build for a separately authorized fresh
 rehearsal; it is not a command that ran in the historical captures below.
-No full-graph construction rehearsal for `operator-seal-20261117` is claimed.
+No full-graph construction rehearsal for `seal-boundaries-20261117` is claimed.
 There is no RPC, key, existing-state, public-deployment or sealing option. The
 controlled role addresses, metadata URI and buyback ceiling are test inputs,
 not production choices. Output includes the process/genesis identity, dependencies,

@@ -1,0 +1,24 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--offline",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-path",
+    "test/SeaDropArtworkBoundary20261117.t.sol",
+    "--match-test",
+    "testSeaDropMintStillUsesCollectionRootForRevealedArtwork",
+    "--out",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\test-seal-deep-review-20261117\\opensea-out",
+    "--cache-path",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\test-seal-deep-review-20261117\\opensea-cache",
+    "--code-size-limit",
+    "1000000",
+    "--json"
+  ],
+  "exit_code": 0,
+  "unchanged_methods_run": 0,
+  "public_rpc_or_signing": false,
+  "scope": "one new exact-runtime SeaDrop/NFT/metadata case with MockAccess and controlled VRF"
+}

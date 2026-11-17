@@ -19,12 +19,11 @@ import {ZZZRewards} from "../src/ZZZRewards.sol";
 import {ZZZMembership} from "../src/ZZZMembership.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
-// Synthetic registry fixture; the fresh pair here is native ETH/fixed ZZZ.
-import {SyntheticPoolRegistry as ZZZPoolRegistry} from "./helpers/SyntheticPoolRegistry.sol";
+import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
 import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
 import {Ids, PoolKey, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";
-import {IPoolManagerMinimal} from "../src/interfaces/IZZZ.sol";
+import {IPoolManagerMinimal,IPositionManagerMinimal,IStateViewMinimal} from "../src/interfaces/IZZZ.sol";
 import {MockAccess, MockToken, MockFeed} from "./mocks/Mocks.sol";
 import {MockVRF} from "./mocks/MockVRF.sol";
 import {RewardsVaultFixture} from "./RewardsAndFees.t.sol";
@@ -120,6 +119,40 @@ contract BuybackStateFixture {
     constructor(address core) { poolManager = core; }
     function setPrice(uint160 value) external { price = value; }
     function getSlot0(bytes32) external view returns (uint160, int24, uint24, uint24) { return (price, 0, 0, 3000); }
+    // TEST ONLY deterministic observation used by the real revert-only quote
+    // and its exact post-state check. This models no market depth/price impact.
+    function getLiquidity(bytes32) external pure returns(uint128) {return 1_000_000 ether;}
+}
+
+/// @dev TEST ONLY native admission against the actual locally constructed
+/// Manager's reciprocal core/State/PosM/Permit2 graph. This substitutes the
+/// production Robinhood runtime pins, not price/reward/native/fee checks.
+contract BuybackNativeRegistryFixture is ZZZPoolRegistry {
+    constructor(address controller) ZZZPoolRegistry(controller) {}
+    function configure(PoolConfig calldata config) external onlyGovernance
+        nativeConfiguration(config.depositsEnabled) returns(bytes32 poolId) {
+        address zzz=activationAssets.zzz();
+        if(zzz==address(0) || config.key.currency0!=address(0) || config.key.currency1!=zzz ||
+            config.key.hooks!=address(0) || config.key.fee>100000)revert InvalidConfiguration();
+        _nativeBindings();
+        poolId=keccak256(abi.encode(config.key));
+        (uint160 price,,,uint24 fee)=IStateViewMinimal(address(
+            ZZZLiquidityManager(payable(access.module(Ids.LIQUIDITY))).stateView())).getSlot0(poolId);
+        if(price==0 || fee!=config.key.fee)revert InvalidConfiguration();
+        return _configure(config,address(0),zzz);
+    }
+    function _nativeBindings() internal view override {
+        address parent=access.module(Ids.LIQUIDITY);
+        if(parent.code.length==0)revert InvalidConfiguration();
+        ZZZLiquidityManager manager=ZZZLiquidityManager(payable(parent));
+        address core=address(manager.poolManager());address state=address(manager.stateView());
+        address positions=manager.positionManager();address permit=address(manager.permit2());
+        if(address(manager.access())!=address(access) || core.code.length==0 || state.code.length==0 ||
+            positions.code.length==0 || permit.code.length==0 ||
+            IPositionManagerMinimal(positions).poolManager()!=core ||
+            IPositionManagerMinimal(positions).permit2()!=permit ||
+            IStateViewMinimal(state).poolManager()!=core)revert InvalidConfiguration();
+    }
 }
 
 /// @notice Real fee/reward/buyback/price/registry/strategy/manager execution.
@@ -132,7 +165,7 @@ contract BuybackExecutionTest is Test {
     MockFeed private inputFeed;
     MockFeed private zzzFeed;
     ZZZOracle private oracle;
-    ZZZPoolRegistry private pools;
+    BuybackNativeRegistryFixture private pools;
     ZZZStrategy private strategy;
     ZZZLiquidityManager private manager;
     ZZZBuyback private buyback;
@@ -166,7 +199,7 @@ contract BuybackExecutionTest is Test {
         fees = new ZZZFeeController(address(access)); vault = new RewardsVaultFixture(rewards);
         nft = new ZZZNFT(address(access), "ipfs://test-only/", address(new ZZZNFTMetadata(address(access)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         ProtocolPolicyFixture.randomness(address(nft.access()),address(new MockVRF()),bytes32(uint256(1)),1,3,500000,false);
-        pools = new ZZZPoolRegistry(address(access)); strategy = new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))));
+        pools = new BuybackNativeRegistryFixture(address(access)); strategy = new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))));
         core = new BuybackCoreFixture(); state = new BuybackStateFixture(address(core));
         FakePermit2 permit = new FakePermit2();
         FakePositionManager positions = new FakePositionManager(address(core), address(permit));
@@ -294,7 +327,11 @@ contract BuybackExecutionTest is Test {
     }
     function testSwapFailureRollsBackThenClaimsAndRetryRemainAvailable() public {
         _fund(address(input), GROSS); core.setFail(true); bytes32 beforeState = _ledger(address(input));
-        vm.expectRevert(bytes("fixture market unavailable")); _execute(address(input), RESERVE);
+        // A current quote wraps the simulated venue failure as InvalidState.
+        // Prove the actual core swap was reached, rather than accepting a
+        // missing fixture selector or an unrelated earlier guard failure.
+        vm.expectCall(address(core),abi.encodeWithSelector(IPoolManagerMinimal.swap.selector));
+        vm.expectRevert(INVALID_STATE); _execute(address(input), RESERVE);
         assertEq(_ledger(address(input)), beforeState); _claimBoth(address(input));
         core.setFail(false); _execute(address(input), RESERVE); _assertReserves(address(input), 0);
     }

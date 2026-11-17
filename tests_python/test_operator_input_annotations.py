@@ -34,8 +34,12 @@ class OperatorInputAnnotationTests(unittest.TestCase):
         field = {'name': 'request', 'type': 'tuple', 'components': [
             {'name': 'amount', 'type': 'uint128'}]}
         result = _parameters([field], 'inputs', {'0': 'Legacy top-level explanation.'})
-        self.assertEqual(result[0]['explanation'], 'Legacy top-level explanation.')
-        self.assertIsNone(result[0]['components'][0]['explanation'])
+        # Independent complete record, not just two explanation fields.
+        self.assertEqual(result, [{'position': 0, 'name': 'request', 'label': 'request',
+            'type': 'tuple', 'canonical_type': '(uint128)', 'internal_type': 'tuple',
+            'explanation': 'Legacy top-level explanation.', 'components': [
+                {'position': 0, 'name': 'amount', 'label': 'amount', 'type': 'uint128',
+                 'canonical_type': 'uint128', 'internal_type': 'uint128', 'explanation': None}]}])
 
     def test_unknown_fields_and_scalar_nested_notes_fail_closed(self):
         field = {'name': 'request', 'type': 'tuple', 'components': [
@@ -100,6 +104,28 @@ class OperatorInputAnnotationTests(unittest.TestCase):
         self.assertIn('not emergencyCustodyHash', rendered)
         self.assertIn('residual principal only; main remains unchanged', rendered)
         self.assertIn('combined main+residual principal close', rendered)
+        # Global phrases/anchor counts could pass with the two links swapped.
+        # Follow each actual operation's link to its own expanded field table.
+        def section(action):
+            rows=[line for line in rendered.splitlines()
+                  if '[Migration.'+action+']' in line]
+            self.assertEqual(1,len(rows),action)
+            target=re.search(r'\[EmergencyRebalance\]\(#([^)]*)\)',rows[0])
+            self.assertIsNotNone(target,action)
+            anchor=target.group(1)
+            marker='<a id="'+anchor+'"></a>'
+            self.assertEqual(1,rendered.count(marker),action)
+            return anchor,rendered.split(marker,1)[1].split('</details>',1)[0]
+        consolidate,consolidation=section('consolidateResidual')
+        replacement,emergency=section('emergencyRebalance')
+        self.assertNotEqual(consolidate,replacement)
+        self.assertIn('not emergencyCustodyHash',consolidation)
+        self.assertIn('EXACT existing main ticks',consolidation)
+        self.assertIn('positive ADDED main liquidity delta',consolidation)
+        self.assertIn('no compound-reserve release',consolidation)
+        self.assertIn('not consolidationCustodyHash',emergency)
+        self.assertIn('lower/upper(raw spaced physical ticks, lower&lt;upper)',emergency)
+        self.assertIn('Disabled financial checks can lose almost all principal',emergency)
 
 
 if __name__ == '__main__':

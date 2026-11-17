@@ -48,8 +48,7 @@ contract PreparationExecutionPolicyFixture {
     function executionValidatePrice(bytes32 pool) external view returns(uint160){return strategy.validatePrice(pool);}
 }
 contract PreparationNativeVenueFixture is CanonicalNativeVenue {
-    address public immutable executionStrategy;
-    constructor(address controller,address token,address policy) CanonicalNativeVenue(controller,token){executionStrategy=policy;}
+    constructor(address controller,address token,address policy) CanonicalNativeVenue(controller,token,policy){}
 }
 
 
@@ -191,7 +190,8 @@ contract CanonicalPreparationTest is Test {
         // finalize during preparation, while existing royalty rights stay live.
         nft.setMintEnd(uint64(block.timestamp+1));vm.warp(block.timestamp+3601);
         _fresh();nft.royaltyRewards().syncAll();
-        _prepare(); venue.setFees(100, 0); vault.collectFees(bucket, block.timestamp + 100);
+        _prepare(); uint256 beforeBob=BOB.balance;
+        venue.setFees(100, 0); vault.collectFees(bucket, block.timestamp + 100);
         (bool funded,) = address(nft.royaltyRewards()).call{value: 1 ether}(""); assertTrue(funded);
         vrf.fulfill(nft.requestOf(pending), 0, 0); nft.finalizeTraits(pending); assertTrue(nft.traitsReady(pending));
         vm.prank(ALICE); nft.transferFrom(ALICE, BOB, active);
@@ -207,6 +207,14 @@ contract CanonicalPreparationTest is Test {
         assertEq(amounts[0], 90); assertEq(amounts[1], 1 ether);
         assertEq(membership.totalEligible(), 1); assertEq(nft.ownerOf(active), BOB);
         assertEq(vault.sharesOf(active), 2000e18); assertTrue(ac.preparationActive());
+        // Returned amounts alone do not prove that the current owner received
+        // funds or that claiming preserved the separate 5%+5% fee reserves.
+        assertEq(BOB.balance-beforeBob,2 ether+180);
+        assertEq(rewards.liabilities(address(0)),0);assertEq(address(rewards).balance,0);
+        assertEq(royalties.liabilities(address(0)),0);assertEq(address(royalties).balance,0);
+        assertEq(fees.compoundBalance(bucket,address(0)),10);
+        assertEq(fees.buybackBalance(address(0)),10);assertEq(fees.accounted(address(0)),20);
+        assertEq(address(fees).balance,20);assertEq(venue.ownerOf(vault.group(bucket).lpTokenId),address(vault));
     }
     function testDirectConfigurationCannotBypassPreparationButPauseControlRemains() public {
         MockToken another = new MockToken(0);
@@ -221,7 +229,12 @@ contract CanonicalPreparationTest is Test {
         bytes memory data = abi.encodeCall(ac.startPreparation, (_notice()));
         PreparationMintCallback callback = new PreparationMintCallback(ac, vault, data);
         ac.proposeGovernance(address(callback)); callback.acceptGovernance();
+        uint256 beforePayer=address(this).balance;
         vm.expectRevert(ZZZModule.Preparing.selector); callback.mint{value: 0.05 ether}();
+        assertEq(address(this).balance,beforePayer);assertEq(address(callback).balance,0);
+        assertEq(vrf.sequence(),0);assertEq(vrf.consumer(1),address(0));
+        assertEq(address(vault).balance,0);assertEq(address(nft).balance,0);
+        assertEq(nft.nextToFinalize(),1);assertEq(membership.totalEligible(),0);
         assertFalse(ac.preparationActive()); assertEq(ac.preparationNonce(), 0);
         assertEq(vault.sequence(), 0); assertEq(nft.mintedCount(), 0); assertEq(address(treasury).balance, 0);
         assertEq(ac.governance(), address(callback));
@@ -230,17 +243,22 @@ contract CanonicalPreparationTest is Test {
     function testGovernanceAnnouncementInFinalTreasuryCallbackCannotBypassVaultEndGuard() public {
         bytes memory data = abi.encodeCall(ac.startPreparation, (_notice()));
         ac.proposeGovernance(address(treasury)); treasury.acceptGovernance(ac);
-        treasury.arm(ac, data);
+        treasury.arm(ac, data);uint256 beforePayer=ALICE.balance;
         bytes32 reviewedPolicy4 = vault.mintPolicyFingerprint(); vm.prank(ALICE); vm.expectRevert(ZZZModule.Preparing.selector); vault.mintDormant{value: 0.05 ether}(reviewedPolicy4);
         assertFalse(ac.preparationActive()); assertEq(ac.preparationNonce(), 0);
         assertEq(vault.sequence(), 0); assertEq(nft.mintedCount(), 0); assertEq(address(treasury).balance, 0);
         assertEq(ac.governance(), address(treasury));
+        assertEq(ALICE.balance,beforePayer);assertEq(vrf.sequence(),0);assertEq(vrf.consumer(1),address(0));
+        assertEq(address(vault).balance,0);assertEq(address(nft).balance,0);
+        assertEq(nft.nextToFinalize(),1);assertEq(membership.totalEligible(),0);
         _prepare(); assertTrue(ac.preparationActive());
     }
 
     function testHarvestAndGovernanceParkingRemainAvailableWithoutSourcePrice() public {
         uint256 id = _active(); uint256 bucket = vault.nftBucket(id); _prepare();
         vm.warp(block.timestamp + 3601); // Explicitly stale both fixture feeds.
+        vm.expectRevert(abi.encodeWithSelector(ZZZOracle.InvalidPrice.selector,address(0)));oracle.price(address(0));
+        vm.expectRevert(abi.encodeWithSelector(ZZZOracle.InvalidPrice.selector,address(t1)));oracle.price(address(t1));
         venue.setFees(100, 100); vault.collectFees(bucket, block.timestamp + 100);
         assertEq(rewards.claimable(id, address(t0)), 90);
         vm.prank(GUARDIAN); ac.setPaused(true); Position memory p = vault.group(bucket);
@@ -251,6 +269,8 @@ contract CanonicalPreparationTest is Test {
         p = vault.group(bucket); assertEq(uint256(p.status), uint256(PositionStatus.Parked));
         assertEq(p.idle0, 1000 ether); assertEq(p.idle1, 1000 ether); assertEq(vault.sharesOf(id), 2000e18);
         assertTrue(ac.preparationActive());
+        assertEq(rewards.claimable(id,address(t1)),90);
+        assertEq(address(vault).balance,1000 ether);assertEq(t1.balanceOf(address(vault)),1000 ether);
     }
 
 }

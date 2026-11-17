@@ -22,6 +22,7 @@ import {ZZZStrategy} from "../src/ZZZStrategy.sol";
 import {ZZZBuyback} from "../src/ZZZBuyback.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
+import {ZZZCustodyValidation} from "../src/ZZZCustodyValidation.sol";
 import {EmergencyRebalance} from "../src/interfaces/IZZZEmergency.sol";
 import {ZZZModule} from "../src/base/ZZZModule.sol";
 import {BoundaryUnavailableOracle} from "./NativeLiquidity.t.sol";
@@ -93,6 +94,9 @@ contract NativeFlowRegistry {
 }
 
 contract NativeVaultFlowsTest is Test {
+    // TEST ONLY: this harness is the bound Migration parent. Expose the real
+    // fixed validation child used by reservation admission; no bypass reply.
+    ZZZCustodyValidation public validation;
     MockAccess private access;
     NativeFlowToken private token;
     BoundaryWETH private wrapper;
@@ -140,7 +144,7 @@ contract NativeVaultFlowsTest is Test {
         access.bind(Ids.VAULT,address(vault)); access.bind(Ids.NFT,address(nft)); access.bind(Ids.MEMBERSHIP,address(membership));
         access.bind(Ids.REWARDS,address(rewards)); access.bind(Ids.FEES,address(fees)); access.bind(Ids.POOLS,address(pools));
         access.bind(Ids.LIQUIDITY,address(manager)); access.bind(Ids.STRATEGY,address(new ZZZStrategy(address(access), address(new ZZZPortfolioPolicy(address(access))), address(new ZZZRebalanceConfirmation(address(access))))));
-        access.bind(Ids.MIGRATION,address(this)); access.bind(Ids.BUYBACK,address(buyback)); access.setKeeper(address(this),true);
+        access.bind(Ids.MIGRATION,address(this));validation=new ZZZCustodyValidation(address(access)); access.bind(Ids.BUYBACK,address(buyback)); access.setKeeper(address(this),true);
         rewards.addAsset(address(token));
         vrf = new MockVRF(); ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         CanonicalFixture.bind(address(access)); access.seal();

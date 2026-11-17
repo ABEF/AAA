@@ -2,6 +2,11 @@
 pragma solidity 0.8.26;
 
 import {Test} from "forge-std/Test.sol";
+import {ZZZOracle} from "../src/ZZZOracle.sol";
+import {MockToken,MockFeed,MockFixedLPAssetIdentity} from "./mocks/Mocks.sol";
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {AccountingExecutionFixture} from "./helpers/AccountingExecutionFixture.sol";
+using DualOracleFixture for ZZZOracle;
 import {ZZZContributionPricing} from "../src/ZZZContributionPricing.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {ZZZVaultCanonical} from "../src/ZZZVaultCanonical.sol";
@@ -45,6 +50,8 @@ contract PortfolioAccountingVault {
 }
 
 contract PortfolioAccountingLiquidity {
+    address public executionStrategy;
+    function configureExecutionFixture(address context) external { executionStrategy=context; }
     mapping(uint256 => uint256[2]) private principal;
     mapping(uint256 => uint256) public secondaryId;
     uint256 public activeSecondaryCount;
@@ -73,18 +80,12 @@ contract PortfolioAccountingLiquidity {
 }
 
 contract PortfolioAccountingPools {
+    address public activationAssets;
+    function setAsset(address token) external {activationAssets=address(new MockFixedLPAssetIdentity(token));}
     PoolConfig private configuration;
     function set(PoolConfig memory c) external { configuration = c; }
     function accounting(bytes32) external view returns(PoolConfig memory) { return configuration; }
     function get(bytes32) external view returns(PoolConfig memory) { return configuration; }
-}
-
-contract PortfolioAccountingOracle {
-    ZZZContributionPricing public contributionPricing;
-    constructor(address access) { contributionPricing = new ZZZContributionPricing(access,address(this)); }
-    function value(address,uint256 amount) external pure returns(uint256) { return amount; }
-    function price(address) external pure returns(uint256) { return 1e18; }
-    function tokenDecimals(address) external pure returns(uint8) { return 18; }
 }
 
 contract PortfolioAccountingPolicy {
@@ -111,6 +112,9 @@ contract PortfolioAccountingStrategy {
     address public portfolioPolicy;
     address public rebalanceConfirmation;
     constructor(address policy,address confirmation) { portfolioPolicy = policy; rebalanceConfirmation = confirmation; }
+    function target(bytes32) external pure returns(int24,int24,uint160){return(-600,600,uint160(1<<96));}
+    function validatePrice(bytes32) external pure returns(uint160){return uint160(1<<96);}
+    function validateExitPrice(bytes32) external pure returns(uint160){return uint160(1<<96);}
     function needsRebalance(uint256) external pure returns(bool) { return false; }
     function keeperRangeTarget(bytes32) external pure returns(uint16) { return 0; }
 }
@@ -126,7 +130,10 @@ contract PortfolioAccountingTest is Test {
     PortfolioAccountingVault private vault;
     PortfolioAccountingLiquidity private liquidity;
     PortfolioAccountingPools private pools;
-    PortfolioAccountingOracle private oracle;
+    ZZZOracle private oracle;
+    address private fixedToken;
+    MockFeed private nativeFeed;MockFeed private tokenFeed;
+    function _fresh() private {nativeFeed.set(1e18,block.timestamp,block.timestamp);tokenFeed.set(1e18,block.timestamp,block.timestamp);}
     PortfolioAccountingPolicy private policy;
     ZZZContributionPricing private pricing;
     bytes32 private POOL;
@@ -136,19 +143,24 @@ contract PortfolioAccountingTest is Test {
         vault = new PortfolioAccountingVault();
         liquidity = new PortfolioAccountingLiquidity();
         pools = new PortfolioAccountingPools();
-        oracle = new PortfolioAccountingOracle(address(access));
+        access.set(Ids.MIGRATION,address(this));
+        access.setProtocolPolicy(address(new ZZZProtocolPolicy(address(access),address(0x7EA5))));
+        oracle = new ZZZOracle(address(access),address(0));
+        fixedToken=address(new MockToken(18));pools.setAsset(fixedToken);
+        nativeFeed=new MockFeed(18,1e18);tokenFeed=new MockFeed(18,1e18);
+        oracle.setTestFeed(address(0),address(nativeFeed),3600);oracle.setTestFeed(fixedToken,address(tokenFeed),3600);
         policy = new PortfolioAccountingPolicy();
         pricing = oracle.contributionPricing();
         PortfolioAccountingConfirmation confirmation = new PortfolioAccountingConfirmation();
         access.set(Ids.VAULT,address(vault)); access.set(Ids.LIQUIDITY,address(liquidity));
         access.set(Ids.POOLS,address(pools)); access.set(Ids.ORACLE,address(oracle));
         access.set(Ids.STRATEGY,address(new PortfolioAccountingStrategy(address(policy),address(confirmation))));
+        liquidity.configureExecutionFixture(address(new AccountingExecutionFixture(address(access),address(0))));
         access.set(Ids.MIGRATION,address(this)); access.set(Ids.CANONICAL,address(this));
         // Source6 requires the fixed operating policy. Do not let a missing
         // fixture selector turn a negative accounting case into a false pass.
-        access.setProtocolPolicy(address(new ZZZProtocolPolicy(address(access),address(0x7EA5))));
         access.set(Ids.REWARDS,address(new PortfolioAccountingRewards()));
-        PoolConfig memory c; c.operationsEnabled = true; c.key.currency1 = address(1);
+        PoolConfig memory c; c.operationsEnabled = true; c.key.currency1 = fixedToken;
         c.key.tickSpacing = 60; c.key.fee = 3000; pools.set(c); POOL = keccak256(abi.encode(c.key));
         _position(0,0,address(this));
     }
@@ -194,16 +206,20 @@ contract PortfolioAccountingTest is Test {
         (uint256 price0,uint256 price1,uint256 scale0,uint256 scale1) = replacement.maintenancePrices();
         assertEq(price0,1e18); assertEq(price1,1e18); assertEq(scale0,1e18); assertEq(scale1,1e18);
 
+        vault.checkpoint(11,1);vault.checkpoint(11,2);
+        assertEq(replacement.maintenanceBucket(),0);
         ZZZMigrationBudget compound = new ZZZMigrationBudget(address(access));
-        _position(0,0,address(compound)); vm.warp(2 hours);
+        _position(0,0,address(compound)); vm.warp(2 hours);_fresh();
         vault.checkpoint(11,3); assertEq(compound.maintenanceBucket(),0);
         vm.expectRevert(ZZZMigrationBudget.InvalidState.selector); compound.maintenancePrices();
 
+        vault.checkpoint(11,1);vault.checkpoint(11,2);
         ZZZMigrationBudget emergency = new ZZZMigrationBudget(address(access));
         _position(0,0,address(emergency)); access.setPaused(true);
         emergency.beginEmergency(11,4); vault.checkpoint(11,0);
         assertEq(emergency.maintenanceBucket(),0);
         vm.expectRevert(ZZZMigrationBudget.InvalidState.selector); emergency.maintenancePrices();
+        vault.checkpoint(11,1);vault.checkpoint(11,2);emergency.endEmergency();
     }
     function testCapturedPolicyChangeAbortsMaintenance() public {
         _legs(60,40);
@@ -273,7 +289,7 @@ contract PortfolioAccountingTest is Test {
     function testStandaloneCompoundDoesNotEnforceReplacementOnlyMainFloor() public {
         policy.set(true); _legs(20,80);
         ZZZMigrationBudget budget = new ZZZMigrationBudget(address(access));
-        _position(0,0,address(budget)); vm.warp(2 hours);
+        _position(0,0,address(budget)); vm.warp(2 hours);_fresh();
         vault.checkpoint(11,3); vault.checkpoint(11,1); vault.checkpoint(11,2);
         assertEq(budget.maintenanceBucket(),0);
     }
@@ -297,7 +313,7 @@ contract PortfolioAccountingTest is Test {
         ZZZCustodyValidation.Parking memory request;
         request.bucketId = 11; request.poolId = POOL; request.lpTokenId = 1;
         request.totalShares = 1; request.depositUSD = 100; request.minimum0 = 1;
-        request.token1 = address(1);
+        request.token1 = fixedToken;
         request.deadline = block.timestamp+1; request.reviewHash = bytes32(uint256(1));
         request.portfolioHash = liquidity.executionPortfolioFingerprint(1);
         validation.validateParking(abi.encode(request));

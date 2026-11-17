@@ -35,14 +35,14 @@ contract PooledSecurityTest is PooledVaultFixture {
         assertEq(vault.bucketCount(),1);
     }
 
-    function testMismatchedReservationCannotCreateAnotherCanonicalGroup() public {
-        uint256 bucket=uint256(keccak256(abi.encode(block.chainid,address(vault),poolId)));
-        vault.reservePool(poolId,bucket+1);
-        uint256 id=_mint(alice);
-        vm.prank(alice);vm.expectRevert();vault.activate{value:1000}(id, poolId, 1000, 1000, 1, block.timestamp+100);
-        assertEq(alice.balance,1 ether-0.05 ether);assertEq(vault.bucketCount(),1); // Failed activation cannot release the reservation.
-        assertEq(vault.sharesOf(id),0);assertEq(vault.nftBucket(id),0);
-        assertEq(uint256(vault.nftStatus(id)),uint256(PositionStatus.Dormant));
+    function testMismatchedNewReservationCannotConsumeCapacityAndCanonicalActivationStillWorks() public {
+        uint256 bucket=vault.canonicalModule().bucketIdentity(poolId);
+        vm.expectRevert(bytes4(keccak256("InvalidConfiguration()")));vault.reservePool(poolId,bucket+1);
+        assertEq(vault.bucketCount(),0);assertEq(vault.poolBucket(poolId),0);
+        assertEq(vault.canonicalModule().aliasBucket(poolId),0);
+        uint256 id=activatedPosition();assertEq(vault.nftBucket(id),bucket);
+        assertEq(vault.poolBucket(poolId),bucket);assertEq(vault.bucketCount(),1);
+        assertGt(vault.sharesOf(id),0);assertEq(uint256(vault.nftStatus(id)),uint256(PositionStatus.Active));
     }
 
     function testOrdinaryHolderCannotReserveOrReassignPools() public {
@@ -125,7 +125,7 @@ contract PooledSecurityTest is PooledVaultFixture {
     }
 
     function testOutstandingSharesWithZeroNAVCannotBeRecapitalizedByStealingNewDeposit() public {
-        ImpairedPooledVenue impaired=new ImpairedPooledVenue(address(t0),address(t1));
+        ImpairedPooledVenue impaired=new ImpairedPooledVenue(address(t0),address(t1));_configureVenue(impaired);
         venue=impaired;ac.bind(Ids.LIQUIDITY,address(impaired));impaired.setSpendBps(10000);
         uint256 first=activatedPosition();uint256 second=_mint(bob);uint256 bucket=vault.nftBucket(first);
         impaired.impair(vault.group(bucket).lpTokenId);
@@ -135,7 +135,7 @@ contract PooledSecurityTest is PooledVaultFixture {
     }
 
     function testEntryAfterDrawdownUsesCurrentNAVRatherThanHistoricalContribution() public {
-        ImpairedPooledVenue impaired=new ImpairedPooledVenue(address(t0),address(t1));
+        ImpairedPooledVenue impaired=new ImpairedPooledVenue(address(t0),address(t1));_configureVenue(impaired);
         venue=impaired;ac.bind(Ids.LIQUIDITY,address(impaired));impaired.setSpendBps(10000);
         uint256 first=activatedPosition();uint256 bucket=vault.nftBucket(first);
         uint256 incumbent=vault.sharesOf(first);uint256 second=_mint(bob);

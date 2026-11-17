@@ -1,6 +1,8 @@
 # Release approval record - NOT APPROVED
 
-The [current controller fix](../reports/operator-behavior-followup-20261117/REVIEW.md) requires the fresh source-bound `operator-seal-20261117` build. Older constructor receipts do not qualify the changed controller. Normal size and scoped local behavior/static checks are evidence, not real dependency, deployment, fee or operating approval. All release sign-offs remain unchanged.
+The [test and irreversible-setup review](../reports/test-seal-deep-review-20261117/REVIEW.md) fixes chain/URI/reservation defects and strengthens specific test oracles. Current build is seal-boundaries-20261117; no release sign-off, deployment, service or website adoption is implied. Real dependencies, complete fees/gas, operations and independent review remain open.
+
+The [earlier controller fix](../reports/operator-behavior-followup-20261117/REVIEW.md) used the then-current source-bound `operator-seal-20261117` build; that evidence remains historical. Older constructor receipts do not qualify the changed controller. Normal size and scoped local behavior/static checks are evidence, not real dependency, deployment, fee or operating approval. All release sign-offs remain unchanged.
 
 The [operator-input audit](../reports/operator-input-audit-20261116/REVIEW.md) fixes conditional unsigned gas-envelope and input documentation defects. It supplies no signing/deployment/sealing or actual market/provider/contract-wallet/operating approval. All release sign-offs remain unchanged.
 

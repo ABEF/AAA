@@ -172,3 +172,6 @@ reports/remaining-271-20261111/** -text whitespace=cr-at-eol,-blank-at-eol,-blan
 reports/market-followup-20261109/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 # Upstream HTML indent spacing is preserved as captured, rather than reformatted.
 reports/market-followup-20261109/**/*.raw whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof,-space-before-tab
+
+# Preserve exact test-validity, immutable-setup and original failure observations.
+reports/test-seal-deep-review-20261117/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

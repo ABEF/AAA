@@ -5,6 +5,7 @@ import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
+import {ZZZCustodyValidation} from "../src/ZZZCustodyValidation.sol";
 import {ZZZPortfolioPolicy} from "../src/ZZZPortfolioPolicy.sol";
 import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
 
@@ -51,6 +52,9 @@ contract CurrentForkForceETH {
 /// Only this new suite is current-accounting3 qualification; archived wrapped
 /// suites and the unrelated old Pons pool are not silently counted with it.
 contract CurrentNativePoolForkTest is Test, IERC721Receiver {
+    // TEST ONLY: this harness is the bound Migration parent. Expose the real
+    // fixed validation child used by reservation admission; no bypass reply.
+    ZZZCustodyValidation public validation;
     using DualOracleFixture for ZZZOracle;
     uint256 private constant FORK_BLOCK = 96_427_989;
     bytes32 private constant FORK_HASH = 0x0ba14c22200dfc717bbd2c8b5b8842329775374d06f46e30c65e273f067ecbc3;
@@ -218,7 +222,7 @@ contract CurrentNativePoolForkTest is Test, IERC721Receiver {
         s.fees=new ZZZFeeController(address(access));
         access.bind(Ids.VAULT,address(s.vault)); access.bind(Ids.NFT,address(s.nft));
         access.bind(Ids.MEMBERSHIP,address(s.membership)); access.bind(Ids.REWARDS,address(s.rewards));
-        access.bind(Ids.FEES,address(s.fees)); access.bind(Ids.MIGRATION,address(this));
+        access.bind(Ids.FEES,address(s.fees)); access.bind(Ids.MIGRATION,address(this));validation=new ZZZCustodyValidation(address(access));
         access.bind(Ids.BUYBACK,address(new ZZZBuyback(address(access),ZZZ,1000e18)));
         access.setKeeper(address(this),true); s.rewards.addAsset(ZZZ);
         ProtocolPolicyFixture.randomness(address(s.nft.access()),address(s.vrf),bytes32(uint256(1)),1,3,500000,false);

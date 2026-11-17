@@ -12,7 +12,7 @@
       "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
       "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
       "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
-      "src/ZZZCustodyValidation.sol": "ce8a599458bc930a39bff00109703a7a4da7be4a1fa2585b35c5236008dfdf5a",
+      "src/ZZZCustodyValidation.sol": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b",
       "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
       "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
       "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
@@ -22,10 +22,10 @@
       "src/ZZZLiquidityManager.sol": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
       "src/ZZZMembership.sol": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
       "src/ZZZMigration.sol": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed",
-      "src/ZZZMigrationBudget.sol": "f143f285e8a2ea8cb339a6a24e3cc82a512e8ce3cdabab699b4df8f6ee93f067",
+      "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
       "src/ZZZNFT.sol": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
       "src/ZZZNFTCanonical.sol": "fcc849cfa4689f1a22e6e006d286ec73bea60e660713adc5d01b6a2f90e2245a",
-      "src/ZZZNFTMetadata.sol": "a691196de69c40e0f2a3cd50d3efd65a5c72ae9bf5e848b300b5f1bb607faf3f",
+      "src/ZZZNFTMetadata.sol": "d12e430a81d3271313d854d67f7f25468384c30fc7f753eced3f315fb9e11cbe",
       "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
       "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
       "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
@@ -41,7 +41,7 @@
       "src/ZZZStrategy.sol": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
       "src/ZZZV4SpotPriceFeed.sol": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
-      "src/ZZZVault.sol": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e",
+      "src/ZZZVault.sol": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7",
       "src/ZZZVaultCanonical.sol": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
       "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
       "src/base/ZZZExactLPRewardsCanonical.sol": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
@@ -107,7 +107,7 @@
       "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5"
     },
     "build_input_sha256": {
-      "foundry.toml": "35d073e0cad1e77849c99409c7492d115eb286f5e38839db8b32993646f170c7",
+      "foundry.toml": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72",
       "package.json": "932d4b2f7dd67c119223d3b7aaa667f3e7676320398c2aac0a1b56173973d083",
       "package-lock.json": "4f88f4ce04a06f93158e3def09b94414f2093745964e1996f207b180e8cc7a11",
       "scripts/install-deps.sh": "e011138120640a9a93de13751282fbbf630055e51b1bbc583d76da281a38d0b7"
@@ -255,9 +255,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "cf1b2003c98d744b621b2c407597e2e237c9783f0b815644201787d0f0b68393",
-    "compiler_output_sha256": "785e74cebf9ec4a581c1e5d8fae8a658497d6406f21885e93a3021a59db57e1c",
-    "size_evidence_sha256": "6fcdfc4368a3c6efe77540140ca38da029e6c29987f5a39cd849a3e483934927",
+    "compiler_input_sha256": "9526c44b8667a278746962153cf6b87a6dc7c0615cde965039a0559bc0504e97",
+    "compiler_output_sha256": "53cceba8e45859d950b9f431259367afb198d856dd4bccce5f763064b8813e14",
+    "size_evidence_sha256": "e23fe1fdce6d4571d69e2978f073dcd49705648e20bb81140a7c0a5ab116601a",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -4662,6 +4662,30 @@
         {
           "inputs": [
             {
+              "internalType": "bytes32",
+              "name": "pool",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "uint256",
+              "name": "bucket",
+              "type": "uint256"
+            }
+          ],
+          "name": "validReservationIdentity",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
               "components": [
                 {
                   "internalType": "uint256",
@@ -4929,7 +4953,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "3d44ede8503e4601f73b06d8959052100dda0cb8777534e0721deac0ddf49698"
+      "abi_sha256": "6233d56c1247baaafc0a7b12ea7bc3a68b9a7ffa54674c61db4c91c594dd5718"
     },
     "ZZZFeeController": {
       "source": "src/ZZZFeeController.sol",
@@ -28296,7 +28320,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "e64e2a15e4f092033d094d4cf7f0e863290d9e397aee1ba7ca637e2b18f8b61e",
+  "notes_sha256": "a4192c9e1db640d1d68d99001a2d3a3ef5e05e8f146b86a89a9a11699c5dcd41",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -33939,6 +33963,48 @@
           ],
           "native_value": null,
           "notes": "Excludes attributed idle because closing the residual intentionally increases it. No USD read or claim that the actual price remains fixed; caller separately verifies exact residual receipts, current auxiliary removal, raw minima and governance/pause."
+        },
+        {
+          "signature": "validReservationIdentity(bytes32,uint256)",
+          "kind": "function",
+          "name": "validReservationIdentity",
+          "state_mutability": "view",
+          "purpose": "Test only whether a bucket is the pool canonical origin identity or one of the at-most-four registered buckets.",
+          "access": "Anyone; read-only. Cannot reserve capacity, authorize a caller or move funds.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "pool",
+              "label": "pool",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Exact bytes32 pool ID; derive the new ID through VaultCanonical.bucketIdentity(pool)."
+            },
+            {
+              "position": 1,
+              "name": "bucket",
+              "label": "bucket",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Shared bucket uint256, not an NFT ordinal/LP token ID. Market swaps do not change this identity."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "bool",
+              "canonical_type": "bool",
+              "internal_type": "bool",
+              "explanation": "True only for the canonical derived identity or a currently registered bucket; other reservation prerequisites remain separate."
+            }
+          ],
+          "native_value": null,
+          "notes": "A true result does not establish pool admission, configuration authority, remaining capacity or activation readiness. Budget validates nonzero/admitted pool and immutable alias order separately. Existing empty-bucket aliases remain possible but are not a new activation domain."
         },
         {
           "signature": "validateEmergency((uint256,bytes32,uint8,int24,int24,bytes32,bool,uint128,uint128,uint128,uint256,bytes32))",
@@ -46574,7 +46640,7 @@
           "kind": "function",
           "name": "validateReservation",
           "state_mutability": "view",
-          "purpose": "Check that a nonzero admitted pool identity is unused or already reserved for this same bucket.",
+          "purpose": "Validate nonzero admitted pool, unchanged existing alias, and a contract-derived new bucket ID or an already registered bucket for movement aliases.",
           "access": "Only fixed Vault.",
           "status": "documented",
           "inputs": [
@@ -46599,7 +46665,7 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Cannot reassign permanent pool aliases."
+          "notes": "Cannot reassign permanent pool aliases or consume a new slot with a mistyped ID. Derivation uses the canonical companion origin identity; existing buckets are checked through the bounded four-slot inventory."
         },
         {
           "signature": "validateResidualClose(uint256)",
@@ -50551,7 +50617,7 @@
               "type": "string",
               "canonical_type": "string",
               "internal_type": "string",
-              "explanation": "Empty draft root or a valid ipfs:// or ar:// root; nonempty requirement and one-time binding are enforced by NFT."
+              "explanation": "Empty draft root or ipfs:// / ar:// with a nonempty suffix; bare schemes reject. This does not validate CID/content/availability. NFT sealing requires a nonempty one-time bound root."
             }
           ],
           "outputs": [],
@@ -64701,7 +64767,7 @@
           "name": "constructor",
           "state_mutability": "nonpayable",
           "purpose": "Bind native canonical chain and reviewed standalone Budget after ProtocolPolicy binding.",
-          "access": "Deployment only; nonzero chain,matching Budget controller/capability and prebound policy required.",
+          "access": "Deployment only; nonzero home chain equal to block.chainid, matching Budget controller/capability and prebound policy required.",
           "status": "documented",
           "inputs": [
             {
@@ -64720,7 +64786,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Nonzero canonical NFT home chain ID."
+              "explanation": "Canonical NFT home chain ID equal to the executing deployment chain; cross-chain home identities are unsupported."
             },
             {
               "position": 2,
@@ -66032,7 +66098,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "For first activation into an uninitialized reservation, use exactly VaultCanonical.bucketIdentity(pool); an arbitrary placeholder permanently blocks that activation. For a same-pair move/resume of existing custody, preserve its existing shared bucket ID. Not an NFT ordinal or physical LP NFT ID; inspect all permanent occupancy/aliases first."
+              "explanation": "For a new bucket use exactly VaultCanonical.bucketIdentity(pool); a different fresh ID rejects before consuming capacity. An alias may use an already registered shared bucket for a same-pair move/resume. Not an NFT ordinal or physical LP NFT ID; inspect all permanent occupancy/aliases first."
             }
           ],
           "outputs": [],
@@ -67184,7 +67250,7 @@
   "gaps": [],
   "counts": {
     "contracts": 40,
-    "functions": 963,
+    "functions": 964,
     "constructors": 40,
     "receive_hooks": 13,
     "fallback_hooks": 0,

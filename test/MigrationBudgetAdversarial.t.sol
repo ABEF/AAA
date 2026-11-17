@@ -20,6 +20,11 @@ import {IZZZStrategy} from "../src/interfaces/IZZZ.sol";
 /// Losses are removed from attributed LP amounts, never fabricated as backing.
 contract BudgetAdversarialVenue is ERC721 , SinglePositionFixture {
     Vm private constant nativeVm=Vm(address(uint160(uint256(keccak256("hevm cheat code")))));
+    address public executionStrategy;
+    function configureExecutionFixture(address context) external {
+        require(executionStrategy==address(0) && context.code.length!=0,"fixture already configured");
+        executionStrategy=context;
+    }
     MockToken private immutable token0;
     MockToken private immutable token1;
     mapping(uint256 => uint256) public amount0;
@@ -54,8 +59,8 @@ contract BudgetAdversarialVenue is ERC721 , SinglePositionFixture {
     receive()external payable{}
     function _native()private view returns(bool){return address(token0)==address(0);}
     function _send0(address recipient,uint256 value)private{if(value!=0){(bool ok,)=payable(recipient).call{value:value}("");require(ok);}}
-    function _burn0(uint256 value)private{if(_native())nativeVm.deal(address(this),address(this).balance-value);else token0.burn(value);}
-    function _mint0(address recipient,uint256 value)private{if(_native())nativeVm.deal(recipient,recipient.balance+value);else token0.mint(recipient,value);}
+    function _burn0(uint256 value)private{if(_native())_send0(address(0xdead),value);else token0.burn(value);}
+    function _mint0(address recipient,uint256 value)private{if(_native())_send0(recipient,value);else token0.mint(recipient,value);}
     function positionManager() external view returns (address) { return address(this); }
     function balanceContext(bytes32) external pure returns(bytes32){return bytes32(0);}
     function amounts(uint256 id) external view returns (uint256, uint256) { return (amount0[id], amount1[id]); }
@@ -64,7 +69,12 @@ contract BudgetAdversarialVenue is ERC721 , SinglePositionFixture {
     }
     function spending(uint256 a, uint256 b) external { spend0Bps = a; spend1Bps = b; }
     function setSwapOutput(uint256 value) external { swapOutput = value; }
-    function setFees(uint256 a, uint256 b) external { fee0 = a; fee1 = b; }
+    // Test setup funds the future native receipt BEFORE the protocol call.
+    // Settlement/losses use ordinary EVM transfers and therefore roll back.
+    function setFees(uint256 a, uint256 b) external {
+        if(_native() && a>fee0)nativeVm.deal(address(this),address(this).balance+a-fee0);
+        fee0 = a; fee1 = b;
+    }
     function harvestLosses(uint256 a, uint256 b) external { harvestLoss0 = a; harvestLoss1 = b; }
     function mutateAtHarvest(bool enabled) external { mutateOnHarvest = enabled; }
     function mutatePrice(MockFeed feed, int256 price, bool atMint) external {
@@ -159,7 +169,7 @@ contract MigrationBudgetAdversarialTest is PooledVaultFixture {
     BudgetAdversarialPolicy private adversePolicy;
 
     function _setupAdversary() private {
-        adversary = new BudgetAdversarialVenue(address(t0), address(t1));
+        adversary = new BudgetAdversarialVenue(address(t0), address(t1));adversary.configureExecutionFixture(_executionContext());
         adversePolicy = new BudgetAdversarialPolicy(); adversePolicy.observeVenue(adversary);
         ac.bind(Ids.LIQUIDITY, address(adversary)); ac.bind(Ids.STRATEGY, address(adversePolicy));
     }

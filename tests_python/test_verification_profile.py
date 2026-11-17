@@ -8,6 +8,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import tempfile
+import tomllib
 import unittest
 from unittest.mock import patch
 
@@ -20,7 +21,8 @@ class VerificationProfileTests(unittest.TestCase):
     def config(self):
         c=json.loads((ROOT/'reports/current-pool-fork-20261026/profile-effective-config.json').read_bytes())['configuration']
         return {**c,'solc':'0.8.26','out':'out','cache_path':'cache','skip':[],
-                'fs_permissions':[{'access':'write','path':'./deployments'}],
+                'fs_permissions':[{'access':'write','path':'./deployments'},
+                                  {'access':'read','path':'./test/fixtures/seal-critical-003c8d8'}],
                 **{k:None for k in ('match_test','no_match_test','match_contract','no_match_contract','match_path','no_match_path')},
                 'fuzz':{'runs':1000},'invariant':{'runs':32,'depth':128,'fail_on_revert':True}}
 
@@ -39,6 +41,33 @@ class VerificationProfileTests(unittest.TestCase):
         result,calls=self.inspect()
         self.assertEqual(len(calls),2);self.assertIn('--version',calls[0]);self.assertIn('config',calls[1])
         self.assertFalse(result['build_or_tests_executed']);self.assertFalse(result['production_approved'])
+
+    def test_actual_foundry_fixture_permissions_match_effective_normal_validation(self):
+        configured=tomllib.loads((ROOT/'foundry.toml').read_text(encoding='utf-8'))['profile']['default']
+        expected=[{'access':'write','path':'./deployments'},
+                  {'access':'read','path':'./test/fixtures/seal-critical-003c8d8'}]
+        self.assertEqual(expected,configured['fs_permissions'])
+        c=self.config();c['fs_permissions']=configured['fs_permissions']
+        result,calls=self.inspect(c)
+        self.assertEqual(expected,result['configuration']['fs_permissions'])
+        self.assertEqual(2,len(calls));self.assertFalse(result['build_or_tests_executed'])
+
+    def test_fixture_permission_is_exact_without_extra_read_or_write_scopes(self):
+        allowed=[{'access':'write','path':'./deployments'},
+                 {'access':'read','path':'./test/fixtures/seal-critical-003c8d8'}]
+        # Establish the valid baseline before negative cases; otherwise an
+        # obsolete verifier rejecting every configuration would pass them.
+        c=self.config();c['fs_permissions']=copy.deepcopy(allowed)
+        self.inspect(c)
+        wrong=[allowed[:1],allowed+[{'access':'read','path':'./src'}],
+               allowed+[{'access':'write','path':'./test/fixtures/seal-critical-003c8d8'}],
+               [allowed[0],{'access':'read-write','path':allowed[1]['path']}],
+               [allowed[0],{'access':'read','path':'./test/fixtures'}],
+               allowed+[allowed[1]]]
+        for permissions in wrong:
+            with self.subTest(permissions=permissions),self.assertRaisesRegex(
+                    ValueError,'verification paths or permissions differ'):
+                c=self.config();c['fs_permissions']=permissions;self.inspect(c)
 
     def test_compiler_size_optimizer_ffi_overrides_are_rejected(self):
         for key,value in [('solc','0.8.27'),('code_size_limit',999999),('optimizer_runs',200),('via_ir',False),('ffi',True)]:

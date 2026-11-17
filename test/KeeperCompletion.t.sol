@@ -37,7 +37,7 @@ contract KeeperRebalanceCompletionTest is PooledVaultFixture {
     bytes4 private constant UNAUTHORIZED = bytes4(keccak256("Unauthorized()"));
 
     function _prepare(uint8 action) private returns (uint256 id) {
-        adversary = new BudgetAdversarialVenue(address(t0), address(t1));
+        adversary = new BudgetAdversarialVenue(address(t0), address(t1));adversary.configureExecutionFixture(_executionContext());
         ac.bind(Ids.LIQUIDITY, address(adversary));
         id = activatedPosition();
         callback = new KeeperCompletionCallback(ac, address(this));
@@ -59,7 +59,7 @@ contract KeeperRebalanceCompletionTest is PooledVaultFixture {
         assertEq(adversary.ownerOf(beforePosition.lpTokenId), address(vault));
         assertEq(adversary.amount0(beforePosition.lpTokenId), 1000);
         assertEq(adversary.amount1(beforePosition.lpTokenId), 1000);
-        assertEq(address(address(adversary)).balance, 1000);
+        assertEq(address(address(adversary)).balance, nativeBacking);
         assertEq(t1.balanceOf(address(adversary)), 1000);
         assertEq(address(adversary).balance, nativeBacking);
         assertEq(t1.totalSupply(), supply1);

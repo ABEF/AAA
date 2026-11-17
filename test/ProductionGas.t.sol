@@ -4,6 +4,8 @@ import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
+import {ZZZCustodyValidation} from "../src/ZZZCustodyValidation.sol";
+import {AccountingExecutionFixture} from "./helpers/AccountingExecutionFixture.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -29,6 +31,9 @@ import {MockVRF} from "./mocks/MockVRF.sol";
 /// gasleft deltas exclude fixture construction, transaction intrinsic/calldata
 /// gas and post-transaction refunds. Mock venue costs are not Uniswap gas costs.
 contract ProductionGasTest is Test {
+    // TEST ONLY: this harness is the bound Migration parent. Expose the real
+    // fixed validation child used by reservation admission; no bypass reply.
+    ZZZCustodyValidation public validation;
     MockAccess private access;
     MockPools private pools;
     MockFeed private feed;
@@ -54,7 +59,7 @@ contract ProductionGasTest is Test {
         policy = new VaultPolicyMock();
         feed = new MockFeed(8, 1e8);
         require(assetCount==2);tokens.push(MockToken(address(0)));tokens.push(new MockToken(0));
-        venue = new VaultLiquidityMock(address(tokens[0]), address(tokens[1]));
+        venue = new VaultLiquidityMock(address(tokens[0]), address(tokens[1]));venue.configureExecutionFixture(address(new AccountingExecutionFixture(address(access),address(policy))));
         ProtocolPolicyFixture.recipient(address(access),TREASURY);vault=new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
         nft = new ZZZNFT(address(access), "", address(new ZZZNFTMetadata(address(access)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         vrf = new MockVRF();
@@ -74,7 +79,7 @@ contract ProductionGasTest is Test {
         access.bind(Ids.STRATEGY, address(policy));
         access.bind(Ids.POOLS, address(pools));
         access.bind(Ids.ORACLE, address(oracle));
-        access.bind(Ids.MIGRATION, address(this));
+        access.bind(Ids.MIGRATION, address(this));validation=new ZZZCustodyValidation(address(access));
         access.setKeeper(address(this),true);
         access.bind(keccak256("ZZZMigrationReceiver"), address(0x987));
         pools.setFixedZZZ(address(tokens[1]));rewards.addAsset(address(tokens[1]));

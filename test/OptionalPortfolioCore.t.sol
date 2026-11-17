@@ -1913,4 +1913,43 @@ contract OptionalPortfolioCoreTest is Test {
             assertGe(asset==address(0)?address(fees).balance:token.balanceOf(address(fees)),fees.accounted(asset));
         }
     }
+    function testReservationTypoRejectsBeforeCapacityAndActualNativeActivationUsesCanonicalId() public {
+        uint256 canonical=vault.canonicalModule().bucketIdentity(pool);
+        vm.expectRevert(ZZZMigrationBudget.InvalidConfiguration.selector);vault.reservePool(pool,canonical+1);
+        assertEq(vault.bucketCount(),0);assertEq(vault.poolBucket(pool),0);
+        assertEq(vault.canonicalModule().aliasBucket(pool),0);
+        vault.reservePool(pool,canonical);vault.reservePool(pool,canonical);
+        uint256 id=_mint(ALICE);_contribute(ALICE,id,1000 ether,false);
+        assertEq(vault.bucketCount(),1);assertEq(vault.nftBucket(id),canonical);
+        assertEq(vault.poolBucket(pool),canonical);assertEq(vault.canonicalModule().aliasBucket(pool),canonical);
+        assertGt(vault.sharesOf(id),0);uint256 main=vault.group(canonical).lpTokenId;
+        assertGt(positions.getPositionLiquidity(main),0);assertEq(positions.ownerOf(main),address(vault));
+        vm.prank(ALICE);vm.expectRevert(ZZZModule.Unauthorized.selector);vault.reservePool(pool,canonical);
+        assertEq(vault.bucketCount(),1);
+    }
+    function testReservationRegisteredAliasAllowsActualNativeMoveAndReturnWithoutRightsLoss() public {
+        uint256 id=_mint(ALICE);_contribute(ALICE,id,1000 ether,false);
+        uint256 bucket=vault.nftBucket(id);uint256 shares=vault.sharesOf(id);
+        core.unlock(abi.encode(uint8(2),Q96));_auditHarvestAllocation(bucket);
+        uint256 earnedETH=rewards.claimable(id,address(0));uint256 earnedZZZ=rewards.claimable(id,address(token));
+        assertGt(earnedETH+earnedZZZ,0);uint256 burnETH=fees.buybackBalance(address(0));
+        uint256 oldMain=vault.group(bucket).lpTokenId;bytes32 destination=registry.admitTarget();
+        targetKey=CoreKey(Currency.wrap(address(0)),Currency.wrap(address(token)),3000,200,IHooks(address(0)));
+        core.initialize(targetKey,manager.spot(pool));core.unlock(abi.encode(uint8(3),Q96));
+        assertNotEq(vault.canonicalModule().bucketIdentity(destination),bucket);
+        vault.reservePool(destination,bucket);assertEq(vault.bucketCount(),1);
+        assertEq(vault.canonicalModule().aliasBucket(destination),bucket);
+        migration.moveFunds(bucket,destination,1,block.timestamp+100);
+        assertEq(vault.group(bucket).poolId,destination);assertEq(vault.nftBucket(id),bucket);
+        assertEq(vault.sharesOf(id),shares);assertEq(vault.bucketTotalShares(bucket),shares);
+        assertGe(rewards.claimable(id,address(0)),earnedETH);assertGe(rewards.claimable(id,address(token)),earnedZZZ);
+        assertGe(fees.buybackBalance(address(0)),burnETH);assertEq(vault.homePoolId(bucket),pool);
+        vm.expectRevert();positions.ownerOf(oldMain);
+        assertEq(positions.ownerOf(vault.group(bucket).lpTokenId),address(vault));
+        migration.moveFunds(bucket,pool,1,block.timestamp+100);
+        assertEq(vault.bucketCount(),1);assertEq(vault.group(bucket).poolId,pool);
+        assertEq(vault.poolBucket(pool),bucket);assertEq(vault.poolBucket(destination),bucket);
+        assertEq(vault.sharesOf(id),shares);assertEq(vault.bucketTotalShares(bucket),shares);
+        _claimExactly(id,ALICE,address(0));_claimExactly(id,ALICE,address(token));
+    }
 }

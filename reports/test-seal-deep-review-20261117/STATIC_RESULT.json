@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "review_coverage_pass": true,
+  "independent_audit": false,
+  "raw_actual_analyzer_check": "pass",
+  "complete_projected_input_check": "pass",
+  "individual_current": 65,
+  "unique_exact_reuse": 506,
+  "total": 571,
+  "current_dispositions": {
+    "false_positive": 63,
+    "informational": 2
+  },
+  "all_dispositions": {
+    "false_positive": 247,
+    "accepted_risk": 172,
+    "informational": 152
+  },
+  "review_sha256": "82c6c8913f95e942a99f7f1df1538d4df09479a0a36231bc105efc7f97496dd9",
+  "projection_gzip_sha256": "f50a12882d00bc455174f4cdbfa697501639f6e4dea6d54a4200dcae8df9500d",
+  "projection_decompressed_sha256": "6089915bdad5550afe898b2e97176751e439c81f42f0acd924c0230e45ace29e",
+  "analyzer_exit_code": 4294967295,
+  "analyzer_success": true,
+  "analyzer_error": null,
+  "source_unchanged_during_analyzer": true,
+  "analyzer_compilation": false,
+  "compiler_reinvoked": false,
+  "test_methods_executed": 0,
+  "raw_report_sha256": "17d2e205a9cac57d3a6bf2b466125412099a80ae9a8b868d278aacd3656c6c90",
+  "raw_log_sha256": "3a0fb6b4341492fbe565bb224a52121643cc4f4ca1500d7a452df678422a40bc"
+}

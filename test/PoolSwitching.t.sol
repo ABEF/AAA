@@ -59,7 +59,10 @@ contract PoolSwitchingTest is PooledVaultFixture {
     function testFullCapacitySwitchAndReturnReuseTheExistingBucketSlot() public {
         uint256 id = activatedPosition(); uint256 bucket = _bucket();
         uint256 shares = vault.sharesOf(id); Position memory home = vault.group(bucket);
-        for (uint256 i = 1; i < vault.MAX_BUCKETS(); ++i) vault.reservePool(_poolAt(i), 10000 + i);
+        for (uint256 i = 1; i < vault.MAX_BUCKETS(); ++i) {
+            bytes32 reservedPool=_poolAt(i);
+            vault.reservePool(reservedPool,vault.canonicalModule().bucketIdentity(reservedPool));
+        }
         bytes32 target = _poolAt(10); ZZZMigration migration = _migration();
         migration.moveFunds(bucket, target, 1, block.timestamp + 100);
         uint256 middle = vault.group(bucket).lpTokenId;
@@ -68,7 +71,8 @@ contract PoolSwitchingTest is PooledVaultFixture {
         _assertIdentity(id, shares, shares, home);
         assertEq(vault.bucketCount(), 4); assertEq(vault.group(bucket).poolId, poolId);
         assertTrue(vault.group(bucket).lpTokenId != middle); vm.expectRevert(); venue.ownerOf(middle);
-        for (uint256 i = 1; i < vault.MAX_BUCKETS(); ++i) assertEq(vault.bucketAt(i), 10000 + i);
+        for (uint256 i = 1; i < vault.MAX_BUCKETS(); ++i)
+            assertEq(vault.bucketAt(i),vault.canonicalModule().bucketIdentity(_poolAt(i)));
     }
 
     function testChangedPairReversedOrderAndDisabledPoolRemainRejectedAtomically() public {
@@ -91,6 +95,7 @@ contract PoolSwitchingTest is PooledVaultFixture {
     function testVenueFailureRollsBackCloseFeesCompoundAndNewPoolReservation() public {
         uint256 id = activatedPosition(); Position memory beforePosition = vault.group(_bucket());
         uint256 shares = vault.sharesOf(id); venue.setFees(100, 100); venue.setFail(true);
+        uint256 beforeNative=address(venue).balance;uint256 beforeSupply=t1.totalSupply();
         bytes32 target = _poolAt(1); ZZZMigration migration = _migration();
         vm.expectRevert(); migration.moveFunds(_bucket(), target, 1, block.timestamp + 100);
         _assertIdentity(id, shares, shares, beforePosition);
@@ -100,6 +105,7 @@ contract PoolSwitchingTest is PooledVaultFixture {
         assertEq(fees.compoundBalance(_bucket(), address(t0)), 0); assertEq(fees.buybackBalance(address(t0)), 0);
         assertEq(rewards.claimable(id, address(t0)), 0); assertEq(rewards.liabilities(address(t0)), 0);
         assertEq(vault.poolBucket(target), 0); assertEq(vault.bucketCount(), 1);
+        assertEq(address(venue).balance,beforeNative);assertEq(t1.totalSupply(),beforeSupply);
         assertEq(address(address(vault)).balance, 0); assertEq(t1.balanceOf(address(vault)), 0);
          assertEq(t1.allowance(address(vault), address(venue)), 0);
     }

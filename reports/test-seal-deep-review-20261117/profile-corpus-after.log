@@ -1,0 +1,9 @@
+test_actual_foundry_fixture_permissions_match_effective_normal_validation (tests_python.test_verification_profile.VerificationProfileTests.test_actual_foundry_fixture_permissions_match_effective_normal_validation) ... ok
+test_fixture_permission_is_exact_without_extra_read_or_write_scopes (tests_python.test_verification_profile.VerificationProfileTests.test_fixture_permission_is_exact_without_extra_read_or_write_scopes) ... ok
+test_reviewed_configuration_reads_only_version_and_config (tests_python.test_verification_profile.VerificationProfileTests.test_reviewed_configuration_reads_only_version_and_config) ... ok
+test_write_paths_and_remappings_cannot_redirect_normal_verification (tests_python.test_verification_profile.VerificationProfileTests.test_write_paths_and_remappings_cannot_redirect_normal_verification) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.174s
+
+OK

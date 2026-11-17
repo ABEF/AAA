@@ -4,19 +4,22 @@ import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {SinglePositionFixture} from "./PortfolioFixture.sol";
 import {IZZZAccess} from "../../src/interfaces/IZZZ.sol";
 import {MockToken} from "../mocks/Mocks.sol";
+import {AccountingExecutionFixture} from "./AccountingExecutionFixture.sol";
 
 /// @dev Deterministic settlement fixture only. All custody, NFT, fee/reward,
 /// royalty, lifecycle and canonical transfer contracts in the test are real.
 contract CanonicalNativeVenue is ERC721 , SinglePositionFixture {
     IZZZAccess public immutable access;
+    address public immutable executionStrategy;
     MockToken private immutable token;
     uint256 private next = 1;
     uint256 private fee0;
     uint256 private fee1;
     mapping(uint256 => uint256) private a0;
     mapping(uint256 => uint256) private a1;
-    constructor(address controller, address asset) ERC721("Native handoff fixture", "NHF") {
+    constructor(address controller, address asset,address context) ERC721("Native handoff fixture", "NHF") {
         access = IZZZAccess(controller); token = MockToken(asset);
+        executionStrategy=context==address(0) ? address(new AccountingExecutionFixture(controller,address(0))) : context;
     }
     receive() external payable {}
     function positionManager() external view returns (address) { return address(this); }

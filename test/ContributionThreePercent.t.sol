@@ -121,7 +121,7 @@ contract ContributionThreePercentDefaultTest is PooledVaultFixture {
 
     function testThreePercentBudgetDoesNotWidenExistingOnePercentVenueGuard() public {
         _assertPolicy();
-        BudgetAdversarialVenue lossy=new BudgetAdversarialVenue(address(t0),address(t1));
+        BudgetAdversarialVenue lossy=new BudgetAdversarialVenue(address(t0),address(t1));lossy.configureExecutionFixture(_executionContext());
         ac.bind(Ids.LIQUIDITY,address(lossy));lossy.losses(0,0,30,0);
         uint256 id=_mint(alice);uint256 before=alice.balance;
         // Actual97% retained LP would satisfy the contribution floor, but the
@@ -141,7 +141,7 @@ contract ContributionThreePercentEntryTest is PooledVaultFixture {
     modifier entryFixture() {
         ac.beginBootstrap();
         t1=new MockToken(18);
-        venue=new VaultLiquidityMock(address(0),address(t1));ac.bind(Ids.LIQUIDITY,address(venue));
+        venue=new VaultLiquidityMock(address(0),address(t1));_configureVenue(venue);ac.bind(Ids.LIQUIDITY,address(venue));
         MockFeed feed=new MockFeed(8,1e8);
         oracle.setTestFeed(address(0),address(feed),3600);oracle.setTestFeed(address(t1),address(feed),3600);
         t1.mint(alice,10000e18);

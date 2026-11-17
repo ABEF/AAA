@@ -1,6 +1,6 @@
 # PoPL current project context
 
-The [behavior follow-up](reports/operator-behavior-followup-20261117/REVIEW.md) fixes irreversible empty-artwork sealing and keeper due-clock lag, strengthens royalty recovery checks and updates obsolete canonical test fixtures. Actual keeper revoke/replace and LP execution checks retain their stated local scope. Extra compound waiting remains service-only by explicit operator choice; production is not approved.
+The [test and irreversible-setup review](reports/test-seal-deep-review-20261117/REVIEW.md) individually assesses the earlier30 and later29 focused methods, strengthens weak assertions and repairs stale execution fixtures. Fresh source rejects foreign-home Vaults, bare artwork schemes and incorrect new reservation IDs; existing pool-move aliases remain. The current trusted build is seal-boundaries-20261117. OpenSea minting still uses the NFT metadata root. Selected-release bindings, content, provider/market/operating qualification and independent approval remain open; no live environment is changed.
 
 The [operator input audit](reports/operator-input-audit-20261116/REVIEW.md) covers92 governance/bootstrap/keeper/nominated actions and corrects frozen manual gas, output preservation and nested input/units documentation. All61 Solidity files, safeguards and NFT rights remain unchanged. Source/input coverage is separate from dynamic and production qualification.
 

@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-17T00:18:19.728542+00:00",
+  "selected": [
+    "tests_python.test_operator_input_annotations.OperatorInputAnnotationTests.test_shared_struct_keeps_operation_specific_examples_and_meanings"
+  ],
+  "tests_run": 1,
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "source_before": {
+    "tests_python/test_operator_input_annotations.py": "fcdb86530f0242ef7affa9ae25ad068300902ae777406f374eb1c273e2d92763",
+    "zzz_ops/function_reference.py": "dbe5e526d94311efb82b92f572af96c12f9fe905a3493fdd63991e12dc635834",
+    "zzz_ops/operator_reference.py": "691dc2698acd86009b4bb8856cb1b5865d529f94d7f69c61ea7ef04889f2aefb",
+    "docs/function-reference.json": "b9ac5644720dbb07dd6704f2a7b211f2dda2fb9b7a0236d1472bfc6204a6caca",
+    "docs/operator-call-examples.json": "745491192f0455e18e4b993702c5640662ced9e713c0bbfe4c1434f6a18ae077"
+  },
+  "source_after": {
+    "tests_python/test_operator_input_annotations.py": "fcdb86530f0242ef7affa9ae25ad068300902ae777406f374eb1c273e2d92763",
+    "zzz_ops/function_reference.py": "dbe5e526d94311efb82b92f572af96c12f9fe905a3493fdd63991e12dc635834",
+    "zzz_ops/operator_reference.py": "691dc2698acd86009b4bb8856cb1b5865d529f94d7f69c61ea7ef04889f2aefb",
+    "docs/function-reference.json": "b9ac5644720dbb07dd6704f2a7b211f2dda2fb9b7a0236d1472bfc6204a6caca",
+    "docs/operator-call-examples.json": "745491192f0455e18e4b993702c5640662ced9e713c0bbfe4c1434f6a18ae077"
+  },
+  "source_unchanged": true,
+  "seconds": 0.094,
+  "reason": "Correct only a mistaken new assertion oracle: consolidation is residual+idle deployment into existing main; raw residual-close wording belongs to another operation.",
+  "unchanged_methods_executed": 0,
+  "existing_chain_or_signing": false
+}

@@ -7,6 +7,7 @@ import {ZZZProtocolPolicy} from "../src/ZZZProtocolPolicy.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
 import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 import {Ids} from "../src/libraries/ZZZTypes.sol";
+import {ZZZModule} from "../src/base/ZZZModule.sol";
 
 /// @dev Sealing checks these typed bindings. Other economics are deliberately
 /// absent: this regression isolates the actual controller/NFT/bootstrap trap,
@@ -57,7 +58,9 @@ contract OperatorSealArtwork20261117Test is Test {
         access.seal();
         assertTrue(access.isSealed());assertEq(access.bootstrap(),address(0));
         assertEq(nft.artworkBaseURI(),"ipfs://reviewed-complete-catalog/");
-        vm.expectRevert();nft.setBaseURI("ipfs://replacement/");
+        vm.expectRevert(ZZZModule.InvalidConfiguration.selector);nft.setBaseURI("ipfs://replacement/");
+        assertEq(nft.artworkBaseURI(),"ipfs://reviewed-complete-catalog/");
+        vm.expectRevert(ZZZAccessController.Unauthorized.selector);access.seal();
     }
 
     function testConstructorConfiguredArtworkRootStillSealsWithoutMutation() public {
@@ -67,13 +70,15 @@ contract OperatorSealArtwork20261117Test is Test {
         assertTrue(access.isSealed());assertEq(access.bootstrap(),address(0));
         assertEq(nft.artworkBaseURI(),"ar://reviewed-complete-catalog/");
         assertEq(nft.mintedCount(),0);
+        vm.expectRevert(ZZZModule.InvalidConfiguration.selector);nft.setBaseURI("ar://replacement/");
+        assertEq(nft.artworkBaseURI(),"ar://reviewed-complete-catalog/");
     }
 
     function testNonbootstrapCannotPopulateEmptyRootOrSeal() public {
         (ZZZAccessController access,ZZZNFT nft)=_graph("");
         vm.startPrank(address(0xB0B));
-        vm.expectRevert();nft.setBaseURI("ipfs://unreviewed/");
-        vm.expectRevert();access.seal();
+        vm.expectRevert(ZZZModule.Unauthorized.selector);nft.setBaseURI("ipfs://unreviewed/");
+        vm.expectRevert(ZZZAccessController.Unauthorized.selector);access.seal();
         vm.stopPrank();
         assertEq(nft.artworkBaseURI(),"");assertFalse(access.isSealed());
         assertEq(access.bootstrap(),address(this));

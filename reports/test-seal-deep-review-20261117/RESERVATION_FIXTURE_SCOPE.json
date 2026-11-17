@@ -1,0 +1,39 @@
+{
+  "scope": "Necessary test-only dependency maintenance for new typed reservation predicate; source review is not fresh dynamic qualification",
+  "files": {
+    "test/NativeVaultFlows.t.sol": {
+      "sha256": "8a135e0c222a9a12a2b167ed8df87e24b4a4450640194d411207444748348b9e",
+      "scope": "Real-manager current native fixture: actual fixed validation child getter. No unchanged flow suite rerun."
+    },
+    "test/ProductionGas.t.sol": {
+      "sha256": "760f04f8a22390892f911efece235fe911a2401d1016573f9abf840f92dce6b8",
+      "scope": "Migration-parent and execution-context maintenance only. Historical gas evidence is not requalified."
+    },
+    "test/CombinedCapacityGas.t.sol": {
+      "sha256": "d786c65ece9bc8f64ecd8c9bd4d628e256e7851dbcdfd459a59fea714c025e8f",
+      "scope": "Migration-parent and synthetic venue context maintenance only. No maximum-state gas campaign rerun."
+    },
+    "test/IntegratedEconomicConservation.t.sol": {
+      "sha256": "14e72fdb53fff754a8532f244a101c020f24dab7b0faee13db201cce88751cf8",
+      "scope": "Real core/manager fixture gets actual fixed validation child. No unchanged lifecycle campaign rerun."
+    },
+    "test/CurrentNativePoolFork.t.sol": {
+      "sha256": "0b398f5f15981cb4ee0629596f798fbd63e1ecfacc4727a26f8e1ccdf149ede1",
+      "scope": "Existing current-pool fork source gets fixed child seam. No public fork/RPC run."
+    },
+    "test/AtomicActivationIntegration.t.sol": {
+      "sha256": "a8e5444b56d045a81c546361a5c652f5354a63c4f8cd128ea5358c660a44c8b1",
+      "scope": "Replacement synthetic venue uses inherited typed context setup. No unchanged activation suite rerun."
+    },
+    "test/ContributionThreePercent.t.sol": {
+      "sha256": "f95f8527c35154684dc48bc1c5e168940a2c16167e068c8faf521c36a7932a68",
+      "scope": "Replacement synthetic venue uses inherited typed context setup. No unchanged limit suite rerun."
+    }
+  },
+  "production_changes_by_this_reservation_portion": [
+    "src/ZZZMigrationBudget.sol",
+    "src/ZZZCustodyValidation.sol"
+  ],
+  "unchanged_vault_canonical_sha256": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+  "fixture_model": "Pooled accounting remains native ETH plus zero-decimal ZZZ and normalized $1-per-wei prices; deterministic geometry/venue. Real ZZZLPBalanceMath performs identity, valuation, maintenance loss/idle and readiness checks. Actual v4 new2 separately proves current physical activation/move."
+}

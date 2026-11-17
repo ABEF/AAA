@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZCustodyValidation} from "../src/ZZZCustodyValidation.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
@@ -11,6 +12,10 @@ import {Ids, Position} from "../src/libraries/ZZZTypes.sol";
 import {IZZZProtocolPolicy} from "../src/interfaces/IZZZProtocolPolicy.sol";
 
 contract NFTRightsNoMigrationPlan {
+    // TEST ONLY: the handler is still under construction; this deployed peer
+    // supplies the real controller-bound read-only reservation predicate.
+    ZZZCustodyValidation public immutable validation;
+    constructor(address controller) { validation = new ZZZCustodyValidation(controller); }
     function activePlan(uint256) external pure returns (bytes32) { return bytes32(0); }
 }
 
@@ -46,7 +51,7 @@ contract NFTRightsHandler is PooledVaultFixture {
     bool[8] private openingCohort;
 
     constructor() {
-        setUp(); ac.bind(Ids.MIGRATION, address(new NFTRightsNoMigrationPlan()));
+        setUp(); ac.bind(Ids.MIGRATION, address(new NFTRightsNoMigrationPlan(address(ac))));
         royalties = nft.royaltyRewards(); router = nft.claimRouter();
         royaltyAsset = new MockToken(6); nft.addRoyaltyAsset(address(royaltyAsset));
         vm.deal(address(this), 1e30);
@@ -328,6 +333,16 @@ contract NFTRightsHandler is PooledVaultFixture {
         assertEq(address(royalties).balance,0);assertEq(royaltyAsset.balanceOf(address(royalties)),0);
         assertEq(royaltyPaid[0],royaltyReceived[0]);assertEq(royaltyPaid[1],royaltyReceived[1]);
     }
+    function assertFundedConstructorSeed() external view {
+        assertEq(membership.totalEligible(),3);assertEq(royalties.totalWeight(),6);
+        for(uint256 i;i<ids.length;++i) {
+            assertEq(membership.eligible(ids[i]),i<3);
+            if(i<3) {assertGt(vault.sharesOf(ids[i]),0);assertEq(royalties.weightOf(ids[i]),i+1);}
+            else {assertEq(vault.sharesOf(ids[i]),0);assertEq(royalties.weightOf(ids[i]),0);}
+        }
+        NFTRightsNoMigrationPlan plan=NFTRightsNoMigrationPlan(ac.module(Ids.MIGRATION));
+        assertEq(address(plan.validation().access()),address(ac));
+    }
 }
 
 contract NFTRightsInvariantTest is Test {
@@ -343,6 +358,14 @@ contract NFTRightsInvariantTest is Test {
         targetContract(address(handler)); targetSelector(FuzzSelector(address(handler), selectors));
     }
     function invariant_rightsAndActualFundingConserved() public view { handler.assertEconomicRights(); }
+    function testConstructorActivationAndRoyaltyClaimReachable20261117() public {
+        handler.assertFundedConstructorSeed();
+        handler.finishRoyaltyWindow();
+        uint256 beforePositive=handler.positiveRoyaltyClaims();
+        handler.claimRoyalty(0,false);
+        assertEq(handler.positiveRoyaltyClaims(),beforePositive+1);
+        handler.assertEconomicRights();
+    }
     /// @dev Every bounded invariant run also executes positive, current-owner
     /// royalty claims after opening, including when the protocol is paused.
     /// This prevents successful handler selection from hiding vacuous reverts.

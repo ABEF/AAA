@@ -1,0 +1,23 @@
+{
+  "literal_embedding": {
+    "status": "compiler infrastructure failure; no EVM tests executed",
+    "observed_stderr": "Error: solc exited with exit code: 0xc00000fd\n<empty output>",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "literal_fixture_sha256": "cf13c91b2c4f8c56224f9650551941dbd50adf188a339e1950967e700898e0f3",
+    "literal_fixture_provenance": "reconstructed from the exact original generator and authenticated historical code; no claim compiler produced a usable artifact"
+  },
+  "chunked_embedding": {
+    "status": "two overlapping control methods passed; superseded draft not included in final distinct totals",
+    "raw_payload": "SEAL_SUPERSEDED_CHUNKED_RAW.json",
+    "compiled_artifact_sha256": "580834b55723dd27e058c059b7e0570a4936382292070ab2de0c995d4ecc06f6"
+  },
+  "permission_initial": {
+    "status": "three methods passed, two failed before EVM historical deployment at vm.getCode read permission",
+    "raw_payload": "SEAL_INITIAL_RAW.json"
+  },
+  "canonical_initial": {
+    "status": "test expectation consumed by external constructor-argument getter; no production guard failure established",
+    "raw_payload": "SEAL_CANONICAL_INITIAL_RAW.json",
+    "repair": "pre-read migrationBudget before expectRevert; preserve importer canonicalState=2"
+  }
+}

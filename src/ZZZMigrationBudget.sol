@@ -26,6 +26,8 @@ interface IBudgetVaultValidation {
     function validateContribution(uint256,uint256,uint256,uint256,uint128,bool)
         external view returns(address,address,uint16);
 }
+interface IBudgetReservationIdentity { function validReservationIdentity(bytes32,uint256) external view returns(bool); }
+interface IBudgetMigrationValidation { function validation() external view returns(address); }
 interface IBudgetPortfolioStrategy { function portfolioPolicy() external view returns(address); }
 interface IBudgetPortfolioPolicy {
     function revision() external view returns(uint64);
@@ -365,8 +367,14 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     function validateReservation(bytes32 poolId,uint256 bucket) external view onlyVault {
         if (poolId == bytes32(0) || bucket == 0) revert InvalidConfiguration();
         IZZZPools(access.module(Ids.POOLS)).get(poolId);
-        uint256 old = IZZZVault(vault()).poolBucket(poolId);
-        if (old != 0 && old != bucket) revert InvalidState();
+        IZZZVault target = IZZZVault(vault());
+        uint256 old = target.poolBucket(poolId);
+        if (old != 0) {
+            if (old != bucket) revert InvalidState();
+            return;
+        }
+        address validation = IBudgetMigrationValidation(access.module(Ids.MIGRATION)).validation();
+        if (!IBudgetReservationIdentity(validation).validReservationIdentity(poolId,bucket)) revert InvalidConfiguration();
     }
     function validateMove(uint256 id, bytes32 nextPool, uint128 minimumLiquidity) external view onlyVault {
         PoolConfig memory oldConfig = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(vault()).group(id).poolId);

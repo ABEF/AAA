@@ -5,6 +5,7 @@ import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 import {NoHybridPolicyFixture, SinglePositionFixture} from "./helpers/PortfolioFixture.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {Test} from "forge-std/Test.sol";
+import {AccountingExecutionFixture} from "./helpers/AccountingExecutionFixture.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
 import {ZZZVault} from "../src/ZZZVault.sol";
@@ -28,6 +29,7 @@ using DualOracleFixture for ZZZOracle;
 /// @dev Deliberately fake venue quantities; real Vault, NFT, fee/reward and
 /// settlement modules compose below. Not target-chain market qualification.
 contract HolderExitVenue is ERC721 , SinglePositionFixture {
+    address public immutable executionStrategy;
     MockToken public immutable token;
     uint256 public next=1;
     uint256 public fee0;
@@ -35,7 +37,9 @@ contract HolderExitVenue is ERC721 , SinglePositionFixture {
     bool public rejectClose;
     mapping(uint256=>uint256) public a0;
     mapping(uint256=>uint256) public a1;
-    constructor(MockToken t) ERC721("Exit fixture LP","EXITLP") { token=t; }
+    constructor(address controller,MockToken t) ERC721("Exit fixture LP","EXITLP") {
+        token=t;executionStrategy=address(new AccountingExecutionFixture(controller,address(0)));
+    }
     receive() external payable {}
     function positionManager() external view returns(address) {return address(this);}
     function balanceContext(bytes32) external pure returns(bytes32){return bytes32(0);}
@@ -119,7 +123,7 @@ contract HolderCollectiveExitTest is Test {
     address alice=address(0xA11CE);address bob=address(0xB0B);address payable treasury=payable(address(0x7EA5));
     receive() external payable {}
     function setUp() public {
-        vm.warp(1_000_000);ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));token=new HolderExitCallbackToken();pools=new MockPools();venue=new HolderExitVenue(token);
+        vm.warp(1_000_000);ac=new MockAccess(); ProtocolPolicyFixture.bind(address(ac));token=new HolderExitCallbackToken();pools=new MockPools();venue=new HolderExitVenue(address(ac),token);
         oracle=new ZZZOracle(address(ac),address(0));MockFeed feed=new MockFeed(8,1e8);royaltyClockFeed=feed;
         oracle.setTestFeed(address(0),address(feed),1 hours);oracle.setTestFeed(address(token),address(feed),1 hours);
         vault=new ZZZVault(address(ac),block.chainid,address(new ZZZMigrationBudget(address(ac))));nft=new ZZZNFT(address(ac),"ipfs://exit/", address(new ZZZNFTMetadata(address(ac)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));

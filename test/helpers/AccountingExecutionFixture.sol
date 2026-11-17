@@ -1,0 +1,60 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.26;
+
+import {IZZZAccess} from "../../src/interfaces/IZZZ.sol";
+import {Ids} from "../../src/libraries/ZZZTypes.sol";
+import {ZZZLPBalanceMath} from "../../src/ZZZLPBalanceMath.sol";
+
+interface IAccountingFixturePolicy {
+    function target(bytes32) external view returns(int24,int24,uint160);
+    function validatePrice(bytes32) external view returns(uint160);
+    function validateExitPrice(bytes32) external view returns(uint160);
+}
+
+/// @dev TEST ONLY. Synthetic venues retain their declared deterministic geometry
+/// and price-policy seam. Valuation, maintenance loss/idle limits and readiness
+/// execute through the actual production math child, not unconditional replies.
+contract AccountingExecutionFixture {
+    IZZZAccess public immutable access;
+    IAccountingFixturePolicy private immutable policy;
+    ZZZLPBalanceMath private immutable math;
+
+    constructor(address controller,address strategy) {
+        access=IZZZAccess(controller);policy=IAccountingFixturePolicy(strategy);
+        math=new ZZZLPBalanceMath();
+    }
+    function fixedZZZ() external view returns(address) { return math.fixedZZZ(); }
+    function _policy() private view returns(IAccountingFixturePolicy) {
+        return address(policy)==address(0) ? IAccountingFixturePolicy(access.module(Ids.STRATEGY)) : policy;
+    }
+    function executionTarget(bytes32 pool) external view returns(int24,int24,uint160) {
+        return _policy().target(pool);
+    }
+    function executionValidatePrice(bytes32 pool) external view returns(uint160) {
+        return _policy().validatePrice(pool);
+    }
+    function executionValidateExitPrice(bytes32 pool) external view returns(uint160) {
+        return _policy().validateExitPrice(pool);
+    }
+    function maintenanceValues(uint256 bucket,uint256 p0,uint256 p1,uint256 s0,uint256 s1)
+        external view returns(uint256,uint256) {
+        return math.maintenanceValues(bucket,p0,p1,s0,s1);
+    }
+    function checkMaintenance(uint256 bucket,uint256 beforeValue,uint256 p0,uint256 p1,
+        uint256 s0,uint256 s1,uint16 loss,uint16 maxIdle,bytes32 expectedPolicy)
+        external view returns(uint256,uint256,bytes32) {
+        return math.checkMaintenance(bucket,beforeValue,p0,p1,s0,s1,loss,maxIdle,expectedPolicy);
+    }
+    function assertPortfolioUtilization(uint256 bucket,uint256 p0,uint256 p1,uint256 s0,uint256 s1) external view {
+        math.assertPortfolioUtilization(bucket,p0,p1,s0,s1);
+    }
+    function validateRebalance(uint256 bucket,uint128 minimum,bool emergency,uint8 checks) external view {
+        math.validateRebalance(bucket,minimum,emergency,checks);
+    }
+    function validateResidualClose(uint256 bucket,bool busy) external view {
+        math.validateResidualClose(bucket,busy);
+    }
+    function compoundReady(uint256 bucket,address budget) external view returns(bool) {
+        return math.compoundReady(bucket,budget);
+    }
+}

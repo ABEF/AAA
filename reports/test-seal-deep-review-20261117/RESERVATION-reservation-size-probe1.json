@@ -1,0 +1,22 @@
+{
+  "kind": "two-object size probe only; not48normal gates",
+  "compiler_exit": 0,
+  "seconds": 5.247233629226685,
+  "input_sha256": "3c557cbdbc20bb0c90a3112566876307d9ccc030a06077a7dfec0ff2831dfdea",
+  "source_sha256": {
+    "src/ZZZMigrationBudget.sol": "d1f75dac992dad11dc7ad5b5e7e3ba98ddf59c11a55a75707be65a33afb6cb77",
+    "src/ZZZVaultCanonical.sol": "463a6d1f010639ad38248d0d319de8582bed0e5e3979ac5821b82f4886fef507"
+  },
+  "sizes": [
+    {
+      "contract": "ZZZMigrationBudget",
+      "runtime": 24451,
+      "creation": 25255
+    },
+    {
+      "contract": "ZZZVaultCanonical",
+      "runtime": 24655,
+      "creation": 26256
+    }
+  ]
+}

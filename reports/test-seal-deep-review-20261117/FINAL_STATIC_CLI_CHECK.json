@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-17T00:50:03.598799+00:00",
+  "default_review": "reports/test-seal-deep-review-20261117/static-final-review.json",
+  "default_script_sha256": "0b250ba6a1ff610a66cb40cb86f99ffb2ad9f08dc53de1f3c5fce778b6bc7e8c",
+  "checks": [
+    {
+      "label": "raw_actual_analyzer",
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\scripts\\check-slither-review.py",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\test-seal-deep-review-20261117\\static-final\\static-ea32b2a5d0\\slither.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"review_coverage_pass\": true, \"independent_audit\": false, \"errors\": []}\n",
+      "stderr": "",
+      "input_sha256": "6941687735814a7c7269254fdf4d8898f0dd3c957713a01a604091d4243728a8"
+    },
+    {
+      "label": "complete_strict_projection",
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\scripts\\check-slither-review.py",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\test-seal-deep-review-20261117\\static-final\\STRICT_INPUT.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"review_coverage_pass\": true, \"independent_audit\": false, \"errors\": []}\n",
+      "stderr": "",
+      "input_sha256": "0d8ee2cfc79586ab34d4edb56b2dccf6a343fb6db93c59c6076f4315471527c8"
+    }
+  ],
+  "unittest_methods_rerun": 0,
+  "compiler_or_analyzer_reinvoked": false,
+  "production_approved": false
+}

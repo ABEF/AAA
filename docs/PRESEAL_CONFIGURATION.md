@@ -2,7 +2,7 @@
 
 `scripts/prepare-preseal.py` turns explicit reviewed inputs into a conditional,
 ordered configuration review for the current schema17/mint2/V10/execution1/LP3
-source. It uses the exact trusted `operator-seal-20261117` build and current ABI.
+source. It uses the exact trusted `seal-boundaries-20261117` build and current ABI.
 Earlier pre-seal evidence retains its original metadata2 build/source scope;
 the current family adds the controller's nonempty-artwork-root seal check.
 It performs **no RPC, simulation, signing, deployment, nonce reservation,
@@ -133,3 +133,9 @@ Sealing and release sign-off remain separate. This tool emits no seal call.
 Public signing stays disabled; existing Anvil, journals, sites/services and the
 user-paused heartbeat remain unchanged. See the [source-scoped report](../reports/preseal-planner-20261116/REVIEW.md)
 and [operator procedure](OPERATOR_MANUAL.md#prepare-unsigned-pre-seal-configuration).
+
+The `seal_boundary_review` appendix covers all39 constructor instances and critical
+chain/metadata/OpenSea/converter/venue/VRF/role/end/reservation reads. It remains
+blocked pending actual observation and content review, even with complete offline
+settings. Inert bytecode uses length/hash commitments, not duplicated full payloads.
+See [irreversible setup](SEAL_READINESS.md); no seal calldata is generated.

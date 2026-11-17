@@ -1,7 +1,16 @@
 {
   "schema": 1,
-  "reference_sha256": "0667c968559a785e8e8239c8ac50345043eb96ac0f18e5b8f6625eeda4ffa073",
+  "reference_sha256": "79d8e6c6e84225350af0eeade161e365d2234772c5052443ec4193afb3f11395",
   "rows": {
+    "ZZZCustodyValidation.validReservationIdentity(bytes32,uint256)": {
+      "role": "R",
+      "short": "Test bucket identity only",
+      "arguments": [
+        "$POOL_ID",
+        "$BUCKET_ID"
+      ],
+      "value": null
+    },
     "ZZZAccessController.constructor(address,address,address)": {
       "role": "D",
       "short": "Deploy bound implementation",
@@ -6228,7 +6237,7 @@
     },
     "ZZZVault.reservePool(bytes32,uint256)": {
       "role": "G",
-      "short": "Reserve historical custody capacity",
+      "short": "Reserve canonical custody capacity",
       "arguments": [
         "$POOL_ID",
         "$BUCKET_ID"

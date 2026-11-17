@@ -14,7 +14,7 @@ optimizer_runs = 1
 optimizer_details = { yul = false }
 via_ir = true
 ffi = false
-fs_permissions = [{ access = "write", path = "./deployments" }]
+fs_permissions = [{ access = "write", path = "./deployments" }, { access = "read", path = "./test/fixtures/seal-critical-003c8d8" }]
 remappings = [
   "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
   "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",

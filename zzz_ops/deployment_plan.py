@@ -24,19 +24,22 @@ BUILD_PINS={
 # Historical constants stay exact for the original construction capture. A
 # profile label alone cannot adopt newer objects or reinterpret old evidence.
 LEGACY_BUILD_PROFILE='manual-reference-20261115'
-PREVIOUS_BUILD_PROFILE='metadata2-20261116'
-DEFAULT_BUILD_PROFILE='operator-seal-20261117'
+METADATA_BUILD_PROFILE='metadata2-20261116'
+PREVIOUS_BUILD_PROFILE='operator-seal-20261117'
+DEFAULT_BUILD_PROFILE='seal-boundaries-20261117'
 TRUSTED_BUILDS={
  LEGACY_BUILD_PROFILE:{'directory':BUILD,'files':BUILD_PINS,
   'source_inventory':'source-manifest.json','source_key':'exact_source_sha256','gates':'production-size-gates.json'},
- PREVIOUS_BUILD_PROFILE:{'directory':'reports/metadata-lifecycle-fixes-20261116/build','files':{
+ METADATA_BUILD_PROFILE:{'directory':'reports/metadata-lifecycle-fixes-20261116/build','files':{
   'compiler-input.json.gz':'596dbb7967cc51f0b854c8be20644facaadc15ceabe8ee2acfadf4bd8d20df41',
   'compiler-output.json.gz':'4acc319da1a5b4e8a4c112fb9a6c0832d3943d2722d2d17f30dd288c125f3a0f',
   'normal-size-evidence.json':'b67e4d9cdf645e1433bca7569c7ad5be6d46237cce944f100cff6fc8d054b07e',
   'RESULT.json':'74ee74839b689bbc08ba17bfc94bdb468e16dbd75931caddb251e1485bb92c22',
   'START.json':'966add935532fccffbbb2518fe094aabb50e456462e5e5dd3dab62c71d76b5d8'},
   'source_inventory':'START.json','source_key':'source_sha256','gates':'normal-size-evidence.json'},
- DEFAULT_BUILD_PROFILE:{'directory':'reports/operator-behavior-followup-20261117/build','files':{'compiler-input.json.gz': '574c37b4b29c24e8666ee08d6fba6d0019e587854526fc02584e4cd23cb2c434', 'compiler-output.json.gz': '14c1ce5044ea6d5e2d74aea2ff0e5a32e782bce37e1fe83c88e8b458c8f53806', 'normal-size-evidence.json': '6fcdfc4368a3c6efe77540140ca38da029e6c29987f5a39cd849a3e483934927', 'START.json': 'ea15822d8831e5705c4ac527f8fc18d712a00662b71e8a4010b250baa08c301a'},
+ PREVIOUS_BUILD_PROFILE:{'directory':'reports/operator-behavior-followup-20261117/build','files':{'compiler-input.json.gz': '574c37b4b29c24e8666ee08d6fba6d0019e587854526fc02584e4cd23cb2c434', 'compiler-output.json.gz': '14c1ce5044ea6d5e2d74aea2ff0e5a32e782bce37e1fe83c88e8b458c8f53806', 'normal-size-evidence.json': '6fcdfc4368a3c6efe77540140ca38da029e6c29987f5a39cd849a3e483934927', 'START.json': 'ea15822d8831e5705c4ac527f8fc18d712a00662b71e8a4010b250baa08c301a'},
+  'source_inventory':'START.json','source_key':'source_sha256','gates':'normal-size-evidence.json'},
+ DEFAULT_BUILD_PROFILE:{'directory':'reports/test-seal-deep-review-20261117/build','files':{'compiler-input.json.gz': 'c7f1190e3b45d9a114f428176c10cef5c395a7fb426ebca9e55a0c8b4c554683', 'compiler-output.json.gz': 'cc78e2b0c6a6fc4c6182d93ebcc1a245cde8bb3dde787ca74c7ae911f55ea7a3', 'normal-size-evidence.json': 'e23fe1fdce6d4571d69e2978f073dcd49705648e20bb81140a7c0a5ab116601a', 'START.json': 'bf189012bd42070ad823449bccd9d756a73436d5faf4b206243652473c13f8b0'},
   'source_inventory':'START.json','source_key':'source_sha256','gates':'normal-size-evidence.json'}}
 NATIVE={
  'pool_manager':'0x8366a39cc670b4001a1121b8f6a443a643e40951',
@@ -161,7 +164,7 @@ def validate(raw):
             if len(value)>MAX_INPUT:fail('input_size')
             try:value.encode('utf-8')
             except UnicodeError:fail('invalid_uri')
-            if value and not value.startswith(('ipfs://','ar://')):fail('invalid_uri')
+            if value and (not value.startswith(('ipfs://','ar://')) or value in ('ipfs://','ar://')):fail('invalid_uri')
         elif key=='buyback_maximum_trade_usd':value=_uint(value,128,True)
         elif key=='seadrop_codehash':value=_hash(value)
         else:value=_address(value,zero=key=='sequencer')

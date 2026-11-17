@@ -63,7 +63,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
 
     constructor(address controller, uint256 nftHomeChain, address budget)
         ZZZModule(controller) {
-        if (nftHomeChain == 0 || access.protocolPolicy().code.length == 0) {
+        if (nftHomeChain == 0 || nftHomeChain != block.chainid || access.protocolPolicy().code.length == 0) {
             revert InvalidConfiguration();
         }
         if (budget.code.length == 0 || address(ZZZMigrationBudget(budget).access()) != controller ||

@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
-import {Vm} from "forge-std/Vm.sol";
 
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
 import {BudgetAdversarialVenue} from "./MigrationBudgetAdversarial.t.sol";
@@ -31,7 +30,7 @@ contract LossPolicyCallbackToken is MockToken {
 /// @dev TEST ONLY burned execution loss, with backed retained principal. The
 /// shared position can grow without treating undeployed idle as an actual loss.
 contract GovernedGrowthLossVenue is BudgetAdversarialVenue {
-    function vmBurn(uint256 amount)private{Vm(address(uint160(uint256(keccak256("hevm cheat code"))))).deal(address(this),address(this).balance-amount);}
+    function burnNativeLoss(uint256 amount)private{(bool ok,)=payable(address(0xdead)).call{value:amount}("");require(ok);}
     MockToken private immutable first;
     MockToken private immutable second;
     constructor(address a,address b) BudgetAdversarialVenue(a,b) {first=MockToken(a);second=MockToken(b);}
@@ -40,7 +39,7 @@ contract GovernedGrowthLossVenue is BudgetAdversarialVenue {
         used0=a;used1=b;
         if(address(first)==address(0))require(msg.value==a);else require(first.transferFrom(msg.sender,address(this),a));require(second.transferFrom(msg.sender,address(this),b));
         amount0[id]+=a-mintLoss0;amount1[id]+=b-mintLoss1;
-        if(address(first)==address(0))vmBurn(mintLoss0);else first.burn(mintLoss0);second.burn(mintLoss1);
+        if(address(first)==address(0))burnNativeLoss(mintLoss0);else first.burn(mintLoss0);second.burn(mintLoss1);
     }
 }
 
@@ -90,7 +89,7 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
     }
     function testActivationAndGrowthUseGovernedContributionLimitWithVenueFloorRetained() public {
         _budget().setLossLimits(100,300);
-        GovernedGrowthLossVenue lossy=new GovernedGrowthLossVenue(address(t0),address(t1));
+        GovernedGrowthLossVenue lossy=new GovernedGrowthLossVenue(address(t0),address(t1));lossy.configureExecutionFixture(_executionContext());
         ac.bind(Ids.LIQUIDITY,address(lossy));lossy.losses(0,0,20,0);
         _venueLimit(1000);uint256 id=_mint(alice);
         vm.expectRevert(ZZZModule.Slippage.selector);_activate(alice,id,1000,0);
@@ -137,7 +136,7 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
             ZZZOracle.SourcePolicy(address(first),address(first).codehash,keccak256("rounding-first"),3600,18),
             ZZZOracle.SourcePolicy(address(second),address(second).codehash,keccak256("rounding-second"),3600,18),
             0,REVIEW);
-        BudgetAdversarialVenue exact=new BudgetAdversarialVenue(address(t0),address(t1));
+        BudgetAdversarialVenue exact=new BudgetAdversarialVenue(address(t0),address(t1));exact.configureExecutionFixture(_executionContext());
         ac.bind(Ids.LIQUIDITY,address(exact));_venueLimit(1000);
         // Zero-decimal token at 1 wei USD per raw unit: the real activation is
         // $100 + 1 wei USD. Venue burns execution loss; idle cannot hide it.
@@ -168,7 +167,7 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
         assertEq(vault.sharesOf(id),2000e18);
     }
     function testGovernanceCallbackCannotWidenActiveMaintenanceSnapshot() public {
-        BudgetAdversarialVenue adverse=new BudgetAdversarialVenue(address(t0),address(t1));
+        BudgetAdversarialVenue adverse=new BudgetAdversarialVenue(address(t0),address(t1));adverse.configureExecutionFixture(_executionContext());
         ac.bind(Ids.LIQUIDITY,address(adverse));ac.bind(Ids.STRATEGY,address(new RebalanceBudgetPolicy()));activatedPosition();
         ZZZMigrationBudget b=_budget();
         vm.mockCall(address(ac),abi.encodeCall(ac.canConfigure,(address(adverse))),abi.encode(true));

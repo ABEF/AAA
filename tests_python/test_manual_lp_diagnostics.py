@@ -110,7 +110,7 @@ class ManualLPDiagnosticsTests(unittest.TestCase):
         self.assertEqual([],self.rpc.simulations)
 
     def test_final_controls_failure_is_distinct_from_final_simulation(self):
-        self.rpc.after_estimate=lambda:self.f.put('principal_exit','parkingNonce(uint256)',6,7)
+        self.rpc.after_initial_exact=lambda:self.f.put('principal_exit','parkingNonce(uint256)',6,7)
         self.error(RpcError,'custody_or_controls_changed','final_snapshot')
         self.assertEqual(2,len(self.rpc.simulations))
         self.setUp();self.rpc.final_simulation_error=RpcError('opaque final rejection secret')

@@ -11,9 +11,11 @@ import {Test} from "forge-std/Test.sol";
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
+import {ZZZModule} from "../src/base/ZZZModule.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {MockAccess, MockToken, MockPools, MockFeed} from "./mocks/Mocks.sol";
-import {Ids, PoolConfig, Position} from "../src/libraries/ZZZTypes.sol";
+import {Ids, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";
+import {AccountingExecutionFixture} from "./helpers/AccountingExecutionFixture.sol";
 
 contract MigrationExecutionBudgetTest is PooledVaultFixture {
     event MigrationValueChecked(uint256 indexed bucketId, uint256 beforeUSD, uint256 deployedUSD, uint256 idleUSD);
@@ -95,10 +97,18 @@ contract MigrationExecutionBudgetTest is PooledVaultFixture {
 /// and the adversarial suite use the actual Vault, fees, ownership and shares.
 contract MigrationBudgetScaleHarness is SinglePositionFixture, NoHybridPolicyFixture {
     ZZZMigrationBudget public immutable budget;
+    address public immutable executionStrategy;
+    bytes32 private immutable pool;
     Position private position;
     uint256 private amount0;
     uint256 private amount1;
-    constructor(address access) { budget = new ZZZMigrationBudget(access); }
+    constructor(address access,bytes32 poolId) {
+        pool=poolId;budget = new ZZZMigrationBudget(access);
+        executionStrategy=address(new AccountingExecutionFixture(access,address(this)));
+    }
+    function target(bytes32) external pure returns(int24,int24,uint160){return(-600,600,uint160(1<<96));}
+    function validatePrice(bytes32) external pure returns(uint160){return uint160(1<<96);}
+    function validateExitPrice(bytes32) external pure returns(uint160){return uint160(1<<96);}
     function migrationBudget() external view returns(ZZZMigrationBudget) { return budget; }
     // TEST ONLY: isolate cached-price/loss rounding, not confirmation timing.
     // The real helper/keeper buffer is exercised by its dedicated test suite.
@@ -109,8 +119,8 @@ contract MigrationBudgetScaleHarness is SinglePositionFixture, NoHybridPolicyFix
     }
     function observations(uint256) external pure returns(bytes32,uint64,uint64,uint8){return(bytes32(0),0,0,0);}
     function setAmounts(uint256 a0, uint256 a1) external {
-        position.poolId = bytes32(uint256(1));
-        position.lpTokenId = 1;
+        position.poolId = pool;
+        position.lpTokenId = 1;position.status=PositionStatus.Active;
         amount0 = a0;
         amount1 = a1;
     }
@@ -124,42 +134,53 @@ contract MigrationBudgetScaleTest is Test {
     MigrationBudgetScaleHarness private harness;
     MockFeed private stableFeed;
     MockFeed private nativeFeed;
+    ZZZOracle private oracle;
     function setUp() public {
         vm.warp(1_000_000);
         MockAccess ac = new MockAccess(); ProtocolPolicyFixture.bind(address(ac));
         MockPools pools = new MockPools();
         MockToken stable = new MockToken(6);
-        MockToken native = new MockToken(18);
         stableFeed = new MockFeed(8, 1e8);
         nativeFeed = new MockFeed(8, 2000e8);
-        ZZZOracle oracle = new ZZZOracle(address(ac), address(0));
+        oracle = new ZZZOracle(address(ac), address(0));
         oracle.setTestFeed(address(stable), address(stableFeed), 3600);
-        oracle.setTestFeed(address(native), address(nativeFeed), 3600);
+        oracle.setTestFeed(address(0), address(nativeFeed), 3600);
         PoolConfig memory c;
-        c.key.currency0 = address(stable);
-        c.key.currency1 = address(native);
-        pools.set(bytes32(uint256(1)), c);
-        harness = new MigrationBudgetScaleHarness(address(ac));
+        c.key.currency0 = address(0);
+        c.key.currency1 = address(stable);c.key.fee=3000;c.key.tickSpacing=60;c.operationsEnabled=true;
+        bytes32 pool=keccak256(abi.encode(c.key));pools.set(pool,c);pools.setFixedZZZ(address(stable));
+        harness = new MigrationBudgetScaleHarness(address(ac),pool);
         ac.bind(Ids.ORACLE, address(oracle));
         ac.bind(Ids.POOLS, address(pools));
         // The shared immutable Pricing helper authenticates the real Budget
         // through its Vault parent. This harness is that parent in this test.
         ac.bind(Ids.VAULT, address(harness));
         ac.bind(Ids.LIQUIDITY, address(harness));
-        ac.bind(Ids.STRATEGY, address(harness));
+        ac.bind(Ids.STRATEGY, address(harness));ac.seal();
     }
     function testMixedDecimalsAndUnequalPricesAcceptExactlyThreePercentAggregateLoss() public {
-        harness.setAmounts(1000e6, 1 ether); // $3,000 principal.
+        harness.setAmounts(1 ether,1000e6); // Native ETH $2,000 + fixed six-decimal ZZZ $1,000.
         harness.begin();
-        harness.setAmounts(910e6, 1 ether); // $2,910, exactly 97%.
+        harness.setAmounts(1 ether,910e6); // $2,910, exactly 97%.
         harness.finish();
     }
-    function testMixedDecimalsRejectOneStableBaseUnitPastFloorDespiteHigherLiveFeed() public {
-        harness.setAmounts(1000e6, 1 ether);
-        harness.begin();
-        nativeFeed.set(4000e8, block.timestamp, block.timestamp);
-        harness.setAmounts(910e6 - 1, 1 ether);
-        vm.expectRevert(ZZZMigrationBudget.Slippage.selector);
-        harness.finish();
+    function testMixedNativeDecimalsRejectOneZZZBaseUnitPastFloor() public {
+        harness.setAmounts(1 ether,1000e6);harness.begin();
+        harness.setAmounts(1 ether,910e6-1);
+        vm.expectRevert(ZZZMigrationBudget.Slippage.selector);harness.finish();
+    }
+    function testNativePriceRoundChangeCannotRepriceCapturedMaintenance() public {
+        harness.setAmounts(1 ether,1000e6);harness.begin();
+        (,,bytes32 beforeFingerprint)=oracle.priceBounds(address(0));
+        (uint256 captured,,,)=harness.budget().maintenancePrices();assertEq(captured,2000e18);
+        nativeFeed.set(4000e8,block.timestamp,block.timestamp);
+        (uint256 live,,bytes32 afterFingerprint)=oracle.priceBounds(address(0));
+        assertEq(live,4000e18);assertNotEq(beforeFingerprint,afterFingerprint);
+        harness.setAmounts(1 ether,910e6);
+        // Healthy, agreeing live feeds changed their authenticated round. Full
+        // execution validation rejects that change, before any repricing.
+        vm.expectRevert(ZZZModule.InvalidState.selector);harness.finish();
+        assertEq(harness.budget().maintenanceBucket(),1);
+        (uint256 retained,,,)=harness.budget().maintenancePrices();assertEq(retained,captured);
     }
 }

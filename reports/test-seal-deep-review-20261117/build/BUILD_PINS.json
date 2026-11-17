@@ -1,0 +1,58 @@
+{
+  "files": {
+    "compiler-input.json.gz": "c7f1190e3b45d9a114f428176c10cef5c395a7fb426ebca9e55a0c8b4c554683",
+    "compiler-output.json.gz": "cc78e2b0c6a6fc4c6182d93ebcc1a245cde8bb3dde787ca74c7ae911f55ea7a3",
+    "normal-size-evidence.json": "e23fe1fdce6d4571d69e2978f073dcd49705648e20bb81140a7c0a5ab116601a",
+    "START.json": "bf189012bd42070ad823449bccd9d756a73436d5faf4b206243652473c13f8b0"
+  },
+  "changed_objects": [
+    "ZZZCustodyValidation",
+    "ZZZMigration",
+    "ZZZMigrationBudget",
+    "ZZZNFT",
+    "ZZZNFTMetadata",
+    "ZZZVault",
+    "ZZZVaultCanonical"
+  ],
+  "abi_additions": {
+    "ZZZCustodyValidation": [
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "pool",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "bucket",
+            "type": "uint256"
+          }
+        ],
+        "name": "validReservationIdentity",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ]
+  },
+  "other_concrete_abis_unchanged": true,
+  "semantic_storage_layouts_unchanged": 48,
+  "ast_ids_excluded_from_storage_comparison": true,
+  "normal_gates": 48,
+  "production_sources_changed": [
+    "src/ZZZVault.sol",
+    "src/ZZZNFTMetadata.sol",
+    "src/ZZZMigrationBudget.sol",
+    "src/ZZZCustodyValidation.sol"
+  ],
+  "test_only_config_delta": "One read permission for pinned public fixture directory; no compiler/size/gas/ffi setting changed.",
+  "actual_deployment_performed": false,
+  "production_approved": false
+}

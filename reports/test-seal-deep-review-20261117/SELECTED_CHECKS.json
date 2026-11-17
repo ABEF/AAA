@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "unique_selected_methods_passed": 80,
+  "groups": {
+    "earlier30_strengthened": [
+      "tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting",
+      "tests_python.test_manual_lp_review.ManualLPReviewTests.test_healthy_trading_and_new_price_rounds_keep_original_manifest_and_revalidate_twice",
+      "tests_python.test_manual_lp_review.ManualLPReviewTests.test_latest_retained_guard_failure_refuses_without_fallback_or_third_probe",
+      "tests_python.test_manual_lp_review.ManualLPReviewTests.test_contract_or_delegated_governance_requires_unsupported_outer_envelope_before_funding",
+      "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_execution1_lp3_profile_and_late_source_controls",
+      "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip",
+      "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_controls_failure_is_distinct_from_final_simulation",
+      "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_strict_reference_wrapper_accepts_only_the_exact_updated_base_source",
+      "tests_python.test_operator_input_annotations.OperatorInputAnnotationTests.test_legacy_string_notes_keep_identical_parameter_records",
+      "tests_python.test_operator_input_annotations.OperatorInputAnnotationTests.test_shared_struct_keeps_operation_specific_examples_and_meanings"
+    ],
+    "latest29_strengthened_and_new": [
+      "test/OperatorSealArtwork20261117.t.sol:OperatorSealArtwork20261117Test.testConstructorConfiguredArtworkRootStillSealsWithoutMutation()",
+      "test/OperatorSealArtwork20261117.t.sol:OperatorSealArtwork20261117Test.testNonbootstrapCannotPopulateEmptyRootOrSeal()",
+      "test/OperatorSealArtwork20261117.t.sol:OperatorSealArtwork20261117Test.testUnconfiguredArtworkRootBlocksSealThenBootstrapCanCompleteSetup()",
+      "test/CanonicalPreparation.t.sol:CanonicalPreparationTest.testClaimsTransfersPendingRevealAndLPFeeCollectionStayAvailable()",
+      "test/CanonicalPreparation.t.sol:CanonicalPreparationTest.testGovernanceAnnouncementInFinalTreasuryCallbackCannotBypassVaultEndGuard()",
+      "test/CanonicalPreparation.t.sol:CanonicalPreparationTest.testGovernanceAnnouncementInNFTCallbackRollsBackTheEntireMint()",
+      "test/CanonicalPreparation.t.sol:CanonicalPreparationTest.testHarvestAndGovernanceParkingRemainAvailableWithoutSourcePrice()",
+      "test/RoyaltyRecovery.t.sol:OriginalCurrencyRoyaltyTest.testRecoveryExactUnitsRotateAcrossSmallTranchesReverseClaimsAndTransfer()",
+      "tests_python.test_keeper_standalone_harvest_review.StandaloneHarvestTimingTests.test_enabled_harvest_refreshes_due_clock_while_disabled_keeps_no_extra_head"
+    ],
+    "irreversible_chain_root_guards": [
+      "test/CanonicalHandoff.t.sol:CanonicalHandoffTest.testForeignHomeChainRejectedAtVaultConstruction()",
+      "test/SealCriticalInputs20261117.t.sol:SealCriticalInputs20261117Test.testActualNFTConstructorRejectsSchemeOnlyArtworkRoot()",
+      "test/SealCriticalInputs20261117.t.sol:SealCriticalInputs20261117Test.testEmptyNFTBootstrapRootCanRecoverWithoutConsumingOneTimeWrite()",
+      "test/SealCriticalInputs20261117.t.sol:SealCriticalInputs20261117Test.testForeignHomeChainHistoricalAcceptanceNowRejectedAtConstruction()",
+      "test/SealCriticalInputs20261117.t.sol:SealCriticalInputs20261117Test.testSchemeOnlyHistoricalAcceptanceNowRejectedForBothSchemes()",
+      "test/SealCriticalInputs20261117.t.sol:SealCriticalInputs20261117Test.testZeroHomeChainStillRejectedAndCurrentChainRemainsValid()"
+    ],
+    "reservation": [
+      "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest.testReservationRegisteredAliasAllowsActualNativeMoveAndReturnWithoutRightsLoss()",
+      "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest.testReservationTypoRejectsBeforeCapacityAndActualNativeActivationUsesCanonicalId()",
+      "test/PoolSwitching.t.sol:PoolSwitchingTest.testFullCapacitySwitchAndReturnReuseTheExistingBucketSlot()",
+      "test/PooledSecurity.t.sol:PooledSecurityTest.testMismatchedNewReservationCannotConsumeCapacityAndCanonicalActivationStillWorks()",
+      "test/ReservationCapacity.t.sol:ReservationCapacityTest.testCanonicalActivationUsesItsReservedSlotAtFullCapacity()",
+      "test/ReservationCapacity.t.sol:ReservationCapacityTest.testCanonicalReservationsThenLocalActivationShareOneCapacityLimit()",
+      "test/ReservationCapacity.t.sol:ReservationCapacityTest.testFullCapacityDuplicatesAndPoolAliasesReuseTheSameSlot()",
+      "test/ReservationCapacity.t.sol:ReservationCapacityTest.testInvalidIdentityAndFailedPoolValidationNeverConsumeCapacity()",
+      "test/ReservationCapacity.t.sol:ReservationCapacityTest.testLocalActivationThenCanonicalReservationsShareOneCapacityLimit()",
+      "test/ReservationCapacity.t.sol:ReservationCapacityTest.testNoncanonicalNewReservationRejectsBeforeActivationAndLeavesSlotUsable()",
+      "test/ReservationCapacity.t.sol:ReservationCapacityTest.testNoneReservationsAreSkippedBeforeMembershipPoolAndPriceReads()",
+      "test/ReservationCapacity.t.sol:ReservationCapacityTest.testPoolReassignmentRejectsWithoutConsumingAnotherSlot()",
+      "test/ReservationCapacity.t.sol:ReservationCapacityTest.testReservationImmediatelyOwnsPermanentCapacityWithoutCustodyOrShares()",
+      "test/ReservationCapacity.t.sol:ReservationCapacityTest.testReservationUsesImportedCompanionOriginAndRetainsExactExistingMapping()",
+      "test/ReservationCapacity.t.sol:ReservationCapacityTest.testTimeoutAndDisabledPoolDoNotReleaseOrReassignReservation()",
+      "test/ReservationCapacity.t.sol:ReservationCapacityTest.testUnauthorizedReservationAndBudgetValidationCannotConsumeCapacity()"
+    ],
+    "planner_and_build": [
+      "tests_python.test_deployment_build_profiles.DeploymentBuildProfileTests.test_current_complete_graph_has_exact_objects_and_original_size_limits",
+      "tests_python.test_deployment_build_profiles.DeploymentBuildProfileTests.test_default_planner_accepts_current_metadata_build_and_tags_identity",
+      "tests_python.test_deployment_build_profiles.DeploymentBuildProfileTests.test_scheme_only_artwork_is_rejected_before_artifacts_or_calldata",
+      "tests_python.test_deployment_build_profiles.DeploymentBuildProfileTests.test_seal_fix_keeps_previous_objects_historical_without_automatic_fallback",
+      "tests_python.test_preseal_plan.PresealPlanTests.test_complete_configuration_does_not_claim_irreversible_seal_readiness",
+      "tests_python.test_preseal_plan.PresealPlanTests.test_constructor_boundary_inventory_retains_exact_trusted_abi_inputs",
+      "tests_python.test_preseal_plan.PresealPlanTests.test_unknown_addresses_cannot_become_verified_constructor_or_helper_identities"
+    ],
+    "seadrop_artwork": [
+      "test/SeaDropArtworkBoundary20261117.t.sol:SeaDropArtworkBoundary20261117Test.testSeaDropMintStillUsesCollectionRootForRevealedArtwork()"
+    ],
+    "normal_profile_permissions": [
+      "tests_python.test_verification_profile.VerificationProfileTests.test_actual_foundry_fixture_permissions_match_effective_normal_validation",
+      "tests_python.test_verification_profile.VerificationProfileTests.test_fixture_permission_is_exact_without_extra_read_or_write_scopes",
+      "tests_python.test_verification_profile.VerificationProfileTests.test_reviewed_configuration_reads_only_version_and_config",
+      "tests_python.test_verification_profile.VerificationProfileTests.test_write_paths_and_remappings_cannot_redirect_normal_verification"
+    ],
+    "corpus_corrective_cases": [
+      "test/ProductionInvariants.t.sol:ProductionAccountingInvariantTest.testConstructorActivationAndHarvestReachable20261117()",
+      "test/NFTRightsInvariants.t.sol:NFTRightsInvariantTest.testConstructorActivationAndRoyaltyClaimReachable20261117()",
+      "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest.testNativeFeeSplitIsIndexedAndSeparatelyBacked()",
+      "test/PooledRewards.t.sol:PooledRewardsTest.testOwnerFeesFollowSharesAndCollectiveIsEqualAcrossBuckets()",
+      "test/RewardsAndFees.t.sol:RewardsAndFeesTest.testFeeSplitIsExactAndBacked()",
+      "test/BuybackExecution.t.sol:BuybackExecutionTest.testUnauthorizedCallerAndDirectReserveReleaseRejected()",
+      "test/BuybackExecution.t.sol:BuybackExecutionTest.testApprovedDirectSwapBurnPreservesRewardAndCompoundBalances()",
+      "test/BuybackExecution.t.sol:BuybackExecutionTest.testSwapFailureRollsBackThenClaimsAndRetryRemainAvailable()"
+    ],
+    "critical_reads_actual_abi": [
+      "tests_python.test_preseal_plan.PresealPlanTests.test_irreversible_review_reads_are_callable_in_actual_trusted_target_abis"
+    ],
+    "execution_fixtures": [
+      "test/CanonicalHandoff.t.sol:CanonicalHandoffTest.testCompleteHandoffPreservesOwnersSharesTraitsAndBothRewardLedgers()",
+      "test/CanonicalHandoff.t.sol:CanonicalHandoffTest.testPartialFundingCannotActivateAndFundingCannotReplay()",
+      "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest.testExitWithoutHealthyPricesOrEnabledPoolAndRawMinimumRollback()",
+      "test/HolderCollectiveExit.t.sol:HolderCollectiveExitTest.testPrincipalIsProportionalNotEqualAndExactAfterAutomaticPayout()",
+      "test/MetadataLifecycleNotifications.t.sol:MetadataLifecycleExitNotificationsTest.testMetadataLifecycleActualTokenURITracksExitAllocationTransferAndPaidPrincipal()",
+      "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest.testBudgetRejectsStackedCloseSwapAndMintLossAtomicallyThenAllowsRetry()",
+      "test/MigrationExecutionBudget.t.sol:MigrationBudgetScaleTest.testMixedDecimalsAndUnequalPricesAcceptExactlyThreePercentAggregateLoss()",
+      "test/MigrationExecutionBudget.t.sol:MigrationBudgetScaleTest.testMixedNativeDecimalsRejectOneZZZBaseUnitPastFloor()",
+      "test/MigrationExecutionBudget.t.sol:MigrationBudgetScaleTest.testNativePriceRoundChangeCannotRepriceCapturedMaintenance()",
+      "test/NativeCanonicalIntegration.t.sol:NativeCanonicalIntegrationTest.testNativePartialFundingAbortRequiresAndRestoresExactBacking()",
+      "test/NativeCanonicalIntegration.t.sol:NativeCanonicalIntegrationTest.testNativeWholeHandoffCarriesPrincipalIndicesRoyaltiesAndFeeDonationQuarantine()",
+      "test/PoolSwitching.t.sol:PoolSwitchingTest.testVenueFailureRollsBackCloseFeesCompoundAndNewPoolReservation()",
+      "test/PortfolioAccounting.t.sol:PortfolioAccountingTest.testMainFloorAcceptsExactSixtyWithoutForcingResidual()",
+      "test/PortfolioAccounting.t.sol:PortfolioAccountingTest.testMainFloorRejectsBelowSixtyAndCountsAttributedIdle()",
+      "test/PortfolioAccounting.t.sol:PortfolioAccountingTest.testMaintenanceCapabilityExcludesCompoundingAndEmergency()",
+      "test/PortfolioAccounting.t.sol:PortfolioAccountingTest.testReplacementEnforcesUtilizationAfterUnchangedRetainedNAV()",
+      "test/SeaDropFullHandoff.t.sol:SeaDropFullHandoffTest.testBoundSeaDropFundedV10AbortReturnsBackingAndPreservesOriginalMintBooks()",
+      "test/SeaDropFullHandoff.t.sol:SeaDropFullHandoffTest.testBoundSeaDropWholeV10CommitCarriesActualLPAndRoyaltyClaimsToCurrentOwner()"
+    ]
+  },
+  "source_scope": "Finite successes at explicitly recorded original/corrected source stages; not all executed against one final tree",
+  "counts_exclude": [
+    "59 individually reviewed original methods unless actually selected",
+    "Repeated corrected executions",
+    "Four handoff methods already included in execution_fixtures",
+    "Inventory declarations, fuzz inputs, compiler gates, static records, skips and zero selections"
+  ],
+  "unchanged_full_suites_rerun": false,
+  "production_approved": false
+}

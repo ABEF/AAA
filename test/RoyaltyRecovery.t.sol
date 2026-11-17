@@ -148,6 +148,36 @@ contract OriginalCurrencyRoyaltyTest is Test {
         vm.prank(bob);assertEq(r.claim(2,address(usdc)),0);
         vm.prank(carol);assertEq(r.claim(3,address(usdc)),0);
     }
+    function testRecoveryExactUnitsRotateAcrossSmallTranchesReverseClaimsAndTransfer() public {
+        // Six permanent tickets across weights1/2/3; each tranche forces a
+        // different indivisible remainder. Existing entitlements follow the NFT.
+        usdc.mint(address(r),21);activateAll();
+        vm.prank(alice);nft.transferFrom(alice,bob,1);
+        uint256[3] memory expected;uint256 cursor;uint256 recovered;
+        for(uint256 amount=1;amount<=6;++amount){
+            r.allocateUnallocated(address(usdc),amount,REVIEW);
+            for(uint256 i;i<amount;++i){uint256 ticket=(cursor+i)%6;
+                ++expected[ticket==0 ? 0 : ticket<3 ? 1 : 2];}
+            cursor=(cursor+amount)%6;recovered+=amount;
+            assertEq(r.allocationCursor(address(usdc)),cursor);
+            assertEq(r.orphaned(address(usdc)),21-recovered);
+            vm.prank(carol);uint256 paid3=r.claim(3,address(usdc));
+            vm.prank(bob);uint256 paid2=r.claim(2,address(usdc));
+            vm.prank(bob);uint256 paid1=r.claim(1,address(usdc));
+            assertEq(paid1,expected[0]);assertEq(paid2,expected[1]);assertEq(paid3,expected[2]);
+            assertEq(paid1+paid2+paid3,amount);
+            assertEq(r.liabilities(address(usdc)),0);
+            assertEq(r.accounted(address(usdc)),21-recovered);
+            assertEq(usdc.balanceOf(address(r)),21-recovered);
+            delete expected;
+        }
+        assertEq(recovered,21);assertEq(usdc.balanceOf(alice),0);
+        assertEq(usdc.balanceOf(bob),12);assertEq(usdc.balanceOf(carol),9);
+        vm.prank(alice);vm.expectRevert(ZZZRoyaltyRewards.Unauthorized.selector);r.claim(1,address(usdc));
+        vm.prank(bob);assertEq(r.claim(1,address(usdc)),0);
+        vm.prank(bob);assertEq(r.claim(2,address(usdc)),0);
+        vm.prank(carol);assertEq(r.claim(3,address(usdc)),0);
+    }
     function testThousandNFTsMultipleWalletsRaritiesAndDormantKeepExactSourcePayouts() public {
         uint256 totalWeight=1998;
         usdc.mint(address(r),totalWeight*1e6);

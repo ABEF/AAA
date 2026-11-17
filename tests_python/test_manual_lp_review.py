@@ -27,6 +27,7 @@ class ManualRPC:
         self.f=f;self.inner=f.rpc;self.calls=[];self.simulations=[];self.estimates=[]
         self.gas=100000;self.price=2;self.output='0x';self.simulation_error=None
         self.price_failure=False;self.after_estimate=None;self.after_final=None
+        self.after_initial_exact=None
         self.block_reads=0;self.latest_hash='0x'+'dd'*32;self.chain_override=None
         self.final_stamp=4000;self.final_reorg=False
         self.block_limit=30000000;self.balance=10**18;self.final_simulation_error=None
@@ -66,7 +67,13 @@ class ManualRPC:
                 self.simulations.append(copy.deepcopy(params))
                 if params[-1].get('blockHash')==self.latest_hash and self.final_simulation_error:raise self.final_simulation_error
                 if self.simulation_error:raise self.simulation_error
-                return self.output
+                result=self.output
+                # An honest market/control change belongs between anchors,
+                # after the initial exact call, never midway through reads of
+                # the same immutable canonical block hash.
+                if (len(self.simulations)==2 and params[-1].get('blockHash')==self.inner.hash
+                        and self.after_initial_exact):self.after_initial_exact()
+                return result
             if self.price_failure and data[:10]==native_data('priceBounds(address)',addr(20))[:10]:
                 raise RpcError('https://private:credential@rpc.invalid USD outage')
         # Fixture transport internally knows one hash. Preserve distinct actual
@@ -229,26 +236,30 @@ class ManualLPReviewTests(unittest.TestCase):
                     if variant=='liquidity':self.q.physical_liquidities[123]=700
                     if variant=='price_policy':self.put('oracle','activePolicy(address)','0x'+'56'*32,addr(20))
                     if variant=='sequencer_policy':self.put('oracle','activeSequencerPolicy()','0x'+'56'*32)
-                self.rpc.after_estimate=change
-                with self.assertRaises((RpcError,ValueError)):self.prepare()
+                self.rpc.after_initial_exact=change
+                with self.assertRaises((RpcError,ValueError)) as caught:self.prepare()
+                self.assertEqual('final_snapshot',caught.exception.manual_stage)
                 self.assertEqual(original,self.request);self.assertEqual(2,len(self.rpc.simulations))
 
     def test_healthy_trading_and_new_price_rounds_keep_original_manifest_and_revalidate_twice(self):
+        transitions=[]
         def move():
+            transitions.append(len(self.rpc.simulations))
             self.q.tick=50
             self.put('oracle','priceBounds(address)',[10**18,10**18,'0x'+'56'*32],addr(20))
-        self.rpc.after_estimate=move
+        self.rpc.after_initial_exact=move
         result=self.prepare()
         self.assertNotEqual(result['snapshot']['physical']['portfolio_amounts'],
             result['final_market_observations']['physical']['portfolio_amounts'])
         self.assertNotEqual(result['snapshot']['financial']['price_bounds'],
             result['final_market_observations']['financial']['price_bounds'])
         self.assertEqual(4,len(self.rpc.simulations));self.assertEqual(2,len(self.rpc.estimates))
+        self.assertEqual([2],transitions)
         self.assertEqual(self.rpc.simulations[1][0],self.rpc.simulations[3][0])
         self.assertEqual('4180',result['arguments']['deadline']);self.assertEqual('1',result['arguments']['minimumLiquidity'])
 
     def test_latest_retained_guard_failure_refuses_without_fallback_or_third_probe(self):
-        self.rpc.after_estimate=lambda:setattr(self.q,'tick',50)
+        self.rpc.after_initial_exact=lambda:setattr(self.q,'tick',50)
         self.rpc.final_simulation_error=RpcError('opaque minimum/retained guard failure')
         with self.assertRaises(RpcError):self.prepare()
         self.assertEqual(3,len(self.rpc.simulations));self.assertEqual(1,len(self.rpc.estimates))
@@ -334,8 +345,9 @@ class ManualLPReviewTests(unittest.TestCase):
                 self.assertFalse(any(method=='eth_getBalance' for method,_ in self.rpc.calls))
                 self.assertEqual([],self.rpc.simulations)
         self.rpc.governance_code='0x';self.rpc.balance=10**18;self.rpc.calls.clear()
-        self.rpc.after_estimate=lambda:setattr(self.rpc,'governance_code','0x6000')
-        with self.assertRaises(M.UnsupportedGovernanceEnvelope):self.prepare()
+        self.rpc.after_initial_exact=lambda:setattr(self.rpc,'governance_code','0x6000')
+        with self.assertRaises(M.UnsupportedGovernanceEnvelope) as caught:self.prepare()
+        self.assertEqual('final_snapshot',caught.exception.manual_stage)
         code_reads=[params for method,params in self.rpc.calls if method=='eth_getCode' and params[0]==self.gov]
         self.assertEqual([self.f.rpc.hash,self.rpc.latest_hash],[params[-1]['blockHash'] for params in code_reads])
         self.assertEqual(2,len(self.rpc.simulations));self.assertEqual(1,len(self.rpc.estimates))

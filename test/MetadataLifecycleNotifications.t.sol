@@ -28,23 +28,6 @@ library LifecycleEventChecks {
     }
 }
 
-interface IMetadataFixtureExecutionPolicy {
-    function target(bytes32 pool)external view returns(int24,int24,uint160);
-    function validatePrice(bytes32 pool)external view returns(uint160);
-}
-
-/// @dev TEST ONLY read-only adapter for the inherited mocked 1:1 venue. The
-/// current Oracle requires the fixed token identity and captured execution
-/// geometry. Preserve that fixture's explicit price/target seam; do not mock
-/// Oracle, ContributionPricing, custody, actual fee allocation or settlement.
-contract MetadataLifecycleExecutionFixture {
-    address public immutable fixedZZZ;
-    IMetadataFixtureExecutionPolicy private immutable policy;
-    constructor(address token,address strategy){fixedZZZ=token;policy=IMetadataFixtureExecutionPolicy(strategy);}
-    function executionTarget(bytes32 pool)external view returns(int24,int24,uint160){return policy.target(pool);}
-    function executionValidatePrice(bytes32 pool)external view returns(uint160){return policy.validatePrice(pool);}
-}
-
 /// @dev TEST ONLY malformed fixed-NFT binding; proves atomic lifecycle rollback.
 contract RejectLifecycleMetadata {
     address public immutable access;
@@ -134,7 +117,6 @@ contract MetadataLifecycleControllerNotificationsTest is Test {
 /// methods. The parent uses mocked venue/prices/VRF; select only the new
 /// testMetadataLifecycle* methods rather than rerunning unchanged inherited tests.
 contract MetadataLifecycleExitNotificationsTest is HolderCollectiveExitTest {
-    bool private metadataExecutionFixtureBound;
     // TEST ONLY decoder for the actual canonical NFT tokenURI, copied from the
     // existing metadata fixture rather than substituting a renderer snapshot.
     function _metadataJSON(uint256 id)private view returns(string memory){
@@ -171,11 +153,6 @@ contract MetadataLifecycleExitNotificationsTest is HolderCollectiveExitTest {
         vrf.fulfill(nft.requestOf(id),0,0);nft.finalizeTraits(id);
     }
     function _metadataActivate(address owner)private returns(uint256 id){
-        if(!metadataExecutionFixtureBound){
-            MetadataLifecycleExecutionFixture fixture=new MetadataLifecycleExecutionFixture(address(token),ac.module(Ids.STRATEGY));
-            vm.mockCall(address(venue),abi.encodeWithSignature("executionStrategy()"),abi.encode(address(fixture)));
-            metadataExecutionFixtureBound=true;
-        }
         id=_metadataMint(owner);vm.prank(owner);
         vault.activate{value:100 ether}(id,poolId,100 ether,100 ether,1,block.timestamp+100);
     }

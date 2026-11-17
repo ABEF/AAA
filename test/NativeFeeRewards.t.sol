@@ -111,7 +111,7 @@ contract NativeFeeRewardsTest is Test {
     function setUp()public{_setup(false);}
     function _setup(bool hostile)private{
         ac=new NativeFeeAccess();ProtocolPolicyFixture.bind(address(ac));pools=new MockPools();rewards=new NativeConvertedCreditFixture(address(ac));
-        vault=new NativeFeeVault(rewards);nft=new ZZZNFT(address(ac),"ipfs://", address(new ZZZNFTMetadata(address(ac))));nft.setMintEnd(uint64(block.timestamp+3650 days));
+        vault=new NativeFeeVault(rewards);nft=new ZZZNFT(address(ac),"ipfs://TEST-ONLY/", address(new ZZZNFTMetadata(address(ac))));nft.setMintEnd(uint64(block.timestamp+3650 days));
         membership=new ZZZMembership(address(ac));fees=new ZZZFeeController(address(ac));canonical=new ZZZFeesCanonical(address(ac),address(fees));
         if(hostile){captureToken=new NativeFeeCaptureToken(address(fees),address(this));token=captureToken;}
         else token=new MockToken(18);

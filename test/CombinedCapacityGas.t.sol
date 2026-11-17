@@ -5,6 +5,8 @@ import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
 
 import {SinglePositionFixture} from "./helpers/PortfolioFixture.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
+import {ZZZCustodyValidation} from "../src/ZZZCustodyValidation.sol";
+import {AccountingExecutionFixture} from "./helpers/AccountingExecutionFixture.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
@@ -53,7 +55,10 @@ contract CombinedCapacityVenue is ERC721 , SinglePositionFixture {
     mapping(bytes32 => uint256) private fee;
     uint256 private next = 1;
 
-    constructor(MockPools registry) ERC721("Combined-capacity mock", "CCM") { pools = registry; }
+    address public immutable executionStrategy;
+    constructor(MockPools registry,address controller,address strategy) ERC721("Combined-capacity mock", "CCM") {
+        pools = registry;executionStrategy=address(new AccountingExecutionFixture(controller,strategy));
+    }
     function positionManager() external view returns (address) { return address(this); }
     function balanceContext(bytes32) external pure returns(bytes32){return bytes32(0);}
     function balance(bytes32,uint256,uint256 a0,uint256 a1,uint256) external payable returns(uint256,uint256) {
@@ -97,6 +102,9 @@ contract CombinedCapacityVenue is ERC721 , SinglePositionFixture {
 /// mocked access, tokens, oracle feeds, randomness, strategy and liquidity venue.
 /// Cold gasleft deltas exclude construction, intrinsic/calldata gas and refunds.
 contract CombinedCapacityGasTest is Test {
+    // TEST ONLY: this harness is the bound Migration parent. Expose the real
+    // fixed validation child used by reservation admission; no bypass reply.
+    ZZZCustodyValidation public validation;
     uint256 private constant LOCAL_GAS_BUDGET = 12_000_000;
     uint256 private constant SUPPORTED_BUCKETS = 4;
     address private constant OWNER = address(0xA11CE);
@@ -137,7 +145,7 @@ contract CombinedCapacityGasTest is Test {
         pools = new MockPools();
         feed = new MockFeed(8, 1e8);
         policy = new VaultPolicyMock();
-        venue = new CombinedCapacityVenue(pools);
+        venue = new CombinedCapacityVenue(pools,address(access),address(policy));
         ProtocolPolicyFixture.recipient(address(access),TREASURY);vault=new ZZZVault(address(access),block.chainid,address(new ZZZMigrationBudget(address(access))));
         assertEq(vault.MAX_BUCKETS(), SUPPORTED_BUCKETS, "Requalify combined gas before changing capacity");
         nft = new ZZZNFT(address(access), "", address(new ZZZNFTMetadata(address(access)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));
@@ -157,7 +165,7 @@ contract CombinedCapacityGasTest is Test {
         access.bind(Ids.STRATEGY, address(policy));
         access.bind(Ids.POOLS, address(pools));
         access.bind(Ids.ORACLE, address(oracle));
-        access.bind(Ids.MIGRATION, address(this));
+        access.bind(Ids.MIGRATION, address(this));validation=new ZZZCustodyValidation(address(access));
         access.bind(keccak256("ZZZMigrationReceiver"), address(0x987));
         for (uint256 i; i < 16; ++i) {
             MockToken token = faultCurrencyFixture && i < 16 ? new CapacityRoyaltyFaultToken() : new MockToken(0);

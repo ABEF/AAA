@@ -564,7 +564,7 @@ Strategy maintenance3 / confirmation3 / portfolio2, Budget compound4, LP routing
 emergency2, Access.GOVERNANCE_VERSION2 and
 `SCHEMA()==keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10")`.
 Verify exact chain/runtime/module/helper pins and the [fresh profile](POSITION_V7.md).
-The [current normal/static source evidence](../reports/operator-behavior-followup-20261117/VERIFICATION.md)
+The [current normal/static source evidence](../reports/test-seal-deep-review-20261117/VERIFICATION.md)
 and historical [fee-flow evidence](../reports/fee-flow-audit-20261107/VERIFICATION.md)
 and [actual Entry3 follow-up](../reports/source9-actual-entry-20261109/VERIFICATION.md)
 retain their distinct source, fixture and execution limits. Historical Entry3
@@ -606,12 +606,12 @@ part of this reconciliation. Preserve existing chains, journals and websites.
 
 | Tool | Inputs | Example | Purpose |
 | --- | --- | --- | --- |
-| `prepare-deployment.py` | Reviewed input JSON, new output file; trusted build ID | `python scripts/prepare-deployment.py --build-profile operator-seal-20261117 --input path/to/reviewed.json --output path/to/new-plan.json` | Review unsigned constructor plan |
+| `prepare-deployment.py` | Reviewed input JSON, new output file; trusted build ID | `python scripts/prepare-deployment.py --build-profile seal-boundaries-20261117 --input path/to/reviewed.json --output path/to/new-plan.json` | Review unsigned constructor plan |
 | `check-local-deployment-evidence.py` | Captured ZIP/directory; optional relocated trusted build directory | `python scripts/check-local-deployment-evidence.py --evidence reports/local-deployment-rehearsal-20261115/evidence.zip --output path/to/new-result.json` | Reconcile captured local construction |
 | `check-market-evidence.py` | Exact dated16November market ZIP | `python scripts/check-market-evidence.py --evidence reports/real-market-refresh-20261116/evidence.zip` | Recompute dated market summaries |
-| `rehearse-local-deployment.py` | Reviewed Anvil executable, new directory, trusted build ID | `python scripts/rehearse-local-deployment.py --build-profile operator-seal-20261117 --anvil C:/reviewed-tools/anvil.exe --output C:/local-reviews/new-run` | Measure isolated constructor execution |
+| `rehearse-local-deployment.py` | Reviewed Anvil executable, new directory, trusted build ID | `python scripts/rehearse-local-deployment.py --build-profile seal-boundaries-20261117 --anvil C:/reviewed-tools/anvil.exe --output C:/local-reviews/new-run` | Measure isolated constructor execution |
 
-Current planning defaults to `operator-seal-20261117`; historical
+Current planning defaults to `seal-boundaries-20261117`; historical
 `metadata2-20261116` and legacy
 `manual-reference-20261115` remains separately pinned. The checker selects only
 the captured closed build identity, and admits an absent ID only with the original
@@ -655,7 +655,7 @@ exact44-call phase and feeds them to the unchanged strict constructor reviewer.
 | Tool/action | Required inputs | Example | Effect |
 | --- | --- | --- | --- |
 | Prepare conditional sequence | Existing constructor JSON, public direct-EOA sender, canonical decimal starting nonce, new output file | `python scripts/prepare-deployment-sequence.py --input /review/input.json --deployer REVIEWED_PUBLIC_EOA --starting-nonce REVIEWED_DECIMAL_NONCE --output /review/new-sequence.json` | Review conditional deployment sequence |
-| Select trusted build | Explicit closed build ID | Add `--build-profile operator-seal-20261117` | Select exact reviewed artifacts |
+| Select trusted build | Explicit closed build ID | Add `--build-profile seal-boundaries-20261117` | Select exact reviewed artifacts |
 
 Replace placeholders; no private key/RPC is used. All44 calls must be ordinary
 successful transactions from the actual same bootstrap EOA, with no unexpected
@@ -684,7 +684,7 @@ as the conditional pre-seal caller and missing inputs explicitly blocked.
 | Tool/action | Required inputs | Example | Effect |
 | --- | --- | --- | --- |
 | Prepare setup review | Reviewed copy of `config/preseal-preparation.example.json`; NEW output path | `python scripts/prepare-preseal.py --input /review/preseal.json --output /review/NEW-review.json` | Review conditional setup calls |
-| Pin current build | Exact supported current build | Add `--build-profile operator-seal-20261117` | Freeze current ABI selection |
+| Pin current build | Exact supported current build | Add `--build-profile seal-boundaries-20261117` | Freeze current ABI selection |
 | Inspect missing values | Output `missing_inputs` and each step's fields | Review `steps[].missing_inputs` | Resolve explicit setup blockers |
 | Inspect deliberate stops | Output `explicit_operating_stops` | Empty venues, converterOFF, maximumGap0 | Identify intentionally stopped operations |
 
@@ -763,6 +763,28 @@ adoption. Read calls need no wallet signature or chain transaction gas payment.
 Provider computation/billing may still apply. Changing only docs requires no
 service or keeper restart; deploying/adopting new runtimes is separately reviewed.
 
+### Review every irreversible boundary
+
+Use the [complete before-seal guide](SEAL_READINESS.md) and its source inventory.
+Primary mint is OpenSea through SeaDrop; OpenSea still reads the collection's
+`tokenURI`, so its fixed artwork/renderer remain our responsibility. The new
+scheme check rejects bare `ipfs://` / `ar://`, not wrong content or unavailable
+files. Review the actual chosen URI length and every evolution path.
+
+The unsigned pre-seal output now includes `seal_boundary_review` for all39
+construction instances and selected critical reads. Every actual identity and
+seal-readiness field stays unverified; complete offline inputs do not authorize
+sealing. In particular, verify pre-seal SeaDrop and LP-converter bindings, the
+fixed native venue graph, correct home chain, initial VRF and still-future sale
+end. A previously configured mint end can expire during bootstrap and become
+unextendable even with zero NFTs. Generic `Access.seal` is not a full release
+validator and does not automatically reject every such omitted integration.
+
+An initially unset `mintEnd` can still be configured after seal. Bind SeaDrop
+and the LP converter before seal, but schedule the first deadline write near a
+viable launch; an unset end is different from an expired nonzero end. Sale terms
+and conversion routes retain their supported future configuration controls.
+
 ### Verify artwork before sealing
 
 The current controller rejects `Access.seal()` while
@@ -773,7 +795,7 @@ evolution paths, then independently complete every other seal prerequisite.
 The nonempty check does not validate a CID, hosted content or OpenSea retrieval.
 A rejected seal preserves bootstrap and bindings; a successful seal erases
 bootstrap and permanently prevents changing the artwork root. Do not seal merely
-because this one read succeeds. Use the fresh `operator-seal-20261117` build
+because this one read succeeds. Use the fresh `seal-boundaries-20261117` build
 family; older construction receipts retain their original controller scope.
 
 ### Fixed ZZZ setup order
@@ -2488,6 +2510,30 @@ pool or a fresh pre-deployment candidate, rather than rewriting off-chain state.
 **Reopen only after validation.** Read the complete current config, set the intended enabled flags and call `configureNative`. After terminal exit only Ready-phase, deposits-disabled reserve venues may be restored. Full fresh token/price/admission/venue checks still apply; a failed attempt leaves the stopped config unchanged. A previously approved operation can still be executable: cancel obsolete approvals and coordinate keeper/user transactions before reopening. A stop cannot undo a mined transaction.
 
 Both stop and re-enable are exact immediate governance operations; there is no new guardian or keeper permission. Global pause does not block these configuration controls. Preparation, frozen/importing/retired lifecycle states do block them: cancel reversible preparation first if configuration is needed, or use permitted drains. The existing guardian global pause remains available for incidents. `operationsEnabled=false` is not a universal freeze: claims, transfers and some receipt/harvest/exit paths are separate. For a protocol-wide incident use the stop matrix.
+
+### Reserve a correct bucket without moving LP
+
+1. Finish the complete module and Migration/validator bindings; read the current
+   `Vault.canonicalModule()` and `Migration.validation()` addresses.
+2. For a new bucket, read `VaultCanonical.bucketIdentity(poolId)` with the exact
+   admitted pool ID. Use its uint256 result unchanged. It preserves canonical
+   origin through replacements; do not hash the current Vault address manually.
+3. Inspect `Vault.bucketCount()`, `bucketAt(index)` and `poolBucket(poolId)`.
+   Governance calls `Vault.reservePool(poolId,bucketId)` with zero ETH. New-ID
+   typos reject before capacity/alias writes. Repeating the same mapping is
+   idempotent; reassignment remains forbidden. Valid reservations are permanent.
+4. For a pool move, preserve the existing registered bucket. An alias consumes
+   no new bucket slot. The read-only
+   `CustodyValidation.validReservationIdentity(poolId,bucketId)` checks identity
+   only; it neither grants authority nor validates pool admission/capacity.
+5. Verify `PoolReserved`, the mapping and count. Reservation does not move funds,
+   enable deposits or create LP. Do not alias an empty other-pool reservation as
+   a fresh activation destination: activation still needs its canonical domain.
+   Use the separately reviewed move/resume procedure for actual existing LP.
+
+External swaps do not change these IDs. A different deployment target/lifecycle
+still needs refreshed review. No restart is required for the contract call;
+matching new runtimes/services are adopted only through their separate procedure.
 
 ## Custody and LP migration
 
@@ -4237,7 +4283,7 @@ transaction value0. Artwork and shares change only after confirmed actual LP.
 
 ## Operator call tables
 
-Source-bound coverage: **963 functions, 40 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
+Source-bound coverage: **964 functions, 40 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
 
 Four columns only; explanations contain at most five words. Click a function for outputs, full caller restrictions and safety conditions. These are **unresolved input templates**, not simulated or approved transactions. Replace ALL uppercase symbols from the reviewed deployment/current snapshot. Never paste a symbol, guessed address, stale hash or illustrative setting into a wallet.
 
@@ -4341,7 +4387,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `K` [Vault.rebalance](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256` | `rebalance(BUCKET_ID, MINIMUM_LIQUIDITY, UNIX_DEADLINE)` | Replace shared LP positions |
 | `H` [Vault.activate](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`poolId: bytes32`<br>`amount0: uint256`<br>`amount1: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256`<br>`value: wei` (separate) | `activate(NFT_ID, POOL_ID, ETH_INPUT_WEI, 0, MINIMUM_LIQUIDITY, UNIX_DEADLINE); value=ETH_INPUT_WEI wei` | Activate dormant NFT liquidity |
 | `H` [Vault.increase](CONTRACT_FUNCTIONS.md#zzzvault) | `id: uint256`<br>`amount0: uint256`<br>`amount1: uint256`<br>`minimumLiquidity: uint128`<br>`deadline: uint256`<br>`value: wei` (separate) | `increase(NFT_ID, ETH_INPUT_WEI, 0, MINIMUM_LIQUIDITY, UNIX_DEADLINE); value=ETH_INPUT_WEI wei` | Grow existing attached LP |
-| `G` [Vault.reservePool](CONTRACT_FUNCTIONS.md#zzzvault) | `pool: bytes32`<br>`bucket: uint256` | `reservePool(POOL_ID, BUCKET_ID)` | Reserve historical custody capacity |
+| `G` [Vault.reservePool](CONTRACT_FUNCTIONS.md#zzzvault) | `pool: bytes32`<br>`bucket: uint256` | `reservePool(POOL_ID, BUCKET_ID)` | Reserve canonical custody capacity |
 
 <details>
 <summary>Read functions and constants (23)</summary>
@@ -5745,7 +5791,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 #### CustodyValidation
 
 <details>
-<summary>Read functions and constants (14)</summary>
+<summary>Read functions and constants (15)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -5758,6 +5804,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [CustodyValidation.emergencyFingerprint](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `request` [EmergencyRebalance](#input-emergencyrebalance-31ee79ed44cb) | `emergencyFingerprint(["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"])` | Read emergency fingerprint |
 | `R` [CustodyValidation.migration](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | None | `migration()` | Read migration |
 | `R` [CustodyValidation.residualMainFingerprint](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `bucket: uint256` | `residualMainFingerprint(BUCKET_ID)` | Read residual main fingerprint |
+| `R` [CustodyValidation.validReservationIdentity](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `pool: bytes32`<br>`bucket: uint256` | `validReservationIdentity(POOL_ID, BUCKET_ID)` | Test bucket identity only |
 | `R` [CustodyValidation.validateEmergency](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `r` [EmergencyRebalance](#input-emergencyrebalance-f70a67c0dc65) | `validateEmergency(["BUCKET_ID", "CUSTODY_HASH", "31", "LOWER_TICK", "UPPER_TICK", "SWAP_POOL", "ZERO_FOR_ONE", "AMOUNT_IN", "MINIMUM_OUT", "MINIMUM_LIQUIDITY", "UNIX_DEADLINE", "REVIEW_HASH"])` | Validate full emergency request |
 | `R` [CustodyValidation.validateParking](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `encoded: bytes` | `validateParking(ENCODED)` | Read validate parking |
 | `R` [CustodyValidation.validateZZZ](CONTRACT_FUNCTIONS.md#zzzcustodyvalidation) | `token: address`<br>`codeHash: bytes32`<br>`reviewHash: bytes32` | `validateZZZ(FIXED_ZZZ_ADDRESS, TOKEN_CODE_HASH, REVIEW_HASH)` | Validate fixed ZZZ binding |

@@ -1,0 +1,6 @@
+test_shared_struct_keeps_operation_specific_examples_and_meanings (tests_python.test_operator_input_annotations.OperatorInputAnnotationTests.test_shared_struct_keeps_operation_specific_examples_and_meanings) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.066s
+
+OK

@@ -1,0 +1,7 @@
+{
+  "scope": "Eight reservation-only methods passed before the fixedZZZ getter was added. Reconstructed exact prior helper by removing only this later getter; older full test artifact was overwritten by recompilation, so this is explicitly not a retained original compiled artifact.",
+  "current_helper_sha256": "78b16a456ec5bcf4ebd0e3abbd8a9298b769c54796e88973e2c288e7ca89f592",
+  "reconstructed_previous_helper_sha256": "fed51ca59eef5d0faa95bf42b6d663fd2e22b43485ce087eaf94596e050722e6",
+  "difference": "function fixedZZZ() external view returns(address) { return math.fixedZZZ(); }",
+  "eight_prior_methods_repeated": false
+}

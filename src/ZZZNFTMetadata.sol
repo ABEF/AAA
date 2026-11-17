@@ -61,9 +61,9 @@ contract ZZZNFTMetadata {
     function validateBaseURI(string memory uri) external pure {
         bytes memory value=bytes(uri);
         if(value.length==0)return;
-        bool ipfs=value.length>=7 && value[0]=="i" && value[1]=="p" && value[2]=="f" &&
+        bool ipfs=value.length>7 && value[0]=="i" && value[1]=="p" && value[2]=="f" &&
             value[3]=="s" && value[4]==":" && value[5]=="/" && value[6]=="/";
-        bool arweave=value.length>=5 && value[0]=="a" && value[1]=="r" && value[2]==":" &&
+        bool arweave=value.length>5 && value[0]=="a" && value[1]=="r" && value[2]==":" &&
             value[3]=="/" && value[4]=="/";
         if(!ipfs && !arweave)revert InvalidConfiguration();
     }

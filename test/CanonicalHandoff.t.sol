@@ -145,7 +145,7 @@ contract CanonicalHandoffTest is Test {
     function _deploySystemWithChain(bool sealNow, bool admitAssets, uint256 homeChain) private returns (System memory s) {
         s.ac = new ZZZAccessController(address(this), address(this), GUARDIAN); ProtocolPolicyFixture.bind(address(s.ac));
         s.pools = new PreparationPools(address(s.ac));
-        s.venue = new CanonicalNativeVenue(address(s.ac),address(token0));
+        s.venue = new CanonicalNativeVenue(address(s.ac),address(token0),address(0));
         vm.deal(address(s.venue),10000000);
         s.vault = new ZZZVault(address(s.ac),homeChain,address(new ZZZMigrationBudget(address(s.ac))));
         ProtocolPolicyFixture.recipient(address(s.ac),TREASURY);
@@ -794,12 +794,17 @@ contract CanonicalHandoffTest is Test {
         assertEq(destination.nft.mintedCount(),0);assertEq(destination.nft.remainingToReveal(),1000);
     }
 
-    function testSatelliteConfiguredDestinationCannotPrepareCanonicalImport() public {
-        destination = _deploySystemWithChain(false, true, block.chainid + 1);
-        vm.expectRevert(); destination.handoff.prepareImport(address(source.ac));
-        assertEq(destination.ac.canonicalState(), 0);
+    // The old import-time rejection scenario is historical: the fresh same-chain
+    // profile now rejects the mismatched immutable home identity at construction.
+    function testForeignHomeChainRejectedAtVaultConstruction() public {
+        address budget = address(destination.vault.migrationBudget());
+        assertEq(destination.ac.canonicalState(), 2); // Already prepared, inert importer.
+        vm.expectRevert(bytes4(keccak256("InvalidConfiguration()")));
+        new ZZZVault(address(destination.ac),block.chainid+1,budget);
+        assertEq(destination.ac.canonicalState(), 2);
         assertEq(source.ac.canonicalState(), 0);
-        uint256 id = _mint(source, 0, 0); assertEq(source.nft.ownerOf(id), ALICE);
+        assertEq(destination.vault.canonicalChainId(), block.chainid);
+        assertEq(source.vault.canonicalChainId(), block.chainid);
     }
 
     function testPartialFundingAbortReturnsOnlyTransferredBacking() public {

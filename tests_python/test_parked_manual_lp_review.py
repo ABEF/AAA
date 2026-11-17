@@ -251,7 +251,7 @@ class ParkedManualLPReviewTests(unittest.TestCase):
                 self.f.policy['projection_sha256']=Projection(self.f.config,self.rpc,clock=lambda:4000).identity
                 self.rpc.price_failure=True
                 if variant=='revision':
-                    self.rpc.after_estimate=lambda:self.put('oracle','executionSourceRevision()',2)
+                    self.rpc.after_initial_exact=lambda:self.put('oracle','executionSourceRevision()',2)
                 if variant=='active_context':self.put('oracle','executionActive()',1)
                 if variant=='capability':self.put('liquidity','EXECUTION_PRICE_VERSION()',0)
                 if variant=='routing':self.put('liquidity','LP_ROUTING_VERSION()',2)
@@ -262,7 +262,9 @@ class ParkedManualLPReviewTests(unittest.TestCase):
                     self.assertEqual(1,result['final_market_observations']['execution_price']['source_revision'])
                     self.assertEqual(4,len(self.rpc.simulations))
                 else:
-                    with self.assertRaises((ValueError,RpcError)):self.prepare()
+                    with self.assertRaises((ValueError,RpcError)) as caught:self.prepare()
+                    self.assertEqual('final_snapshot' if variant=='revision' else 'initial_snapshot',
+                        caught.exception.manual_stage)
                     self.assertEqual(2 if variant=='revision' else 0,len(self.rpc.simulations))
                 self.assertEqual([],self.calls('priceBounds(address)'))
 
@@ -293,8 +295,9 @@ class ParkedManualLPReviewTests(unittest.TestCase):
                     if variant=='registry':self.put('pools','configurationRevision()',9)
                     if variant=='secondary_count':self.q.secondary_count=1
                     if variant=='runtime':self.f.f.rpc.codes[self.c['liquidity']]='0x6000'
-                self.rpc.after_estimate=change
-                with self.assertRaises((RpcError,ValueError)):self.prepare()
+                self.rpc.after_initial_exact=change
+                with self.assertRaises((RpcError,ValueError)) as caught:self.prepare()
+                self.assertEqual('final_snapshot',caught.exception.manual_stage)
                 self.assertEqual(2,len(self.rpc.simulations))
 
     def test_noncanonical_missing_getters_never_become_zero(self):

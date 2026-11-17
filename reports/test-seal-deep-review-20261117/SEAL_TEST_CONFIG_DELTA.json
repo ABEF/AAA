@@ -1,0 +1,12 @@
+{
+  "scope": "sole test public-fixture read permission; no compiler/size/gas/ffi change",
+  "baseline_git": "003c8d8dc88b60cbfbcc8caf61fa864c6487b40f",
+  "working_before_raw_sha256": "35d073e0cad1e77849c99409c7492d115eb286f5e38839db8b32993646f170c7",
+  "working_after_raw_sha256": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72",
+  "normalized_baseline_equivalence_before": true,
+  "all_other_parsed_profile_fields_equal": true,
+  "added_permission": {
+    "access": "read",
+    "path": "./test/fixtures/seal-critical-003c8d8"
+  }
+}

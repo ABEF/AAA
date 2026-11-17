@@ -1,0 +1,20 @@
+test_actual_foundry_fixture_permissions_match_effective_normal_validation (tests_python.test_verification_profile.VerificationProfileTests.test_actual_foundry_fixture_permissions_match_effective_normal_validation) ... ERROR
+
+======================================================================
+ERROR: test_actual_foundry_fixture_permissions_match_effective_normal_validation (tests_python.test_verification_profile.VerificationProfileTests.test_actual_foundry_fixture_permissions_match_effective_normal_validation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_verification_profile.py", line 50, in test_actual_foundry_fixture_permissions_match_effective_normal_validation
+    result,calls=self.inspect(c)
+                 ^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_verification_profile.py", line 36, in inspect
+    result=profile.inspect_profile(str(executable),{},run)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\scripts\verify-normal-profile.py", line 60, in inspect_profile
+    raise ValueError('Effective verification paths or permissions differ from normal')
+ValueError: Effective verification paths or permissions differ from normal
+
+----------------------------------------------------------------------
+Ran 1 test in 0.033s
+
+FAILED (errors=1)

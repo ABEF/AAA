@@ -1,0 +1,28 @@
+{
+  "kind": "three-object size probe only; not48normal gates",
+  "compiler_exit": 0,
+  "seconds": 8.730020761489868,
+  "input_sha256": "dbeca1d92b3031bfb4e01ab7457e4acad5b513867561b663adcfcde3a2c4ac72",
+  "source_sha256": {
+    "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+    "src/ZZZCustodyValidation.sol": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b",
+    "src/ZZZVaultCanonical.sol": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb"
+  },
+  "sizes": [
+    {
+      "contract": "ZZZMigrationBudget",
+      "runtime": 24507,
+      "creation": 25311
+    },
+    {
+      "contract": "ZZZCustodyValidation",
+      "runtime": 18868,
+      "creation": 19583
+    },
+    {
+      "contract": "ZZZMigration",
+      "runtime": 24005,
+      "creation": 44334
+    }
+  ]
+}

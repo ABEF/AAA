@@ -54,7 +54,8 @@ def inspect_profile(forge='forge',environment=None,run=None):
         raise ValueError('Normal verification requires the pinned compiler selection')
     reviewed=_policy.reviewed_effective_config(config,'0.8.26')
     extra={'out':'out','cache_path':'cache','skip':[],
-           'fs_permissions':[{'access':'write','path':'./deployments'}]}
+           'fs_permissions':[{'access':'write','path':'./deployments'},
+                             {'access':'read','path':'./test/fixtures/seal-critical-003c8d8'}]}
     for key,value in extra.items():
         if key not in config or type(config[key]) is not type(value) or config[key]!=value:
             raise ValueError('Effective verification paths or permissions differ from normal')

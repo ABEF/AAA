@@ -140,6 +140,18 @@ class ManualFrozenGasTests(unittest.TestCase):
         spec=importlib.util.spec_from_file_location('manual_frozen_gas_reference',path)
         module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
         self.assertTrue(callable(module.b.reviewed_execution_gas))
+        # A successful import alone never proved rejection of changed bytes.
+        # Exercise the actual guard on a disposable copy before it can import
+        # the changed base; no chain, executable launch or source edit occurs.
+        with tempfile.TemporaryDirectory() as directory:
+            copied=Path(directory)/path.name
+            copied.write_bytes(path.read_bytes())
+            base=Path(directory)/'rehearse-manual-recovery.py'
+            base.write_bytes(path.with_name(base.name).read_bytes()+b'\n# changed copied source\n')
+            changed=importlib.util.spec_from_file_location('manual_changed_copy',copied)
+            candidate=importlib.util.module_from_spec(changed)
+            with self.assertRaisesRegex(ValueError,'Reviewed base launcher source differs'):
+                changed.loader.exec_module(candidate)
 
 
 if __name__=='__main__':unittest.main()

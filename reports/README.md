@@ -1,5 +1,7 @@
 # Verification evidence
 
+The [test and irreversible-setup review](test-seal-deep-review-20261117/REVIEW.md) fixes chain/URI/reservation defects and strengthens specific test oracles. Current build is seal-boundaries-20261117; no release sign-off, deployment, service or website adoption is implied. Real dependencies, complete fees/gas, operations and independent review remain open.
+
 The [behavior follow-up](operator-behavior-followup-20261117/REVIEW.md) fixes irreversible empty-artwork sealing and keeper due-clock lag, strengthens royalty recovery checks and updates obsolete canonical test fixtures. Actual keeper revoke/replace and LP execution checks retain their stated local scope. Extra compound waiting remains service-only by explicit operator choice; production is not approved.
 
 [Operator source/input audit](operator-input-audit-20261116/REVIEW.md):92 management/nominated actions,317 input leaves, five confirmed tool/documentation corrections and30 distinct focused methods. No Solidity or environment change; source review is not full dynamic or independent approval.

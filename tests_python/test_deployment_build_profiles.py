@@ -30,26 +30,40 @@ class DeploymentBuildProfileTests(unittest.TestCase):
         return copy.deepcopy(cls._bindings)
     def test_default_planner_accepts_current_metadata_build_and_tags_identity(self):
         result=D.prepare(D.template())
-        self.assertEqual(result['accepted_build']['profile'],'operator-seal-20261117')
+        self.assertEqual(result['accepted_build']['profile'],'seal-boundaries-20261117')
         self.assertEqual(result['accepted_build']['source_count'],100)
         self.assertEqual(result['accepted_build']['normal_size_gates'],48)
         self.assertEqual(len(result['instances']),39)
         self.assertFalse(result['ready_for_submission'])
         self.assertFalse(result['production_approved'])
 
+    def test_scheme_only_artwork_is_rejected_before_artifacts_or_calldata(self):
+        for root in ('ipfs://','ar://'):
+            value=self.complete();value['inputs']['base_uri']=root
+            with self.subTest(root=root),patch.object(D,'Artifacts',side_effect=AssertionError('invalid input must fail first')):
+                with self.assertRaisesRegex(D.PlanError,'invalid_uri'):
+                    D.prepare(value)
+        # Draft setup and real suffixes retain their previous meanings; no CID
+        # availability or content validity is inferred by the offline planner.
+        for root in ('','ipfs://fresh/é','ar://reviewed-root'):
+            value=self.complete();value['inputs']['base_uri']=root
+            self.assertEqual(root,D.validate(value)['inputs']['base_uri'])
+
     def test_seal_fix_keeps_previous_objects_historical_without_automatic_fallback(self):
-        self.assertEqual(D.PREVIOUS_BUILD_PROFILE, 'metadata2-20261116')
+        self.assertEqual(D.PREVIOUS_BUILD_PROFILE, 'operator-seal-20261117')
+        self.assertEqual(D.METADATA_BUILD_PROFILE, 'metadata2-20261116')
+        self.assertIn(D.METADATA_BUILD_PROFILE,D.TRUSTED_BUILDS)
         previous = D.TRUSTED_BUILDS[D.PREVIOUS_BUILD_PROFILE]
         for name, expected in previous['files'].items():
             self.assertEqual(D.sha((D.ROOT / previous['directory'] / name).read_bytes()), expected)
         old = json.loads(gzip.decompress((D.ROOT / previous['directory'] / 'compiler-output.json.gz').read_bytes()))
-        old_access = old['contracts']['src/ZZZAccessController.sol']['ZZZAccessController']
-        current_access = D.Artifacts().contract('ZZZAccessController')[1]
-        self.assertNotEqual(old_access['evm']['bytecode']['object'], current_access['evm']['bytecode']['object'])
-        self.assertEqual(old_access['abi'], current_access['abi'])
+        old_vault = old['contracts']['src/ZZZVault.sol']['ZZZVault']
+        current_vault = D.Artifacts().contract('ZZZVault')[1]
+        self.assertNotEqual(old_vault['evm']['bytecode']['object'], current_vault['evm']['bytecode']['object'])
+        self.assertEqual(old_vault['abi'], current_vault['abi'])
         with self.assertRaisesRegex(D.PlanError, 'source_changed'):
             D.prepare(D.template(), build_profile=D.PREVIOUS_BUILD_PROFILE)
-        self.assertEqual(D.prepare(D.template())['accepted_build']['profile'], 'operator-seal-20261117')
+        self.assertEqual(D.prepare(D.template())['accepted_build']['profile'], 'seal-boundaries-20261117')
 
     def test_checker_rejects_duplicated_binding_observation_coverage(self):
         original=M.Evidence
@@ -74,7 +88,7 @@ class DeploymentBuildProfileTests(unittest.TestCase):
             self.assertLessEqual(row['full_initcode_bytes'],49152)
             if row['full_initcode_hex']:self.assertEqual(len(bytes.fromhex(row['full_initcode_hex'][2:])),row['full_initcode_bytes'])
         by_role={row['role']:row for row in result['instances']}
-        self.assertEqual(by_role['metadata_renderer']['runtime_bytes'],24121)
+        self.assertEqual(by_role['metadata_renderer']['runtime_bytes'],24119)
         self.assertEqual(by_role['nft_canonical']['runtime_bytes'],23130)
         self.assertEqual(by_role['access']['full_initcode_bytes'],48377)
         self.assertEqual(by_role['oracle']['runtime_margin'],3)

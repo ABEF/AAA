@@ -1,6 +1,6 @@
 # AAA / ZZZ PoPL project instructions
 
-The [behavior follow-up](reports/operator-behavior-followup-20261117/REVIEW.md) fixes irreversible empty-artwork sealing and keeper due-clock lag, strengthens royalty recovery checks and updates obsolete canonical test fixtures. Actual keeper revoke/replace and LP execution checks retain their stated local scope. Extra compound waiting remains service-only by explicit operator choice; production is not approved.
+The [test and irreversible-setup review](reports/test-seal-deep-review-20261117/REVIEW.md) individually assesses the earlier30 and later29 focused methods, strengthens weak assertions and repairs stale execution fixtures. Fresh source rejects foreign-home Vaults, bare artwork schemes and incorrect new reservation IDs; existing pool-move aliases remain. The current trusted build is seal-boundaries-20261117. OpenSea minting still uses the NFT metadata root. Selected-release bindings, content, provider/market/operating qualification and independent approval remain open; no live environment is changed.
 
 The [unsigned pre-seal planner](reports/preseal-planner-20261116/REVIEW.md) now prepares twelve ordered configuration
 families against the trusted current ABI. Unknown own/dependent inputs retain
@@ -534,9 +534,9 @@ the November3 authority report below remains historical for those contexts.
   maps310original finding rows, deleted guides,162ledger versions and398old
   unchecked lines. Use original pointers plus current decisions; never close a
   finding just by age/topic or revive creator/bridge paths from old reports.
-- CI/check-slither-review selects the [current strict review](reports/operator-behavior-followup-20261117/static-review.json):570records,
- 5individually current contexts/565unique exact referenced-source reuse. The
- earlier manual565(113/452) retains its original source scope.
+- CI/check-slither-review selects [the final strict review](reports/test-seal-deep-review-20261117/static-final-review.json):573records,
+ 22individually current contexts/551unique exact referenced-source reuse. Earlier
+ stage2(571) and controller(570) records retain their exact source scopes.
  The earlier gas-feasibility567(13/554) remains historical at its exact source.
  The corrected daily567(162/405) and previous541(45/496) retain their original scope.
  The daily errata correct only two authority descriptions; other565records are

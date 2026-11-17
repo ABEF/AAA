@@ -107,7 +107,7 @@ contract SeaDropFullHandoffTest is Test {
         s.access=new ZZZAccessController(address(this),KEEPER,GUARDIAN);
         s.policy=ProtocolPolicyFixture.bind(address(s.access),CREATOR);
         s.pools=new PreparationPools(address(s.access));
-        s.venue=new CanonicalNativeVenue(address(s.access),address(token));
+        s.venue=new CanonicalNativeVenue(address(s.access),address(token),address(0));
         vm.deal(address(s.venue),1 ether);
         s.vault=new ZZZVault(address(s.access),block.chainid,address(new ZZZMigrationBudget(address(s.access))));
         s.nft=new ZZZNFT(address(s.access),"ipfs://TEST-ONLY-FULL-HANDOFF/",

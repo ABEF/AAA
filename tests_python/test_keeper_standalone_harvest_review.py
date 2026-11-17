@@ -46,17 +46,30 @@ class StandaloneHarvestTimingTests(unittest.TestCase):
         self.assertEqual({},self.k.state['spent']);self.assertEqual(1,self.k.skipped_buckets)
 
     def test_enabled_harvest_refreshes_due_clock_while_disabled_keeps_no_extra_head(self):
+        head_counts={}
         for disabled in (False,True):
             with self.subTest(disabled=disabled):
                 self.k.maintenance['harvest']=not disabled
                 self.k.state['last']['harvest:7']=self.rpc.now
                 original=self.k._head
-                with patch.object(self.k,'_head',wraps=original) as head:submit=self.cycle()
-                before=head.call_count
+                with patch.object(self.k,'_head',wraps=original) as head:not_due=self.cycle()
+                head_counts[disabled]=head.call_count
+                not_due.assert_not_called()
                 self.k.state['last']['harvest:7']=self.rpc.now-3600
-                with patch.object(self.k,'_head',wraps=original) as head:self.cycle()
-                self.assertEqual(before,head.call_count)
-                submit.assert_not_called()
+                before_state=copy.deepcopy(self.k.state)
+                with patch.object(self.k,'_head',wraps=original) as head:due=self.cycle()
+                self.assertEqual(head_counts[disabled],head.call_count)
+                if disabled:
+                    due.assert_not_called()
+                else:
+                    due.assert_called_once_with('vault','collectFees(uint256,uint256)',
+                        (7,self.rpc.now+180),'harvest:7')
+                self.assertEqual(before_state['last'],self.k.state['last'])
+                self.assertIsNone(self.k.state['pending'])
+                self.assertEqual({},self.k.state['spent'])
+        # Enabled collection reads one extra current head even BEFORE it is due;
+        # equal counts alone would also accept accidentally deleting both reads.
+        self.assertEqual(head_counts[True]+1,head_counts[False])
 
 
 class StandaloneHarvestRecoveryTests(unittest.TestCase):

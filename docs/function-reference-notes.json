@@ -1506,7 +1506,7 @@
           "purpose": "Validate the existing artwork-root syntax without changing any state.",
           "access": "Anyone; pure read that can revert.",
           "inputs": {
-            "0": "Empty draft root or a valid ipfs:// or ar:// root; nonempty requirement and one-time binding are enforced by NFT."
+            "0": "Empty draft root or ipfs:// / ar:// with a nonempty suffix; bare schemes reject. This does not validate CID/content/availability. NFT sealing requires a nonempty one-time bound root."
           }
         },
         "markedValue(uint256)": {
@@ -2633,7 +2633,7 @@
           "notes": "Does not move funds or enable contributions. Aliases cannot be reassigned and permanent bucket capacity is bounded. Permanently rejected once collective LP exit starts, including after ordinary unpause.",
           "inputs": {
             "0": "Exact admitted destination/reserved pool identity.",
-            "1": "For first activation into an uninitialized reservation, use exactly VaultCanonical.bucketIdentity(pool); an arbitrary placeholder permanently blocks that activation. For a same-pair move/resume of existing custody, preserve its existing shared bucket ID. Not an NFT ordinal or physical LP NFT ID; inspect all permanent occupancy/aliases first."
+            "1": "For a new bucket use exactly VaultCanonical.bucketIdentity(pool); a different fresh ID rejects before consuming capacity. An alias may use an already registered shared bucket for a same-pair move/resume. Not an NFT ordinal or physical LP NFT ID; inspect all permanent occupancy/aliases first."
           }
         },
         "resume(uint256,bytes32,uint128,uint256)": {
@@ -2758,10 +2758,10 @@
       },
       "constructor": {
         "purpose": "Bind native canonical chain and reviewed standalone Budget after ProtocolPolicy binding.",
-        "access": "Deployment only; nonzero chain,matching Budget controller/capability and prebound policy required.",
+        "access": "Deployment only; nonzero home chain equal to block.chainid, matching Budget controller/capability and prebound policy required.",
         "inputs": {
           "0": "Fixed AccessController with code and bound ProtocolPolicy1.",
-          "1": "Nonzero canonical NFT home chain ID.",
+          "1": "Canonical NFT home chain ID equal to the executing deployment chain; cross-chain home identities are unsupported.",
           "2": "Predeployed MigrationBudget matching controller and compound4. Mint recipient belongs to ProtocolPolicy,not this constructor."
         }
       },
@@ -5483,9 +5483,9 @@
           "notes": "Caller-sensitive sampled bit16 remains a DIRECT Budget→Confirmation call; only public Strategy predicates are factored into the immutable pricing child. Ordinary calls retain cooldown/confirmation; explicit force selects its own mask. This read grants no execution authority."
         },
         "validateReservation(bytes32,uint256)": {
-          "purpose": "Check that a nonzero admitted pool identity is unused or already reserved for this same bucket.",
+          "purpose": "Validate nonzero admitted pool, unchanged existing alias, and a contract-derived new bucket ID or an already registered bucket for movement aliases.",
           "access": "Only fixed Vault.",
-          "notes": "Cannot reassign permanent pool aliases.",
+          "notes": "Cannot reassign permanent pool aliases or consume a new slot with a mistyped ID. Derivation uses the canonical companion origin identity; existing buckets are checked through the bounded four-slot inventory.",
           "inputs": {
             "0": "Exact admitted bytes32 hash of the v4 PoolKey, not a pool contract address.",
             "1": "Canonical shared bucket ID, not an NFT ordinal."
@@ -5676,6 +5676,18 @@
     "ZZZCustodyValidation": {
       "purpose": "Immutable Migration-created read-only validation for fixed-token bootstrap, raw parking/residual close and typed governance same-main/full-emergency custody proofs. No custody, executor or arbitrary recipient.",
       "functions": {
+      "validReservationIdentity(bytes32,uint256)": {
+        "purpose": "Test only whether a bucket is the pool canonical origin identity or one of the at-most-four registered buckets.",
+        "access": "Anyone; read-only. Cannot reserve capacity, authorize a caller or move funds.",
+        "notes": "A true result does not establish pool admission, configuration authority, remaining capacity or activation readiness. Budget validates nonzero/admitted pool and immutable alias order separately. Existing empty-bucket aliases remain possible but are not a new activation domain.",
+        "inputs": {
+          "0": "Exact bytes32 pool ID; derive the new ID through VaultCanonical.bucketIdentity(pool).",
+          "1": "Shared bucket uint256, not an NFT ordinal/LP token ID. Market swaps do not change this identity."
+        },
+        "outputs": {
+          "0": "True only for the canonical derived identity or a currently registered bucket; other reservation prerequisites remain separate."
+        }
+      },
         "access()": {
           "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",

@@ -1,0 +1,2760 @@
+{
+  "schema": 1,
+  "baseline_git": "003c8d8dc88b60cbfbcc8caf61fa864c6487b40f",
+  "scope": "all 61 src Solidity files, including factory children, abstract bases, libraries and interface limits",
+  "method": "curated source assessment plus explicitly lexical declaration/function locators; not AST completeness, transaction simulation or proof that every dependency is ready",
+  "source_stage": "final four-source snapshot at generation; each file independently hashed; separate reservation regression evidence retains its exact test scope",
+  "counts": {
+    "concrete-component": 40,
+    "abstract-base": 5,
+    "library": 8,
+    "interface": 8
+  },
+  "components": [
+    {
+      "file": "src/base/ZZZCanonicalLedger.sol",
+      "component": "base/ZZZCanonicalLedger",
+      "kind": "abstract-base",
+      "raw_source_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "compiler_text_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Abstract per-ledger frozen/captured/released/imported backing state and one handoff registry identity.",
+      "future_configuration": "Only authenticated handoff phases restore/cancel state.",
+      "readiness_and_recovery_limits": "No deployable admin setter or generic recovery sweep. Token failures may require recovery before a full funded/aborted handoff can finish.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "component": "base/ZZZExactLPRewardsCanonical",
+      "kind": "abstract-base",
+      "raw_source_sha256": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
+      "compiler_text_sha256": "f8feffb90832d6ea05e96793c05a02037fc7dbe8793b81a8a5a290f49bd93b74",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Abstract exact-unit LP books; fixed ETH/oneZZZ,1000 ordinals/four buckets and32 conversion count limits.",
+      "future_configuration": "Typed parent synchronization/claim/conversion/funded canonical restoration only.",
+      "readiness_and_recovery_limits": "Engine/schema/economic meaning are fixed. Constant count bounds do not prove target-chain gas at maximum state.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [
+        {
+          "line": 94,
+          "source": "constructor(address controller) ZZZModule(controller) {\r\n        assets.push(address(0));\r\n        isAsset[address(0)] = true;\r\n        emit AssetAdded(address(0));\r\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "canonicalWrite",
+          "line": 164,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/base/ZZZModule.sol",
+      "component": "base/ZZZModule",
+      "kind": "abstract-base",
+      "raw_source_sha256": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "compiler_text_sha256": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Constructor-fixed controller plus reusable authority/lifecycle guards; no controller rotation.",
+      "future_configuration": "Authority derives from that controller; ordinary pause/preparation/canonical/terminal checks differ deliberately.",
+      "readiness_and_recovery_limits": "Wrong controller is not recoverable with a setter. Post-callback rechecks defend transitions, not redundant removable configuration noise.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 6,
+          "declaration": "IZZZAccess public immutable access;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 18,
+          "source": "constructor(address controller) {\n        if (controller.code.length == 0) revert InvalidConfiguration();\n        access = IZZZAccess(controller);\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "_checkLive",
+          "line": 92,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/base/ZZZRewardConverter.sol",
+      "component": "base/ZZZRewardConverter",
+      "kind": "abstract-base",
+      "raw_source_sha256": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+      "compiler_text_sha256": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Abstract fixed ledger/wrapper/V4 executor; append-only route definitions; hard10% ceiling.",
+      "future_configuration": "Governed enable, wrapper validation policy, routes and operating conversion limit.",
+      "readiness_and_recovery_limits": "Cannot add wrapper capability when immutable wrapper=0 or change ledger/parent; optional adapter source can be replaced only through existing route policy.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 33,
+          "declaration": "address public immutable ledger;"
+        },
+        {
+          "line": 34,
+          "declaration": "address public immutable wrapper;"
+        },
+        {
+          "line": 35,
+          "declaration": "ZZZV4RouteExecutor public immutable v4Executor;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 71,
+          "source": "constructor(address controller, address receiver, address wrappedETH) ZZZModule(controller) {\n        if (receiver.code.length == 0 || (wrappedETH != address(0) && wrappedETH.code.length == 0)) revert InvalidConfiguration();\n        ledger = receiver; wrapper = wrappedETH;\n        v4Executor = new ZZZV4RouteExecutor();\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "setConversionLossBps",
+          "line": 92,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "addV4Route",
+          "line": 108,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "_checkWrapper",
+          "line": 138,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "_convertV4",
+          "line": 212,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/base/ZZZSeaDropToken.sol",
+      "component": "base/ZZZSeaDropToken",
+      "kind": "abstract-base",
+      "raw_source_sha256": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+      "compiler_text_sha256": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "One-time helper binding delegates pre-seal/zero-mint validation to helper; fixed1000 supply and unsupported mint-family reverts.",
+      "future_configuration": "Typed NFT-forwarded supported OpenSea setters route through the bound helper.",
+      "readiness_and_recovery_limits": "No public updateAllowedSeaDrop rotation, token-gated/signed family enablement or root replacement. Selected release must bind the reviewed helper before seal; generic direct fixtures remain explicit.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [
+        {
+          "line": 21,
+          "source": "constructor(address controller) ZZZModule(controller) {}"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "setSeaDropMint",
+          "line": 25,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/interfaces/IZZZ.sol",
+      "component": "interfaces/IZZZ",
+      "kind": "interface",
+      "raw_source_sha256": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+      "compiler_text_sha256": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Interface/ABI only; no deployable configuration, storage or constructor.",
+      "future_configuration": "No implementation authorization or mutability can be inferred from the declaration.",
+      "readiness_and_recovery_limits": "Actual runtime implementation and callers must be checked; matching selectors are not provider/SeaDrop/VRF qualification.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "isSealed",
+          "line": 8,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "MAX_BUCKETS",
+          "line": 129,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/interfaces/IZZZCanonical.sol",
+      "component": "interfaces/IZZZCanonical",
+      "kind": "interface",
+      "raw_source_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "compiler_text_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Interface/ABI only; no deployable configuration, storage or constructor.",
+      "future_configuration": "No implementation authorization or mutability can be inferred from the declaration.",
+      "readiness_and_recovery_limits": "Actual runtime implementation and callers must be checked; matching selectors are not provider/SeaDrop/VRF qualification.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/interfaces/IZZZEmergency.sol",
+      "component": "interfaces/IZZZEmergency",
+      "kind": "interface",
+      "raw_source_sha256": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "compiler_text_sha256": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Interface/ABI only; no deployable configuration, storage or constructor.",
+      "future_configuration": "No implementation authorization or mutability can be inferred from the declaration.",
+      "readiness_and_recovery_limits": "Actual runtime implementation and callers must be checked; matching selectors are not provider/SeaDrop/VRF qualification.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/interfaces/IZZZExecutionOracle.sol",
+      "component": "interfaces/IZZZExecutionOracle",
+      "kind": "interface",
+      "raw_source_sha256": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
+      "compiler_text_sha256": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Interface/ABI only; no deployable configuration, storage or constructor.",
+      "future_configuration": "No implementation authorization or mutability can be inferred from the declaration.",
+      "readiness_and_recovery_limits": "Actual runtime implementation and callers must be checked; matching selectors are not provider/SeaDrop/VRF qualification.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/interfaces/IZZZNFTCanonical.sol",
+      "component": "interfaces/IZZZNFTCanonical",
+      "kind": "interface",
+      "raw_source_sha256": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
+      "compiler_text_sha256": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Interface/ABI only; no deployable configuration, storage or constructor.",
+      "future_configuration": "No implementation authorization or mutability can be inferred from the declaration.",
+      "readiness_and_recovery_limits": "Actual runtime implementation and callers must be checked; matching selectors are not provider/SeaDrop/VRF qualification.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/interfaces/IZZZProtocolPolicy.sol",
+      "component": "interfaces/IZZZProtocolPolicy",
+      "kind": "interface",
+      "raw_source_sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "compiler_text_sha256": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Interface/ABI only; no deployable configuration, storage or constructor.",
+      "future_configuration": "No implementation authorization or mutability can be inferred from the declaration.",
+      "readiness_and_recovery_limits": "Actual runtime implementation and callers must be checked; matching selectors are not provider/SeaDrop/VRF qualification.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/interfaces/IZZZSeaDrop.sol",
+      "component": "interfaces/IZZZSeaDrop",
+      "kind": "interface",
+      "raw_source_sha256": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+      "compiler_text_sha256": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Interface/ABI only; no deployable configuration, storage or constructor.",
+      "future_configuration": "No implementation authorization or mutability can be inferred from the declaration.",
+      "readiness_and_recovery_limits": "Actual runtime implementation and callers must be checked; matching selectors are not provider/SeaDrop/VRF qualification.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/interfaces/IZZZV3Route.sol",
+      "component": "interfaces/IZZZV3Route",
+      "kind": "interface",
+      "raw_source_sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "compiler_text_sha256": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Interface/ABI only; no deployable configuration, storage or constructor.",
+      "future_configuration": "No implementation authorization or mutability can be inferred from the declaration.",
+      "readiness_and_recovery_limits": "Actual runtime implementation and callers must be checked; matching selectors are not provider/SeaDrop/VRF qualification.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/libraries/ExactAsset.sol",
+      "component": "libraries/ExactAsset",
+      "kind": "library",
+      "raw_source_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "compiler_text_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Stateless native/ERC20 exact transfer accounting library; no storage/admin/constructor.",
+      "future_configuration": "None independently; behavior fixed in each compiled caller.",
+      "readiness_and_recovery_limits": "Cannot repair arbitrary taxed/rebasing/broken tokens or force rejecting receiver; caller isolation/retry controls remain necessary.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "approve",
+          "line": 17,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "push",
+          "line": 20,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/libraries/ExactLPAllocation.sol",
+      "component": "libraries/ExactLPAllocation",
+      "kind": "library",
+      "raw_source_sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+      "compiler_text_sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Compiled exact-unit tree/phase model and finite NFT-index domain.",
+      "future_configuration": "Parent changes weights through authenticated accounting flows; no standalone setter.",
+      "readiness_and_recovery_limits": "Lossless raw canonical phase restoration matters; changing rounding/engine is an economic upgrade, not configuration.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "_leaf",
+          "line": 168,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/libraries/ExactRoyaltyAllocation.sol",
+      "component": "libraries/ExactRoyaltyAllocation",
+      "kind": "library",
+      "raw_source_sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+      "compiler_text_sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Compiled exact-unit weighted ticket allocation and finite ordinal domain.",
+      "future_configuration": "Parent records eligible cohorts and allocates exact whole units.",
+      "readiness_and_recovery_limits": "Opening/deferred/current-weight recovery cohorts differ; changing one cannot silently reinterpret historical entitlement.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "_validate",
+          "line": 108,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "_interval",
+          "line": 111,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/libraries/ExactToken.sol",
+      "component": "libraries/ExactToken",
+      "kind": "library",
+      "raw_source_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "compiler_text_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Stateless exact ERC20 balance-delta transfer library; no storage/admin/constructor.",
+      "future_configuration": "None independently; behavior fixed in each compiled caller.",
+      "readiness_and_recovery_limits": "Unknown token semantics cannot be made safe solely by registration. Fail-closed balance checks are intended, not a hidden exit sweep.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/libraries/ZZZArtwork.sol",
+      "component": "libraries/ZZZArtwork",
+      "kind": "library",
+      "raw_source_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "compiler_text_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Finite compiled artwork lookup/tables and traits distribution.",
+      "future_configuration": "None independently; four evolution paths share fixed artwork identity.",
+      "readiness_and_recovery_limits": "New images/paths/pattern semantics require reviewed renderer/deployment evolution, not OpenSea UI edits.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/libraries/ZZZPriceMath.sol",
+      "component": "libraries/ZZZPriceMath",
+      "kind": "library",
+      "raw_source_sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "compiler_text_sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Stateless compiled price/decimal/tick arithmetic; no setup storage.",
+      "future_configuration": "Inputs are supplied by authenticated callers.",
+      "readiness_and_recovery_limits": "Integer/tick rounding bounds remain; no mutable USD truth can be set in this library.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/libraries/ZZZTypes.sol",
+      "component": "libraries/ZZZTypes",
+      "kind": "library",
+      "raw_source_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "compiler_text_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Compiled structs/enums/module IDs/current profiles.",
+      "future_configuration": "No deployable methods or setters.",
+      "readiness_and_recovery_limits": "Changing layout/profile is explicit compatibility work; inherited/current ABI completeness does not prove old runtime compatibility.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/libraries/ZZZV3VenueValidation.sol",
+      "component": "libraries/ZZZV3VenueValidation",
+      "kind": "library",
+      "raw_source_sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "compiler_text_sha256": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Stateless typed V3 router/factory/pool/wrapper validation.",
+      "future_configuration": "Parent route configuration provides reviewed dependencies.",
+      "readiness_and_recovery_limits": "Optional earned-fee conversion only; not a second contribution-token or integrated bridge feature.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/ZZZAccessController.sol",
+      "component": "ZZZAccessController",
+      "kind": "concrete-component",
+      "raw_source_sha256": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3",
+      "compiler_text_sha256": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Controller identity; factory children; sixteen append-only module bindings; one ProtocolPolicy binding; irreversible seal/bootstrap deletion and terminal/canonical states.",
+      "future_configuration": "Governance, keeper/guardian membership and pause can change with their distinct authority rules.",
+      "readiness_and_recovery_limits": "Binding validates code/access, seal validates selected typed peers/fixed ZZZ/root/VRF; it is not complete market, SeaDrop, converter, mint-end or host readiness. Wrong already-bound graph may require redeployment, not another bind.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 37,
+          "declaration": "address public immutable royaltyFactory;"
+        },
+        {
+          "line": 38,
+          "declaration": "address public immutable activationAssetsFactory;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 72,
+          "source": "constructor(address initialGovernance, address initialKeeper, address initialGuardian) {\n        if (initialGovernance == address(0) || initialGovernance == address(this) ||\n            initialKeeper == address(0) || initialGuardian == address(0)) revert InvalidConfiguration();\n        governance = initialGovernance;\n        bootstrap = msg.sender;\n        royaltyFactory = address(new ZZZRoyaltyFactory());\n        activationAssetsFactory = address(new ZZZActivationAssetsFactory());\n        keepers[initialKeeper] = true;\n        emit KeeperChanged(initialKeeper, true);\n        guardians[initialGuardian] = true;\n        emit GuardianChanged(initialGuardian, true);\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "canConfigure",
+          "line": 84,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "moduleAuthorized",
+          "line": 104,
+          "lexical_flags": [
+            "isSealed",
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "keeperAuthorized",
+          "line": 107,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "startLPExit",
+          "line": 112,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "startPreparation",
+          "line": 132,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "bind",
+          "line": 170,
+          "lexical_flags": [
+            "isSealed",
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "bindProtocolPolicy",
+          "line": 180,
+          "lexical_flags": [
+            "isSealed",
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "seal",
+          "line": 188,
+          "lexical_flags": [
+            "isSealed",
+            "configured"
+          ]
+        },
+        {
+          "name": "setPaused",
+          "line": 232,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "_notifyMetadata",
+          "line": 247,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZActivationAssets.sol",
+      "component": "ZZZActivationAssets",
+      "kind": "concrete-component",
+      "raw_source_sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "compiler_text_sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller/Registry and one-time pre-seal ZZZ identity; ETH plus that ZZZ are the only contribution identities.",
+      "future_configuration": "Append reviewed source policy; stop/re-enable same assets after seal.",
+      "readiness_and_recovery_limits": "Needs Oracle policy before configureZZZ. No in-place token migration; reviewed issuer migration uses terminal holder return/redeployment.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 14,
+          "declaration": "address public immutable registry;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 39,
+          "source": "constructor(address controller, address poolRegistry) ZZZModule(controller) {\n        if (poolRegistry == address(0) || msg.sender != access.activationAssetsFactory() ||\n            IActivationAssetsFactoryIdentity(msg.sender).access() != controller) revert InvalidConfiguration();\n        registry = poolRegistry;\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "isContributionAsset",
+          "line": 50,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "configureZZZ",
+          "line": 56,
+          "lexical_flags": [
+            "isSealed",
+            "!= address(0)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZActivationAssetsFactory.sol",
+      "component": "ZZZActivationAssetsFactory",
+      "kind": "concrete-component",
+      "raw_source_sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "compiler_text_sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Constructor-fixed controller; exactly one typed Assets child per caller; child Registry is that caller.",
+      "future_configuration": "No child replacement/configuration/executor authority.",
+      "readiness_and_recovery_limits": "Registry constructor owns its own unique child. Public unrelated callers cannot consume Registry address slot; factory CREATE nonce is not a public sequential prediction guarantee.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 9,
+          "declaration": "address public immutable access;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 12,
+          "source": "constructor() { access=msg.sender; }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "create",
+          "line": 13,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZActivationEntry.sol",
+      "component": "ZZZActivationEntry",
+      "kind": "concrete-component",
+      "raw_source_sha256": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+      "compiler_text_sha256": "aa30ba816b1c3ee712552fc93e3341b717166787742382c32de5e20b654f3ae9",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Controller, Registry and Assets are constructor-fixed; only direct ETH/fixed-ZZZ contribution and fixed Vault destination.",
+      "future_configuration": "Reads current policies/owner/allowance and exact reviews; no old arbitrary input conversion layer.",
+      "readiness_and_recovery_limits": "Fresh Registry creates it atomically. Parent/controller mismatch rejects; cannot rotate Entry independently after seal.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 26,
+          "declaration": "address public immutable registry;"
+        },
+        {
+          "line": 27,
+          "declaration": "ZZZActivationAssets public immutable activationAssets;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 51,
+          "source": "constructor(address controller, address poolRegistry, address assets) ZZZModule(controller) {\r\n        if (poolRegistry == address(0) || msg.sender != poolRegistry || assets.code.length == 0 ||\r\n            ZZZActivationAssets(assets).registry() != poolRegistry ||\r\n            address(ZZZActivationAssets(assets).access()) != controller) revert InvalidConfiguration();\r\n        registry = poolRegistry;\r\n        activationAssets = ZZZActivationAssets(assets);\r\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "_vault",
+          "line": 61,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "pricingContext",
+          "line": 88,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "executeReviewed",
+          "line": 98,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZBuyback.sol",
+      "component": "ZZZBuyback",
+      "kind": "concrete-component",
+      "raw_source_sha256": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+      "compiler_text_sha256": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed ZZZ identity and exact 80/10/5/5 source reserve semantics.",
+      "future_configuration": "Future maximum/operating trade budgets change; reviewed compatible pool can remain available after completed exit.",
+      "readiness_and_recovery_limits": "Migration.configureZZZ validates Buyback identity against source ZZZ before seal. Token change is not a supported in-place action.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 13,
+          "declaration": "address public immutable zzz;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 21,
+          "source": "constructor(address controller, address zzzToken, uint256 maximumTradeUSD) ZZZModule(controller) {\n        if (zzzToken.code.length == 0 || maximumTradeUSD == 0 || maximumTradeUSD > type(uint128).max) revert InvalidConfiguration();\n        zzz = zzzToken;\n        maxTradeUSD = maximumTradeUSD;\n        operatingTradeUSD = maximumTradeUSD;\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/ZZZCanonicalHandoff.sol",
+      "component": "ZZZCanonicalHandoff",
+      "kind": "concrete-component",
+      "raw_source_sha256": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+      "compiler_text_sha256": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller, six ledger domains and V10 same-chain schema; pre-seal prepareImport role; state transitions prevent both source and successor being active.",
+      "future_configuration": "Governance can prepare, fund, activate or abort only through exact lifecycle phases.",
+      "readiness_and_recovery_limits": "A sealed ordinary graph cannot become an importer. Outstanding VRF, incompatible schemas, unsettled royalty opening, unparked legs or untransferable backing can block replacement; there is no cross-chain bypass.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 75,
+          "declaration": "ICanonicalController public immutable access;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 119,
+          "source": "constructor(address controller) {\n        access = ICanonicalController(controller);\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "deploymentCommitment",
+          "line": 153,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "prepareImport",
+          "line": 200,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "freeze",
+          "line": 216,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "exportRows",
+          "line": 308,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "importRows",
+          "line": 330,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "_cancelledTarget",
+          "line": 534,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZClaimRouter.sol",
+      "component": "ZZZClaimRouter",
+      "kind": "concrete-component",
+      "raw_source_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "compiler_text_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller/NFT/royalty ledger; MAX_CLAIMS=32 engineering count ceiling.",
+      "future_configuration": "Current owner selects allowed entries/currencies with exact accounting; gas acceptance is separate.",
+      "readiness_and_recovery_limits": "No governance payout recipient override. A failed bundled token can be omitted and separately retried; a count ceiling is not a gas guarantee.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 17,
+          "declaration": "IZZZAccess public immutable access;"
+        },
+        {
+          "line": 18,
+          "declaration": "address public immutable nft;"
+        },
+        {
+          "line": 19,
+          "declaration": "address public immutable royalties;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 35,
+          "source": "constructor(address controller, address nftController, address royaltyLedger) {\n        if (controller.code.length == 0 || msg.sender != nftController || royaltyLedger.code.length == 0) {\n            revert InvalidConfiguration();\n        }\n        access = IZZZAccess(controller);\n        nft = nftController;\n        royalties = royaltyLedger;\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "claimBatch",
+          "line": 48,
+          "lexical_flags": [
+            "isSealed",
+            "MAX_"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZCompounder.sol",
+      "component": "ZZZCompounder",
+      "kind": "concrete-component",
+      "raw_source_sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "compiler_text_sha256": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Inherited fixed controller and routed module identity; no separate asset/venue choice.",
+      "future_configuration": "Standalone compound interval/policies are read from current modules.",
+      "readiness_and_recovery_limits": "Outside-range waiting is keeper service policy, not a newly imposed immutable on-chain compound rule. Replacement/terminal/pause guards retain distinct roles.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [
+        {
+          "line": 9,
+          "source": "constructor(address controller) ZZZModule(controller) {}"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/ZZZContributionPricing.sol",
+      "component": "ZZZContributionPricing",
+      "kind": "concrete-component",
+      "raw_source_sha256": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+      "compiler_text_sha256": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Constructor-fixed controller and Oracle; finite execution context and fixed fresh accounting interfaces.",
+      "future_configuration": "Consumes governed floors/dual prices/idle caps live; no administrative cache/keeper USD setter.",
+      "readiness_and_recovery_limits": "Oracle constructs the fixed child. Identity cannot be substituted after sealing; exact own-transition proof is narrower than arbitrary reference movement.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 36,
+          "declaration": "IZZZAccess public immutable access;"
+        },
+        {
+          "line": 37,
+          "declaration": "IZZZOracle public immutable oracle;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 73,
+          "source": "constructor(address controller,address priceOracle) {\n        if (msg.sender != priceOracle || controller.code.length == 0) revert Unauthorized();\n        access = IZZZAccess(controller); oracle = IZZZOracle(priceOracle);\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "_live",
+          "line": 82,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZCustodyValidation.sol",
+      "component": "ZZZCustodyValidation",
+      "kind": "concrete-component",
+      "raw_source_sha256": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b",
+      "compiler_text_sha256": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Constructor-fixed Migration parent/controller; no custody recipient or arbitrary execution.",
+      "future_configuration": "Reads each typed manual request and explicit retained-check mask.",
+      "readiness_and_recovery_limits": "Migration creates it. Its public validReservationIdentity view cannot register anything; Budget retains onlyVault. Force bypass does not waive exact authority, balances, token identities, terminal locks or custody ownership.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 26,
+          "declaration": "address public immutable migration;"
+        },
+        {
+          "line": 27,
+          "declaration": "IZZZAccess public immutable access;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 36,
+          "source": "constructor(address controller){migration=msg.sender;access=IZZZAccess(controller);}"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "validateZZZ",
+          "line": 50,
+          "lexical_flags": [
+            "isSealed",
+            "!=address(0)"
+          ]
+        },
+        {
+          "name": "_request",
+          "line": 94,
+          "lexical_flags": [
+            "isSealed",
+            "MAX_"
+          ]
+        },
+        {
+          "name": "_consolidation",
+          "line": 123,
+          "lexical_flags": [
+            "isSealed",
+            "MAX_"
+          ]
+        },
+        {
+          "name": "_validateParking",
+          "line": 200,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "verifyResidualClose",
+          "line": 222,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZFeeController.sol",
+      "component": "ZZZFeeController",
+      "kind": "concrete-component",
+      "raw_source_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "compiler_text_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Actual-fee intake, fixed 80/10/5/5 economics and separate reserves; inherited fixed controller.",
+      "future_configuration": "Harvesting is independently callable through Vault; buyback/compound use their own operation rules.",
+      "readiness_and_recovery_limits": "flushDust is restricted to sealed Vault or Membership, not permissionless. Immutable allocation proportions cannot be repaired by changing an operator setting.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [
+        {
+          "line": 32,
+          "source": "constructor(address controller) ZZZModule(controller) {}"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "_pull",
+          "line": 39,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "_push",
+          "line": 43,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "_approve",
+          "line": 50,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "flushDust",
+          "line": 91,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZFeesCanonical.sol",
+      "component": "ZZZFeesCanonical",
+      "kind": "concrete-component",
+      "raw_source_sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "compiler_text_sha256": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller and real FeeController peer, validated at construction; exact classified reserve export.",
+      "future_configuration": "Only handoff phases capture/release/accept backing.",
+      "readiness_and_recovery_limits": "Wrong peer cannot be rebound. Asset-token failure may block backing transfer; no discretionary reserve sweep.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 13,
+          "declaration": "ZZZFeeController public immutable fees;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 25,
+          "source": "constructor(address controller, address feeController) ZZZModule(controller) {\n        fees = ZZZFeeController(payable(feeController));\n        if (feeController.code.length == 0 || address(fees.access()) != controller || fees.FEE_INTAKE_VERSION() != 1) revert InvalidConfiguration();\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "_push",
+          "line": 33,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "canonicalImport",
+          "line": 86,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZLiquidityManager.sol",
+      "component": "ZZZLiquidityManager",
+      "kind": "concrete-component",
+      "raw_source_sha256": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+      "compiler_text_sha256": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Immutable coherent Posm/State/core/Permit2/Balancer and constructor child; at most main plus one residual.",
+      "future_configuration": "Compatible reviewed ETH/ZZZ pool/range changes use existing governed surfaces.",
+      "readiness_and_recovery_limits": "Registry hard-pins Robinhood venue graph; internal coherence alone does not prove those pins. New core/version requires new compatible deployment, not pool ID update.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 41,
+          "declaration": "ZZZLPBalancer public immutable balancingRouter;"
+        },
+        {
+          "line": 42,
+          "declaration": "ZZZLPPositionExecutor private immutable positionExecutor;"
+        },
+        {
+          "line": 43,
+          "declaration": "IPositionManagerMinimal private immutable posm;"
+        },
+        {
+          "line": 44,
+          "declaration": "IStateViewMinimal public immutable stateView;"
+        },
+        {
+          "line": 45,
+          "declaration": "IPoolManagerMinimal public immutable poolManager;"
+        },
+        {
+          "line": 46,
+          "declaration": "IPermit2Minimal public immutable permit2;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 53,
+          "source": "constructor(address controller,address positionManager_,address stateView_,address poolManager_,address permit2_,address balancer_)\r\n        ZZZModule(controller) {\r\n        if (positionManager_.code.length == 0 || stateView_.code.length == 0 || poolManager_.code.length == 0 ||\r\n            permit2_.code.length == 0) revert InvalidConfiguration();\r\n        posm = IPositionManagerMinimal(positionManager_);\r\n        stateView = IStateViewMinimal(stateView_);\r\n        poolManager = IPoolManagerMinimal(poolManager_);\r\n        permit2 = IPermit2Minimal(permit2_);\r\n        if (posm.poolManager() != poolManager_ || posm.permit2() != permit2_ ||\r\n            stateView.poolManager() != poolManager_) revert InvalidConfiguration();\r\n        if(balancer_.code.length==0)revert InvalidConfiguration();\r\n        balancingRouter=ZZZLPBalancer(balancer_);\r\n        if(address(balancingRouter.access())!=controller || address(balancingRouter.poolManager())!=poolManager_ ||\r\n            address(balancingRouter.stateView())!=stateView_ || balancingRouter.LP_ROUTING_VERSION()!=3)revert InvalidConfiguration();\r\n        positionExecutor=new ZZZLPPositionExecutor(controller,positionManager_,stateView_,poolManager_,permit2_,balancer_);\r\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "_balanceContext",
+          "line": 80,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "beginEmergency",
+          "line": 92,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "_policySpot",
+          "line": 110,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "_beginPlacement",
+          "line": 122,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        },
+        {
+          "name": "closeSecondary",
+          "line": 214,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "swap",
+          "line": 220,
+          "lexical_flags": [
+            "isSealed",
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "balance",
+          "line": 259,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "unlockCallback",
+          "line": 336,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZLPBalanceMath.sol",
+      "component": "ZZZLPBalanceMath",
+      "kind": "concrete-component",
+      "raw_source_sha256": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+      "compiler_text_sha256": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Constructor-fixed Balancer parent; deterministic read-only exact solver and emergency arithmetic.",
+      "future_configuration": "Uses parent/current policy; no admin setters or mutable custody.",
+      "readiness_and_recovery_limits": "Created by Balancer, no independently selectable keeper algorithm or recipient.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 39,
+          "declaration": "address public immutable balancer;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 47,
+          "source": "constructor() { balancer = msg.sender; }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "nativeConfig",
+          "line": 61,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        },
+        {
+          "name": "policyFingerprint",
+          "line": 82,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        },
+        {
+          "name": "_executionMinimumOutput",
+          "line": 131,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        },
+        {
+          "name": "validSpot",
+          "line": 140,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "validateResidualClose",
+          "line": 193,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZLPBalancer.sol",
+      "component": "ZZZLPBalancer",
+      "kind": "concrete-component",
+      "raw_source_sha256": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+      "compiler_text_sha256": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller/core/state view and constructor-created Math child; bounded execution pool count=4.",
+      "future_configuration": "Governance reviews pool set, solver bounds and execution policy after seal.",
+      "readiness_and_recovery_limits": "Coherent wrong core cannot be rotated. Best quote is restricted to admitted finite venues and actual post-withdrawal inventory, not all pools on-chain.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 24,
+          "declaration": "ZZZLPBalanceMath public immutable balanceMath;"
+        },
+        {
+          "line": 25,
+          "declaration": "IPoolManagerMinimal public immutable poolManager;"
+        },
+        {
+          "line": 26,
+          "declaration": "IStateViewMinimal public immutable stateView;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 42,
+          "source": "constructor(address controller, address core, address state) ZZZModule(controller) {\r\n        balanceMath = new ZZZLPBalanceMath();\r\n        poolManager = IPoolManagerMinimal(core);\r\n        stateView = IStateViewMinimal(state);\r\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "configureExecutionPools",
+          "line": 73,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "_pool",
+          "line": 103,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "_validSpot",
+          "line": 112,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "_plan",
+          "line": 151,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "quoteCandidate",
+          "line": 275,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "quoteSwap",
+          "line": 297,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "unlockCallback",
+          "line": 301,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZLPPositionExecutor.sol",
+      "component": "ZZZLPPositionExecutor",
+      "kind": "concrete-component",
+      "raw_source_sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+      "compiler_text_sha256": "dfb1aa7bc8f9ba98a74afc92c0b75cd3c6b929e7e02563fbefbecf4f2a64bc2c",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed Manager deployer, core/Posm/State/Permit2/Balancer graph; direct fixed parent call restriction.",
+      "future_configuration": "Per-operation position/range/amounts are supplied through authenticated Manager flow.",
+      "readiness_and_recovery_limits": "No arbitrary caller allowance or external custody. Every main/residual remains included until actual closed accounting.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 31,
+          "declaration": "address public immutable liquidityManager;"
+        },
+        {
+          "line": 32,
+          "declaration": "IPositionManagerMinimal private immutable posm;"
+        },
+        {
+          "line": 33,
+          "declaration": "IStateViewMinimal public immutable stateView;"
+        },
+        {
+          "line": 34,
+          "declaration": "IPoolManagerMinimal public immutable poolManager;"
+        },
+        {
+          "line": 35,
+          "declaration": "IPermit2Minimal public immutable permit2;"
+        },
+        {
+          "line": 36,
+          "declaration": "ZZZLPBalancer public immutable balancingRouter;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 47,
+          "source": "constructor(address controller,address positionManager_,address stateView_,address poolManager_,address permit2_,address balancer_)\r\n        ZZZModule(controller) {\r\n        liquidityManager=msg.sender;posm=IPositionManagerMinimal(positionManager_);\r\n        stateView=IStateViewMinimal(stateView_);poolManager=IPoolManagerMinimal(poolManager_);\r\n        permit2=IPermit2Minimal(permit2_);balancingRouter=ZZZLPBalancer(balancer_);\r\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/ZZZLPRewardConverter.sol",
+      "component": "ZZZLPRewardConverter",
+      "kind": "concrete-component",
+      "raw_source_sha256": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+      "compiler_text_sha256": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Inherits fixed Rewards ledger, optional immutable wrapper and V4 executor.",
+      "future_configuration": "Reviewed routes, wrapper policy, stop/start and future conversion loss up to hard maximum are configurable.",
+      "readiness_and_recovery_limits": "Must be bound to Rewards before seal for selected ETH-payout release. Omitted converter cannot be installed later; zero wrapper intentionally excludes V3 conversion, not native V4.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [
+        {
+          "line": 9,
+          "source": "constructor(address controller, address rewards, address wrappedETH)\n        ZZZRewardConverter(controller, rewards, wrappedETH) {}"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/ZZZMembership.sol",
+      "component": "ZZZMembership",
+      "kind": "concrete-component",
+      "raw_source_sha256": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+      "compiler_text_sha256": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller; activation membership/rarity weighting belongs to separate ledgers; no member deletion or NFT rights sweep.",
+      "future_configuration": "New activation checkpoints old funded rights then joins future membership.",
+      "readiness_and_recovery_limits": "Canonical import restores exact membership, not reconstruction from current wallet balance. Fixed maximums bound work.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [
+        {
+          "line": 19,
+          "source": "constructor(address controller) ZZZModule(controller) {}"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "settleDust",
+          "line": 36,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZMigration.sol",
+      "component": "ZZZMigration",
+      "kind": "concrete-component",
+      "raw_source_sha256": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed",
+      "compiler_text_sha256": "e90a8ec8bc6b68e25a996d6c57075cadab837ce3f689d0952b810c8a74223a24",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller/validation child and one-time pre-seal ZZZ; terminal collective exit is irreversible; no external handoff custody address.",
+      "future_configuration": "Governance can park/resume, close/consolidate residual, full replacement and explicit forced operations within typed authority.",
+      "readiness_and_recovery_limits": "Exit ends LP operation and allows current-owner principal payouts while royalty rights survive. Optional bypasses are operation-specific, not a reopen or wrong-token escape.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 72,
+          "declaration": "ZZZCustodyValidation public immutable validation;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 89,
+          "source": "constructor(address controller) ZZZModule(controller) {\r\n        validation = new ZZZCustodyValidation(controller);\r\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "beginCollectiveExit",
+          "line": 180,
+          "lexical_flags": [
+            "isSealed",
+            "!= address(0)",
+            "MAX_"
+          ]
+        },
+        {
+          "name": "allocatePrincipal",
+          "line": 247,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "distributePrincipal",
+          "line": 292,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZMigrationBudget.sol",
+      "component": "ZZZMigrationBudget",
+      "kind": "concrete-component",
+      "raw_source_sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+      "compiler_text_sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller; hard 10% loss ceilings, four historical custody buckets and exact transient maintenance context.",
+      "future_configuration": "Governance changes loss caps/compound intervals within hard bounds.",
+      "readiness_and_recovery_limits": "New reservation IDs require the preserved-origin contract-derived identity; existing pool aliases may reuse any registered bucket. Wrong fresh IDs reject before committing capacity. Permanent capacity remains; see separate reservation regression evidence, not a release/reassignment feature.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 44,
+          "declaration": "IZZZAccess public immutable access;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 93,
+          "source": "constructor(address controller) {\n        access = IZZZAccess(controller);\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "validateEmergency",
+          "line": 114,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "setLossLimits",
+          "line": 131,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "validateNativeSender",
+          "line": 334,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZNFT.sol",
+      "component": "ZZZNFT",
+      "kind": "concrete-component",
+      "raw_source_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+      "compiler_text_sha256": "9df60d4f8a75a7dde9610d92787efc7b1bf99f4d5c1ff7bc343897458dc1e8b9",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller/metadata renderer/royalty ledger/claim router; MAX_SUPPLY=1000, rarity stock 600/300/100, immutable draws; one-time artwork root.",
+      "future_configuration": "Future mint terms/recipient, mint pause, deadline while still open, royalty admissions/capacity and governed metadata thresholds are separate mutable policy.",
+      "readiness_and_recovery_limits": "Empty constructor staging is allowed, empty root cannot seal; bare URI schemes now rejected. Artwork root cannot rotate after the one-time setup. URI syntax does not prove content availability/completeness.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 39,
+          "declaration": "ZZZRoyaltyRewards public immutable royaltyRewards;"
+        },
+        {
+          "line": 40,
+          "declaration": "ZZZClaimRouter public immutable claimRouter;"
+        },
+        {
+          "line": 41,
+          "declaration": "ZZZNFTMetadata public immutable metadataRenderer;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 85,
+          "source": "constructor(address controller, string memory baseURI,address renderer)\r\n        ERC721(\"ZZZ Permanent Liquidity Rights\", \"ZZZLP\") ZZZSeaDropToken(controller) {\r\n        if(renderer.code.length==0 || address(ZZZNFTMetadata(renderer).access())!=controller)\r\n            revert InvalidConfiguration();\r\n        metadataRenderer=ZZZNFTMetadata(renderer);\r\n        metadataRenderer.validateBaseURI(baseURI);\r\n        metadataBase = baseURI;\r\n        metadataConfigured = bytes(baseURI).length != 0;\r\n        royaltyRewards = ZZZRoyaltyFactory(access.royaltyFactory()).create();\r\n        if (royaltyRewards.canonicalController() != controller || royaltyRewards.nft() != address(this)) revert InvalidConfiguration();\r\n        claimRouter = new ZZZClaimRouter(controller, address(this), address(royaltyRewards));\r\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "randomnessConfigured",
+          "line": 109,
+          "lexical_flags": [
+            "configured"
+          ]
+        },
+        {
+          "name": "mint",
+          "line": 138,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        },
+        {
+          "name": "_mintDormant",
+          "line": 162,
+          "lexical_flags": [
+            "configured",
+            "mintEnd",
+            "MAX_"
+          ]
+        },
+        {
+          "name": "rawFulfillRandomWords",
+          "line": 198,
+          "lexical_flags": [
+            "configured"
+          ]
+        },
+        {
+          "name": "supportsInterface",
+          "line": 263,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        },
+        {
+          "name": "refreshMetadataRange",
+          "line": 290,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "setBaseURI",
+          "line": 303,
+          "lexical_flags": [
+            "isSealed",
+            "metadataConfigured"
+          ]
+        },
+        {
+          "name": "canonicalWriteRecord",
+          "line": 347,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZNFTCanonical.sol",
+      "component": "ZZZNFTCanonical",
+      "kind": "concrete-component",
+      "raw_source_sha256": "fcc849cfa4689f1a22e6e006d286ec73bea60e660713adc5d01b6a2f90e2245a",
+      "compiler_text_sha256": "fcc849cfa4689f1a22e6e006d286ec73bea60e660713adc5d01b6a2f90e2245a",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller/NFT peer; canonical ownership/traits and price-free lifecycle lens for that collection.",
+      "future_configuration": "Lifecycle data reflects current same-chain state and successor information.",
+      "readiness_and_recovery_limits": "Wrong collection cannot be rebound. Metadata notices/lens do not alter ownership, earned royalty weight or external OpenSea caching.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 43,
+          "declaration": "IZZZNFTCanonicalState public immutable nft;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 45,
+          "source": "constructor(address controller, address collection) ZZZModule(controller) {\n        if (collection.code.length == 0 || IZZZNFTCanonicalState(collection).access() != controller) revert InvalidConfiguration();\n        nft = IZZZNFTCanonicalState(collection);\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "deploymentConfigurationCommitment",
+          "line": 211,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        },
+        {
+          "name": "_mintCount",
+          "line": 262,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZNFTMetadata.sol",
+      "component": "ZZZNFTMetadata",
+      "kind": "concrete-component",
+      "raw_source_sha256": "d12e430a81d3271313d854d67f7f25468384c30fc7f753eced3f315fb9e11cbe",
+      "compiler_text_sha256": "d12e430a81d3271313d854d67f7f25468384c30fc7f753eced3f315fb9e11cbe",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller; fixed prepared artwork lookup/schema/path logic; immutable renderer in NFT.",
+      "future_configuration": "Reads governed evolution thresholds/current accounting without custody writes.",
+      "readiness_and_recovery_limits": "Scheme-only identifier trap fixed; content/CID validity and provider availability remain release evidence. Replacing renderer requires compatible deployment, not an OpenSea UI edit.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 46,
+          "declaration": "IZZZAccess public immutable access;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 58,
+          "source": "constructor(address controller) { access = IZZZAccess(controller); }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/ZZZOracle.sol",
+      "component": "ZZZOracle",
+      "kind": "concrete-component",
+      "raw_source_sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+      "compiler_text_sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller and constructor-created ContributionPricing; max agreement ceiling5%, fixed execution codec.",
+      "future_configuration": "Governance can replace dual source policies, source code pins/sequencer policy and admit execution sources after seal.",
+      "readiness_and_recovery_limits": "A code hash is not proof upstream proxy behavior is immutable or independent. Optional adapters may be redeployed/reselected without replacing Oracle; source independence/liveness remains unqualified.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 23,
+          "declaration": "ZZZContributionPricing public immutable contributionPricing;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 102,
+          "source": "constructor(address controller, address sequencer) ZZZModule(controller) {\n        contributionPricing = new ZZZContributionPricing(controller,address(this));\n        if (sequencer != address(0)) {\n            bytes32 codeHash = sequencer.codehash;\n            _sequencerData(sequencer, codeHash,0);\n            // A deployment admission reference is provenance, not an independent\n            // review. Production qualification must separately review this pin.\n            bytes32 admissionReference = keccak256(abi.encode(\"ZZZ_SEQUENCER_BOOTSTRAP_V1\", sequencer, codeHash));\n            _recordSequencer(SequencerPolicy(sequencer, codeHash, admissionReference, true));\n        }\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "setDualFeed",
+          "line": 157,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "_agreedBounds",
+          "line": 249,
+          "lexical_flags": [
+            "configured"
+          ]
+        },
+        {
+          "name": "priceBounds",
+          "line": 262,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "_executionControls",
+          "line": 379,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "validateExecution",
+          "line": 487,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        },
+        {
+          "name": "executionReferenceX96",
+          "line": 536,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        },
+        {
+          "name": "beforeSwap",
+          "line": 553,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZPoolRegistry.sol",
+      "component": "ZZZPoolRegistry",
+      "kind": "concrete-component",
+      "raw_source_sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+      "compiler_text_sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed Assets/Entry children; native hookless static-fee ETH/fixed-ZZZ and pinned Robinhood core/Posm/State/Permit2; pool identity is append-only.",
+      "future_configuration": "Range/caps/flags/current contribution pool and same-core compatible fee-tier destinations can change after seal.",
+      "readiness_and_recovery_limits": "Cannot switch token/core/chain via a pool ID. Disable requires no external dependency; re-enable requires full validation. Terminal re-admission permits reserve swaps only, not principal restart.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 23,
+          "declaration": "ZZZActivationAssets public immutable activationAssets;"
+        },
+        {
+          "line": 24,
+          "declaration": "ZZZActivationEntry public immutable activationEntry;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 42,
+          "source": "constructor(address controller) ZZZModule(controller) {\n        activationAssets = ZZZActivationAssets(ZZZActivationAssetsFactory(access.activationAssetsFactory()).create());\n        activationEntry = new ZZZActivationEntry(controller, address(this), address(activationAssets));\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "configureNative",
+          "line": 65,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "isNativePool",
+          "line": 162,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZPortfolioPolicy.sol",
+      "component": "ZZZPortfolioPolicy",
+      "kind": "concrete-component",
+      "raw_source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+      "compiler_text_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller; one residual association, hard main>=60%/residual<=40%, bounded tick geometry.",
+      "future_configuration": "Mode, main minimum>=60%, half-side factor, tick-spacing gap and threshold distance are governed.",
+      "readiness_and_recovery_limits": "Disabling mode records intent; existing residual backing remains until a real close/merge. No third leg or unlimited strategy plugin.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [
+        {
+          "line": 49,
+          "source": "constructor(address controller) ZZZModule(controller) {}"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "configureResidualSide",
+          "line": 68,
+          "lexical_flags": [
+            "configured"
+          ]
+        },
+        {
+          "name": "residualSideBps",
+          "line": 85,
+          "lexical_flags": [
+            "configured"
+          ]
+        },
+        {
+          "name": "minimumMainBps",
+          "line": 89,
+          "lexical_flags": [
+            "configured"
+          ]
+        },
+        {
+          "name": "residualGapSpacings",
+          "line": 94,
+          "lexical_flags": [
+            "configured"
+          ]
+        },
+        {
+          "name": "configureMainAllocation",
+          "line": 100,
+          "lexical_flags": [
+            "configured"
+          ]
+        },
+        {
+          "name": "configureResidualGap",
+          "line": 109,
+          "lexical_flags": [
+            "configured",
+            "MAX_"
+          ]
+        },
+        {
+          "name": "recordApplied",
+          "line": 135,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "completeConsolidation",
+          "line": 154,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "_position",
+          "line": 178,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "_pool",
+          "line": 202,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "thresholdSide",
+          "line": 212,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "residualRange",
+          "line": 246,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "range",
+          "line": 296,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZProtocolPolicy.sol",
+      "component": "ZZZProtocolPolicy",
+      "kind": "concrete-component",
+      "raw_source_sha256": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+      "compiler_text_sha256": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller; initial VRF configuration one-time pre-seal; hard minima/gas/idle ceilings.",
+      "future_configuration": "Future prices/minima/payee, gas policy, evolution thresholds, maintenance idle limits and VRF settings/eligible provider rotation.",
+      "readiness_and_recovery_limits": "Provider rotation requires finalized old draws and nonterminal state. Unanswered requests cannot be rerolled by changing coordinator; constructor/setter choices need actual provider/payment acceptance before seal.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [
+        {
+          "line": 43,
+          "source": "constructor(address controller,address initialMintRecipient) ZZZModule(controller) {\n        if(initialMintRecipient==address(0) || initialMintRecipient==controller || initialMintRecipient==address(this))\n            revert InvalidConfiguration();\n        entry=P.EntryPolicy(100e18,5e18,500,1);\n        maintenance=P.MaintenancePolicy(500,1);\n        gasLimits=P.GasPolicy(180000,500000,1000000,1);\n        sale=P.SalePolicy(uint128(0.05 ether),initialMintRecipient,address(0),1);\n        metadata=P.MetadataPolicy(1000e18,10000e18,1);\n        configurationHash=keccak256(abi.encode(\"ZZZ_PROTOCOL_POLICY_V1\",block.chainid,address(this),controller,\n            entry,maintenance,gasLimits,sale,metadata));\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "setEntryPolicy",
+          "line": 81,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "setMaintenancePolicy",
+          "line": 90,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "setGasPolicy",
+          "line": 98,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "proposeMintRecipient",
+          "line": 115,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        },
+        {
+          "name": "acceptMintRecipient",
+          "line": 124,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "_validRecipient",
+          "line": 133,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        },
+        {
+          "name": "setEvolutionThresholds",
+          "line": 141,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        },
+        {
+          "name": "configureRandomness",
+          "line": 161,
+          "lexical_flags": [
+            "isSealed",
+            "configured"
+          ]
+        },
+        {
+          "name": "rotateRandomness",
+          "line": 171,
+          "lexical_flags": [
+            "isSealed",
+            "configured"
+          ]
+        },
+        {
+          "name": "setRandomnessRequestSettings",
+          "line": 182,
+          "lexical_flags": [
+            "configured"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZPythPriceFeed.sol",
+      "component": "ZZZPythPriceFeed",
+      "kind": "concrete-component",
+      "raw_source_sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "compiler_text_sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "All adapter configuration immutable: core/codehash/feed ID/exponent/maxAge/confidence/decimals/review; bounded source calls.",
+      "future_configuration": "No admin setter; replace adapter through Oracle source policy.",
+      "readiness_and_recovery_limits": "Feed publication needs an actual liveness/funding policy. A deployable adapter does not guarantee fresh prices or two independent paths.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 10,
+          "declaration": "address public immutable core;"
+        },
+        {
+          "line": 11,
+          "declaration": "bytes32 public immutable expectedCoreCodeHash;"
+        },
+        {
+          "line": 12,
+          "declaration": "bytes32 public immutable feedId;"
+        },
+        {
+          "line": 13,
+          "declaration": "bytes32 public immutable reviewHash;"
+        },
+        {
+          "line": 14,
+          "declaration": "int32 public immutable expectedExponent;"
+        },
+        {
+          "line": 15,
+          "declaration": "uint32 public immutable maxAge;"
+        },
+        {
+          "line": 16,
+          "declaration": "uint16 public immutable maxConfidenceBps;"
+        },
+        {
+          "line": 17,
+          "declaration": "uint8 public immutable decimals;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 25,
+          "source": "constructor(address source, bytes32 codeHash, bytes32 id, int32 exponent,\n        uint32 age, uint16 confidenceBps, bytes32 review) {\n        if (source.code.length == 0 || codeHash == bytes32(0) || source.codehash != codeHash ||\n            id == bytes32(0) || review == bytes32(0) || exponent < -18 || exponent > 0 ||\n            age == 0 || age > 1 days || confidenceBps > MAX_CONFIDENCE_BPS) {\n            revert InvalidConfiguration();\n        }\n        core = source;\n        expectedCoreCodeHash = codeHash;\n        feedId = id;\n        expectedExponent = exponent;\n        maxAge = age;\n        maxConfidenceBps = confidenceBps;\n        decimals = uint8(uint32(-exponent));\n        reviewHash = review;\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/ZZZRebalanceConfirmation.sol",
+      "component": "ZZZRebalanceConfirmation",
+      "kind": "concrete-component",
+      "raw_source_sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+      "compiler_text_sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller/Strategy discovery; bounded same-side sampled evidence and expiry; zero config stops ordinary operation.",
+      "future_configuration": "Duration/gap/reference-exit requirement can be governed after seal; evidence resets on relevant invalidation.",
+      "readiness_and_recovery_limits": "This is sampled evidence, not continuous price proof. Configuring incompatible schedule/gas can stop liveness; explicit emergency path does not silently weaken normal checks.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [
+        {
+          "line": 56,
+          "source": "constructor(address controller) ZZZModule(controller) {}"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "configure",
+          "line": 63,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "_condition",
+          "line": 93,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "marketSides",
+          "line": 119,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "_controlFingerprint",
+          "line": 150,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZRewards.sol",
+      "component": "ZZZRewards",
+      "kind": "concrete-component",
+      "raw_source_sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+      "compiler_text_sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller/constructor-created canonical peer; ETH plus one fixed ZZZ admitted only pre-seal; converter binding one-time pre-seal.",
+      "future_configuration": "Current-owner claims/conversions and exact rights synchronization; future compatible routes live in already-bound converter.",
+      "readiness_and_recovery_limits": "Cannot add another LP payout asset or install omitted converter after seal. Raw ZZZ funding/claimability is distinct from selected user-facing ETH-only conversion flow; royalties have their own currency inventory.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 24,
+          "declaration": "address public immutable canonicalModule;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 35,
+          "source": "constructor(address controller) ZZZExactLPRewardsCanonical(controller) {\n        canonicalModule = address(new ZZZRewardsCanonical(controller));\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "bindConverter",
+          "line": 41,
+          "lexical_flags": [
+            "isSealed",
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "addAsset",
+          "line": 50,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "_creditPool",
+          "line": 100,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "_claim",
+          "line": 167,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "convertBatch",
+          "line": 180,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZRewardsCanonical.sol",
+      "component": "ZZZRewardsCanonical",
+      "kind": "concrete-component",
+      "raw_source_sha256": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
+      "compiler_text_sha256": "7333440d02697cb767d2aa84272503510e85f4875981851b1944f240a6d2d8bc",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Constructor-fixed Rewards parent by msg.sender; exact LP phased tree state and fixed two-asset/four-bucket/1000-NFT schema.",
+      "future_configuration": "Only typed parent/handoff lifecycle methods, no arbitrary import mutation.",
+      "readiness_and_recovery_limits": "Raw exact phases must remain intact. New economic engine or changed schema requires explicitly compatible successor; an old codec is not relabelled.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 31,
+          "declaration": "IExactLPRewardsParent public immutable rewards;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 49,
+          "source": "constructor(address controller) ZZZModule(controller) {\r\n        // Parent runtime is still under construction: msg.sender itself is the\r\n        // immutable identity, not an operator-supplied address or mutable setter.\r\n        rewards=IExactLPRewardsParent(msg.sender);\r\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "canonicalCapture",
+          "line": 97,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        },
+        {
+          "name": "canonicalImport",
+          "line": 164,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZRoyaltyCodeData.sol",
+      "component": "ZZZRoyaltyCodeData",
+      "kind": "concrete-component",
+      "raw_source_sha256": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+      "compiler_text_sha256": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Constructor returns inert REVERT-prefixed code payload; immutable child storage by runtime bytes.",
+      "future_configuration": "No callable admin or custody methods.",
+      "readiness_and_recovery_limits": "Codehash/length authenticated by Factory; never a configurable royalty receiver or an upgradeable implementation.",
+      "immutable_declarations_lexical": [],
+      "constructors_lexical": [
+        {
+          "line": 9,
+          "source": "constructor(bytes memory data) {\n        if (data.length > 24573) revert DataTooLong();\n        bytes memory runtime = abi.encodePacked(hex\"5f5ffd\",data);\n        assembly (\"memory-safe\") { return(add(runtime,32),mload(runtime)) }\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/ZZZRoyaltyFactory.sol",
+      "component": "ZZZRoyaltyFactory",
+      "kind": "concrete-component",
+      "raw_source_sha256": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+      "compiler_text_sha256": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed deployer controller; exact source creation hash/length and two code-payload children.",
+      "future_configuration": "Creates typed per-caller royalty ledger and atomically binds controller; cannot upgrade payload.",
+      "readiness_and_recovery_limits": "Unrelated public creates do not configure NFT ledger; prediction of factory CREATE nonces cannot assume exclusivity. Bad fixed Factory/controller requires new graph.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 12,
+          "declaration": "address public immutable controller;"
+        },
+        {
+          "line": 13,
+          "declaration": "bytes32 public immutable royaltyCodeHash;"
+        },
+        {
+          "line": 14,
+          "declaration": "uint256 public immutable creationCodeLength;"
+        },
+        {
+          "line": 15,
+          "declaration": "address public immutable part0;"
+        },
+        {
+          "line": 16,
+          "declaration": "address public immutable part1;"
+        },
+        {
+          "line": 17,
+          "declaration": "bytes32 public immutable part0CodeHash;"
+        },
+        {
+          "line": 18,
+          "declaration": "bytes32 public immutable part1CodeHash;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 21,
+          "source": "constructor() {\n        controller = msg.sender;\n        bytes memory code = type(ZZZRoyaltyRewards).creationCode;\n        uint256 length = code.length;\n        if (length == 0 || length > 2 * PART_DATA_LIMIT) revert InvalidCreationCode();\n        royaltyCodeHash = keccak256(code);\n        creationCodeLength = length;\n        uint256 first = length > PART_DATA_LIMIT ? PART_DATA_LIMIT : length;\n        (part0,part0CodeHash) = _storePart(code,0,first);\n        // Exactly two authenticated children, including a prefix-only second\n        // child if a future source payload fits entirely in the first part.\n        (part1,part1CodeHash) = _storePart(code,first,length-first);\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": []
+    },
+    {
+      "file": "src/ZZZRoyaltyRewards.sol",
+      "component": "ZZZRoyaltyRewards",
+      "kind": "concrete-component",
+      "raw_source_sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+      "compiler_text_sha256": "dc27116d1ba2a39082cb9f2d2f49ce19d8291877722a583893368c2fec4d9b0b",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed NFT/creator and atomic one-time controller bind; fixed one-hour opening window; exact-unit royalty engine; monotonic admitted currencies/capacity.",
+      "future_configuration": "NFT-authenticated admission, reviewed expansion16\u219264 ERC20s, explicit unallocated recovery at current active weights.",
+      "readiness_and_recovery_limits": "setMintEnd stops updating once old end has passed, including bootstrap; no removal/greater-than64 in-place path. Faulty token can defer enrollment/claim or block complete canonical backing. No guarantee arbitrary malicious currencies are transferable.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 39,
+          "declaration": "address public immutable nft;"
+        },
+        {
+          "line": 40,
+          "declaration": "address private immutable creator;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 89,
+          "source": "constructor(address nftController) {\r\n        // The NFT may deploy this receiver from its own constructor.\r\n        if (nftController == address(0)) revert InvalidConfiguration();\r\n        nft = nftController;\r\n        creator = msg.sender;\r\n        isAsset[address(0)] = true;\r\n        assets.push(address(0));\r\n        accounted[address(0)] = address(this).balance;\r\n        orphaned[address(0)] = address(this).balance;\r\n        emit AssetAdded(address(0), address(this).balance);\r\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "bindCanonicalController",
+          "line": 106,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "increaseAssetCapacity",
+          "line": 121,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "setMintEnd",
+          "line": 130,
+          "lexical_flags": [
+            "openingFinalized",
+            "mintEnd"
+          ]
+        },
+        {
+          "name": "royaltiesOpenAt",
+          "line": 137,
+          "lexical_flags": [
+            "mintEnd"
+          ]
+        },
+        {
+          "name": "royaltiesOpen",
+          "line": 140,
+          "lexical_flags": [
+            "mintEnd"
+          ]
+        },
+        {
+          "name": "_finalizeOpening",
+          "line": 145,
+          "lexical_flags": [
+            "openingFinalized"
+          ]
+        },
+        {
+          "name": "_recoveryAuthority",
+          "line": 184,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "addAsset",
+          "line": 195,
+          "lexical_flags": [
+            "openingFinalized"
+          ]
+        },
+        {
+          "name": "effectiveEligibleCount",
+          "line": 262,
+          "lexical_flags": [
+            "openingFinalized"
+          ]
+        },
+        {
+          "name": "_sync",
+          "line": 308,
+          "lexical_flags": [
+            "openingFinalized"
+          ]
+        },
+        {
+          "name": "claimable",
+          "line": 407,
+          "lexical_flags": [
+            "openingFinalized"
+          ]
+        },
+        {
+          "name": "canonicalCapture",
+          "line": 443,
+          "lexical_flags": [
+            "openingFinalized"
+          ]
+        },
+        {
+          "name": "canonicalExport",
+          "line": 478,
+          "lexical_flags": [
+            "mintEnd"
+          ]
+        },
+        {
+          "name": "canonicalImport",
+          "line": 495,
+          "lexical_flags": [
+            "!= address(0)",
+            "openingFinalized",
+            "mintEnd",
+            "MAX_"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZSeaDropMint.sol",
+      "component": "ZZZSeaDropMint",
+      "kind": "concrete-component",
+      "raw_source_sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+      "compiler_text_sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed NFT/SeaDrop/codehash; pre-seal zero-mint binding; max supply1000/batch10/payers16; lifetime mint stats never reset.",
+      "future_configuration": "Reviewed phase windows/allocations/allowlist/public limits/payment configuration can change prospectively within existing mint counts and royalty-sale end.",
+      "readiness_and_recovery_limits": "Helper omission is irreversible after seal. SeaDrop singleton cannot rotate, including V10 peers; updateDropURI changes sale manifest, not NFT image root or ERC-2981 receiver.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 50,
+          "declaration": "address public immutable nft;"
+        },
+        {
+          "line": 51,
+          "declaration": "address public immutable seaDrop;"
+        },
+        {
+          "line": 52,
+          "declaration": "bytes32 public immutable seaDropCodeHash;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 72,
+          "source": "constructor(address controller,address collection,address seaDropImplementation,bytes32 expectedCodeHash)\n        ZZZModule(controller) {\n        if(collection.code.length==0 || ISeaDropMintCollection(collection).access()!=controller ||\n            ISeaDropMintCollection(collection).mintedCount()!=0 || seaDropImplementation.code.length==0 ||\n            expectedCodeHash==bytes32(0) || seaDropImplementation.codehash!=expectedCodeHash ||\n            access.protocolPolicy().code.length==0) revert InvalidConfiguration();\n        nft=collection;seaDrop=seaDropImplementation;seaDropCodeHash=expectedCodeHash;\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "mintEnd",
+          "line": 15,
+          "lexical_flags": [
+            "mintEnd"
+          ]
+        },
+        {
+          "name": "mintEndRevision",
+          "line": 16,
+          "lexical_flags": [
+            "mintEnd"
+          ]
+        },
+        {
+          "name": "validateBinding",
+          "line": 87,
+          "lexical_flags": [
+            "isSealed",
+            "!=address(0)"
+          ]
+        },
+        {
+          "name": "configure",
+          "line": 96,
+          "lexical_flags": [
+            "configured",
+            "MAX_"
+          ]
+        },
+        {
+          "name": "beginMint",
+          "line": 162,
+          "lexical_flags": [
+            "configured",
+            "MAX_"
+          ]
+        },
+        {
+          "name": "restoreMint",
+          "line": 210,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "assertCanonicalCount",
+          "line": 219,
+          "lexical_flags": [
+            "configured"
+          ]
+        },
+        {
+          "name": "mintStats",
+          "line": 225,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "currentPhase",
+          "line": 230,
+          "lexical_flags": [
+            "configured"
+          ]
+        },
+        {
+          "name": "configurationValuesHash",
+          "line": 246,
+          "lexical_flags": [
+            "configured"
+          ]
+        },
+        {
+          "name": "_validatedFingerprint",
+          "line": 262,
+          "lexical_flags": [
+            "mintEnd"
+          ]
+        },
+        {
+          "name": "_payersHash",
+          "line": 282,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZStrategy.sol",
+      "component": "ZZZStrategy",
+      "kind": "concrete-component",
+      "raw_source_sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+      "compiler_text_sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller, PortfolioPolicy and Confirmation peers; deterministic fresh execution interfaces.",
+      "future_configuration": "Governed range orientation/policy/additional-loss bound; operator full range changes and explicit optional two-width automation.",
+      "readiness_and_recovery_limits": "Normal timing/evidence and manual emergency masks are separate. No automatic volatility algorithm or automatic loosening of financial limits is added.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 23,
+          "declaration": "ZZZRebalanceConfirmation public immutable rebalanceConfirmation;"
+        },
+        {
+          "line": 24,
+          "declaration": "ZZZPortfolioPolicy public immutable portfolioPolicy;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 49,
+          "source": "constructor(address controller,address portfolio,address confirmation) ZZZModule(controller) {\n        if(portfolio.code.length == 0 || confirmation.code.length == 0 ||\n            address(ZZZPortfolioPolicy(portfolio).access()) != controller ||\n            ZZZPortfolioPolicy(portfolio).PORTFOLIO_VERSION() != 2 ||\n            address(ZZZRebalanceConfirmation(confirmation).access()) != controller ||\n            ZZZRebalanceConfirmation(confirmation).REBALANCE_CONFIRMATION_VERSION() != 3) revert InvalidConfiguration();\n        portfolioPolicy = ZZZPortfolioPolicy(portfolio);\n        rebalanceConfirmation = ZZZRebalanceConfirmation(confirmation);\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "setAdditionalLossBps",
+          "line": 66,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "_swapFee",
+          "line": 91,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "keeperRangeTarget",
+          "line": 173,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        },
+        {
+          "name": "_rebalanceCondition",
+          "line": 241,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "_checkedPoolTick",
+          "line": 253,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZV4RouteExecutor.sol",
+      "component": "ZZZV4RouteExecutor",
+      "kind": "concrete-component",
+      "raw_source_sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "compiler_text_sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed converter parent; append-only route IDs; typed exact-input native-V4 conversion only.",
+      "future_configuration": "Parent can add reviewed routes and disable/re-enable after full checks.",
+      "readiness_and_recovery_limits": "Cannot change parent/custody recipient or use arbitrary calldata; disabled old routes can be replaced by new identities.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 28,
+          "declaration": "address public immutable parent;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 48,
+          "source": "constructor() { parent = msg.sender; }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "_check",
+          "line": 88,
+          "lexical_flags": [
+            "!= address(0)",
+            "MAX_"
+          ]
+        },
+        {
+          "name": "execute",
+          "line": 103,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "unlockCallback",
+          "line": 135,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZV4SpotPriceFeed.sol",
+      "component": "ZZZV4SpotPriceFeed",
+      "kind": "concrete-component",
+      "raw_source_sha256": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+      "compiler_text_sha256": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Immutable-by-interface config (private struct plus explicit immutable pool ID/decimals); fixed core/state/feed/pins/minimum liquidity.",
+      "future_configuration": "No setters; Oracle can choose a newly deployed reviewed adapter.",
+      "readiness_and_recovery_limits": "Spot is user-approved; TVL/in-range liquidity alone does not prove manipulation resistance, usable depth excluding PoPL, or source independence.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 27,
+          "declaration": "bytes32 public immutable poolId;"
+        },
+        {
+          "line": 28,
+          "declaration": "uint8 public immutable zzzDecimals;"
+        },
+        {
+          "line": 29,
+          "declaration": "uint8 public immutable ethFeedDecimals;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 41,
+          "source": "constructor(Config memory c) {\n        if (c.reviewHash == bytes32(0) || c.zzz == address(0) ||\n            Currency.unwrap(c.key.currency0) != address(0) || Currency.unwrap(c.key.currency1) != c.zzz ||\n            address(c.key.hooks) != address(0) || c.key.fee >= 1_000_000 ||\n            c.key.tickSpacing < TickMath.MIN_TICK_SPACING || c.key.tickSpacing > TickMath.MAX_TICK_SPACING ||\n            c.maxETHAge == 0 || c.maxETHAge > 1 days || c.minimumLiquidity == 0 ||\n            c.ethUsdFeed == c.stateView || c.ethUsdFeed == c.core) revert InvalidConfiguration();\n        bytes32 id = keccak256(abi.encode(c.key));\n        if (id != c.expectedPoolId) revert InvalidConfiguration();\n        _pins(c);\n        uint256 d = _word(c.zzz,abi.encodeWithSelector(DECIMALS));\n        uint256 e = _word(c.ethUsdFeed,abi.encodeWithSelector(DECIMALS));\n        if (d > 18 || e > 18 || _word(c.stateView,abi.encodeWithSelector(MANAGER)) != uint160(c.core))\n            revert InvalidConfiguration();\n        zzzDecimals = uint8(d); ethFeedDecimals = uint8(e); poolId = id; settings = c;\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "_state",
+          "line": 81,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "_validateState",
+          "line": 94,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZVault.sol",
+      "component": "ZZZVault",
+      "kind": "concrete-component",
+      "raw_source_sha256": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7",
+      "compiler_text_sha256": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller/Budget and same-chain canonicalChainId; four permanent custody buckets; exact share accounting; terminal exit cannot reopen.",
+      "future_configuration": "Future compatible destination/range, contributions and maintenance use governed policies.",
+      "readiness_and_recovery_limits": "Wrong-chain construction now rejected. No holder principal redemption while operating; terminal principal payouts are separate from already-earned rewards/royalties. Permanent aliases/bucket capacity are not a garbage-collection mechanism.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 48,
+          "declaration": "uint256 public immutable canonicalChainId;"
+        },
+        {
+          "line": 49,
+          "declaration": "ZZZMigrationBudget public immutable migrationBudget;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 64,
+          "source": "constructor(address controller, uint256 nftHomeChain, address budget)\n        ZZZModule(controller) {\n        if (nftHomeChain == 0 || nftHomeChain != block.chainid || access.protocolPolicy().code.length == 0) {\n            revert InvalidConfiguration();\n        }\n        if (budget.code.length == 0 || address(ZZZMigrationBudget(budget).access()) != controller ||\n            ZZZMigrationBudget(budget).IDLE_COMPOUNDING_VERSION() != 4) revert InvalidConfiguration();\n        canonicalChainId = nftHomeChain;\n        migrationBudget = ZZZMigrationBudget(budget);\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "_registerBucket",
+          "line": 104,
+          "lexical_flags": [
+            "MAX_"
+          ]
+        },
+        {
+          "name": "_requireOwner",
+          "line": 133,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "_receiveAssets",
+          "line": 146,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        },
+        {
+          "name": "_approvePrincipalAssets",
+          "line": 156,
+          "lexical_flags": [
+            "!= address(0)"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "src/ZZZVaultCanonical.sol",
+      "component": "ZZZVaultCanonical",
+      "kind": "concrete-component",
+      "raw_source_sha256": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+      "compiler_text_sha256": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
+      "assessment": "source-assessed irreversible setup and recovery surfaces; not a whole-function formal proof",
+      "permanent_choices": "Fixed controller/Vault peer and initial origin domain; imports validate current accounting7 then permanently set source origin.",
+      "future_configuration": "Only authenticated handoff lineage/custody validation paths; no arbitrary origin setter.",
+      "readiness_and_recovery_limits": "Construct after binding Vault; chain must match Vault. Same-chain constructor guard prevents new wrong-home source graphs; old schema data remains historical.",
+      "immutable_declarations_lexical": [
+        {
+          "line": 52,
+          "declaration": "IZZZAccess public immutable access;"
+        },
+        {
+          "line": 53,
+          "declaration": "ICanonicalVaultState public immutable vault;"
+        }
+      ],
+      "constructors_lexical": [
+        {
+          "line": 75,
+          "source": "constructor(address controller, address vaultController, uint256 chain) {\n        access = IZZZAccess(controller);\n        if (vaultController.code.length == 0 || IZZZAccess(controller).module(Ids.VAULT) != vaultController ||\n            chain == 0 || IZZZVault(vaultController).canonicalChainId() != chain ||\n            ICanonicalVaultState(vaultController).ACCOUNTING_VERSION() != 7) revert InvalidState();\n        vault = ICanonicalVaultState(vaultController);\n        originChain = chain;\n        originVault = vaultController;\n    }"
+        }
+      ],
+      "seal_or_one_time_candidate_functions_lexical": [
+        {
+          "name": "mintEnd",
+          "line": 29,
+          "lexical_flags": [
+            "mintEnd"
+          ]
+        },
+        {
+          "name": "mintEndRevision",
+          "line": 30,
+          "lexical_flags": [
+            "mintEnd"
+          ]
+        },
+        {
+          "name": "validateHolderExit",
+          "line": 119,
+          "lexical_flags": [
+            "!=address(0)"
+          ]
+        },
+        {
+          "name": "mintIdentity",
+          "line": 129,
+          "lexical_flags": [
+            "originChain",
+            "originVault"
+          ]
+        },
+        {
+          "name": "_mintPolicyFingerprint",
+          "line": 143,
+          "lexical_flags": [
+            "mintEnd"
+          ]
+        },
+        {
+          "name": "validateMint",
+          "line": 150,
+          "lexical_flags": [
+            "originChain",
+            "originVault"
+          ]
+        },
+        {
+          "name": "bucketIdentity",
+          "line": 162,
+          "lexical_flags": [
+            "originChain",
+            "originVault"
+          ]
+        },
+        {
+          "name": "canonicalExport",
+          "line": 206,
+          "lexical_flags": [
+            "originChain",
+            "originVault"
+          ]
+        },
+        {
+          "name": "canonicalImport",
+          "line": 228,
+          "lexical_flags": [
+            "originChain",
+            "originVault"
+          ]
+        },
+        {
+          "name": "validateCancelledRoyaltyHop",
+          "line": 349,
+          "lexical_flags": [
+            "isSealed"
+          ]
+        }
+      ]
+    }
+  ]
+}

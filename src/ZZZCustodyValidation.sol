@@ -19,6 +19,7 @@ interface ICustodyExecutionFingerprint {
     function stateView() external view returns(address);
 }
 interface IResidualPolicyControl { function controlFingerprint(bytes32) external view returns(bytes32); }
+interface IReservationOrigin { function bucketIdentity(bytes32) external view returns(uint256); }
 /// @notice Read-only local parking checks. There is no external custody request,
 /// recipient, destination binding, recovery deposit or conversion-exit helper.
 contract ZZZCustodyValidation {
@@ -33,6 +34,17 @@ contract ZZZCustodyValidation {
     struct ResidualClose { bytes32 mainHash; uint256 idle0; uint256 idle1; uint256 secondary; }
     error Unauthorized();error InvalidState();error InvalidConfiguration();error Slippage();
     constructor(address controller){migration=msg.sender;access=IZZZAccess(controller);}
+    /// @notice New custody uses the canonical companion's preserved origin;
+    /// pool moves may alias any of the four already registered buckets.
+    /// Read-only: caller identity cannot register a pool or move any funds.
+    function validReservationIdentity(bytes32 pool,uint256 bucket) external view returns(bool) {
+        if (bucket == IReservationOrigin(access.module(Ids.VAULT_CANONICAL)).bucketIdentity(pool)) return true;
+        IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
+        uint256 count = vault.bucketCount();
+        if (count > 4) revert InvalidState();
+        for (uint256 i; i < count; ++i) if (vault.bucketAt(i) == bucket) return true;
+        return false;
+    }
     /// @notice Bootstrap identity checks only. Governance and the one-time
     /// storage writes remain in Migration; every dependency read is public.
     function validateZZZ(address token,bytes32 codeHash,bytes32 reviewHash) external view {

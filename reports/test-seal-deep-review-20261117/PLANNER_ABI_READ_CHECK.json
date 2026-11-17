@@ -1,0 +1,14 @@
+{
+  "method": "tests_python.test_preseal_plan.PresealPlanTests.test_irreversible_review_reads_are_callable_in_actual_trusted_target_abis",
+  "exit_code": 0,
+  "observed_tests": 1,
+  "status": "OK",
+  "observed_seconds": 10.988,
+  "observation": "Actual exec session 44331, completion chunk 4e252d; no duplicate execution for log capture",
+  "source_after_sha256": {
+    "zzz_ops/preseal_plan.py": "e889106a1ab40589171697927e51c7391acef156731209aecc4513e2c7908a0a",
+    "tests_python/test_preseal_plan.py": "64423026f5c4cb471cd9202f02818c33a14eb310802f7ad01be98d78b972111d"
+  },
+  "source_before_hash_recorded": false,
+  "public_rpc_or_signing": false
+}

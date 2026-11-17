@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "phase": "Confirmed regression before verifier fix",
+  "selected": [
+    "tests_python.test_verification_profile.VerificationProfileTests.test_actual_foundry_fixture_permissions_match_effective_normal_validation"
+  ],
+  "tests_run": 1,
+  "failures": [],
+  "errors": [
+    "tests_python.test_verification_profile.VerificationProfileTests.test_actual_foundry_fixture_permissions_match_effective_normal_validation"
+  ],
+  "expected_failure_observed": true,
+  "source_sha256": {
+    "foundry.toml": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72",
+    "scripts/verify-normal-profile.py": "4f5c179b2b95061a60c9e4fc5aff8ca69de6344cd9fbe77b0f2e36aae9d64053",
+    "tests_python/test_verification_profile.py": "e6252acb18901cf4fe0ac68258e2e9a607008bfb81dbca6bcc2e0126e32984d2"
+  },
+  "actual_forge_build_or_compiler_run": false
+}

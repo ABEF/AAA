@@ -343,6 +343,49 @@ def _drop(value,constructor,root):
     return artifact,raw
 
 
+def _seal_boundary_review(construction,assigned):
+    """Expose irreversible prerequisites; offline assignments never prove them."""
+    constructors=[]
+    for row in construction['instances']:
+        arguments=copy.deepcopy(row['arguments'])
+        if row['mode']=='inert_internal_create_only':
+            for argument in arguments:
+                raw=bytes.fromhex(argument['value'][2:])
+                argument['value']={'kind':'accepted_inert_code_commitment','bytes':len(raw),'sha256':D.sha(raw)}
+        constructors.append({'role':row['role'],'contract':row['contract'],'mode':row['mode'],
+            'assigned_address':assigned.get(row['role']),'constructor_arguments':arguments,
+            'actual_identity_verified':False,
+            'recovery':'Wrong fixed identity requires reviewed reconstruction before use; source publication does not replace a deployed module.'})
+    checks=[
+        ('chain','vault',['canonicalChainId()'],'Must equal the actual deployment chain4663; an immutable wrong home is not repaired by unpause.'),
+        ('module_graph','access',['bootstrap()','isSealed()','protocolPolicy()','module(bytes32)'],'Verify all16 unique modules, policy and reciprocal controller/companion identities from actual deployed code.'),
+        ('artwork','nft',['artworkBaseURI()','metadataRenderer()'],'Nonempty reviewed immutable content root and matching renderer; constructor-empty setup needs the one-time setBaseURI before seal. Nonempty is not content proof.'),
+        ('seadrop_binding','nft',['seaDropMint()'],'For this OpenSea release the exact collection-specific helper must already be bound. Zero-helper direct mint is only a separate explicit local profile; seal cannot be undone to add the helper.'),
+        ('seadrop_identity','seadrop_mint',['nft()','seaDrop()','seaDropCodeHash()','configured()','mintConfig()'],'Verify NFT/controller and exact reviewed SeaDrop runtime, all sale/proof/payment/payer settings and actual platform acceptance. The immutable SeaDrop cannot be rotated in place.'),
+        ('lp_converter_binding','rewards',['converter()'],'The exact reciprocal LP converter must be bound before seal; otherwise fixed-ZZZ LP fees cannot become ETH through this deployment.'),
+        ('lp_converter_identity','lp_converter',['ledger()','access()'],'Verify the current Rewards/controller and reviewed native conversion capability; routes may be configured later, the converter binding may not.'),
+        ('fixed_zzz','migration',['currentZZZ()'],'Contribution identity, Rewards asset, Buyback target and holder-return token must all be the single reviewed fixed ZZZ.'),
+        ('native_venue','liquidity',['poolManager()','stateView()','permit2()','balancingRouter()'],'Verify the complete fixed core/periphery/child graph against the admitted native deployment; an internally coherent wrong graph may still be permanently unusable.'),
+        ('randomness','nft',['randomnessConfigured()','randomnessCoordinator()','nextToFinalize()','mintedCount()'],'Configure and qualify the original provider/subscription/consumer/callback before minting. Future rotation requires all old draws finalized; pending results cannot be rerolled.'),
+        ('launch_role','access',['canonicalState()','preparationActive()','lpExitStarted()'],'This planner is for a fresh standalone launch: operating state0, no preparation and no terminal exit. A replacement importer needs its own reviewed pre-seal prepareImport sequence.'),
+        ('sale_end','royalty_rewards',['mintEnd()','mintEndRevision()','royaltiesOpenAt()','royaltiesOpen()'],'Before enabling sale, verify the final end is future at execution and matches OpenSea. Opening finalization is private: use authenticated RoyaltyOpeningFinalized event/state history; royaltiesOpen is a time predicate, not proof of finalization. An unset end may be initialized after seal; a previously configured nonzero end that expires during bootstrap cannot currently be reset, even before any mint.'),
+        ('bucket_reservations','vault',['bucketCount()','bucketAt(uint256)','poolBucket(bytes32)'],'New bucket IDs must equal VaultCanonical.bucketIdentity(pool); existing registered aliases remain valid for pool moves. Inspect every retained slot before irreversible reservation; there is no unreserve and capacity stays four.'),
+        ('reservation_validator','migration',['validation()'],'Before a first reservation, verify the fixed CustodyValidation parent/controller and reviewed runtime. Its public validReservationIdentity is only a read, not full pool admission or authority; an empty registered alias is not a new activation domain.'),
+    ]
+    bindings={'seadrop_binding':assigned.get('seadrop_mint'),'lp_converter_binding':assigned.get('lp_converter')}
+    return {
+        'schema':1,'scope':'Selected fresh OpenSea launch; not a generic seal validator or importer preparation.',
+        'readiness':'blocked_pending_live_and_content_review','all_preconditions_verified':False,
+        'rpc_performed':False,'seal_calldata':None,
+        'constructor_boundaries':constructors,
+        'inert_data_scope':'Immutable accepted-code parts are byte-length/hash commitments here; exact bytes remain in the separately authenticated construction plan.',
+        'checks':[{'id':key,'target_role':role,'assigned_target':assigned.get(role),
+            'required_reads':reads,'requirement':requirement,'expected_binding':bindings.get(key),
+            'status':'unverified','verified':False} for key,role,reads,requirement in checks],
+        'settings_are_offline_assignments':True,
+    }
+
+
 def prepare(raw,root=D.ROOT,build_profile=D.DEFAULT_BUILD_PROFILE):
     D.trusted_build(build_profile)
     if build_profile!=D.DEFAULT_BUILD_PROFILE:D.fail('preseal_current_build_required')
@@ -456,6 +499,7 @@ def prepare(raw,root=D.ROOT,build_profile=D.DEFAULT_BUILD_PROFILE):
             'principal_pools_per_review':4,'conversion_routes_per_review':4,'execution_sources_per_review':2,
             'array_encoding_per_call':16,'bounds_scope':'Local review workload bounds, not lifetime on-chain pool/route capacity.'},
         'bootstrap':bootstrap,'settings_scope':'Fresh unsealed zero-mint graph only; no resume or adoption of existing configuration.',
+        'seal_boundary_review':_seal_boundary_review(construction,assigned),
         'steps':rows,'missing_inputs':sorted(set(all_missing)),'abi_functions':abi.used,
         'explicit_operating_stops':stopped,
         'pool_ids':list(pool_ids),'seadrop_manifest':None if drop is None else {

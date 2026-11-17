@@ -1,0 +1,11 @@
+{
+  "command": "python -m unittest tests_python.test_keeper_standalone_harvest_review.StandaloneHarvestTimingTests.test_enabled_harvest_refreshes_due_clock_while_disabled_keeps_no_extra_head -v",
+  "exit_code": 0,
+  "observed_passed_methods": 1,
+  "failed": 0,
+  "scope": "One changed method, two disabled/enabled subcases; inert RPC and mocked submission. Terminal output observed in session; raw terminal log was not captured. No rerun to create a log.",
+  "source_sha256": {
+    "keeper/monitor.py": "e4bd5d17822b2a3ccd2c1b33e9b5b7f141909bdc417fd85b6f0785c70558f185",
+    "tests_python/test_keeper_standalone_harvest_review.py": "6342cdd9394fc0c83c3db534fd39355a8993f8ee868f49bba965e04a9794b669"
+  }
+}
