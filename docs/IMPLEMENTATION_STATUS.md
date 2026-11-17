@@ -1,240 +1,11 @@
 # Feature and evidence reference
 
-The [repaired-test impact follow-up](../reports/test-impact-followup-20261117/REVIEW.md) traces affected fixtures into LP maintenance, rewards, recovery, keeper submission and manual preparation. It fixes a late manual-review reorg race and stale test expectations, with source-scoped behavioral checks rather than a claimed full-suite pass. All61 Solidity sources, financial rights/defaults and live environments remain unchanged. The trusted build remains seal-boundaries-20261117; actual dependencies, operating qualification and independent approval remain open.
-
-The [operator input audit](../reports/operator-input-audit-20261116/REVIEW.md) covers92 governance/bootstrap/keeper/nominated actions and corrects frozen manual gas, output preservation and nested input/units documentation. All61 Solidity files, safeguards and NFT rights remain unchanged. Source/input coverage is separate from dynamic and production qualification.
-
-The [unsigned pre-seal planner](../reports/preseal-planner-20261116/REVIEW.md) now prepares twelve ordered configuration
-families against the trusted current ABI. Unknown own/dependent inputs retain
-blocked/null calldata; actual bootstrap/code/state and all readiness/approval
-flags stay unverified/false. It includes the separate human-price orientation
-write, NFT-forwarded SeaDrop setup, declared native-pin/18-decimal consistency
-checks and explicit operating-stop diagnostics. No source contract, safeguard,
-default, signer, existing chain/DB/journal, site/service or paused heartbeat
-changes. There is no RPC/signing/deployment/sealing/adoption path. Earlier
-[1,000-NFT recovery evidence](../reports/history-scale-rehearsal-20261116/REVIEW.md) retains its finite controlled scope. Actual release
-inputs, market/provider/VRF/OpenSea/fees/operating acceptance and independent
-approval remain open; static preparation never supplies those approvals.
-
-The [16 November whole-project audit](../reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
-state-file and website-profile gaps and reconciles current guidance. Production
-Solidity, economic rights, safeguards, gas defaults and existing environments
-are unchanged. Focused new checks and exact historical source reuse are recorded
-separately; this is internal review, not independent release approval.
-
-The [isolated metadata2 rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md)
-verifies five changed normal creations, three bindings, twelve actual instances
-and 63 getter/state observations. Nineteen valid cold snapshots and one exact
-nonexistent-token rejection pass. Worst padded constructor: 14,208,779/32M;
-worst tested read: 826,831 gas, or 992,198 with 20% padding. No production source
-changes, unchanged suite/compiler reruns or environment adoption. Real source,
-provider and OpenSea read costs remain separate.
-
-[Five recent audit families](../reports/five-audit-reconciliation-20261116/REVIEW.md)
-are reconciled against current source, with provenance and remaining actions in
-one finding index. Current-build unsigned preparation, complete deployment
-evidence and derived market-summary validation are corrected. No Solidity,
-authority, policy, site or service changes; prior normal/static/EVM results keep
-their exact source scope. Real release qualification is still separate.
-
-[Metadata lifecycle2](../reports/metadata-lifecycle-fixes-20261116/REVIEW.md) adds
-truthful exit/payment/canonical/preparation context, immediate bounded lifecycle
-notifications and an opt-in renderer-pinned watcher. Existing four-art mapping,
-NFT/royalty rights and canonical accounting remain. Integration source uses an
-explicit unavailable fallback and preserves confirmation-before-artwork gates.
-The [80-case matrix](METADATA_LIFECYCLE.md) retains scenario scope; focused changed
-checks are evidence, not80executed cases or actual OpenSea acceptance.
-
-[16 November real-market evidence](../reports/real-market-refresh-20261116/REVIEW.md)
-adds39 actual read-only requests, exact source/block pins, six directional quote
-diagnostics and bounded pool discovery with offline independent verification.
-No live source pair or complete activation/growth/LP-conversion route qualifies.
-Eight new report-helper checks (four transport/four adversarial verifier) have
-separate recorded source stages; old tests/builds are not rerun. Contracts,
-defaults and environments are unchanged.
-
-The [offline deployment planner](DEPLOYMENT_PREPARATION.md) supports current
-schema17/mint2/V10/execution1/LP3 construction, exact resolvable constructor
-payloads, original size gates and ordered binding/setup review. Missing inputs
-and factory-discovered addresses remain explicit. The separate
-[local unsealed rehearsal](../reports/local-deployment-rehearsal-20261115/REVIEW.md)
-verifies its original constructor/binding family and local gas under controlled dependencies,
-with its original recording limitation retained. Actual release construction,
-live dependencies, target fees and independent approval remain open.
-
-The [current manual reference fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md) is locally verified:
-25 new/3 adapted methods, exact same-reference C/D/Parked local receipts,48 normal
-gates and source-bound static coverage. Existing ABIs stay; three fixed helper
-methods are added (959 callable functions/1012 complete operator examples).
-Exact new runtime/source pins and reviews are mandatory; no installed consumer,
-public signer or contract changes automatically.
-
-[Actual local manual recovery](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) is verified for C14,
-D14, park→Parked D14 and separately chosen outage D0. The unchanged production
-CLI prepares exact reviewed calls, and actual governance transactions preserve
-rights/reserves/pause. Worst padded gas13,010,802/24M. Controlled markets and EOA
-receipts do not qualify target fees, real dependencies, maximum state or hosted
-operator/wallet acceptance. No production Solidity/default change.
-
-The [44-linked-task source review](../reports/open-tasks-audit-20261113/REVIEW.md) corrects probe pacing/deadline/
-refusal handling and indexer retry amplification;20distinct new regression
-methods pass at their recorded stages. Existing task implementation milestones
-are separated from actual qualification and accepted boundaries. Operator spot/
-LP-profile instructions are corrected. All44broad tasks remain unfinished;
-source fixes do not approve providers, markets, fees, authorities or operating
-rollout. Contracts/defaults/financial rights and all live environments stay.
-
-The [earlier external qualification](../reports/predeployment-qualification-20261113/REVIEW.md)
-retains independently derived genesis and13checks at its original paced-wrapper
-source. New optional CLI pacing is not a fresh public provider profile; complete
-20M/24M capacity/fees and genuine independent ETH/ZZZ sources/routes stay open.
-
-The [RPC/fee follow-up](../reports/rpc-fees-20261113/REVIEW.md) adds actual Pinax
-canonical trace/log and fee-component evidence without rerunning unchanged suites.
-A future-only keeper submission_fee_profile2 binds type2/priority0 simulations,
-Cast arguments and exact saved schema2 recovery, avoiding observed Nitro
-base+nonzero-tip overstatement. Omission/1, old pending records and generic
-Ethereum derivation stay unchanged. No defaults, Solidity, browser signer or live
-environment change. Full provider/capacity/archive/operation fees,
-operator caps and real hosting/signing approval remain separate.
-
-[20M contribution / 24M maintenance profiles](../reports/gas-profiles-20261113/REVIEW.md)
-now have controlled exact$100/$5 ETH/ZZZ and six keeper-operation execution evidence,
-full20%/25% padding, exact padded calls and four production-reader replays. Five
-new EVM methods,13Python and12browser checks pass; no unchanged suites repeat.
-Matching caps, fee/balance/day refusal, pending recovery and unchanged12M claims
-are checked. All61 production sources/defaults remain. These are incomplete
-candidate configuration overlays, not provider/fees/market/max-state or actual
-manual Migration C/D approval. [Procedure](OPERATOR_MANUAL.md#gas-profiles-20m-24m).
-
-The [remaining-findings implementation](../reports/remaining-271-20261111/REVIEW.md)
-adds bounded initial keeper RPC execution work, independent per-predecessor
-execution-profile admission and strict offline artwork-catalogue validation.
-It also corrects operator errors/test selection/one legacy fixture. These are
-source improvements with focused verification, not deployments or changes to
-NFT rights, allocation, financial caps or the existing artwork. All271remaining
-records now have individual assessments and existing Todo owners.
-
-The fresh [reference-execution capability](REFERENCE_SWAP_EXECUTION.md)
-is explicit execution_price1/LP-routing3. It captures both ETH/ZZZ source bounds
-for one transaction, proves the selected actual-core output/full post-state
-before settlement, then preserves live source freshness/agreement and final
-callback checks. Public Oracle reads stay live; no keeper-selected price or
-global cache is added. A reviewed external reference may also execute the swap,
-but cannot be the same-core PoPL principal destination. Policy/source changes,
-unplanned market movement and nested scope borrowing fail closed. The fixed
-existing Math child shares read-only work; no new deployed helper, custody
-recipient or authority is added. Accounting7/canonicalV10 and financial limits
-remain. Explicit matching consumers/configuration/runtime pins are required;
-omission/0 remains historical LP2. The [gas-feasibility follow-up](../reports/gas-feasibility-20261111/REVIEW.md)
-shares one freshly read source-call ceiling only within each STATIC capture/full
-validation chain. No mutable-boundary proof,49-word codec, ABI/storage or limit
-is removed. The earlier15.32M/15.64M controlled calls retain their exact baseline
-scope. Current measurements, tight Oracle size and real32M chain-parameter reads
-are recorded separately;12M defaults and complete-operation qualification remain.
-See [review](../reports/reference-execution-20261111/REVIEW.md) and [verification](../reports/reference-execution-20261111/VERIFICATION.md).
-Source work changes no deployed contract, site/service, signer, existing
-Anvil/journal or user-paused heartbeat.
-
-The [11 November project review](../reports/whole-project-review-20261111/REVIEW.md)
-removes unreachable third-currency LP scans while preserving all concrete ABIs,
-storage and current ETH/fixed-ZZZ rights. Compatibility historical-value reads
-return zero; royalty currencies and historical codecs remain separate. New
-runtime/source pins require explicit candidate/deployment review, not relabeling
-old profiles. The keeper now validates known simulation returns and rechecks
-generic-job deadline/day/cost after slow reads before intent/signing. ABI inputs
-are exact; indexer contract inventories reject duplicates before database work.
-Changing the ABI helper invalidates old source-pinned earnings checkpoints on
-consumer adoption: retain them/raw/WAL backups and explicitly rebuild/review.
-Website source packaging/new-demo intents are corrected without changing
-historical replay, public null configurations or the shared Anvil-only signer.
-No live site/service/chain/journal or paused-heartbeat change occurs.
-That earlier review retains its original source scope. The fresh explicit
-reference-execution capability above addresses swap/reference coupling; service-only
-compound policy is explicitly retained; actual release qualification remains open. No financial guard
-was relaxed.
-
-
-The optional [pool-spot composite reader](POOL_SPOT_PRICE_SOURCE.md) implements
-native-v4 ETH/fixed-ZZZ spot times reviewed ETH/USD. User explicitly chose spot
-for placement AND independent valuation; no TWAP is added. Placement already
-uses current main geometry/post-swap amounts. Prefer the largest qualifying
-external reference, with reviewed depth excluding PoPL LP; TVL/current L alone
-does not prove independence or bidirectional depth. Keep two genuinely
-independent ZZZ paths; two copies of one pool with different ETH feeds do not
-satisfy that review. Public pricing2 observations and economic guards remain; the new execution
-capability above requires exact fresh runtimes and explicit LP3 consumers.
-The reader is optional/unconfigured, with no source admission, deployment,
-service/site/Anvil/journal/signer or paused-heartbeat change. Actual pool, source
-ages/depth, second ZZZ reference, ETH publication/liveness and operating
-qualification remain open. [Scope](../reports/composite-spot-price-20261109/REVIEW.md).
-
-
-[Latest market/provider qualification](../reports/market-followup-20261109/REVIEW.md)
-adds actual state/control/offer/book/route evidence. This is research completion,
-not a new runtime feature or live approval. No qualified ETH/fixedZZZ USD pair or
-practical conversion route is established; current safeguards and code remain
-unchanged. [Verification boundaries](../reports/market-followup-20261109/VERIFICATION.md).
-
-
-The local [mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now implements explicit
-website schema5/source10 over accounting7, with33 browser runtime pins and
-unsigned holdings, contribution and claim/history reviews. Source9/schema4/V9
-retains its original profile and evidence. Direct mint preparation is disabled
-for mint2; OpenSea eligibility is unverified. Both public configurations stay
-null, source10 never constructs the unchanged shared signer (even on Anvil),
-and served current3 poplint/popldemo, services, journals and existing Anvil8902
-are unchanged. [Verification](../reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
-not actual market/provider/VRF/OpenSea/wallet/hosting or independent acceptance.
-
-
-The [current double-check](../reports/today-change-review-20261109/REVIEW.md)
-adds exact phase/time and count-type preflight validation plus focused funded
-Entry trace regressions. This changes no Solidity, economics, service or site.
-Source9/V9 remains distinct from mint2/V10; transport rotation is not a V10
-handoff capability. Actual qualification remains open.
-
-The [market qualification record](../reports/market-qualification-20261109/REVIEW.md)
-adds dated official-feed/source/proxy and actual venue/quote/fork evidence. No
-source pair or default1% conversion route is qualified. Underlying feed identity,
-freshness, bidirectional range depth and exact operation guards remain release
-requirements; no financial limit, runtime, live configuration or environment is
-changed. Earlier synthetic-depth successes retain their original scope.
-
-The [OpenSea source integration](OPENSEA_MINT.md) adds mint2/helper1,
-canonicalV10 and schema17 with20 callable helpers plus2 inert data children.
-Initial20free-team/500paid-allowlist/480public allocations are configurable;
-AL is one NFT per distinct listed address, unused AL rolls public and
-unused team stays reserved. Original-recipient lifetime mint counts,
-dormancy and original two-word VRF requests are preserved. Normal size
-limits remain unchanged; see the [source-scoped verification](../reports/opensea-integration-20261109/VERIFICATION.md).
-Backend read/claim and lineage support is implemented with explicit mint2/V10
-pins; default1 remains V9 and direct mint2 preparation returns Use OpenSea.
-Actual OpenSea custom-drop onboarding, exact fee/payers, live VRF/gas, matching
-website rollout/installed-consumer and operating/independent acceptance remain open.
-Earlier V9/schema16 evidence below retains its original scope; it does
-not verify the mint extension or upgrade a served site/runtime.
-
-
-[Fee-flow audit](../reports/fee-flow-audit-20261107/REVIEW.md) fixes
-v3 final-native ETH pricing/wrapper18decimals, fresh7 affordable-prefix conversion
-and late deadline/UTC-day checks, strict simulation output and zero-noop earnings
-replay. Optional unsigned transaction policy2 adds reviewed operator gas limits
-(21k–64M engineering cap, confirmed-block bound, full20%headroom); policy1 remains
-12M/schema1. Policy2 requires explicitly matching consumers; no wallet signer,
-running configuration, service/site/Anvil/journal or heartbeat is changed.
-New normal87/46+2passes; strict532 has15current-context reviews/517unique exact
-referenced-source reuse. Converter executable changes only; Rewards metadata
-changes and all semantic storage/ABIs plus canonical object bytes are preserved.
-F3payload/parts stay byte-identical; source pins are rebound, never old runtimes.
-Actual11converter cases,338keeper passes+2explicit skips,28reader methods/fresh
-one-method wire producer and56API methods have separate source-scoped evidence;
-do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
-independent approval remain open. [Verification](../reports/fee-flow-audit-20261107/VERIFICATION.md).
-
-Reviewed 2026-11-16. This records implemented source, not another task list.
-[Todo](../TODO.md) owns work; [release approval](RELEASE_CHECKLIST.md) remains
-**NOT APPROVED**. Existing contracts, services, websites and journals are unchanged.
+Implementation, finite verification, installed operation and approved release
+are separate milestones. Use the [sole Todo](../TODO.md),
+[current findings](AUDIT_FINDINGS.md), [operator manual](OPERATOR_MANUAL.md)
+and [latest consolidation](../reports/five-report-consolidation-20261117/REVIEW.md).
+The trusted build remains `seal-boundaries-20261117`; current source is
+undeployed for production and NOT APPROVED. No site/service adoption is implied.
 
 ## Current profile
 
@@ -355,25 +126,24 @@ remain recorded. This is not target-chain gas, full-suite or independent approva
 
 ## Latest audit consolidation
 
-The [four-report reconciliation](../reports/four-report-consolidation-20261104/RECONCILIATION.md)
-separates the indexer anchor/streaming, receipt-model, keeper-deadline and manual
-recovery corrections from their remaining release limits. It preserves original
-failure records, source scopes and distinct counts. Current contract evidence is
-the manual-safeguard source scope, not older whole-project unchanged-source prose.
+The [five latest reports](../reports/five-report-consolidation-20261117/REVIEW.md)
+are reconciled against current code with distinct dispositions and duplicate
+origins. Chain/root/reservation guards, keeper timing, exact manual gas/anchors,
+typed input descriptions and repaired economic tests remain implemented.
+New pre-seal stop warnings and fixed historical-evidence admission improve
+operating diagnostics and verification without changing financial contracts.
 
-New startup safeguards in Indexer atomically admit schema/identity, close failed
-connections, reject SQLite integer overflow before filesystem work and require
-durable rollback/WAL. Valid restart retains history/cursor/ownership.93selected
-Python methods pass, including9new regressions. Table/index names/columns/keys and
-identity format are unchanged; no migration/rescan or operating rollout occurs.
-Actual storage/recovery qualification remains open.
+All61 Solidity sources, safeguards and defaults remain unchanged by this
+consolidation. Independent markets/providers, actual OpenSea/VRF/content,
+maximum workloads, deployment/operating acceptance and independent audit stay open.
+Historical evidence below retains its original source, not current approval.
 
-## Current evidence and limits
+## Historical evidence and limits
 
 | Evidence | Source scope | What it does not establish |
 | --- | --- | --- |
 | [Exact-unit LP integration](../reports/exact-lp-integration-20261106/VERIFICATION.md) | Fresh7/LP1/V9/schema16: actual Rewards, share/membership hooks, whole claims/conversion and lossless canonical books. Normal87source gates46+2carrier; strict532records222current/310exact reuse. Source-scoped host/native/core/canonical methods and619affected backend methods; final315source type closure. | Broad45-class compilation ran out of memory before EVM results; selected corrected scopes are explicit. Cold32-entry claim exceeds12M, cold8 fits only its fixture. No full-suite/publicCI, target gas, checkpoint2, rollout or independent approval. |
-| [Current 24-hour audit](../reports/last24h-audit-20261105/REVIEW.md) | Exact-unit royalty4 and affected cross-repository changes, with source-scoped verification recorded in the report. | No deployment, maximum-state target gas, supported OpenSea mint path, operating acceptance or independent approval. |
+| [November5 audit](../reports/last24h-audit-20261105/REVIEW.md) | Exact-unit royalty4 and affected cross-repository changes, with source-scoped verification recorded in the report. | No deployment, maximum-state target gas, supported OpenSea mint path, operating acceptance or independent approval. |
 | [Four-report follow-up](../reports/four-report-consolidation-20261104/VERIFICATION.md) |93focused Python successes,9new startup cases; four input reports and current Solidity/dependency/build pins preserved. | No fresh contract execution, live storage/host acceptance or independent approval. |
 | [Manual safeguard audit](../reports/manual-safeguard-audit-20261104/VERIFICATION.md) | Two view fixes;85distinct selected EVM successes across retained stages,47focused Python passes,43fresh normal gates and471fresh static records(13current-context review/458exact referenced reuse). ABI/storage unchanged; callable37/818/37/13 has0gaps. | Not a full suite, installed-runtime upgrade, target gas/operating rehearsal or independent approval. |
 | [Authority change normal/static record](../reports/authority-audit-20261103/VERIFICATION.md) | Historical custody5 revision52production/31dependency sources;43normal gates/471static records,19current contexts reviewed and452unchanged reused.14distinct selected EVM passes across explicit corrected stages;25corrected Python methods. Reference37/818/37/13 has0gaps; Migration39/Vault635/Budget237/Balancer360runtime headroom. | No full suite/CI, independent review, deployment gas, service or production approval. |

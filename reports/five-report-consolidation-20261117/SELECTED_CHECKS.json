@@ -1,0 +1,28 @@
+{
+  "distinct_new_methods_observed_passing": 17,
+  "groups": {
+    "new_evidence_admission": [
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_changed_raw_or_artifact_bytes_fail_original_digest",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_cli_has_no_root_manifest_network_or_execution_arguments",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_compiled_method_selector_and_target_must_match",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_compiled_source_set_or_identity_cannot_be_relabelled",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_corrupted_deflate_normalizes_to_evidence_refusal",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_duplicate_keys_nonfinite_values_and_deep_json_refuse",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_extra_failed_python_row_cannot_hide_behind_ok_summary",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_failure_skip_or_counterexample_is_never_admitted",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_genuine_seven_groups_admit_original_scope_without_new_execution",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_gzip_and_stored_byte_limits_are_enforced",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_invalid_gzip_and_parent_path_refuse",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_missing_extra_and_duplicate_method_ids_refuse",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_recomputed_caller_manifest_cannot_approve_changed_results",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_unittest_log_requires_exact_ids_summary_and_no_skip",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_wrong_successful_id_cannot_substitute_for_expected_method"
+    ],
+    "new_planner_stop_diagnostics": [
+      "tests_python.test_preseal_operating_stops.PresealOperatingStopTests.test_disabled_contribution_pool_operations_are_explicit_without_changing_the_call",
+      "tests_python.test_preseal_operating_stops.PresealOperatingStopTests.test_enabled_operations_do_not_report_a_false_pool_stop"
+    ]
+  },
+  "scope": "Recorded explicit source stages; initial13observation lacks rawterminal log as disclosed",
+  "historical_suites_or_EVM_rerun": false
+}

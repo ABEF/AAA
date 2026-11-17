@@ -1,250 +1,51 @@
 # Consolidated audit findings and evidence
 
-The [operator input audit](../reports/operator-input-audit-20261116/REVIEW.md) covers92 governance/bootstrap/keeper/nominated actions and corrects frozen manual gas, output preservation and nested input/units documentation. All61 Solidity files, safeguards and NFT rights remain unchanged. Source/input coverage is separate from dynamic and production qualification.
+The [current five-report registry](../reports/five-report-consolidation-20261117/RECONCILIATION.json)
+reconciles64 distinct issues/obligations against current source. It preserves
+duplicate origins and distinguishes37 resolved original subfindings,9 retained
+policies,7 structural limits,2 historical-evidence limits,7 qualification buckets
+and2 new corrections. These categories are not test totals or release
+approvals. The [sole Todo](../TODO.md) owns project task status.
 
-The [unsigned pre-seal planner](../reports/preseal-planner-20261116/REVIEW.md) now prepares twelve ordered configuration
-families against the trusted current ABI. Unknown own/dependent inputs retain
-blocked/null calldata; actual bootstrap/code/state and all readiness/approval
-flags stay unverified/false. It includes the separate human-price orientation
-write, NFT-forwarded SeaDrop setup, declared native-pin/18-decimal consistency
-checks and explicit operating-stop diagnostics. No source contract, safeguard,
-default, signer, existing chain/DB/journal, site/service or paused heartbeat
-changes. There is no RPC/signing/deployment/sealing/adoption path. Earlier
-[1,000-NFT recovery evidence](../reports/history-scale-rehearsal-20261116/REVIEW.md) retains its finite controlled scope. Actual release
-inputs, market/provider/VRF/OpenSea/fees/operating acceptance and independent
-approval remain open; static preparation never supplies those approvals.
+## Five reports reconciled
 
-The [16 November whole-project audit](../reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
-state-file and website-profile gaps and reconciles current guidance. Production
-Solidity, economic rights, safeguards, gas defaults and existing environments
-are unchanged. Focused new checks and exact historical source reuse are recorded
-separately; this is internal review, not independent release approval.
+| Original report | Current interpretation |
+| --- | --- |
+| [Repaired-test impact](../reports/test-impact-followup-20261117/REVIEW.md) | Manual late-reorg handling and stale test expectations corrected; finite29method evidence retains its stages. |
+| [Test/seal review](../reports/test-seal-deep-review-20261117/REVIEW.md) | Chain, artwork scheme and reservation identities fixed; all59cited methods assessed. Static inventories and finite80checks are not a full-suite pass. |
+| [Behavior follow-up](../reports/operator-behavior-followup-20261117/REVIEW.md) | Empty artwork sealing and keeper clock lag fixed; extra compound waiting remains software-only by explicit decision. |
+| [Operator-input audit](../reports/operator-input-audit-20261116/REVIEW.md) | Frozen gas, occupied output handling and nested inputs/units/examples corrected; source catalogue is not dynamic coverage. |
+| [Pre-seal planner](../reports/preseal-planner-20261116/REVIEW.md) | Twelve typed setup families implemented; unknown inputs/identities remain unverified and no sealing/signing is added. |
 
-Use the [current five-audit finding index](../reports/five-audit-reconciliation-20261116/FINDINGS.json)
-for the latest metadata, market, construction and manual-reference dispositions.
-It records origin, duplicate action groups, source evidence, fixes and open
-qualification. New trusted build selection and stronger offline checkers close
-tooling/evidence defects; they do not qualify live providers or contracts.
-The sole [Todo](../TODO.md) continues to own project status.
+Selection follows first Git publication, not filesystem dates. All300 original
+files remain unchanged. See [scope and preservation](../reports/five-report-consolidation-20261117/SCOPE.json).
 
-The [manual reference-swap source fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md) resolves the reproduced
-emergency-only self-rejection: captured starting prices and exact own-swap proof
-replace comparison against a changing live fingerprint. Live freshness/agreement,
-original caller/economic floors and callbacks remain checked.25 new/3 adapted
-methods and actual local C/D/Parked receipts pass; no weaker guard/default or
-automatic fallback. Prior rejection and gas evidence keep their original scope.
+## New improvements from reconciliation
 
-The [manual recovery rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) closes controlled actual
-local C/D/Parked CLI-to-receipt composition and gas measurement. The verified
-worst padded call at that original source is13,010,802/24M. It reproduced the
-then-open emergency-only fingerprint coupling; the later reference-swap fix above
-resolves it in source. That earlier healthy14 used a separately reviewed third
-venue; explicit0 remains an independent outage decision, never an automatic
-workaround. Keep each receipt/gas/runtime scope historical: later metadata
-callers changed even though the six manual-fix objects and Vault remain exact.
+- Complete pre-seal input can intentionally disable ordinary pool operations.
+  Output now identifies each such pool and the contribution/compound/rebalance
+  stop. It does not conflate that setting with harvesting, claims or unknown data.
+- [Focused evidence admission](../scripts/check-focused-evidence.py) verifies
+  fixed historical method identities/results and available artifact metadata,
+  rather than admitting successful counts alone. Its input-audit claim-only
+  record is explicitly weaker; no missing raw log is manufactured. This check
+  proves integrity at its stated tier, not execution or independent audit.
+- Current README/context/handoff/feature guidance no longer bury the actual
+  project behind repeated report chronology. Historical detail stays in reports.
 
-The [44-linked-task source review](../reports/open-tasks-audit-20261113/REVIEW.md) corrects probe pacing/deadline/
-refusal handling and indexer retry amplification;20distinct new regression
-methods pass at their recorded stages. Existing task implementation milestones
-are separated from actual qualification and accepted boundaries. Operator spot/
-LP-profile instructions are corrected. All44broad tasks remain unfinished;
-source fixes do not approve providers, markets, fees, authorities or operating
-rollout. Contracts/defaults/financial rights and all live environments stay.
+## What remains a deliberate policy or real limit
 
-The [earlier external qualification](../reports/predeployment-qualification-20261113/REVIEW.md)
-retains independently derived genesis and13checks at its original paced-wrapper
-source. New optional CLI pacing is not a fresh public provider profile; complete
-20M/24M capacity/fees and genuine independent ETH/ZZZ sources/routes stay open.
+Extra compound waiting is keeper software policy; cumulative maintenance-loss
+caps were declined; emergency governance may explicitly omit financial guards.
+Those are retained choices, not silently reopened requirements. Recovery of
+unallocated royalties uses active weights at inclusion. Immutable identity,
+pending randomness, failed-token/receiver delivery and coupled terminal payout
+limits need their documented procedures or a separate consequential redesign.
 
-The [RPC/fee follow-up](../reports/rpc-fees-20261113/REVIEW.md) resolves the
-missing trace-interface witness through Pinax and confirms nonzero posting
-components, but not full provider/workload acceptance. A real nonzero-tip receipt
-exposes generic Ethereum daily-spend overstatement on Nitro. The new explicit
-future-only keeper profile2 requires zero-tip type2 and canonical receipt price;
-old profile1/pending semantics and spending guards remain. Complete target PoPL
-quotes, caps/archive/service/real-signing approval remain open. No
-contract/default/live environment change or unchanged suite rerun.
-
-The [20M/24M profile review](../reports/gas-profiles-20261113/REVIEW.md) closes
-controlled exact$100/$5 contribution and six keeper-operation gas feasibility
-with actual RPC estimates and full-padded calls. Software boundary/matching,
-fee/balance/day refusal and pending-first checks pass; production sources,
-safeguards/default12M stay unchanged. This does not close complete fees/provider,
-real market/configuration/maximum-state or manual Migration C/D qualification.
-Daybreak canonical-hash cheap calls/estimates work but tracing is absent;
-BlockVectra fresh hash-state calls fail. No weaker numbered-state/trace fallback
-is admitted. Oracle3-byte runtime headroom remains an explicit release risk.
-
-The [gas-feasibility follow-up](../reports/gas-feasibility-20261111/REVIEW.md)
-reduces redundant policy reads while retaining source/market/callback and
-financial proofs.23focused methods and48normal gates pass; original-RPC metrics
-and new full-maintenance measurements retain distinct scopes. Default12M
-feasibility remains open, as do complete real fees/providers and maximum state.
-Oracle's3-byte runtime margin is explicit. A public RPC now supplies bounded
-32M chain-parameter evidence, superseding earlier blanket unavailability only
-for those reads, without approving its archive/trace service or any deployment.
-
-All271previously unreviewed records now have individual source/decision
-assessments in the [complete follow-up](../reports/remaining-271-20261111/REVIEW.md).
-Together with the earlier39, the original310record registry is fully reviewed
-across the two source-scoped passes. It is not310independent bugs or universal
-closure: retained qualification, accepted risks and evidence-only records remain
-explicit. [Reading index](../reports/remaining-271-20261111/INDEX.md).
-
-Initial keeper simulation gas and historical execution-profile inheritance are
-fixed in source; strict artwork input admission adds no asset change. The
-dependency-qualified late-fee question remains unverified. See the exact
-[post-baseline corrections](../reports/remaining-271-20261111/FIXES.json); original
-reports and baseline defect descriptions are retained rather than relabeled.
-
-The [reference-execution follow-up](../reports/reference-execution-20261111/REVIEW.md)
-addresses the earlier swap/reference fingerprint coupling under explicit
-execution-price1/LP3. Original bounds and full actual-core state/output proofs
-retain financial guards; old LP2 semantics remain. Same-core principal reference
-use, real feed/route qualification, gas/consumer adoption and independent review
-remain separate limits. It does not close service-only compound-policy exposure.
-
-The [current project review](../reports/whole-project-review-20261111/REVIEW.md)
-separates confirmed fixes, stale fixtures/docs, intentional compatibility and
-[decisions requiring review](../reports/whole-project-review-20261111/REVIEW.md#decisions-and-release-gates).
-Earlier findings below retain their original source scope.
-
-
-The [9November double-check](../reports/today-change-review-20261109/REVIEW.md)
-fixes inventory phase/time consistency and exact integer-zero mint-family
-observations, adds funded Entry epoch mutation coverage, and corrects operator
-price/profile/address guidance. Solidity and economic rights remain unchanged.
-V10 cannot rotate SeaDrop across peers; actual provider/batch/operating and
-independent acceptance remain open.
-
-The approved [total contribution3% update](../reports/contribution-loss3-20261109/REVIEW.md)
-changes only the fresh Budget default200→300 and corresponding template/reader
-examples. Actual marginal LP must reach97%; idle never supplies that floor.
-Pool spot/swap/NET/caller controls and conversion/maintenance remain separate.
-Old200 reviews/runtime state and the recorded market2% failures remain explicit;
-this does not establish market feasibility or change existing environments.
-
-The [actual market qualification](../reports/market-qualification-20261109/REVIEW.md)
-replaces an ambiguous depth-only diagnosis with source-bound evidence. Both
-Chainlink proxies share one aggregator; Pyth ETH is stale/beyond3% agreement;
-no fixedZZZ source appears in the checked catalogs. Selected active L disappears
-on the next upward tick, and actual reverse quotes cannot fill. ETH100USD
-rejection instead combines recorded1% spot/2% swap/5% idle guards; its2% total
-contribution limit is distinct. Current normal90 fork execution proves exact
-rollback, not successful activation/growth or a solver bug. Production settings
-remain unselected and no source/guard/runtime is changed.
-
-The [SeaDrop mint2 follow-up](../reports/opensea-integration-20261109/REVIEW.md)
-implements the previously open custom-callback source path using the exact
-verified SeaDrop runtime. It preserves zero-value callbacks, fixed artwork/VRF
-and LP/royalty rights, reviewed phased quotas and original-recipient lifetime
-counts through canonicalV10. Explicit backend flag2 adds V10 reads/claims; old
-profiles and all running environments remain unchanged. Actual OpenSea
-onboarding/fees/payers, live providers/gas/wallets and independent approval remain open.
-
-The [source9 consumer review](../reports/source9-website-20261109/REVIEW.md)
-replaces stale browser profile/Entry assumptions through a separate schema4 path.
-It preserves historical clients and separates pending LP conversion, original
-royalties and terminal principal. Production composition tests include the real
-read-transport method allowlist; policy2 uses exact-number/hash-checked block reads.
-Source9 mint/Anvil signing stay disabled; real provider/site acceptance remains open.
-
-[Fee-flow audit](../reports/fee-flow-audit-20261107/REVIEW.md) fixes
-v3 final-native ETH pricing/wrapper18decimals, fresh7 affordable-prefix conversion
-and late deadline/UTC-day checks, strict simulation output and zero-noop earnings
-replay. Optional unsigned transaction policy2 adds reviewed operator gas limits
-(21k–64M engineering cap, confirmed-block bound, full20%headroom); policy1 remains
-12M/schema1. Policy2 requires explicitly matching consumers; no wallet signer,
-running configuration, service/site/Anvil/journal or heartbeat is changed.
-New normal87/46+2passes; strict532 has15current-context reviews/517unique exact
-referenced-source reuse. Converter executable changes only; Rewards metadata
-changes and all semantic storage/ABIs plus canonical object bytes are preserved.
-F3payload/parts stay byte-identical; source pins are rebound, never old runtimes.
-Actual11converter cases,338keeper passes+2explicit skips,28reader methods/fresh
-one-method wire producer and56API methods have separate source-scoped evidence;
-do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
-independent approval remain open. [Verification](../reports/fee-flow-audit-20261107/VERIFICATION.md).
-
-[Exact-unit LP integration](../reports/exact-lp-integration-20261106/REVIEW.md) replaces fresh LP index/fraction storage with whole-unit individual/equal-collective books, post-write authenticated hooks, current-owner claims and same-NFT conversion. A fixed typed RewardsCanonical companion preserves pending/phase/direct state under V9 with exact backing and funded abort. Earlier6/V8 rights stay separately interpreted; no deployed state is converted. Explicit schema16/profile7/source9 consumers and actual producer/getter/receipt fixtures reconcile the new accounting. Checkpoint1 is6-only; explicit checkpoint2 now retains the raw whole-unit books for original7 deployments. [Checkpoint/manual follow-up](../reports/checkpoint2-manual-20261107/REVIEW.md) separates source completion from real provider/host/lineage qualification.
-
-The earlier [engine implementation](../reports/exact-lp-engine-20261106/REVIEW.md) remains exact source-scoped evidence for the unchanged algorithm and retry diagnostics. [Harvesting audit](../reports/harvesting-audit-20261106/REVIEW.md) fixes clock freshness and distinguishes FeeController sub20 carry/incumbent dust from allocation rounding. Fresh7 assigns every ALLOCATED LP unit; upstream collection rounding, zero-cohort/orphan funds and compromised-dependency close fees remain distinct limits.
-
-[Both-flow audit](../reports/moving-market-flows-20261106/REVIEW.md): fix guarded
-manual active-candidate selection and late ordinary-LP simulation/time/day
-revalidation. [Every input](../reports/moving-market-flows-20261106/INPUT_MATRIX.md)
-and [blocker/recovery](../reports/moving-market-flows-20261106/BLOCKERS.md) are
-mapped. Separate retained guards are not removed as duplicates. Future-boundary,
-RPC honesty, operating latency and independent approval limits remain.
-
-Reviewed13November2026; mint2 source starts from main1579186 and earlier exact-LP evidence retains its original baseline. Production
-**NOT APPROVED**. [Sole Todo](../TODO.md) owns work;
-[features](IMPLEMENTATION_STATUS.md) record source and
-[operator](OPERATOR_MANUAL.md) describes actions.
-
-The [whole-history review](../reports/full-history-reconciliation-20261104/REVIEW.md)
-preserves310original finding records/pointers,398pre-ledger unchecked lines,
-162task-ledger versions and deleted-guide decisions. It distinguishes historical
-fixes, changed architecture, surviving limits and actual open implementation.
-Original reports remain immutable; counts are not independent defects/tests.
-
-Earlier reconciliation repaired a stale CI review pointer after two manual-view
-edits; its44focused Python checks and unchanged-contract scope remain historical.
-The strict pointer now selects the [manual-reference review](../reports/manual-reference-swap-fix-20261115/static-review.json):565 records,113 individually current/452 unique exact referenced-source reuses. Earlier567/541/560/558 records remain historical at their original source; no installed environment is upgraded.
-
-The [moving-market preparation supplement](../reports/consolidation-races-20261106/REVIEW.md)
-found no new ordinary custody-loss defect: fixed LP bounds differ from live tick,
-while current spot/composition and meaningful floors are checked at execution.
-The operator procedure now requires confirmed pause, a coherent canonical
-snapshot and fresh review after configuration/reorg/expiry. Raw ticks for an old
-or burned ID do not authenticate a live main. The custody hash is not a price
-quote or every governed-setting commitment. New focused race cases supplement
-existing exact-source evidence; they do not establish months of uptime or MEV
-immunity. Production code, runtime profiles and all environment boundaries stay
-unchanged.
-The [provenance map](../reports/full-history-reconciliation-20261104/FINDINGS.json)
-records the recurring static issue and materially changed original dispositions.
-
-Checkpoint1 now implements an opt-in first milestone for fresh6/5/1 earnings:
-externally pinned immutable state plus bounded raw suffix, exact fractions/dust/
-cohorts and complete rolling-day replay. [Current review](../reports/earnings-checkpoints-20261104/REVIEW.md)
-records final24new cases and earlier147affected methods without summing stages.
-Other full-history consumers, source-codec migration,
-unattended rotation, raw archival and real workload/host qualification remain open.
-
-OpenSea primary-mint source now uses the pinned actual SeaDrop caller/runtime,
-zero-value NFT callback and platform-controlled gross/fee/net payment. Reviewed
-quotas and V10 original-recipient counters preserve wallet limits after transfer
-or replacement; initial/historically reused root content remains a review trust boundary. Actual providers, authorities, routes/VRF, maximum gas,
-metadata, operating recovery and independent approval remain under the sole Todo.
-
-The [last24-hour audit](../reports/last24h-audit-20261105/REVIEW.md) replaces
-current royalty source conclusions with exact-unit settlement4/reporting5,
-schema14/canonicalV8 and original-currency recovery2. Scaled royalties could
-leave whole raw units reserved permanently. The approved GCD-normalized rotating
-ticket rule assigns every allocated unit; no current royalty conversion remains.
-It also repairs checkpoint construction, same-snapshot opening status, sale-end
-review/callback binding, source-wire ticket coordinates and cancelled-receiver
-recovery. Historical recovery1 conversion/window3 reports retain their original
-scope. That historical change left LP splits/fractions unchanged; current7 now replaces LP rounding, while all live-environment boundaries remain unchanged.
-
-The [factory/claim follow-up](../reports/factory-claims-20261105/REVIEW.md) reduces
-constructor storage costs using two fixed inert data children and adds bounded
-next-batch unsigned claim planning. Schema14 authenticates the new deployment
-graph; settlement4/reporting5/V8 and royalty creation bytes remain unchanged.
-No live configuration, service, site, journal or independent approval changed.
-
-The [main/residual lifecycle audit](../reports/residual-lifecycle-20261106/REVIEW.md)
-fixes fresh6 off-chain physical admission: independent per-leg amount math,
-containment and exact stable/L-sensitive identities, with contribution proof
-reuse. No production Solidity or economic rule changes. Governed move/resume
-creation/timing and conditional token-callback fee classification are explicit;
-actual dependency and operating qualification stay open.
-
-The [same-main operator improvement](../reports/residual-main-consolidation-20261106/REVIEW.md)
-fixes the close→idle→pending-mode management gap with typed paused governance
-consolidation. It retains exact shares/rights, separates guarded and explicitly
-forced execution, and authenticates a fresh inventory capability. Old reports
-remain source-scoped; no operating/independent approval is implied.
+Fresh independent sources/routes, authorities, supported VRF/OpenSea/artwork,
+complete fees/gas, maximum state, hosting/recovery, matching integration rollout
+and independent audit remain qualification work. Unknown inputs are not a code
+defect and documentation never supplies approval.
 
 ## Current conclusions by project layer
 
@@ -274,110 +75,12 @@ remain source-scoped; no operating/independent approval is implied.
 | Evidence integrity and current source scope | Latest mint2 normal/static/reference records are source-bound; prior Entry3 records retain their original scope. Failed/empty/skipped stages and prior-body reuse remain explicit. Historical matrices overlap and their counters are never summed into current coverage. Offline reviewHash is provenance, not approval/simulation. | Fresh frozen-release independent audit, compiler advisory refresh, exact deployment arguments and release-specific verification remain required. [local-verification](../TODO.md#task-local-verification), [audit-release](../TODO.md#task-audit-release), [callable-reference](../TODO.md#task-callable-reference), [operation-review](../TODO.md#task-operation-review), [deployment-initcode](../TODO.md#task-deployment-initcode) |
 | Release and external qualification | Current source remains undeployed and NOT APPROVED. Feeds, routes, VRF, authorities, OpenSea, current services/site, metadata, target gas/market economics and independent review remain explicit separate gates. | Local tests, old forks or documentation reconciliation do not close those gates. Public transactions/deployment/services require separate authorization. [authorities-prices](../TODO.md#task-authorities-prices), [mainnet-fork](../TODO.md#task-mainnet-fork), [testnet-rehearsal](../TODO.md#task-testnet-rehearsal), [audit-release](../TODO.md#task-audit-release), [native-production-preflight](../TODO.md#task-native-production-preflight) |
 
-## Historical findings corrected by later work
+## Earlier history and source boundaries
 
-| Earlier statement | Current conclusion | Evidence |
-| --- | --- | --- |
-| Fresh Entry conversion removal is a proposal | Implemented direct Entry3,7-field Request/then-schema9/20helpers; Vault and earned-reward conversions stay. | [Entry3](../reports/direct-entry-v3-20261103/REVIEW.md) |
-| Cooldown observation and internal-harvest coalescing remain missing | Implemented raw cooldown checks/near-eligibility paid enrollment and authenticated successful receipt coalescing. Actual scheduling inclusion remains unqualified. | [Coordination](KEEPER_COORDINATION.md), [portfolio source](../reports/optional-portfolio-20261030/REVIEW.md) |
-| Active-main rejection can hide an otherwise valid ordinary route candidate | Candidate activity is now checked before ranking using actual stored post-swap ticks; final mint checks remain. Bounded search is not a global optimum guarantee. | [LP lifecycle](../reports/lp-lifecycle-audit-20261102/REVIEW.md) |
-| Two geometry getter comparisons are independent proof | Both forward to the same packed PosM source. They prove coherence under that dependency; they are not independent stored-range sources. | [Correction](../reports/lp-lifecycle-audit-20261102/REVIEW.md) |
-| One residual must be left open or closed with all principal | Paused governance can close only the residual into attributed idle; modefalse/merge/park/emergency/terminal exit remain distinct. | [Management](OPERATOR_MANUAL.md#portfolio-management-controls) |
-| Old Vault size, helper counts, outside-only triggers or15-minute windows are current | Fresh identity and source-bound evidence below replace those labels. Original results remain valid only at their original source scope. | [Current identity](POSITION_V7.md), [Entry3 verification](../reports/direct-entry-v3-20261103/VERIFICATION.md) |
-
-## Per-NFT exit assurance supplement
-
-The [focused exit review](../reports/holder-exit-assurance-20261103/REVIEW.md)
-repairs a missing Manager binding in the old1000-NFT test model, retains the
-production residual guard, and adds per-recipient/mixed-wallet checks. Rarity,
-evolution and wallet grouping do not change principal shares; previous reward
-claims and one NFT's transfer cannot consume another NFT's principal.10distinct
-selected successes include1000model NFTs,37mixed wallets, real NFT tier/rarity
-composition and actual local v4 both-leg exit. That report binds historical e26fc74; actual
-maximum gas, rejecting recipients/dependency liveness and independent review stay open.
-
-## Historical evidence reuse boundary
-
-The [November4 manual-safeguard record](../reports/manual-safeguard-audit-20261104/VERIFICATION.md)
-retains its original52production/31dependency pins,43normal gates,471static
-contexts and85selected EVM successes/47Python methods. Its37/818reference and
-Vault635/Budget237/Migration39/Balancer360headrooms describe that historical
-revision, not the current candidate. Reuse requires exact relevant source/body,
-dependency and build equivalence; the report title alone is not proof.
-
-The [reference-execution record](../reports/reference-execution-20261111/VERIFICATION.md)
-binds the current unchanged61production/100total normal source and48size gates,
-with Vault32/Oracle88/Manager190runtime headroom. The corrected strict default
-retains567detector contexts under its original162/405review/reuse scope; the
-daily errata correct two permission descriptions only. New backend/tool changes
-have separate focused verification and do not relabel prior whole-source suites.
-
-The earlier [consolidation verification](../reports/four-report-consolidation-20261104/VERIFICATION.md)
-proves its own unchanged pins and93method indexer/history execution. These
-historical stages are never added into a single current full-suite total.
-
-Custody5 restricts terminal allocation/distribution to governance; old custody4
-was safe fixed-owner progress but permissionless. Owner reward/royalty claims
-remain unchanged. Explicit schema10/read/keeper/lineage versions preserve old
-journals, and keeper principal delivery must stay disabled on5. See [permissions](ACCESS_PERMISSIONS.md).
-[Prior Entry3 evidence](../reports/direct-entry-v3-20261103/VERIFICATION.md) retains
-its custody4 source scope, failures and earlier sizes; unchanged bodies may be
-reused explicitly, never relabelled. Frozen-release independent review, compiler
-advisory refresh, actual target gas/services and operating approval remain open.
-
-## Actual source9 follow-up
-
-The [actual Entry3 campaign](../reports/source9-actual-entry-20261109/REVIEW.md)
-found and fixed a nonexistent private Registry getter and an initial/funded
-trace-epoch mismatch previously hidden by synthetic fixtures. Exact-source
-regressions and four actual fork contributions now cover those paths. Optional
-activation gas policy2 adds explicit full-headroom reviews, with defaults and
-signing boundaries preserved. The unmodified selected pool could not deploy the
-required LP under existing guards; seeded-depth successes do not close market /
-route qualification. Historical reports keep their original evidence scope.
-
-## Operator management preparation
-
-The [manual diagnostics follow-up](../reports/manual-lp-diagnostics-20261115/REVIEW.md)
-closes generic local cause/stage and uncertain-publication handling for Active
-B/C/D and explicit Parked D. Actual opaque provider/decoder/revert causes remain
-unproven; no financial inequality is invented. Successful manual outputs and
-safeguards remain; management source commitments update naturally, without
-rewriting historical evidence. Actual gas/provider/operator gates stay open.
-
-The [unsigned management follow-up](../reports/operator-management-20261109/REVIEW.md)
-implements previously missing park/resume/residual-close and terminal-return
-adapters. It handles exact custody inputs, phase-specific pause/preparation,
-current-owner/cursor drift, gas-sensitive partial payouts and uncertain durable
-publication without signing or automatic fallback. Known local blockers remain
-distinct from opaque RPC failure. The [Parked recovery extension](../reports/parked-recovery-preparation-20261115/REVIEW.md)
-adds an explicit schema2 D selection and authenticated empty-portfolio/fund proof.
-Active-only guards are rejected, not silently removed; all bypasses are disclosed.
-Actual operator/provider/gas acceptance and contract-wallet envelopes remain open.
-
-## Provenance and unresolved findings
-
-The [consolidation record](../reports/project-consolidation-20261103/REVIEW.md)
-indexes401 baseline report narratives including the mutable index, and preserves
-original finding IDs/JSON pointers.351 unchanged prior reading records are reused;
-49 later narratives are separately indexed with findings/boundary extracts.
-The235 historical groups and75 later groups overlap and are neither310bugs nor
-310tests. The [mapping](../reports/project-consolidation-20261103/FINDINGS.json)
-retains their original dispositions and separates current topic-level assessment
-from source-matched evidence reuse. Unchanged code is not re-audited by copying
-an old disposition. [Original reports](../reports/README.md) remain byte-preserved.
-
-Accepted risks include immediate governance, deliberate emergency financial
-bypass, dependency/proxy behavior, sampled rather than continuous evidence,
-bounded routing/lifetime capacity and absent post-halt recovery. Retired
-requirements are superseded, not “successfully implemented.” Actual external
-qualification and independent audit remain open.
-
-## Current royalty window and capacity
-
-Settlement4 keeps the final3600-second window and reviewed16→64ERC20 capacity.
-Initial pool/prefund/zero-cohort rules remain distinct; exact allocation removes
-allocated rounding leftovers, not intentional holding or token transfer faults.
-V8 peers and reporting5 readers explicitly authenticate new ticket/cursor/wire
-semantics. Actual marketplace/time, maximum target gas, providers, restored
-services/history and independent review remain open. No dormant deadline UI.
+This five-report review does not reopen every older finding. Use the
+[full-history reconciliation](../reports/full-history-reconciliation-20261104/REVIEW.md),
+[remaining271 assessments](../reports/remaining-271-20261111/REVIEW.md),
+[prior five-audit index](../reports/five-audit-reconciliation-20261116/FINDINGS.json)
+and [report map](../reports/README.md) for older origins and exact evidence.
+No old runtime, codec, claim/checkpoint, source stage or journal is relabelled.
+Missing data remains unavailable, never guessed zero or substituted demo data.

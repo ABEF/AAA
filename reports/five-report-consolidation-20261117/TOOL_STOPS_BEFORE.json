@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "baseline": "1c18379b03b067de722d250cee1cc173acc4d635",
+  "started_at_utc": "2026-11-17T11:07:14.863956+00:00",
+  "finished_at_utc": "2026-11-17T11:07:21.067996+00:00",
+  "seconds": 6.203,
+  "selected": [
+    "tests_python.test_preseal_operating_stops.PresealOperatingStopTests.test_disabled_contribution_pool_operations_are_explicit_without_changing_the_call",
+    "tests_python.test_preseal_operating_stops.PresealOperatingStopTests.test_enabled_operations_do_not_report_a_false_pool_stop"
+  ],
+  "tests_run": 2,
+  "failures": [
+    [
+      "tests_python.test_preseal_operating_stops.PresealOperatingStopTests.test_disabled_contribution_pool_operations_are_explicit_without_changing_the_call",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_preseal_operating_stops.py\", line 29, in test_disabled_contribution_pool_operations_are_explicit_without_changing_the_call\n    self.assertIn(expected, result['explicit_operating_stops'])\nAssertionError: 'Pool 0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b has ordinary LP operations disabled; contributions, compounding and ordinary rebalancing are stopped for that pool.' not found in []\n"
+    ]
+  ],
+  "errors": [],
+  "skipped": [],
+  "success": false,
+  "source_before": {
+    "zzz_ops/preseal_plan.py": "e889106a1ab40589171697927e51c7391acef156731209aecc4513e2c7908a0a",
+    "scripts/prepare-preseal.py": "46ea49ae9c1177b4936bf5f04121eb3e1055487c8a3a48ecd0091c1ac022b0e3",
+    "tests_python/test_preseal_operating_stops.py": "3b156d38e1ddc2e0a843d1b54aeea0c50b91497934ee68ec15f667ba0c6c6011",
+    "tests_python/preseal_fixture.py": "68c185efcb949f652e63bbf27fef92fe6659f4a661a687c0b11d34d084684635"
+  },
+  "source_after": {
+    "zzz_ops/preseal_plan.py": "e889106a1ab40589171697927e51c7391acef156731209aecc4513e2c7908a0a",
+    "scripts/prepare-preseal.py": "46ea49ae9c1177b4936bf5f04121eb3e1055487c8a3a48ecd0091c1ac022b0e3",
+    "tests_python/test_preseal_operating_stops.py": "3b156d38e1ddc2e0a843d1b54aeea0c50b91497934ee68ec15f667ba0c6c6011",
+    "tests_python/preseal_fixture.py": "68c185efcb949f652e63bbf27fef92fe6659f4a661a687c0b11d34d084684635"
+  },
+  "source_unchanged": true,
+  "no_compiler_rpc_signing_or_old_state": true
+}

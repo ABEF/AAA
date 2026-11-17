@@ -1,0 +1,15 @@
+test_disabled_contribution_pool_operations_are_explicit_without_changing_the_call (tests_python.test_preseal_operating_stops.PresealOperatingStopTests.test_disabled_contribution_pool_operations_are_explicit_without_changing_the_call) ... FAIL
+test_enabled_operations_do_not_report_a_false_pool_stop (tests_python.test_preseal_operating_stops.PresealOperatingStopTests.test_enabled_operations_do_not_report_a_false_pool_stop) ... ok
+
+======================================================================
+FAIL: test_disabled_contribution_pool_operations_are_explicit_without_changing_the_call (tests_python.test_preseal_operating_stops.PresealOperatingStopTests.test_disabled_contribution_pool_operations_are_explicit_without_changing_the_call)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_preseal_operating_stops.py", line 29, in test_disabled_contribution_pool_operations_are_explicit_without_changing_the_call
+    self.assertIn(expected, result['explicit_operating_stops'])
+AssertionError: 'Pool 0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b has ordinary LP operations disabled; contributions, compounding and ordinary rebalancing are stopped for that pool.' not found in []
+
+----------------------------------------------------------------------
+Ran 2 tests in 6.155s
+
+FAILED (failures=1)

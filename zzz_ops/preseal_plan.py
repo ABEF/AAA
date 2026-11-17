@@ -485,7 +485,13 @@ def prepare(raw,root=D.ROOT,build_profile=D.DEFAULT_BUILD_PROFILE):
         if s['routes']['execution_pool_ids']==[]:stopped.append('Empty execution pool list disables ordinary balancing swaps.')
         if s['routes']['conversion_enabled'] is False:stopped.append('LP conversion is explicitly disabled; pending fixed-ZZZ is not claimable ETH.')
     if s['confirmation'] is not None and s['confirmation']['maximumGap']=='0':stopped.append('A zero observation gap stops ordinary confirmed rebalancing.')
-    if _known(s['native_pools']) and not any(p['config']['depositsEnabled'] for p in s['native_pools']['pools']):stopped.append('All initial pools have contributions disabled.')
+    if _known(s['native_pools']):
+        if not any(p['config']['depositsEnabled'] for p in s['native_pools']['pools']):
+            stopped.append('All initial pools have contributions disabled.')
+        for p in s['native_pools']['pools']:
+            if not p['config']['operationsEnabled']:
+                stopped.append('Pool '+abi.pool_id(p['config']['key'])+' has ordinary LP operations disabled; '
+                    'contributions, compounding and ordinary rebalancing are stopped for that pool.')
     result={'schema':SCHEMA,'kind':'offline_preseal_configuration_review','profile':PROFILE,'chain_id':'4663',
         'build_profile':build_profile,'offline_only':True,**{name:False for name in FALSE_FLAGS},
         'configuration_inputs_complete':complete,

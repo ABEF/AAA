@@ -1,78 +1,5 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-The [repaired-test impact follow-up](reports/test-impact-followup-20261117/REVIEW.md) traces affected fixtures into LP maintenance, rewards, recovery, keeper submission and manual preparation. It fixes a late manual-review reorg race and stale test expectations, with source-scoped behavioral checks rather than a claimed full-suite pass. All61 Solidity sources, financial rights/defaults and live environments remain unchanged. The trusted build remains seal-boundaries-20261117; actual dependencies, operating qualification and independent approval remain open.
-
-The [operator input audit](reports/operator-input-audit-20261116/REVIEW.md) covers92 governance/bootstrap/keeper/nominated actions and corrects frozen manual gas, output preservation and nested input/units documentation. All61 Solidity files, safeguards and NFT rights remain unchanged. Source/input coverage is separate from dynamic and production qualification.
-
-The [unsigned pre-seal planner](reports/preseal-planner-20261116/REVIEW.md) now prepares twelve ordered configuration
-families against the trusted current ABI. Unknown own/dependent inputs retain
-blocked/null calldata; actual bootstrap/code/state and all readiness/approval
-flags stay unverified/false. It includes the separate human-price orientation
-write, NFT-forwarded SeaDrop setup, declared native-pin/18-decimal consistency
-checks and explicit operating-stop diagnostics. No source contract, safeguard,
-default, signer, existing chain/DB/journal, site/service or paused heartbeat
-changes. There is no RPC/signing/deployment/sealing/adoption path. Earlier
-[1,000-NFT recovery evidence](reports/history-scale-rehearsal-20261116/REVIEW.md) retains its finite controlled scope. Actual release
-inputs, market/provider/VRF/OpenSea/fees/operating acceptance and independent
-approval remain open; static preparation never supplies those approvals.
-
-The [16 November whole-project audit](reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
-state-file and website-profile gaps and reconciles current guidance. Production
-Solidity, economic rights, safeguards, gas defaults and existing environments
-are unchanged. Focused new checks and exact historical source reuse are recorded
-separately; this is internal review, not independent release approval.
-
-[Current metadata2 local evidence](reports/metadata2-rehearsal-20261116/REVIEW.md)
-now covers five changed constructors, three bindings and 20 cold metadata cases.
-Normal limits hold; existing chains, sites and services remain unchanged. Real
-release dependencies, fees and OpenSea acceptance remain open.
-
-The [five-audit consolidation](reports/five-audit-reconciliation-20261116/REVIEW.md)
-restores unsigned planning against the current metadata build and strengthens
-deployment/market evidence checks. Historical artifacts keep their original
-pins and gas scope. Financial contracts, safeguards and live environments are
-unchanged; actual release qualification remains open.
-
-[Metadata lifecycle2](reports/metadata-lifecycle-fixes-20261116/REVIEW.md) now distinguishes
-LP exited, principal allocation/payment and canonical replacement. Immediate
-refresh notifications preserve NFT/royalty rights and the four artwork paths.
-Matching watcher/integration source is opt-in; actual OpenSea/hosting acceptance
-remains open. No live environment is updated by source publication.
-
-[Fresh market evidence](reports/real-market-refresh-20261116/REVIEW.md) still qualifies no
-independent ETH/ZZZ price pair or complete activation/conversion route. A larger
-known market improves forward quotes, but reverse execution and selected-pool
-price compatibility remain open. All safeguards and live environments stay unchanged.
-
-[Guarded manual reference swaps](reports/manual-reference-swap-fix-20261115/REVIEW.md) now authenticate their exact own-swap
-transition instead of rejecting a valid reference-venue trade. Financial,
-authority and live-source protections remain. New local C/D/Parked receipts fit
-24M with full25% padding; production qualification and deployment remain separate.
-
-[Manual LP diagnostics](docs/MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)
-now identify the failing review stage and known local cause, with safe unknown
-RPC errors and uncertain-output handling. Successful unsigned manual reviews,
-financial guards and permissions stay unchanged. [Source review](reports/manual-lp-diagnostics-20261115/REVIEW.md).
-
-[Parked emergency recovery](docs/MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2)
-now has explicit unsigned preparation with selected safeguards, exact custody
-proofs and fresh simulations. Governance permissions, contract code and live
-environments are unchanged. [Source review](reports/parked-recovery-preparation-20261115/REVIEW.md).
-
-The [13November44-task audit](reports/open-tasks-audit-20261113/REVIEW.md) fixes
-RPC-probe deadlines/refusal handling and unnecessary indexer log retries, with
-20distinct new regression methods. It corrects operator pricing/profile guidance;
-contract implementations, financial safeguards and live environments are unchanged.
-The [20M/24M controlled profiles](reports/gas-profiles-20261113/REVIEW.md) and
-[independent RPC identity](reports/predeployment-qualification-20261113/REVIEW.md)
-retain their original scope. Real feeds/routes, full-work fees/provider capacity
-and release approval remain open. Oracle still has only3bytes runtime headroom.
-
-The [complete remaining-findings review](reports/remaining-271-20261111/REVIEW.md)
-individually checks all271previously unreviewed records, fixes three concrete
-source gaps and updates current operator guidance. Original reports retain
-their source scope; live release qualification remains open.
-
 PoPL connects transferable ERC-721 NFTs to vault-managed ETH/ZZZ liquidity.
 Activation attaches an independently accounted LP share and unlocks funded LP
 fees plus rarity-weighted NFT-sale royalties. Holders cannot redeem principal
@@ -80,32 +7,19 @@ during normal operation. Governance can permanently end LP activity and return
 actual ETH + ZZZ to current NFT owners; transfers, old rewards and royalties remain.
 
 **Source candidate; undeployed for production. Production NOT APPROVED.**
-Current accounting7/direct Entry3/custody5/mint2 uses canonicalV10. Source changes
-do not update existing contracts, services, journals or websites. Public signing
-remains disabled; the shared browser signer stays Anvil-only.
+Current accounting7/direct Entry3/custody5/mint2 uses canonicalV10. The trusted
+normal build is `seal-boundaries-20261117`. Source publication does not update
+contracts, services, journals or websites; public signing remains disabled.
 
 [Project Todo](TODO.md) | [Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) |
-[Operator manual](docs/OPERATOR_MANUAL.md) | [Metadata lifecycle](docs/METADATA_LIFECYCLE.md) |
+[Operator manual](docs/OPERATOR_MANUAL.md) | [Current findings](docs/AUDIT_FINDINGS.md) |
 [Release approval](docs/RELEASE_CHECKLIST.md)
 
-The [current project review](reports/whole-project-review-20261111/REVIEW.md)
-records implemented repairs and decisions still needing review. The fresh
-[reference-execution capability](docs/REFERENCE_SWAP_EXECUTION.md) allows a reviewed
-external price reference to execute swaps, while keeping original valuation,
-exact state/output proofs and live safeguards. The optional
-[spot composite](docs/POOL_SPOT_PRICE_SOURCE.md) values an external ETH/ZZZ pool
-through ETH/USD; two independent source paths, useful execution depth and actual
-service/market qualification remain open. The local
-[mint2/V10 website consumer](docs/SOURCE10_WEBSITE_PROFILE.md) prepares unsigned
-reviews. Popldemo and served poplint remain separate from these source changes.
-
-The [offline deployment planner](docs/DEPLOYMENT_PREPARATION.md) now reviews
-current constructors, original size limits and bootstrap binding order using
-the accepted build. It produces unsigned, explicitly unapproved plans; actual
-public deployment, sealing and live qualification remain separate. The
-[isolated local construction rehearsal](docs/DEPLOYMENT_PREPARATION.md#isolated-local-construction-rehearsal)
-records real local constructors/bindings and gas without sealing or changing
-existing environments.
+The [latest five-report consolidation](reports/five-report-consolidation-20261117/REVIEW.md)
+separates corrected defects, retained policies and remaining qualification.
+Original reports keep their own source stages; test counts are not added into
+a new whole-project pass. Independent feeds/routes, VRF/OpenSea, exact operating
+costs, current integration rollout and independent audit remain open.
 
 ## Architecture overview
 

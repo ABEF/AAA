@@ -178,3 +178,8 @@ reports/test-seal-deep-review-20261117/** -text whitespace=cr-at-eol,-blank-at-e
 
 # Preserve exact repaired-test impact observations and original failures.
 reports/test-impact-followup-20261117/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact five-report reconciliation and original diagnostics.
+reports/five-report-consolidation-20261117/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+# The checker authenticates the exact raw bytes on every supported checkout.
+config/focused-evidence-1c18379.json -text

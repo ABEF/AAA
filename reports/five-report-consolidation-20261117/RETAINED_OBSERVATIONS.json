@@ -1,0 +1,88 @@
+{
+  "archive": "retained-observations.zip",
+  "sha256": "3234f082e7c49b430b1f49532aa0f8764ee5f146b9189abae2bf62dbe17b5e58",
+  "bytes": 15151,
+  "files": [
+    {
+      "path": "build-tool-report.py",
+      "bytes": 11311,
+      "sha256": "361b98a0a1a8cdd9608e0a2a5aa62ed39207748cea43c86d37a586ab54711bde"
+    },
+    {
+      "path": "DEFAULT_ADMISSION.json",
+      "bytes": 3145,
+      "sha256": "5f2c100cf6e55d41f82899b6484d8e199f578e06a51836c9aaf3ce16e83feb1a"
+    },
+    {
+      "path": "evidence-deflate-before.json",
+      "bytes": 1393,
+      "sha256": "e4e3f0680033ed2d706cf3a6a3afc9839db9b0552171e9afadb9502e85038d2c"
+    },
+    {
+      "path": "evidence-deflate-before.log",
+      "bytes": 1854,
+      "sha256": "d920fe1291104f90a811fb723a6ae68408c28deed22d4e0523b9a7ca58f6d651"
+    },
+    {
+      "path": "evidence-deflate-final.json",
+      "bytes": 1392,
+      "sha256": "5b96c5a1adfbae03704638624c147cfd490aab48e61144008edd6f2c5c7c63ec"
+    },
+    {
+      "path": "evidence-deflate-final.log",
+      "bytes": 276,
+      "sha256": "b27eeac32c2c5bf1c321c1ab537f315e8a89045df2f835209d7594443e663ef8"
+    },
+    {
+      "path": "evidence-final-affected.json",
+      "bytes": 1651,
+      "sha256": "25d74f023969a6f6dcb0014adfff3fd30fdeba5c250a9244c970bda8be6effa6"
+    },
+    {
+      "path": "evidence-final-affected.log",
+      "bytes": 671,
+      "sha256": "f7d1ffbaf8cf3f05cc678ec37de51f5c33fa559ccf1e7763877e62a9bfe057c1"
+    },
+    {
+      "path": "evidence-negative-before.json",
+      "bytes": 1398,
+      "sha256": "1c607af6e3312d51653125f553cd945223e98b25f523b60ff78f80cfecd88122"
+    },
+    {
+      "path": "evidence-negative-before.log",
+      "bytes": 1062,
+      "sha256": "96fefc92c59ca2ba74cac592714c889420cc0d6a7c89be6f9bffd01941aaee65"
+    },
+    {
+      "path": "run-tool-stops.py",
+      "bytes": 2218,
+      "sha256": "8b2779661a073dee51f01b6fa7a2f24d49dc02ab0a19c430cd9560787f191dff"
+    },
+    {
+      "path": "run_evidence_checks.py",
+      "bytes": 1078,
+      "sha256": "705e88b4411332afce44f3d5fcd74a18dda2964c874a5d56577a3bb800c59f36"
+    },
+    {
+      "path": "tool-stops/after.json",
+      "bytes": 1616,
+      "sha256": "df6785792cddfed70b4bdf1ea8d6f8f85eee226848937e0540128cee95c2ab1a"
+    },
+    {
+      "path": "tool-stops/after.log",
+      "bytes": 535,
+      "sha256": "606a2ee73e46a3da75f91af99004eff7ba965e3b30ec92f99ce618a1f8433016"
+    },
+    {
+      "path": "tool-stops/before.json",
+      "bytes": 2366,
+      "sha256": "cf4fdd75661eca83aad6353fa6ee11d54993955b839ff302e28da1514f68fb0d"
+    },
+    {
+      "path": "tool-stops/before.log",
+      "bytes": 1491,
+      "sha256": "f9ee1af1d610ec7e723bb2b4894ed3d0230dc9c2256f0eccafa753580fd3ed9b"
+    }
+  ],
+  "scope": "New-task observations/drivers only; original reports are pinned and preserved separately"
+}

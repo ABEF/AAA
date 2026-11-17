@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "baseline": "1c18379b03b067de722d250cee1cc173acc4d635",
+  "started_at_utc": "2026-11-17T11:07:56.220823+00:00",
+  "finished_at_utc": "2026-11-17T11:08:00.931222+00:00",
+  "seconds": 4.703,
+  "selected": [
+    "tests_python.test_preseal_operating_stops.PresealOperatingStopTests.test_disabled_contribution_pool_operations_are_explicit_without_changing_the_call",
+    "tests_python.test_preseal_operating_stops.PresealOperatingStopTests.test_enabled_operations_do_not_report_a_false_pool_stop"
+  ],
+  "tests_run": 2,
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "success": true,
+  "source_before": {
+    "zzz_ops/preseal_plan.py": "1510933dabf5756d8cf5032009aa8adccbbb49a4103c239031b3956a4bdd48aa",
+    "scripts/prepare-preseal.py": "46ea49ae9c1177b4936bf5f04121eb3e1055487c8a3a48ecd0091c1ac022b0e3",
+    "tests_python/test_preseal_operating_stops.py": "3b156d38e1ddc2e0a843d1b54aeea0c50b91497934ee68ec15f667ba0c6c6011",
+    "tests_python/preseal_fixture.py": "68c185efcb949f652e63bbf27fef92fe6659f4a661a687c0b11d34d084684635"
+  },
+  "source_after": {
+    "zzz_ops/preseal_plan.py": "1510933dabf5756d8cf5032009aa8adccbbb49a4103c239031b3956a4bdd48aa",
+    "scripts/prepare-preseal.py": "46ea49ae9c1177b4936bf5f04121eb3e1055487c8a3a48ecd0091c1ac022b0e3",
+    "tests_python/test_preseal_operating_stops.py": "3b156d38e1ddc2e0a843d1b54aeea0c50b91497934ee68ec15f667ba0c6c6011",
+    "tests_python/preseal_fixture.py": "68c185efcb949f652e63bbf27fef92fe6659f4a661a687c0b11d34d084684635"
+  },
+  "source_unchanged": true,
+  "no_compiler_rpc_signing_or_old_state": true
+}

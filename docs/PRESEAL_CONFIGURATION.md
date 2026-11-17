@@ -103,7 +103,10 @@ verify their preimages, and this tool does not invent missing hashes. The
 OpenSea helper receives its separately rebuilt proof-manifest review hash.
 
 `explicit_operating_stops` lists known deliberate stops: no execution venues,
-conversion disabled, maximum observation gap0, or no contribution destination.
+conversion disabled, maximum observation gap0, no contribution destination,
+or a pool with `operationsEnabled=false`. The latter names its exact pool ID
+and stops contributions, compound and ordinary rebalance there; it does not
+claim harvesting or earned-reward claims are disabled by that flag alone.
 A complete static review can deliberately describe a stopped system. It never
 means activation, maintenance or minting is ready. No automatic bypass/fallback,
 unpause, relaxed source band, raised loss cap or adoption follows a tool result.

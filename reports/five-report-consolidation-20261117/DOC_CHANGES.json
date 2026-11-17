@@ -1,0 +1,74 @@
+{
+  "README.md": {
+    "before_sha256": "e23a36a4eb20821576f7a6d362f9ae3ad7ed8b0401b8e48ed48b5a86e10a9f46",
+    "after_sha256": "5f8e95b5e933a10cefe1a764f57b441c37d684b3d2942b191dd0639b34e88e00",
+    "before_lines": 322,
+    "after_lines": 236
+  },
+  "PROJECT_CONTEXT.md": {
+    "before_sha256": "d8c2dbe8a78d467459d6ac33e24553b44122270c79d000c781b181140371f862",
+    "after_sha256": "99217c37f5de2d9f6730eb145368db58422ab8bd5c6d25c513a7f0791338b094",
+    "before_lines": 516,
+    "after_lines": 168
+  },
+  "docs/WORK_HANDOFF.md": {
+    "before_sha256": "fa22508f13b798b6e853f93b52894d3f528d9d581311d636ab124ed769b1e547",
+    "after_sha256": "383bd627746b6cd61d47cd6a7837077d5186606204a5c7e3d8514b372a122484",
+    "before_lines": 498,
+    "after_lines": 78
+  },
+  "docs/AUDIT_FINDINGS.md": {
+    "before_sha256": "0523574de8328a60b2c7b12cd0fffb182a45ffdce2a524eb7e50f53119676fb2",
+    "after_sha256": "f25e1f3dfd0821b3b735ea567c98b4a2917b067e8fc049fdcc8b0459ef26b2cf",
+    "before_lines": 383,
+    "after_lines": 86
+  },
+  "docs/IMPLEMENTATION_STATUS.md": {
+    "before_sha256": "0efb6a4798b5289a633271d13dff830f72382befae1c8719708ce3304de262b8",
+    "after_sha256": "75c76ab4a45e1f45c5b18ba0502ffe0a7f346871a0abe69eb6e0699709d23604",
+    "before_lines": 417,
+    "after_lines": 187
+  },
+  "AGENTS.md": {
+    "before_sha256": "8670863332c07a0cd257184dd11a1d39244c31e43bc3cf2bb9953804d92f5e4a",
+    "after_sha256": "64ca19eb10bb0da9eb2ded4d06c4ecdee937ddc540da11bba79fcc3f0b33c340",
+    "before_lines": 828,
+    "after_lines": 828
+  },
+  "docs/PRESEAL_CONFIGURATION.md": {
+    "before_sha256": "e801207a61c213769d251ef7e2ba4bf807d6c4ebdca883b8f7b733f7cd25dd03",
+    "after_sha256": "8ab88e99a7cd3cde26c8949a1bf042d2a284b76e47f19d621369dde343dce8bb",
+    "before_lines": 141,
+    "after_lines": 144
+  },
+  "docs/OPERATOR_MANUAL.md": {
+    "before_sha256": "618a9b54765b1826b9d3fd64a632ce6473d1d90ae5c9583dbd4587b770226d3d",
+    "after_sha256": "5387656840149bf662a0b291bfc69614d7e60ec624f25f6af7342709c050a476",
+    "before_lines": 7027,
+    "after_lines": 7036
+  },
+  "docs/DEVELOPMENT.md": {
+    "before_sha256": "c1d7fb33a53b251483c14f7e2614b428283a5be5f03565f3a5e8cc0f45539387",
+    "after_sha256": "e05239963da3df6a0687fdd4109f2db2b26a181a61e1859dfe2a1c26033b595b",
+    "before_lines": 325,
+    "after_lines": 332
+  },
+  "docs/project-todo.json": {
+    "before_sha256": "d07363b11be09294f04eb1978f11896ee966fd8fadf8153fd2b702563ab40162",
+    "after_sha256": "0c83648d4d8e8da1c2a739f253d03dd463dd6e3620cd1504f33a176b2a6fe99c",
+    "before_lines": 1721,
+    "after_lines": 1724
+  },
+  "reports/README.md": {
+    "before_sha256": "19ad7b0e569079c13b60a62396c56b30d353571b707f509b5f8f49966f4237d1",
+    "after_sha256": "d78fda0f6001d31f6c3b14fa4aa998a5aa0fc209ae52fac9f62a31667df6dc5e",
+    "before_lines": 217,
+    "after_lines": 219
+  },
+  ".gitattributes": {
+    "before_sha256": "d8fb11900ee722e9585a31d108f8ba6d2b835ed94e7a9866f5cc2a25e72e3a0b",
+    "after_sha256": "88032cf7d7e30a7c5a08977d0873a4ab9e054fecc257bc9ca60e9f4ed04051ac",
+    "before_lines": 180,
+    "after_lines": 185
+  }
+}

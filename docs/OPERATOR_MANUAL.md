@@ -686,7 +686,7 @@ as the conditional pre-seal caller and missing inputs explicitly blocked.
 | Prepare setup review | Reviewed copy of `config/preseal-preparation.example.json`; NEW output path | `python scripts/prepare-preseal.py --input /review/preseal.json --output /review/NEW-review.json` | Review conditional setup calls |
 | Pin current build | Exact supported current build | Add `--build-profile seal-boundaries-20261117` | Freeze current ABI selection |
 | Inspect missing values | Output `missing_inputs` and each step's fields | Review `steps[].missing_inputs` | Resolve explicit setup blockers |
-| Inspect deliberate stops | Output `explicit_operating_stops` | Empty venues, converterOFF, maximumGap0 | Identify intentionally stopped operations |
+| Inspect deliberate stops | Output `explicit_operating_stops` | Empty venues, converterOFF, maximumGap0, per-pool operationsOFF | Identify intentionally stopped operations |
 
 Keep unknowns null; exact booleans/decimal strings, nonzero code/review hashes and
 all tuple fields are explained in the owning guide. The existing OpenSea proof
@@ -4050,6 +4050,15 @@ Use the [short operator tables](#operator-call-tables) for quick calls and the
 and input/value explanations. Reads may revert; writes require a confirmed receipt
 and state check. A simulated return is not a transaction result. Inputs, transaction
 value and network gas are separate. ABI visibility never grants operator authority.
+
+## Inspect consolidated findings and historical evidence
+
+Use [current findings](AUDIT_FINDINGS.md) to distinguish code corrections,
+retained policy and actual release qualification. `python scripts/check-focused-evidence.py`
+only checks its pinned historical records and exact method identities. A weaker
+claim-only evidence tier stays weaker. It runs no test, RPC, compiler or wallet
+action, and neither generates an operation `reviewHash` nor approves sealing.
+Use the applicable current preparation procedure for actual function inputs.
 
 ## Prepare typed unsigned manual LP operations
 

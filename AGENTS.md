@@ -1,6 +1,6 @@
 # AAA / ZZZ PoPL project instructions
 
-The [repaired-test impact follow-up](reports/test-impact-followup-20261117/REVIEW.md) traces affected fixtures into LP maintenance, rewards, recovery, keeper submission and manual preparation. It fixes a late manual-review reorg race and stale test expectations, with source-scoped behavioral checks rather than a claimed full-suite pass. All61 Solidity sources, financial rights/defaults and live environments remain unchanged. The trusted build remains seal-boundaries-20261117; actual dependencies, operating qualification and independent approval remain open.
+The [latest five-report consolidation](reports/five-report-consolidation-20261117/REVIEW.md) separates resolved defects, retained policy and unqualified work without relabelling original reports. Current pre-seal output discloses pool-specific ordinary-operation stops; the fixed historical evidence checker preserves exact methods and weaker evidence tiers. All61 Solidity sources, financial limits/rights and live environments remain unchanged. Trusted build remains seal-boundaries-20261117; no release approval or rollout is implied.
 
 The [unsigned pre-seal planner](reports/preseal-planner-20261116/REVIEW.md) now prepares twelve ordered configuration
 families against the trusted current ABI. Unknown own/dependent inputs retain

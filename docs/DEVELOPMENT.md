@@ -56,6 +56,13 @@ focused cross-action/physical checks for genuinely affected paths and keep
 inventory, source review and execution distinct. See the
 [impact follow-up](../reports/test-impact-followup-20261117/REVIEW.md).
 
+For bounded historical-record integrity, run
+`python3 scripts/check-focused-evidence.py`. Its code-pinned manifest admits
+seven selected groups at their original source stages; the claim-only group
+does not acquire a missing raw log. This executes no historical tests and does
+not prove current behavior, original execution or release approval. New reviewed
+baselines need explicit source/manifest review, not a caller-supplied hash.
+
 For current native financial fixtures, keep their execution interfaces current
 and forward actual accounting/guard math rather than returning unconditional
 success. Fund synthetic exchange/fee cash during explicit setup; do not change

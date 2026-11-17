@@ -1,0 +1,15 @@
+test_extra_failed_python_row_cannot_hide_behind_ok_summary (tests_python.test_focused_evidence.FocusedEvidenceTests.test_extra_failed_python_row_cannot_hide_behind_ok_summary) ... FAIL
+
+======================================================================
+FAIL: test_extra_failed_python_row_cannot_hide_behind_ok_summary (tests_python.test_focused_evidence.FocusedEvidenceTests.test_extra_failed_python_row_cannot_hide_behind_ok_summary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_focused_evidence.py", line 117, in test_extra_failed_python_row_cannot_hide_behind_ok_summary
+    with self.assertRaises(evidence.EvidenceError):evidence._python_log(raw,["module.Case.test_a"])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: EvidenceError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.027s
+
+FAILED (failures=1)

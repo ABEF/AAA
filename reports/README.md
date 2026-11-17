@@ -1,5 +1,7 @@
 # Verification evidence
 
+[Latest five-report consolidation](five-report-consolidation-20261117/REVIEW.md) provides the current distinct finding registry, preserved source boundaries, new pre-seal stop diagnostics and bounded historical-evidence admission. No past test totals are added into new coverage.
+
 [Repaired-test impact follow-up](test-impact-followup-20261117/REVIEW.md) checks intended dependent behavior and fixes a late manual-review reorg race; source review, finite execution and remaining workload limits stay separate.
 
 The [test and irreversible-setup review](test-seal-deep-review-20261117/REVIEW.md) fixes chain/URI/reservation defects and strengthens specific test oracles. Current build is seal-boundaries-20261117; no release sign-off, deployment, service or website adoption is implied. Real dependencies, complete fees/gas, operations and independent review remain open.

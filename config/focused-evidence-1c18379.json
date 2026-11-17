@@ -1,0 +1,301 @@
+{
+  "schema": 1,
+  "trusted_baseline": "1c18379b03b067de722d250cee1cc173acc4d635",
+  "purpose": "Immutable selected historical evidence admission, not execution or release approval",
+  "groups": [
+    {
+      "id": "impact-physical",
+      "kind": "forge",
+      "raw": {
+        "path": "reports/test-impact-followup-20261117/PHYSICAL_RAW.json",
+        "sha256": "5722263fb44250d60de8bb5ad99ba28bf2bc94f09447a96e5d6cab472afea0ae"
+      },
+      "proof": {
+        "path": "reports/test-impact-followup-20261117/PHYSICAL_VERIFICATION.json",
+        "sha256": "c9727057e5477d2b05cd1fc85983aa695dfa9f9afb5ff93dd6441608676bf0cd"
+      },
+      "expected_ids": [
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest.testAuxiliaryBurnFailureRollsBackWholeMerge()",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest.testBothLegsHarvestWithoutReplacingEitherPosition()",
+        "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest.testSecondMintFailureRollsBackOldPrincipalFeesAndCustody()"
+      ],
+      "source_stage": "historical record only; never current-source adoption",
+      "artifact": {
+        "path": "reports/test-impact-followup-20261117/PHYSICAL_ARTIFACT.json.gz",
+        "sha256": "ebae5e79618e9822ccfc471107cda8fe492f0a29565b929d90740d087d27c576"
+      },
+      "source_field": "sources"
+    },
+    {
+      "id": "impact-rights",
+      "kind": "forge",
+      "raw": {
+        "path": "reports/test-impact-followup-20261117/RIGHTS_RAW.json",
+        "sha256": "0315adff913a0c61747998000ae7b63274fe5e1f9d9e1d1bd854115f99584108"
+      },
+      "proof": {
+        "path": "reports/test-impact-followup-20261117/RIGHTS_VERIFICATION.json",
+        "sha256": "89fe4e7557a788d065c154176487e5c4d0c62f620d72f6920a06e548172462c8"
+      },
+      "expected_ids": [
+        "test/RightsImpactFollowup20261117.t.sol:RightsImpactFollowup20261117Test.testImpactLastRoyaltyCurrencyFailureRollsBackCrossNFTCrossLedgerClaimsThenDrains()",
+        "test/RightsImpactFollowup20261117.t.sol:RightsImpactFollowup20261117Test.testImpactTinyHarvestCheckpointsExitTransfersAndFutureRoyaltiesDrainEveryUnit()"
+      ],
+      "source_stage": "historical record only; never current-source adoption",
+      "artifact": {
+        "path": "reports/test-impact-followup-20261117/RIGHTS_ARTIFACT.json.gz",
+        "sha256": "78aaa2e475a083041aa0890b021b1d3de509261a0678686e5936b19b74ac9ec0"
+      },
+      "source_field": "compiler_source_dependencies"
+    },
+    {
+      "id": "seal-opensea",
+      "kind": "forge",
+      "raw": {
+        "path": "reports/test-seal-deep-review-20261117/OPENSEA_ARTWORK.json",
+        "sha256": "ba3d7f665ed1d70812423dc356584b4ee863bb0f36824858e5c09cc32286e5f0"
+      },
+      "proof": {
+        "path": "reports/test-seal-deep-review-20261117/OPENSEA_ARTWORK_SOURCE_PROOF.json",
+        "sha256": "5b2c5f8c2d6f1383cdaaccf158e4722688d3ed255b5cbb12b205625ac2ee4004"
+      },
+      "expected_ids": [
+        "test/SeaDropArtworkBoundary20261117.t.sol:SeaDropArtworkBoundary20261117Test.testSeaDropMintStillUsesCollectionRootForRevealedArtwork()"
+      ],
+      "source_stage": "historical record only; never current-source adoption",
+      "artifact": {
+        "path": "reports/test-seal-deep-review-20261117/OPENSEA_ARTWORK_ARTIFACT.json.gz",
+        "sha256": "f6a86bf3cae89b28d0ff815e95ba0e307418199250c5785602cc7ca34e38b78f"
+      },
+      "source_field": "sources"
+    },
+    {
+      "id": "behavior-seal",
+      "kind": "forge",
+      "raw": {
+        "path": "reports/operator-behavior-followup-20261117/RIGHTS-postfix-seal.json",
+        "sha256": "2c885e7dfb5ffd39a0cd035ff01b3134bdb4b8da657604f46cb09e96cbe33949"
+      },
+      "proof": {
+        "path": "reports/operator-behavior-followup-20261117/RIGHTS_VERIFICATION.json",
+        "sha256": "26f7eaeb5594a539cd3cbef429182ba9669fd6b0d357208c120ee68ebd10547c"
+      },
+      "expected_ids": [
+        "test/OperatorSealArtwork20261117.t.sol:OperatorSealArtwork20261117Test.testConstructorConfiguredArtworkRootStillSealsWithoutMutation()",
+        "test/OperatorSealArtwork20261117.t.sol:OperatorSealArtwork20261117Test.testNonbootstrapCannotPopulateEmptyRootOrSeal()",
+        "test/OperatorSealArtwork20261117.t.sol:OperatorSealArtwork20261117Test.testUnconfiguredArtworkRootBlocksSealThenBootstrapCanCompleteSetup()"
+      ],
+      "source_stage": "historical record only; never current-source adoption",
+      "artifact": null,
+      "source_field": null
+    },
+    {
+      "id": "input-tools",
+      "kind": "reported-python",
+      "raw": {
+        "path": "reports/operator-input-audit-20261116/tool-verification.json",
+        "sha256": "ba73c02cf567efaa4f882fbbb076d3e229dc9905b7e265ccbe7e39939a1fda45"
+      },
+      "expected_ids": [
+        "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_canonicality_reorg_and_local_input_mutation_are_identified",
+        "tests_python.test_manual_lp_diagnostics.ManualLPDiagnosticsTests.test_final_controls_failure_is_distinct_from_final_simulation",
+        "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_exact_gas_is_frozen_across_healthy_lower_cost_market_change",
+        "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_final_cost_increase_cannot_silently_raise_transaction_gas",
+        "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_final_exact_gas_return_must_still_match_void_abi",
+        "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_final_fee_budget_uses_frozen_gas_not_cheaper_new_estimate",
+        "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_frozen_budget_still_requires_final_block_capacity",
+        "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_initial_exact_gas_failure_is_not_hidden_by_successful_cap_probe",
+        "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_management_dangling_output_is_preserved_before_any_input_or_rpc",
+        "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_owned_rehearsal_preserves_current_gas_and_explicit_old_artifacts",
+        "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_parked_schema2_also_freezes_gas_without_enabling_active_guards",
+        "tests_python.test_manual_lp_frozen_gas.ManualFrozenGasTests.test_strict_reference_wrapper_accepts_only_the_exact_updated_base_source",
+        "tests_python.test_manual_lp_review.ManualLPReviewTests.test_all_rpc_contract_reads_use_confirmed_or_final_canonical_hash_without_latest_fallback",
+        "tests_python.test_manual_lp_review.ManualLPReviewTests.test_block_gas_limit_bounds_both_reviews_and_network_envelope_is_separate",
+        "tests_python.test_manual_lp_review.ManualLPReviewTests.test_changed_final_nonce_controls_and_physical_backing_refuse_without_rewriting",
+        "tests_python.test_manual_lp_review.ManualLPReviewTests.test_contract_or_delegated_governance_requires_unsupported_outer_envelope_before_funding",
+        "tests_python.test_manual_lp_review.ManualLPReviewTests.test_d_preharvest_lower_bound_never_replaces_full_source_call_spendability",
+        "tests_python.test_manual_lp_review.ManualLPReviewTests.test_exact_b_c_d_calls_and_floor_meanings",
+        "tests_python.test_manual_lp_review.ManualLPReviewTests.test_healthy_trading_and_new_price_rounds_keep_original_manifest_and_revalidate_twice",
+        "tests_python.test_manual_lp_review.ManualLPReviewTests.test_last_head_deadline_after_final_estimate_refuses_without_resimulation",
+        "tests_python.test_manual_lp_review.ManualLPReviewTests.test_latest_retained_guard_failure_refuses_without_fallback_or_third_probe",
+        "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_every_parked_control_is_rechecked_at_later_canonical_tip",
+        "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_execution1_lp3_profile_and_late_source_controls",
+        "tests_python.test_parked_manual_lp_review.ParkedManualLPReviewTests.test_explicit_schema2_parked_d_exact_static_call_and_disclosure"
+      ],
+      "source_stage": "original per-stage observation; source pins are not a substitute for absent raw terminal output",
+      "artifact": null
+    },
+    {
+      "id": "preseal-core",
+      "kind": "python-command",
+      "stages": [
+        {
+          "raw": {
+            "path": "reports/preseal-planner-20261116/evidence/core-fixed-targeted-01.json.gz",
+            "sha256": "e7d1db04b48418e20be5734749a438245e30d8142c97cc32a6fef2abb3534675"
+          },
+          "log": {
+            "path": "reports/preseal-planner-20261116/evidence/core-fixed-targeted-01.log.gz",
+            "sha256": "e2463576ef7cccb419798f5dd97a262046e9ad7df9609f55476f051eb1ca356c"
+          },
+          "expected_ids": [
+            "tests_python.test_preseal_plan.PresealPlanTests.test_complete_current_build_produces_only_conditional_typed_bootstrap_calls",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_known_execution_composite_source_requires_18_feed_decimals",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_known_native_code_pins_cannot_conflict_with_registry_constants"
+          ]
+        },
+        {
+          "raw": {
+            "path": "reports/preseal-planner-20261116/evidence/core-remaining-01.json.gz",
+            "sha256": "9d306505eb865b4550c44d96a16cf486d622cf71a8c8b4bfeea68189a30deae9"
+          },
+          "log": {
+            "path": "reports/preseal-planner-20261116/evidence/core-remaining-01.log.gz",
+            "sha256": "9f519abcb4205caf4f9c5546caf18b250467614ce4db4043d080f37c8890134d"
+          },
+          "expected_ids": [
+            "tests_python.test_preseal_plan.PresealPlanTests.test_all_unknown_inputs_remain_blocked_and_unfilled",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_bootstrap_is_explicit_not_inferred_from_governance",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_complete_upstream_with_unknown_terms_stays_blocked_instead_of_dereferencing_unknown",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_confirmation_keeps_reference_guard_and_distinguishes_stopped_gap",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_declared_feed_and_coordinator_cannot_alias_known_protocol_implementations",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_drop_artifact_digest_source_identity_and_expected_price_are_checked",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_execution_sources_must_match_exact_admitted_zzz_source_and_pin",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_explicit_empty_routes_and_disabled_conversion_are_not_unknown_or_fallback",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_fixed_zzz_code_pins_cannot_diverge_between_configurations",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_helper_targets_must_be_supplied_and_collisions_reject",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_historical_build_and_source_or_artifact_drift_do_not_fall_back",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_mint_end_aligns_with_proof_window_and_does_not_claim_live_future_timestamp",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_missing_fixed_token_blocks_dependants_without_blocking_unrelated_terms",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_no_network_call_or_false_release_approval_is_needed_for_complete_review",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_pool_configuration_precedes_human_price_orientation_and_routes",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_pool_geometry_cooldown_fee_budget_and_position_caps_are_checked",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_pool_identity_hook_duplicate_and_one_contribution_destination_guards",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_preparation_never_mutates_inputs_or_claims_factory_discovery",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_routes_remain_bounded_native_fixed_pair_and_admitted_execution_venues",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_strict_object_types_integer_strings_and_array_limits_reject",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_two_source_identity_age_decimals_and_disagreement_bounds_are_retained",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_unknown_nested_values_block_and_do_not_become_zero",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_upstream_setters_target_nft_with_fixed_seadrop_not_external_admin",
+            "tests_python.test_preseal_plan.PresealPlanTests.test_vrf_bounds_are_initial_setup_not_rotation_or_pending_reroll"
+          ]
+        }
+      ],
+      "expected_ids": [
+        "tests_python.test_preseal_plan.PresealPlanTests.test_all_unknown_inputs_remain_blocked_and_unfilled",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_bootstrap_is_explicit_not_inferred_from_governance",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_complete_current_build_produces_only_conditional_typed_bootstrap_calls",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_complete_upstream_with_unknown_terms_stays_blocked_instead_of_dereferencing_unknown",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_confirmation_keeps_reference_guard_and_distinguishes_stopped_gap",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_declared_feed_and_coordinator_cannot_alias_known_protocol_implementations",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_drop_artifact_digest_source_identity_and_expected_price_are_checked",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_execution_sources_must_match_exact_admitted_zzz_source_and_pin",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_explicit_empty_routes_and_disabled_conversion_are_not_unknown_or_fallback",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_fixed_zzz_code_pins_cannot_diverge_between_configurations",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_helper_targets_must_be_supplied_and_collisions_reject",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_historical_build_and_source_or_artifact_drift_do_not_fall_back",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_known_execution_composite_source_requires_18_feed_decimals",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_known_native_code_pins_cannot_conflict_with_registry_constants",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_mint_end_aligns_with_proof_window_and_does_not_claim_live_future_timestamp",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_missing_fixed_token_blocks_dependants_without_blocking_unrelated_terms",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_no_network_call_or_false_release_approval_is_needed_for_complete_review",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_pool_configuration_precedes_human_price_orientation_and_routes",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_pool_geometry_cooldown_fee_budget_and_position_caps_are_checked",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_pool_identity_hook_duplicate_and_one_contribution_destination_guards",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_preparation_never_mutates_inputs_or_claims_factory_discovery",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_routes_remain_bounded_native_fixed_pair_and_admitted_execution_venues",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_strict_object_types_integer_strings_and_array_limits_reject",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_two_source_identity_age_decimals_and_disagreement_bounds_are_retained",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_unknown_nested_values_block_and_do_not_become_zero",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_upstream_setters_target_nft_with_fixed_seadrop_not_external_admin",
+        "tests_python.test_preseal_plan.PresealPlanTests.test_vrf_bounds_are_initial_setup_not_rotation_or_pending_reroll"
+      ],
+      "source_pins": {
+        "path": "reports/preseal-planner-20261116/evidence/FINAL_SOURCE_PINS.json.gz",
+        "sha256": "c9d1b660457477bf1e5cda35f0fb7209e36a365213260c727f384dd6959f6361"
+      },
+      "source_stage": "original exact stage; no current-source comparison or new execution",
+      "artifact": null
+    },
+    {
+      "id": "preseal-cli",
+      "kind": "python-record",
+      "stages": [
+        {
+          "raw": {
+            "path": "reports/preseal-planner-20261116/evidence/preseal-cli-representative.json.gz",
+            "sha256": "85c2b0e7329683d7d70b02e27ac4779a283c59dbf366233578567deac7d9f38d"
+          },
+          "log": {
+            "path": "reports/preseal-planner-20261116/evidence/preseal-cli-representative.log.gz",
+            "sha256": "d0022b939c06bb5d68ada425916e309e033d3fe6d0fd7d814cbe4da4d5569c88"
+          },
+          "expected_ids": [
+            "tests_python.test_preseal_cli.PresealCliTests.test_complete_review_publishes_exact_bytes_with_no_execution_or_permission_claim"
+          ]
+        },
+        {
+          "raw": {
+            "path": "reports/preseal-planner-20261116/evidence/preseal-cli-remaining.json.gz",
+            "sha256": "de94c027ad3cebc8e5a75757f925e0beb72ec3e845ad396a1d7b1e78607f2d43"
+          },
+          "log": {
+            "path": "reports/preseal-planner-20261116/evidence/preseal-cli-remaining.log.gz",
+            "sha256": "1a058de9ee7104b1131638f685f3997e7f7cb0e03f5db0ee17c52f6eed3ce029"
+          },
+          "expected_ids": [
+            "tests_python.test_preseal_cli.PresealCliTests.test_both_input_and_new_output_are_required_before_any_read",
+            "tests_python.test_preseal_cli.PresealCliTests.test_dangling_existing_entry_is_preserved_without_claiming_symlink_privilege",
+            "tests_python.test_preseal_cli.PresealCliTests.test_execution_key_rpc_root_and_abbreviated_options_are_not_accepted",
+            "tests_python.test_preseal_cli.PresealCliTests.test_existing_file_directory_input_alias_and_hardlink_are_preserved",
+            "tests_python.test_preseal_cli.PresealCliTests.test_existing_output_render_bound_is_not_raised_for_preseal_review",
+            "tests_python.test_preseal_cli.PresealCliTests.test_help_has_only_unsigned_offline_inputs_and_does_not_prepare",
+            "tests_python.test_preseal_cli.PresealCliTests.test_input_byte_bound_and_strict_json_reject_before_preparation",
+            "tests_python.test_preseal_cli.PresealCliTests.test_known_preparation_error_retains_only_typed_reason",
+            "tests_python.test_preseal_cli.PresealCliTests.test_late_publication_error_preserves_complete_unapproved_artifact",
+            "tests_python.test_preseal_cli.PresealCliTests.test_malformed_or_inconsistent_internal_result_is_not_published",
+            "tests_python.test_preseal_cli.PresealCliTests.test_missing_output_parent_is_not_created_or_replaced",
+            "tests_python.test_preseal_cli.PresealCliTests.test_parse_errors_never_echo_fake_credentials_or_private_paths",
+            "tests_python.test_preseal_cli.PresealCliTests.test_racing_publication_cannot_replace_another_review",
+            "tests_python.test_preseal_cli.PresealCliTests.test_unexpected_input_or_core_error_never_discloses_fake_secret",
+            "tests_python.test_preseal_cli.PresealCliTests.test_unknown_build_is_rejected_before_input_or_caller_selected_artifact_reads",
+            "tests_python.test_preseal_cli.PresealCliTests.test_unknown_inputs_publish_only_blocked_review_without_filled_call_data",
+            "tests_python.test_preseal_cli.PresealCliTests.test_utf8_and_explicit_trusted_build_are_forwarded_without_relabeling"
+          ]
+        }
+      ],
+      "expected_ids": [
+        "tests_python.test_preseal_cli.PresealCliTests.test_both_input_and_new_output_are_required_before_any_read",
+        "tests_python.test_preseal_cli.PresealCliTests.test_complete_review_publishes_exact_bytes_with_no_execution_or_permission_claim",
+        "tests_python.test_preseal_cli.PresealCliTests.test_dangling_existing_entry_is_preserved_without_claiming_symlink_privilege",
+        "tests_python.test_preseal_cli.PresealCliTests.test_execution_key_rpc_root_and_abbreviated_options_are_not_accepted",
+        "tests_python.test_preseal_cli.PresealCliTests.test_existing_file_directory_input_alias_and_hardlink_are_preserved",
+        "tests_python.test_preseal_cli.PresealCliTests.test_existing_output_render_bound_is_not_raised_for_preseal_review",
+        "tests_python.test_preseal_cli.PresealCliTests.test_help_has_only_unsigned_offline_inputs_and_does_not_prepare",
+        "tests_python.test_preseal_cli.PresealCliTests.test_input_byte_bound_and_strict_json_reject_before_preparation",
+        "tests_python.test_preseal_cli.PresealCliTests.test_known_preparation_error_retains_only_typed_reason",
+        "tests_python.test_preseal_cli.PresealCliTests.test_late_publication_error_preserves_complete_unapproved_artifact",
+        "tests_python.test_preseal_cli.PresealCliTests.test_malformed_or_inconsistent_internal_result_is_not_published",
+        "tests_python.test_preseal_cli.PresealCliTests.test_missing_output_parent_is_not_created_or_replaced",
+        "tests_python.test_preseal_cli.PresealCliTests.test_parse_errors_never_echo_fake_credentials_or_private_paths",
+        "tests_python.test_preseal_cli.PresealCliTests.test_racing_publication_cannot_replace_another_review",
+        "tests_python.test_preseal_cli.PresealCliTests.test_unexpected_input_or_core_error_never_discloses_fake_secret",
+        "tests_python.test_preseal_cli.PresealCliTests.test_unknown_build_is_rejected_before_input_or_caller_selected_artifact_reads",
+        "tests_python.test_preseal_cli.PresealCliTests.test_unknown_inputs_publish_only_blocked_review_without_filled_call_data",
+        "tests_python.test_preseal_cli.PresealCliTests.test_utf8_and_explicit_trusted_build_are_forwarded_without_relabeling"
+      ],
+      "source_pins": {
+        "path": "reports/preseal-planner-20261116/evidence/preseal-cli-case-pins.json.gz",
+        "sha256": "cd7dd4be868a57fe7c759cbc0c2cc3cdc8bf7e3ff7df251e5604ffa64d7190f1"
+      },
+      "source_stage": "original exact stage; no current-source comparison or new execution",
+      "artifact": null
+    }
+  ],
+  "omissions": [
+    "Not every historical test or selected report observation is admitted.",
+    "Behavior seal artifact lives inside an archive; no archive is extracted and source metadata remains recorded evidence only.",
+    "Operator-input tool24 has only its retained source-hashed claim list; absent raw terminal output is not manufactured.",
+    "Historical source stages are never compared to current source or relabelled as current passes."
+  ]
+}

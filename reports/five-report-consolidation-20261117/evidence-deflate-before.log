@@ -1,0 +1,26 @@
+test_corrupted_deflate_normalizes_to_evidence_refusal (tests_python.test_focused_evidence.FocusedEvidenceTests.test_corrupted_deflate_normalizes_to_evidence_refusal) ... ERROR
+
+======================================================================
+ERROR: test_corrupted_deflate_normalizes_to_evidence_refusal (tests_python.test_focused_evidence.FocusedEvidenceTests.test_corrupted_deflate_normalizes_to_evidence_refusal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_focused_evidence.py", line 125, in test_corrupted_deflate_normalizes_to_evidence_refusal
+    evidence._bytes(root,{"path":path.name,"sha256":hashlib.sha256(data).hexdigest()})
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\focused_evidence.py", line 87, in _bytes
+    expanded = handle.read(MAX_EXPANDED + 1)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\gzip.py", line 338, in read
+    return self._buffer.read(size)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\_compression.py", line 68, in readinto
+    data = self.read(len(byte_view))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\gzip.py", line 552, in read
+    uncompress = self._decompressor.decompress(buf, size)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+zlib.error: Error -3 while decompressing data: invalid block type
+
+----------------------------------------------------------------------
+Ran 1 test in 0.060s
+
+FAILED (errors=1)

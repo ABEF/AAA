@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "integrity_admitted": true,
+  "trusted_baseline": "1c18379b03b067de722d250cee1cc173acc4d635",
+  "groups": [
+    {
+      "id": "impact-physical",
+      "historical_method_records": 3,
+      "evidence_level": "exact_raw_results_and_compiled_artifact_source_identity",
+      "source_stage": "historical record only; never current-source adoption",
+      "current_source_adopted": false,
+      "new_executions": 0
+    },
+    {
+      "id": "impact-rights",
+      "historical_method_records": 2,
+      "evidence_level": "exact_raw_results_and_compiled_artifact_source_identity",
+      "source_stage": "historical record only; never current-source adoption",
+      "current_source_adopted": false,
+      "new_executions": 0
+    },
+    {
+      "id": "seal-opensea",
+      "historical_method_records": 1,
+      "evidence_level": "exact_raw_results_and_compiled_artifact_source_identity",
+      "source_stage": "historical record only; never current-source adoption",
+      "current_source_adopted": false,
+      "new_executions": 0
+    },
+    {
+      "id": "behavior-seal",
+      "historical_method_records": 3,
+      "evidence_level": "exact_raw_results_and_recorded_source_stage_no_standalone_artifact",
+      "source_stage": "historical record only; never current-source adoption",
+      "current_source_adopted": false,
+      "new_executions": 0
+    },
+    {
+      "id": "input-tools",
+      "historical_method_records": 24,
+      "evidence_level": "source_hashed_reported_method_list_no_independent_raw_log",
+      "source_stage": "original per-stage observation; source pins are not a substitute for absent raw terminal output",
+      "current_source_adopted": false,
+      "new_executions": 0
+    },
+    {
+      "id": "preseal-core",
+      "historical_method_records": 27,
+      "evidence_level": "exact_unittest_logs_and_recorded_historical_source_pins",
+      "source_stage": "original exact stage; no current-source comparison or new execution",
+      "current_source_adopted": false,
+      "new_executions": 0
+    },
+    {
+      "id": "preseal-cli",
+      "historical_method_records": 18,
+      "evidence_level": "exact_unittest_logs_and_recorded_historical_source_pins",
+      "source_stage": "original exact stage; no current-source comparison or new execution",
+      "current_source_adopted": false,
+      "new_executions": 0
+    }
+  ],
+  "historical_method_records": 78,
+  "new_test_executions": 0,
+  "new_EVM_executions": 0,
+  "production_approved": false,
+  "omissions": [
+    "Not every historical test or selected report observation is admitted.",
+    "Behavior seal artifact lives inside an archive; no archive is extracted and source metadata remains recorded evidence only.",
+    "Operator-input tool24 has only its retained source-hashed claim list; absent raw terminal output is not manufactured.",
+    "Historical source stages are never compared to current source or relabelled as current passes."
+  ],
+  "limit": "Integrity is not proof of original execution, complete behavior, current-source qualification or independent audit."
+}

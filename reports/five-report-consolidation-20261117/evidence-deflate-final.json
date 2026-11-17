@@ -1,0 +1,25 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-m",
+    "unittest",
+    "-v",
+    "tests_python.test_focused_evidence.FocusedEvidenceTests.test_corrupted_deflate_normalizes_to_evidence_refusal"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.2029999999977008,
+  "source_before": {
+    "zzz_ops/focused_evidence.py": "78c2d9af2739348909e27804fbf089e4c5be20a819583db23e08bb3a5abc6b43",
+    "scripts/check-focused-evidence.py": "69ecea05b5a2cdf17cd2c44a067346869d10451bc571789a9662e96ae89a98a8",
+    "tests_python/test_focused_evidence.py": "c995b4e48b0be7187776eaecea6df7cf5833c8e2bfbeec81eb8b5e7ca6337499",
+    "config/focused-evidence-1c18379.json": "96c5aef1946eeec3083a40302125039812616d683816e7233512f1efe900f568"
+  },
+  "source_after": {
+    "zzz_ops/focused_evidence.py": "78c2d9af2739348909e27804fbf089e4c5be20a819583db23e08bb3a5abc6b43",
+    "scripts/check-focused-evidence.py": "69ecea05b5a2cdf17cd2c44a067346869d10451bc571789a9662e96ae89a98a8",
+    "tests_python/test_focused_evidence.py": "c995b4e48b0be7187776eaecea6df7cf5833c8e2bfbeec81eb8b5e7ca6337499",
+    "config/focused-evidence-1c18379.json": "96c5aef1946eeec3083a40302125039812616d683816e7233512f1efe900f568"
+  },
+  "log_sha256": "b27eeac32c2c5bf1c321c1ab537f315e8a89045df2f835209d7594443e663ef8",
+  "EVM_executions": 0
+}

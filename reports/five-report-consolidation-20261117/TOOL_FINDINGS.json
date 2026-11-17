@@ -1,0 +1,209 @@
+{
+  "schema": 1,
+  "baseline_commit": "1c18379b03b067de722d250cee1cc173acc4d635",
+  "recorded_at_utc": "2026-11-17T11:10:53.160061+00:00",
+  "scope": "Tool/backend relevant finding groups across five latest report families, plus source trace into wider consumers; not an all-method or live deployment audit.",
+  "records": [
+    {
+      "id": "TOOL-01",
+      "historical_report": "operator-input-audit-20261116",
+      "classification": "resolved",
+      "current_assessment": "Manual gas is frozen after the first estimate; both anchors call exact gas, higher final requirement refuses and fee/funding use the frozen envelope.",
+      "current_source": "zzz_ops/manual_lp_review.py:simulation;prepare",
+      "remaining": null,
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "TOOL-02",
+      "historical_report": "operator-input-audit-20261116",
+      "classification": "resolved",
+      "current_assessment": "Output preflight uses lexists and exclusive publication preserves racing or dangling entries.",
+      "current_source": "zzz_ops/management_review.py:main;zzz_ops/manual_lp_review.py:write_exclusive",
+      "remaining": null,
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "KEEPER-01",
+      "historical_report": "operator-behavior-followup-20261117",
+      "classification": "resolved",
+      "current_assessment": "Due-clock refresh is present after slow reads; failures/retreat do not invent time. The recent actual-submit tests cover the scheduling-to-preflight composition.",
+      "current_source": "keeper/monitor.py:Keeper.cycle;Keeper.submit",
+      "remaining": null,
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "SEAL-01",
+      "historical_report": "operator-behavior-followup-20261117",
+      "classification": "resolved",
+      "current_assessment": "Empty renderer root refuses before bootstrap loss; nonempty root is not content availability proof.",
+      "current_source": "src/ZZZAccessController.sol:seal",
+      "remaining": "Actual content retrieval and OpenSea acceptance remain qualification work.",
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "WRONG_HOME",
+      "historical_report": "test-seal-deep-review-20261117",
+      "classification": "resolved",
+      "current_assessment": "Vault constructor requires actual same-chain home in the current native-only architecture.",
+      "current_source": "src/ZZZVault.sol:constructor",
+      "remaining": null,
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "BARE_ARTWORK",
+      "historical_report": "test-seal-deep-review-20261117",
+      "classification": "resolved",
+      "current_assessment": "Metadata and offline constructor validator reject bare ipfs/ar schemes without rewriting old source stages.",
+      "current_source": "src/ZZZMetadataRenderer.sol;zzz_ops/deployment_plan.py:validate",
+      "remaining": null,
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "RESERVATION_IDENTITY",
+      "historical_report": "test-seal-deep-review-20261117",
+      "classification": "resolved",
+      "current_assessment": "New reservation identity must be canonical; existing registered aliases remain. The predicate is not full pool admission or permission.",
+      "current_source": "src/ZZZMigrationBudget.sol:validateReservation;src/ZZZCustodyValidation.sol:validReservationIdentity",
+      "remaining": null,
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "NORMAL_READ_PERMISSION",
+      "historical_report": "test-seal-deep-review-20261117",
+      "classification": "resolved",
+      "current_assessment": "Current verifier admits exactly approved read permissions; actual pinned Forge configuration was validated in the follow-up, not a new compiler pass.",
+      "current_source": "scripts/verify-normal-profile.py:inspect_profile",
+      "remaining": null,
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "PRIVATE_OPENING_GETTER",
+      "historical_report": "test-seal-deep-review-20261117",
+      "classification": "resolved",
+      "current_assessment": "Preseal required reads are public ABI functions; private opening finalization uses authenticated history and time predicate distinction.",
+      "current_source": "zzz_ops/preseal_plan.py:_seal_boundary_review",
+      "remaining": null,
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "PRESEAL_OLD_FAMILY",
+      "historical_report": "preseal-planner-20261116",
+      "classification": "superseded",
+      "current_assessment": "Original metadata2-20261116 admission is historical. Current planner requires seal-boundaries-20261117, without fallback or relabeling older receipts.",
+      "current_source": "zzz_ops/deployment_plan.py:TRUSTED_BUILDS;zzz_ops/preseal_plan.py:prepare",
+      "remaining": null,
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "PRESEAL_UNKNOWN_TERMS",
+      "historical_report": "preseal-planner-20261116",
+      "classification": "resolved",
+      "current_assessment": "Unknown SeaDrop terms block upstream and mint-end families instead of dereferencing absent terms.",
+      "current_source": "zzz_ops/preseal_plan.py:prepare",
+      "remaining": null,
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "PRESEAL_EXECUTION_DECIMALS",
+      "historical_report": "preseal-planner-20261116",
+      "classification": "resolved",
+      "current_assessment": "Known admitted execution-composite source must declare18 decimals; live interface remains unverified.",
+      "current_source": "zzz_ops/preseal_plan.py:validate",
+      "remaining": null,
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "PRESEAL_NATIVE_PINS",
+      "historical_report": "preseal-planner-20261116",
+      "classification": "resolved",
+      "current_assessment": "Fixed token/core/state constants are cross-checked against the actual trusted Registry source.",
+      "current_source": "zzz_ops/preseal_plan.py:_native_pins;validate;prepare",
+      "remaining": null,
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "PRESEAL_PROTOCOL_DEPENDENCIES",
+      "historical_report": "preseal-planner-20261116",
+      "classification": "resolved",
+      "current_assessment": "Known protocol implementations cannot be declared as source/coordinator dependencies; unknown external code still needs independent verification.",
+      "current_source": "zzz_ops/preseal_plan.py:validate",
+      "remaining": null,
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "LATE_MANUAL_ANCHOR",
+      "historical_report": "test-impact-followup-20261117",
+      "classification": "resolved",
+      "current_assessment": "Manual final-height canonicality is reread after the final head, including healthy advancement. Last successful read is not atomic chain proof.",
+      "current_source": "zzz_ops/manual_lp_review.py:prepare",
+      "remaining": null,
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "TEST_HOOK_TIMING",
+      "historical_report": "test-impact-followup-20261117",
+      "classification": "resolved",
+      "current_assessment": "Three management mutations happen after the initial exact call, with exact final-stage assertions; manual/management production paths preserve frozen calls.",
+      "current_source": "tests_python/test_management_review.py;tests_python/test_manual_final_anchor.py",
+      "remaining": null,
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "SERVICE_COMPOUND_WAIT",
+      "historical_report": "operator-input-audit-20261116",
+      "classification": "accepted_boundary",
+      "current_assessment": "The extra in-range compound wait remains service policy by explicit decision. An authorized alternate implementation can ignore it where contracts permit.",
+      "current_source": "keeper/compound_policy.py;keeper/monitor.py",
+      "remaining": "Not an unresolved instruction to add an on-chain rule.",
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "EOA_ENVELOPE",
+      "historical_report": "operator-input-audit-20261116",
+      "classification": "accepted_boundary",
+      "current_assessment": "Unsigned live adapters require direct empty-code governance. This tool restriction does not revoke contract-wallet on-chain authority.",
+      "current_source": "zzz_ops/manual_lp_review.py:Reader;zzz_ops/management_base.py",
+      "remaining": "Actual multisig/delegated outer envelope and operator execution still need separate preparation/qualification.",
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "RPC_MARKETS_FEES_OPERATIONS",
+      "historical_report": "operator-input-audit-20261116",
+      "classification": "qualification_open",
+      "current_assessment": "Current source guards do not qualify provider honesty, independent markets, complete fees, capacity, platform/VRF or operating recovery.",
+      "current_source": "Current Todo task acceptance and operator procedures",
+      "remaining": "Do not mark resolved from static completeness or injected RPC.",
+      "evidence": "Current source read; original dynamic evidence retains original source stage. No unchanged method rerun."
+    },
+    {
+      "id": "PRESEAL_STOP_DISCLOSURE",
+      "historical_report": "new finding while reconciling five families",
+      "classification": "fixed_in_this_pass",
+      "current_assessment": "A complete stopped configuration previously emitted no explicit operating stop when its contribution pool operationsEnabled flag was false. The planner now names each known disabled pool and exactly the ordinary contribution/compound/rebalance paths, without changing calldata/settings/completeness/false-readiness flags.",
+      "current_source": "zzz_ops/preseal_plan.py:prepare",
+      "remaining": "Harvesting/claims, raw custody and explicit emergency paths retain separate guards; warning is not a global pause or promise they always succeed.",
+      "evidence": "TOOL_STOPS_BEFORE.json:1 real regression failure+1healthy pass; TOOL_STOPS_AFTER.json:2actual passes; no setup errors."
+    }
+  ],
+  "current_source_sha256": {
+    "zzz_ops/preseal_plan.py": "1510933dabf5756d8cf5032009aa8adccbbb49a4103c239031b3956a4bdd48aa",
+    "scripts/prepare-preseal.py": "46ea49ae9c1177b4936bf5f04121eb3e1055487c8a3a48ecd0091c1ac022b0e3",
+    "tests_python/test_preseal_operating_stops.py": "3b156d38e1ddc2e0a843d1b54aeea0c50b91497934ee68ec15f667ba0c6c6011",
+    "tests_python/preseal_fixture.py": "68c185efcb949f652e63bbf27fef92fe6659f4a661a687c0b11d34d084684635",
+    "zzz_ops/manual_lp_review.py": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e",
+    "zzz_ops/management_review.py": "72ada1acf8d767096c1ae2041b3fc7b97b14decce233ee6d3791d2afe95acc35",
+    "keeper/monitor.py": "e4bd5d17822b2a3ccd2c1b33e9b5b7f141909bdc417fd85b6f0785c70558f185"
+  },
+  "protected_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "all61_production_sources_match_prior_baseline": true,
+  "new_distinct_passing_methods": 2,
+  "original_reproduction_failures": 1,
+  "unchanged_tests_rerun": false,
+  "source_or_limit_or_environment_adoption": false,
+  "production_approved": false
+}

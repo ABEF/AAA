@@ -1,0 +1,6 @@
+test_corrupted_deflate_normalizes_to_evidence_refusal (tests_python.test_focused_evidence.FocusedEvidenceTests.test_corrupted_deflate_normalizes_to_evidence_refusal) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.028s
+
+OK

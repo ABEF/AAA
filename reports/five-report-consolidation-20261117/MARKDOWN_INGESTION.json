@@ -1,0 +1,466 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "reports/test-impact-followup-20261117/BASELINE_IMPACT_MAP.md",
+      "sha256": "abcc1f565faa72c20eba3d0fc93206636096cb980ae779152525ef55bd1689b2",
+      "bytes": 8436,
+      "headings": [
+        "# Repaired test infrastructure: baseline dependency exposure"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-impact-followup-20261117/EXECUTED_PROMPT.md",
+      "sha256": "43d9d1bdc1437aaa6e1f03e1f45813df8a74c35f31355c14238b9c8a9db16324",
+      "bytes": 2590,
+      "headings": [
+        "# Follow the repaired tests into the behavior they were meant to verify"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-impact-followup-20261117/LP_PRODUCTION_PATH_REVIEW.md",
+      "sha256": "7993d4e9f0ad92f50f7e221b2cc2ba48f309646d14b5bb0de280426fe9e0df6e",
+      "bytes": 13011,
+      "headings": [
+        "# LP fixture impact: production paths, stale assertions and cross-action evidence",
+        "## Scope and evidence boundary",
+        "## Concrete corrections",
+        "## Production-path conclusions",
+        "## Important operational interaction retained and exercised",
+        "## Verification accounting and limits"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-impact-followup-20261117/REVIEW.md",
+      "sha256": "1c270067c81e337f0a1f453c68b8f25840a0890b640724110208fabe67724c96",
+      "bytes": 9019,
+      "headings": [
+        "# Follow repaired tests into their intended production behavior",
+        "## What the previous repaired tests reached",
+        "## Confirmed implementation fix",
+        "## Test defects corrected without changing economics",
+        "## Independent physical and economic checks",
+        "## Preserved boundaries and remaining work"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-impact-followup-20261117/RIGHTS_REVIEW.md",
+      "sha256": "f8a38832c9451cfeabbd56f7d4dc2f05333dd4aa9256cec400703507df226d1b",
+      "bytes": 8694,
+      "headings": [
+        "# Rights/accounting descendants of repaired fixtures",
+        "## Source assessment and evidence boundaries",
+        "## New verification improvements",
+        "## Documentation and test maintenance",
+        "## Remaining limitations"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-impact-followup-20261117/TOOLS_REVIEW.md",
+      "sha256": "c6b2080d85a6a066df943b7f836adfd612ab8a348103e1511b05969d18fabee5",
+      "bytes": 7054,
+      "headings": [
+        "# Python tool impact follow-up",
+        "## Confirmed implementation fix",
+        "## Wider test and implementation conclusions",
+        "## Verification and limits"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-impact-followup-20261117/VERIFICATION.md",
+      "sha256": "2953e295ad8f369c49f6645765d0e36a3dbf750c37c181ccfc6789a9d0691ff8",
+      "bytes": 3205,
+      "headings": [
+        "# Verification and source scope",
+        "## Source review versus finite execution",
+        "## Authoritative detailed records",
+        "## Build, maintenance and publication"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-seal-deep-review-20261117/CURRENT_EXECUTION_FIXTURES.md",
+      "sha256": "f900eca32483be15b652233089ac6586d139f27c85f2c87d9ba4e613f6f44cdb",
+      "bytes": 5412,
+      "headings": [
+        "# Current financial execution fixtures \u2014 reachability and real guard checks",
+        "## What was wrong",
+        "## Corrections",
+        "## Evidence and boundaries",
+        "## Final finite result"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-seal-deep-review-20261117/EARLIER30_METHOD_MATRIX.md",
+      "sha256": "a8ecbbf4e4bd4e9686fd4a983f521d05a7bbd543dfed87777b8092aa57116a0b",
+      "bytes": 21754,
+      "headings": [
+        "# Earlier30 focused-method deep review",
+        "## Corrections",
+        "## Verification scope",
+        "## Per-method assessment"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-seal-deep-review-20261117/EXECUTED_PROMPT.md",
+      "sha256": "5adf12cd1c9817cdb15cb9c908d7d27de1ba751da11f072bca68481f21a5e824",
+      "bytes": 8034,
+      "headings": [
+        "# Test validity and irreversible configuration \u2014 improved audit request",
+        "## Objective and actual scope",
+        "## 1. Establish evidence before changing anything",
+        "## 2. Critically examine every claimed method",
+        "## 3. Inventory all irreversible boundaries",
+        "## 4. Correct and verify",
+        "## 5. Review the work twice and report"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-seal-deep-review-20261117/FINAL_STATIC_REVIEW.md",
+      "sha256": "9ca576183fbc27ddd7edc50ce653e0372d356a424a99472419c4bd46e80af22e",
+      "bytes": 3111,
+      "headings": [
+        "# Final four-source static review"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-seal-deep-review-20261117/HANDOFF_EXECUTION.md",
+      "sha256": "d5c181964c9e6d0cbbcaeec978b6acf1957be99b81da2087cfcc9ca760f57a2d",
+      "bytes": 3191,
+      "headings": [
+        "# Selected handoff fixture executions"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-seal-deep-review-20261117/LATEST29_METHOD_MATRIX.md",
+      "sha256": "2c2d71f81146285ee34b719a9c3b7700515bde19617619ee5a3a02da5145bb69",
+      "bytes": 17907,
+      "headings": [
+        "# Latest 29 method-by-method review"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-seal-deep-review-20261117/LATEST29_REVIEW.md",
+      "sha256": "8030370c1bb4eb49a183ba796e319861986bfa8071ac2c13759435e82a3e5d38",
+      "bytes": 5176,
+      "headings": [
+        "# Review of the latest 29 claimed tests",
+        "## Confirmed test weaknesses and corrections",
+        "## Boundaries retained",
+        "## Selected verification"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-seal-deep-review-20261117/RESERVATION_REVIEW.md",
+      "sha256": "482433aef8c59d71d12393b6a401b5471195d24867c95db10d7fac5bb59e6bac",
+      "bytes": 5848,
+      "headings": [
+        "# Reservation identity admission \u2014 focused source and behavior review",
+        "## Final implementation",
+        "## Size constraints shaped the placement",
+        "## Test and fixture work",
+        "## Selected results"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+      "sha256": "0d92d5b0e5ac994f189d410385597f5be000390ffe3544d3d1f0d85dba8472a3",
+      "bytes": 13406,
+      "headings": [
+        "# Focused-test validity and irreversible setup review",
+        "## OpenSea clarification",
+        "## Task 1 \u2014 what the tests actually prove",
+        "## Task 2 \u2014 systematic irreversible boundaries",
+        "### Size-safe placement of the new check",
+        "## What remains irreversible or unqualified",
+        "## Verification and publication boundary"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-seal-deep-review-20261117/SEAL_REVIEW.md",
+      "sha256": "13ba9739a34404778b8e6df06b84708ee72b9988c47cbaa399b67045c7c4f20f",
+      "bytes": 33186,
+      "headings": [
+        "# Irreversible configuration and after-seal review",
+        "## Confirmed disablement risks and disposition",
+        "## Binding order and release boundary",
+        "## Per-component assessment",
+        "### concrete-component",
+        "### abstract-base",
+        "### library",
+        "### interface",
+        "## Guard verification"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-seal-deep-review-20261117/STATIC_STAGE2.md",
+      "sha256": "364fd65a7299f919b744b1bf3509a6fcf7d251140ca8d319ccea3f7fcc5837d2",
+      "bytes": 2091,
+      "headings": [
+        "# Two-source static stage (before the reservation guard)"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-seal-deep-review-20261117/TEST_CORPUS_PYTHON.md",
+      "sha256": "58a35fd0eaba42ed9aa2073de168e92f19ab734de0004df20dbf0ad919b3f677",
+      "bytes": 69991,
+      "headings": [
+        "# Python test-corpus context",
+        "## Corpus and runner coverage",
+        "## Confirmed issue and fix",
+        "## Changed-surface source review",
+        "## Complete module inventory"
+      ],
+      "assessment_scope": "generated navigation inventory ingested; not every declared method manually re-audited"
+    },
+    {
+      "path": "reports/test-seal-deep-review-20261117/TEST_CORPUS_SOLIDITY.md",
+      "sha256": "ffa766f4f6284f2aedf5503dfaafd65b40557cbd3e6d94f4caa03611c8688101",
+      "bytes": 56514,
+      "headings": [
+        "# Solidity test-corpus context",
+        "## Source-traced findings",
+        "## Per-file declared scope and assessment",
+        "## Retained limitations"
+      ],
+      "assessment_scope": "generated navigation inventory ingested; not every declared method manually re-audited"
+    },
+    {
+      "path": "reports/test-seal-deep-review-20261117/TEST_CORPUS_VERIFICATION.md",
+      "sha256": "702d9bedd7568b6c4ee5211f75f9031c9a83f66a492a7deab7ab0b142cbfd4c4",
+      "bytes": 2086,
+      "headings": [
+        "# Selected test-corpus fixture verification"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/test-seal-deep-review-20261117/VERIFICATION.md",
+      "sha256": "dc39f945d39390107ced4ad0c901cc0b5221d2f2f5a053e171634775b4bfd2bf",
+      "bytes": 7315,
+      "headings": [
+        "# Verification: tests, irreversible boundaries and source stages",
+        "## Source review versus execution",
+        "## Original records and current corrections",
+        "## Normal compiler and storage/ABI checks",
+        "## Actual static analysis",
+        "## Final maintenance and limits"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/operator-behavior-followup-20261117/KEEPER_REVIEW.md",
+      "sha256": "f875089720218dcd7d2a00fcb391ca7352ffa9139d3ca5623ea88151f9cf26e6",
+      "bytes": 6783,
+      "headings": [
+        "# Keeper coordination and interval-crossing behavior",
+        "## KEEPER-01 \u2014 slow reads could defer newly due maintenance",
+        "### Correction",
+        "## Focused behavior evidence",
+        "## Additional inspected interactions",
+        "## Preservation and remaining qualification"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/operator-behavior-followup-20261117/LP_REVIEW.md",
+      "sha256": "199be1ff08c48c68512fa5734557fa6daa95439a0e86e92fc1cdc3c825c50b1a",
+      "bytes": 5473,
+      "headings": [
+        "# New LP behavior and authorized-keeper recovery evidence",
+        "## Newly executed behavior",
+        "## Separate production-authority check",
+        "## Verification and preservation",
+        "## Recovery limits"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/operator-behavior-followup-20261117/REVIEW.md",
+      "sha256": "c6c0772e6218c2c9d9cde77c7f92a3078fb7c8b0e6a874defb9c291ea5cf3844",
+      "bytes": 8193,
+      "headings": [
+        "# Operator behavior follow-up \u2014 17 November 2026",
+        "## What improved",
+        "## Keeper authority: explicit decision and actual behavior",
+        "## Wider rights and interference review",
+        "## Build, tooling and documentation",
+        "## Verification and its limits"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/operator-behavior-followup-20261117/RIGHTS_REVIEW.md",
+      "sha256": "1d3247cf0272998a3963ea630125a1160d2fe8dfcd8fc85140853f18d8a31b72",
+      "bytes": 13739,
+      "headings": [
+        "# NFT, royalty, canonical and terminal-rights behavior follow-up",
+        "## Confirmed implementation defect: empty artwork root could be sealed forever",
+        "## Confirmed verification weakness: recovery fuzz allowed an unexplained remainder",
+        "## Confirmed stale fixture: canonical preparation did not reach its test bodies",
+        "## Actual behavior and interference cases reviewed",
+        "## Recovery-allocation game theory and an existing optional operating procedure",
+        "## Evidence boundaries"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/operator-behavior-followup-20261117/STATIC_REVIEW.md",
+      "sha256": "bbfa6d7c1d56eee11f5941f44009b551683a165ccbfcd9ece2b844c1751f440b",
+      "bytes": 4185,
+      "headings": [
+        "# Actual static analysis and complete strict review",
+        "## Five current contexts",
+        "## Strict input and executable check"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/operator-behavior-followup-20261117/VERIFICATION.md",
+      "sha256": "84c87afff3b6ed4461cad818b801d132b3b0d25fd6d87c852eeb6b6c8db1141e",
+      "bytes": 6094,
+      "headings": [
+        "# Verification \u2014 operator behavior follow-up",
+        "## Distinct method accounting",
+        "## Compiler and object checks",
+        "## Actual static analysis",
+        "## Preservation and remaining work"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/operator-input-audit-20261116/ADDITIONAL_SOURCE_REVIEW.md",
+      "sha256": "d2fe05bf75c16c1c142eb71c9672bbe99abdf91a22aee2504b8edce57d6b30ac",
+      "bytes": 10283,
+      "headings": [
+        "# NFT, royalty, canonical and off-chain operator review",
+        "## Source and call paths assessed",
+        "## Interpretation and unresolved release evidence"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/operator-input-audit-20261116/CONTRACT_REVIEW.md",
+      "sha256": "2a55513a843b9ff6d492b125aceb66fb6e3a61ad4bce51fa1fd89d426477a44d",
+      "bytes": 18455,
+      "headings": [
+        "# Core operator-contract source review",
+        "## Findings and limits",
+        "## Call chain and inclusion-time input rules",
+        "## Emergency retained-check matrix",
+        "## Input/state observations checked against implementation",
+        "## Economic/adversarial conclusions requiring qualification"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/operator-input-audit-20261116/INPUT_PROVENANCE.md",
+      "sha256": "5d15bf60acd0d6668224e4068546f82e2cd6089fbd808f7681c05779b2a83e33",
+      "bytes": 7451,
+      "headings": [
+        "# Input provenance, authority and moving-state review",
+        "## Source-specific conclusions",
+        "## Corrections and evidence"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/operator-input-audit-20261116/INVENTORY.md",
+      "sha256": "d575d03f458984d147cd2ad25c0a13a87dd49ec00b9f0d8eb95fe02870fd0971",
+      "bytes": 12746,
+      "headings": [
+        "# Operator inventory and input coverage",
+        "## Confirmed corrections",
+        "## Operator targets",
+        "## Evidence limits and retained rights"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/operator-input-audit-20261116/OPERATIONS_AND_RISKS.md",
+      "sha256": "59dbfd9767258913baf6e309c6cb4e81fb82f66594f27d8d670f4e83e2fb3da1",
+      "bytes": 20910,
+      "headings": [
+        "# Operator input validity, guard coordination and economic review",
+        "## What changes while an operation is prepared",
+        "## State transitions and safe next actions",
+        "## Units and worked non-executable examples",
+        "## Guard coordination and failure classification",
+        "## Adversarial and long-term obligations",
+        "## Primary research and interpretation"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/operator-input-audit-20261116/REVIEW.md",
+      "sha256": "df5d8109c76dc89a731b979be2cff803dca36b4fde3bc2858e7291add95b2ccc",
+      "bytes": 8632,
+      "headings": [
+        "# Complete operator-function and input-validity review",
+        "## Result",
+        "## Fixed findings",
+        "## What the audit checked",
+        "## Verification and preservation",
+        "## Remaining risks and decisions"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/operator-input-audit-20261116/TOOLS_REVIEW.md",
+      "sha256": "12a10ecad971c2fd453a190665a387435092cd82fd5a02cdd42fc7c48a09bef1",
+      "bytes": 10947,
+      "headings": [
+        "# Unsigned operator tools: source and input-validity review",
+        "## Confirmed corrections",
+        "### TOOL-01 \u2014 reported manual gas was neither called nor frozen",
+        "### TOOL-02 \u2014 management dangling outputs caused unnecessary reads",
+        "## Operation and input review",
+        "## Cross-cutting input findings retained",
+        "## Verification scope"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/preseal-planner-20261116/REVIEW.md",
+      "sha256": "ecb25cc05a6f276b09f9473ffa9585e9d35ca3782e9150be423bd8b079045c13",
+      "bytes": 7624,
+      "headings": [
+        "# Unsigned pre-seal configuration planner",
+        "## Implemented behavior",
+        "## New-planner defects caught and fixed",
+        "## Verification actually performed",
+        "## Remaining before deployment"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    },
+    {
+      "path": "reports/preseal-planner-20261116/VERIFICATION.md",
+      "sha256": "3c086d11f66c1ac8cb555520e2198b985a5a0fca369975deb4f228d1b159fbca",
+      "bytes": 3474,
+      "headings": [
+        "# Verification record"
+      ],
+      "assessment_scope": "substantive finding/scope/verification prose or complete per-method matrix reviewed; old execution not repeated"
+    }
+  ],
+  "old_report_files_unchanged": true,
+  "all_markdown_files": 37,
+  "limits": "Machine ingestion of generated corpus tables is navigation, not proof or execution."
+}

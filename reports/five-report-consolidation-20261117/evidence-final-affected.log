@@ -1,0 +1,8 @@
+test_extra_failed_python_row_cannot_hide_behind_ok_summary (tests_python.test_focused_evidence.FocusedEvidenceTests.test_extra_failed_python_row_cannot_hide_behind_ok_summary) ... ok
+test_unittest_log_requires_exact_ids_summary_and_no_skip (tests_python.test_focused_evidence.FocusedEvidenceTests.test_unittest_log_requires_exact_ids_summary_and_no_skip) ... ok
+test_genuine_seven_groups_admit_original_scope_without_new_execution (tests_python.test_focused_evidence.FocusedEvidenceTests.test_genuine_seven_groups_admit_original_scope_without_new_execution) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.154s
+
+OK

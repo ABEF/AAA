@@ -1,0 +1,1731 @@
+{
+  "schema": 1,
+  "baseline": "1c18379b03b067de722d250cee1cc173acc4d635",
+  "selection_source": "SCOPE.json",
+  "purpose": "Distinct issue/obligation reconciliation; duplicate origin mentions link to one row; not a count of all historical warnings or test methods",
+  "findings": [
+    {
+      "id": "R01",
+      "title": "Manual review gas envelope was reported but not frozen",
+      "kind": "tool_defect",
+      "current_disposition": "resolved_tool",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "OIA-01 / TOOL-01"
+        },
+        {
+          "path": "reports/operator-input-audit-20261116/TOOLS_REVIEW.md",
+          "reference": "TOOL-01"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/EARLIER30_METHOD_MATRIX.md",
+          "reference": "methods1-7"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "zzz_ops/manual_lp_review.py",
+          "sha256": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e"
+        }
+      ],
+      "current_assessment": "Initial25% padded gas is frozen and called exactly at both anchors; later requirement must fit original envelope. Historical output remains its original scope.",
+      "action": "Keep current exact envelope and original deadline; no test replay.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R02",
+      "title": "Dangling output preflight missed occupied destination",
+      "kind": "tool_defect",
+      "current_disposition": "resolved_tool",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "OIA-02 / TOOL-02"
+        },
+        {
+          "path": "reports/operator-input-audit-20261116/TOOLS_REVIEW.md",
+          "reference": "TOOL-02"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "zzz_ops/management_review.py",
+          "sha256": "72ada1acf8d767096c1ae2041b3fc7b97b14decce233ee6d3791d2afe95acc35"
+        }
+      ],
+      "current_assessment": "lexists detects dangling occupied output before input/network work; exclusive publication still handles races.",
+      "action": "Preserve implementation and output refusal; no old rerun.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R03",
+      "title": "Converter control notes described wrong units",
+      "kind": "documentation_defect",
+      "current_disposition": "resolved_documentation",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "OIA-03"
+        },
+        {
+          "path": "reports/operator-input-audit-20261116/INVENTORY.md",
+          "reference": "Confirmed corrections"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "docs/function-reference.json",
+          "sha256": "842ab25888d466a616e359f1d9a54b530cc1991f198f60a94b1ca0468516357b"
+        }
+      ],
+      "current_assessment": "Boolean and BPS converter controls are no longer described as native mint payment wei.",
+      "action": "Use current contract-qualified reference; do not infer EVM coverage from prose.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R04",
+      "title": "Nested tuple notes lost field explanations",
+      "kind": "documentation_defect",
+      "current_disposition": "resolved_documentation",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "OIA-04"
+        },
+        {
+          "path": "reports/operator-input-audit-20261116/INPUT_PROVENANCE.md",
+          "reference": "Corrections and evidence"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "zzz_ops/function_reference.py",
+          "sha256": "dbe5e526d94311efb82b92f572af96c12f9fe905a3493fdd63991e12dc635834"
+        }
+      ],
+      "current_assessment": "Strict nested annotations preserve ABI order and legacy strings.",
+      "action": "Retain exact ABI input order and operation-specific semantics.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R05",
+      "title": "Shared struct examples reused another operation meaning",
+      "kind": "documentation_defect",
+      "current_disposition": "resolved_documentation",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "OIA-05"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/EARLIER30_METHOD_MATRIX.md",
+          "reference": "method29"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "zzz_ops/operator_reference.py",
+          "sha256": "691dc2698acd86009b4bb8856cb1b5865d529f94d7f69c61ea7ef04889f2aefb"
+        }
+      ],
+      "current_assessment": "Operation-specific example/meaning determines anchors; linked-section tests were strengthened.",
+      "action": "Retain distinct replacement/close/consolidation hash and minimum-L domains.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R06",
+      "title": "Empty artwork root could be sealed irreversibly",
+      "kind": "contract_setup_defect",
+      "current_disposition": "resolved_source",
+      "origins": [
+        {
+          "path": "reports/operator-behavior-followup-20261117/REVIEW.md",
+          "reference": "SEAL-01"
+        },
+        {
+          "path": "reports/operator-behavior-followup-20261117/RIGHTS_REVIEW.md",
+          "reference": "Confirmed implementation defect"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/LATEST29_METHOD_MATRIX.md",
+          "reference": "methods1-3"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZAccessController.sol",
+          "sha256": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3"
+        }
+      ],
+      "current_assessment": "Current seal rejects an empty root before bootstrap erasure; constructor-empty staging remains.",
+      "action": "No additional universal integration requirement or content-validity claim.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R07",
+      "title": "Slow keeper reads could miss newly due harvest or compound",
+      "kind": "keeper_defect",
+      "current_disposition": "resolved_source",
+      "origins": [
+        {
+          "path": "reports/operator-behavior-followup-20261117/REVIEW.md",
+          "reference": "KEEPER-01"
+        },
+        {
+          "path": "reports/operator-behavior-followup-20261117/KEEPER_REVIEW.md",
+          "reference": "Correction"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/LATEST29_METHOD_MATRIX.md",
+          "reference": "methods16-25"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "e4bd5d17822b2a3ccd2c1b33e9b5b7f141909bdc417fd85b6f0785c70558f185"
+        }
+      ],
+      "current_assessment": "Clock refresh now precedes enabled due comparisons; failed or retreated observations refuse without guessed time.",
+      "action": "Keep separate interval/submit safeguards; live latency qualification remains.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R08",
+      "title": "Canonical-preparation positive fixture failed before body",
+      "kind": "fixture_defect",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/operator-behavior-followup-20261117/REVIEW.md",
+          "reference": "VERIFY-01"
+        },
+        {
+          "path": "reports/operator-behavior-followup-20261117/RIGHTS_REVIEW.md",
+          "reference": "Confirmed stale fixture"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "test/CanonicalPreparation.t.sol",
+          "sha256": "1566cd3e31f24b5845c50588af30ce45b3f8e99f274bdafe9e1aa99186ec4be5"
+        }
+      ],
+      "current_assessment": "Native ETH/fixed-ZZZ fixture reaches its seven intended current scenarios; declared geometry/authority/provider seams remain.",
+      "action": "Do not reinterpret these as physical-v4 or OpenSea acceptance.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R09",
+      "title": "Royalty recovery fuzz allowed permanent remainder",
+      "kind": "test_quality_defect",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/operator-behavior-followup-20261117/REVIEW.md",
+          "reference": "VERIFY-02"
+        },
+        {
+          "path": "reports/operator-behavior-followup-20261117/RIGHTS_REVIEW.md",
+          "reference": "Confirmed verification weakness"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "test/RoyaltyRecovery.t.sol",
+          "sha256": "a03335ee191b0261fa40875f373e1e36bed174e6cef084883e847720a191c8d8"
+        }
+      ],
+      "current_assessment": "Independent weighted arithmetic, balance deltas, exact drainage and zero repeats replace paid<=received. No production remainder was reproduced.",
+      "action": "Reuse exact historical fuzz scope; no unchanged1000-input rerun.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R10",
+      "title": "Foreign-home Vault construction was accepted",
+      "kind": "contract_setup_defect",
+      "current_disposition": "resolved_source",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "Task2 correction1"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/SEAL_REVIEW.md",
+          "reference": "Wrong nonzero Vault home chain"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZVault.sol",
+          "sha256": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7"
+        }
+      ],
+      "current_assessment": "Constructor rejects zero/foreign home chain in current same-chain-only architecture.",
+      "action": "Retain same-chain invariant; historical accepted-bytecode controls remain historical.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R11",
+      "title": "Bare immutable artwork scheme consumed setup",
+      "kind": "contract_setup_defect",
+      "current_disposition": "resolved_source",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "Task2 correction2"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/SEAL_REVIEW.md",
+          "reference": "Bare immutable artwork scheme"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZNFTMetadata.sol",
+          "sha256": "d12e430a81d3271313d854d67f7f25468384c30fc7f753eced3f315fb9e11cbe"
+        },
+        {
+          "path": "zzz_ops/deployment_plan.py",
+          "sha256": "d8e6bc34ff7897250194bd922b2f8f2f75f4b3800579dcb12e181f2bb7cc3a62"
+        }
+      ],
+      "current_assessment": "Bare ipfs:// and ar:// reject in source and offline planner; empty staging and nonempty suffix remain.",
+      "action": "Actual CID/content/length/read cost still require qualification.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R12",
+      "title": "Wrong fresh reservation ID consumed permanent capacity",
+      "kind": "contract_setup_defect",
+      "current_disposition": "resolved_source",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "Task2 correction3"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/RESERVATION_REVIEW.md",
+          "reference": "Final implementation"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/LP_PRODUCTION_PATH_REVIEW.md",
+          "reference": "Fresh reservation"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZMigrationBudget.sol",
+          "sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+        },
+        {
+          "path": "src/ZZZCustodyValidation.sol",
+          "sha256": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b"
+        }
+      ],
+      "current_assessment": "New IDs must match preserved-origin identity or an actually registered bucket; existing aliases/idempotence and capacity stay.",
+      "action": "Bind Migration.validation before first reservation; true identity is not operational approval.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R13",
+      "title": "Between-anchor tests mutated the first pinned block",
+      "kind": "test_model_defect",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/EARLIER30_METHOD_MATRIX.md",
+          "reference": "methods14-16,18,21-23"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/TOOLS_REVIEW.md",
+          "reference": "Three management tests"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "tests_python/test_manual_lp_review.py",
+          "sha256": "3db78ca9dceb6329af7dda354eb3508987f7d7a9bbb0c900d5d24350ebc5b7d8"
+        },
+        {
+          "path": "tests_python/test_management_review.py",
+          "sha256": "b57b25f6c8162ea42c70b434943f90aa7be93c9dffcb21ee2dd88a1b8f5d62ff"
+        }
+      ],
+      "current_assessment": "Fixture changes now occur after the initial exact call, between actual anchors; local-file mutation remains a separate race.",
+      "action": "Do not manufacture unstable state at one canonical hash.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R14",
+      "title": "Exact-source import test lacked a negative tamper case",
+      "kind": "test_quality_defect",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/EARLIER30_METHOD_MATRIX.md",
+          "reference": "method10"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "tests_python/test_manual_lp_frozen_gas.py",
+          "sha256": "7097f38bc2511d0de1b68f94b37fa8ea6bb1fabd73bc6012cc0a620babd99f62"
+        }
+      ],
+      "current_assessment": "A changed temporary launcher source actually refuses import instead of only importing valid source.",
+      "action": "No unchanged launcher/rehearsal execution needed.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R15",
+      "title": "Legacy annotation compatibility checked only two fields",
+      "kind": "test_quality_defect",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/EARLIER30_METHOD_MATRIX.md",
+          "reference": "method27"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "tests_python/test_operator_input_annotations.py",
+          "sha256": "fcdb86530f0242ef7affa9ae25ad068300902ae777406f374eb1c273e2d92763"
+        }
+      ],
+      "current_assessment": "Independent full parameter record is compared, preserving order/type/nested fields.",
+      "action": "Retain structural documentation scope.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R16",
+      "title": "Documentation semantic assertions searched whole page",
+      "kind": "test_quality_defect",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/EARLIER30_METHOD_MATRIX.md",
+          "reference": "method29"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "tests_python/test_operator_input_annotations.py",
+          "sha256": "fcdb86530f0242ef7affa9ae25ad068300902ae777406f374eb1c273e2d92763"
+        }
+      ],
+      "current_assessment": "Assertions follow each operation linked section and distinguish hashes/ticks/added versus new liquidity.",
+      "action": "Coverage of text is not operation simulation.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R17",
+      "title": "Enabled harvest test did not assert due submission",
+      "kind": "test_quality_defect",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/LATEST29_REVIEW.md",
+          "reference": "weakness1"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "tests_python/test_keeper_standalone_harvest_review.py",
+          "sha256": "6342cdd9394fc0c83c3db534fd39355a8993f8ee868f49bba965e04a9794b669"
+        }
+      ],
+      "current_assessment": "Enabled-only read overhead and actual due candidate are asserted.",
+      "action": "Existing submit/receipt paths have separate evidence.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R18",
+      "title": "Seal tests accepted unrelated reverts",
+      "kind": "test_quality_defect",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/LATEST29_REVIEW.md",
+          "reference": "weakness2"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "test/OperatorSealArtwork20261117.t.sol",
+          "sha256": "12a2dff6ffa2a66bc466c6666b9edc517dadcf92e55bd75e80504a3d695cd1d5"
+        }
+      ],
+      "current_assessment": "Exact authorization/configuration errors, root preservation and repeated seal rejection are checked.",
+      "action": "Retain scoped positive controls.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R19",
+      "title": "Payout and callback tests omitted economic rollback state",
+      "kind": "test_quality_defect",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/LATEST29_REVIEW.md",
+          "reference": "weaknesses3-5"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "test/CanonicalPreparation.t.sol",
+          "sha256": "1566cd3e31f24b5845c50588af30ce45b3f8e99f274bdafe9e1aa99186ec4be5"
+        }
+      ],
+      "current_assessment": "Claims reconcile recipient deltas/reserves; callback failures restore payer, request/consumer, ownership/reveal/membership; stale prices are explicitly observed.",
+      "action": "No real asynchronous provider proof inferred.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R20",
+      "title": "Tiny royalty coverage lacked tranche rotation and transfer",
+      "kind": "test_quality_defect",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/LATEST29_REVIEW.md",
+          "reference": "weakness6"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "test/RoyaltyRecovery.t.sol",
+          "sha256": "a03335ee191b0261fa40875f373e1e36bed174e6cef084883e847720a191c8d8"
+        }
+      ],
+      "current_assessment": "Deterministic1..6 units, reverse claims and transfer independently conserve21units.",
+      "action": "No repeated unchanged fuzz.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R21",
+      "title": "Current financial venue fixtures lacked execution readers",
+      "kind": "fixture_defect",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/CURRENT_EXECUTION_FIXTURES.md",
+          "reference": "What was wrong"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/RESERVATION_REVIEW.md",
+          "reference": "Test and fixture work"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "test/helpers/AccountingExecutionFixture.sol",
+          "sha256": "943cadd49d783464094762684dbeebada86d663740da5d892fa4d6989c797f13"
+        },
+        {
+          "path": "test/helpers/CanonicalNativeVenue.sol",
+          "sha256": "46ef1f7a5cde0a7c791967a7a48ad6df50cb12f00d1f84f007a4ebc8320fd19d"
+        }
+      ],
+      "current_assessment": "Typed fixed-identity/actual production math delegation repairs current reachability while geometry/prices remain controlled.",
+      "action": "Each executed subset keeps its exact source stage; broad suites remain unrun.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R22",
+      "title": "Native balance cheatcodes invalidated rollback modeling",
+      "kind": "fixture_defect",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/CURRENT_EXECUTION_FIXTURES.md",
+          "reference": "Reversible native modeling"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "test/VaultAccounting.t.sol",
+          "sha256": "b97811f28be516e4224884c23a61ff805c9ec98ddd531d5df5658b17121d5d91"
+        },
+        {
+          "path": "test/MigrationBudgetAdversarial.t.sol",
+          "sha256": "23aca6fa1b8126a186abeeb0a4d49a6da0fca96a8c4761d6bf9d1e27c83aa262"
+        }
+      ],
+      "current_assessment": "Cash is prefunded outside operations; ordinary sends revert with failed operations.",
+      "action": "Do not use these controlled balances as real market depth.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R23",
+      "title": "Invariant replacement plans lacked validation child",
+      "kind": "fixture_defect",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "wider corpus review"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/TEST_CORPUS_VERIFICATION.md",
+          "reference": "production_seed / rights_seed"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "test/ProductionInvariants.t.sol",
+          "sha256": "d1f30f597e92aedab51a2c27d4da54b40f90a25e0c55daeae7ce63e093d4f73a"
+        },
+        {
+          "path": "test/NFTRightsInvariants.t.sol",
+          "sha256": "457099ec4bd71b771fed7dd1d04ce44607bcb9aca5138fbabbd24cb6b2a45e38"
+        }
+      ],
+      "current_assessment": "Current constructor/setup reaches positive activation/shares/membership and funded rights.",
+      "action": "Only two new reachability smokes, not a full invariant campaign.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R24",
+      "title": "Positive fixtures retained bare artwork schemes",
+      "kind": "fixture_defect",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "wider corpus review"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/TEST_CORPUS_VERIFICATION.md",
+          "reference": "three ledger setups"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "test/NativeFeeRewards.t.sol",
+          "sha256": "74dde61eee62c6dd39a5333c7bc445572f662ecee8e30a536a9a0feb6fadf46f"
+        },
+        {
+          "path": "test/PooledRewards.t.sol",
+          "sha256": "da2611fe34c9f8b06f58b6d6b1880290d325465d5a3ecb8e9f19a75556105014"
+        },
+        {
+          "path": "test/RewardsAndFees.t.sol",
+          "sha256": "28cde236a859a3a9a1f479441b8b6071a4173d984f70bcbb5a5e426e2c2435f9"
+        }
+      ],
+      "current_assessment": "Current positives use explicit nonempty test identifiers; deliberate historical/negative controls remain.",
+      "action": "Old wrapped fork remains unqualified rather than fixed by URI alone.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R25",
+      "title": "Normal profile validator rejected approved read permission",
+      "kind": "tool_defect",
+      "current_disposition": "resolved_tool",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "wider corpus review"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/VERIFICATION.md",
+          "reference": "Normal-profile permission gate"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/TOOLS_REVIEW.md",
+          "reference": "Actual pinned Forge metadata"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "scripts/verify-normal-profile.py",
+          "sha256": "c5925740a8a5a6142e54b05eecf73ea2e26fd8d6cbd514cd9c2efd1116ffe81f"
+        }
+      ],
+      "current_assessment": "Exact public historical-fixture read permission is accepted while compiler/limits/FFI remain constrained; actual Forge metadata probe passes.",
+      "action": "No compiler or EVM rerun for metadata admission.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R26",
+      "title": "Pre-seal readiness requested private storage getter",
+      "kind": "tool_defect",
+      "current_disposition": "resolved_tool",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "final independent read"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "zzz_ops/preseal_plan.py",
+          "sha256": "1510933dabf5756d8cf5032009aa8adccbbb49a4103c239031b3956a4bdd48aa"
+        }
+      ],
+      "current_assessment": "Public timing reads and authenticated finalization history replace nonexistent openingFinalized() call; emitted reads have trusted ABI checks.",
+      "action": "Time eligibility is not proof opening was finalized.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R27",
+      "title": "Current trusted build admission and stale test family labels",
+      "kind": "tool_or_test_maintenance",
+      "current_disposition": "resolved_tool",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "Current artifact tests"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/VERIFICATION.md",
+          "reference": "Normal compiler"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "zzz_ops/deployment_plan.py",
+          "sha256": "d8e6bc34ff7897250194bd922b2f8f2f75f4b3800579dcb12e181f2bb7cc3a62"
+        },
+        {
+          "path": "tests_python/test_deployment_build_profiles.py",
+          "sha256": "b23cf01586cd3c4e079bad895c028dc60addbf553ea4e7a830e9da07c78d2946"
+        }
+      ],
+      "current_assessment": "Current seal-boundaries family is explicit; old families remain separately authenticated and cannot silently qualify new source.",
+      "action": "No relabeling old constructor receipts or source stages.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R28",
+      "title": "Last manual head could orphan final simulated anchor",
+      "kind": "tool_defect",
+      "current_disposition": "resolved_tool",
+      "origins": [
+        {
+          "path": "reports/test-impact-followup-20261117/REVIEW.md",
+          "reference": "Confirmed implementation fix"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/TOOLS_REVIEW.md",
+          "reference": "Confirmed implementation fix"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "zzz_ops/manual_lp_review.py",
+          "sha256": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e"
+        }
+      ],
+      "current_assessment": "Exact simulated height is reread after final head even when head advances, preserving original envelope/request count.",
+      "action": "Review is not atomic across requests or immune to later reorg/provider dishonesty.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R29",
+      "title": "Default97% test wrongly rejected98% deployment",
+      "kind": "stale_test_expectation",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/test-impact-followup-20261117/LP_PRODUCTION_PATH_REVIEW.md",
+          "reference": "Obsolete default contribution floor"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "test/PooledSecurity.t.sol",
+          "sha256": "d21fb8da52b2e8424512b5e05ff315d1821435b0a8aece8af71779c3f4180a8e"
+        }
+      ],
+      "current_assessment": "Typed negative96/100 and valid98/100 positive match current policy and actual rounding.",
+      "action": "No cap or production default was relaxed.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R30",
+      "title": "Explicit99% policy test wrongly rejected99% deployment",
+      "kind": "stale_test_expectation",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/test-impact-followup-20261117/LP_PRODUCTION_PATH_REVIEW.md",
+          "reference": "Invalid negative case"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "test/EntryExecutionBudget.t.sol",
+          "sha256": "0e3dd405735ae28a7800f025ebfe63f961db270e4cc0a32b248dbf4f1b47bd46"
+        }
+      ],
+      "current_assessment": "Explicit stronger1% case rejects98 and accepts99 with rollback/entrant isolation.",
+      "action": "Keep it distinct from default3%.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R31",
+      "title": "Native donation assertion omitted19 earned units",
+      "kind": "stale_test_expectation",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/test-impact-followup-20261117/LP_PRODUCTION_PATH_REVIEW.md",
+          "reference": "Native dust backing"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "test/LPOnlyEntryBoundary.t.sol",
+          "sha256": "d3e3fd84759bf37f098859c65de7c94762883599814fa0f1c861d0f825264d8e"
+        }
+      ],
+      "current_assessment": "19liability/48raw native backing correctly separates earned dust from29gift.",
+      "action": "Donation never becomes earned revenue merely from a balance.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R32",
+      "title": "Royalty window test was named FullDay",
+      "kind": "stale_test_name",
+      "current_disposition": "resolved_test_or_fixture",
+      "origins": [
+        {
+          "path": "reports/test-impact-followup-20261117/REVIEW.md",
+          "reference": "RoyaltyLaunchWindow rename"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/RIGHTS_REVIEW.md",
+          "reference": "Documentation and test maintenance"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "test/RoyaltyLaunchWindow.t.sol",
+          "sha256": "1acb2e1d8f1a3150640b7414246b54c48e9a7c58f041b71ab24959d3b5132f61"
+        }
+      ],
+      "current_assessment": "Name now FullHour; original one-hour body unchanged.",
+      "action": "No rerun just for rename; original names remain in historical records.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R33",
+      "title": "Repairing fixtures did not prove dependent economic behavior",
+      "kind": "verification_gap",
+      "current_disposition": "resolved_selected_verification",
+      "origins": [
+        {
+          "path": "reports/test-impact-followup-20261117/REVIEW.md",
+          "reference": "Independent physical and economic checks"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/RIGHTS_REVIEW.md",
+          "reference": "New verification improvements"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/TOOLS_REVIEW.md",
+          "reference": "harvest scheduling"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "test/RightsImpactFollowup20261117.t.sol",
+          "sha256": "601e282ceb4df84402cf2ade8dfe0e1828c64dad9b332bf58457f7c10561b7e7"
+        },
+        {
+          "path": "test/OptionalPortfolioCore.t.sol",
+          "sha256": "c3a98e31898ad2e7fd50c41b925dfee513db60c9c4dfa067b12126de450b62f3"
+        }
+      ],
+      "current_assessment": "Selected actual physical harvest/mint/burn and synthetic cross-user accounting/fault sequences plus real dry-run submit add concrete finite evidence.",
+      "action": "Dependency maps and method declarations remain inventories, not full coverage.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R34",
+      "title": "New pre-seal planner dereferenced unknown SeaDrop terms",
+      "kind": "planner_defect",
+      "current_disposition": "resolved_tool",
+      "origins": [
+        {
+          "path": "reports/preseal-planner-20261116/REVIEW.md",
+          "reference": "New-planner defects1"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "zzz_ops/preseal_plan.py",
+          "sha256": "1510933dabf5756d8cf5032009aa8adccbbb49a4103c239031b3956a4bdd48aa"
+        }
+      ],
+      "current_assessment": "Unknown earlier family produces blocked/null preview rather than dereference or guessed calldata.",
+      "action": "Preserve independent useful incomplete families.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R35",
+      "title": "Enabled composite execution source allowed8decimals",
+      "kind": "planner_defect",
+      "current_disposition": "resolved_tool",
+      "origins": [
+        {
+          "path": "reports/preseal-planner-20261116/REVIEW.md",
+          "reference": "New-planner defects2"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "zzz_ops/preseal_plan.py",
+          "sha256": "1510933dabf5756d8cf5032009aa8adccbbb49a4103c239031b3956a4bdd48aa"
+        }
+      ],
+      "current_assessment": "Declared execution source must meet current18decimal source constraint.",
+      "action": "Feed display precision and actual execution capability remain separate.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R36",
+      "title": "Mutually matching wrong native pins passed offline plan",
+      "kind": "planner_defect",
+      "current_disposition": "resolved_tool",
+      "origins": [
+        {
+          "path": "reports/preseal-planner-20261116/REVIEW.md",
+          "reference": "New-planner defects3"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "zzz_ops/preseal_plan.py",
+          "sha256": "1510933dabf5756d8cf5032009aa8adccbbb49a4103c239031b3956a4bdd48aa"
+        }
+      ],
+      "current_assessment": "Declared native token/core/state pins must match actual fixed Registry source guards.",
+      "action": "Matching copies are not independent qualification.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "R37",
+      "title": "Protocol implementations could masquerade as external feeds/VRF",
+      "kind": "planner_defect",
+      "current_disposition": "resolved_tool",
+      "origins": [
+        {
+          "path": "reports/preseal-planner-20261116/REVIEW.md",
+          "reference": "New-planner defects4"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "zzz_ops/preseal_plan.py",
+          "sha256": "1510933dabf5756d8cf5032009aa8adccbbb49a4103c239031b3956a4bdd48aa"
+        }
+      ],
+      "current_assessment": "Known same-graph collisions refuse; unknown external contracts remain unqualified.",
+      "action": "No invented safety merely from an unknown address or wallet role.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L01",
+      "title": "Extra compound waiting rule is service-only",
+      "kind": "accepted_policy",
+      "current_disposition": "accepted_policy",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "Remaining1"
+        },
+        {
+          "path": "reports/operator-behavior-followup-20261117/REVIEW.md",
+          "reference": "explicit decision"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/LP_PRODUCTION_PATH_REVIEW.md",
+          "reference": "Compound"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZLPBalanceMath.sol",
+          "sha256": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+        },
+        {
+          "path": "keeper/monitor.py",
+          "sha256": "e4bd5d17822b2a3ccd2c1b33e9b5b7f141909bdc417fd85b6f0785c70558f185"
+        }
+      ],
+      "current_assessment": "Authorized alternate software can use contract-permitted compound during cooldown; user explicitly retained software-only wait.",
+      "action": "Do not silently add an on-chain restriction; monitor/revoke/pause using existing roles.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L02",
+      "title": "Unallocated royalty recovery uses inclusion-time active weights",
+      "kind": "accepted_policy",
+      "current_disposition": "accepted_policy",
+      "origins": [
+        {
+          "path": "reports/operator-behavior-followup-20261117/RIGHTS_REVIEW.md",
+          "reference": "Recovery-allocation game theory"
+        },
+        {
+          "path": "reports/operator-input-audit-20261116/ADDITIONAL_SOURCE_REVIEW.md",
+          "reference": "Royalty recovery"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2"
+        }
+      ],
+      "current_assessment": "reviewHash is not a frozen beneficiary cohort; optional existing deposit stop can stabilize review, with pre-stop ordering exposure.",
+      "action": "Preserve approved economics; no retrofit expected-cohort parameter.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L03",
+      "title": "Terminal principal sends ETH and ZZZ atomically per NFT",
+      "kind": "structural_limit",
+      "current_disposition": "structural_limit",
+      "origins": [
+        {
+          "path": "reports/operator-behavior-followup-20261117/RIGHTS_REVIEW.md",
+          "reference": "Terminal principal delivery"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/RIGHTS_REVIEW.md",
+          "reference": "Terminal principal"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed"
+        }
+      ],
+      "current_assessment": "Failure of fixed ZZZ can defer that NFT healthy ETH too; isolated payouts retain both backed rights.",
+      "action": "No silent partial-payment/accounting redesign; retry or owner fallback where usable.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L04",
+      "title": "Opening/zero-cohort/unadmitted royalties are not always immediately allocated",
+      "kind": "accepted_policy",
+      "current_disposition": "accepted_policy",
+      "origins": [
+        {
+          "path": "reports/operator-behavior-followup-20261117/RIGHTS_REVIEW.md",
+          "reference": "Royalty opening"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/RIGHTS_REVIEW.md",
+          "reference": "Remaining limitations"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2"
+        }
+      ],
+      "current_assessment": "One-hour window and zero cohort explicitly hold funds; unsupported prefunds need admission/review/current-weight recovery.",
+      "action": "Do not promise no unallocated funds at every instant or award everything to first late activator.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L05",
+      "title": "LP dust barrier is a split exception",
+      "kind": "accepted_policy",
+      "current_disposition": "accepted_policy",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/OPERATIONS_AND_RISKS.md",
+          "reference": "Sub20 split dust"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/RIGHTS_REVIEW.md",
+          "reference": "Small receipts"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZFeeController.sol",
+          "sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8"
+        }
+      ],
+      "current_assessment": "Sub20 funded units settle100% to incumbent individual owners at barriers; complete baskets retain80/10/5/5.",
+      "action": "Do not use global90% arithmetic across such barriers.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L06",
+      "title": "Emergency governance may omit financial protections",
+      "kind": "accepted_policy",
+      "current_disposition": "accepted_policy",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "Remaining3"
+        },
+        {
+          "path": "reports/operator-input-audit-20261116/CONTRACT_REVIEW.md",
+          "reference": "Emergency retained-check matrix"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed"
+        },
+        {
+          "path": "src/ZZZCustodyValidation.sol",
+          "sha256": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b"
+        }
+      ],
+      "current_assessment": "Explicit paused governance mask can accept severe loss but cannot bypass authority, exact custody/accounting or terminal locks.",
+      "action": "No keeper force fallback or always-success promise.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L07",
+      "title": "Per-operation caps do not bound cumulative turnover losses",
+      "kind": "accepted_policy",
+      "current_disposition": "accepted_policy",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "Remaining4"
+        },
+        {
+          "path": "reports/operator-input-audit-20261116/OPERATIONS_AND_RISKS.md",
+          "reference": "Repeated losses"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZMigrationBudget.sol",
+          "sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+        }
+      ],
+      "current_assessment": "User declined cumulative cap; repeated permitted trades can compound losses.",
+      "action": "Monitor realized costs/turnover; do not fabricate attacker net profit.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L08",
+      "title": "Generic seal does not prove selected SeaDrop/converter release binding",
+      "kind": "structural_limit",
+      "current_disposition": "structural_limit",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/SEAL_REVIEW.md",
+          "reference": "Omitted SeaDrop / LP converter"
+        },
+        {
+          "path": "reports/operator-behavior-followup-20261117/REVIEW.md",
+          "reference": "Build tooling"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZAccessController.sol",
+          "sha256": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3"
+        },
+        {
+          "path": "src/ZZZRewards.sol",
+          "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30"
+        },
+        {
+          "path": "src/base/ZZZSeaDropToken.sol",
+          "sha256": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24"
+        }
+      ],
+      "current_assessment": "Selected release must bind immutable helpers before seal; generic explicit local/direct fixtures remain allowed.",
+      "action": "Use selected-release checklist; omission after seal needs compatible replacement/reconstruction.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L09",
+      "title": "Expired nonzero mint end cannot be reopened",
+      "kind": "accepted_policy",
+      "current_disposition": "accepted_policy",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/SEAL_REVIEW.md",
+          "reference": "Already-expired royalty mint end"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2"
+        }
+      ],
+      "current_assessment": "Old-end guard applies even during bootstrap; initially unset end can still be configured.",
+      "action": "Delay initial deadline write until viable, or reconstruct before funds.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L10",
+      "title": "Wrong-but-nonempty content or fixed venue/token graph is irreversible",
+      "kind": "structural_limit",
+      "current_disposition": "structural_limit",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/SEAL_REVIEW.md",
+          "reference": "Coherent wrong graph / NFT root"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZNFTMetadata.sol",
+          "sha256": "d12e430a81d3271313d854d67f7f25468384c30fc7f753eced3f315fb9e11cbe"
+        },
+        {
+          "path": "src/ZZZPoolRegistry.sol",
+          "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa"
+        },
+        {
+          "path": "src/ZZZLiquidityManager.sol",
+          "sha256": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9"
+        }
+      ],
+      "current_assessment": "Syntax and coherent bindings do not establish actual content or hard-pinned operational venue compatibility.",
+      "action": "Qualify before funds/seal; no arbitrary token/core mutation after seal.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L11",
+      "title": "Pending unanswered VRF can block rotation and replacement",
+      "kind": "structural_limit",
+      "current_disposition": "structural_limit",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/SEAL_REVIEW.md",
+          "reference": "Unanswered old VRF draw"
+        },
+        {
+          "path": "reports/operator-input-audit-20261116/ADDITIONAL_SOURCE_REVIEW.md",
+          "reference": "randomness"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZNFT.sol",
+          "sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211"
+        },
+        {
+          "path": "src/ZZZProtocolPolicy.sol",
+          "sha256": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955"
+        }
+      ],
+      "current_assessment": "Old draw ordering is fixed; changing provider cannot reroll pending traits.",
+      "action": "Pause new minting; require actual provider funding/callback qualification.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L12",
+      "title": "Permanent reservation, terminal exit and canonical retirement do not unpause open",
+      "kind": "accepted_policy",
+      "current_disposition": "accepted_policy",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "Capacity and lifecycle"
+        },
+        {
+          "path": "reports/operator-input-audit-20261116/OPERATIONS_AND_RISKS.md",
+          "reference": "Canonical"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZVault.sol",
+          "sha256": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7"
+        },
+        {
+          "path": "src/ZZZCanonicalHandoff.sol",
+          "sha256": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95"
+        }
+      ],
+      "current_assessment": "Four historical buckets and final lifecycle choices remain permanent; abort restores only exact returned backing.",
+      "action": "Use explicit lifecycle recovery, never generic unpause or hidden sweep.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L13",
+      "title": "Arbitrary tokens and rejecting receivers cannot be forced to work",
+      "kind": "structural_limit",
+      "current_disposition": "structural_limit",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "Remaining5"
+        },
+        {
+          "path": "reports/operator-behavior-followup-20261117/RIGHTS_REVIEW.md",
+          "reference": "Terminal distribution"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/RIGHTS_REVIEW.md",
+          "reference": "Remaining limitations"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/libraries/ExactToken.sol",
+          "sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db"
+        },
+        {
+          "path": "src/ZZZMigration.sol",
+          "sha256": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed"
+        },
+        {
+          "path": "src/ZZZRoyaltyRewards.sol",
+          "sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2"
+        }
+      ],
+      "current_assessment": "Backed exact entitlements do not guarantee external token transfers, usable escrows or complete canonical backing transport.",
+      "action": "Conventional admission, per-currency healthy claims, isolated payouts and explicit retry/fallback remain.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L14",
+      "title": "Raw fixed-ZZZ LP claims remain deliberate recovery",
+      "kind": "accepted_policy",
+      "current_disposition": "accepted_policy",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/SEAL_REVIEW.md",
+          "reference": "ZZZRewards"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/RIGHTS_REVIEW.md",
+          "reference": "Documentation"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZRewards.sol",
+          "sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30"
+        }
+      ],
+      "current_assessment": "Normal UX ETH settlement uses separate converter; direct ledger raw ZZZ recovery remains available to current owners.",
+      "action": "No silent entitlement removal; royalties remain original currencies with no swaps.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L15",
+      "title": "Own-swap proof and jitter do not provide manipulation immunity",
+      "kind": "structural_limit",
+      "current_disposition": "structural_limit",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/CONTRACT_REVIEW.md",
+          "reference": "Spot references"
+        },
+        {
+          "path": "reports/operator-input-audit-20261116/OPERATIONS_AND_RISKS.md",
+          "reference": "Price manipulation"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "src/ZZZOracle.sol",
+          "sha256": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa"
+        },
+        {
+          "path": "src/ZZZRebalanceConfirmation.sol",
+          "sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3"
+        }
+      ],
+      "current_assessment": "Two addresses can share economic exposure, sampled windows miss intermediate movement, ordering remains adversarial.",
+      "action": "Independent market/depth qualification and economic monitoring are still required.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L16",
+      "title": "Generic revert, staged metadata and missing raw logs limit assurance",
+      "kind": "historical_evidence_limit",
+      "current_disposition": "historical_evidence_limit",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/VERIFICATION.md",
+          "reference": "Original records"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/LP_PRODUCTION_PATH_REVIEW.md",
+          "reference": "Verification limits"
+        }
+      ],
+      "current_source_proof": [],
+      "current_assessment": "Original stages retain absent logs/artifacts and declared mocks; method/corpus counts do not prove branch coverage.",
+      "action": "Preserve limits rather than rerun unchanged tests for counts or manufacture evidence.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "L17",
+      "title": "Old wrapped/Pons fork and royalty-converting cases remain historical",
+      "kind": "historical_evidence_limit",
+      "current_disposition": "historical_evidence_limit",
+      "origins": [
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "optional historical fork"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/RIGHTS_REVIEW.md",
+          "reference": "Historical converter cases"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "test/UniswapV4Fork.t.sol",
+          "sha256": "c0a5f9a6800afd10f3177fbb7a5963d0f6416fc6c582596c717b705219b23a9c"
+        },
+        {
+          "path": "test/RoyaltyConversion.t.sol",
+          "sha256": "81a90abd0953afdc7b05a11007b7aaf1ca21342306d06c1de0a4a2572af64ac4"
+        },
+        {
+          "path": "test/TypedV4Rewards.t.sol",
+          "sha256": "0668fe6f99a65dce911ba077cf4cd67d1e3f6f88391b65542597d9b7e3221d97"
+        }
+      ],
+      "current_assessment": "Wrapped fork setup conflicts fresh native paths; historical royalty imports do not revive current swaps.",
+      "action": "Use explicit current native harness; skipped legacy tests do not qualify markets.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "Q01",
+      "title": "Independent ETH/ZZZ sources and usable bidirectional routes/depth",
+      "kind": "release_qualification",
+      "current_disposition": "release_qualification_open",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "Remaining release risks"
+        },
+        {
+          "path": "reports/operator-behavior-followup-20261117/REVIEW.md",
+          "reference": "Verification limits"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "Verification boundary"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/REVIEW.md",
+          "reference": "Preserved boundaries"
+        },
+        {
+          "path": "reports/preseal-planner-20261116/REVIEW.md",
+          "reference": "Remaining before deployment"
+        }
+      ],
+      "current_source_proof": [],
+      "current_assessment": "Source fixes and local checks do not establish this external/current-workload qualification.",
+      "action": "actual market/source snapshots; genuine independent exposures and postwithdrawal execution depth",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "Q02",
+      "title": "Complete target fees, RPC capacity and final constructor/operation gas",
+      "kind": "release_qualification",
+      "current_disposition": "release_qualification_open",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "Remaining release risks"
+        },
+        {
+          "path": "reports/operator-behavior-followup-20261117/REVIEW.md",
+          "reference": "Verification limits"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "Verification boundary"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/REVIEW.md",
+          "reference": "Preserved boundaries"
+        },
+        {
+          "path": "reports/preseal-planner-20261116/REVIEW.md",
+          "reference": "Remaining before deployment"
+        }
+      ],
+      "current_source_proof": [],
+      "current_assessment": "Source fixes and local checks do not establish this external/current-workload qualification.",
+      "action": "exact current deployment/operation envelopes, complete fee components and provider history/tracing capacity",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "Q03",
+      "title": "Maximum-state gas and activation/currency/claim workload",
+      "kind": "release_qualification",
+      "current_disposition": "release_qualification_open",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "Remaining release risks"
+        },
+        {
+          "path": "reports/operator-behavior-followup-20261117/REVIEW.md",
+          "reference": "Verification limits"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "Verification boundary"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/REVIEW.md",
+          "reference": "Preserved boundaries"
+        },
+        {
+          "path": "reports/preseal-planner-20261116/REVIEW.md",
+          "reference": "Remaining before deployment"
+        }
+      ],
+      "current_source_proof": [],
+      "current_assessment": "Source fixes and local checks do not establish this external/current-workload qualification.",
+      "action": "measured cold64currency and maximum-state workloads; count ceilings alone never approve gas",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "Q04",
+      "title": "Authorities and contract-wallet envelopes",
+      "kind": "release_qualification",
+      "current_disposition": "release_qualification_open",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "Remaining release risks"
+        },
+        {
+          "path": "reports/operator-behavior-followup-20261117/REVIEW.md",
+          "reference": "Verification limits"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "Verification boundary"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/REVIEW.md",
+          "reference": "Preserved boundaries"
+        },
+        {
+          "path": "reports/preseal-planner-20261116/REVIEW.md",
+          "reference": "Remaining before deployment"
+        }
+      ],
+      "current_source_proof": [],
+      "current_assessment": "Source fixes and local checks do not establish this external/current-workload qualification.",
+      "action": "actual reviewed authority identities, key recovery and manual outer-wallet envelope execution",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "Q05",
+      "title": "OpenSea, VRF and immutable content delivery",
+      "kind": "release_qualification",
+      "current_disposition": "release_qualification_open",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "Remaining release risks"
+        },
+        {
+          "path": "reports/operator-behavior-followup-20261117/REVIEW.md",
+          "reference": "Verification limits"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "Verification boundary"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/REVIEW.md",
+          "reference": "Preserved boundaries"
+        },
+        {
+          "path": "reports/preseal-planner-20261116/REVIEW.md",
+          "reference": "Remaining before deployment"
+        }
+      ],
+      "current_source_proof": [],
+      "current_assessment": "Source fixes and local checks do not establish this external/current-workload qualification.",
+      "action": "actual onboarding, gross fee/net terms, funding/callback and complete immutable artwork retrieval",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "Q06",
+      "title": "Integration rollout, hosting and restart/backup/recovery operation",
+      "kind": "release_qualification",
+      "current_disposition": "release_qualification_open",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "Remaining release risks"
+        },
+        {
+          "path": "reports/operator-behavior-followup-20261117/REVIEW.md",
+          "reference": "Verification limits"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "Verification boundary"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/REVIEW.md",
+          "reference": "Preserved boundaries"
+        },
+        {
+          "path": "reports/preseal-planner-20261116/REVIEW.md",
+          "reference": "Remaining before deployment"
+        }
+      ],
+      "current_source_proof": [],
+      "current_assessment": "Source fixes and local checks do not establish this external/current-workload qualification.",
+      "action": "matching installed consumers, source-bound state and real operational outage/restore evidence",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "Q07",
+      "title": "Independent audit and release remediation/approval",
+      "kind": "release_qualification",
+      "current_disposition": "release_qualification_open",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "Remaining release risks"
+        },
+        {
+          "path": "reports/operator-behavior-followup-20261117/REVIEW.md",
+          "reference": "Verification limits"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "Verification boundary"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/REVIEW.md",
+          "reference": "Preserved boundaries"
+        },
+        {
+          "path": "reports/preseal-planner-20261116/REVIEW.md",
+          "reference": "Remaining before deployment"
+        }
+      ],
+      "current_source_proof": [],
+      "current_assessment": "Source fixes and local checks do not establish this external/current-workload qualification.",
+      "action": "independent review plus closed remediation and explicit release sign-off",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "Q08",
+      "title": "Tight runtime/initcode headroom",
+      "kind": "engineering_constraint",
+      "current_disposition": "structural_limit",
+      "origins": [
+        {
+          "path": "reports/operator-input-audit-20261116/REVIEW.md",
+          "reference": "Remaining release risks"
+        },
+        {
+          "path": "reports/operator-behavior-followup-20261117/REVIEW.md",
+          "reference": "Verification limits"
+        },
+        {
+          "path": "reports/test-seal-deep-review-20261117/REVIEW.md",
+          "reference": "Verification boundary"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/REVIEW.md",
+          "reference": "Preserved boundaries"
+        },
+        {
+          "path": "reports/preseal-planner-20261116/REVIEW.md",
+          "reference": "Remaining before deployment"
+        }
+      ],
+      "current_source_proof": [],
+      "current_assessment": "Current objects fit the preserved normal limits. Very tight headroom is a future-change engineering constraint, not an unmet extra deployment size gate.",
+      "action": "preserved normal gate; future justified changes need measured size-safe placement, no cap/compiler relaxation",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "N01",
+      "title": "Passing count alone could admit substituted evidence methods",
+      "kind": "evidence_admission_defect",
+      "current_disposition": "resolved_this_consolidation",
+      "origins": [
+        {
+          "path": "reports/test-impact-followup-20261117/RIGHTS_REVIEW.md",
+          "reference": "execution collector"
+        },
+        {
+          "path": "reports/test-impact-followup-20261117/REVIEW.md",
+          "reference": "physical source proofs"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "zzz_ops/focused_evidence.py",
+          "sha256": "78c2d9af2739348909e27804fbf089e4c5be20a819583db23e08bb3a5abc6b43"
+        },
+        {
+          "path": "config/focused-evidence-1c18379.json",
+          "sha256": "96c5aef1946eeec3083a40302125039812616d683816e7233512f1efe900f568"
+        }
+      ],
+      "current_assessment": "New baseline-pinned offline checker binds seven explicitly enumerated groups to exact expected IDs, statuses, raw hashes and available compiled selectors/metadata. Claim-record-only and absent-standalone-artifact limits remain explicit.",
+      "action": "15distinct new checker methods observed passing across explicit source stages; two new malformed-log/DEFLATE cases reproduced rejection gaps during development and were corrected; no historical EVM/test reruns.",
+      "old_evidence_relabelled_as_new_execution": false
+    },
+    {
+      "id": "N02",
+      "title": "Complete pre-seal input omitted disabled ordinary-pool stop",
+      "kind": "tool_diagnostic_defect",
+      "current_disposition": "resolved_this_consolidation",
+      "origins": [
+        {
+          "path": "reports/preseal-planner-20261116/REVIEW.md",
+          "reference": "Implemented behavior / explicit_operating_stops"
+        },
+        {
+          "path": "reports/five-report-consolidation-20261117/TOOLS_RECONCILIATION.md",
+          "reference": "New diagnostic correction"
+        }
+      ],
+      "current_source_proof": [
+        {
+          "path": "zzz_ops/preseal_plan.py",
+          "sha256": "1510933dabf5756d8cf5032009aa8adccbbb49a4103c239031b3956a4bdd48aa"
+        }
+      ],
+      "current_assessment": "A complete input may set operationsEnabled=false while depositsEnabled=true. Output now names each affected pool and the contribution/compound/ordinary-rebalance stop, without changing calls, settings or readiness. Harvesting/claims keep separate guards.",
+      "action": "Two new real-planner methods pass; original warning failure/healthy control preserved in TOOL_STOPS_BEFORE and AFTER. No old suite/EVM rerun.",
+      "old_evidence_relabelled_as_new_execution": false
+    }
+  ],
+  "distinct_rows": 64,
+  "counts": {
+    "resolved_tool": 10,
+    "resolved_documentation": 3,
+    "resolved_source": 5,
+    "resolved_test_or_fixture": 18,
+    "resolved_selected_verification": 1,
+    "accepted_policy": 9,
+    "structural_limit": 7,
+    "historical_evidence_limit": 2,
+    "release_qualification_open": 7,
+    "resolved_this_consolidation": 2
+  },
+  "current_rights_review": "No new production rights/accounting defect confirmed in this bounded reconciliation; original source and dynamic evidence retain their historical limits.",
+  "no_old_reports_modified": true,
+  "no_old_tests_rerun": true
+}

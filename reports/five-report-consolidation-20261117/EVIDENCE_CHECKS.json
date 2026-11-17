@@ -1,0 +1,169 @@
+{
+  "schema": 1,
+  "distinct_new_methods_observed_passing": 15,
+  "initial_observation": {
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "tests_python.test_focused_evidence"
+    ],
+    "methods": [
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_genuine_seven_groups_admit_original_scope_without_new_execution",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_wrong_successful_id_cannot_substitute_for_expected_method",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_missing_extra_and_duplicate_method_ids_refuse",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_failure_skip_or_counterexample_is_never_admitted",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_compiled_method_selector_and_target_must_match",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_compiled_source_set_or_identity_cannot_be_relabelled",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_changed_raw_or_artifact_bytes_fail_original_digest",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_recomputed_caller_manifest_cannot_approve_changed_results",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_duplicate_keys_nonfinite_values_and_deep_json_refuse",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_gzip_and_stored_byte_limits_are_enforced",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_invalid_gzip_and_parent_path_refuse",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_unittest_log_requires_exact_ids_summary_and_no_skip",
+      "tests_python.test_focused_evidence.FocusedEvidenceTests.test_cli_has_no_root_manifest_network_or_execution_arguments"
+    ],
+    "tests_run": 13,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "reported_seconds": 0.383,
+    "raw_terminal_file_retained": false,
+    "provenance": "Observed exact tool response in this task; no raw terminal file was captured and none is fabricated. Later source stages are separately retained."
+  },
+  "new_method_ast_sha256": {
+    "test_genuine_seven_groups_admit_original_scope_without_new_execution": "727a36e7c47c1134a4d5da8a9760444e66731359a59e8ac0f5368c6eaacf7305",
+    "test_wrong_successful_id_cannot_substitute_for_expected_method": "8857c47ee40bdac85f8c35762650cd9f091013942d42d39505dbdfefa0b74331",
+    "test_missing_extra_and_duplicate_method_ids_refuse": "1e886ab4246cc1690cd2638bb430c356e8db5a84b88aab4778fef441a6310786",
+    "test_failure_skip_or_counterexample_is_never_admitted": "02835785888e70ed0a7ebef157b062bf933bbf3a52fa2aaf07c5b49097ff630b",
+    "test_compiled_method_selector_and_target_must_match": "6fe1ed5d23403c18bce0d5e0a23af48e6adeb0dc4ebcbc874403a4544dc8466d",
+    "test_compiled_source_set_or_identity_cannot_be_relabelled": "77982e1d7f49641b32d8e57998b8c2091f7b6af2061b200a5237f1fb10ba9ac5",
+    "test_changed_raw_or_artifact_bytes_fail_original_digest": "8abe6086ef778a496f033841095b6dbc354e013052f5709b13207320def978fa",
+    "test_recomputed_caller_manifest_cannot_approve_changed_results": "44b21ff4e29941f88c32dc088cc699fa3331853d7b713414020b82a666f22700",
+    "test_duplicate_keys_nonfinite_values_and_deep_json_refuse": "fb2f0662a4066484f19de51ea0fc2bc189cda01330a63f1c41d7a06d110adfd1",
+    "test_gzip_and_stored_byte_limits_are_enforced": "684af2e1df3a4113b8e6b92130de3c6bd052a58767857b5aea3259537196a84f",
+    "test_invalid_gzip_and_parent_path_refuse": "7a662d045176a71c2e78a5d4693e0040c4d3ba001fca8999806b7159ab7ad478",
+    "test_unittest_log_requires_exact_ids_summary_and_no_skip": "f5739bb2cca1eac7900fa7adb6dd60caf82b563395a55be9f03487a932e2aacc",
+    "test_extra_failed_python_row_cannot_hide_behind_ok_summary": "74da0b17d86206a03617963667fde138f8c611a45df4d7d02687da2d8abd65dd",
+    "test_corrupted_deflate_normalizes_to_evidence_refusal": "e1271e527bd2694fd6a5fb21ecd3de0eb846b735d981a2c210d7c16350bb46e2",
+    "test_cli_has_no_root_manifest_network_or_execution_arguments": "13b386b49ca5cf98b30facc5e5818c3d9bea8fec8a2f1fb4c7756c02836fc852"
+  },
+  "retained_stages": [
+    {
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-m",
+        "unittest",
+        "-v",
+        "tests_python.test_focused_evidence.FocusedEvidenceTests.test_extra_failed_python_row_cannot_hide_behind_ok_summary"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 0.20300000000133878,
+      "source_before": {
+        "zzz_ops/focused_evidence.py": "6dae1b84026737723488fc4160dc33f95717ea77847f4004a0da0df89992da6e",
+        "scripts/check-focused-evidence.py": "69ecea05b5a2cdf17cd2c44a067346869d10451bc571789a9662e96ae89a98a8",
+        "tests_python/test_focused_evidence.py": "9462fbef80d592a215d36f78c7dd2ca9563513cb1a6668ec7e14d1ddd57d5800",
+        "config/focused-evidence-1c18379.json": "96c5aef1946eeec3083a40302125039812616d683816e7233512f1efe900f568"
+      },
+      "source_after": {
+        "zzz_ops/focused_evidence.py": "6dae1b84026737723488fc4160dc33f95717ea77847f4004a0da0df89992da6e",
+        "scripts/check-focused-evidence.py": "69ecea05b5a2cdf17cd2c44a067346869d10451bc571789a9662e96ae89a98a8",
+        "tests_python/test_focused_evidence.py": "9462fbef80d592a215d36f78c7dd2ca9563513cb1a6668ec7e14d1ddd57d5800",
+        "config/focused-evidence-1c18379.json": "96c5aef1946eeec3083a40302125039812616d683816e7233512f1efe900f568"
+      },
+      "log_sha256": "96fefc92c59ca2ba74cac592714c889420cc0d6a7c89be6f9bffd01941aaee65",
+      "EVM_executions": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-m",
+        "unittest",
+        "-v",
+        "tests_python.test_focused_evidence.FocusedEvidenceTests.test_extra_failed_python_row_cannot_hide_behind_ok_summary",
+        "tests_python.test_focused_evidence.FocusedEvidenceTests.test_unittest_log_requires_exact_ids_summary_and_no_skip",
+        "tests_python.test_focused_evidence.FocusedEvidenceTests.test_genuine_seven_groups_admit_original_scope_without_new_execution"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.4209999999984575,
+      "source_before": {
+        "zzz_ops/focused_evidence.py": "e9c6825dac6c455975da2216e5fef80addb9865aa960d63f19eac8a564df6828",
+        "scripts/check-focused-evidence.py": "69ecea05b5a2cdf17cd2c44a067346869d10451bc571789a9662e96ae89a98a8",
+        "tests_python/test_focused_evidence.py": "9462fbef80d592a215d36f78c7dd2ca9563513cb1a6668ec7e14d1ddd57d5800",
+        "config/focused-evidence-1c18379.json": "96c5aef1946eeec3083a40302125039812616d683816e7233512f1efe900f568"
+      },
+      "source_after": {
+        "zzz_ops/focused_evidence.py": "e9c6825dac6c455975da2216e5fef80addb9865aa960d63f19eac8a564df6828",
+        "scripts/check-focused-evidence.py": "69ecea05b5a2cdf17cd2c44a067346869d10451bc571789a9662e96ae89a98a8",
+        "tests_python/test_focused_evidence.py": "9462fbef80d592a215d36f78c7dd2ca9563513cb1a6668ec7e14d1ddd57d5800",
+        "config/focused-evidence-1c18379.json": "96c5aef1946eeec3083a40302125039812616d683816e7233512f1efe900f568"
+      },
+      "log_sha256": "f7d1ffbaf8cf3f05cc678ec37de51f5c33fa559ccf1e7763877e62a9bfe057c1",
+      "EVM_executions": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-m",
+        "unittest",
+        "-v",
+        "tests_python.test_focused_evidence.FocusedEvidenceTests.test_corrupted_deflate_normalizes_to_evidence_refusal"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 0.26599999999962165,
+      "source_before": {
+        "zzz_ops/focused_evidence.py": "e9c6825dac6c455975da2216e5fef80addb9865aa960d63f19eac8a564df6828",
+        "scripts/check-focused-evidence.py": "69ecea05b5a2cdf17cd2c44a067346869d10451bc571789a9662e96ae89a98a8",
+        "tests_python/test_focused_evidence.py": "c995b4e48b0be7187776eaecea6df7cf5833c8e2bfbeec81eb8b5e7ca6337499",
+        "config/focused-evidence-1c18379.json": "96c5aef1946eeec3083a40302125039812616d683816e7233512f1efe900f568"
+      },
+      "source_after": {
+        "zzz_ops/focused_evidence.py": "e9c6825dac6c455975da2216e5fef80addb9865aa960d63f19eac8a564df6828",
+        "scripts/check-focused-evidence.py": "69ecea05b5a2cdf17cd2c44a067346869d10451bc571789a9662e96ae89a98a8",
+        "tests_python/test_focused_evidence.py": "c995b4e48b0be7187776eaecea6df7cf5833c8e2bfbeec81eb8b5e7ca6337499",
+        "config/focused-evidence-1c18379.json": "96c5aef1946eeec3083a40302125039812616d683816e7233512f1efe900f568"
+      },
+      "log_sha256": "d920fe1291104f90a811fb723a6ae68408c28deed22d4e0523b9a7ca58f6d651",
+      "EVM_executions": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-m",
+        "unittest",
+        "-v",
+        "tests_python.test_focused_evidence.FocusedEvidenceTests.test_corrupted_deflate_normalizes_to_evidence_refusal"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.2029999999977008,
+      "source_before": {
+        "zzz_ops/focused_evidence.py": "78c2d9af2739348909e27804fbf089e4c5be20a819583db23e08bb3a5abc6b43",
+        "scripts/check-focused-evidence.py": "69ecea05b5a2cdf17cd2c44a067346869d10451bc571789a9662e96ae89a98a8",
+        "tests_python/test_focused_evidence.py": "c995b4e48b0be7187776eaecea6df7cf5833c8e2bfbeec81eb8b5e7ca6337499",
+        "config/focused-evidence-1c18379.json": "96c5aef1946eeec3083a40302125039812616d683816e7233512f1efe900f568"
+      },
+      "source_after": {
+        "zzz_ops/focused_evidence.py": "78c2d9af2739348909e27804fbf089e4c5be20a819583db23e08bb3a5abc6b43",
+        "scripts/check-focused-evidence.py": "69ecea05b5a2cdf17cd2c44a067346869d10451bc571789a9662e96ae89a98a8",
+        "tests_python/test_focused_evidence.py": "c995b4e48b0be7187776eaecea6df7cf5833c8e2bfbeec81eb8b5e7ca6337499",
+        "config/focused-evidence-1c18379.json": "96c5aef1946eeec3083a40302125039812616d683816e7233512f1efe900f568"
+      },
+      "log_sha256": "b27eeac32c2c5bf1c321c1ab537f315e8a89045df2f835209d7594443e663ef8",
+      "EVM_executions": 0
+    }
+  ],
+  "source_files": {
+    "zzz_ops/focused_evidence.py": "78c2d9af2739348909e27804fbf089e4c5be20a819583db23e08bb3a5abc6b43",
+    "scripts/check-focused-evidence.py": "69ecea05b5a2cdf17cd2c44a067346869d10451bc571789a9662e96ae89a98a8",
+    "tests_python/test_focused_evidence.py": "c995b4e48b0be7187776eaecea6df7cf5833c8e2bfbeec81eb8b5e7ca6337499",
+    "config/focused-evidence-1c18379.json": "96c5aef1946eeec3083a40302125039812616d683816e7233512f1efe900f568"
+  },
+  "historical_tests_rerun": 0,
+  "new_EVM_executions": 0,
+  "production_source_changes": 0,
+  "limits": [
+    "15unique methods, not13+3+1 distinct; failed development cases and affected repeats are not added.",
+    "Historical78method records span differing evidence tiers and original source stages; admission never re-executes them or claims current-source acceptance."
+  ]
+}

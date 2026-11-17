@@ -1,0 +1,7 @@
+test_disabled_contribution_pool_operations_are_explicit_without_changing_the_call (tests_python.test_preseal_operating_stops.PresealOperatingStopTests.test_disabled_contribution_pool_operations_are_explicit_without_changing_the_call) ... ok
+test_enabled_operations_do_not_report_a_false_pool_stop (tests_python.test_preseal_operating_stops.PresealOperatingStopTests.test_enabled_operations_do_not_report_a_false_pool_stop) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 4.626s
+
+OK
