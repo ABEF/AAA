@@ -1,0 +1,14 @@
+test_stop_during_durable_save_retains_hashless_intent_and_restart_never_resends (tests_python.test_keeper_intent_shutdown.KeeperIntentShutdownTests.test_stop_during_durable_save_retains_hashless_intent_and_restart_never_resends) ... FAIL
+
+======================================================================
+FAIL: test_stop_during_durable_save_retains_hashless_intent_and_restart_never_resends (tests_python.test_keeper_intent_shutdown.KeeperIntentShutdownTests.test_stop_during_durable_save_retains_hashless_intent_and_restart_never_resends)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_intent_shutdown.py", line 89, in test_stop_during_durable_save_retains_hashless_intent_and_restart_never_resends
+    self.assertEqual(signer.call_count,0,'Stop during durable intent save must prevent a later signer launch')
+AssertionError: 1 != 0 : Stop during durable intent save must prevent a later signer launch
+
+----------------------------------------------------------------------
+Ran 1 test in 2.496s
+
+FAILED (failures=1)

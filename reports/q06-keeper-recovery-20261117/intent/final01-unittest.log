@@ -1,0 +1,8 @@
+test_failed_save_after_atomic_publication_never_signs_or_discards_recovery (tests_python.test_keeper_intent_shutdown.KeeperIntentShutdownTests.test_failed_save_after_atomic_publication_never_signs_or_discards_recovery) ... ok
+test_stop_during_durable_save_retains_hashless_intent_and_restart_never_resends (tests_python.test_keeper_intent_shutdown.KeeperIntentShutdownTests.test_stop_during_durable_save_retains_hashless_intent_and_restart_never_resends) ... ok
+test_uninterrupted_submission_keeps_durable_intent_exact_review_and_hash (tests_python.test_keeper_intent_shutdown.KeeperIntentShutdownTests.test_uninterrupted_submission_keeps_durable_intent_exact_review_and_hash) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 9.423s
+
+OK

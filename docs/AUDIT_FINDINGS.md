@@ -9,6 +9,8 @@ approvals. The [sole Todo](../TODO.md) owns project task status.
 
 Current follow-up: [Q03 launch workload](../reports/launch-workload-20261117/REVIEW.md) adds measured gas/batching boundaries and an unverified pre-seal workload checklist. Q03 remains open for maximum whole-graph state, actual selected currencies and target-chain/provider qualification. The original64-row registry and its39 resolved dispositions are preserved.
 
+Q06 follow-up: [keeper interruption/recovery](../reports/q06-keeper-recovery-20261117/REVIEW.md) fixes two new source defects and adds finite current-profile Linux/systemd evidence. The original64-row registry remains historical and unchanged. Inert signing/recovery-only restart does not close actual-key/provider, normal scheduling, off-host restore/alert or sustained operating qualification.
+
 ## Five reports reconciled
 
 | Original report | Current interpretation |

@@ -2026,6 +2026,10 @@ class Keeper:
             '--gas-limit',str(gas_limit),'--gas-price',str(gas_price),'--value',str(value),'--async','--json']
         if submission_fee_profile == 2:command.extend(['--priority-gas-price','0'])
         environment = signer_environment(self.rpc.active_url)
+        # A stop can arrive during durable publication. Keep that exact intent
+        # for reconciliation, but do not launch a signer after observing it.
+        if self.stop_requested():
+            log('shutdown_after_intent_before_signer',action=key);return False
         try:
             result = subprocess.run(command,env=environment,capture_output=True,text=True,timeout=90,check=False)
             if result.returncode: raise RuntimeError('Signer command failed; broadcast status must be checked')
@@ -2787,7 +2791,8 @@ def main() -> None:
         # Wrap before construction: a live startup also validates signer/chain
         # state. Completed reads report progress; blocked I/O has no pulse thread.
         if watchdog.enabled:
-            rpc = ProgressRPC(Rpc(config['rpc_urls'],positive(config['chain_id'],'chain_id')),watchdog)
+            rpc = ProgressRPC(Rpc(config['rpc_urls'],positive(config['chain_id'],'chain_id'),
+                transport_attempt_complete=watchdog.pulse),watchdog)
             keeper = Keeper(config,live=args.live,rpc=rpc)
         else:
             keeper = Keeper(config,live=args.live)

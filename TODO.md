@@ -1678,11 +1678,12 @@ Decisions and rehearsals before real funds.
 
 <a id="task-keeper-recovery"></a>
 
-- [ ] **[Rehearse keeper outage & server recovery](docs/KEEPER_REHEARSALS.md)** - In progress. Historical 2026-10-16 evidence: 209 Ubuntu safety tests and 14 process rehearsals pass; the same 14 scenarios pass under the isolated server account. Actual systemd crash/restart and off-host snapshot round-trip restore passed. Sustained soak, physical host loss and governance key rotation remain open. These receipts do not qualify the new canonical lifecycle candidate.
+- [ ] **[Rehearse keeper outage & server recovery](docs/KEEPER_REHEARSALS.md)** - In progress. Current Q06: two shutdown/failover defects fixed;12 new unit methods and finite isolated Linux/systemd interruption/recovery cases pass with synthetic contracts and inert signing. All owned units stopped; no installed service/journal rollout. Actual keys/providers, full normal daemon, off-host restore/alerts and sustained operation remain open. Historical 2026-10-16 receipts retain their original profile.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Q06 current-profile recovery](reports/q06-keeper-recovery-20261117/REVIEW.md): actual private-network Linux header-stall watchdog, manual main-kill/descendant cleanup, same-inode locking, exact hashless intent and synthetic receipt/nonce/spend recovery pass. A127.445s completed failover avoids false watchdog expiry. Twelve NEW source checks pass; no unchanged suite rerun. Recovery-only dispatcher/inert signer does not qualify real encrypted Cast, full maintenance scheduling, external RPC/fees, DNS/body variants, off-host backups/alerts/fencing or soak. The raw cgroup warning and existing observer timer activity remain explicit; preserve all existing state. Task stays in progress.
   - Stage [the keeper recovery runbook](docs/KEEPER_RECOVERY.md): multi-day outage, lost server, stale/missing state, nonce/budget reconciliation, old-host fencing and key rotation.
   - Verify off-host backups, health/log alert delivery, permissions/disk failures and actual Linux service restart/locking. Local guards are not production operating evidence.
   - Finish and review sustained multi-day staging; preserve observation gaps. The 30-minute desktop-dependent chat health monitor was paused at the user's request on 2026-10-17. It supplies no subsequent observations; do not restart it without authorization. The isolated server service was not stopped by pausing the monitor.
@@ -1774,4 +1775,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `027918835d88c474bd5dbbb3d2452092cfed1e53444a83ff562d78d9f3ddd5d5`.
+Snapshot SHA-256: `19f2217ea66f3615186c937109933d0ea3b26972665f07dc474b9c01a3a68a8f`.

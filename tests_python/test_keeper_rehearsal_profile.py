@@ -1,4 +1,4 @@
-"""Exercise the real disposable Lab builder without processes, funds or RPC."""
+"""Exercise the historical accounting3/fee1 Lab builder without processes/funds/RPC."""
 import importlib.util
 from pathlib import Path
 from types import SimpleNamespace
@@ -31,7 +31,7 @@ class RehearsalProfileTests(unittest.TestCase):
             lab.start()
         return lab
 
-    def test_process_rehearsal_selects_current_accounting_and_intake(self):
+    def test_process_rehearsal_selects_historical_accounting3_and_intake1(self):
         lab=self.build()
         self.assertEqual(lab.cfg.get('accounting_version'),3)
         self.assertEqual(lab.cfg.get('fee_intake_version'),1)

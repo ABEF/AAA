@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-17T15:09:23.139840+00:00",
+  "kind": "read-only source and existing evidence review; no test execution",
+  "head": "44f5a650ae7abfb40cab810e389a393e526130ca",
+  "new_tests_executed_by_this_review": 0,
+  "production_files_edited_by_this_review": [],
+  "conclusion": "No new confirmed defect or safeguard weakening identified in these finite diffs and twelve test oracles. This is not a whole-project, full-host or release approval.",
+  "source_sha256": {
+    "keeper/monitor.py": "e0474aa16e8377ad9c276492fcd01d4bf5570614bf7430658d8669ae4c288645",
+    "zzz_ops/rpc.py": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f",
+    "keeper/watchdog.py": "59b4bb7783453a8f271fd5ab265fd5d2857d55096479be34f10ffe56c8408372",
+    "tests_python/test_keeper_watchdog_failover_progress.py": "008934949c35af5240e085b4d45e7548c5bb6934387a33d1b0ece40ca22ec15b",
+    "tests_python/test_keeper_intent_shutdown.py": "4b436945f07261ef77c6410df244c971680457f49e8564f14d9fd1d1f92ac59f"
+  },
+  "source_diff_assessment": [
+    {
+      "file": "keeper/monitor.py",
+      "changes": "Post-durable-save cooperative stop check; enabled-watchdog Rpc constructor wiring.",
+      "preserved": "Exact hashless pending intent, existing signer authority/timeout, nonce and recovery semantics; no automatic resend or deletion."
+    },
+    {
+      "file": "zzz_ops/rpc.py",
+      "changes": "Validated optional synchronous completion callback after _read_http returns or raises, only after post budget consumption.",
+      "preserved": "Inert default, read-only method list, existing chain checks/HTTP decoding/limits/retry order/timeouts/backoff. WatchdogError is outside the bounded retry catch; WorkLimit remains fatal."
+    },
+    {
+      "file": "keeper/watchdog.py",
+      "changes": "ProgressRPC docstring only.",
+      "preserved": "Existing watchdog deadline/pulse/error/socket executable behavior unchanged."
+    }
+  ],
+  "twelve_distinct_oracles": [
+    {
+      "id": "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_completed_bounded_failover_does_not_falsely_expire_watchdog",
+      "assessment": "Real Rpc decoder/retry chain; exact 16 bounded HTTP completions, active endpoint7, successful final value and notification gaps below120s. Synthetic clock/body responses, not real-provider performance.",
+      "source_line": 133
+    },
+    {
+      "id": "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_plain_rpc_preserves_the_same_legal_failover_result",
+      "assessment": "Identical legal retry workload returns the same value without callback or notifications; verifies default-inert behavior.",
+      "source_line": 148
+    },
+    {
+      "id": "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_one_overlong_read_cannot_publish_a_late_heartbeat",
+      "assessment": "121s synthetic blocked-return path must throw WatchdogError and retain only the initial heartbeat; tests no revival after deadline.",
+      "source_line": 153
+    },
+    {
+      "id": "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_completion_callback_stays_on_calling_thread_after_each_http_attempt",
+      "assessment": "Matches all16 callbacks to completed-read timestamps and current thread ID; no background thread added.",
+      "source_line": 166
+    },
+    {
+      "id": "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_late_watchdog_callback_is_fatal_before_another_endpoint_or_backoff",
+      "assessment": "Late WatchdogError stops after first HTTP attempt; endpoint, backoff and heartbeat state remain unchanged.",
+      "source_line": 174
+    },
+    {
+      "id": "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_post_budget_exhaustion_remains_fatal_without_a_new_callback_or_retry",
+      "assessment": "Actual work-budget post consumption stops before second HTTP attempt; asserts rpc_budget, one completion, no failover/sleep.",
+      "source_line": 185
+    },
+    {
+      "id": "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_invalid_hooks_reject_and_none_preserves_an_inert_client",
+      "assessment": "Noncallable constructor hooks reject and omitted hook remains None without transport.",
+      "source_line": 197
+    },
+    {
+      "id": "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_completed_remote_error_keeps_its_original_sanitized_retry_cause",
+      "assessment": "Actual chain/action envelope decode retains typed method/code/reason without endpoint disclosure; exact two attempts and no retry sleep.",
+      "source_line": 204
+    },
+    {
+      "id": "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogMainTransportWiringTests.test_actual_main_explicitly_connects_only_the_enabled_watchdog_transport",
+      "assessment": "Actual main entry reaches explicit Rpc hook constructor/wrapper and one cycle; outer config/lock/signals/Keeper are mocks, so not process startup qualification.",
+      "source_line": 219
+    },
+    {
+      "id": "tests_python.test_keeper_intent_shutdown.KeeperIntentShutdownTests.test_stop_during_durable_save_retains_hashless_intent_and_restart_never_resends",
+      "assessment": "Real atomic save publishes exact pending bytes before stop; zero signer calls; nonce/spend/anchor unchanged; actual reloaded Keeper submit and cycle retain the same bytes and block resend.",
+      "source_line": 73
+    },
+    {
+      "id": "tests_python.test_keeper_intent_shutdown.KeeperIntentShutdownTests.test_uninterrupted_submission_keeps_durable_intent_exact_review_and_hash",
+      "assessment": "Inert signer observes real durable hashless calldata/nonce/gas before returning a hash; exact pending review persists and no spend/nonce is prematurely credited.",
+      "source_line": 112
+    },
+    {
+      "id": "tests_python.test_keeper_intent_shutdown.KeeperIntentShutdownTests.test_failed_save_after_atomic_publication_never_signs_or_discards_recovery",
+      "assessment": "Actual save then injected OSError; no signer; exact published hashless journal survives reloading, poll_pending and attempted submit. Not a physical disk/power-loss test.",
+      "source_line": 129
+    }
+  ],
+  "source_stage_proof": {
+    "intent_earlier_methods": 3,
+    "intent_source_unchanged_during_recorded_run": true,
+    "intent_recorded_monitor_sha256": "57eb8b2ca849bb38695861a80ed83a3efd02b2f2543d8bb53fd8deb311cd6d95",
+    "only_later_monitor_delta": "One enabled-watchdog main constructor call expanded with transport_attempt_complete=watchdog.pulse; exact byte reversal reconstructs original source hash.",
+    "reverse_delta_occurrences": 1,
+    "reconstructed_monitor_sha256": "57eb8b2ca849bb38695861a80ed83a3efd02b2f2543d8bb53fd8deb311cd6d95",
+    "reconstruction_matches": true,
+    "final_watchdog_methods": 9,
+    "final_watchdog_source_unchanged_during_recorded_run": true,
+    "all_final_watchdog_source_pins_match_current": true,
+    "linux_selected_five_files_match_current_before_and_after": true,
+    "linux_source_after_checked_files": 463,
+    "linux_source_after_mismatches": [],
+    "no_relabeling": "The earlier three methods were not rerun at final whole-file hashes. The final nine-method stage and actual Linux campaign include both fixes."
+  },
+  "scope_limits": [
+    "A signal can arrive after the final cooperative stop check; this is not transactional signal cancellation.",
+    "Intent methods bypass actual live signer startup after a dry-run validated fixture; external signer is inert and read replies synthetic. Actual encrypted keystore, markets and target fees remain unqualified.",
+    "The per-attempt completion callback is synchronous on its caller. Actual main uses the main thread; no new global thread-identity enforcement is claimed.",
+    "Completed HTTP errors count as progress without changing health/error outcome. A blocked open/read receives no intermediate pulse; Linux header trickle was executed, DNS/body variants remain open.",
+    "Linux restart uses an explicit recovery-only dispatcher and synthetic loopback peers; this is not full ordinary daemon scheduling acceptance.",
+    "Existing inactive observer InvocationID changed during normal timer operation; do not claim every live observation was byte-identical."
+  ],
+  "preservation": {
+    "protected_four_sha256": {
+      "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+    },
+    "protected_four_match": true,
+    "src_diff_against_head": [],
+    "existing_state_or_services_changed_by_this_review": false
+  },
+  "evidence_sha256": {
+    "intent/final01-RESULT.json": "f4047cb52fca6889d58e93b5a10303b40c5084b8cc443f2a4c6da107d863fa94",
+    "intent/final01-START.json": "1d514c77e58663df56ee57f724a5e6b97616243c1c58fcd9126c7e7495491710",
+    "watchdog/AFTER.json": "f5153be82ed1fd41a782f5c810aaf838815902e2570794f69b03c29f5d2abe03",
+    "watchdog/BASELINE.json": "06e2d0c0d7a2dcafc02103a111f7afb78ad696301c09d3b7d2d25ffe156467b9"
+  },
+  "linux_evidence_sha256": {
+    "source-manifest.json": "96cd8a32f6fb15d6720aad6a61536752084b0d2e3cde057fb0e71131901be6a7",
+    "SOURCE_AFTER.json": "47e71bb658d81da327ef756c720b176a29304a2206a0e0f6f1ecbb8144d81dfc",
+    "SUMMARY.json": "bcf8d3b58d20410707683a5183b2a51143db2df01bab946adbc8686e4ec2b950"
+  }
+}

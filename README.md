@@ -166,6 +166,8 @@ explicit financial guards; governance can therefore cause near-total losses.
 
 ## Keeper and operating services
 
+The [Q06 recovery rehearsal](reports/q06-keeper-recovery-20261117/REVIEW.md) fixes shutdown/failover defects and records isolated Linux watchdog, process-cleanup and journal recovery. Actual production-key/provider, full daemon and off-host operating acceptance remain open; existing services are unchanged by this work.
+
 The worker defaults to dry run. Raw checks can occur during cooldown; paid
 confirmation enrollment starts near eligibility to avoid hours of unnecessary
 writes. Compounding waits for an in-range main below the adjustment threshold and no pending geometry change;

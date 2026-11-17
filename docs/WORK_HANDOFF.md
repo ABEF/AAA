@@ -11,6 +11,8 @@ Historical artifacts/runtimes/checkpoints/journals retain their original profile
 
 ## Latest completed work
 
+- [Q06 interruption/recovery](../reports/q06-keeper-recovery-20261117/REVIEW.md): two confirmed Python fixes,12 distinct NEW methods and finite real Linux/systemd interruption/recovery receipts. Durable hashless intent remains blocked; no blind resend. Actual header watchdog and separately deliberate main kill/descendant cleanup are distinguished. Recovery-only dispatcher/inert signer are not full production daemon/Cast acceptance. All15 owned units stopped. Existing installed services/journals are untouched by control commands; the existing observer timer ran naturally. Actual-key/provider/off-host/normal-loop/soak work remains open; no unchanged suite or Solidity rerun.
+
 - [Launch-workload review](../reports/launch-workload-20261117/REVIEW.md):19 distinct new focused methods retain separate contribution, royalty-component, claim and pre-seal scopes. Actual local calls/estimates/padding include20M activation refusals and smaller claim recovery. Capacity is not admission or whole-operation approval. New pre-seal currency/gas rows stay unverified; all defaults/source contracts/environments remain unchanged. Maximum-state whole-graph, actual assets/target fees/providers and independent approval stay open.
 
 - Consolidated five root report families selected by Git publication history,

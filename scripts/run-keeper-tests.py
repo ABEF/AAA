@@ -44,6 +44,8 @@ MODULES=(
  'test_keeper_zero_tip_profile',
  'test_keeper_probe_transport_budget',
  'test_keeper_maintenance_clock',
+ 'test_keeper_intent_shutdown',
+ 'test_keeper_watchdog_failover_progress',
 )
 def select_tests(modules=MODULES,importer=importlib.import_module):
  """Build a strict inventory without executing any selected test body."""

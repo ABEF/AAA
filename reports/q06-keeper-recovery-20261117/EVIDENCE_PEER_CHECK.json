@@ -1,0 +1,98 @@
+{
+  "archive_files": 149,
+  "archive_digest_entries": 149,
+  "archive_digest_mismatches": [],
+  "runs": [
+    {
+      "run": "popl-q06-20261117-65e71e7447bf",
+      "source_manifest_count": 462,
+      "reported_checked_files": 462,
+      "before_after_digests_exact": true,
+      "reported_mismatches": [],
+      "owned_unit_count": 1,
+      "owned_unit_final_state_mismatches": []
+    },
+    {
+      "run": "popl-q06-20261117-7b5ec836608b",
+      "source_manifest_count": 463,
+      "reported_checked_files": 463,
+      "before_after_digests_exact": true,
+      "reported_mismatches": [],
+      "owned_unit_count": 11,
+      "owned_unit_final_state_mismatches": []
+    },
+    {
+      "run": "popl-q06-20261117-91076f0abfde",
+      "source_manifest_count": 463,
+      "reported_checked_files": 463,
+      "before_after_digests_exact": true,
+      "reported_mismatches": [],
+      "owned_unit_count": 2,
+      "owned_unit_final_state_mismatches": []
+    },
+    {
+      "run": "popl-q06-20261117-fbdc081eb8c0",
+      "source_manifest_count": 463,
+      "reported_checked_files": 463,
+      "before_after_digests_exact": true,
+      "reported_mismatches": [],
+      "owned_unit_count": 1,
+      "owned_unit_final_state_mismatches": []
+    }
+  ],
+  "state_records": {
+    "receipt": {
+      "state_sha256": "ed3ed1fcd5d52c36cbaecd00d0f658fddf63c5e61fa1486555409c5bee59baa5",
+      "nonce": 1,
+      "spent": {
+        "2026-11-17": 300
+      },
+      "pending_hash": null,
+      "pending_present": false,
+      "send_inert_count": 1,
+      "marker_digest_matches": true
+    },
+    "signer": {
+      "state_sha256": "ae80ccfa81b5bef64d942873b3614c9ea2bfe722647849be42d29f54a18d3c9b",
+      "nonce": 0,
+      "spent": {},
+      "pending_hash": null,
+      "pending_present": true,
+      "send_inert_count": 1,
+      "send_time_hashless_state_digest_matches": true
+    },
+    "stop-intent": {
+      "state_sha256": "806ed44fc0a46b84d8f8c27eb95f3895158030a8ec4eebcc270a0064d758ddf6",
+      "nonce": 0,
+      "spent": {},
+      "pending_hash": null,
+      "pending_present": true,
+      "send_inert_count": 0,
+      "marker_digest_matches": true,
+      "before_stop_intent_digest_matches": true
+    }
+  },
+  "main_campaign_observed_existing_unit_changes": {
+    "zzz-stage-observer.service": {
+      "after": {
+        "ActiveState": "inactive",
+        "Id": "zzz-stage-observer.service",
+        "InvocationID": "a65d4bbb7bb24c1f907eab16c77bfcb1",
+        "LoadState": "loaded",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "SubState": "dead"
+      },
+      "before": {
+        "ActiveState": "inactive",
+        "Id": "zzz-stage-observer.service",
+        "InvocationID": "841ae6f78f2e45e684b9c927e0dd3f28",
+        "LoadState": "loaded",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "SubState": "dead"
+      }
+    }
+  },
+  "all_pass_local_consistency": true
+}

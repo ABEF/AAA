@@ -5,17 +5,21 @@ undeployed; local/staging deployments are separate fixtures. No public signing o
 
 ## Repeatable isolated rehearsal
 
-This fixture is historical: the fresh release is accounting6/Entry3/schema10.
+This fixture is historical. The current release uses accounting7/Entry3,
+mint2/canonicalV10/schema17. Mint2 is an NFT/read/inventory profile, not a
+`mint_integration_version` keeper configuration field.
 Passing it does not qualify the fresh helper graph or authorize replacing an
 existing service/journal. Current operating requirements remain in [operations](OPERATIONS.md)
 and [the release record](RELEASE_CHECKLIST.md).
 
 The historical rehearsal setup below selects explicit accounting3/fee1,
 8word native-zero fixture. Old installed services retain their old code/config
-and are not upgraded by this source release. The updated fixture's actual getters
-and current Keeper reader pass disposable-local checks; its full Unix process
-campaign and systemd/target-chain acceptance remain separate and unexecuted here.
-The source receipt now includes Position/range/fee helper hashes.
+and are not upgraded by this source release. Earlier constructor/reader and
+process receipts retain their original source and fixture scope; they do not
+qualify the current accounting7 graph or its intended operating environment.
+Its historical receipt hashes twelve explicitly named files, including
+Position/range/fee helpers; it does not capture every current transitive source.
+Keep that evidence at its recorded profile and source stage.
 
 
 On an unprivileged Ubuntu user with Python 3.11+ and Foundry **1.4.4**:
@@ -28,7 +32,7 @@ The command starts its own loopback Anvil, compiles a test-only venue with Solid
 0.8.26, creates a disposable encrypted signer and kills child process groups at
 specific broadcast boundaries. It accepts no external RPC, real wallet or production
 configuration. Temporary keys and local-chain data are removed at the end. The
-JSON receipt binds every tested source and records each completed case. Failure
+JSON receipt identifies its explicit source list and completed cases. Failure
 or missing cases do not count as qualification. CI runs it in Keeper safety regression.
 
 Covered scenarios include receipt/cost settlement exactly once; restoration to a
@@ -41,6 +45,39 @@ evaluation instead of replaying missed intervals. **It is not a multi-day soak**
 The venue models the keeper-facing ABI and counters only. It does not qualify
 the selected hookless Uniswap v4 trading, price feeds, real rewards/royalties, gas economics, metadata
 marketplace refresh, real server isolation, systemd lifecycle or Robinhood services.
+
+## Current-profile process evidence
+
+The [Q06 recovery review](../reports/q06-keeper-recovery-20261117/REVIEW.md) records
+a completed finite current-accounting7 campaign on actual Linux/systemd. Read
+its actual outcome and source stage before treating any scenario as verified.
+The test-only worker uses the production keeper's HTTP decoding, runtime/version/
+binding checks, nonce/fee review, durable intent, recovery and process lock, with
+synthetic contract replies and an inert executable that cannot sign or broadcast.
+Its source closure is captured separately before/after completed scenarios;
+terminated scenarios need the supervisor's exact source and process evidence.
+
+The campaign's transient units are separate from installed services. Its stalled
+header scenario targets watchdog termination; its signer scenario deliberately
+kills the main process to examine cgroup descendant cleanup. Those are different
+claims. The restart dispatcher enters recovery-only operation; it does not prove
+a complete normal maintenance cycle, live market behavior or healthy operation.
+The receipt and gas arithmetic are synthetic, not actual Robinhood charges.
+
+The inert test launcher must be on an executable filesystem; a `noexec` runtime
+mount prevents its discovery/execution and is a fixture prerequisite failure,
+not a keeper or watchdog failure. Do not change mounts or relax production
+permissions to make a rehearsal pass. Real encrypted signer material may remain
+on a separate non-executable private filesystem.
+
+The current worker selects custody5/policy1/portfolio2/maintenance3/confirmation3,
+quality1 and explicit execution-price1/LP3. Original-currency royalty4 disables
+royalty conversion; optional LP conversion remains a separately reviewed native-v4
+job. Historical examples are not fresh configurations. No test fixture pin,
+synthetic fee response or local success qualifies real markets, encrypted signing,
+Robinhood services, an installed keeper or production operation. Actual systemd
+results, effective unit settings, off-host backup/alerts, fencing and multi-day
+operation retain their distinct evidence requirements below.
 
 ## Read-only checks and snapshots
 

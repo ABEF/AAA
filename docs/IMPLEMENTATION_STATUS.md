@@ -62,6 +62,8 @@ Current [both-flow audit](../reports/moving-market-flows-20261106/REVIEW.md) cha
 
 ## Backend and operations
 
+[Q06 recovery](../reports/q06-keeper-recovery-20261117/REVIEW.md) fixes a post-save shutdown race and false watchdog expiry during progressing failover. Twelve new methods pass; actual isolated Linux/systemd header-stall and signer-descendant cases preserve synthetic journal/nonce/spend and locks. The recovery-only dispatcher/inert signer does not qualify the full daemon, encrypted Cast, real contracts/providers, off-host restore or sustained operation. No existing service/journal rollout is performed.
+
 [Frozen review packages](FROZEN_REVIEW_BUNDLE.md) now use schema4 with exact
 operator inputs and authenticated-Git reproduction instructions. Original1/2/3
 admission, instruction and ZIP semantics remain exact. The current

@@ -203,6 +203,10 @@ The reviewed source [unit](../keeper/zzz-keeper.service) sets
 `KillMode=control-group`, `SendSIGKILL=yes`, `FinalKillSignal=SIGKILL` and
 `LimitCORE=0`. Main progress notifications bracket startup/cycles, follow
 completed RPC and cover intentional polling sleep; there is no timer thread.
+The matching worker also reports progress after a completed HTTP transport
+attempt, including a bounded failure, so a progressing retry sequence is not
+mistaken for blocked I/O. It reports nothing while that attempt remains blocked;
+only the separately reviewed supervisor can terminate the process group.
 A stuck read/signer cannot keep reporting progress. Default notification cadence
 is at most 10 seconds, leaving margin for the existing90 second signer timeout.
 A progressing cycle may legitimately exceed120 seconds.
@@ -241,6 +245,24 @@ Before a separately authorized rollout:
    monitor remains paused; source watchdog support neither resumes it nor proves
    uninterrupted uptime. For rollback, stop/fence, restore the reviewed matching
    source/unit pair and inspect effective settings with the same journal intact.
+
+A stop observed after durable intent publication retains the original hashless
+intent and prevents launching a new signer after that observation. It does not
+authorize clearing the intent: a process killed around signing may still have
+broadcast. Fence the prior signer and reconcile exact transaction identity,
+nonce, fee review and receipts before another submission. The
+[Q06 process record](../reports/q06-keeper-recovery-20261117/REVIEW.md) now records
+finite actual Linux/systemd evidence, not installed-service or production approval.
+Its header-stall watchdog restarts once; a separate manual main-process kill
+verifies signer/descendant cleanup before recovery-only restart. A completed
+127.445s HTTP failover does not falsely expire the120s watchdog. The raw RPC
+cgroup warning remains disclosed. All15 owned transient units are stopped; real
+Cast/normal scheduling/off-host restore/alerts and sustained operation stay open.
+Keep a real stalled-header watchdog result separate from deliberately killing
+the main process to inspect signer-descendant cleanup. A recovery-only restart
+does not establish a complete healthy maintenance cycle. Before/after snapshots
+also cannot prove no intervening timer/service activity: retain any observed
+invocation change and investigate it rather than reporting identical host state.
 
 Notifications carry only fixed bytes; systemd environment fields are consumed
 before signer children start. This adds no financial capability or journal
@@ -353,7 +375,8 @@ transaction. Preserve evidence and never edit next_nonce to force signing.
 
 ## Versioned maintenance schedule recovery
 
-Fresh accounting6 selects maintenance3/confirmation3/portfolio2 and Budget4,
+Current accounting7 selects maintenance3/confirmation3/portfolio2 and Budget4;
+historical accounting6 retains its matching versioned profile,
 with exact runtime/parent pins. Both physical NFTs and desired/applied policy
 must be authenticated; missing auxiliary data is unavailable, never a zero leg.
 Main increases preserve stable confirmation identity; parking/emergency manifests
@@ -505,9 +528,11 @@ require a fresh matching cycle after a reviewed config change. Never patch the
 hash, edit/reset a journal or assume this digest authenticates the host/provider.
 There is no in-process config reload: finalize config before constructing Keeper.
 
-Accounting5/6 health admission requires its complete matching profile, including
-quality1, confirmation3, maintenance3, routing2 and the correct portfolio/policy
-versions. Missing or downgraded required tags return
+Accounting5/6/7 health admission requires its complete matching profile, including
+quality1, confirmation3, maintenance3 and the correct portfolio/policy versions.
+Accounting7 requires policy1/portfolio2 and actual Rewards LP-allocation1 binding;
+routing2 is historical omission/0, while explicit execution-price1 requires
+routing3 and its Oracle/Pricing runtime/binding checks. Missing or downgraded required tags return
 `execution_health_profile_invalid` (`confirmation_health_profile_invalid` for the
 confirmation-only check); they cannot select a legacy healthy status. Diagnose the
 reviewed deployment/configuration identity rather than deleting fields or setting
@@ -524,7 +549,7 @@ Hashes identify local files at keeper start, not an attested running binary or
 an authenticated market/provider. `rebalance_confirmation_health` separately
 reports bucket observations/reset backlog and `policy`: a fresh latest canonical
 policy-only block/hash/time, actual helper/Budget capabilities/bindings and
-runtime/config/source identity. Confirmation1 requires this record independently
+runtime/config/source identity. Confirmation1/2/3 require this record independently
 of quality1, including during cooldown with compounding disabled. It reads no
 condition or prices and proves neither sampled readiness nor continuous history.
 
@@ -537,7 +562,7 @@ prior observation explicitly as stale. After explicit terminal
 actual bindings and all policy-shape checks still apply. A metadata failure preserves the prior
 `last_success_at`, increments failures and returns an unsuccessful cycle.
 
-For quality1 or confirmation1, success is `healthy_v2`/`dry_run_v2`, making older
+For quality1 or confirmation1/2/3, success is `healthy_v2`/`dry_run_v2`, making older
 checkers fail closed. The matching new checker requires schema2 for these profiles;
 historical profiles keep their original success strings. Deploy writer/checker
 together through reviewed stop/reconcile/dry-run/restart, preserve journals and

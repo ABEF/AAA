@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "static_python_publication": {
+    "revision": "52-file staged index before this non-Python evidence addition",
+    "successful": true,
+    "python_files": 458,
+    "errors": [],
+    "raw_external_sha256": "d00937e13758725c8024f86435e9582099c4c25b581252dfefc92f8f950f1f4e",
+    "tests_executed": 0
+  },
+  "keeper_inventory": {
+    "tests_run": 0,
+    "new_methods_selected": 12,
+    "existing_methods_not_executed": true
+  },
+  "todo_check": "pass",
+  "new_changed_local_document_links": {
+    "checked": 20,
+    "missing": 0
+  },
+  "new_python_syntax_only": {
+    "files": 8,
+    "tests_executed": 0
+  },
+  "staged_byte_and_report_manifest_check": "pass",
+  "protected_dirty_files_preserved_and_not_staged": 4,
+  "solidity_sources_and_foundry_unchanged": 61,
+  "unchanged_tests_rerun": 0,
+  "normal_builds_rerun": 0,
+  "production_approved": false
+}

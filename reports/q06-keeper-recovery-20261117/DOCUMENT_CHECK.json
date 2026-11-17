@@ -1,0 +1,118 @@
+{
+  "scope": "New/changed documentation links and new Python syntax; no test execution",
+  "local_links_checked": [
+    {
+      "source": "AGENTS.md",
+      "target": "reports/q06-keeper-recovery-20261117/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "PROJECT_CONTEXT.md",
+      "target": "reports/q06-keeper-recovery-20261117/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "reports/q06-keeper-recovery-20261117/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "TODO.md",
+      "target": "docs/KEEPER_REHEARSALS.md",
+      "exists": true
+    },
+    {
+      "source": "TODO.md",
+      "target": "reports/q06-keeper-recovery-20261117/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "docs/AUDIT_FINDINGS.md",
+      "target": "../reports/q06-keeper-recovery-20261117/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "docs/IMPLEMENTATION_STATUS.md",
+      "target": "../reports/q06-keeper-recovery-20261117/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "docs/KEEPER_RECOVERY.md",
+      "target": "../reports/q06-keeper-recovery-20261117/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "docs/KEEPER_REHEARSALS.md",
+      "target": "../reports/q06-keeper-recovery-20261117/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "docs/OPERATOR_MANUAL.md",
+      "target": "../reports/q06-keeper-recovery-20261117/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "docs/WORK_HANDOFF.md",
+      "target": "../reports/q06-keeper-recovery-20261117/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "reports/README.md",
+      "target": "q06-keeper-recovery-20261117/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "reports\\q06-keeper-recovery-20261117\\REVIEW.md",
+      "target": "VERIFICATION.json",
+      "exists": true
+    },
+    {
+      "source": "reports\\q06-keeper-recovery-20261117\\REVIEW.md",
+      "target": "EVIDENCE_PEER_CHECK.json",
+      "exists": true
+    },
+    {
+      "source": "reports\\q06-keeper-recovery-20261117\\REVIEW.md",
+      "target": "process/EVIDENCE.tar.gz",
+      "exists": true
+    },
+    {
+      "source": "reports\\q06-keeper-recovery-20261117\\REVIEW.md",
+      "target": "../../docs/OPERATOR_MANUAL.md#keeper-interruption-and-recovery-q06",
+      "exists": true
+    },
+    {
+      "source": "reports\\q06-keeper-recovery-20261117\\REVIEW.md",
+      "target": "../../docs/KEEPER_RECOVERY.md#stalled-rpc-and-progress-watchdog",
+      "exists": true
+    },
+    {
+      "source": "reports\\q06-keeper-recovery-20261117\\REVIEW.md",
+      "target": "../../TODO.md#task-keeper-recovery",
+      "exists": true
+    },
+    {
+      "source": "reports\\q06-keeper-recovery-20261117\\watchdog\\REVIEW.md",
+      "target": "BASELINE.json",
+      "exists": true
+    },
+    {
+      "source": "reports\\q06-keeper-recovery-20261117\\watchdog\\REVIEW.md",
+      "target": "AFTER.json",
+      "exists": true
+    }
+  ],
+  "missing": [],
+  "syntax_files": [
+    "tests_python/test_keeper_intent_shutdown.py",
+    "tests_python/test_keeper_watchdog_failover_progress.py",
+    "reports\\q06-keeper-recovery-20261117\\intent\\run_selected.py",
+    "reports\\q06-keeper-recovery-20261117\\process\\collect.py",
+    "reports\\q06-keeper-recovery-20261117\\process\\entry.py",
+    "reports\\q06-keeper-recovery-20261117\\process\\failover.py",
+    "reports\\q06-keeper-recovery-20261117\\process\\supervisor.py",
+    "reports\\q06-keeper-recovery-20261117\\process\\worker.py"
+  ],
+  "operator_anchor_present": true,
+  "tests_executed": 0
+}

@@ -53,7 +53,8 @@ class Rpc:
         'eth_getTransactionByHash','eth_getTransactionReceipt','eth_getTransactionCount',
         'eth_getBalance','eth_feeHistory','eth_maxPriorityFeePerGas','web3_clientVersion','debug_traceCall',
     })
-    def __init__(self, urls: list[str], chain_id: int, *, timeout: float = 10, retries: int = 3):
+    def __init__(self, urls: list[str], chain_id: int, *, timeout: float = 10, retries: int = 3,
+                 transport_attempt_complete=None):
         # Validate and retain the same snapshot. Editing a caller's config list
         # later must not replace endpoints or expand this client's retry bound.
         urls = tuple(urls) if isinstance(urls,list) else ()
@@ -61,6 +62,8 @@ class Rpc:
             raise ValueError('One to eight RPC URLs and positive integer chain_id are required')
         if type(retries) is not int or not 1 <= retries <= 10 or type(timeout) not in (int,float) or not 0 < timeout <= 60:
             raise ValueError('RPC retries/timeouts exceed supported bounds')
+        if transport_attempt_complete is not None and not callable(transport_attempt_complete):
+            raise ValueError('RPC progress callback must be callable or None')
         for url in urls:
             if not isinstance(url,str): raise ValueError('RPC URL must be text')
             parsed = urllib.parse.urlsplit(url)
@@ -69,6 +72,7 @@ class Rpc:
             if not parsed.hostname: raise ValueError('Invalid RPC URL')
         self.urls, self.chain_id = urls, chain_id
         self.timeout, self.retries = timeout, retries
+        self.transport_attempt_complete = transport_attempt_complete
         self.active = 0
         self._ids = itertools.count(1)
         # Per-client policy only: never install or mutate urllib's global opener.
@@ -114,7 +118,14 @@ class Rpc:
         consume('posts')
         request_id = next(self._ids)
         raw = json.dumps({'jsonrpc':'2.0','id':request_id,'method':method,'params':params}).encode()
-        data = self._read_http(url, raw)
+        try:
+            data = self._read_http(url, raw)
+        finally:
+            # Synchronous completion only: never notify from inside a blocked
+            # open/read, retry sleep or background timer. The default is inert.
+            # WatchdogError is a RuntimeError outside RpcError/retry handling.
+            if self.transport_attempt_complete is not None:
+                self.transport_attempt_complete()
         checkpoint()
         if len(data) > 8 * 1024 * 1024: raise RpcError('RPC response exceeded size limit')
         try:

@@ -14,6 +14,8 @@ from deposits; complete input is still not readiness.
 
 The [launch-workload evidence](reports/launch-workload-20261117/REVIEW.md) now measures16 admitted ERC20 royalty currencies plus ETH. Some healthy/pending and faulted activation states exceed the reviewed20M/full20% policy; capacity and body-gas success are not approval. Growth skips royalty enrollment; selected claims can require fresh smaller batches. Existing per-currency sync/call/default/financial limits are unchanged. The unsigned pre-seal planner now lists the actual currencies and gas-policy reads as unverified checks. Maximum whole-graph state, actual currencies/provider/fees and release approval remain open.
 
+The [Q06 interruption/recovery review](reports/q06-keeper-recovery-20261117/REVIEW.md) adds two Python fixes: a stop observed after durable intent saving prevents signer launch while preserving the hashless recovery record; completed bounded HTTP attempts report main-thread watchdog progress. Twelve new methods and finite actual Linux/systemd cases pass, using private synthetic HTTP/state and inert signing. Recovery-only restart is not the full normal daemon. All owned units are stopped; existing services are not controlled, the observer timer continues and the desktop heartbeat stays paused. Real release-key/provider/normal-loop/restore/alert/soak qualification remains open.
+
 ## Current architecture and economics
 
 1,000 ERC721 NFTs; fixed600Commun/300Rare/100Legendary draw quotas. Native ETH and

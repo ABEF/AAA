@@ -1,0 +1,28 @@
+test_completed_bounded_failover_does_not_falsely_expire_watchdog (tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_completed_bounded_failover_does_not_falsely_expire_watchdog) ... FAIL
+test_one_overlong_read_cannot_publish_a_late_heartbeat (tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_one_overlong_read_cannot_publish_a_late_heartbeat) ... ok
+test_plain_rpc_preserves_the_same_legal_failover_result (tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_plain_rpc_preserves_the_same_legal_failover_result) ... ok
+
+======================================================================
+FAIL: test_completed_bounded_failover_does_not_falsely_expire_watchdog (tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_completed_bounded_failover_does_not_falsely_expire_watchdog)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_watchdog_failover_progress.py", line 122, in test_completed_bounded_failover_does_not_falsely_expire_watchdog
+    result = W.ProgressRPC(self.client,watchdog).call('eth_blockNumber')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\watchdog.py", line 117, in call
+    self.watchdog.pulse()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\keeper\watchdog.py", line 88, in pulse
+    raise WatchdogError('Systemd watchdog progress deadline exceeded')
+keeper.watchdog.WatchdogError: Systemd watchdog progress deadline exceeded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_watchdog_failover_progress.py", line 125, in test_completed_bounded_failover_does_not_falsely_expire_watchdog
+    self.fail('All16 HTTP responses completed within10s each and final '
+AssertionError: All16 HTTP responses completed within10s each and final endpoint succeeded, but no intermediate progress was reported before151.4s: Systemd watchdog progress deadline exceeded
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.088s
+
+FAILED (failures=1)

@@ -1,5 +1,7 @@
 # AAA / ZZZ PoPL project instructions
 
+The [Q06 interruption/recovery review](reports/q06-keeper-recovery-20261117/REVIEW.md) fixes stop-during-intent signer launch and false watchdog expiry during completed bounded RPC failover. Twelve NEW unit methods pass; isolated unprivileged Linux/systemd units verify synthetic receipt reconciliation, SIGTERM during save, actual header-stall watchdog, signer-descendant cleanup and recovery locking. Restarts use a recovery-only test dispatcher and inert signer, not real Cast or the full normal daemon loop. All15 owned units are stopped; no installed services/journals or paused desktop heartbeat are controlled. A pre-existing observer timer changes its InvocationID naturally; preserve that observation and the raw cgroup warning. Q06 remains open for real release/provider/key/normal-loop/off-host/soak qualification. No unchanged tests, Solidity source, safeguard, default, authority or live environment changes.
+
 The [launch-workload review](reports/launch-workload-20261117/REVIEW.md) separates cold call gas, actual local estimates/full padding, maximum royalty-component state and claim batching. Capacity16 is not16 admitted currencies or an aggregate gas guarantee. Several current16-currency activation states fail the20M policy, while smaller/synchronized workloads and growth have separate evidence. Use exact selected calls, preserve all gas/financial defaults and keep maximum whole-graph/target provider/fee qualification open. New pre-seal royalty/gas reads remain unverified; no live environment is changed.
 
 

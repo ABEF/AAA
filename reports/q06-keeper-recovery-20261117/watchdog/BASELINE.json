@@ -1,0 +1,454 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-11-17T14:15:03.279271+00:00",
+  "stage": "baseline before production change",
+  "tests_run": 3,
+  "failures": [
+    [
+      "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_completed_bounded_failover_does_not_falsely_expire_watchdog",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_keeper_watchdog_failover_progress.py\", line 122, in test_completed_bounded_failover_does_not_falsely_expire_watchdog\n    result = W.ProgressRPC(self.client,watchdog).call('eth_blockNumber')\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\keeper\\watchdog.py\", line 117, in call\n    self.watchdog.pulse()\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\keeper\\watchdog.py\", line 88, in pulse\n    raise WatchdogError('Systemd watchdog progress deadline exceeded')\nkeeper.watchdog.WatchdogError: Systemd watchdog progress deadline exceeded\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_keeper_watchdog_failover_progress.py\", line 125, in test_completed_bounded_failover_does_not_falsely_expire_watchdog\n    self.fail('All16 HTTP responses completed within10s each and final '\nAssertionError: All16 HTTP responses completed within10s each and final endpoint succeeded, but no intermediate progress was reported before151.4s: Systemd watchdog progress deadline exceeded\n"
+    ]
+  ],
+  "errors": [],
+  "success": false,
+  "methods": [
+    {
+      "method": "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_completed_bounded_failover_does_not_falsely_expire_watchdog",
+      "clock_seconds": 151.4,
+      "http_attempts": [
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 0,
+          "opened_at": 0.0,
+          "timeout": 10,
+          "completed_at": 9.0
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 2,
+            "method": "eth_blockNumber",
+            "params": []
+          },
+          "endpoint": 0,
+          "opened_at": 9.0,
+          "timeout": 10,
+          "completed_at": 18.0
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 3,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 1,
+          "opened_at": 18.2,
+          "timeout": 10,
+          "completed_at": 27.2
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 4,
+            "method": "eth_blockNumber",
+            "params": []
+          },
+          "endpoint": 1,
+          "opened_at": 27.2,
+          "timeout": 10,
+          "completed_at": 36.2
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 5,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 2,
+          "opened_at": 36.6,
+          "timeout": 10,
+          "completed_at": 45.6
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 6,
+            "method": "eth_blockNumber",
+            "params": []
+          },
+          "endpoint": 2,
+          "opened_at": 45.6,
+          "timeout": 10,
+          "completed_at": 54.6
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 7,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 3,
+          "opened_at": 55.4,
+          "timeout": 10,
+          "completed_at": 64.4
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 8,
+            "method": "eth_blockNumber",
+            "params": []
+          },
+          "endpoint": 3,
+          "opened_at": 64.4,
+          "timeout": 10,
+          "completed_at": 73.4
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 9,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 4,
+          "opened_at": 74.9,
+          "timeout": 10,
+          "completed_at": 83.9
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 10,
+            "method": "eth_blockNumber",
+            "params": []
+          },
+          "endpoint": 4,
+          "opened_at": 83.9,
+          "timeout": 10,
+          "completed_at": 92.9
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 11,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 5,
+          "opened_at": 94.4,
+          "timeout": 10,
+          "completed_at": 103.4
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 12,
+            "method": "eth_blockNumber",
+            "params": []
+          },
+          "endpoint": 5,
+          "opened_at": 103.4,
+          "timeout": 10,
+          "completed_at": 112.4
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 13,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 6,
+          "opened_at": 113.9,
+          "timeout": 10,
+          "completed_at": 122.9
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 14,
+            "method": "eth_blockNumber",
+            "params": []
+          },
+          "endpoint": 6,
+          "opened_at": 122.9,
+          "timeout": 10,
+          "completed_at": 131.9
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 15,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 7,
+          "opened_at": 133.4,
+          "timeout": 10,
+          "completed_at": 142.4
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 16,
+            "method": "eth_blockNumber",
+            "params": []
+          },
+          "endpoint": 7,
+          "opened_at": 142.4,
+          "timeout": 10,
+          "completed_at": 151.4
+        }
+      ],
+      "watchdog_notifications": [
+        0.0
+      ]
+    },
+    {
+      "method": "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_one_overlong_read_cannot_publish_a_late_heartbeat",
+      "clock_seconds": 121.0,
+      "http_attempts": [
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 0,
+          "opened_at": 0.0,
+          "timeout": 10,
+          "completed_at": 121.0
+        }
+      ],
+      "watchdog_notifications": [
+        0.0
+      ]
+    },
+    {
+      "method": "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_plain_rpc_preserves_the_same_legal_failover_result",
+      "clock_seconds": 151.4,
+      "http_attempts": [
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 0,
+          "opened_at": 0.0,
+          "timeout": 10,
+          "completed_at": 9.0
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 2,
+            "method": "eth_blockNumber",
+            "params": []
+          },
+          "endpoint": 0,
+          "opened_at": 9.0,
+          "timeout": 10,
+          "completed_at": 18.0
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 3,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 1,
+          "opened_at": 18.2,
+          "timeout": 10,
+          "completed_at": 27.2
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 4,
+            "method": "eth_blockNumber",
+            "params": []
+          },
+          "endpoint": 1,
+          "opened_at": 27.2,
+          "timeout": 10,
+          "completed_at": 36.2
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 5,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 2,
+          "opened_at": 36.6,
+          "timeout": 10,
+          "completed_at": 45.6
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 6,
+            "method": "eth_blockNumber",
+            "params": []
+          },
+          "endpoint": 2,
+          "opened_at": 45.6,
+          "timeout": 10,
+          "completed_at": 54.6
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 7,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 3,
+          "opened_at": 55.4,
+          "timeout": 10,
+          "completed_at": 64.4
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 8,
+            "method": "eth_blockNumber",
+            "params": []
+          },
+          "endpoint": 3,
+          "opened_at": 64.4,
+          "timeout": 10,
+          "completed_at": 73.4
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 9,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 4,
+          "opened_at": 74.9,
+          "timeout": 10,
+          "completed_at": 83.9
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 10,
+            "method": "eth_blockNumber",
+            "params": []
+          },
+          "endpoint": 4,
+          "opened_at": 83.9,
+          "timeout": 10,
+          "completed_at": 92.9
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 11,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 5,
+          "opened_at": 94.4,
+          "timeout": 10,
+          "completed_at": 103.4
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 12,
+            "method": "eth_blockNumber",
+            "params": []
+          },
+          "endpoint": 5,
+          "opened_at": 103.4,
+          "timeout": 10,
+          "completed_at": 112.4
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 13,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 6,
+          "opened_at": 113.9,
+          "timeout": 10,
+          "completed_at": 122.9
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 14,
+            "method": "eth_blockNumber",
+            "params": []
+          },
+          "endpoint": 6,
+          "opened_at": 122.9,
+          "timeout": 10,
+          "completed_at": 131.9
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 15,
+            "method": "eth_chainId",
+            "params": []
+          },
+          "endpoint": 7,
+          "opened_at": 133.4,
+          "timeout": 10,
+          "completed_at": 142.4
+        },
+        {
+          "request": {
+            "jsonrpc": "2.0",
+            "id": 16,
+            "method": "eth_blockNumber",
+            "params": []
+          },
+          "endpoint": 7,
+          "opened_at": 142.4,
+          "timeout": 10,
+          "completed_at": 151.4
+        }
+      ],
+      "watchdog_notifications": []
+    }
+  ],
+  "source_before": {
+    "zzz_ops/rpc.py": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+    "keeper/watchdog.py": "ea325765224c5a187bc8cd4214ee06700a6daccca20b79690c49eb8b9524249e",
+    "tests_python/test_keeper_watchdog_failover_progress.py": "b2a3dea6463d860659aec4feafa3bc390c33e0d434cabea4a4ced9187f7b9dd7"
+  },
+  "source_after": {
+    "zzz_ops/rpc.py": "82edee0636c912688884f13287ef1d43fe2b7cf6722aedd2bd751a518d8e65ee",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+    "keeper/watchdog.py": "ea325765224c5a187bc8cd4214ee06700a6daccca20b79690c49eb8b9524249e",
+    "tests_python/test_keeper_watchdog_failover_progress.py": "b2a3dea6463d860659aec4feafa3bc390c33e0d434cabea4a4ced9187f7b9dd7"
+  },
+  "source_unchanged": true,
+  "network_or_real_wait_or_signer_or_service": false,
+  "old_tests_executed": false
+}

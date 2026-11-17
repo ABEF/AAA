@@ -189,3 +189,16 @@ reports/launch-workload-20261117/** -text whitespace=cr-at-eol,-blank-at-eol,-bl
 test/LaunchContributionCapacity20261117.t.sol -text whitespace=cr-at-eol
 test/LaunchClaimCapacity20261117.t.sol -text whitespace=cr-at-eol
 test/LaunchRoyaltyTail20261117.t.sol -text whitespace=cr-at-eol
+
+# Preserve native source-bound Q06 process/test evidence bytes.
+reports/q06-keeper-recovery-20261117/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+# These current source/guide hashes are recorded as native evidence.
+keeper/monitor.py -text whitespace=cr-at-eol
+keeper/watchdog.py -text whitespace=cr-at-eol
+zzz_ops/rpc.py -text whitespace=cr-at-eol
+scripts/run-keeper-tests.py -text whitespace=cr-at-eol
+tests_python/test_keeper_intent_shutdown.py -text whitespace=cr-at-eol
+tests_python/test_keeper_watchdog_failover_progress.py -text whitespace=cr-at-eol
+tests_python/test_keeper_rehearsal_profile.py -text whitespace=cr-at-eol
+docs/KEEPER_RECOVERY.md -text whitespace=cr-at-eol
+docs/KEEPER_REHEARSALS.md -text whitespace=cr-at-eol

@@ -102,6 +102,8 @@ class ProgressWatchdog:
 class ProgressRPC:
     """Transparent read transport wrapper; only completed calls report progress.
 
+    Main may also wire the owned Rpc's optional HTTP-completion hook so bounded
+    failover counts as progress before this outer logical call finishes.
     No thread, resend, new RPC, state mutation or notification during a blocked
     call exists. Bounded error returns are progress too; health still reports the
     failure. A stuck read cannot keep the systemd watchdog alive.

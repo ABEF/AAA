@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-11-17T14:24:46.304611+00:00",
+  "scope": "three authorized source/prose edits; no test execution or historical-evidence rewrite",
+  "files": {
+    "docs/KEEPER_REHEARSALS.md": {
+      "before_sha256": "8fc07324a51ade4aa7a520c122f5d0db5cef4987f39c8002e4c6b8ffee0c15f6",
+      "after_sha256": "f4783cb6c475f174bb62f8e667599c1ffe17c598aab122189db2f8dedc0d7806",
+      "original_bytes_backup": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\q06-keeper-recovery-20261117\\original-docs\\docs\\KEEPER_REHEARSALS.md",
+      "before_crlf_count": 164,
+      "after_crlf_count": 164
+    },
+    "docs/KEEPER_RECOVERY.md": {
+      "before_sha256": "2816c8b9784986cb8fedaf1a9e0027051d81d74508200c7f0d43323aa3531273",
+      "after_sha256": "8a6a472972cce8d2066bf335d862b29beb7944c284e2a49aa982a37d652c9c5f",
+      "original_bytes_backup": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\q06-keeper-recovery-20261117\\original-docs\\docs\\KEEPER_RECOVERY.md",
+      "before_crlf_count": 607,
+      "after_crlf_count": 609
+    },
+    "tests_python/test_keeper_rehearsal_profile.py": {
+      "before_sha256": "34a5eea527bf722fae271339924f32957142bf9d3460ce0d110afcf1484be62c",
+      "after_sha256": "75ef3b1525c61eaf2da00d50eaf52632f06cdfb3bfe3273e59c9510e217be00c",
+      "original_bytes_backup": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\q06-keeper-recovery-20261117\\original-docs\\tests_python\\test_keeper_rehearsal_profile.py",
+      "before_crlf_count": 0,
+      "after_crlf_count": 0
+    }
+  },
+  "test_rename": {
+    "old": "test_process_rehearsal_selects_current_accounting_and_intake",
+    "new": "test_process_rehearsal_selects_historical_accounting3_and_intake1",
+    "all_function_bodies_ast_equal": true,
+    "module_ast_equal_after_only_name_and_module_docstring_normalization": true,
+    "unchanged_test_rerun": false,
+    "tests_executed": 0
+  },
+  "line_ending_policy": "byte replacement of exact snippets only; unchanged bytes retain original CRLF/mixed endings",
+  "changes": [
+    {
+      "file": "docs/KEEPER_REHEARSALS.md",
+      "old": "This fixture is historical: the fresh release is accounting6/Entry3/schema10.",
+      "new": "This fixture is historical. The current release uses accounting7/Entry3,\nmint2/canonicalV10/schema17. Mint2 is an NFT/read/inventory profile, not a\n`mint_integration_version` keeper configuration field."
+    },
+    {
+      "file": "docs/KEEPER_REHEARSALS.md",
+      "old": "The source receipt now includes Position/range/fee helper hashes.",
+      "new": "Its historical receipt hashes twelve explicitly named files, including\nPosition/range/fee helpers; it does not capture every current transitive source.\nKeep that evidence at its recorded profile and source stage."
+    },
+    {
+      "file": "docs/KEEPER_REHEARSALS.md",
+      "old": "JSON receipt binds every tested source and records each completed case. Failure",
+      "new": "JSON receipt identifies its explicit source list and completed cases. Failure"
+    },
+    {
+      "file": "docs/KEEPER_REHEARSALS.md",
+      "old": "## Read-only checks and snapshots",
+      "new": "## Current-profile process evidence\n\nThe [Q06 recovery review](../reports/q06-keeper-recovery-20261117/REVIEW.md) is the\npending record for a separate, finite current-accounting7 process campaign. Read\nits actual outcome and source stage before treating any scenario as verified.\nThe test-only worker uses the production keeper's HTTP decoding, runtime/version/\nbinding checks, nonce/fee review, durable intent, recovery and process lock, with\nsynthetic contract replies and an inert executable that cannot sign or broadcast.\nIts source closure is captured separately before/after completed scenarios;\nterminated scenarios need the supervisor's exact source and process evidence.\n\nThe current worker selects custody5/policy1/portfolio2/maintenance3/confirmation3,\nquality1 and explicit execution-price1/LP3. Original-currency royalty4 disables\nroyalty conversion; optional LP conversion remains a separately reviewed native-v4\njob. Historical examples are not fresh configurations. No test fixture pin,\nsynthetic fee response or local success qualifies real markets, encrypted signing,\nRobinhood services, an installed keeper or production operation. Actual systemd\nresults, effective unit settings, off-host backup/alerts, fencing and multi-day\noperation retain their distinct evidence requirements below.\n\n## Read-only checks and snapshots"
+    },
+    {
+      "file": "docs/KEEPER_RECOVERY.md",
+      "old": "completed RPC and cover intentional polling sleep; there is no timer thread.",
+      "new": "completed RPC and cover intentional polling sleep; there is no timer thread.\nThe matching worker also reports progress after a completed HTTP transport\nattempt, including a bounded failure, so a progressing retry sequence is not\nmistaken for blocked I/O. It reports nothing while that attempt remains blocked;\nonly the separately reviewed supervisor can terminate the process group."
+    },
+    {
+      "file": "docs/KEEPER_RECOVERY.md",
+      "old": "Notifications carry only fixed bytes; systemd environment fields are consumed",
+      "new": "A stop observed after durable intent publication retains the original hashless\nintent and prevents launching a new signer after that observation. It does not\nauthorize clearing the intent: a process killed around signing may still have\nbroadcast. Fence the prior signer and reconcile exact transaction identity,\nnonce, fee review and receipts before another submission. The\n[Q06 process record](../reports/q06-keeper-recovery-20261117/REVIEW.md) is pending\nfinite qualification evidence, not an installed-service or production approval.\n\nNotifications carry only fixed bytes; systemd environment fields are consumed"
+    },
+    {
+      "file": "docs/KEEPER_RECOVERY.md",
+      "old": "Fresh accounting6 selects maintenance3/confirmation3/portfolio2 and Budget4,",
+      "new": "Current accounting7 selects maintenance3/confirmation3/portfolio2 and Budget4;\nhistorical accounting6 retains its matching versioned profile,"
+    },
+    {
+      "file": "docs/KEEPER_RECOVERY.md",
+      "old": "Accounting5/6 health admission requires its complete matching profile, including\nquality1, confirmation3, maintenance3, routing2 and the correct portfolio/policy\nversions.",
+      "new": "Accounting5/6/7 health admission requires its complete matching profile, including\nquality1, confirmation3, maintenance3 and the correct portfolio/policy versions.\nAccounting7 requires policy1/portfolio2 and actual Rewards LP-allocation1 binding;\nrouting2 is historical omission/0, while explicit execution-price1 requires\nrouting3 and its Oracle/Pricing runtime/binding checks."
+    },
+    {
+      "file": "docs/KEEPER_RECOVERY.md",
+      "old": "runtime/config/source identity. Confirmation1 requires this record independently",
+      "new": "runtime/config/source identity. Confirmation1/2/3 require this record independently"
+    },
+    {
+      "file": "docs/KEEPER_RECOVERY.md",
+      "old": "For quality1 or confirmation1, success is `healthy_v2`/`dry_run_v2`, making older",
+      "new": "For quality1 or confirmation1/2/3, success is `healthy_v2`/`dry_run_v2`, making older"
+    },
+    {
+      "file": "tests_python/test_keeper_rehearsal_profile.py",
+      "old": "\"\"\"Exercise the real disposable Lab builder without processes, funds or RPC.\"\"\"",
+      "new": "\"\"\"Exercise the historical accounting3/fee1 Lab builder without processes/funds/RPC.\"\"\""
+    },
+    {
+      "file": "tests_python/test_keeper_rehearsal_profile.py",
+      "old": "test_process_rehearsal_selects_current_accounting_and_intake",
+      "new": "test_process_rehearsal_selects_historical_accounting3_and_intake1"
+    }
+  ]
+}

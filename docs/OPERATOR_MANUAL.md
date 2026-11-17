@@ -2631,6 +2631,31 @@ normal stop/dry-run/restart process separately before adopting source changes.
 No schema, stored event format or checkpoint identity changes solely for this
 indexer scheduling correction. [Evidence](../reports/open-tasks-audit-20261113/REVIEW.md).
 
+## Keeper interruption and recovery (Q06)
+
+This is an off-chain service procedure; no contract write is required to restart
+the keeper. Source publication does not restart or upgrade an installed service.
+Use the actual reviewed unit/configuration, never an isolated test unit name.
+See [Q06 evidence and limits](../reports/q06-keeper-recovery-20261117/REVIEW.md).
+
+| Situation | Operator action / required input | Expected result |
+| --- | --- | --- |
+| Review the target supervisor | Read `systemd --version`; inspect the exact installed unit/drop-ins and `systemctl show <reviewed-unit>` for WatchdogUSec, WatchdogSignal, NotifyAccess, KillMode, SendSIGKILL, FinalKillSignal, LimitCORE and WatchdogTimestampMonotonic. | Matching effective safeguards. |
+| Stop for reviewed maintenance | Stop/fence the exact reviewed unit and every signer descendant; preserve source/configuration and the original state, nonce, fee review and pending records before any controlled upgrade. | No overlapping signer. |
+| Stop arrives while intent saves | Leave the saved hashless intent intact. Matching source observes stop before signer launch; inspect exact evidence and reconcile before new work. | Conservative recovery block. |
+| A transaction hash is saved | Restart only the reviewed compatible source/configuration; recover that SAME hash and actual canonical receipt/cost before new work. | No repeat transaction. |
+| Intent has no hash | Fence the old signer; reconcile exact chain, signer, nonce, transaction identity, fee review and canonical evidence. Follow `--resolve-pending` in the recovery runbook where applicable. | Never blind resend. |
+| HTTP is progressing slowly | Completed attempts report main-thread watchdog progress; bounded failure remains degraded health. Do not increase timeout or reset state just because the whole failover exceeds120s. | Progress differs from blockage. |
+| HTTP never completes / signer stalls | Inspect the actual manager result, all old descendant PIDs/cgroup and lock ownership before restart. Source120s watchdog,120s stop and30s restart are separate clocks; full recovery can take longer. | No assumed instant recovery. |
+| Roll back source | Stop/fence first; restore a reviewed compatible code/unit pair while retaining the original journal and pending fee schema. Inspect effective settings again. | No journal relabelling. |
+
+The new actual test uses unprivileged private-network units, synthetic contracts
+and an inert signer. Its restart dispatcher only reconciles recovery; it does
+not run normal maintenance. DNS/body stalls, real encrypted Cast/key/provider,
+off-host restore/alerts, restart storms and multi-day operation remain separate
+acceptance work. Existing services were not controlled; their observer timer
+continued normally. The desktop chat heartbeat remains paused.
+
 ## Dependencies and pricing
 
 | Change/problem | Control and checks | Fallback/limit |

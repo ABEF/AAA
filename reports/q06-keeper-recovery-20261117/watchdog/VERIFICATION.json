@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-17T14:22:20.849037+00:00",
+  "finding": "Completed bounded HTTP failover could falsely exceed the main watchdog deadline before the outer logical RPC call returned.",
+  "classification": "operational availability; no reproduced unauthorized execution or accounting issue",
+  "baseline": {
+    "new_methods": 3,
+    "meaningful_failure": 1,
+    "positive_controls": 2,
+    "setup_errors": 0,
+    "synthetic_legal_failover_seconds": 151.4,
+    "individual_transport_seconds": 9,
+    "per_transport_timeout_seconds": 10,
+    "watchdog_seconds": 120,
+    "actual_http_posts": 16
+  },
+  "post_fix": {
+    "distinct_new_methods": 9,
+    "success": true,
+    "failed": 0,
+    "errors": 0,
+    "source_bracket_stable": true,
+    "method_ids": [
+      "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_completed_bounded_failover_does_not_falsely_expire_watchdog",
+      "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_completed_remote_error_keeps_its_original_sanitized_retry_cause",
+      "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_completion_callback_stays_on_calling_thread_after_each_http_attempt",
+      "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_invalid_hooks_reject_and_none_preserves_an_inert_client",
+      "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_late_watchdog_callback_is_fatal_before_another_endpoint_or_backoff",
+      "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_one_overlong_read_cannot_publish_a_late_heartbeat",
+      "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_plain_rpc_preserves_the_same_legal_failover_result",
+      "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogFailoverProgressTests.test_post_budget_exhaustion_remains_fatal_without_a_new_callback_or_retry",
+      "tests_python.test_keeper_watchdog_failover_progress.KeeperWatchdogMainTransportWiringTests.test_actual_main_explicitly_connects_only_the_enabled_watchdog_transport"
+    ]
+  },
+  "counting": "The original3methods overlap the final9; do not sum3+9 as12distinct checks.",
+  "changes": {
+    "zzz_ops/rpc.py": "Optional callable transport_attempt_complete=None; invoke only after _read_http returns/raises, after post budget consumption. No callback while blocked or before post admission.",
+    "keeper/monitor.py": "Enabled main watchdog explicitly passes watchdog.pulse to its owned Rpc; disabled and injected-client outer ProgressRPC behavior remains.",
+    "keeper/watchdog.py": "Documentation of the explicit inner completion hook only; no pulse/timer/policy behavior changed."
+  },
+  "execution_boundaries_preserved": [
+    "same read-only allowlist",
+    "same endpoint identity checks/order",
+    "same retry count/backoff",
+    "same per-read timeout/body limits",
+    "same request budgets and fatal WorkLimit",
+    "no background thread or periodic timer",
+    "no added HTTP request",
+    "no late heartbeat after expiry",
+    "WatchdogError remains fatal without failover retry",
+    "defaultNone leaves ordinary clients unchanged"
+  ],
+  "source_sha256": {
+    "zzz_ops/rpc.py": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+    "keeper/watchdog.py": "59b4bb7783453a8f271fd5ab265fd5d2857d55096479be34f10ffe56c8408372",
+    "keeper/monitor.py": "e0474aa16e8377ad9c276492fcd01d4bf5570614bf7430658d8669ae4c288645",
+    "tests_python/test_keeper_watchdog_failover_progress.py": "008934949c35af5240e085b4d45e7548c5bb6934387a33d1b0ece40ca22ec15b"
+  },
+  "monitor_source_scope": "Whole source pin includes the separately owned approved intent-publication change; this finding changes only the main watchdog Rpc construction.",
+  "production_solidity_and_protected_four_unchanged": true,
+  "old_tests_executed": false,
+  "actual_network_service_signing_or_journal_changes": false,
+  "real_systemd_rehearsal": "Separate parent-owned evidence; these are synthetic clock/HTTP decoder tests, not systemd/provider qualification.",
+  "references": [
+    "https://www.freedesktop.org/software/systemd/man/latest/systemd.service.html#WatchdogSec=",
+    "https://www.freedesktop.org/software/systemd/man/latest/sd_notify.html#WATCHDOG=1"
+  ],
+  "raw_files_sha256": {
+    "AFTER.json": "f5153be82ed1fd41a782f5c810aaf838815902e2570794f69b03c29f5d2abe03",
+    "AFTER.log": "5686ffd6cee02941f007fcaa190aca60856bd9b4e9ab536108e4d6ac0d545948",
+    "BASELINE.json": "06e2d0c0d7a2dcafc02103a111f7afb78ad696301c09d3b7d2d25ffe156467b9",
+    "BASELINE.log": "e09fd288f3d00edd58b92a6a833efda3d4c04fbe5026c844e603aa61f1587e7e"
+  },
+  "production_approved": false
+}

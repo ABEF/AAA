@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "baseline": "44f5a650ae7abfb40cab810e389a393e526130ca",
+  "source_control": "main only",
+  "original_document_backups": {
+    "original_archive": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\q06-keeper-recovery-20261117\\root-doc-originals",
+    "changed": {
+      "AGENTS.md": {
+        "before": "3c9a35c23a8ebc59a3377d755643ee758d39596a617f6751ce575d8d38abdb2a",
+        "after": "c6ec5b068c40e98b50008d559425098fca20171fe85e9d20f496676bc958c80f"
+      },
+      "PROJECT_CONTEXT.md": {
+        "before": "000714b2343326ff33cbad3d863a5732d318b3f2df63b0d2bfcf7e0e5c9e9ef3",
+        "after": "bb6307688ac89f9a739b5ca362043e8609a99dda83667af4ccc9b4d93c84f710"
+      },
+      "docs/WORK_HANDOFF.md": {
+        "before": "c078222a4fb76c61dfec53daa91ac2635ed4b801f5f4f4a994c667722916fa38",
+        "after": "48994aef13fe8d6db0acc4a742d0598845e8a57baccae8d4400bdca8ecd9876c"
+      },
+      "docs/AUDIT_FINDINGS.md": {
+        "before": "f90dfb4aa23d2fe799fcd67288617f9ed94b42f8b6e33893ecd4c68518bcee30",
+        "after": "2a0558d7243cdc7abf238f48f2fe0953cc40e9bd873b369cf2f1f993a6f958ab"
+      },
+      "docs/IMPLEMENTATION_STATUS.md": {
+        "before": "f6590d1ea8c0e78c68a987c362a3e46a1b2c0847031a3ca8f790956ea8b5f029",
+        "after": "79b1d6e31bbc5bf0855f99ce8da5696f46f1b57482243647ace36c517d1531e8"
+      },
+      "README.md": {
+        "before": "aaaacd50e4795580af5b55905eb712bdecbf43fa62ad242b2327e5c578f5e39f",
+        "after": "56068215f6f164cc85ec23637f18ab292d8ffc9f2fdd8a4db356a6ba902271f9"
+      },
+      "reports/README.md": {
+        "before": "c35b78cebfcb1e0684888ad719086c6a02bbad9be455b1f77adf8139eed17e77",
+        "after": "5b864df6dc7eff8eae4a36ee22c5e33f933cbea84956ea631097489328bbcc5e"
+      },
+      "docs/KEEPER_RECOVERY.md": {
+        "before": "54750abf432ae8108943020d087d381fe33570fd226ddd74a59532aaad5ee215",
+        "after": "05d16edfd7d050b900855184c0744578c7552b969d47d115065f200f566010cf"
+      },
+      "docs/KEEPER_REHEARSALS.md": {
+        "before": "f6de7942688740bf9a141a0e48306bb73a6ac1b97a8f3ccba0ef5fb36b256bdc",
+        "after": "13eb58e17598553e911b6caf5f03ee2224da70c71d8b94e52008c2023cb3b070"
+      },
+      "docs/OPERATOR_MANUAL.md": {
+        "before": "4958af16aa66074b866e296e2adaacce09cd1403fd11140ee264a0cf0566cef4",
+        "after": "248377759a20fb0bed44d8905cd68bbee9aec3f9a5abfa27361f8d6938828231"
+      },
+      "docs/project-todo.json": {
+        "before": "fd3f923e2433f78bbaf54bf55b60d3bcc5232ed9479e1fc4382aca30069e6156",
+        "after": "8516b3312b2edb2ee6768acd7643e6f71d8fb421d45ecab79ee60e2c619df110"
+      },
+      ".gitattributes": {
+        "before": "63e7ca27b4b9e20d7d5ff1d7896457f21f34fdcf7646b16192e17ce3361ca7c6",
+        "after": "5920f79df79e00e72133f6bb7f94b9ee240278550ec621e6032daf2680ad89fb"
+      }
+    }
+  },
+  "earlier_guide_stages": [
+    "DOC_EDIT.json",
+    "DOC_SCOPE_REVIEW.json"
+  ],
+  "final_source_sha256": {
+    "keeper/monitor.py": "e0474aa16e8377ad9c276492fcd01d4bf5570614bf7430658d8669ae4c288645",
+    "keeper/watchdog.py": "59b4bb7783453a8f271fd5ab265fd5d2857d55096479be34f10ffe56c8408372",
+    "zzz_ops/rpc.py": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f",
+    "scripts/run-keeper-tests.py": "ec9626c483a0efcc598590bc4fde55077f3f9208cc3be964635250ae88cc8c76",
+    "tests_python/test_keeper_intent_shutdown.py": "4b436945f07261ef77c6410df244c971680457f49e8564f14d9fd1d1f92ac59f",
+    "tests_python/test_keeper_watchdog_failover_progress.py": "008934949c35af5240e085b4d45e7548c5bb6934387a33d1b0ece40ca22ec15b",
+    "tests_python/test_keeper_rehearsal_profile.py": "75ef3b1525c61eaf2da00d50eaf52632f06cdfb3bfe3273e59c9510e217be00c"
+  },
+  "native_source_stage_evidence": "intent, watchdog and raw process manifests remain separate; no old evidence relabelled",
+  "source_bound_process_files": {
+    "reports/q06-keeper-recovery-20261117/process/collect.py": "ba8b564f34a0e44d470eb186b48f402409ea9769dfc79c2b444be1022ce6a56c",
+    "reports/q06-keeper-recovery-20261117/process/entry.py": "2c8d8bf9c16e6cbe020e88ab6bb894c8b6df829a57e1e6049586440ff5205405",
+    "reports/q06-keeper-recovery-20261117/process/failover.py": "5f10056ccbd82476a6e08cb8c5b3d9e00b687083f843f8d39ffe27596a06f69c",
+    "reports/q06-keeper-recovery-20261117/process/supervisor.py": "51c76811cbcf52262a11bfcad0d3f7562ac22d1e92b3c617bc66115ac048e236",
+    "reports/q06-keeper-recovery-20261117/process/worker.py": "d072075e0b139e34c241319838269e42d19a80c9e5e22fcae178051ee3c295e9"
+  },
+  "archive_sha256": "b947ed8164ed0c131c50fcca4540f6e2262b7e1e26b0647b986ebf2844a786cc",
+  "production_approved": false,
+  "final_document_sha256": {
+    "AGENTS.md": "c6ec5b068c40e98b50008d559425098fca20171fe85e9d20f496676bc958c80f",
+    "PROJECT_CONTEXT.md": "bb6307688ac89f9a739b5ca362043e8609a99dda83667af4ccc9b4d93c84f710",
+    "README.md": "56068215f6f164cc85ec23637f18ab292d8ffc9f2fdd8a4db356a6ba902271f9",
+    "TODO.md": "b1b2ebce2d2570862676b82873a3610fb3be0d54aec5472d9a3abc7dc18b9cea",
+    "docs/AUDIT_FINDINGS.md": "2a0558d7243cdc7abf238f48f2fe0953cc40e9bd873b369cf2f1f993a6f958ab",
+    "docs/IMPLEMENTATION_STATUS.md": "79b1d6e31bbc5bf0855f99ce8da5696f46f1b57482243647ace36c517d1531e8",
+    "docs/KEEPER_RECOVERY.md": "05d16edfd7d050b900855184c0744578c7552b969d47d115065f200f566010cf",
+    "docs/KEEPER_REHEARSALS.md": "edcfcdb8f405899c070b5f92b3e196c7cc72cdb7ff42bccac2fc0e3ea6cda780",
+    "docs/OPERATOR_MANUAL.md": "248377759a20fb0bed44d8905cd68bbee9aec3f9a5abfa27361f8d6938828231",
+    "docs/WORK_HANDOFF.md": "48994aef13fe8d6db0acc4a742d0598845e8a57baccae8d4400bdca8ecd9876c",
+    "docs/project-todo.json": "8516b3312b2edb2ee6768acd7643e6f71d8fb421d45ecab79ee60e2c619df110",
+    "reports/README.md": "5b864df6dc7eff8eae4a36ee22c5e33f933cbea84956ea631097489328bbcc5e",
+    ".gitattributes": "edfbc0c221ccaa3939a7ac5d506cf7bba582130ee1eebb05a659b76ef82dc516"
+  }
+}

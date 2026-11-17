@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-11-17T15:01:24.355227+00:00",
+  "scope": "bounded source review of frozen process harness and guide claim accuracy; no test execution",
+  "process_sources": {
+    "reports/q06-keeper-recovery-20261117/process/collect.py": "ba8b564f34a0e44d470eb186b48f402409ea9769dfc79c2b444be1022ce6a56c",
+    "reports/q06-keeper-recovery-20261117/process/entry.py": "2c8d8bf9c16e6cbe020e88ab6bb894c8b6df829a57e1e6049586440ff5205405",
+    "reports/q06-keeper-recovery-20261117/process/failover.py": "5f10056ccbd82476a6e08cb8c5b3d9e00b687083f843f8d39ffe27596a06f69c",
+    "reports/q06-keeper-recovery-20261117/process/supervisor.py": "51c76811cbcf52262a11bfcad0d3f7562ac22d1e92b3c617bc66115ac048e236",
+    "reports/q06-keeper-recovery-20261117/process/worker.py": "d072075e0b139e34c241319838269e42d19a80c9e5e22fcae178051ee3c295e9"
+  },
+  "files": {
+    "docs/KEEPER_REHEARSALS.md": {
+      "before_sha256": "f4783cb6c475f174bb62f8e667599c1ffe17c598aab122189db2f8dedc0d7806",
+      "after_sha256": "f6de7942688740bf9a141a0e48306bb73a6ac1b97a8f3ccba0ef5fb36b256bdc"
+    },
+    "docs/KEEPER_RECOVERY.md": {
+      "before_sha256": "8a6a472972cce8d2066bf335d862b29beb7944c284e2a49aa982a37d652c9c5f",
+      "after_sha256": "54750abf432ae8108943020d087d381fe33570fd226ddd74a59532aaad5ee215"
+    }
+  },
+  "distinctions": [
+    "actual header watchdog vs manual main SIGKILL",
+    "transient unit settings vs installed service acceptance",
+    "recovery-only serve vs full normal maintenance restart",
+    "synthetic runtime/receipt envelope vs actual contracts/encrypted signing/Robinhood economics",
+    "observed service-invocation delta vs commands that modified services",
+    "noexec fixture prerequisite failure vs watchdog behavior"
+  ],
+  "actual_campaign_results_assessed": false,
+  "production_approved": false,
+  "tests_executed": 0
+}

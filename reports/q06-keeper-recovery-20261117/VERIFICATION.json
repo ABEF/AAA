@@ -1,0 +1,233 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-17T15:10:14.255303+00:00",
+  "baseline_main": "44f5a650ae7abfb40cab810e389a393e526130ca",
+  "source_sha256": {
+    "keeper/monitor.py": "e0474aa16e8377ad9c276492fcd01d4bf5570614bf7430658d8669ae4c288645",
+    "keeper/watchdog.py": "59b4bb7783453a8f271fd5ab265fd5d2857d55096479be34f10ffe56c8408372",
+    "zzz_ops/rpc.py": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f",
+    "scripts/run-keeper-tests.py": "ec9626c483a0efcc598590bc4fde55077f3f9208cc3be964635250ae88cc8c76",
+    "tests_python/test_keeper_intent_shutdown.py": "4b436945f07261ef77c6410df244c971680457f49e8564f14d9fd1d1f92ac59f",
+    "tests_python/test_keeper_watchdog_failover_progress.py": "008934949c35af5240e085b4d45e7548c5bb6934387a33d1b0ece40ca22ec15b",
+    "tests_python/test_keeper_rehearsal_profile.py": "75ef3b1525c61eaf2da00d50eaf52632f06cdfb3bfe3273e59c9510e217be00c"
+  },
+  "production_approved": false,
+  "q06_release_qualification_complete": false,
+  "new_distinct_unit_methods": 12,
+  "intent_stage": {
+    "new_methods": 3,
+    "result": "pass",
+    "source_pin": "57eb8b2ca849bb38695861a80ed83a3efd02b2f2543d8bb53fd8deb311cd6d95",
+    "scope": "Later unrelated main transport wiring is separately reviewed; tested submit body unchanged"
+  },
+  "watchdog_stage": {
+    "new_methods": 9,
+    "result": "pass",
+    "source_pin": "e0474aa16e8377ad9c276492fcd01d4bf5570614bf7430658d8669ae4c288645"
+  },
+  "old_test_methods_executed": 0,
+  "old_process_campaigns_rerun": 0,
+  "solidity_build_or_test_runs": 0,
+  "public_RPC_qualification_runs": 0,
+  "inventory": {
+    "execution_performed": false,
+    "tests_run": 0,
+    "new_methods_selected": 12,
+    "sha256": "e33b081794520e4a8051f090788dc4622e4308e6de989b29903447750e643d89"
+  },
+  "historical_test_label_only": {
+    "path": "tests_python/test_keeper_rehearsal_profile.py",
+    "all_method_bodies_ast_equal": true,
+    "methods_executed": 0
+  },
+  "linux": {
+    "kernel": "6.8.0-137-generic",
+    "python": "3.12.3",
+    "systemd": "255.4-1ubuntu8.18",
+    "worker_user": "nobody",
+    "private_network": true,
+    "inert_signer_only": true,
+    "synthetic_contracts_HTTP_receipts_and_fees": true,
+    "restarts": "Explicit test-only recovery dispatcher; no full normal scheduler",
+    "actual_cases": {
+      "bounded_failover_over120s": {
+        "completed_http_responses": [
+          {
+            "completed_monotonic": 8242168.030058885,
+            "endpoint_index": 0,
+            "method": "eth_chainId"
+          },
+          {
+            "completed_monotonic": 8242175.53268731,
+            "endpoint_index": 0,
+            "method": "eth_blockNumber"
+          },
+          {
+            "completed_monotonic": 8242183.235673617,
+            "endpoint_index": 1,
+            "method": "eth_chainId"
+          },
+          {
+            "completed_monotonic": 8242190.73790929,
+            "endpoint_index": 1,
+            "method": "eth_blockNumber"
+          },
+          {
+            "completed_monotonic": 8242198.641461076,
+            "endpoint_index": 2,
+            "method": "eth_chainId"
+          },
+          {
+            "completed_monotonic": 8242206.143659477,
+            "endpoint_index": 2,
+            "method": "eth_blockNumber"
+          },
+          {
+            "completed_monotonic": 8242214.446357215,
+            "endpoint_index": 3,
+            "method": "eth_chainId"
+          },
+          {
+            "completed_monotonic": 8242221.948603893,
+            "endpoint_index": 3,
+            "method": "eth_blockNumber"
+          },
+          {
+            "completed_monotonic": 8242230.951503001,
+            "endpoint_index": 4,
+            "method": "eth_chainId"
+          },
+          {
+            "completed_monotonic": 8242238.453317399,
+            "endpoint_index": 4,
+            "method": "eth_blockNumber"
+          },
+          {
+            "completed_monotonic": 8242247.456127183,
+            "endpoint_index": 5,
+            "method": "eth_chainId"
+          },
+          {
+            "completed_monotonic": 8242254.958317407,
+            "endpoint_index": 5,
+            "method": "eth_blockNumber"
+          },
+          {
+            "completed_monotonic": 8242263.961255016,
+            "endpoint_index": 6,
+            "method": "eth_chainId"
+          },
+          {
+            "completed_monotonic": 8242271.463524805,
+            "endpoint_index": 6,
+            "method": "eth_blockNumber"
+          },
+          {
+            "completed_monotonic": 8242280.466487282,
+            "endpoint_index": 7,
+            "method": "eth_chainId"
+          },
+          {
+            "completed_monotonic": 8242287.968477953,
+            "endpoint_index": 7,
+            "method": "eth_blockNumber"
+          }
+        ],
+        "elapsed_seconds": 127.44468530174345,
+        "pid": 3371557,
+        "result": "0x64",
+        "scope": "Actual Linux bounded failover/progress; synthetic replies, no signing/market/provider qualification",
+        "watchdog_seconds": 120.0
+      },
+      "exact_receipt_once": {
+        "cost_wei": 300,
+        "gas_used": 100,
+        "nonce": 1,
+        "pid": 3368192,
+        "price_wei": 3,
+        "state_sha256": "ed3ed1fcd5d52c36cbaecd00d0f658fddf63c5e61fa1486555409c5bee59baa5",
+        "time": 1794926752.4906025
+      },
+      "rpc_watchdog_restart": {
+        "lock_inode_preserved": true,
+        "n_restarts": 1,
+        "new_pid": 3372004,
+        "old_process": {
+          "cgroup": "0::/system.slice/popl-q06-20261117-7b5ec836608b-rpc.service",
+          "pid": 3370368,
+          "start_ticks": "824204809",
+          "state": "S"
+        }
+      },
+      "signer_descendant_restart": {
+        "n_restarts": 1,
+        "new_pid": 3372609,
+        "old_processes": {
+          "3370868": {
+            "cgroup": "0::/system.slice/popl-q06-20261117-7b5ec836608b-signer.service",
+            "pid": 3370868,
+            "start_ticks": "824209551",
+            "state": "S"
+          },
+          "3371505": {
+            "cgroup": "0::/system.slice/popl-q06-20261117-7b5ec836608b-signer.service",
+            "pid": 3371505,
+            "start_ticks": "824214989",
+            "state": "S"
+          },
+          "3371528": {
+            "cgroup": "0::/system.slice/popl-q06-20261117-7b5ec836608b-signer.service",
+            "pid": 3371528,
+            "start_ticks": "824215448",
+            "state": "S"
+          }
+        },
+        "same_hashless_journal": true,
+        "send_inert_calls": 1
+      },
+      "stop_during_save": {
+        "nonce": 0,
+        "pending_hashless": true,
+        "pid": 3368829,
+        "send_inert_calls": 0,
+        "spent": {},
+        "state_sha256": "806ed44fc0a46b84d8f8c27eb95f3895158030a8ec4eebcc270a0064d758ddf6",
+        "time": 1794926846.834615
+      }
+    },
+    "owned_units": 15,
+    "all_owned_units_inactive_pid0_empty_cgroup": true,
+    "source_before_after": {
+      "popl-q06-20261117-65e71e7447bf": {
+        "checked_files": 462,
+        "mismatches": []
+      },
+      "popl-q06-20261117-7b5ec836608b": {
+        "checked_files": 463,
+        "mismatches": []
+      },
+      "popl-q06-20261117-91076f0abfde": {
+        "checked_files": 463,
+        "mismatches": []
+      },
+      "popl-q06-20261117-fbdc081eb8c0": {
+        "checked_files": 463,
+        "mismatches": []
+      }
+    },
+    "archive_sha256": "b947ed8164ed0c131c50fcca4540f6e2262b7e1e26b0647b986ebf2844a786cc",
+    "archive_manifest_verified_files": 149,
+    "observer": "Existing5minute timer ran autonomously; two manager invocation IDs during campaign; no installed unit control commands",
+    "retained_warning": "RPC manager failed cgroup kill with EINVAL after main kill; separate signer descendants killed before restart",
+    "preliminary_stages": "Missing public event-schema import; successful isolated prepare; noexec inert-executable refusal. Not counted as full campaign passes"
+  },
+  "remaining": [
+    "actual encrypted Cast and release keys/configuration",
+    "actual contracts/providers/full fees",
+    "full normal daemon scheduling after restart",
+    "DNS and body-trickle variants",
+    "disk/permission exhaustion and restart storms",
+    "off-host restore, fencing, alerts, host loss and key rotation",
+    "sustained multi-day operation and independent approval"
+  ]
+}
