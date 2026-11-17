@@ -2,8 +2,8 @@
 pragma solidity 0.8.26;
 import {ZZZNFTMetadata} from "../src/ZZZNFTMetadata.sol";
 import {ProtocolPolicyFixture} from "./helpers/ProtocolPolicyFixture.sol";
-import {PreparationPools,PreparationPolicy,PreparationVenue} from "./helpers/CanonicalPreparationFixtures.sol";
-import {AccountingVaultHarness} from "./helpers/AccountingVaultHarness.sol";
+import {PreparationPools,PreparationPolicy} from "./helpers/CanonicalPreparationFixtures.sol";
+import {CanonicalNativeVenue} from "./helpers/CanonicalNativeVenue.sol";
 import {PortfolioFixture} from "./helpers/PortfolioFixture.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
@@ -37,6 +37,20 @@ import {MockVRF} from "./mocks/MockVRF.sol";
 
 // TEST ONLY: real sealed controller and economic modules; venue, prices and VRF are explicit fixtures.
 
+/// @dev Current execution-context identity for a deterministic native fixture.
+/// Real Oracle/ContributionPricing still capture/check feeds, budgets and rights;
+/// this adapter preserves only the fixture's existing 1:1 geometry seam.
+contract PreparationExecutionPolicyFixture {
+    address public immutable fixedZZZ;
+    PreparationPolicy private immutable strategy;
+    constructor(address token,PreparationPolicy policy){fixedZZZ=token;strategy=policy;}
+    function executionTarget(bytes32 pool) external view returns(int24,int24,uint160){return strategy.target(pool);}
+    function executionValidatePrice(bytes32 pool) external view returns(uint160){return strategy.validatePrice(pool);}
+}
+contract PreparationNativeVenueFixture is CanonicalNativeVenue {
+    address public immutable executionStrategy;
+    constructor(address controller,address token,address policy) CanonicalNativeVenue(controller,token){executionStrategy=policy;}
+}
 
 
 contract PreparationMintCallback is IERC721Receiver {
@@ -81,7 +95,7 @@ contract CanonicalPreparationTest is Test {
     ZZZOracle private oracle;
     ZZZMigration private migration;
     PreparationPools private pools;
-    PreparationVenue private venue;
+    PreparationNativeVenueFixture private venue;
     MockToken private t0;
     MockToken private t1;
     MockFeed private feed;
@@ -95,37 +109,39 @@ contract CanonicalPreparationTest is Test {
     function setUp() public {
         vm.warp(1_000_000);
         ac = new ZZZAccessController(address(this), address(this), GUARDIAN);
-        t0 = new MockToken(0); t1 = new MockToken(0);
+        t0 = MockToken(address(0)); t1 = new MockToken(18);
         pools = new PreparationPools(address(ac));
-        venue = new PreparationVenue(address(ac), address(t0), address(t1));
+        PreparationPolicy strategy=new PreparationPolicy(address(ac));
+        venue = new PreparationNativeVenueFixture(address(ac), address(t1),
+            address(new PreparationExecutionPolicyFixture(address(t1),strategy)));
         treasury = new PreparationTreasuryCallback();
         ProtocolPolicyFixture.bind(address(ac),address(treasury));
-        vault = new AccountingVaultHarness(address(ac), block.chainid, payable(address(treasury)), address(new ZZZMigrationBudget(address(ac))));
-        nft = new ZZZNFT(address(ac), "", address(new ZZZNFTMetadata(address(ac)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));
+        vault = new ZZZVault(address(ac), block.chainid,address(new ZZZMigrationBudget(address(ac))));
+        nft = new ZZZNFT(address(ac), "ipfs://canonical-preparation-fixture/", address(new ZZZNFTMetadata(address(ac)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         rewards = new ZZZRewards(address(ac)); membership = new ZZZMembership(address(ac));
         fees = new ZZZFeeController(address(ac)); compounder = new ZZZCompounder(address(ac));
-        buyback = new ZZZBuyback(address(ac), address(t0), 1e30);
+        buyback = new ZZZBuyback(address(ac), address(t1), 1e30);
         oracle = new ZZZOracle(address(ac), address(0)); migration = new ZZZMigration(address(ac));
         ac.bind(Ids.VAULT, address(vault)); ac.bind(Ids.NFT, address(nft));
         ac.bind(Ids.LIQUIDITY, address(venue)); ac.bind(Ids.REWARDS, address(rewards));
         ac.bind(Ids.MEMBERSHIP, address(membership)); ac.bind(Ids.FEES, address(fees));
-        ac.bind(Ids.STRATEGY, address(new PreparationPolicy(address(ac))));
+        ac.bind(Ids.STRATEGY, address(strategy));
         ac.bind(Ids.COMPOUNDER, address(compounder)); ac.bind(Ids.BUYBACK, address(buyback));
         ac.bind(Ids.MIGRATION, address(migration)); ac.bind(Ids.ORACLE, address(oracle));
         ac.bind(Ids.POOLS, address(pools));
         feed = new MockFeed(8, 1e8);
         oracle.setTestFeed(address(t0), address(feed), 3600); oracle.setTestFeed(address(t1), address(feed), 3600);
-        rewards.addAsset(address(t0)); rewards.addAsset(address(t1));
-        pools.setTestZZZIdentity(address(t0)); migration.configureZZZ(address(t0),address(t0).codehash,keccak256("preparation fixed ZZZ"));
+        pools.setTestZZZIdentity(address(t1)); rewards.addAsset(address(t1));
+        migration.configureZZZ(address(t1),address(t1).codehash,keccak256("preparation fixed ZZZ"));
         vrf = new MockVRF(); ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         PoolConfig memory c; c.key = PoolKey(address(t0), address(t1), 3000, 60, address(0));
         c.operationsEnabled = true; c.depositsEnabled = true; c.minDepositUSD = 1e18;
         c.maxPositionUSD = 1e30; c.maxSlippageBps = 100; poolId = keccak256(abi.encode(c.key)); pools.set(poolId, c);
         CanonicalFixture.bind(address(ac));
         ac.seal();
-        vm.deal(ALICE, 10 ether); vm.deal(address(this), 10 ether);
-        t0.mint(ALICE, 100000); t1.mint(ALICE, 100000);
-        vm.startPrank(ALICE); t0.approve(address(vault), type(uint256).max); t1.approve(address(vault), type(uint256).max); vm.stopPrank();
+        vm.deal(ALICE, 10000 ether); vm.deal(address(this), 10 ether);vm.deal(address(venue),10000 ether);
+        t1.mint(ALICE, 10000 ether);
+        vm.prank(ALICE);t1.approve(address(vault), type(uint256).max);
     }
     function _notice() private view returns (ZZZAccessController.PreparationNotice memory) {
         return ZZZAccessController.PreparationNotice(block.chainid, address(0xCA11),
@@ -144,7 +160,7 @@ contract CanonicalPreparationTest is Test {
         if (reveal) { vrf.fulfill(nft.requestOf(id), 0, 0); nft.finalizeTraits(id); }
     }
     function _active() private returns (uint256 id) {
-        id = _mint(true); vm.prank(ALICE); vault.activate(id, poolId, 1000, 1000, 1, block.timestamp + 100);
+        id = _mint(true); vm.prank(ALICE); vault.activate{value:1000 ether}(id, poolId, 1000 ether, 1000 ether, 1, block.timestamp + 100);
     }
 
     function testImmediatePreparationAndCancellationRequireGovernanceAndExactNotice() public {
@@ -230,10 +246,10 @@ contract CanonicalPreparationTest is Test {
         vm.prank(GUARDIAN); ac.setPaused(true); Position memory p = vault.group(bucket);
         ZZZMigration.ParkingRequest memory request = ZZZMigration.ParkingRequest(bucket, poolId, p.lpTokenId,
             vault.bucketTotalShares(bucket), p.depositUSD, migration.custodyEpoch(bucket), migration.parkingNonce(bucket),
-            address(t0), address(t1), 1000, 1000, block.timestamp + 100, keccak256("parking review"), PortfolioFixture.executionHash(ac.module(Ids.LIQUIDITY),p.lpTokenId));
+            address(t0), address(t1), 1000 ether, 1000 ether, block.timestamp + 100, keccak256("parking review"), PortfolioFixture.executionHash(ac.module(Ids.LIQUIDITY),p.lpTokenId));
         _govern(address(migration), abi.encodeCall(migration.park, (request)));
         p = vault.group(bucket); assertEq(uint256(p.status), uint256(PositionStatus.Parked));
-        assertEq(p.idle0, 1000); assertEq(p.idle1, 1000); assertEq(vault.sharesOf(id), 2000e18);
+        assertEq(p.idle0, 1000 ether); assertEq(p.idle1, 1000 ether); assertEq(vault.sharesOf(id), 2000e18);
         assertTrue(ac.preparationActive());
     }
 

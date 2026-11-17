@@ -1,0 +1,8 @@
+{
+  "scope": "offline evidence helper, no EVM methods executed",
+  "exit_code": 1,
+  "error": "Compiled/current source differs: lib/forge-std/src/Base.sol",
+  "cause": "Initial byte check compared raw CRLF disk bytes directly with Foundry's LF-normalized compiler source hash.",
+  "correction": "Require exact raw or exact CRLF-to-LF content match; retain raw SHA256, compiler Keccak and explicit normalized-file list.",
+  "tests_rerun": false
+}

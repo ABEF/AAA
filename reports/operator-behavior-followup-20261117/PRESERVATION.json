@@ -1,0 +1,43 @@
+{
+  "baseline_commit": "6945eeeba24304b8ddf27ac4c08fe55dc553554e",
+  "changed_production_sources": [
+    "src/ZZZAccessController.sol"
+  ],
+  "protected_dirty_files_byte_identical": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "previous_operator_report_files_byte_identical": {
+    "reports/operator-input-audit-20261116/ADDITIONAL_SOURCE_REVIEW.md": "d2fe05bf75c16c1c142eb71c9672bbe99abdf91a22aee2504b8edce57d6b30ac",
+    "reports/operator-input-audit-20261116/CONTRACT_REVIEW.md": "2a55513a843b9ff6d492b125aceb66fb6e3a61ad4bce51fa1fd89d426477a44d",
+    "reports/operator-input-audit-20261116/EXECUTED_PROMPT.txt": "7bc1dfcdbe71c57b317a9c2a60aa82b58c1b32b87d5502d3fd693f1f1e139ef8",
+    "reports/operator-input-audit-20261116/INPUT_PROVENANCE.md": "5d15bf60acd0d6668224e4068546f82e2cd6089fbd808f7681c05779b2a83e33",
+    "reports/operator-input-audit-20261116/INVENTORY.md": "d575d03f458984d147cd2ad25c0a13a87dd49ec00b9f0d8eb95fe02870fd0971",
+    "reports/operator-input-audit-20261116/OPERATIONS_AND_RISKS.md": "59dbfd9767258913baf6e309c6cb4e81fb82f66594f27d8d670f4e83e2fb3da1",
+    "reports/operator-input-audit-20261116/REVIEW.md": "df5d8109c76dc89a731b979be2cff803dca36b4fde3bc2858e7291add95b2ccc",
+    "reports/operator-input-audit-20261116/TOOLS_REVIEW.md": "12a10ecad971c2fd453a190665a387435092cd82fd5a02cdd42fc7c48a09bef1",
+    "reports/operator-input-audit-20261116/annotate-operator-inputs.py": "b9e8414095e005d0e9c6fba9e8aa2e6c0a065ea0fc7c4833493cf889c9c343ba",
+    "reports/operator-input-audit-20261116/baseline.json": "20290da78875eb9b7a9c43727a46ed8a9560371c65ec308e0d2fe72fe919ca74",
+    "reports/operator-input-audit-20261116/build-contract-coverage.py": "f9ac0e2b65b0be0c8d7797735836018059c8d755a4520fc652e6176d4c0fede5",
+    "reports/operator-input-audit-20261116/build-inventory.py": "cf4cb3224d797b36f0b18bc8ac6cbd90722a7de4472e3f2f1988fb0ac673584e",
+    "reports/operator-input-audit-20261116/completion.json": "0c54bb9d099b630922509f322318eb2db775db9a7811a72e6e234b61eec050b6",
+    "reports/operator-input-audit-20261116/contract-coverage.json": "f98616f163cdb1cd4df286e2ae2274bfcffc370fd8afdc428e9f62a530539969",
+    "reports/operator-input-audit-20261116/inventory-verification.json": "41b800e3c2560a50c8f885f7a91010963c0b91cfc2fdaca2ece1abcbd822d2d3",
+    "reports/operator-input-audit-20261116/inventory.json": "e12bb8bce323d4bd8820482f4480d8451d63f7e72ed7ef474d2180ea94066b4d",
+    "reports/operator-input-audit-20261116/publication-files.json": "8872a1d78a9f140e87b446facf6ecdcb6381996211c469d5d66f5cc13e122557",
+    "reports/operator-input-audit-20261116/tool-baseline.json": "bccd6d33500f7b9b85e5d31642a41e0bd02e1101e0eed230c73ab015e27aa373",
+    "reports/operator-input-audit-20261116/tool-verification.json": "ba73c02cf567efaa4f882fbbb076d3e229dc9905b7e265ccbe7e39939a1fda45"
+  },
+  "other_tracked_report_differences": [
+    "reports/README.md",
+    "reports/source-checks.json"
+  ],
+  "report_index_intentionally_updated": true,
+  "source_checks_is_preexisting_protected_dirty_work": true,
+  "existing_environment_actions_performed": [],
+  "heartbeat_remains_user_paused": true,
+  "public_signing_or_deployment_authorized": false,
+  "production_approved": false
+}

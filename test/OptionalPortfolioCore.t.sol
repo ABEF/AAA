@@ -1838,4 +1838,79 @@ contract OptionalPortfolioCoreTest is Test {
         assertEq(_consolidationStateHash(id,bucket),beforeState);assertEq(migration.consolidationCustodyHash(bucket),r.custodyHash);
         assertEq(vault.group(bucket).lpTokenId,main);assertEq(manager.secondaryId(main),0);assertTrue(access.paused());
     }
+    /// @notice The stricter in-range wait deliberately belongs to keeper software.
+    /// This uses actual v4 execution and a MockAccess role-state seam; production
+    /// governance authentication has a separate actual AccessController test.
+    function testKeeperSoftwareBoundaryActualCompoundAndRevokeRotatePauseRecovery() public {
+        access.beginBootstrap();ZZZCompounder compounder=new ZZZCompounder(address(access));
+        access.bind(Ids.COMPOUNDER,address(compounder));access.seal();
+        uint256 id=_mint(ALICE);_contribute(ALICE,id,1000 ether,false);
+        uint256 bucket=vault.nftBucket(id);Position memory original=vault.group(bucket);
+        uint256 shares=vault.sharesOf(id);uint256 total=vault.bucketTotalShares(bucket);
+        // Genuine donation-generated fee growth funds BOTH reserves while main
+        // is active. This is not organic trading-volume qualification.
+        core.unlock(abi.encode(uint8(2),Q96));_auditHarvestAllocation(bucket);
+        assertGt(fees.compoundBalance(bucket,address(0)),0);
+        assertGt(fees.compoundBalance(bucket,address(token)),0);
+        vm.warp(uint256(original.lastRebalance)+1 hours);_prices();
+        _move(uint160(uint256(original.centerX96)*80/100));
+        (int24 lower,)=manager.ticks(original.lpTokenId);
+        (,int24 tick,,)=state.getSlot0(PoolId.wrap(pool));assertLt(tick,lower);
+        assertFalse(strategy.needsRebalance(bucket),"hard12hour clock still binds rebalance");
+        (uint8 side,bool manual)=strategy.rebalanceCondition(bucket);assertGt(side,0);assertFalse(manual);
+        assertTrue(vault.migrationBudget().compoundReady(bucket),"contract readiness differs from software wait");
+        address stranger=address(0xBAD);address replacement=address(0xC0FFEE);
+        bytes memory prepared=abi.encodeCall(compounder.compound,(bucket,uint128(1),block.timestamp+100));
+        uint128 priorL=positions.getPositionLiquidity(original.lpTokenId);
+        vm.prank(stranger);vm.expectRevert(ZZZModule.Unauthorized.selector);
+        compounder.compound(bucket,1,block.timestamp+100);
+        assertEq(positions.getPositionLiquidity(original.lpTokenId),priorL);
+        vm.recordLogs();compounder.compound(bucket,1,block.timestamp+100);
+        Vm.Log[] memory logs=vm.getRecordedLogs();bool actualSwap;
+        for(uint256 i;i<logs.length;++i){
+            if(logs[i].emitter==address(manager.balancingRouter()) && logs[i].topics.length==3 &&
+                logs[i].topics[0]==keccak256("BalancePlanned(bytes32,bytes32,bool,uint256,uint256,uint64)")){
+                (,uint256 input,uint256 output,)=abi.decode(logs[i].data,(bool,uint256,uint256,uint64));
+                if(input!=0 && output!=0)actualSwap=true;
+            }
+        }
+        assertTrue(actualSwap,"contract-permitted compound executed a real balancing swap");
+        uint128 afterL=positions.getPositionLiquidity(original.lpTokenId);assertGt(afterL,priorL);
+        assertEq(vault.sharesOf(id),shares);assertEq(vault.bucketTotalShares(bucket),total);
+        assertEq(vault.group(bucket).lpTokenId,original.lpTokenId);
+        assertEq(vault.group(bucket).centerX96,original.centerX96);
+        assertEq(vault.group(bucket).lastRebalance,original.lastRebalance);
+        assertEq(manager.secondaryId(original.lpTokenId),0);
+        // Confirmed revoke/grant invalidates the old key's exact pending calldata.
+        access.setKeeper(address(this),false);access.setKeeper(replacement,true);
+        (bool ok,bytes memory failure)=address(compounder).call(prepared);
+        assertFalse(ok);assertEq(failure,abi.encodeWithSelector(ZZZModule.Unauthorized.selector));
+        assertEq(positions.getPositionLiquidity(original.lpTokenId),afterL);
+        assertFalse(vault.migrationBudget().compoundReady(bucket));
+        vm.prank(replacement);vm.expectRevert(ZZZMigrationBudget.InvalidState.selector);
+        compounder.compound(bucket,1,block.timestamp+100);
+        access.setPaused(true);
+        vm.prank(replacement);vm.expectRevert(ZZZModule.Paused.selector);
+        compounder.compound(bucket,1,block.timestamp+100);
+        vm.prank(stranger);vm.expectRevert(ZZZModule.Paused.selector);
+        vault.collectFees(bucket,block.timestamp+100);
+        assertGt(rewards.claimable(id,address(0))+rewards.claimable(id,address(token)),0);
+        _claimExactly(id,ALICE,address(0));_claimExactly(id,ALICE,address(token));
+        access.setPaused(false);
+        // Trading continues independently; replacement key still uses all normal
+        // eligibility checks and cannot inherit the old key's compound clock.
+        _move(original.centerX96);_auditHarvestAllocation(bucket);
+        vm.warp(uint256(original.lastRebalance)+2 hours);_prices();
+        assertTrue(vault.migrationBudget().compoundReady(bucket));
+        vm.prank(replacement);compounder.compound(bucket,1,block.timestamp+100);
+        assertGt(positions.getPositionLiquidity(original.lpTokenId),afterL);
+        assertEq(vault.sharesOf(id),shares);assertEq(vault.bucketTotalShares(bucket),total);
+        assertFalse(access.keeperAuthorized(address(this)));assertTrue(access.keeperAuthorized(replacement));
+        assertEq(positions.ownerOf(original.lpTokenId),address(vault));
+        for(uint256 k;k<2;++k){address asset=k==0?address(0):address(token);
+            assertGe(asset==address(0)?address(rewards).balance:token.balanceOf(address(rewards)),
+                rewards.liabilities(asset)+rewards.orphaned(asset));
+            assertGe(asset==address(0)?address(fees).balance:token.balanceOf(address(fees)),fees.accounted(asset));
+        }
+    }
 }

@@ -37,7 +37,7 @@ contract OperatorControlsTest is Test, IERC721Receiver {
     function setUp() public {
         vm.warp(1000000);
         ac = new ZZZAccessController(address(this), KEEPER, GUARDIAN); ProtocolPolicyFixture.bind(address(ac));
-        registry = new ZZZPoolRegistry(address(ac)); nft = new ZZZNFT(address(ac), "", address(new ZZZNFTMetadata(address(ac)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));
+        registry = new ZZZPoolRegistry(address(ac)); nft = new ZZZNFT(address(ac), "ipfs://operator-controls-fixture/", address(new ZZZNFTMetadata(address(ac)))); nft.setMintEnd(uint64(block.timestamp + 3650 days));
         oracle = new ZZZOracle(address(ac), address(0)); vrf = new MockVRF();
         ProtocolPolicyFixture.randomness(address(nft.access()),address(vrf),bytes32(uint256(1)),1,3,500000,false);
         t0 = new MockToken(0); t1 = new MockToken(0);

@@ -16,6 +16,7 @@ interface IContributionIdentity { function zzz() external view returns (address)
 interface IContributionRegistry { function activationAssets() external view returns (IContributionIdentity); }
 interface IExitIdentity { function currentZZZ() external view returns (address); }
 interface ILifecycleMetadata { function policyMetadataChanged() external; }
+interface IArtworkRootBinding { function artworkBaseURI() external view returns(string memory); }
 
 /// @notice The selected governance wallet calls configuration directly. Its own
 /// signature/nonce policy authorizes operations; there is no timelock or generic
@@ -205,6 +206,10 @@ contract ZZZAccessController {
         address sourceZZZ = IContributionRegistry(module[Ids.POOLS]).activationAssets().zzz();
         if (sourceZZZ == address(0) || IExitIdentity(module[Ids.MIGRATION]).currentZZZ() != sourceZZZ) revert InvalidConfiguration();
         IZZZProtocolPolicy(protocolPolicy).validateMintRecipient();
+
+        // The artwork root can only be populated before seal. Preserve the
+        // empty-constructor setup path without permanently freezing an empty URI.
+        if(bytes(IArtworkRootBinding(module[Ids.NFT]).artworkBaseURI()).length==0) revert InvalidConfiguration();
 
         // NFT randomness is configured only before sealing. Do not irreversibly
         // lock the canonical collection while its mint configuration is absent.

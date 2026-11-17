@@ -2716,7 +2716,14 @@ class Keeper:
                                     if self.submit('rebalance_confirmation','observe(uint256)',(bucket,),f'rebalance_observation:{bucket}'):return
                             if item.get('compound',True):
                                 reserves = [self.view('fees','compoundBalance(uint256,address)',bucket,t) for t in tokens]
-                                if self._compound_due(bucket,tokens,reserves,item,now,fields):
+                                # Local intervals must use a current chain clock,
+                                # not the head from before slow strategy/reserve
+                                # reads. Authoritative compoundReady and the
+                                # submission checks remain separate safeguards.
+                                _,compound_now = self._head()
+                                if compound_now < fresh:raise RpcError('Compound scheduling chain clock retreated')
+                                fresh=compound_now;deadline=fresh+180
+                                if self._compound_due(bucket,tokens,reserves,item,fresh,fields):
                                     if self.submit('compounder','compound(uint256,uint128,uint256)',(bucket,minimum,deadline),f'compound:{bucket}'): return
                                 if (self._rebalance_reset_due==bucket and bucket not in confirmation_checked and
                                         self.state.get(CONFIRMATION_RESETS,{}).get(str(bucket))):
@@ -2734,12 +2741,15 @@ class Keeper:
                     # historical profiles keep their original omitted-field schedule.
                     default_harvest = 3600 if self.accounting_version in (4,5,6,7) else 14400
                     interval = positive(item.get('harvest_interval_seconds',default_harvest),'harvest_interval_seconds')
-                    if item.get('harvest',True) and now-int(self.state['last'].get(f'harvest:{bucket}',0)) >= interval:
-                        # Successful maintenance reads can be slow too. Prepare
-                        # this new operation from a fresh head, never an earlier
-                        # deadline captured before unrelated maintenance work.
-                        _,fresh = self._head(); deadline = fresh+180
-                        if self.submit('vault','collectFees(uint256,uint256)',(bucket,deadline),f'harvest:{bucket}'): return
+                    if item.get('harvest',True):
+                        # Refresh BEFORE deciding whether the interval is due:
+                        # a slow successful/failed maintenance read can cross
+                        # that boundary even if the old head was not due yet.
+                        _,harvest_now = self._head()
+                        if harvest_now < fresh:raise RpcError('Harvest scheduling chain clock retreated')
+                        if harvest_now-int(self.state['last'].get(f'harvest:{bucket}',0)) >= interval:
+                            deadline = harvest_now+180
+                            if self.submit('vault','collectFees(uint256,uint256)',(bucket,deadline),f'harvest:{bucket}'): return
             except (ValueError,RpcError) as exc:
                 if self.state.get('pending'): raise
                 self.skipped_buckets += 1

@@ -116,14 +116,19 @@ actual399-findings/47bindings internal static review coverage PASS, successful
 solc output and a later Forge host-cache CLI failure. Those are separate facts,
 not a current green workflow or independent approval. The [historical applicability
 comparison](../reports/historical-reconciliation-completion-20261029/STATIC_APPLICABILITY.json)
-records19of47then-changed source pins. The [current strict default](../reports/metadata-lifecycle-fixes-20261116/static-review.json)
-binds569detector records:57individually reviewed current contexts and512unique
-exact fingerprint/referenced-source reuses from the prior565record. The full
-current source inventory is separately pinned. Earlier daily567/162+405,
+records19of47then-changed source pins. The [current strict default](../reports/operator-behavior-followup-20261117/static-review.json)
+binds570detector records:5individually reviewed current contexts and565unique
+exact fingerprint/referenced-source reuses from the prior569record. Actual
+Slither reused the accepted100-source normal compiler output without compiling
+again; only AccessController changed, and all48normal size gates passed under
+unchanged compiler settings. See the [current static scope](../reports/operator-behavior-followup-20261117/STATIC_REVIEW.md).
+The full current source inventory is separately pinned. The earlier metadata
+569/57+512 record and earlier daily567/162+405,
 manual565, spot560, contribution3558, mint2 and fee-flow532 records retain
 their original source/transitive limitations. The checker default
-is a real CI input, not just a documentation link. `SlitherReviewTests` checks its
-current source inventory/descriptions on every focused/full Python run.
+is a real CI input, not just a documentation link. The maintained Python
+inventory includes `SlitherReviewTests` for current source inventory/descriptions;
+a narrowly selected run executes it only when explicitly selected.
 After relevant Solidity/toolchain changes, update the full source-bound review
 and default together, retain original raw analyzer output and run the checker
 against that output. Never alter old report pins or loosen comparison rules to
@@ -138,8 +143,8 @@ regressions alongside historical cases. `--list` proves selection only and runs
 zero test bodies; count actual scoped executions separately.
 It now includes16 action-resilience regressions: streaming RPC, immutable endpoint
 configuration, metered contract reads, strict fields/uint256 overrides, paid
-recovery and source6 transient conditions. The current858-method inventory runs
-zero bodies. [Current affected stages](../reports/consolidation-20261103/VERIFICATION.md)
+recovery and source6 transient conditions. The cited858-method historical inventory
+ran zero bodies; it is not the current selection count. [Source-scoped stages](../reports/consolidation-20261103/VERIFICATION.md)
 and [earlier evidence](../reports/action-resilience-audit-20261102/VERIFICATION.md)
 retain negative controls, source scopes and the Unix-only skip.
 

@@ -1,5 +1,7 @@
 # Engineering roadmap
 
+The [behavior follow-up](../reports/operator-behavior-followup-20261117/REVIEW.md) closes confirmed sealing/setup and due-clock defects, and repairs stale current-behavior fixtures. Keep actual markets, provider/host, maximum-state gas, OpenSea/VRF and independent approval as the next release prerequisites. Software-only compound coordination is an accepted decision, not a pending on-chain policy change.
+
 The [operator-input review](../reports/operator-input-audit-20261116/REVIEW.md) closes confirmed unsigned-envelope and documentation defects. Continue actual market/provider, contract-wallet, maximum-state gas and operating qualification; extra keeper in-range policy remains service-only. No release gate is closed by catalogue completeness.
 
 The [unsigned pre-seal planner](../reports/preseal-planner-20261116/REVIEW.md) now prepares twelve ordered configuration

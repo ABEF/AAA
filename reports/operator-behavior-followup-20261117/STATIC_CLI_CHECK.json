@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "kind": "record_of_actual_default_cli_check",
+  "recorded_at_utc": "2026-11-16T23:31:30.797724+00:00",
+  "command": [
+    "C:/Users/Ali/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "scripts/check-slither-review.py",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-behavior-followup-20261117\\static-exclusive\\STRICT_INPUT.json"
+  ],
+  "checker_sha256": "df915473a09db1315b2988811689e48f8fe5d03159a17432f65f60eceb9240e3",
+  "default_review": "reports/operator-behavior-followup-20261117/static-review.json",
+  "input_sha256": "0e0a64ce4dde50c2a6b7396d03d465d645e479493c44635028d76296e119b639",
+  "review_sha256": "2e403dac5aee0d69f54b406f5d4782bf718ff1823405bc2a0bd0f746c142fe62",
+  "exit_code": 0,
+  "stdout": {
+    "review_coverage_pass": true,
+    "independent_audit": false,
+    "errors": []
+  },
+  "tool_versions": {
+    "slither-analyzer": "0.11.6",
+    "crytic-compile": "0.4.2"
+  },
+  "unit_test_methods_executed": 0,
+  "analyzer_rerun_for_cli": false,
+  "compiler_reinvoked": false
+}

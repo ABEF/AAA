@@ -1,0 +1,1 @@
+{"test/OperatorControls.t.sol:OperatorControlsTest":{"duration":"22ms 746µs","test_results":{"testPoolStopWorksWhenPriceTokenAndVenueCallsFail()":{"status":"Success","reason":null,"counterexample":null,"logs":[],"decoded_logs":[],"kind":{"Unit":{"gas":400886}},"traces":[],"labeled_addresses":{},"duration":"4ms 183µs 800ns","breakpoints":{},"gas_snapshots":{}}},"warnings":[]}}

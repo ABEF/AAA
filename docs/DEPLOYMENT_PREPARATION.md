@@ -18,18 +18,20 @@ are refused; the planner does not install packages or fetch replacement evidence
 
 ## Select the exact reviewed build
 
-The default trusted build is **`metadata2-20261116`**, using the accepted metadata
-normal compiler family. Input `profile` stays `schema17/mint2/V10/execution1/LP3`;
+The default trusted build is **`operator-seal-20261117`**, using the accepted
+normal compiler family with the AccessController nonempty-artwork-root seal check.
+Input `profile` stays `schema17/mint2/V10/execution1/LP3`;
 the distinct build ID authenticates exact bytes. Output `build_profile` and
 `accepted_build.profile` record it. Unknown IDs, mixed artifacts or changed
 source bytes fail; there is no fallback to an older build to bypass drift.
 
 ```powershell
-python scripts/prepare-deployment.py --build-profile metadata2-20261116 --input path/to/reviewed-input.json --output path/to/new-plan.json
+python scripts/prepare-deployment.py --build-profile operator-seal-20261117 --input path/to/reviewed-input.json --output path/to/new-plan.json
 ```
 
-The closed registry also retains **`manual-reference-20261115`** with its original
-pins. Historical planning requires that exact old source checkout; selecting it
+The closed registry also retains **`metadata2-20261116`** and
+**`manual-reference-20261115`** with their original pins. Historical planning
+requires the corresponding exact old source checkout; selecting either family
 in the current checkout correctly refuses source drift. Old local evidence can
 still be checked offline against its authenticated historical artifacts without
 relabeling it current. A build profile, content SHA or plan manifest is not an
@@ -38,8 +40,11 @@ on-chain `reviewHash`, permission, runtime attestation or release approval.
 After a future contract change, review a new exact closed compiler/source family
 and extend the trusted registry deliberately. Never rewrite existing family pins,
 copy local addresses into production inventories or install evidence-supplied
-hashes as the trust root. This Python-only fix reuses current48normal gates;
-it does not rerun constructors or refresh historical deployment gas.
+hashes as the trust root. The17November build passes48normal size gates with
+the original compiler settings; only AccessController source changed. Its
+creation code plus96argument bytes totals48,377bytes, leaving775bytes below
+the49,152limit. This build/static verification does not rerun constructors or
+refresh historical deployment gas. See the [current source/evidence](../reports/operator-behavior-followup-20261117/REVIEW.md).
 
 ## Inputs and outputs
 
@@ -133,7 +138,7 @@ are not executed or verified offline.
   helpers are not offered as independent deployment transactions. All runtime
   template hashes remain templates, never observed immutable-specific pins.
 
-The reused normal build has only **3 runtime bytes for Oracle, 32 for Vault and
+The current normal build has only **3 runtime bytes for Oracle, 32 for Vault and
 101 for Manager** remaining. Oracle creation code is 49,009 bytes; with its
 64 argument bytes it totals 49,073, leaving
 **79 initcode bytes**. These margins belong to the accepted source; changing a
@@ -213,9 +218,12 @@ it does not silently skip that check on another operating system. Example from
 the repository root, with your reviewed binary and a new evidence directory:
 
 ```powershell
-python scripts/rehearse-local-deployment.py --build-profile metadata2-20261116 --anvil "C:/reviewed-tools/anvil.exe" --output "C:/local-reviews/new-construction-run"
+python scripts/rehearse-local-deployment.py --build-profile operator-seal-20261117 --anvil "C:/reviewed-tools/anvil.exe" --output "C:/local-reviews/new-construction-run"
 ```
 
+This example selects the new current build for a separately authorized fresh
+rehearsal; it is not a command that ran in the historical captures below.
+No full-graph construction rehearsal for `operator-seal-20261117` is claimed.
 There is no RPC, key, existing-state, public-deployment or sealing option. The
 controlled role addresses, metadata URI and buyback ceiling are test inputs,
 not production choices. Output includes the process/genesis identity, dependencies,
@@ -228,7 +236,9 @@ used, with a 14,172,289 padded limit. Total receipt gas was 141,382,621 across m
 blocks, not one transaction or block. These are controlled local measurements,
 not reusable production transaction limits or ETH cost estimates. That run used
 the historical manual-reference family. Five later metadata objects changed;
-the [selective metadata2 rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md) now verifies those five current constructors and required children locally.
+the [historical selective metadata2 rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md) verified those five changed constructors and required children locally.
+AccessController changed again in the17November family; the earlier receipts
+do not measure that new constructor or qualify its deployment gas.
 Final public release construction/dependencies and actual target fees remain
 unqualified.
 Do not replay44transactions merely to refresh a report date; qualify changed
@@ -272,8 +282,8 @@ created; it never kills Anvil by name or administers the existing node. The
 records actual receipts, gas, verification and remaining qualifications.
 ## Selective metadata2 local evidence
 
-The [current selective rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md)
-executes only the five changed top-level normal constructors: AccessController,
+The [historical metadata2 selective rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md)
+executed only its five changed top-level normal constructors: AccessController,
 NFTMetadata, Migration, NFT and NFTCanonical. Seven necessary constructor-created
 children yield 12 real instances; three Access module bindings and 63 expected
 getter/state observations are reconciled. Full initcode/runtime limits remain
@@ -308,8 +318,10 @@ they are not silently added to the principal deployment graph.
 
 Access sealing checks policy/module presence, distinct modules, canonical
 parents, contribution/exit token identity, mint recipient and home-chain VRF
-configuration. It does **not** qualify SeaDrop onboarding, subscription funding,
-independent sources, routes, metadata, deployment gas or service operation.
+configuration, plus a nonempty artwork base before permanently sealing it.
+That root check is structural, not a remote content/hosting check. Sealing does
+**not** qualify SeaDrop onboarding, subscription funding, independent sources,
+routes, artwork availability, deployment gas or service operation.
 Use the [operator manual](OPERATOR_MANUAL.md#offline-deployment-preparation),
 [address inventory](DEPLOYMENT_ADDRESSES.md),
 [OpenSea procedure](OPENSEA_MINT.md) and

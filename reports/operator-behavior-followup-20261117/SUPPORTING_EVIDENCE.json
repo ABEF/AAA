@@ -1,0 +1,184 @@
+{
+  "archive": "supporting-evidence.zip",
+  "bytes": 11507347,
+  "sha256": "3b0e732203e97b3222146ddb51eeb2613c1df0e556780f593d865fd553871569",
+  "entries": [
+    {
+      "path": "static-exclusive/assess-current.py",
+      "bytes": 6307,
+      "sha256": "dac0a0a68c81dc574409680ce84e843ce0b6a00d75420a1552631567539234c5"
+    },
+    {
+      "path": "static-exclusive/ASSESSMENTS.json",
+      "bytes": 10649,
+      "sha256": "a84a720830d2fc7024d7afc2da43a5495a81c2952f371fe99547f7473e9048c6"
+    },
+    {
+      "path": "static-exclusive/build-review.py",
+      "bytes": 8252,
+      "sha256": "0e79227b84faedd9245551bc8d040949305dc8784f2b7f611bd49cf876969521"
+    },
+    {
+      "path": "static-exclusive/CLI_CHECK.json",
+      "bytes": 1168,
+      "sha256": "27f20e3b82a7cb9dc221a2adec6403930ebc8ead6e8937b03e3e97fe43ab869c"
+    },
+    {
+      "path": "static-exclusive/compare-current.py",
+      "bytes": 2731,
+      "sha256": "bd6fb055c53c014c42390b911d6f49a982166ab1fa9f5ca10e7c857bd3cbf477"
+    },
+    {
+      "path": "static-exclusive/CURRENT_CONTEXTS.json",
+      "bytes": 4685,
+      "sha256": "22e02fcc006f19d7e07bf3468309ebe6be76a42a9429f27487fc14b854c68de2"
+    },
+    {
+      "path": "static-exclusive/DIFF_SUMMARY.json",
+      "bytes": 497,
+      "sha256": "f4228ef61ef51bc29963d5e9b33d7eceb6214ce510e98d82b5951be9cc7e041b"
+    },
+    {
+      "path": "static-exclusive/DRIVER_PREPARATION.json",
+      "bytes": 503,
+      "sha256": "ec60b6a6f458906568020f143cbf855344d3cddc06ed57c6bd4dff0bec8f8ddf"
+    },
+    {
+      "path": "static-exclusive/EXACT_REUSE.json",
+      "bytes": 564410,
+      "sha256": "1a91c94947672dc63d42551e9e85bd4d230357c1f45d5299e91d0ff4887b99de"
+    },
+    {
+      "path": "static-exclusive/RESULT.json",
+      "bytes": 1117,
+      "sha256": "a9f38cc962b72630f52f547ef596eabee45183ca9a60d89ca4cf9f4bfc94d2a8"
+    },
+    {
+      "path": "static-exclusive/REUSE_PROOF.json",
+      "bytes": 188782,
+      "sha256": "1fe64ee0b14f3ccb54c0f3ed56f2267f95a8dd2d982f117735240066f76fb6eb"
+    },
+    {
+      "path": "static-exclusive/run-static.py",
+      "bytes": 4672,
+      "sha256": "b25816a32b9e7c807562ca218d2b80c75f4fc2ea523475ecf64fe134d6119acf"
+    },
+    {
+      "path": "static-exclusive/static-d7415bd69a/build-info/cf1b2003c98d744b.json",
+      "bytes": 28446646,
+      "sha256": "13fa80bf8b4a6a6a8a7b8764ae02907d2947d9282e239b9f0022b81b4c6acee9"
+    },
+    {
+      "path": "static-exclusive/static-d7415bd69a/detectors-only.json",
+      "bytes": 45763020,
+      "sha256": "abaec0332f6814f2ec1616c3e4739ac856a6d7ec7e2fe4068da6190fd535d473"
+    },
+    {
+      "path": "static-exclusive/static-d7415bd69a/EXECUTION.json",
+      "bytes": 16770,
+      "sha256": "cc32b3b4eb576b1a8b6888731e5bf45f78df104ce72a0791c34b33e1b2783000"
+    },
+    {
+      "path": "static-exclusive/static-d7415bd69a/slither.json",
+      "bytes": 120143009,
+      "sha256": "498d949ab1e94d4031e8ce34b1423f3214099400b9caa4464dbcc97f70654750"
+    },
+    {
+      "path": "static-exclusive/static-d7415bd69a/slither.log",
+      "bytes": 304874,
+      "sha256": "e77c095673b7d52fd13a6c11aaa05fdf98f8368fb7600c5c651e8a33dbc63c27"
+    },
+    {
+      "path": "static-exclusive/static-d7415bd69a/START.json",
+      "bytes": 8802,
+      "sha256": "384bb35480335fc64f8c8e3225604ccc692155613830c85842a64fbb4f0a6d9e"
+    },
+    {
+      "path": "static-exclusive/STRICT_INPUT.json",
+      "bytes": 384649,
+      "sha256": "0e0a64ce4dde50c2a6b7396d03d465d645e479493c44635028d76296e119b639"
+    },
+    {
+      "path": "baseline.log",
+      "bytes": 31190,
+      "sha256": "a83306e5d5ed5267d3284ab213610f1934e0b3e6b6f921e0b8a173b035d0f1b0"
+    },
+    {
+      "path": "canonical-fixture-failure-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "canonical-fixture-failure-trace.log",
+      "bytes": 961,
+      "sha256": "96b136b97cd5d548268d7e9da9e34291086b2866a95bd2753d981d7644cbb69e"
+    },
+    {
+      "path": "postfix-canonical-fixture-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "postfix-canonical-fixture.json",
+      "bytes": 353,
+      "sha256": "5adce9a50ad45eec7031de842ee68d4bbfdd4a1b3fac59281d2d336fc5e85596"
+    },
+    {
+      "path": "postfix-canonical-native-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "postfix-canonical-native.json",
+      "bytes": 2137,
+      "sha256": "61bd704ecaf5ba767ad9a0fe0aec6b31e8c1313b62c6d14f1a39d70bd15bf3f9"
+    },
+    {
+      "path": "postfix-operator-fixture-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "postfix-operator-fixture.json",
+      "bytes": 381,
+      "sha256": "ed179a8215ec33b7da1b8d74f2a2b534601c2d8208fccfb59c6d03d8c3736769"
+    },
+    {
+      "path": "postfix-recovery-fuzz-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "postfix-recovery-fuzz.json",
+      "bytes": 609,
+      "sha256": "2b4b05f34deb7bf524c2b8d02eb2dc1919d0c92d1d06cc699b1ba348c53e507b"
+    },
+    {
+      "path": "postfix-seal-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "postfix-seal.json",
+      "bytes": 977,
+      "sha256": "2c885e7dfb5ffd39a0cd035ff01b3134bdb4b8da657604f46cb09e96cbe33949"
+    },
+    {
+      "path": "postfix-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "postfix.json",
+      "bytes": 76,
+      "sha256": "9e1922b3a2d5e21d699be208c718f35a20d43fa537b5cb15feda9a0f972b75df"
+    },
+    {
+      "path": "preseal-root-prerequisite.log",
+      "bytes": 310,
+      "sha256": "e66e9bf48bdd6c8f24835fb7b07a941c6ff88b2020e435f4b45b8ce8f0ce7883"
+    }
+  ],
+  "excluded": "Giant test output/cache trees and existing environment files; accepted normal compiler input/output are separate tracked compressed build files.",
+  "tests_rerun_for_packaging": 0
+}

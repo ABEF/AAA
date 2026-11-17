@@ -1,5 +1,7 @@
 # AAA / ZZZ PoPL project instructions
 
+The [behavior follow-up](reports/operator-behavior-followup-20261117/REVIEW.md) fixes irreversible empty-artwork sealing and keeper due-clock lag, strengthens royalty recovery checks and updates obsolete canonical test fixtures. Actual keeper revoke/replace and LP execution checks retain their stated local scope. Extra compound waiting remains service-only by explicit operator choice; production is not approved.
+
 The [unsigned pre-seal planner](reports/preseal-planner-20261116/REVIEW.md) now prepares twelve ordered configuration
 families against the trusted current ABI. Unknown own/dependent inputs retain
 blocked/null calldata; actual bootstrap/code/state and all readiness/approval
@@ -28,8 +30,8 @@ chains/journals, sites, signer and paused heartbeat remain unchanged. Never adop
 local addresses/runtime pins or fixture read budgets as production configuration.
 
 The [five-audit reconciliation](reports/five-audit-reconciliation-20261116/REVIEW.md) separates resolved source work, accepted
-limits and remaining release evidence. The unsigned deployment planner now
-defaults to the exact trusted metadata2-20261116 build; explicit historical
+limits and remaining release evidence. At that recorded source the unsigned planner
+defaulted to the exact trusted metadata2-20261116 build; explicit historical
 manual-reference-20261115 remains separately authenticated. Old evidence is not
 relabelled. The local checker requires the complete closed constructor/binding
 graph and submission/RPC evidence; the new dated market checker recomputes all
@@ -210,8 +212,8 @@ Website source packaging/new-demo intents are corrected without changing
 historical replay, public null configurations or the shared Anvil-only signer.
 No live site/service/chain/journal or paused-heartbeat change occurs.
 That earlier review retains its original source scope. Explicit execution-price1/
-LP3 above addresses swap/reference coupling; service-only compound policy and
-actual release qualification remain open. No financial guard was relaxed.
+LP3 above addresses swap/reference coupling; the service-only compound policy is explicitly retained;
+actual release qualification remains open. No financial guard was relaxed.
 
 
 The optional [pool-spot composite reader](docs/POOL_SPOT_PRICE_SOURCE.md) implements
@@ -335,7 +337,7 @@ one-method wire producer and56API methods have separate source-scoped evidence;
 do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
 independent approval remain open. [Verification](reports/fee-flow-audit-20261107/VERIFICATION.md).
 
-Reviewed2026-11-16. Read [context](PROJECT_CONTEXT.md), [README](README.md),
+Reviewed2026-11-17. Read [context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md) and the relevant
 [operator procedure](docs/OPERATOR_MANUAL.md) before changing behavior.
 This file is current instructions, not a report timeline.
@@ -532,8 +534,9 @@ the November3 authority report below remains historical for those contexts.
   maps310original finding rows, deleted guides,162ledger versions and398old
   unchecked lines. Use original pointers plus current decisions; never close a
   finding just by age/topic or revive creator/bridge paths from old reports.
-- CI/check-slither-review selects the [current strict review](reports/manual-reference-swap-fix-20261115/static-review.json):565records,
- 113individually reassessed current contexts/452unique exact referenced-source reuse.
+- CI/check-slither-review selects the [current strict review](reports/operator-behavior-followup-20261117/static-review.json):570records,
+ 5individually current contexts/565unique exact referenced-source reuse. The
+ earlier manual565(113/452) retains its original source scope.
  The earlier gas-feasibility567(13/554) remains historical at its exact source.
  The corrected daily567(162/405) and previous541(45/496) retain their original scope.
  The daily errata correct only two authority descriptions; other565records are

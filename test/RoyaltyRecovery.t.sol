@@ -126,11 +126,27 @@ contract OriginalCurrencyRoyaltyTest is Test {
     }
     function testFuzzRecoveredSourceClaimsNeverExceedFundedUnits(uint96 raw) public {
         uint256 n=uint256(raw)+1;usdc.mint(address(r),n);activateAll();
+        assertEq(r.totalWeight(),6);assertEq(r.activationCount(),3);
+        assertEq(r.orphaned(address(usdc)),n);assertEq(r.liabilities(address(usdc)),0);
         r.allocateUnallocated(address(usdc),n,REVIEW);
+        assertEq(r.liabilities(address(usdc)),n);assertEq(r.orphaned(address(usdc)),0);
+        uint256 beforeAlice=usdc.balanceOf(alice);uint256 beforeBob=usdc.balanceOf(bob);
+        uint256 beforeCarol=usdc.balanceOf(carol);
         vm.prank(alice);uint256 x=r.claim(1,address(usdc));vm.prank(bob);uint256 y=r.claim(2,address(usdc));
         vm.prank(carol);uint256 z=r.claim(3,address(usdc));
-        assertLe(x+y+z,n);assertEq(usdc.balanceOf(address(r))+x+y+z,n);
-        assertEq(r.liabilities(address(usdc)),n-x-y-z);assertEq(r.orphaned(address(usdc)),0);
+        // Independent six-ticket whole-unit allocation; every recovery unit is
+        // claimable, not merely backed by an unexplained retained liability.
+        uint256[6] memory ticket;
+        for(uint256 i;i<6;++i)ticket[i]=n/6+(i<n%6 ? 1 : 0);
+        assertEq(x,ticket[0]);assertEq(y,ticket[1]+ticket[2]);assertEq(z,ticket[3]+ticket[4]+ticket[5]);
+        assertEq(x+y+z,n);
+        assertEq(usdc.balanceOf(alice)-beforeAlice,x);assertEq(usdc.balanceOf(bob)-beforeBob,y);
+        assertEq(usdc.balanceOf(carol)-beforeCarol,z);
+        assertEq(usdc.balanceOf(address(r)),0);assertEq(r.accounted(address(usdc)),0);
+        assertEq(r.liabilities(address(usdc)),0);assertEq(r.orphaned(address(usdc)),0);
+        vm.prank(alice);assertEq(r.claim(1,address(usdc)),0);
+        vm.prank(bob);assertEq(r.claim(2,address(usdc)),0);
+        vm.prank(carol);assertEq(r.claim(3,address(usdc)),0);
     }
     function testThousandNFTsMultipleWalletsRaritiesAndDormantKeepExactSourcePayouts() public {
         uint256 totalWeight=1998;

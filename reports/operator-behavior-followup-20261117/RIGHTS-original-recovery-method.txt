@@ -1,0 +1,8 @@
+    function testFuzzRecoveredSourceClaimsNeverExceedFundedUnits(uint96 raw) public {
+        uint256 n=uint256(raw)+1;usdc.mint(address(r),n);activateAll();
+        r.allocateUnallocated(address(usdc),n,REVIEW);
+        vm.prank(alice);uint256 x=r.claim(1,address(usdc));vm.prank(bob);uint256 y=r.claim(2,address(usdc));
+        vm.prank(carol);uint256 z=r.claim(3,address(usdc));
+        assertLe(x+y+z,n);assertEq(usdc.balanceOf(address(r))+x+y+z,n);
+        assertEq(r.liabilities(address(usdc)),n-x-y-z);assertEq(r.orphaned(address(usdc)),0);
+    }

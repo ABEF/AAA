@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "kind": "keeper_method_inventory_only",
+  "selected": [
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_compound_clock_failure_can_yield_to_later_healthy_harvest_clock",
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_compound_local_interval_crossed_during_reserve_read_uses_fresh_head",
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_current_accounting7_worker_harvests_after_interval_crosses",
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_current_clock_does_not_override_onchain_compound_ineligibility",
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_hourly_harvest_becoming_due_during_healthy_maintenance_is_not_delayed",
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_hourly_harvest_becoming_due_during_price_fault_remains_independent",
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_new_harvest_clock_failure_never_falls_back_to_earlier_due_head",
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_pending_recovery_precedes_new_clock_reads_and_any_operation",
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_retreat_at_harvest_clock_refuses_without_using_old_deadline"
+  ],
+  "classes": [
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests"
+  ],
+  "selected_count": 9,
+  "test_methods_executed": 0,
+  "registered_in_default_keeper_runner": true
+}

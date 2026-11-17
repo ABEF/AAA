@@ -168,7 +168,7 @@
           }
         },
         "seal()": {
-          "purpose": "Irreversibly close bootstrap after complete unique module/companion, randomness and matching nonzero fixed contribution/exit ZZZ bindings are validated.",
+          "purpose": "Irreversibly close bootstrap after complete unique module/companion, randomness and matching nonzero fixed contribution/exit ZZZ bindings are validated. Reject an empty artwork root before permanently removing bootstrap; constructor-empty setup must populate NFT.setBaseURI first.",
           "access": "Bootstrap only, once.",
           "notes": "Requires fixed ProtocolPolicy and existing identity/randomness/token bindings; sealing does not itself qualify the full SeaDrop/metadata/helper graph, actual market services or OpenSea product admission. Fresh V10 canonical admission remains separate from older wire formats."
         },

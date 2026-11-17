@@ -109,6 +109,8 @@ contract BoundDummy {
     constructor(address a){access=IZZZAccess(a);zzz=address(this);}
     function ACCOUNTING_VERSION() external pure returns(uint256){return 7;}
     function royaltyRewards() external pure returns(address){return address(0);}
+    // TEST ONLY: valid content-root declaration for authority-only seal fixtures.
+    function artworkBaseURI() external pure returns(string memory){return "ipfs://TEST-ONLY/";}
     // TEST ONLY: match the existing fixed NFT's event-only lifecycle callback.
     function policyMetadataChanged() external {}
     // TEST ONLY: seal identity stubs. This dummy has no financial behavior.

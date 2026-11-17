@@ -1,5 +1,7 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+The [behavior follow-up](reports/operator-behavior-followup-20261117/REVIEW.md) fixes irreversible empty-artwork sealing and keeper due-clock lag, strengthens royalty recovery checks and updates obsolete canonical test fixtures. Actual keeper revoke/replace and LP execution checks retain their stated local scope. Extra compound waiting remains service-only by explicit operator choice; production is not approved.
+
 The [operator input audit](reports/operator-input-audit-20261116/REVIEW.md) covers92 governance/bootstrap/keeper/nominated actions and corrects frozen manual gas, output preservation and nested input/units documentation. All61 Solidity files, safeguards and NFT rights remain unchanged. Source/input coverage is separate from dynamic and production qualification.
 
 The [unsigned pre-seal planner](reports/preseal-planner-20261116/REVIEW.md) now prepares twelve ordered configuration

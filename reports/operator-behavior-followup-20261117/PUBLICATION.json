@@ -1,0 +1,13 @@
+{
+  "baseline_commit": "6945eeeba24304b8ddf27ac4c08fe55dc553554e",
+  "branch": "main",
+  "staged_python_publication_pass": true,
+  "errors": [],
+  "check_kind": "static_python_publication_closure",
+  "exact_source_revision": "index",
+  "compressed_result": "publication-index.json.gz",
+  "compressed_sha256": "591f75d55653b28eb0cf1bd26a6e75a0bcd994ff17ddbdaf9ec1694fab8957b2",
+  "raw_sha256": "5b96806451ac2e84c598d24b661a122c66c788a9a8d07d858fc91f1c2d70b957",
+  "production_approved": false,
+  "scope": "Exact staged Python blobs; no package execution or deployment. Subsequent report-only JSON additions do not change checked Python blobs. Commit/remote confirmation is recorded by the actual publishing tool results, not guessed here."
+}

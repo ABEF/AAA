@@ -24,16 +24,19 @@ BUILD_PINS={
 # Historical constants stay exact for the original construction capture. A
 # profile label alone cannot adopt newer objects or reinterpret old evidence.
 LEGACY_BUILD_PROFILE='manual-reference-20261115'
-DEFAULT_BUILD_PROFILE='metadata2-20261116'
+PREVIOUS_BUILD_PROFILE='metadata2-20261116'
+DEFAULT_BUILD_PROFILE='operator-seal-20261117'
 TRUSTED_BUILDS={
  LEGACY_BUILD_PROFILE:{'directory':BUILD,'files':BUILD_PINS,
   'source_inventory':'source-manifest.json','source_key':'exact_source_sha256','gates':'production-size-gates.json'},
- DEFAULT_BUILD_PROFILE:{'directory':'reports/metadata-lifecycle-fixes-20261116/build','files':{
+ PREVIOUS_BUILD_PROFILE:{'directory':'reports/metadata-lifecycle-fixes-20261116/build','files':{
   'compiler-input.json.gz':'596dbb7967cc51f0b854c8be20644facaadc15ceabe8ee2acfadf4bd8d20df41',
   'compiler-output.json.gz':'4acc319da1a5b4e8a4c112fb9a6c0832d3943d2722d2d17f30dd288c125f3a0f',
   'normal-size-evidence.json':'b67e4d9cdf645e1433bca7569c7ad5be6d46237cce944f100cff6fc8d054b07e',
   'RESULT.json':'74ee74839b689bbc08ba17bfc94bdb468e16dbd75931caddb251e1485bb92c22',
   'START.json':'966add935532fccffbbb2518fe094aabb50e456462e5e5dd3dab62c71d76b5d8'},
+  'source_inventory':'START.json','source_key':'source_sha256','gates':'normal-size-evidence.json'},
+ DEFAULT_BUILD_PROFILE:{'directory':'reports/operator-behavior-followup-20261117/build','files':{'compiler-input.json.gz': '574c37b4b29c24e8666ee08d6fba6d0019e587854526fc02584e4cd23cb2c434', 'compiler-output.json.gz': '14c1ce5044ea6d5e2d74aea2ff0e5a32e782bce37e1fe83c88e8b458c8f53806', 'normal-size-evidence.json': '6fcdfc4368a3c6efe77540140ca38da029e6c29987f5a39cd849a3e483934927', 'START.json': 'ea15822d8831e5705c4ac527f8fc18d712a00662b71e8a4010b250baa08c301a'},
   'source_inventory':'START.json','source_key':'source_sha256','gates':'normal-size-evidence.json'}}
 NATIVE={
  'pool_manager':'0x8366a39cc670b4001a1121b8f6a443a643e40951',
@@ -331,7 +334,7 @@ def prepare(raw,root=ROOT,build_profile=DEFAULT_BUILD_PROFILE):
         'qualification_evidence':{key:{'sha256':evidence,'status':'missing' if evidence is None else 'supplied_unverified','verified':False} for key,evidence in value['qualification_evidence'].items()},
         'release_prerequisites':['Reconcile actual deployed addresses, constructor returns, immutable values and actual runtime hashes.','Bind all16 module IDs with actual bootstrap; policy binding is separate.','Bind LP converter and SeaDrop helper before sealing; sealing alone does not validate either readiness.','Qualify ETH/fixedZZZ dual feeds, source independence and liveness, then configure fixedZZZ before execution sources/pools.','Add fixedZZZ to Rewards; bind identical ZZZ in Migration and Buyback; validate exact initialized native pools/routes.','Configure VRF funding/provider and SeaDrop upstream NFT-keyed settings; match NFT mintEnd to publicEnd.','RebalanceConfirmation starts with maxObservationGap0 (stopped); separately review configure(600,300,reviewHash), range/timing/keeper policy. No setting is adopted by this plan.','Qualify metadata content, operating services, full gas/fees and independent audit.'],
         'excluded_capabilities':['No deployer/nonce planning or CREATE predictions','No RPC, code discovery, provider qualification or signer','No seal calldata or administrative transaction payloads','No price-adapter creation or market/VRF/sale configuration manifests']}
-    if value['inputs']['base_uri']=='':result['release_prerequisites'].append('Empty metadata URI is constructor-valid but does not qualify artwork availability.')
+    if value['inputs']['base_uri']=='':result['release_prerequisites'].append('Empty metadata URI is constructor-valid, but Access.seal rejects until bootstrap sets a nonempty NFT.setBaseURI root. Verify NFT.artworkBaseURI and reviewed content before sealing; this plan emits neither that setup call nor seal.')
     artifacts.check_sources();result['manifest_sha256']=sha(canonical(result));return result
 
 def render(value):

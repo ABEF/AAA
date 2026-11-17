@@ -102,4 +102,21 @@ contract AccessControllerTest is Test {
         address candidate=address(new BoundDummy(address(ac)));
         for(uint256 n;n<ids.length;++n){vm.expectRevert(ZZZAccessController.InvalidConfiguration.selector);ac.bind(ids[n],candidate);assertEq(ac.module(ids[n]),address(0));}
     }
+    function testKeeperRecoveryGovernanceRevokesAndReplacesWhilePausedWithoutRestoringOldGrant() public {
+        fill();ac.seal();address governance=address(0xA0A0);address replacement=address(0xC0FFEE);
+        assertTrue(ac.keeperAuthorized(keeper));assertFalse(ac.keeperAuthorized(replacement));
+        vm.prank(keeper);vm.expectRevert(ZZZAccessController.Unauthorized.selector);
+        ac.setKeeper(replacement,true);
+        vm.prank(guardian);ac.setPaused(true);
+        // Global pause prevents live work, not governance's key-recovery writes.
+        vm.prank(governance);ac.setKeeper(keeper,false);
+        vm.prank(governance);ac.setKeeper(replacement,true);
+        assertFalse(ac.keeperAuthorized(keeper));assertTrue(ac.keeperAuthorized(replacement));
+        vm.prank(keeper);vm.expectRevert(ZZZAccessController.Unauthorized.selector);ac.setKeeper(keeper,true);
+        vm.prank(replacement);vm.expectRevert(ZZZAccessController.Unauthorized.selector);ac.setPaused(false);
+        vm.prank(governance);ac.setPaused(false);
+        assertFalse(ac.paused());assertFalse(ac.keepers(keeper));assertTrue(ac.keepers(replacement));
+        assertFalse(ac.keeperAuthorized(keeper));assertTrue(ac.keeperAuthorized(replacement));
+        assertEq(ac.governance(),governance);assertEq(ac.bootstrap(),address(0));
+    }
 }

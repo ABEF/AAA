@@ -45,7 +45,7 @@ class StandaloneHarvestTimingTests(unittest.TestCase):
         submit.assert_not_called();self.assertIsNone(self.k.state['pending'])
         self.assertEqual({},self.k.state['spent']);self.assertEqual(1,self.k.skipped_buckets)
 
-    def test_no_extra_harvest_head_when_not_due_or_disabled(self):
+    def test_enabled_harvest_refreshes_due_clock_while_disabled_keeps_no_extra_head(self):
         for disabled in (False,True):
             with self.subTest(disabled=disabled):
                 self.k.maintenance['harvest']=not disabled
@@ -55,7 +55,7 @@ class StandaloneHarvestTimingTests(unittest.TestCase):
                 before=head.call_count
                 self.k.state['last']['harvest:7']=self.rpc.now-3600
                 with patch.object(self.k,'_head',wraps=original) as head:self.cycle()
-                self.assertEqual(before+(0 if disabled else 1),head.call_count)
+                self.assertEqual(before,head.call_count)
                 submit.assert_not_called()
 
 

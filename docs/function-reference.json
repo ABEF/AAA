@@ -3,7 +3,7 @@
   "source_snapshot": {
     "snapshot_schema": 3,
     "source_sha256": {
-      "src/ZZZAccessController.sol": "5a1ecdd5cc309bb922943cf11e9299859f9f824e354443d5d9b7ea7600379a2c",
+      "src/ZZZAccessController.sol": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3",
       "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
       "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
       "src/ZZZActivationEntry.sol": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
@@ -255,9 +255,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "cd8a15e16ed96fe31b2c488d53198d04f687d9270fa8e163871c8bef35638991",
-    "compiler_output_sha256": "e3cbd59c818873e2adf766eecc7866c4b2530ac280d3b07f9c00640a6db4da0a",
-    "size_evidence_sha256": "b67e4d9cdf645e1433bca7569c7ad5be6d46237cce944f100cff6fc8d054b07e",
+    "compiler_input_sha256": "cf1b2003c98d744b621b2c407597e2e237c9783f0b815644201787d0f0b68393",
+    "compiler_output_sha256": "785e74cebf9ec4a581c1e5d8fae8a658497d6406f21885e93a3021a59db57e1c",
+    "size_evidence_sha256": "6fcdfc4368a3c6efe77540140ca38da029e6c29987f5a39cd849a3e483934927",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -28296,7 +28296,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "c2f281ea770be45dadc2e267e5039063032890a3aee580f4a83c108c38578d5d",
+  "notes_sha256": "e64e2a15e4f092033d094d4cf7f0e863290d9e397aee1ba7ca637e2b18f8b61e",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -29176,7 +29176,7 @@
           "kind": "function",
           "name": "seal",
           "state_mutability": "nonpayable",
-          "purpose": "Irreversibly close bootstrap after complete unique module/companion, randomness and matching nonzero fixed contribution/exit ZZZ bindings are validated.",
+          "purpose": "Irreversibly close bootstrap after complete unique module/companion, randomness and matching nonzero fixed contribution/exit ZZZ bindings are validated. Reject an empty artwork root before permanently removing bootstrap; constructor-empty setup must populate NFT.setBaseURI first.",
           "access": "Bootstrap only, once.",
           "status": "documented",
           "inputs": [],

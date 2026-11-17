@@ -1,0 +1,29 @@
+{
+  "baseline_commit": "6945eeeba24304b8ddf27ac4c08fe55dc553554e",
+  "observed_passed_methods": {
+    "adapted": [
+      "tests_python.test_deployment_build_profiles.DeploymentBuildProfileTests.test_default_planner_accepts_current_metadata_build_and_tags_identity",
+      "tests_python.test_deployment_build_profiles.DeploymentBuildProfileTests.test_current_complete_graph_has_exact_objects_and_original_size_limits"
+    ],
+    "new_build": [
+      "tests_python.test_deployment_build_profiles.DeploymentBuildProfileTests.test_seal_fix_keeps_previous_objects_historical_without_automatic_fallback"
+    ],
+    "new_final_warning": [
+      "tests_python.test_preseal_plan.PresealPlanTests.test_empty_constructor_root_requires_explicit_setup_in_both_unsigned_plans"
+    ]
+  },
+  "unique_methods": 4,
+  "earlier_build_method_source_stage": {
+    "zzz_ops/deployment_plan.py_sha256": "3201231bb1e475699815e88797521ee842b7b119630ed57f39a9974e5361fd42",
+    "stage_reconstruction": "Final warning-only line replaced with exact preceding text; no other deployment source edit followed those three observed checks.",
+    "terminal_results": "2 adapted methods pass, then 1 new method passes in tool session; raw terminal logs were not retained."
+  },
+  "final_warning_case": {
+    "raw_log_sha256": "e66e9bf48bdd6c8f24835fb7b07a941c6ff88b2020e435f4b45b8ce8f0ce7883",
+    "zzz_ops/deployment_plan.py_sha256": "317313ca3b4b369388f0fd2858f5db06dd88435476104bbef291a15d16d467f4",
+    "zzz_ops/preseal_plan.py_sha256": "30d44744be1bcb573dc606371f3bb5ef6a4a3b1c2196439c152b5d23e01b88c4",
+    "tests_python/test_preseal_plan.py_sha256": "55bfa0a2382713be7fc84c28c2d793f91de17b514bfb358483b1601ca89b5d5b",
+    "outcome": "one new method pass; no old method rerun"
+  },
+  "signing_rpc_deployment_sealing": false
+}

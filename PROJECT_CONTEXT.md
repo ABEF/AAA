@@ -1,5 +1,7 @@
 # PoPL current project context
 
+The [behavior follow-up](reports/operator-behavior-followup-20261117/REVIEW.md) fixes irreversible empty-artwork sealing and keeper due-clock lag, strengthens royalty recovery checks and updates obsolete canonical test fixtures. Actual keeper revoke/replace and LP execution checks retain their stated local scope. Extra compound waiting remains service-only by explicit operator choice; production is not approved.
+
 The [operator input audit](reports/operator-input-audit-20261116/REVIEW.md) covers92 governance/bootstrap/keeper/nominated actions and corrects frozen manual gas, output preservation and nested input/units documentation. All61 Solidity files, safeguards and NFT rights remain unchanged. Source/input coverage is separate from dynamic and production qualification.
 
 The [unsigned pre-seal planner](reports/preseal-planner-20261116/REVIEW.md) now prepares twelve ordered configuration
@@ -30,8 +32,8 @@ chains/journals, sites, signer and paused heartbeat remain unchanged. Never adop
 local addresses/runtime pins or fixture read budgets as production configuration.
 
 The [five-audit reconciliation](reports/five-audit-reconciliation-20261116/REVIEW.md) separates resolved source work, accepted
-limits and remaining release evidence. The unsigned deployment planner now
-defaults to the exact trusted metadata2-20261116 build; explicit historical
+limits and remaining release evidence. At that recorded source the unsigned planner
+defaulted to the exact trusted metadata2-20261116 build; explicit historical
 manual-reference-20261115 remains separately authenticated. Old evidence is not
 relabelled. The local checker requires the complete closed constructor/binding
 graph and submission/RPC evidence; the new dated market checker recomputes all
@@ -194,7 +196,7 @@ historical replay, public null configurations or the shared Anvil-only signer.
 No live site/service/chain/journal or paused-heartbeat change occurs.
 That earlier review retains its original source scope. The fresh explicit
 reference-execution capability above addresses swap/reference coupling; service-only
-compound policy and actual release qualification remain open. No financial guard
+compound policy is explicitly retained; actual release qualification remains open. No financial guard
 was relaxed.
 
 

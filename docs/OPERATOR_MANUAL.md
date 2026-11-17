@@ -564,7 +564,8 @@ Strategy maintenance3 / confirmation3 / portfolio2, Budget compound4, LP routing
 emergency2, Access.GOVERNANCE_VERSION2 and
 `SCHEMA()==keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10")`.
 Verify exact chain/runtime/module/helper pins and the [fresh profile](POSITION_V7.md).
-The [current normal/static source evidence](../reports/fee-flow-audit-20261107/VERIFICATION.md)
+The [current normal/static source evidence](../reports/operator-behavior-followup-20261117/VERIFICATION.md)
+and historical [fee-flow evidence](../reports/fee-flow-audit-20261107/VERIFICATION.md)
 and [actual Entry3 follow-up](../reports/source9-actual-entry-20261109/VERIFICATION.md)
 retain their distinct source, fixture and execution limits. Historical Entry3
 reports do not qualify later runtime changes. Live dependency/operating
@@ -605,12 +606,13 @@ part of this reconciliation. Preserve existing chains, journals and websites.
 
 | Tool | Inputs | Example | Purpose |
 | --- | --- | --- | --- |
-| `prepare-deployment.py` | Reviewed input JSON, new output file; trusted build ID | `python scripts/prepare-deployment.py --build-profile metadata2-20261116 --input path/to/reviewed.json --output path/to/new-plan.json` | Review unsigned constructor plan |
+| `prepare-deployment.py` | Reviewed input JSON, new output file; trusted build ID | `python scripts/prepare-deployment.py --build-profile operator-seal-20261117 --input path/to/reviewed.json --output path/to/new-plan.json` | Review unsigned constructor plan |
 | `check-local-deployment-evidence.py` | Captured ZIP/directory; optional relocated trusted build directory | `python scripts/check-local-deployment-evidence.py --evidence reports/local-deployment-rehearsal-20261115/evidence.zip --output path/to/new-result.json` | Reconcile captured local construction |
 | `check-market-evidence.py` | Exact dated16November market ZIP | `python scripts/check-market-evidence.py --evidence reports/real-market-refresh-20261116/evidence.zip` | Recompute dated market summaries |
-| `rehearse-local-deployment.py` | Reviewed Anvil executable, new directory, trusted build ID | `python scripts/rehearse-local-deployment.py --build-profile metadata2-20261116 --anvil C:/reviewed-tools/anvil.exe --output C:/local-reviews/new-run` | Measure isolated constructor execution |
+| `rehearse-local-deployment.py` | Reviewed Anvil executable, new directory, trusted build ID | `python scripts/rehearse-local-deployment.py --build-profile operator-seal-20261117 --anvil C:/reviewed-tools/anvil.exe --output C:/local-reviews/new-run` | Measure isolated constructor execution |
 
-Current planning defaults to `metadata2-20261116`; legacy
+Current planning defaults to `operator-seal-20261117`; historical
+`metadata2-20261116` and legacy
 `manual-reference-20261115` remains separately pinned. The checker selects only
 the captured closed build identity, and admits an absent ID only with the original
 legacy pins. Neither a label nor an operator-selected `--build` directory can
@@ -653,7 +655,7 @@ exact44-call phase and feeds them to the unchanged strict constructor reviewer.
 | Tool/action | Required inputs | Example | Effect |
 | --- | --- | --- | --- |
 | Prepare conditional sequence | Existing constructor JSON, public direct-EOA sender, canonical decimal starting nonce, new output file | `python scripts/prepare-deployment-sequence.py --input /review/input.json --deployer REVIEWED_PUBLIC_EOA --starting-nonce REVIEWED_DECIMAL_NONCE --output /review/new-sequence.json` | Review conditional deployment sequence |
-| Select trusted build | Explicit closed build ID | Add `--build-profile metadata2-20261116` | Select exact reviewed artifacts |
+| Select trusted build | Explicit closed build ID | Add `--build-profile operator-seal-20261117` | Select exact reviewed artifacts |
 
 Replace placeholders; no private key/RPC is used. All44 calls must be ordinary
 successful transactions from the actual same bootstrap EOA, with no unexpected
@@ -682,7 +684,7 @@ as the conditional pre-seal caller and missing inputs explicitly blocked.
 | Tool/action | Required inputs | Example | Effect |
 | --- | --- | --- | --- |
 | Prepare setup review | Reviewed copy of `config/preseal-preparation.example.json`; NEW output path | `python scripts/prepare-preseal.py --input /review/preseal.json --output /review/NEW-review.json` | Review conditional setup calls |
-| Pin current build | Exact supported current build | Add `--build-profile metadata2-20261116` | Freeze current ABI selection |
+| Pin current build | Exact supported current build | Add `--build-profile operator-seal-20261117` | Freeze current ABI selection |
 | Inspect missing values | Output `missing_inputs` and each step's fields | Review `steps[].missing_inputs` | Resolve explicit setup blockers |
 | Inspect deliberate stops | Output `explicit_operating_stops` | Empty venues, converterOFF, maximumGap0 | Identify intentionally stopped operations |
 
@@ -760,6 +762,19 @@ URI/content and qualify actual source/provider/marketplace responses before
 adoption. Read calls need no wallet signature or chain transaction gas payment.
 Provider computation/billing may still apply. Changing only docs requires no
 service or keeper restart; deploying/adopting new runtimes is separately reviewed.
+
+### Verify artwork before sealing
+
+The current controller rejects `Access.seal()` while
+`NFT.artworkBaseURI()` is empty. A blank NFT constructor root is still allowed
+during setup: bootstrap must call the one-time `NFT.setBaseURI(base)` before
+sealing. Read the root back, verify the reviewed immutable content and all four
+evolution paths, then independently complete every other seal prerequisite.
+The nonempty check does not validate a CID, hosted content or OpenSea retrieval.
+A rejected seal preserves bootstrap and bindings; a successful seal erases
+bootstrap and permanently prevents changing the artwork root. Do not seal merely
+because this one read succeeds. Use the fresh `operator-seal-20261117` build
+family; older construction receipts retain their original controller scope.
 
 ### Fixed ZZZ setup order
 
@@ -1438,6 +1453,44 @@ and [controller source](../src/ZZZAccessController.sol).
 | Mint recipient | Receives future paid SeaDrop mint proceeds net of the actual platform fee; team mints are free. OpenSea acceptance remains open | Governance proposes through ProtocolPolicy, candidate accepts; zero cancels. Old payments and protocol rights never move. |
 
 Roles can technically share an address, but this combines their compromise and availability risks. Immediate governance can approve unsafe dependencies or harmful replacement code; role separation and independent transaction review are operational defenses, not an on-chain delay. If every required governance authority/key is lost, there is no hidden admin recovery. Preserve reviewed multisig recovery arrangements before launch.
+
+### Revoke and replace a keeper key
+
+Only an authorized keeper address can perform keeper work. The extra software
+rule that waits near/outside the adjustment threshold or during pending geometry
+remains **service-only by the operator's explicit decision**. An authorized key
+using other software can ignore that extra rule where the contracts permit;
+contract authorization, cooldowns, financial guards and atomic rollback remain.
+
+For a compromised limited keeper key, use the separate uncompromised governance
+wallet:
+
+1. Pause ordinary operations with `Access.setPaused(true)` if the incident calls
+   for it. Confirm the receipt; pause blocks both ordinary compound and harvest,
+   while funded holder claims remain separate.
+2. In the operating sealed lifecycle, call `Access.setKeeper(oldKeeper,false)`.
+   Confirm `KeeperChanged(oldKeeper,false)`, `keepers(oldKeeper)==false` and
+   `keeperAuthorized(oldKeeper)==false`. This setter works while paused. During
+   reversible canonical preparation, configuration is locked: pause first and
+   review the exact preparation cancellation before changing roles. Frozen or
+   retired systems do not regain operating authority just to rotate a key.
+3. Reconcile every pending hash, nonce and spend record. A transaction ordered
+   before revocation can still execute; revocation does not undo a mined result.
+   Do not delete a journal, guess nonce adoption or resend an uncertain action.
+4. Qualify the replacement wallet and reviewed keeper release, then call
+   `Access.setKeeper(newKeeper,true)` and verify its mapping/authorization.
+   Configure the reviewed sender and a separately reviewed state identity; never
+   relabel an old sender's journal. Fund gas and use the documented controlled
+   service restart/adoption procedure. Source publication itself changes nothing
+   running.
+5. Review remaining incident causes, then governance may call
+   `Access.setPaused(false)`. A new key does not reset cooldowns, observation
+   evidence, liabilities, LP geometry or NFT shares. Verify old-key rejection
+   and inspect new-key readiness before resuming work.
+
+One human may operate both roles, but reusing the same signing key removes this
+recovery separation: compromised governance can grant authority again. There is
+no hidden administrator that repairs lost or compromised governance.
 
 <a id="deep-cleanup-review---2026-10-25"></a>
 
@@ -2704,6 +2757,16 @@ upgrading an LP-routing0 worker to the new source: qualify the reader bindings,
 never invent a fallback or rewrite its journal. See
 [coordination and read-only review](KEEPER_COORDINATION.md).
 
+The maintained keeper now refreshes chain time after slow reserve/maintenance
+reads **before** deciding whether enabled compound or standalone harvest is due.
+The fresh head also supplies that action's deadline; a failed/retreated head is
+not replaced with a guessed time. Pending-transaction recovery still comes
+first. This avoids an extra polling delay when the interval passes during reads;
+it does not promise a transaction at an exact hour. Existing intervals, gas
+budgets and on-chain readiness remain. Adopting the changed worker requires a
+reviewed controlled restart, preserving sender/configuration/journal identity;
+no on-chain setting or old pending record is rewritten.
+
 Harvest first creates the designated 5% reserve; standalone compound also harvests
 before pulling/reinvesting it. Hourly harvesting and holder claims remain independent;
 claims never run compounding/buybacks. Stop new compounds through local scheduling
@@ -2936,7 +2999,7 @@ For an unsupported asset review/admit it first; existing funds become unallocate
 Governance calls `RoyaltyRewards.allocateUnallocated(asset,amount,reviewHash)`
 under recovery2, sealed/current/unpaused/no preparation and positive active weight.
 Amount is positive raw units bounded by `orphaned(asset)` after sync; reviewHash
-is a nonzero reviewed classification/beneficiary fingerprint. No swap, unwrap,
+is a nonzero reviewed classification/beneficiary fingerprint, not an on-chain cohort lock. No swap, unwrap,
 price, approval, external recipient or keeper authority. Accounted backing is
 unchanged; source-currency orphaned decreases and exact ticket liabilities increase.
 Existing earned/deferred/fraction funds are excluded. Verify
@@ -2944,6 +3007,25 @@ Existing earned/deferred/fraction funds are excluded. Verify
 irreversible; failure reverts. No service restart is needed for the contract call.
 Operating capacity starts16ERC20 and can increase after review to64;
 pathological tokens remain a limit, not a sweep permit.
+
+#### Stabilize the cohort for a reviewed recovery
+
+Unallocated royalty recovery uses the active weighted cohort **when the
+allocation transaction executes**. `reviewHash` records the review; it does not
+freeze that cohort. An NFT activated ahead of allocation can join under the
+approved economic rule. Already earned liabilities are never reallocated.
+
+If a stable cohort is needed, governance can first confirm
+`PoolRegistry.disablePool(currentPoolId,true,false)`, then read the cohort and
+allocate the reviewed unallocated currency. This stops new activations/growth
+through both Entry and direct Vault calls, without globally pausing recovery.
+An activation ordered before the stop may still succeed. Keep global pause false
+because royalty allocation rejects a globally paused controller. Restore the
+reviewed complete pool configuration through `configureNative` afterward;
+re-enabling requires healthy validation and is not a boolean-only undo. Existing
+claims/transfers remain subject to their own rules. This is an optional use of
+existing controls, not a new allocation permission or guaranteed recovery of a
+broken token.
 
 ### Read royalty status and conversion history
 

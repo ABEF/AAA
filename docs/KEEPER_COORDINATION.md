@@ -33,6 +33,8 @@ after a raw rebalance need, including reference disagreement. An authorized key
 running different code can ignore the additional Python wait rule; it cannot
 ignore the existing contract checks. Price can move after the final service
 check and before transaction inclusion. No new on-chain in-range guarantee is claimed.
+On17November the user explicitly retained this extra wait in keeper software;
+adding an on-chain restriction is not a pending requirement.
 
 Waiting, or an unavailable compound observation, must not stop an independently
 due fee harvest. It also does not enable idle-only scheduling automatically.
@@ -88,6 +90,23 @@ known clear-only resets no longer wait for unrelated router metadata. See the
 [configuration/rollout procedure](OPERATOR_MANUAL.md#configure-rebalance-confirmation).
 No running service or journal was updated.
 
+## Current due-clock decisions
+
+The worker refreshes the chain head after reserve reads and before checking
+the local compound interval. It also refreshes the head before deciding whether
+an enabled standalone harvest is due, after successful or failed price-dependent
+maintenance. A one-hour boundary crossed during those reads can therefore be
+handled in the same cycle, rather than deferred by its earlier timestamp.
+The prepared deadline uses that current chain time; an unavailable or retreated
+clock never falls back to the earlier timestamp.
+
+This adds a small head read for an enabled not-yet-due harvest and enabled
+compound decision. Disabled harvesting adds no harvest-clock read. Existing
+intervals, `compoundReady`, range/threshold policy, budgets and the final submit
+checks stay; pending recovery still precedes new work. The change does not
+advance a successful-harvest clock, reserve a nonce or guarantee hourly inclusion.
+See the [behavior/evidence](../reports/operator-behavior-followup-20261117/KEEPER_REVIEW.md).
+
 ## What idle means
 
 `Position.idle0/idle1` is ETH/ZZZ attributed to the shared bucket and its NFT
@@ -115,7 +134,7 @@ collects actual LP fees from both live legs and applies the allocation/dust rule
 not itself convert rewards, compound, buy back, burn or pay a holder claim.
 
 The worker can also collect fees inside a successful compound/rebalance. For
-accounting4/5/6, standalone and internal collection share the same clock proof.
+accounting4/5/6/7, standalone and internal collection share the same clock proof.
 When recovering its own saved transaction, it advances that bucket's harvest clock
 only after the canonical successful receipt proves a matching `FeesCollected`
 event from the actual Vault. The saved action, calldata bucket and event's

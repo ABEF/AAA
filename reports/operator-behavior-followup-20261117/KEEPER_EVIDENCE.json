@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-11-16T23:21:17.757948+00:00",
+  "baseline_commit": "6945eeeba24304b8ddf27ac4c08fe55dc553554e",
+  "finding": "KEEPER-01",
+  "source_sha256": {
+    "keeper/monitor.py": "e4bd5d17822b2a3ccd2c1b33e9b5b7f141909bdc417fd85b6f0785c70558f185",
+    "scripts/run-keeper-tests.py": "a1de12bef4b7e1188dd266bdfc6f9cb9a7cce9e2c82529ecacb681cacd8d77c0",
+    "tests_python/test_keeper_maintenance_clock.py": "8dceda53e6f69aed27c7dd23bbc6b66f7189c8fe2d73a925e7ab2dd0504a6bca",
+    "tests_python/test_keeper_standalone_harvest_review.py": "99baef84822786182002a621dbc3ef3a24ebfad2afdc89b00b32513fa4820b2b"
+  },
+  "new_passed_methods": [
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_compound_clock_failure_can_yield_to_later_healthy_harvest_clock",
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_compound_local_interval_crossed_during_reserve_read_uses_fresh_head",
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_current_accounting7_worker_harvests_after_interval_crosses",
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_current_clock_does_not_override_onchain_compound_ineligibility",
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_hourly_harvest_becoming_due_during_healthy_maintenance_is_not_delayed",
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_hourly_harvest_becoming_due_during_price_fault_remains_independent",
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_new_harvest_clock_failure_never_falls_back_to_earlier_due_head",
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_pending_recovery_precedes_new_clock_reads_and_any_operation",
+    "tests_python.test_keeper_maintenance_clock.KeeperMaintenanceClockTests.test_retreat_at_harvest_clock_refuses_without_using_old_deadline"
+  ],
+  "adapted_passed_methods": [
+    "tests_python.test_keeper_standalone_harvest_review.StandaloneHarvestTimingTests.test_enabled_harvest_refreshes_due_clock_while_disabled_keeps_no_extra_head"
+  ],
+  "unique_passed_methods": 10,
+  "stages": [
+    {
+      "new_cases": 3,
+      "source": "baseline",
+      "result": "three failures: no eligible submit candidate despite interval crossed during reads"
+    },
+    {
+      "new_cases": 3,
+      "source": "fixed",
+      "result": "three pass"
+    },
+    {
+      "new_cases": 5,
+      "source": "fixed",
+      "result": "five additional clock-fault/control/recovery cases pass"
+    },
+    {
+      "new_cases": 1,
+      "source": "fixed",
+      "result": "current accounting7 worker cycle passes"
+    },
+    {
+      "adapted_cases": 1,
+      "source": "fixed",
+      "result": "enabled/disabled read-count semantics pass"
+    }
+  ],
+  "verification_scope": "actual cycle/current profile validation; injected RPC; mocked submission; temporary state; no EVM/live/signing/network qualification",
+  "unchanged_suite_reruns": false,
+  "old_manual_gas_tests_rerun": false,
+  "runner_inventory_test_methods_executed": 0,
+  "notes": [
+    "The initial3 cases use source4 fixtures; current7 case is explicit accounting7/custody5/LP2/confirmation3, not execution1/LP3.",
+    "Final source pins identify delivered files; five additional methods and then the current7 method were added after the earlier stages. Production monitor bytes stayed fixed through successful stages."
+  ]
+}

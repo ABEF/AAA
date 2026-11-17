@@ -47,6 +47,20 @@ class PresealPlanTests(unittest.TestCase):
         self.assertTrue(all(c['calldata'] is None for r in p['steps'] for c in r['calls']))
         self.assertEqual(P.example(),P.validate(P.example()))
 
+    def test_empty_constructor_root_requires_explicit_setup_in_both_unsigned_plans(self):
+        v=copy.deepcopy(self.value)
+        v['constructor_input']['inputs']['base_uri']=''
+        construction=D.prepare(copy.deepcopy(v['constructor_input']))
+        self.assertTrue(any('Access.seal rejects' in r and 'NFT.setBaseURI' in r
+                            for r in construction['release_prerequisites']))
+        plan=self.prepare(v)
+        self.assertTrue(any('NFT.artworkBaseURI' in r and 'NFT.setBaseURI' in r
+                            for r in plan['release_prerequisites']))
+        self.assertFalse(plan['production_approved'])
+        self.assertFalse(plan['onchain_snapshot_verified'])
+        functions=[c['function'] for row in plan['steps'] for c in row['calls']]
+        self.assertFalse(any('seal' in f.lower() or 'setbaseuri' in f.lower() for f in functions))
+
     def test_preparation_never_mutates_inputs_or_claims_factory_discovery(self):
         v=copy.deepcopy(self.value);before=copy.deepcopy(v);p=P.prepare(v)
         self.assertEqual(before,v);self.assertIn('no CREATE/factory prediction',p['address_scope'])

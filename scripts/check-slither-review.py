@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_REVIEW = ROOT / "reports/metadata-lifecycle-fixes-20261116/static-review.json"
+DEFAULT_REVIEW = ROOT / "reports/operator-behavior-followup-20261117/static-review.json"
 sys.path.insert(0,str(ROOT))
 from zzz_ops.state import read_json
 

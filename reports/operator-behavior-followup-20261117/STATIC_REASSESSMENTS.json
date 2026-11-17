@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "input_sha256": "22e02fcc006f19d7e07bf3468309ebe6be76a42a9429f27487fc14b854c68de2",
+  "findings": [
+    {
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "fingerprint": "571b74721ac14814d4ba80b1af33b0e18969018becf9f839c2fba4f46f2efe7e",
+      "description": "Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#289-350):\n\tExternal call allowing reentrancy:\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#322)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#356)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#356)\n\t\t- manager.collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#376)\n\t\t- manager.close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#377)\n\t\t- IVaultResidualLiquidity(address(manager)).closeSecondary(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#378)\n\tBalance read before the call:\n\t- (amount0,amount1) = _balanceUsing(bucketId,deadline,amount0,amount1) (src/ZZZVault.sol#318)\n\tPossible stale balance used after the call in a condition:\n\t- supply != 0 && incumbentNAV == 0 (src/ZZZVault.sol#331)\n\t\t- stale variable `supply`\n",
+      "referenced_paths": [
+        "src/ZZZVault.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZVault.sol": "81a5611f05ed29a1f18cc9a2524b3a2e8428f9566f110bab8cf005cf9a11e29e"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "false_positive",
+      "rationale": "Individually reread the reported post-entry-swap _harvest in Vault._join and its actual fee/Manager branches. The pre-entry bucket share supply is intentionally constant while fees earned by the entrant swap are allocated to incumbents. Both public activation and increase enclose _join in nonReentrant; only their final authenticated share write issues new supply. The fixed FeeController and Manager callbacks cannot enter a second Vault economic writer through that mutex. After harvest/dust/compound settlement, incumbent NAV is reread and marginal deployed LP/net value is proved before shares are issued. This detector text differs from the prior context only in two nested external-call leaves order; it was reviewed directly rather than silently normalized. Access.seal's new bootstrap-only STATICCALL does not change this flow. Actual token/venue qualification and independent review remain required.",
+      "source_review": [
+        "ZZZVault.activate/increase nonReentrant entry",
+        "ZZZVault._join lines289-350",
+        "ZZZVault._harvest/_receiveVenue lines360-395",
+        "fixed FeeController/Manager module binding"
+      ],
+      "prior_similar_fingerprint": "b8eae13f5c4e4b49d19e31e2928013ea7d0a0f8ec0c9423a825dd810165360f3",
+      "review_scope": "Individually current source/context review for this exact detector; no claim of new full-transitive or dynamic acceptance."
+    },
+    {
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "fingerprint": "3a792697916ee8b23eef4cb54578163289b6978b1e4a64bc104c5e47b323b561",
+      "description": "ZZZAccessController.bind(bytes32,address).known (src/ZZZAccessController.sol#172) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZAccessController.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZAccessController.sol": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "false_positive",
+      "rationale": "Individually reread Access.bind at its shifted current location. known is a local value-type bool and has Solidity's false default; the fixed16-ID loop can set it true only on exact supported-ID equality, and otherwise bind reverts. Bootstrap-only/pre-seal authorization, nonzero implementation code, matching Access parent and one-time empty module slot remain enforced. This is not an uninitialized storage pointer or an attacker-selected truth value. The newly added artwork interface/check does not alter the bind algorithm or authority.",
+      "source_review": [
+        "ZZZAccessController.bind lines170-180",
+        "ZZZAccessController._moduleIds"
+      ],
+      "prior_similar_fingerprint": "2d8290cea15ad6aa7feb0bd48b7f03b8c1d911a2c7c5866ef12f2ed9f3ce433a",
+      "review_scope": "Individually current source/context review for this exact detector; no claim of new full-transitive or dynamic acceptance."
+    },
+    {
+      "check": "events-maths",
+      "impact": "Low",
+      "confidence": "Medium",
+      "fingerprint": "caf21db0af2af454c6e691a37e12631fdd86708da408d3416d7561a01fcdc57b",
+      "description": "ZZZAccessController.canonicalTransition(uint8,bool,bool) (src/ZZZAccessController.sol#121-129) should emit an event for: \n\t- canonicalState = state (src/ZZZAccessController.sol#125) \n",
+      "referenced_paths": [
+        "src/ZZZAccessController.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZAccessController.sol": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "informational",
+      "rationale": "Individually reread Access.canonicalTransition and _notifyMetadata. Only the immutable bound canonical handoff may set the validated lifecycle; terminal state/LP-exit locks remain checked. The function still writes canonicalState/settling/preparation and then requests collection ERC4906 invalidation when NFT is bound. The coordinator emits its own freeze/activation/retirement lifecycle events, and consumers verify canonical state at pinned blocks. There is no dedicated state-valued Access event; this is an explicit observability limitation, not missing caller authorization or arithmetic protection. The new artwork read is in pre-seal validation and has no mutation/callback permission in this transition.",
+      "source_review": [
+        "ZZZAccessController.canonicalTransition lines121-129",
+        "ZZZAccessController._notifyMetadata",
+        "ZZZCanonicalHandoff lifecycle event call sites"
+      ],
+      "prior_similar_fingerprint": "a3e5f5711426bdc16a34033731eab698b566b5334998aee30009f62fd2573e47",
+      "review_scope": "Individually current source/context review for this exact detector; no claim of new full-transitive or dynamic acceptance."
+    },
+    {
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "fingerprint": "f75351db6ac85085f5cfff98e1e191fbe411647351227a4fca037ab8459c2f59",
+      "description": "ZZZNFT (src/ZZZNFT.sol#36-372) should inherit from ILifecycleMetadata (src/ZZZAccessController.sol#18)\n",
+      "referenced_paths": [
+        "src/ZZZAccessController.sol",
+        "src/ZZZNFT.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZAccessController.sol": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3",
+        "src/ZZZNFT.sol": "9df60d4f8a75a7dde9610d92787efc7b1bf99f4d5c1ff7bc343897458dc1e8b9"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "informational",
+      "rationale": "Individually reread the unchanged NFT.policyMetadataChanged implementation and the current Access interface/call site. NFT structurally implements the exact external void signature used by ILifecycleMetadata; nominal inheritance is unnecessary for that typed call. The callback authenticates its immutable Access, bound ProtocolPolicy or bound Migration caller and emits bounded collection invalidation without price reads. The new separate artwork getter interface neither broadens this callback authority nor turns it into a generic executor.",
+      "source_review": [
+        "ZZZAccessController.ILifecycleMetadata/_notifyMetadata",
+        "ZZZNFT.policyMetadataChanged lines114-121"
+      ],
+      "review_scope": "Individually current source/context review for this exact detector; no claim of new full-transitive or dynamic acceptance."
+    },
+    {
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "fingerprint": "827f195d65662fadd7eb78b40b7f01857c99194b72f9d1c0ea968d3862c9f53b",
+      "description": "ZZZNFT (src/ZZZNFT.sol#36-372) should inherit from IArtworkRootBinding (src/ZZZAccessController.sol#19)\n",
+      "referenced_paths": [
+        "src/ZZZAccessController.sol",
+        "src/ZZZNFT.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZAccessController.sol": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3",
+        "src/ZZZNFT.sol": "9df60d4f8a75a7dde9610d92787efc7b1bf99f4d5c1ff7bc343897458dc1e8b9"
+      },
+      "reason": "Changed referenced source or new/changed exact detector fingerprint; individual current review required.",
+      "disposition": "informational",
+      "rationale": "Individually reviewed the newly introduced IArtworkRootBinding and its seal use against NFT.artworkBaseURI. The unchanged NFT has the exact external view getter returning string memory, so nominal inheritance is unnecessary for ABI compatibility. Only bootstrap before sealing can call seal; NFT was already one-time code/parent-bound and unique among required modules. The view call compiles to STATICCALL, so a nested callback cannot mutate state or transfer principal. An empty value or a failed/malformed getter prevents the irreversible seal; success merely adds nonempty-root validation before isSealed=true/bootstrap=zero. It does not validate remote content availability or change ownership, rewards, claims, token identity or operational roles. Actual metadata content and hosting remain release qualification.",
+      "source_review": [
+        "ZZZAccessController.IArtworkRootBinding line19",
+        "ZZZAccessController.seal lines189-225",
+        "ZZZNFT.artworkBaseURI line300",
+        "ZZZNFT constructor/setMetadataBase validation"
+      ],
+      "review_scope": "Individually current source/context review for this exact detector; no claim of new full-transitive or dynamic acceptance."
+    }
+  ],
+  "independent_audit": false
+}

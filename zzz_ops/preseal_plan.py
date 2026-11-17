@@ -466,6 +466,7 @@ def prepare(raw,root=D.ROOT,build_profile=D.DEFAULT_BUILD_PROFILE):
             'position_trigger_bps':'8500','hybrid_enabled':False,'adaptive_keeper_range_enabled':False,
             'live_defaults_verified':False},
         'release_prerequisites':[
+            'Verify NFT.artworkBaseURI is nonempty and matches reviewed content before sealing. An empty constructor root requires the one-time bootstrap NFT.setBaseURI first; this configuration planner emits neither that call nor seal.',
             'Independently verify chain4663, all creation receipts/runtime immutables/getters and bindings, zero mintedCount, unsealed actual bootstrap/canConfigure and canonical operating/no preparation/exit state.',
             'Every emitted call is conditional unsigned calldata, not a transaction envelope or permission to send. Reconcile actual current state, simulate exact calls, estimate full fees and separately authorize execution.',
             'Qualify live token/source code, decimals, round freshness/age/agreement, genuine independent valuation paths and publication/liveness. Supplied source IDs/hashes are not proof of independence.',

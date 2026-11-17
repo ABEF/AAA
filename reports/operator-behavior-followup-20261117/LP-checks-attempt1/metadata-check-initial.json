@@ -1,0 +1,8 @@
+{
+  "scope": "offline evidence helper, no EVM methods executed",
+  "exit_code": 1,
+  "error": "Compiler profile differs: actual-core-signature-filter.log",
+  "cause": "Initial checker incorrectly required an enabled summary field omitted from Solc metadata with explicit optimizer details.",
+  "correction": "Validate actual optimizer component flags, runs1, Yulfalse, viaIR and Cancun; preserve original metadata and EVM logs.",
+  "tests_rerun": false
+}

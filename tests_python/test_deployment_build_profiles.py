@@ -30,12 +30,26 @@ class DeploymentBuildProfileTests(unittest.TestCase):
         return copy.deepcopy(cls._bindings)
     def test_default_planner_accepts_current_metadata_build_and_tags_identity(self):
         result=D.prepare(D.template())
-        self.assertEqual(result['accepted_build']['profile'],'metadata2-20261116')
+        self.assertEqual(result['accepted_build']['profile'],'operator-seal-20261117')
         self.assertEqual(result['accepted_build']['source_count'],100)
         self.assertEqual(result['accepted_build']['normal_size_gates'],48)
         self.assertEqual(len(result['instances']),39)
         self.assertFalse(result['ready_for_submission'])
         self.assertFalse(result['production_approved'])
+
+    def test_seal_fix_keeps_previous_objects_historical_without_automatic_fallback(self):
+        self.assertEqual(D.PREVIOUS_BUILD_PROFILE, 'metadata2-20261116')
+        previous = D.TRUSTED_BUILDS[D.PREVIOUS_BUILD_PROFILE]
+        for name, expected in previous['files'].items():
+            self.assertEqual(D.sha((D.ROOT / previous['directory'] / name).read_bytes()), expected)
+        old = json.loads(gzip.decompress((D.ROOT / previous['directory'] / 'compiler-output.json.gz').read_bytes()))
+        old_access = old['contracts']['src/ZZZAccessController.sol']['ZZZAccessController']
+        current_access = D.Artifacts().contract('ZZZAccessController')[1]
+        self.assertNotEqual(old_access['evm']['bytecode']['object'], current_access['evm']['bytecode']['object'])
+        self.assertEqual(old_access['abi'], current_access['abi'])
+        with self.assertRaisesRegex(D.PlanError, 'source_changed'):
+            D.prepare(D.template(), build_profile=D.PREVIOUS_BUILD_PROFILE)
+        self.assertEqual(D.prepare(D.template())['accepted_build']['profile'], 'operator-seal-20261117')
 
     def test_checker_rejects_duplicated_binding_observation_coverage(self):
         original=M.Evidence
@@ -62,7 +76,7 @@ class DeploymentBuildProfileTests(unittest.TestCase):
         by_role={row['role']:row for row in result['instances']}
         self.assertEqual(by_role['metadata_renderer']['runtime_bytes'],24121)
         self.assertEqual(by_role['nft_canonical']['runtime_bytes'],23130)
-        self.assertEqual(by_role['access']['full_initcode_bytes'],48113)
+        self.assertEqual(by_role['access']['full_initcode_bytes'],48377)
         self.assertEqual(by_role['oracle']['runtime_margin'],3)
         self.assertEqual(result['accepted_build']['source_count'],100)
         self.assertEqual(result['accepted_build']['normal_size_gates'],48)
