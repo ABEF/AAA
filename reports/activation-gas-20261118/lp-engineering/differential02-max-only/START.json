@@ -1,0 +1,37 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--offline",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\activation-gas-20261118\\lp-fusion",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-path",
+    "test/LPFusionEngineering.t.sol",
+    "--match-contract",
+    "LPFusionEngineeringTest",
+    "--match-test",
+    "^testFusedMaximumZeroNoopOverflow$",
+    "--json",
+    "-vv"
+  ],
+  "source_sha256": {
+    "src/ExactLPAllocationFused.sol": "e795242a52d2ff21b567fb98da29960ec4611b364e998b638a26f75be5c21d07",
+    "src/ExactLPAllocationOriginal.sol": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+    "src/LPFusionHosts.sol": "b80243ca82794fcff2d5f91ca7dfdf338c39906b2e52716d05eab506d14c159c",
+    "test/LPFusionEngineering.t.sol": "f487fb8cb219c67e2829b2fce807c0d054a39093d7ccd2cd74e23db3ef40c9f4",
+    "node_modules/@openzeppelin/contracts/utils/Panic.sol": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+    "node_modules/@openzeppelin/contracts/utils/math/Math.sol": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+    "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+    "fixtures/collective-slots.bin": "5dc433135f005ba4c826063ef163837ae54afcb8540f20a505e59db62335855f",
+    "fixtures/collective.bin": "7fe9ddf63429648aa5d1de2f67255db016b0832b386d1cd3aca07e6b7b8a7713",
+    "fixtures/collective.json": "e85413105ef89c19072228b2fd3d12ec0345be734e8fae0b360ab260402f216e",
+    "fixtures/owner-newweight.txt": "8706a154d4405e78e81792e5c9d3de5741e6ea15364f564ff959814578c8da2e",
+    "fixtures/owner-slots.bin": "5dc433135f005ba4c826063ef163837ae54afcb8540f20a505e59db62335855f",
+    "fixtures/owner.bin": "9d2e7d01902a836a417c8b264570ea6eab31d79ec25fd947e18cb4190020434c",
+    "fixtures/owner.json": "8680c4b6964a8f56a2c763be3f4a4e82f5022f49ef5fc8b44777c4625c1f7266"
+  },
+  "only_newly_changed_method": true,
+  "no_unchanged_test_method_rerun": true
+}

@@ -1,0 +1,68 @@
+{
+  "returncode": 1,
+  "seconds": 11.921999999991385,
+  "root_source_unchanged": true,
+  "methods": [
+    {
+      "id": "test/FeedDifferential.t.sol:FeedDifferential20261118Test:testCanonicalCrossingAndBounds()",
+      "status": "Success",
+      "reason": null,
+      "logs": []
+    },
+    {
+      "id": "test/FeedDifferential.t.sol:FeedDifferential20261118Test:testColdProofAndTickAlgorithmGas()",
+      "status": "Success",
+      "reason": null,
+      "logs": [
+        "tickIndex: 0",
+        "baseline: 121154",
+        "dedupQuote: 112287",
+        "bracket: 121273",
+        "tickIndex: 1",
+        "baseline: 107210",
+        "dedupQuote: 105842",
+        "bracket: 108249",
+        "tickIndex: 2",
+        "baseline: 107216",
+        "dedupQuote: 105849",
+        "bracket: 108296",
+        "tickIndex: 3",
+        "baseline: 107264",
+        "dedupQuote: 105896",
+        "bracket: 109001",
+        "tickIndex: 4",
+        "baseline: 111215",
+        "dedupQuote: 109847",
+        "bracket: 116242"
+      ]
+    },
+    {
+      "id": "test/FeedDifferential.t.sol:FeedDifferential20261118Test:testFuzzQuoteAlgebra(uint160,uint128,uint8)",
+      "status": "Failure",
+      "reason": "quote algebra mismatch",
+      "logs": []
+    },
+    {
+      "id": "test/FeedDifferential.t.sol:FeedDifferential20261118Test:testFuzzTickBracket(uint160,int24)",
+      "status": "Success",
+      "reason": null,
+      "logs": []
+    },
+    {
+      "id": "test/FeedDifferential.t.sol:FeedDifferential20261118Test:testQuoteExtremesAllDecimals()",
+      "status": "Failure",
+      "reason": "extreme quote mismatch",
+      "logs": []
+    },
+    {
+      "id": "test/FeedDifferential.t.sol:FeedDifferential20261118Test:testWideNoncanonicalStateRejected()",
+      "status": "Success",
+      "reason": null,
+      "logs": []
+    }
+  ],
+  "actual_count": 6,
+  "pass": false,
+  "stdout_sha256": "6a5e78e42d449c7f3b7deaf34b7ef9873562304dcaadfa0d4128a6f1b124f589",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

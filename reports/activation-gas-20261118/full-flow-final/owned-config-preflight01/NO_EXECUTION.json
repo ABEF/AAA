@@ -1,0 +1,6 @@
+{
+  "test_executions": 0,
+  "root_config_written": false,
+  "cause": "Prepared patch assertion stopped before adoption; fallback oldrunner then stopped for absentgrantfile beforetryblock.",
+  "root_config_sha256": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72"
+}

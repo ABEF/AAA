@@ -1,0 +1,13 @@
+{
+  "runner_sha256": "b6da632f95ef4b6b22020640f0863dae797286893a0fc7a4964338ef353ab1fc",
+  "restored_exact_original_prepared_runner": true,
+  "owned_config_attempts_executed_methods": 0,
+  "owned_config_attempt_stages": [
+    "owned-config-preflight01",
+    "owned-config-preflight02",
+    "owned-config-preflight03",
+    "owned-config-preflight04"
+  ],
+  "root_config_original_before": true,
+  "production_approved": false
+}

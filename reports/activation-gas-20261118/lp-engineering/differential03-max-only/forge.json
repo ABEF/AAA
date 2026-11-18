@@ -1,0 +1,1 @@
+{"test/LPFusionEngineering.t.sol:LPFusionEngineeringTest":{"duration":"397ms 194µs 100ns","test_results":{"testFusedMaximumZeroNoopOverflow()":{"status":"Success","reason":null,"counterexample":null,"logs":[],"decoded_logs":[],"kind":{"Unit":{"gas":184841253}},"traces":[],"labeled_addresses":{},"duration":"396ms 424µs 600ns","breakpoints":{},"gas_snapshots":{}}},"warnings":[]}}

@@ -1,0 +1,22 @@
+{
+  "cases": [
+    {
+      "case": "zero999owner",
+      "baseline": 218230,
+      "packed": 270767,
+      "saving_signed": -52537
+    },
+    {
+      "case": "zero999collective",
+      "baseline": 218026,
+      "packed": 270580,
+      "saving_signed": -52554
+    }
+  ],
+  "combined_saving_signed": -105091,
+  "one_new_method_pass": true,
+  "prior_six_not_rerun": true,
+  "zero_both_book_outstanding": true,
+  "logical_node_equivalence": true,
+  "no_whole_operation_claim": true
+}

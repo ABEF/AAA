@@ -1,0 +1,7 @@
+{
+  "pass": true,
+  "all_effective_fields_except_expected_export_permission_identical": true,
+  "root_foundry_byte_identical": true,
+  "cached_artifact_sha256": "8598ae6c64e5eaf3e5a1df5655847a8bbb70c427db5e70aca4e6ef93347863d4",
+  "no_EVM_execution_yet": true
+}

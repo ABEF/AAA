@@ -1,0 +1,19 @@
+{
+  "external_uncompressed_directory": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\activation-gas-20261118\\build\\final01",
+  "files": {
+    "START.json": "2ad777500ededadf1441ae322d0470e2f52b4bdb16f7b49f6f54031c6232b7a2",
+    "RESULT.json": "7b01c1ceb9229297c1c495398615eeebc9018f79853b44d9afc6b4af88c6dd8a",
+    "normal-size-evidence.json": "7b01c1ceb9229297c1c495398615eeebc9018f79853b44d9afc6b4af88c6dd8a",
+    "PREFLIGHT_RESULT.json": "dc9f4edc487de46d1bacc7184ac8c8d51d04c6750902b4e1b94294c55819f6d3",
+    "EFFECTIVE_NORMAL_PROFILE.json": "52baf6c2431fa35cddea692791db770aeb8e5bd188259bd1868fef0f7f17f257",
+    "ABI_STORAGE_COMPARISON.json": "426bc75d0c10831b6539fd10cddfe8052976536885e27b0025b206bf97a45d6c",
+    "FINAL_STORAGE_COMPATIBILITY.json": "3a0a7b632d69350bd0c69cecdee9f5136410089d6c51f64dcedf7fdbc44e7473",
+    "ROYALTY_CARRIER_EVIDENCE.json": "168a577cf3bd22a1060a25e2f131cbc0d498dd7b54599eeecf8e63380df62bfd",
+    "ADMISSION_RESULT.json": "4501640e957ffb8598bcdfcd93872d37e5bb4fdcf2e861f5fce7acf24c623bc8",
+    "compiler-input.json.gz": "550ed2e5a5aab198ee341a8728e32d209e0222a75ee5425d237a74e51f03275c",
+    "compiler-output.json.gz": "f1cafaa8dd2e97bb52a1fdce0d359a20abf668b640b45ef769009d9569f623e0",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "historical_royalty_rounds_unchanged": true,
+  "production_approved": false
+}

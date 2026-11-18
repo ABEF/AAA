@@ -21,15 +21,19 @@ contract ExactLPAllocationHarness {
         external pure returns(uint256,uint256,uint128,uint256){return ExactLPAllocation.split(amount,left,total,high,low);}
     function node(uint8 asset,uint256 index)external view returns(uint256 weight,uint256 pending,uint128 high,uint256 low){
         require(index!=0&&index<2048);ExactLPAllocation.Book storage b=tree.books[uint256(_asset(asset))];
-        return(tree.weights[index],b.pending[index],b.carry[index].high,b.carry[index].low);
+        (high,low)=ExactLPAllocation.readCarry(b.carry[index]);
+        return(tree.weights[index],b.pending[index],high,low);
     }
     // Complete bounded state digest is test-only. No production operation walks
     // every NFT/node to credit fees, claim one leaf or change one weight.
     function digest()external view returns(bytes32 value){
         value=keccak256(abi.encode(tree.books[0].outstanding,tree.books[1].outstanding));
-        for(uint256 i=1;i<2048;++i)value=keccak256(abi.encode(value,tree.weights[i],
-            tree.books[0].pending[i],tree.books[0].carry[i].high,tree.books[0].carry[i].low,
-            tree.books[1].pending[i],tree.books[1].carry[i].high,tree.books[1].carry[i].low));
+        for(uint256 i=1;i<2048;++i){
+            (uint128 high0,uint256 low0)=ExactLPAllocation.readCarry(tree.books[0].carry[i]);
+            (uint128 high1,uint256 low1)=ExactLPAllocation.readCarry(tree.books[1].carry[i]);
+            value=keccak256(abi.encode(value,tree.weights[i],tree.books[0].pending[i],high0,low0,
+                tree.books[1].pending[i],high1,low1));
+        }
     }
     function _asset(uint8 asset)private pure returns(ExactLPAllocation.Asset){require(asset<2,"TEST ONLY unknown asset");return ExactLPAllocation.Asset(asset);}
 }

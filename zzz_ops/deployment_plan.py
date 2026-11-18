@@ -29,7 +29,8 @@ PREVIOUS_BUILD_PROFILE='operator-seal-20261117'
 SEAL_BUILD_PROFILE='seal-boundaries-20261117'
 Q03_BUILD_PROFILE='q03-allocation-20261117'
 INITIAL_ROYALTY_BUILD_PROFILE='royalty-rounds-initial-20261118'
-DEFAULT_BUILD_PROFILE='royalty-rounds-20261118'
+ROYALTY_BUILD_PROFILE='royalty-rounds-20261118'
+DEFAULT_BUILD_PROFILE='activation-gas-20261118'
 TRUSTED_BUILDS={
  LEGACY_BUILD_PROFILE:{'directory':BUILD,'files':BUILD_PINS,
   'source_inventory':'source-manifest.json','source_key':'exact_source_sha256','gates':'production-size-gates.json'},
@@ -58,11 +59,17 @@ TRUSTED_BUILDS={
           'normal-size-evidence.json':'59edc3956155686be87e1b709a221cd616c0549c98d8c26e02827201cfc187d2',
           'START.json':'f967b8a2b24fe88998f5db69ff78aba0b7f5ed0d7e3e3d5f1076675c0d8f8ab0'},
  'source_inventory':'START.json','source_key':'source_sha256','gates':'normal-size-evidence.json'},
- DEFAULT_BUILD_PROFILE:{'directory':'reports/royalty-rounds-20261118/build/final',
+ ROYALTY_BUILD_PROFILE:{'directory':'reports/royalty-rounds-20261118/build/final',
  'files':{'compiler-input.json.gz':'8a591f4b8de04ed2337156c8cc6a97057f09f18744834f3f3c92af20b33d6ba4',
           'compiler-output.json.gz':'1947e502348e5e230e6d34792b317683f5d634514ce248ad64c342bb792ff663',
           'normal-size-evidence.json':'12d585f6a1ccd537709e8f23f43ea90c4cef32198ddc82bfd0c63701b1967992',
           'START.json':'a1bddde5605bab24b3d961505702e4d5bb94b50af9695f3b4e33f9e546119ac4'},
+ 'source_inventory':'START.json','source_key':'compiler_content_sha256','gates':'normal-size-evidence.json'},
+ DEFAULT_BUILD_PROFILE:{'directory':'reports/activation-gas-20261118/build/final',
+ 'files':{'compiler-input.json.gz':'550ed2e5a5aab198ee341a8728e32d209e0222a75ee5425d237a74e51f03275c',
+          'compiler-output.json.gz':'f1cafaa8dd2e97bb52a1fdce0d359a20abf668b640b45ef769009d9569f623e0',
+          'normal-size-evidence.json':'7b01c1ceb9229297c1c495398615eeebc9018f79853b44d9afc6b4af88c6dd8a',
+          'START.json':'2ad777500ededadf1441ae322d0470e2f52b4bdb16f7b49f6f54031c6232b7a2'},
  'source_inventory':'START.json','source_key':'compiler_content_sha256','gates':'normal-size-evidence.json'}}
 NATIVE={
  'pool_manager':'0x8366a39cc670b4001a1121b8f6a443a643e40951',

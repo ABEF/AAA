@@ -1,0 +1,322 @@
+{
+  "wire_abi_unchanged_except_parameter_names": true,
+  "wire_function_selectors_add_remove": 0,
+  "packing": {
+    "eligibleCount": {
+      "shift": 0,
+      "bits": 10,
+      "max": 1000
+    },
+    "eligibleWeight": {
+      "shift": 10,
+      "bits": 12,
+      "max": 3000
+    },
+    "allocationCursor": {
+      "shift": 22,
+      "bits": 12,
+      "max": 2999
+    },
+    "initialAllocated": {
+      "shift": 34,
+      "bits": 1,
+      "max": 1
+    }
+  },
+  "packed_fields_disjoint": true,
+  "ordinary_setter_origin_bounds": "Eligibility derives existing bounded activation counts/weights; explicit <=1000/<=3000 guard; credit cursor constrained by <=3000 validated weight; import additionally retains original header/cursor bounds.",
+  "private_storage_rows": [
+    {
+      "old_label": "_status",
+      "new_label": "_status",
+      "old_slot": "0",
+      "new_slot": "0",
+      "offset_same": true
+    },
+    {
+      "old_label": "canonicalAssets",
+      "new_label": "canonicalAssets",
+      "old_slot": "1",
+      "new_slot": "1",
+      "offset_same": true
+    },
+    {
+      "old_label": "canonicalAmounts",
+      "new_label": "canonicalAmounts",
+      "old_slot": "2",
+      "new_slot": "2",
+      "offset_same": true
+    },
+    {
+      "old_label": "canonicalPrefunds",
+      "new_label": "canonicalPrefunds",
+      "old_slot": "3",
+      "new_slot": "3",
+      "offset_same": true
+    },
+    {
+      "old_label": "canonicalDelivered",
+      "new_label": "canonicalDelivered",
+      "old_slot": "4",
+      "new_slot": "4",
+      "offset_same": true
+    },
+    {
+      "old_label": "canonicalAccepted",
+      "new_label": "canonicalAccepted",
+      "old_slot": "5",
+      "new_slot": "5",
+      "offset_same": true
+    },
+    {
+      "old_label": "canonicalCursor",
+      "new_label": "canonicalCursor",
+      "old_slot": "6",
+      "new_slot": "6",
+      "offset_same": true
+    },
+    {
+      "old_label": "canonicalCaptured",
+      "new_label": "canonicalCaptured",
+      "old_slot": "7",
+      "new_slot": "7",
+      "offset_same": true
+    },
+    {
+      "old_label": "allocationBooks",
+      "new_label": "allocationBooks",
+      "old_slot": "8",
+      "new_slot": "8",
+      "offset_same": true
+    },
+    {
+      "old_label": "firstWeightOrdinal",
+      "new_label": "firstWeightOrdinal",
+      "old_slot": "9",
+      "new_slot": "9",
+      "offset_same": true
+    },
+    {
+      "old_label": "assetCapacity",
+      "new_label": "assetCapacity",
+      "old_slot": "12",
+      "new_slot": "12",
+      "offset_same": true
+    },
+    {
+      "old_label": "mintEnd",
+      "new_label": "mintEnd",
+      "old_slot": "12",
+      "new_slot": "12",
+      "offset_same": true
+    },
+    {
+      "old_label": "mintEndRevision",
+      "new_label": "mintEndRevision",
+      "old_slot": "12",
+      "new_slot": "12",
+      "offset_same": true
+    },
+    {
+      "old_label": "openingFinalized",
+      "new_label": "openingFinalized",
+      "old_slot": "12",
+      "new_slot": "12",
+      "offset_same": true
+    },
+    {
+      "old_label": "canonicalController",
+      "new_label": "canonicalController",
+      "old_slot": "13",
+      "new_slot": "13",
+      "offset_same": true
+    },
+    {
+      "old_label": "openingCount",
+      "new_label": "openingCount",
+      "old_slot": "14",
+      "new_slot": "14",
+      "offset_same": true
+    },
+    {
+      "old_label": "openingWeight",
+      "new_label": "openingWeight",
+      "old_slot": "15",
+      "new_slot": "15",
+      "offset_same": true
+    },
+    {
+      "old_label": "initialAllocated",
+      "new_label": "assetStatus",
+      "old_slot": "16",
+      "new_slot": "16",
+      "offset_same": true
+    },
+    {
+      "old_label": "openingPool",
+      "new_label": "openingPool",
+      "old_slot": "17",
+      "new_slot": "17",
+      "offset_same": true
+    },
+    {
+      "old_label": "assets",
+      "new_label": "assets",
+      "old_slot": "18",
+      "new_slot": "18",
+      "offset_same": true
+    },
+    {
+      "old_label": "isAsset",
+      "new_label": "isAsset",
+      "old_slot": "19",
+      "new_slot": "19",
+      "offset_same": true
+    },
+    {
+      "old_label": "weightOf",
+      "new_label": "weightOf",
+      "old_slot": "20",
+      "new_slot": "20",
+      "offset_same": true
+    },
+    {
+      "old_label": "totalWeight",
+      "new_label": "totalWeight",
+      "old_slot": "21",
+      "new_slot": "21",
+      "offset_same": true
+    },
+    {
+      "label": "allocationCursor",
+      "removed_mapping": true
+    },
+    {
+      "old_label": "ticketStart",
+      "new_label": "ticketStart",
+      "old_slot": "23",
+      "new_slot": "22",
+      "offset_same": true
+    },
+    {
+      "old_label": "liabilities",
+      "new_label": "liabilities",
+      "old_slot": "24",
+      "new_slot": "23",
+      "offset_same": true
+    },
+    {
+      "old_label": "orphaned",
+      "new_label": "orphaned",
+      "old_slot": "25",
+      "new_slot": "24",
+      "offset_same": true
+    },
+    {
+      "old_label": "accrued",
+      "new_label": "accrued",
+      "old_slot": "26",
+      "new_slot": "25",
+      "offset_same": true
+    },
+    {
+      "old_label": "activationCount",
+      "new_label": "activationCount",
+      "old_slot": "27",
+      "new_slot": "26",
+      "offset_same": true
+    },
+    {
+      "old_label": "activationOrdinal",
+      "new_label": "activationOrdinal",
+      "old_slot": "28",
+      "new_slot": "27",
+      "offset_same": true
+    },
+    {
+      "label": "eligibleCount",
+      "removed_mapping": true
+    },
+    {
+      "label": "eligibleWeight",
+      "removed_mapping": true
+    },
+    {
+      "old_label": "canonicalNFTs",
+      "new_label": "canonicalNFTs",
+      "old_slot": "31",
+      "new_slot": "28",
+      "offset_same": true
+    },
+    {
+      "old_label": "canonicalAssetTotal",
+      "new_label": "canonicalAssetTotal",
+      "old_slot": "32",
+      "new_slot": "29",
+      "offset_same": true
+    },
+    {
+      "old_label": "canonicalWeight",
+      "new_label": "canonicalWeight",
+      "old_slot": "33",
+      "new_slot": "30",
+      "offset_same": true
+    },
+    {
+      "old_label": "canonicalPending",
+      "new_label": "canonicalPending",
+      "old_slot": "34",
+      "new_slot": "31",
+      "offset_same": true
+    },
+    {
+      "old_label": "canonicalCutoffSettled",
+      "new_label": "canonicalCutoffSettled",
+      "old_slot": "35",
+      "new_slot": "32",
+      "offset_same": true
+    },
+    {
+      "old_label": "canonicalSeen",
+      "new_label": "canonicalSeen",
+      "old_slot": "36",
+      "new_slot": "33",
+      "offset_same": true
+    },
+    {
+      "old_label": "canonicalMaxOrdinal",
+      "new_label": "canonicalMaxOrdinal",
+      "old_slot": "52",
+      "new_slot": "49",
+      "offset_same": true
+    },
+    {
+      "old_label": "canonicalImportedClaims",
+      "new_label": "canonicalImportedClaims",
+      "old_slot": "53",
+      "new_slot": "50",
+      "offset_same": true
+    },
+    {
+      "old_label": "enrollment",
+      "new_label": "enrollment",
+      "old_slot": "54",
+      "new_slot": "51",
+      "offset_same": true
+    },
+    {
+      "old_label": "counterPaid",
+      "new_label": "counterPaid",
+      "old_slot": "55",
+      "new_slot": "52",
+      "offset_same": true
+    }
+  ],
+  "new_private_layout_required": true,
+  "hot_upgrade_or_old_raw_state_admitted": false,
+  "gas_saving_measured": false,
+  "gas_benchmark_executed": false,
+  "size_rejected_before_benchmark": true,
+  "root_source_edits": false,
+  "production_approved": false
+}

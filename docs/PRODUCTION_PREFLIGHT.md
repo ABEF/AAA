@@ -347,3 +347,6 @@ ABI, while leaving unknown inputs blocked and live-state/authority/readiness
 unverified. It includes human-price orientation and fixed NFT-forwarded
 SeaDrop setup. Constructor/sequence tools and old evidence stay unchanged;
 no configuration is installed, no seal call prepared and no release approved.
+
+
+The fresh `activation-gas-20261118` build preserves public accounting7/LP-allocation1/schema17/canonicalV10 records and the exact payload5 Royalty creation bytes. Only private LP carry encoding is compacted with a full-width spill; pending/high128/low256 logical values and arithmetic are unchanged. New exact runtime/source pins are required. Never copy old EVM carry slots into this representation or relabel old snapshots/journals. See the [source and verification scope](../reports/activation-gas-20261118/REVIEW.md). Public input/permission/economic rules are unchanged; complete gas/recovery/operating acceptance is separate.

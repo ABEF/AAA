@@ -1,0 +1,12 @@
+Error: Compiler run failed:
+Error (7576): Undeclared identifier.
+  --> test/CodecProbe.t.sol:54:24:
+   |
+54 |         uint256 length=_executionLength();if(length==0)return c;
+   |                        ^^^^^^^^^^^^^^^^
+
+Error (7576): Undeclared identifier.
+  --> test/CodecProbe.t.sol:55:61:
+   |
+55 |         bytes memory encoded=new bytes(length);bytes32 base=EXECUTION_WORDS;
+   |                                                             ^^^^^^^^^^^^^^^

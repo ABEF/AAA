@@ -1,0 +1,15 @@
+{
+  "exit_code": 0,
+  "seconds": 4.453000000008615,
+  "methods": [
+    {
+      "id": "test/LPFusionEngineering.t.sol:LPFusionEngineeringTest.testFusedMaximumZeroNoopOverflow()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "method_count": 1,
+  "source_stable": true,
+  "engineering_only": true,
+  "pass": true
+}

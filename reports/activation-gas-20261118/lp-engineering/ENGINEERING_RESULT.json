@@ -1,0 +1,71 @@
+{
+  "candidate_only": true,
+  "root_source_adopted": false,
+  "new_distinct_methods": 5,
+  "passing_methods": 5,
+  "execution_stages": {
+    "differential01": "four pass; MAX method stopped on harness panic matcher mismatch",
+    "differential02-max-only": "zero selected methods, bare-name end-anchor mismatch; no pass claimed",
+    "differential03-max-only": "one changed MAX method passes"
+  },
+  "unchanged_four_method_bodies_reused": true,
+  "only_changed_test_body": [
+    "testFusedMaximumZeroNoopOverflow"
+  ],
+  "whole_raw_tree_digest_nodes": 2047,
+  "books": 2,
+  "deterministic_adversarial_steps": 128,
+  "actual999_prestate": {
+    "archive": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\reports\\royalty-rounds-20261118\\full-flow-final\\full04\\exports.tar.xz",
+    "archive_sha256": "fcbed1cedaf3b50e7b436f6747b2dbae3b9a88fcbf86346c819b11421c97ef72",
+    "member": "exports/rounds-999-opening-zzz-allslow.json",
+    "member_sha256": "16161aee5d624bd9493b310cab9fbb0dde295c44bcd1a27c5f5cb74217dc8bc0",
+    "account": "0x92a6649fdcc044da968d94202465578a9371c7b1",
+    "bucket": 12303348992888452224556495487210046042273313936231113355190120268912493433752,
+    "metadata_storage_layout": {
+      "_status": "0",
+      "assets": "1",
+      "isAsset": "2",
+      "liabilities": "3",
+      "orphaned": "4",
+      "ownerBooks": "5",
+      "collectiveBook": "6",
+      "directIndividual": "13",
+      "directCollective": "14",
+      "directLiabilities": "15",
+      "rewardBucket": "16",
+      "converter": "17"
+    },
+    "fixture_rows": {
+      "owner": 2004,
+      "collective": 2004
+    },
+    "engineering_only": true,
+    "whole_activation_gas_claim": false,
+    "actual_trace_entrant_weight": 99909134925785758152,
+    "no_creditPool_frame": true
+  },
+  "cold_engine_results": [
+    {
+      "tree": "actual999owner",
+      "baseline": 1301704,
+      "candidate": 1261061,
+      "saving": 40643
+    },
+    {
+      "tree": "actual999collective",
+      "baseline": 1138359,
+      "candidate": 1101685,
+      "saving": 36674
+    }
+  ],
+  "combined_engine_saving": 77317,
+  "host_runtime_baseline": 4757,
+  "host_runtime_candidate": 5495,
+  "minimal_runtime_delta": 738,
+  "existing_rewards_runtime_headroom": 358,
+  "whole_activation_estimate_not_replayed": true,
+  "production_approved": false,
+  "recommendation": "Do not adopt this candidate: small saving and material bytecode growth. This is not whole Entry gas qualification.",
+  "four_protected_unchanged": true
+}

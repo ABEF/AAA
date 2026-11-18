@@ -147,7 +147,7 @@ abstract contract ZZZExactLPRewardsCanonical is ZZZModule, ReentrancyGuard {
             for(uint256 a;a<2;++a) {
                 uint256 slot=2*t+a;
                 r.pending[slot]=tree.books[a].pending[node];
-                r.high[slot]=tree.books[a].carry[node].high;r.low[slot]=tree.books[a].carry[node].low;
+                (r.high[slot],r.low[slot])=ExactLPAllocation.readCarry(tree.books[a].carry[node]);
             }
         }
     }
@@ -216,9 +216,10 @@ abstract contract ZZZExactLPRewardsCanonical is ZZZModule, ReentrancyGuard {
             ExactLPAllocation.Tree storage tree=_canonicalTree(t);
             _checkNode(r.node,tree.weights[r.node],r.pending[slot],r.high[slot],r.low[slot],a,nfts);
             ExactLPAllocation.Book storage b=tree.books[a];
-            if(b.pending[r.node]!=0 || b.carry[r.node].high!=0 || b.carry[r.node].low!=0)revert CanonicalState();
+            (uint128 oldHigh,uint256 oldLow)=ExactLPAllocation.readCarry(b.carry[r.node]);
+            if(b.pending[r.node]!=0 || oldHigh!=0 || oldLow!=0)revert CanonicalState();
             if(r.pending[slot]!=0) {b.pending[r.node]=r.pending[slot];b.outstanding+=r.pending[slot];}
-            if(r.high[slot]!=0 || r.low[slot]!=0)b.carry[r.node]=ExactLPAllocation.Carry(r.high[slot],r.low[slot]);
+            if(r.high[slot]!=0 || r.low[slot]!=0)ExactLPAllocation.writeCarry(b.carry[r.node],r.high[slot],r.low[slot]);
         }
     }
     /// @notice Only the immutable codec can move its captured backing.

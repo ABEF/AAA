@@ -1,0 +1,22 @@
+{
+  "exit_code": 0,
+  "seconds": 6.796999999991385,
+  "errors": [],
+  "sizes": {
+    "ZZZRewards": {
+      "runtime": 24072,
+      "runtime_headroom": 504,
+      "init": 44557
+    },
+    "ZZZRewardsCanonical": {
+      "runtime": 18609,
+      "runtime_headroom": 5967,
+      "init": 19361
+    }
+  },
+  "root_snapshot_stable": true,
+  "virtual_source_only": true,
+  "output_sha256": "d0131abbfc74e88b4648ea5e15b16bb2e8ae3900c0662ba016dc194ec55aa2ee",
+  "whole_activation_or_release_qualified": false,
+  "pass": true
+}

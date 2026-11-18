@@ -1,0 +1,23 @@
+{
+  "all_abi_snapshots_identical": true,
+  "counts": {
+    "contracts": 40,
+    "functions": 968,
+    "constructors": 40,
+    "receive_hooks": 13,
+    "fallback_hooks": 0,
+    "explanation_gaps": 0,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 0
+  },
+  "all1021operator_examples_preserved": true,
+  "private_carry_encoding_changes_without_logical_wire_change": true,
+  "four_changed_production_sources": [
+    "src/ZZZOracle.sol",
+    "src/ZZZV4SpotPriceFeed.sol",
+    "src/base/ZZZExactLPRewardsCanonical.sol",
+    "src/libraries/ExactLPAllocation.sol"
+  ],
+  "new_normal_snapshot_rebinding_not_old_runtime_relabel": true,
+  "production_approved": false
+}

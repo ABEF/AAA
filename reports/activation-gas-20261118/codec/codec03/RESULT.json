@@ -1,0 +1,27 @@
+{
+  "new_methods": [
+    {
+      "method": "testNewCodecAllCanonicalBitsAndNestedRowsRoundTrip()",
+      "status": "Success",
+      "logs": [],
+      "reason": null
+    },
+    {
+      "method": "testNewCodecEmptyMatchesExistingZeroStruct()",
+      "status": "Success",
+      "logs": [],
+      "reason": null
+    },
+    {
+      "method": "testNewCodecGasAtSameTypedRecord()",
+      "status": "Success",
+      "logs": [],
+      "reason": null
+    }
+  ],
+  "seconds": 1.875,
+  "exit_code": 0,
+  "root_source_stable": true,
+  "prototype_not_adopted": true,
+  "root_config_untouched": true
+}

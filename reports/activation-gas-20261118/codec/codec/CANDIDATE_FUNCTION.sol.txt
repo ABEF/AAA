@@ -1,0 +1,27 @@
+    function _loadExecution() internal view returns(Execution memory c) {
+        if(_executionLength()==0)return c;
+        c.owner=address(uint160(_executionWord(0)));c.zzz=address(uint160(_executionWord(1)));
+        c.ethPolicy=bytes32(_executionWord(2));c.zzzPolicy=bytes32(_executionWord(3));
+        c.sequencerPolicy=bytes32(_executionWord(4));c.sourceRevision=uint64(_executionWord(5));
+        c.gasPolicy=bytes32(_executionWord(6));
+        for(uint256 i;i<4;++i)c.roundHashes[i]=bytes32(_executionWord(7+i));
+        for(uint256 i;i<2;++i)c.fingerprints[i]=bytes32(_executionWord(11+i));
+        for(uint256 i;i<4;++i)c.bounds[i]=_executionWord(13+i);
+        c.zzzDigits=uint8(_executionWord(17));
+        for(uint256 i;i<2;++i){
+            uint256 start=18+9*i;
+            c.markets[i].core=address(uint160(_executionWord(start)));
+            c.markets[i].stateView=address(uint160(_executionWord(start+1)));
+            c.markets[i].poolId=bytes32(_executionWord(start+2));
+            c.markets[i].origin=MarketState(uint160(_executionWord(start+3)),int24(int256(_executionWord(start+4))),
+                uint24(_executionWord(start+5)),uint24(_executionWord(start+6)),uint128(_executionWord(start+7)));
+            c.markets[i].expected=bytes32(_executionWord(start+8));
+        }
+        c.managerLoan=_executionWord(36)!=0;c.swapped=_executionWord(37)!=0;c.pendingSwap=_executionWord(38)!=0;
+        c.destination=bytes32(_executionWord(39));
+        c.venue.core=address(uint160(_executionWord(40)));c.venue.stateView=address(uint160(_executionWord(41)));
+        c.venue.poolId=bytes32(_executionWord(42));
+        c.venue.expected=MarketState(uint160(_executionWord(43)),int24(int256(_executionWord(44))),
+            uint24(_executionWord(45)),uint24(_executionWord(46)),uint128(_executionWord(47)));
+        c.venue.omitLiquidity=_executionWord(48)!=0;
+    }

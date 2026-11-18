@@ -1,0 +1,12 @@
+{
+  "files": {
+    "EXECUTION_SCOPE.json": "13ac4d57a9922f1af9b6313fd5520295728a0f04ed1cb78608533d99df0b27fb",
+    "REGISTRY_REVIEW.json": "729b840ece18c8c683571b5387608dffe017a53f77fde0a2c60ced40397dbbf6",
+    "RESULT.json": "70ef0e4c861eab5c40a2827970cc468d3df7465462cfba462e97337d43ce5b99",
+    "REVIEW.md": "473290533c957af778194206b31ad54d46d1b5c9bb9244952255b44a6bb93f37",
+    "START.json": "9746a1e5e822e61c6fda1cad39623c0b30f703e17f32adeae4f8749bf8c8f0ff",
+    "stderr.log": "476ba07e7ba27bf4a16a11cc85febb4b38819cac0f43b7a1c1d0176e56182d01",
+    "stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "production_approved": false
+}

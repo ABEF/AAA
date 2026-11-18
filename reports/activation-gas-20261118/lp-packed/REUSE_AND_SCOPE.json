@@ -1,0 +1,11 @@
+{
+  "six_engine_method_bodies_unchanged_after_adding_only_zero_fee_method": true,
+  "six_not_rerun_in_zero_fee_stage": true,
+  "source_root_library_exact_matches_virtual_accepted_candidate": true,
+  "source_root_base_exact_matches_virtual_accepted_candidate": true,
+  "final_29_source_closure_exact_matches_ROOT_at_actual03": true,
+  "ROOT_config_not_used_by_any_canonical_run": true,
+  "engine_component_not_whole_operation": true,
+  "private_storage_fresh_runtime_only": true,
+  "production_approved": false
+}

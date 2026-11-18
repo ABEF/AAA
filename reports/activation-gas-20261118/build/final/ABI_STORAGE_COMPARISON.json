@@ -1,0 +1,582 @@
+{
+  "abi": [
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "ZZZAccessController",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "name": "ZZZActivationAssets",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZActivationAssetsFactory.sol",
+      "name": "ZZZActivationAssetsFactory",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "name": "ZZZActivationEntry",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZBuyback.sol",
+      "name": "ZZZBuyback",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ZZZCanonicalHandoff",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "name": "ZZZClaimRouter",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZCompounder.sol",
+      "name": "ZZZCompounder",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "name": "ZZZContributionPricing",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "ZZZCustodyValidation",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "name": "ZZZFeeController",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "name": "ZZZFeesCanonical",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "name": "ZZZLPBalanceMath",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "name": "ZZZLPBalancer",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZLPPositionExecutor.sol",
+      "name": "ZZZLPPositionExecutor",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZLPRewardConverter.sol",
+      "name": "ZZZLPRewardConverter",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "name": "ZZZLiquidityManager",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "name": "ZZZMembership",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "name": "ZZZMigration",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "ZZZMigrationBudget",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "name": "ZZZNFT",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "name": "ZZZNFTCanonical",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "name": "ZZZNFTMetadata",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "name": "ZZZOracle",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "name": "ZZZPoolRegistry",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "name": "ZZZPortfolioPolicy",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZProtocolPolicy.sol",
+      "name": "ZZZProtocolPolicy",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZPythPriceFeed.sol",
+      "name": "ZZZPythPriceFeed",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "name": "ZZZRebalanceConfirmation",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "name": "ZZZRewards",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "name": "ZZZRewardsCanonical",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZRoyaltyCodeData.sol",
+      "name": "ZZZRoyaltyCodeData",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZRoyaltyFactory.sol",
+      "name": "ZZZRoyaltyFactory",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "name": "ZZZRoyaltyRewards",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZSeaDropMint.sol",
+      "name": "ZZZSeaDropMint",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "name": "ZZZStrategy",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZV4RouteExecutor.sol",
+      "name": "ZZZV4RouteExecutor",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZV4SpotPriceFeed.sol",
+      "name": "ZZZV4SpotPriceFeed",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "name": "ZZZVault",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ZZZVaultCanonical",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/libraries/ExactAsset.sol",
+      "name": "ExactAsset",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/libraries/ExactLPAllocation.sol",
+      "name": "ExactLPAllocation",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/libraries/ExactRoyaltyAllocation.sol",
+      "name": "ExactRoyaltyAllocation",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/libraries/ExactToken.sol",
+      "name": "ExactToken",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/libraries/ZZZArtwork.sol",
+      "name": "ZZZArtwork",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/libraries/ZZZPriceMath.sol",
+      "name": "ZZZPriceMath",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/libraries/ZZZTypes.sol",
+      "name": "Ids",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/libraries/ZZZV3VenueValidation.sol",
+      "name": "ZZZV3VenueValidation",
+      "identical": true,
+      "as_expected": true
+    }
+  ],
+  "storage": [
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "ZZZAccessController",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "name": "ZZZActivationAssets",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZActivationAssetsFactory.sol",
+      "name": "ZZZActivationAssetsFactory",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "name": "ZZZActivationEntry",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZBuyback.sol",
+      "name": "ZZZBuyback",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ZZZCanonicalHandoff",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "name": "ZZZClaimRouter",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZCompounder.sol",
+      "name": "ZZZCompounder",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "name": "ZZZContributionPricing",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "ZZZCustodyValidation",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "name": "ZZZFeeController",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "name": "ZZZFeesCanonical",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "name": "ZZZLPBalanceMath",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "name": "ZZZLPBalancer",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZLPPositionExecutor.sol",
+      "name": "ZZZLPPositionExecutor",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZLPRewardConverter.sol",
+      "name": "ZZZLPRewardConverter",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "name": "ZZZLiquidityManager",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "name": "ZZZMembership",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "name": "ZZZMigration",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "ZZZMigrationBudget",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "name": "ZZZNFT",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "name": "ZZZNFTCanonical",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "name": "ZZZNFTMetadata",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "name": "ZZZOracle",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "name": "ZZZPoolRegistry",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "name": "ZZZPortfolioPolicy",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZProtocolPolicy.sol",
+      "name": "ZZZProtocolPolicy",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZPythPriceFeed.sol",
+      "name": "ZZZPythPriceFeed",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "name": "ZZZRebalanceConfirmation",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "name": "ZZZRewards",
+      "identical": false,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "name": "ZZZRewardsCanonical",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZRoyaltyCodeData.sol",
+      "name": "ZZZRoyaltyCodeData",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZRoyaltyFactory.sol",
+      "name": "ZZZRoyaltyFactory",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "name": "ZZZRoyaltyRewards",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZSeaDropMint.sol",
+      "name": "ZZZSeaDropMint",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "name": "ZZZStrategy",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZV4RouteExecutor.sol",
+      "name": "ZZZV4RouteExecutor",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZV4SpotPriceFeed.sol",
+      "name": "ZZZV4SpotPriceFeed",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "name": "ZZZVault",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ZZZVaultCanonical",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/libraries/ExactAsset.sol",
+      "name": "ExactAsset",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/libraries/ExactLPAllocation.sol",
+      "name": "ExactLPAllocation",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/libraries/ExactRoyaltyAllocation.sol",
+      "name": "ExactRoyaltyAllocation",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/libraries/ExactToken.sol",
+      "name": "ExactToken",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/libraries/ZZZArtwork.sol",
+      "name": "ZZZArtwork",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/libraries/ZZZPriceMath.sol",
+      "name": "ZZZPriceMath",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/libraries/ZZZTypes.sol",
+      "name": "Ids",
+      "identical": true,
+      "as_expected": true
+    },
+    {
+      "path": "src/libraries/ZZZV3VenueValidation.sol",
+      "name": "ZZZV3VenueValidation",
+      "identical": true,
+      "as_expected": true
+    }
+  ]
+}

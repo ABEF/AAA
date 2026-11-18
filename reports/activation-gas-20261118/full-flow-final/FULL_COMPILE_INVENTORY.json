@@ -1,0 +1,41 @@
+{
+  "selected_fixture_metadata_closure": 200,
+  "reported_forge_compile_units": 206,
+  "independently_derived_all_compiled_roots_closure": 206,
+  "extra_six_units": [
+    {
+      "path": "lib/forge-std/src/Script.sol",
+      "sha256": "f009daadd59e9853c392c00fac88cab5572b66ac59694095b2ec3ec0a8ff6f9e"
+    },
+    {
+      "path": "script/DeployCore.s.sol",
+      "sha256": "881843938d4f83bfc863c703af014baaa15cdf155c12b03f723a3c9cc591f370"
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "sha256": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3"
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa"
+    },
+    {
+      "path": "src/ZZZPythPriceFeed.sol",
+      "sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788"
+    },
+    {
+      "path": "test/historical/ZZZRoyaltyRewards.sol",
+      "sha256": "fa3cfe3633b13473015fc1a448b08cbcf4d3f49b0c25748b6c63ffe4aac4576b"
+    }
+  ],
+  "source_pool_scope": "The200-source pool is the actual selected fixture metadata closure, not all206project compile units. ROOTsrc61 freeze separately includesunused3production sources.",
+  "extra_historical_basename_collision": [
+    "test/historical/ZZZRoyaltyRewards.sol"
+  ],
+  "extra_units_executed": false,
+  "observation": "Source inventory recorded duringcompile; actual target artifactmetadata must still verify atcompletion.",
+  "completed_cache_inventory_verified": true,
+  "cache_file_count": 206,
+  "cache_sha256": "f30d17f7d365de81f37d30fb3cdb35b494ec783f94c0c0e526a3b1078090d22e",
+  "after_all61_source_freeze_verified": true
+}

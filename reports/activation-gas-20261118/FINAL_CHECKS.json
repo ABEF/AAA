@@ -1,0 +1,54 @@
+{
+  "exact_current100source_bytes_match_normal": true,
+  "exact_four_changed_src": [
+    "src/ZZZOracle.sol",
+    "src/ZZZV4SpotPriceFeed.sol",
+    "src/base/ZZZExactLPRewardsCanonical.sol",
+    "src/libraries/ExactLPAllocation.sol"
+  ],
+  "protected_four": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "original_root_config_unchanged": true,
+  "function_reference_counts": {
+    "contracts": 40,
+    "functions": 968,
+    "constructors": 40,
+    "receive_hooks": 13,
+    "fallback_hooks": 0,
+    "explanation_gaps": 0,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 0
+  },
+  "all1021operator_rows_unchanged": true,
+  "local_link_targets_checked": 2830,
+  "missing_local_links": [],
+  "anchors_not_revalidated": true,
+  "todo_generator_pass": true,
+  "production_approved": false,
+  "all100normal_source_stable_after_final_checks": true,
+  "documentation_generators_all_pass": true,
+  "unchanged_old_suites_rerun": false,
+  "staged_diff_checks": {
+    "production_code_docs_tools_clean": true,
+    "new_report_top_producers_and_markdown_clean": true,
+    "immutable_record_whitespace_preserved": [
+      "reports/activation-gas-20261118/feed/stage02/stdout.json",
+      "reports/activation-gas-20261118/full-flow-final/full01-compile01/stderr.log",
+      "reports/activation-gas-20261118/full-flow-final/full01-compile01/stdout.log",
+      "reports/activation-gas-20261118/lp-engineering/test/LPFusionEngineering.t.sol",
+      "reports/activation-gas-20261118/lp-packed/canonical-project/src/interfaces/IZZZCanonical.sol",
+      "reports/activation-gas-20261118/lp-packed/canonical-project/src/interfaces/IZZZV3Route.sol",
+      "reports/activation-gas-20261118/lp-packed/canonical-project/src/libraries/ZZZTypes.sol",
+      "reports/activation-gas-20261118/lp-packed/canonical-project/test/CurrentAdaptersCompileProbe.sol",
+      "reports/activation-gas-20261118/lp-packed/engine/differential01/TEST_SOURCE.sol",
+      "reports/activation-gas-20261118/lp-packed/engine/test/LPPackedEngineering.t.sol",
+      "reports/activation-gas-20261118/royalty-engineering/packed-royalty-assembly/SOURCE_DIFF.patch",
+      "reports/activation-gas-20261118/royalty-engineering/packed-royalty-shared/SOURCE_DIFF.patch",
+      "reports/activation-gas-20261118/royalty-engineering/packed-royalty-struct/SOURCE_DIFF.patch"
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+    function _loadExecution() internal view returns(Execution memory c) {
+        if(_executionLength()==0)return c;
+        bytes32 base=EXECUTION_WORDS;
+        // Only _saveExecution writes this canonical49-word typed encoding.
+        // The compiler-allocated nested layout is checked by the codec regression.
+        assembly ("memory-safe") {
+            function words(dst,src,count,area) {
+                for {let i:=0}lt(i,count){i:=add(i,1)} {
+                    mstore(add(dst,mul(i,32)),tload(add(area,add(src,i))))
+                }
+            }
+            words(c,0,7,base)
+            words(mload(add(c,224)),7,4,base)
+            words(mload(add(c,256)),11,2,base)
+            words(mload(add(c,288)),13,4,base)
+            mstore(add(c,320),tload(add(base,17)))
+            let markets:=mload(add(c,352))
+            for{let i:=0}lt(i,2){i:=add(i,1)}{
+                let market:=mload(add(markets,mul(i,32)))
+                let start:=add(18,mul(i,9))
+                words(market,start,3,base)
+                words(mload(add(market,96)),add(start,3),5,base)
+                mstore(add(market,128),tload(add(base,add(start,8))))
+            }
+            words(add(c,384),36,4,base)
+            let venue:=mload(add(c,512))
+            words(venue,40,3,base)
+            words(mload(add(venue,96)),43,5,base)
+            mstore(add(venue,128),tload(add(base,48)))
+        }
+    }

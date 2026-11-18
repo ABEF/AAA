@@ -1,0 +1,17 @@
+{
+  "scope": "single assembly-shared engineering object size, not full graph/adoption",
+  "exit_code": 0,
+  "seconds": 3.0469999999913853,
+  "errors": [],
+  "root_all100_sources_unchanged": true,
+  "protected_four_unchanged": true,
+  "compiler_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+  "compiler_output_sha256": "bb7c0993d2a80c619679e289a051dcec0b0198623e192f3a55c5cf66ab489a4d",
+  "actual_tests_executed": 0,
+  "production_approved": false,
+  "runtime": 24714,
+  "creation": 25685,
+  "runtime_margin": -138,
+  "runtime_size_pass": false,
+  "wire_abi_identical_except_getter_input_names": true
+}

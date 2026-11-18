@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "baseline_commit": "633f0154f0ddd081f63bbbdd02671b5cb139a063",
+  "baseline_royalty_sha256": "35f712bd0b95abdd63a9e696e6e85e63453f2d8e5ec57c089c595e6bfd5f5bbd",
+  "variants": [
+    {
+      "variant": "packed-royalty",
+      "runtime": 24795,
+      "creation": 25766,
+      "over24576": 219,
+      "object_compiler_runs": 1,
+      "old_tests_executed": 0,
+      "new_evm_tests_executed": 0,
+      "gas_savings_measured": false,
+      "source_adopted": false,
+      "files": {
+        "ZZZRoyaltyRewards.sol": "2de7856a4eed940a7b0c80955ef268e69208d1edf58713e967051ebf3a8fede4",
+        "PLAN.json": "f013a493977d4c2b27eec9ce3a6ad3ceca61caf49d96e3d7102f0f1f67728419",
+        "RESULT.json": "13a6a5064415076476de67ca85d68013f6043862deb8716c624d425e48d58676",
+        "STATIC_REVIEW.json": "b3bde68897e75c34ada9b1785ea35f65bf00e2a2999c7330db9504db3479f0cf",
+        "REVIEW.md": "8b1ec5f16ab61249d0a94788cd94cce827e98211aad5505a6ab39fc9a307e926",
+        "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compiler-input.json.gz": {
+          "compressed_sha256": "5cc654069947eebf5fbe3553962a591ef3b92297133bcf8ed3f7da9c29ab8af1",
+          "raw_sha256": "ef06307080f78e1d87b32f43419d0438514432ae1da63d581fc3016cdf6439b5",
+          "raw_length": 951899
+        },
+        "compiler-output.json.gz": {
+          "compressed_sha256": "d458b68ed4047769fb68fd43b98da44b58c5b4437a21228a4e4d76680e178d79",
+          "raw_sha256": "c46036645e5661d80f3fc4bbab4ac8726b475301ec50072df6def64fbbb37c77",
+          "raw_length": 162468
+        }
+      }
+    },
+    {
+      "variant": "packed-royalty-struct",
+      "runtime": 24818,
+      "creation": 25789,
+      "over24576": 242,
+      "object_compiler_runs": 1,
+      "old_tests_executed": 0,
+      "new_evm_tests_executed": 0,
+      "gas_savings_measured": false,
+      "source_adopted": false,
+      "files": {
+        "ZZZRoyaltyRewards.sol": "b9dea5ff6bb0b05870c7ff4e1bc5390b93c412644f811f079c19d3a0bb7871dc",
+        "PLAN.json": "a244266a60f989eea589cd6423a6429bd7826c42dfa293f28f208d1980a53c4e",
+        "RESULT.json": "fcdce1b5c5156e993a4c9f7458079b31045e861d41c186cc66fb9e915fd39c95",
+        "BOUNDS_REVIEW.json": "0bd448f92ce8e27ddca3bcc883b8c23df23acbdac0dd4983f130a2a09a415b6f",
+        "REVIEW.md": "9cae680afae1d6b63f87bf2a1af804dad004a7bf7cb12838d96046ac6f81ab0b",
+        "SOURCE_DIFF.patch": "98df19bc1cd0f8c3442bd79bb12e0ccee6f19266492c7edd792b9e433400e137",
+        "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compiler-input.json.gz": {
+          "compressed_sha256": "a2ecc46d255b805c0af943c2184561d7fc21e5e93247bd002c80315d68915c9c",
+          "raw_sha256": "034e97e839281b902922642de3c11f3ef0acbfde3244659fff1596007729cd51",
+          "raw_length": 951274
+        },
+        "compiler-output.json.gz": {
+          "compressed_sha256": "24a0e47b4da75a04a76c8e77ae921445404c96dfc612db9e021a812f1aa792de",
+          "raw_sha256": "fce1e010dca8b659242604ae952f08d5de94a280566becb1d24f718ec26c04cd",
+          "raw_length": 163475
+        }
+      }
+    },
+    {
+      "variant": "packed-royalty-shared",
+      "runtime": 24723,
+      "creation": 25694,
+      "over24576": 147,
+      "object_compiler_runs": 1,
+      "old_tests_executed": 0,
+      "new_evm_tests_executed": 0,
+      "gas_savings_measured": false,
+      "source_adopted": false,
+      "files": {
+        "ZZZRoyaltyRewards.sol": "c1520d0b5a6de6508c82df828ce2b257f4acc10db8b741439a3be6c5e7d49e1a",
+        "PLAN.json": "7a066b47adb8025b7ed06b741b04e45c17724b8e12c4fa8bb4bee13147b12105",
+        "RESULT.json": "adaa493013ffc20f0fba637392727475acc963887f81f2d9d5dcf8c1a0c0119b",
+        "BOUNDS_REVIEW.json": "733a622ff54a05eaa97cfb942bfb652b197d6f8f62832b92df505581376b71f9",
+        "REVIEW.md": "629073475844f16d50e4d52333cd8ee16e4da4b87d784698954034c7706206f3",
+        "SOURCE_DIFF.patch": "bd8ed8b4a9a9402dc5dd4f8b08a8518879d85b1a76134b6942ab8721f7188079",
+        "VARIANT_COMPARISON.json": "1d5b072f507b06ed6e9027321e436cc305c2ba7d556dff4018520dd580964353",
+        "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compiler-input.json.gz": {
+          "compressed_sha256": "f3baa47fda7a1c50f1ca95d7bf50374a2cfc2726b9cce63ccf4087673b509f36",
+          "raw_sha256": "784cc69273d41e9b4370a17baaa357546865b0e1f089c545b4b68101347baaab",
+          "raw_length": 951499
+        },
+        "compiler-output.json.gz": {
+          "compressed_sha256": "46a3f0b8105ae3b7adc456511bf31ffc7db2203edde7dd4f550fbe1929cf17cf",
+          "raw_sha256": "0bab5f551f4fb25a51b2148324cbf1bef8f14b42a04bcc510e01bef6e0af76cd",
+          "raw_length": 162180
+        }
+      }
+    },
+    {
+      "variant": "packed-royalty-assembly",
+      "runtime": 24714,
+      "creation": 25685,
+      "over24576": 138,
+      "object_compiler_runs": 1,
+      "old_tests_executed": 0,
+      "new_evm_tests_executed": 0,
+      "gas_savings_measured": false,
+      "source_adopted": false,
+      "files": {
+        "ZZZRoyaltyRewards.sol": "7010ebc5cc39909b1c70c4b2f9df235ed93e5faa73bffb4d7f8f65c85d4a372e",
+        "PLAN.json": "2fbdcfc343cc2d7ae2dd49b512ea7db25ca78c177193daf5f83e55e8e9986c8c",
+        "RESULT.json": "194814630c916a78336b1f489054f6e50ebfae48b68d2047569e7b2aeb802db4",
+        "BOUNDS_REVIEW.json": "5530cb2d7442ee58e4d8aa646be78c9d9c83a4dbacf69f9f656e96ce17ec9f07",
+        "REVIEW.md": "3b577b0d8aca0045f85050612573213e6d8460682ad7fefa7d9b3821c4be8f2a",
+        "SOURCE_DIFF.patch": "89b986a34b396dd4aa5d9349a7ec9be11c811287f7e009710b4826eacbded036",
+        "VARIANT_COMPARISON.json": "60ad0b9421e2754a072ed9290835664eeed6f44eef3f840129a26b4698591a75",
+        "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compiler-input.json.gz": {
+          "compressed_sha256": "f47c1d4e3685dd8393b2a4c067c68f97f9620e799ca2f05d00cc844c957d024f",
+          "raw_sha256": "0ef82d3ef45ff74f495523df31ded5d2af3b69f431390fd1c637e73b416f66d8",
+          "raw_length": 952014
+        },
+        "compiler-output.json.gz": {
+          "compressed_sha256": "09156028188ce66db4265ab15f7d921d0edc6e1a1418319815123885ec2e925e",
+          "raw_sha256": "bb7c0993d2a80c619679e289a051dcec0b0198623e192f3a55c5cf66ab489a4d",
+          "raw_length": 162144
+        }
+      }
+    }
+  ],
+  "all_size_rejected": true,
+  "normal_profile_or_limit_changed": false,
+  "root_source_edits": false,
+  "actual_evm_runs": 0,
+  "gas_savings_claimed": false,
+  "whole48gate_build_claimed": false,
+  "production_approved": false
+}

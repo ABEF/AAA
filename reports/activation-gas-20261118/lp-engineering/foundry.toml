@@ -1,0 +1,15 @@
+[profile.default]
+src="src"
+test="test"
+out="out"
+libs=["node_modules"]
+evm_version="cancun"
+optimizer=true
+optimizer_runs=1
+optimizer_details={yul=false}
+via_ir=true
+ffi=false
+gas_limit=1000000000
+code_size_limit=1000000
+fs_permissions=[{access="read",path="./fixtures"}]
+remappings=["@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/"]

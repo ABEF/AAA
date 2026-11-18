@@ -1,0 +1,81 @@
+{
+  "scope": "static range/layout proof of rejected engineering candidate; no gas/execution qualification",
+  "fields": [
+    {
+      "astId": 60274,
+      "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+      "label": "cursor",
+      "offset": 0,
+      "slot": "0",
+      "type": "t_uint16"
+    },
+    {
+      "astId": 60276,
+      "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+      "label": "count",
+      "offset": 2,
+      "slot": "0",
+      "type": "t_uint16"
+    },
+    {
+      "astId": 60278,
+      "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+      "label": "weight",
+      "offset": 4,
+      "slot": "0",
+      "type": "t_uint16"
+    },
+    {
+      "astId": 60280,
+      "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+      "label": "initial",
+      "offset": 6,
+      "slot": "0",
+      "type": "t_bool"
+    }
+  ],
+  "retained_original_guards": true,
+  "packing_guards_removed": false,
+  "new_broad_cap_checks_added": false,
+  "width_bits": 16,
+  "largest_possible_written_value": 3000,
+  "cast_cannot_truncate_valid_origin": true,
+  "cursor_origins": [
+    {
+      "site": "_distribute",
+      "proof": "credit validates normalized weight<=3000 and cursor<weight, returns nextCursor<normalized weight; multiplied by unit yields raw afterCursor<eligible raw weight<=3000."
+    },
+    {
+      "site": "canonicalImport asset row",
+      "proof": "header requires canonicalNFTs<=1000 and canonicalWeight<=3*canonicalNFTs; original row accepts cursor<canonicalWeight or exactly0 for zero weight; hence<=2999."
+    }
+  ],
+  "eligibility_origins": [
+    {
+      "site": "addAsset/_enrollWaiting/activate",
+      "proof": "count is activationCount; activate rejects at1000, adds one weight1..3, so count<=1000 and totalWeight<=3000. original _enrollTo count monotonicity/library end cap remain."
+    },
+    {
+      "site": "initial opening",
+      "proof": "openingCount/openingWeight snapshot existing bounded activationCount/totalWeight before a later entrant; same bounds."
+    },
+    {
+      "site": "canonicalActivate",
+      "proof": "canonical header capsNFTs1000; each unique ordinal/weight row is within that inventory and weight0..3; original complete-row, duplicate ordinal/ticket bitmap, total/header and cursor-unit validations remain. Thus imported count<=1000 and summed weight<=3000 even before final equality validation."
+    }
+  ],
+  "initial_flag_origins": [
+    "openingFinalized bool on addAsset",
+    "true when initial allocation is processed",
+    "true on canonical asset import"
+  ],
+  "canonical_atomic_prefund_preserved": "Exact same clear-opening/check source identity/checked(acc+prefund)-liability row assignments remain; cursor cast receives an already validated value. No external calls or new ordering changes introduced.",
+  "runtime_size_pass": false,
+  "runtime": 24818,
+  "runtime_over": 242,
+  "creation": 25789,
+  "root_source_edits": false,
+  "actual_tests_executed": 0,
+  "gas_saving_measured": false,
+  "production_approved": false
+}

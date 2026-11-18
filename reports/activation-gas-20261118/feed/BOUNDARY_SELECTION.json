@@ -1,0 +1,73 @@
+{
+  "baseline_commit": "633f0154f0ddd081f63bbbdd02671b5cb139a063",
+  "existing_fixture": "test/ReferenceExecutionContext.t.sol",
+  "fixture_sha256": "02de7cd31580d16c8e97ea53e9ccc6642733973c1c0d4ec84ee71f9ef7d3e78d",
+  "recommendation": "Prefer the ONE new composite boundary regression plus the focused codec/feed differential evidence and fresh full Entry run. Do not execute all nine older controls merely to refresh dates; select a specific older method only if its uncovered proof obligation or new source change justifies it.",
+  "existing_relevant_methods": [
+    {
+      "contract": "ReferenceExecutionContextTest",
+      "method": "testActualReaderCapturedStateProofMatchesLiveAndHypotheticalReadDoesNotMoveThePool()",
+      "why_affected": "Actual feed proof combines currentETH data, capturedoriginal state and live round without movingpool.",
+      "executed_this_inventory": false
+    },
+    {
+      "contract": "ReferenceExecutionContextTest",
+      "method": "testQuotedReferenceTransitionAllowsRealDownwardTickCrossingAndLiquidityChange()",
+      "why_affected": "Exactdownward crossing storedtick and liquiditychange throughactualcore.",
+      "executed_this_inventory": false
+    },
+    {
+      "contract": "ReferenceExecutionContextTest",
+      "method": "testQuotedReferenceTransitionAllowsRealUpwardTickCrossingAndLiquidityChange()",
+      "why_affected": "Exactupward crossing storedtick and liquiditychange throughactualcore.",
+      "executed_this_inventory": false
+    },
+    {
+      "contract": "ReferenceExecutionContextTest",
+      "method": "testETHObservationCannotChangeEvenWhenTheReferenceTransitionMatches()",
+      "why_affected": "PostswapETH roundchange mustremainblocked.",
+      "executed_this_inventory": false
+    },
+    {
+      "contract": "ReferenceExecutionContextTest",
+      "method": "testSourceKindDisableAndRestoreCannotReviveTheOldExecutionReview()",
+      "why_affected": "Monotoniccontrol revisions cannotbe restoredinsidecallback.",
+      "executed_this_inventory": false
+    },
+    {
+      "contract": "ReferenceExecutionContextTest",
+      "method": "testMutatingCallbackCannotCommitByReadingTheOldCapturedPriceVector()",
+      "why_affected": "Cheapcapturedgetter isnot permissiontosurvive unapprovedmarketstate.",
+      "executed_this_inventory": false
+    },
+    {
+      "contract": "ReferenceExecutionContextTest",
+      "method": "testOnlyPricingOwnsWholeEntryContextAndOnlyTheAuthenticatedVaultManagerCanBorrowIt()",
+      "why_affected": "Owner, borrower and typedmodulepermissions areunchanged.",
+      "executed_this_inventory": false
+    },
+    {
+      "contract": "ReferenceExecutionContextTest",
+      "method": "testCheapCapturedReadsRejectEveryAssetOtherThanNativeETHAndTheFixedZZZ()",
+      "why_affected": "Capturedread identity/decimal selection remainsfixed.",
+      "executed_this_inventory": false
+    },
+    {
+      "contract": "ReferenceExecutionContextTest",
+      "method": "testStandaloneContextsCannotBeBorrowedAndTwoSequentialOperationsRecaptureLivePrices()",
+      "why_affected": "No nestedborrowing, clearedstate or stalepertransactioncache.",
+      "executed_this_inventory": false
+    }
+  ],
+  "proposed_new_method": {
+    "file": "proposed/ActivationExecutionBoundary20261118.t.sol",
+    "sha256": "4aa1f7f578f361630e1cfe043e8546f4168477824a26c95e1e01345c284f6eb3",
+    "contract": "ActivationExecutionBoundary20261118Test",
+    "method": "testExecutionBoundaryRejectionsRollbackThenBothReferenceDirectionsRetry20261118()",
+    "compiled": false,
+    "executed": false,
+    "cases": "Bothswapdirections; fivecallbackfaults each (ETHround, sourcekinddisable+restore, independentexactstate, gasrevision, extraunplannedprimarytrade), full rollback then successfulfreshretry eachdirection.",
+    "limits": "Actualv4Manager/Oracle/feed seams, not completeNFTEntry/accounting or maximum-state gas. MockAccess/Feed/Permit2/adversarialtoken explicit. Governancecontrolmutation isauthorizedfixturebehavior, notanoutsidewalletpermission."
+  },
+  "production_approved": false
+}

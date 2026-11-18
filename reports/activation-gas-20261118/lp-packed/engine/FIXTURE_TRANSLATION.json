@@ -1,0 +1,22 @@
+{
+  "cases": {
+    "owner": {
+      "baseline_rows": 2004,
+      "packed_rows": 2004,
+      "initial_nonzero_carries": 0,
+      "logical_restore_exact": true
+    },
+    "collective": {
+      "baseline_rows": 2004,
+      "packed_rows": 2004,
+      "initial_nonzero_carries": 0,
+      "logical_restore_exact": true
+    }
+  },
+  "seconds": 3.9530000000086147,
+  "slot_footprint_unchanged": true,
+  "high_bits": 128,
+  "low_domain_bits": 256,
+  "compact_max": "340282366920938463463374607431768211455",
+  "zero_wide_signals_compact": true
+}

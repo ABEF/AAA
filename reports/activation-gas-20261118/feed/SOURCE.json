@@ -1,0 +1,10 @@
+{
+  "root_feed_sha256": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+  "isolated_instrumented_copy_sha256": {
+    "BaselineFeed": "db5c5cedc63c3237662eb275c16c52c5e58bf5b1edf4f5f046bf8a29b8302e57",
+    "DeduplicatedFeed": "0b17751ba899cb69b6da635bc519ae328ee5fff1224c57f40b72ec356f30a3ad",
+    "BracketedFeed": "55720d0b527d030c8073e61e08f9672ff14aeaa4fd05ad24794f5b32029f81d1"
+  },
+  "production_source_edited": false,
+  "normal_profile_preserved": true
+}

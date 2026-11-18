@@ -116,3 +116,6 @@ collection, plus headers/NFT/other domains; sparse optimization is deferred.
 Target gas/economics, long-lived checkpoint/storage/recovery, actual dependencies
 and independent audit remain open. No deployment, sealing, website/service change,
 old-chain reset or signing capability change accompanies source publication.
+
+
+The fresh `activation-gas-20261118` build preserves public accounting7/LP-allocation1/schema17/canonicalV10 records and the exact payload5 Royalty creation bytes. Only private LP carry encoding is compacted with a full-width spill; pending/high128/low256 logical values and arithmetic are unchanged. New exact runtime/source pins are required. Never copy old EVM carry slots into this representation or relabel old snapshots/journals. See the [source and verification scope](../reports/activation-gas-20261118/REVIEW.md). Public input/permission/economic rules are unchanged; complete gas/recovery/operating acceptance is separate.

@@ -1,0 +1,45 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--offline",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\activation-gas-20261118\\lp-packed",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-path",
+    "test/LPPackedEngineering.t.sol",
+    "--match-contract",
+    "LPPackedEngineeringTest",
+    "--match-test",
+    "^testPacked",
+    "--json",
+    "-vv"
+  ],
+  "source_sha256": {
+    "src/ExactLPAllocationOriginal.sol": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+    "src/ExactLPAllocationPacked.sol": "b688f3a9bcdbb1cdd927b5d18207fe066bcb2e34ca0cc29b465b19b874501392",
+    "src/LPHeadlineHosts.sol": "c426886cceb4ec93803f98410c9750a85b11f520d61a45b96e27d9b94bae3693",
+    "test/LPPackedEngineering.t.sol": "d188c8cdf371bd5d07fa448006407b7a7193098c34e38c606e41fc19f795f782",
+    "test/PackedTestHosts.sol": "38136a5599aed368f65c8140f659b2c650c7098a2959327ff65320a54e179c97",
+    "fixtures/collective-baseline.bin": "df924a3fe09545b07b40de107a3b9377dc55367e2c354ab330185973b7e94f2c",
+    "fixtures/collective-packed.bin": "df924a3fe09545b07b40de107a3b9377dc55367e2c354ab330185973b7e94f2c",
+    "fixtures/owner-baseline.bin": "e2195959757331ef3dcce29cc79d9fe93f7dee9779ca4305998d4efa7dee8cea",
+    "fixtures/owner-newweight.txt": "8706a154d4405e78e81792e5c9d3de5741e6ea15364f564ff959814578c8da2e",
+    "fixtures/owner-packed.bin": "e2195959757331ef3dcce29cc79d9fe93f7dee9779ca4305998d4efa7dee8cea",
+    "node_modules/@openzeppelin/contracts/utils/Panic.sol": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+    "node_modules/@openzeppelin/contracts/utils/math/Math.sol": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+    "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9"
+  },
+  "protected_root_before": {
+    "src/libraries/ExactLPAllocation.sol": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+    "foundry.toml": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72",
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "engineering_only": true,
+  "root_source_edits": false,
+  "six_changed_candidate_methods": true
+}

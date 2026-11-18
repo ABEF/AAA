@@ -1,0 +1,17 @@
+{
+  "NativeFeeRewards.rawTreeDigest_exact_copied_sha256": "c1c8b93264cbebda3a32b7c1c846f1d07fc5762a8977783536a1aadf10d99d98",
+  "ExactLPAllocationHarness_exact_copied_sha256": "2af2a43c8f639ea0bd41ac1d4c63fdc6586f3cd6f012264cd597b71e955b0acd",
+  "root_test_source_sha256": {
+    "test/NativeFeeRewards.t.sol": "dc1bdaae54a25ba1dc2a51f5240493c520e8c10f2e6f5945221127bd8230250b",
+    "test/ExactLPAllocation.t.sol": "adf472154ff26f47f2f8d3cc187d431ce2c60aeabaae6388d56c02a6584b7ca3"
+  },
+  "only_current_adapter_copied_frozen_baseline_not_touched": true,
+  "old_test_methods_executed": 0,
+  "actual_copied_adapter_compilation_pass": true,
+  "adapter_compile_result": "adapter-compile/RESULT.json",
+  "NativeFee_rawTreeDigest_logical_ABI_order_exact": true,
+  "ExactLP_node_logical_return_order_exact": true,
+  "ExactLP_digest_logical_ABI_order_exact": true,
+  "all_old_test_methods_not_selected": true,
+  "frozen_baseline_adapter_unchanged_section": true
+}

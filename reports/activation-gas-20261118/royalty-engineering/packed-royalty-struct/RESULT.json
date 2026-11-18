@@ -1,0 +1,25 @@
+{
+  "scope": "one revised struct engineering object-size probe only",
+  "exit_code": 0,
+  "seconds": 3.0469999999913853,
+  "errors": [],
+  "root_all100_sources_unchanged": true,
+  "protected_four_unchanged": true,
+  "compiler_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+  "compiler_output_sha256": "fce1e010dca8b659242604ae952f08d5de94a280566becb1d24f718ec26c04cd",
+  "actual_tests_executed": 0,
+  "production_approved": false,
+  "runtime": 24818,
+  "creation": 25789,
+  "runtime_margin": -242,
+  "runtime_size_pass": false,
+  "wire_abi_identical_except_getter_input_names": true,
+  "new_fields": [
+    {
+      "label": "assetStatus",
+      "slot": "16",
+      "offset": 0,
+      "type": "t_mapping(t_address,t_struct(AssetStatus)60281_storage)"
+    }
+  ]
+}

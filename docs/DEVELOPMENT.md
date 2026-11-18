@@ -298,6 +298,7 @@ classify the assertion and its actual imports before adapting or retiring it.
 
 | Test group | Maintained purpose |
 | --- | --- |
+| ActivationExecutionBoundary20261118 / activation-gas source-scoped components | One new actual-v4 callback regression, exact Oracle codec/feed differential checks and packed LP logical-state/canonical checks. The existing1,000-NFT fixture runs only because four source changes affect it. Current digest adapters read logical carry; frozen baselines stay unchanged. Never add repeated stages or component gas into whole20M qualification. |
 | HistoricalExactRoyaltyAllocationV4 / RoyaltyAudit20261105 | Raw-tree allocator methods explicitly import frozen V4 and are historical, not round2 regression coverage. Changed cooling helpers use recorded slots/account cooling; old slot8/node guesses are removed. Keep old V9 producer evidence source-scoped. |
 | RoyaltyRoundPrototype20261118 / RoyaltyRoundsIntegration20261118 / RoyaltyRoundsCapacity20261118 | Current allocation2: independent integer oracle and wrap/cohort cases; actual ledger/canonical/fault regressions; separate1,000-NFT full Entry/gas exports. Historical methods remain unrun unless affected source/fixture work justifies selection. |
 | RoyaltyBalancePolicy20261118 / test_factory_payload5 | Separate activation-read cap, original gas tuple/revision, exact current payload/runtime identity and unsigned preparation. Capacity/settings alone never qualify20M. |

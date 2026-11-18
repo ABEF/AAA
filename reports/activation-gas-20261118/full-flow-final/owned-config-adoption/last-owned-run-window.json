@@ -1,0 +1,8 @@
+{
+  "stage": "full01",
+  "source_freeze_sha256": "478eca1596d81f2d5de12b12a19397fca1ca0006a1d1e31e4490dab16b37d494",
+  "owned_config_execution_granted": true,
+  "root_config_write_authorized": false,
+  "scope": "Root explicitly authorizes one actualmethod afterexactownedconfigpreflight. No publicdeployment/signing or environmentadoption.",
+  "production_approved": false
+}

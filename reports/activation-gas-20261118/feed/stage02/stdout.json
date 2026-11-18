@@ -1,0 +1,7 @@
+Compiler run failed:
+Error (9582): Member "MathOverflowedMulDiv" not found or not visible after argument-dependent lookup in type(library Math).
+   --> test/FeedDifferential.t.sol:131:23:
+    |
+131 |   require(bytes4(aa)==Math.MathOverflowedMulDiv.selector,"baseline overflow");
+    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+

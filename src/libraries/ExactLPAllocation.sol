@@ -17,7 +17,7 @@ library ExactLPAllocation {
 
     /// @dev Fairness phase only, never money or a fractional reserved claim.
     /// With subtree weight W>0, phase = high/Q + low/(Q*W).
-    struct Carry { uint128 high; uint256 low; }
+    struct Carry { uint256 packed; uint256 wide; }
     struct Book {
         mapping(uint256 => uint256) pending;
         mapping(uint256 => Carry) carry;
@@ -86,8 +86,9 @@ library ExactLPAllocation {
             // remain at a zero-weight leaf and are read after this loop.
             if (amount != 0) {
                 Carry storage c = book.carry[node];
+                (uint128 phaseHigh, uint256 phaseLow) = readCarry(c);
                 (uint256 left, uint256 other,,) = split(amount, tree.weights[node << 1],
-                    tree.weights[node], c.high, c.low);
+                    tree.weights[node], phaseHigh, phaseLow);
                 amount = right ? other : left;
             }
             node = (node << 1) | (right ? 1 : 0);
@@ -146,11 +147,12 @@ library ExactLPAllocation {
             bool goRight = ((ordinal - 1) & mask) != 0;
             if (incoming != 0) {
                 Carry storage c = book.carry[node];
+                (uint128 phaseHigh, uint256 phaseLow) = readCarry(c);
                 (uint256 left, uint256 right, uint128 high, uint256 low) =
-                    split(incoming, tree.weights[node << 1], tree.weights[node], c.high, c.low);
+                    split(incoming, tree.weights[node << 1], tree.weights[node], phaseHigh, phaseLow);
                 uint256 sibling = goRight ? left : right;
                 if (sibling != 0) book.pending[(node << 1) | (goRight ? 0 : 1)] += sibling;
-                c.high = high; c.low = low;
+                writeCarry(c, high, low);
                 incoming = goRight ? right : left;
             }
             node = (node << 1) | (goRight ? 1 : 0);
@@ -158,11 +160,27 @@ library ExactLPAllocation {
     }
 
     function _rebase(Carry storage carry, uint256 oldWeight, uint256 newWeight) private {
-        uint256 low = carry.low;
+        (uint128 high, uint256 low) = readCarry(carry);
         if (low == 0) return;
         // Keep high even through an empty cohort. Clearing it would permit
         // genuine weight changes to repeatedly restart a whole-unit phase.
-        carry.low = oldWeight == 0 || newWeight == 0 ? 0 : Math.mulDiv(low, newWeight, oldWeight);
+        writeCarry(carry, high, oldWeight == 0 || newWeight == 0 ? 0 : Math.mulDiv(low, newWeight, oldWeight));
+    }
+
+    /// @dev Logical phase is full width. Nonzero wide is the >=2**128 spill.
+    function readCarry(Carry storage c) internal view returns(uint128 high, uint256 low) {
+        uint256 packed = c.packed;
+        uint256 wide = c.wide;
+        high = uint128(packed);
+        low = wide == 0 ? packed >> 128 : wide;
+    }
+    function writeCarry(Carry storage c, uint128 high, uint256 low) internal {
+        uint256 packed = uint256(high);
+        if (low <= type(uint128).max) {
+            packed |= low << 128;
+            if(c.wide != 0) delete c.wide;
+        } else c.wide = low;
+        c.packed = packed;
     }
 
     function _leaf(uint256 ordinal) private pure returns (uint256) {

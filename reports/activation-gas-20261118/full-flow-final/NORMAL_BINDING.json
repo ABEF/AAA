@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "source_freeze_sha256": "478eca1596d81f2d5de12b12a19397fca1ca0006a1d1e31e4490dab16b37d494",
+  "compiler_input_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\activation-gas-20261118\\build\\final01\\compiler-input.json",
+  "compiler_input_sha256": "bebad6dcf376e8631c9a67bb1c72bb5e0f0a0f7f5de8d06dc45e9793a31c49f5",
+  "compiler_output_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\activation-gas-20261118\\build\\final01\\compiler-output.json",
+  "compiler_output_sha256": "e3d023ff098824048842003477e4661847062c94a3f465fc2d44571623129735",
+  "normal_size_evidence_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\activation-gas-20261118\\build\\final01\\normal-size-evidence.json",
+  "normal_size_evidence_sha256": "7b01c1ceb9229297c1c495398615eeebc9018f79853b44d9afc6b4af88c6dd8a",
+  "normal_gate_count": 48,
+  "normal_build_pass": true,
+  "production_approved": false
+}

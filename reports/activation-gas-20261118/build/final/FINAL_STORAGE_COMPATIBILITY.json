@@ -1,0 +1,928 @@
+{
+  "baseline": [
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "_status",
+      "slot": "0",
+      "offset": 0,
+      "type": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "assets",
+      "slot": "1",
+      "offset": 0,
+      "type": {
+        "encoding": "dynamic_array",
+        "label": "address[]",
+        "numberOfBytes": "32",
+        "base": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "isAsset",
+      "slot": "2",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(address => bool)",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        },
+        "value": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "liabilities",
+      "slot": "3",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        },
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "orphaned",
+      "slot": "4",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        },
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "ownerBooks",
+      "slot": "5",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(uint256 => struct ExactLPAllocation.Tree)",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "value": {
+          "encoding": "inplace",
+          "label": "struct ExactLPAllocation.Tree",
+          "numberOfBytes": "224",
+          "members": [
+            {
+              "label": "weights",
+              "slot": "0",
+              "offset": 0,
+              "type": {
+                "encoding": "mapping",
+                "label": "mapping(uint256 => uint256)",
+                "numberOfBytes": "32",
+                "key": {
+                  "encoding": "inplace",
+                  "label": "uint256",
+                  "numberOfBytes": "32"
+                },
+                "value": {
+                  "encoding": "inplace",
+                  "label": "uint256",
+                  "numberOfBytes": "32"
+                }
+              }
+            },
+            {
+              "label": "books",
+              "slot": "1",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "struct ExactLPAllocation.Book[2]",
+                "numberOfBytes": "192",
+                "base": {
+                  "encoding": "inplace",
+                  "label": "struct ExactLPAllocation.Book",
+                  "numberOfBytes": "96",
+                  "members": [
+                    {
+                      "label": "pending",
+                      "slot": "0",
+                      "offset": 0,
+                      "type": {
+                        "encoding": "mapping",
+                        "label": "mapping(uint256 => uint256)",
+                        "numberOfBytes": "32",
+                        "key": {
+                          "encoding": "inplace",
+                          "label": "uint256",
+                          "numberOfBytes": "32"
+                        },
+                        "value": {
+                          "encoding": "inplace",
+                          "label": "uint256",
+                          "numberOfBytes": "32"
+                        }
+                      }
+                    },
+                    {
+                      "label": "carry",
+                      "slot": "1",
+                      "offset": 0,
+                      "type": {
+                        "encoding": "mapping",
+                        "label": "mapping(uint256 => struct ExactLPAllocation.Carry)",
+                        "numberOfBytes": "32",
+                        "key": {
+                          "encoding": "inplace",
+                          "label": "uint256",
+                          "numberOfBytes": "32"
+                        },
+                        "value": {
+                          "encoding": "inplace",
+                          "label": "struct ExactLPAllocation.Carry",
+                          "numberOfBytes": "64",
+                          "members": [
+                            {
+                              "label": "high",
+                              "slot": "0",
+                              "offset": 0,
+                              "type": {
+                                "encoding": "inplace",
+                                "label": "uint128",
+                                "numberOfBytes": "16"
+                              }
+                            },
+                            {
+                              "label": "low",
+                              "slot": "1",
+                              "offset": 0,
+                              "type": {
+                                "encoding": "inplace",
+                                "label": "uint256",
+                                "numberOfBytes": "32"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "label": "outstanding",
+                      "slot": "2",
+                      "offset": 0,
+                      "type": {
+                        "encoding": "inplace",
+                        "label": "uint256",
+                        "numberOfBytes": "32"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "collectiveBook",
+      "slot": "6",
+      "offset": 0,
+      "type": {
+        "encoding": "inplace",
+        "label": "struct ExactLPAllocation.Tree",
+        "numberOfBytes": "224",
+        "members": [
+          {
+            "label": "weights",
+            "slot": "0",
+            "offset": 0,
+            "type": {
+              "encoding": "mapping",
+              "label": "mapping(uint256 => uint256)",
+              "numberOfBytes": "32",
+              "key": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              },
+              "value": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            }
+          },
+          {
+            "label": "books",
+            "slot": "1",
+            "offset": 0,
+            "type": {
+              "encoding": "inplace",
+              "label": "struct ExactLPAllocation.Book[2]",
+              "numberOfBytes": "192",
+              "base": {
+                "encoding": "inplace",
+                "label": "struct ExactLPAllocation.Book",
+                "numberOfBytes": "96",
+                "members": [
+                  {
+                    "label": "pending",
+                    "slot": "0",
+                    "offset": 0,
+                    "type": {
+                      "encoding": "mapping",
+                      "label": "mapping(uint256 => uint256)",
+                      "numberOfBytes": "32",
+                      "key": {
+                        "encoding": "inplace",
+                        "label": "uint256",
+                        "numberOfBytes": "32"
+                      },
+                      "value": {
+                        "encoding": "inplace",
+                        "label": "uint256",
+                        "numberOfBytes": "32"
+                      }
+                    }
+                  },
+                  {
+                    "label": "carry",
+                    "slot": "1",
+                    "offset": 0,
+                    "type": {
+                      "encoding": "mapping",
+                      "label": "mapping(uint256 => struct ExactLPAllocation.Carry)",
+                      "numberOfBytes": "32",
+                      "key": {
+                        "encoding": "inplace",
+                        "label": "uint256",
+                        "numberOfBytes": "32"
+                      },
+                      "value": {
+                        "encoding": "inplace",
+                        "label": "struct ExactLPAllocation.Carry",
+                        "numberOfBytes": "64",
+                        "members": [
+                          {
+                            "label": "high",
+                            "slot": "0",
+                            "offset": 0,
+                            "type": {
+                              "encoding": "inplace",
+                              "label": "uint128",
+                              "numberOfBytes": "16"
+                            }
+                          },
+                          {
+                            "label": "low",
+                            "slot": "1",
+                            "offset": 0,
+                            "type": {
+                              "encoding": "inplace",
+                              "label": "uint256",
+                              "numberOfBytes": "32"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "label": "outstanding",
+                    "slot": "2",
+                    "offset": 0,
+                    "type": {
+                      "encoding": "inplace",
+                      "label": "uint256",
+                      "numberOfBytes": "32"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "directIndividual",
+      "slot": "13",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(uint256 => mapping(address => uint256))",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "value": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "directCollective",
+      "slot": "14",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(uint256 => mapping(address => uint256))",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "value": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "directLiabilities",
+      "slot": "15",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        },
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "rewardBucket",
+      "slot": "16",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(uint256 => uint256)",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "converter",
+      "slot": "17",
+      "offset": 0,
+      "type": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      }
+    }
+  ],
+  "final": [
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "_status",
+      "slot": "0",
+      "offset": 0,
+      "type": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "assets",
+      "slot": "1",
+      "offset": 0,
+      "type": {
+        "encoding": "dynamic_array",
+        "label": "address[]",
+        "numberOfBytes": "32",
+        "base": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "isAsset",
+      "slot": "2",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(address => bool)",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        },
+        "value": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "liabilities",
+      "slot": "3",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        },
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "orphaned",
+      "slot": "4",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        },
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "ownerBooks",
+      "slot": "5",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(uint256 => struct ExactLPAllocation.Tree)",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "value": {
+          "encoding": "inplace",
+          "label": "struct ExactLPAllocation.Tree",
+          "numberOfBytes": "224",
+          "members": [
+            {
+              "label": "weights",
+              "slot": "0",
+              "offset": 0,
+              "type": {
+                "encoding": "mapping",
+                "label": "mapping(uint256 => uint256)",
+                "numberOfBytes": "32",
+                "key": {
+                  "encoding": "inplace",
+                  "label": "uint256",
+                  "numberOfBytes": "32"
+                },
+                "value": {
+                  "encoding": "inplace",
+                  "label": "uint256",
+                  "numberOfBytes": "32"
+                }
+              }
+            },
+            {
+              "label": "books",
+              "slot": "1",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "struct ExactLPAllocation.Book[2]",
+                "numberOfBytes": "192",
+                "base": {
+                  "encoding": "inplace",
+                  "label": "struct ExactLPAllocation.Book",
+                  "numberOfBytes": "96",
+                  "members": [
+                    {
+                      "label": "pending",
+                      "slot": "0",
+                      "offset": 0,
+                      "type": {
+                        "encoding": "mapping",
+                        "label": "mapping(uint256 => uint256)",
+                        "numberOfBytes": "32",
+                        "key": {
+                          "encoding": "inplace",
+                          "label": "uint256",
+                          "numberOfBytes": "32"
+                        },
+                        "value": {
+                          "encoding": "inplace",
+                          "label": "uint256",
+                          "numberOfBytes": "32"
+                        }
+                      }
+                    },
+                    {
+                      "label": "carry",
+                      "slot": "1",
+                      "offset": 0,
+                      "type": {
+                        "encoding": "mapping",
+                        "label": "mapping(uint256 => struct ExactLPAllocation.Carry)",
+                        "numberOfBytes": "32",
+                        "key": {
+                          "encoding": "inplace",
+                          "label": "uint256",
+                          "numberOfBytes": "32"
+                        },
+                        "value": {
+                          "encoding": "inplace",
+                          "label": "struct ExactLPAllocation.Carry",
+                          "numberOfBytes": "64",
+                          "members": [
+                            {
+                              "label": "packed",
+                              "slot": "0",
+                              "offset": 0,
+                              "type": {
+                                "encoding": "inplace",
+                                "label": "uint256",
+                                "numberOfBytes": "32"
+                              }
+                            },
+                            {
+                              "label": "wide",
+                              "slot": "1",
+                              "offset": 0,
+                              "type": {
+                                "encoding": "inplace",
+                                "label": "uint256",
+                                "numberOfBytes": "32"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "label": "outstanding",
+                      "slot": "2",
+                      "offset": 0,
+                      "type": {
+                        "encoding": "inplace",
+                        "label": "uint256",
+                        "numberOfBytes": "32"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "collectiveBook",
+      "slot": "6",
+      "offset": 0,
+      "type": {
+        "encoding": "inplace",
+        "label": "struct ExactLPAllocation.Tree",
+        "numberOfBytes": "224",
+        "members": [
+          {
+            "label": "weights",
+            "slot": "0",
+            "offset": 0,
+            "type": {
+              "encoding": "mapping",
+              "label": "mapping(uint256 => uint256)",
+              "numberOfBytes": "32",
+              "key": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              },
+              "value": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            }
+          },
+          {
+            "label": "books",
+            "slot": "1",
+            "offset": 0,
+            "type": {
+              "encoding": "inplace",
+              "label": "struct ExactLPAllocation.Book[2]",
+              "numberOfBytes": "192",
+              "base": {
+                "encoding": "inplace",
+                "label": "struct ExactLPAllocation.Book",
+                "numberOfBytes": "96",
+                "members": [
+                  {
+                    "label": "pending",
+                    "slot": "0",
+                    "offset": 0,
+                    "type": {
+                      "encoding": "mapping",
+                      "label": "mapping(uint256 => uint256)",
+                      "numberOfBytes": "32",
+                      "key": {
+                        "encoding": "inplace",
+                        "label": "uint256",
+                        "numberOfBytes": "32"
+                      },
+                      "value": {
+                        "encoding": "inplace",
+                        "label": "uint256",
+                        "numberOfBytes": "32"
+                      }
+                    }
+                  },
+                  {
+                    "label": "carry",
+                    "slot": "1",
+                    "offset": 0,
+                    "type": {
+                      "encoding": "mapping",
+                      "label": "mapping(uint256 => struct ExactLPAllocation.Carry)",
+                      "numberOfBytes": "32",
+                      "key": {
+                        "encoding": "inplace",
+                        "label": "uint256",
+                        "numberOfBytes": "32"
+                      },
+                      "value": {
+                        "encoding": "inplace",
+                        "label": "struct ExactLPAllocation.Carry",
+                        "numberOfBytes": "64",
+                        "members": [
+                          {
+                            "label": "packed",
+                            "slot": "0",
+                            "offset": 0,
+                            "type": {
+                              "encoding": "inplace",
+                              "label": "uint256",
+                              "numberOfBytes": "32"
+                            }
+                          },
+                          {
+                            "label": "wide",
+                            "slot": "1",
+                            "offset": 0,
+                            "type": {
+                              "encoding": "inplace",
+                              "label": "uint256",
+                              "numberOfBytes": "32"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "label": "outstanding",
+                    "slot": "2",
+                    "offset": 0,
+                    "type": {
+                      "encoding": "inplace",
+                      "label": "uint256",
+                      "numberOfBytes": "32"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "directIndividual",
+      "slot": "13",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(uint256 => mapping(address => uint256))",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "value": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "directCollective",
+      "slot": "14",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(uint256 => mapping(address => uint256))",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "value": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "directLiabilities",
+      "slot": "15",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        },
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "rewardBucket",
+      "slot": "16",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(uint256 => uint256)",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "value": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRewards.sol:ZZZRewards",
+      "label": "converter",
+      "slot": "17",
+      "offset": 0,
+      "type": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      }
+    }
+  ],
+  "only_carry_encoding_changes": true,
+  "two_slot_carry_footprint_preserved": true,
+  "logical_high128_low256_wire_preserved": true,
+  "not_hot_upgrade_or_raw_state_import": true
+}

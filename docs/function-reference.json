@@ -26,7 +26,7 @@
       "src/ZZZNFT.sol": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
       "src/ZZZNFTCanonical.sol": "fcc849cfa4689f1a22e6e006d286ec73bea60e660713adc5d01b6a2f90e2245a",
       "src/ZZZNFTMetadata.sol": "d12e430a81d3271313d854d67f7f25468384c30fc7f753eced3f315fb9e11cbe",
-      "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+      "src/ZZZOracle.sol": "bcefb1381db8cfdcfef05dd9fad9d7d83f1fdc27a016bf17056b89e18cb8649e",
       "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
       "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
       "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
@@ -40,11 +40,11 @@
       "src/ZZZSeaDropMint.sol": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
       "src/ZZZStrategy.sol": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
-      "src/ZZZV4SpotPriceFeed.sol": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+      "src/ZZZV4SpotPriceFeed.sol": "d3d690d1ed6086b441b9c83fac9d78352763cefae32b47869d2a69b31cac32c7",
       "src/ZZZVault.sol": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7",
       "src/ZZZVaultCanonical.sol": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
       "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
-      "src/base/ZZZExactLPRewardsCanonical.sol": "b9d283306bae951e48b8d4c990c0e67a3852b898ffc895c87b6dec26ae4fd625",
+      "src/base/ZZZExactLPRewardsCanonical.sol": "fb244471d61a345a513f1f86f5544764714d59e353c01b3253cfbbac3e728b6a",
       "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
       "src/base/ZZZRewardConverter.sol": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
       "src/base/ZZZSeaDropToken.sol": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
@@ -57,7 +57,7 @@
       "src/interfaces/IZZZSeaDrop.sol": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
       "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
       "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
-      "src/libraries/ExactLPAllocation.sol": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+      "src/libraries/ExactLPAllocation.sol": "a56c1c15d872318cd224f0db55230e5881ab929ebf88045ac118456a617cd62a",
       "src/libraries/ExactRoyaltyAllocation.sol": "d2e761e976697aadae10c731914c017e5a0a200edfdf16a7e9258302d708e0fe",
       "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
       "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
@@ -107,9 +107,9 @@
       "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5"
     },
     "build_input_sha256": {
+      "foundry.toml": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72",
       "package-lock.json": "4f88f4ce04a06f93158e3def09b94414f2093745964e1996f207b180e8cc7a11",
       "package.json": "932d4b2f7dd67c119223d3b7aaa667f3e7676320398c2aac0a1b56173973d083",
-      "foundry.toml": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72",
       "scripts/install-deps.sh": "e011138120640a9a93de13751282fbbf630055e51b1bbc583d76da281a38d0b7"
     },
     "compiler_settings": {
@@ -255,9 +255,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "d23a5b9aa52c2d4e44d0351a4edcd50778cce5f0626c8669737330c165ff735a",
-    "compiler_output_sha256": "19130b2feceb1742cb2300598f0359579d02f6f038853b3d87a11baeec46eef3",
-    "size_evidence_sha256": "12d585f6a1ccd537709e8f23f43ea90c4cef32198ddc82bfd0c63701b1967992",
+    "compiler_input_sha256": "bebad6dcf376e8631c9a67bb1c72bb5e0f0a0f7f5de8d06dc45e9793a31c49f5",
+    "compiler_output_sha256": "e3d023ff098824048842003477e4661847062c94a3f465fc2d44571623129735",
+    "size_evidence_sha256": "7b01c1ceb9229297c1c495398615eeebc9018f79853b44d9afc6b4af88c6dd8a",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",

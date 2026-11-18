@@ -1,0 +1,19 @@
+{
+  "results": [
+    {
+      "tree": "actual999owner",
+      "baseline": 1303448,
+      "packed": 1062543,
+      "saving": 240905
+    },
+    {
+      "tree": "actual999collective",
+      "baseline": 1140048,
+      "packed": 975668,
+      "saving": 164380
+    }
+  ],
+  "combined_saving": 405285,
+  "whole_activation_qualified": false,
+  "engineering_only": true
+}

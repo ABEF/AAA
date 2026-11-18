@@ -275,3 +275,23 @@ test/ManagerPlacementProofReuse20261118.t.sol -text whitespace=cr-at-eol
 test/RoyaltyAudit20261105.t.sol -text whitespace=cr-at-eol
 docs/ROYALTY_SETTLEMENT.md -text whitespace=cr-at-eol
 docs/DEVELOPMENT.md -text whitespace=cr-at-eol
+
+reports/activation-gas-20261118/** -text whitespace=cr-at-eol
+
+src/ZZZOracle.sol -text whitespace=cr-at-eol
+
+src/ZZZV4SpotPriceFeed.sol -text whitespace=cr-at-eol
+
+src/base/ZZZExactLPRewardsCanonical.sol -text whitespace=cr-at-eol
+
+src/libraries/ExactLPAllocation.sol -text whitespace=cr-at-eol
+
+test/ActivationExecutionBoundary20261118.t.sol -text whitespace=cr-at-eol
+
+test/ExactLPAllocation.t.sol -text whitespace=cr-at-eol
+
+test/NativeFeeRewards.t.sol -text whitespace=cr-at-eol
+
+tests_python/test_activation_build20261118.py -text whitespace=cr-at-eol
+
+docs/EXACT_LP_ALLOCATION.md -text whitespace=cr-at-eol

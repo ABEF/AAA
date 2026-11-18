@@ -1,0 +1,60 @@
+{
+  "kind": "isolated_source_copy_only",
+  "baseline_feed_sha256": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+  "candidate_sha256": "d3d690d1ed6086b441b9c83fac9d78352763cefae32b47869d2a69b31cac32c7",
+  "production_source_edited": false,
+  "distinct_new_methods": 7,
+  "unchanged_old_methods_executed": 0,
+  "stage01": {
+    "actual": 6,
+    "passed": 4,
+    "failed": 2,
+    "reason": "Test wrongly required identical rejection bytes for out-of-domain quote; no accepted value mismatch found."
+  },
+  "stage02": {
+    "actual": 0,
+    "reason": "New diagnostic test used absent old Math error name; OZ version returns Panic."
+  },
+  "stage03": {
+    "actual": 3,
+    "passed": 3,
+    "prior4_reused_with_exact_feed_source_and_test_body_scope": true
+  },
+  "quote_equation": "floor(floor(ETHUSD*10**d*B/R)/1e18)=floor(floor(ETHUSD*B/R)/10**(18-d)), for0<=d<=18",
+  "rejection_difference": "At impossible quotedUSD>1e36, old inflated mulDiv can overflowPanic(0x11), new reduced intermediate instead reachesInvalidObservation; both refuse. Oracle wrappers map failure toInvalidPrice eitherway.",
+  "all_original_external_call_guards_retained": true,
+  "forward_tick_bracket_rejected_for_cost": true,
+  "coldproof_gas_baseline_vs_dedup": [
+    [
+      121154,
+      112287
+    ],
+    [
+      107210,
+      105842
+    ],
+    [
+      107216,
+      105849
+    ],
+    [
+      107264,
+      105896
+    ],
+    [
+      111215,
+      109847
+    ]
+  ],
+  "savings_per_proof": [
+    8867,
+    1368,
+    1367,
+    1368,
+    1368
+  ],
+  "one_million_savings_not_demonstrated": true,
+  "normal_uninstrumented_size_and_full_activation_gas_unverified": true,
+  "baseline_commit": "633f0154f0ddd081f63bbbdd02671b5cb139a063",
+  "isolated_feed_sources_unchanged_between_stages": true
+}

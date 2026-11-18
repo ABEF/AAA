@@ -149,3 +149,7 @@ See the [deployment Todo](../TODO.md#task-deployment-initcode),
 [current profile](POSITION_V7.md), [operator manual](OPERATOR_MANUAL.md), and
 [release approval record](RELEASE_CHECKLIST.md). Actual providers, authorities,
 OpenSea integration, operating workloads and independent audit remain separate.
+
+
+The fresh `activation-gas-20261118` build preserves public accounting7/LP-allocation1/schema17/canonicalV10 records and the exact payload5 Royalty creation bytes. Only private LP carry encoding is compacted with a full-width spill; pending/high128/low256 logical values and arithmetic are unchanged. New exact runtime/source pins are required. Never copy old EVM carry slots into this representation or relabel old snapshots/journals. See the [source and verification scope](../reports/activation-gas-20261118/REVIEW.md). Public input/permission/economic rules are unchanged; complete gas/recovery/operating acceptance is separate.
+The payload5 artifact/helper remains byte-identical to its royalty-rounds source family; the new complete constructor graph independently verifies that same creation hash. No payload6 or new data child is introduced. Its manifest's original100-source inventory remains historical provenance; the new complete graph has its own independent current100-source inventory.

@@ -1,0 +1,8 @@
+test_factory5_creation_parts_and_native_identity_are_exactly_preserved (tests_python.test_activation_build20261118.ActivationBuild20261118Tests.test_factory5_creation_parts_and_native_identity_are_exactly_preserved) ... ok
+test_historical_royalty_loader_stays_exact_and_cannot_replace_current_source (tests_python.test_activation_build20261118.ActivationBuild20261118Tests.test_historical_royalty_loader_stays_exact_and_cannot_replace_current_source) ... ok
+test_new_current_build_authenticates_all_sources_and_48_normal_gates (tests_python.test_activation_build20261118.ActivationBuild20261118Tests.test_new_current_build_authenticates_all_sources_and_48_normal_gates) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 4.233s
+
+OK

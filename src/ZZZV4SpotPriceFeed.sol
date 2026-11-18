@@ -82,9 +82,10 @@ contract ZZZV4SpotPriceFeed {
         bytes32 id = poolId;
         bytes memory data = _read(c.stateView,abi.encodeWithSelector(SLOT0,id),128);
         (uint256 raw,int256 tick,uint256 protocol,uint256 lpFee) = abi.decode(data,(uint256,int256,uint256,uint256));
-        if (raw < TickMath.MIN_SQRT_PRICE || raw >= TickMath.MAX_SQRT_PRICE ||
-            tick < TickMath.MIN_TICK || tick > TickMath.MAX_TICK || protocol > type(uint24).max ||
-            (protocol & 0xfff) > 1000 || (protocol >> 12) > 1000 || lpFee != c.key.fee)
+        // Reject noncanonical wide words before casts. Shared state validation
+        // below still checks price/tick/fees/liquidity and crossing consistency.
+        if (raw > type(uint160).max || tick < type(int24).min || tick > type(int24).max ||
+            protocol > type(uint24).max || lpFee > type(uint24).max)
             revert InvalidObservation();
         uint256 liquidity = _word(c.stateView,abi.encodeWithSelector(LIQUIDITY,id));
         if (liquidity > type(uint128).max) revert InvalidObservation();
@@ -114,15 +115,15 @@ contract ZZZV4SpotPriceFeed {
         usd = uint256(answer)*factor; started = s; updated = u; identity = keccak256(data);
     }
     function _quote(uint160 sqrt,uint256 ethUSD) private view returns(uint256 usd) {
-        // sqrt describes raw ZZZ/ETH; invert it. Fold the token-decimal factor
-        // into the numerator before division to avoid first rounding ETH to wei.
-        uint256 numerator = ethUSD*(10**zzzDecimals);
+        // sqrt describes raw ZZZ/ETH; invert it. Since10**decimals divides1e18,
+        // moving that exact divisor after mulDiv preserves every whole USD18 unit.
+        uint256 divisor = 10**(18-zzzDecimals);
         if (sqrt <= type(uint128).max) {
             uint256 ratio = uint256(sqrt)*sqrt;
-            usd = Math.mulDiv(numerator,uint256(1)<<192,ratio)/1e18;
+            usd = Math.mulDiv(ethUSD,uint256(1)<<192,ratio)/divisor;
         } else {
             uint256 ratio = Math.mulDiv(sqrt,sqrt,uint256(1)<<64);
-            usd = Math.mulDiv(numerator,uint256(1)<<128,ratio)/1e18;
+            usd = Math.mulDiv(ethUSD,uint256(1)<<128,ratio)/divisor;
         }
         if (usd == 0 || usd > 1e36) revert InvalidObservation();
     }
@@ -181,4 +182,5 @@ contract ZZZV4SpotPriceFeed {
         roundId=uint80(uint256(keccak256(abi.encode(address(this),block.chainid,poolId,c.reviewHash,poolIdentity,ethIdentity))));
         if(roundId==0)roundId=1;
     }
+
 }

@@ -1,0 +1,38 @@
+{
+  "baseline_commit": "633f0154f0ddd081f63bbbdd02671b5cb139a063",
+  "historical_helpers_unchanged": {
+    "run_full_flow.py": "cd358dac36565f9d0cf562e733e830a7344115d69cfeb66ff86c548f4adbd55e",
+    "compile_full_flow.py": "6e232d7ef7dd3f7c7bb291b31a14a387f51db7baa92046d15bc68172f6abe18a",
+    "verify_full_flow.py": "cd50123886e19cca1207ab6fce844bf31b45243a377e8bda4568ea8aeee09fd8",
+    "publish_final_flow.py": "1d9f316e0e30a1d83d0fa9ef2d324cbf7bc194977d444981153edda09c9b4494"
+  },
+  "new_helper_sha256": {
+    "run_full_flow.py": "b6da632f95ef4b6b22020640f0863dae797286893a0fc7a4964338ef353ab1fc",
+    "compile_full_flow.py": "f915b121db5917188a522f29703ff12c6d5ea6c52ec0fef6ea0d2dd883b423bb",
+    "verify_full_flow.py": "58862c5b7576b1d8bb96d0328a929c8e440a4eac1abcd242b86efae746c051c4",
+    "publish_final_flow.py": "67d04d752abf2abc7dcd8ce90904df1da5b77aca6906e01db48ad3f32b4cd13f"
+  },
+  "old_reports_modified": false,
+  "compilation_or_execution_started": false,
+  "requires_explicit_source_freeze": true,
+  "requires_exclusive_root_config_window_for_actual_method": true,
+  "requires_final_accepted_normal_output_binding_before_RPC": true,
+  "strict_normal_binding": "Exact accepted actual_closed_normal_build, all48 gates, originalfoundryhash, sourceFreezebefore/after andsame normal/producer metadata/content; shapecheckedwithoutcompiler",
+  "measurement_helper_stability": "Four actual financial/ABI/execution-helper source hashes captured at checker startup, verified before cases and after all workers.",
+  "publish_failed20m_honestly": "Every financially verified scenario may be preserved even ifitsactual20Mcallrefuses; countactual20Msuccesses separately, and neveradoptdiagnostic32Mas20Msuccess.",
+  "final_helper_sha256": {
+    "run_full_flow.py": "b6da632f95ef4b6b22020640f0863dae797286893a0fc7a4964338ef353ab1fc",
+    "compile_full_flow.py": "f915b121db5917188a522f29703ff12c6d5ea6c52ec0fef6ea0d2dd883b423bb",
+    "verify_full_flow.py": "58862c5b7576b1d8bb96d0328a929c8e440a4eac1abcd242b86efae746c051c4",
+    "publish_final_flow.py": "23a18a20cc780e9ffaa98a7588ece4bcdbe03f9ccbb80c11950a34ec3c58eca6"
+  },
+  "owned_config_relocation_not_adopted": "Zero-methodfailedpreflights preserved. Actual131.875s methodusesprovenexplicitROOTtemporarypermission withfinallyrestore.",
+  "final_result": {
+    "one_affected_existing_method_pass": true,
+    "cold_scenarios": 13,
+    "full20_pass": 7,
+    "full20_refused": 6,
+    "all_actual20m_calls_success": true,
+    "no_public_adoption": true
+  }
+}

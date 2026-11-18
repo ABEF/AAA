@@ -1,0 +1,10 @@
+{
+  "original_execution": "C:/Users/Ali/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe -m unittest -v tests_python.test_activation_build20261118.ActivationBuild20261118Tests",
+  "working_directory": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2",
+  "selection": "3 NEW methods in one exact class; no discovery",
+  "source_evidence": "START.json and RESULT.json bracket104 code/dependency files",
+  "environment": "Minimal Windows runtime only; no key or network configuration inherited",
+  "executed_test_source_sha256": "dfb267b1bff3fcc4770f4ecb1fb2859d30ea406b5fe3fdc982db4c595c9e77c6",
+  "original_driver": "Inline orchestration recorded in chat tool call; this supplemental scope file is documentation, not an executed producer hash",
+  "production_approved": false
+}

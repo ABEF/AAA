@@ -1,0 +1,19 @@
+{
+  "scope": "offline registry-only current build change; no operational behavior edits",
+  "current_profile": "activation-gas-20261118",
+  "preserved_historical_profile": "royalty-rounds-20261118",
+  "historical_registry_dict_exactly_preserved": true,
+  "all_original_function_and_class_ast_bodies_unchanged": true,
+  "functions_and_classes": 22,
+  "new_methods": 3,
+  "unchanged_old_suites_executed": 0,
+  "new_test_sha256": "dfb267b1bff3fcc4770f4ecb1fb2859d30ea406b5fe3fdc982db4c595c9e77c6",
+  "registry_sha256": "5d0bc7ce12692b3ff5ca3eeba781c7ed3b151aab31cd160eb811804d99140e9f",
+  "factory5_unchanged": {
+    "zzz_ops/factory_code_v5.py": "3e41c39666784e514d35a53e6ed7996b0bd3522126d22c55dcf63dfc943dfb46",
+    "config/factory-code-storage-v5.json": "d3273a94c8ffa6347bedec98947d04644a9cc3e6a156ebeceafc3d2ad3c3fd20"
+  },
+  "no_factory6": true,
+  "no_gas_or_release_qualification": true,
+  "production_approved": false
+}

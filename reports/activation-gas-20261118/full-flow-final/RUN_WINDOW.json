@@ -1,0 +1,8 @@
+{
+  "stage": "full01",
+  "source_freeze_sha256": "478eca1596d81f2d5de12b12a19397fca1ca0006a1d1e31e4490dab16b37d494",
+  "exclusive_config_window_granted": true,
+  "root_config_write_authorized": "Onlytemporaryadditionalownedexportfilesystempermission; exactoriginalfinallyrestore",
+  "scope": "Root explicitly releasedexclusiveROOTcfgwindow afterownedrelocation0methodfailures. Actualoneaffectedmethodauthorized; alloldfailurespreserved.",
+  "production_approved": false
+}

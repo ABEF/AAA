@@ -1,0 +1,12 @@
+{
+  "exit_code": 0,
+  "seconds": 1.6410000000032596,
+  "errors": [],
+  "runtime_sizes": {
+    "BaselineHost": 4757,
+    "FusedHost": 5495
+  },
+  "same_normal_compiler_settings": true,
+  "engineering_only": true,
+  "root_changes": false
+}

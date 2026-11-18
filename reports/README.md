@@ -1,8 +1,10 @@
 # Verification evidence
 
+[18 November activation cost reduction](activation-gas-20261118/REVIEW.md) records exact compact/full-width-spill LP carry, the Oracle projection and feed arithmetic changes. All13 cold operations pass functionally;7 fit full20% within20M,6 remain refused. Unchanged Factory5/rights/limits and source-scoped recovery/callback evidence are explicit. Q03 remains open; no deployment or environment changes.
+
 [18 November royalty rounds](royalty-rounds-20261118/REVIEW.md) covers constant-size exact royalty credit, bounded activation token reads, explicit payload5 consumers, current rights/canonical checks and separately recorded1,000-NFT gas evidence. Prior Q03/tree evidence retains its own source; source publication changes no environment.
 
-Current source: [Q03 activation gas optimisation](q03-activation-gas-20261117/REVIEW.md). Its exact source and cold full-flow scope supersede earlier gas estimates only where remeasured. Historical reports and failed/rejected attempts remain unchanged.
+Historical source: [Q03 activation gas optimisation](q03-activation-gas-20261117/REVIEW.md). Its exact source and cold full-flow scope supersede earlier gas estimates only where remeasured. Historical reports and failed/rejected attempts remain unchanged.
 
 [Q06 keeper interruption and recovery](q06-keeper-recovery-20261117/REVIEW.md) adds two source fixes,12 new targeted methods and actual isolated Linux/systemd receipts. Inert signing and recovery-only restart retain explicit limits; installed services are not rolled out and Q06 remains open.
 
@@ -12,7 +14,7 @@ Current source: [Q03 activation gas optimisation](q03-activation-gas-20261117/RE
 
 [Repaired-test impact follow-up](test-impact-followup-20261117/REVIEW.md) checks intended dependent behavior and fixes a late manual-review reorg race; source review, finite execution and remaining workload limits stay separate.
 
-The [test and irreversible-setup review](test-seal-deep-review-20261117/REVIEW.md) fixes chain/URI/reservation defects and strengthens specific test oracles. Current build is seal-boundaries-20261117; no release sign-off, deployment, service or website adoption is implied. Real dependencies, complete fees/gas, operations and independent review remain open.
+The [test and irreversible-setup review](test-seal-deep-review-20261117/REVIEW.md) fixes chain/URI/reservation defects and strengthens specific test oracles. That recorded build is seal-boundaries-20261117; no release sign-off, deployment, service or website adoption is implied. Real dependencies, complete fees/gas, operations and independent review remain open.
 
 The [behavior follow-up](operator-behavior-followup-20261117/REVIEW.md) fixes irreversible empty-artwork sealing and keeper due-clock lag, strengthens royalty recovery checks and updates obsolete canonical test fixtures. Actual keeper revoke/replace and LP execution checks retain their stated local scope. Extra compound waiting remains service-only by explicit operator choice; production is not approved.
 

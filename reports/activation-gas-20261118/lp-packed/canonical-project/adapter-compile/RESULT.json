@@ -1,0 +1,13 @@
+{
+  "exit_code": 0,
+  "seconds": 7.0,
+  "errors": [],
+  "compiled_test_adapters": [
+    "CurrentNativeAdapterCompileProbe",
+    "ExactLPAllocationHarness"
+  ],
+  "zero_tests_executed": true,
+  "only_exact_copied_current_test_read_helpers": true,
+  "not_production_size_acceptance": true,
+  "pass": true
+}

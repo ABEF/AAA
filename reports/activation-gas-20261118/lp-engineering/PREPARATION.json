@@ -1,0 +1,15 @@
+{
+  "root_baseline": "633f0154f0ddd081f63bbbdd02671b5cb139a063",
+  "frozen_original_sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+  "candidate_sha256": "e795242a52d2ff21b567fb98da29960ec4611b364e998b638a26f75be5c21d07",
+  "files": {
+    "MINIMAL_INPUT.json": "2ec02e609894d9feb1880270a0d0738ee6ab20ebee1d2e5bf4967d6db446595c",
+    "src/ExactLPAllocationFused.sol": "e795242a52d2ff21b567fb98da29960ec4611b364e998b638a26f75be5c21d07",
+    "src/ExactLPAllocationOriginal.sol": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+    "src/LPFusionHosts.sol": "b80243ca82794fcff2d5f91ca7dfdf338c39906b2e52716d05eab506d14c159c",
+    "node_modules/@openzeppelin/contracts/utils/Panic.sol": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+    "node_modules/@openzeppelin/contracts/utils/math/Math.sol": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+    "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9"
+  },
+  "scope": "isolated engineering candidate only; no root source changes; no adoption"
+}

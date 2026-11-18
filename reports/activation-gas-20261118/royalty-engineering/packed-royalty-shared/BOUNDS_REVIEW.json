@@ -1,0 +1,52 @@
+{
+  "scope": "static fixed-private-caller mask proof; rejected size candidate, no EVM/gas evidence",
+  "write_helper_private": true,
+  "write_calls": {
+    "addAsset": {
+      "mask": "1<<34",
+      "value": "openingFinalized ? 1<<34 : 0",
+      "bound": "bool 0/1"
+    },
+    "_syncBalance initial": {
+      "mask": "1<<34",
+      "value": "1<<34",
+      "bound": "fixed literal bit"
+    },
+    "canonicalImport initial": {
+      "mask": "1<<34",
+      "value": "1<<34",
+      "bound": "fixed literal bit"
+    },
+    "_distribute cursor": {
+      "mask": "4095<<22",
+      "value": "afterCursor<<22",
+      "bound": "existing ExactRoyaltyAllocation.credit validates weight<=3000; nextCursor<normalizedWeight; raw result<eligibleWeight<=3000"
+    },
+    "canonicalImport cursor": {
+      "mask": "4095<<22",
+      "value": "cursor<<22",
+      "bound": "existing headerNFTs<=1000; canonicalWeight<=3*NFTs; rowcursor<canonicalWeight or0 forzero =>cursor<=2999"
+    },
+    "_enrollTo": {
+      "mask": 4194303,
+      "value": "count|(weight<<10)",
+      "bound": "original activation bounded1000 and eachweight1..3; opening snapshots same; import atmost1000 weight0..3 rows/completecount+weight validations; count<=1000<1024 andweight<=3000<4096"
+    }
+  },
+  "fields_disjoint": [
+    "count bits0..9",
+    "weight bits10..21",
+    "cursor bits22..33",
+    "initial bit34"
+  ],
+  "original_monetary_arithmetic_guard_removed": false,
+  "original_canonical_prefund_arithmetic_or_order_changed": false,
+  "original_entry_or_claim_authority_changed": false,
+  "new_redundant_checks_removed_only_from_unadopted_engineering_variant": true,
+  "new_private_layout_required": true,
+  "old_raw_storage_import_permitted": false,
+  "root_source_edits": false,
+  "actual_tests_executed": 0,
+  "gas_savings_measured": false,
+  "production_approved": false
+}

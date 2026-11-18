@@ -1,0 +1,115 @@
+{
+  "engineering_only": true,
+  "closed_source_count": 6,
+  "bindings": [
+    {
+      "contract": "BaselineHost",
+      "artifact_sources": [
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/Panic.sol",
+          "native_sha256": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+          "compiler_content_sha256": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+          "compiler_content_keccak256": "0xf7fe324703a64fc51702311dc51562d5cb1497734f074e4f483bfb6717572d7a",
+          "only_crlf_normalization": false,
+          "no_token_or_code_text_change": true
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+          "native_sha256": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+          "compiler_content_sha256": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+          "compiler_content_keccak256": "0x1225214420c83ebcca88f2ae2b50f053aaa7df7bd684c3e878d334627f2edfc6",
+          "only_crlf_normalization": false,
+          "no_token_or_code_text_change": true
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+          "native_sha256": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+          "compiler_content_sha256": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+          "compiler_content_keccak256": "0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54",
+          "only_crlf_normalization": false,
+          "no_token_or_code_text_change": true
+        },
+        {
+          "path": "src/ExactLPAllocationFused.sol",
+          "native_sha256": "e795242a52d2ff21b567fb98da29960ec4611b364e998b638a26f75be5c21d07",
+          "compiler_content_sha256": "84f181e60316b96eea998568076496db8346590cc82753582b10f4bb266d1e4c",
+          "compiler_content_keccak256": "0xea14ea04cbd0a7a322c7f57c2cafe6b73587f6d97e18ce4953b3bedad5dc634a",
+          "only_crlf_normalization": true,
+          "no_token_or_code_text_change": true
+        },
+        {
+          "path": "src/ExactLPAllocationOriginal.sol",
+          "native_sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+          "compiler_content_sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+          "compiler_content_keccak256": "0x17890d1a267f76e1f9e63cdec230e3706fe76a774f21b68ff62b1ca2eb51ca32",
+          "only_crlf_normalization": false,
+          "no_token_or_code_text_change": true
+        },
+        {
+          "path": "src/LPFusionHosts.sol",
+          "native_sha256": "b80243ca82794fcff2d5f91ca7dfdf338c39906b2e52716d05eab506d14c159c",
+          "compiler_content_sha256": "b1762993d2127e333f774e5bfed8d69f662103ee455605864b7ce323f73cd64c",
+          "compiler_content_keccak256": "0xa9e6f6e3b8f3f99ab209d16b828fcc5474b348e1530dbc5e707d6fe8672faa2d",
+          "only_crlf_normalization": true,
+          "no_token_or_code_text_change": true
+        }
+      ],
+      "minimal_and_actual_forge_inputs_match_after_recorded_normalization": true
+    },
+    {
+      "contract": "FusedHost",
+      "artifact_sources": [
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/Panic.sol",
+          "native_sha256": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+          "compiler_content_sha256": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+          "compiler_content_keccak256": "0xf7fe324703a64fc51702311dc51562d5cb1497734f074e4f483bfb6717572d7a",
+          "only_crlf_normalization": false,
+          "no_token_or_code_text_change": true
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+          "native_sha256": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+          "compiler_content_sha256": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+          "compiler_content_keccak256": "0x1225214420c83ebcca88f2ae2b50f053aaa7df7bd684c3e878d334627f2edfc6",
+          "only_crlf_normalization": false,
+          "no_token_or_code_text_change": true
+        },
+        {
+          "path": "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+          "native_sha256": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+          "compiler_content_sha256": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+          "compiler_content_keccak256": "0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54",
+          "only_crlf_normalization": false,
+          "no_token_or_code_text_change": true
+        },
+        {
+          "path": "src/ExactLPAllocationFused.sol",
+          "native_sha256": "e795242a52d2ff21b567fb98da29960ec4611b364e998b638a26f75be5c21d07",
+          "compiler_content_sha256": "84f181e60316b96eea998568076496db8346590cc82753582b10f4bb266d1e4c",
+          "compiler_content_keccak256": "0xea14ea04cbd0a7a322c7f57c2cafe6b73587f6d97e18ce4953b3bedad5dc634a",
+          "only_crlf_normalization": true,
+          "no_token_or_code_text_change": true
+        },
+        {
+          "path": "src/ExactLPAllocationOriginal.sol",
+          "native_sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+          "compiler_content_sha256": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+          "compiler_content_keccak256": "0x17890d1a267f76e1f9e63cdec230e3706fe76a774f21b68ff62b1ca2eb51ca32",
+          "only_crlf_normalization": false,
+          "no_token_or_code_text_change": true
+        },
+        {
+          "path": "src/LPFusionHosts.sol",
+          "native_sha256": "b80243ca82794fcff2d5f91ca7dfdf338c39906b2e52716d05eab506d14c159c",
+          "compiler_content_sha256": "b1762993d2127e333f774e5bfed8d69f662103ee455605864b7ce323f73cd64c",
+          "compiler_content_keccak256": "0xa9e6f6e3b8f3f99ab209d16b828fcc5474b348e1530dbc5e707d6fe8672faa2d",
+          "only_crlf_normalization": true,
+          "no_token_or_code_text_change": true
+        }
+      ],
+      "minimal_and_actual_forge_inputs_match_after_recorded_normalization": true
+    }
+  ],
+  "line_ending_scope": "Windows-created candidate/host source uses CRLF; compiler/Forge canonical source text is LF. Frozen baseline and dependencies already match native bytes. Exact normalized contents are archived in MINIMAL_INPUT.json; no source or test rerun was performed for this observation."
+}

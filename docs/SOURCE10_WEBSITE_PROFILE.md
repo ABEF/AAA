@@ -89,3 +89,6 @@ backend handlers with explicitly synthetic RPC/trace/graph state. It demonstrate
 consumer compatibility, not target-chain execution, live market depth, independent
 feeds, VRF, OpenSea onboarding, wallet extension acceptance, hosting/recovery or
 independent security approval. Those release gates remain open.
+
+
+The fresh `activation-gas-20261118` build preserves public accounting7/LP-allocation1/schema17/canonicalV10 records and the exact payload5 Royalty creation bytes. Only private LP carry encoding is compacted with a full-width spill; pending/high128/low256 logical values and arithmetic are unchanged. New exact runtime/source pins are required. Never copy old EVM carry slots into this representation or relabel old snapshots/journals. See the [source and verification scope](../reports/activation-gas-20261118/REVIEW.md). Public input/permission/economic rules are unchanged; complete gas/recovery/operating acceptance is separate.

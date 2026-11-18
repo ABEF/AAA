@@ -2,7 +2,7 @@
 
 `scripts/prepare-preseal.py` turns explicit reviewed inputs into a conditional,
 ordered configuration review for the current schema17/mint2/V10/execution1/LP3
-source. It uses the exact trusted `royalty-rounds-20261118` build and current ABI.
+source. It uses the exact trusted `activation-gas-20261118` build and current ABI.
 Earlier pre-seal evidence retains its original metadata2 build/source scope;
 the current Q03 family retains all seal guards while changing the royalty payload and execution implementation pins.
 It performs **no RPC, simulation, signing, deployment, nonce reservation,

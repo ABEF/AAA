@@ -1,0 +1,14 @@
+[profile.default]
+src="src"
+test="test"
+libs=["deps"]
+solc_version="0.8.26"
+evm_version="cancun"
+optimizer=true
+optimizer_runs=1
+optimizer_details={ yul=false }
+via_ir=true
+ffi=false
+remappings=["@openzeppelin/contracts/=deps/@openzeppelin/contracts/","@uniswap/v4-core/=deps/@uniswap/v4-core/"]
+[profile.default.fuzz]
+runs=256

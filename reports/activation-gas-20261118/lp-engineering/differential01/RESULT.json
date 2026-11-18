@@ -1,0 +1,47 @@
+{
+  "exit_code": 1,
+  "seconds": 5.592999999993481,
+  "methods": [
+    {
+      "id": "test/LPFusionEngineering.t.sol:LPFusionEngineeringTest.testFusedColdExtractedOwnerAndCollective()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "logs": []
+    },
+    {
+      "id": "test/LPFusionEngineering.t.sol:LPFusionEngineeringTest.testFusedDeterministicAdversarialSequence()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "logs": []
+    },
+    {
+      "id": "test/LPFusionEngineering.t.sol:LPFusionEngineeringTest.testFusedMaximumZeroNoopOverflow()",
+      "status": "Failure",
+      "reason": "Error != expected error: panic: arithmetic underflow or overflow (0x11) != NH{q",
+      "gas": null,
+      "logs": []
+    },
+    {
+      "id": "test/LPFusionEngineering.t.sol:LPFusionEngineeringTest.testFusedMutableStateAndClaims()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "logs": []
+    },
+    {
+      "id": "test/LPFusionEngineering.t.sol:LPFusionEngineeringTest.testFusedPhasesRemovalAndInvalidOrdinal()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "logs": []
+    }
+  ],
+  "method_count": 5,
+  "protected_root_unchanged": true,
+  "source_inputs_stable": true,
+  "engineering_only": true,
+  "whole_activation_profile_qualified": false,
+  "pass": false
+}

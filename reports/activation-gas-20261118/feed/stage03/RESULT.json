@@ -1,0 +1,29 @@
+{
+  "returncode": 0,
+  "seconds": 10.546999999991385,
+  "root_source_unchanged": true,
+  "methods": [
+    {
+      "id": "test/FeedDifferential.t.sol:FeedDifferential20261118Test:testFuzzQuoteAlgebra(uint160,uint128,uint8)",
+      "status": "Success",
+      "reason": null,
+      "logs": []
+    },
+    {
+      "id": "test/FeedDifferential.t.sol:FeedDifferential20261118Test:testInvalidExtremeSelectorsRemainRejected()",
+      "status": "Success",
+      "reason": null,
+      "logs": []
+    },
+    {
+      "id": "test/FeedDifferential.t.sol:FeedDifferential20261118Test:testQuoteExtremesAllDecimals()",
+      "status": "Success",
+      "reason": null,
+      "logs": []
+    }
+  ],
+  "actual_count": 3,
+  "pass": true,
+  "stdout_sha256": "c3d9005b4f8daee0166c78f613eaee3dcffb08eec340e877908230d3e1c6c0ce",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -66,9 +66,10 @@ contract NativeConvertedCreditFixture is ZZZRewards {
             ExactLPAllocation.Tree storage tree=t==0?ownerBooks[bucket]:collectiveBook;
             hash=keccak256(abi.encode(hash,tree.books[0].outstanding,tree.books[1].outstanding));
             for(uint256 node=1;node<=2023;++node) {
+                (uint128 high0,uint256 low0)=ExactLPAllocation.readCarry(tree.books[0].carry[node]);
+                (uint128 high1,uint256 low1)=ExactLPAllocation.readCarry(tree.books[1].carry[node]);
                 hash=keccak256(abi.encode(hash,tree.weights[node],tree.books[0].pending[node],
-                    tree.books[0].carry[node].high,tree.books[0].carry[node].low,tree.books[1].pending[node],
-                    tree.books[1].carry[node].high,tree.books[1].carry[node].low));
+                    high0,low0,tree.books[1].pending[node],high1,low1));
             }
         }
     }

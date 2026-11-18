@@ -1,0 +1,110 @@
+{
+  "ZZZRewards": {
+    "ABI_exact_equal": true,
+    "all_top_level_slots_offsets_labels_unchanged": true,
+    "struct ExactLPAllocation.Carry": {
+      "old_bytes": "64",
+      "new_bytes": "64",
+      "old_members": [
+        [
+          "high",
+          "0",
+          0
+        ],
+        [
+          "low",
+          "1",
+          0
+        ]
+      ],
+      "new_members": [
+        [
+          "packed",
+          "0",
+          0
+        ],
+        [
+          "wide",
+          "1",
+          0
+        ]
+      ]
+    },
+    "struct ExactLPAllocation.Book": {
+      "old_bytes": "96",
+      "new_bytes": "96",
+      "old_members": [
+        [
+          "pending",
+          "0",
+          0
+        ],
+        [
+          "carry",
+          "1",
+          0
+        ],
+        [
+          "outstanding",
+          "2",
+          0
+        ]
+      ],
+      "new_members": [
+        [
+          "pending",
+          "0",
+          0
+        ],
+        [
+          "carry",
+          "1",
+          0
+        ],
+        [
+          "outstanding",
+          "2",
+          0
+        ]
+      ]
+    },
+    "struct ExactLPAllocation.Tree": {
+      "old_bytes": "224",
+      "new_bytes": "224",
+      "old_members": [
+        [
+          "weights",
+          "0",
+          0
+        ],
+        [
+          "books",
+          "1",
+          0
+        ]
+      ],
+      "new_members": [
+        [
+          "weights",
+          "0",
+          0
+        ],
+        [
+          "books",
+          "1",
+          0
+        ]
+      ]
+    }
+  },
+  "ZZZRewardsCanonical": {
+    "ABI_exact_equal": true
+  },
+  "split_math_function_identical": true,
+  "setWeight_weight_order_and_funding_path_identical": true,
+  "LP_ALLOCATION_VERSION_retained_1": true,
+  "logical_canonical_high_uint128_low_uint256_unchanged": true,
+  "private_phase_storage_requires_fresh_runtime_not_hot_copy": true,
+  "no_new_maximum_or_truncation": true,
+  "root_adoption": false
+}

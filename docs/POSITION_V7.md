@@ -105,3 +105,6 @@ The [operator manual](OPERATOR_MANUAL.md) owns exact caller/input/recovery steps
 The [integration report](../reports/exact-lp-integration-20261106/REVIEW.md) owns
 verification and remaining limits. Source publication does not deploy, seal,
 restart a service, change a website or authorize public signing.
+
+
+The fresh `activation-gas-20261118` build preserves public accounting7/LP-allocation1/schema17/canonicalV10 records and the exact payload5 Royalty creation bytes. Only private LP carry encoding is compacted with a full-width spill; pending/high128/low256 logical values and arithmetic are unchanged. New exact runtime/source pins are required. Never copy old EVM carry slots into this representation or relabel old snapshots/journals. See the [source and verification scope](../reports/activation-gas-20261118/REVIEW.md). Public input/permission/economic rules are unchanged; complete gas/recovery/operating acceptance is separate.

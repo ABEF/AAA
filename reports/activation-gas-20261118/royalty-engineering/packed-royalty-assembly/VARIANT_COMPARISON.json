@@ -1,0 +1,42 @@
+{
+  "baseline_runtime": 24572,
+  "normal_limit": 24576,
+  "variants": [
+    {
+      "variant": "packed-royalty",
+      "runtime": 24795,
+      "creation": 25766,
+      "over_limit": 219,
+      "object_compile_runs": 1,
+      "evm_runs": 0
+    },
+    {
+      "variant": "packed-royalty-struct",
+      "runtime": 24818,
+      "creation": 25789,
+      "over_limit": 242,
+      "object_compile_runs": 1,
+      "evm_runs": 0
+    },
+    {
+      "variant": "packed-royalty-shared",
+      "runtime": 24723,
+      "creation": 25694,
+      "over_limit": 147,
+      "object_compile_runs": 1,
+      "evm_runs": 0
+    },
+    {
+      "variant": "packed-royalty-assembly",
+      "runtime": 24714,
+      "creation": 25685,
+      "over_limit": 138,
+      "object_compile_runs": 1,
+      "evm_runs": 0
+    }
+  ],
+  "all_rejected": true,
+  "gas_benchmarks_executed": 0,
+  "source_adoption": false,
+  "production_approved": false
+}

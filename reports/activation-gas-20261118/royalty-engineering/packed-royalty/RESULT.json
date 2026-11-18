@@ -1,0 +1,16 @@
+{
+  "scope": "one-object engineering size probe, no adopted profile or gas qualification",
+  "exit_code": 0,
+  "seconds": 3.577999999979511,
+  "errors": [],
+  "root_all100_sources_unchanged": true,
+  "protected_four_unchanged": true,
+  "compiler_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+  "compiler_output_sha256": "c46036645e5661d80f3fc4bbab4ac8726b475301ec50072df6def64fbbb37c77",
+  "actual_tests_executed": 0,
+  "production_approved": false,
+  "runtime": 24795,
+  "creation": 25766,
+  "runtime_margin": -219,
+  "runtime_size_pass": false
+}

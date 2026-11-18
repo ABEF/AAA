@@ -1,0 +1,10 @@
+{
+  "returncode": 1,
+  "seconds": 0.8440000000118744,
+  "root_source_unchanged": true,
+  "methods": [],
+  "actual_count": 0,
+  "pass": false,
+  "stdout_sha256": "3d4142d77f8e552c3b0566d67b3ac9a88865cc77ddce03b72daef4059ccd520d",
+  "stderr_sha256": "604c0c37c5d79afc34229bebe77815c77446adecd595cf71257a30bec5a5b2a0"
+}

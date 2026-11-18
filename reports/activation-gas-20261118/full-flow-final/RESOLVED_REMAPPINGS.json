@@ -1,0 +1,13 @@
+[
+  "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+  "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+  "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+  "v4-core/=node_modules/@uniswap/v4-core/",
+  "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+  "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+  "forge-std/=lib/forge-std/src/",
+  "ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+  "erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+  "forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+  "openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/"
+]

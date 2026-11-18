@@ -1,0 +1,18 @@
+{
+  "engineering_gas_only": true,
+  "cases": {
+    "codec02": {
+      "old_read_hash": 30732,
+      "candidate_read_hash": 37617
+    },
+    "codec03": {
+      "old_read_hash": 30732,
+      "candidate_read_hash": 20472
+    },
+    "codec04": {
+      "old_read_hash": 30600,
+      "candidate_read_hash": 20557
+    }
+  },
+  "whole_entry_saving_not_inferred": true
+}

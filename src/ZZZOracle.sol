@@ -326,14 +326,35 @@ contract ZZZOracle is ZZZModule {
     }
     function executionActive() external view returns(bool){return _executionLength()!=0;}
     function _loadExecution() private view returns(Execution memory c) {
-        uint256 length=_executionLength();if(length==0)return c;
-        bytes memory encoded=new bytes(length);bytes32 base=EXECUTION_WORDS;
-        assembly("memory-safe"){
-            for{let i:=0}lt(i,length){i:=add(i,32)}{
-                mstore(add(add(encoded,32),i),tload(add(base,div(i,32))))
+        if(_executionLength()==0)return c;
+        bytes32 base=EXECUTION_WORDS;
+        // Only _saveExecution writes this canonical49-word typed encoding.
+        // The compiler-allocated nested layout is checked by the codec regression.
+        assembly ("memory-safe") {
+            function words(dst,src,count,area) {
+                for {let i:=0}lt(i,count){i:=add(i,1)} {
+                    mstore(add(dst,mul(i,32)),tload(add(area,add(src,i))))
+                }
             }
+            words(c,0,7,base)
+            words(mload(add(c,224)),7,4,base)
+            words(mload(add(c,256)),11,2,base)
+            words(mload(add(c,288)),13,4,base)
+            mstore(add(c,320),tload(add(base,17)))
+            let markets:=mload(add(c,352))
+            for{let i:=0}lt(i,2){i:=add(i,1)}{
+                let market:=mload(add(markets,mul(i,32)))
+                let start:=add(18,mul(i,9))
+                words(market,start,3,base)
+                words(mload(add(market,96)),add(start,3),5,base)
+                mstore(add(market,128),tload(add(base,add(start,8))))
+            }
+            words(add(c,384),36,4,base)
+            let venue:=mload(add(c,512))
+            words(venue,40,3,base)
+            words(mload(add(venue,96)),43,5,base)
+            mstore(add(venue,128),tload(add(base,48)))
         }
-        c=abi.decode(encoded,(Execution));
     }
     function _executionWord(uint256 index) private view returns(uint256 word) {
         bytes32 base=EXECUTION_WORDS;

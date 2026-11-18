@@ -1,0 +1,17 @@
+{
+  "scope": "one final word-mask shared-helper object-size probe only",
+  "exit_code": 0,
+  "seconds": 3.0780000000086147,
+  "errors": [],
+  "root_all100_sources_unchanged": true,
+  "protected_four_unchanged": true,
+  "compiler_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+  "compiler_output_sha256": "0bab5f551f4fb25a51b2148324cbf1bef8f14b42a04bcc510e01bef6e0af76cd",
+  "actual_tests_executed": 0,
+  "production_approved": false,
+  "runtime": 24723,
+  "creation": 25694,
+  "runtime_margin": -147,
+  "runtime_size_pass": false,
+  "wire_abi_identical_except_getter_input_names": true
+}

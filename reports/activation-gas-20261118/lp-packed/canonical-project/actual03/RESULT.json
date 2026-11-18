@@ -1,0 +1,33 @@
+{
+  "exit_code": 0,
+  "seconds": 21.70299999997951,
+  "methods": [
+    {
+      "id": "test/PackedCanonicalActualHost.t.sol:PackedCanonicalActualHostTest.testPackedActualCanonicalBothBooksImportCurrentOwnerAndFutureIncome()",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 997768826
+        }
+      }
+    },
+    {
+      "id": "test/PackedCanonicalActualHost.t.sol:PackedCanonicalActualHostTest.testPackedActualFundedAbortRestoresSourcePhasesOwnerAndFutureIncome()",
+      "status": "Success",
+      "reason": null,
+      "gas": {
+        "Unit": {
+          "gas": 997866536
+        }
+      }
+    }
+  ],
+  "method_count": 2,
+  "own_sources_stable": true,
+  "ROOT_sources_stable": true,
+  "ROOT_config_not_used": true,
+  "scope": "Actual final Rewards+immutable canonical child with typed dependency/control seams, both assets and full logical rows, not full coordinator or deployed market",
+  "production_approved": false,
+  "pass": true
+}

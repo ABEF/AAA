@@ -332,7 +332,7 @@ Historical payload4 cold Q03 estimates plus full20%: healthy pre-synced activati
 
 Current [allocation2 review](../reports/royalty-rounds-20261118/REVIEW.md) replaces receipt-dependent tree writes with constant-size complete rounds and cursor updates. Enrollment is append-only, at most1,000 boundaries per currency; claims find their birth cohort within10 binary-search steps. No receipt queue or mandatory pre-sync worker is added. Failed reads protect the earlier cohort before waiting activations join. Original currencies, one-hour opening and recovery permissions remain.
 
-Final C08 cold qualification: one1,000-NFT method produced13 scenarios, all actual20M calls/financial checks pass, but only5 fit full20% headroom. Eight activations remain refused. Worst tested opening with16slow healthy currencies estimates19,325,451 and requires23,190,542 padded; healthy rotated ETH/ZZZ require20,325,828/21,099,142. Both growth cases fit. Keep Q03 open and prepare every exact transaction; capacity16 and a configured50k read ceiling are not activation gas approval. [Exact scenario results](../reports/royalty-rounds-20261118/FINAL_FULL_FLOW_REVIEW.md).
+Earlier C08 cold qualification: one1,000-NFT method produced13 scenarios, all actual20M calls/financial checks pass, but only5 fit full20% headroom. Eight activations remain refused. Worst tested opening with16slow healthy currencies estimates19,325,451 and requires23,190,542 padded; healthy rotated ETH/ZZZ require20,325,828/21,099,142. Both growth cases fit. Keep Q03 open and prepare every exact transaction; capacity16 and a configured50k read ceiling are not activation gas approval. [Exact scenario results](../reports/royalty-rounds-20261118/FINAL_FULL_FLOW_REVIEW.md).
 
 | Action | Exact inputs / reads | Verify |
 | --- | --- | --- |
@@ -344,6 +344,20 @@ Final C08 cold qualification: one1,000-NFT method produced13 scenarios, all actu
 Only the activation token `balanceOf` STATICCALL is capped. It copies one word and accepts ABI-compatible trailing data. A fully funded broken/expensive read defers its own new enrollment; it does not discard backing or grant newcomers earlier receipts. The complete-sync maximum stays1M. Funding is proved for the complete frame or independently for the configured read plus120k; other failed partial frames revert activation. Token revert bytes cannot forge the ledger's exact unavailable signal. Ordinary sync/claims/canonical balance reads keep their existing paths. A high maximum need not be entirely forwarded inside the complete frame; cheap reads still work. Raising limits/currency capacity requires cold healthy/faulted requalification, fresh exact estimate plus20% below20M and separate fee review. Do not auto-change defaults or saved reviews.
 
 Optional unsigned pre-seal input: `royalty_balance_policy:{"balanceGas":"50000","reviewHash":"REVIEW_HASH"}`. Use a real nonzero bytes32 review hash. Unknown inputs remain blocked/null calldata; omission requests no write. It supplies no signature, configuration, seal or live approval.
+
+#### Activation gas reduction and fresh runtime pins
+
+The [activation-gas source review](../reports/activation-gas-20261118/REVIEW.md) keeps all public call inputs, monetary domains, permissions and economic checks. Compact LP carry stores ordinary high/low phase values together and retains a full-width spill for larger low values; operators never clamp, reset or choose that representation. Canonical rows/checkpoints still carry logical uint128 high and uint256 low, with the same pending balances and LP-allocation1 semantics. Fresh private storage is incompatible with copying older EVM slots. Use the new exact deployment/runtime/source pins, preserving old deployments, journals and evidence.
+
+| Operator concern | Required action | Unchanged rule |
+| --- | --- | --- |
+| Activate or grow | Prepare exact current Entry calldata and fresh padded simulation |20M with full20%; no extra holder transaction |
+| Existing LP/royalty rights | Continue normal current-owner claim/maintenance procedures | No earnings reset, currency change or reduced entitlement |
+| Canonical replacement | Use authenticated logical rows, exact backing and complete reviewed handoff | Never copy raw packed carry slots between builds |
+| Upgrade local consumers | Review matching runtime/source identities and preserved history before adoption | No automatic DB/journal or live-site rewrite |
+| Failed gas review | Retain the explicit refusal and investigate that exact workload | No cap/headroom/default increase |
+
+The Oracle retains its canonical49-word transient format and all source/control proofs; a pinned-compiler memory projection reduces decoding work. The optional v4 spot feed keeps its original ticks, fees, liquidity, source age and pins. Its accepted quote values are unchanged; invalid extreme quotes can report InvalidObservation instead of an arithmetic panic. Final cold qualification: all13 local calls and accounting checks pass;7/13 fit20M with full20% (previously5),6 are refused. Tested activation estimates save693,137-712,754gas; worst padded22,335,237 remains over20M. Healthy rotated ETH passes19,494,064; healthy rotated ZZZ remains over at20,243,837. The zero-fee LP component costs105,091more even though all13 tested whole operations improve; do not assume every state is cheaper. Q03 stays open and no budget/headroom is raised. See the [complete table](../reports/activation-gas-20261118/FINAL_FULL_FLOW_REVIEW.md).
 
 #### Optional royalty synchronization before activation
 
@@ -649,12 +663,12 @@ part of this reconciliation. Preserve existing chains, journals and websites.
 
 | Tool | Inputs | Example | Purpose |
 | --- | --- | --- | --- |
-| `prepare-deployment.py` | Reviewed input JSON, new output file; trusted build ID | `python scripts/prepare-deployment.py --build-profile royalty-rounds-20261118 --input path/to/reviewed.json --output path/to/new-plan.json` | Review unsigned constructor plan |
+| `prepare-deployment.py` | Reviewed input JSON, new output file; trusted build ID | `python scripts/prepare-deployment.py --build-profile activation-gas-20261118 --input path/to/reviewed.json --output path/to/new-plan.json` | Review unsigned constructor plan |
 | `check-local-deployment-evidence.py` | Captured ZIP/directory; optional relocated trusted build directory | `python scripts/check-local-deployment-evidence.py --evidence reports/local-deployment-rehearsal-20261115/evidence.zip --output path/to/new-result.json` | Reconcile captured local construction |
 | `check-market-evidence.py` | Exact dated16November market ZIP | `python scripts/check-market-evidence.py --evidence reports/real-market-refresh-20261116/evidence.zip` | Recompute dated market summaries |
-| `rehearse-local-deployment.py` | Reviewed Anvil executable, new directory, trusted build ID | `python scripts/rehearse-local-deployment.py --build-profile royalty-rounds-20261118 --anvil C:/reviewed-tools/anvil.exe --output C:/local-reviews/new-run` | Measure isolated constructor execution |
+| `rehearse-local-deployment.py` | Reviewed Anvil executable, new directory, trusted build ID | `python scripts/rehearse-local-deployment.py --build-profile activation-gas-20261118 --anvil C:/reviewed-tools/anvil.exe --output C:/local-reviews/new-run` | Measure isolated constructor execution |
 
-Current planning defaults to `royalty-rounds-20261118`; historical
+Current planning defaults to `activation-gas-20261118`; historical
 `metadata2-20261116` and legacy
 `manual-reference-20261115` remains separately pinned. The checker selects only
 the captured closed build identity, and admits an absent ID only with the original
@@ -698,7 +712,7 @@ exact44-call phase and feeds them to the unchanged strict constructor reviewer.
 | Tool/action | Required inputs | Example | Effect |
 | --- | --- | --- | --- |
 | Prepare conditional sequence | Existing constructor JSON, public direct-EOA sender, canonical decimal starting nonce, new output file | `python scripts/prepare-deployment-sequence.py --input /review/input.json --deployer REVIEWED_PUBLIC_EOA --starting-nonce REVIEWED_DECIMAL_NONCE --output /review/new-sequence.json` | Review conditional deployment sequence |
-| Select trusted build | Explicit closed build ID | Add `--build-profile royalty-rounds-20261118` | Select exact reviewed artifacts |
+| Select trusted build | Explicit closed build ID | Add `--build-profile activation-gas-20261118` | Select exact reviewed artifacts |
 
 Replace placeholders; no private key/RPC is used. All44 calls must be ordinary
 successful transactions from the actual same bootstrap EOA, with no unexpected
@@ -727,7 +741,7 @@ as the conditional pre-seal caller and missing inputs explicitly blocked.
 | Tool/action | Required inputs | Example | Effect |
 | --- | --- | --- | --- |
 | Prepare setup review | Reviewed copy of `config/preseal-preparation.example.json`; NEW output path | `python scripts/prepare-preseal.py --input /review/preseal.json --output /review/NEW-review.json` | Review conditional setup calls |
-| Pin current build | Exact supported current build | Add `--build-profile royalty-rounds-20261118` | Freeze current ABI selection |
+| Pin current build | Exact supported current build | Add `--build-profile activation-gas-20261118` | Freeze current ABI selection |
 | Inspect missing values | Output `missing_inputs` and each step's fields | Review `steps[].missing_inputs` | Resolve explicit setup blockers |
 | Inspect deliberate stops | Output `explicit_operating_stops` | Empty venues, converterOFF, maximumGap0, per-pool operationsOFF | Identify intentionally stopped operations |
 
@@ -838,7 +852,7 @@ evolution paths, then independently complete every other seal prerequisite.
 The nonempty check does not validate a CID, hosted content or OpenSea retrieval.
 A rejected seal preserves bootstrap and bindings; a successful seal erases
 bootstrap and permanently prevents changing the artwork root. Do not seal merely
-because this one read succeeds. Use the fresh `royalty-rounds-20261118` build
+because this one read succeeds. Use the fresh `activation-gas-20261118` build
 family; older construction receipts retain their original controller scope.
 
 ### Fixed ZZZ setup order

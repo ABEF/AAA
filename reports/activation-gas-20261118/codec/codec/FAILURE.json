@@ -1,0 +1,5 @@
+{
+  "methods_executed": 0,
+  "compiler_error": "Standalone harness mistakenly inherited private helpers; corrected in next stage. No ROOTsource changed.",
+  "no_pass_claim": true
+}

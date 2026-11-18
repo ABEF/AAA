@@ -1,0 +1,9 @@
+{
+  "path": "test/NativeFeeRewards.t.sol",
+  "after_sha256": "dc1bdaae54a25ba1dc2a51f5240493c520e8c10f2e6f5945221127bd8230250b",
+  "in_selected200_source_closure": false,
+  "in_cached_target_metadata": false,
+  "current61production_source_freeze_still_exact": true,
+  "EVMtests_executed_for_this_note": 0,
+  "scope": "Parent changedonlynonselectedNativeFeeRewards rawTreeDigesthelper; noeffectoncurrentfrozenfullproducer/cache."
+}
