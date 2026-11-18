@@ -10,7 +10,7 @@ service, site or journal is upgraded by source publication.
 The earlier factory stored the complete royalty creation payload in ordinary
 storage slots. The new factory keeps it in **two immutable data-only children**,
 then copies and verifies the same payload before creating the royalty receiver.
-This removes repeated storage writes/reads from deployment. It does not lower
+This removes repeated storage writes/reads from deployment. This storage format alone does not lower
 royalty activation or holder-claim gas, and it does not solve aggregate currency
 synchronization limits.
 
@@ -23,7 +23,7 @@ The format is `CODE_STORAGE_VERSION()==2`:
 | Maximum data per child |24,573 bytes; maximum runtime24,576 bytes. |
 | Child count |Exactly two, with distinct nonzero addresses. A zero-length second payload still has the three-byte revert runtime; it is not absent code. |
 | Payload order |Part0 followed by part1. Never swap, omit, repeat or truncate a part. |
-| Current25,543-byte payload5 shape |Part0 data24,573/runtime24,576; part1 data970/runtime973. Recheck the exact final compiler artifacts rather than adopting these sizes for another source revision. |
+| Current25,533-byte payload6 shape |Part0 data24,573/runtime24,576; part1 data960/runtime963. Recheck the exact final compiler artifacts rather than adopting these sizes for another source revision. |
 | Constructor inputs to the receiver |The verified creation payload plus only the typed caller NFT address, as before. |
 
 Every ordinary call to a data child, including a call carrying native ETH,
@@ -62,7 +62,7 @@ fixed receiver or obtain its rights.
 ## Fresh inventory boundary
 
 Use the explicit **schema17** deployment inventory. Schema15 is archived exactly
-for historical inspection. Code-storage FORMAT2 is unchanged, but fresh payload5 has separate source-owned bytes/pins; never substitute historical payload4/3/2. Keep **20 logical callable
+for historical inspection. Code-storage FORMAT2 is unchanged, but fresh payload6 has separate source-owned bytes/pins; never substitute historical payload5/4/3/2. Keep **20 logical callable
 helpers plus two inert code-data children**; do not describe the extra addresses
 as new custody authorities or conceal them in the deployed graph. There are17
 module records,20 helper records and2 code-data records, with external dependency
@@ -94,7 +94,9 @@ governance trust boundary.
 
 ## Exact compiler artifact family
 
-The current payload5 artifact `config/factory-code-storage-v5.json` and `zzz_ops.factory_code_v5` bind accepted **royalty-rounds-20261118**, creation length25,543 and hash `0x7005da5d4714523f67459f0e7e9cbf5b8ac2612aafc1e84d5fb683b3d3bba44b`. Part0 holds24,573 data bytes in24,576 runtime bytes; part1 holds970 data bytes in973 runtime bytes. Schema17 explicitly selects chain-local integer `factory_payload_version:5`, `ROYALTY_ALLOCATION_VERSION()==2` and independently observed `royalty_read_policy`. That policy binds same-block actual Policy address, balance-read cap and gas revision through an off-chain fingerprint; it is not a contract getter or adoption approval. Allocation2 changes private books, preserving settlement4/events/flattened canonical rights. Existing3/4 configurations/journals remain historical.
+The current payload6 artifact `config/factory-code-storage-v6.json` and `zzz_ops.factory_code_v6` bind the admitted **activation-final-six-20261118** normal build: creation length25,533 and hash `0xbb0f8ce9cf2c332313c08da26f70174276182fd2202e7b308d4352525207c9e4`. Part0 holds24,573 data bytes in24,576 runtime bytes; part1 holds960 data bytes in963 runtime bytes. Schema17 selects chain-local integer `factory_payload_version:6`, allocation2 and independently observed `royalty_read_policy`. The same bounded-read policy remains supported for explicit historical5. FORMAT2, settlement4/events and flattened canonical rights are unchanged. Exact generated part hashes and source closure are recorded in the [generated-pin record](../reports/activation-final-six-20261118/consumer/GENERATED_PINS.json); they are not live observations or approval.
+
+The historical payload5 artifact `config/factory-code-storage-v5.json` and `zzz_ops.factory_code_v5` bind accepted **royalty-rounds-20261118**, creation length25,543 and hash `0x7005da5d4714523f67459f0e7e9cbf5b8ac2612aafc1e84d5fb683b3d3bba44b`. Part0 holds24,573 data bytes in24,576 runtime bytes; part1 holds970 data bytes in973 runtime bytes. Schema17 explicitly selects chain-local integer `factory_payload_version:5`, `ROYALTY_ALLOCATION_VERSION()==2` and independently observed `royalty_read_policy`. That policy binds same-block actual Policy address, balance-read cap and gas revision through an off-chain fingerprint; it is not a contract getter or adoption approval. Allocation2 changes private books, preserving settlement4/events/flattened canonical rights. The exact previous template is preserved in `config/production.schema17.payload5.example.json`; its helper, JSON and data pins are unchanged. Existing3/4 configurations/journals retain their own identities.
 
 The historical payload4 artifact `config/factory-code-storage-v4.json` and
 `zzz_ops.factory_code_v4` bind the Q03 normal compiler output and25,549-byte
@@ -151,5 +153,5 @@ See the [deployment Todo](../TODO.md#task-deployment-initcode),
 OpenSea integration, operating workloads and independent audit remain separate.
 
 
-The fresh `activation-gas-20261118` build preserves public accounting7/LP-allocation1/schema17/canonicalV10 records and the exact payload5 Royalty creation bytes. Only private LP carry encoding is compacted with a full-width spill; pending/high128/low256 logical values and arithmetic are unchanged. New exact runtime/source pins are required. Never copy old EVM carry slots into this representation or relabel old snapshots/journals. See the [source and verification scope](../reports/activation-gas-20261118/REVIEW.md). Public input/permission/economic rules are unchanged; complete gas/recovery/operating acceptance is separate.
-The payload5 artifact/helper remains byte-identical to its royalty-rounds source family; the new complete constructor graph independently verifies that same creation hash. No payload6 or new data child is introduced. Its manifest's original100-source inventory remains historical provenance; the new complete graph has its own independent current100-source inventory.
+The fresh `activation-final-six-20261118` build preserves public accounting7/LP-allocation1/schema17/canonicalV10 and original-currency exact royalty rights. Payload6/allocation2 has new private Royalty packing, LP carry sentinel encoding and transaction-scoped pricing state. New exact source/runtime pins are mandatory; never copy historical raw storage or relabel a deployment, snapshot or journal. All13 controlled cold20M contribution calls and full20% padded calls pass; worst16,460,899 raw/19,753,079 padded. This is finite controlled gas evidence, not real-market/provider/fee, operating or release approval. See the [current source and verification scope](../reports/activation-final-six-20261118/REVIEW.md).
+The earlier `activation-gas-20261118` build preserved the exact payload5 creation; that statement remains historical evidence. The current build introduces payload6 contents inside the same two inert data-child roles, with no new authority or custody address. Payload5 remains byte-identical to its original source family and is never relabelled.

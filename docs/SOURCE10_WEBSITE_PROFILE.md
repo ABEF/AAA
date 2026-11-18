@@ -1,6 +1,6 @@
 # Mint2/V10 website read and unsigned profile
 
-Fresh allocation2 preserves schema17/canonicalV10/reporting5 and this consumer wire shape, but factory payload5, read-policy observations and fresh runtime/source pins require explicitly matching reviewed configuration. Source publication updates neither served website nor signing; old payload3/4 observations are not relabelled. See the [round-accounting review](../reports/royalty-rounds-20261118/REVIEW.md).
+Fresh payload6/allocation2 preserves schema17/canonicalV10/reporting5 and this read/unsigned consumer wire shape. The current `activation-final-six-20261118` build requires exact new factory, read-policy and runtime/source pins; explicit historical3/4/5 observations are not relabelled. Source compatibility and source publication update neither served website nor signing. See the [current source review](../reports/activation-final-six-20261118/REVIEW.md).
 
 ## Optional execution-price1
 
@@ -84,11 +84,11 @@ directory. Source publication does not install or restart anything. Follow the
 [environment map](SITE_ENVIRONMENTS.md); preserve popldemo, served current3
 poplint, existing Anvil8902, journals and the user-paused heartbeat.
 
-The [current verification](../reports/v10-website-20261109/REVIEW.md) uses actual
+The [historical source10 verification](../reports/v10-website-20261109/REVIEW.md) uses actual
 backend handlers with explicitly synthetic RPC/trace/graph state. It demonstrates
 consumer compatibility, not target-chain execution, live market depth, independent
 feeds, VRF, OpenSea onboarding, wallet extension acceptance, hosting/recovery or
 independent security approval. Those release gates remain open.
 
 
-The fresh `activation-gas-20261118` build preserves public accounting7/LP-allocation1/schema17/canonicalV10 records and the exact payload5 Royalty creation bytes. Only private LP carry encoding is compacted with a full-width spill; pending/high128/low256 logical values and arithmetic are unchanged. New exact runtime/source pins are required. Never copy old EVM carry slots into this representation or relabel old snapshots/journals. See the [source and verification scope](../reports/activation-gas-20261118/REVIEW.md). Public input/permission/economic rules are unchanged; complete gas/recovery/operating acceptance is separate.
+The fresh `activation-final-six-20261118` build preserves public accounting7/LP-allocation1/schema17/canonicalV10 and exact original-currency rights, while introducing factory payload6 and new private Royalty/LP/pricing representations. Its compatible public ABI/read/unsigned wire does not qualify a served website, signing or installed consumer. Review fresh exact source/runtime/factory pins; never hot-copy old raw storage or relabel old snapshots/journals. The [controlled gas evidence](../reports/activation-final-six-20261118/REVIEW.md) passes all13 cold20M/full20% calls, worst16,460,899 raw/19,753,079 padded; target wallet/provider/fees, market and operating acceptance remain separate.

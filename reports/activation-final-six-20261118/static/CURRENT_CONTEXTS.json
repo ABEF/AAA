@@ -1,0 +1,2199 @@
+{
+  "current_count": 147,
+  "exact_unchanged_reuse": 454,
+  "total": 601,
+  "changed_sources": {
+    "src/base/ZZZExactLPRewardsCanonical.sol": {
+      "prior": "f8feffb90832d6ea05e96793c05a02037fc7dbe8793b81a8a5a290f49bd93b74",
+      "current": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+    },
+    "src/interfaces/IZZZProtocolPolicy.sol": {
+      "prior": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "current": "afeede9fd34a972a9c11e9e39a4d71747d93184902d68c5fa6a1fae14dac7697"
+    },
+    "src/libraries/ExactLPAllocation.sol": {
+      "prior": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
+      "current": "0d691902e789003a2b21148d6150a8d390e053ff3353e7f89670bf3d1fb412b4"
+    },
+    "src/libraries/ExactRoyaltyAllocation.sol": {
+      "prior": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+      "current": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9"
+    },
+    "src/ZZZActivationAssets.sol": {
+      "prior": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "current": "e0b65ec8312da1bda7ffdc268750a9578b97c53c2804a07f7729eaeb409d2ffd"
+    },
+    "src/ZZZActivationEntry.sol": {
+      "prior": "aa30ba816b1c3ee712552fc93e3341b717166787742382c32de5e20b654f3ae9",
+      "current": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6"
+    },
+    "src/ZZZContributionPricing.sol": {
+      "prior": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189",
+      "current": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+    },
+    "src/ZZZLiquidityManager.sol": {
+      "prior": "c62a2f8adba577f0040333d2e33434da91a742fee7f774951d58972989501ca3",
+      "current": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+    },
+    "src/ZZZOracle.sol": {
+      "prior": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
+      "current": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+    },
+    "src/ZZZProtocolPolicy.sol": {
+      "prior": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+      "current": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+    },
+    "src/ZZZRoyaltyRewards.sol": {
+      "prior": "dc27116d1ba2a39082cb9f2d2f49ce19d8291877722a583893368c2fec4d9b0b",
+      "current": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+    },
+    "src/ZZZV4SpotPriceFeed.sol": {
+      "prior": "d0dec11b83042de60e081f28d94da6c8f69361474fcab028b44e945860dae5e7",
+      "current": "6e2266b54330080ba06da9860b6975a2918e1debf669d8ebe8ba322abea4cb61"
+    }
+  },
+  "by_current_check": {
+    "arbitrary-send-eth": 1,
+    "reentrancy-balance": 9,
+    "uninitialized-state": 1,
+    "boolean-cst": 1,
+    "incorrect-equality": 2,
+    "reentrancy-no-eth": 2,
+    "uninitialized-local": 10,
+    "unused-return": 8,
+    "shadowing-local": 7,
+    "events-maths": 2,
+    "missing-zero-check": 1,
+    "calls-loop": 12,
+    "reentrancy-benign": 4,
+    "timestamp": 9,
+    "assembly": 36,
+    "costly-loop": 6,
+    "cyclomatic-complexity": 5,
+    "dead-code": 1,
+    "low-level-calls": 3,
+    "missing-inheritance": 13,
+    "naming-convention": 2,
+    "too-many-digits": 5,
+    "unused-state": 4,
+    "cache-array-length": 3
+  },
+  "current": [
+    {
+      "fingerprint": "20f7dc39649c2a444874bd82c74376df9318eed150c599af66f1a42ba519b819",
+      "check": "arbitrary-send-eth",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards._sendRaw(address,address,uint256) (src/ZZZRoyaltyRewards.sol#688-694) sends eth to arbitrary user\n\tDangerous calls:\n\t- (ok,None) = address(receiver).call{value: amount}() (src/ZZZRoyaltyRewards.sol#691)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 1
+    },
+    {
+      "fingerprint": "751ce15bacf6825913f8c7ccbab884fdb7e8ddadebff6bb995da818ccca5c9f2",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager._swapExact(bytes32,PoolConfig,bool,uint256,uint256,address,uint256,MarketState) (src/ZZZLiquidityManager.sol#246-265):\n\tExternal call allowing reentrancy:\n\t- _executionOracle().beforeSwap(address(poolManager),address(stateView),poolId,expected) (src/ZZZLiquidityManager.sol#259)\n\tBalance read before the call:\n\t- beforeOutput = _balance(output,recipient) (src/ZZZLiquidityManager.sol#256)\n\tPossible stale balance used after the call in a condition:\n\t- pendingSwapHash != bytes32(0) || amountOut < minimumOut || _balance(output,recipient) != beforeOutput + amountOut (src/ZZZLiquidityManager.sol#261-262)\n\t\t- stale variable `beforeOutput`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 2
+    },
+    {
+      "fingerprint": "55942cdca1d441a09858b7bdf2b19f105e6edbd81c61bca4f5c9dc754fff4f7f",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346):\n\tExternal call allowing reentrancy:\n\t- p = balancingRouter.planReplacement(targetPool,lower,upper,amount0,amount1,10000,marks) (src/ZZZLiquidityManager.sol#304-305)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#278)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool,false) != context (src/ZZZLiquidityManager.sol#339-340)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 3
+    },
+    {
+      "fingerprint": "fa9d2a5a2e9ce22e8b26dbb8095d57a7fb48b46647ff7768eb217b1abb26e56f",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346):\n\tExternal call allowing reentrancy:\n\t- (p.amountOut,p.afterState) = balancingRouter.quoteSwap(p.poolId,p.zeroForOne,p.amountIn) (src/ZZZLiquidityManager.sol#323)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#278)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool,false) != context (src/ZZZLiquidityManager.sol#339-340)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 4
+    },
+    {
+      "fingerprint": "82c204b60ab4a07111e4730949cf943e1e345757cb569ed22628c52230f32623",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager._swapExact(bytes32,PoolConfig,bool,uint256,uint256,address,uint256,MarketState) (src/ZZZLiquidityManager.sol#246-265):\n\tExternal call allowing reentrancy:\n\t- amountOut = abi.decode(poolManager.unlock(payload),(uint256)) (src/ZZZLiquidityManager.sol#260)\n\tBalance read before the call:\n\t- beforeOutput = _balance(output,recipient) (src/ZZZLiquidityManager.sol#256)\n\tPossible stale balance used after the call in a condition:\n\t- pendingSwapHash != bytes32(0) || amountOut < minimumOut || _balance(output,recipient) != beforeOutput + amountOut (src/ZZZLiquidityManager.sol#261-262)\n\t\t- stale variable `beforeOutput`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 5
+    },
+    {
+      "fingerprint": "beecc3542482e89ca2734ed73a3a7ab1dbb1cc005c40e87ef27ebd476587d8ef",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346):\n\tExternal call allowing reentrancy:\n\t- output = _swapExact(p.poolId,venue,p.zeroForOne,p.amountIn,p.minimumOut,msg.sender,p.amountOut,p.afterState) (src/ZZZLiquidityManager.sol#326)\n\t\t- _executionOracle().beforeSwap(address(poolManager),address(stateView),poolId,expected) (src/ZZZLiquidityManager.sol#259)\n\t\t- amountOut = abi.decode(poolManager.unlock(payload),(uint256)) (src/ZZZLiquidityManager.sol#260)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#278)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool,false) != context (src/ZZZLiquidityManager.sol#339-340)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 6
+    },
+    {
+      "fingerprint": "440baf4a8cc627e137e2325c3708ba6ace97467abffee1770782c17f747e6218",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346):\n\tExternal call allowing reentrancy:\n\t- p = balancingRouter.planReplacement(targetPool,lower,upper,amount0,amount1,_portfolioPolicy().minimumMainBps(targetPool),marks) (src/ZZZLiquidityManager.sol#304-305)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#278)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool,false) != context (src/ZZZLiquidityManager.sol#339-340)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 7
+    },
+    {
+      "fingerprint": "3eb7dea915b3cdbe1a8c4f40a5ec9af334b6a8f2c8e9c496d6d969071fc769a5",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346):\n\tExternal call allowing reentrancy:\n\t- p = balancingRouter.planReplacement(targetPool,lower,upper,amount0,amount1,10000,marks_scope_0) (src/ZZZLiquidityManager.sol#313)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#278)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool,false) != context (src/ZZZLiquidityManager.sol#339-340)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 8
+    },
+    {
+      "fingerprint": "0dc347e0180c39af6cacb4b9d424d757aea9d34de32a5be1ca56e20df60a6adf",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346):\n\tExternal call allowing reentrancy:\n\t- p = balancingRouter.plan(targetPool,lower,upper,amount0,amount1) (src/ZZZLiquidityManager.sol#314)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#278)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool,false) != context (src/ZZZLiquidityManager.sol#339-340)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 9
+    },
+    {
+      "fingerprint": "a850ce846f4a14f0831ca92056198020126dfbfb75404613eadb9dbc0da1381f",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346):\n\tExternal call allowing reentrancy:\n\t- _sendNative(msg.sender,refund0) (src/ZZZLiquidityManager.sol#333)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#148)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#278)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool,false) != context (src/ZZZLiquidityManager.sol#339-340)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 10
+    },
+    {
+      "fingerprint": "da03011bdb3644e50ddea0c8f49653de2e8bd527bffed6ab9e2d316e25e931d3",
+      "check": "uninitialized-state",
+      "impact": "High",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards.assetStatus (src/ZZZRoyaltyRewards.sol#53) is never initialized. It is used in:\n\t- ZZZRoyaltyRewards._readStatus(address) (src/ZZZRoyaltyRewards.sol#60-66)\n\t- ZZZRoyaltyRewards._writeStatus(address,uint256,uint256) (src/ZZZRoyaltyRewards.sol#67-74)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 11
+    },
+    {
+      "fingerprint": "1e3d28a4868687a6d5193587d618858c252da2c1f7fec53f138a281a7ea5f0e6",
+      "check": "boolean-cst",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32) (src/ZZZContributionPricing.sol#272-287) uses a Boolean constant improperly:\n\t-true (src/ZZZContributionPricing.sol#278)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 12
+    },
+    {
+      "fingerprint": "eb9deddb63604df6f1c9ffeaf0efdefc1e8adc60eafd0c709f44ad65776c090a",
+      "check": "incorrect-equality",
+      "impact": "Medium",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards._sendRaw(address,address,uint256) (src/ZZZRoyaltyRewards.sol#688-694) uses a dangerous strict equality:\n\t- amount == 0 (src/ZZZRoyaltyRewards.sol#689)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 13
+    },
+    {
+      "fingerprint": "19bdd975db19cc835845b72d17f0460748a9dc1257ec4462bc8309ef9cfac7a5",
+      "check": "incorrect-equality",
+      "impact": "Medium",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards._distribute(address,uint256,uint256,uint256) (src/ZZZRoyaltyRewards.sol#352-364) uses a dangerous strict equality:\n\t- amount == 0 (src/ZZZRoyaltyRewards.sol#353)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 14
+    },
+    {
+      "fingerprint": "95cee8f17bf2f545efcb3f9e07c7c10c5084e3bb6d2ad6e54db0dd375969e685",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256) (src/ZZZRewards.sol#180-222):\n\tExternal calls:\n\t- output = ZZZLPRewardConverter(address(converter)).convert(token,total,routeId,minimumETH,deadline) (src/ZZZRewards.sol#198)\n\tState variables written after the call(s):\n\t- directCollective[ids[i_scope_0]][address(0)] += sharedETH (src/ZZZRewards.sol#216)\n\tZZZExactLPRewardsCanonical.directCollective (src/base/ZZZExactLPRewardsCanonical.sol#49) can be used in cross function reentrancies:\n\t- ZZZExactLPRewardsCanonical.canonicalSeed(uint256) (src/base/ZZZExactLPRewardsCanonical.sol#129-138)\n\t- ZZZRewards.claimableComponents(uint256,address) (src/ZZZRewards.sol#123-131)\n\t- directIndividual[ids[i_scope_0]][address(0)] += ownETH (src/ZZZRewards.sol#215)\n\tZZZExactLPRewardsCanonical.directIndividual (src/base/ZZZExactLPRewardsCanonical.sol#48) can be used in cross function reentrancies:\n\t- ZZZExactLPRewardsCanonical.canonicalSeed(uint256) (src/base/ZZZExactLPRewardsCanonical.sol#129-138)\n\t- ZZZRewards.claimableComponents(uint256,address) (src/ZZZRewards.sol#123-131)\n\t- directLiabilities[address(0)] += output (src/ZZZRewards.sol#203)\n\tZZZExactLPRewardsCanonical.directLiabilities (src/base/ZZZExactLPRewardsCanonical.sol#50) can be used in cross function reentrancies:\n\t- ZZZExactLPRewardsCanonical.directLiabilities (src/base/ZZZExactLPRewardsCanonical.sol#50)\n\t- liabilities[address(0)] += output (src/ZZZRewards.sol#202)\n\tZZZExactLPRewardsCanonical.liabilities (src/base/ZZZExactLPRewardsCanonical.sol#44) can be used in cross function reentrancies:\n\t- ZZZExactLPRewardsCanonical.liabilities (src/base/ZZZExactLPRewardsCanonical.sol#44)\n",
+      "referenced_paths": [
+        "src/ZZZRewards.sol",
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRewards.sol": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 15,
+      "prior_exact_fingerprint_rationale": "convertBatch clears source rights and debits source liability before conversion, then assigns exact received ETH by cumulative whole floors. nonReentrant rejects claims/credit/sync/conversion; claimableComponents, allocationTree and canonicalSeed read barriers reject intermediate accounting. Public mapping reads alone authorize no economic write; external token behavior is qualified separately."
+    },
+    {
+      "fingerprint": "efdac8faf2ad3fd140e57b4d3b18afc5f8bdb82d6323322becc2e478b2db79f4",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZContributionPricing._endMaintenanceExecution(uint256) (src/ZZZContributionPricing.sol#165-169):\n\tExternal calls:\n\t- IZZZExecutionOracle(address(oracle)).endExecution() (src/ZZZContributionPricing.sol#167)\n\tState variables written after the call(s):\n\t- delete maintenanceBucket (src/ZZZContributionPricing.sol#168)\n\tZZZContributionPricing.maintenanceBucket (src/ZZZContributionPricing.sol#38) can be used in cross function reentrancies:\n\t- ZZZContributionPricing._beginMaintenanceExecution(uint256,address) (src/ZZZContributionPricing.sol#160-164)\n\t- ZZZContributionPricing._endMaintenanceExecution(uint256) (src/ZZZContributionPricing.sol#165-169)\n\t- ZZZContributionPricing._pair(bytes32) (src/ZZZContributionPricing.sol#253-268)\n\t- ZZZContributionPricing.idleValue(uint256) (src/ZZZContributionPricing.sol#346-352)\n\t- ZZZContributionPricing.valueBucket(uint256,uint256,uint256) (src/ZZZContributionPricing.sol#326-331)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 16
+    },
+    {
+      "fingerprint": "e1dd966b037873da23546fc83cbddf93da7e88e0e3b3aed5c8e4cb5ba114c799",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256).request (src/ZZZLiquidityManager.sol#279) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 17
+    },
+    {
+      "fingerprint": "a2675a08e269cadc60708fce98ad30ab4561189e71a2ba8d95df3d622df2be9f",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256).p (src/ZZZLiquidityManager.sol#294) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 18
+    },
+    {
+      "fingerprint": "53a14b0321d69fea3ad75c43d4bc72986d1a92b3a948587c3ca52ce0267a5341",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ExactRoyaltyAllocation.birthActivated(ExactRoyaltyAllocation.Cohorts,uint256).low (src/libraries/ExactRoyaltyAllocation.sol#83) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/libraries/ExactRoyaltyAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactRoyaltyAllocation.sol": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9"
+      },
+      "current_index": 19
+    },
+    {
+      "fingerprint": "d681496fb218d319479ebfbb5140fc6c469857acb5bbca0d9b2046b8e3328024",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256).priorLiquidity (src/ZZZLiquidityManager.sol#281) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 20
+    },
+    {
+      "fingerprint": "89c1b3a82a4280ec107acb15e2a3706193106cf7d0dd09eee9d945b126e1e6b2",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256).marks_scope_0 (src/ZZZLiquidityManager.sol#312) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 21
+    },
+    {
+      "fingerprint": "821b050fa7d2b00b17d0f77eff940c91ce24ab8abaf3d035f982fd867bbe344a",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards.activate(uint256,uint256).successful (src/ZZZRoyaltyRewards.sol#248) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 22
+    },
+    {
+      "fingerprint": "f3a7929608f5eb78cf6864891403f634c8cb0f2ee7755afd1975e63746a4f4be",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._writeSeed(ZZZExactLPRewardsCanonical.CanonicalSeed).found (src/base/ZZZExactLPRewardsCanonical.sol#196) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 23,
+      "prior_exact_fingerprint_rationale": "_writeSeed found intentionally starts false, scans <=4 actual Vault bucket IDs and rejects if no matching bucket exists before installing any share/collective weights."
+    },
+    {
+      "fingerprint": "fbd82ec14909748904293b2c6beb53755617e1300639087fe6ca4d080eda7b97",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards.activate(uint256,uint256).balanceCap (src/ZZZRoyaltyRewards.sol#243) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 24
+    },
+    {
+      "fingerprint": "507fbe15f44e5d115e01c17e8ab7c9efca1e340ee3f8ce9941fecdf65a13ce9c",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZOracle.executionBounds(address).i (src/ZZZOracle.sol#587) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 25
+    },
+    {
+      "fingerprint": "166f2c57c620bcfbfb4133628eb0f03afc32b8adcda09da4f5b12fef49c1dd3e",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards.activate(uint256,uint256).syncGas (src/ZZZRoyaltyRewards.sol#243) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 26
+    },
+    {
+      "fingerprint": "2cdbca70ee3cab756b7e2f68b1c40f894208cee31de71d501a6d6a8b2ec057c2",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing.markMaintenance(uint256) (src/ZZZContributionPricing.sol#125-142) ignores return value by (mark.price1,None,None) = IZZZExecutionOracle(address(oracle)).executionBounds(c.key.currency1) (src/ZZZContributionPricing.sol#136)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 27
+    },
+    {
+      "fingerprint": "c53d473c3a27fa796aa54dd6b92d032bb01611910eae51d21b678edca55055bb",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16,bytes32) (src/ZZZActivationEntry.sol#98-145) ignores return value by activationAssets.validateInput(source) (src/ZZZActivationEntry.sol#118)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6"
+      },
+      "current_index": 28
+    },
+    {
+      "fingerprint": "765c2419bfeafab1134bb86130650e0891123e0a2b5bbc752ec0c73a1a4ae894",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._writeSeed(ZZZExactLPRewardsCanonical.CanonicalSeed) (src/base/ZZZExactLPRewardsCanonical.sol#188-209) ignores return value by ownerBooks[r.bucket].setWeight(ordinal,r.shares) (src/base/ZZZExactLPRewardsCanonical.sol#201)\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 29,
+      "prior_exact_fingerprint_rationale": "_writeSeed installs authenticated actual Vault shares into an initially empty owner leaf; no pending books exist until all seeds finish. Child _roots checks every owner root equals exact Vault supply before node1 and canonicalValidate repeats it. Immediate returned root is intentionally not final during partial seeding."
+    },
+    {
+      "fingerprint": "a3d4f2c0ca1dca41574bf9643645c6ee62e5845e3741df12cfa194cd5ab0a219",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._writeSeed(ZZZExactLPRewardsCanonical.CanonicalSeed) (src/base/ZZZExactLPRewardsCanonical.sol#188-209) ignores return value by collectiveBook.setWeight(ordinal,1) (src/base/ZZZExactLPRewardsCanonical.sol#201)\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 30,
+      "prior_exact_fingerprint_rationale": "_writeSeed adds collective weight1 only for exact imported Membership eligibility. All seeds precede node books; child root check before node1/final validate proves total==Membership.totalEligible. Partial seed totals need not yet equal final expected total."
+    },
+    {
+      "fingerprint": "198b526b8f36c353077ce0b6abc82ea682c21c98defeedc73ae9ef32df41f2e0",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._executionValue(address,uint256) (src/ZZZContributionPricing.sol#332-335) ignores return value by (lower,None,None) = IZZZExecutionOracle(address(oracle)).executionBounds(token) (src/ZZZContributionPricing.sol#333)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 31
+    },
+    {
+      "fingerprint": "d68741984330f476ddd4bae447c418f488fcf42eda006473df4fc6e7c68b45ab",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.spot(bytes32) (src/ZZZLiquidityManager.sol#134-136) ignores return value by (priceX96,None,None,None) = stateView.getSlot0(poolId) (src/ZZZLiquidityManager.sol#135)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 32
+    },
+    {
+      "fingerprint": "28725e175726286094f1e01cc1c48e34b336f105cb8235a49579978e1fddab34",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346) ignores return value by (lower,upper,None) = IZZZExecutionStrategy(address(balancingRouter.balanceMath())).executionTarget(targetPool) (src/ZZZLiquidityManager.sol#287)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 33
+    },
+    {
+      "fingerprint": "5c5fbe9b7b306fa6843b56602389c57c8ec765f51ef5773f36f911890896d020",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing.markMaintenance(uint256) (src/ZZZContributionPricing.sol#125-142) ignores return value by (mark.price0,None,None) = IZZZExecutionOracle(address(oracle)).executionBounds(c.key.currency0) (src/ZZZContributionPricing.sol#135)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 34
+    },
+    {
+      "fingerprint": "3a6cf0c0310ed0020bc94c3298579afea8e7ac89ad33eea6ff958e7d17a3d450",
+      "check": "shadowing-local",
+      "impact": "Low",
+      "confidence": "High",
+      "description": "ExactRoyaltyAllocation.enroll(ExactRoyaltyAllocation.Cohorts,uint256,uint256).rounds (src/libraries/ExactRoyaltyAllocation.sol#57) shadows:\n\t- ExactRoyaltyAllocation.rounds(ExactRoyaltyAllocation.Book) (src/libraries/ExactRoyaltyAllocation.sol#37) (function)\n",
+      "referenced_paths": [
+        "src/libraries/ExactRoyaltyAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactRoyaltyAllocation.sol": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9"
+      },
+      "current_index": 35
+    },
+    {
+      "fingerprint": "f55607a76f6d0d0c800635b825c7e9543f5dafc897c25151d552637761bb57b2",
+      "check": "shadowing-local",
+      "impact": "Low",
+      "confidence": "High",
+      "description": "ZZZProtocolPolicy.setGasPolicy(uint32,uint32,uint32,bytes32).payoutGas (src/ZZZProtocolPolicy.sol#100) shadows:\n\t- ZZZProtocolPolicy.payoutGas() (src/ZZZProtocolPolicy.sol#61) (function)\n",
+      "referenced_paths": [
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+      },
+      "current_index": 36
+    },
+    {
+      "fingerprint": "df1beee54038838c4ef12de74ea309e4be03870e6b38d6bab733ccf301ca656b",
+      "check": "shadowing-local",
+      "impact": "Low",
+      "confidence": "High",
+      "description": "ZZZProtocolPolicy.setGasPolicy(uint32,uint32,uint32,bytes32).royaltySyncGas (src/ZZZProtocolPolicy.sol#100) shadows:\n\t- ZZZProtocolPolicy.royaltySyncGas() (src/ZZZProtocolPolicy.sol#63) (function)\n",
+      "referenced_paths": [
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+      },
+      "current_index": 37
+    },
+    {
+      "fingerprint": "a2e5d8b6b2aabca6a7285fdd0d2ed33298af988be73791e3f8dd1461efb3e93a",
+      "check": "shadowing-local",
+      "impact": "Low",
+      "confidence": "High",
+      "description": "ZZZProtocolPolicy.setGasPolicy(uint32,uint32,uint32,bytes32).sourceCallGas (src/ZZZProtocolPolicy.sol#100) shadows:\n\t- ZZZProtocolPolicy.sourceCallGas() (src/ZZZProtocolPolicy.sol#62) (function)\n",
+      "referenced_paths": [
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+      },
+      "current_index": 38
+    },
+    {
+      "fingerprint": "f3c75429e5b37ad585316fd095a10c59718a424f061d4a1ca380a7f43fb6b215",
+      "check": "shadowing-local",
+      "impact": "Low",
+      "confidence": "High",
+      "description": "ExactRoyaltyAllocation.birth(ExactRoyaltyAllocation.Cohorts,uint256).rounds (src/libraries/ExactRoyaltyAllocation.sol#77) shadows:\n\t- ExactRoyaltyAllocation.rounds(ExactRoyaltyAllocation.Book) (src/libraries/ExactRoyaltyAllocation.sol#37) (function)\n",
+      "referenced_paths": [
+        "src/libraries/ExactRoyaltyAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactRoyaltyAllocation.sol": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9"
+      },
+      "current_index": 39
+    },
+    {
+      "fingerprint": "d5d2c619b4d6e7cc0f933a4c7f677ab652ec918b1c721383b662b3bc2f3d2293",
+      "check": "shadowing-local",
+      "impact": "Low",
+      "confidence": "High",
+      "description": "ExactRoyaltyAllocation.enrollValidated(ExactRoyaltyAllocation.Cohorts,uint256,uint256).rounds (src/libraries/ExactRoyaltyAllocation.sol#69) shadows:\n\t- ExactRoyaltyAllocation.rounds(ExactRoyaltyAllocation.Book) (src/libraries/ExactRoyaltyAllocation.sol#37) (function)\n",
+      "referenced_paths": [
+        "src/libraries/ExactRoyaltyAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactRoyaltyAllocation.sol": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9"
+      },
+      "current_index": 40
+    },
+    {
+      "fingerprint": "39a62ad97091589a4f9e309f319485dab0201cad64f15131666c1878885f4c46",
+      "check": "shadowing-local",
+      "impact": "Low",
+      "confidence": "High",
+      "description": "ExactRoyaltyAllocation.birthActivated(ExactRoyaltyAllocation.Cohorts,uint256).rounds (src/libraries/ExactRoyaltyAllocation.sol#82) shadows:\n\t- ExactRoyaltyAllocation.rounds(ExactRoyaltyAllocation.Book) (src/libraries/ExactRoyaltyAllocation.sol#37) (function)\n",
+      "referenced_paths": [
+        "src/libraries/ExactRoyaltyAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactRoyaltyAllocation.sol": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9"
+      },
+      "current_index": 41
+    },
+    {
+      "fingerprint": "2f997855d8c1a7e64175a6406d47d8663cd8946f90c66c53ef748200ebd955a1",
+      "check": "events-maths",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards.canonicalImport(uint256,bytes) (src/ZZZRoyaltyRewards.sol#571-633) should emit an event for: \n\t- (canonicalAssetTotal,canonicalNFTs,canonicalWeight,mintEnd,assetCapacity) = abi.decode(record,(uint256,uint256,uint256,uint64,uint8)) (src/ZZZRoyaltyRewards.sol#576) \n\t- (canonicalAssetTotal,canonicalNFTs,canonicalWeight,mintEnd,assetCapacity) = abi.decode(record,(uint256,uint256,uint256,uint64,uint8)) (src/ZZZRoyaltyRewards.sol#576) \n\t- (canonicalAssetTotal,canonicalNFTs,canonicalWeight,mintEnd,assetCapacity) = abi.decode(record,(uint256,uint256,uint256,uint64,uint8)) (src/ZZZRoyaltyRewards.sol#576) \n\t- (canonicalAssetTotal,canonicalNFTs,canonicalWeight,mintEnd,assetCapacity) = abi.decode(record,(uint256,uint256,uint256,uint64,uint8)) (src/ZZZRoyaltyRewards.sol#576) \n\t- (canonicalAssetTotal,canonicalNFTs,canonicalWeight,mintEnd,assetCapacity) = abi.decode(record,(uint256,uint256,uint256,uint64,uint8)) (src/ZZZRoyaltyRewards.sol#576) \n\t- canonicalMaxOrdinal = ordinal (src/ZZZRoyaltyRewards.sol#620) \n\t- totalWeight += weight (src/ZZZRoyaltyRewards.sol#625) \n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 42
+    },
+    {
+      "fingerprint": "b41e6423de976df672e7de099b95c77139207af9303f9308f236ea1a29eb50e4",
+      "check": "events-maths",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.receive() (src/ZZZLiquidityManager.sol#69-72) should emit an event for: \n\t- nativeReceived += msg.value (src/ZZZLiquidityManager.sol#71) \n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 43,
+      "prior_exact_fingerprint_rationale": "receive only accepts the armed immutable native sender and accumulates actual receipts. Outer exact-balance checks and operation/fee events record completion. A per-transfer event adds gas without creating a new entitlement or configuration audit trail."
+    },
+    {
+      "fingerprint": "987469a0cdfe5982479c782faa74c91c40d061ba378e0ce39a35fcd9aeb9c678",
+      "check": "missing-zero-check",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.beginEmergency().budget (src/ZZZLiquidityManager.sol#98) lacks a zero-check on :\n\t\t- emergencyBudget = budget (src/ZZZLiquidityManager.sol#100)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 44
+    },
+    {
+      "fingerprint": "4ac8cf8fb833520a5ac6657e3aa11ddf1c5566ba39ab3ccfbc2a399644b34f25",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged(bool) (src/ZZZContributionPricing.sol#375-387) has external calls inside a loop: (low,high,fingerprint) = IZZZExecutionOracle(address(oracle)).executionBounds(token) (src/ZZZContributionPricing.sol#382)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.endEntry()\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 45
+    },
+    {
+      "fingerprint": "334e7ec2af09a7d81bc1f26ff8f8d812de33f1f77b73950eea46a35442016e31",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._writeSeed(ZZZExactLPRewardsCanonical.CanonicalSeed) (src/base/ZZZExactLPRewardsCanonical.sol#188-209) has external calls inside a loop: vault.bucketAt(t) == r.bucket (src/base/ZZZExactLPRewardsCanonical.sol#197)\n\tCalls stack containing the loop:\n\t\tZZZExactLPRewardsCanonical.canonicalWrite(uint8,bytes)\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 46,
+      "prior_exact_fingerprint_rationale": "_writeSeed checks imported bucket membership by <=4 actual Vault bucketAt STATICCALLs, with canonical state2 and immutable-child-only entry. Count is bounded by _counts; no unbounded per-NFT nested scan."
+    },
+    {
+      "fingerprint": "89b7d89a30c894b77cad728a2cd1ce2e93470c45d0d7df46a828ad8d4f555f6b",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._canonicalTree(uint256) (src/base/ZZZExactLPRewardsCanonical.sol#113-116) has external calls inside a loop: ownerBooks[IExactLPVaultState(access.module(Ids.VAULT)).bucketAt(index - 1)] (src/base/ZZZExactLPRewardsCanonical.sol#115)\n\tCalls stack containing the loop:\n\t\tZZZExactLPRewardsCanonical.canonicalNode(uint256)\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 47,
+      "prior_exact_fingerprint_rationale": "canonicalNode reads at most5 trees; owner index uses actual frozen Vault bucketAt and fixed Access module. Count is _counts<=4; static source export remains bounded per992-byte row."
+    },
+    {
+      "fingerprint": "32189ed4b953c47056da6928e690781aa4b8bb011461eec79437a6b52af04db3",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged(bool) (src/ZZZContributionPricing.sol#375-387) has external calls inside a loop: (low,high,fingerprint) = IZZZExecutionOracle(address(oracle)).executionBounds(token) (src/ZZZContributionPricing.sol#382)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 48
+    },
+    {
+      "fingerprint": "a0ea87338b29338529e946578f6090ccccc258980238cbabd07e63927b5653b5",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged(bool) (src/ZZZContributionPricing.sol#375-387) has external calls inside a loop: (low,high,fingerprint) = IZZZExecutionOracle(address(oracle)).executionBounds(token) (src/ZZZContributionPricing.sol#382)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 49
+    },
+    {
+      "fingerprint": "8725abc1e02a72eed8065822e48c00d2a5ed49523c6678926c7aaae9388c3a4f",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._ordinal(uint256) (src/base/ZZZExactLPRewardsCanonical.sol#99-103) has external calls inside a loop: nft = IExactLPOrdinals(access.module(Ids.NFT)) (src/base/ZZZExactLPRewardsCanonical.sol#100)\n\tCalls stack containing the loop:\n\t\tZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256)\n\t\tZZZRewards._takeComponents(uint256,address)\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 50,
+      "prior_exact_fingerprint_rationale": "convertBatch performs fixed Access NFT lookup for <=32 sorted NFT entries. _ordinal authenticates minted index before tree access; bound MAX_CONVERSION_NFTS32 prevents unbounded batch work."
+    },
+    {
+      "fingerprint": "5dbeb4c835250658faf96521c4ce63dfc6087863a6409b2f751a4a538efaf7cd",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged(bool) (src/ZZZContributionPricing.sol#375-387) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#383-384)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.endEntry()\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 51
+    },
+    {
+      "fingerprint": "1a494fc45a5f87e452129cd6960ddfa5619eb21e5add5f10b6cfee60a1a57c67",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._ordinal(uint256) (src/base/ZZZExactLPRewardsCanonical.sol#99-103) has external calls inside a loop: ordinal == 0 || ordinal > 1000 || nft.tokenAtOrdinal(ordinal) != id (src/base/ZZZExactLPRewardsCanonical.sol#102)\n\tCalls stack containing the loop:\n\t\tZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256)\n\t\tZZZRewards._takeComponents(uint256,address)\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 52,
+      "prior_exact_fingerprint_rationale": "convertBatch _ordinal verifies actual NFT inverse ordinal mapping1..1000 for each <=32 selected NFT. This prevents arbitrary IDs/padded leaves receiving or consuming someone else tree rights."
+    },
+    {
+      "fingerprint": "099e64cc02b7d0a012e031fff8f75bc59f95ba33ac7be24a0ba3e74c9f472653",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._canonicalTree(uint256) (src/base/ZZZExactLPRewardsCanonical.sol#113-116) has external calls inside a loop: ownerBooks[IExactLPVaultState(access.module(Ids.VAULT)).bucketAt(index - 1)] (src/base/ZZZExactLPRewardsCanonical.sol#115)\n\tCalls stack containing the loop:\n\t\tZZZExactLPRewardsCanonical.canonicalWrite(uint8,bytes)\n\t\tZZZExactLPRewardsCanonical._writeNode(ZZZExactLPRewardsCanonical.CanonicalNode)\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 53,
+      "prior_exact_fingerprint_rationale": "_writeNode loops fixed5tree*2book slots, resolving owner buckets from actual imported Vault order. _counts caps bucket count4; unused slots must zero and each restore rejects preexisting state."
+    },
+    {
+      "fingerprint": "795ef1bb01873740363d7d81e7277f4ddfc2832c8145f9e29647396a6c3e355f",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged(bool) (src/ZZZContributionPricing.sol#375-387) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#383-384)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 54
+    },
+    {
+      "fingerprint": "1efa525a7f2be09f607868d8040127d0b615efa79f5dc839506a68ba3704d83f",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged(bool) (src/ZZZContributionPricing.sol#375-387) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#383-384)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 55
+    },
+    {
+      "fingerprint": "16fcc4492b281270d7f5b09b0a1addf721923be87a9d3976355483915b0c099d",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._ordinal(uint256) (src/base/ZZZExactLPRewardsCanonical.sol#99-103) has external calls inside a loop: ordinal = nft.mintOrdinalOf(id) (src/base/ZZZExactLPRewardsCanonical.sol#101)\n\tCalls stack containing the loop:\n\t\tZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256)\n\t\tZZZRewards._takeComponents(uint256,address)\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 56,
+      "prior_exact_fingerprint_rationale": "convertBatch reads mintOrdinalOf for <=32 actual NFT IDs and checks inverse tokenAtOrdinal. This bounded read authenticates immutable tree leaf identity across sparse/dynamic token IDs."
+    },
+    {
+      "fingerprint": "7183bfab6e78e2fa28da3e4a659bf1cc57f81c613165609a6a7167e9f97dc77f",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16,bytes32) (src/ZZZActivationEntry.sol#98-145):\n\tExternal calls:\n\t- grossUSD = _pricing().beginEntryReviewed(request.nftId,request.poolId,source,request.amountIn,maximumLossBps,expectedContributionPolicy) (src/ZZZActivationEntry.sol#119-120)\n\tState variables written after the call(s):\n\t- context = Context(msg.sender,request.nftId,keccak256(bytes)(payload),request.poolId,amount0,amount1,grossUSD) (src/ZZZActivationEntry.sol#135)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6"
+      },
+      "current_index": 57
+    },
+    {
+      "fingerprint": "a4979c234ce1eda86490a19f71c4ef9a02e2cab8219521de4d54ced6623ab32d",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.unlockCallback(bytes) (src/ZZZLiquidityManager.sol#347-386):\n\tExternal calls:\n\t- _executionOracle().afterSwap() (src/ZZZLiquidityManager.sol#365)\n\t- poolManager.sync(input) (src/ZZZLiquidityManager.sol#369)\n\t- poolManager.settle() != amountIn (src/ZZZLiquidityManager.sol#374)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MIN_SQRT_PRICE + 1),bytes()) (src/ZZZLiquidityManager.sol#353-354)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MAX_SQRT_PRICE - 1),bytes()) (src/ZZZLiquidityManager.sol#353-354)\n\tState variables written after the call(s):\n\t- nativeReceived = 0 (src/ZZZLiquidityManager.sol#380)\n\t- nativeSender = address(poolManager) (src/ZZZLiquidityManager.sol#379)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 58
+    },
+    {
+      "fingerprint": "3192b6f35d8c1a622ffa0956613b9c0325f626f1fac0b5ac2aa100eec80a9317",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.unlockCallback(bytes) (src/ZZZLiquidityManager.sol#347-386):\n\tExternal calls:\n\t- _executionOracle().afterSwap() (src/ZZZLiquidityManager.sol#365)\n\t- poolManager.sync(input) (src/ZZZLiquidityManager.sol#369)\n\t- poolManager.settle() != amountIn (src/ZZZLiquidityManager.sol#374)\n\t- poolManager.take(output,address(this),amountOut) (src/ZZZLiquidityManager.sol#381)\n\t- _finishNativeCredit(beforeNative,recipient) (src/ZZZLiquidityManager.sol#383)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#148)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MIN_SQRT_PRICE + 1),bytes()) (src/ZZZLiquidityManager.sol#353-354)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MAX_SQRT_PRICE - 1),bytes()) (src/ZZZLiquidityManager.sol#353-354)\n\tExternal calls sending eth:\n\t- _finishNativeCredit(beforeNative,recipient) (src/ZZZLiquidityManager.sol#383)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#148)\n\tState variables written after the call(s):\n\t- _finishNativeCredit(beforeNative,recipient) (src/ZZZLiquidityManager.sol#383)\n\t\t- nativeSender = address(0) (src/ZZZLiquidityManager.sol#152)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 59
+    },
+    {
+      "fingerprint": "6420feb841d6a444e78a7238d278b0f168a1693da2ee70d8180dfec0e8944e1a",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16,bytes32) (src/ZZZActivationEntry.sol#98-145):\n\tExternal calls:\n\t- grossUSD = _pricing().beginEntryReviewed(request.nftId,request.poolId,source,request.amountIn,maximumLossBps,expectedContributionPolicy) (src/ZZZActivationEntry.sol#119-120)\n\t- (success,result) = vault.call{value: request.amountIn}(payload) (src/ZZZActivationEntry.sol#136)\n\t- (success,result) = vault.call{value: 0}(payload) (src/ZZZActivationEntry.sol#136)\n\tExternal calls sending eth:\n\t- (success,result) = vault.call{value: request.amountIn}(payload) (src/ZZZActivationEntry.sol#136)\n\t- (success,result) = vault.call{value: 0}(payload) (src/ZZZActivationEntry.sol#136)\n\tState variables written after the call(s):\n\t- delete context (src/ZZZActivationEntry.sol#138)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6"
+      },
+      "current_index": 60
+    },
+    {
+      "fingerprint": "43e6a9fa1be381d61b58a8df0a77a64d6b5955553d7a03306312a6483b6c2654",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards.setMintEnd(uint64) (src/ZZZRoyaltyRewards.sol#154-160) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- end <= block.timestamp || (mintEnd != 0 && block.timestamp > mintEnd) || openingFinalized (src/ZZZRoyaltyRewards.sol#155)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 61
+    },
+    {
+      "fingerprint": "5f52c74ceb4a7be67f817b0a749cf28e70d4fd631a51228c0645f2a88ca7b0ee",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZOracle._decodeRound(bytes,uint256,ZZZOracle.SourcePolicy,address) (src/ZZZOracle.sol#219-240) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- round == 0 || round > type()(uint80).max || answered > type()(uint80).max || answered < round || answer <= 0 || started == 0 || started > updated || updated == 0 || updated > block.timestamp || block.timestamp - updated > source.maxAge (src/ZZZOracle.sol#233-235)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 62,
+      "prior_exact_fingerprint_rationale": "Block time intentionally enforces original provider timestamp ordering, nonfuture updatedAt and source.maxAge. Wide uint80 round/answered-round bounds and a positive bounded normalized answer remain checked before narrowing. The gas-only change does not refresh publication time, drop the second source, or prove real feed/chain liveness; those remain deployment qualification."
+    },
+    {
+      "fingerprint": "a7159d6eeb7735870d3e77ef6848da81dbaea99d31b284ef5679af89f167be5c",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards.canonicalCapture() (src/ZZZRoyaltyRewards.sol#520-538) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- ! royaltiesOpen() || ! openingFinalized (src/ZZZRoyaltyRewards.sol#523)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 63
+    },
+    {
+      "fingerprint": "0d51ce6c794f5ee58db5ee81d96f162b645b53d2dafeaa7ee9708328ac414fe9",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards.royaltiesOpen() (src/ZZZRoyaltyRewards.sol#164-166) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- mintEnd != 0 && block.timestamp >= royaltiesOpenAt() (src/ZZZRoyaltyRewards.sol#165)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 64
+    },
+    {
+      "fingerprint": "c00b52587d75c99311605a6b0f10df97b10d35cce4cb6199f3aac6d1ac0ca950",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards._finalizeOpening() (src/ZZZRoyaltyRewards.sol#169-176) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- ! openingFinalized && royaltiesOpen() (src/ZZZRoyaltyRewards.sol#170)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 65
+    },
+    {
+      "fingerprint": "1d642939b0442f4648baa0d1911e02eab7aef3a6364f4067bee7fb10e8189075",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards.effectiveEligibleCount(address) (src/ZZZRoyaltyRewards.sol#316-319) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- ! _initialAllocated(asset) && royaltiesOpen() && cutoff > eligibleCount(asset) (src/ZZZRoyaltyRewards.sol#318)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 66
+    },
+    {
+      "fingerprint": "11ac6e714ed9c98ed52e32a655fecbbe865441d4b86ba95cbcede4f0d261821c",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZV4SpotPriceFeed._eth(ZZZV4SpotPriceFeed.Config) (src/ZZZV4SpotPriceFeed.sol#106-116) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- round == 0 || round > type()(uint80).max || answered > type()(uint80).max || answered < round || answer <= 0 || s == 0 || s > u || u > block.timestamp || block.timestamp - u > c.maxETHAge (src/ZZZV4SpotPriceFeed.sol#110-111)\n",
+      "referenced_paths": [
+        "src/ZZZV4SpotPriceFeed.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZV4SpotPriceFeed.sol": "6e2266b54330080ba06da9860b6975a2918e1debf669d8ebe8ba322abea4cb61"
+      },
+      "current_index": 67
+    },
+    {
+      "fingerprint": "38dc230f0f0fb941fb1d213d799a01fc5f02e8b72f5648fb6845b3d74a3d542c",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZOracle._sequencerCheck(uint256) (src/ZZZOracle.sol#256-261) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- answer != 0 || block.timestamp - startedAt <= SEQUENCER_GRACE (src/ZZZOracle.sol#260)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 68,
+      "prior_exact_fingerprint_rationale": "The source status and recovery-grace comparison intentionally use block.timestamp. _sequencerData first proves nonzero nonfuture startedAt and valid status0/1, so subtraction cannot accept a future recovery time. The new gasLimit is local to this STATIC read chain and does not cache healthy status across calls or mutable execution; actual Robinhood liveness-provider qualification remains open."
+    },
+    {
+      "fingerprint": "0eef616aac6b2a3497fce4087d197655bd0540b16da407de6859131d012bc4ff",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZOracle._sequencerData(address,bytes32,uint256) (src/ZZZOracle.sol#136-149) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- round == 0 || round > type()(uint80).max || answeredRound > type()(uint80).max || answeredRound < round || (answer != 0 && answer != 1) || startedAt == 0 || startedAt > block.timestamp || updated < startedAt || updated > block.timestamp (src/ZZZOracle.sol#144-146)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 69,
+      "prior_exact_fingerprint_rationale": "Sequencer reads retain exact codehash/zero-decimals admission, bounded160-byte tuple, uint80 round/answered-round bounds, status0/1 and started/updated nonfuture ordering. Healthy unchanged uptime status deliberately has no periodic updatedAt expiry. A privately threaded call-gas cap changes neither that policy nor governance authority; runtime pins do not freeze upstream proxies."
+    },
+    {
+      "fingerprint": "4d4aa07548f551d6cfbb186461d7e3a0c7f8de0cdd7e4107073040f1054a15b5",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._loadQuote.asm_0.words() (src/ZZZOracle.sol#372-376) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#372-376)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 70
+    },
+    {
+      "fingerprint": "e09b491d6384bac982df8bd70133e61470364d88bee397781e688533fcf8021e",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ExactLPAllocation.readCarry(ExactLPAllocation.Carry) (src/libraries/ExactLPAllocation.sol#171-179) uses assembly\n\t- INLINE ASM (src/libraries/ExactLPAllocation.sol#172-178)\n",
+      "referenced_paths": [
+        "src/libraries/ExactLPAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactLPAllocation.sol": "0d691902e789003a2b21148d6150a8d390e053ff3353e7f89670bf3d1fb412b4"
+      },
+      "current_index": 71
+    },
+    {
+      "fingerprint": "87c5d2fdbdc4ffda3028879fb9f5f3bab5ecf47c6df7de7be7edebb8bacef300",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards._writeStatus(address,uint256,uint256) (src/ZZZRoyaltyRewards.sol#67-74) uses assembly\n\t- INLINE ASM (src/ZZZRoyaltyRewards.sol#68-73)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 72
+    },
+    {
+      "fingerprint": "07b3b9c56d55eebb2f0064a19bf311d38c98d44d43cc54cac19e4399dd593b7d",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ExactRoyaltyAllocation._bookRound(ExactRoyaltyAllocation.Book,uint256) (src/libraries/ExactRoyaltyAllocation.sol#38-45) uses assembly\n\t- INLINE ASM (src/libraries/ExactRoyaltyAllocation.sol#40-43)\n",
+      "referenced_paths": [
+        "src/libraries/ExactRoyaltyAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactRoyaltyAllocation.sol": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9"
+      },
+      "current_index": 73
+    },
+    {
+      "fingerprint": "c3a850e855ec6c75912b4d4d46da72e7180ba49016f11128133eb049514c2afc",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards._readStatus(address) (src/ZZZRoyaltyRewards.sol#60-66) uses assembly\n\t- INLINE ASM (src/ZZZRoyaltyRewards.sol#61-65)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 74
+    },
+    {
+      "fingerprint": "45daa30159cdb3fbe3d1bdaf497e99aec8acedd4e464a149f8a41c99a7047069",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._decodeRound(bytes,uint256,ZZZOracle.SourcePolicy,address) (src/ZZZOracle.sol#219-240) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#225-232)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 75,
+      "prior_exact_fingerprint_rationale": "The same original decoder requires encoded.length-offset to equal160, then reads exactly five wide words at the checked offset. Ordinary responses use0 and registered proofs use160 within320bytes. Narrow round widths, positive answer, ordered/fresh timestamps, decimals and normalization bounds are validated before narrowing; no changed pointer arithmetic or short-response padding is introduced."
+    },
+    {
+      "fingerprint": "6f657645e791331a69657e8ec002e89130b53b1daeaa2fd0a0e2d7a35dd76760",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZV4SpotPriceFeed._roundId(ZZZV4SpotPriceFeed.Config,MarketState,bytes32) (src/ZZZV4SpotPriceFeed.sol#179-195) uses assembly\n\t- INLINE ASM (src/ZZZV4SpotPriceFeed.sol#182-192)\n",
+      "referenced_paths": [
+        "src/ZZZV4SpotPriceFeed.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZV4SpotPriceFeed.sol": "6e2266b54330080ba06da9860b6975a2918e1debf669d8ebe8ba322abea4cb61"
+      },
+      "current_index": 76
+    },
+    {
+      "fingerprint": "d8612498717581c139bc89b2d2d4f3eca0180f9074fb80cfd4f81cfa6771750b",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._basisWord(uint256) (src/ZZZContributionPricing.sol#179-182) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#181)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 77
+    },
+    {
+      "fingerprint": "e78f010010a9babddcd9a8355790f3fd0b17308b2fe2489b9f135f268c91d1cf",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ExactRoyaltyAllocation.credit(ExactRoyaltyAllocation.Book,uint256,uint256,uint256,uint256) (src/libraries/ExactRoyaltyAllocation.sol#17-35) uses assembly\n\t- INLINE ASM (src/libraries/ExactRoyaltyAllocation.sol#25-34)\n",
+      "referenced_paths": [
+        "src/libraries/ExactRoyaltyAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactRoyaltyAllocation.sol": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9"
+      },
+      "current_index": 78
+    },
+    {
+      "fingerprint": "61e6c1dde0eabd7a89007ccf05a373c35102743dd885d2ae1a03e56f7de3ab66",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZV4SpotPriceFeed._read(address,bytes,uint256) (src/ZZZV4SpotPriceFeed.sol#68-77) uses assembly\n\t- INLINE ASM (src/ZZZV4SpotPriceFeed.sol#70-73)\n\t- INLINE ASM (src/ZZZV4SpotPriceFeed.sol#76)\n",
+      "referenced_paths": [
+        "src/ZZZV4SpotPriceFeed.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZV4SpotPriceFeed.sol": "6e2266b54330080ba06da9860b6975a2918e1debf669d8ebe8ba322abea4cb61"
+      },
+      "current_index": 79,
+      "prior_exact_fingerprint_rationale": "Reader _read uses immutable configured bounded read gas and exact expected byte counts. It verifies code/decimals/parent pins and wide ABI field ranges in the caller; STATICCALL cannot adopt market state or mutate the captured context."
+    },
+    {
+      "fingerprint": "73110bf800b5c5932b626d161e7466c9de70db7e12957f224d5de42e20afb304",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._boundedRead(address,bytes4,uint256,address,uint256) (src/ZZZOracle.sol#183-197) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#188-193)\n\t- INLINE ASM (src/ZZZOracle.sol#196)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 80,
+      "prior_exact_fingerprint_rationale": "STATICCALL still uses only the selected four-byte read selector and copies returndata only after successful exact-length validation. Temporary selector memory is no longer needed before bounded result allocation/copy. The gas cap is either resolved per read for sentinel0 or freshly fetched within the entirely STATIC private capture/validation chain; no user-supplied cap, value transfer, mutable callback or unbounded returndata copy is introduced."
+    },
+    {
+      "fingerprint": "d63542175bf5edb99c9aba60fb6b0730d0513ba9a7408b7ac3eb88eec9630779",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._assetAt(uint256) (src/ZZZContributionPricing.sol#224-227) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#226)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 81
+    },
+    {
+      "fingerprint": "c76d5152190ef205d309ce4f74574ef99392182b6cc09d60a40008c48ffb6721",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._spotHash(MarketState) (src/ZZZOracle.sol#492-501) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#493-500)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 82
+    },
+    {
+      "fingerprint": "a1a08ef24ffbc49c94752bc7830cb478f1e241837ef3fa96892d37a1e5de51a6",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._markSlot(address) (src/ZZZContributionPricing.sol#194-201) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#196-200)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 83
+    },
+    {
+      "fingerprint": "1f9e45382bc97a905f59a6e71f962497c2986d6f7bec2583b34b9f26491963d0",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._loadExecution.asm_0.words() (src/ZZZOracle.sol#334-338) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#334-338)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 84
+    },
+    {
+      "fingerprint": "f34120450e91890d16733ff63f570005a34b34bf9b17398a0cea8e3d01d8bca2",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._clearBasis() (src/ZZZContributionPricing.sol#187-192) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#189-191)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 85
+    },
+    {
+      "fingerprint": "2bd35802c88a8e20ed1d5463172b9d8e359430433d0b24b877e3e9bfcbaf29d7",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._roundHash(ZZZOracle.Round) (src/ZZZOracle.sol#470-480) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#471-479)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 86
+    },
+    {
+      "fingerprint": "b46de31c390fcca9864e8baca39c20943965dc7ac5a0e503eb6910868dfec25e",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._readMark(address) (src/ZZZContributionPricing.sol#202-211) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#204-210)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 87
+    },
+    {
+      "fingerprint": "7671da68040f5a6dc76b694013bd1d648b7d9194b00c46a5fac14502b4747f9c",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._basisSet(uint256,uint256) (src/ZZZContributionPricing.sol#183-186) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#185)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 88
+    },
+    {
+      "fingerprint": "1b9a29a776769089925aec623ece92edfeca093abb478ab5261f3fb88362ebbd",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._assetCount() (src/ZZZContributionPricing.sol#220-223) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#222)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 89
+    },
+    {
+      "fingerprint": "e11bbf3a4dc0c2c1f06f3451317b5d72a576a1d56fe12943b086ebe9bff1ca60",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._saveExecution(ZZZOracle.Execution) (src/ZZZOracle.sol#384-395) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#388-394)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 90
+    },
+    {
+      "fingerprint": "cc7bc8fd0819ba3f2f87cdc75c58103b46450742d1035ca0142f452968fa804d",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._loadExecution() (src/ZZZOracle.sol#328-358) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#333-357)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 91
+    },
+    {
+      "fingerprint": "d5955b361bf5a75af991fbebae17a87595a1d2ecae7c315bafae5c1d4473aefe",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16,bytes32) (src/ZZZActivationEntry.sol#98-145) uses assembly\n\t- INLINE ASM (src/ZZZActivationEntry.sol#137)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6"
+      },
+      "current_index": 92,
+      "prior_exact_fingerprint_rationale": "The remaining Entry assembly only bubbles the failed fixed-Vault call bytes using a memory-safe revert. Destination and calldata/value are code-owned; it cannot delegatecall, choose a recipient or continue after failure. Upstream large revert data can still consume transaction gas; this is atomic liveness/cost risk, not a guarantee that every failure is cheap."
+    },
+    {
+      "fingerprint": "7fb8414ccdce0b2be1f6da1aa7f5249ff757a40adae44cc8c6f8126586cb6184",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards._activationBalance(address,uint256) (src/ZZZRoyaltyRewards.sol#294-309) uses assembly\n\t- INLINE ASM (src/ZZZRoyaltyRewards.sol#300-307)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 93
+    },
+    {
+      "fingerprint": "ad7ee0ded4725140be50217caa4384beaab05f0a615320e4816401f27a0164ec",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._writeMark(address,ZZZContributionPricing.Mark) (src/ZZZContributionPricing.sol#212-219) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#214-218)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 94
+    },
+    {
+      "fingerprint": "3602061c9287fdd0034d5e4d93f31bae343efde6cb8b1ba1ed37671dd0c70af3",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards._syncActivationAsset(address,uint256,uint256) (src/ZZZRoyaltyRewards.sol#268-284) uses assembly\n\t- INLINE ASM (src/ZZZRoyaltyRewards.sol#276-281)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 95
+    },
+    {
+      "fingerprint": "9335a5d3ed4274ee2f3be3d4f903f021a9b8f1221565abe657b920d07bf14a00",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._clearExecution() (src/ZZZOracle.sol#396-402) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#398-401)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 96
+    },
+    {
+      "fingerprint": "ef88236ffe3e2db14b825fc73b7edfbb86010a6169aab7522dc81856257844d5",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._loadQuote() (src/ZZZOracle.sol#366-383) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#371-382)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 97
+    },
+    {
+      "fingerprint": "59eca28c80ea0ade1260cfa89905b5695493d2875d77223a9da4ae493b50d38b",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards._allocationUnit(uint256) (src/ZZZRoyaltyRewards.sol#337-350) uses assembly\n\t- INLINE ASM (src/ZZZRoyaltyRewards.sol#343-349)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 98
+    },
+    {
+      "fingerprint": "81739e9e1f237681120c7f8ad8e0c40a6824465ff5534b1f6aedc9fb3304110b",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._appendAsset(address) (src/ZZZContributionPricing.sol#228-235) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#230-234)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 99
+    },
+    {
+      "fingerprint": "e7da9a75bcaa1a29041fde5a722f9fb8cc5ee5ccfd5589d6d9014158c2024d21",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ExactLPAllocation.writeCarry(ExactLPAllocation.Carry,uint128,uint256) (src/libraries/ExactLPAllocation.sol#180-195) uses assembly\n\t- INLINE ASM (src/libraries/ExactLPAllocation.sol#181-194)\n",
+      "referenced_paths": [
+        "src/libraries/ExactLPAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactLPAllocation.sol": "0d691902e789003a2b21148d6150a8d390e053ff3353e7f89670bf3d1fb412b4"
+      },
+      "current_index": 100
+    },
+    {
+      "fingerprint": "c098ecca5920f2d7da48e1609f83a93a86dcef226abbd94d5d41d2b07b08786d",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._executionWord(uint256) (src/ZZZOracle.sol#359-362) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#361)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 101
+    },
+    {
+      "fingerprint": "842b859d4c733847726cc794fd7e04e2d93be509223d79332f277e7ad84ccd9f",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._boundedExecutionRead(address,bytes,uint256,address,uint256) (src/ZZZOracle.sol#455-469) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#462-465)\n\t- INLINE ASM (src/ZZZOracle.sol#468)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 102
+    },
+    {
+      "fingerprint": "d79b688494330cdea00e36f30261a65e9eb8812992446cf21b782116db11efd7",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._executionLength() (src/ZZZOracle.sol#322-326) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#324)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 103,
+      "prior_exact_fingerprint_rationale": "The unchanged reader tloads only its fixed private length slot and accepts0or1568; every other value reverts. Public callers cannot choose the slot or install arbitrary context bytes. The accepted gas-only patch changes no transient domain, delegatecall behavior or writer; exact shape is still checked before quote/full loading and clearing."
+    },
+    {
+      "fingerprint": "a0127a74aeeae561c734d1d9ae7f0657f141177faa29f501a97e965fd9e67933",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._marketHash(MarketState) (src/ZZZOracle.sol#481-491) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#482-490)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 104
+    },
+    {
+      "fingerprint": "b5499c9e27cb8b2836ecca5585a5f5d72330c05e4d1b84ecb8702173a573d62d",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._clearAssets() (src/ZZZContributionPricing.sol#236-243) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#238-242)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 105
+    },
+    {
+      "fingerprint": "c9f105ff05f153fb4611da359d6cbac57836e19868578ea9b2cf934047f44793",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards._finalizeOpening() (src/ZZZRoyaltyRewards.sol#169-176) has costly operations inside a loop:\n\t- openingFinalized = true (src/ZZZRoyaltyRewards.sol#171)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.activate(uint256,uint256)\n\t\tZZZRoyaltyRewards._sync(address)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 106
+    },
+    {
+      "fingerprint": "4e7137b6b90408b404a26190a78b8a1cb619965c1fd09cbe59dc84ef6369f23b",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards._finalizeOpening() (src/ZZZRoyaltyRewards.sol#169-176) has costly operations inside a loop:\n\t- openingFinalized = true (src/ZZZRoyaltyRewards.sol#171)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.syncAll()\n\t\tZZZRoyaltyRewards._sync(address)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 107
+    },
+    {
+      "fingerprint": "c8ce8b0d99516fce7ce3bdaf3241ba718e8ef2d0da35918e4f8f8773bff14b4b",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards._finalizeOpening() (src/ZZZRoyaltyRewards.sol#169-176) has costly operations inside a loop:\n\t- openingCount = activationCount (src/ZZZRoyaltyRewards.sol#172)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.syncAll()\n\t\tZZZRoyaltyRewards._sync(address)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 108
+    },
+    {
+      "fingerprint": "b9e8dd4e723799871621c14cbb7a42eb34dab6c515e9ec674dc52c4f0341b002",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards._finalizeOpening() (src/ZZZRoyaltyRewards.sol#169-176) has costly operations inside a loop:\n\t- openingWeight = totalWeight (src/ZZZRoyaltyRewards.sol#173)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.activate(uint256,uint256)\n\t\tZZZRoyaltyRewards._sync(address)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 109
+    },
+    {
+      "fingerprint": "dd89ba3d8f26676da0e60dff2bd245b39bac2a214cbf226693f81d3d82b45f15",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards._finalizeOpening() (src/ZZZRoyaltyRewards.sol#169-176) has costly operations inside a loop:\n\t- openingWeight = totalWeight (src/ZZZRoyaltyRewards.sol#173)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.syncAll()\n\t\tZZZRoyaltyRewards._sync(address)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 110
+    },
+    {
+      "fingerprint": "9c0e1499b6038b983febdadd23847fd23082e5500ce9d483d083015ebe05d4ef",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards._finalizeOpening() (src/ZZZRoyaltyRewards.sol#169-176) has costly operations inside a loop:\n\t- openingCount = activationCount (src/ZZZRoyaltyRewards.sol#172)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.activate(uint256,uint256)\n\t\tZZZRoyaltyRewards._sync(address)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 111
+    },
+    {
+      "fingerprint": "cf39537885180918426e6cf3fce180aaea79cd7cc03bc90c74abd2bd450e1841",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZExactLPRewardsCanonical.canonicalWrite(uint8,bytes) (src/base/ZZZExactLPRewardsCanonical.sol#164-187) has a high cyclomatic complexity (13).\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 112,
+      "prior_exact_fingerprint_rationale": "canonicalWrite has exactly3 immutable-child-only inert import domains. Asset identity/backing, authenticated seed weights, and raw node/phase bounds are separate validations; unknown kinds reject. No arbitrary storage slot/target or calldata executor exists."
+    },
+    {
+      "fingerprint": "e88a0842497e2bd2a9d5752807e05b2fe3366706498d25c054d5bed0c3ba905f",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager.unlockCallback(bytes) (src/ZZZLiquidityManager.sol#347-386) has a high cyclomatic complexity (15).\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 113
+    },
+    {
+      "fingerprint": "0d0232132d4361e11f0067d8cbf3b4b9daa66a27ffff774d2acbc2b2666f5408",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards.canonicalImport(uint256,bytes) (src/ZZZRoyaltyRewards.sol#571-633) has a high cyclomatic complexity (22).\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 114
+    },
+    {
+      "fingerprint": "4653778e0e88c8fc7fc8b36e94872026cc5e0bffc8343d7a3c3d7321205c46a8",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346) has a high cyclomatic complexity (20).\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 115
+    },
+    {
+      "fingerprint": "7b8a8d2236fa7534293a1634c1e78a18bc2f081e8494b03a8866942f65bf21a0",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16,bytes32) (src/ZZZActivationEntry.sol#98-145) has a high cyclomatic complexity (21).\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6"
+      },
+      "current_index": 116
+    },
+    {
+      "fingerprint": "06b9e2ecff44eb4bb6d370c1ba94b84e48fbe94eb22b83f66ec2f883986c2394",
+      "check": "dead-code",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZOracle._executionWord(uint256) (src/ZZZOracle.sol#359-362) is never used and should be removed\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 117
+    },
+    {
+      "fingerprint": "1bcf3bc25e8c21a12a06e91d45ba5f895a8e18fa84247283c861125120adbe89",
+      "check": "low-level-calls",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "Low level call in ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16,bytes32) (src/ZZZActivationEntry.sol#98-145):\n\t- (success,result) = vault.call{value: request.amountIn}(payload) (src/ZZZActivationEntry.sol#136)\n\t- (success,result) = vault.call{value: 0}(payload) (src/ZZZActivationEntry.sol#136)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6"
+      },
+      "current_index": 118,
+      "prior_exact_fingerprint_rationale": "Only the sealed fixed Vault is called, using abi.encodeCall for activate or increase with exact original pair amounts and exact native value. No user-supplied calldata/target exists. Failure bubbles and atomically reverts; owner, prefund, allowance, price and policy checks remain after success. A failed dependency can still block an operation."
+    },
+    {
+      "fingerprint": "38dc8f6d371db8f2c30b3eda51ba4565b20553d93a0d0ba564f69fa53baa4cb7",
+      "check": "low-level-calls",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "Low level call in ZZZRoyaltyRewards._sendRaw(address,address,uint256) (src/ZZZRoyaltyRewards.sol#688-694):\n\t- (ok,None) = address(receiver).call{value: amount}() (src/ZZZRoyaltyRewards.sol#691)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 119
+    },
+    {
+      "fingerprint": "75e1692c5e918a54ff0818cca5bef49e7a8fbc50af7b1624ed783c1b3c8bc6d7",
+      "check": "low-level-calls",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "Low level call in ZZZLiquidityManager._sendNative(address,uint256) (src/ZZZLiquidityManager.sol#145-150):\n\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#148)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 120
+    },
+    {
+      "fingerprint": "ffe33e4490c4975ceac3e673325aac6fb476ec58508812b88cf6dac6419aef19",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards (src/ZZZRoyaltyRewards.sol#32-695) should inherit from IZZZCanonicalModule (src/interfaces/IZZZCanonical.sol#6-19)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol",
+        "src/interfaces/IZZZCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0"
+      },
+      "current_index": 121
+    },
+    {
+      "fingerprint": "670d4f70eb1daa5e9462a7f8e484ef40228e8d42ceffe4c2a4c5102ababe0555",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#33-387) should inherit from IPositionExecutionParent (src/ZZZLPPositionExecutor.sol#12-18)\n",
+      "referenced_paths": [
+        "src/ZZZLPPositionExecutor.sol",
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPPositionExecutor.sol": "dfb1aa7bc8f9ba98a74afc92c0b75cd3c6b929e7e02563fbefbecf4f2a64bc2c",
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 122
+    },
+    {
+      "fingerprint": "1ea057c627e3fe51c2281fb05c1db7ad697a905712c91cc68502d404746e34e4",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLPBalanceMath (src/ZZZLPBalanceMath.sol#36-292) should inherit from IExecutionFixedZZZ (src/ZZZOracle.sol#13)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol",
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 123,
+      "prior_exact_fingerprint_rationale": "Math.fixedZZZ implements the exact address read and resolves nonzero code-bearing deployment ZZZ through fixed Registry/ActivationAssets. It is not a token setter. Structural interface dispatch is sufficient; explicit local inheritance adds no runtime protection."
+    },
+    {
+      "fingerprint": "e99b6189d949152bed88a3a09cd56280947c48922307029dc1631be98464ef01",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZActivationEntry (src/ZZZActivationEntry.sol#21-146) should inherit from IPricingEntry (src/ZZZContributionPricing.sol#12-14)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol",
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6",
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 124,
+      "prior_exact_fingerprint_rationale": "ActivationEntry.pricingContext implements the exact four-argument bool read for its in-flight authenticated contribution. Bound Entry and context checks supply security. IPricingEntry is a narrow ABI facade; optional inheritance would not fix a missing function."
+    },
+    {
+      "fingerprint": "cb0225d846c92a177ea18f1f4bee97051cd3868784f172b133be8da3f0d98794",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZVault (src/ZZZVault.sol#29-716) should inherit from IActivationVault (src/ZZZActivationEntry.sol#14-17)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol",
+        "src/ZZZVault.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6",
+        "src/ZZZVault.sol": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7"
+      },
+      "current_index": 125,
+      "prior_exact_fingerprint_rationale": "Current individual review: Vault structurally matches IActivationVault activation/increase signatures with typed fixed Entry and owner checks. Nominal inheritance would not add authorization, and new constructor only fixes canonical home to current chain. Prior detailed context retained, after rereading current code: Vault structurally exposes the native activation/increase interface used by its fixed Entry. Actual current-owner/frozen Entry review, live/operating/terminal checks and Vault mutex protect the calls. Nominal interface inheritance would not strengthen those permissions or allow an arbitrary minter. The only whole-file changes are the checked Vault constructor current-chain equality and the Metadata bare-scheme rejection. No lock, custody/token binding, amount proof, claim right or post-call validation is removed. External dependency qualification and independent audit remain required."
+    },
+    {
+      "fingerprint": "a8923e67fdf768a2b3547865678c3e1d0a107cdc5f701b1d24e9399f20078357",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards (src/ZZZRoyaltyRewards.sol#32-695) should inherit from IZZZClaimLedger (src/ZZZClaimRouter.sol#8-10)\n",
+      "referenced_paths": [
+        "src/ZZZClaimRouter.sol",
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 126
+    },
+    {
+      "fingerprint": "4db2e669986e22a053ed9ffbc0aaecb56e4e0849d33c2b07543d2d1445536655",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#33-387) should inherit from IPricingExecutionManager (src/ZZZContributionPricing.sol#11)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol",
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916",
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 127
+    },
+    {
+      "fingerprint": "8a032bf11dd9facb9a16dc45896dd34918cb5d21d303c592dddb442750779882",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZActivationEntry (src/ZZZActivationEntry.sol#21-146) should inherit from IZZZActivationEntry (src/interfaces/IZZZ.sol#61-64)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol",
+        "src/interfaces/IZZZ.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6",
+        "src/interfaces/IZZZ.sol": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997"
+      },
+      "current_index": 128,
+      "prior_exact_fingerprint_rationale": "ActivationEntry implements reviewed native/fixed-ZZZ functions structurally; actual core owner/value/policy/callback validation remains. Explicit interface inheritance adds no economic guard."
+    },
+    {
+      "fingerprint": "d4a7186f54958bd760564d52ad1a4cb23ff9ad3210ab72f95e9aa5876cc7344e",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#33-387) should inherit from IZZZLiquidity (src/interfaces/IZZZ.sol#91-117)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol",
+        "src/interfaces/IZZZ.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d",
+        "src/interfaces/IZZZ.sol": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997"
+      },
+      "current_index": 129
+    },
+    {
+      "fingerprint": "7bfac571a75c777a1d9e8fb9a93674dd5ff3d4b00d72a4dd8aaaba92fd4aa462",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZMigrationBudget (src/ZZZMigrationBudget.sol#43-447) should inherit from IPortfolioBudget (src/ZZZLiquidityManager.sol#20-23)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol",
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d",
+        "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+      },
+      "current_index": 130,
+      "prior_exact_fingerprint_rationale": "Current individual review: Budget maintenanceBucket/maintenancePrices remain the exact IPortfolioBudget views over authenticated active snapshot. New identity admission does not mutate or expose another snapshot source, and explicit inheritance does not change those guards. Prior detailed rationale retained after current source reread: Budget maintenanceBucket/maintenancePrices exactly match IPortfolioBudget and expose the authenticated active snapshot to Manager. No new authority is created by these reads. Structural inheritance does not alter snapshot lifecycle or manual-scope cleanup. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance."
+    },
+    {
+      "fingerprint": "885fd8b8011ac962842910f2cc6552355f7a9e3ba3d4610ea759e1be93fb9414",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLPBalanceMath (src/ZZZLPBalanceMath.sol#36-292) should inherit from IPricingMaintenanceMath (src/ZZZContributionPricing.sol#21-28)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol",
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916",
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      },
+      "current_index": 131,
+      "prior_exact_fingerprint_rationale": "Math implements all six maintenance-read methods: compoundReady, rebalance/residual validation, maintenanceValues, checkMaintenance and assertPortfolioUtilization. Fixed Pricing resolves this immutable child. These reads cannot move funds; explicit inheritance adds no missing guard."
+    },
+    {
+      "fingerprint": "732a999cb04bbc32cfcd2ae89ad469e6e9f3c034258879beb423b70a1809541e",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#33-387) should inherit from IZZZEmergencyLiquidity (src/interfaces/IZZZEmergency.sol#39-42)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol",
+        "src/interfaces/IZZZEmergency.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d",
+        "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4"
+      },
+      "current_index": 132
+    },
+    {
+      "fingerprint": "96b65ae12d0166d0b5ad70ce4a3d5d1261176e005a08ff38154382240253c7bf",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#33-387) should inherit from IVaultResidualLiquidity (src/ZZZVault.sol#23)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol",
+        "src/ZZZVault.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d",
+        "src/ZZZVault.sol": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7"
+      },
+      "current_index": 133
+    },
+    {
+      "fingerprint": "cb3c1393b2ebea18b66782f420bb630890a61a0f24d91ffe2d1a4f3f82c3d74d",
+      "check": "naming-convention",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "Function IZZZProtocolPolicy.PROTOCOL_POLICY_VERSION() (src/interfaces/IZZZProtocolPolicy.sol#18) is not in mixedCase\n",
+      "referenced_paths": [
+        "src/interfaces/IZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/interfaces/IZZZProtocolPolicy.sol": "afeede9fd34a972a9c11e9e39a4d71747d93184902d68c5fa6a1fae14dac7697"
+      },
+      "current_index": 134,
+      "prior_exact_fingerprint_rationale": "VERSION getter follows the explicit profile ABI. Literal flags concern bounded gas/USD18/wei/search constants and constructor initialization; values/bounds/units were inspected in ProtocolPolicy and LPBalancer rather than transformed to quiet the analyzer. No economic value or ceiling was changed."
+    },
+    {
+      "fingerprint": "0296160c63cfa9498c94450e1ae60448d47412254b62e3da4eecfc91b95953d7",
+      "check": "naming-convention",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "Function IExactLPVaultState.ACCOUNTING_VERSION() (src/base/ZZZExactLPRewardsCanonical.sol#17) is not in mixedCase\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 135,
+      "prior_exact_fingerprint_rationale": "ACCOUNTING_VERSION is an intentional constant capability selector matching fresh Vault7 and source-profile admission. Renaming to mixedCase would break existing typed interface and version checks."
+    },
+    {
+      "fingerprint": "821c8f337b19fdbefcff30388859c7c12c262e610266920c6d7a7ead2928284c",
+      "check": "too-many-digits",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZProtocolPolicy.constructor(address,address) (src/ZZZProtocolPolicy.sol#45-55) uses literals with too many digits:\n\t- gasLimits = IZZZProtocolPolicy.GasPolicy(180000,500000,1000000,1) (src/ZZZProtocolPolicy.sol#50)\n",
+      "referenced_paths": [
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+      },
+      "current_index": 136
+    },
+    {
+      "fingerprint": "6a1c8c9b216db20b82b4ce80c705c338975b17859adaade1b115b1bd640be739",
+      "check": "too-many-digits",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZProtocolPolicy.setRandomnessRequestSettings(uint16,uint32,bytes32) (src/ZZZProtocolPolicy.sol#194-201) uses literals with too many digits:\n\t- ! randomness.configured || confirmations < 3 || confirmations > 200 || callbackGas < 200000 || callbackGas > 10000000 (src/ZZZProtocolPolicy.sol#196-197)\n",
+      "referenced_paths": [
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+      },
+      "current_index": 137
+    },
+    {
+      "fingerprint": "6bbfee8596ff112fe2aa96a54fd0ec8e632d64fae0cb00f5d4ad8953bb799950",
+      "check": "too-many-digits",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZProtocolPolicy._vrf(address,bytes32,bytes32,uint256,uint16,uint32,bool,bytes32,uint64) (src/ZZZProtocolPolicy.sol#163-172) uses literals with too many digits:\n\t- coordinator.code.length == 0 || expectedCodeHash == bytes32(0) || coordinator.codehash != expectedCodeHash || keyHash == bytes32(0) || subscriptionId == 0 || confirmations < 3 || confirmations > 200 || callbackGas < 200000 || callbackGas > 10000000 (src/ZZZProtocolPolicy.sol#167-169)\n",
+      "referenced_paths": [
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+      },
+      "current_index": 138
+    },
+    {
+      "fingerprint": "1372ffa104e874eedc5485e45e54909574579eb33ccc0948538bf5894317c67a",
+      "check": "too-many-digits",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZProtocolPolicy.slitherConstructorConstantVariables() (src/ZZZProtocolPolicy.sol#19-202) uses literals with too many digits:\n\t- MAX_CALL_GAS = 1000000 (src/ZZZProtocolPolicy.sol#23)\n",
+      "referenced_paths": [
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+      },
+      "current_index": 139
+    },
+    {
+      "fingerprint": "1da1da5d54d6fb0514d5e0a6d1ccbe9863935b4596d2884da46f8ef75b47cd36",
+      "check": "too-many-digits",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZProtocolPolicy.slitherConstructorConstantVariables() (src/ZZZProtocolPolicy.sol#19-202) uses literals with too many digits:\n\t- MIN_CALL_GAS = 100000 (src/ZZZProtocolPolicy.sol#22)\n",
+      "referenced_paths": [
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+      },
+      "current_index": 140
+    },
+    {
+      "fingerprint": "a73e99c3751288b33564bbc11beb54bc1dd8f52d739ec22b31a4c94212f192ee",
+      "check": "unused-state",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle.QUOTE_PENDING_WORD (src/ZZZOracle.sol#82) is never used in ZZZOracle (src/ZZZOracle.sol#22-637)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 141
+    },
+    {
+      "fingerprint": "d7cc985cd68c777611bd3707049b6636763007e0eca91034785a671f3262ef5a",
+      "check": "unused-state",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle.QUOTE_FINGERPRINT_WORD (src/ZZZOracle.sol#79) is never used in ZZZOracle (src/ZZZOracle.sol#22-637)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 142
+    },
+    {
+      "fingerprint": "0606ffe4129c7bb0cbaca5aad008d9fbe3a6fd927ff74262e65705294cd32cf7",
+      "check": "unused-state",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle.QUOTE_BOUNDS_WORD (src/ZZZOracle.sol#80) is never used in ZZZOracle (src/ZZZOracle.sol#22-637)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 143
+    },
+    {
+      "fingerprint": "4781e5c4a77887fbbdcde757c134dd33224ca2f45f1d86f94a7ab08e313c576b",
+      "check": "unused-state",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle.QUOTE_DIGITS_WORD (src/ZZZOracle.sol#81) is never used in ZZZOracle (src/ZZZOracle.sol#22-637)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 144
+    },
+    {
+      "fingerprint": "222cf1f696f7a1cbcb8ec8c8ff318e992a3d6f66f3c86eb1c46842a2ca7a1d22",
+      "check": "cache-array-length",
+      "impact": "Optimization",
+      "confidence": "High",
+      "description": "Loop condition i < assets.length (src/ZZZRoyaltyRewards.sol#530) should use cached array length instead of referencing `length` member of the storage array.\n ",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 145
+    },
+    {
+      "fingerprint": "012c75f5b6d4282cddd10c1a63d3d20bb0e4511fd5cc5082d0d9cb1b8a3381b7",
+      "check": "cache-array-length",
+      "impact": "Optimization",
+      "confidence": "High",
+      "description": "Loop condition a < assets.length (src/base/ZZZExactLPRewardsCanonical.sol#135) should use cached array length instead of referencing `length` member of the storage array.\n ",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 146,
+      "prior_exact_fingerprint_rationale": "canonicalSeed assets.length is immutable fixed-pair admission<=2; read-only source export has no mutable callback in the loop. Caching could save tiny gas but no correctness/liveness defect warrants source drift after final size freeze."
+    },
+    {
+      "fingerprint": "1df9950bc7ac7a81dda9b53fe99c2678dd349f2aeac9d8d307881bd5309fc2e6",
+      "check": "cache-array-length",
+      "impact": "Optimization",
+      "confidence": "High",
+      "description": "Loop condition i < assets.length (src/ZZZRoyaltyRewards.sol#644) should use cached array length instead of referencing `length` member of the storage array.\n ",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 147
+    }
+  ]
+}

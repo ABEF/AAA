@@ -37,32 +37,34 @@ contract ZZZContributionPricing {
     IZZZOracle public immutable oracle;
     uint256 private maintenanceBucket;
     // Oracle USD18 prices are at most 1e36, below uint128.max. Packing the
-    // bounds saves one persistent slot per marked asset. ABI field order and
+    // bounds saves one transient word per marked asset. ABI field order and
     // padded values stay identical, including the final basis fingerprint.
     struct Mark { uint128 lower; uint128 upper; uint256 scale; bytes32 fingerprint; }
-    struct Basis {
-        bytes32 pool;
-        uint256 nft;
-        uint256 bucket;
-        uint256 lowerInput;
-        uint256 upperInput;
-        uint160 putSpot;
-        uint8 phase;
-        bool entry;
-        address token0;
-        address token1;
-        uint32 limits;
-        uint16 maxIdleBps;
-        bytes32 entryPolicyFingerprint;
-    }
     struct MaintenanceMark {
         uint256 value; uint256 price0; uint256 price1; uint256 scale0; uint256 scale1;
         uint256 idle0; uint256 idle1;
         uint16 maxIdleBps;bytes32 maintenancePolicy;
     }
-    Basis private basis;
-    mapping(address => Mark) private marks;
-    address[] private assets;
+    // One atomic operation shares Oracle's transaction-only execution scope.
+    // Individual typed writes preserve visibility at every existing callback.
+    bytes32 private constant BASIS_WORDS=keccak256("PoPL.ContributionPricing.basis.v1");
+    uint256 private constant B_POOL=0;
+    uint256 private constant B_NFT=1;
+    uint256 private constant B_BUCKET=2;
+    uint256 private constant B_LOWER_INPUT=3;
+    uint256 private constant B_UPPER_INPUT=4;
+    uint256 private constant B_PUT_SPOT=5;
+    uint256 private constant B_PHASE=6;
+    uint256 private constant B_ENTRY=7;
+    uint256 private constant B_TOKEN0=8;
+    uint256 private constant B_TOKEN1=9;
+    uint256 private constant B_LIMITS=10;
+    uint256 private constant B_MAX_IDLE_BPS=11;
+    uint256 private constant B_ENTRY_POLICY_FINGERPRINT=12;
+    // Exact captured marks are transaction-scoped, just like Oracle execution.
+    // Every operation still explicitly clears them, including within one tx.
+    bytes32 private constant MARK_DOMAIN = keccak256("PoPL.ContributionPricing.mark.v1");
+    bytes32 private constant ASSET_LIST = keccak256("PoPL.ContributionPricing.assets.v1");
     error Unauthorized();
     error InvalidState();
     error InvalidAmount();
@@ -82,7 +84,7 @@ contract ZZZContributionPricing {
     function _live() private view {
         if (!access.isSealed() || access.paused() || access.preparationActive() || access.canonicalState() != 0) revert InvalidState();
     }
-    function active() external view returns(bool) { return basis.phase != 0; }
+    function active() external view returns(bool) { return uint8(_basisWord(B_PHASE)) != 0; }
     /// @notice Read-only timing extraction. Budget still authenticates Vault
     /// and any active emergency; no caller receives execution authority here.
     function validateRebalance(uint256 bucket,uint128 minimumLiquidity,bool emergency,uint8 checks)
@@ -98,8 +100,8 @@ contract ZZZContributionPricing {
     /// @notice The fixed Budget may only use the contribution cap captured
     /// before external input movement, never a guessed current/default value.
     function entryIdleLimit(uint256 bucket) external view onlyBudget returns(uint16){
-        if(basis.phase==0 || basis.phase>4 || basis.bucket!=bucket)revert InvalidState();
-        return basis.maxIdleBps;
+        if(uint8(_basisWord(B_PHASE))==0 || uint8(_basisWord(B_PHASE))>4 || _basisWord(B_BUCKET)!=bucket)revert InvalidState();
+        return uint16(_basisWord(B_MAX_IDLE_BPS));
     }
     function assertDeployed(uint256 bucket,uint16 maxIdleBps) external view onlyBudget {
         if(maxIdleBps>4000)revert InvalidState();
@@ -156,7 +158,7 @@ contract ZZZContributionPricing {
         } else _endMaintenanceExecution(bucket);
     }
     function _beginMaintenanceExecution(uint256 bucket,address zzz) private {
-        if(bucket==0 || maintenanceBucket!=0 || basis.phase!=0)revert InvalidState();
+        if(bucket==0 || maintenanceBucket!=0 || uint8(_basisWord(B_PHASE))!=0)revert InvalidState();
         maintenanceBucket=bucket;
         IZZZExecutionOracle(address(oracle)).beginExecution(zzz);
     }
@@ -172,28 +174,96 @@ contract ZZZContributionPricing {
         external view onlyBudget {
         IPricingMaintenanceMath(address(_executionStrategy())).assertPortfolioUtilization(bucket,price0,price1,scale0,scale1);
     }
+
+    /// @dev Only the typed fixed-operation writes below address these13words.
+    function _basisWord(uint256 index) private view returns(uint256 value) {
+        bytes32 base=BASIS_WORDS;
+        assembly("memory-safe") {value:=tload(add(base,index))}
+    }
+    function _basisSet(uint256 index,uint256 value) private {
+        bytes32 base=BASIS_WORDS;
+        assembly("memory-safe") {tstore(add(base,index),value)}
+    }
+    function _clearBasis() private {
+        bytes32 base=BASIS_WORDS;
+        assembly("memory-safe") {
+            for{let i:=0}lt(i,13){i:=add(i,1)}{tstore(add(base,i),0)}
+        }
+    }
+    /// @dev Domain-separated slots; only bounded typed _mark can create records.
+    function _markSlot(address token) private pure returns(bytes32 slot) {
+        bytes32 domain=MARK_DOMAIN;
+        assembly ("memory-safe") {
+            mstore(0,and(token,0xffffffffffffffffffffffffffffffffffffffff))
+            mstore(32,domain)
+            slot:=keccak256(0,64)
+        }
+    }
+    function _readMark(address token) private view returns(Mark memory m) {
+        bytes32 slot=_markSlot(token);
+        assembly ("memory-safe") {
+            let value:=tload(slot)
+            mstore(m,and(value,0xffffffffffffffffffffffffffffffff))
+            mstore(add(m,32),shr(128,value))
+            mstore(add(m,64),tload(add(slot,1)))
+            mstore(add(m,96),tload(add(slot,2)))
+        }
+    }
+    function _writeMark(address token,Mark memory m) private {
+        bytes32 slot=_markSlot(token);
+        assembly ("memory-safe") {
+            tstore(slot,or(and(mload(m),0xffffffffffffffffffffffffffffffff),shl(128,mload(add(m,32)))))
+            tstore(add(slot,1),mload(add(m,64)))
+            tstore(add(slot,2),mload(add(m,96)))
+        }
+    }
+    function _assetCount() private view returns(uint256 count) {
+        bytes32 slot=ASSET_LIST;
+        assembly ("memory-safe") { count:=tload(slot) }
+    }
+    function _assetAt(uint256 index) private view returns(address token) {
+        bytes32 slot=ASSET_LIST;
+        assembly ("memory-safe") { token:=and(tload(add(add(slot,1),index)),0xffffffffffffffffffffffffffffffffffffffff) }
+    }
+    function _appendAsset(address token) private {
+        bytes32 slot=ASSET_LIST;
+        assembly ("memory-safe") {
+            let count:=tload(slot)
+            tstore(add(add(slot,1),count),and(token,0xffffffffffffffffffffffffffffffffffffffff))
+            tstore(slot,add(count,1))
+        }
+    }
+    function _clearAssets() private {
+        bytes32 slot=ASSET_LIST;
+        assembly ("memory-safe") {
+            let count:=tload(slot)
+            for {let i:=0} lt(i,count) {i:=add(i,1)} {tstore(add(add(slot,1),i),0)}
+            tstore(slot,0)
+        }
+    }
+
     function _mark(address token) private {
-        if (marks[token].lower != 0) return;
-        if (assets.length == 34) revert InvalidState();
+        if (_readMark(token).lower != 0) return;
+        if (_assetCount() == 34) revert InvalidState();
         (uint256 lower,uint256 upper,bytes32 fingerprint) = IZZZExecutionOracle(address(oracle)).executionBounds(token);
         if (lower == 0 || upper < lower || upper > type(uint128).max) revert InvalidState();
-        marks[token] = Mark(uint128(lower),uint128(upper),10 ** oracle.tokenDecimals(token),fingerprint);
-        assets.push(token);
+        _writeMark(token,Mark(uint128(lower),uint128(upper),10 ** oracle.tokenDecimals(token),fingerprint));
+        _appendAsset(token);
     }
     function _pair(bytes32 pool) private {
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(pool);
-        basis.pool = pool; basis.token0 = c.key.currency0; basis.token1 = c.key.currency1;
+        _basisSet(B_POOL,uint256(pool)); _basisSet(B_TOKEN0,uint256(uint160(c.key.currency0))); _basisSet(B_TOKEN1,uint256(uint160(c.key.currency1)));
         if(maintenanceBucket!=0)revert InvalidState();
         IZZZExecutionOracle(address(oracle)).beginExecution(c.key.currency1);
         IZZZProtocolPolicy policy=_protocolPolicy();
         IZZZProtocolPolicy.EntryPolicy memory entry=policy.entryPolicy();
-        basis.maxIdleBps=entry.maxIdleBps;
-        basis.entryPolicyFingerprint=keccak256(abi.encode(address(policy),entry));
+        _basisSet(B_MAX_IDLE_BPS,uint256(entry.maxIdleBps));
+        _basisSet(B_ENTRY_POLICY_FINGERPRINT,uint256(keccak256(abi.encode(address(policy),entry))));
         // Entry freezes operating limits before the original-source transfer
         // and conversion, not only when it eventually enters the Vault.
         uint16 cap = IPricingBudget(IPricingVault(access.module(Ids.VAULT)).migrationBudget()).contributionLossBps();
         if (cap > 1000 || c.maxSlippageBps > 1000) revert InvalidState();
-        basis.limits = uint32(c.maxSlippageBps) | (uint32(cap) << 16);
+        _basisSet(B_LIMITS,uint256(uint32(c.maxSlippageBps) | (uint32(cap) << 16)));
         _mark(c.key.currency0); _mark(c.key.currency1);
     }
     /// @dev Entry calls BEFORE token pulls, approvals or conversion. No later
@@ -203,58 +273,58 @@ contract ZZZContributionPricing {
         bytes32 expectedContributionPolicy)
         external returns(uint256 lowerUSD) {
         if (msg.sender != _entry()) revert Unauthorized();
-        _live(); if (basis.phase != 0 || amount == 0) revert InvalidState();
+        _live(); if (uint8(_basisWord(B_PHASE)) != 0 || amount == 0) revert InvalidState();
         if (maximumLossBps > 1000) revert InvalidAmount();
-        basis.phase = 1; basis.entry = true; basis.nft = nft;
+        _basisSet(B_PHASE,uint256(1)); _basisSet(B_ENTRY,(true?1:0)); _basisSet(B_NFT,uint256(nft));
         _pair(pool);
-        if(expectedContributionPolicy==bytes32(0) || basis.entryPolicyFingerprint!=expectedContributionPolicy)revert InvalidState();
-        if (uint16(basis.limits >> 16) > maximumLossBps) revert Slippage();
+        if(expectedContributionPolicy==bytes32(0) || bytes32(_basisWord(B_ENTRY_POLICY_FINGERPRINT))!=expectedContributionPolicy)revert InvalidState();
+        if (uint16(uint32(_basisWord(B_LIMITS)) >> 16) > maximumLossBps) revert Slippage();
         _mark(source);
-        Mark memory m = marks[source];
+        Mark memory m = _readMark(source);
         lowerUSD = Math.mulDiv(amount,m.lower,m.scale);
-        basis.lowerInput = lowerUSD;
-        basis.upperInput = Math.mulDiv(amount,m.upper,m.scale,Math.Rounding.Ceil);
+        _basisSet(B_LOWER_INPUT,uint256(lowerUSD));
+        _basisSet(B_UPPER_INPUT,uint256(Math.mulDiv(amount,m.upper,m.scale,Math.Rounding.Ceil)));
     }
     /// @dev Existing Vault ABI carries both bounded raw amounts in one word:
     /// low128=amount0, high128=amount1. This is not a supplied USD claim.
     function begin(uint256 nft,uint256 bucket,uint256 packed,uint256 inputUSD,uint32 limits) external onlyBudget {
         _live();
         bytes32 pool = IZZZVault(access.module(Ids.VAULT)).group(bucket).poolId;
-        if (basis.phase != 0) {
-            if (!basis.entry || basis.phase != 1 || basis.pool != pool || basis.nft != nft ||
-                basis.lowerInput != inputUSD || !IPricingEntry(_entry()).pricingContext(nft,pool,packed,inputUSD)) revert InvalidState();
+        if (uint8(_basisWord(B_PHASE)) != 0) {
+            if (!(_basisWord(B_ENTRY)!=0) || uint8(_basisWord(B_PHASE)) != 1 || bytes32(_basisWord(B_POOL)) != pool || _basisWord(B_NFT) != nft ||
+                _basisWord(B_LOWER_INPUT) != inputUSD || !IPricingEntry(_entry()).pricingContext(nft,pool,packed,inputUSD)) revert InvalidState();
         } else {
-            basis.phase = 1; basis.nft = nft; _pair(pool);
+            _basisSet(B_PHASE,uint256(1)); _basisSet(B_NFT,uint256(nft)); _pair(pool);
             uint256 a0 = uint128(packed); uint256 a1 = packed >> 128;
-            basis.lowerInput = _pairValue(a0,a1);
-            basis.upperInput = _upper(basis.token0,a0) + _upper(basis.token1,a1);
-            if (inputUSD != basis.lowerInput) revert InvalidAmount();
+            _basisSet(B_LOWER_INPUT,uint256(_pairValue(a0,a1)));
+            _basisSet(B_UPPER_INPUT,uint256(_upper(address(uint160(_basisWord(B_TOKEN0))),a0) + _upper(address(uint160(_basisWord(B_TOKEN1))),a1)));
+            if (inputUSD != _basisWord(B_LOWER_INPUT)) revert InvalidAmount();
         }
         // A callback cannot adopt a later, wider governance/venue policy.
         // Even a tightening during this operation requires a fresh review.
-        if (basis.limits != limits) revert InvalidState();
-        basis.bucket = bucket;
+        if (uint32(_basisWord(B_LIMITS)) != limits) revert InvalidState();
+        _basisSet(B_BUCKET,uint256(bucket));
         // Conversion/pull callbacks may not replace policies or round data.
         _unchanged(true);
     }
     function _lower(address token,uint256 amount) private view returns(uint256) {
         if (amount == 0) return 0;
-        if (basis.phase == 0) return oracle.value(token,amount);
-        Mark memory m = marks[token];
+        if (uint8(_basisWord(B_PHASE)) == 0) return oracle.value(token,amount);
+        Mark memory m = _readMark(token);
         if (m.lower == 0) revert InvalidState();
         return Math.mulDiv(amount,m.lower,m.scale);
     }
     function _upper(address token,uint256 amount) private view returns(uint256) {
         if (amount == 0) return 0;
-        Mark memory m = marks[token];
+        Mark memory m = _readMark(token);
         if (m.upper == 0) revert InvalidState();
         return Math.mulDiv(amount,m.upper,m.scale,Math.Rounding.Ceil);
     }
     function _pairValue(uint256 amount0,uint256 amount1) private view returns(uint256) {
-        return _lower(basis.token0,amount0) + _lower(basis.token1,amount1);
+        return _lower(address(uint160(_basisWord(B_TOKEN0))),amount0) + _lower(address(uint160(_basisWord(B_TOKEN1))),amount1);
     }
     function valueBucket(uint256 bucket,uint256 amount0,uint256 amount1) public view returns(uint256) {
-        if (basis.phase != 0 && basis.bucket == bucket) return _pairValue(amount0,amount1);
+        if (uint8(_basisWord(B_PHASE)) != 0 && _basisWord(B_BUCKET) == bucket) return _pairValue(amount0,amount1);
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(access.module(Ids.VAULT)).group(bucket).poolId);
         if(maintenanceBucket==bucket && bucket!=0)return _executionValue(c.key.currency0,amount0)+_executionValue(c.key.currency1,amount1);
         return oracle.value(c.key.currency0,amount0) + oracle.value(c.key.currency1,amount1);
@@ -276,18 +346,18 @@ contract ZZZContributionPricing {
     function idleValue(uint256 bucket) external view onlyBudget returns(uint256) {
         Position memory p=IZZZVault(access.module(Ids.VAULT)).group(bucket);
         PoolConfig memory c=IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
-        if(basis.phase!=0 && basis.bucket==bucket)return _pairValue(p.idle0,p.idle1);
+        if(uint8(_basisWord(B_PHASE))!=0 && _basisWord(B_BUCKET)==bucket)return _pairValue(p.idle0,p.idle1);
         if(maintenanceBucket==bucket && bucket!=0)return _executionValue(c.key.currency0,p.idle0)+_executionValue(c.key.currency1,p.idle1);
         return oracle.value(c.key.currency0,p.idle0)+oracle.value(c.key.currency1,p.idle1);
     }
     /// @dev The Vault already performs these three marks in fixed order: before
     /// its deliberate balancing swap, before _put, and after every _put callback.
     function contributionNav(uint256 bucket) external onlyBudget returns(uint256 deployed,uint256 idle) {
-        if (basis.phase == 0 || basis.phase > 3 || basis.bucket != bucket) revert InvalidState();
+        if (uint8(_basisWord(B_PHASE)) == 0 || uint8(_basisWord(B_PHASE)) > 3 || _basisWord(B_BUCKET) != bucket) revert InvalidState();
         IZZZExecutionOracle(address(oracle)).validateExecution();
-        if (basis.phase == 2) basis.putSpot = _executionStrategy().executionValidatePrice(basis.pool);
-        if (basis.phase == 3) _putUnchanged();
-        ++basis.phase;
+        if (uint8(_basisWord(B_PHASE)) == 2) _basisSet(B_PUT_SPOT,uint256(_executionStrategy().executionValidatePrice(bytes32(_basisWord(B_POOL)))));
+        if (uint8(_basisWord(B_PHASE)) == 3) _putUnchanged();
+        _basisSet(B_PHASE,uint256(uint8(_basisWord(B_PHASE))+1));
         return nav(bucket);
     }
     /// @notice Compatibility read: fresh principal and LP reserves use only
@@ -297,18 +367,18 @@ contract ZZZContributionPricing {
         return 0;
     }
     function _putUnchanged() private view {
-        if (_executionStrategy().executionValidatePrice(basis.pool) != basis.putSpot) revert Slippage();
+        if (_executionStrategy().executionValidatePrice(bytes32(_basisWord(B_POOL))) != uint160(_basisWord(B_PUT_SPOT))) revert Slippage();
     }
     function _executionStrategy()private view returns(IZZZExecutionStrategy){
         return IZZZExecutionStrategy(IPricingExecutionManager(access.module(Ids.LIQUIDITY)).executionStrategy());
     }
     function _unchanged(bool checkSources) private view returns(bytes32 hash) {
         if(checkSources)IZZZExecutionOracle(address(oracle)).validateExecution();
-        if(_protocolPolicy().entryFingerprint()!=basis.entryPolicyFingerprint)revert InvalidState();
-        hash = keccak256(abi.encode(basis.pool,basis.nft,basis.lowerInput,basis.upperInput,
-            basis.maxIdleBps,basis.entryPolicyFingerprint));
-        for (uint256 i; i < assets.length; ++i) {
-            address token = assets[i]; Mark memory m = marks[token];
+        if(_protocolPolicy().entryFingerprint()!=bytes32(_basisWord(B_ENTRY_POLICY_FINGERPRINT)))revert InvalidState();
+        hash = keccak256(abi.encode(bytes32(_basisWord(B_POOL)),_basisWord(B_NFT),_basisWord(B_LOWER_INPUT),_basisWord(B_UPPER_INPUT),
+            uint16(_basisWord(B_MAX_IDLE_BPS)),bytes32(_basisWord(B_ENTRY_POLICY_FINGERPRINT))));
+        for (uint256 i; i < _assetCount(); ++i) {
+            address token = _assetAt(i); Mark memory m = _readMark(token);
             (uint256 low,uint256 high,bytes32 fingerprint) = IZZZExecutionOracle(address(oracle)).executionBounds(token);
             if (low != m.lower || high != m.upper || fingerprint != m.fingerprint ||
                 10 ** oracle.tokenDecimals(token) != m.scale) revert InvalidState();
@@ -318,40 +388,40 @@ contract ZZZContributionPricing {
     function finish(uint256 bucket,uint256 inputUSD,uint256 supply,uint256 incumbentNAV,
         uint256 incumbentDeployed,uint256 deployed,uint256 idle,uint32 limits)
         external onlyBudget returns(uint256 issued,uint256 netUSD) {
-        if (basis.phase != 4 || basis.bucket != bucket || basis.lowerInput != inputUSD || basis.limits != limits ||
+        if (uint8(_basisWord(B_PHASE)) != 4 || _basisWord(B_BUCKET) != bucket || _basisWord(B_LOWER_INPUT) != inputUSD || uint32(_basisWord(B_LIMITS)) != limits ||
             uint16(limits) > 1000 || uint16(limits >> 16) > 1000) revert InvalidState();
         // Phase-three NAV has just completed the full source proof. Only
         // STATIC reads and local Vault/Budget arithmetic precede this fixed
         // phase-four call; retain every captured mark and policy comparison.
         _putUnchanged(); bytes32 hash = _unchanged(false);
-        if (deployed == 0 || idle > Math.mulDiv(deployed+idle,basis.maxIdleBps,10000) ||
+        if (deployed == 0 || idle > Math.mulDiv(deployed+idle,uint16(_basisWord(B_MAX_IDLE_BPS)),10000) ||
             deployed+idle <= incumbentNAV || deployed < incumbentDeployed) revert Slippage();
         netUSD = deployed+idle-incumbentNAV;
-        uint256 required = basis.upperInput - Math.mulDiv(basis.upperInput,uint16(limits >> 16),10000);
+        uint256 required = _basisWord(B_UPPER_INPUT) - Math.mulDiv(_basisWord(B_UPPER_INPUT),uint16(limits >> 16),10000);
         // Vault caps both balancing and deployment to the entrant's budget;
         // this baseline is the repriced incumbent physical LP only. Existing
         // idle/compound belongs in NAV, never in the marginal deployment test.
-        if (netUSD < Math.mulDiv(basis.upperInput,10000-uint16(limits),10000) ||
+        if (netUSD < Math.mulDiv(_basisWord(B_UPPER_INPUT),10000-uint16(limits),10000) ||
             netUSD < required || deployed-incumbentDeployed < required) revert Slippage();
         issued = supply == 0 ? netUSD : Math.mulDiv(supply,netUSD,incumbentNAV);
         if (issued == 0 || supply+issued > 1e36) revert InvalidAmount();
-        emit ContributionVerified(basis.nft,bucket,basis.lowerInput,basis.upperInput,
-            deployed-incumbentDeployed,netUSD,basis.putSpot,hash);
-        if (basis.entry) basis.phase = 5;
+        emit ContributionVerified(_basisWord(B_NFT),bucket,_basisWord(B_LOWER_INPUT),_basisWord(B_UPPER_INPUT),
+            deployed-incumbentDeployed,netUSD,uint160(_basisWord(B_PUT_SPOT)),hash);
+        if ((_basisWord(B_ENTRY)!=0)) _basisSet(B_PHASE,uint256(5));
         else _clear();
     }
     /// @dev Entry's approval reset and final balance/owner checks happen after
     /// Vault returns. Keep the frozen basis until that complete operation ends.
     function endEntry() external {
         if (msg.sender != _entry()) revert Unauthorized();
-        if (!basis.entry || basis.phase != 5) revert InvalidState();
+        if (!(_basisWord(B_ENTRY)!=0) || uint8(_basisWord(B_PHASE)) != 5) revert InvalidState();
         // _clear starts with Oracle.endExecution's full final proof. Only
         // STATIC mark/policy reads separate it from these exact-basis checks.
         _putUnchanged(); _unchanged(false); _clear();
     }
     function _clear() private {
         IZZZExecutionOracle(address(oracle)).endExecution();
-        for (uint256 i; i < assets.length; ++i) delete marks[assets[i]];
-        delete assets; delete basis;
+        for (uint256 i; i < _assetCount(); ++i) _writeMark(_assetAt(i),Mark(0,0,0,bytes32(0)));
+        _clearAssets(); _clearBasis();
     }
 }

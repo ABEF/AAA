@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "build_id": "activation-final-six-20261118",
+  "normal_build": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\activation-final-six-20261118\\build\\final02",
+  "normal_input_sha256": "418c6b8fb7e610b0ecacf1003f137cb23809bd9919af221265c863ce8426f67e",
+  "normal_output_sha256": "4614afcbd97bd5d1ced6e68982559256045ef56ec67d632f971d8a590b6eb983",
+  "normal_size_evidence_sha256": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2",
+  "artifact_canonical_sha256": "7ea42b2ce9f583084038aefd1e0dce5de745ca5a69326241fe304430f8e56cd1",
+  "payload6_json_sha256": "5915f8af2fc10f77e2d6db2cef0ffa6f095304bf648fb3bca59d431479fa5e54",
+  "payload6_helper_sha256": "a8596f54f4084fbf17c7a78fa13d7e6ef66cdaae4fcfab9f206fd6f9faa68552",
+  "fresh_template_sha256": "25b7f19d1e7e6df1cf8bbf5f7f0995f0250fac7fe9ed21a4d5e167173f87a4ee",
+  "historical_preserved": {
+    "zzz_ops/factory_code_v5.py": "3e41c39666784e514d35a53e6ed7996b0bd3522126d22c55dcf63dfc943dfb46",
+    "config/factory-code-storage-v5.json": "d3273a94c8ffa6347bedec98947d04644a9cc3e6a156ebeceafc3d2ad3c3fd20",
+    "config/production.schema17.payload5.example.json": "3469640a7ec586dad0f1037620c2ce4c02441103024d2019cafd19b0adb4366d"
+  },
+  "creation_code_length": 25533,
+  "creation_code_hash": "0xbb0f8ce9cf2c332313c08da26f70174276182fd2202e7b308d4352525207c9e4",
+  "parts": [
+    {
+      "index": 0,
+      "data_length": 24573,
+      "runtime_length": 24576,
+      "runtime_hash": "0x2e06520e18cee238c91ce41e7579a89b7af142ffb1d64462585f4111c0caf3ae"
+    },
+    {
+      "index": 1,
+      "data_length": 960,
+      "runtime_length": 963,
+      "runtime_hash": "0x2d83ab4133bac0772613a43a88bc8f3050fcbe3371bbda296f866504a7f72765"
+    }
+  ],
+  "addresses_observations_approvals_adopted": false,
+  "production_approved": false
+}

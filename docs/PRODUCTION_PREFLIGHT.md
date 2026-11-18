@@ -16,7 +16,7 @@ any fresh deployment; source publication never upgrades existing Anvil, service,
 website, inventory or journal identities.
 Real dependencies, operating rehearsals and independent audit remain open.
 
-Fresh source uses explicit integer `factory_payload_version:5` inside each chain record. It selects [payload5/allocation2](FACTORY_CODE_STORAGE.md), still code-storage FORMAT2; omission/3 and explicit4 retain historical identities. Payload5 additionally requires same-block actual `royalty_read_policy` observations (Policy, activation balance-read cap and gas revision), while the original four-word gas policy/fingerprint remain checked. The read-policy fingerprint is computed off-chain, not a contract getter. Unknown/mixed/unobserved values reject; examples remain unapproved.
+Fresh source uses explicit integer `factory_payload_version:6` inside each chain record. It selects [payload6/allocation2](FACTORY_CODE_STORAGE.md), still code-storage FORMAT2; omission/3 and explicit4/5 retain historical identities. Payload5 and6 require same-block actual `royalty_read_policy` observations (Policy, activation balance-read cap and gas revision), while the original four-word gas policy/fingerprint remain checked. The read-policy fingerprint is computed off-chain, not a contract getter. Unknown/mixed/unobserved values reject; examples remain unapproved. The exact old payload5 template is preserved separately.
 
 The [schema17 example](../config/production.example.json) is deliberately
 unqualified. Unknown deployment/authority/provider addresses, source/route
@@ -105,9 +105,9 @@ The current `factory_code` section declares fixed code-storage version2, whole
 creation length/hash and exactly two ordered child records. Each record contains
 its own nonzero address, source-derived data/runtime lengths and full runtime
 hash. Addresses and observations in the template remain null. The fixed source
-artifact is [factory-code-storage-v3.json](../config/factory-code-storage-v3.json):
-payload identity3, while the immutable runtime FORMAT remains2. Historical
-schema14/15 retain their separate payload2 artifact;
+artifact is [factory-code-storage-v6.json](../config/factory-code-storage-v6.json):
+payload identity6, while the immutable runtime FORMAT remains2. Explicit
+historical3/4/5 retain their separate artifacts and templates; schema14/15 retain payload2;
 it is not generated from live getter answers or adopted RPC hashes.
 
 The observer adds two bounded `eth_getCode` reads using the same canonical block
@@ -233,9 +233,9 @@ liabilities but cannot become fabricated income or allocated principal.
 ## Exact build provenance
 
 The current factory-code artifact is derived from the final closed normal
-compiler output and its complete87-source/settings snapshot. Its receiver
-creation hash is
-`0x0b5b619ca10d338f29e7a76fd3f9069b2e034864112bbd3101bbc20a279c50aa`.
+`activation-final-six-20261118` compiler output and its complete100-source/settings
+snapshot. Its payload6 receiver creation hash is
+`0xbb0f8ce9cf2c332313c08da26f70174276182fd2202e7b308d4352525207c9e4`.
 Forge can normalize source line endings or add unused auto-detected remappings
 to metadata, producing different
 creation bytes with equivalent settings. A different artifact family is not a
@@ -349,4 +349,4 @@ SeaDrop setup. Constructor/sequence tools and old evidence stay unchanged;
 no configuration is installed, no seal call prepared and no release approved.
 
 
-The fresh `activation-gas-20261118` build preserves public accounting7/LP-allocation1/schema17/canonicalV10 records and the exact payload5 Royalty creation bytes. Only private LP carry encoding is compacted with a full-width spill; pending/high128/low256 logical values and arithmetic are unchanged. New exact runtime/source pins are required. Never copy old EVM carry slots into this representation or relabel old snapshots/journals. See the [source and verification scope](../reports/activation-gas-20261118/REVIEW.md). Public input/permission/economic rules are unchanged; complete gas/recovery/operating acceptance is separate.
+The fresh `activation-final-six-20261118` build preserves public accounting7/LP-allocation1/schema17/canonicalV10 and original-currency exact royalty rights. Payload6/allocation2 has new private Royalty packing, LP carry sentinel encoding and transaction-scoped pricing state. New exact source/runtime pins are mandatory; never copy historical raw storage or relabel a deployment, snapshot or journal. All13 controlled cold20M contribution calls and full20% padded calls pass; worst16,460,899 raw/19,753,079 padded. This is finite controlled gas evidence, not real-market/provider/fee, operating or release approval. See the [current source and verification scope](../reports/activation-final-six-20261118/REVIEW.md).

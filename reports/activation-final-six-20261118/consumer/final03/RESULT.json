@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-m",
+    "unittest",
+    "-v",
+    "tests_python.test_factory_payload6.FactoryPayload6UnboundTests"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.375,
+  "new_method_classes": [
+    "tests_python.test_factory_payload6.FactoryPayload6UnboundTests"
+  ],
+  "actual_unittest_executed_methods": 1,
+  "affected_historical_controls": [],
+  "source_before": {
+    "zzz_ops/factory_code_v6.py": "a8596f54f4084fbf17c7a78fa13d7e6ef66cdaae4fcfab9f206fd6f9faa68552",
+    "config/factory-code-storage-v6.json": "5915f8af2fc10f77e2d6db2cef0ffa6f095304bf648fb3bca59d431479fa5e54",
+    "config/production.example.json": "25b7f19d1e7e6df1cf8bbf5f7f0995f0250fac7fe9ed21a4d5e167173f87a4ee",
+    "config/production.schema17.payload5.example.json": "3469640a7ec586dad0f1037620c2ce4c02441103024d2019cafd19b0adb4366d",
+    "zzz_ops/production_v15.py": "29b1a7447ef2f117b85a7330a459ce4d1efc537b05535bc448a4cb1b445a8f54",
+    "zzz_ops/production_observer_v15.py": "deded3c0e07ef6f80351315d5dd65ddbd92aca7e1c2e441078873184f679cbf9",
+    "zzz_ops/royalty_read_policy.py": "deff18d06bc0ae864f99aaa918776e7718d58e68ae630ce1e0e01e6bf71e66bb",
+    "zzz_ops/preseal_plan.py": "b529740f628ae0225ce95951b73869ebd032e11429ac402dc32fdcee8de79382",
+    "zzz_ops/deployment_plan.py": "1cc30fa06a8c509e2a7e56d9c5d8af4fab469aa2457e545a7366376c4ab93965",
+    "tests_python/factory_payload_archive.py": "e55197ddde77206fdf84d31714f3694505c4f45178691f90dfb52b1ee29b7631",
+    "tests_python/test_factory_payload6.py": "2aa517f22a768c513b85ccab64961e43afdda39ff388b78fd94e20377fb5e54f",
+    "tests_python/test_factory_payload5.py": "cdc445a206375c887328d2f2cc0e348dd98f99b745905254be7bd73e559354b1",
+    "tests_python/test_activation_build20261118.py": "27a0b3c868e032dfeb6f30d4e943baf4d844a6185012a73790f6c1b93864ffb7"
+  },
+  "source_after": {
+    "zzz_ops/factory_code_v6.py": "a8596f54f4084fbf17c7a78fa13d7e6ef66cdaae4fcfab9f206fd6f9faa68552",
+    "config/factory-code-storage-v6.json": "5915f8af2fc10f77e2d6db2cef0ffa6f095304bf648fb3bca59d431479fa5e54",
+    "config/production.example.json": "25b7f19d1e7e6df1cf8bbf5f7f0995f0250fac7fe9ed21a4d5e167173f87a4ee",
+    "config/production.schema17.payload5.example.json": "3469640a7ec586dad0f1037620c2ce4c02441103024d2019cafd19b0adb4366d",
+    "zzz_ops/production_v15.py": "29b1a7447ef2f117b85a7330a459ce4d1efc537b05535bc448a4cb1b445a8f54",
+    "zzz_ops/production_observer_v15.py": "deded3c0e07ef6f80351315d5dd65ddbd92aca7e1c2e441078873184f679cbf9",
+    "zzz_ops/royalty_read_policy.py": "deff18d06bc0ae864f99aaa918776e7718d58e68ae630ce1e0e01e6bf71e66bb",
+    "zzz_ops/preseal_plan.py": "b529740f628ae0225ce95951b73869ebd032e11429ac402dc32fdcee8de79382",
+    "zzz_ops/deployment_plan.py": "1cc30fa06a8c509e2a7e56d9c5d8af4fab469aa2457e545a7366376c4ab93965",
+    "tests_python/factory_payload_archive.py": "e55197ddde77206fdf84d31714f3694505c4f45178691f90dfb52b1ee29b7631",
+    "tests_python/test_factory_payload6.py": "2aa517f22a768c513b85ccab64961e43afdda39ff388b78fd94e20377fb5e54f",
+    "tests_python/test_factory_payload5.py": "cdc445a206375c887328d2f2cc0e348dd98f99b745905254be7bd73e559354b1",
+    "tests_python/test_activation_build20261118.py": "27a0b3c868e032dfeb6f30d4e943baf4d844a6185012a73790f6c1b93864ffb7"
+  },
+  "source_bracket_stable": true,
+  "generated_pin_record_sha256": "4d91c631d5041a6ec6768f30c15ed9e090c635c84efdd3973d226b0a300a04bf",
+  "scope": "One new unbound-F6 fail-closed method only; no D.Artifacts/current-config setup.",
+  "public_rpc_or_transactions": false,
+  "production_approved": false,
+  "pass": true
+}

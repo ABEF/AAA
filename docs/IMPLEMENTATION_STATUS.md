@@ -1,19 +1,41 @@
 # Feature and evidence reference
 
-The current trusted normal build is `activation-gas-20261118`. [Activation gas reductions](../reports/activation-gas-20261118/REVIEW.md) preserve factory payload5/allocation2 and every exact royalty right; the Royalty creation and both data parts remain byte-identical. Checked price-vector codecs and the native-v4 spot reader reduce repeated conversion work without relaxing source/type/length/freshness/agreement or execution checks. LP fairness carry uses a compact high128/low128 word when possible and a full-width spill otherwise; logical high128/low256 values and LP1 canonical wire rows remain exact. Fresh source/runtime pins are required for the changed hosts; never reinterpret old physical carry storage. The exact closed100-source build passes48 unchanged normal size gates. Three NEW offline current/historical/F5 checks pass; four rejected royalty-packing candidates are size-only evidence, with no gas savings or adopted Royalty change. The final controlled1,000-NFT workload re-executes one affected existing method with13 exported cases, not13 tests. All13 actual cold20M calls and financial checks pass;7 fit full20% padding and6 activation states remain refused. Worst openingZZZ/all-slow estimates18,612,697 and needs22,335,237 padded. Healthy rotated ETH now fits at19,494,064 padded; healthy rotated ZZZ still refuses at20,243,837. Q03 stays open. Matched activation estimates fall693,137–712,754gas, but the zero-fee LP component costs105,091more; this is not a claim that every action is cheaper. Two NEW actual Rewards/immutable-Canonical methods pass2029logical export rows, real ETH/ERC20 release/accept and abort return/restore, current-owner rights and future payouts. Their typed dependency mocks are not the complete coordinator or real-market/operating qualification. Keep the12M default, reviewed20M/full20%, all financial/permission guards and existing environments unchanged.
+The current trusted normal build is `activation-final-six-20261118`, with fresh
+factory payload6/allocation2. The [current activation review](../reports/activation-final-six-20261118/REVIEW.md)
+passes all 13 controlled cold 20M calls, their financial checks and full 20%
+padding. All six previous refusals close within this workload. Worst opening
+ZZZ/all-slow falls from 18,612,697 to 16,460,899 raw gas; full padding falls from
+22,335,237 to 19,753,079. These are 13 scenarios exported by one affected
+1,000-NFT method, not 13 new test methods.
 
-At baseline633f015, the trusted normal build was `royalty-rounds-20261118`, with explicit factory payload5 and royalty allocation2 in unchanged code-storage FORMAT2. [Royalty rounds](../reports/royalty-rounds-20261118/REVIEW.md) replace private tree books with checked-liability round coefficients: receipt credit no longer writes a tree; enrollment lookup is bounded by1000 NFTs (at most10 binary-search steps). Activation ERC20 balance reads have a separate governed cap, initially50000 gas (10000..1000000), while the existing1M isolated sync allowance stays. Exact current-owner original-currency rights, one-hour cutoff/fault cohorts, settlement4/events and flattened canonicalV10 rows remain. Fresh private storage, bounded-read APIs and the changed self-only activation wrapper require new exact pins; payload3/4 and old deployed state are never relabelled. The per-currency helper proves either a complete sync frame or a fully funded capped read; other partial-frame accounting failures revert. Accounted reserves are derived from checked liabilities, orphaned and opening categories.
+Six optimized source files preserve exact LP/royalty units, current-owner rights,
+the one-hour launch window, fault cohorts and canonicalV10. Native/USD placement
+and all financial/permission guards remain. The 12M default, reviewed20M/full20%,
+50,000-gas activation balance reads and 1M isolated sync allowance are unchanged.
+Fresh F6 creation/data and exact source/runtime pins are required; old private
+storage, reports and environments are not relabelled.
 
-At that historical C08 source, the normal build validates the closed100-source input and passes48 size gates. Its synchronized-prefund import and funded-abort checks pass; C07 ordinary ledger14/placement5 evidence retains its explicit reuse scope. The12 distinct consumer controls include4 C08 artifact-dependent rechecks and8 unchanged controls retained at prior source scope. These are not added into a whole-project pass. Maximum-state20M qualification remains open. All13 controlled cold calls and their financial checks succeed at20M, but only5/13 fit the mandatory full20% margin;8 activation states are correctly refused by the existing policy. Worst openingZZZ/all-slow is19,325,451 raw,23,190,542 padded. Both growth and3 all-fault activation cases fit their tested envelopes. These13 scenarios are not13 new test methods. All owned nodes are stopped; target markets/providers/fees and release approval remain unqualified. Keep the20M contribution policy with full20% padding, the12M default and all financial/permission guards. Actual independent prices/routes, selected currencies, provider/complete target fees, expanded64-currency and maximum LP2 workloads, current operating/constructor rollout and independent release approval remain open. No existing environment or paused heartbeat is changed.
+The closed100-source normal build passes48 size gates. Current runtimes/margins
+are Royalty24,562/14, Oracle23,406/1,170 and Rewards23,983/593 bytes; Access full
+initcode is48,580 bytes. The callable inventory remains40contracts/968functions
+and1,021operator rows; only three former mapping-getter parameter names become
+`asset`, with unchanged selectors/types.
+
+This closes the six measured gas refusals, not Q03 or release qualification.
+Actual markets, selected currencies, complete fees/providers, 64-currency and
+two-LP maximum workloads, other activation orders, rollout/operations and
+independent approval remain open. The [earlier F5 gas review](../reports/activation-gas-20261118/REVIEW.md)
+and [royalty-round baseline](../reports/royalty-rounds-20261118/REVIEW.md) retain
+their original failures, source identities and evidence scopes.
 
 Implementation, finite verification, installed operation and approved release
 are separate milestones. Use the [sole Todo](../TODO.md),
 [current findings](AUDIT_FINDINGS.md), [operator manual](OPERATOR_MANUAL.md)
-and [latest consolidation](../reports/five-report-consolidation-20261117/REVIEW.md).
-The trusted build is `activation-gas-20261118`; current source is
+and [earlier five-report consolidation](../reports/five-report-consolidation-20261117/REVIEW.md).
+The trusted build is `activation-final-six-20261118`; current source is
 undeployed for production and NOT APPROVED. No site/service adoption is implied.
 
-The [launch-workload review](../reports/launch-workload-20261117/REVIEW.md) adds19 distinct new focused methods across contribution, royalty-component, claim and unsigned-pre-seal scopes; local RPC workflows overlap those methods. Actual call/estimate/full-padding results include refusals. No universal16-currency/1000-NFT whole-graph approval, gas/default increase or live adoption is implied.
+The [earlier launch-workload review](../reports/launch-workload-20261117/REVIEW.md) records19 distinct new focused methods across contribution, royalty-component, claim and unsigned-pre-seal scopes; local RPC workflows overlap those methods. Its call/estimate/full-padding results retain refusals at that source. No universal16-currency/1000-NFT whole-graph approval, gas/default increase or live adoption is implied.
 
 ## Current profile
 
@@ -24,7 +46,7 @@ fresh royalty4/canonicalV10 carries sale end/capacity and exact-unit ticket righ
 and rejects older peers.
 Tuple shape does not imply runtime compatibility.
 [Profile](POSITION_V7.md), [portfolio controls](OPERATOR_MANUAL.md#portfolio-management-controls).
-Production inventory is schema17/mint2 with explicit residual-reinvest1/raw-exit1 bindings; schema16 remains historical. It retains20 callable helper pins plus2 inert Factory code-data children; the exact-unit allocator is internal code. Factory storage2 authenticates exact fresh payload5 creation bytes. Allocation2 changes private royalty books and adds an identity getter; settlement4/event/canonical outputs remain unchanged. Historical payload3/4 retain their exact old code. Historical schema9/custody4 retains direct Entry3 and20helpers; schema8 keeps
+Production inventory is schema17/mint2 with explicit residual-reinvest1/raw-exit1 bindings; schema16 remains historical. It retains20 callable helper pins plus2 inert Factory code-data children; the exact-unit allocator is internal code. Factory storage2 authenticates exact fresh payload6 creation bytes. Allocation2 retains exact round coefficients; F6 packs private status/Book storage with full-width spill. Settlement4/event/canonical outputs remain unchanged. Historical payload3/4/5 retain their exact old code. Historical schema9/custody4 retains direct Entry3 and20helpers; schema8 keeps
 its routed Entry2 and21-helper profile; no conversion child remains on fresh Entry. Historical accounting5/4 and inventory7/6
 profiles remain explicit and are never silently rewritten.
 
@@ -57,7 +79,7 @@ Fresh [exact-unit LP rewards](EXACT_LP_ALLOCATION.md) now integrate Vault post-w
 | Financial checks | Dual USD sources with3% agreement; captured default3% contribution/1% conversion/3% maintenance limits, governance ceilings10%, gas separate. Additional-loss default1% after known directional fees remains separate. | [Price security](PRICE_SECURITY.md), [execution quality](EXECUTION_QUALITY.md) |
 | Exact-unit LP integration | Actual Rewards uses constant-work root credit, ten-level whole claims/views, both-book old-weight synchronization and raw pending/high/low LP records(original V9 domain, current V10 wrapper). Current-owner claims and same-NFT conversion conserve every allocated unit. | [Rules/evidence](EXACT_LP_ALLOCATION.md) |
 | LP revenue | Combined actual fees from both legs allocated once per asset at80/10/5/5. Individual shares/equal active collective; no dormant dilution. Independent claims, compound and buyback reserves. | [Economics](ECONOMICS.md) |
-| Royalties | Fresh payload5/allocation2 round coefficients with at-most10-step enrollment lookup; settlement4 original-currency claims; ×1/×2/×3 weights with GCD-normalized exact-unit allocation and a saved rotating remainder cursor. Every allocated raw unit belongs to an NFT; no allocated rounding remainder remains after all eligible claims. Recovery2 assigns reviewed unallocated units at current active weights. Initial/prefund/zero-cohort and token-failure limits remain. No royalty converter; current owners inherit unpaid rights; ERC2981 requests5%, without universal payment enforcement. | [Exact allocation](EXACT_ROYALTY_ALLOCATION.md), [current audit](../reports/last24h-audit-20261105/REVIEW.md) |
+| Royalties | Fresh payload6/allocation2 round coefficients with at-most10-step enrollment lookup; settlement4 original-currency claims; ×1/×2/×3 weights with GCD-normalized exact-unit allocation and a saved rotating remainder cursor. Every allocated raw unit belongs to an NFT; no allocated rounding remainder remains after all eligible claims. Recovery2 assigns reviewed unallocated units at current active weights. Initial/prefund/zero-cohort and token-failure limits remain. No royalty converter; current owners inherit unpaid rights; ERC2981 requests5%, without universal payment enforcement. | [Exact allocation](EXACT_ROYALTY_ALLOCATION.md), [current audit](../reports/last24h-audit-20261105/REVIEW.md) |
 | Compounding | Existing range, both-leg NAV and separate interval after last compound/rebalance; keeper waits for in-range main below the adjustment threshold/no pending geometry. Entrants cannot spend incumbent idle/compound. | [Coordination](KEEPER_COORDINATION.md) |
 | Recovery | Governed same-pair move/resume can create a residual under destination mode ON, without ordinary keeper timing; financial/custody guards remain. Both-leg same-pair movement, raw paused parking and collective ETH+ZZZ holder return. Custody5 allocation/distribution is governance-only; holder LP/royalty/fallback claims remain. Pending compound follows shares; rewards/buyback backing remain separate. Pre-exit canonical export requires every residual closed. | [Parking](CUSTODY_PARKING.md), [holder return](HOLDER_COLLECTIVE_EXIT.md), [canonical](CANONICAL_HANDOFF.md) |
 | Emergency | Paused governance-only reviewed manifest; both-leg liquidity-sensitive fingerprint. Financial bypass is explicit and can lose nearly all principal; structural rights/ownership/settlement remain. | [Emergency](EMERGENCY_REBALANCE.md) |
@@ -134,17 +156,17 @@ both-leg exit.10distinct selected methods span explicit stages, including one
 size/static evidence is reused at matching pins. Failed stale-fixture attempts
 remain recorded. This is not target-chain gas, full-suite or independent approval.
 
-## Latest audit consolidation
+## Earlier five-report consolidation
 
-The [five latest reports](../reports/five-report-consolidation-20261117/REVIEW.md)
-are reconciled against current code with distinct dispositions and duplicate
+The [17 November five-report review](../reports/five-report-consolidation-20261117/REVIEW.md)
+reconciles findings at its recorded source with distinct dispositions and duplicate
 origins. Chain/root/reservation guards, keeper timing, exact manual gas/anchors,
 typed input descriptions and repaired economic tests remain implemented.
 New pre-seal stop warnings and fixed historical-evidence admission improve
 operating diagnostics and verification without changing financial contracts.
 
-All61 Solidity sources, safeguards and defaults remain unchanged by this
-consolidation. Independent markets/providers, actual OpenSea/VRF/content,
+At that recorded source, all61 Solidity sources, safeguards and defaults
+remained unchanged by that consolidation. Independent markets/providers, actual OpenSea/VRF/content,
 maximum workloads, deployment/operating acceptance and independent audit stay open.
 Historical evidence below retains its original source, not current approval.
 
@@ -152,6 +174,8 @@ Historical evidence below retains its original source, not current approval.
 
 | Evidence | Source scope | What it does not establish |
 | --- | --- | --- |
+| [Earlier F5 activation gas](../reports/activation-gas-20261118/REVIEW.md) | Recorded F5/allocation2: 7/13 cold scenarios fit20M/full20%; six were refused. Its normal build, component and canonical evidence retain their exact source scopes. | Current F6 results supersede those six refusals only for the new controlled workload; old artifacts and tests are not relabelled. |
+| [Royalty-round baseline](../reports/royalty-rounds-20261118/REVIEW.md) | Recorded C08/F5 source: 5/13 controlled cold scenarios fit20M/full20%; original round/fault/canonical checks remain historical. | Not current F6 gas, universal maximum state, real currencies/providers or release approval. |
 | [Exact-unit LP integration](../reports/exact-lp-integration-20261106/VERIFICATION.md) | Fresh7/LP1/V9/schema16: actual Rewards, share/membership hooks, whole claims/conversion and lossless canonical books. Normal87source gates46+2carrier; strict532records222current/310exact reuse. Source-scoped host/native/core/canonical methods and619affected backend methods; final315source type closure. | Broad45-class compilation ran out of memory before EVM results; selected corrected scopes are explicit. Cold32-entry claim exceeds12M, cold8 fits only its fixture. No full-suite/publicCI, target gas, checkpoint2, rollout or independent approval. |
 | [November5 audit](../reports/last24h-audit-20261105/REVIEW.md) | Exact-unit royalty4 and affected cross-repository changes, with source-scoped verification recorded in the report. | No deployment, maximum-state target gas, supported OpenSea mint path, operating acceptance or independent approval. |
 | [Four-report follow-up](../reports/four-report-consolidation-20261104/VERIFICATION.md) |93focused Python successes,9new startup cases; four input reports and current Solidity/dependency/build pins preserved. | No fresh contract execution, live storage/host acceptance or independent approval. |

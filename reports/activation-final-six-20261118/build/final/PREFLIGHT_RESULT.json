@@ -1,0 +1,6 @@
+{
+  "scope": "Source/build preflight, not a compilation pass",
+  "closed_sources": 100,
+  "project_sources": 61,
+  "not_a_build_pass": true
+}

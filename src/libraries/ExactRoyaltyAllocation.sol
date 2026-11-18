@@ -7,9 +7,10 @@ pragma solidity 0.8.26;
 /// books are not compatible with historical raw tree storage; canonical rows
 /// flatten funded per-NFT rights and restore the cursor as an initial offset.
 library ExactRoyaltyAllocation {
-    // Low16bits: current cursor; next16: initial cursor; bit32: initialized.
-    // Both cursors are validated below3000. One metadata write replaces three.
-    struct Book { uint256 rounds; uint256 position; }
+    // Low16bits: current cursor; next16: initial cursor. Highbit tags a full
+    // uint256 round spill; other223 coefficient bits share the common word.
+    // No initialized bit is needed: an all-zero book has zero gross exactly.
+    struct Book { uint256 packed; uint256 wideRounds; }
     struct Cohorts { mapping(uint256=>uint256) roundsAt; uint16[] ends; }
     error InvalidAllocation();
 
@@ -17,23 +18,37 @@ library ExactRoyaltyAllocation {
         internal returns(uint256 nextCursor,uint256 globalAfter) {
         _validate(weight,cursor);
         globalAfter=globalBefore+amount;
-        uint256 position=book.position;
-        if(position==0)position=(cursor<<16)|(uint256(1)<<32);
         uint256 turns;
         (nextCursor,turns)=_step(amount,weight,cursor);
-        unchecked {
-            book.rounds+=turns;
-            book.position=(position&~uint256(type(uint16).max))|nextCursor;
+        // Coefficients are intentionally modulo2^256. Monetary liability above
+        // remains checked. Book.slot+1 is the exact full-width overflow spill.
+        assembly ("memory-safe") {
+            let packed:=sload(book.slot)
+            let position:=and(packed,0xffffffff)
+            if iszero(packed){position:=shl(16,cursor)}
+            let round:=shr(32,packed)
+            if shr(255,packed){round:=sload(add(book.slot,1))}
+            round:=add(round,turns)
+            if shr(223,round){sstore(add(book.slot,1),round) round:=shl(223,1)}
+            sstore(book.slot,or(shl(32,round),or(and(position,0xffff0000),nextCursor)))
         }
     }
 
+    function rounds(Book storage book) internal view returns(uint256){return _bookRound(book,book.packed);}
+    function _bookRound(Book storage book,uint256 packed) private view returns(uint256){
+        uint256 result;
+        assembly ("memory-safe") {
+            result:=shr(32,packed)
+            if shr(255,packed){result:=sload(add(book.slot,1))}
+        }
+        return result;
+    }
     /// @notice Gross coefficient, before birth and paid-debt subtraction.
     function gross(Book storage book,uint256 first,uint256 last) internal view returns(uint256 value){
         _interval(first,last);
-        uint256 position=book.position;
-        if(position==0)return 0;
+        uint256 packed=book.packed;uint256 position=uint32(packed);
         unchecked {
-            value=book.rounds*(last-first+1)+_prefix(first,last,position&type(uint16).max)
+            value=_bookRound(book,packed)*(last-first+1)+_prefix(first,last,position&type(uint16).max)
                 -_prefix(first,last,(position>>16)&type(uint16).max);
         }
     }
@@ -48,6 +63,12 @@ library ExactRoyaltyAllocation {
             if(end==last)return;
             if(end<last)revert InvalidAllocation();
         }
+        enrollValidated(cohort,end,rounds);
+    }
+    /// @dev The sole production caller proves end strictly increases in1..1000.
+    function enrollValidated(Cohorts storage cohort,uint256 end,uint256 rounds) internal {
+        // _enrollTo proves count increases strictly within1..1000. The latest
+        // stored end equals that asset's eligibleCount; there is no other caller.
         cohort.roundsAt[end]=rounds;
         cohort.ends.push(uint16(end));
     }
@@ -55,6 +76,10 @@ library ExactRoyaltyAllocation {
     /// Search is bounded by the1000-NFT cap, never by payment history.
     function birth(Cohorts storage cohort,uint256 ordinal) internal view returns(uint256 end,uint256 rounds){
         if(ordinal==0)revert InvalidAllocation();
+        return birthActivated(cohort,ordinal);
+    }
+    /// @dev The sole production caller has returned for activationOrdinal==0.
+    function birthActivated(Cohorts storage cohort,uint256 ordinal) internal view returns(uint256 end,uint256 rounds){
         uint256 low;uint256 length=cohort.ends.length;uint256 high=length;
         unchecked {
             while(low<high){

@@ -365,14 +365,21 @@ contract ZZZOracle is ZZZModule {
     /// 49 words. No cached value grants authority or replaces a live public read.
     function _loadQuote() private view returns(Execution memory c) {
         if(_executionLength()==0)return c;
-        c.owner=address(uint160(_executionWord(0)));c.zzz=address(uint160(_executionWord(1)));
-        c.ethPolicy=bytes32(_executionWord(2));c.zzzPolicy=bytes32(_executionWord(3));
-        c.sequencerPolicy=bytes32(_executionWord(4));c.sourceRevision=uint64(_executionWord(5));
-        c.gasPolicy=bytes32(_executionWord(6));
-        for(uint256 i;i<2;++i)c.fingerprints[i]=bytes32(_executionWord(QUOTE_FINGERPRINT_WORD+i));
-        for(uint256 i;i<4;++i)c.bounds[i]=_executionWord(QUOTE_BOUNDS_WORD+i);
-        c.zzzDigits=uint8(_executionWord(QUOTE_DIGITS_WORD));
-        c.pendingSwap=_executionWord(QUOTE_PENDING_WORD)!=0;
+        bytes32 base=EXECUTION_WORDS;
+        // Project only canonical typed words used by the quote/control getters.
+        // Full mutable-boundary validation still reads the complete49-word record.
+        assembly ("memory-safe") {
+            function words(dst,src,count,area) {
+                for {let i:=0}lt(i,count){i:=add(i,1)} {
+                    mstore(add(dst,mul(i,32)),tload(add(area,add(src,i))))
+                }
+            }
+            words(c,0,7,base)
+            words(mload(add(c,256)),11,2,base)
+            words(mload(add(c,288)),13,4,base)
+            mstore(add(c,320),tload(add(base,17)))
+            mstore(add(c,448),tload(add(base,38)))
+        }
     }
     function _saveExecution(Execution memory c) private {
         bytes memory encoded=abi.encode(c);uint256 length=encoded.length;
@@ -460,10 +467,37 @@ contract ZZZOracle is ZZZModule {
         result=new bytes(expected);
         assembly("memory-safe"){returndatacopy(add(result,32),0,expected)}
     }
-    function _roundHash(Round memory round) private pure returns(bytes32){return keccak256(abi.encode(round));}
-    function _marketHash(MarketState memory state) private pure returns(bytes32){return keccak256(abi.encode(state));}
-    function _spotHash(MarketState memory state) private pure returns(bytes32){
-        return keccak256(abi.encode(state.sqrtPriceX96,state.tick,state.protocolFee,state.lpFee));
+    function _roundHash(Round memory round) private pure returns(bytes32 hash) {
+        assembly("memory-safe") {
+            let p:=mload(0x40)
+            mstore(p,and(mload(round),0xffffffffffffffffffff))
+            mstore(add(p,32),mload(add(round,32)))
+            mstore(add(p,64),mload(add(round,64)))
+            mstore(add(p,96),mload(add(round,96)))
+            mstore(add(p,128),and(mload(add(round,128)),0xffffffffffffffffffff))
+            hash:=keccak256(p,160)
+        }
+    }
+    function _marketHash(MarketState memory state) private pure returns(bytes32 hash) {
+        assembly("memory-safe") {
+            let p:=mload(0x40)
+            mstore(p,and(mload(state),0xffffffffffffffffffffffffffffffffffffffff))
+            mstore(add(p,32),signextend(2,mload(add(state,32))))
+            mstore(add(p,64),and(mload(add(state,64)),0xffffff))
+            mstore(add(p,96),and(mload(add(state,96)),0xffffff))
+            mstore(add(p,128),and(mload(add(state,128)),0xffffffffffffffffffffffffffffffff))
+            hash:=keccak256(p,160)
+        }
+    }
+    function _spotHash(MarketState memory state) private pure returns(bytes32 hash) {
+        assembly("memory-safe") {
+            let p:=mload(0x40)
+            mstore(p,and(mload(state),0xffffffffffffffffffffffffffffffffffffffff))
+            mstore(add(p,32),signextend(2,mload(add(state,32))))
+            mstore(add(p,64),and(mload(add(state,64)),0xffffff))
+            mstore(add(p,96),and(mload(add(state,96)),0xffffff))
+            hash:=keccak256(p,128)
+        }
     }
     function _executionRound(SourcePolicy memory source,bytes32 original,ExecutionMarket memory market,address token,uint256 gasLimit)
         private view returns(uint256 usd) {

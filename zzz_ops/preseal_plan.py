@@ -383,7 +383,7 @@ def _seal_boundary_review(construction,assigned,*,royalty_balance_supported=Fals
     if royalty_balance_supported:
         checks.append(('royalty_allocation_profile','royalty_rewards',
             ['ROYALTY_ALLOCATION_VERSION()','ROYALTY_SETTLEMENT_VERSION()'],
-            'Verify exact fresh payload5/runtime identity and allocation version2; original-currency '
+            'Verify exact selected payload5/6/runtime identity and allocation version2; original-currency '
             'settlement remains4. Old tree-backed payload3/4 must not be relabelled as round counters. '
             'Neither the scalar version nor an internal review supplies release qualification.'))
         checks.append(('royalty_balance_read_policy','protocol_policy',

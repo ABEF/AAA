@@ -1,0 +1,9 @@
+{
+  "strict_import_pass": true,
+  "actual_build_not_preflight": true,
+  "additional_compiler_runs": 0,
+  "source_objects": 40,
+  "closed_sources": 100,
+  "size_evidence_sha256": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2",
+  "production_approved": false
+}

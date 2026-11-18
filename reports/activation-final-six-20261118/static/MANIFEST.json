@@ -1,0 +1,97 @@
+{
+  "scope": "Child static-closure publication files only, not entire parent report",
+  "files": {
+    "reports/activation-final-six-20261118/static/CURRENT_CONTEXTS.json": {
+      "sha256": "94746401eb25d454e575813cba7c083fb03ea86b583bcb007ddbc4c5d359e330",
+      "bytes": 125988
+    },
+    "reports/activation-final-six-20261118/static/CURRENT_DEFAULT_CLI.stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "reports/activation-final-six-20261118/static/CURRENT_DEFAULT_CLI.stdout.json": {
+      "sha256": "e371f6273e3cba08937f19e115e4ae55f53fe74154a0d2f52a657cf5635d2734",
+      "bytes": 74
+    },
+    "reports/activation-final-six-20261118/static/DEFAULT_ADOPTION.json": {
+      "sha256": "fbf4c3fcbfc9fd98655d37ebafc3ffffcc050c6663018fe91fd61c0cd42033a7",
+      "bytes": 2915
+    },
+    "reports/activation-final-six-20261118/static/EXACT_REUSE_PROOF.json": {
+      "sha256": "05a9908706d44320a1ae82dae0c333a9eb9d47dc5b6a07621d20ac95a61720a9",
+      "bytes": 455092
+    },
+    "reports/activation-final-six-20261118/static/EXECUTION.json": {
+      "sha256": "d157d81db3aa0967a3fada25a32f17b06ea40292c5fcc1417a451de3b4ec5a5d",
+      "bytes": 16630
+    },
+    "reports/activation-final-six-20261118/static/NEW_CURRENT_DEFAULT_REGRESSIONS.stderr.log": {
+      "sha256": "1f314ec2e4dd764718e2e216d778af9ac920e4431ce6e802dc5d42cb4b0e45a4",
+      "bytes": 487
+    },
+    "reports/activation-final-six-20261118/static/NEW_CURRENT_DEFAULT_REGRESSIONS.stdout.json": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "reports/activation-final-six-20261118/static/OLD_DEFAULT_EXPECTED_REJECTION.stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "reports/activation-final-six-20261118/static/OLD_DEFAULT_EXPECTED_REJECTION.stdout.json": {
+      "sha256": "efbdade71dbcddbeb914db6eed7557cd51440fded9ccd43e69d205b393f62587",
+      "bytes": 18915
+    },
+    "reports/activation-final-six-20261118/static/OTHER_ASSESSMENTS.json": {
+      "sha256": "35eed243fca9f5e0b17106dfa7bc531b7e2e4e53eb01ea4f828a565d0d7bb5ea",
+      "bytes": 102894
+    },
+    "reports/activation-final-six-20261118/static/PRICING_ASSESSMENTS.json": {
+      "sha256": "885739a34c301084fa8f66c778cc1f8c31602f61b15452093448d8dc4b3a9f85",
+      "bytes": 97948
+    },
+    "reports/activation-final-six-20261118/static/publish-static-review.py": {
+      "sha256": "4cc065507be3b0292187ac6132759ccdadbd950729255dbf7b1df09cf06c106d",
+      "bytes": 9586
+    },
+    "reports/activation-final-six-20261118/static/REVIEW_COVERAGE.json": {
+      "sha256": "e823e4010690da82fc95e219940a145d0dd993730403cba83c348ea71d38dd22",
+      "bytes": 760
+    },
+    "reports/activation-final-six-20261118/static/ROYALTY_ASSESSMENTS.json": {
+      "sha256": "f3ca7e298197e6287102e3fcde8422175201f484bbc987f96da68aa2bb9e818c",
+      "bytes": 46261
+    },
+    "reports/activation-final-six-20261118/static/run-static.py": {
+      "sha256": "40d40af3ba41f7bb4b63dee814ab4c63ebd57af8b43a49a41d231a654f8072a2",
+      "bytes": 4988
+    },
+    "reports/activation-final-six-20261118/static/slither.json.gz": {
+      "sha256": "e2a543d52d691150788a41d6ec7cf53d252504d270bad9b7a74f939a58b78d6e",
+      "bytes": 6158545
+    },
+    "reports/activation-final-six-20261118/static/slither.log.gz": {
+      "sha256": "73863207c93a60785fe855742c85525f3cd1be913fbec15e2ba61492ce941f2d",
+      "bytes": 29512
+    },
+    "reports/activation-final-six-20261118/static/STATIC_RESULT.json": {
+      "sha256": "b95724d9f4cb559a9b298b9fb62a8dce6cb52c0945842ff42dd1c4d0f3b36232",
+      "bytes": 1323
+    },
+    "reports/activation-final-six-20261118/static/versions.txt": {
+      "sha256": "0a4e42e1d7975414a429e1b1e3a1edf69851764fd7acdb4c3ec4cd8e1bcc079a",
+      "bytes": 15
+    },
+    "reports/activation-final-six-20261118/static-input.json.gz": {
+      "sha256": "002da773a1e4ca19785a090fd40405a336be3a7b1d62ebd844876f5c60c2d302",
+      "bytes": 31615
+    },
+    "reports/activation-final-six-20261118/static-review.json": {
+      "sha256": "a412c7d94917f1bdfd60a2adfa11dd3b2099e368b7c8769cc05a2db04388b9da",
+      "bytes": 1176604
+    },
+    "reports/activation-final-six-20261118/STATIC_REVIEW.md": {
+      "sha256": "09900ea3c6edf65a32c351941bfffef09235c8e59b5ea995cdc8f9fbad496872",
+      "bytes": 3212
+    }
+  }
+}

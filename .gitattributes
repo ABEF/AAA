@@ -295,3 +295,15 @@ test/NativeFeeRewards.t.sol -text whitespace=cr-at-eol
 tests_python/test_activation_build20261118.py -text whitespace=cr-at-eol
 
 docs/EXACT_LP_ALLOCATION.md -text whitespace=cr-at-eol
+
+reports/activation-final-six-20261118/** -text whitespace=cr-at-eol
+zzz_ops/factory_code_v6.py -text whitespace=cr-at-eol
+tests_python/factory_payload_archive.py -text whitespace=cr-at-eol
+tests_python/test_factory_payload6.py -text whitespace=cr-at-eol
+config/factory-code-storage-v6.json -text whitespace=cr-at-eol
+config/production.schema17.payload5.example.json -text whitespace=cr-at-eol
+tests_python/test_slither_current_default.py -text whitespace=cr-at-eol
+scripts/check-slither-review.py -text whitespace=cr-at-eol
+# Preserve exact compiler diagnostics, including intentional trailing padding.
+reports/activation-final-six-20261118/full-flow-final/full01-compile01/stderr.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+reports/activation-final-six-20261118/full-flow-final/full01-compile01/stdout.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

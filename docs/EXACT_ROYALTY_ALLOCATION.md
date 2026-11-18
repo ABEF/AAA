@@ -54,15 +54,17 @@ admitting low-decimal/high-value currencies; no rounding scheme can divide it.
 
 ## Backing and implementation
 
-Fresh allocation2 uses cumulative complete rounds, a rotating cursor and immutable enrollment snapshots. Historical payload3/4 used a ticket tree. The library is compiled into the ledger, not a new deployed helper or authority. Each receipt updates constant-size state without scanning holders or retaining payment history. Each currency records at most1,000 increasing enrollment boundaries; a scalar claim finds its birth cohort in at most10 binary-search steps, evaluates its normalized books and subtracts its prior paid coordinate. Imported accrued remains separate.
+Fresh allocation2 uses cumulative complete rounds, a rotating cursor and immutable enrollment snapshots. Historical payload3/4 used a ticket tree; payload5 retains its separately pinned round-book representation. The library is compiled into the ledger, not a new deployed helper or authority. Each receipt updates constant-size state without scanning holders or retaining payment history. Each currency records at most1,000 increasing enrollment boundaries; a scalar claim finds its birth cohort in at most10 binary-search steps, evaluates its normalized books and subtracts its prior paid coordinate. Imported accrued remains separate.
 
 For effective prefixW, cursorC and receiptA, add `A/W + (C + A%W >= W ? 1 : 0)` complete rounds and set cursor to `(C + A%W)%W`. Each ticket receives `deltaRounds + [ticket <= newCursor] - [ticket <= oldCursor]`. This telescopes across append-only cohorts. Snapshot new entrants after old receipts; the initial opening cohort instead enrolls before its held pool is credited. Homogeneous Rare/Legendary books transition only to unit1 and retain their old rights. New-book initial cursor offsets create no phantom income.
 
 Only lifetime round, gross and paid coordinates wrap modulo2^256; these are not cash balances. Each monetary credit first reserves checked same-currency liability. Claims remain bounded by actual liability, with checked aggregate payouts, backing debits and exact transfers. Imported accrued payouts never become new-book paid debt.
 
-Rarity weights, scalar claims/events and flattened canonical records remain unchanged. Private storage changes: require fresh `ROYALTY_ALLOCATION_VERSION()==2`, explicit factory payload5 and exact reviewed runtime/source pins. Never reinterpret a historical raw tree book. Settlement remains4, recovery2 and reporting5. After every entitled owner claims, allocated liability is zero; internal coordinates need not be zero. This append-only design is specific to royalties; mutable LP shares retain their separate engine.
+Rarity weights, scalar claims/events and flattened canonical records remain unchanged. Private storage changes: require fresh `ROYALTY_ALLOCATION_VERSION()==2`, explicit factory payload6 and exact reviewed runtime/source pins. Never reinterpret a historical raw tree or payload5 round book. Settlement remains4, recovery2 and reporting5. After every entitled owner claims, allocated liability is zero; internal coordinates need not be zero. This append-only design is specific to royalties; mutable LP shares retain their separate engine.
 
-See the [current round-accounting review](../reports/royalty-rounds-20261118/ROUND_ACCOUNTING_REVIEW.md). The prior [Q03 tree implementation](../reports/q03-activation-gas-20261117/REVIEW.md) and rejected prefix-envelope experiment retain their original evidence. Population/currency capacities are engineering limits, not gas approval.
+Current private allocation2 packs223 coefficient bits with a full-width uint256 spill, retaining modulo2^256 logical rounds/gross/paid coordinates. Cursor fields and asset status count/weight/cursor use16-bit fields; validated production bounds remain1,000NFTs and3,000rarity tickets. The one-hour opening, fault cohorts, enrollment history, checked monetary liabilities and every original-currency entitlement are unchanged. This is a fresh storage representation, not a hot-copy migration. See the [current packing and gas review](../reports/activation-final-six-20261118/REVIEW.md).
+
+See the [round-accounting design review](../reports/royalty-rounds-20261118/ROUND_ACCOUNTING_REVIEW.md). The prior [Q03 tree implementation](../reports/q03-activation-gas-20261117/REVIEW.md) and rejected prefix-envelope experiment retain their original evidence. Population/currency capacities are engineering limits, not gas approval.
 
 For each admitted currency in ordinary operation:
 
@@ -173,4 +175,4 @@ Every lineage peer declares its own profile. Old checkpoints require reviewed
 rebuild/re-pin; the rolling24-hour earnings period stays86,400seconds.
 
 See the [operator manual](OPERATOR_MANUAL.md), [original-currency procedure](ROYALTY_SETTLEMENT.md),
-[reporting](ROYALTY_REPORTING.md) and [current audit](../reports/last24h-audit-20261105/REVIEW.md).
+[reporting](ROYALTY_REPORTING.md) and [historical royalty audit](../reports/last24h-audit-20261105/REVIEW.md).

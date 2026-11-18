@@ -1,0 +1,11 @@
+{
+  "original_result_preserved": true,
+  "cause": "The runner scope sentence counted eight methods in the original F6 class; it actually contained seven.",
+  "actual_methods_in_raw_unittest_output": 11,
+  "new_methods_executed": 7,
+  "affected_historical_methods_executed": 4,
+  "all_eleven_passed": true,
+  "passing_distinct_methods_including_final01_selector": 12,
+  "follow_up": "Add and execute only the independently useful missing unbound-F6 identity control, without repeating these eleven methods.",
+  "production_behavior_or_evidence_bytes_changed": false
+}

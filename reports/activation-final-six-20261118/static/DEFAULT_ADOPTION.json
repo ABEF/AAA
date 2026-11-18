@@ -1,0 +1,63 @@
+{
+  "scope": "Actual CI default adoption with unchanged strict matcher/config and two NEW fail-closed regression methods",
+  "old_default_expected_rejection": {
+    "command": [
+      "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\scripts\\check-slither-review.py",
+      "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\activation-final-six-20261118\\static-analysis\\static-fb34dc578e\\detectors-only.json"
+    ],
+    "exit_code": 1,
+    "seconds": 0.4840000000258442,
+    "stdout_sha256": "efbdade71dbcddbeb914db6eed7557cd51440fded9ccd43e69d205b393f62587",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "errors_count": 218,
+    "intended_rejection": true
+  },
+  "current_default_cli": {
+    "command": [
+      "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\scripts\\check-slither-review.py",
+      "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\activation-final-six-20261118\\static-analysis\\static-fb34dc578e\\detectors-only.json"
+    ],
+    "exit_code": 0,
+    "seconds": 0.46900000001187436,
+    "stdout_sha256": "e371f6273e3cba08937f19e115e4ae55f53fe74154a0d2f52a657cf5635d2734",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "review_coverage_pass": true
+  },
+  "new_regressions": {
+    "command": [
+      "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "tests_python.test_slither_current_default",
+      "-v"
+    ],
+    "exit_code": 0,
+    "seconds": 2.2189999999827705,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "1f314ec2e4dd764718e2e216d778af9ac920e4431ce6e802dc5d42cb4b0e45a4",
+    "new_distinct_methods": 2,
+    "unchanged_tests_executed": 0
+  },
+  "default_before": "reports/test-seal-deep-review-20261117/static-final-review.json",
+  "default_after": "reports/activation-final-six-20261118/static-review.json",
+  "checker_before_sha256": "0b250ba6a1ff610a66cb40cb86f99ffb2ad9f08dc53de1f3c5fce778b6bc7e8c",
+  "checker_after_sha256": "3db18856ddff16c2bb42d7183e967f3829832e9e157c5eba9437969ef2620c93",
+  "only_checker_change_is_literal_default_path": true,
+  "all61_production_sources_unchanged": true,
+  "compiler_invoked": false,
+  "analyzer_additional_runs": 0,
+  "old_artifacts_unchanged": true,
+  "independent_audit": false,
+  "production_approved": false
+}

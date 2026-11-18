@@ -1,6 +1,8 @@
 # Verification evidence
 
-[18 November activation cost reduction](activation-gas-20261118/REVIEW.md) records exact compact/full-width-spill LP carry, the Oracle projection and feed arithmetic changes. All13 cold operations pass functionally;7 fit full20% within20M,6 remain refused. Unchanged Factory5/rights/limits and source-scoped recovery/callback evidence are explicit. Q03 remains open; no deployment or environment changes.
+[18 November six-case resolution](activation-final-six-20261118/REVIEW.md) qualifies all13 controlled cold cases within20M with full20% padding, closing the6 earlier refusals. Worst padded gas is19,753,079. Fresh Factory6/private codecs and transaction-only Pricing preserve exact rights and safeguards. Real markets/providers/fees and wider workloads remain separate.
+
+Historical source: [18 November activation cost reduction](activation-gas-20261118/REVIEW.md) records exact compact/full-width-spill LP carry, the Oracle projection and feed arithmetic changes. At that source all13 cold operations pass functionally;7 fit full20% within20M,6 remain refused. Unchanged Factory5/rights/limits and source-scoped recovery/callback evidence retain their original scope.
 
 [18 November royalty rounds](royalty-rounds-20261118/REVIEW.md) covers constant-size exact royalty credit, bounded activation token reads, explicit payload5 consumers, current rights/canonical checks and separately recorded1,000-NFT gas evidence. Prior Q03/tree evidence retains its own source; source publication changes no environment.
 

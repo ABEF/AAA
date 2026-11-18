@@ -11,11 +11,12 @@ from zzz_ops import factory_code_v3 as F3,factory_code_v4 as F4,factory_code_v5 
 from zzz_ops import production_v15 as P,production_observer_v15 as O
 from zzz_ops import royalty_read_policy as R,deployment_plan as D,preseal_plan as PRE
 from tests_python import preseal_fixture
+from tests_python.factory_payload_archive import archived
 
 ROOT=Path(__file__).resolve().parents[1]
 BLOCK={'blockHash':'0x'+'ab'*32,'requireCanonical':True}
 def addr(n):return '0x'+f'{n:040x}'
-def config(name='production.example.json'):return json.loads((ROOT/'config'/name).read_bytes())
+def config(name='production.schema17.payload5.example.json'):return json.loads((ROOT/'config'/name).read_bytes())
 def word(n):return f'{n:064x}'
 def h(raw):return '0x'+D.keccak256(raw).hex()
 
@@ -44,7 +45,7 @@ def chain():
 
 
 def actual_parts():
-    output=D.Artifacts().output
+    output=archived('activation-gas-20261118').output
     F5.verify_compiler_output(output)
     code=bytes.fromhex(output['contracts']['src/ZZZRoyaltyRewards.sol']['ZZZRoyaltyRewards']['evm']['bytecode']['object'])
     return ['0x'+part.hex() for part in F5.split_creation(code)]
@@ -52,7 +53,7 @@ def actual_parts():
 
 class FactoryPayload5Tests(unittest.TestCase):
     def test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes(self):
-        output=D.Artifacts().output;parts=actual_parts()
+        output=archived('activation-gas-20261118').output;parts=actual_parts()
         self.assertTrue(F5.verify_compiler_output(output))
         _,whole=F5.verify_runtime_parts(parts)
         self.assertEqual(whole,dict(observed_creation_code_length=F5.SPEC.creation_length,
@@ -111,7 +112,7 @@ class FactoryPayload5Tests(unittest.TestCase):
         self.assertFalse(any(i['code'].startswith('royalty.read.') for i in gate.issues),gate.issues)
 
     def test_invalid_selector_mixed_payload_and_legacy_read_fields_fail_before_rpc(self):
-        for bad in (True,False,None,5.0,'5',0,2,6,{},[]):
+        for bad in (True,False,None,5.0,'5',0,2,7,{},[]):
             value=chain();value['factory_payload_version']=bad;rpc=Mock()
             with self.subTest(value=repr(bad)):
                 with self.assertRaises(ValueError):O.Observer(rpc,value)

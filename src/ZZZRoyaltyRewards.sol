@@ -48,14 +48,36 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     address public canonicalController;
     uint256 private openingCount;
     uint256 private openingWeight;
-    mapping(address => bool) private initialAllocated;
+    // Fresh private packed state: count10, weight12, cursor12, initial1.
+    // Original validated write origins remain within1000NFTs/3000tickets.
+    mapping(address => uint256) private assetStatus;
+    function eligibleCount(address asset) public view returns(uint256) { return _readStatus(asset)&65535; }
+    function eligibleWeight(address asset) public view returns(uint256) { return (_readStatus(asset)>>16)&65535; }
+    function allocationCursor(address asset) public view returns(uint256) { return (_readStatus(asset)>>32)&65535; }
+    function _initialAllocated(address asset) private view returns(bool) {
+        return _readStatus(asset)&(uint256(1)<<48)!=0;
+    }
+    function _readStatus(address asset) private view returns(uint256 value) {
+        assembly ("memory-safe") {
+            mstore(0,and(asset,0xffffffffffffffffffffffffffffffffffffffff))
+            mstore(32,assetStatus.slot)
+            value:=sload(keccak256(0,64))
+        }
+    }
+    function _writeStatus(address asset,uint256 mask,uint256 value) private {
+        assembly ("memory-safe") {
+            mstore(0,and(asset,0xffffffffffffffffffffffffffffffffffffffff))
+            mstore(32,assetStatus.slot)
+            let location:=keccak256(0,64)
+            sstore(location,or(and(sload(location),not(mask)),value))
+        }
+    }
     mapping(address => uint256) public openingPool;
     // Address zero denotes native ETH and is always the first admitted asset.
     address[] public assets;
     mapping(address => bool) public isAsset;
     mapping(uint256 => uint256) public weightOf;
     uint256 public totalWeight;
-    mapping(address => uint256) public allocationCursor;
     mapping(uint256 => uint256) public ticketStart;
     // Accounted = liabilities + orphaned + openingPool. Raw receipts are above it.
     /// @notice Exact accounted categories; pending raw donations remain above this sum.
@@ -67,8 +89,6 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     mapping(uint256 => mapping(address => uint256)) public accrued;
     uint256 public activationCount;
     mapping(uint256 => uint256) public activationOrdinal;
-    mapping(address => uint256) public eligibleCount;
-    mapping(address => uint256) public eligibleWeight;
 
     error Unauthorized();
     error InvalidConfiguration();
@@ -207,7 +227,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         // Post-opening admission keeps the explicit current-weight recovery rule;
         // it cannot silently rewrite the original cutoff cohort.
         _finalizeOpening();
-        initialAllocated[token] = openingFinalized;
+        _writeStatus(token,uint256(1)<<48,openingFinalized?uint256(1)<<48:0);
         emit AssetAdded(token, balance);
     }
 
@@ -295,19 +315,19 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     /// can materialize its opening allocation. This does not enroll late activations.
     function effectiveEligibleCount(address asset) public view returns (uint256) {
         uint256 cutoff = openingFinalized ? openingCount : activationCount;
-        return !initialAllocated[asset] && royaltiesOpen() && cutoff > eligibleCount[asset] ? cutoff : eligibleCount[asset];
+        return !_initialAllocated(asset) && royaltiesOpen() && cutoff > eligibleCount(asset) ? cutoff : eligibleCount(asset);
     }
     function _enrollTo(address asset,uint256 count,uint256 weight) private {
-        uint256 old=eligibleCount[asset];
+        uint256 old=eligibleCount(asset);
         if(count<old)revert InvalidState();
         if(count==old)return;
         uint256 unit=_allocationUnit(count);
         if(unit==0)revert InvalidState();
-        ExactRoyaltyAllocation.enroll(enrollment[asset],count,allocationBooks[asset][unit].rounds);
-        eligibleCount[asset]=count;eligibleWeight[asset]=weight;
+        ExactRoyaltyAllocation.enrollValidated(enrollment[asset],count,allocationBooks[asset][unit].rounds());
+        _writeStatus(asset,4294967295,count|(weight<<16));
     }
     function _enrollWaiting(address asset) private {
-        uint256 old = eligibleCount[asset];
+        uint256 old = eligibleCount(asset);
         if (old == activationCount) return;
         _enrollTo(asset,activationCount,totalWeight);
         emit RoyaltyEligibilityRecovered(asset, old + 1, activationCount);
@@ -332,21 +352,21 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
     function _distribute(address asset,uint256 amount,uint256 count,uint256 weight) private {
         if (amount == 0) return;
         uint256 unit = _allocationUnit(count);
-        uint256 beforeCursor = allocationCursor[asset];
+        uint256 beforeCursor = allocationCursor(asset);
         if (unit == 0 || weight%unit != 0 || beforeCursor%unit != 0) revert InvalidState();
         // Reserve actual same-currency backing before modular coefficient writes.
         (uint256 nextCursor,uint256 afterLiability) = allocationBooks[asset][unit].credit(
             amount,weight/unit,beforeCursor/unit,liabilities[asset]);
         liabilities[asset] = afterLiability;
         uint256 afterCursor = nextCursor*unit;
-        allocationCursor[asset] = afterCursor;
+        _writeStatus(asset,uint256(65535)<<32,afterCursor<<32);
         emit RoyaltiesAllocated(asset,amount,count,weight,beforeCursor,afterCursor);
     }
 
     function _ticketShare(uint256 id,address asset) private view returns(uint256 amount) {
         uint256 ordinal=activationOrdinal[id];
-        if(ordinal==0||ordinal>eligibleCount[asset])return 0;
-        (uint256 end,uint256 birthRound)=ExactRoyaltyAllocation.birth(enrollment[asset],ordinal);
+        if(ordinal==0||ordinal>eligibleCount(asset))return 0;
+        (uint256 end,uint256 birthRound)=ExactRoyaltyAllocation.birthActivated(enrollment[asset],ordinal);
         uint256 unit=_allocationUnit(end);
         uint256 first=ticketStart[id];uint256 weight=weightOf[id];
         uint256 gross=ExactRoyaltyAllocation.gross(allocationBooks[asset][1],first,first+weight-1);
@@ -382,11 +402,11 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         if (!openingFinalized) {
             openingPool[asset] += amount;
             if (amount != 0) emit RoyaltiesReceived(asset, amount, false);
-        } else if (!initialAllocated[asset]) {
-            initialAllocated[asset] = true;
+        } else if (!_initialAllocated(asset)) {
+            _writeStatus(asset,uint256(1)<<48,uint256(1)<<48);
             // A currency fault during the grace window must not exclude NFTs
             // which DID activate before cutoff. Its ticket allocation is still empty.
-            uint256 old = eligibleCount[asset];
+            uint256 old = eligibleCount(asset);
             if (old < openingCount)
                 emit RoyaltyEligibilityRecovered(asset, old + 1, openingCount);
             _enrollTo(asset,openingCount,openingWeight);
@@ -398,11 +418,11 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
             } else orphaned[asset] += initial;
             emit InitialRoyaltiesAllocated(asset, openingWeight == 0 ? 0 : initial, openingCount, openingWeight);
         } else if (amount != 0) {
-            uint256 supply = eligibleWeight[asset];
+            uint256 supply = eligibleWeight(asset);
             if (supply == 0) {
                 orphaned[asset] += amount;
             } else {
-                _distribute(asset,amount,eligibleCount[asset],supply);
+                _distribute(asset,amount,eligibleCount(asset),supply);
             }
             emit RoyaltiesReceived(asset, amount, supply != 0);
         }
@@ -466,17 +486,17 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         if (balance < accounted(asset)) revert InvalidState();
         amount = accrued[id][asset] + _ticketShare(id,asset);
         if (weightOf[id] == 0 || _state() != 0) return amount;
-        uint256 count = eligibleCount[asset];
-        uint256 weight = eligibleWeight[asset];
+        uint256 count = eligibleCount(asset);
+        uint256 weight = eligibleWeight(asset);
         uint256 receipt = balance - accounted(asset);
-        if (!initialAllocated[asset]) {
+        if (!_initialAllocated(asset)) {
             count = openingFinalized ? openingCount : activationCount;
             weight = openingFinalized ? openingWeight : totalWeight;
             receipt += openingPool[asset];
         }
         if (activationOrdinal[id] <= count && weight != 0) {
             uint256 unit = _allocationUnit(count);
-            uint256 cursor = allocationCursor[asset];
+            uint256 cursor = allocationCursor(asset);
             if (unit == 0 || weight%unit != 0 || cursor%unit != 0) revert InvalidState();
             uint256 first = (ticketStart[id]-1)/unit+1;
             amount += ExactRoyaltyAllocation.previewShare(receipt,weight/unit,cursor/unit,
@@ -509,7 +529,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         canonicalWeight = totalWeight;
         for (uint256 i; i < assets.length; ++i) {
             address asset = assets[i];
-            if (!initialAllocated[asset]) revert CanonicalState();
+            if (!_initialAllocated(asset)) revert CanonicalState();
             uint256 balance = _canonicalBalance(asset);
             if (balance < accounted(asset)) revert CanonicalState();
             canonicalPending.push(balance - accounted(asset));
@@ -521,9 +541,9 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         canonicalCutoffSettled = true;
         for (uint256 i; i < assets.length; ++i) {
             address asset = assets[i]; uint256 amount = canonicalPending[i];
-            uint256 supply = eligibleWeight[asset];
+            uint256 supply = eligibleWeight(asset);
             if (supply == 0) orphaned[asset] += amount;
-            else { _distribute(asset,amount,eligibleCount[asset],supply); }
+            else { _distribute(asset,amount,eligibleCount(asset),supply); }
             _enrollWaiting(asset);
             emit RoyaltiesReceived(asset, amount, supply != 0);
         }
@@ -537,7 +557,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         --row;
         if (row < canonicalAssetTotal) {
             address asset = assets[row];
-            return abi.encode(asset, allocationCursor[asset], accounted(asset), liabilities[asset], orphaned[asset], canonicalAmounts[row]);
+            return abi.encode(asset, allocationCursor(asset), accounted(asset), liabilities[asset], orphaned[asset], canonicalAmounts[row]);
         }
         row -= canonicalAssetTotal;
         uint256 id = IZZZRoyaltyOrdinals(nft).tokenAtOrdinal(row / (1 + canonicalAssetTotal) + 1);
@@ -568,14 +588,13 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
             (address asset,uint256 cursor,uint256 acc,uint256 liability,uint256 orphan,uint256 backing) =
                 abi.decode(record,(address,uint256,uint256,uint256,uint256,uint256));
             if ((row == 0) != (asset == address(0)) || (asset != address(0) && asset.code.length == 0) ||
-                liabilities[asset] != 0 || allocationCursor[asset] != 0 || acc != liability + orphan || backing != acc ||
+                liabilities[asset] != 0 || allocationCursor(asset) != 0 || acc != liability + orphan || backing != acc ||
                 (canonicalWeight == 0 ? cursor != 0 : cursor >= canonicalWeight)) revert CanonicalState();
             if (assets.length == row) { if (isAsset[asset]) revert CanonicalState(); assets.push(asset); isAsset[asset] = true; }
             if (assets[row] != asset) revert CanonicalState();
             uint256 prefund = _canonicalBalance(asset);
             _canonicalAdd(asset, backing, prefund);
-            allocationCursor[asset] = cursor; liabilities[asset] = liability;
-            initialAllocated[asset] = true;
+            _writeStatus(asset,(uint256(65535)<<32)|(uint256(1)<<48),(cursor<<32)|(uint256(1)<<48)); liabilities[asset] = liability;
             // Every actual target receipt is an inert prefund, including money
             // synchronized before preparation. Do not retain its old opening category.
             delete openingPool[asset];
@@ -625,7 +644,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
             for (uint256 i; i < assets.length; ++i) {
                 address asset = assets[i];
                 if (canonicalImportedClaims[asset] != liabilities[asset] ||
-                    (unit != 0 && allocationCursor[asset]%unit != 0)) revert CanonicalState();
+                    (unit != 0 && allocationCursor(asset)%unit != 0)) revert CanonicalState();
             }
         }
         _canonicalValidateBacking();

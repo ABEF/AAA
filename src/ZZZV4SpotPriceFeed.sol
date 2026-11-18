@@ -177,8 +177,19 @@ contract ZZZV4SpotPriceFeed {
         answeredInRound = roundId;
     }
     function _roundId(Config memory c,MarketState memory state,bytes32 ethIdentity) private view returns(uint80 roundId) {
-        bytes32 poolIdentity=keccak256(abi.encode(
-            abi.encode(state.sqrtPriceX96,state.tick,state.protocolFee,state.lpFee),uint256(state.liquidity)));
+        bytes32 poolIdentity;
+        // Preserve the nested ABI bytes/uint256 encoding: head(2), length, data(4).
+        assembly("memory-safe") {
+            let p:=mload(0x40)
+            mstore(p,64)
+            mstore(add(p,32),and(mload(add(state,128)),0xffffffffffffffffffffffffffffffff))
+            mstore(add(p,64),128)
+            mstore(add(p,96),and(mload(state),0xffffffffffffffffffffffffffffffffffffffff))
+            mstore(add(p,128),signextend(2,mload(add(state,32))))
+            mstore(add(p,160),and(mload(add(state,64)),0xffffff))
+            mstore(add(p,192),and(mload(add(state,96)),0xffffff))
+            poolIdentity:=keccak256(p,224)
+        }
         roundId=uint80(uint256(keccak256(abi.encode(address(this),block.chainid,poolId,c.reviewHash,poolIdentity,ethIdentity))));
         if(roundId==0)roundId=1;
     }

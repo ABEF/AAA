@@ -1,0 +1,12 @@
+{
+  "build_id": "activation-final-six-20261118",
+  "files": {
+    "compiler-input.json.gz": "279eba80e69c65d9085196ff4bd0fd9753881363517686dd20b2cedc769a5b0c",
+    "compiler-output.json.gz": "aceb5510485a5a0c28945cb4b4df71c66305dff7f1cb058435a464ff42df4a89",
+    "normal-size-evidence.json": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2",
+    "START.json": "de5303ec7485f4bd15b6b5adee6198d9858d276aefadc0b9a39a53bc5ff604d7"
+  },
+  "prior_profile": "activation-gas-20261118",
+  "prior_pins_unchanged": true,
+  "production_approved": false
+}

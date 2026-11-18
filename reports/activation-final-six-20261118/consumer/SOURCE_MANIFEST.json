@@ -1,0 +1,167 @@
+{
+  "schema": 1,
+  "kind": "adopted_affected_consumer_source_snapshot",
+  "scope": "Affected/new files and selected direct dependencies; not a claim to snapshot every Python/standard-library import.",
+  "passing_current_source_stage": "final02",
+  "test_source_restored_byte_identically": true,
+  "discarded_extra_test_adopted": false,
+  "new_distinct_methods": 7,
+  "affected_distinct_methods": 5,
+  "distinct_passing_controls": 12,
+  "normal_build": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\activation-final-six-20261118\\build\\final02",
+  "normal_input_sha256": "418c6b8fb7e610b0ecacf1003f137cb23809bd9919af221265c863ce8426f67e",
+  "normal_output_sha256": "4614afcbd97bd5d1ced6e68982559256045ef56ec67d632f971d8a590b6eb983",
+  "historical_payload5_preserved": {
+    "zzz_ops/factory_code_v5.py": "3e41c39666784e514d35a53e6ed7996b0bd3522126d22c55dcf63dfc943dfb46",
+    "config/factory-code-storage-v5.json": "d3273a94c8ffa6347bedec98947d04644a9cc3e6a156ebeceafc3d2ad3c3fd20",
+    "config/production.schema17.payload5.example.json": "3469640a7ec586dad0f1037620c2ce4c02441103024d2019cafd19b0adb4366d"
+  },
+  "files": [
+    {
+      "source": "zzz_ops/factory_code_v6.py",
+      "snapshot": "source-final/00-factory_code_v6.py.gz",
+      "source_bytes": 6357,
+      "source_sha256": "a8596f54f4084fbf17c7a78fa13d7e6ef66cdaae4fcfab9f206fd6f9faa68552",
+      "stored_bytes": 2222,
+      "stored_sha256": "46211d192bc814571ddd2e637cf9341fad6dfeb62ad6b584481f6414b0ba7a7a"
+    },
+    {
+      "source": "config/factory-code-storage-v6.json",
+      "snapshot": "source-final/01-factory-code-storage-v6.json.gz",
+      "source_bytes": 12447,
+      "source_sha256": "5915f8af2fc10f77e2d6db2cef0ffa6f095304bf648fb3bca59d431479fa5e54",
+      "stored_bytes": 5451,
+      "stored_sha256": "ea3519dec93c2fd6316f177dc6238f3b807d70059d0b1cedcc854fe44c7b7031"
+    },
+    {
+      "source": "config/production.example.json",
+      "snapshot": "source-final/02-production.example.json.gz",
+      "source_bytes": 41215,
+      "source_sha256": "25b7f19d1e7e6df1cf8bbf5f7f0995f0250fac7fe9ed21a4d5e167173f87a4ee",
+      "stored_bytes": 7800,
+      "stored_sha256": "13e0980ea297a7d86236b4fa212e721493b89b82ead1b7ec52aafde01b42dd5d"
+    },
+    {
+      "source": "config/production.schema17.payload5.example.json",
+      "snapshot": "source-final/03-production.schema17.payload5.example.json.gz",
+      "source_bytes": 42396,
+      "source_sha256": "3469640a7ec586dad0f1037620c2ce4c02441103024d2019cafd19b0adb4366d",
+      "stored_bytes": 7677,
+      "stored_sha256": "4fb5b18b4f98d46c8247146719524589f85cc1157fbe547ba1a6aade63fbab98"
+    },
+    {
+      "source": "zzz_ops/production_v15.py",
+      "snapshot": "source-final/04-production_v15.py.gz",
+      "source_bytes": 22167,
+      "source_sha256": "29b1a7447ef2f117b85a7330a459ce4d1efc537b05535bc448a4cb1b445a8f54",
+      "stored_bytes": 6646,
+      "stored_sha256": "ff5d64494658795590d768393639dc482ac7762c419c9e22cd33ab587fe823fd"
+    },
+    {
+      "source": "zzz_ops/production_observer_v15.py",
+      "snapshot": "source-final/05-production_observer_v15.py.gz",
+      "source_bytes": 10690,
+      "source_sha256": "deded3c0e07ef6f80351315d5dd65ddbd92aca7e1c2e441078873184f679cbf9",
+      "stored_bytes": 3351,
+      "stored_sha256": "dc1a30c6a4f83a66731e79d0b4d473d9547b2414712c46fe1b1728076efad28c"
+    },
+    {
+      "source": "zzz_ops/royalty_read_policy.py",
+      "snapshot": "source-final/06-royalty_read_policy.py.gz",
+      "source_bytes": 4653,
+      "source_sha256": "deff18d06bc0ae864f99aaa918776e7718d58e68ae630ce1e0e01e6bf71e66bb",
+      "stored_bytes": 1687,
+      "stored_sha256": "42bb3e612415fd45f8212f8b2da9237e7b9365ec5d0e615d95b0f627c68a508f"
+    },
+    {
+      "source": "zzz_ops/preseal_plan.py",
+      "snapshot": "source-final/07-preseal_plan.py.gz",
+      "source_bytes": 45120,
+      "source_sha256": "b529740f628ae0225ce95951b73869ebd032e11429ac402dc32fdcee8de79382",
+      "stored_bytes": 13775,
+      "stored_sha256": "7d14126de6c226f74d0ac56da9cc0c1e653b5ac1d5fb17369dae196d51c85bc0"
+    },
+    {
+      "source": "zzz_ops/deployment_plan.py",
+      "snapshot": "source-final/08-deployment_plan.py.gz",
+      "source_bytes": 34969,
+      "source_sha256": "1cc30fa06a8c509e2a7e56d9c5d8af4fab469aa2457e545a7366376c4ab93965",
+      "stored_bytes": 11937,
+      "stored_sha256": "aebb536b10f31aa40018ef90213de926fd22510a3baf639e59f84674ced8d8ab"
+    },
+    {
+      "source": "tests_python/factory_payload_archive.py",
+      "snapshot": "source-final/09-factory_payload_archive.py.gz",
+      "source_bytes": 1643,
+      "source_sha256": "e55197ddde77206fdf84d31714f3694505c4f45178691f90dfb52b1ee29b7631",
+      "stored_bytes": 854,
+      "stored_sha256": "68e241cf9b2cea79a808a7e71a6a663ce9a7713918d8985adc9aa304836666f5"
+    },
+    {
+      "source": "tests_python/test_factory_payload6.py",
+      "snapshot": "source-final/10-test_factory_payload6.py.gz",
+      "source_bytes": 12861,
+      "source_sha256": "8e5a7205925784cb22123b0390f310dbaaffeba39f2724438dc1dd34a8a5a8ab",
+      "stored_bytes": 4300,
+      "stored_sha256": "6bd0af96b88aa0c783c1368d3dee218ab471b3a67ccfec258c58cf4587ab09a5"
+    },
+    {
+      "source": "tests_python/test_factory_payload5.py",
+      "snapshot": "source-final/11-test_factory_payload5.py.gz",
+      "source_bytes": 16893,
+      "source_sha256": "cdc445a206375c887328d2f2cc0e348dd98f99b745905254be7bd73e559354b1",
+      "stored_bytes": 4696,
+      "stored_sha256": "735243b433a9f230ce014482df543797c5350584f7d0fbcc00027558337cbe4b"
+    },
+    {
+      "source": "tests_python/test_activation_build20261118.py",
+      "snapshot": "source-final/12-test_activation_build20261118.py.gz",
+      "source_bytes": 6695,
+      "source_sha256": "27a0b3c868e032dfeb6f30d4e943baf4d844a6185012a73790f6c1b93864ffb7",
+      "stored_bytes": 2259,
+      "stored_sha256": "e0d94fe095a4cd74c4f32120f463e174bc2b3dcc0024d93d8f9d953597f700d6"
+    },
+    {
+      "source": "zzz_ops/factory_code_v5.py",
+      "snapshot": "source-final/13-factory_code_v5.py.gz",
+      "source_bytes": 6082,
+      "source_sha256": "3e41c39666784e514d35a53e6ed7996b0bd3522126d22c55dcf63dfc943dfb46",
+      "stored_bytes": 2139,
+      "stored_sha256": "c0860223337cfa810c894bf65939452bee60e8b097478bbc086a36a09ec8a006"
+    },
+    {
+      "source": "config/factory-code-storage-v5.json",
+      "snapshot": "source-final/14-factory-code-storage-v5.json.gz",
+      "source_bytes": 12580,
+      "source_sha256": "d3273a94c8ffa6347bedec98947d04644a9cc3e6a156ebeceafc3d2ad3c3fd20",
+      "stored_bytes": 5461,
+      "stored_sha256": "d4f1e629a0362a03a6219fcc67228adfd73093787f2264a538754b652176a433"
+    },
+    {
+      "source": "zzz_ops/abi.py",
+      "snapshot": "source-final/15-abi.py.gz",
+      "source_bytes": 4195,
+      "source_sha256": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d",
+      "stored_bytes": 1668,
+      "stored_sha256": "2dcb0eb4c8fed87b563a1cc6c2773e3727f8b5fd51e833c50846057ba65f6df5"
+    },
+    {
+      "source": "reports/activation-final-six-20261118/generate_factory6.py",
+      "snapshot": "source-final/16-generate_factory6.py.gz",
+      "source_bytes": 6279,
+      "source_sha256": "3c0f7b0812360cba9fb22bdb2264b8eb27416811cc82201493cbdf975a6e1faa",
+      "stored_bytes": 2624,
+      "stored_sha256": "a087d5bd7d97ffcdce373fbbc572f42f1d56a5eaca54386c68e748aa17c74d92"
+    },
+    {
+      "source": "reports/activation-final-six-20261118/run_consumer_checks.py",
+      "snapshot": "source-final/17-run_consumer_checks.py.gz",
+      "source_bytes": 3634,
+      "source_sha256": "527fd69b8e68409face747d939b963863d18a3b6ac08ebd5685178a300e0a0ba",
+      "stored_bytes": 1745,
+      "stored_sha256": "7fd24613825c0477ac5146472ea815d5603611a594e6965af36ae114e31a0af2"
+    }
+  ],
+  "additional_test_executions": 0,
+  "production_approved": false
+}

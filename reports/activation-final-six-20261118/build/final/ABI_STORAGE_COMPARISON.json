@@ -1,0 +1,2286 @@
+{
+  "abi": [
+    {
+      "path": "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol",
+      "name": "IERC1363",
+      "identity": "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol:IERC1363",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+      "name": "IERC1155Errors",
+      "identity": "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol:IERC1155Errors",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+      "name": "IERC20Errors",
+      "identity": "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol:IERC20Errors",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+      "name": "IERC721Errors",
+      "identity": "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol:IERC721Errors",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "name": "IERC20",
+      "identity": "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol:IERC20",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+      "name": "IERC20Metadata",
+      "identity": "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:IERC20Metadata",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+      "name": "SafeERC20",
+      "identity": "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol:SafeERC20",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
+      "name": "ERC721",
+      "identity": "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol:ERC721",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
+      "name": "IERC721",
+      "identity": "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol:IERC721",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+      "name": "IERC721Receiver",
+      "identity": "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol:IERC721Receiver",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+      "name": "IERC721Metadata",
+      "identity": "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol:IERC721Metadata",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol",
+      "name": "ERC721Utils",
+      "identity": "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol:ERC721Utils",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/Base64.sol",
+      "name": "Base64",
+      "identity": "node_modules/@openzeppelin/contracts/utils/Base64.sol:Base64",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/Context.sol",
+      "name": "Context",
+      "identity": "node_modules/@openzeppelin/contracts/utils/Context.sol:Context",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/Panic.sol",
+      "name": "Panic",
+      "identity": "node_modules/@openzeppelin/contracts/utils/Panic.sol:Panic",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+      "name": "ReentrancyGuard",
+      "identity": "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol:ReentrancyGuard",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/Strings.sol",
+      "name": "Strings",
+      "identity": "node_modules/@openzeppelin/contracts/utils/Strings.sol:Strings",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
+      "name": "ERC165",
+      "identity": "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol:ERC165",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
+      "name": "IERC165",
+      "identity": "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol:IERC165",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+      "name": "Math",
+      "identity": "node_modules/@openzeppelin/contracts/utils/math/Math.sol:Math",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+      "name": "SafeCast",
+      "identity": "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol:SafeCast",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
+      "name": "SignedMath",
+      "identity": "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol:SignedMath",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/interfaces/IHooks.sol",
+      "name": "IHooks",
+      "identity": "node_modules/@uniswap/v4-core/src/interfaces/IHooks.sol:IHooks",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/interfaces/external/IERC20Minimal.sol",
+      "name": "IERC20Minimal",
+      "identity": "node_modules/@uniswap/v4-core/src/interfaces/external/IERC20Minimal.sol:IERC20Minimal",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol",
+      "name": "BitMath",
+      "identity": "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol:BitMath",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol",
+      "name": "CustomRevert",
+      "identity": "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol:CustomRevert",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/FixedPoint96.sol",
+      "name": "FixedPoint96",
+      "identity": "node_modules/@uniswap/v4-core/src/libraries/FixedPoint96.sol:FixedPoint96",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol",
+      "name": "FullMath",
+      "identity": "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol:FullMath",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/SafeCast.sol",
+      "name": "SafeCast",
+      "identity": "node_modules/@uniswap/v4-core/src/libraries/SafeCast.sol:SafeCast",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol",
+      "name": "SqrtPriceMath",
+      "identity": "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol:SqrtPriceMath",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol",
+      "name": "TickMath",
+      "identity": "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol:TickMath",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/UnsafeMath.sol",
+      "name": "UnsafeMath",
+      "identity": "node_modules/@uniswap/v4-core/src/libraries/UnsafeMath.sol:UnsafeMath",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/types/BalanceDelta.sol",
+      "name": "BalanceDeltaLibrary",
+      "identity": "node_modules/@uniswap/v4-core/src/types/BalanceDelta.sol:BalanceDeltaLibrary",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/types/BeforeSwapDelta.sol",
+      "name": "BeforeSwapDeltaLibrary",
+      "identity": "node_modules/@uniswap/v4-core/src/types/BeforeSwapDelta.sol:BeforeSwapDeltaLibrary",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/types/Currency.sol",
+      "name": "CurrencyLibrary",
+      "identity": "node_modules/@uniswap/v4-core/src/types/Currency.sol:CurrencyLibrary",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/types/PoolId.sol",
+      "name": "PoolIdLibrary",
+      "identity": "node_modules/@uniswap/v4-core/src/types/PoolId.sol:PoolIdLibrary",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol",
+      "name": "LiquidityAmounts",
+      "identity": "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol:LiquidityAmounts",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "IArtworkRootBinding",
+      "identity": "src/ZZZAccessController.sol:IArtworkRootBinding",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "ICanonicalOwnerBinding",
+      "identity": "src/ZZZAccessController.sol:ICanonicalOwnerBinding",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "IContributionIdentity",
+      "identity": "src/ZZZAccessController.sol:IContributionIdentity",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "IContributionRegistry",
+      "identity": "src/ZZZAccessController.sol:IContributionRegistry",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "IExitIdentity",
+      "identity": "src/ZZZAccessController.sol:IExitIdentity",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "ILifecycleMetadata",
+      "identity": "src/ZZZAccessController.sol:ILifecycleMetadata",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "ZZZAccessController",
+      "identity": "src/ZZZAccessController.sol:ZZZAccessController",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "name": "IActivationAssetsFactoryIdentity",
+      "identity": "src/ZZZActivationAssets.sol:IActivationAssetsFactoryIdentity",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "name": "ZZZActivationAssets",
+      "identity": "src/ZZZActivationAssets.sol:ZZZActivationAssets",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZActivationAssetsFactory.sol",
+      "name": "ZZZActivationAssetsFactory",
+      "identity": "src/ZZZActivationAssetsFactory.sol:ZZZActivationAssetsFactory",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "name": "IActivationVault",
+      "identity": "src/ZZZActivationEntry.sol:IActivationVault",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "name": "ZZZActivationEntry",
+      "identity": "src/ZZZActivationEntry.sol:ZZZActivationEntry",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZBuyback.sol",
+      "name": "ZZZBuyback",
+      "identity": "src/ZZZBuyback.sol:ZZZBuyback",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICancelledRoyaltyHop",
+      "identity": "src/ZZZCanonicalHandoff.sol:ICancelledRoyaltyHop",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICancelledRoyaltyLedger",
+      "identity": "src/ZZZCanonicalHandoff.sol:ICancelledRoyaltyLedger",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICanonicalController",
+      "identity": "src/ZZZCanonicalHandoff.sol:ICanonicalController",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICanonicalDeploymentConfiguration",
+      "identity": "src/ZZZCanonicalHandoff.sol:ICanonicalDeploymentConfiguration",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICanonicalExactLPProfile",
+      "identity": "src/ZZZCanonicalHandoff.sol:ICanonicalExactLPProfile",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ICanonicalHelpers",
+      "identity": "src/ZZZCanonicalHandoff.sol:ICanonicalHelpers",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ZZZCanonicalHandoff",
+      "identity": "src/ZZZCanonicalHandoff.sol:ZZZCanonicalHandoff",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "name": "IZZZClaimLedger",
+      "identity": "src/ZZZClaimRouter.sol:IZZZClaimLedger",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "name": "ZZZClaimRouter",
+      "identity": "src/ZZZClaimRouter.sol:ZZZClaimRouter",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZCompounder.sol",
+      "name": "ZZZCompounder",
+      "identity": "src/ZZZCompounder.sol:ZZZCompounder",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "name": "IPricingBudget",
+      "identity": "src/ZZZContributionPricing.sol:IPricingBudget",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "name": "IPricingEntry",
+      "identity": "src/ZZZContributionPricing.sol:IPricingEntry",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "name": "IPricingExecutionManager",
+      "identity": "src/ZZZContributionPricing.sol:IPricingExecutionManager",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "name": "IPricingMaintenanceMath",
+      "identity": "src/ZZZContributionPricing.sol:IPricingMaintenanceMath",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "name": "IPricingVault",
+      "identity": "src/ZZZContributionPricing.sol:IPricingVault",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "name": "ZZZContributionPricing",
+      "identity": "src/ZZZContributionPricing.sol:ZZZContributionPricing",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "ICustodyExecutionFingerprint",
+      "identity": "src/ZZZCustodyValidation.sol:ICustodyExecutionFingerprint",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "ICustodyRegistryRevision",
+      "identity": "src/ZZZCustodyValidation.sol:ICustodyRegistryRevision",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "IExitTokenIdentity",
+      "identity": "src/ZZZCustodyValidation.sol:IExitTokenIdentity",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "IExitTokenRegistry",
+      "identity": "src/ZZZCustodyValidation.sol:IExitTokenRegistry",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "ILocalParkingState",
+      "identity": "src/ZZZCustodyValidation.sol:ILocalParkingState",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "IReservationOrigin",
+      "identity": "src/ZZZCustodyValidation.sol:IReservationOrigin",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "IResidualPolicyControl",
+      "identity": "src/ZZZCustodyValidation.sol:IResidualPolicyControl",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "ZZZCustodyValidation",
+      "identity": "src/ZZZCustodyValidation.sol:ZZZCustodyValidation",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "name": "ICanonicalFeeAssets",
+      "identity": "src/ZZZFeeController.sol:ICanonicalFeeAssets",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "name": "ICanonicalFeeCutoff",
+      "identity": "src/ZZZFeeController.sol:ICanonicalFeeCutoff",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "name": "ZZZFeeController",
+      "identity": "src/ZZZFeeController.sol:ZZZFeeController",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "name": "ZZZFeesCanonical",
+      "identity": "src/ZZZFeesCanonical.sol:ZZZFeesCanonical",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "name": "IExecutionMathAssets",
+      "identity": "src/ZZZLPBalanceMath.sol:IExecutionMathAssets",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "name": "IExecutionMathCompoundBudget",
+      "identity": "src/ZZZLPBalanceMath.sol:IExecutionMathCompoundBudget",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "name": "IExecutionMathControls",
+      "identity": "src/ZZZLPBalanceMath.sol:IExecutionMathControls",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "name": "IExecutionMathMainFloor",
+      "identity": "src/ZZZLPBalanceMath.sol:IExecutionMathMainFloor",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "name": "IExecutionMathNativePools",
+      "identity": "src/ZZZLPBalanceMath.sol:IExecutionMathNativePools",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "name": "IExecutionMathParent",
+      "identity": "src/ZZZLPBalanceMath.sol:IExecutionMathParent",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "name": "IExecutionMathPortfolio",
+      "identity": "src/ZZZLPBalanceMath.sol:IExecutionMathPortfolio",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "name": "IExecutionMathRegistry",
+      "identity": "src/ZZZLPBalanceMath.sol:IExecutionMathRegistry",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "name": "IExecutionMathState",
+      "identity": "src/ZZZLPBalanceMath.sol:IExecutionMathState",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "name": "IExecutionMathStrategy",
+      "identity": "src/ZZZLPBalanceMath.sol:IExecutionMathStrategy",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "name": "IExecutionMathZZZ",
+      "identity": "src/ZZZLPBalanceMath.sol:IExecutionMathZZZ",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "name": "ZZZLPBalanceMath",
+      "identity": "src/ZZZLPBalanceMath.sol:ZZZLPBalanceMath",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "name": "IQuoteLiquidity",
+      "identity": "src/ZZZLPBalancer.sol:IQuoteLiquidity",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "name": "ZZZLPBalancer",
+      "identity": "src/ZZZLPBalancer.sol:ZZZLPBalancer",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPPositionExecutor.sol",
+      "name": "IPositionExecutionParent",
+      "identity": "src/ZZZLPPositionExecutor.sol:IPositionExecutionParent",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPPositionExecutor.sol",
+      "name": "IPositionPortfolioPolicy",
+      "identity": "src/ZZZLPPositionExecutor.sol:IPositionPortfolioPolicy",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPPositionExecutor.sol",
+      "name": "ZZZLPPositionExecutor",
+      "identity": "src/ZZZLPPositionExecutor.sol:ZZZLPPositionExecutor",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLPRewardConverter.sol",
+      "name": "ZZZLPRewardConverter",
+      "identity": "src/ZZZLPRewardConverter.sol:ZZZLPRewardConverter",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "name": "IGuardedConsolidation",
+      "identity": "src/ZZZLiquidityManager.sol:IGuardedConsolidation",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "name": "IManagerPortfolioPolicy",
+      "identity": "src/ZZZLiquidityManager.sol:IManagerPortfolioPolicy",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "name": "IPortfolioBudget",
+      "identity": "src/ZZZLiquidityManager.sol:IPortfolioBudget",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "name": "IPortfolioVault",
+      "identity": "src/ZZZLiquidityManager.sol:IPortfolioVault",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "name": "ZZZLiquidityManager",
+      "identity": "src/ZZZLiquidityManager.sol:ZZZLiquidityManager",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "name": "IZZZMembershipOrdinals",
+      "identity": "src/ZZZMembership.sol:IZZZMembershipOrdinals",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "name": "ZZZMembership",
+      "identity": "src/ZZZMembership.sol:ZZZMembership",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "name": "IHolderExitNFT",
+      "identity": "src/ZZZMigration.sol:IHolderExitNFT",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "name": "IHolderExitVault",
+      "identity": "src/ZZZMigration.sol:IHolderExitVault",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "name": "IResidualCompletion",
+      "identity": "src/ZZZMigration.sol:IResidualCompletion",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "name": "IResidualStrategy",
+      "identity": "src/ZZZMigration.sol:IResidualStrategy",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "name": "ZZZMigration",
+      "identity": "src/ZZZMigration.sol:ZZZMigration",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IBudgetExecutionManager",
+      "identity": "src/ZZZMigrationBudget.sol:IBudgetExecutionManager",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IBudgetMigrationValidation",
+      "identity": "src/ZZZMigrationBudget.sol:IBudgetMigrationValidation",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IBudgetPortfolioPolicy",
+      "identity": "src/ZZZMigrationBudget.sol:IBudgetPortfolioPolicy",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IBudgetPortfolioStrategy",
+      "identity": "src/ZZZMigrationBudget.sol:IBudgetPortfolioStrategy",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IBudgetPositionOperator",
+      "identity": "src/ZZZMigrationBudget.sol:IBudgetPositionOperator",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IBudgetReservationIdentity",
+      "identity": "src/ZZZMigrationBudget.sol:IBudgetReservationIdentity",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IBudgetVaultValidation",
+      "identity": "src/ZZZMigrationBudget.sol:IBudgetVaultValidation",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IConfirmationControl",
+      "identity": "src/ZZZMigrationBudget.sol:IConfirmationControl",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IEmergencyManifest",
+      "identity": "src/ZZZMigrationBudget.sol:IEmergencyManifest",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "IMigrationIdle",
+      "identity": "src/ZZZMigrationBudget.sol:IMigrationIdle",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "ZZZMigrationBudget",
+      "identity": "src/ZZZMigrationBudget.sol:ZZZMigrationBudget",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "name": "IZZZNFTSuccessor",
+      "identity": "src/ZZZNFT.sol:IZZZNFTSuccessor",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "name": "IZZZVRFCoordinator",
+      "identity": "src/ZZZNFT.sol:IZZZVRFCoordinator",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "name": "ZZZNFT",
+      "identity": "src/ZZZNFT.sol:ZZZNFT",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "name": "INFTLifecyclePrincipal",
+      "identity": "src/ZZZNFTCanonical.sol:INFTLifecyclePrincipal",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "name": "INFTLifecycleSuccessor",
+      "identity": "src/ZZZNFTCanonical.sol:INFTLifecycleSuccessor",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "name": "INFTMintPolicy",
+      "identity": "src/ZZZNFTCanonical.sol:INFTMintPolicy",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "name": "INFTPolicyHandoff",
+      "identity": "src/ZZZNFTCanonical.sol:INFTPolicyHandoff",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "name": "ZZZNFTCanonical",
+      "identity": "src/ZZZNFTCanonical.sol:ZZZNFTCanonical",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "name": "IMetadataCollection",
+      "identity": "src/ZZZNFTMetadata.sol:IMetadataCollection",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "name": "IMetadataLifecycleLens",
+      "identity": "src/ZZZNFTMetadata.sol:IMetadataLifecycleLens",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "name": "IMetadataRoyaltyWeight",
+      "identity": "src/ZZZNFTMetadata.sol:IMetadataRoyaltyWeight",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "name": "ZZZNFTMetadata",
+      "identity": "src/ZZZNFTMetadata.sol:ZZZNFTMetadata",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "name": "IExecutionFixedZZZ",
+      "identity": "src/ZZZOracle.sol:IExecutionFixedZZZ",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "name": "IExecutionManagerIdentity",
+      "identity": "src/ZZZOracle.sol:IExecutionManagerIdentity",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "name": "ZZZOracle",
+      "identity": "src/ZZZOracle.sol:ZZZOracle",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "name": "ICollectiveExitPhase",
+      "identity": "src/ZZZPoolRegistry.sol:ICollectiveExitPhase",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "name": "INativeVenueBindings",
+      "identity": "src/ZZZPoolRegistry.sol:INativeVenueBindings",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "name": "ZZZPoolRegistry",
+      "identity": "src/ZZZPoolRegistry.sol:ZZZPoolRegistry",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "name": "IPortfolioAssociation",
+      "identity": "src/ZZZPortfolioPolicy.sol:IPortfolioAssociation",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "name": "IPortfolioConsolidation",
+      "identity": "src/ZZZPortfolioPolicy.sol:IPortfolioConsolidation",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "name": "IPortfolioParent",
+      "identity": "src/ZZZPortfolioPolicy.sol:IPortfolioParent",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "name": "ZZZPortfolioPolicy",
+      "identity": "src/ZZZPortfolioPolicy.sol:ZZZPortfolioPolicy",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZProtocolPolicy.sol",
+      "name": "IPolicyNFT",
+      "identity": "src/ZZZProtocolPolicy.sol:IPolicyNFT",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZProtocolPolicy.sol",
+      "name": "ZZZProtocolPolicy",
+      "identity": "src/ZZZProtocolPolicy.sol:ZZZProtocolPolicy",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZPythPriceFeed.sol",
+      "name": "ZZZPythPriceFeed",
+      "identity": "src/ZZZPythPriceFeed.sol:ZZZPythPriceFeed",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "name": "IConfirmationLiquidity",
+      "identity": "src/ZZZRebalanceConfirmation.sol:IConfirmationLiquidity",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "name": "IConfirmationOracle",
+      "identity": "src/ZZZRebalanceConfirmation.sol:IConfirmationOracle",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "name": "IConfirmationPortfolio",
+      "identity": "src/ZZZRebalanceConfirmation.sol:IConfirmationPortfolio",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "name": "IConfirmationRegistry",
+      "identity": "src/ZZZRebalanceConfirmation.sol:IConfirmationRegistry",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "name": "IConfirmationStrategy",
+      "identity": "src/ZZZRebalanceConfirmation.sol:IConfirmationStrategy",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "name": "ZZZRebalanceConfirmation",
+      "identity": "src/ZZZRebalanceConfirmation.sol:ZZZRebalanceConfirmation",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "name": "ZZZRewards",
+      "identity": "src/ZZZRewards.sol:ZZZRewards",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "name": "IExactLPRewardsParent",
+      "identity": "src/ZZZRewardsCanonical.sol:IExactLPRewardsParent",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "name": "ZZZRewardsCanonical",
+      "identity": "src/ZZZRewardsCanonical.sol:ZZZRewardsCanonical",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZRoyaltyCodeData.sol",
+      "name": "ZZZRoyaltyCodeData",
+      "identity": "src/ZZZRoyaltyCodeData.sol:ZZZRoyaltyCodeData",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZRoyaltyFactory.sol",
+      "name": "ZZZRoyaltyFactory",
+      "identity": "src/ZZZRoyaltyFactory.sol:ZZZRoyaltyFactory",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "name": "IZZZRoyaltyNFTOwner",
+      "identity": "src/ZZZRoyaltyRewards.sol:IZZZRoyaltyNFTOwner",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "name": "IZZZRoyaltyOrdinals",
+      "identity": "src/ZZZRoyaltyRewards.sol:IZZZRoyaltyOrdinals",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "name": "IZZZRoyaltySuccessor",
+      "identity": "src/ZZZRoyaltyRewards.sol:IZZZRoyaltySuccessor",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "name": "ZZZRoyaltyRewards",
+      "identity": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+      "strictly_identical": false,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": [
+        {
+          "field": "{\"inputs\":[{\"type\":\"address\"}],\"name\":\"allocationCursor\",\"outputs\":[{\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}/inputs/0/name",
+          "baseline": "",
+          "final": "asset"
+        },
+        {
+          "field": "{\"inputs\":[{\"type\":\"address\"}],\"name\":\"eligibleCount\",\"outputs\":[{\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}/inputs/0/name",
+          "baseline": "",
+          "final": "asset"
+        },
+        {
+          "field": "{\"inputs\":[{\"type\":\"address\"}],\"name\":\"eligibleWeight\",\"outputs\":[{\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}/inputs/0/name",
+          "baseline": "",
+          "final": "asset"
+        }
+      ]
+    },
+    {
+      "path": "src/ZZZSeaDropMint.sol",
+      "name": "ISeaDropMintCollection",
+      "identity": "src/ZZZSeaDropMint.sol:ISeaDropMintCollection",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZSeaDropMint.sol",
+      "name": "ISeaDropMintRoyaltyEnd",
+      "identity": "src/ZZZSeaDropMint.sol:ISeaDropMintRoyaltyEnd",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZSeaDropMint.sol",
+      "name": "ZZZSeaDropMint",
+      "identity": "src/ZZZSeaDropMint.sol:ZZZSeaDropMint",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "name": "IRangeRegistry",
+      "identity": "src/ZZZStrategy.sol:IRangeRegistry",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "name": "IV4FeeState",
+      "identity": "src/ZZZStrategy.sol:IV4FeeState",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "name": "ZZZStrategy",
+      "identity": "src/ZZZStrategy.sol:ZZZStrategy",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZV4RouteExecutor.sol",
+      "name": "ZZZV4RouteExecutor",
+      "identity": "src/ZZZV4RouteExecutor.sol:ZZZV4RouteExecutor",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZV4SpotPriceFeed.sol",
+      "name": "ZZZV4SpotPriceFeed",
+      "identity": "src/ZZZV4SpotPriceFeed.sol:ZZZV4SpotPriceFeed",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "name": "IVaultManualContext",
+      "identity": "src/ZZZVault.sol:IVaultManualContext",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "name": "IVaultPositionOperator",
+      "identity": "src/ZZZVault.sol:IVaultPositionOperator",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "name": "IVaultResidualLiquidity",
+      "identity": "src/ZZZVault.sol:IVaultResidualLiquidity",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "name": "ZZZVault",
+      "identity": "src/ZZZVault.sol:ZZZVault",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalMintRoyalty",
+      "identity": "src/ZZZVaultCanonical.sol:ICanonicalMintRoyalty",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalPortfolio",
+      "identity": "src/ZZZVaultCanonical.sol:ICanonicalPortfolio",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalRecoveryRoute",
+      "identity": "src/ZZZVaultCanonical.sol:ICanonicalRecoveryRoute",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalVaultNFT",
+      "identity": "src/ZZZVaultCanonical.sol:ICanonicalVaultNFT",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalVaultRewards",
+      "identity": "src/ZZZVaultCanonical.sol:ICanonicalVaultRewards",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ICanonicalVaultState",
+      "identity": "src/ZZZVaultCanonical.sol:ICanonicalVaultState",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ZZZVaultCanonical",
+      "identity": "src/ZZZVaultCanonical.sol:ZZZVaultCanonical",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "name": "ZZZCanonicalLedger",
+      "identity": "src/base/ZZZCanonicalLedger.sol:ZZZCanonicalLedger",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "IExactLPAssets",
+      "identity": "src/base/ZZZExactLPRewardsCanonical.sol:IExactLPAssets",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "IExactLPMembership",
+      "identity": "src/base/ZZZExactLPRewardsCanonical.sol:IExactLPMembership",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "IExactLPOrdinals",
+      "identity": "src/base/ZZZExactLPRewardsCanonical.sol:IExactLPOrdinals",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "IExactLPPools",
+      "identity": "src/base/ZZZExactLPRewardsCanonical.sol:IExactLPPools",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "IExactLPVaultState",
+      "identity": "src/base/ZZZExactLPRewardsCanonical.sol:IExactLPVaultState",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/base/ZZZExactLPRewardsCanonical.sol",
+      "name": "ZZZExactLPRewardsCanonical",
+      "identity": "src/base/ZZZExactLPRewardsCanonical.sol:ZZZExactLPRewardsCanonical",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/base/ZZZModule.sol",
+      "name": "ZZZModule",
+      "identity": "src/base/ZZZModule.sol:ZZZModule",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "name": "IRewardProxyAdmin",
+      "identity": "src/base/ZZZRewardConverter.sol:IRewardProxyAdmin",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "name": "IRewardWrapper",
+      "identity": "src/base/ZZZRewardConverter.sol:IRewardWrapper",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/base/ZZZRewardConverter.sol",
+      "name": "ZZZRewardConverter",
+      "identity": "src/base/ZZZRewardConverter.sol:ZZZRewardConverter",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/base/ZZZSeaDropToken.sol",
+      "name": "ISeaDropTokenState",
+      "identity": "src/base/ZZZSeaDropToken.sol:ISeaDropTokenState",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/base/ZZZSeaDropToken.sol",
+      "name": "ZZZSeaDropToken",
+      "identity": "src/base/ZZZSeaDropToken.sol:ZZZSeaDropToken",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IBurnable",
+      "identity": "src/interfaces/IZZZ.sol:IBurnable",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IPermit2Minimal",
+      "identity": "src/interfaces/IZZZ.sol:IPermit2Minimal",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IPoolManagerMinimal",
+      "identity": "src/interfaces/IZZZ.sol:IPoolManagerMinimal",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IPositionManagerMinimal",
+      "identity": "src/interfaces/IZZZ.sol:IPositionManagerMinimal",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IPriceFeed",
+      "identity": "src/interfaces/IZZZ.sol:IPriceFeed",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IStateViewMinimal",
+      "identity": "src/interfaces/IZZZ.sol:IStateViewMinimal",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZAccess",
+      "identity": "src/interfaces/IZZZ.sol:IZZZAccess",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZActivationEntry",
+      "identity": "src/interfaces/IZZZ.sol:IZZZActivationEntry",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZBound",
+      "identity": "src/interfaces/IZZZ.sol:IZZZBound",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZFees",
+      "identity": "src/interfaces/IZZZ.sol:IZZZFees",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZLiquidity",
+      "identity": "src/interfaces/IZZZ.sol:IZZZLiquidity",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZMembership",
+      "identity": "src/interfaces/IZZZ.sol:IZZZMembership",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZMigration",
+      "identity": "src/interfaces/IZZZ.sol:IZZZMigration",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZNFT",
+      "identity": "src/interfaces/IZZZ.sol:IZZZNFT",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZOracle",
+      "identity": "src/interfaces/IZZZ.sol:IZZZOracle",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZPools",
+      "identity": "src/interfaces/IZZZ.sol:IZZZPools",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZRewards",
+      "identity": "src/interfaces/IZZZ.sol:IZZZRewards",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZStrategy",
+      "identity": "src/interfaces/IZZZ.sol:IZZZStrategy",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "name": "IZZZVault",
+      "identity": "src/interfaces/IZZZ.sol:IZZZVault",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "name": "IZZZCanonicalAccess",
+      "identity": "src/interfaces/IZZZCanonical.sol:IZZZCanonicalAccess",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "name": "IZZZCanonicalModule",
+      "identity": "src/interfaces/IZZZCanonical.sol:IZZZCanonicalModule",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "name": "IZZZEmergencyBudget",
+      "identity": "src/interfaces/IZZZEmergency.sol:IZZZEmergencyBudget",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "name": "IZZZEmergencyController",
+      "identity": "src/interfaces/IZZZEmergency.sol:IZZZEmergencyController",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "name": "IZZZEmergencyLiquidity",
+      "identity": "src/interfaces/IZZZEmergency.sol:IZZZEmergencyLiquidity",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZEmergency.sol",
+      "name": "IZZZEmergencyVault",
+      "identity": "src/interfaces/IZZZEmergency.sol:IZZZEmergencyVault",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZExecutionOracle.sol",
+      "name": "IZZZExecutionOracle",
+      "identity": "src/interfaces/IZZZExecutionOracle.sol:IZZZExecutionOracle",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZExecutionOracle.sol",
+      "name": "IZZZExecutionSpotSource",
+      "identity": "src/interfaces/IZZZExecutionOracle.sol:IZZZExecutionSpotSource",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZExecutionOracle.sol",
+      "name": "IZZZExecutionStrategy",
+      "identity": "src/interfaces/IZZZExecutionOracle.sol:IZZZExecutionStrategy",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZNFTCanonical.sol",
+      "name": "IZZZNFTCanonicalState",
+      "identity": "src/interfaces/IZZZNFTCanonical.sol:IZZZNFTCanonicalState",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZProtocolPolicy.sol",
+      "name": "IZZZProtocolPolicy",
+      "identity": "src/interfaces/IZZZProtocolPolicy.sol:IZZZProtocolPolicy",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZSeaDrop.sol",
+      "name": "INonFungibleSeaDropToken",
+      "identity": "src/interfaces/IZZZSeaDrop.sol:INonFungibleSeaDropToken",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZSeaDrop.sol",
+      "name": "IZZZSeaDrop",
+      "identity": "src/interfaces/IZZZSeaDrop.sol:IZZZSeaDrop",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZSeaDrop.sol",
+      "name": "IZZZSeaDropTokenMetadata",
+      "identity": "src/interfaces/IZZZSeaDrop.sol:IZZZSeaDropTokenMetadata",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZV3Route.sol",
+      "name": "IV3RouteFactory",
+      "identity": "src/interfaces/IZZZV3Route.sol:IV3RouteFactory",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZV3Route.sol",
+      "name": "IV3RoutePool",
+      "identity": "src/interfaces/IZZZV3Route.sol:IV3RoutePool",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/interfaces/IZZZV3Route.sol",
+      "name": "IV3RouteRouter",
+      "identity": "src/interfaces/IZZZV3Route.sol:IV3RouteRouter",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/libraries/ExactAsset.sol",
+      "name": "ExactAsset",
+      "identity": "src/libraries/ExactAsset.sol:ExactAsset",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/libraries/ExactLPAllocation.sol",
+      "name": "ExactLPAllocation",
+      "identity": "src/libraries/ExactLPAllocation.sol:ExactLPAllocation",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/libraries/ExactRoyaltyAllocation.sol",
+      "name": "ExactRoyaltyAllocation",
+      "identity": "src/libraries/ExactRoyaltyAllocation.sol:ExactRoyaltyAllocation",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/libraries/ExactToken.sol",
+      "name": "ExactToken",
+      "identity": "src/libraries/ExactToken.sol:ExactToken",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/libraries/ZZZArtwork.sol",
+      "name": "ZZZArtwork",
+      "identity": "src/libraries/ZZZArtwork.sol:ZZZArtwork",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/libraries/ZZZPriceMath.sol",
+      "name": "ZZZPriceMath",
+      "identity": "src/libraries/ZZZPriceMath.sol:ZZZPriceMath",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/libraries/ZZZTypes.sol",
+      "name": "Ids",
+      "identity": "src/libraries/ZZZTypes.sol:Ids",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    },
+    {
+      "path": "src/libraries/ZZZV3VenueValidation.sol",
+      "name": "ZZZV3VenueValidation",
+      "identity": "src/libraries/ZZZV3VenueValidation.sol:ZZZV3VenueValidation",
+      "strictly_identical": true,
+      "canonical_signatures_tuple_types_mutability_identical": true,
+      "parameter_output_name_or_internalType_changes": []
+    }
+  ],
+  "storage": [
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "ZZZAccessController",
+      "identity": "src/ZZZAccessController.sol:ZZZAccessController",
+      "identical": true,
+      "baseline_semantic_sha256": "856970523bcc193372ad752100f8c8d35a05c845b9c966e9614a2e0e6e594d3f",
+      "final_semantic_sha256": "856970523bcc193372ad752100f8c8d35a05c845b9c966e9614a2e0e6e594d3f"
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "name": "ZZZActivationAssets",
+      "identity": "src/ZZZActivationAssets.sol:ZZZActivationAssets",
+      "identical": true,
+      "baseline_semantic_sha256": "c575ff65042f4177d9e815a2f52156b3633db15234149f286cc0c986e211775a",
+      "final_semantic_sha256": "c575ff65042f4177d9e815a2f52156b3633db15234149f286cc0c986e211775a"
+    },
+    {
+      "path": "src/ZZZActivationAssetsFactory.sol",
+      "name": "ZZZActivationAssetsFactory",
+      "identity": "src/ZZZActivationAssetsFactory.sol:ZZZActivationAssetsFactory",
+      "identical": true,
+      "baseline_semantic_sha256": "bbbc159db68050a5d67a8f86efd9fec781a90b191cd20fa5e02632214a827c6e",
+      "final_semantic_sha256": "bbbc159db68050a5d67a8f86efd9fec781a90b191cd20fa5e02632214a827c6e"
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "name": "ZZZActivationEntry",
+      "identity": "src/ZZZActivationEntry.sol:ZZZActivationEntry",
+      "identical": true,
+      "baseline_semantic_sha256": "ee0972b7b585aa4eb82d22c7c87391df2b76eb592a67106c3e32151aa9600237",
+      "final_semantic_sha256": "ee0972b7b585aa4eb82d22c7c87391df2b76eb592a67106c3e32151aa9600237"
+    },
+    {
+      "path": "src/ZZZBuyback.sol",
+      "name": "ZZZBuyback",
+      "identity": "src/ZZZBuyback.sol:ZZZBuyback",
+      "identical": true,
+      "baseline_semantic_sha256": "3c54dca7643b188763306eb3b22ce8b44827bd44c32282c973a87b1643b5db3b",
+      "final_semantic_sha256": "3c54dca7643b188763306eb3b22ce8b44827bd44c32282c973a87b1643b5db3b"
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ZZZCanonicalHandoff",
+      "identity": "src/ZZZCanonicalHandoff.sol:ZZZCanonicalHandoff",
+      "identical": true,
+      "baseline_semantic_sha256": "70b7f9c21aa32ddaf8dcb7489c23551ed1e9fd2711529d39c238684a79684729",
+      "final_semantic_sha256": "70b7f9c21aa32ddaf8dcb7489c23551ed1e9fd2711529d39c238684a79684729"
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "name": "ZZZClaimRouter",
+      "identity": "src/ZZZClaimRouter.sol:ZZZClaimRouter",
+      "identical": true,
+      "baseline_semantic_sha256": "559dda78cea444335310f917b2d09fcda24359bb45e1e999cd3594dfe6cd65b3",
+      "final_semantic_sha256": "559dda78cea444335310f917b2d09fcda24359bb45e1e999cd3594dfe6cd65b3"
+    },
+    {
+      "path": "src/ZZZCompounder.sol",
+      "name": "ZZZCompounder",
+      "identity": "src/ZZZCompounder.sol:ZZZCompounder",
+      "identical": true,
+      "baseline_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "final_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "name": "ZZZContributionPricing",
+      "identity": "src/ZZZContributionPricing.sol:ZZZContributionPricing",
+      "identical": false,
+      "baseline_semantic_sha256": "a70fbb0224aa58be682c33e666ef5fb9752399afef1f881d46a873b51d1253b2",
+      "final_semantic_sha256": "0a19b0e5e7173268d0b2e37247fd06b336bdb2121deea8731ff8de62f4b62575"
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "ZZZCustodyValidation",
+      "identity": "src/ZZZCustodyValidation.sol:ZZZCustodyValidation",
+      "identical": true,
+      "baseline_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "final_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "name": "ZZZFeeController",
+      "identity": "src/ZZZFeeController.sol:ZZZFeeController",
+      "identical": true,
+      "baseline_semantic_sha256": "f43b3d611196c47ac0a23fa481ad9ae20fe9884fcb01b029f6a6c3f3492278b8",
+      "final_semantic_sha256": "f43b3d611196c47ac0a23fa481ad9ae20fe9884fcb01b029f6a6c3f3492278b8"
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "name": "ZZZFeesCanonical",
+      "identity": "src/ZZZFeesCanonical.sol:ZZZFeesCanonical",
+      "identical": true,
+      "baseline_semantic_sha256": "5d9104544ba058b9a8c5374fcc4f8233e315159c5edd6cfb3e9ef9dc802ff59c",
+      "final_semantic_sha256": "5d9104544ba058b9a8c5374fcc4f8233e315159c5edd6cfb3e9ef9dc802ff59c"
+    },
+    {
+      "path": "src/ZZZLPBalanceMath.sol",
+      "name": "ZZZLPBalanceMath",
+      "identity": "src/ZZZLPBalanceMath.sol:ZZZLPBalanceMath",
+      "identical": true,
+      "baseline_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "final_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "src/ZZZLPBalancer.sol",
+      "name": "ZZZLPBalancer",
+      "identity": "src/ZZZLPBalancer.sol:ZZZLPBalancer",
+      "identical": true,
+      "baseline_semantic_sha256": "492513d314a27d44a67bd06cfe59d2c10375d368b1ee54c027a49bce7a4ed17b",
+      "final_semantic_sha256": "492513d314a27d44a67bd06cfe59d2c10375d368b1ee54c027a49bce7a4ed17b"
+    },
+    {
+      "path": "src/ZZZLPPositionExecutor.sol",
+      "name": "ZZZLPPositionExecutor",
+      "identity": "src/ZZZLPPositionExecutor.sol:ZZZLPPositionExecutor",
+      "identical": true,
+      "baseline_semantic_sha256": "15f13f8617fc7881b3f104b6e1bc94d94a4ef4013b303e2b7854bdef3e5d6612",
+      "final_semantic_sha256": "15f13f8617fc7881b3f104b6e1bc94d94a4ef4013b303e2b7854bdef3e5d6612"
+    },
+    {
+      "path": "src/ZZZLPRewardConverter.sol",
+      "name": "ZZZLPRewardConverter",
+      "identity": "src/ZZZLPRewardConverter.sol:ZZZLPRewardConverter",
+      "identical": true,
+      "baseline_semantic_sha256": "02ccf36f18f577b39c8af93174ea5078b51f8cf59730450692dfba828feb75b8",
+      "final_semantic_sha256": "02ccf36f18f577b39c8af93174ea5078b51f8cf59730450692dfba828feb75b8"
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "name": "ZZZLiquidityManager",
+      "identity": "src/ZZZLiquidityManager.sol:ZZZLiquidityManager",
+      "identical": true,
+      "baseline_semantic_sha256": "a7864fa6ce69ac9d16646f927ec7389e057e704ba27fd2e00ca2c9d3cb21031e",
+      "final_semantic_sha256": "a7864fa6ce69ac9d16646f927ec7389e057e704ba27fd2e00ca2c9d3cb21031e"
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "name": "ZZZMembership",
+      "identity": "src/ZZZMembership.sol:ZZZMembership",
+      "identical": true,
+      "baseline_semantic_sha256": "2f54bea34bf6e3ff7769f4c6cae508debf90a890b7db6a05553da471c8b81810",
+      "final_semantic_sha256": "2f54bea34bf6e3ff7769f4c6cae508debf90a890b7db6a05553da471c8b81810"
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "name": "ZZZMigration",
+      "identity": "src/ZZZMigration.sol:ZZZMigration",
+      "identical": true,
+      "baseline_semantic_sha256": "4d5bc4ec3c6fa75e53259ab801382a67e36fbe4641b7006d659a74a2a8c1871d",
+      "final_semantic_sha256": "4d5bc4ec3c6fa75e53259ab801382a67e36fbe4641b7006d659a74a2a8c1871d"
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "ZZZMigrationBudget",
+      "identity": "src/ZZZMigrationBudget.sol:ZZZMigrationBudget",
+      "identical": true,
+      "baseline_semantic_sha256": "8ad2dd64798cf5729805f93dc95a341b96ca8ce0cbf640b559fdf82270df4ceb",
+      "final_semantic_sha256": "8ad2dd64798cf5729805f93dc95a341b96ca8ce0cbf640b559fdf82270df4ceb"
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "name": "ZZZNFT",
+      "identity": "src/ZZZNFT.sol:ZZZNFT",
+      "identical": true,
+      "baseline_semantic_sha256": "b514e690a2e8adf2ad032deb5afc2705d6d227f25bcf8b22dd95d6c779e68ff0",
+      "final_semantic_sha256": "b514e690a2e8adf2ad032deb5afc2705d6d227f25bcf8b22dd95d6c779e68ff0"
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "name": "ZZZNFTCanonical",
+      "identity": "src/ZZZNFTCanonical.sol:ZZZNFTCanonical",
+      "identical": true,
+      "baseline_semantic_sha256": "1efa48ed6588459bc43e5de6e511a6b55120c538a0009d20be080d84be9ef57d",
+      "final_semantic_sha256": "1efa48ed6588459bc43e5de6e511a6b55120c538a0009d20be080d84be9ef57d"
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "name": "ZZZNFTMetadata",
+      "identity": "src/ZZZNFTMetadata.sol:ZZZNFTMetadata",
+      "identical": true,
+      "baseline_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "final_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "name": "ZZZOracle",
+      "identity": "src/ZZZOracle.sol:ZZZOracle",
+      "identical": true,
+      "baseline_semantic_sha256": "2f8fefbd86eb05399a7b5702c285a82ba573829ad8ef3cffa39863df8f163d43",
+      "final_semantic_sha256": "2f8fefbd86eb05399a7b5702c285a82ba573829ad8ef3cffa39863df8f163d43"
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "name": "ZZZPoolRegistry",
+      "identity": "src/ZZZPoolRegistry.sol:ZZZPoolRegistry",
+      "identical": true,
+      "baseline_semantic_sha256": "11cd7c13e567f7f22a4f06cf59064cfad82d3d04e4ce645dda9afe60d76b5943",
+      "final_semantic_sha256": "11cd7c13e567f7f22a4f06cf59064cfad82d3d04e4ce645dda9afe60d76b5943"
+    },
+    {
+      "path": "src/ZZZPortfolioPolicy.sol",
+      "name": "ZZZPortfolioPolicy",
+      "identity": "src/ZZZPortfolioPolicy.sol:ZZZPortfolioPolicy",
+      "identical": true,
+      "baseline_semantic_sha256": "9c35144816b3d7120cb392b9273b38ea642bb94503790e517c2651e3254e1cf2",
+      "final_semantic_sha256": "9c35144816b3d7120cb392b9273b38ea642bb94503790e517c2651e3254e1cf2"
+    },
+    {
+      "path": "src/ZZZProtocolPolicy.sol",
+      "name": "ZZZProtocolPolicy",
+      "identity": "src/ZZZProtocolPolicy.sol:ZZZProtocolPolicy",
+      "identical": true,
+      "baseline_semantic_sha256": "e4d2cb8a428c3bd3eaccadc0f2f517fe5b421928973f535efd3404d1197baf8b",
+      "final_semantic_sha256": "e4d2cb8a428c3bd3eaccadc0f2f517fe5b421928973f535efd3404d1197baf8b"
+    },
+    {
+      "path": "src/ZZZPythPriceFeed.sol",
+      "name": "ZZZPythPriceFeed",
+      "identity": "src/ZZZPythPriceFeed.sol:ZZZPythPriceFeed",
+      "identical": true,
+      "baseline_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "final_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "src/ZZZRebalanceConfirmation.sol",
+      "name": "ZZZRebalanceConfirmation",
+      "identity": "src/ZZZRebalanceConfirmation.sol:ZZZRebalanceConfirmation",
+      "identical": true,
+      "baseline_semantic_sha256": "3797c138bd402678b2de1ff9fa0e37f24389bc34df8f7580b1e744f857a87d26",
+      "final_semantic_sha256": "3797c138bd402678b2de1ff9fa0e37f24389bc34df8f7580b1e744f857a87d26"
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "name": "ZZZRewards",
+      "identity": "src/ZZZRewards.sol:ZZZRewards",
+      "identical": true,
+      "baseline_semantic_sha256": "26d74f5d8cf6932e37a229e38a191f3cc339021304fc931a90ff06c5d224fd31",
+      "final_semantic_sha256": "26d74f5d8cf6932e37a229e38a191f3cc339021304fc931a90ff06c5d224fd31"
+    },
+    {
+      "path": "src/ZZZRewardsCanonical.sol",
+      "name": "ZZZRewardsCanonical",
+      "identity": "src/ZZZRewardsCanonical.sol:ZZZRewardsCanonical",
+      "identical": true,
+      "baseline_semantic_sha256": "29a516a8c5655e84fa77720316a60537b753b0e9f5cb3d885de53b0925fe6657",
+      "final_semantic_sha256": "29a516a8c5655e84fa77720316a60537b753b0e9f5cb3d885de53b0925fe6657"
+    },
+    {
+      "path": "src/ZZZRoyaltyCodeData.sol",
+      "name": "ZZZRoyaltyCodeData",
+      "identity": "src/ZZZRoyaltyCodeData.sol:ZZZRoyaltyCodeData",
+      "identical": true,
+      "baseline_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "final_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "src/ZZZRoyaltyFactory.sol",
+      "name": "ZZZRoyaltyFactory",
+      "identity": "src/ZZZRoyaltyFactory.sol:ZZZRoyaltyFactory",
+      "identical": true,
+      "baseline_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "final_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "name": "ZZZRoyaltyRewards",
+      "identity": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+      "identical": false,
+      "baseline_semantic_sha256": "a4364bef88f38390a1457f0b76dbeab86382e925bbdf426da64facce384dd65c",
+      "final_semantic_sha256": "fa76856d8b580a59fc9338196a4ace4b2de4c33f9d0c254a4a3f95a92e671574"
+    },
+    {
+      "path": "src/ZZZSeaDropMint.sol",
+      "name": "ZZZSeaDropMint",
+      "identity": "src/ZZZSeaDropMint.sol:ZZZSeaDropMint",
+      "identical": true,
+      "baseline_semantic_sha256": "3678b28ccca7b6a9b1edfa3ca6e35673397e8ee94d6fe8ac1ae75c2b447868f9",
+      "final_semantic_sha256": "3678b28ccca7b6a9b1edfa3ca6e35673397e8ee94d6fe8ac1ae75c2b447868f9"
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "name": "ZZZStrategy",
+      "identity": "src/ZZZStrategy.sol:ZZZStrategy",
+      "identical": true,
+      "baseline_semantic_sha256": "fabe2203aff3e189376df61897d3a06d31b4ef17587c7522730a48f48b510b78",
+      "final_semantic_sha256": "fabe2203aff3e189376df61897d3a06d31b4ef17587c7522730a48f48b510b78"
+    },
+    {
+      "path": "src/ZZZV4RouteExecutor.sol",
+      "name": "ZZZV4RouteExecutor",
+      "identity": "src/ZZZV4RouteExecutor.sol:ZZZV4RouteExecutor",
+      "identical": true,
+      "baseline_semantic_sha256": "eb098a8af3ac1271f2fc470d2f8459e207b298f1b979f2d857a25d49c1e17865",
+      "final_semantic_sha256": "eb098a8af3ac1271f2fc470d2f8459e207b298f1b979f2d857a25d49c1e17865"
+    },
+    {
+      "path": "src/ZZZV4SpotPriceFeed.sol",
+      "name": "ZZZV4SpotPriceFeed",
+      "identity": "src/ZZZV4SpotPriceFeed.sol:ZZZV4SpotPriceFeed",
+      "identical": true,
+      "baseline_semantic_sha256": "77f5f46127e6dce2a8c4c0ae22085783ed83ef34b22e38b4c3b1623e6a39de53",
+      "final_semantic_sha256": "77f5f46127e6dce2a8c4c0ae22085783ed83ef34b22e38b4c3b1623e6a39de53"
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "name": "ZZZVault",
+      "identity": "src/ZZZVault.sol:ZZZVault",
+      "identical": true,
+      "baseline_semantic_sha256": "5b79c8222bad0e02f4cf25a00986811f6cb73c28915bf624fd6bdcbbd0b2d539",
+      "final_semantic_sha256": "5b79c8222bad0e02f4cf25a00986811f6cb73c28915bf624fd6bdcbbd0b2d539"
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ZZZVaultCanonical",
+      "identity": "src/ZZZVaultCanonical.sol:ZZZVaultCanonical",
+      "identical": true,
+      "baseline_semantic_sha256": "d7d8dd958d7580f90ac34515eb019372344a677793fd6fb16f773e1768224329",
+      "final_semantic_sha256": "d7d8dd958d7580f90ac34515eb019372344a677793fd6fb16f773e1768224329"
+    },
+    {
+      "path": "src/libraries/ExactAsset.sol",
+      "name": "ExactAsset",
+      "identity": "src/libraries/ExactAsset.sol:ExactAsset",
+      "identical": true,
+      "baseline_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "final_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "src/libraries/ExactLPAllocation.sol",
+      "name": "ExactLPAllocation",
+      "identity": "src/libraries/ExactLPAllocation.sol:ExactLPAllocation",
+      "identical": true,
+      "baseline_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "final_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "src/libraries/ExactRoyaltyAllocation.sol",
+      "name": "ExactRoyaltyAllocation",
+      "identity": "src/libraries/ExactRoyaltyAllocation.sol:ExactRoyaltyAllocation",
+      "identical": true,
+      "baseline_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "final_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "src/libraries/ExactToken.sol",
+      "name": "ExactToken",
+      "identity": "src/libraries/ExactToken.sol:ExactToken",
+      "identical": true,
+      "baseline_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "final_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "src/libraries/ZZZArtwork.sol",
+      "name": "ZZZArtwork",
+      "identity": "src/libraries/ZZZArtwork.sol:ZZZArtwork",
+      "identical": true,
+      "baseline_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "final_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "src/libraries/ZZZPriceMath.sol",
+      "name": "ZZZPriceMath",
+      "identity": "src/libraries/ZZZPriceMath.sol:ZZZPriceMath",
+      "identical": true,
+      "baseline_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "final_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "src/libraries/ZZZTypes.sol",
+      "name": "Ids",
+      "identity": "src/libraries/ZZZTypes.sol:Ids",
+      "identical": true,
+      "baseline_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "final_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "src/libraries/ZZZV3VenueValidation.sol",
+      "name": "ZZZV3VenueValidation",
+      "identity": "src/libraries/ZZZV3VenueValidation.sol:ZZZV3VenueValidation",
+      "identical": true,
+      "baseline_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "final_semantic_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ]
+}

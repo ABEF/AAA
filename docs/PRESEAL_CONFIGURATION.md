@@ -2,7 +2,7 @@
 
 `scripts/prepare-preseal.py` turns explicit reviewed inputs into a conditional,
 ordered configuration review for the current schema17/mint2/V10/execution1/LP3
-source. It uses the exact trusted `activation-gas-20261118` build and current ABI.
+source. It uses the exact trusted `activation-final-six-20261118` build and current ABI.
 Earlier pre-seal evidence retains its original metadata2 build/source scope;
 the current Q03 family retains all seal guards while changing the royalty payload and execution implementation pins.
 It performs **no RPC, simulation, signing, deployment, nonce reservation,
@@ -149,6 +149,8 @@ The [launch-workload review](../reports/launch-workload-20261117/REVIEW.md) supp
 
 Measure healthy, pending/initial-allocation and full-budget fault states for the actual list. A1M per-currency allowance is not a20M operation guarantee. Full20% activation-policy2/25% maintenance padding and actual service/block/complete-fee bounds remain;32M local diagnostics do not adopt a larger profile. All checklist flags stay false, and no RPC/configuration/seal call is added. Repeat reviewed workload qualification before later currency admission/capacity expansion.
 
+The [current controlled workload](../reports/activation-final-six-20261118/REVIEW.md) passes all13 cold20M calls and their full20% padded calls; worst16,460,899 raw/19,753,079 padded. These exact tested inputs do not qualify another selected currency list, expanded64-currency/maximumLP2 state, target provider/fees or rollout. The planner still emits no signing, deployment or seal approval.
+
 ## Optional activation royalty-read allowance
 
-Fresh payload5/allocation2 separates the activation-only ERC20 `balanceOf` cap (default50,000gas) from the unchanged full-sync allowance (default1M). Optional input `royalty_balance_policy:{"balanceGas":"50000","reviewHash":"REVIEW_HASH"}` prepares one separate exact unsigned `setRoyaltyBalanceGas(uint32,bytes32)` call after the original twelve families. Use a real nonzero bytes32 hash; unknown inputs remain blocked/null calldata and omission requests no write. Bounds10,000-1,000,000gas are engineering limits, not target-workload approval. Verify the actual cap/gas revision and requalify full healthy/faulted calls before adoption. No signing, submission, sealing or live approval is added.
+Fresh payload6/allocation2, like explicit historical5, separates the activation-only ERC20 `balanceOf` cap (default50,000gas) from the unchanged full-sync allowance (default1M). Optional input `royalty_balance_policy:{"balanceGas":"50000","reviewHash":"REVIEW_HASH"}` prepares one separate exact unsigned `setRoyaltyBalanceGas(uint32,bytes32)` call after the original twelve families. Use a real nonzero bytes32 hash; unknown inputs remain blocked/null calldata and omission requests no write. Bounds10,000-1,000,000gas are engineering limits, not target-workload approval. Verify the actual cap/gas revision and requalify full healthy/faulted calls before adoption. No signing, submission, sealing or live approval is added.

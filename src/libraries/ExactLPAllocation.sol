@@ -167,20 +167,31 @@ library ExactLPAllocation {
         writeCarry(carry, high, oldWeight == 0 || newWeight == 0 ? 0 : Math.mulDiv(low, newWeight, oldWeight));
     }
 
-    /// @dev Logical phase is full width. Nonzero wide is the >=2**128 spill.
+    /// @dev Logical phase is full width. MAX128 compact-low is the >=MAX128 spill marker.
     function readCarry(Carry storage c) internal view returns(uint128 high, uint256 low) {
-        uint256 packed = c.packed;
-        uint256 wide = c.wide;
-        high = uint128(packed);
-        low = wide == 0 ? packed >> 128 : wide;
+        assembly ("memory-safe") {
+            let marker := sub(shl(128, 1), 1)
+            let packed := sload(c.slot)
+            high := and(packed, marker)
+            low := shr(128, packed)
+            if eq(low, marker) { low := sload(add(c.slot, 1)) }
+        }
     }
     function writeCarry(Carry storage c, uint128 high, uint256 low) internal {
-        uint256 packed = uint256(high);
-        if (low <= type(uint128).max) {
-            packed |= low << 128;
-            if(c.wide != 0) delete c.wide;
-        } else c.wide = low;
-        c.packed = packed;
+        assembly ("memory-safe") {
+            let marker := sub(shl(128, 1), 1)
+            let packed := and(high, marker)
+            switch lt(low, marker)
+            case 1 {
+                packed := or(packed, shl(128, low))
+                if eq(shr(128, sload(c.slot)), marker) { sstore(add(c.slot, 1), 0) }
+            }
+            default {
+                packed := or(packed, shl(128, marker))
+                sstore(add(c.slot, 1), low)
+            }
+            sstore(c.slot, packed)
+        }
     }
 
     function _leaf(uint256 ordinal) private pure returns (uint256) {

@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "case": "rounds-999-opening-zzz-allslow",
+  "scope": "Offline exclusive frame gas attribution in retained matching diagnostic traces. This is not an estimate, fee quote or sum of component benchmarks.",
+  "records": {
+    "activation-gas-20261118": {
+      "trace_records_sha256": "3233d6358f65b2d722bdb1f118644722f016dc1627a9963e54db8202665aefaf",
+      "trace_call_gas_limit": 20000000,
+      "exclusive_frame_totals": {
+        "royalty": {
+          "frames": 18,
+          "exclusive_gas": 3807396
+        },
+        "pricing": {
+          "frames": 11,
+          "exclusive_gas": 617747
+        },
+        "oracle": {
+          "frames": 94,
+          "exclusive_gas": 2781155
+        },
+        "rewards": {
+          "frames": 2,
+          "exclusive_gas": 2168745
+        }
+      }
+    },
+    "activation-final-six-20261118": {
+      "trace_records_sha256": "f27f82c460a7bfaf139a8396c7bf252a0ec26f429b5249079c648a41743907bc",
+      "trace_call_gas_limit": 20000000,
+      "exclusive_frame_totals": {
+        "royalty": {
+          "frames": 18,
+          "exclusive_gas": 2520133
+        },
+        "pricing": {
+          "frames": 11,
+          "exclusive_gas": 259487
+        },
+        "oracle": {
+          "frames": 94,
+          "exclusive_gas": 2539948
+        },
+        "rewards": {
+          "frames": 2,
+          "exclusive_gas": 1979609
+        }
+      }
+    }
+  },
+  "execution_performed": false,
+  "requests": 0,
+  "production_approved": false
+}

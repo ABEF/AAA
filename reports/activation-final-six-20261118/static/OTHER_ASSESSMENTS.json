@@ -1,0 +1,1440 @@
+{
+  "schema_version": 1,
+  "review_scope": "Current activation-final-six-20261118 frozen source; all59 exact OTHER_CONTEXTS findings individually inspected. Internal source-scoped review, not independent audit or proof of exploit absence.",
+  "admission_boundary": "Factory6/allocation2 and all13 controlled cold20M cases/full20% margin are admitted context, not rerun here. Defaults/caps/guards unchanged; release/actual markets/providers/max-workload qualification stays open.",
+  "method": "Read every exact description and current referenced source plus needed call/guard/storage domains. No compiler/tests/network/services run; no historical rationale substituted for current source.",
+  "input_context_file": "OTHER_CONTEXTS.json",
+  "input_context_sha256": "1ed22659987dc8d1daaec41136cfc52960223eb991a1a96571992e31e06399c3",
+  "count": 59,
+  "disposition_counts": {
+    "false_positive": 23,
+    "informational": 29,
+    "accepted_risk": 7
+  },
+  "confirmed_unresolved_defects": 0,
+  "referenced_source_hashes_verified_lf": {
+    "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d",
+    "src/ZZZRewards.sol": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+    "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2",
+    "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6",
+    "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+    "src/libraries/ExactLPAllocation.sol": "0d691902e789003a2b21148d6150a8d390e053ff3353e7f89670bf3d1fb412b4",
+    "src/ZZZLPPositionExecutor.sol": "dfb1aa7bc8f9ba98a74afc92c0b75cd3c6b929e7e02563fbefbecf4f2a64bc2c",
+    "src/ZZZVault.sol": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7",
+    "src/interfaces/IZZZ.sol": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+    "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+    "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+    "src/interfaces/IZZZProtocolPolicy.sol": "afeede9fd34a972a9c11e9e39a4d71747d93184902d68c5fa6a1fae14dac7697"
+  },
+  "additional_current_source_sha256_lf": {
+    "src/ZZZActivationAssets.sol": "e0b65ec8312da1bda7ffdc268750a9578b97c53c2804a07f7729eaeb409d2ffd",
+    "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6",
+    "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916",
+    "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+    "src/ZZZLPBalancer.sol": "36e9738744eafc84b534ab84a3c177c435f19658b90bdc9049555f10ec20c031",
+    "src/ZZZLPPositionExecutor.sol": "dfb1aa7bc8f9ba98a74afc92c0b75cd3c6b929e7e02563fbefbecf4f2a64bc2c",
+    "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d",
+    "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+    "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658",
+    "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+    "src/ZZZRewards.sol": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+    "src/ZZZRewardsCanonical.sol": "7333440d02697cb767d2aa84272503510e85f4875981851b1944f240a6d2d8bc",
+    "src/ZZZVault.sol": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7",
+    "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2",
+    "src/base/ZZZRewardConverter.sol": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+    "src/interfaces/IZZZ.sol": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+    "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
+    "src/interfaces/IZZZProtocolPolicy.sol": "afeede9fd34a972a9c11e9e39a4d71747d93184902d68c5fa6a1fae14dac7697",
+    "src/libraries/ExactLPAllocation.sol": "0d691902e789003a2b21148d6150a8d390e053ff3353e7f89670bf3d1fb412b4"
+  },
+  "assessments": [
+    {
+      "fingerprint": "751ce15bacf6825913f8c7ccbab884fdb7e8ddadebff6bb995da818ccca5c9f2",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager._swapExact(bytes32,PoolConfig,bool,uint256,uint256,address,uint256,MarketState) (src/ZZZLiquidityManager.sol#246-265):\n\tExternal call allowing reentrancy:\n\t- _executionOracle().beforeSwap(address(poolManager),address(stateView),poolId,expected) (src/ZZZLiquidityManager.sol#259)\n\tBalance read before the call:\n\t- beforeOutput = _balance(output,recipient) (src/ZZZLiquidityManager.sol#256)\n\tPossible stale balance used after the call in a condition:\n\t- pendingSwapHash != bytes32(0) || amountOut < minimumOut || _balance(output,recipient) != beforeOutput + amountOut (src/ZZZLiquidityManager.sol#261-262)\n\t\t- stale variable `beforeOutput`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 2,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "beforeOutput is the deliberate pre-swap recipient snapshot. Private _swapExact runs within nonReentrant swap/balance, arms one exact pending payload hash, and calls the current Manager-only Oracle beforeSwap full-frame check. Its final equality requires recipient gain to equal amountOut; callback-induced balance drift reverts rather than being trusted for later spending. This assumes separately admitted immutable core/token dependencies.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:229-265",
+        "src/ZZZLiquidityManager.sol:268-269",
+        "src/ZZZLiquidityManager.sol:347-365",
+        "src/ZZZOracle.sol:403-412",
+        "src/ZZZOracle.sol:608-620"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "55942cdca1d441a09858b7bdf2b19f105e6edbd81c61bca4f5c9dc754fff4f7f",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346):\n\tExternal call allowing reentrancy:\n\t- p = balancingRouter.planReplacement(targetPool,lower,upper,amount0,amount1,10000,marks) (src/ZZZLiquidityManager.sol#304-305)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#278)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool,false) != context (src/ZZZLiquidityManager.sol#339-340)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 3,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "This ordinary-replacement branch uses the immutable balancer and mainFloor10000. balance is Vault-only/nonReentrant; tokenPrefund captures unrelated holdings before pulling this budget. Balancer authenticates Manager and rolls speculative core quotes back through QuoteResult. Final token/native prefunds and policy/context must match exactly after callbacks, so the snapshot is an enforced preservation invariant.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:268-305",
+        "src/ZZZLiquidityManager.sol:333-345",
+        "src/ZZZLPBalancer.sol:151-185",
+        "src/ZZZLPBalancer.sol:273-311"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "fa9d2a5a2e9ce22e8b26dbb8095d57a7fb48b46647ff7768eb217b1abb26e56f",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346):\n\tExternal call allowing reentrancy:\n\t- (p.amountOut,p.afterState) = balancingRouter.quoteSwap(p.poolId,p.zeroForOne,p.amountIn) (src/ZZZLiquidityManager.sol#323)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#278)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool,false) != context (src/ZZZLiquidityManager.sol#339-340)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 4,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "The emergency quote authenticates Manager and quotes only the operator-selected exact pool/direction/amount. Self-only quoteCandidate returns decoded values only after the speculative core swap reverts its changes. balance holds its Vault-only nonReentrant guard and finally requires the original token/native prefunds; any surviving drift fails atomically.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:268-278",
+        "src/ZZZLiquidityManager.sol:317-345",
+        "src/ZZZLPBalancer.sol:273-311"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "82c204b60ab4a07111e4730949cf943e1e345757cb569ed22628c52230f32623",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager._swapExact(bytes32,PoolConfig,bool,uint256,uint256,address,uint256,MarketState) (src/ZZZLiquidityManager.sol#246-265):\n\tExternal call allowing reentrancy:\n\t- amountOut = abi.decode(poolManager.unlock(payload),(uint256)) (src/ZZZLiquidityManager.sol#260)\n\tBalance read before the call:\n\t- beforeOutput = _balance(output,recipient) (src/ZZZLiquidityManager.sol#256)\n\tPossible stale balance used after the call in a condition:\n\t- pendingSwapHash != bytes32(0) || amountOut < minimumOut || _balance(output,recipient) != beforeOutput + amountOut (src/ZZZLiquidityManager.sol#261-262)\n\t\t- stale variable `beforeOutput`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 5,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "Core unlock is an expected callback during guarded swap/balance. unlockCallback requires immutable core plus exact pending payload hash, clears that hash before external actions, proves input/output deltas and quoted/full-state outcome when priced. _swapExact then requires recipient balance gain exactly amountOut; a changed balance reverts. The saved snapshot is required for this proof.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:229-265",
+        "src/ZZZLiquidityManager.sol:268-269",
+        "src/ZZZLiquidityManager.sol:347-385"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "beecc3542482e89ca2734ed73a3a7ab1dbb1cc005c40e87ef27ebd476587d8ef",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346):\n\tExternal call allowing reentrancy:\n\t- output = _swapExact(p.poolId,venue,p.zeroForOne,p.amountIn,p.minimumOut,msg.sender,p.amountOut,p.afterState) (src/ZZZLiquidityManager.sol#326)\n\t\t- _executionOracle().beforeSwap(address(poolManager),address(stateView),poolId,expected) (src/ZZZLiquidityManager.sol#259)\n\t\t- amountOut = abi.decode(poolManager.unlock(payload),(uint256)) (src/ZZZLiquidityManager.sol#260)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#278)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool,false) != context (src/ZZZLiquidityManager.sol#339-340)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 6,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "Nested _swapExact executes under Vault-only nonReentrant balance. Callback authorization is one-shot hash-bound, deltas/minimum are checked and refunds are only this supplied budget. Final Manager token/native balances must equal saved unrelated prefunds; position identity/liquidity and policy/context are checked after callbacks. The old prefund value is not an unchecked debit basis.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:268-278",
+        "src/ZZZLiquidityManager.sol:317-345",
+        "src/ZZZLiquidityManager.sol:347-385"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "440baf4a8cc627e137e2325c3708ba6ace97467abffee1770782c17f747e6218",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346):\n\tExternal call allowing reentrancy:\n\t- p = balancingRouter.planReplacement(targetPool,lower,upper,amount0,amount1,_portfolioPolicy().minimumMainBps(targetPool),marks) (src/ZZZLiquidityManager.sol#304-305)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#278)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool,false) != context (src/ZZZLiquidityManager.sol#339-340)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 7,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "This hybrid branch passes governed minimumMainBps and captured maintenance marks to the fixed balancer. _plan admits current Manager only and quotes revert speculative core changes; outer balance remains Vault-only/nonReentrant. Exact final prefunds, execution revision/fingerprint, target spot and context are verified after refunds. The snapshot enforces preservation across those boundaries.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:268-305",
+        "src/ZZZLiquidityManager.sol:333-345",
+        "src/ZZZLPBalancer.sol:138-141",
+        "src/ZZZLPBalancer.sol:151-185",
+        "src/ZZZLPBalancer.sol:273-311"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "3eb7dea915b3cdbe1a8c4f40a5ec9af334b6a8f2c8e9c496d6d969071fc769a5",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346):\n\tExternal call allowing reentrancy:\n\t- p = balancingRouter.planReplacement(targetPool,lower,upper,amount0,amount1,10000,marks_scope_0) (src/ZZZLiquidityManager.sol#313)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#278)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool,false) != context (src/ZZZLiquidityManager.sol#339-340)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 8,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "Paused guarded consolidation calls the fixed balancer with mainFloor10000 and intentional zero marks (that floor uses captured current prices). balance is Vault-only/nonReentrant and speculative quotes roll back. Final token/native equality and context/position checks reject any retained callback drift; tokenPrefund is deliberately a preserved baseline.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:268-314",
+        "src/ZZZLiquidityManager.sol:333-345",
+        "src/ZZZLPBalanceMath.sol:244-247",
+        "src/ZZZLPBalancer.sol:273-311"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "0dc347e0180c39af6cacb4b9d424d757aea9d34de32a5be1ca56e20df60a6adf",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346):\n\tExternal call allowing reentrancy:\n\t- p = balancingRouter.plan(targetPool,lower,upper,amount0,amount1) (src/ZZZLiquidityManager.sol#314)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#278)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool,false) != context (src/ZZZLiquidityManager.sol#339-340)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 9,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "The ordinary plan authenticates current Manager inside the immutable balancer and considers typed configured candidates. Each quote reverts speculative core state; outer Vault-only nonReentrant balance later checks exact prefunds, position and policy/context after refunds. This saved balance is a fail-closed preservation check.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:268-314",
+        "src/ZZZLiquidityManager.sol:333-345",
+        "src/ZZZLPBalancer.sol:134-135",
+        "src/ZZZLPBalancer.sol:151-185",
+        "src/ZZZLPBalancer.sol:273-311"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "a850ce846f4a14f0831ca92056198020126dfbfb75404613eadb9dbc0da1381f",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346):\n\tExternal call allowing reentrancy:\n\t- _sendNative(msg.sender,refund0) (src/ZZZLiquidityManager.sol#333)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#148)\n\tBalance read before the call:\n\t- tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#278)\n\tPossible stale balance used after the call in a condition:\n\t- address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund || _balanceContext(targetPool,false) != context (src/ZZZLiquidityManager.sol#339-340)\n\t\t- stale variable `tokenPrefund`\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 10,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "Native refund goes only to authenticated Vault caller and only for refund0 of the supplied budget. _sendNative verifies exact native decrease; balance holds nonReentrant and then checks original token/native prefunds, position identity and policy/context after both refund callbacks. A changed token snapshot causes revert and does not authorize spending.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:145-156",
+        "src/ZZZLiquidityManager.sol:268-278",
+        "src/ZZZLiquidityManager.sol:330-345"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "95cee8f17bf2f545efcb3f9e07c7c10c5084e3bb6d2ad6e54db0dd375969e685",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256) (src/ZZZRewards.sol#180-222):\n\tExternal calls:\n\t- output = ZZZLPRewardConverter(address(converter)).convert(token,total,routeId,minimumETH,deadline) (src/ZZZRewards.sol#198)\n\tState variables written after the call(s):\n\t- directCollective[ids[i_scope_0]][address(0)] += sharedETH (src/ZZZRewards.sol#216)\n\tZZZExactLPRewardsCanonical.directCollective (src/base/ZZZExactLPRewardsCanonical.sol#49) can be used in cross function reentrancies:\n\t- ZZZExactLPRewardsCanonical.canonicalSeed(uint256) (src/base/ZZZExactLPRewardsCanonical.sol#129-138)\n\t- ZZZRewards.claimableComponents(uint256,address) (src/ZZZRewards.sol#123-131)\n\t- directIndividual[ids[i_scope_0]][address(0)] += ownETH (src/ZZZRewards.sol#215)\n\tZZZExactLPRewardsCanonical.directIndividual (src/base/ZZZExactLPRewardsCanonical.sol#48) can be used in cross function reentrancies:\n\t- ZZZExactLPRewardsCanonical.canonicalSeed(uint256) (src/base/ZZZExactLPRewardsCanonical.sol#129-138)\n\t- ZZZRewards.claimableComponents(uint256,address) (src/ZZZRewards.sol#123-131)\n\t- directLiabilities[address(0)] += output (src/ZZZRewards.sol#203)\n\tZZZExactLPRewardsCanonical.directLiabilities (src/base/ZZZExactLPRewardsCanonical.sol#50) can be used in cross function reentrancies:\n\t- ZZZExactLPRewardsCanonical.directLiabilities (src/base/ZZZExactLPRewardsCanonical.sol#50)\n\t- liabilities[address(0)] += output (src/ZZZRewards.sol#202)\n\tZZZExactLPRewardsCanonical.liabilities (src/base/ZZZExactLPRewardsCanonical.sol#44) can be used in cross function reentrancies:\n\t- ZZZExactLPRewardsCanonical.liabilities (src/base/ZZZExactLPRewardsCanonical.sol#44)\n",
+      "referenced_paths": [
+        "src/ZZZRewards.sol",
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRewards.sol": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 15,
+      "prior_exact_fingerprint_rationale": "convertBatch clears source rights and debits source liability before conversion, then assigns exact received ETH by cumulative whole floors. nonReentrant rejects claims/credit/sync/conversion; claimableComponents, allocationTree and canonicalSeed read barriers reject intermediate accounting. Public mapping reads alone authorize no economic write; external token behavior is qualified separately.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "convertBatch holds the shared Rewards nonReentrant guard; competing claims/credits/sync/canonical writes are guarded. Source components/liability are removed before fixed-ledger converter execution, and exact token decrease/native increase are required before adding same-NFT ETH credits and checking solvency. Claimable and canonical views explicitly reject an entered guard. Public aggregate getters may expose temporary read-only values but grant no mutating reentry path.",
+      "source_evidence": [
+        "src/ZZZRewards.sol:40-45",
+        "src/ZZZRewards.sol:123-157",
+        "src/ZZZRewards.sol:159-222",
+        "src/base/ZZZExactLPRewardsCanonical.sol:122-127",
+        "src/base/ZZZExactLPRewardsCanonical.sol:164-165",
+        "src/base/ZZZRewardConverter.sol:159-163"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "e1dd966b037873da23546fc83cbddf93da7e88e0e3b3aed5c8e4cb5ba114c799",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256).request (src/ZZZLiquidityManager.sol#279) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 17,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "Solidity zero-initializes EmergencyRebalance memory. Every request use is inside an emergency branch after assignment from the fixed Migration emergencyRequest getter; ordinary geometry/planning never consumes it. No unassigned emergency field is used on an ordinary path.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:273-298"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "a2675a08e269cadc60708fce98ad30ab4561189e71a2ba8d95df3d622df2be9f",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256).p (src/ZZZLiquidityManager.sol#294) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 18,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "Plan p is compiler-zeroed intentionally. Emergency assigns operator request fields; quoted fields stay zero only for the explicit unpriced path, otherwise quoteSwap fills amountOut/state. Every non-emergency branch assigns a complete returned Plan, and revision/fingerprint/target fields are checked only under !emergency.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:294-326",
+        "src/ZZZLiquidityManager.sol:341-345"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "d681496fb218d319479ebfbb5140fc6c469857acb5bbca0d9b2046b8e3328024",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256).priorLiquidity (src/ZZZLiquidityManager.sol#281) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 20,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "priorLiquidity is read only in the existingLpId!=0 final check. That same condition first assigns posm.getPositionLiquidity before pulls/quotes/refunds. New-position paths never consume its default zero as an existing LP balance.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:281-287",
+        "src/ZZZLiquidityManager.sol:335-337"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "89c1b3a82a4280ec107acb15e2a3706193106cf7d0dd09eee9d945b126e1e6b2",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256).marks_scope_0 (src/ZZZLiquidityManager.sol#312) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 21,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "The zero four-word marks vector is intentional for same-main reinvestment using mainFloor10000. _allocationValues and seed explicitly select captured x.prices at that floor, not marks. Hybrid floors below10000 use separately captured marks and reject missing nonzero inputs.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:301-313",
+        "src/ZZZLPBalanceMath.sol:244-247",
+        "src/ZZZLPBalanceMath.sol:287-290"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "f3a7929608f5eb78cf6864891403f634c8cb0f2ee7755afd1975e63746a4f4be",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._writeSeed(ZZZExactLPRewardsCanonical.CanonicalSeed).found (src/base/ZZZExactLPRewardsCanonical.sol#196) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 23,
+      "prior_exact_fingerprint_rationale": "_writeSeed found intentionally starts false, scans <=4 actual Vault bucket IDs and rejects if no matching bucket exists before installing any share/collective weights.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "found is an intentionally false-initialized membership accumulator. _counts limits buckets to4; matching exact bucket sets true, and !found rejects before installing weights. False is the correct initial state for an absent bucket.",
+      "source_evidence": [
+        "src/base/ZZZExactLPRewardsCanonical.sol:118-121",
+        "src/base/ZZZExactLPRewardsCanonical.sol:188-201"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "c53d473c3a27fa796aa54dd6b92d032bb01611910eae51d21b678edca55055bb",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16,bytes32) (src/ZZZActivationEntry.sol#98-145) ignores return value by activationAssets.validateInput(source) (src/ZZZActivationEntry.sol#118)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6"
+      },
+      "current_index": 28,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "validateInput returns already validated decimals as a convenience. Entry needs its revert-on-invalid checks for fixed input identity, enabled policy, native/runtime pin and Oracle precision consistency. The separate transaction-bound pricing companion marks source/pair price and scale, so Entry has no need to calculate value from that return.",
+      "source_evidence": [
+        "src/ZZZActivationAssets.sol:131-145",
+        "src/ZZZActivationEntry.sol:109-121",
+        "src/ZZZContributionPricing.sol:272-284"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "765c2419bfeafab1134bb86130650e0891123e0a2b5bbc752ec0c73a1a4ae894",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._writeSeed(ZZZExactLPRewardsCanonical.CanonicalSeed) (src/base/ZZZExactLPRewardsCanonical.sol#188-209) ignores return value by ownerBooks[r.bucket].setWeight(ordinal,r.shares) (src/base/ZZZExactLPRewardsCanonical.sol#201)\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 29,
+      "prior_exact_fingerprint_rationale": "_writeSeed installs authenticated actual Vault shares into an initially empty owner leaf; no pending books exist until all seeds finish. Child _roots checks every owner root equals exact Vault supply before node1 and canonicalValidate repeats it. Immediate returned root is intentionally not final during partial seeding.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "setWeight mutates the owner tree with checked aggregate arithmetic/old-path settlement/rebase whether or not its total return is used. Each imported seed authenticates Vault bucket/shares and eligibility. Before raw nodes are restored, the fixed ordered codec checks all seeded roots against Vault bucketTotalShares. Aggregate verification occurs at the complete-seed boundary.",
+      "source_evidence": [
+        "src/base/ZZZExactLPRewardsCanonical.sol:188-208",
+        "src/libraries/ExactLPAllocation.sol:42-62",
+        "src/ZZZRewardsCanonical.sol:68-77",
+        "src/ZZZRewardsCanonical.sol:192-204"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "a3d4f2c0ca1dca41574bf9643645c6ee62e5845e3741df12cfa194cd5ab0a219",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._writeSeed(ZZZExactLPRewardsCanonical.CanonicalSeed) (src/base/ZZZExactLPRewardsCanonical.sol#188-209) ignores return value by collectiveBook.setWeight(ordinal,1) (src/base/ZZZExactLPRewardsCanonical.sol#201)\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 30,
+      "prior_exact_fingerprint_rationale": "_writeSeed adds collective weight1 only for exact imported Membership eligibility. All seeds precede node books; child root check before node1/final validate proves total==Membership.totalEligible. Partial seed totals need not yet equal final expected total.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "The collective setter installs exactly1 at an authenticated eligible ordinal whose previous weight must be zero. Ignoring its returned total does not suppress mutation; the ordered codec checks the complete root equals totalEligible and is <=1000 before any raw node restoration.",
+      "source_evidence": [
+        "src/base/ZZZExactLPRewardsCanonical.sol:188-208",
+        "src/libraries/ExactLPAllocation.sol:42-62",
+        "src/ZZZRewardsCanonical.sol:68-77",
+        "src/ZZZRewardsCanonical.sol:192-204"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "d68741984330f476ddd4bae447c418f488fcf42eda006473df4fc6e7c68b45ab",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.spot(bytes32) (src/ZZZLiquidityManager.sol#134-136) ignores return value by (priceX96,None,None,None) = stateView.getSlot0(poolId) (src/ZZZLiquidityManager.sol#135)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 32,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "spot deliberately returns only raw getSlot0 square-root price. It does not claim to validate tick/fees/liquidity or independent USD truth; price-sensitive operations call _policySpot plus execution quote/Oracle full-state proofs. Ignoring other tuple fields is consistent with this narrow accessor.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:112-119",
+        "src/ZZZLiquidityManager.sol:134-136",
+        "src/ZZZLiquidityManager.sol:246-265",
+        "src/ZZZLiquidityManager.sol:353-365"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "28725e175726286094f1e01cc1c48e34b336f105cb8235a49579978e1fddab34",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346) ignores return value by (lower,upper,None) = IZZZExecutionStrategy(address(balancingRouter.balanceMath())).executionTarget(targetPool) (src/ZZZLiquidityManager.sol#287)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 33,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "balance needs only lower/upper ticks. executionTarget derives them using its own captured Oracle reference and returns that reference as auxiliary data; Entry need not consume it again. Planner and final _policySpot/context checks retain their separate price validation.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:281-287",
+        "src/ZZZLiquidityManager.sol:341-345",
+        "src/ZZZLPBalanceMath.sol:69-78"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "f55607a76f6d0d0c800635b825c7e9543f5dafc897c25151d552637761bb57b2",
+      "check": "shadowing-local",
+      "impact": "Low",
+      "confidence": "High",
+      "description": "ZZZProtocolPolicy.setGasPolicy(uint32,uint32,uint32,bytes32).payoutGas (src/ZZZProtocolPolicy.sol#100) shadows:\n\t- ZZZProtocolPolicy.payoutGas() (src/ZZZProtocolPolicy.sol#61) (function)\n",
+      "referenced_paths": [
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+      },
+      "current_index": 36,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "payoutGas parameter shadows an external getter, not storage. setGasPolicy explicitly bounds this input, stores all three inputs in gasLimits with incremented revision, hashes and emits them; getters explicitly read gasLimits.payoutGas. No intended function invocation is replaced by a local value.",
+      "source_evidence": [
+        "src/ZZZProtocolPolicy.sol:61-63",
+        "src/ZZZProtocolPolicy.sol:100-109"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "df1beee54038838c4ef12de74ea309e4be03870e6b38d6bab733ccf301ca656b",
+      "check": "shadowing-local",
+      "impact": "Low",
+      "confidence": "High",
+      "description": "ZZZProtocolPolicy.setGasPolicy(uint32,uint32,uint32,bytes32).royaltySyncGas (src/ZZZProtocolPolicy.sol#100) shadows:\n\t- ZZZProtocolPolicy.royaltySyncGas() (src/ZZZProtocolPolicy.sol#63) (function)\n",
+      "referenced_paths": [
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+      },
+      "current_index": 37,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "royaltySyncGas parameter shadows an external getter, not storage. setGasPolicy explicitly bounds this input, stores all three inputs in gasLimits with incremented revision, hashes and emits them; getters explicitly read gasLimits.royaltySyncGas. No intended function invocation is replaced by a local value.",
+      "source_evidence": [
+        "src/ZZZProtocolPolicy.sol:61-63",
+        "src/ZZZProtocolPolicy.sol:100-109"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "a2e5d8b6b2aabca6a7285fdd0d2ed33298af988be73791e3f8dd1461efb3e93a",
+      "check": "shadowing-local",
+      "impact": "Low",
+      "confidence": "High",
+      "description": "ZZZProtocolPolicy.setGasPolicy(uint32,uint32,uint32,bytes32).sourceCallGas (src/ZZZProtocolPolicy.sol#100) shadows:\n\t- ZZZProtocolPolicy.sourceCallGas() (src/ZZZProtocolPolicy.sol#62) (function)\n",
+      "referenced_paths": [
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+      },
+      "current_index": 38,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "sourceCallGas parameter shadows an external getter, not storage. setGasPolicy explicitly bounds this input, stores all three inputs in gasLimits with incremented revision, hashes and emits them; getters explicitly read gasLimits.sourceCallGas. No intended function invocation is replaced by a local value.",
+      "source_evidence": [
+        "src/ZZZProtocolPolicy.sol:61-63",
+        "src/ZZZProtocolPolicy.sol:100-109"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "b41e6423de976df672e7de099b95c77139207af9303f9308f236ea1a29eb50e4",
+      "check": "events-maths",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.receive() (src/ZZZLiquidityManager.sol#69-72) should emit an event for: \n\t- nativeReceived += msg.value (src/ZZZLiquidityManager.sol#71) \n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 43,
+      "prior_exact_fingerprint_rationale": "receive only accepts the armed immutable native sender and accumulates actual receipts. Outer exact-balance checks and operation/fee events record completion. A per-transfer event adds gas without creating a new entitlement or configuration audit trail.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "nativeReceived is private transient-per-operation bookkeeping restricted to expected nonzero nativeSender. Core take must credit exactly amountOut and _finishNativeCredit resets counter/sender before delivery while proving the balance delta. It does not create persistent financial rights or governed policy, so each temporary increment need not emit an event.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:48-52",
+        "src/ZZZLiquidityManager.sol:69-72",
+        "src/ZZZLiquidityManager.sol:151-156",
+        "src/ZZZLiquidityManager.sol:377-383"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "987469a0cdfe5982479c782faa74c91c40d061ba378e0ce39a35fcd9aeb9c678",
+      "check": "missing-zero-check",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZLiquidityManager.beginEmergency().budget (src/ZZZLiquidityManager.sol#98) lacks a zero-check on :\n\t\t- emergencyBudget = budget (src/ZZZLiquidityManager.sol#100)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 44,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "budget is read from the authenticated Vault immutable migrationBudget, whose constructor requires code and matching controller/version. Before storing it, beginEmergency obtains an ABI-decoded emergencyBucket and successfully calls validateEmergency. A zero/no-code address cannot supply the required bucket return; the storage assignment cannot be reached with zero.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:96-101",
+        "src/ZZZVault.sol:49",
+        "src/ZZZVault.sol:64-72"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "334e7ec2af09a7d81bc1f26ff8f8d812de33f1f77b73950eea46a35442016e31",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._writeSeed(ZZZExactLPRewardsCanonical.CanonicalSeed) (src/base/ZZZExactLPRewardsCanonical.sol#188-209) has external calls inside a loop: vault.bucketAt(t) == r.bucket (src/base/ZZZExactLPRewardsCanonical.sol#197)\n\tCalls stack containing the loop:\n\t\tZZZExactLPRewardsCanonical.canonicalWrite(uint8,bytes)\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 46,
+      "prior_exact_fingerprint_rationale": "_writeSeed checks imported bucket membership by <=4 actual Vault bucketAt STATICCALLs, with canonical state2 and immutable-child-only entry. Count is bounded by _counts; no unbounded per-NFT nested scan.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "accepted_risk",
+      "rationale": "The external getter loop is real but _counts caps it at4 buckets. Calls are view lookups to selected Vault during child-only/nonReentrant import state2; they authenticate the seed bucket before weights are written. Dependency failure or insufficient gas reverts the row atomically. The finite external-call cost remains an operational gas/dependency obligation.",
+      "source_evidence": [
+        "src/base/ZZZExactLPRewardsCanonical.sol:118-121",
+        "src/base/ZZZExactLPRewardsCanonical.sol:164-165",
+        "src/base/ZZZExactLPRewardsCanonical.sol:188-201"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "89b7d89a30c894b77cad728a2cd1ce2e93470c45d0d7df46a828ad8d4f555f6b",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._canonicalTree(uint256) (src/base/ZZZExactLPRewardsCanonical.sol#113-116) has external calls inside a loop: ownerBooks[IExactLPVaultState(access.module(Ids.VAULT)).bucketAt(index - 1)] (src/base/ZZZExactLPRewardsCanonical.sol#115)\n\tCalls stack containing the loop:\n\t\tZZZExactLPRewardsCanonical.canonicalNode(uint256)\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 47,
+      "prior_exact_fingerprint_rationale": "canonicalNode reads at most5 trees; owner index uses actual frozen Vault bucketAt and fixed Access module. Count is _counts<=4; static source export remains bounded per992-byte row.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "accepted_risk",
+      "rationale": "canonicalNode has at most5 trees (collective plus4 buckets) and exactly2 assets. _canonicalTree only performs view Access/Vault lookups for indexed owner trees; reads require immutable codec and frozen state1/3 with no entered Rewards guard. This is bounded export work; dependency availability and actual provider/call gas remain separate.",
+      "source_evidence": [
+        "src/base/ZZZExactLPRewardsCanonical.sol:113-127",
+        "src/base/ZZZExactLPRewardsCanonical.sol:140-152"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "8725abc1e02a72eed8065822e48c00d2a5ed49523c6678926c7aaae9388c3a4f",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._ordinal(uint256) (src/base/ZZZExactLPRewardsCanonical.sol#99-103) has external calls inside a loop: nft = IExactLPOrdinals(access.module(Ids.NFT)) (src/base/ZZZExactLPRewardsCanonical.sol#100)\n\tCalls stack containing the loop:\n\t\tZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256)\n\t\tZZZRewards._takeComponents(uint256,address)\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 50,
+      "prior_exact_fingerprint_rationale": "convertBatch performs fixed Access NFT lookup for <=32 sorted NFT entries. _ordinal authenticates minted index before tree access; bound MAX_CONVERSION_NFTS32 prevents unbounded batch work.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "accepted_risk",
+      "rationale": "convertBatch bounds ids to1..32. Each _takeComponents resolves selected NFT through a view Access getter, authenticates ordinal1..1000, then uses a fixed ten-level internal tree. Outer keeper-only/nonReentrant operation rolls back on dependency failure; repeated module lookup cost is finite but still requires actual workload qualification.",
+      "source_evidence": [
+        "src/ZZZRewards.sol:145-157",
+        "src/ZZZRewards.sol:180-192",
+        "src/base/ZZZExactLPRewardsCanonical.sol:99-103",
+        "src/libraries/ExactLPAllocation.sol:140-162"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "1a494fc45a5f87e452129cd6960ddfa5619eb21e5add5f10b6cfee60a1a57c67",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._ordinal(uint256) (src/base/ZZZExactLPRewardsCanonical.sol#99-103) has external calls inside a loop: ordinal == 0 || ordinal > 1000 || nft.tokenAtOrdinal(ordinal) != id (src/base/ZZZExactLPRewardsCanonical.sol#102)\n\tCalls stack containing the loop:\n\t\tZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256)\n\t\tZZZRewards._takeComponents(uint256,address)\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 52,
+      "prior_exact_fingerprint_rationale": "convertBatch _ordinal verifies actual NFT inverse ordinal mapping1..1000 for each <=32 selected NFT. This prevents arbitrary IDs/padded leaves receiving or consuming someone else tree rights.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "accepted_risk",
+      "rationale": "tokenAtOrdinal is the required inverse of mintOrdinalOf, after rejecting ordinal0/>1000. Conversion has at most32 NFTs; getter is view to selected NFT and outer operation is nonReentrant. Lookup failure reverts the batch, leaving bounded repeated-call gas/dependency availability as accepted source risk, not an unbounded loop.",
+      "source_evidence": [
+        "src/ZZZRewards.sol:180-192",
+        "src/base/ZZZExactLPRewardsCanonical.sol:99-103"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "099e64cc02b7d0a012e031fff8f75bc59f95ba33ac7be24a0ba3e74c9f472653",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._canonicalTree(uint256) (src/base/ZZZExactLPRewardsCanonical.sol#113-116) has external calls inside a loop: ownerBooks[IExactLPVaultState(access.module(Ids.VAULT)).bucketAt(index - 1)] (src/base/ZZZExactLPRewardsCanonical.sol#115)\n\tCalls stack containing the loop:\n\t\tZZZExactLPRewardsCanonical.canonicalWrite(uint8,bytes)\n\t\tZZZExactLPRewardsCanonical._writeNode(ZZZExactLPRewardsCanonical.CanonicalNode)\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 53,
+      "prior_exact_fingerprint_rationale": "_writeNode loops fixed5tree*2book slots, resolving owner buckets from actual imported Vault order. _counts caps bucket count4; unused slots must zero and each restore rejects preexisting state.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "accepted_risk",
+      "rationale": "canonicalWrite is immutable-child-only/nonReentrant/state2-only. _writeNode has exactly5x2 iterations and skips trees beyond <=4 authenticated buckets; active-tree Access/Vault lookups are view, following ordered seed/root verification by fixed codec. Failure reverts the row; repeated-call cost remains bounded and does not qualify target gas.",
+      "source_evidence": [
+        "src/base/ZZZExactLPRewardsCanonical.sol:113-121",
+        "src/base/ZZZExactLPRewardsCanonical.sol:164-165",
+        "src/base/ZZZExactLPRewardsCanonical.sol:210-224",
+        "src/ZZZRewardsCanonical.sol:192-204"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "16fcc4492b281270d7f5b09b0a1addf721923be87a9d3976355483915b0c099d",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZExactLPRewardsCanonical._ordinal(uint256) (src/base/ZZZExactLPRewardsCanonical.sol#99-103) has external calls inside a loop: ordinal = nft.mintOrdinalOf(id) (src/base/ZZZExactLPRewardsCanonical.sol#101)\n\tCalls stack containing the loop:\n\t\tZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256)\n\t\tZZZRewards._takeComponents(uint256,address)\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 56,
+      "prior_exact_fingerprint_rationale": "convertBatch reads mintOrdinalOf for <=32 actual NFT IDs and checks inverse tokenAtOrdinal. This bounded read authenticates immutable tree leaf identity across sparse/dynamic token IDs.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "accepted_risk",
+      "rationale": "Each conversion NFT must pass mintOrdinalOf and inverse tokenAtOrdinal before tree access. ids is capped at32 and sorted/distinct, getters are view, and the outer Rewards operation is nonReentrant. These finite authentication calls may consume dependency gas or revert a batch; no arbitrary external authority is introduced.",
+      "source_evidence": [
+        "src/ZZZRewards.sol:180-192",
+        "src/base/ZZZExactLPRewardsCanonical.sol:99-103"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "7183bfab6e78e2fa28da3e4a659bf1cc57f81c613165609a6a7167e9f97dc77f",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16,bytes32) (src/ZZZActivationEntry.sol#98-145):\n\tExternal calls:\n\t- grossUSD = _pricing().beginEntryReviewed(request.nftId,request.poolId,source,request.amountIn,maximumLossBps,expectedContributionPolicy) (src/ZZZActivationEntry.sol#119-120)\n\tState variables written after the call(s):\n\t- context = Context(msg.sender,request.nftId,keccak256(bytes)(payload),request.poolId,amount0,amount1,grossUSD) (src/ZZZActivationEntry.sol#135)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6"
+      },
+      "current_index": 57,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "Entry is nonReentrant throughout. Fixed Pricing authenticates Entry and reserves its exclusive basis phase before marking source; unrelated work cannot adopt it. Entry deliberately keeps context inactive during token pull/approval callbacks, rechecks owner, and arms context only immediately before fixed Vault call. Thus the trailing context assignment is a deliberate protected authorization boundary.",
+      "source_evidence": [
+        "src/ZZZActivationEntry.sol:86-94",
+        "src/ZZZActivationEntry.sol:98-136",
+        "src/ZZZContributionPricing.sol:272-284"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "a4979c234ce1eda86490a19f71c4ef9a02e2cab8219521de4d54ced6623ab32d",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.unlockCallback(bytes) (src/ZZZLiquidityManager.sol#347-386):\n\tExternal calls:\n\t- _executionOracle().afterSwap() (src/ZZZLiquidityManager.sol#365)\n\t- poolManager.sync(input) (src/ZZZLiquidityManager.sol#369)\n\t- poolManager.settle() != amountIn (src/ZZZLiquidityManager.sol#374)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MIN_SQRT_PRICE + 1),bytes()) (src/ZZZLiquidityManager.sol#353-354)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MAX_SQRT_PRICE - 1),bytes()) (src/ZZZLiquidityManager.sol#353-354)\n\tState variables written after the call(s):\n\t- nativeReceived = 0 (src/ZZZLiquidityManager.sol#380)\n\t- nativeSender = address(poolManager) (src/ZZZLiquidityManager.sol#379)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 58,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "unlockCallback is the intentional expected callback inside guarded Manager swap/balance. It requires immutable core and exact pending payload hash and clears hash before swap/Oracle/settlement, preventing a second unlock. nativeSender/counter are armed only around expected core take, receive authenticates sender, and exact credit is checked then cleared. Other mutating Manager entries remain guarded and authorized.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:69-72",
+        "src/ZZZLiquidityManager.sol:229-265",
+        "src/ZZZLiquidityManager.sol:268-269",
+        "src/ZZZLiquidityManager.sol:347-385"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "3192b6f35d8c1a622ffa0956613b9c0325f626f1fac0b5ac2aa100eec80a9317",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZLiquidityManager.unlockCallback(bytes) (src/ZZZLiquidityManager.sol#347-386):\n\tExternal calls:\n\t- _executionOracle().afterSwap() (src/ZZZLiquidityManager.sol#365)\n\t- poolManager.sync(input) (src/ZZZLiquidityManager.sol#369)\n\t- poolManager.settle() != amountIn (src/ZZZLiquidityManager.sol#374)\n\t- poolManager.take(output,address(this),amountOut) (src/ZZZLiquidityManager.sol#381)\n\t- _finishNativeCredit(beforeNative,recipient) (src/ZZZLiquidityManager.sol#383)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#148)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MIN_SQRT_PRICE + 1),bytes()) (src/ZZZLiquidityManager.sol#353-354)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MAX_SQRT_PRICE - 1),bytes()) (src/ZZZLiquidityManager.sol#353-354)\n\tExternal calls sending eth:\n\t- _finishNativeCredit(beforeNative,recipient) (src/ZZZLiquidityManager.sol#383)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#148)\n\tState variables written after the call(s):\n\t- _finishNativeCredit(beforeNative,recipient) (src/ZZZLiquidityManager.sol#383)\n\t\t- nativeSender = address(0) (src/ZZZLiquidityManager.sol#152)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 59,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "The callback consumes its one-shot hash before external actions while its initiator holds nonReentrant. _finishNativeCredit clears nativeSender and counter and proves received delta BEFORE native delivery; _sendNative checks exact decrease. Recipient is authenticated initiating Vault/Buyback. The helper reset cited by Slither is before the recipient call, not an unsafe trailing write.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:145-156",
+        "src/ZZZLiquidityManager.sol:229-265",
+        "src/ZZZLiquidityManager.sol:347-385"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "6420feb841d6a444e78a7238d278b0f168a1693da2ee70d8180dfec0e8944e1a",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16,bytes32) (src/ZZZActivationEntry.sol#98-145):\n\tExternal calls:\n\t- grossUSD = _pricing().beginEntryReviewed(request.nftId,request.poolId,source,request.amountIn,maximumLossBps,expectedContributionPolicy) (src/ZZZActivationEntry.sol#119-120)\n\t- (success,result) = vault.call{value: request.amountIn}(payload) (src/ZZZActivationEntry.sol#136)\n\t- (success,result) = vault.call{value: 0}(payload) (src/ZZZActivationEntry.sol#136)\n\tExternal calls sending eth:\n\t- (success,result) = vault.call{value: request.amountIn}(payload) (src/ZZZActivationEntry.sol#136)\n\t- (success,result) = vault.call{value: 0}(payload) (src/ZZZActivationEntry.sol#136)\n\tState variables written after the call(s):\n\t- delete context (src/ZZZActivationEntry.sol#138)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6"
+      },
+      "current_index": 60,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "false_positive",
+      "rationale": "context is active only for fixed Vault call, which has its own nonReentrant guard and validates owner plus exact msg.data hash through Entry.validateOwner. Entry holds nonReentrant, bubbles failure atomically and deletes context immediately after success before approval reset. Final owner/balances/pricing/policy checks follow; callbacks cannot initiate another Entry or authorize unrelated calldata.",
+      "source_evidence": [
+        "src/ZZZActivationEntry.sol:66-71",
+        "src/ZZZActivationEntry.sol:98-145",
+        "src/ZZZVault.sol:133-136",
+        "src/ZZZVault.sol:244-282"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "e09b491d6384bac982df8bd70133e61470364d88bee397781e688533fcf8021e",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ExactLPAllocation.readCarry(ExactLPAllocation.Carry) (src/libraries/ExactLPAllocation.sol#171-179) uses assembly\n\t- INLINE ASM (src/libraries/ExactLPAllocation.sol#172-178)\n",
+      "referenced_paths": [
+        "src/libraries/ExactLPAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactLPAllocation.sol": "0d691902e789003a2b21148d6150a8d390e053ff3353e7f89670bf3d1fb412b4"
+      },
+      "current_index": 71,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "Internal readCarry uses compiler-derived Carry storage reference, never caller-supplied raw slot. Carry has two full uint256 slots: low128 packed bits hold high, upper128 hold low<MAX128, and exactly MAX128 denotes full-width spill at slot+1. This exactly decodes the writer including threshold value, without memory writes or external calls. It proves this fresh private layout, not compatibility with old physical storage.",
+      "source_evidence": [
+        "src/libraries/ExactLPAllocation.sol:18-25",
+        "src/libraries/ExactLPAllocation.sol:170-195"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "d5955b361bf5a75af991fbebae17a87595a1d2ecae7c315bafae5c1d4473aefe",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16,bytes32) (src/ZZZActivationEntry.sol#98-145) uses assembly\n\t- INLINE ASM (src/ZZZActivationEntry.sol#137)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6"
+      },
+      "current_index": 92,
+      "prior_exact_fingerprint_rationale": "The remaining Entry assembly only bubbles the failed fixed-Vault call bytes using a memory-safe revert. Destination and calldata/value are code-owned; it cannot delegatecall, choose a recipient or continue after failure. Upstream large revert data can still consume transaction gas; this is atomic liveness/cost risk, not a guarantee that every failure is cheap.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "The memory-safe assembly only bubbles a failed fixed-Vault call. result is Solidity allocated bytes: length is mload(result), payload starts at add(result,32); revert terminates with exactly that data and rolls back transaction state. No storage write, delegatecall or memory-corrupting fallthrough exists.",
+      "source_evidence": [
+        "src/ZZZActivationEntry.sol:125-140"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "e7da9a75bcaa1a29041fde5a722f9fb8cc5ee5ccfd5589d6d9014158c2024d21",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ExactLPAllocation.writeCarry(ExactLPAllocation.Carry,uint128,uint256) (src/libraries/ExactLPAllocation.sol#180-195) uses assembly\n\t- INLINE ASM (src/libraries/ExactLPAllocation.sol#181-194)\n",
+      "referenced_paths": [
+        "src/libraries/ExactLPAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactLPAllocation.sol": "0d691902e789003a2b21148d6150a8d390e053ff3353e7f89670bf3d1fb412b4"
+      },
+      "current_index": 100,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "Internal writeCarry uses compiler-derived two-slot Carry storage reference. It masks high128, stores low<MAX128 compactly, and otherwise writes sentinel plus exact full-width low to slot+1, preserving low==MAX128. Spill-to-compact clears obsolete wide storage. Full-width packed/wide members cannot overlap another field; there is no user-selected slot or external call. This is a fresh private layout and does not authorize copying old storage.",
+      "source_evidence": [
+        "src/libraries/ExactLPAllocation.sol:18-25",
+        "src/libraries/ExactLPAllocation.sol:170-195"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "cf39537885180918426e6cf3fce180aaea79cd7cc03bc90c74abd2bd450e1841",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZExactLPRewardsCanonical.canonicalWrite(uint8,bytes) (src/base/ZZZExactLPRewardsCanonical.sol#164-187) has a high cyclomatic complexity (13).\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 112,
+      "prior_exact_fingerprint_rationale": "canonicalWrite has exactly3 immutable-child-only inert import domains. Asset identity/backing, authenticated seed weights, and raw node/phase bounds are separate validations; unknown kinds reject. No arbitrary storage slot/target or calldata executor exists.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "The branch metric reflects three fixed canonical record kinds, exact byte lengths, fixed asset admission and empty-state/domain checks. canonicalWrite is child-only/nonReentrant/state2-only; helpers authenticate seed identities and bounded nodes/carries. Complexity is retained as a maintenance concern, not evidence of a confirmed broken branch or exploit absence.",
+      "source_evidence": [
+        "src/base/ZZZExactLPRewardsCanonical.sol:164-224"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "e88a0842497e2bd2a9d5752807e05b2fe3366706498d25c054d5bed0c3ba905f",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager.unlockCallback(bytes) (src/ZZZLiquidityManager.sol#347-386) has a high cyclomatic complexity (15).\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 113,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "Branches cover direction, native/ERC20 settlement and explicit quoted/unpriced swaps. Immutable-core plus one-shot hash authorization precedes exact signed deltas, quoted/full-state proof when required, settlement and native credit validation. Complexity remains a maintenance obligation; source inspection does not qualify every dependency behavior or release.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:347-385"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "4653778e0e88c8fc7fc8b36e94872026cc5e0bffc8343d7a3c3d7321205c46a8",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager.balance(bytes32,uint256,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#268-346) has a high cyclomatic complexity (20).\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 115,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "Complexity reflects explicit emergency/replacement/consolidation/ordinary plans, direction/refund and existing-position proofs. Vault-only/nonReentrant balance bounds amount/deadline, performs one typed swap, refunds supplied budget, and validates exact final prefunds/position/policy context. No branch-specific defect was confirmed; broader workload and maintenance review remain open.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:268-345"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "7b8a8d2236fa7534293a1634c1e78a18bc2f081e8494b03a8866942f65bf21a0",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16,bytes32) (src/ZZZActivationEntry.sol#98-145) has a high cyclomatic complexity (21).\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6"
+      },
+      "current_index": 116,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "Entry complexity reflects native/token and activation/increase branches plus lifecycle/owner/policy checks. Prices freeze before callbacks, context activates only for immediate fixed Vault call and clears before allowance reset; final balances/owner/pricing/policy are rechecked under nonReentrant. The metric is a maintenance signal, not a demonstrated missing safeguard.",
+      "source_evidence": [
+        "src/ZZZActivationEntry.sol:98-145"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "1bcf3bc25e8c21a12a06e91d45ba5f895a8e18fa84247283c861125120adbe89",
+      "check": "low-level-calls",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "Low level call in ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16,bytes32) (src/ZZZActivationEntry.sol#98-145):\n\t- (success,result) = vault.call{value: request.amountIn}(payload) (src/ZZZActivationEntry.sol#136)\n\t- (success,result) = vault.call{value: 0}(payload) (src/ZZZActivationEntry.sol#136)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6"
+      },
+      "current_index": 118,
+      "prior_exact_fingerprint_rationale": "Only the sealed fixed Vault is called, using abi.encodeCall for activate or increase with exact original pair amounts and exact native value. No user-supplied calldata/target exists. Failure bubbles and atomically reverts; owner, prefund, allowance, price and policy checks remain after success. A failed dependency can still block an operation.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "Low-level target is exclusively sealed-graph _vault(), requiring code and matching Registry. Payload is abi.encodeCall for exactly activate/increase; caller cannot supply selector/target/arbitrary bytes. Context commits exact calldata/owner/NFT/pool/amounts, Vault verifies it, failures bubble and final balances/owner/pricing/policy are checked. Value is exactly the native source contribution.",
+      "source_evidence": [
+        "src/ZZZActivationEntry.sol:60-71",
+        "src/ZZZActivationEntry.sol:98-145",
+        "src/ZZZVault.sol:133-136"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "75e1692c5e918a54ff0818cca5bef49e7a8fbc50af7b1624ed783c1b3c8bc6d7",
+      "check": "low-level-calls",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "Low level call in ZZZLiquidityManager._sendNative(address,uint256) (src/ZZZLiquidityManager.sol#145-150):\n\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#148)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 120,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "accepted_risk",
+      "rationale": "Native forwarding uses call to let authenticated Vault/Buyback receive logic execute. Private _sendNative zero-skips, requires success and exact native decrease; initiating swap/balance holds nonReentrant, clears expected-credit state before delivery and checks final balances/context. Reverting recipient atomically blocks its own operation. Recipient liveness/admitted behavior remains operational risk.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:145-156",
+        "src/ZZZLiquidityManager.sol:229-265",
+        "src/ZZZLiquidityManager.sol:268-345",
+        "src/ZZZLiquidityManager.sol:377-385"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "670d4f70eb1daa5e9462a7f8e484ef40228e8d42ceffe4c2a4c5102ababe0555",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#33-387) should inherit from IPositionExecutionParent (src/ZZZLPPositionExecutor.sol#12-18)\n",
+      "referenced_paths": [
+        "src/ZZZLPPositionExecutor.sol",
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPPositionExecutor.sol": "dfb1aa7bc8f9ba98a74afc92c0b75cd3c6b929e7e02563fbefbecf4f2a64bc2c",
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 122,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "Manager implements matching external view executionConfig, executionSpot, executionOrdinaryReplacement, executionHybridReplacement and balanceContext for structural IPositionExecutionParent. Sensitive getters require the exact private executor, constructed immutably by Manager. Nominal inheritance would add compile-time coupling but no missing runtime authority.",
+      "source_evidence": [
+        "src/ZZZLPPositionExecutor.sol:12-18",
+        "src/ZZZLPPositionExecutor.sol:48-64",
+        "src/ZZZLiquidityManager.sol:65-67",
+        "src/ZZZLiquidityManager.sol:75-93",
+        "src/ZZZLiquidityManager.sol:198-207"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "cb0225d846c92a177ea18f1f4bee97051cd3868784f172b133be8da3f0d98794",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZVault (src/ZZZVault.sol#29-716) should inherit from IActivationVault (src/ZZZActivationEntry.sol#14-17)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol",
+        "src/ZZZVault.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6",
+        "src/ZZZVault.sol": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7"
+      },
+      "current_index": 125,
+      "prior_exact_fingerprint_rationale": "Current individual review: Vault structurally matches IActivationVault activation/increase signatures with typed fixed Entry and owner checks. Nominal inheritance would not add authorization, and new constructor only fixes canonical home to current chain. Prior detailed context retained, after rereading current code: Vault structurally exposes the native activation/increase interface used by its fixed Entry. Actual current-owner/frozen Entry review, live/operating/terminal checks and Vault mutex protect the calls. Nominal interface inheritance would not strengthen those permissions or allow an arbitrary minter. The only whole-file changes are the checked Vault constructor current-chain equality and the Metadata bare-scheme rejection. No lock, custody/token binding, amount proof, claim right or post-call validation is removed. External dependency qualification and independent audit remain required.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "Vault implements exact payable activate(uint256,bytes32,uint256,uint256,uint128,uint256) and increase(uint256,uint256,uint256,uint128,uint256) signatures from IActivationVault. Entry abi.encodeCall fixes selectors and Vault enforces lifecycle/principal/nonReentrant owner validation. Nominal interface inheritance is not required for matching ABI dispatch.",
+      "source_evidence": [
+        "src/ZZZActivationEntry.sol:14-17",
+        "src/ZZZActivationEntry.sol:125-128",
+        "src/ZZZVault.sol:244-282"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "8a032bf11dd9facb9a16dc45896dd34918cb5d21d303c592dddb442750779882",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZActivationEntry (src/ZZZActivationEntry.sol#21-146) should inherit from IZZZActivationEntry (src/interfaces/IZZZ.sol#61-64)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol",
+        "src/interfaces/IZZZ.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6",
+        "src/interfaces/IZZZ.sol": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997"
+      },
+      "current_index": 128,
+      "prior_exact_fingerprint_rationale": "ActivationEntry implements reviewed native/fixed-ZZZ functions structurally; actual core owner/value/policy/callback validation remains. Explicit interface inheritance adds no economic guard.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "IZZZActivationEntry declares validateOwner(uint256,bytes32) and sourceValue(bytes32,uint256,uint256); Entry implements both exact external view signatures and restricts caller plus active owner/context. Omitted nominal inheritance changes no selector or runtime authorization.",
+      "source_evidence": [
+        "src/interfaces/IZZZ.sol:61-64",
+        "src/ZZZActivationEntry.sol:66-81"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "d4a7186f54958bd760564d52ad1a4cb23ff9ad3210ab72f95e9aa5876cc7344e",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#33-387) should inherit from IZZZLiquidity (src/interfaces/IZZZ.sol#91-117)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol",
+        "src/interfaces/IZZZ.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d",
+        "src/interfaces/IZZZ.sol": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997"
+      },
+      "current_index": 129,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "Manager implements structural IZZZLiquidity methods: payable balance/mint/increase/swap, typed collect/close, position/portfolio/fingerprint/ticks/spot and positionManager getters. Matching external ABI dispatch does not require nominal inheritance; implementation methods retain explicit authority and guards. This stylistic finding identifies no missing callable implementation.",
+      "source_evidence": [
+        "src/interfaces/IZZZ.sol:91-117",
+        "src/ZZZLiquidityManager.sol:73-93",
+        "src/ZZZLiquidityManager.sol:134-136",
+        "src/ZZZLiquidityManager.sol:185-245",
+        "src/ZZZLiquidityManager.sol:268-269"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "7bfac571a75c777a1d9e8fb9a93674dd5ff3d4b00d72a4dd8aaaba92fd4aa462",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZMigrationBudget (src/ZZZMigrationBudget.sol#43-447) should inherit from IPortfolioBudget (src/ZZZLiquidityManager.sol#20-23)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol",
+        "src/ZZZMigrationBudget.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d",
+        "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d"
+      },
+      "current_index": 130,
+      "prior_exact_fingerprint_rationale": "Current individual review: Budget maintenanceBucket/maintenancePrices remain the exact IPortfolioBudget views over authenticated active snapshot. New identity admission does not mutate or expose another snapshot source, and explicit inheritance does not change those guards. Prior detailed rationale retained after current source reread: Budget maintenanceBucket/maintenancePrices exactly match IPortfolioBudget and expose the authenticated active snapshot to Manager. No new authority is created by these reads. Structural inheritance does not alter snapshot lifecycle or manual-scope cleanup. This is scoped internal static review, not new full-transitive/dynamic acceptance or independent exploit-absence assurance.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "MigrationBudget implements exact maintenanceBucket() and maintenancePrices() signatures of read-only IPortfolioBudget. Bucket exposes ordinary replacement context only, and prices rejects emergency/empty/nonreplacement state. Vault binding is immutable; nominal inheritance is optional for selector dispatch.",
+      "source_evidence": [
+        "src/ZZZLiquidityManager.sol:20-23",
+        "src/ZZZMigrationBudget.sol:230-239",
+        "src/ZZZVault.sol:49"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "732a999cb04bbc32cfcd2ae89ad469e6e9f3c034258879beb423b70a1809541e",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#33-387) should inherit from IZZZEmergencyLiquidity (src/interfaces/IZZZEmergency.sol#39-42)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol",
+        "src/interfaces/IZZZEmergency.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d",
+        "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4"
+      },
+      "current_index": 132,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "Manager implements beginEmergency/endEmergency matching IZZZEmergencyLiquidity. Both are Vault-only/nonReentrant and validate the bound Budget; begin rejects nesting and end requires an active scope. Nominal inheritance would not add a missing runtime guard.",
+      "source_evidence": [
+        "src/interfaces/IZZZEmergency.sol:39-42",
+        "src/ZZZLiquidityManager.sol:96-110"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "96b65ae12d0166d0b5ad70ce4a3d5d1261176e005a08ff38154382240253c7bf",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#33-387) should inherit from IVaultResidualLiquidity (src/ZZZVault.sol#23)\n",
+      "referenced_paths": [
+        "src/ZZZLiquidityManager.sol",
+        "src/ZZZVault.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d",
+        "src/ZZZVault.sol": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7"
+      },
+      "current_index": 133,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "Manager implements the exact closeSecondary(bytes32,uint256,uint256) signature of IVaultResidualLiquidity. It is Vault-only/nonReentrant, requires sealed/paused state and rechecks pause after immutable executor call. The structural adapter needs no nominal inheritance for ABI dispatch.",
+      "source_evidence": [
+        "src/ZZZVault.sol:23",
+        "src/ZZZLiquidityManager.sol:220-227"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "cb3c1393b2ebea18b66782f420bb630890a61a0f24d91ffe2d1a4f3f82c3d74d",
+      "check": "naming-convention",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "Function IZZZProtocolPolicy.PROTOCOL_POLICY_VERSION() (src/interfaces/IZZZProtocolPolicy.sol#18) is not in mixedCase\n",
+      "referenced_paths": [
+        "src/interfaces/IZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/interfaces/IZZZProtocolPolicy.sol": "afeede9fd34a972a9c11e9e39a4d71747d93184902d68c5fa6a1fae14dac7697"
+      },
+      "current_index": 134,
+      "prior_exact_fingerprint_rationale": "VERSION getter follows the explicit profile ABI. Literal flags concern bounded gas/USD18/wei/search constants and constructor initialization; values/bounds/units were inspected in ProtocolPolicy and LPBalancer rather than transformed to quiet the analyzer. No economic value or ceiling was changed.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "The uppercase interface method intentionally matches generated getter ABI of public constant PROTOCOL_POLICY_VERSION=1. MixedCase renaming would change a compatibility selector; spelling has no storage/arithmetic consequence.",
+      "source_evidence": [
+        "src/interfaces/IZZZProtocolPolicy.sol:18",
+        "src/ZZZProtocolPolicy.sol:20"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "0296160c63cfa9498c94450e1ae60448d47412254b62e3da4eecfc91b95953d7",
+      "check": "naming-convention",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "Function IExactLPVaultState.ACCOUNTING_VERSION() (src/base/ZZZExactLPRewardsCanonical.sol#17) is not in mixedCase\n",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 135,
+      "prior_exact_fingerprint_rationale": "ACCOUNTING_VERSION is an intentional constant capability selector matching fresh Vault7 and source-profile admission. Renaming to mixedCase would break existing typed interface and version checks.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "ACCOUNTING_VERSION() intentionally matches Vault generated public constant getter (7), checked by canonical codec identity validation. Uppercase preserves the established ABI; it adds no permission or economic behavior.",
+      "source_evidence": [
+        "src/base/ZZZExactLPRewardsCanonical.sol:17",
+        "src/ZZZVault.sol:50",
+        "src/ZZZRewardsCanonical.sol:61-66"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "821c8f337b19fdbefcff30388859c7c12c262e610266920c6d7a7ead2928284c",
+      "check": "too-many-digits",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZProtocolPolicy.constructor(address,address) (src/ZZZProtocolPolicy.sol#45-55) uses literals with too many digits:\n\t- gasLimits = IZZZProtocolPolicy.GasPolicy(180000,500000,1000000,1) (src/ZZZProtocolPolicy.sol#50)\n",
+      "referenced_paths": [
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+      },
+      "current_index": 136,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "Literals explicitly set GasPolicy payout180000/sourceCall500000/royaltySync1000000/revision1 in matching interface field order. All gas values fit uint32 and the100000..1000000 engineering range. Missing separators is readability only and does not qualify provider/workload capacity.",
+      "source_evidence": [
+        "src/ZZZProtocolPolicy.sol:22-23",
+        "src/ZZZProtocolPolicy.sol:45-55",
+        "src/interfaces/IZZZProtocolPolicy.sol:9"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "6a1c8c9b216db20b82b4ce80c705c338975b17859adaade1b115b1bd640be739",
+      "check": "too-many-digits",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZProtocolPolicy.setRandomnessRequestSettings(uint16,uint32,bytes32) (src/ZZZProtocolPolicy.sol#194-201) uses literals with too many digits:\n\t- ! randomness.configured || confirmations < 3 || confirmations > 200 || callbackGas < 200000 || callbackGas > 10000000 (src/ZZZProtocolPolicy.sol#196-197)\n",
+      "referenced_paths": [
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+      },
+      "current_index": 137,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "Long literals are callbackGas bounds200000..10000000 alongside confirmations3..200/configured policy. uint32/uint16 inputs are governed/operating/nonReentrant with review hash and revision/hash/event updates. Formatting does not change admission or qualify a real VRF provider.",
+      "source_evidence": [
+        "src/ZZZProtocolPolicy.sol:194-201"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "6bbfee8596ff112fe2aa96a54fd0ec8e632d64fae0cb00f5d4ad8953bb799950",
+      "check": "too-many-digits",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZProtocolPolicy._vrf(address,bytes32,bytes32,uint256,uint16,uint32,bool,bytes32,uint64) (src/ZZZProtocolPolicy.sol#163-172) uses literals with too many digits:\n\t- coordinator.code.length == 0 || expectedCodeHash == bytes32(0) || coordinator.codehash != expectedCodeHash || keyHash == bytes32(0) || subscriptionId == 0 || confirmations < 3 || confirmations > 200 || callbackGas < 200000 || callbackGas > 10000000 (src/ZZZProtocolPolicy.sol#167-169)\n",
+      "referenced_paths": [
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+      },
+      "current_index": 138,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "_vrf uses identical callbackGas200000..10000000 and confirmations3..200 admission, with exact coordinator codehash and nonzero key/subscription/review. Bounds fit typed fields and construct policy only after validation. Numeric separators are stylistic and imply no actual provider acceptance.",
+      "source_evidence": [
+        "src/ZZZProtocolPolicy.sol:163-172",
+        "src/interfaces/IZZZProtocolPolicy.sol:12-15"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "1372ffa104e874eedc5485e45e54909574579eb33ccc0948538bf5894317c67a",
+      "check": "too-many-digits",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZProtocolPolicy.slitherConstructorConstantVariables() (src/ZZZProtocolPolicy.sol#19-202) uses literals with too many digits:\n\t- MAX_CALL_GAS = 1000000 (src/ZZZProtocolPolicy.sol#23)\n",
+      "referenced_paths": [
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+      },
+      "current_index": 139,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "MAX_CALL_GAS1000000 is intentional uint32 upper bound for distinct payout/source/sync allowances and royalty balance cap. Constructor sync default equals the same bound and setters compare directly. Literal formatting does not automatically admit complete operation gas.",
+      "source_evidence": [
+        "src/ZZZProtocolPolicy.sol:23",
+        "src/ZZZProtocolPolicy.sol:50",
+        "src/ZZZProtocolPolicy.sol:100-120"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "1da1da5d54d6fb0514d5e0a6d1ccbe9863935b4596d2884da46f8ef75b47cd36",
+      "check": "too-many-digits",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZProtocolPolicy.slitherConstructorConstantVariables() (src/ZZZProtocolPolicy.sol#19-202) uses literals with too many digits:\n\t- MIN_CALL_GAS = 100000 (src/ZZZProtocolPolicy.sol#22)\n",
+      "referenced_paths": [
+        "src/ZZZProtocolPolicy.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc"
+      },
+      "current_index": 140,
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "MIN_CALL_GAS100000 is intentional uint32 minimum for payout/source/sync. Royalty balance reads explicitly retain their separate10000 minimum/50000 default. Unsplitted literal representation does not conflate these gas domains or change limits.",
+      "source_evidence": [
+        "src/ZZZProtocolPolicy.sol:22-23",
+        "src/ZZZProtocolPolicy.sol:33",
+        "src/ZZZProtocolPolicy.sol:100-120"
+      ],
+      "confirmed_unresolved_defect": false
+    },
+    {
+      "fingerprint": "012c75f5b6d4282cddd10c1a63d3d20bb0e4511fd5cc5082d0d9cb1b8a3381b7",
+      "check": "cache-array-length",
+      "impact": "Optimization",
+      "confidence": "High",
+      "description": "Loop condition a < assets.length (src/base/ZZZExactLPRewardsCanonical.sol#135) should use cached array length instead of referencing `length` member of the storage array.\n ",
+      "referenced_paths": [
+        "src/base/ZZZExactLPRewardsCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/base/ZZZExactLPRewardsCanonical.sol": "2439e57f25dc2d0be736b402541bc21900e4acc4d845f50b711bb7488b26f5a2"
+      },
+      "current_index": 146,
+      "prior_exact_fingerprint_rationale": "canonicalSeed assets.length is immutable fixed-pair admission<=2; read-only source export has no mutable callback in the loop. Caching could save tiny gas but no correctness/liveness defect warrants source drift after final size freeze.",
+      "review_basis": "current_scoped_source_review",
+      "disposition": "informational",
+      "rationale": "canonicalSeed loop reads storage assets.length but inventory is bounded to native ETH plus one fixed ZZZ (MAX_ASSETS2). Read barrier requires immutable child/frozen state and no entered guard. Caching could save a small storage read; it is optional optimization, not an unbounded loop or codec/gas-policy defect.",
+      "source_evidence": [
+        "src/base/ZZZExactLPRewardsCanonical.sol:37-42",
+        "src/base/ZZZExactLPRewardsCanonical.sol:122-138",
+        "src/base/ZZZExactLPRewardsCanonical.sol:164-179",
+        "src/ZZZRewards.sol:48-55"
+      ],
+      "confirmed_unresolved_defect": false
+    }
+  ]
+}

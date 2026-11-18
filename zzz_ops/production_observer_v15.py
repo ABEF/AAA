@@ -27,7 +27,7 @@ class Observer(H.Observer):
 
     def observe_chain_extension(self):
         super().observe_chain_extension()
-        if self.chain.get(P.FACTORY_PAYLOAD_FIELD)!=5:return
+        if self.chain.get(P.FACTORY_PAYLOAD_FIELD) not in (5,6):return
         from zzz_ops import royalty_read_policy as R
         section=R.precheck(self.chain)
         section['observed']=None

@@ -1,0 +1,224 @@
+Compiling 206 files with Solc 0.8.26
+Solc 0.8.26 finished in 522.03s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+  --> src/libraries/ExactRoyaltyAllocation.sol:57:56:
+   |
+57 |     function enroll(Cohorts storage cohort,uint256 end,uint256 rounds) internal {
+   |                                                        ^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> src/libraries/ExactRoyaltyAllocation.sol:37:5:
+   |
+37 |     function rounds(Book storage book) internal view returns(uint256){return _bookRound(book,book.packed);}
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+  --> src/libraries/ExactRoyaltyAllocation.sol:69:65:
+   |
+69 |     function enrollValidated(Cohorts storage cohort,uint256 end,uint256 rounds) internal {
+   |                                                                 ^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> src/libraries/ExactRoyaltyAllocation.sol:37:5:
+   |
+37 |     function rounds(Book storage book) internal view returns(uint256){return _bookRound(book,book.packed);}
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+  --> src/libraries/ExactRoyaltyAllocation.sol:77:94:
+   |
+77 |     function birth(Cohorts storage cohort,uint256 ordinal) internal view returns(uint256 end,uint256 rounds){
+   |                                                                                              ^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> src/libraries/ExactRoyaltyAllocation.sol:37:5:
+   |
+37 |     function rounds(Book storage book) internal view returns(uint256){return _bookRound(book,book.packed);}
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+  --> src/libraries/ExactRoyaltyAllocation.sol:82:103:
+   |
+82 |     function birthActivated(Cohorts storage cohort,uint256 ordinal) internal view returns(uint256 end,uint256 rounds){
+   |                                                                                                       ^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> src/libraries/ExactRoyaltyAllocation.sol:37:5:
+   |
+37 |     function rounds(Book storage book) internal view returns(uint256){return _bookRound(book,book.packed);}
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (8760): This declaration has the same name as another declaration.
+   --> src/ZZZProtocolPolicy.sol:100:27:
+    |
+100 |     function setGasPolicy(uint32 payoutGas,uint32 sourceCallGas,uint32 royaltySyncGas,bytes32 reviewHash)
+    |                           ^^^^^^^^^^^^^^^^
+Note: The other declaration is here:
+  --> src/ZZZProtocolPolicy.sol:61:5:
+   |
+61 |     function payoutGas() external view returns(uint32){return gasLimits.payoutGas;}
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (8760): This declaration has the same name as another declaration.
+   --> src/ZZZProtocolPolicy.sol:100:44:
+    |
+100 |     function setGasPolicy(uint32 payoutGas,uint32 sourceCallGas,uint32 royaltySyncGas,bytes32 reviewHash)
+    |                                            ^^^^^^^^^^^^^^^^^^^^
+Note: The other declaration is here:
+  --> src/ZZZProtocolPolicy.sol:62:5:
+   |
+62 |     function sourceCallGas() external view returns(uint32){return gasLimits.sourceCallGas;}
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (8760): This declaration has the same name as another declaration.
+   --> src/ZZZProtocolPolicy.sol:100:65:
+    |
+100 |     function setGasPolicy(uint32 payoutGas,uint32 sourceCallGas,uint32 royaltySyncGas,bytes32 reviewHash)
+    |                                                                 ^^^^^^^^^^^^^^^^^^^^^
+Note: The other declaration is here:
+  --> src/ZZZProtocolPolicy.sol:63:5:
+   |
+63 |     function royaltySyncGas() external view returns(uint32){return gasLimits.royaltySyncGas;}
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+   --> src/ZZZRewardsCanonical.sol:137:13:
+    |
+137 |             Records.CanonicalAsset memory r;address token=assets[row];
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> src/ZZZRewardsCanonical.sol:159:9:
+    |
+159 |         Records.CanonicalNode memory r=rewards.canonicalNode(row-nftTotal+1);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+   --> src/ZZZRewardsCanonical.sol:150:13:
+    |
+150 |             Records.CanonicalSeed memory r=rewards.canonicalSeed(id);
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> src/ZZZRewardsCanonical.sol:159:9:
+    |
+159 |         Records.CanonicalNode memory r=rewards.canonicalNode(row-nftTotal+1);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+   --> src/ZZZRewardsCanonical.sol:181:13:
+    |
+181 |             Records.CanonicalAsset memory r=abi.decode(record,(Records.CanonicalAsset));
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> src/ZZZRewardsCanonical.sol:201:9:
+    |
+201 |         Records.CanonicalNode memory r=abi.decode(record,(Records.CanonicalNode));
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+   --> src/ZZZRewardsCanonical.sol:196:13:
+    |
+196 |             Records.CanonicalSeed memory r=abi.decode(record,(Records.CanonicalSeed));
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> src/ZZZRewardsCanonical.sol:201:9:
+    |
+201 |         Records.CanonicalNode memory r=abi.decode(record,(Records.CanonicalNode));
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+   --> src/ZZZNFTCanonical.sol:188:13:
+    |
+188 |             CanonicalNFTRecord memory value = abi.decode(record,(CanonicalNFTRecord));
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> src/ZZZNFTCanonical.sol:196:36:
+    |
+196 |         (uint8 rarity,uint256 item,uint16 value) = abi.decode(record,(uint8,uint256,uint16));
+    |                                    ^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+  --> test/helpers/ProtocolPolicyFixture.sol:14:38:
+   |
+14 |     function bind(address controller,address recipient) internal returns(ZZZProtocolPolicy policy) {
+   |                                      ^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> test/helpers/ProtocolPolicyFixture.sol:24:5:
+   |
+24 |     function recipient(address controller,address next) internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> src/ZZZContributionPricing.sol:366:30:
+    |
+366 |     function historicalValue(uint256 bucket) public view returns(uint256 value) {
+    |                              ^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> src/ZZZMigrationBudget.sol:444:38:
+    |
+444 |     function historicalCompoundValue(uint256 id) public view returns(uint256) {
+    |                                      ^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to pure
+   --> src/ZZZContributionPricing.sol:366:5:
+    |
+366 |     function historicalValue(uint256 bucket) public view returns(uint256 value) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+   --> src/ZZZMigrationBudget.sol:444:5:
+    |
+444 |     function historicalCompoundValue(uint256 id) public view returns(uint256) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZVaultCanonical.sol:202:5:
+    |
+202 |     function canonicalSettle() external onlyHandoff { if (!captured) revert InvalidState(); }
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZVaultCanonical.sol:335:5:
+    |
+335 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZRewardsCanonical.sol:125:5:
+    |
+125 |     function canonicalSettle() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZRewardsCanonical.sol:236:5:
+    |
+236 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+  --> src/ZZZMembership.sol:96:5:
+   |
+96 |     function canonicalAssetCount() external view returns (uint256) { return 0; }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/ZZZMembership.sol:97:5:
+   |
+97 |     function canonicalActivate() external canonicalOnly {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZNFTCanonical.sol:142:5:
+    |
+142 |     function canonicalCapture() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZNFTCanonical.sol:231:5:
+    |
+231 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZFeesCanonical.sol:138:5:
+    |
+138 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+

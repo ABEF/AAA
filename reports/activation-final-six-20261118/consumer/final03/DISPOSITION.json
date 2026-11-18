@@ -1,0 +1,9 @@
+{
+  "adopted": false,
+  "executed_methods": 1,
+  "passed_methods": 1,
+  "counted_as_current_product_coverage": false,
+  "reason": "This hypothetical ungenerated-pin state concerns preparation workflow. The published F6 pin is constant; the extra method is unnecessary for the adopted current-runtime change.",
+  "source_and_raw_logs_retained": true,
+  "no_additional_tests_requested": true
+}

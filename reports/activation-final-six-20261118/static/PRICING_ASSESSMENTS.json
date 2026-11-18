@@ -1,0 +1,1055 @@
+{
+  "schema": 1,
+  "review_date": "2026-11-18",
+  "reviewer": "Codex static_pricing",
+  "scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+  "input_file": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\activation-final-six-20261118\\static-analysis\\PRICING_CONTEXTS.json",
+  "input_sha256": "c9f3212253d4d40cf3a4bc2ae723de8220a01ed43360afc8cb97d8bbf342d9aa",
+  "count": 51,
+  "disposition_counts": {
+    "false_positive": 10,
+    "accepted_risk": 10,
+    "informational": 31
+  },
+  "confirmed_unresolved_defects": [],
+  "referenced_current_source_sha256_lf": {
+    "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916",
+    "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658",
+    "src/ZZZV4SpotPriceFeed.sol": "6e2266b54330080ba06da9860b6975a2918e1debf669d8ebe8ba322abea4cb61",
+    "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+    "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6",
+    "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+  },
+  "production_approved": false,
+  "tests_or_compilers_or_network_or_services_run": false,
+  "assessments": [
+    {
+      "fingerprint": "1e3d28a4868687a6d5193587d618858c252da2c1f7fec53f138a281a7ea5f0e6",
+      "check": "boolean-cst",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32) (src/ZZZContributionPricing.sol#272-287) uses a Boolean constant improperly:\n\t-true (src/ZZZContributionPricing.sol#278)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 12,
+      "disposition": "false_positive",
+      "rationale": "At ContributionPricing:278 the constant expression true?1:0 deliberately writes integer 1 to B_ENTRY. It is an unconditional typed flag assignment after authenticating the immutable Registry Entry, live state, zero prior phase and nonzero amount (275-277). The flag distinguishes reviewed Entry flow from direct Budget flow; begin checks its exact phase/NFT/pool/value and Entry.pricingContext (293-295), finish holds phase 5 for final Entry checks, and endEntry requires that flag (410-420). There is no constant condition masking an alternate reachable security branch.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "efdac8faf2ad3fd140e57b4d3b18afc5f8bdb82d6323322becc2e478b2db79f4",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZContributionPricing._endMaintenanceExecution(uint256) (src/ZZZContributionPricing.sol#165-169):\n\tExternal calls:\n\t- IZZZExecutionOracle(address(oracle)).endExecution() (src/ZZZContributionPricing.sol#167)\n\tState variables written after the call(s):\n\t- delete maintenanceBucket (src/ZZZContributionPricing.sol#168)\n\tZZZContributionPricing.maintenanceBucket (src/ZZZContributionPricing.sol#38) can be used in cross function reentrancies:\n\t- ZZZContributionPricing._beginMaintenanceExecution(uint256,address) (src/ZZZContributionPricing.sol#160-164)\n\t- ZZZContributionPricing._endMaintenanceExecution(uint256) (src/ZZZContributionPricing.sol#165-169)\n\t- ZZZContributionPricing._pair(bytes32) (src/ZZZContributionPricing.sol#253-268)\n\t- ZZZContributionPricing.idleValue(uint256) (src/ZZZContributionPricing.sol#346-352)\n\t- ZZZContributionPricing.valueBucket(uint256,uint256,uint256) (src/ZZZContributionPricing.sol#326-331)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 16,
+      "disposition": "false_positive",
+      "rationale": "The delayed deletion preserves the active maintenance bucket through the final Oracle proof. oracle is immutable and created this Pricing companion (75-77). Its exact endExecution authenticates Pricing, requires matching owner and no manager loan, then _validateExecution and _clearExecution (Oracle:549-552). All validation dependency interactions use view/STATICCALL, and clearing only writes Oracle transient slots; there is no mutable external callback before Pricing deletes maintenanceBucket. A static descendant cannot mutate Pricing, and _beginMaintenanceExecution plus _pair already reject an occupied maintenance bucket (161,256). Public valueBucket reads do not transfer custody or authorize a new operation. This assessment depends on these exact fixed runtimes, not an arbitrary Oracle implementation.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "507fbe15f44e5d115e01c17e8ab7c9efca1e340ee3f8ce9941fecdf65a13ce9c",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZOracle.executionBounds(address).i (src/ZZZOracle.sol#587) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 25,
+      "disposition": "false_positive",
+      "rationale": "Oracle:587 assigns i=0 on token==address(0), i=2 on token==c.zzz, and reverts on every other token. Thus all paths reaching c.bounds[i], c.bounds[i+1] and c.fingerprints[i/2] have an explicit assignment, independently of Solidity zero initialization. Reachable indices are bounds 0/1 or 2/3 and fingerprints 0 or 1, within their fixed arrays. _loadQuote and control/pending checks precede selection; no uninitialized index is consumed.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "2cdbca70ee3cab756b7e2f68b1c40f894208cee31de71d501a6d6a8b2ec057c2",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing.markMaintenance(uint256) (src/ZZZContributionPricing.sol#125-142) ignores return value by (mark.price1,None,None) = IZZZExecutionOracle(address(oracle)).executionBounds(c.key.currency1) (src/ZZZContributionPricing.sol#136)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 27,
+      "disposition": "false_positive",
+      "rationale": "markMaintenance intentionally uses the lower USD18 price for currency1 (Pricing:136), matching maintenanceValues and later checkMaintenance valuation. Normal flow opens an Oracle execution scope first (132-134); it captures both sources, policy, round identities and both lower/upper bounds, while endMaintenance closes with full source/market validation. The ignored upper/fingerprint are not an error or status channel: invalid Oracle bounds revert, and maintenance reuses its captured lower vector rather than minting entrant shares from this tuple. Emergency behavior remains its explicitly selected separate path, with no automatic bypass added.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "198b526b8f36c353077ce0b6abc82ea682c21c98defeedc73ae9ef32df41f2e0",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._executionValue(address,uint256) (src/ZZZContributionPricing.sol#332-335) ignores return value by (lower,None,None) = IZZZExecutionOracle(address(oracle)).executionBounds(token) (src/ZZZContributionPricing.sol#333)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 31,
+      "disposition": "false_positive",
+      "rationale": "_executionValue computes conservative current pair value as floor(amount*lower/10**decimals) (332-334), so only the lower component is semantically needed. Its callers use it only for the exact nonzero active maintenanceBucket (329,350). executionBounds itself enforces captured policy/revision/gas controls and rejects pending swaps, while normal/emergency operation boundaries validate and end the Oracle scope. Dropping the unused upper/fingerprint from this valuation expression does not skip an error flag, approve a price change or weaken the separate whole-operation proof.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "5c5fbe9b7b306fa6843b56602389c57c8ec765f51ef5773f36f911890896d020",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing.markMaintenance(uint256) (src/ZZZContributionPricing.sol#125-142) ignores return value by (mark.price0,None,None) = IZZZExecutionOracle(address(oracle)).executionBounds(c.key.currency0) (src/ZZZContributionPricing.sol#135)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 34,
+      "disposition": "false_positive",
+      "rationale": "At Pricing:135 maintenance records currency0 lower bound for symmetric lower-bound physical portfolio and idle valuation (maintenanceValues); upper is not part of that retained-value baseline. Normal markMaintenance begins the exact Oracle execution first, and endMaintenance ends it only after operation proofs. The Oracle tuple is either validated/captured bounds or a reverting live dual read, not a success code hidden in its ignored fields. Its full policy/round identity checks remain in the Oracle lifecycle. Currency0 decimals are separately captured at 137.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "4ac8cf8fb833520a5ac6657e3aa11ddf1c5566ba39ab3ccfbc2a399644b34f25",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged(bool) (src/ZZZContributionPricing.sol#375-387) has external calls inside a loop: (low,high,fingerprint) = IZZZExecutionOracle(address(oracle)).executionBounds(token) (src/ZZZContributionPricing.sol#382)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.endEntry()\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 45,
+      "disposition": "accepted_risk",
+      "rationale": "endEntry calls _unchanged(false) at Pricing:420, whose per-asset executionBounds reads (382) compare exact lower, upper and fingerprint to each captured Mark before _clear performs Oracle.endExecution full final source proof. The only asset appender is _mark, which deduplicates nonzero lower values and rejects count==34 (245-251); private count starts/clears at zero. Each loop call is a view to the immutable Oracle and pending/control failures revert atomically. Bounded call cost and dependency availability are intentional fail-closed operational risks; this is not maximum-state/provider gas qualification.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "32189ed4b953c47056da6928e690781aa4b8bb011461eec79437a6b52af04db3",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged(bool) (src/ZZZContributionPricing.sol#375-387) has external calls inside a loop: (low,high,fingerprint) = IZZZExecutionOracle(address(oracle)).executionBounds(token) (src/ZZZContributionPricing.sol#382)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 48,
+      "disposition": "accepted_risk",
+      "rationale": "begin uses _unchanged(true) at Pricing:308 after freezing bucket/limits and authenticating the Entry/direct Budget context. Its executionBounds call for each captured asset verifies that pull/conversion callbacks did not replace the original lower/upper/fingerprint; validateExecution runs first when true. The asset list is private, deduplicated and limited to 34 by _mark, so no caller supplies an unbounded iterable. STATIC view calls cannot alter loop contents. A dependency failure intentionally reverts this contribution; finite scope does not prove every allowed workload fits a deployment gas profile.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "a0ea87338b29338529e946578f6090ccccc258980238cbabd07e63927b5653b5",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged(bool) (src/ZZZContributionPricing.sol#375-387) has external calls inside a loop: (low,high,fingerprint) = IZZZExecutionOracle(address(oracle)).executionBounds(token) (src/ZZZContributionPricing.sol#382)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 49,
+      "disposition": "accepted_risk",
+      "rationale": "finish calls _unchanged(false) at Pricing:396 after phase 4 and _putUnchanged. Its executionBounds loop checks every saved lower/upper/fingerprint, while preceding phase-three contributionNav validates complete live execution and intervening fixed finish work is STATIC/local arithmetic (353-361,391-396). Count is created only by bounded/deduplicated _mark and cleared by _clear. The fixed external view calls cost gas and fail closed; exact caller ordering and runtime pins are material assumptions, and broader workload/provider admission stays open.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "5dbeb4c835250658faf96521c4ce63dfc6087863a6409b2f751a4a538efaf7cd",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged(bool) (src/ZZZContributionPricing.sol#375-387) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#383-384)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.endEntry()\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 51,
+      "disposition": "accepted_risk",
+      "rationale": "In endEntry the second loop call is Oracle.tokenDecimals (Pricing:383-384), used to prove 10**digits still equals each saved scale before final close. Oracle.tokenDecimals reads the active admitted policy and its digits were restricted to <=18 at setDualFeed, so exponent is 0..18 and cannot overflow uint256. The <=34 private asset list and immutable view target bound iteration and prevent mutation during calls. Reverting/unavailable dependencies or gas exhaustion remain an intentional operational refusal, not a guaranteed workload admission.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "795ef1bb01873740363d7d81e7277f4ddfc2832c8145f9e29647396a6c3e355f",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged(bool) (src/ZZZContributionPricing.sol#375-387) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#383-384)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 54,
+      "disposition": "accepted_risk",
+      "rationale": "begin checks tokenDecimals inside the saved-mark loop (Pricing:384) after validateExecution and Entry/direct-Budget context admission. Comparing 10**digits with the original m.scale detects policy/scale changes after token callbacks; admitted assetDecimals<=18 makes 10**digits<=1e18. _mark deduplicates and caps the private list at 34, and all these calls are STATIC views to immutable Oracle. The deliberate bounded external-call loop still needs selected-workload gas/provider qualification; no default or margin is increased by this assessment.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "1efa525a7f2be09f607868d8040127d0b615efa79f5dc839506a68ba3704d83f",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZContributionPricing._unchanged(bool) (src/ZZZContributionPricing.sol#375-387) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#383-384)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 55,
+      "disposition": "accepted_risk",
+      "rationale": "finish rechecks the Oracle tokenDecimals-derived scale for each captured token at Pricing:384; that scale feeds every lower/upper valuation, so eliminating this call would remove a distinct policy consistency check. Oracle admission bounds digits<=18, making the exponent safe and the result nonzero. _mark alone appends with a 34-entry cap and _clear resets it. Loop/dependency cost remains an accepted fail-closed availability condition; preceding phase-three proof and later endEntry/_clear source validation remain essential.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "5f52c74ceb4a7be67f817b0a749cf28e70d4fd631a51228c0645f2a88ca7b0ee",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZOracle._decodeRound(bytes,uint256,ZZZOracle.SourcePolicy,address) (src/ZZZOracle.sol#219-240) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- round == 0 || round > type()(uint80).max || answered > type()(uint80).max || answered < round || answer <= 0 || started == 0 || started > updated || updated == 0 || updated > block.timestamp || block.timestamp - updated > source.maxAge (src/ZZZOracle.sol#233-235)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 62,
+      "disposition": "accepted_risk",
+      "rationale": "Oracle:_decodeRound intentionally rejects zero/out-of-range uint80 rounds, answered<round, nonpositive answer, unordered started/updated, future updated and age>maxAge (233-235). Short-circuit updated>block.timestamp precedes subtraction, so accepted subtraction cannot underflow; started>0 and started<=updated also forbid a zero update. Source admission requires 0<maxAge<=1 day and decimals<=18, and normalization checks answer<=1e36/10**(18-digits) before multiplication. Time is freshness policy, not entropy. Chain clock/feed liveness and independent feed admission remain external operating risks.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "11ac6e714ed9c98ed52e32a655fecbbe865441d4b86ba95cbcede4f0d261821c",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZV4SpotPriceFeed._eth(ZZZV4SpotPriceFeed.Config) (src/ZZZV4SpotPriceFeed.sol#106-116) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- round == 0 || round > type()(uint80).max || answered > type()(uint80).max || answered < round || answer <= 0 || s == 0 || s > u || u > block.timestamp || block.timestamp - u > c.maxETHAge (src/ZZZV4SpotPriceFeed.sol#110-111)\n",
+      "referenced_paths": [
+        "src/ZZZV4SpotPriceFeed.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZV4SpotPriceFeed.sol": "6e2266b54330080ba06da9860b6975a2918e1debf669d8ebe8ba322abea4cb61"
+      },
+      "current_index": 67,
+      "disposition": "accepted_risk",
+      "rationale": "SpotFeed:_eth consumes the provider original s/u values and enforces s>0, s<=u, u<=block.timestamp and timestamp-u<=maxETHAge (110-111); therefore u>0 and subtraction is safe. Constructor bounds maxETHAge to (0,1 day], _configuration rechecks pins/decimals, and answer is positive, normalized only after answer<=1e36/factor. Returned started/updated are not replaced by observation time. This intended block-clock freshness dependency does not establish pool last-trade age, market independence or production liveness.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "38dc230f0f0fb941fb1d213d799a01fc5f02e8b72f5648fb6845b3d74a3d542c",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZOracle._sequencerCheck(uint256) (src/ZZZOracle.sol#256-261) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- answer != 0 || block.timestamp - startedAt <= SEQUENCER_GRACE (src/ZZZOracle.sol#260)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 68,
+      "disposition": "accepted_risk",
+      "rationale": "Oracle:_sequencerCheck rejects a down status or recovery elapsed <=1 hour (256-260), requiring strictly more than the grace. _sequencerData has already proved startedAt!=0 and startedAt<=block.timestamp, so subtraction cannot underflow or admit a future recovery. There is no random selection or payout based on small timestamp bias. This retained clock/uptime-provider dependence needs actual chain liveness review; zero constructor feed remains its explicitly permitted configuration, not a new fallback.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "0eef616aac6b2a3497fce4087d197655bd0540b16da407de6859131d012bc4ff",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZOracle._sequencerData(address,bytes32,uint256) (src/ZZZOracle.sol#136-149) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- round == 0 || round > type()(uint80).max || answeredRound > type()(uint80).max || answeredRound < round || (answer != 0 && answer != 1) || startedAt == 0 || startedAt > block.timestamp || updated < startedAt || updated > block.timestamp (src/ZZZOracle.sol#144-146)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 69,
+      "disposition": "accepted_risk",
+      "rationale": "Oracle:_sequencerData authenticates source codehash, live decimals==0 and exact 160-byte tuple, then validates rounds, status0/1, nonzero/nonfuture startedAt and startedAt<=updated<=block.timestamp (138-146). These comparisons deliberately distinguish a status transition from periodic price publication; a healthy unchanged status has no updatedAt age expiry (147-148). The separate recovery-grace check remains at 260. Timestamp and pinned-proxy upstream behavior are governance/operating dependencies; a codehash pin alone does not prove them immutable or qualified.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "4d4aa07548f551d6cfbb186461d7e3a0c7f8de0cdd7e4107073040f1054a15b5",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._loadQuote.asm_0.words() (src/ZZZOracle.sol#372-376) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#372-376)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 70,
+      "disposition": "informational",
+      "rationale": "The local words helper in _loadQuote copies exactly count 32-byte words from fixed Oracle transient indices into compiler-allocated destinations. Calls are (c,0,7), (fingerprintsPtr,11,2), (boundsPtr,13,4) (377-379); additional fixed writes load digits17 and pending38. Offsets use i<count, address dst+32*i and base+src+i. _executionLength first admits only 0 or 49*32; the sole writer _saveExecution uses canonical typed abi.encode(Execution). No untrusted src/count/destination or external call occurs. This is a current direct projection review, not the historical generic decoder rationale.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "45daa30159cdb3fbe3d1bdaf497e99aec8acedd4e464a149f8a41c99a7047069",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._decodeRound(bytes,uint256,ZZZOracle.SourcePolicy,address) (src/ZZZOracle.sol#219-240) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#225-232)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 75,
+      "disposition": "informational",
+      "rationale": "Oracle:_decodeRound first requires offset<=encoded.length and encoded.length-offset==160 (221), then assembly reads exactly five words at encoded+32+offset through +128. Calls are ordinary160-byte response offset0 or bounded320-byte proof offset160; all reads stay inside the proven byte payload. It loads wide round/answered values before checking uint80 bounds and narrowing; signed answer remains int256. Timestamp ordering/age, positive answer and checked <=1e36 normalized result are enforced in Solidity at233-239. No short return-data padding is accepted.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "6f657645e791331a69657e8ec002e89130b53b1daeaa2fd0a0e2d7a35dd76760",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZV4SpotPriceFeed._roundId(ZZZV4SpotPriceFeed.Config,MarketState,bytes32) (src/ZZZV4SpotPriceFeed.sol#179-195) uses assembly\n\t- INLINE ASM (src/ZZZV4SpotPriceFeed.sol#182-192)\n",
+      "referenced_paths": [
+        "src/ZZZV4SpotPriceFeed.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZV4SpotPriceFeed.sol": "6e2266b54330080ba06da9860b6975a2918e1debf669d8ebe8ba322abea4cb61"
+      },
+      "current_index": 76,
+      "disposition": "informational",
+      "rationale": "SpotFeed:_roundId reconstructs the exact nested ABI encoding of (bytes slot0Encoding,uint256 liquidity): words [64, liquidity,128,sqrt,tick,protocolFee,lpFee], total224bytes. Liquidity is masked128, sqrt160, fee fields24, and signextend(2,tick) reproduces signed int24 ABI padding. It hashes temporary memory from the free pointer without retaining it or crossing an external call; no allocation pointer update is needed for this temporary buffer. Outer abi.encode still binds this reader, chain,poolId,reviewHash and ETH identity; uint80 truncation and zero->1 preserve the specified synthetic ID behavior, not monotonic feed rounds.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "d8612498717581c139bc89b2d2d4f3eca0180f9074fb80cfd4f81cfa6771750b",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._basisWord(uint256) (src/ZZZContributionPricing.sol#179-182) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#181)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 77,
+      "disposition": "informational",
+      "rationale": "Pricing:_basisWord tloads BASIS_WORDS+index in its own transient domain (179-181). Every call site supplies one of fixed constants B_POOL..B_ENTRY_POLICY_FINGERPRINT (0..12); no public function accepts a raw index. Reads cast only where the matching typed writer stored the constrained representation. No memory is touched and no ordinary storage is reinterpreted. _clearBasis clears the same13 slots and EIP-1153 also limits lifetime to the transaction; this requires the fresh exact runtime and is not a persistent-state migration mechanism.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "61e6c1dde0eabd7a89007ccf05a373c35102743dd885d2ae1a03e56f7de3ab66",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZV4SpotPriceFeed._read(address,bytes,uint256) (src/ZZZV4SpotPriceFeed.sol#68-77) uses assembly\n\t- INLINE ASM (src/ZZZV4SpotPriceFeed.sol#70-73)\n\t- INLINE ASM (src/ZZZV4SpotPriceFeed.sol#76)\n",
+      "referenced_paths": [
+        "src/ZZZV4SpotPriceFeed.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZV4SpotPriceFeed.sol": "6e2266b54330080ba06da9860b6975a2918e1debf669d8ebe8ba322abea4cb61"
+      },
+      "current_index": 79,
+      "disposition": "informational",
+      "rationale": "SpotFeed:_read STATICCALLs with the fixed150000 SOURCE_CALL_GAS, sends exactly input.length bytes from input+32, and initially copies zero return bytes. It then rejects failure or returndatasize!=expected size, allocates exactly size bytes and copies only that proven length. All private callers select32/128/160; no caller-controlled large return buffer is copied. State/round consumers separately validate wide words, canonical widths, prices and pins. Temporary return data is read before any other call; dependency refusal intentionally propagates.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "73110bf800b5c5932b626d161e7466c9de70db7e12957f224d5de42e20afb304",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._boundedRead(address,bytes4,uint256,address,uint256) (src/ZZZOracle.sol#183-197) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#188-193)\n\t- INLINE ASM (src/ZZZOracle.sol#196)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 80,
+      "disposition": "informational",
+      "rationale": "Oracle:_boundedRead constructs only the four-byte selector at the free-memory pointer and STATICCALLs with fresh governed _sourceGas; no return payload is initially copied. After success and exact expectedLength it allocates result and copies that exact amount. Private call sites request fixed32/160/256 lengths, so a hostile oversized or short payload reverts without allocating its size. selector is bytes4 in high-order ABI position, consistent with a4-byte call. The input scratch is temporary and overwritten only after the call completes. Source/codehash/decimals and tuple values remain checked by callers.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "d63542175bf5edb99c9aba60fb6b0730d0513ba9a7408b7ac3eb88eec9630779",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._assetAt(uint256) (src/ZZZContributionPricing.sol#224-227) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#226)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 81,
+      "disposition": "informational",
+      "rationale": "Pricing:_assetAt computes ASSET_LIST+1+index and masks the loaded word to160bits (224-226). Its only callers iterate i<_assetCount in _unchanged and _clear; no public arbitrary-index access exists. _appendAsset writes matching masked addresses and is reached only through _mark, which caps private count at34 and deduplicates positive Marks. Thus reachable index is0..33 and fixed-slot addition is bounded modulo256; collision with domain hashes requires a cryptographic hash collision, not arithmetic wrap chosen by a caller. It performs no memory or custody operation.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "c76d5152190ef205d309ce4f74574ef99392182b6cc09d60a40008c48ffb6721",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._spotHash(MarketState) (src/ZZZOracle.sol#492-501) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#493-500)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 82,
+      "disposition": "informational",
+      "rationale": "Oracle:_spotHash encodes exactly the first4 static MarketState words: uint160 sqrt mask, signextend(2,int24 tick), two uint24 fee masks, then hashes128bytes of free-pointer temporary memory. This equals abi.encode of those four typed fields, including negative-tick padding; liquidity is intentionally excluded only for the destination relaxation in _validateExecution (532-535). endManagerExecution enables omitLiquidity only for c.venue.poolId==c.destination after full validation; source markets retain full _marketHash proofs and same-core reference destinations are rejected at566. Hash omission cannot select a new venue or price.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "a1a08ef24ffbc49c94752bc7830cb478f1e241837ef3fa96892d37a1e5de51a6",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._markSlot(address) (src/ZZZContributionPricing.sol#194-201) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#196-200)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 83,
+      "disposition": "informational",
+      "rationale": "Pricing:_markSlot writes only scratch bytes0..63: masked160-bit token and MARK_DOMAIN, and hashes the complete64bytes (196-199). This is exact abi.encode(address,bytes32) mapping-style domain derivation, with no dependence on dirty address high bits. Scratch space0..63 is permitted memory-safe temporary storage and the free-memory pointer at64 is untouched. Mark data uses this hash plus0,1,2 in transient state; asset/base domains differ. No user may supply an arbitrary raw transient slot, apart from the assumed collision resistance of keccak256.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "1f9e45382bc97a905f59a6e71f962497c2986d6f7bec2583b34b9f26491963d0",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._loadExecution.asm_0.words() (src/ZZZOracle.sol#334-338) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#334-338)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 84,
+      "disposition": "informational",
+      "rationale": "The _loadExecution words helper iterates fixed count with i<count and writes dst+32*i from Oracle tload(base+src+i). Current call sites partition canonical ABI indices0..48: controls0..6, rounds7..10, fingerprints11..12, bounds13..16,digits17, markets18..35, flags/destination36..39, venue40..48. Destinations are compiler-allocated fields/nested pointers of Execution memory, not external pointers. Record length and canonical sole writer gate entry. This local helper neither decodes arbitrary external data nor grants authority; its exact compiler-specific layout is reviewed by the parent loader rationale.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "f34120450e91890d16733ff63f570005a34b34bf9b17398a0cea8e3d01d8bca2",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._clearBasis() (src/ZZZContributionPricing.sol#187-192) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#189-191)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 85,
+      "disposition": "informational",
+      "rationale": "Pricing:_clearBasis uses i=0; i<13; i++ to zero precisely BASIS_WORDS+[0..12] (189-190), matching every named basis constant and writer. It neither clears adjacent domain hashes nor accepts caller-selected lengths. _clear first closes/validates Oracle execution, clears all enumerated marks/assets, then this basis; same-transaction sequential operations therefore do not inherit phase, limits or entry flag. Reverting at any step rolls back the transaction. No memory or persistent layout is changed by this bounded loop.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "2bd35802c88a8e20ed1d5463172b9d8e359430433d0b24b877e3e9bfcbaf29d7",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._roundHash(ZZZOracle.Round) (src/ZZZOracle.sol#470-480) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#471-479)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 86,
+      "disposition": "informational",
+      "rationale": "Oracle:_roundHash writes exactly5 ABI words/160bytes at the free pointer: uint80 round mask, full signed answer word, started,updated, uint80 answered mask. This equals abi.encode(Round) for the fully static five-field struct, including canonical narrow padding; neither timestamps nor answer are omitted. Buffer memory is temporary, no pointer escapes, and no external call occurs before keccak256. All Round producers are typed/canonical after _decodeRound validation. A hash asserts observation identity, not feed independence or truth.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "b46de31c390fcca9864e8baca39c20943965dc7ac5a0e503eb6910868dfec25e",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._readMark(address) (src/ZZZContributionPricing.sol#202-211) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#204-210)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 87,
+      "disposition": "informational",
+      "rationale": "Pricing:_readMark loads three transient slots and writes a compiler-allocated Mark memory struct: lower=value&((1<<128)-1), upper=value>>128, scale at+64 and fingerprint at+96. In memory even uint128 fields occupy full32-byte words, matching the four mstore destinations. _writeMark packs the two128bit values into the same first word, and _mark ensures0<lower<=upper<=uint128.max before any stored Mark. Zero Marks intentionally signal absent/cleared records. The reader has no external input pointer, storage alias or persistent-layout compatibility promise.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "7671da68040f5a6dc76b694013bd1d648b7d9194b00c46a5fac14502b4747f9c",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._basisSet(uint256,uint256) (src/ZZZContributionPricing.sol#183-186) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#185)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 88,
+      "disposition": "informational",
+      "rationale": "Pricing:_basisSet stores into BASIS_WORDS+index and has only fixed constant call sites0..12. Values are explicitly typed or derived locally: address/narrow flags/phase/limits, captured prices/policy hashes and checked accounting values; no exposed raw slot or external delegatecall writer exists. B_LIMITS preserves low16 slippage/high16 contribution cap via uint32, both<=1000 at capture; phase transitions require the current phase. Assembly itself performs no unchecked financial arithmetic, allocation or external call. Matching13-word clear prevents sequential-operation residue.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "1b9a29a776769089925aec623ece92edfeca093abb478ab5261f3fb88362ebbd",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._assetCount() (src/ZZZContributionPricing.sol#220-223) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#222)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 89,
+      "disposition": "informational",
+      "rationale": "Pricing:_assetCount reads exactly the private ASSET_LIST transient count slot and touches no memory. The only increments occur in _appendAsset reached after _mark checks count==34 and deduplicates lower!=0; count starts0, increments by1 and is reset0 by _clearAssets. Consequently reachable count<=34 without arithmetic overflow, rather than accepting arbitrary tload state. Contract-local transient storage is separate from Oracle domains and other contracts; no delegatecall path exists to supply hostile writes.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "e11bbf3a4dc0c2c1f06f3451317b5d72a576a1d56fe12943b086ebe9bff1ca60",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._saveExecution(ZZZOracle.Execution) (src/ZZZOracle.sol#384-395) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#388-394)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 90,
+      "disposition": "informational",
+      "rationale": "Oracle:_saveExecution obtains canonical abi.encode(c) and requires length==49*32==1568 before writes. The assembly loop steps bytes i by32 for i<length, storing each encoded payload word at base+i/32; valid i=0..1536 gives slots0..48 exactly. _executionLength permits previous only0/1568, so the trailing clear loop cannot overrun another region (and is empty for current fixed shape); length is written last. Its callers accept only captured/typed scopes under exact Pricing/Manager authority. No raw byte payload or arbitrary length is public.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "cc7bc8fd0819ba3f2f87cdc75c58103b46450742d1035ca0142f452968fa804d",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._loadExecution() (src/ZZZOracle.sol#328-358) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#333-357)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 91,
+      "disposition": "informational",
+      "rationale": "Current Oracle:_loadExecution directly reconstructs compiler-allocated memory, not abi.decode. Execution scalar fields are at c+[0..192]; pointer slots at224(rounds),256(fingerprints),288(bounds),352(markets),512(venue), with digits at320 and loan/swapped/pending/destination at384/416/448/480. It copies ABI0..6 to scalars,7..10/11..12/13..16 through those array pointers,17 to digits. Each of2 market pointers receives ABI18+9*i scalar3, nested origin5 through+96 pointer, and expected at+128; flags36..39 and venue40..48 map analogously. Total7+4+2+4+1+18+4+9=49. Sole typed writer/exact length exclude noncanonical attacker encodings. This compiler-specific proof requires fresh runtime/source pins; no old layout is relabelled.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "ad7ee0ded4725140be50217caa4384beaab05f0a615320e4816401f27a0164ec",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._writeMark(address,ZZZContributionPricing.Mark) (src/ZZZContributionPricing.sol#212-219) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#214-218)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 94,
+      "disposition": "informational",
+      "rationale": "Pricing:_writeMark packs uint128 lower in bits0..127 and uint128 upper shifted128 in bits128..255, then scale/fingerprint in the next2 slots. These disjoint bit ranges preserve every bit: lower|upper<<128, inverse mask128/shift128 in _readMark. _mark rejects zero lower, upper<lower or upper>uint128.max before constructing typed Mark; _clear only supplies all-zero Mark. Memory fields are separate32byte words even though their Solidity types are narrow. No rounding, truncation of an admitted bound, unchecked liability math or external call is introduced.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "9335a5d3ed4274ee2f3be3d4f903f021a9b8f1221565abe657b920d07bf14a00",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._clearExecution() (src/ZZZOracle.sol#396-402) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#398-401)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 96,
+      "disposition": "informational",
+      "rationale": "Oracle:_clearExecution obtains only validated length0/1568, zeroes exactly its49 transient payload words with byte indices0..1536 and slot index i/32, then zeros EXECUTION_LENGTH. EndExecution first verifies exact owner, no outstanding loan and full live controls/source/market state; owned Manager close similarly validates before clearing. Empty contexts clear no payload beyond their admitted length. This explicit clear is required for repeated operations within one transaction even though transient state also expires at transaction end. No persistent storage or unrelated contract domain is touched.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "ef88236ffe3e2db14b825fc73b7edfbb86010a6169aab7522dc81856257844d5",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._loadQuote() (src/ZZZOracle.sol#366-383) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#371-382)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 97,
+      "disposition": "informational",
+      "rationale": "Oracle:_loadQuote projects exactly15 canonical words needed by quote/control paths: scalar controls ABI0..6 ->c0..192, fingerprints11..12 via c+256 pointer, bounds13..16 via c+288 pointer, digits17 ->c+320 and pending38 ->c+448. The 7+2+4+1+1=15 writes omit market/source-round details only from read-only getters. Callers run _executionControls and pending rejection; mutable boundary validate/before/after/end methods still use complete _loadExecution and full proofs. The private canonical sole writer and0/1568 length check gate all reads. This is a fresh compiler-memory projection with exact offsets, not historical generic ABI decoding.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "81739e9e1f237681120c7f8ad8e0c40a6824465ff5534b1f6aedc9fb3304110b",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._appendAsset(address) (src/ZZZContributionPricing.sol#228-235) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#230-234)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 99,
+      "disposition": "informational",
+      "rationale": "Pricing:_appendAsset tloads the private count, stores masked160bit token at ASSET_LIST+1+count and increments count. Its only call is _mark after nonzero validated bounds, duplicate lower check and count==34 refusal; starting count0 and unit increments imply this writer sees0..33 and produces1..34, so add(count,1) cannot overflow. No user chooses count or raw slot. All marked addresses receive a matching Mark before enumeration, and _clearAssets clears the same populated list. Assembly performs no external call or token movement.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "c098ecca5920f2d7da48e1609f83a93a86dcef226abbd94d5d41d2b07b08786d",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._executionWord(uint256) (src/ZZZOracle.sol#359-362) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#361)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 101,
+      "disposition": "informational",
+      "rationale": "Oracle:_executionWord only tloads EXECUTION_WORDS+index, touching neither memory nor persistent state. Current source has no call site (the separate dead-code finding117 is accurate), so no externally reachable index or authority decision depends on it. Existing projection/full loaders directly select canonical fixed words instead. Keeping this unreachable private helper is source cleanup debt, not an arbitrary read endpoint or reason to recompile frozen source. Future reuse would require a new bound/index review.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "842b859d4c733847726cc794fd7e04e2d93be509223d79332f277e7ad84ccd9f",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._boundedExecutionRead(address,bytes,uint256,address,uint256) (src/ZZZOracle.sol#455-469) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#462-465)\n\t- INLINE ASM (src/ZZZOracle.sol#468)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 102,
+      "disposition": "informational",
+      "rationale": "Oracle:_boundedExecutionRead passes the existing bytes input payload/length to gas-capped STATICCALL and copies no return bytes until success plus exact expected length are verified. Call sites select fixed320-byte executionProof,128-byte slot0 or32-byte liquidity; new bytes(expected) allocates exact copied capacity and returndatacopy begins at payload+32. A hostile oversized/revert response cannot force an unbounded copy. _sourceGas is fresh per STATIC chain, not a mutable-boundary cache; identity/field/market proof checks still run in callers.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "d79b688494330cdea00e36f30261a65e9eb8812992446cf21b782116db11efd7",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._executionLength() (src/ZZZOracle.sol#322-326) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#324)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 103,
+      "disposition": "informational",
+      "rationale": "Oracle:_executionLength tloads the fixed private EXECUTION_LENGTH slot and accepts only0 or EXECUTION_BYTES=49*32=1568; every other value reverts. _saveExecution alone writes1568 after exact canonical encoding and _clearExecution writes0. No public slot setter or delegatecall path exists, so the apparent assembly read cannot admit attacker-chosen record length. This length guards every full/partial load and clear, and the new direct projection has not weakened its shape requirement.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "a0127a74aeeae561c734d1d9ae7f0657f141177faa29f501a97e965fd9e67933",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle._marketHash(MarketState) (src/ZZZOracle.sol#481-491) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#482-490)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 104,
+      "disposition": "informational",
+      "rationale": "Oracle:_marketHash builds the exact five-word static ABI for MarketState: sqrt masked160; int24 tick signextended from byte2; protocol/lp fees masked24; liquidity masked128. Hash length160 includes every field and matches abi.encode(state), including negative ticks and full-width liquidity. It uses free-pointer temporary bytes without retaining a pointer or invoking another call, so no allocation bump is needed. Exact source/venue proofs compare this hash; collision resistance remains an assumption and identity hashes do not qualify real market depth.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "b5499c9e27cb8b2836ecca5585a5f5d72330c05e4d1b84ecb8702173a573d62d",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZContributionPricing._clearAssets() (src/ZZZContributionPricing.sol#236-243) uses assembly\n\t- INLINE ASM (src/ZZZContributionPricing.sol#238-242)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 105,
+      "disposition": "informational",
+      "rationale": "Pricing:_clearAssets reads its private count<=34, zeros entries ASSET_LIST+1+i for i<count, then zeroes count. _clear has already zeroed every Mark using the same enumeration and only then invokes _clearAssets and _clearBasis (422-425), so list deletion cannot orphan a valid same-transaction Mark. Count is reachable only from bounded _appendAsset and has no arbitrary setter. The loop does not touch mark hash domains or memory; a revert restores all prior writes atomically.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "06b9e2ecff44eb4bb6d370c1ba94b84e48fbe94eb22b83f66ec2f883986c2394",
+      "check": "dead-code",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZOracle._executionWord(uint256) (src/ZZZOracle.sol#359-362) is never used and should be removed\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 117,
+      "disposition": "informational",
+      "rationale": "Source search confirms _executionWord has only its private definition at Oracle:359-362 and no call sites. Current full/quote loaders directly tload fixed words, leaving this helper unused after the optimization. This is accurate maintainability feedback with no reachable runtime behavior or missing validation. Removing it would be an unrelated frozen-source/build change, so this review records it without editing source or reclassifying old artifacts.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "1ea057c627e3fe51c2281fb05c1db7ad697a905712c91cc68502d404746e34e4",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLPBalanceMath (src/ZZZLPBalanceMath.sol#36-292) should inherit from IExecutionFixedZZZ (src/ZZZOracle.sol#13)\n",
+      "referenced_paths": [
+        "src/ZZZLPBalanceMath.sol",
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 123,
+      "disposition": "false_positive",
+      "rationale": "ZZZLPBalanceMath implements external view fixedZZZ() returns(address) at51-58, exactly the IExecutionFixedZZZ selector/return used by Oracle:_fixedZZZ. It resolves Registry via immutable balancer parent Access, checks Registry/assets code, and returns nonzero code-bearing ZZZ from ActivationAssets. Nominal inheritance from this local ABI facade adds compile-time notation but no runtime authentication; the required function and fixed binding are present. The read cannot set a token or move custody.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "e99b6189d949152bed88a3a09cd56280947c48922307029dc1631be98464ef01",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZActivationEntry (src/ZZZActivationEntry.sol#21-146) should inherit from IPricingEntry (src/ZZZContributionPricing.sol#12-14)\n",
+      "referenced_paths": [
+        "src/ZZZActivationEntry.sol",
+        "src/ZZZContributionPricing.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZActivationEntry.sol": "933c3e2c38e346900e030491c6c26f9b08745ddc3c19be9eef412147a2bb59f6",
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916"
+      },
+      "current_index": 124,
+      "disposition": "false_positive",
+      "rationale": "ZZZActivationEntry.pricingContext(uint256,bytes32,uint256,uint256) external view returns(bool) at88-94 matches the facade exactly. It authenticates caller as the bound Pricing, requires live context owner/NFT/pool/gross match, bounds amount0/1 to128, checks packed exact amounts and current NFT ownership. executeReviewed is nonReentrant and constructs/clears context immediately around the Vault call (129-136). Structural ABI dispatch is intentional; missing explicit inheritance does not remove the function or these checks.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "4db2e669986e22a053ed9ffbc0aaecb56e4e0849d33c2b07543d2d1445536655",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#33-387) should inherit from IPricingExecutionManager (src/ZZZContributionPricing.sol#11)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol",
+        "src/ZZZLiquidityManager.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916",
+        "src/ZZZLiquidityManager.sol": "a9befaf12805877aeefdc783eac87a6a609254c15876d86e71ff60ebb4e8682d"
+      },
+      "current_index": 127,
+      "disposition": "false_positive",
+      "rationale": "ZZZLiquidityManager.executionStrategy() external view returns(address) at75 returns address(balancingRouter.balanceMath()), matching IPricingExecutionManager. balancingRouter is immutable and constructed as the Manager child; Pricing:_executionStrategy resolves the installed LIQUIDITY module then this typed getter. No caller chooses the arithmetic implementation or receives write authority through this read. Optional explicit inheritance of the one-method facade does not change selector compatibility or protect against an absent function; it exists in the exact source.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "885fd8b8011ac962842910f2cc6552355f7a9e3ba3d4610ea759e1be93fb9414",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZLPBalanceMath (src/ZZZLPBalanceMath.sol#36-292) should inherit from IPricingMaintenanceMath (src/ZZZContributionPricing.sol#21-28)\n",
+      "referenced_paths": [
+        "src/ZZZContributionPricing.sol",
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZContributionPricing.sol": "272697ccc02920c800f1fe7d2b35c7d327d80476eaed5ae310e43a2c5d190916",
+        "src/ZZZLPBalanceMath.sol": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725"
+      },
+      "current_index": 131,
+      "disposition": "false_positive",
+      "rationale": "Math implements each exact IPricingMaintenanceMath signature: compoundReady(bucket,budget)204, validateRebalance198, validateResidualClose193, maintenanceValues157, checkMaintenance166 and assertPortfolioUtilization178. Return types and view mutability match. The methods derive Access from immutable balancer and expose read-only validation/arithmetic; Pricing authenticates Budget before forwarding its operation-specific inputs. No interface function is missing, and adding nominal inheritance would not add authorization or turn these views into custody paths.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "a73e99c3751288b33564bbc11beb54bc1dd8f52d739ec22b31a4c94212f192ee",
+      "check": "unused-state",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle.QUOTE_PENDING_WORD (src/ZZZOracle.sol#82) is never used in ZZZOracle (src/ZZZOracle.sol#22-637)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 141,
+      "disposition": "informational",
+      "rationale": "QUOTE_PENDING_WORD=38 is genuinely unused as a Solidity symbol. Current _loadQuote uses literal transient index38 at381 and writes it to Execution.pendingSwap memory offset448; executionBounds/executionReferenceX96 reject that flag before using captured quotes. Thus the field is present despite the unused constant, and ABI index38 follows managerLoan36, swapped37. This is source maintainability debt, not a missing pending-swap guard. Exact layout changes require renewed review.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "d7cc985cd68c777611bd3707049b6636763007e0eca91034785a671f3262ef5a",
+      "check": "unused-state",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle.QUOTE_FINGERPRINT_WORD (src/ZZZOracle.sol#79) is never used in ZZZOracle (src/ZZZOracle.sol#22-637)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 142,
+      "disposition": "informational",
+      "rationale": "QUOTE_FINGERPRINT_WORD=11 is unused by name because _loadQuote directly copies ABI11..12 via words(...,11,2,base) at378. These words follow seven controls and four round hashes and map to fingerprints pointer c+256. executionBounds then reads fingerprint i/2 for ETH or fixedZZZ, and Pricing compares it to the saved Mark. The unused declaration does not mean fingerprints were omitted; retaining it is informational cleanup only.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "0606ffe4129c7bb0cbaca5aad008d9fbe3a6fd927ff74262e65705294cd32cf7",
+      "check": "unused-state",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle.QUOTE_BOUNDS_WORD (src/ZZZOracle.sol#80) is never used in ZZZOracle (src/ZZZOracle.sol#22-637)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 143,
+      "disposition": "informational",
+      "rationale": "QUOTE_BOUNDS_WORD=13 is unused by name while current _loadQuote directly copies four words from13 at379 into c.bounds via its c+288 pointer. Canonical ordering is controls7+roundHashes4+fingerprints2=13, then four bound values ETH low/high and ZZZ low/high. executionBounds indexes only0/1 or2/3 after token/control checks. This stale symbolic constant is maintenance feedback; no bound is absent or replaced by a new policy.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    },
+    {
+      "fingerprint": "4781e5c4a77887fbbdcde757c134dd33224ca2f45f1d86f94a7ab08e313c576b",
+      "check": "unused-state",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZOracle.QUOTE_DIGITS_WORD (src/ZZZOracle.sol#81) is never used in ZZZOracle (src/ZZZOracle.sol#22-637)\n",
+      "referenced_paths": [
+        "src/ZZZOracle.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZOracle.sol": "16241c9f368c605d115b13b2e1220dd8a8ee83cafdfd3cc8f33e3d7a3cc17658"
+      },
+      "current_index": 144,
+      "disposition": "informational",
+      "rationale": "QUOTE_DIGITS_WORD=17 is unused by name because _loadQuote directly reads base+17 into c+320 at380. Seventeen preceding ABI words are7controls+4rounds+2fingerprints+4bounds; digit is the captured fixedZZZ uint8 admitted<=18. executionReferenceX96 consumes that digit, and full _validateExecution compares current token decimals with captured digits. The unused constant is cleanup debt, not a missing scale check or unsafe exponent.",
+      "reviewer": "Codex current-source reviewer / static_pricing subagent",
+      "current_scope": "Fresh read-only internal source assessment of all 51 actual PRICING_CONTEXTS Slither rows at activation-final-six-20261118 / explicit Factory6; frozen production source. Not independent audit, exploit-absence proof, maximum-state/market/provider/release approval, or execution of any suite.",
+      "assessment_basis": "Exact detector description and current referenced source inspected individually; historical rationale was context only.",
+      "referenced_source_hashes_verified": true
+    }
+  ]
+}

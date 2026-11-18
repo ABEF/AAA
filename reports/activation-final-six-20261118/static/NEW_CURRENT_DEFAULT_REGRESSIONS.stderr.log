@@ -1,0 +1,7 @@
+test_ci_uses_current_default_and_complete_actual_projection (tests_python.test_slither_current_default.CurrentSlitherDefaultTests.test_ci_uses_current_default_and_complete_actual_projection) ... ok
+test_default_refuses_prior_source_and_detector_drift (tests_python.test_slither_current_default.CurrentSlitherDefaultTests.test_default_refuses_prior_source_and_detector_drift) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.970s
+
+OK

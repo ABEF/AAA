@@ -1,6 +1,8 @@
 # Marketplace royalty settlement: original currencies
 
-Current [allocation2](../reports/royalty-rounds-20261118/REVIEW.md) uses constant-size receipt credit, bounded enrollment lookup and separate50,000gas activation-only ERC20 balance reads; the complete-sync allowance remains1M. Original-currency entitlements, opening/fault rules and20M/full20% remain. Fresh payload5/runtime/read-policy pins are required. The earlier [launch-workload review](../reports/launch-workload-20261117/REVIEW.md) retains its own expensive historical tree/fault scope; its failures are not new round-book measurements. Standalone synchronization remains optional, without royalty conversion or a required keeper worker.
+Current [Factory6/allocation2](../reports/activation-final-six-20261118/REVIEW.md) preserves constant-size receipt credit, bounded enrollment lookup and exact original-currency rights. Private round books compact223 coefficient bits with a full256-bit spill;16-bit count/weight/cursor fields remain proven within1,000 NFTs/3,000 tickets. Checked monetary liabilities, one-hour opening and faulty-currency cohorts are unchanged. Fresh payload6/source/runtime/read-policy pins are required; earlier Factory5 creation bytes and [round-book evidence](../reports/royalty-rounds-20261118/REVIEW.md) retain their original scope. The12M default, reviewed20M/full20%,50,000gas activation-only balance read,1M complete sync and read-plus120k funding proof remain unchanged. No conversion, mandatory pre-sync or keeper worker is added.
+
+All13 controlled cold calls now fit20M with full20%; worst16,460,899 raw/19,753,079 padded. They cover16 ERC20s plus ETH and one main LP; real tokens/markets/providers/fees,64-currency/LP2 workloads, operating and independent approval remain open. This does not imply that every state or currency fits.
 
 Fresh **royalty settlement4/recovery2**, accounting7/LP-allocation1/custody5/Entry3,
 canonicalV10 and schema17. Historical accounting6/V8/schema15 remains separately pinned.
@@ -132,14 +134,15 @@ admission/allocation. Exact unreadable backing can still block handoff.
 Legacy conversion/recovery1 events, readers and tests remain explicitly historical;
 they do not enable swaps on settlement4. Current canonicalV10 retains the
 royalty4 sale/capacity and whole-ticket records, while separately preserving
-the new raw exact LP trees in Rewards' fixed canonical child. It requires the
+logical exact LP node records in Rewards' fixed canonical child. It requires the
 initial royalty window complete. HistoricalV8 and older record shapes are not
 runtime/storage compatibility. Authenticate current hashes/capabilities;
 never relabel a deployed contract or rewrite an old transaction journal.
 
 ## Qualification boundary
 
-[Current change/evidence](../reports/last24h-audit-20261105/REVIEW.md),
+[Current gas/source evidence](../reports/activation-final-six-20261118/REVIEW.md),
+[historical settlement review](../reports/last24h-audit-20261105/REVIEW.md),
 [mixed claims](CLAIM_ROUTER.md), [reporting](ROYALTY_REPORTING.md).
 Actual token behavior, marketplace payment, API/site configuration, gas and
 independent audit remain open in the [sole task](../TODO.md#task-royalty-eth-settlement).

@@ -1,0 +1,27 @@
+{
+  "actual_analyzer_completed": true,
+  "all601_records_covered": true,
+  "individually_current": 147,
+  "unique_exact_description_referenced_source_reuse": 454,
+  "default_current": true,
+  "default_path": "reports/activation-final-six-20261118/static-review.json",
+  "old_default_refused_current_analysis": true,
+  "new_static_regression_methods": 2,
+  "unchanged_suite_methods_executed": 0,
+  "additional_compiler_invocations": 0,
+  "production_source_changes_in_static_closure": 0,
+  "all100_compiled_source_files_stable": true,
+  "workflow_config_matcher_policy_unchanged": true,
+  "local_windows_analyzer_and_cli_not_published_ci": true,
+  "independent_audit": false,
+  "production_approved": false,
+  "prior_review_preserved": true,
+  "review_sha256": "a412c7d94917f1bdfd60a2adfa11dd3b2099e368b7c8769cc05a2db04388b9da",
+  "new_test_sha256": "362115f14881ea9af2c329661a39d3a5c19180dc7b5023613ec90a5c5687527f",
+  "default_checker_sha256": "3db18856ddff16c2bb42d7183e967f3829832e9e157c5eba9437969ef2620c93",
+  "requirements_lock_sha256": "97261a0c3c85406691e72930848dd3ae8fd4fd8ab97b2f1761a4634b5f23f749",
+  "source_executable_pins": {
+    "python_sha256": "82264b3fe4248d1ff3564a0296cbb4a266ef968799bd85902ab5eaaf3e17eb62",
+    "forge_sha256": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101"
+  }
+}

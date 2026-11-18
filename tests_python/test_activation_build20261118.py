@@ -1,5 +1,4 @@
 """New current-build and exact historical-identity checks; no RPC or EVM run."""
-import copy
 import gzip
 import hashlib
 import io
@@ -8,6 +7,7 @@ from pathlib import Path
 import unittest
 
 from zzz_ops import deployment_plan as D, factory_code_v5 as F5
+from tests_python.factory_payload_archive import archived
 
 ROOT = Path(__file__).resolve().parents[1]
 FACTORY_NATIVE_PINS = {
@@ -47,19 +47,22 @@ def archived_royalty():
 class ActivationBuild20261118Tests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.current = D.Artifacts()
+        # This is now explicit historical evidence; never relabel it as current.
+        cls.current = archived('activation-gas-20261118')
         cls.archived_input, cls.archived_output, cls.archived_pins = archived_royalty()
 
-    def test_new_current_build_authenticates_all_sources_and_48_normal_gates(self):
+    def test_historical_activation_build_authenticates_all_sources_and_48_normal_gates(self):
         current = self.current
-        self.assertEqual(D.DEFAULT_BUILD_PROFILE, 'activation-gas-20261118')
-        self.assertEqual(current.profile, D.DEFAULT_BUILD_PROFILE)
+        self.assertEqual(current.profile, 'activation-gas-20261118')
+        self.assertNotEqual(current.profile, D.DEFAULT_BUILD_PROFILE)
         self.assertEqual(len(current.input['sources']), 100)
         self.assertEqual(len(current.source_pins), 100)
         self.assertEqual(set(current.input['sources']), set(current.source_pins))
         self.assertEqual(len([name for name in current.source_pins
                               if name.startswith('src/')]), 61)
-        current.check_sources()
+        self.assertEqual(current.source_pins, {
+            name: hashlib.sha256(row['content'].encode('utf-8')).hexdigest()
+            for name, row in current.input['sources'].items()})
         spec = D.trusted_build(current.profile)
         gates = json.loads((ROOT / spec['directory'] / spec['gates']).read_bytes())['gates']
         self.assertEqual(len(gates), 48)
@@ -71,11 +74,10 @@ class ActivationBuild20261118Tests(unittest.TestCase):
             self.assertLessEqual(runtime, D.LIMITS['runtime_bytes'])
             self.assertLessEqual(creation + gate['minimum_args'],
                                  D.LIMITS['full_initcode_bytes'])
-        changed_pin = copy.copy(current)
-        changed_pin.source_pins = dict(current.source_pins)
-        changed_pin.source_pins['src/ZZZOracle.sol'] = '0' * 64
+        # The current-build corrupted-pin control moves to FactoryPayload6Tests.
+        # A historical artifact must remain unusable for current preparation.
         with self.assertRaisesRegex(D.PlanError, 'source_changed'):
-            changed_pin.check_sources()
+            D.Artifacts(build_profile='activation-gas-20261118')
 
     def test_factory5_creation_parts_and_native_identity_are_exactly_preserved(self):
         current = self.current.output

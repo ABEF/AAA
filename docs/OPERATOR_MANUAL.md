@@ -291,7 +291,7 @@ artifact expiry is not a contract deadline on begin/allocation/distribution;
 actual cursor/beneficiary are determined at inclusion. Readiness remains false.
 See [verification](../reports/operator-management-20261109/REVIEW.md).
 
-Fresh deployment inventories use chain-local `factory_payload_version:5`, `ROYALTY_ALLOCATION_VERSION()==2` and reviewed [payload5 pins](FACTORY_CODE_STORAGE.md). This selects immutable deployment bytes and new private round books; it is not an after-seal upgrade. Existing payload3/4 configurations/journals remain historical. Economic rights, financial caps and exact reviewed calldata rules remain unchanged.
+Fresh deployment inventories use chain-local `factory_payload_version:6`, `ROYALTY_ALLOCATION_VERSION()==2` and reviewed [payload6 pins](FACTORY_CODE_STORAGE.md) from `activation-final-six-20261118`. Factory6 selects new exact immutable Royalty bytes; allocation2 rights and wire records remain unchanged. This is not an after-seal upgrade. Existing payload3/4/5 configurations, deployments and journals remain historical. Use fresh source/runtime pins; never copy old private storage or rewrite saved reviews.
 
 ## Unsigned activation gas settings
 
@@ -299,7 +299,7 @@ Default activation policy1 remains12M. For a separately reviewed provider and
 consumer, activation configuration `schema:2` adds
 `fee_policy.max_gas_limit` (decimal string21k–64M) and
 `fee_policy.max_network_fee_wei`; retain the reviewed complete-fee flag, review
-hash and gas-price ceiling. Example engineering limits are `"16000000"` gas and
+hash and gas-price ceiling. Example engineering limits are `"20000000"` gas and
 `"1000000000000000000"` wei total fee, not production recommendations.
 
 Pin the resulting activation configuration hash in a matching source9/V9 or source10/V10 manifest,
@@ -320,7 +320,7 @@ See [configuration](ACTIVATION_PREPARATION.md) and
 
 ### Explicit20M contribution and24M maintenance profiles
 
-The [launch16 review](../reports/launch-workload-20261117/REVIEW.md) demonstrates why a passing20M body call is insufficient: its fresh estimate plus full20% can still exceed20M. Several pending/initial-allocation states refuse this policy even with healthy tokens. Capacity16 means16 ERC20s plus ETH **if admitted**, not an automatic launch list or gas approval. Growth normally does not repeat royalty activation. Keep the exact preparation/estimate and margins; never widen a cap or mislabel an opaque refusal as a bad token.
+The historical [launch16 review](../reports/launch-workload-20261117/REVIEW.md) demonstrates why a passing20M body call is insufficient: its fresh estimate plus full20% can still exceed20M. Its pending/initial-allocation refusals retain that source scope. The current controlled13-case workload fits20M with full20%; it does not qualify every currency or state. Capacity16 means16 ERC20s plus ETH **if admitted**, not an automatic launch list or gas approval. Growth normally does not repeat royalty activation. Keep the exact preparation/estimate and margins; never widen a cap or mislabel an opaque refusal as a bad token.
 
 Before admitting currencies, read `RoyaltyRewards.assetCount()`, every `assets(index)`, `assetCapacity()`, `ROYALTY_ALLOCATION_VERSION()` and `ProtocolPolicy.royaltyBalanceGas()`/`royaltySyncGas()`/`gasPolicy()`/`gasFingerprint()`. Qualify cold empty, pending/first-opening, rotated-allocation and failed-read workloads. Some rare royalty states are materially more expensive; component gas cannot be added to or substituted for a complete operation estimate. The new unsigned pre-seal rows record these reads only and remain unverified.
 
@@ -330,16 +330,16 @@ Historical payload4 cold Q03 estimates plus full20%: healthy pre-synced activati
 
 #### Bounded royalty reads and exact rounds
 
-Current [allocation2 review](../reports/royalty-rounds-20261118/REVIEW.md) replaces receipt-dependent tree writes with constant-size complete rounds and cursor updates. Enrollment is append-only, at most1,000 boundaries per currency; claims find their birth cohort within10 binary-search steps. No receipt queue or mandatory pre-sync worker is added. Failed reads protect the earlier cohort before waiting activations join. Original currencies, one-hour opening and recovery permissions remain.
+Current [Factory6/allocation2 review](../reports/activation-final-six-20261118/REVIEW.md) preserves constant-size complete rounds and cursor updates. Enrollment is append-only, at most1,000 boundaries per currency; claims find their birth cohort within10 binary-search steps. Private round coefficients use223 compact bits with a full256-bit spill; count, weight and cursor use16-bit fields, proven within1,000 NFTs/3,000 tickets. These are storage encodings, not smaller monetary domains. No receipt queue or mandatory pre-sync worker is added. Failed reads protect the earlier cohort before waiting activations join. Original currencies, one-hour opening and recovery permissions remain.
 
-Earlier C08 cold qualification: one1,000-NFT method produced13 scenarios, all actual20M calls/financial checks pass, but only5 fit full20% headroom. Eight activations remain refused. Worst tested opening with16slow healthy currencies estimates19,325,451 and requires23,190,542 padded; healthy rotated ETH/ZZZ require20,325,828/21,099,142. Both growth cases fit. Keep Q03 open and prepare every exact transaction; capacity16 and a configured50k read ceiling are not activation gas approval. [Exact scenario results](../reports/royalty-rounds-20261118/FINAL_FULL_FLOW_REVIEW.md).
+Historical C08 qualification produced13 scenarios from one1,000-NFT method. At that source all actual20M calls/financial checks passed, but only5 fit full20% and8 activations were refused. Its estimates and outcomes remain in the [original scenario record](../reports/royalty-rounds-20261118/FINAL_FULL_FLOW_REVIEW.md); they are not current Factory6 results. Prepare every exact transaction; capacity16 and a configured50k read ceiling are not universal activation gas approval.
 
 | Action | Exact inputs / reads | Verify |
 | --- | --- | --- |
 | Inspect read allowance | `ProtocolPolicy.royaltyBalanceGas()` | Fresh default50,000gas; activation-only ERC20 read |
 | Inspect complete allowance | `royaltySyncGas()`, `gasPolicy()`, `gasFingerprint()` | Original1M default/four-word tuple/revision |
 | Change read allowance | Governance `setRoyaltyBalanceGas(50000, REVIEW_HASH)` | Nonzero32-byte review;10,000-1,000,000gas; increments existing gas revision |
-| Review fresh consumer | Payload5 `royalty_read_policy` observation | Same canonical block, actual policy/cap/revision; no implicit adoption |
+| Review fresh consumer | Payload6 `royalty_read_policy` observation | Same canonical block, actual policy/cap/revision; no implicit adoption |
 
 Only the activation token `balanceOf` STATICCALL is capped. It copies one word and accepts ABI-compatible trailing data. A fully funded broken/expensive read defers its own new enrollment; it does not discard backing or grant newcomers earlier receipts. The complete-sync maximum stays1M. Funding is proved for the complete frame or independently for the configured read plus120k; other failed partial frames revert activation. Token revert bytes cannot forge the ledger's exact unavailable signal. Ordinary sync/claims/canonical balance reads keep their existing paths. A high maximum need not be entirely forwarded inside the complete frame; cheap reads still work. Raising limits/currency capacity requires cold healthy/faulted requalification, fresh exact estimate plus20% below20M and separate fee review. Do not auto-change defaults or saved reviews.
 
@@ -347,7 +347,7 @@ Optional unsigned pre-seal input: `royalty_balance_policy:{"balanceGas":"50000",
 
 #### Activation gas reduction and fresh runtime pins
 
-The [activation-gas source review](../reports/activation-gas-20261118/REVIEW.md) keeps all public call inputs, monetary domains, permissions and economic checks. Compact LP carry stores ordinary high/low phase values together and retains a full-width spill for larger low values; operators never clamp, reset or choose that representation. Canonical rows/checkpoints still carry logical uint128 high and uint256 low, with the same pending balances and LP-allocation1 semantics. Fresh private storage is incompatible with copying older EVM slots. Use the new exact deployment/runtime/source pins, preserving old deployments, journals and evidence.
+The current [activation-final-six source review](../reports/activation-final-six-20261118/REVIEW.md) keeps public selectors, input types, monetary domains, permissions and economic checks. Pricing Basis, captured marks and asset list now share Oracle's transaction-only scope; each completed operation explicitly clears them. No manual clearing, pre-sync or extra holder transaction is required. LP carry uses MAX128 as the compact-low sentinel: values below it stay packed; MAX128 and larger values use the exact full-width spill. Operators never clamp, reset or choose this encoding. CanonicalV10 rows/checkpoints retain logical uint128 high/uint256 low, pending balances and exact LP-allocation1 semantics. Use fresh Factory6/source/runtime pins; never hot-copy older private slots or relabel deployments, journals or evidence.
 
 | Operator concern | Required action | Unchanged rule |
 | --- | --- | --- |
@@ -357,11 +357,11 @@ The [activation-gas source review](../reports/activation-gas-20261118/REVIEW.md)
 | Upgrade local consumers | Review matching runtime/source identities and preserved history before adoption | No automatic DB/journal or live-site rewrite |
 | Failed gas review | Retain the explicit refusal and investigate that exact workload | No cap/headroom/default increase |
 
-The Oracle retains its canonical49-word transient format and all source/control proofs; a pinned-compiler memory projection reduces decoding work. The optional v4 spot feed keeps its original ticks, fees, liquidity, source age and pins. Its accepted quote values are unchanged; invalid extreme quotes can report InvalidObservation instead of an arithmetic panic. Final cold qualification: all13 local calls and accounting checks pass;7/13 fit20M with full20% (previously5),6 are refused. Tested activation estimates save693,137-712,754gas; worst padded22,335,237 remains over20M. Healthy rotated ETH passes19,494,064; healthy rotated ZZZ remains over at20,243,837. The zero-fee LP component costs105,091more even though all13 tested whole operations improve; do not assume every state is cheaper. Q03 stays open and no budget/headroom is raised. See the [complete table](../reports/activation-gas-20261118/FINAL_FULL_FLOW_REVIEW.md).
+The Oracle retains its canonical49-word transient format and every live source/control/mutable-boundary proof. Quote and hash codecs preserve exact bytes; the optional v4 feed keeps prices, ticks, fees, liquidity, source age and pins. All13 current cold calls and financial checks now pass20M with full20% headroom, closing the6 earlier tested refusals. Worst estimate16,460,899 pads to19,753,079. This is one affected1,000-NFT method with16 controlled ERC20 currencies plus ETH and one physical main LP, not13 new methods or universal maximum-state qualification. Real markets, providers/complete fees,64-currency/LP2 workloads, operations and independent approval remain open. The12M default, reviewed20M/full20%,50k balance reads,1M sync and120k fallback funding proof are unchanged. See the [current source and complete qualification](../reports/activation-final-six-20261118/REVIEW.md); the [earlier Factory5 report](../reports/activation-gas-20261118/REVIEW.md) retains its original scope.
 
 #### Optional royalty synchronization before activation
 
-The [two-stage local rehearsal](../reports/launch-workload-20261117/REVIEW.md#tested-optional-workflow-synchronize-before-activation) makes two healthy previously over-budget activations fit the existing20M policy. It shifts allocation into a separate operator-paid transaction; it does not promise less total gas, a new worker or a third required holder transaction.
+The historical [two-stage rehearsal](../reports/launch-workload-20261117/REVIEW.md#tested-optional-workflow-synchronize-before-activation) moved allocation into a separate operator-paid transaction at its earlier source. Current Factory6 passes the13 controlled cold cases without making pre-sync a required step. Synchronization remains optional; it does not promise less total gas, a new worker or another required holder transaction.
 
 | Step | Existing call / inputs | What to verify |
 | --- | --- | --- |
@@ -663,12 +663,13 @@ part of this reconciliation. Preserve existing chains, journals and websites.
 
 | Tool | Inputs | Example | Purpose |
 | --- | --- | --- | --- |
-| `prepare-deployment.py` | Reviewed input JSON, new output file; trusted build ID | `python scripts/prepare-deployment.py --build-profile activation-gas-20261118 --input path/to/reviewed.json --output path/to/new-plan.json` | Review unsigned constructor plan |
+| `prepare-deployment.py` | Reviewed input JSON, new output file; trusted build ID | `python scripts/prepare-deployment.py --build-profile activation-final-six-20261118 --input path/to/reviewed.json --output path/to/new-plan.json` | Review unsigned constructor plan |
 | `check-local-deployment-evidence.py` | Captured ZIP/directory; optional relocated trusted build directory | `python scripts/check-local-deployment-evidence.py --evidence reports/local-deployment-rehearsal-20261115/evidence.zip --output path/to/new-result.json` | Reconcile captured local construction |
 | `check-market-evidence.py` | Exact dated16November market ZIP | `python scripts/check-market-evidence.py --evidence reports/real-market-refresh-20261116/evidence.zip` | Recompute dated market summaries |
-| `rehearse-local-deployment.py` | Reviewed Anvil executable, new directory, trusted build ID | `python scripts/rehearse-local-deployment.py --build-profile activation-gas-20261118 --anvil C:/reviewed-tools/anvil.exe --output C:/local-reviews/new-run` | Measure isolated constructor execution |
+| `rehearse-local-deployment.py` | Reviewed Anvil executable, new directory, trusted build ID | `python scripts/rehearse-local-deployment.py --build-profile activation-final-six-20261118 --anvil C:/reviewed-tools/anvil.exe --output C:/local-reviews/new-run` | Measure isolated constructor execution |
 
-Current planning defaults to `activation-gas-20261118`; historical
+Current planning defaults to `activation-final-six-20261118`; historical
+`activation-gas-20261118` (Factory5),
 `metadata2-20261116` and legacy
 `manual-reference-20261115` remains separately pinned. The checker selects only
 the captured closed build identity, and admits an absent ID only with the original
@@ -712,7 +713,7 @@ exact44-call phase and feeds them to the unchanged strict constructor reviewer.
 | Tool/action | Required inputs | Example | Effect |
 | --- | --- | --- | --- |
 | Prepare conditional sequence | Existing constructor JSON, public direct-EOA sender, canonical decimal starting nonce, new output file | `python scripts/prepare-deployment-sequence.py --input /review/input.json --deployer REVIEWED_PUBLIC_EOA --starting-nonce REVIEWED_DECIMAL_NONCE --output /review/new-sequence.json` | Review conditional deployment sequence |
-| Select trusted build | Explicit closed build ID | Add `--build-profile activation-gas-20261118` | Select exact reviewed artifacts |
+| Select trusted build | Explicit closed build ID | Add `--build-profile activation-final-six-20261118` | Select exact reviewed artifacts |
 
 Replace placeholders; no private key/RPC is used. All44 calls must be ordinary
 successful transactions from the actual same bootstrap EOA, with no unexpected
@@ -741,7 +742,7 @@ as the conditional pre-seal caller and missing inputs explicitly blocked.
 | Tool/action | Required inputs | Example | Effect |
 | --- | --- | --- | --- |
 | Prepare setup review | Reviewed copy of `config/preseal-preparation.example.json`; NEW output path | `python scripts/prepare-preseal.py --input /review/preseal.json --output /review/NEW-review.json` | Review conditional setup calls |
-| Pin current build | Exact supported current build | Add `--build-profile activation-gas-20261118` | Freeze current ABI selection |
+| Pin current build | Exact supported current build | Add `--build-profile activation-final-six-20261118` | Freeze current ABI selection |
 | Inspect missing values | Output `missing_inputs` and each step's fields | Review `steps[].missing_inputs` | Resolve explicit setup blockers |
 | Inspect deliberate stops | Output `explicit_operating_stops` | Empty venues, converterOFF, maximumGap0, per-pool operationsOFF | Identify intentionally stopped operations |
 
@@ -852,7 +853,7 @@ evolution paths, then independently complete every other seal prerequisite.
 The nonempty check does not validate a CID, hosted content or OpenSea retrieval.
 A rejected seal preserves bootstrap and bindings; a successful seal erases
 bootstrap and permanently prevents changing the artwork root. Do not seal merely
-because this one read succeeds. Use the fresh `activation-gas-20261118` build
+because this one read succeeds. Use the fresh `activation-final-six-20261118` build
 family; older construction receipts retain their original controller scope.
 
 ### Fixed ZZZ setup order
@@ -5209,7 +5210,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [RoyaltyRewards.accrued](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256`<br>`input1: address` | `accrued(NFT_ID, TARGET_ADDRESS)` | Read accrued |
 | `R` [RoyaltyRewards.activationCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `activationCount()` | Read activation count |
 | `R` [RoyaltyRewards.activationOrdinal](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256` | `activationOrdinal(NFT_ID)` | Read activation ordinal |
-| `R` [RoyaltyRewards.allocationCursor](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `allocationCursor(ADMITTED_ROYALTY_ASSET)` | Read currency rounding cursor |
+| `R` [RoyaltyRewards.allocationCursor](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `allocationCursor(ADMITTED_ROYALTY_ASSET)` | Read currency rounding cursor |
 | `R` [RoyaltyRewards.assetCapacity](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `assetCapacity()` | Read operating currency capacity |
 | `R` [RoyaltyRewards.assetCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `assetCount()` | Read asset count |
 | `R` [RoyaltyRewards.assets](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256` | `assets(0)` | Read assets |
@@ -5221,9 +5222,9 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [RoyaltyRewards.canonicalValidate](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `canonicalValidate()` | Validate imported classified backing |
 | `R` [RoyaltyRewards.claimable](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `id: uint256`<br>`asset: address` | `claimable(NFT_ID, ASSET_ADDRESS)` | Read funded claimable balance |
 | `R` [RoyaltyRewards.effectiveEligibleCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `effectiveEligibleCount(ADMITTED_ROYALTY_ASSET)` | Read effective eligible prefix |
-| `R` [RoyaltyRewards.eligibleCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `eligibleCount(TARGET_ADDRESS)` | Read eligible count |
+| `R` [RoyaltyRewards.eligibleCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `eligibleCount(TARGET_ADDRESS)` | Read eligible count |
 | `R` [RoyaltyRewards.eligibleFor](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `id: uint256`<br>`asset: address` | `eligibleFor(NFT_ID, ASSET_ADDRESS)` | Read eligible for |
-| `R` [RoyaltyRewards.eligibleWeight](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `eligibleWeight(TARGET_ADDRESS)` | Read eligible weight |
+| `R` [RoyaltyRewards.eligibleWeight](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `eligibleWeight(TARGET_ADDRESS)` | Read eligible weight |
 | `R` [RoyaltyRewards.isAsset](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `isAsset(TARGET_ADDRESS)` | Read is asset |
 | `R` [RoyaltyRewards.liabilities](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `liabilities(TARGET_ADDRESS)` | Read liabilities |
 | `R` [RoyaltyRewards.mintEnd](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `mintEnd()` | Read official sale end |

@@ -18,18 +18,18 @@ are refused; the planner does not install packages or fetch replacement evidence
 
 ## Select the exact reviewed build
 
-The default trusted build is **`activation-gas-20261118`**, using the accepted
-normal compiler family with compact/full-width-spill LP carry, the canonical Oracle memory projection and the same exact Factory5 royalty payload. Constant-size royalty rounds and bounded activation reads remain unchanged. Chain/URI, artwork-root and reservation identity guards remain unchanged.
+The default trusted build is **`activation-final-six-20261118`**, using the accepted
+normal compiler family and fresh Factory6/allocation2 immutable Royalty bytes. Exact logical LP/royalty rights and canonicalV10 wire records remain unchanged. Private LP carry uses a MAX128 sentinel/full256-bit spill; royalty books use223 compact coefficient bits/full256-bit spill and16-bit bounded status fields. Pricing Basis/marks/list share the transaction-only execution scope and clear explicitly per operation, without an extra operator step. Chain/URI, artwork-root, reservation identity, source/control and financial guards remain. See the [current review](../reports/activation-final-six-20261118/REVIEW.md).
 Input `profile` stays `schema17/mint2/V10/execution1/LP3`;
 the distinct build ID authenticates exact bytes. Output `build_profile` and
 `accepted_build.profile` record it. Unknown IDs, mixed artifacts or changed
 source bytes fail; there is no fallback to an older build to bypass drift.
 
 ```powershell
-python scripts/prepare-deployment.py --build-profile activation-gas-20261118 --input path/to/reviewed-input.json --output path/to/new-plan.json
+python scripts/prepare-deployment.py --build-profile activation-final-six-20261118 --input path/to/reviewed-input.json --output path/to/new-plan.json
 ```
 
-The closed registry also retains **`royalty-rounds-20261118`**, **`q03-allocation-20261117`**, **`operator-seal-20261117`**, **`metadata2-20261116`** and
+The closed registry also retains **`activation-gas-20261118`** (Factory5), **`royalty-rounds-20261118`**, **`q03-allocation-20261117`**, **`operator-seal-20261117`**, **`metadata2-20261116`** and
 **`manual-reference-20261115`** with their original pins. Historical planning
 requires the corresponding exact old source checkout; selecting an older family
 in the current checkout correctly refuses source drift. Old local evidence can
@@ -40,11 +40,8 @@ on-chain `reviewHash`, permission, runtime attestation or release approval.
 After a future contract change, review a new exact closed compiler/source family
 and extend the trusted registry deliberately. Never rewrite existing family pins,
 copy local addresses into production inventories or install evidence-supplied
-hashes as the trust root. The17November build passes48normal size gates with
-the original compiler settings; Vault, renderer, Budget and existing CustodyValidation source change. The sole Foundry configuration delta is a read permission for pinned public test fixtures. AccessController
-creation code plus96argument bytes totals48,377bytes, leaving775bytes below
-the49,152limit. This build/static verification does not rerun constructors or
-refresh historical deployment gas. See the [current source/evidence](../reports/test-seal-deep-review-20261117/REVIEW.md).
+hashes as the trust root. The current build retains48normal size gates and the
+original compiler settings. AccessController full initcode is48,580bytes, leaving572bytes below49,152. Size admission does not verify constructors, bindings, target fees or deployment readiness. Earlier [17November source evidence](../reports/test-seal-deep-review-20261117/REVIEW.md) and construction captures retain their exact original scope; no historical gas is refreshed by selecting a new build.
 
 ## Inputs and outputs
 
@@ -138,11 +135,8 @@ are not executed or verified offline.
   helpers are not offered as independent deployment transactions. All runtime
   template hashes remain templates, never observed immutable-specific pins.
 
-The current normal build has only **3 runtime bytes for Oracle, 32 for Vault and
-101 for Manager** remaining. Oracle creation code is 49,009 bytes; with its
-64 argument bytes it totals 49,073, leaving
-**79 initcode bytes**. These margins belong to the accepted source; changing a
-constructor, dependency or compiler profile requires a new reviewed build.
+Current normal runtime bytes/headroom: Royalty24,562/14, Oracle23,406/1,170,
+Rewards23,983/593, Manager24,459/117 and Vault24,544/32. Access full initcode is48,580/49,152. Tight Royalty/Vault/Manager margins remain material; no size limit is relaxed. These figures belong to the exact accepted source; any constructor, dependency or compiler change needs a fresh reviewed build. All13 controlled cold activation/growth calls fit20M with full20%, worst16,460,899 raw/19,753,079 padded, but this is not constructor/provider/fee or release approval. The12M default and all operating safeguards remain unchanged.
 
 ## Binding and setup order
 
@@ -218,12 +212,12 @@ it does not silently skip that check on another operating system. Example from
 the repository root, with your reviewed binary and a new evidence directory:
 
 ```powershell
-python scripts/rehearse-local-deployment.py --build-profile activation-gas-20261118 --anvil "C:/reviewed-tools/anvil.exe" --output "C:/local-reviews/new-construction-run"
+python scripts/rehearse-local-deployment.py --build-profile activation-final-six-20261118 --anvil "C:/reviewed-tools/anvil.exe" --output "C:/local-reviews/new-construction-run"
 ```
 
 This example selects the new current build for a separately authorized fresh
 rehearsal; it is not a command that ran in the historical captures below.
-No full-graph construction rehearsal for `activation-gas-20261118` is claimed; older construction captures retain their original runtime scope.
+No full-graph construction rehearsal for `activation-final-six-20261118` is claimed; older construction captures retain their original runtime scope.
 There is no RPC, key, existing-state, public-deployment or sealing option. The
 controlled role addresses, metadata URI and buyback ceiling are test inputs,
 not production choices. Output includes the process/genesis identity, dependencies,

@@ -1,0 +1,12 @@
+{
+  "scope": "Checker fixture failure; production artifact admission and code unchanged",
+  "cause": "The new historical fixture applied the integer-only transaction JSON decoder to already hash-authenticated normal-build evidence containing fractional elapsed seconds.",
+  "executed_methods": 2,
+  "successful_methods": 1,
+  "class_setup_errors": 2,
+  "failed_or_errored_method_count": 1,
+  "correction": "Read the authenticated report with duplicate/nonfinite rejection while permitting its informational elapsed-time numbers. Integer-only production request decoding remains unchanged.",
+  "next_selection": "Twelve archive-dependent/new methods only. Do not repeat the already-passing F5 selector control.",
+  "production_sources_or_rights_changed": false,
+  "historical_artifact_bytes_changed": false
+}

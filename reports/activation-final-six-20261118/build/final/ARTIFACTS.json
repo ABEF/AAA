@@ -1,0 +1,22 @@
+{
+  "external_uncompressed_directory": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\activation-final-six-20261118\\build\\final02",
+  "files": {
+    "START.json": "de5303ec7485f4bd15b6b5adee6198d9858d276aefadc0b9a39a53bc5ff604d7",
+    "COMPILER_EXIT.json": "7c0c4d607df11112082ff43292b8c4b38c596e3019cc96433fd8888be32ac1de",
+    "COMPILED_RESULT.json": "aa30d9bc99c53741fa09483b1e60d28a23bde80e3f90b107bc8fa1100e8843ee",
+    "RESULT.json": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2",
+    "normal-size-evidence.json": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2",
+    "PREFLIGHT_RESULT.json": "c86ce00f7495ffb49b1e59262692136399e3e65f5bce5f7feef4aba327995c64",
+    "EFFECTIVE_NORMAL_PROFILE.json": "52baf6c2431fa35cddea692791db770aeb8e5bd188259bd1868fef0f7f17f257",
+    "ABI_STORAGE_COMPARISON.json": "9cf51464bbecb90dcfba1141adce7d62c0e5766f86c898958801bc211ad371ca",
+    "PRIVATE_LAYOUT_DIFFS.json": "f690c18b63277188a6092baf20eacaa42d7c90aa8a46919add7f4c35e56ef523",
+    "ROYALTY_CARRIER_EVIDENCE.json": "5a8dba1e7e2c6ae23227ede8359a2310ce99701a46a6a37160a9dd8e08cd72b5",
+    "ADMISSION_RESULT.json": "4a053100bd158560a3229d12c136597026e4043bc7e35452674aa346e5ed3414",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler-input.json.gz": "279eba80e69c65d9085196ff4bd0fd9753881363517686dd20b2cedc769a5b0c",
+    "compiler-output.json.gz": "aceb5510485a5a0c28945cb4b4df71c66305dff7f1cb058435a464ff42df4a89",
+    "LAYOUT_ACCEPTANCE.json": "75fd8bfc7d5f55365d853f467824ac552f5a0f764940a9fcd68a4c62d05b2ba2"
+  },
+  "historical_activation_gas_unchanged": true,
+  "production_approved": false
+}

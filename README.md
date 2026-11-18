@@ -8,10 +8,20 @@ actual ETH + ZZZ to current NFT owners; transfers, old rewards and royalties rem
 
 **Source candidate; undeployed for production. Production NOT APPROVED.**
 Current accounting7/direct Entry3/custody5/mint2 uses canonicalV10. The trusted
-normal build is `activation-gas-20261118` (factory payload5 / royalty allocation2). Source publication does not update
+normal build is `activation-final-six-20261118` (factory payload6 / royalty allocation2). Source publication does not update
 contracts, services, journals or websites; public signing remains disabled.
 
-The [activation gas review](reports/activation-gas-20261118/REVIEW.md) preserves exact LP/royalty rights, public inputs and Factory5 bytes while reducing tested activation estimates by693k-713k gas. At1,000NFTs, all13 cold local scenarios pass accounting/execution checks;7 fit20M with full20% headroom and6 remain refused. Worst padded gas is22.34M, so maximum-state qualification remains open. Fresh runtime pins are required; private carry slots cannot be copied from older builds. Component costs can increase in zero-fee states; always review the complete exact call. Limits and live environments are unchanged.
+The [current activation review](reports/activation-final-six-20261118/REVIEW.md)
+passes all 13 controlled cold scenarios at 20M with full 20% headroom, closing the
+six previous refusals. Worst opening ZZZ/all-slow falls from 18,612,697 to
+16,460,899 raw gas, or 19,753,079 with full padding. Exact NFT rights and financial
+guards remain; the 12M default and reviewed 20M policy are unchanged.
+
+This is finite evidence for 1,000 NFTs and 16 ERC20 currencies plus ETH,
+not universal workload or production approval. Real markets, complete fees/providers, 64 currencies, two-LP maximum
+state and other activation orders remain unqualified. Fresh F6 creation/data and
+source/runtime pins are required; old private storage is never reinterpreted.
+Existing chains, services, journals, websites and paused monitoring are unchanged.
 
 The worker defaults to dry run. Raw checks can occur during cooldown; paid
 confirmation enrollment starts near eligibility to avoid hours of unnecessary

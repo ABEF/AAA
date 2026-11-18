@@ -1,0 +1,99 @@
+setUpClass (tests_python.test_factory_payload6.FactoryPayload6Tests) ... ERROR
+setUpClass (tests_python.test_activation_build20261118.ActivationBuild20261118Tests) ... ERROR
+test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes (tests_python.test_factory_payload5.FactoryPayload5Tests.test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes) ... ERROR
+test_invalid_selector_mixed_payload_and_legacy_read_fields_fail_before_rpc (tests_python.test_factory_payload5.FactoryPayload5Tests.test_invalid_selector_mixed_payload_and_legacy_read_fields_fail_before_rpc) ... ok
+
+======================================================================
+ERROR: setUpClass (tests_python.test_factory_payload6.FactoryPayload6Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_factory_payload6.py", line 39, in setUpClass
+    cls.current=D.Artifacts();cls.previous=archived('activation-gas-20261118')
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\factory_payload_archive.py", line 21, in archived
+    gates=D.decode(raws[spec['gates']],D.MAX_BUILD)['gates']
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 161, in decode
+    try:return json.loads(raw.decode('utf-8-sig'),object_pairs_hook=_pairs,parse_float=lambda _:fail('noninteger_json'),parse_constant=lambda _:fail('nonfinite_json'))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\__init__.py", line 359, in loads
+    return cls(**kw).decode(s)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\decoder.py", line 354, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 161, in <lambda>
+    try:return json.loads(raw.decode('utf-8-sig'),object_pairs_hook=_pairs,parse_float=lambda _:fail('noninteger_json'),parse_constant=lambda _:fail('nonfinite_json'))
+                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 145, in fail
+    def fail(code):raise PlanError(code)
+                   ^^^^^^^^^^^^^^^^^^^^^
+zzz_ops.deployment_plan.PlanError: noninteger_json
+
+======================================================================
+ERROR: setUpClass (tests_python.test_activation_build20261118.ActivationBuild20261118Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_activation_build20261118.py", line 51, in setUpClass
+    cls.current = archived('activation-gas-20261118')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\factory_payload_archive.py", line 21, in archived
+    gates=D.decode(raws[spec['gates']],D.MAX_BUILD)['gates']
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 161, in decode
+    try:return json.loads(raw.decode('utf-8-sig'),object_pairs_hook=_pairs,parse_float=lambda _:fail('noninteger_json'),parse_constant=lambda _:fail('nonfinite_json'))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\__init__.py", line 359, in loads
+    return cls(**kw).decode(s)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\decoder.py", line 354, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 161, in <lambda>
+    try:return json.loads(raw.decode('utf-8-sig'),object_pairs_hook=_pairs,parse_float=lambda _:fail('noninteger_json'),parse_constant=lambda _:fail('nonfinite_json'))
+                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 145, in fail
+    def fail(code):raise PlanError(code)
+                   ^^^^^^^^^^^^^^^^^^^^^
+zzz_ops.deployment_plan.PlanError: noninteger_json
+
+======================================================================
+ERROR: test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes (tests_python.test_factory_payload5.FactoryPayload5Tests.test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_factory_payload5.py", line 56, in test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes
+    output=archived('activation-gas-20261118').output;parts=actual_parts()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\factory_payload_archive.py", line 21, in archived
+    gates=D.decode(raws[spec['gates']],D.MAX_BUILD)['gates']
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 161, in decode
+    try:return json.loads(raw.decode('utf-8-sig'),object_pairs_hook=_pairs,parse_float=lambda _:fail('noninteger_json'),parse_constant=lambda _:fail('nonfinite_json'))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\__init__.py", line 359, in loads
+    return cls(**kw).decode(s)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\decoder.py", line 354, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 161, in <lambda>
+    try:return json.loads(raw.decode('utf-8-sig'),object_pairs_hook=_pairs,parse_float=lambda _:fail('noninteger_json'),parse_constant=lambda _:fail('nonfinite_json'))
+                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 145, in fail
+    def fail(code):raise PlanError(code)
+                   ^^^^^^^^^^^^^^^^^^^^^
+zzz_ops.deployment_plan.PlanError: noninteger_json
+
+----------------------------------------------------------------------
+Ran 2 tests in 3.501s
+
+FAILED (errors=3)

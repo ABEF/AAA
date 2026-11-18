@@ -1,0 +1,641 @@
+{
+  "input_sha256": "27de0013bad7310bcb8fd0fd121b9ca161e2c0b87a2e080752228178e2171b10",
+  "count": 37,
+  "findings": [
+    {
+      "fingerprint": "20f7dc39649c2a444874bd82c74376df9318eed150c599af66f1a42ba519b819",
+      "check": "arbitrary-send-eth",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards._sendRaw(address,address,uint256) (src/ZZZRoyaltyRewards.sol#688-694) sends eth to arbitrary user\n\tDangerous calls:\n\t- (ok,None) = address(receiver).call{value: amount}() (src/ZZZRoyaltyRewards.sol#691)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 1,
+      "disposition": "false_positive",
+      "rationale": "_sendRaw is private, not an arbitrary public send. _claim/_claimFor authenticate the current NFT owner, consume only that NFT funded liability before the guarded call and recheck backing afterward. forwardLate derives the immediate authenticated successor royalty receiver; cancelled recovery is canonicalOnly/state4 and its fixed coordinator _cancelledTarget derives the operating target receiver and governance, not a caller wallet. A rejecting receiver reverts its payout.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "da03011bdb3644e50ddea0c8f49653de2e8bd527bffed6ab9e2d316e25e931d3",
+      "check": "uninitialized-state",
+      "impact": "High",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards.assetStatus (src/ZZZRoyaltyRewards.sol#53) is never initialized. It is used in:\n\t- ZZZRoyaltyRewards._readStatus(address) (src/ZZZRoyaltyRewards.sol#60-66)\n\t- ZZZRoyaltyRewards._writeStatus(address,uint256,uint256) (src/ZZZRoyaltyRewards.sol#67-74)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 11,
+      "disposition": "false_positive",
+      "rationale": "assetStatus is deliberately default-zero and explicitly written by _writeStatus in memory-safe assembly. The helper cleans the address, hashes canonical64-byte mapping encoding with assetStatus.slot, and RMWs only fixed count/weight/cursor/initial masks. Slither does not model that assembly write; this is not absent initialization. Counts<=1000, weights<=3000 and validated cursor<weight fit each16-bit field. Fresh layouts/pins are mandatory.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "eb9deddb63604df6f1c9ffeaf0efdefc1e8adc60eafd0c709f44ad65776c090a",
+      "check": "incorrect-equality",
+      "impact": "Medium",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards._sendRaw(address,address,uint256) (src/ZZZRoyaltyRewards.sol#688-694) uses a dangerous strict equality:\n\t- amount == 0 (src/ZZZRoyaltyRewards.sol#689)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 13,
+      "disposition": "false_positive",
+      "rationale": "amount==0 is an explicit exact-unit argument no-op, not a requirement that an externally influenceable contract ETH balance equal a fixed target. A donation cannot block nonzero _sendRaw or escape current-owner/canonical receiver authorization.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "19bdd975db19cc835845b72d17f0460748a9dc1257ec4462bc8309ef9cfac7a5",
+      "check": "incorrect-equality",
+      "impact": "Medium",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards._distribute(address,uint256,uint256,uint256) (src/ZZZRoyaltyRewards.sol#352-364) uses a dangerous strict equality:\n\t- amount == 0 (src/ZZZRoyaltyRewards.sol#353)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 14,
+      "disposition": "false_positive",
+      "rationale": "_distribute returns for exactly zero receipt before normalization/credit. This is the intended no-op for a monetary delta and protects the positive-credit production domain; it is not a balance equality that a donation can invalidate. Nonzero amounts retain checked liabilities, valid weight/cursor and exact-unit allocation.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "53a14b0321d69fea3ad75c43d4bc72986d1a92b3a948587c3ca52ce0267a5341",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ExactRoyaltyAllocation.birthActivated(ExactRoyaltyAllocation.Cohorts,uint256).low (src/libraries/ExactRoyaltyAllocation.sol#83) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/libraries/ExactRoyaltyAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactRoyaltyAllocation.sol": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9"
+      },
+      "current_index": 19,
+      "disposition": "false_positive",
+      "rationale": "Solidity initializes local uint256 low to0. The binary search sets high to cohort.ends.length, computes middle inside unchecked bounded low<=high<=1000, and still rejects exhaustion. Generic birth rejects zero; production birthActivated is reached only after _ticketShare rejects a zero/ineligible activation ordinal.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "821b050fa7d2b00b17d0f77eff940c91ce24ab8abaf3d035f982fd867bbe344a",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards.activate(uint256,uint256).successful (src/ZZZRoyaltyRewards.sol#248) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 22,
+      "disposition": "false_positive",
+      "rationale": "Solidity initializes the successful bitmap to0. Only a completed ETH sync or successful isolated ERC20 sync sets its bounded asset index bit; the later loop enrolls only those bits after global activation writes. Maximum65 assets fits the256-bit bitmap, and failed currencies retain their earlier cohort.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "fbd82ec14909748904293b2c6beb53755617e1300639087fe6ca4d080eda7b97",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards.activate(uint256,uint256).balanceCap (src/ZZZRoyaltyRewards.sol#243) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 24,
+      "disposition": "false_positive",
+      "rationale": "balanceCap defaults to0 only in the ETH-only case, where no ERC20 branch can use it. If assets.length>1 the protocol policy value is loaded before any optional-token read; assets begin with immutable ETH identity. The separate governed read cap, complete-frame witness and partial-frame funding guard remain.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "166f2c57c620bcfbfb4133628eb0f03afc32b8adcda09da4f5b12fef49c1dd3e",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards.activate(uint256,uint256).syncGas (src/ZZZRoyaltyRewards.sol#243) is a local variable never initialized\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 26,
+      "disposition": "false_positive",
+      "rationale": "syncGas defaults to0 only with the single native-ETH asset, which takes _sync rather than _syncActivationAsset. Every possible ERC20 iteration follows the assets.length>1 policy load. The isolated complete-sync budget and partial-frame funding/error classification are unchanged.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "3a6cf0c0310ed0020bc94c3298579afea8e7ac89ad33eea6ff958e7d17a3d450",
+      "check": "shadowing-local",
+      "impact": "Low",
+      "confidence": "High",
+      "description": "ExactRoyaltyAllocation.enroll(ExactRoyaltyAllocation.Cohorts,uint256,uint256).rounds (src/libraries/ExactRoyaltyAllocation.sol#57) shadows:\n\t- ExactRoyaltyAllocation.rounds(ExactRoyaltyAllocation.Book) (src/libraries/ExactRoyaltyAllocation.sol#37) (function)\n",
+      "referenced_paths": [
+        "src/libraries/ExactRoyaltyAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactRoyaltyAllocation.sol": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9"
+      },
+      "current_index": 35,
+      "disposition": "informational",
+      "rationale": "The enroll parameter rounds is a local coefficient value, whereas rounds(Book) is a typed Book getter. Solidity lexical/type resolution is unambiguous; the parameter is passed into enrollValidated and cannot invoke or replace the getter. Naming cleanup is optional and is not a security correction.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "f3c75429e5b37ad585316fd095a10c59718a424f061d4a1ca380a7f43fb6b215",
+      "check": "shadowing-local",
+      "impact": "Low",
+      "confidence": "High",
+      "description": "ExactRoyaltyAllocation.birth(ExactRoyaltyAllocation.Cohorts,uint256).rounds (src/libraries/ExactRoyaltyAllocation.sol#77) shadows:\n\t- ExactRoyaltyAllocation.rounds(ExactRoyaltyAllocation.Book) (src/libraries/ExactRoyaltyAllocation.sol#37) (function)\n",
+      "referenced_paths": [
+        "src/libraries/ExactRoyaltyAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactRoyaltyAllocation.sol": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9"
+      },
+      "current_index": 39,
+      "disposition": "informational",
+      "rationale": "The birth return variable rounds is a full-width local output; rounds(Book) remains the typed Book getter. Returning birthActivated preserves the original tuple and no local name alters dispatch, storage or coefficient arithmetic.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "d5d2c619b4d6e7cc0f933a4c7f677ab652ec918b1c721383b662b3bc2f3d2293",
+      "check": "shadowing-local",
+      "impact": "Low",
+      "confidence": "High",
+      "description": "ExactRoyaltyAllocation.enrollValidated(ExactRoyaltyAllocation.Cohorts,uint256,uint256).rounds (src/libraries/ExactRoyaltyAllocation.sol#69) shadows:\n\t- ExactRoyaltyAllocation.rounds(ExactRoyaltyAllocation.Book) (src/libraries/ExactRoyaltyAllocation.sol#37) (function)\n",
+      "referenced_paths": [
+        "src/libraries/ExactRoyaltyAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactRoyaltyAllocation.sol": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9"
+      },
+      "current_index": 40,
+      "disposition": "informational",
+      "rationale": "enrollValidated rounds is the already-read complete modular Book coefficient, stored into cohort.roundsAt[end]. It is distinct from the typed rounds(Book) function; the production host validates increasing bounded counts, while the generic enroll wrapper retains all original checks.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "39a62ad97091589a4f9e309f319485dab0201cad64f15131666c1878885f4c46",
+      "check": "shadowing-local",
+      "impact": "Low",
+      "confidence": "High",
+      "description": "ExactRoyaltyAllocation.birthActivated(ExactRoyaltyAllocation.Cohorts,uint256).rounds (src/libraries/ExactRoyaltyAllocation.sol#82) shadows:\n\t- ExactRoyaltyAllocation.rounds(ExactRoyaltyAllocation.Book) (src/libraries/ExactRoyaltyAllocation.sol#37) (function)\n",
+      "referenced_paths": [
+        "src/libraries/ExactRoyaltyAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactRoyaltyAllocation.sol": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9"
+      },
+      "current_index": 41,
+      "disposition": "informational",
+      "rationale": "birthActivated returns the immutable stored full-width roundsAt value under a local output name. It does not call or shadow storage access to Book.rounds(); binary-search exhaustion and the public-host eligibility guard remain effective.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "2f997855d8c1a7e64175a6406d47d8663cd8946f90c66c53ef748200ebd955a1",
+      "check": "events-maths",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards.canonicalImport(uint256,bytes) (src/ZZZRoyaltyRewards.sol#571-633) should emit an event for: \n\t- (canonicalAssetTotal,canonicalNFTs,canonicalWeight,mintEnd,assetCapacity) = abi.decode(record,(uint256,uint256,uint256,uint64,uint8)) (src/ZZZRoyaltyRewards.sol#576) \n\t- (canonicalAssetTotal,canonicalNFTs,canonicalWeight,mintEnd,assetCapacity) = abi.decode(record,(uint256,uint256,uint256,uint64,uint8)) (src/ZZZRoyaltyRewards.sol#576) \n\t- (canonicalAssetTotal,canonicalNFTs,canonicalWeight,mintEnd,assetCapacity) = abi.decode(record,(uint256,uint256,uint256,uint64,uint8)) (src/ZZZRoyaltyRewards.sol#576) \n\t- (canonicalAssetTotal,canonicalNFTs,canonicalWeight,mintEnd,assetCapacity) = abi.decode(record,(uint256,uint256,uint256,uint64,uint8)) (src/ZZZRoyaltyRewards.sol#576) \n\t- (canonicalAssetTotal,canonicalNFTs,canonicalWeight,mintEnd,assetCapacity) = abi.decode(record,(uint256,uint256,uint256,uint64,uint8)) (src/ZZZRoyaltyRewards.sol#576) \n\t- canonicalMaxOrdinal = ordinal (src/ZZZRoyaltyRewards.sol#620) \n\t- totalWeight += weight (src/ZZZRoyaltyRewards.sol#625) \n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 42,
+      "disposition": "informational",
+      "rationale": "canonicalImport is an inert, fixed-coordinator ordered import, not a live sale/configuration/royalty receipt. Header and NFT counters are bounded and source-row authenticated through the canonical workflow, then claims/backing and ordinal uniqueness are validated before activation. Coordinator lifecycle/commit evidence and exported rows supply provenance; emitting royalty-income events here would misclassify imported rights as new income. Per-row extra events are a retained observability choice.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "43e6a9fa1be381d61b58a8df0a77a64d6b5955553d7a03306312a6483b6c2654",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards.setMintEnd(uint64) (src/ZZZRoyaltyRewards.sol#154-160) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- end <= block.timestamp || (mintEnd != 0 && block.timestamp > mintEnd) || openingFinalized (src/ZZZRoyaltyRewards.sol#155)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 61,
+      "disposition": "accepted_risk",
+      "rationale": "The timestamp comparison implements the governed official sale end: a new end must be future, old mintEnd cannot already be past, and finalized opening cannot change. Mint-end changes during an open sale are an explicit user decision. Inclusion/boundary timestamp uncertainty remains a chain/operating risk; no claim of exact wall-clock inclusion is made.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "a7159d6eeb7735870d3e77ef6848da81dbaea99d31b284ef5679af89f167be5c",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards.canonicalCapture() (src/ZZZRoyaltyRewards.sol#520-538) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- ! royaltiesOpen() || ! openingFinalized (src/ZZZRoyaltyRewards.sol#523)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 63,
+      "disposition": "accepted_risk",
+      "rationale": "canonicalCapture deliberately requires both royaltiesOpen and a sealed opening cohort, so migration cannot discard an unfinished one-hour window or move its cutoff to late activations. Block timestamp/inclusion liveness is an accepted chain dependency, not removed by this internal source review.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "0d51ce6c794f5ee58db5ee81d96f162b645b53d2dafeaa7ee9708328ac414fe9",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards.royaltiesOpen() (src/ZZZRoyaltyRewards.sol#164-166) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- mintEnd != 0 && block.timestamp >= royaltiesOpenAt() (src/ZZZRoyaltyRewards.sol#165)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 64,
+      "disposition": "accepted_risk",
+      "rationale": "royaltiesOpen uses the configured official sale end plus exactly one hour and >= at the opening boundary. It is a business eligibility timestamp, not entropy or price truth. Near-boundary ordering follows actual block inclusion; governance cannot mutate a finalized cohort.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "c00b52587d75c99311605a6b0f10df97b10d35cce4cb6199f3aac6d1ac0ca950",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards._finalizeOpening() (src/ZZZRoyaltyRewards.sol#169-176) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- ! openingFinalized && royaltiesOpen() (src/ZZZRoyaltyRewards.sol#170)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 65,
+      "disposition": "accepted_risk",
+      "rationale": "_finalizeOpening seals count/weight once before any post-deadline activation joins. Subsequent currency syncs cannot extend the cohort. Timestamp/inclusion uncertainty near cutoff is retained; the one-hour rule is not advertised as an off-chain exact-time snapshot.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "1d642939b0442f4648baa0d1911e02eab7aef3a6364f4067bee7fb10e8189075",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards.effectiveEligibleCount(address) (src/ZZZRoyaltyRewards.sol#316-319) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- ! _initialAllocated(asset) && royaltiesOpen() && cutoff > eligibleCount(asset) (src/ZZZRoyaltyRewards.sol#318)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 66,
+      "disposition": "accepted_risk",
+      "rationale": "effectiveEligibleCount is a view preserving the sealed pre-deadline opening cohort even if a currency failed to materialize it. It does not enroll a late NFT or allocate new funds; the stored cutoff and bounded eligibility count govern it. Its use of the actual block opening time shares the documented timestamp boundary risk.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "87c5d2fdbdc4ffda3028879fb9f5f3bab5ecf47c6df7de7be7edebb8bacef300",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards._writeStatus(address,uint256,uint256) (src/ZZZRoyaltyRewards.sol#67-74) uses assembly\n\t- INLINE ASM (src/ZZZRoyaltyRewards.sol#68-73)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 72,
+      "disposition": "informational",
+      "rationale": "The private status RMW uses cleaned160-bit address keys, canonical scratch slots0/32 and assetStatus.slot; it does not touch the free-memory pointer or call externally. Fixed masks preserve unrelated fields. Every write origin bounds count<=1000, weight<=3000 and cursor<weight, and initial is one bit. These facts are manually reviewed because Slither cannot infer the assembly storage write.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "07b3b9c56d55eebb2f0064a19bf311d38c98d44d43cc54cac19e4399dd593b7d",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ExactRoyaltyAllocation._bookRound(ExactRoyaltyAllocation.Book,uint256) (src/libraries/ExactRoyaltyAllocation.sol#38-45) uses assembly\n\t- INLINE ASM (src/libraries/ExactRoyaltyAllocation.sol#40-43)\n",
+      "referenced_paths": [
+        "src/libraries/ExactRoyaltyAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactRoyaltyAllocation.sol": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9"
+      },
+      "current_index": 73,
+      "disposition": "informational",
+      "rationale": "_bookRound extracts the223-bit common coefficient from packed>>32, or reads exactly Book.slot+1 when highbit255 selects the complete256-bit spill. It never truncates a wide coefficient. Stale spill words are ignored on compact states; the helper is read-only and actual liabilities stay checked.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "c3a850e855ec6c75912b4d4d46da72e7180ba49016f11128133eb049514c2afc",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards._readStatus(address) (src/ZZZRoyaltyRewards.sol#60-66) uses assembly\n\t- INLINE ASM (src/ZZZRoyaltyRewards.sol#61-65)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 74,
+      "disposition": "informational",
+      "rationale": "_readStatus cleans the160-bit address and hashes its32-byte encoding plus the compiler-provided mapping slot in scratch0..63. It reads exactly one private currency word. Public getters mask the intended16-bit ranges and initial bit; no caller-chosen slot or raw key enters the helper.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "e78f010010a9babddcd9a8355790f3fd0b17308b2fe2489b9f135f268c91d1cf",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ExactRoyaltyAllocation.credit(ExactRoyaltyAllocation.Book,uint256,uint256,uint256,uint256) (src/libraries/ExactRoyaltyAllocation.sol#17-35) uses assembly\n\t- INLINE ASM (src/libraries/ExactRoyaltyAllocation.sol#25-34)\n",
+      "referenced_paths": [
+        "src/libraries/ExactRoyaltyAllocation.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/libraries/ExactRoyaltyAllocation.sol": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9"
+      },
+      "current_index": 78,
+      "disposition": "informational",
+      "rationale": "credit validates weight/cursor and computes checked globalBefore+amount before assembly. _step bounds current cursor below3000; low16/current and next16/initial are exact. Lifetime rounds add modulo2^256 intentionally; q>=2^223 writes the complete spill and high tag. Wide->compact and max->zero->one preserve logical gross. Production _distribute returns on amount0 and authenticates the currency cursor, so removal of the initialized bit does not imply arbitrary zero-credit/cursor-sequence equivalence. No money arithmetic is narrowed.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "7fb8414ccdce0b2be1f6da1aa7f5249ff757a40adae44cc8c6f8126586cb6184",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards._activationBalance(address,uint256) (src/ZZZRoyaltyRewards.sol#294-309) uses assembly\n\t- INLINE ASM (src/ZZZRoyaltyRewards.sol#300-307)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 93,
+      "disposition": "informational",
+      "rationale": "The token balance staticcall has an independently governed cap, an exact36-byte balanceOf request and at-most32-byte output copy; short return data fails. Fully funded partial frames are required, and observedBalance<accounted emits the isolated4-byte read-unavailable signal. Only temporary free-memory work is used and no token revert payload is copied without a bound.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "3602061c9287fdd0034d5e4d93f31bae343efde6cb8b1ba1ed37671dd0c70af3",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards._syncActivationAsset(address,uint256,uint256) (src/ZZZRoyaltyRewards.sol#268-284) uses assembly\n\t- INLINE ASM (src/ZZZRoyaltyRewards.sol#276-281)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 95,
+      "disposition": "informational",
+      "rationale": "_syncActivationAsset calls only this contract with a bounded policy budget and prebuilt typed calldata, copies at most4 return bytes and records actual returndata size. In a partial frame only the exact self-generated4-byte ActivationReadUnavailable error permits deferral; accounting/OOG/unknown failures revert. Full frames preserve optional currency isolation without moving entrant enrollment ahead of sync.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "59eca28c80ea0ade1260cfa89905b5695493d2875d77223a9da4ae493b50d38b",
+      "check": "assembly",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards._allocationUnit(uint256) (src/ZZZRoyaltyRewards.sol#337-350) uses assembly\n\t- INLINE ASM (src/ZZZRoyaltyRewards.sol#343-349)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 98,
+      "disposition": "informational",
+      "rationale": "The Yul active bits are exactly firstKind!=0 and firstKind<=count. A Common prefix or both Rare and Legendary normalizes to1; otherwise Rare-only2 or Legendary-only3, with0 for no active cohort. First ordinals are set once on activation or rebuilt to their minimum from validated unique canonical rows. This preserves exact rarity GCD phases; _distribute/_enrollTo still reject unit0.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "c9f105ff05f153fb4611da359d6cbac57836e19868578ea9b2cf934047f44793",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards._finalizeOpening() (src/ZZZRoyaltyRewards.sol#169-176) has costly operations inside a loop:\n\t- openingFinalized = true (src/ZZZRoyaltyRewards.sol#171)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.activate(uint256,uint256)\n\t\tZZZRoyaltyRewards._sync(address)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 106,
+      "disposition": "informational",
+      "rationale": "_finalizeOpening is one-shot: openingFinalized is set before re-entry into later sync iterations, and activate already calls it before looping currencies. Repeated reachable checks do not repeatedly write the flag. Currency loops remain bounded by admitted capacity;64-currency full-operation gas is still unqualified.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "4e7137b6b90408b404a26190a78b8a1cb619965c1fd09cbe59dc84ef6369f23b",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards._finalizeOpening() (src/ZZZRoyaltyRewards.sol#169-176) has costly operations inside a loop:\n\t- openingFinalized = true (src/ZZZRoyaltyRewards.sol#171)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.syncAll()\n\t\tZZZRoyaltyRewards._sync(address)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 107,
+      "disposition": "informational",
+      "rationale": "syncAll can reach _finalizeOpening per currency, but only its first successful eligible call writes openingFinalized; later iterations see true. Per-asset sync remains available and failures revert the selected transaction. This detector is a bounded/one-shot cost observation, not an unbounded receipt-history loop.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "c8ce8b0d99516fce7ce3bdaf3241ba718e8ef2d0da35918e4f8f8773bff14b4b",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards._finalizeOpening() (src/ZZZRoyaltyRewards.sol#169-176) has costly operations inside a loop:\n\t- openingCount = activationCount (src/ZZZRoyaltyRewards.sol#172)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.syncAll()\n\t\tZZZRoyaltyRewards._sync(address)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 108,
+      "disposition": "informational",
+      "rationale": "openingCount is captured once with openingFinalized, so syncAll does not rewrite it per asset. The snapshot remains the exact pre-late-activation cohort. Loops cover at most65 admitted assets, and maximum expanded-capacity gas still requires qualification.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "b9e8dd4e723799871621c14cbb7a42eb34dab6c515e9ec674dc52c4f0341b002",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards._finalizeOpening() (src/ZZZRoyaltyRewards.sol#169-176) has costly operations inside a loop:\n\t- openingWeight = totalWeight (src/ZZZRoyaltyRewards.sol#173)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.activate(uint256,uint256)\n\t\tZZZRoyaltyRewards._sync(address)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 109,
+      "disposition": "informational",
+      "rationale": "activation seals openingWeight before entering currency processing; inner _sync calls observe the flag and cannot repeat that write or include the entrant. Deferring one currency preserves the same sealed weight for recovery.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "dd89ba3d8f26676da0e60dff2bd245b39bac2a214cbf226693f81d3d82b45f15",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards._finalizeOpening() (src/ZZZRoyaltyRewards.sol#169-176) has costly operations inside a loop:\n\t- openingWeight = totalWeight (src/ZZZRoyaltyRewards.sol#173)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.syncAll()\n\t\tZZZRoyaltyRewards._sync(address)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 110,
+      "disposition": "informational",
+      "rationale": "The only openingWeight write is guarded by !openingFinalized; once the first syncAll iteration seals it, all following iterations skip the write. The retained per-currency call order protects cutoff/fault accounting and is not optimized away without separate evidence.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "9c0e1499b6038b983febdadd23847fd23082e5500ce9d483d083015ebe05d4ef",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "description": "ZZZRoyaltyRewards._finalizeOpening() (src/ZZZRoyaltyRewards.sol#169-176) has costly operations inside a loop:\n\t- openingCount = activationCount (src/ZZZRoyaltyRewards.sol#172)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.activate(uint256,uint256)\n\t\tZZZRoyaltyRewards._sync(address)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 111,
+      "disposition": "informational",
+      "rationale": "activate calls _finalizeOpening before any royalty currency sync or entrant state write. The loop-reachable _sync guard is therefore already false for a finalized opening, and openingCount is not repeatedly changed or extended.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "0d0232132d4361e11f0067d8cbf3b4b9daa66a27ffff774d2acbc2b2666f5408",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards.canonicalImport(uint256,bytes) (src/ZZZRoyaltyRewards.sol#571-633) has a high cyclomatic complexity (22).\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 114,
+      "disposition": "accepted_risk",
+      "rationale": "canonicalImport combines distinct typed header/asset/NFT/accrual row branches, sequential cursor enforcement, duplicate ordinal/ticket rejection and checked liability/backing classification. Splitting/removing these guards merely for complexity would risk rights or wire semantics. Flat rows/future claims and funded abort have focused current evidence, but complete coordinator/max-state/independent review remain separate qualification.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "38dc8f6d371db8f2c30b3eda51ba4565b20553d93a0d0ba564f69fa53baa4cb7",
+      "check": "low-level-calls",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "Low level call in ZZZRoyaltyRewards._sendRaw(address,address,uint256) (src/ZZZRoyaltyRewards.sol#688-694):\n\t- (ok,None) = address(receiver).call{value: amount}() (src/ZZZRoyaltyRewards.sol#691)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 119,
+      "disposition": "informational",
+      "rationale": "The native call is intentional receiver-compatible ETH payout, not a delegatecall. _sendRaw is private, the amount is already charged against the authenticated NFT or canonical route, caller paths are nonReentrant, failure reverts, and claims recheck remaining backing while returned callback donations remain pending new receipts.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "ffe33e4490c4975ceac3e673325aac6fb476ec58508812b88cf6dac6419aef19",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards (src/ZZZRoyaltyRewards.sol#32-695) should inherit from IZZZCanonicalModule (src/interfaces/IZZZCanonical.sol#6-19)\n",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol",
+        "src/interfaces/IZZZCanonical.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0"
+      },
+      "current_index": 121,
+      "disposition": "informational",
+      "rationale": "Canonical ABI is implemented structurally through the inherited exact backing hooks and explicit Royalty row hooks. The fixed coordinator authenticates role/runtime and calls exact signatures. An explicit interface inheritance clause would add compile-time documentation but grants no permission or extra runtime validation; source-only omission is not missing canonical authorization.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "a8923e67fdf768a2b3547865678c3e1d0a107cdc5f701b1d24e9399f20078357",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "description": "ZZZRoyaltyRewards (src/ZZZRoyaltyRewards.sol#32-695) should inherit from IZZZClaimLedger (src/ZZZClaimRouter.sol#8-10)\n",
+      "referenced_paths": [
+        "src/ZZZClaimRouter.sol",
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 126,
+      "disposition": "informational",
+      "rationale": "claim/claimFor/claimable signatures satisfy the routed ledger surface. claimFor authenticates nft.claimRouter and then the current owner; a structural-interface inheritance clause would not improve those checks. Runtime/module/version pins remain the integration boundary.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "222cf1f696f7a1cbcb8ec8c8ff318e992a3d6f66f3c86eb1c46842a2ca7a1d22",
+      "check": "cache-array-length",
+      "impact": "Optimization",
+      "confidence": "High",
+      "description": "Loop condition i < assets.length (src/ZZZRoyaltyRewards.sol#530) should use cached array length instead of referencing `length` member of the storage array.\n ",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 145,
+      "disposition": "informational",
+      "rationale": "canonicalCapture traverses a bounded admitted currency list and must observe each actual balance for a complete frozen backing set. Caching assets.length is a possible small gas optimization, not implemented in this frozen candidate with14-byte Royalty headroom. It does not close maximum-currency gas or operating qualification, and no guard is removed to silence it.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    },
+    {
+      "fingerprint": "1df9950bc7ac7a81dda9b53fe99c2678dd349f2aeac9d8d307881bd5309fc2e6",
+      "check": "cache-array-length",
+      "impact": "Optimization",
+      "confidence": "High",
+      "description": "Loop condition i < assets.length (src/ZZZRoyaltyRewards.sol#644) should use cached array length instead of referencing `length` member of the storage array.\n ",
+      "referenced_paths": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "referenced_source_sha256_lf": {
+        "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf"
+      },
+      "current_index": 147,
+      "disposition": "informational",
+      "rationale": "canonicalActivate must reclassify each actual target prefund and enroll the entire imported cohort for every admitted currency. The list is bounded and canonical-only; caching its length is an optional minor optimization. It is retained as reviewed optimization work rather than a claim that all deployment/canonical workloads are gas-qualified.",
+      "review_scope": "Individually current Royalty/exact Book/source context inspection; not independent audit or exploit-absence proof."
+    }
+  ],
+  "unresolved_confirmed_defects": [],
+  "scope_note": "601-wide source-bound coverage built separately. No unchanged tests run; no source/configuration change."
+}

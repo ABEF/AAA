@@ -1,0 +1,6 @@
+test_ungenerated_six_identity_cannot_read_artifacts_default_to_five_or_make_rpc (tests_python.test_factory_payload6.FactoryPayload6UnboundTests.test_ungenerated_six_identity_cannot_read_artifacts_default_to_five_or_make_rpc) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK

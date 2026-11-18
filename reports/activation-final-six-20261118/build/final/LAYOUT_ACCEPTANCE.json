@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "build_id": "activation-final-six-20261118",
+  "reviewed": true,
+  "source_freeze_sha256": "17a66cafef1dcbb8e3327ebb92aadf646e0ff11b599ca58689cb507e3baa92ca",
+  "compiler_input_sha256": "418c6b8fb7e610b0ecacf1003f137cb23809bd9919af221265c863ce8426f67e",
+  "compiler_output_sha256": "4614afcbd97bd5d1ced6e68982559256045ef56ec67d632f971d8a590b6eb983",
+  "accepted_semantic_storage_deltas": {
+    "src/ZZZContributionPricing.sol:ZZZContributionPricing": {
+      "baseline_semantic_sha256": "a70fbb0224aa58be682c33e666ef5fb9752399afef1f881d46a873b51d1253b2",
+      "final_semantic_sha256": "0a19b0e5e7173268d0b2e37247fd06b336bdb2121deea8731ff8de62f4b62575"
+    },
+    "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards": {
+      "baseline_semantic_sha256": "a4364bef88f38390a1457f0b76dbeab86382e925bbdf426da64facce384dd65c",
+      "final_semantic_sha256": "fa76856d8b580a59fc9338196a4ace4b2de4c33f9d0c254a4a3f95a92e671574"
+    }
+  },
+  "accepted_abi_name_changes": {
+    "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards": [
+      {
+        "field": "{\"inputs\":[{\"type\":\"address\"}],\"name\":\"allocationCursor\",\"outputs\":[{\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}/inputs/0/name",
+        "baseline": "",
+        "final": "asset"
+      },
+      {
+        "field": "{\"inputs\":[{\"type\":\"address\"}],\"name\":\"eligibleCount\",\"outputs\":[{\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}/inputs/0/name",
+        "baseline": "",
+        "final": "asset"
+      },
+      {
+        "field": "{\"inputs\":[{\"type\":\"address\"}],\"name\":\"eligibleWeight\",\"outputs\":[{\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}/inputs/0/name",
+        "baseline": "",
+        "final": "asset"
+      }
+    ]
+  },
+  "review_scope": "Fresh deployment only. No old private storage reinterpretation. Source code, exact-domain proofs and focused host/canonical checks reviewed separately."
+}

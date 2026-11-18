@@ -1,0 +1,6 @@
+{
+  "source_freeze_sha256": "17a66cafef1dcbb8e3327ebb92aadf646e0ff11b599ca58689cb507e3baa92ca",
+  "exclusive_config_window_granted": true,
+  "stage": "full01",
+  "scope": "Only owned temporary export permission; all independent normal/consumer/config-bracketing jobs finished. Restore original bytes in finally."
+}

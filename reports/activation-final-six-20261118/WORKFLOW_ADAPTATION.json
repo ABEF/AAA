@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "build_id": "activation-final-six-20261118",
+  "status": "PREPARED ONLY; no compilation/EVM/RPC executed",
+  "baseline_build": "activation-gas-20261118/build/final01",
+  "fixture": "test/RoyaltyRoundsCapacity20261118.t.sol",
+  "fixture_sha256": "f648f3f21f2d3fbf80795211ec2afce7efca1a06d1bc43fc707188c389643e57",
+  "expected_fixture_sha256": "f648f3f21f2d3fbf80795211ec2afce7efca1a06d1bc43fc707188c389643e57",
+  "fixture_byte_identical_to_affected_baseline": true,
+  "scope_file_byte_identical": true,
+  "scope_sha256": "c287373bdee466d0306095c299eb8157835b158cf31fece8d836a17b8eb5638d",
+  "helpers": [
+    {
+      "file": "compile_full_flow.py",
+      "historical_source_sha256": "f915b121db5917188a522f29703ff12c6d5ea6c52ec0fef6ea0d2dd883b423bb",
+      "adapted_source_sha256": "0e59290c2cf50042f7c0206d3a5e8bacf70bf5f60332005629f3520612eea258",
+      "changes": "campaign-owned paths and explicit fresh-build/freeze checks; no price/financial/permission/budget changes"
+    },
+    {
+      "file": "run_full_flow.py",
+      "historical_source_sha256": "b6da632f95ef4b6b22020640f0863dae797286893a0fc7a4964338ef353ab1fc",
+      "adapted_source_sha256": "4a780a2e7d15f374749ad7abd81e32c8a053ce8718ce4bd1b88a1320d4c42da5",
+      "changes": "campaign-owned paths and explicit fresh-build/freeze checks; no price/financial/permission/budget changes"
+    },
+    {
+      "file": "verify_full_flow.py",
+      "historical_source_sha256": "58862c5b7576b1d8bb96d0328a929c8e440a4eac1abcd242b86efae746c051c4",
+      "adapted_source_sha256": "15f9977892660732f09399f5cdc5ee81135d48b6ea7970518e8239a486dd1381",
+      "changes": "campaign-owned paths and explicit fresh-build/freeze checks; no price/financial/permission/budget changes"
+    },
+    {
+      "file": "publish_final_flow.py",
+      "historical_source_sha256": "23a18a20cc780e9ffaa98a7588ece4bcdbe03f9ccbb80c11950a34ec3c58eca6",
+      "adapted_source_sha256": "3c65dd48bdf7efe84021925b777b81be7cdc70d59557aa975c829795db97e211",
+      "changes": "campaign-owned paths and explicit fresh-build/freeze checks; no price/financial/permission/budget changes"
+    }
+  ],
+  "fullflow_method": "testRoundsFull1000DenseCurrenciesOpeningRotationsAllFaultsAndGrowth()",
+  "distinct_affected_existing_method_count": 1,
+  "new_test_methods": 0,
+  "export_cases": 13,
+  "unchanged_old_suites": 0,
+  "compile_then_execution_reuses_one_owned_cache": true,
+  "normal_build": "compile once, then exact admission without recompilation",
+  "existing_anvil_state_or_journals_modified": false,
+  "public_signing_deployment_sealing": false,
+  "production_approved": false
+}

@@ -1,0 +1,23 @@
+{
+  "actual_analyzer_success": true,
+  "analyzer_exit_code": 4294967295,
+  "total": 601,
+  "individually_current": 147,
+  "exact_referenced_source_reuse": 454,
+  "dispositions": {
+    "false_positive": 241,
+    "accepted_risk": 164,
+    "informational": 196
+  },
+  "raw_strict_check_pass": true,
+  "complete_projection_strict_check_pass": true,
+  "all100_compiler_sources_stable": true,
+  "compiler_reinvoked": false,
+  "matcher_policy_changed": false,
+  "independent_audit": false,
+  "production_approved": false,
+  "new_test_methods": 0,
+  "default_adoption_pending": true,
+  "review_sha256": "a412c7d94917f1bdfd60a2adfa11dd3b2099e368b7c8769cc05a2db04388b9da",
+  "projection_gzip_sha256": "002da773a1e4ca19785a090fd40405a336be3a7b1d62ebd844876f5c60c2d302"
+}

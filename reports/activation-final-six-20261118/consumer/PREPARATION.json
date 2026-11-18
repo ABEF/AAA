@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "factory6_status": "UNGENERATED; awaits exact admitted final normal build",
+  "generated_hashes": false,
+  "payload5_helper_sha256": "3e41c39666784e514d35a53e6ed7996b0bd3522126d22c55dcf63dfc943dfb46",
+  "payload5_json_sha256": "d3273a94c8ffa6347bedec98947d04644a9cc3e6a156ebeceafc3d2ad3c3fd20",
+  "historical_payload5_template_sha256": "3469640a7ec586dad0f1037620c2ce4c02441103024d2019cafd19b0adb4366d",
+  "historical_template_byte_identical": true,
+  "new_helper_sha256": "3476aed00ae8368dae63297e8d968717024103d7374bb74a8d3f4e82e7fab76e",
+  "current_template_unknown_source_parts": true,
+  "production_approved": false
+}

@@ -1,4 +1,4 @@
-"""Payload5 activation ERC20 balance-read policy; observations are caller-pinned.
+"""Payload5/6 activation ERC20 balance-read policy; observations are caller-pinned.
 
 The fingerprint below is computed OFFLINE, not an on-chain getter. Existing
 gasPolicy/gasFingerprint keep their historical four-word ABI and semantics.
@@ -30,7 +30,7 @@ def fingerprint(policy,balance_gas,gas_revision):
 def precheck(chain):
     section=chain.get('royalty_read_policy')
     if not isinstance(section,dict) or set(section)!=FIELDS:
-        raise ValueError('Use exact payload5 royalty-read policy section')
+        raise ValueError('Use exact payload5/6 royalty-read policy section')
     if type(section['version'])is not int or section['version']!=VERSION or section['fingerprint_scope']!=SCOPE:
         raise ValueError('Unsupported royalty balance-read policy profile')
     if section['policy'] is not None:address(section['policy'])
@@ -60,7 +60,7 @@ def validate(g,chain,path):
     section=precheck(chain);p=path+'.royalty_read_policy'
     target=V._obj(V._obj(chain.get('helpers')).get('protocol_policy')).get('address')
     g.check(section.get('version')==VERSION and type(section.get('version'))is int,p,'royalty.read.version',
-        'Use the explicit payload5 bounded balance-read profile.','bindings')
+        'Use the explicit payload5/6 bounded balance-read profile.','bindings')
     g.check(V._equal(section.get('policy'),target),p,'royalty.read.binding','Bind the actual protocol policy.','bindings')
     g.check(section.get('fingerprint_scope')==SCOPE,p,'royalty.read.fingerprint_scope',
         'This fingerprint is computed offline; it is not a contract getter.','bindings')

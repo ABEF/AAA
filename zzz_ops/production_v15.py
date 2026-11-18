@@ -26,32 +26,35 @@ FACTORY_PAYLOAD_FIELD='factory_payload_version'
 
 
 def factory_module(chain):
-    """Omission/3 and explicit4 stay historical; only integer5 selects rounds."""
+    """Omission/3 and explicit4/5 stay exact; integer6 selects new private packing."""
     declared=chain.get(FACTORY_PAYLOAD_FIELD,3) if isinstance(chain,dict) else None
-    if type(declared) is not int or declared not in (3,4,5):
-        raise ValueError('Use exact factory_payload_version3,4 or5')
+    if type(declared) is not int or declared not in (3,4,5,6):
+        raise ValueError('Use exact factory_payload_version3,4,5 or6')
     if declared==3:return H.F
     if declared==4:
         from zzz_ops import factory_code_v4
         return factory_code_v4
-    from zzz_ops import factory_code_v5
-    return factory_code_v5
+    if declared==5:
+        from zzz_ops import factory_code_v5
+        return factory_code_v5
+    from zzz_ops import factory_code_v6
+    return factory_code_v6
 
 
 def precheck_chain(chain):
     section=factory_module(chain).parse_section(chain)
-    if chain.get(FACTORY_PAYLOAD_FIELD)==5:
+    if chain.get(FACTORY_PAYLOAD_FIELD) in (5,6):
         from zzz_ops.royalty_read_policy import precheck
         precheck(chain)
     elif 'royalty_read_policy' in chain:
-        raise ValueError('Royalty balance-read policy requires explicit payload5')
+        raise ValueError('Royalty balance-read policy requires explicit payload5 or6')
     return section
 
 
 def factory_code(g,chain,path,addresses):
     precheck_chain(chain)
     result=H.factory_code(g,chain,path,addresses,factory_module=factory_module(chain))
-    if chain.get(FACTORY_PAYLOAD_FIELD)==5:
+    if chain.get(FACTORY_PAYLOAD_FIELD) in (5,6):
         from zzz_ops.royalty_read_policy import validate
         validate(g,chain,path)
     return result
@@ -67,7 +70,7 @@ FIELDS={'implementation_profile','mint_config','expected_mint_price_wei','config
 def expected_bindings(chain,execution_price_version=0):
     precheck_chain(chain)
     result=H.expected_bindings(chain,factory_module=factory_module(chain))
-    if chain.get(FACTORY_PAYLOAD_FIELD)==5:
+    if chain.get(FACTORY_PAYLOAD_FIELD) in (5,6):
         result['helpers']['protocol_policy']['royaltyBalanceGas']=chain['royalty_read_policy']['balance_gas']
         result['helpers']['royalty_rewards']['ROYALTY_ALLOCATION_VERSION']=2
     primary=V._obj(chain.get('primary_mint'))
@@ -282,7 +285,7 @@ def validate(config,*,expected_commit=None,now=None):
     chains=config.get('chains',[]) if isinstance(config,dict) else []
     declared_payload=any(isinstance(chain,dict) and FACTORY_PAYLOAD_FIELD in chain for chain in chains) if isinstance(chains,list) else False
     chain_fields=CHAIN_FIELDS|{FACTORY_PAYLOAD_FIELD} if declared_payload else CHAIN_FIELDS
-    if isinstance(chains,list) and any(isinstance(c,dict) and c.get(FACTORY_PAYLOAD_FIELD)==5 for c in chains):
+    if isinstance(chains,list) and any(isinstance(c,dict) and c.get(FACTORY_PAYLOAD_FIELD) in (5,6) for c in chains):
         chain_fields=chain_fields|{'royalty_read_policy'}
     return BASE._validate(config,expected_commit=expected_commit,now=now,versions=versions,helpers=HELPERS,
         binding_factory=lambda chain:expected_bindings(chain,selected),service_profiles=SERVICE_PROFILES,route_validator=H.LEGACY.validate_routes,

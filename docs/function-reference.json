@@ -11,7 +11,7 @@
       "src/ZZZCanonicalHandoff.sol": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
       "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
       "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
-      "src/ZZZContributionPricing.sol": "d693d2ddfd60fee0375cdb0715ea8c4a1766bc2ab1c45acca463587ca2b25605",
+      "src/ZZZContributionPricing.sol": "971a967c6d63951ea873889a8b9e2b221578f8dc21549884fbc27fac6d738707",
       "src/ZZZCustodyValidation.sol": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b",
       "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
       "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
@@ -26,7 +26,7 @@
       "src/ZZZNFT.sol": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
       "src/ZZZNFTCanonical.sol": "fcc849cfa4689f1a22e6e006d286ec73bea60e660713adc5d01b6a2f90e2245a",
       "src/ZZZNFTMetadata.sol": "d12e430a81d3271313d854d67f7f25468384c30fc7f753eced3f315fb9e11cbe",
-      "src/ZZZOracle.sol": "bcefb1381db8cfdcfef05dd9fad9d7d83f1fdc27a016bf17056b89e18cb8649e",
+      "src/ZZZOracle.sol": "56b232b0b07a020e2e509f3d837495d57f73d6e72025053a7391211f44f6715e",
       "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
       "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
       "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
@@ -36,11 +36,11 @@
       "src/ZZZRewardsCanonical.sol": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
       "src/ZZZRoyaltyCodeData.sol": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
       "src/ZZZRoyaltyFactory.sol": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
-      "src/ZZZRoyaltyRewards.sol": "35f712bd0b95abdd63a9e696e6e85e63453f2d8e5ec57c089c595e6bfd5f5bbd",
+      "src/ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
       "src/ZZZSeaDropMint.sol": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
       "src/ZZZStrategy.sol": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
-      "src/ZZZV4SpotPriceFeed.sol": "d3d690d1ed6086b441b9c83fac9d78352763cefae32b47869d2a69b31cac32c7",
+      "src/ZZZV4SpotPriceFeed.sol": "e098d2c9c6b1f996fc0da69e602c0bc49e6b0d985eb25a7c0e24220e87a1031c",
       "src/ZZZVault.sol": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7",
       "src/ZZZVaultCanonical.sol": "f76da4ce19f1617a6d9c15720a3f3b77094fd6f7fb2d02af0c5aadd51e8575bb",
       "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
@@ -57,8 +57,8 @@
       "src/interfaces/IZZZSeaDrop.sol": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
       "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
       "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
-      "src/libraries/ExactLPAllocation.sol": "a56c1c15d872318cd224f0db55230e5881ab929ebf88045ac118456a617cd62a",
-      "src/libraries/ExactRoyaltyAllocation.sol": "d2e761e976697aadae10c731914c017e5a0a200edfdf16a7e9258302d708e0fe",
+      "src/libraries/ExactLPAllocation.sol": "c61df39ae2bc2fa3af8126c9684c5842d14d5b385d8f9f6ae33a63eaca73a031",
+      "src/libraries/ExactRoyaltyAllocation.sol": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9",
       "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
       "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
       "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
@@ -107,10 +107,10 @@
       "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5"
     },
     "build_input_sha256": {
-      "foundry.toml": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72",
       "package-lock.json": "4f88f4ce04a06f93158e3def09b94414f2093745964e1996f207b180e8cc7a11",
+      "scripts/install-deps.sh": "e011138120640a9a93de13751282fbbf630055e51b1bbc583d76da281a38d0b7",
       "package.json": "932d4b2f7dd67c119223d3b7aaa667f3e7676320398c2aac0a1b56173973d083",
-      "scripts/install-deps.sh": "e011138120640a9a93de13751282fbbf630055e51b1bbc583d76da281a38d0b7"
+      "foundry.toml": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72"
     },
     "compiler_settings": {
       "evmVersion": "cancun",
@@ -255,9 +255,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "bebad6dcf376e8631c9a67bb1c72bb5e0f0a0f7f5de8d06dc45e9793a31c49f5",
-    "compiler_output_sha256": "e3d023ff098824048842003477e4661847062c94a3f465fc2d44571623129735",
-    "size_evidence_sha256": "7b01c1ceb9229297c1c495398615eeebc9018f79853b44d9afc6b4af88c6dd8a",
+    "compiler_input_sha256": "418c6b8fb7e610b0ecacf1003f137cb23809bd9919af221265c863ce8426f67e",
+    "compiler_output_sha256": "4614afcbd97bd5d1ced6e68982559256045ef56ec67d632f971d8a590b6eb983",
+    "size_evidence_sha256": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -22847,7 +22847,7 @@
           "inputs": [
             {
               "internalType": "address",
-              "name": "",
+              "name": "asset",
               "type": "address"
             }
           ],
@@ -23226,7 +23226,7 @@
           "inputs": [
             {
               "internalType": "address",
-              "name": "",
+              "name": "asset",
               "type": "address"
             }
           ],
@@ -23269,7 +23269,7 @@
           "inputs": [
             {
               "internalType": "address",
-              "name": "",
+              "name": "asset",
               "type": "address"
             }
           ],
@@ -23612,7 +23612,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "d90754c044a22b3e888309ae6f805f167b9c03ed8b1549706e385843d486b445"
+      "abi_sha256": "173f5fcad4d6f59b276ccebc10bf2c6de1bb973722c0ca7c5b500042241d2be8"
     },
     "ZZZSeaDropMint": {
       "source": "src/ZZZSeaDropMint.sol",
@@ -59189,8 +59189,8 @@
           "inputs": [
             {
               "position": 0,
-              "name": "",
-              "label": "input0",
+              "name": "asset",
+              "label": "asset",
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
@@ -59858,8 +59858,8 @@
           "inputs": [
             {
               "position": 0,
-              "name": "",
-              "label": "input0",
+              "name": "asset",
+              "label": "asset",
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
@@ -59933,8 +59933,8 @@
           "inputs": [
             {
               "position": 0,
-              "name": "",
-              "label": "input0",
+              "name": "asset",
+              "label": "asset",
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
