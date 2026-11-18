@@ -10,10 +10,13 @@ from zzz_ops import production_observer as O,production_observer_v6 as BASE
 
 class Observer(H.Observer):
     def __init__(self,rpc,chain,*,execution_price_version=0):
+        P.precheck_chain(chain)
         super().__init__(rpc,chain,factory_module=P.factory_module(chain))
         self.execution_price_version=execution_price_version
 
     def typed(self,target,getter,expected):
+        if getter in ('royaltyBalanceGas','ROYALTY_ALLOCATION_VERSION'):
+            return O._decode(self.read(target,getter+'()')[0],0)
         if getter=='EXECUTION_PRICE_VERSION':return O._decode(self.read(target,getter+'()')[0],0)
         if getter=='executionActive':return O._decode(self.read(target,getter+'()')[0],False)
         if getter=='executionStrategy':return O._decode(self.read(target,getter+'()')[0],O.ZERO)
@@ -21,6 +24,18 @@ class Observer(H.Observer):
         if getter in ('seaDropMint','seaDrop'):return O._decode(self.read(target,getter+'()')[0],O.ZERO)
         if getter=='seaDropCodeHash':return '0x'+self.read(target,getter+'()')[0]
         return super().typed(target,getter,expected)
+
+    def observe_chain_extension(self):
+        super().observe_chain_extension()
+        if self.chain.get(P.FACTORY_PAYLOAD_FIELD)!=5:return
+        from zzz_ops import royalty_read_policy as R
+        section=R.precheck(self.chain)
+        section['observed']=None
+        section['observed']=self.attempt('royalty_read_policy','royalty.read.unavailable',lambda:
+            R.observe(self.read,policy=self.chain['helpers']['protocol_policy']['address'],
+                      access=self.chain['modules']['access']['address']))
+        if section['observed'] is not None and not O._same(section['observed'],{k:section[k] for k in R.VALUE_FIELDS}):
+            self.errors.append(dict(path='royalty_read_policy',code='royalty.read.mismatch'))
 
     def execution(self):
         if not self.execution_price_version:return super().execution()

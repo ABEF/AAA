@@ -1,0 +1,15 @@
+{
+  "scope": "schema/source/build inventory preflight; actual compilation not yet performed",
+  "required_build_inputs": [
+    "foundry.toml",
+    "package-lock.json",
+    "package.json",
+    "scripts/install-deps.sh"
+  ],
+  "all_four_present": true,
+  "closed_sources": 100,
+  "project_sources": 61,
+  "source_content_matches_raw_files": true,
+  "normal_codegen_unchanged": true,
+  "not_a_build_pass": true
+}

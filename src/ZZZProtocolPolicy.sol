@@ -30,9 +30,11 @@ contract ZZZProtocolPolicy is ZZZModule,ReentrancyGuard {
     uint64 public vrfRevision;
     uint64 public configurationRevision;
     bytes32 public configurationHash;
+    uint32 public royaltyBalanceGas=50000;
     event EntryPolicyConfigured(uint128 activationUSD,uint128 growthUSD,uint16 maxIdleBps,uint64 revision,bytes32 reviewHash);
     event MaintenancePolicyConfigured(uint16 maxIdleBps,uint64 revision,bytes32 reviewHash);
     event GasPolicyConfigured(uint32 payoutGas,uint32 sourceCallGas,uint32 royaltySyncGas,uint64 revision,bytes32 reviewHash);
+    event RoyaltyBalanceGasConfigured(uint32 balanceGas,uint64 revision,bytes32 reviewHash);
     event MintPriceConfigured(uint128 previous,uint128 current,uint64 revision,bytes32 reviewHash);
     event MintRecipientProposed(address indexed current,address indexed pending,uint64 revision,bytes32 reviewHash);
     event MintRecipientAccepted(address indexed previous,address indexed current,uint64 revision);
@@ -49,7 +51,7 @@ contract ZZZProtocolPolicy is ZZZModule,ReentrancyGuard {
         sale=P.SalePolicy(uint128(0.05 ether),initialMintRecipient,address(0),1);
         metadata=P.MetadataPolicy(1000e18,10000e18,1);
         configurationHash=keccak256(abi.encode("ZZZ_PROTOCOL_POLICY_V1",block.chainid,address(this),controller,
-            entry,maintenance,gasLimits,sale,metadata));
+            entry,maintenance,gasLimits,royaltyBalanceGas,sale,metadata));
     }
     function entryPolicy() external view returns(P.EntryPolicy memory){return entry;}
     function maintenancePolicy() external view returns(P.MaintenancePolicy memory){return maintenance;}
@@ -104,6 +106,16 @@ contract ZZZProtocolPolicy is ZZZModule,ReentrancyGuard {
         gasLimits=P.GasPolicy(payoutGas,sourceCallGas,royaltySyncGas,gasLimits.revision+1);
         _record("GAS",keccak256(abi.encode(gasLimits,reviewHash)));
         emit GasPolicyConfigured(payoutGas,sourceCallGas,royaltySyncGas,gasLimits.revision,reviewHash);
+    }
+    /// @notice Isolated royalty balance reads, not the complete sync allowance.
+    /// Raising the 10k-1M bound requires renewed workload gas qualification.
+    function setRoyaltyBalanceGas(uint32 gasLimit,bytes32 reviewHash)
+        external onlyGovernance operating nonReentrant {
+        _review(reviewHash);
+        if(gasLimit<10000 || gasLimit>MAX_CALL_GAS)revert InvalidConfiguration();
+        royaltyBalanceGas=gasLimit;++gasLimits.revision;
+        _record("ROYALTY_BALANCE",keccak256(abi.encode(gasLimit,reviewHash)));
+        emit RoyaltyBalanceGasConfigured(gasLimit,gasLimits.revision,reviewHash);
     }
     function setMintPrice(uint128 price,bytes32 reviewHash) external onlyGovernance operating nonReentrant {
         _review(reviewHash);if(price==0)revert InvalidConfiguration();uint128 previous=sale.mintPrice;

@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "kind": "One strengthened new method; unchanged remaining method bodies reused exactly",
+  "distinct_methods": 12,
+  "total_method_executions": 13,
+  "new_methods": 11,
+  "changed_historical_methods": 1,
+  "first_stage_actual_count": 12,
+  "followup_actual_count": 1,
+  "first_stage_success": true,
+  "followup_success": true,
+  "changed_source_files": [
+    "tests_python/test_factory_payload5.py"
+  ],
+  "changed_function_bodies": [
+    "test_exact_historical3_and4_templates_retain_separate_identity_and_no_read_policy"
+  ],
+  "byte_exact_prior_source_reconstruction_matches_recorded_sha256": true,
+  "unchanged_other_functions_ast_identical": true,
+  "source_sha256_before": "653f60dd66df83c7c754d360f6ce4a8b04192482de15d4977d6bdc730feaa1f4",
+  "source_sha256_after": "4d1c7add56295a8e8212a291ade9afa562f4d28d5d9a7da1f8ffa106e6f5fea6",
+  "all_other_recorded_sources_exactly_reused": true,
+  "both_execution_source_brackets_stable": true,
+  "latest_method": "tests_python.test_factory_payload5.FactoryPayload5Tests.test_exact_historical3_and4_templates_retain_separate_identity_and_no_read_policy",
+  "latest_method_source": "consumer/final02",
+  "preserved_other11_source": "consumer/final01",
+  "protected_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "files_sha256": {
+    "raw.log": "e1341463c9b5ad8e3d417fa6a81955cecada3407313785e1d4c973274ad7215f",
+    "RESULT.json.gz": "49d39aff4725222a513d14d5ff90e5429f0bd840ac35bba731bcb32d53df5852",
+    "START.json.gz": "f0e7cef74b52f3e8463dc1127cff7741f81c52a6256df15b9d053c618ba1c44c",
+    "CURRENT_TEST_SOURCE.py.gz": "cfdc6f56b645fd1f56e2d04e9a6baae8e4604d51669f4b32e893e178ac2f07a2"
+  },
+  "production_approved": false,
+  "unchanged_suites_rerun": false
+}

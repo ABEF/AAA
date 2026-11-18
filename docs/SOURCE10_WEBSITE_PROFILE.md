@@ -1,6 +1,6 @@
 # Mint2/V10 website read and unsigned profile
 
-Q03 preserves schema17/canonicalV10/reporting5 and this consumer wire shape, but fresh factory payload4 and changed runtime/source pins require explicit matching reviewed configuration. Source publication updates neither served website nor signing; old source10 payload3 observations are not relabelled. See the [Q03 review](../reports/q03-activation-gas-20261117/REVIEW.md).
+Fresh allocation2 preserves schema17/canonicalV10/reporting5 and this consumer wire shape, but factory payload5, read-policy observations and fresh runtime/source pins require explicitly matching reviewed configuration. Source publication updates neither served website nor signing; old payload3/4 observations are not relabelled. See the [round-accounting review](../reports/royalty-rounds-20261118/REVIEW.md).
 
 ## Optional execution-price1
 

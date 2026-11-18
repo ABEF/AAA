@@ -1,0 +1,449 @@
+{
+  "seconds": 165.67199999999139,
+  "exit_code": 0,
+  "methods": [
+    {
+      "signature": "testSyncedTargetPrefundsImportOncePreserveSourceRightsAndFutureRoyalties()",
+      "status": "Success",
+      "reason": null,
+      "logs": []
+    }
+  ],
+  "error": null,
+  "compiled_source_bracket": {
+    "lib/forge-std/src/Base.sol": {
+      "before": "dc5e18050f154e4211ee58a58fdd395e5feb222ef61c76184791d7f6e5405516",
+      "after": "dc5e18050f154e4211ee58a58fdd395e5feb222ef61c76184791d7f6e5405516",
+      "stable": true,
+      "compiled_keccak256": "0xa3735a6618a3014e42bb4329ad143e3b2c59cd95094350202e4c4a06c9d585dd",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/StdAssertions.sol": {
+      "before": "9795e71054414332c56673d60d0d868f657224a1c52ceb6c3884d7f667338095",
+      "after": "9795e71054414332c56673d60d0d868f657224a1c52ceb6c3884d7f667338095",
+      "stable": true,
+      "compiled_keccak256": "0x4584f551c3a875c26423c1e50a77179bc2f9c9c1ee6d0f0c6be0f89ca5ee8270",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/StdChains.sol": {
+      "before": "cdf1d76f68953a1e3be842b3a7043c0c9bca61cbff844f95cd677a4b5410bfb7",
+      "after": "cdf1d76f68953a1e3be842b3a7043c0c9bca61cbff844f95cd677a4b5410bfb7",
+      "stable": true,
+      "compiled_keccak256": "0xd3edaf57db178f839d97ccee0009c2b7b20f78c2adca9028a6013acb8d5b4c5e",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/StdCheats.sol": {
+      "before": "a0fe96a5e188c6721ca2242241a2eeb7ad3617dd75460268fa38acfd8e3e8aa2",
+      "after": "a0fe96a5e188c6721ca2242241a2eeb7ad3617dd75460268fa38acfd8e3e8aa2",
+      "stable": true,
+      "compiled_keccak256": "0x0fa6ec03602648b62cce41aab2096e6b7e052f2846075d967b6958dd586db746",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/StdConstants.sol": {
+      "before": "ce159d02a0ed064cbf5abd717204f59036cfa4eb73b9d6e5d77c83d3fd215ea8",
+      "after": "ce159d02a0ed064cbf5abd717204f59036cfa4eb73b9d6e5d77c83d3fd215ea8",
+      "stable": true,
+      "compiled_keccak256": "0x319ccdabfa2c0b2428301445873270ffea20f0e039d4fd5e6eeba65158e4e534",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/StdError.sol": {
+      "before": "a10f8f4d12e7716942c3e20753f1ea0af0cc707ca58eaaa01da8246209ed8151",
+      "after": "a10f8f4d12e7716942c3e20753f1ea0af0cc707ca58eaaa01da8246209ed8151",
+      "stable": true,
+      "compiled_keccak256": "0xbf477b11a42d7611696956546bcfaa29317d1166bf65e402344599c05943fc77",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/StdInvariant.sol": {
+      "before": "71aada0625f02eebb94c495dec0b28a575f7343f734543bde662b10f0a3ba724",
+      "after": "71aada0625f02eebb94c495dec0b28a575f7343f734543bde662b10f0a3ba724",
+      "stable": true,
+      "compiled_keccak256": "0x4dab3021edfa9511bbdd80c48f060ef62eaf457f99eaf841f561fc2557d9a08d",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/StdJson.sol": {
+      "before": "4792802533e7d8315a2287ef246d8ffea13f38f5b8966bd9545b38050f243765",
+      "after": "4792802533e7d8315a2287ef246d8ffea13f38f5b8966bd9545b38050f243765",
+      "stable": true,
+      "compiled_keccak256": "0xbc0132abe1c2accc2867c0f03667afffdf92f3e95a581bb03c9557eaa38ea500",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/StdMath.sol": {
+      "before": "473474e8608945a1c87a606ea85e6b605dcc3186d361796f60f36011964036da",
+      "after": "473474e8608945a1c87a606ea85e6b605dcc3186d361796f60f36011964036da",
+      "stable": true,
+      "compiled_keccak256": "0xd90ad4fd8aeaeb8929964e686e769fdedd5eded3fc3815df194a0ab9f91a3fb2",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/StdStorage.sol": {
+      "before": "6dfa28c0a86589e51ffe4af526c2930f34d9c1a34de7897ee99a8cea0fda62be",
+      "after": "6dfa28c0a86589e51ffe4af526c2930f34d9c1a34de7897ee99a8cea0fda62be",
+      "stable": true,
+      "compiled_keccak256": "0xb91ab24383a5872b894fc93325eef1add6cbbf981628f18e860068bf88bb7dcc",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/StdStyle.sol": {
+      "before": "be2eea9cbe407894fd24ae1f824d03ca35ff5fe3ab684850e7190fbc098417df",
+      "after": "be2eea9cbe407894fd24ae1f824d03ca35ff5fe3ab684850e7190fbc098417df",
+      "stable": true,
+      "compiled_keccak256": "0x43e2a8a9b9c2574dabe74f11adf6f782df218f463540e3b5b563609fe108597d",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/StdToml.sol": {
+      "before": "cbb859d5c18c322f8153128504ad513d41baa29905dd9aeb0c8369d06ad8acec",
+      "after": "cbb859d5c18c322f8153128504ad513d41baa29905dd9aeb0c8369d06ad8acec",
+      "stable": true,
+      "compiled_keccak256": "0x58a72c765ed3f7ff6b105509689658795b8a3739b8931772a497155878381861",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/StdUtils.sol": {
+      "before": "76caac7e205bb638728d078a5d3e46468190b763d2e98524d12f2041a65204f8",
+      "after": "76caac7e205bb638728d078a5d3e46468190b763d2e98524d12f2041a65204f8",
+      "stable": true,
+      "compiled_keccak256": "0x7274081e11c05164fd8eadde4de8305c033e58a43008dea58065f3170ccf0737",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/Test.sol": {
+      "before": "cf5e7d5e176eac56f6514da12163ff7b9b6af57c255a399012d8b5b2459b8e9e",
+      "after": "cf5e7d5e176eac56f6514da12163ff7b9b6af57c255a399012d8b5b2459b8e9e",
+      "stable": true,
+      "compiled_keccak256": "0x3dda6083a83dfa3e8526e97bcc28e862ee2442dd58fe94d5c426d65b8e38f73c",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/Vm.sol": {
+      "before": "d03386284af495e27b9eb9f70a00c9736da6b0ed9f147b32859a1ac6b4c358a6",
+      "after": "d03386284af495e27b9eb9f70a00c9736da6b0ed9f147b32859a1ac6b4c358a6",
+      "stable": true,
+      "compiled_keccak256": "0xaae88142a348064677cf81169ea0ca706be3e99e2a0f13a01878ff8d52cf6b25",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/console.sol": {
+      "before": "887089be32f2fbfe442d556112d2023d1037f43ea5c7d857b18c5ea3f74bfaba",
+      "after": "887089be32f2fbfe442d556112d2023d1037f43ea5c7d857b18c5ea3f74bfaba",
+      "stable": true,
+      "compiled_keccak256": "0x4bbf47eb762cef93729d6ef15e78789957147039b113e5d4df48e3d3fd16d0f5",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/console2.sol": {
+      "before": "2398c4aa056416dbbae6167f3443678733a35413290be51060e15d4aebd78ff9",
+      "after": "2398c4aa056416dbbae6167f3443678733a35413290be51060e15d4aebd78ff9",
+      "stable": true,
+      "compiled_keccak256": "0x3b8fe79f48f065a4e4d35362171304a33784c3a90febae5f2787805a438de12f",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/interfaces/IMulticall3.sol": {
+      "before": "984896bb1275945047e9f81ea5c8c5dd331e511e9bd208b786b835f91d5bc055",
+      "after": "984896bb1275945047e9f81ea5c8c5dd331e511e9bd208b786b835f91d5bc055",
+      "stable": true,
+      "compiled_keccak256": "0x7aac1389150499a922d1f9ef5749c908cef127cb2075b92fa17e9cb611263d0a",
+      "binding": "CRLF_to_LF_only"
+    },
+    "lib/forge-std/src/safeconsole.sol": {
+      "before": "9249257fdba10bf6feea3ac74698a24694c2c568137b9e7f5b9c549e305e2edb",
+      "after": "9249257fdba10bf6feea3ac74698a24694c2c568137b9e7f5b9c549e305e2edb",
+      "stable": true,
+      "compiled_keccak256": "0xbef9786cb49d3eade757bad87568c49c8c8f35721f0193c95ffb055d9e466e11",
+      "binding": "CRLF_to_LF_only"
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol": {
+      "before": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "after": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "stable": true,
+      "compiled_keccak256": "0xd5ea07362ab630a6a3dee4285a74cf2377044ca2e4be472755ad64d7c5d4b69d",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": {
+      "before": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "after": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "stable": true,
+      "compiled_keccak256": "0x0afcb7e740d1537b252cb2676f600465ce6938398569f09ba1b9ca240dde2dfc",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": {
+      "before": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "after": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "stable": true,
+      "compiled_keccak256": "0x1a6221315ce0307746c2c4827c125d821ee796c74a676787762f4778671d4f44",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": {
+      "before": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "after": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "stable": true,
+      "compiled_keccak256": "0x19fdfb0f3b89a230e7dbd1cf416f1a6b531a3ee5db4da483f946320fc74afc0e",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+      "before": "9f906af4cba6e7e091dc12d45e6687e1239cf82d17678198424250fd64ab96bd",
+      "after": "9f906af4cba6e7e091dc12d45e6687e1239cf82d17678198424250fd64ab96bd",
+      "stable": true,
+      "compiled_keccak256": "0x86b7b71a6aedefdad89b607378eeab1dcc5389b9ea7d17346d08af01d7190994",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "before": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "after": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "stable": true,
+      "compiled_keccak256": "0x74ed01eb66b923d0d0cfe3be84604ac04b76482a55f9dd655e1ef4d367f95bc2",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+      "before": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "after": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "stable": true,
+      "compiled_keccak256": "0xd6fa4088198f04eef10c5bce8a2f4d60554b7ec4b987f684393c01bf79b94d9f",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
+      "before": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "after": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "stable": true,
+      "compiled_keccak256": "0x982c5cb790ab941d1e04f807120a71709d4c313ba0bfc16006447ffbd27fbbd5",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
+      "before": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "after": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "stable": true,
+      "compiled_keccak256": "0x6ead281d4569c26b3dee7313aefff24add906f3600b57d8aef1255a17d6b34e5",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
+      "before": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "after": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "stable": true,
+      "compiled_keccak256": "0xf78f05f3b8c9f75570e85300d7b4600d7f6f6a198449273f31d44c1641adb46f",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
+      "before": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "after": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "stable": true,
+      "compiled_keccak256": "0x88cd5e3bee2e8c36b8d9058fbcaa81ad5704281b25634122234b55ea853d8055",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
+      "before": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "after": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "stable": true,
+      "compiled_keccak256": "0xf46268c37522320bb2119a5a394bc5c739a95c0c574c8d08e8c643f4d06e5c76",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol": {
+      "before": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "after": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "stable": true,
+      "compiled_keccak256": "0xc2dfdc8fbc8fdb142575c90568e237b809a1feaccff23e32d00131887a08dc36",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "before": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "after": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "stable": true,
+      "compiled_keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/utils/Panic.sol": {
+      "before": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "after": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "stable": true,
+      "compiled_keccak256": "0xf7fe324703a64fc51702311dc51562d5cb1497734f074e4f483bfb6717572d7a",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
+      "before": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "after": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "stable": true,
+      "compiled_keccak256": "0x11a5a79827df29e915a12740caf62fe21ebe27c08c9ae3e09abe9ee3ba3866d3",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/utils/Strings.sol": {
+      "before": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "after": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "stable": true,
+      "compiled_keccak256": "0xad148d59f05165f9217d0a9e1ac8f772abb02ea6aaad8a756315c532bf79f9f4",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+      "before": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "after": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "stable": true,
+      "compiled_keccak256": "0x2d9dc2fe26180f74c11c13663647d38e259e45f95eb88f57b61d2160b0109d3e",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+      "before": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "after": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "stable": true,
+      "compiled_keccak256": "0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
+      "before": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "after": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "stable": true,
+      "compiled_keccak256": "0x1225214420c83ebcca88f2ae2b50f053aaa7df7bd684c3e878d334627f2edfc6",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": {
+      "before": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "after": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "stable": true,
+      "compiled_keccak256": "0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54",
+      "binding": "raw"
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": {
+      "before": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "after": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "stable": true,
+      "compiled_keccak256": "0xb1970fac7b64e6c09611e6691791e848d5e3fe410fa5899e7df2e0afd77a99e3",
+      "binding": "raw"
+    },
+    "src/ZZZActivationAssets.sol": {
+      "before": "e0b65ec8312da1bda7ffdc268750a9578b97c53c2804a07f7729eaeb409d2ffd",
+      "after": "e0b65ec8312da1bda7ffdc268750a9578b97c53c2804a07f7729eaeb409d2ffd",
+      "stable": true,
+      "compiled_keccak256": "0xf330b3f7a7afcf5b842694270c71ffc69d8a714457b7be05b4f74fcd3ba74fa6",
+      "binding": "raw"
+    },
+    "src/ZZZActivationAssetsFactory.sol": {
+      "before": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "after": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "stable": true,
+      "compiled_keccak256": "0xa63475c18c4bbd2e58cf9234eff591b150c74f76511033f443e60296d45b1e71",
+      "binding": "raw"
+    },
+    "src/ZZZClaimRouter.sol": {
+      "before": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "after": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "stable": true,
+      "compiled_keccak256": "0x0d81e392f0ff769419e9c13fd31843d4644d2650be8c85b10cc4f21bf0fbf161",
+      "binding": "raw"
+    },
+    "src/ZZZProtocolPolicy.sol": {
+      "before": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+      "after": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+      "stable": true,
+      "compiled_keccak256": "0x57d5dd41c7e973a3b94ea755821e0b3760510e00284c832c0d9beaab3684e4fc",
+      "binding": "raw"
+    },
+    "src/ZZZRoyaltyCodeData.sol": {
+      "before": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+      "after": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+      "stable": true,
+      "compiled_keccak256": "0x0eff3a4b7cccd5c8b4478e95ed42ce4b584b4201b1c88e194fbfa3191bec905a",
+      "binding": "raw"
+    },
+    "src/ZZZRoyaltyFactory.sol": {
+      "before": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+      "after": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+      "stable": true,
+      "compiled_keccak256": "0xd796213fe972d2dfacaf2b108544cf0e0e7742efc67f4bd14aeaa4c1952a1623",
+      "binding": "raw"
+    },
+    "src/ZZZRoyaltyRewards.sol": {
+      "before": "35f712bd0b95abdd63a9e696e6e85e63453f2d8e5ec57c089c595e6bfd5f5bbd",
+      "after": "35f712bd0b95abdd63a9e696e6e85e63453f2d8e5ec57c089c595e6bfd5f5bbd",
+      "stable": true,
+      "compiled_keccak256": "0xadcfcc5391ce68c79b936435aa345016b4b131b163b712a1e0f65bbedba0b9be",
+      "binding": "raw"
+    },
+    "src/base/ZZZCanonicalLedger.sol": {
+      "before": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "after": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "stable": true,
+      "compiled_keccak256": "0xf98649f55c42a2f5d4467f1a7411b00fc11f7deb135d896a543197331f22894a",
+      "binding": "raw"
+    },
+    "src/base/ZZZModule.sol": {
+      "before": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "after": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "stable": true,
+      "compiled_keccak256": "0xb596bc1879639fe5770c8f42d3d297bd7d06efd5a031b21694df5b122e04e676",
+      "binding": "raw"
+    },
+    "src/interfaces/IZZZ.sol": {
+      "before": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+      "after": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+      "stable": true,
+      "compiled_keccak256": "0xd2557a615b388a9f9b6e94168c4f9d9eefc743d31a5119f3162bf6fbb685e316",
+      "binding": "raw"
+    },
+    "src/interfaces/IZZZCanonical.sol": {
+      "before": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "after": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "stable": true,
+      "compiled_keccak256": "0x2eca0dd4b13a7db95ebb92a50b526aa326d320e02416e2b35b564d898bd911fc",
+      "binding": "raw"
+    },
+    "src/interfaces/IZZZProtocolPolicy.sol": {
+      "before": "afeede9fd34a972a9c11e9e39a4d71747d93184902d68c5fa6a1fae14dac7697",
+      "after": "afeede9fd34a972a9c11e9e39a4d71747d93184902d68c5fa6a1fae14dac7697",
+      "stable": true,
+      "compiled_keccak256": "0xd95db8be7f0ad388a35a1477ddccfb15d4c8c84bcfebad5825d70198a7842dc8",
+      "binding": "raw"
+    },
+    "src/libraries/ExactAsset.sol": {
+      "before": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "after": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "stable": true,
+      "compiled_keccak256": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+      "binding": "raw"
+    },
+    "src/libraries/ExactRoyaltyAllocation.sol": {
+      "before": "d2e761e976697aadae10c731914c017e5a0a200edfdf16a7e9258302d708e0fe",
+      "after": "d2e761e976697aadae10c731914c017e5a0a200edfdf16a7e9258302d708e0fe",
+      "stable": true,
+      "compiled_keccak256": "0x7728afc930f21a3f8cdc016b55405d98d2af3a13c7f04590280e20d447053ccc",
+      "binding": "raw"
+    },
+    "src/libraries/ExactToken.sol": {
+      "before": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "after": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "stable": true,
+      "compiled_keccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+      "binding": "raw"
+    },
+    "src/libraries/ZZZTypes.sol": {
+      "before": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "after": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "stable": true,
+      "compiled_keccak256": "0xad5600f1a2628035b799e20939ddcb49cd10b808afaca56afa61ef5af8748849",
+      "binding": "raw"
+    },
+    "test/RoyaltyRecovery.t.sol": {
+      "before": "a03335ee191b0261fa40875f373e1e36bed174e6cef084883e847720a191c8d8",
+      "after": "a03335ee191b0261fa40875f373e1e36bed174e6cef084883e847720a191c8d8",
+      "stable": true,
+      "compiled_keccak256": "0x7e8a0345283bae00c4ba636c369764449370a1efa96e150eacc73735af56a0da",
+      "binding": "CRLF_to_LF_only"
+    },
+    "test/RoyaltySyncedPrefundImport20261118.t.sol": {
+      "before": "b402c14ee5e5b1dcb2cc20ec815885d98b9557fcb9a7a60a1845af8f2156e394",
+      "after": "b402c14ee5e5b1dcb2cc20ec815885d98b9557fcb9a7a60a1845af8f2156e394",
+      "stable": true,
+      "compiled_keccak256": "0x572851db03ce7ca3f57674bdd0b8d0db95a7c541a11eb9b609443dca4d94bfaa",
+      "binding": "raw"
+    },
+    "test/helpers/ProtocolPolicyFixture.sol": {
+      "before": "bab9d127771ad4cf9d35db08383fb96af88a7a93b24e478d60248088976b20dd",
+      "after": "bab9d127771ad4cf9d35db08383fb96af88a7a93b24e478d60248088976b20dd",
+      "stable": true,
+      "compiled_keccak256": "0x5f9b234cfb7ff97a9883f5d46ca61aecfa90888e46afb9675302aab210d9af6b",
+      "binding": "raw"
+    },
+    "test/mocks/Mocks.sol": {
+      "before": "ce43ab27d038e50bbae12a8b239f77dd973a47732ec6e0f7a78765f94534b679",
+      "after": "ce43ab27d038e50bbae12a8b239f77dd973a47732ec6e0f7a78765f94534b679",
+      "stable": true,
+      "compiled_keccak256": "0xefc8cbddc19ce04a01a272261ea72c596a625bcfba50a58a4efdf9b8117222c9",
+      "binding": "raw"
+    }
+  },
+  "source_scope_valid": true,
+  "config_unchanged": true,
+  "raw_sha256": "0a89a612c7a5cdf1b2942f94acb9cb88047215ad09efe92f7be290ba1d303da5",
+  "artifact_sha256": "f20f7bf03344706c4db82e2f728fa7ee49f7b62147c68aa332b7657fbcb16e3f",
+  "old_methods_run": 0,
+  "new_distinct_method_count": 1,
+  "pass": true
+}

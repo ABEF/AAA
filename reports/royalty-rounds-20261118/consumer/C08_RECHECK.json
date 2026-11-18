@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "kind": "Final C08 exact factory pins and four affected methods; remaining eight controls not rerun",
+  "distinct_consumer_methods": 12,
+  "actual_final05_passes": 4,
+  "selected_methods": [
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes",
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_real_part_and_read_policy_observer_uses_one_anchor_and_actual_legacy_gas_hash",
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_optional_preseal_cap_call_is_exact_and_original_twelve_steps_stay_identical",
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_current_preseal_read_policy_check_uses_only_actual_abi_and_no_qualification"
+  ],
+  "stages": {
+    "first_source": "final01/final02",
+    "C07_admission_error": "final03",
+    "C07_affected_passes": "final04",
+    "C08_artifact_passes": "final05"
+  },
+  "previous_c07_methods_not_rerun": [
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_five_selects_one_payload_and_adds_only_its_explicit_read_cap_binding",
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_invalid_selector_mixed_payload_and_legacy_read_fields_fail_before_rpc",
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_fresh_five_template_remains_unapproved_and_unknown_cap_is_not_defaulted"
+  ],
+  "other_unchanged_prior_controls": 5,
+  "unaffected_consumer_and_test_sources_exactly_unchanged": {
+    "zzz_ops/royalty_read_policy.py": "73f35fbad067b8703cd0af9095273fda2af928e682e9e35e7e3a45cd04ec806f",
+    "zzz_ops/production_v15.py": "8be5226c3514018ae66ecbfae3351ad9e35bd867a9b32e243631d2dc322f1219",
+    "zzz_ops/production_observer_v15.py": "af7d7e4b8105f1937d499f7910e3aa8eea9fed34afb497f8d55b41677534a1bd",
+    "zzz_ops/preseal_plan.py": "bde2013f21e8ca90372573c654a5b40c24dc9eb12d0457dc324244b60d803af3",
+    "tests_python/test_factory_payload5.py": "4d1c7add56295a8e8212a291ade9afa562f4d28d5d9a7da1f8ffa106e6f5fea6",
+    "tests_python/test_factory_payload4.py": "5d6bc9fdc402e2ab9e0b8505cc5f3b34aaf0b255a0b7b50e7f77f2e22d57dd9f"
+  },
+  "factory_helper_byte_identical_after_only_manifest_pin_replacement": true,
+  "production_template_unchanged_except_actual_factory_code_parts_and_four_factory_binding_pins": true,
+  "c07_pin_archive": "consumer/c07-pins",
+  "first_source_archive": "consumer/first-source-pins",
+  "accepted_payload": {
+    "schema": 1,
+    "kind": "Actual trusted current source-owned payload5; not release approval",
+    "producer_sha256": "66fc291a220858fa87538c566ecdb0794ff86f6daa7c5d11f4127cf9e586b5f9",
+    "build_profile": "royalty-rounds-20261118",
+    "build_files_sha256": {
+      "compiler-input.json.gz": "8a591f4b8de04ed2337156c8cc6a97057f09f18744834f3f3c92af20b33d6ba4",
+      "compiler-output.json.gz": "1947e502348e5e230e6d34792b317683f5d634514ce248ad64c342bb792ff663",
+      "normal-size-evidence.json": "12d585f6a1ccd537709e8f23f43ea90c4cef32198ddc82bfd0c63701b1967992",
+      "START.json": "a1bddde5605bab24b3d961505702e4d5bb94b50af9695f3b4e33f9e546119ac4"
+    },
+    "build_directory": "reports/royalty-rounds-20261118/build/final",
+    "royalty_source_sha256": "35f712bd0b95abdd63a9e696e6e85e63453f2d8e5ec57c089c595e6bfd5f5bbd",
+    "source_count": 100,
+    "all100_current_source_bytes_match": true,
+    "normal_size_gates": 48,
+    "normal_size_gates_pass": true,
+    "creation_length": 25543,
+    "creation_hash": "0x7005da5d4714523f67459f0e7e9cbf5b8ac2612aafc1e84d5fb683b3d3bba44b",
+    "canonical_manifest_sha256": "6bad11a16db2e530765aeb738b7ad546d95ed35944b10a4b16d63670aee9a71c",
+    "parts": [
+      {
+        "index": 0,
+        "data_length": 24573,
+        "runtime_length": 24576,
+        "runtime_hash": "0x119080e5f9afb9873cd7b9bbd9251addfd902706a40ee971dfbd2b77bc2b4c60"
+      },
+      {
+        "index": 1,
+        "data_length": 970,
+        "runtime_length": 973,
+        "runtime_hash": "0x2833f22d792c0e0b073a6e17a40a254ad0120697243ef7d26545c72c392685d0"
+      }
+    ],
+    "historical_files_sha256": {
+      "zzz_ops/factory_code_v3.py": "8b27d237a39d81c2b6d3ac7a7186723569f8bef2a59ad811aca39e0b55f6665a",
+      "config/factory-code-storage-v3.json": "305e85eb23e029a66c57dc3bf8b16b3753b21375eca41bcbc4dd1a9675f48d8c",
+      "zzz_ops/factory_code_v4.py": "a10204b8230499f0d4f8380ae4f01b337823a15080cd6d4795c528a3f5fb517c",
+      "config/factory-code-storage-v4.json": "8af4d7c07de8200f87c13484f679c40f83d1506aed09bbd6de07e1c54d9fea6e",
+      "config/production.schema17.payload3.example.json": "2c7fda19ebcffd4f302b1945c3853716f7979c0153757f0a79fc0377390015ca",
+      "config/production.schema17.payload4.example.json": "cc1061255416857aab34b6ccfe4c44b0281f6745fc142cda2440ea08a011692b"
+    },
+    "production_approved": false,
+    "signing_performed": false,
+    "public_deployment_or_operating_adoption": false
+  },
+  "source_stable": true,
+  "protected_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "no_unchanged_tests_compiler_evm_or_network": true,
+  "production_approved": false
+}

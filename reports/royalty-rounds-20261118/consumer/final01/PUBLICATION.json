@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "kind": "Scoped source-stable offline consumer checks",
+  "new_methods": 11,
+  "changed_methods": 1,
+  "actual_methods": 12,
+  "method_ids": [
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_computed_fingerprint_has_explicit_scope_bounds_revision_and_independent_encoding",
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_current_preseal_read_policy_check_uses_only_actual_abi_and_no_qualification",
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_exact_historical3_and4_templates_retain_separate_identity_and_no_read_policy",
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_failed_or_out_of_bounds_cap_clears_stale_observation_and_never_adopts_declared_cap",
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_five_selects_one_payload_and_adds_only_its_explicit_read_cap_binding",
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_fresh_five_template_remains_unapproved_and_unknown_cap_is_not_defaulted",
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_invalid_selector_mixed_payload_and_legacy_read_fields_fail_before_rpc",
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes",
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_optional_preseal_cap_call_is_exact_and_original_twelve_steps_stay_identical",
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_real_part_and_read_policy_observer_uses_one_anchor_and_actual_legacy_gas_hash",
+    "tests_python.test_factory_payload5.FactoryPayload5Tests.test_unknown_optional_cap_blocks_calldata_and_bounds_fail_before_artifact_reads",
+    "tests_python.test_factory_payload4.FactoryPayload4Tests.test_bool_unknown_and_mixed_payloads_reject_before_any_observer_read"
+  ],
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "started": "2026-11-18T12:54:09.854917+00:00",
+  "ended": "2026-11-18T12:54:34.349982+00:00",
+  "owned_files_sha256": {
+    "zzz_ops/factory_code_v5.py": "82b05fa3a7deefcc525164d6a3796cf33f5529316dd6f46863f7f31282df1f4a",
+    "config/factory-code-storage-v5.json": "d6201a4eeb9650e559d92fd3bef1cf13243082593885d5858ac5c3ff9d55ba4d",
+    "config/production.example.json": "9f6d5a144e92e951e5cdb6d18d5ebb4bd516f106f25314a22b991785042c0bb0",
+    "config/production.schema17.payload4.example.json": "cc1061255416857aab34b6ccfe4c44b0281f6745fc142cda2440ea08a011692b",
+    "zzz_ops/royalty_read_policy.py": "73f35fbad067b8703cd0af9095273fda2af928e682e9e35e7e3a45cd04ec806f",
+    "zzz_ops/production_v15.py": "8be5226c3514018ae66ecbfae3351ad9e35bd867a9b32e243631d2dc322f1219",
+    "zzz_ops/production_observer_v15.py": "af7d7e4b8105f1937d499f7910e3aa8eea9fed34afb497f8d55b41677534a1bd",
+    "zzz_ops/preseal_plan.py": "bde2013f21e8ca90372573c654a5b40c24dc9eb12d0457dc324244b60d803af3",
+    "tests_python/test_factory_payload5.py": "653f60dd66df83c7c754d360f6ce4a8b04192482de15d4977d6bdc730feaa1f4",
+    "tests_python/test_factory_payload4.py": "5d6bc9fdc402e2ab9e0b8505cc5f3b34aaf0b255a0b7b50e7f77f2e22d57dd9f"
+  },
+  "protected_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "all_recorded_source_bytes_stable": true,
+  "files_sha256": {
+    "raw.log": "1bb7a2ef2853f017ec57ce1e48c35fb880476ccd27a28aab20e415897cfbe894",
+    "RESULT.json.gz": "1c4f52f601110c53d737c5a804a3f5ff36e9e358947a2cb232b316edda939ba4",
+    "START.json.gz": "11405d3870047ea7b62dc428f07949d3bc9bfcb1e99920cb1f60166abba2fcb9"
+  },
+  "limitations": [
+    "Synthetic RPC responses exercise real factory-part and read-policy observer branches; no public provider is qualified.",
+    "Trusted current compiler artifacts are read and authenticated; no compiler or EVM tests execute here.",
+    "No unchanged Python suite is rerun. One old selector control changed because version5 is now valid.",
+    "No activation20M, complete fees, currency behavior, OpenSea, operating or production approval is supplied."
+  ],
+  "production_approved": false,
+  "network_rpc_performed": false,
+  "signing_performed": false
+}

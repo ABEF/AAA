@@ -1,0 +1,50 @@
+{
+  "function_reference": {
+    "pass": true,
+    "contracts": 40,
+    "functions": 968,
+    "constructors": 40,
+    "receive_hooks": 13,
+    "fallback_hooks": 0,
+    "explanation_gaps": 0,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 0
+  },
+  "operator_reference": {
+    "pass": true,
+    "rows": 1021,
+    "baseline_rows": 1017,
+    "unchanged_original_rows": 1016,
+    "removed_for_self_signature_change": [
+      "ZZZRoyaltyRewards.syncForActivation(address)"
+    ],
+    "new_rows": [
+      "ZZZActivationAssets.validateInput(address)",
+      "ZZZProtocolPolicy.royaltyBalanceGas()",
+      "ZZZProtocolPolicy.setRoyaltyBalanceGas(uint32,bytes32)",
+      "ZZZRoyaltyRewards.ROYALTY_ALLOCATION_VERSION()",
+      "ZZZRoyaltyRewards.syncForActivation(address,uint256)"
+    ]
+  },
+  "todo_generator_check_pass": true,
+  "all100_closed_normal_source_bytes_match": true,
+  "protected_four_unchanged": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "production_approved": false,
+  "staged_diff_check": {
+    "source_docs_producers_and_structured_evidence_pass": true,
+    "raw_compiler_log_or_raw_execution_output_whitespace_preserved": [
+      "reports/royalty-rounds-20261118/full-flow-final/full03-compile02/stderr.log",
+      "reports/royalty-rounds-20261118/full-flow-final/full03-compile02/stdout.log",
+      "reports/royalty-rounds-20261118/full-flow-final/full04-compile01/stderr.log",
+      "reports/royalty-rounds-20261118/full-flow-final/full04-compile01/stdout.log",
+      "reports/royalty-rounds-20261118/synced-prefund/baseline01/raw.json"
+    ],
+    "raw_whitespace_diagnostics": 763,
+    "no_evidence_bytes_trimmed": true
+  }
+}

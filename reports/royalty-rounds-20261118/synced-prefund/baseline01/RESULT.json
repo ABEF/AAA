@@ -1,0 +1,14 @@
+{
+  "seconds": 2.327999999994063,
+  "exit_code": 1,
+  "methods": [],
+  "error": "JSONDecodeError('Expecting value: line 1 column 1 (char 0)')",
+  "compiled_source_bracket": {},
+  "source_scope_valid": false,
+  "config_unchanged": true,
+  "raw_sha256": "33b3cad64e996f9b0c2b38925ee804875937d38f62ae925646eca0a29aab5431",
+  "artifact_sha256": null,
+  "old_methods_run": 0,
+  "new_distinct_method_count": 0,
+  "pass": false
+}

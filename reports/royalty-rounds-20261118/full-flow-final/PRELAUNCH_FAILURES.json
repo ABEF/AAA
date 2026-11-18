@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "scope": "Human-readable summaries of observed tooling failures, not original raw execution transcripts",
+  "records": [
+    {
+      "stage": "before full04-compile01 directory creation",
+      "outer_exit_code": 1,
+      "summary": "The parameterized helper referenced sys before its inner import, causing UnboundLocalError before launching Forge. Removing the redundant inner import corrected this helper-only issue.",
+      "compiler_executions": 0,
+      "EVM_executions": 0,
+      "root_config_mutations": 0,
+      "source_snapshot_not_captured": true
+    }
+  ],
+  "production_approved": false
+}

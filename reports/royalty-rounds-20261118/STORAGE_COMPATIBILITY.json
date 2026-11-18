@@ -1,0 +1,211 @@
+{
+  "fresh_profile_required": true,
+  "old_nonempty_raw_tree_not_compatible": true,
+  "all_old_top_level_positions_unchanged": true,
+  "old_field_semantic_changes": [
+    {
+      "old": {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "allocationBooks",
+        "slot": "8",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => mapping(uint256 => struct ExactRoyaltyAllocation.Book))",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "mapping",
+            "label": "mapping(uint256 => struct ExactRoyaltyAllocation.Book)",
+            "numberOfBytes": "32",
+            "key": {
+              "encoding": "inplace",
+              "label": "uint256",
+              "numberOfBytes": "32"
+            },
+            "value": {
+              "encoding": "inplace",
+              "label": "struct ExactRoyaltyAllocation.Book",
+              "numberOfBytes": "32",
+              "members": [
+                {
+                  "label": "pending",
+                  "slot": "0",
+                  "offset": 0,
+                  "type": {
+                    "encoding": "mapping",
+                    "label": "mapping(uint256 => uint256)",
+                    "numberOfBytes": "32",
+                    "key": {
+                      "encoding": "inplace",
+                      "label": "uint256",
+                      "numberOfBytes": "32"
+                    },
+                    "value": {
+                      "encoding": "inplace",
+                      "label": "uint256",
+                      "numberOfBytes": "32"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "new": {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "allocationBooks",
+        "slot": "8",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => mapping(uint256 => struct ExactRoyaltyAllocation.Book))",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "mapping",
+            "label": "mapping(uint256 => struct ExactRoyaltyAllocation.Book)",
+            "numberOfBytes": "32",
+            "key": {
+              "encoding": "inplace",
+              "label": "uint256",
+              "numberOfBytes": "32"
+            },
+            "value": {
+              "encoding": "inplace",
+              "label": "struct ExactRoyaltyAllocation.Book",
+              "numberOfBytes": "64",
+              "members": [
+                {
+                  "label": "rounds",
+                  "slot": "0",
+                  "offset": 0,
+                  "type": {
+                    "encoding": "inplace",
+                    "label": "uint256",
+                    "numberOfBytes": "32"
+                  }
+                },
+                {
+                  "label": "position",
+                  "slot": "1",
+                  "offset": 0,
+                  "type": {
+                    "encoding": "inplace",
+                    "label": "uint256",
+                    "numberOfBytes": "32"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "new_private_fields": [
+    {
+      "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+      "label": "enrollment",
+      "slot": "55",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(address => struct ExactRoyaltyAllocation.Cohorts)",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        },
+        "value": {
+          "encoding": "inplace",
+          "label": "struct ExactRoyaltyAllocation.Cohorts",
+          "numberOfBytes": "64",
+          "members": [
+            {
+              "label": "roundsAt",
+              "slot": "0",
+              "offset": 0,
+              "type": {
+                "encoding": "mapping",
+                "label": "mapping(uint256 => uint256)",
+                "numberOfBytes": "32",
+                "key": {
+                  "encoding": "inplace",
+                  "label": "uint256",
+                  "numberOfBytes": "32"
+                },
+                "value": {
+                  "encoding": "inplace",
+                  "label": "uint256",
+                  "numberOfBytes": "32"
+                }
+              }
+            },
+            {
+              "label": "ends",
+              "slot": "1",
+              "offset": 0,
+              "type": {
+                "encoding": "dynamic_array",
+                "label": "uint16[]",
+                "numberOfBytes": "32",
+                "base": {
+                  "encoding": "inplace",
+                  "label": "uint16",
+                  "numberOfBytes": "2"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+      "label": "counterPaid",
+      "slot": "56",
+      "offset": 0,
+      "type": {
+        "encoding": "mapping",
+        "label": "mapping(uint256 => mapping(address => uint256))",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "value": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    }
+  ],
+  "canonical_transport": "existing exact flat per-NFT claims; no raw old/new allocator state transport",
+  "settlement_version": 4,
+  "allocation_version": 2,
+  "factory_payload_version": 5,
+  "production_approved": false
+}

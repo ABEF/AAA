@@ -1,0 +1,71 @@
+{
+  "new_distinct_methods": 1,
+  "baseline_counterexample_method_executions": 1,
+  "postfix_method_executions": 1,
+  "compile_only_attempts": 1,
+  "old_methods_run_by_this_producer": 0,
+  "stages": [
+    {
+      "stage": "baseline01",
+      "expected_current_method": 1,
+      "methods_executed": 0,
+      "outcomes": [],
+      "scope_valid": false,
+      "pass": false,
+      "raw_sha256": "33b3cad64e996f9b0c2b38925ee804875937d38f62ae925646eca0a29aab5431"
+    },
+    {
+      "stage": "baseline02",
+      "expected_current_method": 1,
+      "methods_executed": 1,
+      "outcomes": [
+        {
+          "signature": "testSyncedTargetPrefundsImportOncePreserveSourceRightsAndFutureRoyalties()",
+          "status": "Failure",
+          "reason": "CanonicalState()",
+          "logs": []
+        }
+      ],
+      "scope_valid": true,
+      "pass": false,
+      "raw_sha256": "31a14aa4c38d9af852a914ef9dd44368cfb125716f6b9b19adc2cc6bef92f1ab"
+    },
+    {
+      "stage": "postfix01",
+      "expected_current_method": 1,
+      "methods_executed": 1,
+      "outcomes": [
+        {
+          "signature": "testSyncedTargetPrefundsImportOncePreserveSourceRightsAndFutureRoyalties()",
+          "status": "Success",
+          "reason": null,
+          "logs": []
+        }
+      ],
+      "scope_valid": true,
+      "pass": true,
+      "raw_sha256": "0a89a612c7a5cdf1b2942f94acb9cb88047215ad09efe92f7be290ba1d303da5"
+    }
+  ],
+  "baseline01_source_reconstruction": "exact reconstruction checked against its original START SHA256; explicitly labelled, not claimed as an original contemporaneous source copy",
+  "postfix_fixture_order_correction": "NFT target predecessor-module preseed moved after inert preparation; royalty state at failing asset row unchanged. Postfix asserts NFT mintedCount0 at prefund sync.",
+  "protected_files_final_check": {
+    "reports/source-checks.json": {
+      "expected": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "actual": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4"
+    },
+    "scripts/run-fork-checks.py": {
+      "expected": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "actual": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b"
+    },
+    "tests_python/test_fork_runner.py": {
+      "expected": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "actual": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9"
+    },
+    "tests_python/test_frontend_history.py": {
+      "expected": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "actual": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+    }
+  },
+  "full_coordinator_or_gas_qualification": false
+}

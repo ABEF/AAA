@@ -264,17 +264,9 @@ contract RoyaltyAudit20261105Test is Test {
         token.mint(address(r),2044);
     }
     function _coolLedger(ZZZRoyaltyRewards r,address asset) private {
-        // allocationBooks slot8 is source/compiler-bound and checked in the
-        // corresponding normal0.8.26storage layout before recording evidence.
-        bytes32 books=keccak256(abi.encode(asset,uint256(8)));
-        bytes32 book=keccak256(abi.encode(uint256(1),books));
-        for(uint256 node=1;node<8192;++node)
-            vm.coolSlot(address(r),keccak256(abi.encode(node,book)));
-        for(uint256 slot;slot<64;++slot) {
-            vm.coolSlot(address(r),bytes32(slot));
-            vm.coolSlot(address(r),keccak256(abi.encode(asset,slot)));
-        }
-        vm.cool(address(r)); vm.cool(asset);
+        // Pinned Vm.cool marks the account AND all its storage slots cold.
+        // This stays correct for both historical trees and current round books.
+        vm.cool(address(r));vm.cool(asset);
     }
     function _coolRecordedContracts(InKindNFT nft,ZZZRoyaltyRewards r,address asset) private {
         // Resolve addresses before cooling any recorded slots. record/accesses

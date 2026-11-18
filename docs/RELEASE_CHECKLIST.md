@@ -1,6 +1,10 @@
 # Release approval record - NOT APPROVED
 
-The [test and irreversible-setup review](../reports/test-seal-deep-review-20261117/REVIEW.md) fixes chain/URI/reservation defects and strengthens specific test oracles. Current build is seal-boundaries-20261117; no release sign-off, deployment, service or website adoption is implied. Real dependencies, complete fees/gas, operations and independent review remain open.
+The current trusted normal build is `royalty-rounds-20261118`, with explicit factory payload5 and royalty allocation2 in unchanged code-storage FORMAT2. [Royalty rounds](../reports/royalty-rounds-20261118/REVIEW.md) replace private tree books with checked-liability round coefficients: receipt credit no longer writes a tree; enrollment lookup is bounded by1000 NFTs (at most10 binary-search steps). Activation ERC20 balance reads have a separate governed cap, initially50000 gas (10000..1000000), while the existing1M isolated sync allowance stays. Exact current-owner original-currency rights, one-hour cutoff/fault cohorts, settlement4/events and flattened canonicalV10 rows remain. Fresh private storage, bounded-read APIs and the changed self-only activation wrapper require new exact pins; payload3/4 and old deployed state are never relabelled. The per-currency helper proves either a complete sync frame or a fully funded capped read; other partial-frame accounting failures revert. Accounted reserves are derived from checked liabilities, orphaned and opening categories.
+
+The final C08 normal build validates the closed100-source input and passes48 size gates. Its synchronized-prefund import and funded-abort checks pass; C07 ordinary ledger14/placement5 evidence retains its explicit reuse scope. The12 distinct consumer controls include4 C08 artifact-dependent rechecks and8 unchanged controls retained at prior source scope. These are not added into a whole-project pass. Maximum-state20M qualification remains open. All13 controlled cold calls and their financial checks succeed at20M, but only5/13 fit the mandatory full20% margin;8 activation states are correctly refused by the existing policy. Worst openingZZZ/all-slow is19,325,451 raw,23,190,542 padded. Both growth and3 all-fault activation cases fit their tested envelopes. These13 scenarios are not13 new test methods. All owned nodes are stopped; target markets/providers/fees and release approval remain unqualified. Keep the20M contribution policy with full20% padding, the12M default and all financial/permission guards. Actual independent prices/routes, selected currencies, provider/complete target fees, expanded64-currency and maximum LP2 workloads, current operating/constructor rollout and independent release approval remain open. No existing environment or paused heartbeat is changed.
+
+The [test and irreversible-setup review](../reports/test-seal-deep-review-20261117/REVIEW.md) fixes chain/URI/reservation defects and strengthens specific test oracles. That historical review used seal-boundaries-20261117; no release sign-off, deployment, service or website adoption is implied. Real dependencies, complete fees/gas, operations and independent review remain open.
 
 The [earlier controller fix](../reports/operator-behavior-followup-20261117/REVIEW.md) used the then-current source-bound `operator-seal-20261117` build; that evidence remains historical. Older constructor receipts do not qualify the changed controller. Normal size and scoped local behavior/static checks are evidence, not real dependency, deployment, fee or operating approval. All release sign-offs remain unchanged.
 
@@ -20,7 +24,7 @@ implements scoped source/tooling fixes and corrects stale audit guidance. It
 does not approve authorities, markets, services, real fees, OpenSea, VRF or
 maximum-state operation. Keep those evidence and independent-audit gates open.
 
-Fresh Q03 build/payload4 requires new exact runtime/constructor/consumer review. [Capacity evidence](../reports/q03-activation-gas-20261117/REVIEW.md) does not approve production: the20M/full20% profile remains strict, pending-currency races remain possible and complete selected market/provider/fees, operation and independent approval remain open. No limit or approval flag was raised.
+Historical Q03 build/payload4 [capacity evidence](../reports/q03-activation-gas-20261117/REVIEW.md) retains its source-specific pending-currency failures. Fresh payload5 requires its own exact runtime, constructor, private-book and consumer review; its final controlled cold calls pass but8/13 still exceed the mandatory20% margin. The20M/full20% envelope and all prior safeguards remain; no release sign-off is supplied.
 
 [16 November external evidence](../reports/real-market-refresh-20261116/REVIEW.md) closes
 only the bounded observation milestone. No independent ETH/ZZZ price pair,
@@ -149,7 +153,7 @@ one-method wire producer and56API methods have separate source-scoped evidence;
 do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
 independent approval remain open. [Verification](../reports/fee-flow-audit-20261107/VERIFICATION.md).
 
-Reviewed2026-11-13. This records review of one frozen release; it is not a second Todo.
+Original frozen-release checklist reviewed2026-11-13. This records review of that frozen release; it is not a second Todo.
 [Sole Todo](../TODO.md) owns tasks; [features/evidence](IMPLEMENTATION_STATUS.md)
 describes local source. No public deployment, sealing, signing or rollout is
 authorized by documentation or source publication.

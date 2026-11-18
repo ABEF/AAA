@@ -291,7 +291,7 @@ artifact expiry is not a contract deadline on begin/allocation/distribution;
 actual cursor/beneficiary are determined at inclusion. Readiness remains false.
 See [verification](../reports/operator-management-20261109/REVIEW.md).
 
-Fresh Q03 deployment inventories use chain-local `factory_payload_version:4` and the independently reviewed [payload4 pins](FACTORY_CODE_STORAGE.md). This selects immutable deployment bytes; it is not an after-seal upgrade. Existing payload3/old runtime configurations remain historical. All operator function signatures, permissions, financial caps and exact reviewed calldata rules are unchanged.
+Fresh deployment inventories use chain-local `factory_payload_version:5`, `ROYALTY_ALLOCATION_VERSION()==2` and reviewed [payload5 pins](FACTORY_CODE_STORAGE.md). This selects immutable deployment bytes and new private round books; it is not an after-seal upgrade. Existing payload3/4 configurations/journals remain historical. Economic rights, financial caps and exact reviewed calldata rules remain unchanged.
 
 ## Unsigned activation gas settings
 
@@ -322,11 +322,28 @@ See [configuration](ACTIVATION_PREPARATION.md) and
 
 The [launch16 review](../reports/launch-workload-20261117/REVIEW.md) demonstrates why a passing20M body call is insufficient: its fresh estimate plus full20% can still exceed20M. Several pending/initial-allocation states refuse this policy even with healthy tokens. Capacity16 means16 ERC20s plus ETH **if admitted**, not an automatic launch list or gas approval. Growth normally does not repeat royalty activation. Keep the exact preparation/estimate and margins; never widen a cap or mislabel an opaque refusal as a bad token.
 
-Before admitting currencies, read `RoyaltyRewards.assetCount()`, every `assets(index)`, `assetCapacity()` and `ProtocolPolicy.royaltySyncGas()`/`gasPolicy()`/`gasFingerprint()`. Qualify cold empty, pending/first-opening, rotated-allocation and failed-read workloads. Some rare royalty states are materially more expensive; component gas cannot be added to or substituted for a complete operation estimate. The new unsigned pre-seal rows record these reads only and remain unverified.
+Before admitting currencies, read `RoyaltyRewards.assetCount()`, every `assets(index)`, `assetCapacity()`, `ROYALTY_ALLOCATION_VERSION()` and `ProtocolPolicy.royaltyBalanceGas()`/`royaltySyncGas()`/`gasPolicy()`/`gasFingerprint()`. Qualify cold empty, pending/first-opening, rotated-allocation and failed-read workloads. Some rare royalty states are materially more expensive; component gas cannot be added to or substituted for a complete operation estimate. The new unsigned pre-seal rows record these reads only and remain unverified.
 
-The [Q03 near-capacity review](../reports/q03-activation-gas-20261117/REVIEW.md) measures the complete Entry flow after999 real activations, fixed600/300/100 mint quotas and16 admitted ERC20 currencies plus ETH. It separates unsynchronized opening/rotated receipts, one full-budget currency fault, already-synchronized states and ETH/ZZZ growth. A passed component check is not20M approval: require the exact estimate plus full20% and successful padded call. The1M per-currency allowance,12M default and20M reviewed policy remain unchanged.
+The historical [Q03 near-capacity review](../reports/q03-activation-gas-20261117/REVIEW.md) measures the complete Entry flow after999 real activations, fixed600/300/100 mint quotas and16 admitted ERC20 currencies plus ETH. It separates unsynchronized opening/rotated receipts, one full-budget currency fault, already-synchronized states and ETH/ZZZ growth. A passed component check is not20M approval: require the exact estimate plus full20% and successful padded call. The1M per-currency allowance,12M default and20M reviewed policy remain unchanged.
 
-Cold Q03 estimates plus full20%: healthy pre-synced activation19,484,950/20M; one faulty currency19,877,529/20M; ETH growth14,963,820/20M; ZZZ growth15,864,753/20M. Four unsynchronised near-capacity cases refuse20M. These controlled results are not actual target-fee approval. Fresh tiny receipts can restore costly allocation work between sync and inclusion; the narrowest measured margin is122,471gas. Keep the fresh exact simulation and full margin.
+Historical payload4 cold Q03 estimates plus full20%: healthy pre-synced activation19,484,950/20M; one faulty currency19,877,529/20M; ETH growth14,963,820/20M; ZZZ growth15,864,753/20M. Four unsynchronised near-capacity cases refuse20M. These controlled results are not actual target-fee approval. Fresh tiny receipts can restore costly allocation work between sync and inclusion; the narrowest measured margin is122,471gas. Keep the fresh exact simulation and full margin.
+
+#### Bounded royalty reads and exact rounds
+
+Current [allocation2 review](../reports/royalty-rounds-20261118/REVIEW.md) replaces receipt-dependent tree writes with constant-size complete rounds and cursor updates. Enrollment is append-only, at most1,000 boundaries per currency; claims find their birth cohort within10 binary-search steps. No receipt queue or mandatory pre-sync worker is added. Failed reads protect the earlier cohort before waiting activations join. Original currencies, one-hour opening and recovery permissions remain.
+
+Final C08 cold qualification: one1,000-NFT method produced13 scenarios, all actual20M calls/financial checks pass, but only5 fit full20% headroom. Eight activations remain refused. Worst tested opening with16slow healthy currencies estimates19,325,451 and requires23,190,542 padded; healthy rotated ETH/ZZZ require20,325,828/21,099,142. Both growth cases fit. Keep Q03 open and prepare every exact transaction; capacity16 and a configured50k read ceiling are not activation gas approval. [Exact scenario results](../reports/royalty-rounds-20261118/FINAL_FULL_FLOW_REVIEW.md).
+
+| Action | Exact inputs / reads | Verify |
+| --- | --- | --- |
+| Inspect read allowance | `ProtocolPolicy.royaltyBalanceGas()` | Fresh default50,000gas; activation-only ERC20 read |
+| Inspect complete allowance | `royaltySyncGas()`, `gasPolicy()`, `gasFingerprint()` | Original1M default/four-word tuple/revision |
+| Change read allowance | Governance `setRoyaltyBalanceGas(50000, REVIEW_HASH)` | Nonzero32-byte review;10,000-1,000,000gas; increments existing gas revision |
+| Review fresh consumer | Payload5 `royalty_read_policy` observation | Same canonical block, actual policy/cap/revision; no implicit adoption |
+
+Only the activation token `balanceOf` STATICCALL is capped. It copies one word and accepts ABI-compatible trailing data. A fully funded broken/expensive read defers its own new enrollment; it does not discard backing or grant newcomers earlier receipts. The complete-sync maximum stays1M. Funding is proved for the complete frame or independently for the configured read plus120k; other failed partial frames revert activation. Token revert bytes cannot forge the ledger's exact unavailable signal. Ordinary sync/claims/canonical balance reads keep their existing paths. A high maximum need not be entirely forwarded inside the complete frame; cheap reads still work. Raising limits/currency capacity requires cold healthy/faulted requalification, fresh exact estimate plus20% below20M and separate fee review. Do not auto-change defaults or saved reviews.
+
+Optional unsigned pre-seal input: `royalty_balance_policy:{"balanceGas":"50000","reviewHash":"REVIEW_HASH"}`. Use a real nonzero bytes32 review hash. Unknown inputs remain blocked/null calldata; omission requests no write. It supplies no signature, configuration, seal or live approval.
 
 #### Optional royalty synchronization before activation
 
@@ -632,12 +649,12 @@ part of this reconciliation. Preserve existing chains, journals and websites.
 
 | Tool | Inputs | Example | Purpose |
 | --- | --- | --- | --- |
-| `prepare-deployment.py` | Reviewed input JSON, new output file; trusted build ID | `python scripts/prepare-deployment.py --build-profile q03-allocation-20261117 --input path/to/reviewed.json --output path/to/new-plan.json` | Review unsigned constructor plan |
+| `prepare-deployment.py` | Reviewed input JSON, new output file; trusted build ID | `python scripts/prepare-deployment.py --build-profile royalty-rounds-20261118 --input path/to/reviewed.json --output path/to/new-plan.json` | Review unsigned constructor plan |
 | `check-local-deployment-evidence.py` | Captured ZIP/directory; optional relocated trusted build directory | `python scripts/check-local-deployment-evidence.py --evidence reports/local-deployment-rehearsal-20261115/evidence.zip --output path/to/new-result.json` | Reconcile captured local construction |
 | `check-market-evidence.py` | Exact dated16November market ZIP | `python scripts/check-market-evidence.py --evidence reports/real-market-refresh-20261116/evidence.zip` | Recompute dated market summaries |
-| `rehearse-local-deployment.py` | Reviewed Anvil executable, new directory, trusted build ID | `python scripts/rehearse-local-deployment.py --build-profile q03-allocation-20261117 --anvil C:/reviewed-tools/anvil.exe --output C:/local-reviews/new-run` | Measure isolated constructor execution |
+| `rehearse-local-deployment.py` | Reviewed Anvil executable, new directory, trusted build ID | `python scripts/rehearse-local-deployment.py --build-profile royalty-rounds-20261118 --anvil C:/reviewed-tools/anvil.exe --output C:/local-reviews/new-run` | Measure isolated constructor execution |
 
-Current planning defaults to `q03-allocation-20261117`; historical
+Current planning defaults to `royalty-rounds-20261118`; historical
 `metadata2-20261116` and legacy
 `manual-reference-20261115` remains separately pinned. The checker selects only
 the captured closed build identity, and admits an absent ID only with the original
@@ -681,7 +698,7 @@ exact44-call phase and feeds them to the unchanged strict constructor reviewer.
 | Tool/action | Required inputs | Example | Effect |
 | --- | --- | --- | --- |
 | Prepare conditional sequence | Existing constructor JSON, public direct-EOA sender, canonical decimal starting nonce, new output file | `python scripts/prepare-deployment-sequence.py --input /review/input.json --deployer REVIEWED_PUBLIC_EOA --starting-nonce REVIEWED_DECIMAL_NONCE --output /review/new-sequence.json` | Review conditional deployment sequence |
-| Select trusted build | Explicit closed build ID | Add `--build-profile q03-allocation-20261117` | Select exact reviewed artifacts |
+| Select trusted build | Explicit closed build ID | Add `--build-profile royalty-rounds-20261118` | Select exact reviewed artifacts |
 
 Replace placeholders; no private key/RPC is used. All44 calls must be ordinary
 successful transactions from the actual same bootstrap EOA, with no unexpected
@@ -710,7 +727,7 @@ as the conditional pre-seal caller and missing inputs explicitly blocked.
 | Tool/action | Required inputs | Example | Effect |
 | --- | --- | --- | --- |
 | Prepare setup review | Reviewed copy of `config/preseal-preparation.example.json`; NEW output path | `python scripts/prepare-preseal.py --input /review/preseal.json --output /review/NEW-review.json` | Review conditional setup calls |
-| Pin current build | Exact supported current build | Add `--build-profile q03-allocation-20261117` | Freeze current ABI selection |
+| Pin current build | Exact supported current build | Add `--build-profile royalty-rounds-20261118` | Freeze current ABI selection |
 | Inspect missing values | Output `missing_inputs` and each step's fields | Review `steps[].missing_inputs` | Resolve explicit setup blockers |
 | Inspect deliberate stops | Output `explicit_operating_stops` | Empty venues, converterOFF, maximumGap0, per-pool operationsOFF | Identify intentionally stopped operations |
 
@@ -821,7 +838,7 @@ evolution paths, then independently complete every other seal prerequisite.
 The nonempty check does not validate a CID, hosted content or OpenSea retrieval.
 A rejected seal preserves bootstrap and bindings; a successful seal erases
 bootstrap and permanently prevents changing the artwork root. Do not seal merely
-because this one read succeeds. Use the fresh `q03-allocation-20261117` build
+because this one read succeeds. Use the fresh `royalty-rounds-20261118` build
 family; older construction receipts retain their original controller scope.
 
 ### Fixed ZZZ setup order
@@ -4361,7 +4378,7 @@ transaction value0. Artwork and shares change only after confirmed actual LP.
 
 ## Operator call tables
 
-Source-bound coverage: **964 functions, 40 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
+Source-bound coverage: **968 functions, 40 constructors and 13 ETH receivers**. Every overload has its own row. Internal Solidity functions are not external entrypoints.
 
 Four columns only; explanations contain at most five words. Click a function for outputs, full caller restrictions and safety conditions. These are **unresolved input templates**, not simulated or approved transactions. Replace ALL uppercase symbols from the reviewed deployment/current snapshot. Never paste a symbol, guessed address, stale hash or illustrative setting into a wallet.
 
@@ -4701,7 +4718,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `G` [ActivationAssets.setAsset](CONTRACT_FUNCTIONS.md#zzzactivationassets) | `token: address`<br>`enabled: bool`<br>`expectedCodeHash: bytes32`<br>`reviewHash: bytes32` | `setAsset(ZZZ_ADDRESS, true, EXPECTED_CODE_HASH, REVIEW_HASH)` | Enable or disable contribution asset |
 
 <details>
-<summary>Read functions and constants (11)</summary>
+<summary>Read functions and constants (12)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -4714,6 +4731,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [ActivationAssets.policyAt](CONTRACT_FUNCTIONS.md#zzzactivationassets) | `ordinal: uint256` | `policyAt(1)` | Read policy at |
 | `R` [ActivationAssets.policyCount](CONTRACT_FUNCTIONS.md#zzzactivationassets) | None | `policyCount()` | Read policy count |
 | `R` [ActivationAssets.registry](CONTRACT_FUNCTIONS.md#zzzactivationassets) | None | `registry()` | Read registry |
+| `R` [ActivationAssets.validateInput](CONTRACT_FUNCTIONS.md#zzzactivationassets) | `token: address` | `validateInput(CONTRIBUTION_ASSET)` | Check contribution asset admission |
 | `R` [ActivationAssets.value](CONTRACT_FUNCTIONS.md#zzzactivationassets) | `token: address`<br>`amount: uint256` | `value(ZZZ_ADDRESS, AMOUNT)` | Value reviewed asset amount |
 | `R` [ActivationAssets.zzz](CONTRACT_FUNCTIONS.md#zzzactivationassets) | None | `zzz()` | Read zzz |
 
@@ -4800,9 +4818,10 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `B` [ProtocolPolicy.configureRandomness](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | `coordinator: address`<br>`expectedCodeHash: bytes32`<br>`keyHash: bytes32`<br>`subscriptionId: uint256`<br>`confirmations: uint16`<br>`callbackGas: uint32`<br>`nativePayment: bool`<br>`reviewHash: bytes32` | `configureRandomness(COORDINATOR_ADDRESS, EXPECTED_CODE_HASH, KEY_HASH, SUBSCRIPTION_ID, CONFIRMATIONS, CALLBACK_GAS, NATIVE_PAYMENT, REVIEW_HASH)` | Configure initial randomness provider |
 | `G` [ProtocolPolicy.setRandomnessRequestSettings](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | `confirmations: uint16`<br>`callbackGas: uint32`<br>`reviewHash: bytes32` | `setRandomnessRequestSettings(CONFIRMATIONS, CALLBACK_GAS, REVIEW_HASH)` | Set future randomness request settings |
 | `G` [ProtocolPolicy.rotateRandomness](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | `coordinator: address`<br>`expectedCodeHash: bytes32`<br>`keyHash: bytes32`<br>`subscriptionId: uint256`<br>`confirmations: uint16`<br>`callbackGas: uint32`<br>`nativePayment: bool`<br>`reviewHash: bytes32` | `rotateRandomness(COORDINATOR_ADDRESS, EXPECTED_CODE_HASH, KEY_HASH, SUBSCRIPTION_ID, CONFIRMATIONS, CALLBACK_GAS, NATIVE_PAYMENT, REVIEW_HASH)` | Rotate fully drained provider |
+| `G` [ProtocolPolicy.setRoyaltyBalanceGas](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | `gasLimit: uint32`<br>`reviewHash: bytes32` | `setRoyaltyBalanceGas(50000, REVIEW_HASH)` | Limit activation balance reads |
 
 <details>
-<summary>Read functions and constants (24)</summary>
+<summary>Read functions and constants (25)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
@@ -4823,6 +4842,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `R` [ProtocolPolicy.metadataPolicy](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `metadataPolicy()` | Read metadata policy |
 | `R` [ProtocolPolicy.mintFingerprint](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `mintFingerprint()` | Read mint fingerprint |
 | `R` [ProtocolPolicy.payoutGas](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `payoutGas()` | Read payout gas |
+| `R` [ProtocolPolicy.royaltyBalanceGas](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `royaltyBalanceGas()` | Read activation balance gas |
 | `R` [ProtocolPolicy.royaltySyncGas](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `royaltySyncGas()` | Read royalty sync gas |
 | `R` [ProtocolPolicy.saleFingerprint](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `saleFingerprint()` | Read sale fingerprint |
 | `R` [ProtocolPolicy.salePolicy](CONTRACT_FUNCTIONS.md#zzzprotocolpolicy) | None | `salePolicy()` | Read sale policy |
@@ -5161,16 +5181,17 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `G` [RoyaltyRewards.allocateAllUnallocated](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address`<br>`reviewHash: bytes32` | `allocateAllUnallocated(ADMITTED_ROYALTY_ASSET, REVIEW_HASH)` | Allocate all unallocated royalties |
 
 <details>
-<summary>Read functions and constants (37)</summary>
+<summary>Read functions and constants (38)</summary>
 
 | Function name | Expected input | Example call inputs | Explanation |
 | --- | --- | --- | --- |
 | `R` [RoyaltyRewards.ACTIVATION_WINDOW](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `ACTIVATION_WINDOW()` | Read activation grace duration |
 | `R` [RoyaltyRewards.MAX_ASSETS](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `MAX_ASSETS()` | Read max assets |
 | `R` [RoyaltyRewards.MAX_ERC20_ASSETS](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `MAX_ERC20_ASSETS()` | Read max erc20 assets |
+| `R` [RoyaltyRewards.ROYALTY_ALLOCATION_VERSION](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `ROYALTY_ALLOCATION_VERSION()` | Read royalty allocation version |
 | `R` [RoyaltyRewards.ROYALTY_RECOVERY_VERSION](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `ROYALTY_RECOVERY_VERSION()` | Read royalty recovery version |
 | `R` [RoyaltyRewards.ROYALTY_SETTLEMENT_VERSION](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `ROYALTY_SETTLEMENT_VERSION()` | Read original-currency capability |
-| `R` [RoyaltyRewards.accounted](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: address` | `accounted(TARGET_ADDRESS)` | Read accounted |
+| `R` [RoyaltyRewards.accounted](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `accounted(TARGET_ADDRESS)` | Read accounted |
 | `R` [RoyaltyRewards.accrued](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256`<br>`input1: address` | `accrued(NFT_ID, TARGET_ADDRESS)` | Read accrued |
 | `R` [RoyaltyRewards.activationCount](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | None | `activationCount()` | Read activation count |
 | `R` [RoyaltyRewards.activationOrdinal](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `input0: uint256` | `activationOrdinal(NFT_ID)` | Read activation ordinal |
@@ -5224,7 +5245,7 @@ Resolve [IDs, hashes and units](#resolve-ids-hashes-and-amounts) first; see [wal
 | `M` [RoyaltyRewards.claimFor](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `id: uint256`<br>`asset: address`<br>`owner: address` | `claimFor(NFT_ID, 0x0000000000000000000000000000000000000000, OWNER_ADDRESS)` | Forward authenticated owner claim |
 | `M` [RoyaltyRewards.increaseAssetCapacity](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `capacity: uint8`<br>`reviewHash: bytes32` | `increaseAssetCapacity(32, CAPACITY_REVIEW_HASH)` | Increase authenticated currency capacity |
 | `M` [RoyaltyRewards.setMintEnd](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `end: uint64` | `setMintEnd(OFFICIAL_MINT_END_UNIX_SECONDS)` | Set authenticated sale end |
-| `M` [RoyaltyRewards.syncForActivation](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address` | `syncForActivation(ASSET_ADDRESS)` | Isolate optional currency synchronization |
+| `M` [RoyaltyRewards.syncForActivation](CONTRACT_FUNCTIONS.md#zzzroyaltyrewards) | `asset: address`<br>`readLimits: uint256` | `syncForActivation(ASSET_ADDRESS, AUTHENTICATED_READ_LIMITS)` | Isolate optional currency synchronization |
 
 </details>
 

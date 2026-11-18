@@ -1,0 +1,892 @@
+{
+  "scope": "This agent full-workload/probe/publication slice only; excludes parent-owned scope/prod files and peer artifacts",
+  "files": [
+    {
+      "file": "reports/royalty-rounds-20261118/FULL_FLOW_REVIEW.md",
+      "sha256": "f06d0bb7a425a151afc49fc505bb2049cb8749b9b253fb5b0f5f3a49c1758756",
+      "bytes": 8239
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/FINAL_FULL_FLOW_REVIEW.md",
+      "sha256": "4bf980e36b7b3274cb2bb823b64ceb5853bce7ed18665efef524b5deee4a7197",
+      "bytes": 8473
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/run_full_flow.py",
+      "sha256": "cd358dac36565f9d0cf562e733e830a7344115d69cfeb66ff86c548f4adbd55e",
+      "bytes": 9556
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/compile_full_flow.py",
+      "sha256": "6e232d7ef7dd3f7c7bb291b31a14a387f51db7baa92046d15bc68172f6abe18a",
+      "bytes": 4083
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/verify_full_flow.py",
+      "sha256": "cd50123886e19cca1207ab6fce844bf31b45243a377e8bda4568ea8aeee09fd8",
+      "bytes": 42952
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/analyse_call_costs.py",
+      "sha256": "f41cd7a44e88fdb06669a06cf9ee7adc77b534ecfdeb983193a4d9df290b3522",
+      "bytes": 4052
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/compile_manager_refs.py",
+      "sha256": "9e4a170e85a7dc8b7931cffffafb332b4045385aa3f7f53afa5af6e703000ea6",
+      "bytes": 4022
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/run_manager_engineering_probe.py",
+      "sha256": "d216bff9148af82e6bf995aed22dcef2e8a572a04d91644ac63cb62dc962d0bc",
+      "bytes": 10796
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/publish_full_flow.py",
+      "sha256": "aff27b5ca3f7576856a6800964504465785614d6864750efbeb2de206c7287a8",
+      "bytes": 4974
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/publish_final_flow.py",
+      "sha256": "1d9f316e0e30a1d83d0fa9ef2d324cbf7bc194977d444981153edda09c9b4494",
+      "bytes": 5671
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full01/EXECUTION.json",
+      "sha256": "06e3a848da6b56f73c1f59136f0e618ad460ec99502afb81bed12a4f05aec01a",
+      "bytes": 51991
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full01/raw.json",
+      "sha256": "9e1922b3a2d5e21d699be208c718f35a20d43fa537b5cb15feda9a0f972b75df",
+      "bytes": 76
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full01/START.json",
+      "sha256": "773481ea78b8da98ca4c2815a1b23b4ff80df290aef3554e6e6d8530989e2cf7",
+      "bytes": 41282
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full01/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/COMPILED_INPUT_SOURCE_POOL.json.gz",
+      "sha256": "7f75bbc0fc5d011552bd2b6c7fd087234094533550644392098f4a40318c4c75",
+      "bytes": 347691
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/EXECUTION.json",
+      "sha256": "31f1faceb0086df006469d11da2fb94d6f3f6f9d7f570253c090b8acc4f1c17d",
+      "bytes": 55084
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/exports/rounds-1000-grow-eth.json.gz",
+      "sha256": "84f54237924141f7f58a65b167326339c923fe2170de88f68cd00ab5af017633",
+      "bytes": 4461607
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/exports/rounds-1000-grow-zzz-allfault.json.gz",
+      "sha256": "e7aff4f5865946b80eedd7916ba958b06dc7531dccd671deabe903374de8fd04",
+      "bytes": 4461838
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/exports/rounds-999-opening-eth.json.gz",
+      "sha256": "39f7e4e4a3141646428a420769685ff9f26fa867a2fcc8623d0374e31c9edde5",
+      "bytes": 3133932
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/exports/rounds-999-opening-zzz-allfault.json.gz",
+      "sha256": "d0dcf94222b8dc724e6bc689ace9a6308231fe1238e82a5e5a1c74f3b776962c",
+      "bytes": 3134204
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/exports/rounds-999-rotated-eth-allfault.json.gz",
+      "sha256": "67189ba120d6e5d8b267698bc44b47c1fe60e30d65b1077ca1ca4bf8109c8a0d",
+      "bytes": 3817563
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/exports/rounds-999-rotated-eth-onefault.json.gz",
+      "sha256": "ae3e3ae1cb2a04b65bab57daa69d5e161504dfa555ec2608efe1b3764acec34b",
+      "bytes": 3817343
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/exports/rounds-999-rotated-eth.json.gz",
+      "sha256": "c4e4be2aea2e39c5b3ce2d9be81e9239b1fffe95ca028e7bcc10c1815058b6a3",
+      "bytes": 3817312
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/exports/rounds-999-rotated-zzz-allfault.json.gz",
+      "sha256": "ad53ffc0209a5433ed1ddff9b9578d9200016d521b8c4fc61c20b626ca2da03b",
+      "bytes": 3817576
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/exports/rounds-999-rotated-zzz-allslow.json.gz",
+      "sha256": "0ae2b4f8eea4e64352163cc5fb13bc65bc1a2a9a339d34c9d6fdadd871d9103f",
+      "bytes": 3817579
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/exports/rounds-999-rotated-zzz.json.gz",
+      "sha256": "ab65c716663cfda81236291d6947de6424edc5805e8b3337811514fc60a961cf",
+      "bytes": 3817325
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/exports/setup.setup.json.gz",
+      "sha256": "391b4faa94fa47832bcbe67993943f2e71318daccadc782066bf6812b32d8cfb",
+      "bytes": 222283
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/foundry.toml",
+      "sha256": "f5372f0af9f665b480195f8f6f82d289a145ec624727e6a7c34018656650762e",
+      "bytes": 1392
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/HARNESS_RESOURCES.json",
+      "sha256": "e2fac593564db3fb86a5abfe08e09d5d7a5013ab3875e972d1ab975f52f49bba",
+      "bytes": 600
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/INITIAL_INFRASTRUCTURE_FAILURE.json",
+      "sha256": "91a4eae69d50c66bd8625edfa7cd71761cc78c982b3e1cf7b43928457fe60fbd",
+      "bytes": 1217
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/CALL_COST_SUMMARY.json",
+      "sha256": "20f16f8bd8cb52ab9e2af91811640ecbd00c778303ef248dcd98eb1e310b1fa2",
+      "bytes": 36206
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/CHECKER_START.json",
+      "sha256": "6a3f9fa8832b52dda3c63d2ea8b1d42c13cc48f06f55fc6809f621ee9c332de0",
+      "bytes": 1064
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-1000-grow-eth/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-1000-grow-eth/CALL_COSTS.json",
+      "sha256": "742fea3d57f69d9c0ed4674ac730b1af74840bc92e3b828a8e389835ff7c7043",
+      "bytes": 943439
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-1000-grow-eth/rpc-records.json.gz",
+      "sha256": "3b40a668652176f88e97150745f5e25a1ce274a1457f202e01b952feaa43ba3e",
+      "bytes": 461070
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-1000-grow-eth/VERIFICATION.json",
+      "sha256": "9c574bac7d9863fb52f4d4f39601a769554609ed9a422951530bd56b818d646b",
+      "bytes": 37139
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-1000-grow-zzz-allfault/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-1000-grow-zzz-allfault/rpc-records.json.gz",
+      "sha256": "ab5cb570a7d99e5c5a24676ab9a6f186264c650e4d10069c1180ebae95806ff6",
+      "bytes": 462840
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-1000-grow-zzz-allfault/VERIFICATION.json",
+      "sha256": "edbbcd32515fcf24532a393b5cc736e226df077da6ee3f3b0e4ffb1769478c25",
+      "bytes": 37149
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-opening-eth/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-opening-eth/CALL_COSTS.json",
+      "sha256": "7df20029ee6b74cd08b6cfa74d4cb94b6223960bd99af1ab93ddeaebc21f0d5a",
+      "bytes": 996682
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-opening-eth/rpc-records.json.gz",
+      "sha256": "fc772231faab8bd75ac80101931157e4ea070f7b563ad7b2243224f8181615c2",
+      "bytes": 510432
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-opening-eth/VERIFICATION.json",
+      "sha256": "bec9ef27438198d29c18aaaeb42e16cc3b802f383504c91ef719cd5e5d5f6857",
+      "bytes": 40520
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-opening-zzz-allfault/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-opening-zzz-allfault/rpc-records.json.gz",
+      "sha256": "59030b2799ff6b90d24989ecfa2c0287c8b9226767f32c777294b800a30a9c88",
+      "bytes": 513322
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-opening-zzz-allfault/VERIFICATION.json",
+      "sha256": "d0f1ca84c88ccbf8eb9d3d5ad81645c83fb4bc3e61364e499c3e000a621cbece",
+      "bytes": 41748
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-eth/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-eth/CALL_COSTS.json",
+      "sha256": "f006e0d86bb8494fe40b5ab44afa5684ac269497fe86f18633e46ec6fdf6df55",
+      "bytes": 996682
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-eth/rpc-records.json.gz",
+      "sha256": "37d16660f81a95054fc88ddd0b63db1794ebc2e9c6c2c859182ed531fc9e4e67",
+      "bytes": 510308
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-eth/VERIFICATION.json",
+      "sha256": "0efde9d8ef51b7b5413bea37b84651815661a8c9f5faa94b19b28d16918d76dd",
+      "bytes": 40516
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-eth-allfault/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-eth-allfault/CALL_COSTS.json",
+      "sha256": "892e7db63bffec3692c8fc87d310fab55201da07a8cacd857852ab765bda0ae7",
+      "bytes": 997457
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-eth-allfault/rpc-records.json.gz",
+      "sha256": "4a2f3edd92ea8e10ae967be44acec8c2ab66892b6f9e73bdaf5e5863308f8b16",
+      "bytes": 509782
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-eth-allfault/VERIFICATION.json",
+      "sha256": "2fcbcda6ed6aec55e34ca2c9bc5f196d463819909307a27454d3c6e07a457c70",
+      "bytes": 41764
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-eth-onefault/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-eth-onefault/rpc-records.json.gz",
+      "sha256": "7a2d27ab92e97ed731df61d8767884c65bde6d7651157006e4e81fdf1df33e58",
+      "bytes": 510536
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-eth-onefault/VERIFICATION.json",
+      "sha256": "f1af21e5a04357b556aee3a91d7c50073d8060a5b1c1acdecf13f2160baa8f5e",
+      "bytes": 40624
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-zzz/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-zzz/rpc-records.json.gz",
+      "sha256": "3ce03158722747d934a38741fd93a1540d4221be51b680ff6432f3965facc054",
+      "bytes": 513699
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-zzz/VERIFICATION.json",
+      "sha256": "7e3b2388337ab054aebee5512014abe2bbb8f2c6329efe2ab93e3cc2e9947bbd",
+      "bytes": 40496
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-zzz-allfault/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-zzz-allfault/rpc-records.json.gz",
+      "sha256": "6d7a3837267b659b37311548c027f44aa03af09b138f0b3d9cc254e17cca6a31",
+      "bytes": 513190
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-zzz-allfault/VERIFICATION.json",
+      "sha256": "f45a6e4075169d9211c610b3244580899fd2c90783140dfa3fed29012fa738cb",
+      "bytes": 41744
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-zzz-allslow/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-zzz-allslow/CALL_COSTS.json",
+      "sha256": "d197060294dd023e85aa76d8fb0c196d34ed502a99a5c29e777e124b02a76c70",
+      "bytes": 1048374
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-zzz-allslow/ORACLE_BOUNDARIES.json",
+      "sha256": "1c982cef2daf0c041f8c048711b2f8b128073a2ea34652babb3234a66f2172d5",
+      "bytes": 13804
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-zzz-allslow/rpc-records.json.gz",
+      "sha256": "2a64b89c12a0845eb80fe941b4ef3a96df63709737afe0c2fce1e0261c3ac0cc",
+      "bytes": 513704
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/rounds-999-rotated-zzz-allslow/VERIFICATION.json",
+      "sha256": "cefb4e9a85d8f7f3e30d3535a494af229525401ccff8696145ed326b93befb10",
+      "bytes": 40534
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/local-rpc02/SUMMARY.json",
+      "sha256": "ee3e2670b60b264a88ed7789345332102958cf56c922362813221540ce415b5c",
+      "bytes": 440150
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/ORIGINAL_foundry.toml",
+      "sha256": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72",
+      "bytes": 1233
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/PID.json",
+      "sha256": "4ee6c84c4b7d8d5b7283b05e159d2b1ab78968b16e898240f99a8629a448b960",
+      "bytes": 7166
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/producer-artifact.json.gz",
+      "sha256": "32c128e76c0ac0ea5c51a45f261eaf66570d1373a6c942424288b33df3bbd838",
+      "bytes": 1037679
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/PRODUCER.json",
+      "sha256": "5a240f0a10d05d1e20fcb5e182724a71e5e0c353e89d072437fb7daaf563c084",
+      "bytes": 844
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/raw.json.gz",
+      "sha256": "8152abef3ecc39fbe5de0ce61e2ef4b655ac67e631d2c7fa11152d411bf5106a",
+      "bytes": 2425926
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/SOURCE_TEST.sol.txt",
+      "sha256": "123492acdbf7e2696f8a8bdca6580a6ccde7267f7cba863e851d211f251e0fdf",
+      "bytes": 29206
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/START.json",
+      "sha256": "cc80d6a04630a06165502d2bd3231717e6924fb228f83b901919d5fbd1de6730",
+      "bytes": 41281
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/full02/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/manager/engineering01/compiler-input.json.gz",
+      "sha256": "02eec3e651d70de029c53bce9f4dcb182a76364f4330cced426671dabec0b306",
+      "bytes": 195811
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/manager/engineering01/compiler-output.json.gz",
+      "sha256": "bf9ca420868f25b7a08dfa4e71bba8d71bfac3eccea536509e89f7b21d01fa36",
+      "bytes": 1724267
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/manager/engineering01/new-runtime/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/manager/engineering01/new-runtime/NODE.json",
+      "sha256": "a9d7b2cf46ac7946a8140f11d4e2e8f7f62a5bb073d2b5426228bf03c67c93d1",
+      "bytes": 3077
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/manager/engineering01/new-runtime/rpc-records.json.gz",
+      "sha256": "cbca93505b781da3d261954a0a00aa50bdd61c9bfebaa0557c0017e015d50b82",
+      "bytes": 66942
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/manager/engineering01/old-getters/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/manager/engineering01/old-getters/NODE.json",
+      "sha256": "4dcf1da74d3223f35e7b4ffef7269255b49d1132968150ef2d63dacf3de28d40",
+      "bytes": 3077
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/manager/engineering01/old-getters/rpc-records.json.gz",
+      "sha256": "b0ae1702e69dc31476572697168aaf0b4da1be0cfdf11d82f17d1ea0136cc6cd",
+      "bytes": 61312
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/manager/engineering01/PROBE_RESULT.json",
+      "sha256": "09031b0e16582a27f76f159eae3b490cc347a14dc15f31a3c13cd295dac405a2",
+      "bytes": 22890
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/manager/engineering01/PROBE_START.json",
+      "sha256": "bd2ce7dad272510c00bc99533a246a67caabb5feeb20dcffe6c834d9f12165d7",
+      "bytes": 1638
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/manager/engineering01/RESULT.json",
+      "sha256": "4894466e717fe1977fbbdc7e05ecf054c66bd8a8c74971f00a6b75d906722e06",
+      "bytes": 5653
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/manager/engineering01/START.json",
+      "sha256": "07d7a05fac450721f76b9555d4bb9c6a9a85d6b06b8fff322ebbcc347f391540",
+      "bytes": 12444
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/MANIFEST.json",
+      "sha256": "e8bde0e941cbe60d8cdc32bcf8ddc6e89492f269ccc88984007a7b514d866d27",
+      "bytes": 26305
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/source-helpers/MANIFEST.json",
+      "sha256": "eabd54941c3f733246f0b5806cc21a7d3d89b727adf1cf084d1af2a1b613b346",
+      "bytes": 535
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/source-helpers/run_full_flow.py",
+      "sha256": "e75c7b87011b4e699b6f243aae1102681c61b8b2f315f7f0eafeb1bfb1f46a26",
+      "bytes": 9463
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-baseline/source-helpers/verify_full_flow.py",
+      "sha256": "189e1603c2e714049d3ecd031212a7f44c8c5eaa4f71af1078c57ecffd1e97fb",
+      "bytes": 40777
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03/COMPILED_INPUT_SOURCE_POOL.json.gz",
+      "sha256": "2fad4088819a77252586ab1683b03e29a70d39ac77d7fb5bcf9d6de45e8f5eef",
+      "bytes": 348457
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03/foundry.toml",
+      "sha256": "a6826ad06d0b348a97ad90348b87aa84637e4219e8b6ec9715255fbd8cc69ced",
+      "bytes": 1392
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03/HARNESS_RESOURCES.json",
+      "sha256": "31ac42770556c61b7f0ae2872d88e0428b91e9bd5e4f3f980658c9803c1010d7",
+      "bytes": 600
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03/INTERRUPTED.json",
+      "sha256": "9e84fe39df4fbc28462346d9c35b030ce64006c9f69ea12e11ccbe7fb135083a",
+      "bytes": 855
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03/ORIGINAL_foundry.toml",
+      "sha256": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72",
+      "bytes": 1233
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03/PID.json",
+      "sha256": "f64e941e2b7f944a364ec97c4b4cc0b741d02fd7f789041ddd4ddc08b92d9d77",
+      "bytes": 7272
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03/raw.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03/SOURCE_TEST.sol.txt",
+      "sha256": "f648f3f21f2d3fbf80795211ec2afce7efca1a06d1bc43fc707188c389643e57",
+      "bytes": 29824
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03/START.json",
+      "sha256": "f33cc6d85a64855799a524386bd78c87c779123cd9131040c26f618924253b07",
+      "bytes": 41503
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03-compile/RESULT.json",
+      "sha256": "685726f984a5e0e99a9d432b5c7459c70942bc76631c8943143b3b532dc258d9",
+      "bytes": 753
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03-compile/SOURCE_POOL.json.gz",
+      "sha256": "2fad4088819a77252586ab1683b03e29a70d39ac77d7fb5bcf9d6de45e8f5eef",
+      "bytes": 348457
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03-compile/START.json",
+      "sha256": "31d037eb3abde1b1de8a98e67f10d5d94eb61aa04f04293300d0a8daebe1b56a",
+      "bytes": 34314
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03-compile/stderr.log",
+      "sha256": "ca4e528432d5018aa3eefa54255a7b9bbb5bdab6aa65ff6b42ef94c9e34b5afb",
+      "bytes": 278
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03-compile/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03-compile02/RESULT.json",
+      "sha256": "f5e618cc18ffd5983ed4d793a76965aab45c792a5fb1a439ffa75f2119bcfc39",
+      "bytes": 270
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03-compile02/SOURCE_POOL.json.gz",
+      "sha256": "2fad4088819a77252586ab1683b03e29a70d39ac77d7fb5bcf9d6de45e8f5eef",
+      "bytes": 348457
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03-compile02/START.json",
+      "sha256": "38474d9207eae111d4b8ac2aa6bf0e448bec3da67f418bc5a7cc288abd90981e",
+      "bytes": 34272
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03-compile02/stderr.log",
+      "sha256": "36d2fef9c06884e8716952bcc33cdfd3c8916a70d42c7af8978ceae4728ed40f",
+      "bytes": 205914
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full03-compile02/stdout.log",
+      "sha256": "a43c35fe55ba9400c07d3d99501390749f791cff9340d69660a22f95546e1911",
+      "bytes": 8294
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/BASELINE_COMPARISON.json",
+      "sha256": "0954c7c6746dfd06ec3e5d91eea8779417dac49d5b28690118745c4d809d4eec",
+      "bytes": 3073
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/COMPILED_INPUT_SOURCE_POOL.json.gz",
+      "sha256": "882a9ebd412bb9e5c88d943b48c764a0a9f696fae4623afebf6531bfe7bb5911",
+      "bytes": 348549
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/EXECUTION.json",
+      "sha256": "8d88f6cb7af5ac76dfaa95809d08982e8a185b03c5b75876781fae0b2de9ab0f",
+      "bytes": 55920
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/exports.tar.xz",
+      "sha256": "fcbed1cedaf3b50e7b436f6747b2dbae3b9a88fcbf86346c819b11421c97ef72",
+      "bytes": 4376592
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/foundry.toml",
+      "sha256": "951e3f927399e83fb545d96942eaf55d3e44e711946f8455dd67580429d402c9",
+      "bytes": 1392
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/HARNESS_RESOURCES.json",
+      "sha256": "3663a5dbabb65e6ab9c5b81500dad5ab40f318e97ab0c8d373807073ddbff0a2",
+      "bytes": 600
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/CHECKER_START.json",
+      "sha256": "d570b3e39957475451ae1986d0d7f8f16567829cd1c5c99d922b98b229e6a4a1",
+      "bytes": 1064
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-1000-grow-eth/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-1000-grow-eth/rpc-records.json.gz",
+      "sha256": "d1f60737263644c5b97a80ab0dcceb97a1dd91d7a415cd50f44a1326e4ccaee4",
+      "bytes": 459316
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-1000-grow-eth/VERIFICATION.json",
+      "sha256": "64e9a50a48e3cd4925f8f43b7f17ba9ccfcd3e36bf3fb0f84de1cf2391fbcf4e",
+      "bytes": 37170
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-1000-grow-zzz-allfault/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-1000-grow-zzz-allfault/rpc-records.json.gz",
+      "sha256": "66c2cbeb8630d5b8e5f90c16a7558a25b89ee099b74575535e0ddad5f600ec15",
+      "bytes": 460948
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-1000-grow-zzz-allfault/VERIFICATION.json",
+      "sha256": "3e0a83269bb1d2a60b3dacb5ae58cf7545b51eb36136d39c81d33ab78f08b76a",
+      "bytes": 37180
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-opening-eth/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-opening-eth/rpc-records.json.gz",
+      "sha256": "1613321b97715273acf7b0461d00a93b0a7a2db9e0e9f0ba123a56dfa55f4b79",
+      "bytes": 506987
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-opening-eth/VERIFICATION.json",
+      "sha256": "48c23b05d97c7ae8130c05db8640452946a0463237afc35b48eca4051c0acd62",
+      "bytes": 44140
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-opening-eth-allslow/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-opening-eth-allslow/rpc-records.json.gz",
+      "sha256": "f54f89f46d326341b3f30e846975a6336c89ff9b62e5b5319370957a7a27ee94",
+      "bytes": 506989
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-opening-eth-allslow/VERIFICATION.json",
+      "sha256": "582729fc880bccd4f37d553bd9e5679604aaef25c14fd2f2ca32b6abf78aabe1",
+      "bytes": 44178
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-opening-zzz/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-opening-zzz/rpc-records.json.gz",
+      "sha256": "055f732a7c776facc4c0dd8929155371414e26f9d760623be2eda1ee66f37a22",
+      "bytes": 510276
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-opening-zzz/VERIFICATION.json",
+      "sha256": "daabf1b3aebc874b242743cbae7b44564e83227df5e3ca50e261c9535faa3bf5",
+      "bytes": 44117
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-opening-zzz-allfault/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-opening-zzz-allfault/rpc-records.json.gz",
+      "sha256": "b4bd80e75d1f2896f9ec345a796f0a3a5cc12544e449f61340fab5019b92283a",
+      "bytes": 463813
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-opening-zzz-allfault/VERIFICATION.json",
+      "sha256": "23677848b5e318c041607a3148f69917331d8d03c412abf76b9f386128180201",
+      "bytes": 45335
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-opening-zzz-allslow/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-opening-zzz-allslow/rpc-records.json.gz",
+      "sha256": "0921fe0941b47ee85bd3382ecd40267b1064ac6133ea2b7a962bc5f4360f12f3",
+      "bytes": 510301
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-opening-zzz-allslow/VERIFICATION.json",
+      "sha256": "ee61b6ce211ed440ba9adc500b5480c2c4e7adfc5101d2b34bc1d7e166a69f24",
+      "bytes": 44158
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-eth/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-eth/rpc-records.json.gz",
+      "sha256": "3ba535fe59d58bc5541e3e70e033981caf3866344aef8c9cd59284e414749523",
+      "bytes": 506772
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-eth/VERIFICATION.json",
+      "sha256": "d035fd4136c57ffb65049ecea62c5ed47908b75aae191bfe290a54ef29053e3a",
+      "bytes": 44133
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-eth-allfault/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-eth-allfault/rpc-records.json.gz",
+      "sha256": "06538ff97be36ea68b464f9a078a01743398e958ef6fa0caef9cef0019ab66ab",
+      "bytes": 462174
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-eth-allfault/VERIFICATION.json",
+      "sha256": "cbd3796c8c0696e5ad291f1fca9c403695ebc5ea4bcbf2249b8bc252022139cf",
+      "bytes": 45357
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-eth-onefault/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-eth-onefault/rpc-records.json.gz",
+      "sha256": "70ac3f3a82ab8292a73aac21b6aaf8fbd087b3f14e8b44c67e675d80a3d93a74",
+      "bytes": 507049
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-eth-onefault/VERIFICATION.json",
+      "sha256": "ed1dfc6a47037a067e0d3d3c4529f8e1fd7650760e0963a57a496aecc7d200d5",
+      "bytes": 44252
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-zzz/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-zzz/rpc-records.json.gz",
+      "sha256": "e3a0eecb79b6e419c8beab97aa00b95eb0edbbf1b7b235c4abb4f96d64a10585",
+      "bytes": 510059
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-zzz/VERIFICATION.json",
+      "sha256": "f67c31459288f8da96cbf4b4ef5d0b866437bf1cc969848cc872da75a135d5b4",
+      "bytes": 44116
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-zzz-allfault/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-zzz-allfault/rpc-records.json.gz",
+      "sha256": "828fe8b8f40c7b5b73405f8d28da6ab8a79f4e9e5f93099c2a5560cbaa0993a2",
+      "bytes": 463760
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-zzz-allfault/VERIFICATION.json",
+      "sha256": "8717dd07d5b544f0e9b9a5be78de02d65d681d82353c5d3e9bc33df6fdd3e8ef",
+      "bytes": 45337
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-zzz-allslow/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-zzz-allslow/rpc-records.json.gz",
+      "sha256": "1fd4301951811b8ac95140aa9131ad4c98ad71e36b76fd687e79c9ddfe7d9748",
+      "bytes": 510075
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/rounds-999-rotated-zzz-allslow/VERIFICATION.json",
+      "sha256": "1d5c221db7accd22429eaaabdae39d00074a6f5906a82f4c95f32470a59b5d75",
+      "bytes": 44154
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/local-rpc/SUMMARY.json",
+      "sha256": "4aa35e0313f035efe3b43108501351b895f2a47c2f417de12dec8743398b2c7d",
+      "bytes": 617899
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/ORIGINAL_foundry.toml",
+      "sha256": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72",
+      "bytes": 1233
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/PID.json",
+      "sha256": "6af551226995b11ca1bd83043a94a9ea31dbd2037445092c316ce7e3b3edf370",
+      "bytes": 7326
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/producer-artifact.json.gz",
+      "sha256": "ea9c1e88dce710569d0e1f2839697896164e71a3d39463ea5d2bee9dcb3d8b49",
+      "bytes": 1039018
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/PRODUCER.json",
+      "sha256": "01773bf351a34089b64c2cd564ee5c24e98879cdef821b340cffa9e9c1dabd37",
+      "bytes": 953
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/raw.json.gz",
+      "sha256": "4daaa3b5c04bf517aa0d8681b1b64f7fd8d429b1e572c7600a3dab0811e8ff46",
+      "bytes": 2447932
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/SOURCE_TEST.sol.txt",
+      "sha256": "f648f3f21f2d3fbf80795211ec2afce7efca1a06d1bc43fc707188c389643e57",
+      "bytes": 29824
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/START.json",
+      "sha256": "e68ed24cdec2f610319f4c0e73180ba389837731f1bc7640a3c7481432711a6a",
+      "bytes": 41616
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04-compile01/RESULT.json",
+      "sha256": "c9974c91809ec41a6eed8a60423ee08fc75af682a38d28972a17c57c226000b4",
+      "bytes": 269
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04-compile01/SOURCE_POOL.json.gz",
+      "sha256": "882a9ebd412bb9e5c88d943b48c764a0a9f696fae4623afebf6531bfe7bb5911",
+      "bytes": 348549
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04-compile01/START.json",
+      "sha256": "da734fb57d9f4f77147c802420cef47d19cc751dd6d8a7c22cf510417ffdee82",
+      "bytes": 34336
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04-compile01/stderr.log",
+      "sha256": "5236cdd2dbcfd327bd6567ebdd165f81cf2c15d4783b2ccd3541d9140ca6a044",
+      "bytes": 205914
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/full04-compile01/stdout.log",
+      "sha256": "b8e7e727ae0558161971965ce32243febb26fef510b739573b472a485ed81dc9",
+      "bytes": 8294
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/MANIFEST.json",
+      "sha256": "8a1cbfd429e3eabd6aba604038af995ba2bae0a4593e56ff1165fd0adaf80d75",
+      "bytes": 31428
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/PRELAUNCH_FAILURES.json",
+      "sha256": "1e0b62c53e84001c4efec1e4809adb267e3aad3930e06ab877292aa5b8deffa6",
+      "bytes": 636
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/source-helpers/run_full_flow.py",
+      "sha256": "cd358dac36565f9d0cf562e733e830a7344115d69cfeb66ff86c548f4adbd55e",
+      "bytes": 9556
+    },
+    {
+      "file": "reports/royalty-rounds-20261118/full-flow-final/source-helpers/verify_full_flow.py",
+      "sha256": "cd50123886e19cca1207ab6fce844bf31b45243a377e8bda4568ea8aeee09fd8",
+      "bytes": 42952
+    }
+  ],
+  "new_EVM_executions_in_this_integrity_check": 0,
+  "production_approved": false
+}

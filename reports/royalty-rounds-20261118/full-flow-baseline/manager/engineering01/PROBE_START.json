@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "scope": "UNQUALIFIED Manager-only runtime transplant engineering probe; not fresh constructor/full graph/source profile/deployment evidence",
+  "old_verified_case": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\royalty-rounds-20261118\\full02\\local-rpc02\\rounds-999-rotated-zzz-allslow",
+  "old_verification_sha256": "cefb4e9a85d8f7f3e30d3535a494af229525401ccff8696145ed326b93befb10",
+  "original_authenticated_state_merge": {
+    "baseline_sha256": "2b2fb6523c0682b6f81021e751336abb67639a3f3bf8484d2c254b655daef952",
+    "delta_sha256": "456970875fa5db43b9f9c7c2d0c38579919289327eafbc2011495f52fb40bfaf",
+    "baseline_keccak256": "0x0d5fd92a5ebc80a0e58a7575a410557acc0a116d65508e42e005a84ef584d6fe",
+    "delta_keccak256": "0x68a413c60f67cde3f83d1e187e98047615b5640785441aab8308b3c26718ec35",
+    "nonzero_to_zero_overrides": 0,
+    "baseline_accounts": 29,
+    "delta_accounts": 69,
+    "merged_accounts": 69,
+    "harness_artifact_sha256": "97d47ddaf989acbb951d0ddc64ecd1074e9f0cfdaf2a263e719b3d1f1717246b"
+  },
+  "new_compiler_input_sha256": "a9bca48fa0018a9fb8073d3223415d54ec4dca5195a3ec13f9ef22b410ea8024",
+  "new_compiler_output_sha256": "90c5f3144fe82e9c553400f6cd10da69929045fb5e870e108ddd7aaca39d322e",
+  "old_runtime_sha256": "f224288fdb3883f3ab73ae111b93e14c8ff17c1f881d2e45c3559e3eb3cbb2df",
+  "old_runtime_keccak256": "0x332f91b5c1c6a58e26966f60d86a536e8ddb41e4a5ddb967b0a54dfdff07e8b1",
+  "production_approved": false,
+  "meets_reviewed_execution_profile": false,
+  "profile_qualification": false,
+  "public_transactions": 0
+}

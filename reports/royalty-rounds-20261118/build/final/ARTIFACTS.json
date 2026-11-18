@@ -1,0 +1,19 @@
+{
+  "external_uncompressed_directory": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\royalty-rounds-20261118\\build\\final02",
+  "files": {
+    "START.json": "a1bddde5605bab24b3d961505702e4d5bb94b50af9695f3b4e33f9e546119ac4",
+    "RESULT.json": "12d585f6a1ccd537709e8f23f43ea90c4cef32198ddc82bfd0c63701b1967992",
+    "normal-size-evidence.json": "12d585f6a1ccd537709e8f23f43ea90c4cef32198ddc82bfd0c63701b1967992",
+    "PREFLIGHT_RESULT.json": "dc9f4edc487de46d1bacc7184ac8c8d51d04c6750902b4e1b94294c55819f6d3",
+    "EFFECTIVE_NORMAL_PROFILE.json": "52baf6c2431fa35cddea692791db770aeb8e5bd188259bd1868fef0f7f17f257",
+    "ABI_STORAGE_COMPARISON.json": "80a811f5efdffa999a955f911bf49aacfa229aaac977eb2999876212ec66b93e",
+    "FINAL_STORAGE_COMPATIBILITY.json": "67b7a22cadad0f67eef19837b24168630820fdb0dcd4f27461bc0735ca475b43",
+    "ROYALTY_CARRIER_EVIDENCE.json": "168a577cf3bd22a1060a25e2f131cbc0d498dd7b54599eeecf8e63380df62bfd",
+    "ADMISSION_RESULT.json": "a7c22dcbc43ebabf3858d93ad3443860cb87c1d1abdd715d40078990a40722ff",
+    "compiler-input.json.gz": "8a591f4b8de04ed2337156c8cc6a97057f09f18744834f3f3c92af20b33d6ba4",
+    "compiler-output.json.gz": "1947e502348e5e230e6d34792b317683f5d634514ce248ad64c342bb792ff663",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "historical_phase1_unchanged": true,
+  "production_approved": false
+}

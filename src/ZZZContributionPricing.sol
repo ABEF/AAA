@@ -320,7 +320,10 @@ contract ZZZContributionPricing {
         external onlyBudget returns(uint256 issued,uint256 netUSD) {
         if (basis.phase != 4 || basis.bucket != bucket || basis.lowerInput != inputUSD || basis.limits != limits ||
             uint16(limits) > 1000 || uint16(limits >> 16) > 1000) revert InvalidState();
-        _putUnchanged(); bytes32 hash = _unchanged(true);
+        // Phase-three NAV has just completed the full source proof. Only
+        // STATIC reads and local Vault/Budget arithmetic precede this fixed
+        // phase-four call; retain every captured mark and policy comparison.
+        _putUnchanged(); bytes32 hash = _unchanged(false);
         if (deployed == 0 || idle > Math.mulDiv(deployed+idle,basis.maxIdleBps,10000) ||
             deployed+idle <= incumbentNAV || deployed < incumbentDeployed) revert Slippage();
         netUSD = deployed+idle-incumbentNAV;

@@ -1,0 +1,25 @@
+{
+  "checker_sha256": "cd50123886e19cca1207ab6fce844bf31b45243a377e8bda4568ea8aeee09fd8",
+  "cast_sha256": "610eab893dfb497ad358f7c99b81f4fb0001a5ee8f4f02c0a0ea0a7ec35c90a8",
+  "large_buffer_hashing": "Pinned offline Cast Keccak; SHA256-keyed result cache, no price/state cache",
+  "known_vectors": [
+    {
+      "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "length": 0,
+      "keccak256": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470"
+    },
+    {
+      "input_sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+      "length": 3,
+      "keccak256": "0x4e03657aea45a94fc7d47ba826c8d667c0d1e6e33a64a036ec44f58fa12d6c45"
+    },
+    {
+      "input_sha256": "40aff2e9d2d8922e47afd4648e6967497158785fbd1da870e7110266bf944880",
+      "length": 256,
+      "keccak256": "0xdc924469b334aed2a19fac7252e9961aea41f8d91996366029dbe0884229bf36"
+    }
+  ],
+  "source_stage": "full04",
+  "max_parallel_owned_nodes": 3,
+  "public_requests_or_transactions": 0
+}

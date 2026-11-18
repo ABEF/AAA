@@ -1,0 +1,5 @@
+{
+  "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+  "src/interfaces/IZZZProtocolPolicy.sol": "afeede9fd34a972a9c11e9e39a4d71747d93184902d68c5fa6a1fae14dac7697",
+  "test/RoyaltyBalancePolicy20261118.t.sol": "fd53a189c13c526b9d65cad33f9d5d7e82ffa7e6c629f850bde9e524bc9f96f3"
+}

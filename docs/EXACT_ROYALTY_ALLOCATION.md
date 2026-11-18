@@ -54,27 +54,15 @@ admitting low-decimal/high-value currencies; no rounding scheme can divide it.
 
 ## Backing and implementation
 
-A bounded internal tree represents outstanding ticket rights. It is compiled
-into the ledger, not a new deployed helper or authority. Allocation touches
-bounded intervals; no receipt loops over1,000 NFTs. Claims consume at most four
-effective tickets across normalization books, plus imported accrued rights.
+Fresh allocation2 uses cumulative complete rounds, a rotating cursor and immutable enrollment snapshots. Historical payload3/4 used a ticket tree. The library is compiled into the ledger, not a new deployed helper or authority. Each receipt updates constant-size state without scanning holders or retaining payment history. Each currency records at most1,000 increasing enrollment boundaries; a scalar claim finds its birth cohort in at most10 binary-search steps, evaluates its normalized books and subtracts its prior paid coordinate. Imported accrued remains separate.
 
-Fresh Q03 uses complementary range credits: when a remainder covers most of the
-eligible cohort, credit the upper quotient and subtract one from the small
-excluded interval. This is exactly the same per-ticket allocation and cursor.
-Only internal coefficients and their path sums wrap modulo2^256; they are NOT
-cash balances. Every monetary credit first checks and reserves the real same-
-currency global liability. Each take is bounded by the remaining liability;
-aggregate claims, backing debits and exact transfers remain checked. Imported
-accrued rights and all normalization books share that one liability bound.
+For effective prefixW, cursorC and receiptA, add `A/W + (C + A%W >= W ? 1 : 0)` complete rounds and set cursor to `(C + A%W)%W`. Each ticket receives `deltaRounds + [ticket <= newCursor] - [ticket <= oldCursor]`. This telescopes across append-only cohorts. Snapshot new entrants after old receipts; the initial opening cohort instead enrolls before its held pool is credited. Homogeneous Rare/Legendary books transition only to unit1 and retain their old rights. New-book initial cursor offsets create no phantom income.
 
-Storage layout, public ABI, rarity weights and flat canonical records remain
-unchanged. Never reinterpret another runtime or a nonempty historical raw book.
-After all entitled NFTs claim, earned monetary liability is zero; zero-sum internal coefficients
-need not be zero. Future tickets still have zero older rights. The rejected
-prefix-envelope experiment is not deployed source: its claim-cost penalty and
-size failure are recorded in the [Q03 review](../reports/q03-activation-gas-20261117/REVIEW.md).
-Tree/currency capacities remain engineering limits, not gas qualification.
+Only lifetime round, gross and paid coordinates wrap modulo2^256; these are not cash balances. Each monetary credit first reserves checked same-currency liability. Claims remain bounded by actual liability, with checked aggregate payouts, backing debits and exact transfers. Imported accrued payouts never become new-book paid debt.
+
+Rarity weights, scalar claims/events and flattened canonical records remain unchanged. Private storage changes: require fresh `ROYALTY_ALLOCATION_VERSION()==2`, explicit factory payload5 and exact reviewed runtime/source pins. Never reinterpret a historical raw tree book. Settlement remains4, recovery2 and reporting5. After every entitled owner claims, allocated liability is zero; internal coordinates need not be zero. This append-only design is specific to royalties; mutable LP shares retain their separate engine.
+
+See the [current round-accounting review](../reports/royalty-rounds-20261118/ROUND_ACCOUNTING_REVIEW.md). The prior [Q03 tree implementation](../reports/q03-activation-gas-20261117/REVIEW.md) and rejected prefix-envelope experiment retain their original evidence. Population/currency capacities are engineering limits, not gas approval.
 
 For each admitted currency in ordinary operation:
 
@@ -140,13 +128,13 @@ The previous250,000 default was too small for cold exact-allocation paths.
 Lowering the budget can defer a healthy currency because accounting ran out of
 gas. Review actual receipts and simulate before lowering it.
 
-Aggregate gas remains distinct:16full1M failures alone exceed a12M operation,
-and many healthy worst-case pending allocations can also exceed that envelope.
-For healthy backlog, a permissionless `sync(asset)` transaction can account one
-currency before a fresh activation quote, without a swap or payout. Re-simulate
-after confirmation; new receipts can add work again. This is optional maintenance,
-not a prerequisite keeper worker for royalty claims. Broken tokens and maximum
-currency populations still require actual operating/gas qualification.
+Fresh activation caps only the optional token `balanceOf` STATICCALL through `ProtocolPolicy.royaltyBalanceGas()`: default50,000gas, governed10,000-1,000,000. The complete-sync maximum remains1M. Funding is proved either for the complete frame or independently for the configured read plus120k before that STATICCALL. Only32return bytes are copied; valid trailing ABI data is accepted. A fully funded short/reverting/OOG/under-backed read produces the ledger's own exact4-byte unavailable signal and defers that currency. Token revert bytes never supply that signal. Other failed partial frames revert the entire activation rather than changing entitlements after caller-induced gas starvation. Ordinary sync, claims and canonical balance reads retain their existing paths.
+
+The self-only `syncForActivation(asset,readLimits)` helper receives the captured cap in the low32bits and authenticated full-frame witness in bit32. External callers cannot supply or bypass that witness. These are internal gas units/flags, not token values or operator inputs.
+
+A higher cap or currency capacity requires renewed full-workload qualification. Each exact contribution still needs its estimate plus20% below20M, separate fees and successful padded-call simulation. A cap is a maximum, not a promise the full amount can be forwarded inside the complete frame. Cheap reads do not fail merely because the configured maximum is high.
+
+Permissionless `sync(asset)` remains optional maintenance; no pre-sync transaction, receipt queue or new keeper worker is required by the accounting design. It preserves the captured old-cohort rule without swaps or payouts. `syncAll` is atomic and can fail for a broken currency. Neither prior synchronization nor a capacity setting substitutes for a fresh complete estimate.
 
 This is a forwarded ceiling, not a fixed charge. Individual claims use wallet
 gas estimation; the Oracle's source-read gas limit is not a royalty claim limit.
@@ -167,10 +155,11 @@ NFT/currency rows carry accrued whole units. V7 peers are rejected.
 
 Frozen export flattens the source's accrued plus ticket rights through bounded
 view rows. It does not require one transaction checkpointing all NFTs/currencies.
-The source tree remains intact for abort; the successor imports flat accrued
-rights with an empty tree. Import validates unique complete ticket/ordinal
+The source books remain intact for abort; the successor imports flat accrued rights with empty books and preserves the cursor as an initial offset. Import validates unique complete ticket/ordinal
 coverage, matching rarity and each currency's summed claims against liabilities.
 Ticket mapping and cursor are preserved despite mint and activation order differing.
+
+On a fresh replacement, publicly synchronized pre-import ETH/ERC20 receipts may already be in its opening pool. Import clears that old opening classification and counts the actual target prefund once as orphaned, separately from imported earned liabilities. The checked source identity and source-accounted-plus-prefund overflow bound remain. This prevents duplicate prefund accounting from blocking a correctly backed import; it does not award target prefunds to the imported cohort automatically. See the [prefund regression](../reports/royalty-rounds-20261118/synced-prefund/REVIEW.md).
 
 The existing completed-opening/every-initial-currency synchronization requirement
 remains. A permanently broken currency can block whole-collection handoff; LP

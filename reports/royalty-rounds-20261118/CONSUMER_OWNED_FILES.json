@@ -1,0 +1,23 @@
+{
+  "config/factory-code-storage-v5.json": "d3273a94c8ffa6347bedec98947d04644a9cc3e6a156ebeceafc3d2ad3c3fd20",
+  "config/production.example.json": "3469640a7ec586dad0f1037620c2ce4c02441103024d2019cafd19b0adb4366d",
+  "config/production.schema17.payload4.example.json": "cc1061255416857aab34b6ccfe4c44b0281f6745fc142cda2440ea08a011692b",
+  "reports/royalty-rounds-20261118/CONSUMER_PLAN.md": "190cc700bc9082347143faa14133983c725e1bb9d199b33a0c66f4053f028a6c",
+  "reports/royalty-rounds-20261118/CONSUMER_REVIEW.md": "e9aae3b5f90664527d22b0e469b73a894bc71ad56837b5aebd8b5acc66a07e5c",
+  "reports/royalty-rounds-20261118/FINAL_PAYLOAD5.json": "417e55eae3e8862741a0d6579842861dbe1b6cb4075e4e0b2fdcc1f919bae9a0",
+  "reports/royalty-rounds-20261118/consumer/C08_RECHECK.json": "9fd74c745a5967c1b4abc56e750185b3bcc3055a8592a8a46fd3a5352c6c1976",
+  "reports/royalty-rounds-20261118/consumer/FINAL_RECHECK.json": "ffd52fcde6ad68c7220bd4cc56a9e933ba498360bd140b02ae4c01d9a8f5dea7",
+  "reports/royalty-rounds-20261118/publish_consumer_c08.py": "475cb2c3938d456497538bc2f2c240d82a8d80d36a5399788fbdcdaf07ac1546",
+  "reports/royalty-rounds-20261118/publish_consumer_evidence.py": "7237a1a2894aae6628985a6782e6e5f3aefb2c3e4bb2db6b5750b5d22a0ee7f9",
+  "reports/royalty-rounds-20261118/publish_consumer_final.py": "f0fc8ff5b87379b0d2b26ec5f9fe4e3a61d458c2d9c490e2d7a9c99daf049f88",
+  "reports/royalty-rounds-20261118/publish_consumer_followup.py": "02dce9fe2494a66f5f46ec8aa1edfd947d2528ddfd9616092b90452be0f6261c",
+  "reports/royalty-rounds-20261118/refresh_payload5.py": "66fc291a220858fa87538c566ecdb0794ff86f6daa7c5d11f4127cf9e586b5f9",
+  "reports/royalty-rounds-20261118/run_consumer_checks.py": "2d8041f0830c7e26d4dce8da25b1d12d7f491d192b35b050cd91e418e0751d89",
+  "tests_python/test_factory_payload4.py": "5d6bc9fdc402e2ab9e0b8505cc5f3b34aaf0b255a0b7b50e7f77f2e22d57dd9f",
+  "tests_python/test_factory_payload5.py": "4d1c7add56295a8e8212a291ade9afa562f4d28d5d9a7da1f8ffa106e6f5fea6",
+  "zzz_ops/factory_code_v5.py": "3e41c39666784e514d35a53e6ed7996b0bd3522126d22c55dcf63dfc943dfb46",
+  "zzz_ops/preseal_plan.py": "bde2013f21e8ca90372573c654a5b40c24dc9eb12d0457dc324244b60d803af3",
+  "zzz_ops/production_observer_v15.py": "af7d7e4b8105f1937d499f7910e3aa8eea9fed34afb497f8d55b41677534a1bd",
+  "zzz_ops/production_v15.py": "8be5226c3514018ae66ecbfae3351ad9e35bd867a9b32e243631d2dc322f1219",
+  "zzz_ops/royalty_read_policy.py": "73f35fbad067b8703cd0af9095273fda2af928e682e9e35e7e3a45cd04ec806f"
+}

@@ -1,0 +1,6 @@
+test_exact_historical3_and4_templates_retain_separate_identity_and_no_read_policy (tests_python.test_factory_payload5.FactoryPayload5Tests.test_exact_historical3_and4_templates_retain_separate_identity_and_no_read_policy) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.336s
+
+OK

@@ -1,0 +1,111 @@
+{
+  "scope": "Matched labels with actual fresh full population source stages; deterministic controlled fixture, not universal cross-market saving",
+  "initial_source_stage": "full02",
+  "final_source_stage": "full04",
+  "rows": [
+    {
+      "case": "rounds-999-opening-eth",
+      "estimated_gas": 18035007,
+      "full20pct": 21642009,
+      "pass": false,
+      "old_estimated_gas": 18938057,
+      "estimated_saving": 903050
+    },
+    {
+      "case": "rounds-999-opening-zzz-allfault",
+      "estimated_gas": 16089655,
+      "full20pct": 19307586,
+      "pass": true,
+      "old_estimated_gas": 17858433,
+      "estimated_saving": 1768778
+    },
+    {
+      "case": "rounds-999-opening-zzz",
+      "estimated_gas": 18679435,
+      "full20pct": 22415322,
+      "pass": false,
+      "old_estimated_gas": null,
+      "estimated_saving": null
+    },
+    {
+      "case": "rounds-999-opening-zzz-allslow",
+      "estimated_gas": 19325451,
+      "full20pct": 23190542,
+      "pass": false,
+      "old_estimated_gas": null,
+      "estimated_saving": null
+    },
+    {
+      "case": "rounds-999-opening-eth-allslow",
+      "estimated_gas": 18681023,
+      "full20pct": 22417228,
+      "pass": false,
+      "old_estimated_gas": null,
+      "estimated_saving": null
+    },
+    {
+      "case": "rounds-999-rotated-zzz",
+      "estimated_gas": 17582618,
+      "full20pct": 21099142,
+      "pass": false,
+      "old_estimated_gas": 18895429,
+      "estimated_saving": 1312811
+    },
+    {
+      "case": "rounds-999-rotated-eth-onefault",
+      "estimated_gas": 16837543,
+      "full20pct": 20205052,
+      "pass": false,
+      "old_estimated_gas": 18025307,
+      "estimated_saving": 1187764
+    },
+    {
+      "case": "rounds-999-rotated-eth-allfault",
+      "estimated_gas": 15331306,
+      "full20pct": 18397568,
+      "pass": true,
+      "old_estimated_gas": 17006844,
+      "estimated_saving": 1675538
+    },
+    {
+      "case": "rounds-999-rotated-zzz-allfault",
+      "estimated_gas": 15975734,
+      "full20pct": 19170881,
+      "pass": true,
+      "old_estimated_gas": 17757752,
+      "estimated_saving": 1782018
+    },
+    {
+      "case": "rounds-999-rotated-zzz-allslow",
+      "estimated_gas": 18228634,
+      "full20pct": 21874361,
+      "pass": false,
+      "old_estimated_gas": 19541445,
+      "estimated_saving": 1312811
+    },
+    {
+      "case": "rounds-999-rotated-eth",
+      "estimated_gas": 16938190,
+      "full20pct": 20325828,
+      "pass": false,
+      "old_estimated_gas": 18145302,
+      "estimated_saving": 1207112
+    },
+    {
+      "case": "rounds-1000-grow-eth",
+      "estimated_gas": 11645827,
+      "full20pct": 13974993,
+      "pass": true,
+      "old_estimated_gas": 12469850,
+      "estimated_saving": 824023
+    },
+    {
+      "case": "rounds-1000-grow-zzz-allfault",
+      "estimated_gas": 12291980,
+      "full20pct": 14750376,
+      "pass": true,
+      "old_estimated_gas": 13220627,
+      "estimated_saving": 928647
+    }
+  ]
+}

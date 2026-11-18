@@ -1,0 +1,90 @@
+test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes (tests_python.test_factory_payload5.FactoryPayload5Tests.test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes) ... ERROR
+test_five_selects_one_payload_and_adds_only_its_explicit_read_cap_binding (tests_python.test_factory_payload5.FactoryPayload5Tests.test_five_selects_one_payload_and_adds_only_its_explicit_read_cap_binding) ... ok
+test_invalid_selector_mixed_payload_and_legacy_read_fields_fail_before_rpc (tests_python.test_factory_payload5.FactoryPayload5Tests.test_invalid_selector_mixed_payload_and_legacy_read_fields_fail_before_rpc) ... ok
+test_real_part_and_read_policy_observer_uses_one_anchor_and_actual_legacy_gas_hash (tests_python.test_factory_payload5.FactoryPayload5Tests.test_real_part_and_read_policy_observer_uses_one_anchor_and_actual_legacy_gas_hash) ... ERROR
+test_fresh_five_template_remains_unapproved_and_unknown_cap_is_not_defaulted (tests_python.test_factory_payload5.FactoryPayload5Tests.test_fresh_five_template_remains_unapproved_and_unknown_cap_is_not_defaulted) ... ok
+test_optional_preseal_cap_call_is_exact_and_original_twelve_steps_stay_identical (tests_python.test_factory_payload5.FactoryPayload5Tests.test_optional_preseal_cap_call_is_exact_and_original_twelve_steps_stay_identical) ... ERROR
+test_current_preseal_read_policy_check_uses_only_actual_abi_and_no_qualification (tests_python.test_factory_payload5.FactoryPayload5Tests.test_current_preseal_read_policy_check_uses_only_actual_abi_and_no_qualification) ... ERROR
+
+======================================================================
+ERROR: test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes (tests_python.test_factory_payload5.FactoryPayload5Tests.test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_factory_payload5.py", line 55, in test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes
+    output=D.Artifacts().output;parts=actual_parts()
+           ^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 248, in __init__
+    if len(self.input['sources'])!=100 or len(self.source_pins)!=100 or set(self.input['sources'])!=set(self.source_pins):fail('source_closure')
+                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 134, in fail
+    def fail(code):raise PlanError(code)
+                   ^^^^^^^^^^^^^^^^^^^^^
+zzz_ops.deployment_plan.PlanError: source_closure
+
+======================================================================
+ERROR: test_real_part_and_read_policy_observer_uses_one_anchor_and_actual_legacy_gas_hash (tests_python.test_factory_payload5.FactoryPayload5Tests.test_real_part_and_read_policy_observer_uses_one_anchor_and_actual_legacy_gas_hash)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_factory_payload5.py", line 175, in test_real_part_and_read_policy_observer_uses_one_anchor_and_actual_legacy_gas_hash
+    value,observer,calls=self.observer();observer.observe_chain_extension()
+                         ^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_factory_payload5.py", line 152, in observer
+    value=chain();parts=actual_parts();calls=[]
+                        ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_factory_payload5.py", line 47, in actual_parts
+    output=D.Artifacts().output
+           ^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 248, in __init__
+    if len(self.input['sources'])!=100 or len(self.source_pins)!=100 or set(self.input['sources'])!=set(self.source_pins):fail('source_closure')
+                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 134, in fail
+    def fail(code):raise PlanError(code)
+                   ^^^^^^^^^^^^^^^^^^^^^
+zzz_ops.deployment_plan.PlanError: source_closure
+
+======================================================================
+ERROR: test_optional_preseal_cap_call_is_exact_and_original_twelve_steps_stay_identical (tests_python.test_factory_payload5.FactoryPayload5Tests.test_optional_preseal_cap_call_is_exact_and_original_twelve_steps_stay_identical)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_factory_payload5.py", line 210, in test_optional_preseal_cap_call_is_exact_and_original_twelve_steps_stay_identical
+    baseline=PRE.prepare(request)
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\preseal_plan.py", line 419, in prepare
+    construction=D.prepare(value['constructor_input'],root=root,build_profile=build_profile)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 327, in prepare
+    value=validate(raw);artifacts=Artifacts(root,build_profile);rows=[];ledger=bytes.fromhex(artifacts.contract('ZZZRoyaltyRewards')[1]['evm']['bytecode']['object']);parts=(ledger[:24573],ledger[24573:])
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 248, in __init__
+    if len(self.input['sources'])!=100 or len(self.source_pins)!=100 or set(self.input['sources'])!=set(self.source_pins):fail('source_closure')
+                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 134, in fail
+    def fail(code):raise PlanError(code)
+                   ^^^^^^^^^^^^^^^^^^^^^
+zzz_ops.deployment_plan.PlanError: source_closure
+
+======================================================================
+ERROR: test_current_preseal_read_policy_check_uses_only_actual_abi_and_no_qualification (tests_python.test_factory_payload5.FactoryPayload5Tests.test_current_preseal_read_policy_check_uses_only_actual_abi_and_no_qualification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_factory_payload5.py", line 242, in test_current_preseal_read_policy_check_uses_only_actual_abi_and_no_qualification
+    result=PRE.prepare(PRE.example())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\preseal_plan.py", line 419, in prepare
+    construction=D.prepare(value['constructor_input'],root=root,build_profile=build_profile)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 327, in prepare
+    value=validate(raw);artifacts=Artifacts(root,build_profile);rows=[];ledger=bytes.fromhex(artifacts.contract('ZZZRoyaltyRewards')[1]['evm']['bytecode']['object']);parts=(ledger[:24573],ledger[24573:])
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 248, in __init__
+    if len(self.input['sources'])!=100 or len(self.source_pins)!=100 or set(self.input['sources'])!=set(self.source_pins):fail('source_closure')
+                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\deployment_plan.py", line 134, in fail
+    def fail(code):raise PlanError(code)
+                   ^^^^^^^^^^^^^^^^^^^^^
+zzz_ops.deployment_plan.PlanError: source_closure
+
+----------------------------------------------------------------------
+Ran 7 tests in 3.004s
+
+FAILED (errors=4)

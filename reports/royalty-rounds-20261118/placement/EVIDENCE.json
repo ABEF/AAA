@@ -1,0 +1,19 @@
+{
+  "new_distinct_methods": 5,
+  "old_methods_run": 0,
+  "source": "test/ManagerPlacementProofReuse20261118.t.sol",
+  "methods": [
+    "testManagerEntrySourceFaultAndPricingPhaseGuardsRetainAtomicRights()",
+    "testManagerIncreaseLatePhysicalMutationRollsBackIndependentFunding()",
+    "testManagerIncreasePublicRefundReadStillRejectsChangedSource()",
+    "testManagerIncreaseRefundRoundMutationRollsBackAndHealthyRetryWorks()",
+    "testManagerMintKeepsFullProofBeforeMutablePortfolioWrite()"
+  ],
+  "source_sha256": "91efe769691c829638465403932b87020c4e77aa8eb38c98912a46a74e235319",
+  "raw_sha256": "9475b705a22dbe87e3f162cb23d80d365cb192014b4c1d94607318d4926c3e3f",
+  "raw_bytes": 1590,
+  "artifact_sha256": "c7e2e19e232c85f9377d47ab4468313906379ab9459a63a91a80d46696f4f688",
+  "metadata_dependency_count": 198,
+  "gas_qualification": false,
+  "no_unrelated_suites_run": true
+}

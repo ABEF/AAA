@@ -1,105 +1,99 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 
-/// @notice Exact whole-unit royalty allocation to permanent rarity tickets.
-/// @dev Tags are coefficients modulo2^256, never token balances. Monetary
-/// credits reserve the caller's checked same-currency global liability; takes
-/// are bounded by its remaining liability. Complement tags preserve every
-/// ticket right, including zero income for future tickets. No new storage.
+/// @notice Exact royalty allocation with bounded enrollment cohorts.
+/// @dev Lifetime rounds/gross/paid debt are coefficients modulo2^256. Actual
+/// receipts and payouts retain checked same-currency liabilities. Fresh round
+/// books are not compatible with historical raw tree storage; canonical rows
+/// flatten funded per-NFT rights and restore the cursor as an initial offset.
 library ExactRoyaltyAllocation {
-    uint256 private constant MAX_TICKETS=3000;
-    uint256 private constant FIRST_LEAF=4096;
-    struct Book {mapping(uint256=>uint256) pending;}
+    // Low16bits: current cursor; next16: initial cursor; bit32: initialized.
+    // Both cursors are validated below3000. One metadata write replaces three.
+    struct Book { uint256 rounds; uint256 position; }
+    struct Cohorts { mapping(uint256=>uint256) roundsAt; uint16[] ends; }
     error InvalidAllocation();
 
     function credit(Book storage book,uint256 amount,uint256 weight,uint256 cursor,uint256 globalBefore)
         internal returns(uint256 nextCursor,uint256 globalAfter) {
         _validate(weight,cursor);
-        // This returned value is used by the authenticating host. It is an
-        // economic addition, not an unchecked modular coefficient operation.
         globalAfter=globalBefore+amount;
+        uint256 position=book.position;
+        if(position==0)position=(cursor<<16)|(uint256(1)<<32);
+        uint256 turns;
+        (nextCursor,turns)=_step(amount,weight,cursor);
         unchecked {
-            uint256 quotient=amount/weight;
-            uint256 remainder=amount%weight;
-            nextCursor=addmod(cursor,remainder,weight);
-            uint256 delta=1;
-            if(remainder>weight/2){
-                ++quotient;remainder=weight-remainder;cursor=nextCursor;
-                delta=type(uint256).max;
-            }
-            if(quotient!=0)_add(book,1,weight,quotient);
-            uint256 first=remainder<weight-cursor?remainder:weight-cursor;
-            if(first!=0)_add(book,cursor+1,cursor+first,delta);
-            uint256 wrapped=remainder-first;
-            if(wrapped!=0)_add(book,1,wrapped,delta);
+            book.rounds+=turns;
+            book.position=(position&~uint256(type(uint16).max))|nextCursor;
         }
     }
 
-    function addRange(Book storage book,uint256 low,uint256 high,uint256 delta,uint256 globalBefore)
-        internal returns(uint256 globalAfter) {
-        _interval(low,high);
-        uint256 count;unchecked{count=high-low+1;}
-        globalAfter=globalBefore+delta*count;
-        if(delta!=0)_add(book,low,high,delta);
+    /// @notice Gross coefficient, before birth and paid-debt subtraction.
+    function gross(Book storage book,uint256 first,uint256 last) internal view returns(uint256 value){
+        _interval(first,last);
+        uint256 position=book.position;
+        if(position==0)return 0;
+        unchecked {
+            value=book.rounds*(last-first+1)+_prefix(first,last,position&type(uint16).max)
+                -_prefix(first,last,(position>>16)&type(uint16).max);
+        }
     }
-    function _add(Book storage book,uint256 low,uint256 high,uint256 delta) private {
-        unchecked{
-            uint256 left=FIRST_LEAF-1+low;uint256 right=FIRST_LEAF-1+high;
-            while(left<=right){
-                if((left&1)!=0)book.pending[left++]+=delta;
-                if((right&1)==0)book.pending[right--]+=delta;
-                left>>=1;right>>=1;
+
+    /// @notice Append one immutable eligibility boundary, at most1000 total.
+    function enroll(Cohorts storage cohort,uint256 end,uint256 rounds) internal {
+        if(end==0)return;
+        if(end>1000)revert InvalidAllocation();
+        uint256 length=cohort.ends.length;
+        if(length!=0){
+            uint256 last;unchecked{last=cohort.ends[length-1];}
+            if(end==last)return;
+            if(end<last)revert InvalidAllocation();
+        }
+        cohort.roundsAt[end]=rounds;
+        cohort.ends.push(uint16(end));
+    }
+    /// @notice First enrollment boundary at or after the NFT ordinal.
+    /// Search is bounded by the1000-NFT cap, never by payment history.
+    function birth(Cohorts storage cohort,uint256 ordinal) internal view returns(uint256 end,uint256 rounds){
+        if(ordinal==0)revert InvalidAllocation();
+        uint256 low;uint256 length=cohort.ends.length;uint256 high=length;
+        unchecked {
+            while(low<high){
+                uint256 middle=(low+high)>>1;
+                if(cohort.ends[middle]<ordinal)low=middle+1;else high=middle;
             }
         }
+        if(low==length)revert InvalidAllocation();
+        end=cohort.ends[low];rounds=cohort.roundsAt[end];
     }
-    function viewTicket(Book storage book,uint256 ticket) internal view returns(uint256 amount){
-        _interval(ticket,ticket);
-        unchecked{
-            uint256 node=FIRST_LEAF-1+ticket;
-            while(node!=0){amount+=book.pending[node];node>>=1;}
-        }
-    }
-    function takeTicket(Book storage book,uint256 ticket,uint256 available) internal returns(uint256 amount){
-        _interval(ticket,ticket);
-        unchecked{
-            uint256 node=1;uint256 path=ticket-1;uint256 carry;
-            for(uint256 mask=FIRST_LEAF>>1;mask!=0;mask>>=1){
-                uint256 tag=book.pending[node];
-                if(tag!=0){carry+=tag;delete book.pending[node];}
-                if((path&mask)==0){if(carry!=0)book.pending[(node<<1)|1]+=carry;node<<=1;}
-                else{if(carry!=0)book.pending[node<<1]+=carry;node=(node<<1)|1;}
-            }
-            amount=book.pending[node]+carry;delete book.pending[node];
-        }
-        if(amount>available)revert InvalidAllocation();
-    }
-    /// @notice Preview a pending allocation's exact units for an NFT interval.
-    /// Future tickets beyond the captured eligible prefix receive zero.
+    /// @notice Preview exactly the old raw-unit cyclic allocation.
+    /// Validation and clipped future intervals are unchanged. The round identity
+    /// may wrap in its intermediates; its mathematical result is within amount.
     function previewShare(uint256 amount,uint256 weight,uint256 cursor,
         uint256 firstTicket,uint256 lastTicket) internal pure returns(uint256 value) {
-        _validate(weight,cursor);
-        _interval(firstTicket,lastTicket);
-        uint256 count = _overlap(firstTicket,lastTicket,1,weight);
-        value = (amount/weight)*count;
-        uint256 remainder = amount%weight;
-        uint256 first = remainder < weight-cursor ? remainder : weight-cursor;
-        uint256 wrapped = remainder-first;
-        if(first != 0) value += _overlap(firstTicket,lastTicket,cursor+1,cursor+first);
-        if(wrapped != 0) value += _overlap(firstTicket,lastTicket,1,wrapped);
+        _validate(weight,cursor);_interval(firstTicket,lastTicket);
+        if(firstTicket>weight)return 0;
+        if(lastTicket>weight)lastTicket=weight;
+        (uint256 next,uint256 turns)=_step(amount,weight,cursor);
+        unchecked {
+            value=turns*(lastTicket-firstTicket+1)+_prefix(firstTicket,lastTicket,next)
+                -_prefix(firstTicket,lastTicket,cursor);
+        }
     }
-
-    function _overlap(uint256 low,uint256 high,uint256 first,uint256 last)
-        private pure returns(uint256) {
-        if(low > last || high < first) return 0;
-        uint256 start = low > first ? low : first;
-        uint256 end = high < last ? high : last;
-        return end-start+1;
+    function _step(uint256 amount,uint256 weight,uint256 cursor)
+        private pure returns(uint256 next,uint256 turns) {
+        unchecked {
+            next=cursor+amount%weight;turns=amount/weight;
+            if(next>=weight){next-=weight;++turns;}
+        }
     }
-    function _validate(uint256 weight,uint256 cursor) private pure{
-        // This also rejects every unsigned cursor when weight is zero.
-        if(weight>MAX_TICKETS||cursor>=weight)revert InvalidAllocation();
+    function _prefix(uint256 first,uint256 last,uint256 cursor) private pure returns(uint256){
+        if(first>cursor)return 0;
+        unchecked{return (last<cursor?last:cursor)-first+1;}
     }
-    function _interval(uint256 low,uint256 high) private pure{
-        if(low==0||low>high||high>MAX_TICKETS)revert InvalidAllocation();
+    function _validate(uint256 weight,uint256 cursor) private pure {
+        if(weight>3000||cursor>=weight)revert InvalidAllocation();
+    }
+    function _interval(uint256 first,uint256 last) private pure {
+        if(first==0||first>last||last>3000)revert InvalidAllocation();
     }
 }

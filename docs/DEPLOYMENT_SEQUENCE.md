@@ -23,7 +23,7 @@ The new tool uses that same schema and existing64KiB input/16MiB output bounds.
 | `--deployer` | Public nonzero address of the assumed **direct EOA** that will create Access and send all44 ordinary transactions. This is not automatically the governance/keeper address. Known protocol/dependency addresses reject. |
 | `--starting-nonce` | Exact nonnegative decimal string for the first creation's sender nonce: no hex, sign, leading zeros, Boolean or guessed live state. |
 | `--output` | A new exclusive file in an existing owner-controlled directory. Existing/dangling paths are never replaced. |
-| `--build-profile` | Optional exact closed trusted build ID; default `q03-allocation-20261117`. Unknown IDs fail and source drift never falls back to older artifacts. |
+| `--build-profile` | Optional exact closed trusted build ID; default `royalty-rounds-20261118`. Unknown IDs fail and source drift never falls back to older artifacts. |
 
 From the repository root, replace every placeholder:
 

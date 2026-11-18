@@ -1,0 +1,2781 @@
+{
+  "scope": "compiler-derived final C08 royalty storage comparison, not source-code guesses",
+  "accepted_artifact_pins": {
+    "baseline": {
+      "directory": "reports/q03-activation-gas-20261117/build/current",
+      "compiler_input_gzip_sha256": "216c0414c653b2527703abe15b16c3f863e4277ca62c9789022de95c2d2b1f45",
+      "compiler_output_gzip_sha256": "fb624b957ac821cb064ff667972cef0d65d2fa3cd7e4cdd798b5b8e003b685ea",
+      "royalty_source_content_sha256": "aaf7c63a10621703600510bbeb4c8387641967659eb94c2a14c6f397ae258e77"
+    },
+    "phase1": {
+      "directory": "reports/royalty-rounds-20261118/build/current",
+      "compiler_input_gzip_sha256": "72846a9309fede733d1db5d4e49e0dab16187d804e78f91265d30222f5a76290",
+      "compiler_output_gzip_sha256": "cdfed4cb758f4ff9e62f5542268da2153eb7cf98080b8188b748913131894de7",
+      "royalty_source_content_sha256": "aa55a0fbe5d0ab652c42b7d32151c18f3159f8ddf56d59d1fe270dd272f7afc5"
+    },
+    "final": {
+      "directory": "reports/royalty-rounds-20261118/build/final",
+      "compiler_input_gzip_sha256": "8a591f4b8de04ed2337156c8cc6a97057f09f18744834f3f3c92af20b33d6ba4",
+      "compiler_output_gzip_sha256": "1947e502348e5e230e6d34792b317683f5d634514ce248ad64c342bb792ff663",
+      "royalty_source_content_sha256": "35f712bd0b95abdd63a9e696e6e85e63453f2d8e5ec57c089c595e6bfd5f5bbd"
+    }
+  },
+  "baseline_git_commit": "06956fb",
+  "baseline_source_git_binding": "raw_exact",
+  "final_source_sha256": "35f712bd0b95abdd63a9e696e6e85e63453f2d8e5ec57c089c595e6bfd5f5bbd",
+  "phase1_to_final_only_change": "remove accounted mapping at slot24; every later field shifts exactly one slot, all types/offsets retained",
+  "phase1_to_final_exact_expected_layout": true,
+  "baseline_tree_book_to_round_book_is_incompatible": true,
+  "raw_state_copy_or_hot_upgrade_supported": false,
+  "canonical_wire": "flattened records unchanged; peer schema/runtime/authority admission remains separate, not implied by wire compatibility",
+  "summary": [
+    {
+      "label": "_status",
+      "baseline_slot": "0",
+      "phase1_slot": "0",
+      "final_slot": "0",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "canonicalAssets",
+      "baseline_slot": "1",
+      "phase1_slot": "1",
+      "final_slot": "1",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "canonicalAmounts",
+      "baseline_slot": "2",
+      "phase1_slot": "2",
+      "final_slot": "2",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "canonicalPrefunds",
+      "baseline_slot": "3",
+      "phase1_slot": "3",
+      "final_slot": "3",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "canonicalDelivered",
+      "baseline_slot": "4",
+      "phase1_slot": "4",
+      "final_slot": "4",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "canonicalAccepted",
+      "baseline_slot": "5",
+      "phase1_slot": "5",
+      "final_slot": "5",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "canonicalCursor",
+      "baseline_slot": "6",
+      "phase1_slot": "6",
+      "final_slot": "6",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "canonicalCaptured",
+      "baseline_slot": "7",
+      "phase1_slot": "7",
+      "final_slot": "7",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "allocationBooks",
+      "baseline_slot": "8",
+      "phase1_slot": "8",
+      "final_slot": "8",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": false
+    },
+    {
+      "label": "firstWeightOrdinal",
+      "baseline_slot": "9",
+      "phase1_slot": "9",
+      "final_slot": "9",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "assetCapacity",
+      "baseline_slot": "12",
+      "phase1_slot": "12",
+      "final_slot": "12",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "mintEnd",
+      "baseline_slot": "12",
+      "phase1_slot": "12",
+      "final_slot": "12",
+      "final_offset": 1,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "mintEndRevision",
+      "baseline_slot": "12",
+      "phase1_slot": "12",
+      "final_slot": "12",
+      "final_offset": 9,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "openingFinalized",
+      "baseline_slot": "12",
+      "phase1_slot": "12",
+      "final_slot": "12",
+      "final_offset": 17,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "canonicalController",
+      "baseline_slot": "13",
+      "phase1_slot": "13",
+      "final_slot": "13",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "openingCount",
+      "baseline_slot": "14",
+      "phase1_slot": "14",
+      "final_slot": "14",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "openingWeight",
+      "baseline_slot": "15",
+      "phase1_slot": "15",
+      "final_slot": "15",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "initialAllocated",
+      "baseline_slot": "16",
+      "phase1_slot": "16",
+      "final_slot": "16",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "openingPool",
+      "baseline_slot": "17",
+      "phase1_slot": "17",
+      "final_slot": "17",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "assets",
+      "baseline_slot": "18",
+      "phase1_slot": "18",
+      "final_slot": "18",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "isAsset",
+      "baseline_slot": "19",
+      "phase1_slot": "19",
+      "final_slot": "19",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "weightOf",
+      "baseline_slot": "20",
+      "phase1_slot": "20",
+      "final_slot": "20",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "totalWeight",
+      "baseline_slot": "21",
+      "phase1_slot": "21",
+      "final_slot": "21",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "allocationCursor",
+      "baseline_slot": "22",
+      "phase1_slot": "22",
+      "final_slot": "22",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "ticketStart",
+      "baseline_slot": "23",
+      "phase1_slot": "23",
+      "final_slot": "23",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "accounted",
+      "baseline_slot": "24",
+      "phase1_slot": "24",
+      "final_slot": null,
+      "final_offset": null,
+      "baseline_to_final_type_equal": false
+    },
+    {
+      "label": "liabilities",
+      "baseline_slot": "25",
+      "phase1_slot": "25",
+      "final_slot": "24",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "orphaned",
+      "baseline_slot": "26",
+      "phase1_slot": "26",
+      "final_slot": "25",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "accrued",
+      "baseline_slot": "27",
+      "phase1_slot": "27",
+      "final_slot": "26",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "activationCount",
+      "baseline_slot": "28",
+      "phase1_slot": "28",
+      "final_slot": "27",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "activationOrdinal",
+      "baseline_slot": "29",
+      "phase1_slot": "29",
+      "final_slot": "28",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "eligibleCount",
+      "baseline_slot": "30",
+      "phase1_slot": "30",
+      "final_slot": "29",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "eligibleWeight",
+      "baseline_slot": "31",
+      "phase1_slot": "31",
+      "final_slot": "30",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "canonicalNFTs",
+      "baseline_slot": "32",
+      "phase1_slot": "32",
+      "final_slot": "31",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "canonicalAssetTotal",
+      "baseline_slot": "33",
+      "phase1_slot": "33",
+      "final_slot": "32",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "canonicalWeight",
+      "baseline_slot": "34",
+      "phase1_slot": "34",
+      "final_slot": "33",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "canonicalPending",
+      "baseline_slot": "35",
+      "phase1_slot": "35",
+      "final_slot": "34",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "canonicalCutoffSettled",
+      "baseline_slot": "36",
+      "phase1_slot": "36",
+      "final_slot": "35",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "canonicalSeen",
+      "baseline_slot": "37",
+      "phase1_slot": "37",
+      "final_slot": "36",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "canonicalMaxOrdinal",
+      "baseline_slot": "53",
+      "phase1_slot": "53",
+      "final_slot": "52",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "canonicalImportedClaims",
+      "baseline_slot": "54",
+      "phase1_slot": "54",
+      "final_slot": "53",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": true
+    },
+    {
+      "label": "enrollment",
+      "baseline_slot": null,
+      "phase1_slot": "55",
+      "final_slot": "54",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": false
+    },
+    {
+      "label": "counterPaid",
+      "baseline_slot": null,
+      "phase1_slot": "56",
+      "final_slot": "55",
+      "final_offset": 0,
+      "baseline_to_final_type_equal": false
+    }
+  ],
+  "full_semantic_layouts": {
+    "baseline": [
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "_status",
+        "slot": "0",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalAssets",
+        "slot": "1",
+        "offset": 0,
+        "type": {
+          "encoding": "dynamic_array",
+          "label": "address[]",
+          "numberOfBytes": "32",
+          "base": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalAmounts",
+        "slot": "2",
+        "offset": 0,
+        "type": {
+          "encoding": "dynamic_array",
+          "label": "uint256[]",
+          "numberOfBytes": "32",
+          "base": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalPrefunds",
+        "slot": "3",
+        "offset": 0,
+        "type": {
+          "encoding": "dynamic_array",
+          "label": "uint256[]",
+          "numberOfBytes": "32",
+          "base": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalDelivered",
+        "slot": "4",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => bool)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "bool",
+            "numberOfBytes": "1"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalAccepted",
+        "slot": "5",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => bool)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "bool",
+            "numberOfBytes": "1"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalCursor",
+        "slot": "6",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalCaptured",
+        "slot": "7",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "allocationBooks",
+        "slot": "8",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => mapping(uint256 => struct ExactRoyaltyAllocation.Book))",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "mapping",
+            "label": "mapping(uint256 => struct ExactRoyaltyAllocation.Book)",
+            "numberOfBytes": "32",
+            "key": {
+              "encoding": "inplace",
+              "label": "uint256",
+              "numberOfBytes": "32"
+            },
+            "value": {
+              "encoding": "inplace",
+              "label": "struct ExactRoyaltyAllocation.Book",
+              "numberOfBytes": "32",
+              "members": [
+                {
+                  "label": "pending",
+                  "slot": "0",
+                  "offset": 0,
+                  "type": {
+                    "encoding": "mapping",
+                    "label": "mapping(uint256 => uint256)",
+                    "numberOfBytes": "32",
+                    "key": {
+                      "encoding": "inplace",
+                      "label": "uint256",
+                      "numberOfBytes": "32"
+                    },
+                    "value": {
+                      "encoding": "inplace",
+                      "label": "uint256",
+                      "numberOfBytes": "32"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "firstWeightOrdinal",
+        "slot": "9",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256[3]",
+          "numberOfBytes": "96",
+          "base": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "assetCapacity",
+        "slot": "12",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint8",
+          "numberOfBytes": "1"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "mintEnd",
+        "slot": "12",
+        "offset": 1,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint64",
+          "numberOfBytes": "8"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "mintEndRevision",
+        "slot": "12",
+        "offset": 9,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint64",
+          "numberOfBytes": "8"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "openingFinalized",
+        "slot": "12",
+        "offset": 17,
+        "type": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalController",
+        "slot": "13",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "openingCount",
+        "slot": "14",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "openingWeight",
+        "slot": "15",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "initialAllocated",
+        "slot": "16",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => bool)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "bool",
+            "numberOfBytes": "1"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "openingPool",
+        "slot": "17",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "assets",
+        "slot": "18",
+        "offset": 0,
+        "type": {
+          "encoding": "dynamic_array",
+          "label": "address[]",
+          "numberOfBytes": "32",
+          "base": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "isAsset",
+        "slot": "19",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => bool)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "bool",
+            "numberOfBytes": "1"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "weightOf",
+        "slot": "20",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "totalWeight",
+        "slot": "21",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "allocationCursor",
+        "slot": "22",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "ticketStart",
+        "slot": "23",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "accounted",
+        "slot": "24",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "liabilities",
+        "slot": "25",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "orphaned",
+        "slot": "26",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "accrued",
+        "slot": "27",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => mapping(address => uint256))",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "mapping",
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32",
+            "key": {
+              "encoding": "inplace",
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "value": {
+              "encoding": "inplace",
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "activationCount",
+        "slot": "28",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "activationOrdinal",
+        "slot": "29",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "eligibleCount",
+        "slot": "30",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "eligibleWeight",
+        "slot": "31",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalNFTs",
+        "slot": "32",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalAssetTotal",
+        "slot": "33",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalWeight",
+        "slot": "34",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalPending",
+        "slot": "35",
+        "offset": 0,
+        "type": {
+          "encoding": "dynamic_array",
+          "label": "uint256[]",
+          "numberOfBytes": "32",
+          "base": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalCutoffSettled",
+        "slot": "36",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalSeen",
+        "slot": "37",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256[16]",
+          "numberOfBytes": "512",
+          "base": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalMaxOrdinal",
+        "slot": "53",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalImportedClaims",
+        "slot": "54",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    ],
+    "phase1": [
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "_status",
+        "slot": "0",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalAssets",
+        "slot": "1",
+        "offset": 0,
+        "type": {
+          "encoding": "dynamic_array",
+          "label": "address[]",
+          "numberOfBytes": "32",
+          "base": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalAmounts",
+        "slot": "2",
+        "offset": 0,
+        "type": {
+          "encoding": "dynamic_array",
+          "label": "uint256[]",
+          "numberOfBytes": "32",
+          "base": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalPrefunds",
+        "slot": "3",
+        "offset": 0,
+        "type": {
+          "encoding": "dynamic_array",
+          "label": "uint256[]",
+          "numberOfBytes": "32",
+          "base": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalDelivered",
+        "slot": "4",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => bool)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "bool",
+            "numberOfBytes": "1"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalAccepted",
+        "slot": "5",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => bool)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "bool",
+            "numberOfBytes": "1"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalCursor",
+        "slot": "6",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalCaptured",
+        "slot": "7",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "allocationBooks",
+        "slot": "8",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => mapping(uint256 => struct ExactRoyaltyAllocation.Book))",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "mapping",
+            "label": "mapping(uint256 => struct ExactRoyaltyAllocation.Book)",
+            "numberOfBytes": "32",
+            "key": {
+              "encoding": "inplace",
+              "label": "uint256",
+              "numberOfBytes": "32"
+            },
+            "value": {
+              "encoding": "inplace",
+              "label": "struct ExactRoyaltyAllocation.Book",
+              "numberOfBytes": "64",
+              "members": [
+                {
+                  "label": "rounds",
+                  "slot": "0",
+                  "offset": 0,
+                  "type": {
+                    "encoding": "inplace",
+                    "label": "uint256",
+                    "numberOfBytes": "32"
+                  }
+                },
+                {
+                  "label": "position",
+                  "slot": "1",
+                  "offset": 0,
+                  "type": {
+                    "encoding": "inplace",
+                    "label": "uint256",
+                    "numberOfBytes": "32"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "firstWeightOrdinal",
+        "slot": "9",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256[3]",
+          "numberOfBytes": "96",
+          "base": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "assetCapacity",
+        "slot": "12",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint8",
+          "numberOfBytes": "1"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "mintEnd",
+        "slot": "12",
+        "offset": 1,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint64",
+          "numberOfBytes": "8"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "mintEndRevision",
+        "slot": "12",
+        "offset": 9,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint64",
+          "numberOfBytes": "8"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "openingFinalized",
+        "slot": "12",
+        "offset": 17,
+        "type": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalController",
+        "slot": "13",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "openingCount",
+        "slot": "14",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "openingWeight",
+        "slot": "15",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "initialAllocated",
+        "slot": "16",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => bool)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "bool",
+            "numberOfBytes": "1"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "openingPool",
+        "slot": "17",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "assets",
+        "slot": "18",
+        "offset": 0,
+        "type": {
+          "encoding": "dynamic_array",
+          "label": "address[]",
+          "numberOfBytes": "32",
+          "base": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "isAsset",
+        "slot": "19",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => bool)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "bool",
+            "numberOfBytes": "1"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "weightOf",
+        "slot": "20",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "totalWeight",
+        "slot": "21",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "allocationCursor",
+        "slot": "22",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "ticketStart",
+        "slot": "23",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "accounted",
+        "slot": "24",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "liabilities",
+        "slot": "25",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "orphaned",
+        "slot": "26",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "accrued",
+        "slot": "27",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => mapping(address => uint256))",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "mapping",
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32",
+            "key": {
+              "encoding": "inplace",
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "value": {
+              "encoding": "inplace",
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "activationCount",
+        "slot": "28",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "activationOrdinal",
+        "slot": "29",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "eligibleCount",
+        "slot": "30",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "eligibleWeight",
+        "slot": "31",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalNFTs",
+        "slot": "32",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalAssetTotal",
+        "slot": "33",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalWeight",
+        "slot": "34",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalPending",
+        "slot": "35",
+        "offset": 0,
+        "type": {
+          "encoding": "dynamic_array",
+          "label": "uint256[]",
+          "numberOfBytes": "32",
+          "base": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalCutoffSettled",
+        "slot": "36",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalSeen",
+        "slot": "37",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256[16]",
+          "numberOfBytes": "512",
+          "base": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalMaxOrdinal",
+        "slot": "53",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalImportedClaims",
+        "slot": "54",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "enrollment",
+        "slot": "55",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => struct ExactRoyaltyAllocation.Cohorts)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "struct ExactRoyaltyAllocation.Cohorts",
+            "numberOfBytes": "64",
+            "members": [
+              {
+                "label": "roundsAt",
+                "slot": "0",
+                "offset": 0,
+                "type": {
+                  "encoding": "mapping",
+                  "label": "mapping(uint256 => uint256)",
+                  "numberOfBytes": "32",
+                  "key": {
+                    "encoding": "inplace",
+                    "label": "uint256",
+                    "numberOfBytes": "32"
+                  },
+                  "value": {
+                    "encoding": "inplace",
+                    "label": "uint256",
+                    "numberOfBytes": "32"
+                  }
+                }
+              },
+              {
+                "label": "ends",
+                "slot": "1",
+                "offset": 0,
+                "type": {
+                  "encoding": "dynamic_array",
+                  "label": "uint16[]",
+                  "numberOfBytes": "32",
+                  "base": {
+                    "encoding": "inplace",
+                    "label": "uint16",
+                    "numberOfBytes": "2"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "counterPaid",
+        "slot": "56",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => mapping(address => uint256))",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "mapping",
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32",
+            "key": {
+              "encoding": "inplace",
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "value": {
+              "encoding": "inplace",
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          }
+        }
+      }
+    ],
+    "final": [
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "_status",
+        "slot": "0",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalAssets",
+        "slot": "1",
+        "offset": 0,
+        "type": {
+          "encoding": "dynamic_array",
+          "label": "address[]",
+          "numberOfBytes": "32",
+          "base": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalAmounts",
+        "slot": "2",
+        "offset": 0,
+        "type": {
+          "encoding": "dynamic_array",
+          "label": "uint256[]",
+          "numberOfBytes": "32",
+          "base": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalPrefunds",
+        "slot": "3",
+        "offset": 0,
+        "type": {
+          "encoding": "dynamic_array",
+          "label": "uint256[]",
+          "numberOfBytes": "32",
+          "base": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalDelivered",
+        "slot": "4",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => bool)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "bool",
+            "numberOfBytes": "1"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalAccepted",
+        "slot": "5",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => bool)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "bool",
+            "numberOfBytes": "1"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalCursor",
+        "slot": "6",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalCaptured",
+        "slot": "7",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "allocationBooks",
+        "slot": "8",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => mapping(uint256 => struct ExactRoyaltyAllocation.Book))",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "mapping",
+            "label": "mapping(uint256 => struct ExactRoyaltyAllocation.Book)",
+            "numberOfBytes": "32",
+            "key": {
+              "encoding": "inplace",
+              "label": "uint256",
+              "numberOfBytes": "32"
+            },
+            "value": {
+              "encoding": "inplace",
+              "label": "struct ExactRoyaltyAllocation.Book",
+              "numberOfBytes": "64",
+              "members": [
+                {
+                  "label": "rounds",
+                  "slot": "0",
+                  "offset": 0,
+                  "type": {
+                    "encoding": "inplace",
+                    "label": "uint256",
+                    "numberOfBytes": "32"
+                  }
+                },
+                {
+                  "label": "position",
+                  "slot": "1",
+                  "offset": 0,
+                  "type": {
+                    "encoding": "inplace",
+                    "label": "uint256",
+                    "numberOfBytes": "32"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "firstWeightOrdinal",
+        "slot": "9",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256[3]",
+          "numberOfBytes": "96",
+          "base": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "assetCapacity",
+        "slot": "12",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint8",
+          "numberOfBytes": "1"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "mintEnd",
+        "slot": "12",
+        "offset": 1,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint64",
+          "numberOfBytes": "8"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "mintEndRevision",
+        "slot": "12",
+        "offset": 9,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint64",
+          "numberOfBytes": "8"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "openingFinalized",
+        "slot": "12",
+        "offset": 17,
+        "type": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalController",
+        "slot": "13",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "openingCount",
+        "slot": "14",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "openingWeight",
+        "slot": "15",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "initialAllocated",
+        "slot": "16",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => bool)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "bool",
+            "numberOfBytes": "1"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "openingPool",
+        "slot": "17",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "assets",
+        "slot": "18",
+        "offset": 0,
+        "type": {
+          "encoding": "dynamic_array",
+          "label": "address[]",
+          "numberOfBytes": "32",
+          "base": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "isAsset",
+        "slot": "19",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => bool)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "bool",
+            "numberOfBytes": "1"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "weightOf",
+        "slot": "20",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "totalWeight",
+        "slot": "21",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "allocationCursor",
+        "slot": "22",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "ticketStart",
+        "slot": "23",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "liabilities",
+        "slot": "24",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "orphaned",
+        "slot": "25",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "accrued",
+        "slot": "26",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => mapping(address => uint256))",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "mapping",
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32",
+            "key": {
+              "encoding": "inplace",
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "value": {
+              "encoding": "inplace",
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "activationCount",
+        "slot": "27",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "activationOrdinal",
+        "slot": "28",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "eligibleCount",
+        "slot": "29",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "eligibleWeight",
+        "slot": "30",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalNFTs",
+        "slot": "31",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalAssetTotal",
+        "slot": "32",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalWeight",
+        "slot": "33",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalPending",
+        "slot": "34",
+        "offset": 0,
+        "type": {
+          "encoding": "dynamic_array",
+          "label": "uint256[]",
+          "numberOfBytes": "32",
+          "base": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalCutoffSettled",
+        "slot": "35",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalSeen",
+        "slot": "36",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256[16]",
+          "numberOfBytes": "512",
+          "base": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalMaxOrdinal",
+        "slot": "52",
+        "offset": 0,
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "canonicalImportedClaims",
+        "slot": "53",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "enrollment",
+        "slot": "54",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(address => struct ExactRoyaltyAllocation.Cohorts)",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "value": {
+            "encoding": "inplace",
+            "label": "struct ExactRoyaltyAllocation.Cohorts",
+            "numberOfBytes": "64",
+            "members": [
+              {
+                "label": "roundsAt",
+                "slot": "0",
+                "offset": 0,
+                "type": {
+                  "encoding": "mapping",
+                  "label": "mapping(uint256 => uint256)",
+                  "numberOfBytes": "32",
+                  "key": {
+                    "encoding": "inplace",
+                    "label": "uint256",
+                    "numberOfBytes": "32"
+                  },
+                  "value": {
+                    "encoding": "inplace",
+                    "label": "uint256",
+                    "numberOfBytes": "32"
+                  }
+                }
+              },
+              {
+                "label": "ends",
+                "slot": "1",
+                "offset": 0,
+                "type": {
+                  "encoding": "dynamic_array",
+                  "label": "uint16[]",
+                  "numberOfBytes": "32",
+                  "base": {
+                    "encoding": "inplace",
+                    "label": "uint16",
+                    "numberOfBytes": "2"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "contract": "src/ZZZRoyaltyRewards.sol:ZZZRoyaltyRewards",
+        "label": "counterPaid",
+        "slot": "55",
+        "offset": 0,
+        "type": {
+          "encoding": "mapping",
+          "label": "mapping(uint256 => mapping(address => uint256))",
+          "numberOfBytes": "32",
+          "key": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "value": {
+            "encoding": "mapping",
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32",
+            "key": {
+              "encoding": "inplace",
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "value": {
+              "encoding": "inplace",
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "raw_accounting_books": {
+    "baseline": {
+      "encoding": "mapping",
+      "label": "mapping(address => mapping(uint256 => struct ExactRoyaltyAllocation.Book))",
+      "numberOfBytes": "32",
+      "key": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "value": {
+        "encoding": "mapping",
+        "label": "mapping(uint256 => struct ExactRoyaltyAllocation.Book)",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "value": {
+          "encoding": "inplace",
+          "label": "struct ExactRoyaltyAllocation.Book",
+          "numberOfBytes": "32",
+          "members": [
+            {
+              "label": "pending",
+              "slot": "0",
+              "offset": 0,
+              "type": {
+                "encoding": "mapping",
+                "label": "mapping(uint256 => uint256)",
+                "numberOfBytes": "32",
+                "key": {
+                  "encoding": "inplace",
+                  "label": "uint256",
+                  "numberOfBytes": "32"
+                },
+                "value": {
+                  "encoding": "inplace",
+                  "label": "uint256",
+                  "numberOfBytes": "32"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "phase1": {
+      "encoding": "mapping",
+      "label": "mapping(address => mapping(uint256 => struct ExactRoyaltyAllocation.Book))",
+      "numberOfBytes": "32",
+      "key": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "value": {
+        "encoding": "mapping",
+        "label": "mapping(uint256 => struct ExactRoyaltyAllocation.Book)",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "value": {
+          "encoding": "inplace",
+          "label": "struct ExactRoyaltyAllocation.Book",
+          "numberOfBytes": "64",
+          "members": [
+            {
+              "label": "rounds",
+              "slot": "0",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            },
+            {
+              "label": "position",
+              "slot": "1",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "final": {
+      "encoding": "mapping",
+      "label": "mapping(address => mapping(uint256 => struct ExactRoyaltyAllocation.Book))",
+      "numberOfBytes": "32",
+      "key": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "value": {
+        "encoding": "mapping",
+        "label": "mapping(uint256 => struct ExactRoyaltyAllocation.Book)",
+        "numberOfBytes": "32",
+        "key": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "value": {
+          "encoding": "inplace",
+          "label": "struct ExactRoyaltyAllocation.Book",
+          "numberOfBytes": "64",
+          "members": [
+            {
+              "label": "rounds",
+              "slot": "0",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            },
+            {
+              "label": "position",
+              "slot": "1",
+              "offset": 0,
+              "type": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "new_cohorts_final_slot": "54",
+  "new_paid_debt_final_slot": "55"
+}

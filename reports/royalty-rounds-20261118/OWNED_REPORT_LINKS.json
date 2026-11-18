@@ -1,0 +1,51 @@
+{
+  "scope": "owned report Markdown links and three published build manifests; no tests/compiler or live-environment actions",
+  "checked_reports": [
+    "ROUND_ACCOUNTING_REVIEW.md",
+    "SOURCE_CHANGE_REVIEW.md",
+    "CAPACITY_PEER_REVIEW.md",
+    "PLACEMENT_PROOF_REUSE_REVIEW.md",
+    "FINAL_SOURCE_CHANGE_REVIEW.md",
+    "entry/REVIEW.md",
+    "affected-cooling/REVIEW.md",
+    "placement/REVIEW.md",
+    "synced-prefund/REVIEW.md"
+  ],
+  "markdown_targets": [
+    {
+      "report": "ROUND_ACCOUNTING_REVIEW.md",
+      "target": "FINAL_SOURCE_CHANGE_REVIEW.md",
+      "exists": true
+    },
+    {
+      "report": "ROUND_ACCOUNTING_REVIEW.md",
+      "target": "ledger-c07/RESULT.json",
+      "exists": true
+    },
+    {
+      "report": "FINAL_SOURCE_CHANGE_REVIEW.md",
+      "target": "FINAL_STORAGE_COMPATIBILITY.json",
+      "exists": true
+    }
+  ],
+  "missing": [],
+  "build_manifests": {
+    "current": {
+      "files": 15,
+      "manifest_schema": "direct_filename_to_hash",
+      "all_exist_and_hash_match": true
+    },
+    "c07": {
+      "files": 12,
+      "manifest_schema": "nested_files",
+      "all_exist_and_hash_match": true
+    },
+    "final": {
+      "files": 12,
+      "manifest_schema": "nested_files",
+      "all_exist_and_hash_match": true
+    }
+  },
+  "final_storage_comparison_exists": true,
+  "nonempty_manifest_check_required": true
+}

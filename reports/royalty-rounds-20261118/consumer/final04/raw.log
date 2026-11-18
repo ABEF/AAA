@@ -1,0 +1,12 @@
+test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes (tests_python.test_factory_payload5.FactoryPayload5Tests.test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes) ... ok
+test_five_selects_one_payload_and_adds_only_its_explicit_read_cap_binding (tests_python.test_factory_payload5.FactoryPayload5Tests.test_five_selects_one_payload_and_adds_only_its_explicit_read_cap_binding) ... ok
+test_invalid_selector_mixed_payload_and_legacy_read_fields_fail_before_rpc (tests_python.test_factory_payload5.FactoryPayload5Tests.test_invalid_selector_mixed_payload_and_legacy_read_fields_fail_before_rpc) ... ok
+test_real_part_and_read_policy_observer_uses_one_anchor_and_actual_legacy_gas_hash (tests_python.test_factory_payload5.FactoryPayload5Tests.test_real_part_and_read_policy_observer_uses_one_anchor_and_actual_legacy_gas_hash) ... ok
+test_fresh_five_template_remains_unapproved_and_unknown_cap_is_not_defaulted (tests_python.test_factory_payload5.FactoryPayload5Tests.test_fresh_five_template_remains_unapproved_and_unknown_cap_is_not_defaulted) ... ok
+test_optional_preseal_cap_call_is_exact_and_original_twelve_steps_stay_identical (tests_python.test_factory_payload5.FactoryPayload5Tests.test_optional_preseal_cap_call_is_exact_and_original_twelve_steps_stay_identical) ... ok
+test_current_preseal_read_policy_check_uses_only_actual_abi_and_no_qualification (tests_python.test_factory_payload5.FactoryPayload5Tests.test_current_preseal_read_policy_check_uses_only_actual_abi_and_no_qualification) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 12.851s
+
+OK

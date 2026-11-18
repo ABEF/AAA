@@ -23,7 +23,7 @@ The format is `CODE_STORAGE_VERSION()==2`:
 | Maximum data per child |24,573 bytes; maximum runtime24,576 bytes. |
 | Child count |Exactly two, with distinct nonzero addresses. A zero-length second payload still has the three-byte revert runtime; it is not absent code. |
 | Payload order |Part0 followed by part1. Never swap, omit, repeat or truncate a part. |
-| Current25,549-byte payload4 shape |Part0 data24,573/runtime24,576; part1 data976/runtime979. Recheck the exact final compiler artifacts rather than adopting these sizes for another source revision. |
+| Current25,543-byte payload5 shape |Part0 data24,573/runtime24,576; part1 data970/runtime973. Recheck the exact final compiler artifacts rather than adopting these sizes for another source revision. |
 | Constructor inputs to the receiver |The verified creation payload plus only the typed caller NFT address, as before. |
 
 Every ordinary call to a data child, including a call carrying native ETH,
@@ -62,8 +62,7 @@ fixed receiver or obtain its rights.
 ## Fresh inventory boundary
 
 Use the explicit **schema17** deployment inventory. Schema15 is archived exactly
-for historical inspection. Code-storage FORMAT2 is unchanged, but fresh payload4
-has separate source-owned bytes/pins; never substitute historical payload3/2. Keep **20 logical callable
+for historical inspection. Code-storage FORMAT2 is unchanged, but fresh payload5 has separate source-owned bytes/pins; never substitute historical payload4/3/2. Keep **20 logical callable
 helpers plus two inert code-data children**; do not describe the extra addresses
 as new custody authorities or conceal them in the deployed graph. There are17
 module records,20 helper records and2 code-data records, with external dependency
@@ -95,7 +94,9 @@ governance trust boundary.
 
 ## Exact compiler artifact family
 
-The current payload4 artifact `config/factory-code-storage-v4.json` and
+The current payload5 artifact `config/factory-code-storage-v5.json` and `zzz_ops.factory_code_v5` bind accepted **royalty-rounds-20261118**, creation length25,543 and hash `0x7005da5d4714523f67459f0e7e9cbf5b8ac2612aafc1e84d5fb683b3d3bba44b`. Part0 holds24,573 data bytes in24,576 runtime bytes; part1 holds970 data bytes in973 runtime bytes. Schema17 explicitly selects chain-local integer `factory_payload_version:5`, `ROYALTY_ALLOCATION_VERSION()==2` and independently observed `royalty_read_policy`. That policy binds same-block actual Policy address, balance-read cap and gas revision through an off-chain fingerprint; it is not a contract getter or adoption approval. Allocation2 changes private books, preserving settlement4/events/flattened canonical rights. Existing3/4 configurations/journals remain historical.
+
+The historical payload4 artifact `config/factory-code-storage-v4.json` and
 `zzz_ops.factory_code_v4` bind the Q03 normal compiler output and25,549-byte
 creation hash `0xb72393fbf136d2d75526d655fcb8c51c77de65b18d68a6084072b6dc436d88b5`.
 Schema17 opts in through chain-local integer `factory_payload_version:4`. Omission

@@ -4,14 +4,14 @@
     "snapshot_schema": 3,
     "source_sha256": {
       "src/ZZZAccessController.sol": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3",
-      "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "src/ZZZActivationAssets.sol": "e0b65ec8312da1bda7ffdc268750a9578b97c53c2804a07f7729eaeb409d2ffd",
       "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
-      "src/ZZZActivationEntry.sol": "e4e40d7e428ad461994d2883eb574eafa9043a5c14fb7e6f48e1d4fcc82f1e0f",
+      "src/ZZZActivationEntry.sol": "4394e4696bdeb3c7c3782fcaf66bc6d996a52a7291bb5ad9165626d0b5b92ab5",
       "src/ZZZBuyback.sol": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
       "src/ZZZCanonicalHandoff.sol": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
       "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
       "src/ZZZCompounder.sol": "9a38684f4f83cedd6f0dbfe056a05b1a351bf5043c4a01880b448f67d0b63f3f",
-      "src/ZZZContributionPricing.sol": "c22ceebcd9f3c3d8f6c998fdef86a3af675718d7447ee03bb68325f5c0a05bfb",
+      "src/ZZZContributionPricing.sol": "d693d2ddfd60fee0375cdb0715ea8c4a1766bc2ab1c45acca463587ca2b25605",
       "src/ZZZCustodyValidation.sol": "6871cf76b43185237d915d2976a0d700b702c5bbafe3e8787d32b54bbec3bc5b",
       "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
       "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
@@ -19,7 +19,7 @@
       "src/ZZZLPBalancer.sol": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
       "src/ZZZLPPositionExecutor.sol": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
       "src/ZZZLPRewardConverter.sol": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
-      "src/ZZZLiquidityManager.sol": "237cdabac5ecd33399f5ef90d585569853ee4bd676d5730fa8aa2b4a79330ac4",
+      "src/ZZZLiquidityManager.sol": "43aa1d36777f3ab0b9c13c0fde91f47ffca2f38ec94a19df980606c04c015330",
       "src/ZZZMembership.sol": "b08525da7567d19b7fc84ecec2ba5cd11d530072af6ff330fb5799f8633c76b6",
       "src/ZZZMigration.sol": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed",
       "src/ZZZMigrationBudget.sol": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
@@ -29,14 +29,14 @@
       "src/ZZZOracle.sol": "2b1e52432d497add746bbaace8fee950969e40ee885a069f2074712221bf29aa",
       "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
       "src/ZZZPortfolioPolicy.sol": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
-      "src/ZZZProtocolPolicy.sol": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+      "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
       "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
       "src/ZZZRebalanceConfirmation.sol": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
       "src/ZZZRewards.sol": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
       "src/ZZZRewardsCanonical.sol": "58f68ade8b9436b6d3b9fa09fd567dbacb057eaf095d449a9f036d362384b818",
       "src/ZZZRoyaltyCodeData.sol": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
       "src/ZZZRoyaltyFactory.sol": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
-      "src/ZZZRoyaltyRewards.sol": "aaf7c63a10621703600510bbeb4c8387641967659eb94c2a14c6f397ae258e77",
+      "src/ZZZRoyaltyRewards.sol": "35f712bd0b95abdd63a9e696e6e85e63453f2d8e5ec57c089c595e6bfd5f5bbd",
       "src/ZZZSeaDropMint.sol": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
       "src/ZZZStrategy.sol": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
@@ -53,12 +53,12 @@
       "src/interfaces/IZZZEmergency.sol": "25f5a557501f168b652edd32cacf668bd488c8f5ddbaa5ad6c2be824ccd8fde4",
       "src/interfaces/IZZZExecutionOracle.sol": "f38fc0ff5290ae12a8c77c55a47b5c92a99d64aee921caec79f9a0ae911121b1",
       "src/interfaces/IZZZNFTCanonical.sol": "bbd37cbd7a19ae2554e487a381ac3cfe2766a5793268796a8d42aa54c0d2bed7",
-      "src/interfaces/IZZZProtocolPolicy.sol": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322",
+      "src/interfaces/IZZZProtocolPolicy.sol": "afeede9fd34a972a9c11e9e39a4d71747d93184902d68c5fa6a1fae14dac7697",
       "src/interfaces/IZZZSeaDrop.sol": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
       "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
       "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
       "src/libraries/ExactLPAllocation.sol": "7a256b50e7dc9f52389d7afca52b33f316a75a94c0af13e6da96ae6c9872f721",
-      "src/libraries/ExactRoyaltyAllocation.sol": "ea58031312772e77b71b608cf13049e843c225dff460b9bfa5706491a213a2e5",
+      "src/libraries/ExactRoyaltyAllocation.sol": "d2e761e976697aadae10c731914c017e5a0a200edfdf16a7e9258302d708e0fe",
       "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
       "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
       "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
@@ -107,9 +107,9 @@
       "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5"
     },
     "build_input_sha256": {
-      "foundry.toml": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72",
-      "package.json": "932d4b2f7dd67c119223d3b7aaa667f3e7676320398c2aac0a1b56173973d083",
       "package-lock.json": "4f88f4ce04a06f93158e3def09b94414f2093745964e1996f207b180e8cc7a11",
+      "package.json": "932d4b2f7dd67c119223d3b7aaa667f3e7676320398c2aac0a1b56173973d083",
+      "foundry.toml": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72",
       "scripts/install-deps.sh": "e011138120640a9a93de13751282fbbf630055e51b1bbc583d76da281a38d0b7"
     },
     "compiler_settings": {
@@ -255,9 +255,9 @@
       "runtime_bytes": 24576,
       "initcode_bytes": 49152
     },
-    "compiler_input_sha256": "6222eed398aff1ee89fca611e3a903a8925bc9206bf1d3da1078ad9d71eca840",
-    "compiler_output_sha256": "746ea70c742e6cfe0c5ed1dfc4517aace3a1687215596aa0c82d262480389f67",
-    "size_evidence_sha256": "8f16725d9a0f37e0e4186f04ad09e25b1a4c28d77fa34facea4ed8356879811e",
+    "compiler_input_sha256": "d23a5b9aa52c2d4e44d0351a4edcd50778cce5f0626c8669737330c165ff735a",
+    "compiler_output_sha256": "19130b2feceb1742cb2300598f0359579d02f6f038853b3d87a11baeec46eef3",
+    "size_evidence_sha256": "12d585f6a1ccd537709e8f23f43ea90c4cef32198ddc82bfd0c63701b1967992",
     "unqualified_dynamic_constructors": [
       {
         "source": "src/ZZZNFT.sol",
@@ -1497,6 +1497,25 @@
               "internalType": "address",
               "name": "token",
               "type": "address"
+            }
+          ],
+          "name": "validateInput",
+          "outputs": [
+            {
+              "internalType": "uint8",
+              "name": "",
+              "type": "uint8"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "token",
+              "type": "address"
             },
             {
               "internalType": "uint256",
@@ -1529,7 +1548,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "34e6a1cafb2a160edb056bfabee5d901c9b9634752b4005b90ffb5651dda9b34"
+      "abi_sha256": "d94b14fc215cb3a2229b4c52d9c31d33b6fccce2748f5f33ad76c505c08c9c00"
     },
     "ZZZActivationAssetsFactory": {
       "source": "src/ZZZActivationAssetsFactory.sol",
@@ -19151,6 +19170,31 @@
           "type": "event"
         },
         {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint32",
+              "name": "balanceGas",
+              "type": "uint32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint64",
+              "name": "revision",
+              "type": "uint64"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "RoyaltyBalanceGasConfigured",
+          "type": "event"
+        },
+        {
           "inputs": [],
           "name": "MAX_CALL_GAS",
           "outputs": [
@@ -19567,6 +19611,19 @@
         },
         {
           "inputs": [],
+          "name": "royaltyBalanceGas",
+          "outputs": [
+            {
+              "internalType": "uint32",
+              "name": "",
+              "type": "uint32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "royaltySyncGas",
           "outputs": [
             {
@@ -19765,6 +19822,24 @@
           "type": "function"
         },
         {
+          "inputs": [
+            {
+              "internalType": "uint32",
+              "name": "gasLimit",
+              "type": "uint32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "reviewHash",
+              "type": "bytes32"
+            }
+          ],
+          "name": "setRoyaltyBalanceGas",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
           "inputs": [],
           "name": "sourceCallGas",
           "outputs": [
@@ -19863,7 +19938,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "83a526557bfc2cbd4e65e67ca246c3cbbdeb2f4cce641261a30a3f5172de666a"
+      "abi_sha256": "715e0a533cf0994e3859e1680c18b09f691762e7831855066fd9cd43aae10331"
     },
     "ZZZPythPriceFeed": {
       "source": "src/ZZZPythPriceFeed.sol",
@@ -22141,6 +22216,11 @@
         },
         {
           "inputs": [],
+          "name": "ActivationReadUnavailable",
+          "type": "error"
+        },
+        {
+          "inputs": [],
           "name": "CanonicalState",
           "type": "error"
         },
@@ -22573,6 +22653,19 @@
         },
         {
           "inputs": [],
+          "name": "ROYALTY_ALLOCATION_VERSION",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
           "name": "ROYALTY_RECOVERY_VERSION",
           "outputs": [
             {
@@ -22601,7 +22694,7 @@
           "inputs": [
             {
               "internalType": "address",
-              "name": "",
+              "name": "asset",
               "type": "address"
             }
           ],
@@ -23451,6 +23544,11 @@
               "internalType": "address",
               "name": "asset",
               "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "readLimits",
+              "type": "uint256"
             }
           ],
           "name": "syncForActivation",
@@ -23514,7 +23612,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "fc7b86d2940e2e1d93e9a46501a5b24762ab84bc9635b56f43ece4b08ceb9c3d"
+      "abi_sha256": "d90754c044a22b3e888309ae6f805f167b9c03ed8b1549706e385843d486b445"
     },
     "ZZZSeaDropMint": {
       "source": "src/ZZZSeaDropMint.sol",
@@ -28320,7 +28418,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "a4192c9e1db640d1d68d99001a2d3a3ef5e05e8f146b86a89a9a11699c5dcd41",
+  "notes_sha256": "75841d40f3ebc9d900216579ed4de8b38a5f43d86b7b327f1fa8957481ee321e",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -29840,6 +29938,39 @@
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
               "explanation": "New immutable policy ID; prior history is preserved."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "validateInput(address)",
+          "kind": "function",
+          "name": "validateInput",
+          "state_mutability": "view",
+          "purpose": "Validate current contribution admission independently of USD valuation; no price or funding is returned.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "token",
+              "label": "token",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Exact native ETH address zero or the fixed deployment ZZZ. Requires enabled active policy, matching native/runtime pin and Oracle/admitted decimal agreement."
+            }
+          ],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint8",
+              "canonical_type": "uint8",
+              "internal_type": "uint8",
+              "explanation": "Verified uint8 token decimals. Does not approve a route, price source, spending allowance or deployment."
             }
           ],
           "native_value": null,
@@ -55105,6 +55236,29 @@
           "notes": "Advances provider generation/VRF revision; no pending retargeting,reroll or selected traits. Stop mints; qualify replacement funding,consumer,lane,proofs and callback operations first."
         },
         {
+          "signature": "royaltyBalanceGas()",
+          "kind": "function",
+          "name": "royaltyBalanceGas",
+          "state_mutability": "view",
+          "purpose": "Read the activation-only ERC20 royalty balance-call gas maximum; separate from the complete sync allowance.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint32",
+              "canonical_type": "uint32",
+              "internal_type": "uint32",
+              "explanation": "Uint32 gas units, default50000; governed10000–1000000. A maximum, not gas qualification or a minimum forwarded amount."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "royaltySyncGas()",
           "kind": "function",
           "name": "royaltySyncGas",
@@ -55456,6 +55610,38 @@
           "outputs": [],
           "native_value": null,
           "notes": "Requires configured randomness. Preserves provider/subscription/lane/payment mode/generation. Advances VRF/global revision,invalidating old mint reviews; prior request terms/results remain."
+        },
+        {
+          "signature": "setRoyaltyBalanceGas(uint32,bytes32)",
+          "kind": "function",
+          "name": "setRoyaltyBalanceGas",
+          "state_mutability": "nonpayable",
+          "purpose": "Configure the activation-only ERC20 balance read limit; increments the existing gas revision and configuration commitment. Requalify the full workload before adoption.",
+          "access": "Current governance/bootstrap through canConfigure; operating canonical state, no preparation; nonreentrant. No holder authority or token approval is granted.",
+          "status": "documented",
+          "inputs": [
+            {
+              "position": 0,
+              "name": "gasLimit",
+              "label": "gasLimit",
+              "type": "uint32",
+              "canonical_type": "uint32",
+              "internal_type": "uint32",
+              "explanation": "Exact uint32 gas units10000–1000000; default50000. Only activation enrollment balanceOf uses this limit; complete sync remains separately governed."
+            },
+            {
+              "position": 1,
+              "name": "reviewHash",
+              "label": "reviewHash",
+              "type": "bytes32",
+              "canonical_type": "bytes32",
+              "internal_type": "bytes32",
+              "explanation": "Nonzero bytes32 fingerprint of the reviewed token behavior and complete cold/fault gas evidence. It does not itself prove safety or freeze live state."
+            }
+          ],
+          "outputs": [],
+          "native_value": null,
+          "notes": null
         },
         {
           "signature": "sourceCallGas()",
@@ -58655,6 +58841,29 @@
           "notes": null
         },
         {
+          "signature": "ROYALTY_ALLOCATION_VERSION()",
+          "kind": "function",
+          "name": "ROYALTY_ALLOCATION_VERSION",
+          "state_mutability": "view",
+          "purpose": "Read the fresh private royalty round-book identity, separate from unchanged original-currency settlement4.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Allocation version2. Historical raw tree books must not be loaded into this representation; canonical rows remain flattened whole-unit rights."
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
           "signature": "ROYALTY_RECOVERY_VERSION()",
           "kind": "function",
           "name": "ROYALTY_RECOVERY_VERSION",
@@ -58705,14 +58914,14 @@
           "kind": "function",
           "name": "accounted",
           "state_mutability": "view",
-          "purpose": "Read total classified royalty backing, including liabilities and segregated funds.",
+          "purpose": "Read the checked total of earned liabilities, unallocated funds and the opening pool; this total is derived instead of stored twice.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
             {
               "position": 0,
-              "name": "",
-              "label": "input0",
+              "name": "asset",
+              "label": "asset",
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
@@ -58727,7 +58936,7 @@
               "type": "uint256",
               "canonical_type": "uint256",
               "internal_type": "uint256",
-              "explanation": "Total classified royalty backing, including liabilities and segregated funds."
+              "explanation": "Exact raw-unit reserve total liabilities + orphaned + openingPool; actual excess is pending. No prices, principal or another currency are included."
             }
           ],
           "native_value": null,
@@ -60193,12 +60402,12 @@
           "notes": "Unlike isolated activation, a failed asset can revert this all-assets operation."
         },
         {
-          "signature": "syncForActivation(address)",
+          "signature": "syncForActivation(address,uint256)",
           "kind": "function",
           "name": "syncForActivation",
           "state_mutability": "nonpayable",
-          "purpose": "Run one optional currency’s bounded synchronization inside activation’s isolated self-call.",
-          "access": "Only the ledger itself.",
+          "purpose": "Run authenticated activation-only synchronization with separate read and accounting funding witnesses.",
+          "access": "Ledger SELF only inside NFT activation; direct operator/wallet calls revert.",
           "status": "documented",
           "inputs": [
             {
@@ -60208,12 +60417,21 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Actual currency address; zero denotes native ETH in native-aware paths."
+              "explanation": "Actual admitted optional ERC20 currency; native ETH uses the separate direct path."
+            },
+            {
+              "position": 1,
+              "name": "readLimits",
+              "label": "readLimits",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
+              "explanation": "Contract-generated readLimits: low32bits are reviewed balance-read gas; bit32 proves the original complete-frame funding threshold. All higher bits zero. Not an operator parameter or bypass; activate creates it from fixed Policy and actual pre-call gas."
             }
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "External callers use sync(); failure cannot enroll newcomers into unseen old receipts."
+          "notes": "An authenticated exact4-byte read-outage error may defer only after the bounded read is fully funded. Other failed partial frames revert the complete activation. Accounting retains the existing full-sync ceiling. Token revert data is never bubbled."
         },
         {
           "signature": "ticketStart(uint256)",
@@ -67250,7 +67468,7 @@
   "gaps": [],
   "counts": {
     "contracts": 40,
-    "functions": 964,
+    "functions": 968,
     "constructors": 40,
     "receive_hooks": 13,
     "fallback_hooks": 0,

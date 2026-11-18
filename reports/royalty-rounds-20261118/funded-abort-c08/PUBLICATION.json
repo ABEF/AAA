@@ -1,0 +1,11 @@
+{
+  "source_directory": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\royalty-rounds-20261118\\abort-final01",
+  "files": {
+    "START.json": "903b93b654886d2af911531d84fa736fdce77ce44f19f17bb63ac4d155440eed",
+    "RESULT.json": "5483f7e23d4c1c2058ead4f5b49ca4c71b232f96a184ad4d2819c3d218499153",
+    "raw.json": "6e5f98ea78368def216059b71f0f10467f34cf6df9b0500b4cef7fc28c4f4a32",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "source_stage": "C08",
+  "production_approved": false
+}

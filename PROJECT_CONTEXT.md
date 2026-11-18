@@ -4,7 +4,11 @@ Production is undeployed and NOT APPROVED. Use the [sole Todo](TODO.md),
 [current findings](docs/AUDIT_FINDINGS.md), [operator manual](docs/OPERATOR_MANUAL.md)
 and [environment map](docs/SITE_ENVIRONMENTS.md). Source publication is not rollout.
 
-The trusted build is `q03-allocation-20261117`, using explicit factory payload4 in unchanged code-storage FORMAT2. The [Q03 review](reports/q03-activation-gas-20261117/REVIEW.md) covers complementary exact-unit royalty credits and static-only proof reuse across four changed Solidity sources. All economic rights, public ABI/storage,20M review budget and financial defaults remain. Fresh runtime/source pins are required; source publication changes no environment. Historical seal-boundaries objects retain their original scope. The
+The current trusted normal build is `royalty-rounds-20261118`, with explicit factory payload5 and royalty allocation2 in unchanged code-storage FORMAT2. [Royalty rounds](reports/royalty-rounds-20261118/REVIEW.md) replace private tree books with checked-liability round coefficients: receipt credit no longer writes a tree; enrollment lookup is bounded by1000 NFTs (at most10 binary-search steps). Activation ERC20 balance reads have a separate governed cap, initially50000 gas (10000..1000000), while the existing1M isolated sync allowance stays. Exact current-owner original-currency rights, one-hour cutoff/fault cohorts, settlement4/events and flattened canonicalV10 rows remain. Fresh private storage, bounded-read APIs and the changed self-only activation wrapper require new exact pins; payload3/4 and old deployed state are never relabelled. The per-currency helper proves either a complete sync frame or a fully funded capped read; other partial-frame accounting failures revert. Accounted reserves are derived from checked liabilities, orphaned and opening categories. Canonical import clears previously synchronized target opening funds before classifying the entire actual prefund as orphaned; aggregate overflow checks and imported claims remain.
+
+Final C08 normal runtime bytes/margins: Royalty24572/4, Manager24459/117, Oracle24573/3 and Vault24544/32; Access full initcode48590/562. Size admission is not constructor/gas/provider or release approval. The final C08 normal build validates the closed100-source input and passes48 size gates. Its synchronized-prefund import and funded-abort checks pass; C07 ordinary ledger14/placement5 evidence retains its explicit reuse scope. The12 distinct consumer controls include4 C08 artifact-dependent rechecks and8 unchanged controls retained at prior source scope. These are not added into a whole-project pass. Maximum-state20M qualification remains open. All13 controlled cold calls and their financial checks succeed at20M, but only5/13 fit the mandatory full20% margin;8 activation states are correctly refused by the existing policy. Worst openingZZZ/all-slow is19,325,451 raw,23,190,542 padded. Both growth and3 all-fault activation cases fit their tested envelopes. These13 scenarios are not13 new test methods. All owned nodes are stopped; target markets/providers/fees and release approval remain unqualified. Healthy rotated ETH also needs16,938,190 raw/20,325,828 padded; healthy rotated ZZZ needs17,582,618/21,099,142. The remaining20M blocker is therefore not limited to pending-receipt states. Keep exact preparation refusals and qualify a justified further reduction or separately reviewed operational decision; no limit is raised automatically. Keep the20M contribution policy with full20% padding, the12M default and all financial/permission guards. Actual independent prices/routes, selected currencies, provider/complete target fees, expanded64-currency and maximum LP2 workloads, current operating/constructor rollout and independent release approval remain open. No existing environment or paused heartbeat is changed.
+
+The
 [five-report consolidation](reports/five-report-consolidation-20261117/REVIEW.md)
 records what is resolved, retained and still unqualified. The new historical
 evidence checker verifies fixed records without rerunning or adopting them;
@@ -12,11 +16,11 @@ its weaker claim-only evidence tier stays explicit. No safeguard or NFT right
 changes. New pre-seal stop warnings disclose pool operations disabled separately
 from deposits; complete input is still not readiness.
 
-The [launch-workload evidence](reports/launch-workload-20261117/REVIEW.md) now measures16 admitted ERC20 royalty currencies plus ETH. Some healthy/pending and faulted activation states exceed the reviewed20M/full20% policy; capacity and body-gas success are not approval. Growth skips royalty enrollment; selected claims can require fresh smaller batches. Existing per-currency sync/call/default/financial limits are unchanged. The unsigned pre-seal planner now lists the actual currencies and gas-policy reads as unverified checks. Maximum whole-graph state, actual currencies/provider/fees and release approval remain open.
+The earlier [launch-workload evidence](reports/launch-workload-20261117/REVIEW.md) now measures16 admitted ERC20 royalty currencies plus ETH. At that historical source, some healthy/pending and faulted activation states exceed the reviewed20M/full20% policy; capacity and body-gas success are not approval. Growth skips royalty enrollment; selected claims can require fresh smaller batches. Existing per-currency sync/call/default/financial limits are unchanged. The unsigned pre-seal planner now lists the actual currencies and gas-policy reads as unverified checks. Maximum whole-graph state, actual currencies/provider/fees and release approval remain open.
 
 The [Q06 interruption/recovery review](reports/q06-keeper-recovery-20261117/REVIEW.md) adds two Python fixes: a stop observed after durable intent saving prevents signer launch while preserving the hashless recovery record; completed bounded HTTP attempts report main-thread watchdog progress. Twelve new methods and finite actual Linux/systemd cases pass, using private synthetic HTTP/state and inert signing. Recovery-only restart is not the full normal daemon. All owned units are stopped; existing services are not controlled, the observer timer continues and the desktop heartbeat stays paused. Real release-key/provider/normal-loop/restore/alert/soak qualification remains open.
 
-The Q03 cold near-capacity results qualify only tested states: pre-synced ETH activation19,484,950 gas with full20%, one fault19,877,529; ETH/ZZZ growth fits. Four unsynchronised16-currency cases still fail20M. New dust receipts can recreate work after sync, so Q03 maximum-state/adversarial liveness remains open. All13 owned RPC nodes stopped; current source publication changes no installed environment.
+Historical payload4 Q03 cold near-capacity results qualify only their tested older states: pre-synced ETH activation19,484,950 gas with full20%, one fault19,877,529; ETH/ZZZ growth fits. Its four unsynchronised16-currency failures and dust-donation race are not measurements of fresh allocation2. That campaign stopped all13 owned nodes. Current qualification is recorded separately; no installed environment changes.
 
 ## Current architecture and economics
 
@@ -102,7 +106,7 @@ do not imply runtime compatibility. Emergency/terminal LP recovery is independen
 The user approved exact-unit allocation. GCD-normalized captured rarity tickets
 and a per-currency rotating cursor assign every allocated raw unit; no fresh
 royalty scaled index/fraction reserve. StartsONE-based, backend offsetsZERO-based;
-Historical original-source EVM logs/getters/V8 royalty rows verify that unchanged royalty4 layout, now carried inside V10 (earlier V9 evidence keeps its own source scope). Claims/imports
+Historical original-source EVM logs/getters/V8 rows verify their original royalty4 tree layout. Fresh payload5/allocation2 changes private books, while retaining settlement4 outputs/events and flattened V10 royalty rows; earlier V9 evidence keeps its own source scope. Claims/imports
 are not income; only generic RoyaltiesAllocated credits fresh earnings once.
 V9 preserves activation order and whole accrued liabilities, flattened in frozen
 view without deleting source books. Old codecs/checkpoints remain historical.
@@ -115,13 +119,13 @@ The existing fixed VaultCanonical companion verifies one hop read-only.
 
 Factory code-storage2 uses exactly2 immutable REVERT-prefixed data children;
 reconstruction checks exact part/whole hashes and sizes before typed CREATE.
-Royalty creation bytes stay identical. Current schema17 authenticates the complete matching graph; earlier schema14
+Fresh payload5 has new exact Royalty creation bytes; historical payload3/4 stay byte-identical. Current schema17 authenticates the complete matching graph; earlier schema14
 evidence retains its own source scope. Use exact reviewed compiler pins; data children have no callable authority.
 Exact target constructor/activation/claim gas remains a release gate.
 Opt-in claim planning returns one freshly simulated unsigned batch within existing
 32-entry/12M/fee/time/RPC limits, with all blocked/unresolved entries retained.
 Replan after confirmation; no signer, queue, service or site change. Default
-optional royalty sync gas1m, not a fixed charge. Expanding to64 currencies needs
+optional royalty sync gas1m, not a fixed charge. Fresh activation-only ERC20 balance reads separately default to50000 gas; ordinary sync/claim/canonical reads retain their existing paths. Expanding to64 currencies needs
 worst-case gas/service/API qualification, even though inventory14 accepts97 token
 records. No source publication is operating or independent approval.
 

@@ -1,5 +1,9 @@
 # Engineering roadmap
 
+The current trusted normal build is `royalty-rounds-20261118`, with explicit factory payload5 and royalty allocation2 in unchanged code-storage FORMAT2. [Royalty rounds](../reports/royalty-rounds-20261118/REVIEW.md) replace private tree books with checked-liability round coefficients: receipt credit no longer writes a tree; enrollment lookup is bounded by1000 NFTs (at most10 binary-search steps). Activation ERC20 balance reads have a separate governed cap, initially50000 gas (10000..1000000), while the existing1M isolated sync allowance stays. Exact current-owner original-currency rights, one-hour cutoff/fault cohorts, settlement4/events and flattened canonicalV10 rows remain. Fresh private storage, bounded-read APIs and the changed self-only activation wrapper require new exact pins; payload3/4 and old deployed state are never relabelled. The per-currency helper proves either a complete sync frame or a fully funded capped read; other partial-frame accounting failures revert. Accounted reserves are derived from checked liabilities, orphaned and opening categories.
+
+The final C08 normal build validates the closed100-source input and passes48 size gates. Its synchronized-prefund import and funded-abort checks pass; C07 ordinary ledger14/placement5 evidence retains its explicit reuse scope. The12 distinct consumer controls include4 C08 artifact-dependent rechecks and8 unchanged controls retained at prior source scope. These are not added into a whole-project pass. Maximum-state20M qualification remains open. All13 controlled cold calls and their financial checks succeed at20M, but only5/13 fit the mandatory full20% margin;8 activation states are correctly refused by the existing policy. Worst openingZZZ/all-slow is19,325,451 raw,23,190,542 padded. Both growth and3 all-fault activation cases fit their tested envelopes. These13 scenarios are not13 new test methods. All owned nodes are stopped; target markets/providers/fees and release approval remain unqualified. Keep the20M contribution policy with full20% padding, the12M default and all financial/permission guards. Actual independent prices/routes, selected currencies, provider/complete target fees, expanded64-currency and maximum LP2 workloads, current operating/constructor rollout and independent release approval remain open. No existing environment or paused heartbeat is changed.
+
 The [test and irreversible-setup review](../reports/test-seal-deep-review-20261117/REVIEW.md) fixes chain/URI/reservation defects and strengthens specific test oracles. That review used seal-boundaries-20261117; no release sign-off, deployment, service or website adoption is implied. Real dependencies, complete fees/gas, operations and independent review remain open.
 
 The [behavior follow-up](../reports/operator-behavior-followup-20261117/REVIEW.md) closes confirmed sealing/setup and due-clock defects, and repairs stale current-behavior fixtures. Keep actual markets, provider/host, maximum-state gas, OpenSea/VRF and independent approval as the next release prerequisites. Software-only compound coordination is an accepted decision, not a pending on-chain policy change.
@@ -24,7 +28,7 @@ Solidity, economic rights, safeguards, gas defaults and existing environments
 are unchanged. Focused new checks and exact historical source reuse are recorded
 separately; this is internal review, not independent release approval.
 
-[Q03 activation gas optimisation](../reports/q03-activation-gas-20261117/REVIEW.md) changes four source files under trusted build `q03-allocation-20261117` and explicit payload4. Exact rights, ABI/storage and20M/full20% remain. Near999, assisted healthy/faulted activation and ETH/ZZZ growth fit tested envelopes; four unsynchronised16-currency states still fail. Fresh receipts can recreate work after sync. Selected currencies, full maximum/LP2/target gas and market/provider/fee qualification remain open in the [sole Todo](../TODO.md).
+[Historical payload4 Q03 activation gas optimisation](../reports/q03-activation-gas-20261117/REVIEW.md) changes four source files under trusted build `q03-allocation-20261117` and explicit payload4. Exact rights, ABI/storage and20M/full20% remain. Near999, assisted healthy/faulted activation and ETH/ZZZ growth fit tested envelopes; four unsynchronised16-currency states still fail. Fresh receipts can recreate work after sync. Selected currencies, full maximum/LP2/target gas and market/provider/fee qualification remain open in the [sole Todo](../TODO.md).
 
 The [five-audit reconciliation](../reports/five-audit-reconciliation-20261116/REVIEW.md)
 fixes current artifact-family planning and offline evidence-admission gaps.
@@ -155,7 +159,7 @@ zero-noop replay. Optional gas policy2 is implemented without rollout; next qual
 actual cheap1% routes/native feeds and matching schema2 consumers/providers/fees,
 then actual gas/recovery and independent audit. The soleTodo owns statuses.
 
-Reviewed13November2026. [The sole Todo](../TODO.md) owns statuses; this page orders
+Reviewed18November2026. [The sole Todo](../TODO.md) owns statuses; this page orders
 work and dependencies. [Findings](AUDIT_FINDINGS.md) explain current mechanisms
 and unresolved risks. Production **NOT APPROVED**. Source publication is separate
 from deployment, services, websites and public transactions.

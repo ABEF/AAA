@@ -1,0 +1,27 @@
+{
+  "current_function_count": 968,
+  "example_rows": 1021,
+  "new_callable_examples": 4,
+  "old_example_rows_preserved": 1016,
+  "old_rows_byte_semantics_unchanged": false,
+  "notes_purpose_input_output_gaps": 0,
+  "readonly_or_unsigned_examples_only": true,
+  "production_approved": false,
+  "new_signatures": [
+    "ZZZProtocolPolicy.royaltyBalanceGas()",
+    "ZZZProtocolPolicy.setRoyaltyBalanceGas(uint32,bytes32)",
+    "ZZZRoyaltyRewards.ROYALTY_ALLOCATION_VERSION()",
+    "ZZZActivationAssets.validateInput(address)"
+  ],
+  "adapted_old_example_rows": 1,
+  "unchanged_old_row_semantics_preserved": true,
+  "contracts": 40,
+  "constructors": 40,
+  "receive_functions": 13,
+  "adapted_signature": {
+    "old": "ZZZRoyaltyRewards.syncForActivation(address)",
+    "new": "ZZZRoyaltyRewards.syncForActivation(address,uint256)",
+    "role": "M",
+    "external_operator_call_allowed": false
+  }
+}

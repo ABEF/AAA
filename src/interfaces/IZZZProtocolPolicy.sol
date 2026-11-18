@@ -22,6 +22,7 @@ interface IZZZProtocolPolicy {
     function payoutGas() external view returns(uint32);
     function sourceCallGas() external view returns(uint32);
     function royaltySyncGas() external view returns(uint32);
+    function royaltyBalanceGas() external view returns(uint32);
     function salePolicy() external view returns(SalePolicy memory);
     function metadataPolicy() external view returns(MetadataPolicy memory);
     function vrfPolicy() external view returns(VrfPolicy memory);

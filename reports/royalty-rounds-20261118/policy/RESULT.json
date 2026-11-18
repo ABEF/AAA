@@ -1,0 +1,163 @@
+{
+  "schema": 1,
+  "exit_code": 0,
+  "elapsed_seconds": 10.625,
+  "methods": [
+    {
+      "id": "test/RoyaltyBalancePolicy20261118.t.sol:RoyaltyBalancePolicy20261118Test.testRoyaltyReadPolicyBoundsRevisionReviewAndExistingSetterRemainIndependent()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "id": "test/RoyaltyBalancePolicy20261118.t.sol:RoyaltyBalancePolicy20261118Test.testRoyaltyReadPolicyDefaultCommitsFiftyKAndRetainsExactGasTupleAndFingerprint()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "id": "test/RoyaltyBalancePolicy20261118.t.sol:RoyaltyBalancePolicy20261118Test.testRoyaltyReadPolicyRejectsBadBoundsMissingReviewAndUnauthorizedOrFrozenWritesAtomically()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "selected_methods": 3,
+  "copy_source_before_after_equal": true,
+  "root_selected_source_before_after_equal": true,
+  "root_config_unchanged": true,
+  "compiled_source_identity_verified": {
+    "lib/forge-std/src/Base.sol": {
+      "filesystem_sha256": "dc5e18050f154e4211ee58a58fdd395e5feb222ef61c76184791d7f6e5405516",
+      "compiler_keccak256": "0xa3735a6618a3014e42bb4329ad143e3b2c59cd95094350202e4c4a06c9d585dd",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/StdAssertions.sol": {
+      "filesystem_sha256": "9795e71054414332c56673d60d0d868f657224a1c52ceb6c3884d7f667338095",
+      "compiler_keccak256": "0x4584f551c3a875c26423c1e50a77179bc2f9c9c1ee6d0f0c6be0f89ca5ee8270",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/StdChains.sol": {
+      "filesystem_sha256": "cdf1d76f68953a1e3be842b3a7043c0c9bca61cbff844f95cd677a4b5410bfb7",
+      "compiler_keccak256": "0xd3edaf57db178f839d97ccee0009c2b7b20f78c2adca9028a6013acb8d5b4c5e",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/StdCheats.sol": {
+      "filesystem_sha256": "a0fe96a5e188c6721ca2242241a2eeb7ad3617dd75460268fa38acfd8e3e8aa2",
+      "compiler_keccak256": "0x0fa6ec03602648b62cce41aab2096e6b7e052f2846075d967b6958dd586db746",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/StdConstants.sol": {
+      "filesystem_sha256": "ce159d02a0ed064cbf5abd717204f59036cfa4eb73b9d6e5d77c83d3fd215ea8",
+      "compiler_keccak256": "0x319ccdabfa2c0b2428301445873270ffea20f0e039d4fd5e6eeba65158e4e534",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/StdError.sol": {
+      "filesystem_sha256": "a10f8f4d12e7716942c3e20753f1ea0af0cc707ca58eaaa01da8246209ed8151",
+      "compiler_keccak256": "0xbf477b11a42d7611696956546bcfaa29317d1166bf65e402344599c05943fc77",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/StdInvariant.sol": {
+      "filesystem_sha256": "71aada0625f02eebb94c495dec0b28a575f7343f734543bde662b10f0a3ba724",
+      "compiler_keccak256": "0x4dab3021edfa9511bbdd80c48f060ef62eaf457f99eaf841f561fc2557d9a08d",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/StdJson.sol": {
+      "filesystem_sha256": "4792802533e7d8315a2287ef246d8ffea13f38f5b8966bd9545b38050f243765",
+      "compiler_keccak256": "0xbc0132abe1c2accc2867c0f03667afffdf92f3e95a581bb03c9557eaa38ea500",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/StdMath.sol": {
+      "filesystem_sha256": "473474e8608945a1c87a606ea85e6b605dcc3186d361796f60f36011964036da",
+      "compiler_keccak256": "0xd90ad4fd8aeaeb8929964e686e769fdedd5eded3fc3815df194a0ab9f91a3fb2",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/StdStorage.sol": {
+      "filesystem_sha256": "6dfa28c0a86589e51ffe4af526c2930f34d9c1a34de7897ee99a8cea0fda62be",
+      "compiler_keccak256": "0xb91ab24383a5872b894fc93325eef1add6cbbf981628f18e860068bf88bb7dcc",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/StdStyle.sol": {
+      "filesystem_sha256": "be2eea9cbe407894fd24ae1f824d03ca35ff5fe3ab684850e7190fbc098417df",
+      "compiler_keccak256": "0x43e2a8a9b9c2574dabe74f11adf6f782df218f463540e3b5b563609fe108597d",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/StdToml.sol": {
+      "filesystem_sha256": "cbb859d5c18c322f8153128504ad513d41baa29905dd9aeb0c8369d06ad8acec",
+      "compiler_keccak256": "0x58a72c765ed3f7ff6b105509689658795b8a3739b8931772a497155878381861",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/StdUtils.sol": {
+      "filesystem_sha256": "76caac7e205bb638728d078a5d3e46468190b763d2e98524d12f2041a65204f8",
+      "compiler_keccak256": "0x7274081e11c05164fd8eadde4de8305c033e58a43008dea58065f3170ccf0737",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/Test.sol": {
+      "filesystem_sha256": "cf5e7d5e176eac56f6514da12163ff7b9b6af57c255a399012d8b5b2459b8e9e",
+      "compiler_keccak256": "0x3dda6083a83dfa3e8526e97bcc28e862ee2442dd58fe94d5c426d65b8e38f73c",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/Vm.sol": {
+      "filesystem_sha256": "d03386284af495e27b9eb9f70a00c9736da6b0ed9f147b32859a1ac6b4c358a6",
+      "compiler_keccak256": "0xaae88142a348064677cf81169ea0ca706be3e99e2a0f13a01878ff8d52cf6b25",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/console.sol": {
+      "filesystem_sha256": "887089be32f2fbfe442d556112d2023d1037f43ea5c7d857b18c5ea3f74bfaba",
+      "compiler_keccak256": "0x4bbf47eb762cef93729d6ef15e78789957147039b113e5d4df48e3d3fd16d0f5",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/console2.sol": {
+      "filesystem_sha256": "2398c4aa056416dbbae6167f3443678733a35413290be51060e15d4aebd78ff9",
+      "compiler_keccak256": "0x3b8fe79f48f065a4e4d35362171304a33784c3a90febae5f2787805a438de12f",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/interfaces/IMulticall3.sol": {
+      "filesystem_sha256": "984896bb1275945047e9f81ea5c8c5dd331e511e9bd208b786b835f91d5bc055",
+      "compiler_keccak256": "0x7aac1389150499a922d1f9ef5749c908cef127cb2075b92fa17e9cb611263d0a",
+      "crlf_normalized": true
+    },
+    "lib/forge-std/src/safeconsole.sol": {
+      "filesystem_sha256": "9249257fdba10bf6feea3ac74698a24694c2c568137b9e7f5b9c549e305e2edb",
+      "compiler_keccak256": "0xbef9786cb49d3eade757bad87568c49c8c8f35721f0193c95ffb055d9e466e11",
+      "crlf_normalized": true
+    },
+    "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
+      "filesystem_sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "compiler_keccak256": "0x11a5a79827df29e915a12740caf62fe21ebe27c08c9ae3e09abe9ee3ba3866d3",
+      "crlf_normalized": false
+    },
+    "src/ZZZProtocolPolicy.sol": {
+      "filesystem_sha256": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+      "compiler_keccak256": "0x57d5dd41c7e973a3b94ea755821e0b3760510e00284c832c0d9beaab3684e4fc",
+      "crlf_normalized": false
+    },
+    "src/base/ZZZModule.sol": {
+      "filesystem_sha256": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+      "compiler_keccak256": "0xb596bc1879639fe5770c8f42d3d297bd7d06efd5a031b21694df5b122e04e676",
+      "crlf_normalized": false
+    },
+    "src/interfaces/IZZZ.sol": {
+      "filesystem_sha256": "18f49dee843a43584648d48afe6af700d201c3d36960a192eb406556f67dd997",
+      "compiler_keccak256": "0xd2557a615b388a9f9b6e94168c4f9d9eefc743d31a5119f3162bf6fbb685e316",
+      "crlf_normalized": false
+    },
+    "src/interfaces/IZZZProtocolPolicy.sol": {
+      "filesystem_sha256": "afeede9fd34a972a9c11e9e39a4d71747d93184902d68c5fa6a1fae14dac7697",
+      "compiler_keccak256": "0xd95db8be7f0ad388a35a1477ddccfb15d4c8c84bcfebad5825d70198a7842dc8",
+      "crlf_normalized": false
+    },
+    "src/libraries/ZZZTypes.sol": {
+      "filesystem_sha256": "7d64a305a45cbb2116901d4e06cbe0d5c3877b6786e2ad89cf104767d26250fc",
+      "compiler_keccak256": "0xad5600f1a2628035b799e20939ddcb49cd10b808afaca56afa61ef5af8748849",
+      "crlf_normalized": false
+    },
+    "test/RoyaltyBalancePolicy20261118.t.sol": {
+      "filesystem_sha256": "fd53a189c13c526b9d65cad33f9d5d7e82ffa7e6c629f850bde9e524bc9f96f3",
+      "compiler_keccak256": "0x10ede675152410a68e8ee86c9f4c88eeead039373a5bb7eedcc37a8330ad36af",
+      "crlf_normalized": false
+    }
+  },
+  "raw_sha256": "3d595e81dbef83205489fed4865cfd017433ba4c3ea074a54b0f6e3e39705750",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "unchanged_prior_methods_rerun": 0,
+  "production_approved": false,
+  "pass": true
+}

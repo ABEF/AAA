@@ -16,7 +16,7 @@ any fresh deployment; source publication never upgrades existing Anvil, service,
 website, inventory or journal identities.
 Real dependencies, operating rehearsals and independent audit remain open.
 
-Fresh Q03 source uses explicit integer `factory_payload_version:4` inside each chain record. This selects [payload4](FACTORY_CODE_STORAGE.md), still code-storage FORMAT2; omission/3 retains historical payload3. Mixing the identities rejects before observations. Both examples remain unapproved.
+Fresh source uses explicit integer `factory_payload_version:5` inside each chain record. It selects [payload5/allocation2](FACTORY_CODE_STORAGE.md), still code-storage FORMAT2; omission/3 and explicit4 retain historical identities. Payload5 additionally requires same-block actual `royalty_read_policy` observations (Policy, activation balance-read cap and gas revision), while the original four-word gas policy/fingerprint remain checked. The read-policy fingerprint is computed off-chain, not a contract getter. Unknown/mixed/unobserved values reject; examples remain unapproved.
 
 The [schema17 example](../config/production.example.json) is deliberately
 unqualified. Unknown deployment/authority/provider addresses, source/route

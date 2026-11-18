@@ -1,0 +1,9 @@
+test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes (tests_python.test_factory_payload5.FactoryPayload5Tests.test_new_payload5_matches_actual_trusted_full_normal_and_rejects_old_bytes) ... ok
+test_real_part_and_read_policy_observer_uses_one_anchor_and_actual_legacy_gas_hash (tests_python.test_factory_payload5.FactoryPayload5Tests.test_real_part_and_read_policy_observer_uses_one_anchor_and_actual_legacy_gas_hash) ... ok
+test_optional_preseal_cap_call_is_exact_and_original_twelve_steps_stay_identical (tests_python.test_factory_payload5.FactoryPayload5Tests.test_optional_preseal_cap_call_is_exact_and_original_twelve_steps_stay_identical) ... ok
+test_current_preseal_read_policy_check_uses_only_actual_abi_and_no_qualification (tests_python.test_factory_payload5.FactoryPayload5Tests.test_current_preseal_read_policy_check_uses_only_actual_abi_and_no_qualification) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 15.330s
+
+OK

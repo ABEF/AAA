@@ -1,0 +1,7 @@
+error: unexpected argument '--code-size-limit' found
+
+  tip: to pass '--code-size-limit' as a value, use '-- --code-size-limit'
+
+Usage: forge.exe build --offline --use <SOLC_VERSION> --root <PATH> --out <PATH> --cache-path <PATH> [PATHS]...
+
+For more information, try '--help'.

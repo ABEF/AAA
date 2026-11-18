@@ -27,7 +27,9 @@ LEGACY_BUILD_PROFILE='manual-reference-20261115'
 METADATA_BUILD_PROFILE='metadata2-20261116'
 PREVIOUS_BUILD_PROFILE='operator-seal-20261117'
 SEAL_BUILD_PROFILE='seal-boundaries-20261117'
-DEFAULT_BUILD_PROFILE='q03-allocation-20261117'
+Q03_BUILD_PROFILE='q03-allocation-20261117'
+INITIAL_ROYALTY_BUILD_PROFILE='royalty-rounds-initial-20261118'
+DEFAULT_BUILD_PROFILE='royalty-rounds-20261118'
 TRUSTED_BUILDS={
  LEGACY_BUILD_PROFILE:{'directory':BUILD,'files':BUILD_PINS,
   'source_inventory':'source-manifest.json','source_key':'exact_source_sha256','gates':'production-size-gates.json'},
@@ -42,14 +44,26 @@ TRUSTED_BUILDS={
   'source_inventory':'START.json','source_key':'source_sha256','gates':'normal-size-evidence.json'},
  SEAL_BUILD_PROFILE:{'directory':'reports/test-seal-deep-review-20261117/build','files':{'compiler-input.json.gz': 'c7f1190e3b45d9a114f428176c10cef5c395a7fb426ebca9e55a0c8b4c554683', 'compiler-output.json.gz': 'cc78e2b0c6a6fc4c6182d93ebcc1a245cde8bb3dde787ca74c7ae911f55ea7a3', 'normal-size-evidence.json': 'e23fe1fdce6d4571d69e2978f073dcd49705648e20bb81140a7c0a5ab116601a', 'START.json': 'bf189012bd42070ad823449bccd9d756a73436d5faf4b206243652473c13f8b0'},
   'source_inventory':'START.json','source_key':'source_sha256','gates':'normal-size-evidence.json'},
- DEFAULT_BUILD_PROFILE:{'directory': 'reports/q03-activation-gas-20261117/build/current',
+ Q03_BUILD_PROFILE:{'directory': 'reports/q03-activation-gas-20261117/build/current',
  'files': {'compiler-input.json.gz': '216c0414c653b2527703abe15b16c3f863e4277ca62c9789022de95c2d2b1f45',
            'compiler-output.json.gz': 'fb624b957ac821cb064ff667972cef0d65d2fa3cd7e4cdd798b5b8e003b685ea',
            'normal-size-evidence.json': '8f16725d9a0f37e0e4186f04ad09e25b1a4c28d77fa34facea4ed8356879811e',
            'START.json': '0602a6cc70e36baae2f085e509d624ebb2bd9011aa91ae59e79254b2a1c08760'},
  'source_inventory': 'START.json',
  'source_key': 'source_sha256',
- 'gates': 'normal-size-evidence.json'}}
+ 'gates': 'normal-size-evidence.json'},
+ INITIAL_ROYALTY_BUILD_PROFILE:{'directory':'reports/royalty-rounds-20261118/build/current',
+ 'files':{'compiler-input.json.gz':'72846a9309fede733d1db5d4e49e0dab16187d804e78f91265d30222f5a76290',
+          'compiler-output.json.gz':'cdfed4cb758f4ff9e62f5542268da2153eb7cf98080b8188b748913131894de7',
+          'normal-size-evidence.json':'59edc3956155686be87e1b709a221cd616c0549c98d8c26e02827201cfc187d2',
+          'START.json':'f967b8a2b24fe88998f5db69ff78aba0b7f5ed0d7e3e3d5f1076675c0d8f8ab0'},
+ 'source_inventory':'START.json','source_key':'source_sha256','gates':'normal-size-evidence.json'},
+ DEFAULT_BUILD_PROFILE:{'directory':'reports/royalty-rounds-20261118/build/final',
+ 'files':{'compiler-input.json.gz':'8a591f4b8de04ed2337156c8cc6a97057f09f18744834f3f3c92af20b33d6ba4',
+          'compiler-output.json.gz':'1947e502348e5e230e6d34792b317683f5d634514ce248ad64c342bb792ff663',
+          'normal-size-evidence.json':'12d585f6a1ccd537709e8f23f43ea90c4cef32198ddc82bfd0c63701b1967992',
+          'START.json':'a1bddde5605bab24b3d961505702e4d5bb94b50af9695f3b4e33f9e546119ac4'},
+ 'source_inventory':'START.json','source_key':'compiler_content_sha256','gates':'normal-size-evidence.json'}}
 NATIVE={
  'pool_manager':'0x8366a39cc670b4001a1121b8f6a443a643e40951',
  'position_manager':'0x58daec3116aae6d93017baaea7749052e8a04fa7',

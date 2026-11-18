@@ -1,0 +1,13 @@
+{
+  "COMPILED_SOURCE_POOL.json.gz": "9791eef45750439c16d8efe6a043104fa8673f3d1e3356154278061677159aea",
+  "producer-artifact.json": "d4225febc91476faa52afd00e6ec7114164cb5f62fd266ba4faa3871b1655805",
+  "raw.json.gz": "af0120ee89ea0983d7d9ae123edf041132ba545ed55789bd8bbe1d4a13cedc38",
+  "RESULT.json": "2df73f8bef91c98f78c1e2111653f6d16d193be37a8ded5a6501d38acd376447",
+  "run_isolated.py": "2fbb45e0f581452b138a47b1d842a8df7faf19267e8930280b815d0d13c1f0ac",
+  "SOURCE_BEFORE.json": "7826ef742ac52363b7314ad813a7505b61bb51ccc0c03e19597a8e1998f2f1b9",
+  "SOURCE_FREEZE.json": "1f38efa8ce400ac98bc3466446a156ef6fc8ef6e4381161550e5790bb7c958ee",
+  "START.json": "97f022f84c762c476c52ff3d0939feb91a82dce82b3d2075eea10d141ce524ff",
+  "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "originals/src/ZZZProtocolPolicy.sol": "d255608e155e8d1773fceeaa0ba304c1fffc26bdaa7652b9fd86e8dcb2d8f955",
+  "originals/src/interfaces/IZZZProtocolPolicy.sol": "eb554e99dc02b6f3449c1e74cf709320635f568284c8258f10aa4bb980bae322"
+}

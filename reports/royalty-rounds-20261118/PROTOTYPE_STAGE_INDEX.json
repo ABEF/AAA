@@ -1,0 +1,12 @@
+{
+  "current_stage": "prototype/final-array04",
+  "current_methods": 8,
+  "retired_method_alias": {
+    "testRoundCohortFourWordBoundariesAndZeroSnapshotAreExact": "testRoundCohortBoundariesAndZeroSnapshotAreExact"
+  },
+  "stages_not_additive": true,
+  "old_unchanged_methods_executed": 0,
+  "first_attempt": "ProducerROOTpath preflight failure before Forge launch; corrected atattempt02",
+  "selected_structure": "sorteduint16cohortends, binarysearch\u226410, notreceiptqueue orbitmap",
+  "production_approved": false
+}

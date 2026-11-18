@@ -1,5 +1,7 @@
 # Verification evidence
 
+[18 November royalty rounds](royalty-rounds-20261118/REVIEW.md) covers constant-size exact royalty credit, bounded activation token reads, explicit payload5 consumers, current rights/canonical checks and separately recorded1,000-NFT gas evidence. Prior Q03/tree evidence retains its own source; source publication changes no environment.
+
 Current source: [Q03 activation gas optimisation](q03-activation-gas-20261117/REVIEW.md). Its exact source and cold full-flow scope supersede earlier gas estimates only where remeasured. Historical reports and failed/rejected attempts remain unchanged.
 
 [Q06 keeper interruption and recovery](q06-keeper-recovery-20261117/REVIEW.md) adds two source fixes,12 new targeted methods and actual isolated Linux/systemd receipts. Inert signing and recovery-only restart retain explicit limits; installed services are not rolled out and Q06 remains open.

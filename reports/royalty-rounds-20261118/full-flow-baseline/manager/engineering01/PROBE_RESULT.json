@@ -1,0 +1,778 @@
+{
+  "schema": 1,
+  "scope": "UNQUALIFIED Manager-only runtime transplant engineering probe; not fresh constructor/full graph/source profile/deployment evidence",
+  "old_verified_case": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\royalty-rounds-20261118\\full02\\local-rpc02\\rounds-999-rotated-zzz-allslow",
+  "old_verification_sha256": "cefb4e9a85d8f7f3e30d3535a494af229525401ccff8696145ed326b93befb10",
+  "original_authenticated_state_merge": {
+    "baseline_sha256": "2b2fb6523c0682b6f81021e751336abb67639a3f3bf8484d2c254b655daef952",
+    "delta_sha256": "456970875fa5db43b9f9c7c2d0c38579919289327eafbc2011495f52fb40bfaf",
+    "baseline_keccak256": "0x0d5fd92a5ebc80a0e58a7575a410557acc0a116d65508e42e005a84ef584d6fe",
+    "delta_keccak256": "0x68a413c60f67cde3f83d1e187e98047615b5640785441aab8308b3c26718ec35",
+    "nonzero_to_zero_overrides": 0,
+    "baseline_accounts": 29,
+    "delta_accounts": 69,
+    "merged_accounts": 69,
+    "harness_artifact_sha256": "97d47ddaf989acbb951d0ddc64ecd1074e9f0cfdaf2a263e719b3d1f1717246b"
+  },
+  "new_compiler_input_sha256": "a9bca48fa0018a9fb8073d3223415d54ec4dca5195a3ec13f9ef22b410ea8024",
+  "new_compiler_output_sha256": "90c5f3144fe82e9c553400f6cd10da69929045fb5e870e108ddd7aaca39d322e",
+  "old_runtime_sha256": "f224288fdb3883f3ab73ae111b93e14c8ff17c1f881d2e45c3559e3eb3cbb2df",
+  "old_runtime_keccak256": "0x332f91b5c1c6a58e26966f60d86a536e8ddb41e4a5ddb967b0a54dfdff07e8b1",
+  "production_approved": false,
+  "meets_reviewed_execution_profile": false,
+  "profile_qualification": false,
+  "public_transactions": 0,
+  "old_getters_and_controls": {
+    "access": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f",
+    "balancingRouter": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+    "positionExecutor": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66",
+    "posm": "0x03a6a84cd762d9707a21605b548aaab891562aab",
+    "stateView": "0xa0cb889707d426a7a386870a03bc70d1b0697598",
+    "poolManager": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9",
+    "permit2": "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c"
+  },
+  "immutable_fills": [
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 2135,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 4256,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 7811,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 13809,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 13997,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 14913,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 15463,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 16061,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 16256,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 16872,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 18459,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 18990,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 19033,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 19124,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 21021,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 21416,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31078",
+      "name": "balancingRouter",
+      "start": 21707,
+      "length": 32,
+      "value": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff"
+    },
+    {
+      "ast_id": "31081",
+      "name": "positionExecutor",
+      "start": 3245,
+      "length": 32,
+      "value": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66"
+    },
+    {
+      "ast_id": "31081",
+      "name": "positionExecutor",
+      "start": 5154,
+      "length": 32,
+      "value": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66"
+    },
+    {
+      "ast_id": "31081",
+      "name": "positionExecutor",
+      "start": 5365,
+      "length": 32,
+      "value": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66"
+    },
+    {
+      "ast_id": "31081",
+      "name": "positionExecutor",
+      "start": 6101,
+      "length": 32,
+      "value": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66"
+    },
+    {
+      "ast_id": "31081",
+      "name": "positionExecutor",
+      "start": 6431,
+      "length": 32,
+      "value": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66"
+    },
+    {
+      "ast_id": "31081",
+      "name": "positionExecutor",
+      "start": 6738,
+      "length": 32,
+      "value": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66"
+    },
+    {
+      "ast_id": "31081",
+      "name": "positionExecutor",
+      "start": 6876,
+      "length": 32,
+      "value": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66"
+    },
+    {
+      "ast_id": "31081",
+      "name": "positionExecutor",
+      "start": 7062,
+      "length": 32,
+      "value": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66"
+    },
+    {
+      "ast_id": "31081",
+      "name": "positionExecutor",
+      "start": 7148,
+      "length": 32,
+      "value": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66"
+    },
+    {
+      "ast_id": "31081",
+      "name": "positionExecutor",
+      "start": 7686,
+      "length": 32,
+      "value": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66"
+    },
+    {
+      "ast_id": "31081",
+      "name": "positionExecutor",
+      "start": 10840,
+      "length": 32,
+      "value": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66"
+    },
+    {
+      "ast_id": "31081",
+      "name": "positionExecutor",
+      "start": 11223,
+      "length": 32,
+      "value": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66"
+    },
+    {
+      "ast_id": "31081",
+      "name": "positionExecutor",
+      "start": 11569,
+      "length": 32,
+      "value": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66"
+    },
+    {
+      "ast_id": "31081",
+      "name": "positionExecutor",
+      "start": 17364,
+      "length": 32,
+      "value": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66"
+    },
+    {
+      "ast_id": "31081",
+      "name": "positionExecutor",
+      "start": 17542,
+      "length": 32,
+      "value": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66"
+    },
+    {
+      "ast_id": "31081",
+      "name": "positionExecutor",
+      "start": 23044,
+      "length": 32,
+      "value": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66"
+    },
+    {
+      "ast_id": "31084",
+      "name": "posm",
+      "start": 7364,
+      "length": 32,
+      "value": "0x03a6a84cd762d9707a21605b548aaab891562aab"
+    },
+    {
+      "ast_id": "31084",
+      "name": "posm",
+      "start": 7506,
+      "length": 32,
+      "value": "0x03a6a84cd762d9707a21605b548aaab891562aab"
+    },
+    {
+      "ast_id": "31084",
+      "name": "posm",
+      "start": 8257,
+      "length": 32,
+      "value": "0x03a6a84cd762d9707a21605b548aaab891562aab"
+    },
+    {
+      "ast_id": "31084",
+      "name": "posm",
+      "start": 13341,
+      "length": 32,
+      "value": "0x03a6a84cd762d9707a21605b548aaab891562aab"
+    },
+    {
+      "ast_id": "31084",
+      "name": "posm",
+      "start": 14418,
+      "length": 32,
+      "value": "0x03a6a84cd762d9707a21605b548aaab891562aab"
+    },
+    {
+      "ast_id": "31084",
+      "name": "posm",
+      "start": 23220,
+      "length": 32,
+      "value": "0x03a6a84cd762d9707a21605b548aaab891562aab"
+    },
+    {
+      "ast_id": "31084",
+      "name": "posm",
+      "start": 23388,
+      "length": 32,
+      "value": "0x03a6a84cd762d9707a21605b548aaab891562aab"
+    },
+    {
+      "ast_id": "31087",
+      "name": "stateView",
+      "start": 1692,
+      "length": 32,
+      "value": "0xa0cb889707d426a7a386870a03bc70d1b0697598"
+    },
+    {
+      "ast_id": "31087",
+      "name": "stateView",
+      "start": 6563,
+      "length": 32,
+      "value": "0xa0cb889707d426a7a386870a03bc70d1b0697598"
+    },
+    {
+      "ast_id": "31087",
+      "name": "stateView",
+      "start": 20862,
+      "length": 32,
+      "value": "0xa0cb889707d426a7a386870a03bc70d1b0697598"
+    },
+    {
+      "ast_id": "31090",
+      "name": "poolManager",
+      "start": 2922,
+      "length": 32,
+      "value": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9"
+    },
+    {
+      "ast_id": "31090",
+      "name": "poolManager",
+      "start": 9095,
+      "length": 32,
+      "value": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9"
+    },
+    {
+      "ast_id": "31090",
+      "name": "poolManager",
+      "start": 9205,
+      "length": 32,
+      "value": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9"
+    },
+    {
+      "ast_id": "31090",
+      "name": "poolManager",
+      "start": 9592,
+      "length": 32,
+      "value": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9"
+    },
+    {
+      "ast_id": "31090",
+      "name": "poolManager",
+      "start": 9714,
+      "length": 32,
+      "value": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9"
+    },
+    {
+      "ast_id": "31090",
+      "name": "poolManager",
+      "start": 9875,
+      "length": 32,
+      "value": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9"
+    },
+    {
+      "ast_id": "31090",
+      "name": "poolManager",
+      "start": 9942,
+      "length": 32,
+      "value": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9"
+    },
+    {
+      "ast_id": "31090",
+      "name": "poolManager",
+      "start": 10130,
+      "length": 32,
+      "value": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9"
+    },
+    {
+      "ast_id": "31090",
+      "name": "poolManager",
+      "start": 10304,
+      "length": 32,
+      "value": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9"
+    },
+    {
+      "ast_id": "31090",
+      "name": "poolManager",
+      "start": 10354,
+      "length": 32,
+      "value": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9"
+    },
+    {
+      "ast_id": "31090",
+      "name": "poolManager",
+      "start": 20429,
+      "length": 32,
+      "value": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9"
+    },
+    {
+      "ast_id": "31090",
+      "name": "poolManager",
+      "start": 20820,
+      "length": 32,
+      "value": "0x5991a2df15a8f6a256d3ec51e99254cd3fb576a9"
+    },
+    {
+      "ast_id": "31093",
+      "name": "permit2",
+      "start": 784,
+      "length": 32,
+      "value": "0xa4ad4f68d0b91cfd19687c881e50f3a00242828c"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 1982,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 3951,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 4760,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 4888,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 11141,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 11331,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 11450,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 15223,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 16454,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 16658,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 17064,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 17625,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 18729,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 21226,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 21905,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 22306,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 22932,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    },
+    {
+      "ast_id": "79317",
+      "name": "access",
+      "start": 23305,
+      "length": 32,
+      "value": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f"
+    }
+  ],
+  "new_runtime_sha256": "5da1cfbc7927cd6f8e32d21dcf38771d8571bb22a87ffa811ac2dd2e2a3e4b5e",
+  "new_runtime_keccak256": "0xe9e233d3b8c22e68b9a6667ffca0ac8e7b3baacec49230c6c30a4c9f1c3c1394",
+  "new_runtime_size": 24459,
+  "only_allocation_change": [
+    "0x15cf58144ef33af1e14b5208015d11f9143e27b9.code"
+  ],
+  "all_storage_and_other_code_byte_identical": true,
+  "actual20m_call": {
+    "ok": true,
+    "result": "0x"
+  },
+  "estimate20m": {
+    "ok": true,
+    "result": "0x1223f96"
+  },
+  "estimated_gas": 19021718,
+  "padded_gas": 22826062,
+  "exact_padded_call": null,
+  "original_estimated_gas": 19541445,
+  "estimated_saving": 519727,
+  "financial_trace": {
+    "measurement": {
+      "source_usd_18": 100000000000000000000,
+      "required_deployed_usd_18": 97010658169926867626,
+      "marginal_deployed_usd_18": 99902476051407562130,
+      "net_contribution_usd_18": 99904852309015163971,
+      "shares_added_raw": 99909134925785758152,
+      "lp_liquidity_added_raw": 206117926616040767421,
+      "lp_token_id": 1,
+      "converted_amount_raw": 100010987804048317140,
+      "simulation_gas_used": 18221618
+    },
+    "request": {
+      "id": 59828599205555633410262514856691085119799863134576871610926730760847525488111,
+      "pool": "0x1cd733b750148b563929026924267db60a232d9bb72e00e4f52bf76e5d3fe7a5",
+      "source": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+      "amount": 100010987804048317140,
+      "minimum_lp": 1,
+      "deadline": 1004704,
+      "increase": false,
+      "maximum_loss_bps": 300,
+      "expected_contribution_policy": "0x7534d529528b3c89edcdced662dab2fad5c0e73df69ce14c706968417f33919a",
+      "bucket": 12303348992888452224556495487210046042273313936231113355190120268912493433752,
+      "old_lp_id": 1,
+      "output": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+      "token0": "0x0000000000000000000000000000000000000000",
+      "token1": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+      "route": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "minimum_out": 0,
+      "route_kind": 0,
+      "accounting_version": 7,
+      "routing_version": 3,
+      "review_policy_version": 2,
+      "pricing_version": 2,
+      "lp_routing_version": 3,
+      "execution_price_version": 1,
+      "portfolio_version": 2,
+      "execution_quality_version": 1,
+      "execution_loss_bps": 300,
+      "maximum_idle_bps": 500,
+      "upper_input_usd": 100010987804048317140,
+      "reviewed_price_bounds": {
+        "0x0000000000000000000000000000000000000000": {
+          "lower": 1000000000000000000,
+          "upper": 1000000000000000000,
+          "fingerprint": "0xa6ee61b22be897feee74d9ffcc15daf5a5b68d1196ccc84d890238428082f3d9"
+        },
+        "0xf62849f9a0b5bf2913b396098f7c7019b51a820a": {
+          "lower": 999890134031374177,
+          "upper": 1000000000000000000,
+          "fingerprint": "0x2d93bb66ddc1ac75a398e18bde52a75bb0b9bc3f7cc197745e7e0a40bea4128c"
+        }
+      },
+      "_contribution_amount0": 0,
+      "_contribution_amount1": 100010987804048317140,
+      "_lp_balanced": [
+        60866536728770405338,
+        39042605033864479587
+      ]
+    },
+    "gross_usd18": 100000000000000000000,
+    "context": {
+      "version": 1,
+      "contracts": {
+        "oracle": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+        "contribution_pricing": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+        "liquidity": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+        "balancing_router": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+        "lp_position_executor": "0xe8a41c57ab0019c403d35e8d54f2921bae21ed66",
+        "strategy": "0xd16d567549a2a2a2005aeacf7fb193851603dd70"
+      },
+      "execution_strategy": "0xdda0a8d7486686d36449792617565e6c474fba3f",
+      "source_revision": 2,
+      "context_active": false
+    },
+    "controlled_pool_minimum_usd18": 1000000000000000000
+  },
+  "royalty_trace": {
+    "verified": true,
+    "reads": [
+      {
+        "asset": "0x83898d1f3c03189ff03b471dd3456908fca4423d",
+        "gas_limit": 50000,
+        "gas_used": 48116,
+        "error": null,
+        "correct_balance_returned": true
+      },
+      {
+        "asset": "0x6afc743aa4e9d98d0f53ff111996e9817d79d301",
+        "gas_limit": 50000,
+        "gas_used": 48116,
+        "error": null,
+        "correct_balance_returned": true
+      },
+      {
+        "asset": "0x3450a15dc9cbdd5c0e28cc22474d88ad7e2695a3",
+        "gas_limit": 50000,
+        "gas_used": 48116,
+        "error": null,
+        "correct_balance_returned": true
+      },
+      {
+        "asset": "0xe194aa6b80ffd71989dd196c7f84fa624b8d7d5d",
+        "gas_limit": 50000,
+        "gas_used": 48116,
+        "error": null,
+        "correct_balance_returned": true
+      },
+      {
+        "asset": "0x98e53ecddd253e5a7f845a713d7fc8853cf47ede",
+        "gas_limit": 50000,
+        "gas_used": 48116,
+        "error": null,
+        "correct_balance_returned": true
+      },
+      {
+        "asset": "0x688b74d1c43f65c2236a81bdaadf85671dfe8072",
+        "gas_limit": 50000,
+        "gas_used": 48116,
+        "error": null,
+        "correct_balance_returned": true
+      },
+      {
+        "asset": "0xe98c2e73e40560f5795a62f67e479927af573340",
+        "gas_limit": 50000,
+        "gas_used": 48116,
+        "error": null,
+        "correct_balance_returned": true
+      },
+      {
+        "asset": "0x6c1df8ffb37dc4e5059a335dda7c5f3e5be8cc2a",
+        "gas_limit": 50000,
+        "gas_used": 48116,
+        "error": null,
+        "correct_balance_returned": true
+      },
+      {
+        "asset": "0x75c00fe81f8c251ffce676f63e9db4a71a29f6da",
+        "gas_limit": 50000,
+        "gas_used": 48116,
+        "error": null,
+        "correct_balance_returned": true
+      },
+      {
+        "asset": "0x22b24e3bba3087f537d2e35f8e2f1e9a257eaa98",
+        "gas_limit": 50000,
+        "gas_used": 48116,
+        "error": null,
+        "correct_balance_returned": true
+      },
+      {
+        "asset": "0xa648d767e212563209d177fde18476765d00a9ed",
+        "gas_limit": 50000,
+        "gas_used": 48116,
+        "error": null,
+        "correct_balance_returned": true
+      },
+      {
+        "asset": "0x1e964ac317b4cad5e2178e3b98752f08a1d2b9e7",
+        "gas_limit": 50000,
+        "gas_used": 48116,
+        "error": null,
+        "correct_balance_returned": true
+      },
+      {
+        "asset": "0x284ac791c28c0576e31439c17ff143147fb3c6dc",
+        "gas_limit": 50000,
+        "gas_used": 48116,
+        "error": null,
+        "correct_balance_returned": true
+      },
+      {
+        "asset": "0xeb622937951742b95b9b6a5db4a00ae21bd36aae",
+        "gas_limit": 50000,
+        "gas_used": 48116,
+        "error": null,
+        "correct_balance_returned": true
+      },
+      {
+        "asset": "0x09b7021faa14e506b82976a1243ce6b4b0a457c2",
+        "gas_limit": 50000,
+        "gas_used": 48116,
+        "error": null,
+        "correct_balance_returned": true
+      },
+      {
+        "asset": "0x454923520c3f91ab92b0e4b2747d3c5d55686841",
+        "gas_limit": 50000,
+        "gas_used": 48116,
+        "error": null,
+        "correct_balance_returned": true
+      }
+    ],
+    "read_total_gas": 769856,
+    "slow_reads_all_above_45k": true,
+    "allocations_to_exact_prejoin_cohort": 17,
+    "deferred_currencies": [],
+    "new_active_common_events": 1,
+    "growth_performed_no_royalty_intake": false
+  },
+  "trace_gas_used": 18221618,
+  "functional_checks_pass": true,
+  "engineering_candidate_within20m_and_full20pct": false,
+  "both_owned_nodes_stopped": true
+}

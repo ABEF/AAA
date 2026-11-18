@@ -75,7 +75,9 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
     function executionStrategy()external view returns(address){return address(balancingRouter.balanceMath());}
     /// @notice Pins balancing policy across Vault approval/reset callbacks too.
     function balanceContext(bytes32 targetPool) external view returns (bytes32) {
-        return _balanceContext(targetPool,true);
+        // Immutable child calls are bracketed by begin/end Manager proofs.
+        // External callers and Vault/token callback boundaries stay complete.
+        return _balanceContext(targetPool,!_isPositionExecutor());
     }
     function _balanceContext(bytes32 targetPool,bool checkSources) private view returns (bytes32) {
         address emergency = _emergencyBudget();
@@ -188,7 +190,8 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
     function portfolioAmounts(uint256 main)external view returns(uint256,uint256){return positionExecutor.portfolioAmounts(main);}
     function amounts(uint256 id)external view returns(uint256,uint256){return positionExecutor.amounts(id);}
     function ticks(uint256 id)external view returns(int24,int24){return positionExecutor.ticks(id);}
-    modifier onlyPositionExecutor(){if(msg.sender!=address(positionExecutor))revert Unauthorized();_;}
+    function _isPositionExecutor()private view returns(bool){return msg.sender==address(positionExecutor);}
+    modifier onlyPositionExecutor(){if(!_isPositionExecutor())revert Unauthorized();_;}
     function executionConfig(bytes32 pool,bool ops)external view onlyPositionExecutor returns(PoolConfig memory){return _config(pool,ops);}
     function executionSpot(bytes32 pool)external view onlyPositionExecutor returns(uint160){return _policySpot(pool);}
     /// @notice Normal replacement must restore active LP in single or hybrid
@@ -199,6 +202,10 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         external payable onlyModule(Ids.VAULT) nonReentrant returns(uint256 id,uint256 spent0,uint256 spent1) {
         uint8 scope=_beginPlacement(pool);
         (id,spent0,spent1)=positionExecutor.mint{value:msg.value}(pool,lower,upper,a0,a1,minL,deadline);
+        // Preserve the full final mint proof before mutable Portfolio state.
+        // Only child-local guard cleanup/return separates this from its final
+        // exact policy hash; ordinary increases reach _endPlacement directly.
+        _balanceContext(pool,true);
         _portfolioPolicy().recordApplied(id,pool);
         _endPlacement(scope);
     }

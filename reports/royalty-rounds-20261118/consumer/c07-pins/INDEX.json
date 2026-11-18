@@ -1,0 +1,50 @@
+{
+  "kind": "Historical C07 final-source consumer pins before confirmed synchronized-prefund correction",
+  "build_profile": "royalty-rounds-20261118",
+  "retained_stage": "consumer/final04",
+  "files": [
+    {
+      "source_path": "zzz_ops/factory_code_v5.py",
+      "archive": "00-factory_code_v5.py.gz",
+      "sha256": "488ff6e5fb826ce3d82fa31ded8a5db66d5fcecc101ab7c47f05eb032dd5c0d3",
+      "bytes": 6082
+    },
+    {
+      "source_path": "config/factory-code-storage-v5.json",
+      "archive": "01-factory-code-storage-v5.json.gz",
+      "sha256": "1eefba76f2a0476212f334eaede1083f769eac17ba10b102a44057b44d4d1b84",
+      "bytes": 12580
+    },
+    {
+      "source_path": "config/production.example.json",
+      "archive": "02-production.example.json.gz",
+      "sha256": "2785c3e6fae2d4a1ffa0429abb552f4c707f0d170d99e1e854ee3783270dbf53",
+      "bytes": 42396
+    },
+    {
+      "source_path": "reports/royalty-rounds-20261118/FINAL_PAYLOAD5.json",
+      "archive": "03-FINAL_PAYLOAD5.json.gz",
+      "sha256": "1af56888d2c125102bc5b1d58e208e40b510da50a428bbccafcbcee3a2d672a7",
+      "bytes": 2399
+    },
+    {
+      "source_path": "reports/royalty-rounds-20261118/CONSUMER_OWNED_FILES.json",
+      "archive": "04-CONSUMER_OWNED_FILES.json.gz",
+      "sha256": "0f7f63b53a2c720c480f9c651af6cd915c9fdb83099b7beec50ee7320cc73702",
+      "bytes": 2245
+    },
+    {
+      "source_path": "reports/royalty-rounds-20261118/CONSUMER_REVIEW.md",
+      "archive": "05-CONSUMER_REVIEW.md.gz",
+      "sha256": "04ec7e1b3414a3af65848889e60bfc933e97c1b5c9c4a00534fd1a12930dd1d7",
+      "bytes": 7625
+    },
+    {
+      "source_path": "reports/royalty-rounds-20261118/refresh_payload5.py",
+      "archive": "06-refresh_payload5.py.gz",
+      "sha256": "30e96ca6e749e727f886d0f7ef50511d132cb9883acdf95d2dd7d47a7bc9b16f",
+      "bytes": 5999
+    }
+  ],
+  "production_approved": false
+}

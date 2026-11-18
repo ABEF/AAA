@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reference_sha256": "8a2d25ef76edb2f0b3afc090744a9ab7e783e53eba0fe9fbd45fc7a309a6c85a",
+  "reference_sha256": "6a62bcc093f095c726a35c4207595cb8b0c9721ecfa610f7ca278629ba47d408",
   "rows": {
     "ZZZCustodyValidation.validReservationIdentity(bytes32,uint256)": {
       "role": "R",
@@ -5549,14 +5549,6 @@
       "arguments": [],
       "value": null
     },
-    "ZZZRoyaltyRewards.syncForActivation(address)": {
-      "role": "M",
-      "short": "Isolate optional currency synchronization",
-      "arguments": [
-        "$ASSET_ADDRESS"
-      ],
-      "value": null
-    },
     "ZZZRoyaltyRewards.totalWeight()": {
       "role": "R",
       "short": "Read total weight",
@@ -8225,6 +8217,44 @@
       "short": "Read lifecycle JSON fragment",
       "arguments": [
         "$ACTUAL_NFT_ID"
+      ],
+      "value": null
+    },
+    "ZZZProtocolPolicy.royaltyBalanceGas()": {
+      "role": "R",
+      "short": "Read activation balance gas",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZProtocolPolicy.setRoyaltyBalanceGas(uint32,bytes32)": {
+      "role": "G",
+      "short": "Limit activation balance reads",
+      "arguments": [
+        50000,
+        "$REVIEW_HASH"
+      ],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.ROYALTY_ALLOCATION_VERSION()": {
+      "role": "R",
+      "short": "Read royalty allocation version",
+      "arguments": [],
+      "value": null
+    },
+    "ZZZRoyaltyRewards.syncForActivation(address,uint256)": {
+      "role": "M",
+      "short": "Isolate optional currency synchronization",
+      "arguments": [
+        "$ASSET_ADDRESS",
+        "$AUTHENTICATED_READ_LIMITS"
+      ],
+      "value": null
+    },
+    "ZZZActivationAssets.validateInput(address)": {
+      "role": "R",
+      "short": "Check contribution asset admission",
+      "arguments": [
+        "$CONTRIBUTION_ASSET"
       ],
       "value": null
     }

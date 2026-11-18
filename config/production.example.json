@@ -5,7 +5,7 @@
   "routing_version": 3,
   "custody_architecture": "collective-holder-return-v4",
   "_notes": [
-    "Fresh release explicitly selects factory_payload_version4 with reviewed source-owned royalty payload4. Omission or explicit3 retains exact historical payload3; the prior unconfigured LP3 template is preserved in production.schema17.payload3.example.json. This source-only template sets no deployed address, observation, qualification, budget or operating approval.",
+    "Fresh release explicitly selects factory_payload_version5 with reviewed source-owned royalty payload5. Omission or explicit3 retains exact historical payload3; the prior unconfigured LP3 template is preserved in production.schema17.payload3.example.json. This source-only template sets no deployed address, observation, qualification, budget or operating approval.",
     "Fresh execution-price1/LP-routing3 uses captured original ETH/ZZZ valuation and exact own-swap market-state proofs. The prior exact schema17/LP2 template remains in production.schema17.lp2.example.json. No address/feed/runtime observation is configured or approved by this template;12M default and all financial guards remain.",
     "Fresh schema17/accounting7/LP1/custody5/direct Entry3/royalty4/canonicalV10/mint2.20 callable helpers plus2 inert data children. Exact previous schema16 template preserved in production.schema16.example.json for explicit historical inspection.",
     "Factory code-data format2:3-byte0x5f5ffd revert prefix, source-derived exact lengths/hashes and ordered whole-payload reconstruction. Data-child addresses remain null until independently reviewed actual deployment; source pins are not observations or approval.",
@@ -16,7 +16,8 @@
     "Residual reinvestment1 is a paused governance-only operation that closes the residual and increases the unchanged main. It is not an automated keeper action, accounting upgrade, service rollout or journal relabel.",
     "Actual current roles, addresses, providers, source hashes/evidence, services and target gas are unset wherever unqualified. Public signing remains disabled. OpenSea primary drop and independent/operating approval stay open. No deployment or journal relabel is authorized.",
     "Exact LP whole-unit trees replace index/fraction accounting. Current source consumers require explicit7 and LP-allocation1; checkpoint1 is not supported on7 and complete bounded raw history is required. No old runtime, source8 website, journal or snapshot is relabeled.",
-    "Mint source2 uses one reviewed SeaDrop V1, phased20 free team/500 same-price allowlist/public remainder, AL1 original recipient, unusedAL rolls to public; unusedTEAM stays reserved. Times, actual platform fees, fee recipient, payer permissions, public lifetime wallet limit and batch/gas acceptance remain unselected/unqualified. No source-only result approves a primary drop or deployment."
+    "Mint source2 uses one reviewed SeaDrop V1, phased20 free team/500 same-price allowlist/public remainder, AL1 original recipient, unusedAL rolls to public; unusedTEAM stays reserved. Times, actual platform fees, fee recipient, payer permissions, public lifetime wallet limit and batch/gas acceptance remain unselected/unqualified. No source-only result approves a primary drop or deployment.",
+    "Payload5 uses constant-cost exact royalty rounds and a separate reviewed ERC20 balance-call cap. Omission/3 and explicit4 retain historical bytes; production.schema17.payload4.example.json is byte-identical to the prior fresh template. royalty_read_policy fingerprint is computed offline from actual policy/cap/gas revision, not a new on-chain getter. Null cap/observations remain unverified; no gas policy, address, selected currency, service or release is approved."
   ],
   "release_commit": null,
   "canonical_chain_id": 4663,
@@ -315,7 +316,8 @@
             "ACTIVATION_WINDOW": 3600,
             "assetCapacity": 16,
             "mintEnd": null,
-            "mintEndRevision": null
+            "mintEndRevision": null,
+            "ROYALTY_ALLOCATION_VERSION": 2
           }
         },
         "metadata_renderer": {
@@ -352,13 +354,13 @@
           "observed_bindings": null,
           "bindings": {
             "controller": null,
-            "royaltyCodeHash": "0xb72393fbf136d2d75526d655fcb8c51c77de65b18d68a6084072b6dc436d88b5",
+            "royaltyCodeHash": "0x7005da5d4714523f67459f0e7e9cbf5b8ac2612aafc1e84d5fb683b3d3bba44b",
             "CODE_STORAGE_VERSION": 2,
-            "creationCodeLength": 25549,
+            "creationCodeLength": 25543,
             "part0": null,
             "part1": null,
-            "part0CodeHash": "0x12ddd1d75098090d9333a350985fbbf5d84888952b9fab75f6fe04986759d9a7",
-            "part1CodeHash": "0x1a6575e4414a0b548abcb88640f49e8809707551d65f0da5fbac1039eeb1ba2d"
+            "part0CodeHash": "0x119080e5f9afb9873cd7b9bbd9251addfd902706a40ee971dfbd2b77bc2b4c60",
+            "part1CodeHash": "0x2833f22d792c0e0b073a6e17a40a254ad0120697243ef7d26545c72c392685d0"
           }
         },
         "lp_converter": {
@@ -518,7 +520,8 @@
           "immutable": true,
           "bindings": {
             "access": null,
-            "PROTOCOL_POLICY_VERSION": 1
+            "PROTOCOL_POLICY_VERSION": 1,
+            "royaltyBalanceGas": null
           },
           "observed_bindings": null,
           "review_evidence": null
@@ -1082,11 +1085,11 @@
         "observed": null,
         "review_evidence": null
       },
-      "factory_payload_version": 4,
+      "factory_payload_version": 5,
       "factory_code": {
         "code_storage_version": 2,
-        "creation_code_length": 25549,
-        "creation_code_hash": "0xb72393fbf136d2d75526d655fcb8c51c77de65b18d68a6084072b6dc436d88b5",
+        "creation_code_length": 25543,
+        "creation_code_hash": "0x7005da5d4714523f67459f0e7e9cbf5b8ac2612aafc1e84d5fb683b3d3bba44b",
         "observed_creation_code_length": null,
         "observed_creation_code_hash": null,
         "review_evidence": null,
@@ -1096,7 +1099,7 @@
             "address": null,
             "data_length": 24573,
             "runtime_length": 24576,
-            "runtime_hash": "0x12ddd1d75098090d9333a350985fbbf5d84888952b9fab75f6fe04986759d9a7",
+            "runtime_hash": "0x119080e5f9afb9873cd7b9bbd9251addfd902706a40ee971dfbd2b77bc2b4c60",
             "observed_data_length": null,
             "observed_runtime_length": null,
             "observed_runtime_hash": null,
@@ -1105,9 +1108,9 @@
           {
             "index": 1,
             "address": null,
-            "data_length": 976,
-            "runtime_length": 979,
-            "runtime_hash": "0x1a6575e4414a0b548abcb88640f49e8809707551d65f0da5fbac1039eeb1ba2d",
+            "data_length": 970,
+            "runtime_length": 973,
+            "runtime_hash": "0x2833f22d792c0e0b073a6e17a40a254ad0120697243ef7d26545c72c392685d0",
             "observed_data_length": null,
             "observed_runtime_length": null,
             "observed_runtime_hash": null,
@@ -1148,6 +1151,16 @@
         "fee_qualification_evidence": null,
         "operating_evidence": null,
         "manifest_review_evidence": null
+      },
+      "royalty_read_policy": {
+        "version": 1,
+        "policy": null,
+        "balance_gas": null,
+        "gas_revision": null,
+        "fingerprint": null,
+        "fingerprint_scope": "computed_offline_policy_cap_and_gas_revision_v1",
+        "observed": null,
+        "review_evidence": null
       }
     }
   ],

@@ -1,0 +1,26 @@
+{
+  "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\royalty-rounds-20261118\\candidate\\COMMENT_EDITS.json",
+  "changes": [
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "old": "    /// can materialize its initial index. This does not enroll late activations.",
+      "new": "    /// can materialize its opening allocation. This does not enroll late activations."
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "old": "    /// mutating the tree or projecting late receipts into a frozen snapshot.",
+      "new": "    /// mutating allocation state or projecting late receipts into a frozen snapshot."
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "old": "        // Frozen ticket rights flatten in bounded VIEW rows. The source tree",
+      "new": "        // Frozen royalty rights flatten in bounded VIEW rows. The source round state"
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "old": "        // remains intact for abort; the successor starts with an empty tree.",
+      "new": "        // remains intact for abort; the successor starts with fresh round books."
+    }
+  ],
+  "production_instructions_or_logic_changed": false
+}

@@ -1,0 +1,180 @@
+{
+  "current": "build/final",
+  "stages": [
+    {
+      "stage": "build\\actual01",
+      "kind": "actual_closed_normal_build",
+      "result_sha256": "2e9d2939c8393443e54a6b33e9d3b9ec97509dcf175bad3e281da541313fa1ef",
+      "size_gate_pass": true,
+      "reported_runtime": null,
+      "errors": [],
+      "current_admitted_source": false,
+      "admitted_at_its_recorded_stage": true
+    },
+    {
+      "stage": "build\\proposed01",
+      "kind": "proposed_closed_normal_build",
+      "result_sha256": "39a33e3d1fb1a62c72b29e149c58fb3cd631030eaf35ddbec7b6274234f91e11",
+      "size_gate_pass": false,
+      "reported_runtime": null,
+      "errors": [
+        {
+          "component": "general",
+          "errorCode": "6272",
+          "formattedMessage": "ParserError: Cannot assign to builtin function \"balance\".\n   --> src/ZZZRoyaltyRewards.sol:269:20:\n    |\n269 |             balance:=mload(ptr)\n    |                    ^^\n\n",
+          "message": "Cannot assign to builtin function \"balance\".",
+          "severity": "error",
+          "sourceLocation": {
+            "end": 14108,
+            "file": "src/ZZZRoyaltyRewards.sol",
+            "start": 14106
+          },
+          "type": "ParserError"
+        }
+      ],
+      "current_admitted_source": false
+    },
+    {
+      "stage": "build\\proposed02",
+      "kind": "proposed_closed_normal_build",
+      "result_sha256": "4d0a8cc351187b21eebb86a4c0defcaaa95738c894a4a99ed2c03d10772bb2e6",
+      "size_gate_pass": false,
+      "reported_runtime": null,
+      "errors": [],
+      "current_admitted_source": false
+    },
+    {
+      "stage": "build\\proposed03",
+      "kind": "proposed_closed_normal_build",
+      "result_sha256": "a2e653fd2013c3bc4e0b0ec232c6d35b3025475f23c367a9a1d1ce165ec2fc4d",
+      "size_gate_pass": false,
+      "reported_runtime": null,
+      "errors": [],
+      "current_admitted_source": false
+    },
+    {
+      "stage": "build\\proposed04",
+      "kind": "proposed_closed_normal_build",
+      "result_sha256": "15590ff7e6fc02711728a1cb57609e7b9f0c9287f3361f82a6ec97c0d0cdd890",
+      "size_gate_pass": true,
+      "reported_runtime": null,
+      "errors": [],
+      "current_admitted_source": false
+    },
+    {
+      "stage": "size\\array06",
+      "kind": "one-object size probe only",
+      "result_sha256": "8df6a9e7b05f60345ffe861c1c4a827ff8e7325af283905f955c520a7739d29d",
+      "size_gate_pass": null,
+      "reported_runtime": 24657,
+      "errors": [],
+      "current_admitted_source": false
+    },
+    {
+      "stage": "size\\array07",
+      "kind": "one-object size probe only",
+      "result_sha256": "3b5a1dfcd516c567007e3a5aa606afbea14c3f75d72265a60c3ae0d4c9d2030a",
+      "size_gate_pass": null,
+      "reported_runtime": 24571,
+      "errors": [],
+      "current_admitted_source": false
+    },
+    {
+      "stage": "size\\packed04",
+      "kind": "one-object size probe only",
+      "result_sha256": "269f27d891674eb71b13acf7eebeef4d65a3cd49874872ff5edcbc93959522c8",
+      "size_gate_pass": null,
+      "reported_runtime": 25146,
+      "errors": [],
+      "current_admitted_source": false
+    },
+    {
+      "stage": "size\\shared-step05",
+      "kind": "one-object size probe only",
+      "result_sha256": "8bd4797b0a00fd6f481054c8b0666bce298ae5524d80bf5e30a67144d98da6f5",
+      "size_gate_pass": null,
+      "reported_runtime": 25020,
+      "errors": [],
+      "current_admitted_source": false
+    },
+    {
+      "stage": "manager/probe01",
+      "kind": "one-object size probe only",
+      "result_sha256": "0f999d66f25f874ac8ca109221e37b1c6bbf582875c5ff75c8f9fb8cbb84088f",
+      "reported_runtime": 24598,
+      "reported_creation": 48313,
+      "runtime_margin": -22,
+      "initcode_margin": null,
+      "current_admitted_source": false
+    },
+    {
+      "stage": "manager/probe02",
+      "kind": "one-object size probe only",
+      "result_sha256": "4847be49b595a4f18be7f6c63a88394b1a3e5f3f548f9193544a88b4268d4fe7",
+      "reported_runtime": 24459,
+      "reported_creation": 48146,
+      "runtime_margin": 117,
+      "initcode_margin": null,
+      "current_admitted_source": false
+    },
+    {
+      "stage": "pricing/probe01",
+      "kind": "one-object size probe only",
+      "result_sha256": "b821c0c3a2f2651fd1a547b0fed611610d167940b59034d84f36be5f7e391636",
+      "reported_runtime": 24573,
+      "reported_creation": 49023,
+      "runtime_margin": 3,
+      "initcode_margin": 65,
+      "current_admitted_source": false
+    },
+    {
+      "stage": "C06",
+      "kind": "one-object size probe only",
+      "result_sha256": "85457e1a3a16a0192a6083da9e661c7957a7cccc679358882aa2b196c561c1be",
+      "reported_runtime": 24583,
+      "reported_creation": 25554,
+      "runtime_margin": -7,
+      "current_admitted_source": false
+    },
+    {
+      "stage": "C07",
+      "kind": "one-object size probe only",
+      "result_sha256": "66ce92e4d256f762f1ed1944b14cc1865443a68bf85118d0a1d514780a97338a",
+      "reported_runtime": 24575,
+      "reported_creation": 25546,
+      "runtime_margin": 1,
+      "current_admitted_source": false
+    },
+    {
+      "stage": "build/final01",
+      "published": "build/c07",
+      "kind": "actual_closed_normal_build",
+      "result_sha256": "114bb9d3efd448ce2838ecc0c0735b955de5b354065cbbc709e406f0f0007950",
+      "size_gate_pass": true,
+      "strict_importer_pass": true,
+      "current_admitted_source": false,
+      "all_earlier_stage_results_preserved": true,
+      "historical_original_published_path": "build/final",
+      "admitted_at_its_recorded_stage": true
+    },
+    {
+      "stage": "build/final02",
+      "published": "build/final",
+      "kind": "actual_closed_normal_build",
+      "source_stage": "C08 canonical-prefund correction",
+      "result_sha256": "12d585f6a1ccd537709e8f23f43ea90c4cef32198ddc82bfd0c63701b1967992",
+      "size_gate_pass": true,
+      "strict_importer_pass": true,
+      "current_admitted_source": true,
+      "all_earlier_stage_results_preserved": true
+    }
+  ],
+  "probe_not_full_normal": true,
+  "source_adopted_after_final8_prototype_and_proposed04_pass": true,
+  "comments_only_delta_explicit": true,
+  "all_earlier_stage_results_retained": true,
+  "old_tests_rerun": 0,
+  "production_approved": false,
+  "last_admitted_phase1_build": "build/current",
+  "current_source_pending_combined_build": false
+}

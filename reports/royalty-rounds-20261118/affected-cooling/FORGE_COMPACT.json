@@ -1,0 +1,23 @@
+{
+  "test/RoyaltyAudit20261105.t.sol:RoyaltyAudit20261105Test": {
+    "test_results": {
+      "testGasWorstRotatedColdFullSyncFitsGovernedOptionalBudget()": {
+        "status": "Success",
+        "reason": null,
+        "decoded_logs": [
+          "full royalty cooled worst rotated sync gas: 124096"
+        ],
+        "duration": "2s 479ms 7\u00b5s 400ns"
+      },
+      "testHealthyOptionalCurrencyIsNotDeferredByExactAllocatorDefaultBudget()": {
+        "status": "Success",
+        "reason": null,
+        "decoded_logs": [
+          "full activation including cooled worst optional sync gas: 329257"
+        ],
+        "duration": "2s 513ms 425\u00b5s 600ns"
+      }
+    },
+    "warnings": []
+  }
+}

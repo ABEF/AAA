@@ -4,6 +4,7 @@ Only these new methods are selected. No provider, signing, deployment or release
 approval is inferred from source-owned bytes or a coherent unsigned inventory.
 """
 import copy
+import gzip
 import hashlib
 import json
 from pathlib import Path
@@ -14,20 +15,32 @@ from zzz_ops import factory_code_v3 as F3,factory_code_v4 as F4
 from zzz_ops import production_v14 as OLD,production_v15 as P
 from zzz_ops import production_observer_v15 as O
 from zzz_ops import deployment_plan as D,preseal_plan as PRESEAL
-from zzz_ops.deployment_plan import Artifacts
 
 ROOT=Path(__file__).resolve().parents[1]
 BLOCK={'blockHash':'0x'+'ab'*32,'requireCanonical':True}
 
 
 def addr(n):return '0x'+f'{n:040x}'
-def config():return json.loads((ROOT/'config/production.example.json').read_text())
+def config():return json.loads((ROOT/'config/production.schema17.payload4.example.json').read_bytes())
 def historical():return json.loads((ROOT/'config/production.schema17.payload3.example.json').read_text())
 
 
 def compiled():
-    """Actual accepted compiler artifact, never guessed/mutated creation bytes."""
-    return Artifacts(ROOT).output
+    """Explicit immutable historical F4 artifact; never today's deployment input.
+
+    Current production source may legitimately differ. Authenticate every stored
+    file and its complete archived input closure without weakening Artifacts'
+    required current-filesystem check for real preparation.
+    """
+    spec=D.trusted_build('q03-allocation-20261117');raw={}
+    for name,pin in spec['files'].items():
+        raw[name]=(ROOT/spec['directory']/name).read_bytes()
+        if hashlib.sha256(raw[name]).hexdigest()!=pin:raise ValueError('Historical F4 accepted artifact changed')
+    source=json.loads(gzip.decompress(raw['compiler-input.json.gz']))
+    if len(source['sources'])!=100 or {p:hashlib.sha256(v['content'].encode()).hexdigest()
+            for p,v in source['sources'].items()}!=dict(F4.SPEC.source_sha256):
+        raise ValueError('Historical F4 complete input differs from source-owned payload')
+    return json.loads(gzip.decompress(raw['compiler-output.json.gz']))
 
 
 def runtime_parts():
@@ -109,7 +122,7 @@ class FactoryPayload4Tests(unittest.TestCase):
         self.assertEqual({i['code'] for i in gate.issues},{'binding.intended','binding.observed'})
 
     def test_bool_unknown_and_mixed_payloads_reject_before_any_observer_read(self):
-        for value in (None,True,False,'4',4.0,0,2,5,{},[]):
+        for value in (None,True,False,'4',4.0,0,2,6,{},[]):
             chain=config()['chains'][0];chain['factory_payload_version']=value;rpc=Mock()
             with self.subTest(value=repr(value)):
                 with self.assertRaises(ValueError):P.precheck_chain(chain)

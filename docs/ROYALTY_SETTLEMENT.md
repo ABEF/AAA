@@ -1,6 +1,6 @@
 # Marketplace royalty settlement: original currencies
 
-The [launch-workload review](../reports/launch-workload-20261117/REVIEW.md) separates capacity16 from actual admission, expensive allocation phases, optional full-budget faults and mixed claims. Some complete activation states exceed the unchanged20M/full20% policy. Existing standalone sync can move healthy pending allocation into a separately reviewed operator transaction; no royalty conversion, new worker, automatic gas increase or entitlement change is introduced.
+Current [allocation2](../reports/royalty-rounds-20261118/REVIEW.md) uses constant-size receipt credit, bounded enrollment lookup and separate50,000gas activation-only ERC20 balance reads; the complete-sync allowance remains1M. Original-currency entitlements, opening/fault rules and20M/full20% remain. Fresh payload5/runtime/read-policy pins are required. The earlier [launch-workload review](../reports/launch-workload-20261117/REVIEW.md) retains its own expensive historical tree/fault scope; its failures are not new round-book measurements. Standalone synchronization remains optional, without royalty conversion or a required keeper worker.
 
 Fresh **royalty settlement4/recovery2**, accounting7/LP-allocation1/custody5/Entry3,
 canonicalV10 and schema17. Historical accounting6/V8/schema15 remains separately pinned.
@@ -62,8 +62,7 @@ balances and the deferred/recovered events. Anyone may call healthy `sync`;
 operators can do so after a currency recovers. No conversion worker is required.
 
 Fresh royalties have no scaled fraction/index reserve: all allocated raw units
-are assigned to eligible tickets. Fresh7 LP rewards use separate exact-unit
-trees; historical royalty/LP fractions retain their old rules. Taxed/rebasing/blacklisted/unreadable tokens are
+are assigned to eligible tickets. Fresh7 LP rewards use separate exact-unit trees; fresh royalty allocation2 uses round books; historical royalty/LP fractions retain their old rules. Taxed/rebasing/blacklisted/unreadable tokens are
 not universally supported. Review conventional exact-transfer token behavior.
 
 ## Operator procedure

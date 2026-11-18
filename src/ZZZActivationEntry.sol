@@ -115,11 +115,11 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
         uint256 sourceBaseline = ExactAsset.balance(source,address(this)) - (source == address(0) ? msg.value : 0);
         // Freeze source + LP-pair prices BEFORE token pulls or approvals can
         // call external code. Both bounds come from two sources.
-        uint256 grossUSD = activationAssets.value(source, request.amountIn);
+        activationAssets.validateInput(source);
+        uint256 grossUSD = _pricing().beginEntryReviewed(request.nftId,request.poolId,source,request.amountIn,maximumLossBps,
+            expectedContributionPolicy);
         if (grossUSD == 0 || grossUSD < (request.increase?entryTerms.minGrowthUSD:entryTerms.minActivationUSD))
             revert InvalidAmount();
-        if (_pricing().beginEntryReviewed(request.nftId,request.poolId,source,request.amountIn,maximumLossBps,
-            expectedContributionPolicy) != grossUSD) revert InvalidState();
         if (source != address(0)) ExactToken.pull(source, msg.sender, request.amountIn);
         if (_owner(request.nftId) != msg.sender) revert Unauthorized();
         uint256 amount0 = source == pool.key.currency0 ? request.amountIn : 0;

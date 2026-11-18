@@ -1,0 +1,23 @@
+{
+  "scope": "two affected methods only; original full JSON remains outside Git",
+  "raw_sha256": "bdbb027afc6916c7edd6759d2cfec8bbbd8054b6b6a696bea60cab1c3ba88212",
+  "raw_bytes": 308325630,
+  "compiler_artifact_sha256": "d7f85639a9a6bc6188de2f7714b8ae69dcecdea25b455c207590362bcd735fc9",
+  "source_change": {
+    "file": "test\\RoyaltyAudit20261105.t.sol",
+    "before_sha256": "02f3685e792f44a62b18cd26d37710f355e0ec0a3b74e4c10f5b0c2d3d766320",
+    "after_sha256": "06720e364b6a53cb8766bdf69d6f1b080c8bfa426df165cbfc25bb23fd059e8d",
+    "changed_scope": "private _coolLedger only; selected/unrelated method bodies unchanged; actual engine/helper changes justify two affected selections",
+    "methods": [
+      "testGasWorstRotatedColdFullSyncFitsGovernedOptionalBudget",
+      "testHealthyOptionalCurrencyIsNotDeferredByExactAllocatorDefaultBudget"
+    ],
+    "pinned_vm_documentation": "lib/forge-std/src/Vm.sol:cool marks slots and account cold",
+    "fullproducer_selected_dependency": false,
+    "tests_not_yet_executed": true
+  },
+  "selected_method_count": 2,
+  "new_methods": 0,
+  "unrelated_old_methods_run": 0,
+  "full_profile_qualification": false
+}

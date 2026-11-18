@@ -1,0 +1,597 @@
+{
+  "rpc_records_sha256": "2a64b89c12a0845eb80fe941b4ef3a96df63709737afe0c2fce1e0261c3ac0cc",
+  "calls": [
+    {
+      "path": [
+        20,
+        8
+      ],
+      "type": "CALL",
+      "role": "oracle",
+      "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0x4ce11f5d",
+      "known_signatures": [
+        "beginExecution(address)"
+      ],
+      "gas": 538573,
+      "exclusive_gas": 175874,
+      "error": null,
+      "parent": {
+        "path": [
+          20
+        ],
+        "role": "contribution_pricing",
+        "known_signatures": [
+          "beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        10,
+        5,
+        11
+      ],
+      "type": "STATICCALL",
+      "role": "oracle",
+      "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0x7ae3ab18",
+      "known_signatures": [
+        "validateExecution()"
+      ],
+      "gas": 245839,
+      "exclusive_gas": 90815,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          10,
+          5
+        ],
+        "role": "contribution_pricing",
+        "known_signatures": [
+          "begin(uint256,uint256,uint256,uint256,uint32)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        27,
+        3,
+        2
+      ],
+      "type": "STATICCALL",
+      "role": "oracle",
+      "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0x7ae3ab18",
+      "known_signatures": [
+        "validateExecution()"
+      ],
+      "gas": 245839,
+      "exclusive_gas": 90815,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          27,
+          3
+        ],
+        "role": "contribution_pricing",
+        "known_signatures": [
+          "contributionNav(uint256)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        38,
+        4,
+        2
+      ],
+      "type": "STATICCALL",
+      "role": "oracle",
+      "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0x7ae3ab18",
+      "known_signatures": [
+        "validateExecution()"
+      ],
+      "gas": 245839,
+      "exclusive_gas": 90815,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          38,
+          4
+        ],
+        "role": "liquidity",
+        "known_signatures": [
+          "balanceContext(bytes32)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        40,
+        11
+      ],
+      "type": "CALL",
+      "role": "oracle",
+      "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0xe7b78158",
+      "known_signatures": [
+        "beginManagerExecution(address,bytes32,bool)"
+      ],
+      "gas": 270401,
+      "exclusive_gas": 111566,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          40
+        ],
+        "role": "liquidity",
+        "known_signatures": [
+          "balance(bytes32,uint256,uint256,uint256,uint256)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        40,
+        27
+      ],
+      "type": "STATICCALL",
+      "role": "oracle",
+      "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0x7ae3ab18",
+      "known_signatures": [
+        "validateExecution()"
+      ],
+      "gas": 245839,
+      "exclusive_gas": 90815,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          40
+        ],
+        "role": "liquidity",
+        "known_signatures": [
+          "balance(bytes32,uint256,uint256,uint256,uint256)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        40,
+        42
+      ],
+      "type": "CALL",
+      "role": "oracle",
+      "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0xca9d9f15",
+      "known_signatures": [
+        "beforeSwap(address,address,bytes32,(uint160,int24,uint24,uint24,uint128))"
+      ],
+      "gas": 292370,
+      "exclusive_gas": 123923,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          40
+        ],
+        "role": "liquidity",
+        "known_signatures": [
+          "balance(bytes32,uint256,uint256,uint256,uint256)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        40,
+        43,
+        0,
+        2
+      ],
+      "type": "CALL",
+      "role": "oracle",
+      "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0x5c0736c6",
+      "known_signatures": [
+        "afterSwap()"
+      ],
+      "gas": 312623,
+      "exclusive_gas": 134044,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          40,
+          43,
+          0
+        ],
+        "role": "liquidity",
+        "known_signatures": [
+          "unlockCallback(bytes)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        40,
+        45
+      ],
+      "type": "STATICCALL",
+      "role": "oracle",
+      "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0x7ae3ab18",
+      "known_signatures": [
+        "validateExecution()"
+      ],
+      "gas": 257654,
+      "exclusive_gas": 96586,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          40
+        ],
+        "role": "liquidity",
+        "known_signatures": [
+          "balance(bytes32,uint256,uint256,uint256,uint256)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        40,
+        68
+      ],
+      "type": "CALL",
+      "role": "oracle",
+      "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0xedb9048c",
+      "known_signatures": [
+        "endManagerExecution(bool)"
+      ],
+      "gas": 278092,
+      "exclusive_gas": 114440,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          40
+        ],
+        "role": "liquidity",
+        "known_signatures": [
+          "balance(bytes32,uint256,uint256,uint256,uint256)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        42,
+        4,
+        2
+      ],
+      "type": "STATICCALL",
+      "role": "oracle",
+      "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0x7ae3ab18",
+      "known_signatures": [
+        "validateExecution()"
+      ],
+      "gas": 257654,
+      "exclusive_gas": 96586,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          42,
+          4
+        ],
+        "role": "liquidity",
+        "known_signatures": [
+          "balanceContext(bytes32)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        61,
+        3,
+        2
+      ],
+      "type": "STATICCALL",
+      "role": "oracle",
+      "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0x7ae3ab18",
+      "known_signatures": [
+        "validateExecution()"
+      ],
+      "gas": 257654,
+      "exclusive_gas": 96586,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          61,
+          3
+        ],
+        "role": "contribution_pricing",
+        "known_signatures": [
+          "contributionNav(uint256)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        67,
+        7
+      ],
+      "type": "CALL",
+      "role": "oracle",
+      "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0xe7b78158",
+      "known_signatures": [
+        "beginManagerExecution(address,bytes32,bool)"
+      ],
+      "gas": 282257,
+      "exclusive_gas": 117378,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          67
+        ],
+        "role": "liquidity",
+        "known_signatures": [
+          "increase(bytes32,uint256,uint256,uint256,uint128,uint256)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        67,
+        8,
+        6,
+        2
+      ],
+      "type": "STATICCALL",
+      "role": "oracle",
+      "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0x7ae3ab18",
+      "known_signatures": [
+        "validateExecution()"
+      ],
+      "gas": 257654,
+      "exclusive_gas": 96586,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          67,
+          8,
+          6
+        ],
+        "role": "liquidity",
+        "known_signatures": [
+          "balanceContext(bytes32)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        67,
+        8,
+        35,
+        2
+      ],
+      "type": "STATICCALL",
+      "role": "oracle",
+      "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0x7ae3ab18",
+      "known_signatures": [
+        "validateExecution()"
+      ],
+      "gas": 257654,
+      "exclusive_gas": 96586,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          67,
+          8,
+          35
+        ],
+        "role": "liquidity",
+        "known_signatures": [
+          "balanceContext(bytes32)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        67,
+        10
+      ],
+      "type": "CALL",
+      "role": "oracle",
+      "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0xedb9048c",
+      "known_signatures": [
+        "endManagerExecution(bool)"
+      ],
+      "gas": 278092,
+      "exclusive_gas": 114440,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          67
+        ],
+        "role": "liquidity",
+        "known_signatures": [
+          "increase(bytes32,uint256,uint256,uint256,uint128,uint256)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        80,
+        3,
+        2
+      ],
+      "type": "STATICCALL",
+      "role": "oracle",
+      "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0x7ae3ab18",
+      "known_signatures": [
+        "validateExecution()"
+      ],
+      "gas": 257654,
+      "exclusive_gas": 96586,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          80,
+          3
+        ],
+        "role": "contribution_pricing",
+        "known_signatures": [
+          "contributionNav(uint256)"
+        ]
+      }
+    },
+    {
+      "path": [
+        31,
+        81,
+        3,
+        5
+      ],
+      "type": "STATICCALL",
+      "role": "oracle",
+      "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0x7ae3ab18",
+      "known_signatures": [
+        "validateExecution()"
+      ],
+      "gas": 257654,
+      "exclusive_gas": 96586,
+      "error": null,
+      "parent": {
+        "path": [
+          31,
+          81,
+          3
+        ],
+        "role": "contribution_pricing",
+        "known_signatures": [
+          "finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)"
+        ]
+      }
+    },
+    {
+      "path": [
+        38,
+        11
+      ],
+      "type": "CALL",
+      "role": "oracle",
+      "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+      "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+      "selector": "0x0f8ebca6",
+      "known_signatures": [
+        "endExecution()"
+      ],
+      "gas": 268798,
+      "exclusive_gas": 106438,
+      "error": null,
+      "parent": {
+        "path": [
+          38
+        ],
+        "role": "contribution_pricing",
+        "known_signatures": [
+          "endEntry()"
+        ]
+      }
+    }
+  ],
+  "sum_by_method": {
+    "beginExecution(address)": {
+      "calls": 1,
+      "inclusive_gas": 538573,
+      "exclusive_gas": 175874
+    },
+    "validateExecution()": {
+      "calls": 11,
+      "inclusive_gas": 2786934,
+      "exclusive_gas": 1039362
+    },
+    "beginManagerExecution(address,bytes32,bool)": {
+      "calls": 2,
+      "inclusive_gas": 552658,
+      "exclusive_gas": 228944
+    },
+    "beforeSwap(address,address,bytes32,(uint160,int24,uint24,uint24,uint128))": {
+      "calls": 1,
+      "inclusive_gas": 292370,
+      "exclusive_gas": 123923
+    },
+    "afterSwap()": {
+      "calls": 1,
+      "inclusive_gas": 312623,
+      "exclusive_gas": 134044
+    },
+    "endManagerExecution(bool)": {
+      "calls": 2,
+      "inclusive_gas": 556184,
+      "exclusive_gas": 228880
+    },
+    "endExecution()": {
+      "calls": 1,
+      "inclusive_gas": 268798,
+      "exclusive_gas": 106438
+    }
+  },
+  "scope": "Nestedinclusivegasnotadditive; no replay/no proof removal implied"
+}

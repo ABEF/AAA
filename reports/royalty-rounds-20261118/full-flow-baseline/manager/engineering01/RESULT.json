@@ -1,0 +1,334 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 95.75,
+  "errors": [],
+  "compiled_source_count": 100,
+  "production_approved": false,
+  "full_normal_build": false,
+  "public_deployment": false,
+  "new_tests_executed": 0,
+  "runtime_object_byte_identical": true,
+  "runtime_size": 24459,
+  "immutable_references": {
+    "31078": [
+      {
+        "length": 32,
+        "start": 2135
+      },
+      {
+        "length": 32,
+        "start": 4256
+      },
+      {
+        "length": 32,
+        "start": 7811
+      },
+      {
+        "length": 32,
+        "start": 13809
+      },
+      {
+        "length": 32,
+        "start": 13997
+      },
+      {
+        "length": 32,
+        "start": 14913
+      },
+      {
+        "length": 32,
+        "start": 15463
+      },
+      {
+        "length": 32,
+        "start": 16061
+      },
+      {
+        "length": 32,
+        "start": 16256
+      },
+      {
+        "length": 32,
+        "start": 16872
+      },
+      {
+        "length": 32,
+        "start": 18459
+      },
+      {
+        "length": 32,
+        "start": 18990
+      },
+      {
+        "length": 32,
+        "start": 19033
+      },
+      {
+        "length": 32,
+        "start": 19124
+      },
+      {
+        "length": 32,
+        "start": 21021
+      },
+      {
+        "length": 32,
+        "start": 21416
+      },
+      {
+        "length": 32,
+        "start": 21707
+      }
+    ],
+    "31081": [
+      {
+        "length": 32,
+        "start": 3245
+      },
+      {
+        "length": 32,
+        "start": 5154
+      },
+      {
+        "length": 32,
+        "start": 5365
+      },
+      {
+        "length": 32,
+        "start": 6101
+      },
+      {
+        "length": 32,
+        "start": 6431
+      },
+      {
+        "length": 32,
+        "start": 6738
+      },
+      {
+        "length": 32,
+        "start": 6876
+      },
+      {
+        "length": 32,
+        "start": 7062
+      },
+      {
+        "length": 32,
+        "start": 7148
+      },
+      {
+        "length": 32,
+        "start": 7686
+      },
+      {
+        "length": 32,
+        "start": 10840
+      },
+      {
+        "length": 32,
+        "start": 11223
+      },
+      {
+        "length": 32,
+        "start": 11569
+      },
+      {
+        "length": 32,
+        "start": 17364
+      },
+      {
+        "length": 32,
+        "start": 17542
+      },
+      {
+        "length": 32,
+        "start": 23044
+      }
+    ],
+    "31084": [
+      {
+        "length": 32,
+        "start": 7364
+      },
+      {
+        "length": 32,
+        "start": 7506
+      },
+      {
+        "length": 32,
+        "start": 8257
+      },
+      {
+        "length": 32,
+        "start": 13341
+      },
+      {
+        "length": 32,
+        "start": 14418
+      },
+      {
+        "length": 32,
+        "start": 23220
+      },
+      {
+        "length": 32,
+        "start": 23388
+      }
+    ],
+    "31087": [
+      {
+        "length": 32,
+        "start": 1692
+      },
+      {
+        "length": 32,
+        "start": 6563
+      },
+      {
+        "length": 32,
+        "start": 20862
+      }
+    ],
+    "31090": [
+      {
+        "length": 32,
+        "start": 2922
+      },
+      {
+        "length": 32,
+        "start": 9095
+      },
+      {
+        "length": 32,
+        "start": 9205
+      },
+      {
+        "length": 32,
+        "start": 9592
+      },
+      {
+        "length": 32,
+        "start": 9714
+      },
+      {
+        "length": 32,
+        "start": 9875
+      },
+      {
+        "length": 32,
+        "start": 9942
+      },
+      {
+        "length": 32,
+        "start": 10130
+      },
+      {
+        "length": 32,
+        "start": 10304
+      },
+      {
+        "length": 32,
+        "start": 10354
+      },
+      {
+        "length": 32,
+        "start": 20429
+      },
+      {
+        "length": 32,
+        "start": 20820
+      }
+    ],
+    "31093": [
+      {
+        "length": 32,
+        "start": 784
+      }
+    ],
+    "79317": [
+      {
+        "length": 32,
+        "start": 1982
+      },
+      {
+        "length": 32,
+        "start": 3951
+      },
+      {
+        "length": 32,
+        "start": 4760
+      },
+      {
+        "length": 32,
+        "start": 4888
+      },
+      {
+        "length": 32,
+        "start": 11141
+      },
+      {
+        "length": 32,
+        "start": 11331
+      },
+      {
+        "length": 32,
+        "start": 11450
+      },
+      {
+        "length": 32,
+        "start": 15223
+      },
+      {
+        "length": 32,
+        "start": 16454
+      },
+      {
+        "length": 32,
+        "start": 16658
+      },
+      {
+        "length": 32,
+        "start": 17064
+      },
+      {
+        "length": 32,
+        "start": 17625
+      },
+      {
+        "length": 32,
+        "start": 18729
+      },
+      {
+        "length": 32,
+        "start": 21226
+      },
+      {
+        "length": 32,
+        "start": 21905
+      },
+      {
+        "length": 32,
+        "start": 22306
+      },
+      {
+        "length": 32,
+        "start": 22932
+      },
+      {
+        "length": 32,
+        "start": 23305
+      }
+    ]
+  },
+  "output_sha256": "90c5f3144fe82e9c553400f6cd10da69929045fb5e870e108ddd7aaca39d322e",
+  "immutable_names": {
+    "31078": "balancingRouter",
+    "31081": "positionExecutor",
+    "31084": "posm",
+    "31087": "stateView",
+    "31090": "poolManager",
+    "31093": "permit2",
+    "79317": "access"
+  }
+}

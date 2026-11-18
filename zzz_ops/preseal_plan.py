@@ -21,7 +21,8 @@ STEPS=('dual_usd','fixed_zzz','lp_asset','migration_zzz','execution_sources',
 CHILDREN=tuple(row[0] for row in D.INTERNAL)
 PRODUCER_FILES=('zzz_ops/preseal_plan.py','scripts/prepare-preseal.py',
                 'zzz_ops/deployment_plan.py','zzz_ops/abi.py','zzz_ops/opensea_drop.py',
-                'zzz_ops/production_v2.py')
+                'zzz_ops/production_v2.py','zzz_ops/royalty_read_policy.py')
+BALANCE_POLICY={'balanceGas':'uint32','reviewHash':'hash'}
 NATIVE_HASH='0x'+D.keccak256(b'ZZZ_NATIVE_ETH_V1').hex()
 SELECTED_POOL='0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b'
 INITIAL_MINT_PRICE='50000000000000000'
@@ -158,7 +159,8 @@ def _pool(key,zzz,*,principal):
 
 
 def validate(raw):
-    D._keys(raw,('schema','profile','chain_id','constructor_input','bootstrap','child_addresses','settings'))
+    keys=('schema','profile','chain_id','constructor_input','bootstrap','child_addresses','settings')
+    D._keys(raw,keys+('royalty_balance_policy',) if isinstance(raw,dict) and 'royalty_balance_policy' in raw else keys)
     if type(raw['schema'])is not int or raw['schema']!=SCHEMA or raw['profile']!=PROFILE or raw['chain_id']!='4663':D.fail('preseal_profile')
     result=example();result['constructor_input']=D.validate(raw['constructor_input'])
     result['bootstrap']=None if raw['bootstrap'] is None else D._address(raw['bootstrap'])
@@ -166,6 +168,10 @@ def validate(raw):
     for name,value in raw['child_addresses'].items():
         result['child_addresses'][name]=None if value is None else D._address(value)
     for name,spec in SETTINGS.items():result['settings'][name]=_normal(raw['settings'][name],spec)
+    if 'royalty_balance_policy' in raw:
+        result['royalty_balance_policy']=_normal(raw['royalty_balance_policy'],BALANCE_POLICY)
+        if result['royalty_balance_policy'] is not None:
+            _bounds(result['royalty_balance_policy']['balanceGas'],10000,1000000,'preseal_royalty_balance_gas')
     c=result['constructor_input'];s=result['settings'];zzz=c['inputs']['zzz'];native_pins=_native_pins()
     top=set(c['planned_addresses'].values())-{None};children=list(result['child_addresses'].values());used=[v for v in children if v is not None]
     if len(used)!=len(set(used)) or set(used)&(top|set(D.NATIVE.values())|{D.SEADROP}):D.fail('preseal_child_collision')
@@ -343,7 +349,7 @@ def _drop(value,constructor,root):
     return artifact,raw
 
 
-def _seal_boundary_review(construction,assigned):
+def _seal_boundary_review(construction,assigned,*,royalty_balance_supported=False):
     """Expose irreversible prerequisites; offline assignments never prove them."""
     constructors=[]
     for row in construction['instances']:
@@ -374,6 +380,20 @@ def _seal_boundary_review(construction,assigned):
         ('royalty_workload','royalty_rewards',['assetCapacity()','MAX_ERC20_ASSETS()','MAX_ASSETS()','assetCount()','assets(uint256)'],'Enumerate the actual admitted currencies, with native ETH at index0. The initial capacity is16 ERC20 currencies plus native ETH, not17 already-admitted assets; reviewed capacity can expand to64 ERC20s plus ETH. Capacity alone is not aggregate gas qualification. Measure healthy, pending-receipt and gas-consuming fault workloads before currency admission or any capacity increase, preserving exact entitlements.'),
         ('gas_policy','protocol_policy',['gasPolicy()','payoutGas()','sourceCallGas()','royaltySyncGas()','gasFingerprint()'],'Verify actual per-call gas settings and their fingerprint. A per-currency sync budget is not a whole-transaction guarantee. Qualify aggregate work, exact calls and estimates, full20% activation-policy2 or25% maintenance headroom, selected service budgets, actual block bounds and complete fees. No gas limit, capacity, setting or operating approval is adopted by this checklist.'),
     ]
+    if royalty_balance_supported:
+        checks.append(('royalty_allocation_profile','royalty_rewards',
+            ['ROYALTY_ALLOCATION_VERSION()','ROYALTY_SETTLEMENT_VERSION()'],
+            'Verify exact fresh payload5/runtime identity and allocation version2; original-currency '
+            'settlement remains4. Old tree-backed payload3/4 must not be relabelled as round counters. '
+            'Neither the scalar version nor an internal review supplies release qualification.'))
+        checks.append(('royalty_balance_read_policy','protocol_policy',
+            ['royaltyBalanceGas()','gasPolicy()','gasFingerprint()'],
+            'Read the separate activation-only ERC20 balance-call allowance in raw gas units (10000..1000000). '
+            'The fresh source default50000 is not an observed or qualified setting. The legacy gas tuple '
+            'and full royaltySyncGas allowance remain separate; ordinary sync/claim/canonical reads are not '
+            'limited by this activation cap. A cap change increments its gas revision. '
+            'Qualify exact selected currencies, delayed receipts and fault workloads within the unchanged '
+            '20M contribution budget with full20% headroom. This check adopts no cap or readiness.'))
     bindings={'seadrop_binding':assigned.get('seadrop_mint'),'lp_converter_binding':assigned.get('lp_converter')}
     return {
         'schema':1,'scope':'Selected fresh OpenSea launch; not a generic seal validator or importer preparation.',
@@ -398,6 +418,10 @@ def prepare(raw,root=D.ROOT,build_profile=D.DEFAULT_BUILD_PROFILE):
     value=validate(copy.deepcopy(raw));producer=producer_sources()
     construction=D.prepare(value['constructor_input'],root=root,build_profile=build_profile)
     artifacts=D.Artifacts(root,build_profile);abi=_ABI(artifacts)
+    _,policy_object,_=artifacts.contract('ZZZProtocolPolicy')
+    balance_supported=any(item.get('type')=='function' and item.get('name')=='setRoyaltyBalanceGas'
+                          for item in policy_object['abi'])
+    if 'royalty_balance_policy' in value and not balance_supported:D.fail('preseal_royalty_balance_profile_required')
     registry=artifacts.input['sources']['src/ZZZPoolRegistry.sol']['content'].lower()
     symbols={'pool_manager':'core','position_manager':'posm','state_view':'state','permit2':'permit2','zzz':'zzz'}
     for role,(address,pin) in NATIVE_DEPENDENCIES.items():
@@ -486,6 +510,26 @@ def prepare(raw,root=D.ROOT,build_profile=D.DEFAULT_BUILD_PROFILE):
             'calls':planned,'live_preconditions_verified':False,
             'construction_assumptions':specs[step]['requires']})
     complete=len(completed)==len(STEPS)
+    optional_balance={'requested':False,'status':'not_requested','inputs_prepared':False,'calls':[],
+        'live_preconditions_verified':False,'setting_adopted':False}
+    if 'royalty_balance_policy' in value:
+        setting=value['royalty_balance_policy'];missing=_missing(setting,'royalty_balance_policy')
+        if bootstrap is None:missing.append('bootstrap')
+        if not construction['input_assignments_complete']:
+            missing+=['constructor_input.'+x for x in construction['missing_inputs']]
+        if assigned.get('protocol_policy') is None:missing.append('addresses.protocol_policy')
+        missing=sorted(set(missing));prepared=not missing
+        function=abi.function('ZZZProtocolPolicy','setRoyaltyBalanceGas')[1]
+        call={'target_role':'protocol_policy','contract':'ZZZProtocolPolicy','function':'setRoyaltyBalanceGas',
+            'signature':function,'to':assigned.get('protocol_policy'),'from':bootstrap,'value':'0',
+            'calldata':None,'arguments':None,'authority_verified':False,
+            'conditional_caller':'actual Access.bootstrap() before sealing; no caller/control proof'}
+        if prepared:
+            call['signature'],call['calldata'],call['arguments']=abi.encode('ZZZProtocolPolicy',
+                'setRoyaltyBalanceGas',[setting['balanceGas'],setting['reviewHash']])
+        optional_balance.update(requested=True,status='unsigned_inputs_complete_pending_live_verification' if prepared else
+            'blocked_missing_inputs',inputs_prepared=prepared,calls=[call],missing_inputs=missing)
+        all_missing+=missing;complete=complete and prepared
     stopped=[]
     if s['routes'] is not None:
         if s['routes']['execution_pool_ids']==[]:stopped.append('Empty execution pool list disables ordinary balancing swaps.')
@@ -511,7 +555,8 @@ def prepare(raw,root=D.ROOT,build_profile=D.DEFAULT_BUILD_PROFILE):
             'principal_pools_per_review':4,'conversion_routes_per_review':4,'execution_sources_per_review':2,
             'array_encoding_per_call':16,'bounds_scope':'Local review workload bounds, not lifetime on-chain pool/route capacity.'},
         'bootstrap':bootstrap,'settings_scope':'Fresh unsealed zero-mint graph only; no resume or adoption of existing configuration.',
-        'seal_boundary_review':_seal_boundary_review(construction,assigned),
+        'seal_boundary_review':_seal_boundary_review(construction,assigned,royalty_balance_supported=balance_supported),
+        'optional_royalty_balance_policy':optional_balance,
         'steps':rows,'missing_inputs':sorted(set(all_missing)),'abi_functions':abi.used,
         'explicit_operating_stops':stopped,
         'pool_ids':list(pool_ids),'seadrop_manifest':None if drop is None else {

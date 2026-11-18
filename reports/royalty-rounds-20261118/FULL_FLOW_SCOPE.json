@@ -1,0 +1,35 @@
+{
+  "baseline_fixture_sha256": "1806c0404caeafe30b7568901cac7a60711b4f466d0729763d4e199dbfa48460",
+  "new_fixture_sha256": "f648f3f21f2d3fbf80795211ec2afce7efca1a06d1bc43fc707188c389643e57",
+  "actual_prior_entries": 999,
+  "minted_stock": [
+    600,
+    300,
+    100
+  ],
+  "new_methods": 1,
+  "new_export_cases": 13,
+  "budget": 20000000,
+  "padding_bps": 2000,
+  "fault_default_read_cap": 50000,
+  "all_fault_currencies": 16,
+  "synthetic_ledger_population": false,
+  "external_dependencies_controlled": true,
+  "unchanged_old_tests_executed": 0,
+  "production_approved": false,
+  "slow_successful_reads_case": {
+    "currencies": 16,
+    "read_cap": 50000,
+    "rough_read_burn": 48000,
+    "returns": "correct balance with exact32bytes",
+    "trace_cost_verification_required": true
+  },
+  "currency_admission_after_actual_activation": 8,
+  "subsequent_real_incumbent_entries_with_all_currencies": 991,
+  "expected_per_erc20_enrollment_ends_before_entrant": 992,
+  "entrant_opens_new_packed_array_word": true,
+  "native_currency_present_since_first_activation": true,
+  "prior_fixture_sha256": "123492acdbf7e2696f8a8bdca6580a6ccde7267f7cba863e851d211f251e0fdf",
+  "fresh_final_source_requires_new_seed": true,
+  "first_allocation_slow_composites_executed_only_with_final_source": true
+}

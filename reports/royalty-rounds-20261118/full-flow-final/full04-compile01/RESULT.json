@@ -1,0 +1,10 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 590.406999999992,
+  "source_bracket_stable": true,
+  "base_config_byte_identical": true,
+  "compiled_metadata_source_identities_verified": true,
+  "test_executions": 0,
+  "production_approved": false,
+  "pass": true
+}

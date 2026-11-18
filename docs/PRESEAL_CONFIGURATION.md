@@ -2,7 +2,7 @@
 
 `scripts/prepare-preseal.py` turns explicit reviewed inputs into a conditional,
 ordered configuration review for the current schema17/mint2/V10/execution1/LP3
-source. It uses the exact trusted `q03-allocation-20261117` build and current ABI.
+source. It uses the exact trusted `royalty-rounds-20261118` build and current ABI.
 Earlier pre-seal evidence retains its original metadata2 build/source scope;
 the current Q03 family retains all seal guards while changing the royalty payload and execution implementation pins.
 It performs **no RPC, simulation, signing, deployment, nonce reservation,
@@ -148,3 +148,7 @@ See [irreversible setup](SEAL_READINESS.md); no seal calldata is generated.
 The [launch-workload review](../reports/launch-workload-20261117/REVIEW.md) supplies separate finite gas evidence. The unsigned planner now includes unverified `royalty_workload` and `gas_policy` rows. Read the actual royalty `assetCapacity()`, `assetCount()` and `assets(index)` for every zero-based uint256 index strictly below the observed count. Capacity16 permits16 ERC20s plus ETH; it does not imply they are already admitted. Read `ProtocolPolicy.gasPolicy()`, `royaltySyncGas()`, `sourceCallGas()`, `payoutGas()` and `gasFingerprint()` from the matching deployment.
 
 Measure healthy, pending/initial-allocation and full-budget fault states for the actual list. A1M per-currency allowance is not a20M operation guarantee. Full20% activation-policy2/25% maintenance padding and actual service/block/complete-fee bounds remain;32M local diagnostics do not adopt a larger profile. All checklist flags stay false, and no RPC/configuration/seal call is added. Repeat reviewed workload qualification before later currency admission/capacity expansion.
+
+## Optional activation royalty-read allowance
+
+Fresh payload5/allocation2 separates the activation-only ERC20 `balanceOf` cap (default50,000gas) from the unchanged full-sync allowance (default1M). Optional input `royalty_balance_policy:{"balanceGas":"50000","reviewHash":"REVIEW_HASH"}` prepares one separate exact unsigned `setRoyaltyBalanceGas(uint32,bytes32)` call after the original twelve families. Use a real nonzero bytes32 hash; unknown inputs remain blocked/null calldata and omission requests no write. Bounds10,000-1,000,000gas are engineering limits, not target-workload approval. Verify the actual cap/gas revision and requalify full healthy/faulted calls before adoption. No signing, submission, sealing or live approval is added.

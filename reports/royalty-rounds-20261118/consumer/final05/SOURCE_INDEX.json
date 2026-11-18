@@ -1,0 +1,32 @@
+[
+  {
+    "source": "zzz_ops/factory_code_v5.py",
+    "archive": "00-factory_code_v5.py.gz",
+    "sha256": "3e41c39666784e514d35a53e6ed7996b0bd3522126d22c55dcf63dfc943dfb46"
+  },
+  {
+    "source": "config/factory-code-storage-v5.json",
+    "archive": "01-factory-code-storage-v5.json.gz",
+    "sha256": "d3273a94c8ffa6347bedec98947d04644a9cc3e6a156ebeceafc3d2ad3c3fd20"
+  },
+  {
+    "source": "config/production.example.json",
+    "archive": "02-production.example.json.gz",
+    "sha256": "3469640a7ec586dad0f1037620c2ce4c02441103024d2019cafd19b0adb4366d"
+  },
+  {
+    "source": "reports/royalty-rounds-20261118/FINAL_PAYLOAD5.json",
+    "archive": "03-FINAL_PAYLOAD5.json.gz",
+    "sha256": "417e55eae3e8862741a0d6579842861dbe1b6cb4075e4e0b2fdcc1f919bae9a0"
+  },
+  {
+    "source": "reports/royalty-rounds-20261118/refresh_payload5.py",
+    "archive": "04-refresh_payload5.py.gz",
+    "sha256": "66fc291a220858fa87538c566ecdb0794ff86f6daa7c5d11f4127cf9e586b5f9"
+  },
+  {
+    "source": "reports/royalty-rounds-20261118/run_consumer_checks.py",
+    "archive": "05-run_consumer_checks.py.gz",
+    "sha256": "2d8041f0830c7e26d4dce8da25b1d12d7f491d192b35b050cd91e418e0751d89"
+  }
+]

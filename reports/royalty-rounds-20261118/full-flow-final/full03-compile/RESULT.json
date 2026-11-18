@@ -1,0 +1,13 @@
+{
+  "scope": "CLI-only failed attempt before compiler or EVM execution",
+  "test_executions": 0,
+  "compiler_launched": false,
+  "failure": "Forge build rejected test-only --code-size-limit; stale previous artifact was not admitted",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "ca4e528432d5018aa3eefa54255a7b9bbb5bdab6aa65ff6b42ef94c9e34b5afb",
+  "root_configuration_mutated": false,
+  "production_approved": false,
+  "outer_exit_code": 1,
+  "forge_exit_code": null,
+  "exit_code_note": "The CLI refusal was observed in stderr, but the original helper subsequently raised on stale artifact metadata before persisting the child return code; no exact child status is claimed."
+}

@@ -596,6 +596,16 @@
           "outputs": {
             "0": "Append-only activated policy ID for the enabled fixed ZZZ identity."
           }
+        },
+        "validateInput(address)": {
+          "purpose": "Validate current contribution admission independently of USD valuation; no price or funding is returned.",
+          "access": "Anyone; read-only.",
+          "inputs": {
+            "0": "Exact native ETH address zero or the fixed deployment ZZZ. Requires enabled active policy, matching native/runtime pin and Oracle/admitted decimal agreement."
+          },
+          "outputs": {
+            "0": "Verified uint8 token decimals. Does not approve a route, price source, spending allowance or deployment."
+          }
         }
       },
       "constructor": {
@@ -3755,13 +3765,13 @@
           }
         },
         "accounted(address)": {
-          "purpose": "Read total classified royalty backing, including liabilities and segregated funds.",
+          "purpose": "Read the checked total of earned liabilities, unallocated funds and the opening pool; this total is derived instead of stored twice.",
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Actual currency address; zero denotes native ETH in the native-aware ledger."
           },
           "outputs": {
-            "0": "Total classified royalty backing, including liabilities and segregated funds."
+            "0": "Exact raw-unit reserve total liabilities + orphaned + openingPool; actual excess is pending. No prices, principal or another currency are included."
           }
         },
         "accrued(uint256,address)": {
@@ -4090,14 +4100,6 @@
           "access": "Permissionless in active economic state.",
           "notes": "Unlike isolated activation, a failed asset can revert this all-assets operation."
         },
-        "syncForActivation(address)": {
-          "purpose": "Run one optional currency’s bounded synchronization inside activation’s isolated self-call.",
-          "access": "Only the ledger itself.",
-          "notes": "External callers use sync(); failure cannot enroll newcomers into unseen old receipts.",
-          "inputs": {
-            "0": "Actual currency address; zero denotes native ETH in native-aware paths."
-          }
-        },
         "totalWeight()": {
           "purpose": "Read the total permanent rarity weight registered across activated NFTs.",
           "access": "Anyone; read-only.",
@@ -4272,6 +4274,22 @@
             "0": "Exact raw units transferred; not an external custody payout."
           },
           "notes": "Use governance recoverCancelledRoyalties on this cancelled coordinator after complete abort restoration. This hook cannot be called by governance directly; reviewed target admission/cohort and pre/post controls are enforced by the coordinator."
+        },
+        "ROYALTY_ALLOCATION_VERSION()": {
+          "purpose": "Read the fresh private royalty round-book identity, separate from unchanged original-currency settlement4.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Allocation version2. Historical raw tree books must not be loaded into this representation; canonical rows remain flattened whole-unit rights."
+          }
+        },
+        "syncForActivation(address,uint256)": {
+          "purpose": "Run authenticated activation-only synchronization with separate read and accounting funding witnesses.",
+          "access": "Ledger SELF only inside NFT activation; direct operator/wallet calls revert.",
+          "inputs": {
+            "0": "Actual admitted optional ERC20 currency; native ETH uses the separate direct path.",
+            "1": "Contract-generated readLimits: low32bits are reviewed balance-read gas; bit32 proves the original complete-frame funding threshold. All higher bits zero. Not an operator parameter or bypass; activate creates it from fixed Policy and actual pre-call gas."
+          },
+          "notes": "An authenticated exact4-byte read-outage error may defer only after the bounded read is fully funded. Other failed partial frames revert the complete activation. Accounting retains the existing full-sync ceiling. Token revert data is never bubbled."
         }
       },
       "constructor": {
@@ -5676,18 +5694,18 @@
     "ZZZCustodyValidation": {
       "purpose": "Immutable Migration-created read-only validation for fixed-token bootstrap, raw parking/residual close and typed governance same-main/full-emergency custody proofs. No custody, executor or arbitrary recipient.",
       "functions": {
-      "validReservationIdentity(bytes32,uint256)": {
-        "purpose": "Test only whether a bucket is the pool canonical origin identity or one of the at-most-four registered buckets.",
-        "access": "Anyone; read-only. Cannot reserve capacity, authorize a caller or move funds.",
-        "notes": "A true result does not establish pool admission, configuration authority, remaining capacity or activation readiness. Budget validates nonzero/admitted pool and immutable alias order separately. Existing empty-bucket aliases remain possible but are not a new activation domain.",
-        "inputs": {
-          "0": "Exact bytes32 pool ID; derive the new ID through VaultCanonical.bucketIdentity(pool).",
-          "1": "Shared bucket uint256, not an NFT ordinal/LP token ID. Market swaps do not change this identity."
+        "validReservationIdentity(bytes32,uint256)": {
+          "purpose": "Test only whether a bucket is the pool canonical origin identity or one of the at-most-four registered buckets.",
+          "access": "Anyone; read-only. Cannot reserve capacity, authorize a caller or move funds.",
+          "notes": "A true result does not establish pool admission, configuration authority, remaining capacity or activation readiness. Budget validates nonzero/admitted pool and immutable alias order separately. Existing empty-bucket aliases remain possible but are not a new activation domain.",
+          "inputs": {
+            "0": "Exact bytes32 pool ID; derive the new ID through VaultCanonical.bucketIdentity(pool).",
+            "1": "Shared bucket uint256, not an NFT ordinal/LP token ID. Market swaps do not change this identity."
+          },
+          "outputs": {
+            "0": "True only for the canonical derived identity or a currently registered bucket; other reservation prerequisites remain separate."
+          }
         },
-        "outputs": {
-          "0": "True only for the canonical derived identity or a currently registered bucket; other reservation prerequisites remain separate."
-        }
-      },
         "access()": {
           "purpose": "Identify the fixed controller that supplies this component’s module, governance and lifecycle authorization.",
           "access": "Anyone; read-only.",
@@ -8812,6 +8830,21 @@
             "2": "Nonzero reviewHash provenance commitment; not a policy fingerprint,authorization or contract-verified review preimage."
           },
           "notes": "Requires configured randomness. Preserves provider/subscription/lane/payment mode/generation. Advances VRF/global revision,invalidating old mint reviews; prior request terms/results remain."
+        },
+        "royaltyBalanceGas()": {
+          "purpose": "Read the activation-only ERC20 royalty balance-call gas maximum; separate from the complete sync allowance.",
+          "access": "Anyone; read-only.",
+          "outputs": {
+            "0": "Uint32 gas units, default50000; governed10000–1000000. A maximum, not gas qualification or a minimum forwarded amount."
+          }
+        },
+        "setRoyaltyBalanceGas(uint32,bytes32)": {
+          "purpose": "Configure the activation-only ERC20 balance read limit; increments the existing gas revision and configuration commitment. Requalify the full workload before adoption.",
+          "access": "Current governance/bootstrap through canConfigure; operating canonical state, no preparation; nonreentrant. No holder authority or token approval is granted.",
+          "inputs": {
+            "0": "Exact uint32 gas units10000–1000000; default50000. Only activation enrollment balanceOf uses this limit; complete sync remains separately governed.",
+            "1": "Nonzero bytes32 fingerprint of the reviewed token behavior and complete cold/fault gas evidence. It does not itself prove safety or freeze live state."
+          }
         }
       }
     },

@@ -1,0 +1,41 @@
+{
+  "authorized_source_port": true,
+  "profile": "factory5/allocation2; settlement4 and flat canonical rows retained",
+  "private_old_tree_state_not_imported": true,
+  "comment_edits": {
+    "authorized_by": "root; current-architecture comments only; preserve historical tree references",
+    "changes": [
+      {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "old": "    /// can materialize its initial index. This does not enroll late activations.",
+        "new": "    /// can materialize its opening allocation. This does not enroll late activations."
+      },
+      {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "old": "    /// mutating the tree or projecting late receipts into a frozen snapshot.",
+        "new": "    /// mutating allocation state or projecting late receipts into a frozen snapshot."
+      },
+      {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "old": "        // Frozen ticket rights flatten in bounded VIEW rows. The source tree",
+        "new": "        // Frozen royalty rights flatten in bounded VIEW rows. The source round state"
+      },
+      {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "old": "        // remains intact for abort; the successor starts with an empty tree.",
+        "new": "        // remains intact for abort; the successor starts with fresh round books."
+      }
+    ]
+  },
+  "changes": {
+    "src/libraries/ExactRoyaltyAllocation.sol": {
+      "before_sha256": "ea58031312772e77b71b608cf13049e843c225dff460b9bfa5706491a213a2e5",
+      "after_sha256": "d2e761e976697aadae10c731914c017e5a0a200edfdf16a7e9258302d708e0fe"
+    },
+    "src/ZZZRoyaltyRewards.sol": {
+      "before_sha256": "aaf7c63a10621703600510bbeb4c8387641967659eb94c2a14c6f397ae258e77",
+      "after_sha256": "aa55a0fbe5d0ab652c42b7d32151c18f3159f8ddf56d59d1fe270dd272f7afc5"
+    }
+  },
+  "production_approved": false
+}

@@ -1,0 +1,38 @@
+{
+  "kind": "Historical first rounds source pins, retained before subsequent source optimization; not current final adoption",
+  "build_profile": "royalty-rounds-20261118",
+  "normal_stage": "build/actual01 first-source stage",
+  "files": [
+    {
+      "source_path": "zzz_ops/factory_code_v5.py",
+      "archive": "00-factory_code_v5.py.gz",
+      "sha256": "82b05fa3a7deefcc525164d6a3796cf33f5529316dd6f46863f7f31282df1f4a",
+      "bytes": 6082
+    },
+    {
+      "source_path": "config/factory-code-storage-v5.json",
+      "archive": "01-factory-code-storage-v5.json.gz",
+      "sha256": "d6201a4eeb9650e559d92fd3bef1cf13243082593885d5858ac5c3ff9d55ba4d",
+      "bytes": 12580
+    },
+    {
+      "source_path": "config/production.example.json",
+      "archive": "02-production.example.json.gz",
+      "sha256": "9f6d5a144e92e951e5cdb6d18d5ebb4bd516f106f25314a22b991785042c0bb0",
+      "bytes": 42396
+    },
+    {
+      "source_path": "reports/royalty-rounds-20261118/FINAL_PAYLOAD5.json",
+      "archive": "03-FINAL_PAYLOAD5.json.gz",
+      "sha256": "95070012b9ce3fa9b258435a1dbdc24d2f4522760bde7eebd1f7f9ebc622d061",
+      "bytes": 2234
+    },
+    {
+      "source_path": "reports/royalty-rounds-20261118/CONSUMER_OWNED_FILES.json",
+      "archive": "04-CONSUMER_OWNED_FILES.json.gz",
+      "sha256": "92d4faea91fabfb05b5f23e6daa705a1f2b256378cd8397614ac70e08563dece",
+      "bytes": 1853
+    }
+  ],
+  "production_approved": false
+}

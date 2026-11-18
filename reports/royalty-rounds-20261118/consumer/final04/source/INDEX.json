@@ -1,0 +1,62 @@
+[
+  {
+    "source": "zzz_ops/factory_code_v5.py",
+    "archive": "00-factory_code_v5.py.gz",
+    "sha256": "488ff6e5fb826ce3d82fa31ded8a5db66d5fcecc101ab7c47f05eb032dd5c0d3"
+  },
+  {
+    "source": "config/factory-code-storage-v5.json",
+    "archive": "01-factory-code-storage-v5.json.gz",
+    "sha256": "1eefba76f2a0476212f334eaede1083f769eac17ba10b102a44057b44d4d1b84"
+  },
+  {
+    "source": "config/production.example.json",
+    "archive": "02-production.example.json.gz",
+    "sha256": "2785c3e6fae2d4a1ffa0429abb552f4c707f0d170d99e1e854ee3783270dbf53"
+  },
+  {
+    "source": "reports/royalty-rounds-20261118/refresh_payload5.py",
+    "archive": "03-refresh_payload5.py.gz",
+    "sha256": "30e96ca6e749e727f886d0f7ef50511d132cb9883acdf95d2dd7d47a7bc9b16f"
+  },
+  {
+    "source": "reports/royalty-rounds-20261118/run_consumer_checks.py",
+    "archive": "04-run_consumer_checks.py.gz",
+    "sha256": "ee7cd2d6c9a57ad622c1d4469c6ee4414866644595aa0e7304affd09f6e062d7"
+  },
+  {
+    "source": "reports/royalty-rounds-20261118/FINAL_PAYLOAD5.json",
+    "archive": "05-FINAL_PAYLOAD5.json.gz",
+    "sha256": "1af56888d2c125102bc5b1d58e208e40b510da50a428bbccafcbcee3a2d672a7"
+  },
+  {
+    "source": "zzz_ops/royalty_read_policy.py",
+    "archive": "06-royalty_read_policy.py.gz",
+    "sha256": "73f35fbad067b8703cd0af9095273fda2af928e682e9e35e7e3a45cd04ec806f"
+  },
+  {
+    "source": "zzz_ops/production_v15.py",
+    "archive": "07-production_v15.py.gz",
+    "sha256": "8be5226c3514018ae66ecbfae3351ad9e35bd867a9b32e243631d2dc322f1219"
+  },
+  {
+    "source": "zzz_ops/production_observer_v15.py",
+    "archive": "08-production_observer_v15.py.gz",
+    "sha256": "af7d7e4b8105f1937d499f7910e3aa8eea9fed34afb497f8d55b41677534a1bd"
+  },
+  {
+    "source": "zzz_ops/preseal_plan.py",
+    "archive": "09-preseal_plan.py.gz",
+    "sha256": "bde2013f21e8ca90372573c654a5b40c24dc9eb12d0457dc324244b60d803af3"
+  },
+  {
+    "source": "tests_python/test_factory_payload5.py",
+    "archive": "10-test_factory_payload5.py.gz",
+    "sha256": "4d1c7add56295a8e8212a291ade9afa562f4d28d5d9a7da1f8ffa106e6f5fea6"
+  },
+  {
+    "source": "tests_python/test_factory_payload4.py",
+    "archive": "11-test_factory_payload4.py.gz",
+    "sha256": "5d6bc9fdc402e2ab9e0b8505cc5f3b34aaf0b255a0b7b50e7f77f2e22d57dd9f"
+  }
+]

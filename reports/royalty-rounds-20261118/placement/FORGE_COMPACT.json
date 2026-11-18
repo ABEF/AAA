@@ -1,0 +1,37 @@
+{
+  "test/ManagerPlacementProofReuse20261118.t.sol:ManagerPlacementProofReuse20261118Test": {
+    "test_results": {
+      "testManagerEntrySourceFaultAndPricingPhaseGuardsRetainAtomicRights()": {
+        "status": "Success",
+        "reason": null,
+        "decoded_logs": [],
+        "duration": "90ms 450\u00b5s 600ns"
+      },
+      "testManagerIncreaseLatePhysicalMutationRollsBackIndependentFunding()": {
+        "status": "Success",
+        "reason": null,
+        "decoded_logs": [],
+        "duration": "21ms 415\u00b5s 800ns"
+      },
+      "testManagerIncreasePublicRefundReadStillRejectsChangedSource()": {
+        "status": "Success",
+        "reason": null,
+        "decoded_logs": [],
+        "duration": "16ms 596\u00b5s 900ns"
+      },
+      "testManagerIncreaseRefundRoundMutationRollsBackAndHealthyRetryWorks()": {
+        "status": "Success",
+        "reason": null,
+        "decoded_logs": [],
+        "duration": "24ms 196\u00b5s 900ns"
+      },
+      "testManagerMintKeepsFullProofBeforeMutablePortfolioWrite()": {
+        "status": "Success",
+        "reason": null,
+        "decoded_logs": [],
+        "duration": "14ms 355\u00b5s 900ns"
+      }
+    },
+    "warnings": []
+  }
+}

@@ -2,7 +2,7 @@
 pragma solidity 0.8.26;
 
 import {Test} from "forge-std/Test.sol";
-import {ExactRoyaltyAllocation as Allocation} from "../src/libraries/ExactRoyaltyAllocation.sol";
+import {ExactRoyaltyAllocation as Allocation} from "./fixtures/ExactRoyaltyTreeV4.sol";
 
 contract ExactRoyaltyAllocationHarness {
     using Allocation for Allocation.Book;
@@ -56,7 +56,7 @@ contract RecursiveAllocationReference {
     }
 }
 
-contract ExactRoyaltyAllocationTest is Test {
+contract HistoricalExactRoyaltyAllocationV4Test is Test {
     ExactRoyaltyAllocationHarness private allocator;
     function setUp() public { allocator = new ExactRoyaltyAllocationHarness(); }
 

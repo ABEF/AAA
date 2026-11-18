@@ -14,7 +14,7 @@ Production **NOT APPROVED**. Preserve old runtimes, wallets, journals and
 | Production inventory / read consumer | schema17/mint2; explicit backend flag2 adds V10 read/claims, default1 retains V9 |
 | LP geometry, custody and maintenance | portfolio2, custody5, maintenance3, confirmation3, compound4 |
 | Entry and pricing | direct Entry3, reviewedEntry2, pricing2, ProtocolPolicy1 |
-| Royalties | royalty4, reporting5; original currencies and one-hour opening |
+| Royalties | settlement4/reporting5; fresh allocation2/payload5 round books, original currencies and one-hour opening |
 
 Position remains the native eight-word principal record. Its equal shape is not
 runtime/accounting identity. LP custody is one logical share account per bucket,
@@ -29,7 +29,7 @@ fractional claim. See [exact allocation](EXACT_LP_ALLOCATION.md).
 
 See [OpenSea mint2](OPENSEA_MINT.md) for the V10 original-recipient/phase extension,
 20th callable helper and predeployed metadata renderer. LP/royalty economics and
-raw accounting-domain formats are unchanged; original V9 evidence retains its
+flattened accounting-domain formats are unchanged; royalty private books require fresh allocation2/runtime pins and must not load historical tree storage. Original V9 evidence retains its
 source scope. Explicit mint2 backend reads/claims and per-peer lineage pins are
 implemented; source9 website and installed consumers are not upgraded. Actual
 V10 consumer/operating qualification remains open.

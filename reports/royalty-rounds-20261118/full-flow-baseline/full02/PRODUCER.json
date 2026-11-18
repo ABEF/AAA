@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "method_ids": [
+    "test/RoyaltyRoundsCapacity20261118.t.sol:RoyaltyRoundsCapacity20261118Test:testRoundsFull1000DenseCurrenciesOpeningRotationsAllFaultsAndGrowth()"
+  ],
+  "case_labels": [
+    "rounds-999-opening-eth",
+    "rounds-999-opening-zzz-allfault",
+    "rounds-999-rotated-zzz",
+    "rounds-999-rotated-eth-onefault",
+    "rounds-999-rotated-eth-allfault",
+    "rounds-999-rotated-zzz-allfault",
+    "rounds-999-rotated-zzz-allslow",
+    "rounds-999-rotated-eth",
+    "rounds-1000-grow-eth",
+    "rounds-1000-grow-zzz-allfault"
+  ],
+  "raw_sha256": "32bff311b4f2a58742bf82a85d6a41e8f827a3f92fff5126a8e912e8f081b3f3",
+  "start_sha256": "cc80d6a04630a06165502d2bd3231717e6924fb228f83b901919d5fbd1de6730",
+  "artifact_sha256": "97d47ddaf989acbb951d0ddc64ecd1074e9f0cfdaf2a263e719b3d1f1717246b"
+}

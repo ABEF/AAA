@@ -123,10 +123,9 @@ contract ZZZActivationAssets is ZZZModule {
         if (oracle.tokenDecimals(token) != decimals || oracle.price(token) == 0) revert InvalidConfiguration();
     }
 
-    /// @notice Price a newly supplied currency only. A zero side never consults
-    /// its admission or dependency, preserving one-sided contributions.
-    function value(address token, uint256 amount) external view returns (uint256) {
-        if (amount == 0) return 0;
+    /// @notice Validate the exact current ETH/fixed-ZZZ contribution identity.
+    /// Read-only admission is separate from transaction-bound USD valuation.
+    function validateInput(address token) public view returns(uint8) {
         if (!isContributionAsset(token)) revert InvalidConfiguration();
         Policy memory policy = policies[activePolicy[token]];
         if (!policy.enabled || (token == address(0) ?
@@ -136,6 +135,13 @@ contract ZZZActivationAssets is ZZZModule {
         }
         IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
         if (oracle.tokenDecimals(token) != policy.decimals) revert InvalidConfiguration();
-        return oracle.value(token, amount);
+        return policy.decimals;
+    }
+    /// @notice Price a newly supplied currency only. A zero side never consults
+    /// its admission or dependency, preserving one-sided contributions.
+    function value(address token, uint256 amount) external view returns (uint256) {
+        if (amount == 0) return 0;
+        validateInput(token);
+        return IZZZOracle(access.module(Ids.ORACLE)).value(token, amount);
     }
 }

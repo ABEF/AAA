@@ -1,0 +1,14 @@
+{
+  "scope": "Interrupted fresh full03 attempt when parent placed explicit HOLD for newly discovered canonical edge",
+  "pass": false,
+  "actual_execution_completed": false,
+  "EVM_method_results_available": false,
+  "partial_execution_not_counted_as_success": true,
+  "raw_bytes": 0,
+  "observed_no_owned_forge_solc_python_processes_after_session_interrupt": true,
+  "root_config_exact_restored": true,
+  "root_config_sha256": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72",
+  "production_approved": false,
+  "source_stage_retained": true,
+  "note": "Compile-only completed; waiting controller had already started actual method at receipt of HOLD. The session was interrupted promptly; whole-process cancellation bypassed runner finally, so its exact saved export-only config delta was checked and restored manually."
+}

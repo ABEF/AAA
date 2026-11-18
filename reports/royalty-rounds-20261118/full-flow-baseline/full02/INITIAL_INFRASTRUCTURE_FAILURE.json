@@ -1,0 +1,29 @@
+{
+  "stage": "initiallocal-rpc",
+  "financial_cases_executed": 0,
+  "source_at_initial_checker_launch_not_independently_frozen": true,
+  "scope": "Infrastructure-only failure: unavailableCIM listener query;3ownednodes stopped; noRPCrequests. PurePythonlarge-bufferhashing was slow. Onlyownedverifier28776 was stopped afterimage+exactstart+CLI-session association; never anexistingservice.",
+  "cases": [
+    {
+      "case": "rounds-999-opening-eth",
+      "rpc_requests": 0,
+      "owned_pid": 19524,
+      "owned_node_stopped": true,
+      "verification_error": "RuntimeError: Owned loopback listener was not observed within the bounded startup window"
+    },
+    {
+      "case": "rounds-999-opening-zzz-allfault",
+      "rpc_requests": 0,
+      "owned_pid": 12900,
+      "owned_node_stopped": true,
+      "verification_error": "RuntimeError: Owned loopback listener was not observed within the bounded startup window"
+    },
+    {
+      "case": "rounds-999-rotated-zzz",
+      "rpc_requests": 0,
+      "owned_pid": 9576,
+      "owned_node_stopped": true,
+      "verification_error": "RuntimeError: Owned loopback listener was not observed within the bounded startup window"
+    }
+  ]
+}
