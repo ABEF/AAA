@@ -7,12 +7,20 @@ import {ExactRoyaltyAllocation as Allocation} from "../src/libraries/ExactRoyalt
 contract ExactRoyaltyAllocationHarness {
     using Allocation for Allocation.Book;
     Allocation.Book private book;
-    function credit(uint256 amount,uint256 weight,uint256 cursor) external returns(uint256) {
-        return book.credit(amount,weight,cursor);
+    // Test-only authenticated same-currency liability, independent of tag shape.
+    uint256 private liability;
+    function credit(uint256 amount,uint256 weight,uint256 cursor) external returns(uint256 next) {
+        uint256 afterLiability;
+        (next,afterLiability)=book.credit(amount,weight,cursor,liability);
+        liability=afterLiability;
     }
-    function range(uint256 low,uint256 high,uint256 delta) external { book.addRange(low,high,delta); }
+    function range(uint256 low,uint256 high,uint256 delta) external {
+        liability=book.addRange(low,high,delta,liability);
+    }
     function viewTicket(uint256 ticket) external view returns(uint256) { return book.viewTicket(ticket); }
-    function takeTicket(uint256 ticket) external returns(uint256) { return book.takeTicket(ticket); }
+    function takeTicket(uint256 ticket) external returns(uint256 amount) {
+        amount=book.takeTicket(ticket,liability);liability-=amount;
+    }
     function preview(uint256 amount,uint256 weight,uint256 cursor,uint256 first,uint256 last)
         external pure returns(uint256) { return Allocation.previewShare(amount,weight,cursor,first,last); }
     function nodeValue(uint256 node) external view returns(uint256) { return book.pending[node]; }

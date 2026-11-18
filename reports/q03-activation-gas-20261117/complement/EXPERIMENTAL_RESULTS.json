@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "distinct_current_experimental_methods": 4,
+  "current_methods": [
+    {
+      "id": "test/Q03ComplementAllocation20261117.t.sol:Q03ComplementAllocation20261117Test.testQ03ComplementColdRotatedCreditsReduceStorageAndPreserveEveryTicket()",
+      "status": "Success",
+      "reason": null,
+      "logs": [
+        "experimental weight: 1023",
+        "positive cold credit gas: 650372",
+        "complement cold credit gas: 307934",
+        "cold credit gas saved: 342438",
+        "positive nonzero tags: 27",
+        "complement nonzero tags: 12",
+        "experimental weight: 1499",
+        "positive cold credit gas: 628324",
+        "complement cold credit gas: 263354",
+        "cold credit gas saved: 364970",
+        "positive nonzero tags: 26",
+        "complement nonzero tags: 10",
+        "experimental weight: 3000",
+        "positive cold credit gas: 629899",
+        "complement cold credit gas: 241476",
+        "cold credit gas saved: 388423",
+        "positive nonzero tags: 26",
+        "complement nonzero tags: 9"
+      ]
+    },
+    {
+      "id": "test/Q03ComplementAllocation20261117.t.sol:Q03ComplementAllocation20261117Test.testQ03ComplementGrowingPrefixesPartialClaimsAndRecreditMatchIndependentUnits()",
+      "status": "Success",
+      "reason": null,
+      "logs": []
+    },
+    {
+      "id": "test/Q03ComplementAllocation20261117.t.sol:Q03ComplementAllocation20261117Test.testQ03ComplementRangeBudgetAndInvalidInputsCannotCorruptBacking()",
+      "status": "Success",
+      "reason": null,
+      "logs": []
+    },
+    {
+      "id": "test/Q03ComplementAllocation20261117.t.sol:Q03ComplementAllocation20261117Test.testQ03ComplementUintMaximumCheckedTotalsAndRepeatedDrainingStayExact()",
+      "status": "Success",
+      "reason": null,
+      "logs": []
+    }
+  ],
+  "current_pass": true,
+  "current_source_unchanged": true,
+  "frozen_positive_body_sha256": "08327ac3bfece3892c45f70176f669b717fb8a831a822303ec152eb72dd68066",
+  "virtual_candidate_sha256": "5733ebada4066f028c0c09e6a2d6603d2b1b28b5bdc3aeb16fcf787f4cbd9df8",
+  "size_probe_stage": "size-probe08",
+  "selected_normal_sizes": [
+    {
+      "contract": "ZZZRoyaltyRewards",
+      "runtime": 24545,
+      "creation": 25543,
+      "runtime_headroom": 31,
+      "creation_headroom_before_constructor_arguments": 23609,
+      "baseline_runtime": 24524,
+      "baseline_creation": 25522,
+      "abi_identical": true
+    },
+    {
+      "contract": "ZZZRoyaltyFactory",
+      "runtime": 1893,
+      "creation": 29004,
+      "runtime_headroom": 22683,
+      "creation_headroom_before_constructor_arguments": 20148,
+      "baseline_runtime": 1893,
+      "baseline_creation": 28983,
+      "abi_identical": true
+    },
+    {
+      "contract": "ZZZNFT",
+      "runtime": 24234,
+      "creation": 30924,
+      "runtime_headroom": 342,
+      "creation_headroom_before_constructor_arguments": 18228,
+      "baseline_runtime": 24234,
+      "baseline_creation": 30924,
+      "abi_identical": true
+    },
+    {
+      "contract": "ZZZAccessController",
+      "runtime": 10854,
+      "creation": 48302,
+      "runtime_headroom": 13722,
+      "creation_headroom_before_constructor_arguments": 850,
+      "baseline_runtime": 10854,
+      "baseline_creation": 48281,
+      "abi_identical": true
+    }
+  ],
+  "production_edited": false,
+  "full_normal_gates": false,
+  "production_approved": false,
+  "earlier_executions_are_staged_repeats_not_additional_unique_methods": true,
+  "files_sha256": {
+    "probe_size.py": "7fdd74f10bd365b899b80900b4811940cb8d9dd4fa676307ddd7dd87ce52607f",
+    "PROOF.md": "75bcf2ebdf0fc6d6515bb61a54b1a78ddc6524d0480bd7a0896214b1e19717d7",
+    "prototype01-forge.log": "fb6190e209d70eb3b95cb63a9a5b135940c818cc6b698ff60eba94e938b6f0bb",
+    "prototype01-RESULT.json": "5331eafe319d1326ca4058c23a4736d9ee487a39a9ffc186abb948426b1c2ff5",
+    "prototype01-START.json": "5c95f249962f875b6124aee28583458595b6b3e196aceef4475681e3df46da20",
+    "prototype01-stderr.log": "604c0c37c5d79afc34229bebe77815c77446adecd595cf71257a30bec5a5b2a0",
+    "prototype02-forge.json": "222160936a6029402763ce385a6754593388f05477365ca744ed0c22f5477ebc",
+    "prototype02-RESULT.json": "4778dda3cf72fe8621da2bd11b0dc8d4b9e77f3e78b12d983f29d38a0263ddaa",
+    "prototype02-START.json": "70db578860d27bd5a56dd5407a9d5eafae1a1353d7c31650e32b47a2dfd59ec6",
+    "prototype02-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "prototype03-forge.json": "308fb02469cf761834684c5b4f2ede053ef3386e7d096b95f316dc154b776d3c",
+    "prototype03-RESULT.json": "095cad5213cadec867ca2d3721cf93beff1fce6ea558ed232adea62b748cfa7a",
+    "prototype03-START.json": "5c143e95ab1c28017a96c382657e0cd2a57e8275404285de53ec8c7274a932a2",
+    "prototype03-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "prototype04-forge.json": "3b93518bf4b71da37bc781556ec03b30acea9db731186f0fd8997b659595abf1",
+    "prototype04-RESULT.json": "4ccc72d565998285b835389dc6a9dc35b89b04e7b40f487ae719fb1ea994e50d",
+    "prototype04-START.json": "35f3c656888185c189e254aa3624501535c71828d254184d5abdabf74121c1f6",
+    "prototype04-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "run_selected.py": "a4b782cf33937be71b06ef20c036ba90d83eb1cd2dfab99e5951d39ebd6e5437",
+    "size-probe01-RESULT.json": "c94ba8749ad990fcc744fa5bf20fe9c119c32e923f559e39dc4a5650992b432d",
+    "size-probe01-START.json": "e49aaccf4f01919cf29d8f2e2e04093588c98ec2cd63612f0c61fc9cec5dd018",
+    "size-probe02-RESULT.json": "d258b3000e70fb7f88bd63f429227c7c2ad352ceb0f879db9d3189b208c2ed62",
+    "size-probe02-START.json": "8058ebe9a1d0384c4c2957a97d98d7b938fee98ce4ebf336515b2729eca460b1",
+    "size-probe03-RESULT.json": "6c1a0b2ca06e25fbb033e3e1d314aa768781a68d842df554289d964cae13487c",
+    "size-probe03-START.json": "0b2188246c48f668a005d9737a3d296783752fd6f16d82eed6200a0805547352",
+    "size-probe04-RESULT.json": "be4cd208655ae11efb8dc20158d5a8e0724a782cd102372b88d13a123e5fd5f9",
+    "size-probe04-START.json": "a2669b179b5328c52953d5036f755f527f4df2cb5bacab69d8ea64e8ee5d92e9",
+    "size-probe05-RESULT.json": "56c3f6d46a1a6d8b37698752431bc3fb796200f1e8dbd268fb8609d1e232a940",
+    "size-probe05-START.json": "81c8b387795e53487886e300f6c0f19dfb407816ef6121a5e716bc4f271186cd",
+    "size-probe06-RESULT.json": "9365bd57f918a2f7f4563a6a7c5303d6f7da0797897657f0798604b25ad5d1be",
+    "size-probe06-START.json": "afdac7b6494e27f41f6eab9db715330957377d67c67dd2434cf86884152db953",
+    "size-probe07-RESULT.json": "2326a9177b4d64617490869dd3c1967daceaa3b710db5da158dda4582d7012f3",
+    "size-probe07-START.json": "6aa661643636c68ffe093318a2d11b01f0da550dc5d2b5c8d166b1eb0580e2b0",
+    "size-probe08-RESULT.json": "1883524bf94aa3043a25e555aa6397dcf8e7d4f802befcfebc63c0aa4bca9c4f",
+    "size-probe08-START.json": "156d544cf24356b595ab99248773fc0254b96f8489b569485432e60200d98892"
+  },
+  "candidate_provenance": {
+    "raw_file_sha256": "5733ebada4066f028c0c09e6a2d6603d2b1b28b5bdc3aeb16fcf787f4cbd9df8",
+    "compiler_input_content_sha256": "7889e28ac1885134716f634d048fda14510489ae6962909d84af31867a5b0e04",
+    "raw_crlf_lines": 132,
+    "equal_after_only_crlf_to_lf": true,
+    "normalization": "Windows write_text used CRLF; compiler input is LF. Neither saved artifact rewritten."
+  },
+  "frozen_positive_body_matches_23be8c9_source_at_review_stage": true
+}

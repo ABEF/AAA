@@ -1,0 +1,26 @@
+{
+  "scope": "actual compiled creation payload and constructor-defined code carriers; no deployment",
+  "payload_length": 25543,
+  "creation_code_hash": "0x14b6701660eae2cdf9f64708c1dee730c726960715ebc6fdb1cc83d3edd16d94",
+  "royalty_initcode_including_nft_argument": 25575,
+  "royalty_initcode_ok": true,
+  "parts": [
+    {
+      "index": 0,
+      "payload_bytes": 24573,
+      "runtime_bytes": 24576,
+      "runtime_code_hash": "0x91814df6493b92cfe37c99be3ee68600d5305e514c80735edbb78e3000d975b7",
+      "runtime_ok": true
+    },
+    {
+      "index": 1,
+      "payload_bytes": 970,
+      "runtime_bytes": 973,
+      "runtime_code_hash": "0xfd967c78b1dfd27f2d6ee31ca922885557c7718a93af0934e6ef941ce4e67143",
+      "runtime_ok": true
+    }
+  ],
+  "source_adopted": false,
+  "production_approved": false,
+  "all_pass": true
+}

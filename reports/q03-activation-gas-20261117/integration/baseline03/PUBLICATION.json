@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "kind": "five NEW actual royalty component methods, pre-allocation/reuse2-source baseline",
+  "success": true,
+  "actual_methods": 5,
+  "old_methods_executed": 0,
+  "head": "23be8c9b01211b0732b2bcb64c227f0e05151e0a",
+  "production_diffs_before_start": [
+    "src/ZZZContributionPricing.sol",
+    "src/ZZZLiquidityManager.sol"
+  ],
+  "allocation_library_sha256": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+  "royalty_source_sha256": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+  "actual_dependency_count": 61,
+  "all_dependency_hashes_stable": true,
+  "all_production_hashes_stable": true,
+  "config_unchanged": true,
+  "protected_four_unchanged": true,
+  "forge_suite_duration": "25ms 194\u00b5s 600ns",
+  "producer_monotonic_elapsed_seconds": 46588.969,
+  "elapsed_limit": "Elapsed spans the overnight/paused host session; it is NOT CPU/compilation/test-runtime evidence. The raw Forge suite reports its own duration; no independent CPU accounting was captured.",
+  "gas_scope": "Whole method gas includes constructing fixtures, setup and assertions. It is NOT a complete Entry transaction estimate or20M qualification.",
+  "producer_capture": "Exact producer script captured after run; START separately pins commands/tools/config/EVM sources. No before/after SHA was captured for the Python producer itself; do not claim that additional guarantee.",
+  "earlier_failures": [
+    {
+      "stage": "integration-baseline01",
+      "scope": "Inventory setup attempted a .sol-named artifact directory; no Forge/tests started.",
+      "record": "SETUP_FAILURE.json"
+    },
+    {
+      "stage": "integration-baseline02",
+      "scope": "Compiler read an in-progress unrelated Pricing signature edit; zero methods executed; retained raw compiler refusal and source drift."
+    }
+  ],
+  "source_adoption": false,
+  "production_approved": false,
+  "files": [
+    {
+      "name": "raw.json",
+      "sha256": "713df1e55c8d0ab54a8cb7f83da480ddcec7f0fc09e438fdf68f2f6d43b58d47",
+      "uncompressed_sha256": "713df1e55c8d0ab54a8cb7f83da480ddcec7f0fc09e438fdf68f2f6d43b58d47",
+      "bytes": 1622
+    },
+    {
+      "name": "stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "name": "RESULT.json",
+      "sha256": "5a1e469845c7951e8ba5a25bbb8079f9bd841aca40ebec1c6190838edaa160e6",
+      "uncompressed_sha256": "5a1e469845c7951e8ba5a25bbb8079f9bd841aca40ebec1c6190838edaa160e6",
+      "bytes": 32478
+    },
+    {
+      "name": "START.json.gz",
+      "sha256": "58b5cc8560acccbe05b2f850f50749787393a9e2af125c39d9647deffff8541a",
+      "uncompressed_sha256": "a7d8ae052d89c2a74bd1f1ba95b8c05d21a593aa29b50ff372f8e40c57392a10",
+      "bytes": 101611
+    },
+    {
+      "name": "artifact.json.gz",
+      "sha256": "63195cccf50574a413ffa7709dabdcff7325b88c32bb3ec7722dcfb3030ffe2f",
+      "uncompressed_sha256": "3b757b6b3b6321d65d0a9781880c3bafa4c22ef88c6324b08d1c2375a363d8c4",
+      "bytes": 155899
+    },
+    {
+      "name": "run_royalty_integration.py",
+      "sha256": "953c5ab60def8260930561a6b43f3f26927bf29097ec6f439a39eaa79071336c",
+      "uncompressed_sha256": "953c5ab60def8260930561a6b43f3f26927bf29097ec6f439a39eaa79071336c",
+      "bytes": 5718
+    },
+    {
+      "name": "artifact-metadata.json",
+      "sha256": "2625bc597ec3d8e8b39279f89183ab4816872ced1db74bea50b9f11a1c00629d",
+      "bytes": 38415
+    }
+  ]
+}

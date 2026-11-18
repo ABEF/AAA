@@ -16,6 +16,8 @@ any fresh deployment; source publication never upgrades existing Anvil, service,
 website, inventory or journal identities.
 Real dependencies, operating rehearsals and independent audit remain open.
 
+Fresh Q03 source uses explicit integer `factory_payload_version:4` inside each chain record. This selects [payload4](FACTORY_CODE_STORAGE.md), still code-storage FORMAT2; omission/3 retains historical payload3. Mixing the identities rejects before observations. Both examples remain unapproved.
+
 The [schema17 example](../config/production.example.json) is deliberately
 unqualified. Unknown deployment/authority/provider addresses, source/route
 qualification and observations stay null. Intended settings and known Robinhood

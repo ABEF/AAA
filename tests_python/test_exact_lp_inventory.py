@@ -17,7 +17,7 @@ from tests_python.test_residual_reinvest_profile import load_script
 ROOT=Path(__file__).resolve().parents[1]
 GATE=load_script('validate-production-config')
 CLI=load_script('observe-production-config')
-def config():return json.loads((ROOT/'config/production.example.json').read_text())
+def config():return json.loads((ROOT/'config/production.schema16.example.json').read_text())
 def old():return json.loads((ROOT/'config/production.schema15.example.json').read_text())
 def addr(i):return '0x'+format(i,'040x')
 
@@ -36,10 +36,10 @@ class ExactLPInventoryTests(unittest.TestCase):
         self.assertEqual(c['lp_allocation_version'],1);self.assertEqual(c['canonical_schema'],P.SCHEMA_NAME)
         self.assertEqual(len(P.HELPERS),19);self.assertEqual(len(c['chains'][0]['helpers']),19)
         self.assertTrue(all(r['address'] is None and r['observed_runtime_hash'] is None for r in c['chains'][0]['helpers'].values()))
-        r=GATE.validate(c,now=1793970000)
+        r=P.validate(c,now=1793970000) # Explicit historical schema16 gate, not today's CLI default.
         self.assertEqual(r['schema_version'],16);self.assertFalse(r['ready']);self.assertFalse(r['deployment_authorized'])
         self.assertIn('mint.opensea_unsupported',{x['code'] for x in r['issues']})
-        self.assertNotIn('schema.fields',{x['code'] for x in r['issues']})
+        self.assertFalse(any(x['code']=='schema.keys' and x['path'] in ('config','chains[0]') for x in r['issues']))
 
     def test_exact_getters_and_fixed_canonical_child_binding_are_required(self):
         c=config()['chains'][0];c['helpers']['rewards_canonical']['address']=addr(900)
@@ -55,7 +55,7 @@ class ExactLPInventoryTests(unittest.TestCase):
         for group,role in OLD.REINVEST_ROLES:self.assertEqual(b[group][role]['RESIDUAL_REINVEST_VERSION'],1)
 
     def test_old15_cannot_enter_current_gate_or_observer(self):
-        r=GATE.validate(old());self.assertEqual(r['schema_version'],16)
+        r=GATE.validate(old());self.assertEqual(r['schema_version'],17) # Current CLI rejects historical15.
         self.assertFalse(r['ready']);self.assertFalse(r['deployment_authorized'])
         class NoRpc:
             def call(self,*_):raise AssertionError('Historical profile must stop before RPC')
@@ -80,20 +80,20 @@ class ExactLPInventoryTests(unittest.TestCase):
         for name in ('canonicalModule','rewards','moduleAt3'):self.assertEqual(o.typed(addr(1),name,None),addr(1))
         self.assertEqual(calls[-1],('moduleAt(uint8)',(3,)))
 
-    def test_cli_requires_explicit_current16_or_historical15(self):
+    def test_cli_requires_explicit_historical_selector_for_schema16_and15(self):
         result={'chains':[{'observation':{'complete':False}}]}
         with tempfile.TemporaryDirectory() as folder:
             source=Path(folder)/'input.json';out=Path(folder)/'out.json'
-            for historical_config,historical_flag in ((False,False),(True,True),(True,False)):
-                source.write_text(json.dumps(old() if historical_config else config()))
+            for schema,historical_flag in ((16,True),(15,True),(16,False),(15,False)):
+                source.write_text(json.dumps(config() if schema==16 else old()))
                 args=['--config',str(source),'--rpc-env','POPL_REVIEW_RPC','--output',str(out)]
                 if historical_flag:args.append('--historical-consistency')
-                with patch.dict(os.environ,{'POPL_REVIEW_RPC':'http://127.0.0.1:1'}),patch.object(CLI,'Rpc',return_value=object()),patch.object(O,'observe',return_value=result) as fresh,patch.object(OLD_O,'observe',return_value=result) as previous,patch.object(CLI,'write_observation') as write,redirect_stdout(io.StringIO()),redirect_stderr(io.StringIO()):
+                with patch.dict(os.environ,{'POPL_REVIEW_RPC':'http://127.0.0.1:1'}),patch.object(CLI,'Rpc',return_value=object()),patch.object(O,'observe',return_value=result) as schema16,patch.object(OLD_O,'observe',return_value=result) as schema15,patch.object(CLI,'write_observation') as write,redirect_stdout(io.StringIO()),redirect_stderr(io.StringIO()):
                     status=CLI.main(args)
-                self.assertEqual(status,1 if historical_config and not historical_flag else 2)
-                self.assertEqual(fresh.call_count,int(not historical_config))
-                self.assertEqual(previous.call_count,int(historical_config and historical_flag))
-                self.assertEqual(write.call_count,int(not historical_config or historical_flag))
+                self.assertEqual(status,2 if historical_flag else 1)
+                self.assertEqual(schema16.call_count,int(schema==16 and historical_flag))
+                self.assertEqual(schema15.call_count,int(schema==15 and historical_flag))
+                self.assertEqual(write.call_count,int(historical_flag))
 
     def test_current_offline_operator_templates_preserve_exact_archives(self):
         from zzz_ops import operator_review as O

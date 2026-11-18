@@ -18,7 +18,9 @@ raw_royalty_assets=H.raw_royalty_assets
 def precheck_chain(chain):F.parse_section(chain)
 
 
-def expected_bindings(chain):
+def expected_bindings(chain,*,factory_module=F):
+    # Historical callers retain payload3; current schema17 may select payload4.
+    F=factory_module
     result=LEGACY.expected_bindings(chain)
     for group,role in H.REINVEST_ROLES:result[group][role]['RESIDUAL_REINVEST_VERSION']=1
     for group,role in H.RESIDUAL_EXIT_ROLES:result[group][role]['RESIDUAL_EXIT_VERSION']=1
@@ -36,8 +38,9 @@ def expected_bindings(chain):
     return result
 
 
-def factory_code(g,chain,path,addresses):
-    # Same immutable code-storage FORMAT2, new source-owned payload identity.
+def factory_code(g,chain,path,addresses,*,factory_module=F):
+    # Same immutable FORMAT2; the caller selects one code-owned payload identity.
+    F=factory_module
     section=F.parse_section(chain);base=path+'.factory_code';children=[]
     for row,spec in zip(section['parts'],F.SPEC.parts):
         rp=base+'.parts['+str(spec.index)+']';address=g.hex(row['address'],rp+'.address',20)

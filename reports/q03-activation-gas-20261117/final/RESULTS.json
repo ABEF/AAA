@@ -1,0 +1,91 @@
+{
+  "baseline_head": "23be8c9b01211b0732b2bcb64c227f0e05151e0a",
+  "current_build": "q03-allocation-20261117",
+  "cases": [
+    {
+      "case": "q03-999-opening-eth",
+      "cold_trace_execution_gas": 20048633,
+      "estimate_with_20m_cap": null,
+      "estimate_plus_full20pct": null,
+      "qualified_20m_controlled_case": false,
+      "financial_trace_verified": true,
+      "node_stopped": true,
+      "baseline_cold_trace_execution_gas": 21470885,
+      "trace_gas_reduction": 1422252
+    },
+    {
+      "case": "q03-999-rotated-zzz",
+      "cold_trace_execution_gas": 20641239,
+      "estimate_with_20m_cap": null,
+      "estimate_plus_full20pct": null,
+      "qualified_20m_controlled_case": false,
+      "financial_trace_verified": true,
+      "node_stopped": true,
+      "baseline_cold_trace_execution_gas": 27998079,
+      "trace_gas_reduction": 7356840
+    },
+    {
+      "case": "q03-999-rotated-onefault-eth",
+      "cold_trace_execution_gas": 20652507,
+      "estimate_with_20m_cap": null,
+      "estimate_plus_full20pct": null,
+      "qualified_20m_controlled_case": false,
+      "financial_trace_verified": true,
+      "node_stopped": true,
+      "baseline_cold_trace_execution_gas": 28039075,
+      "trace_gas_reduction": 7386568
+    },
+    {
+      "case": "q03-999-rotated-eth",
+      "cold_trace_execution_gas": 19995412,
+      "estimate_with_20m_cap": null,
+      "estimate_plus_full20pct": null,
+      "qualified_20m_controlled_case": false,
+      "financial_trace_verified": true,
+      "node_stopped": true,
+      "baseline_cold_trace_execution_gas": 27769561,
+      "trace_gas_reduction": 7774149
+    },
+    {
+      "case": "q03-1000-grow-eth",
+      "cold_trace_execution_gas": 11800050,
+      "estimate_with_20m_cap": 12469850,
+      "estimate_plus_full20pct": 14963820,
+      "qualified_20m_controlled_case": true,
+      "financial_trace_verified": true,
+      "node_stopped": true,
+      "baseline_cold_trace_execution_gas": 12985190,
+      "trace_gas_reduction": 1185140
+    },
+    {
+      "case": "q03-999-presynced-eth",
+      "cold_trace_execution_gas": 14912980,
+      "estimate_with_20m_cap": 16237458,
+      "estimate_plus_full20pct": 19484950,
+      "qualified_20m_controlled_case": true,
+      "financial_trace_verified": true,
+      "node_stopped": true
+    },
+    {
+      "case": "q03-1000-presynced-grow-zzz",
+      "cold_trace_execution_gas": 12443727,
+      "estimate_with_20m_cap": 13220627,
+      "estimate_plus_full20pct": 15864753,
+      "qualified_20m_controlled_case": true,
+      "financial_trace_verified": true,
+      "node_stopped": true
+    },
+    {
+      "case": "q03-999-presynced-onefault-eth",
+      "cold_trace_execution_gas": 15868807,
+      "estimate_with_20m_cap": 16564607,
+      "estimate_plus_full20pct": 19877529,
+      "qualified_20m_controlled_case": true,
+      "financial_trace_verified": true,
+      "node_stopped": true
+    }
+  ],
+  "presync_is_conditional_not_inclusion_guarantee": true,
+  "no_fee_or_real_provider_approval": true,
+  "production_approved": false
+}

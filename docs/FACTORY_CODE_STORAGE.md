@@ -23,7 +23,7 @@ The format is `CODE_STORAGE_VERSION()==2`:
 | Maximum data per child |24,573 bytes; maximum runtime24,576 bytes. |
 | Child count |Exactly two, with distinct nonzero addresses. A zero-length second payload still has the three-byte revert runtime; it is not absent code. |
 | Payload order |Part0 followed by part1. Never swap, omit, repeat or truncate a part. |
-| Current25,522-byte payload shape |Part0 data24,573/runtime24,576; part1 data949/runtime952. Recheck the exact final compiler artifacts rather than adopting these sizes for another source revision. |
+| Current25,549-byte payload4 shape |Part0 data24,573/runtime24,576; part1 data976/runtime979. Recheck the exact final compiler artifacts rather than adopting these sizes for another source revision. |
 | Constructor inputs to the receiver |The verified creation payload plus only the typed caller NFT address, as before. |
 
 Every ordinary call to a data child, including a call carrying native ETH,
@@ -62,8 +62,8 @@ fixed receiver or obtain its rights.
 ## Fresh inventory boundary
 
 Use the explicit **schema17** deployment inventory. Schema15 is archived exactly
-for historical inspection. Code-storage FORMAT2 is unchanged, but fresh payload3
-has separate source-owned bytes/pins; never substitute historical payload2. Keep **20 logical callable
+for historical inspection. Code-storage FORMAT2 is unchanged, but fresh payload4
+has separate source-owned bytes/pins; never substitute historical payload3/2. Keep **20 logical callable
 helpers plus two inert code-data children**; do not describe the extra addresses
 as new custody authorities or conceal them in the deployed graph. There are17
 module records,20 helper records and2 code-data records, with external dependency
@@ -95,7 +95,15 @@ governance trust boundary.
 
 ## Exact compiler artifact family
 
-The current payload3 artifact `config/factory-code-storage-v3.json` and
+The current payload4 artifact `config/factory-code-storage-v4.json` and
+`zzz_ops.factory_code_v4` bind the Q03 normal compiler output and25,549-byte
+creation hash `0xb72393fbf136d2d75526d655fcb8c51c77de65b18d68a6084072b6dc436d88b5`.
+Schema17 opts in through chain-local integer `factory_payload_version:4`. Omission
+or explicit3 retains the exact historical helper/artifact; mixed versions reject.
+The code-storage format remains2, canonicalV10/reporting5 stay unchanged and no
+existing receiver, data child, configuration or journal is upgraded.
+
+The historical payload3 artifact `config/factory-code-storage-v3.json` and
 `zzz_ops.factory_code_v3` bind the reviewed87-source compiler input and the
 whole25,522-byte creation hash
 `0x0b5b619ca10d338f29e7a76fd3f9069b2e034864112bbd3101bbc20a279c50aa`.

@@ -1,0 +1,21 @@
+{
+  "authorized_by": "root coordinated source port",
+  "source_ported": true,
+  "production_approved": false,
+  "changes": {
+    "src/libraries/ExactRoyaltyAllocation.sol": {
+      "before": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+      "after": "ea58031312772e77b71b608cf13049e843c225dff460b9bfa5706491a213a2e5"
+    },
+    "src/ZZZRoyaltyRewards.sol": {
+      "before": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+      "after": "aaf7c63a10621703600510bbeb4c8387641967659eb94c2a14c6f397ae258e77"
+    },
+    "test/ExactRoyaltyAllocation.t.sol": {
+      "before": "f726c6f993f3c6a357cf91e9336fe0a81a3f1b59b6d6bbad963ea74a242d42fa",
+      "after": "d61e20fd3f91091a60ad8df7e0be14c92b7030c2b469b1a7fbb6162e03c5e908",
+      "old_test_method_bodies_unchanged": true,
+      "old_methods_executed": 0
+    }
+  }
+}

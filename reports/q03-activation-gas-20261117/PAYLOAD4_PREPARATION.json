@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "kind": "prepared candidate source-owned payload; not full trusted normal-build acceptance",
+  "producer": "virtual size-probe08",
+  "input_sha256": "8dda6cee4b0f1639f9d972db2494bdce1151d8515bfcc290bc6015fb85e09222",
+  "output_sha256": "1331145b9ac60bc404e80840ed8b9667b620d82f0d73de87060539e67093f7de",
+  "canonical_manifest_sha256": "3e84ee0c0d64d209b86400e23727300e66315da2b819c7fe71443a5a2d8558a4",
+  "creation_length": 25543,
+  "creation_hash": "0xbb3b0d8c2f62c4dfccda9939d259915e7aec04fafb948978cb24129121a32964",
+  "candidate_library_sha256": "7889e28ac1885134716f634d048fda14510489ae6962909d84af31867a5b0e04",
+  "source_hash_scope": "UTF-8 exact compiler input contents; not raw on-disk CRLF hashes",
+  "requires_actual_full_normal_payload_match": true,
+  "trusted_normal_accepted": false,
+  "public_deployment_or_adoption": false
+}

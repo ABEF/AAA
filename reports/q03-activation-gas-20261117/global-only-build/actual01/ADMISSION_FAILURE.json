@@ -1,0 +1,10 @@
+{
+  "strict_import_pass": false,
+  "compiler_and_normal_size_pass": true,
+  "production_source_compilation": true,
+  "not_promoted": true,
+  "reason": "Exact required four build input bindings were not captured by original producer; strict importer rejected the invalid inventory. Closed-source list metadata also needed completion.",
+  "failed_helper_sha256": "037a252587dbe82a3bf3516c9dda17f8a84f8e624da41f11528686c58a1a6f80",
+  "policy": "Do not infer missing before/after state; rerun one corrected actual02 normal stage with strict schema preflight and final import.",
+  "production_approved": false
+}

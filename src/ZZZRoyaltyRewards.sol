@@ -174,7 +174,6 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         if(all) amount=orphaned[asset];
         if (amount > orphaned[asset]) revert InvalidConfiguration();
         orphaned[asset] -= amount;
-        liabilities[asset] += amount;
         _distribute(asset,amount,activationCount,totalWeight);
         if(amount!=0)emit UnallocatedRoyaltiesAllocated(asset, amount, totalWeight, reviewHash);
         _recoveryAuthority();
@@ -283,7 +282,11 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         uint256 unit = _allocationUnit(count);
         uint256 beforeCursor = allocationCursor[asset];
         if (unit == 0 || weight%unit != 0 || beforeCursor%unit != 0) revert InvalidState();
-        uint256 afterCursor = allocationBooks[asset][unit].credit(amount,weight/unit,beforeCursor/unit)*unit;
+        // Reserve actual same-currency backing before modular coefficient writes.
+        (uint256 nextCursor,uint256 afterLiability) = allocationBooks[asset][unit].credit(
+            amount,weight/unit,beforeCursor/unit,liabilities[asset]);
+        liabilities[asset] = afterLiability;
+        uint256 afterCursor = nextCursor*unit;
         allocationCursor[asset] = afterCursor;
         emit RoyaltiesAllocated(asset,amount,count,weight,beforeCursor,afterCursor);
     }
@@ -331,7 +334,6 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
             openingPool[asset] = 0;
             if (amount != 0) emit RoyaltiesReceived(asset, amount, false);
             if (openingWeight != 0) {
-                liabilities[asset] += initial;
                 _distribute(asset,initial,openingCount,openingWeight);
             } else orphaned[asset] += initial;
             emit InitialRoyaltiesAllocated(asset, openingWeight == 0 ? 0 : initial, openingCount, openingWeight);
@@ -345,7 +347,6 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
             orphaned[asset] += amount;
         } else {
             _distribute(asset,amount,eligibleCount[asset],supply);
-            liabilities[asset] += amount;
         }
         emit RoyaltiesReceived(asset, amount, supply != 0);
         _enrollWaiting(asset);
@@ -385,13 +386,14 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         if (!royaltiesOpen()) revert InvalidState();
         if (!isAsset[asset]) revert InvalidConfiguration();
         _sync(asset);
+        uint256 available = liabilities[asset];
         amount = accrued[id][asset];
         uint256 first = ticketStart[id];
         uint256 weight = weightOf[id];
         for (uint256 i; i < weight; ++i)
-            amount += allocationBooks[asset][1].takeTicket(first+i);
+            amount += allocationBooks[asset][1].takeTicket(first+i,available-amount);
         if (weight > 1)
-            amount += allocationBooks[asset][weight].takeTicket((first-1)/weight+1);
+            amount += allocationBooks[asset][weight].takeTicket((first-1)/weight+1,available-amount);
         accrued[id][asset] = 0;
         liabilities[asset] -= amount;
         accounted[asset] -= amount;
@@ -467,7 +469,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
             accounted[asset] += amount;
             uint256 supply = eligibleWeight[asset];
             if (supply == 0) orphaned[asset] += amount;
-            else { liabilities[asset] += amount; _distribute(asset,amount,eligibleCount[asset],supply); }
+            else { _distribute(asset,amount,eligibleCount[asset],supply); }
             _enrollWaiting(asset);
             emit RoyaltiesReceived(asset, amount, supply != 0);
         }

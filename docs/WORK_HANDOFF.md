@@ -3,13 +3,15 @@
 ## Current source and authority boundary
 
 Main only. Production is undeployed and NOT APPROVED. Current trusted normal
-build: `seal-boundaries-20261117`; all61 Solidity sources and financial defaults
-are unchanged by the [five-report consolidation](../reports/five-report-consolidation-20261117/REVIEW.md).
+build: `q03-allocation-20261117`; four Solidity sources change in the [Q03 optimisation](../reports/q03-activation-gas-20261117/REVIEW.md), with unchanged public ABI/storage, exact financial rights and gas/financial defaults. The older [five-report consolidation](../reports/five-report-consolidation-20261117/REVIEW.md) retains its own source scope.
 Use [current context](../PROJECT_CONTEXT.md), the [sole Todo](../TODO.md),
 [feature reference](IMPLEMENTATION_STATUS.md) and [operator manual](OPERATOR_MANUAL.md).
 Historical artifacts/runtimes/checkpoints/journals retain their original profiles.
 
 ## Latest completed work
+
+- [Q03 activation gas](../reports/q03-activation-gas-20261117/REVIEW.md): complementary checked-liability royalty credits and static-only proof reuse across four source files. All48 normal gates/ABI/storage pass; explicit payload4 and source-bound preparation/reference updated. Actual999-incumbent/full-cohort claims and8 cold cases verify finite controlled scope. Pre-synced ETH activation fits19,484,950 padded; with one faulty currency19,877,529. ETH/ZZZ growth fits. Four unsynchronised16-currency states still fail20M; dust receipts after sync can recreate work. Keep20M/full20%,1M per-currency and all defaults. No old unchanged suite or live environment changed.
+
 
 - [Q06 interruption/recovery](../reports/q06-keeper-recovery-20261117/REVIEW.md): two confirmed Python fixes,12 distinct NEW methods and finite real Linux/systemd interruption/recovery receipts. Durable hashless intent remains blocked; no blind resend. Actual header watchdog and separately deliberate main kill/descendant cleanup are distinguished. Recovery-only dispatcher/inert signer are not full production daemon/Cast acceptance. All15 owned units stopped. Existing installed services/journals are untouched by control commands; the existing observer timer ran naturally. Actual-key/provider/off-host/normal-loop/soak work remains open; no unchanged suite or Solidity rerun.
 

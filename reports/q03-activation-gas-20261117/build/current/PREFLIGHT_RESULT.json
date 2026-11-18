@@ -1,0 +1,9 @@
+{
+  "kind": "strict_importer_schema_preflight_of_prepared_artifacts",
+  "pass": true,
+  "future_compilation_has_happened": false,
+  "schema_fixture_sha256": "b626764206cc84443133c66865fb07ac2a4c6c56641780861255c46acbe05cdb",
+  "source_objects": 40,
+  "closed_sources": 100,
+  "production_approved": false
+}

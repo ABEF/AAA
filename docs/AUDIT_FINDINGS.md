@@ -1,5 +1,7 @@
 # Consolidated audit findings and evidence
 
+[Q03 activation optimisation](../reports/q03-activation-gas-20261117/REVIEW.md) preserves exact monetary rights and the20M/full20% policy while reducing internal allocation writes and duplicated static proofs. Near-capacity workload evidence remains finite; selected currencies, maximum target workloads, fees/providers and production approval stay open.
+
 The [current five-report registry](../reports/five-report-consolidation-20261117/RECONCILIATION.json)
 reconciles64 distinct issues/obligations against current source. It preserves
 duplicate origins and distinguishes37 resolved original subfindings,9 retained

@@ -1,0 +1,129 @@
+{
+  "unique_new_methods": 13,
+  "unchanged_old_methods_executed": 0,
+  "counts": {
+    "counter": 4,
+    "global": 5,
+    "envelope": 4
+  },
+  "do_not_add_repeated_stage_runs": true,
+  "methods": [
+    {
+      "method": "test/Q03ComplementAllocation20261117.t.sol:Q03ComplementAllocation20261117Test.testQ03ComplementColdRotatedCreditsReduceStorageAndPreserveEveryTicket()",
+      "status": "Success",
+      "family": "counter",
+      "scope": "experimental library/caller-model; not whole production graph",
+      "decision": "unadopted duplicate-counter prototype",
+      "result_path": "complement/prototype04-RESULT.json",
+      "result_sha256": "4ccc72d565998285b835389dc6a9dc35b89b04e7b40f487ae719fb1ea994e50d"
+    },
+    {
+      "method": "test/Q03ComplementAllocation20261117.t.sol:Q03ComplementAllocation20261117Test.testQ03ComplementGrowingPrefixesPartialClaimsAndRecreditMatchIndependentUnits()",
+      "status": "Success",
+      "family": "counter",
+      "scope": "experimental library/caller-model; not whole production graph",
+      "decision": "unadopted duplicate-counter prototype",
+      "result_path": "complement/prototype04-RESULT.json",
+      "result_sha256": "4ccc72d565998285b835389dc6a9dc35b89b04e7b40f487ae719fb1ea994e50d"
+    },
+    {
+      "method": "test/Q03ComplementAllocation20261117.t.sol:Q03ComplementAllocation20261117Test.testQ03ComplementRangeBudgetAndInvalidInputsCannotCorruptBacking()",
+      "status": "Success",
+      "family": "counter",
+      "scope": "experimental library/caller-model; not whole production graph",
+      "decision": "unadopted duplicate-counter prototype",
+      "result_path": "complement/prototype04-RESULT.json",
+      "result_sha256": "4ccc72d565998285b835389dc6a9dc35b89b04e7b40f487ae719fb1ea994e50d"
+    },
+    {
+      "method": "test/Q03ComplementAllocation20261117.t.sol:Q03ComplementAllocation20261117Test.testQ03ComplementUintMaximumCheckedTotalsAndRepeatedDrainingStayExact()",
+      "status": "Success",
+      "family": "counter",
+      "scope": "experimental library/caller-model; not whole production graph",
+      "decision": "unadopted duplicate-counter prototype",
+      "result_path": "complement/prototype04-RESULT.json",
+      "result_sha256": "4ccc72d565998285b835389dc6a9dc35b89b04e7b40f487ae719fb1ea994e50d"
+    },
+    {
+      "method": "test/Q03GlobalBoundAllocation20261117.t.sol:Q03GlobalBoundAllocation20261117Test.testQ03GlobalCoupledColdCreditIncludesSameAssetLiabilityOnAllControls()",
+      "status": "Success",
+      "family": "global",
+      "scope": "experimental library/caller-model; not whole production graph",
+      "decision": "selected mapping-only global-bound representation; actual-caller integration separate",
+      "result_path": "global/EXPERIMENT_RESULT.json",
+      "result_sha256": "3a35f6e7dfec769d78d293c222b7eb1536390739bb37c8a6b84342a92cd59ad5"
+    },
+    {
+      "method": "test/Q03GlobalBoundAllocation20261117.t.sol:Q03GlobalBoundAllocation20261117Test.testQ03GlobalLegendaryUnitToMixedPartialClaimsAndLongRecredit()",
+      "status": "Success",
+      "family": "global",
+      "scope": "experimental library/caller-model; not whole production graph",
+      "decision": "selected mapping-only global-bound representation; actual-caller integration separate",
+      "result_path": "global/EXPERIMENT_RESULT.json",
+      "result_sha256": "3a35f6e7dfec769d78d293c222b7eb1536390739bb37c8a6b84342a92cd59ad5"
+    },
+    {
+      "method": "test/Q03GlobalBoundAllocation20261117.t.sol:Q03GlobalBoundAllocation20261117Test.testQ03GlobalRareUnitToMixedKeepsImportedAndOtherCurrencyRights()",
+      "status": "Success",
+      "family": "global",
+      "scope": "experimental library/caller-model; not whole production graph",
+      "decision": "selected mapping-only global-bound representation; actual-caller integration separate",
+      "result_path": "global/EXPERIMENT_RESULT.json",
+      "result_sha256": "3a35f6e7dfec769d78d293c222b7eb1536390739bb37c8a6b84342a92cd59ad5"
+    },
+    {
+      "method": "test/Q03GlobalBoundAllocation20261117.t.sol:Q03GlobalBoundAllocation20261117Test.testQ03GlobalUintMaximumAcrossAccruedAndBooksCannotOvercredit()",
+      "status": "Success",
+      "family": "global",
+      "scope": "experimental library/caller-model; not whole production graph",
+      "decision": "selected mapping-only global-bound representation; actual-caller integration separate",
+      "result_path": "global/EXPERIMENT_RESULT.json",
+      "result_sha256": "3a35f6e7dfec769d78d293c222b7eb1536390739bb37c8a6b84342a92cd59ad5"
+    },
+    {
+      "method": "test/Q03GlobalBoundAllocation20261117.t.sol:Q03GlobalBoundAllocation20261117Test.testQ03GlobalUnderfundedBoundAndInvalidCreditRollbackBeforeRetry()",
+      "status": "Success",
+      "family": "global",
+      "scope": "experimental library/caller-model; not whole production graph",
+      "decision": "selected mapping-only global-bound representation; actual-caller integration separate",
+      "result_path": "global/EXPERIMENT_RESULT.json",
+      "result_sha256": "3a35f6e7dfec769d78d293c222b7eb1536390739bb37c8a6b84342a92cd59ad5"
+    },
+    {
+      "method": "test/Q03EnvelopeAllocation20261117.t.sol:Q03EnvelopeAllocation20261117Test.testQ03EnvelopeColdCreditViewAndTakeIncludeExistingLiability()",
+      "status": "Success",
+      "family": "envelope",
+      "scope": "experimental library/caller-model; not whole production graph",
+      "decision": "unadopted envelope; EIP170 failure and cold-claim tradeoff",
+      "result_path": "envelope/EXPERIMENT_RESULT.json",
+      "result_sha256": "a651f29448785431f2f10795c005ed7f2f5db9d8c834f2ada5840dcfa1b91652"
+    },
+    {
+      "method": "test/Q03EnvelopeAllocation20261117.t.sol:Q03EnvelopeAllocation20261117Test.testQ03EnvelopeGrowingPrefixZeroFutureClaimsDoNotLeakOrResurrect()",
+      "status": "Success",
+      "family": "envelope",
+      "scope": "experimental library/caller-model; not whole production graph",
+      "decision": "unadopted envelope; EIP170 failure and cold-claim tradeoff",
+      "result_path": "envelope/EXPERIMENT_RESULT.json",
+      "result_sha256": "a651f29448785431f2f10795c005ed7f2f5db9d8c834f2ada5840dcfa1b91652"
+    },
+    {
+      "method": "test/Q03EnvelopeAllocation20261117.t.sol:Q03EnvelopeAllocation20261117Test.testQ03EnvelopeHomogeneousBooksToMixedWithAccruedAndPartialClaims()",
+      "status": "Success",
+      "family": "envelope",
+      "scope": "experimental library/caller-model; not whole production graph",
+      "decision": "unadopted envelope; EIP170 failure and cold-claim tradeoff",
+      "result_path": "envelope/EXPERIMENT_RESULT.json",
+      "result_sha256": "a651f29448785431f2f10795c005ed7f2f5db9d8c834f2ada5840dcfa1b91652"
+    },
+    {
+      "method": "test/Q03EnvelopeAllocation20261117.t.sol:Q03EnvelopeAllocation20261117Test.testQ03EnvelopeUintMaximumCancellationAndCheckedLiability()",
+      "status": "Success",
+      "family": "envelope",
+      "scope": "experimental library/caller-model; not whole production graph",
+      "decision": "unadopted envelope; EIP170 failure and cold-claim tradeoff",
+      "result_path": "envelope/EXPERIMENT_RESULT.json",
+      "result_sha256": "a651f29448785431f2f10795c005ed7f2f5db9d8c834f2ada5840dcfa1b91652"
+    }
+  ]
+}

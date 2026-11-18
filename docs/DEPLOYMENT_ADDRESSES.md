@@ -124,7 +124,7 @@ historical 15/17-helper inventory or infer deployed runtimes from compiler templ
 | Creation/binding | Helper addresses and verification |
 | --- | --- |
 | Separate policy companion | `ZZZProtocolPolicy(controller,initialMintRecipient)` before consumers, bind-once Access.protocolPolicy, version1/runtime/scoped values and fingerprints. No custody. |
-| Controller factories | `ZZZRoyaltyFactory` and `ZZZActivationAssetsFactory`; immutable Access/factory relationships and typed outputs. Factory storage2 has exactly2 inert data children outside20 callable helpers; verify payload3 source-derived prefix/length/part/whole hashes using schema17. Runtime FORMAT remains2; old payload2 is historical. [Procedure](FACTORY_CODE_STORAGE.md). |
+| Controller factories | `ZZZRoyaltyFactory` and `ZZZActivationAssetsFactory`; immutable Access/factory relationships and typed outputs. Factory storage2 has exactly2 inert data children outside20 callable helpers; verify explicit payload4 source-derived prefix/length/part/whole hashes using schema17. Runtime FORMAT remains2; old payload3/2 remain historical. [Procedure](FACTORY_CODE_STORAGE.md). |
 | Registry construction | Fixed `ZZZActivationAssets` through the factory and `ZZZActivationEntry`; Registry/Access/source-policy1 and one fixed ZZZ. |
 | Rewards construction | Immutable `ZZZRewardsCanonical` child; verify Rewards.canonicalModule(), child access()/rewards(), Handoff.moduleAt(3) and exact runtimes. LP reward backing stays in Rewards. |
 | NFT construction | Predeploy `ZZZNFTMetadata(controller)` and pass it to `ZZZNFT(controller,baseURI,renderer)`. The royalty factory creates the NFT's `ZZZRoyaltyRewards`; the NFT creates its fixed `ZZZClaimRouter`. Verify exact controller/NFT/ledger bindings. |

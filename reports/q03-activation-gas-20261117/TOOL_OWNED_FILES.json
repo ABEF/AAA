@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "owned_nonreport_files_sha256": {
+    "zzz_ops/factory_code_v4.py": "a10204b8230499f0d4f8380ae4f01b337823a15080cd6d4795c528a3f5fb517c",
+    "zzz_ops/production_v14.py": "13460958f0a918a44c67926ba04cf51a6a5c3d56b2791c803551cdec8261103e",
+    "zzz_ops/production_v15.py": "c3568c29358908827894935964121ff97e68ad9c7bf115eaa0926dbf1a2693d9",
+    "zzz_ops/production_observer_v14.py": "d592358ba052ba4af78c9a8bf09da6244edd0d63b2f3b595fafded78f7141b01",
+    "zzz_ops/production_observer_v15.py": "f827ce5a5536ca72ef36ce719c4af767ec805b84806177edc45dca3ccfbd875c",
+    "config/factory-code-storage-v4.json": "8af4d7c07de8200f87c13484f679c40f83d1506aed09bbd6de07e1c54d9fea6e",
+    "config/production.example.json": "cc1061255416857aab34b6ccfe4c44b0281f6745fc142cda2440ea08a011692b",
+    "config/production.schema17.payload3.example.json": "2c7fda19ebcffd4f302b1945c3853716f7979c0153757f0a79fc0377390015ca",
+    "tests_python/test_factory_payload4.py": "e99dcc23ae415627c13daf1eaf4c889a561f3734ebb4f1158fa6cd1fb9dcd370",
+    "tests_python/test_deployment_build_profiles.py": "ab94207482bff76567617071d000aefcf7edc3da27a93287b4dbe4c445b636d4",
+    "tests_python/test_exact_lp_inventory.py": "f7392d286799517261e35c00cae60ba843dfb6b373b0107b59c4e9bc7a0f1004",
+    "test/Q03RoyaltyIntegration20261117.t.sol": "65793aa624d72a6c1f20d6db30051a7ba29945842bbdb26168f085cc62820704"
+  },
+  "own_compact_evidence": [
+    "integration/baseline03/PUBLICATION.json",
+    "integration/candidate01/PUBLICATION.json",
+    "consumer/final01/PUBLICATION.json",
+    "FINAL_PAYLOAD4.json",
+    "FINAL_GLOBAL_ONLY_REVIEW.json"
+  ],
+  "verification": {
+    "new_solidity_methods": 5,
+    "source_stages": 2,
+    "new_python_methods": 11,
+    "changed_python_methods": 6,
+    "selected_python_passes": 17,
+    "unchanged_old_methods_executed": 0,
+    "evm_replay_for_metadata_correction": 0
+  },
+  "preserved_protected_four": true,
+  "source_or_deployment_boundary": "Parent owns actual Solidity port/current trusted build, Todo/operator/central docs. Child implemented only listed Python/config/test files and own report artifacts; no deployment or live service action."
+}

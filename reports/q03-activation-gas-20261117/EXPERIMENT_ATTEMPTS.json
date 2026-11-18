@@ -1,0 +1,55 @@
+[
+  {
+    "stage": "envelope/experiment01",
+    "kind": "compiler syntax refusal",
+    "actual_methods": 0,
+    "cause": "test-only reserved identifier partial",
+    "corrected_in": "envelope/experiment02",
+    "evidence": "envelope/COMPILE_FAILURE_FORGE.json"
+  },
+  {
+    "stage": "global-envelope-build/proposed01",
+    "kind": "producer preflight failure before compiler launch",
+    "actual_methods": 0,
+    "cause": "mistaken normal-helper filename",
+    "compiler_input_sha256": "5e9f0a690ade3263b44e4a22f5f8ebf537078f4c071322f4fcad5c277fbe18fe",
+    "corrected_in": "global-envelope-build/proposed02"
+  },
+  {
+    "stage": "global-envelope-build/proposed02",
+    "kind": "normal gate rejection",
+    "actual_methods": 0,
+    "cause": "Royalty runtime24800 exceeds24576 by224",
+    "source_adopted": false,
+    "decision": "rejected envelope; chose simpler global-only candidate"
+  },
+  {
+    "stage": "source-adoption/initial attempt",
+    "kind": "test-harness replacement precondition assertion",
+    "actual_methods": 0,
+    "cause": "unexpected LF source; occurred after exact authorized2source port, before harness write",
+    "corrected_in": "global-only-build/source-adoption/ADOPTION.json",
+    "production_source_equals_prepared_candidate": true
+  },
+  {
+    "stage": "global-only-build/actual01",
+    "kind": "successful compiler/size result with incomplete admission metadata",
+    "actual_methods": 0,
+    "source_adopted": true,
+    "strict_import_pass": false,
+    "promoted": false,
+    "cause": "Wrong build_input_sha256 inventory and missing closure lists; no before/after bindings fabricated."
+  },
+  {
+    "stage": "global-only-build/actual02",
+    "kind": "one corrected actual normal compilation",
+    "actual_methods": 0,
+    "strict_import_pass": true,
+    "size_gates_pass": 48,
+    "abi_equal": 48,
+    "semantic_storage_equal": 48,
+    "input_and_output_identical_to_proposed01": true,
+    "evidence": "build/current",
+    "production_approved": false
+  }
+]

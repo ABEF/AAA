@@ -1,0 +1,107 @@
+--- before/src/ZZZLiquidityManager.sol
++++ after/src/ZZZLiquidityManager.sol
+@@ -75,12 +75,14 @@
+     function executionStrategy()external view returns(address){return address(balancingRouter.balanceMath());}
+     /// @notice Pins balancing policy across Vault approval/reset callbacks too.
+     function balanceContext(bytes32 targetPool) external view returns (bytes32) {
+-        return _balanceContext(targetPool);
+-    }
+-    function _balanceContext(bytes32 targetPool) private view returns (bytes32) {
++        return _balanceContext(targetPool,true);
++    }
++    function _balanceContext(bytes32 targetPool,bool checkSources) private view returns (bytes32) {
+         address emergency = _emergencyBudget();
+         if(emergency != address(0)) return IZZZEmergencyBudget(emergency).emergencyFingerprint();
+-        _executionOracle().validateExecution();
++        // Private false sites are adjacent to authenticated begin/end proofs;
++        // only STATIC reads intervene. Public/callback boundaries stay full.
++        if(checkSources)_executionOracle().validateExecution();
+         return keccak256(abi.encode(address(balancingRouter),balancingRouter.executionRevision(),
+             balancingRouter.policyFingerprint(targetPool,bytes32(0))));
+     }
+@@ -226,12 +228,12 @@
+         bool owned=_beginPrice(c.key.currency1,bytes32(0));
+         address input = zeroForOne ? c.key.currency0 : c.key.currency1;
+         if (msg.value != (input == address(0) ? amountIn : 0)) revert InvalidAmount();
+-        bytes32 context = _balanceContext(poolId);
++        bytes32 context = _balanceContext(poolId,false);
+         if (input != address(0)) ExactToken.pull(input, msg.sender, amountIn);
+         uint256 beforeNative = address(this).balance - msg.value;
+         (uint256 quoted,MarketState memory expected)=balancingRouter.quoteSwap(poolId,zeroForOne,amountIn);
+         amountOut = _swapExact(poolId,c,zeroForOne,amountIn,minimumOut,msg.sender,quoted,expected);
+-        if (address(this).balance != beforeNative || _balanceContext(poolId) != context) revert InvalidState();
++        if (address(this).balance != beforeNative || _balanceContext(poolId,false) != context) revert InvalidState();
+         _executionOracle().endManagerExecution(owned);
+     }
+     function _swapExact(bytes32 poolId, PoolConfig memory c, bool zeroForOne, uint256 amountIn, uint256 minimumOut,
+@@ -264,7 +266,7 @@
+         bool emergency = _emergencyBudget() != address(0);
+         uint8 scope=_beginPlacement(targetPool);
+         // _config already requires native currency0, including in emergencies.
+-        bytes32 context = _balanceContext(targetPool);
++        bytes32 context = _balanceContext(targetPool,false);
+         uint256 nativePrefund = address(this).balance-msg.value;
+         uint256 tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this));
+         EmergencyRebalance memory request;
+@@ -279,7 +281,9 @@
+         // Pull before quoting: even a token callback cannot intervene between
+         // the simulated route and the actual swap. Refund only this budget.
+         ExactToken.pull(target.key.currency1,msg.sender,amount1);
+-        if (_balanceContext(targetPool) != context) revert InvalidState();
++        // A zero pull returns before every token call; the preceding context
++        // and LP identity reads are STATIC. Nonzero pulls retain their proof.
++        if (amount1 != 0 && _balanceContext(targetPool,true) != context) revert InvalidState();
+         ZZZLPBalancer.Plan memory p;
+         if(emergency) {
+             p.poolId = request.swapPool; p.zeroForOne = request.zeroForOne;
+@@ -326,7 +330,7 @@
+             if (lower != finalLower || upper != finalUpper || posm.getPositionLiquidity(existingLpId) != priorLiquidity) revert InvalidState();
+         }
+         if (address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund ||
+-            _balanceContext(targetPool) != context) revert InvalidState();
++            _balanceContext(targetPool,false) != context) revert InvalidState();
+         if(!emergency && (balancingRouter.executionRevision() != p.revision ||
+             balancingRouter.policyFingerprint(targetPool,p.poolId) != p.fingerprint ||
+             _policySpot(targetPool) != p.targetSqrtAfter)) revert InvalidState();
+--- before/src/ZZZContributionPricing.sol
++++ after/src/ZZZContributionPricing.sol
+@@ -235,7 +235,7 @@
+         if (basis.limits != limits) revert InvalidState();
+         basis.bucket = bucket;
+         // Conversion/pull callbacks may not replace policies or round data.
+-        _unchanged();
++        _unchanged(true);
+     }
+     function _lower(address token,uint256 amount) private view returns(uint256) {
+         if (amount == 0) return 0;
+@@ -302,8 +302,8 @@
+     function _executionStrategy()private view returns(IZZZExecutionStrategy){
+         return IZZZExecutionStrategy(IPricingExecutionManager(access.module(Ids.LIQUIDITY)).executionStrategy());
+     }
+-    function _unchanged() private view returns(bytes32 hash) {
+-        IZZZExecutionOracle(address(oracle)).validateExecution();
++    function _unchanged(bool checkSources) private view returns(bytes32 hash) {
++        if(checkSources)IZZZExecutionOracle(address(oracle)).validateExecution();
+         if(_protocolPolicy().entryFingerprint()!=basis.entryPolicyFingerprint)revert InvalidState();
+         hash = keccak256(abi.encode(basis.pool,basis.nft,basis.lowerInput,basis.upperInput,
+             basis.maxIdleBps,basis.entryPolicyFingerprint));
+@@ -320,7 +320,7 @@
+         external onlyBudget returns(uint256 issued,uint256 netUSD) {
+         if (basis.phase != 4 || basis.bucket != bucket || basis.lowerInput != inputUSD || basis.limits != limits ||
+             uint16(limits) > 1000 || uint16(limits >> 16) > 1000) revert InvalidState();
+-        _putUnchanged(); bytes32 hash = _unchanged();
++        _putUnchanged(); bytes32 hash = _unchanged(true);
+         if (deployed == 0 || idle > Math.mulDiv(deployed+idle,basis.maxIdleBps,10000) ||
+             deployed+idle <= incumbentNAV || deployed < incumbentDeployed) revert Slippage();
+         netUSD = deployed+idle-incumbentNAV;
+@@ -342,7 +342,9 @@
+     function endEntry() external {
+         if (msg.sender != _entry()) revert Unauthorized();
+         if (!basis.entry || basis.phase != 5) revert InvalidState();
+-        _putUnchanged(); _unchanged(); _clear();
++        // _clear starts with Oracle.endExecution's full final proof. Only
++        // STATIC mark/policy reads separate it from these exact-basis checks.
++        _putUnchanged(); _unchanged(false); _clear();
+     }
+     function _clear() private {
+         IZZZExecutionOracle(address(oracle)).endExecution();

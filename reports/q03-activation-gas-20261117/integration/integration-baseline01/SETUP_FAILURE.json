@@ -1,0 +1,9 @@
+{
+  "kind": "new producer setup failure before compiler/test execution",
+  "stage": "integration-baseline01",
+  "cause": "Source inventory glob also matched a node_modules out/ActionsRouter.sol directory and attempted read_bytes; is_file filter added.",
+  "exception": "PermissionError: node_modules/@uniswap/v4-core/out/ActionsRouter.sol directory",
+  "forge_started": false,
+  "tests_executed": 0,
+  "production_source_or_config_changed": false
+}

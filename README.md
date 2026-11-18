@@ -8,7 +8,7 @@ actual ETH + ZZZ to current NFT owners; transfers, old rewards and royalties rem
 
 **Source candidate; undeployed for production. Production NOT APPROVED.**
 Current accounting7/direct Entry3/custody5/mint2 uses canonicalV10. The trusted
-normal build is `seal-boundaries-20261117`. Source publication does not update
+normal build is `q03-allocation-20261117`. Source publication does not update
 contracts, services, journals or websites; public signing remains disabled.
 
 [Project Todo](TODO.md) | [Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) |
@@ -20,6 +20,8 @@ separates corrected defects, retained policies and remaining qualification.
 Original reports keep their own source stages; test counts are not added into
 a new whole-project pass. Independent feeds/routes, VRF/OpenSea, exact operating
 costs, current integration rollout and independent audit remain open.
+
+[Q03 gas optimisation](reports/q03-activation-gas-20261117/REVIEW.md) reduces royalty allocation writes and redundant static price proofs. Exact entitlements, callback checks and the20M contribution budget remain; large pending/faulted workloads still require exact fresh gas review. Existing environments are unchanged.
 
 ## Architecture overview
 

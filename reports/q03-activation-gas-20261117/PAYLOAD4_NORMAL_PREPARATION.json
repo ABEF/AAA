@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "kind": "prepared source-owned payload4 from actual complete proposed normal compilation",
+  "producer": "build/proposed01",
+  "input_sha256": "7f2f96f072e01adb4384735561d4c200d063e37bbe1adf44fecea10ce5c26465",
+  "output_sha256": "1fc550bae7a0066bae9950053040583dff1a6b6d86ad3bd5d7e11e49df261b23",
+  "normal_size_evidence_sha256": "85d2e785c0ff346de445d59b7fd70720ad5c998d2b5459cda1cde265e2be2dc0",
+  "normal_size_gates": 48,
+  "normal_size_gates_pass": true,
+  "canonical_manifest_sha256": "6c2957f12900e8785cea56221ceb6df2dfafa332efac9b09505e81f1d3ad0a94",
+  "creation_length": 25543,
+  "creation_hash": "0x14b6701660eae2cdf9f64708c1dee730c726960715ebc6fdb1cc83d3edd16d94",
+  "parts": [
+    {
+      "index": 0,
+      "data_length": 24573,
+      "runtime_length": 24576,
+      "runtime_hash": "0x91814df6493b92cfe37c99be3ee68600d5305e514c80735edbb78e3000d975b7"
+    },
+    {
+      "index": 1,
+      "data_length": 970,
+      "runtime_length": 973,
+      "runtime_hash": "0xfd967c78b1dfd27f2d6ee31ca922885557c7718a93af0934e6ef941ce4e67143"
+    }
+  ],
+  "proposed_library_sha256": "22f42cbfd5220aa2605c048ea8809ad96c18c2f896e258293e9116af22f37b02",
+  "source_hash_scope": "UTF-8 exact compiler input contents",
+  "filesystem_source_adopted": false,
+  "trusted_default_adopted": false,
+  "public_deployment_or_adoption": false,
+  "earlier_size_only_preparation": "PAYLOAD4_PREPARATION.json retains its original stage and hashes; superseded candidate identity, not relabelled."
+}

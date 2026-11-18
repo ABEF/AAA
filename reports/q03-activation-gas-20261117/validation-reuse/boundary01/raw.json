@@ -1,0 +1,7 @@
+Compiler run failed:
+Error (2314): Expected ';' but got reserved keyword 'partial'
+   --> test/Q03EnvelopeAllocation20261117.t.sol:126:21:
+    |
+126 |             uint256 partial=epoch+1;assertEq(e.take(partial),model[partial]);model[partial]=0;
+    |                     ^^^^^^^
+

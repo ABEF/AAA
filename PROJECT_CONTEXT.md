@@ -4,7 +4,7 @@ Production is undeployed and NOT APPROVED. Use the [sole Todo](TODO.md),
 [current findings](docs/AUDIT_FINDINGS.md), [operator manual](docs/OPERATOR_MANUAL.md)
 and [environment map](docs/SITE_ENVIRONMENTS.md). Source publication is not rollout.
 
-The trusted build remains `seal-boundaries-20261117`. The
+The trusted build is `q03-allocation-20261117`, using explicit factory payload4 in unchanged code-storage FORMAT2. The [Q03 review](reports/q03-activation-gas-20261117/REVIEW.md) covers complementary exact-unit royalty credits and static-only proof reuse across four changed Solidity sources. All economic rights, public ABI/storage,20M review budget and financial defaults remain. Fresh runtime/source pins are required; source publication changes no environment. Historical seal-boundaries objects retain their original scope. The
 [five-report consolidation](reports/five-report-consolidation-20261117/REVIEW.md)
 records what is resolved, retained and still unqualified. The new historical
 evidence checker verifies fixed records without rerunning or adopting them;
@@ -15,6 +15,8 @@ from deposits; complete input is still not readiness.
 The [launch-workload evidence](reports/launch-workload-20261117/REVIEW.md) now measures16 admitted ERC20 royalty currencies plus ETH. Some healthy/pending and faulted activation states exceed the reviewed20M/full20% policy; capacity and body-gas success are not approval. Growth skips royalty enrollment; selected claims can require fresh smaller batches. Existing per-currency sync/call/default/financial limits are unchanged. The unsigned pre-seal planner now lists the actual currencies and gas-policy reads as unverified checks. Maximum whole-graph state, actual currencies/provider/fees and release approval remain open.
 
 The [Q06 interruption/recovery review](reports/q06-keeper-recovery-20261117/REVIEW.md) adds two Python fixes: a stop observed after durable intent saving prevents signer launch while preserving the hashless recovery record; completed bounded HTTP attempts report main-thread watchdog progress. Twelve new methods and finite actual Linux/systemd cases pass, using private synthetic HTTP/state and inert signing. Recovery-only restart is not the full normal daemon. All owned units are stopped; existing services are not controlled, the observer timer continues and the desktop heartbeat stays paused. Real release-key/provider/normal-loop/restore/alert/soak qualification remains open.
+
+The Q03 cold near-capacity results qualify only tested states: pre-synced ETH activation19,484,950 gas with full20%, one fault19,877,529; ETH/ZZZ growth fits. Four unsynchronised16-currency cases still fail20M. New dust receipts can recreate work after sync, so Q03 maximum-state/adversarial liveness remains open. All13 owned RPC nodes stopped; current source publication changes no installed environment.
 
 ## Current architecture and economics
 

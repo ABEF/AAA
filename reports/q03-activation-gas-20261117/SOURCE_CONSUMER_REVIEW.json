@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-17T15:23:33.376963+00:00",
+  "baseline_requested": "23be8c9",
+  "observed_head": "23be8c9b01211b0732b2bcb64c227f0e05151e0a",
+  "kind": "read-only independent algorithm/test-plan/consumer review",
+  "tests_executed": 0,
+  "production_edits": [],
+  "source_sha256_at_review": {
+    "src/ZZZRoyaltyRewards.sol": "dfa969ddc855b02c3b3b56a3ba165c65ce3f8a7735320781bfb8a4712ab9a8e2",
+    "src/libraries/ExactRoyaltyAllocation.sol": "8198a615da1b32f818283ccdc30e166229587e75d0f8182039c6154041fae4a4",
+    "src/ZZZRoyaltyFactory.sol": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+    "src/ZZZRoyaltyCodeData.sol": "b53b2d97d7656ede86bcee34a735b53cb1a5372cf6f4e2bece97b06043d941c6",
+    "frontend_api/activation.py": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117",
+    "frontend_api/activation_config.py": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd",
+    "frontend_api/transaction_gas.py": "35f5c2221726e8987bb1ad28a9e62034ee65a51e2696dd382d66a800c2a13d9b",
+    "zzz_ops/factory_code_v3.py": "8b27d237a39d81c2b6d3ac7a7186723569f8bef2a59ad811aca39e0b55f6665a",
+    "config/factory-code-storage-v3.json": "305e85eb23e029a66c57dc3bf8b16b3753b21375eca41bcbc4dd1a9675f48d8c",
+    "zzz_ops/production_v14.py": "138b2c931d51ec58ca8878787b2b4b13d5c443119652869b92c7181a3245a5ec",
+    "zzz_ops/production_v15.py": "5fcd494cd0640e8eae1a30d943ab6375751ee5a6ae37109740e54e5ee39f332d",
+    "zzz_ops/deployment_plan.py": "d8e6bc34ff7897250194bd922b2f8f2f75f4b3800579dcb12e181f2bb7cc3a62",
+    "test/LaunchRoyaltyTail20261117.t.sol": "cc5c0962fe6499ac02a11c07cc01c267d018a4429e9beaaea1fd9dbbbd0bd02a",
+    "test/LaunchContributionCapacity20261117.t.sol": "29cfcea755b4b47f0ef283218defd33916653bcd824f722a4b2823b1789eaf2b",
+    "test/GasProfileQualification.t.sol": "1ec4df10cb994e26697d587c666c35aa01818f7551c9bed9266320170ee0d124",
+    "test/RoyaltyLaunchWindow.t.sol": "1acb2e1d8f1a3150640b7414246b54c48e9a7c58f041b71ab24959d3b5132f61",
+    "test/ExactRoyaltyAllocation.t.sol": "f726c6f993f3c6a357cf91e9336fe0a81a3f1b59b6d6bbad963ea74a242d42fa",
+    "tests_python/test_activation_gas_policy2.py": "0b03dcd9cddbfc15d7b280bfa6f48f8e9734bf02da6773888ffd6236343fce0a"
+  },
+  "plan_sha256": "6223cd058c8db29a129f8e60262bd167379a03cbb007fd38823d075185a678c0",
+  "protected_four_match": true,
+  "preserved_constraints": [
+    "Exact whole-unit incumbent rights and current-owner claims",
+    "One-hour opening cutoff and its faulted-grace cohort",
+    "Per-currency fault isolation and recovery-before-enrollment",
+    "Existing20M cap/full20% margin,1M per-currency allowance and all contribution guards",
+    "Historical source-specific build/payload/runtime/reader evidence"
+  ],
+  "findings": [
+    {
+      "kind": "test-oracle risk",
+      "detail": "The existing811/999 component cases and simple whole-graph two-NFT cases must not be added or combined arithmetically into whole-graph maximum-state gas qualification."
+    },
+    {
+      "kind": "source adoption dependency",
+      "detail": "Changed royalty creation bytes require new exact factory payload/data-child identity, trusted normal/static build evidence and explicit matching consumer admission; ABI equivalence is not deployed identity."
+    },
+    {
+      "kind": "measurement boundary",
+      "detail": "Actual policy2 preparation estimates frozen final calldata under one confirmed cap and ceil20% arithmetic. A separate fresh-RPC exact padded call is extra qualification evidence, not automatically performed by the helper."
+    },
+    {
+      "kind": "finite feasibility limit",
+      "detail": "All16 full-budget faults may remain above20M; record atomic refusal. Lowering allowances, deferring healthy entitlements or raising the cap is not a behavior-preserving optimization."
+    }
+  ],
+  "planned_complete_cases": [
+    "811 mixed rotated healthy ETH activation",
+    "999 mixed rotated healthy ZZZ activation",
+    "811 one full-budget optional-currency fault (order placements if loop changes)",
+    "Opening cutoff with openingPool plus raw receipts and grace fault",
+    "Large cohort all16 fault refusal/conservation boundary",
+    "Large-state growth without royalty re-enrollment"
+  ],
+  "targeted_companions": [
+    "Homogeneous unit2/unit3 to mixed unit1 rights",
+    "Underfunding and external-token hostile boundaries",
+    "Canonical flatten/import continuity after claims/recovery/transfer"
+  ],
+  "limitations": [
+    "No tests, compiler, network or deployments executed by this review",
+    "Source can subsequently change under the contract owner; these pins identify inspection only",
+    "Controlled predecessor setup must disclose typed-writer vs actual historical contributions",
+    "No claim of actual markets/provider/Robinhood fees/OpenSea/operational or independent approval"
+  ]
+}

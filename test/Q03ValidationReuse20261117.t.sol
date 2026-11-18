@@ -1,0 +1,167 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.26;
+
+import {ReferenceExecutionContextTest,ContextExternalTrader} from "./ReferenceExecutionContext.t.sol";
+import {ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
+import {ZZZProtocolPolicy} from "../src/ZZZProtocolPolicy.sol";
+import {ZZZModule} from "../src/base/ZZZModule.sol";
+import {ZZZLPBalancer} from "../src/ZZZLPBalancer.sol";
+import {MarketState} from "../src/interfaces/IZZZExecutionOracle.sol";
+import {Ids} from "../src/libraries/ZZZTypes.sol";
+
+/// @notice NEW source-boundary regressions, not a rerun of the inherited suite.
+/// Real v4 pools/position manager and current Entry/accounting are used. Local
+/// admission, ETH feeds, VRF, Permit2 and direct-mint transport remain test seams;
+/// these small cases do not qualify mint2, maximum-state gas or real markets.
+contract Q03ValidationReuse20261117Test is ReferenceExecutionContextTest {
+    function checkedRefundContext() external {
+        require(msg.sender==address(token));
+        ++callbackCount;
+        assertTrue(_execution().executionActive());
+        assertTrue(manager.balanceContext(target)!=bytes32(0),"public getter keeps its complete proof");
+    }
+
+    function moveIndependentDuringPull() external {
+        require(msg.sender==address(token));
+        callbackTrader.swapTokenForETH(1 ether);
+        (uint256 lower,uint256 upper,)=oracle.priceBounds(address(token));
+        assertGt(lower,0);assertGe(upper,lower,"movement is small enough for ordinary agreement");
+    }
+
+    function changeEntryRoundDuringFinalReset() external {
+        require(msg.sender==address(token));
+        assertTrue(_execution().executionActive());
+        (,,bytes32 captured)=_execution().executionBounds(address(0));
+        ethFirst.rounds(2,2);
+        (uint256 lower,uint256 upper,bytes32 live)=oracle.priceBounds(address(0));
+        assertEq(lower,1e18);assertEq(upper,1e18);
+        assertTrue(live!=captured,"a healthy same-value round still changes the authenticated basis");
+    }
+
+    function testQ03PrivateProofReuseAllowsBothActualSwapDirectionsAndPublicRefundProofs() public {
+        bytes32 destination=_snapshot(state,target);
+        bytes32 independent=_snapshot(independentState,independentPool);
+        for(uint256 i;i<2;++i){
+            uint256 a0=i==0?100 ether:0;
+            uint256 a1=i==0?0:100 ether;
+            ZZZLPBalancer.Plan memory plan=_plan(a0,a1);
+            assertEq(plan.poolId,referencePool);assertEq(plan.zeroForOne,i==0);assertGt(plan.amountIn,0);
+            (uint256 quoted,MarketState memory expected)=_quoteActualTrade(plan.zeroForOne,plan.amountIn);
+            assertEq(quoted,plan.amountOut);
+            assertEq(keccak256(abi.encode(expected)),keccak256(abi.encode(plan.afterState)));
+            uint256 e=address(this).balance;uint256 z=token.balanceOf(address(this));
+            token.arm(address(manager),3,address(this),abi.encodeCall(this.checkedRefundContext,()));
+            uint256 oldCallbacks=callbackCount;
+            (uint256 out0,uint256 out1)=manager.balance{value:a0}(target,0,a0,a1,block.timestamp+100);
+            // With no ZZZ input, its swap output goes core -> recipient; no
+            // Manager token refund exists. The second leg has a real refund.
+            assertEq(callbackCount,oldCallbacks+(i==0?0:1),"actual token refund count");
+            assertEq(keccak256(abi.encode(_market(state,referencePool))),keccak256(abi.encode(expected)));
+            if(i==0){
+                assertEq(out0,a0-plan.amountIn);assertEq(out1,quoted);
+                assertEq(e-address(this).balance,plan.amountIn);assertEq(token.balanceOf(address(this))-z,quoted);
+            }else{
+                assertEq(out0,quoted);assertEq(out1,a1-plan.amountIn);
+                assertEq(address(this).balance-e,quoted);assertEq(z-token.balanceOf(address(this)),plan.amountIn);
+            }
+            assertEq(_snapshot(state,target),destination);assertEq(_snapshot(independentState,independentPool),independent);
+            assertFalse(_execution().executionActive());_assertPrefunds();
+        }
+    }
+
+    function testQ03NonzeroPullStillRejectsSmallForeignMarketMutationAndRollsBack() public {
+        callbackTrader=new ContextExternalTrader(independentCore,independentKey);
+        token.mint(address(callbackTrader),10 ether);
+        bytes32 destination=_snapshot(state,target);bytes32 venue=_snapshot(state,referencePool);
+        bytes32 independent=_snapshot(independentState,independentPool);
+        uint256 e=address(this).balance;uint256 z=token.balanceOf(address(this));
+        uint256 allowance=token.allowance(address(this),address(manager));
+        token.arm(address(manager),1,address(this),abi.encodeCall(this.moveIndependentDuringPull,()));
+        vm.expectCall(address(this),abi.encodeCall(this.moveIndependentDuringPull,()));
+        vm.expectRevert(ZZZModule.InvalidState.selector);
+        manager.balance{value:1 ether}(target,0,1 ether,100 ether,block.timestamp+100);
+        assertEq(_snapshot(state,target),destination);assertEq(_snapshot(state,referencePool),venue);
+        assertEq(_snapshot(independentState,independentPool),independent);
+        assertEq(address(this).balance,e);assertEq(token.balanceOf(address(this)),z);
+        assertEq(token.allowance(address(this),address(manager)),allowance);
+        assertEq(token.balanceOf(address(callbackTrader)),10 ether);assertEq(address(callbackTrader).balance,0);
+        assertTrue(token.armed(),"token callback state also rolls back");
+        assertFalse(_execution().executionActive());_assertPrefunds();
+        token.arm(address(manager),0,address(0),"");
+        (uint256 out0,uint256 out1)=manager.balance{value:1 ether}(target,0,1 ether,100 ether,block.timestamp+100);
+        assertGt(out0,1 ether);assertLt(out1,100 ether);assertFalse(_execution().executionActive());_assertPrefunds();
+    }
+
+    function testQ03RefundSourceDisableRestoreStillInvalidatesFinalProofAndEveryTransfer() public {
+        bytes32 destination=_snapshot(state,target);bytes32 venue=_snapshot(state,referencePool);
+        uint64 revision=oracle.executionSourceRevision();
+        uint256 e=address(this).balance;uint256 z=token.balanceOf(address(this));
+        token.arm(address(manager),3,address(this),abi.encodeCall(this.restoreSourceKindDuringRefund,()));
+        vm.expectCall(address(this),abi.encodeCall(this.restoreSourceKindDuringRefund,()));
+        vm.expectRevert(ZZZModule.InvalidState.selector);
+        manager.balance{value:100 ether}(target,0,100 ether,1 ether,block.timestamp+100);
+        assertEq(oracle.executionSourceRevision(),revision);assertEq(_snapshot(state,target),destination);
+        assertEq(_snapshot(state,referencePool),venue);assertEq(address(this).balance,e);assertEq(token.balanceOf(address(this)),z);
+        assertTrue(token.armed());assertFalse(_execution().executionActive());_assertPrefunds();
+        token.arm(address(manager),0,address(0),"");
+        (uint256 out0,uint256 out1)=manager.balance{value:100 ether}(target,0,100 ether,1 ether,block.timestamp+100);
+        assertLt(out0,100 ether);assertGt(out1,0);assertFalse(_execution().executionActive());_assertPrefunds();
+    }
+
+    function testQ03EntryFinalApprovalResetStillRejectsFreshSameValueRoundAndAllAccountingRollsBack() public {
+        _installProductionEntryGraph();address owner=address(0xB0B);
+        vm.deal(owner,1 ether);token.mint(owner,1000 ether);uint256 id=_mint(owner);
+        vm.prank(owner);token.approve(address(entry),100 ether);
+        ZZZActivationEntry.Request memory request=ZZZActivationEntry.Request(id,target,address(token),100 ether,1,block.timestamp+100,false);
+        bytes32 policy=ZZZProtocolPolicy(access.protocolPolicy()).entryFingerprint();
+        bytes32 beforeState=_entryAtomicState(owner,id);
+        (,,bytes32 beforePrice)=oracle.priceBounds(address(0));
+        token.arm(address(entry),2,address(this),abi.encodeCall(this.changeEntryRoundDuringFinalReset,()));
+        vm.expectCall(address(this),abi.encodeCall(this.changeEntryRoundDuringFinalReset,()));
+        vm.prank(owner);vm.expectRevert(ZZZModule.InvalidState.selector);
+        entry.executeReviewed(request,300,policy);
+        assertEq(_entryAtomicState(owner,id),beforeState,"balances, fees, LP, shares, membership, trees and allowances revert");
+        (,,bytes32 afterPrice)=oracle.priceBounds(address(0));assertEq(afterPrice,beforePrice);
+        assertEq(ethFirst.round(),1);assertTrue(token.armed());assertFalse(_execution().executionActive());
+        assertEq(vault.sharesOf(id),0);assertEq(membership.totalEligible(),0);assertEq(nft.royaltyRewards().totalWeight(),0);
+        token.arm(address(entry),0,address(0),"");
+        vm.prank(owner);entry.executeReviewed(request,300,policy);
+        assertEq(nft.ownerOf(id),owner);assertGt(vault.sharesOf(id),0);
+        assertEq(membership.totalEligible(),1);assertEq(nft.royaltyRewards().totalWeight(),1);
+        assertGt(positions.getPositionLiquidity(vault.group(vault.nftBucket(id)).lpTokenId),0);
+        assertEq(token.allowance(owner,address(entry)),0);assertEq(token.allowance(address(entry),address(vault)),0);
+        assertFalse(_execution().executionActive());_assertPrefunds();
+    }
+
+    function testQ03StandaloneSwapStillRejectsPullRoundMutationThenProvesBothOwnTransitions() public {
+        address buyer=address(0xB0BBAC);access.bind(Ids.BUYBACK,buyer);
+        vm.deal(buyer,10 ether);token.mint(buyer,10 ether);
+        vm.prank(buyer);token.approve(address(manager),1 ether);
+        vm.prank(buyer);token.arm(address(manager),1,address(this),abi.encodeCall(this.changeEntryRoundDuringFinalReset,()));
+        bytes32 destination=_snapshot(state,target);bytes32 venue=_snapshot(state,referencePool);
+        bytes32 independent=_snapshot(independentState,independentPool);
+        uint256 e=buyer.balance;uint256 z=token.balanceOf(buyer);
+        vm.expectCall(address(this),abi.encodeCall(this.changeEntryRoundDuringFinalReset,()));
+        vm.prank(buyer);vm.expectRevert(ZZZModule.InvalidState.selector);
+        manager.swap(referencePool,false,1 ether,1,block.timestamp+100);
+        assertEq(ethFirst.round(),1);assertEq(buyer.balance,e);assertEq(token.balanceOf(buyer),z);
+        assertEq(token.allowance(buyer,address(manager)),1 ether);assertTrue(token.armed());
+        assertEq(_snapshot(state,target),destination);assertEq(_snapshot(state,referencePool),venue);
+        assertEq(_snapshot(independentState,independentPool),independent);
+        assertFalse(_execution().executionActive());_assertPrefunds();
+        vm.prank(buyer);token.arm(address(manager),0,address(0),"");
+        for(uint256 i;i<2;++i){
+            bool direction=i!=0;
+            (uint256 quoted,MarketState memory expected)=_quoteActualTrade(direction,1 ether);
+            e=buyer.balance;z=token.balanceOf(buyer);
+            vm.prank(buyer);
+            uint256 output=manager.swap{value:direction?1 ether:0}(referencePool,direction,1 ether,1,block.timestamp+100);
+            assertEq(output,quoted);assertGt(output,0);
+            assertEq(keccak256(abi.encode(_market(state,referencePool))),keccak256(abi.encode(expected)));
+            if(direction){assertEq(e-buyer.balance,1 ether);assertEq(token.balanceOf(buyer)-z,output);}
+            else{assertEq(buyer.balance-e,output);assertEq(z-token.balanceOf(buyer),1 ether);}
+            assertEq(_snapshot(state,target),destination);assertEq(_snapshot(independentState,independentPool),independent);
+            assertFalse(_execution().executionActive());_assertPrefunds();
+        }
+    }
+}

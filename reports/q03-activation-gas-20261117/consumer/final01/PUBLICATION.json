@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-18T08:59:13.712250+00:00",
+  "kind": "final source-scoped offline consumer/build/historical compatibility verification",
+  "success": true,
+  "tests_run": 17,
+  "new_payload_methods": 11,
+  "changed_build_methods": 3,
+  "changed_historical_methods": 3,
+  "unchanged_old_methods_executed": 0,
+  "solidity_methods_executed": 0,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "duration_seconds": 15.031000000002678,
+  "executed": [
+    "tests_python.test_factory_payload4.FactoryPayload4Tests.test_actual_factory_gate_checks_selected_observations_and_keeps_lp_assets_fixed",
+    "tests_python.test_factory_payload4.FactoryPayload4Tests.test_actual_observer_uses_both_selected_parts_at_one_canonical_hash",
+    "tests_python.test_factory_payload4.FactoryPayload4Tests.test_bool_unknown_and_mixed_payloads_reject_before_any_observer_read",
+    "tests_python.test_factory_payload4.FactoryPayload4Tests.test_explicit4_drives_precheck_bindings_and_template_identity_consistently",
+    "tests_python.test_factory_payload4.FactoryPayload4Tests.test_fresh_gate_keeps_all_approval_flags_false_and_old_schema_rejects_new_field",
+    "tests_python.test_factory_payload4.FactoryPayload4Tests.test_historical_archive_and_payload3_are_not_relabelled",
+    "tests_python.test_factory_payload4.FactoryPayload4Tests.test_observe_frontdoor_uses_selected_precheck_bindings_and_constructor",
+    "tests_python.test_factory_payload4.FactoryPayload4Tests.test_observer_failure_clears_old_positive_observations_without_accepting_new_bytes",
+    "tests_python.test_factory_payload4.FactoryPayload4Tests.test_omission_and_explicit3_preserve_the_exact_historical_bindings",
+    "tests_python.test_factory_payload4.FactoryPayload4Tests.test_payload4_matches_actual_trusted_normal_creation_and_exact_parts",
+    "tests_python.test_factory_payload4.FactoryPayload4Tests.test_single_changed_creation_or_part_identity_cannot_mix_payloads",
+    "tests_python.test_deployment_build_profiles.DeploymentBuildProfileTests.test_default_planner_accepts_current_metadata_build_and_tags_identity",
+    "tests_python.test_deployment_build_profiles.DeploymentBuildProfileTests.test_seal_fix_keeps_previous_objects_historical_without_automatic_fallback",
+    "tests_python.test_deployment_build_profiles.DeploymentBuildProfileTests.test_current_complete_graph_has_exact_objects_and_original_size_limits",
+    "tests_python.test_exact_lp_inventory.ExactLPInventoryTests.test_current_template_explicit7_v9_has_no_observations_or_approval",
+    "tests_python.test_exact_lp_inventory.ExactLPInventoryTests.test_old15_cannot_enter_current_gate_or_observer",
+    "tests_python.test_exact_lp_inventory.ExactLPInventoryTests.test_cli_requires_explicit_historical_selector_for_schema16_and15"
+  ],
+  "source_bracket_unchanged": true,
+  "protected_four_unchanged": true,
+  "trusted_default": "q03-allocation-20261117",
+  "original_seal_family": "seal-boundaries-20261117 remains separately pinned/historical; it is not today default",
+  "production_approved": false,
+  "no_network_signing_or_deployment": true,
+  "files": [
+    {
+      "name": "RESULT.json.gz",
+      "sha256": "8d23e0b8b3db2acf9c0e988b5f728291df159f15efc794fb5ca2f02c06e32fcf",
+      "uncompressed_sha256": "3c8ae7b90aa5179155fbdf309e83b6ffb80b9cf106aad48eff55d49b1067bb35",
+      "bytes": 47204
+    },
+    {
+      "name": "START.json.gz",
+      "sha256": "899eeda60cfa2a7017d2ccae372cfcd955c6dbed9ad25bf325c669cacecc94fa",
+      "uncompressed_sha256": "d6c6decb8351b145e95a2e0a550ffe3590851535862d895b00512c03b89e9ff9",
+      "bytes": 24119
+    },
+    {
+      "name": "unittest.log",
+      "sha256": "dca03e3f88b6704ff78a19598e64cbbdd044c254c351991dbb6d36c8d60b55af",
+      "uncompressed_sha256": "dca03e3f88b6704ff78a19598e64cbbdd044c254c351991dbb6d36c8d60b55af",
+      "bytes": 3648
+    },
+    {
+      "name": "run_consumer_checks.py",
+      "sha256": "5137f2f38b3d5d075031c29e85c6a3a5f1df5cc0e180b5b6792bac5ff1ab24b1",
+      "uncompressed_sha256": "5137f2f38b3d5d075031c29e85c6a3a5f1df5cc0e180b5b6792bac5ff1ab24b1",
+      "bytes": 4851
+    }
+  ]
+}

@@ -20,6 +20,8 @@ implements scoped source/tooling fixes and corrects stale audit guidance. It
 does not approve authorities, markets, services, real fees, OpenSea, VRF or
 maximum-state operation. Keep those evidence and independent-audit gates open.
 
+Fresh Q03 build/payload4 requires new exact runtime/constructor/consumer review. [Capacity evidence](../reports/q03-activation-gas-20261117/REVIEW.md) does not approve production: the20M/full20% profile remains strict, pending-currency races remain possible and complete selected market/provider/fees, operation and independent approval remain open. No limit or approval flag was raised.
+
 [16 November external evidence](../reports/real-market-refresh-20261116/REVIEW.md) closes
 only the bounded observation milestone. No independent ETH/ZZZ price pair,
 complete activation/growth/conversion route or operating service is approved.

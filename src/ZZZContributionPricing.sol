@@ -235,7 +235,7 @@ contract ZZZContributionPricing {
         if (basis.limits != limits) revert InvalidState();
         basis.bucket = bucket;
         // Conversion/pull callbacks may not replace policies or round data.
-        _unchanged();
+        _unchanged(true);
     }
     function _lower(address token,uint256 amount) private view returns(uint256) {
         if (amount == 0) return 0;
@@ -302,8 +302,8 @@ contract ZZZContributionPricing {
     function _executionStrategy()private view returns(IZZZExecutionStrategy){
         return IZZZExecutionStrategy(IPricingExecutionManager(access.module(Ids.LIQUIDITY)).executionStrategy());
     }
-    function _unchanged() private view returns(bytes32 hash) {
-        IZZZExecutionOracle(address(oracle)).validateExecution();
+    function _unchanged(bool checkSources) private view returns(bytes32 hash) {
+        if(checkSources)IZZZExecutionOracle(address(oracle)).validateExecution();
         if(_protocolPolicy().entryFingerprint()!=basis.entryPolicyFingerprint)revert InvalidState();
         hash = keccak256(abi.encode(basis.pool,basis.nft,basis.lowerInput,basis.upperInput,
             basis.maxIdleBps,basis.entryPolicyFingerprint));
@@ -320,7 +320,7 @@ contract ZZZContributionPricing {
         external onlyBudget returns(uint256 issued,uint256 netUSD) {
         if (basis.phase != 4 || basis.bucket != bucket || basis.lowerInput != inputUSD || basis.limits != limits ||
             uint16(limits) > 1000 || uint16(limits >> 16) > 1000) revert InvalidState();
-        _putUnchanged(); bytes32 hash = _unchanged();
+        _putUnchanged(); bytes32 hash = _unchanged(true);
         if (deployed == 0 || idle > Math.mulDiv(deployed+idle,basis.maxIdleBps,10000) ||
             deployed+idle <= incumbentNAV || deployed < incumbentDeployed) revert Slippage();
         netUSD = deployed+idle-incumbentNAV;
@@ -342,7 +342,9 @@ contract ZZZContributionPricing {
     function endEntry() external {
         if (msg.sender != _entry()) revert Unauthorized();
         if (!basis.entry || basis.phase != 5) revert InvalidState();
-        _putUnchanged(); _unchanged(); _clear();
+        // _clear starts with Oracle.endExecution's full final proof. Only
+        // STATIC mark/policy reads separate it from these exact-basis checks.
+        _putUnchanged(); _unchanged(false); _clear();
     }
     function _clear() private {
         IZZZExecutionOracle(address(oracle)).endExecution();

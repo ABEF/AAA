@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-17T17:11:45.223390+00:00",
+  "kind": "new test source plan; NOT an execution result",
+  "file": "test/Q03RoyaltyIntegration20261117.t.sol",
+  "sha256": "65793aa624d72a6c1f20d6db30051a7ba29945842bbdb26168f085cc62820704",
+  "new_methods": [
+    {
+      "method": "testQ03RareCompressedOutstandingCrossesCommunThenLegendaryWithoutOlderRights",
+      "oracle": "Independent individual-unit compressed-slot/physical-ticket walk, old claim removed, no older newcomer rights, actual transfer/current-owner payouts, final79 received units."
+    },
+    {
+      "method": "testQ03OpeningGasFaultIncludesGraceCohortButNotCutoffEntrantAfterTransfer",
+      "oracle": "OpeningPool+raw receipts allocated to pre-cutoff cohort; full-budget optional fault preserves effective grace eligibility; exact-cutoff entrant excluded; old owner rejected after transfer; all24ETH/44healthy/64fault-currency units drain."
+    },
+    {
+      "method": "testQ03FlattenedImportClaimsAccruedAndNewBookUnitsWithoutOldTreeCounter",
+      "oracle": "Actual capture/settle/export/import with independent decoded per-NFT amounts and funding; incomplete backing rejects; imported accrued units plus subsequent new-tree units drain27token/17ETH; source retired claim refuses."
+    },
+    {
+      "method": "testQ03FundedAbortRestoresSourceComplementaryCreditsAndFutureClaims",
+      "oracle": "Actual canonicalRelease/Accept/return/Restore preserves source liabilities and model; source continuation after controlled abort drains27token/17ETH; cancelled importer cannot claim."
+    },
+    {
+      "method": "testQ03ProductionLedgerUintMaxComplementaryDrainAndReturnThreeCycles",
+      "oracle": "Actual royalty ledger with Commun1+Legendary3, real MockToken UINT_MAX supply minted once, four-ticket quotient/remainder model, pending preview, rotated complementary credit, alternating owner claim order, exact backing/liability/cursor checks, zero repeat claims, actor transfers back and three cycles without lifetime overflow."
+    }
+  ],
+  "count": 5,
+  "tests_executed_by_author": 0,
+  "production_changes_by_author": [],
+  "selection": "Q03RoyaltyIntegration20261117Test; unique testQ03 prefix",
+  "scope": "Actual royalty4/allocator/claim router plus typed InKindNFT/MockAccess component setup. Canonical ledger hooks and real backing exercised; no physical LP, Entry gas, real mint2 issuance or complete coordinator claimed.",
+  "private_counter_note": "No implementation-specific storage read or counter getter. Imported accrued is intentionally separate from initially empty new allocation books; later exact claims test their coexistence.",
+  "stage_note": "Fifth method added only after baseline05 source bracket completed. No executions by author; await source promotion and new selected-method artifact evidence.",
+  "previous_four_method_snapshot": "INTEGRATION_TEST_SCOPE.json preserved unchanged"
+}

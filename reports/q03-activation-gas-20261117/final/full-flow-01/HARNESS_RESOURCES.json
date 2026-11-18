@@ -1,0 +1,9 @@
+{
+  "gas_limit": 10000000000,
+  "memory_limit": 536870912,
+  "solc": "0.8.26",
+  "evm_version": "cancun",
+  "optimizer": true,
+  "optimizer_runs": 1,
+  "via_ir": true
+}

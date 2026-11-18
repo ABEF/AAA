@@ -18,15 +18,15 @@ are refused; the planner does not install packages or fetch replacement evidence
 
 ## Select the exact reviewed build
 
-The default trusted build is **`seal-boundaries-20261117`**, using the accepted
-normal compiler family with chain/URI guards and the canonical reservation identity check. The previous controller artwork-root guard remains.
+The default trusted build is **`q03-allocation-20261117`**, using the accepted
+normal compiler family with bounded complementary royalty allocation and static proof reuse. Chain/URI, artwork-root and reservation identity guards remain unchanged.
 Input `profile` stays `schema17/mint2/V10/execution1/LP3`;
 the distinct build ID authenticates exact bytes. Output `build_profile` and
 `accepted_build.profile` record it. Unknown IDs, mixed artifacts or changed
 source bytes fail; there is no fallback to an older build to bypass drift.
 
 ```powershell
-python scripts/prepare-deployment.py --build-profile seal-boundaries-20261117 --input path/to/reviewed-input.json --output path/to/new-plan.json
+python scripts/prepare-deployment.py --build-profile q03-allocation-20261117 --input path/to/reviewed-input.json --output path/to/new-plan.json
 ```
 
 The closed registry also retains **`operator-seal-20261117`**, **`metadata2-20261116`** and
@@ -218,12 +218,12 @@ it does not silently skip that check on another operating system. Example from
 the repository root, with your reviewed binary and a new evidence directory:
 
 ```powershell
-python scripts/rehearse-local-deployment.py --build-profile seal-boundaries-20261117 --anvil "C:/reviewed-tools/anvil.exe" --output "C:/local-reviews/new-construction-run"
+python scripts/rehearse-local-deployment.py --build-profile q03-allocation-20261117 --anvil "C:/reviewed-tools/anvil.exe" --output "C:/local-reviews/new-construction-run"
 ```
 
 This example selects the new current build for a separately authorized fresh
 rehearsal; it is not a command that ran in the historical captures below.
-No full-graph construction rehearsal for `seal-boundaries-20261117` is claimed.
+No full-graph construction rehearsal for `q03-allocation-20261117` is claimed; older construction captures retain their original runtime scope.
 There is no RPC, key, existing-state, public-deployment or sealing option. The
 controlled role addresses, metadata URI and buyback ceiling are test inputs,
 not production choices. Output includes the process/genesis identity, dependencies,

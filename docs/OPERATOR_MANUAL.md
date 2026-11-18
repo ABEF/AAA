@@ -291,6 +291,8 @@ artifact expiry is not a contract deadline on begin/allocation/distribution;
 actual cursor/beneficiary are determined at inclusion. Readiness remains false.
 See [verification](../reports/operator-management-20261109/REVIEW.md).
 
+Fresh Q03 deployment inventories use chain-local `factory_payload_version:4` and the independently reviewed [payload4 pins](FACTORY_CODE_STORAGE.md). This selects immutable deployment bytes; it is not an after-seal upgrade. Existing payload3/old runtime configurations remain historical. All operator function signatures, permissions, financial caps and exact reviewed calldata rules are unchanged.
+
 ## Unsigned activation gas settings
 
 Default activation policy1 remains12M. For a separately reviewed provider and
@@ -321,6 +323,10 @@ See [configuration](ACTIVATION_PREPARATION.md) and
 The [launch16 review](../reports/launch-workload-20261117/REVIEW.md) demonstrates why a passing20M body call is insufficient: its fresh estimate plus full20% can still exceed20M. Several pending/initial-allocation states refuse this policy even with healthy tokens. Capacity16 means16 ERC20s plus ETH **if admitted**, not an automatic launch list or gas approval. Growth normally does not repeat royalty activation. Keep the exact preparation/estimate and margins; never widen a cap or mislabel an opaque refusal as a bad token.
 
 Before admitting currencies, read `RoyaltyRewards.assetCount()`, every `assets(index)`, `assetCapacity()` and `ProtocolPolicy.royaltySyncGas()`/`gasPolicy()`/`gasFingerprint()`. Qualify cold empty, pending/first-opening, rotated-allocation and failed-read workloads. Some rare royalty states are materially more expensive; component gas cannot be added to or substituted for a complete operation estimate. The new unsigned pre-seal rows record these reads only and remain unverified.
+
+The [Q03 near-capacity review](../reports/q03-activation-gas-20261117/REVIEW.md) measures the complete Entry flow after999 real activations, fixed600/300/100 mint quotas and16 admitted ERC20 currencies plus ETH. It separates unsynchronized opening/rotated receipts, one full-budget currency fault, already-synchronized states and ETH/ZZZ growth. A passed component check is not20M approval: require the exact estimate plus full20% and successful padded call. The1M per-currency allowance,12M default and20M reviewed policy remain unchanged.
+
+Cold Q03 estimates plus full20%: healthy pre-synced activation19,484,950/20M; one faulty currency19,877,529/20M; ETH growth14,963,820/20M; ZZZ growth15,864,753/20M. Four unsynchronised near-capacity cases refuse20M. These controlled results are not actual target-fee approval. Fresh tiny receipts can restore costly allocation work between sync and inclusion; the narrowest measured margin is122,471gas. Keep the fresh exact simulation and full margin.
 
 #### Optional royalty synchronization before activation
 
@@ -626,12 +632,12 @@ part of this reconciliation. Preserve existing chains, journals and websites.
 
 | Tool | Inputs | Example | Purpose |
 | --- | --- | --- | --- |
-| `prepare-deployment.py` | Reviewed input JSON, new output file; trusted build ID | `python scripts/prepare-deployment.py --build-profile seal-boundaries-20261117 --input path/to/reviewed.json --output path/to/new-plan.json` | Review unsigned constructor plan |
+| `prepare-deployment.py` | Reviewed input JSON, new output file; trusted build ID | `python scripts/prepare-deployment.py --build-profile q03-allocation-20261117 --input path/to/reviewed.json --output path/to/new-plan.json` | Review unsigned constructor plan |
 | `check-local-deployment-evidence.py` | Captured ZIP/directory; optional relocated trusted build directory | `python scripts/check-local-deployment-evidence.py --evidence reports/local-deployment-rehearsal-20261115/evidence.zip --output path/to/new-result.json` | Reconcile captured local construction |
 | `check-market-evidence.py` | Exact dated16November market ZIP | `python scripts/check-market-evidence.py --evidence reports/real-market-refresh-20261116/evidence.zip` | Recompute dated market summaries |
-| `rehearse-local-deployment.py` | Reviewed Anvil executable, new directory, trusted build ID | `python scripts/rehearse-local-deployment.py --build-profile seal-boundaries-20261117 --anvil C:/reviewed-tools/anvil.exe --output C:/local-reviews/new-run` | Measure isolated constructor execution |
+| `rehearse-local-deployment.py` | Reviewed Anvil executable, new directory, trusted build ID | `python scripts/rehearse-local-deployment.py --build-profile q03-allocation-20261117 --anvil C:/reviewed-tools/anvil.exe --output C:/local-reviews/new-run` | Measure isolated constructor execution |
 
-Current planning defaults to `seal-boundaries-20261117`; historical
+Current planning defaults to `q03-allocation-20261117`; historical
 `metadata2-20261116` and legacy
 `manual-reference-20261115` remains separately pinned. The checker selects only
 the captured closed build identity, and admits an absent ID only with the original
@@ -675,7 +681,7 @@ exact44-call phase and feeds them to the unchanged strict constructor reviewer.
 | Tool/action | Required inputs | Example | Effect |
 | --- | --- | --- | --- |
 | Prepare conditional sequence | Existing constructor JSON, public direct-EOA sender, canonical decimal starting nonce, new output file | `python scripts/prepare-deployment-sequence.py --input /review/input.json --deployer REVIEWED_PUBLIC_EOA --starting-nonce REVIEWED_DECIMAL_NONCE --output /review/new-sequence.json` | Review conditional deployment sequence |
-| Select trusted build | Explicit closed build ID | Add `--build-profile seal-boundaries-20261117` | Select exact reviewed artifacts |
+| Select trusted build | Explicit closed build ID | Add `--build-profile q03-allocation-20261117` | Select exact reviewed artifacts |
 
 Replace placeholders; no private key/RPC is used. All44 calls must be ordinary
 successful transactions from the actual same bootstrap EOA, with no unexpected
@@ -704,7 +710,7 @@ as the conditional pre-seal caller and missing inputs explicitly blocked.
 | Tool/action | Required inputs | Example | Effect |
 | --- | --- | --- | --- |
 | Prepare setup review | Reviewed copy of `config/preseal-preparation.example.json`; NEW output path | `python scripts/prepare-preseal.py --input /review/preseal.json --output /review/NEW-review.json` | Review conditional setup calls |
-| Pin current build | Exact supported current build | Add `--build-profile seal-boundaries-20261117` | Freeze current ABI selection |
+| Pin current build | Exact supported current build | Add `--build-profile q03-allocation-20261117` | Freeze current ABI selection |
 | Inspect missing values | Output `missing_inputs` and each step's fields | Review `steps[].missing_inputs` | Resolve explicit setup blockers |
 | Inspect deliberate stops | Output `explicit_operating_stops` | Empty venues, converterOFF, maximumGap0, per-pool operationsOFF | Identify intentionally stopped operations |
 
@@ -815,7 +821,7 @@ evolution paths, then independently complete every other seal prerequisite.
 The nonempty check does not validate a CID, hosted content or OpenSea retrieval.
 A rejected seal preserves bootstrap and bindings; a successful seal erases
 bootstrap and permanently prevents changing the artwork root. Do not seal merely
-because this one read succeeds. Use the fresh `seal-boundaries-20261117` build
+because this one read succeeds. Use the fresh `q03-allocation-20261117` build
 family; older construction receipts retain their original controller scope.
 
 ### Fixed ZZZ setup order

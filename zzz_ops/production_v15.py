@@ -19,8 +19,28 @@ SERVICE_PROFILES=dict(H.SERVICE_PROFILES,
     api=H.SERVICE_PROFILES['api'].replace('holder_exit_v9','holder_exit_v10')+'_mint2',
     keeper=H.SERVICE_PROFILES['keeper']+'_canonical_v10_mint2',
     opensea='seadrop_sequential_v1')
+# Historical default only; per-chain identity comes from factory_module(chain).SPEC.
 ROYALTY_CREATION_CODE_HASH=H.ROYALTY_CREATION_CODE_HASH
-raw_royalty_assets,precheck_chain,validate_tokens=H.raw_royalty_assets,H.precheck_chain,H.validate_tokens
+raw_royalty_assets,validate_tokens=H.raw_royalty_assets,H.validate_tokens
+FACTORY_PAYLOAD_FIELD='factory_payload_version'
+
+
+def factory_module(chain):
+    """Omission/3 keeps payload3; only explicit integer4 selects new bytes."""
+    declared=chain.get(FACTORY_PAYLOAD_FIELD,3) if isinstance(chain,dict) else None
+    if type(declared) is not int or declared not in (3,4):
+        raise ValueError('Use exact factory_payload_version3 or4')
+    if declared==3:return H.F
+    from zzz_ops import factory_code_v4
+    return factory_code_v4
+
+
+def precheck_chain(chain):
+    return factory_module(chain).parse_section(chain)
+
+
+def factory_code(g,chain,path,addresses):
+    return H.factory_code(g,chain,path,addresses,factory_module=factory_module(chain))
 PROFILE='seadrop_sequential_v1'
 CONFIG_TYPES=('uint16','uint16','uint16','uint16','uint8','uint48','uint48','uint48','uint48','uint48','uint48',
     'bool','bytes32','address','bytes32')
@@ -31,7 +51,7 @@ FIELDS={'implementation_profile','mint_config','expected_mint_price_wei','config
 
 
 def expected_bindings(chain,execution_price_version=0):
-    result=H.expected_bindings(chain)
+    result=H.expected_bindings(chain,factory_module=factory_module(chain))
     primary=V._obj(chain.get('primary_mint'))
     helper=V._obj(V._obj(chain.get('helpers')).get('seadrop_mint')).get('address')
     result['modules']['canonical']['SCHEMA']=SCHEMA_HASH
@@ -241,9 +261,12 @@ def validate(config,*,expected_commit=None,now=None):
     top=TOP_FIELDS
     if isinstance(config,dict) and 'execution_price_version' in config:
         top=top|{'execution_price_version'};versions['execution_price_version']=selected
+    chains=config.get('chains',[]) if isinstance(config,dict) else []
+    declared_payload=any(isinstance(chain,dict) and FACTORY_PAYLOAD_FIELD in chain for chain in chains) if isinstance(chains,list) else False
+    chain_fields=CHAIN_FIELDS|{FACTORY_PAYLOAD_FIELD} if declared_payload else CHAIN_FIELDS
     return BASE._validate(config,expected_commit=expected_commit,now=now,versions=versions,helpers=HELPERS,
         binding_factory=lambda chain:expected_bindings(chain,selected),service_profiles=SERVICE_PROFILES,route_validator=H.LEGACY.validate_routes,
         royalty_conversion=False,token_validator=validate_tokens,canonical_schema_name=SCHEMA_NAME,canonical_schema_hash=SCHEMA_HASH,
-        royalty_max_assets=65,royalty_mint_revision=True,chain_fields=CHAIN_FIELDS,chain_validator=H.factory_code,
+        royalty_max_assets=65,royalty_mint_revision=True,chain_fields=chain_fields,chain_validator=factory_code,
         top_fields=top,mint_validator=mint_integration,mint_implementation=PROFILE,
         execution_validator=_execution if selected else None)

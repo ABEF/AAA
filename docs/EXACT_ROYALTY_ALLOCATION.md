@@ -54,16 +54,27 @@ admitting low-decimal/high-value currencies; no rounding scheme can divide it.
 
 ## Backing and implementation
 
-A bounded internal tree stores **outstanding**, rather than lifetime, units.
-It is compiled into the ledger, not a new deployed helper or authority. Allocation
-touches bounded ticket intervals; there is no per-receipt loop over1,000 NFTs.
-An NFT reads/consumes at most four effective tickets across the bounded
-normalization books, preserving earlier cohort allocations. A claim removes its outstanding
-units and any imported accrued units before the exact current-owner payout.
+A bounded internal tree represents outstanding ticket rights. It is compiled
+into the ledger, not a new deployed helper or authority. Allocation touches
+bounded intervals; no receipt loops over1,000 NFTs. Claims consume at most four
+effective tickets across normalization books, plus imported accrued rights.
 
-Keeping outstanding values avoids cumulative-index overflow after enormous
-receipt/claim cycles. All monetary additions remain checked. The maximum tree
-capacity and actual ticket bounds are engineering limits, not gas qualification.
+Fresh Q03 uses complementary range credits: when a remainder covers most of the
+eligible cohort, credit the upper quotient and subtract one from the small
+excluded interval. This is exactly the same per-ticket allocation and cursor.
+Only internal coefficients and their path sums wrap modulo2^256; they are NOT
+cash balances. Every monetary credit first checks and reserves the real same-
+currency global liability. Each take is bounded by the remaining liability;
+aggregate claims, backing debits and exact transfers remain checked. Imported
+accrued rights and all normalization books share that one liability bound.
+
+Storage layout, public ABI, rarity weights and flat canonical records remain
+unchanged. Never reinterpret another runtime or a nonempty historical raw book.
+After all entitled NFTs claim, earned monetary liability is zero; zero-sum internal coefficients
+need not be zero. Future tickets still have zero older rights. The rejected
+prefix-envelope experiment is not deployed source: its claim-cost penalty and
+size failure are recorded in the [Q03 review](../reports/q03-activation-gas-20261117/REVIEW.md).
+Tree/currency capacities remain engineering limits, not gas qualification.
 
 For each admitted currency in ordinary operation:
 

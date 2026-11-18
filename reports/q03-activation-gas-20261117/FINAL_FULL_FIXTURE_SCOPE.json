@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "original_sha256": "4e84022f16707e6947a8d8d9dadff1c8ae16c525a81f01ccfd3587aa0b0cd263",
+  "final_sha256": "1806c0404caeafe30b7568901cac7a60711b4f466d0729763d4e199dbfa48460",
+  "original_full_method_body_unchanged": true,
+  "new_method": "testQ03PreSynchronized999HealthyFaultAndZZZGrowth",
+  "old_case_labels_unchanged": 5,
+  "new_cases": [
+    "q03-999-presynced-eth",
+    "q03-1000-presynced-grow-zzz",
+    "q03-999-presynced-onefault-eth"
+  ],
+  "new_helper_only": "operator synchronizes present healthy currencies before fresh review; faulty currency remains deferred and recovered/drained to original cohort",
+  "claim_and_budget_semantics_unchanged": true,
+  "baseline_verifier_preserved": "baseline/verify_full_flow.py",
+  "production_approved": false
+}

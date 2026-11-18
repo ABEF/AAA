@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-11-17T17:30:37.060103+00:00",
+  "scope": "only approved private validation reuse; public ABI/storage/guards/caps unchanged",
+  "source_before_sha256": {
+    "src/ZZZLiquidityManager.sol": "fdcebdf3ca8f5e31b876eaf153faad874b844eb637d01a568c06f0ad8c607fc9",
+    "src/ZZZContributionPricing.sol": "bf99524b2696e0ab72409aa29fc85fa0d33036f9559ec23485cdd284f5daa189"
+  },
+  "source_after_sha256": {
+    "src/ZZZLiquidityManager.sol": "237cdabac5ecd33399f5ef90d585569853ee4bd676d5730fa8aa2b4a79330ac4",
+    "src/ZZZContributionPricing.sol": "c22ceebcd9f3c3d8f6c998fdef86a3af675718d7447ee03bb68325f5c0a05bfb"
+  },
+  "source_before_after": {
+    "src/ZZZLiquidityManager.sol": {
+      "before_crlf": 376,
+      "after_crlf": 380,
+      "before_lf": 376,
+      "after_lf": 380
+    },
+    "src/ZZZContributionPricing.sol": {
+      "before_crlf": 0,
+      "after_crlf": 0,
+      "before_lf": 352,
+      "after_lf": 354
+    }
+  },
+  "tests_executed": 0,
+  "size_accepted": false,
+  "production_approved": false,
+  "initial_edit_attempt": "stopped at a CRLF-only needle in the original LF Pricing file; original backups preserved; remaining exact LF edits completed separately"
+}

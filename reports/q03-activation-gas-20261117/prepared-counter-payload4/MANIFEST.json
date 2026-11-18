@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "kind": "exact prepared counter-candidate payload4 source files; not accepted/adopted release",
+  "prepared_normal_stage": "build/proposed01",
+  "current_source_adopted": false,
+  "trusted_default_adopted": false,
+  "public_deployment_or_adoption": false,
+  "files": [
+    {
+      "source": "config/factory-code-storage-v4.json",
+      "archive": "factory-code-storage-v4.json",
+      "sha256": "d5d5f922248ce719443c7b4c3f70a4ea162754876694160b0d826424e05f678c"
+    },
+    {
+      "source": "zzz_ops/factory_code_v4.py",
+      "archive": "factory_code_v4.py",
+      "sha256": "8f9873e160e28309754f0e71cf70c10dde19eae561f4db375fc7215be00f2599"
+    },
+    {
+      "source": "config/production.example.json",
+      "archive": "production.payload4.example.json",
+      "sha256": "7911d6e0730457e05baea5b0288f15c157f187060d45c2a7580da6524c378501"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "payload_length": 25549,
+  "creation_code_hash": "0xb72393fbf136d2d75526d655fcb8c51c77de65b18d68a6084072b6dc436d88b5",
+  "parts": [
+    {
+      "index": 0,
+      "payload_bytes": 24573,
+      "runtime_bytes": 24576,
+      "runtime_code_hash": "0x12ddd1d75098090d9333a350985fbbf5d84888952b9fab75f6fe04986759d9a7",
+      "runtime_ok": true
+    },
+    {
+      "index": 1,
+      "payload_bytes": 976,
+      "runtime_bytes": 979,
+      "runtime_code_hash": "0x1a6575e4414a0b548abcb88640f49e8809707551d65f0da5fbac1039eeb1ba2d",
+      "runtime_ok": true
+    }
+  ],
+  "source_adopted": false,
+  "production_approved": false,
+  "all_pass": true
+}

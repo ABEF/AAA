@@ -1,5 +1,7 @@
 # Verification evidence
 
+Current source: [Q03 activation gas optimisation](q03-activation-gas-20261117/REVIEW.md). Its exact source and cold full-flow scope supersede earlier gas estimates only where remeasured. Historical reports and failed/rejected attempts remain unchanged.
+
 [Q06 keeper interruption and recovery](q06-keeper-recovery-20261117/REVIEW.md) adds two source fixes,12 new targeted methods and actual isolated Linux/systemd receipts. Inert signing and recovery-only restart retain explicit limits; installed services are not rolled out and Q06 remains open.
 
 [Launch-workload gas and recovery](launch-workload-20261117/REVIEW.md) adds finite16-currency contribution checks,1000-NFT claim stress, maximum royalty-component phase and explicit pre-seal workload/gas reads. Actual local estimates/full margins distinguish passes from refusals; no live provider/fee or deployment approval follows.

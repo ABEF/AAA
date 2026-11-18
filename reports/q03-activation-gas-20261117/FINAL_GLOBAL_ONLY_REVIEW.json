@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-18T08:43:31.057687+00:00",
+  "kind": "read-only critical review of actual global-only production adapter and allocator",
+  "source_sha256": {
+    "src/ZZZRoyaltyRewards.sol": "aaf7c63a10621703600510bbeb4c8387641967659eb94c2a14c6f397ae258e77",
+    "src/libraries/ExactRoyaltyAllocation.sol": "ea58031312772e77b71b608cf13049e843c225dff460b9bfa5706491a213a2e5"
+  },
+  "actual_input_sha256": "6222eed398aff1ee89fca611e3a903a8925bc9206bf1d3da1078ad9d71eca840",
+  "actual_output_sha256": "746ea70c742e6cfe0c5ed1dfc4517aace3a1687215596aa0c82d262480389f67",
+  "source_matches_actual_normal_input": true,
+  "confirmed_new_defects": [],
+  "checks": [
+    "Exactly four allocation call sites; all duplicate caller-side liability additions removed.",
+    "The one private _distribute passes actual same-asset liabilities and consumes the checked returned newLiability.",
+    "Library validates width/cursor then computes used checked globalAfter before unchecked coefficient writes.",
+    "Claim captures current asset liability after sync, passes diminishing available-minus-accrued-and-selected to each take, retains checked aggregate liabilities/accounted debit before external transfer.",
+    "No external call inside coefficient update/claim selection region; failed self-call or payout reverts all writes.",
+    "Original mapping-only Book shape, permanent ticket indexing, compressed books and canonical flattened rows retained.",
+    "No public caller bound, new custody recipient, permission, module, economic split, deadline, token allowance budget or gas-cap change.",
+    "Direct/complementary dyadic credit only; rejected power-of-two envelope algorithm is absent from actual source.",
+    "W1 UINT_MAX q+1 cannot overflow: quotient increment is complementary-branch-only; W4 temporary expanded prefix is only modular representation, not a checked cash product."
+  ],
+  "precision": [
+    "Stored liabilities are assigned after internal credit returns, while its returned newLiability is checked before modular writes; the temporary representation is unobservable because no external call occurs.",
+    "View bounds follow the authenticated global economic invariant, not an explicit stored per-book counter.",
+    "Canonical import directly restores authenticated accrued liabilities under an inert state and validates their sum/backing before activation; it does not import raw coefficient storage."
+  ],
+  "evidence_limits": [
+    "This is source review, not an additional test pass or independent approval.",
+    "Five new real-ledger methods passed on baseline03; candidate01 execution is separate and still pending at this review stage.",
+    "Complete cold Entry gas, claim batch budgets and final trusted-default consumer checks are distinct qualification stages.",
+    "Counter/envelope proposals remain retained experimental/prepared records, not accepted source identity."
+  ]
+}

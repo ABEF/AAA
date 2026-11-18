@@ -26,7 +26,8 @@ BUILD_PINS={
 LEGACY_BUILD_PROFILE='manual-reference-20261115'
 METADATA_BUILD_PROFILE='metadata2-20261116'
 PREVIOUS_BUILD_PROFILE='operator-seal-20261117'
-DEFAULT_BUILD_PROFILE='seal-boundaries-20261117'
+SEAL_BUILD_PROFILE='seal-boundaries-20261117'
+DEFAULT_BUILD_PROFILE='q03-allocation-20261117'
 TRUSTED_BUILDS={
  LEGACY_BUILD_PROFILE:{'directory':BUILD,'files':BUILD_PINS,
   'source_inventory':'source-manifest.json','source_key':'exact_source_sha256','gates':'production-size-gates.json'},
@@ -39,8 +40,16 @@ TRUSTED_BUILDS={
   'source_inventory':'START.json','source_key':'source_sha256','gates':'normal-size-evidence.json'},
  PREVIOUS_BUILD_PROFILE:{'directory':'reports/operator-behavior-followup-20261117/build','files':{'compiler-input.json.gz': '574c37b4b29c24e8666ee08d6fba6d0019e587854526fc02584e4cd23cb2c434', 'compiler-output.json.gz': '14c1ce5044ea6d5e2d74aea2ff0e5a32e782bce37e1fe83c88e8b458c8f53806', 'normal-size-evidence.json': '6fcdfc4368a3c6efe77540140ca38da029e6c29987f5a39cd849a3e483934927', 'START.json': 'ea15822d8831e5705c4ac527f8fc18d712a00662b71e8a4010b250baa08c301a'},
   'source_inventory':'START.json','source_key':'source_sha256','gates':'normal-size-evidence.json'},
- DEFAULT_BUILD_PROFILE:{'directory':'reports/test-seal-deep-review-20261117/build','files':{'compiler-input.json.gz': 'c7f1190e3b45d9a114f428176c10cef5c395a7fb426ebca9e55a0c8b4c554683', 'compiler-output.json.gz': 'cc78e2b0c6a6fc4c6182d93ebcc1a245cde8bb3dde787ca74c7ae911f55ea7a3', 'normal-size-evidence.json': 'e23fe1fdce6d4571d69e2978f073dcd49705648e20bb81140a7c0a5ab116601a', 'START.json': 'bf189012bd42070ad823449bccd9d756a73436d5faf4b206243652473c13f8b0'},
-  'source_inventory':'START.json','source_key':'source_sha256','gates':'normal-size-evidence.json'}}
+ SEAL_BUILD_PROFILE:{'directory':'reports/test-seal-deep-review-20261117/build','files':{'compiler-input.json.gz': 'c7f1190e3b45d9a114f428176c10cef5c395a7fb426ebca9e55a0c8b4c554683', 'compiler-output.json.gz': 'cc78e2b0c6a6fc4c6182d93ebcc1a245cde8bb3dde787ca74c7ae911f55ea7a3', 'normal-size-evidence.json': 'e23fe1fdce6d4571d69e2978f073dcd49705648e20bb81140a7c0a5ab116601a', 'START.json': 'bf189012bd42070ad823449bccd9d756a73436d5faf4b206243652473c13f8b0'},
+  'source_inventory':'START.json','source_key':'source_sha256','gates':'normal-size-evidence.json'},
+ DEFAULT_BUILD_PROFILE:{'directory': 'reports/q03-activation-gas-20261117/build/current',
+ 'files': {'compiler-input.json.gz': '216c0414c653b2527703abe15b16c3f863e4277ca62c9789022de95c2d2b1f45',
+           'compiler-output.json.gz': 'fb624b957ac821cb064ff667972cef0d65d2fa3cd7e4cdd798b5b8e003b685ea',
+           'normal-size-evidence.json': '8f16725d9a0f37e0e4186f04ad09e25b1a4c28d77fa34facea4ed8356879811e',
+           'START.json': '0602a6cc70e36baae2f085e509d624ebb2bd9011aa91ae59e79254b2a1c08760'},
+ 'source_inventory': 'START.json',
+ 'source_key': 'source_sha256',
+ 'gates': 'normal-size-evidence.json'}}
 NATIVE={
  'pool_manager':'0x8366a39cc670b4001a1121b8f6a443a643e40951',
  'position_manager':'0x58daec3116aae6d93017baaea7749052e8a04fa7',

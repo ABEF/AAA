@@ -5,6 +5,7 @@
   "routing_version": 3,
   "custody_architecture": "collective-holder-return-v4",
   "_notes": [
+    "Fresh release explicitly selects factory_payload_version4 with reviewed source-owned royalty payload4. Omission or explicit3 retains exact historical payload3; the prior unconfigured LP3 template is preserved in production.schema17.payload3.example.json. This source-only template sets no deployed address, observation, qualification, budget or operating approval.",
     "Fresh execution-price1/LP-routing3 uses captured original ETH/ZZZ valuation and exact own-swap market-state proofs. The prior exact schema17/LP2 template remains in production.schema17.lp2.example.json. No address/feed/runtime observation is configured or approved by this template;12M default and all financial guards remain.",
     "Fresh schema17/accounting7/LP1/custody5/direct Entry3/royalty4/canonicalV10/mint2.20 callable helpers plus2 inert data children. Exact previous schema16 template preserved in production.schema16.example.json for explicit historical inspection.",
     "Factory code-data format2:3-byte0x5f5ffd revert prefix, source-derived exact lengths/hashes and ordered whole-payload reconstruction. Data-child addresses remain null until independently reviewed actual deployment; source pins are not observations or approval.",
@@ -351,13 +352,13 @@
           "observed_bindings": null,
           "bindings": {
             "controller": null,
-            "royaltyCodeHash": "0x0b5b619ca10d338f29e7a76fd3f9069b2e034864112bbd3101bbc20a279c50aa",
+            "royaltyCodeHash": "0xb72393fbf136d2d75526d655fcb8c51c77de65b18d68a6084072b6dc436d88b5",
             "CODE_STORAGE_VERSION": 2,
-            "creationCodeLength": 25522,
+            "creationCodeLength": 25549,
             "part0": null,
             "part1": null,
-            "part0CodeHash": "0x4c299ec7864f0c7e6bece16d767ed0624ce7687e0198c94fcfa598615f8ae32e",
-            "part1CodeHash": "0x9e6d2b3e3cfbc811a6f412d20dae3348c90f492d05ff24e842f65b16562b2b12"
+            "part0CodeHash": "0x12ddd1d75098090d9333a350985fbbf5d84888952b9fab75f6fe04986759d9a7",
+            "part1CodeHash": "0x1a6575e4414a0b548abcb88640f49e8809707551d65f0da5fbac1039eeb1ba2d"
           }
         },
         "lp_converter": {
@@ -1081,10 +1082,11 @@
         "observed": null,
         "review_evidence": null
       },
+      "factory_payload_version": 4,
       "factory_code": {
         "code_storage_version": 2,
-        "creation_code_length": 25522,
-        "creation_code_hash": "0x0b5b619ca10d338f29e7a76fd3f9069b2e034864112bbd3101bbc20a279c50aa",
+        "creation_code_length": 25549,
+        "creation_code_hash": "0xb72393fbf136d2d75526d655fcb8c51c77de65b18d68a6084072b6dc436d88b5",
         "observed_creation_code_length": null,
         "observed_creation_code_hash": null,
         "review_evidence": null,
@@ -1094,7 +1096,7 @@
             "address": null,
             "data_length": 24573,
             "runtime_length": 24576,
-            "runtime_hash": "0x4c299ec7864f0c7e6bece16d767ed0624ce7687e0198c94fcfa598615f8ae32e",
+            "runtime_hash": "0x12ddd1d75098090d9333a350985fbbf5d84888952b9fab75f6fe04986759d9a7",
             "observed_data_length": null,
             "observed_runtime_length": null,
             "observed_runtime_hash": null,
@@ -1103,9 +1105,9 @@
           {
             "index": 1,
             "address": null,
-            "data_length": 949,
-            "runtime_length": 952,
-            "runtime_hash": "0x9e6d2b3e3cfbc811a6f412d20dae3348c90f492d05ff24e842f65b16562b2b12",
+            "data_length": 976,
+            "runtime_length": 979,
+            "runtime_hash": "0x1a6575e4414a0b548abcb88640f49e8809707551d65f0da5fbac1039eeb1ba2d",
             "observed_data_length": null,
             "observed_runtime_length": null,
             "observed_runtime_hash": null,

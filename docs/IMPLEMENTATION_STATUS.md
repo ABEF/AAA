@@ -1,5 +1,7 @@
 # Feature and evidence reference
 
+[Q03 activation optimisation](../reports/q03-activation-gas-20261117/REVIEW.md) preserves exact monetary rights and the20M/full20% policy while reducing internal allocation writes and duplicated static proofs. Near-capacity workload evidence remains finite; selected currencies, maximum target workloads, fees/providers and production approval stay open.
+
 Implementation, finite verification, installed operation and approved release
 are separate milestones. Use the [sole Todo](../TODO.md),
 [current findings](AUDIT_FINDINGS.md), [operator manual](OPERATOR_MANUAL.md)

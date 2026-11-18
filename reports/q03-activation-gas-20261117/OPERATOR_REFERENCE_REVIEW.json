@@ -1,0 +1,9 @@
+{
+  "source_snapshot_changed_only": true,
+  "all_contracts_abi_notes_counts_and_example_rows_unchanged": true,
+  "old_reference_sha256": "79d8e6c6e84225350af0eeade161e365d2234772c5052443ec4193afb3f11395",
+  "current_reference_sha256": "8a2d25ef76edb2f0b3afc090744a9ab7e783e53eba0fe9fbd45fc7a309a6c85a",
+  "example_count": 1017,
+  "operator_signatures_permissions_economic_inputs_changed": false,
+  "new_examples_submission_ready": false
+}

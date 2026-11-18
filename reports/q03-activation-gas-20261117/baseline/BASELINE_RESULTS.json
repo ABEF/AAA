@@ -1,0 +1,63 @@
+{
+  "source": "23be8c9b01211b0732b2bcb64c227f0e05151e0a",
+  "cases": [
+    {
+      "case": "q03-999-opening-eth",
+      "complete": true,
+      "meets20m_with_full20pct": false,
+      "trace_gas_used": 21470885,
+      "estimated_gas": null,
+      "padded_gas": null,
+      "diagnostic32_execution_only": true,
+      "marginal_lp_measurement_verified": true,
+      "owned_node_stopped": true
+    },
+    {
+      "case": "q03-999-rotated-zzz",
+      "complete": true,
+      "meets20m_with_full20pct": false,
+      "trace_gas_used": 27998079,
+      "estimated_gas": null,
+      "padded_gas": null,
+      "diagnostic32_execution_only": true,
+      "marginal_lp_measurement_verified": true,
+      "owned_node_stopped": true
+    },
+    {
+      "case": "q03-999-rotated-onefault-eth",
+      "complete": true,
+      "meets20m_with_full20pct": false,
+      "trace_gas_used": 28039075,
+      "estimated_gas": null,
+      "padded_gas": null,
+      "diagnostic32_execution_only": true,
+      "marginal_lp_measurement_verified": true,
+      "owned_node_stopped": true
+    },
+    {
+      "case": "q03-999-rotated-eth",
+      "complete": true,
+      "meets20m_with_full20pct": false,
+      "trace_gas_used": 27769561,
+      "estimated_gas": null,
+      "padded_gas": null,
+      "diagnostic32_execution_only": true,
+      "marginal_lp_measurement_verified": true,
+      "owned_node_stopped": true
+    },
+    {
+      "case": "q03-1000-grow-eth",
+      "complete": true,
+      "meets20m_with_full20pct": true,
+      "trace_gas_used": 12985190,
+      "estimated_gas": 13655234,
+      "padded_gas": 16386281,
+      "diagnostic32_execution_only": false,
+      "marginal_lp_measurement_verified": true,
+      "owned_node_stopped": true
+    }
+  ],
+  "passes_are_method_outcomes_not_20m_approvals": true,
+  "historical_methods_rerun": 0,
+  "production_approved": false
+}

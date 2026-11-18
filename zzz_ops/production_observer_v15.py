@@ -10,7 +10,7 @@ from zzz_ops import production_observer as O,production_observer_v6 as BASE
 
 class Observer(H.Observer):
     def __init__(self,rpc,chain,*,execution_price_version=0):
-        super().__init__(rpc,chain)
+        super().__init__(rpc,chain,factory_module=P.factory_module(chain))
         self.execution_price_version=execution_price_version
 
     def typed(self,target,getter,expected):

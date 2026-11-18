@@ -1,0 +1,15 @@
+{
+  "protected_files": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "protected4_unchanged": true,
+  "production_source_matches_admitted_build": true,
+  "existing_service_site_chain_database_journal_or_signer_actions": false,
+  "heartbeat_restarted": false,
+  "public_transactions": 0,
+  "normal_defaults_raised": false,
+  "historical_suites_rerun": false
+}

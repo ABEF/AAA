@@ -1,0 +1,11 @@
+{
+  "protected4_exact_and_excluded": true,
+  "only_protected_tracked_files_unstaged": true,
+  "all61_production_index_blobs_equal_normal_input": true,
+  "13_rpc_nodes_stopped_and_financial_traces_verified": true,
+  "doc_reference_sections_identical_except_current_source_snapshot": true,
+  "python_index_files": 460,
+  "source_publication_errors": [],
+  "source_publication_stage": "Python package blobs checked before adding report-only PUBLICATION_INDEX.json",
+  "no_public_transactions_or_environment_rollout": true
+}

@@ -1,0 +1,19 @@
+{
+  "scope": "prepared closed100source/48gate normal build, not filesystem adoption or production approval",
+  "files": {
+    "ABI_STORAGE_COMPARISON.json": "72ed43db9ffb948bf50cda9e31886d5d456095c36ceba1f212c0e18d0f8fb439",
+    "compile_proposed.py": "6a390a904e74381f9107c4ddf4dfed8db166779dd817d5ce310c328952c21794",
+    "compiler-input.json.gz": "137a87a8d06400f22147bcf97a12eaec6a14424f02fb897e0fb5dee9d58eb85d",
+    "compiler-output.json.gz": "8dca38a473a7c7a6efe0523bfc55c8a008f0b427160b02b26087e6b401e1e63e",
+    "normal-size-evidence.json": "85d2e785c0ff346de445d59b7fd70720ad5c998d2b5459cda1cde265e2be2dc0",
+    "README.md": "dc9420ea4d0fd54be0db235eaa352b46b7d90a5acbf6949a53e68c190c79fce4",
+    "ROYALTY_CARRIER_EVIDENCE.json": "c87db8c4984c76d69b0f7e7fc18d087b6a0a4ff56a12bc25d7eead9878ab258b",
+    "SCOPED_STATIC_REVIEW.md": "af47e76e03f6679a61baec0255843be893c0f96c9792c9708dfd79a4a02c9723",
+    "START.json": "bbe24689d33aef6397441bd861b3edd0d318ed3b55b96fb14a28ca9a5e1874b8",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "gzip_integrity": {
+    "compiler-input.json.gz": 946723,
+    "compiler-output.json.gz": 27559723
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "kind": "final source-owned payload4 from actual full normal output; not release approval",
+  "producer_sha256": "a9372db32b5a79a77eaa7d4c5cbd0088dd5bfefe027bb8ab536c2a68c202b4d7",
+  "input_sha256": "6222eed398aff1ee89fca611e3a903a8925bc9206bf1d3da1078ad9d71eca840",
+  "output_sha256": "746ea70c742e6cfe0c5ed1dfc4517aace3a1687215596aa0c82d262480389f67",
+  "normal_size_evidence_sha256": "9c62c3513b84262437540a7bae1933b22fd4ba034c233459520b17d26302f364",
+  "canonical_manifest_sha256": "daa553c8a93de0c5b63ba897f3b1d0606967e7341a2e52a88f3e819ed46f8c9b",
+  "creation_length": 25549,
+  "creation_hash": "0xb72393fbf136d2d75526d655fcb8c51c77de65b18d68a6084072b6dc436d88b5",
+  "parts": [
+    {
+      "index": 0,
+      "data_length": 24573,
+      "runtime_length": 24576,
+      "runtime_hash": "0x12ddd1d75098090d9333a350985fbbf5d84888952b9fab75f6fe04986759d9a7"
+    },
+    {
+      "index": 1,
+      "data_length": 976,
+      "runtime_length": 979,
+      "runtime_hash": "0x1a6575e4414a0b548abcb88640f49e8809707551d65f0da5fbac1039eeb1ba2d"
+    }
+  ],
+  "all100_current_source_bytes_match_compiler_input": true,
+  "all48_size_gates_pass": true,
+  "actual_filesystem_source_adopted": true,
+  "trusted_default_adopted": false,
+  "public_deployment_or_adoption": false,
+  "production_approved": false,
+  "adoption_scope": "Current source and compiled payload only; default admission and release approval are not established by this producer.",
+  "historical_files_sha256": {
+    "zzz_ops/factory_code_v3.py": "8b27d237a39d81c2b6d3ac7a7186723569f8bef2a59ad811aca39e0b55f6665a",
+    "config/factory-code-storage-v3.json": "305e85eb23e029a66c57dc3bf8b16b3753b21375eca41bcbc4dd1a9675f48d8c",
+    "config/production.schema17.payload3.example.json": "2c7fda19ebcffd4f302b1945c3853716f7979c0153757f0a79fc0377390015ca"
+  },
+  "prepared_counter_candidate": "prepared-counter-payload4/MANIFEST.json retains the earlier unadopted identity."
+}

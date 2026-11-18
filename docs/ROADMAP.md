@@ -1,6 +1,6 @@
 # Engineering roadmap
 
-The [test and irreversible-setup review](../reports/test-seal-deep-review-20261117/REVIEW.md) fixes chain/URI/reservation defects and strengthens specific test oracles. Current build is seal-boundaries-20261117; no release sign-off, deployment, service or website adoption is implied. Real dependencies, complete fees/gas, operations and independent review remain open.
+The [test and irreversible-setup review](../reports/test-seal-deep-review-20261117/REVIEW.md) fixes chain/URI/reservation defects and strengthens specific test oracles. That review used seal-boundaries-20261117; no release sign-off, deployment, service or website adoption is implied. Real dependencies, complete fees/gas, operations and independent review remain open.
 
 The [behavior follow-up](../reports/operator-behavior-followup-20261117/REVIEW.md) closes confirmed sealing/setup and due-clock defects, and repairs stale current-behavior fixtures. Keep actual markets, provider/host, maximum-state gas, OpenSea/VRF and independent approval as the next release prerequisites. Software-only compound coordination is an accepted decision, not a pending on-chain policy change.
 
@@ -23,6 +23,8 @@ state-file and website-profile gaps and reconciles current guidance. Production
 Solidity, economic rights, safeguards, gas defaults and existing environments
 are unchanged. Focused new checks and exact historical source reuse are recorded
 separately; this is internal review, not independent release approval.
+
+[Q03 activation gas optimisation](../reports/q03-activation-gas-20261117/REVIEW.md) changes four source files under trusted build `q03-allocation-20261117` and explicit payload4. Exact rights, ABI/storage and20M/full20% remain. Near999, assisted healthy/faulted activation and ETH/ZZZ growth fit tested envelopes; four unsynchronised16-currency states still fail. Fresh receipts can recreate work after sync. Selected currencies, full maximum/LP2/target gas and market/provider/fee qualification remain open in the [sole Todo](../TODO.md).
 
 The [five-audit reconciliation](../reports/five-audit-reconciliation-20261116/REVIEW.md)
 fixes current artifact-family planning and offline evidence-admission gaps.

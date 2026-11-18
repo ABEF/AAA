@@ -1,0 +1,459 @@
+{
+  "schema": 1,
+  "scope": "Already-recorded historical empty-ETH call, not new measurement/current maximum-state or20M acceptance",
+  "trace_path": "reports/launch-workload-20261117/rpc/initial/activation-eth-0-empty-steady/rpc-records.json.gz",
+  "trace_sha256": "9c1cf774314fcb32777bfc48d08b1591d6a7125cecf83922b0e9b74735401c35",
+  "trace_record_index": 94,
+  "trace_wire_records": 121,
+  "root": {
+    "index": 0,
+    "type": "CALL",
+    "from": "0x0000000000000000000000000000000000000b0b",
+    "to": "0xfa0e6015e8ad40aa4535c477142a2ecdb824f2f7",
+    "selector": "0x6169e438",
+    "gasUsed": 14041452,
+    "error": null
+  },
+  "oracle_validate_selector": "0x7ae3ab18",
+  "oracle_validation_calls": 14,
+  "proofs": [
+    {
+      "title": "Pricing.endEntry redundant pre-final validation",
+      "parent_path": [
+        29
+      ],
+      "parent_selector": "0xbc215880",
+      "child_range": [
+        5,
+        12
+      ],
+      "removed_old_child_indices": [
+        5
+      ],
+      "reason": "The retained endExecution repeats the complete live proof; only STATIC basis/policy/price/decimal reads separate the duplicate from it.",
+      "children": [
+        {
+          "index": 5,
+          "type": "STATICCALL",
+          "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+          "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "selector": "0x7ae3ab18",
+          "gasUsed": 257276,
+          "error": null
+        },
+        {
+          "index": 6,
+          "type": "STATICCALL",
+          "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+          "to": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f",
+          "selector": "0xc3b64480",
+          "gasUsed": 1012,
+          "error": null
+        },
+        {
+          "index": 7,
+          "type": "STATICCALL",
+          "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+          "to": "0x2e234dae75c793f67a35089c9d99245e1c58470b",
+          "selector": "0xe312c508",
+          "gasUsed": 2318,
+          "error": null
+        },
+        {
+          "index": 8,
+          "type": "STATICCALL",
+          "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+          "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "selector": "0xb678a5f2",
+          "gasUsed": 29548,
+          "error": null
+        },
+        {
+          "index": 9,
+          "type": "STATICCALL",
+          "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+          "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "selector": "0x8ee573ac",
+          "gasUsed": 1807,
+          "error": null
+        },
+        {
+          "index": 10,
+          "type": "STATICCALL",
+          "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+          "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "selector": "0xb678a5f2",
+          "gasUsed": 29850,
+          "error": null
+        },
+        {
+          "index": 11,
+          "type": "STATICCALL",
+          "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+          "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "selector": "0x8ee573ac",
+          "gasUsed": 1807,
+          "error": null
+        },
+        {
+          "index": 12,
+          "type": "CALL",
+          "from": "0x82dce515b19ca6c2b03060d7da1a9670fc6ee074",
+          "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "selector": "0x0f8ebca6",
+          "gasUsed": 268420,
+          "error": null
+        }
+      ],
+      "historical_removed_gas": 257276
+    },
+    {
+      "title": "Manager.balance initial context after authenticated begin",
+      "parent_path": [
+        24,
+        35
+      ],
+      "parent_selector": "0xdcd87610",
+      "child_range": [
+        11,
+        16
+      ],
+      "removed_old_child_indices": [
+        14
+      ],
+      "reason": "Authenticated beginManagerExecution validates/captures the whole source scope. Only trusted local loan bookkeeping and STATIC reads precede the policy-only context.",
+      "children": [
+        {
+          "index": 11,
+          "type": "CALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "selector": "0xe7b78158",
+          "gasUsed": 270352,
+          "error": null
+        },
+        {
+          "index": 12,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f",
+          "selector": "0xe8cffd1d",
+          "gasUsed": 1292,
+          "error": null
+        },
+        {
+          "index": 13,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f",
+          "selector": "0xe8cffd1d",
+          "gasUsed": 1292,
+          "error": null
+        },
+        {
+          "index": 14,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "selector": "0x7ae3ab18",
+          "gasUsed": 245790,
+          "error": null
+        },
+        {
+          "index": 15,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+          "selector": "0x69acff0e",
+          "gasUsed": 883,
+          "error": null
+        },
+        {
+          "index": 16,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+          "selector": "0x0603cc23",
+          "gasUsed": 162815,
+          "error": null
+        }
+      ],
+      "historical_removed_gas": 245790
+    },
+    {
+      "title": "Manager.balance zero token pull duplicate context",
+      "parent_path": [
+        24,
+        35
+      ],
+      "parent_selector": "0xdcd87610",
+      "child_range": [
+        14,
+        28
+      ],
+      "removed_old_child_indices": [
+        24,
+        25,
+        26
+      ],
+      "reason": "ExactToken.pull(amount=0) returns before any token call. Intervening balance/LP identity reads are STATIC; nonzero token pulls still perform a full source and policy proof.",
+      "children": [
+        {
+          "index": 14,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "selector": "0x7ae3ab18",
+          "gasUsed": 245790,
+          "error": null
+        },
+        {
+          "index": 15,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+          "selector": "0x69acff0e",
+          "gasUsed": 883,
+          "error": null
+        },
+        {
+          "index": 16,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+          "selector": "0x0603cc23",
+          "gasUsed": 162815,
+          "error": null
+        },
+        {
+          "index": 17,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+          "selector": "0x70a08231",
+          "gasUsed": 3055,
+          "error": null
+        },
+        {
+          "index": 18,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x03a6a84cd762d9707a21605b548aaab891562aab",
+          "selector": "0x6352211e",
+          "gasUsed": 1670,
+          "error": null
+        },
+        {
+          "index": 19,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f",
+          "selector": "0xe8cffd1d",
+          "gasUsed": 1292,
+          "error": null
+        },
+        {
+          "index": 20,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x03a6a84cd762d9707a21605b548aaab891562aab",
+          "selector": "0x7ba03aad",
+          "gasUsed": 4498,
+          "error": null
+        },
+        {
+          "index": 21,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x03a6a84cd762d9707a21605b548aaab891562aab",
+          "selector": "0x1efeed33",
+          "gasUsed": 6780,
+          "error": null
+        },
+        {
+          "index": 22,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f",
+          "selector": "0xe8cffd1d",
+          "gasUsed": 1292,
+          "error": null
+        },
+        {
+          "index": 23,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f",
+          "selector": "0xe8cffd1d",
+          "gasUsed": 1292,
+          "error": null
+        },
+        {
+          "index": 24,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "selector": "0x7ae3ab18",
+          "gasUsed": 245790,
+          "error": null
+        },
+        {
+          "index": 25,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+          "selector": "0x69acff0e",
+          "gasUsed": 883,
+          "error": null
+        },
+        {
+          "index": 26,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+          "selector": "0x0603cc23",
+          "gasUsed": 162815,
+          "error": null
+        },
+        {
+          "index": 27,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f",
+          "selector": "0x5c975abb",
+          "gasUsed": 750,
+          "error": null
+        },
+        {
+          "index": 28,
+          "type": "CALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+          "selector": "0x4672792a",
+          "gasUsed": 956020,
+          "error": null
+        }
+      ],
+      "historical_removed_gas": 409488
+    },
+    {
+      "title": "Manager.balance final context before authenticated end",
+      "parent_path": [
+        24,
+        35
+      ],
+      "parent_selector": "0xdcd87610",
+      "child_range": [
+        56,
+        65
+      ],
+      "removed_old_child_indices": [
+        56
+      ],
+      "reason": "Only STATIC execution revision, policy fingerprint, target-price and module reads precede the retained full endManagerExecution proof.",
+      "children": [
+        {
+          "index": 56,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "selector": "0x7ae3ab18",
+          "gasUsed": 257276,
+          "error": null
+        },
+        {
+          "index": 57,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+          "selector": "0x69acff0e",
+          "gasUsed": 883,
+          "error": null
+        },
+        {
+          "index": 58,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+          "selector": "0x0603cc23",
+          "gasUsed": 162815,
+          "error": null
+        },
+        {
+          "index": 59,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+          "selector": "0x69acff0e",
+          "gasUsed": 883,
+          "error": null
+        },
+        {
+          "index": 60,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+          "selector": "0x0603cc23",
+          "gasUsed": 173293,
+          "error": null
+        },
+        {
+          "index": 61,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f",
+          "selector": "0xe8cffd1d",
+          "gasUsed": 1292,
+          "error": null
+        },
+        {
+          "index": 62,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0xd6bbde9174b1cdaa358d2cf4d57d1a9f7178fbff",
+          "selector": "0x0e001842",
+          "gasUsed": 566,
+          "error": null
+        },
+        {
+          "index": 63,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0xdda0a8d7486686d36449792617565e6c474fba3f",
+          "selector": "0xb34f9338",
+          "gasUsed": 64719,
+          "error": null
+        },
+        {
+          "index": 64,
+          "type": "STATICCALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x5615deb798bb3e4dfa0139dfa1b3d433cc23b72f",
+          "selector": "0xe8cffd1d",
+          "gasUsed": 1292,
+          "error": null
+        },
+        {
+          "index": 65,
+          "type": "CALL",
+          "from": "0x15cf58144ef33af1e14b5208015d11f9143e27b9",
+          "to": "0x212224d2f2d262cd093ee13240ca4873fccbba3c",
+          "selector": "0xedb9048c",
+          "gasUsed": 277714,
+          "error": null
+        }
+      ],
+      "historical_removed_gas": 257276
+    }
+  ],
+  "historical_removed_call_gas_sum": 1169830,
+  "limitations": [
+    "Gas attributed to removed historical calls is not net current gas saving; control-flow and warmness change.",
+    "No nested STATIC-chain duplicate is claimed.",
+    "All mutable callback, token transfer, venue and final proof boundaries retain validation.",
+    "Public getter behavior, captures, source freshness/agreement, source revision, own-swap expected output/full state, thresholds and caps remain."
+  ],
+  "source_edit_record_sha256": "1e8a6da0b4c00d3b3b54062528df6d5db5f22d4533976b3b0dfe902810e4f2d5",
+  "source_diff_sha256": "bff360599bd97cb3269f9c3333a01868865cf49645744ebb6d4d20993ae116eb",
+  "production_approved": false
+}

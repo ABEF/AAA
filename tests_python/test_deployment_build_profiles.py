@@ -30,7 +30,7 @@ class DeploymentBuildProfileTests(unittest.TestCase):
         return copy.deepcopy(cls._bindings)
     def test_default_planner_accepts_current_metadata_build_and_tags_identity(self):
         result=D.prepare(D.template())
-        self.assertEqual(result['accepted_build']['profile'],'seal-boundaries-20261117')
+        self.assertEqual(result['accepted_build']['profile'],D.DEFAULT_BUILD_PROFILE)
         self.assertEqual(result['accepted_build']['source_count'],100)
         self.assertEqual(result['accepted_build']['normal_size_gates'],48)
         self.assertEqual(len(result['instances']),39)
@@ -58,12 +58,21 @@ class DeploymentBuildProfileTests(unittest.TestCase):
             self.assertEqual(D.sha((D.ROOT / previous['directory'] / name).read_bytes()), expected)
         old = json.loads(gzip.decompress((D.ROOT / previous['directory'] / 'compiler-output.json.gz').read_bytes()))
         old_vault = old['contracts']['src/ZZZVault.sol']['ZZZVault']
-        current_vault = D.Artifacts().contract('ZZZVault')[1]
-        self.assertNotEqual(old_vault['evm']['bytecode']['object'], current_vault['evm']['bytecode']['object'])
-        self.assertEqual(old_vault['abi'], current_vault['abi'])
-        with self.assertRaisesRegex(D.PlanError, 'source_changed'):
-            D.prepare(D.template(), build_profile=D.PREVIOUS_BUILD_PROFILE)
-        self.assertEqual(D.prepare(D.template())['accepted_build']['profile'], 'seal-boundaries-20261117')
+        # The seal-boundary correction remains an exact historical record;
+        # later allocator implementations do not relabel that source/build.
+        seal = D.trusted_build('seal-boundaries-20261117')
+        for name, expected in seal['files'].items():
+            self.assertEqual(D.sha((D.ROOT / seal['directory'] / name).read_bytes()), expected)
+        sealed_output=json.loads(gzip.decompress((D.ROOT / seal['directory'] / 'compiler-output.json.gz').read_bytes()))
+        seal_vault=sealed_output['contracts']['src/ZZZVault.sol']['ZZZVault']
+        self.assertNotEqual(old_vault['evm']['bytecode']['object'],seal_vault['evm']['bytecode']['object'])
+        self.assertEqual(old_vault['abi'],seal_vault['abi'])
+        seal_access=sealed_output['contracts']['src/ZZZAccessController.sol']['ZZZAccessController']
+        self.assertEqual(len(bytes.fromhex(seal_access['evm']['bytecode']['object']))+96,48377)
+        for historical in (D.PREVIOUS_BUILD_PROFILE,'seal-boundaries-20261117'):
+            with self.assertRaisesRegex(D.PlanError,'source_changed'):
+                D.prepare(D.template(),build_profile=historical)
+        self.assertEqual(D.prepare(D.template())['accepted_build']['profile'],D.DEFAULT_BUILD_PROFILE)
 
     def test_checker_rejects_duplicated_binding_observation_coverage(self):
         original=M.Evidence
@@ -90,7 +99,13 @@ class DeploymentBuildProfileTests(unittest.TestCase):
         by_role={row['role']:row for row in result['instances']}
         self.assertEqual(by_role['metadata_renderer']['runtime_bytes'],24119)
         self.assertEqual(by_role['nft_canonical']['runtime_bytes'],23130)
-        self.assertEqual(by_role['access']['full_initcode_bytes'],48377)
+        access=build.contract('ZZZAccessController')[1]
+        constructor=next(row for row in access['abi'] if row['type']=='constructor')
+        self.assertEqual([item['type'] for item in constructor['inputs']],['address','address','address'])
+        # Three static addresses occupy exactly96 ABI bytes, independently of
+        # the planner's size-field calculation and whichever build is current.
+        self.assertEqual(by_role['access']['full_initcode_bytes'],
+                         len(bytes.fromhex(access['evm']['bytecode']['object']))+96)
         self.assertEqual(by_role['oracle']['runtime_margin'],3)
         self.assertEqual(result['accepted_build']['source_count'],100)
         self.assertEqual(result['accepted_build']['normal_size_gates'],48)

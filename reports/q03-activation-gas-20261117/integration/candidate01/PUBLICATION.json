@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "kind": "five NEW methods after actual global-only source adoption; offline source proof correction retained",
+  "financial_method_count": 5,
+  "actual_evm_invocations": 1,
+  "evm_replays_for_attestation": 0,
+  "financial_methods_all_pass": true,
+  "original_producer_attestation_pass": false,
+  "corrected_source_attestation_pass": true,
+  "raw_bound_dependencies": 41,
+  "lf_bound_dependencies": 20,
+  "forge_suite_duration": "45ms 32\u00b5s 900ns",
+  "producer_elapsed_seconds": 164.51600000000326,
+  "source_scope": "Actual global-only Royalty/allocator source, typed NFT/Access canonical components; not whole Entry gas or mainnet qualification.",
+  "gas_scope": "Complete test method gas includes fixture construction/setup/assertions; not a20M Entry estimate.",
+  "future_producer": "The root producer was corrected AFTER archiving executed-producer.py to accept only exact raw or CRLF-to-LF compiler source binding. No EVM rerun.",
+  "production_approved": false,
+  "files": [
+    {
+      "name": "raw.json",
+      "sha256": "53201c677e7eca4fe5cbc3c9cc2f020962edc0b5ad1e7203e2067be633faaaa8",
+      "uncompressed_sha256": "53201c677e7eca4fe5cbc3c9cc2f020962edc0b5ad1e7203e2067be633faaaa8",
+      "bytes": 1622
+    },
+    {
+      "name": "stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "name": "RESULT.json",
+      "sha256": "8d9f0ab4cfad47d7abe2bb5ed867d5c8ff5bc3dc9679098d5c13b2626f60159c",
+      "uncompressed_sha256": "8d9f0ab4cfad47d7abe2bb5ed867d5c8ff5bc3dc9679098d5c13b2626f60159c",
+      "bytes": 47576
+    },
+    {
+      "name": "OFFLINE_SOURCE_ATTESTATION.json",
+      "sha256": "7ab89853fbcbb6b56d8f293d601462ae3f9e5caa9173153d23e721d39e86d58b",
+      "uncompressed_sha256": "7ab89853fbcbb6b56d8f293d601462ae3f9e5caa9173153d23e721d39e86d58b",
+      "bytes": 31252
+    },
+    {
+      "name": "START.json.gz",
+      "sha256": "290f48cbdbb980e221cc91413c1de8493dcd4f4714cd264880dd2d029007e292",
+      "uncompressed_sha256": "3363d35bdde303c5788d716febcdb0263b5ff4a227ed5eeca1363f5e446f4362",
+      "bytes": 101858
+    },
+    {
+      "name": "executed-producer.py",
+      "sha256": "0c66fa2924a457d88eec79741901fab5e6fff215fab4f5ef3f04dca1b4ac5f55",
+      "uncompressed_sha256": "0c66fa2924a457d88eec79741901fab5e6fff215fab4f5ef3f04dca1b4ac5f55",
+      "bytes": 6746
+    },
+    {
+      "name": "artifact.json.gz",
+      "sha256": "f381299cc8c3b7a61581be525bc2ae4b324bc3e595a1c2f68779bbf41d34e547",
+      "uncompressed_sha256": "6849f273323fb2c6e75be47737ac2a5277347a0a8c4ea58489534f87c4ed5e12",
+      "bytes": 156039
+    }
+  ]
+}

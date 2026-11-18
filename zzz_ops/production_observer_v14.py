@@ -4,8 +4,9 @@ from zzz_ops import production_observer as O,production_observer_v6 as BASE
 
 
 class Observer(H.Observer):
-    def __init__(self,rpc,chain):
+    def __init__(self,rpc,chain,*,factory_module=P.F):
         super().__init__(rpc,chain);self.accounting_version=7
+        self._factory_code_module=factory_module
 
     def typed(self,target,getter,expected):
         if getter in ('LP_ALLOCATION_VERSION','MAX_ASSETS'):return O._decode(self.read(target,getter+'()')[0],0)
@@ -36,13 +37,14 @@ class Observer(H.Observer):
         self.chain['nft_inventory']['royalty_assets']['observed_capacity']=None if raw is None else int(raw[0],16)
 
     def observe_chain_extension(self):
-        section=P.F.parse_section(self.chain);raw=[]
+        F=self._factory_code_module
+        section=F.parse_section(self.chain);raw=[]
         section['observed_creation_code_length']=section['observed_creation_code_hash']=None
         for row in section['parts']:
             for field in ('observed_data_length','observed_runtime_length','observed_runtime_hash','observed_prefix'):row[field]=None
             raw.append(self.attempt('factory_code.parts.'+str(row['index']),'factory.code.unavailable',lambda r=row:
                 self.request('eth_getCode',[O._address(r['address']),self.block])))
-        observed=self.attempt('factory_code','factory.code.mismatch',lambda:P.F.verify_runtime_parts(raw))
+        observed=self.attempt('factory_code','factory.code.mismatch',lambda:F.verify_runtime_parts(raw))
         if observed is not None:
             parts,whole=observed
             for row,part in zip(section['parts'],parts):row.update(part)

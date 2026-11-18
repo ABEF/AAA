@@ -75,12 +75,14 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
     function executionStrategy()external view returns(address){return address(balancingRouter.balanceMath());}
     /// @notice Pins balancing policy across Vault approval/reset callbacks too.
     function balanceContext(bytes32 targetPool) external view returns (bytes32) {
-        return _balanceContext(targetPool);
+        return _balanceContext(targetPool,true);
     }
-    function _balanceContext(bytes32 targetPool) private view returns (bytes32) {
+    function _balanceContext(bytes32 targetPool,bool checkSources) private view returns (bytes32) {
         address emergency = _emergencyBudget();
         if(emergency != address(0)) return IZZZEmergencyBudget(emergency).emergencyFingerprint();
-        _executionOracle().validateExecution();
+        // Private false sites are adjacent to authenticated begin/end proofs;
+        // only STATIC reads intervene. Public/callback boundaries stay full.
+        if(checkSources)_executionOracle().validateExecution();
         return keccak256(abi.encode(address(balancingRouter),balancingRouter.executionRevision(),
             balancingRouter.policyFingerprint(targetPool,bytes32(0))));
     }
@@ -226,12 +228,12 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         bool owned=_beginPrice(c.key.currency1,bytes32(0));
         address input = zeroForOne ? c.key.currency0 : c.key.currency1;
         if (msg.value != (input == address(0) ? amountIn : 0)) revert InvalidAmount();
-        bytes32 context = _balanceContext(poolId);
+        bytes32 context = _balanceContext(poolId,false);
         if (input != address(0)) ExactToken.pull(input, msg.sender, amountIn);
         uint256 beforeNative = address(this).balance - msg.value;
         (uint256 quoted,MarketState memory expected)=balancingRouter.quoteSwap(poolId,zeroForOne,amountIn);
         amountOut = _swapExact(poolId,c,zeroForOne,amountIn,minimumOut,msg.sender,quoted,expected);
-        if (address(this).balance != beforeNative || _balanceContext(poolId) != context) revert InvalidState();
+        if (address(this).balance != beforeNative || _balanceContext(poolId,false) != context) revert InvalidState();
         _executionOracle().endManagerExecution(owned);
     }
     function _swapExact(bytes32 poolId, PoolConfig memory c, bool zeroForOne, uint256 amountIn, uint256 minimumOut,
@@ -264,7 +266,7 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         bool emergency = _emergencyBudget() != address(0);
         uint8 scope=_beginPlacement(targetPool);
         // _config already requires native currency0, including in emergencies.
-        bytes32 context = _balanceContext(targetPool);
+        bytes32 context = _balanceContext(targetPool,false);
         uint256 nativePrefund = address(this).balance-msg.value;
         uint256 tokenPrefund = IERC20(target.key.currency1).balanceOf(address(this));
         EmergencyRebalance memory request;
@@ -279,7 +281,9 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         // Pull before quoting: even a token callback cannot intervene between
         // the simulated route and the actual swap. Refund only this budget.
         ExactToken.pull(target.key.currency1,msg.sender,amount1);
-        if (_balanceContext(targetPool) != context) revert InvalidState();
+        // A zero pull returns before every token call; the preceding context
+        // and LP identity reads are STATIC. Nonzero pulls retain their proof.
+        if (amount1 != 0 && _balanceContext(targetPool,true) != context) revert InvalidState();
         ZZZLPBalancer.Plan memory p;
         if(emergency) {
             p.poolId = request.swapPool; p.zeroForOne = request.zeroForOne;
@@ -326,7 +330,7 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
             if (lower != finalLower || upper != finalUpper || posm.getPositionLiquidity(existingLpId) != priorLiquidity) revert InvalidState();
         }
         if (address(this).balance != nativePrefund || IERC20(target.key.currency1).balanceOf(address(this)) != tokenPrefund ||
-            _balanceContext(targetPool) != context) revert InvalidState();
+            _balanceContext(targetPool,false) != context) revert InvalidState();
         if(!emergency && (balancingRouter.executionRevision() != p.revision ||
             balancingRouter.policyFingerprint(targetPool,p.poolId) != p.fingerprint ||
             _policySpot(targetPool) != p.targetSqrtAfter)) revert InvalidState();

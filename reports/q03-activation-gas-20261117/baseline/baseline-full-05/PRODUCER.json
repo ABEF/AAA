@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "method_ids": [
+    "test/Q03ActivationCapacity20261117.t.sol:Q03ActivationCapacity20261117Test:testQ03FullEntry999ActualMixedNFTsSixteenCurrencyCapacity()"
+  ],
+  "case_labels": [
+    "q03-999-opening-eth",
+    "q03-999-rotated-zzz",
+    "q03-999-rotated-onefault-eth",
+    "q03-999-rotated-eth",
+    "q03-1000-grow-eth"
+  ],
+  "raw_sha256": "4a45831491b4c3b35946764c745749aaeade6ec8a88731980fc8ffdfc15616c3",
+  "start_sha256": "b43844fe1b4aca657338e72bb0fa3428657d7fa2f3bed722c275eda147cfe7fb",
+  "artifact_sha256": "daeb052a0301fd0aa81528427f9c5f6064ef174c7e4875b88773ce27779d8f72",
+  "source_stage": "Unchanged production23be8c9 baseline, controlled full population"
+}

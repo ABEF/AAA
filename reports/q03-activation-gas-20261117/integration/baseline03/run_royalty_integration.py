@@ -1,0 +1,80 @@
+"""Run only the NEW five Q03 ledger methods; never old-suite discovery."""
+from pathlib import Path
+import hashlib,json,os,re,subprocess,sys,time
+
+R=Path(__file__).resolve().parents[2]
+V=Path(r'C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9')
+FORGE=V/'foundry-v1.4.4/forge.exe';SOLC=V/'toolchain-0.8.26/solc.exe'
+SOURCE='test/Q03RoyaltyIntegration20261117.t.sol';CONTRACT='Q03RoyaltyIntegration20261117Test'
+PROTECTED={
+ 'reports/source-checks.json':'049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4',
+ 'scripts/run-fork-checks.py':'875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b',
+ 'tests_python/test_fork_runner.py':'6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9',
+ 'tests_python/test_frontend_history.py':'361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb'}
+
+def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def inventory():
+    return {p.relative_to(R).as_posix():sha(p) for directory in ('src','test','lib','node_modules')
+        for p in sorted((R/directory).rglob('*.sol')) if p.is_file()}
+def write(path,value):path.write_text(json.dumps(value,indent=2)+'\n',encoding='utf-8')
+
+def main():
+    stage=sys.argv[1]
+    if re.fullmatch(r'integration-(?:baseline|candidate)\d{2}',stage) is None:raise ValueError('New owned stage required')
+    E=V/'q03-activation-gas-20261117'/stage;E.mkdir()
+    before=inventory();config_before=sha(R/'foundry.toml')
+    for f,h in PROTECTED.items():assert sha(R/f)==h
+    expected=re.findall(r'function (testQ03\w+)\(', (R/SOURCE).read_text());assert len(expected)==5
+    command=[str(FORGE),'test','--offline','--use',str(SOLC),'--root',str(R),
+        '--out',str(E/'out'),'--cache-path',str(E/'cache'),'--match-path',SOURCE,
+        '--match-contract',CONTRACT,'--match-test','testQ03','--json']
+    env={k:v for k,v in os.environ.items() if not k.upper().startswith(
+        ('POPL_','FOUNDRY_','DAPP_','CAST_','ANVIL_','ETH_'))}
+    write(E/'START.json',dict(stage=stage,head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=R,text=True).strip(),
+        production_diff_against_head=subprocess.check_output(['git','diff','--name-only','HEAD','--','src'],cwd=R,text=True).splitlines(),
+        stage_notice='Baseline labels the allocation engine only; exact surrounding source hashes/diffs are recorded, not relabelled as original HEAD.',
+        command=command,forge_sha256=sha(FORGE),solc_sha256=sha(SOLC),foundry_toml_sha256=config_before,
+        expected_methods=expected,source_sha256=before,network_or_signing=False,shared_config_mutation=False))
+    started=time.monotonic();exit_code=None;timeout=False
+    try:
+        with (E/'raw.json').open('wb') as out,(E/'stderr.log').open('wb') as err:
+            exit_code=subprocess.run(command,cwd=R,env=env,stdout=out,stderr=err,timeout=360).returncode
+    except subprocess.TimeoutExpired:timeout=True
+    after=inventory();config_after=sha(R/'foundry.toml');rows=[];parse_error=None
+    try:
+        raw=json.loads((E/'raw.json').read_text());suite=raw[SOURCE+':'+CONTRACT]
+        for signature,item in suite['test_results'].items():
+            rows.append(dict(signature=signature,status=item['status'],reason=item.get('reason'),
+                gas=item.get('kind',{}),decoded_logs=item.get('decoded_logs',[])))
+    except Exception as exc:parse_error=type(exc).__name__
+    artifact=E/'out'/Path(SOURCE).name/(CONTRACT+'.json');deps={};metadata_error=None
+    try:
+        obj=json.loads(artifact.read_text());metadata=obj.get('metadata')
+        if not isinstance(metadata,dict):metadata=json.loads(obj['rawMetadata'])
+        for f in metadata['sources']:
+            name=Path(f).as_posix()
+            if name not in before:raise ValueError('Dependency outside source-before inventory')
+            deps[name]=dict(before=before[name],after=after.get(name),stable=before[name]==after.get(name))
+    except Exception as exc:metadata_error=type(exc).__name__
+    protected_ok=all(sha(R/f)==h for f,h in PROTECTED.items())
+    selected={row['signature'].split('(')[0] for row in rows}
+    success=bool(exit_code==0 and not timeout and len(rows)==5 and selected==set(expected)
+        and all(row['status']=='Success' for row in rows) and deps and not metadata_error
+        and all(item['stable'] for item in deps.values()) and config_before==config_after and protected_ok)
+    summary=dict(stage=stage,success=success,exit_code=exit_code,timeout=timeout,seconds=time.monotonic()-started,
+        expected_methods=expected,actual_count=len(rows),methods=rows,parse_error=parse_error,
+        artifact_sha256=sha(artifact) if artifact.exists() else None,metadata_error=metadata_error,
+        dependency_count=len(deps),dependency_source_bracket=deps,foundry_toml_unchanged=config_before==config_after,
+        protected_four_unchanged=protected_ok,
+        source_changes_outside_dependency_closure=[f for f in before.keys()|after.keys()
+            if before.get(f)!=after.get(f) and f not in deps],
+        production_source_bracket={f:dict(before=h,after=after.get(f),stable=h==after.get(f))
+            for f,h in before.items() if f.startswith('src/')},
+        raw_sha256=sha(E/'raw.json'),stderr_sha256=sha(E/'stderr.log'),
+        scope='Actual royalty ledger/allocator canonical component with typed InKindNFT/MockAccess. No Entry/LP/provider or deployment qualification.',
+        old_test_methods_executed=0)
+    write(E/'RESULT.json',summary)
+    print(json.dumps({k:summary[k] for k in ('stage','success','exit_code','actual_count','seconds','parse_error','metadata_error')},indent=2))
+    return 0 if success else 1
+
+if __name__=='__main__':raise SystemExit(main())
