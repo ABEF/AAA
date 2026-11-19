@@ -1,0 +1,1749 @@
+{
+  "schema": 1,
+  "date": "2026-11-19",
+  "baseline": "4fde8d63b54dadc0d87cb2ba4d2af0d5da8e1527",
+  "purpose": "Readiness plan, not executed qualification or a second task ledger",
+  "source_provenance_before_document_changes": {
+    "AGENTS.md": "bca9f74e1da8c6b44f97dcc9d6bc2d521cece00596ffa2d6464e44651cb80e1e",
+    "PROJECT_CONTEXT.md": "39dc24313702e965517a27ea2ca462658de23282e7fd9e6244e05014ad73b4c8",
+    "README.md": "f077e41f7e48b85749fc89d9731617bad03b6db89ca2defaaf8b67a3b0b5f684",
+    "docs/WORK_HANDOFF.md": "2078215bc00a3bfe76d60ccba898eb0204b2688972fc1313ab50b5adca2d768c",
+    "docs/project-todo.json": "8317ae26206e966612632040478eeff9d33587e21ed5f44375937ecea6a342d9",
+    "docs/RELEASE_CHECKLIST.md": "1a4db26b631dd3917f6c7cb2ca998dffbe7f12565d8eb2ccb9dd3d6244942cbb",
+    "docs/AUDIT_FINDINGS.md": "24fdac1a85b4d1fc15257965455f08fff0644f51ac7c648f60e906d9f59098ac",
+    "docs/WORKLOAD_PLAN.json": "c819b0e68745e1f53042b8b3495d9e76fccf6f8a61d219539da97ef9a35b7864",
+    "docs/WORKLOAD_COVERAGE.md": "cc7c53eac03a608c8c9c90106481ff334c92bfeeadf4cedccbe3961723da7092",
+    "docs/OPERATOR_MANUAL.md": "af72d18f5c30c54aef250418e5a65dfd6d81d96983f3a8d5d3b4b5e1571ae234",
+    "docs/SEAL_READINESS.md": "5a002f6b6ec659268e6961179d406a8348c0e71d1000fd50daac1e4f270b8dfb",
+    "docs/SOURCE10_WEBSITE_PROFILE.md": "cea4fb78acd912551429b641f2c1db57f7a9de8de2fcba0590ae4b891db07c7e",
+    "docs/PRODUCTION_SERVICES.md": "21c6b0c426e2a2eac0606bb58085ea4fbd3e78ef0acd1dd798c8f8ac664eff99",
+    "reports/seven-report-consolidation-20261119/RECONCILIATION.json": "bf7907f397057cd7a62ee00c1148be0f737339756eb9988825c87f1fcf065c44",
+    "reports/maximum-workload-20261119/REVIEW.md": "9cf2c8ef58e5c7ece93422bd6f981135903a825c99a84d6024bcefab3f3c2c2e",
+    "reports/maximum-workload-20261119/QUALIFICATION.json": "638ffdf044669fd1bffc1063f33b149acb8b77ea268134632a94358920de8491",
+    "reports/whole-workload-review-20261119/REVIEW.md": "dc41855a580951b3facd8ccf8232e79bf68731abe44122af9866d18667ba2ce9",
+    "reports/q06-keeper-recovery-20261117/REVIEW.md": "402628922ea39bbc9be358145c605f271a4a31f43d653bbfe4accfc0fecc95dc",
+    "reports/real-market-refresh-20261116/REVIEW.md": "662ea45ee077ead2fd5fcaff55df1927cec6ab3d9f60c486b6c13e818b70b301",
+    "reports/daily-reconciliation-audit-20261111/contracts/REVIEW.md": "2d6b1146969f9471b40356e24ecd48647b2e18864e195d9d3e356a65fb919169",
+    "src/ZZZLPBalancer.sol": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+    "foundry.toml": "1e1c1372260eff6f48d73f914c755a2ecb3feea6e7167769d25d407b43e01f72"
+  },
+  "packages": [
+    {
+      "id": "P01",
+      "title": "Launch profile and accepted decisions",
+      "gates": [
+        "A"
+      ],
+      "todo_ids": [
+        "native-production-preflight",
+        "post-seal-configuration",
+        "lp-only-simplification",
+        "immediate-governance",
+        "adaptive-range-policy"
+      ],
+      "acceptance": [
+        "Freeze initial width, residual mode/floor/gap, currency list/capacity, reviewed venues, workers, supported workloads and wallet sizes, gas/fee budgets and actual authority-wallet type.",
+        "Separate enabled launch features from disabled capabilities. A smaller initial currency set does not qualify later expansion; a disabled worker does not waive required pre-seal bindings.",
+        "Retain explicit spot pricing, software-only compound waiting, immediate governance, per-operation rather than cumulative loss caps and emergency financial bypass decisions. Record their operating consequences rather than silently redesigning rights."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P02",
+      "title": "Compiler, dependencies and evidence validity",
+      "gates": [
+        "A",
+        "B",
+        "C"
+      ],
+      "todo_ids": [
+        "local-verification",
+        "audit-release",
+        "security-dependencies"
+      ],
+      "acceptance": [
+        "Check pinned Solidity0.8.26 optimized via-IR/Cancun against the current official compiler bug registry, including later-published optimizer, mutual-recursion, custom-error and recursive storage-copy advisories. Version matching is a candidate applicability test, not proof PoPL is affected.",
+        "Inspect exact settings, dependency source, relevant call graph and generated IR where needed; give every candidate a reviewable disposition. Do not upgrade compiler automatically.",
+        "Freeze exact source/dependency/control/artifact/static/CI identities. Reuse unchanged proofs; recheck tests whose production dependencies changed even if their test files did not. Any justified compiler/source change needs new pins and affected size, static, gas and functional evidence."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P03",
+      "title": "Independent prices and reference integrity",
+      "gates": [
+        "A",
+        "B",
+        "E"
+      ],
+      "todo_ids": [
+        "dual-price-qualification",
+        "creator-zzz-price",
+        "price-security",
+        "pool-spot-price-source"
+      ],
+      "acceptance": [
+        "Choose independently defensible ETH and fixed-ZZZ valuation paths with exact chain/token/adapter/feed identities, denomination/decimals/rounds, publication/funding ownership, freshness and3% agreement/outage behavior. Two ETH feeds multiplied by one ZZZ pool repeat one ZZZ exposure.",
+        "Rank external usable depth excluding PoPL liquidity; raw TVL/current L does not prove independence or bidirectional depth. Review upstream publishers, markets, proxies and administrators; stored spot does not prove recent trading.",
+        "Preserve the chosen spot policy for placement AND valuation. Qualify external-reference-as-swap own-transition proofs and same-core principal-reference exclusion, including what to do if our pool becomes the largest. Unknown or stale prices remain explicitly unavailable; no implicit TWAP or single-source fallback."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P04",
+      "title": "Actual pools, swap routes and upstream controls",
+      "gates": [
+        "A",
+        "B",
+        "E"
+      ],
+      "todo_ids": [
+        "pons-qualification",
+        "lp-execution-routing",
+        "creator-market-controls",
+        "creator-input-liquidity",
+        "typed-v4-conversion"
+      ],
+      "acceptance": [
+        "Authenticate actual fixed ZZZ, PoolKey/core/PositionManager/Permit2, hooks, directional fees and implementation/controller powers. Review token pause/freeze/tax/rebase behavior, exact decimals and burn semantics; code hashes do not freeze proxy/upstream behavior.",
+        "Verify both trade directions and representative sizes with depth remaining AFTER our LP withdrawal, compatible destination/reference price bands, partial-fill rejection and market movement between review and execution.",
+        "Qualify a separately suitable ZZZ-to-ETH LP-reward route under the default1% conversion cap. The selected pool's dated approximately1.101% fee is not that qualification. Forward-only quote screens, synthetic liquidity and cheap tiny swaps are not complete operation acceptance."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P05",
+      "title": "Chain, RPC, finality and complete fees",
+      "gates": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
+      "todo_ids": [
+        "host-services",
+        "deployment-initcode",
+        "native-production-preflight"
+      ],
+      "acceptance": [
+        "Verify current chain/genesis/version, required Cancun/transient behavior, actual transaction/block execution limits and selected provider call/estimate/trace/body/log/archive/rate/deadline limits. Tiny overrides and synthetic headers do not establish full operation capacity.",
+        "Qualify exact32M/full20% contribution and24M/full25% maintenance payloads, canonical-hash reads, missing-state rejection, reorgs, failover and outage/grace policy. Distinguish L2 inclusion from posted/finalized state; document sequencer inclusion limitations.",
+        "Reconcile complete Nitro execution plus posting fees with exact estimates and later receipts; count posting once. Separately approve fee-price/per-operation/day/ETH-funding limits and feed/VRF costs. Documented chain capabilities do not relax PoPL's strict24576 runtime/49152 initcode gates."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P06",
+      "title": "Maximum supported resource workloads",
+      "gates": [
+        "B"
+      ],
+      "todo_ids": [
+        "activation-quotes",
+        "security-share-accounting",
+        "activation-gas-six-cases",
+        "royalty-factory-gas",
+        "claim-batch-planner"
+      ],
+      "acceptance": [
+        "Resolve the slow64-currency/two-LP opening-ZZZ refusal:27142801 estimate,32571362 padded; at least476135 estimated gas reduction is needed for32M/full20%. Until qualified, do not approve this state for currency-capacity expansion. Never substitute trace gas or reduce padding.",
+        "Cover actual slow/failed currencies, full-width coefficient/carry spills and lifetime state, activation/rarity/claim order, large per-NFT and collection principal, and real Access/Registry omitted from the maximum-state producer.",
+        "Qualify cold conversion/claim batches, exit batches and full canonical gas separately. Four execution venues, four logical buckets, two legs,32 selection entries and64 ERC20 currencies are independent bounds, not a combined gas promise. Reuse unchanged eleven contribution and five maintenance successes at their exact scope."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P07",
+      "title": "Contributions and physical LP lifecycle",
+      "gates": [
+        "B",
+        "E"
+      ],
+      "todo_ids": [
+        "activation-assets",
+        "shared-custody",
+        "liquidity-placement-idle",
+        "reviewed-contribution-policy",
+        "security-share-accounting"
+      ],
+      "acceptance": [
+        "Verify ETH/ZZZ activation and growth: exact approvals, incumbent fee checkpoint, entrant-only swap/deploy, marginal deployed LP, net-NAV shares, idle/compound classification and full callback/failure rollback. Contributions grow MAIN without recentering it or resetting its clock.",
+        "Compose1-to-2-to-1-to-2 journeys through flat, bullish, bearish, reversal, gap, boundary and thin-depth markets; main/residual mixed or filled states remain valued, harvested and attributable. Residual mode changes never drop a live leg.",
+        "Exercise user/trader/operator transaction ordering, transfers and stale reviews at each transition. Main boundary ticks stay fixed while spot/composition moves; external transactions do not interleave within an atomic call, but dependency callbacks can."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P08",
+      "title": "Harvest, LP settlement, compound and burn",
+      "gates": [
+        "B",
+        "E"
+      ],
+      "todo_ids": [
+        "reward-ledgers",
+        "lp-exact-unit-allocation",
+        "lp-eth-settlement",
+        "asset-liveness-dust"
+      ],
+      "acceptance": [
+        "Reconcile both-leg actual fee collection and fixed80/10/5/5, including the documented tiny-fee split rule, liabilities/backing and current-owner rights before/after partial claims, transfers, rebalances and exit. Harvest itself performs no swaps.",
+        "Prove separate same-NFT ZZZ-to-ETH settlement, affordable partial batches, failed-swap rollback and approval cleanup. Compound spends only designated/attributed funds; buyback spends only its reserve and actually burns the fixed ZZZ. Claims/conversions never create new income.",
+        "Qualify economical thresholds, no-op handling and idle reinvestment without arbitrary sweeps. Inspect the unresolved historical late-fee-netting question against actual mutable token/periphery callbacks; only reproduce/harden if reachable, and do not label it an ordinary interleaving trader exploit."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P09",
+      "title": "Royalty opening and original-currency rights",
+      "gates": [
+        "B",
+        "E"
+      ],
+      "todo_ids": [
+        "royalty-eth-settlement",
+        "royalty-reporting",
+        "security-ownership-rewards",
+        "asset-liveness-dust"
+      ],
+      "acceptance": [
+        "Verify official sale-end revisions/equality/expiry, final ONE-hour grace, incomplete sellout, strict activation cohort, zero cohort, late activations, preadmission receipts, explicit recovery allocation and fault/recovery cohorts.",
+        "Prove all allocated smallest units can be assigned/claimed through transfers and arbitrary claim order; preserve old entitlements and distinct temporary opening/unallocated categories. No universal immediate-allocation guarantee is possible when no eligible NFT exists.",
+        "Qualify actual token gas/behavior and reviewed admission from16 to64 ERC20s plus ETH. The64 lifetime capacity is a long-term limit, not unlimited token support. Frozen/malicious tokens cannot be forced to transfer. Original-currency royalties need no conversion or mandatory keeper collection."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P10",
+      "title": "Normal strategy and economic manipulation",
+      "gates": [
+        "B",
+        "E"
+      ],
+      "todo_ids": [
+        "rebalance-confirmation-buffer",
+        "security-strategy",
+        "security-keeper-manipulation",
+        "security-external-manipulation",
+        "passive-inventory",
+        "governed-loss-limits"
+      ],
+      "acceptance": [
+        "Check85% centre-to-boundary displacement, physical/reference same-side corroboration,600s sampled persistence,300s maximum gap,240s source polling,12h hard minimum and durable60-300s jitter. Include boundary/reset/reorg/outage/pending-geometry/first-LP cases.",
+        "Verify post-withdrawal depth, known directional fees versus additional1% loss, aggregate caps, deterministic routing/sizing and complete fill. Assess outside-trader and authorized-key extraction scenarios; access control/jitter are not manipulation-immunity proofs.",
+        "Keep ordinary compound's extra wait in keeper software as chosen, with a separate interval and independent hourly harvest. Preserve explicit operator geometry exceptions and ensure no ordinary path silently selects emergency bypasses."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P11",
+      "title": "Authorities and every manual management action",
+      "gates": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
+      "todo_ids": [
+        "authorities-prices",
+        "security-governance",
+        "operation-review",
+        "callable-reference",
+        "operator-stop-controls",
+        "manual-emergency-rebalance",
+        "manual-reference-swap-proof",
+        "manual-recovery-gas-rehearsal",
+        "manual-lp-diagnostics",
+        "parked-emergency-preparation",
+        "operator-management-preparation"
+      ],
+      "acceptance": [
+        "Select actual governance wallet/signature policy, guardian, limited keeper, mint recipient and VRF owner/funder. Verify revocation/rotation, bootstrap removal and contract-wallet envelopes if selected; direct-EOA preparation does not qualify a Safe.",
+        "For every operator write, verify caller, units/decimals, actual input source, tick orientation, raw minima, hashes/nonces/expiry and when inputs must be reread. Exercise pause/unpause/park/resume/move/residual-close/consolidate/force through changing markets and stale reviews.",
+        "Emergency financial bypasses stay deliberate, paused-governance-only and separate from daily automation. Structural authorization/custody/accounting remains mandatory. Document reverse/restart actions where available and reconstruction boundaries where irreversible. No governance key belongs on the keeper host."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P12",
+      "title": "Terminal collective holder return",
+      "gates": [
+        "B"
+      ],
+      "todo_ids": [
+        "custody-composition",
+        "native-custody-recovery",
+        "migration-framework",
+        "destination-slots"
+      ],
+      "acceptance": [
+        "Verify both-leg closure/fee classification, designated compound, exact ETH/ZZZ principal shares and governance-only bounded direct payouts over1000 NFTs: repeated holders, dormant NFTs, varied tiers/rarities/LP and transfer ordering between batches.",
+        "Check batch progress, cold gas, rejecting ETH recipients, frozen tokens, retries and final-unit drain, with earned rewards/buyback reserves separate. Holders need no action normally; exceptional owner-controlled fallback retains backing and cannot invent an arbitrary operator recipient.",
+        "NFT transfers/future royalties/old rewards survive; LP earnings, principal reopening and post-exit canonical import do not. Rehearse destructive operations only in isolation or a separately authorized rehearsal collection, never as a final-collection launch smoke test."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P13",
+      "title": "Latest complete canonical cutover and abort",
+      "gates": [
+        "B"
+      ],
+      "todo_ids": [
+        "security-chain-recovery",
+        "holder-preflight"
+      ],
+      "acceptance": [
+        "Rehearse the actual latest F6/V10 FULL coordinator: freeze, closed physical legs, export, target prefund/import, exact funding, unique source retirement/target activation and fully funded abort restoration. Companion/body equivalence alone is insufficient.",
+        "Preserve full-width IDs, original mint-recipient/stage counts, ownership, inventory, shares, LP raw phase/pending and every royalty class/cutoff/history/backing category. Cover incomplete/duplicate imports, wrong pins, faults and escrow-contract compatibility.",
+        "No physical old-slot copy, payload relabelling, SeaDrop transport rotation, live-residual omission, post-exit successor or post-halt recovery is assumed. If the feature is not launch-qualified, state that explicitly without pretending disabled operation removes bound-code audit obligations."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P14",
+      "title": "Actual OpenSea primary sale",
+      "gates": [
+        "A",
+        "B",
+        "E"
+      ],
+      "todo_ids": [
+        "opensea-mint"
+      ],
+      "acceptance": [
+        "Confirm actual Robinhood custom-drop onboarding and pinned SeaDrop singleton/helper compatibility before irreversible binding. Establish payer/platform-fee terms: buyer gross0.05ETH, recipient net after platform fee, gas separate.",
+        "Verify initial20 free team/500 same-price allowlist(one per listed address)/480 publicFCFS, proofs, variable future counts/windows, lifetime original-recipient limits, unused allowlist rollover and reserved unused team slots.",
+        "Exercise stage/time/payment rollback and mirror the final OpenSea end to the royalty window. ERC2981 requests5% royalties; actual marketplace payment enforcement is external, not a guarantee supplied by ERC721 or ERC2981."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P15",
+      "title": "Live randomness and pending requests",
+      "gates": [
+        "A",
+        "B",
+        "E"
+      ],
+      "todo_ids": [
+        "fair-draw",
+        "nft-lifecycle"
+      ],
+      "acceptance": [
+        "Qualify supported coordinator/subscription/key settings, consumer/funding, request and callback gas, confirmations and proof delivery. A deployment address alone is not a supported operating service.",
+        "Check delayed/duplicate/out-of-order/failed/unanswered requests, mint-only pause, callback recovery and provider-rotation constraints. Every mint receives one remaining prepared design; no administrator rarity choice or reroll.",
+        "Unanswered draws can block provider rotation and canonical replacement. Establish operational response and costs before first mint; do not silently revive a rejected randomness bypass."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P16",
+      "title": "Artwork, metadata and marketplace delivery",
+      "gates": [
+        "B",
+        "D",
+        "E"
+      ],
+      "todo_ids": [
+        "metadata-ops"
+      ],
+      "acceptance": [
+        "Authenticate1000 prepared designs and all four evolution paths, rarity inventory, immutable URI/root/content and renderer before sealing. Nonempty content root is not proof the assets exist or are correct.",
+        "Qualify cold tokenURI at final root/state/provider and actual marketplace retrieval/cache/ERC4906 behavior through reveal, activation, growth, value changes, unavailable prices, parking, movement and terminal LP-exited state.",
+        "LP-exited remains distinct from Dormant, with royalty rights preserved. Website image/sound waits for confirmed actual LP. No dormant-card royalty deadline. Prior controlled metadata2 reads do not qualify latest full construction or final content hosting."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P17",
+      "title": "API security and complete portfolio reads",
+      "gates": [
+        "B",
+        "E"
+      ],
+      "todo_ids": [
+        "read-api",
+        "api-client-admission",
+        "host-services",
+        "portfolio"
+      ],
+      "acceptance": [
+        "Match current F6/profile/runtime/canonical manifests, both physical legs, owner and funded rights at canonical state. Adopt coherent complete wallet paging;1000 NFTs need63 ownership pages plus summary/history.",
+        "Verify owner/chain/NFT/block/config/digest/count and contiguous complete assembly within reviewed freshness budgets or explicit incomplete/unavailable output. Preserve1024call/1MiB bounds and ingress rates. Final page alone is not a whole wallet.",
+        "Qualify proxy/origin/TLS/firewall boundaries, malformed/oversized/slow input, tenant/concurrent isolation, disconnects, worker cleanup and bounded provider failure. Do not expose Python/RPC/Anvil or replace financial reads with stale demo caches."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P18",
+      "title": "History, checkpoints and durable data",
+      "gates": [
+        "B",
+        "E"
+      ],
+      "todo_ids": [
+        "financial-history",
+        "live-history-ui"
+      ],
+      "acceptance": [
+        "Reconcile NFT/wallet/collection24h and all-time earnings: individual LP80% plus collective10% plus royalties at today's reviewed prices, excluding principal/claims/conversions/imports as new income. Preserve exact raw amounts and the full86400s raw suffix.",
+        "Qualify actual deployment-to-head ingestion, canonical lineage, reorg rollback, missing logs/prices and SQLite/WAL/archive/storage limits. Demonstrate complete restore, rotation and source-codec evolution without truncating the historical window.",
+        "service.py changed semantic checkpoint identity: preserve old artifacts/reviews/raw DB/WAL, explicitly rebuild/review/re-pin for matching consumer adoption. Do not relabel old checkpoint formats or infer totals from incomplete history."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P19",
+      "title": "Production user submission and website adoption",
+      "gates": [
+        "A",
+        "B",
+        "E"
+      ],
+      "todo_ids": [
+        "wallet",
+        "portfolio",
+        "transaction-ui",
+        "unsigned-actions",
+        "preview",
+        "purchase-rights"
+      ],
+      "acceptance": [
+        "Choose a separately reviewed production submission route or explicitly accepted external client for activation/growth/claims. OpenSea addresses mint only. Source10/schema5 reads/unsigned reviews never construct the shared signer; that signer stays Anvil-only. Do not silently extend it.",
+        "Qualify MetaMask/Rabby permissions, account/network changes, exact approvals, rejection, stale review, approval-to-Entry interruption, submission/receipt/replacement/nonce gaps, reorg and refresh/cross-tab recovery without duplicate sends.",
+        "Popldemo stays simulation; served poplint current3 is not fresh F6/source10. Missing configuration never becomes demo financial data. Update only the affected NFT after confirmed LP. Dedicated10/25/100 load tests remain deferred and declined sale-rights disclosure is not a new launch blocker."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P20",
+      "title": "Actual full normal keeper scheduling",
+      "gates": [
+        "B",
+        "E"
+      ],
+      "todo_ids": [
+        "keeper-guardrails",
+        "keeper-recovery",
+        "operation-review"
+      ],
+      "acceptance": [
+        "Rehearse the actual normal daemon/Cast/provider/key path in isolation: pending-first recovery, observation deadlines, independent job retry delays and correct per-pool scheduling. Inert recovery-only dispatcher results do not prove the normal loop. Start with disposable keys on an owned isolated chain; production keys/providers require separate authorization.",
+        "Verify hourly harvest and authenticated internal-harvest coalescing, compound wait/interval, conversion/burn fairness, no-op handling, UTC fee-day/deadline budgets, mode/range changes and multiple historical buckets over representative multi-day transitions.",
+        "Confirm all failure diagnostics, role revocation and funding behavior; no ordinary fallback to force. Running release/config/runtime identity needs observation, not merely a hash of a local source checkout."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P21",
+      "title": "Host, interruption, restore and alerts",
+      "gates": [
+        "B",
+        "E",
+        "F"
+      ],
+      "todo_ids": [
+        "host-services",
+        "keeper-recovery",
+        "security-integration"
+      ],
+      "acceptance": [
+        "Qualify least-privilege host/service/TLS/secret setup, actual disk/WAL/fsync/locks, single-writer fencing and off-host storage. Interrupt at durable intent/save/sign/send/hash/receipt boundaries, including hashless uncertainty, RPC stalls/refusal, disk full, permission failure, corrupt state and restart storms.",
+        "Restore selected configuration/key/journal/DB/checkpoint on another host without two active signers, guessed resends or incorrect nonce/spend. Define RPO/RTO, observation/soak acceptance and operator responsibility rather than inventing arbitrary durations.",
+        "Prove alert delivery for stale heads/observations/harvest, low gas, blocked routes/budgets, worker quarantine, missing backups and storage exhaustion. Current services/journals and the user-paused desktop heartbeat remain untouched without separate authorization."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P22",
+      "title": "Fresh construction, deployed readback and seal",
+      "gates": [
+        "B",
+        "D"
+      ],
+      "todo_ids": [
+        "deployment-initcode",
+        "native-production-preflight",
+        "post-seal-configuration"
+      ],
+      "acceptance": [
+        "Before deployment, freeze exact current F6 constructor source/ABI/dynamic arguments/root/size/initcode/fees,25CREATE+19binding order and direct-EOA nonce assumptions; discover Factory children by getters, not guessed nonce. Rehearse the real control graph, including Access/Registry.",
+        "After separately authorized deployment, verify actual receipts, runtime/immutables, all children/parents/reciprocal bindings, addresses/roles and no unexpected grants. Failed/inserted/replaced/delegated-wallet steps invalidate simple sequence assumptions; reconcile rather than guess resume.",
+        "Before seal, verify fixedZZZ everywhere, LP converter, selected SeaDrop helper/singleton, artwork root, initial VRF, policy/gas/currency reads, standalone/importer state and viable mint schedule. Generic seal does NOT prove complete release readiness. Wrong immutables/root, expired sale end, permanent reservations and retirement may require reconstruction. Mint end may deliberately remain unset until ready; setting it before seal is not required."
+      ],
+      "executed_in_this_planning_review": false
+    },
+    {
+      "id": "P23",
+      "title": "Independent approval, staged launch and longevity",
+      "gates": [
+        "C",
+        "E",
+        "F"
+      ],
+      "todo_ids": [
+        "audit-release",
+        "mainnet-fork",
+        "testnet-rehearsal",
+        "mainnet-rehearsal-retirement",
+        "capacity-campaign",
+        "historical-findings",
+        "economic-rights-audit",
+        "local-browser-stack",
+        "local-dollar-rehearsal"
+      ],
+      "acceptance": [
+        "Independently audit the frozen code AND enabled configuration/dependencies, full accounting/LP/authority/emergency/canonical/holder-return composition and accepted trust. Remediate confirmed issues and refresh affected proof; record unresolved material risks and named decisions. Internal consolidation is not independent security approval.",
+        "Use local checks for mechanics, current mainnet fork for real market behavior and testnet for supported wallet/provider/service integrations. Label unavailable/mocked dependencies; none substitutes for actual final platform/provider acceptance. A separate mainnet rehearsal cannot clear/reset a final immutable collection.",
+        "Record separate authorization and readiness for deployment, sealing and public opening. Keep mint/deposits closed until their gates pass; authorize bounded non-destructive smoke checks explicitly. Set launch monitoring/stop/restart and dependency-change reviews; future currency/venue/feature expansion needs its own acceptance before enabling."
+      ],
+      "executed_in_this_planning_review": false
+    }
+  ],
+  "task_coverage": [
+    {
+      "todo_id": "lp-only-simplification",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P01"
+      ]
+    },
+    {
+      "todo_id": "immediate-governance",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P01"
+      ]
+    },
+    {
+      "todo_id": "operator-stop-controls",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P11"
+      ]
+    },
+    {
+      "todo_id": "price-security",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P03"
+      ]
+    },
+    {
+      "todo_id": "nft-lifecycle",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P15"
+      ]
+    },
+    {
+      "todo_id": "reward-ledgers",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P08"
+      ]
+    },
+    {
+      "todo_id": "lp-exact-unit-allocation",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P08"
+      ]
+    },
+    {
+      "todo_id": "lp-eth-settlement",
+      "area": "Smart contracts",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P08"
+      ]
+    },
+    {
+      "todo_id": "royalty-eth-settlement",
+      "area": "Smart contracts",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P09"
+      ]
+    },
+    {
+      "todo_id": "shared-custody",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P07"
+      ]
+    },
+    {
+      "todo_id": "pons-qualification",
+      "area": "Smart contracts",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P04"
+      ]
+    },
+    {
+      "todo_id": "activation-assets",
+      "area": "Smart contracts",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P07"
+      ]
+    },
+    {
+      "todo_id": "fair-draw",
+      "area": "Smart contracts",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P15"
+      ]
+    },
+    {
+      "todo_id": "custody-composition",
+      "area": "Smart contracts",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P12"
+      ]
+    },
+    {
+      "todo_id": "opensea-mint",
+      "area": "Smart contracts",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P14"
+      ]
+    },
+    {
+      "todo_id": "native-custody-recovery",
+      "area": "Smart contracts",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P12"
+      ]
+    },
+    {
+      "todo_id": "post-seal-configuration",
+      "area": "Smart contracts",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P01",
+        "P22"
+      ]
+    },
+    {
+      "todo_id": "typed-v4-conversion",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P04"
+      ]
+    },
+    {
+      "todo_id": "governed-loss-limits",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P10"
+      ]
+    },
+    {
+      "todo_id": "reviewed-contribution-policy",
+      "area": "Smart contracts",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P07"
+      ]
+    },
+    {
+      "todo_id": "liquidity-placement-idle",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P07"
+      ]
+    },
+    {
+      "todo_id": "adaptive-range-policy",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P01"
+      ]
+    },
+    {
+      "todo_id": "callable-reference",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P11"
+      ]
+    },
+    {
+      "todo_id": "lp-execution-routing",
+      "area": "Smart contracts",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P04"
+      ]
+    },
+    {
+      "todo_id": "manual-reference-swap-proof",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P11"
+      ]
+    },
+    {
+      "todo_id": "rebalance-confirmation-buffer",
+      "area": "Smart contracts",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P10"
+      ]
+    },
+    {
+      "todo_id": "manual-emergency-rebalance",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P11"
+      ]
+    },
+    {
+      "todo_id": "passive-inventory",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P10"
+      ]
+    },
+    {
+      "todo_id": "royalty-factory-gas",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P06"
+      ]
+    },
+    {
+      "todo_id": "pool-spot-price-source",
+      "area": "Smart contracts",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P03"
+      ]
+    },
+    {
+      "todo_id": "read-api",
+      "area": "Backend",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P17"
+      ]
+    },
+    {
+      "todo_id": "royalty-reporting",
+      "area": "Backend",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P09"
+      ]
+    },
+    {
+      "todo_id": "unsigned-actions",
+      "area": "Backend",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P19"
+      ]
+    },
+    {
+      "todo_id": "activation-quotes",
+      "area": "Backend",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P06"
+      ]
+    },
+    {
+      "todo_id": "financial-history",
+      "area": "Backend",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P18"
+      ]
+    },
+    {
+      "todo_id": "api-client-admission",
+      "area": "Backend",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P17"
+      ]
+    },
+    {
+      "todo_id": "host-services",
+      "area": "Backend",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P05",
+        "P17",
+        "P21"
+      ]
+    },
+    {
+      "todo_id": "holder-preflight",
+      "area": "Backend",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P13"
+      ]
+    },
+    {
+      "todo_id": "native-production-preflight",
+      "area": "Backend",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P01",
+        "P05",
+        "P22"
+      ]
+    },
+    {
+      "todo_id": "operation-review",
+      "area": "Backend",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P11",
+        "P20"
+      ]
+    },
+    {
+      "todo_id": "manual-recovery-gas-rehearsal",
+      "area": "Backend",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P11"
+      ]
+    },
+    {
+      "todo_id": "manual-lp-diagnostics",
+      "area": "Backend",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P11"
+      ]
+    },
+    {
+      "todo_id": "parked-emergency-preparation",
+      "area": "Backend",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P11"
+      ]
+    },
+    {
+      "todo_id": "operator-management-preparation",
+      "area": "Backend",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P11"
+      ]
+    },
+    {
+      "todo_id": "claim-batch-planner",
+      "area": "Backend",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P06"
+      ]
+    },
+    {
+      "todo_id": "preview",
+      "area": "Frontend",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P19"
+      ]
+    },
+    {
+      "todo_id": "wallet",
+      "area": "Frontend",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P19"
+      ]
+    },
+    {
+      "todo_id": "portfolio",
+      "area": "Frontend",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P17",
+        "P19"
+      ]
+    },
+    {
+      "todo_id": "transaction-ui",
+      "area": "Frontend",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P19"
+      ]
+    },
+    {
+      "todo_id": "live-history-ui",
+      "area": "Frontend",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P18"
+      ]
+    },
+    {
+      "todo_id": "purchase-rights",
+      "area": "Frontend",
+      "status_snapshot": "excluded",
+      "role": "user_excluded_not_launch_gate",
+      "packages": [
+        "P19"
+      ]
+    },
+    {
+      "todo_id": "creator-zzz-price",
+      "area": "Creator tasks / ZZZ team",
+      "status_snapshot": "todo",
+      "role": "existing_open_owner",
+      "packages": [
+        "P03"
+      ]
+    },
+    {
+      "todo_id": "creator-market-controls",
+      "area": "Creator tasks / ZZZ team",
+      "status_snapshot": "todo",
+      "role": "existing_open_owner",
+      "packages": [
+        "P04"
+      ]
+    },
+    {
+      "todo_id": "creator-input-liquidity",
+      "area": "Creator tasks / ZZZ team",
+      "status_snapshot": "todo",
+      "role": "existing_open_owner",
+      "packages": [
+        "P04"
+      ]
+    },
+    {
+      "todo_id": "local-verification",
+      "area": "Testing & qualification",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P02"
+      ]
+    },
+    {
+      "todo_id": "activation-gas-six-cases",
+      "area": "Testing & qualification",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P06"
+      ]
+    },
+    {
+      "todo_id": "mainnet-fork",
+      "area": "Testing & qualification",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P23"
+      ]
+    },
+    {
+      "todo_id": "testnet-rehearsal",
+      "area": "Testing & qualification",
+      "status_snapshot": "todo",
+      "role": "existing_open_owner",
+      "packages": [
+        "P23"
+      ]
+    },
+    {
+      "todo_id": "audit-release",
+      "area": "Testing & qualification",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P02",
+        "P23"
+      ]
+    },
+    {
+      "todo_id": "economic-rights-audit",
+      "area": "Testing & qualification",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P23"
+      ]
+    },
+    {
+      "todo_id": "local-dollar-rehearsal",
+      "area": "Testing & qualification",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P23"
+      ]
+    },
+    {
+      "todo_id": "local-browser-stack",
+      "area": "Testing & qualification",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P23"
+      ]
+    },
+    {
+      "todo_id": "capacity-campaign",
+      "area": "Testing & qualification",
+      "status_snapshot": "todo",
+      "role": "user_deferred_not_reinstated",
+      "packages": [
+        "P23"
+      ]
+    },
+    {
+      "todo_id": "mainnet-rehearsal-retirement",
+      "area": "Testing & qualification",
+      "status_snapshot": "todo",
+      "role": "existing_open_owner",
+      "packages": [
+        "P23"
+      ]
+    },
+    {
+      "todo_id": "security-governance",
+      "area": "Security & audit",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P11"
+      ]
+    },
+    {
+      "todo_id": "security-share-accounting",
+      "area": "Security & audit",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P06",
+        "P07"
+      ]
+    },
+    {
+      "todo_id": "security-ownership-rewards",
+      "area": "Security & audit",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P09"
+      ]
+    },
+    {
+      "todo_id": "security-strategy",
+      "area": "Security & audit",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P10"
+      ]
+    },
+    {
+      "todo_id": "security-keeper-manipulation",
+      "area": "Security & audit",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P10"
+      ]
+    },
+    {
+      "todo_id": "security-external-manipulation",
+      "area": "Security & audit",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P10"
+      ]
+    },
+    {
+      "todo_id": "security-dependencies",
+      "area": "Security & audit",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P02"
+      ]
+    },
+    {
+      "todo_id": "security-chain-recovery",
+      "area": "Security & audit",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P13"
+      ]
+    },
+    {
+      "todo_id": "security-integration",
+      "area": "Security & audit",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P21"
+      ]
+    },
+    {
+      "todo_id": "historical-findings",
+      "area": "Security & audit",
+      "status_snapshot": "done",
+      "role": "locally_implemented_not_external_approval",
+      "packages": [
+        "P23"
+      ]
+    },
+    {
+      "todo_id": "authorities-prices",
+      "area": "Launch & operations",
+      "status_snapshot": "todo",
+      "role": "existing_open_owner",
+      "packages": [
+        "P11"
+      ]
+    },
+    {
+      "todo_id": "dual-price-qualification",
+      "area": "Launch & operations",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P03"
+      ]
+    },
+    {
+      "todo_id": "metadata-ops",
+      "area": "Launch & operations",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P16"
+      ]
+    },
+    {
+      "todo_id": "keeper-guardrails",
+      "area": "Launch & operations",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P20"
+      ]
+    },
+    {
+      "todo_id": "keeper-recovery",
+      "area": "Launch & operations",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P20",
+        "P21"
+      ]
+    },
+    {
+      "todo_id": "asset-liveness-dust",
+      "area": "Launch & operations",
+      "status_snapshot": "todo",
+      "role": "existing_open_owner",
+      "packages": [
+        "P08",
+        "P09"
+      ]
+    },
+    {
+      "todo_id": "deployment-initcode",
+      "area": "Launch & operations",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P05",
+        "P22"
+      ]
+    },
+    {
+      "todo_id": "migration-framework",
+      "area": "Future migration",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P12"
+      ]
+    },
+    {
+      "todo_id": "destination-slots",
+      "area": "Future migration",
+      "status_snapshot": "progress",
+      "role": "existing_open_owner",
+      "packages": [
+        "P12"
+      ]
+    }
+  ],
+  "workload_family_coverage": {
+    "deployment": [
+      "P02",
+      "P05",
+      "P11",
+      "P22",
+      "P23"
+    ],
+    "governed_policy": [
+      "P01",
+      "P11",
+      "P22"
+    ],
+    "mint_draw": [
+      "P09",
+      "P14",
+      "P15"
+    ],
+    "metadata": [
+      "P16",
+      "P19"
+    ],
+    "prices": [
+      "P03",
+      "P04",
+      "P05"
+    ],
+    "contributions": [
+      "P04",
+      "P06",
+      "P07"
+    ],
+    "physical_lp": [
+      "P07",
+      "P10",
+      "P11",
+      "P12"
+    ],
+    "strategy": [
+      "P04",
+      "P10",
+      "P20"
+    ],
+    "fees_membership": [
+      "P07",
+      "P08",
+      "P09"
+    ],
+    "lp_claims": [
+      "P06",
+      "P08",
+      "P19"
+    ],
+    "royalties": [
+      "P06",
+      "P09",
+      "P14"
+    ],
+    "compound": [
+      "P08",
+      "P10",
+      "P20"
+    ],
+    "conversion_burn": [
+      "P04",
+      "P08",
+      "P20"
+    ],
+    "manual_exit": [
+      "P11",
+      "P12"
+    ],
+    "canonical": [
+      "P13",
+      "P18"
+    ],
+    "internal_math": [
+      "P02",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P13"
+    ],
+    "shared_types_interfaces": [
+      "P02",
+      "P17",
+      "P18",
+      "P19",
+      "P22"
+    ],
+    "read_wallet_portfolio": [
+      "P17",
+      "P19"
+    ],
+    "unsigned_preparation": [
+      "P05",
+      "P11",
+      "P19"
+    ],
+    "history_indexer": [
+      "P18",
+      "P21"
+    ],
+    "keeper_scheduler": [
+      "P10",
+      "P20",
+      "P21"
+    ],
+    "http_workers": [
+      "P17",
+      "P21"
+    ],
+    "website_wallet": [
+      "P16",
+      "P17",
+      "P19"
+    ],
+    "release_operations": [
+      "P01",
+      "P02",
+      "P21",
+      "P22",
+      "P23"
+    ]
+  },
+  "service_subfamily_coverage": {
+    "S01": [
+      "P17",
+      "P21"
+    ],
+    "S02": [
+      "P17",
+      "P21"
+    ],
+    "S03": [
+      "P05",
+      "P17"
+    ],
+    "S04": [
+      "P17",
+      "P19"
+    ],
+    "S05": [
+      "P17",
+      "P19"
+    ],
+    "S06": [
+      "P06",
+      "P07",
+      "P19"
+    ],
+    "S07": [
+      "P06",
+      "P08",
+      "P19"
+    ],
+    "S08": [
+      "P06",
+      "P09",
+      "P17"
+    ],
+    "S09": [
+      "P18",
+      "P19"
+    ],
+    "S10": [
+      "P13",
+      "P18"
+    ],
+    "S11": [
+      "P05",
+      "P18"
+    ],
+    "S12": [
+      "P18"
+    ],
+    "S13": [
+      "P18",
+      "P21"
+    ],
+    "S14": [
+      "P11",
+      "P12"
+    ],
+    "S15": [
+      "P22"
+    ],
+    "S16": [
+      "P10",
+      "P20"
+    ],
+    "S17": [
+      "P08",
+      "P20"
+    ],
+    "S18": [
+      "P20",
+      "P21"
+    ],
+    "S19": [
+      "P21"
+    ],
+    "S20": [
+      "P19"
+    ],
+    "S21": [
+      "P02",
+      "P23"
+    ]
+  },
+  "decisions_or_external_inputs": [
+    "actual independent prices and executable routes",
+    "selected provider and complete fees",
+    "authority wallet and signing policy",
+    "actual supported OpenSea and VRF integration",
+    "separately reviewed production user submission route",
+    "initial enabled currency/capacity/residual/workload envelope",
+    "operating objectives, alert owner and acceptance duration"
+  ],
+  "findings_provenance": [
+    "reports/seven-report-consolidation-20261119/RECONCILIATION.json",
+    "reports/maximum-workload-20261119/FINDINGS.json",
+    "reports/whole-workload-review-20261119/FINDINGS.json"
+  ],
+  "new_dynamic_tests": 0,
+  "public_rpc_probes": 0,
+  "production_ready": false,
+  "deployment_authorized": false,
+  "sealing_authorized": false,
+  "public_signing_authorized": false,
+  "workload_obligation_counts": {
+    "contract_internal_families": 17,
+    "service_families": 7,
+    "scenario_classes": 187,
+    "service_subfamilies": 21,
+    "finer_service_partitions": 85
+  },
+  "workload_scenario_scope": [
+    {
+      "family": "deployment",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 8,
+      "packages": [
+        "P02",
+        "P05",
+        "P11",
+        "P22",
+        "P23"
+      ]
+    },
+    {
+      "family": "governed_policy",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 8,
+      "packages": [
+        "P01",
+        "P11",
+        "P22"
+      ]
+    },
+    {
+      "family": "mint_draw",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 9,
+      "packages": [
+        "P09",
+        "P14",
+        "P15"
+      ]
+    },
+    {
+      "family": "metadata",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 7,
+      "packages": [
+        "P16",
+        "P19"
+      ]
+    },
+    {
+      "family": "prices",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 9,
+      "packages": [
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "family": "contributions",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 10,
+      "packages": [
+        "P04",
+        "P06",
+        "P07"
+      ]
+    },
+    {
+      "family": "physical_lp",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 10,
+      "packages": [
+        "P07",
+        "P10",
+        "P11",
+        "P12"
+      ]
+    },
+    {
+      "family": "strategy",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 9,
+      "packages": [
+        "P04",
+        "P10",
+        "P20"
+      ]
+    },
+    {
+      "family": "fees_membership",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 8,
+      "packages": [
+        "P07",
+        "P08",
+        "P09"
+      ]
+    },
+    {
+      "family": "lp_claims",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 9,
+      "packages": [
+        "P06",
+        "P08",
+        "P19"
+      ]
+    },
+    {
+      "family": "royalties",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 10,
+      "packages": [
+        "P06",
+        "P09",
+        "P14"
+      ]
+    },
+    {
+      "family": "compound",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 7,
+      "packages": [
+        "P08",
+        "P10",
+        "P20"
+      ]
+    },
+    {
+      "family": "conversion_burn",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 8,
+      "packages": [
+        "P04",
+        "P08",
+        "P20"
+      ]
+    },
+    {
+      "family": "manual_exit",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 10,
+      "packages": [
+        "P11",
+        "P12"
+      ]
+    },
+    {
+      "family": "canonical",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 10,
+      "packages": [
+        "P13",
+        "P18"
+      ]
+    },
+    {
+      "family": "internal_math",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 6,
+      "packages": [
+        "P02",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P13"
+      ]
+    },
+    {
+      "family": "shared_types_interfaces",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 4,
+      "packages": [
+        "P02",
+        "P17",
+        "P18",
+        "P19",
+        "P22"
+      ]
+    },
+    {
+      "family": "read_wallet_portfolio",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 6,
+      "packages": [
+        "P17",
+        "P19"
+      ]
+    },
+    {
+      "family": "unsigned_preparation",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 6,
+      "packages": [
+        "P05",
+        "P11",
+        "P19"
+      ]
+    },
+    {
+      "family": "history_indexer",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 6,
+      "packages": [
+        "P18",
+        "P21"
+      ]
+    },
+    {
+      "family": "keeper_scheduler",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 7,
+      "packages": [
+        "P10",
+        "P20",
+        "P21"
+      ]
+    },
+    {
+      "family": "http_workers",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 6,
+      "packages": [
+        "P17",
+        "P21"
+      ]
+    },
+    {
+      "family": "website_wallet",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 8,
+      "packages": [
+        "P16",
+        "P17",
+        "P19"
+      ]
+    },
+    {
+      "family": "release_operations",
+      "source": "docs/WORKLOAD_PLAN.json",
+      "scenario_classes": 6,
+      "packages": [
+        "P01",
+        "P02",
+        "P21",
+        "P22",
+        "P23"
+      ]
+    }
+  ]
+}

@@ -48,6 +48,11 @@ Host restart, RPC inclusion, gas and writer/checker rollout remain qualification
 
 ## Verification and release status
 
+The [production qualification plan](docs/ROADMAP.md) orders23 acceptance packages
+from real-market feasibility through source, services, deployment, sealing and
+public opening. It preserves the sole Todo and separates predeployment checks
+from evidence that requires actual deployed addresses. No release approval is implied.
+
 ### Find the relevant evidence
 
 | Need | Reference |

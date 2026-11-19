@@ -1,5 +1,9 @@
 # Verification evidence
 
+[Production readiness planning](production-readiness-plan-20261119/REVIEW.md)
+consolidates launch acceptance packages, source provenance, current findings and
+all stable Todo ownership. It adds no dynamic pass or deployment approval.
+
 [Maximum-state contributions and maintenance](maximum-workload-20261119/REVIEW.md)
 records new controlled1,000-NFT/two-LP/65-asset evidence:11/12 contribution profiles
 fit, one headroom refusal remains, five maintenance paths fit and three intended

@@ -1,5 +1,11 @@
 # Project context
 
+The [production qualification plan](docs/ROADMAP.md) consolidates current findings,
+all83 stable Todo tasks and whole-workload families into23 acceptance packages.
+It identifies compiler-advisory applicability, actual production user-submission,
+large-wallet completeness/freshness and staged deployment/seal/launch checks.
+This is planning/document reconciliation; no new code, tests or live acceptance.
+
 Production is undeployed and NOT APPROVED. Main only. Use the
 [sole Todo](TODO.md), [current findings](docs/AUDIT_FINDINGS.md),
 [operator manual](docs/OPERATOR_MANUAL.md) and [environment map](docs/SITE_ENVIRONMENTS.md).

@@ -1,5 +1,11 @@
 # Work handoff
 
+Next work follows the [ordered production qualification plan](ROADMAP.md) and
+[readiness reconciliation](../reports/production-readiness-plan-20261119/REVIEW.md):
+resolve actual market/provider/platform feasibility and launch choices alongside
+compiler review and missing local proof. Deployment, seal and public opening
+remain separate, unauthorized gates. Reuse valid unchanged-source evidence.
+
 ## Current source and findings
 
 Main only. Production is undeployed and NOT APPROVED. The trusted normal build

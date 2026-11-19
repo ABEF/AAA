@@ -1,5 +1,9 @@
 # Feature and evidence reference
 
+Use the [production qualification plan](ROADMAP.md) for the remaining cross-layer
+acceptance work. Implemented features are distinct from actual market/provider/
+wallet/operating approval; this documentation review changes no implementation.
+
 The [current controlled maximum-state evidence](../reports/maximum-workload-20261119/REVIEW.md)
 verifies1,000 NFTs, both LPs and65 royalty assets:11/12 contributions fit32M/full20%;
 one slow-ZZZ opening state needs32,571,362 padded and remains open. All five

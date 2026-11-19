@@ -118,6 +118,15 @@ nonce adoption, setup/resume/transaction envelope or seal is added. EIP2681 boun
 rejects overflow/exhausted endpoint; reported remaining capacity does not approve
 unprepared later setup. New source publication is not a deployment workflow.
 
+## Production qualification planning
+
+Use the [ordered readiness plan](docs/ROADMAP.md) before choosing further launch
+work. Its23 acceptance packages map all83 stable tasks and preserve current
+policies, exact evidence reuse and separate deployment/seal/public-opening gates.
+Compiler advisories, actual market/provider/platform feasibility, production user
+submission, current full graph and real operating acceptance remain qualification,
+not completed by documentation. No live action or signer change is authorized.
+
 ## Authorization and preservation
 
 - Contract repository ABEF/AAA is this checkout; website ABEF/AAA-website is sibling

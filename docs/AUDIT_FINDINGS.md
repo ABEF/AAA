@@ -1,5 +1,10 @@
 # Consolidated audit findings and evidence
 
+The [production qualification plan](ROADMAP.md) consolidates remaining acceptance
+work across contracts, markets, services, recovery and launch without reopening
+resolved or retired findings. Its [dated reconciliation](../reports/production-readiness-plan-20261119/REVIEW.md)
+adds planning gaps, not another claim of a dynamic audit or release approval.
+
 The [current controlled maximum-state evidence](../reports/maximum-workload-20261119/REVIEW.md)
 verifies1,000 NFTs, both LPs and65 royalty assets:11/12 contributions fit32M/full20%;
 one slow-ZZZ opening state needs32,571,362 padded and remains open. All five

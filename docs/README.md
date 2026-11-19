@@ -1,5 +1,10 @@
 # Documentation map
 
+Start with the [production qualification plan](ROADMAP.md) for the ordered remaining
+checks and [source-bound readiness reconciliation](../reports/production-readiness-plan-20261119/REVIEW.md).
+The sole Todo owns status; the plan covers23 acceptance packages and distinguishes
+predeployment, deployed-unsealed, sealing and public-launch gates.
+
 For current changed-constructor, binding and cold metadata read measurements,
 use the [selective metadata2 rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md)
 and [operator read procedure](OPERATOR_MANUAL.md#metadata2-construction-and-cold-read-review).

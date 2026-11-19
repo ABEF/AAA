@@ -1,5 +1,10 @@
 # PoPL operator manual
 
+For launch preparation, follow the [ordered qualification plan](ROADMAP.md).
+It separates predeployment work, actual unsealed readback, sealing and public
+opening; each still needs its own evidence/authorization. Current call procedures
+and the single human operator/governance model remain unchanged.
+
 The [16 November whole-project review](../reports/whole-project-audit-20261116/REVIEW.md)
 hardens offline governance input admission, saved-file presence and the website
 signing-profile boundary. Contract calls, permissions, economics and defaults
@@ -596,14 +601,14 @@ The [new external qualification](../reports/predeployment-qualification-20261113
 independently establishes genesis and passes all13 existing RPC checks through
 unchanged `probe()` with1.5-second recording transport pacing. Specific historic
 reads/logs and a tiny nonpersistent code override also work. Anonymous sustained
-service, numerical20M/24M capacity, provider plan/SLA, real sources/routes and full
+service, numerical32M/24M capacity, provider plan/SLA, real sources/routes and full
 PoPL target fees remain unqualified; nothing is adopted or restarted.
 
 | Review | Operator action | Required result |
 | --- | --- | --- |
 | Identity and tracing | Reuse reviewed genesis derivation and13-check evidence; check the intended endpoint/runtime | Point-in-time pass; no trust/SLA shortcut |
 | Rate and history | Obtain endpoint/tier limits, history and a reviewed optional `--request-interval-ms` | Pacing consumes90s; refusal stops that endpoint |
-|20M/24M capacity | Obtain effective call/estimate/trace caps and exercise exact deployed operations | Full padding fits; no clamp/fallback |
+|32M/24M capacity | Qualify selected contributions32M/full20% and maintenance24M/full25% with exact call/estimate/trace caps | Full padding fits; no clamp/fallback |
 | Complete estimates | Reconcile Nitro total/posting components and real receipts | Posting included once; no fabricated full quote |
 | Fees and funding | Approve gas-price, per-transaction/day/native-balance bounds and evidence hash | Explicit reviewed values; no automatic increase |
 | Adoption | Reconcile pending records, pin complete configuration/consumer and dry-run | Separate authorized restart; original journals |

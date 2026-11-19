@@ -1,5 +1,10 @@
 # Release approval record - NOT APPROVED
 
+Follow the [production qualification plan](ROADMAP.md) and its
+[source-bound reconciliation](../reports/production-readiness-plan-20261119/REVIEW.md).
+Deployment readiness, authorization to seal and authorization to open public
+mint/deposits are separate gates. Planning completes none of those approvals.
+
 The [current controlled maximum-state evidence](../reports/maximum-workload-20261119/REVIEW.md)
 verifies1,000 NFTs, both LPs and65 royalty assets:11/12 contributions fit32M/full20%;
 one slow-ZZZ opening state needs32,571,362 padded and remains open. All five

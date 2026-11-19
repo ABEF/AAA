@@ -1,138 +1,354 @@
-# Engineering roadmap
+# Engineering roadmap and production qualification plan
 
-The [current controlled maximum-state evidence](../reports/maximum-workload-20261119/REVIEW.md)
-verifies1,000 NFTs, both LPs and65 royalty assets:11/12 contributions fit32M/full20%;
-one slow-ZZZ opening state needs32,571,362 padded and remains open. All five
-executable maintenance states fit24M/full25%; three intended rejections reproduce.
-Rights/backing and actual royalty payouts reconcile. No production contract,
-default, authority, actual-provider or live-environment approval changes; broader
-source/market/currency/operating and independent release qualification remains.
+Reviewed 19 November 2026 against `4fde8d63b54dadc0d87cb2ba4d2af0d5da8e1527`. **Production is undeployed and NOT APPROVED.**
+This is the plan for checking readiness, not authorization to execute public
+transactions, deploy, seal, restart services or open mint. [TODO.md](../TODO.md)
+remains the only task-status checklist; record actual approval in the
+[release record](RELEASE_CHECKLIST.md). The [readiness reconciliation](../reports/production-readiness-plan-20261119/REVIEW.md)
+and [matrix](../reports/production-readiness-plan-20261119/MATRIX.json) retain
+source provenance and map every stable Todo task to the packages below.
 
-## Whole-project workload sequence
+## Current evidence and limits
 
-The [whole-workload review](../reports/whole-workload-review-20261119/REVIEW.md) expands scope beyond the gas-only recommendation.
-A [source-pinned map](WORKLOAD_COVERAGE.md) indexes all current contract/internal/
-service families and187 scenario classes. It is not a claim that every class passed.
-The old independent fractional LP model is corrected: seven affected plus two new
-composed methods pass. Thirteen new backend methods verify bounded same-block
-wallet pages, including1,000 IDs/63 pages and selected16/64currency states.
-The legacy complete endpoint remains complete-or-failed; no work limits rise.
+The trusted normal build is `activation-final-six-20261118`, Factory6/allocation2.
+Its 61 project sources, 39 dependencies, 4 controls and 48 size gates retain their
+original exact scope. All 13 controlled 16-currency/one-main cold cases pass 20M/full 20%,
+closing the six earlier matched refusals. These are not current-market approval.
 
-Checkpoint source identities change with service.py. Preserve original artifacts
-and require reviewed rebuild/re-pin and matching website/provider adoption.
-Cold maximum-state32M/two-LP/full-canonical/actual-provider and original Q01-Q07
-release qualification remain open. No production Solidity, gas/fee guard, NFT
-right or live environment changes; the report distinguishes all evidence scopes.
+The [maximum-state campaign](../reports/maximum-workload-20261119/REVIEW.md)
+adds 1,000 NFTs, 64 ERC20 royalties plus ETH, two LPs and reversed activation order.
+Eleven of twelve contributions fit 32M/full 20%; slow-ZZZ opening still needs
+32,571,362 padded, 571,362 above budget, requiring at least 476,135 less estimated gas.
+Five executable maintenance cases fit 24M/full 25%, three intended refusals reproduce,
+and actual royalty payouts/backing reconcile. Synthetic external depth and mocked
+controls are explicit; real Access/Registry were not instantiated by that producer.
 
-The [sole Todo](../TODO.md) owns status. The
-[latest seven-report reconciliation](../reports/seven-report-consolidation-20261119/REVIEW.md)
-records current findings and exact historical source boundaries; this guide
-orders the remaining work instead of duplicating report chronology.
+[Whole-workload coverage](WORKLOAD_COVERAGE.md) identifies 187 scenario classes
+across 17 contract/internal and 7 service families, plus 21 service subfamilies
+containing 85 finer partitions. These are obligations, not 272 executed tests.
+Inventory is not dynamic coverage. Q06's finite isolated Linux/systemd recovery
+uses inert signing and a recovery-only dispatcher; full normal-loop/key/provider/
+off-host/alerts/soak acceptance remains separate.
 
-Trusted build is F6/allocation2 `activation-final-six-20261118`. All six previous
-matched activation gas refusals close in13controlled20M/full20% scenarios.
-Selected contribution preparation is now32M/full20%, with legacy12M defaults
-and24M/full25% maintenance unchanged. Actual provider/complete fees, selected
-currencies and64-currency/two-LP/order/max-graph workloads remain unqualified.
+The [seven-report reconciliation](../reports/seven-report-consolidation-20261119/REVIEW.md)
+retains 64 original records plus 24 subsequent assessments. The earlier 310-record
+reconciliation is not 310 open bugs. Keep fixes, accepted policy, structural limits
+and Q01-Q07 qualification distinct; never add overlapping historical pass totals.
 
-Q06 source fixes and finite Linux recovery evidence advance operation but do
-not replace actual-key/provider/full-loop/off-host/soak acceptance. Preserve the
-software-only extra compound wait and every financial/ownership/recovery rule.
-No deployment, service/site adoption, signing or heartbeat restart is authorized.
+**Current source bounds:** four reviewed LP-execution venues, four lifetime
+logical buckets and at most two physical positions per bucket. Thirty-two is a
+separate claim/exit selection ceiling, not an LP-venue limit. The older maximum
+report's “32 venues” sentence is not the current code's bound.
 
-## 1. Freeze the correct source and integration boundary
+## Requirements that this plan preserves
 
-The earlier [accounting7/LP-allocation1/V9/schema16](POSITION_V7.md) milestone wires authenticated shares/membership, current-owner whole claims and same-NFT conversion. The fixed RewardsCanonical child preserves exact pending/phase state, complete funding and abort without flattening rights. That milestone's source/size/static/consumer evidence is in the [original integration verification](../reports/exact-lp-integration-20261106/VERIFICATION.md); use the [report map](../reports/README.md) for later mint2/V10 and current3% source records. Historical6/V8, old checkpoints and journals remain distinct. This is an accounting upgrade, not a behavior-preserving cleanup or deployed upgrade.
+Only native ETH and one fixed ZZZ fund LP. Royalties are paid in original currencies;
+LP fees use separate same-NFT ZZZ-to-ETH settlement. Preserve 80/10/5/5, exact-unit
+rights and current-owner unpaid balances. Royalty grace is **one hour**; history's
+raw suffix remains **86400 seconds**. Neither changes the other.
 
-Preserve completed direct Entry, residual management, active-main routing, cooldown observation and authenticated harvest coalescing. Do not revive removed bridges, creator inboxes or third LP inputs. Target deployment arguments, maximum-workload gas/economics and independent review still require the exact final candidate.
+Spot is chosen for placement AND independent valuation. Do not add TWAP, duplicate
+one ZZZ source behind two ETH feeds, change the destination or relax guards.
+Defaults remain 3% contribution, 1% conversion, 3% maintenance, 1% additional execution
+loss and 3% source agreement, with distinct caller/idle/venue checks. Selected
+contribution preparation is 32M/full 20%; maintenance 24M/full 25%, legacy 12M defaults
+unchanged. Fees and funding are separate from gas-unit ceilings.
 
-Owning work: [release freeze/audit](../TODO.md#task-audit-release),
-[deployment size/gas](../TODO.md#task-deployment-initcode),
-[reviewed contributions](../TODO.md#task-reviewed-contribution-policy).
+Ordinary timing remains 85% centre-to-boundary, same-side independent corroboration,
+600s sampled persistence/300s max gap/240s source polling,12h hard minimum and
+durable60-300s service jitter. Extra compound waiting stays in keeper software.
+Emergency financial bypass remains explicit paused-governance action; structural
+permissions, custody and exact accounting stay mandatory.
 
-The [residual lifecycle follow-up](../reports/residual-lifecycle-20261106/REVIEW.md)
-added historical6 physical read admission and missing destination-hybrid composition
-evidence. Production Solidity/normal/static pins remain unchanged. Actual token/
-periphery callbacks, maximum workload and source rollout remain qualification.
+One human operator/governance, separate limited keeper and guardian; no timelock
+reintroduced. Terminal exit pays NFT holders, never a custody address. No bridge,
+third LP input, token-retarget setter, post-exit importer or post-halt rescue is
+revived. Dedicated10/25/100-user load testing remains user-deferred; sale-rights
+disclosure is excluded. Basic concurrency correctness and bounded overload remain
+required, without silently scheduling the deferred benchmark.
 
-## 2. Qualify real dependencies and market execution
+## Ordered gates and critical path
 
-The [actual market review](../reports/market-qualification-20261109/REVIEW.md)
-establishes concrete blockers: no usable dual ETH/fixedZZZ pair, stale Pyth
-updates, unqualified liveness/provider policy and direction-specific execution
-constraints. Qualify independent ZZZ sources with the team, an operating ETH
-updater/alternative, actual bidirectional depth and a default1%-eligible route.
-Quote/slot/source observations are not admission approval or future guarantees.
+| Gate | Work | Evidence needed to advance |
+| --- | --- | --- |
+| A: scope and feasibility | P01-P05, P11/P14/P15/P19 choices | Actual proposed sources/routes/platform/provider, authority-wallet and user-submission approach are supportable. Unknown inputs stay blocked. |
+| B: missing implementation and evidence | P06-P22 as applicable | Close confirmed defects and unproved launch partitions; exact accounting/rollback/resource/recovery proof, current F6 construction and matched full-stack rehearsal. |
+| C: freeze and independent review | P02/P23 | Frozen code/config/build/evidence, independent audit/remediation and affected rechecks; unsigned deployment package with named accepted risks. |
+| D: separately authorized deployment, closed and unsealed | P11/P22 | Actual receipts/runtime/immutables/children/roles/bindings and complete pre-seal readiness. These proofs cannot exist before deployment. |
+| E: separately authorized sealing, still closed | Actual integration portions of P03-P05/P07-P11/P14-P21/P23 | Complete necessary deployed/sealed wallet/marketplace/VRF/host observations using explicitly authorized, bounded non-destructive operations. No terminal test on final principal. |
+| F: separately approved public launch | P21/P23 | Named go/no-go, actual release/config hashes, funded services, alerts, stop/restart and residual-risk decisions. Open only qualified features. |
 
-Select and authenticate independent ETH/ZZZ USD sources, feed/proxy/update controls,
-actual fixed token/burn behavior, reviewed balancing/conversion venues, RPC tracing,
-VRF and authorities. Test usable depth/cost without substituting demo values or
-widening captured user limits. Actual cheap ETH conversion remains necessary at
-the default1% budget; bounded routing is not a universal best-route guarantee.
-Qualify OpenSea primary mint/drop, gross buyer price and actual platform fee.
+Begin actual market/provider/platform discovery in parallel with compiler review
+and independent local fixes. Do not repeat large synthetic campaigns while
+launch prices or execution depth remain infeasible. Freeze source before final
+audit, and refresh affected proof after fixes. Some platform onboarding or final
+source verification needs actual addresses; staged gates avoid pretending it is
+already complete before deployment. Never invent an operating-soak duration:
+agree objectives, observation period, incident thresholds and owner first.
 
-Owning work: [dual feeds](../TODO.md#task-dual-price-qualification),
-[ZZZ-team questions](../TODO.md#creator-tasks--zzz-team),
-[routing](../TODO.md#task-lp-execution-routing),
-[draw](../TODO.md#task-fair-draw), [OpenSea](../TODO.md#task-opensea-mint).
+## Acceptance packages
 
-## 3. Integrate matching services and site without changing old profiles
+Each package needs source/config identity, meaningful success AND rollback/failure
+assertions, exact raw evidence, known limitations and the central Todo owner.
+Read the linked operator procedures before irreversible changes.
 
-Qualify reviewed schema17/mint2/V10 configs and the implemented opt-in2
-API read/claim/lineage path. Update remaining indexer/keeper/health/website
-consumers explicitly, preserving source9/schema16 as a prior profile. Build and
-qualify the matching accounting7/direct Entry3 website consumer on poplint. Popldemo
-remains simulation; served current3 and historical Anvil/journals remain their
-original profiles. Public DEPLOYMENT stays null and signing Anvil-only.
+### P01 — Launch profile and accepted decisions
 
-The [unsigned operator extension](../reports/operator-management-20261109/REVIEW.md)
-adds reversible parking/resume/residual closure and all terminal holder-return
-steps, alongside schema1 Active B/C/D. The [explicit schema2 Parked D adapter](MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2)
-now prepares paused recovery with selected safeguard bypasses. Qualify actual
-operator-selected floors, provider/hash/complete-fee support, target gas and wallet
-execution; contract-wallet envelopes remain separate manual procedures.
-[Manual diagnostic source completion](MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)
-adds stage/cause and uncertain-output reporting, preserving successful reviews
-and safeguards. Controlled local C/D and Parked gas receipts are now recorded above; real
-provider/complete-fee, contract-wallet and operator/host rehearsals remain. Preparation adds no signing, queue, force/recenter fallback or
-execution approval.
+Freeze initial width, residual mode/floor/gap, currency list/capacity, reviewed venues, workers, supported workloads and wallet sizes, gas/fee budgets and actual authority-wallet type.
 
-Qualify the new explicit claim planner with actual worst-case currencies/fees,
-confirmation/replanning and no silent omission; bounded local planning is not a
-maximum-batch or live-wallet gas guarantee.
-Qualify actual preparation/trace/approval/claims and truthful complete holdings/
-history, unavailable states, account changes and pending recovery. Fresh7 supports complete raw exact-tree replay or explicit reviewed checkpoint2 for earnings. Qualify actual suffix workloads, archival/rotation/restore and operator approval before claiming bounded lifetime operation. Checkpoint1 remains6-only. Checkpoint3 and explicit compatible-prefix import now cover lineage earnings; extend other full-history consumers and qualify archival/rotation/source-codec evolution.
-Fresh royalty4/reporting5/canonicalV10 retains the exact-unit cursor/cohort history and
-reviewed checkpoint rebuilds. No converter or new deployed allocator is added.
-A new service/config rollout needs stop/reconcile/dry-run/restart, not a version edit.
+Separate enabled launch features from disabled capabilities. A smaller initial currency set does not qualify later expansion; a disabled worker does not waive required pre-seal bindings.
 
-Owning work: [preflight](../TODO.md#task-native-production-preflight),
-[hosting](../TODO.md#task-host-services), [wallet](../TODO.md#task-wallet),
-[history](../TODO.md#task-financial-history),
-[operating recovery](../TODO.md#task-keeper-recovery),
-[metadata](../TODO.md#task-metadata-ops).
+Retain explicit spot pricing, software-only compound waiting, immediate governance, per-operation rather than cumulative loss caps and emergency financial bypass decisions. Record their operating consequences rather than silently redesigning rights.
 
-## 4. Rehearse operations and qualify the frozen release
+Owning Todo: [`native-production-preflight`](../TODO.md#task-native-production-preflight), [`post-seal-configuration`](../TODO.md#task-post-seal-configuration), [`lp-only-simplification`](../TODO.md#task-lp-only-simplification), [`immediate-governance`](../TODO.md#task-immediate-governance), [`adaptive-range-policy`](../TODO.md#task-adaptive-range-policy).
 
-Use three layers: meaningful local checks, actual Robinhood mainnet fork, then
-Robinhood Testnet wallet/keeper/deployment rehearsal with explicit supported chain
-bindings. A mainnet-pinned admission cannot be qualified by relabelling mocks.
-Measure maximum-state/two-leg harvest/entry/close/holder batches and constructor
-arguments, inclusion/reset/jitter, outages, Unix storage/watchdog, backups and
-same-key receipt recovery. Virtual time and two local wallets are not a live load
-or uptime result. The broader capacity campaign remains deferred, not passed. Measure the fresh
-1,000,000-gas optional royalty-sync ceiling under cold/faulted actual currencies;
-the ceiling is not a fixed charge or proof that every32-entry claim fits.
-Reconcile all allocated raw units after final claims, with temporary opening,
-prefund, zero-cohort and unsupported balances classified separately.
+### P02 — Compiler, dependencies and evidence validity
 
-Review manipulation and residual inventory economics.60/40 is an approved
-placement tradeoff, not an optimum; unused or unsafe execution remains blocked.
-Independent audit/remediation, exact accepted risks and named release sign-off
-complete the [approval record](RELEASE_CHECKLIST.md). Terminal holder return is
-irreversible; pre-exit same-chain replacement and post-halt recovery are distinct.
+Check pinned Solidity0.8.26 optimized via-IR/Cancun against the current official compiler bug registry, including later-published optimizer, mutual-recursion, custom-error and recursive storage-copy advisories. Version matching is a candidate applicability test, not proof PoPL is affected.
 
-Owning work: [fork](../TODO.md#task-mainnet-fork),
-[testnet rehearsal](../TODO.md#task-testnet-rehearsal),
-[keeper safeguards](../TODO.md#task-keeper-guardrails),
-[independent approval](../TODO.md#task-audit-release).
+Inspect exact settings, dependency source, relevant call graph and generated IR where needed; give every candidate a reviewable disposition. Do not upgrade compiler automatically.
+
+Freeze exact source/dependency/control/artifact/static/CI identities. Reuse unchanged proofs; recheck tests whose production dependencies changed even if their test files did not. Any justified compiler/source change needs new pins and affected size, static, gas and functional evidence.
+
+Owning Todo: [`local-verification`](../TODO.md#task-local-verification), [`audit-release`](../TODO.md#task-audit-release), [`security-dependencies`](../TODO.md#task-security-dependencies).
+
+### P03 — Independent prices and reference integrity
+
+Choose independently defensible ETH and fixed-ZZZ valuation paths with exact chain/token/adapter/feed identities, denomination/decimals/rounds, publication/funding ownership, freshness and3% agreement/outage behavior. Two ETH feeds multiplied by one ZZZ pool repeat one ZZZ exposure.
+
+Rank external usable depth excluding PoPL liquidity; raw TVL/current L does not prove independence or bidirectional depth. Review upstream publishers, markets, proxies and administrators; stored spot does not prove recent trading.
+
+Preserve the chosen spot policy for placement AND valuation. Qualify external-reference-as-swap own-transition proofs and same-core principal-reference exclusion, including what to do if our pool becomes the largest. Unknown or stale prices remain explicitly unavailable; no implicit TWAP or single-source fallback.
+
+Owning Todo: [`dual-price-qualification`](../TODO.md#task-dual-price-qualification), [`creator-zzz-price`](../TODO.md#task-creator-zzz-price), [`price-security`](../TODO.md#task-price-security), [`pool-spot-price-source`](../TODO.md#task-pool-spot-price-source).
+
+### P04 — Actual pools, swap routes and upstream controls
+
+Authenticate actual fixed ZZZ, PoolKey/core/PositionManager/Permit2, hooks, directional fees and implementation/controller powers. Review token pause/freeze/tax/rebase behavior, exact decimals and burn semantics; code hashes do not freeze proxy/upstream behavior.
+
+Verify both trade directions and representative sizes with depth remaining AFTER our LP withdrawal, compatible destination/reference price bands, partial-fill rejection and market movement between review and execution.
+
+Qualify a separately suitable ZZZ-to-ETH LP-reward route under the default1% conversion cap. The selected pool's dated approximately1.101% fee is not that qualification. Forward-only quote screens, synthetic liquidity and cheap tiny swaps are not complete operation acceptance.
+
+Owning Todo: [`pons-qualification`](../TODO.md#task-pons-qualification), [`lp-execution-routing`](../TODO.md#task-lp-execution-routing), [`creator-market-controls`](../TODO.md#task-creator-market-controls), [`creator-input-liquidity`](../TODO.md#task-creator-input-liquidity), [`typed-v4-conversion`](../TODO.md#task-typed-v4-conversion).
+
+### P05 — Chain, RPC, finality and complete fees
+
+Verify current chain/genesis/version, required Cancun/transient behavior, actual transaction/block execution limits and selected provider call/estimate/trace/body/log/archive/rate/deadline limits. Tiny overrides and synthetic headers do not establish full operation capacity.
+
+Qualify exact32M/full20% contribution and24M/full25% maintenance payloads, canonical-hash reads, missing-state rejection, reorgs, failover and outage/grace policy. Distinguish L2 inclusion from posted/finalized state; document sequencer inclusion limitations.
+
+Reconcile complete Nitro execution plus posting fees with exact estimates and later receipts; count posting once. Separately approve fee-price/per-operation/day/ETH-funding limits and feed/VRF costs. Documented chain capabilities do not relax PoPL's strict24576 runtime/49152 initcode gates.
+
+Owning Todo: [`host-services`](../TODO.md#task-host-services), [`deployment-initcode`](../TODO.md#task-deployment-initcode), [`native-production-preflight`](../TODO.md#task-native-production-preflight).
+
+### P06 — Maximum supported resource workloads
+
+Resolve the slow64-currency/two-LP opening-ZZZ refusal:27142801 estimate,32571362 padded; at least476135 estimated gas reduction is needed for32M/full20%. Until qualified, do not approve this state for currency-capacity expansion. Never substitute trace gas or reduce padding.
+
+Cover actual slow/failed currencies, full-width coefficient/carry spills and lifetime state, activation/rarity/claim order, large per-NFT and collection principal, and real Access/Registry omitted from the maximum-state producer.
+
+Qualify cold conversion/claim batches, exit batches and full canonical gas separately. Four execution venues, four logical buckets, two legs,32 selection entries and64 ERC20 currencies are independent bounds, not a combined gas promise. Reuse unchanged eleven contribution and five maintenance successes at their exact scope.
+
+Owning Todo: [`activation-quotes`](../TODO.md#task-activation-quotes), [`security-share-accounting`](../TODO.md#task-security-share-accounting), [`activation-gas-six-cases`](../TODO.md#task-activation-gas-six-cases), [`royalty-factory-gas`](../TODO.md#task-royalty-factory-gas), [`claim-batch-planner`](../TODO.md#task-claim-batch-planner).
+
+### P07 — Contributions and physical LP lifecycle
+
+Verify ETH/ZZZ activation and growth: exact approvals, incumbent fee checkpoint, entrant-only swap/deploy, marginal deployed LP, net-NAV shares, idle/compound classification and full callback/failure rollback. Contributions grow MAIN without recentering it or resetting its clock.
+
+Compose1-to-2-to-1-to-2 journeys through flat, bullish, bearish, reversal, gap, boundary and thin-depth markets; main/residual mixed or filled states remain valued, harvested and attributable. Residual mode changes never drop a live leg.
+
+Exercise user/trader/operator transaction ordering, transfers and stale reviews at each transition. Main boundary ticks stay fixed while spot/composition moves; external transactions do not interleave within an atomic call, but dependency callbacks can.
+
+Owning Todo: [`activation-assets`](../TODO.md#task-activation-assets), [`shared-custody`](../TODO.md#task-shared-custody), [`liquidity-placement-idle`](../TODO.md#task-liquidity-placement-idle), [`reviewed-contribution-policy`](../TODO.md#task-reviewed-contribution-policy), [`security-share-accounting`](../TODO.md#task-security-share-accounting).
+
+### P08 — Harvest, LP settlement, compound and burn
+
+Reconcile both-leg actual fee collection and fixed80/10/5/5, including the documented tiny-fee split rule, liabilities/backing and current-owner rights before/after partial claims, transfers, rebalances and exit. Harvest itself performs no swaps.
+
+Prove separate same-NFT ZZZ-to-ETH settlement, affordable partial batches, failed-swap rollback and approval cleanup. Compound spends only designated/attributed funds; buyback spends only its reserve and actually burns the fixed ZZZ. Claims/conversions never create new income.
+
+Qualify economical thresholds, no-op handling and idle reinvestment without arbitrary sweeps. Inspect the unresolved historical late-fee-netting question against actual mutable token/periphery callbacks; only reproduce/harden if reachable, and do not label it an ordinary interleaving trader exploit.
+
+Owning Todo: [`reward-ledgers`](../TODO.md#task-reward-ledgers), [`lp-exact-unit-allocation`](../TODO.md#task-lp-exact-unit-allocation), [`lp-eth-settlement`](../TODO.md#task-lp-eth-settlement), [`asset-liveness-dust`](../TODO.md#task-asset-liveness-dust).
+
+### P09 — Royalty opening and original-currency rights
+
+Verify official sale-end revisions/equality/expiry, final ONE-hour grace, incomplete sellout, strict activation cohort, zero cohort, late activations, preadmission receipts, explicit recovery allocation and fault/recovery cohorts.
+
+Prove all allocated smallest units can be assigned/claimed through transfers and arbitrary claim order; preserve old entitlements and distinct temporary opening/unallocated categories. No universal immediate-allocation guarantee is possible when no eligible NFT exists.
+
+Qualify actual token gas/behavior and reviewed admission from16 to64 ERC20s plus ETH. The64 lifetime capacity is a long-term limit, not unlimited token support. Frozen/malicious tokens cannot be forced to transfer. Original-currency royalties need no conversion or mandatory keeper collection.
+
+Owning Todo: [`royalty-eth-settlement`](../TODO.md#task-royalty-eth-settlement), [`royalty-reporting`](../TODO.md#task-royalty-reporting), [`security-ownership-rewards`](../TODO.md#task-security-ownership-rewards), [`asset-liveness-dust`](../TODO.md#task-asset-liveness-dust).
+
+### P10 — Normal strategy and economic manipulation
+
+Check85% centre-to-boundary displacement, physical/reference same-side corroboration,600s sampled persistence,300s maximum gap,240s source polling,12h hard minimum and durable60-300s jitter. Include boundary/reset/reorg/outage/pending-geometry/first-LP cases.
+
+Verify post-withdrawal depth, known directional fees versus additional1% loss, aggregate caps, deterministic routing/sizing and complete fill. Assess outside-trader and authorized-key extraction scenarios; access control/jitter are not manipulation-immunity proofs.
+
+Keep ordinary compound's extra wait in keeper software as chosen, with a separate interval and independent hourly harvest. Preserve explicit operator geometry exceptions and ensure no ordinary path silently selects emergency bypasses.
+
+Owning Todo: [`rebalance-confirmation-buffer`](../TODO.md#task-rebalance-confirmation-buffer), [`security-strategy`](../TODO.md#task-security-strategy), [`security-keeper-manipulation`](../TODO.md#task-security-keeper-manipulation), [`security-external-manipulation`](../TODO.md#task-security-external-manipulation), [`passive-inventory`](../TODO.md#task-passive-inventory), [`governed-loss-limits`](../TODO.md#task-governed-loss-limits).
+
+### P11 — Authorities and every manual management action
+
+Select actual governance wallet/signature policy, guardian, limited keeper, mint recipient and VRF owner/funder. Verify revocation/rotation, bootstrap removal and contract-wallet envelopes if selected; direct-EOA preparation does not qualify a Safe.
+
+For every operator write, verify caller, units/decimals, actual input source, tick orientation, raw minima, hashes/nonces/expiry and when inputs must be reread. Exercise pause/unpause/park/resume/move/residual-close/consolidate/force through changing markets and stale reviews.
+
+Emergency financial bypasses stay deliberate, paused-governance-only and separate from daily automation. Structural authorization/custody/accounting remains mandatory. Document reverse/restart actions where available and reconstruction boundaries where irreversible. No governance key belongs on the keeper host.
+
+Owning Todo: [`authorities-prices`](../TODO.md#task-authorities-prices), [`security-governance`](../TODO.md#task-security-governance), [`operation-review`](../TODO.md#task-operation-review), [`callable-reference`](../TODO.md#task-callable-reference), [`operator-stop-controls`](../TODO.md#task-operator-stop-controls), [`manual-emergency-rebalance`](../TODO.md#task-manual-emergency-rebalance), [`manual-reference-swap-proof`](../TODO.md#task-manual-reference-swap-proof), [`manual-recovery-gas-rehearsal`](../TODO.md#task-manual-recovery-gas-rehearsal), [`manual-lp-diagnostics`](../TODO.md#task-manual-lp-diagnostics), [`parked-emergency-preparation`](../TODO.md#task-parked-emergency-preparation), [`operator-management-preparation`](../TODO.md#task-operator-management-preparation).
+
+### P12 — Terminal collective holder return
+
+Verify both-leg closure/fee classification, designated compound, exact ETH/ZZZ principal shares and governance-only bounded direct payouts over1000 NFTs: repeated holders, dormant NFTs, varied tiers/rarities/LP and transfer ordering between batches.
+
+Check batch progress, cold gas, rejecting ETH recipients, frozen tokens, retries and final-unit drain, with earned rewards/buyback reserves separate. Holders need no action normally; exceptional owner-controlled fallback retains backing and cannot invent an arbitrary operator recipient.
+
+NFT transfers/future royalties/old rewards survive; LP earnings, principal reopening and post-exit canonical import do not. Rehearse destructive operations only in isolation or a separately authorized rehearsal collection, never as a final-collection launch smoke test.
+
+Owning Todo: [`custody-composition`](../TODO.md#task-custody-composition), [`native-custody-recovery`](../TODO.md#task-native-custody-recovery), [`migration-framework`](../TODO.md#task-migration-framework), [`destination-slots`](../TODO.md#task-destination-slots).
+
+### P13 — Latest complete canonical cutover and abort
+
+Rehearse the actual latest F6/V10 FULL coordinator: freeze, closed physical legs, export, target prefund/import, exact funding, unique source retirement/target activation and fully funded abort restoration. Companion/body equivalence alone is insufficient.
+
+Preserve full-width IDs, original mint-recipient/stage counts, ownership, inventory, shares, LP raw phase/pending and every royalty class/cutoff/history/backing category. Cover incomplete/duplicate imports, wrong pins, faults and escrow-contract compatibility.
+
+No physical old-slot copy, payload relabelling, SeaDrop transport rotation, live-residual omission, post-exit successor or post-halt recovery is assumed. If the feature is not launch-qualified, state that explicitly without pretending disabled operation removes bound-code audit obligations.
+
+Owning Todo: [`security-chain-recovery`](../TODO.md#task-security-chain-recovery), [`holder-preflight`](../TODO.md#task-holder-preflight).
+
+### P14 — Actual OpenSea primary sale
+
+Confirm actual Robinhood custom-drop onboarding and pinned SeaDrop singleton/helper compatibility before irreversible binding. Establish payer/platform-fee terms: buyer gross0.05ETH, recipient net after platform fee, gas separate.
+
+Verify initial20 free team/500 same-price allowlist(one per listed address)/480 publicFCFS, proofs, variable future counts/windows, lifetime original-recipient limits, unused allowlist rollover and reserved unused team slots.
+
+Exercise stage/time/payment rollback and mirror the final OpenSea end to the royalty window. ERC2981 requests5% royalties; actual marketplace payment enforcement is external, not a guarantee supplied by ERC721 or ERC2981.
+
+Owning Todo: [`opensea-mint`](../TODO.md#task-opensea-mint).
+
+### P15 — Live randomness and pending requests
+
+Qualify supported coordinator/subscription/key settings, consumer/funding, request and callback gas, confirmations and proof delivery. A deployment address alone is not a supported operating service.
+
+Check delayed/duplicate/out-of-order/failed/unanswered requests, mint-only pause, callback recovery and provider-rotation constraints. Every mint receives one remaining prepared design; no administrator rarity choice or reroll.
+
+Unanswered draws can block provider rotation and canonical replacement. Establish operational response and costs before first mint; do not silently revive a rejected randomness bypass.
+
+Owning Todo: [`fair-draw`](../TODO.md#task-fair-draw), [`nft-lifecycle`](../TODO.md#task-nft-lifecycle).
+
+### P16 — Artwork, metadata and marketplace delivery
+
+Authenticate1000 prepared designs and all four evolution paths, rarity inventory, immutable URI/root/content and renderer before sealing. Nonempty content root is not proof the assets exist or are correct.
+
+Qualify cold tokenURI at final root/state/provider and actual marketplace retrieval/cache/ERC4906 behavior through reveal, activation, growth, value changes, unavailable prices, parking, movement and terminal LP-exited state.
+
+LP-exited remains distinct from Dormant, with royalty rights preserved. Website image/sound waits for confirmed actual LP. No dormant-card royalty deadline. Prior controlled metadata2 reads do not qualify latest full construction or final content hosting.
+
+Owning Todo: [`metadata-ops`](../TODO.md#task-metadata-ops).
+
+### P17 — API security and complete portfolio reads
+
+Match current F6/profile/runtime/canonical manifests, both physical legs, owner and funded rights at canonical state. Adopt coherent complete wallet paging;1000 NFTs need63 ownership pages plus summary/history.
+
+Verify owner/chain/NFT/block/config/digest/count and contiguous complete assembly within reviewed freshness budgets or explicit incomplete/unavailable output. Preserve1024call/1MiB bounds and ingress rates. Final page alone is not a whole wallet.
+
+Qualify proxy/origin/TLS/firewall boundaries, malformed/oversized/slow input, tenant/concurrent isolation, disconnects, worker cleanup and bounded provider failure. Do not expose Python/RPC/Anvil or replace financial reads with stale demo caches.
+
+Owning Todo: [`read-api`](../TODO.md#task-read-api), [`api-client-admission`](../TODO.md#task-api-client-admission), [`host-services`](../TODO.md#task-host-services), [`portfolio`](../TODO.md#task-portfolio).
+
+### P18 — History, checkpoints and durable data
+
+Reconcile NFT/wallet/collection24h and all-time earnings: individual LP80% plus collective10% plus royalties at today's reviewed prices, excluding principal/claims/conversions/imports as new income. Preserve exact raw amounts and the full86400s raw suffix.
+
+Qualify actual deployment-to-head ingestion, canonical lineage, reorg rollback, missing logs/prices and SQLite/WAL/archive/storage limits. Demonstrate complete restore, rotation and source-codec evolution without truncating the historical window.
+
+service.py changed semantic checkpoint identity: preserve old artifacts/reviews/raw DB/WAL, explicitly rebuild/review/re-pin for matching consumer adoption. Do not relabel old checkpoint formats or infer totals from incomplete history.
+
+Owning Todo: [`financial-history`](../TODO.md#task-financial-history), [`live-history-ui`](../TODO.md#task-live-history-ui).
+
+### P19 — Production user submission and website adoption
+
+Choose a separately reviewed production submission route or explicitly accepted external client for activation/growth/claims. OpenSea addresses mint only. Source10/schema5 reads/unsigned reviews never construct the shared signer; that signer stays Anvil-only. Do not silently extend it.
+
+Qualify MetaMask/Rabby permissions, account/network changes, exact approvals, rejection, stale review, approval-to-Entry interruption, submission/receipt/replacement/nonce gaps, reorg and refresh/cross-tab recovery without duplicate sends.
+
+Popldemo stays simulation; served poplint current3 is not fresh F6/source10. Missing configuration never becomes demo financial data. Update only the affected NFT after confirmed LP. Dedicated10/25/100 load tests remain deferred and declined sale-rights disclosure is not a new launch blocker.
+
+Owning Todo: [`wallet`](../TODO.md#task-wallet), [`portfolio`](../TODO.md#task-portfolio), [`transaction-ui`](../TODO.md#task-transaction-ui), [`unsigned-actions`](../TODO.md#task-unsigned-actions), [`preview`](../TODO.md#task-preview), [`purchase-rights`](../TODO.md#task-purchase-rights).
+
+### P20 — Actual full normal keeper scheduling
+
+Rehearse the actual normal daemon/Cast/provider/key path in isolation: pending-first recovery, observation deadlines, independent job retry delays and correct per-pool scheduling. Start with disposable keys and an owned isolated chain; production keys/providers need separate authorization. Inert recovery-only dispatcher results do not prove the normal loop.
+
+Verify hourly harvest and authenticated internal-harvest coalescing, compound wait/interval, conversion/burn fairness, no-op handling, UTC fee-day/deadline budgets, mode/range changes and multiple historical buckets over representative multi-day transitions.
+
+Confirm all failure diagnostics, role revocation and funding behavior; no ordinary fallback to force. Running release/config/runtime identity needs observation, not merely a hash of a local source checkout.
+
+Owning Todo: [`keeper-guardrails`](../TODO.md#task-keeper-guardrails), [`keeper-recovery`](../TODO.md#task-keeper-recovery), [`operation-review`](../TODO.md#task-operation-review).
+
+### P21 — Host, interruption, restore and alerts
+
+Qualify least-privilege host/service/TLS/secret setup, actual disk/WAL/fsync/locks, single-writer fencing and off-host storage. Interrupt at durable intent/save/sign/send/hash/receipt boundaries, including hashless uncertainty, RPC stalls/refusal, disk full, permission failure, corrupt state and restart storms.
+
+Restore selected configuration/key/journal/DB/checkpoint on another host without two active signers, guessed resends or incorrect nonce/spend. Define RPO/RTO, observation/soak acceptance and operator responsibility rather than inventing arbitrary durations.
+
+Prove alert delivery for stale heads/observations/harvest, low gas, blocked routes/budgets, worker quarantine, missing backups and storage exhaustion. Current services/journals and the user-paused desktop heartbeat remain untouched without separate authorization.
+
+Owning Todo: [`host-services`](../TODO.md#task-host-services), [`keeper-recovery`](../TODO.md#task-keeper-recovery), [`security-integration`](../TODO.md#task-security-integration).
+
+### P22 — Fresh construction, deployed readback and seal
+
+Before deployment, freeze exact current F6 constructor source/ABI/dynamic arguments/root/size/initcode/fees,25CREATE+19binding order and direct-EOA nonce assumptions; discover Factory children by getters, not guessed nonce. Rehearse the real control graph, including Access/Registry.
+
+After separately authorized deployment, verify actual receipts, runtime/immutables, all children/parents/reciprocal bindings, addresses/roles and no unexpected grants. Failed/inserted/replaced/delegated-wallet steps invalidate simple sequence assumptions; reconcile rather than guess resume.
+
+Before seal, verify fixedZZZ everywhere, LP converter, selected SeaDrop helper/singleton, artwork root, initial VRF, policy/gas/currency reads, standalone/importer state and viable mint schedule. Mint end may deliberately remain unset until ready; configuring it before seal is not required, and premature expiry can be irreversible. Generic seal does NOT prove complete release readiness. Wrong immutables/root, expired sale end, permanent reservations and retirement may require reconstruction.
+
+Owning Todo: [`deployment-initcode`](../TODO.md#task-deployment-initcode), [`native-production-preflight`](../TODO.md#task-native-production-preflight), [`post-seal-configuration`](../TODO.md#task-post-seal-configuration).
+
+### P23 — Independent approval, staged launch and longevity
+
+Independently audit the frozen code AND enabled configuration/dependencies, full accounting/LP/authority/emergency/canonical/holder-return composition and accepted trust. Remediate confirmed issues and refresh affected proof; record unresolved material risks and named decisions. Internal consolidation is not independent security approval.
+
+Use local checks for mechanics, current mainnet fork for real market behavior and testnet for supported wallet/provider/service integrations. Label unavailable/mocked dependencies; none substitutes for actual final platform/provider acceptance. A separate mainnet rehearsal cannot clear/reset a final immutable collection.
+
+Record separate authorization and readiness for deployment, sealing and public opening. Keep mint/deposits closed until their gates pass; authorize bounded non-destructive smoke checks explicitly. Set launch monitoring/stop/restart and dependency-change reviews; future currency/venue/feature expansion needs its own acceptance before enabling.
+
+Owning Todo: [`audit-release`](../TODO.md#task-audit-release), [`mainnet-fork`](../TODO.md#task-mainnet-fork), [`testnet-rehearsal`](../TODO.md#task-testnet-rehearsal), [`mainnet-rehearsal-retirement`](../TODO.md#task-mainnet-rehearsal-retirement), [`capacity-campaign`](../TODO.md#task-capacity-campaign), [`historical-findings`](../TODO.md#task-historical-findings), [`economic-rights-audit`](../TODO.md#task-economic-rights-audit), [`local-browser-stack`](../TODO.md#task-local-browser-stack), [`local-dollar-rehearsal`](../TODO.md#task-local-dollar-rehearsal).
+
+## Verification and completion discipline
+
+For each package, inspect current code and exact prior evidence first. Classify
+requirements as already proved at unchanged source, missing proof, confirmed
+defect, unresolved decision/input, accepted policy, dependency limit or retired
+requirement. Reuse valid unchanged evidence; run missing cases or cases affected
+by changed implementation/dependencies. An unchanged test file can still require
+rechecking if its production dependency changed.
+
+Use independent accounting models, nonvacuous conservation/rollback assertions,
+targeted reachable state sequences and invariants/fuzzing for numeric domains.
+Keep estimated, padded, trace and receipt gas distinct. Preserve failures and
+skips; generic reverts do not identify an exact financial blocker. No finite
+campaign proves every possible adversarial market or arbitrary token/receiver.
+
+Complete a package only for its supported enabled profile, with exact evidence
+and operator inputs/limits/restart/irreversible boundaries updated in the owning
+guide and central Todo. Revalidate external facts near launch even if PoPL source
+did not change. Future route/currency/feature expansion needs corresponding
+acceptance before enabling it. The [release record](RELEASE_CHECKLIST.md) remains
+NOT APPROVED until actual named decisions exist.
+
+Current primary references: [Solidity known bugs](https://docs.soliditylang.org/en/latest/bugs.html),
+[Robinhood differences](https://docs.robinhood.com/chain/differences-from-ethereum/),
+[fees](https://docs.robinhood.com/chain/gas-and-fees/),
+[finality](https://docs.robinhood.com/chain/transaction-finality/),
+[Arbitrum gas estimation](https://docs.arbitrum.io/arbitrum-essentials/how-to-estimate-gas),
+[Chainlink feed selection](https://docs.chain.link/data-feeds/selecting-data-feeds).
+They identify qualification obligations; they do not attest this deployment's
+actual network state, provider plan or source applicability.
