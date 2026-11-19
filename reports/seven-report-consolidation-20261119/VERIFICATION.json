@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "date": "2026-11-19",
+  "scope": "Source/document/evidence reconciliation only; no fresh dynamic audit or release approval.",
+  "selected_report_families": 7,
+  "original_files_preserved": 1363,
+  "original_markdown_files_preserved": 64,
+  "original_finding_ids_carried": 64,
+  "changed_source_rows_reinspected": 19,
+  "subsequent_assessments": 24,
+  "qualification_buckets_still_open": [
+    "Q01",
+    "Q02",
+    "Q03",
+    "Q04",
+    "Q05",
+    "Q06",
+    "Q07"
+  ],
+  "exact_f6_source_maps": {
+    "source_sha256": 61,
+    "dependency_source_sha256": 39,
+    "build_input_sha256": 4
+  },
+  "current_markdown_local_targets_checked": 2743,
+  "missing_targets": [],
+  "todo_ids_and_statuses_unchanged": true,
+  "protected_four_unchanged": true,
+  "before_archive_hashes_match": true,
+  "previous_32m_test_input_hashes_match": true,
+  "new32m_tests_in_original_prior_run": 7,
+  "tests_run_this_consolidation": 0,
+  "unchanged_tests_rerun": 0,
+  "compiler_runs": 0,
+  "static_analyzer_runs": 0,
+  "rpc_requests": 0,
+  "production_sources_changed": false,
+  "financial_rights_or_safeguards_changed": false,
+  "live_environments_changed": false,
+  "corrected_draft_reference": "E13 links actual claims/REVIEW.md instead of missing backend/README.md.",
+  "checker_attempts": "An initial helper reached anchor checks but its implicit Windows text encoding failed; explicit UTF-8 final checks pass. No application failure or tests involved.",
+  "publication_import_checks": {
+    "staged_python_files": 469,
+    "staged_errors": [],
+    "scope": "Static import closure only; final committed revision checked separately at publication."
+  },
+  "publication_state": "Source/docs publication is separate from operating adoption/deployment; exact published revision is verified against GitHub main.",
+  "preservation_review": "Spot for both placement/valuation, genuine ZZZ independence and future-only Nitro pending-profile compatibility retained after chronology cleanup."
+}

@@ -55,10 +55,13 @@ keeper gas limits or ProtocolPolicy internal-call budgets to accomplish this.
 Keep the prior file for a reviewed rollback; old signed transactions still recover
 by their saved hash. Publishing this procedure changes no actual configuration.
 
-### Boundary with the 20M/24M qualification
+### Selected32M contribution profile and historical20M qualification
 
-The [controlled qualification](../reports/gas-profiles-20261113/REVIEW.md) supports
-an explicit 20M **activation/growth** policy and separate 24M keeper/manual policies.
+The operator selected a [32M activation/growth candidate](../config/activation-gas-32m.candidate.json),
+with full20% padding and separate24M keeper/manual policies. The
+[profile review](../reports/contribution-gas32-20261119/REVIEW.md) records new
+software-boundary checks. Earlier [20M controlled qualification](../reports/gas-profiles-20261113/REVIEW.md)
+retains its original source and gas scope; it is not new32M provider acceptance.
 It does not select a higher mint/claim policy: transaction policy1 and checked-in
 defaults remain 12M. Claim-policy2 adoption still requires its own exact policy,
 consumer, workload and complete-fee review. Mint2/OpenSea selection is independent.
@@ -70,8 +73,8 @@ must run on separate listeners. Production worker admission rejects combining
 the two policies. Never apply an activation schema/fee overlay to a claim file.
 
 For source9/source10 **activation** reviews, the configured backend gas ceiling
-must equal website `manifest.limits.gas` exactly; a 20M backend needs integer
-`limits.gas:20000000`, explicit activation policy2 and matching activation/fee
+must equal website `manifest.limits.gas` exactly; a32M backend needs integer
+`limits.gas:32000000`, explicit activation policy2 and matching activation/fee
 identities. A lower confirmed-block effective ceiling does not permit a different
 configured value. That activation ceiling can coexist with unchanged 12M claim
 policy1. Both transaction APIs require full 20% policy2 estimate headroom; the
@@ -80,7 +83,7 @@ separate keeper/manual maintenance reviews retain 25% padding.
 The qualification preserves financial, fee, funding, work and recovery checks.
 It does not install a provider or approve target fees, live consumer admission,
 hosted latency or maximum-state workloads. Use the
-[operator procedure](OPERATOR_MANUAL.md#gas-profiles-20m-24m) for exact files,
+[operator procedure](OPERATOR_MANUAL.md#contribution-gas32) for exact files,
 ceilings, pending-first reconciliation, controlled restart and rollback; source
 publication changes no running service or signer.
 

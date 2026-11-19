@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "date": "2026-11-19",
+  "baseline": "f1ef361cccfd5d88136463c9cdd107491aca67ef",
+  "scope": "New32M candidate and injected software boundaries; no full-operation EVM or current-provider qualification.",
+  "python": {
+    "command": "python -m unittest tests_python.test_reviewed_gas_profile_32 -v",
+    "exit_code": 0,
+    "new_methods": 7,
+    "duration_seconds": 4.081,
+    "old_test_methods_run": 0,
+    "source": "Single delegated execution; no repeat run."
+  },
+  "documentation": {
+    "new_reference_targets_checked": 35,
+    "legacy_and_new_operator_anchors_preserved": true,
+    "new_runner_inventory_methods": 7,
+    "inventory_executes_tests": false,
+    "generated_todo_verified": true,
+    "final_current_policy_review": "Corrected four remaining current20M instructions; historical measurements stay unchanged."
+  },
+  "network": {
+    "fresh_reads_attempted": 1,
+    "failure": "URLError on initial identity request",
+    "fresh_state_obtained": false,
+    "live_limits_verified": false,
+    "stress_requests": 0,
+    "transactions": 0
+  },
+  "preservation": {
+    "solidity_changed": false,
+    "historical_reports_changed": false,
+    "defaults_changed": false,
+    "maintenance_profile_changed": false,
+    "running_environments_changed": false,
+    "production_approved": false,
+    "protected_file_sha256": {
+      "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+    },
+    "production_implementation_changed": false,
+    "test_runner_inventory_updated": true
+  },
+  "input_sha256": {
+    "config/activation-gas-32m.candidate.json": "e569dd35fa4187c36cc38dd1d8f392fce07cf7f8c60fe0488b96245b067255a2",
+    "frontend_api/activation.py": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117",
+    "frontend_api/activation_config.py": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd",
+    "frontend_api/transaction_gas.py": "35f5c2221726e8987bb1ad28a9e62034ee65a51e2696dd382d66a800c2a13d9b",
+    "tests_python/test_reviewed_gas_profiles_20_24.py": "0d009f204a31a937125ab4705102a19cb7348436447180959411cde93bab2800",
+    "tests_python/test_reviewed_gas_profile_32.py": "bd3a9ee6eab13bb80486b4e0e93cd74ef734699fa9ee8790c340286f8d85dbfc",
+    "scripts/run-keeper-tests.py": "f193c1e7f008b66b5213c8d8ceb821dc9a3713ac94d044ae75e20f32a389e7f2"
+  }
+}

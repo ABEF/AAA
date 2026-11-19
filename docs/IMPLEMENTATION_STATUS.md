@@ -1,5 +1,7 @@
 # Feature and evidence reference
 
+Operator-selected contribution profile (19 November): **32M activation/growth with full20% padding**, in the [non-live candidate](../config/activation-gas-32m.candidate.json). The [profile review](../reports/contribution-gas32-20261119/REVIEW.md) separates this setting from historical20M EVM evidence. The12M defaults and24M/full25% keeper/manual profile remain. Actual current execution/provider limits, complete fees and expanded workloads remain unqualified; no environment adoption is authorized.
+
 The current trusted normal build is `activation-final-six-20261118`, with fresh
 factory payload6/allocation2. The [current activation review](../reports/activation-final-six-20261118/REVIEW.md)
 passes all 13 controlled cold 20M calls, their financial checks and full 20%
@@ -10,8 +12,8 @@ ZZZ/all-slow falls from 18,612,697 to 16,460,899 raw gas; full padding falls fro
 
 Six optimized source files preserve exact LP/royalty units, current-owner rights,
 the one-hour launch window, fault cohorts and canonicalV10. Native/USD placement
-and all financial/permission guards remain. The 12M default, reviewed20M/full20%,
-50,000-gas activation balance reads and 1M isolated sync allowance are unchanged.
+and all financial/permission guards remain. The 12M default,50,000-gas activation balance reads and 1M isolated sync
+allowance are unchanged. The20M results retain their original measurement scope.
 Fresh F6 creation/data and exact source/runtime pins are required; old private
 storage, reports and environments are not relabelled.
 
@@ -31,7 +33,7 @@ their original failures, source identities and evidence scopes.
 Implementation, finite verification, installed operation and approved release
 are separate milestones. Use the [sole Todo](../TODO.md),
 [current findings](AUDIT_FINDINGS.md), [operator manual](OPERATOR_MANUAL.md)
-and [earlier five-report consolidation](../reports/five-report-consolidation-20261117/REVIEW.md).
+and [latest report consolidation](../reports/seven-report-consolidation-20261119/REVIEW.md).
 The trusted build is `activation-final-six-20261118`; current source is
 undeployed for production and NOT APPROVED. No site/service adoption is implied.
 
@@ -156,19 +158,18 @@ both-leg exit.10distinct selected methods span explicit stages, including one
 size/static evidence is reused at matching pins. Failed stale-fixture attempts
 remain recorded. This is not target-chain gas, full-suite or independent approval.
 
-## Earlier five-report consolidation
+## Latest report consolidation
 
-The [17 November five-report review](../reports/five-report-consolidation-20261117/REVIEW.md)
-reconciles findings at its recorded source with distinct dispositions and duplicate
-origins. Chain/root/reservation guards, keeper timing, exact manual gas/anchors,
-typed input descriptions and repaired economic tests remain implemented.
-New pre-seal stop warnings and fixed historical-evidence admission improve
-operating diagnostics and verification without changing financial contracts.
+The [seven-report review](../reports/seven-report-consolidation-20261119/REVIEW.md)
+retains all64 original IDs, reinspects19 changed-source rows and separately
+assesses24 subsequent issues/decisions/limits. Original report bytes, weaker
+historical evidence and source-specific dynamic results remain intact.
 
-At that recorded source, all61 Solidity sources, safeguards and defaults
-remained unchanged by that consolidation. Independent markets/providers, actual OpenSea/VRF/content,
-maximum workloads, deployment/operating acceptance and independent audit stay open.
-Historical evidence below retains its original source, not current approval.
+Q06 source corrections and bounded exact rounds/prefund/read/codec improvements
+remain implemented. All six matched gas refusals close at F6. Selected32M software
+preparation is separate from20M EVM evidence. Q01-Q07 external, populated-workload,
+operating and independent-release qualification remain open. No tests or builds
+are rerun solely for this documentation reconciliation.
 
 ## Historical evidence and limits
 

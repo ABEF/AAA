@@ -10,12 +10,18 @@ actual ETH + ZZZ to current NFT owners; transfers, old rewards and royalties rem
 Current accounting7/direct Entry3/custody5/mint2 uses canonicalV10. The trusted
 normal build is `activation-final-six-20261118` (factory payload6 / royalty allocation2). Source publication does not update
 contracts, services, journals or websites; public signing remains disabled.
+The [latest findings consolidation](reports/seven-report-consolidation-20261119/REVIEW.md)
+reconciles seven subsequent reports and retains all original finding IDs.
 
 The [current activation review](reports/activation-final-six-20261118/REVIEW.md)
 passes all 13 controlled cold scenarios at 20M with full 20% headroom, closing the
 six previous refusals. Worst opening ZZZ/all-slow falls from 18,612,697 to
 16,460,899 raw gas, or 19,753,079 with full padding. Exact NFT rights and financial
-guards remain; the 12M default and reviewed 20M policy are unchanged.
+guards remain; the 12M default is unchanged. The selected activation/growth
+profile is now **32M with full20% padding**; keeper/manual maintenance stays24M.
+The [32M candidate and review](reports/contribution-gas32-20261119/REVIEW.md)
+require actual provider/execution/fee qualification before live adoption;
+these earlier20M results are not relabelled32M.
 
 This is finite evidence for 1,000 NFTs and 16 ERC20 currencies plus ETH,
 not universal workload or production approval. Real markets, complete fees/providers, 64 currencies, two-LP maximum

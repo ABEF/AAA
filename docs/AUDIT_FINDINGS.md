@@ -1,69 +1,61 @@
 # Consolidated audit findings and evidence
 
-The current trusted normal build is `activation-final-six-20261118`, with fresh
-factory payload6/allocation2. The [current activation review](../reports/activation-final-six-20261118/REVIEW.md)
-passes all 13 controlled cold 20M calls, their financial checks and full 20%
-padding. All six previous refusals close within this workload. Worst opening
-ZZZ/all-slow falls from 18,612,697 to 16,460,899 raw gas; full padding falls from
-22,335,237 to 19,753,079. These are 13 scenarios exported by one affected
-1,000-NFT method, not 13 new test methods.
+The [latest consolidation](../reports/seven-report-consolidation-20261119/REVIEW.md)
+covers all seven report families since the previous review. Its
+[disposition matrix](../reports/seven-report-consolidation-20261119/RECONCILIATION.json)
+retains all64 original IDs and separately assesses24 subsequent issues, changes,
+policies and limits. Nineteen changed-source rows were reinspected; prior
+classifications still hold. These are not88 vulnerabilities or a new dynamic audit.
+The [sole Todo](../TODO.md) owns task status.
 
-Six optimized source files preserve exact LP/royalty units, current-owner rights,
-the one-hour launch window, fault cohorts and canonicalV10. Native/USD placement
-and all financial/permission guards remain. The 12M default, reviewed20M/full20%,
-50,000-gas activation balance reads and 1M isolated sync allowance are unchanged.
-Fresh F6 creation/data and exact source/runtime pins are required; old private
-storage, reports and environments are not relabelled.
+Current trusted build is `activation-final-six-20261118`, explicit F6/allocation2.
+All61 project sources,39 dependencies and4 build controls match its exact record.
+All13 controlled cold cases pass20M/full20%, resolving all six previous matched
+refusals; worst16,460,899 raw/19,753,079 padded. One main/16 ERC20s plus ETH and
+selected order are not universal64-currency/two-LP/order or target-market approval.
 
-The closed100-source normal build passes48 size gates. Current runtimes/margins
-are Royalty24,562/14, Oracle23,406/1,170 and Rewards23,983/593 bytes; Access full
-initcode is48,580 bytes. The callable inventory remains40contracts/968functions
-and1,021operator rows; only three former mapping-getter parameter names become
-`asset`, with unchanged selectors/types.
+Selected preparation is the [32M/full20% non-live candidate](../config/activation-gas-32m.candidate.json).
+Legacy12M defaults and24M/full25% maintenance remain. Actual transaction/provider
+capacity, complete fees and current whole-operation acceptance remain open;
+older20M EVM evidence is not relabelled32M. No operating rollout is approved.
 
-This closes the six measured gas refusals, not Q03 or release qualification.
-Actual markets, selected currencies, complete fees/providers, 64-currency and
-two-LP maximum workloads, other activation orders, rollout/operations and
-independent approval remain open. The [earlier F5 gas review](../reports/activation-gas-20261118/REVIEW.md)
-and [royalty-round baseline](../reports/royalty-rounds-20261118/REVIEW.md) retain
-their original failures, source identities and evidence scopes.
+Current runtime/headroom: Royalty24562/14, Manager24459/117, Oracle23406/1170,
+Vault24544/32; Access full initcode48580/49152. Exact fresh private-codec/Factory
+pins and logical canonical import are mandatory; no copying old physical slots.
 
-The [recorded five-report registry](../reports/five-report-consolidation-20261117/RECONCILIATION.json)
-reconciles64 distinct issues/obligations at its recorded source. It preserves
-duplicate origins and distinguishes37 resolved original subfindings,9 retained
-policies,7 structural limits,2 historical-evidence limits,7 qualification buckets
-and2 new corrections. These categories are not test totals or release
-approvals. The [sole Todo](../TODO.md) owns project task status.
-
-Earlier evidence: [Q03 launch workload](../reports/launch-workload-20261117/REVIEW.md) adds measured gas/batching boundaries and an unverified pre-seal workload checklist. Q03 remains open for maximum whole-graph state, actual selected currencies and target-chain/provider qualification. The original64-row registry and its39 resolved dispositions are preserved.
-
-Q06 follow-up: [keeper interruption/recovery](../reports/q06-keeper-recovery-20261117/REVIEW.md) fixes two new source defects and adds finite current-profile Linux/systemd evidence. The original64-row registry remains historical and unchanged. Inert signing/recovery-only restart does not close actual-key/provider, normal scheduling, off-host restore/alert or sustained operating qualification.
-
-## Five reports reconciled
+## Seven subsequent reports reconciled
 
 | Original report | Current interpretation |
 | --- | --- |
-| [Repaired-test impact](../reports/test-impact-followup-20261117/REVIEW.md) | Manual late-reorg handling and stale test expectations corrected; finite29method evidence retains its stages. |
-| [Test/seal review](../reports/test-seal-deep-review-20261117/REVIEW.md) | Chain, artwork scheme and reservation identities fixed; all59cited methods assessed. Static inventories and finite80checks are not a full-suite pass. |
-| [Behavior follow-up](../reports/operator-behavior-followup-20261117/REVIEW.md) | Empty artwork sealing and keeper clock lag fixed; extra compound waiting remains software-only by explicit decision. |
-| [Operator-input audit](../reports/operator-input-audit-20261116/REVIEW.md) | Frozen gas, occupied output handling and nested inputs/units/examples corrected; source catalogue is not dynamic coverage. |
-| [Pre-seal planner](../reports/preseal-planner-20261116/REVIEW.md) | Twelve typed setup families implemented; unknown inputs/identities remain unverified and no sealing/signing is added. |
+| [Launch workload](../reports/launch-workload-20261117/REVIEW.md) | Capacity is not admission or gas approval; activation, growth, component and cold-batch evidence retain their source scopes. |
+| [Q06 recovery](../reports/q06-keeper-recovery-20261117/REVIEW.md) | Stop-before-sign and actual bounded-failover watchdog fixes remain source-exact. Real normal-loop/key/provider/host recovery is unqualified. |
+| [Earlier Q03](../reports/q03-activation-gas-20261117/REVIEW.md) | Original pending-currency refusals and rejected engineering remain historical; not current F6 blockers. |
+| [Royalty rounds](../reports/royalty-rounds-20261118/REVIEW.md) | Bounded exact receipt credit, funded fault isolation and synchronized-prefund import correction remain. Old C08 sizes/refusals keep their source scope. |
+| [Intermediate gas](../reports/activation-gas-20261118/REVIEW.md) | Its six remaining matched refusals and selected zero-fee component regression are superseded by final F6 evidence. |
+| [Final six](../reports/activation-final-six-20261118/REVIEW.md) | All13 finite controlled scenarios pass20M/full20%; broader Q03 remains open. |
+| [32M candidate](../reports/contribution-gas32-20261119/REVIEW.md) | Seven original injected checks verify software boundaries, not actual32M capacity or complete fees. |
 
-Selection follows first Git publication, not filesystem dates. All300 original
-files remain unchanged. See [scope and preservation](../reports/five-report-consolidation-20261117/SCOPE.json).
+All1,363 selected original files, including64 Markdown files, remain unchanged.
+The [original64-row registry](../reports/five-report-consolidation-20261117/RECONCILIATION.json)
+is preserved; the [current index](../reports/seven-report-consolidation-20261119/INDEX.md)
+links every old ID and later assessment. Original Q01-Q07 remain broad release
+qualification buckets rather than seven coding bugs left to fix.
 
-## New improvements from reconciliation
+## Improvements from this consolidation
 
-- Complete pre-seal input can intentionally disable ordinary pool operations.
-  Output now identifies each such pool and the contribution/compound/rebalance
-  stop. It does not conflate that setting with harvesting, claims or unknown data.
-- [Focused evidence admission](../scripts/check-focused-evidence.py) verifies
-  fixed historical method identities/results and available artifact metadata,
-  rather than admitting successful counts alone. Its input-audit claim-only
-  record is explicitly weaker; no missing raw log is manufactured. This check
-  proves integrity at its stated tier, not execution or independent audit.
-- Current README/context/handoff/feature guidance no longer bury the actual
-  project behind repeated report chronology. Historical detail stays in reports.
+- Removed obsolete remaining20M/Factory5/C08/current-headroom instructions from
+  current memory, roadmap and release summaries; historical reports remain exact.
+- Separated selected32M configuration from earlier20M EVM and original cold-claim
+  gas evidence. No old test count or measurement becomes fresh F6 qualification.
+- Clarified the sale-end setter's exact equality boundary without changing code.
+- Preserved the optional-sync, service-only compound and explicit emergency
+  policies; no rejected experiment becomes a new product requirement.
+- Kept the inaccurate inline royalty status sketch as a documented editorial
+  follow-up for the next justified source revision and fresh pins.
+
+No production implementation, NFT right, financial guard or operating service
+changes. No unchanged test/build/analyzer/RPC campaign is rerun. New integrity and
+document checks verify this reconciliation, not independent protocol security.
 
 ## What remains a deliberate policy or real limit
 
@@ -110,7 +102,7 @@ defect and documentation never supplies approval.
 
 ## Earlier history and source boundaries
 
-This five-report review does not reopen every older finding. Use the
+This seven-report review carries all original64 IDs forward without reopening or re-executing every older audit. Use the
 [full-history reconciliation](../reports/full-history-reconciliation-20261104/REVIEW.md),
 [remaining271 assessments](../reports/remaining-271-20261111/REVIEW.md),
 [prior five-audit index](../reports/five-audit-reconciliation-20261116/FINDINGS.json)

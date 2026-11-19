@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "purpose": "Operator-selected NON-LIVE 32M activation/growth gas-only candidate. Not a complete service or website configuration.",
+  "production_approved": false,
+  "live_adoption": false,
+  "global_defaults_changed": false,
+  "public_signing_enabled": false,
+  "configuration_layout": {
+    "read_configuration": "Separate complete reviewed deployment inventory; unchanged by these gas overlays",
+    "activation_configuration": "Complete ActivationConfig JSON supplied through --activation-config; root schema2 and activation fee_policy only",
+    "claim_transaction_configuration": "Separate TransactionConfig JSON supplied through --transaction-config; keep existing schema/chain/projection identity and gas policy unchanged",
+    "service_listeners": "Production workers require separate activation and mint/claim listeners; never merge the two configurations",
+    "manual_lp_policy": "Separate complete manual LP policy JSON with its own fee_policy",
+    "keeper_configuration": "Separate complete loaded keeper JSON; top-level max_gas_limit controls all enabled jobs"
+  },
+  "profiles": {
+    "contribution": {
+      "gas_limit": "32000000",
+      "activation_policy_schema": 2,
+      "estimate_padding_percent": 20,
+      "maximum_estimate_before_padding": "26666666",
+      "response_schema": 2,
+      "assets": [
+        "native ETH",
+        "fixed deployment ZZZ"
+      ],
+      "claims_policy": "unchanged; policy1 remains12M"
+    },
+    "maintenance_keeper": {
+      "gas_limit": 24000000,
+      "estimate_padding_percent": 25,
+      "maximum_estimate_before_padding": "19200000",
+      "receipt_fee_policy": "must be separately reviewed",
+      "pending_recovery": "original journal first; no relabeling",
+      "scope": "Global cap for all jobs enabled in that loaded keeper config; per-job economics and transaction/day limits remain"
+    },
+    "maintenance_manual": {
+      "gas_limit": "24000000",
+      "estimate_padding_percent": 25,
+      "maximum_estimate_before_padding": "19200000",
+      "governance_authority": "unchanged; unsigned preparation only"
+    }
+  },
+  "activation_configuration_overlay": {
+    "schema": 2,
+    "fee_policy": {
+      "max_gas_limit": "32000000",
+      "estimate_includes_all_fees": false,
+      "review_hash": null,
+      "max_gas_price_wei": null,
+      "max_network_fee_wei": null
+    }
+  },
+  "website_manifest_overlay": {
+    "activation_policy_schema": 2,
+    "activation_sha256": null,
+    "activation_fee_review": null,
+    "limits": {
+      "gas": 32000000,
+      "gas_price_wei": null,
+      "network_fee_wei": null
+    }
+  },
+  "keeper_configuration_overlay": {
+    "max_gas_limit": 24000000,
+    "max_gas_price_wei": null,
+    "max_transaction_cost_wei": null,
+    "max_daily_cost_wei": null,
+    "receipt_fee_policy": "unverified"
+  },
+  "manual_fee_policy_overlay": {
+    "max_gas_limit": "24000000",
+    "estimate_includes_all_fees": false,
+    "review_hash": null,
+    "max_gas_price_wei": null,
+    "max_network_fee_wei": null
+  },
+  "merge_rules": [
+    "Merge only the explicit overlay fields into a separately reviewed complete matching configuration; do not pass this package to a production loader.",
+    "Never replace whole limits/fee_policy dictionaries while dropping existing financial/value or permission fields.",
+    "Backend configured32M must equal website limits.gas exactly; smaller confirmed-block, actual transaction execution and provider bounds remain binding.",
+    "Keep claim transaction policy unchanged and preserve all loss/oracle/NAV/route/idle/authority/callback guards.",
+    "Keeper/manual24M is distinct from website claim/activation policy.",
+    "No source-call/quote/payout/royalty-sync subcall gas setting changes.",
+    "No existing service, process, Anvil, journal, signer or public website configuration is modified."
+  ],
+  "unresolved_required_review": [
+    "Current actual transaction/block execution limits and provider32M acceptance, distinct from the synthetic header; no stress or public transactions authorized",
+    "Actual complete network fee semantics and max_gas_price_wei",
+    "Operator maximum network/per-transaction/daily fee budgets",
+    "Actual provider gas/call/trace/history limits and sustained operation",
+    "Matching complete read/configuration/runtime/anchor identities and consumer hashes",
+    "Exact real market/feed/route/OpenSea/VRF and max-state execution qualification"
+  ],
+  "software_verification": {
+    "scope": "New injected software-boundary checks only; results belong to reports/contribution-gas32-20261119/REVIEW.md. No new EVM or target-provider qualification is implied."
+  },
+  "reviewed": "2026-11-19",
+  "normal_build": "activation-final-six-20261118",
+  "operator_gas_selection_approved": true,
+  "target_execution_review": {
+    "chain_id": 4663,
+    "last_observed_date": "2026-11-13",
+    "last_observed_maximum_transaction_execution_gas": 32000000,
+    "last_observed_maximum_block_execution_gas": 32000000,
+    "historical_evidence": "reports/gas-profiles-20261113/network/REVIEW.md",
+    "current_network_limit_verified": false,
+    "provider_32m_capacity_verified": false,
+    "synthetic_header_is_execution_capacity": false,
+    "adoption_rule": "Freshly verify actual execution and provider limits. The API header clamp alone does not prove Nitro transaction capacity; refuse adoption if unavailable or lower. Preserve full20% padding and separately reviewed complete fees."
+  },
+  "qualification": {
+    "historical_20m_source": "reports/activation-final-six-20261118/REVIEW.md",
+    "historical_20m_evidence_relabelled": false,
+    "current_32m_evm_workload_verified": false,
+    "maximum_64_currency_two_lp_workload_verified": false,
+    "complete_target_fees_verified": false
+  }
+}

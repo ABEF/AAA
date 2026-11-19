@@ -299,8 +299,9 @@ Default activation policy1 remains12M. For a separately reviewed provider and
 consumer, activation configuration `schema:2` adds
 `fee_policy.max_gas_limit` (decimal string21k–64M) and
 `fee_policy.max_network_fee_wei`; retain the reviewed complete-fee flag, review
-hash and gas-price ceiling. Example engineering limits are `"20000000"` gas and
-`"1000000000000000000"` wei total fee, not production recommendations.
+hash and gas-price ceiling. The operator-selected contribution ceiling is
+`"32000000"` gas; complete network fees and their separate ETH ceiling still need
+review. No fee approval is supplied by this gas selection.
 
 Pin the resulting activation configuration hash in a matching source9/V9 or source10/V10 manifest,
 set `activation_policy_schema:2` and `limits.gas` EXACTLY equal to the backend's
@@ -317,14 +318,33 @@ See [configuration](ACTIVATION_PREPARATION.md) and
 [actual rehearsal/market limits](../reports/source9-actual-entry-20261109/REVIEW.md).
 
 <a id="gas-profiles-20m-24m"></a>
+<a id="contribution-gas32"></a>
 
-### Explicit20M contribution and24M maintenance profiles
+### Selected32M contribution and24M maintenance profiles
+
+The [latest reconciliation](../reports/seven-report-consolidation-20261119/REVIEW.md)
+separates current settings from historical gas measurements and retains every
+original finding ID. It introduces no new contract call, permission or restart.
+
+The operator selected32M for activation/growth on19November. Use the
+[new non-live overlay](../config/activation-gas-32m.candidate.json), not a patched
+historical report template. Full20% padding remains: estimate26,666,666 fits;
+26,666,667 refuses. The [review](../reports/contribution-gas32-20261119/REVIEW.md)
+records new software checks and retains the earlier20M EVM measurements below.
+
+Freshly verify Robinhood transaction/block execution limits and provider capacity
+before adoption. The last observed execution limit was32M on13November; a fresh
+read is unavailable. Nitro header gasLimit2^50 is synthetic. The API header clamp
+does not check the separate transaction execution parameter, so that review is a
+required operating prerequisite. Complete data-posting fees remain separate;
+32M is a padded ceiling, not permission for32M raw work plus20%. Unknown
+limits/fees keep adoption blocked; do not infer capacity from the header.
 
 The historical [launch16 review](../reports/launch-workload-20261117/REVIEW.md) demonstrates why a passing20M body call is insufficient: its fresh estimate plus full20% can still exceed20M. Its pending/initial-allocation refusals retain that source scope. The current controlled13-case workload fits20M with full20%; it does not qualify every currency or state. Capacity16 means16 ERC20s plus ETH **if admitted**, not an automatic launch list or gas approval. Growth normally does not repeat royalty activation. Keep the exact preparation/estimate and margins; never widen a cap or mislabel an opaque refusal as a bad token.
 
 Before admitting currencies, read `RoyaltyRewards.assetCount()`, every `assets(index)`, `assetCapacity()`, `ROYALTY_ALLOCATION_VERSION()` and `ProtocolPolicy.royaltyBalanceGas()`/`royaltySyncGas()`/`gasPolicy()`/`gasFingerprint()`. Qualify cold empty, pending/first-opening, rotated-allocation and failed-read workloads. Some rare royalty states are materially more expensive; component gas cannot be added to or substituted for a complete operation estimate. The new unsigned pre-seal rows record these reads only and remain unverified.
 
-The historical [Q03 near-capacity review](../reports/q03-activation-gas-20261117/REVIEW.md) measures the complete Entry flow after999 real activations, fixed600/300/100 mint quotas and16 admitted ERC20 currencies plus ETH. It separates unsynchronized opening/rotated receipts, one full-budget currency fault, already-synchronized states and ETH/ZZZ growth. A passed component check is not20M approval: require the exact estimate plus full20% and successful padded call. The1M per-currency allowance,12M default and20M reviewed policy remain unchanged.
+The historical [Q03 near-capacity review](../reports/q03-activation-gas-20261117/REVIEW.md) measures the complete Entry flow after999 real activations, fixed600/300/100 mint quotas and16 admitted ERC20 currencies plus ETH. It separates unsynchronized opening/rotated receipts, one full-budget currency fault, already-synchronized states and ETH/ZZZ growth. A passed component check is not20M approval: require the exact estimate plus full20% and successful padded call. The1M per-currency allowance and12M default remain unchanged; its20M measurement policy stays historical.
 
 Historical payload4 cold Q03 estimates plus full20%: healthy pre-synced activation19,484,950/20M; one faulty currency19,877,529/20M; ETH growth14,963,820/20M; ZZZ growth15,864,753/20M. Four unsynchronised near-capacity cases refuse20M. These controlled results are not actual target-fee approval. Fresh tiny receipts can restore costly allocation work between sync and inclusion; the narrowest measured margin is122,471gas. Keep the fresh exact simulation and full margin.
 
@@ -341,7 +361,7 @@ Historical C08 qualification produced13 scenarios from one1,000-NFT method. At t
 | Change read allowance | Governance `setRoyaltyBalanceGas(50000, REVIEW_HASH)` | Nonzero32-byte review;10,000-1,000,000gas; increments existing gas revision |
 | Review fresh consumer | Payload6 `royalty_read_policy` observation | Same canonical block, actual policy/cap/revision; no implicit adoption |
 
-Only the activation token `balanceOf` STATICCALL is capped. It copies one word and accepts ABI-compatible trailing data. A fully funded broken/expensive read defers its own new enrollment; it does not discard backing or grant newcomers earlier receipts. The complete-sync maximum stays1M. Funding is proved for the complete frame or independently for the configured read plus120k; other failed partial frames revert activation. Token revert bytes cannot forge the ledger's exact unavailable signal. Ordinary sync/claims/canonical balance reads keep their existing paths. A high maximum need not be entirely forwarded inside the complete frame; cheap reads still work. Raising limits/currency capacity requires cold healthy/faulted requalification, fresh exact estimate plus20% below20M and separate fee review. Do not auto-change defaults or saved reviews.
+Only the activation token `balanceOf` STATICCALL is capped. It copies one word and accepts ABI-compatible trailing data. A fully funded broken/expensive read defers its own new enrollment; it does not discard backing or grant newcomers earlier receipts. The complete-sync maximum stays1M. Funding is proved for the complete frame or independently for the configured read plus120k; other failed partial frames revert activation. Token revert bytes cannot forge the ledger's exact unavailable signal. Ordinary sync/claims/canonical balance reads keep their existing paths. A high maximum need not be entirely forwarded inside the complete frame; cheap reads still work. Raising limits/currency capacity requires cold healthy/faulted requalification, fresh exact estimate plus20% within the selected32M ceiling and separate fee review. Do not auto-change defaults or saved reviews.
 
 Optional unsigned pre-seal input: `royalty_balance_policy:{"balanceGas":"50000","reviewHash":"REVIEW_HASH"}`. Use a real nonzero bytes32 review hash. Unknown inputs remain blocked/null calldata; omission requests no write. It supplies no signature, configuration, seal or live approval.
 
@@ -351,13 +371,13 @@ The current [activation-final-six source review](../reports/activation-final-six
 
 | Operator concern | Required action | Unchanged rule |
 | --- | --- | --- |
-| Activate or grow | Prepare exact current Entry calldata and fresh padded simulation |20M with full20%; no extra holder transaction |
+| Activate or grow | Prepare exact current Entry calldata and fresh padded simulation |Selected32M with full20%; qualify provider/fees before adoption |
 | Existing LP/royalty rights | Continue normal current-owner claim/maintenance procedures | No earnings reset, currency change or reduced entitlement |
 | Canonical replacement | Use authenticated logical rows, exact backing and complete reviewed handoff | Never copy raw packed carry slots between builds |
 | Upgrade local consumers | Review matching runtime/source identities and preserved history before adoption | No automatic DB/journal or live-site rewrite |
 | Failed gas review | Retain the explicit refusal and investigate that exact workload | No cap/headroom/default increase |
 
-The Oracle retains its canonical49-word transient format and every live source/control/mutable-boundary proof. Quote and hash codecs preserve exact bytes; the optional v4 feed keeps prices, ticks, fees, liquidity, source age and pins. All13 current cold calls and financial checks now pass20M with full20% headroom, closing the6 earlier tested refusals. Worst estimate16,460,899 pads to19,753,079. This is one affected1,000-NFT method with16 controlled ERC20 currencies plus ETH and one physical main LP, not13 new methods or universal maximum-state qualification. Real markets, providers/complete fees,64-currency/LP2 workloads, operations and independent approval remain open. The12M default, reviewed20M/full20%,50k balance reads,1M sync and120k fallback funding proof are unchanged. See the [current source and complete qualification](../reports/activation-final-six-20261118/REVIEW.md); the [earlier Factory5 report](../reports/activation-gas-20261118/REVIEW.md) retains its original scope.
+The Oracle retains its canonical49-word transient format and every live source/control/mutable-boundary proof. Quote and hash codecs preserve exact bytes; the optional v4 feed keeps prices, ticks, fees, liquidity, source age and pins. All13 current cold calls and financial checks now pass20M with full20% headroom, closing the6 earlier tested refusals. Worst estimate16,460,899 pads to19,753,079. This is one affected1,000-NFT method with16 controlled ERC20 currencies plus ETH and one physical main LP, not13 new methods or universal maximum-state qualification. Real markets, providers/complete fees,64-currency/LP2 workloads, operations and independent approval remain open. These measurements retain their20M/full20% scope; the selected profile is now32M/full20%. The12M default,50k balance reads,1M sync and120k fallback funding proof remain unchanged. See the [current source and complete qualification](../reports/activation-final-six-20261118/REVIEW.md); the [earlier Factory5 report](../reports/activation-gas-20261118/REVIEW.md) retains its original scope.
 
 #### Optional royalty synchronization before activation
 
@@ -373,7 +393,7 @@ The historical [two-stage rehearsal](../reports/launch-workload-20261117/REVIEW.
 
 Anyone may call sync; that grants no management or payout authority. The operator can pay this gas independently. Before the one-hour opening, sync holds receipts; at/after opening the fixed cutoff applies. `syncAll` is atomic: a bad currency can revert it. Never mark a failed sync as confirmed, skip its rights or auto-change its allowance. New receipts, activations and pool trading can occur between transactions, so prior sync is no guarantee that the next entry fits; use its exact fresh estimate. Use the live canonical ledger; canonical preparation/retirement retains its own restrictions. LP conversion and original-currency royalty claims remain separate.
 
-For claims,32 is a total NFT/asset/ledger entry ceiling. The1000-NFT stress cases include a19-entry pending mixed batch and32 LP entries that refuse12M without losing rights. Prepare the next exact smaller batch and replan after confirmation; choose healthy currencies when a selected transfer fails. Old schema1 clipping is not proof of full20% headroom. Raw fixed-ZZZ LP recovery remains distinct from normal ETH settlement and original-currency royalties.
+For claims,32 is a total NFT/asset/ledger entry ceiling. The historical launch-workload1000-NFT cases include a19-entry pending mixed batch and32 LP entries that refused12M without losing rights. Those whole-claim gas numbers are not fresh F6 cold-batch qualification. Prepare the next exact smaller batch and replan after confirmation; choose healthy currencies when a selected transfer fails. Old schema1 clipping is not proof of full20% headroom. Raw fixed-ZZZ LP recovery remains distinct from normal ETH settlement and original-currency royalties.
 
 The earlier [controlled qualification](../reports/gas-profiles-20261113/REVIEW.md)
 passes all four $100/$5 contribution cases and six keeper operations at full
@@ -383,21 +403,22 @@ adds mint2/V10 C14, D14 and Parked D14/D0 CLI/receipt evidence at `da24f65`.
 Use the [current reference-swap report](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
 for changed-source gas; historical values do not qualify its new runtimes.
 Neither report qualifies maximum state, real markets, target providers or fees.
-The [profile package](../reports/gas-profiles-20261113/backend/profiles.template.json)
-contains gas-only candidate overlays, not complete runnable configurations or
+The [current32M profile package](../config/activation-gas-32m.candidate.json)
+contains gas-only candidate overlays. The [earlier20M package](../reports/gas-profiles-20261113/backend/profiles.template.json)
+retains its original evidence. Neither is a complete runnable configuration or
 permission to deploy. Fee approvals, runtime/chain/configuration identities and
 provider acceptance remain separate. The legacy12M defaults and both public
 null configurations remain unchanged.
 
 | Consumer | Operator-owned field | Candidate value and type | Full estimate margin |
 | --- | --- | --- | --- |
-| Activation/growth API | `schema:2`, `fee_policy.max_gas_limit` | `"20000000"`, decimal string |20%; maximum estimate16,666,666 |
-| Matching source9/source10 website manifest | `activation_policy_schema:2`, `limits.gas` | `20000000`, JSON integer; exact backend configured value | Independently verifies the same20% |
+| Activation/growth API | `schema:2`, `fee_policy.max_gas_limit` | `"32000000"`, decimal string |20%; maximum estimate26,666,666 |
+| Matching source9/source10 website manifest | `activation_policy_schema:2`, `limits.gas` | `32000000`, JSON integer; exact backend configured value | Independently verifies the same20% |
 | Keeper | `max_gas_limit` | `24000000`, JSON integer |25%; maximum estimate19,200,000 |
 | Manual LP policy | `fee_policy.max_gas_limit` | `"24000000"`, decimal string |25%; maximum estimate19,200,000 |
 
 The signed/reviewed gas allowance is the freshly padded estimate, not automatically the
-entire20M/24M ceiling. A successful raw call without full padding is insufficient.
+entire32M/24M ceiling. A successful raw call without full padding is insufficient.
 All smaller chain/provider bounds and separate fee/balance limits still apply.
 Manual maintenance and keeper25% padding must not be replaced with the activation
 API's20%. Claim policy1 remains12M; explicit holder-return distribution batches
@@ -417,7 +438,7 @@ Activation `ActivationConfig` and mint/claim `TransactionConfig` are separate
 policies, served by separate listeners. The existing command templates are:
 
 ```text
-python -m frontend_api.activation_server --config READ_CONFIG --activation-config ACTIVATION20_CONFIG --port 8788
+python -m frontend_api.activation_server --config READ_CONFIG --activation-config ACTIVATION32_CONFIG --port 8788
 python -m frontend_api.server --config READ_CONFIG --transaction-config UNCHANGED_CLAIM_CONFIG --port 8787
 ```
 
@@ -429,7 +450,7 @@ overlay as the read/deployment inventory. The existing request-time, worker,
 response-size, trace-depth/frame and ingress limits remain unchanged.
 
 For activation, hash the complete new API configuration, put that exact identity
-and fee review in the matching unsigned website manifest, and verify the20M
+and fee review in the matching unsigned website manifest, and verify the32M
 configured ceilings match. For the keeper, reconcile pending receipts/spend and
 stop new work before loading a reviewed24M configuration through a controlled
 restart. Keep the original journal and pending review intact. Manual preparation

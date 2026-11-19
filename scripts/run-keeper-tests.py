@@ -41,6 +41,7 @@ MODULES=(
  'test_keeper_review_retry','test_keeper_confirmation_wakeup',
  'test_keeper_execution_price',
  'test_reviewed_gas_profiles_20_24',
+ 'test_reviewed_gas_profile_32',
  'test_keeper_zero_tip_profile',
  'test_keeper_probe_transport_budget',
  'test_keeper_maintenance_clock',

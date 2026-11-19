@@ -15,7 +15,9 @@ still end normally. This call does not configure OpenSea: its reviewed drop
 integration and exact matching stage configuration remain release requirements.
 
 Governance may revise the end to another future timestamp while the OLD end has
-not passed. It cannot change it after closing or shorten the fixed1-hour grace
+not passed. At exact equality with the old end, revision remains allowed if the
+new end is strictly future and opening is not finalized; once the current timestamp
+is greater than the old end, revision rejects. It cannot shorten the fixed1-hour grace
 duration. Coordinate every change with all marketplace mint stages and announce
 the new deadline. Future production integration must enforce the same end across
 all mint paths; a marketplace interface alone cannot enforce our contract state.

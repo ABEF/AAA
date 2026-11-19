@@ -1,6 +1,11 @@
 # Activation and top-up preparation
 
-The [launch16 workload](../reports/launch-workload-20261117/REVIEW.md) shows that some healthy pending/first-opening activations exceed20M after the required full20% estimate margin, even when a20M body call succeeds. Two explicit existing royalty-sync-then-entry workflows fit the unchanged caps in controlled local state; they shift work into a separate optional operator transaction. [Exact procedure](OPERATOR_MANUAL.md#optional-royalty-synchronization-before-activation). New receipts/trading can change the next quote: reprepare and simulate the exact entry. No gas/default change, mandatory holder step or universal maximum-state approval is implied.
+The selected contribution preparation ceiling is now32M/full20%, in the
+[non-live candidate](../config/activation-gas-32m.candidate.json). The
+[current F6 evidence](../reports/activation-final-six-20261118/REVIEW.md) passes
+all13 controlled cold cases at the earlier20M/full20% setting. Older launch16
+refusals keep their original source scope. Actual32M provider/execution/fee and
+expanded-workload acceptance remains open; no default or live setting changes.
 
 ## Optional execution-price1 / LP-routing3
 
@@ -157,19 +162,19 @@ still find no complete canonical-hash call/estimate/trace provider. Missing
 `callTracer` logs or unsupported canonical-hash calls stop preparation; numbered
 blocks are not a fallback.
 
-The [20M activation/growth profile](../reports/gas-profiles-20261113/REVIEW.md)
-passes controlled current ETH/ZZZ $100 activation/$5 growth and matching unsigned
-source9/source10 consumer checks. It requires `schema:2` and the decimal string
-`fee_policy.max_gas_limit:"20000000"`; the matching website uses integer
-`limits.gas:20000000`. Full 20% padding allows estimates at most 16,666,666; the next
-estimated unit rejects rather than clipping the margin. The 12M default remains.
+The operator-selected [32M activation/growth candidate](../config/activation-gas-32m.candidate.json)
+uses existing schema2 software; the [review](../reports/contribution-gas32-20261119/REVIEW.md)
+keeps older20M controlled results separate. Set `schema:2` and decimal string
+`fee_policy.max_gas_limit:"32000000"`; the matching website uses integer
+`limits.gas:32000000`. Full20% padding allows estimates at most26,666,666; the next
+estimated unit refuses without clipping the margin. The12M default remains.
 The separate 24M keeper/manual profiles retain 25% padding and do not raise claim
 policy1, activation defaults or internal source/solver/payout gas budgets.
 
 These controlled results do not approve a production provider, complete network
 fees, full hosted preparation or maximum-state workload. Candidate fee approvals
 and ceilings remain explicitly unqualified; never infer them from a calculated
-local gas cost. Follow the [exact configuration/restart procedure](OPERATOR_MANUAL.md#gas-profiles-20m-24m)
+local gas cost. Follow the [exact configuration/restart procedure](OPERATOR_MANUAL.md#contribution-gas32)
 before any separately authorized adoption. All financial guards remain.
 
 ## Values returned to the wallet

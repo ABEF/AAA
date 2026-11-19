@@ -1,5 +1,14 @@
 # Verification evidence
 
+The [19 November seven-report consolidation](seven-report-consolidation-20261119/REVIEW.md)
+is the current reconciliation. It carries the original64 IDs forward and assesses
+24 subsequent issues/decisions/limits across seven families, without rewriting
+original reports or rerunning unchanged tests. Use its
+[disposition index](seven-report-consolidation-20261119/INDEX.md) and the
+[sole Todo](../TODO.md); source publication is not deployment or release approval.
+
+[19 November selected32M contribution profile](contribution-gas32-20261119/REVIEW.md) adds a non-live configuration overlay and seven new software-boundary checks. Historical20M EVM evidence retains its exact scope;12M defaults,24M maintenance and all safeguards remain. Actual provider/complete-fee and maximum-state qualification stay open.
+
 [18 November six-case resolution](activation-final-six-20261118/REVIEW.md) qualifies all13 controlled cold cases within20M with full20% padding, closing the6 earlier refusals. Worst padded gas is19,753,079. Fresh Factory6/private codecs and transaction-only Pricing preserve exact rights and safeguards. Real markets/providers/fees and wider workloads remain separate.
 
 Historical source: [18 November activation cost reduction](activation-gas-20261118/REVIEW.md) records exact compact/full-width-spill LP carry, the Oracle projection and feed arithmetic changes. At that source all13 cold operations pass functionally;7 fit full20% within20M,6 remain refused. Unchanged Factory5/rights/limits and source-scoped recovery/callback evidence retain their original scope.
@@ -12,7 +21,7 @@ Historical source: [Q03 activation gas optimisation](q03-activation-gas-20261117
 
 [Launch-workload gas and recovery](launch-workload-20261117/REVIEW.md) adds finite16-currency contribution checks,1000-NFT claim stress, maximum royalty-component phase and explicit pre-seal workload/gas reads. Actual local estimates/full margins distinguish passes from refusals; no live provider/fee or deployment approval follows.
 
-[Latest five-report consolidation](five-report-consolidation-20261117/REVIEW.md) provides the current distinct finding registry, preserved source boundaries, new pre-seal stop diagnostics and bounded historical-evidence admission. No past test totals are added into new coverage.
+[Earlier five-report consolidation](five-report-consolidation-20261117/REVIEW.md) provides the current distinct finding registry, preserved source boundaries, new pre-seal stop diagnostics and bounded historical-evidence admission. No past test totals are added into new coverage.
 
 [Repaired-test impact follow-up](test-impact-followup-20261117/REVIEW.md) checks intended dependent behavior and fixes a late manual-review reorg race; source review, finite execution and remaining workload limits stay separate.
 

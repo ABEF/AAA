@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "backup_manifest": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\consolidation-20261119-before\\MANIFEST.json",
+  "current_document_changes": [
+    {
+      "path": "AGENTS.md",
+      "before_sha256": "c51ebc2bfb0820242d538deb53c5c2d71321b292bd5845a75cc7b40ee7ccf992",
+      "before_origin": "pre-consolidation dirty snapshot",
+      "after_sha256": "452ce6556bd0ddd5e0deed04eef2daa321427cca36220cac4adc3e4ea5252469"
+    },
+    {
+      "path": "PROJECT_CONTEXT.md",
+      "before_sha256": "aff04fe3d6a9951d23e984abb14f5bca77972d1d441b3ef2100f40d353a1fc0d",
+      "before_origin": "pre-consolidation dirty snapshot",
+      "after_sha256": "521486a16465e74fa8ff3b14dd637633fbf1cd3a90d721245d6613586f2784ff"
+    },
+    {
+      "path": "README.md",
+      "before_sha256": "da3f2571e8d1dd8d3577eabb982534e6ad9561065476568945b13f9d366264e2",
+      "before_origin": "pre-consolidation dirty snapshot",
+      "after_sha256": "24991ca0bc08bbb03155c75842cb44ded84a1a23c646aee5f7cd272784b1766f"
+    },
+    {
+      "path": "TODO.md",
+      "before_sha256": "3b637f580a9009ef1dbb68b627791c6bc5f5e7adc92dcf230d034add408315d9",
+      "before_origin": "pre-consolidation dirty snapshot",
+      "after_sha256": "1b2f6e3ce0cc261f1819470c65e433f6fdc31411969e309194e8d9175ca714d0"
+    },
+    {
+      "path": "docs/ACTIVATION_PREPARATION.md",
+      "before_sha256": "30471ab8f7d0b263279c86ba433fd3bc3ac8c13daf339ebf044f88a9760f77f1",
+      "before_origin": "pre-consolidation dirty snapshot",
+      "after_sha256": "30471ab8f7d0b263279c86ba433fd3bc3ac8c13daf339ebf044f88a9760f77f1"
+    },
+    {
+      "path": "docs/AUDIT_FINDINGS.md",
+      "before_sha256": "a9110aaccc9e007b52322c13576f74700bbdba110190e38c3c4bfe1fd9ce3097",
+      "before_origin": "pre-consolidation dirty snapshot",
+      "after_sha256": "108589ec4843acd95b46705a55d45218c47dc8a2f3e59c8afb0511b1b960c51b"
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "before_sha256": "81fc2d4748a182cd74071983bcb51e5c638f9349fc17f2c1cf4614e12aacc6a6",
+      "before_origin": "clean baseline HEAD blob",
+      "after_sha256": "117e062d98b86ba001791e5124708173a1f53c20ac810305ce53c67b8de96d13"
+    },
+    {
+      "path": "docs/FRONTEND_TRANSACTIONS.md",
+      "before_sha256": "01b510476fa79b39b494260bc0fccccdaf4e611253bee12bb1f0b1dce6d231e5",
+      "before_origin": "pre-consolidation dirty snapshot",
+      "after_sha256": "01b510476fa79b39b494260bc0fccccdaf4e611253bee12bb1f0b1dce6d231e5"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "before_sha256": "c1699fa47cdfd82f9869d5b79998faadf030603af281665f862e627ddcbe3c12",
+      "before_origin": "pre-consolidation dirty snapshot",
+      "after_sha256": "b14f0828ec5b56aeca47ada80d61301fbe9cb6c3dbe06913ba9d97e358398793"
+    },
+    {
+      "path": "docs/OPERATOR_MANUAL.md",
+      "before_sha256": "bfa06d84a42c0fc6fc80c38f2cfad9a37948c92eff3d82c7af714bbff15fbb82",
+      "before_origin": "pre-consolidation dirty snapshot",
+      "after_sha256": "a0679ce0d43093d7ca1c2a48d440c1bc0c58542334a322a94e1cf8b9bee24d48"
+    },
+    {
+      "path": "docs/RELEASE_CHECKLIST.md",
+      "before_sha256": "d8d0e14d58e39dfe84c91c4e1a75244e3a0f6b6aff657ae432bd8ef1bfee9410",
+      "before_origin": "pre-consolidation dirty snapshot",
+      "after_sha256": "9e649a2bd998321ca408211b85e274d842d59bcc185e57277342073ec3b622d7"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "before_sha256": "63953dc68bdae6cb54f01f3e3be6e6a244ee73ed613e23b978b69367116fb102",
+      "before_origin": "pre-consolidation dirty snapshot",
+      "after_sha256": "6a654480bb8723bdc665561046e1d1314c1325e1c755dfd107af8c7df7e5bb46"
+    },
+    {
+      "path": "docs/ROYALTY_LAUNCH_WINDOW.md",
+      "before_sha256": "9fc910f1a01488b513070e9f1c1afe393c0504b04371fac18f6f2344c9fbcd7e",
+      "before_origin": "clean baseline HEAD blob",
+      "after_sha256": "dcb537cef4699bb36f41748736d6a0b0de1f76d507c4cb50a527bdb0ce432868"
+    },
+    {
+      "path": "docs/WORK_HANDOFF.md",
+      "before_sha256": "738ac6bf27a2908373967f6bb123cf73fa2a99343c642b8fbf54107affc641ea",
+      "before_origin": "pre-consolidation dirty snapshot",
+      "after_sha256": "3b6a2986e30f541a2200dead2a467c9bc2f0af359a025194d06840ed784ba24f"
+    },
+    {
+      "path": "docs/project-todo.json",
+      "before_sha256": "ab6478fe0cc106fff571c92020ad3595c87874a71ed8acc5769622b9ba4cd39a",
+      "before_origin": "pre-consolidation dirty snapshot",
+      "after_sha256": "d87c54704b7b0f91d6235919725a5af7703c8efb638b245200c83eb569bd80cd"
+    },
+    {
+      "path": "reports/README.md",
+      "before_sha256": "eba1b57c0fe04189367997a488326a945350c2933bfeed7970e50c0ab845aca8",
+      "before_origin": "pre-consolidation dirty snapshot",
+      "after_sha256": "66909efa9d2f6ef7d0d74491e43505bfeec776aa483327c839cdaca1e13fe1ad"
+    }
+  ]
+}

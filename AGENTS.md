@@ -1,358 +1,71 @@
 # AAA / ZZZ PoPL project instructions
 
-The current trusted normal build is `activation-final-six-20261118`, with explicit Factory6/allocation2. The [activation review](reports/activation-final-six-20261118/REVIEW.md) closes all six previous refusals: all13 controlled cold cases fit20M with full20% padding and pass their financial checks. Worst gas is16,460,899 raw/19,753,079 padded. The closed100-source graph passes48 unchanged normal gates. Exact LP/royalty entitlements, all safeguards,12M default and existing environments remain unchanged. Fresh private codecs and transaction-only Pricing require exact new source/runtime pins; never copy old physical storage or relabel payload5/journals. Actual markets, selected currencies/providers/complete fees,64-currency/two-LP/all-order workloads, operating acceptance and independent approval remain open. The six measured cases are resolved; broad Q03 and release qualification remain open.
-
-At baseline633f015, the trusted normal build was `royalty-rounds-20261118`, with explicit factory payload5 and royalty allocation2 in unchanged code-storage FORMAT2. [Royalty rounds](reports/royalty-rounds-20261118/REVIEW.md) replace private tree books with checked-liability round coefficients: receipt credit no longer writes a tree; enrollment lookup is bounded by1000 NFTs (at most10 binary-search steps). Activation ERC20 balance reads have a separate governed cap, initially50000 gas (10000..1000000), while the existing1M isolated sync allowance stays. Exact current-owner original-currency rights, one-hour cutoff/fault cohorts, settlement4/events and flattened canonicalV10 rows remain. Fresh private storage, bounded-read APIs and the changed self-only activation wrapper require new exact pins; payload3/4 and old deployed state are never relabelled. The per-currency helper proves either a complete sync frame or a fully funded capped read; other partial-frame accounting failures revert. Accounted reserves are derived from checked liabilities, orphaned and opening categories. Canonical import clears previously synchronized target opening funds before classifying the entire actual prefund as orphaned; aggregate overflow checks and imported claims remain.
-
-Final C08 normal runtime bytes/margins: Royalty24572/4, Manager24459/117, Oracle24573/3 and Vault24544/32; Access full initcode48590/562. Size admission is not constructor/gas/provider or release approval. At that historical C08 source, the normal build validates the closed100-source input and passes48 size gates. Its synchronized-prefund import and funded-abort checks pass; C07 ordinary ledger14/placement5 evidence retains its explicit reuse scope. The12 distinct consumer controls include4 C08 artifact-dependent rechecks and8 unchanged controls retained at prior source scope. These are not added into a whole-project pass. Maximum-state20M qualification remains open. All13 controlled cold calls and their financial checks succeed at20M, but only5/13 fit the mandatory full20% margin;8 activation states are correctly refused by the existing policy. Worst openingZZZ/all-slow is19,325,451 raw,23,190,542 padded. Both growth and3 all-fault activation cases fit their tested envelopes. These13 scenarios are not13 new test methods. All owned nodes are stopped; target markets/providers/fees and release approval remain unqualified. Healthy rotated ETH also needs16,938,190 raw/20,325,828 padded; healthy rotated ZZZ needs17,582,618/21,099,142. The remaining20M blocker is therefore not limited to pending-receipt states. Keep exact preparation refusals and qualify a justified further reduction or separately reviewed operational decision; no limit is raised automatically. Keep the20M contribution policy with full20% padding, the12M default and all financial/permission guards. Actual independent prices/routes, selected currencies, provider/complete target fees, expanded64-currency and maximum LP2 workloads, current operating/constructor rollout and independent release approval remain open. No existing environment or paused heartbeat is changed.
-
-The [Q06 interruption/recovery review](reports/q06-keeper-recovery-20261117/REVIEW.md) fixes stop-during-intent signer launch and false watchdog expiry during completed bounded RPC failover. Twelve NEW unit methods pass; isolated unprivileged Linux/systemd units verify synthetic receipt reconciliation, SIGTERM during save, actual header-stall watchdog, signer-descendant cleanup and recovery locking. Restarts use a recovery-only test dispatcher and inert signer, not real Cast or the full normal daemon loop. All15 owned units are stopped; no installed services/journals or paused desktop heartbeat are controlled. A pre-existing observer timer changes its InvocationID naturally; preserve that observation and the raw cgroup warning. Q06 remains open for real release/provider/key/normal-loop/off-host/soak qualification. No unchanged tests, Solidity source, safeguard, default, authority or live environment changes.
-
-The [launch-workload review](reports/launch-workload-20261117/REVIEW.md) separates cold call gas, actual local estimates/full padding, maximum royalty-component state and claim batching. Capacity16 is not16 admitted currencies or an aggregate gas guarantee. Several16-currency activation states failed the20M policy at that earlier source, while smaller/synchronized workloads and growth have separate evidence. Use exact selected calls, preserve all gas/financial defaults and keep maximum whole-graph/target provider/fee qualification open. New pre-seal royalty/gas reads remain unverified; no live environment is changed.
-
-
-
-The [latest five-report consolidation](reports/five-report-consolidation-20261117/REVIEW.md) separates resolved defects, retained policy and unqualified work without relabelling original reports. Current pre-seal output discloses pool-specific ordinary-operation stops; the fixed historical evidence checker preserves exact methods and weaker evidence tiers. At that reconciliation all61 Solidity sources, financial limits/rights and environments remained unchanged. Its trusted build was seal-boundaries-20261117; no release approval or rollout is implied.
-
-The [unsigned pre-seal planner](reports/preseal-planner-20261116/REVIEW.md) now prepares twelve ordered configuration
-families against the trusted current ABI. Unknown own/dependent inputs retain
-blocked/null calldata; actual bootstrap/code/state and all readiness/approval
-flags stay unverified/false. It includes the separate human-price orientation
-write, NFT-forwarded SeaDrop setup, declared native-pin/18-decimal consistency
-checks and explicit operating-stop diagnostics. No source contract, safeguard,
-default, signer, existing chain/DB/journal, site/service or paused heartbeat
-changes. There is no RPC/signing/deployment/sealing/adoption path. Earlier
-[1,000-NFT recovery evidence](reports/history-scale-rehearsal-20261116/REVIEW.md) retains its finite controlled scope. Actual release
-inputs, market/provider/VRF/OpenSea/fees/operating acceptance and independent
-approval remain open; static preparation never supplies those approvals.
-
-The [16 November whole-project audit](reports/whole-project-audit-20261116/REVIEW.md) fixes confirmed offline-tool,
-state-file and website-profile gaps and reconciles current guidance. Production
-Solidity, economic rights, safeguards, gas defaults and existing environments
-are unchanged. Focused new checks and exact historical source reuse are recorded
-separately; this is internal review, not independent release approval.
-
-The [isolated metadata2 rehearsal](reports/metadata2-rehearsal-20261116/REVIEW.md)
-verifies the five changed normal constructors, three bindings and twelve actual
-instances on a new owned loopback chain. All 20 cold metadata cases pass; worst
-tested read is 826,831 gas (992,198 with 20% padding), using controlled dependencies,
-a 41-byte URI and full-width ID. Real pricing/provider/OpenSea costs remain open.
-The node is stopped/unsealed; all 61 Solidity sources, old evidence, existing
-chains/journals, sites, signer and paused heartbeat remain unchanged. Never adopt
-local addresses/runtime pins or fixture read budgets as production configuration.
-
-The [five-audit reconciliation](reports/five-audit-reconciliation-20261116/REVIEW.md) separates resolved source work, accepted
-limits and remaining release evidence. At that recorded source the unsigned planner
-defaulted to the exact trusted metadata2-20261116 build; explicit historical
-manual-reference-20261115 remains separately authenticated. Old evidence is not
-relabelled. The local checker requires the complete closed constructor/binding
-graph and submission/RPC evidence; the new dated market checker recomputes all
-summary/candidate flags while keeping approval false. Current callable counts
-and metadata-source links are corrected. All61Solidity sources,114selected
-historical report files, four unrelated dirty files, websites/signer/configs,
-Anvil/journals and paused heartbeat remain unchanged. Only affected/new offline
-checks run; final release construction/fees, independent markets/services,
-OpenSea/operations and independent audit remain open.
-
-The [metadata lifecycle fixes](reports/metadata-lifecycle-fixes-20261116/REVIEW.md) implement schema2 lifecycle/payment/successor
-labels and immediate bounded ERC-4906 notifications, while keeping LP exited
-distinct from Dormant and preserving royalty rights. The existing NFT state
-companion supplies price-free read-only context; canonical records, accounting7,
-schema17 and module counts stay unchanged. Optional watcher lifecycle_version2
-requires explicit renderer/runtime pins and a new reviewed journal identity;
-omission/0 retains historical behavior. Fresh source/runtime/reference review is
-required; old deployments/reviews are not relabelled. Four artwork paths remain,
-with labelled Activated fallback for unavailable or exited LP. Website source
-holds unconfirmed contribution art until confirmed state. Only changed/new
-checks are selected. OpenSea/content/host acceptance and independent approval
-remain open; no deployment/site/service/signer/Anvil/journal/heartbeat change.
-
-[16 November real-market refresh](reports/real-market-refresh-20261116/REVIEW.md) records39 bounded read-only requests.
-Chainlink proxies still share one ETH aggregator; Pyth is stale and API3 read
-reverts. No independent ETH/ZZZ source pair or complete route is qualified.
-The larger known pool improves forward execution only; tested reverse fills
-and selected-pool compatibility remain blockers. No source, route, limit,
-provider or live environment is changed; no unchanged suite is rerun.
-Eight new report-helper checks retain their source stages. The offline verifier
-now rejects truncated/detached quotes and binds feed/anchor summaries to wire
-responses; its initial false-positive paths and correction remain explicit.
-
-The [isolated local construction rehearsal](reports/local-deployment-rehearsal-20261115/REVIEW.md) verifies25 current normal
-creations/19bindings,39instances and112state observations on a new owned loopback
-Anvil, with normal size limits. Total rawgas141,382,621; worst NFT full25%padding
-14,172,289/32M. No seal/publictx, old-node calls or environment adoption. The
-original BA request log has a documented preflight-field alias limitation;
-current recording snapshots exact serialized requests/responses. The corrected
-offline checker admits only trusted build pins. Eight new checks retain their
-source scopes; no unchanged suite/compiler/static/deployment rerun. The node is
-stopped and graph stays unsealed/bootstrap-owned/unconfigured. Actual release
-inputs/dependencies/gas/complete fees/operations and independent audit remain.
-The [offline planner](docs/DEPLOYMENT_PREPARATION.md) stayed unsigned and unchanged for that recorded rehearsal; local
-addresses/runtimes never populate production inventories or old journals.
-
-The [guarded manual reference-swap fix](reports/manual-reference-swap-fix-20261115/REVIEW.md) extends execution1/LP3 to priced
-paused manual C/D. One transaction-bound vector precedes fingerprints/harvest;
-the exact caller-selected core swap/output/full post-state is proved before
-settlement, with live source/control/callback validation retained. No cap,
-permission, default or automatic bypass changes. Masks0/8 remain unpriced;
-bits1/16 retain their own eligibility checks. Six Solidity sources change;
-same-core principal-as-reference remains excluded.25 new/3 adapted methods,
-three actual unchanged-CLI local manual receipts and the complete park→recovery
-journey pass. Worst full25% padded manual gas16,315,867/24M.48 normal size gates pass;
-Manager101/Vault32/Oracle3runtime bytes and Oracle79init bytes remain. Current
-strict review565=113 individually current+452 exact referenced-source reuse.
-Old artifacts/runtimes/profile labels remain historical; new exact pins and
-fresh reviews are required. No deployment/service/site/signing/journal or
-existing-chain change; heartbeat stays paused. Real markets/complete target
-fees, maximum state, host/contract-wallet operation and independent audit remain.
-
-Manual LP preparation now has [stage/cause diagnostics](docs/MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)
-for Active B/C/D and explicit Parked D. Known local errors are typed; opaque
-RPC/reverts remain unknown. Existing output paths are preserved, and uncertain
-publication/reporting exposes possible complete artifacts. Successful manual
-reviews/call order, safeguards, permissions and budgets stay unchanged. New
-management reviews naturally record the changed manual-helper source hash;
-preserve historical artifacts/journals. No deployment/service/site/signing or
-paused-heartbeat change. [Review](reports/manual-lp-diagnostics-20261115/REVIEW.md).
-
-The [Parked recovery preparation](reports/parked-recovery-preparation-20261115/REVIEW.md) adds explicit schema2/actionD with
-`expected_position_status:"parked"` to the unsigned manual tool. Schema1 Active
-B/C/D stays unchanged. Governance/paused/operating authority, current-pool fixed
-ETH/ZZZ custody, caller floors, original expiry, two exact simulations and fee
-bounds remain. Retained bits1/16 require an Active main and are rejected; bits2/4/8
-are explicit, with USD still required by4. No automatic bypass, route, signing,
-unpause, journal or environment change. Actual operator/provider/target-gas and
-contract-wallet qualification remain open. See the [operator inputs](docs/MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2).
-
-The [44-linked-task audit](reports/open-tasks-audit-20261113/REVIEW.md) fixes read-only request amplification:
-the probe now supports optional actual-HTTP pacing, stops a refused/rate-limited
-endpoint and bounds internal posts/timeouts by the original90s budget. Indexer
-range shrinking no longer retries known global/work-limit/wrong-chain failures.
-13new probe and7new indexer methods pass at explicit source stages; old suites,
-Solidity/compiler/static and public RPC work are not rerun. Register the new
-probe module in the maintained keeper runner; inventory-only checks execute0tests.
-Current guides distinguish reviewed spot sources from unreviewed spot fallback,
-LP2 from explicit execution1/LP3 and the exact schema17 inventory. All44broad
-tasks remain open; individual fixes do not qualify markets, services or release.
-
-The earlier external qualification independently derives chain4663 genesis and
-passes13checks at its original source through a paced wrapper. Current CLI now
-offers `--request-interval-ms 1500` (integer0–5000, default0); that new source was
-unit-checked, NOT run against the public provider. No provider/cadence is adopted.
-Specific history/logs and a tiny override retain their original scope; full-work
-20M/24M capacity/fees, two-source ETH/ZZZ markets and operating approval remain
-open. All61Solidity files/defaults/rights, Anvil/journals, browser signer/public
-null configurations, sites/services and user-paused heartbeat stay unchanged.
-
-The [20M/24M profile qualification](reports/gas-profiles-20261113/REVIEW.md)
-passes controlled exact$100 activation/$5 growth in ETH/ZZZ and six keeper
-operations, with full20%/25% padding and exact padded-call success. Worst padded
-contribution18,098,846/20M; maintenance21,046,237/24M. Five new EVM methods,
-13Python methods and12browser checks pass; ten actual RPC cases overlap those
-workflows, not ten extra features. Four recorded contributions reconcile with
-production trace/gas helpers offline. No unchanged suite or normal/static build reruns;
-production Solidity remains unchanged. Source9/mint1 fixtures are not mint2/OpenSea
-acceptance. Manual24M helpers have injected-input coverage, not actual C/D
-qualification. Candidate overlays are incomplete/unapproved, not live settings.
-Website configured activation gas must exactly equal backend configured gas;
-activation/claim listeners remain separate. Keeper/manual padding25%, explicit
-activation policy2 padding20%; claim policy1/default12M stays. The later
-[RPC/fee qualification](reports/rpc-fees-20261113/REVIEW.md) proves a Pinax
-canonical-hash actual Approval(0) trace,20M/24M cheap field admission and ten
-nonzero L1-only payload components. Actual Nitro receipts reveal generic
-base+nonzero-tip overstatement. Future-only keeper submission_fee_profile2
-requires4663/included/L1allowance0, type2/priority0 through simulation/Cast and
-exact captured fee_review schema2 recovery. Omission/1 and old pending reviews
-retain their original behavior; do not rewrite journals or roll old source back
-onto schema2 pending. Generic Ethereum helper stays unchanged. Profile2 does
-not adopt an endpoint, attest complete fees or choose spending caps. Full RPC
-numerical capacity/archive/hosting, undeployed PoPL fee quotes,
-markets/max-state and operating approval remain open. All61 Solidity sources,
-Oracle3-byte/Vault32-byte headroom, browser signer/public-null/site/service/Anvil/
-journals and paused heartbeat stay.
-Use the [operator adoption procedure](docs/OPERATOR_MANUAL.md#gas-profiles-20m-24m);
-never adopt these profiles, a public RPC or a fee budget automatically.
-
-The [gas-feasibility source](reports/gas-feasibility-20261111/REVIEW.md) saves
-about680k gas per controlled contribution, with23focused EVM methods passing.
-Exact12M Entry probes still reject. Oracle runtime is24,573/3bytes headroom;
-Vault24,544/32 unchanged. No default, compiler gate or safeguard was relaxed.
-Bounded public reads establish32M execution parameters, not full provider/fee
-or market acceptance. Never adopt the discovered RPC or policy2 automatically.
-
-The earlier [remaining271 reconciliation](reports/remaining-271-20261111/REVIEW.md)
-individually reviews every previously unreviewed row:271now plus39from the prior
-pass cover all310original records, without declaring all obligations resolved.
-That pass bounds initial keeper simulations, isolates predecessor
-execution profiles and harden offline catalogue admission. Eight source/test/
-runner files changed in that pass, without Solidity/artwork/rights/budget or environment changes.
-Use exact baseline and post-fix evidence separately; do not rerun unchanged suites.
-
-The fresh [reference-execution capability](docs/REFERENCE_SWAP_EXECUTION.md)
-is explicit execution_price1/LP-routing3. It captures both ETH/ZZZ source bounds
-for one transaction, proves the selected actual-core output/full post-state
-before settlement, then preserves live source freshness/agreement and final
-callback checks. Public Oracle reads stay live; no keeper-selected price or
-global cache is added. In ordinary captured execution a reviewed external reference may also swap,
-but cannot be the same-core PoPL principal destination. Priced manual fingerprints now use the same authenticated own-transition
-proof with fresh exact runtimes; the earlier rejected source stays historical. Policy/source changes,
-unplanned market movement and nested scope borrowing fail closed. The fixed
-existing Math child shares read-only work; no new deployed helper, custody
-recipient or authority is added. Accounting7/canonicalV10 and financial limits
-remain. Explicit matching consumers/configuration/runtime pins are required;
-omission/0 remains historical LP2. The [gas-feasibility follow-up](reports/gas-feasibility-20261111/REVIEW.md)
-shares one freshly read source-call ceiling only within each STATIC capture/full
-validation chain. No mutable-boundary proof,49-word codec, ABI/storage or limit
-is removed. The earlier15.32M/15.64M controlled calls retain their exact baseline
-scope. Current measurements, tight Oracle size and real32M chain-parameter reads
-are recorded separately;12M defaults and complete-operation qualification remain.
-See [review](reports/reference-execution-20261111/REVIEW.md) and [verification](reports/reference-execution-20261111/VERIFICATION.md).
-Source work changes no deployed contract, site/service, signer, existing
-Anvil/journal or user-paused heartbeat.
-
-The [11 November project review](reports/whole-project-review-20261111/REVIEW.md)
-removes unreachable third-currency LP scans while preserving all concrete ABIs,
-storage and current ETH/fixed-ZZZ rights. Compatibility historical-value reads
-return zero; royalty currencies and historical codecs remain separate. New
-runtime/source pins require explicit candidate/deployment review, not relabeling
-old profiles. The keeper now validates known simulation returns and rechecks
-generic-job deadline/day/cost after slow reads before intent/signing. ABI inputs
-are exact; indexer contract inventories reject duplicates before database work.
-Changing the ABI helper invalidates old source-pinned earnings checkpoints on
-consumer adoption: retain them/raw/WAL backups and explicitly rebuild/review.
-Website source packaging/new-demo intents are corrected without changing
-historical replay, public null configurations or the shared Anvil-only signer.
-No live site/service/chain/journal or paused-heartbeat change occurs.
-That earlier review retains its original source scope. Explicit execution-price1/
-LP3 above addresses swap/reference coupling; the service-only compound policy is explicitly retained;
-actual release qualification remains open. No financial guard was relaxed.
-
-
-The optional [pool-spot composite reader](docs/POOL_SPOT_PRICE_SOURCE.md) implements
-native-v4 ETH/fixed-ZZZ spot times reviewed ETH/USD. User explicitly chose spot
-for placement AND independent valuation; no TWAP is added. Placement already
-uses current main geometry/post-swap amounts. Prefer the largest qualifying
-external reference, with reviewed depth excluding PoPL LP; TVL/current L alone
-does not prove independence or bidirectional depth. Keep two genuinely
-independent ZZZ paths; two copies of one pool with different ETH feeds do not
-satisfy that review. Public pricing2 observations and economic guards remain; the new execution
-capability above requires exact fresh runtimes and explicit LP3 consumers.
-The reader is optional/unconfigured, with no source admission, deployment,
-service/site/Anvil/journal/signer or paused-heartbeat change. Actual pool, source
-ages/depth, second ZZZ reference, ETH publication/liveness and operating
-qualification remain open. [Scope](reports/composite-spot-price-20261109/REVIEW.md).
-
-
-The local [mint2/V10 website consumer](docs/SOURCE10_WEBSITE_PROFILE.md) now implements explicit
-website schema5/source10 over accounting7, with33 browser runtime pins and
-unsigned holdings, contribution and claim/history reviews. Source9/schema4/V9
-retains its original profile and evidence. Direct mint preparation is disabled
-for mint2; OpenSea eligibility is unverified. Both public configurations stay
-null, source10 never constructs the unchanged shared signer (even on Anvil),
-and served current3 poplint/popldemo, services, journals and existing Anvil8902
-are unchanged. [Verification](reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
-not actual market/provider/VRF/OpenSea/wallet/hosting or independent acceptance.
-
-
-Current total contribution default is300bps (3%):97% actually deployed LP,
-gas separate. User selected TOTAL activation/growth only; no swap/spot/retained-
-value, conversion1%, maintenance3%, additional1% or source-agreement3% guard is
-changed. [Policy/source evidence](reports/contribution-loss3-20261109/REVIEW.md) binds the new default/runtimes; old
-instances/caller200 reviews/journals and earlier market2% evidence remain explicit.
-No deployment/service/site/Anvil/signing change or market qualification is implied.
-
-Actual market dependencies remain unqualified. The [read-only follow-up](reports/market-followup-20261109/REVIEW.md)
-adds same-anchor feed/control/market evidence at110324511 (9November20:04:50UTC),
-an inactive API3 ETH candidate, authenticated offers and external exact-ZZZ market
-leads. Chainlink proxies still share one aggregator; stored Pyth ETH is stale and
-disagrees above300bps; no two qualified fixedZZZ USD sources are established.
-Tiny favorable conversion quotes exist but do not establish meaningful gas/depth
-or full-operation acceptance. The selected reverse pool remains exceptionally
-shallow; ordinary principal target/venue price bands must also overlap.
-Preserve source round/age/agreement and all execution guards. Do not duplicate a
-feed, infer independence from names/admin addresses, add synthetic depth, widen
-limits or replace USD truth with target-pool spot/USDT peg. API3 needs activation
-and separately reviewed round-compatible adaptation if selected; no adapter or
-subscription was added. Chainlink no longer expands uptime feeds to new networks;
-Robinhood liveness policy remains open. A retained header is not archive-state
-availability. Native-v4 principal and optional v3/WETH earned conversion remain
-distinct; zero immutable wrapper excludes v3 and fresh7 automation is native-v4
-only. No source/configuration/service/site/Anvil/journal/signer or paused-heartbeat
-change accompanies this qualification. Earlier reports keep their original scope.
-
-The [SeaDrop integration candidate](reports/opensea-integration-20261109/REVIEW.md) adds fresh mint2/helper1,
-canonicalV10 and schema17 with20 callable helpers plus2 inert data children.
-Initial sale:20free team,500allowlist at governed price(one per distinct
-listed address),480public FCFS. Unused allowlist rolls public; unused team
-stays reserved(false). Counts/caps/windows remain reviewed future settings,
-not supply resets. Lifetime original-recipient counts survive transfers
-and V10 import; do not reconstruct them from owners/balances. Exact pinned
-SeaDrop owns gross/fee/net settlement; NFT callbacks receive0ETH and direct
-Vault paid mint is disabled when the helper is bound. The metadata renderer
-is now predeployed; fresh NFT constructor has3arguments. [Procedure](docs/OPENSEA_MINT.md).
-Original source9/schema16/V9 consumers, existing Anvil8902, websites, signer,
-journals and paused heartbeat retain their exact old profiles. Backend
-read/claim and lineage support is implemented through explicit
-`mint_integration_version:2`, pinned helper/SeaDrop roles and V10 authentication;
-direct mint preparation returns Use OpenSea. Omission retains mint1/V9.
-Matching installed consumers/rollout, actual OpenSea onboarding/fees/payers/VRF/
-gas/operation and independent approval remain open. Source publication is not deployment.
-Inventory mint phase must match pinned block time; disabled mint-family counts
-are exact integer zero. V10 peers retain the same SeaDrop address/runtime;
-replacement is not transport rotation. See the [current double-check](reports/today-change-review-20261109/REVIEW.md).
-
-
-The [actual source9 Entry3 rehearsal](reports/source9-actual-entry-20261109/REVIEW.md)
-fixes the fresh7 fixed-ZZZ getter and actual initial/funded trace-epoch decoding.
-ETH/ZZZ activation and growth execute through real API/website unsigned reviews
-on a new owned fork; exact approvals, marginal LP, unchanged main geometry/clock,
-current-owner shares, confirmed metadata and atomic rollback are reconciled.
-Unmodified selected-pool depth fails the idle guard; successful cases explicitly
-use synthetic external depth and controlled feeds/VRF, not qualified live markets.
-Optional activation policy2 requires matching consumer/configuration, confirmed
-block gas bounds, full20% headroom and a network-fee ceiling; default1/12M stays.
-The shared signer is byte-identical, source9 never constructs it, both public
-configurations remain null. Existing8902, journals, popldemo/served current3
-poplint, services and the user-paused heartbeat are unchanged. Actual providers,
-market depth/routes, independent feeds, VRF/OpenSea, wallet/hosting/operating
-acceptance and independent audit remain open.
-
-The [unsigned operator management extension](reports/operator-management-20261109/REVIEW.md)
-adds typed park/resume/residual-only close and all four collective-exit steps for
-direct empty-code governance EOAs. It auto-reads exact custody/ledger hashes,
-preserves explicit floors/expiry and simulates frozen calldata/gas at confirmed
-state and a later canonical tip. Distribution uses the explicit reviewed batch
-budget and reports a count, never a paid prefix or guaranteed beneficiaries.
-Local blockers/uncertain output publication are explicit; no signer, journal,
-nonce reservation, queue, force fallback or authority change is added. Existing
-Active B/C/D and checkpoint2 retain their original scope. The new explicit
-schema2 Parked D adapter above completes unsigned preparation for that path;
-contract-wallet envelopes still require separate manual preparation. Seventy
-distinct focused checks plus an overlapping final CLI diagnostic recheck pass
-with injected RPC; seven encodings match offline Cast. These are not live wallet,
-provider, target-gas or operating acceptance. Solidity/runtime/profile, sites,
-services, existing Anvil/journals and paused heartbeat stay unchanged.
-
-[Fee-flow audit](reports/fee-flow-audit-20261107/REVIEW.md) fixes
-v3 final-native ETH pricing/wrapper18decimals, fresh7 affordable-prefix conversion
-and late deadline/UTC-day checks, strict simulation output and zero-noop earnings
-replay. Optional unsigned transaction policy2 adds reviewed operator gas limits
-(21k–64M engineering cap, confirmed-block bound, full20%headroom); policy1 remains
-12M/schema1. Policy2 requires explicitly matching consumers; no wallet signer,
-running configuration, service/site/Anvil/journal or heartbeat is changed.
-New normal87/46+2passes; strict532 has15current-context reviews/517unique exact
-referenced-source reuse. Converter executable changes only; Rewards metadata
-changes and all semantic storage/ABIs plus canonical object bytes are preserved.
-F3payload/parts stay byte-identical; source pins are rebound, never old runtimes.
-Actual11converter cases,338keeper passes+2explicit skips,28reader methods/fresh
-one-method wire producer and56API methods have separate source-scoped evidence;
-do not add overlapping stages. Actual routes/providers/gas/consumer rollout and
-independent approval remain open. [Verification](reports/fee-flow-audit-20261107/VERIFICATION.md).
-
-Reviewed2026-11-18. Read [context](PROJECT_CONTEXT.md), [README](README.md),
-[sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md) and the relevant
+Reviewed 19 November 2026. Read [context](PROJECT_CONTEXT.md), [README](README.md),
+[sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md),
+[current findings](docs/AUDIT_FINDINGS.md) and the relevant
 [operator procedure](docs/OPERATOR_MANUAL.md) before changing behavior.
-This file is current instructions, not a report timeline.
+This is current guidance; historical report chronology stays in reports and Git.
+
+## Current source, selected gas profile and evidence
+
+The trusted normal build remains `activation-final-six-20261118`, explicit
+Factory6/allocation2. The [latest consolidation](reports/seven-report-consolidation-20261119/REVIEW.md)
+reconciles seven subsequent report families and carries the original64-row registry
+forward without editing it or rerunning unchanged tests. All61 project sources,
+39 dependencies and4 build controls match the trusted F6 source maps.
+
+All13 controlled cold F6 scenarios pass20M with full20% padding and their financial
+checks; all six previous matched refusals close. Worst16,460,899 raw gas becomes
+19,753,079 padded. This is finite one-main/16-ERC20-plus-ETH/selected-order evidence,
+not64-currency/two-LP/all-order or target-market approval.
+
+The operator selected a [32M contribution candidate](config/activation-gas-32m.candidate.json)
+with full20% padding. Backend string32000000 must match website integer32000000;
+maximum admitted estimate26,666,666. Exact padded allowance, separate complete-fee,
+gas-price and funding bounds remain. Legacy12M defaults and24M/full25% keeper/manual
+profiles remain unchanged. This is off-chain configuration, not an immutable
+contract gas cap. Do not infer transaction capacity from Nitro's synthetic header
+or automatically change a running configuration. Actual provider/execution/fees
+and wider workloads remain unqualified. Discussion of dynamic budgeting did not
+authorize removing the selected ceiling or its fee/resource guards.
+
+Fresh F6 packs private royalty status/round coefficients and exact LP carry with
+full-width spill; transaction-only Pricing and masked Oracle reads retain all
+live source/control/callback proofs. Require exact new source/runtime/Factory
+pins and logical canonicalV10 import. Never copy older physical slots, relabel
+payload5/old deployments, journals or historical results. The separate mutable LP
+engine, exact current-owner original-currency rights, one-hour opening and fault
+cohorts remain. Corrected canonical prefund/import/abort handling stays required.
+
+The100-source normal graph passes48 unchanged size gates at its recorded source.
+Current runtime/headroom bytes: Royalty24562/14, Manager24459/117,
+Oracle23406/1170, Vault24544/32; Access full initcode48580/49152. Tight size is
+an engineering constraint, not constructor/provider/release acceptance.
+
+Q06 shutdown/signing and watchdog-failover source fixes remain. Its finite Linux
+recovery dispatcher/inert signer is not real Cast, the full normal daemon,
+off-host restore or soak acceptance. All owned rehearsal units/nodes are stopped;
+preserve unrelated host observations and the user-paused desktop heartbeat.
+
+The user selected spot for BOTH placement and independent valuation; do not add
+TWAP automatically. Require two genuinely independent ZZZ paths: two ETH feeds
+using the same ZZZ pool do not satisfy independence. Prefer reviewed external
+depth excluding PoPL LP; execution-price1/LP3 retains its same-core principal
+reference exclusion. See [spot source](docs/POOL_SPOT_PRICE_SOURCE.md) and
+[own-transition execution](docs/REFERENCE_SWAP_EXECUTION.md).
+
+Future-only Nitro `submission_fee_profile:2` adoption requires its exact reviewed
+chain4663/inclusive-fee/type2/priority0/configuration and captured fee-review2
+procedure. Omitted/profile1 and original pending identities stay unchanged;
+never roll older software over schema2 pending records or rewrite journals.
+See [adoption/recovery](docs/OPERATOR_MANUAL.md#robinhood-rpc-fees).
+
+Q01-Q07 remain release qualification: actual independent feeds/routes/depth,
+provider/complete fees, expanded workloads and fresh construction, authorities,
+OpenSea/VRF/content, matching consumer/operating recovery and independent approval.
+The deferred inaccurate Royalty inline status sketch is editorial; correct it
+only with a future justified source revision and fresh pins, not by changing
+this frozen qualified build solely for a comment.
 
 ## Conditional deployment sequence source boundary
 
@@ -630,10 +343,10 @@ universal automatic payout guarantee. All allocated rounding units are assignabl
 not all imaginable tokens transferable. Current-owner rights and outage cohorts
 remain. See [exact rules](docs/EXACT_ROYALTY_ALLOCATION.md).
 
-Default optional royalty sync gas is1m(existing100k–1m bounds). Fresh payload5 separately limits activation-only ERC20 balance reads to50000 gas by default (governed10000–1000000). Ordinary sync/claims/canonical balance reads retain their paths. Lowering either relevant allowance may
+Default optional royalty sync gas is1m(existing100k–1m bounds). Current F6 separately limits activation-only ERC20 balance reads to50000 gas by default (governed10000–1000000). Ordinary sync/claims/canonical balance reads retain their paths. Lowering either relevant allowance may
 defer healthy activation currencies; qualify actual behavior rather than inventing eligibility. Router32 is a count limit, not worst-case gas approval.
 Factory code-storage2 stores the source-owned constructor-derived royalty creation
-payload (fresh5 differs from historical3/4) in exactly2 immutable REVERT-prefix data children (offset3,maxdata24573).
+payload (fresh6 differs from historical3/4/5) in exactly2 immutable REVERT-prefix data children (offset3,maxdata24573).
 create checks exact part lengths/hashes, reconstructs and whole-hash verifies,
 then typed zero-value CREATE binds caller NFT/controller. No code setter or
 arbitrary code/recipient/salt. Schema14/code-owned part pins authenticate all38
