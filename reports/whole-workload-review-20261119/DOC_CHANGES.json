@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "baseline": "53ce73159004ec60031786b2c5c26af382dc1af7",
+  "baseline_backup": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\whole-workload-review-20261119-before\\MANIFEST.json",
+  "changes": [
+    {
+      "path": "AGENTS.md",
+      "before_sha256": "452ce6556bd0ddd5e0deed04eef2daa321427cca36220cac4adc3e4ea5252469",
+      "after_sha256": "249b4ff32fab8eede259399c2c1e4b0bdaacd5519961d0f156340987e1d9b887"
+    },
+    {
+      "path": "PROJECT_CONTEXT.md",
+      "before_sha256": "521486a16465e74fa8ff3b14dd637633fbf1cd3a90d721245d6613586f2784ff",
+      "after_sha256": "9c985070930ee555050902936a85fec8e34295a3634701f60641c6a4501a25d6"
+    },
+    {
+      "path": "README.md",
+      "before_sha256": "24991ca0bc08bbb03155c75842cb44ded84a1a23c646aee5f7cd272784b1766f",
+      "after_sha256": "a923a787e1bcdd6d9ddf40e27353b5eedb0e424d82666342cfc08f235f76381a"
+    },
+    {
+      "path": "TODO.md",
+      "before_sha256": "1b2f6e3ce0cc261f1819470c65e433f6fdc31411969e309194e8d9175ca714d0",
+      "after_sha256": "68155d9293fb18dafb822c5690b97a2712d13b87b5ebf3bf8af1647c18a38c83"
+    },
+    {
+      "path": "docs/AUDIT_FINDINGS.md",
+      "before_sha256": "108589ec4843acd95b46705a55d45218c47dc8a2f3e59c8afb0511b1b960c51b",
+      "after_sha256": "e9e18978ce2461bae7ea1df078cb2a70002cf16dcf1299798c1c8690df292012"
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "before_sha256": "117e062d98b86ba001791e5124708173a1f53c20ac810305ce53c67b8de96d13",
+      "after_sha256": "4b6da42360604fbd83706fab9fa0f56ae4a965f08fc778c8f9f0284cadb71578"
+    },
+    {
+      "path": "docs/FRONTEND_API.md",
+      "before_sha256": "0100741e536ce1ce7910d29d723fc674cb870fff21ef9d223bc4102d328051cb",
+      "after_sha256": "93e29339da88bc7966d230e097e3b8f7b8d8083de18b4945b5ead8b835c31d47"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "before_sha256": "b14f0828ec5b56aeca47ada80d61301fbe9cb6c3dbe06913ba9d97e358398793",
+      "after_sha256": "78823728f5c01f5b1a3f318ce9103d0e366d2b4b0b74a8146722ba1050f2d0ea"
+    },
+    {
+      "path": "docs/OPERATOR_MANUAL.md",
+      "before_sha256": "a0679ce0d43093d7ca1c2a48d440c1bc0c58542334a322a94e1cf8b9bee24d48",
+      "after_sha256": "3b50211eef59b593fd45cb7fe14d577ab5e85de33765d3881b28f9bb40f4d625"
+    },
+    {
+      "path": "docs/RELEASE_CHECKLIST.md",
+      "before_sha256": "9e649a2bd998321ca408211b85e274d842d59bcc185e57277342073ec3b622d7",
+      "after_sha256": "f53494eed6ddc50a1bfe93f02a2a4f5a15e4580645664520aad2fec6f0862275"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "before_sha256": "6a654480bb8723bdc665561046e1d1314c1325e1c755dfd107af8c7df7e5bb46",
+      "after_sha256": "6a329caed2b3f75f498929b396aebbb56c840f5a9b246b05e3c6b7af40040f64"
+    },
+    {
+      "path": "docs/WORK_HANDOFF.md",
+      "before_sha256": "3b6a2986e30f541a2200dead2a467c9bc2f0af359a025194d06840ed784ba24f",
+      "after_sha256": "46fbc3c3b092828cb5f63465bd5f93bf697d47e0bfa508f4c29059915c54fd8c"
+    },
+    {
+      "path": "reports/README.md",
+      "before_sha256": "66909efa9d2f6ef7d0d74491e43505bfeec776aa483327c839cdaca1e13fe1ad",
+      "after_sha256": "dc9c417dd3cafe89bb097f21794a2836c30bb2df454d3d59b2a9e3b7bae48447"
+    },
+    {
+      "path": "docs/project-todo.json",
+      "before_sha256": "d87c54704b7b0f91d6235919725a5af7703c8efb638b245200c83eb569bd80cd",
+      "after_sha256": "615624173e5320430a81404185ed4c09fde6a696ca881620248437bf92bcaab1"
+    },
+    {
+      "path": ".gitattributes",
+      "before_sha256": "16f8e13ddf8a4abdd2651dc52d6e7300fc7fa86364d181cd5032bcf7c94d2416",
+      "after_sha256": "0fbe121fe93c5d6e236df91fe5f8806794a4dc40d7c4a5b13cc78bcfdddcb0f4"
+    }
+  ]
+}

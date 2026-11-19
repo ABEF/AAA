@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Whole-project workload review](whole-workload-review-20261119/REVIEW.md)
+indexes all callable/internal/service source families, corrects the composed LP
+oracle and adds bounded same-block ownership pages. Nine affected/new market
+methods and13 new backend methods retain exact finite scopes;187 planned
+scenario classes and source inventory are not dynamic pass counts.
+
 The [19 November seven-report consolidation](seven-report-consolidation-20261119/REVIEW.md)
 is the current reconciliation. It carries the original64 IDs forward and assesses
 24 subsequent issues/decisions/limits across seven families, without rewriting

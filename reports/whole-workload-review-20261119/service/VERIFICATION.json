@@ -1,0 +1,169 @@
+{
+  "schema": 1,
+  "baseline_commit": "53ce73159004ec60031786b2c5c26af382dc1af7",
+  "source_changes": [
+    {
+      "path": "frontend_api/service.py",
+      "before_commit": "53ce73159004ec60031786b2c5c26af382dc1af7",
+      "before_sha256": "8c656d1d02ddc8ae6f42fd1cd74202416b6fa4fab8ac9d3aa9199a2624bc43d0",
+      "after_sha256": "af0e9f494721d11be4c027fdc15dc4bb6c40583eaa87e06cc704b035c6c2a1b9",
+      "tested_after_sha256": "d86c3ed656af4e7e58c61908c266c0ecc64720d94fb6f24769fc50fe96e6ea56",
+      "normalized_tested_and_final_sources_identical": true
+    },
+    {
+      "path": "frontend_api/server.py",
+      "before_commit": "53ce73159004ec60031786b2c5c26af382dc1af7",
+      "before_sha256": "36179f244bcb3a6f572cfb75c6ca90eb922d63510e9b0fa5df5bf38170bbf064",
+      "after_sha256": "fbc03cb184955bc53f111e61432a3f97986d06ce62321635854825930d8cdabd",
+      "tested_after_sha256": "fbc03cb184955bc53f111e61432a3f97986d06ce62321635854825930d8cdabd",
+      "normalized_tested_and_final_sources_identical": true
+    },
+    {
+      "path": "frontend_api/worker.py",
+      "before_commit": "53ce73159004ec60031786b2c5c26af382dc1af7",
+      "before_sha256": "a5c2c05addfeb7516638032e1c574a8437931d02cd34b3243b5bf714b1ca3b62",
+      "after_sha256": "c785da717e2dfd68a4a15f7b56f0a9375ef5ae1237cebc19b1e076f0e6b16da7",
+      "tested_after_sha256": "c785da717e2dfd68a4a15f7b56f0a9375ef5ae1237cebc19b1e076f0e6b16da7",
+      "normalized_tested_and_final_sources_identical": true
+    }
+  ],
+  "final_test_file": {
+    "path": "tests_python\\test_wallet_workload_bounds.py",
+    "sha256": "e4694833cded227f8bde1dcd36b724423c60860359a895ab1c1c31747ff2cf95"
+  },
+  "runs": [
+    {
+      "command": "python -m unittest tests_python.test_wallet_workload_bounds -v",
+      "executed_method_ids": [
+        "tests_python.test_wallet_workload_bounds.WalletWorkloadBoundsTests.test_legacy_complete_thousand_owner_request_exposes_default_budget_limit",
+        "tests_python.test_wallet_workload_bounds.WalletWorkloadBoundsTests.test_all_thousand_ids_are_verified_once_in_bounded_same_block_pages",
+        "tests_python.test_wallet_workload_bounds.WalletWorkloadBoundsTests.test_complete_is_only_true_when_the_page_verifies_the_whole_inventory",
+        "tests_python.test_wallet_workload_bounds.WalletWorkloadBoundsTests.test_invalid_cursor_types_and_unconfirmed_block_never_return_a_page",
+        "tests_python.test_wallet_workload_bounds.WalletWorkloadBoundsTests.test_missing_history_count_mismatch_and_wrong_selected_owner_fail_closed",
+        "tests_python.test_wallet_workload_bounds.WalletWorkloadBoundsTests.test_reorg_and_lost_confirmation_are_not_successful_partial_pages",
+        "tests_python.test_wallet_workload_bounds.WalletWorkloadBoundsTests.test_currency_outage_does_not_hide_confirmed_ownership",
+        "tests_python.test_wallet_workload_bounds.WalletWorkloadBoundsTests.test_changed_indexed_inventory_has_a_different_digest",
+        "tests_python.test_wallet_workload_bounds.WalletWorkloadBoundsTests.test_worker_child_client_and_pool_forward_the_explicit_page_action",
+        "tests_python.test_wallet_workload_bounds.WalletPageHTTPTests.test_explicit_page_route_and_legacy_route_stay_distinct",
+        "tests_python.test_wallet_workload_bounds.WalletPageHTTPTests.test_noncanonical_or_misaligned_route_cursor_does_not_start_work",
+        "tests_python.test_wallet_workload_bounds.WalletPageHTTPTests.test_upstream_failure_is_sanitized_and_not_a_partial_inventory"
+      ],
+      "new_methods": 12,
+      "exit_code": 0,
+      "duration_seconds": 15.529,
+      "tool_session_id": 85449,
+      "terminal_chunk_ids": [
+        "c8fae3",
+        "377b3f"
+      ],
+      "capture_kind": "Transcribed tool-output summary; not a retained raw independent log."
+    },
+    {
+      "command": "python -m unittest tests_python.test_wallet_workload_bounds.WalletWorkloadBoundsTests.test_first_thousand_holder_page_fits_with_sixteen_or_sixtyfour_currencies -v",
+      "executed_method_ids": [
+        "tests_python.test_wallet_workload_bounds.WalletWorkloadBoundsTests.test_first_thousand_holder_page_fits_with_sixteen_or_sixtyfour_currencies"
+      ],
+      "new_methods": 1,
+      "exit_code": 0,
+      "duration_seconds": 6.307,
+      "terminal_chunk_id": "91ecb7",
+      "capture_kind": "Transcribed tool-output summary; not a retained raw independent log."
+    }
+  ],
+  "distinct_new_methods": 13,
+  "repeated_method_ids": [],
+  "unchanged_old_methods_executed": 0,
+  "production_code_unchanged_between_two_run_stages": true,
+  "fixture_sources": {
+    "tests_python/test_exact_lp_profile7.py": "16c13274e3281c3393612e3dd87a927432e07bf414e16c3dab682d9ad4337e6d",
+    "tests_python/test_frontend_api.py": "a9334c246cb2ab5b073863dc1331a28fcbe3e4dec4e2912303ab1e6e7f8bd01c",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+    "frontend_api/http_runtime.py": "2237905a2ca33c99738e4fc0b77a42a383ff2df974b7493f27164dfd8f6f3548"
+  },
+  "workloads": {
+    "legacy_complete_wallet": {
+      "controlled_holders": 1000,
+      "result": "WorkLimit rpc_budget; exact1024logicalcalls assertion passed",
+      "limit_raised": false,
+      "complete_or_failed_semantics_preserved": true
+    },
+    "new_paginated_inventory": {
+      "controlled_holders": 1000,
+      "full_width_ids": true,
+      "pages": 63,
+      "page_size": 16,
+      "last_page_size": 8,
+      "all_identifiers_once": true,
+      "same_block_and_digest": true,
+      "maximum_actual_logical_calls": null,
+      "proven_logical_call_upper_bound": 1024,
+      "maximum_actual_result_bytes": null,
+      "proven_result_bytes_strict_upper_bound": 1048576,
+      "numeric_capture_limitation": "Actual numeric maxima were not printed or retained by the original passing methods; only assertions of these bounds are evidenced. No passed method was rerun to fabricate capture."
+    },
+    "currency_workloads": {
+      "erc20_counts": [
+        16,
+        64
+      ],
+      "native_eth_additional": true,
+      "metadata_states": [
+        "healthy",
+        "all_ERC20_runtime_metadata_faulted"
+      ],
+      "new_states": 4,
+      "owner_count": 1000,
+      "page_offset": 0,
+      "proven_logical_call_upper_bound": 1024,
+      "proven_result_bytes_strict_upper_bound": 1048576
+    }
+  },
+  "other_new_checks": [
+    "empty_and_small_complete_inventory",
+    "last_page_not_whole_complete",
+    "invalid_cursor_before_rpc",
+    "wrong_owner_or_balance_count",
+    "missing_history",
+    "reorg_and_confirmation_loss",
+    "currency_fault_ownership_isolation",
+    "changed_inventory_digest",
+    "worker_child_client_pool_dispatch",
+    "owned_loopback_HTTP_new_and_legacy_routes",
+    "strict_route_inputs",
+    "sanitized_failure_not_partial_response"
+  ],
+  "scope_limits": [
+    "Injected fresh7 V9 API/profile and controlled history ownership/provenance; no real market/provider/history completeness or current mint2 full rollout.",
+    "Actual provider latency, full lineage/provenance output bytes and browser pagination adoption are not qualified.",
+    "service.py source identity changes invalidate existing pinned checkpoint semantic-source admission until explicit reviewed rebuild/re-pin; no existing artifacts edited."
+  ],
+  "live_services_or_existing_state_changed": false,
+  "public_transactions": 0,
+  "rpc_network_requests": 0,
+  "post_run_format_cleanup": {
+    "files": [
+      "frontend_api/service.py"
+    ],
+    "only_added_line_endings_changed": true,
+    "normalized_source_bytes_identical": true,
+    "passed_methods_not_rerun": true
+  },
+  "reader_fixture_profile": {
+    "accounting_version": 7,
+    "mint_integration_version": 1,
+    "canonical_schema": "V9",
+    "royalty_reporting_schema": 5,
+    "runtime_contracts": "Injected synthetic Fresh7API fixture; original explicit old-profile scaffolding, not current normalF6 mint2 deployments.",
+    "full_F6_mint2_acceptance": false
+  },
+  "later_preseal_diagnostic_fix": {
+    "path": "preseal-diagnostic",
+    "scope": "CurrentF6 unsigned planner diagnostic and one affected assertion only. Before/final raw output and exact source hashes retained there.",
+    "affected_method": "tests_python.test_factory_payload6.FactoryPayload6Tests.test_fresh_six_remains_unknown_unapproved_and_preseal_unknown_inputs_stay_blocked",
+    "baseline_exit": 1,
+    "final_exit": 0,
+    "baseline_test_seconds": 3.462,
+    "final_test_seconds": 5.643,
+    "thirteen_wallet_methods_repeated": false
+  }
+}

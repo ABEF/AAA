@@ -1,0 +1,1508 @@
+{
+  "schema": 1,
+  "kind": "scenario_obligation_register_not_test_pass_ledger",
+  "plan": "docs/WORKLOAD_PLAN.json",
+  "classes": 187,
+  "service_subfamilies": 21,
+  "service_subfamily_partitions": 85,
+  "coverage_percentage": null,
+  "rule": "Partialfamilyevidenceisnotper-casepass; completecoveragecannotbeinferredfromnames,sourceinventoryorcounts.",
+  "scenarios": [
+    {
+      "id": "deployment:01",
+      "family": "deployment",
+      "scenario_class": "valid exact graph/normal constructors",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "deployment:02",
+      "family": "deployment",
+      "scenario_class": "zero/wrong chain/parent/token/runtime/dependency",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "deployment:03",
+      "family": "deployment",
+      "scenario_class": "failed child creation or wrong payload/part hash",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "deployment:04",
+      "family": "deployment",
+      "scenario_class": "size and constructor-gas boundaries",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "deployment:05",
+      "family": "deployment",
+      "scenario_class": "unknown inputs stay unsigned/blocked",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "deployment:06",
+      "family": "deployment",
+      "scenario_class": "repeat binding/bootstrap removal/seal irreversible boundaries",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "deployment:07",
+      "family": "deployment",
+      "scenario_class": "keeper/guardian/governance rotation and compromised-role revocation",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "deployment:08",
+      "family": "deployment",
+      "scenario_class": "source successor/importer graph versus original deployment",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "governed_policy:01",
+      "family": "governed_policy",
+      "scenario_class": "every setter min/exactmax/oneoutside and wrong units",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "governed_policy:02",
+      "family": "governed_policy",
+      "scenario_class": "zero/foreign/replayed reviewHash and same-value revision",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "governed_policy:03",
+      "family": "governed_policy",
+      "scenario_class": "future-only mint/minimum/payee terms versus existing rights",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "governed_policy:04",
+      "family": "governed_policy",
+      "scenario_class": "single contribution destination and four historical buckets",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "governed_policy:05",
+      "family": "governed_policy",
+      "scenario_class": "fresh calculated reservation ID and existing alias",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "governed_policy:06",
+      "family": "governed_policy",
+      "scenario_class": "deposits OFF versus operations OFF and broken dependencies",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "governed_policy:07",
+      "family": "governed_policy",
+      "scenario_class": "source/runtime/proxy/price policy change invalidates reviews",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "governed_policy:08",
+      "family": "governed_policy",
+      "scenario_class": "fixed ZZZ identity cannot be replaced after seal",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "mint_draw:01",
+      "family": "mint_draw",
+      "scenario_class": "team/allowlist/public stages and eligibility/fees",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "mint_draw:02",
+      "family": "mint_draw",
+      "scenario_class": "unused allowlist rollover versus reserved team slots",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "mint_draw:03",
+      "family": "mint_draw",
+      "scenario_class": "original recipient quota survives transfers and replacement",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "mint_draw:04",
+      "family": "mint_draw",
+      "scenario_class": "zero/one/999/1000 minted or less than sellout",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "mint_draw:05",
+      "family": "mint_draw",
+      "scenario_class": "old sale-end exact equality versus past/new future boundary",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "mint_draw:06",
+      "family": "mint_draw",
+      "scenario_class": "mint-only/global pause and direct mint disabled for SeaDrop",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "mint_draw:07",
+      "family": "mint_draw",
+      "scenario_class": "pending/failed/duplicate/outoforder/wrong-coordinator VRF",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "mint_draw:08",
+      "family": "mint_draw",
+      "scenario_class": "provider drain/rotation and no reroll/administrator traits",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "mint_draw:09",
+      "family": "mint_draw",
+      "scenario_class": "ERC721 ownership/approvals/operators/safe receiver callbacks",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "metadata:01",
+      "family": "metadata",
+      "scenario_class": "all four evolution states and exact trait mappings",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "metadata:02",
+      "family": "metadata",
+      "scenario_class": "LP exited distinct from Dormant and royalty eligibility retained",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "metadata:03",
+      "family": "metadata",
+      "scenario_class": "confirmed contribution versus unsigned/failed/pending changes",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "metadata:04",
+      "family": "metadata",
+      "scenario_class": "unavailable valuation distinct from zero or previous confirmed artwork",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "metadata:05",
+      "family": "metadata",
+      "scenario_class": "transfer/parked/imported/retired/terminal lifecycle",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "metadata:06",
+      "family": "metadata",
+      "scenario_class": "metadata batches0/1/50/51 and huge ID/URI cold reads",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "metadata:07",
+      "family": "metadata",
+      "scenario_class": "market-driven tier decrease/increase and refresh/caching failure",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "prices:01",
+      "family": "prices",
+      "scenario_class": "fresh/stale/future/zero/negative/roundmismatch price",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "prices:02",
+      "family": "prices",
+      "scenario_class": "3percent source-agreement edge and configured bound changes",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "prices:03",
+      "family": "prices",
+      "scenario_class": "human ZZZinETH inverse/raw orientation and decimals",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "prices:04",
+      "family": "prices",
+      "scenario_class": "genuinely independent ZZZ paths versus correlated copies",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "prices:05",
+      "family": "prices",
+      "scenario_class": "spot placement AND independent valuation; no automatic TWAP",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "prices:06",
+      "family": "prices",
+      "scenario_class": "external reference also execution venue with exact own-transition proof",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "prices:07",
+      "family": "prices",
+      "scenario_class": "same-core principal reference excluded",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "prices:08",
+      "family": "prices",
+      "scenario_class": "source/proxy/code/control change and revert/short/oversized returns",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "prices:09",
+      "family": "prices",
+      "scenario_class": "transient capture nested/reentrant/callback changes and cleanup",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "contributions:01",
+      "family": "contributions",
+      "scenario_class": "ETH and fixed ZZZ activation and growth",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Current composed Entry growth/activation/current-owner andmarginal/main-only assertions executed incontrolledboundedholderfixtures; not1000NFTcoldgas/allcurrencies.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "contributions:02",
+      "family": "contributions",
+      "scenario_class": "exact minima/rawunit/balance/allowance/input decimal boundaries",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Current composed Entry growth/activation/current-owner andmarginal/main-only assertions executed incontrolledboundedholderfixtures; not1000NFTcoldgas/allcurrencies.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "contributions:03",
+      "family": "contributions",
+      "scenario_class": "entrant-only source budgets and actual marginal MAIN LP",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Current composed Entry growth/activation/current-owner andmarginal/main-only assertions executed incontrolledboundedholderfixtures; not1000NFTcoldgas/allcurrencies.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "contributions:04",
+      "family": "contributions",
+      "scenario_class": "aggregate postcost NAV/share issuance with idle/compound/residual",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Current composed Entry growth/activation/current-owner andmarginal/main-only assertions executed incontrolledboundedholderfixtures; not1000NFTcoldgas/allcurrencies.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "contributions:05",
+      "family": "contributions",
+      "scenario_class": "zero/one/999/1000 members and differing activation order",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Current composed Entry growth/activation/current-owner andmarginal/main-only assertions executed incontrolledboundedholderfixtures; not1000NFTcoldgas/allcurrencies.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "contributions:06",
+      "family": "contributions",
+      "scenario_class": "same wallet many NFTs/mixed dormant and rarity/tier positions",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Current composed Entry growth/activation/current-owner andmarginal/main-only assertions executed incontrolledboundedholderfixtures; not1000NFTcoldgas/allcurrencies.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "contributions:07",
+      "family": "contributions",
+      "scenario_class": "existing residual identity/liquidity/clock/centre remain unchanged",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Current composed Entry growth/activation/current-owner andmarginal/main-only assertions executed incontrolledboundedholderfixtures; not1000NFTcoldgas/allcurrencies.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "contributions:08",
+      "family": "contributions",
+      "scenario_class": "source approval exact cleanup/refunds/callback ownership mutation",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Current composed Entry growth/activation/current-owner andmarginal/main-only assertions executed incontrolledboundedholderfixtures; not1000NFTcoldgas/allcurrencies.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "contributions:09",
+      "family": "contributions",
+      "scenario_class": "stale review/deadline/policy change and complete atomic rollback",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Current composed Entry growth/activation/current-owner andmarginal/main-only assertions executed incontrolledboundedholderfixtures; not1000NFTcoldgas/allcurrencies.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "contributions:10",
+      "family": "contributions",
+      "scenario_class": "all permitted 3percent-to-governed ceilings with stronger guards retained",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Current composed Entry growth/activation/current-owner andmarginal/main-only assertions executed incontrolledboundedholderfixtures; not1000NFTcoldgas/allcurrencies.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "physical_lp:01",
+      "family": "physical_lp",
+      "scenario_class": "single->hybrid->single repeated and mode pending",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Nine current composed market methods include actual localv4 main/residual transitions, with explicitmockaccess/registry/feed/VRF/directmint seams; noteverycase orcoldgas.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "physical_lp:02",
+      "family": "physical_lp",
+      "scenario_class": "active/one-sided/mixed/filled/outside residual and main",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Nine current composed market methods include actual localv4 main/residual transitions, with explicitmockaccess/registry/feed/VRF/directmint seams; noteverycase orcoldgas.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "physical_lp:03",
+      "family": "physical_lp",
+      "scenario_class": "at most two positions in same actual pool with Vault ownership",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Nine current composed market methods include actual localv4 main/residual transitions, with explicitmockaccess/registry/feed/VRF/directmint seams; noteverycase orcoldgas.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "physical_lp:04",
+      "family": "physical_lp",
+      "scenario_class": "main floor/residual ceiling at replacement not perpetual ratio",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Nine current composed market methods include actual localv4 main/residual transitions, with explicitmockaccess/registry/feed/VRF/directmint seams; noteverycase orcoldgas.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "physical_lp:05",
+      "family": "physical_lp",
+      "scenario_class": "spacing/gap/extreme ticks/range widths and truthful quote bounds",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Nine current composed market methods include actual localv4 main/residual transitions, with explicitmockaccess/registry/feed/VRF/directmint seams; noteverycase orcoldgas.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "physical_lp:06",
+      "family": "physical_lp",
+      "scenario_class": "natural ratio versus bounded partial single balancing swap",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Nine current composed market methods include actual localv4 main/residual transitions, with explicitmockaccess/registry/feed/VRF/directmint seams; noteverycase orcoldgas.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "physical_lp:07",
+      "family": "physical_lp",
+      "scenario_class": "external usable depth after our withdrawal and incomplete quote",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Nine current composed market methods include actual localv4 main/residual transitions, with explicitmockaccess/registry/feed/VRF/directmint seams; noteverycase orcoldgas.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "physical_lp:08",
+      "family": "physical_lp",
+      "scenario_class": "swap/mint/burn/refund callback mutations and exact asset deltas",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Nine current composed market methods include actual localv4 main/residual transitions, with explicitmockaccess/registry/feed/VRF/directmint seams; noteverycase orcoldgas.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "physical_lp:09",
+      "family": "physical_lp",
+      "scenario_class": "missing/unregistered/orphaned LP identity and wrong runtime",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Nine current composed market methods include actual localv4 main/residual transitions, with explicitmockaccess/registry/feed/VRF/directmint seams; noteverycase orcoldgas.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "physical_lp:10",
+      "family": "physical_lp",
+      "scenario_class": "in-range main requirement and corrupt residual containment negative",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Nine current composed market methods include actual localv4 main/residual transitions, with explicitmockaccess/registry/feed/VRF/directmint seams; noteverycase orcoldgas.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "strategy:01",
+      "family": "strategy",
+      "scenario_class": "85percent actual centre-to-boundary threshold both sides",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedcooldownobservation/contributionclock/reference-disagreementandordinaryrebalancejourneys run; everytimer/order/faultcombination notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "strategy:02",
+      "family": "strategy",
+      "scenario_class": "ours-only/reference-only/both same side/opposite side",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedcooldownobservation/contributionclock/reference-disagreementandordinaryrebalancejourneys run; everytimer/order/faultcombination notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "strategy:03",
+      "family": "strategy",
+      "scenario_class": "raw condition versus sampled readiness versus service jitter",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedcooldownobservation/contributionclock/reference-disagreementandordinaryrebalancejourneys run; everytimer/order/faultcombination notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "strategy:04",
+      "family": "strategy",
+      "scenario_class": "600second window/300maxgap/240poll/12h minimum boundaries",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedcooldownobservation/contributionclock/reference-disagreementandordinaryrebalancejourneys run; everytimer/order/faultcombination notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "strategy:05",
+      "family": "strategy",
+      "scenario_class": "return inside/sidechange/fault/geometry/policy resets",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedcooldownobservation/contributionclock/reference-disagreementandordinaryrebalancejourneys run; everytimer/order/faultcombination notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "strategy:06",
+      "family": "strategy",
+      "scenario_class": "paid observations during cooldown and deadline priority",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedcooldownobservation/contributionclock/reference-disagreementandordinaryrebalancejourneys run; everytimer/order/faultcombination notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "strategy:07",
+      "family": "strategy",
+      "scenario_class": "durable 60-300second jitter/restart/reset receipt provenance",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedcooldownobservation/contributionclock/reference-disagreementandordinaryrebalancejourneys run; everytimer/order/faultcombination notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "strategy:08",
+      "family": "strategy",
+      "scenario_class": "manual range or mode exception after cooldown",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedcooldownobservation/contributionclock/reference-disagreementandordinaryrebalancejourneys run; everytimer/order/faultcombination notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "strategy:09",
+      "family": "strategy",
+      "scenario_class": "contributions preserve stable identity and clocks",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedcooldownobservation/contributionclock/reference-disagreementandordinaryrebalancejourneys run; everytimer/order/faultcombination notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "fees_membership:01",
+      "family": "fees_membership",
+      "scenario_class": "hourly harvest independent from rebalance/compound/burn",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Independentwhole-unit model checksactualfeecredit/member/shareevents,componentclaimsandallocatedliabilityconservation inselectedjourneys.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "fees_membership:02",
+      "family": "fees_membership",
+      "scenario_class": "one/both-leg actual receipt and repeat zero harvest",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Independentwhole-unit model checksactualfeecredit/member/shareevents,componentclaimsandallocatedliabilityconservation inselectedjourneys.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "fees_membership:03",
+      "family": "fees_membership",
+      "scenario_class": "80/10/5/5 tiny/dust/large exact component conservation",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Independentwhole-unit model checksactualfeecredit/member/shareevents,componentclaimsandallocatedliabilityconservation inselectedjourneys.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "fees_membership:04",
+      "family": "fees_membership",
+      "scenario_class": "incumbent checkpoint/new member timing and equal collective weighting",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Independentwhole-unit model checksactualfeecredit/member/shareevents,componentclaimsandallocatedliabilityconservation inselectedjourneys.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "fees_membership:05",
+      "family": "fees_membership",
+      "scenario_class": "uneven LP shares versus royalty-only rarity",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Independentwhole-unit model checksactualfeecredit/member/shareevents,componentclaimsandallocatedliabilityconservation inselectedjourneys.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "fees_membership:06",
+      "family": "fees_membership",
+      "scenario_class": "claim before/between/after credit and internal harvest coalescing",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Independentwhole-unit model checksactualfeecredit/member/shareevents,componentclaimsandallocatedliabilityconservation inselectedjourneys.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "fees_membership:07",
+      "family": "fees_membership",
+      "scenario_class": "donation versus collected fee and reserve backing separation",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Independentwhole-unit model checksactualfeecredit/member/shareevents,componentclaimsandallocatedliabilityconservation inselectedjourneys.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "fees_membership:08",
+      "family": "fees_membership",
+      "scenario_class": "terminal LP earnings stop while prior rewards/royalties remain",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Independentwhole-unit model checksactualfeecredit/member/shareevents,componentclaimsandallocatedliabilityconservation inselectedjourneys.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "lp_claims:01",
+      "family": "lp_claims",
+      "scenario_class": "exact-unit hierarchical carry and zero-phase/full-width spills",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Tinyrawtail/claimorder/newentrant/transfer andcompleteallocatedunitdrain areexecuted; allpossibleuint256states,coldrouterbatchandconversionsequence remainseparate.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "lp_claims:02",
+      "family": "lp_claims",
+      "scenario_class": "tiny final unit/uneven shares/reweights/membership changes",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Tinyrawtail/claimorder/newentrant/transfer andcompleteallocatedunitdrain areexecuted; allpossibleuint256states,coldrouterbatchandconversionsequence remainseparate.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "lp_claims:03",
+      "family": "lp_claims",
+      "scenario_class": "claim order/partial claims/transfers before and after credit",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Tinyrawtail/claimorder/newentrant/transfer andcompleteallocatedunitdrain areexecuted; allpossibleuint256states,coldrouterbatchandconversionsequence remainseparate.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "lp_claims:04",
+      "family": "lp_claims",
+      "scenario_class": "selections0/1/31/32/33 duplicate NFTs/assets or wrong owners",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Tinyrawtail/claimorder/newentrant/transfer andcompleteallocatedunitdrain areexecuted; allpossibleuint256states,coldrouterbatchandconversionsequence remainseparate.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "lp_claims:05",
+      "family": "lp_claims",
+      "scenario_class": "faulty payout whole-batch rollback and healthy subsets",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Tinyrawtail/claimorder/newentrant/transfer andcompleteallocatedunitdrain areexecuted; allpossibleuint256states,coldrouterbatchandconversionsequence remainseparate.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "lp_claims:06",
+      "family": "lp_claims",
+      "scenario_class": "normal ETH settlement versus raw fixed-ZZZ outage recovery",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Tinyrawtail/claimorder/newentrant/transfer andcompleteallocatedunitdrain areexecuted; allpossibleuint256states,coldrouterbatchandconversionsequence remainseparate.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "lp_claims:07",
+      "family": "lp_claims",
+      "scenario_class": "conversion/import/claim never double-counts income or principal",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Tinyrawtail/claimorder/newentrant/transfer andcompleteallocatedunitdrain areexecuted; allpossibleuint256states,coldrouterbatchandconversionsequence remainseparate.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "lp_claims:08",
+      "family": "lp_claims",
+      "scenario_class": "same owner many differently funded NFTs and dormant exclusion",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Tinyrawtail/claimorder/newentrant/transfer andcompleteallocatedunitdrain areexecuted; allpossibleuint256states,coldrouterbatchandconversionsequence remainseparate.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "lp_claims:09",
+      "family": "lp_claims",
+      "scenario_class": "cold complete batch gas versus count cap and fresh smaller plan",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Tinyrawtail/claimorder/newentrant/transfer andcompleteallocatedunitdrain areexecuted; allpossibleuint256states,coldrouterbatchandconversionsequence remainseparate.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "royalties:01",
+      "family": "royalties",
+      "scenario_class": "ETH plus0/1/16/64 ERC20 capacity/admission",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "One selectedjourneykeepsrarityroyaltiesseparatethroughLPmodes/terminalexit; originalcurrencywidecapacity/fullcutover are notallrequalified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "royalties:02",
+      "family": "royalties",
+      "scenario_class": "prefund/preadmission/opening/orphaned/earned categories",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "One selectedjourneykeepsrarityroyaltiesseparatethroughLPmodes/terminalexit; originalcurrencywidecapacity/fullcutover are notallrequalified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "royalties:03",
+      "family": "royalties",
+      "scenario_class": "onehour cutoff before/exact/after and editable sale end",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "One selectedjourneykeepsrarityroyaltiesseparatethroughLPmodes/terminalexit; originalcurrencywidecapacity/fullcutover are notallrequalified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "royalties:04",
+      "family": "royalties",
+      "scenario_class": "zero initial active cohort versus later explicit recovery",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "One selectedjourneykeepsrarityroyaltiesseparatethroughLPmodes/terminalexit; originalcurrencywidecapacity/fullcutover are notallrequalified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "royalties:05",
+      "family": "royalties",
+      "scenario_class": "rarity1/2/3 GCD rotation/indivisible exact-unit allocation",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "One selectedjourneykeepsrarityroyaltiesseparatethroughLPmodes/terminalexit; originalcurrencywidecapacity/fullcutover are notallrequalified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "royalties:06",
+      "family": "royalties",
+      "scenario_class": "mint order versus activation order and owner transfers",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "One selectedjourneykeepsrarityroyaltiesseparatethroughLPmodes/terminalexit; originalcurrencywidecapacity/fullcutover are notallrequalified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "royalties:07",
+      "family": "royalties",
+      "scenario_class": "failed balance read/full-frame gas/repair protects earlier cohort",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "One selectedjourneykeepsrarityroyaltiesseparatethroughLPmodes/terminalexit; originalcurrencywidecapacity/fullcutover are notallrequalified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "royalties:08",
+      "family": "royalties",
+      "scenario_class": "new receipts between presync and activation/inclusion",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "One selectedjourneykeepsrarityroyaltiesseparatethroughLPmodes/terminalexit; originalcurrencywidecapacity/fullcutover are notallrequalified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "royalties:09",
+      "family": "royalties",
+      "scenario_class": "logical canonical import/prefund double classification/overflow/abort",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "One selectedjourneykeepsrarityroyaltiesseparatethroughLPmodes/terminalexit; originalcurrencywidecapacity/fullcutover are notallrequalified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "royalties:10",
+      "family": "royalties",
+      "scenario_class": "original currencies including failed/taxed/frozen/malformed token",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "One selectedjourneykeepsrarityroyaltiesseparatethroughLPmodes/terminalexit; originalcurrencywidecapacity/fullcutover are notallrequalified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "compound:01",
+      "family": "compound",
+      "scenario_class": "independent compound interval after latest rebalance/compound",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "compound:02",
+      "family": "compound",
+      "scenario_class": "zero/tiny/large attributed idle and designated reserve",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "compound:03",
+      "family": "compound",
+      "scenario_class": "harvest first then exact existing MAIN increase",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "compound:04",
+      "family": "compound",
+      "scenario_class": "software-only wait near/outside/pending geometry versus contract permissions",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "compound:05",
+      "family": "compound",
+      "scenario_class": "rebalance priority without blocking hourly harvesting",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "compound:06",
+      "family": "compound",
+      "scenario_class": "idle ceiling and contributions preserve incumbent funds",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "compound:07",
+      "family": "compound",
+      "scenario_class": "dust accumulates/recovered through authorized consolidation; no arbitrary sweep",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "conversion_burn:01",
+      "family": "conversion_burn",
+      "scenario_class": "funded fixed-ZZZ LP reward conversion to ETH per NFT/component",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "conversion_burn:02",
+      "family": "conversion_burn",
+      "scenario_class": "royalties remain original currencies without swaps",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "conversion_burn:03",
+      "family": "conversion_burn",
+      "scenario_class": "1percent loss versus actual fee/additional/caller floors",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "conversion_burn:04",
+      "family": "conversion_burn",
+      "scenario_class": "reviewed route/core/price own-transition/native settlement",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "conversion_burn:05",
+      "family": "conversion_burn",
+      "scenario_class": "exact source allowance/input/full output/refund and rollback",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "conversion_burn:06",
+      "family": "conversion_burn",
+      "scenario_class": "keeper prefix fairness/minimum economics/day/deadline recovery",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "conversion_burn:07",
+      "family": "conversion_burn",
+      "scenario_class": "fixed ZZZ buyback reserve and actual burn only",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "conversion_burn:08",
+      "family": "conversion_burn",
+      "scenario_class": "postexit validated reserve-only venue without reopening principal",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "manual_exit:01",
+      "family": "manual_exit",
+      "scenario_class": "Active/Parked guarded manual operations and explicit schemas",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedrawresidualclose/same-mainconsolidation/hybridrestart/wholemerge andterminaljourneys run; everymanualmask/state/contractwallet notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "manual_exit:02",
+      "family": "manual_exit",
+      "scenario_class": "close only residual versus consolidate into SAME main",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedrawresidualclose/same-mainconsolidation/hybridrestart/wholemerge andterminaljourneys run; everymanualmask/state/contractwallet notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "manual_exit:03",
+      "family": "manual_exit",
+      "scenario_class": "full replacement into reviewed new range/destination",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedrawresidualclose/same-mainconsolidation/hybridrestart/wholemerge andterminaljourneys run; everymanualmask/state/contractwallet notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "manual_exit:04",
+      "family": "manual_exit",
+      "scenario_class": "each emergency mask0..31 with required state/dependencies",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedrawresidualclose/same-mainconsolidation/hybridrestart/wholemerge andterminaljourneys run; everymanualmask/state/contractwallet notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "manual_exit:05",
+      "family": "manual_exit",
+      "scenario_class": "moving spot between reads/preparation/simulation/inclusion",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedrawresidualclose/same-mainconsolidation/hybridrestart/wholemerge andterminaljourneys run; everymanualmask/state/contractwallet notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "manual_exit:06",
+      "family": "manual_exit",
+      "scenario_class": "custody/portfolio/policy hashes role changes nonce/epoch and replay",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedrawresidualclose/same-mainconsolidation/hybridrestart/wholemerge andterminaljourneys run; everymanualmask/state/contractwallet notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "manual_exit:07",
+      "family": "manual_exit",
+      "scenario_class": "pause/unpause and price-unavailable raw close/recovery",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedrawresidualclose/same-mainconsolidation/hybridrestart/wholemerge andterminaljourneys run; everymanualmask/state/contractwallet notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "manual_exit:08",
+      "family": "manual_exit",
+      "scenario_class": "terminal begin/close/allocate/direct-push/retry under governance",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedrawresidualclose/same-mainconsolidation/hybridrestart/wholemerge andterminaljourneys run; everymanualmask/state/contractwallet notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "manual_exit:09",
+      "family": "manual_exit",
+      "scenario_class": "1000 NFTs mixed owners/dormant/rarity/shares and rejecting recipients",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedrawresidualclose/same-mainconsolidation/hybridrestart/wholemerge andterminaljourneys run; everymanualmask/state/contractwallet notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "manual_exit:10",
+      "family": "manual_exit",
+      "scenario_class": "ETH+ZZZ perNFT atomic delivery and no principal reopening",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Selectedrawresidualclose/same-mainconsolidation/hybridrestart/wholemerge andterminaljourneys run; everymanualmask/state/contractwallet notallqualified.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "canonical:01",
+      "family": "canonical",
+      "scenario_class": "all six domains and bounded batch0/1/8/9 boundaries",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "canonical:02",
+      "family": "canonical",
+      "scenario_class": "source freeze only after parked principal/residual closure/reveal/opening",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "canonical:03",
+      "family": "canonical",
+      "scenario_class": "exact domain roots/order/count/version/runtime and sole successor",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "canonical:04",
+      "family": "canonical",
+      "scenario_class": "logical raw full-width LP/royalty rows across fresh private codecs",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "canonical:05",
+      "family": "canonical",
+      "scenario_class": "mint original recipient/stage quotas and closed sale preserved",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "canonical:06",
+      "family": "canonical",
+      "scenario_class": "prefunds before/after sync and checked aggregate overflow",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "canonical:07",
+      "family": "canonical",
+      "scenario_class": "partial/duplicate/missing funding and abort after each stage",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "canonical:08",
+      "family": "canonical",
+      "scenario_class": "source reactivation only after complete restored backing",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "canonical:09",
+      "family": "canonical",
+      "scenario_class": "current-owner unpaid rights and cancelled-lineage recovery",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "canonical:10",
+      "family": "canonical",
+      "scenario_class": "contract holders/incompatible receivers/failed currencies remain explicit",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "internal_math:01",
+      "family": "internal_math",
+      "scenario_class": "exact asset deltas and malicious token/native behavior",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "internal_math:02",
+      "family": "internal_math",
+      "scenario_class": "LP hierarchical carry/reweight/phase arithmetic full-width boundaries",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "internal_math:03",
+      "family": "internal_math",
+      "scenario_class": "royalty exact rounds/GCD/cursor/monotonic enrollment",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "internal_math:04",
+      "family": "internal_math",
+      "scenario_class": "price math inverse/rounding/tick/liquidity/fee overflow boundaries",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "internal_math:05",
+      "family": "internal_math",
+      "scenario_class": "artwork fixed quotas/proofs/all four mappings",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "internal_math:06",
+      "family": "internal_math",
+      "scenario_class": "venue validation rejects wrong protocol/token/hook/runtime",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "shared_types_interfaces:01",
+      "family": "shared_types_interfaces",
+      "scenario_class": "exact typed interface/ABI/enum/unit relationships",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "shared_types_interfaces:02",
+      "family": "shared_types_interfaces",
+      "scenario_class": "fixed child/module caller and callback authority",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "shared_types_interfaces:03",
+      "family": "shared_types_interfaces",
+      "scenario_class": "declared interface versus actual pinned implementation",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "shared_types_interfaces:04",
+      "family": "shared_types_interfaces",
+      "scenario_class": "malformed/trailing return data and external dispatch boundaries",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "read_wallet_portfolio:01",
+      "family": "read_wallet_portfolio",
+      "scenario_class": "empty/dormant/active/exited/retired holdings",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Thirteennewmethodsexercisefixed-blockownershippages,notallportfolio/earningsorproviderlatency;1000IDs/63pagesand16/64currencyfirst-pagecontrolledstates.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "read_wallet_portfolio:02",
+      "family": "read_wallet_portfolio",
+      "scenario_class": "one wallet owns1000 versus mixed/different wallets",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Thirteennewmethodsexercisefixed-blockownershippages,notallportfolio/earningsorproviderlatency;1000IDs/63pagesand16/64currencyfirst-pagecontrolledstates.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "read_wallet_portfolio:03",
+      "family": "read_wallet_portfolio",
+      "scenario_class": "fixedblock inventory pages require every verified page",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Thirteennewmethodsexercisefixed-blockownershippages,notallportfolio/earningsorproviderlatency;1000IDs/63pagesand16/64currencyfirst-pagecontrolledstates.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "read_wallet_portfolio:04",
+      "family": "read_wallet_portfolio",
+      "scenario_class": "price/currency outage retains custody/raw rights",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Thirteennewmethodsexercisefixed-blockownershippages,notallportfolio/earningsorproviderlatency;1000IDs/63pagesand16/64currencyfirst-pagecontrolledstates.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "read_wallet_portfolio:05",
+      "family": "read_wallet_portfolio",
+      "scenario_class": "both-LP decomposition/NAV/marginal values and exact units",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Thirteennewmethodsexercisefixed-blockownershippages,notallportfolio/earningsorproviderlatency;1000IDs/63pagesand16/64currencyfirst-pagecontrolledstates.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "read_wallet_portfolio:06",
+      "family": "read_wallet_portfolio",
+      "scenario_class": "cache identity/config/runtime/owner change and no falsezero",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Thirteennewmethodsexercisefixed-blockownershippages,notallportfolio/earningsorproviderlatency;1000IDs/63pagesand16/64currencyfirst-pagecontrolledstates.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "unsigned_preparation:01",
+      "family": "unsigned_preparation",
+      "scenario_class": "every user/manual operator action exact typed inputs/value",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "unsigned_preparation:02",
+      "family": "unsigned_preparation",
+      "scenario_class": "two canonical anchors/deadline/configuration mutation",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "unsigned_preparation:03",
+      "family": "unsigned_preparation",
+      "scenario_class": "exact approvals/no unlimited allowance/no replay",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "unsigned_preparation:04",
+      "family": "unsigned_preparation",
+      "scenario_class": "complete simulation/trace/gas20percent or25percent/fee/funding bounds",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "unsigned_preparation:05",
+      "family": "unsigned_preparation",
+      "scenario_class": "localstage/cause diagnostics versus opaque unknown",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "unsigned_preparation:06",
+      "family": "unsigned_preparation",
+      "scenario_class": "no signing/deployment/seal/force fallback and safe artifact publication",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "history_indexer:01",
+      "family": "history_indexer",
+      "scenario_class": "canonical ingestion/reorg/removed event/duplicate/outoforder",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "history_indexer:02",
+      "family": "history_indexer",
+      "scenario_class": "exact LP/royalty credits/conversion/claim no double income",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "history_indexer:03",
+      "family": "history_indexer",
+      "scenario_class": "full86400second window/late events/missing prices",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "history_indexer:04",
+      "family": "history_indexer",
+      "scenario_class": "checkpoint schema/source/lineage mismatch rejects",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "history_indexer:05",
+      "family": "history_indexer",
+      "scenario_class": "SQLite lock/WAL/rollback/disk/partialwrite/loss/offhost restore",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "history_indexer:06",
+      "family": "history_indexer",
+      "scenario_class": "bounded1Mevents/32MiB/checkpointprefix/lineage9epochs",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "keeper_scheduler:01",
+      "family": "keeper_scheduler",
+      "scenario_class": "observations due/retry/globaljob faults/prioritization",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "keeper_scheduler:02",
+      "family": "keeper_scheduler",
+      "scenario_class": "pending/hashless intent/receipt/reorg/replaced nonce recovery",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "keeper_scheduler:03",
+      "family": "keeper_scheduler",
+      "scenario_class": "cooperative stop before sign and process descendants",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "keeper_scheduler:04",
+      "family": "keeper_scheduler",
+      "scenario_class": "real watchdog progress versus stalled headers/DNS/body",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "keeper_scheduler:05",
+      "family": "keeper_scheduler",
+      "scenario_class": "loss/gas/day/price budgets recheck after slow reads",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "keeper_scheduler:06",
+      "family": "keeper_scheduler",
+      "scenario_class": "hourly harvest coalescing/compound waits/burnconversion fairness",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "keeper_scheduler:07",
+      "family": "keeper_scheduler",
+      "scenario_class": "adopt profile2 onlyfuture exactpending identity no rollbackrelabelling",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "http_workers:01",
+      "family": "http_workers",
+      "scenario_class": "strict JSON duplicatefields/depth/body/header/query/decimal inputs",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Newownedloopbackroutes/legacycompatibility/sanitizedfailuresandworkerforwardingtested; notfullconcurrencycapacity/realhost.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "http_workers:02",
+      "family": "http_workers",
+      "scenario_class": "25s/1024calls/2048posts bound shared nestedrequests",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Newownedloopbackroutes/legacycompatibility/sanitizedfailuresandworkerforwardingtested; notfullconcurrencycapacity/realhost.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "http_workers:03",
+      "family": "http_workers",
+      "scenario_class": "ingress/connection/worker/client admission saturation/recovery",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Newownedloopbackroutes/legacycompatibility/sanitizedfailuresandworkerforwardingtested; notfullconcurrencycapacity/realhost.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "http_workers:04",
+      "family": "http_workers",
+      "scenario_class": "result1MiB/timeout/exception/workercrash no sensitive data",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Newownedloopbackroutes/legacycompatibility/sanitizedfailuresandworkerforwardingtested; notfullconcurrencycapacity/realhost.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "http_workers:05",
+      "family": "http_workers",
+      "scenario_class": "concurrent reads/preparations consistent isolated identity",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Newownedloopbackroutes/legacycompatibility/sanitizedfailuresandworkerforwardingtested; notfullconcurrencycapacity/realhost.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "http_workers:06",
+      "family": "http_workers",
+      "scenario_class": "no authorization bypass or retries after known global failures",
+      "evidence_disposition": "partial_new_family_evidence_requires_case_specific_mapping",
+      "scope": "Newownedloopbackroutes/legacycompatibility/sanitizedfailuresandworkerforwardingtested; notfullconcurrencycapacity/realhost.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "website_wallet:01",
+      "family": "website_wallet",
+      "scenario_class": "public simulation versus unsignedintegration nullconfig",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "website_wallet:02",
+      "family": "website_wallet",
+      "scenario_class": "exact network/account/provider permissions and accountchanges",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "website_wallet:03",
+      "family": "website_wallet",
+      "scenario_class": "rejection/approval/confirmation/noncegap/replacement/reload recovery",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "website_wallet:04",
+      "family": "website_wallet",
+      "scenario_class": "transaction submission ambiguity never automatic duplicate",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "website_wallet:05",
+      "family": "website_wallet",
+      "scenario_class": "NFT-local artwork onlyafter confirmed actual LP increase",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "website_wallet:06",
+      "family": "website_wallet",
+      "scenario_class": "aggregatewalletdata onlyafter sameanchor complete pages",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "website_wallet:07",
+      "family": "website_wallet",
+      "scenario_class": "wallets concurrent logicalactions and no crossuserstate",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "website_wallet:08",
+      "family": "website_wallet",
+      "scenario_class": "Anvil-only unchanged signer; public signing remainsdisabled",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "release_operations:01",
+      "family": "release_operations",
+      "scenario_class": "unsignedpreseal/constructor/binding exactIDs/payloads",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "release_operations:02",
+      "family": "release_operations",
+      "scenario_class": "secret-safe config/hash review/sourcepublication closure",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "release_operations:03",
+      "family": "release_operations",
+      "scenario_class": "immutablefinalpins unknown actual inputs stayblocked",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "release_operations:04",
+      "family": "release_operations",
+      "scenario_class": "service restart/lock/key rotation/offhost backup/fencing/recovery",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "release_operations:05",
+      "family": "release_operations",
+      "scenario_class": "OpenSea/VRF/providers/content/authorities actual acceptance",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    },
+    {
+      "id": "release_operations:06",
+      "family": "release_operations",
+      "scenario_class": "independent audit/remediation releaseapproval separatefrom localpasses",
+      "evidence_disposition": "existing_or_missing_evidence_not_reclassified_as_new_pass",
+      "scope": "Function/source inventory andscenarioobligation only; no automaticdynamiccoverage fromfamilymembership.",
+      "every_numeric_market_state_proved": false
+    }
+  ]
+}

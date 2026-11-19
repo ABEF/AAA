@@ -1,0 +1,6 @@
+test_fresh_six_remains_unknown_unapproved_and_preseal_unknown_inputs_stay_blocked (tests_python.test_factory_payload6.FactoryPayload6Tests.test_fresh_six_remains_unknown_unapproved_and_preseal_unknown_inputs_stay_blocked) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 5.643s
+
+OK

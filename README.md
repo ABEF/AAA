@@ -12,6 +12,9 @@ normal build is `activation-final-six-20261118` (factory payload6 / royalty allo
 contracts, services, journals or websites; public signing remains disabled.
 The [latest findings consolidation](reports/seven-report-consolidation-20261119/REVIEW.md)
 reconciles seven subsequent reports and retains all original finding IDs.
+The [whole-project workload review](reports/whole-workload-review-20261119/REVIEW.md)
+adds the full function/scenario map, corrected exact-unit market tests and bounded
+large-wallet ownership pages; it does not claim every scenario is qualified.
 
 The [current activation review](reports/activation-final-six-20261118/REVIEW.md)
 passes all 13 controlled cold scenarios at 20M with full 20% headroom, closing the

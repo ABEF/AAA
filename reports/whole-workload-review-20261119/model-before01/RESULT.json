@@ -1,0 +1,8 @@
+{
+  "exit_code": 0,
+  "sources_unchanged": true,
+  "foundry_unchanged": true,
+  "no_tests_collected": true,
+  "reason": "Regex anchored a function name without its parentheses; zero methods is not proof.",
+  "pass": false
+}

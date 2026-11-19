@@ -199,6 +199,7 @@ contract OptionalPortfolioCoreTest is Test {
         require(msg.sender==address(core));(uint8 mode,uint160 q)=abi.decode(data,(uint8,uint160));BalanceDelta delta;
         if(mode==0 || mode==3)(delta,)=core.modifyLiquidity(mode==0?key:targetKey,ModifyLiquidityParams(-60000,60000,int256(1_000_000 ether),bytes32(0)),"");
         else if(mode==2)delta=core.donate(key,10 ether,10 ether,"");
+        else if(mode==6)delta=core.donate(key,uint256(q),uint256(q),""); // TEST ONLY raw-unit donations.
         // TEST ONLY: the external seed provider removes its OWN position. The
         // Vault's physical main, idle and permissions are not modified here.
         else if(mode==4)(delta,)=core.modifyLiquidity(key,ModifyLiquidityParams(-60000,60000,-int256(999_999 ether),bytes32(0)),"");
@@ -1078,12 +1079,19 @@ contract OptionalPortfolioCoreTest is Test {
         _longMainOnlyEntry(BOB,bob,address(0),150e18,false);_longPortfolio(bucket,alice,bob,203);
     }
 
-    // Independent test ledger: replay actual funded-credit events against the
-    // PRE-operation ownership of shares and collective membership. No production
-    // reward index, paid index, fraction or accrued getter supplies this model.
-    mapping(uint256=>uint256[2]) private marketScaled;
-    mapping(uint256=>uint256[2]) private marketCollectiveScaled;
-    mapping(uint256=>uint256[2]) private marketClaimed;
+    // Independent EAGER whole-unit oracle. Production lazily settles paths and
+    // packs phases; this small-fixture model immediately assigns every receipt
+    // through the fixed 1024-leaf hierarchy with one rational remainder formula.
+    // No production allocation, phase, pending or accrued getter supplies it.
+    // Books0/1 are individual ETH/ZZZ;2/3 are collective ETH/ZZZ.
+    uint256 private constant MARKET_Q=uint256(1)<<128;
+    mapping(uint256=>uint256[4]) private marketEarned;
+    mapping(uint256=>uint256[4]) private marketClaimed;
+    mapping(uint256=>uint256[2]) private marketWeight;
+    mapping(uint256=>uint256[4]) private marketHigh;
+    mapping(uint256=>uint256[4]) private marketLow;
+    uint256[2] private marketCredited;
+    uint256[2] private marketPaid;
     struct MarketMembers { uint256[] shares; bool[] eligible; uint256 supply; uint256 count; }
     function _marketMembers() private view returns(MarketMembers memory m) {
         uint256 count=nft.mintedCount();m.shares=new uint256[](count);m.eligible=new bool[](count);
@@ -1092,19 +1100,68 @@ contract OptionalPortfolioCoreTest is Test {
             m.supply+=m.shares[i];if(m.eligible[i])++m.count;
         }
     }
+    function _marketSetWeight(uint256 ordinal,uint256 weight,uint256 kind) private {
+        assertTrue(ordinal>0&&ordinal<=1000);uint256 leaf=1024+ordinal-1;
+        if(marketWeight[leaf][kind]==weight)return; // A no-op cannot reset phase.
+        marketWeight[leaf][kind]=weight;
+        for(uint256 node=leaf>>1;node!=0;node>>=1){
+            uint256 old=marketWeight[node][kind];
+            uint256 next=marketWeight[node<<1][kind]+marketWeight[(node<<1)|1][kind];
+            marketWeight[node][kind]=next;
+            for(uint256 asset;asset<2;++asset){uint256 book=kind*2+asset;
+                marketLow[node][book]=old==0||next==0?0:Math.mulDiv(marketLow[node][book],next,old);
+            } // Preserve high phase, even through an empty cohort.
+        }
+    }
+    function _marketCredit(uint256 amount,uint256 book,uint256 node) private {
+        if(amount==0)return; // No incoming units means no phase change.
+        if(node>=1024){uint256 ordinal=node-1024+1;assertLe(ordinal,1000);
+            marketEarned[nft.tokenAtOrdinal(ordinal)][book]+=amount;return;
+        }
+        uint256 kind=book/2;uint256 total=marketWeight[node][kind];
+        assertGt(total,0);assertLe(total,type(uint256).max/(2*MARKET_Q),"bounded eager oracle domain");
+        uint256 leftWeight=marketWeight[node<<1][kind];
+        uint256 whole=Math.mulDiv(amount,leftWeight,total);
+        // Decompose the integer quotient before forming the rational phase:
+        // this avoids amount*weight*Q overflow without copying the engine's
+        // two-fold carry implementation or reading any production phase.
+        uint256 numerator=mulmod(amount,leftWeight,total)*MARKET_Q
+            +marketHigh[node][book]*total+marketLow[node][book];
+        uint256 denominator=total*MARKET_Q;
+        uint256 left=whole+numerator/denominator;uint256 rest=numerator%denominator;
+        marketHigh[node][book]=rest/total;marketLow[node][book]=rest%total;
+        _marketCredit(left,book,node<<1);_marketCredit(amount-left,book,(node<<1)|1);
+    }
     function _marketReplay(Vm.Log[] memory logs,MarketMembers memory m) private {
-        bytes32 signature=keccak256("PoolRewardsCredited(uint256,address,uint256,uint256)");
+        // Establish the pre-operation state independently of emitted weights.
+        for(uint256 i;i<m.shares.length;++i){
+            assertEq(marketWeight[1024+i][0],m.shares[i],"pre-operation individual weight");
+            assertEq(marketWeight[1024+i][1],m.eligible[i]?1:0,"pre-operation membership weight");
+        }
+        bytes32 credit=keccak256("PoolRewardsCredited(uint256,address,uint256,uint256)");
+        bytes32 share=keccak256("ShareWeightSynchronized(uint256,uint256,uint256,uint256,uint256,uint256)");
+        bytes32 member=keccak256("CollectiveWeightSynchronized(uint256,uint256,uint256,uint256,uint256)");
         for(uint256 j;j<logs.length;++j){Vm.Log memory log=logs[j];
-            if(log.emitter!=address(rewards) || log.topics.length!=3 || log.topics[0]!=signature)continue;
-            assertEq(uint256(log.topics[1]),vault.poolBucket(pool));
-            address asset=address(uint160(uint256(log.topics[2])));assertTrue(asset==address(0)||asset==address(token));
-            (uint256 personal,uint256 shared)=abi.decode(log.data,(uint256,uint256));
-            assertGt(m.supply,0);assertGt(m.count,0);
-            uint256 ownerDelta=Math.mulDiv(personal,1e36,m.supply);
-            uint256 equalDelta=Math.mulDiv(shared,1e36,m.count);uint256 k=asset==address(0)?0:1;
-            for(uint256 i;i<m.shares.length;++i){uint256 id=nft.tokenAtOrdinal(i+1);
-                marketScaled[id][k]+=m.shares[i]*ownerDelta;
-                marketCollectiveScaled[id][k]+=m.eligible[i]?equalDelta:0;
+            if(log.emitter!=address(rewards)||log.topics.length==0)continue;
+            if(log.topics[0]==credit){
+                assertEq(log.topics.length,3);assertEq(uint256(log.topics[1]),vault.poolBucket(pool));
+                address asset=address(uint160(uint256(log.topics[2])));assertTrue(asset==address(0)||asset==address(token));
+                (uint256 personal,uint256 shared)=abi.decode(log.data,(uint256,uint256));
+                uint256 k=asset==address(0)?0:1;_marketCredit(personal,k,1);_marketCredit(shared,k+2,1);
+                marketCredited[k]+=personal+shared;
+            }else if(log.topics[0]==share){
+                assertEq(log.topics.length,3);uint256 id=uint256(log.topics[1]);
+                assertEq(uint256(log.topics[2]),vault.poolBucket(pool));
+                (uint256 ordinal,uint256 previous,uint256 weight,uint256 total)=abi.decode(log.data,(uint256,uint256,uint256,uint256));
+                assertEq(ordinal,nft.mintOrdinalOf(id));assertEq(marketWeight[1024+ordinal-1][0],previous);
+                _marketSetWeight(ordinal,weight,0);assertEq(marketWeight[1][0],total);
+            }else if(log.topics[0]==member){
+                assertEq(log.topics.length,2);uint256 id=uint256(log.topics[1]);
+                (uint256 ordinal,uint256 previous,uint256 weight,uint256 total)=abi.decode(log.data,(uint256,uint256,uint256,uint256));
+                assertEq(ordinal,nft.mintOrdinalOf(id));assertEq(marketWeight[1024+ordinal-1][1],previous);
+                _marketSetWeight(ordinal,weight,1);assertEq(marketWeight[1][1],total);
+            }else if(log.topics[0]==keccak256("LPRewardsConverted(uint256,address,uint256,uint256,uint256,uint256)")){
+                revert("This raw-unit lifecycle oracle does not model conversions");
             }
         }
     }
@@ -1137,14 +1194,18 @@ contract OptionalPortfolioCoreTest is Test {
             uint256 weight=nft.royaltyRewards().weightOf(id);
             assertEq(weight,m.eligible[i]?uint256(nft.rarityOf(id))+1:0);royaltyWeights+=weight;
             for(uint256 k;k<2;++k){address asset=k==0?address(0):address(token);
-                uint256 claim=_marketExpectedClaim(id,k);
-                assertEq(rewards.claimable(id,asset),claim,"independent receipt model");claims[k]+=claim;
+                (uint256 personal,uint256 shared)=_marketExpectedComponents(id,k);
+                (uint256 actualPersonal,uint256 actualShared)=rewards.claimableComponents(id,asset);
+                assertEq(actualPersonal,personal,"independent exact individual units");
+                assertEq(actualShared,shared,"independent exact collective units");
+                uint256 claim=personal+shared;assertEq(rewards.claimable(id,asset),claim,"independent receipt model");claims[k]+=claim;
             }
         }
         assertLe(marked,nav);assertLt(nav-marked,nft.mintedCount());
         assertEq(nft.royaltyRewards().totalWeight(),royaltyWeights);
         for(uint256 k;k<2;++k){address asset=k==0?address(0):address(token);
-            assertLe(claims[k],rewards.liabilities(asset));
+            assertEq(claims[k],rewards.liabilities(asset),"every allocated whole unit has an NFT claimant");
+            assertEq(marketCredited[k]-marketPaid[k],claims[k],"actual receipt credit less actual claims");
             uint256 rewardBalance=k==0?address(rewards).balance:token.balanceOf(address(rewards));
             uint256 feeBalance=k==0?address(fees).balance:token.balanceOf(address(fees));
             uint256 vaultBalance=k==0?address(vault).balance:token.balanceOf(address(vault));
@@ -1200,14 +1261,15 @@ contract OptionalPortfolioCoreTest is Test {
         assertEq(manager.secondaryId(oldMain),0);assertFalse(policy.configurationPending(bucket));_marketAssert(bucket);
     }
     function _marketClaim(uint256 id,uint256 k) private {
-        uint256 expected=_marketExpectedClaim(id,k);
+        (uint256 personal,uint256 shared)=_marketExpectedComponents(id,k);uint256 expected=personal+shared;
         assertEq(_claimExactly(id,nft.ownerOf(id),k==0?address(0):address(token)),expected);
-        marketClaimed[id][k]+=expected;
+        marketClaimed[id][k]+=personal;marketClaimed[id][k+2]+=shared;marketPaid[k]+=expected;
+    }
+    function _marketExpectedComponents(uint256 id,uint256 k) private view returns(uint256 personal,uint256 shared){
+        personal=marketEarned[id][k]-marketClaimed[id][k];shared=marketEarned[id][k+2]-marketClaimed[id][k+2];
     }
     function _marketExpectedClaim(uint256 id,uint256 k) private view returns(uint256){
-        // Individual and equal-collective fractions are distinct entitlements;
-        // joining their sub-unit remainders would invent a spendable raw unit.
-        return marketScaled[id][k]/1e36+marketCollectiveScaled[id][k]/1e36-marketClaimed[id][k];
+        (uint256 personal,uint256 shared)=_marketExpectedComponents(id,k);return personal+shared;
     }
     function _marketJourney(bool rising) private {
         access.beginBootstrap();ZZZCompounder compounder=new ZZZCompounder(address(access));
@@ -1353,6 +1415,59 @@ contract OptionalPortfolioCoreTest is Test {
         uint256 recipientBefore=BOB.balance;vm.prank(BOB);royalties.claim(alice,address(0));assertEq(BOB.balance-recipientBefore,6 ether);
         assertEq(membership.totalEligible(),2);assertEq(royalties.totalWeight(),4);
         (bool available,uint256 value)=nft.currentLPValue(alice);assertTrue(available);assertEq(value,0);
+    }
+    function _marketRawDonation(uint160 amount) private {
+        core.unlock(abi.encode(uint8(6),amount));
+    }
+    function _marketDrain(uint256 first,uint256 second) private {
+        for(uint256 k;k<2;++k){_marketClaim(first,k);_marketClaim(second,k);}
+    }
+    function testMarketCampaignExactUnitsClaimOrderDustActivationAndTransfer() public {
+        registry.setMinimum(5e18);uint256 alice=_marketMint(ALICE,0);uint256 bob=_marketMint(BOB,2);
+        _marketEntry(ALICE,alice,address(0),1000e18,false);_marketEntry(BOB,bob,address(token),100e18,false);
+        uint256 bucket=vault.nftBucket(alice);_marketRawDonation(100003);_marketHarvest(bucket);
+        assertGt(rewards.liabilities(address(0))+rewards.liabilities(address(token)),0);
+        uint256 snapshot=vm.snapshotState();_marketDrain(alice,bob);_marketAssert(bucket);
+        assertEq(rewards.liabilities(address(0))+rewards.liabilities(address(token)),0,"no allocated rounding unit stranded");
+        _marketRawDonation(100019);_marketHarvest(bucket);uint256[4] memory next;
+        next[0]=rewards.claimable(alice,address(0));next[1]=rewards.claimable(bob,address(0));
+        next[2]=rewards.claimable(alice,address(token));next[3]=rewards.claimable(bob,address(token));
+        assertTrue(vm.revertToState(snapshot));_marketDrain(bob,alice);_marketRawDonation(100019);_marketHarvest(bucket);
+        assertEq(rewards.claimable(alice,address(0)),next[0]);assertEq(rewards.claimable(bob,address(0)),next[1]);
+        assertEq(rewards.claimable(alice,address(token)),next[2]);assertEq(rewards.claimable(bob,address(token)),next[3]);
+        uint256 newcomer=_marketMint(ALICE,1);_marketEntry(ALICE,newcomer,address(0),100e18,false);
+        assertEq(_marketExpectedClaim(newcomer,0)+_marketExpectedClaim(newcomer,1),0,"pre-entry dust stays with incumbents");
+        _marketEntry(ALICE,alice,address(token),5e18,true);_marketRawDonation(100043);_marketHarvest(bucket);
+        vm.prank(ALICE);nft.transferFrom(ALICE,BOB,alice);
+        vm.prank(ALICE);vm.expectRevert(ZZZModule.Unauthorized.selector);rewards.claim(alice,address(0));
+        _marketDrain(bob,alice);for(uint256 k;k<2;++k)_marketClaim(newcomer,k);_marketAssert(bucket);
+        assertEq(rewards.liabilities(address(0))+rewards.liabilities(address(token)),0);
+    }
+    function testMarketCampaignExactRightsSurviveRawCloseConsolidationAndHybridRestart() public {
+        registry.setMinimum(5e18);uint256 alice=_marketMint(ALICE,0);uint256 bob=_marketMint(BOB,1);
+        _marketEntry(ALICE,alice,address(0),1000e18,false);_marketEntry(BOB,bob,address(token),100e18,false);
+        uint256 bucket=vault.nftBucket(alice);policy.setMode(pool,true,keccak256("EXACT CAMPAIGN HYBRID"));
+        _move(uint160(uint256(vault.group(bucket).centerX96)*83/100));_marketRebalance(bucket);
+        uint256 main=vault.group(bucket).lpTokenId;uint256 aux=manager.secondaryId(main);assertGt(aux,0);
+        (int24 lower,int24 upper)=manager.ticks(aux);_move(TickMath.getSqrtPriceAtTick((lower+upper)/2));
+        _marketRawDonation(100003);_marketHarvest(bucket);_marketClaim(bob,0);
+        policy.setMode(pool,false,keccak256("EXACT CAMPAIGN SINGLE"));
+        ZZZMigration.ParkingRequest memory raw=_residualReview(bucket);MarketMembers memory members=_marketMembers();
+        Position memory beforePosition=vault.group(bucket);uint256 supply=vault.bucketTotalShares(bucket);
+        access.setPaused(true);vm.recordLogs();migration.closeResidual(raw);_marketReplay(vm.getRecordedLogs(),members);_marketAssert(bucket);
+        assertEq(vault.group(bucket).lpTokenId,main);assertEq(manager.activeSecondaryCount(),0);
+        assertEq(vault.bucketTotalShares(bucket),supply);assertGt(vault.group(bucket).idle0+vault.group(bucket).idle1,0);
+        EmergencyRebalance memory request=_consolidationReview(bucket,false);members=_marketMembers();
+        vm.recordLogs();migration.consolidateResidual(request,false);_marketReplay(vm.getRecordedLogs(),members);_marketAssert(bucket);
+        assertEq(vault.group(bucket).lpTokenId,main);assertEq(vault.group(bucket).lastRebalance,beforePosition.lastRebalance);
+        assertFalse(policy.enabled(pool));assertTrue(access.paused());access.setPaused(false);
+        uint256 newcomer=_marketMint(BOB,2);_marketEntry(BOB,newcomer,address(0),100e18,false);_marketEntry(ALICE,alice,address(token),5e18,true);
+        policy.setMode(pool,true,keccak256("EXACT CAMPAIGN RESTART"));
+        _move(uint160(uint256(vault.group(bucket).centerX96)*83/100));_marketRebalance(bucket);
+        assertGt(manager.secondaryId(vault.group(bucket).lpTokenId),0);_marketRawDonation(100019);_marketHarvest(bucket);
+        policy.setMode(pool,false,keccak256("EXACT CAMPAIGN WHOLE MERGE"));_marketRebalance(bucket);
+        assertEq(manager.activeSecondaryCount(),0);_marketDrain(newcomer,bob);for(uint256 k;k<2;++k)_marketClaim(alice,k);_marketAssert(bucket);
+        assertEq(rewards.liabilities(address(0))+rewards.liabilities(address(token)),0);
     }
     function _manualAuditRawRequest(uint256 bucket) private view returns(EmergencyRebalance memory r){
         int24 tick=TickMath.getTickAtSqrtPrice(manager.spot(pool));int24 aligned=tick/200*200;

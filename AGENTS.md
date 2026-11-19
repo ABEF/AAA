@@ -6,6 +6,29 @@ Reviewed 19 November 2026. Read [context](PROJECT_CONTEXT.md), [README](README.m
 [operator procedure](docs/OPERATOR_MANUAL.md) before changing behavior.
 This is current guidance; historical report chronology stays in reports and Git.
 
+## Whole-project workload and evidence maintenance
+
+Use [the workload map](docs/WORKLOAD_COVERAGE.md) and
+[current workload review](reports/whole-workload-review-20261119/REVIEW.md), not only
+activation gas, when selecting verification. The source-pinned map covers all
+1,021 ABI rows, implemented internal/private code, modifiers and production Python;
+187 scenario classes plus finer service partitions are obligations, not passes.
+Run the inventory's offline `--check` after relevant source/plan changes. The
+normal verifier now includes it; future source/reference changes need reviewed
+new trust pins and regeneration rather than bypassing the check.
+
+The composed market test uses an independent eager exact-unit oracle; the old
+scaled1e36 LP model is historical. Nine affected/new localv4 methods pass with
+explicit mock/direct-mint seams; aggregate body gas is not cold32M qualification.
+The additive wallet-page API verifies at most16IDs per confirmed block/page;
+all pages and matching owner/chain/NFT/configuration/digest/count are required
+for a complete large wallet. Legacy complete inventory is complete-or-failed.
+13 new backend methods cover1,000IDs/63pages and selected16/64currency states.
+Changing service.py changes checkpoint semantic-source identity. Retain original
+checkpoint/review/raw DB bytes; explicitly rebuild/review/re-pin on separately
+authorized consumer adoption. Websites, running services and old checkpoints
+are not automatically upgraded. No gas/fee/work limit or financial right changes.
+
 ## Current source, selected gas profile and evidence
 
 The trusted normal build remains `activation-final-six-20261118`, explicit

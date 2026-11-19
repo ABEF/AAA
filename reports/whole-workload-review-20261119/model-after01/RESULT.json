@@ -1,0 +1,73 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 249.70299999999952,
+  "methods": [
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignBearBullCohortsThroughRepeatedOneTwoOneModes()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 472271049,
+      "gas_is_cold_transaction_qualification": false
+    },
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignBothOutsideInputsStayInMainWithoutRecentering()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 89106561,
+      "gas_is_cold_transaction_qualification": false
+    },
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignBullBearCohortsThroughRepeatedOneTwoOneModes()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 473207447,
+      "gas_is_cold_transaction_qualification": false
+    },
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignExactRightsSurviveRawCloseConsolidationAndHybridRestart()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 123089177,
+      "gas_is_cold_transaction_qualification": false
+    },
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignExactUnitsClaimOrderDustActivationAndTransfer()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 79640248,
+      "gas_is_cold_transaction_qualification": false
+    },
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignFeedDisagreementRejectsEntryThenRecoversWithoutLostRights()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 45877243,
+      "gas_is_cold_transaction_qualification": false
+    },
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignMixedResidualPendingMergeTransferAndNewEntries()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 85259205,
+      "gas_is_cold_transaction_qualification": false
+    },
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignOrdinarySamplesSurviveEntryAndGrowWithoutClockReset()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 53207529,
+      "gas_is_cold_transaction_qualification": false
+    },
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignRoyaltyEntitlementsStaySeparateThroughLPModeChangesAndExit()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 49392169,
+      "gas_is_cold_transaction_qualification": false
+    }
+  ],
+  "source_bracket_stable": true,
+  "foundry_unchanged": true,
+  "scope": "Seven affected existing market methods with corrected oracle and two new compositions only; no unchanged fullsuite or cold32M qualification.",
+  "pass": true
+}

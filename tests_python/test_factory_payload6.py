@@ -136,7 +136,7 @@ class FactoryPayload6Tests(unittest.TestCase):
   self.assertEqual(read_policy['required_reads'],['royaltyBalanceGas()','gasPolicy()','gasFingerprint()'])
   _,policy_obj,_=self.current.contract('ZZZProtocolPolicy')
   getters={row['name']+'('+','.join(arg['type']for arg in row['inputs'])+')'for row in policy_obj['abi']if row['type']=='function'and row['stateMutability']in('view','pure')}
-  self.assertTrue(set(read_policy['required_reads'])<=getters);self.assertIn('20M contribution budget with full20%',read_policy['requirement'])
+  self.assertTrue(set(read_policy['required_reads'])<=getters);self.assertIn('reviewed configured contribution budget with full20%',read_policy['requirement'])
   _,royalty_obj,_=self.current.contract('ZZZRoyaltyRewards')
   royalty_getters={row['name']+'()'for row in royalty_obj['abi']if row['type']=='function'and not row['inputs']}
   self.assertTrue(set(checks['royalty_allocation_profile']['required_reads'])<=royalty_getters);self.assertFalse(checks['royalty_allocation_profile']['verified'])

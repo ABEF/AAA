@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "test_source": "test/OptionalPortfolioCore.t.sol",
+  "before_source_sha256": "c3a98e31898ad2e7fd50c41b925dfee513db60c9c4dfa067b12126de450b62f3",
+  "after_source_sha256": "6264146bc4bac5f44d05cd383c5450af93e365d7be4d7952c0ae414de2dff331",
+  "changed_existing_methods": 7,
+  "new_methods": 2,
+  "executed_final_methods": 9,
+  "final_methods": [
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignBearBullCohortsThroughRepeatedOneTwoOneModes()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 472271049,
+      "gas_is_cold_transaction_qualification": false
+    },
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignBothOutsideInputsStayInMainWithoutRecentering()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 89106561,
+      "gas_is_cold_transaction_qualification": false
+    },
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignBullBearCohortsThroughRepeatedOneTwoOneModes()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 473207447,
+      "gas_is_cold_transaction_qualification": false
+    },
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignExactRightsSurviveRawCloseConsolidationAndHybridRestart()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 123089177,
+      "gas_is_cold_transaction_qualification": false
+    },
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignExactUnitsClaimOrderDustActivationAndTransfer()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 79640248,
+      "gas_is_cold_transaction_qualification": false
+    },
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignFeedDisagreementRejectsEntryThenRecoversWithoutLostRights()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 45877243,
+      "gas_is_cold_transaction_qualification": false
+    },
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignMixedResidualPendingMergeTransferAndNewEntries()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 85259205,
+      "gas_is_cold_transaction_qualification": false
+    },
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignOrdinarySamplesSurviveEntryAndGrowWithoutClockReset()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 53207529,
+      "gas_is_cold_transaction_qualification": false
+    },
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignRoyaltyEntitlementsStaySeparateThroughLPModeChangesAndExit()",
+      "status": "Success",
+      "reason": null,
+      "aggregate_test_body_gas": 49392169,
+      "gas_is_cold_transaction_qualification": false
+    }
+  ],
+  "compiled_source_metadata_checked": 195,
+  "compiled_source_metadata_exact": true,
+  "artifact_sha256": "c18a1e9ea0c1863ad34ab946f0e78a1efc16f3676a513155cdf0efbd2c562e05",
+  "raw_output_sha256": "7c89c4f69240804a94f451f8bda81426b7d8cca7f1e2ad3355288a25a2c389b5",
+  "tools_sha256": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\cast.exe": "610eab893dfb497ad358f7c99b81f4fb0001a5ee8f4f02c0a0ea0a7ec35c90a8",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67"
+  },
+  "compiler": {
+    "version": "0.8.26+commit.8a97fa7a"
+  },
+  "settings": {
+    "remappings": [
+      "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+      "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+      "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+      "ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+      "erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+      "forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+      "forge-std/=lib/forge-std/src/",
+      "openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+      "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+      "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+      "v4-core/=node_modules/@uniswap/v4-core/"
+    ],
+    "optimizer": {
+      "runs": 1,
+      "details": {
+        "peephole": true,
+        "inliner": true,
+        "jumpdestRemover": true,
+        "orderLiterals": true,
+        "deduplicate": true,
+        "cse": true,
+        "constantOptimizer": true,
+        "yul": false,
+        "simpleCounterForLoopUncheckedIncrement": true
+      }
+    },
+    "metadata": {
+      "bytecodeHash": "ipfs"
+    },
+    "compilationTarget": {
+      "test/OptionalPortfolioCore.t.sol": "OptionalPortfolioCoreTest"
+    },
+    "evmVersion": "cancun",
+    "libraries": {},
+    "viaIR": true
+  },
+  "baseline": "model-before02/RESULT.json",
+  "baseline_failure": "Old scaled LP oracle differs from actual current whole-unit allocation by one raw unit. This was a test-model defect, not an established production-accounting error.",
+  "retained_no_test_attempt": "model-before01/RESULT.json",
+  "production_sources_changed": false,
+  "foundry_config_changed": false,
+  "existing_node_or_service_actions": false,
+  "cold32m_profile_qualified": false,
+  "live_markets_qualified": false,
+  "unchanged_full_suites_run": false,
+  "method_scope": "Actual localv4 with current production liquidity/reward/royalty code and explicit MockAccess/registry/price/VRF/Permit2/direct-mint seams. Eager model checks bounded host-sized rational domain; not arbitrary fulluint256 stress or full canonical coordinator."
+}

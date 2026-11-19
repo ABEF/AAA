@@ -1,5 +1,17 @@
 # Development setup and verification
 
+The [whole-project workload map](WORKLOAD_COVERAGE.md) indexes every current
+callable/internal source family and distinguishes scenario obligations from actual
+execution. Its source-pinned inventory checks existing compiler AST without a
+build. The [current market-model repair](../reports/whole-workload-review-20261119/REVIEW.md)
+replaces obsolete fractional LP expectations with an independent eager whole-unit
+oracle; seven affected journeys and two new compositions pass. Do not reuse the
+old fractional campaign as current exact-unit proof or call aggregate test-body
+gas a cold transaction budget. New wallet pages have13 distinct new methods.
+No unchanged full suite is rerun for the documentation/evidence map. The normal verifier
+also checks the source/function inventory so future changes cannot silently leave
+the workload map stale.
+
 Use Linux/Unix with Python3.11+ for full keeper/state-lock operation and tests:
 `fcntl` and Unix0600 semantics are required. Windows editing/publication and
 portable checks do not establish Unix operating acceptance. Solidity is pinned

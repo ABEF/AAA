@@ -1,0 +1,8 @@
+{
+  "source_sha256": {
+    "zzz_ops/preseal_plan.py": "b529740f628ae0225ce95951b73869ebd032e11429ac402dc32fdcee8de79382",
+    "tests_python/test_factory_payload6.py": "8e5a7205925784cb22123b0390f310dbaaffeba39f2724438dc1dd34a8a5a8ab"
+  },
+  "original_current_diagnostic": "within the unchanged20M contribution budget with full20% headroom",
+  "method": "tests_python.test_factory_payload6.FactoryPayload6Tests.test_fresh_six_remains_unknown_unapproved_and_preseal_unknown_inputs_stay_blocked"
+}

@@ -1,0 +1,15 @@
+test_fresh_six_remains_unknown_unapproved_and_preseal_unknown_inputs_stay_blocked (tests_python.test_factory_payload6.FactoryPayload6Tests.test_fresh_six_remains_unknown_unapproved_and_preseal_unknown_inputs_stay_blocked) ... FAIL
+
+======================================================================
+FAIL: test_fresh_six_remains_unknown_unapproved_and_preseal_unknown_inputs_stay_blocked (tests_python.test_factory_payload6.FactoryPayload6Tests.test_fresh_six_remains_unknown_unapproved_and_preseal_unknown_inputs_stay_blocked)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_factory_payload6.py", line 139, in test_fresh_six_remains_unknown_unapproved_and_preseal_unknown_inputs_stay_blocked
+    self.assertTrue(set(read_policy['required_reads'])<=getters);self.assertIn('reviewed configured contribution budget with full20%',read_policy['requirement'])
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'reviewed configured contribution budget with full20%' not found in 'Read the separate activation-only ERC20 balance-call allowance in raw gas units (10000..1000000). The fresh source default50000 is not an observed or qualified setting. The legacy gas tuple and full royaltySyncGas allowance remain separate; ordinary sync/claim/canonical reads are not limited by this activation cap. A cap change increments its gas revision. Qualify exact selected currencies, delayed receipts and fault workloads within the unchanged 20M contribution budget with full20% headroom. This check adopts no cap or readiness.'
+
+----------------------------------------------------------------------
+Ran 1 test in 3.462s
+
+FAILED (failures=1)

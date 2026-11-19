@@ -1,0 +1,49 @@
+{
+  "schema": 2,
+  "scope": "New offline inventory-tool controls only; no application tests/compiler/network",
+  "tool_sha256": "eda2e6d33c107b18e3b92e81d12808e9dbd63d4cfed16b50ac12a067c269405d",
+  "plan_sha256": "fb0e5a7a73bc6805784fa720a20f4b89be48f570c20149b68131677d027b5583",
+  "inventory_sha256": "1c298d2123bfa0ff8501fbfe5d49f8fabef1a66bfde7c87dfac0450b16a18f07",
+  "controls": [
+    {
+      "case": "bad-trusted-pin",
+      "refused": true,
+      "reason": "Unreviewed pinned inventory input: trusted_build_record"
+    },
+    {
+      "case": "duplicate-contract",
+      "refused": true,
+      "reason": "Unreviewed duplicate contract family"
+    },
+    {
+      "case": "unmapped-source",
+      "refused": true,
+      "reason": "Project source missing a workload family"
+    },
+    {
+      "case": "forged-consistent-plan-record-reference",
+      "refused": true,
+      "reason": "Unreviewed pinned inventory input: trusted_build_record"
+    },
+    {
+      "case": "simulated-current-source-byte-drift",
+      "refused": true,
+      "real_source_edited": false
+    },
+    {
+      "case": "duplicate-json-key",
+      "refused": true
+    },
+    {
+      "case": "five-noncanonical-paths",
+      "refused": true
+    },
+    {
+      "case": "protected-dirty-script-not-adopted",
+      "passed": true
+    }
+  ],
+  "generation_and_check_passed": true,
+  "initial_inventory_archived": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\whole-workload-20261119\\inventory-initial",
+  "first_draft_gaps_shape_error": "Initial code expected integer0 instead of the existing empty gaps list; refused before output, fixed before first successful generation."
+}

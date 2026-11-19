@@ -28,15 +28,30 @@ is `activation-final-six-20261118`, explicit F6/allocation2. Use the
 - Original64 issue/obligation IDs and all Q01-Q07 release buckets remain traceable.
   Follow the new disposition matrix; do not add overlapping old test totals.
 
+## Whole-project workload progress
+
+Use [the full map](WORKLOAD_COVERAGE.md) and
+[workload review](../reports/whole-workload-review-20261119/REVIEW.md). Every current
+callable/internal/source family is inventoried;187 scenario classes are not187
+passed tests. Nine affected/new exact-unit localv4 compositions and13 new backend
+methods pass. The old fractional market oracle's one-unit mismatch is a repaired
+test-model defect, not an established production-accounting failure.
+
+New inventory pages fix the request-size bottleneck by verifying16 IDs at a time,
+with complete assembly required. Existing website adoption remains open. Preserve
+old checkpoints/reviews/raw DBs: service.py changed their semantic source identity;
+rebuild/review/re-pin explicitly before separate consumer rollout. No live change.
+
 ## Next work and required inputs
 
 1. Qualify actual independent ETH/ZZZ prices and usable bidirectional routes/depth,
    provider execution/trace/archive capacity and complete target fees. Unknown
    inputs stay blocked; preserve all guards and separate ETH fee budgets.
-2. Reuse exact current source evidence; qualify bounded cold F6 activation/growth
-   workloads with both physical LPs and selected currencies. Expand capacity only
-   after its own gas/service review. Do not repeat earlier one-main cases merely
-   to relabel them32M or claim64-currency/every-order acceptance.
+2. Work from the whole-project function/scenario map: cover the remaining
+   meaningful role/lifecycle/market/input/failure transitions, not only gas.
+   Link exact existing evidence and run changed/missing cases. Cold F6 maximum
+   currencies/two-LP/order32M workloads, full canonical cutover and every manual
+   state/guard mask remain separately unqualified; do not relabel old passes.
 3. Review fresh constructor/binding/Factory/runtime and SeaDrop/VRF/artwork inputs;
    prior constructor receipts do not qualify changed F6 creations. Review actual
    governance/keeper/guardian/payee and contract-wallet envelopes independently.

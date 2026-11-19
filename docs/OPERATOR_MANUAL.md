@@ -293,6 +293,33 @@ See [verification](../reports/operator-management-20261109/REVIEW.md).
 
 Fresh deployment inventories use chain-local `factory_payload_version:6`, `ROYALTY_ALLOCATION_VERSION()==2` and reviewed [payload6 pins](FACTORY_CODE_STORAGE.md) from `activation-final-six-20261118`. Factory6 selects new exact immutable Royalty bytes; allocation2 rights and wire records remain unchanged. This is not an after-seal upgrade. Existing payload3/4/5 configurations, deployments and journals remain historical. Use fresh source/runtime pins; never copy old private storage or rewrite saved reviews.
 
+## Whole-project workload review and large-wallet reads
+
+Use the [workload map](WORKLOAD_COVERAGE.md) before treating a passing gas or
+function inventory as full workflow qualification. It includes role/lifecycle,
+market, size, time, input, failure and interleaving obligations across all current
+contracts, internal code and services. A scenario class is not automatically a
+passed test; use the linked exact source/assertion evidence.
+
+| Operation | Inputs / example | Effect |
+| --- | --- | --- |
+| Check source/function map | `python scripts/build-workload-inventory.py --check reports/whole-workload-review-20261119/FUNCTION_INVENTORY.json` | Offline drift check only. |
+| Read large-wallet ownership | `GET /v1/wallets/OWNER/nfts/BLOCK/0`, then16/32... at the same block | Up to16 verified IDs. |
+| Complete an inventory | Match block/config/owner/digest/count; verify every contiguous page and full-precision IDs | No partial completeness claim. |
+| Adopt changed API source | Preserve old checkpoint/review/raw DBs; explicitly rebuild/review/re-pin; authorize matching consumer rollout separately | No automatic migration. |
+
+The legacy complete wallet endpoint remains complete-or-failed. The new paged
+endpoint needs explicit consumer support. Neither a last page nor successful
+source publication installs it into a running website/service. See the
+[exact paging protocol](FRONTEND_API.md#verified-wallet-inventory-pages).
+
+Fresh pre-seal reviews require the **reviewed configured contribution budget**
+with full20% headroom; there is no separate hardcoded20M operating requirement.
+This diagnostic wording changes no configured limit or unknown/false readiness.
+
+Normal25-second/1024-call/2048-post work limits and1MiB worker output remain;
+no gas/fee/safeguard/role or financial right is changed.
+
 ## Unsigned activation gas settings
 
 Default activation policy1 remains12M. For a separately reviewed provider and

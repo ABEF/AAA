@@ -392,8 +392,8 @@ def _seal_boundary_review(construction,assigned,*,royalty_balance_supported=Fals
             'The fresh source default50000 is not an observed or qualified setting. The legacy gas tuple '
             'and full royaltySyncGas allowance remain separate; ordinary sync/claim/canonical reads are not '
             'limited by this activation cap. A cap change increments its gas revision. '
-            'Qualify exact selected currencies, delayed receipts and fault workloads within the unchanged '
-            '20M contribution budget with full20% headroom. This check adopts no cap or readiness.'))
+            'Qualify exact selected currencies, delayed receipts and fault workloads within the '
+            'reviewed configured contribution budget with full20% headroom. This check adopts no cap or readiness.'))
     bindings={'seadrop_binding':assigned.get('seadrop_mint'),'lp_converter_binding':assigned.get('lp_converter')}
     return {
         'schema':1,'scope':'Selected fresh OpenSea launch; not a generic seal validator or importer preparation.',

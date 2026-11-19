@@ -1,0 +1,952 @@
+{
+  "schema": 1,
+  "purpose": "Whole-project workload/function/state inventory and verification plan; inventory completeness is never dynamic coverage or proof of all possible market states.",
+  "date": "2026-11-19",
+  "source_baseline": "53ce73159004ec60031786b2c5c26af382dc1af7",
+  "trusted_build_record": {
+    "path": "reports/activation-final-six-20261118/build/final/normal-size-evidence.json",
+    "sha256": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2"
+  },
+  "function_reference": {
+    "path": "docs/function-reference.json",
+    "sha256": "210c0f84c297b8f94dc4e103cf19e8f1aa3aed8d4d8bd8a2b1de9dbf4bf8bcfe"
+  },
+  "compiler_output": {
+    "path": "reports/activation-final-six-20261118/build/final/compiler-output.json.gz",
+    "sha256": "aceb5510485a5a0c28945cb4b4df71c66305dff7f1cb058435a464ff42df4a89",
+    "decoded_sha256": "4614afcbd97bd5d1ced6e68982559256045ef56ec67d632f971d8a590b6eb983"
+  },
+  "families": [
+    {
+      "id": "deployment",
+      "contracts": [
+        "ZZZAccessController",
+        "ZZZActivationAssetsFactory",
+        "ZZZRoyaltyFactory",
+        "ZZZRoyaltyCodeData"
+      ],
+      "sources": [
+        "src/ZZZAccessController.sol",
+        "src/ZZZActivationAssetsFactory.sol",
+        "src/ZZZRoyaltyFactory.sol",
+        "src/ZZZRoyaltyCodeData.sol"
+      ],
+      "scenario_classes": [
+        "valid exact graph/normal constructors",
+        "zero/wrong chain/parent/token/runtime/dependency",
+        "failed child creation or wrong payload/part hash",
+        "size and constructor-gas boundaries",
+        "unknown inputs stay unsigned/blocked",
+        "repeat binding/bootstrap removal/seal irreversible boundaries",
+        "keeper/guardian/governance rotation and compromised-role revocation",
+        "source successor/importer graph versus original deployment"
+      ]
+    },
+    {
+      "id": "governed_policy",
+      "contracts": [
+        "ZZZProtocolPolicy",
+        "ZZZPoolRegistry",
+        "ZZZActivationAssets"
+      ],
+      "sources": [
+        "src/ZZZProtocolPolicy.sol",
+        "src/ZZZPoolRegistry.sol",
+        "src/ZZZActivationAssets.sol"
+      ],
+      "scenario_classes": [
+        "every setter min/exactmax/oneoutside and wrong units",
+        "zero/foreign/replayed reviewHash and same-value revision",
+        "future-only mint/minimum/payee terms versus existing rights",
+        "single contribution destination and four historical buckets",
+        "fresh calculated reservation ID and existing alias",
+        "deposits OFF versus operations OFF and broken dependencies",
+        "source/runtime/proxy/price policy change invalidates reviews",
+        "fixed ZZZ identity cannot be replaced after seal"
+      ]
+    },
+    {
+      "id": "mint_draw",
+      "contracts": [
+        "ZZZNFT",
+        "ZZZSeaDropMint"
+      ],
+      "sources": [
+        "src/ZZZNFT.sol",
+        "src/ZZZSeaDropMint.sol"
+      ],
+      "scenario_classes": [
+        "team/allowlist/public stages and eligibility/fees",
+        "unused allowlist rollover versus reserved team slots",
+        "original recipient quota survives transfers and replacement",
+        "zero/one/999/1000 minted or less than sellout",
+        "old sale-end exact equality versus past/new future boundary",
+        "mint-only/global pause and direct mint disabled for SeaDrop",
+        "pending/failed/duplicate/outoforder/wrong-coordinator VRF",
+        "provider drain/rotation and no reroll/administrator traits",
+        "ERC721 ownership/approvals/operators/safe receiver callbacks"
+      ]
+    },
+    {
+      "id": "metadata",
+      "contracts": [
+        "ZZZNFTMetadata"
+      ],
+      "sources": [
+        "src/ZZZNFTMetadata.sol"
+      ],
+      "scenario_classes": [
+        "all four evolution states and exact trait mappings",
+        "LP exited distinct from Dormant and royalty eligibility retained",
+        "confirmed contribution versus unsigned/failed/pending changes",
+        "unavailable valuation distinct from zero or previous confirmed artwork",
+        "transfer/parked/imported/retired/terminal lifecycle",
+        "metadata batches0/1/50/51 and huge ID/URI cold reads",
+        "market-driven tier decrease/increase and refresh/caching failure"
+      ]
+    },
+    {
+      "id": "prices",
+      "contracts": [
+        "ZZZOracle",
+        "ZZZPythPriceFeed",
+        "ZZZV4SpotPriceFeed"
+      ],
+      "sources": [
+        "src/ZZZOracle.sol",
+        "src/ZZZPythPriceFeed.sol",
+        "src/ZZZV4SpotPriceFeed.sol"
+      ],
+      "scenario_classes": [
+        "fresh/stale/future/zero/negative/roundmismatch price",
+        "3percent source-agreement edge and configured bound changes",
+        "human ZZZinETH inverse/raw orientation and decimals",
+        "genuinely independent ZZZ paths versus correlated copies",
+        "spot placement AND independent valuation; no automatic TWAP",
+        "external reference also execution venue with exact own-transition proof",
+        "same-core principal reference excluded",
+        "source/proxy/code/control change and revert/short/oversized returns",
+        "transient capture nested/reentrant/callback changes and cleanup"
+      ]
+    },
+    {
+      "id": "contributions",
+      "contracts": [
+        "ZZZActivationEntry",
+        "ZZZContributionPricing",
+        "ZZZVault"
+      ],
+      "sources": [
+        "src/ZZZActivationEntry.sol",
+        "src/ZZZContributionPricing.sol",
+        "src/ZZZVault.sol"
+      ],
+      "scenario_classes": [
+        "ETH and fixed ZZZ activation and growth",
+        "exact minima/rawunit/balance/allowance/input decimal boundaries",
+        "entrant-only source budgets and actual marginal MAIN LP",
+        "aggregate postcost NAV/share issuance with idle/compound/residual",
+        "zero/one/999/1000 members and differing activation order",
+        "same wallet many NFTs/mixed dormant and rarity/tier positions",
+        "existing residual identity/liquidity/clock/centre remain unchanged",
+        "source approval exact cleanup/refunds/callback ownership mutation",
+        "stale review/deadline/policy change and complete atomic rollback",
+        "all permitted 3percent-to-governed ceilings with stronger guards retained"
+      ]
+    },
+    {
+      "id": "physical_lp",
+      "contracts": [
+        "ZZZLiquidityManager",
+        "ZZZLPPositionExecutor",
+        "ZZZLPBalancer",
+        "ZZZLPBalanceMath"
+      ],
+      "sources": [
+        "src/ZZZLiquidityManager.sol",
+        "src/ZZZLPPositionExecutor.sol",
+        "src/ZZZLPBalancer.sol",
+        "src/ZZZLPBalanceMath.sol"
+      ],
+      "scenario_classes": [
+        "single->hybrid->single repeated and mode pending",
+        "active/one-sided/mixed/filled/outside residual and main",
+        "at most two positions in same actual pool with Vault ownership",
+        "main floor/residual ceiling at replacement not perpetual ratio",
+        "spacing/gap/extreme ticks/range widths and truthful quote bounds",
+        "natural ratio versus bounded partial single balancing swap",
+        "external usable depth after our withdrawal and incomplete quote",
+        "swap/mint/burn/refund callback mutations and exact asset deltas",
+        "missing/unregistered/orphaned LP identity and wrong runtime",
+        "in-range main requirement and corrupt residual containment negative"
+      ]
+    },
+    {
+      "id": "strategy",
+      "contracts": [
+        "ZZZStrategy",
+        "ZZZPortfolioPolicy",
+        "ZZZRebalanceConfirmation"
+      ],
+      "sources": [
+        "src/ZZZStrategy.sol",
+        "src/ZZZPortfolioPolicy.sol",
+        "src/ZZZRebalanceConfirmation.sol"
+      ],
+      "scenario_classes": [
+        "85percent actual centre-to-boundary threshold both sides",
+        "ours-only/reference-only/both same side/opposite side",
+        "raw condition versus sampled readiness versus service jitter",
+        "600second window/300maxgap/240poll/12h minimum boundaries",
+        "return inside/sidechange/fault/geometry/policy resets",
+        "paid observations during cooldown and deadline priority",
+        "durable 60-300second jitter/restart/reset receipt provenance",
+        "manual range or mode exception after cooldown",
+        "contributions preserve stable identity and clocks"
+      ]
+    },
+    {
+      "id": "fees_membership",
+      "contracts": [
+        "ZZZFeeController",
+        "ZZZMembership"
+      ],
+      "sources": [
+        "src/ZZZFeeController.sol",
+        "src/ZZZMembership.sol"
+      ],
+      "scenario_classes": [
+        "hourly harvest independent from rebalance/compound/burn",
+        "one/both-leg actual receipt and repeat zero harvest",
+        "80/10/5/5 tiny/dust/large exact component conservation",
+        "incumbent checkpoint/new member timing and equal collective weighting",
+        "uneven LP shares versus royalty-only rarity",
+        "claim before/between/after credit and internal harvest coalescing",
+        "donation versus collected fee and reserve backing separation",
+        "terminal LP earnings stop while prior rewards/royalties remain"
+      ]
+    },
+    {
+      "id": "lp_claims",
+      "contracts": [
+        "ZZZRewards",
+        "ZZZClaimRouter"
+      ],
+      "sources": [
+        "src/ZZZRewards.sol",
+        "src/ZZZClaimRouter.sol"
+      ],
+      "scenario_classes": [
+        "exact-unit hierarchical carry and zero-phase/full-width spills",
+        "tiny final unit/uneven shares/reweights/membership changes",
+        "claim order/partial claims/transfers before and after credit",
+        "selections0/1/31/32/33 duplicate NFTs/assets or wrong owners",
+        "faulty payout whole-batch rollback and healthy subsets",
+        "normal ETH settlement versus raw fixed-ZZZ outage recovery",
+        "conversion/import/claim never double-counts income or principal",
+        "same owner many differently funded NFTs and dormant exclusion",
+        "cold complete batch gas versus count cap and fresh smaller plan"
+      ]
+    },
+    {
+      "id": "royalties",
+      "contracts": [
+        "ZZZRoyaltyRewards"
+      ],
+      "sources": [
+        "src/ZZZRoyaltyRewards.sol"
+      ],
+      "scenario_classes": [
+        "ETH plus0/1/16/64 ERC20 capacity/admission",
+        "prefund/preadmission/opening/orphaned/earned categories",
+        "onehour cutoff before/exact/after and editable sale end",
+        "zero initial active cohort versus later explicit recovery",
+        "rarity1/2/3 GCD rotation/indivisible exact-unit allocation",
+        "mint order versus activation order and owner transfers",
+        "failed balance read/full-frame gas/repair protects earlier cohort",
+        "new receipts between presync and activation/inclusion",
+        "logical canonical import/prefund double classification/overflow/abort",
+        "original currencies including failed/taxed/frozen/malformed token"
+      ]
+    },
+    {
+      "id": "compound",
+      "contracts": [
+        "ZZZCompounder"
+      ],
+      "sources": [
+        "src/ZZZCompounder.sol"
+      ],
+      "scenario_classes": [
+        "independent compound interval after latest rebalance/compound",
+        "zero/tiny/large attributed idle and designated reserve",
+        "harvest first then exact existing MAIN increase",
+        "software-only wait near/outside/pending geometry versus contract permissions",
+        "rebalance priority without blocking hourly harvesting",
+        "idle ceiling and contributions preserve incumbent funds",
+        "dust accumulates/recovered through authorized consolidation; no arbitrary sweep"
+      ]
+    },
+    {
+      "id": "conversion_burn",
+      "contracts": [
+        "ZZZLPRewardConverter",
+        "ZZZV4RouteExecutor",
+        "ZZZBuyback"
+      ],
+      "sources": [
+        "src/ZZZLPRewardConverter.sol",
+        "src/ZZZV4RouteExecutor.sol",
+        "src/ZZZBuyback.sol"
+      ],
+      "scenario_classes": [
+        "funded fixed-ZZZ LP reward conversion to ETH per NFT/component",
+        "royalties remain original currencies without swaps",
+        "1percent loss versus actual fee/additional/caller floors",
+        "reviewed route/core/price own-transition/native settlement",
+        "exact source allowance/input/full output/refund and rollback",
+        "keeper prefix fairness/minimum economics/day/deadline recovery",
+        "fixed ZZZ buyback reserve and actual burn only",
+        "postexit validated reserve-only venue without reopening principal"
+      ]
+    },
+    {
+      "id": "manual_exit",
+      "contracts": [
+        "ZZZMigration",
+        "ZZZMigrationBudget",
+        "ZZZCustodyValidation"
+      ],
+      "sources": [
+        "src/ZZZMigration.sol",
+        "src/ZZZMigrationBudget.sol",
+        "src/ZZZCustodyValidation.sol"
+      ],
+      "scenario_classes": [
+        "Active/Parked guarded manual operations and explicit schemas",
+        "close only residual versus consolidate into SAME main",
+        "full replacement into reviewed new range/destination",
+        "each emergency mask0..31 with required state/dependencies",
+        "moving spot between reads/preparation/simulation/inclusion",
+        "custody/portfolio/policy hashes role changes nonce/epoch and replay",
+        "pause/unpause and price-unavailable raw close/recovery",
+        "terminal begin/close/allocate/direct-push/retry under governance",
+        "1000 NFTs mixed owners/dormant/rarity/shares and rejecting recipients",
+        "ETH+ZZZ perNFT atomic delivery and no principal reopening"
+      ]
+    },
+    {
+      "id": "canonical",
+      "contracts": [
+        "ZZZCanonicalHandoff",
+        "ZZZNFTCanonical",
+        "ZZZRewardsCanonical",
+        "ZZZVaultCanonical",
+        "ZZZFeesCanonical"
+      ],
+      "sources": [
+        "src/ZZZCanonicalHandoff.sol",
+        "src/ZZZNFTCanonical.sol",
+        "src/ZZZRewardsCanonical.sol",
+        "src/ZZZVaultCanonical.sol",
+        "src/ZZZFeesCanonical.sol"
+      ],
+      "scenario_classes": [
+        "all six domains and bounded batch0/1/8/9 boundaries",
+        "source freeze only after parked principal/residual closure/reveal/opening",
+        "exact domain roots/order/count/version/runtime and sole successor",
+        "logical raw full-width LP/royalty rows across fresh private codecs",
+        "mint original recipient/stage quotas and closed sale preserved",
+        "prefunds before/after sync and checked aggregate overflow",
+        "partial/duplicate/missing funding and abort after each stage",
+        "source reactivation only after complete restored backing",
+        "current-owner unpaid rights and cancelled-lineage recovery",
+        "contract holders/incompatible receivers/failed currencies remain explicit"
+      ]
+    },
+    {
+      "id": "internal_math",
+      "contracts": [],
+      "sources": [
+        "src/libraries/ExactAsset.sol",
+        "src/libraries/ExactLPAllocation.sol",
+        "src/libraries/ExactRoyaltyAllocation.sol",
+        "src/libraries/ExactToken.sol",
+        "src/libraries/ZZZTypes.sol",
+        "src/libraries/ZZZArtwork.sol",
+        "src/libraries/ZZZPriceMath.sol",
+        "src/libraries/ZZZV3VenueValidation.sol"
+      ],
+      "scenario_classes": [
+        "exact asset deltas and malicious token/native behavior",
+        "LP hierarchical carry/reweight/phase arithmetic full-width boundaries",
+        "royalty exact rounds/GCD/cursor/monotonic enrollment",
+        "price math inverse/rounding/tick/liquidity/fee overflow boundaries",
+        "artwork fixed quotas/proofs/all four mappings",
+        "venue validation rejects wrong protocol/token/hook/runtime"
+      ]
+    },
+    {
+      "id": "shared_types_interfaces",
+      "contracts": [],
+      "sources": [
+        "src/base/ZZZCanonicalLedger.sol",
+        "src/base/ZZZExactLPRewardsCanonical.sol",
+        "src/base/ZZZModule.sol",
+        "src/base/ZZZRewardConverter.sol",
+        "src/base/ZZZSeaDropToken.sol",
+        "src/interfaces/IZZZ.sol",
+        "src/interfaces/IZZZCanonical.sol",
+        "src/interfaces/IZZZEmergency.sol",
+        "src/interfaces/IZZZExecutionOracle.sol",
+        "src/interfaces/IZZZNFTCanonical.sol",
+        "src/interfaces/IZZZProtocolPolicy.sol",
+        "src/interfaces/IZZZSeaDrop.sol",
+        "src/interfaces/IZZZV3Route.sol"
+      ],
+      "scenario_classes": [
+        "exact typed interface/ABI/enum/unit relationships",
+        "fixed child/module caller and callback authority",
+        "declared interface versus actual pinned implementation",
+        "malformed/trailing return data and external dispatch boundaries"
+      ]
+    }
+  ],
+  "service_families": [
+    {
+      "id": "read_wallet_portfolio",
+      "scenario_classes": [
+        "empty/dormant/active/exited/retired holdings",
+        "one wallet owns1000 versus mixed/different wallets",
+        "fixedblock inventory pages require every verified page",
+        "price/currency outage retains custody/raw rights",
+        "both-LP decomposition/NAV/marginal values and exact units",
+        "cache identity/config/runtime/owner change and no falsezero"
+      ]
+    },
+    {
+      "id": "unsigned_preparation",
+      "scenario_classes": [
+        "every user/manual operator action exact typed inputs/value",
+        "two canonical anchors/deadline/configuration mutation",
+        "exact approvals/no unlimited allowance/no replay",
+        "complete simulation/trace/gas20percent or25percent/fee/funding bounds",
+        "localstage/cause diagnostics versus opaque unknown",
+        "no signing/deployment/seal/force fallback and safe artifact publication"
+      ]
+    },
+    {
+      "id": "history_indexer",
+      "scenario_classes": [
+        "canonical ingestion/reorg/removed event/duplicate/outoforder",
+        "exact LP/royalty credits/conversion/claim no double income",
+        "full86400second window/late events/missing prices",
+        "checkpoint schema/source/lineage mismatch rejects",
+        "SQLite lock/WAL/rollback/disk/partialwrite/loss/offhost restore",
+        "bounded1Mevents/32MiB/checkpointprefix/lineage9epochs"
+      ]
+    },
+    {
+      "id": "keeper_scheduler",
+      "scenario_classes": [
+        "observations due/retry/globaljob faults/prioritization",
+        "pending/hashless intent/receipt/reorg/replaced nonce recovery",
+        "cooperative stop before sign and process descendants",
+        "real watchdog progress versus stalled headers/DNS/body",
+        "loss/gas/day/price budgets recheck after slow reads",
+        "hourly harvest coalescing/compound waits/burnconversion fairness",
+        "adopt profile2 onlyfuture exactpending identity no rollbackrelabelling"
+      ]
+    },
+    {
+      "id": "http_workers",
+      "scenario_classes": [
+        "strict JSON duplicatefields/depth/body/header/query/decimal inputs",
+        "25s/1024calls/2048posts bound shared nestedrequests",
+        "ingress/connection/worker/client admission saturation/recovery",
+        "result1MiB/timeout/exception/workercrash no sensitive data",
+        "concurrent reads/preparations consistent isolated identity",
+        "no authorization bypass or retries after known global failures"
+      ]
+    },
+    {
+      "id": "website_wallet",
+      "scenario_classes": [
+        "public simulation versus unsignedintegration nullconfig",
+        "exact network/account/provider permissions and accountchanges",
+        "rejection/approval/confirmation/noncegap/replacement/reload recovery",
+        "transaction submission ambiguity never automatic duplicate",
+        "NFT-local artwork onlyafter confirmed actual LP increase",
+        "aggregatewalletdata onlyafter sameanchor complete pages",
+        "wallets concurrent logicalactions and no crossuserstate",
+        "Anvil-only unchanged signer; public signing remainsdisabled"
+      ]
+    },
+    {
+      "id": "release_operations",
+      "scenario_classes": [
+        "unsignedpreseal/constructor/binding exactIDs/payloads",
+        "secret-safe config/hash review/sourcepublication closure",
+        "immutablefinalpins unknown actual inputs stayblocked",
+        "service restart/lock/key rotation/offhost backup/fencing/recovery",
+        "OpenSea/VRF/providers/content/authorities actual acceptance",
+        "independent audit/remediation releaseapproval separatefrom localpasses"
+      ]
+    }
+  ],
+  "additional_python_paths": [
+    "scripts/build-workload-inventory.py"
+  ],
+  "axes": {
+    "caller": [
+      "governance",
+      "guardian",
+      "keeper",
+      "current NFTowner",
+      "approvedNFToperator",
+      "router",
+      "fixedmodule",
+      "selfcall",
+      "authenticatedupstreamcallback",
+      "unauthorizedEOA/contract"
+    ],
+    "lifecycle": [
+      "bootstrap",
+      "unsealed",
+      "sealedoperating",
+      "globalpaused",
+      "mintpaused",
+      "pooldepositsoff",
+      "pooloperationsoff",
+      "active",
+      "parked",
+      "terminalclosing",
+      "terminalallocating",
+      "terminalready",
+      "canonicalfreeze",
+      "canonicalimport",
+      "canonicalretired",
+      "canonicalaborting",
+      "cancelledsuccessor"
+    ],
+    "market": [
+      "flat",
+      "bulltrend",
+      "beartrend",
+      "reversal",
+      "oscillatingthreshold",
+      "gapjump",
+      "exactboundarytick",
+      "thinexternaldepth",
+      "zeroexternaldepth",
+      "incompletefill",
+      "oursoutsideonly",
+      "referenceoutsideonly",
+      "bothsameside",
+      "bothoppositeside",
+      "postwithdrawaldepthdrop"
+    ],
+    "population": [
+      "0",
+      "1",
+      "2mixed",
+      "999",
+      "1000"
+    ],
+    "royalty_currencies": [
+      "ETHonly",
+      "1ERC20plusETH",
+      "16ERC20plusETH",
+      "64ERC20plusETH",
+      "faultyone",
+      "allfaulty",
+      "slowhealthy",
+      "newlyadmitted",
+      "recovered"
+    ],
+    "physical_positions": [
+      "none",
+      "one_main",
+      "main_plus_one_residual",
+      "pending_disable_mixed_residual",
+      "closed_residual_idle",
+      "parked_no_live_legs",
+      "corrupt_orphan_or_thirdleg_negative"
+    ],
+    "time": [
+      "before",
+      "exactboundary",
+      "after",
+      "sameblockdifferentorder",
+      "longofflinegap",
+      "confirmationdelay",
+      "reorgedanchor"
+    ],
+    "inputs": [
+      "zero",
+      "onesmallestunit",
+      "minminusone",
+      "exactmin",
+      "maxminusone",
+      "exactmax",
+      "maxplusone",
+      "wrongdecimals",
+      "wrongaddress",
+      "malformedtuple",
+      "duplicateIDs",
+      "noncanonicalquantity",
+      "hugeoroversizedresponse"
+    ],
+    "faults": [
+      "tokenrevert",
+      "falseorno-tokenreturn",
+      "fee-on-transfer/rebase",
+      "frozenbalance",
+      "failedETHreceiver",
+      "stalefeed",
+      "RPCdown/rate-limit",
+      "partialtrace",
+      "ownership/policy/rolechange",
+      "callbackreentrancy",
+      "subcallgasclipping",
+      "diskfull",
+      "workercrash",
+      "journalcorruption",
+      "oldcodeclabel",
+      "restorefailure"
+    ]
+  },
+  "cross_axis_rules": [
+    "Enumerate every boundary for every relevant function, and meaningful reachable state-transition sequences. Do not claim a Cartesian product proves infinite numeric/adversarial states.",
+    "Exercise both value directions and order permutations where economic rights or eligibility can differ; use independent invariants/fuzzing for larger domains.",
+    "A contained residual active while its enclosing main is outofrange is an invalid-state negative, not an ordinary positive market case.",
+    "Record pass/failure/refusal/source-only/historical/not-run/external-blocked/deferred distinctly, with exact test/trace/source identities.",
+    "Do not rerun unchanged suites to inflate counts. Changed fixture assumptions invalidate old composed accounting evidence.",
+    "Dedicated10/25/100usercapacity benchmark remains userdeferred; basic concurrency/isolation/recovery safety is still required.",
+    "No public transactions/service/site changes, key use, oldnode reset or safeguard/economic rights changes."
+  ],
+  "acceptance": [
+    "Every callable row and every current project source function is inventoried, including internal-only objects and shared interfaces.",
+    "Every operation family has explicit role/lifecycle/market/size/time/input/fault obligations and complete rollback/accounting invariants.",
+    "Existing evidence retains exact source and assertion scope; absent evidence remains visibly unqualified.",
+    "Confirmed model/backend defects are corrected with baselinefailure and meaningful focused proofs, without weakening limits.",
+    "Report finite executed work honestly and retain open workload/real-external gaps; never claim100percent allpossible behavior."
+  ],
+  "service_subfamilies": [
+    {
+      "id": "S01",
+      "name": "HTTP ingress and framing",
+      "sources": [
+        "frontend_api/server.py",
+        "frontend_api/activation_server.py",
+        "frontend_api/http_runtime.py"
+      ],
+      "cases": [
+        "all GET/POST routes and unsupported methods",
+        "malformedUTF8/duplicateJSON/nonfinite/oversized/nested/truncated input",
+        "Host/origin and framing ambiguity/requestsmuggling",
+        "slowtrickle/disconnect/nonreadingclient"
+      ]
+    },
+    {
+      "id": "S02",
+      "name": "Admission, worker lifecycle and client isolation",
+      "sources": [
+        "frontend_api/admission.py",
+        "frontend_api/worker.py"
+      ],
+      "cases": [
+        "sameIP/NAT/mappedIPv6 client quotas",
+        "worker/connection/client saturation and recovery",
+        "workerhang/crash/oversizedoutput/cleanupfailure quarantine",
+        "no sharedrequeststate/orphanprocess/invisiblequeue"
+      ]
+    },
+    {
+      "id": "S03",
+      "name": "RPC and nested budgets",
+      "sources": [
+        "zzz_ops/rpc.py",
+        "zzz_ops/work_budget.py"
+      ],
+      "cases": [
+        "wrongchain/rotation/forkdisagreement/hashstate refusal",
+        "malformedoversizedduplicateJSON/redirect/429/403",
+        "DNS/header/body trickle/stall/deadline and clockjump",
+        "allnestedlineagepeersshareoriginal workbudget"
+      ]
+    },
+    {
+      "id": "S04",
+      "name": "Complete ownership inventory",
+      "sources": [
+        "frontend_api/service.py"
+      ],
+      "cases": [
+        "0/1/16/17/999/1000holdings andfullwidthIDs",
+        "all1000oneowner versusmixedwallets/lifecycle",
+        "forged/missingowner orcanonicalcount",
+        "sameblock/hash/config/digest allpageassembly",
+        "incomplete/duplicate/outoforder/finalpage alone/stale/reorg"
+      ]
+    },
+    {
+      "id": "S05",
+      "name": "Portfolio and collection pages",
+      "sources": [
+        "frontend_api/portfolio.py",
+        "frontend_api/collection.py",
+        "frontend_api/portfolio_v7.py"
+      ],
+      "cases": [
+        "fourbuckets andone/twophysicalLPs",
+        "sharedversusdistinctbuckets andpartialfinalpage",
+        "USDoutage preservesfunded/rawrights",
+        "malformedphysicalproofs no rawLsumming/partialtotals"
+      ]
+    },
+    {
+      "id": "S06",
+      "name": "Activation/growth preparation",
+      "sources": [
+        "frontend_api/activation.py",
+        "frontend_api/activation_trace.py",
+        "frontend_api/activation_config.py"
+      ],
+      "cases": [
+        "ETH/ZZZ/exactapproval/nohidden3rdtx",
+        "oldreview/owner/account/minimum/policy/source change",
+        "two exacttraceanchors andentrant-onlymarginalLP",
+        "faultcohort/callback/refund/atomicrollback"
+      ]
+    },
+    {
+      "id": "S07",
+      "name": "Claim planning and preparation",
+      "sources": [
+        "frontend_api/transactions.py",
+        "frontend_api/claim_planner.py"
+      ],
+      "cases": [
+        "0/1/31/32/33NFT/asset/ledgerentries",
+        "owner/opening/zero/funded/unavailable state",
+        "smallernextbatch/no droppedselection or fakecause",
+        "opaqueexecutionversusglobalfailure andfinalresimulation"
+      ]
+    },
+    {
+      "id": "S08",
+      "name": "Royalty read and reporting workloads",
+      "sources": [
+        "frontend_api/service.py"
+      ],
+      "cases": [
+        "ETHplus1/16/64currencies decimalsrawunitboundaries",
+        "preopening/lateactivation/deferred/recoverycohorts",
+        "metadata/runtime/balance/payoutfault isolation",
+        "originalcurrencynever mislabeledETH"
+      ]
+    },
+    {
+      "id": "S09",
+      "name": "Financial history and current-price valuation",
+      "sources": [
+        "frontend_api/history.py"
+      ],
+      "cases": [
+        "24h/alltime/currentowner/predecessor exacttotals",
+        "sameblockeventorder andlate/earlyclaims",
+        "transfer/compound/conversion/principalreturn notincome",
+        "missingprice/history unavailable; independentrawreconciliation"
+      ]
+    },
+    {
+      "id": "S10",
+      "name": "Canonical lineage reads",
+      "sources": [
+        "frontend_api/lineage.py"
+      ],
+      "cases": [
+        "1through9epochs anddifferentexplicitpeerprofiles",
+        "cancelled/aborted/retired/operating provenance",
+        "authentichandoffpair/backingmoved/nooldpendingviews",
+        "duplicates/outoforder/sharedbudget/noinventedhistory"
+      ]
+    },
+    {
+      "id": "S11",
+      "name": "Indexer ingestion and reorg recovery",
+      "sources": [
+        "indexer/monitor.py"
+      ],
+      "cases": [
+        "empty/new/existingDB andseed/chainmismatch",
+        "equal/regressingtimestamps andmissingduplicateconflictinglogs",
+        "range shrinking versusknown globalfailure",
+        "reorginside/beyonddepth/concurrentcursorparent/atomicrollback"
+      ]
+    },
+    {
+      "id": "S12",
+      "name": "Checkpoint build, import and suffix",
+      "sources": [
+        "frontend_api/earnings_checkpoint.py"
+      ],
+      "cases": [
+        "schemas1/2/3 distinct/sourcehashandlineageprefixdrift",
+        "32MiB/1Mevents andfull86400second suffix boundaries",
+        "eachNFTexactphase/claims/cohort/liabilities",
+        "immutableloadedbytes/nopruning/hoteditadoption"
+      ]
+    },
+    {
+      "id": "S13",
+      "name": "History backup and restore",
+      "sources": [
+        "frontend_api/history_recovery.py"
+      ],
+      "cases": [
+        "0/1/9DB/liveWAL andcrossDBconsistency",
+        "sourceDBunchanged/symlink/reparse/hardlinkaliases",
+        "disk/permission/deadline/partialpackage failures",
+        "exclusiveoutput/manifestlast/separaterestore/noinstall"
+      ]
+    },
+    {
+      "id": "S14",
+      "name": "Unsigned manual management reviews",
+      "sources": [
+        "zzz_ops/manual_lp_review.py",
+        "zzz_ops/management_review.py"
+      ],
+      "cases": [
+        "allactions/Active/Parked/terminal/canonical states",
+        "tupleunits/twoanchor/frozengas/originaldeadline",
+        "EOAversuscontractwalletguardmasks/dependencies",
+        "noautoforcefallback/overwrite afteruncertainpublication"
+      ]
+    },
+    {
+      "id": "S15",
+      "name": "Pre-seal and constructor planning",
+      "sources": [
+        "zzz_ops/preseal_plan.py",
+        "zzz_ops/deployment_plan.py"
+      ],
+      "cases": [
+        "25creations/19bindings unknownsstayblocked",
+        "nonceoverflow/order/collisions andruntime/contentmismatch",
+        "wrong-but-nonempty immutable graph",
+        "freshF6pins/noreadiness/signing/sealinginference"
+      ]
+    },
+    {
+      "id": "S16",
+      "name": "Keeper observations and scheduling",
+      "sources": [
+        "keeper/monitor.py"
+      ],
+      "cases": [
+        "pendingfirst/expiringobservations/retryisolation",
+        "12h/600s/300gap/240checks/60to300jitter boundaries",
+        "reversal/range/mode/fourbucket interactions",
+        "contributionsneverreseteligibleclock"
+      ]
+    },
+    {
+      "id": "S17",
+      "name": "Keeper harvest, compound, conversion and burn",
+      "sources": [
+        "keeper/monitor.py"
+      ],
+      "cases": [
+        "hourlyharvest/internalreceiptcoalescing",
+        "independentcompoundinterval/inrangesoftwarewait",
+        "conversion/burnprefixaffordability/fairness",
+        "latefee/day/deadline recheck andsuccessfulreceiptsonly"
+      ]
+    },
+    {
+      "id": "S18",
+      "name": "Signer intent and recovery journal",
+      "sources": [
+        "keeper/monitor.py",
+        "zzz_ops/state.py"
+      ],
+      "cases": [
+        "every intent-save-sign-send-hash-receipt interruptionpoint",
+        "hashless/noncegap/replaced/reorg/UTCrollover",
+        "feeprofile1/2 andoriginalpending identity",
+        "oldlocks/descendants/spend/noautomaticresendor deletion"
+      ]
+    },
+    {
+      "id": "S19",
+      "name": "Actual host operation and health",
+      "sources": [
+        "keeper/watchdog.py"
+      ],
+      "cases": [
+        "wrongrelease/config/key andstaleexports/backups",
+        "actualcompletedprogressversusblockedIOfakepulse",
+        "diskfull/restartstorm/hostloss/keyloss/rotation",
+        "splitbrainfencing/offhostrestore/alerts/soak"
+      ]
+    },
+    {
+      "id": "S20",
+      "name": "Website/browser wallet integration boundary",
+      "sources": [
+        "docs/SITE_ENVIRONMENTS.md",
+        "docs/SOURCE10_WEBSITE_PROFILE.md"
+      ],
+      "cases": [
+        "demo/current3/source9/source10 separate/nullpublicconfig",
+        "account/network/provider switches/refusals/reloadrecovery",
+        "exactapprovals/pendinghash/noncegap/noduplicateautosend",
+        "NFT-localart onlyafterconfirmedLP andcompletepinnedwalletpages"
+      ]
+    },
+    {
+      "id": "S21",
+      "name": "Evidence integrity and source publication",
+      "sources": [
+        "scripts/check-python-publication.py",
+        "scripts/check-focused-evidence.py"
+      ],
+      "cases": [
+        "exactsource/assertion/methodID binding",
+        "sourceexactreuse/historical/newexecution distinct",
+        "no name-match/count-only/summedoverlapcoverage",
+        "maxstate/runtime/fullproviderapproval staysseparate"
+      ]
+    }
+  ],
+  "identified_scope_gaps": [
+    {
+      "id": "WG01",
+      "title": "Historical fractional independent model in current composed market test",
+      "owner": "test/OptionalPortfolioCore.t.sol",
+      "current_evidence": "reports/whole-workload-review-20261119/FINDINGS.json"
+    },
+    {
+      "id": "WG02",
+      "title": "Complete1000NFT wallet ownership verification exceeds fixedRPC budget",
+      "owner": "frontend_api/service.py",
+      "current_evidence": "reports/whole-workload-review-20261119/FINDINGS.json"
+    },
+    {
+      "id": "WG03",
+      "title": "Full function/private/helper/service workload matrix and exact evidence statuses",
+      "owner": "docs/WORKLOAD_PLAN.json",
+      "current_evidence": "reports/whole-workload-review-20261119/FINDINGS.json"
+    },
+    {
+      "id": "WG04",
+      "title": "Real source/provider/OpenSea/VRF/key/host acceptance",
+      "current_evidence": "reports/whole-workload-review-20261119/FINDINGS.json"
+    }
+  ],
+  "external_website_source_scope": "reports/whole-workload-review-20261119/WEBSITE_SOURCE_SCOPE.json",
+  "external_scope_rule": "Published website HEAD JavaScript/HTML is inventoried separately; doc-only corrections do not change application code or imply browser execution/adoption."
+}

@@ -226,7 +226,8 @@ The separate [offline history recovery tool](HISTORY_RECOVERY.md) snapshots/vali
 | `/v1/protocol` | Verified lifecycle, controls and source-committed successor information |
 | `/v1/mint-readiness` | Confirmed reveal inventory; not randomness-provider or mint-execution approval |
 | `/v1/nfts/{token-id}` | Canonical owner, traits, LP value, current claimable balances and available history |
-| `/v1/wallets/{address}/nfts` | Complete confirmed ownership inventory; requires creation-to-cutoff history |
+| `/v1/wallets/{address}/nfts` | Legacy complete-or-failed confirmed inventory; large wallets can exceed the read budget |
+| `/v1/wallets/{address}/nfts/{block}/{offset}` | At most16 canonically verified ownership IDs; assemble every same-block page before calling a large inventory complete |
 | `/v1/wallets/{address}/summary/{block}/{offset}` | Up to 16 current holdings' LP/ETH values; complete every matching chunk before totaling |
 | `/v1/collection/{block}/{offset}` | Up to 16 canonical positions and chunk LP totals; see [collection reads](COLLECTION_READS.md) |
 | `/v1/earnings` | Processed collection LP/royalty history; requires `earnings_history` |
@@ -497,6 +498,46 @@ All reads use the same confirmed hash and final canonicality check; missing or
 malformed getters fail rather than assuming minting is open. Deployment pins must
 match this NFT implementation. Existing deployments without `mintPaused()` need
 a compatible service version. See [controls evidence](../reports/operator-controls/VERIFICATION.md).
+
+## Verified wallet inventory pages
+
+The additive endpoint `GET /v1/wallets/{address}/nfts/{block}/{offset}` returns
+schema1 with `kind:fixed_block_wallet_inventory_page`. It preserves current work,
+HTTP and worker limits. The older schema2 complete endpoint is unchanged: it
+never silently truncates a wallet, and may refuse a large complete read.
+
+| Input / output | Meaning |
+| --- | --- |
+| `address` | Actual20-byte owner address; no signature or transaction. |
+| `block` | Canonical decimal confirmed block number, also inside configured history/freshness bounds. |
+| `offset` | Canonical decimal0,16,32...992; integer multiple16 and inside the actual inventory. |
+| `count`, `verified_count` | Canonical total owner balance, and only the number verified in this page. |
+| `token_ids` | Up to16 exact uint256 IDs as canonical decimal strings, numerically sorted. |
+| `next_offset` | Next contiguous offset, or null when no later page remains. |
+| `inventory_sha256` | Lowercase SHA256 of all numerically sorted decimal IDs joined with ASCII commas, with no spaces or leading zeros. |
+| `complete` | True only if offset0 itself verifies the whole inventory. A later final page alone stays false. |
+| `provenance` | Exact block/hash/time, chain, configuration identity and accounting profile; history provenance is separate. |
+
+Choose a confirmed block from reviewed protocol state, then fetch offset0 and
+follow every returned next offset at that SAME block. Before assembling complete
+holdings, require identical wallet/chain/NFT contract/block hash/configuration/
+inventory digest/count, contiguous offsets, no duplicate/missing IDs, total ID
+count equal to canonical count and a matching recomputed digest. Sort IDs using
+full integer precision, never JavaScript Number or lexical string order.
+For1,000 holdings this is63 pages; the final page has8 IDs and does not by itself
+establish completeness. Empty or small wallets may complete in the first page.
+
+If history, ownership, confirmation/canonicality, freshness or identity fails,
+stop assembly. Keep data explicitly partial/unavailable and retry a new complete
+snapshot; never merge changing blocks or replace missing IDs with an empty wallet.
+Use existing admission/concurrency bounds, not an unbounded page fan-out.
+
+The [workload review](../reports/whole-workload-review-20261119/REVIEW.md) records
+13 new injected/owned-loopback methods. Actual provider latency/history and website
+adoption are separate. Existing websites/configurations are not changed here.
+`service.py` is part of checkpoint semantic-source identity: preserve original
+checkpoint1/2/3/review/raw DB bytes and explicitly rebuild/review/re-pin for a
+separately authorized consumer rollout. No automatic hot-edit, migration or reset.
 
 ## Wallet summary chunks
 

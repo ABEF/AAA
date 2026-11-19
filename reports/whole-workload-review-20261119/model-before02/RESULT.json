@@ -1,0 +1,13 @@
+{
+  "exit_code": 1,
+  "methods": [
+    {
+      "id": "test/OptionalPortfolioCore.t.sol:OptionalPortfolioCoreTest:testMarketCampaignMixedResidualPendingMergeTransferAndNewEntries()",
+      "status": "Failure",
+      "reason": "independent receipt model: 3833223421348661652 != 3833223421348661651"
+    }
+  ],
+  "source_bracket_stable": true,
+  "foundry_unchanged": true,
+  "is_baseline": true
+}

@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "baseline": "f7dd399a4e5b5baaecd1d430a1b514f27e64b840",
+  "documentation_commit": "2183e1ac676e4eb7d7ccac6dc0ce597c419aef0c",
+  "application_files_changed": false,
+  "live_environments_changed": false,
+  "changed_files": [
+    {
+      "path": "AGENTS.md",
+      "before_sha256": "86de1e236a7a1a560d8eac911a9fee0950e17a64443e5389b1ae600378e65357",
+      "after_sha256": "aa46c546a5a26720002313a1f7203707b5b7514722311497fd192510887e5671"
+    },
+    {
+      "path": "PROJECT_CONTEXT.md",
+      "before_sha256": "58e5ea04de64a6c1abec24b029f4f0fffe7717d894fcaa28cb37aa564a2fb130",
+      "after_sha256": "4ab45bf047868edabac3c2b8722bb01d0c9cd62ec42e76bea3a7bc07d45286e6"
+    },
+    {
+      "path": "README.md",
+      "before_sha256": "7760c378c1f1e38deb633186dae45cca38cf5ba7f64dd35f606560c1fe339538",
+      "after_sha256": "eed3b82b1b3d2130c68d60f8f2f79c8164f3eb606498b3de34e72be5487b274b"
+    }
+  ],
+  "all68_published_js_bytes_preserved": true,
+  "publication_scope": "Three documentation files only; source AST remains pinned to unchanged application blobs at published baseline.",
+  "initial_style_correction": "Two CRLF blank lines corrected in follow-up documentation commit before publication; final baseline diff check passed."
+}

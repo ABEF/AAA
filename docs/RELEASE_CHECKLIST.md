@@ -1,5 +1,21 @@
 # Release approval record - NOT APPROVED
 
+## Whole-project evidence boundary
+
+The [whole-workload review](../reports/whole-workload-review-20261119/REVIEW.md) expands scope beyond the gas-only recommendation.
+A [source-pinned map](WORKLOAD_COVERAGE.md) indexes all current contract/internal/
+service families and187 scenario classes. It is not a claim that every class passed.
+The old independent fractional LP model is corrected: seven affected plus two new
+composed methods pass. Thirteen new backend methods verify bounded same-block
+wallet pages, including1,000 IDs/63 pages and selected16/64currency states.
+The legacy complete endpoint remains complete-or-failed; no work limits rise.
+
+Checkpoint source identities change with service.py. Preserve original artifacts
+and require reviewed rebuild/re-pin and matching website/provider adoption.
+Cold maximum-state32M/two-LP/full-canonical/actual-provider and original Q01-Q07
+release qualification remain open. No production Solidity, gas/fee guard, NFT
+right or live environment changes; the report distinguishes all evidence scopes.
+
 Production is undeployed. The [seven-report consolidation](../reports/seven-report-consolidation-20261119/REVIEW.md)
 retains all original64 finding IDs and Q01-Q07 approval obligations, with later
 source/evidence updates kept separate. It approves no deployment or rollout.

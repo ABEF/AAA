@@ -1,0 +1,10 @@
+{
+  "method": "tests_python.test_factory_payload6.FactoryPayload6Tests.test_fresh_six_remains_unknown_unapproved_and_preseal_unknown_inputs_stay_blocked",
+  "exit_code": 0,
+  "wall_seconds": 6.530999999999949,
+  "only_current_diagnostic_and_affected_assertion_changed": true,
+  "source_sha256": {
+    "zzz_ops/preseal_plan.py": "fcf297bf4570d81e85f70a364340df49d360fb0a9c794b4b4624c580be940fad",
+    "tests_python/test_factory_payload6.py": "bfcf059068a80baa0f5ece564839bed9f645c30e118b96621ce9487d9e2cd286"
+  }
+}

@@ -733,6 +733,61 @@ class Projection:
         return read(self.earnings_history, wallet_address, block_number, offset)
 
     @bounded_request
+    def wallet_page(self, wallet_address: Any, block_number: int, offset: int = 0) -> dict[str, Any]:
+        """Verify one ownership page; a final page is not a complete inventory proof.
+
+        Consumers must collect every contiguous page at one block/configuration/
+        inventory identity before treating a multi-page wallet as verified.
+        The legacy complete endpoint retains its original all-owner checks.
+        """
+        wallet = address(wallet_address)
+        chunk_size = 16
+        if (type(block_number) is not int or type(offset) is not int or
+                not 0 <= offset < 1000 or offset % chunk_size):
+            raise ValueError('Invalid wallet inventory cursor')
+        if self.history is None:
+            raise HistoryError('Confirmed wallet inventory requires configured history')
+        safe, head, _ = self._snapshot()
+        if not self.start <= block_number <= safe['number']:
+            raise ProjectionError('Wallet inventory block is not confirmed')
+        header = self._header(hex(block_number))
+        self._fresh(header)
+        expire_at(header['timestamp'] + self.max_age, self.clock)
+        block = {'blockHash': header['hash'], 'requireCanonical': True}
+        lifecycle = self._verify_deployment(block)
+        lp_assets, royalty_assets = self._admitted(block, asset_health={})
+        history = self._history_snapshot(header, block, lp_assets, royalty_assets)
+        identifiers = sorted(nft_id for nft_id, owner in history.owners.items() if owner == wallet)
+        count = self._uint('nft', 'balanceOf(address)', wallet, block=block)
+        if count != len(identifiers) or count > 1000:
+            raise HistoryError('Indexed wallet inventory differs from canonical ERC721 balance')
+        if offset >= count and not (offset == count == 0):
+            raise ValueError('Cursor is outside wallet inventory')
+        selected = identifiers[offset:offset + chunk_size]
+        for nft_id in selected:
+            if self._addr('nft', 'ownerOf(uint256)', nft_id, block=block) != wallet:
+                raise HistoryError('Indexed wallet token is not owned by the canonical wallet')
+        self._finish(header)
+        return {'schema': 1, 'kind': 'fixed_block_wallet_inventory_page',
+                'chain_id': self.chain, 'wallet': wallet, 'nft_contract': self.contracts['nft'].address,
+                'available': True, 'lifecycle': lifecycle, 'count': count, 'offset': offset,
+                'verified_count': len(selected), 'chunk_size': chunk_size,
+                'token_ids': [str(nft_id) for nft_id in selected],
+                'next_offset': offset + len(selected) if offset + len(selected) < count else None,
+                'inventory_sha256': hashlib.sha256(','.join(map(str, identifiers)).encode('ascii')).hexdigest(),
+                'complete': offset == 0 and len(selected) == count,
+                'provenance': {'block_number': header['number'], 'block_hash': header['hash'],
+                               'block_timestamp': header['timestamp'], 'observed_head': head,
+                               'confirmations': self.confirmations, 'finality': 'confirmation_depth_only',
+                               'protocol_finalized': False, 'eip1898_require_canonical': True,
+                               'configuration_sha256': self.identity, 'accounting_version': self.accounting_version},
+                'history': dict(history.provenance),
+                'scope': 'Only returned token IDs have canonical ownership verification in this page. '
+                         'For a multi-page wallet, collect every contiguous page from offset zero using '
+                         'the same wallet, chain, NFT contract, block hash, configuration and inventory '
+                         'digest; verify the total count before treating the inventory as complete.'}
+
+    @bounded_request
     def wallet(self, wallet_address: Any) -> dict[str, Any]:
         wallet = address(wallet_address)
         if self.history is None:

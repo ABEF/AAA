@@ -1,0 +1,7 @@
+Transcribed terminal summary; not raw independent capture.
+Command: python -m unittest tests_python.test_wallet_workload_bounds.WalletWorkloadBoundsTests.test_first_thousand_holder_page_fits_with_sixteen_or_sixtyfour_currencies -v
+tests_python.test_wallet_workload_bounds.WalletWorkloadBoundsTests.test_first_thousand_holder_page_fits_with_sixteen_or_sixtyfour_currencies ... ok
+
+Ran 1 tests in 6.307s
+OK
+Exit code0

@@ -35,6 +35,21 @@ cases use inert signing/recovery-only restart. Real keys/Cast/provider/full loop
 off-host recovery/fencing/alerts and soak remain required. Host observations and
 rehearsal evidence stay exact; installed services/journals and heartbeat untouched.
 
+## Whole-project workload coverage
+
+[The current workload review](reports/whole-workload-review-20261119/REVIEW.md)
+expands scope to every contract/internal/service family, not just two-LP gas.
+[The plan](docs/WORKLOAD_PLAN.json) has187 scenario classes/21 service subfamilies;
+source inventory is not dynamic coverage. The exact-unit independent market model
+now replaces old fractional expectations; nine selected composed journeys pass.
+
+The explicit fixed-block wallet-page endpoint returns at most16 verified IDs.
+A1,000NFT owner needs63 coherent pages; the final8-IDpage alone is not complete.
+13 new backend methods pass without raising the1024call/1MiB limits. Actual
+website/provider/history/latency admission remains open. service.py semantic
+source changes require reviewed checkpoint rebuild/re-pin on new adoption;
+old artifacts/databases/journals and running sites/services remain unchanged.
+
 ## Current architecture and economics
 
 1,000 ERC721 NFTs; fixed600Commun/300Rare/100Legendary draw quotas. Native ETH and

@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "kind": "operational_script_workflow_inventory_not_execution",
+  "files": [
+    {
+      "repository": "contract_repository",
+      "path": ".github/workflows/keeper-safety.yml",
+      "sha256": "269ac0c3956a9d3fa6a20b303769338fc913b69bc19d9a4c10b206b0fc184188",
+      "bytes": 2197,
+      "source_scope": "working reviewed files",
+      "verification": "file-level source inventory only; no service/install/deploy or workflow executed"
+    },
+    {
+      "repository": "contract_repository",
+      "path": ".github/workflows/project-todo.yml",
+      "sha256": "73d6cf730018c981958d16d0fdd2ea9b1122632a7728f494f5639128d24ba961",
+      "bytes": 609,
+      "source_scope": "working reviewed files",
+      "verification": "file-level source inventory only; no service/install/deploy or workflow executed"
+    },
+    {
+      "repository": "contract_repository",
+      "path": ".github/workflows/verify.yml",
+      "sha256": "9a14fc5ee62f66a23e8e181efd8fc8d2cb9b42a91e8b97089348d4542ffc6804",
+      "bytes": 4643,
+      "source_scope": "working reviewed files",
+      "verification": "file-level source inventory only; no service/install/deploy or workflow executed"
+    },
+    {
+      "repository": "contract_repository",
+      "path": "keeper/staging-install.sh",
+      "sha256": "fde49b9780dcdbb352e8286f8b649689c8b48aa021226d02a5b84bfa94d9b2ad",
+      "bytes": 4422,
+      "source_scope": "working reviewed files",
+      "verification": "file-level source inventory only; no service/install/deploy or workflow executed"
+    },
+    {
+      "repository": "contract_repository",
+      "path": "keeper/staging-monitor-install.sh",
+      "sha256": "a7e624900b81eba1f327ae66cb89d61081c8f5f08e99217d69511bf57f74bca0",
+      "bytes": 2627,
+      "source_scope": "working reviewed files",
+      "verification": "file-level source inventory only; no service/install/deploy or workflow executed"
+    },
+    {
+      "repository": "contract_repository",
+      "path": "scripts/install-deps.sh",
+      "sha256": "e011138120640a9a93de13751282fbbf630055e51b1bbc583d76da281a38d0b7",
+      "bytes": 1263,
+      "source_scope": "working reviewed files",
+      "verification": "file-level source inventory only; no service/install/deploy or workflow executed"
+    },
+    {
+      "repository": "contract_repository",
+      "path": "scripts/verify-slither.sh",
+      "sha256": "da2409d97fdef314bf78fdcf025572167874aadc01b66d5dcc9b59ff0fbd75d9",
+      "bytes": 1385,
+      "source_scope": "working reviewed files",
+      "verification": "file-level source inventory only; no service/install/deploy or workflow executed"
+    },
+    {
+      "repository": "contract_repository",
+      "path": "scripts/verify.sh",
+      "sha256": "9e5e652680a3dca72235a7c653bcb576d6c4c4e564500e08b50e19bce8aa43b5",
+      "bytes": 2528,
+      "source_scope": "working reviewed files",
+      "verification": "file-level source inventory only; no service/install/deploy or workflow executed"
+    },
+    {
+      "repository": "website_repository",
+      "path": "deploy/enable-https.sh",
+      "sha256": "a7bb06ffe2d2d87a7cf14bf3d1bfc8df32023d549648e2ce4e93dd95ff932cde",
+      "bytes": 2062,
+      "source_scope": "f7dd399a4e5b5baaecd1d430a1b514f27e64b840",
+      "verification": "file-level source inventory only; no service/install/deploy or workflow executed"
+    },
+    {
+      "repository": "website_repository",
+      "path": "deploy/install-integration-release.sh",
+      "sha256": "3474cd128f7474a328120d77cab5e5f4ea51cdec5ac1dce07044b8c9d320907c",
+      "bytes": 3966,
+      "source_scope": "f7dd399a4e5b5baaecd1d430a1b514f27e64b840",
+      "verification": "file-level source inventory only; no service/install/deploy or workflow executed"
+    },
+    {
+      "repository": "website_repository",
+      "path": "deploy/install-release.sh",
+      "sha256": "d2ea3c6d3a5cc0cccbfcafac49da736f45859c29a51249121d3e40904c1a3977",
+      "bytes": 1523,
+      "source_scope": "f7dd399a4e5b5baaecd1d430a1b514f27e64b840",
+      "verification": "file-level source inventory only; no service/install/deploy or workflow executed"
+    },
+    {
+      "repository": "website_repository",
+      "path": "deploy/popl-integration-renew-hook.sh",
+      "sha256": "286308371a8e13c92f37b8868178dc7ae024d7107d48579267897bbdbd040d09",
+      "bytes": 215,
+      "source_scope": "f7dd399a4e5b5baaecd1d430a1b514f27e64b840",
+      "verification": "file-level source inventory only; no service/install/deploy or workflow executed"
+    }
+  ],
+  "files_count": 12,
+  "changed_verify_shell_syntax_checked": true,
+  "unchanged_scripts_run": false,
+  "git_scope": "Explicit per-command safe.directory only; no persistent Git configuration.",
+  "limitation": "Shell/PowerShell/YAML entry flows are file-level obligations, not a claim that every command or remote action ran. Current verify.sh only receives an offline map check; existing deployment jobs remain unauthorized."
+}
