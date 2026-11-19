@@ -42,6 +42,20 @@ with complete assembly required. Existing website adoption remains open. Preserv
 old checkpoints/reviews/raw DBs: service.py changed their semantic source identity;
 rebuild/review/re-pin explicitly before separate consumer rollout. No live change.
 
+## Controlled maximum-state qualification
+
+The [maximum-state rehearsal](../reports/maximum-workload-20261119/REVIEW.md) uses
+1,000 locally minted NFTs funded through actual Entry calls,64 ERC20 royalty currencies plus ETH,
+a main/residual and reversed activation order.11/12 cold contributions fit32M
+with full20%; opening ZZZ/all-slow estimates27,142,801/32,571,362 padded and
+correctly refuses. Five executable maintenance paths fit24M/full25%; three
+intended timing/source refusals reproduce. All65 royalties pay/drain and raw LP
+liabilities reconcile; this does not qualify ETH conversion or claim-batch gas.
+Synthetic6M external execution depth is explicit. No cap,50k/1M allowance,
+source contract, authority or environment changes. All23 owned nodes stop.
+Keep the remaining476,135 estimate reduction and broader actual-market/full-state
+qualification open; never replace estimates with trace gas to pass admission.
+
 ## Next work and required inputs
 
 1. Qualify actual independent ETH/ZZZ prices and usable bidirectional routes/depth,
@@ -49,9 +63,9 @@ rebuild/review/re-pin explicitly before separate consumer rollout. No live chang
    inputs stay blocked; preserve all guards and separate ETH fee budgets.
 2. Work from the whole-project function/scenario map: cover the remaining
    meaningful role/lifecycle/market/input/failure transitions, not only gas.
-   Link exact existing evidence and run changed/missing cases. Cold F6 maximum
-   currencies/two-LP/order32M workloads, full canonical cutover and every manual
-   state/guard mask remain separately unqualified; do not relabel old passes.
+   Link exact existing evidence and run changed/missing cases. The measured64-currency/two-LP slow-ZZZ opening state still needs476,135 less
+   estimated gas. Other lifetime/order/currency/venue/bucket combinations, full
+   canonical cutover and manual guard masks remain unqualified; keep exact scopes.
 3. Review fresh constructor/binding/Factory/runtime and SeaDrop/VRF/artwork inputs;
    prior constructor receipts do not qualify changed F6 creations. Review actual
    governance/keeper/guardian/payee and contract-wallet envelopes independently.

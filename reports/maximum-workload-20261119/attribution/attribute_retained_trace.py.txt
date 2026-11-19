@@ -1,0 +1,84 @@
+"""Offline attribution of a single retained maximum-state call. No RPC/EVM/compiler."""
+from pathlib import Path
+import collections,gzip,hashlib,json,sys
+ROOT=Path(r"C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2")
+V=Path(r"C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9")
+OUT=Path(__file__).resolve().parent
+CASE=V/"maximum-workload-20261119/producer06/cold-contributions/max64-twolp-999-opening-zzz-allslow"
+RECORD=CASE/"rpc-records.json.gz"
+EXPECTED="9b39e60f41c416bb5e05cbde6c367f874d556a4aa90924a2a91fa1a707c8c7fa"
+MAX_BYTES=128*1024*1024
+sha=lambda x:hashlib.sha256(x).hexdigest()
+def bounded(path):
+    with Path(path).open("rb")as stream:raw=stream.read(MAX_BYTES+1)
+    assert len(raw)<=MAX_BYTES
+    return raw
+raw=bounded(RECORD);assert sha(raw)==EXPECTED
+with gzip.GzipFile(fileobj=__import__("io").BytesIO(raw))as stream:decoded=stream.read(MAX_BYTES+1)
+assert len(decoded)<=MAX_BYTES
+records=json.loads(decoded)
+verification_raw=bounded(CASE/"VERIFICATION.json");verification=json.loads(verification_raw)
+assert verification["rpc_records_sha256"]==EXPECTED
+assert verification["verification_complete"]is True and verification["owned_node_stopped"]is True
+assert verification["meets_reviewed_execution_profile"]is False
+assert verification["production_trace_measurement_verified"]is True
+selected=[(i,row)for i,row in enumerate(records)if row["request"]["method"]=="debug_traceCall" and row["request"]["params"][0].get("gas")==hex(32_000_000)]
+assert len(selected)==1
+trace_index,row=selected[0];request=row["request"];response=row["response"]
+assert sha(json.dumps(request,separators=(",",":")).encode())==row["serialized_request_sha256"]
+assert "error"not in response
+trace=response["result"];assert not trace.get("error")
+inventory_path=ROOT/"reports/whole-workload-review-20261119/FUNCTION_INVENTORY.json"
+inventory_raw=bounded(inventory_path);inventory=json.loads(inventory_raw)
+# Pure ABI hashing only; importing this helper performs no RPC or environment setup.
+sys.path.insert(0,str(ROOT))
+from zzz_ops.abi import keccak256
+abi_helper=ROOT/"zzz_ops/abi.py"
+selector=lambda text:"0x"+keccak256(text.encode()).hex()[:8]
+signatures=collections.defaultdict(set)
+for item in inventory["abi_rows"]:
+    if item["kind"]=="function":signatures[selector(item["signature"])].add(item["signature"])
+roles={address.lower():role for role,address in verification["profile"]["pins"].items()}
+roles[verification["workload"]["royalty_ledger"]]="royalty"
+assets=set(verification["workload"]["royalty_assets"])
+getters={selector(signature):role for signature,role in
+    (("access()","access_controller"),("portfolioPolicy()","portfolio_policy"),
+     ("rebalanceConfirmation()","rebalance_confirmation"),("executionStrategy()","lp_balance_math"),
+     ("balanceMath()","lp_balance_math"),("zzz()","fixed_zzz"),("seaDropMint()","mint_helper"),
+     ("protocolPolicy()","protocol_policy"),("royaltyRewards()","royalty"))}
+for rec in records:
+    q=rec["request"]
+    if q["method"]!="eth_call":continue
+    data=q["params"][0].get("data","");value=rec.get("response",{}).get("result")
+    if data in getters and type(value)is str and len(value)==66 and int(value,16)<1<<160:
+        addr="0x"+value[-40:].lower()
+        if int(addr,16):roles.setdefault(addr,getters[data])
+role_totals=collections.defaultdict(lambda:{"frames":0,"inclusive_gas_sum_overlapping":0,"signed_immediate_child_residual_sum":0})
+groups={};negative=[];todo=[(trace,0,True)];count=0;nonroot=0;maxdepth=0
+while todo:
+    frame,depth,isroot=todo.pop();count+=1;assert count<=16384
+    children=frame.get("calls",[]);assert type(children)is list
+    used=int(frame.get("gasUsed","0x0"),16)
+    child_used=sum(int(child.get("gasUsed","0x0"),16)for child in children)
+    residual=used-child_used
+    target=frame.get("to","").lower();method=frame.get("input","")[:10].lower();kind=frame.get("type","")
+    role=roles.get(target,"royalty_currency"if target in assets else "unclassified:"+target)
+    if not isroot:nonroot+=residual
+    maxdepth=max(maxdepth,depth)
+    if residual<0:negative.append({"root":isroot,"role":role,"selector":method,"gas_used":used,"children_gas_used_sum":child_used,"signed_residual":residual})
+    total=role_totals[role];total["frames"]+=1;total["inclusive_gas_sum_overlapping"]+=used;total["signed_immediate_child_residual_sum"]+=residual
+    key=(role,method,kind)
+    group=groups.setdefault(key,{"role":role,"selector":method,"type":kind,"signatures":sorted(signatures.get(method,[])),"frames":0,"inclusive_gas_sum_overlapping":0,"signed_immediate_child_residual_sum":0,"forwarded_gas_min":2**256-1,"forwarded_gas_max":0})
+    group["frames"]+=1;group["inclusive_gas_sum_overlapping"]+=used;group["signed_immediate_child_residual_sum"]+=residual
+    gas=int(frame.get("gas","0x0"),16);group["forwarded_gas_min"]=min(group["forwarded_gas_min"],gas);group["forwarded_gas_max"]=max(group["forwarded_gas_max"],gas)
+    todo.extend((child,depth+1,False)for child in children)
+root_gas=int(trace["gasUsed"],16)
+assert sum(x["signed_immediate_child_residual_sum"]for x in groups.values())==root_gas
+assert len(negative)==1 and negative[0]["root"]
+assert nonroot+negative[0]["signed_residual"]==root_gas
+estimate=verification["estimated_gas"];padded=verification["padded_gas"]
+assert padded==(estimate*120+99)//100 and padded>32_000_000
+input_pins={str(RECORD):EXPECTED,str(CASE/"VERIFICATION.json"):sha(verification_raw),str(inventory_path):sha(inventory_raw),str(abi_helper):sha(bounded(abi_helper)),str(ROOT/"src/ZZZRoyaltyRewards.sol"):sha(bounded(ROOT/"src/ZZZRoyaltyRewards.sol")),str(ROOT/"src/libraries/ExactRoyaltyAllocation.sol"):sha(bounded(ROOT/"src/libraries/ExactRoyaltyAllocation.sol")),str(Path(__file__).resolve()):sha(bounded(__file__))}
+output={"schema":1,"scope":"Offline immediate-child frame attribution of one retained successful32M call that refuses full20% margin. No EVM/compiler/RPC or code changes.","case":verification["profile"]["label"],"inputs_sha256":input_pins,"selected_rpc_record_index":trace_index,"record_count":len(records),"frames":count,"maximum_depth":maxdepth,"normal_build":"activation-final-six-20261118","population":{"minted":1000,"prior_active":999,"erc20_royalties":64,"royalty_assets_including_eth":65,"physical_lp_positions":2,"activation_order":"Legendary then Rare then Commun; dormant entrant is Commun","reference_liquidity":"6M L; synthetic external positive control","target_market":"actual v4, moved before hybrid creation; not matched to old one-LP price or input amount"},"operating_cap":32_000_000,"estimate_gas":estimate,"full20percent_gas":padded,"maximum_estimate":26_666_666,"estimate_reduction_needed":estimate-26_666_666,"padded_excess":padded-32_000_000,"trace_gas_used_distinct_from_estimate":root_gas,"nonroot_immediate_child_exclusive_sum":nonroot,"negative_signed_residuals":negative,"role_totals":dict(sorted(role_totals.items(),key=lambda item:item[1]["signed_immediate_child_residual_sum"],reverse=True)),"role_selector_groups":sorted(groups.values(),key=lambda item:item["signed_immediate_child_residual_sum"],reverse=True),"limitations":["Inclusive aggregates overlap and are never budget-component sums.","The root signed residual is negative. Do not clamp it or describe it as nonnegative Entry opcode cost; refund/trace accounting is not established by callTracer alone.","Actual tracegas and node estimate differ; these records do not isolate the cause of that difference or prove estimator savings from a given frame reduction.","No old16currency trace is used for a matched comparison: current64currencies, twoLPs, reverse order, changed price/input, synthetic6Mreference and32M cap differ.","Per-opcode SSTORE counts and exact candidate savings are not measured.","A proposed new private enrollment codec requires source/layout/canonical/consumer/size review and new verification before adoption."]}
+path=OUT/"TRACE_ATTRIBUTION.json";assert not path.exists();path.write_text(json.dumps(output,indent=2)+"\n",encoding="utf-8",newline="\n")
+print(json.dumps({"output":str(path),"sha256":sha(path.read_bytes()),"frames":count,"estimate_reduction_needed":output["estimate_reduction_needed"],"root_signed_residual":negative[0]["signed_residual"]}))

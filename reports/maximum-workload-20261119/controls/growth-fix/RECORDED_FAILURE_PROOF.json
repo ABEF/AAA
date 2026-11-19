@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "old_checker_sha256": "7fa494045d488b7255f9ae9eb7f056018e90c088e874c395230a40d9dac0c9a0",
+  "precise_cause": "physical_portfolio requires positive compoundBalance for every case; source-confirmed contribution checkpoints can move it into attributed idle before growth",
+  "cases": [
+    {
+      "label": "max64-twolp-1000-grow-eth",
+      "verification_sha256": "c61a9d0de54e72cd2ad649152df84d8ae9297b2393583abe74f660a20d8237ca",
+      "rpc_records_sha256": "6fac0ed5286b46c5563447f423aea0353de6fc01cc3cb3228b43463d13adfac5",
+      "last_request": {
+        "jsonrpc": "2.0",
+        "id": 925,
+        "method": "eth_call",
+        "params": [
+          {
+            "from": "0x0000000000000000000000000000000000000b0b",
+            "to": "0x886d6d1eb8d415b00052828cd6d5b321f072073d",
+            "data": "0x112b3443cf4a5141a3f8c711be37c28b0cdd89c5ed10df6797724080060486725de32c3c0000000000000000000000000000000000000000000000000000000000000000"
+          },
+          {
+            "blockHash": "0x7519fc0438db3b5bc87adf44da5437f48d72ab4facfca069d697c5ba4027750e",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "last_response": {
+        "jsonrpc": "2.0",
+        "id": 925,
+        "result": "0x0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "all_requests_before_transaction_measurement": true,
+      "owned_node_stopped": true
+    },
+    {
+      "label": "max64-twolp-1000-grow-zzz",
+      "verification_sha256": "fd4da610f98c00b1626c84ca2f0037032f827a7e09412be4ddac44831bba39c3",
+      "rpc_records_sha256": "33d95907f1afebb485fa19e91e0c3df1ea9caff18380a54c7ca42fe7b83aa9e3",
+      "last_request": {
+        "jsonrpc": "2.0",
+        "id": 925,
+        "method": "eth_call",
+        "params": [
+          {
+            "from": "0x0000000000000000000000000000000000000b0b",
+            "to": "0x886d6d1eb8d415b00052828cd6d5b321f072073d",
+            "data": "0x112b3443cf4a5141a3f8c711be37c28b0cdd89c5ed10df6797724080060486725de32c3c0000000000000000000000000000000000000000000000000000000000000000"
+          },
+          {
+            "blockHash": "0x7519fc0438db3b5bc87adf44da5437f48d72ab4facfca069d697c5ba4027750e",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "last_response": {
+        "jsonrpc": "2.0",
+        "id": 925,
+        "result": "0x0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "all_requests_before_transaction_measurement": true,
+      "owned_node_stopped": true
+    },
+    {
+      "label": "max64-twolp-1000-grow-zzz-allfault",
+      "verification_sha256": "62f4ff7b926325b7450cadeb03e32d1992cd3057706b207e665c74f53f55584d",
+      "rpc_records_sha256": "cbef65deafbfd39590144adc218195b62bdce0c734b9177d11f627d1758aa495",
+      "last_request": {
+        "jsonrpc": "2.0",
+        "id": 861,
+        "method": "eth_call",
+        "params": [
+          {
+            "from": "0x0000000000000000000000000000000000000b0b",
+            "to": "0x886d6d1eb8d415b00052828cd6d5b321f072073d",
+            "data": "0x112b3443cf4a5141a3f8c711be37c28b0cdd89c5ed10df6797724080060486725de32c3c0000000000000000000000000000000000000000000000000000000000000000"
+          },
+          {
+            "blockHash": "0x7519fc0438db3b5bc87adf44da5437f48d72ab4facfca069d697c5ba4027750e",
+            "requireCanonical": true
+          }
+        ]
+      },
+      "last_response": {
+        "jsonrpc": "2.0",
+        "id": 861,
+        "result": "0x0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "all_requests_before_transaction_measurement": true,
+      "owned_node_stopped": true
+    }
+  ]
+}

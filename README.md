@@ -27,10 +27,17 @@ require actual provider/execution/fee qualification before live adoption;
 these earlier20M results are not relabelled32M.
 
 This is finite evidence for 1,000 NFTs and 16 ERC20 currencies plus ETH,
-not universal workload or production approval. Real markets, complete fees/providers, 64 currencies, two-LP maximum
-state and other activation orders remain unqualified. Fresh F6 creation/data and
+not universal workload or production approval. Real markets, complete fees/providers, full64-currency/two-LP
+qualification and other activation orders remain open; new finite results follow. Fresh F6 creation/data and
 source/runtime pins are required; old private storage is never reinterpreted.
 Existing chains, services, journals, websites and paused monitoring are unchanged.
+
+The [expanded controlled rehearsal](reports/maximum-workload-20261119/REVIEW.md)
+now covers64 ERC20 royalties plus ETH and both LPs:11/12 contributions fit32M
+with full20%; one slow-ZZZ opening state remains above budget. All five executable
+maintenance cases fit24M/full25%, with three intended guard rejections verified.
+Exact payouts/backing reconcile; synthetic external depth and remaining real
+provider/market/full-state limits stay explicit. Defaults and safeguards stay.
 
 The worker defaults to dry run. Raw checks can occur during cooldown; paid
 confirmation enrollment starts near eligibility to avoid hours of unnecessary

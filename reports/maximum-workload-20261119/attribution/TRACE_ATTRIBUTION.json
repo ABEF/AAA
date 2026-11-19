@@ -1,0 +1,2581 @@
+{
+  "schema": 1,
+  "scope": "Offline immediate-child frame attribution of one retained successful32M call that refuses full20% margin. No EVM/compiler/RPC or code changes.",
+  "case": "max64-twolp-999-opening-zzz-allslow",
+  "inputs_sha256": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\maximum-workload-20261119\\producer06\\cold-contributions\\max64-twolp-999-opening-zzz-allslow\\rpc-records.json.gz": "9b39e60f41c416bb5e05cbde6c367f874d556a4aa90924a2a91fa1a707c8c7fa",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\maximum-workload-20261119\\producer06\\cold-contributions\\max64-twolp-999-opening-zzz-allslow\\VERIFICATION.json": "81a2bf61f4c73076d01bf9b76a7feefd255c0858cb0ebf431fffb8a4789a719e",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\reports\\whole-workload-review-20261119\\FUNCTION_INVENTORY.json": "b0e50ad2c206c96951551f0f358f5a6960062d63cf8dced683f46389b6fe7491",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\src\\ZZZRoyaltyRewards.sol": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\src\\libraries\\ExactRoyaltyAllocation.sol": "911d84afc1993168ae0a512175adba41158f2209a5e63d7b5085aca4c04988a9",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\maximum-workload-20261119\\attribution\\attribute_retained_trace.py": "b5053d52d668df622bcee83066317b8e3532ede3a754325b6188c93c35383f7c"
+  },
+  "selected_rpc_record_index": 930,
+  "record_count": 957,
+  "frames": 2383,
+  "maximum_depth": 9,
+  "normal_build": "activation-final-six-20261118",
+  "population": {
+    "minted": 1000,
+    "prior_active": 999,
+    "erc20_royalties": 64,
+    "royalty_assets_including_eth": 65,
+    "physical_lp_positions": 2,
+    "activation_order": "Legendary then Rare then Commun; dormant entrant is Commun",
+    "reference_liquidity": "6M L; synthetic external positive control",
+    "target_market": "actual v4, moved before hybrid creation; not matched to old one-LP price or input amount"
+  },
+  "operating_cap": 32000000,
+  "estimate_gas": 27142801,
+  "full20percent_gas": 32571362,
+  "maximum_estimate": 26666666,
+  "estimate_reduction_needed": 476135,
+  "padded_excess": 571362,
+  "trace_gas_used_distinct_from_estimate": 25910993,
+  "nonroot_immediate_child_exclusive_sum": 26552911,
+  "negative_signed_residuals": [
+    {
+      "root": true,
+      "role": "entry",
+      "selector": "0x6169e438",
+      "gas_used": 25910993,
+      "children_gas_used_sum": 26552911,
+      "signed_residual": -641918
+    }
+  ],
+  "role_totals": {
+    "royalty": {
+      "frames": 66,
+      "inclusive_gas_sum_overlapping": 20577116,
+      "signed_immediate_child_residual_sum": 9244101
+    },
+    "royalty_currency": {
+      "frames": 64,
+      "inclusive_gas_sum_overlapping": 3079424,
+      "signed_immediate_child_residual_sum": 3079424
+    },
+    "oracle": {
+      "frames": 97,
+      "inclusive_gas_sum_overlapping": 5675175,
+      "signed_immediate_child_residual_sum": 2597365
+    },
+    "rewards": {
+      "frames": 4,
+      "inclusive_gas_sum_overlapping": 2208783,
+      "signed_immediate_child_residual_sum": 2144048
+    },
+    "independent_reference": {
+      "frames": 36,
+      "inclusive_gas_sum_overlapping": 1237555,
+      "signed_immediate_child_residual_sum": 1078130
+    },
+    "reference": {
+      "frames": 36,
+      "inclusive_gas_sum_overlapping": 1226505,
+      "signed_immediate_child_residual_sum": 1067080
+    },
+    "lp_balance_math": {
+      "frames": 47,
+      "inclusive_gas_sum_overlapping": 3227342,
+      "signed_immediate_child_residual_sum": 911596
+    },
+    "access_controller": {
+      "frames": 813,
+      "inclusive_gas_sum_overlapping": 876105,
+      "signed_immediate_child_residual_sum": 876105
+    },
+    "unclassified:0x2a07706473244bc757e10f2a9e86fb532828afe3": {
+      "frames": 24,
+      "inclusive_gas_sum_overlapping": 695176,
+      "signed_immediate_child_residual_sum": 643832
+    },
+    "pool_manager": {
+      "frames": 127,
+      "inclusive_gas_sum_overlapping": 1505960,
+      "signed_immediate_child_residual_sum": 495374
+    },
+    "vault": {
+      "frames": 60,
+      "inclusive_gas_sum_overlapping": 25355145,
+      "signed_immediate_child_residual_sum": 488841
+    },
+    "fixed_zzz": {
+      "frames": 140,
+      "inclusive_gas_sum_overlapping": 424382,
+      "signed_immediate_child_residual_sum": 424382
+    },
+    "pools": {
+      "frames": 85,
+      "inclusive_gas_sum_overlapping": 425747,
+      "signed_immediate_child_residual_sum": 417185
+    },
+    "liquidity": {
+      "frames": 52,
+      "inclusive_gas_sum_overlapping": 8704336,
+      "signed_immediate_child_residual_sum": 383075
+    },
+    "position_manager": {
+      "frames": 68,
+      "inclusive_gas_sum_overlapping": 953130,
+      "signed_immediate_child_residual_sum": 375932
+    },
+    "lp_position_executor": {
+      "frames": 8,
+      "inclusive_gas_sum_overlapping": 1919664,
+      "signed_immediate_child_residual_sum": 356626
+    },
+    "balancing_router": {
+      "frames": 82,
+      "inclusive_gas_sum_overlapping": 4033549,
+      "signed_immediate_child_residual_sum": 303897
+    },
+    "budget": {
+      "frames": 35,
+      "inclusive_gas_sum_overlapping": 3487974,
+      "signed_immediate_child_residual_sum": 273162
+    },
+    "contribution_pricing": {
+      "frames": 11,
+      "inclusive_gas_sum_overlapping": 3175388,
+      "signed_immediate_child_residual_sum": 259487
+    },
+    "fees": {
+      "frames": 12,
+      "inclusive_gas_sum_overlapping": 497381,
+      "signed_immediate_child_residual_sum": 215538
+    },
+    "state_view": {
+      "frames": 100,
+      "inclusive_gas_sum_overlapping": 245703,
+      "signed_immediate_child_residual_sum": 199309
+    },
+    "protocol_policy": {
+      "frames": 106,
+      "inclusive_gas_sum_overlapping": 186814,
+      "signed_immediate_child_residual_sum": 186814
+    },
+    "independent_state": {
+      "frames": 54,
+      "inclusive_gas_sum_overlapping": 118228,
+      "signed_immediate_child_residual_sum": 95616
+    },
+    "unclassified:0xdb25a7b768311de128bbda7b8426c3f9c74f3240": {
+      "frames": 67,
+      "inclusive_gas_sum_overlapping": 73363,
+      "signed_immediate_child_residual_sum": 73363
+    },
+    "unclassified:0x13aa49bac059d709dd0a18d6bb63290076a702d7": {
+      "frames": 67,
+      "inclusive_gas_sum_overlapping": 73363,
+      "signed_immediate_child_residual_sum": 73363
+    },
+    "membership": {
+      "frames": 6,
+      "inclusive_gas_sum_overlapping": 1383385,
+      "signed_immediate_child_residual_sum": 56748
+    },
+    "nft": {
+      "frames": 17,
+      "inclusive_gas_sum_overlapping": 12390825,
+      "signed_immediate_child_residual_sum": 54068
+    },
+    "unclassified:0xd16d567549a2a2a2005aeacf7fb193851603dd70": {
+      "frames": 50,
+      "inclusive_gas_sum_overlapping": 49404,
+      "signed_immediate_child_residual_sum": 49404
+    },
+    "unclassified:0xa4ad4f68d0b91cfd19687c881e50f3a00242828c": {
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 41875,
+      "signed_immediate_child_residual_sum": 32763
+    },
+    "unclassified:0x883816205341a6ba3c32ae8dadcebdd9d59bc2c4": {
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 74924,
+      "signed_immediate_child_residual_sum": 28843
+    },
+    "activation_assets": {
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 32507,
+      "signed_immediate_child_residual_sum": 23408
+    },
+    "independent_core": {
+      "frames": 36,
+      "inclusive_gas_sum_overlapping": 22612,
+      "signed_immediate_child_residual_sum": 22612
+    },
+    "principal_exit": {
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 462,
+      "signed_immediate_child_residual_sum": 462
+    },
+    "entry": {
+      "frames": 4,
+      "inclusive_gas_sum_overlapping": 25947023,
+      "signed_immediate_child_residual_sum": -620960
+    }
+  },
+  "role_selector_groups": [
+    {
+      "role": "royalty",
+      "selector": "0x8c0863b2",
+      "type": "CALL",
+      "signatures": [
+        "syncForActivation(address,uint256)"
+      ],
+      "frames": 64,
+      "inclusive_gas_sum_overlapping": 8245824,
+      "signed_immediate_child_residual_sum": 5166400,
+      "forwarded_gas_min": 1000000,
+      "forwarded_gas_max": 1000000
+    },
+    {
+      "role": "royalty",
+      "selector": "0x8ea8f83c",
+      "type": "CALL",
+      "signatures": [
+        "activate(uint256,uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 12328549,
+      "signed_immediate_child_residual_sum": 4074958,
+      "forwarded_gas_min": 16963756,
+      "forwarded_gas_max": 16963756
+    },
+    {
+      "role": "royalty_currency",
+      "selector": "0x70a08231",
+      "type": "STATICCALL",
+      "signatures": [
+        "balanceOf(address)"
+      ],
+      "frames": 64,
+      "inclusive_gas_sum_overlapping": 3079424,
+      "signed_immediate_child_residual_sum": 3079424,
+      "forwarded_gas_min": 50000,
+      "forwarded_gas_max": 50000
+    },
+    {
+      "role": "rewards",
+      "selector": "0x34e9af36",
+      "type": "CALL",
+      "signatures": [
+        "syncShares(uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 1045942,
+      "signed_immediate_child_residual_sum": 1030623,
+      "forwarded_gas_min": 19363239,
+      "forwarded_gas_max": 19363239
+    },
+    {
+      "role": "rewards",
+      "selector": "0x96cbcf34",
+      "type": "CALL",
+      "signatures": [
+        "syncMembership(uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 1026005,
+      "signed_immediate_child_residual_sum": 1016618,
+      "forwarded_gas_min": 17982211,
+      "forwarded_gas_max": 17982211
+    },
+    {
+      "role": "independent_reference",
+      "selector": "0x9493c2b8",
+      "type": "STATICCALL",
+      "signatures": [
+        "executionProof((uint160,int24,uint24,uint24,uint128))"
+      ],
+      "frames": 16,
+      "inclusive_gas_sum_overlapping": 1102192,
+      "signed_immediate_child_residual_sum": 962544,
+      "forwarded_gas_min": 500000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "reference",
+      "selector": "0x9493c2b8",
+      "type": "STATICCALL",
+      "signatures": [
+        "executionProof((uint160,int24,uint24,uint24,uint128))"
+      ],
+      "frames": 16,
+      "inclusive_gas_sum_overlapping": 1091792,
+      "signed_immediate_child_residual_sum": 952144,
+      "forwarded_gas_min": 500000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "oracle",
+      "selector": "0xb678a5f2",
+      "type": "STATICCALL",
+      "signatures": [
+        "executionBounds(address)"
+      ],
+      "frames": 36,
+      "inclusive_gas_sum_overlapping": 889524,
+      "signed_immediate_child_residual_sum": 669852,
+      "forwarded_gas_min": 5330016,
+      "forwarded_gas_max": 30148754
+    },
+    {
+      "role": "oracle",
+      "selector": "0x7ae3ab18",
+      "type": "STATICCALL",
+      "signatures": [
+        "validateExecution()"
+      ],
+      "frames": 8,
+      "inclusive_gas_sum_overlapping": 1878160,
+      "signed_immediate_child_residual_sum": 655812,
+      "forwarded_gas_min": 19390169,
+      "forwarded_gas_max": 28732284
+    },
+    {
+      "role": "access_controller",
+      "selector": "0xe8cffd1d",
+      "type": "STATICCALL",
+      "signatures": [
+        "module(bytes32)"
+      ],
+      "frames": 421,
+      "inclusive_gas_sum_overlapping": 565932,
+      "signed_immediate_child_residual_sum": 565932,
+      "forwarded_gas_min": 5090474,
+      "forwarded_gas_max": 31439078
+    },
+    {
+      "role": "unclassified:0x2a07706473244bc757e10f2a9e86fb532828afe3",
+      "selector": "0xcf1a7c8a",
+      "type": "STATICCALL",
+      "signatures": [
+        "range(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256),uint160,uint8)"
+      ],
+      "frames": 12,
+      "inclusive_gas_sum_overlapping": 524196,
+      "signed_immediate_child_residual_sum": 524196,
+      "forwarded_gas_min": 19151157,
+      "forwarded_gas_max": 25861215
+    },
+    {
+      "role": "lp_balance_math",
+      "selector": "0x0603cc23",
+      "type": "STATICCALL",
+      "signatures": [
+        "policyFingerprint(bytes32,bytes32)"
+      ],
+      "frames": 12,
+      "inclusive_gas_sum_overlapping": 1895870,
+      "signed_immediate_child_residual_sum": 378434,
+      "forwarded_gas_min": 19542461,
+      "forwarded_gas_max": 26368028
+    },
+    {
+      "role": "vault",
+      "selector": "0x3dd70670",
+      "type": "CALL",
+      "signatures": [
+        "activate(uint256,bytes32,uint256,uint256,uint128,uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 25186020,
+      "signed_immediate_child_residual_sum": 343336,
+      "forwarded_gas_min": 30344673,
+      "forwarded_gas_max": 30344673
+    },
+    {
+      "role": "pools",
+      "selector": "0xb95559a1",
+      "type": "STATICCALL",
+      "signatures": [
+        "accounting(bytes32)"
+      ],
+      "frames": 52,
+      "inclusive_gas_sum_overlapping": 338288,
+      "signed_immediate_child_residual_sum": 338288,
+      "forwarded_gas_min": 5342409,
+      "forwarded_gas_max": 31411884
+    },
+    {
+      "role": "oracle",
+      "selector": "0x487a1f10",
+      "type": "STATICCALL",
+      "signatures": [
+        "executionReferenceX96(address,address)"
+      ],
+      "frames": 10,
+      "inclusive_gas_sum_overlapping": 335010,
+      "signed_immediate_child_residual_sum": 273990,
+      "forwarded_gas_min": 5330566,
+      "forwarded_gas_max": 25230562
+    },
+    {
+      "role": "oracle",
+      "selector": "0x4ce11f5d",
+      "type": "CALL",
+      "signatures": [
+        "beginExecution(address)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 658551,
+      "signed_immediate_child_residual_sum": 206924,
+      "forwarded_gas_min": 30819224,
+      "forwarded_gas_max": 30819224
+    },
+    {
+      "role": "oracle",
+      "selector": "0xe7b78158",
+      "type": "CALL",
+      "signatures": [
+        "beginManagerExecution(address,bytes32,bool)"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 518631,
+      "signed_immediate_child_residual_sum": 205422,
+      "forwarded_gas_min": 21473169,
+      "forwarded_gas_max": 26927755
+    },
+    {
+      "role": "oracle",
+      "selector": "0xedb9048c",
+      "type": "CALL",
+      "signatures": [
+        "endManagerExecution(bool)"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 521034,
+      "signed_immediate_child_residual_sum": 204564,
+      "forwarded_gas_min": 20343059,
+      "forwarded_gas_max": 23132137
+    },
+    {
+      "role": "lp_position_executor",
+      "selector": "0xd6ff49a1",
+      "type": "CALL",
+      "signatures": [
+        "collect(bytes32,uint256,uint256)"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 558982,
+      "signed_immediate_child_residual_sum": 200582,
+      "forwarded_gas_min": 22435131,
+      "forwarded_gas_max": 28548275
+    },
+    {
+      "role": "pool_manager",
+      "selector": "0xf3cd914c",
+      "type": "CALL",
+      "signatures": [],
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 192228,
+      "signed_immediate_child_residual_sum": 192228,
+      "forwarded_gas_min": 157846,
+      "forwarded_gas_max": 23591311
+    },
+    {
+      "role": "pool_manager",
+      "selector": "0x5a6bcfda",
+      "type": "CALL",
+      "signatures": [],
+      "frames": 5,
+      "inclusive_gas_sum_overlapping": 179371,
+      "signed_immediate_child_residual_sum": 179371,
+      "forwarded_gas_min": 19479966,
+      "forwarded_gas_max": 26686243
+    },
+    {
+      "role": "lp_balance_math",
+      "selector": "0x74d49c6e",
+      "type": "STATICCALL",
+      "signatures": [
+        "principalAmounts(address,address,uint256)"
+      ],
+      "frames": 8,
+      "inclusive_gas_sum_overlapping": 283852,
+      "signed_immediate_child_residual_sum": 172356,
+      "forwarded_gas_min": 18108739,
+      "forwarded_gas_max": 25974861
+    },
+    {
+      "role": "fixed_zzz",
+      "selector": "0x095ea7b3",
+      "type": "CALL",
+      "signatures": [
+        "approve(address,uint256)"
+      ],
+      "frames": 10,
+      "inclusive_gas_sum_overlapping": 155690,
+      "signed_immediate_child_residual_sum": 155690,
+      "forwarded_gas_min": 5548036,
+      "forwarded_gas_max": 30511897
+    },
+    {
+      "role": "liquidity",
+      "selector": "0xdcd87610",
+      "type": "CALL",
+      "signatures": [
+        "balance(bytes32,uint256,uint256,uint256,uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 4197549,
+      "signed_immediate_child_residual_sum": 138290,
+      "forwarded_gas_min": 27435429,
+      "forwarded_gas_max": 27435429
+    },
+    {
+      "role": "position_manager",
+      "selector": "0x7ba03aad",
+      "type": "STATICCALL",
+      "signatures": [],
+      "frames": 28,
+      "inclusive_gas_sum_overlapping": 135944,
+      "signed_immediate_child_residual_sum": 135944,
+      "forwarded_gas_min": 17824345,
+      "forwarded_gas_max": 28046323
+    },
+    {
+      "role": "lp_balance_math",
+      "selector": "0xb34f9338",
+      "type": "STATICCALL",
+      "signatures": [
+        "executionValidatePrice(bytes32)"
+      ],
+      "frames": 10,
+      "inclusive_gas_sum_overlapping": 615750,
+      "signed_immediate_child_residual_sum": 127160,
+      "forwarded_gas_min": 5432597,
+      "forwarded_gas_max": 25648466
+    },
+    {
+      "role": "protocol_policy",
+      "selector": "0x984a4264",
+      "type": "STATICCALL",
+      "signatures": [
+        "gasFingerprint()"
+      ],
+      "frames": 64,
+      "inclusive_gas_sum_overlapping": 124880,
+      "signed_immediate_child_residual_sum": 124880,
+      "forwarded_gas_min": 5187303,
+      "forwarded_gas_max": 30292490
+    },
+    {
+      "role": "fees",
+      "selector": "0xe0864843",
+      "type": "CALL",
+      "signatures": [
+        "flushDust(uint256,address)"
+      ],
+      "frames": 6,
+      "inclusive_gas_sum_overlapping": 342149,
+      "signed_immediate_child_residual_sum": 123254,
+      "forwarded_gas_min": 22519341,
+      "forwarded_gas_max": 28847637
+    },
+    {
+      "role": "oracle",
+      "selector": "0x5c0736c6",
+      "type": "CALL",
+      "signatures": [
+        "afterSwap()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 293849,
+      "signed_immediate_child_residual_sum": 120687,
+      "forwarded_gas_min": 23523305,
+      "forwarded_gas_max": 23523305
+    },
+    {
+      "role": "unclassified:0x2a07706473244bc757e10f2a9e86fb532828afe3",
+      "selector": "0x49bfedf4",
+      "type": "STATICCALL",
+      "signatures": [
+        "controlFingerprint(bytes32)"
+      ],
+      "frames": 12,
+      "inclusive_gas_sum_overlapping": 170980,
+      "signed_immediate_child_residual_sum": 119636,
+      "forwarded_gas_min": 19101586,
+      "forwarded_gas_max": 25807706
+    },
+    {
+      "role": "oracle",
+      "selector": "0xca9d9f15",
+      "type": "CALL",
+      "signatures": [
+        "beforeSwap(address,address,bytes32,(uint160,int24,uint24,uint24,uint128))"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 275905,
+      "signed_immediate_child_residual_sum": 112546,
+      "forwarded_gas_min": 24628275,
+      "forwarded_gas_max": 24628275
+    },
+    {
+      "role": "fixed_zzz",
+      "selector": "0x23b872dd",
+      "type": "CALL",
+      "signatures": [
+        "transferFrom(address,address,uint256)"
+      ],
+      "frames": 6,
+      "inclusive_gas_sum_overlapping": 112472,
+      "signed_immediate_child_residual_sum": 112472,
+      "forwarded_gas_min": 19076993,
+      "forwarded_gas_max": 30562623
+    },
+    {
+      "role": "position_manager",
+      "selector": "0x91dd7346",
+      "type": "CALL",
+      "signatures": [
+        "unlockCallback(bytes)"
+      ],
+      "frames": 5,
+      "inclusive_gas_sum_overlapping": 332824,
+      "signed_immediate_child_residual_sum": 111443,
+      "forwarded_gas_min": 19799383,
+      "forwarded_gas_max": 27122434
+    },
+    {
+      "role": "state_view",
+      "selector": "0xc815641c",
+      "type": "STATICCALL",
+      "signatures": [],
+      "frames": 51,
+      "inclusive_gas_sum_overlapping": 137609,
+      "signed_immediate_child_residual_sum": 109242,
+      "forwarded_gas_min": 91980,
+      "forwarded_gas_max": 25547306
+    },
+    {
+      "role": "access_controller",
+      "selector": "0xc3b64480",
+      "type": "STATICCALL",
+      "signatures": [
+        "protocolPolicy()"
+      ],
+      "frames": 103,
+      "inclusive_gas_sum_overlapping": 106236,
+      "signed_immediate_child_residual_sum": 106236,
+      "forwarded_gas_min": 5184329,
+      "forwarded_gas_max": 31456543
+    },
+    {
+      "role": "rewards",
+      "selector": "0x36aaad0d",
+      "type": "CALL",
+      "signatures": [
+        "creditPool(uint256,address,uint256,uint256)"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 136836,
+      "signed_immediate_child_residual_sum": 96807,
+      "forwarded_gas_min": 28226385,
+      "forwarded_gas_max": 28349113
+    },
+    {
+      "role": "budget",
+      "selector": "0x6f8ca68b",
+      "type": "STATICCALL",
+      "signatures": [
+        "assertIdle(uint256)"
+      ],
+      "frames": 6,
+      "inclusive_gas_sum_overlapping": 230220,
+      "signed_immediate_child_residual_sum": 95988,
+      "forwarded_gas_min": 20073157,
+      "forwarded_gas_max": 28431233
+    },
+    {
+      "role": "oracle",
+      "selector": "0x0f8ebca6",
+      "type": "CALL",
+      "signatures": [
+        "endExecution()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 251270,
+      "signed_immediate_child_residual_sum": 94327,
+      "forwarded_gas_min": 5299545,
+      "forwarded_gas_max": 5299545
+    },
+    {
+      "role": "fees",
+      "selector": "0xb0bcc6c9",
+      "type": "CALL",
+      "signatures": [
+        "releaseCompound(uint256,address)"
+      ],
+      "frames": 6,
+      "inclusive_gas_sum_overlapping": 155232,
+      "signed_immediate_child_residual_sum": 92284,
+      "forwarded_gas_min": 20108592,
+      "forwarded_gas_max": 28628085
+    },
+    {
+      "role": "vault",
+      "selector": "0x0bd0e7fa",
+      "type": "STATICCALL",
+      "signatures": [
+        "group(uint256)"
+      ],
+      "frames": 22,
+      "inclusive_gas_sum_overlapping": 91974,
+      "signed_immediate_child_residual_sum": 91974,
+      "forwarded_gas_min": 19081031,
+      "forwarded_gas_max": 28865162
+    },
+    {
+      "role": "fixed_zzz",
+      "selector": "0x70a08231",
+      "type": "STATICCALL",
+      "signatures": [
+        "balanceOf(address)"
+      ],
+      "frames": 69,
+      "inclusive_gas_sum_overlapping": 88795,
+      "signed_immediate_child_residual_sum": 88795,
+      "forwarded_gas_min": 5536900,
+      "forwarded_gas_max": 31379688
+    },
+    {
+      "role": "contribution_pricing",
+      "selector": "0x3293cf67",
+      "type": "CALL",
+      "signatures": [
+        "contributionNav(uint256)"
+      ],
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 1319825,
+      "signed_immediate_child_residual_sum": 82610,
+      "forwarded_gas_min": 19704980,
+      "forwarded_gas_max": 27942327
+    },
+    {
+      "role": "lp_position_executor",
+      "selector": "0x3ccf9ccb",
+      "type": "CALL",
+      "signatures": [
+        "increase(bytes32,uint256,uint256,uint256,uint128,uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 871876,
+      "signed_immediate_child_residual_sum": 79858,
+      "forwarded_gas_min": 21204932,
+      "forwarded_gas_max": 21204932
+    },
+    {
+      "role": "state_view",
+      "selector": "0xfa6793d5",
+      "type": "STATICCALL",
+      "signatures": [],
+      "frames": 31,
+      "inclusive_gas_sum_overlapping": 96736,
+      "signed_immediate_child_residual_sum": 78709,
+      "forwarded_gas_min": 87585,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "lp_balance_math",
+      "selector": "0x249fe4f9",
+      "type": "STATICCALL",
+      "signatures": [
+        "nativeConfig(bytes32,bool)"
+      ],
+      "frames": 7,
+      "inclusive_gas_sum_overlapping": 144133,
+      "signed_immediate_child_residual_sum": 75463,
+      "forwarded_gas_min": 20515307,
+      "forwarded_gas_max": 27643488
+    },
+    {
+      "role": "budget",
+      "selector": "0xfbadbc39",
+      "type": "STATICCALL",
+      "signatures": [
+        "poolTokens(bytes32)"
+      ],
+      "frames": 13,
+      "inclusive_gas_sum_overlapping": 170638,
+      "signed_immediate_child_residual_sum": 75270,
+      "forwarded_gas_min": 20090964,
+      "forwarded_gas_max": 29038860
+    },
+    {
+      "role": "lp_position_executor",
+      "selector": "0x23e1c621",
+      "type": "STATICCALL",
+      "signatures": [
+        "portfolioAmounts(uint256)"
+      ],
+      "frames": 4,
+      "inclusive_gas_sum_overlapping": 487840,
+      "signed_immediate_child_residual_sum": 75220,
+      "forwarded_gas_min": 18774146,
+      "forwarded_gas_max": 26833373
+    },
+    {
+      "role": "position_manager",
+      "selector": "0x1efeed33",
+      "type": "STATICCALL",
+      "signatures": [],
+      "frames": 12,
+      "inclusive_gas_sum_overlapping": 81360,
+      "signed_immediate_child_residual_sum": 75156,
+      "forwarded_gas_min": 17801899,
+      "forwarded_gas_max": 26501348
+    },
+    {
+      "role": "independent_reference",
+      "selector": "0xfeaf968c",
+      "type": "STATICCALL",
+      "signatures": [
+        "latestRoundData()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 86293,
+      "signed_immediate_child_residual_sum": 73565,
+      "forwarded_gas_min": 500000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "reference",
+      "selector": "0xfeaf968c",
+      "type": "STATICCALL",
+      "signatures": [
+        "latestRoundData()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 85968,
+      "signed_immediate_child_residual_sum": 73240,
+      "forwarded_gas_min": 500000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "balancing_router",
+      "selector": "0x4d007fe0",
+      "type": "CALL",
+      "signatures": [
+        "routePlan((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bytes32,bool,bool)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 720325,
+      "signed_immediate_child_residual_sum": 72910,
+      "forwarded_gas_min": 25319980,
+      "forwarded_gas_max": 25319980
+    },
+    {
+      "role": "unclassified:0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+      "selector": "0xfeaf968c",
+      "type": "STATICCALL",
+      "signatures": [
+        "latestRoundData()"
+      ],
+      "frames": 33,
+      "inclusive_gas_sum_overlapping": 65407,
+      "signed_immediate_child_residual_sum": 65407,
+      "forwarded_gas_min": 150000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "unclassified:0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+      "selector": "0xfeaf968c",
+      "type": "STATICCALL",
+      "signatures": [
+        "latestRoundData()"
+      ],
+      "frames": 33,
+      "inclusive_gas_sum_overlapping": 65407,
+      "signed_immediate_child_residual_sum": 65407,
+      "forwarded_gas_min": 150000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "access_controller",
+      "selector": "0x631f9852",
+      "type": "STATICCALL",
+      "signatures": [
+        "isSealed()"
+      ],
+      "frames": 79,
+      "inclusive_gas_sum_overlapping": 64385,
+      "signed_immediate_child_residual_sum": 64385,
+      "forwarded_gas_min": 5198130,
+      "forwarded_gas_max": 31469919
+    },
+    {
+      "role": "balancing_router",
+      "selector": "0x391296f4",
+      "type": "CALL",
+      "signatures": [
+        "quoteCandidate((address,address,uint24,int24,address),bool,uint256)"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 227876,
+      "signed_immediate_child_residual_sum": 61766,
+      "forwarded_gas_min": 200000,
+      "forwarded_gas_max": 200000
+    },
+    {
+      "role": "access_controller",
+      "selector": "0x1e264620",
+      "type": "STATICCALL",
+      "signatures": [
+        "canonicalState()"
+      ],
+      "frames": 113,
+      "inclusive_gas_sum_overlapping": 59743,
+      "signed_immediate_child_residual_sum": 59743,
+      "forwarded_gas_min": 4564328,
+      "forwarded_gas_max": 31473227
+    },
+    {
+      "role": "liquidity",
+      "selector": "0x91dd7346",
+      "type": "CALL",
+      "signatures": [
+        "unlockCallback(bytes)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 487741,
+      "signed_immediate_child_residual_sum": 57794,
+      "forwarded_gas_min": 23973335,
+      "forwarded_gas_max": 23973335
+    },
+    {
+      "role": "lp_balance_math",
+      "selector": "0xb371f4d7",
+      "type": "STATICCALL",
+      "signatures": [
+        "evaluate((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),uint160,uint256,uint256)"
+      ],
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 55433,
+      "signed_immediate_child_residual_sum": 55433,
+      "forwarded_gas_min": 24399306,
+      "forwarded_gas_max": 25497959
+    },
+    {
+      "role": "balancing_router",
+      "selector": "0x4672792a",
+      "type": "CALL",
+      "signatures": [
+        "plan(bytes32,int24,int24,uint256,uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 1241427,
+      "signed_immediate_child_residual_sum": 53269,
+      "forwarded_gas_min": 26081909,
+      "forwarded_gas_max": 26081909
+    },
+    {
+      "role": "pool_manager",
+      "selector": "0x1e2eaeaf",
+      "type": "STATICCALL",
+      "signatures": [],
+      "frames": 94,
+      "inclusive_gas_sum_overlapping": 52598,
+      "signed_immediate_child_residual_sum": 52598,
+      "forwarded_gas_min": 84394,
+      "forwarded_gas_max": 26081839
+    },
+    {
+      "role": "pools",
+      "selector": "0x8eaa6ac0",
+      "type": "STATICCALL",
+      "signatures": [
+        "get(bytes32)"
+      ],
+      "frames": 8,
+      "inclusive_gas_sum_overlapping": 48176,
+      "signed_immediate_child_residual_sum": 48176,
+      "forwarded_gas_min": 20188925,
+      "forwarded_gas_max": 28859230
+    },
+    {
+      "role": "contribution_pricing",
+      "selector": "0xd94f4ae2",
+      "type": "CALL",
+      "signatures": [
+        "beginEntryReviewed(uint256,bytes32,address,uint256,uint16,bytes32)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 781071,
+      "signed_immediate_child_residual_sum": 46323,
+      "forwarded_gas_min": 31340047,
+      "forwarded_gas_max": 31340047
+    },
+    {
+      "role": "independent_state",
+      "selector": "0xfa6793d5",
+      "type": "STATICCALL",
+      "signatures": [],
+      "frames": 18,
+      "inclusive_gas_sum_overlapping": 57008,
+      "signed_immediate_child_residual_sum": 45702,
+      "forwarded_gas_min": 150000,
+      "forwarded_gas_max": 150000
+    },
+    {
+      "role": "oracle",
+      "selector": "0x8ee573ac",
+      "type": "STATICCALL",
+      "signatures": [
+        "tokenDecimals(address)"
+      ],
+      "frames": 23,
+      "inclusive_gas_sum_overlapping": 45561,
+      "signed_immediate_child_residual_sum": 45561,
+      "forwarded_gas_min": 5303840,
+      "forwarded_gas_max": 30863584
+    },
+    {
+      "role": "fixed_zzz",
+      "selector": "0xa9059cbb",
+      "type": "CALL",
+      "signatures": [],
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 43037,
+      "signed_immediate_child_residual_sum": 43037,
+      "forwarded_gas_min": 23219137,
+      "forwarded_gas_max": 28122457
+    },
+    {
+      "role": "access_controller",
+      "selector": "0x2237d515",
+      "type": "STATICCALL",
+      "signatures": [
+        "preparationActive()"
+      ],
+      "frames": 71,
+      "inclusive_gas_sum_overlapping": 39192,
+      "signed_immediate_child_residual_sum": 39192,
+      "forwarded_gas_min": 4826147,
+      "forwarded_gas_max": 31466901
+    },
+    {
+      "role": "independent_state",
+      "selector": "0xc815641c",
+      "type": "STATICCALL",
+      "signatures": [],
+      "frames": 18,
+      "inclusive_gas_sum_overlapping": 49862,
+      "signed_immediate_child_residual_sum": 38556,
+      "forwarded_gas_min": 150000,
+      "forwarded_gas_max": 150000
+    },
+    {
+      "role": "contribution_pricing",
+      "selector": "0x4153978a",
+      "type": "CALL",
+      "signatures": [
+        "finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 159249,
+      "signed_immediate_child_residual_sum": 35188,
+      "forwarded_gas_min": 19244098,
+      "forwarded_gas_max": 19244098
+    },
+    {
+      "role": "membership",
+      "selector": "0xb260c42a",
+      "type": "CALL",
+      "signatures": [
+        "activate(uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 1067965,
+      "signed_immediate_child_residual_sum": 34468,
+      "forwarded_gas_min": 18306723,
+      "forwarded_gas_max": 18306723
+    },
+    {
+      "role": "independent_reference",
+      "selector": "0xcfe421b2",
+      "type": "STATICCALL",
+      "signatures": [
+        "executionMarket()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 41134,
+      "signed_immediate_child_residual_sum": 34085,
+      "forwarded_gas_min": 500000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "position_manager",
+      "selector": "0x6352211e",
+      "type": "STATICCALL",
+      "signatures": [
+        "ownerOf(uint256)"
+      ],
+      "frames": 18,
+      "inclusive_gas_sum_overlapping": 34060,
+      "signed_immediate_child_residual_sum": 34060,
+      "forwarded_gas_min": 18415078,
+      "forwarded_gas_max": 28053081
+    },
+    {
+      "role": "reference",
+      "selector": "0xcfe421b2",
+      "type": "STATICCALL",
+      "signatures": [
+        "executionMarket()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 40809,
+      "signed_immediate_child_residual_sum": 33760,
+      "forwarded_gas_min": 500000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "lp_balance_math",
+      "selector": "0xd75dd78f",
+      "type": "STATICCALL",
+      "signatures": [
+        "executionMinimumOutputForExit(bytes32,bool,uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 101692,
+      "signed_immediate_child_residual_sum": 33189,
+      "forwarded_gas_min": 24756445,
+      "forwarded_gas_max": 24756445
+    },
+    {
+      "role": "access_controller",
+      "selector": "0x83b90766",
+      "type": "STATICCALL",
+      "signatures": [
+        "moduleAuthorized(bytes32,address)"
+      ],
+      "frames": 17,
+      "inclusive_gas_sum_overlapping": 32827,
+      "signed_immediate_child_residual_sum": 32827,
+      "forwarded_gas_min": 16981344,
+      "forwarded_gas_max": 28887088
+    },
+    {
+      "role": "contribution_pricing",
+      "selector": "0xb43bfc27",
+      "type": "CALL",
+      "signatures": [
+        "begin(uint256,uint256,uint256,uint256,uint32)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 343018,
+      "signed_immediate_child_residual_sum": 32036,
+      "forwarded_gas_min": 29229931,
+      "forwarded_gas_max": 29229931
+    },
+    {
+      "role": "balancing_router",
+      "selector": "0x6aa94048",
+      "type": "STATICCALL",
+      "signatures": [
+        "principalAmounts(uint256)"
+      ],
+      "frames": 8,
+      "inclusive_gas_sum_overlapping": 334948,
+      "signed_immediate_child_residual_sum": 31808,
+      "forwarded_gas_min": 18401997,
+      "forwarded_gas_max": 26392978
+    },
+    {
+      "role": "contribution_pricing",
+      "selector": "0xbc215880",
+      "type": "CALL",
+      "signatures": [
+        "endEntry()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 405135,
+      "signed_immediate_child_residual_sum": 30307,
+      "forwarded_gas_min": 5530840,
+      "forwarded_gas_max": 5530840
+    },
+    {
+      "role": "balancing_router",
+      "selector": "0x71907f17",
+      "type": "STATICCALL",
+      "signatures": [
+        "access()"
+      ],
+      "frames": 33,
+      "inclusive_gas_sum_overlapping": 29205,
+      "signed_immediate_child_residual_sum": 29205,
+      "forwarded_gas_min": 5346484,
+      "forwarded_gas_max": 29839324
+    },
+    {
+      "role": "liquidity",
+      "selector": "0x3ccf9ccb",
+      "type": "CALL",
+      "signatures": [
+        "increase(bytes32,uint256,uint256,uint256,uint128,uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 1454683,
+      "signed_immediate_child_residual_sum": 28043,
+      "forwarded_gas_min": 21859217,
+      "forwarded_gas_max": 21859217
+    },
+    {
+      "role": "unclassified:0xa4ad4f68d0b91cfd19687c881e50f3a00242828c",
+      "selector": "0x87517c45",
+      "type": "CALL",
+      "signatures": [],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 28026,
+      "signed_immediate_child_residual_sum": 28026,
+      "forwarded_gas_min": 20299899,
+      "forwarded_gas_max": 20476297
+    },
+    {
+      "role": "liquidity",
+      "selector": "0x9bad9714",
+      "type": "STATICCALL",
+      "signatures": [
+        "balanceContext(bytes32)"
+      ],
+      "frames": 4,
+      "inclusive_gas_sum_overlapping": 1159420,
+      "signed_immediate_child_residual_sum": 26624,
+      "forwarded_gas_min": 20175730,
+      "forwarded_gas_max": 27454164
+    },
+    {
+      "role": "liquidity",
+      "selector": "0xa9a79ee8",
+      "type": "STATICCALL",
+      "signatures": [
+        "executionConfig(bytes32,bool)"
+      ],
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 90770,
+      "signed_immediate_child_residual_sum": 26083,
+      "forwarded_gas_min": 20849358,
+      "forwarded_gas_max": 28087247
+    },
+    {
+      "role": "unclassified:0xd16d567549a2a2a2005aeacf7fb193851603dd70",
+      "selector": "0xdb6416da",
+      "type": "STATICCALL",
+      "signatures": [
+        "portfolioPolicy()"
+      ],
+      "frames": 24,
+      "inclusive_gas_sum_overlapping": 25656,
+      "signed_immediate_child_residual_sum": 25656,
+      "forwarded_gas_min": 19103656,
+      "forwarded_gas_max": 25870138
+    },
+    {
+      "role": "fixed_zzz",
+      "selector": "0x313ce567",
+      "type": "STATICCALL",
+      "signatures": [
+        "decimals()"
+      ],
+      "frames": 52,
+      "inclusive_gas_sum_overlapping": 24388,
+      "signed_immediate_child_residual_sum": 24388,
+      "forwarded_gas_min": 150000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "pool_manager",
+      "selector": "0x48c89491",
+      "type": "CALL",
+      "signatures": [],
+      "frames": 8,
+      "inclusive_gas_sum_overlapping": 1006783,
+      "signed_immediate_child_residual_sum": 23970,
+      "forwarded_gas_min": 170720,
+      "forwarded_gas_max": 27554869
+    },
+    {
+      "role": "protocol_policy",
+      "selector": "0xae6d967f",
+      "type": "STATICCALL",
+      "signatures": [
+        "maintenanceFingerprint()"
+      ],
+      "frames": 12,
+      "inclusive_gas_sum_overlapping": 23696,
+      "signed_immediate_child_residual_sum": 23696,
+      "forwarded_gas_min": 18794291,
+      "forwarded_gas_max": 25375941
+    },
+    {
+      "role": "nft",
+      "selector": "0x6352211e",
+      "type": "STATICCALL",
+      "signatures": [
+        "ownerOf(uint256)"
+      ],
+      "frames": 11,
+      "inclusive_gas_sum_overlapping": 23505,
+      "signed_immediate_child_residual_sum": 23505,
+      "forwarded_gas_min": 5088188,
+      "forwarded_gas_max": 31419425
+    },
+    {
+      "role": "balancing_router",
+      "selector": "0x91dd7346",
+      "type": "CALL",
+      "signatures": [
+        "unlockCallback(bytes)"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 162248,
+      "signed_immediate_child_residual_sum": 22666,
+      "forwarded_gas_min": 166228,
+      "forwarded_gas_max": 168165
+    },
+    {
+      "role": "independent_core",
+      "selector": "0x1e2eaeaf",
+      "type": "STATICCALL",
+      "signatures": [],
+      "frames": 36,
+      "inclusive_gas_sum_overlapping": 22612,
+      "signed_immediate_child_residual_sum": 22612,
+      "forwarded_gas_min": 145834,
+      "forwarded_gas_max": 146247
+    },
+    {
+      "role": "contribution_pricing",
+      "selector": "0x80f15474",
+      "type": "STATICCALL",
+      "signatures": [
+        "assertDeployed(uint256,uint16)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 153605,
+      "signed_immediate_child_residual_sum": 21948,
+      "forwarded_gas_min": 19974898,
+      "forwarded_gas_max": 19974898
+    },
+    {
+      "role": "liquidity",
+      "selector": "0x",
+      "type": "CALL",
+      "signatures": [],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 21553,
+      "signed_immediate_child_residual_sum": 21553,
+      "forwarded_gas_min": 22798232,
+      "forwarded_gas_max": 22798232
+    },
+    {
+      "role": "budget",
+      "selector": "0xebdc1f41",
+      "type": "STATICCALL",
+      "signatures": [
+        "assertPut(uint256,uint256,uint256,uint256,uint256,uint256,uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 48323,
+      "signed_immediate_child_residual_sum": 20181,
+      "forwarded_gas_min": 20419376,
+      "forwarded_gas_max": 20419376
+    },
+    {
+      "role": "lp_balance_math",
+      "selector": "0xa9b306f3",
+      "type": "STATICCALL",
+      "signatures": [
+        "deploymentAmounts(uint160,int24,int24,uint256,uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 20145,
+      "signed_immediate_child_residual_sum": 20145,
+      "forwarded_gas_min": 20253573,
+      "forwarded_gas_max": 20253573
+    },
+    {
+      "role": "position_manager",
+      "selector": "0xdd46508f",
+      "type": "CALL",
+      "signatures": [],
+      "frames": 5,
+      "inclusive_gas_sum_overlapping": 368942,
+      "signed_immediate_child_residual_sum": 19329,
+      "forwarded_gas_min": 20437649,
+      "forwarded_gas_max": 27995035
+    },
+    {
+      "role": "activation_assets",
+      "selector": "0xa7ddba55",
+      "type": "STATICCALL",
+      "signatures": [
+        "validateInput(address)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 28348,
+      "signed_immediate_child_residual_sum": 19249,
+      "forwarded_gas_min": 31375480,
+      "forwarded_gas_max": 31375480
+    },
+    {
+      "role": "liquidity",
+      "selector": "0xd6ff49a1",
+      "type": "CALL",
+      "signatures": [
+        "collect(bytes32,uint256,uint256)"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 582034,
+      "signed_immediate_child_residual_sum": 19190,
+      "forwarded_gas_min": 22799748,
+      "forwarded_gas_max": 29014426
+    },
+    {
+      "role": "liquidity",
+      "selector": "0x48c85c39",
+      "type": "STATICCALL",
+      "signatures": [
+        "spot(bytes32)"
+      ],
+      "frames": 10,
+      "inclusive_gas_sum_overlapping": 45530,
+      "signed_immediate_child_residual_sum": 18940,
+      "forwarded_gas_min": 5294464,
+      "forwarded_gas_max": 25194460
+    },
+    {
+      "role": "unclassified:0x883816205341a6ba3c32ae8dadcebdd9d59bc2c4",
+      "selector": "0x96c82d15",
+      "type": "STATICCALL",
+      "signatures": [
+        "validateContribution(uint256,uint256,uint256,uint256,uint128,bool)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 49407,
+      "signed_immediate_child_residual_sum": 18094,
+      "forwarded_gas_min": 29284131,
+      "forwarded_gas_max": 29284131
+    },
+    {
+      "role": "membership",
+      "selector": "0x07b79f3d",
+      "type": "CALL",
+      "signatures": [
+        "settleDust()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 310932,
+      "signed_immediate_child_residual_sum": 17792,
+      "forwarded_gas_min": 29346394,
+      "forwarded_gas_max": 29346394
+    },
+    {
+      "role": "lp_balance_math",
+      "selector": "0xcfb09fb3",
+      "type": "STATICCALL",
+      "signatures": [
+        "executionPrices(address)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 72994,
+      "signed_immediate_child_residual_sum": 17450,
+      "forwarded_gas_min": 25574124,
+      "forwarded_gas_max": 25574124
+    },
+    {
+      "role": "protocol_policy",
+      "selector": "0xe312c508",
+      "type": "STATICCALL",
+      "signatures": [
+        "entryFingerprint()"
+      ],
+      "frames": 5,
+      "inclusive_gas_sum_overlapping": 15590,
+      "signed_immediate_child_residual_sum": 15590,
+      "forwarded_gas_min": 5131468,
+      "forwarded_gas_max": 31450079
+    },
+    {
+      "role": "pool_manager",
+      "selector": "0x11da60b4",
+      "type": "CALL",
+      "signatures": [],
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 17636,
+      "signed_immediate_child_residual_sum": 15526,
+      "forwarded_gas_min": 19369888,
+      "forwarded_gas_max": 23204311
+    },
+    {
+      "role": "nft",
+      "selector": "0x4eb57e5f",
+      "type": "CALL",
+      "signatures": [
+        "notifyContribution(uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 12351939,
+      "signed_immediate_child_residual_sum": 15182,
+      "forwarded_gas_min": 17252350,
+      "forwarded_gas_max": 17252350
+    },
+    {
+      "role": "vault",
+      "selector": "0x3911e94a",
+      "type": "STATICCALL",
+      "signatures": [
+        "totalIdle(address)"
+      ],
+      "frames": 12,
+      "inclusive_gas_sum_overlapping": 14472,
+      "signed_immediate_child_residual_sum": 14472,
+      "forwarded_gas_min": 19723356,
+      "forwarded_gas_max": 27959504
+    },
+    {
+      "role": "budget",
+      "selector": "0x96f2847d",
+      "type": "STATICCALL",
+      "signatures": [
+        "balanceContext(uint256)"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 864886,
+      "signed_immediate_child_residual_sum": 13472,
+      "forwarded_gas_min": 23295920,
+      "forwarded_gas_max": 27903958
+    },
+    {
+      "role": "lp_balance_math",
+      "selector": "0x8d5a4253",
+      "type": "STATICCALL",
+      "signatures": [
+        "minimumOutput((uint256,uint256,uint256,uint256,uint256,uint160,uint16),bool,uint256,uint16,uint256)"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 13468,
+      "signed_immediate_child_residual_sum": 13468,
+      "forwarded_gas_min": 24415154,
+      "forwarded_gas_max": 24732608
+    },
+    {
+      "role": "budget",
+      "selector": "0x5c0a69b3",
+      "type": "STATICCALL",
+      "signatures": [
+        "validateNativeSender(address)"
+      ],
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 23620,
+      "signed_immediate_child_residual_sum": 13086,
+      "forwarded_gas_min": 19960835,
+      "forwarded_gas_max": 27717242
+    },
+    {
+      "role": "lp_balance_math",
+      "selector": "0xb072ec9b",
+      "type": "STATICCALL",
+      "signatures": [
+        "seed((bytes32,uint160,uint160,uint160,uint256,uint256,(uint256,uint256,uint256,uint256,uint256,uint160,uint16),uint16,uint256[4]),bool,uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 13070,
+      "signed_immediate_child_residual_sum": 13070,
+      "forwarded_gas_min": 24865296,
+      "forwarded_gas_max": 24865296
+    },
+    {
+      "role": "budget",
+      "selector": "0x3293cf67",
+      "type": "CALL",
+      "signatures": [
+        "contributionNav(uint256)"
+      ],
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 1342394,
+      "signed_immediate_child_residual_sum": 12897,
+      "forwarded_gas_min": 20024675,
+      "forwarded_gas_max": 28392774
+    },
+    {
+      "role": "unclassified:0xd16d567549a2a2a2005aeacf7fb193851603dd70",
+      "selector": "0x6eac0756",
+      "type": "STATICCALL",
+      "signatures": [
+        "executionQualityRevision()"
+      ],
+      "frames": 12,
+      "inclusive_gas_sum_overlapping": 12296,
+      "signed_immediate_child_residual_sum": 12296,
+      "forwarded_gas_min": 19105263,
+      "forwarded_gas_max": 25813353
+    },
+    {
+      "role": "liquidity",
+      "selector": "0x701a9c0d",
+      "type": "STATICCALL",
+      "signatures": [
+        "executionStrategy()"
+      ],
+      "frames": 5,
+      "inclusive_gas_sum_overlapping": 14620,
+      "signed_immediate_child_residual_sum": 11790,
+      "forwarded_gas_min": 5436342,
+      "forwarded_gas_max": 30322252
+    },
+    {
+      "role": "independent_state",
+      "selector": "0xdc4c90d3",
+      "type": "STATICCALL",
+      "signatures": [
+        "poolManager()"
+      ],
+      "frames": 18,
+      "inclusive_gas_sum_overlapping": 11358,
+      "signed_immediate_child_residual_sum": 11358,
+      "forwarded_gas_min": 150000,
+      "forwarded_gas_max": 150000
+    },
+    {
+      "role": "state_view",
+      "selector": "0xdc4c90d3",
+      "type": "STATICCALL",
+      "signatures": [
+        "poolManager()"
+      ],
+      "frames": 18,
+      "inclusive_gas_sum_overlapping": 11358,
+      "signed_immediate_child_residual_sum": 11358,
+      "forwarded_gas_min": 150000,
+      "forwarded_gas_max": 150000
+    },
+    {
+      "role": "pool_manager",
+      "selector": "0xa5841194",
+      "type": "CALL",
+      "signatures": [
+        "sync(address)"
+      ],
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 15445,
+      "signed_immediate_child_residual_sum": 11335,
+      "forwarded_gas_min": 19392813,
+      "forwarded_gas_max": 23232879
+    },
+    {
+      "role": "pools",
+      "selector": "0xc60ed0a7",
+      "type": "STATICCALL",
+      "signatures": [
+        "isNativePool(bytes32)"
+      ],
+      "frames": 7,
+      "inclusive_gas_sum_overlapping": 11277,
+      "signed_immediate_child_residual_sum": 11277,
+      "forwarded_gas_min": 20177368,
+      "forwarded_gas_max": 27194235
+    },
+    {
+      "role": "vault",
+      "selector": "0x7d13e4db",
+      "type": "STATICCALL",
+      "signatures": [
+        "migrationBudget()"
+      ],
+      "frames": 10,
+      "inclusive_gas_sum_overlapping": 11180,
+      "signed_immediate_child_residual_sum": 11180,
+      "forwarded_gas_min": 18939547,
+      "forwarded_gas_max": 30160299
+    },
+    {
+      "role": "protocol_policy",
+      "selector": "0x1dd46c26",
+      "type": "STATICCALL",
+      "signatures": [
+        "sourceCallGas()"
+      ],
+      "frames": 20,
+      "inclusive_gas_sum_overlapping": 10860,
+      "signed_immediate_child_residual_sum": 10860,
+      "forwarded_gas_min": 5182350,
+      "forwarded_gas_max": 30271690
+    },
+    {
+      "role": "unclassified:0x883816205341a6ba3c32ae8dadcebdd9d59bc2c4",
+      "selector": "0xc684283b",
+      "type": "STATICCALL",
+      "signatures": [
+        "validateOwner(uint256,address,bool,bool)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 25517,
+      "signed_immediate_child_residual_sum": 10749,
+      "forwarded_gas_min": 29374345,
+      "forwarded_gas_max": 29374345
+    },
+    {
+      "role": "pool_manager",
+      "selector": "0x0b0d9c09",
+      "type": "CALL",
+      "signatures": [],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 31889,
+      "signed_immediate_child_residual_sum": 10336,
+      "forwarded_gas_min": 23170336,
+      "forwarded_gas_max": 23170336
+    },
+    {
+      "role": "balancing_router",
+      "selector": "0x0603cc23",
+      "type": "STATICCALL",
+      "signatures": [
+        "policyFingerprint(bytes32,bytes32)"
+      ],
+      "frames": 8,
+      "inclusive_gas_sum_overlapping": 1275422,
+      "signed_immediate_child_residual_sum": 10320,
+      "forwarded_gas_min": 19853556,
+      "forwarded_gas_max": 26787466
+    },
+    {
+      "role": "liquidity",
+      "selector": "0x354b6721",
+      "type": "STATICCALL",
+      "signatures": [
+        "executionSpot(bytes32)"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 137060,
+      "signed_immediate_child_residual_sum": 10198,
+      "forwarded_gas_min": 20265361,
+      "forwarded_gas_max": 20653901
+    },
+    {
+      "role": "balancing_router",
+      "selector": "0x0e001842",
+      "type": "STATICCALL",
+      "signatures": [
+        "balanceMath()"
+      ],
+      "frames": 18,
+      "inclusive_gas_sum_overlapping": 10188,
+      "signed_immediate_child_residual_sum": 10188,
+      "forwarded_gas_min": 5350391,
+      "forwarded_gas_max": 29844997
+    },
+    {
+      "role": "liquidity",
+      "selector": "0x791b98bc",
+      "type": "STATICCALL",
+      "signatures": [
+        "positionManager()"
+      ],
+      "frames": 9,
+      "inclusive_gas_sum_overlapping": 10071,
+      "signed_immediate_child_residual_sum": 10071,
+      "forwarded_gas_min": 18110976,
+      "forwarded_gas_max": 25977098
+    },
+    {
+      "role": "pools",
+      "selector": "0xf6d22b75",
+      "type": "STATICCALL",
+      "signatures": [
+        "configurationRevision()"
+      ],
+      "frames": 12,
+      "inclusive_gas_sum_overlapping": 10064,
+      "signed_immediate_child_residual_sum": 10064,
+      "forwarded_gas_min": 19107101,
+      "forwarded_gas_max": 25817159
+    },
+    {
+      "role": "pool_manager",
+      "selector": "0xf135baaa",
+      "type": "STATICCALL",
+      "signatures": [],
+      "frames": 10,
+      "inclusive_gas_sum_overlapping": 10010,
+      "signed_immediate_child_residual_sum": 10010,
+      "forwarded_gas_min": 19395515,
+      "forwarded_gas_max": 26641504
+    },
+    {
+      "role": "budget",
+      "selector": "0x98d32391",
+      "type": "STATICCALL",
+      "signatures": [
+        "assertDeployed(uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 175572,
+      "signed_immediate_child_residual_sum": 9962,
+      "forwarded_gas_min": 20313710,
+      "forwarded_gas_max": 20313710
+    },
+    {
+      "role": "unclassified:0xd16d567549a2a2a2005aeacf7fb193851603dd70",
+      "selector": "0x11244d43",
+      "type": "STATICCALL",
+      "signatures": [
+        "rangeOrientation(bytes32)"
+      ],
+      "frames": 12,
+      "inclusive_gas_sum_overlapping": 9752,
+      "signed_immediate_child_residual_sum": 9752,
+      "forwarded_gas_min": 19153368,
+      "forwarded_gas_max": 25867856
+    },
+    {
+      "role": "balancing_router",
+      "selector": "0x69acff0e",
+      "type": "STATICCALL",
+      "signatures": [
+        "executionRevision()"
+      ],
+      "frames": 8,
+      "inclusive_gas_sum_overlapping": 9064,
+      "signed_immediate_child_residual_sum": 9064,
+      "forwarded_gas_min": 19855347,
+      "forwarded_gas_max": 26791225
+    },
+    {
+      "role": "budget",
+      "selector": "0x96c82d15",
+      "type": "CALL",
+      "signatures": [
+        "validateContribution(uint256,uint256,uint256,uint256,uint128,bool)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 405503,
+      "signed_immediate_child_residual_sum": 8562,
+      "forwarded_gas_min": 29755841,
+      "forwarded_gas_max": 29755841
+    },
+    {
+      "role": "protocol_policy",
+      "selector": "0x5fe8fe8a",
+      "type": "STATICCALL",
+      "signatures": [
+        "entryPolicy()"
+      ],
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 8010,
+      "signed_immediate_child_residual_sum": 8010,
+      "forwarded_gas_min": 28787443,
+      "forwarded_gas_max": 31443127
+    },
+    {
+      "role": "budget",
+      "selector": "0xa426e13d",
+      "type": "STATICCALL",
+      "signatures": [
+        "valueBucket(uint256,uint256,uint256)"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 18478,
+      "signed_immediate_child_residual_sum": 7978,
+      "forwarded_gas_min": 20034634,
+      "forwarded_gas_max": 22394684
+    },
+    {
+      "role": "entry",
+      "selector": "0x265ac85d",
+      "type": "STATICCALL",
+      "signatures": [
+        "pricingContext(uint256,bytes32,uint256,uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 13152,
+      "signed_immediate_child_residual_sum": 7973,
+      "forwarded_gas_min": 28747207,
+      "forwarded_gas_max": 28747207
+    },
+    {
+      "role": "unclassified:0xdb25a7b768311de128bbda7b8426c3f9c74f3240",
+      "selector": "0x313ce567",
+      "type": "STATICCALL",
+      "signatures": [
+        "decimals()"
+      ],
+      "frames": 34,
+      "inclusive_gas_sum_overlapping": 7956,
+      "signed_immediate_child_residual_sum": 7956,
+      "forwarded_gas_min": 150000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "unclassified:0x13aa49bac059d709dd0a18d6bb63290076a702d7",
+      "selector": "0x313ce567",
+      "type": "STATICCALL",
+      "signatures": [
+        "decimals()"
+      ],
+      "frames": 34,
+      "inclusive_gas_sum_overlapping": 7956,
+      "signed_immediate_child_residual_sum": 7956,
+      "forwarded_gas_min": 150000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "oracle",
+      "selector": "0x2cf518cc",
+      "type": "STATICCALL",
+      "signatures": [
+        "contributionPricing()"
+      ],
+      "frames": 12,
+      "inclusive_gas_sum_overlapping": 7680,
+      "signed_immediate_child_residual_sum": 7680,
+      "forwarded_gas_min": 5532508,
+      "forwarded_gas_max": 31344614
+    },
+    {
+      "role": "entry",
+      "selector": "0x299045a8",
+      "type": "STATICCALL",
+      "signatures": [
+        "validateOwner(uint256,bytes32)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 14316,
+      "signed_immediate_child_residual_sum": 7670,
+      "forwarded_gas_min": 29813057,
+      "forwarded_gas_max": 29813057
+    },
+    {
+      "role": "vault",
+      "selector": "0x",
+      "type": "CALL",
+      "signatures": [],
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 30887,
+      "signed_immediate_child_residual_sum": 7267,
+      "forwarded_gas_min": 20278337,
+      "forwarded_gas_max": 28157862
+    },
+    {
+      "role": "budget",
+      "selector": "0xc684283b",
+      "type": "STATICCALL",
+      "signatures": [
+        "validateOwner(uint256,address,bool,bool)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 37270,
+      "signed_immediate_child_residual_sum": 7169,
+      "forwarded_gas_min": 29851805,
+      "forwarded_gas_max": 29851805
+    },
+    {
+      "role": "independent_reference",
+      "selector": "0x313ce567",
+      "type": "STATICCALL",
+      "signatures": [
+        "decimals()"
+      ],
+      "frames": 16,
+      "inclusive_gas_sum_overlapping": 6880,
+      "signed_immediate_child_residual_sum": 6880,
+      "forwarded_gas_min": 500000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "reference",
+      "selector": "0x313ce567",
+      "type": "STATICCALL",
+      "signatures": [
+        "decimals()"
+      ],
+      "frames": 16,
+      "inclusive_gas_sum_overlapping": 6880,
+      "signed_immediate_child_residual_sum": 6880,
+      "forwarded_gas_min": 500000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "contribution_pricing",
+      "selector": "0xa426e13d",
+      "type": "STATICCALL",
+      "signatures": [
+        "valueBucket(uint256,uint256,uint256)"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 6636,
+      "signed_immediate_child_residual_sum": 6636,
+      "forwarded_gas_min": 19716150,
+      "forwarded_gas_max": 22039324
+    },
+    {
+      "role": "nft",
+      "selector": "0xaa439cf7",
+      "type": "STATICCALL",
+      "signatures": [
+        "mintOrdinalOf(uint256)"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 6280,
+      "signed_immediate_child_residual_sum": 6280,
+      "forwarded_gas_min": 17689560,
+      "forwarded_gas_max": 19045412
+    },
+    {
+      "role": "liquidity",
+      "selector": "0x23e1c621",
+      "type": "STATICCALL",
+      "signatures": [
+        "portfolioAmounts(uint256)"
+      ],
+      "frames": 4,
+      "inclusive_gas_sum_overlapping": 493384,
+      "signed_immediate_child_residual_sum": 5544,
+      "forwarded_gas_min": 19072958,
+      "forwarded_gas_max": 27260109
+    },
+    {
+      "role": "lp_balance_math",
+      "selector": "0x7e3c5c2d",
+      "type": "STATICCALL",
+      "signatures": [
+        "fixedZZZ()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 10935,
+      "signed_immediate_child_residual_sum": 5428,
+      "forwarded_gas_min": 30313962,
+      "forwarded_gas_max": 30313962
+    },
+    {
+      "role": "budget",
+      "selector": "0x4f77e491",
+      "type": "CALL",
+      "signatures": [
+        "contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 167868,
+      "signed_immediate_child_residual_sum": 5395,
+      "forwarded_gas_min": 19557579,
+      "forwarded_gas_max": 19557579
+    },
+    {
+      "role": "entry",
+      "selector": "0x7c986ced",
+      "type": "STATICCALL",
+      "signatures": [
+        "sourceValue(bytes32,uint256,uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 8562,
+      "signed_immediate_child_residual_sum": 5315,
+      "forwarded_gas_min": 29300906,
+      "forwarded_gas_max": 29300906
+    },
+    {
+      "role": "nft",
+      "selector": "0x64d406ce",
+      "type": "STATICCALL",
+      "signatures": [
+        "tokenAtOrdinal(uint256)"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 5180,
+      "signed_immediate_child_residual_sum": 5180,
+      "forwarded_gas_min": 17686452,
+      "forwarded_gas_max": 19040336
+    },
+    {
+      "role": "unclassified:0xa4ad4f68d0b91cfd19687c881e50f3a00242828c",
+      "selector": "0x36c78516",
+      "type": "CALL",
+      "signatures": [],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 13849,
+      "signed_immediate_child_residual_sum": 4737,
+      "forwarded_gas_min": 19384122,
+      "forwarded_gas_max": 19384122
+    },
+    {
+      "role": "pools",
+      "selector": "0x5dbf78a2",
+      "type": "STATICCALL",
+      "signatures": [
+        "activationEntry()"
+      ],
+      "frames": 4,
+      "inclusive_gas_sum_overlapping": 4460,
+      "signed_immediate_child_residual_sum": 4460,
+      "forwarded_gas_min": 5441127,
+      "forwarded_gas_max": 30846274
+    },
+    {
+      "role": "contribution_pricing",
+      "selector": "0x8579360a",
+      "type": "STATICCALL",
+      "signatures": [
+        "entryIdleLimit(uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 6849,
+      "signed_immediate_child_residual_sum": 4439,
+      "forwarded_gas_min": 19986390,
+      "forwarded_gas_max": 19986390
+    },
+    {
+      "role": "access_controller",
+      "selector": "0xffa71587",
+      "type": "STATICCALL",
+      "signatures": [
+        "lpExitStarted()"
+      ],
+      "frames": 4,
+      "inclusive_gas_sum_overlapping": 4040,
+      "signed_immediate_child_residual_sum": 4040,
+      "forwarded_gas_min": 5082149,
+      "forwarded_gas_max": 31464236
+    },
+    {
+      "role": "vault",
+      "selector": "0x375017cb",
+      "type": "STATICCALL",
+      "signatures": [
+        "nftBucket(uint256)"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 3980,
+      "signed_immediate_child_residual_sum": 3980,
+      "forwarded_gas_min": 19051501,
+      "forwarded_gas_max": 28910308
+    },
+    {
+      "role": "nft",
+      "selector": "0x87b96e43",
+      "type": "STATICCALL",
+      "signatures": [
+        "traitsReady(uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 3921,
+      "signed_immediate_child_residual_sum": 3921,
+      "forwarded_gas_min": 28904159,
+      "forwarded_gas_max": 28904159
+    },
+    {
+      "role": "access_controller",
+      "selector": "0x5c975abb",
+      "type": "STATICCALL",
+      "signatures": [
+        "paused()"
+      ],
+      "frames": 5,
+      "inclusive_gas_sum_overlapping": 3750,
+      "signed_immediate_child_residual_sum": 3750,
+      "forwarded_gas_min": 26083722,
+      "forwarded_gas_max": 31468394
+    },
+    {
+      "role": "liquidity",
+      "selector": "0xdc4c90d3",
+      "type": "STATICCALL",
+      "signatures": [
+        "poolManager()"
+      ],
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 3681,
+      "signed_immediate_child_residual_sum": 3681,
+      "forwarded_gas_min": 20893950,
+      "forwarded_gas_max": 26273884
+    },
+    {
+      "role": "membership",
+      "selector": "0x3138ffe7",
+      "type": "STATICCALL",
+      "signatures": [
+        "totalEligible()"
+      ],
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 3614,
+      "signed_immediate_child_residual_sum": 3614,
+      "forwarded_gas_min": 16696912,
+      "forwarded_gas_max": 27885860
+    },
+    {
+      "role": "vault",
+      "selector": "0xde43d32b",
+      "type": "STATICCALL",
+      "signatures": [
+        "contributionUSD(uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 3606,
+      "signed_immediate_child_residual_sum": 3606,
+      "forwarded_gas_min": 28782671,
+      "forwarded_gas_max": 28782671
+    },
+    {
+      "role": "activation_assets",
+      "selector": "0x1f226a25",
+      "type": "STATICCALL",
+      "signatures": [
+        "isContributionAsset(address)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 3422,
+      "signed_immediate_child_residual_sum": 3422,
+      "forwarded_gas_min": 31388101,
+      "forwarded_gas_max": 31388101
+    },
+    {
+      "role": "vault",
+      "selector": "0x775c1893",
+      "type": "STATICCALL",
+      "signatures": [
+        "bucketAt(uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 3403,
+      "signed_immediate_child_residual_sum": 3403,
+      "forwarded_gas_min": 28869270,
+      "forwarded_gas_max": 28869270
+    },
+    {
+      "role": "budget",
+      "selector": "0xa7b5810c",
+      "type": "STATICCALL",
+      "signatures": [
+        "contributionLossBps()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 3202,
+      "signed_immediate_child_residual_sum": 3202,
+      "forwarded_gas_min": 30155756,
+      "forwarded_gas_max": 30155756
+    },
+    {
+      "role": "vault",
+      "selector": "0xc2f5673e",
+      "type": "STATICCALL",
+      "signatures": [
+        "bucketCount()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 3167,
+      "signed_immediate_child_residual_sum": 3167,
+      "forwarded_gas_min": 28874391,
+      "forwarded_gas_max": 28874391
+    },
+    {
+      "role": "protocol_policy",
+      "selector": "0xe3c5212f",
+      "type": "STATICCALL",
+      "signatures": [
+        "royaltyBalanceGas()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 3103,
+      "signed_immediate_child_residual_sum": 3103,
+      "forwarded_gas_min": 16619606,
+      "forwarded_gas_max": 16619606
+    },
+    {
+      "role": "vault",
+      "selector": "0x21d15169",
+      "type": "STATICCALL",
+      "signatures": [
+        "bucketTotalShares(uint256)"
+      ],
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 2838,
+      "signed_immediate_child_residual_sum": 2838,
+      "forwarded_gas_min": 18037495,
+      "forwarded_gas_max": 27889731
+    },
+    {
+      "role": "vault",
+      "selector": "0x878ecfec",
+      "type": "STATICCALL",
+      "signatures": [
+        "sharesOf(uint256)"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 2816,
+      "signed_immediate_child_residual_sum": 2816,
+      "forwarded_gas_min": 16974754,
+      "forwarded_gas_max": 19049789
+    },
+    {
+      "role": "royalty",
+      "selector": "0x0767d178",
+      "type": "STATICCALL",
+      "signatures": [
+        "weightOf(uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 2743,
+      "signed_immediate_child_residual_sum": 2743,
+      "forwarded_gas_min": 16970038,
+      "forwarded_gas_max": 16970038
+    },
+    {
+      "role": "balancing_router",
+      "selector": "0xa9b306f3",
+      "type": "STATICCALL",
+      "signatures": [
+        "deploymentAmounts(uint160,int24,int24,uint256,uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 22846,
+      "signed_immediate_child_residual_sum": 2701,
+      "forwarded_gas_min": 20577060,
+      "forwarded_gas_max": 20577060
+    },
+    {
+      "role": "pools",
+      "selector": "0x5b703199",
+      "type": "STATICCALL",
+      "signatures": [
+        "activationAssets()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 2593,
+      "signed_immediate_child_residual_sum": 2593,
+      "forwarded_gas_min": 29835143,
+      "forwarded_gas_max": 29835143
+    },
+    {
+      "role": "pools",
+      "selector": "0x0112cc43",
+      "type": "STATICCALL",
+      "signatures": [
+        "contributionValue(bytes32,uint256,uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 10889,
+      "signed_immediate_child_residual_sum": 2327,
+      "forwarded_gas_min": 29767795,
+      "forwarded_gas_max": 29767795
+    },
+    {
+      "role": "liquidity",
+      "selector": "0x3646f36a",
+      "type": "STATICCALL",
+      "signatures": [
+        "positionOperator()"
+      ],
+      "frames": 3,
+      "inclusive_gas_sum_overlapping": 2235,
+      "signed_immediate_child_residual_sum": 2235,
+      "forwarded_gas_min": 19642819,
+      "forwarded_gas_max": 27278032
+    },
+    {
+      "role": "unclassified:0xd16d567549a2a2a2005aeacf7fb193851603dd70",
+      "selector": "0x8eee3b9e",
+      "type": "STATICCALL",
+      "signatures": [
+        "additionalLossBps()"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 1700,
+      "signed_immediate_child_residual_sum": 1700,
+      "forwarded_gas_min": 24276278,
+      "forwarded_gas_max": 25104320
+    },
+    {
+      "role": "liquidity",
+      "selector": "0x4c4a3c25",
+      "type": "STATICCALL",
+      "signatures": [
+        "stateView()"
+      ],
+      "frames": 2,
+      "inclusive_gas_sum_overlapping": 1574,
+      "signed_immediate_child_residual_sum": 1574,
+      "forwarded_gas_min": 24219724,
+      "forwarded_gas_max": 24352505
+    },
+    {
+      "role": "liquidity",
+      "selector": "0x57f32c71",
+      "type": "STATICCALL",
+      "signatures": [
+        "secondaryId(uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 2431,
+      "signed_immediate_child_residual_sum": 1465,
+      "forwarded_gas_min": 20072339,
+      "forwarded_gas_max": 20072339
+    },
+    {
+      "role": "lp_position_executor",
+      "selector": "0x57f32c71",
+      "type": "STATICCALL",
+      "signatures": [
+        "secondaryId(uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 966,
+      "signed_immediate_child_residual_sum": 966,
+      "forwarded_gas_min": 19757652,
+      "forwarded_gas_max": 19757652
+    },
+    {
+      "role": "membership",
+      "selector": "0x776898c8",
+      "type": "STATICCALL",
+      "signatures": [
+        "eligible(uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 874,
+      "signed_immediate_child_residual_sum": 874,
+      "forwarded_gas_min": 17681049,
+      "forwarded_gas_max": 17681049
+    },
+    {
+      "role": "activation_assets",
+      "selector": "0xa4dff0a2",
+      "type": "STATICCALL",
+      "signatures": [
+        "zzz()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 737,
+      "signed_immediate_child_residual_sum": 737,
+      "forwarded_gas_min": 29831401,
+      "forwarded_gas_max": 29831401
+    },
+    {
+      "role": "protocol_policy",
+      "selector": "0x3c0276fc",
+      "type": "STATICCALL",
+      "signatures": [
+        "royaltySyncGas()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 675,
+      "signed_immediate_child_residual_sum": 675,
+      "forwarded_gas_min": 16621063,
+      "forwarded_gas_max": 16621063
+    },
+    {
+      "role": "independent_reference",
+      "selector": "0x3dbea385",
+      "type": "STATICCALL",
+      "signatures": [
+        "executionAsset()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 663,
+      "signed_immediate_child_residual_sum": 663,
+      "forwarded_gas_min": 500000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "reference",
+      "selector": "0x3dbea385",
+      "type": "STATICCALL",
+      "signatures": [
+        "executionAsset()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 663,
+      "signed_immediate_child_residual_sum": 663,
+      "forwarded_gas_min": 500000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "vault",
+      "selector": "0x15aaea17",
+      "type": "STATICCALL",
+      "signatures": [
+        "MAX_BUCKETS()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 509,
+      "signed_immediate_child_residual_sum": 509,
+      "forwarded_gas_min": 28870577,
+      "forwarded_gas_max": 28870577
+    },
+    {
+      "role": "principal_exit",
+      "selector": "0x068e3489",
+      "type": "STATICCALL",
+      "signatures": [
+        "activePlan(uint256)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 462,
+      "signed_immediate_child_residual_sum": 462,
+      "forwarded_gas_min": 28802048,
+      "forwarded_gas_max": 28802048
+    },
+    {
+      "role": "independent_reference",
+      "selector": "0x2f1fdfce",
+      "type": "STATICCALL",
+      "signatures": [
+        "EXECUTION_SOURCE_VERSION()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 393,
+      "signed_immediate_child_residual_sum": 393,
+      "forwarded_gas_min": 500000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "reference",
+      "selector": "0x2f1fdfce",
+      "type": "STATICCALL",
+      "signatures": [
+        "EXECUTION_SOURCE_VERSION()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 393,
+      "signed_immediate_child_residual_sum": 393,
+      "forwarded_gas_min": 500000,
+      "forwarded_gas_max": 500000
+    },
+    {
+      "role": "vault",
+      "selector": "0x0c7bdd72",
+      "type": "STATICCALL",
+      "signatures": [
+        "canonicalChainId()"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 293,
+      "signed_immediate_child_residual_sum": 293,
+      "forwarded_gas_min": 28911466,
+      "forwarded_gas_max": 28911466
+    },
+    {
+      "role": "entry",
+      "selector": "0x6169e438",
+      "type": "CALL",
+      "signatures": [
+        "executeReviewed((uint256,bytes32,address,uint256,uint128,uint256,bool),uint16,bytes32)"
+      ],
+      "frames": 1,
+      "inclusive_gas_sum_overlapping": 25910993,
+      "signed_immediate_child_residual_sum": -641918,
+      "forwarded_gas_min": 31976236,
+      "forwarded_gas_max": 31976236
+    }
+  ],
+  "limitations": [
+    "Inclusive aggregates overlap and are never budget-component sums.",
+    "The root signed residual is negative. Do not clamp it or describe it as nonnegative Entry opcode cost; refund/trace accounting is not established by callTracer alone.",
+    "Actual tracegas and node estimate differ; these records do not isolate the cause of that difference or prove estimator savings from a given frame reduction.",
+    "No old16currency trace is used for a matched comparison: current64currencies, twoLPs, reverse order, changed price/input, synthetic6Mreference and32M cap differ.",
+    "Per-opcode SSTORE counts and exact candidate savings are not measured.",
+    "A proposed new private enrollment codec requires source/layout/canonical/consumer/size review and new verification before adoption."
+  ]
+}

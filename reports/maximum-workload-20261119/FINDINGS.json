@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "findings": [
+    {
+      "id": "MW01",
+      "kind": "operating_capacity_refusal",
+      "status": "open",
+      "title": "64slowcurrencies+twoLPopeningZZZexceeds32Mwithfull20%",
+      "estimate": 27142801,
+      "padded": 32571362,
+      "cap": 32000000,
+      "required_estimate_reduction": 476135,
+      "production_bug_established": false,
+      "evidence": "QUALIFICATION.json"
+    },
+    {
+      "id": "MW02",
+      "kind": "fixture_correction",
+      "status": "corrected_and_full_new_journey_verified",
+      "title": "Pendingmodechangeandflatpricepreparationwereincorrectlytreatedasordinarytrades",
+      "evidence": "attempts/MANIFEST.json"
+    },
+    {
+      "id": "MW03",
+      "kind": "synthetic_market_feasibility",
+      "status": "original_refusal_retained_positive_control_separate",
+      "title": "Original1MexternaldepthreturnsSlippage;explicit6Mexternalcontrolusedforgas",
+      "evidence": "producer/MANIFEST.json"
+    },
+    {
+      "id": "MW04",
+      "kind": "measurement_correction",
+      "status": "corrected_three_growth_preflights_reverified",
+      "title": "Zero compound after entrant checkpoint is valid attributed idle",
+      "evidence": "controls/growth-fix/RECORDED_FAILURE_PROOF.json"
+    },
+    {
+      "id": "MW05",
+      "kind": "broader_qualification",
+      "status": "open",
+      "title": "Other lifetime/order/token/full-graph/real-provider and operating states remain unqualified",
+      "evidence": "REVIEW.md#remaining-work-and-useful-optimization-target"
+    }
+  ]
+}

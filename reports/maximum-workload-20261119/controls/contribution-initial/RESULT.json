@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "scope": "NEW offline checker controls only; no EVM/compiler/application suite/node/network",
+  "exit_code": 0,
+  "elapsed_seconds": 0.6880000000001019,
+  "source_before": {
+    "reports\\maximum-workload-20261119\\tools\\verify_contributions.py": "7fa494045d488b7255f9ae9eb7f056018e90c088e874c395230a40d9dac0c9a0",
+    "reports\\maximum-workload-20261119\\tools\\test_contribution_checker.py": "064309c9a37a9cd02b9f1808a4638f6f9959efc502a5d6ddbe22056434dbc758"
+  },
+  "source_after": {
+    "reports\\maximum-workload-20261119\\tools\\verify_contributions.py": "7fa494045d488b7255f9ae9eb7f056018e90c088e874c395230a40d9dac0c9a0",
+    "reports\\maximum-workload-20261119\\tools\\test_contribution_checker.py": "064309c9a37a9cd02b9f1808a4638f6f9959efc502a5d6ddbe22056434dbc758"
+  },
+  "source_bracket_stable": true,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "61f4d1ca93e111d5a6170bd006617b7ca43919ac476b029e8ecd0fcace902c52",
+  "public_requests_or_transactions": 0
+}

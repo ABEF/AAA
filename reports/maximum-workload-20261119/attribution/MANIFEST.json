@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "scope": "Offline attribution only; no new EVM/compiler/RPC executions",
+  "outputs_sha256": {
+    "TRACE_ATTRIBUTION.json": "5328b291e4e07bdcd2e51e0bd3eabfda0786df12591f3c6f910ca8bb75dd2de7",
+    "NOTES.md": "6cc3df0b50a69e65a05416eb6ace0b1b20d1dba9a74ee9510405114c9db4e705",
+    "attribute_retained_trace.py": "b5053d52d668df622bcee83066317b8e3532ede3a754325b6188c93c35383f7c"
+  },
+  "unchanged_operating_cap": 32000000,
+  "padding_percent": 20,
+  "production_source_edits": 0,
+  "cold_retests": 0
+}

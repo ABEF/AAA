@@ -1,0 +1,15 @@
+usage: verify_maintenance.py [-h] stage
+
+Cold, read-only verification of the NEW populated maintenance exports. Only
+the sibling source-pinned producer/parser may supply cases. Each case gets an
+owned loopback node and the generic loader stops it in finally. No endpoint,
+key, sender-override, send, impersonation or existing-chain option is
+accepted. Actual24M/full25% admission is distinct from finite producer
+assertions, intended guard refusals and any bounded diagnostic execution. No
+running limit changes.
+
+positional arguments:
+  stage
+
+options:
+  -h, --help  show this help message and exit

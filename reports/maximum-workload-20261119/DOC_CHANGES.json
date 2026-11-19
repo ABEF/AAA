@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "baseline_main": "c1b123c2defb30c66134037d3d44c2a24f22eee4",
+  "original_document_backups": "V/maximum-workload-20261119/doc-before",
+  "changes": [
+    {
+      "path": ".gitattributes",
+      "before_sha256": "0fbe121fe93c5d6e236df91fe5f8806794a4dc40d7c4a5b13cc78bcfdddcb0f4",
+      "after_sha256": "d5fbd92a476c5830f4c3562b71706e87f31a3d2ba56b51510920ae114c1d1eb1"
+    },
+    {
+      "path": "AGENTS.md",
+      "before_sha256": "249b4ff32fab8eede259399c2c1e4b0bdaacd5519961d0f156340987e1d9b887",
+      "after_sha256": "bca9f74e1da8c6b44f97dcc9d6bc2d521cece00596ffa2d6464e44651cb80e1e"
+    },
+    {
+      "path": "PROJECT_CONTEXT.md",
+      "before_sha256": "9c985070930ee555050902936a85fec8e34295a3634701f60641c6a4501a25d6",
+      "after_sha256": "39dc24313702e965517a27ea2ca462658de23282e7fd9e6244e05014ad73b4c8"
+    },
+    {
+      "path": "README.md",
+      "before_sha256": "a923a787e1bcdd6d9ddf40e27353b5eedb0e424d82666342cfc08f235f76381a",
+      "after_sha256": "f077e41f7e48b85749fc89d9731617bad03b6db89ca2defaaf8b67a3b0b5f684"
+    },
+    {
+      "path": "TODO.md",
+      "before_sha256": "68155d9293fb18dafb822c5690b97a2712d13b87b5ebf3bf8af1647c18a38c83",
+      "after_sha256": "65ee5e0407fa4302ddfbafe8d329bf018beef576bd57abe0c4817c50acee3ae7"
+    },
+    {
+      "path": "docs/AUDIT_FINDINGS.md",
+      "before_sha256": "e9e18978ce2461bae7ea1df078cb2a70002cf16dcf1299798c1c8690df292012",
+      "after_sha256": "24fdac1a85b4d1fc15257965455f08fff0644f51ac7c648f60e906d9f59098ac"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "before_sha256": "78823728f5c01f5b1a3f318ce9103d0e366d2b4b0b74a8146722ba1050f2d0ea",
+      "after_sha256": "dc02fa2657efc26c7f95d66ce7f4359bf3a030f84063a061f9ca66fc86fd02e9"
+    },
+    {
+      "path": "docs/OPERATOR_MANUAL.md",
+      "before_sha256": "3b50211eef59b593fd45cb7fe14d577ab5e85de33765d3881b28f9bb40f4d625",
+      "after_sha256": "af72d18f5c30c54aef250418e5a65dfd6d81d96983f3a8d5d3b4b5e1571ae234"
+    },
+    {
+      "path": "docs/RELEASE_CHECKLIST.md",
+      "before_sha256": "f53494eed6ddc50a1bfe93f02a2a4f5a15e4580645664520aad2fec6f0862275",
+      "after_sha256": "1a4db26b631dd3917f6c7cb2ca998dffbe7f12565d8eb2ccb9dd3d6244942cbb"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "before_sha256": "6a329caed2b3f75f498929b396aebbb56c840f5a9b246b05e3c6b7af40040f64",
+      "after_sha256": "4a6605f836caa6ef96ec5ce0733f46e5e9b9f18bebcd3fe3362e1cd036cbb0fe"
+    },
+    {
+      "path": "docs/WORKLOAD_COVERAGE.md",
+      "before_sha256": "00ab1f177f510c99c439a07371aa644d3023bf36c3bffaf15ea1e6602871ba6b",
+      "after_sha256": "cc7c53eac03a608c8c9c90106481ff334c92bfeeadf4cedccbe3961723da7092"
+    },
+    {
+      "path": "docs/WORK_HANDOFF.md",
+      "before_sha256": "46fbc3c3b092828cb5f63465bd5f93bf697d47e0bfa508f4c29059915c54fd8c",
+      "after_sha256": "2078215bc00a3bfe76d60ccba898eb0204b2688972fc1313ab50b5adca2d768c"
+    },
+    {
+      "path": "docs/project-todo.json",
+      "before_sha256": "615624173e5320430a81404185ed4c09fde6a696ca881620248437bf92bcaab1",
+      "after_sha256": "8317ae26206e966612632040478eeff9d33587e21ed5f44375937ecea6a342d9"
+    },
+    {
+      "path": "reports/README.md",
+      "before_sha256": "dc9c417dd3cafe89bb097f21794a2836c30bb2df454d3d59b2a9e3b7bae48447",
+      "after_sha256": "d182b7f63d892bed6cda6a5eaca24fa36160d354b9b57a95a553220379e3911c"
+    }
+  ]
+}

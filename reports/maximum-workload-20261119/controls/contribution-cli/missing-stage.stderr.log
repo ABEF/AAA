@@ -1,0 +1,2 @@
+usage: verify_contributions.py [-h] stage
+verify_contributions.py: error: the following arguments are required: stage

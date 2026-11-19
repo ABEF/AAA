@@ -1,0 +1,523 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.26;
+
+import {MaximumMaintenanceWorkload20261119} from "./MaximumMaintenanceWorkload20261119.t.sol";
+import {ZZZCompounder} from "../src/ZZZCompounder.sol";
+import {Position,Ids} from "../src/libraries/ZZZTypes.sol";
+import {ZZZSeaDropMint} from "../src/ZZZSeaDropMint.sol";
+import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
+import {ZZZProtocolPolicy} from "../src/ZZZProtocolPolicy.sol";
+import {ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
+import {IZZZSeaDrop,AllowListData} from "../src/interfaces/IZZZSeaDrop.sol";
+import {VerifiedSeaDropV1} from "./fixtures/VerifiedSeaDropV1.sol";
+import {MockToken} from "./mocks/Mocks.sol";
+import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
+import {MarketState} from "../src/interfaces/IZZZExecutionOracle.sol";
+
+/// @dev TEST ONLY: exact-transfer 6-decimal asset except its selected ledger
+/// balance read deliberately consumes the entire existing isolated allowance.
+contract MaximumWorkloadCurrency20261119 is MockToken {
+    address public failingReader;
+    address public slowReader;
+    constructor() MockToken(6) {}
+    function failFor(address reader) external { failingReader=reader; }
+    function slowFor(address reader) external { slowReader=reader; }
+    function balanceOf(address owner) public view override returns(uint256 answer) {
+        if(msg.sender==failingReader) assembly("memory-safe"){invalid()}
+        answer=super.balanceOf(owner);
+        // Deliberately spend almost the full50k AND RETURN the correct balance.
+        // Full unbounded sync/independent reads stay finite and fast.
+        if(msg.sender==slowReader && gasleft()<60000) assembly("memory-safe") {
+            mstore(0,answer)
+            for {} gt(gas(),2000) {} { pop(keccak256(0,32)) }
+            answer:=mload(0)
+        }
+    }
+}
+
+/// @notice NEW actual full Entry/Vault/LP1/Membership/royalty4 workload.
+/// NEW MAXIMUM:1000 NFTs mint through verified mint2;999 really
+/// contribute through Entry. No privileged ledger writes, storage grafts or
+/// price resets seed the population. Controlled Access/registry, dual ETH
+/// publication, Permit2, VRF and external v4 depth remain explicit test seams.
+/// Setup/drain/assertion tracing and gas metering are paused for volume only.
+/// Complete measured calls resume tracing; naturally cold RPC acceptance,
+/// intrinsic costs,32M/full20% admission and network fees require the separate runner.
+contract MaximumWorkload20261119Test is MaximumMaintenanceWorkload20261119 {
+    uint256 internal constant MAXIMUM_CONTRIBUTION_GAS=32_000_000;
+    uint256 internal constant TEST_ONLY_COMPLETION_GAS=96_000_000;
+    address internal constant INCUMBENT=address(0xA11CE);
+    address internal constant NEWCOMER=address(0xB0B);
+    address internal constant DROP_FEE=address(0xFEED);
+    uint256 internal constant PREFIX=999;
+    uint256 internal constant PREFIX_WEIGHT=1499;
+    uint256 internal constant ROTATION=513;
+    uint256 internal constant RECEIPT=2996;
+    MaximumWorkloadCurrency20261119[64] internal currencies;
+    ZZZRoyaltyRewards internal royalty;
+    IZZZSeaDrop internal drop;
+    ZZZSeaDropMint internal mintHelper;
+    uint256[1001] internal ids;
+    uint256[1001] internal seededShares;
+    uint256[1001] internal firstTicket;
+    uint256 internal bucket;
+    uint64 internal saleEnd;
+    uint256 internal nativeSeedCount;
+    uint256 internal zzzSeedCount;
+    uint256 internal maximumSetupDeviationBps;
+    event MaximumExternalHarnessFunding(address actor,uint256 additionalETH,uint256 additionalZZZ,
+        uint256 ethBefore,uint256 ethAfter,uint256 zzzBefore,uint256 zzzAfter);
+    event MaximumExternalReferenceDepth(uint128 liquidityBefore,uint128 liquidityAfter,uint160 spotBefore,
+        uint160 spotAfter,uint256 addedLiquidity,uint256 actualExternalETH,uint256 actualExternalZZZ);
+    event RoundsPopulation(uint256 minted,uint256 active,uint256 weight,bytes32 rightsDigest);
+    event RoundsCase(string label,uint256 faults,bool growth,bool opening,uint256 receipt,uint256 cursor);
+    event RoundsGas(string label,bool success32M,uint256 measured32M,bool full20PercentFits,
+        uint256 completedDiagnosticGas,uint256 completedPaddedGas);
+    event RoundsPlacement(string label,uint256 beforeLP,uint256 afterLP,uint256 beforeNAV,
+        uint256 afterNAV,uint256 beforeShares,uint256 afterShares,uint256 supplyBefore);
+    event RoundsSetupProgress(uint256 stage,uint256 ordinal);
+    event RoundsSetupSourceCounts(uint256 nativeContributions,uint256 zzzContributions,
+        uint256 maximumTargetVsReferencePriceDeviationBps);
+    event RoundsRoyaltyDrain(uint256 currencies,uint256 oldUnitsPerCurrency,
+        uint256 futureUnitsPerCurrency,uint256 futureNewcomerUnitsPerCurrency,bytes32 rightsDigest);
+    error RoundsSeedFailure(uint256 ordinal,address asset,bytes reason);
+    error RoundsOnlyHarness();
+    modifier onlyHarness(){if(msg.sender!=address(this))revert RoundsOnlyHarness();_;}
+
+    function _setupPopulation() internal {
+        access.beginBootstrap();maintenanceCompounder=new ZZZCompounder(address(access));
+        access.bind(Ids.COMPOUNDER,address(maintenanceCompounder));
+        _installProductionEntryGraph();_deepenMaximumReference();access.beginBootstrap();
+        drop=IZZZSeaDrop(VerifiedSeaDropV1.install(vm));
+        mintHelper=new ZZZSeaDropMint(address(access),address(nft),address(drop),address(drop).codehash);
+        nft.setSeaDropMint(address(mintHelper));
+        ZZZSeaDropMint.MintConfig memory c;
+        c.publicWalletLimit=1000;c.maxBatch=10;c.feeBps=1000;c.feeRecipient=DROP_FEE;
+        c.teamStart=uint48(block.timestamp);c.teamEnd=c.teamStart+1;
+        c.allowlistStart=c.teamEnd+1;c.allowlistEnd=c.allowlistStart+1;
+        c.publicStart=c.allowlistEnd+1;c.publicEnd=c.publicStart+1 days;saleEnd=c.publicEnd;
+        c.allowedPayersHash=keccak256(abi.encode(new address[](0)));
+        mintHelper.configure(c,uint128(0.05 ether),REVIEW);nft.setMintEnd(saleEnd);
+        nft.updatePublicDrop(address(drop),mintHelper.expectedPublicDrop());
+        nft.updateAllowList(address(drop),AllowListData(bytes32(0),new string[](0),"ipfs://TEST-ONLY/"));
+        nft.updateCreatorPayoutAddress(address(drop),ZZZProtocolPolicy(access.protocolPolicy()).salePolicy().recipient);
+        nft.updateAllowedFeeRecipient(address(drop),DROP_FEE,true);
+        royalty=nft.royaltyRewards();access.seal();vm.warp(c.publicStart);_refreshETH();
+        vm.deal(INCUMBENT,1_000_000 ether);vm.deal(NEWCOMER,10_000 ether);
+        token.mint(INCUMBENT,1_000_000 ether);token.mint(NEWCOMER,10_000 ether);
+        for(uint256 batch;batch<99;++batch)_mintBatch(INCUMBENT,10);
+        _mintBatch(INCUMBENT,9);_mintBatch(NEWCOMER,1);
+        assertEq(nft.mintedCount(),1000);assertEq(mintHelper.totalMinted(),1000);
+        assertEq(nft.rarityRemaining(0),0);assertEq(nft.rarityRemaining(1),0);assertEq(nft.rarityRemaining(2),0);
+        assertEq(mintHelper.lifetimeMinted(INCUMBENT),999);assertEq(mintHelper.lifetimeMinted(NEWCOMER),1);
+        _setupProgress(1,1000);
+        uint256 weight;
+        for(uint256 activation=1;activation<=PREFIX;++activation){
+            uint256 ordinal=1000-activation;
+            // Setup arrival mix is selected from ACTUAL slot0 imbalance. The
+            // main's arithmetic +/-50% range needs an unequal asset ratio;
+            // simply alternating equal USD inputs drifts the separate swap
+            // venue. Real Entry swaps correct that imbalance, with unchanged
+            // quote/price/loss guards and no storage or price reset.
+            address source=_seedAsset();
+            if(source==address(0))++nativeSeedCount;else ++zzzSeedCount;
+            _contribute(INCUMBENT,ids[ordinal],source,100 ether,false);_recordSetupDeviation();
+            uint256 expected=uint256(_rarity(ordinal))+1;
+            firstTicket[ordinal]=weight+1;weight+=expected;
+            assertEq(royalty.ticketStart(ids[ordinal]),firstTicket[ordinal]);
+            assertEq(royalty.weightOf(ids[ordinal]),expected);
+            seededShares[ordinal]=vault.sharesOf(ids[ordinal]);assertGt(seededShares[ordinal],0);
+            if(activation==8){
+                nft.increaseRoyaltyAssetCapacity(64,REVIEW);
+                // Admission at8 groups the first8 zero-income births once.
+                // Next991 real activations give992 stored enrollment ends;
+                // entrant1000 opens a NEW packed16-entry boundary word.
+                // This is dearer than a warm append at a dense999th end.
+                for(uint256 i;i<64;++i){currencies[i]=new MaximumWorkloadCurrency20261119();nft.addRoyaltyAsset(address(currencies[i]));}
+            }
+            if(activation%100==0)_setupProgress(2,activation);
+        }
+        _setupProgress(3,PREFIX);
+        assertEq(nativeSeedCount+zzzSeedCount,PREFIX);assertGt(nativeSeedCount,0);assertGt(zzzSeedCount,0);
+        vm.resumeTracing();emit RoundsSetupSourceCounts(nativeSeedCount,zzzSeedCount,maximumSetupDeviationBps);vm.pauseTracing();
+        assertEq(weight,PREFIX_WEIGHT);bucket=vault.nftBucket(ids[1]);
+        assertEq(royalty.activationCount(),PREFIX);assertEq(royalty.totalWeight(),PREFIX_WEIGHT);
+        assertEq(membership.totalEligible(),PREFIX);assertFalse(membership.eligible(ids[1000]));
+        assertEq(vault.sharesOf(ids[1000]),0);assertEq(royalty.weightOf(ids[1000]),0);
+        assertEq(royalty.assetCapacity(),64);assertEq(royalty.assetCount(),65);
+        assertEq(ZZZProtocolPolicy(access.protocolPolicy()).royaltySyncGas(),1_000_000);
+        assertEq(ZZZProtocolPolicy(access.protocolPolicy()).royaltyBalanceGas(),50_000);
+        for(uint256 i;i<65;++i){address a=_asset(i);assertEq(royalty.eligibleCount(a),PREFIX);assertEq(royalty.eligibleWeight(a),PREFIX_WEIGHT);}
+        _openMaximumHybrid();
+        // Actual target-pool trading creates both fee currencies, so exact-unit
+        // LP assertions below do not vacuously pass on all-zero reward books.
+        _setupProgress(4,PREFIX);_trade(core,targetKey,true,10 ether);_setupProgress(5,PREFIX);
+        _trade(core,targetKey,false,10 ether);_setupProgress(6,PREFIX);
+        vault.collectFees(bucket,block.timestamp+100);
+        _setupProgress(7,PREFIX);
+        assertGt(rewards.liabilities(address(0)),0);assertGt(rewards.liabilities(address(token)),0);
+        assertGt(fees.compoundBalance(bucket,address(0)),0);assertGt(fees.compoundBalance(bucket,address(token)),0);
+        _assertPopulation(PREFIX);_assertLPBacking(PREFIX);
+        vm.resumeTracing();emit RoundsPopulation(1000,PREFIX,PREFIX_WEIGHT,_rightsDigest());vm.pauseTracing();
+    }
+
+    /// @dev TEST-ONLY external depth positive control after the original1M
+    /// market refused hybrid replacement. This is real Core liquidity supplied
+    /// by the separate harness actor before any holder activates. It changes
+    /// no price, principal contribution, financial setting or operating budget.
+    function _deepenMaximumReference() internal {
+        MarketState memory referenceBefore=_market(state,referencePool);
+        MarketState memory targetBefore=_market(state,target);
+        MarketState memory independentBefore=_market(independentState,independentPool);
+        assertEq(nft.mintedCount(),0,"external control is funded before any mint");
+        assertEq(vault.bucketCount(),0,"external control is funded before any principal exists");
+        uint256 incumbentETH=INCUMBENT.balance;uint256 newcomerETH=NEWCOMER.balance;
+        uint256 incumbentZZZ=token.balanceOf(INCUMBENT);uint256 newcomerZZZ=token.balanceOf(NEWCOMER);
+        uint256 unfundedETH=address(this).balance;uint256 unfundedZZZ=token.balanceOf(address(this));
+        // Only the test's outside LP/trading actor receives the extra budget.
+        // This is not a holder, Vault, fee reserve or measured call subsidy.
+        vm.deal(address(this),unfundedETH+10_000_000 ether);
+        token.mint(address(this),10_000_000 ether);
+        assertEq(address(this).balance-unfundedETH,10_000_000 ether,"outside actor gets explicit native funds");
+        assertEq(token.balanceOf(address(this))-unfundedZZZ,10_000_000 ether,"outside actor gets explicit ZZZ funds");
+        vm.resumeTracing();
+        emit MaximumExternalHarnessFunding(address(this),10_000_000 ether,10_000_000 ether,
+            unfundedETH,address(this).balance,unfundedZZZ,token.balanceOf(address(this)));
+        vm.pauseTracing();
+        uint256 ethBefore=address(this).balance;uint256 zzzBefore=token.balanceOf(address(this));
+        assertEq(referenceBefore.liquidity,1_000_000 ether,"positive control starts from the retained1M reference");
+        _external(core,referenceKey,5_000_000 ether);
+        MarketState memory referenceAfter=_market(state,referencePool);
+        assertEq(referenceAfter.liquidity,6_000_000 ether,"positive control adds exactly5M external L");
+        assertEq(referenceAfter.sqrtPriceX96,referenceBefore.sqrtPriceX96,"adding depth does not reprice reference");
+        assertEq(referenceAfter.tick,referenceBefore.tick,"reference tick is unchanged");
+        assertEq(referenceAfter.protocolFee,referenceBefore.protocolFee,"reference protocol fee is unchanged");
+        assertEq(referenceAfter.lpFee,referenceBefore.lpFee,"reference LP fee is unchanged");
+        assertEq(INCUMBENT.balance,incumbentETH,"no incumbent native funding change");
+        assertEq(NEWCOMER.balance,newcomerETH,"no entrant native funding change");
+        assertEq(token.balanceOf(INCUMBENT),incumbentZZZ,"no incumbent ZZZ funding change");
+        assertEq(token.balanceOf(NEWCOMER),newcomerZZZ,"no entrant ZZZ funding change");
+        assertEq(keccak256(abi.encode(_market(state,target))),keccak256(abi.encode(targetBefore)),"destination market unchanged");
+        assertEq(keccak256(abi.encode(_market(independentState,independentPool))),keccak256(abi.encode(independentBefore)),"independent market unchanged");
+        vm.resumeTracing();
+        emit MaximumExternalReferenceDepth(referenceBefore.liquidity,referenceAfter.liquidity,
+            referenceBefore.sqrtPriceX96,referenceAfter.sqrtPriceX96,5_000_000 ether,
+            ethBefore-address(this).balance,zzzBefore-token.balanceOf(address(this)));
+        vm.pauseTracing();
+    }
+
+    /// @dev The explicit operator mode change is a reviewed geometry exception,
+    /// not an ordinary sampled-price trigger or an emergency financial bypass.
+    function _openMaximumHybrid() internal {
+        Position memory before_=vault.group(bucket);
+        assertGt(before_.lpTokenId,0,"maximum setup has an existing main");
+        assertEq(manager.secondaryId(before_.lpTokenId),0,"maximum setup starts in one-leg mode");
+        strategy.portfolioPolicy().setMode(target,true,REVIEW);
+        strategy.rebalanceConfirmation().configure(600,300,REVIEW);
+        _maximumPrepareRebalance(bucket,uint160(uint256(Q96)*83/100),true);
+        (,,bool manual)=strategy.rebalanceConfirmation().condition(bucket);
+        assertTrue(manual,"desired hybrid mode is pending operator geometry");
+        assertGe(block.timestamp,uint256(before_.lastRebalance)+43200,"hybrid setup retains hard12h");
+        assertFalse(vault.migrationBudget().emergencyActive(),"hybrid setup has no emergency bypass");
+        assertTrue(strategy.rebalanceReady(bucket),"mode change is ready under its ordinary exception");
+        _setupProgress(8,PREFIX);
+        // Preserve the actual full guarded call if a venue/value guard refuses.
+        vm.resumeTracing();vault.rebalance(bucket,uint128(1),block.timestamp+100);vm.pauseTracing();
+        uint256 actualMain=vault.group(bucket).lpTokenId;uint256 actualResidual=manager.secondaryId(actualMain);
+        assertTrue(actualMain!=before_.lpTokenId,"hybrid setup replaces the old main");
+        assertGt(actualResidual,0,"hybrid setup creates a residual");
+        assertGt(positions.getPositionLiquidity(actualResidual),0,"hybrid residual is physically funded");
+        assertEq(positions.ownerOf(actualMain),address(vault),"hybrid main stays Vault-owned");
+        assertEq(positions.ownerOf(actualResidual),address(vault),"hybrid residual stays Vault-owned");
+        assertEq(manager.activeSecondaryCount(),1,"hybrid setup creates exactly one residual");
+        assertEq(positions.getPositionLiquidity(before_.lpTokenId),0,"old main is completely closed");
+    }
+
+    function _rarity(uint256 ordinal) internal pure returns(uint8){
+        return ordinal<=599?0:ordinal<=899?1:ordinal<=999?2:0;
+    }
+    function _mintBatch(address owner,uint256 quantity) internal {
+        uint256 first=nft.mintedCount()+1;
+        vm.prank(owner);drop.mintPublic{value:quantity*0.05 ether}(address(nft),DROP_FEE,address(0),quantity);
+        for(uint256 ordinal=first;ordinal<first+quantity;++ordinal){
+            uint256 id=nft.tokenAtOrdinal(ordinal);ids[ordinal]=id;uint8 rarity=_rarity(ordinal);
+            uint256 roll=rarity==0?0:rarity==1?nft.rarityRemaining(0):uint256(nft.rarityRemaining(0))+nft.rarityRemaining(1);
+            vrf.fulfill(nft.requestOf(id),roll,0);nft.finalizeTraits(id);
+            assertEq(nft.rarityOf(id),rarity);assertEq(nft.ownerOf(id),owner);
+            assertEq(mintHelper.originalMintRecipient(ordinal),owner);
+        }
+    }
+    function _refreshETH() internal {
+        ethFirst.set(1e8,block.timestamp,block.timestamp);ethSecond.set(1e8,block.timestamp,block.timestamp);
+    }
+    function _seedAsset() internal view returns(address) {
+        // Currency0=ETH/currency1=ZZZ means a lower raw ZZZ-per-ETH sqrt
+        // represents more expensive ZZZ. Supplying ZZZ sells into that venue;
+        // supplying ETH buys ZZZ when its reference price is lower instead.
+        return _market(state,referencePool).sqrtPriceX96<_market(state,target).sqrtPriceX96
+            ?address(token):address(0);
+    }
+    function _recordSetupDeviation() internal {
+        uint256 ratio=Math.mulDiv(_market(state,referencePool).sqrtPriceX96,1e18,
+            _market(state,target).sqrtPriceX96);
+        uint256 priceRatio=Math.mulDiv(ratio,ratio,1e18);
+        uint256 deviation=Math.mulDiv(priceRatio>1e18?priceRatio-1e18:1e18-priceRatio,10000,1e18,Math.Rounding.Ceil);
+        if(deviation>maximumSetupDeviationBps)maximumSetupDeviationBps=deviation;
+    }
+    function _setupProgress(uint256 stage,uint256 ordinal) internal {
+        vm.resumeTracing();emit RoundsSetupProgress(stage,ordinal);vm.pauseTracing();
+    }
+    function _contribute(address owner,uint256 id,address asset,uint256 dollars,bool growth) internal {
+        (uint256 lower,,)=oracle.priceBounds(asset);
+        uint256 amount=Math.mulDiv(dollars,1e18,lower,Math.Rounding.Ceil);
+        if(asset!=address(0)){vm.prank(owner);token.approve(address(entry),amount);}
+        ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,target,asset,amount,1,block.timestamp+100,growth);
+        bytes32 policy=ZZZProtocolPolicy(access.protocolPolicy()).entryFingerprint();
+        vm.prank(owner);
+        (bool ok,bytes memory reason)=address(entry).call{value:asset==address(0)?amount:0}(
+            abi.encodeCall(ZZZActivationEntry.executeReviewed,(r,uint16(300),policy)));
+        if(!ok)revert RoundsSeedFailure(nft.mintOrdinalOf(id),asset,reason);
+        assertEq(reason.length,0,"Entry's reviewed write returns no data");
+    }
+    function _asset(uint256 index) internal view returns(address){return index==0?address(0):address(currencies[index-1]);}
+    function _fundEvery(uint256 amount) internal {
+        (bool ok,)=payable(address(royalty)).call{value:amount}("");assertTrue(ok);
+        for(uint256 i;i<64;++i)currencies[i].mint(address(royalty),amount);
+    }
+    function _prepareOpening() internal {
+        _fundEvery(RECEIPT);royalty.syncAll();
+        for(uint256 i;i<65;++i)assertEq(royalty.openingPool(_asset(i)),RECEIPT);
+        vm.warp(uint256(saleEnd)+3600);_refreshETH();assertTrue(royalty.royaltiesOpen());
+    }
+    function _prepareRotated() internal {
+        vm.warp(uint256(saleEnd)+3600);_refreshETH();royalty.syncAll();
+        _fundEvery(ROTATION);royalty.syncAll();
+        for(uint256 a;a<65;++a){
+            address asset=_asset(a);uint256 beforeBalance=asset==address(0)?INCUMBENT.balance:currencies[a-1].balanceOf(INCUMBENT);
+            vm.startPrank(INCUMBENT);for(uint256 ordinal=1;ordinal<=PREFIX;++ordinal)
+                assertEq(royalty.claim(ids[ordinal],asset),_expected(ordinal,ROTATION,0));vm.stopPrank();
+            uint256 afterBalance=asset==address(0)?INCUMBENT.balance:currencies[a-1].balanceOf(INCUMBENT);
+            assertEq(afterBalance-beforeBalance,ROTATION);assertEq(royalty.allocationCursor(asset),ROTATION);
+            assertEq(royalty.liabilities(asset),0);assertEq(royalty.accounted(asset),0);
+        }
+        _fundEvery(RECEIPT);
+    }
+
+    function _rightsDigest() internal view returns(bytes32 h){
+        for(uint256 ordinal=1;ordinal<=1000;++ordinal){uint256 id=ids[ordinal];
+            h=keccak256(abi.encode(h,id,nft.ownerOf(id),vault.sharesOf(id),membership.eligible(id),royalty.weightOf(id),royalty.ticketStart(id)));
+        }
+    }
+    function _bookDigest() internal view returns(bytes32 h){
+        h=keccak256(abi.encode(royalty.activationCount(),royalty.totalWeight(),royalty.weightOf(ids[1000]),
+            royalty.royaltiesOpenAt()));
+        for(uint256 i;i<65;++i){address a=_asset(i);h=keccak256(abi.encode(h,royalty.eligibleCount(a),
+            royalty.eligibleWeight(a),royalty.accounted(a),royalty.liabilities(a),royalty.openingPool(a),royalty.allocationCursor(a)));}
+    }
+    function _assertPopulation(uint256 active) internal view {
+        uint256 sum;
+        for(uint256 ordinal=1;ordinal<=PREFIX;++ordinal){uint256 id=ids[ordinal];
+            assertEq(vault.sharesOf(id),seededShares[ordinal]);assertTrue(membership.eligible(id));
+            assertEq(nft.ownerOf(id),INCUMBENT);assertEq(vault.nftBucket(id),bucket);sum+=seededShares[ordinal];
+            assertEq(royalty.weightOf(id),uint256(_rarity(ordinal))+1);assertEq(royalty.ticketStart(id),firstTicket[ordinal]);
+        }
+        sum+=vault.sharesOf(ids[1000]);assertEq(vault.bucketTotalShares(bucket),sum);
+        (uint256 personal,,)=rewards.allocationTree(bucket);(uint256 collective,,)=rewards.allocationTree(0);
+        assertEq(personal,sum);assertEq(collective,active);assertEq(membership.totalEligible(),active);
+        assertEq(royalty.activationCount(),active);assertEq(royalty.totalWeight(),PREFIX_WEIGHT+(active-PREFIX));
+        assertEq(nft.mintedCount(),1000);assertEq(nft.ownerOf(ids[1000]),NEWCOMER);
+    }
+    function _assertLPBacking(uint256 active) internal view {
+        for(uint256 a;a<2;++a){address asset=a==0?address(0):address(token);uint256 sum;
+            for(uint256 ordinal=1;ordinal<=active;++ordinal)sum+=rewards.claimable(ids[ordinal],asset);
+            assertEq(sum,rewards.liabilities(asset));
+            uint256 balance=a==0?address(rewards).balance:token.balanceOf(address(rewards));
+            assertEq(balance,rewards.liabilities(asset)+rewards.orphaned(asset));
+        }
+    }
+    function _expected(uint256 ordinal,uint256 amount,uint256 cursor) internal view returns(uint256 value){
+        uint256 weight=uint256(_rarity(ordinal))+1;value=amount/PREFIX_WEIGHT*weight;
+        for(uint256 ticket=firstTicket[ordinal];ticket<firstTicket[ordinal]+weight;++ticket)
+            if((ticket-1+PREFIX_WEIGHT-cursor)%PREFIX_WEIGHT<amount%PREFIX_WEIGHT)++value;
+    }
+    function _assertRoyalties(uint256 cursor,bool fault) internal {
+        if(fault)currencies[63].failFor(address(0));
+        for(uint256 a;a<65;++a){address asset=_asset(a);royalty.sync(asset);uint256 sum;
+            for(uint256 ordinal=1;ordinal<=PREFIX;++ordinal){uint256 expected=_expected(ordinal,RECEIPT,cursor);
+                assertEq(royalty.claimable(ids[ordinal],asset),expected);sum+=expected;}
+            assertEq(sum,RECEIPT);assertEq(royalty.claimable(ids[1000],asset),0);
+            assertEq(royalty.liabilities(asset),RECEIPT);assertEq(royalty.accounted(asset),RECEIPT);
+            assertEq(royalty.pending(asset),0);assertEq(royalty.openingPool(asset),0);assertEq(royalty.orphaned(asset),0);
+            assertEq(royalty.eligibleCount(asset),1000);assertEq(royalty.eligibleWeight(asset),1500);
+        }
+    }
+    function _balanceRoyalty(address owner,uint256 index) internal view returns(uint256) {
+        return index==0?owner.balance:currencies[index-1].balanceOf(owner);
+    }
+    function _assertRoyaltyEmpty(uint256 index) internal view {
+        address asset=_asset(index);
+        assertEq(royalty.liabilities(asset),0);assertEq(royalty.accounted(asset),0);
+        assertEq(royalty.pending(asset),0);assertEq(royalty.openingPool(asset),0);assertEq(royalty.orphaned(asset),0);
+        assertEq(index==0?address(royalty).balance:currencies[index-1].balanceOf(address(royalty)),0);
+    }
+    function _drainOldAndFutureRoyalties() internal {
+        // Every originally pending unit is paid through actual current-owner
+        // claims in ALL65 currencies; no privileged payout or ledger edit.
+        for(uint256 a;a<65;++a){address asset=_asset(a);
+            uint256 oldBalance=_balanceRoyalty(INCUMBENT,a);uint256 newBalance=_balanceRoyalty(NEWCOMER,a);
+            vm.startPrank(INCUMBENT);
+            for(uint256 ordinal=1;ordinal<=PREFIX;++ordinal)
+                assertEq(royalty.claim(ids[ordinal],asset),_expected(ordinal,RECEIPT,ROTATION));
+            assertEq(royalty.claim(ids[1],asset),0);assertEq(royalty.claim(ids[PREFIX],asset),0);vm.stopPrank();
+            vm.prank(NEWCOMER);assertEq(royalty.claim(ids[1000],asset),0);
+            assertEq(_balanceRoyalty(INCUMBENT,a)-oldBalance,RECEIPT);
+            assertEq(_balanceRoyalty(NEWCOMER,a),newBalance);_assertRoyaltyEmpty(a);
+        }
+        // Exactly1500 new units cover every now-active rarity ticket once.
+        // Existing999 holders receive1499; the newly activated Commun gets1.
+        _fundEvery(1500);royalty.syncAll();
+        for(uint256 a;a<65;++a){address asset=_asset(a);
+            uint256 oldBalance=_balanceRoyalty(INCUMBENT,a);uint256 newBalance=_balanceRoyalty(NEWCOMER,a);
+            vm.startPrank(INCUMBENT);
+            for(uint256 ordinal=1;ordinal<=PREFIX;++ordinal)
+                assertEq(royalty.claim(ids[ordinal],asset),uint256(_rarity(ordinal))+1);
+            vm.stopPrank();vm.prank(NEWCOMER);assertEq(royalty.claim(ids[1000],asset),1);
+            vm.prank(NEWCOMER);assertEq(royalty.claim(ids[1000],asset),0);
+            assertEq(_balanceRoyalty(INCUMBENT,a)-oldBalance,PREFIX_WEIGHT);
+            assertEq(_balanceRoyalty(NEWCOMER,a)-newBalance,1);_assertRoyaltyEmpty(a);
+        }
+        _assertPopulation(1000);_assertLPBacking(1000);_assertPrefunds();
+        vm.resumeTracing();emit RoundsRoyaltyDrain(65,RECEIPT,1500,1,_rightsDigest());vm.pauseTracing();
+    }
+    function _coolRounds() internal {
+        _coolEntry();for(uint256 i;i<64;++i)vm.cool(address(currencies[i]));
+        vm.cool(address(mintHelper));vm.cool(address(drop));vm.cool(address(nft.metadataRenderer()));
+        vm.cool(address(nft.claimRouter()));vm.cool(rewards.canonicalModule());
+    }
+    function _principalNAV(uint256 price0,uint256 price1) internal view returns(uint256) {
+        (uint256 lp0,uint256 lp1)=manager.portfolioAmounts(vault.group(bucket).lpTokenId);
+        return Math.mulDiv(lp0,price0,1e18)+Math.mulDiv(lp1,price1,1e18)+
+            Math.mulDiv(vault.group(bucket).idle0+fees.compoundBalance(bucket,address(0)),price0,1e18)+
+            Math.mulDiv(vault.group(bucket).idle1+fees.compoundBalance(bucket,address(token)),price1,1e18);
+    }
+    function _exportRounds(string memory label,address asset,uint256 amount,bytes memory data,bytes32 beforeState) internal {
+        if(bytes(vm.envOr("POPL_GAS_PROFILE_EXPORT_ROOT",string(""))).length==0)return;
+        // Repeat exact bindings with measured tracing active, independently of
+        // whether setup trace-volume suppression retains its earlier log.
+        _emitEntryBindings();
+        for(uint256 i;i<64;++i)_profileMaterialize(address(currencies[i]));
+        _profileMaterialize(address(mintHelper));_profileMaterialize(address(drop));
+        _profileExport(ProfileCall(label,NEWCOMER,address(entry),asset==address(0)?amount:0,data,
+            MAXIMUM_CONTRIBUTION_GAS,2000,ids[1000],bucket),beforeState);
+    }
+
+    function _measure(string memory label,address asset,bool growth,bool opening,uint256 faults) internal {
+        assertLe(faults,64);for(uint256 f;f<faults;++f)currencies[63-f].failFor(address(royalty));
+        uint256 id=ids[1000];(uint256 lower,uint256 upper,)=oracle.priceBounds(asset);
+        uint256 amount=Math.mulDiv(growth?5 ether:100 ether,1e18,lower,Math.Rounding.Ceil);
+        if(asset!=address(0)){vm.prank(NEWCOMER);token.approve(address(entry),amount);}
+        bytes memory data=abi.encodeCall(ZZZActivationEntry.executeReviewed,
+            (ZZZActivationEntry.Request(id,target,asset,amount,1,block.timestamp+100,growth),uint16(300),
+            ZZZProtocolPolicy(access.protocolPolicy()).entryFingerprint()));
+        ContributionCheck memory check;check.upperInput=Math.mulDiv(amount,upper,1e18,Math.Rounding.Ceil);
+        (check.price0,,)=oracle.priceBounds(address(0));(check.price1,,)=oracle.priceBounds(address(token));
+        check.old=vault.group(bucket);
+        uint256 residualBefore=manager.secondaryId(check.old.lpTokenId);assertGt(residualBefore,0);
+        uint128 residualLiquidityBefore=positions.getPositionLiquidity(residualBefore);
+        (uint256 residual0Before,uint256 residual1Before)=manager.amounts(residualBefore);
+        (int24 lowBefore,int24 highBefore)=manager.ticks(check.old.lpTokenId);
+        check.beforeLP=_actualMainValue(bucket,check.price0,check.price1);
+        // Current checkpoint includes designated compound in the actual share
+        // issue denominator, unlike an LP-only or old-idle-only comparison.
+        check.beforeNAV=_principalNAV(check.price0,check.price1);
+        check.beforeShares=vault.sharesOf(id);check.beforeSupply=vault.bucketTotalShares(bucket);
+        bytes32 beforeState=_entryAtomicState(NEWCOMER,id);bytes32 beforeBooks=_bookDigest();
+        bytes32 incumbentState=_entryAtomicState(INCUMBENT,ids[1]);bytes32 rightsBefore=_rightsDigest();
+        uint256 restore=vm.snapshotState();uint256 value=asset==address(0)?amount:0;
+        vm.resumeTracing();emit RoundsCase(label,faults,growth,opening,RECEIPT,opening?0:ROTATION);
+        _exportRounds(label,asset,amount,data,beforeState);_coolRounds();vm.resumeGasMetering();
+        vm.prank(NEWCOMER);uint256 start=gasleft();
+        (bool ok,)=address(entry).call{value:value,gas:MAXIMUM_CONTRIBUTION_GAS}(data);uint256 used=start-gasleft();
+        vm.pauseGasMetering();vm.pauseTracing();
+        if(!ok){assertEq(_entryAtomicState(NEWCOMER,id),beforeState);assertEq(_bookDigest(),beforeBooks);
+            assertEq(_entryAtomicState(INCUMBENT,ids[1]),incumbentState);assertEq(_rightsDigest(),rightsBefore);}
+        bool margin=ok && used+Math.ceilDiv(used,5)<=MAXIMUM_CONTRIBUTION_GAS;uint256 completed=used;
+        if(!margin){
+            assertTrue(vm.revertToState(restore));assertEq(_entryAtomicState(NEWCOMER,id),beforeState);assertEq(_bookDigest(),beforeBooks);
+            _coolRounds();vm.resumeTracing();vm.resumeGasMetering();vm.prank(NEWCOMER);start=gasleft();
+            (bool measured,bytes memory reason)=address(entry).call{value:value,gas:TEST_ONLY_COMPLETION_GAS}(data);completed=start-gasleft();
+            vm.pauseGasMetering();vm.pauseTracing();
+            if(!measured){vm.resumeTracing();emit log_named_bytes("Maximum.test-only-completion.failure",reason);vm.pauseTracing();}
+            assertTrue(measured,"bounded diagnostic must reach full accounting assertions");
+        }
+        assertFalse(_execution().executionActive());assertTrue(membership.eligible(id));assertGt(vault.sharesOf(id),check.beforeShares);
+        uint256 afterLP=_actualMainValue(bucket,check.price0,check.price1);
+        assertGe(afterLP-check.beforeLP,check.upperInput-Math.mulDiv(check.upperInput,300,10000));
+        uint256 afterNAV=_principalNAV(check.price0,check.price1);
+        assertEq(vault.sharesOf(id)-check.beforeShares,Math.mulDiv(check.beforeSupply,afterNAV-check.beforeNAV,check.beforeNAV));
+        assertEq(vault.group(bucket).lpTokenId,check.old.lpTokenId);assertEq(vault.group(bucket).centerX96,check.old.centerX96);
+        assertEq(vault.group(bucket).lastRebalance,check.old.lastRebalance);assertEq(positions.ownerOf(check.old.lpTokenId),address(vault));
+        assertEq(manager.secondaryId(check.old.lpTokenId),residualBefore);
+        assertEq(positions.getPositionLiquidity(residualBefore),residualLiquidityBefore);
+        assertEq(positions.ownerOf(residualBefore),address(vault));
+        (uint256 residual0After,uint256 residual1After)=manager.amounts(residualBefore);
+        assertEq(residual0After,residual0Before);assertEq(residual1After,residual1Before);
+        (int24 lowAfter,int24 highAfter)=manager.ticks(check.old.lpTokenId);
+        assertEq(lowAfter,lowBefore);assertEq(highAfter,highBefore);assertEq(token.allowance(NEWCOMER,address(entry)),0);
+        assertEq(token.allowance(address(entry),address(vault)),0);assertEq(address(entry).balance,0);assertEq(token.balanceOf(address(entry)),0);
+        if(growth)assertEq(_bookDigest(),beforeBooks);
+        else {
+            for(uint256 f;f<faults;++f)assertEq(royalty.eligibleCount(address(currencies[63-f])),PREFIX);
+            for(uint256 f;f<64;++f)currencies[f].failFor(address(0));
+            _assertRoyalties(opening?0:ROTATION,false);
+        }
+        _assertPopulation(1000);_assertLPBacking(1000);_assertPrefunds();
+        vm.resumeTracing();emit RoundsGas(label,ok,used,margin,completed,completed+Math.ceilDiv(completed,5));
+        emit RoundsPlacement(label,check.beforeLP,afterLP,check.beforeNAV,afterNAV,check.beforeShares,vault.sharesOf(id),check.beforeSupply);
+        emit log_named_string("Rounds.label",label);emit log_named_uint("Maximum.call32M.success",ok?1:0);
+        emit log_named_uint("Maximum.call32M.gas",used);emit log_named_uint("Maximum.full20percent.fits32M",margin?1:0);
+        emit log_named_uint("Rounds.completed.call-gas",completed);emit log_named_uint("Rounds.completed.full20percent",completed+Math.ceilDiv(completed,5));
+        vm.pauseTracing();
+    }
+
+    // Test-only self-call frames release each large export/read/assertion
+    // allocation before the next phase. No memory limit, gas profile, protocol
+    // method or financial check is changed; only this harness can enter them.
+    function roundsSetupPopulation() external onlyHarness {_setupPopulation();}
+    function roundsPrepareOpening() external onlyHarness {_prepareOpening();}
+    function roundsPrepareRotated() external onlyHarness {_prepareRotated();}
+    function roundsMeasure(string calldata label,address asset,bool growth,bool opening,uint256 faults)
+        external onlyHarness {_measure(label,asset,growth,opening,faults);}
+    function roundsDrainAll() external onlyHarness {_drainOldAndFutureRoyalties();}
+    function maximumMaintenanceFrame() external onlyHarness {_maximumMaintenance(bucket,ids[1000]);}
+    function testMaximum1000TwoLP65CurrenciesReverseOrderContributionsAndMaintenance20261119() public {
+        vm.pauseGasMetering();vm.pauseTracing();this.roundsSetupPopulation();
+        uint256 base=vm.snapshotState();this.roundsPrepareOpening();
+        this.roundsMeasure("max64-twolp-999-opening-eth",address(0),false,true,0);
+        assertTrue(vm.revertToState(base));this.roundsPrepareOpening();
+        this.roundsMeasure("max64-twolp-999-opening-zzz",address(token),false,true,0);
+        assertTrue(vm.revertToState(base));this.roundsPrepareOpening();
+        for(uint256 f;f<64;++f)currencies[f].slowFor(address(royalty));
+        this.roundsMeasure("max64-twolp-999-opening-zzz-allslow",address(token),false,true,0);
+        assertTrue(vm.revertToState(base));this.roundsPrepareOpening();
+        this.roundsMeasure("max64-twolp-999-opening-eth-allfault",address(0),false,true,64);
+        assertTrue(vm.revertToState(base));this.roundsPrepareRotated();
+        uint256 rotated=vm.snapshotState();
+        this.roundsMeasure("max64-twolp-999-rotated-zzz",address(token),false,false,0);
+        assertTrue(vm.revertToState(rotated));rotated=vm.snapshotState();
+        this.roundsMeasure("max64-twolp-999-rotated-eth-onefault",address(0),false,false,1);
+        assertTrue(vm.revertToState(rotated));rotated=vm.snapshotState();
+        this.roundsMeasure("max64-twolp-999-rotated-zzz-allfault",address(token),false,false,64);
+        assertTrue(vm.revertToState(rotated));rotated=vm.snapshotState();
+        for(uint256 f;f<64;++f)currencies[f].slowFor(address(royalty));
+        this.roundsMeasure("max64-twolp-999-rotated-eth-allslow",address(0),false,false,0);
+        assertTrue(vm.revertToState(rotated));
+        this.roundsMeasure("max64-twolp-999-rotated-eth",address(0),false,false,0);
+        this.roundsMeasure("max64-twolp-1000-grow-eth",address(0),true,false,0);
+        this.roundsMeasure("max64-twolp-1000-grow-zzz-allfault",address(token),true,false,64);
+        for(uint256 f;f<64;++f)currencies[f].failFor(address(0));
+        this.roundsMeasure("max64-twolp-1000-grow-zzz",address(token),true,false,0);
+        this.maximumMaintenanceFrame();
+        this.roundsDrainAll();vm.resumeTracing();vm.resumeGasMetering();
+    }
+}

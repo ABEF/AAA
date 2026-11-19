@@ -310,3 +310,8 @@ reports/activation-final-six-20261118/full-flow-final/full01-compile01/stdout.lo
 
 # Preserve the original native workload receipts and diagnostics.
 reports/whole-workload-review-20261119/** -text whitespace=cr-at-eol
+
+# Preserve exact compiled maximum-workload fixtures and native receipts.
+reports/maximum-workload-20261119/** -text whitespace=cr-at-eol
+test/MaximumWorkload20261119.t.sol -text whitespace=cr-at-eol,-blank-at-eof
+test/MaximumMaintenanceWorkload20261119.t.sol -text whitespace=cr-at-eol,-blank-at-eof

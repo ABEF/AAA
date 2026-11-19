@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "scope": "Independent diagnosis and one NEW test-actor correction; no production source/guard/cap change",
+  "failed_stage": "producer05",
+  "execution_sha256": "00efdcb28aa811c4a735fde605f2db5260d187165b5eb17a5b38860015ee39d7",
+  "actual_reason": "PriceLimitAlreadyExceeded(65759374886839400205733855232 [6.575e28], 65759374886839400205733855232 [6.575e28])",
+  "same_current_and_limit": 65759374886839400205733855232,
+  "rejected_diagnostic_assumption": "Exact equality to nominal83percentQ96 was not valid: actual reference-centre price math rounds slightly; diagnosis relies on the identical actual current/limit error fields and source call path, not that approximation.",
+  "nominal83percent_Q96": 65759374886839400202641478778,
+  "cause": "Manual mode-OFF merge preparation requests an already-current price; inherited test trader chooses increasing direction and v4 correctly refuses equal current/limit.",
+  "new_helper_sha256": "b53d50200648f6f155f789a6dd612bb50c181116bb8bcfa57203e44723a49c04",
+  "only_helper_same_market_equality_skip_changed": true,
+  "v4_pool_source_sha256": "59c493035ad25d56f24a457e8b40d9d1e3784504b8ff13d171db1eb25c6f128e",
+  "failed_producer_preserved": true,
+  "cold_qualification_not_inferred": true
+}

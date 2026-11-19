@@ -1,0 +1,304 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.26;
+
+import {GasProfileQualificationTest} from "./GasProfileQualification.t.sol";
+import {ZZZVault} from "../src/ZZZVault.sol";
+import {ZZZCompounder} from "../src/ZZZCompounder.sol";
+import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
+import {ZZZRebalanceConfirmation} from "../src/ZZZRebalanceConfirmation.sol";
+import {ZZZSeaDropMint} from "../src/ZZZSeaDropMint.sol";
+import {Position} from "../src/libraries/ZZZTypes.sol";
+import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
+import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
+
+/// @notice TEST ONLY: populated maintenance branches shared by the new producer.
+/// The caller builds all 1,000 actual Entries and 64 ERC20 royalty currencies.
+/// These checks do not change a production authority, budget or policy. Exact
+/// cold gas/padding must be measured separately from each exported state.
+abstract contract MaximumMaintenanceWorkload20261119 is GasProfileQualificationTest {
+    error MaximumMaintenanceOnlyHarness();
+    struct MaximumBooks {
+        uint256 feeBalance;
+        uint256 rewardBalance;
+        uint256 dust;
+        uint256 compound;
+        uint256 buyback;
+        uint256 liability;
+    }
+
+    event MaximumMaintenanceCase(string label,bool expectedSuccess,bytes returnData,
+        uint256 gasCap,uint16 paddingBps,uint256 main,uint256 residual,
+        bytes32 holderRights,bytes32 royaltyBooks);
+    event MaximumMaintenanceNAV(string label,uint256 beforeNAV,uint256 afterNAV,
+        uint256 lowerETH,uint256 lowerZZZ);
+    event MaximumMaintenanceHarvest(string label,address asset,uint256 receipt,
+        uint256 individualAndCollective,uint256 compound,uint256 buyback,uint256 dust);
+
+    function _maximumHolderRights(uint256 bucket_) internal view returns(bytes32 h) {
+        ZZZRoyaltyRewards r=nft.royaltyRewards();
+        uint256 supply;
+        for(uint256 ordinal=1;ordinal<=1000;++ordinal) {
+            uint256 id=nft.tokenAtOrdinal(ordinal);uint256 shares=vault.sharesOf(id);
+            assertGt(shares,0);assertEq(vault.nftBucket(id),bucket_);
+            assertTrue(membership.eligible(id));supply+=shares;
+            h=keccak256(abi.encode(h,id,nft.ownerOf(id),shares,r.weightOf(id),r.ticketStart(id)));
+        }
+        assertEq(vault.bucketTotalShares(bucket_),supply);
+        (uint256 personal,,)=rewards.allocationTree(bucket_);
+        (uint256 collective,,)=rewards.allocationTree(0);
+        assertEq(personal,supply);assertEq(collective,1000);
+        assertEq(nft.mintedCount(),1000);assertEq(membership.totalEligible(),1000);
+        assertEq(r.activationCount(),1000);assertEq(r.totalWeight(),1500);
+        return keccak256(abi.encode(h,supply,r.totalWeight()));
+    }
+
+    function _maximumRoyaltyBooks() internal view returns(bytes32 h) {
+        ZZZRoyaltyRewards r=nft.royaltyRewards();
+        assertEq(r.assetCount(),65);assertEq(r.assetCapacity(),64);
+        h=keccak256(abi.encode(r.activationCount(),r.totalWeight(),r.royaltiesOpenAt()));
+        for(uint256 i;i<65;++i) {
+            address a=r.assets(i);
+            h=keccak256(abi.encode(h,a,r.eligibleCount(a),r.eligibleWeight(a),
+                r.accounted(a),r.liabilities(a),r.openingPool(a),r.orphaned(a),r.allocationCursor(a)));
+        }
+    }
+
+    function _maximumAllocatedBacking(uint256 bucket_) internal view {
+        for(uint256 a;a<2;++a) {
+            address asset=a==0?address(0):address(token);uint256 claims;
+            for(uint256 ordinal=1;ordinal<=1000;++ordinal)
+                claims+=rewards.claimable(nft.tokenAtOrdinal(ordinal),asset);
+            assertEq(claims,rewards.liabilities(asset),"all 1000 exact LP claims exhaust allocated liability");
+            uint256 actual=a==0?address(rewards).balance:token.balanceOf(address(rewards));
+            assertEq(actual,rewards.liabilities(asset)+rewards.orphaned(asset));
+            uint256 reserves=fees.dust(bucket_,asset)+fees.compoundBalance(bucket_,asset)+fees.buybackBalance(asset);
+            assertEq(fees.accounted(asset),reserves,"one populated bucket preserves fee classifications");
+            assertEq(a==0?address(fees).balance:token.balanceOf(address(fees)),reserves);
+        }
+        assertEq(token.allowance(address(vault),address(manager)),0);
+        assertEq(token.allowance(address(vault),manager.positionOperator()),0);
+        assertFalse(_execution().executionActive());_assertPrefunds();
+    }
+
+    function _maximumNAV(uint256 bucket_,uint256 p0,uint256 p1) internal view returns(uint256 value) {
+        Position memory p=vault.group(bucket_);
+        (uint256 a0,uint256 a1)=manager.portfolioAmounts(p.lpTokenId);
+        a0+=p.idle0+fees.compoundBalance(bucket_,address(0));
+        a1+=p.idle1+fees.compoundBalance(bucket_,address(token));
+        value=Math.mulDiv(a0,p0,1e18)+Math.mulDiv(a1,p1,1e18);
+    }
+
+    function _maximumReadBooks(uint256 bucket_,address asset) internal view returns(MaximumBooks memory b) {
+        b=MaximumBooks(asset==address(0)?address(fees).balance:token.balanceOf(address(fees)),
+            asset==address(0)?address(rewards).balance:token.balanceOf(address(rewards)),
+            fees.dust(bucket_,asset),fees.compoundBalance(bucket_,asset),
+            fees.buybackBalance(asset),rewards.liabilities(asset));
+    }
+
+    function _maximumCheckHarvest(string memory label,uint256 bucket_,address asset,MaximumBooks memory before_)
+        internal returns(uint256 receipt) {
+        MaximumBooks memory after_=_maximumReadBooks(bucket_,asset);
+        receipt=(after_.feeBalance+after_.rewardBalance)-(before_.feeBalance+before_.rewardBalance);
+        uint256 units=(before_.dust+receipt)/20;
+        assertEq(after_.compound-before_.compound,units);
+        assertEq(after_.buyback-before_.buyback,units);
+        assertEq(after_.liability-before_.liability,units*18);
+        assertEq(after_.dust,(before_.dust+receipt)%20);
+        vm.resumeTracing();emit MaximumMaintenanceHarvest(label,asset,receipt,units*18,units,units,after_.dust);vm.pauseTracing();
+    }
+
+    function _maximumMaintenanceCall(string memory label,uint256 bucket_,uint256 id_,address destination,
+        bytes memory data,bool expectedSuccess) internal returns(bytes memory result) {
+        bytes32 rights=_maximumHolderRights(bucket_);bytes32 royalties=_maximumRoyaltyBooks();
+        bytes32 atomicBefore=_entryAtomicState(nft.ownerOf(id_),id_);
+        Position memory before_=vault.group(bucket_);
+        uint256 oldResidual=manager.secondaryId(before_.lpTokenId);
+        vm.resumeTracing();
+        _emitEntryBindings();
+        if(bytes(vm.envOr("POPL_GAS_PROFILE_EXPORT_ROOT",string(""))).length!=0) {
+            ZZZRoyaltyRewards royalty_=nft.royaltyRewards();
+            for(uint256 i=1;i<65;++i)_profileMaterialize(royalty_.assets(i));
+            ZZZSeaDropMint helper=ZZZSeaDropMint(address(nft.seaDropMint()));
+            _profileMaterialize(address(helper));_profileMaterialize(address(helper.seaDrop()));
+        }
+        _profileExport(ProfileCall(label,PROFILE_KEEPER,destination,0,data,24_000_000,2500,id_,bucket_),atomicBefore);
+        // Only this one production call is traced. The aggregate producer's
+        // 1000-holder checks are not claimed to be transaction gas evidence.
+        vm.resumeTracing();vm.resumeGasMetering();
+        vm.prank(PROFILE_KEEPER);
+        (bool ok,bytes memory reason)=destination.call{gas:24_000_000}(data);
+        vm.pauseGasMetering();vm.pauseTracing();result=reason;
+        assertEq(ok,expectedSuccess,"populated maintenance preserves the expected success/refusal");
+        if(expectedSuccess)assertEq(reason.length,0);
+        else {
+            assertGt(reason.length,0,"a refusal must retain its actual error");
+            assertEq(_entryAtomicState(nft.ownerOf(id_),id_),atomicBefore,"refusal atomically restores custody and books");
+        }
+        assertEq(_maximumHolderRights(bucket_),rights,"maintenance does not rewrite any NFT ownership/share/royalty ticket");
+        assertEq(_maximumRoyaltyBooks(),royalties,"LP maintenance does not synchronize or redistribute royalties");
+        _maximumAllocatedBacking(bucket_);
+        vm.resumeTracing();
+        emit MaximumMaintenanceCase(label,expectedSuccess,reason,24_000_000,2500,before_.lpTokenId,
+            oldResidual,rights,royalties);
+        vm.pauseTracing();
+    }
+
+    /// @dev A fresh test-only frame frees each large export/holder-read buffer.
+    /// There is no public operator executor in the production implementation.
+    function maximumMaintenanceCallFrame(string calldata label,uint256 bucket_,uint256 id_,address destination,
+        bytes calldata data,bool expectedSuccess) external returns(bytes memory) {
+        if(msg.sender!=address(this))revert MaximumMaintenanceOnlyHarness();
+        return _maximumMaintenanceCall(label,bucket_,id_,destination,data,expectedSuccess);
+    }
+
+    function _maximumSameMarkets(uint160 sqrt_) internal {
+        // TEST ONLY: there is no price-moving trade to perform at equality.
+        // v4 correctly rejects an exact current-price swap limit. Every actual
+        // movement still executes the unchanged real-core trading helper.
+        if(_market(state,target).sqrtPriceX96!=sqrt_)
+            _tradeToMaintenancePrice(core,targetKey,sqrt_);
+        if(_market(state,referencePool).sqrtPriceX96!=sqrt_)
+            _tradeToMaintenancePrice(core,referenceKey,sqrt_);
+        if(_market(independentState,independentPool).sqrtPriceX96!=sqrt_)
+            _tradeToMaintenancePrice(independentCore,independentKey,sqrt_);
+    }
+
+    function _maximumWaitForCompound(uint256 bucket_) internal {
+        Position memory p=vault.group(bucket_);
+        uint256 previous=Math.max(p.lastRebalance,vault.migrationBudget().lastCompound(bucket_));
+        uint256 due=previous+vault.migrationBudget().compoundInterval(p.poolId);
+        if(block.timestamp<due)vm.warp(due);
+        _freshMaintenanceFeeds();
+    }
+
+    function _maximumPrepareRebalance(uint256 bucket_,uint160 next,bool manual) internal {
+        Position memory p=vault.group(bucket_);
+        uint256 due=uint256(p.lastRebalance)+43200;
+        if(block.timestamp<due)vm.warp(due);
+        _freshMaintenanceFeeds();_maximumSameMarkets(next);
+        ZZZRebalanceConfirmation confirmation=strategy.rebalanceConfirmation();
+        assertEq(confirmation.duration(),600);assertEq(confirmation.maxObservationGap(),300);
+        assertTrue(confirmation.requireReferenceExit());
+        (uint8 side,,bool isManual)=confirmation.condition(bucket_);
+        assertEq(isManual,manual);assertTrue(strategy.needsRebalance(bucket_));
+        if(manual) {
+            assertTrue(strategy.rebalanceReady(bucket_),"explicit mode merge retains its reviewed manual-geometry exception");
+            return;
+        }
+        (uint8 physical,uint8 independent)=confirmation.marketSides(bucket_);
+        assertGt(physical,0);assertEq(physical,independent);assertEq(side,physical);
+        assertFalse(confirmation.observe(bucket_));
+        for(uint256 i;i<3;++i) {
+            vm.warp(block.timestamp+240);_freshMaintenanceFeeds();
+            assertEq(confirmation.observe(bucket_),i==2);
+        }
+        assertTrue(strategy.rebalanceReady(bucket_));
+    }
+
+    function _maximumPrepareFees(uint256 bucket_) internal {
+        Position memory p=vault.group(bucket_);uint256 secondary=manager.secondaryId(p.lpTokenId);
+        (int24 low,int24 high)=manager.ticks(secondary);
+        uint160 mixed=TickMath.getSqrtPriceAtTick(low+(high-low)/2);
+        _maximumSameMarkets(mixed);
+        _maximumSameMarkets(p.centerX96);
+        _freshMaintenanceFeeds();
+    }
+
+    function _maximumCheckNAV(string memory label,uint256 bucket_,uint256 before_,uint256 p0,uint256 p1) internal {
+        uint256 after_=_maximumNAV(bucket_,p0,p1);
+        assertGe(after_,before_-Math.mulDiv(before_,300,10000),"3% gross maintenance floor remains");
+        vm.resumeTracing();emit MaximumMaintenanceNAV(label,before_,after_,p0,p1);vm.pauseTracing();
+    }
+
+    /// @dev Called once from the new 1000-NFT producer. Snapshots isolate these
+    /// new branches and return its exact royalty/LP state to the caller.
+    function _maximumMaintenance(uint256 bucket_,uint256 id_) internal {
+        assertTrue(address(maintenanceCompounder)!=address(0));
+        access.setKeeper(PROFILE_KEEPER,true);vm.deal(PROFILE_KEEPER,1 ether);
+        uint256 original=vm.snapshotState();
+        Position memory p=vault.group(bucket_);uint256 secondary=manager.secondaryId(p.lpTokenId);
+        assertGt(secondary,0);assertEq(manager.activeSecondaryCount(),1);
+        assertEq(positions.ownerOf(p.lpTokenId),address(vault));assertEq(positions.ownerOf(secondary),address(vault));
+        uint128 mainL=positions.getPositionLiquidity(p.lpTokenId);
+        uint128 residualL=positions.getPositionLiquidity(secondary);
+        _maximumPrepareFees(bucket_);
+
+        MaximumBooks memory e=_maximumReadBooks(bucket_,address(0));
+        MaximumBooks memory z=_maximumReadBooks(bucket_,address(token));
+        p=vault.group(bucket_);
+        this.maximumMaintenanceCallFrame("max1000-lp2-harvest",bucket_,id_,address(vault),
+            abi.encodeCall(ZZZVault.collectFees,(bucket_,block.timestamp+100)),true);
+        assertGt(_maximumCheckHarvest("max1000-lp2-harvest",bucket_,address(0),e)+
+            _maximumCheckHarvest("max1000-lp2-harvest",bucket_,address(token),z),0);
+        assertEq(keccak256(abi.encode(vault.group(bucket_))),keccak256(abi.encode(p)));
+        assertEq(positions.getPositionLiquidity(p.lpTokenId),mainL);
+        assertEq(positions.getPositionLiquidity(secondary),residualL);
+        bytes32 noOp=_entryAtomicState(nft.ownerOf(id_),id_);
+        this.maximumMaintenanceCallFrame("max1000-lp2-harvest-no-new-fees",bucket_,id_,address(vault),
+            abi.encodeCall(ZZZVault.collectFees,(bucket_,block.timestamp+100)),true);
+        assertEq(_entryAtomicState(nft.ownerOf(id_),id_),noOp,"repeat harvest creates no phantom fees");
+
+        uint256 harvested=vm.snapshotState();
+        _maximumWaitForCompound(bucket_);
+        assertTrue(vault.migrationBudget().compoundReady(bucket_));
+        (uint256 p0,,)=oracle.priceBounds(address(0));(uint256 p1,,)=oracle.priceBounds(address(token));
+        uint256 beforeNAV=_maximumNAV(bucket_,p0,p1);
+        uint256 compoundBefore=fees.compoundBalance(bucket_,address(0))+fees.compoundBalance(bucket_,address(token));
+        assertGt(compoundBefore,0);
+        this.maximumMaintenanceCallFrame("max1000-lp2-compound",bucket_,id_,address(maintenanceCompounder),
+            abi.encodeCall(ZZZCompounder.compound,(bucket_,uint128(1),block.timestamp+100)),true);
+        Position memory after_=vault.group(bucket_);
+        assertEq(after_.lpTokenId,p.lpTokenId);assertEq(after_.centerX96,p.centerX96);
+        assertEq(after_.lastRebalance,p.lastRebalance);assertEq(manager.secondaryId(p.lpTokenId),secondary);
+        assertGt(positions.getPositionLiquidity(p.lpTokenId),mainL);
+        assertEq(positions.getPositionLiquidity(secondary),residualL);
+        assertEq(vault.migrationBudget().lastCompound(bucket_),block.timestamp);
+        assertLt(fees.compoundBalance(bucket_,address(0))+fees.compoundBalance(bucket_,address(token)),compoundBefore);
+        _maximumCheckNAV("max1000-lp2-compound",bucket_,beforeNAV,p0,p1);
+        this.maximumMaintenanceCallFrame("max1000-lp2-compound-before-interval",bucket_,id_,address(maintenanceCompounder),
+            abi.encodeCall(ZZZCompounder.compound,(bucket_,uint128(1),block.timestamp+100)),false);
+        assertTrue(vm.revertToState(harvested));
+
+        uint256 replacement=vm.snapshotState();
+        // A material further ZZZ-price rise from the new centre satisfies the
+        // same-side trigger. Existing helper enforces12h/600s/300s samples.
+        uint160 next=uint160(Math.mulDiv(p.centerX96,83,100));
+        _maximumPrepareRebalance(bucket_,next,false);
+        (p0,,)=oracle.priceBounds(address(0));(p1,,)=oracle.priceBounds(address(token));
+        beforeNAV=_maximumNAV(bucket_,p0,p1);
+        this.maximumMaintenanceCallFrame("max1000-lp2-ordinary-replace",bucket_,id_,address(vault),
+            abi.encodeCall(ZZZVault.rebalance,(bucket_,uint128(1),block.timestamp+100)),true);
+        after_=vault.group(bucket_);uint256 nextResidual=manager.secondaryId(after_.lpTokenId);
+        assertTrue(after_.lpTokenId!=p.lpTokenId);assertGt(nextResidual,0);assertTrue(nextResidual!=secondary);
+        assertEq(manager.secondaryId(p.lpTokenId),0);assertEq(manager.activeSecondaryCount(),1);
+        assertEq(positions.getPositionLiquidity(p.lpTokenId),0);assertEq(positions.getPositionLiquidity(secondary),0);
+        assertEq(positions.ownerOf(after_.lpTokenId),address(vault));assertEq(positions.ownerOf(nextResidual),address(vault));
+        assertEq(after_.lastRebalance,block.timestamp);
+        _maximumCheckNAV("max1000-lp2-ordinary-replace",bucket_,beforeNAV,p0,p1);
+        this.maximumMaintenanceCallFrame("max1000-lp2-rebalance-replay-before-cooldown",bucket_,id_,address(vault),
+            abi.encodeCall(ZZZVault.rebalance,(bucket_,uint128(1),block.timestamp+100)),false);
+        assertTrue(vm.revertToState(replacement));
+
+        uint256 merge=vm.snapshotState();
+        strategy.portfolioPolicy().setMode(target,false,REVIEW);
+        _maximumPrepareRebalance(bucket_,p.centerX96,true);
+        (p0,,)=oracle.priceBounds(address(0));(p1,,)=oracle.priceBounds(address(token));
+        beforeNAV=_maximumNAV(bucket_,p0,p1);
+        this.maximumMaintenanceCallFrame("max1000-lp2-to-lp1-merge",bucket_,id_,address(vault),
+            abi.encodeCall(ZZZVault.rebalance,(bucket_,uint128(1),block.timestamp+100)),true);
+        after_=vault.group(bucket_);
+        assertTrue(after_.lpTokenId!=p.lpTokenId);assertEq(manager.secondaryId(after_.lpTokenId),0);
+        assertEq(manager.activeSecondaryCount(),0);assertEq(manager.secondaryId(p.lpTokenId),0);
+        assertEq(positions.getPositionLiquidity(p.lpTokenId),0);assertEq(positions.getPositionLiquidity(secondary),0);
+        assertEq(positions.ownerOf(after_.lpTokenId),address(vault));assertGt(positions.getPositionLiquidity(after_.lpTokenId),0);
+        assertEq(after_.lastRebalance,block.timestamp);
+        _maximumCheckNAV("max1000-lp2-to-lp1-merge",bucket_,beforeNAV,p0,p1);
+        assertTrue(vm.revertToState(merge));
+
+        _maximumWaitForCompound(bucket_);
+        ethSecond.set(1e8,block.timestamp-3601,block.timestamp-3601);
+        this.maximumMaintenanceCallFrame("max1000-lp2-compound-stale-price",bucket_,id_,address(maintenanceCompounder),
+            abi.encodeCall(ZZZCompounder.compound,(bucket_,uint128(1),block.timestamp+100)),false);
+        assertTrue(vm.revertToState(original));
+    }
+}

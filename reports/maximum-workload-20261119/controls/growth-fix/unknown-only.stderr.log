@@ -1,0 +1,5 @@
+usage: verify_contributions.py [-h]
+                               [--only {max64-twolp-1000-grow-eth,max64-twolp-1000-grow-zzz,max64-twolp-1000-grow-zzz-allfault} [{max64-twolp-1000-grow-eth,max64-twolp-1000-grow-zzz,max64-twolp-1000-grow-zzz-allfault} ...]]
+                               [--output-tag OUTPUT_TAG]
+                               stage
+verify_contributions.py: error: argument --only: invalid choice: 'max64-twolp-999-opening-eth' (choose from max64-twolp-1000-grow-eth, max64-twolp-1000-grow-zzz, max64-twolp-1000-grow-zzz-allfault)

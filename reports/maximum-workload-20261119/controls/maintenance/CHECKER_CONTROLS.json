@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "scope": "NEW cold financial-checker logic controls only; no EVM/network/compiler/old tests",
+  "checker_sha256": "636e504c271f670c8ae600af33ef69fb2cdb89fe0b1ab8b30deb2e28e563c11c",
+  "controls": [
+    {
+      "control": "exact-funded-80-10-5-5-plus-one-unit-dust",
+      "passed": true,
+      "expected": "admit"
+    },
+    {
+      "control": "incorrect-owner-collective-split",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "Individual/collective credit differs from80/10"
+    },
+    {
+      "control": "missing-carried-unit",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "Fee split/dust event mismatch"
+    },
+    {
+      "control": "unfunded-credit-outside-allocation",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "Unexpected LP credit outside actual fee allocation"
+    },
+    {
+      "control": "hidden-royalty-dependency",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "LP maintenance unexpectedly calls the royalty ledger"
+    },
+    {
+      "control": "position-nft-minted-to-outsider",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "New principal position NFT escaped Vault custody"
+    },
+    {
+      "control": "missing-native-fee-funding",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "Fee receipt native value differs"
+    },
+    {
+      "control": "repeat-harvest-with-no-new-income",
+      "passed": true,
+      "expected": "admit"
+    },
+    {
+      "control": "repeat-harvest-phantom-income",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "Repeated harvest creates phantom income"
+    },
+    {
+      "control": "strict-static-input-count",
+      "passed": true,
+      "expected": "refuse"
+    },
+    {
+      "control": "dirty-address-rejected",
+      "passed": true,
+      "expected": "refuse"
+    }
+  ],
+  "all_passed": true
+}

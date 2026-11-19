@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "source_sha256": "7fa494045d488b7255f9ae9eb7f056018e90c088e874c395230a40d9dac0c9a0",
+  "source_after_sha256": "7fa494045d488b7255f9ae9eb7f056018e90c088e874c395230a40d9dac0c9a0",
+  "source_unchanged_from_ten_offline_controls": true,
+  "code_change_required": false,
+  "argparse_import_was_already_present": true,
+  "new_cli_cases": [
+    {
+      "case": "help",
+      "actual_exit": 0,
+      "expected_exit": 0,
+      "elapsed_seconds": 0.40600000000085856,
+      "stdout_sha256": "2d6446e88203199a70d5fcbee21a925626df012b084240618f3d053d3a54f6a0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "missing-stage",
+      "actual_exit": 2,
+      "expected_exit": 2,
+      "elapsed_seconds": 0.34399999999914144,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "264ad9d801ba1b0ed353859f97ef05deeeae1fdcc027108fd7dfd14b7a59e5ed"
+    }
+  ],
+  "old_control_methods_rerun": 0,
+  "nodes_compiler_network_signing_or_services_used": false
+}

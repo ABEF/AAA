@@ -1,0 +1,17 @@
+usage: verify_contributions.py [-h] stage
+
+Cold 32M/full20% contribution qualification for the NEW maximum-state
+producer. Only new owned loopback nodes and read-only RPC are supported. No
+endpoint, wallet, signing, send, impersonation, public network, existing node
+or service adoption is accepted.96M is an explicit TEST-ONLY diagnostic
+ceiling, never a production profile. A completed verification may refuse
+the32M profile. Generic materialization/listener/RPC/trace routines are copied
+and adapted from reports/activation-final-six-20261118/full-flow-final/source-
+helpers/verify_full_flow.py, whose original bytes remain unchanged. No
+application tests/compiler are run.
+
+positional arguments:
+  stage       Exact newly completed owned producerNN stage
+
+options:
+  -h, --help  show this help message and exit

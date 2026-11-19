@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "scope": "NEW synthetic cold financial-checker controls, no EVM/network/compiler/application tests",
+  "checker_sha256": "a33b091c4bcd4687fac173ddc18d94dd10788e3495e3eed1b84b5ed4150d81fc",
+  "control_script_sha256": "00255fe300b6fe75ede45aabac4241032a8fff9b03fb2c561f57a4c68ccd5bab",
+  "controls": [
+    {
+      "control": "exact-two-leg-funded-80-10-5-5-plus-one-unit-dust",
+      "passed": true,
+      "expected": "admit"
+    },
+    {
+      "control": "incorrect-owner-collective-split",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "Individual/collective credit differs from80/10"
+    },
+    {
+      "control": "missing-carried-unit",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "Fee split/dust event mismatch"
+    },
+    {
+      "control": "unfunded-credit-outside-allocation",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "Unexpected LP credit outside actual fee allocation"
+    },
+    {
+      "control": "hidden-royalty-dependency",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "LP maintenance unexpectedly calls the royalty ledger"
+    },
+    {
+      "control": "position-nft-minted-to-outsider",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "New principal position NFT escaped Vault custody"
+    },
+    {
+      "control": "missing-native-fee-funding",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "Fee receipt native value differs"
+    },
+    {
+      "control": "repeat-harvest-with-no-new-income",
+      "passed": true,
+      "expected": "admit"
+    },
+    {
+      "control": "repeat-harvest-phantom-income",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "Repeated harvest creates phantom income"
+    },
+    {
+      "control": "missing-physical-residual-collection",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "Both tracked physical legs were not collected"
+    },
+    {
+      "control": "per-leg-accrual-does-not-match-funded-receipt",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "Actual per-leg accrued fees differ from Vault receipts"
+    },
+    {
+      "control": "principal-mixed-into-zero-liquidity-collection",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "Zero-liquidity collection contains principal"
+    },
+    {
+      "control": "physical-collection-from-another-pool",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "Fee collection uses another actual pool"
+    },
+    {
+      "control": "strict-static-input-count",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "Unexpected static ABI word count"
+    },
+    {
+      "control": "dirty-address-rejected",
+      "passed": true,
+      "expected": "refuse",
+      "reason": "Dirty ABI address"
+    }
+  ],
+  "all_passed": true
+}

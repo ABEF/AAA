@@ -1,0 +1,15 @@
+test_65_asset_count_and_distinct_native_first_identity (__main__.NewColdContributionAdmissionTests.test_65_asset_count_and_distinct_native_first_identity) ... ok
+test_artifact_digest_drift_refused_without_running_a_node (__main__.NewColdContributionAdmissionTests.test_artifact_digest_drift_refused_without_running_a_node) ... ok
+test_cap_and_padding_forgery_are_refused (__main__.NewColdContributionAdmissionTests.test_cap_and_padding_forgery_are_refused) ... ok
+test_complete_known_export_set_and_maintenance_split (__main__.NewColdContributionAdmissionTests.test_complete_known_export_set_and_maintenance_split) ... ok
+test_current_production_source_drift_refused_before_start_admission (__main__.NewColdContributionAdmissionTests.test_current_production_source_drift_refused_before_start_admission) ... ok
+test_exact_padding_threshold_and_invalid_estimates (__main__.NewColdContributionAdmissionTests.test_exact_padding_threshold_and_invalid_estimates) ... ok
+test_missing_and_duplicate_cases_are_refused (__main__.NewColdContributionAdmissionTests.test_missing_and_duplicate_cases_are_refused) ... ok
+test_missing_maintenance_outcome_is_refused (__main__.NewColdContributionAdmissionTests.test_missing_maintenance_outcome_is_refused) ... ok
+test_unknown_or_invalid_export_label_is_refused (__main__.NewColdContributionAdmissionTests.test_unknown_or_invalid_export_label_is_refused) ... ok
+test_zero_and_wrong_producer_methods_are_refused (__main__.NewColdContributionAdmissionTests.test_zero_and_wrong_producer_methods_are_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.116s
+
+OK

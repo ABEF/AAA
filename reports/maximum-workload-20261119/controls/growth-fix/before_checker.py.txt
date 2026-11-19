@@ -1,0 +1,773 @@
+"""Cold 32M/full20% contribution qualification for the NEW maximum-state producer.
+
+Only new owned loopback nodes and read-only RPC are supported. No endpoint,
+wallet, signing, send, impersonation, public network, existing node or service
+adoption is accepted.96M is an explicit TEST-ONLY diagnostic ceiling, never a
+production profile. A completed verification may refuse the32M profile.
+
+Generic materialization/listener/RPC/trace routines are copied and adapted from
+reports/activation-final-six-20261118/full-flow-final/source-helpers/verify_full_flow.py,
+whose original bytes remain unchanged. No application tests/compiler are run.
+"""
+from pathlib import Path
+import argparse,copy,datetime,gzip,hashlib,json,os,re,socket,subprocess,sys,time,urllib.request
+import ctypes,struct,threading
+from concurrent.futures import ThreadPoolExecutor,as_completed
+from functools import lru_cache
+
+R=Path(__file__).resolve().parents[3]
+assert (R/'src/ZZZVault.sol').is_file(),'Use the reviewed repository tool path'
+sys.path.insert(0,str(R))
+from zzz_ops.abi import keccak256 as python_keccak256,decode_words
+from frontend_api.activation_trace import selector,measure,SHARES,EXECUTE_DIRECT_V3
+from zzz_ops.execution_price import observe
+V=Path('C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9')
+E=V/'maximum-workload-20261119';HIST=V/'activation-final-six-20261118'
+ZERO='0x'+'0'*40;CAP=32_000_000;DIAGNOSTIC=96_000_000
+MAX_FILE=256*1024*1024;MAX_REPLY=64*1024*1024
+ANVIL=V/'foundry-v1.4.4/anvil.exe';ANVIL_SHA256='d438383b871c726407ecc5829279bea44ceac63a712be9e010813ca0a15434b6'
+CAST=V/'foundry-v1.4.4/cast.exe';CAST_SHA256='610eab893dfb497ad358f7c99b81f4fb0001a5ee8f4f02c0a0ea0a7ec35c90a8'
+NORMAL_BINDING_PATH=R/'reports/activation-final-six-20261118/full-flow-final/NORMAL_BINDING.json'
+NORMAL_BINDING_SHA256='850a5d1ba0c281ef475125424afa8cee365675e531a5538a26f4bc895695fe41'
+EXPECTED_METHOD='test/MaximumWorkload20261119.t.sol:MaximumWorkload20261119Test:testMaximum1000TwoLP65CurrenciesReverseOrderContributionsAndMaintenance20261119()'
+CASE_POLICY={
+ 'max64-twolp-999-opening-eth':('eth',False,True,0,False),
+ 'max64-twolp-999-opening-zzz':('zzz',False,True,0,False),
+ 'max64-twolp-999-opening-zzz-allslow':('zzz',False,True,0,True),
+ 'max64-twolp-999-opening-eth-allfault':('eth',False,True,64,False),
+ 'max64-twolp-999-rotated-zzz':('zzz',False,False,0,False),
+ 'max64-twolp-999-rotated-eth-onefault':('eth',False,False,1,False),
+ 'max64-twolp-999-rotated-zzz-allfault':('zzz',False,False,64,False),
+ 'max64-twolp-999-rotated-eth-allslow':('eth',False,False,0,True),
+ 'max64-twolp-999-rotated-eth':('eth',False,False,0,False),
+ 'max64-twolp-1000-grow-eth':('eth',True,False,0,False),
+ 'max64-twolp-1000-grow-zzz-allfault':('zzz',True,False,64,False),
+ 'max64-twolp-1000-grow-zzz':('zzz',True,False,0,False)}
+MAINTENANCE_LABELS={
+ 'max1000-lp2-harvest':True,'max1000-lp2-harvest-no-new-fees':True,
+ 'max1000-lp2-compound':True,'max1000-lp2-compound-before-interval':False,
+ 'max1000-lp2-ordinary-replace':True,'max1000-lp2-rebalance-replay-before-cooldown':False,
+ 'max1000-lp2-to-lp1-merge':True,'max1000-lp2-compound-stale-price':False}
+ROLES=('entry','vault','budget','contribution_pricing','oracle','liquidity','lp_position_executor',
+ 'position_manager','fees','protocol_policy','pools','nft','rewards','membership','principal_exit',
+ 'pool_manager','state_view','balancing_router','reference','independent_reference','independent_core',
+ 'independent_state','activation_assets','vrf')
+ALLOWED=frozenset(('eth_chainId','eth_getBlockByNumber','eth_getBlockByHash','eth_getCode',
+ 'eth_getBalance','eth_call','eth_estimateGas','eth_gasPrice','debug_traceCall'))
+MEASUREMENT_HELPER_PATHS=('frontend_api/activation_trace.py','frontend_api/service.py','zzz_ops/abi.py','zzz_ops/execution_price.py')
+sha=lambda raw:hashlib.sha256(raw).hexdigest()
+_hash_cache={};_hash_lock=threading.Lock()
+F=ARTIFACT=START=EXECUTION=BASELINE=NORMAL_BINDING=None
+RAW_SHA256=START_SHA256=ARTIFACT_SHA256=BASELINE_SHA256=None
+MEASUREMENT_HELPERS={};PARSED_LOGS=[]
+# Historical copied-helper SHA256: 15f9977892660732f09399f5cdc5ee81135d48b6ea7970518e8239a486dd1381
+
+def native_keccak256(raw):
+ assert len(raw)<=MAX_FILE and sha(CAST.read_bytes())==CAST_SHA256
+ clean={key:os.environ[key]for key in('SystemRoot','WINDIR','SystemDrive','COMSPEC','PATHEXT','TEMP','TMP','USERPROFILE','LOCALAPPDATA','APPDATA','PROGRAMDATA')if key in os.environ}
+ clean['PATH']=str(Path(os.environ.get('SystemRoot','C:/Windows'))/'System32')
+ response=subprocess.run([str(CAST),'keccak'],input=b'0x'+raw.hex().encode(),capture_output=True,env=clean,timeout=30,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
+ value=response.stdout.decode().strip();assert response.returncode==0 and re.fullmatch(r'0x[0-9a-f]{64}',value),'Pinned offline public-data Keccak failed'
+ return bytes.fromhex(value[2:])
+
+def keccak256(raw):
+ if len(raw)<=4096:return python_keccak256(raw)
+ key=sha(raw)
+ with _hash_lock:
+  if key not in _hash_cache:_hash_cache[key]=native_keccak256(raw)
+  return _hash_cache[key]
+
+def load(path):
+ with Path(path).open('rb')as stream:raw=stream.read(MAX_FILE+1)
+ assert len(raw)<=MAX_FILE,'Input file bound exceeded'
+ return raw,json.loads(raw)
+
+def quantity(value):
+ assert type(value)is str and re.fullmatch(r'0x(?:0|[1-9a-fA-F][0-9a-fA-F]*)',value),'Invalid RPC quantity'
+ return int(value,16)
+
+def code_bytes(value):
+ assert type(value)is str and re.fullmatch(r'0x(?:[0-9a-fA-F]{2})*',value),'Invalid code bytes'
+ return bytes.fromhex(value[2:])
+
+def dyn(words,index,text=True):
+ offset=int(words[index],16);assert offset%32==0 and offset//32<len(words)
+ start=offset//32;length=int(words[start],16);raw=bytes.fromhex(''.join(words[start+1:]));assert length<=len(raw)
+ return raw[:length].decode('utf-8')if text else '0x'+raw[:length].hex()
+
+def merge_alloc(baseline,delta):
+ alloc=copy.deepcopy(baseline);zeroes=0
+ for address,row in delta.items():
+  old=alloc.get(address,{})
+  if old.get('code')and row.get('code'):assert old['code']==row['code'],'Runtime changed across exported baseline/delta'
+  prior=old.get('storage',{});now=row.get('storage',{})
+  zeroes+=sum(int(v,16)==0 and int(prior.get(k,'0x0'),16)!=0 for k,v in now.items())
+  alloc[address]={**old,**row,'storage':{**prior,**now}}
+ return alloc,zeroes
+
+class RPCFailure(Exception):
+ def __init__(self,method,error):self.method=method;self.error=error;super().__init__('Owned local RPC refusal: '+method)
+
+class RPC:
+ def __init__(self,port):
+  self.port=port;self.records=[];self.start=time.monotonic();self.opener=urllib.request.build_opener(urllib.request.ProxyHandler({}))
+ def call(self,method,params=None):
+  assert method in ALLOWED,'Non-read-only RPC denied'
+  assert len(self.records)<1600 and time.monotonic()-self.start<900,'Bounded owned RPC review exhausted'
+  request={'jsonrpc':'2.0','id':len(self.records)+1,'method':method,'params':params or []};raw=json.dumps(request,separators=(',',':')).encode();record={'request':request,'serialized_request_sha256':sha(raw)}
+  self.records.append(record)
+  try:
+   with self.opener.open(urllib.request.Request('http://127.0.0.1:'+str(self.port),raw,{'Content-Type':'application/json'}),timeout=60)as response:body=response.read(MAX_REPLY+1)
+   assert len(body)<=MAX_REPLY,'Reply size bound exceeded';value=json.loads(body);record.update(response=value,serialized_response_sha256=sha(body))
+  except Exception as error:record['transport_exception']=type(error).__name__;raise
+  assert value.get('id')==request['id']and value.get('jsonrpc')=='2.0','RPC response identity differs'
+  if 'error'in value:raise RPCFailure(method,value['error'])
+  assert 'result'in value;return value['result']
+ def attempt(self,method,params):
+  try:return {'ok':True,'result':self.call(method,params)}
+  except RPCFailure as error:return {'ok':False,'error':error.error}
+
+def frames(trace):
+ todo=[trace];count=0
+ while todo:
+  frame=todo.pop();count+=1;assert isinstance(frame,dict)and count<=16384,'Trace shape/work bound'
+  yield frame;children=frame.get('calls',[]);assert isinstance(children,list);todo.extend(children)
+
+def checked_trace(rpc,tx,block,omitted):
+ reply=rpc.attempt('debug_traceCall',[tx,block,{'tracer':'callTracer','tracerConfig':{'withLog':True},'timeout':'45s'}])
+ if not reply['ok']:return reply
+ root=reply['result'];assert root['from'].lower()==tx['from']and root['to'].lower()==tx['to'],'Trace sender/target mismatch'
+ assert not any(frame.get('to','').lower()in omitted for frame in frames(root)),'Production simulation called omitted harness'
+ return reply
+
+def measure_trace(trace,tx,case,read,*,captured_shared=None):
+ pins=copy.deepcopy(case['pins']);words=decode_words('0x'+case['data'][10:]);assert case['data'].startswith(selector(EXECUTE_DIRECT_V3))and len(words)==9
+ nft_id=int(words[0],16);pool='0x'+words[1];source='0x'+words[2][-40:];amount=int(words[3],16);minimum=int(words[4],16);deadline=int(words[5],16);growth=int(words[6],16);maximum=int(words[7],16);policy='0x'+words[8]
+ assert nft_id==case['nft_id']and maximum==300 and growth in(0,1)
+ assert int(read(pins['nft'],'ownerOf(uint256)',nft_id)[0],16)==int(case['sender'],16)
+ old_bucket=int(read(pins['vault'],'nftBucket(uint256)',nft_id)[0],16);assert old_bucket==(case['shared_bucket']if growth else 0)
+ # A dormant entrant has nftBucket0 while the pool can already have an
+ # incumbent main. Its placement context is the shared pool, not group0.
+ if captured_shared is None:
+  shared_bucket=int(read(pins['vault'],'poolBucket(bytes32)',pool)[0],16)
+  shared_words=read(pins['vault'],'group(uint256)',shared_bucket,count=8)
+ else:shared_bucket,shared_words=captured_shared
+ assert shared_bucket==case['shared_bucket'];old_lp=int(shared_words[1],16)
+ zzz='0x'+read(pins['activation_assets'],'zzz()')[0][-40:]
+ pins['lp_balance_math']='0x'+read(pins['liquidity'],'executionStrategy()')[0][-40:];pins['access']='0x'+read(pins['liquidity'],'access()')[0][-40:]
+ pins['strategy']='0x'+read(pins['access'],'module(bytes32)','0x'+keccak256(b'ZZZStrategy').hex())[0][-40:];context=observe(read,pins);assert not context['context_active']
+ bounds={}
+ for asset in(ZERO,zzz):
+  values=read(pins['oracle'],'priceBounds(address)',asset,count=3);bounds[asset]={'lower':int(values[0],16),'upper':int(values[1],16),'fingerprint':'0x'+values[2]}
+ digits=int(read(pins['oracle'],'tokenDecimals(address)',source)[0],16);gross=amount*bounds[source]['lower']//10**digits;upper=(amount*bounds[source]['upper']+10**digits-1)//10**digits
+ config=[int(value,16)for value in read(pins['pools'],'get(bytes32)',pool,count=14)];idle=int(read(pins['protocol_policy'],'entryPolicy()',count=4)[2],16)
+ shares=[log for frame in frames(trace)for log in frame.get('logs',[])if log['address'].lower()==pins['vault']and log['topics'][0]==SHARES];assert len(shares)==1;bucket=int(shares[0]['topics'][2],16);assert shared_bucket in(0,bucket)
+ request={'id':nft_id,'pool':pool,'source':source,'amount':amount,'minimum_lp':minimum,'deadline':deadline,'increase':bool(growth),'maximum_loss_bps':maximum,'expected_contribution_policy':policy,'bucket':bucket,'old_lp_id':old_lp,'output':source,'token0':ZERO,'token1':zzz,'route':'0x'+'0'*64,'minimum_out':0,'route_kind':0,'accounting_version':7,'routing_version':3,'review_policy_version':2,'pricing_version':2,'lp_routing_version':3,'execution_price_version':1,'portfolio_version':2,'execution_quality_version':1,'execution_loss_bps':300,'maximum_idle_bps':idle,'upper_input_usd':upper,'reviewed_price_bounds':bounds}
+ return {'measurement':measure(trace,tx,pins,request,gross,config[10]),'request':request,'gross_usd18':gross,'context':context,'controlled_pool_minimum_usd18':config[12]}
+
+def listener_identity(proc,port):
+ """Before any RPC, prove the loopback listener belongs to this owned child."""
+ library=Path(os.environ.get('SystemRoot','C:/Windows'))/'System32/iphlpapi.dll'
+ api=ctypes.WinDLL(str(library),use_last_error=True).GetExtendedTcpTable
+ api.argtypes=[ctypes.c_void_p,ctypes.POINTER(ctypes.c_ulong),ctypes.c_int,ctypes.c_ulong,ctypes.c_int,ctypes.c_ulong];api.restype=ctypes.c_ulong
+ for _ in range(120):
+  assert proc.poll()is None,'Owned node exited before listener verification'
+  size=ctypes.c_ulong(0);status=api(None,ctypes.byref(size),0,socket.AF_INET,3,0)
+  assert status in(0,122)and 4<=size.value<=1_048_576,'Bounded IPv4 owner/listener table unavailable'
+  buffer=ctypes.create_string_buffer(size.value);status=api(buffer,ctypes.byref(size),0,socket.AF_INET,3,0)
+  if status==122:continue
+  assert status==0;raw=buffer.raw;count=struct.unpack_from('<I',raw)[0];assert 4+24*count<=len(raw)
+  rows=[]
+  for index in range(count):
+   state,local,local_port,remote,remote_port,pid=struct.unpack_from('<6I',raw,4+24*index)
+   address=socket.inet_ntoa(struct.pack('<I',local));observed_port=socket.ntohs(local_port&65535)
+   if state==2 and address=='127.0.0.1'and observed_port==port:rows.append({'state':state,'local_address':address,'local_port':observed_port,'owning_pid':pid})
+  if rows:
+   assert len(rows)==1 and rows[0]['owning_pid']==proc.pid,'Loopback listener is not owned by this exact child'
+   return {'method':'GetExtendedTcpTable','library':str(library),'address_family':socket.AF_INET,'owner_pid_listener_table':3,'observed':rows[0],'owned_pid':proc.pid,'verified_before_any_RPC':True}
+  time.sleep(.05)
+ raise RuntimeError('Owned loopback listener was not observed within the bounded startup window')
+
+
+topic=lambda signature:'0x'+keccak256(signature.encode()).hex()
+EVENTS={topic(signature):name for name,signature in (
+ ('bindings','ReferenceExecutionBindings(address[],bytes32[])'),
+ ('call','ProfileUnsignedCall(string,address,address,uint256,bytes,uint256,uint16,uint256,uint256,bytes32)'),
+ ('baseline','ReferenceExportBaseline(string,bytes32)'),('block','ReferenceExportBlock(uint256,uint256,uint256)'),
+ ('code','ReferenceExportCodeMaterialized(address,bytes32,uint256)'),('state','ProfileStateExport(string,string,bytes32)'),
+ ('maintenance','MaximumMaintenanceCase(string,bool,bytes,uint256,uint16,uint256,uint256,bytes32,bytes32)'))}
+
+
+def configure(stage):
+ """Authenticate one fixed new producer stage; no node or output is created."""
+ global F,ARTIFACT,START,EXECUTION,BASELINE,NORMAL_BINDING
+ global RAW_SHA256,START_SHA256,ARTIFACT_SHA256,BASELINE_SHA256,MEASUREMENT_HELPERS
+ assert type(stage)is str and re.fullmatch(r'producer[0-9]{2}',stage),'Use one owned new producer stage'
+ F=(E/stage).resolve();assert F.is_relative_to(E.resolve())
+ baseline_raw,BASELINE=load(E/'BASELINE.json');BASELINE_SHA256=sha(baseline_raw)
+ assert BASELINE['schema']==1 and BASELINE['normal_build']=='activation-final-six-20261118'
+ assert BASELINE['baseline_main']=='c1b123c2defb30c66134037d3d44c2a24f22eee4'
+ for name,pin in {**BASELINE['source_sha256'],**BASELINE['protected_sha256']}.items():
+  assert sha((R/name).read_bytes())==pin,'Current source/protected file differs from baseline: '+name
+ assert len(BASELINE['source_sha256'])==61
+ assert sha((R/'foundry.toml').read_bytes())==BASELINE['foundry_toml_sha256']
+ start_raw,START=load(F/'START.json');START_SHA256=sha(start_raw)
+ _,EXECUTION=load(F/'EXECUTION.json')
+ assert EXECUTION['pass']is True and EXECUTION['exit_code']==0 and EXECUTION['error']is None
+ assert EXECUTION['compiled_source_metadata_verified']is True and EXECUTION['source_bracket_stable']is True
+ assert EXECUTION['tracked_config_unchanged']is True
+ assert START['normal_build']==BASELINE['normal_build'] and START['baseline_main']==BASELINE['baseline_main']
+ assert START['method']==EXPECTED_METHOD.split(':')[-1]
+ compiled_sources={n:p for n,p in START['source_before'].items()if n.startswith('src/')}
+ excluded={'src/ZZZAccessController.sol','src/ZZZPoolRegistry.sol','src/ZZZPythPriceFeed.sol'}
+ assert len(compiled_sources)==58 and set(BASELINE['source_sha256'])-set(compiled_sources)==excluded
+ assert compiled_sources=={n:p for n,p in BASELINE['source_sha256'].items()if n not in excluded},'Unexpected producer project-source closure'
+ assert EXECUTION['source_after']==START['source_before']
+ for name,pin in START['source_before'].items():
+  assert sha((R/name).read_bytes())==pin,'Producer source changed: '+name
+ ARTIFACT=F/'producer-artifact.json';artifact_raw,artifact=load(ARTIFACT);ARTIFACT_SHA256=sha(artifact_raw)
+ assert ARTIFACT_SHA256==EXECUTION['artifact_sha256'],'Producer artifact digest drift'
+ metadata=artifact['metadata'];assert metadata['settings']['compilationTarget']=={'test/MaximumWorkload20261119.t.sol':'MaximumWorkload20261119Test'}
+ assert set(metadata['sources'])==set(START['source_before'])
+ for name,row in metadata['sources'].items():
+  assert row['keccak256']=='0x'+keccak256((R/name).read_bytes().replace(b'\r\n',b'\n')).hex(),'Compiled source differs: '+name
+ source_pool_raw=(F/'COMPILED_INPUT_SOURCE_POOL.json.gz').read_bytes()
+ assert sha(source_pool_raw)==START['compiled_input_pool_sha256']
+ with gzip.open(F/'COMPILED_INPUT_SOURCE_POOL.json.gz','rb')as stream:pool_decoded=stream.read(MAX_FILE+1)
+ assert len(pool_decoded)<=MAX_FILE
+ source_pool=json.loads(pool_decoded)['sources']
+ assert set(source_pool)==set(metadata['sources'])
+ for name,row in source_pool.items():assert row['content'].encode()==(R/name).read_bytes().replace(b'\r\n',b'\n')
+ raw,_=load(F/'raw.json');RAW_SHA256=sha(raw);assert RAW_SHA256==EXECUTION['raw_sha256']
+ normal_raw,NORMAL_BINDING=load(NORMAL_BINDING_PATH)
+ assert sha(normal_raw)==NORMAL_BINDING_SHA256 and NORMAL_BINDING['build_id']==BASELINE['normal_build']
+ MEASUREMENT_HELPERS={name:sha((R/name).read_bytes())for name in MEASUREMENT_HELPER_PATHS}
+ enrollment_layout.cache_clear();enrollment_layout()
+ return {'stage':stage,'baseline_sha256':BASELINE_SHA256,'producer_raw_sha256':RAW_SHA256,
+  'producer_start_sha256':START_SHA256,'producer_artifact_sha256':ARTIFACT_SHA256,
+  'globally_frozen_project_sources':61,'compiled_project_sources':58,
+  'explicitly_uncompiled_project_sources':sorted(excluded)}
+
+
+def parse_logs(logs):
+ """Require exactly the known contribution AND maintenance exports, never drop unknowns."""
+ materialized={};bindings=None;current=None;cases=[];maintenance={}
+ for log in logs:
+  topics=log.get('topics',[])
+  if not topics or topics[0]not in EVENTS:continue
+  kind=EVENTS[topics[0]];words=decode_words(log['data'])
+  if kind=='maintenance':
+   label=dyn(words,0);assert label in MAINTENANCE_LABELS and label not in maintenance
+   assert int(words[1],16)in(0,1) and bool(int(words[1],16))==MAINTENANCE_LABELS[label]
+   assert int(words[3],16)==24_000_000 and int(words[4],16)==2500
+   maintenance[label]={'expected_success':bool(int(words[1],16)),'expected_return':dyn(words,2,False),
+    'expected_main':int(words[5],16),'expected_residual':int(words[6],16),
+    'holder_rights_digest':'0x'+words[7],'royalty_books_digest':'0x'+words[8]}
+  elif kind=='bindings':
+   assert current is None
+   a,h=(int(words[i],16)//32 for i in(0,1));assert int(words[a],16)==int(words[h],16)==len(ROLES)
+   pins={role:'0x'+words[a+1+i][-40:]for i,role in enumerate(ROLES)}
+   hashes={role:'0x'+words[h+1+i]for i,role in enumerate(ROLES)}
+   assert len(set(pins.values()))==len(ROLES)and ZERO not in pins.values()
+   bindings=(pins,hashes)
+  elif kind=='code':
+   assert len(topics)==2 and len(words)==2
+   address='0x'+topics[1][-40:];pin={'hash':'0x'+words[0],'length':int(words[1],16)}
+   assert pin['length']>0
+   materialized[address]=pin
+   if current is not None:
+    assert address not in current['materialized']or current['materialized'][address]==pin
+    current['materialized'][address]=pin
+  elif kind=='call':
+   assert bindings is not None and current is None
+   label=dyn(words,0);assert label in CASE_POLICY or label in MAINTENANCE_LABELS,'Unknown exported workload: '+label
+   current={'label':label,'sender':'0x'+words[1][-40:],'destination':'0x'+words[2][-40:],'value':int(words[3],16),
+    'data':dyn(words,4,False),'cap':int(words[5],16),'padding_bps':int(words[6],16),'nft_id':int(words[7],16),
+    'shared_bucket':int(words[8],16),'pre_state':'0x'+words[9],'harness':log['address'].lower(),
+    'pins':copy.deepcopy(bindings[0]),'runtime_hashes':copy.deepcopy(bindings[1]),'materialized':copy.deepcopy(materialized),
+    'workload_kind':'contribution'if label in CASE_POLICY else'maintenance'}
+   expected=(CAP,2000)if label in CASE_POLICY else(24_000_000,2500)
+   assert (current['cap'],current['padding_bps'])==expected
+  elif current is not None and kind=='baseline':current.update(baseline_path=dyn(words,0),baseline_hash='0x'+words[1])
+  elif current is not None and kind=='block':current['block']={'number':int(words[0],16),'timestamp':int(words[1],16),'chain_id':int(words[2],16)}
+  elif current is not None and kind=='state':
+   assert current['label']==dyn(words,0)
+   current.update(delta_path=dyn(words,1),delta_hash='0x'+words[2]);assert all(k in current for k in('block','baseline_path','baseline_hash'))
+   assert current['block']['chain_id']in(31337,4663);cases.append(current);current=None
+ assert current is None,'Incomplete exported case'
+ for case in cases:
+  if case['label']in MAINTENANCE_LABELS:
+   assert case['label']in maintenance,'Missing actual maintenance outcome event'
+   case.update(maintenance[case['label']])
+ assert set(maintenance)==set(MAINTENANCE_LABELS),'Missing/unknown maintenance outcome labels'
+ return cases
+
+
+def exports():
+ global PARSED_LOGS
+ assert F is not None,'Call configure(stage) first'
+ raw,parsed=load(F/'raw.json');assert sha(raw)==RAW_SHA256
+ methods=[];by_label={};PARSED_LOGS=[]
+ for host,body in parsed.items():
+  for name,test in body.get('test_results',{}).items():
+   assert test['status']=='Success','New producer did not pass'
+   methods.append(host+':'+name);logs=test.get('logs',[]);PARSED_LOGS+=logs
+   for case in parse_logs(logs):
+    assert case['label']not in by_label,'Duplicate new export label'
+    case['source_methods']=[host+':'+name];by_label[case['label']]=case
+ assert methods==[EXPECTED_METHOD]
+ assert set(by_label)==set(CASE_POLICY)|set(MAINTENANCE_LABELS),'Incomplete/unknown exported workload set'
+ return list(by_label.values()),sha(raw),START['source_before'],methods
+
+
+@lru_cache(maxsize=1)
+def enrollment_layout():
+ """Read the exact unchanged F6 normal compiler output; never recompile."""
+ assert NORMAL_BINDING is not None and BASELINE is not None
+ paths=[Path(NORMAL_BINDING[key]).resolve()for key in('compiler_input_path','compiler_output_path','normal_size_evidence_path')]
+ assert all(p.is_relative_to(HIST.resolve())for p in paths),'Only the exact trusted F6 normal artifact directory is allowed'
+ inp,path,sizes=paths
+ for p,key in zip(paths,('compiler_input_sha256','compiler_output_sha256','normal_size_evidence_sha256')):
+  assert p.is_file() and sha(p.read_bytes())==NORMAL_BINDING[key]
+ evidence=json.loads(sizes.read_bytes())
+ assert NORMAL_BINDING['normal_build_pass']is True and evidence['kind']=='actual_closed_normal_build'
+ assert evidence['pass']is True and evidence['all_pass']is True
+ assert evidence['candidate_build_id']=='activation-final-six-20261118'and evidence['phase']=='admitted_without_recompilation'
+ assert evidence['source_sha256']==BASELINE['source_sha256']
+ assert {k:v for k,v in evidence['source_sha256_after'].items()if k.startswith('src/')}==BASELINE['source_sha256']
+ assert evidence['source_sha256_after']==evidence['compiler_content_sha256']
+ assert evidence['build_input_sha256']['foundry.toml']==BASELINE['foundry_toml_sha256']
+ assert len(evidence['gates'])==NORMAL_BINDING['normal_gate_count']==48
+ assert all(row['runtime_ok']is True and row['creation_ok']is True for row in evidence['gates'])
+ def read_normal(p):
+  opener=gzip.open if p.suffix=='.gz'else open
+  with opener(p,'rb')as stream:raw=stream.read(MAX_FILE+1)
+  assert len(raw)<=MAX_FILE
+  return json.loads(raw)
+ normal_input=read_normal(inp)
+ assert {name for name in normal_input['sources']if name.startswith('src/')}==set(BASELINE['source_sha256'])
+ for name in BASELINE['source_sha256']:
+  assert normal_input['sources'][name]['content'].replace('\r\n','\n').encode()==(R/name).read_bytes().replace(b'\r\n',b'\n'),name
+ compiled=read_normal(path)['contracts']['src/ZZZRoyaltyRewards.sol']['ZZZRoyaltyRewards']
+ normal_metadata=json.loads(compiled['metadata']);producer_metadata=json.loads(ARTIFACT.read_bytes())['metadata']
+ for name,row in normal_metadata['sources'].items():
+  assert producer_metadata['sources'][name]['keccak256']==row['keccak256'],'Royalty dependency differs: '+name
+ obj=compiled['storageLayout'];assert not any(row['label']=='accounted'for row in obj['storage'])
+ entry=next(row for row in obj['storage']if row['label']=='enrollment')
+ mapping=obj['types'][entry['type']];record=obj['types'][mapping['value']]
+ member=next(row for row in record['members']if row['label']=='ends');array=obj['types'][member['type']]
+ assert mapping['encoding']=='mapping'and array['encoding']=='dynamic_array'and obj['types'][array['base']]['numberOfBytes']=='2'
+ return int(entry['slot']),int(member['slot'])
+
+
+def source_state(case):
+ exports_root=(F/'exports').resolve()
+ paths=[Path(case[key]).resolve()for key in('baseline_path','delta_path')]
+ assert all(p.is_relative_to(exports_root)for p in paths),'Export path leaves the new exclusive producer directory'
+ base_raw,base=load(paths[0]);delta_raw,delta=load(paths[1])
+ assert '0x'+keccak256(base_raw).hex()==case['baseline_hash']
+ assert '0x'+keccak256(delta_raw).hex()==case['delta_hash']
+ alloc,zeroes=merge_alloc(base,delta);artifact_raw,artifact=load(ARTIFACT)
+ assert sha(artifact_raw)==ARTIFACT_SHA256
+ runtime=artifact['deployedBytecode']['object'];runtime=runtime if runtime.startswith('0x')else'0x'+runtime
+ harness_pin={'hash':'0x'+keccak256(code_bytes(runtime)).hex(),'length':len(code_bytes(runtime))}
+ omitted={}
+ for address,pin in case['materialized'].items():
+  assert re.fullmatch(r'0x[0-9a-f]{40}',address)
+  if address==case['harness']:
+   assert pin==harness_pin
+   if address in alloc:
+    assert '0x'+keccak256(code_bytes(alloc[address].get('code','0x'))).hex()==pin['hash'];del alloc[address]
+   omitted[address]=pin
+  else:
+   assert address in alloc,'Materialized account missing: '+address
+   code=code_bytes(alloc[address].get('code','0x'))
+   assert len(code)==pin['length']and'0x'+keccak256(code).hex()==pin['hash'],'Materialized runtime differs'
+ assert set(omitted)=={case['harness']},'Only the exact compiled test harness may be omitted'
+ for role,address in case['pins'].items():
+  assert address in alloc and'0x'+keccak256(code_bytes(alloc[address].get('code','0x'))).hex()==case['runtime_hashes'][role],role
+ return alloc,omitted,{'baseline_sha256':sha(base_raw),'delta_sha256':sha(delta_raw),
+  'baseline_keccak256':case['baseline_hash'],'delta_keccak256':case['delta_hash'],
+  'nonzero_to_zero_overrides':zeroes,'baseline_accounts':len(base),'delta_accounts':len(delta),
+  'merged_accounts':len(alloc),'harness_artifact_sha256':sha(artifact_raw)}
+
+
+def enrollment_storage(alloc,royalty,assets,growth):
+ slot,offset=enrollment_layout();mask=(1<<256)-1
+ stored={int(k,16):int(v,16)for k,v in alloc[royalty].get('storage',{}).items()};rows=[]
+ for i,asset in enumerate(assets):
+  base=int.from_bytes(keccak256(bytes.fromhex(asset[2:]).rjust(32,b'\0')+slot.to_bytes(32,'big')),'big')
+  length_slot=(base+offset)&mask;length=stored.get(length_slot,0)
+  expected=(1000 if i==0 else 993)if growth else(999 if i==0 else 992)
+  assert length==expected,'New captured enrollment density differs from actual late-admission population'
+  data=int.from_bytes(keccak256(length_slot.to_bytes(32,'big')),'big');last=length-1
+  last_word=stored.get((data+last//16)&mask,0);last_end=(last_word>>(16*(last%16)))&65535
+  assert last_end==(1000 if growth else 999)
+  next_word=stored.get((data+length//16)&mask,0);new_word=length%16==0
+  if not growth and i:assert new_word and next_word==0,'Expected a cold packed append word'
+  rows.append({'asset':asset,'ends':length,'last_end':last_end,'next_append_opens_new_word':new_word,'next_word_value':str(next_word)})
+ return {'normal_layout_output_sha256':NORMAL_BINDING['compiler_output_sha256'],'mapping_slot':slot,
+  'ends_offset':offset,'packed_uint16_entries_per_word':16,'assets':rows,
+  'verified_from_authenticated_new_export_storage':True}
+
+
+def owned_case(case,output_root,verify_callback):
+ """Create/inspect/stop only one NEW owned node. Callback returns scoped results."""
+ output_root=Path(output_root).resolve();assert output_root.is_relative_to(F.resolve())
+ output_root.mkdir(parents=True,exist_ok=True)
+ folder=output_root/case['label'];folder.mkdir(exist_ok=False);proc=None;rpc=None
+ outcome={'schema':1,'profile':case,'source_producer_sha256':RAW_SHA256,'source_start_sha256':START_SHA256,
+  'source_artifact_sha256':ARTIFACT_SHA256,'baseline_sha256':BASELINE_SHA256,
+  'verification_complete':False,'meets_reviewed_execution_profile':False,'production_approved':False,
+  'public_requests_or_transactions':0,'owned_node_stopped':False,
+  'scope':'NEW isolated loopback chain with captured controlled F6/mint2 state. No real market, Robinhood capacity, complete fees, provider or service acceptance.96M is test-only diagnostic, not an adopted profile.'}
+ try:
+  assert sha(ANVIL.read_bytes())==ANVIL_SHA256
+  for name,pin in MEASUREMENT_HELPERS.items():assert sha((R/name).read_bytes())==pin,name
+  for name,pin in BASELINE['source_sha256'].items():assert sha((R/name).read_bytes())==pin,name
+  alloc,omitted,merge=source_state(case);outcome.update(state_merge=merge,omitted_harness=omitted,anvil_sha256=ANVIL_SHA256)
+  block=case['block'];assert block['chain_id']in(31337,4663)
+  genesis={'config':{'chainId':block['chain_id'],'homesteadBlock':0,'eip150Block':0,'eip155Block':0,'eip158Block':0,
+   'byzantiumBlock':0,'constantinopleBlock':0,'petersburgBlock':0,'istanbulBlock':0,'berlinBlock':0,'londonBlock':0,
+   'terminalTotalDifficulty':0,'shanghaiTime':0,'cancunTime':0},'number':hex(block['number']),'nonce':'0x0',
+   'timestamp':hex(block['timestamp']),'extraData':'0x','gasLimit':hex(DIAGNOSTIC),'difficulty':'0x0',
+   'mixHash':'0x'+'0'*64,'coinbase':ZERO,'baseFeePerGas':'0x0','alloc':alloc}
+  (folder/'genesis.json').write_text(json.dumps(genesis,separators=(',',':')),encoding='utf-8')
+  with socket.socket()as sock:sock.bind(('127.0.0.1',0));port=sock.getsockname()[1]
+  env={key:os.environ[key]for key in('SystemRoot','WINDIR','SystemDrive','COMSPEC','PATHEXT','TEMP','TMP','USERPROFILE','LOCALAPPDATA','APPDATA','PROGRAMDATA')if key in os.environ}
+  env['PATH']=str(ANVIL.parent)+os.pathsep+str(Path(os.environ.get('SystemRoot','C:/Windows'))/'System32')
+  cmd=[str(ANVIL),'--host','127.0.0.1','--port',str(port),'--accounts','0','--silent','--init',str(folder/'genesis.json'),
+   '--gas-limit',str(DIAGNOSTIC),'--chain-id',str(block['chain_id']),'--hardfork','cancun','--no-mining']
+  with(folder/'anvil.log').open('xb')as log:
+   proc=subprocess.Popen(cmd,env=env,stdout=log,stderr=subprocess.STDOUT,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
+  outcome.update(owned_pid=proc.pid,owned_command=cmd,owned_port=port,
+   node_environment='Allowlisted OS variables only; no wallet/RPC/private settings. Proxies disabled.')
+  outcome['listener_ownership']=listener_identity(proc,port);rpc=RPC(port)
+  chain=quantity(rpc.call('eth_chainId'));assert chain==block['chain_id']
+  head=rpc.call('eth_getBlockByNumber',['latest',False]);outcome['confirmed_block']=head
+  assert quantity(head['number'])==block['number']and quantity(head['timestamp'])==block['timestamp']and quantity(head['gasLimit'])==DIAGNOSTIC
+  anchor={'blockHash':head['hash'],'requireCanonical':True}
+  assert rpc.call('eth_getCode',[case['sender'],anchor])=='0x','Outer sender must be an actual empty-code EOA'
+  for address,pin in case['materialized'].items():
+   if address not in omitted:
+    assert '0x'+keccak256(code_bytes(rpc.call('eth_getCode',[address,anchor]))).hex()==pin['hash']
+  def read(address,signature,*args,count=1):
+   data=selector(signature)+''.join(value[2:].rjust(64,'0')if isinstance(value,str)else f'{value:064x}'for value in args)
+   result=decode_words(rpc.call('eth_call',[{'from':case['sender'],'to':address,'data':data},anchor]))
+   assert len(result)==count,(signature,'unexpected output size');return result
+  result=verify_callback(rpc,read,case,anchor,alloc,omitted)
+  assert type(result)is dict and type(result.get('verification_complete'))is bool
+  outcome.update(result)
+  final=rpc.call('eth_getBlockByHash',[head['hash'],False])
+  assert final['hash']==head['hash']and final['number']==head['number']and final['timestamp']==head['timestamp']
+  assert quantity(final['gasLimit'])==DIAGNOSTIC
+  assert all(sha((R/name).read_bytes())==pin for name,pin in MEASUREMENT_HELPERS.items())
+ except Exception as error:
+  outcome.update(verification_error=type(error).__name__+': '+str(error),verification_complete=False,meets_reviewed_execution_profile=False)
+ finally:
+  if proc is not None:
+   proc.terminate()
+   try:proc.wait(timeout=10)
+   except subprocess.TimeoutExpired:proc.kill();proc.wait(timeout=10)
+   outcome['owned_node_stopped']=proc.poll()is not None
+  outcome['rpc_requests']=len(rpc.records)if rpc else 0
+  if rpc is not None:
+   payload=json.dumps(rpc.records,separators=(',',':')).encode()
+   (folder/'rpc-records.json.gz').write_bytes(gzip.compress(payload,mtime=0))
+   outcome['rpc_records_sha256']=sha((folder/'rpc-records.json.gz').read_bytes())
+  outcome['finished_at_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat()
+  (folder/'VERIFICATION.json').write_text(json.dumps(outcome,indent=2)+'\n',encoding='utf-8')
+ return outcome
+
+
+
+def royalty_workload(case,read,rpc,anchor,royalty,assets,zzz):
+ name,growth,opening,faults,slow=CASE_POLICY[case['label']]
+ words=decode_words('0x'+case['data'][10:]);assert case['data'].startswith(selector(EXECUTE_DIRECT_V3))and len(words)==9
+ source='0x'+words[2][-40:];amount=int(words[3],16)
+ assert source==(ZERO if name=='eth'else zzz)and bool(int(words[6],16))==growth
+ assert case['value']==(amount if source==ZERO else 0)and amount>0
+ assert case['destination']==case['pins']['entry']and case['sender']=='0x'+'0'*37+'b0b'
+ assert int(read(royalty,'ROYALTY_ALLOCATION_VERSION()')[0],16)==2
+ assert int(read(case['pins']['protocol_policy'],'royaltyBalanceGas()')[0],16)==50_000
+ expected_count=1000 if growth else 999;expected_weight=1500 if growth else 1499
+ rows=[]
+ for i,asset in enumerate(assets):
+  money={key:int(read(royalty,key+'(address)',asset)[0],16)for key in
+   ('eligibleCount','eligibleWeight','accounted','liabilities','openingPool','orphaned','allocationCursor')}
+  assert money['eligibleCount']==expected_count and money['eligibleWeight']==expected_weight
+  assert money['allocationCursor']==(0 if opening else 511 if growth else 513)
+  assert money['accounted']==(2996 if opening or growth else 0)
+  assert money['liabilities']==(2996 if growth else 0)
+  assert money['openingPool']==(2996 if opening else 0)and money['orphaned']==0
+  assert money['accounted']==money['liabilities']+money['openingPool']+money['orphaned']
+  balance=quantity(rpc.call('eth_getBalance',[royalty,anchor]))if asset==ZERO else int(read(asset,'balanceOf(address)',royalty)[0],16)
+  assert balance==2996
+  row={'asset':asset,**money,'actual_raw_balance':balance}
+  if i and i>64-faults:
+   row['claimable_read']='Not queried: controlled token balance fault also makes ordinary claimable unavailable; restored exact rights are asserted by the producer.'
+  else:
+   assert int(read(royalty,'claimable(uint256,address)',case['nft_id'],asset)[0],16)==0,'Entrant already owns past royalties'
+   row['entrant_claimable_before']=0
+  if i:
+   bad='0x'+read(asset,'failingReader()')[0][-40:];lag='0x'+read(asset,'slowReader()')[0][-40:]
+   assert bad==(royalty if i>64-faults else ZERO)
+   assert lag==(royalty if slow else ZERO)
+   row.update(failing_reader=bad,slow_reader=lag)
+  rows.append(row)
+ return {'source':source,'growth':growth,'opening':opening,'fault_count':faults,'slow_successful_reads':slow,
+  'eligible_count_all_assets':expected_count,'eligible_weight_all_assets':expected_weight,'read_cap':50_000,
+  'all65_currencies_verified':True,'currencies':rows,'expected_pending_units_per_currency':0 if opening or growth else 2996}
+
+
+def royalty_trace(trace,case,royalty,assets,workload):
+ all_frames=list(frames(trace));balance_data=selector('balanceOf(address)')+royalty[2:].rjust(64,'0')
+ reads=[row for row in all_frames if row.get('type')=='STATICCALL'and row.get('from','').lower()==royalty
+  and row.get('to','').lower()in assets[1:]and row.get('input','').lower()==balance_data]
+ growth=workload['growth'];faults=workload['fault_count'];slow=workload['slow_successful_reads']
+ assert len(reads)==(0 if growth else 64)
+ sync_selector=selector('syncForActivation(address,uint256)')
+ sync_frames=[row for row in all_frames if row.get('type')=='CALL'and row.get('from','').lower()==royalty
+  and row.get('to','').lower()==royalty and row.get('input','').startswith(sync_selector)]
+ assert len(sync_frames)==(0 if growth else 64)
+ fault_tag=selector('ActivationReadUnavailable()');sync_rows=[];read_rows=[]
+ fault_assets=set(assets[65-faults:])if faults else set()
+ for asset in assets[1:]:
+  found=[row for row in sync_frames if len(decode_words('0x'+row['input'][10:]))==2
+   and'0x'+decode_words('0x'+row['input'][10:])[0][-40:]==asset]
+  chosen=[row for row in reads if row['to'].lower()==asset]
+  if growth:assert not found and not chosen;continue
+  assert len(found)==len(chosen)==1
+  row=found[0];args=decode_words('0x'+row['input'][10:]);limits=int(args[1],16)
+  assert limits in(50_000,(1<<32)|50_000)
+  assert quantity(row['gas'])<=1_000_000,'Existing isolated sync allowance changed'
+  bad=asset in fault_assets
+  if bad:assert row.get('error')and row.get('output')==fault_tag
+  else:assert not row.get('error'),'Healthy currency was incorrectly deferred'
+  sync_rows.append({'asset':asset,'forwarded_frame_gas':quantity(row['gas']),'read_cap':limits&((1<<32)-1),
+   'full_frame_witness':bool(limits>>32),'bounded_fault_tag':row.get('output')if bad else None})
+  row=chosen[0];cap=quantity(row['gas']);used=quantity(row['gasUsed']);assert cap==50_000 and used<=cap
+  if bad:assert row.get('error')
+  else:
+   assert not row.get('error')and len(code_bytes(row.get('output','0x')))==32
+   assert int(row['output'],16)==2996
+   if slow:assert used>=45_000
+  read_rows.append({'asset':asset,'gas_limit':cap,'gas_used':used,'error':row.get('error'),'correct_balance_returned':not bad})
+ allocation_topic=topic('RoyaltiesAllocated(address,uint256,uint256,uint256,uint256,uint256)')
+ deferred_topic=topic('RoyaltyAssetDeferred(uint256,address)');activated_topic=topic('Activated(uint256,uint256)')
+ logs=[log for row in all_frames for log in row.get('logs',[])if log.get('address','').lower()==royalty]
+ allocations=[log for log in logs if log.get('topics',[None])[0]==allocation_topic]
+ deferrals=[log for log in logs if log.get('topics',[None])[0]==deferred_topic]
+ activations=[log for log in logs if log.get('topics',[None])[0]==activated_topic]
+ expected_assets=[]if growth else assets[:65-faults]
+ assert len(allocations)==len(expected_assets)and len(deferrals)==(0 if growth else faults)
+ assert len(activations)==(0 if growth else 1)
+ if activations:
+  assert len(activations[0]['topics'])==2 and int(activations[0]['topics'][1],16)==case['nft_id']
+  assert decode_words(activations[0]['data'])==[f'{1:064x}']
+ seen=[]
+ for log in allocations:
+  assert len(log['topics'])==2;asset='0x'+log['topics'][1][-40:]
+  values=[int(word,16)for word in decode_words(log['data'])];cursor=0 if workload['opening']else 513
+  assert values==[2996,999,1499,cursor,(cursor+2996%1499)%1499]
+  assert asset in expected_assets and asset not in seen;seen.append(asset)
+ assert set(seen)==set(expected_assets)
+ deferred_assets=[]
+ for log in deferrals:
+  assert len(log['topics'])==3 and int(log['topics'][1],16)==case['nft_id']
+  deferred_assets.append('0x'+log['topics'][2][-40:])
+ assert len(deferred_assets)==len(set(deferred_assets))and set(deferred_assets)==(set()if growth else fault_assets)
+ return {'verified':True,'reads':read_rows,'read_total_gas':sum(row['gas_used']for row in read_rows),
+  'isolated_sync_frames':sync_rows,'slow_reads_all_above_45k':bool(slow and all(row['gas_used']>=45_000 for row in read_rows)),
+  'allocations_to_exact_prejoin_cohort':len(allocations),'deferred_currencies':deferred_assets,
+  'new_active_common_events':len(activations),'growth_performed_no_royalty_intake':growth}
+
+
+def physical_portfolio(case,read,zzz):
+ pins=case['pins'];group=read(pins['vault'],'group(uint256)',case['shared_bucket'],count=8)
+ main=int(group[1],16);assert main>0 and int(group[7],16)==1
+ residual=int(read(pins['liquidity'],'secondaryId(uint256)',main)[0],16)
+ assert residual>0 and residual!=main and int(read(pins['liquidity'],'activeSecondaryCount()')[0],16)==1
+ legs=[]
+ for identifier in(main,residual):
+  assert int(read(pins['position_manager'],'ownerOf(uint256)',identifier)[0],16)==int(pins['vault'],16)
+  liquidity=int(read(pins['position_manager'],'getPositionLiquidity(uint256)',identifier)[0],16)
+  assert 0<liquidity<2**128
+  ticks=[int(word,16)for word in read(pins['liquidity'],'ticks(uint256)',identifier,count=2)]
+  ticks=[value if value<2**255 else value-2**256 for value in ticks]
+  assert -887272<=ticks[0]<ticks[1]<=887272
+  amounts=[int(word,16)for word in read(pins['liquidity'],'amounts(uint256)',identifier,count=2)]
+  assert sum(amounts)>0
+  legs.append({'id':identifier,'liquidity':liquidity,'ticks':ticks,'amounts':amounts,'owner':pins['vault']})
+ assert legs[0]['ticks'][0]<=legs[1]['ticks'][0]and legs[1]['ticks'][1]<=legs[0]['ticks'][1]
+ portfolio=[int(word,16)for word in read(pins['liquidity'],'portfolioAmounts(uint256)',main,count=2)]
+ assert portfolio==[sum(leg['amounts'][i]for leg in legs)for i in(0,1)]
+ assert int(read(pins['vault'],'bucketTotalShares(uint256)',case['shared_bucket'])[0],16)>0
+ for asset in(ZERO,zzz):
+  assert int(read(pins['fees'],'compoundBalance(uint256,address)',case['shared_bucket'],asset)[0],16)>0
+  assert int(read(pins['rewards'],'liabilities(address)',asset)[0],16)>0
+ return {'main':legs[0],'residual':legs[1],'portfolio_amounts':portfolio,
+  'bucket_group_words':['0x'+word for word in group],'both_vault_owned_nonzero_contained':True}
+
+
+def residual_trace(trace,case,physical):
+ """Final Pricing NAV must still read the same funded residual after main increase."""
+ pins=case['pins'];residual=physical['residual']
+ # The exact current selector is selected from the production trace module,
+ # which also proves the three ordered contribution phases below.
+ from frontend_api.activation_trace import NAV_PRICING
+ nav_selector=selector(NAV_PRICING)
+ vault_calls=[]
+ for frame in frames(trace):
+  if frame.get('from','').lower()==pins['vault']and frame.get('to','').lower()==pins['budget']and frame.get('input','').startswith(nav_selector):vault_calls.append(frame)
+ assert len(vault_calls)==3
+ # Walk the actual Vault call order, rather than a reversed DFS encounter order.
+ vault=next(frame for frame in frames(trace)if frame.get('to','').lower()==pins['vault']
+  and any(child.get('to','').lower()==pins['budget']and child.get('input','').startswith(nav_selector)for child in frame.get('calls',[])))
+ navs=[frame for frame in vault['calls']if frame.get('from','').lower()==pins['vault']and frame.get('to','').lower()==pins['budget']and frame.get('input','').startswith(nav_selector)]
+ assert len(navs)==3
+ final=list(frames(navs[-1]));liquidity_data=selector('getPositionLiquidity(uint256)')+f'{residual["id"]:064x}'
+ observed=[frame for frame in final if frame.get('to','').lower()==pins['position_manager']and frame.get('input','').lower()==liquidity_data]
+ assert observed,'Final contribution NAV omitted residual liquidity'
+ assert all(not row.get('error')and int(row['output'],16)==residual['liquidity']for row in observed)
+ principal_data=selector('principalAmounts(uint256)')+f'{residual["id"]:064x}'
+ observed_amounts=[frame for frame in final if frame.get('to','').lower()==pins['balancing_router']and frame.get('input','').lower()==principal_data]
+ assert observed_amounts,'Final contribution NAV omitted residual principal'
+ assert all(not row.get('error')and[int(word,16)for word in decode_words(row['output'])]==residual['amounts']for row in observed_amounts)
+ return {'verified':True,'same_residual_id':residual['id'],'same_residual_liquidity':residual['liquidity'],
+  'same_residual_principal_amounts':residual['amounts'],'final_nav_residual_liquidity_reads':len(observed),
+  'final_nav_residual_principal_reads':len(observed_amounts),
+  'scope':'Entrant swap uses reviewed external reference venue; target spot and residual principal stay unchanged.'}
+
+
+def contribution_padding(estimate):
+ if estimate is None:return None,False
+ assert type(estimate)is int and 21000<=estimate<2**256,'Invalid complete-call estimate'
+ padded=(estimate*120+99)//100
+ return padded,padded<=CAP
+
+
+def validate_asset_inventory(count,capacity,assets):
+ assert type(count)is int and type(capacity)is int and count==65 and capacity==64
+ assert type(assets)is list and len(assets)==65 and len(set(assets))==65 and assets[0]==ZERO
+ assert all(type(asset)is str and re.fullmatch(r'0x[0-9a-f]{40}',asset)for asset in assets)
+ assert ZERO not in assets[1:]
+
+
+def verify_contribution(rpc,read,case,anchor,alloc,omitted):
+ pins=case['pins'];royalty='0x'+read(pins['nft'],'royaltyRewards()')[0][-40:]
+ helper='0x'+read(pins['nft'],'seaDropMint()')[0][-40:];drop='0x'+read(helper,'seaDrop()')[0][-40:]
+ count=int(read(royalty,'assetCount()')[0],16);capacity=int(read(royalty,'assetCapacity()')[0],16)
+ assert count==65 and capacity==64
+ assets=['0x'+read(royalty,'assets(uint256)',i)[0][-40:]for i in range(65)]
+ validate_asset_inventory(count,capacity,assets)
+ assert int(read(pins['protocol_policy'],'royaltySyncGas()')[0],16)==1_000_000
+ zzz='0x'+read(pins['activation_assets'],'zzz()')[0][-40:]
+ assert helper!=ZERO and drop!=ZERO and int(read(helper,'nft()')[0],16)==int(pins['nft'],16)
+ assert all(address in case['materialized']for address in assets[1:]+[helper,drop,royalty])
+ assert int(read(pins['oracle'],'executionActive()')[0],16)==0
+ workload=royalty_workload(case,read,rpc,anchor,royalty,assets,zzz)
+ growth=workload['growth'];expected=1000 if growth else 999
+ assert int(read(pins['nft'],'mintedCount()')[0],16)==1000
+ assert int(read(royalty,'activationCount()')[0],16)==int(read(pins['membership'],'totalEligible()')[0],16)==expected
+ assert int(read(royalty,'totalWeight()')[0],16)==(1500 if growth else 1499)
+ assert int(read(pins['nft'],'rarityOf(uint256)',case['nft_id'])[0],16)==0
+ assert int(read(royalty,'weightOf(uint256)',case['nft_id'])[0],16)==(1 if growth else 0)
+ physical=physical_portfolio(case,read,zzz);density=enrollment_storage(alloc,royalty,assets,growth)
+ tx={'from':case['sender'],'to':case['destination'],'value':hex(case['value']),'data':case['data'],'gas':hex(CAP)}
+ call32=rpc.attempt('eth_call',[tx,anchor]);estimate32=rpc.attempt('eth_estimateGas',[tx,anchor]);trace32=checked_trace(rpc,tx,anchor,omitted)
+ estimate=quantity(estimate32['result'])if estimate32['ok']else None
+ padded,padding_fits=contribution_padding(estimate)
+ exact=None;padded_trace=None
+ if call32['ok']:assert call32['result']=='0x'
+ if call32['ok']and estimate is not None and 21000<=estimate<=padded<=CAP:
+  padded_tx={**tx,'gas':hex(padded)};exact=rpc.attempt('eth_call',[padded_tx,anchor])
+  if exact['ok']:
+   assert exact['result']=='0x';padded_trace=checked_trace(rpc,padded_tx,anchor,omitted)
+ trace32_ok=trace32['ok']and not trace32['result'].get('error')
+ padded_trace_ok=bool(padded_trace and padded_trace['ok']and not padded_trace['result'].get('error'))
+ admitted=bool(call32['ok']and estimate is not None and 21000<=estimate<=padded<=CAP and exact and exact['ok']and trace32_ok and padded_trace_ok)
+ result={'actual_32m_call':call32,'estimate_32m':estimate32,'estimated_gas':estimate,'padded_gas':padded,
+  'contribution_profile_cap':CAP,'padding_percent':20,'maximum_estimate_before_padding':26_666_666,
+  'exact_padded_call':exact,'trace32_succeeded':trace32_ok,'exact_padded_trace_succeeded':padded_trace_ok,
+  'population':{'minted':1000,'active':expected,'royalty_weight':1500 if growth else 1499,
+   'source_setup':'999 actual prior Entries, reverse Legendary/Rare/Commun activation order; no raw ledger seeding'},
+  'workload':{'royalty_erc20_currencies':64,'royalty_assets_total':65,'royalty_asset_capacity':64,
+   'royalty_assets':assets,'royalty_sync_gas':1_000_000,'royalty_ledger':royalty,'mint_helper':helper,
+   'seadrop':drop,'actual_empty_code_sender':case['sender'],'actual_workload':workload},
+  'physical_portfolio':physical,'enrollment_storage_proof':density}
+ trace=trace32['result']if trace32_ok else None;trace_tx=tx
+ if padded_trace_ok:trace=padded_trace['result'];trace_tx={**tx,'gas':hex(padded)}
+ if trace is None:
+  diagnostic_tx={**tx,'gas':hex(DIAGNOSTIC)}
+  diagnostic_call=rpc.attempt('eth_call',[diagnostic_tx,anchor]);diagnostic_trace=checked_trace(rpc,diagnostic_tx,anchor,omitted)
+  result['diagnostic96']={'execution_only_no_adoption':True,'cap':DIAGNOSTIC,'call':diagnostic_call,
+   'trace_succeeded':diagnostic_trace['ok']and not diagnostic_trace['result'].get('error')}
+  if diagnostic_call['ok']:assert diagnostic_call['result']=='0x'
+  if diagnostic_trace['ok']and not diagnostic_trace['result'].get('error'):
+   trace=diagnostic_trace['result'];trace_tx=diagnostic_tx
+  result['diagnostic96']['estimate']=rpc.attempt('eth_estimateGas',[diagnostic_tx,anchor])
+ assert trace is not None,'No complete financial trace even in explicit test-only diagnostic envelope'
+ measured=measure_trace(trace,trace_tx,case,read)
+ royalty_proof=royalty_trace(trace,case,royalty,assets,workload)
+ residual_proof=residual_trace(trace,case,physical)
+ financial=bool(royalty_proof['verified']and residual_proof['verified'])
+ # The selected padded trace is checked financially as well as its eth_call.
+ # Entry returns no data, so matching a bare success alone cannot prove cohorts.
+ result.update(production_trace_measurement=measured,production_trace_measurement_verified=True,
+  royalty_trace_verification=royalty_proof,residual_trace_verification=residual_proof,
+  trace_gas_used=quantity(trace['gasUsed']),measurement_gas_cap=quantity(trace_tx['gas']),
+  measurement_scope='exact-padded32M-profile call'if padded_trace_ok else'32M call without admitted padding'if trace32_ok else'96M TEST-ONLY diagnostic; not profile qualification',
+  exact_padded_trace_financial_verified=bool(padded_trace_ok and financial),
+  verification_complete=financial,meets_reviewed_execution_profile=bool(admitted and financial))
+ price=quantity(rpc.call('eth_gasPrice'));balance=quantity(rpc.call('eth_getBalance',[case['sender'],anchor]))
+ result.update(local_gas_price_wei=price,sender_balance_wei=balance,
+  fee_qualification='Local execution-only gas price, not complete target L1/L2/provider fee qualification.')
+ if admitted:assert balance>=case['value']+padded*price
+ return result
+
+
+def main(argv=None):
+ parser=argparse.ArgumentParser(description=__doc__)
+ parser.add_argument('stage',help='Exact newly completed owned producerNN stage')
+ args=parser.parse_args(argv)
+ context=configure(args.stage);cases,forge_hash,source,methods=exports()
+ chosen=[case for case in cases if case['label']in CASE_POLICY]
+ skipped=[case['label']for case in cases if case['label']in MAINTENANCE_LABELS]
+ assert len(chosen)==12 and len(skipped)==8
+ out=F/'cold-contributions';out.mkdir(exist_ok=False)
+ vectors=[]
+ for raw in(b'',b'abc',bytes(range(256))):
+  result=native_keccak256(raw);assert result==python_keccak256(raw)
+  vectors.append({'input_sha256':sha(raw),'length':len(raw),'keccak256':'0x'+result.hex()})
+ start={'schema':1,**context,'checker_sha256':sha(Path(__file__).read_bytes()),
+  'measurement_helper_sha256':MEASUREMENT_HELPERS,'normal_binding_sha256':NORMAL_BINDING_SHA256,
+  'new_source_methods':methods,'contribution_cases':[case['label']for case in chosen],
+  'explicitly_delegated_maintenance_cases':skipped,'public_requests_or_transactions':0,
+  'test_only_instrumentation':{'rpc_posts_per_case':1600,'work_seconds_per_case':900,'maximum_reply_bytes':MAX_REPLY,
+   'max_parallel_owned_nodes':3,'genesis_diagnostic_gas':DIAGNOSTIC,'not_production_API_limits':True},
+  'keccak_crosschecks':vectors}
+ (out/'CHECKER_START.json').write_text(json.dumps(start,indent=2)+'\n',encoding='utf-8')
+ completed={}
+ with ThreadPoolExecutor(max_workers=3)as workers:
+  jobs={workers.submit(owned_case,case,out,verify_contribution):case['label']for case in chosen}
+  for future in as_completed(jobs):
+   result=future.result();completed[jobs[future]]=result
+   print(json.dumps({'case':jobs[future],'verification_complete':result['verification_complete'],
+    'meets_32m_full20pct':result['meets_reviewed_execution_profile'],'estimated_gas':result.get('estimated_gas'),
+    'padded_gas':result.get('padded_gas'),'owned_node_stopped':result['owned_node_stopped'],
+    'verification_error':result.get('verification_error')}),flush=True)
+ results=[completed[case['label']]for case in chosen]
+ stable=all(sha((R/name).read_bytes())==pin for name,pin in MEASUREMENT_HELPERS.items())
+ summary={'schema':1,**context,'measurement_helpers_unchanged':stable,'source_methods':methods,
+  'new_contribution_scenarios':len(chosen),'completed_scenarios':len(results),
+  'explicitly_delegated_maintenance_scenarios':skipped,
+  'verification_complete':stable and len(results)==12 and all(row['verification_complete']and row['owned_node_stopped']for row in results),
+  'meets_32m_full20pct':[row['profile']['label']for row in results if row['meets_reviewed_execution_profile']],
+  'refuses_32m_full20pct':[row['profile']['label']for row in results if not row['meets_reviewed_execution_profile']],
+  'results':results,'production_approved':False,'diagnostic96_adopted':False,'unchanged_old_suites_executed':0}
+ (out/'SUMMARY.json').write_text(json.dumps(summary,indent=2)+'\n',encoding='utf-8')
+ return 0 if summary['verification_complete']else 1
+
+
+if __name__=='__main__':raise SystemExit(main())

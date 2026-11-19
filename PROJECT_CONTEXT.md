@@ -50,6 +50,20 @@ website/provider/history/latency admission remains open. service.py semantic
 source changes require reviewed checkpoint rebuild/re-pin on new adoption;
 old artifacts/databases/journals and running sites/services remain unchanged.
 
+## Controlled maximum-state qualification
+
+The [maximum-state rehearsal](reports/maximum-workload-20261119/REVIEW.md) uses
+1,000 locally minted NFTs funded through actual Entry calls,64 ERC20 royalty currencies plus ETH,
+a main/residual and reversed activation order.11/12 cold contributions fit32M
+with full20%; opening ZZZ/all-slow estimates27,142,801/32,571,362 padded and
+correctly refuses. Five executable maintenance paths fit24M/full25%; three
+intended timing/source refusals reproduce. All65 royalties pay/drain and raw LP
+liabilities reconcile; this does not qualify ETH conversion or claim-batch gas.
+Synthetic6M external execution depth is explicit. No cap,50k/1M allowance,
+source contract, authority or environment changes. All23 owned nodes stop.
+Keep the remaining476,135 estimate reduction and broader actual-market/full-state
+qualification open; never replace estimates with trace gas to pass admission.
+
 ## Current architecture and economics
 
 1,000 ERC721 NFTs; fixed600Commun/300Rare/100Legendary draw quotas. Native ETH and

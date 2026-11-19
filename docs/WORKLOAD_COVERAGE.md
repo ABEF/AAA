@@ -93,6 +93,18 @@ Operational shell/PowerShell/workflow entry files are also pinned in the
 That is file-level scope; no installation, deployment or live service action
 is inferred or executed by the inventory.
 
+## Controlled maximum-state results
+
+[The expanded rehearsal](../reports/maximum-workload-20261119/REVIEW.md) executes
+one new populated journey and20 cold states.11/12 ETH/ZZZ contribution states
+fit32M/full20%; opening ZZZ with64 slow ERC20 royalties plus ETH needs32,571,362
+padded and remains refused. Five executable maintenance paths fit24M/full25%;
+three intended timing/source rejections reproduce. Both LPs,1,000 NFT rights,
+all65 royalty payouts, raw LP liabilities and80/10/5/5 backing reconcile.
+Only three affected growth preflights were rechecked; nine completed activation
+records keep their original checker source. This finite synthetic-depth evidence
+is not every listed scenario, token implementation, lifetime or real-provider approval.
+
 ## Evidence and completion rules
 
 Use [the scenario register](../reports/whole-workload-review-20261119/SCENARIO_REGISTER.json)

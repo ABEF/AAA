@@ -1,5 +1,13 @@
 # Release approval record - NOT APPROVED
 
+The [current controlled maximum-state evidence](../reports/maximum-workload-20261119/REVIEW.md)
+verifies1,000 NFTs, both LPs and65 royalty assets:11/12 contributions fit32M/full20%;
+one slow-ZZZ opening state needs32,571,362 padded and remains open. All five
+executable maintenance states fit24M/full25%; three intended rejections reproduce.
+Rights/backing and actual royalty payouts reconcile. No production contract,
+default, authority, actual-provider or live-environment approval changes; broader
+source/market/currency/operating and independent release qualification remains.
+
 ## Whole-project evidence boundary
 
 The [whole-workload review](../reports/whole-workload-review-20261119/REVIEW.md) expands scope beyond the gas-only recommendation.

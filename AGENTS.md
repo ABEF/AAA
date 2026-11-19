@@ -29,6 +29,20 @@ checkpoint/review/raw DB bytes; explicitly rebuild/review/re-pin on separately
 authorized consumer adoption. Websites, running services and old checkpoints
 are not automatically upgraded. No gas/fee/work limit or financial right changes.
 
+## Controlled maximum-state qualification
+
+The [maximum-state rehearsal](reports/maximum-workload-20261119/REVIEW.md) uses
+1,000 locally minted NFTs funded through actual Entry calls,64 ERC20 royalty currencies plus ETH,
+a main/residual and reversed activation order.11/12 cold contributions fit32M
+with full20%; opening ZZZ/all-slow estimates27,142,801/32,571,362 padded and
+correctly refuses. Five executable maintenance paths fit24M/full25%; three
+intended timing/source refusals reproduce. All65 royalties pay/drain and raw LP
+liabilities reconcile; this does not qualify ETH conversion or claim-batch gas.
+Synthetic6M external execution depth is explicit. No cap,50k/1M allowance,
+source contract, authority or environment changes. All23 owned nodes stop.
+Keep the remaining476,135 estimate reduction and broader actual-market/full-state
+qualification open; never replace estimates with trace gas to pass admission.
+
 ## Current source, selected gas profile and evidence
 
 The trusted normal build remains `activation-final-six-20261118`, explicit

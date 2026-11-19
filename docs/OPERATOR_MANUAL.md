@@ -39,6 +39,35 @@ pending work first. A source/config update still needs the reviewed stop/reconci
 dry-run/restart process; no running service was changed. See the
 [remaining-findings verification](../reports/remaining-271-20261111/VERIFICATION.md).
 
+## Review capacity before admitting more royalty currencies
+
+The [controlled maximum-state record](../reports/maximum-workload-20261119/REVIEW.md)
+checks1,000 NFTs, a main/residual and64 ERC20 royalties PLUS ETH. That is65 assets,
+not64 total. Governance capacity admission alone does not approve operating gas.
+Read `Royalty.assetCapacity()` and `Royalty.assetCount()` and review the actual
+currencies before using the existing NFT capacity-increase procedure.
+
+Keep legacy12M defaults, selected contribution32M/full20%, keeper/manual24M/full25%,
+50,000 activation balance reads and1M isolated sync unchanged. Eleven of twelve
+controlled contributions fit; opening ZZZ/all-slow needs27,142,801 estimated /
+32,571,362 padded and must be refused. It is not approved by a successful bare32M
+call or its smaller trace gas. Do not skip a currency or discard headroom.
+Worst tested padded executable maintenance is18,911,824; three deliberate
+rejections are protection checks, not executable gas passes.
+
+A zero compound reserve after activation/growth can be legitimate: the existing
+checkpoint moves designated compound to attributed Vault idle. Reconcile BOTH
+physical LP legs plus idle and remaining compound; never count it twice or treat
+an empty reserve alone as lost money. Normal reinvestment/guarded consolidation
+and the keeper's in-range policy remain the documented controls.
+
+These are source-pinned synthetic-market measurements, not production settings.
+They do not adopt capacity64, an RPC, fee budget, route or running configuration.
+No restart is required for this test/documentation publication. A later actual
+consumer/configuration adoption still uses stop/reconcile saved pending work,
+exact source/runtime review, fresh estimates/complete fees, dry run and the
+existing controlled restart procedure. Preserve all original journals/checkpoints.
+
 ## Use a price-reference pool for swaps
 
 Fresh execution-price1/LP-routing3 supports this explicitly. A reviewed external

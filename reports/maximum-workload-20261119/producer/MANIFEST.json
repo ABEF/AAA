@@ -1,0 +1,190 @@
+{
+  "schema": 1,
+  "stage": "producer06",
+  "files": [
+    {
+      "path": "START.json",
+      "source_sha256": "7be9fee6363a6968b0966d04bd7489a8300b2c4a06e74d64246bcab364871304",
+      "stored_sha256": "7be9fee6363a6968b0966d04bd7489a8300b2c4a06e74d64246bcab364871304",
+      "source_bytes": 41166,
+      "stored_bytes": 41166,
+      "compression": null
+    },
+    {
+      "path": "EXECUTION.json",
+      "source_sha256": "562be2ecba5e35a0afec950d6df19b122dfe37b6e442c8c91a3f8cfacc79253b",
+      "stored_sha256": "562be2ecba5e35a0afec950d6df19b122dfe37b6e442c8c91a3f8cfacc79253b",
+      "source_bytes": 29221,
+      "stored_bytes": 29221,
+      "compression": null
+    },
+    {
+      "path": "stderr.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "stored_bytes": 0,
+      "compression": null
+    },
+    {
+      "path": "raw.json.gz",
+      "source_sha256": "b531fd72b68a77cd290674444f11b5b3bb711dd6752d2f49aef76f3ffbf5719b",
+      "stored_sha256": "1b7b098d2e46da1a71d37cd7923e6d8edd2ac1036d725ce8a309579ccc2ea049",
+      "source_bytes": 148609536,
+      "stored_bytes": 9143517,
+      "compression": "gzip"
+    },
+    {
+      "path": "producer-artifact.json.gz",
+      "source_sha256": "a3ec2f18a69236994fef2f1142f428f27c7dc0b277d6c839bd00927dd176930d",
+      "stored_sha256": "0905ed5e294283c0758956a07b88b4137088d23f92faa067e818edfa6cd016b7",
+      "source_bytes": 4207724,
+      "stored_bytes": 1078404,
+      "compression": "gzip"
+    },
+    {
+      "path": "COMPILED_INPUT_SOURCE_POOL.json.gz",
+      "source_sha256": "a0672102145cf394ba2f188baab7326213958193412938b87ed4a89fff285c61",
+      "stored_sha256": "a0672102145cf394ba2f188baab7326213958193412938b87ed4a89fff285c61",
+      "source_bytes": 357307,
+      "stored_bytes": 357307,
+      "compression": null
+    },
+    {
+      "path": "MaximumWorkload20261119.t.sol.txt",
+      "source_sha256": "1cd6df66b470f3ee9da4cb1c8a823a56572a09dcb25e80c4ea608c558b5d9a9e",
+      "stored_sha256": "1cd6df66b470f3ee9da4cb1c8a823a56572a09dcb25e80c4ea608c558b5d9a9e",
+      "source_bytes": 37622,
+      "stored_bytes": 37622,
+      "compression": null
+    },
+    {
+      "path": "MaximumMaintenanceWorkload20261119.t.sol.txt",
+      "source_sha256": "b53d50200648f6f155f789a6dd612bb50c181116bb8bcfa57203e44723a49c04",
+      "stored_sha256": "b53d50200648f6f155f789a6dd612bb50c181116bb8bcfa57203e44723a49c04",
+      "source_bytes": 18842,
+      "stored_bytes": 18842,
+      "compression": null
+    }
+  ],
+  "export_archive": {
+    "path": "exports.tar.xz",
+    "sha256": "e6eccc2d4502d0a8da210d43b5ea70b938251ba9527999f4ea95a828d1d83eb0",
+    "stored_bytes": 19776048,
+    "files": [
+      {
+        "name": "max1000-lp2-compound-before-interval.json",
+        "sha256": "81164db377e5d33420223b9a11098690b6b49ea5efa09ad79ed68163ad4fdb6d",
+        "bytes": 36260943
+      },
+      {
+        "name": "max1000-lp2-compound-stale-price.json",
+        "sha256": "6a2b1ceab31653d77b9e61521fe67c2f08441e88994dc9f083d017a504233d0d",
+        "bytes": 36260679
+      },
+      {
+        "name": "max1000-lp2-compound.json",
+        "sha256": "9785c1ba11a5d3f4013add633960dde50961d578d4b4e6432ebb9a4ddc71cb1d",
+        "bytes": 36260955
+      },
+      {
+        "name": "max1000-lp2-harvest-no-new-fees.json",
+        "sha256": "3cc1a604f81dd2ce49dbdbdd2428d45ea07870c6f7c6876c3789dc41fd024163",
+        "bytes": 36260541
+      },
+      {
+        "name": "max1000-lp2-harvest.json",
+        "sha256": "2f3b1db50161d7877031721e3162d00c3990d7d9830e4f39960d4f20b8d86370",
+        "bytes": 36260541
+      },
+      {
+        "name": "max1000-lp2-ordinary-replace.json",
+        "sha256": "39364cb5e3d5ddf398c9a1e27483ae2cb963d6fa11bbd3821a9c10d748c04b47",
+        "bytes": 36260817
+      },
+      {
+        "name": "max1000-lp2-rebalance-replay-before-cooldown.json",
+        "sha256": "e212a94b0e049e7bf4050a6354e4c1bb00a7925482cad0820332a3f0094177e6",
+        "bytes": 36264945
+      },
+      {
+        "name": "max1000-lp2-to-lp1-merge.json",
+        "sha256": "f96eebb09aa56aa1f34813cf894093358dbb70ca124b3a5c9b384b4bd708a0c0",
+        "bytes": 36260541
+      },
+      {
+        "name": "max64-twolp-1000-grow-eth.json",
+        "sha256": "50b532880f798aa21776dfc2f4c0b244548feea1b3c5a3cef97166f78c83b9c2",
+        "bytes": 36260287
+      },
+      {
+        "name": "max64-twolp-1000-grow-zzz-allfault.json",
+        "sha256": "c4b7197cc4540c168efe7bf9f5a6509f5492b340778cf30e88dc412afe9c1e59",
+        "bytes": 36260287
+      },
+      {
+        "name": "max64-twolp-1000-grow-zzz.json",
+        "sha256": "b12e7a42df3d049f95e5c4278323ec32d441087a2ad9a68ca3f202c9ac79f1ea",
+        "bytes": 36260287
+      },
+      {
+        "name": "max64-twolp-999-opening-eth-allfault.json",
+        "sha256": "0416fbb49124f4c5f1e06adc0e45636c76c8e3751be429c5f23778f6b0fc4e8b",
+        "bytes": 18292813
+      },
+      {
+        "name": "max64-twolp-999-opening-eth.json",
+        "sha256": "4fd298820bb211226bbaa8b6794428b97c5592f160e200ab802a5103cd636541",
+        "bytes": 18292813
+      },
+      {
+        "name": "max64-twolp-999-opening-zzz-allslow.json",
+        "sha256": "371ac2e730f2147ee45e24804b7d847aa0314baa5bbb03879329930c596d6fa1",
+        "bytes": 18292813
+      },
+      {
+        "name": "max64-twolp-999-opening-zzz.json",
+        "sha256": "9749d4540e42f4785f4f8694534408697c4a029abec0c827601d4a6221e4d73a",
+        "bytes": 18292813
+      },
+      {
+        "name": "max64-twolp-999-rotated-eth-allslow.json",
+        "sha256": "6616c6677f079bdd413a9170a1ecddc4ad28633dead221a8a88eda5e0a92e7d8",
+        "bytes": 36223981
+      },
+      {
+        "name": "max64-twolp-999-rotated-eth-onefault.json",
+        "sha256": "ad2e6843a5fdb137df39d94f5015f44d847b365d81afb870fce046d33abe97e9",
+        "bytes": 36223981
+      },
+      {
+        "name": "max64-twolp-999-rotated-eth.json",
+        "sha256": "ac73b864fc6bf0a1b2299c28a235af8ead91773b4ee204ca245ce95dbe4ea471",
+        "bytes": 36223981
+      },
+      {
+        "name": "max64-twolp-999-rotated-zzz-allfault.json",
+        "sha256": "a6dd28c72e5e190f647a301d68a1451819fc6134b4c2d3d75e0ab87827d8dc96",
+        "bytes": 36223981
+      },
+      {
+        "name": "max64-twolp-999-rotated-zzz.json",
+        "sha256": "6f8d9d923abf0ab6be07893e792890a627ebfd57861dad6e4205b741ba61c17e",
+        "bytes": 36223981
+      },
+      {
+        "name": "setup.setup.json",
+        "sha256": "758ff6b7b9d782d72da89bea75a5451986d69930cd7d0fc031c68d467a953788",
+        "bytes": 799656
+      }
+    ],
+    "compression": "xz/LZMA2 preset3 with64MiB dictionary; exact original member bytes",
+    "all_members_verified": true
+  },
+  "new_distinct_producer_methods": 1,
+  "new_contribution_exports": 12,
+  "new_maintenance_exports": 8,
+  "old_tests_executed": 0,
+  "test_only_diagnostic_gas": 96000000,
+  "cold_admission_separate": true
+}

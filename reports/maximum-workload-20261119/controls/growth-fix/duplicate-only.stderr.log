@@ -1,0 +1,5 @@
+usage: verify_contributions.py [-h]
+                               [--only {max64-twolp-1000-grow-eth,max64-twolp-1000-grow-zzz,max64-twolp-1000-grow-zzz-allfault} [{max64-twolp-1000-grow-eth,max64-twolp-1000-grow-zzz,max64-twolp-1000-grow-zzz-allfault} ...]]
+                               [--output-tag OUTPUT_TAG]
+                               stage
+verify_contributions.py: error: cli.selection: Unknown or duplicate growth recheck label

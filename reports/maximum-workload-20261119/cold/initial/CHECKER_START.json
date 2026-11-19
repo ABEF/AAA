@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "stage": "producer06",
+  "baseline_sha256": "0ef7ec5aadb7e1dbdfa590baa8b5abe7081cfc047eebf1b8785766e78ec63e95",
+  "producer_raw_sha256": "b531fd72b68a77cd290674444f11b5b3bb711dd6752d2f49aef76f3ffbf5719b",
+  "producer_start_sha256": "7be9fee6363a6968b0966d04bd7489a8300b2c4a06e74d64246bcab364871304",
+  "producer_artifact_sha256": "a3ec2f18a69236994fef2f1142f428f27c7dc0b277d6c839bd00927dd176930d",
+  "globally_frozen_project_sources": 61,
+  "compiled_project_sources": 58,
+  "explicitly_uncompiled_project_sources": [
+    "src/ZZZAccessController.sol",
+    "src/ZZZPoolRegistry.sol",
+    "src/ZZZPythPriceFeed.sol"
+  ],
+  "checker_sha256": "7fa494045d488b7255f9ae9eb7f056018e90c088e874c395230a40d9dac0c9a0",
+  "measurement_helper_sha256": {
+    "frontend_api/activation_trace.py": "3f59bef3da40ea846b407291ac7eb7d5fc3111f36c8e35a747bb8b2f250a21f5",
+    "frontend_api/service.py": "af0e9f494721d11be4c027fdc15dc4bb6c40583eaa87e06cc704b035c6c2a1b9",
+    "zzz_ops/abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d",
+    "zzz_ops/execution_price.py": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2"
+  },
+  "normal_binding_sha256": "850a5d1ba0c281ef475125424afa8cee365675e531a5538a26f4bc895695fe41",
+  "new_source_methods": [
+    "test/MaximumWorkload20261119.t.sol:MaximumWorkload20261119Test:testMaximum1000TwoLP65CurrenciesReverseOrderContributionsAndMaintenance20261119()"
+  ],
+  "contribution_cases": [
+    "max64-twolp-999-opening-eth",
+    "max64-twolp-999-opening-zzz",
+    "max64-twolp-999-opening-zzz-allslow",
+    "max64-twolp-999-opening-eth-allfault",
+    "max64-twolp-999-rotated-zzz",
+    "max64-twolp-999-rotated-eth-onefault",
+    "max64-twolp-999-rotated-zzz-allfault",
+    "max64-twolp-999-rotated-eth-allslow",
+    "max64-twolp-999-rotated-eth",
+    "max64-twolp-1000-grow-eth",
+    "max64-twolp-1000-grow-zzz-allfault",
+    "max64-twolp-1000-grow-zzz"
+  ],
+  "explicitly_delegated_maintenance_cases": [
+    "max1000-lp2-harvest",
+    "max1000-lp2-harvest-no-new-fees",
+    "max1000-lp2-compound",
+    "max1000-lp2-compound-before-interval",
+    "max1000-lp2-ordinary-replace",
+    "max1000-lp2-rebalance-replay-before-cooldown",
+    "max1000-lp2-to-lp1-merge",
+    "max1000-lp2-compound-stale-price"
+  ],
+  "public_requests_or_transactions": 0,
+  "test_only_instrumentation": {
+    "rpc_posts_per_case": 1600,
+    "work_seconds_per_case": 900,
+    "maximum_reply_bytes": 67108864,
+    "max_parallel_owned_nodes": 3,
+    "genesis_diagnostic_gas": 96000000,
+    "not_production_API_limits": true
+  },
+  "keccak_crosschecks": [
+    {
+      "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "length": 0,
+      "keccak256": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470"
+    },
+    {
+      "input_sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+      "length": 3,
+      "keccak256": "0x4e03657aea45a94fc7d47ba826c8d667c0d1e6e33a64a036ec44f58fa12d6c45"
+    },
+    {
+      "input_sha256": "40aff2e9d2d8922e47afd4648e6967497158785fbd1da870e7110266bf944880",
+      "length": 256,
+      "keccak256": "0xdc924469b334aed2a19fac7252e9961aea41f8d91996366029dbe0884229bf36"
+    }
+  ]
+}

@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Maximum-state contributions and maintenance](maximum-workload-20261119/REVIEW.md)
+records new controlled1,000-NFT/two-LP/65-asset evidence:11/12 contribution profiles
+fit, one headroom refusal remains, five maintenance paths fit and three intended
+rejections reproduce. Failed attempts, checker corrections and exact reused
+source stages remain explicit. This is not whole-project release approval.
+
 [Whole-project workload review](whole-workload-review-20261119/REVIEW.md)
 indexes all callable/internal/service source families, corrects the composed LP
 oracle and adds bounded same-block ownership pages. Nine affected/new market

@@ -1,0 +1,368 @@
+{
+  "schema": 1,
+  "scope": "Failed or zero-execution attempts, never qualifying passes. Original source stages and outcomes retained. Large failed exports remain external; successful qualifying exports will be archived separately.",
+  "attempts": [
+    {
+      "stage": "producer01",
+      "successful": false,
+      "method_outcomes": [],
+      "files": [
+        {
+          "path": "COMPILED_INPUT_SOURCE_POOL.json.gz",
+          "source_sha256": "4f4dc67c4d36068eacd52a573310bce5d72d2e04f2748b535d1371e61ddc316a",
+          "stored_sha256": "4f4dc67c4d36068eacd52a573310bce5d72d2e04f2748b535d1371e61ddc316a",
+          "source_bytes": 355458,
+          "stored_bytes": 355458,
+          "compression": null
+        },
+        {
+          "path": "EXECUTION.json",
+          "source_sha256": "5be24a5a0957595ca6b1ae8dcae73871cd106b275fd28a7ea922e966c420e290",
+          "stored_sha256": "5be24a5a0957595ca6b1ae8dcae73871cd106b275fd28a7ea922e966c420e290",
+          "source_bytes": 25481,
+          "stored_bytes": 25481,
+          "compression": null
+        },
+        {
+          "path": "MaximumMaintenanceWorkload20261119.t.sol.txt",
+          "source_sha256": "3d997c45a85d14ed3e37bdba03173e744860ba3fd0568f5bd28a395b0b3b7ba0",
+          "stored_sha256": "3d997c45a85d14ed3e37bdba03173e744860ba3fd0568f5bd28a395b0b3b7ba0",
+          "source_bytes": 17763,
+          "stored_bytes": 17763,
+          "compression": null
+        },
+        {
+          "path": "MaximumWorkload20261119.t.sol.txt",
+          "source_sha256": "1b63656485c408aec33c7b30e5a2fbf89d63ba32c1070264d2f9984ab7511a5a",
+          "stored_sha256": "1b63656485c408aec33c7b30e5a2fbf89d63ba32c1070264d2f9984ab7511a5a",
+          "source_bytes": 31844,
+          "stored_bytes": 31844,
+          "compression": null
+        },
+        {
+          "path": "raw.json.gz",
+          "source_sha256": "ee0826c2bc3e985ec7da3d9b35eb6923cd2d0a3764f8b3e36de53d8503bac721",
+          "stored_sha256": "cb47c83b59be4b2eb28efdfd5a9e3b858642f0d941cb44ce5c99b2085dd4f226",
+          "source_bytes": 19,
+          "stored_bytes": 39,
+          "compression": "gzip"
+        },
+        {
+          "path": "START.json",
+          "source_sha256": "f257c730eea0ffdaddca0b8487fc868852a327c1f1a9b0929eb1580a319ab999",
+          "stored_sha256": "f257c730eea0ffdaddca0b8487fc868852a327c1f1a9b0929eb1580a319ab999",
+          "source_bytes": 41341,
+          "stored_bytes": 41341,
+          "compression": null
+        },
+        {
+          "path": "stderr.log",
+          "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_bytes": 0,
+          "stored_bytes": 0,
+          "compression": null
+        }
+      ],
+      "exports_retained_external_only": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\maximum-workload-20261119\\producer01\\exports"
+    },
+    {
+      "stage": "producer02",
+      "successful": false,
+      "method_outcomes": [],
+      "files": [
+        {
+          "path": "COMPILED_INPUT_SOURCE_POOL.json.gz",
+          "source_sha256": "bceb1e83569ffff7aef8373587e02cf356f1b6334b034d0243d2ded8d69c83e1",
+          "stored_sha256": "bceb1e83569ffff7aef8373587e02cf356f1b6334b034d0243d2ded8d69c83e1",
+          "source_bytes": 355642,
+          "stored_bytes": 355642,
+          "compression": null
+        },
+        {
+          "path": "EXECUTION.json",
+          "source_sha256": "109e220bf5b2d018da125fa9c704d487dd2fc04d28783e5987ce9598cdfb7216",
+          "stored_sha256": "109e220bf5b2d018da125fa9c704d487dd2fc04d28783e5987ce9598cdfb7216",
+          "source_bytes": 25480,
+          "stored_bytes": 25480,
+          "compression": null
+        },
+        {
+          "path": "MaximumMaintenanceWorkload20261119.t.sol.txt",
+          "source_sha256": "ea5a5f3e09cb59a4143ee286b160086e023d954cd42dd77a9ccccc6b5abc9a65",
+          "stored_sha256": "ea5a5f3e09cb59a4143ee286b160086e023d954cd42dd77a9ccccc6b5abc9a65",
+          "source_bytes": 18409,
+          "stored_bytes": 18409,
+          "compression": null
+        },
+        {
+          "path": "MaximumWorkload20261119.t.sol.txt",
+          "source_sha256": "4f39184c25885206b65b17d5739ada49af84902cac92b77f442ed5f5f5121b74",
+          "stored_sha256": "4f39184c25885206b65b17d5739ada49af84902cac92b77f442ed5f5f5121b74",
+          "source_bytes": 31938,
+          "stored_bytes": 31938,
+          "compression": null
+        },
+        {
+          "path": "raw.json.gz",
+          "source_sha256": "9e1922b3a2d5e21d699be208c718f35a20d43fa537b5cb15feda9a0f972b75df",
+          "stored_sha256": "6b76b58efbb5ed890ed639e1f250e401fb784b1da653e258582c07938e454c91",
+          "source_bytes": 76,
+          "stored_bytes": 86,
+          "compression": "gzip"
+        },
+        {
+          "path": "START.json",
+          "source_sha256": "03ad03064d399c6d1360c36cbe409143df0b0026c4dccb705196b15f1d452897",
+          "stored_sha256": "03ad03064d399c6d1360c36cbe409143df0b0026c4dccb705196b15f1d452897",
+          "source_bytes": 41166,
+          "stored_bytes": 41166,
+          "compression": null
+        },
+        {
+          "path": "stderr.log",
+          "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_bytes": 0,
+          "stored_bytes": 0,
+          "compression": null
+        }
+      ],
+      "exports_retained_external_only": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\maximum-workload-20261119\\producer02\\exports"
+    },
+    {
+      "stage": "producer03",
+      "successful": false,
+      "method_outcomes": [
+        {
+          "id": "test/MaximumWorkload20261119.t.sol:MaximumWorkload20261119Test:testMaximum1000TwoLP65CurrenciesReverseOrderContributionsAndMaintenance20261119()",
+          "status": "Failure",
+          "reason": "assertion failed"
+        }
+      ],
+      "files": [
+        {
+          "path": "COMPILED_INPUT_SOURCE_POOL.json.gz",
+          "source_sha256": "bceb1e83569ffff7aef8373587e02cf356f1b6334b034d0243d2ded8d69c83e1",
+          "stored_sha256": "bceb1e83569ffff7aef8373587e02cf356f1b6334b034d0243d2ded8d69c83e1",
+          "source_bytes": 355642,
+          "stored_bytes": 355642,
+          "compression": null
+        },
+        {
+          "path": "EXECUTION.json",
+          "source_sha256": "cbd4a076bc1178b3cdfd82137cdb90b587a560e36397ad3fc0a7015ade10dce2",
+          "stored_sha256": "cbd4a076bc1178b3cdfd82137cdb90b587a560e36397ad3fc0a7015ade10dce2",
+          "source_bytes": 25811,
+          "stored_bytes": 25811,
+          "compression": null
+        },
+        {
+          "path": "MaximumMaintenanceWorkload20261119.t.sol.txt",
+          "source_sha256": "ea5a5f3e09cb59a4143ee286b160086e023d954cd42dd77a9ccccc6b5abc9a65",
+          "stored_sha256": "ea5a5f3e09cb59a4143ee286b160086e023d954cd42dd77a9ccccc6b5abc9a65",
+          "source_bytes": 18409,
+          "stored_bytes": 18409,
+          "compression": null
+        },
+        {
+          "path": "MaximumWorkload20261119.t.sol.txt",
+          "source_sha256": "4f39184c25885206b65b17d5739ada49af84902cac92b77f442ed5f5f5121b74",
+          "stored_sha256": "4f39184c25885206b65b17d5739ada49af84902cac92b77f442ed5f5f5121b74",
+          "source_bytes": 31938,
+          "stored_bytes": 31938,
+          "compression": null
+        },
+        {
+          "path": "producer-artifact.json.gz",
+          "source_sha256": "d2c4dc21462bb25cfa9f50533e94f2263018cd287c3849baa22b12c6df479549",
+          "stored_sha256": "0e08882b536fe13f70d34f49e58c63566072cfd65d74c66a79d7c8810a96aa53",
+          "source_bytes": 4166533,
+          "stored_bytes": 1069209,
+          "compression": "gzip"
+        },
+        {
+          "path": "raw.json.gz",
+          "source_sha256": "19428447609f6f9f8b81abf43fddc20019b4438b4e82bdc52e71f7b2e44a4f0c",
+          "stored_sha256": "be634914b1ed009e31864602cf392d91fe2104afc6fdadef427aafc5fc938951",
+          "source_bytes": 14807239,
+          "stored_bytes": 487865,
+          "compression": "gzip"
+        },
+        {
+          "path": "START.json",
+          "source_sha256": "b2d40fafa2e519f25ceb093d319071c33b2b9693014dd2932c18b6d88b366bd7",
+          "stored_sha256": "b2d40fafa2e519f25ceb093d319071c33b2b9693014dd2932c18b6d88b366bd7",
+          "source_bytes": 41164,
+          "stored_bytes": 41164,
+          "compression": null
+        },
+        {
+          "path": "stderr.log",
+          "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_bytes": 0,
+          "stored_bytes": 0,
+          "compression": null
+        }
+      ],
+      "exports_retained_external_only": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\maximum-workload-20261119\\producer03\\exports"
+    },
+    {
+      "stage": "producer04",
+      "successful": false,
+      "method_outcomes": [
+        {
+          "id": "test/MaximumWorkload20261119.t.sol:MaximumWorkload20261119Test:testMaximum1000TwoLP65CurrenciesReverseOrderContributionsAndMaintenance20261119()",
+          "status": "Failure",
+          "reason": "Slippage()"
+        }
+      ],
+      "files": [
+        {
+          "path": "COMPILED_INPUT_SOURCE_POOL.json.gz",
+          "source_sha256": "f974e6c5dd251af52bec63340f8a82ad7a0e874e40b098384ee6581bc9b94855",
+          "stored_sha256": "f974e6c5dd251af52bec63340f8a82ad7a0e874e40b098384ee6581bc9b94855",
+          "source_bytes": 356173,
+          "stored_bytes": 356173,
+          "compression": null
+        },
+        {
+          "path": "EXECUTION.json",
+          "source_sha256": "776770ed72f1b5472ac8c624af2db5e15c0068e3a34b89436523c731b859ca5e",
+          "stored_sha256": "776770ed72f1b5472ac8c624af2db5e15c0068e3a34b89436523c731b859ca5e",
+          "source_bytes": 25806,
+          "stored_bytes": 25806,
+          "compression": null
+        },
+        {
+          "path": "MaximumMaintenanceWorkload20261119.t.sol.txt",
+          "source_sha256": "ea5a5f3e09cb59a4143ee286b160086e023d954cd42dd77a9ccccc6b5abc9a65",
+          "stored_sha256": "ea5a5f3e09cb59a4143ee286b160086e023d954cd42dd77a9ccccc6b5abc9a65",
+          "source_bytes": 18409,
+          "stored_bytes": 18409,
+          "compression": null
+        },
+        {
+          "path": "MaximumWorkload20261119.t.sol.txt",
+          "source_sha256": "dcc7424aa9b13881f56c6886ae55ae88cfb61b0d2cb0fd06032a604ef4662c88",
+          "stored_sha256": "dcc7424aa9b13881f56c6886ae55ae88cfb61b0d2cb0fd06032a604ef4662c88",
+          "source_bytes": 33506,
+          "stored_bytes": 33506,
+          "compression": null
+        },
+        {
+          "path": "producer-artifact.json.gz",
+          "source_sha256": "8b0593f556a51454f2ab2f659d33fa84c5cf1f6815b6dcb678dfe0c2d18f6e0a",
+          "stored_sha256": "75edddd10f8419f8ab4f6df1a4a461d1136073d7b644031f036cffca84e6de45",
+          "source_bytes": 4179869,
+          "stored_bytes": 1072388,
+          "compression": "gzip"
+        },
+        {
+          "path": "raw.json.gz",
+          "source_sha256": "253bdb089928e2640e6c28d14f021c4602cda61276cc6fa4a330df3b48f29b6a",
+          "stored_sha256": "cfc3abc5215df0e992e8e86cebee92194dbbbb1da7e5244afae49c0ab6cea386",
+          "source_bytes": 14816897,
+          "stored_bytes": 488550,
+          "compression": "gzip"
+        },
+        {
+          "path": "START.json",
+          "source_sha256": "7d54f1dc92320cf93f34fb39e84d7b031abf0fb9290f387431ad422b8d68c413",
+          "stored_sha256": "7d54f1dc92320cf93f34fb39e84d7b031abf0fb9290f387431ad422b8d68c413",
+          "source_bytes": 41166,
+          "stored_bytes": 41166,
+          "compression": null
+        },
+        {
+          "path": "stderr.log",
+          "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_bytes": 0,
+          "stored_bytes": 0,
+          "compression": null
+        }
+      ],
+      "exports_retained_external_only": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\maximum-workload-20261119\\producer04\\exports"
+    },
+    {
+      "stage": "producer05",
+      "successful": false,
+      "method_outcomes": [
+        {
+          "id": "test/MaximumWorkload20261119.t.sol:MaximumWorkload20261119Test:testMaximum1000TwoLP65CurrenciesReverseOrderContributionsAndMaintenance20261119()",
+          "status": "Failure",
+          "reason": "PriceLimitAlreadyExceeded(65759374886839400205733855232 [6.575e28], 65759374886839400205733855232 [6.575e28])"
+        }
+      ],
+      "files": [
+        {
+          "path": "COMPILED_INPUT_SOURCE_POOL.json.gz",
+          "source_sha256": "751c356f07cefef5916b047c20d4e82f1287d28272615d07ea389c0235e75a68",
+          "stored_sha256": "751c356f07cefef5916b047c20d4e82f1287d28272615d07ea389c0235e75a68",
+          "source_bytes": 357176,
+          "stored_bytes": 357176,
+          "compression": null
+        },
+        {
+          "path": "EXECUTION.json",
+          "source_sha256": "00efdcb28aa811c4a735fde605f2db5260d187165b5eb17a5b38860015ee39d7",
+          "stored_sha256": "00efdcb28aa811c4a735fde605f2db5260d187165b5eb17a5b38860015ee39d7",
+          "source_bytes": 29329,
+          "stored_bytes": 29329,
+          "compression": null
+        },
+        {
+          "path": "MaximumMaintenanceWorkload20261119.t.sol.txt",
+          "source_sha256": "ea5a5f3e09cb59a4143ee286b160086e023d954cd42dd77a9ccccc6b5abc9a65",
+          "stored_sha256": "ea5a5f3e09cb59a4143ee286b160086e023d954cd42dd77a9ccccc6b5abc9a65",
+          "source_bytes": 18409,
+          "stored_bytes": 18409,
+          "compression": null
+        },
+        {
+          "path": "MaximumWorkload20261119.t.sol.txt",
+          "source_sha256": "1cd6df66b470f3ee9da4cb1c8a823a56572a09dcb25e80c4ea608c558b5d9a9e",
+          "stored_sha256": "1cd6df66b470f3ee9da4cb1c8a823a56572a09dcb25e80c4ea608c558b5d9a9e",
+          "source_bytes": 37622,
+          "stored_bytes": 37622,
+          "compression": null
+        },
+        {
+          "path": "producer-artifact.json.gz",
+          "source_sha256": "a41a5dfe3435491a02ca914418830acdf9ca9fe85e61d1db636ea218442591ce",
+          "stored_sha256": "869bfd3ae73c887e5fac10084af4ecb379175a484cef689929c1992d3113fe41",
+          "source_bytes": 4206623,
+          "stored_bytes": 1078031,
+          "compression": "gzip"
+        },
+        {
+          "path": "raw.json.gz",
+          "source_sha256": "efce409260f4dc95e05d4207c29d060e0fd84187abae325a8c4bf5589240b94c",
+          "stored_sha256": "227cf88c6b3bf8559fc18f695d4c11054eaaf87488f7b468cd2e6a790822a725",
+          "source_bytes": 48834355,
+          "stored_bytes": 3432663,
+          "compression": "gzip"
+        },
+        {
+          "path": "START.json",
+          "source_sha256": "3171d05e2c0123d37871a2543c2a53bb189d4ec8db46679b9f42897f26ff4b04",
+          "stored_sha256": "3171d05e2c0123d37871a2543c2a53bb189d4ec8db46679b9f42897f26ff4b04",
+          "source_bytes": 41163,
+          "stored_bytes": 41163,
+          "compression": null
+        },
+        {
+          "path": "stderr.log",
+          "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_bytes": 0,
+          "stored_bytes": 0,
+          "compression": null
+        }
+      ],
+      "exports_retained_external_only": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\maximum-workload-20261119\\producer05\\exports"
+    }
+  ]
+}
