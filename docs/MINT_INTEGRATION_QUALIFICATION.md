@@ -1,5 +1,14 @@
 # Qualify randomness and OpenSea primary mint
 
+## Selected path: custom Merkle integration
+
+The operator selected custom OpenSea qualification using the CURRENT Merkle design.
+Preserve exact free-team/paid prices, quotas and original requests; standard signed
+adaptation is not selected. Offline current-source TEAM/ALLOWLIST examples support
+preparation, not actual OpenSea acceptance.
+
+See the [new compatibility diagnostics and preparation](../reports/recommendations-execution-20261120/platform/REVIEW.md) and [recorded decision](../reports/recommendations-execution-20261120/DECISIONS.json). No platform approval, signed mint authority, contract or live deployment change follows.
+
 [Current preparation and provider research](../reports/readiness-advance-20261120/REVIEW.md)
 adds a strict offline saved-mint reviewer, a standard OpenSea adaptation PLAN and
 a pinned OpenVRF source lead. None approves onboarding, signed-stage authority,

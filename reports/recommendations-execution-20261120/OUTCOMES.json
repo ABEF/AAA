@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "baseline": "c8124e6f51bbcefa86879709cae5d78036877bac",
+  "new_work": {
+    "pool": {
+      "result": "pristine_verified_partial_setup_not_LP_pass",
+      "evidence": "pool/VERIFICATION.json",
+      "setup_receipts": 12,
+      "public_read_attempts": 118,
+      "http429": 18,
+      "funded_LP_partition_complete": false,
+      "owned_node_stopped": true,
+      "preflight_input_envelope_limit": "mutable recorder references; original bytes retained; future snapshot fix not executed"
+    },
+    "gas": {
+      "result": "optional_two_transaction_preparation_qualified_at_captured_maximum_state",
+      "evidence": "gas/RESULT.json",
+      "sync_estimate": 5893025,
+      "sync_full25pct": 7366282,
+      "activation_estimate": 23112361,
+      "activation_full20pct": 27734834,
+      "combined_actual_gas": 27954608,
+      "direct_cold_estimate_reduction_still_needed": 476135,
+      "new_receipts_can_restore_work": true,
+      "preparation_is_mandatory": false,
+      "capture_scope_correction": "gas/CAPTURE_ERRATUM.md",
+      "owned_nodes_stopped": true
+    },
+    "platform": {
+      "result": "nine_source_ABI_arithmetic_diagnostics_no_EVM_or_provider_acceptance",
+      "evidence": "platform/DIAGNOSTICS.json",
+      "diagnostics": 9,
+      "providers_adopted": 0
+    },
+    "custom_merkle": {
+      "user_selected": true,
+      "evidence": "platform/custom-merkle/EXAMPLE_VERIFICATION.json",
+      "new_actual_source_cli_calls": 3,
+      "new_illustrative_phase_examples": 2,
+      "source_pins_each": 105,
+      "all_live_readiness_flags_false": true,
+      "actual_onboarding": false
+    }
+  },
+  "reused_not_rerun": [
+    "F6 controlled construction and role evidence",
+    "Finite full-graph32NFT65currency backend claims",
+    "Finite maximum-state LP settlement/conversions/claims",
+    "11of12 max-state contributions and five maintenance successes",
+    "Compiler applicability and117-response market discovery"
+  ],
+  "open": [
+    "Direct476135-estimate activation reduction",
+    "Funded current-pool LP lifecycle under adequate read-only provider access",
+    "Full-normal1000NFT/backend/website ownership-page adoption",
+    "Actual independent feeds/routes/depth/complete fees",
+    "Custom Merkle OpenSea feasibility and actual acceptance",
+    "VRF adapter/funding/runtime/delivery qualification",
+    "Authority/host/recovery and independent release approval"
+  ],
+  "production_source_or_right_changes": false,
+  "unchanged_tests_rerun": false,
+  "public_writes": 0,
+  "live_environments_changed": false,
+  "production_approved": false
+}

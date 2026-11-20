@@ -1,0 +1,274 @@
+{
+  "schema": 1,
+  "kind": "source_pinned_platform_compatibility_diagnostics",
+  "baseline": "c8124e6f51bbcefa86879709cae5d78036877bac",
+  "source_sha256": {
+    "src/ZZZNFT.sol": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+    "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+    "src/ZZZSeaDropMint.sol": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+    "reports/activation-final-six-20261118/build/final/compiler-output.json.gz": "aceb5510485a5a0c28945cb4b4df71c66305dff7f1cb058435a464ff42df4a89",
+    "reports/opensea-integration-20261109/official-seadrop/derived/abi.json": "b64b0900ed04920443dd266b668961570cb6b7b38a1146ed3f6499e772b5c360",
+    "reports/opensea-integration-20261109/official-seadrop/verified-sources/src/SeaDrop.sol": "1e1c55f85debe55feb001a63a169125207b41aae5f358b306e86be5a35ce52d8",
+    "reports/readiness-advance-20261120/evidence.zip": "eee6b0df53065e00af171f2faa1c13c5a7a165974c48a2bfea19b561e03ee143",
+    "reports/readiness-advance-20261120/VRF_SOURCES.json": "490470f5440fae4cd9cd8a7d7cfb0b251ff5d09c5734cb14d78a18a9791e4f25",
+    "zzz_ops/abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d"
+  },
+  "candidate_revision": "9fb960cfc4d41e38f9d3057bf547e0d9cdcd4cc2",
+  "candidate_source_sha256": "a722e9c3a1f42fafebf84717290732727273f315805e73a1b5e45450f4d0f122",
+  "facts": [
+    {
+      "id": "PF01",
+      "claim": "The candidate is not a drop-in current coordinator.",
+      "evidence": {
+        "consumer_request": "requestRandomWords((bytes32,uint256,uint16,uint32,uint32,bytes))",
+        "consumer_request_selector": "0x9b1c385e",
+        "candidate_request": "requestRandomness(uint32)",
+        "candidate_request_selector": "0x811ee32a",
+        "consumer_callback": "rawFulfillRandomWords(uint256,uint256[])",
+        "consumer_callback_selector": "0x1fe543e3",
+        "candidate_callback": "rawFulfillRandomness(uint256,uint256)",
+        "candidate_callback_selector": "0xd5919d6e",
+        "consumer_required_words": 2,
+        "candidate_delivered_words": 1
+      },
+      "kind": "offline_source_or_arithmetic_fact_not_evm_execution"
+    },
+    {
+      "id": "PF02",
+      "claim": "A funded adapter/subscription policy is needed; nativePayment metadata does not itself send ETH.",
+      "evidence": {
+        "consumer_request_mutability": "nonpayable",
+        "candidate_request_mutability": "payable",
+        "candidate_fee_is_exact": true,
+        "native_fee_example_wei": "1",
+        "consumer_value_wei": "0",
+        "nonzero_fee_direct_binding_fails_payment_even_if_selector_were_adapted": true,
+        "no_adapter_or_funding_source_selected": true
+      },
+      "kind": "offline_source_or_arithmetic_fact_not_evm_execution"
+    },
+    {
+      "id": "PF03",
+      "claim": "A globally valid PoPL callback allowance can still be incompatible with this provider.",
+      "evidence": {
+        "popl_minimum": 200000,
+        "popl_maximum": 10000000,
+        "candidate_minimum": 25000,
+        "candidate_maximum": 1000000,
+        "intersection": [
+          200000,
+          1000000
+        ],
+        "example_current_valid_candidate_invalid": 1000001,
+        "actual_callback_gas_qualified": false
+      },
+      "kind": "offline_source_or_arithmetic_fact_not_evm_execution"
+    },
+    {
+      "id": "PF04",
+      "claim": "Two recovery paths are required: retryCallback after a caught consumer failure; original fulfill after an outer gas revert.",
+      "evidence": {
+        "caught_consumer_revert": {
+          "fulfilled": true,
+          "delivered": false,
+          "recovery": "retryCallback with same request and word"
+        },
+        "insufficient_enclosing_gas_revert": {
+          "fulfill_writes_rollback": true,
+          "fulfilled_remains_previous_false": true,
+          "fee_payment_rolls_back": true,
+          "retryCallback_rejects_unfulfilled": true,
+          "recovery": "Replay original fulfill/proof with adequate enclosing gas; never request a replacement draw"
+        },
+        "source_order": "fulfilled=true; fee settlement; _deliver",
+        "evm_atomicity_used_as_semantic_rule_not_new_evm_run": true
+      },
+      "kind": "offline_source_or_arithmetic_fact_not_evm_execution"
+    },
+    {
+      "id": "PF05",
+      "claim": "Freshness is a request-time prerequisite; later fulfillment delay cannot restore unpredictability.",
+      "evidence": {
+        "all_timestamp_residues": [
+          {
+            "timestamp_modulo_period": 0,
+            "scheduled_lead_seconds": 3,
+            "first_lag_at_which_beacon_is_already_scheduled": 3
+          },
+          {
+            "timestamp_modulo_period": 1,
+            "scheduled_lead_seconds": 2,
+            "first_lag_at_which_beacon_is_already_scheduled": 2
+          },
+          {
+            "timestamp_modulo_period": 2,
+            "scheduled_lead_seconds": 4,
+            "first_lag_at_which_beacon_is_already_scheduled": 4
+          }
+        ],
+        "universal_sufficient_lag_bound_seconds_strictly_less_than": 2,
+        "target_chain_timestamp_freshness_verified": false,
+        "qualification_limitation": "Scheduling arithmetic only; no claim about actual drand publication latency or chain timestamps."
+      },
+      "kind": "offline_source_or_arithmetic_fact_not_evm_execution"
+    },
+    {
+      "id": "PF06",
+      "claim": "A timeout/cancellation workaround cannot rotate or replace a pending original request under the current policy.",
+      "evidence": {
+        "rotation_requires_all_mints_finalized": true,
+        "callback_sender_is_current_original_coordinator": true,
+        "duplicate_fulfillment_rejected": true,
+        "provider_result_and_id_mapping_must_survive_adapter_restarts": true,
+        "provider_admitted": false
+      },
+      "kind": "offline_source_or_arithmetic_fact_not_evm_execution"
+    },
+    {
+      "id": "PF07",
+      "claim": "Enabling a standard signer cannot by itself retain exact-free TEAM or an exact paid price.",
+      "evidence": {
+        "actual_signed_validation_fields": [
+          {
+            "internalType": "uint80",
+            "name": "minMintPrice",
+            "type": "uint80"
+          },
+          {
+            "internalType": "uint24",
+            "name": "maxMaxTotalMintableByWallet",
+            "type": "uint24"
+          },
+          {
+            "internalType": "uint40",
+            "name": "minStartTime",
+            "type": "uint40"
+          },
+          {
+            "internalType": "uint40",
+            "name": "maxEndTime",
+            "type": "uint40"
+          },
+          {
+            "internalType": "uint40",
+            "name": "maxMaxTokenSupplyForStage",
+            "type": "uint40"
+          },
+          {
+            "internalType": "uint16",
+            "name": "minFeeBps",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint16",
+            "name": "maxFeeBps",
+            "type": "uint16"
+          }
+        ],
+        "price_floor_witnesses": [
+          {
+            "label": "free team",
+            "minimum_wei": "0",
+            "proposed_wei": "0",
+            "price_predicate_rejects": false
+          },
+          {
+            "label": "team overcharge witness",
+            "minimum_wei": "0",
+            "proposed_wei": "1",
+            "price_predicate_rejects": false
+          },
+          {
+            "label": "paid exact",
+            "minimum_wei": "50000000000000000",
+            "proposed_wei": "50000000000000000",
+            "price_predicate_rejects": false
+          },
+          {
+            "label": "paid overcharge witness",
+            "minimum_wei": "50000000000000000",
+            "proposed_wei": "100000000000000000",
+            "price_predicate_rejects": false
+          }
+        ],
+        "witness_scope": "Only the exact price predicate; signatures, all other limits, buyer approval and actual mint acceptance are not simulated."
+      },
+      "kind": "offline_source_or_arithmetic_fact_not_evm_execution"
+    },
+    {
+      "id": "PF08",
+      "claim": "Adjacent upstream inclusive stages overlap at equality; a UI timestamp convention does not prove safe phase classification.",
+      "evidence": {
+        "illustrative_stage_windows": [
+          [
+            100,
+            200
+          ],
+          [
+            200,
+            300
+          ]
+        ],
+        "boundary_witnesses": [
+          {
+            "timestamp": 199,
+            "active_stages": [
+              0
+            ]
+          },
+          {
+            "timestamp": 200,
+            "active_stages": [
+              0,
+              1
+            ]
+          },
+          {
+            "timestamp": 201,
+            "active_stages": [
+              1
+            ]
+          }
+        ],
+        "actual_opensea_generated_payload_reviewed": false
+      },
+      "kind": "offline_source_or_arithmetic_fact_not_evm_execution"
+    },
+    {
+      "id": "PF09",
+      "claim": "The current NFT callback cannot see signed price, stage, salt or signer; the current mint profile correctly refuses a signer.",
+      "evidence": {
+        "compiled_callback_signature": "mintSeaDrop(address,uint256)",
+        "selector": "0x64869dad",
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "minter",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "quantity",
+            "type": "uint256"
+          }
+        ],
+        "signed_profile_implemented": false,
+        "max_price_or_authenticated_context_must_be_resolved_before_adaptation": true
+      },
+      "kind": "offline_source_or_arithmetic_fact_not_evm_execution"
+    }
+  ],
+  "diagnostics_completed": 9,
+  "old_tests_rerun": 0,
+  "new_solidity_or_provider_tests": 0,
+  "network_calls": 0,
+  "adapters_implemented": 0,
+  "provider_selected": false,
+  "signed_authority_added": false,
+  "production_approved": false,
+  "limitations": [
+    "Pinned-source predicates and ABI/arithmetic only; no EVM, crypto verifier, gas, target runtime, service liveness or actual OpenSea payload acceptance is established.",
+    "A mathematical witness does not establish a full signed mint or a real request succeeded.",
+    "Current economic and original-request guarantees remain unchanged; unresolved policy decisions are not silently selected."
+  ]
+}

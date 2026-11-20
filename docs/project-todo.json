@@ -242,7 +242,7 @@
           "id": "fair-draw",
           "status": "progress",
           "title": "Fair assignment of prepared NFT designs",
-          "text": "The fixed 1,000-entry artwork inventory and draw without replacement are implemented. Verifiable randomness assigns a remaining prepared design; it does not generate images or reroll assigned rarity, palette or pattern. Qualify the live randomness service.",
+          "text": "The fixed 1,000-entry artwork inventory and draw without replacement are implemented. Verifiable randomness assigns a remaining prepared design; it does not generate images or reroll assigned rarity, palette or pattern. Qualify the live randomness service. New source-pinned offline diagnostics distinguish a caught callback failure (retry same callback/result) from enclosing gas/fee-transfer rollback (replay original fulfillment/proof). No replacement draw is allowed. ABI/payment/two-word/funding/runtime and actual delivery qualification remain open; no provider/adapter is adopted.",
           "href": "docs/NFT_METADATA.md#random-reveal",
           "acceptance": [
             "Independently verify actual supported proof-verifying coordinator code/key/subscription/confirmations/gas and service availability on the deployment chain. An ABI or mock is not verification.",
@@ -279,7 +279,7 @@
           "id": "opensea-mint",
           "status": "progress",
           "title": "Qualify OpenSea primary mint integration",
-          "text": "Source implements reviewed SeaDrop V1 callback/payment/quota integration, fresh mint2/helper1/canonicalV10/schema17 and offline proof preparation. Initial20free team/500same-price allowlist(one per distinct address)/480public; unused AL rolls public, unused team stays reserved. Qualify actual custom-drop onboarding, fee/payers, VRF/gas, matching consumers and operator/wallet acceptance before sealing; local source tests are not approval.",
+          "text": "Source implements reviewed SeaDrop V1 callback/payment/quota integration, fresh mint2/helper1/canonicalV10/schema17 and offline proof preparation. Initial20free team/500same-price allowlist(one per distinct address)/480public; unused AL rolls public, unused team stays reserved. Qualify actual custom-drop onboarding, fee/payers, VRF/gas, matching consumers and operator/wallet acceptance before sealing; local source tests are not approval. Operator selected qualifying a custom OpenSea path with the CURRENT Merkle design, preserving exact free-team/paid prices and quotas. Nine new offline platform diagnostics and current-source TEAM/ALLOWLIST preparation retain all actual acceptance flagsfalse; standard signed adaptation is not selected. Actual onboarding, payload, fee/payer/owner and platform acceptance remain open.",
           "href": "docs/OPENSEA_MINT.md",
           "acceptance": [
             "Decision2026-11-09: configurable20free-team/500allowlist/480public allocations, hard1000 cap. AL price equals public governed price(default0.05ETH gross), one NFT per distinct listed address. Unused AL rolls public; unused team remains reserved. Public wallet limits count lifetime original mints across phases; supply/counts never reset.",
@@ -1157,7 +1157,7 @@
           "id": "activation-gas-six-cases",
           "status": "done",
           "title": "Fit the six remaining activation cases into20M",
-          "text": "All13 controlled near1000-NFT cold scenarios, including all six earlier refusals, now pass exact accounting and20M with full20% headroom. Worst padded19,753,079; limits and entitlements unchanged.",
+          "text": "All13 controlled near1000-NFT cold scenarios, including all six earlier refusals, now pass exact accounting and20M with full20% headroom. Worst padded19,753,079; limits and entitlements unchanged. A new optional maximum-state syncAll then activation rehearsal fits separate24M/full25% and32M/full20% bounds; entry pads to27,734,834 with original royalty cohort and sampled incumbent protection. It shifts work to another operator-paid transaction, not a direct cold-gas fix;476,135 less estimated gas is still needed and new receipts can restore cost. See reports/recommendations-execution-20261120/GAS_REVIEW.md.",
           "href": "reports/activation-final-six-20261118/REVIEW.md",
           "acceptance": [
             "Same thirteen complete calls, sender/calldata/value and controlled market anchor are compared against the exact earlier baseline; all estimates decrease. Every admitted padded call actually succeeds on an owned fresh loopback node.",
@@ -1170,7 +1170,7 @@
           "id": "mainnet-fork",
           "status": "progress",
           "title": "Robinhood mainnet-fork qualification",
-          "text": "A historical source-bound accounting3 fixture and bounded read-only runner exercise the actual selected ETH/ZZZ pool via Pinax at an exact block/runtime. Eleven distinct methods have successful source-bound evidence across affected runs; no fresh whole final11-suite pass is claimed. ETH/ZZZ contributions, small growth, real fees/transfer rights and unsafe-growth rollback are covered with explicit mock governance/VRF/USD services. Actual independent feeds, routes, keeper/gas and provider qualification remain open. Qualify the exact current accounting7 two-leg/policy graph separately; those earlier receipts are not new-profile acceptance. The operator reconfirmed the same supplied pool for testing even with no active liquidity. A new current-anchor empty-state to locally seeded-depth rehearsal can proceed before production selection; retain its unmodified-state baseline and explicit synthetic-depth/source seams.",
+          "text": "A historical source-bound accounting3 fixture and bounded read-only runner exercise the actual selected ETH/ZZZ pool via Pinax at an exact block/runtime. Eleven distinct methods have successful source-bound evidence across affected runs; no fresh whole final11-suite pass is claimed. ETH/ZZZ contributions, small growth, real fees/transfer rights and unsafe-growth rollback are covered with explicit mock governance/VRF/USD services. Actual independent feeds, routes, keeper/gas and provider qualification remain open. Qualify the exact current accounting7 two-leg/policy graph separately; those earlier receipts are not new-profile acceptance. The operator reconfirmed the same supplied pool for testing even with no active liquidity. A new current-anchor empty-state to locally seeded-depth rehearsal can proceed before production selection; retain its unmodified-state baseline and explicit synthetic-depth/source seams. New current-F6 fork preparation authenticated the supplied pool at119107223 with original activeL0 and quote/runtime bindings. Recurrent provider429 interrupted setup after12 local receipts, before token funding or LP actions; partial setup is not LP acceptance. Preserve exact failed stages/capture limits; no unchanged historical suite rerun. See reports/recommendations-execution-20261120/REVIEW.md.",
           "href": "reports/current-pool-fork-20261026/VERIFICATION.md",
           "acceptance": [
             "Robinhood mainnet fork: qualify the actual selected hookless ETH/ZZZ pool and deployed dependencies against exact release sources. Historical Pons execution retains its original scope and is not selected-pool qualification; read reports/hookless-pool/VERIFICATION.md for current coverage.",
@@ -1205,7 +1205,7 @@
           "id": "audit-release",
           "status": "progress",
           "title": "Independent audit and release approval",
-          "text": "Complete an external audit, remediation, gas/strategy review and final operating/configuration sign-off before any real funds.",
+          "text": "Complete an external audit, remediation, gas/strategy review and final operating/configuration sign-off before any real funds. Ten recent recommendation-bearing chat answers and the latest plans are reconciled with exact pointers and existing evidence. Finite F6 construction/claims/maximum-workload proofs are reused, not rerun or double-counted. New optional preparation/platform diagnostics and partial supplied-pool fork retain open qualification boundaries; all23 packages remain unapproved.",
           "href": "docs/RELEASE_CHECKLIST.md",
           "acceptance": [
             "**Local tests:** minting, activation, rewards, royalties, transfers and security.",

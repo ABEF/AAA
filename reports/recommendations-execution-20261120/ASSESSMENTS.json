@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "recommendations": [
+    {
+      "id": "R01",
+      "source_turn": "01a1f9e5-f7b1-74f1-845b-2e5b204615e3",
+      "status_before_new_work": "executing_new_partition",
+      "evidence": [
+        {
+          "path": "reports/test-pool-scope-20261120/REVIEW.md",
+          "sha256": "490e0302c42d1ae192670130f49f8ef3ca029f59fd174f40b59e5b020df678ea"
+        }
+      ],
+      "rationale": "Current F6/pristine-vs-synthetic real pool partition was never executed by the historical accounting3 runner."
+    },
+    {
+      "id": "R02",
+      "source_turn": "01a1f9c7-79a8-7860-9afa-d71128132c42",
+      "status_before_new_work": "offline_compatibility_in_execution; consequential_design_open",
+      "evidence": [
+        {
+          "path": "reports/readiness-advance-20261120/OPENSEA_ADAPTATION_PLAN.md",
+          "sha256": "9062f1c27334370354f0b402237e5f83972d31078d352fc8b5a6909f9f5cede3"
+        }
+      ],
+      "rationale": "No new signed authority or changed exact price/free-team guarantee is authorized."
+    },
+    {
+      "id": "R03",
+      "source_turn": "01a1f9c4-255f-7f51-b739-b00626e50580",
+      "status_before_new_work": "parallel_VRF_and_optional_gas_work_in_execution",
+      "evidence": [
+        {
+          "path": "reports/readiness-advance-20261120/VRF_RESEARCH.md",
+          "sha256": "e32e330d1cc94ba0cf39051ceb4a73bd5a118c4df9c96df38cd304756217fe16"
+        },
+        {
+          "path": "reports/maximum-workload-20261119/REVIEW.md",
+          "sha256": "9cf2c8ef58e5c7ece93422bd6f981135903a825c99a84d6024bcefab3f3c2c2e"
+        }
+      ],
+      "rationale": "No provider adoption or unmeasured gas-saving claim."
+    },
+    {
+      "id": "R04",
+      "source_turn": "01a1f942-e556-7a43-9823-14fe475fdb9d",
+      "status_before_new_work": "bounded_search_completed; production_qualification_open",
+      "evidence": [
+        {
+          "path": "reports/market-route-qualification-20261120/REVIEW.md",
+          "sha256": "f9907e17cb653eef53ec039fb9d81b53fdca20fb167d999a8fc84f77b5fe7eb4"
+        }
+      ],
+      "rationale": "Retain117 captured responses; no repeat search or replacement selection. Supplied pool may be locally seeded for testing."
+    },
+    {
+      "id": "R05",
+      "source_turn": "01a1f901-77a6-7452-8412-baf85fb20727",
+      "status_before_new_work": "finite_recommendation_completed; broader_qualification_open",
+      "evidence": [
+        {
+          "path": "reports/full-claim-admission-20261120/QUALIFICATION.json",
+          "sha256": "3d29286d9d5acfdc19022795ac3db92d9077b28e4aecf64529d62c16815e2506"
+        }
+      ],
+      "rationale": "Real26-pin32NFT/65currency current planner proof and actual payout; not1000NFT/HTTP/provider acceptance."
+    },
+    {
+      "id": "R06",
+      "source_turn": "01a1f8d1-2faa-70d0-9f59-cf0d128e9b85",
+      "status_before_new_work": "finite_recommendation_completed; live_route_qualification_open",
+      "evidence": [
+        {
+          "path": "reports/lp-claims-maximum-20261120/REVIEW.md",
+          "sha256": "13a39a22533855d443f790fad55d360ba84653a597bb2a9b95233de0a8bfa892"
+        }
+      ],
+      "rationale": "Exact same-NFT conversions, partial24+8 payout, transfers/faults/backing retain their source scope; full-normal sequel isR05."
+    },
+    {
+      "id": "R07",
+      "source_turn": "01a1f8af-f1d7-76b0-8f99-8184eadb9173",
+      "status_before_new_work": "controlled_recommendation_completed; actual_deployment_unauthorized",
+      "evidence": [
+        {
+          "path": "reports/f6-construction-20261120/REVIEW.md",
+          "sha256": "7129ab4e0474d9671655d0e5216dc5021a4cd02faa416bafc356eef8b427c5ba"
+        }
+      ],
+      "rationale": "25CREATE/19bindings/39instances,112bindings,172defaults and distinct-role probes are reused, not rerun."
+    },
+    {
+      "id": "R08",
+      "source_turn": "01a1f89b-d92a-7e23-84cf-d92b4de5e044",
+      "status_before_new_work": "compiler_subtask_completed; external_market_platforms_open",
+      "evidence": [
+        {
+          "path": "reports/readiness-gate-a-20261120/REVIEW.md",
+          "sha256": "9ecce6cbd91ddc209f7a7c655c2ae713b5b8fa602d46d13a59c5c4bb43ffdd5c"
+        }
+      ],
+      "rationale": "Reuse current compiler assessment; exact upstream/platform/provider acceptance remains external, not closed by source review."
+    },
+    {
+      "id": "R09",
+      "source_turn": "01a1f401-8525-7cb1-b849-15feca3f1183",
+      "status_before_new_work": "finite_maximum_campaign_completed11of12; further_partitions_open",
+      "evidence": [
+        {
+          "path": "reports/maximum-workload-20261119/REVIEW.md",
+          "sha256": "9cf2c8ef58e5c7ece93422bd6f981135903a825c99a84d6024bcefab3f3c2c2e"
+        },
+        {
+          "path": "docs/WORKLOAD_COVERAGE.md",
+          "sha256": "9eafcf273511fb3ce5a09be7e468d971607f903046bb7f7f29888d69e74cdc24"
+        }
+      ],
+      "rationale": "One1000NFT64slow/twoLP activation refuses32M/full20%. Website bounded-page adoption, full-normal schedules and real hosts remain open."
+    },
+    {
+      "id": "R10",
+      "source_turn": "01a1f383-8564-71e1-8b71-c7e995807f5c",
+      "status_before_new_work": "overlaps_R09; finite_twoLP_evidence_reused",
+      "evidence": [
+        {
+          "path": "reports/maximum-workload-20261119/REVIEW.md",
+          "sha256": "9cf2c8ef58e5c7ece93422bd6f981135903a825c99a84d6024bcefab3f3c2c2e"
+        }
+      ],
+      "rationale": "Do not rerun the same source/population or double-count overlapping successes; latest pool partition and optional-sync test add different evidence."
+    }
+  ],
+  "current_backend_source_sha256": {
+    "frontend_api/claim_planner.py": "7a3e720b97acf38e2ebfc7f4dde7a5912852a3eabd0a39629546aa1097cab810"
+  },
+  "production_approved": false,
+  "unchanged_tests_rerun": false
+}

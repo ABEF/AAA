@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "baseline": "c8124e6f51bbcefa86879709cae5d78036877bac",
+  "thread": "01a13899-2be7-76f2-a5d0-72e4804c67b9",
+  "method": "Read the latest 20 turns, selected the ten latest substantive recommendation-bearing final answers, excluding status-only answers, choice dialogs and the separate 23-package plan. Repeated recommendations are retained and cross-reconciled; they are not ten new tasks.",
+  "recommendations": [
+    {
+      "id": "R01",
+      "source_turn": "01a1f9e5-f7b1-74f1-845b-2e5b204615e3",
+      "source_message": "msg_011b680318cf32a5016b007dec650487d28e9626851fc2eb27",
+      "exact_text": "Yes—your supplied **`0x501122…afe1b` pool remains our test target**.\n\nEven with no active liquidity, we can add test liquidity **only on an isolated local fork**, then exercise activation, growth, harvesting and rebalancing. Public funds and the real pool remain untouched.\n\nI clarified this in the Todo, roadmap, operator guide and memory, pushed as **`c8124e6f`**. The new current-version fork rehearsal remains pending; final production selection stays separate.",
+      "workstream": "pool-fork",
+      "initial_assessment": "in_execution",
+      "todo_candidate": "mainnet-fork",
+      "package": "P07"
+    },
+    {
+      "id": "R02",
+      "source_turn": "01a1f9c7-79a8-7860-9afa-d71128132c42",
+      "source_message": "msg_011b680318cf32a5016b007c6478dc87d2adb6c7b234be693f",
+      "exact_text": "Updated and pushed to `main`: **`a4720ece`**.\n\n- Reconciled Todo, findings and roadmap across **23 packages / 83 tasks**.\n- Added an offline mint-transaction reviewer; **14 new focused checks passed**. No unchanged tests rerun.\n- Prepared the OpenSea adaptation plan and investigated another VRF option.\n\n**My recommendation:** pursue OpenSea’s supported integration, resolving signed-presale trust and exact pricing before changing contracts.\n\nContracts, websites and running services remain unchanged. Production qualification stays open.\n\n[Full report](https://github.com/ABEF/AAA/blob/a4720ecef3e0b0d97a1d16f8032cf751cc8b16e5/reports/readiness-advance-20261120/REVIEW.md)",
+      "workstream": "opensea-standard",
+      "initial_assessment": "independent_preparation_in_execution; trust_decision_open",
+      "todo_candidate": "opensea-mint",
+      "package": "P14"
+    },
+    {
+      "id": "R03",
+      "source_turn": "01a1f9c4-255f-7f51-b739-b00626e50580",
+      "source_message": "msg_011b680318cf32a5016b00745c594c87d284d1dc95bbcc1a72",
+      "exact_text": "**We’re still in stages 1–2: resolving launch feasibility and completing missing proofs.** Several engineering subchecks are now finished, but we have not reached final release freeze, independent approval or production deployment.\n\nThe framework remains **23 acceptance packages covering 83 tasks**. The Todo currently records **35 done, 40 in progress, 7 todo and 1 excluded**. These counts are not a production-readiness percentage: broad tasks stay open until their remaining acceptance criteria pass.\n\n| Area | Where we are now | What remains |\n|---|---|---|\n| **Prices and markets** | Expanded investigation to 95 native pool keys, additional routes and three v3 markets. | **You’ll select the final pool later.** Independent sources, publication, usable depth and complete routes remain unqualified. |\n| **RPC, chain and fees** | Bounded read-only provider evidence exists. | Complete PoPL execution capacity, actual fees, provider acceptance, failover and finality qualification. |\n| **Compiler and build** | **Current compiler-advisory applicability review completed.** No confirmed reachable defect requiring an upgrade was found. | Final artifact/configuration freeze, independent review and continued size compliance. |\n| **Maximum workloads** | Added cold LP conversion and claim evidence on the controlled 1,000-NFT/two-position state. | One activation case still needs **476,135 less estimated gas**; broader full-normal workloads remain open. |\n| **LP management** | Existing local lifecycle and maintenance evidence remains valid within its recorded scope. | Actual-market execution, expanded compositions and operating/manipulation qualification. |\n| **Rewards and royalties** | Additional actual conversions, partial claims, transfers, faulty-currency and backing checks passed locally. | Actual currencies/routes, complete fees and deployed integration acceptance. |\n| **Manual operations and recovery** | Added real-module construction/binding and separate authority checks. | Actual authority wallets, full operating recovery and production ceremonies. |\n| **OpenSea, randomness and artwork** | Identified concrete OpenSea configuration and VRF compatibility questions; clarified artwork inventory. | Supported platform/provider arrangements, content publication and marketplace acceptance. |\n| **Backend and history** | **Fixed two claim-planning bottlenecks.** Normal 26-pin backend validation now works on the tested 32-NFT/65-currency flow, including payouts. | Full 1,000-NFT normal workloads, production HTTP/provider acceptance and matching history/consumer adoption. |\n| **Production wallet flow** | Current integration remains unsigned; shared signing remains Anvil-only. | An approved production submission approach for activation, growth and claims. |\n| **Keeper and hosting** | Existing isolated interruption/recovery evidence remains scoped and preserved. | Real normal-loop operation, off-host recovery, alerts, funding and operating acceptance. |\n| **Deployment and approval** | **Current F6 local construction passed:** 25 creations, 19 bindings and 39 instances. | Actual production deployment/readback, independent audit, sealing approval and launch approval. |\n\nThe strongest advances since that plan are **compiler review, real local construction, cold settlement/claim verification, and the backend fixes**. The maximum-state **11/12 activation result was already known** when that plan was written.\n\nWith pool selection deferred, **OpenSea/VRF compatibility and the remaining gas case can advance independently**.\n\n[Current roadmap](https://github.com/ABEF/AAA/blob/main/docs/ROADMAP.md) · [Backend evidence](https://github.com/ABEF/AAA/blob/main/reports/full-claim-admission-20261120/REVIEW.md) · [Construction evidence](https://github.com/ABEF/AAA/blob/main/reports/f6-construction-20261120/REVIEW.md)",
+      "workstream": "parallel-platform-gas",
+      "initial_assessment": "VRF_and_optional_sync_work_in_execution; direct_gas_blocker_open",
+      "todo_candidate": "fair-draw",
+      "package": "P15/P06"
+    },
+    {
+      "id": "R04",
+      "source_turn": "01a1f942-e556-7a43-9823-14fe475fdb9d",
+      "source_message": "msg_011b680318cf32a5016b0052d4129487d2bf3bbe7fced972bf",
+      "exact_text": "**Next: establish a workable real ETH/ZZZ market configuration.** The latest recorded market review still leaves this as a deployment blocker.\n\nWe should:\n\n- Identify usable pools with sufficient liquidity in **both swap directions**.\n- Validate independent spot-price references.\n- Check complete activation/growth execution under the **3% cap**.\n- Find a ZZZ-to-ETH reward route meeting the **1% conversion cap**.\n- Record exact addresses, fees, depth and reasons for rejection.\n\nThis can start with read-only checks, without changing pools or sending transactions.\n\nSeparately, the maximum-state slow-ZZZ activation still needs **476,135 less estimated gas**. OpenSea compatibility, VRF, production RPC/fees and independent audit also remain open.",
+      "workstream": "actual-market",
+      "initial_assessment": "bounded_discovery_reused; production_selection_deferred",
+      "todo_candidate": "pons-qualification",
+      "package": "P04"
+    },
+    {
+      "id": "R05",
+      "source_turn": "01a1f901-77a6-7452-8412-baf85fb20727",
+      "source_message": "msg_011b680318cf32a5016b004259b59887d2816c765bdb190add",
+      "exact_text": "Next: **complete backend claim validation against the full contract graph**.\n\nThe latest claim run used **903 of 1,024 allowed RPC calls**, while replacing complete deployment validation with a test fixture. We still need to prove the full checks fit.\n\nI recommend:\n\n- Build a coherent, isolated local contract setup.\n- Verify every contract, binding, lifecycle state and admitted currency.\n- Confirm planning fits **25 seconds, 1,024 RPC calls and 12M gas with full padding**.\n- Fix confirmed bottlenecks, reuse the passed accounting checks, and update Todo/operator guidance.\n\nAfter that: address the remaining **476,135-gas reduction** needed for the slowest activation case.",
+      "workstream": "backend-full-graph",
+      "initial_assessment": "finite_32NFT_65currency_evidence_reused; expanded_workload_open",
+      "todo_candidate": "claim-batch-planner",
+      "package": "P17"
+    },
+    {
+      "id": "R06",
+      "source_turn": "01a1f8d1-2faa-70d0-9f59-cf0d128e9b85",
+      "source_message": "msg_011b680318cf32a5016b0035c1563087d2884db846d4556926",
+      "exact_text": "**Next: qualify LP reward conversion and claims at maximum supported state.**\n\nWe should verify:\n\n- ZZZ LP fees convert to ETH for the **same NFTs**, without mixing principal or reserves.\n- Partial claims, transfers and failed currencies preserve exact entitlements.\n- Cold claims fit the existing **12M budget**, with the planner splitting larger selections correctly.\n- Receipts and remaining balances reconcile exactly.\n\nThis can proceed on an isolated local chain, reusing existing evidence. It would qualify accounting and batching; actual live conversion routes remain a separate blocker.\n\nNo cap increases or unchanged-suite reruns.",
+      "workstream": "lp-max-settlement",
+      "initial_assessment": "finite_exact_settlement_claim_evidence_reused; actual_routes_open",
+      "todo_candidate": "lp-eth-settlement",
+      "package": "P08"
+    },
+    {
+      "id": "R07",
+      "source_turn": "01a1f8af-f1d7-76b0-8f99-8184eadb9173",
+      "source_message": "msg_011b680318cf32a5016b002d376a3487d283b5466698b9bee8",
+      "exact_text": "**Next: rehearse deployment and bindings for the current F6 contracts on a new isolated local chain.**\n\nEarlier construction evidence predates F6, and the latest maximum-state campaign used mocked Access/Registry components.\n\nWe should verify:\n\n- Actual constructors, Factory children and reciprocal bindings.\n- Real governance, keeper and guardian permissions.\n- Creation gas and unchanged size limits.\n- Complete pre-seal readback, with unknown inputs still blocked.\n\nThis closes a concrete predeployment gap without waiting for external providers. Preserve existing Anvil state; no public deployment or sealing, and no unchanged test suites rerun.\n\nActual prices/routes and OpenSea/VRF compatibility remain parallel launch blockers.",
+      "workstream": "f6-construction",
+      "initial_assessment": "controlled_construction_evidence_reused; actual_deployment_unauthorized",
+      "todo_candidate": "deployment-initcode",
+      "package": "P22"
+    },
+    {
+      "id": "R08",
+      "source_turn": "01a1f89b-d92a-7e23-84cf-d92b4de5e044",
+      "source_message": "msg_011b680318cf32a5016b002cf0764887d28084f08c786e1d51",
+      "exact_text": "Completed the first readiness pass. **Pushed to `main`: `2891f6b2`.**\n\n- **Compiler:** assessed all eight current advisory variants. No confirmed reachable defect requiring an upgrade; seven new offline analysis checks passed.\n- **Live markets:** the selected pool has zero active liquidity at the captured block. The larger venue fails the tested reverse swap. Independent pricing remains unqualified.\n- **OpenSea/VRF:** identified concrete compatibility questions around OpenSea’s configuration flow and randomness providers’ request-expiry rules.\n- **Fixed ZZZ:** current runtime matches the retrieved ERC20Burnable source; inspected creator references grant no token-management powers.\n- **Documentation:** updated Todo, operator guidance, findings and memory; corrected artwork publication counts.\n\n**Next priorities:** usable prices/routes and confirmed OpenSea/VRF support. Gate A remains incomplete.\n\n[Full results and evidence](https://github.com/ABEF/AAA/blob/2891f6b29691449d6667d36b9c678a0746ce5d80/reports/readiness-gate-a-20261120/REVIEW.md)\n\nProduction code, safeguards and live environments are unchanged. No unchanged test suites were rerun.",
+      "workstream": "gate-a-priorities",
+      "initial_assessment": "compiler_applicability_reused; live_feed_route_platforms_open",
+      "todo_candidate": "audit-release",
+      "package": "P02/P03/P14/P15"
+    },
+    {
+      "id": "R09",
+      "source_turn": "01a1f401-8525-7cb1-b849-15feca3f1183",
+      "source_message": "msg_03367638da8c2159016afefa554fc487d288bc2ce8e798e010",
+      "exact_text": "Next: **qualify maximum-state transaction workloads**, beyond the smaller cases already tested.\n\nOn an isolated local chain:\n\n- **1,000 NFTs, both LP positions and 64 royalty currencies.**\n- ETH/ZZZ activation and growth with pending royalties, faulty currencies and different activation orders.\n- Harvest, compound and rebalance with populated accounting.\n\nVerify exact entitlements, incumbent protection, rollback and gas: **32M contributions with full 20% padding; 24M maintenance with 25% padding**. Reuse existing evidence and run only missing combinations.\n\nAfterward, connect the website to the new bounded ownership pages.\n\n[Related Todo](https://github.com/ABEF/AAA/blob/main/TODO.md#task-activation-assets)",
+      "workstream": "maximum-workload",
+      "initial_assessment": "11of12_and_maintenance_reused; direct_slowZZZ_gas_and_consumer_adoption_open",
+      "todo_candidate": "activation-assets",
+      "package": "P06/P17/P19"
+    },
+    {
+      "id": "R10",
+      "source_turn": "01a1f383-8564-71e1-8b71-c7e995807f5c",
+      "source_message": "msg_03367638da8c2159016afeda2bf81087d29b059aacc712708e",
+      "exact_text": "Next: **[qualify activation and growing LP with both positions open](https://github.com/ABEF/AAA/blob/main/TODO.md#task-activation-assets)**.\n\nThe current 13 gas scenarios cover one main position. We should check the additional workload from the optional one-sided position:\n\n- ETH and ZZZ contributions near 1,000 activated NFTs.\n- Only the main position grows; existing holders’ shares, rewards and residual remain correctly accounted.\n- Pending royalties or faulty currencies preserve exact entitlements.\n- Complete calls fit **32M with full 20% padding**, without weakening financial guards.\n\nReuse the existing one-position evidence and run only the new cases on an isolated local chain.",
+      "workstream": "two-position-contributions",
+      "initial_assessment": "finite_1000NFT_twoLP_evidence_reused; broader_orders_actual_market_open",
+      "todo_candidate": "activation-assets",
+      "package": "P06/P07"
+    }
+  ],
+  "latest_plans": [
+    "docs/ROADMAP.md",
+    "reports/readiness-advance-20261120/OPENSEA_ADAPTATION_PLAN.md",
+    "reports/test-pool-scope-20261120/REVIEW.md"
+  ],
+  "production_approved": false
+}

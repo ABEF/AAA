@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "date": "2026-11-20",
+  "opensea_path": "qualify_custom_merkle_with_current_design",
+  "user_answer": "Qualify a custom OpenSea path using the current Merkle design (Recommended)",
+  "preserve": [
+    "Current Merkle eligibility and phase quotas",
+    "Free team mints and exact governed paid-mint price",
+    "Existing NFT, royalty and original-randomness rights"
+  ],
+  "standard_signed_adaptation_selected": false,
+  "actual_opensea_acceptance": false,
+  "third_party_contact_authorized": false,
+  "contract_change_required_by_this_decision": false,
+  "production_approved": false
+}

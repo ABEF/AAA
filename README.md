@@ -1,5 +1,10 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+The [recommendation execution](reports/recommendations-execution-20261120/REVIEW.md)
+consolidates ten recent recommendations, verifies a separately paid maximum-state
+preparation option and adds reproducible platform compatibility diagnostics. Direct
+cold-activation gas and actual market/platform/provider acceptance stay open.
+
 The supplied ETH/ZZZ pool remains the [integration test
 target](reports/test-pool-scope-20261120/REVIEW.md), including isolated forks with
 explicitly added test liquidity. Only final production-pool selection is deferred.

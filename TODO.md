@@ -135,7 +135,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-fair-draw"></a>
 
-- [ ] **[Fair assignment of prepared NFT designs](docs/NFT_METADATA.md#random-reveal)** - In progress. The fixed 1,000-entry artwork inventory and draw without replacement are implemented. Verifiable randomness assigns a remaining prepared design; it does not generate images or reroll assigned rarity, palette or pattern. Qualify the live randomness service.
+- [ ] **[Fair assignment of prepared NFT designs](docs/NFT_METADATA.md#random-reveal)** - In progress. The fixed 1,000-entry artwork inventory and draw without replacement are implemented. Verifiable randomness assigns a remaining prepared design; it does not generate images or reroll assigned rarity, palette or pattern. Qualify the live randomness service. New source-pinned offline diagnostics distinguish a caught callback failure (retry same callback/result) from enclosing gas/fee-transfer rollback (replay original fulfillment/proof). No replacement draw is allowed. ABI/payment/two-word/funding/runtime and actual delivery qualification remain open; no provider/adapter is adopted.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -174,7 +174,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-opensea-mint"></a>
 
-- [ ] **[Qualify OpenSea primary mint integration](docs/OPENSEA_MINT.md)** - In progress. Source implements reviewed SeaDrop V1 callback/payment/quota integration, fresh mint2/helper1/canonicalV10/schema17 and offline proof preparation. Initial20free team/500same-price allowlist(one per distinct address)/480public; unused AL rolls public, unused team stays reserved. Qualify actual custom-drop onboarding, fee/payers, VRF/gas, matching consumers and operator/wallet acceptance before sealing; local source tests are not approval.
+- [ ] **[Qualify OpenSea primary mint integration](docs/OPENSEA_MINT.md)** - In progress. Source implements reviewed SeaDrop V1 callback/payment/quota integration, fresh mint2/helper1/canonicalV10/schema17 and offline proof preparation. Initial20free team/500same-price allowlist(one per distinct address)/480public; unused AL rolls public, unused team stays reserved. Qualify actual custom-drop onboarding, fee/payers, VRF/gas, matching consumers and operator/wallet acceptance before sealing; local source tests are not approval. Operator selected qualifying a custom OpenSea path with the CURRENT Merkle design, preserving exact free-team/paid prices and quotas. Nine new offline platform diagnostics and current-source TEAM/ALLOWLIST preparation retain all actual acceptance flagsfalse; standard signed adaptation is not selected. Actual onboarding, payload, fee/payer/owner and platform acceptance remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1206,7 +1206,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-mainnet-fork"></a>
 
-- [ ] **[Robinhood mainnet-fork qualification](reports/current-pool-fork-20261026/VERIFICATION.md)** - In progress. A historical source-bound accounting3 fixture and bounded read-only runner exercise the actual selected ETH/ZZZ pool via Pinax at an exact block/runtime. Eleven distinct methods have successful source-bound evidence across affected runs; no fresh whole final11-suite pass is claimed. ETH/ZZZ contributions, small growth, real fees/transfer rights and unsafe-growth rollback are covered with explicit mock governance/VRF/USD services. Actual independent feeds, routes, keeper/gas and provider qualification remain open. Qualify the exact current accounting7 two-leg/policy graph separately; those earlier receipts are not new-profile acceptance. The operator reconfirmed the same supplied pool for testing even with no active liquidity. A new current-anchor empty-state to locally seeded-depth rehearsal can proceed before production selection; retain its unmodified-state baseline and explicit synthetic-depth/source seams.
+- [ ] **[Robinhood mainnet-fork qualification](reports/current-pool-fork-20261026/VERIFICATION.md)** - In progress. A historical source-bound accounting3 fixture and bounded read-only runner exercise the actual selected ETH/ZZZ pool via Pinax at an exact block/runtime. Eleven distinct methods have successful source-bound evidence across affected runs; no fresh whole final11-suite pass is claimed. ETH/ZZZ contributions, small growth, real fees/transfer rights and unsafe-growth rollback are covered with explicit mock governance/VRF/USD services. Actual independent feeds, routes, keeper/gas and provider qualification remain open. Qualify the exact current accounting7 two-leg/policy graph separately; those earlier receipts are not new-profile acceptance. The operator reconfirmed the same supplied pool for testing even with no active liquidity. A new current-anchor empty-state to locally seeded-depth rehearsal can proceed before production selection; retain its unmodified-state baseline and explicit synthetic-depth/source seams. New current-F6 fork preparation authenticated the supplied pool at119107223 with original activeL0 and quote/runtime bindings. Recurrent provider429 interrupted setup after12 local receipts, before token funding or LP actions; partial setup is not LP acceptance. Preserve exact failed stages/capture limits; no unchanged historical suite rerun. See reports/recommendations-execution-20261120/REVIEW.md.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1227,7 +1227,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-audit-release"></a>
 
-- [ ] **[Independent audit and release approval](docs/RELEASE_CHECKLIST.md)** - In progress. Complete an external audit, remediation, gas/strategy review and final operating/configuration sign-off before any real funds.
+- [ ] **[Independent audit and release approval](docs/RELEASE_CHECKLIST.md)** - In progress. Complete an external audit, remediation, gas/strategy review and final operating/configuration sign-off before any real funds. Ten recent recommendation-bearing chat answers and the latest plans are reconciled with exact pointers and existing evidence. Finite F6 construction/claims/maximum-workload proofs are reused, not rerun or double-counted. New optional preparation/platform diagnostics and partial supplied-pool fork retain open qualification boundaries; all23 packages remain unapproved.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1309,7 +1309,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-activation-gas-six-cases"></a>
 
-- [x] **[Fit the six remaining activation cases into20M](reports/activation-final-six-20261118/REVIEW.md)** - Implemented. All13 controlled near1000-NFT cold scenarios, including all six earlier refusals, now pass exact accounting and20M with full20% headroom. Worst padded19,753,079; limits and entitlements unchanged.
+- [x] **[Fit the six remaining activation cases into20M](reports/activation-final-six-20261118/REVIEW.md)** - Implemented. All13 controlled near1000-NFT cold scenarios, including all six earlier refusals, now pass exact accounting and20M with full20% headroom. Worst padded19,753,079; limits and entitlements unchanged. A new optional maximum-state syncAll then activation rehearsal fits separate24M/full25% and32M/full20% bounds; entry pads to27,734,834 with original royalty cohort and sampled incumbent protection. It shifts work to another operator-paid transaction, not a direct cold-gas fix;476,135 less estimated gas is still needed and new receipts can restore cost. See reports/recommendations-execution-20261120/GAS_REVIEW.md.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1872,4 +1872,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `724f2b86f578f3b24bba97a6140c08c17979764286268b90882d3dabf73c409a`.
+Snapshot SHA-256: `83816e01d4e7d5643cb92480f695fade848c1b432ae67027b57592c0afc2b1e5`.

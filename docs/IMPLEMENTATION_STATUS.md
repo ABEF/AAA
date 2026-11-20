@@ -1,5 +1,12 @@
 # Feature and evidence reference
 
+The [latest recommendation
+execution](../reports/recommendations-execution-20261120/REVIEW.md) reuses completed
+finite evidence, qualifies optional separate maximum-state synchronization and adds nine
+offline platform diagnostics. Custom Merkle OpenSea preparation is selected; actual
+acceptance stays open. The current supplied-pool attempt is partial setup under
+provider429, not an LP lifecycle pass. No production behavior or rights changed.
+
 [New offline mint intent review](../reports/readiness-advance-20261120/REVIEW.md)
 checks source-bound current-profile manifest and canonical saved public/Merkle
 mint data, intent, exact gross value, payer, proof and static supply bounds.

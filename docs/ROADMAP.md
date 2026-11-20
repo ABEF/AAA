@@ -1,5 +1,13 @@
 # Engineering roadmap and production qualification plan
 
+[Latest recommendation
+execution](../reports/recommendations-execution-20261120/REVIEW.md) consolidates ten
+exact chat recommendations with this plan. P06 gains a separately paid optional
+synchronization workflow, not closure of the direct cold-gas case. P14/P15 gain nine
+reproducible offline compatibility diagnostics; actual integration decisions stay open.
+The new pool partition keeps pristine versus synthetic state distinct. All23 packages/83
+task IDs and release gates remain.
+
 The supplied ETH/ZZZ pool remains the integration test target, including isolated
 empty-state and locally seeded-depth forks. Only final production selection is deferred;
 it does not block those tests. Actual market/source/route qualification remains
@@ -42,7 +50,7 @@ full-normal1000-NFT workloads, the476135-estimate gap and independent approval r
 | P11 | Added local role evidence | Distinct-role constructor fixture checked; actual operator/guardian/keeper wallets remain unselected. |
 | P12 | Source-scoped evidence retained | Actual target-chain holder-payout gas/fault/recovery acceptance remains. |
 | P13 | Full latest cutover qualification open | Complete F6/V10 coordinator, funding/import/abort/cold gas remains separate. |
-| P14 | Offline reviewer verified; platform design open |14new focused checks plus current-source illustrative CLI; standard Studio rejects Merkle; adaptation PLAN and actual onboarding/terms remain unapproved. |
+| P14 | Custom Merkle qualification selected; acceptance open | Existing offline reviewer plus nine new platform diagnostics/current-source phase preparation; preserve exact sale guarantees. Actual custom OpenSea onboarding/payload/terms remain unapproved. |
 | P15 | Pinned new source lead; no provider qualified | OpenVRF9fb960c inspected; ABI/funding/two-word derivation, timestamp/drand/crypto and self-hosted operation remain unqualified. |
 | P16 | Catalogue mapped; delivery open | Actual content publication/retrieval/OpenSea refresh and final media acceptance remain. |
 | P17 | Two fixes; finite normal flow verified | Real26-pin32-NFT65-currency claim admission/payout;1000/fullHTTP/provider acceptance remains. |

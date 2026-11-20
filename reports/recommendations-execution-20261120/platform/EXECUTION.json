@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "started_utc": "2026-11-20T17:12:24.931653+00:00",
+  "elapsed_seconds": 0.7292135000025155,
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "reports\\recommendations-execution-20261120\\platform\\check_platform_boundaries.py",
+    "--output",
+    "reports\\recommendations-execution-20261120\\platform\\DIAGNOSTICS.json"
+  ],
+  "returncode": 0,
+  "tool_sha256": "9c1b871caae689e29c2a2871676d3765d44ea174789a6d405723d2cb31f943c8",
+  "stdout_sha256": "c8f4fb088d100d0a5e5bccfb37cd95c07027a22006372dab9132e3c56f7bc557",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "output_sha256": "37433ccc3c086ece30133549b139533fd974edfd99493e897e1670bc6f3c4bd8",
+  "kind": "new report-only offline diagnostics, not production tests",
+  "old_tests_rerun": 0,
+  "public_calls": 0
+}

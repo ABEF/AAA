@@ -1,5 +1,10 @@
 # Verification evidence
 
+[Ten-recommendation execution](recommendations-execution-20261120/REVIEW.md) records
+exact chat pointers, reused finite evidence, new optional maximum-state preparation,
+source-pinned platform diagnostics/custom Merkle preparation and a partial current-pool
+fork under provider429. No unchanged-suite rerun or production approval.
+
 [Readiness reconciliation and offline mint review](readiness-advance-20261120/REVIEW.md)
 keeps23packages/83tasks distinct from release approval. A strict new offline
 current-profile reviewer passes14new focused methods without signing or changing

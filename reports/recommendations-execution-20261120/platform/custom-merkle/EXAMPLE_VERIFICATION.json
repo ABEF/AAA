@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "kind": "independent_fixed_offset_and_payment_inspection_of_new_example_bytes",
+  "producer_sha256": "cdc019bc8b57289d3341cfe73689330cc7749bb85e38f4d85363cf89802e1f23",
+  "examples": [
+    {
+      "phase": "team",
+      "raw_abi_words": 16,
+      "calldata_bytes": 516,
+      "offset": 416,
+      "siblings": 2,
+      "gross_payment_wei": "0",
+      "current_source_pins": 105,
+      "actual_platform_payload": false
+    },
+    {
+      "phase": "allowlist",
+      "raw_abi_words": 16,
+      "calldata_bytes": 516,
+      "offset": 416,
+      "siblings": 2,
+      "gross_payment_wei": "50000000000000000",
+      "current_source_pins": 105,
+      "actual_platform_payload": false
+    }
+  ],
+  "artifacts": {
+    "examples/allowlist-input.json": {
+      "bytes": 34190,
+      "sha256": "f316193d5896d8fef122451c814cd287f64543f1d7bb9730754b3196dd6b375a"
+    },
+    "examples/allowlist-review.json": {
+      "bytes": 15578,
+      "sha256": "b8de7893aafbe6a230cc4f25e4ce6b9b56f138d1aca54db8b9f4c24b35a457b6"
+    },
+    "examples/allowlist.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "examples/allowlist.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "examples/EXECUTION.json": {
+      "bytes": 17551,
+      "sha256": "92de3a4e6fb75a3b6e7f391c0098e844f241e4eaa6e15f586c2e3e9b73725c6b"
+    },
+    "examples/illustrative-phase-request.json": {
+      "bytes": 13299,
+      "sha256": "3855f62a54c2e12f0222e8b23b90437fb8bceee1021e85b8f82cc9c64dfbf82c"
+    },
+    "examples/prepare.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "examples/prepare.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "examples/rebuilt-phase-manifest.json": {
+      "bytes": 31843,
+      "sha256": "7aabbaafc4e0190d1e75221008b6740eb1d17b0d2813a684e04bd40d7b85bab5"
+    },
+    "examples/team-input.json": {
+      "bytes": 34169,
+      "sha256": "7177dbbb04fc771fc06e467faaa733c839e6bb37dd2f739959fa0ada401bbba0"
+    },
+    "examples/team-review.json": {
+      "bytes": 15536,
+      "sha256": "260f0f86dc8c1aca43751d224878d81d37b05d19eec76b03cf5fa458771ec313"
+    },
+    "examples/team.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "examples/team.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "prepare_phase_examples.py": {
+      "bytes": 10259,
+      "sha256": "cdc019bc8b57289d3341cfe73689330cc7749bb85e38f4d85363cf89802e1f23"
+    }
+  },
+  "executed_old_tests": 0,
+  "EVM_execution": false,
+  "platform_accepted": false,
+  "production_approved": false
+}

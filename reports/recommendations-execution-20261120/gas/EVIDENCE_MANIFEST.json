@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "archive": "evidence.zip",
+  "bytes": 537079,
+  "sha256": "959d20a5c23b0a46e219a296cd8b33634996dc3c03cff7d31f7510f866d9181f",
+  "members": {
+    "gas-presync/run.py": {
+      "bytes": 13672,
+      "sha256": "1fe1b4df8297a2757e343482e8dea78b47b35d01c64ef094ea051e4793ad8b62"
+    },
+    "gas-presync/RESULT.json": {
+      "bytes": 4807,
+      "sha256": "8ed30fceb33949871a2b24fc828383f75b04c1af922c563b083c4fa067f8452f"
+    },
+    "gas-presync/rpc-records.json.gz": {
+      "bytes": 218570,
+      "sha256": "daeb0a36216b6e45cd2b4cfd89247a98e0a5ce1a695bcadea68cfc6c0bb8bfd0"
+    },
+    "gas-presync/anvil.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "gas-presync02/run.py": {
+      "bytes": 13743,
+      "sha256": "f064b9c7dc1c5a948568503a3bd19a82a959c3c5c9d4838b006aa935bf334fe3"
+    },
+    "gas-presync02/RESULT.json": {
+      "bytes": 166014,
+      "sha256": "d2413aacbf8fbe1f7ef8ca0df3d4cf574cf1a22ed135bd44fe87cce1b33c1c9d"
+    },
+    "gas-presync02/rpc-records.json.gz": {
+      "bytes": 303663,
+      "sha256": "cb12bcb8ed0c7e2bed08508a4e42433652bbebbccb7309747e301c3cabffc938"
+    },
+    "gas-presync02/anvil.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "roundtrip_verified": true
+}

@@ -1,5 +1,13 @@
 # Consolidated audit findings and evidence
 
+[Ten-recommendation
+reconciliation](../reports/recommendations-execution-20261120/REVIEW.md) reuses
+completed finite evidence without rerunning it. New optional synchronization puts the
+next measured activation within32M/full20%, preserving all65 original royalty cohorts
+and sampled incumbent claims; the direct476,135-estimate shortfall remains. Nine offline
+platform witnesses clarify incompatibilities and original-request recovery; no
+platform/provider adoption or economic change follows.
+
 [Operator clarification](../reports/test-pool-scope-20261120/REVIEW.md): the supplied
 pool is still the test target. Zero observed active liquidity limits actual-market
 acceptance, not isolated fork testing with explicit local liquidity. The new

@@ -1,5 +1,23 @@
 # Work handoff
 
+## Consolidated recommendations and new execution
+
+The operator selected custom OpenSea qualification using the CURRENT Merkle design.
+Preserve exact free-team/paid prices, quotas and original requests; standard signed
+adaptation is not selected. Offline current-source TEAM/ALLOWLIST examples support
+preparation, not actual OpenSea acceptance.
+
+The [last-ten-recommendation
+reconciliation](../reports/recommendations-execution-20261120/REVIEW.md) preserves exact
+chat pointers, reuses completed F6 construction/claims/workload evidence, and advances
+only missing partitions. New optional maximum-state sync then activation fits
+separate24M/full25% and32M/full20% profiles; activation pads to27,734,834. This shifts
+work to a separate operator-paid transaction, not a direct cold-gas fix.
+The476,135-estimate direct shortfall stays open. Nine source/ABI/arithmetic platform
+diagnostics preserve exact mint and original-request rules; no signed authority or
+provider is adopted. The new pool attempt captured pristine state and12 local setup receipts, then stopped under repeated provider429; no LP lifecycle pass is claimed. No
+production source, limit, financial right, signer, website, service or journal changes.
+
 **Testing target clarified, 20 November 2026:** the supplied pool
 `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b` remains authorized
 for isolated fork testing even when active liquidity is zero. Production-pool selection

@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "archive": "evidence.zip",
+  "members": {
+    "attempt1/FAILED.json": {
+      "bytes": 247,
+      "sha256": "bb862b64970eac7677d231c3b52dbab165d329f3804bd3bfd6bbbb4efdd83053"
+    },
+    "attempt1/runner-attempt1.py": {
+      "bytes": 21010,
+      "sha256": "0a5495771fc5b2c874b1caad26fbf582697f2641b6b70e5bbb6df73e83e6469b"
+    },
+    "attempt2/anvil.stderr": {
+      "bytes": 280,
+      "sha256": "859ce732d17c6781e6801562d0119653d77e1e7d99c37565f0f37ef9c5fce85d"
+    },
+    "attempt2/anvil.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempt2/FAILED.json": {
+      "bytes": 93,
+      "sha256": "e3e757e62e3a13d66527d4044d9ece273dedd12d81a829dd8d7d40a6d1f3fda4"
+    },
+    "attempt2/fixture-input.json": {
+      "bytes": 11577,
+      "sha256": "fb1a4db9722d475ed69e4507ebb8d2dd295b3d53222319d0f47b050e69245936"
+    },
+    "attempt2/fixture-output.json": {
+      "bytes": 68635,
+      "sha256": "6b8db0f515bad15cdd43245655fa4086b7a5827452ef000f3f7c8fa433805d7a"
+    },
+    "attempt2/fixture-stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempt2/relay/events.jsonl": {
+      "bytes": 1312,
+      "sha256": "ecc013545598541aa90724e78bd40376cebdea218db03fa7ed2c4aa4516bde62"
+    },
+    "attempt2/relay/summary.json": {
+      "bytes": 703,
+      "sha256": "aadc21c992f753606b0daa0ba49ac17895eb3ca3a57f88354beb1105d251e50b"
+    },
+    "attempt2/runner-attempt2.py": {
+      "bytes": 21110,
+      "sha256": "d0b0ba40a3c7feebda33fa9e0c9ab5a94be02c50d3665b198b1f31964d3b353b"
+    },
+    "attempt2/source-stage.json": {
+      "bytes": 12571,
+      "sha256": "8da21a6545ca103d690911e2a41f3b4832d8b8054aae97fd657163630bd6dace"
+    },
+    "attempt3/anvil.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempt3/anvil.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempt3/cleanup.json": {
+      "bytes": 220,
+      "sha256": "7e99454214477aa322a0545d0435ce1fd16722f437f5aaaaa1a37a12c6fccbd7"
+    },
+    "attempt3/FAILED.json": {
+      "bytes": 188,
+      "sha256": "ddd619e14e0d9548a07e01718f7d068a4cdd63cc62cb68df3b7133e2e54791ae"
+    },
+    "attempt3/fixture-input.json": {
+      "bytes": 11577,
+      "sha256": "fb1a4db9722d475ed69e4507ebb8d2dd295b3d53222319d0f47b050e69245936"
+    },
+    "attempt3/fixture-output.json": {
+      "bytes": 68635,
+      "sha256": "6b8db0f515bad15cdd43245655fa4086b7a5827452ef000f3f7c8fa433805d7a"
+    },
+    "attempt3/fixture-reuse.json": {
+      "bytes": 316,
+      "sha256": "699d430a2d825988dc5dd91b0992c72d2d59aba98a90b1ad722a414be7ef438b"
+    },
+    "attempt3/local-wire.json.gz": {
+      "bytes": 894207,
+      "sha256": "356b5c3cb3c7bb856709655b57527c15ede11aa3578dee7e4369d74004a66c92"
+    },
+    "attempt3/pristine.json": {
+      "bytes": 1184,
+      "sha256": "a9198f426874c9513d502850f34bcee1136ce24e506aef16209ccb931858bf87"
+    },
+    "attempt3/process.json": {
+      "bytes": 320,
+      "sha256": "7cfc7a7b5d5d5fb3e087381834b06fd67750885b12a6cebf415e79f240b48a71"
+    },
+    "attempt3/relay/events.jsonl": {
+      "bytes": 59596,
+      "sha256": "31cf28c68ba48facdc9fc78335f104900789d128fc285dcf173bf6b59b4cd1da"
+    },
+    "attempt3/relay/summary.json": {
+      "bytes": 711,
+      "sha256": "740a1e41d6576f6822b5c3cb04b8c94699d1277bf64314898c238ec0855f7475"
+    },
+    "attempt3/runner-attempt3.py": {
+      "bytes": 21164,
+      "sha256": "573f0f641a952cd7e484f27ad6e4695f41e883c5555b1136304f7da370c94532"
+    },
+    "attempt3/source-stage.json": {
+      "bytes": 12571,
+      "sha256": "a37bccb24cd5ae15eab1f94120530c0bc7515fe217e9f0ee5047965c7fad1834"
+    }
+  },
+  "bytes": 948474,
+  "sha256": "d1010145cf42181c98e5b967ca487eb2327ec6b50a34c24394b81606c2bad6d1",
+  "roundtrip_verified": true
+}

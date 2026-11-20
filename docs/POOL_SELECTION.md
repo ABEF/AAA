@@ -1,5 +1,12 @@
 # Selected Robinhood ETH / ZZZ pool
 
+The [new current-F6 fork
+attempt](../reports/recommendations-execution-20261120/REVIEW.md) preserves original
+pool state at119107223 and completes12 local setup receipts before recurring provider429
+interrupts it. No token funding or LP operation follows. ActiveL0 is not what blocked
+this attempt; sustainable provider access and complete LP verification still need
+qualification.
+
 **Testing target clarified, 20 November 2026:** the supplied pool
 `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b` remains authorized
 for isolated fork testing even when active liquidity is zero. Production-pool selection

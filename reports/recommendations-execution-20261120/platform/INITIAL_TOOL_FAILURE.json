@@ -1,0 +1,19 @@
+{
+  "stage": "initial diagnostic tool execution",
+  "tool_sha256": "250130f1b754c86f02db71e20e21fc9277e23b56178dcabf415db07d2a71d980",
+  "error": "Delivery exception is not caught by fulfill",
+  "cause": "Naive substring try also matched the comment word registry; this was an analysis-tool error, not a contract finding.",
+  "correction": "Use a word-boundary Solidity try-token check.",
+  "output_artifact_created": false,
+  "observed_tool_exit_code": 1,
+  "exact_stage1_source": "initial-stage1.py.txt",
+  "second_failure": {
+    "tool_sha256": "7d3f77d6f4a411a9ae9319c151661a3e0cd8e0b205953c47ea8536068f45edfa",
+    "exact_stage2_source": "initial-stage2.py.txt",
+    "observed_tool_exit_code": 1,
+    "error": "Current signed flow remains disabled",
+    "cause": "Expected a local signers variable; actual pinned source directly calls drop.getSigners(nft).length.",
+    "correction": "Bind the exact direct getter check after inspecting the current source.",
+    "output_artifact_created": false
+  }
+}

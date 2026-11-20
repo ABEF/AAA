@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "kind": "observed_new_phase_example_producer_invocation",
+  "command": [
+    "C:/Users/Ali/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+    "reports/recommendations-execution-20261120/platform/custom-merkle/prepare_phase_examples.py",
+    "--source-input",
+    "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/readiness-advance-20261120/current-source-cli/input.json",
+    "--output-directory",
+    "reports/recommendations-execution-20261120/platform/custom-merkle/examples"
+  ],
+  "observed_exit_code": 0,
+  "producer_sha256": "cdc019bc8b57289d3341cfe73689330cc7749bb85e38f4d85363cf89802e1f23",
+  "execution_sha256": "92de3a4e6fb75a3b6e7f391c0098e844f241e4eaa6e15f586c2e3e9b73725c6b",
+  "actual_source_count": 105,
+  "new_cli_invocations": 3,
+  "new_phase_examples": 2,
+  "all_live_approval_flags_false": true,
+  "actual_opensea_onboarding": false,
+  "source_or_contract_changed": false,
+  "unchanged_tests_rerun": 0
+}

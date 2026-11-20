@@ -1,0 +1,236 @@
+"""Reproduce source-pinned platform compatibility facts, without a network or EVM.
+
+This is report-scoped analysis, not an adapter, provider selector, Solidity test,
+runtime verifier or deployment tool. All external bytes were already archived.
+"""
+import argparse
+import gzip
+import hashlib
+import io
+import json
+from pathlib import Path
+import re
+import sys
+import zipfile
+
+ROOT = Path(__file__).resolve().parents[3]
+PINS = {
+    'src/ZZZNFT.sol': '736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211',
+    'src/ZZZProtocolPolicy.sol': '1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc',
+    'src/ZZZSeaDropMint.sol': '58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4',
+    'reports/activation-final-six-20261118/build/final/compiler-output.json.gz': 'aceb5510485a5a0c28945cb4b4df71c66305dff7f1cb058435a464ff42df4a89',
+    'reports/opensea-integration-20261109/official-seadrop/derived/abi.json': 'b64b0900ed04920443dd266b668961570cb6b7b38a1146ed3f6499e772b5c360',
+    'reports/opensea-integration-20261109/official-seadrop/verified-sources/src/SeaDrop.sol': '1e1c55f85debe55feb001a63a169125207b41aae5f358b306e86be5a35ce52d8',
+    'reports/readiness-advance-20261120/evidence.zip': 'eee6b0df53065e00af171f2faa1c13c5a7a165974c48a2bfea19b561e03ee143',
+    'reports/readiness-advance-20261120/VRF_SOURCES.json': '490470f5440fae4cd9cd8a7d7cfb0b251ff5d09c5734cb14d78a18a9791e4f25',
+    'zzz_ops/abi.py': '154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d',
+}
+
+
+def require(condition, label):
+    if not condition:
+        raise ValueError(label)
+
+
+def read_sources():
+    sources = {}
+    for name, expected in PINS.items():
+        with (ROOT / name).open('rb') as handle:
+            raw = handle.read(8 * 1024 * 1024 + 1)
+        require(len(raw) <= 8 * 1024 * 1024, 'Bounded input exceeded: ' + name)
+        require(hashlib.sha256(raw).hexdigest() == expected, 'Unreviewed source bytes: ' + name)
+        sources[name] = raw
+    return sources
+
+
+def function_body(source, name):
+    """Exact pinned-source extractor; no claim of a general Solidity parser."""
+    matches = list(re.finditer(r'\bfunction\s+' + re.escape(name) + r'\s*\(', source))
+    require(len(matches) == 1, 'Expected one pinned function: ' + name)
+    opening = source.index('{', matches[0].start())
+    depth = 1
+    for index in range(opening + 1, len(source)):
+        depth += (source[index] == '{') - (source[index] == '}')
+        if depth == 0:
+            return source[opening + 1:index]
+    raise ValueError('Unclosed pinned function: ' + name)
+
+
+def compact(source):
+    return re.sub(r'\s+', '', source)
+
+
+def abi_function(abi, name):
+    rows = [row for row in abi if row.get('type') == 'function' and row.get('name') == name]
+    require(len(rows) == 1, 'Ambiguous ABI function: ' + name)
+    return rows[0]
+
+
+def abi_type(row):
+    if row['type'].startswith('tuple'):
+        return '(' + ','.join(abi_type(child) for child in row['components']) + ')' + row['type'][5:]
+    return row['type']
+
+
+def signature(row):
+    return row['name'] + '(' + ','.join(abi_type(child) for child in row['inputs']) + ')'
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output', type=Path, required=True, help='New exclusive JSON output')
+    args = parser.parse_args()
+    sources = read_sources()
+    sys.path.insert(0, str(ROOT))
+    from zzz_ops.abi import keccak256
+    selector = lambda sig: '0x' + keccak256(sig.encode('ascii'))[:4].hex()
+    compiled_name = 'reports/activation-final-six-20261118/build/final/compiler-output.json.gz'
+    with gzip.GzipFile(fileobj=io.BytesIO(sources[compiled_name])) as handle:
+        decoded = handle.read(64 * 1024 * 1024 + 1)
+    require(len(decoded) <= 64 * 1024 * 1024, 'Compiler decoded bound exceeded')
+    compiled = json.loads(decoded)
+    nft_contracts = compiled['contracts']['src/ZZZNFT.sol']
+    nft = sources['src/ZZZNFT.sol'].decode()
+    policy = sources['src/ZZZProtocolPolicy.sol'].decode()
+    mint = sources['src/ZZZSeaDropMint.sol'].decode()
+    expected_nft_sha = hashlib.sha256(sources['src/ZZZNFT.sol']).hexdigest()
+    require(expected_nft_sha == PINS['src/ZZZNFT.sol'], 'NFT source identity')
+    with zipfile.ZipFile(io.BytesIO(sources['reports/readiness-advance-20261120/evidence.zip'])) as archive:
+        candidate_raw = archive.read('vrf-source-review/OpenVRF.sol')
+    candidate_manifest = json.loads(sources['reports/readiness-advance-20261120/VRF_SOURCES.json'])
+    expected_candidate = next(row for row in candidate_manifest['files'] if row['path'] == 'src/OpenVRF.sol')
+    require(len(candidate_raw) == expected_candidate['bytes'] and hashlib.sha256(candidate_raw).hexdigest() == expected_candidate['sha256'], 'Archived OpenVRF source identity')
+    candidate = candidate_raw.decode()
+    request = abi_function(nft_contracts['IZZZVRFCoordinator']['abi'], 'requestRandomWords')
+    callback = abi_function(nft_contracts['ZZZNFT']['abi'], 'rawFulfillRandomWords')
+    callback_context = abi_function(nft_contracts['ZZZNFT']['abi'], 'mintSeaDrop')
+    facts = []
+    def record(identifier, claim, evidence):
+        facts.append(dict(id=identifier, claim=claim, evidence=evidence, kind='offline_source_or_arithmetic_fact_not_evm_execution'))
+
+    provider_request = 'requestRandomness(uint32)'
+    provider_callback = 'rawFulfillRandomness(uint256,uint256)'
+    require(re.search(r'function\s+requestRandomness\(uint32 callbackGasLimit\) external payable', candidate), 'Pinned provider request header')
+    require(re.search(r'function\s+rawFulfillRandomness\(uint256 requestId, uint256 randomWord\) external;', candidate), 'Pinned provider callback header')
+    require(signature(request) != provider_request and signature(callback) != provider_callback, 'Expected real ABI incompatibility')
+    require('words.length!=2' in compact(function_body(nft, 'rawFulfillRandomWords')), 'Exact two-word guard')
+    record('PF01', 'The candidate is not a drop-in current coordinator.', {
+        'consumer_request': signature(request), 'consumer_request_selector': selector(signature(request)),
+        'candidate_request': provider_request, 'candidate_request_selector': selector(provider_request),
+        'consumer_callback': signature(callback), 'consumer_callback_selector': selector(signature(callback)),
+        'candidate_callback': provider_callback, 'candidate_callback_selector': selector(provider_callback),
+        'consumer_required_words': 2, 'candidate_delivered_words': 1,
+    })
+    require(request['stateMutability'] == 'nonpayable', 'Current request sends no native value')
+    require('if(msg.value!=requestFee)revertIncorrectFee();' in compact(function_body(candidate, 'requestRandomness')), 'Exact provider fee predicate')
+    record('PF02', 'A funded adapter/subscription policy is needed; nativePayment metadata does not itself send ETH.', {
+        'consumer_request_mutability': request['stateMutability'], 'candidate_request_mutability': 'payable',
+        'candidate_fee_is_exact': True, 'native_fee_example_wei': '1', 'consumer_value_wei': '0',
+        'nonzero_fee_direct_binding_fails_payment_even_if_selector_were_adapted': True,
+        'no_adapter_or_funding_source_selected': True,
+    })
+    require('callbackGas<200000||callbackGas>10000000' in compact(function_body(policy, 'setRandomnessRequestSettings')), 'Current callback gas bounds')
+    require('MAX_CALLBACK_GAS = 1_000_000' in candidate, 'Candidate callback maximum')
+    record('PF03', 'A globally valid PoPL callback allowance can still be incompatible with this provider.', {
+        'popl_minimum': 200000, 'popl_maximum': 10000000, 'candidate_minimum': 25000,
+        'candidate_maximum': 1000000, 'intersection': [200000, 1000000],
+        'example_current_valid_candidate_invalid': 1000001,
+        'actual_callback_gas_qualified': False,
+    })
+    fulfill = compact(function_body(candidate, 'fulfill'))
+    delivery = compact(function_body(candidate, '_deliver'))
+    retry = compact(function_body(candidate, 'retryCallback'))
+    require(fulfill.index('request.fulfilled=true') < fulfill.index('_deliver(id,request)'), 'Fulfilled state before delivery')
+    require('revertInsufficientGas()' in delivery and 'request.delivered=success;' in delivery, 'Separate outer-revert and caught-callback failure paths')
+    require('!request.fulfilled||request.delivered' in retry and 'request.randomWord=' not in retry, 'Retry preserves existing fulfilled result')
+    require(not re.search(r'\btry\b', function_body(candidate, 'fulfill')), 'Delivery exception is not caught by fulfill')
+    record('PF04', 'Two recovery paths are required: retryCallback after a caught consumer failure; original fulfill after an outer gas revert.', {
+        'caught_consumer_revert': {'fulfilled': True, 'delivered': False, 'recovery': 'retryCallback with same request and word'},
+        'insufficient_enclosing_gas_revert': {'fulfill_writes_rollback': True, 'fulfilled_remains_previous_false': True,
+            'fee_payment_rolls_back': True, 'retryCallback_rejects_unfulfilled': True,
+            'recovery': 'Replay original fulfill/proof with adequate enclosing gas; never request a replacement draw'},
+        'source_order': 'fulfilled=true; fee settlement; _deliver',
+        'evm_atomicity_used_as_semantic_rule_not_new_evm_run': True,
+    })
+    require('uint256 roundValue = (block.timestamp + MIN_DELAY - GENESIS + PERIOD - 1) / PERIOD + 1;' in candidate, 'Candidate future-round expression')
+    lead_rows = []
+    genesis, period, delay = 1727521075, 3, 2
+    for residue in range(period):
+        timestamp = genesis + 100 * period + residue
+        round_id = (timestamp + delay - genesis + period - 1) // period + 1
+        publication = genesis + (round_id - 1) * period
+        lead_rows.append(dict(timestamp_modulo_period=residue, scheduled_lead_seconds=publication-timestamp,
+            first_lag_at_which_beacon_is_already_scheduled=publication-timestamp))
+    require(sorted(row['scheduled_lead_seconds'] for row in lead_rows) == [2, 3, 4], 'All future-round timing residues')
+    record('PF05', 'Freshness is a request-time prerequisite; later fulfillment delay cannot restore unpredictability.', {
+        'all_timestamp_residues': lead_rows, 'universal_sufficient_lag_bound_seconds_strictly_less_than': 2,
+        'target_chain_timestamp_freshness_verified': False,
+        'qualification_limitation': 'Scheduling arithmetic only; no claim about actual drand publication latency or chain timestamps.',
+    })
+    rotation = compact(function_body(policy, 'rotateRandomness'))
+    callback_body = compact(function_body(nft, 'rawFulfillRandomWords'))
+    require('collection.nextToFinalize()!=collection.mintedCount()+1' in rotation, 'Rotation requires completed original draws')
+    require('msg.sender!=vrf.coordinator' in callback_body and 'result.fulfilled||words.length!=2' in callback_body, 'Authenticated one-time callback')
+    record('PF06', 'A timeout/cancellation workaround cannot rotate or replace a pending original request under the current policy.', {
+        'rotation_requires_all_mints_finalized': True, 'callback_sender_is_current_original_coordinator': True,
+        'duplicate_fulfillment_rejected': True, 'provider_result_and_id_mapping_must_survive_adapter_restarts': True,
+        'provider_admitted': False,
+    })
+
+    seadrop_name = 'reports/opensea-integration-20261109/official-seadrop/verified-sources/src/SeaDrop.sol'
+    seadrop = sources[seadrop_name].decode()
+    seadrop_abi = json.loads(sources['reports/opensea-integration-20261109/official-seadrop/derived/abi.json'])
+    validation_row = abi_function(seadrop_abi, 'updateSignedMintValidationParams')
+    validation_fields = validation_row['inputs'][1]['components']
+    field_names = [field['name'] for field in validation_fields]
+    validate = compact(function_body(seadrop, '_validateSignerAndParams'))
+    require('minMintPrice' in field_names and not any('maxmintprice' == name.lower() for name in field_names), 'No exact or maximum signed price field')
+    require('mintParams.mintPrice<signedMintValidationParams.minMintPrice' in validate, 'Exact signed price predicate')
+    price_rows = []
+    for minimum, proposed, label in [(0, 0, 'free team'), (0, 1, 'team overcharge witness'), (50000000000000000, 50000000000000000, 'paid exact'), (50000000000000000, 100000000000000000, 'paid overcharge witness')]:
+        price_rows.append(dict(label=label, minimum_wei=str(minimum), proposed_wei=str(proposed), price_predicate_rejects=proposed < minimum))
+    require(not any(row['price_predicate_rejects'] for row in price_rows), 'Overcharge witnesses satisfy this price floor')
+    record('PF07', 'Enabling a standard signer cannot by itself retain exact-free TEAM or an exact paid price.', {
+        'actual_signed_validation_fields': validation_fields, 'price_floor_witnesses': price_rows,
+        'witness_scope': 'Only the exact price predicate; signatures, all other limits, buyer approval and actual mint acceptance are not simulated.',
+    })
+    active = compact(function_body(seadrop, '_checkActive'))
+    require('block.timestamp<startTime||block.timestamp>endTime' in active, 'Upstream inclusive endpoints')
+    boundary = 200
+    windows = [(100, boundary), (boundary, 300)]
+    boundary_rows = [dict(timestamp=t, active_stages=[i for i, (start, end) in enumerate(windows) if start <= t <= end]) for t in [boundary-1, boundary, boundary+1]]
+    require(boundary_rows[1]['active_stages'] == [0, 1], 'Shared timestamp overlaps upstream stages')
+    record('PF08', 'Adjacent upstream inclusive stages overlap at equality; a UI timestamp convention does not prove safe phase classification.', {
+        'illustrative_stage_windows': windows, 'boundary_witnesses': boundary_rows,
+        'actual_opensea_generated_payload_reviewed': False,
+    })
+    require([row['type'] for row in callback_context['inputs']] == ['address','uint256'], 'Actual NFT mint callback context')
+    require('drop.getSigners(nft).length!=0' in compact(mint), 'Current signed flow remains disabled')
+    record('PF09', 'The current NFT callback cannot see signed price, stage, salt or signer; the current mint profile correctly refuses a signer.', {
+        'compiled_callback_signature': signature(callback_context), 'selector': selector(signature(callback_context)),
+        'inputs': callback_context['inputs'], 'signed_profile_implemented': False,
+        'max_price_or_authenticated_context_must_be_resolved_before_adaptation': True,
+    })
+    result = dict(schema=1, kind='source_pinned_platform_compatibility_diagnostics',
+        baseline='c8124e6f51bbcefa86879709cae5d78036877bac', source_sha256=PINS,
+        candidate_revision=candidate_manifest['revision'], candidate_source_sha256=expected_candidate['sha256'],
+        facts=facts, diagnostics_completed=len(facts), old_tests_rerun=0, new_solidity_or_provider_tests=0,
+        network_calls=0, adapters_implemented=0, provider_selected=False, signed_authority_added=False,
+        production_approved=False,
+        limitations=['Pinned-source predicates and ABI/arithmetic only; no EVM, crypto verifier, gas, target runtime, service liveness or actual OpenSea payload acceptance is established.',
+            'A mathematical witness does not establish a full signed mint or a real request succeeded.',
+            'Current economic and original-request guarantees remain unchanged; unresolved policy decisions are not silently selected.'])
+    require(len(json.dumps(result)) < 65536, 'Bounded diagnostic output')
+    with args.output.open('x', encoding='utf-8', newline='\n') as handle:
+        json.dump(result, handle, indent=2)
+        handle.write('\n')
+    print(json.dumps({'diagnostics_completed': len(facts), 'network_calls': 0, 'solidity_or_provider_tests': 0,
+        'production_approved': False, 'output': str(args.output)}))
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except (ValueError, OSError, KeyError, TypeError) as error:
+        print('Platform diagnostic refused: ' + str(error), file=sys.stderr)
+        raise SystemExit(2)

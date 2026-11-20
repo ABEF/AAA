@@ -527,6 +527,9 @@ The Oracle retains its canonical49-word transient format and every live source/c
 
 #### Optional royalty synchronization before activation
 
+The [new F6 maximum-state rehearsal](../reports/recommendations-execution-20261120/GAS_REVIEW.md) validates this OPTIONAL sequence at999 active NFTs, two LPs and64 slow ERC20 currencies plus ETH. Operator-paid `syncAll()` estimates5,893,025 (full25%7,366,282 within24M). After its successful receipt, the exact freshly prepared ZZZ activation estimates23,112,361 (full20%27,734,834 within32M). Combined actual gas is27,954,608 across TWO transactions; no total-gas saving is claimed. All65 old-cohort books and newcomer exclusion remain, with sampled incumbent claim checks. New receipts may restore the work; always repeat the fresh exact entry review. The unsynchronized cold case still refuses32M and needs476,135 less estimated gas. This does not create a required holder step or automatic worker.
+
+
 The historical [two-stage rehearsal](../reports/launch-workload-20261117/REVIEW.md#tested-optional-workflow-synchronize-before-activation) moved allocation into a separate operator-paid transaction at its earlier source. Current Factory6 passes the13 controlled cold cases without making pre-sync a required step. Synchronization remains optional; it does not promise less total gas, a new worker or another required holder transaction.
 
 | Step | Existing call / inputs | What to verify |

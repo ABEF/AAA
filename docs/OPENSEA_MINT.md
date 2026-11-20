@@ -1,5 +1,14 @@
 # OpenSea primary mint: fresh source profile
 
+## Selected path: custom Merkle integration
+
+The operator selected custom OpenSea qualification using the CURRENT Merkle design.
+Preserve exact free-team/paid prices, quotas and original requests; standard signed
+adaptation is not selected. Offline current-source TEAM/ALLOWLIST examples support
+preparation, not actual OpenSea acceptance.
+
+See the [new compatibility diagnostics and preparation](../reports/recommendations-execution-20261120/platform/REVIEW.md) and [recorded decision](../reports/recommendations-execution-20261120/DECISIONS.json). No platform approval, signed mint authority, contract or live deployment change follows.
+
 Current [platform qualification](../reports/platform-provider-gate-20261120/REVIEW.md)
 distinguishes the observed SeaDrop deployment from custom collection acceptance.
 Studio's documented signed-allowlist/`multiConfigure` route does not establish
