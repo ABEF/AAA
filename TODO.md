@@ -148,6 +148,7 @@ Custody, ownership and reward accounting.
   - Revealed metadata displays fixed rarity weight1/2/3 even while dormant, with separate royalty_activated flag. Unknown draws stay Unrevealed; economic ledger eligibility remainszero until activation, with no retroactive royalties. Fixed artwork/rarity quotas and paths are unchanged.
   - [Current mint/VRF profile1](docs/MINT_INTEGRATION_QUALIFICATION.md) binds exact subscription-v2.5 selector, two words, nonzero lane, same original request/result recovery through refund/expiry, negative-proof/callback evidence and external funding. Actual RH-VRF/D20 compatibility remains unqualified; no guard relaxation, adapter or provider selection is implied.
   - [Current provider compatibility](reports/platform-provider-gate-20261120/REVIEW.md): Chainlink v2.5 catalog has noRobinhood entry; candidate permanent refund/expiry behavior can invalidate the original request. Require exact verified proof/coordinator/ABI/lane/payment/callback/retry policy; no reroll or weakened lane check to qualify a candidate.
+  - [Pinned OpenVRF source research](reports/readiness-advance-20261120/VRF_RESEARCH.md) identifies a no-expiry/same-result-retry lead at9fb960c. Payable one-word interface, prepaid funding/two-word derivation,2–4second beacon lead/sequencer assumptions, dependency/crypto and self-hosted operation need separate design/qualification. No adapter/provider is selected or implemented.
 
   </details>
 
@@ -186,6 +187,8 @@ Custody, ownership and reward accounting.
   - Fixed5% ERC2981 requests royalties without universally enforcing marketplace payment. New primary-mint support does not add transfer-validator enforcement, a royalty converter, or a new custody/withdrawal authority.
   - Current V10 peers must retain the same SeaDrop address/runtime; canonical replacement does not rotate mint transport. Record acceptance before sealing, or complete a separately reviewed design if rotation is required. Actual batch/provider acceptance must include failure on a later NFT after an earlier item succeeds. [Double-check](reports/today-change-review-20261109/REVIEW.md).
   - [Current platform review](reports/platform-provider-gate-20261120/REVIEW.md): actual custom Merkle/typed-setter/Access authority route must be accepted. Studio documents signed allowlists/multiConfigure while current NFT lacks multiConfigure/owner and rejects signed-stage configuration. This is an unverified product mismatch, not demonstrated rejection; no mint capability expanded. Actual fee/payer terms remain unknown.
+  - [Current readiness advance](reports/readiness-advance-20261120/PLAN.md): standard Creator Studio API explicitly rejects Merkle presales. Prepare exact standard-adaptation scope and a strict current-profile offline saved-mint transaction reviewer; no contract/authority change or platform acceptance follows. Actual custom/onboarding/fee/payer decision remains open.
+  - [Implemented offline mint reviewer](reports/readiness-advance-20261120/REVIEW.md): prepare-opensea-drop.py review-mint validates exact saved current-profile public/Merkle payload against reviewed manifest and explicit normalized intent.14NEW focused methods pass in disjoint11+3stages plus one current-source illustrative CLI example. All chain/runtime/authority/simulation/platform/readiness flags stayfalse; no signed/config calldata accepted or transaction generated/changed/sent. Original self-source-bound manifests require explicit rebuild/review, never relabeling. Standard adaptation remains a PLAN with exact-price/free-team/signer/boundary decisions open.
 
   </details>
 
@@ -1266,6 +1269,7 @@ Three required testing layers, with source-bound evidence.
   - Before final release freeze, assess the current official compiler-bug registry against exact Solidity0.8.26 via-IR/optimizer/dependency/IR usage; record applicability rather than assuming safe or upgrading automatically. Follow the ordered [production qualification plan](docs/ROADMAP.md).
   - [Current compiler applicability](reports/compiler-applicability-20261120/REVIEW.md) assesses all8registry variants against exact F6/settings/100-source AST, with7new offline predicate controls. No confirmed reachable upgrade-requiring defect found; generated-code/independent release limits remain. Exact Yul optimization is disabled; no compiler or source change.
   - [Source-specific construction verification](reports/f6-construction-20261120/VERIFICATION.json): one actual currentF6 campaign,11new offline controls in explicit10+1stages, no compiler/unchanged suite/static/normal-build rerun. Independent default/authority/raw-wire checks retain their exact scopes and limitations. Actual release configuration/dependencies/gas fees and external audit remain required.
+  - [Current23-package snapshot](reports/readiness-advance-20261120/STATE.json) distinguishes completed compiler/construction/settlement/backend subchecks from still-unapproved whole packages. All83 stable tasks remain tracked; no cumulative test count or release percentage is inferred.
 
   </details>
 
@@ -1868,4 +1872,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `19b13437d7098ab5f22d4c4e9bdc2eb051330e314d16a002e53b7125e5e1387e`.
+Snapshot SHA-256: `626034ba5b7d4aae96cba6ad17a28d9e4d54e15f4ef0847973c97b2583d1b7f0`.

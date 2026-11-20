@@ -1,5 +1,11 @@
 # Qualify randomness and OpenSea primary mint
 
+[Current preparation and provider research](../reports/readiness-advance-20261120/REVIEW.md)
+adds a strict offline saved-mint reviewer, a standard OpenSea adaptation PLAN and
+a pinned OpenVRF source lead. None approves onboarding, signed-stage authority,
+a provider adapter, public signing or deployment. Standard Studio explicitly
+rejects Merkle presales; see the plan's preserved-rights and trust questions.
+
 The [20 November platform assessment](../reports/platform-provider-gate-20261120/REVIEW.md)
 identifies a concrete compatibility question: Studio documents signed allowlists,
 `multiConfigure` and collection authority verification, while this NFT uses Merkle

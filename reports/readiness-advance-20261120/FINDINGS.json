@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "findings": [
+    {
+      "id": "RA01",
+      "status": "current_plan_reconciled",
+      "scope": "23packages/83stabletasks, completedsubchecks separatedfromunapprovedpackages; pooldeferred",
+      "approval": false
+    },
+    {
+      "id": "RA02",
+      "status": "implemented_and_focused_verified",
+      "scope": "Strict currentprofileoffline mintintentreview added to existingtool,14newchecks+onecurrentsourceexample",
+      "source": "zzz_ops/opensea_drop.py",
+      "production_submission": false
+    },
+    {
+      "id": "RA03",
+      "status": "open_design_and_platform_decision",
+      "scope": "StandardStudioexplicitlyrejectsMerkle; signedadaptationPLANneeds exactprice/freeTEAM/signer/boundary decisions",
+      "proof": "OPENSEA_ADAPTATION_PLAN.md",
+      "contracts_changed": false
+    },
+    {
+      "id": "RA04",
+      "status": "pinned_lead_unqualified",
+      "scope": "OpenVRFnoexpiry/sameresult sourcelead; ABI/funding/timing/crypto/hostoperations unresolved",
+      "proof": "VRF_RESEARCH.md",
+      "adopted": false
+    },
+    {
+      "id": "RA05",
+      "status": "open_existing_gas_qualification",
+      "scope": "476135lessestimatedgas stillneeded; bitmapidea requiresnewprivatecodec/size/Factory/canonicalreview, no speculativefixclaimed"
+    }
+  ],
+  "production_approved": false
+}

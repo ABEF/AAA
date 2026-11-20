@@ -1,5 +1,28 @@
 # Project context
 
+## Current readiness and offline mint review
+
+The [23-package snapshot](reports/readiness-advance-20261120/STATE.json) keeps all83
+stable task IDs:35done/40progress/7todo/1excluded. Whole packages/release gates
+remain unapproved; pool selection is operator-deferred.
+The [new offline mint reviewer](reports/readiness-advance-20261120/REVIEW.md)
+checks normalized saved mintPublic/mintAllowList calldata against a source-bound
+manifest and explicit caller/minter/phase/quantity/time intent. Fourteen NEW
+focused methods pass in two disjoint stages, plus one illustrative current-source
+CLI example. All actual readiness flags stayfalse; no network/signing/queue.
+The maintained source inventory is now [here](reports/readiness-advance-20261120/FUNCTION_INVENTORY.json):
+179Pythonfiles/1,979named definitions; Solidity61/dependencies39/controls4 unchanged.
+Existing OpenSea artifacts bind this module's old hash; preserve them and rebuild/
+review new artifacts explicitly. service.py/checkpoint and runtime identities stay.
+
+Standard Studio API explicitly rejects Merkle presales. The [standard adaptation
+PLAN](reports/readiness-advance-20261120/OPENSEA_ADAPTATION_PLAN.md) is reviewable,
+not approval to add signed mint authority, alter timing/economic rights or change
+contracts. Exact-price/free-team/signer trust still needs a decision. A pinned
+[OpenVRF source lead](reports/readiness-advance-20261120/VRF_RESEARCH.md) is likewise
+not a qualified service or adapter. No contract/build/site/service/journal changes.
+
+
 Read the [current documentation reconciliation](reports/documentation-sync-20261120/REVIEW.md)
 and [v3 scope correction](reports/market-route-qualification-20261120/ERRATA.md).
 Solidity already supports reviewed manual v3 earned conversion; the current

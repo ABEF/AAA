@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "reviewed_date": "2026-11-20",
+  "scope": "Primary documentation references, not live API acceptance or frozen HTML snapshots",
+  "sources": [
+    {
+      "url": "https://docs.opensea.io/reference/save_drop_edits",
+      "supports": "Explicit standardStudio Merkle rejection, stage array/schedule/wallet UI semantics requiring translation review."
+    },
+    {
+      "url": "https://docs.opensea.io/reference/build_drop_publish_transaction",
+      "supports": "Platform computes publish configuration and expects onchainowner sender; not acceptance of currentPoPL."
+    },
+    {
+      "url": "https://github.com/Robinhood-OSS/OpenVRF/tree/9fb960cfc4d41e38f9d3057bf547e0d9cdcd4cc2",
+      "supports": "Pinned source lead only, no deployment/provider/cryptoapproval; seeVRF_SOURCES."
+    }
+  ]
+}

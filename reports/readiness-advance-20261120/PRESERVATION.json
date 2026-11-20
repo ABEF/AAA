@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "kind": "read_only_preservation_and_document_consistency",
+  "baseline": "9d1033a60029fb5b4112c28b6c8bd9015ebd0321",
+  "original_archives_verified": 18,
+  "protected_unrelated_dirty_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "current_changed_source_sha256": {
+    "zzz_ops/opensea_drop.py": "01f86be5db2a2d8102b51e1d7fe3a4aae451d53cce7726dfbf3f32e064047480",
+    "tests_python/test_opensea_mint_review.py": "501268e4e4a6a2405f01f6080b9d6720a8749988ace595109b14ab1f7b6d1d3e"
+  },
+  "existing_opensea_test_unchanged": true,
+  "contract_dependency_build_diff_empty": true,
+  "stable_tasks": 83,
+  "task_counts": {
+    "done": 35,
+    "progress": 40,
+    "excluded": 1,
+    "todo": 7
+  },
+  "mapped_packages": 23,
+  "actual_package_approvals": 0,
+  "archive_members_verified": 22,
+  "new_unique_test_receipts_verified": 14,
+  "new_or_changed_local_links_checked": 38,
+  "current_inventory_sha256": "d0a2de1c507c2540a61f438e9d6aba160919966c52aabaf455ca9f70d3f46e97",
+  "unchanged_tests_rerun": 0,
+  "production_approved": false,
+  "limitations": [
+    "No tests or runtime behavior reexecuted by this check.",
+    "Only newly introduced local document targets are checked; external pages and all historical anchors are outside this check.",
+    "Original artifacts and unrelated dirty files remain separate; no running environment is probed."
+  ]
+}

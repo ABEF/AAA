@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Readiness reconciliation and offline mint review](readiness-advance-20261120/REVIEW.md)
+keeps23packages/83tasks distinct from release approval. A strict new offline
+current-profile reviewer passes14new focused methods without signing or changing
+contract rights. The OpenSea adaptation PLAN and pinned OpenVRF lead remain
+separate unapproved design/operating choices; source scopes and old evidence stay.
+
 [Current documentation reconciliation](documentation-sync-20261120/REVIEW.md)
 corrects stale launch-pool instructions and evidence links. An explicit
 [v3 capability erratum](market-route-qualification-20261120/ERRATA.md) supplements

@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "new_unique_methods": 14,
+  "stage1_methods": [
+    "test_allowlist_terms_offsets_boolean_and_proof_tampering_refuse",
+    "test_cli_review_is_offline_exclusive_and_rejection_is_sanitized",
+    "test_free_team_and_paid_allowlist_use_their_exact_phase_proofs",
+    "test_identity_payment_and_quantity_changes_refuse",
+    "test_payer_permissions_and_batch_wallet_bounds_are_not_assumed",
+    "test_phase_timing_is_inclusive_but_only_supplied_intent_not_chain_time",
+    "test_public_exact_payload_is_retained_and_review_is_never_live_approval",
+    "test_reviewed_delegated_payers_and_direct_nonzero_recipient_are_explicit",
+    "test_signed_configuration_trailing_and_noncanonical_data_refuse",
+    "test_static_public_capacity_respects_team_reserve_and_allowlist_rollover",
+    "test_unknown_fields_source_drift_and_forged_manifest_approval_refuse"
+  ],
+  "stage2_methods": [
+    "test_maximum_depth_allowlist_proof_fills_the_bounded_calldata",
+    "test_multi_quantity_free_team_and_paid_public_mints_match_exact_value",
+    "test_singleton_allowlist_empty_proof_has_the_minimum_canonical_tail"
+  ],
+  "all_passed": true,
+  "unchanged_methods_rerun": 0,
+  "stage1_receipt_sha256": "bc98dea17f216c6ed831d956a05a29e8c8d4d97640e61099e57e832997af77ca",
+  "stage2_receipt_sha256": "e24ce03b9230f82cdaaf0928ef45a1c8c5c46a2c030ac251e2f1320bc4d9f1ee",
+  "current_source_example": {
+    "schema": 1,
+    "kind": "new_current_repository_source_cli_example",
+    "root_sources_actual": true,
+    "nft_participants_time_are_synthetic": true,
+    "actual_opensea_payload": false,
+    "quantity": "2",
+    "exact_calldata_retained": true,
+    "live_readiness_flags_false": true,
+    "returncode": 0,
+    "input_sha256": "973dfbce3565e884eba04c1a6488533bc36b2efc4a26b103c847368a9b9d049d",
+    "output_sha256": "d47ad2c1e9a48077d0eb54bfa43ae2950bdab96f163e1d3492cfbf3a4dd4ef2d",
+    "module_sha256": "01f86be5db2a2d8102b51e1d7fe3a4aae451d53cce7726dfbf3f32e064047480",
+    "artifact_sources": 105,
+    "unchanged_tests_rerun": false
+  },
+  "production_approved": false
+}

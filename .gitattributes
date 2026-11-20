@@ -339,3 +339,9 @@ reports/market-route-qualification-20261120/** -text whitespace=cr-at-eol
 
 # Preserve exact documentation reconciliation receipts.
 reports/documentation-sync-20261120/** -text whitespace=cr-at-eol
+
+# Preserve exact readiness progress and offline mint-review evidence.
+reports/readiness-advance-20261120/** -text whitespace=cr-at-eol
+# Keep the source-bound mint reviewer and its focused evidence byte-identical.
+zzz_ops/opensea_drop.py -text whitespace=cr-at-eol
+tests_python/test_opensea_mint_review.py -text whitespace=cr-at-eol

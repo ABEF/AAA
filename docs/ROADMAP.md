@@ -1,12 +1,58 @@
 # Engineering roadmap and production qualification plan
 
-Reviewed 20 November 2026 against `519ff4f075022f789f46facbab56f0a944705b11`. **Production is undeployed and NOT APPROVED.**
+Progress reconciled20November2026 against `9d1033a60029fb5b4112c28b6c8bd9015ebd0321`; original plan baseline `519ff4f075022f789f46facbab56f0a944705b11` is retained. **Production is undeployed and NOT APPROVED.**
 This is the plan for checking readiness, not authorization to execute public
 transactions, deploy, seal, restart services or open mint. [TODO.md](../TODO.md)
 remains the only task-status checklist; record actual approval in the
 [release record](RELEASE_CHECKLIST.md). The [readiness reconciliation](../reports/production-readiness-plan-20261119/REVIEW.md)
 and [matrix](../reports/production-readiness-plan-20261119/MATRIX.json) retain
 source provenance and map every stable Todo task to the packages below.
+
+## Current progress snapshot — 20 November 2026
+
+The23 acceptance packages still map all83 stable Todo tasks:35done,40in progress,
+7todo and1excluded. These are task states, not a release-readiness percentage.
+No whole package or production gate is approved. GateA remains incomplete while
+bounded GateB work proceeds. [Source-bound snapshot](../reports/readiness-advance-20261120/STATE.json).
+
+Since the original519ff4plan, current compiler-advisory applicability, controlled
+F6 construction, additional maximum-state LP settlement/claims and finite full-
+normal backend claim admission have advanced. Two claim-planner defects were
+fixed. The prior11/12 maximum-state activation result was already in that plan;
+it is not counted again. Actual sources/routes/platform/operating acceptance,
+full-normal1000-NFT workloads, the476135-estimate gap and independent approval remain.
+
+| Package | Current disposition | Remaining boundary |
+| --- | --- | --- |
+| P01 | Decision pending | Final production pool deferred; actual launch authorities/settings still needed. |
+| P02 | Bounded subcheck complete | Current compiler-advisory applicability reviewed; full release freeze/independent acceptance remains. |
+| P03 | Unqualified external sources | No approved independent ETH/fixed-ZZZ pair or publication operation. |
+| P04 | Operator-deferred pool; qualification open | 117 additional read-only observations qualify no complete route/depth configuration. |
+| P05 | Finite provider evidence only | Exact32M/24M capacity, complete fees, selected tier/failover/finality remain open. |
+| P06 | Partial maximum-state qualification | Prior11/12 contributions; slow-ZZZ still needs476135 less estimated gas; new cold claim/conversion subsets. |
+| P07 | Finite local evidence | Actual-market contribution/marginal-LP and expanded lifecycle acceptance remain. |
+| P08 | New bounded settlement evidence | Controlled maximum-state conversions/claims/transfer/fault checks; actual1%-eligible route remains. |
+| P09 | Implemented; release qualification open | Exact original-currency rights retain opening/outage rules; actual platform/currencies still needed. |
+| P10 | Implemented; operating/economic review open | Existing safeguards and local scenarios are not real-market manipulation immunity. |
+| P11 | Added local role evidence | Distinct-role constructor fixture checked; actual operator/guardian/keeper wallets remain unselected. |
+| P12 | Source-scoped evidence retained | Actual target-chain holder-payout gas/fault/recovery acceptance remains. |
+| P13 | Full latest cutover qualification open | Complete F6/V10 coordinator, funding/import/abort/cold gas remains separate. |
+| P14 | Offline reviewer verified; platform design open |14new focused checks plus current-source illustrative CLI; standard Studio rejects Merkle; adaptation PLAN and actual onboarding/terms remain unapproved. |
+| P15 | Pinned new source lead; no provider qualified | OpenVRF9fb960c inspected; ABI/funding/two-word derivation, timestamp/drand/crypto and self-hosted operation remain unqualified. |
+| P16 | Catalogue mapped; delivery open | Actual content publication/retrieval/OpenSea refresh and final media acceptance remain. |
+| P17 | Two fixes; finite normal flow verified | Real26-pin32-NFT65-currency claim admission/payout;1000/fullHTTP/provider acceptance remains. |
+| P18 | Offline tools implemented | Matching checkpoint/consumer and actual host/archive/restore adoption remain. |
+| P19 | Production submission unresolved | Current consumer unsigned, shared signer Anvil-only; no production signing decision or rollout. |
+| P20 | Finite recovery evidence only | Actual complete normal-loop scheduling with real accepted services remains. |
+| P21 | Operating acceptance open | Off-host restore, fencing, alerts and agreed operating observation remain. |
+| P22 | Controlled construction complete | 25CREATE/19bindings/39instances verified locally; actual deployment/readback/seal approval remain. |
+| P23 | Independent approval open | No final release freeze/audit/remediation/public-opening approval or deployment. |
+
+This advance implementsP14offline mint-payload review and prepares an OpenSea
+standard-adaptation plan. The documented standard API rejects Merkle presales;
+no mint authority or contract change is approved by preparing that plan. P15
+research adds a possible no-expiry OpenVRF source lead, not a selected service.
+Pool selection stays deferred; it does not prevent this work.
 
 ## Current evidence and limits
 

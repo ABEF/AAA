@@ -57,6 +57,11 @@ CONFIG_FIELDS = ('teamAllocation', 'allowlistAllocation', 'publicWalletLimit',
                  'allowlistEnd', 'publicStart', 'publicEnd',
                  'releaseUnusedTeamToPublic', 'merkleRoot', 'feeRecipient',
                  'allowedPayersHash')
+MINT_REVIEW_DOMAIN = b'ZZZ_POPL_OPENSEA_MINT_INTENT_REVIEW_V1\n'
+PUBLIC_MINT = 'mintPublic(address,address,address,uint256)'
+ALLOWLIST_MINT = ('mintAllowList(address,address,address,uint256,'
+                  '(uint256,uint256,uint256,uint256,uint256,uint256,uint256,bool),bytes32[])')
+MAX_MINT_CALLDATA = 4 + 13 * 32 + 32 + 10 * 32
 
 
 def canonical(value):
@@ -359,6 +364,118 @@ def check(artifact, root=ROOT):
                 proof_count=len(rebuilt['proofs']), boundaries=dict(BOUNDARIES))
 
 
+def _mint_address(value, *, zero=False):
+    """Decode a canonical ABI address word; only recipient shorthand permits zero."""
+    if not 0 <= value < 1 << 160 or value == 0 and not zero:
+        raise ValueError('Invalid mint calldata address word')
+    return '0x' + f'{value:040x}'
+
+
+def review_mint(request, root=ROOT):
+    """Review saved calldata against explicit intent, never establish live readiness.
+
+    The input is this tool's normalized offline format, not an assumed OpenSea
+    REST/SDK envelope. Original transaction fields and calldata are retained.
+    A match cannot prove the sender, timestamp, upstream configuration or remaining
+    mint entitlement at execution; those still require actual qualified review.
+    """
+    _keys(request, ('schema', 'manifest', 'intent', 'unsigned_transaction'))
+    if type(request['schema']) is not int or request['schema'] != 1:
+        raise ValueError('Unsupported mint-intent review schema')
+    manifest = request['manifest']
+    manifest_review = check(manifest, root)
+    intent, transaction = request['intent'], request['unsigned_transaction']
+    _keys(intent, ('caller', 'minter', 'phase', 'quantity', 'review_timestamp'))
+    _keys(transaction, ('chain_id', 'from', 'to', 'value', 'data'))
+    caller, minter = address(intent['caller']), address(intent['minter'])
+    quantity = _uint(intent['quantity'], MAX_SUPPLY, minimum=1)
+    timestamp = _uint(intent['review_timestamp'], (1 << 64) - 1, minimum=1)
+    phase = intent['phase']
+    if phase not in ('team', 'allowlist', 'public'):
+        raise ValueError('Unknown mint phase')
+    chain = _uint(transaction['chain_id'], minimum=1)
+    declared = manifest['request']
+    if (chain != 4663 or transaction['chain_id'] != declared['chain_id'] or
+            address(transaction['from']) != caller or
+            address(transaction['to']) != declared['seadrop']):
+        raise ValueError('Mint transaction identity differs from review')
+    value = _uint(transaction['value'])
+    encoded = transaction['data']
+    if (not isinstance(encoded, str) or len(encoded) > 2 + 2 * MAX_MINT_CALLDATA or
+            re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+', encoded) is None):
+        raise ValueError('Invalid bounded mint calldata')
+    raw = bytes.fromhex(encoded[2:])
+    signature = PUBLIC_MINT if phase == 'public' else ALLOWLIST_MINT
+    if raw[:4] != keccak256(signature.encode('ascii'))[:4] or (len(raw) - 4) % 32:
+        raise ValueError('Unsupported or malformed mint function')
+    words = [int.from_bytes(raw[index:index + 32], 'big')
+             for index in range(4, len(raw), 32)]
+    if len(words) < 4:
+        raise ValueError('Mint calldata is truncated')
+    nft = _mint_address(words[0])
+    fee_recipient = _mint_address(words[1])
+    encoded_minter = _mint_address(words[2], zero=True)
+    recipient = caller if words[2] == 0 else encoded_minter
+    if (nft != declared['nft_contract'] or fee_recipient != declared['fee_recipient'] or
+            recipient != minter or words[3] != quantity or
+            quantity > int(declared['max_batch'])):
+        raise ValueError('Mint calldata differs from intended NFT, recipient or quantity')
+    if recipient != caller and caller not in declared['allowed_payers']:
+        raise ValueError('Delegated mint payer was not reviewed')
+    window = declared[phase + '_window']
+    if not int(window['start']) <= timestamp <= int(window['end']):
+        raise ValueError('Reviewed timestamp is outside the selected phase')
+    if phase == 'public':
+        public_capacity = MAX_SUPPLY - (0 if declared['release_unused_team_to_public']
+                                       else int(declared['team_allocation']))
+        if (len(raw) != 4 + 4 * 32 or quantity > int(declared['public_wallet_limit']) or
+                quantity > public_capacity):
+            raise ValueError('Public mint calldata or wallet quantity is invalid')
+        mint_price = int(declared['mint_price_wei'])
+    else:
+        if len(words) < 14 or words[12] != 13 * 32:
+            raise ValueError('Noncanonical allowlist proof offset')
+        proof_count = words[13]
+        if proof_count > 10 or len(words) != 14 + proof_count or words[11] not in (0, 1):
+            raise ValueError('Noncanonical bounded allowlist proof')
+        record = next((row for row in manifest['proofs']
+                       if row['phase'] == phase and row['minter'] == minter), None)
+        if record is None:
+            raise ValueError('Recipient has no reviewed phase entitlement')
+        params = record['mint_params']
+        expected = [int(params[field]) for field in PARAM_FIELDS[:-1]] + [1]
+        proof = ['0x' + f'{item:064x}' for item in words[14:]]
+        if (words[4:12] != expected or proof != record['proof'] or
+                quantity > int(params['maxTotalMintableByWallet']) or
+                not verify_proof(mint_leaf(minter, params), proof, manifest['allowlist_root'])):
+            raise ValueError('Allowlist terms or proof differ from reviewed entitlement')
+        mint_price = int(params['mintPrice'])
+    if value != quantity * mint_price:
+        raise ValueError('Gross native mint value differs from reviewed price')
+    payload = dict(schema=1, kind='popl_seadrop_offline_mint_intent_review_v1',
+        manifest_review_hash=manifest_review['review_hash'],
+        manifest_sha256=hashlib.sha256(canonical(manifest)).hexdigest(),
+        request_sha256=hashlib.sha256(canonical(request)).hexdigest(),
+        original_transaction_sha256=hashlib.sha256(canonical(transaction)).hexdigest(),
+        calldata_sha256=hashlib.sha256(raw).hexdigest(),
+        intent=dict(intent), unsigned_transaction=dict(transaction),
+        function=signature, phase=phase, recipient=minter, payer=caller,
+        quantity=str(quantity), gross_native_value_wei=str(value),
+        manifest_matches=True, transaction_matches_reviewed_intent=True,
+        calldata_modified=False, source_sha256=dict(manifest['source_sha256']),
+        boundaries=dict(BOUNDARIES),
+        limitations=[
+            'Normalized offline input is not an authenticated REST or SDK response.',
+            'Reviewed time is supplied intent, not a verified chain timestamp.',
+            'Current configuration, minted counts, remaining entitlement, payer authority and balances are unverified.',
+            'No runtime, simulation, gas/fees, OpenSea onboarding or submission readiness is established.',
+            'No calldata is generated, altered, signed, sent or queued.'])
+    payload['review_hash'] = '0x' + hashlib.sha256(MINT_REVIEW_DOMAIN + canonical(payload)).hexdigest()
+    if len(render(payload)) > MAX_OUTPUT:
+        raise ValueError('Mint review exceeds output limit')
+    return payload
+
+
 def _pairs(pairs):
     result = {}
     for key, value in pairs:
@@ -429,7 +546,7 @@ def main(argv=None, *, root=ROOT):
     sub = parser.add_subparsers(dest='command', required=True)
     profile = sub.add_parser('profile')
     profile.add_argument('--output', type=Path)
-    for command in ('prepare', 'check'):
+    for command in ('prepare', 'check', 'review-mint'):
         selected = sub.add_parser(command)
         selected.add_argument('input', type=Path)
         selected.add_argument('--output', type=Path)
@@ -440,10 +557,13 @@ def main(argv=None, *, root=ROOT):
                           allocation_defaults=dict(team_allocation='20', allowlist_allocation='500'),
                           required_fields=sorted(REQUIRED), boundaries=dict(BOUNDARIES))
         else:
-            maximum = MAX_OUTPUT if args.command == 'check' else MAX_INPUT
+            maximum = MAX_OUTPUT if args.command in ('check', 'review-mint') else MAX_INPUT
             with args.input.open('rb') as stream:
                 request = decode(stream.read(maximum + 1), maximum)
-            result = prepare(request, root) if args.command == 'prepare' else check(request, root)
+            if args.command == 'review-mint':
+                result = review_mint(request, root)
+            else:
+                result = prepare(request, root) if args.command == 'prepare' else check(request, root)
         raw = render(result)
         if args.output:
             publish(args.output, raw)

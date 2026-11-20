@@ -11,6 +11,21 @@ This is a source candidate, not an approved or deployed OpenSea collection.
 The website Mint page remains demonstrative. Existing sites, Anvil deployments,
 wallet signer and journals retain their original profiles.
 
+## Current platform decision and safe preparation
+
+OpenSea's [standard Creator Studio edit API](https://docs.opensea.io/reference/save_drop_edits)
+explicitly rejects `merkle_presale`; the current PoPL source intentionally uses
+Merkle stages and rejects signed-stage configuration. A standard adaptation is
+now a [reviewable PLAN](../reports/readiness-advance-20261120/OPENSEA_ADAPTATION_PLAN.md),
+not implemented or approved. Exact free-team/price enforcement, signer trust and
+stage-boundary interpretation need decisions; simply enabling a setter is not
+sufficient. Actual custom collection onboarding remains external acceptance.
+
+The existing offline tool now supports `review-mint` for current-profile saved
+public/Merkle payloads. [Inputs and limitations](OPERATOR_MANUAL.md#review-a-saved-mint-transaction-offline).
+It performs source/intent matching only, retains calldata and keeps every live
+readiness flagfalse. It does not bypass the platform decision or enable signing.
+
 ## Sale rules
 
 | Phase | Initial allocation | Buyer payment | Unused supply |

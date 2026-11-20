@@ -1,5 +1,13 @@
 # Feature and evidence reference
 
+[New offline mint intent review](../reports/readiness-advance-20261120/REVIEW.md)
+checks source-bound current-profile manifest and canonical saved public/Merkle
+mint data, intent, exact gross value, payer, proof and static supply bounds.
+14new focused methods plus one current-source illustrative CLI example pass.
+This is no live snapshot/simulation/platform approval or signed-mint capability.
+The [standard adaptation plan](../reports/readiness-advance-20261120/OPENSEA_ADAPTATION_PLAN.md)
+and [VRF lead](../reports/readiness-advance-20261120/VRF_RESEARCH.md) remain unapproved.
+
 The [documentation reconciliation](../reports/documentation-sync-20261120/REVIEW.md)
 adds no feature or new dynamic verification. It corrects launch-pool instructions,
 dated market pointers and manual-v3 versus current graph/worker capability scope.

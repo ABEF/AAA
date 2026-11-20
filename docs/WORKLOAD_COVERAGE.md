@@ -1,16 +1,18 @@
 # Whole-project workload coverage
 
-The [full normal admission report](../reports/full-claim-admission-20261120/REVIEW.md)
-adds finite real-control claim evidence and first-success planning. Only the
-planner Python source changes; current counts stay1,977 named definitions/179 files.
-The previous [LP settlement/claim report](../reports/lp-claims-maximum-20261120/REVIEW.md)
-updates only the Python claim planner and its source inventory; the original
-[whole-workload report](../reports/whole-workload-review-20261119/REVIEW.md) retains
-its historical counts/evidence. The current anonymous supplement is
-[here](../reports/full-claim-admission-20261120/ANONYMOUS_CODE_INVENTORY.json).
+The [current readiness advance](../reports/readiness-advance-20261120/REVIEW.md)
+adds a strict offline saved-mint intent reviewer to the existing OpenSea tool.
+Only that production Python module changes in this advance:179files/1,979named
+definitions (1,799functions/180classes). The F6 Solidity/dependency/control/ABI
+source scope is unchanged. This is inventory, not full dynamic coverage.
+The prior [full-normal claim](../reports/full-claim-admission-20261120/REVIEW.md)
+and [maximum settlement](../reports/lp-claims-maximum-20261120/REVIEW.md) evidence
+retain their exact earlier source/inventory identities and finite boundaries.
+The current [anonymous supplement](../reports/readiness-advance-20261120/ANONYMOUS_CODE_INVENTORY.json)
+retains276lambdas and2named project Yul helpers with refreshed changed-source pins.
 
 The [workload plan](WORKLOAD_PLAN.json) and
-[whole-project function inventory](../reports/full-claim-admission-20261120/FUNCTION_INVENTORY.json)
+[whole-project function inventory](../reports/readiness-advance-20261120/FUNCTION_INVENTORY.json)
 define the scope. [The report](../reports/whole-workload-review-20261119/REVIEW.md)
 records what actually ran and what remains unqualified. The [Todo](../TODO.md)
 owns work status; this page is a verification map.
@@ -26,7 +28,7 @@ sequences and source-bound evidence. No inventory count is a dynamic pass rate.
 - 1,056 implemented project Solidity definitions and29 modifiers from the
   authenticated compiler AST;511 bodyless declarations remain separately labelled.
 - Eight internal-only objects are included, beyond the public ABI catalogue.
-- 179 production Python files and1,977 named lexical definitions:1,797 functions
+- 179 production Python files and1,979 named lexical definitions:1,799 functions
   and180 classes, including nested helpers. The anonymous-code supplement also
   records276 lambdas and2 named project Yul helpers. This is source inventory, not a claim that each body was exercised.
 
@@ -42,7 +44,7 @@ running application modules, tests, RPC or signing. Preserve the unrelated dirty
 fork runner: its published HEAD blob is inventoried instead of adopting it.
 
 ```text
-python scripts/build-workload-inventory.py --check reports/full-claim-admission-20261120/FUNCTION_INVENTORY.json
+python scripts/build-workload-inventory.py --check reports/readiness-advance-20261120/FUNCTION_INVENTORY.json
 ```
 
 Future F6 source/reference changes require reviewed trusted-pin/plan updates and

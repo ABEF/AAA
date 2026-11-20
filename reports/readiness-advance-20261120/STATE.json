@@ -1,0 +1,406 @@
+{
+  "schema": 1,
+  "date": "2026-11-20",
+  "baseline": "9d1033a60029fb5b4112c28b6c8bd9015ebd0321",
+  "original_plan_baseline": "519ff4f075022f789f46facbab56f0a944705b11",
+  "kind": "Readiness progress snapshot, not a second Todo or executed qualification",
+  "packages": [
+    {
+      "id": "P01",
+      "title": "Launch profile and accepted decisions",
+      "state": "Decision pending",
+      "remaining_scope": "Final production pool deferred; actual launch authorities/settings still needed.",
+      "owning_todo_ids": [
+        "native-production-preflight",
+        "post-seal-configuration",
+        "lp-only-simplification",
+        "immediate-governance",
+        "adaptive-range-policy"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P02",
+      "title": "Compiler, dependencies and evidence validity",
+      "state": "Bounded subcheck complete",
+      "remaining_scope": "Current compiler-advisory applicability reviewed; full release freeze/independent acceptance remains.",
+      "owning_todo_ids": [
+        "local-verification",
+        "audit-release",
+        "security-dependencies"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P03",
+      "title": "Independent prices and reference integrity",
+      "state": "Unqualified external sources",
+      "remaining_scope": "No approved independent ETH/fixed-ZZZ pair or publication operation.",
+      "owning_todo_ids": [
+        "dual-price-qualification",
+        "creator-zzz-price",
+        "price-security",
+        "pool-spot-price-source"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P04",
+      "title": "Actual pools, swap routes and upstream controls",
+      "state": "Operator-deferred pool; qualification open",
+      "remaining_scope": "117 additional read-only observations qualify no complete route/depth configuration.",
+      "owning_todo_ids": [
+        "pons-qualification",
+        "lp-execution-routing",
+        "creator-market-controls",
+        "creator-input-liquidity",
+        "typed-v4-conversion"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P05",
+      "title": "Chain, RPC, finality and complete fees",
+      "state": "Finite provider evidence only",
+      "remaining_scope": "Exact32M/24M capacity, complete fees, selected tier/failover/finality remain open.",
+      "owning_todo_ids": [
+        "host-services",
+        "deployment-initcode",
+        "native-production-preflight"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P06",
+      "title": "Maximum supported resource workloads",
+      "state": "Partial maximum-state qualification",
+      "remaining_scope": "Prior11/12 contributions; slow-ZZZ still needs476135 less estimated gas; new cold claim/conversion subsets.",
+      "owning_todo_ids": [
+        "activation-quotes",
+        "security-share-accounting",
+        "activation-gas-six-cases",
+        "royalty-factory-gas",
+        "claim-batch-planner"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P07",
+      "title": "Contributions and physical LP lifecycle",
+      "state": "Finite local evidence",
+      "remaining_scope": "Actual-market contribution/marginal-LP and expanded lifecycle acceptance remain.",
+      "owning_todo_ids": [
+        "activation-assets",
+        "shared-custody",
+        "liquidity-placement-idle",
+        "reviewed-contribution-policy",
+        "security-share-accounting"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P08",
+      "title": "Harvest, LP settlement, compound and burn",
+      "state": "New bounded settlement evidence",
+      "remaining_scope": "Controlled maximum-state conversions/claims/transfer/fault checks; actual1%-eligible route remains.",
+      "owning_todo_ids": [
+        "reward-ledgers",
+        "lp-exact-unit-allocation",
+        "lp-eth-settlement",
+        "asset-liveness-dust"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P09",
+      "title": "Royalty opening and original-currency rights",
+      "state": "Implemented; release qualification open",
+      "remaining_scope": "Exact original-currency rights retain opening/outage rules; actual platform/currencies still needed.",
+      "owning_todo_ids": [
+        "royalty-eth-settlement",
+        "royalty-reporting",
+        "security-ownership-rewards",
+        "asset-liveness-dust"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P10",
+      "title": "Normal strategy and economic manipulation",
+      "state": "Implemented; operating/economic review open",
+      "remaining_scope": "Existing safeguards and local scenarios are not real-market manipulation immunity.",
+      "owning_todo_ids": [
+        "rebalance-confirmation-buffer",
+        "security-strategy",
+        "security-keeper-manipulation",
+        "security-external-manipulation",
+        "passive-inventory",
+        "governed-loss-limits"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P11",
+      "title": "Authorities and every manual management action",
+      "state": "Added local role evidence",
+      "remaining_scope": "Distinct-role constructor fixture checked; actual operator/guardian/keeper wallets remain unselected.",
+      "owning_todo_ids": [
+        "authorities-prices",
+        "security-governance",
+        "operation-review",
+        "callable-reference",
+        "operator-stop-controls",
+        "manual-emergency-rebalance",
+        "manual-reference-swap-proof",
+        "manual-recovery-gas-rehearsal",
+        "manual-lp-diagnostics",
+        "parked-emergency-preparation",
+        "operator-management-preparation"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P12",
+      "title": "Terminal collective holder return",
+      "state": "Source-scoped evidence retained",
+      "remaining_scope": "Actual target-chain holder-payout gas/fault/recovery acceptance remains.",
+      "owning_todo_ids": [
+        "custody-composition",
+        "native-custody-recovery",
+        "migration-framework",
+        "destination-slots"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P13",
+      "title": "Latest complete canonical cutover and abort",
+      "state": "Full latest cutover qualification open",
+      "remaining_scope": "Complete F6/V10 coordinator, funding/import/abort/cold gas remains separate.",
+      "owning_todo_ids": [
+        "security-chain-recovery",
+        "holder-preflight"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P14",
+      "title": "Actual OpenSea primary sale",
+      "state": "Offline reviewer verified; platform design open",
+      "remaining_scope": "14new focused passes plus current-source illustrative CLI; standard Studio rejects Merkle; adaptation PLAN and actual onboarding/terms remain unapproved.",
+      "owning_todo_ids": [
+        "opensea-mint"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P15",
+      "title": "Live randomness and pending requests",
+      "state": "Pinned new source lead; no provider qualified",
+      "remaining_scope": "OpenVRF9fb960c inspected; ABI/funding/two-word derivation, timestamp/drand/crypto and self-hosted operating acceptance remain.",
+      "owning_todo_ids": [
+        "fair-draw",
+        "nft-lifecycle"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P16",
+      "title": "Artwork, metadata and marketplace delivery",
+      "state": "Catalogue mapped; delivery open",
+      "remaining_scope": "Actual content publication/retrieval/OpenSea refresh and final media acceptance remain.",
+      "owning_todo_ids": [
+        "metadata-ops"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P17",
+      "title": "API security and complete portfolio reads",
+      "state": "Two fixes; finite normal flow verified",
+      "remaining_scope": "Real26-pin32-NFT65-currency claim admission/payout;1000/fullHTTP/provider acceptance remains.",
+      "owning_todo_ids": [
+        "read-api",
+        "api-client-admission",
+        "host-services",
+        "portfolio"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P18",
+      "title": "History, checkpoints and durable data",
+      "state": "Offline tools implemented",
+      "remaining_scope": "Matching checkpoint/consumer and actual host/archive/restore adoption remain.",
+      "owning_todo_ids": [
+        "financial-history",
+        "live-history-ui"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P19",
+      "title": "Production user submission and website adoption",
+      "state": "Production submission unresolved",
+      "remaining_scope": "Current consumer unsigned, shared signer Anvil-only; no production signing decision or rollout.",
+      "owning_todo_ids": [
+        "wallet",
+        "portfolio",
+        "transaction-ui",
+        "unsigned-actions",
+        "preview",
+        "purchase-rights"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P20",
+      "title": "Actual full normal keeper scheduling",
+      "state": "Finite recovery evidence only",
+      "remaining_scope": "Actual complete normal-loop scheduling with real accepted services remains.",
+      "owning_todo_ids": [
+        "keeper-guardrails",
+        "keeper-recovery",
+        "operation-review"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P21",
+      "title": "Host, interruption, restore and alerts",
+      "state": "Operating acceptance open",
+      "remaining_scope": "Off-host restore, fencing, alerts and agreed operating observation remain.",
+      "owning_todo_ids": [
+        "host-services",
+        "keeper-recovery",
+        "security-integration"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P22",
+      "title": "Fresh construction, deployed readback and seal",
+      "state": "Controlled construction complete",
+      "remaining_scope": "25CREATE/19bindings/39instances verified locally; actual deployment/readback/seal approval remain.",
+      "owning_todo_ids": [
+        "deployment-initcode",
+        "native-production-preflight",
+        "post-seal-configuration"
+      ],
+      "production_accepted": false
+    },
+    {
+      "id": "P23",
+      "title": "Independent approval, staged launch and longevity",
+      "state": "Independent approval open",
+      "remaining_scope": "No final release freeze/audit/remediation/public-opening approval or deployment.",
+      "owning_todo_ids": [
+        "audit-release",
+        "mainnet-fork",
+        "testnet-rehearsal",
+        "mainnet-rehearsal-retirement",
+        "capacity-campaign",
+        "historical-findings",
+        "economic-rights-audit",
+        "local-browser-stack",
+        "local-dollar-rehearsal"
+      ],
+      "production_accepted": false
+    }
+  ],
+  "task_counts": {
+    "done": 35,
+    "progress": 40,
+    "excluded": 1,
+    "todo": 7
+  },
+  "stable_task_ids": [
+    "activation-assets",
+    "activation-gas-six-cases",
+    "activation-quotes",
+    "adaptive-range-policy",
+    "api-client-admission",
+    "asset-liveness-dust",
+    "audit-release",
+    "authorities-prices",
+    "callable-reference",
+    "capacity-campaign",
+    "claim-batch-planner",
+    "creator-input-liquidity",
+    "creator-market-controls",
+    "creator-zzz-price",
+    "custody-composition",
+    "deployment-initcode",
+    "destination-slots",
+    "dual-price-qualification",
+    "economic-rights-audit",
+    "fair-draw",
+    "financial-history",
+    "governed-loss-limits",
+    "historical-findings",
+    "holder-preflight",
+    "host-services",
+    "immediate-governance",
+    "keeper-guardrails",
+    "keeper-recovery",
+    "liquidity-placement-idle",
+    "live-history-ui",
+    "local-browser-stack",
+    "local-dollar-rehearsal",
+    "local-verification",
+    "lp-eth-settlement",
+    "lp-exact-unit-allocation",
+    "lp-execution-routing",
+    "lp-only-simplification",
+    "mainnet-fork",
+    "mainnet-rehearsal-retirement",
+    "manual-emergency-rebalance",
+    "manual-lp-diagnostics",
+    "manual-recovery-gas-rehearsal",
+    "manual-reference-swap-proof",
+    "metadata-ops",
+    "migration-framework",
+    "native-custody-recovery",
+    "native-production-preflight",
+    "nft-lifecycle",
+    "opensea-mint",
+    "operation-review",
+    "operator-management-preparation",
+    "operator-stop-controls",
+    "parked-emergency-preparation",
+    "passive-inventory",
+    "pons-qualification",
+    "pool-spot-price-source",
+    "portfolio",
+    "post-seal-configuration",
+    "preview",
+    "price-security",
+    "purchase-rights",
+    "read-api",
+    "rebalance-confirmation-buffer",
+    "reviewed-contribution-policy",
+    "reward-ledgers",
+    "royalty-eth-settlement",
+    "royalty-factory-gas",
+    "royalty-reporting",
+    "security-chain-recovery",
+    "security-dependencies",
+    "security-external-manipulation",
+    "security-governance",
+    "security-integration",
+    "security-keeper-manipulation",
+    "security-ownership-rewards",
+    "security-share-accounting",
+    "security-strategy",
+    "shared-custody",
+    "testnet-rehearsal",
+    "transaction-ui",
+    "typed-v4-conversion",
+    "unsigned-actions",
+    "wallet"
+  ],
+  "current_gates": "A feasibility incomplete; B local work advancing; C-F unapproved",
+  "any_whole_package_approved": false,
+  "final_pool_selection": "operator_deferred",
+  "production_approved": false
+}

@@ -57,6 +57,54 @@ pending work first. A source/config update still needs the reviewed stop/reconci
 dry-run/restart process; no running service was changed. See the
 [remaining-findings verification](../reports/remaining-271-20261111/VERIFICATION.md).
 
+## Review a saved mint transaction offline
+
+Use the existing preparation tool's new current-profile reviewer:
+
+```text
+python scripts/prepare-opensea-drop.py review-mint REVIEW_INPUT.json --output NEW_REVIEW.json
+```
+
+`REVIEW_INPUT.json` is a strict normalized offline object, not an assumed OpenSea
+API/SDK response. Retain the original platform response separately. Extract the
+exact fields below without altering calldata, recipient, payer or payment to
+make them match. Unknown/extra fields and unsupported mint/config calls refuse.
+
+| Input | Expected value | Where it comes from |
+| --- | --- | --- |
+| `schema` | Integer1 | Reviewer format |
+| `manifest` | Entire current checked prepared artifact, not a filename | `prepare` then `check` from the same reviewed source |
+| `intent.caller`, `intent.minter` | Explicit actual sender and recipient addresses | Reviewed intended mint; they may differ only with an admitted payer |
+| `intent.phase` | `team`, `allowlist` or `public` | Reviewed source-profile stage |
+| `intent.quantity` | Positive canonical decimal string | Reviewed NFT quantity; batch/wallet/static supply limits still apply |
+| `intent.review_timestamp` | Canonical decimal Unix-seconds string | Explicit review-time intent, NOT an authenticated chain time |
+| `unsigned_transaction.chain_id` | Canonical decimal string, current chain`4663` | Saved transaction network |
+| `unsigned_transaction.from`, `.to` | Exact sender and reviewed SeaDrop | Saved transaction |
+| `unsigned_transaction.value` | Exact gross native wei as canonical decimal string | Saved payment; team is zero, paid quantity multiplies reviewed price |
+| `unsigned_transaction.data` | Exact saved hexadecimal calldata | Saved transaction; never constructed or rewritten by this command |
+
+The exact object keys are `schema`, `manifest`, `intent`, `unsigned_transaction`;
+`intent` and `unsigned_transaction` have only their fields listed above. Decimal
+strings are intentionally distinct from wallet JSON-RPC hexadecimal quantities.
+Normalize representations explicitly and retain the original source response.
+The command supports canonical `mintPublic` and Merkle `mintAllowList` only.
+It rejects `mintSigned`, `multiConfigure`, wrong destinations, extra ABI tails,
+proof/term changes and unreviewed payers. A future standard signed-drop profile
+needs a separately reviewed implementation; this reviewer does not add one.
+
+A match retains the supplied transaction and yields an audit hash, **not approval
+to submit**. Live counters/configuration, current time, runtime, authority,
+funding, simulation, gas/complete fees and OpenSea acceptance remain unverified.
+Nonce/type/gas fields are outside this normalized intent check and require a
+separate complete wallet review. There is no RPC, signer, automatic queue or
+calldata generation. Public signing stays disabled.
+
+Existing artifacts pin the preparation module's own bytes. Preserve old artifacts
+and original requests; after source changes explicitly rebuild/review using the
+new source profile. Never edit an old hash or relabel it to bypass `check`.
+Output publication is exclusive; an existing output is never overwritten.
+See [verified finite scope](../reports/readiness-advance-20261120/REVIEW.md).
+
 ## Qualify actual markets before configuring routes
 
 Final production-pool selection is deferred by the operator (20November2026).

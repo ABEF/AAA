@@ -10,6 +10,9 @@ actual ETH + ZZZ to current NFT owners; transfers, old rewards and royalties rem
 Current accounting7/direct Entry3/custody5/mint2 uses canonicalV10. The trusted
 normal build is `activation-final-six-20261118` (factory payload6 / royalty allocation2). Source publication does not update
 contracts, services, journals or websites; public signing remains disabled.
+The [readiness advance](reports/readiness-advance-20261120/REVIEW.md) updates the23-package
+status and adds offline mint-transaction intent review. It does not approve
+OpenSea's standard signed stages, a randomness provider or a production pool.
 The [full normal backend claim review](reports/full-claim-admission-20261120/REVIEW.md)
 adds real contract-graph validation and fixes a request-budget failure by returning
 a freshly validated safe prefix. Current live environments and financial limits stay unchanged.

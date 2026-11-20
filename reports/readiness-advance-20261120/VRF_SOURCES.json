@@ -1,0 +1,254 @@
+{
+  "schema": 1,
+  "review_date": "2026-11-20",
+  "scope": "Read-only pinned primary-source discovery, no provider qualification",
+  "repository": "https://github.com/Robinhood-OSS/OpenVRF",
+  "organization_name_is_not_endorsement": true,
+  "revision": "9fb960cfc4d41e38f9d3057bf547e0d9cdcd4cc2",
+  "committer_date": "2026-09-18T14:54:54Z",
+  "commit_api_url": "https://api.github.com/repos/Robinhood-OSS/OpenVRF/commits/main",
+  "commit_api_sha256": "e7f7d94360c777ae5e06cbba88b2ed71b7da1d64b3b52b705f43e8ad7965843d",
+  "commit_signature_status": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  },
+  "tree_api_url": "https://api.github.com/repos/Robinhood-OSS/OpenVRF/git/trees/9fb960cfc4d41e38f9d3057bf547e0d9cdcd4cc2?recursive=1",
+  "tree_api_sha256": "521961de14ae4dc1a427b3a9fb66546b11da8c6826daa7a73153ce451ac077c2",
+  "tree_truncated": false,
+  "commit_tree_sha1": "dba5f85c18cf1b9106b4bfaf166418a018b59b17",
+  "recomputed_root_tree_sha1": "dba5f85c18cf1b9106b4bfaf166418a018b59b17",
+  "nested_tree_checks": [
+    {
+      "path": ".github",
+      "expected_git_sha1": "90e49eaef7010be8f5d3a7ddf5a2fb5bbe86cc52",
+      "recomputed_git_sha1": "90e49eaef7010be8f5d3a7ddf5a2fb5bbe86cc52"
+    },
+    {
+      "path": ".github/workflows",
+      "expected_git_sha1": "fbd81d124060f9016bd55142e9a004a78e4e80be",
+      "recomputed_git_sha1": "fbd81d124060f9016bd55142e9a004a78e4e80be"
+    },
+    {
+      "path": "assets",
+      "expected_git_sha1": "cbd30a48b87bba2ee3102280dab3caae230b13bf",
+      "recomputed_git_sha1": "cbd30a48b87bba2ee3102280dab3caae230b13bf"
+    },
+    {
+      "path": "docs",
+      "expected_git_sha1": "ea299530bfa90070ce46db0688592885abd96550",
+      "recomputed_git_sha1": "ea299530bfa90070ce46db0688592885abd96550"
+    },
+    {
+      "path": "docs/reviews",
+      "expected_git_sha1": "9649cd11130ed114a079a65e3e273cbd338979b0",
+      "recomputed_git_sha1": "9649cd11130ed114a079a65e3e273cbd338979b0"
+    },
+    {
+      "path": "examples",
+      "expected_git_sha1": "32d70bfc1e2a27a1cc47ed45689199ea04d61c2f",
+      "recomputed_git_sha1": "32d70bfc1e2a27a1cc47ed45689199ea04d61c2f"
+    },
+    {
+      "path": "lib",
+      "expected_git_sha1": "e6d88ff36544f5679e67f215cf7035f95cef5cfa",
+      "recomputed_git_sha1": "e6d88ff36544f5679e67f215cf7035f95cef5cfa"
+    },
+    {
+      "path": "relayer",
+      "expected_git_sha1": "9fe7f74a583726a21bce4c641e458bd112620c52",
+      "recomputed_git_sha1": "9fe7f74a583726a21bce4c641e458bd112620c52"
+    },
+    {
+      "path": "script",
+      "expected_git_sha1": "667ce5da1ad9b8ed09290e32a05c543b198081a7",
+      "recomputed_git_sha1": "667ce5da1ad9b8ed09290e32a05c543b198081a7"
+    },
+    {
+      "path": "scripts",
+      "expected_git_sha1": "ceb62b63c87a715bc797022619a407ca7be2f097",
+      "recomputed_git_sha1": "ceb62b63c87a715bc797022619a407ca7be2f097"
+    },
+    {
+      "path": "src",
+      "expected_git_sha1": "cc49da1fa664240027442f63357302a57a0a0781",
+      "recomputed_git_sha1": "cc49da1fa664240027442f63357302a57a0a0781"
+    },
+    {
+      "path": "test",
+      "expected_git_sha1": "412b7be0f1924ee4bdbe05b6b27b88496f83bdd2",
+      "recomputed_git_sha1": "412b7be0f1924ee4bdbe05b6b27b88496f83bdd2"
+    }
+  ],
+  "tree_response_identity_quirk": {
+    "top_level_response_sha": "9fb960cfc4d41e38f9d3057bf547e0d9cdcd4cc2",
+    "not_used_as_root_identity": true,
+    "explanation": "Response top-level SHA repeats the requested commit. Entries independently reconstruct the actual tree named by commit metadata."
+  },
+  "files": [
+    {
+      "path": "src/OpenVRF.sol",
+      "url": "https://raw.githubusercontent.com/Robinhood-OSS/OpenVRF/9fb960cfc4d41e38f9d3057bf547e0d9cdcd4cc2/src/OpenVRF.sol",
+      "bytes": 9182,
+      "sha256": "a722e9c3a1f42fafebf84717290732727273f315805e73a1b5e45450f4d0f122",
+      "git_blob_sha1": "1a6b0c84e1387ba4e9e102464d386a5983fada4a",
+      "matches_recursive_tree": true
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/Robinhood-OSS/OpenVRF/9fb960cfc4d41e38f9d3057bf547e0d9cdcd4cc2/README.md",
+      "bytes": 24808,
+      "sha256": "0dd373e195f26d76cda1669a19e2ebe6301b5d09430c8b8b3ea57bf604bb2083",
+      "git_blob_sha1": "53edabf5002d9ea1b133bb27aae3784d13f2e094",
+      "matches_recursive_tree": true
+    },
+    {
+      "path": "docs/security-status.md",
+      "url": "https://raw.githubusercontent.com/Robinhood-OSS/OpenVRF/9fb960cfc4d41e38f9d3057bf547e0d9cdcd4cc2/docs/security-status.md",
+      "bytes": 10991,
+      "sha256": "0c2ad13579a2c85a746405f0816c2e8b755cf555fc2310dce2777f5464a489fd",
+      "git_blob_sha1": "6078b59c5872abea00f4326f3e79340341c96323",
+      "matches_recursive_tree": true
+    },
+    {
+      "path": ".gitmodules",
+      "url": "https://raw.githubusercontent.com/Robinhood-OSS/OpenVRF/9fb960cfc4d41e38f9d3057bf547e0d9cdcd4cc2/.gitmodules",
+      "bytes": 246,
+      "sha256": "372657f834c75f6c1bd7a4f73714e08bc7ed72b1ece4e046d80ea46f7bb0a78f",
+      "git_blob_sha1": "ac2e65e52bad1e46b45eb9f3de4fa057eb461b02",
+      "matches_recursive_tree": true
+    },
+    {
+      "path": "foundry.toml",
+      "url": "https://raw.githubusercontent.com/Robinhood-OSS/OpenVRF/9fb960cfc4d41e38f9d3057bf547e0d9cdcd4cc2/foundry.toml",
+      "bytes": 290,
+      "sha256": "db0975ec1e7d91fb0aab42838d9cb9da8d8545d8dc379725bef992c568d4d0f6",
+      "git_blob_sha1": "3fece66b9fcb7f043e58f29c1644b9bbd9e358d4",
+      "matches_recursive_tree": true
+    }
+  ],
+  "gitlinks": [
+    {
+      "path": "lib/bls-solidity",
+      "revision": "11af179a8287d978659aae07adb66aa60f64b8a6",
+      "dependency_source_review_complete": false
+    },
+    {
+      "path": "lib/openzeppelin-contracts",
+      "revision": "cab19933c33c2ad1d4c7a84864a3601dddfd16f3",
+      "dependency_source_review_complete": false
+    }
+  ],
+  "capture": {
+    "request_count": 8,
+    "successful_responses": 7,
+    "maximum_requests": 8,
+    "maximum_response_bytes": 1048576,
+    "absolute_request_deadline_seconds": 12,
+    "retries": 0,
+    "blockchain_rpc_calls": 0,
+    "capture_manifest_sha256": "13997469b1eee05381a8a66721f99ef9b9f4b491f69308f3024d510d5f672178",
+    "requests": [
+      {
+        "url": "https://api.github.com/repos/Robinhood-OSS/OpenVRF/commits/main",
+        "file": "COMMIT.json",
+        "started_utc": "2026-11-20T16:32:59.635672+00:00",
+        "bytes": 4739,
+        "sha256": "e7f7d94360c777ae5e06cbba88b2ed71b7da1d64b3b52b705f43e8ad7965843d",
+        "http_status": 200
+      },
+      {
+        "url": "https://api.github.com/repos/Robinhood-OSS/OpenVRF/git/trees/9fb960cfc4d41e38f9d3057bf547e0d9cdcd4cc2?recursive=1",
+        "file": "TREE.json",
+        "started_utc": "2026-11-20T16:33:01.630448+00:00",
+        "bytes": 16164,
+        "sha256": "521961de14ae4dc1a427b3a9fb66546b11da8c6826daa7a73153ce451ac077c2",
+        "http_status": 200
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Robinhood-OSS/OpenVRF/9fb960cfc4d41e38f9d3057bf547e0d9cdcd4cc2/src/OpenVRF.sol",
+        "file": "OpenVRF.sol",
+        "started_utc": "2026-11-20T16:33:03.632095+00:00",
+        "bytes": 9182,
+        "sha256": "a722e9c3a1f42fafebf84717290732727273f315805e73a1b5e45450f4d0f122",
+        "http_status": 200
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Robinhood-OSS/OpenVRF/9fb960cfc4d41e38f9d3057bf547e0d9cdcd4cc2/README.md",
+        "file": "README.md",
+        "started_utc": "2026-11-20T16:33:05.633311+00:00",
+        "bytes": 24808,
+        "sha256": "0dd373e195f26d76cda1669a19e2ebe6301b5d09430c8b8b3ea57bf604bb2083",
+        "http_status": 200
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Robinhood-OSS/OpenVRF/9fb960cfc4d41e38f9d3057bf547e0d9cdcd4cc2/docs/security-status.md",
+        "file": "SECURITY_STATUS.md",
+        "started_utc": "2026-11-20T16:33:07.632864+00:00",
+        "bytes": 10991,
+        "sha256": "0c2ad13579a2c85a746405f0816c2e8b755cf555fc2310dce2777f5464a489fd",
+        "http_status": 200
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Robinhood-OSS/OpenVRF/9fb960cfc4d41e38f9d3057bf547e0d9cdcd4cc2/.gitmodules",
+        "file": "GITMODULES.txt",
+        "started_utc": "2026-11-20T16:33:09.628163+00:00",
+        "bytes": 246,
+        "sha256": "372657f834c75f6c1bd7a4f73714e08bc7ed72b1ece4e046d80ea46f7bb0a78f",
+        "http_status": 200
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Robinhood-OSS/OpenVRF/9fb960cfc4d41e38f9d3057bf547e0d9cdcd4cc2/foundry.toml",
+        "file": "foundry.toml",
+        "started_utc": "2026-11-20T16:33:11.629569+00:00",
+        "bytes": 290,
+        "sha256": "db0975ec1e7d91fb0aab42838d9cb9da8d8545d8dc379725bef992c568d4d0f6",
+        "http_status": 200
+      },
+      {
+        "url": "https://raw.githubusercontent.com/randa-mu/bls-solidity/11af179a8287d978659aae07adb66aa60f64b8a6/demos/EvmnetRegistry.sol",
+        "file": "EvmnetRegistry.sol",
+        "started_utc": "2026-11-20T16:33:13.626244+00:00",
+        "error": "HTTPError"
+      }
+    ],
+    "failed_dependency_retrieval_not_retried": true,
+    "failure_is_not_a_verifier_or_runtime_finding": true
+  },
+  "local_source_sha256": {
+    "src/ZZZNFT.sol": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+    "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+    "docs/MINT_INTEGRATION_QUALIFICATION.md": "e3c2709f9dce9000d8d069998c8802d593793f586ddd9d0aacfc0d575c864126"
+  },
+  "other_primary_references": [
+    {
+      "url": "https://docs.chain.link/vrf/v2-5/supported-networks",
+      "scope": "Current catalog browsing: Robinhood absent; no wrong-chain substitution"
+    },
+    {
+      "url": "https://rh-vrf.com/",
+      "scope": "FAQ explicitly invalidates refunded unserved requests"
+    },
+    {
+      "url": "https://rh-vrf.com/docs",
+      "scope": "Subscription-shaped interface and same-signature callback retry; nonzero lane and full native extraArgs acceptance not verified"
+    },
+    {
+      "url": "https://d20dao.org/docs/security",
+      "scope": "Sixty-second refundable requests, different architecture, owner-upgradeable coordinator"
+    },
+    {
+      "url": "https://d20dao.org/llms-full.txt",
+      "scope": "One-word direct-payment integration and original request/proof deadline; not source/runtime qualification"
+    }
+  ],
+  "current_exact_source_runtime_deployment_verified": false,
+  "adapter_implemented": false,
+  "dependency_admitted": false,
+  "production_approved": false,
+  "public_transactions": 0,
+  "tests_or_builds_run": 0,
+  "credentials_or_funding_used": false
+}

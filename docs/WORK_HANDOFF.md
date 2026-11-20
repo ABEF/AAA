@@ -1,5 +1,22 @@
 # Work handoff
 
+## Latest readiness advance
+
+The [current report](../reports/readiness-advance-20261120/REVIEW.md) reconciles all23
+acceptance packages and83stable tasks, then adds offline saved-mint intent review
+to the EXISTING OpenSea preparation tool.14new focused methods and one current-
+source illustrative CLI example pass; no unchanged test suite rerun. Original
+transaction data stays unchanged and every live-readiness gate remainsfalse.
+Use the new function inventory (179files/1,979definitions); only opensea_drop.py
+changes in production Python. Existing self-source-bound OpenSea artifacts must
+be rebuilt/reviewed explicitly; do not relabel old manifests. service.py and all
+Solidity profiles/runtime/codec/checkpoint identities remain unchanged.
+
+The standard OpenSea adaptation is a PLAN only: review exact-free/price/signer and
+boundary decisions before any contract change. Pool remains operator-deferred.
+OpenVRF is a pinned source lead with major timing/ABI/funding/crypto/operating
+questions, not an admitted provider. Actual external release gates stay open.
+
 Latest [documentation reconciliation](../reports/documentation-sync-20261120/REVIEW.md)
 removes stale instructions requiring the old pool for launch and labels older
 market observations correctly. Read the [v3 scope correction](../reports/market-route-qualification-20261120/ERRATA.md):

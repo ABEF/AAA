@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "archive": "evidence.zip",
+  "sha256": "eee6b0df53065e00af171f2faa1c13c5a7a165974c48a2bfea19b561e03ee143",
+  "bytes": 54932,
+  "roundtrip_verified": true,
+  "members": {
+    "opensea-mint-review/receipt.json": {
+      "bytes": 1365,
+      "sha256": "bc98dea17f216c6ed831d956a05a29e8c8d4d97640e61099e57e832997af77ca"
+    },
+    "opensea-mint-review/stage1-test-source.py": {
+      "bytes": 14779,
+      "sha256": "ad2b40d6d3e48d7b6c28ea3df83a9f72bb751e88d24c29874c6fc062310383d8"
+    },
+    "opensea-mint-review/stage2.receipt.json": {
+      "bytes": 1812,
+      "sha256": "e24ce03b9230f82cdaaf0928ef45a1c8c5c46a2c030ac251e2f1320bc4d9f1ee"
+    },
+    "opensea-mint-review/stage2.stderr": {
+      "bytes": 716,
+      "sha256": "39325be017bee90d599b724004cf85294e7656e86b6fee17a14607f2e4ed63e0"
+    },
+    "opensea-mint-review/stage2.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opensea-mint-review/unittest.stderr": {
+      "bytes": 2337,
+      "sha256": "8e400e1bd2f8fdffa40b78c8204cb82cef1c73b1eb9c3511dd267db96269ea1c"
+    },
+    "opensea-mint-review/unittest.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "current-source-cli/input.json": {
+      "bytes": 33420,
+      "sha256": "973dfbce3565e884eba04c1a6488533bc36b2efc4a26b103c847368a9b9d049d"
+    },
+    "current-source-cli/NOTES.txt": {
+      "bytes": 215,
+      "sha256": "736e04bc9a0e29c6208cad9b04081416fe738bd05ddb9ef2992aab04b6c41729"
+    },
+    "current-source-cli/receipt.json": {
+      "bytes": 634,
+      "sha256": "e852d0680d0cb1d266acbc604c9e96cf9d71ff137d873f15c3bbf34868d40772"
+    },
+    "current-source-cli/review.json": {
+      "bytes": 14730,
+      "sha256": "d47ad2c1e9a48077d0eb54bfa43ae2950bdab96f163e1d3492cfbf3a4dd4ef2d"
+    },
+    "current-source-cli/stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "current-source-cli/stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "vrf-source-review/CAPTURE.json": {
+      "bytes": 3001,
+      "sha256": "13997469b1eee05381a8a66721f99ef9b9f4b491f69308f3024d510d5f672178"
+    },
+    "vrf-source-review/COMMIT.json": {
+      "bytes": 4739,
+      "sha256": "e7f7d94360c777ae5e06cbba88b2ed71b7da1d64b3b52b705f43e8ad7965843d"
+    },
+    "vrf-source-review/foundry.toml": {
+      "bytes": 290,
+      "sha256": "db0975ec1e7d91fb0aab42838d9cb9da8d8545d8dc379725bef992c568d4d0f6"
+    },
+    "vrf-source-review/GITMODULES.txt": {
+      "bytes": 246,
+      "sha256": "372657f834c75f6c1bd7a4f73714e08bc7ed72b1ece4e046d80ea46f7bb0a78f"
+    },
+    "vrf-source-review/OpenVRF.sol": {
+      "bytes": 9182,
+      "sha256": "a722e9c3a1f42fafebf84717290732727273f315805e73a1b5e45450f4d0f122"
+    },
+    "vrf-source-review/README.md": {
+      "bytes": 24808,
+      "sha256": "0dd373e195f26d76cda1669a19e2ebe6301b5d09430c8b8b3ea57bf604bb2083"
+    },
+    "vrf-source-review/SECURITY_STATUS.md": {
+      "bytes": 10991,
+      "sha256": "0c2ad13579a2c85a746405f0816c2e8b755cf555fc2310dce2777f5464a489fd"
+    },
+    "vrf-source-review/TREE.json": {
+      "bytes": 16164,
+      "sha256": "521961de14ae4dc1a427b3a9fb66546b11da8c6826daa7a73153ce451ac077c2"
+    },
+    "source-stages/opensea_drop.original.py": {
+      "bytes": 22729,
+      "sha256": "f5434c480325b25894d613e3db7dd6a8f18b1966c8f1b9842e679d90276a474b"
+    }
+  },
+  "private_configs_or_keys_included": false
+}

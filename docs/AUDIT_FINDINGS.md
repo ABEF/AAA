@@ -1,5 +1,15 @@
 # Consolidated audit findings and evidence
 
+[Current readiness snapshot](../reports/readiness-advance-20261120/STATE.json)
+separates completed subchecks from23 still-unapproved acceptance packages.
+P02/P06/P08/P17/P22 advances do not close actual release gates. Standard OpenSea
+Studio has a documented Merkle-stage rejection; the adaptation PLAN is prepared
+without contract changes. Current-profile offline mint review is implemented,
+with14new focused passes and one illustrative current-source CLI check. All
+live-readiness flags stayfalse; no signed-mint capability or platform approval.
+Final pool selection remains operator-deferred. New OpenVRF is an unqualified
+source/operating lead, not a replacement coordinator decision.
+
 Final production-pool selection is operator-deferred; old target/fees remain
 dated integration evidence. The [documentation reconciliation](../reports/documentation-sync-20261120/REVIEW.md)
 corrects a stale manual launch requirement, outdated current-evidence links and
