@@ -82,7 +82,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-pons-qualification"></a>
 
-- [ ] **[Qualify the selected hookless ETH/ZZZ pool](docs/POOL_SELECTION.md)** - In progress. Final production-pool selection is deferred: the operator will choose it later. Existing integration target: Robinhood v4 pool 0x5011...afe1b: native ETH/ZZZ, static 1.002% LP fee, no hook; observed combined fee about 1.101%. Runtime-pinned native admission, post-seal static fee-tier destinations and atomic same-actual-pair pool moves are implemented. ETH/WETH are different actual assets; current in-protocol moves remain native ETH/fixed ZZZ only. A different pair needs reviewed redevelopment after collective holder return, not an external-custody executor. Real routes, feeds, gas/operations, inventory and audit remain open.
+- [ ] **[Qualify the selected hookless ETH/ZZZ pool](docs/POOL_SELECTION.md)** - In progress. Final production-pool selection is deferred; the supplied pool remains authorized for isolated fork testing, including zero-active-liquidity and locally seeded-depth cases. Existing integration target: Robinhood v4 pool 0x5011...afe1b: native ETH/ZZZ, static 1.002% LP fee, no hook; observed combined fee about 1.101%. Runtime-pinned native admission, post-seal static fee-tier destinations and atomic same-actual-pair pool moves are implemented. ETH/WETH are different actual assets; current in-protocol moves remain native ETH/fixed ZZZ only. A different pair needs reviewed redevelopment after collective holder return, not an external-custody executor. Real routes, feeds, gas/operations, inventory and audit remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1206,7 +1206,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-mainnet-fork"></a>
 
-- [ ] **[Robinhood mainnet-fork qualification](reports/current-pool-fork-20261026/VERIFICATION.md)** - In progress. A historical source-bound accounting3 fixture and bounded read-only runner exercise the actual selected ETH/ZZZ pool via Pinax at an exact block/runtime. Eleven distinct methods have successful source-bound evidence across affected runs; no fresh whole final11-suite pass is claimed. ETH/ZZZ contributions, small growth, real fees/transfer rights and unsafe-growth rollback are covered with explicit mock governance/VRF/USD services. Actual independent feeds, routes, keeper/gas and provider qualification remain open. Qualify the exact current accounting7 two-leg/policy graph separately; those earlier receipts are not new-profile acceptance.
+- [ ] **[Robinhood mainnet-fork qualification](reports/current-pool-fork-20261026/VERIFICATION.md)** - In progress. A historical source-bound accounting3 fixture and bounded read-only runner exercise the actual selected ETH/ZZZ pool via Pinax at an exact block/runtime. Eleven distinct methods have successful source-bound evidence across affected runs; no fresh whole final11-suite pass is claimed. ETH/ZZZ contributions, small growth, real fees/transfer rights and unsafe-growth rollback are covered with explicit mock governance/VRF/USD services. Actual independent feeds, routes, keeper/gas and provider qualification remain open. Qualify the exact current accounting7 two-leg/policy graph separately; those earlier receipts are not new-profile acceptance. The operator reconfirmed the same supplied pool for testing even with no active liquidity. A new current-anchor empty-state to locally seeded-depth rehearsal can proceed before production selection; retain its unmodified-state baseline and explicit synthetic-depth/source seams.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1872,4 +1872,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `626034ba5b7d4aae96cba6ad17a28d9e4d54e15f4ef0847973c97b2583d1b7f0`.
+Snapshot SHA-256: `724f2b86f578f3b24bba97a6140c08c17979764286268b90882d3dabf73c409a`.

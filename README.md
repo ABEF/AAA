@@ -1,5 +1,9 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+The supplied ETH/ZZZ pool remains the [integration test
+target](reports/test-pool-scope-20261120/REVIEW.md), including isolated forks with
+explicitly added test liquidity. Only final production-pool selection is deferred.
+
 PoPL connects transferable ERC-721 NFTs to vault-managed ETH/ZZZ liquidity.
 Activation attaches an independently accounted LP share and unlocks funded LP
 fees plus rarity-weighted NFT-sale royalties. Holders cannot redeem principal

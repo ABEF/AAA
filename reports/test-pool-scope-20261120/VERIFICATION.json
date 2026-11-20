@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "kind": "documentation_test_target_clarification",
+  "baseline": "a4720ecef3e0b0d97a1d16f8032cf751cc8b16e5",
+  "documents_archived": 10,
+  "protected_dirty_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "task_ids": 83,
+  "task_counts": {
+    "done": 35,
+    "progress": 40,
+    "excluded": 1,
+    "todo": 7
+  },
+  "new_local_links_checked": 8,
+  "todo_check": "passed",
+  "workload_inventory_check": "passed; unchanged d0a2de1c507c2540a61f438e9d6aba160919966c52aabaf455ca9f70d3f46e97",
+  "behavioral_tests_rerun": 0,
+  "new_fork_rehearsal_executed": false,
+  "network_calls": 0,
+  "source_configuration_or_live_changes": false,
+  "production_approved": false
+}

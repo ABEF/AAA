@@ -1,5 +1,10 @@
 # Engineering roadmap and production qualification plan
 
+The supplied ETH/ZZZ pool remains the integration test target, including isolated
+empty-state and locally seeded-depth forks. Only final production selection is deferred;
+it does not block those tests. Actual market/source/route qualification remains
+separate. See [testing scope](../reports/test-pool-scope-20261120/REVIEW.md).
+
 Progress reconciled20November2026 against `9d1033a60029fb5b4112c28b6c8bd9015ebd0321`; original plan baseline `519ff4f075022f789f46facbab56f0a944705b11` is retained. **Production is undeployed and NOT APPROVED.**
 This is the plan for checking readiness, not authorization to execute public
 transactions, deploy, seal, restart services or open mint. [TODO.md](../TODO.md)

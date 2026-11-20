@@ -1,5 +1,11 @@
 # Consolidated audit findings and evidence
 
+[Operator clarification](../reports/test-pool-scope-20261120/REVIEW.md): the supplied
+pool is still the test target. Zero observed active liquidity limits actual-market
+acceptance, not isolated fork testing with explicit local liquidity. The new
+current-anchor empty-state/seeded-depth rehearsal remains to execute; historical fork
+receipts are not relabeled.
+
 [Current readiness snapshot](../reports/readiness-advance-20261120/STATE.json)
 separates completed subchecks from23 still-unapproved acceptance packages.
 P02/P06/P08/P17/P22 advances do not close actual release gates. Standard OpenSea

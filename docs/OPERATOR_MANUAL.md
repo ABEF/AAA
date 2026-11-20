@@ -2664,6 +2664,14 @@ For a supported new LP venue, qualify the SAME native ETH/fixed-ZZZ identity, fe
 
 ### One contribution pool at a time
 
+**Test target versus production selection:** the supplied `0x501122...afe1b` pool
+remains authorized for isolated fork tests even with zero active liquidity. Capture its
+unmodified state first; any test liquidity must be added only to the new owned fork and
+identified as synthetic depth. Preserve existing Anvil state and do not fund or change
+the public pool. A locally funded success does not qualify independent depth, price
+feeds or production routes. [Scope and next
+rehearsal](../reports/test-pool-scope-20261120/REVIEW.md).
+
 `PoolRegistry.contributionPool()` is the only pool whose `depositsEnabled` flag
 can be true; zero means new activations/top-ups are stopped. Initial production
 configuration must use the operator's later-selected, independently reviewed

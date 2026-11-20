@@ -1,5 +1,14 @@
 # Work handoff
 
+**Testing target clarified, 20 November 2026:** the supplied pool
+`0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b` remains authorized
+for isolated fork testing even when active liquidity is zero. Production-pool selection
+alone is deferred. Local fork funding may exercise LP flows; it is never public funding
+or evidence of independent market depth. Preserve the original empty-state observation
+and label synthetic depth and mock prices explicitly. See [test
+scope](../reports/test-pool-scope-20261120/REVIEW.md). The historical accounting3 fork
+is not current F6 acceptance; no unchanged tests are rerun for this clarification.
+
 ## Latest readiness advance
 
 The [current report](../reports/readiness-advance-20261120/REVIEW.md) reconciles all23
