@@ -1,5 +1,10 @@
 # Work handoff
 
+**Operator decision20November2026:** final production pool will be selected later.
+Preserve the current integration configuration and dated market evidence; no
+replacement search, liquidity funding or switch follows from this decision.
+Pool-dependent route/source/depth qualification remains open.
+
 ## Latest real-market and route review
 
 [Current report](../reports/market-route-qualification-20261120/REVIEW.md)

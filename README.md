@@ -16,7 +16,8 @@ a freshly validated safe prefix. Current live environments and financial limits 
 
 [Expanded market qualification](reports/market-route-qualification-20261120/REVIEW.md)
 checks additional native and WETH/v3 routes; no complete production route or
-independent source pair is approved. The selected pool and safeguards stay unchanged.
+independent source pair is approved. Final production-pool selection is deferred;
+the recorded integration configuration and safeguards stay unchanged.
 
 The [maximum-state LP settlement and claim review](reports/lp-claims-maximum-20261120/REVIEW.md)
 adds exact same-NFT conversions, cold partial claims and a bounded claim-planner

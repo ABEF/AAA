@@ -81,7 +81,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-pons-qualification"></a>
 
-- [ ] **[Qualify the selected hookless ETH/ZZZ pool](docs/POOL_SELECTION.md)** - In progress. User selected Robinhood v4 pool 0x5011...afe1b: native ETH/ZZZ, static 1.002% LP fee, no hook; observed combined fee about 1.101%. Runtime-pinned native admission, post-seal static fee-tier destinations and atomic same-actual-pair pool moves are implemented. ETH/WETH are different actual assets; current in-protocol moves remain native ETH/fixed ZZZ only. A different pair needs reviewed redevelopment after collective holder return, not an external-custody executor. Real routes, feeds, gas/operations, inventory and audit remain open.
+- [ ] **[Qualify the selected hookless ETH/ZZZ pool](docs/POOL_SELECTION.md)** - In progress. Final production-pool selection is deferred: the operator will choose it later. Existing integration target: Robinhood v4 pool 0x5011...afe1b: native ETH/ZZZ, static 1.002% LP fee, no hook; observed combined fee about 1.101%. Runtime-pinned native admission, post-seal static fee-tier destinations and atomic same-actual-pair pool moves are implemented. ETH/WETH are different actual assets; current in-protocol moves remain native ETH/fixed ZZZ only. A different pair needs reviewed redevelopment after collective holder return, not an external-custody executor. Real routes, feeds, gas/operations, inventory and audit remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -96,6 +96,7 @@ Custody, ownership and reward accounting.
   - [16November selected-pool review](reports/real-market-refresh-20261116/REVIEW.md) retains the hookless nativeETH/fixedZZZ destination and all guards. Both previously unscanned9-to13November and13-to16November intervals return no matching Initialize logs under the exact same-core pair filter; provider completeness/global pool coverage remain unproven. Selected activeL0 and incompatible deeper-market prices remain release blockers, not permission to replace the destination automatically.
   - [20November actual market refresh](reports/market-feasibility-20261120/REVIEW.md): selectedactiveL0; larger-known-L price differs5.811926×, tested1000ZZZ reverse input is incomplete. Ordinary price bands cannot overlap at that anchor. Restoring market conditions or selecting another same-pair destination is a deliberate external decision; no setting/route/guard changed.
   - [Expanded20November market review](reports/market-route-qualification-20261120/REVIEW.md): selected activeL0; nominal50USD ETH diagnostic loses14.263178% own-spot gross and tested1/100ZZZ reverse input is incomplete. Larger-known-L ETH-per-ZZZ remains5.811926 times selected. Actual compatible destination/depth is still required; no pool or guard changes.
+  - Operator decision20November2026: select the final production pool later. Preserve existing integration configuration and historical observations; do not infer replacement selection, funding or admission. Qualify actual pool/reference/routes/depth before deployment or opening; current status remains in progress.
 
   </details>
 
@@ -1864,4 +1865,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `da3de6dfd2f042b14c5b2da5b9c69714e8f7104a2847f8597b2723fecb9740d6`.
+Snapshot SHA-256: `4a8879dbe34614f4e8afcbb3d6d8baebd696f33b3af9a0d94780e1b88b3b932d`.

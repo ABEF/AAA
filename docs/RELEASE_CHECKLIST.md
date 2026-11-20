@@ -1,5 +1,9 @@
 # Release approval record - NOT APPROVED
 
+Final production-pool identity is unresolved: the operator will select it later.
+The old integration target and example configuration are not launch approval.
+Actual pool/reference/routes/depth and complete-operation qualification stay open.
+
 [Full normal claim admission](../reports/full-claim-admission-20261120/REVIEW.md)
 adds finite real F6/26-pin control and claim checks, plus a confirmed bounded-
 planning fix. It does not approve real feeds/routes/complete fees, production

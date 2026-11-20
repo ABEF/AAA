@@ -32,15 +32,17 @@ only that owner can choose a fallback recipient for a failed automatic payout.
 | NFT ownership and reward accounting | Stay live through LP exit; before exit only, compatible canonicalV10 can carry them to one reviewed same-chain successor. |
 
 Authority wallets and provider-specific subscription ownership remain unselected.
-The selected native ETH/fixedZZZ pool and supported fee-tier replacements are the
-only admitted LP pair; ERC20 conversion venues remain separate. See
+Only native ETH/fixedZZZ is the supported LP pair. Final production-pool selection
+is operator-deferred; the existing integration target and example PoolKeys are not
+a launch selection. ERC20 conversion venues remain separate. See
 [holder return](HOLDER_COLLECTIVE_EXIT.md) and [pool selection](POOL_SELECTION.md).
 Earlier source-bound observations/evidence do not qualify this new profile.
 
 This is an **undeployed candidate, NOT APPROVED**, not a list of configured
 public addresses. Complete the [schema17 production manifest](../config/production.example.json)
 with actual chain IDs, confirmed blocks, code/immutable bindings and independent
-review evidence. An address or a successful inventory check is not approval.
+review evidence. Existing0x501122... example values are not the deferred final pool;
+review and regenerate matching plans/pins after the operator selects it. An address or a successful inventory check is not approval.
 The [sole Todo](../TODO.md) owns qualification work; the
 [release record](RELEASE_CHECKLIST.md) records final sign-off.
 

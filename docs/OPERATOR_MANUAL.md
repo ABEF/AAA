@@ -59,6 +59,10 @@ dry-run/restart process; no running service was changed. See the
 
 ## Qualify actual markets before configuring routes
 
+Final production-pool selection is deferred by the operator (20November2026).
+Keep the old integration target unchanged; do not treat it or a discovery lead
+as an approved launch pool. Choose and qualify the real pool before configuration.
+
 Use the [20November expanded review](../reports/market-route-qualification-20261120/REVIEW.md).
 No tested destination/reference/conversion combination is approved. Selected
 activeL0 and incompatible larger-market spot remain actual launch blockers.

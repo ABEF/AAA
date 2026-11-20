@@ -20,7 +20,7 @@ or1% conversion approval. No destination, source or safeguard changes.
 The [Gate A review](../reports/readiness-gate-a-20261120/REVIEW.md) completes the
 current compiler-advisory applicability subtask and refreshes actual markets.
 No confirmed reachable compiler defect requiring an upgrade was found; exact
-Yul optimization is disabled. The selected pool still lacks active liquidity,
+Yul optimization is disabled. The then-selected integration target lacked active liquidity,
 independent feeds/routes remain unqualified, and OpenSea custom configuration
 and original-request VRF support need concrete acceptance before launch.
 
@@ -107,6 +107,10 @@ assertions, exact raw evidence, known limitations and the central Todo owner.
 Read the linked operator procedures before irreversible changes.
 
 ### P01 — Launch profile and accepted decisions
+
+Final production-pool selection is operator-deferred as of20November2026. The
+existing integration target remains unchanged and unapproved; pool-dependent
+acceptance waits for the actual selection. No alternative is chosen automatically.
 
 Freeze initial width, residual mode/floor/gap, currency list/capacity, reviewed venues, workers, supported workloads and wallet sizes, gas/fee budgets and actual authority-wallet type.
 

@@ -6,6 +6,12 @@ its own starting spot. Tested1/100ZZZ reverse quotes cannot consume full input.
 Additional native low-fee and WETH/v3 discovery qualifies no complete alternative.
 Destination, source requirements and safeguards remain unchanged.
 
+**Final production selection: deferred.** On20November2026 the operator chose to
+select the launch pool later. The0x501122...afe1b pool below remains the existing
+integration target and historical reference, not an approved production choice.
+No address/configuration, route, safeguard or liquidity funding changes. Requalify
+the actual chosen pool and related references/routes when the operator selects it.
+
 ## Historical13November qualification
 
 [Fresh13November qualification](../reports/predeployment-qualification-20261113/markets/REVIEW.md)

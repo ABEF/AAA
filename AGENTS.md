@@ -1,5 +1,10 @@
 # AAA / ZZZ PoPL project instructions
 
+Final production-pool selection is deferred by the operator (20 November2026).
+Keep the existing0x501122...afe1b integration target/configuration unchanged as
+a historical reference; it is not a launch-pool approval. Do not choose, fund,
+switch or qualify a replacement automatically. Pool-dependent acceptance stays open.
+
 ## Latest actual-market and route qualification
 
 [Expanded actual-market review](reports/market-route-qualification-20261120/REVIEW.md)

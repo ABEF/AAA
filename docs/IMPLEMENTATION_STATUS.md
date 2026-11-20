@@ -254,6 +254,9 @@ refresh advisories for the frozen release.
 
 ## Current selected-pool fork scope
 
+This is the existing integration-target scope. Final production-pool selection
+is deferred; no historical fork result approves the later chosen pool.
+
 [Prior fork evidence](../reports/current-pool-fork-20261026/VERIFICATION.md) is historical.
 The [actual fresh7/Entry3 follow-up](../reports/source9-actual-entry-20261109/REVIEW.md)
 executes ETH/ZZZ activation/growth through real API and unsigned website reviews.
