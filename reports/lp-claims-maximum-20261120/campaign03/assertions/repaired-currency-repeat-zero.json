@@ -1,0 +1,44 @@
+{
+  "after": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lp-claims-maximum-20261120\\campaign03\\states\\repaired-currency-repeat-zero-after.json.gz",
+    "sha256": "11fc7dd8ced8dc76b0599339f644ced860ed4c5c3b461e81bb6af80a2a55a905"
+  },
+  "before": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lp-claims-maximum-20261120\\campaign03\\states\\repaired-original-currency-after.json.gz",
+    "sha256": "785b4b044e107980be3c3ba88d73b6e57e299e4f08b396d38e24280af5188d03"
+  },
+  "claim_reads": [
+    {
+      "data": "0xa0c7f71c00277e488573566306887df75b98ba0a1f79cf1af0d04dcfcaffc0449ac5d064000000000000000000000000f7e917857c88ddcfd6d2486c81d56cfc6003133d",
+      "key": "0",
+      "raw": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "to": "0x20067a7558168e12ad53b235f2f7408feea4985f"
+    }
+  ],
+  "entries": [
+    [
+      69778610736194500943192092359560742217316919539596333250014937026541244516,
+      "0xf7e917857c88ddcfd6d2486c81d56cfc6003133d",
+      true
+    ]
+  ],
+  "expected": [
+    0
+  ],
+  "gas_fee": 0,
+  "kind": "claims",
+  "operation": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lp-claims-maximum-20261120\\campaign03\\operations\\repaired-currency-repeat-zero.json",
+    "sha256": "9a1cda647ce56a53bdd75d3cf8bf5b5f1d299873f967a510134d0449063b249b"
+  },
+  "paid_by_asset": {
+    "0xf7e917857c88ddcfd6d2486c81d56cfc6003133d": 0
+  },
+  "recipient": "0x00000000000000000000000000000000000a11ce",
+  "recipient_balances_after": {
+    "0xf7e917857c88ddcfd6d2486c81d56cfc6003133d": 519
+  },
+  "recipient_balances_before": {
+    "0xf7e917857c88ddcfd6d2486c81d56cfc6003133d": 519
+  }
+}

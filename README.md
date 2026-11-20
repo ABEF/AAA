@@ -10,6 +10,10 @@ actual ETH + ZZZ to current NFT owners; transfers, old rewards and royalties rem
 Current accounting7/direct Entry3/custody5/mint2 uses canonicalV10. The trusted
 normal build is `activation-final-six-20261118` (factory payload6 / royalty allocation2). Source publication does not update
 contracts, services, journals or websites; public signing remains disabled.
+The [maximum-state LP settlement and claim review](reports/lp-claims-maximum-20261120/REVIEW.md)
+adds exact same-NFT conversions, cold partial claims and a bounded claim-planner
+CPU improvement. Actual routes, full API admission and operating approval remain open.
+
 The [latest findings consolidation](reports/seven-report-consolidation-20261119/REVIEW.md)
 reconciles seven subsequent reports and retains all original finding IDs.
 The [whole-project workload review](reports/whole-workload-review-20261119/REVIEW.md)

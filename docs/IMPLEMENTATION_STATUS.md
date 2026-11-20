@@ -1,5 +1,11 @@
 # Feature and evidence reference
 
+[Maximum-state LP conversion and claims](../reports/lp-claims-maximum-20261120/REVIEW.md)
+adds controlled F6/1,000-NFT/two-LP/65-currency evidence. Smaller actual batches
+preserve exact rights; larger padded reviews correctly refuse unchanged limits.
+Claim planning now reuses successful exact runtime proofs only within one
+canonical request. Production contracts and live environments are unchanged.
+
 [Fresh F6 construction](../reports/f6-construction-20261120/REVIEW.md)
 verifies25creations/19bindings/39instances and current default/unsealed authority
 state on stopped isolated nodes. No contract, ABI, compiler or runtime changed;

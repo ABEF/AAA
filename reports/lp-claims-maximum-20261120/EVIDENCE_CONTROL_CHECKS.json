@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "new_offline_controls": [
+    {
+      "kind": "padding",
+      "rejected": true,
+      "cause": "Full estimate headroom was not preserved"
+    },
+    {
+      "kind": "recipient",
+      "rejected": true,
+      "cause": "Captured recipient balance delta differs from receipt payout"
+    },
+    {
+      "kind": "ledger",
+      "rejected": true,
+      "cause": "Claim receipt ledger/owner/asset/amount differs"
+    },
+    {
+      "kind": "path",
+      "rejected": true,
+      "cause": "Evidence pointer outside original captured root"
+    }
+  ],
+  "checker_sha256": "d34d809d660a43e0effbf5ea665c3f579c0706ed2db0f021b90e1257efe1965e",
+  "controller_sha256": "f016deadc5dc3906a42e282030e2140e93ef6460fd00fe271f8d67f94c43c93e",
+  "evidence_files_modified": false,
+  "evm_reexecuted": false,
+  "production_approved": false
+}

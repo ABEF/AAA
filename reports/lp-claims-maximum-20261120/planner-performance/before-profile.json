@@ -1,0 +1,221 @@
+{
+  "scope": "Offline exact captured-RPC replay only; unchanged code, default25seconds/1024calls retained; cProfile overhead explicit; no EVM/network/compiler/tests",
+  "manifest_sha256": "77f961c5d8f43f1ff75e9885393ddeaeac6d7baa25bcefdfe556ffc545e2bc10",
+  "selection_count": 32,
+  "elapsed_seconds": 18.093999999997322,
+  "error": null,
+  "rpc_counts": {
+    "eth_chainId": 5,
+    "eth_blockNumber": 5,
+    "eth_getBlockByNumber": 10,
+    "eth_getCode": 71,
+    "eth_call": 789,
+    "eth_getBlockByHash": 8,
+    "eth_estimateGas": 6,
+    "eth_gasPrice": 6,
+    "eth_getBalance": 3
+  },
+  "cpu_functions": [
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\reports\\lp-claims-maximum-20261120\\tools\\claims_planner_qualification.py",
+      "line": 176,
+      "name": "qualify_plan",
+      "calls": 1,
+      "cpu_self": 0.00012220000000000002,
+      "cpu_cumulative": 18.101038300000003
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\transactions.py",
+      "line": 173,
+      "name": "plan_claims",
+      "calls": 1,
+      "cpu_self": 1e-05,
+      "cpu_cumulative": 18.097795
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\work_budget.py",
+      "line": 90,
+      "name": "bounded",
+      "calls": 8,
+      "cpu_self": 8.910000000000001e-05,
+      "cpu_cumulative": 18.0977842
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\claim_planner.py",
+      "line": 168,
+      "name": "plan",
+      "calls": 1,
+      "cpu_self": 0.0006462,
+      "cpu_cumulative": 18.0976702
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\abi.py",
+      "line": 14,
+      "name": "keccak256",
+      "calls": 2344,
+      "cpu_self": 12.957976200000001,
+      "cpu_cumulative": 17.5471572
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\service.py",
+      "line": 314,
+      "name": "_code",
+      "calls": 568,
+      "cpu_self": 0.007444600000000001,
+      "cpu_cumulative": 16.372051000000003
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\transactions.py",
+      "line": 177,
+      "name": "prepare",
+      "calls": 7,
+      "cpu_self": 0.0016734,
+      "cpu_cumulative": 15.810548400000002
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\service.py",
+      "line": 445,
+      "name": "_admitted",
+      "calls": 8,
+      "cpu_self": 0.0049085000000000005,
+      "cpu_cumulative": 10.934577200000001
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\reports\\lp-claims-maximum-20261120\\tools\\claims_planner_qualification.py",
+      "line": 153,
+      "name": "_verify_deployment",
+      "calls": 8,
+      "cpu_self": 0.0002479,
+      "cpu_cumulative": 6.5294726
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\abi.py",
+      "line": 16,
+      "name": "rol",
+      "calls": 14860800,
+      "cpu_self": 4.4783436000000005,
+      "cpu_cumulative": 4.4783436000000005
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\service.py",
+      "line": 257,
+      "name": "_call",
+      "calls": 1769,
+      "cpu_self": 0.0222788,
+      "cpu_cumulative": 1.6896487
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\abi.py",
+      "line": 66,
+      "name": "calldata",
+      "calls": 1769,
+      "cpu_self": 0.010183600000000001,
+      "cpu_cumulative": 1.5228264
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\service.py",
+      "line": 311,
+      "name": "_addr",
+      "calls": 688,
+      "cpu_self": 0.0028972000000000004,
+      "cpu_cumulative": 0.6272359000000001
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\service.py",
+      "line": 308,
+      "name": "_uint",
+      "calls": 560,
+      "cpu_self": 0.002506,
+      "cpu_cumulative": 0.5495225
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\claim_planner.py",
+      "line": 105,
+      "name": "call",
+      "calls": 2383,
+      "cpu_self": 0.0109415,
+      "cpu_cumulative": 0.1774003
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\work_budget.py",
+      "line": 102,
+      "name": "call",
+      "calls": 903,
+      "cpu_self": 0.0014842000000000002,
+      "cpu_cumulative": 0.0593549
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\reports\\lp-claims-maximum-20261120\\tools\\claims_planner_qualification.py",
+      "line": 48,
+      "name": "call",
+      "calls": 903,
+      "cpu_self": 0.0040732,
+      "cpu_cumulative": 0.045324100000000006
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\work_budget.py",
+      "line": 53,
+      "name": "checkpoint",
+      "calls": 4227,
+      "cpu_self": 0.0040975000000000004,
+      "cpu_cumulative": 0.0314609
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\work_budget.py",
+      "line": 22,
+      "name": "check",
+      "calls": 5139,
+      "cpu_self": 0.0062097,
+      "cpu_cumulative": 0.0306673
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\abi.py",
+      "line": 35,
+      "name": "<genexpr>",
+      "calls": 60944,
+      "cpu_self": 0.0185453,
+      "cpu_cumulative": 0.030579400000000003
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\reports\\lp-claims-maximum-20261120\\tools\\claims_planner_qualification.py",
+      "line": 36,
+      "name": "_digest",
+      "calls": 1807,
+      "cpu_self": 0.0031712000000000003,
+      "cpu_cumulative": 0.0247876
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\abi.py",
+      "line": 37,
+      "name": "address",
+      "calls": 2760,
+      "cpu_self": 0.0058526,
+      "cpu_cumulative": 0.0175555
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\work_budget.py",
+      "line": 26,
+      "name": "<genexpr>",
+      "calls": 30816,
+      "cpu_self": 0.0116193,
+      "cpu_cumulative": 0.0160139
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\zzz_ops\\abi.py",
+      "line": 71,
+      "name": "<genexpr>",
+      "calls": 3135,
+      "cpu_self": 0.0016993000000000002,
+      "cpu_cumulative": 0.012482100000000001
+    },
+    {
+      "file": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\claim_planner.py",
+      "line": 94,
+      "name": "_cacheable",
+      "calls": 2383,
+      "cpu_self": 0.0090015,
+      "cpu_cumulative": 0.0122736
+    }
+  ],
+  "published_draft": true
+}

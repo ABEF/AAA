@@ -4156,6 +4156,25 @@ no price feed; optional USD display and LP conversions have separate requirement
 
 ## Convert LP holder fees to ETH
 
+The [current maximum-state rehearsal](../reports/lp-claims-maximum-20261120/REVIEW.md)
+checks same-NFT conversion and current-owner claims with1,000 activated NFTs,
+main+residual and65 royalty currencies. Keep conversion24M/full25% and claim12M
+qualification/full20%; no default changes. Sixteen conversions fit the tested
+state;32 need24,958,173 padded and refuse. Eight unsettled LP-ETH claims fit;
+16 need13,656,959 padded and refuse. These are examples, never fixed safe sizes.
+
+For conversion, prepare a fresh sorted subset and retain its remainder; do not
+replace a refused review with a higher gas allowance. For claims, review only
+`next_batch`, confirm it, refresh actual balances and replan remaining entries.
+A failed selected royalty balance read must not be guessed as zero: choose a
+fresh healthy subset, retain the failed currency and retry after recovery.
+Transfers carry unpaid/converted rights to the current owner. Raw ZZZ recovery
+is explicit; normal LP settlement remains ETH and royalties stay original-currency.
+The claim planner reuses exact runtime proofs only within one canonical request;
+its mutable/final checks,25-second and RPC bounds are unchanged. Source publication
+is not a running-service or website update. Full production API admission and
+actual route/fee/provider acceptance remain separate from the fixture proof.
+
 Before sealing, bind the reviewed LP converter and any explicitly used wrapper;
 qualify actual typed routes, independent feeds, recipient behavior and keeper gas.
 Default conversion loss is 1%, governance maximum 10%, gas separate. Follow the

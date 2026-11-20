@@ -9,6 +9,7 @@ from __future__ import annotations
 import copy
 import json
 import re
+from functools import partial
 
 from frontend_api.service import ProjectionError, _bool, _quantity
 from frontend_api.transactions import (DRAFT_LIFETIME, MAX_CLAIMS,
@@ -86,10 +87,36 @@ class _SnapshotReads:
         self.cache, self.failures, self.trial = {}, [], {}
         self.global_error = None
         self.block_gas = None
+        self.code_proofs = set()
 
     def assert_available(self):
         if self.global_error is not None:
             raise ProjectionError('Claim planning dependency is unavailable') from self.global_error
+
+    def verify_code(self, verifier, target, expected, block):
+        """Reuse a successful exact runtime proof only inside this one plan.
+
+        The ordinary verifier still reads through this request's budgeted RPC
+        adapter on a miss. Code bytes already cached at one canonical hash do
+        not need their Keccak recomputed for every prefix and final preparation.
+        Different pins, targets or block/read shapes never inherit that proof.
+        """
+        checkpoint()
+        self.assert_available()
+        reusable = (target in self.targets and isinstance(expected, str) and
+                    re.fullmatch(r'0x[0-9a-fA-F]{64}', expected) is not None and
+                    isinstance(block, dict) and set(block) == {'blockHash', 'requireCanonical'} and
+                    block.get('requireCanonical') is True and block == self.block and
+                    isinstance(block.get('blockHash'), str) and
+                    re.fullmatch(r'0x[0-9a-fA-F]{64}', block['blockHash']) is not None)
+        key = (target, expected, block['blockHash']) if reusable else None
+        if key is not None and key in self.code_proofs:
+            checkpoint()
+            return
+        verifier(target, expected, block)
+        checkpoint()
+        if key is not None and len(self.code_proofs) < MAX_METADATA:
+            self.code_proofs.add(key)
 
     def _cacheable(self, method, params):
         if len(params) != 2 or params[-1] != self.block:
@@ -178,6 +205,9 @@ class ClaimPlanner:
         reads = _SnapshotReads(original.rpc, block,
             {c.address for c in p.contracts.values()} | set(p.assets))
         p.rpc = reads
+        # Capture the copied projection's verifier AFTER installing its request
+        # adapter. Neither the original projection nor later plans retain proof.
+        p._code = partial(reads.verify_code, p._code)
         p._snapshot = lambda: (copy.deepcopy(header), head, copy.deepcopy(block))
         lifecycle = p._verify_deployment(block)
         prepared = copy.copy(self.transactions)

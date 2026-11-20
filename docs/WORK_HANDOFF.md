@@ -1,5 +1,16 @@
 # Work handoff
 
+## Latest LP settlement and claim work
+
+Use the [maximum-state report](../reports/lp-claims-maximum-20261120/REVIEW.md)
+for same-NFT ZZZ-to-ETH conversion, claims, partial batches, transfer/fault
+isolation and the new request-local runtime-proof optimization. The normal F6
+Solidity graph is unchanged. Preserve12M/full20% claim qualification,
+24M/full25% conversion, all financial guards and all original evidence.
+Actual1%-eligible routes, complete fees, full API deployment admission and
+matching consumer/operating adoption remain open. Do not repeat the completed
+1,000-NFT population or old suites merely to refresh their date.
+
 Next work follows the [ordered production qualification plan](ROADMAP.md) and
 [readiness reconciliation](../reports/production-readiness-plan-20261119/REVIEW.md):
 use [fresh Gate A results](../reports/readiness-gate-a-20261120/REVIEW.md). Current

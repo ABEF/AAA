@@ -171,6 +171,11 @@ Owning Todo: [`activation-assets`](../TODO.md#task-activation-assets), [`shared-
 
 ### P08 — Harvest, LP settlement, compound and burn
 
+The [maximum-state settlement/claim report](../reports/lp-claims-maximum-20261120/REVIEW.md)
+adds finite same-NFT conversion, cold gas/refusal and transfer/fault evidence; the
+new request-local code-proof reuse addresses a measured planner CPU bottleneck.
+Actual route/provider/complete-fee and full production API admission remain open.
+
 Reconcile both-leg actual fee collection and fixed80/10/5/5, including the documented tiny-fee split rule, liabilities/backing and current-owner rights before/after partial claims, transfers, rebalances and exit. Harvest itself performs no swaps.
 
 Prove separate same-NFT ZZZ-to-ETH settlement, affordable partial batches, failed-swap rollback and approval cleanup. Compound spends only designated/attributed funds; buyback spends only its reserve and actually burns the fixed ZZZ. Claims/conversions never create new income.

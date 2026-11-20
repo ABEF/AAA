@@ -37,6 +37,7 @@ Custody, ownership and reward accounting.
   - [Actual November9 conversion quotes](reports/market-qualification-20261109/REVIEW.md) establish no tested default1%-eligible ZZZ-to-ETH route. Cheaper v3 candidates cannot fill measured quotes; the liquid v3 1% pool adds impact and differs materially from selected spot. Existing v3 capability requires a nonzero reviewed immutable wrapper chosen before seal, wrapper/route/pricing admission and matching consumer; fresh7 automated conversion currently accepts native-v4 only. Do not change the1% cap or mark pending ZZZ as ETH. Healthy source-currency fallback remains separate.
   - [Latest conversion-market evidence](reports/market-followup-20261109/routes/ROUTES_FINAL_v2.md) preserves favorable tiny ZZZ-to-ETH point-vector quotes; do not claim every1% numeric floor fails. Their output is below intrinsic-only gas at the anchor, with no independently qualified USD/whole-entitlement operation. V3 additionally needs nonzero immutable wrapper before sealing and matching qualified manual/worker support; current automated fresh7 remains native-v4 only.
   - [16November reverse diagnostics](reports/real-market-refresh-20261116/REVIEW.md) qualify no complete tested1000ZZZ-to-ETH conversion: selected and larger-known-L routes report incomplete input; the95pips lead has an opaque error at a diagnostic500k quote ceiling. This does not rule out other sizes/venues or establish the error cause. Keep the1% conversion guard and actual operating gas limits; complete output, source prices and economic gas remain required.
+  - [Maximum-state LP settlement](reports/lp-claims-maximum-20261120/REVIEW.md) adds actual same-NFT/component conversion, reserves/prefund isolation, transfer/raw-ZZZ recovery and cold24M/full25% subset/refusal checks on frozen F6/1,000NFT/twoLP/65currency state. Actual1%-eligible market routes, complete fees, consumer/worker adoption and independent approval remain open.
 
   </details>
 
@@ -919,6 +920,7 @@ The data and services behind the app.
   <summary>Acceptance criteria</summary>
 
   - [Scoped verification](reports/factory-claims-20261105/VERIFICATION.md) covers bounded batching, refusal isolation, freshness/canonicality/ownership/work limits and HTTP worker dispatch. Matching website/service rollout and actual currency/fee/gas qualification remain open.
+  - [Current maximum-state evidence](reports/lp-claims-maximum-20261120/REVIEW.md) adds actual cold12M/full20% claims, larger-batch refusal, current-owner and failed-currency isolation. Repeated runtime hashing caused a25-second timeout; exact request-local proof reuse removes that CPU bottleneck with unchanged work/fee/gas limits. Full production deployment admission is an explicit fixture seam; real endpoint/provider/consumer approval remains open.
 
   </details>
 
@@ -1856,4 +1858,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `49b173599f9d888cb224ed490f697b01ffa0366156f9cab2386aa0b131453387`.
+Snapshot SHA-256: `b3f97675093a16da19f701cfb9afc0db562c73275b32911c1131add7e9238980`.

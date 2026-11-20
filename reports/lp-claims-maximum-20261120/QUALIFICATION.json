@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "baseline_main": "f1713c1b0b3005f6367943ceb88219cae7b786aa",
+  "trusted_normal_build": "activation-final-six-20261118",
+  "controlled_scope_completed": true,
+  "production_approved": false,
+  "solidity_sources_changed": false,
+  "changed_backend_source": {
+    "path": "frontend_api/claim_planner.py",
+    "sha256": "6d5241d61e5d48a6b2d77f10d09114426ad8a33fc7dddf47d2ec804b48136d5f"
+  },
+  "claim_limit": 12000000,
+  "claim_padding_bps": 2000,
+  "conversion_limit": 24000000,
+  "conversion_padding_bps": 2500,
+  "work_seconds": 25,
+  "rpc_calls_per_request": 1024,
+  "normal_deployment_admission_verified": false,
+  "real_market_route_or_provider_fees_qualified": false,
+  "independent_records": {
+    "PUBLISHED_ACCOUNTING_VERIFICATION.json": "12c6622277224589dfcb1aa9cfa325fff9ad216aacb95982cad22e8418242d4c",
+    "PUBLISHED_COMPLETION_VERIFICATION.json": "25185b2babb0b4c15c6472bb34f2805a37f3300d6f92c8217300967a20b82841",
+    "EVIDENCE_CONTROL_CHECKS.json": "e27898417e23391032e5a41fe5e2007bc656957badb614f9993854ccbda41184",
+    "PRESERVATION.json": "a6dd085460bb4a7e1fc54a7a628d2575c0eeb64942998a01001f2ab80c54c41d",
+    "FUNCTION_INVENTORY.json": "f868479f443478fef38dfe7c003c13e29a3cb80c2dfcb9d96cda85b3300f1090"
+  },
+  "reused_evidence": [
+    "Frozen maximum-workload producer/state and source pins; no999activation rerun",
+    "Normal F6compiler/build/size/advisory source scope unchanged"
+  ],
+  "new_evidence": [
+    "Campaign03 financial matrix with original planner timeout retained",
+    "Campaign04 only prefix/suffix and actual optimized32selection continuation",
+    "9new focused Python methods; exact captured-wire before/after CPU replay",
+    "Offline receipt/wire/accounting/rollback checks and4new rejection controls"
+  ],
+  "open_existing_qualifications": [
+    "Full normal API/profile admission within original work bounds",
+    "Actual independent feeds and1%-eligible conversion route",
+    "Complete target-provider fees and matching consumer/worker operation",
+    "Maximum-state slow-ZZZ opening still needs476135 lower estimate",
+    "Independent audit and release approval"
+  ],
+  "public_transactions": 0,
+  "services_or_sites_changed": false,
+  "all_four_owned_nodes_stopped": true
+}

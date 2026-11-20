@@ -1,5 +1,18 @@
 # AAA / ZZZ PoPL project instructions
 
+## Latest LP conversion and claims qualification
+
+Use [the scoped report](reports/lp-claims-maximum-20261120/REVIEW.md) for reused
+maximum-state F6 population and NEW conversion/claim/transfer/fault evidence.
+Claim planning now caches only successful exact runtime proofs within one
+canonical request/target/pin/block; ownership, balances, lifecycle, simulations,
+fees, final freshness and25s/1024RPC limits remain. service.py and Solidity are
+unchanged. The current inventory is [this new source-pinned record](reports/lp-claims-maximum-20261120/FUNCTION_INVENTORY.json):
+1,977 named Python definitions,179 files; old1,976 counts retain their historical
+scope. Normal verification checks the new record without rewriting old evidence.
+12M/full20% claims and24M/full25% conversion remain. No service/site/chain,
+checkpoint/journal, signer, gas default, public deployment or sealing changes.
+
 Reviewed 20 November 2026. Read [context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md),
 [current findings](docs/AUDIT_FINDINGS.md) and the relevant

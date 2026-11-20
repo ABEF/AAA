@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "complete": true,
+  "all_campaign_parts_qualified": true,
+  "unresolved_campaign_failures": [],
+  "production_approved": false,
+  "actual_mined_scenario_operations": 10,
+  "retained_refusals": 0,
+  "independent_accounting_assertions": 4,
+  "operation_names": [
+    "prefund-zzz-converter",
+    "prefund-eth-converter",
+    "prefund-zzz-executor",
+    "prefund-eth-executor",
+    "pending-royalty-receipt-1",
+    "pending-royalty-receipt-64",
+    "conversion-prefix-sixteen",
+    "conversion-suffix-sixteen",
+    "planner-execute-next-0",
+    "planner-execute-next-1"
+  ],
+  "refusal_names": [],
+  "assertions": [
+    "conversion-prefix-sixteen.json",
+    "conversion-suffix-sixteen.json",
+    "planner-execute-next-0.json",
+    "planner-execute-next-1.json"
+  ],
+  "ownership_observations": [],
+  "full_financial_rollback_snapshots": [],
+  "verified_continuations": [
+    "PREFIX_SUFFIX_CONTINUATION.json"
+  ],
+  "actual_planner_batches": [
+    {
+      "selected": 24,
+      "estimate": 9780043,
+      "padded": 11736052,
+      "rpc_reads": 903
+    },
+    {
+      "selected": 8,
+      "estimate": 3748706,
+      "padded": 4498448,
+      "rpc_reads": 319
+    }
+  ],
+  "scope": "Offline captured-wire/receipt/unit-accounting check; not another EVM execution or production approval"
+}

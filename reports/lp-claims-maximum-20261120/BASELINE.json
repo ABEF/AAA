@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "timestamp_utc": "2026-11-20T12:03:43.190463+00:00",
+  "head": "f1713c1b0b3005f6367943ceb88219cae7b786aa",
+  "preservation": {
+    "AGENTS.md": {
+      "sha256": "af90fc61ed852c7329b650e1f26faa8649a481dcdbe5c953246b9f4fff851e55",
+      "bytes": 45426
+    },
+    "PROJECT_CONTEXT.md": {
+      "sha256": "fc43a3ed31b9e7b84c6c736995404feb87fd03197257662d563519cb34b3cdc1",
+      "bytes": 17203
+    },
+    "README.md": {
+      "sha256": "98fcd1dd020c735489938ed653f444261b8fa7c00eecb8be7ffeff588987d1c2",
+      "bytes": 7764
+    },
+    "TODO.md": {
+      "sha256": "0d89e5c8d3bcb7594fda2803c39ed891097bb54d3026bb5e14a8ec6890e84ba9",
+      "bytes": 451558
+    },
+    "docs/project-todo.json": {
+      "sha256": "ebb976715d20a16ca7c72e5689e384b2df98689c5f97cc0c084dbf29f3ff3a15",
+      "bytes": 468711
+    },
+    "docs/OPERATOR_MANUAL.md": {
+      "sha256": "9a4794c2debc40bb2ff11de5b341c107f0240144d344c398466b68e27797bb75",
+      "bytes": 655556
+    },
+    "docs/WORK_HANDOFF.md": {
+      "sha256": "076b9e6a6ad6bbd4c6df29f0115e146a46f12b7070743e16802da4c39ecd0321",
+      "bytes": 8417
+    },
+    "docs/IMPLEMENTATION_STATUS.md": {
+      "sha256": "83bad500651c420d5f2520257c0648de3f364ba27d7e64cd2ece912a13a15c8c",
+      "bytes": 31559
+    },
+    "docs/AUDIT_FINDINGS.md": {
+      "sha256": "bbebb41d0f8294fce8a5e687810d20be7318431900633548c209b925de3b3adc",
+      "bytes": 24029
+    },
+    "docs/ROADMAP.md": {
+      "sha256": "80869d8ab758cea3dc1aaf85e69d0689aa85d02f0a86538f16ec903997003e78",
+      "bytes": 35412
+    },
+    "docs/WORKLOAD_COVERAGE.md": {
+      "sha256": "cc7c53eac03a608c8c9c90106481ff334c92bfeeadf4cedccbe3961723da7092",
+      "bytes": 8322
+    },
+    "docs/LP_ETH_SETTLEMENT.md": {
+      "sha256": "fc64d67a122f9aa045bf9ec7732915447b9202ad70bdfdd3963d4854cee7b658",
+      "bytes": 13436
+    },
+    "docs/CLAIM_PLANNING.md": {
+      "sha256": "7e906cabb75f8dafcc6f59aaa1d213398162f27254c4def187fb0fb877c1ac9b",
+      "bytes": 11792
+    },
+    "reports/README.md": {
+      "sha256": "e152d707b540d03c79b3bd1b0d463271b82bbdad93cb96012f7f26dd5efac9af",
+      "bytes": 33738
+    },
+    "docs/RELEASE_CHECKLIST.md": {
+      "sha256": "a2c805835d85b0247a370206c512a1f0abaabfb5e2705351df997a5eb1909850",
+      "bytes": 14514
+    },
+    "reports/source-checks.json": {
+      "sha256": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "bytes": 4232
+    },
+    "scripts/run-fork-checks.py": {
+      "sha256": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "bytes": 22694
+    },
+    "tests_python/test_fork_runner.py": {
+      "sha256": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "bytes": 34951
+    },
+    "tests_python/test_frontend_history.py": {
+      "sha256": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "bytes": 20530
+    }
+  },
+  "archive": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lp-claims-maximum-20261120\\original-documents",
+  "public_actions": 0,
+  "production_approved": false
+}

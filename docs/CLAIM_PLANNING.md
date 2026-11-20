@@ -1,5 +1,13 @@
 # Gas-aware unsigned claim planning
 
+[Current maximum-state evidence](../reports/lp-claims-maximum-20261120/REVIEW.md)
+adds cold actual F6 claims and planner checks, with an explicit full deployment-
+admission seam. Eight unsettled LP-ETH entries fit12M/full20%;16 require13,656,959
+padded and refuse. Eight converted-direct ETH entries need1,479,617 padded in the
+tested state. Entry count is never gas approval. The new planner proof cache
+reuses successful runtime verification only within the exact same canonical
+request/block/target/pin; all mutable and final checks remain fresh.
+
 The [current1000-NFT claim stress](../reports/launch-workload-20261117/claims/REVIEW.md) includes16 ERC20 royalty currencies plus ETH and four LP accounts. A19-entry pending mixed selection and32 LP entries refuse12M atomically; smaller selected batches preserve exact payments and failed-currency recovery. Stored19-entry body success is not a universal count or RPC/fee approval. Keep the planner's fresh exact simulation and existing limits; later same-test recovery chunks are functional evidence, not independent cold transaction estimates.
 
 **Mint-profile boundary:** backend source implements explicit opt-in

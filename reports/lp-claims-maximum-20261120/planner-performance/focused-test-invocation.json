@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "scope": "NEW focused tests only; first and only execution at this source",
+  "command": [
+    "C:/Users/Ali/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+    "-m",
+    "unittest",
+    "tests_python.test_claim_planner_code_proofs",
+    "-v"
+  ],
+  "tool_chunk_id": "1bfaa8",
+  "tool_exit_code": 0,
+  "tool_wall_seconds": 3.2856318,
+  "unittest_seconds": 1.989,
+  "methods": 9,
+  "all_passed": true,
+  "raw_stdout_independently_captured": false,
+  "evidence_boundary": "Exit status, method count and output observed in Codex tool transcript; no invented raw log or unchanged-test rerun",
+  "source_sha256": {
+    "frontend_api/claim_planner.py": "6d5241d61e5d48a6b2d77f10d09114426ad8a33fc7dddf47d2ec804b48136d5f",
+    "frontend_api/service.py": "af0e9f494721d11be4c027fdc15dc4bb6c40583eaa87e06cc704b035c6c2a1b9",
+    "frontend_api/transactions.py": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e",
+    "frontend_api/transaction_gas.py": "35f5c2221726e8987bb1ad28a9e62034ee65a51e2696dd382d66a800c2a13d9b",
+    "tests_python/test_claim_planner_code_proofs.py": "158365eff4e4f41b355946dec5fef11c81501a115ec576ac7e94751a2286f9b3",
+    "reports/lp-claims-maximum-20261120/tools/claims_planner_qualification.py": "d5ac50f93cec3a877401f740448135aef261fe9dbd730a4486ed27f9fbb36c5f",
+    "reports/lp-claims-maximum-20261120/tools/profile_planner_replay.py": "798a5baddbb52918c5e731397078a859bcb3855582225513deff7568327425c5"
+  }
+}

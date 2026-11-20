@@ -1,5 +1,10 @@
 # Release approval record - NOT APPROVED
 
+[Controlled maximum-state LP settlement and claims](../reports/lp-claims-maximum-20261120/REVIEW.md)
+adds local unit-accounting, gas/refusal and planner evidence, with explicit
+mock control/admission seams. One backend CPU optimization preserves existing
+limits. This is not actual route/provider/fee, service adoption or release approval.
+
 The [current F6 local construction](../reports/f6-construction-20261120/REVIEW.md)
 closes that controlled source/binding rehearsal only:25creations/19bindings,
 39instances,112binding/state plus172default reads, separate35permission calls.

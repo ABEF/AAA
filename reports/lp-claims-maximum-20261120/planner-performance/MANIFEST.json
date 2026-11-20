@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "before-profile.json",
+      "sha256": "e966baf682c425988c49231d30d5b140164b2365716ca3bdbd716372686a01bb",
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lp-claims-maximum-20261120\\planner-profile-before\\PROFILE.json"
+    },
+    {
+      "path": "after-profile.json",
+      "sha256": "057a2ecc2c9975f59891fffb6142ff97674f3b81a67f97fdf202db0204c6a202",
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lp-claims-maximum-20261120\\planner-profile-after\\PROFILE.json"
+    },
+    {
+      "path": "claim_planner.before.py.txt",
+      "sha256": "91fffda630ff2293ecbacbd10f22d68da98cf62f1d1b7c88aed45724ac13776b",
+      "source": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lp-claims-maximum-20261120\\planner-profile-before\\frontend_api_claim_planner.py.txt"
+    }
+  ],
+  "source_sha256": {
+    "frontend_api/claim_planner.py": "6d5241d61e5d48a6b2d77f10d09114426ad8a33fc7dddf47d2ec804b48136d5f",
+    "frontend_api/service.py": "af0e9f494721d11be4c027fdc15dc4bb6c40583eaa87e06cc704b035c6c2a1b9",
+    "frontend_api/transactions.py": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e",
+    "frontend_api/transaction_gas.py": "35f5c2221726e8987bb1ad28a9e62034ee65a51e2696dd382d66a800c2a13d9b",
+    "tests_python/test_claim_planner_code_proofs.py": "158365eff4e4f41b355946dec5fef11c81501a115ec576ac7e94751a2286f9b3",
+    "reports/lp-claims-maximum-20261120/tools/claims_planner_qualification.py": "d5ac50f93cec3a877401f740448135aef261fe9dbd730a4486ed27f9fbb36c5f",
+    "reports/lp-claims-maximum-20261120/tools/profile_planner_replay.py": "798a5baddbb52918c5e731397078a859bcb3855582225513deff7568327425c5"
+  },
+  "same_recorded_rpc_calls": true,
+  "before_seconds": 18.093999999997322,
+  "after_seconds": 6.030999999995402,
+  "observed_reduction_percent": 66.66850889799771,
+  "source_proof_scope": "Request-local exact target + expected hash + canonical block proof reuse only; source checkpoint reader unchanged",
+  "limits_unchanged": {
+    "request_seconds": 25,
+    "logical_rpc_calls": 1024,
+    "http_posts": 2048,
+    "claim_entries": 32,
+    "trials": 10,
+    "additional_final_prepare": 1,
+    "claim_gas": 12000000,
+    "full_padding_percent": 20
+  },
+  "actual_evm_or_network_replayed": false,
+  "latency_or_production_approval": false
+}

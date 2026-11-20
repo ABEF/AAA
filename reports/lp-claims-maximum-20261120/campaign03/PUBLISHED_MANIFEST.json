@@ -1,0 +1,505 @@
+{
+  "schema": 1,
+  "original_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lp-claims-maximum-20261120\\campaign03",
+  "files": [
+    {
+      "path": "assertions/claim-converted-direct-eight.json",
+      "sha256": "7ae089c3faa5b95a903ea1771bc9f91b099797f4c6b37adc1be0cbee7f3c5bd2",
+      "bytes": 5458
+    },
+    {
+      "path": "assertions/claim-pending-royalty-eight.json",
+      "sha256": "0c15726ff84ed8a8fbf2a19543b1da5278f8b815026f44965104d1ac0ede2128",
+      "bytes": 5230
+    },
+    {
+      "path": "assertions/claim-stored-royalty-eight.json",
+      "sha256": "0965c48eb30062685605e177674f9360b0eced06e95f37565b1fc0c4e999956b",
+      "bytes": 5241
+    },
+    {
+      "path": "assertions/claim-tree-1.json",
+      "sha256": "bfa2eaf03eba7bd0340a2417abcb7c0b6c432b372195b2e751dfb1bd9eb0420d",
+      "bytes": 1825
+    },
+    {
+      "path": "assertions/claim-tree-8.json",
+      "sha256": "3a1634d25160e781b0ddab05d6dd2d8c1d58fc5868a0c940acbebba390f49091",
+      "bytes": 5403
+    },
+    {
+      "path": "assertions/convert-1.json",
+      "sha256": "8f9e019799fc77b39b8a13416ed094f3a672c5b39acc1284cfacb7a11f2c27bb",
+      "bytes": 3404
+    },
+    {
+      "path": "assertions/convert-16.json",
+      "sha256": "39c939734331abc2e37711a313d0837eab831216a70a70b492763eeaad126ba8",
+      "bytes": 8391
+    },
+    {
+      "path": "assertions/convert-8.json",
+      "sha256": "4def229812364fb6cf923594e1f707d7b8712ae069159d25f961a2a8cbe17b1b",
+      "bytes": 5725
+    },
+    {
+      "path": "assertions/direct-seed-clear-old-eth.json",
+      "sha256": "af1b9b0a3eebbce7010bd85110a71a6da5fb00da6bcdc3a027362a296875b015",
+      "bytes": 5429
+    },
+    {
+      "path": "assertions/direct-seed-convert-eight.json",
+      "sha256": "3fa85834c677b45c111215205e4cfaae22cca935d84e449ae75f9ba7e113ffb8",
+      "bytes": 5782
+    },
+    {
+      "path": "assertions/healthy-subset-after-fault.json",
+      "sha256": "c46e6067fb7fd849f89f856d276df58d263dfdf216ff3483179b886b6245f5b8",
+      "bytes": 2526
+    },
+    {
+      "path": "assertions/new-owner-claims-converted.json",
+      "sha256": "21dac04925fad474c9cc3e54dfea62276c7df751bcb9e08a0f7fbd91177eb822",
+      "bytes": 2385
+    },
+    {
+      "path": "assertions/new-owner-repeat-zero.json",
+      "sha256": "c14ce2f7583fb04f950b470fe95f09d41bb1f51ce3f63836ad7d162948e98789",
+      "bytes": 2323
+    },
+    {
+      "path": "assertions/partial-transfer-convert.json",
+      "sha256": "9b33b822f9092aa05e5d0a616574eee137ab551efb9d17fb7f0a5cdd6b4ba1c3",
+      "bytes": 5720
+    },
+    {
+      "path": "assertions/raw-zzz-recovery-before-convert.json",
+      "sha256": "24ad1c590f134049f593a0b61620226dd735c177fe0ba5d871ea96bf7559db8a",
+      "bytes": 1864
+    },
+    {
+      "path": "assertions/repaired-currency-repeat-zero.json",
+      "sha256": "ada6b55f8a2f6b4477dbd67e21e5f7e6b7b008871fb79f6e1729434439843d63",
+      "bytes": 1806
+    },
+    {
+      "path": "assertions/repaired-original-currency.json",
+      "sha256": "0f17fcd8db0c201790740f18a0cfcac2b77f3a1399cc0a0e37327e1c214e4f5d",
+      "bytes": 1800
+    },
+    {
+      "path": "assertions/transfer-after-owner.json",
+      "sha256": "8e95b4ff0760b2e5e602a17d70a7fd4086b794c89f49983a34ef345554e7a583",
+      "bytes": 258
+    },
+    {
+      "path": "assertions/transfer-before-owner.json",
+      "sha256": "6624ea3df4884c860adf66071cf47555924b5b962c9dead2acddb0be9254b956",
+      "bytes": 258
+    },
+    {
+      "path": "failures/unsigned-planner.json",
+      "sha256": "d413f9500e5631864c1de23af13cc9cd8a651684b955e2deb780b9b8909b7b8d",
+      "bytes": 105
+    },
+    {
+      "path": "fixture/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "fixture/CONVERTER_CONSTRUCTION_TRACE.json",
+      "sha256": "d90e6005ff0da4c92ba594f368ab95e4c018f18a22a328734c0d43eaf32952a1",
+      "bytes": 139011
+    },
+    {
+      "path": "fixture/FIXTURE.json",
+      "sha256": "51395073e3bd1a9e9b7f1ecb19f6949e0e21bb185d2ff6fb9148cb9df8a285e1",
+      "bytes": 156063
+    },
+    {
+      "path": "fixture/RPC.json.gz",
+      "sha256": "7a2074893e12b09f6737eb3654577f942d71c97a67ce012db0317837c4139108",
+      "bytes": 4246854
+    },
+    {
+      "path": "fixture/SETUP_AND_SCENARIO_RECEIPTS.json",
+      "sha256": "09a365d34e142600d83cb132a48d06b8b9f52b4dfba7979524435fdc727f2628",
+      "bytes": 396713
+    },
+    {
+      "path": "NEW_EXTERNAL_PREFUNDS.json",
+      "sha256": "67eeba32f7309cf45004970cc34d9f5d991f9e34d2f198d3254bcd79a1d9e4aa",
+      "bytes": 210
+    },
+    {
+      "path": "NEW_ROYALTY_RECEIPTS.json",
+      "sha256": "bf6acdc0ab4638044600f43991349f95164fc40bbf915603f541f0687530d3ba",
+      "bytes": 287
+    },
+    {
+      "path": "operations/claim-converted-direct-eight.json",
+      "sha256": "9ceec8bb2f80d4a1d2b75526cbb9c2490e6806e90f1fd28040561e883dc58014",
+      "bytes": 15126
+    },
+    {
+      "path": "operations/claim-pending-royalty-eight.json",
+      "sha256": "d894168b9044386afcc6f945d86eb194a4fe121edda415a666af0ecad728557a",
+      "bytes": 23082
+    },
+    {
+      "path": "operations/claim-stored-royalty-eight.json",
+      "sha256": "8df2edb47b355ea1f575d0cbb14192140d180a43a532bbd9d6448025eee826d7",
+      "bytes": 21358
+    },
+    {
+      "path": "operations/claim-tree-1.json",
+      "sha256": "7b3fe836f7b5c60823570e508437388754a7664ec1dcd67908c8152d73cfbb93",
+      "bytes": 7275
+    },
+    {
+      "path": "operations/claim-tree-16.json",
+      "sha256": "740b354e0fa94d24c679c044108e5426fd6aaee5b230f0e1f29d9f3b22422a2a",
+      "bytes": 6561
+    },
+    {
+      "path": "operations/claim-tree-32.json",
+      "sha256": "398f88318b9c8b2c8b074464ac25c26e0de18c960fcb17387b4350c8a66e6b49",
+      "bytes": 8650
+    },
+    {
+      "path": "operations/claim-tree-8.json",
+      "sha256": "d98dfc3726bd662463485cf99bd421f01822db9aa92248778775c06112cca9dd",
+      "bytes": 15097
+    },
+    {
+      "path": "operations/conversion-duplicate-id.json",
+      "sha256": "854c0366d24ce680ed1f758aad4e69b84e9ac9d293ea3b364bdc58775300cb8e",
+      "bytes": 2966
+    },
+    {
+      "path": "operations/conversion-expired.json",
+      "sha256": "5a3e42b51bfc555f146d976f9ce9fffef6e0b28eb97f786d5d67ad81dc370eeb",
+      "bytes": 2961
+    },
+    {
+      "path": "operations/conversion-impossible-minimum.json",
+      "sha256": "25ec0a458cc93b5f86302c0095b8c31fae8d3ed44cfa066d9640397d60985a92",
+      "bytes": 2972
+    },
+    {
+      "path": "operations/conversion-unsorted.json",
+      "sha256": "fb3b4007b0f646bceb935339381013fb27c2d034904db17ed50702d8f2d2d505",
+      "bytes": 2962
+    },
+    {
+      "path": "operations/conversion-wrong-caller.json",
+      "sha256": "b069dfed16396743abc60563f35ff7922ce1d000aa9a6ef703ca9082c733d088",
+      "bytes": 2966
+    },
+    {
+      "path": "operations/convert-1.json",
+      "sha256": "9cc34144a50dec579151c863cc65af242aaa16ece93406cca103ede535b61127",
+      "bytes": 14864
+    },
+    {
+      "path": "operations/convert-16.json",
+      "sha256": "14417188c62c2be1ad7c88558bb9c17d7e45b1fbb6bd14e731d52d9acc677f29",
+      "bytes": 30432
+    },
+    {
+      "path": "operations/convert-32.json",
+      "sha256": "a81ac50a3d059c48b020882d90c6a7a1235a08c839cfb390d36323c443e511a3",
+      "bytes": 4702
+    },
+    {
+      "path": "operations/convert-8.json",
+      "sha256": "a1c9b30766ae9fc264775a0d8dde1e2a33cf54d75aa0dd98615139bc80914715",
+      "bytes": 22125
+    },
+    {
+      "path": "operations/direct-seed-clear-old-eth.json",
+      "sha256": "04aca0eb92c05ce0f9092811908bfb5ee94dce9e4e8f0eaecefc2c777a44b9ac",
+      "bytes": 15110
+    },
+    {
+      "path": "operations/direct-seed-convert-eight.json",
+      "sha256": "c7a0c9a6c94918fd1abc0ed546e2641d2791e48ac61b3e055143135c90ff51dc",
+      "bytes": 22143
+    },
+    {
+      "path": "operations/fault-currency-enable.json",
+      "sha256": "7059b79bae49a826d32fa75330d513ec36edc29231204e5ce3cc30c7c4ad8825",
+      "bytes": 5263
+    },
+    {
+      "path": "operations/fault-currency-repair.json",
+      "sha256": "8e52391524d8a52420bca34b9f7b954498e9c71d535ba6b4359285720a0177be",
+      "bytes": 5267
+    },
+    {
+      "path": "operations/faulty-mixed-atomic-refusal.json",
+      "sha256": "2837b0487479df0a84b045698204b6e73f37f620b5b9e21085770e4d0b223a92",
+      "bytes": 3096
+    },
+    {
+      "path": "operations/healthy-subset-after-fault.json",
+      "sha256": "437edd52da1873e12557eb3f84ed168df7cfde94221dcc96e42a8e511ca2be1f",
+      "bytes": 10912
+    },
+    {
+      "path": "operations/new-owner-claims-converted.json",
+      "sha256": "a81b5dd20651e3bc458b3769e07d0e28063f952535f86e8193db736be83188e3",
+      "bytes": 8415
+    },
+    {
+      "path": "operations/new-owner-repeat-zero.json",
+      "sha256": "f9633fa23401325f863749fe9466b096d3e0d4d05778f642ab032f4d1aa65edf",
+      "bytes": 8407
+    },
+    {
+      "path": "operations/old-owner-claim-rejected-after.json",
+      "sha256": "6c79ea70a8a40bb3718c6e3e30fe0c5add42f10f46b9d075fd8ab0d4b6be6dd4",
+      "bytes": 2590
+    },
+    {
+      "path": "operations/old-owner-claim-rejected-before.json",
+      "sha256": "a46b3c3df4a3d2259ba2adaa2295672845b3b130526f8f0d908569432977fe8f",
+      "bytes": 2590
+    },
+    {
+      "path": "operations/partial-transfer-convert.json",
+      "sha256": "07b51f30f994d80429c99c843b46e60d4b2c6ba9f5d4739587a17f0d595b7666",
+      "bytes": 22162
+    },
+    {
+      "path": "operations/pending-royalty-receipt-1.json",
+      "sha256": "5030d34322078fe7ae6c72e4d3588d7d36afc127152df5e7136930f3eac002ef",
+      "bytes": 6116
+    },
+    {
+      "path": "operations/pending-royalty-receipt-64.json",
+      "sha256": "77a78c66bd76708c0e1a36a7400f358046487684bcd7f9eb7ec80369967c8571",
+      "bytes": 6117
+    },
+    {
+      "path": "operations/prefund-eth-converter.json",
+      "sha256": "d66e142cc09fdf3e9625a19b1704122f287fa970cbcc79284d83d434973539d9",
+      "bytes": 5194
+    },
+    {
+      "path": "operations/prefund-eth-executor.json",
+      "sha256": "ef5946e6ba8ce6984bd9870e06431c94d8999eebfa68be8aaa4bb5e68a9ff459",
+      "bytes": 5193
+    },
+    {
+      "path": "operations/prefund-zzz-converter.json",
+      "sha256": "73cd5d892f0b3175e359600e77ab1f13dfa4ffaf9c55617ca7885c21e672f1c5",
+      "bytes": 6112
+    },
+    {
+      "path": "operations/prefund-zzz-executor.json",
+      "sha256": "91d92b284eb27cfaff3c663eac4bf5ed6c6b876b2a50d6064c853b8f40a39bbd",
+      "bytes": 6111
+    },
+    {
+      "path": "operations/raw-zzz-recovery-before-convert.json",
+      "sha256": "d4c04006a1da0cb8e38412245bc7523872ecd26a0769874387d4872bc7478768",
+      "bytes": 8078
+    },
+    {
+      "path": "operations/repaired-currency-repeat-zero.json",
+      "sha256": "9a1cda647ce56a53bdd75d3cf8bf5b5f1d299873f967a510134d0449063b249b",
+      "bytes": 7296
+    },
+    {
+      "path": "operations/repaired-original-currency.json",
+      "sha256": "1915552f0e1ffc47b350bdc11bff28fdaa911d5a0f8d17f301bb9fb37c476310",
+      "bytes": 9798
+    },
+    {
+      "path": "operations/stored-royalty-sync.json",
+      "sha256": "b929251c443307e12983a244c277ce8706d8f3456e458e222e629b314d540161",
+      "bytes": 7055
+    },
+    {
+      "path": "operations/transfer-after-convert.json",
+      "sha256": "4fbda1e88d203694fc07cbe3302b13c9ab8f129101699cac737a0ce0b4e15d68",
+      "bytes": 6199
+    },
+    {
+      "path": "operations/transfer-before-convert.json",
+      "sha256": "926700977f7580d22b8fd0a7a09742838dbc00533483d59b9f1be116ca0d5c0f",
+      "bytes": 6194
+    },
+    {
+      "path": "planner/fault-currency-balance-read-selection-MANIFEST.json",
+      "sha256": "21294f3f0eb686ce926084da4b44e4171625903f89f60f3cd0bd0875b82b739c",
+      "bytes": 15667
+    },
+    {
+      "path": "planner/fault-currency-balance-read-selection.json",
+      "sha256": "7c2e02d3c2a79a1a95986d0503d866641fedc08e0634426b7411f7c0d5a75db5",
+      "bytes": 81902
+    },
+    {
+      "path": "planner/former-owner-selection-MANIFEST.json",
+      "sha256": "5ed268869932516e8bb38342f25aeafdccb20acede827c297d9e5c314be590f6",
+      "bytes": 15667
+    },
+    {
+      "path": "planner/former-owner-selection.json",
+      "sha256": "bfe177a7b4abb862b0854f81faad46d34c0ce739a5337b24908b0a8290ddf0f8",
+      "bytes": 63519
+    },
+    {
+      "path": "planner/mixed-next-0-MANIFEST.json",
+      "sha256": "9abf242745b661059654d6a4cd373e9d7d20dc82194d140e0eb8b986244ac890",
+      "bytes": 15667
+    },
+    {
+      "path": "RUNNER_SOURCE.py",
+      "sha256": "ce45ddc6c60f61c41ee7c030733f6a78ff3f70b97de9a47f5c787fa735c41e8b",
+      "bytes": 34722
+    },
+    {
+      "path": "states/baseline.json.gz",
+      "sha256": "e0c514fa2ad634d676ae2e04ff80947e2e9597f361a1b08cffe82e84e8b1e108",
+      "bytes": 267750
+    },
+    {
+      "path": "states/claim-converted-direct-eight-after.json.gz",
+      "sha256": "282b7103242d3231f87e2a40cf9e79cea9da960c1bf1aa2af384e2c4714a388d",
+      "bytes": 267587
+    },
+    {
+      "path": "states/claim-pending-royalty-eight-after.json.gz",
+      "sha256": "e3e31ad21f02a2bff255cb5604463eea3904a3ba4b2a9d4e3610828e7f548b42",
+      "bytes": 267836
+    },
+    {
+      "path": "states/claim-stored-royalty-eight-after.json.gz",
+      "sha256": "34607e5e10bb4c0e8450e545f0bf58d3eba64d93ffb169ff0b4a4a71b219a94d",
+      "bytes": 267829
+    },
+    {
+      "path": "states/claim-tree-1-after.json.gz",
+      "sha256": "9c90accfbb564c6b43411483cf66a2d038383ae305a2327cfd51d2f46ad4e389",
+      "bytes": 267759
+    },
+    {
+      "path": "states/claim-tree-16-after.json.gz",
+      "sha256": "e0c514fa2ad634d676ae2e04ff80947e2e9597f361a1b08cffe82e84e8b1e108",
+      "bytes": 267750
+    },
+    {
+      "path": "states/claim-tree-32-after.json.gz",
+      "sha256": "e0c514fa2ad634d676ae2e04ff80947e2e9597f361a1b08cffe82e84e8b1e108",
+      "bytes": 267750
+    },
+    {
+      "path": "states/claim-tree-8-after.json.gz",
+      "sha256": "99e72f3837f58b1a414cf4c853be03e8ed52ea991e9c790aad5665f31bfb95e8",
+      "bytes": 267697
+    },
+    {
+      "path": "states/conversion-refusals-after.json.gz",
+      "sha256": "e0c514fa2ad634d676ae2e04ff80947e2e9597f361a1b08cffe82e84e8b1e108",
+      "bytes": 267750
+    },
+    {
+      "path": "states/convert-1-after.json.gz",
+      "sha256": "cb84df0351330275d05a8db5b90fea159ce6ec30a62af2472f360f029e2a0bf1",
+      "bytes": 267878
+    },
+    {
+      "path": "states/convert-16-after.json.gz",
+      "sha256": "d98e7ddf4dc06d4317edefbe77abd2681624552e0befb144ab34a48bc3cdb35f",
+      "bytes": 267870
+    },
+    {
+      "path": "states/convert-32-after.json.gz",
+      "sha256": "e0c514fa2ad634d676ae2e04ff80947e2e9597f361a1b08cffe82e84e8b1e108",
+      "bytes": 267750
+    },
+    {
+      "path": "states/convert-8-after.json.gz",
+      "sha256": "e5d20122807dfe39b58f24c81f0e444c5343e4019cfd1586f2e52af21c4bc2d4",
+      "bytes": 267918
+    },
+    {
+      "path": "states/direct-seed-clear-old-eth-after.json.gz",
+      "sha256": "99e72f3837f58b1a414cf4c853be03e8ed52ea991e9c790aad5665f31bfb95e8",
+      "bytes": 267697
+    },
+    {
+      "path": "states/direct-seed-convert-eight-after.json.gz",
+      "sha256": "cbc31093fe621211bf3a53a22fdb4b48c418783e7a708cfeed6c3317a137675a",
+      "bytes": 267912
+    },
+    {
+      "path": "states/faulty-mixed-refused-after.json.gz",
+      "sha256": "6288cb870ee3e4e387559cddc1e4a719dbd5d0473a383fd591d5caa1011448c6",
+      "bytes": 267720
+    },
+    {
+      "path": "states/healthy-subset-after-fault-after.json.gz",
+      "sha256": "0082b161398f71c337045e38565c125363d6634313952b648b6104461c88b749",
+      "bytes": 267808
+    },
+    {
+      "path": "states/new-owner-claims-converted-after.json.gz",
+      "sha256": "ebad66c8b37c1b1b693f2b5bb293e197dad75b2a4ef1a0f35bc1fe4a1942fa91",
+      "bytes": 267783
+    },
+    {
+      "path": "states/new-owner-repeat-zero-after.json.gz",
+      "sha256": "c6add23fb56e03ca38caef7b32d9e2d390688c9b8d73aa01b9655cad8218c861",
+      "bytes": 267786
+    },
+    {
+      "path": "states/partial-transfer-convert-after.json.gz",
+      "sha256": "568d5b79837a558a7d1cec8e222e0a9d4f76ea33bcb699bc61dca4ea37995d80",
+      "bytes": 267902
+    },
+    {
+      "path": "states/raw-zzz-recovery-before-convert-after.json.gz",
+      "sha256": "236d073e0a95de7832676f3ae29dc80fcd03180ed069cc34138b3c0305500d02",
+      "bytes": 267787
+    },
+    {
+      "path": "states/repaired-currency-repeat-zero-after.json.gz",
+      "sha256": "11fc7dd8ced8dc76b0599339f644ced860ed4c5c3b461e81bb6af80a2a55a905",
+      "bytes": 267761
+    },
+    {
+      "path": "states/repaired-original-currency-after.json.gz",
+      "sha256": "785b4b044e107980be3c3ba88d73b6e57e299e4f08b396d38e24280af5188d03",
+      "bytes": 267804
+    },
+    {
+      "path": "states/stored-royalty-before.json.gz",
+      "sha256": "d9bbd87f4b0fdd6eb6b22e49352d00ee56c5f3d0b532af0eaa104aa9a415f330",
+      "bytes": 267755
+    },
+    {
+      "path": "SUMMARY.json",
+      "sha256": "4a66d5494f76a47e9b8957a7f0c0d0d6fb8f8518c0c0b74be72f14fab3baff84",
+      "bytes": 408468
+    },
+    {
+      "path": "tool-sources/claims_planner_qualification.py",
+      "sha256": "8798b2c9b6965e87ad774d0b545015b3d9a430196ea0413c1ea981f273fe76fe",
+      "bytes": 13595
+    },
+    {
+      "path": "tool-sources/frozen_fixture.py",
+      "sha256": "131c553f8a3aae202bab0065394699b7e5b284f11718931db529abff7fbb1aa6",
+      "bytes": 26289
+    }
+  ],
+  "omitted_reproducible_genesis": true,
+  "genesis_digest_in": "fixture/FIXTURE.json",
+  "original_bytes_retained": true,
+  "production_approved": false
+}

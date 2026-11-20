@@ -1,0 +1,44 @@
+{
+  "after": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lp-claims-maximum-20261120\\campaign03\\states\\raw-zzz-recovery-before-convert-after.json.gz",
+    "sha256": "236d073e0a95de7832676f3ae29dc80fcd03180ed069cc34138b3c0305500d02"
+  },
+  "before": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lp-claims-maximum-20261120\\campaign03\\states\\baseline.json.gz",
+    "sha256": "e0c514fa2ad634d676ae2e04ff80947e2e9597f361a1b08cffe82e84e8b1e108"
+  },
+  "claim_reads": [
+    {
+      "data": "0xa0c7f71c008b41e90ff3d967622d729bbb5ed696a92fe56839c0479f4e9b4075e1d4efcb000000000000000000000000f62849f9a0b5bf2913b396098f7c7019b51a820a",
+      "key": "0",
+      "raw": "0x0000000000000000000000000000000000000000000000000318c77f86254009",
+      "to": "0xda5a5adc64c8013d334a0da9e711b364af7a4c2d"
+    }
+  ],
+  "entries": [
+    [
+      246046638864308385947343814249057961054031385943777795582477493248854388683,
+      "0xf62849f9a0b5bf2913b396098f7c7019b51a820a",
+      false
+    ]
+  ],
+  "expected": [
+    223147532080201737
+  ],
+  "gas_fee": 0,
+  "kind": "claims",
+  "operation": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lp-claims-maximum-20261120\\campaign03\\operations\\raw-zzz-recovery-before-convert.json",
+    "sha256": "d4c04006a1da0cb8e38412245bc7523872ecd26a0769874387d4872bc7478768"
+  },
+  "paid_by_asset": {
+    "0xf62849f9a0b5bf2913b396098f7c7019b51a820a": 223147532080201737
+  },
+  "recipient": "0x00000000000000000000000000000000000a11ce",
+  "recipient_balances_after": {
+    "0xf62849f9a0b5bf2913b396098f7c7019b51a820a": 960900223147532080201737
+  },
+  "recipient_balances_before": {
+    "0xf62849f9a0b5bf2913b396098f7c7019b51a820a": 960900000000000000000000
+  }
+}

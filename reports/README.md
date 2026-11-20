@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Maximum-state LP conversion and claims](lp-claims-maximum-20261120/REVIEW.md):
+new same-NFT settlement, cold partial claims, current-owner/fault recovery and
+unchanged-budget refusal evidence. A narrowly scoped backend runtime-proof reuse
+fix removes repeated hashing inside one canonical request. Original F6 build and
+maximum-population evidence are reused with their exact source scopes.
+
 [Current F6 construction](f6-construction-20261120/REVIEW.md): actual isolated
 39-instance graph, current defaults and distinct-role unsealed permissions,
 exact original preflight/nonce/receipt proof. Old captures stay historical;

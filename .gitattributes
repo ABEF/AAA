@@ -327,3 +327,6 @@ docs/PRODUCTION_SERVICES.md -text whitespace=cr-at-eol
 
 # Preserve exact current F6 local construction traces, probes and offline receipts.
 reports/f6-construction-20261120/** -text whitespace=cr-at-eol
+
+# Preserve exact captured maximum-state accounting and planner evidence.
+reports/lp-claims-maximum-20261120/** -text whitespace=cr-at-eol

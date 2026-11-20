@@ -1,5 +1,12 @@
 # Consolidated audit findings and evidence
 
+[Maximum-state LP settlement and claims](../reports/lp-claims-maximum-20261120/REVIEW.md)
+adds actual same-NFT conversion, cold claim/refusal, transfer and faulty-currency
+checks while preserving principal/reserves. Repeated runtime hashing in claim
+planning caused a25-second timeout; request-local exact-code proof reuse fixes
+that CPU bottleneck without raising gas, fee or work limits. Full production
+API admission, actual markets/providers and release approval remain separate.
+
 [Current F6 construction evidence](../reports/f6-construction-20261120/REVIEW.md)
 closes the missing controlled39-instance construction/binding subtask. Supplementary
 verification now binds exact preflights/nonces/receipts; unsealed authority is

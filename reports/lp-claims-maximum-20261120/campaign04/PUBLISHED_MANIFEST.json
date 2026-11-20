@@ -1,0 +1,205 @@
+{
+  "schema": 1,
+  "original_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\lp-claims-maximum-20261120\\campaign04",
+  "files": [
+    {
+      "path": "assertions/conversion-prefix-sixteen.json",
+      "sha256": "43a4412023323fccfc10cc6b4a9512e70971ea5fbcf4a0d1484411f9d57ba214",
+      "bytes": 8421
+    },
+    {
+      "path": "assertions/conversion-suffix-sixteen.json",
+      "sha256": "163ba06fa487a7f3ca002d9aa59a3cfe22c31b9ee9831b61126da95fa38ecbab",
+      "bytes": 8464
+    },
+    {
+      "path": "assertions/planner-execute-next-0.json",
+      "sha256": "df8afc2f91069b5bbc2140be10c1ec455648c85bf78a82075224da7231ab4264",
+      "bytes": 13568
+    },
+    {
+      "path": "assertions/planner-execute-next-1.json",
+      "sha256": "84b33c69dc042f7fc1ca0501dd7745a6ef4fdef5bc9baec877352fd0b13bcbb5",
+      "bytes": 5544
+    },
+    {
+      "path": "assertions/PREFIX_SUFFIX_CONTINUATION.json",
+      "sha256": "2b838b198eabc3bd881e68c98cf7b327a3f53296f9194936d12dfe074297d691",
+      "bytes": 3908
+    },
+    {
+      "path": "fixture/anvil.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "fixture/CONVERTER_CONSTRUCTION_TRACE.json",
+      "sha256": "d90e6005ff0da4c92ba594f368ab95e4c018f18a22a328734c0d43eaf32952a1",
+      "bytes": 139011
+    },
+    {
+      "path": "fixture/FIXTURE.json",
+      "sha256": "4d204a200452666d78c158394f4e9597c3af642e104ed90a58de155add2cb06d",
+      "bytes": 156063
+    },
+    {
+      "path": "fixture/RPC.json.gz",
+      "sha256": "aa8ea5e58f1e37bc2c66e752f7efe55131842c7ae0fa77f438b4d6c75873e3d6",
+      "bytes": 2056173
+    },
+    {
+      "path": "fixture/SETUP_AND_SCENARIO_RECEIPTS.json",
+      "sha256": "f839499fb1922ece978270680fabf657bfbf3bf6980f322e806fe6a82a708da9",
+      "bytes": 276628
+    },
+    {
+      "path": "NEW_EXTERNAL_PREFUNDS.json",
+      "sha256": "67eeba32f7309cf45004970cc34d9f5d991f9e34d2f198d3254bcd79a1d9e4aa",
+      "bytes": 210
+    },
+    {
+      "path": "NEW_ROYALTY_RECEIPTS.json",
+      "sha256": "bf6acdc0ab4638044600f43991349f95164fc40bbf915603f541f0687530d3ba",
+      "bytes": 287
+    },
+    {
+      "path": "operations/conversion-prefix-sixteen.json",
+      "sha256": "71d2d11314a9ddffa38b071b49020183782ac1be429167991f3445752824645e",
+      "bytes": 30447
+    },
+    {
+      "path": "operations/conversion-suffix-sixteen.json",
+      "sha256": "5d10b8a58d267ccfeed79897cc00995eabb2aaae87690cc9fb2ea95f6ceeef55",
+      "bytes": 30448
+    },
+    {
+      "path": "operations/pending-royalty-receipt-1.json",
+      "sha256": "5030d34322078fe7ae6c72e4d3588d7d36afc127152df5e7136930f3eac002ef",
+      "bytes": 6116
+    },
+    {
+      "path": "operations/pending-royalty-receipt-64.json",
+      "sha256": "77a78c66bd76708c0e1a36a7400f358046487684bcd7f9eb7ec80369967c8571",
+      "bytes": 6117
+    },
+    {
+      "path": "operations/planner-execute-next-0.json",
+      "sha256": "a7f88568a22c585b04c10956259d5cbb3d098a281ebc9f9efa76372a5e91ee9e",
+      "bytes": 44097
+    },
+    {
+      "path": "operations/planner-execute-next-1.json",
+      "sha256": "555501fc8037d4cb3aa1e96afe82f28e22125aaa6d7097e1675fb69cf60954f1",
+      "bytes": 18233
+    },
+    {
+      "path": "operations/prefund-eth-converter.json",
+      "sha256": "d66e142cc09fdf3e9625a19b1704122f287fa970cbcc79284d83d434973539d9",
+      "bytes": 5194
+    },
+    {
+      "path": "operations/prefund-eth-executor.json",
+      "sha256": "ef5946e6ba8ce6984bd9870e06431c94d8999eebfa68be8aaa4bb5e68a9ff459",
+      "bytes": 5193
+    },
+    {
+      "path": "operations/prefund-zzz-converter.json",
+      "sha256": "73cd5d892f0b3175e359600e77ab1f13dfa4ffaf9c55617ca7885c21e672f1c5",
+      "bytes": 6112
+    },
+    {
+      "path": "operations/prefund-zzz-executor.json",
+      "sha256": "91d92b284eb27cfaff3c663eac4bf5ed6c6b876b2a50d6064c853b8f40a39bbd",
+      "bytes": 6111
+    },
+    {
+      "path": "planner/confirmed-zero-replan-MANIFEST.json",
+      "sha256": "5daa8434394f26181472db40ffdf6dc44d2fc745d467636968da4f4ea3129de7",
+      "bytes": 15667
+    },
+    {
+      "path": "planner/confirmed-zero-replan.json",
+      "sha256": "8e02af9cebdf0dea1b1876918f8203efb654801dc092fb019c655a9e5d86ad4a",
+      "bytes": 100684
+    },
+    {
+      "path": "planner/CONFIRMED_CONTINUATION.json",
+      "sha256": "109f6e7c09f92598a0869a1c6a98fb5f7798fcb286810afe8b078a1cd3fcfa8e",
+      "bytes": 15155
+    },
+    {
+      "path": "planner/mixed-next-0-MANIFEST.json",
+      "sha256": "9abf242745b661059654d6a4cd373e9d7d20dc82194d140e0eb8b986244ac890",
+      "bytes": 15667
+    },
+    {
+      "path": "planner/mixed-next-0.json",
+      "sha256": "c84b5acf38c57f557cb48a2b1f5fe323960b9409cde3b10f678a0c59d1bbca16",
+      "bytes": 340869
+    },
+    {
+      "path": "planner/mixed-next-1-MANIFEST.json",
+      "sha256": "58043c46f3da963269d1fa3e43cdc63a60bee4ba6091fe4304591dc42b1c8e83",
+      "bytes": 15667
+    },
+    {
+      "path": "planner/mixed-next-1.json",
+      "sha256": "c3a4eecaf3245b9f2d93ff4a3f5fc301efea44373af55fd9cd76033aec00aeed",
+      "bytes": 105989
+    },
+    {
+      "path": "RUNNER_SOURCE.py",
+      "sha256": "169ad9bda111bbd1d772dd1361a345caaa2d06f600f3aa34dfb4ccc4534c9451",
+      "bytes": 37073
+    },
+    {
+      "path": "states/baseline.json.gz",
+      "sha256": "e0c514fa2ad634d676ae2e04ff80947e2e9597f361a1b08cffe82e84e8b1e108",
+      "bytes": 267750
+    },
+    {
+      "path": "states/conversion-prefix-sixteen-after.json.gz",
+      "sha256": "d98e7ddf4dc06d4317edefbe77abd2681624552e0befb144ab34a48bc3cdb35f",
+      "bytes": 267870
+    },
+    {
+      "path": "states/conversion-suffix-sixteen-after.json.gz",
+      "sha256": "1bd7c6bd235ae523cbb761911a4c8401584650d0b297304d46c02d672d7dd880",
+      "bytes": 267689
+    },
+    {
+      "path": "states/planner-execute-next-0-after.json.gz",
+      "sha256": "57c0c7e69c40302cc9a9200ca985884a502373fd3be67f81d4b024f81a8ebaa5",
+      "bytes": 267680
+    },
+    {
+      "path": "states/planner-execute-next-1-after.json.gz",
+      "sha256": "991bbfa648a21d46860f2ad4dc71cfb9d01d952fe86f908bfcda155287079e8e",
+      "bytes": 267559
+    },
+    {
+      "path": "SUMMARY.json",
+      "sha256": "39fec49b070ba2adfba9e5f266c3a8fd2e080381385d5a9fac6ecbd032c3b93b",
+      "bytes": 174550
+    },
+    {
+      "path": "tool-sources/claims_planner_qualification.py",
+      "sha256": "d5ac50f93cec3a877401f740448135aef261fe9dbd730a4486ed27f9fbb36c5f",
+      "bytes": 14273
+    },
+    {
+      "path": "tool-sources/frontend_api_claim_planner.py",
+      "sha256": "6d5241d61e5d48a6b2d77f10d09114426ad8a33fc7dddf47d2ec804b48136d5f",
+      "bytes": 18433
+    },
+    {
+      "path": "tool-sources/frozen_fixture.py",
+      "sha256": "131c553f8a3aae202bab0065394699b7e5b284f11718931db529abff7fbb1aa6",
+      "bytes": 26289
+    }
+  ],
+  "omitted_reproducible_genesis": true,
+  "genesis_digest_in": "fixture/FIXTURE.json",
+  "original_bytes_retained": true,
+  "production_approved": false
+}

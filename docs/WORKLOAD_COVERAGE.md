@@ -1,7 +1,13 @@
 # Whole-project workload coverage
 
+The [current LP settlement/claim report](../reports/lp-claims-maximum-20261120/REVIEW.md)
+updates only the Python claim planner and its source inventory; the original
+[whole-workload report](../reports/whole-workload-review-20261119/REVIEW.md) retains
+its historical counts/evidence. The current anonymous supplement is
+[here](../reports/lp-claims-maximum-20261120/ANONYMOUS_CODE_INVENTORY.json).
+
 The [workload plan](WORKLOAD_PLAN.json) and
-[whole-project function inventory](../reports/whole-workload-review-20261119/FUNCTION_INVENTORY.json)
+[whole-project function inventory](../reports/lp-claims-maximum-20261120/FUNCTION_INVENTORY.json)
 define the scope. [The report](../reports/whole-workload-review-20261119/REVIEW.md)
 records what actually ran and what remains unqualified. The [Todo](../TODO.md)
 owns work status; this page is a verification map.
@@ -17,7 +23,7 @@ sequences and source-bound evidence. No inventory count is a dynamic pass rate.
 - 1,056 implemented project Solidity definitions and29 modifiers from the
   authenticated compiler AST;511 bodyless declarations remain separately labelled.
 - Eight internal-only objects are included, beyond the public ABI catalogue.
-- 179 production Python files and1,976 named lexical definitions:1,796 functions
+- 179 production Python files and1,977 named lexical definitions:1,797 functions
   and180 classes, including nested helpers. The anonymous-code supplement also
   records276 lambdas and2 named project Yul helpers. This is source inventory, not a claim that each body was exercised.
 
@@ -33,7 +39,7 @@ running application modules, tests, RPC or signing. Preserve the unrelated dirty
 fork runner: its published HEAD blob is inventoried instead of adopting it.
 
 ```text
-python scripts/build-workload-inventory.py --check reports/whole-workload-review-20261119/FUNCTION_INVENTORY.json
+python scripts/build-workload-inventory.py --check reports/lp-claims-maximum-20261120/FUNCTION_INVENTORY.json
 ```
 
 Future F6 source/reference changes require reviewed trusted-pin/plan updates and

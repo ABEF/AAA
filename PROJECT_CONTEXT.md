@@ -1,5 +1,15 @@
 # Project context
 
+## Latest controlled LP settlement and claims
+
+The [20 November report](reports/lp-claims-maximum-20261120/REVIEW.md) reuses the
+frozen1,000-NFT/two-LP/65-currency population for NEW same-NFT LP conversion,
+partial claims, transfer/fault recovery and gas admission. Only the Python claim
+planner changes: successful exact-code proofs are request/block/target/pin scoped,
+with mutable checks and25s/1024RPC/12M bounds preserved. service.py/checkpoint
+semantics and all Solidity sources remain unchanged. Public signing, websites,
+services, journals and old Anvil remain unchanged; no deployment or seal approval.
+
 The [production qualification plan](docs/ROADMAP.md) consolidates current findings,
 all83 stable Todo tasks and whole-workload families into23 acceptance packages.
 It identifies compiler-advisory applicability, actual production user-submission,

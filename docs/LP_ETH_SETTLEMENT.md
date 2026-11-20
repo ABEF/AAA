@@ -1,5 +1,13 @@
 # LP holder rewards settled in ETH
 
+[Current maximum-state evidence](../reports/lp-claims-maximum-20261120/REVIEW.md)
+uses1,000 NFTs, main+residual and65 royalty currencies, with controlled prices,
+external depth and explicit mock bootstrap/admission seams. Actual16-NFT LP
+conversion estimates12,290,506 gas,15,363,133 with full25%;32 estimates19,966,538,
+24,958,173 padded and correctly refuses24M. These are examples, not fixed safe
+batch sizes. Re-quote and simulate each affordable subset; the configured worker
+must retain the remainder. No actual-market1%-eligible route is qualified here.
+
 The [latest market follow-up](../reports/market-followup-20261109/REVIEW.md)
 does not establish a practical default1% conversion route. Favorable tiny reverse
 quotes are retained, but their observed output is below intrinsic-only gas cost

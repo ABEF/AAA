@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "protected_files": {
+    "reports/source-checks.json": {
+      "sha256": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "preserved": true
+    },
+    "scripts/run-fork-checks.py": {
+      "sha256": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "preserved": true
+    },
+    "tests_python/test_fork_runner.py": {
+      "sha256": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "preserved": true
+    },
+    "tests_python/test_frontend_history.py": {
+      "sha256": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "preserved": true
+    }
+  },
+  "normal_source_maps_unchanged": true,
+  "only_changed_production_python": [
+    "frontend_api/claim_planner.py"
+  ],
+  "todo_stable_ids_and_statuses_unchanged": true,
+  "owned_nodes_stopped": {
+    "campaign01": true,
+    "campaign02": true,
+    "campaign03": true,
+    "campaign04": true
+  },
+  "production_approved": false,
+  "live_environment_changes": false,
+  "public_transactions": 0
+}
