@@ -1,17 +1,21 @@
 # Project context
 
-## Current supplied-pool lifecycle verification
+## Current supplied-pool composed integration
 
-[Current report](reports/pool-lifecycle-20261120/REVIEW.md). The current F6 physical LP
-rehearsal passed on the supplied pool at pinned block119107223. Real Manager
-mint/increase, an intended Slippage rollback, fee collection/no-repeat and
-close/burn/cleared balances were reconciled from saved wire. External test-trader swaps
-generated the fees; production routing, Entry/NFT accounting and
-hybrid/actual-market/provider/fee approval remain separate. The final warm run has38
-positive receipts plus1 intended failure,19 live public reads and no429;107 live reads
-across the online attempts are retained. All owned nodes are stopped. No production
-source, financial right, safeguard, profile, live environment or existing journal
-changes. Reuse valid old evidence; no unchanged suite rerun.
+[Current report](reports/pool-integration-20261120/REVIEW.md) adds two direct production Manager swaps and four
+real Entry contributions (ETH/ZZZ activation and growth) on new owned forks.
+The Entry partition uses the normal39-instance F6 graph/112binding proofs and
+tracks two NFTs, main LP, shares, membership and unchanged ticks/centre/clock.
+All four fit32M/full20%; this is not the maximum-state workload. Direct swaps
+retain24M/full25%; their negative output-floor case is simulation-only.
+Correlated feeds, controlled VRF/sale, local funding and synthetic depth are
+explicit. No best-multiple-venue, independent-price, actual-market/fee or release
+approval follows. Incumbent fee checkpointing is exercised, not a full new
+80/10/5/5 audit. The report-only restore-clock defect and original failure remain.
+All owned nodes stop. F6 source, safeguards, profiles, NFT rights, existing
+Anvil/journals/sites/services and paused heartbeat remain unchanged. Only the
+fresh isolated test Access was locally sealed; no production sealing occurred.
+Reuse unchanged evidence; the476,135-estimate maximum-state shortfall stays open.
 
 ## Consolidated recommendations and new execution
 

@@ -1,12 +1,15 @@
 # Consolidated audit findings and evidence
 
-[Current physical LP proof](../reports/pool-lifecycle-20261120/REVIEW.md) completes the
-earlier interrupted partition: mint/increase, same-budget minimum-L rollback, external
-test-trader fee generation, real harvest/no-repeat and exact close/burn/cleared
-allowances. Source-bound wire verifies38 positive receipts plus1 intended failure;
-control/price/funding fixtures remain explicit. No source-contract finding, changed
-safeguard or production approval is inferred. Report-wrapper deadline/Boolean defects
-and all failed stages stay preserved.
+[Current composed integration](../reports/pool-integration-20261120/REVIEW.md)
+adds two production direct swaps and four real ETH/ZZZ Entry contributions on
+separate owned forks. Two-NFT ownership/share/membership/main-custody and stable
+geometry/clock checks pass, with captured-NAV share arithmetic replay. All four
+fit32M/full20%. The direct-swap impossible output floor is simulation-only.
+A report-driver restore-clock defect is corrected with its original failed stage
+preserved; no production Solidity fix or relaxed guard was needed. Controlled
+prices/VRF/sale/funding/depth, maximum workloads, independent valuation, actual
+routes/provider/fees and release approval remain separate. Full80/10/5/5
+requalification is not inferred from exercised incumbent checkpointing.
 
 [Ten-recommendation
 reconciliation](../reports/recommendations-execution-20261120/REVIEW.md) reuses
@@ -18,9 +21,12 @@ platform/provider adoption or economic change follows.
 
 [Operator clarification](../reports/test-pool-scope-20261120/REVIEW.md): the supplied
 pool is still the test target. Zero observed active liquidity limits actual-market
-acceptance, not isolated fork testing with explicit local liquidity. The new
-current-anchor empty-state/seeded-depth rehearsal remains to execute; historical fork
-receipts are not relabeled.
+acceptance, not isolated fork testing with explicit local liquidity. The later
+[physical-LP rehearsal](../reports/pool-lifecycle-20261120/REVIEW.md) completed that
+empty-state/locally seeded partition. The later
+[composed integration](../reports/pool-integration-20261120/REVIEW.md) adds finite
+production swap and Entry/NFT coverage; actual-market acceptance remains separate.
+Historical fork receipts are not relabeled.
 
 [Current readiness snapshot](../reports/readiness-advance-20261120/STATE.json)
 separates completed subchecks from23 still-unapproved acceptance packages.

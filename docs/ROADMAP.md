@@ -1,11 +1,12 @@
 # Engineering roadmap and production qualification plan
 
-[Current physical-LP verification](../reports/pool-lifecycle-20261120/REVIEW.md)
-completes the earlier interrupted P07 Manager partition under explicit fixtures; P04/P05
-gain bounded read-only/cache evidence only. The final warm run uses19 live reads
-without429; the full online campaign retains107 reads. No actual route/feed/provider/fee
-or full Entry/NFT acceptance closes. All23 packages/83 task IDs and separate release
-gates remain.
+[Current composed integration](../reports/pool-integration-20261120/REVIEW.md)
+advances P07 with real Manager direct swaps and two-NFT ETH/ZZZ Entry activation
+and growth on new isolated forks. All four contributions fit32M/full20%, preserve
+main geometry/clock and reconcile shares/membership. Controlled source/depth/sale/VRF
+fixtures remain; P03/P04/P05 actual qualification and broader P06/P07 acceptance
+are still open. This adds no whole-package or release approval; all23 packages,
+83stable tasks and separate deployment/seal/opening gates remain.
 
 [Latest recommendation
 execution](../reports/recommendations-execution-20261120/REVIEW.md) consolidates ten
@@ -50,7 +51,7 @@ full-normal1000-NFT workloads, the476135-estimate gap and independent approval r
 | P04 | Operator-deferred pool; qualification open | 117 additional read-only observations qualify no complete route/depth configuration. |
 | P05 | Finite provider evidence only | Exact32M/24M capacity, complete fees, selected tier/failover/finality remain open. |
 | P06 | Partial maximum-state qualification | Prior11/12 contributions; slow-ZZZ still needs476135 less estimated gas; new cold claim/conversion subsets. |
-| P07 | Finite local evidence | Actual-market contribution/marginal-LP and expanded lifecycle acceptance remain. |
+| P07 | Added real-core composed local evidence | Two-NFT ETH/ZZZ Entry and direct swaps pass with explicit fixtures; actual sources/depth, multiple venues and expanded lifecycle acceptance remain. |
 | P08 | New bounded settlement evidence | Controlled maximum-state conversions/claims/transfer/fault checks; actual1%-eligible route remains. |
 | P09 | Implemented; release qualification open | Exact original-currency rights retain opening/outage rules; actual platform/currencies still needed. |
 | P10 | Implemented; operating/economic review open | Existing safeguards and local scenarios are not real-market manipulation immunity. |

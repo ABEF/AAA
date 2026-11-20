@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "offline_only": true,
+  "saved_local_rows": 179,
+  "included_successful_transactions": 6,
+  "new_direct_swap_behaviors": 2,
+  "simulation_only_caller_floor_rollback": true,
+  "core_events": [
+    {
+      "label": "new:production_manager_native_to_ZZZ",
+      "transaction_hash": "0x1881c9539a7b5f9b2f291737b3b1d71a709e595e46671017665d57d42cfb975e",
+      "core_input": "1000000000000",
+      "core_output": "281614777422126843",
+      "core_combined_fee_units": 11010,
+      "gas_actual": 1774899,
+      "gas_estimate": 1847484,
+      "gas_padded_25_percent": 2309355
+    },
+    {
+      "label": "new:production_manager_ZZZ_to_native",
+      "transaction_hash": "0x9f10c619308d6021faa01b60d332fcc7ebb01d22e461c3e1c3ff9a1b8ac66c17",
+      "core_input": "140807388711063421",
+      "core_output": "489051332045",
+      "core_combined_fee_units": 11010,
+      "gas_actual": 1799087,
+      "gas_estimate": 1949004,
+      "gas_padded_25_percent": 2436255
+    }
+  ],
+  "final_run_public_reads": 26,
+  "source_contract_changes": false,
+  "production_approved": false
+}

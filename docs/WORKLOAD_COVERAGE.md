@@ -1,11 +1,12 @@
 # Whole-project workload coverage
 
-The [new physical-LP partition](../reports/pool-lifecycle-20261120/REVIEW.md) adds
-actual current Manager/native venue proof with explicit control/price/funding fixtures.
-It does not relabel old accounting3 results, replay the normal suites, or close
-production routing/Entry/NFT/hybrid/actual-market obligations.38 positive local
-submissions and1 intended failure are a journey, not39 test methods. Source inventory
-remains179 production Python files/1,979 definitions and the unchanged F6 graph.
+The [new composed integration](../reports/pool-integration-20261120/REVIEW.md) adds
+2direct production swaps and4real ETH/ZZZ Entry activation/growth behaviors on
+separate supplied-pool forks. New normal graph construction is setup, not repeated
+constructor-suite coverage. Two-NFT state and captured-NAV share arithmetic pass;
+this is not independent physical valuation, multi-venue selection, full fee-split,
+hybrid/maximum-state or actual source/provider/fee acceptance. Earlier physical-LP
+and workload evidence retain their exact scopes. No unchanged suite is rerun.
 
 The [current readiness advance](../reports/readiness-advance-20261120/REVIEW.md)
 adds a strict offline saved-mint intent reviewer to the existing OpenSea tool.

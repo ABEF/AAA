@@ -1,17 +1,20 @@
 # Feature and evidence reference
 
-[Current supplied-pool lifecycle evidence](../reports/pool-lifecycle-20261120/REVIEW.md)
-verifies the current Manager physical LP on an isolated real-core fork, including
-rollback/fees/no-repeat/close and cleared permissions. Eight offline driver controls,
-two deadline controls and two Cast cases have their own source scopes. No production
-routing, Entry/NFT, hybrid, actual source/provider or release acceptance is added.
+[Current composed supplied-pool evidence](../reports/pool-integration-20261120/REVIEW.md)
+adds real direct Manager swaps and four ETH/ZZZ Entry activation/growth calls with
+two NFTs and the normal F6 graph. Shares, membership, custody and unchanged main
+geometry/clock reconcile; full20% padded contributions fit32M. Direct swaps retain
+24M/full25%. Fixture prices/depth/sale/VRF remain explicit; multi-venue selection,
+maximum-state gas, independent sources, actual fees and release approval stay open.
+[Earlier physical-LP evidence](../reports/pool-lifecycle-20261120/REVIEW.md) remains
+separate, without repeating its unchanged suite or relabeling older profiles.
 
 The [latest recommendation
 execution](../reports/recommendations-execution-20261120/REVIEW.md) reuses completed
 finite evidence, qualifies optional separate maximum-state synchronization and adds nine
 offline platform diagnostics. Custom Merkle OpenSea preparation is selected; actual
-acceptance stays open. The current supplied-pool attempt is partial setup under
-provider429, not an LP lifecycle pass. No production behavior or rights changed.
+acceptance stays open. That report's earlier supplied-pool attempt stopped during setup under provider429; the later
+physical and composed integration reports above supersede only that unfinished scope. No production behavior or rights changed.
 
 [New offline mint intent review](../reports/readiness-advance-20261120/REVIEW.md)
 checks source-bound current-profile manifest and canonical saved public/Merkle

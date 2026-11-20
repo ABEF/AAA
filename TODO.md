@@ -82,7 +82,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-pons-qualification"></a>
 
-- [ ] **[Qualify the selected hookless ETH/ZZZ pool](docs/POOL_SELECTION.md)** - In progress. Final production-pool selection is deferred; the supplied pool remains authorized for isolated fork testing, including zero-active-liquidity and locally seeded-depth cases. Existing integration target: Robinhood v4 pool 0x5011...afe1b: native ETH/ZZZ, static 1.002% LP fee, no hook; observed combined fee about 1.101%. Runtime-pinned native admission, post-seal static fee-tier destinations and atomic same-actual-pair pool moves are implemented. ETH/WETH are different actual assets; current in-protocol moves remain native ETH/fixed ZZZ only. A different pair needs reviewed redevelopment after collective holder return, not an external-custody executor. Real routes, feeds, gas/operations, inventory and audit remain open. The new current-F6 controlled physical LP partition now passes on this test pool with explicit local funding and fixtures; this is not actual-market or single-asset Entry-route acceptance. See reports/pool-lifecycle-20261120/REVIEW.md.
+- [ ] **[Qualify the selected hookless ETH/ZZZ pool](docs/POOL_SELECTION.md)** - In progress. Final production-pool selection is deferred; the supplied pool remains authorized for isolated fork testing, including zero-active-liquidity and locally seeded-depth cases. Existing integration target: Robinhood v4 pool 0x5011...afe1b: native ETH/ZZZ, static 1.002% LP fee, no hook; observed combined fee about 1.101%. Runtime-pinned native admission, post-seal static fee-tier destinations and atomic same-actual-pair pool moves are implemented. ETH/WETH are different actual assets; current in-protocol moves remain native ETH/fixed ZZZ only. A different pair needs reviewed redevelopment after collective holder return, not an external-custody executor. Real routes, feeds, gas/operations, inventory and audit remain open. The new current-F6 controlled physical LP partition now passes on this test pool with explicit local funding and fixtures; the later composed partition adds finite single-asset Entry/NFT coverage with the same explicit fixture boundary. Actual-market approval stays open. See reports/pool-integration-20261120/REVIEW.md.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -104,7 +104,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-activation-assets"></a>
 
-- [ ] **[Qualify ETH and ZZZ contributions only](docs/ACTIVATION_ENTRY.md)** - In progress. Only native ETH and fixed ZZZ are accepted. November9 unmodified-market fork100USD activation in each asset reverted atomically under recorded guards;5USD growth was blocked without a genuine active NFT. Traces distinguish configured1% pool/reference and2% per-swap floors from the2% total contribution cap and5% idle gate. Qualify actual independent prices, reviewed pool/venue settings, executable depth and separate gas; do not count synthetic depth or guard relaxation as acceptance. Fresh total contribution default is now3%/97%LP only; these recorded2% rehearsal conditions and all stricter swap/spot/idle guards remain explicit.
+- [ ] **[Qualify ETH and ZZZ contributions only](docs/ACTIVATION_ENTRY.md)** - In progress. Only native ETH and fixed ZZZ are accepted. November9 unmodified-market fork100USD activation in each asset reverted atomically under recorded guards;5USD growth was blocked without a genuine active NFT. Traces distinguish configured1% pool/reference and2% per-swap floors from the2% total contribution cap and5% idle gate. Qualify actual independent prices, reviewed pool/venue settings, executable depth and separate gas; do not count synthetic depth or guard relaxation as acceptance. Fresh total contribution default is now3%/97%LP only; these recorded2% rehearsal conditions and all stricter swap/spot/idle guards remain explicit. Current F6 two-NFT supplied-pool integration now passes both assets for activation and growth under unchanged3%/32M-full20% safeguards with explicit controlled feeds/depth; this does not close actual-market or maximum-state qualification. See reports/pool-integration-20261120/REVIEW.md.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -247,7 +247,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-lp-execution-routing"></a>
 
-- [ ] **[Reviewed best-route LP execution and operator-selected upkeep](docs/LP_EXECUTION_POLICY.md)** - In progress. Fresh optional execution-price1/LP-routing3 extends the fixed typed LP child/read-only math child and bounded reviewed-venue sizing with captured two-source bounds and exact actual-core output/full-state proofs. Ordinary single/hybrid replacements require an active main; entrant and explicit emergency policies stay separate. In ordinary captured execution a reviewed external reference may also swap, but cannot be the same-core principal destination. Explicit matching consumers, full-operation gas and real venue/source qualification remain open; omitted/0 retains LP2.
+- [ ] **[Reviewed best-route LP execution and operator-selected upkeep](docs/LP_EXECUTION_POLICY.md)** - In progress. Fresh optional execution-price1/LP-routing3 extends the fixed typed LP child/read-only math child and bounded reviewed-venue sizing with captured two-source bounds and exact actual-core output/full-state proofs. Ordinary single/hybrid replacements require an active main; entrant and explicit emergency policies stay separate. In ordinary captured execution a reviewed external reference may also swap, but cannot be the same-core principal destination. Explicit matching consumers, full-operation gas and real venue/source qualification remain open; omitted/0 retains LP2. The new supplied-pool partition exercises production direct swaps and Entry Manager.balance with one configured venue; it does not prove comparison among multiple live pools. See reports/pool-integration-20261120/REVIEW.md.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1206,7 +1206,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-mainnet-fork"></a>
 
-- [ ] **[Robinhood mainnet-fork qualification](reports/pool-lifecycle-20261120/REVIEW.md)** - In progress. Current F6 physical Manager LP rehearsal passes on the supplied native ETH/ZZZ pool at block119107223: mint/increase, same-budget minimum-L rollback, actual-core test-trader fees, harvest/no-repeat and exact close/burn/cleared allowances. The Uniswap position NFT is distinct from PoPL collection NFTs. Authenticated pinned cache enables the final19-read warm run without429; all three source-scoped online attempts and their107 reads remain recorded. MockAccess/custody/budget/admission, correlated prices and local balance substitutes are explicit. Production swap routing, Entry/NFT accounting, hybrid strategy, real sources/depth/fees and operating approval remain open; historical accounting3 evidence keeps its original scope.
+- [ ] **[Robinhood mainnet-fork qualification](reports/pool-integration-20261120/REVIEW.md)** - In progress. Current F6 physical LP and composed integration pass on the supplied native ETH/ZZZ test pool at block119107223. New real Manager swaps cover both directions and a simulation-only impossible output floor; a separate normal39-instance/two-NFT graph covers ETH/ZZZ activation and growth, shares/membership/custody and stable main geometry/rebalance clock. All four contributions fit32M/full20%. Correlated prices, controlled VRF/SeaDrop materialization, local funding and synthetic external depth remain explicit. This is not multiple-venue selection, maximum-state, independent pricing/depth, complete fees/provider or release acceptance. Original physical and historical accounting3 evidence keep their source scopes.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1872,4 +1872,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `7253b9fc1a62a991e649f766ef465ec01f43ae240945ad3847845f22ad95ee84`.
+Snapshot SHA-256: `922f03d448ee0594200fd661fb371bc90602bbfc81e169566657ca476aa29dbc`.

@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "baseline": "bb5ef4de5afc9dd8cebf4ee96d5b044477a52bf5",
+  "kind": "offline_source_evidence_document_publication_check_not_behavioral_rerun",
+  "archives": {
+    "swap": {
+      "sha256": "1bc0e50a93d6734b48351dc98c27c630b4266de738bba4653896c7aeae278b78",
+      "bytes": 6144859,
+      "members": 62
+    },
+    "entry": {
+      "sha256": "e56b8d78aba465c673aa0379e6a4214860189e935c133dafc7da8c46aa99d2ff",
+      "bytes": 12107388,
+      "members": 220
+    }
+  },
+  "original_documents_verified": 12,
+  "protected_unrelated_dirty_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "stable_task_ids": 83,
+  "task_counts": {
+    "done": 35,
+    "progress": 40,
+    "excluded": 1,
+    "todo": 7
+  },
+  "task_status_changes": 0,
+  "report_python_syntax_checked": [
+    "reports/pool-integration-20261120/check_package.py",
+    "reports/pool-integration-20261120/entry/package_entry.py",
+    "reports/pool-integration-20261120/entry/run_entry.py",
+    "reports/pool-integration-20261120/entry/supervise.py",
+    "reports/pool-integration-20261120/entry/verify_entry.py",
+    "reports/pool-integration-20261120/swap/driver_base.py",
+    "reports/pool-integration-20261120/swap/run_swap.py",
+    "reports/pool-integration-20261120/swap/supervise.py",
+    "reports/pool-integration-20261120/swap/verify_saved.py",
+    "reports/pool-integration-20261120/swap/warm_cache.py"
+  ],
+  "new_local_document_links": 34,
+  "new_direct_swap_behaviors": 2,
+  "new_entry_contribution_behaviors": 4,
+  "negative_direct_swap_scope": "simulation_only_not_mined_failure",
+  "production_source_changes": false,
+  "unchanged_tests_rerun": false,
+  "public_transactions_or_production_seal": false,
+  "existing_environment_changes": false,
+  "production_approved": false
+}

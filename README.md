@@ -1,10 +1,13 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-The [current physical LP rehearsal](reports/pool-lifecycle-20261120/REVIEW.md) passes
-Manager mint/increase, guarded rollback, funded fee collection/no-repeat and closure on
-an isolated fork of the supplied pool. The final cached run has19 public read requests
-and no rate-limit refusal. Production routing, Entry/NFT accounting and
-actual-market/provider approval remain separate.
+The [current composed integration](reports/pool-integration-20261120/REVIEW.md)
+adds production Manager swaps in both directions and real ETH/ZZZ Entry activation
+and growth on isolated supplied-pool forks. The two-NFT normal graph preserves
+ownership, shares, membership and main LP geometry/clock; all four contributions
+fit32M with full20% headroom. Controlled prices/funding/depth and sale/VRF fixtures
+remain explicit. Actual sources/routes/fees, larger workloads and production approval
+remain open. The [earlier physical-LP proof](reports/pool-lifecycle-20261120/REVIEW.md)
+retains its separate mint/harvest/close and rollback scope.
 
 The [recommendation execution](reports/recommendations-execution-20261120/REVIEW.md)
 consolidates ten recent recommendations, verifies a separately paid maximum-state

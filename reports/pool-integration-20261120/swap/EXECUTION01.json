@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\reports\\pool-integration-20261120\\swap\\run_swap.py"
+  ],
+  "started_utc": "2026-11-20T18:31:29.235822+00:00",
+  "elapsed_seconds": 16.953999999997905,
+  "returncode": 1,
+  "supervisor": "Windows kill-on-close job,1020s whole process-tree bound",
+  "supervisor_helper_sha256": "c2c70a2f2ac97fa6c214b94c89f65d6837100d6fd7dbad752cd50aa49aab1923",
+  "runner_sha256": "1b190aabdee81c96fb33592e698a7e16d12f87c04047f53d01968c566ea465ef",
+  "cache_helper_sha256": "abbe0baf27952270e1b05a2342cb51fb114b80683491ef74197fa6d4d8fc1339",
+  "stdout_sha256": "d43b07bf21310a0c629da7bd95faa082634f44cbedfd6ceffbbadb313b2447d8",
+  "stderr_sha256": "e2a478b7ad29a32aafaf670744b7b05c2ed8213031d7a7c06fb4bd3739ee6787",
+  "unchanged_tests_rerun": false,
+  "production_approved": false
+}

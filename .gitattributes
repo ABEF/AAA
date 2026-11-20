@@ -350,3 +350,6 @@ reports/recommendations-execution-20261120/** -text whitespace=cr-at-eol
 # Keep fixed-anchor pool lifecycle source, captures and receipts byte-identical.
 reports/pool-lifecycle-20261120/** -text whitespace=cr-at-eol
 reports/pool-lifecycle-20261120/harness/unittest.stderr whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+# Preserve exact composed swap/Entry evidence, source stages and receipts.
+reports/pool-integration-20261120/** -text whitespace=cr-at-eol
+reports/pool-integration-20261120/swap/driver_base.py whitespace=cr-at-eol,-blank-at-eof

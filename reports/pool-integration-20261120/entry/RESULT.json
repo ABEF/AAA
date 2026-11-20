@@ -1,0 +1,31 @@
+{
+  "activation_assets": [
+    "ETH",
+    "fixedZZZ"
+  ],
+  "contributions": 4,
+  "current_normal_instances": 39,
+  "excluded": [
+    "independent price sources",
+    "actual external depth",
+    "VRF cryptography/service",
+    "actual OpenSea acceptance",
+    "hybrid/1000NFT/64currency workload",
+    "target fees/provider/release"
+  ],
+  "finite_nfts": 2,
+  "growth_assets": [
+    "ETH",
+    "fixedZZZ"
+  ],
+  "production_approved": false,
+  "seams": [
+    "exact archived SeaDrop local code/guard materialization",
+    "controlled VRF",
+    "correlated fixed USD feed pairs",
+    "local ETH/ZZZ balance substitute",
+    "three synthetic non-PoPL core positions"
+  ],
+  "source_unchanged": true,
+  "successful": true
+}

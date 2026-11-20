@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "baseline": "bb5ef4de5afc9dd8cebf4ee96d5b044477a52bf5",
+  "observed_utc": "2026-11-20T18:29:08.305949+00:00",
+  "original_docs_external": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\pool-integration-20261120\\original-docs",
+  "original_docs": {
+    "AGENTS.md": {
+      "sha256": "46a701223bce9006eefd7cf2170173e9d78a41271d8660c896cf2d550685fed7",
+      "bytes": 52758
+    },
+    "PROJECT_CONTEXT.md": {
+      "sha256": "a67f5d694b0256310baf7202d88715189e512d8c61401a5b8d9ce677b8eefa93",
+      "bytes": 23846
+    },
+    "README.md": {
+      "sha256": "6cb6a84f9a03d8a82eda1de469156d69584ba5addbc714d96e2453d231c4ba00",
+      "bytes": 10010
+    },
+    "TODO.md": {
+      "sha256": "f71ff97568e1547589b1f1f839e44cd3de05a1049b20aaeb50e3df41a66084a9",
+      "bytes": 460463
+    },
+    "docs/WORK_HANDOFF.md": {
+      "sha256": "69358618e6f12604a8c6b5f0815349871a46950560773526d601b2adcffaf134",
+      "bytes": 15030
+    },
+    "docs/AUDIT_FINDINGS.md": {
+      "sha256": "b3ebf9daa941100c203a509b634860146df0b19123f14676f728c50b31e8f934",
+      "bytes": 28087
+    },
+    "docs/OPERATOR_MANUAL.md": {
+      "sha256": "d0beb86152dc1458d408235202960053b380823ee778b7a9820b83e49b223e99",
+      "bytes": 665686
+    },
+    "docs/IMPLEMENTATION_STATUS.md": {
+      "sha256": "cd4ac795d86769944fe28ad50b69cbace54320877336e7c6a91f1effb8ef2ccc",
+      "bytes": 34772
+    },
+    "docs/ROADMAP.md": {
+      "sha256": "4cf41875f86392022f5936c65ea7849c1cf9adfbb4583cde4132813680303de8",
+      "bytes": 42775
+    },
+    "docs/WORKLOAD_COVERAGE.md": {
+      "sha256": "db6d86afae0f4a3cd956b774d3a70be7be711ea2255ba29da68c9ed6fcef66ee",
+      "bytes": 9637
+    },
+    "docs/project-todo.json": {
+      "sha256": "2444a8d918fd00ff47826d05b0b19cb9394ea7a69c3f6dac44b1a0f05ce95f67",
+      "bytes": 477782
+    },
+    "reports/README.md": {
+      "sha256": "d90852ad7b2753a88984cf32711d5f6a0395ef2f0172225f61b14df59a67dd09",
+      "bytes": 36287
+    }
+  },
+  "protected_unrelated_dirty_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "stable_task_ids": [
+    "lp-only-simplification",
+    "immediate-governance",
+    "operator-stop-controls",
+    "price-security",
+    "nft-lifecycle",
+    "reward-ledgers",
+    "lp-exact-unit-allocation",
+    "lp-eth-settlement",
+    "royalty-eth-settlement",
+    "shared-custody",
+    "pons-qualification",
+    "activation-assets",
+    "fair-draw",
+    "custody-composition",
+    "opensea-mint",
+    "native-custody-recovery",
+    "post-seal-configuration",
+    "typed-v4-conversion",
+    "governed-loss-limits",
+    "reviewed-contribution-policy",
+    "liquidity-placement-idle",
+    "adaptive-range-policy",
+    "callable-reference",
+    "lp-execution-routing",
+    "manual-reference-swap-proof",
+    "rebalance-confirmation-buffer",
+    "manual-emergency-rebalance",
+    "passive-inventory",
+    "royalty-factory-gas",
+    "pool-spot-price-source",
+    "read-api",
+    "royalty-reporting",
+    "unsigned-actions",
+    "activation-quotes",
+    "financial-history",
+    "api-client-admission",
+    "host-services",
+    "holder-preflight",
+    "native-production-preflight",
+    "operation-review",
+    "manual-recovery-gas-rehearsal",
+    "manual-lp-diagnostics",
+    "parked-emergency-preparation",
+    "operator-management-preparation",
+    "claim-batch-planner",
+    "preview",
+    "wallet",
+    "portfolio",
+    "transaction-ui",
+    "live-history-ui",
+    "purchase-rights",
+    "creator-zzz-price",
+    "creator-market-controls",
+    "creator-input-liquidity",
+    "local-verification",
+    "activation-gas-six-cases",
+    "mainnet-fork",
+    "testnet-rehearsal",
+    "audit-release",
+    "economic-rights-audit",
+    "local-dollar-rehearsal",
+    "local-browser-stack",
+    "capacity-campaign",
+    "mainnet-rehearsal-retirement",
+    "security-governance",
+    "security-share-accounting",
+    "security-ownership-rewards",
+    "security-strategy",
+    "security-keeper-manipulation",
+    "security-external-manipulation",
+    "security-dependencies",
+    "security-chain-recovery",
+    "security-integration",
+    "historical-findings",
+    "authorities-prices",
+    "dual-price-qualification",
+    "metadata-ops",
+    "keeper-guardrails",
+    "keeper-recovery",
+    "asset-liveness-dust",
+    "deployment-initcode",
+    "migration-framework",
+    "destination-slots"
+  ],
+  "unchanged_tests_rerun": false,
+  "production_approved": false
+}

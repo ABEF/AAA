@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "source_inventory": {
+    "command": "python scripts/build-workload-inventory.py --check reports/readiness-advance-20261120/FUNCTION_INVENTORY.json",
+    "exit_code": 0,
+    "action": "verified",
+    "inventory_only": true,
+    "output_sha256": "d0a2de1c507c2540a61f438e9d6aba160919966c52aabaf455ca9f70d3f46e97",
+    "project_sources": 61,
+    "dependency_sources": 39,
+    "build_controls": 4,
+    "abi_rows": 1021,
+    "python_files": 179,
+    "python_definitions": 1979
+  },
+  "todo_check": {
+    "command": "python scripts/sync-project-todo.py --check",
+    "exit_code": 0
+  },
+  "scoped_diff_whitespace_check": {
+    "exit_code": 0
+  },
+  "new_package_check": {
+    "command": "python reports/pool-integration-20261120/check_package.py",
+    "exit_code": 0,
+    "verified_archive_members": 282,
+    "new_local_links": 34
+  },
+  "unchanged_behavioral_suites_rerun": false,
+  "production_approved": false
+}

@@ -1,0 +1,9 @@
+{
+  "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+  "new_fixture_only": true,
+  "owned_pid": 10920,
+  "owned_port": 54717,
+  "public_or_existing_sealing": false,
+  "receipt_status": "0x1",
+  "transaction_hash": "0xba50366af1474daae22cc228260108879ad5528db120d4caaef86933347a8587"
+}

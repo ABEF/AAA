@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Composed supplied-pool integration](pool-integration-20261120/REVIEW.md) adds
+production direct swaps and four real Entry/NFT activation/growth calls on new
+owned forks. Source-bound wire/trace/share checks, unchanged geometry/clock,
+full padded gas and explicit fixture boundaries are recorded. No production
+source, safeguard, financial right, live environment or release approval changes.
+
 [Supplied-pool physical lifecycle](pool-lifecycle-20261120/REVIEW.md) completes the new
 current-F6 Manager journey on an isolated fork. Exact wire/receipt/fee/close/rollback
 proof, authenticated cache provenance, negative RPC screens and all fixture failures are

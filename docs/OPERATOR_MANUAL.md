@@ -1,5 +1,14 @@
 # PoPL operator manual
 
+[Current supplied-pool integration](../reports/pool-integration-20261120/REVIEW.md)
+verifies direct swaps and finite ETH/ZZZ Entry activation/growth using a fresh
+normal F6 test graph. Ownership/shares/membership and existing-main ticks/clock
+are preserved; all four contributions fit32M/full20%. This changes no operator
+function, permission, default, production configuration or running environment.
+The restored-node clock correction is a disposable rehearsal-tool fix, not a
+production recovery instruction. Actual independent feeds/routes/depth, full
+workloads and complete fees still need qualification before adoption.
+
 [Current F6 construction/readback](../reports/f6-construction-20261120/REVIEW.md)
 passes39instances/112bindings plus172defaults and35separate unsealed permission
 probes. Use the [exact local procedure](DEPLOYMENT_PREPARATION.md#current-f6-evidence-and-supplementary-checks).
