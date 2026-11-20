@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "date": "2026-11-20",
+  "review_type": "Independent offline reconstruction of actual authority-fixture evidence; not RPC/EVM/test reruns",
+  "outcome": "passed",
+  "source_baseline": "2891f6b29691449d6667d36b9c678a0746ce5d80",
+  "trusted_build": "activation-final-six-20261118",
+  "manifest_sha256": "3f5658dd9efa39458ccef4d0bf6edb675e9d9e2b68a43d2a21fb0bd02759ad49",
+  "source_sha256": {
+    "src/ZZZAccessController.sol": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3",
+    "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+    "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295"
+  },
+  "canonical_ABI_sha256": {
+    "access": "5fd79e2c45021a7fb47c46bac0ffb3c182f9de1aa638aadb07d08a5e8041ed18",
+    "protocol_policy": "715e0a533cf0994e3859e1680c18b09f691762e7831855066fd9cd43aae10331"
+  },
+  "cases_verified": 35,
+  "exact_success_returns": 9,
+  "exact_typed_Unauthorized_errors": 26,
+  "typed_error_rule": "All26 failures have JSON-RPC code3 and exactdata0x82b42900; generic/opaque/unrelated errors do not pass.",
+  "distinct_role_addresses": {
+    "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+    "bootstrap": "0x000000000000000000000000000000000000a0a0",
+    "governance": "0x000000000000000000000000000000000000a0a3",
+    "guardian": "0x000000000000000000000000000000000000a0a1",
+    "keeper": "0x000000000000000000000000000000000000beef",
+    "outsider": "0x000000000000000000000000000000000000a0a4",
+    "payee": "0x000000000000000000000000000000000000a0a2",
+    "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b"
+  },
+  "fixed_block": "0x3",
+  "fixed_block_hash": "0x0641783f4b2bea59a2bb0d10173e350d9930fe22a630d733970ea48a11e8cb6d",
+  "state_getters_per_round": 35,
+  "raw_fixed_tag_state_getter_rounds": 37,
+  "raw_state_getter_responses_verified": 1295,
+  "unchanged_before_after_state": true,
+  "unchanged_sender_and_factory_nonces": true,
+  "recorded_node_RPC_entries": 2068,
+  "construction_transactions_verified": 3,
+  "normal_creation_instances_verified": 6,
+  "top_level_creations": 2,
+  "binding_transactions": 1,
+  "six_normal_constructor_inputs_and_runtime_outputs_verified": true,
+  "factory_royalty_payload_matches_exact_F6": true,
+  "raw_receipt_status_and_canonical_headers_verified": true,
+  "strict_runtime_and_full_initcode_limits_retained": true,
+  "raw_total_gas_used": 14054626,
+  "maximum_padded_transaction_gas": 12906753,
+  "cleanup": {
+    "owned_node_stopped": true,
+    "existing_nodes_contacted": false,
+    "pending_submission": null,
+    "PID": 16396,
+    "port": 60435,
+    "independent_read_only_OS_observation": {
+      "Get_Process_PID_present": false,
+      "netstat_loopback_port_present": false
+    }
+  },
+  "evidence_root": "Owned attempt1/control-fixture; parent publication archive binds these relative filenames",
+  "evidence_sha256": {
+    "AUTHORITY_WIRE.json": "aac3c69d0dac12e81e2f741b4c5f82e9c73d143555b8c89d0d22b752b6d8bf3c",
+    "INITIAL_FINAL_STATE.json": "e47c248ff3cb2edb0c69e0585652d4116487455943e9278f5d19f91714bd5ce8",
+    "CONTROL_HEADERS.json": "1cb94fcdd739f5e3dc38ad9ad8b19f8cd719473996059048cbf149e4d5b07a89",
+    "CREATE_PROOFS.json": "a4c5584fd7e7f322042b1fd2d5a8be1d3f3bb08ef39ccbdd80c5f05b8a6ddf77",
+    "RESULT.json": "b224794c57a62d48e87e3913b6c4ca5e40e280cec067d09d087cf67ee2959e98",
+    "source-stage.json": "3f09ec0fb157c34f5d051b2bd08b134e68772dba0c31c6722d62b06a8bca7db2",
+    "SOURCE_UNCHANGED.json": "062ef22ff902ecdade88b0eb1965d40a6f552309b96f3c1c4a7d6ea973061a68",
+    "01-create-access.json": "259454a76d2a1a655ebcfa736d0e86c07c16d9206637a50a79773368e8b35682",
+    "02-create-protocol_policy.json": "3f03795d5caa03d446ce0bacc893b932325b16ff9e704d414275d80919181c30",
+    "03-bind-protocol_policy.json": "20c0f53044ac7ca9c319a6da77e4694d20283eda8557741039eda48839ae677f",
+    "01-create-access-trace.json.gz": "8258c6b35de3cfcff0454b211089ee6602f3ac8b809fa233166a6e5bf1c7211b",
+    "02-create-protocol_policy-trace.json.gz": "6dfa5ccba5806ecb982430c972331f9fbd5f3b11a51c043d52df6d7a9b8fcca2",
+    "node/rpc-records.json.gz": "b1251cfae1608c4cdf3b3445ce222f4dcdad68b2d84c6d3e1681f8247e299128",
+    "node/process.json": "a129d67fbf81c040470bf9d12382f15d44f2ba6d0f79442d805175d4d1a096b0",
+    "node/cleanup.json": "45460a1b1d2f02c9a7345e9a418f4d7de3a065390660e4c027bd1ce18183730e"
+  },
+  "limits": [
+    "Unsealed preconfiguration authority only, not sealed-operation/key-control qualification.",
+    "Fixed numbered block closure is local canonical-header evidence, not public-provider/EIP1898 acceptance.",
+    "Transient successful eth_calls do not prove a persistent governance handover or actual role rotation.",
+    "Controller factories intentionally permit caller-specific child creation; no operator-only claim.",
+    "No real-market,source/OpenSea/VRF/content or actual production-seal acceptance."
+  ],
+  "review_attempt_corrections": [
+    "Initial shell invocation rejected before Python execution.",
+    "Initial offline reconstruction used the deployment encoder on bool/narrow-uint data; corrected to an independent strict static encoder.",
+    "CREATE_PROOFS.trace_sha256 binds canonical decompressed JSON; compressed-file SHA is recorded separately. Corrected that reviewer comparison without changing captured evidence or rerunning the campaign."
+  ],
+  "production_ready": false,
+  "ready_for_seal": false,
+  "sealed": false,
+  "independent_release_approval": false,
+  "new_RPC_calls": 0,
+  "new_EVM_or_application_tests": 0,
+  "public_transactions": 0,
+  "source_changes": false
+}

@@ -1,5 +1,11 @@
 # Consolidated audit findings and evidence
 
+[Current F6 construction evidence](../reports/f6-construction-20261120/REVIEW.md)
+closes the missing controlled39-instance construction/binding subtask. Supplementary
+verification now binds exact preflights/nonces/receipts; unsealed authority is
+tested separately with distinct roles. Q02/Q03/Q04/Q07 retain actual release,
+populated-workload, wallet and independent-approval obligations.
+
 [Current Gate A evidence](../reports/readiness-gate-a-20261120/REVIEW.md)
 closes the current compiler-advisory applicability subtask within P02, without
 closing release approval. Fresh actual markets still fail qualification; custom

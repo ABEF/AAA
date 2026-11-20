@@ -727,6 +727,7 @@ The data and services behind the app.
   - [Operator-selected32M contribution profile](reports/contribution-gas32-20261119/REVIEW.md): activation/growth backend string32000000 and matching website integer32000000 in a new non-live candidate; full20% padding permits estimates up to26,666,666. Legacy12M defaults,24M/full25% maintenance and all financial/internal-call guards remain. Seven new injected software checks pass; older20M EVM evidence is not relabelled. Current actual execution/provider limits, complete fees and64-currency/two-LP workloads remain unqualified; no service/site/chain/journal or signing adoption.
   - [Latest seven-report reconciliation](reports/seven-report-consolidation-20261119/REVIEW.md): Current F6 source pins and recorded48size gates do not qualify fresh constructors/bindings/fees or adoption. Unknown actual identities/readiness remain blocked; old private slots and payload5 deployments cannot be relabelled.
   - [Configured-budget diagnostic](reports/whole-workload-review-20261119/REVIEW.md#wg05-remove-a-stale-operating-budget-instruction): fresh pre-seal review names the reviewed configured contribution budget/full20%, without hardcoding20M. One affected F6 method fails before and passes after; actual limits, calldata and all false readiness flags are unchanged.
+  - [Fresh F6 readback](reports/f6-construction-20261120/READINESS.json) observes39instances,112binding/state+172default reads; fixedZZZ/admission/VRF/mint/confirmation operating inputs remain unconfigured. This is constructor-state evidence, not complete seal readiness. Actual release inputs/code/dependencies/wallet/fees and all approval flags remain unverified.
 
   </details>
 
@@ -1254,6 +1255,7 @@ Three required testing layers, with source-bound evidence.
   - [Controlled maximum-state rehearsal](reports/maximum-workload-20261119/REVIEW.md):1000 locally minted NFTs with actual Entry funding,64 ERC20 royalties plus ETH and both LPs;11/12 cold contributions fit32M/full20%, while openingZZZ/all-slow estimates27,142,801/32,571,362padded and stays refused. Five executable maintenance states fit24M/full25%; three intended guard refusals reproduce. Exact payout/backing checks pass. Preserve50k/1M allowances, all defaults/guards and existing environments; broader actual-market/provider/full-state/operating approval remains open.
   - Before final release freeze, assess the current official compiler-bug registry against exact Solidity0.8.26 via-IR/optimizer/dependency/IR usage; record applicability rather than assuming safe or upgrading automatically. Follow the ordered [production qualification plan](docs/ROADMAP.md).
   - [Current compiler applicability](reports/compiler-applicability-20261120/REVIEW.md) assesses all8registry variants against exact F6/settings/100-source AST, with7new offline predicate controls. No confirmed reachable upgrade-requiring defect found; generated-code/independent release limits remain. Exact Yul optimization is disabled; no compiler or source change.
+  - [Source-specific construction verification](reports/f6-construction-20261120/VERIFICATION.json): one actual currentF6 campaign,11new offline controls in explicit10+1stages, no compiler/unchanged suite/static/normal-build rerun. Independent default/authority/raw-wire checks retain their exact scopes and limitations. Actual release configuration/dependencies/gas fees and external audit remain required.
 
   </details>
 
@@ -1353,6 +1355,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - [Custody5 authority review](reports/authority-audit-20261103/REVIEW.md): governance-only terminal allocation/push batches, owner LP/royalty/fallback claims preserved, explicit schema10/runtime/read/keeper/lineage separation. Scoped43normal gates/14distinct selected EVM/25corrected Python methods and471static dispositions do not close live-service/maximum-gas or independent audit gates.
   - The [17 November behavior follow-up](reports/operator-behavior-followup-20261117/REVIEW.md) fixes actual sealing with an empty artwork root: rejection retains bootstrap, then a one-time configured root can seal. Exact ABI/storage stay unchanged. The fresh trusted controller build is operator-seal-20261117; all48 normal gates and scoped static review pass. This checks nonempty root only, not content/marketplace availability or release approval.
   - The [systematic irreversible review](reports/test-seal-deep-review-20261117/SEAL_REVIEW.md) covers all61sources and exact one-time/constructor/lifecycle boundaries. Source now rejects foreign home-chain identities and bare artwork schemes. All39 construction records and critical-read criteria are exposed as unverified before-seal review metadata. Missing SeaDrop/converter bindings, an expired bootstrap mint end, wrong immutable venue graph, bad content and unanswered VRF remain explicit readiness/recovery limits; generic seal is not production approval.
+  - [Distinct unsealed authority fixture](reports/f6-construction-20261120/AUTHORITY_VERIFICATION.json):35typed eth_call cases,9success/26Unauthorized with unchanged state/nonces, six real normal control instances. Bootstrap configures before seal; governance/guardian pause powers differ; registered keeper remains unauthorized until seal. Sealed operations, all operator selectors and actual wallet control are not qualified by this fixture.
 
   </details>
 
@@ -1779,7 +1782,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-deployment-initcode"></a>
 
-- [ ] **[Qualify exact constructor arguments and deployment size](docs/DEPLOYMENT_PREPARATION.md)** - In progress. The current metadata2 changed constructors/bindings and cold reads have scoped isolated local evidence. A separate unsigned offline sequence wrapper now derives25 conditional top-level CREATE addresses across44 same-bootstrap-EOA transactions including19bindings, then reuses unchanged strict constructor/build/size checks. Factory children remain getter-discovered. Actual release inputs, confirmed/pending nonce/caller/code/receipt/runtime reconciliation, complete target fees and independent approval remain open. A separate unsigned pre-seal planner now validates/orders twelve typed configuration families; missing inputs and live prerequisites remain blocked/unverified.
+- [ ] **[Qualify exact constructor arguments and deployment size](docs/DEPLOYMENT_PREPARATION.md)** - In progress. Current F6 controlled construction verifies25CREATE+19bindings/39instances with real normal Access/Registry,112binding/state plus172default reads; a separate3transaction fixture verifies35unsealed permission cases with distinct roles. Worst NFT11,371,583estimated/14,214,479full25%padded under32M. Real release arguments/root/dependencies/complete target fees and actual nonce/wallet/operating approval remain open. Both owned nodes stop; no production deployment or seal.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1813,6 +1816,7 @@ Decisions and rehearsals before real funds.
   - [Operator-selected32M contribution profile](reports/contribution-gas32-20261119/REVIEW.md): activation/growth backend string32000000 and matching website integer32000000 in a new non-live candidate; full20% padding permits estimates up to26,666,666. Legacy12M defaults,24M/full25% maintenance and all financial/internal-call guards remain. Seven new injected software checks pass; older20M EVM evidence is not relabelled. Current actual execution/provider limits, complete fees and64-currency/two-LP workloads remain unqualified; no service/site/chain/journal or signing adoption.
   - [Latest seven-report reconciliation](reports/seven-report-consolidation-20261119/REVIEW.md): Use current F6 exact construction/runtime pins. Current runtime margins are Royalty14/Manager117/Oracle1170/Vault32 bytes and Access fullinit48580/49152. This does not relabel older constructor receipts or approve deployment.
   - Execute the staged readiness gates only under separate authorization: fresh exact F6 construction and full binding proof precede deployment; actual runtime/roles/immutables/readback is after deployment, full seal readiness before seal, and public opening a separate approval. Keep strict size gates despite differing documented chain capabilities.
+  - [Current F6 rehearsal](reports/f6-construction-20261120/REVIEW.md): exact normal construction inputs/parents/returned runtime including both Factory parts pass; full44tx raw144,113,280. Supplementary offline proof binds132preflights/260nonce reads/44local headers. Native constructor doubles and40byte consumed dummy root are not release configuration; do not adopt local addresses.
 
   </details>
 
@@ -1852,4 +1856,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `936c60bc7ca9356fdc03ec64815ff773ec9795518b527dd0a511d7791d9d5b55`.
+Snapshot SHA-256: `49b173599f9d888cb224ed490f697b01ffa0366156f9cab2386aa0b131453387`.

@@ -1,5 +1,10 @@
 # Verification evidence
 
+[Current F6 construction](f6-construction-20261120/REVIEW.md): actual isolated
+39-instance graph, current defaults and distinct-role unsealed permissions,
+exact original preflight/nonce/receipt proof. Old captures stay historical;
+source publication does not deploy or seal any production contract.
+
 [20 November Gate A follow-through](readiness-gate-a-20261120/REVIEW.md)
 links current [compiler applicability](compiler-applicability-20261120/REVIEW.md),
 [actual markets](market-feasibility-20261120/REVIEW.md) and

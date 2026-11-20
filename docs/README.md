@@ -1,5 +1,9 @@
 # Documentation map
 
+For current construction use the [full F6 rehearsal](../reports/f6-construction-20261120/REVIEW.md)
+and [local/offline procedure](DEPLOYMENT_PREPARATION.md#current-f6-evidence-and-supplementary-checks).
+Earlier metadata2/manual captures retain their original scopes; none is relabelled.
+
 For current readiness results read the [Gate A follow-through](../reports/readiness-gate-a-20261120/REVIEW.md):
 compiler applicability, actual markets, fixed-token controls and OpenSea/VRF/RPC
 compatibility. The [roadmap](ROADMAP.md) still owns sequence and the sole Todo owns status.

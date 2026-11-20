@@ -1,5 +1,10 @@
 # Feature and evidence reference
 
+[Fresh F6 construction](../reports/f6-construction-20261120/REVIEW.md)
+verifies25creations/19bindings/39instances and current default/unsealed authority
+state on stopped isolated nodes. No contract, ABI, compiler or runtime changed;
+actual dependency/argument/fee and operating acceptance remain separate.
+
 The [Gate A follow-through](../reports/readiness-gate-a-20261120/REVIEW.md)
 adds exact compiler-advisory applicability, fresh bounded market evidence and
 actual platform/provider compatibility questions. It changes no implementation,

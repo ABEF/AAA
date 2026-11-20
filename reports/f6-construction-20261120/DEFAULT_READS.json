@@ -1,0 +1,3414 @@
+{
+  "schema": 1,
+  "purpose": "Additional typed expected default/readiness reads for an actual unsealed fresh F6 construction; definitions only, not executed observations",
+  "build_profile": "activation-final-six-20261118",
+  "accepted_build_files_sha256": {
+    "compiler-input.json.gz": "279eba80e69c65d9085196ff4bd0fd9753881363517686dd20b2cedc769a5b0c",
+    "compiler-output.json.gz": "aceb5510485a5a0c28945cb4b4df71c66305dff7f1cb058435a464ff42df4a89",
+    "normal-size-evidence.json": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2",
+    "START.json": "de5303ec7485f4bd15b6b5adee6198d9858d276aefadc0b9a39a53bc5ff604d7"
+  },
+  "case_count": 172,
+  "production_approved": false,
+  "rpc_calls_performed_by_this_producer": 0,
+  "tests_or_compiler_runs": 0,
+  "all_case_signatures_and_output_widths_from_trusted_ABI": true,
+  "existing112binding_assertions_repeated": false,
+  "case_input_scope": "No price/token balance/venue execution calls; no configuration or state changes",
+  "important_limits": [
+    "Unsealed/empty graph remains deliberately not seal-ready or production configured.",
+    "compoundInterval(pool) is not included: it requires an admitted pool; the DEFAULT_COMPOUND_INTERVAL constant is independently included.",
+    "Expected-revert authorization probes need a separate recording, not the original success-only wire stream.",
+    "All return expectations are static ABI words/tuples; exact human units are represented in raw decimal strings."
+  ],
+  "cases": [
+    {
+      "id": "access.GOVERNANCE_VERSION",
+      "role": "access",
+      "signature": "GOVERNANCE_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "2"
+      ],
+      "origin": {
+        "source": "src/ZZZAccessController.sol",
+        "source_sha256": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3",
+        "constant_ast_id": 9885
+      }
+    },
+    {
+      "id": "protocol_policy.MAX_CALL_GAS",
+      "role": "protocol_policy",
+      "signature": "MAX_CALL_GAS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+      "expected_types": [
+        "uint32"
+      ],
+      "expected_values": [
+        "1000000"
+      ],
+      "origin": {
+        "source": "src/ZZZProtocolPolicy.sol",
+        "source_sha256": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+        "constant_ast_id": 53193
+      }
+    },
+    {
+      "id": "protocol_policy.MAX_IDLE_BPS",
+      "role": "protocol_policy",
+      "signature": "MAX_IDLE_BPS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000fa0",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "4000"
+      ],
+      "origin": {
+        "source": "src/ZZZProtocolPolicy.sol",
+        "source_sha256": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+        "constant_ast_id": 53187
+      }
+    },
+    {
+      "id": "protocol_policy.MIN_CALL_GAS",
+      "role": "protocol_policy",
+      "signature": "MIN_CALL_GAS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x00000000000000000000000000000000000000000000000000000000000186a0",
+      "expected_types": [
+        "uint32"
+      ],
+      "expected_values": [
+        "100000"
+      ],
+      "origin": {
+        "source": "src/ZZZProtocolPolicy.sol",
+        "source_sha256": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+        "constant_ast_id": 53190
+      }
+    },
+    {
+      "id": "protocol_policy.PROTOCOL_POLICY_VERSION",
+      "role": "protocol_policy",
+      "signature": "PROTOCOL_POLICY_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZProtocolPolicy.sol",
+        "source_sha256": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+        "constant_ast_id": 53184
+      }
+    },
+    {
+      "id": "migration_budget.DEFAULT_COMPOUND_INTERVAL",
+      "role": "migration_budget",
+      "signature": "DEFAULT_COMPOUND_INTERVAL()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000e10",
+      "expected_types": [
+        "uint32"
+      ],
+      "expected_values": [
+        "3600"
+      ],
+      "origin": {
+        "source": "src/ZZZMigrationBudget.sol",
+        "source_sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+        "constant_ast_id": 37191
+      }
+    },
+    {
+      "id": "migration_budget.EMERGENCY_REBALANCE_VERSION",
+      "role": "migration_budget",
+      "signature": "EMERGENCY_REBALANCE_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "2"
+      ],
+      "origin": {
+        "source": "src/ZZZMigrationBudget.sol",
+        "source_sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+        "constant_ast_id": 37200
+      }
+    },
+    {
+      "id": "migration_budget.IDLE_COMPOUNDING_VERSION",
+      "role": "migration_budget",
+      "signature": "IDLE_COMPOUNDING_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000004",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "4"
+      ],
+      "origin": {
+        "source": "src/ZZZMigrationBudget.sol",
+        "source_sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+        "constant_ast_id": 37185
+      }
+    },
+    {
+      "id": "migration_budget.MAX_LOSS_BPS",
+      "role": "migration_budget",
+      "signature": "MAX_LOSS_BPS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x00000000000000000000000000000000000000000000000000000000000003e8",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "1000"
+      ],
+      "origin": {
+        "source": "src/ZZZMigrationBudget.sol",
+        "source_sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+        "constant_ast_id": 37182
+      }
+    },
+    {
+      "id": "migration_budget.REBALANCE_CONFIRMATION_VERSION",
+      "role": "migration_budget",
+      "signature": "REBALANCE_CONFIRMATION_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000003",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "3"
+      ],
+      "origin": {
+        "source": "src/ZZZMigrationBudget.sol",
+        "source_sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+        "constant_ast_id": 37188
+      }
+    },
+    {
+      "id": "migration_budget.RESIDUAL_REINVEST_VERSION",
+      "role": "migration_budget",
+      "signature": "RESIDUAL_REINVEST_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZMigrationBudget.sol",
+        "source_sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+        "constant_ast_id": 37203
+      }
+    },
+    {
+      "id": "metadata_renderer.METADATA_LIFECYCLE_VERSION",
+      "role": "metadata_renderer",
+      "signature": "METADATA_LIFECYCLE_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "2"
+      ],
+      "origin": {
+        "source": "src/ZZZNFTMetadata.sol",
+        "source_sha256": "d12e430a81d3271313d854d67f7f25468384c30fc7f753eced3f315fb9e11cbe",
+        "constant_ast_id": 44123
+      }
+    },
+    {
+      "id": "portfolio_policy.DEFAULT_RESIDUAL_SIDE_BPS",
+      "role": "portfolio_policy",
+      "signature": "DEFAULT_RESIDUAL_SIDE_BPS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000001388",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "5000"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "constant_ast_id": 51175
+      }
+    },
+    {
+      "id": "portfolio_policy.HARD_MAXIMUM_RESIDUAL_BPS",
+      "role": "portfolio_policy",
+      "signature": "HARD_MAXIMUM_RESIDUAL_BPS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000fa0",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "4000"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "constant_ast_id": 51172
+      }
+    },
+    {
+      "id": "portfolio_policy.HARD_MINIMUM_MAIN_BPS",
+      "role": "portfolio_policy",
+      "signature": "HARD_MINIMUM_MAIN_BPS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000001770",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "6000"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "constant_ast_id": 51169
+      }
+    },
+    {
+      "id": "portfolio_policy.PORTFOLIO_VERSION",
+      "role": "portfolio_policy",
+      "signature": "PORTFOLIO_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "2"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "constant_ast_id": 51163
+      }
+    },
+    {
+      "id": "portfolio_policy.RESIDUAL_REINVEST_VERSION",
+      "role": "portfolio_policy",
+      "signature": "RESIDUAL_REINVEST_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "constant_ast_id": 51166
+      }
+    },
+    {
+      "id": "rebalance_confirmation.MAX_DURATION",
+      "role": "rebalance_confirmation",
+      "signature": "MAX_DURATION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000093a80",
+      "expected_types": [
+        "uint32"
+      ],
+      "expected_values": [
+        "604800"
+      ],
+      "origin": {
+        "source": "src/ZZZRebalanceConfirmation.sol",
+        "source_sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+        "constant_ast_id": 55119
+      }
+    },
+    {
+      "id": "rebalance_confirmation.REBALANCE_CONFIRMATION_VERSION",
+      "role": "rebalance_confirmation",
+      "signature": "REBALANCE_CONFIRMATION_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000003",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "3"
+      ],
+      "origin": {
+        "source": "src/ZZZRebalanceConfirmation.sol",
+        "source_sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+        "constant_ast_id": 55116
+      }
+    },
+    {
+      "id": "balancing_router.EXECUTION_PRICE_VERSION",
+      "role": "balancing_router",
+      "signature": "EXECUTION_PRICE_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZLPBalancer.sol",
+        "source_sha256": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+        "constant_ast_id": 26594
+      }
+    },
+    {
+      "id": "balancing_router.EXECUTION_QUALITY_VERSION",
+      "role": "balancing_router",
+      "signature": "EXECUTION_QUALITY_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZLPBalancer.sol",
+        "source_sha256": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+        "constant_ast_id": 26597
+      }
+    },
+    {
+      "id": "balancing_router.LP_ROUTING_VERSION",
+      "role": "balancing_router",
+      "signature": "LP_ROUTING_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000003",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "3"
+      ],
+      "origin": {
+        "source": "src/ZZZLPBalancer.sol",
+        "source_sha256": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+        "constant_ast_id": 26591
+      }
+    },
+    {
+      "id": "balancing_router.MAX_ADDITIONAL_LOSS_BPS",
+      "role": "balancing_router",
+      "signature": "MAX_ADDITIONAL_LOSS_BPS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x00000000000000000000000000000000000000000000000000000000000003e8",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1000"
+      ],
+      "origin": {
+        "source": "src/ZZZLPBalancer.sol",
+        "source_sha256": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+        "constant_ast_id": 26600
+      }
+    },
+    {
+      "id": "balancing_router.MAX_EXECUTION_POOLS",
+      "role": "balancing_router",
+      "signature": "MAX_EXECUTION_POOLS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000004",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "4"
+      ],
+      "origin": {
+        "source": "src/ZZZLPBalancer.sol",
+        "source_sha256": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+        "constant_ast_id": 26603
+      }
+    },
+    {
+      "id": "oracle.EXECUTION_PRICE_VERSION",
+      "role": "oracle",
+      "signature": "EXECUTION_PRICE_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZOracle.sol",
+        "source_sha256": "56b232b0b07a020e2e509f3d837495d57f73d6e72025053a7391211f44f6715e",
+        "constant_ast_id": 46248
+      }
+    },
+    {
+      "id": "oracle.FINGERPRINT_DOMAIN",
+      "role": "oracle",
+      "signature": "FINGERPRINT_DOMAIN()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x485b651c40b88b6057da3185a688decae5c361695f38aca5970ee7addbe2afd8",
+      "expected_types": [
+        "bytes32"
+      ],
+      "expected_values": [
+        "0x485b651c40b88b6057da3185a688decae5c361695f38aca5970ee7addbe2afd8"
+      ],
+      "origin": {
+        "source": "src/ZZZOracle.sol",
+        "source_sha256": "56b232b0b07a020e2e509f3d837495d57f73d6e72025053a7391211f44f6715e",
+        "constant_ast_id": 46256
+      }
+    },
+    {
+      "id": "oracle.MAX_DEVIATION_BPS",
+      "role": "oracle",
+      "signature": "MAX_DEVIATION_BPS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x00000000000000000000000000000000000000000000000000000000000001f4",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "500"
+      ],
+      "origin": {
+        "source": "src/ZZZOracle.sol",
+        "source_sha256": "56b232b0b07a020e2e509f3d837495d57f73d6e72025053a7391211f44f6715e",
+        "constant_ast_id": 46251
+      }
+    },
+    {
+      "id": "oracle.PRICING_VERSION",
+      "role": "oracle",
+      "signature": "PRICING_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "2"
+      ],
+      "origin": {
+        "source": "src/ZZZOracle.sol",
+        "source_sha256": "56b232b0b07a020e2e509f3d837495d57f73d6e72025053a7391211f44f6715e",
+        "constant_ast_id": 46245
+      }
+    },
+    {
+      "id": "oracle.SEQUENCER_GRACE",
+      "role": "oracle",
+      "signature": "SEQUENCER_GRACE()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000e10",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "3600"
+      ],
+      "origin": {
+        "source": "src/ZZZOracle.sol",
+        "source_sha256": "56b232b0b07a020e2e509f3d837495d57f73d6e72025053a7391211f44f6715e",
+        "constant_ast_id": 46439
+      }
+    },
+    {
+      "id": "liquidity.EMERGENCY_REBALANCE_VERSION",
+      "role": "liquidity",
+      "signature": "EMERGENCY_REBALANCE_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "2"
+      ],
+      "origin": {
+        "source": "src/ZZZLiquidityManager.sol",
+        "source_sha256": "43aa1d36777f3ab0b9c13c0fde91f47ffca2f38ec94a19df980606c04c015330",
+        "constant_ast_id": 31474
+      }
+    },
+    {
+      "id": "liquidity.EXECUTION_PRICE_VERSION",
+      "role": "liquidity",
+      "signature": "EXECUTION_PRICE_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZLiquidityManager.sol",
+        "source_sha256": "43aa1d36777f3ab0b9c13c0fde91f47ffca2f38ec94a19df980606c04c015330",
+        "constant_ast_id": 31462
+      }
+    },
+    {
+      "id": "liquidity.EXECUTION_QUALITY_VERSION",
+      "role": "liquidity",
+      "signature": "EXECUTION_QUALITY_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZLiquidityManager.sol",
+        "source_sha256": "43aa1d36777f3ab0b9c13c0fde91f47ffca2f38ec94a19df980606c04c015330",
+        "constant_ast_id": 31471
+      }
+    },
+    {
+      "id": "liquidity.LP_ROUTING_VERSION",
+      "role": "liquidity",
+      "signature": "LP_ROUTING_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000003",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "3"
+      ],
+      "origin": {
+        "source": "src/ZZZLiquidityManager.sol",
+        "source_sha256": "43aa1d36777f3ab0b9c13c0fde91f47ffca2f38ec94a19df980606c04c015330",
+        "constant_ast_id": 31459
+      }
+    },
+    {
+      "id": "liquidity.PORTFOLIO_VERSION",
+      "role": "liquidity",
+      "signature": "PORTFOLIO_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "2"
+      ],
+      "origin": {
+        "source": "src/ZZZLiquidityManager.sol",
+        "source_sha256": "43aa1d36777f3ab0b9c13c0fde91f47ffca2f38ec94a19df980606c04c015330",
+        "constant_ast_id": 31465
+      }
+    },
+    {
+      "id": "liquidity.RESIDUAL_EXIT_VERSION",
+      "role": "liquidity",
+      "signature": "RESIDUAL_EXIT_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZLiquidityManager.sol",
+        "source_sha256": "43aa1d36777f3ab0b9c13c0fde91f47ffca2f38ec94a19df980606c04c015330",
+        "constant_ast_id": 31468
+      }
+    },
+    {
+      "id": "pools.SELECTED_NATIVE_POOL",
+      "role": "pools",
+      "signature": "SELECTED_NATIVE_POOL()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "expected_types": [
+        "bytes32"
+      ],
+      "expected_values": [
+        "36215304117639473942956184678598083808932734028250661589202473382530834431515"
+      ],
+      "origin": {
+        "source": "src/ZZZPoolRegistry.sol",
+        "source_sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+        "constant_ast_id": 50213
+      }
+    },
+    {
+      "id": "strategy.EXECUTION_PRICE_VERSION",
+      "role": "strategy",
+      "signature": "EXECUTION_PRICE_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZStrategy.sol",
+        "source_sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+        "constant_ast_id": 66196
+      }
+    },
+    {
+      "id": "strategy.EXECUTION_QUALITY_VERSION",
+      "role": "strategy",
+      "signature": "EXECUTION_QUALITY_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZStrategy.sol",
+        "source_sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+        "constant_ast_id": 66193
+      }
+    },
+    {
+      "id": "strategy.MAINTENANCE_POLICY_VERSION",
+      "role": "strategy",
+      "signature": "MAINTENANCE_POLICY_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000003",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "3"
+      ],
+      "origin": {
+        "source": "src/ZZZStrategy.sol",
+        "source_sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+        "constant_ast_id": 66178
+      }
+    },
+    {
+      "id": "strategy.MAX_ADDITIONAL_LOSS_BPS",
+      "role": "strategy",
+      "signature": "MAX_ADDITIONAL_LOSS_BPS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x00000000000000000000000000000000000000000000000000000000000003e8",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1000"
+      ],
+      "origin": {
+        "source": "src/ZZZStrategy.sol",
+        "source_sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+        "constant_ast_id": 66199
+      }
+    },
+    {
+      "id": "strategy.PORTFOLIO_VERSION",
+      "role": "strategy",
+      "signature": "PORTFOLIO_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "2"
+      ],
+      "origin": {
+        "source": "src/ZZZStrategy.sol",
+        "source_sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+        "constant_ast_id": 66184
+      }
+    },
+    {
+      "id": "strategy.RANGE_POLICY_VERSION",
+      "role": "strategy",
+      "signature": "RANGE_POLICY_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZStrategy.sol",
+        "source_sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+        "constant_ast_id": 66174
+      }
+    },
+    {
+      "id": "strategy.REBALANCE_CONFIRMATION_VERSION",
+      "role": "strategy",
+      "signature": "REBALANCE_CONFIRMATION_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000003",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "3"
+      ],
+      "origin": {
+        "source": "src/ZZZStrategy.sol",
+        "source_sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+        "constant_ast_id": 66181
+      }
+    },
+    {
+      "id": "vault.ACCOUNTING_VERSION",
+      "role": "vault",
+      "signature": "ACCOUNTING_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000007",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "7"
+      ],
+      "origin": {
+        "source": "src/ZZZVault.sol",
+        "source_sha256": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7",
+        "constant_ast_id": 71525
+      }
+    },
+    {
+      "id": "vault.MAX_BUCKETS",
+      "role": "vault",
+      "signature": "MAX_BUCKETS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000004",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "4"
+      ],
+      "origin": {
+        "source": "src/ZZZVault.sol",
+        "source_sha256": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7",
+        "constant_ast_id": 71493
+      }
+    },
+    {
+      "id": "vault.RESIDUAL_EXIT_VERSION",
+      "role": "vault",
+      "signature": "RESIDUAL_EXIT_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZVault.sol",
+        "source_sha256": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7",
+        "constant_ast_id": 71528
+      }
+    },
+    {
+      "id": "vault.RESIDUAL_REINVEST_VERSION",
+      "role": "vault",
+      "signature": "RESIDUAL_REINVEST_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZVault.sol",
+        "source_sha256": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7",
+        "constant_ast_id": 71531
+      }
+    },
+    {
+      "id": "rewards.LP_ALLOCATION_VERSION",
+      "role": "rewards",
+      "signature": "LP_ALLOCATION_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/base/ZZZExactLPRewardsCanonical.sol",
+        "source_sha256": "fb244471d61a345a513f1f86f5544764714d59e353c01b3253cfbbac3e728b6a",
+        "constant_ast_id": 78112
+      }
+    },
+    {
+      "id": "rewards.MAX_ASSETS",
+      "role": "rewards",
+      "signature": "MAX_ASSETS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "2"
+      ],
+      "origin": {
+        "source": "src/base/ZZZExactLPRewardsCanonical.sol",
+        "source_sha256": "fb244471d61a345a513f1f86f5544764714d59e353c01b3253cfbbac3e728b6a",
+        "constant_ast_id": 78106
+      }
+    },
+    {
+      "id": "rewards.MAX_CONVERSION_NFTS",
+      "role": "rewards",
+      "signature": "MAX_CONVERSION_NFTS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000020",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "32"
+      ],
+      "origin": {
+        "source": "src/base/ZZZExactLPRewardsCanonical.sol",
+        "source_sha256": "fb244471d61a345a513f1f86f5544764714d59e353c01b3253cfbbac3e728b6a",
+        "constant_ast_id": 78109
+      }
+    },
+    {
+      "id": "rewards.MAX_ERC20_ASSETS",
+      "role": "rewards",
+      "signature": "MAX_ERC20_ASSETS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/base/ZZZExactLPRewardsCanonical.sol",
+        "source_sha256": "fb244471d61a345a513f1f86f5544764714d59e353c01b3253cfbbac3e728b6a",
+        "constant_ast_id": 78103
+      }
+    },
+    {
+      "id": "fees.FEE_INTAKE_VERSION",
+      "role": "fees",
+      "signature": "FEE_INTAKE_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZFeeController.sol",
+        "source_sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+        "constant_ast_id": 21622
+      }
+    },
+    {
+      "id": "migration.CUSTODY_VERSION",
+      "role": "migration",
+      "signature": "CUSTODY_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000005",
+      "expected_types": [
+        "uint8"
+      ],
+      "expected_values": [
+        "5"
+      ],
+      "origin": {
+        "source": "src/ZZZMigration.sol",
+        "source_sha256": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed",
+        "constant_ast_id": 34773
+      }
+    },
+    {
+      "id": "migration.EMERGENCY_REBALANCE_VERSION",
+      "role": "migration",
+      "signature": "EMERGENCY_REBALANCE_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "2"
+      ],
+      "origin": {
+        "source": "src/ZZZMigration.sol",
+        "source_sha256": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed",
+        "constant_ast_id": 34776
+      }
+    },
+    {
+      "id": "migration.MAX_BATCH",
+      "role": "migration",
+      "signature": "MAX_BATCH()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000020",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "32"
+      ],
+      "origin": {
+        "source": "src/ZZZMigration.sol",
+        "source_sha256": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed",
+        "constant_ast_id": 34785
+      }
+    },
+    {
+      "id": "migration.RESIDUAL_EXIT_VERSION",
+      "role": "migration",
+      "signature": "RESIDUAL_EXIT_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZMigration.sol",
+        "source_sha256": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed",
+        "constant_ast_id": 34779
+      }
+    },
+    {
+      "id": "migration.RESIDUAL_REINVEST_VERSION",
+      "role": "migration",
+      "signature": "RESIDUAL_REINVEST_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZMigration.sol",
+        "source_sha256": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed",
+        "constant_ast_id": 34782
+      }
+    },
+    {
+      "id": "nft.MAX_METADATA_REFRESH_BATCH",
+      "role": "nft",
+      "signature": "MAX_METADATA_REFRESH_BATCH()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000032",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "50"
+      ],
+      "origin": {
+        "source": "src/ZZZNFT.sol",
+        "source_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+        "constant_ast_id": 39737
+      }
+    },
+    {
+      "id": "nft.MAX_SUPPLY",
+      "role": "nft",
+      "signature": "MAX_SUPPLY()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x00000000000000000000000000000000000000000000000000000000000003e8",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1000"
+      ],
+      "origin": {
+        "source": "src/ZZZNFT.sol",
+        "source_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+        "constant_ast_id": 39734
+      }
+    },
+    {
+      "id": "canonical.MAX_ROWS",
+      "role": "canonical",
+      "signature": "MAX_ROWS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000008",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "8"
+      ],
+      "origin": {
+        "source": "src/ZZZCanonicalHandoff.sol",
+        "source_sha256": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+        "constant_ast_id": 13614
+      }
+    },
+    {
+      "id": "canonical.SCHEMA",
+      "role": "canonical",
+      "signature": "SCHEMA()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x39072e4b9a0ee67088975eb1e1705d8c18c76abc065e31bab795739387ec2952",
+      "expected_types": [
+        "bytes32"
+      ],
+      "expected_values": [
+        "0x39072e4b9a0ee67088975eb1e1705d8c18c76abc065e31bab795739387ec2952"
+      ],
+      "origin": {
+        "source": "src/ZZZCanonicalHandoff.sol",
+        "source_sha256": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+        "constant_ast_id": 13619
+      }
+    },
+    {
+      "id": "canonical.SLOTS",
+      "role": "canonical",
+      "signature": "SLOTS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000006",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "6"
+      ],
+      "origin": {
+        "source": "src/ZZZCanonicalHandoff.sol",
+        "source_sha256": "ec689d72bc99953411ea7ac13e9a831f85e8df059c4d6b39025078d2b7472c95",
+        "constant_ast_id": 13611
+      }
+    },
+    {
+      "id": "lp_converter.MAX_LOSS_BPS",
+      "role": "lp_converter",
+      "signature": "MAX_LOSS_BPS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x00000000000000000000000000000000000000000000000000000000000003e8",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1000"
+      ],
+      "origin": {
+        "source": "src/base/ZZZRewardConverter.sol",
+        "source_sha256": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+        "constant_ast_id": 79972
+      }
+    },
+    {
+      "id": "seadrop_mint.ALLOWLIST",
+      "role": "seadrop_mint",
+      "signature": "ALLOWLIST()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "expected_types": [
+        "uint8"
+      ],
+      "expected_values": [
+        "2"
+      ],
+      "origin": {
+        "source": "src/ZZZSeaDropMint.sol",
+        "source_sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+        "constant_ast_id": 64283
+      }
+    },
+    {
+      "id": "seadrop_mint.MAX_BATCH_ENGINEERING",
+      "role": "seadrop_mint",
+      "signature": "MAX_BATCH_ENGINEERING()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x000000000000000000000000000000000000000000000000000000000000000a",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "10"
+      ],
+      "origin": {
+        "source": "src/ZZZSeaDropMint.sol",
+        "source_sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+        "constant_ast_id": 64274
+      }
+    },
+    {
+      "id": "seadrop_mint.MAX_PAYERS_ENGINEERING",
+      "role": "seadrop_mint",
+      "signature": "MAX_PAYERS_ENGINEERING()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000010",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "16"
+      ],
+      "origin": {
+        "source": "src/ZZZSeaDropMint.sol",
+        "source_sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+        "constant_ast_id": 64277
+      }
+    },
+    {
+      "id": "seadrop_mint.MAX_SUPPLY",
+      "role": "seadrop_mint",
+      "signature": "MAX_SUPPLY()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x00000000000000000000000000000000000000000000000000000000000003e8",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1000"
+      ],
+      "origin": {
+        "source": "src/ZZZSeaDropMint.sol",
+        "source_sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+        "constant_ast_id": 64271
+      }
+    },
+    {
+      "id": "seadrop_mint.MINT_INTEGRATION_VERSION",
+      "role": "seadrop_mint",
+      "signature": "MINT_INTEGRATION_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZSeaDropMint.sol",
+        "source_sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+        "constant_ast_id": 64268
+      }
+    },
+    {
+      "id": "seadrop_mint.PUBLIC",
+      "role": "seadrop_mint",
+      "signature": "PUBLIC()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000003",
+      "expected_types": [
+        "uint8"
+      ],
+      "expected_values": [
+        "3"
+      ],
+      "origin": {
+        "source": "src/ZZZSeaDropMint.sol",
+        "source_sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+        "constant_ast_id": 64286
+      }
+    },
+    {
+      "id": "seadrop_mint.TEAM",
+      "role": "seadrop_mint",
+      "signature": "TEAM()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint8"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZSeaDropMint.sol",
+        "source_sha256": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+        "constant_ast_id": 64280
+      }
+    },
+    {
+      "id": "royalty_factory.CODE_STORAGE_VERSION",
+      "role": "royalty_factory",
+      "signature": "CODE_STORAGE_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "2"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyFactory.sol",
+        "source_sha256": "0cfa4fe27736c0a4ecd6fe1357a1f2b8bc9677772c70e20c75e01a5a05b53465",
+        "constant_ast_id": 60068
+      }
+    },
+    {
+      "id": "lp_balance_math.EXECUTION_PRICE_VERSION",
+      "role": "lp_balance_math",
+      "signature": "EXECUTION_PRICE_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZLPBalanceMath.sol",
+        "source_sha256": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "constant_ast_id": 23877
+      }
+    },
+    {
+      "id": "lp_balance_math.LP_BALANCE_MATH_VERSION",
+      "role": "lp_balance_math",
+      "signature": "LP_BALANCE_MATH_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZLPBalanceMath.sol",
+        "source_sha256": "50875a36c3f23299e66e182f5a77d77c8b33118cbdef24e969671348a48da725",
+        "constant_ast_id": 23874
+      }
+    },
+    {
+      "id": "lp_position_executor.EXECUTION_PRICE_VERSION",
+      "role": "lp_position_executor",
+      "signature": "EXECUTION_PRICE_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZLPPositionExecutor.sol",
+        "source_sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+        "constant_ast_id": 28990
+      }
+    },
+    {
+      "id": "lp_position_executor.LP_POSITION_EXECUTOR_VERSION",
+      "role": "lp_position_executor",
+      "signature": "LP_POSITION_EXECUTOR_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZLPPositionExecutor.sol",
+        "source_sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+        "constant_ast_id": 28987
+      }
+    },
+    {
+      "id": "lp_position_executor.RESIDUAL_EXIT_VERSION",
+      "role": "lp_position_executor",
+      "signature": "RESIDUAL_EXIT_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZLPPositionExecutor.sol",
+        "source_sha256": "8bd510ad6fe0d553eca9a50a820dcd455d9b189942a5d65d157edc6eb53dc9de",
+        "constant_ast_id": 28993
+      }
+    },
+    {
+      "id": "contribution_pricing.ENTRY_REVIEW_VERSION",
+      "role": "contribution_pricing",
+      "signature": "ENTRY_REVIEW_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "2"
+      ],
+      "origin": {
+        "source": "src/ZZZContributionPricing.sol",
+        "source_sha256": "971a967c6d63951ea873889a8b9e2b221578f8dc21549884fbc27fac6d738707",
+        "constant_ast_id": 16988
+      }
+    },
+    {
+      "id": "contribution_pricing.EXECUTION_PRICE_VERSION",
+      "role": "contribution_pricing",
+      "signature": "EXECUTION_PRICE_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZContributionPricing.sol",
+        "source_sha256": "971a967c6d63951ea873889a8b9e2b221578f8dc21549884fbc27fac6d738707",
+        "constant_ast_id": 16994
+      }
+    },
+    {
+      "id": "contribution_pricing.RESIDUAL_REINVEST_VERSION",
+      "role": "contribution_pricing",
+      "signature": "RESIDUAL_REINVEST_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZContributionPricing.sol",
+        "source_sha256": "971a967c6d63951ea873889a8b9e2b221578f8dc21549884fbc27fac6d738707",
+        "constant_ast_id": 16991
+      }
+    },
+    {
+      "id": "activation_assets.NATIVE_ASSET_CODE_HASH",
+      "role": "activation_assets",
+      "signature": "NATIVE_ASSET_CODE_HASH()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x90eb89de3dde6b2fcfc4753db6ffb4e607f3192616b28c6f65a9454e703051db",
+      "expected_types": [
+        "bytes32"
+      ],
+      "expected_values": [
+        "0x90eb89de3dde6b2fcfc4753db6ffb4e607f3192616b28c6f65a9454e703051db"
+      ],
+      "origin": {
+        "source": "src/ZZZActivationAssets.sol",
+        "source_sha256": "e0b65ec8312da1bda7ffdc268750a9578b97c53c2804a07f7729eaeb409d2ffd",
+        "constant_ast_id": 11277
+      }
+    },
+    {
+      "id": "activation_assets.SOURCE_POLICY_VERSION",
+      "role": "activation_assets",
+      "signature": "SOURCE_POLICY_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZActivationAssets.sol",
+        "source_sha256": "e0b65ec8312da1bda7ffdc268750a9578b97c53c2804a07f7729eaeb409d2ffd",
+        "constant_ast_id": 11269
+      }
+    },
+    {
+      "id": "activation_entry.ENTRY_ROUTING_VERSION",
+      "role": "activation_entry",
+      "signature": "ENTRY_ROUTING_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000003",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "3"
+      ],
+      "origin": {
+        "source": "src/ZZZActivationEntry.sol",
+        "source_sha256": "4394e4696bdeb3c7c3782fcaf66bc6d996a52a7291bb5ad9165626d0b5b92ab5",
+        "constant_ast_id": 12074
+      }
+    },
+    {
+      "id": "activation_entry.REVIEW_POLICY_VERSION",
+      "role": "activation_entry",
+      "signature": "REVIEW_POLICY_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "2"
+      ],
+      "origin": {
+        "source": "src/ZZZActivationEntry.sol",
+        "source_sha256": "4394e4696bdeb3c7c3782fcaf66bc6d996a52a7291bb5ad9165626d0b5b92ab5",
+        "constant_ast_id": 12078
+      }
+    },
+    {
+      "id": "royalty_rewards.ACTIVATION_WINDOW",
+      "role": "royalty_rewards",
+      "signature": "ACTIVATION_WINDOW()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000e10",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "3600"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "constant_ast_id": 60452
+      }
+    },
+    {
+      "id": "royalty_rewards.MAX_ASSETS",
+      "role": "royalty_rewards",
+      "signature": "MAX_ASSETS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000041",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "65"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "constant_ast_id": 60433
+      }
+    },
+    {
+      "id": "royalty_rewards.MAX_ERC20_ASSETS",
+      "role": "royalty_rewards",
+      "signature": "MAX_ERC20_ASSETS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000040",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "64"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "constant_ast_id": 60428
+      }
+    },
+    {
+      "id": "royalty_rewards.ROYALTY_ALLOCATION_VERSION",
+      "role": "royalty_rewards",
+      "signature": "ROYALTY_ALLOCATION_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "2"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "constant_ast_id": 60446
+      }
+    },
+    {
+      "id": "royalty_rewards.ROYALTY_RECOVERY_VERSION",
+      "role": "royalty_rewards",
+      "signature": "ROYALTY_RECOVERY_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "2"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "constant_ast_id": 60449
+      }
+    },
+    {
+      "id": "royalty_rewards.ROYALTY_SETTLEMENT_VERSION",
+      "role": "royalty_rewards",
+      "signature": "ROYALTY_SETTLEMENT_VERSION()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000004",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "4"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "constant_ast_id": 60443
+      }
+    },
+    {
+      "id": "claim_router.MAX_CLAIMS",
+      "role": "claim_router",
+      "signature": "MAX_CLAIMS()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000020",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "32"
+      ],
+      "origin": {
+        "source": "src/ZZZClaimRouter.sol",
+        "source_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+        "constant_ast_id": 16476
+      }
+    },
+    {
+      "id": "lp_v4_executor.NATIVE_ASSET_CODE_HASH",
+      "role": "lp_v4_executor",
+      "signature": "NATIVE_ASSET_CODE_HASH()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x90eb89de3dde6b2fcfc4753db6ffb4e607f3192616b28c6f65a9454e703051db",
+      "expected_types": [
+        "bytes32"
+      ],
+      "expected_values": [
+        "0x90eb89de3dde6b2fcfc4753db6ffb4e607f3192616b28c6f65a9454e703051db"
+      ],
+      "origin": {
+        "source": "src/ZZZV4RouteExecutor.sol",
+        "source_sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+        "constant_ast_id": 68820
+      }
+    },
+    {
+      "id": "lp_v4_executor.ROUTE_DOMAIN",
+      "role": "lp_v4_executor",
+      "signature": "ROUTE_DOMAIN()",
+      "types": [],
+      "values": [],
+      "expected_return": "0xffeef623af1653701b209789d78f749288ef0414d27d2583a14171b8f0654770",
+      "expected_types": [
+        "bytes32"
+      ],
+      "expected_values": [
+        "0xffeef623af1653701b209789d78f749288ef0414d27d2583a14171b8f0654770"
+      ],
+      "origin": {
+        "source": "src/ZZZV4RouteExecutor.sol",
+        "source_sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+        "constant_ast_id": 68825
+      }
+    },
+    {
+      "id": "protocol_policy.entryPolicy",
+      "role": "protocol_policy",
+      "signature": "entryPolicy()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000056bc75e2d631000000000000000000000000000000000000000000000000000004563918244f4000000000000000000000000000000000000000000000000000000000000000001f40000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "(uint128,uint128,uint16,uint64)"
+      ],
+      "expected_values": [
+        [
+          "100000000000000000000",
+          "5000000000000000000",
+          "500",
+          "1"
+        ]
+      ],
+      "origin": {
+        "source": "src/ZZZProtocolPolicy.sol",
+        "source_sha256": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+        "inspection": "Constructor exact EntryPolicy tuple"
+      }
+    },
+    {
+      "id": "protocol_policy.maintenancePolicy",
+      "role": "protocol_policy",
+      "signature": "maintenancePolicy()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x00000000000000000000000000000000000000000000000000000000000001f40000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "(uint16,uint64)"
+      ],
+      "expected_values": [
+        [
+          "500",
+          "1"
+        ]
+      ],
+      "origin": {
+        "source": "src/ZZZProtocolPolicy.sol",
+        "source_sha256": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+        "inspection": "Constructor exact MaintenancePolicy tuple"
+      }
+    },
+    {
+      "id": "protocol_policy.gasPolicy",
+      "role": "protocol_policy",
+      "signature": "gasPolicy()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x000000000000000000000000000000000000000000000000000000000002bf20000000000000000000000000000000000000000000000000000000000007a12000000000000000000000000000000000000000000000000000000000000f42400000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "(uint32,uint32,uint32,uint64)"
+      ],
+      "expected_values": [
+        [
+          "180000",
+          "500000",
+          "1000000",
+          "1"
+        ]
+      ],
+      "origin": {
+        "source": "src/ZZZProtocolPolicy.sol",
+        "source_sha256": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+        "inspection": "Constructor exact GasPolicy tuple"
+      }
+    },
+    {
+      "id": "protocol_policy.metadataPolicy",
+      "role": "protocol_policy",
+      "signature": "metadataPolicy()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x00000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000000000000000000000000021e19e0c9bab24000000000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "(uint128,uint128,uint64)"
+      ],
+      "expected_values": [
+        [
+          "1000000000000000000000",
+          "10000000000000000000000",
+          "1"
+        ]
+      ],
+      "origin": {
+        "source": "src/ZZZProtocolPolicy.sol",
+        "source_sha256": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+        "inspection": "Constructor exact MetadataPolicy tuple"
+      }
+    },
+    {
+      "id": "protocol_policy.vrfPolicy",
+      "role": "protocol_policy",
+      "signature": "vrfPolicy()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "(address,bytes32,bytes32,uint256,uint16,uint32,bool,uint64,bool,bytes32)"
+      ],
+      "expected_values": [
+        [
+          "0x0000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0",
+          "0",
+          "0",
+          false,
+          "0",
+          false,
+          "0x0000000000000000000000000000000000000000000000000000000000000000"
+        ]
+      ],
+      "origin": {
+        "source": "src/ZZZProtocolPolicy.sol",
+        "source_sha256": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+        "inspection": "Never configured: all10 static tuple fields remain zero"
+      }
+    },
+    {
+      "id": "protocol_policy.royaltyBalanceGas",
+      "role": "protocol_policy",
+      "signature": "royaltyBalanceGas()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x000000000000000000000000000000000000000000000000000000000000c350",
+      "expected_types": [
+        "uint32"
+      ],
+      "expected_values": [
+        "50000"
+      ],
+      "origin": {
+        "source": "src/ZZZProtocolPolicy.sol",
+        "source_sha256": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+        "inspection": "Constructor default / no policy mutation"
+      }
+    },
+    {
+      "id": "protocol_policy.configurationRevision",
+      "role": "protocol_policy",
+      "signature": "configurationRevision()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint64"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZProtocolPolicy.sol",
+        "source_sha256": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+        "inspection": "Constructor default / no policy mutation"
+      }
+    },
+    {
+      "id": "protocol_policy.vrfRevision",
+      "role": "protocol_policy",
+      "signature": "vrfRevision()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint64"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZProtocolPolicy.sol",
+        "source_sha256": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+        "inspection": "Constructor default / no policy mutation"
+      }
+    },
+    {
+      "id": "protocol_policy.payoutGas",
+      "role": "protocol_policy",
+      "signature": "payoutGas()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x000000000000000000000000000000000000000000000000000000000002bf20",
+      "expected_types": [
+        "uint32"
+      ],
+      "expected_values": [
+        "180000"
+      ],
+      "origin": {
+        "source": "src/ZZZProtocolPolicy.sol",
+        "source_sha256": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+        "inspection": "Constructor default / no policy mutation"
+      }
+    },
+    {
+      "id": "protocol_policy.sourceCallGas",
+      "role": "protocol_policy",
+      "signature": "sourceCallGas()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x000000000000000000000000000000000000000000000000000000000007a120",
+      "expected_types": [
+        "uint32"
+      ],
+      "expected_values": [
+        "500000"
+      ],
+      "origin": {
+        "source": "src/ZZZProtocolPolicy.sol",
+        "source_sha256": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+        "inspection": "Constructor default / no policy mutation"
+      }
+    },
+    {
+      "id": "protocol_policy.royaltySyncGas",
+      "role": "protocol_policy",
+      "signature": "royaltySyncGas()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+      "expected_types": [
+        "uint32"
+      ],
+      "expected_values": [
+        "1000000"
+      ],
+      "origin": {
+        "source": "src/ZZZProtocolPolicy.sol",
+        "source_sha256": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+        "inspection": "Constructor default / no policy mutation"
+      }
+    },
+    {
+      "id": "migration_budget.contributionLossBps",
+      "role": "migration_budget",
+      "signature": "contributionLossBps()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x000000000000000000000000000000000000000000000000000000000000012c",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "300"
+      ],
+      "origin": {
+        "source": "src/ZZZMigrationBudget.sol",
+        "source_sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+        "inspection": "Declared initial state; no emergency context"
+      }
+    },
+    {
+      "id": "migration_budget.maintenanceLossBps",
+      "role": "migration_budget",
+      "signature": "maintenanceLossBps()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x000000000000000000000000000000000000000000000000000000000000012c",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "300"
+      ],
+      "origin": {
+        "source": "src/ZZZMigrationBudget.sol",
+        "source_sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+        "inspection": "Declared initial state; no emergency context"
+      }
+    },
+    {
+      "id": "migration_budget.emergencyActive",
+      "role": "migration_budget",
+      "signature": "emergencyActive()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "bool"
+      ],
+      "expected_values": [
+        false
+      ],
+      "origin": {
+        "source": "src/ZZZMigrationBudget.sol",
+        "source_sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+        "inspection": "Declared initial state; no emergency context"
+      }
+    },
+    {
+      "id": "migration_budget.emergencyBucket",
+      "role": "migration_budget",
+      "signature": "emergencyBucket()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZMigrationBudget.sol",
+        "source_sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+        "inspection": "Declared initial state; no emergency context"
+      }
+    },
+    {
+      "id": "migration_budget.emergencyChecks",
+      "role": "migration_budget",
+      "signature": "emergencyChecks()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint8"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZMigrationBudget.sol",
+        "source_sha256": "0764bdd55937b132588c1d9f181b4d2156104cf68399e8a544e6ba24dde1a39d",
+        "inspection": "Declared initial state; no emergency context"
+      }
+    },
+    {
+      "id": "rebalance_confirmation.duration",
+      "role": "rebalance_confirmation",
+      "signature": "duration()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000258",
+      "expected_types": [
+        "uint32"
+      ],
+      "expected_values": [
+        "600"
+      ],
+      "origin": {
+        "source": "src/ZZZRebalanceConfirmation.sol",
+        "source_sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+        "inspection": "Constructor defaults; maxObservationGap remains0 in original112reads, so confirmation is stopped"
+      }
+    },
+    {
+      "id": "rebalance_confirmation.policyRevision",
+      "role": "rebalance_confirmation",
+      "signature": "policyRevision()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint64"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZRebalanceConfirmation.sol",
+        "source_sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+        "inspection": "Constructor defaults; maxObservationGap remains0 in original112reads, so confirmation is stopped"
+      }
+    },
+    {
+      "id": "rebalance_confirmation.reviewHash",
+      "role": "rebalance_confirmation",
+      "signature": "reviewHash()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "bytes32"
+      ],
+      "expected_values": [
+        "0x0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "origin": {
+        "source": "src/ZZZRebalanceConfirmation.sol",
+        "source_sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+        "inspection": "Constructor defaults; maxObservationGap remains0 in original112reads, so confirmation is stopped"
+      }
+    },
+    {
+      "id": "rebalance_confirmation.requireReferenceExit",
+      "role": "rebalance_confirmation",
+      "signature": "requireReferenceExit()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "bool"
+      ],
+      "expected_values": [
+        true
+      ],
+      "origin": {
+        "source": "src/ZZZRebalanceConfirmation.sol",
+        "source_sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+        "inspection": "Constructor defaults; maxObservationGap remains0 in original112reads, so confirmation is stopped"
+      }
+    },
+    {
+      "id": "rebalance_confirmation.referenceReviewHash",
+      "role": "rebalance_confirmation",
+      "signature": "referenceReviewHash()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "bytes32"
+      ],
+      "expected_values": [
+        "0x0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "origin": {
+        "source": "src/ZZZRebalanceConfirmation.sol",
+        "source_sha256": "3456e827dd9f0cabe78267e077d50a56b417eb7e3227fdc8f097f0fd3fad1af3",
+        "inspection": "Constructor defaults; maxObservationGap remains0 in original112reads, so confirmation is stopped"
+      }
+    },
+    {
+      "id": "portfolio_policy.thresholdBps",
+      "role": "portfolio_policy",
+      "signature": "thresholdBps()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000002134",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "8500"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "inspection": "Declared initial portfolio policy, no admitted pool/mode changes"
+      }
+    },
+    {
+      "id": "portfolio_policy.revision",
+      "role": "portfolio_policy",
+      "signature": "revision()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint64"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "inspection": "Declared initial portfolio policy, no admitted pool/mode changes"
+      }
+    },
+    {
+      "id": "portfolio_policy.triggerRevision",
+      "role": "portfolio_policy",
+      "signature": "triggerRevision()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint64"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "inspection": "Declared initial portfolio policy, no admitted pool/mode changes"
+      }
+    },
+    {
+      "id": "portfolio_policy.triggerReviewHash",
+      "role": "portfolio_policy",
+      "signature": "triggerReviewHash()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "bytes32"
+      ],
+      "expected_values": [
+        "0x0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "inspection": "Declared initial portfolio policy, no admitted pool/mode changes"
+      }
+    },
+    {
+      "id": "portfolio_policy.enabled[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "signature": "enabled(bytes32)",
+      "types": [
+        "bytes32"
+      ],
+      "values": [
+        "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "bool"
+      ],
+      "expected_values": [
+        false
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "inspection": "Read-only mappings/default fallback; does not admit the selected pool"
+      }
+    },
+    {
+      "id": "portfolio_policy.geometryRevision[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "signature": "geometryRevision(bytes32)",
+      "types": [
+        "bytes32"
+      ],
+      "values": [
+        "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint64"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "inspection": "Read-only mappings/default fallback; does not admit the selected pool"
+      }
+    },
+    {
+      "id": "portfolio_policy.controlRevision[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "signature": "controlRevision(bytes32)",
+      "types": [
+        "bytes32"
+      ],
+      "values": [
+        "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint64"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "inspection": "Read-only mappings/default fallback; does not admit the selected pool"
+      }
+    },
+    {
+      "id": "portfolio_policy.residualReviewHash[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "signature": "residualReviewHash(bytes32)",
+      "types": [
+        "bytes32"
+      ],
+      "values": [
+        "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "bytes32"
+      ],
+      "expected_values": [
+        "0x0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "inspection": "Read-only mappings/default fallback; does not admit the selected pool"
+      }
+    },
+    {
+      "id": "portfolio_policy.modeReviewHash[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "signature": "modeReviewHash(bytes32)",
+      "types": [
+        "bytes32"
+      ],
+      "values": [
+        "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "bytes32"
+      ],
+      "expected_values": [
+        "0x0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "inspection": "Read-only mappings/default fallback; does not admit the selected pool"
+      }
+    },
+    {
+      "id": "portfolio_policy.residualSideBps[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "signature": "residualSideBps(bytes32)",
+      "types": [
+        "bytes32"
+      ],
+      "values": [
+        "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000001388",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "5000"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "inspection": "Read-only mappings/default fallback; does not admit the selected pool"
+      }
+    },
+    {
+      "id": "portfolio_policy.minimumMainBps[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "signature": "minimumMainBps(bytes32)",
+      "types": [
+        "bytes32"
+      ],
+      "values": [
+        "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000001770",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "6000"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "inspection": "Read-only mappings/default fallback; does not admit the selected pool"
+      }
+    },
+    {
+      "id": "portfolio_policy.maximumResidualBps[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "signature": "maximumResidualBps(bytes32)",
+      "types": [
+        "bytes32"
+      ],
+      "values": [
+        "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000fa0",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "4000"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "inspection": "Read-only mappings/default fallback; does not admit the selected pool"
+      }
+    },
+    {
+      "id": "portfolio_policy.residualGapSpacings[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "signature": "residualGapSpacings(bytes32)",
+      "types": [
+        "bytes32"
+      ],
+      "values": [
+        "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint24"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZPortfolioPolicy.sol",
+        "source_sha256": "9259699d638b34fcfdd94a2156dfe22aa3d169e2c15feeac8db68d261b76db36",
+        "inspection": "Read-only mappings/default fallback; does not admit the selected pool"
+      }
+    },
+    {
+      "id": "balancing_router.executionRevision",
+      "role": "balancing_router",
+      "signature": "executionRevision()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint64"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZLPBalancer.sol",
+        "source_sha256": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+        "inspection": "Declared initial bounded route-search state; no venues configured"
+      }
+    },
+    {
+      "id": "balancing_router.searchIterations",
+      "role": "balancing_router",
+      "signature": "searchIterations()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000008",
+      "expected_types": [
+        "uint8"
+      ],
+      "expected_values": [
+        "8"
+      ],
+      "origin": {
+        "source": "src/ZZZLPBalancer.sol",
+        "source_sha256": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+        "inspection": "Declared initial bounded route-search state; no venues configured"
+      }
+    },
+    {
+      "id": "balancing_router.quoteGasLimit",
+      "role": "balancing_router",
+      "signature": "quoteGasLimit()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000030d40",
+      "expected_types": [
+        "uint32"
+      ],
+      "expected_values": [
+        "200000"
+      ],
+      "origin": {
+        "source": "src/ZZZLPBalancer.sol",
+        "source_sha256": "a69eec99b396eb668fdbc3f314a1a0bd99899b7579f12990c3ebc92474442212",
+        "inspection": "Declared initial bounded route-search state; no venues configured"
+      }
+    },
+    {
+      "id": "strategy.additionalLossBps",
+      "role": "strategy",
+      "signature": "additionalLossBps()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000064",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "100"
+      ],
+      "origin": {
+        "source": "src/ZZZStrategy.sol",
+        "source_sha256": "ea3a8d45fd18325dfa952b53d5c1dde185b657c95e7a9212d0c6e5aa750af2bb",
+        "inspection": "Declared1percent additional execution loss, distinct from trading fees"
+      }
+    },
+    {
+      "id": "lp_converter.conversionLossBps",
+      "role": "lp_converter",
+      "signature": "conversionLossBps()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000064",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "100"
+      ],
+      "origin": {
+        "source": "src/ZZZLPRewardConverter.sol",
+        "source_sha256": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+        "inspection": "Declared1percent LP conversion loss; converter disabled by original112reads"
+      }
+    },
+    {
+      "id": "pools.contributionPool",
+      "role": "pools",
+      "signature": "contributionPool()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "bytes32"
+      ],
+      "expected_values": [
+        "0x0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "origin": {
+        "source": "src/ZZZPoolRegistry.sol",
+        "source_sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+        "inspection": "No pool admitted or contribution destination chosen"
+      }
+    },
+    {
+      "id": "pools.configurationRevision",
+      "role": "pools",
+      "signature": "configurationRevision()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint64"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZPoolRegistry.sol",
+        "source_sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+        "inspection": "No pool admitted or contribution destination chosen"
+      }
+    },
+    {
+      "id": "pools.exists[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "pools",
+      "signature": "exists(bytes32)",
+      "types": [
+        "bytes32"
+      ],
+      "values": [
+        "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "bool"
+      ],
+      "expected_values": [
+        false
+      ],
+      "origin": {
+        "source": "src/ZZZPoolRegistry.sol",
+        "source_sha256": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+        "inspection": "Selected identity alone is not admitted configuration"
+      }
+    },
+    {
+      "id": "migration.exitPhase",
+      "role": "migration",
+      "signature": "exitPhase()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint8"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZMigration.sol",
+        "source_sha256": "73c654d2e5c576b60a81fa3a75c62f4e3fb7637f1bf25b2a222c6334a6b669ed",
+        "inspection": "Never-started terminal holder return"
+      }
+    },
+    {
+      "id": "nft.nextToFinalize",
+      "role": "nft",
+      "signature": "nextToFinalize()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZNFT.sol",
+        "source_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+        "inspection": "No NFT minted or randomness policy configured"
+      }
+    },
+    {
+      "id": "nft.remainingToReveal",
+      "role": "nft",
+      "signature": "remainingToReveal()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x00000000000000000000000000000000000000000000000000000000000003e8",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1000"
+      ],
+      "origin": {
+        "source": "src/ZZZNFT.sol",
+        "source_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+        "inspection": "No NFT minted or randomness policy configured"
+      }
+    },
+    {
+      "id": "nft.mintPaused",
+      "role": "nft",
+      "signature": "mintPaused()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "bool"
+      ],
+      "expected_values": [
+        false
+      ],
+      "origin": {
+        "source": "src/ZZZNFT.sol",
+        "source_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+        "inspection": "No NFT minted or randomness policy configured"
+      }
+    },
+    {
+      "id": "nft.randomnessCoordinator",
+      "role": "nft",
+      "signature": "randomnessCoordinator()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "address"
+      ],
+      "expected_values": [
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "origin": {
+        "source": "src/ZZZNFT.sol",
+        "source_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+        "inspection": "No NFT minted or randomness policy configured"
+      }
+    },
+    {
+      "id": "nft.keyHash",
+      "role": "nft",
+      "signature": "keyHash()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "bytes32"
+      ],
+      "expected_values": [
+        "0x0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "origin": {
+        "source": "src/ZZZNFT.sol",
+        "source_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+        "inspection": "No NFT minted or randomness policy configured"
+      }
+    },
+    {
+      "id": "nft.subscriptionId",
+      "role": "nft",
+      "signature": "subscriptionId()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZNFT.sol",
+        "source_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+        "inspection": "No NFT minted or randomness policy configured"
+      }
+    },
+    {
+      "id": "nft.requestConfirmations",
+      "role": "nft",
+      "signature": "requestConfirmations()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZNFT.sol",
+        "source_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+        "inspection": "No NFT minted or randomness policy configured"
+      }
+    },
+    {
+      "id": "nft.callbackGasLimit",
+      "role": "nft",
+      "signature": "callbackGasLimit()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint32"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZNFT.sol",
+        "source_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+        "inspection": "No NFT minted or randomness policy configured"
+      }
+    },
+    {
+      "id": "nft.nativePayment",
+      "role": "nft",
+      "signature": "nativePayment()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "bool"
+      ],
+      "expected_values": [
+        false
+      ],
+      "origin": {
+        "source": "src/ZZZNFT.sol",
+        "source_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+        "inspection": "No NFT minted or randomness policy configured"
+      }
+    },
+    {
+      "id": "nft.randomnessEpoch",
+      "role": "nft",
+      "signature": "randomnessEpoch()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZNFT.sol",
+        "source_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+        "inspection": "No NFT minted or randomness policy configured"
+      }
+    },
+    {
+      "id": "nft.rarityRemaining[0]",
+      "role": "nft",
+      "signature": "rarityRemaining(uint256)",
+      "types": [
+        "uint256"
+      ],
+      "values": [
+        "0"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000258",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "600"
+      ],
+      "origin": {
+        "source": "src/ZZZNFT.sol",
+        "source_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+        "inspection": "Initial permanent draw quotas"
+      }
+    },
+    {
+      "id": "nft.rarityRemaining[1]",
+      "role": "nft",
+      "signature": "rarityRemaining(uint256)",
+      "types": [
+        "uint256"
+      ],
+      "values": [
+        "1"
+      ],
+      "expected_return": "0x000000000000000000000000000000000000000000000000000000000000012c",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "300"
+      ],
+      "origin": {
+        "source": "src/ZZZNFT.sol",
+        "source_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+        "inspection": "Initial permanent draw quotas"
+      }
+    },
+    {
+      "id": "nft.rarityRemaining[2]",
+      "role": "nft",
+      "signature": "rarityRemaining(uint256)",
+      "types": [
+        "uint256"
+      ],
+      "values": [
+        "2"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000064",
+      "expected_types": [
+        "uint16"
+      ],
+      "expected_values": [
+        "100"
+      ],
+      "origin": {
+        "source": "src/ZZZNFT.sol",
+        "source_sha256": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+        "inspection": "Initial permanent draw quotas"
+      }
+    },
+    {
+      "id": "royalty_rewards.activationCount",
+      "role": "royalty_rewards",
+      "signature": "activationCount()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "Fresh royalty ledger: no activation,receipt allocation or sale-end configuration"
+      }
+    },
+    {
+      "id": "royalty_rewards.totalWeight",
+      "role": "royalty_rewards",
+      "signature": "totalWeight()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "Fresh royalty ledger: no activation,receipt allocation or sale-end configuration"
+      }
+    },
+    {
+      "id": "royalty_rewards.assetCapacity",
+      "role": "royalty_rewards",
+      "signature": "assetCapacity()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000010",
+      "expected_types": [
+        "uint8"
+      ],
+      "expected_values": [
+        "16"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "Fresh royalty ledger: no activation,receipt allocation or sale-end configuration"
+      }
+    },
+    {
+      "id": "royalty_rewards.assetCount",
+      "role": "royalty_rewards",
+      "signature": "assetCount()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "1"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "Fresh royalty ledger: no activation,receipt allocation or sale-end configuration"
+      }
+    },
+    {
+      "id": "royalty_rewards.mintEnd",
+      "role": "royalty_rewards",
+      "signature": "mintEnd()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint64"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "Fresh royalty ledger: no activation,receipt allocation or sale-end configuration"
+      }
+    },
+    {
+      "id": "royalty_rewards.mintEndRevision",
+      "role": "royalty_rewards",
+      "signature": "mintEndRevision()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint64"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "Fresh royalty ledger: no activation,receipt allocation or sale-end configuration"
+      }
+    },
+    {
+      "id": "royalty_rewards.royaltiesOpenAt",
+      "role": "royalty_rewards",
+      "signature": "royaltiesOpenAt()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "Fresh royalty ledger: no activation,receipt allocation or sale-end configuration"
+      }
+    },
+    {
+      "id": "royalty_rewards.royaltiesOpen",
+      "role": "royalty_rewards",
+      "signature": "royaltiesOpen()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "bool"
+      ],
+      "expected_values": [
+        false
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "Fresh royalty ledger: no activation,receipt allocation or sale-end configuration"
+      }
+    },
+    {
+      "id": "royalty_rewards.assets[0]",
+      "role": "royalty_rewards",
+      "signature": "assets(uint256)",
+      "types": [
+        "uint256"
+      ],
+      "values": [
+        "0"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "address"
+      ],
+      "expected_values": [
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "Native ETH initial admitted asset"
+      }
+    },
+    {
+      "id": "royalty_rewards.isAsset[0x0000000000000000000000000000000000000000]",
+      "role": "royalty_rewards",
+      "signature": "isAsset(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "bool"
+      ],
+      "expected_values": [
+        true
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "Native ETH initial admitted asset"
+      }
+    },
+    {
+      "id": "royalty_rewards.eligibleCount[0x0000000000000000000000000000000000000000]",
+      "role": "royalty_rewards",
+      "signature": "eligibleCount(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "No funding or initial distribution; zero counted entitlement/backing"
+      }
+    },
+    {
+      "id": "royalty_rewards.eligibleWeight[0x0000000000000000000000000000000000000000]",
+      "role": "royalty_rewards",
+      "signature": "eligibleWeight(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "No funding or initial distribution; zero counted entitlement/backing"
+      }
+    },
+    {
+      "id": "royalty_rewards.allocationCursor[0x0000000000000000000000000000000000000000]",
+      "role": "royalty_rewards",
+      "signature": "allocationCursor(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "No funding or initial distribution; zero counted entitlement/backing"
+      }
+    },
+    {
+      "id": "royalty_rewards.openingPool[0x0000000000000000000000000000000000000000]",
+      "role": "royalty_rewards",
+      "signature": "openingPool(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "No funding or initial distribution; zero counted entitlement/backing"
+      }
+    },
+    {
+      "id": "royalty_rewards.accounted[0x0000000000000000000000000000000000000000]",
+      "role": "royalty_rewards",
+      "signature": "accounted(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "No funding or initial distribution; zero counted entitlement/backing"
+      }
+    },
+    {
+      "id": "royalty_rewards.liabilities[0x0000000000000000000000000000000000000000]",
+      "role": "royalty_rewards",
+      "signature": "liabilities(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "No funding or initial distribution; zero counted entitlement/backing"
+      }
+    },
+    {
+      "id": "royalty_rewards.orphaned[0x0000000000000000000000000000000000000000]",
+      "role": "royalty_rewards",
+      "signature": "orphaned(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZRoyaltyRewards.sol",
+        "source_sha256": "69c1933e166ac014580fc8b915d884e03b0922cfc164a49abf379da3b37e60cf",
+        "inspection": "No funding or initial distribution; zero counted entitlement/backing"
+      }
+    },
+    {
+      "id": "access.pendingGovernance",
+      "role": "access",
+      "signature": "pendingGovernance()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "address"
+      ],
+      "expected_values": [
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "origin": {
+        "source": "src/ZZZAccessController.sol",
+        "source_sha256": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3",
+        "inspection": "No governance handover,preparation or canonical transition"
+      }
+    },
+    {
+      "id": "access.canonicalSettling",
+      "role": "access",
+      "signature": "canonicalSettling()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "bool"
+      ],
+      "expected_values": [
+        false
+      ],
+      "origin": {
+        "source": "src/ZZZAccessController.sol",
+        "source_sha256": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3",
+        "inspection": "No governance handover,preparation or canonical transition"
+      }
+    },
+    {
+      "id": "access.preparationReadyDestination",
+      "role": "access",
+      "signature": "preparationReadyDestination()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "bool"
+      ],
+      "expected_values": [
+        false
+      ],
+      "origin": {
+        "source": "src/ZZZAccessController.sol",
+        "source_sha256": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3",
+        "inspection": "No governance handover,preparation or canonical transition"
+      }
+    },
+    {
+      "id": "access.preparationNonce",
+      "role": "access",
+      "signature": "preparationNonce()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZAccessController.sol",
+        "source_sha256": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3",
+        "inspection": "No governance handover,preparation or canonical transition"
+      }
+    },
+    {
+      "id": "access.preparationHash",
+      "role": "access",
+      "signature": "preparationHash()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "bytes32"
+      ],
+      "expected_values": [
+        "0x0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "origin": {
+        "source": "src/ZZZAccessController.sol",
+        "source_sha256": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3",
+        "inspection": "No governance handover,preparation or canonical transition"
+      }
+    },
+    {
+      "id": "access.preparationStartedAt",
+      "role": "access",
+      "signature": "preparationStartedAt()",
+      "types": [],
+      "values": [],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "expected_types": [
+        "uint256"
+      ],
+      "expected_values": [
+        "0"
+      ],
+      "origin": {
+        "source": "src/ZZZAccessController.sol",
+        "source_sha256": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3",
+        "inspection": "No governance handover,preparation or canonical transition"
+      }
+    },
+    {
+      "id": "rewards.isAsset[0x0000000000000000000000000000000000000000]",
+      "role": "rewards",
+      "signature": "isAsset(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "expected_return": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "expected_types": [
+        "bool"
+      ],
+      "expected_values": [
+        true
+      ],
+      "origin": {
+        "source": "src/ZZZRewards.sol",
+        "source_sha256": "d5d011e66799427d656283f677c8e7806b6c83cb06d15a775c2742104bb59a30",
+        "inspection": "Only native ETH initially admitted; fixedZZZ admission remains unset"
+      }
+    }
+  ]
+}

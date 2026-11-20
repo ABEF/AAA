@@ -1,0 +1,1290 @@
+{
+  "schema": 1,
+  "outcome": "passed",
+  "scope": "Independent offline reconciliation of172new typed default observations andF6factoryruntimes; not another deployment/test run or production qualification",
+  "build_profile": "activation-final-six-20261118",
+  "accepted_build_files_sha256": {
+    "compiler-input.json.gz": "279eba80e69c65d9085196ff4bd0fd9753881363517686dd20b2cedc769a5b0c",
+    "compiler-output.json.gz": "aceb5510485a5a0c28945cb4b4df71c66305dff7f1cb058435a464ff42df4a89",
+    "normal-size-evidence.json": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2",
+    "START.json": "de5303ec7485f4bd15b6b5adee6198d9858d276aefadc0b9a39a53bc5ff604d7"
+  },
+  "closed_sources_checked": 100,
+  "new_default_observations": 172,
+  "constant_cases": 92,
+  "default_state_cases": 80,
+  "original_binding_observations": 112,
+  "overlap_with_original_binding_keys": 0,
+  "graph_instances": 39,
+  "distinct_default_targets": 28,
+  "all_targets_belong_to_discovered_graph": true,
+  "same_fixed_block": {
+    "number": 44,
+    "hash": "0xd4afa74ce9478881cadbc700bc919e63439b2b34c97c23f531a174c6327f544e",
+    "before_and_after_header_witnesses": true,
+    "first_default_wire_id": 3620,
+    "last_default_wire_id": 3791,
+    "last_submission_wire_id": 3403,
+    "no_later_persistent_mutations": true
+  },
+  "expected_outputs_independently_reencoded_from_exact_ABI_types": true,
+  "factory_parts": [
+    {
+      "role": "royalty_data_part0",
+      "address": "0x2ef4dee467dc3c971f4e72641b22b261bc93ab11",
+      "runtime_bytes": 24576,
+      "runtime_keccak256": "0x2e06520e18cee238c91ce41e7579a89b7af142ffb1d64462585f4111c0caf3ae",
+      "verified_against_f6_creation_slice": true
+    },
+    {
+      "role": "royalty_data_part1",
+      "address": "0x90aba8aaebad155376d12953cf37bbd7821f5438",
+      "runtime_bytes": 963,
+      "runtime_keccak256": "0x2d83ab4133bac0772613a43a88bc8f3050fcbe3371bbda296f866504a7f72765",
+      "verified_against_f6_creation_slice": true
+    }
+  ],
+  "metadata_representation_note": {
+    "case": "pools.SELECTED_NATIVE_POOL",
+    "field": "expected_values[0]",
+    "observed": "decimal integer spelling of bytes32 bitpattern",
+    "handling": "Preserved original captured manifest/hash. Authoritative expected_return is the correctly encoded32bytehex; independent reencoding converts this single documented bitpattern, not a new RPC call.",
+    "financial_or_execution_effect": false,
+    "raw_decimal_expected_values_0": "36215304117639473942956184678598083808932734028250661589202473382530834431515",
+    "normalized_bytes32_hex": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+    "authoritative_expected_return_matches_raw_rpc": true,
+    "future_operator_example_input": "Use the ABI bytes32 hexadecimal spelling; this is report metadata, not a contract or ABI error."
+  },
+  "royalty": {
+    "creation_bytes": 25533,
+    "full_child_initcode_bytes": 25565,
+    "runtime_bytes": 24562,
+    "creator_is_actual_royalty_factory": true,
+    "nft_argument_is_actual_nft": true,
+    "actual_creation_and_returned_runtime_bound": true
+  },
+  "source_evidence_sha256": {
+    "reports/f6-construction-20261120/DEFAULT_READS.json": "e42a8e60eed9e943b700ec5663ca75a04d9e4e1ad7ed878d00307fed4a48e796",
+    "DEFAULT_OBSERVATIONS.json": "a272c1805e64bbb8c677b569ac3794f6451c889711f12e2497793f8beb18180a",
+    "instances.json": "18eb74cc9417c1c6ff8e6527e5fd5f977c1f10ecffca2286754ac55502329a25",
+    "bindings.json": "c79d30ae3bc56ed900646bc2d8ad7da81bc60867290f8d737ae37be9ac6e0dd5",
+    "node/rpc-records.json.gz": "5208779d562cee8f1d45705df40933aa47f24bea347446ad7ae30305b60a4f87"
+  },
+  "observations": [
+    {
+      "id": "access.GOVERNANCE_VERSION",
+      "role": "access",
+      "wire_request_id": 3620,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "protocol_policy.MAX_CALL_GAS",
+      "role": "protocol_policy",
+      "wire_request_id": 3621,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "protocol_policy.MAX_IDLE_BPS",
+      "role": "protocol_policy",
+      "wire_request_id": 3622,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "protocol_policy.MIN_CALL_GAS",
+      "role": "protocol_policy",
+      "wire_request_id": 3623,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "protocol_policy.PROTOCOL_POLICY_VERSION",
+      "role": "protocol_policy",
+      "wire_request_id": 3624,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration_budget.DEFAULT_COMPOUND_INTERVAL",
+      "role": "migration_budget",
+      "wire_request_id": 3625,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration_budget.EMERGENCY_REBALANCE_VERSION",
+      "role": "migration_budget",
+      "wire_request_id": 3626,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration_budget.IDLE_COMPOUNDING_VERSION",
+      "role": "migration_budget",
+      "wire_request_id": 3627,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration_budget.MAX_LOSS_BPS",
+      "role": "migration_budget",
+      "wire_request_id": 3628,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration_budget.REBALANCE_CONFIRMATION_VERSION",
+      "role": "migration_budget",
+      "wire_request_id": 3629,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration_budget.RESIDUAL_REINVEST_VERSION",
+      "role": "migration_budget",
+      "wire_request_id": 3630,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "metadata_renderer.METADATA_LIFECYCLE_VERSION",
+      "role": "metadata_renderer",
+      "wire_request_id": 3631,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.DEFAULT_RESIDUAL_SIDE_BPS",
+      "role": "portfolio_policy",
+      "wire_request_id": 3632,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.HARD_MAXIMUM_RESIDUAL_BPS",
+      "role": "portfolio_policy",
+      "wire_request_id": 3633,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.HARD_MINIMUM_MAIN_BPS",
+      "role": "portfolio_policy",
+      "wire_request_id": 3634,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.PORTFOLIO_VERSION",
+      "role": "portfolio_policy",
+      "wire_request_id": 3635,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.RESIDUAL_REINVEST_VERSION",
+      "role": "portfolio_policy",
+      "wire_request_id": 3636,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "rebalance_confirmation.MAX_DURATION",
+      "role": "rebalance_confirmation",
+      "wire_request_id": 3637,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "rebalance_confirmation.REBALANCE_CONFIRMATION_VERSION",
+      "role": "rebalance_confirmation",
+      "wire_request_id": 3638,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "balancing_router.EXECUTION_PRICE_VERSION",
+      "role": "balancing_router",
+      "wire_request_id": 3639,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "balancing_router.EXECUTION_QUALITY_VERSION",
+      "role": "balancing_router",
+      "wire_request_id": 3640,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "balancing_router.LP_ROUTING_VERSION",
+      "role": "balancing_router",
+      "wire_request_id": 3641,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "balancing_router.MAX_ADDITIONAL_LOSS_BPS",
+      "role": "balancing_router",
+      "wire_request_id": 3642,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "balancing_router.MAX_EXECUTION_POOLS",
+      "role": "balancing_router",
+      "wire_request_id": 3643,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "oracle.EXECUTION_PRICE_VERSION",
+      "role": "oracle",
+      "wire_request_id": 3644,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "oracle.FINGERPRINT_DOMAIN",
+      "role": "oracle",
+      "wire_request_id": 3645,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "oracle.MAX_DEVIATION_BPS",
+      "role": "oracle",
+      "wire_request_id": 3646,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "oracle.PRICING_VERSION",
+      "role": "oracle",
+      "wire_request_id": 3647,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "oracle.SEQUENCER_GRACE",
+      "role": "oracle",
+      "wire_request_id": 3648,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "liquidity.EMERGENCY_REBALANCE_VERSION",
+      "role": "liquidity",
+      "wire_request_id": 3649,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "liquidity.EXECUTION_PRICE_VERSION",
+      "role": "liquidity",
+      "wire_request_id": 3650,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "liquidity.EXECUTION_QUALITY_VERSION",
+      "role": "liquidity",
+      "wire_request_id": 3651,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "liquidity.LP_ROUTING_VERSION",
+      "role": "liquidity",
+      "wire_request_id": 3652,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "liquidity.PORTFOLIO_VERSION",
+      "role": "liquidity",
+      "wire_request_id": 3653,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "liquidity.RESIDUAL_EXIT_VERSION",
+      "role": "liquidity",
+      "wire_request_id": 3654,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "pools.SELECTED_NATIVE_POOL",
+      "role": "pools",
+      "wire_request_id": 3655,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "strategy.EXECUTION_PRICE_VERSION",
+      "role": "strategy",
+      "wire_request_id": 3656,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "strategy.EXECUTION_QUALITY_VERSION",
+      "role": "strategy",
+      "wire_request_id": 3657,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "strategy.MAINTENANCE_POLICY_VERSION",
+      "role": "strategy",
+      "wire_request_id": 3658,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "strategy.MAX_ADDITIONAL_LOSS_BPS",
+      "role": "strategy",
+      "wire_request_id": 3659,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "strategy.PORTFOLIO_VERSION",
+      "role": "strategy",
+      "wire_request_id": 3660,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "strategy.RANGE_POLICY_VERSION",
+      "role": "strategy",
+      "wire_request_id": 3661,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "strategy.REBALANCE_CONFIRMATION_VERSION",
+      "role": "strategy",
+      "wire_request_id": 3662,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "vault.ACCOUNTING_VERSION",
+      "role": "vault",
+      "wire_request_id": 3663,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "vault.MAX_BUCKETS",
+      "role": "vault",
+      "wire_request_id": 3664,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "vault.RESIDUAL_EXIT_VERSION",
+      "role": "vault",
+      "wire_request_id": 3665,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "vault.RESIDUAL_REINVEST_VERSION",
+      "role": "vault",
+      "wire_request_id": 3666,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "rewards.LP_ALLOCATION_VERSION",
+      "role": "rewards",
+      "wire_request_id": 3667,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "rewards.MAX_ASSETS",
+      "role": "rewards",
+      "wire_request_id": 3668,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "rewards.MAX_CONVERSION_NFTS",
+      "role": "rewards",
+      "wire_request_id": 3669,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "rewards.MAX_ERC20_ASSETS",
+      "role": "rewards",
+      "wire_request_id": 3670,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "fees.FEE_INTAKE_VERSION",
+      "role": "fees",
+      "wire_request_id": 3671,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration.CUSTODY_VERSION",
+      "role": "migration",
+      "wire_request_id": 3672,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration.EMERGENCY_REBALANCE_VERSION",
+      "role": "migration",
+      "wire_request_id": 3673,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration.MAX_BATCH",
+      "role": "migration",
+      "wire_request_id": 3674,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration.RESIDUAL_EXIT_VERSION",
+      "role": "migration",
+      "wire_request_id": 3675,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration.RESIDUAL_REINVEST_VERSION",
+      "role": "migration",
+      "wire_request_id": 3676,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "nft.MAX_METADATA_REFRESH_BATCH",
+      "role": "nft",
+      "wire_request_id": 3677,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "nft.MAX_SUPPLY",
+      "role": "nft",
+      "wire_request_id": 3678,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "canonical.MAX_ROWS",
+      "role": "canonical",
+      "wire_request_id": 3679,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "canonical.SCHEMA",
+      "role": "canonical",
+      "wire_request_id": 3680,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "canonical.SLOTS",
+      "role": "canonical",
+      "wire_request_id": 3681,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "lp_converter.MAX_LOSS_BPS",
+      "role": "lp_converter",
+      "wire_request_id": 3682,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "seadrop_mint.ALLOWLIST",
+      "role": "seadrop_mint",
+      "wire_request_id": 3683,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "seadrop_mint.MAX_BATCH_ENGINEERING",
+      "role": "seadrop_mint",
+      "wire_request_id": 3684,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "seadrop_mint.MAX_PAYERS_ENGINEERING",
+      "role": "seadrop_mint",
+      "wire_request_id": 3685,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "seadrop_mint.MAX_SUPPLY",
+      "role": "seadrop_mint",
+      "wire_request_id": 3686,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "seadrop_mint.MINT_INTEGRATION_VERSION",
+      "role": "seadrop_mint",
+      "wire_request_id": 3687,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "seadrop_mint.PUBLIC",
+      "role": "seadrop_mint",
+      "wire_request_id": 3688,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "seadrop_mint.TEAM",
+      "role": "seadrop_mint",
+      "wire_request_id": 3689,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_factory.CODE_STORAGE_VERSION",
+      "role": "royalty_factory",
+      "wire_request_id": 3690,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "lp_balance_math.EXECUTION_PRICE_VERSION",
+      "role": "lp_balance_math",
+      "wire_request_id": 3691,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "lp_balance_math.LP_BALANCE_MATH_VERSION",
+      "role": "lp_balance_math",
+      "wire_request_id": 3692,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "lp_position_executor.EXECUTION_PRICE_VERSION",
+      "role": "lp_position_executor",
+      "wire_request_id": 3693,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "lp_position_executor.LP_POSITION_EXECUTOR_VERSION",
+      "role": "lp_position_executor",
+      "wire_request_id": 3694,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "lp_position_executor.RESIDUAL_EXIT_VERSION",
+      "role": "lp_position_executor",
+      "wire_request_id": 3695,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "contribution_pricing.ENTRY_REVIEW_VERSION",
+      "role": "contribution_pricing",
+      "wire_request_id": 3696,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "contribution_pricing.EXECUTION_PRICE_VERSION",
+      "role": "contribution_pricing",
+      "wire_request_id": 3697,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "contribution_pricing.RESIDUAL_REINVEST_VERSION",
+      "role": "contribution_pricing",
+      "wire_request_id": 3698,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "activation_assets.NATIVE_ASSET_CODE_HASH",
+      "role": "activation_assets",
+      "wire_request_id": 3699,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "activation_assets.SOURCE_POLICY_VERSION",
+      "role": "activation_assets",
+      "wire_request_id": 3700,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "activation_entry.ENTRY_ROUTING_VERSION",
+      "role": "activation_entry",
+      "wire_request_id": 3701,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "activation_entry.REVIEW_POLICY_VERSION",
+      "role": "activation_entry",
+      "wire_request_id": 3702,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.ACTIVATION_WINDOW",
+      "role": "royalty_rewards",
+      "wire_request_id": 3703,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.MAX_ASSETS",
+      "role": "royalty_rewards",
+      "wire_request_id": 3704,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.MAX_ERC20_ASSETS",
+      "role": "royalty_rewards",
+      "wire_request_id": 3705,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.ROYALTY_ALLOCATION_VERSION",
+      "role": "royalty_rewards",
+      "wire_request_id": 3706,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.ROYALTY_RECOVERY_VERSION",
+      "role": "royalty_rewards",
+      "wire_request_id": 3707,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.ROYALTY_SETTLEMENT_VERSION",
+      "role": "royalty_rewards",
+      "wire_request_id": 3708,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "claim_router.MAX_CLAIMS",
+      "role": "claim_router",
+      "wire_request_id": 3709,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "lp_v4_executor.NATIVE_ASSET_CODE_HASH",
+      "role": "lp_v4_executor",
+      "wire_request_id": 3710,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "lp_v4_executor.ROUTE_DOMAIN",
+      "role": "lp_v4_executor",
+      "wire_request_id": 3711,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "protocol_policy.entryPolicy",
+      "role": "protocol_policy",
+      "wire_request_id": 3712,
+      "return_bytes": 128,
+      "verified": true
+    },
+    {
+      "id": "protocol_policy.maintenancePolicy",
+      "role": "protocol_policy",
+      "wire_request_id": 3713,
+      "return_bytes": 64,
+      "verified": true
+    },
+    {
+      "id": "protocol_policy.gasPolicy",
+      "role": "protocol_policy",
+      "wire_request_id": 3714,
+      "return_bytes": 128,
+      "verified": true
+    },
+    {
+      "id": "protocol_policy.metadataPolicy",
+      "role": "protocol_policy",
+      "wire_request_id": 3715,
+      "return_bytes": 96,
+      "verified": true
+    },
+    {
+      "id": "protocol_policy.vrfPolicy",
+      "role": "protocol_policy",
+      "wire_request_id": 3716,
+      "return_bytes": 320,
+      "verified": true
+    },
+    {
+      "id": "protocol_policy.royaltyBalanceGas",
+      "role": "protocol_policy",
+      "wire_request_id": 3717,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "protocol_policy.configurationRevision",
+      "role": "protocol_policy",
+      "wire_request_id": 3718,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "protocol_policy.vrfRevision",
+      "role": "protocol_policy",
+      "wire_request_id": 3719,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "protocol_policy.payoutGas",
+      "role": "protocol_policy",
+      "wire_request_id": 3720,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "protocol_policy.sourceCallGas",
+      "role": "protocol_policy",
+      "wire_request_id": 3721,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "protocol_policy.royaltySyncGas",
+      "role": "protocol_policy",
+      "wire_request_id": 3722,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration_budget.contributionLossBps",
+      "role": "migration_budget",
+      "wire_request_id": 3723,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration_budget.maintenanceLossBps",
+      "role": "migration_budget",
+      "wire_request_id": 3724,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration_budget.emergencyActive",
+      "role": "migration_budget",
+      "wire_request_id": 3725,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration_budget.emergencyBucket",
+      "role": "migration_budget",
+      "wire_request_id": 3726,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration_budget.emergencyChecks",
+      "role": "migration_budget",
+      "wire_request_id": 3727,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "rebalance_confirmation.duration",
+      "role": "rebalance_confirmation",
+      "wire_request_id": 3728,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "rebalance_confirmation.policyRevision",
+      "role": "rebalance_confirmation",
+      "wire_request_id": 3729,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "rebalance_confirmation.reviewHash",
+      "role": "rebalance_confirmation",
+      "wire_request_id": 3730,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "rebalance_confirmation.requireReferenceExit",
+      "role": "rebalance_confirmation",
+      "wire_request_id": 3731,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "rebalance_confirmation.referenceReviewHash",
+      "role": "rebalance_confirmation",
+      "wire_request_id": 3732,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.thresholdBps",
+      "role": "portfolio_policy",
+      "wire_request_id": 3733,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.revision",
+      "role": "portfolio_policy",
+      "wire_request_id": 3734,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.triggerRevision",
+      "role": "portfolio_policy",
+      "wire_request_id": 3735,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.triggerReviewHash",
+      "role": "portfolio_policy",
+      "wire_request_id": 3736,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.enabled[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "wire_request_id": 3737,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.geometryRevision[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "wire_request_id": 3738,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.controlRevision[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "wire_request_id": 3739,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.residualReviewHash[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "wire_request_id": 3740,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.modeReviewHash[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "wire_request_id": 3741,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.residualSideBps[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "wire_request_id": 3742,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.minimumMainBps[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "wire_request_id": 3743,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.maximumResidualBps[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "wire_request_id": 3744,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "portfolio_policy.residualGapSpacings[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "portfolio_policy",
+      "wire_request_id": 3745,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "balancing_router.executionRevision",
+      "role": "balancing_router",
+      "wire_request_id": 3746,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "balancing_router.searchIterations",
+      "role": "balancing_router",
+      "wire_request_id": 3747,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "balancing_router.quoteGasLimit",
+      "role": "balancing_router",
+      "wire_request_id": 3748,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "strategy.additionalLossBps",
+      "role": "strategy",
+      "wire_request_id": 3749,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "lp_converter.conversionLossBps",
+      "role": "lp_converter",
+      "wire_request_id": 3750,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "pools.contributionPool",
+      "role": "pools",
+      "wire_request_id": 3751,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "pools.configurationRevision",
+      "role": "pools",
+      "wire_request_id": 3752,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "pools.exists[0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b]",
+      "role": "pools",
+      "wire_request_id": 3753,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "migration.exitPhase",
+      "role": "migration",
+      "wire_request_id": 3754,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "nft.nextToFinalize",
+      "role": "nft",
+      "wire_request_id": 3755,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "nft.remainingToReveal",
+      "role": "nft",
+      "wire_request_id": 3756,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "nft.mintPaused",
+      "role": "nft",
+      "wire_request_id": 3757,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "nft.randomnessCoordinator",
+      "role": "nft",
+      "wire_request_id": 3758,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "nft.keyHash",
+      "role": "nft",
+      "wire_request_id": 3759,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "nft.subscriptionId",
+      "role": "nft",
+      "wire_request_id": 3760,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "nft.requestConfirmations",
+      "role": "nft",
+      "wire_request_id": 3761,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "nft.callbackGasLimit",
+      "role": "nft",
+      "wire_request_id": 3762,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "nft.nativePayment",
+      "role": "nft",
+      "wire_request_id": 3763,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "nft.randomnessEpoch",
+      "role": "nft",
+      "wire_request_id": 3764,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "nft.rarityRemaining[0]",
+      "role": "nft",
+      "wire_request_id": 3765,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "nft.rarityRemaining[1]",
+      "role": "nft",
+      "wire_request_id": 3766,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "nft.rarityRemaining[2]",
+      "role": "nft",
+      "wire_request_id": 3767,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.activationCount",
+      "role": "royalty_rewards",
+      "wire_request_id": 3768,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.totalWeight",
+      "role": "royalty_rewards",
+      "wire_request_id": 3769,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.assetCapacity",
+      "role": "royalty_rewards",
+      "wire_request_id": 3770,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.assetCount",
+      "role": "royalty_rewards",
+      "wire_request_id": 3771,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.mintEnd",
+      "role": "royalty_rewards",
+      "wire_request_id": 3772,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.mintEndRevision",
+      "role": "royalty_rewards",
+      "wire_request_id": 3773,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.royaltiesOpenAt",
+      "role": "royalty_rewards",
+      "wire_request_id": 3774,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.royaltiesOpen",
+      "role": "royalty_rewards",
+      "wire_request_id": 3775,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.assets[0]",
+      "role": "royalty_rewards",
+      "wire_request_id": 3776,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.isAsset[0x0000000000000000000000000000000000000000]",
+      "role": "royalty_rewards",
+      "wire_request_id": 3777,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.eligibleCount[0x0000000000000000000000000000000000000000]",
+      "role": "royalty_rewards",
+      "wire_request_id": 3778,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.eligibleWeight[0x0000000000000000000000000000000000000000]",
+      "role": "royalty_rewards",
+      "wire_request_id": 3779,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.allocationCursor[0x0000000000000000000000000000000000000000]",
+      "role": "royalty_rewards",
+      "wire_request_id": 3780,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.openingPool[0x0000000000000000000000000000000000000000]",
+      "role": "royalty_rewards",
+      "wire_request_id": 3781,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.accounted[0x0000000000000000000000000000000000000000]",
+      "role": "royalty_rewards",
+      "wire_request_id": 3782,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.liabilities[0x0000000000000000000000000000000000000000]",
+      "role": "royalty_rewards",
+      "wire_request_id": 3783,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "royalty_rewards.orphaned[0x0000000000000000000000000000000000000000]",
+      "role": "royalty_rewards",
+      "wire_request_id": 3784,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "access.pendingGovernance",
+      "role": "access",
+      "wire_request_id": 3785,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "access.canonicalSettling",
+      "role": "access",
+      "wire_request_id": 3786,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "access.preparationReadyDestination",
+      "role": "access",
+      "wire_request_id": 3787,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "access.preparationNonce",
+      "role": "access",
+      "wire_request_id": 3788,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "access.preparationHash",
+      "role": "access",
+      "wire_request_id": 3789,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "access.preparationStartedAt",
+      "role": "access",
+      "wire_request_id": 3790,
+      "return_bytes": 32,
+      "verified": true
+    },
+    {
+      "id": "rewards.isAsset[0x0000000000000000000000000000000000000000]",
+      "role": "rewards",
+      "wire_request_id": 3791,
+      "return_bytes": 32,
+      "verified": true
+    }
+  ],
+  "rpc_calls_in_this_review": 0,
+  "tests_rerun": 0,
+  "compiler_runs": 0,
+  "source_changes": false,
+  "production_approved": false,
+  "limits": [
+    "Owned local Anvil and constructor doubles are not targetprovider/dependency qualification.",
+    "172read observations are not172independent tests;112original bindings remain separate and nonoverlapping.",
+    "Constant/default readbacks do not configure sources/pools/VRF,prove operational caller behavior or satisfy seal readiness.",
+    "CREATE/capturedcode authenticity relies on recorded owned-EVM evidence; compiler correctness and provider honesty remain trust assumptions."
+  ]
+}

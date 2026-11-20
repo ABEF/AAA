@@ -1,5 +1,11 @@
 # Offline deployment preparation
 
+The [current F6 construction rehearsal](../reports/f6-construction-20261120/REVIEW.md)
+verifies all25CREATE/19binding transactions,39instances,112binding/state assertions
+and172additional defaults with real normal Access/Registry. Its separate unsealed
+control fixture verifies35permission calls. Full target release arguments, real
+dependencies, fees and seal/public-opening approval remain unqualified.
+
 Use [prepare-deployment.py](../scripts/prepare-deployment.py) to review the **fresh schema17 / mint2 /
 canonicalV10 / execution-price1 / LP-routing3** construction graph. It reads the
 accepted normal compiler objects and local source files; it does not compile,
@@ -180,6 +186,44 @@ children are part of their parent creation transaction, not extra deployments
 or extra gas to add again. The intended run has 25 creation transactions and
 19 binding transactions,44 in total, all with zero native value.
 
+### Current F6 evidence and supplementary checks
+
+The [20November F6 record](../reports/f6-construction-20261120/REVIEW.md) runs the
+maintained graph unchanged against current normal objects, with no compiler run.
+The worst padded NFT creation is14,214,479/32M;44transactions use144,113,280 raw
+gas in total. These are controlled local measurements, not target ETH/USD fees.
+
+The report-owned campaign adds172defaults and a second small Access/Policy fixture
+with DISTINCT bootstrap/governance. Its35permission probes use only `eth_call`,
+with separate exact-error recording; they do not alter roles or weaken the original
+success-only wire admission. Bootstrap alone configures before sealing; a keeper
+mapping grant is not `keeperAuthorized` until sealing. Both nodes are stopped.
+
+For a separately authorized repetition from the exact reviewed checkout:
+
+```powershell
+python reports/f6-construction-20261120/run_campaign.py --anvil "C:/reviewed-tools/anvil.exe" --output "C:/local-reviews/new-f6-campaign"
+```
+
+The helper requires the exact reviewed binary hash, a new exclusive output path
+and its frozen case manifests. It accepts no RPC/key/seal/public-signing input.
+Do not repeat it merely to refresh evidence dates. Never adopt its addresses,
+constructor doubles or controlled URI: that nonempty root consumes the one-time
+choice and is not production content.
+
+Extract the [campaign archive](../reports/f6-construction-20261120/evidence.zip)
+into a NEW directory. The archive's `attempt1/full-graph` is the verifier input:
+
+```powershell
+python reports/f6-construction-20261120/verify_execution.py --evidence "C:/local-reviews/extracted/attempt1/full-graph" --output "C:/local-reviews/new-f6-check.json"
+```
+
+This offline supplement authenticates all132preflight calls/260nonce reads and
+44local receipt headers, preserving the historical checker's weaker original
+scope. It starts no node and submits nothing. The whole campaign ZIP is not the
+old standalone checker's direct-ZIP layout; use the extracted full-graph directory.
+Keep existing states/journals/services and all false approval flags intact.
+
 ### Controlled dependencies and gas scope
 
 The node uses Cancun, a 32M block gas ceiling and normal runtime/initcode limits,
@@ -195,7 +239,7 @@ padded-call simulation and actual receipt gas. This is a **local construction
 and binding measurement**, not a Robinhood fee quote or spending-policy change.
 The Manager's constructor reads controlled getter doubles; real dependency
 execution costs can differ. Public deployment gas, L2 posting fees and approved
-fee ceilings remain separate. Existing12M/20M/24M operating profiles are unchanged.
+fee ceilings remain separate. Legacy12M defaults, the selected32M/full20% contribution candidate and24M/full25% maintenance remain unchanged; local construction is a distinct25% measurement.
 
 ### Running, stopping and interpreting a rehearsal
 
@@ -217,7 +261,7 @@ python scripts/rehearse-local-deployment.py --build-profile activation-final-six
 
 This example selects the new current build for a separately authorized fresh
 rehearsal; it is not a command that ran in the historical captures below.
-No full-graph construction rehearsal for `activation-final-six-20261118` is claimed; older construction captures retain their original runtime scope.
+The current controlled F6 full graph is verified in the linked20November record; older construction captures retain their original runtime scope, with no target-release approval implied.
 There is no RPC, key, existing-state, public-deployment or sealing option. The
 controlled role addresses, metadata URI and buyback ceiling are test inputs,
 not production choices. Output includes the process/genesis identity, dependencies,

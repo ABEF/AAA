@@ -311,7 +311,7 @@ Owning Todo: [`host-services`](../TODO.md#task-host-services), [`keeper-recovery
 
 ### P22 — Fresh construction, deployed readback and seal
 
-Before deployment, freeze exact current F6 constructor source/ABI/dynamic arguments/root/size/initcode/fees,25CREATE+19binding order and direct-EOA nonce assumptions; discover Factory children by getters, not guessed nonce. Rehearse the real control graph, including Access/Registry.
+The [current controlled F6 rehearsal](../reports/f6-construction-20261120/REVIEW.md) completes25CREATE+19bindings/39instances using real Access/Registry,112binding/state plus172default reads and a distinct-role35probe fixture. Its132preflights/260nonce reads/44receipt headers are independently reconciled. Before public deployment, still freeze actual release arguments/root/fees and verify real dependencies, direct-EOA nonce assumptions and getter-discovered children; controlled constructor doubles and local addresses are not adopted.
 
 After separately authorized deployment, verify actual receipts, runtime/immutables, all children/parents/reciprocal bindings, addresses/roles and no unexpected grants. Failed/inserted/replaced/delegated-wallet steps invalidate simple sequence assumptions; reconcile rather than guess resume.
 

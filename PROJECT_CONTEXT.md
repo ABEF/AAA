@@ -25,8 +25,12 @@ All13 controlled cold cases pass20M/full20%; all six previous matched refusals
 close. Worst16,460,899 raw/19,753,079 padded. The fixture uses16 ERC20s plus ETH,
 one main and a selected activation order; no expanded-market/whole-state approval.
 Runtime/headroom: Royalty24562/14, Manager24459/117, Oracle23406/1170,
-Vault24544/32; Access full initcode48580/49152. Require fresh exact construction
-and private-codec/runtime pins; never copy old slots or relabel historical results.
+Vault24544/32; Access full initcode48580/49152. Current [controlled F6 construction](reports/f6-construction-20261120/REVIEW.md)
+verifies25creations/19bindings/39instances with real Access/Registry,112binding/state
+and172default reads plus35separate unsealed permission probes. Full25% padded
+NFT gas14,214,479/32M; both owned nodes stopped. Real dependencies/URI/addresses/
+fees/complete readiness remain unqualified. Preserve exact private-codec/runtime
+pins; never copy old slots or relabel historical results.
 
 Selected contribution profile: [32M/full20% non-live candidate](config/activation-gas-32m.candidate.json).
 Backend string32000000 equals website integer32000000; each call proposes its

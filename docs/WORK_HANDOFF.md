@@ -74,9 +74,11 @@ qualification open; never replace estimates with trace gas to pass admission.
    Link exact existing evidence and run changed/missing cases. The measured64-currency/two-LP slow-ZZZ opening state still needs476,135 less
    estimated gas. Other lifetime/order/currency/venue/bucket combinations, full
    canonical cutover and manual guard masks remain unqualified; keep exact scopes.
-3. Review fresh constructor/binding/Factory/runtime and SeaDrop/VRF/artwork inputs;
-   prior constructor receipts do not qualify changed F6 creations. Review actual
-   governance/keeper/guardian/payee and contract-wallet envelopes independently.
+3. [Current F6 local construction](../reports/f6-construction-20261120/REVIEW.md)
+   now verifies39instances,112binding/state+172default reads and35separate unsealed
+   permission probes. Next review actual release arguments/root/real dependencies,
+   complete target fees, governance/keeper/guardian/payee and wallet envelopes;
+   controlled local addresses and the consumed dummy root are not release inputs.
 4. Qualify current real-key/provider/full-loop keeper interruption, recovery,
    off-host restore/fencing/alerts and sustained operation. Recover the original
    pending hash/intent/spend records before any separately authorized restart.

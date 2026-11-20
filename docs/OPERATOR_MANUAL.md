@@ -1,5 +1,12 @@
 # PoPL operator manual
 
+[Current F6 construction/readback](../reports/f6-construction-20261120/REVIEW.md)
+passes39instances/112bindings plus172defaults and35separate unsealed permission
+probes. Use the [exact local procedure](DEPLOYMENT_PREPARATION.md#current-f6-evidence-and-supplementary-checks).
+Before sealing, bootstrap configures; distinct governance has pause/nomination
+powers but cannot perform those ordinary configuration writes yet. No sealing or
+production approval follows; the controlled graph must not be adopted.
+
 For the next launch decisions use the [Gate A evidence](../reports/readiness-gate-a-20261120/REVIEW.md).
 Current compiler applicability has no confirmed reachable upgrade-requiring issue.
 Actual markets, custom OpenSea configuration and original-request VRF remain

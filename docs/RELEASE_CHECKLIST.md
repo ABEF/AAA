@@ -1,5 +1,10 @@
 # Release approval record - NOT APPROVED
 
+The [current F6 local construction](../reports/f6-construction-20261120/REVIEW.md)
+closes that controlled source/binding rehearsal only:25creations/19bindings,
+39instances,112binding/state plus172default reads, separate35permission calls.
+Real release inputs/providers/configuration/seal/opening fields remain unapproved.
+
 [Gate A follow-through](../reports/readiness-gate-a-20261120/REVIEW.md)
 records completed current compiler-advisory applicability review and fresh market/
 platform blockers. All production approval fields stay unapproved; no source,
@@ -43,7 +48,9 @@ The exact61-project/39-dependency/4-build-control source maps match. Its48 recor
 size gates and13 controlled cold20M/full20% scenarios retain their original scope;
 all six previous matched gas refusals close. Runtime/headroom bytes are
 Royalty24562/14, Manager24459/117, Oracle23406/1170 and Vault24544/32;
-Access full initcode48580/49152. Exact F6 construction remains unqualified.
+Access full initcode48580/49152. [Controlled F6 construction](../reports/f6-construction-20261120/REVIEW.md)
+now verifies39instances and bindings/defaults locally. Exact public-release
+constructor arguments, real dependencies, complete fees and approval remain unqualified.
 
 The operator selected a [32M/full20% contribution candidate](../config/activation-gas-32m.candidate.json).
 Legacy12M defaults and24M/full25% maintenance remain. Fresh actual execution/provider

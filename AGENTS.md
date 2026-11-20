@@ -118,6 +118,23 @@ nonce adoption, setup/resume/transaction envelope or seal is added. EIP2681 boun
 rejects overflow/exhausted endpoint; reported remaining capacity does not approve
 unprepared later setup. New source publication is not a deployment workflow.
 
+## Current controlled F6 construction
+
+The [fresh construction record](reports/f6-construction-20261120/REVIEW.md)
+verifies25CREATE/19bindings/39instances with real normal Access/Registry,112binding/
+state assertions and172additional defaults. Separate distinct-role Access/Policy
+fixture:3transactions/6instances,35eth_call probes (9success/26typedUnauthorized),
+state/nonces unchanged. Main44tx rawgas144113280; worst NFT estimate11371583,
+full25%padded14214479/32M. Both owned nodes stopped, unsealed/unconfigured.
+Normal source/build/guards and maintained runner/checker remain unchanged.
+Report-only verifier binds132preflights/260nonce reads/44local headers;11new
+offline methods ran in explicit10+1stages, not a finalwholefile11pass. Captured
+default manifest has one documented bytes32 decimal-metadata spelling; actual
+expected hex/RPC are correct. No old artifact is rewritten. Native constructor
+doubles/archived SeaDrop storage and consumed40byte dummy root are not release
+inputs. Real dependencies/arguments/fees/operating and independent approval stay
+open. Never adopt these local addresses or restart services/heartbeat.
+
 ## Production qualification planning
 
 Use the [ordered readiness plan](docs/ROADMAP.md) before choosing further launch

@@ -48,6 +48,11 @@ Host restart, RPC inclusion, gas and writer/checker rollout remain qualification
 
 ## Verification and release status
 
+The [fresh F6 local construction](reports/f6-construction-20261120/REVIEW.md)
+verifies39instances/bindings and default/unsealed authority state, with no compiler
+or production-code change. Real deployment inputs, dependencies, fees and approval
+remain separate; both rehearsal nodes are stopped.
+
 The [current Gate A results](reports/readiness-gate-a-20261120/REVIEW.md) complete
 compiler-advisory applicability review and refresh actual market/platform blockers.
 Production remains unapproved; no source/compiler or live configuration changed.

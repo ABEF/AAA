@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "source_baseline": "2891f6b29691449d6667d36b9c678a0746ce5d80",
+  "build_profile": "activation-final-six-20261118",
+  "scope": "Observed local constructor-state readback, not actual production pre-seal approval",
+  "full_graph_instances": 39,
+  "bindings_and_state_assertions": 112,
+  "additional_default_observations": 172,
+  "authority_fixture": {
+    "instances": 6,
+    "actual_transactions": 3,
+    "permission_eth_calls": 35,
+    "successes": 9,
+    "typed_unauthorized_rejections": 26,
+    "distinct_bootstrap_governance": true
+  },
+  "constructor_readback_verified": true,
+  "release_ready": false,
+  "ready_for_seal": false,
+  "production_approved": false,
+  "public_deployment_authorized": false,
+  "observed_unconfigured": {
+    "unsealed_bootstrap_retained": true,
+    "NFT_minted": 0,
+    "logical_buckets": 0,
+    "secondary_positions": 0,
+    "contribution_ZZZ": "0x0000000000000000000000000000000000000000",
+    "exit_ZZZ": "0x0000000000000000000000000000000000000000",
+    "ZZZ_approved_for_LP_rewards": false,
+    "converter_enabled": false,
+    "seadrop_helper_configured": false,
+    "randomness_configured": false,
+    "max_observation_gap": 0,
+    "mint_end": 0
+  },
+  "not_proved_or_adopted": [
+    "Real native venue/token admission; constructor-only dependencies are deliberately incompatible doubles",
+    "Actual SeaDrop collection configuration,onboarding,fees or current singleton operation",
+    "Real price feeds/routes/VRF/provider/fees/authorities/wallet submission and installed operation",
+    "Final immutable content/CID/URI; controlled40byte constructor root consumes one-time choice",
+    "Sealed keeper/module authority,operating LP/accounting functions,canonical cutover or real-key/contract-wallet control",
+    "Full gas qualification of populated financial calls or real target-chain constructor fees"
+  ],
+  "permanent_fixture_warning": "The nonempty controlled root cannot be replaced in this graph; never adopt local addresses or state as release configuration.",
+  "both_owned_nodes_stopped": true,
+  "existing_nodes_contacted": false,
+  "sealing_attempted": false
+}

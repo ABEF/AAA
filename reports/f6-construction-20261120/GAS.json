@@ -1,0 +1,419 @@
+{
+  "schema": 1,
+  "source_baseline": "2891f6b29691449d6667d36b9c678a0746ce5d80",
+  "build_profile": "activation-final-six-20261118",
+  "cap_per_transaction": 32000000,
+  "padding_bps": 12500,
+  "scope": "Current exact controlled local construction/call gas; not Robinhood complete fees or release addresses/URI cost",
+  "fixtures": {
+    "full-graph": {
+      "transactions": 44,
+      "raw_gas_total": 144113280,
+      "estimated_gas_total": 144116080,
+      "padded_gas_total": 180145114,
+      "worst": {
+        "label": "create:nft",
+        "transaction_hash": "0xd2f4e21549a967699a1ec7e68fbe528a10b31d7cf972fe09a49487b380728408",
+        "receipt_gas_used": 11371583,
+        "estimated_gas": 11371583,
+        "padded_gas": 14214479,
+        "gas_limit": 14214479
+      },
+      "rows": [
+        {
+          "label": "create:access",
+          "transaction_hash": "0xc5b43a4dcb8162a6059254f42a59a72b2c20fa8a3943b468c86dea877b48c47e",
+          "receipt_gas_used": 10325402,
+          "estimated_gas": 10325402,
+          "padded_gas": 12906753,
+          "gas_limit": 12906753
+        },
+        {
+          "label": "create:protocol_policy",
+          "transaction_hash": "0x35e5231728cd120bc940bb169cbf81c5c831e9057df4f5f0dc3711de049e7ef4",
+          "receipt_gas_used": 3673366,
+          "estimated_gas": 3673366,
+          "padded_gas": 4591708,
+          "gas_limit": 4591708
+        },
+        {
+          "label": "bind:protocol_policy",
+          "transaction_hash": "0x37b73429b4a66dfe8974a0e8097676d3c038661241fc1b5d7e499cb4937fa621",
+          "receipt_gas_used": 55858,
+          "estimated_gas": 55858,
+          "padded_gas": 69823,
+          "gas_limit": 69823
+        },
+        {
+          "label": "create:migration_budget",
+          "transaction_hash": "0x549fb9ff89fc1f411af81befb68898c95c0e9c2acb0d4b812bec5ac8eb418d15",
+          "receipt_gas_used": 5395258,
+          "estimated_gas": 5395258,
+          "padded_gas": 6744073,
+          "gas_limit": 6744073
+        },
+        {
+          "label": "create:metadata_renderer",
+          "transaction_hash": "0x02179526f0e09b81ce76a16977e88a4a3c27478deeb3887d62ca251e4e3f18b0",
+          "receipt_gas_used": 5255367,
+          "estimated_gas": 5255367,
+          "padded_gas": 6569209,
+          "gas_limit": 6569209
+        },
+        {
+          "label": "create:portfolio_policy",
+          "transaction_hash": "0xf4af1157cfac7d781654109f18ed6461bf92d6a9fc1e3f556e3f72333c33c12d",
+          "receipt_gas_used": 4257603,
+          "estimated_gas": 4257603,
+          "padded_gas": 5322004,
+          "gas_limit": 5322004
+        },
+        {
+          "label": "create:rebalance_confirmation",
+          "transaction_hash": "0x5cc60d38e5339136e49bad11a20d49fe7445419a8793271640f92680fa1eeaa5",
+          "receipt_gas_used": 3264752,
+          "estimated_gas": 3264752,
+          "padded_gas": 4080940,
+          "gas_limit": 4080940
+        },
+        {
+          "label": "create:balancing_router",
+          "transaction_hash": "0xe8b407ef9b6c283f13417e91a33a50a63c43cb1406caef749d326a2eb90452e6",
+          "receipt_gas_used": 9720392,
+          "estimated_gas": 9720392,
+          "padded_gas": 12150490,
+          "gas_limit": 12150490
+        },
+        {
+          "label": "create:oracle",
+          "transaction_hash": "0xf3ab111335ed46cb01561b4673acc91fd64676346fa6acf9a4b9127c1aa33ba0",
+          "receipt_gas_used": 9608591,
+          "estimated_gas": 9608591,
+          "padded_gas": 12010739,
+          "gas_limit": 12010739
+        },
+        {
+          "label": "bind:oracle",
+          "transaction_hash": "0x63b2122f726ef6f2eac63fe059bf6038ed790d7a09741166a35a6aa93a1171b9",
+          "receipt_gas_used": 58626,
+          "estimated_gas": 58626,
+          "padded_gas": 73283,
+          "gas_limit": 73283
+        },
+        {
+          "label": "create:liquidity",
+          "transaction_hash": "0x77c17713c8f139a3f7b5240607a74669ee916d2bbdcb6bdc6ac25599d8a34a77",
+          "receipt_gas_used": 9853867,
+          "estimated_gas": 9853867,
+          "padded_gas": 12317334,
+          "gas_limit": 12317334
+        },
+        {
+          "label": "bind:liquidity",
+          "transaction_hash": "0x3f6499d9fc432cafc657a97def70cfd32d0dfa701026e787756b987519b54280",
+          "receipt_gas_used": 57086,
+          "estimated_gas": 57086,
+          "padded_gas": 71358,
+          "gas_limit": 71358
+        },
+        {
+          "label": "create:pools",
+          "transaction_hash": "0x9a342c3094436fab72b3b1d467a9933fca2991f95d6fef757ca72d1dff7e704d",
+          "receipt_gas_used": 5848476,
+          "estimated_gas": 5848476,
+          "padded_gas": 7310595,
+          "gas_limit": 7310595
+        },
+        {
+          "label": "bind:pools",
+          "transaction_hash": "0xf339a72d1ab19b20b672c87a937dd93c3e85c2af0e3cec81fe903ca733d17c9d",
+          "receipt_gas_used": 58542,
+          "estimated_gas": 58542,
+          "padded_gas": 73178,
+          "gas_limit": 73178
+        },
+        {
+          "label": "create:strategy",
+          "transaction_hash": "0xc124f86db82b4f7f8325192c46ba897225d1af84ad6bfa514ed5527c4b2a3abc",
+          "receipt_gas_used": 5270790,
+          "estimated_gas": 5270790,
+          "padded_gas": 6588488,
+          "gas_limit": 6588488
+        },
+        {
+          "label": "bind:strategy",
+          "transaction_hash": "0x817d91216f46d5db2192746bd1df1dd5de6c4a4303b2b256bda70ac6ce4a9b92",
+          "receipt_gas_used": 57733,
+          "estimated_gas": 57733,
+          "padded_gas": 72167,
+          "gas_limit": 72167
+        },
+        {
+          "label": "create:vault",
+          "transaction_hash": "0xcda819d99f8a04b664c765a0fea7c1418b5deef465b1d99927489b8b419e40ec",
+          "receipt_gas_used": 5405390,
+          "estimated_gas": 5405390,
+          "padded_gas": 6756738,
+          "gas_limit": 6756738
+        },
+        {
+          "label": "bind:vault",
+          "transaction_hash": "0x0113926de38a3f4d3b49ab1cfae8e759960ef139f0e5ad7b2c82bb7a01eb6f50",
+          "receipt_gas_used": 56767,
+          "estimated_gas": 56767,
+          "padded_gas": 70959,
+          "gas_limit": 70959
+        },
+        {
+          "label": "create:rewards",
+          "transaction_hash": "0xc9a09fdaf169af92d9089ab3be18f9bd4ffcc92fb4987eaa74469ed50f58d786",
+          "receipt_gas_used": 9398140,
+          "estimated_gas": 9398140,
+          "padded_gas": 11747675,
+          "gas_limit": 11747675
+        },
+        {
+          "label": "bind:rewards",
+          "transaction_hash": "0x74b226e36ab99b4f5b0da53f894a67a95aeffb53573d724e6ce5bf1ec337194a",
+          "receipt_gas_used": 57068,
+          "estimated_gas": 57068,
+          "padded_gas": 71335,
+          "gas_limit": 71335
+        },
+        {
+          "label": "create:fees",
+          "transaction_hash": "0x3b9d20105ee23a99fa1b34cbd83408dc1ac01d395c14e341e5e8cd9c30e9f6e6",
+          "receipt_gas_used": 2179891,
+          "estimated_gas": 2179891,
+          "padded_gas": 2724864,
+          "gas_limit": 2724864
+        },
+        {
+          "label": "bind:fees",
+          "transaction_hash": "0xdeb9eef734eb7deddfbe460713f0dc38b54e5ca0810ae50e3ab1576a3c7eb175",
+          "receipt_gas_used": 57332,
+          "estimated_gas": 57332,
+          "padded_gas": 71665,
+          "gas_limit": 71665
+        },
+        {
+          "label": "create:membership",
+          "transaction_hash": "0x7e046547c9fad33d0cba0f7e19b2496beae48548f76982420b760ad301081b29",
+          "receipt_gas_used": 1476976,
+          "estimated_gas": 1476976,
+          "padded_gas": 1846220,
+          "gas_limit": 1846220
+        },
+        {
+          "label": "bind:membership",
+          "transaction_hash": "0xb86c53658b2d5fc5b5c18544d419f61bb0b0edef3d3dcb603f26ff489b1c0717",
+          "receipt_gas_used": 57096,
+          "estimated_gas": 57096,
+          "padded_gas": 71370,
+          "gas_limit": 71370
+        },
+        {
+          "label": "create:migration",
+          "transaction_hash": "0x920e8d9ca3835d22a3301811eb450a35844dd4752c6cafa09c5306b2a7b2812f",
+          "receipt_gas_used": 9374631,
+          "estimated_gas": 9374631,
+          "padded_gas": 11718289,
+          "gas_limit": 11718289
+        },
+        {
+          "label": "bind:migration",
+          "transaction_hash": "0x990eec7ee09844c8514f7ebc51c8bd01e7ca69b0b168883316b4742ffbd3b497",
+          "receipt_gas_used": 58475,
+          "estimated_gas": 58475,
+          "padded_gas": 73094,
+          "gas_limit": 73094
+        },
+        {
+          "label": "create:compounder",
+          "transaction_hash": "0x7b1aca7cd7b182e48971a3ee662ac2219c609fd2d47f57f2213843d92ac6da37",
+          "receipt_gas_used": 535653,
+          "estimated_gas": 535653,
+          "padded_gas": 669567,
+          "gas_limit": 669567
+        },
+        {
+          "label": "bind:compounder",
+          "transaction_hash": "0x157466c6d54c405e033ac08c7f2039a97d47f48b6eff2bef330ee91792b6b9e1",
+          "receipt_gas_used": 57576,
+          "estimated_gas": 57576,
+          "padded_gas": 71970,
+          "gas_limit": 71970
+        },
+        {
+          "label": "create:buyback",
+          "transaction_hash": "0x46ce42e15ef536f0a13e9d06ff2bbc7ecd56ccb12ce456744922e1e5808414ac",
+          "receipt_gas_used": 1831805,
+          "estimated_gas": 1831805,
+          "padded_gas": 2289757,
+          "gas_limit": 2289757
+        },
+        {
+          "label": "bind:buyback",
+          "transaction_hash": "0x09a4bb920dfd54e08906ec329fd1cada6fe34a3a5fc0ef6330cb1ee02c398c93",
+          "receipt_gas_used": 57846,
+          "estimated_gas": 57846,
+          "padded_gas": 72308,
+          "gas_limit": 72308
+        },
+        {
+          "label": "create:nft",
+          "transaction_hash": "0xd2f4e21549a967699a1ec7e68fbe528a10b31d7cf972fe09a49487b380728408",
+          "receipt_gas_used": 11371583,
+          "estimated_gas": 11371583,
+          "padded_gas": 14214479,
+          "gas_limit": 14214479
+        },
+        {
+          "label": "bind:nft",
+          "transaction_hash": "0x2452edfc55c30e1aeaf375140a0f9b3d0ecaa0f9d20066cae488f46c466cd222",
+          "receipt_gas_used": 57382,
+          "estimated_gas": 57382,
+          "padded_gas": 71728,
+          "gas_limit": 71728
+        },
+        {
+          "label": "create:nft_canonical",
+          "transaction_hash": "0x4dd940f80ca1692987be2d79b779f761bb08b97a927abd352abf55649ae50c31",
+          "receipt_gas_used": 5055980,
+          "estimated_gas": 5055980,
+          "padded_gas": 6319975,
+          "gas_limit": 6319975
+        },
+        {
+          "label": "bind:nft_canonical",
+          "transaction_hash": "0xed2bd6d926b4ef8acb77f172252452bfa015834fa3d242bb9818cd13cf12cf34",
+          "receipt_gas_used": 58938,
+          "estimated_gas": 58938,
+          "padded_gas": 73673,
+          "gas_limit": 73673
+        },
+        {
+          "label": "create:vault_canonical",
+          "transaction_hash": "0x55b2ac13c1f5c8cc93a392462d9072052f45d9d426d38ce3c6fe660c53384e37",
+          "receipt_gas_used": 5367015,
+          "estimated_gas": 5367015,
+          "padded_gas": 6708769,
+          "gas_limit": 6708769
+        },
+        {
+          "label": "bind:vault_canonical",
+          "transaction_hash": "0x6603ff2195d4706ac40da60b9f28dbace00c314337605d86c003b8f9d5c8a39c",
+          "receipt_gas_used": 59343,
+          "estimated_gas": 59343,
+          "padded_gas": 74179,
+          "gas_limit": 74179
+        },
+        {
+          "label": "create:fees_canonical",
+          "transaction_hash": "0xbb241a793c03c4dc20d3027320ba6fec213233d45c6e080d70eb07ec4287e560",
+          "receipt_gas_used": 2279634,
+          "estimated_gas": 2279634,
+          "padded_gas": 2849543,
+          "gas_limit": 2849543
+        },
+        {
+          "label": "bind:fees_canonical",
+          "transaction_hash": "0xf02a2f09af0f467770b78c0680e7e4e0b4e63a481bc23fbf7a5df0913fe54969",
+          "receipt_gas_used": 59369,
+          "estimated_gas": 59369,
+          "padded_gas": 74212,
+          "gas_limit": 74212
+        },
+        {
+          "label": "create:canonical",
+          "transaction_hash": "0x8f221a61942079f382a97f7fee9cf2c6ba7164edf7ada804601b027c49a7d6c0",
+          "receipt_gas_used": 5347142,
+          "estimated_gas": 5347142,
+          "padded_gas": 6683928,
+          "gas_limit": 6683928
+        },
+        {
+          "label": "bind:canonical",
+          "transaction_hash": "0xe7595fdef3fd84467ae2505a94107694a83b24e9892d2537702105bda8aa4535",
+          "receipt_gas_used": 58948,
+          "estimated_gas": 58948,
+          "padded_gas": 73685,
+          "gas_limit": 73685
+        },
+        {
+          "label": "create:lp_converter",
+          "transaction_hash": "0x83038d2e816c556587b1cfdc419f542cc6c990329f88c25b9fc7155435437ee6",
+          "receipt_gas_used": 6289890,
+          "estimated_gas": 6289890,
+          "padded_gas": 7862363,
+          "gas_limit": 7862363
+        },
+        {
+          "label": "create:seadrop_mint",
+          "transaction_hash": "0x66e6b10c86b94d06567f815f56215aaf8387bfb8c2d67e483788ff1f803a5a56",
+          "receipt_gas_used": 4586560,
+          "estimated_gas": 4586560,
+          "padded_gas": 5733200,
+          "gas_limit": 5733200
+        },
+        {
+          "label": "bind:lp_converter",
+          "transaction_hash": "0x16c2173c8ab65bf3361365209ebe502860cc6182e546315c32b6c0881dba4bb6",
+          "receipt_gas_used": 73933,
+          "estimated_gas": 76733,
+          "padded_gas": 95917,
+          "gas_limit": 95917
+        },
+        {
+          "label": "bind:seadrop_mint",
+          "transaction_hash": "0xb826f829c51f106910a2739d9e884af3083eaad2f4e4dd57cebae7bf16602b00",
+          "receipt_gas_used": 81208,
+          "estimated_gas": 81208,
+          "padded_gas": 101510,
+          "gas_limit": 101510
+        }
+      ]
+    },
+    "control-fixture": {
+      "transactions": 3,
+      "raw_gas_total": 14054626,
+      "estimated_gas_total": 14054626,
+      "padded_gas_total": 17568284,
+      "worst": {
+        "label": "create:access",
+        "transaction_hash": "0x060a2181fe10f63a3f12b5a7be984595fd5d697fb6ca68a510f7c14a4338b363",
+        "receipt_gas_used": 10325402,
+        "estimated_gas": 10325402,
+        "padded_gas": 12906753,
+        "gas_limit": 12906753
+      },
+      "rows": [
+        {
+          "label": "create:access",
+          "transaction_hash": "0x060a2181fe10f63a3f12b5a7be984595fd5d697fb6ca68a510f7c14a4338b363",
+          "receipt_gas_used": 10325402,
+          "estimated_gas": 10325402,
+          "padded_gas": 12906753,
+          "gas_limit": 12906753
+        },
+        {
+          "label": "create:protocol_policy",
+          "transaction_hash": "0x35e5231728cd120bc940bb169cbf81c5c831e9057df4f5f0dc3711de049e7ef4",
+          "receipt_gas_used": 3673366,
+          "estimated_gas": 3673366,
+          "padded_gas": 4591708,
+          "gas_limit": 4591708
+        },
+        {
+          "label": "bind:protocol_policy",
+          "transaction_hash": "0x37b73429b4a66dfe8974a0e8097676d3c038661241fc1b5d7e499cb4937fa621",
+          "receipt_gas_used": 55858,
+          "estimated_gas": 55858,
+          "padded_gas": 69823,
+          "gas_limit": 69823
+        }
+      ]
+    }
+  },
+  "production_cost_quoted": false
+}

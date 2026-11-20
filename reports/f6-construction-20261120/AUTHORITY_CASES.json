@@ -1,0 +1,1255 @@
+{
+  "schema": 1,
+  "purpose": "Closed read-only authority probes for a separate disposable unsealed real-Access+Policy fixture; no production configuration or transactions",
+  "source_baseline": "2891f6b29691449d6667d36b9c678a0746ce5d80",
+  "roles": {
+    "bootstrap": "0x000000000000000000000000000000000000a0a0",
+    "governance": "0x000000000000000000000000000000000000a0a3",
+    "keeper": "0x000000000000000000000000000000000000beef",
+    "guardian": "0x000000000000000000000000000000000000a0a1",
+    "outsider": "0x000000000000000000000000000000000000a0a4",
+    "payee": "0x000000000000000000000000000000000000a0a2"
+  },
+  "runtime_roles": [
+    "access",
+    "protocol_policy"
+  ],
+  "target_role_allowlist": [
+    "access",
+    "protocol_policy"
+  ],
+  "from_role_allowlist": [
+    "bootstrap",
+    "governance",
+    "keeper",
+    "guardian",
+    "outsider"
+  ],
+  "signature_allowlist": [
+    "acceptGovernance()",
+    "proposeGovernance(address)",
+    "setGuardian(address,bool)",
+    "setKeeper(address,bool)",
+    "setPaused(bool)",
+    "setRoyaltyBalanceGas(uint32,bytes32)"
+  ],
+  "fixture_preconditions": [
+    "Actual normal F6 Access constructor with DISTINCT bootstrap/governance/keeper/guardian.",
+    "Actual ProtocolPolicy constructor with payee; bootstrap completes bindProtocolPolicy only.",
+    "Access/Policy targets are discovered from the owned fixture, never report-supplied or existing live addresses.",
+    "isSealed=false; no module bindings, preparation, canonical lock or pending governance.",
+    "No state overrides, seal selector, signing/send, key reading, provider URL, external node or existing journal is permitted by this case file."
+  ],
+  "source_sha256": {
+    "src/ZZZAccessController.sol": "bb0b6db9218ad1b171616f5f463769bc7ec2e9bed089509f4cc0f75683b91bf3",
+    "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+    "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295"
+  },
+  "role_reference_encoding": "@name resolves only through fixed declared roles or discovered fresh access/protocol_policy; ABI encode using the exact listed types. Amounts remain decimal strings, booleans true/false.",
+  "case_count": 35,
+  "expected_success_count": 9,
+  "expected_unauthorized_count": 26,
+  "cases": [
+    {
+      "id": "set_keeper__bootstrap",
+      "target_role": "access",
+      "from_role": "bootstrap",
+      "signature": "setKeeper(address,bool)",
+      "types": [
+        "address",
+        "bool"
+      ],
+      "values": [
+        "@outsider",
+        true
+      ],
+      "state_check_ids": [
+        "keeper_flag_outsider"
+      ],
+      "expected_return": "0x"
+    },
+    {
+      "id": "set_keeper__governance",
+      "target_role": "access",
+      "from_role": "governance",
+      "signature": "setKeeper(address,bool)",
+      "types": [
+        "address",
+        "bool"
+      ],
+      "values": [
+        "@outsider",
+        true
+      ],
+      "state_check_ids": [
+        "keeper_flag_outsider"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "set_keeper__keeper",
+      "target_role": "access",
+      "from_role": "keeper",
+      "signature": "setKeeper(address,bool)",
+      "types": [
+        "address",
+        "bool"
+      ],
+      "values": [
+        "@outsider",
+        true
+      ],
+      "state_check_ids": [
+        "keeper_flag_outsider"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "set_keeper__guardian",
+      "target_role": "access",
+      "from_role": "guardian",
+      "signature": "setKeeper(address,bool)",
+      "types": [
+        "address",
+        "bool"
+      ],
+      "values": [
+        "@outsider",
+        true
+      ],
+      "state_check_ids": [
+        "keeper_flag_outsider"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "set_keeper__outsider",
+      "target_role": "access",
+      "from_role": "outsider",
+      "signature": "setKeeper(address,bool)",
+      "types": [
+        "address",
+        "bool"
+      ],
+      "values": [
+        "@outsider",
+        true
+      ],
+      "state_check_ids": [
+        "keeper_flag_outsider"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "set_guardian__bootstrap",
+      "target_role": "access",
+      "from_role": "bootstrap",
+      "signature": "setGuardian(address,bool)",
+      "types": [
+        "address",
+        "bool"
+      ],
+      "values": [
+        "@outsider",
+        true
+      ],
+      "state_check_ids": [
+        "guardian_flag_outsider"
+      ],
+      "expected_return": "0x"
+    },
+    {
+      "id": "set_guardian__governance",
+      "target_role": "access",
+      "from_role": "governance",
+      "signature": "setGuardian(address,bool)",
+      "types": [
+        "address",
+        "bool"
+      ],
+      "values": [
+        "@outsider",
+        true
+      ],
+      "state_check_ids": [
+        "guardian_flag_outsider"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "set_guardian__keeper",
+      "target_role": "access",
+      "from_role": "keeper",
+      "signature": "setGuardian(address,bool)",
+      "types": [
+        "address",
+        "bool"
+      ],
+      "values": [
+        "@outsider",
+        true
+      ],
+      "state_check_ids": [
+        "guardian_flag_outsider"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "set_guardian__guardian",
+      "target_role": "access",
+      "from_role": "guardian",
+      "signature": "setGuardian(address,bool)",
+      "types": [
+        "address",
+        "bool"
+      ],
+      "values": [
+        "@outsider",
+        true
+      ],
+      "state_check_ids": [
+        "guardian_flag_outsider"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "set_guardian__outsider",
+      "target_role": "access",
+      "from_role": "outsider",
+      "signature": "setGuardian(address,bool)",
+      "types": [
+        "address",
+        "bool"
+      ],
+      "values": [
+        "@outsider",
+        true
+      ],
+      "state_check_ids": [
+        "guardian_flag_outsider"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "pause__bootstrap",
+      "target_role": "access",
+      "from_role": "bootstrap",
+      "signature": "setPaused(bool)",
+      "types": [
+        "bool"
+      ],
+      "values": [
+        true
+      ],
+      "state_check_ids": [
+        "unpaused"
+      ],
+      "expected_return": "0x"
+    },
+    {
+      "id": "pause__governance",
+      "target_role": "access",
+      "from_role": "governance",
+      "signature": "setPaused(bool)",
+      "types": [
+        "bool"
+      ],
+      "values": [
+        true
+      ],
+      "state_check_ids": [
+        "unpaused"
+      ],
+      "expected_return": "0x"
+    },
+    {
+      "id": "pause__keeper",
+      "target_role": "access",
+      "from_role": "keeper",
+      "signature": "setPaused(bool)",
+      "types": [
+        "bool"
+      ],
+      "values": [
+        true
+      ],
+      "state_check_ids": [
+        "unpaused"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "pause__guardian",
+      "target_role": "access",
+      "from_role": "guardian",
+      "signature": "setPaused(bool)",
+      "types": [
+        "bool"
+      ],
+      "values": [
+        true
+      ],
+      "state_check_ids": [
+        "unpaused"
+      ],
+      "expected_return": "0x"
+    },
+    {
+      "id": "pause__outsider",
+      "target_role": "access",
+      "from_role": "outsider",
+      "signature": "setPaused(bool)",
+      "types": [
+        "bool"
+      ],
+      "values": [
+        true
+      ],
+      "state_check_ids": [
+        "unpaused"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "unpause__bootstrap",
+      "target_role": "access",
+      "from_role": "bootstrap",
+      "signature": "setPaused(bool)",
+      "types": [
+        "bool"
+      ],
+      "values": [
+        false
+      ],
+      "state_check_ids": [
+        "unpaused"
+      ],
+      "expected_return": "0x"
+    },
+    {
+      "id": "unpause__governance",
+      "target_role": "access",
+      "from_role": "governance",
+      "signature": "setPaused(bool)",
+      "types": [
+        "bool"
+      ],
+      "values": [
+        false
+      ],
+      "state_check_ids": [
+        "unpaused"
+      ],
+      "expected_return": "0x"
+    },
+    {
+      "id": "unpause__keeper",
+      "target_role": "access",
+      "from_role": "keeper",
+      "signature": "setPaused(bool)",
+      "types": [
+        "bool"
+      ],
+      "values": [
+        false
+      ],
+      "state_check_ids": [
+        "unpaused"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "unpause__guardian",
+      "target_role": "access",
+      "from_role": "guardian",
+      "signature": "setPaused(bool)",
+      "types": [
+        "bool"
+      ],
+      "values": [
+        false
+      ],
+      "state_check_ids": [
+        "unpaused"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "unpause__outsider",
+      "target_role": "access",
+      "from_role": "outsider",
+      "signature": "setPaused(bool)",
+      "types": [
+        "bool"
+      ],
+      "values": [
+        false
+      ],
+      "state_check_ids": [
+        "unpaused"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "propose_governance__bootstrap",
+      "target_role": "access",
+      "from_role": "bootstrap",
+      "signature": "proposeGovernance(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@outsider"
+      ],
+      "state_check_ids": [
+        "pending_governance",
+        "governance"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "propose_governance__governance",
+      "target_role": "access",
+      "from_role": "governance",
+      "signature": "proposeGovernance(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@outsider"
+      ],
+      "state_check_ids": [
+        "pending_governance",
+        "governance"
+      ],
+      "expected_return": "0x"
+    },
+    {
+      "id": "propose_governance__keeper",
+      "target_role": "access",
+      "from_role": "keeper",
+      "signature": "proposeGovernance(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@outsider"
+      ],
+      "state_check_ids": [
+        "pending_governance",
+        "governance"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "propose_governance__guardian",
+      "target_role": "access",
+      "from_role": "guardian",
+      "signature": "proposeGovernance(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@outsider"
+      ],
+      "state_check_ids": [
+        "pending_governance",
+        "governance"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "propose_governance__outsider",
+      "target_role": "access",
+      "from_role": "outsider",
+      "signature": "proposeGovernance(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@outsider"
+      ],
+      "state_check_ids": [
+        "pending_governance",
+        "governance"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "accept_governance__bootstrap",
+      "target_role": "access",
+      "from_role": "bootstrap",
+      "signature": "acceptGovernance()",
+      "types": [],
+      "values": [],
+      "state_check_ids": [
+        "pending_governance",
+        "governance"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "accept_governance__governance",
+      "target_role": "access",
+      "from_role": "governance",
+      "signature": "acceptGovernance()",
+      "types": [],
+      "values": [],
+      "state_check_ids": [
+        "pending_governance",
+        "governance"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "accept_governance__keeper",
+      "target_role": "access",
+      "from_role": "keeper",
+      "signature": "acceptGovernance()",
+      "types": [],
+      "values": [],
+      "state_check_ids": [
+        "pending_governance",
+        "governance"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "accept_governance__guardian",
+      "target_role": "access",
+      "from_role": "guardian",
+      "signature": "acceptGovernance()",
+      "types": [],
+      "values": [],
+      "state_check_ids": [
+        "pending_governance",
+        "governance"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "accept_governance__outsider",
+      "target_role": "access",
+      "from_role": "outsider",
+      "signature": "acceptGovernance()",
+      "types": [],
+      "values": [],
+      "state_check_ids": [
+        "pending_governance",
+        "governance"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "royalty_balance_policy__bootstrap",
+      "target_role": "protocol_policy",
+      "from_role": "bootstrap",
+      "signature": "setRoyaltyBalanceGas(uint32,bytes32)",
+      "types": [
+        "uint32",
+        "bytes32"
+      ],
+      "values": [
+        "60000",
+        "0x4444444444444444444444444444444444444444444444444444444444444444"
+      ],
+      "state_check_ids": [
+        "royalty_balance_gas",
+        "policy_revision",
+        "policy_gas",
+        "policy_hash"
+      ],
+      "expected_return": "0x"
+    },
+    {
+      "id": "royalty_balance_policy__governance",
+      "target_role": "protocol_policy",
+      "from_role": "governance",
+      "signature": "setRoyaltyBalanceGas(uint32,bytes32)",
+      "types": [
+        "uint32",
+        "bytes32"
+      ],
+      "values": [
+        "60000",
+        "0x4444444444444444444444444444444444444444444444444444444444444444"
+      ],
+      "state_check_ids": [
+        "royalty_balance_gas",
+        "policy_revision",
+        "policy_gas",
+        "policy_hash"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "royalty_balance_policy__keeper",
+      "target_role": "protocol_policy",
+      "from_role": "keeper",
+      "signature": "setRoyaltyBalanceGas(uint32,bytes32)",
+      "types": [
+        "uint32",
+        "bytes32"
+      ],
+      "values": [
+        "60000",
+        "0x4444444444444444444444444444444444444444444444444444444444444444"
+      ],
+      "state_check_ids": [
+        "royalty_balance_gas",
+        "policy_revision",
+        "policy_gas",
+        "policy_hash"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "royalty_balance_policy__guardian",
+      "target_role": "protocol_policy",
+      "from_role": "guardian",
+      "signature": "setRoyaltyBalanceGas(uint32,bytes32)",
+      "types": [
+        "uint32",
+        "bytes32"
+      ],
+      "values": [
+        "60000",
+        "0x4444444444444444444444444444444444444444444444444444444444444444"
+      ],
+      "state_check_ids": [
+        "royalty_balance_gas",
+        "policy_revision",
+        "policy_gas",
+        "policy_hash"
+      ],
+      "expected_error": "0x82b42900"
+    },
+    {
+      "id": "royalty_balance_policy__outsider",
+      "target_role": "protocol_policy",
+      "from_role": "outsider",
+      "signature": "setRoyaltyBalanceGas(uint32,bytes32)",
+      "types": [
+        "uint32",
+        "bytes32"
+      ],
+      "values": [
+        "60000",
+        "0x4444444444444444444444444444444444444444444444444444444444444444"
+      ],
+      "state_check_ids": [
+        "royalty_balance_gas",
+        "policy_revision",
+        "policy_gas",
+        "policy_hash"
+      ],
+      "expected_error": "0x82b42900"
+    }
+  ],
+  "state_checks": [
+    {
+      "id": "governance",
+      "target_role": "access",
+      "signature": "governance()",
+      "types": [],
+      "values": [],
+      "return_types": [
+        "address"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        "@governance"
+      ]
+    },
+    {
+      "id": "bootstrap",
+      "target_role": "access",
+      "signature": "bootstrap()",
+      "types": [],
+      "values": [],
+      "return_types": [
+        "address"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        "@bootstrap"
+      ]
+    },
+    {
+      "id": "pending_governance",
+      "target_role": "access",
+      "signature": "pendingGovernance()",
+      "types": [],
+      "values": [],
+      "return_types": [
+        "address"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        "0x0000000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "id": "policy_binding",
+      "target_role": "access",
+      "signature": "protocolPolicy()",
+      "types": [],
+      "values": [],
+      "return_types": [
+        "address"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        "@protocol_policy"
+      ]
+    },
+    {
+      "id": "unsealed",
+      "target_role": "access",
+      "signature": "isSealed()",
+      "types": [],
+      "values": [],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "unpaused",
+      "target_role": "access",
+      "signature": "paused()",
+      "types": [],
+      "values": [],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "canonical_operating",
+      "target_role": "access",
+      "signature": "canonicalState()",
+      "types": [],
+      "values": [],
+      "return_types": [
+        "uint8"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        0
+      ]
+    },
+    {
+      "id": "no_preparation",
+      "target_role": "access",
+      "signature": "preparationActive()",
+      "types": [],
+      "values": [],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "no_lp_exit",
+      "target_role": "access",
+      "signature": "lpExitStarted()",
+      "types": [],
+      "values": [],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "keeper_flag_bootstrap",
+      "target_role": "access",
+      "signature": "keepers(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@bootstrap"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "guardian_flag_bootstrap",
+      "target_role": "access",
+      "signature": "guardians(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@bootstrap"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "configure_bootstrap",
+      "target_role": "access",
+      "signature": "canConfigure(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@bootstrap"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        true
+      ]
+    },
+    {
+      "id": "keeper_authorized_bootstrap",
+      "target_role": "access",
+      "signature": "keeperAuthorized(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@bootstrap"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "keeper_flag_governance",
+      "target_role": "access",
+      "signature": "keepers(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@governance"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "guardian_flag_governance",
+      "target_role": "access",
+      "signature": "guardians(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@governance"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "configure_governance",
+      "target_role": "access",
+      "signature": "canConfigure(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@governance"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "keeper_authorized_governance",
+      "target_role": "access",
+      "signature": "keeperAuthorized(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@governance"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "keeper_flag_keeper",
+      "target_role": "access",
+      "signature": "keepers(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@keeper"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        true
+      ]
+    },
+    {
+      "id": "guardian_flag_keeper",
+      "target_role": "access",
+      "signature": "guardians(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@keeper"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "configure_keeper",
+      "target_role": "access",
+      "signature": "canConfigure(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@keeper"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "keeper_authorized_keeper",
+      "target_role": "access",
+      "signature": "keeperAuthorized(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@keeper"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "keeper_flag_guardian",
+      "target_role": "access",
+      "signature": "keepers(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@guardian"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "guardian_flag_guardian",
+      "target_role": "access",
+      "signature": "guardians(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@guardian"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        true
+      ]
+    },
+    {
+      "id": "configure_guardian",
+      "target_role": "access",
+      "signature": "canConfigure(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@guardian"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "keeper_authorized_guardian",
+      "target_role": "access",
+      "signature": "keeperAuthorized(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@guardian"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "keeper_flag_outsider",
+      "target_role": "access",
+      "signature": "keepers(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@outsider"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "guardian_flag_outsider",
+      "target_role": "access",
+      "signature": "guardians(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@outsider"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "configure_outsider",
+      "target_role": "access",
+      "signature": "canConfigure(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@outsider"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "keeper_authorized_outsider",
+      "target_role": "access",
+      "signature": "keeperAuthorized(address)",
+      "types": [
+        "address"
+      ],
+      "values": [
+        "@outsider"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "unknown_module_authorized",
+      "target_role": "access",
+      "signature": "moduleAuthorized(bytes32,address)",
+      "types": [
+        "bytes32",
+        "address"
+      ],
+      "values": [
+        "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "@bootstrap"
+      ],
+      "return_types": [
+        "bool"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        false
+      ]
+    },
+    {
+      "id": "policy_access",
+      "target_role": "protocol_policy",
+      "signature": "access()",
+      "types": [],
+      "values": [],
+      "return_types": [
+        "address"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        "@access"
+      ]
+    },
+    {
+      "id": "royalty_balance_gas",
+      "target_role": "protocol_policy",
+      "signature": "royaltyBalanceGas()",
+      "types": [],
+      "values": [],
+      "return_types": [
+        "uint32"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        "50000"
+      ]
+    },
+    {
+      "id": "policy_revision",
+      "target_role": "protocol_policy",
+      "signature": "configurationRevision()",
+      "types": [],
+      "values": [],
+      "return_types": [
+        "uint64"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        "0"
+      ]
+    },
+    {
+      "id": "policy_gas",
+      "target_role": "protocol_policy",
+      "signature": "gasPolicy()",
+      "types": [],
+      "values": [],
+      "return_types": [
+        "uint32",
+        "uint32",
+        "uint32",
+        "uint64"
+      ],
+      "equal_before_after": true,
+      "return_values": [
+        "180000",
+        "500000",
+        "1000000",
+        "1"
+      ]
+    },
+    {
+      "id": "policy_hash",
+      "target_role": "protocol_policy",
+      "signature": "configurationHash()",
+      "types": [],
+      "values": [],
+      "return_types": [
+        "bytes32"
+      ],
+      "equal_before_after": true,
+      "require_nonzero": true
+    }
+  ],
+  "snapshot_rules": {
+    "initial_and_final_all_state_checks": true,
+    "per_case_before_after_checks": "Resolve state_check_ids and verify raw results equal before/after the eth_call, including failed calls. Initial/final checks retain exact typed expected returns.",
+    "policy_hash": "The constructor-dependent bytes32 is only required nonzero and identical before/after; do not fabricate an expected hash.",
+    "guard_case_state": "The five acceptGovernance cases all require pendingGovernance=0; proposal eth_calls never persist a new pending value.",
+    "return_rule": "Success must return exact0x; failure must carry exact4byte Unauthorized() selector0x82b42900, not an unrelated generic revert.",
+    "no_persistence": "Block number/hash, sender/control/Factory nonces and fixture authority/default state must stay unchanged through probe-only execution."
+  },
+  "expected_authority_semantics": [
+    "Preseal canConfigure belongs to bootstrap, not the distinct governance wallet.",
+    "Governance can proposeGovernance and pause/unpause even while ordinary preseal configuration remains bootstrap-only.",
+    "Guardian can pause(true), never unpause(false).",
+    "Registered keeper has no effective keeperAuthorized permission while unsealed.",
+    "Read-only local simulations are not real-key ownership proof or sealed-operation qualification.",
+    "Factory create functions are intentionally permissionless and are outside this operator-only negative-probe allowlist."
+  ],
+  "fixture_review_hash": {
+    "value": "0x4444444444444444444444444444444444444444444444444444444444444444",
+    "meaning": "Disposable nonzero source-validation fixture only; not an approved live reviewHash."
+  },
+  "production_approved": false,
+  "ready_for_seal": false,
+  "public_transactions": 0,
+  "tests_or_calls_executed_by_this_file_author": 0
+}

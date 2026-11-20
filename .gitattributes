@@ -324,3 +324,6 @@ reports/readiness-gate-a-20261120/** -text whitespace=cr-at-eol
 
 # Retain the current native service-guide line endings.
 docs/PRODUCTION_SERVICES.md -text whitespace=cr-at-eol
+
+# Preserve exact current F6 local construction traces, probes and offline receipts.
+reports/f6-construction-20261120/** -text whitespace=cr-at-eol
