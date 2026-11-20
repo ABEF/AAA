@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "date": "2026-11-20",
+  "baseline": "519ff4f075022f789f46facbab56f0a944705b11",
+  "scope": "Static review of previously retrieved explorer-verified token source, authenticated against fresh runtime bytes; no independent source recompilation or nonzero burn execution",
+  "token": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+  "contract": "PonsV2LauncherToken",
+  "fresh_anchor": {
+    "block": 119000058,
+    "hash": "0x2d9e3d565cef3714f0dbc40bb6ed0253adab8a1a1b41a3eb53b2a8fe93f87547"
+  },
+  "runtime_bytes": 3248,
+  "runtime_keccak256": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597",
+  "fresh_runtime_wire_sha256": "213ebff164fb37fb87d6646080e4d0d2c86b5e464e9403716bc0c26fd4c28c79",
+  "fresh_runtime_equals_retained_explorer_runtime": true,
+  "retained_explorer_response": "reports/market-qualification-20261109/markets/explorer-zzz-02-response.raw",
+  "retained_explorer_response_sha256": "594ae274fcb23fd0e261e350a0b3fafb27ef7547f0e80b7c82ee8e37d97480b9",
+  "explorer_flags": {
+    "is_verified": true,
+    "is_fully_verified": true,
+    "proxy_type": null,
+    "implementations": [],
+    "compiler_version": "v0.8.35+commit.47b9dedd"
+  },
+  "inspected_source_hashes": {
+    "reports/market-qualification-20261109/markets/verified-sources/zzz/contracts/src/v2/PonsV2LauncherToken.sol": "f3642bd24ecbcd902d7a09e9fa91100b0ac93723f0bfa41b66241c091b094c3e",
+    "reports/market-qualification-20261109/markets/verified-sources/zzz/contracts/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/IERC20Metadata.sol": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+    "reports/market-qualification-20261109/markets/verified-sources/zzz/contracts/lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol": "50f34ae16a067a41c2c1091445d11d63788e54c717677cb6d6b0e4cdea2ad21d",
+    "reports/market-qualification-20261109/markets/verified-sources/zzz/contracts/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Burnable.sol": "2e6108a11184dd0caab3f3ef31bd15fed1bc7e4c781a55bc867ccedd8474565c",
+    "reports/market-qualification-20261109/markets/verified-sources/zzz/contracts/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+    "reports/market-qualification-20261109/markets/verified-sources/zzz/contracts/lib/openzeppelin-contracts/contracts/interfaces/draft-IERC6093.sol": "fa7068f56bc180571a6095be6eaef06d51dbe81e30cb128397d993c9599ecc30",
+    "reports/market-qualification-20261109/markets/verified-sources/zzz/contracts/lib/openzeppelin-contracts/contracts/utils/Context.sol": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6"
+  },
+  "exposed_function_names": [
+    "allowance",
+    "approve",
+    "balanceOf",
+    "burn",
+    "burnFrom",
+    "curve",
+    "decimals",
+    "deployer",
+    "description",
+    "getTokenInfo",
+    "launchFactory",
+    "logo",
+    "name",
+    "socials",
+    "symbol",
+    "totalSupply",
+    "transfer",
+    "transferFrom"
+  ],
+  "source_findings": [
+    {
+      "id": "T01",
+      "claim": "Token is ERC20 plus ERC20Burnable; no Ownable/proxy inheritance, arbitrary external call/delegatecall or transfer callback is introduced by the leaf contract.",
+      "evidence": "Main inheritance plus inspected ERC20/Burnable/Context bodies. ABI absence alone is not a behavior proof."
+    },
+    {
+      "id": "T02",
+      "claim": "deployer,launchFactory,curve are immutable references; the source grants their addresses no token-management privileges.",
+      "evidence": "Their constructor assignments and use-only metadata getters; no privileged token setter or owner modifier."
+    },
+    {
+      "id": "T03",
+      "claim": "The source mints once in constructor, supports ordinary18-decimal ERC20, and exposes no subsequent external mint, pause, blacklist or tax mechanism.",
+      "evidence": "Leaf has no transfer/_update overrides; inherited ordinary ERC20 implementation and complete18-function ABI."
+    },
+    {
+      "id": "T04",
+      "claim": "burn(value) burns the caller balance and reduces totalSupply; burnFrom uses explicit allowance. This matches the PoPL Buyback required interface.",
+      "evidence": "OZ ERC20Burnable.burn -> ERC20._burn/_update and PoPL Buyback execute checks, not a nonzero target-chain execution."
+    },
+    {
+      "id": "T05",
+      "claim": "The token source comment describes Pons own buybacks as vesting; PoPL separately calls burn and verifies balance/supply reduction. The two systems must not be conflated.",
+      "evidence": "Leaf NatSpec versus src/ZZZBuyback.sol execute."
+    }
+  ],
+  "inspection_screens": {
+    "leaf_extensible_hooks_override": false,
+    "token_privilege_setter_found": false,
+    "nonzero_burn_executed": false
+  },
+  "retained_limits": [
+    "Explorer source-to-bytecode verification is an external assertion, not independent recompilation here.",
+    "Fresh runtime equality does not qualify selected PoolManager,PositionManager,Permit2,feed or other dependency controls.",
+    "Late-fee callback reachability is narrowed for this ordinary token source, not closed across every upstream path.",
+    "No pricing,liquidity,token migration promises,market fee policy or future venue qualification follows.",
+    "Upstream compiler0.8.35 has its own exact-settings/dependency review requirement before independent dependency acceptance."
+  ],
+  "production_approved": false,
+  "source_or_runtime_changes": false,
+  "rpc_calls_in_this_static_review": 0,
+  "application_tests": 0,
+  "buyback_source_sha256": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742"
+}

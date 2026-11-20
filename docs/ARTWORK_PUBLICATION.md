@@ -1,5 +1,11 @@
 # Artwork upload bundle and immutable publication
 
+Publication cardinality is **1,000 mint inventory entries**, **542 distinct
+selected base looks**, and **2,784 supported SVG renderer states**. The1,000
+entries can reuse base looks;58palettes×4patterns×3rarities×4evolutions defines
+the full supported publication. Verify all2,784 paths, not1,000×4unique designs.
+This clarification changes no artwork, assignments or publication state.
+
 The 2026-10-15 preparation tool packages the approved existing artwork without
 regenerating its texture. It verifies all 2,784 renderer filenames against the
 contract's packed palette/pattern catalogue, source image SHA-256 hashes,

@@ -1,0 +1,184 @@
+{
+  "schema": 1,
+  "reviewed": "2026-11-20",
+  "baseline": "519ff4f075022f789f46facbab56f0a944705b11",
+  "trusted_build": "activation-final-six-20261118",
+  "compiler": {
+    "version": "0.8.26+commit.8a97fa7a"
+  },
+  "settings": {
+    "evmVersion": "cancun",
+    "viaIR": true,
+    "optimizer": {
+      "enabled": true,
+      "runs": 1,
+      "details": {
+        "yul": false
+      }
+    },
+    "remappings": [
+      "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+      "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+      "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+      "v4-core/=node_modules/@uniswap/v4-core/",
+      "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+      "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+      "forge-std/=lib/forge-std/src/"
+    ],
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "storageLayout",
+          "evm.bytecode.object",
+          "evm.bytecode.sourceMap",
+          "evm.deployedBytecode.object",
+          "evm.deployedBytecode.sourceMap",
+          "metadata"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    }
+  },
+  "official_snapshot_hashes": {
+    "bugs.json": "0da30cec4b9678f4b884e506540b88fa7e6885eb8de4c5c7485e3d83de5f8406",
+    "bugs_by_version.json": "e131b93baa16786dcdff0490dca8dc69fef56116b58db47b16de5d47a9935d86"
+  },
+  "compiler_advisory_variant_count": 8,
+  "distinct_advisory_ids": 7,
+  "records": [
+    {
+      "id": "SOL-2026-8",
+      "name": "OverlappingRecursiveStorageStructCopyCorruption",
+      "severity": "medium",
+      "introduced": "0.4.9",
+      "fixed": "0.8.39",
+      "conditions": {
+        "viaIR": false
+      },
+      "official_disclosure": "https://blog.soliditylang.org/2026/11/19/overlapping-recursive-storage-struct-copy-corruption-bug/",
+      "disposition": "pipeline_not_used",
+      "reason": "This variant requires viaIR=false; the captured exact build uses viaIR=true. The viaIR variant is separately assessed.",
+      "fresh_assessment_source": "AST_ASSESSMENT.json",
+      "previously_in_six_disclosure_snapshot": false
+    },
+    {
+      "id": "SOL-2026-8",
+      "name": "OverlappingRecursiveStorageStructCopyCorruptionViaIR",
+      "severity": "medium",
+      "introduced": "0.8.13",
+      "fixed": "0.8.39",
+      "conditions": {
+        "viaIR": true
+      },
+      "official_disclosure": "https://blog.soliditylang.org/2026/11/19/overlapping-recursive-storage-struct-copy-corruption-bug/",
+      "disposition": "source_trigger_absent",
+      "reason": "All75 StructDefinitions were evaluated in the closed100-source AST, retaining struct/array edges and excluding mapping-only recursion. No recursive cycle exists through copied struct/array members; no dynamically-array-recursive type can supply this trigger.",
+      "fresh_assessment_source": "AST_ASSESSMENT.json",
+      "previously_in_six_disclosure_snapshot": false
+    },
+    {
+      "id": "SOL-2026-7",
+      "name": "YulOptimizerKnowledgeBaseStaleBookkeeping",
+      "severity": "low",
+      "introduced": "0.8.19",
+      "fixed": "0.8.38",
+      "conditions": {
+        "yulOptimizer": true
+      },
+      "official_disclosure": "https://blog.soliditylang.org/2026/10/22/yul-optimizer-knowledge-base-stale-bookkeeping-bug/",
+      "disposition": "setting_not_enabled",
+      "reason": "The exact admitted standard-json optimizer.details.yul is false. The EVM optimizer remains enabled; its presence does not enable the Yul LoadResolver/EqualStoreEliminator passes required by this disclosure.",
+      "fresh_assessment_source": "AST_ASSESSMENT.json",
+      "previously_in_six_disclosure_snapshot": true
+    },
+    {
+      "id": "SOL-2026-6",
+      "name": "MisorderedNamedParametersInRequireWithCustomErrors",
+      "severity": "very low",
+      "introduced": "0.8.26",
+      "fixed": "0.8.37",
+      "conditions": {
+        "viaIR": true
+      },
+      "official_disclosure": "https://blog.soliditylang.org/2026/09/10/misordered-named-parameters-in-require-with-custom-errors-bug/",
+      "disposition": "source_trigger_absent",
+      "reason": "The full current AST has no require call whose custom-error expression uses named arguments. Standalone revert/custom errors are not this trigger.",
+      "fresh_assessment_source": "AST_ASSESSMENT.json",
+      "previously_in_six_disclosure_snapshot": true
+    },
+    {
+      "id": "SOL-2026-5",
+      "name": "MemoryByteArrayElementDeleteClearsWholeWord",
+      "severity": "low/medium",
+      "introduced": null,
+      "fixed": "0.8.37",
+      "conditions": {
+        "viaIR": false
+      },
+      "official_disclosure": "https://blog.soliditylang.org/2026/09/10/memory-byte-array-element-delete-clears-whole-word-bug/",
+      "disposition": "pipeline_not_used",
+      "reason": "The disclosure is specific to the legacy evmasm pipeline; current exact build uses viaIR.",
+      "fresh_assessment_source": "AST_ASSESSMENT.json",
+      "previously_in_six_disclosure_snapshot": true
+    },
+    {
+      "id": "SOL-2026-4",
+      "name": "SpillSlotCollisionAcrossMutualRecursion",
+      "severity": "low/medium",
+      "introduced": "0.7.2",
+      "fixed": "0.8.37",
+      "conditions": {
+        "viaIR": true
+      },
+      "official_disclosure": "https://blog.soliditylang.org/2026/09/10/spill-slot-collision-across-mutual-recursion-bug/",
+      "disposition": "source_trigger_absent_with_limits",
+      "reason": "Conservative source graph has1334 implemented function/modifier nodes,2042 internal callsites and2088 edges including virtual overrides. Static super/explicit-base dispatch is treated correctly. No cycle or unresolved internal call remains; two local source Yul words helpers are nonrecursive. Compiler-generated IR/spill behavior is not formally proved.",
+      "fresh_assessment_source": "AST_ASSESSMENT.json",
+      "previously_in_six_disclosure_snapshot": true
+    },
+    {
+      "id": "SOL-2026-2",
+      "name": "UnsoundSpillInMutualRecursion",
+      "severity": "medium",
+      "introduced": "0.7.2",
+      "fixed": "0.8.36",
+      "conditions": {
+        "viaIR": true
+      },
+      "official_disclosure": "https://blog.soliditylang.org/2026/07/09/unsound-spill-in-mutual-recursion-bug/",
+      "disposition": "source_trigger_absent_with_limits",
+      "reason": "Same fresh source graph; no mutual-recursion trigger identified. This conclusion is not based on yul=false: this advisory can affect viaIR independent of optimizer. Arbitrary compiler-generated behavior is outside this source screen.",
+      "fresh_assessment_source": "AST_ASSESSMENT.json",
+      "previously_in_six_disclosure_snapshot": true
+    },
+    {
+      "id": "SOL-2025-1",
+      "name": "LostStorageArrayWriteOnSlotOverflow",
+      "severity": "low",
+      "introduced": "0.1.0",
+      "fixed": "0.8.32",
+      "conditions": {},
+      "official_disclosure": "https://blog.soliditylang.org/2025/12/18/lost-storage-array-write-on-slot-overflow-bug/",
+      "disposition": "no_realistic_trigger_established",
+      "reason": "Captured nonempty static layouts end no later than slot52, literal fixed arrays have at most16 elements, no storage-layout specifier or source .slot reassignment appears. Vault buckets/royalty membership arrays are bounded; policy histories are append-only. Dynamic/mapping roots rely on ordinary keccak assumptions, so impossible absence for arbitrary storage/hash/astronomical-array states is not claimed.",
+      "fresh_assessment_source": "AST_ASSESSMENT.json",
+      "previously_in_six_disclosure_snapshot": true
+    }
+  ],
+  "previous_assessment_preserved": "reports/direct-entry-v3-20261103/compiler-assessment.json",
+  "previous_assessment_sha256": "71082e1f061aa60e4ab3e4eaca417c4a968f51ae2e357e7604dcab48ddf875a3",
+  "current_source_and_dependency_hashes_verified": true,
+  "observed_reachable_compiler_defect": false,
+  "compiler_upgrade_justified_by_this_review": false,
+  "compiler_correctness_proved": false,
+  "independent_approval": false,
+  "external_runtime_compiler_qualification": false,
+  "limits": [
+    "The two source Yul helpers differ from old83-source assessment and are reviewed at current source; no old result is relabelled.",
+    "Source/settings applicability only; arbitrary generated IR correctness, external deployed dependencies and toolchain supply-chain authentication are not established.",
+    "Refresh this assessment if any source/dependency/compiler/settings changes or another advisory appears before deployment."
+  ]
+}

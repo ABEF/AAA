@@ -1,0 +1,228 @@
+"""Reassess official compiler advisories against the captured exact F6 AST.
+
+This reads existing compiler output; it does not compile, execute contracts,
+prove compiler correctness, change admission policy or authorize deployment.
+"""
+from __future__ import annotations
+import gzip
+import hashlib
+import json
+import re
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+HERE = Path(__file__).resolve().parent
+BUILD = ROOT / 'reports/activation-final-six-20261118/build/final'
+
+
+def sha(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def walk(value):
+    if isinstance(value, dict):
+        yield value
+        for child in value.values():
+            if isinstance(child, (dict, list)):
+                yield from walk(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from walk(child)
+
+
+def cycles(graph):
+    index = 0
+    stack = []
+    on_stack = set()
+    indexes = {}
+    lows = {}
+    components = []
+    def visit(v):
+        nonlocal index
+        indexes[v] = lows[v] = index
+        index += 1
+        stack.append(v)
+        on_stack.add(v)
+        for to in graph[v]:
+            if to not in indexes:
+                visit(to)
+                lows[v] = min(lows[v], lows[to])
+            elif to in on_stack:
+                lows[v] = min(lows[v], indexes[to])
+        if lows[v] == indexes[v]:
+            component = []
+            while True:
+                to = stack.pop()
+                on_stack.remove(to)
+                component.append(to)
+                if to == v:
+                    break
+            if len(component) > 1 or v in graph[v]:
+                components.append(sorted(component))
+    for v in graph:
+        if v not in indexes:
+            visit(v)
+    return components
+
+
+def internal_targets(expr, functions, candidates):
+    base_expr=expr.get('expression',{})
+    # super.f() and ExplicitBase.f() do not dynamically dispatch back into the
+    # override. Expanding them creates artificial recursion.
+    static_base=expr.get('nodeType')=='MemberAccess' and (
+        base_expr.get('name')=='super' or
+        base_expr.get('typeDescriptions',{}).get('typeIdentifier','').startswith('t_type$_t_contract'))
+    ref=expr.get('referencedDeclaration')
+    return ({ref} & functions.keys()) if static_base else candidates(ref)
+
+
+def struct_refs(typename, structs, arrays=0):
+    # Mapping recursion cannot be copied as a dynamically-array-recursive struct.
+    if typename['nodeType']=='Mapping':return []
+    if typename['nodeType']=='ArrayTypeName':return struct_refs(typename['baseType'],structs,arrays+1)
+    ref=typename.get('referencedDeclaration',typename.get('pathNode',{}).get('referencedDeclaration'))
+    return [(ref,arrays)] if ref in structs else []
+
+
+def named_error_require(n):
+    if n.get('nodeType')!='FunctionCall' or n.get('expression',{}).get('name')!='require':return False
+    args=n['arguments']
+    return len(args)>=2 and args[1].get('nodeType')=='FunctionCall' and bool(args[1].get('names'))
+
+
+def main():
+    ib = gzip.decompress((BUILD/'compiler-input.json.gz').read_bytes())
+    ob = gzip.decompress((BUILD/'compiler-output.json.gz').read_bytes())
+    inp = json.loads(ib)
+    out = json.loads(ob)
+    ev = json.loads((BUILD/'normal-size-evidence.json').read_bytes())
+    assert len(inp['sources']) == len(out['sources']) == 100
+    assert set(inp['sources']) == set(out['sources'])
+    assert inp['settings']['evmVersion'] == 'cancun'
+    assert inp['settings']['viaIR'] is True
+    assert inp['settings']['optimizer'] == {'enabled':True,'runs':1,'details':{'yul':False}}
+    assert ev['compiler_input_sha256'] == sha(ib)
+    assert ev['compiler_output_sha256'] == sha(ob)
+    for source, record in inp['sources'].items():
+        assert (ROOT/source).read_bytes() == record['content'].encode('utf-8'), source
+    for group in ['source_sha256','dependency_source_sha256','build_input_sha256']:
+        for path, expected in ev[group].items():
+            assert sha((ROOT/path).read_bytes()) == expected, path
+    metadata = json.loads(out['contracts']['src/ZZZVault.sol']['ZZZVault']['metadata'])
+    assert metadata['compiler']['version'] == '0.8.26+commit.8a97fa7a'
+    node_paths = {}
+    nodes = {}
+    for source, rec in out['sources'].items():
+        for n in walk(rec['ast']):
+            if 'id' in n:
+                assert n['id'] not in nodes
+                nodes[n['id']] = n
+                node_paths[n['id']] = source
+    structs = {k:n for k,n in nodes.items() if n['nodeType']=='StructDefinition'}
+    functions = {k:n for k,n in nodes.items() if n['nodeType'] in ['FunctionDefinition','ModifierDefinition'] and n.get('body')}
+    def loc(n):
+        source = node_paths[n['id']]
+        offset, length, _ = map(int,n['src'].split(':'))
+        data=inp['sources'][source]['content'].encode('utf-8')
+        return {'source':source,'line':data[:offset].count(b'\n')+1,'src':n['src'],
+                'id':n['id'],'name':n.get('name',n['nodeType'])}
+    overrides = {}
+    for k,n in functions.items():
+        for base in n.get('baseFunctions',[]):
+            overrides.setdefault(base,set()).add(k)
+    def candidates(v):
+        todo=[v];result=set()
+        while todo:
+            z=todo.pop()
+            if z in result:continue
+            result.add(z);todo.extend(overrides.get(z,()))
+        return result & functions.keys()
+    edges={k:set() for k in functions}
+    unknown=[]
+    internal_calls=0
+    for k,fn in functions.items():
+        for n in walk(fn['body']):
+            if n.get('nodeType')!='FunctionCall' or n.get('kind')!='functionCall':continue
+            expr=n['expression']
+            if expr.get('nodeType')=='FunctionCallOptions':expr=expr['expression']
+            typ=expr.get('typeDescriptions',{}).get('typeIdentifier','')
+            if not typ.startswith('t_function_internal_'):continue
+            internal_calls+=1
+            c=internal_targets(expr,functions,candidates)
+            if not c:
+                unknown.append({'caller':loc(fn),'expression':expr,'src':n['src']})
+            edges[k].update(c)
+        for invocation in fn.get('modifiers',[]):
+            ref=invocation['modifierName'].get('referencedDeclaration')
+            edges[k].update(candidates(ref))
+    internal_cycles=cycles(edges)
+    named_requires=[]
+    for n in nodes.values():
+        if named_error_require(n):
+            named_requires.append({'call':loc(n),'names':n['arguments'][1]['names']})
+
+    # Mapping edges cannot trigger this dynamically-array-recursive struct copy bug.
+    # Ignore those edges explicitly, while retaining every array/value struct edge.
+    struct_edges={k:set() for k in structs}
+    mapping_members=[]
+    array_edges=[]
+    for k,n in structs.items():
+        for member in n['members']:
+            if member['typeName']['nodeType']=='Mapping':mapping_members.append(loc(member))
+            for ref,arrays in struct_refs(member['typeName'],structs):
+                struct_edges[k].add(ref)
+                if arrays:array_edges.append({'from':loc(n),'to':loc(structs[ref]),'arrays':arrays})
+    recursive_arrays=cycles(struct_edges)
+    yul=[]
+    for n in nodes.values():
+        if n.get('nodeType')!='InlineAssembly':continue
+        defs=[x for x in walk(n['AST']) if x.get('nodeType')=='YulFunctionDefinition']
+        names={x['name'] for x in defs}
+        graph={x['name']:{c['functionName']['name'] for c in walk(x['body']) if c.get('nodeType')=='YulFunctionCall' and c['functionName']['name'] in names} for x in defs}
+        if defs:
+            yul.append({'assembly':loc(n),'functions':sorted(names),'call_graph':{a:sorted(b) for a,b in graph.items()},'cycles':cycles(graph)})
+    layouts=[]
+    for source,cs in out['contracts'].items():
+        for cname,contract in cs.items():
+            st=contract.get('storageLayout',{})
+            if st.get('storage'):
+                high=max(int(v['slot'])+(int(st['types'][v['type']]['numberOfBytes'])-1)//32 for v in st['storage'])
+                layouts.append({'source':source,'contract':cname,'last_static_slot':high,'entries':len(st['storage'])})
+    declarations=[loc(n) for n in nodes.values() if n.get('nodeType')=='StorageLayoutSpecifier']
+    slot_assignments=[]
+    for source,record in inp['sources'].items():
+        for number,line in enumerate(record['content'].splitlines(),1):
+            if re.search(r'\.slot\s*:=',line):
+                slot_assignments.append({'source':source,'line':number,'text':line.strip()})
+    max_fixed_array=max(int(n['length']['value']) for n in nodes.values() if n.get('nodeType')=='ArrayTypeName' and n.get('length') and n['length'].get('nodeType')=='Literal')
+    result={
+        'date':'2026-11-20','source_baseline':'519ff4f075022f789f46facbab56f0a944705b11',
+        'trusted_build':'activation-final-six-20261118','compiler':metadata['compiler'],
+        'settings':inp['settings'],'compiler_input_sha256':sha(ib),'compiler_output_sha256':sha(ob),
+        'captured_artifacts':{'input_gzip_sha256':sha((BUILD/'compiler-input.json.gz').read_bytes()),'output_gzip_sha256':sha((BUILD/'compiler-output.json.gz').read_bytes()),'normal_evidence_sha256':sha((BUILD/'normal-size-evidence.json').read_bytes())},
+        'closed_sources':len(inp['sources']),'project_sources':len(ev['source_sha256']),
+        'dependency_sources':len(ev['dependency_source_sha256']),'build_controls':len(ev['build_input_sha256']),
+        'source_hashes':{p:sha(rec['content'].encode('utf-8')) for p,rec in inp['sources'].items()},
+        'actual_sources_match_compiler_input':True,'implemented_functions_modifiers':len(functions),
+        'project_implemented_functions_modifiers':sum(node_paths[k].startswith('src/') for k in functions),
+        'internal_call_sites':internal_calls,'conservative_internal_edges':sum(len(e) for e in edges.values()),
+        'conservative_virtual_call_cycles':[[loc(functions[n]) for n in c] for c in internal_cycles],
+        'unresolved_internal_calls':unknown,'named_error_requires':named_requires,
+        'structs':len(structs),'nonmapping_struct_graph':{str(k):sorted(v) for k,v in struct_edges.items()},
+        'array_struct_edges':array_edges,'array_recursive_struct_cycles':[[loc(structs[n]) for n in c] for c in recursive_arrays],
+        'mapping_members_excluded_from_recursive_array_trigger':mapping_members,
+        'source_yul_function_scopes':yul,'storage_layout_specifiers':declarations,
+        'source_slot_reassignments_screen':slot_assignments,'largest_literal_fixed_array_count':max_fixed_array,
+        'nonempty_static_layouts':layouts,'highest_static_slot':max(x['last_static_slot'] for x in layouts),
+        'compiler_generated_ir_recompiled':False,'contract_tests_executed':0,
+        'limitations':['Conservative source AST graph is not formal proof of arbitrary compiler-generated IR/spill behavior.',
+                      'No realistic storage-boundary trigger established under ordinary keccak assumptions; mathematical absence for arbitrary huge arrays is not proved.',
+                      'IR was not present in the admitted output selection; no unchanged compiler build rerun or automatic compiler change was made.',
+                      'Source inline assembly and generated code remain independent security-review obligations.'],
+        'compiler_correctness_proved':False,'release_approved':False,
+    }
+    (HERE/'AST_ASSESSMENT.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8',newline='\n')
+    print(json.dumps({k:result[k] for k in ['closed_sources','project_sources','dependency_sources','build_controls','implemented_functions_modifiers','project_implemented_functions_modifiers','internal_call_sites','conservative_internal_edges','conservative_virtual_call_cycles','unresolved_internal_calls','named_error_requires','structs','array_recursive_struct_cycles','source_yul_function_scopes','source_slot_reassignments_screen','highest_static_slot','largest_literal_fixed_array_count']},indent=2))
+
+
+if __name__=='__main__':main()

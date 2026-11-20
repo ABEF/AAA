@@ -1,5 +1,13 @@
 # Qualify randomness and OpenSea primary mint
 
+The [20 November platform assessment](../reports/platform-provider-gate-20261120/REVIEW.md)
+identifies a concrete compatibility question: Studio documents signed allowlists,
+`multiConfigure` and collection authority verification, while this NFT uses Merkle
+stages/typed setters/Access governance and lacks `multiConfigure`/`owner()`.
+Confirm a supported custom route; this is not a demonstrated Studio rejection.
+The current Chainlink catalog omits Robinhood; candidate refund/expiry rules must
+preserve PoPL's original randomness request rather than silently add a reroll.
+
 
 Fresh [SeaDrop mint2/helper1](OPENSEA_MINT.md) implements the canonical NFT
 callback, shared supply/quota bookkeeping, authenticated buyer issuance and

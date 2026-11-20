@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-20T11:04:09.468081+00:00",
+  "baseline": "519ff4f075022f789f46facbab56f0a944705b11",
+  "purpose": "Primary document observation and local source/ABI compatibility review; not wire/RPC/provider approval",
+  "source_sha256": {
+    "src/ZZZNFT.sol": "736e1bf11fcdeddfdcc566aec9585c5ed4ea51f178fee04c8ab12529a3cc6211",
+    "src/ZZZSeaDropMint.sol": "58944a3e8130a573b49271e67d756a505f56f93e7816fc45d4a3d2c0084603f4",
+    "src/base/ZZZSeaDropToken.sol": "0fb1cdf8ce0e1ca621aefb8505c407f3c5ad975ba50c5b0bd791bdafa1d5df24",
+    "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295",
+    "src/ZZZProtocolPolicy.sol": "1806cedcaa524b21c0c2323f3bc765fbff30944d29936cee75d328ddc687e0cc",
+    "src/interfaces/IZZZSeaDrop.sol": "e04b4cd8723fc10f15fab4bac043f2c5aef714544dca481944be94650cea6540",
+    "config/production.example.json": "25b7f19d1e7e6df1cf8bbf5f7f0995f0250fac7fe9ed21a4d5e167173f87a4ee",
+    "docs/OPENSEA_MINT.md": "c0c046b5f277089dbd9bf80492f5dd1c03955859e010f180752273e9ac3a8a34",
+    "docs/MINT_INTEGRATION_QUALIFICATION.md": "317247f819691093458acad5fa4526edf35ae3ce08db2a94401ab420012e9308",
+    "docs/RPC_PREPARATION_QUALIFICATION.md": "035edea8af9aca4ac62623a31b4677dff8656a41c24b29bb51d746e1eca73f1a",
+    "docs/ROBINHOOD_GAS.md": "fbd6ef518d38adc51fb822af654d88d38ffc3e9831a008dcafd20e1aff2916bf",
+    "reports/opensea-integration-20261109/REVIEW.md": "d1c608120a0e05ace1c80eb5744d6c929f4fe1d0ed407cf8facb647cab7b79d2"
+  },
+  "compiled_abi_evidence": {
+    "file": "reports/activation-final-six-20261118/build/final/compiler-output.json.gz",
+    "sha256": "aceb5510485a5a0c28945cb4b4df71c66305dff7f1cb058435a464ff42df4a89",
+    "contract": "src/ZZZNFT.sol:ZZZNFT",
+    "selector_presence": {
+      "mintSeaDrop": true,
+      "getMintStats": true,
+      "updateAllowList": true,
+      "updatePublicDrop": true,
+      "updateSignedMintValidationParams": true,
+      "multiConfigure": false,
+      "owner": false,
+      "updateAllowedSeaDrop": true
+    },
+    "function_abi_entries": 84,
+    "distinct_function_names": 83
+  },
+  "primary_sources": [
+    {
+      "id": "OS01",
+      "url": "https://docs.opensea.io/docs/seadrop",
+      "heading": "SeaDrop / v1 contracts",
+      "excerpt": "OpenSea Studio uses public and server-signed allowlist stages.",
+      "assessment": "Current product description differs from the reviewed Merkle-only PoPL configuration. Actual custom onboarding remains unknown."
+    },
+    {
+      "id": "OS02",
+      "url": "https://docs.opensea.io/docs/customize-a-seadrop-contract",
+      "heading": "Customize a SeaDrop contract / Write your own",
+      "excerpt": "Studio publishes stages and payouts through multiConfigure.",
+      "assessment": "PoPL compiled NFT ABI lacks this selector. Individual on-chain configuration capability does not prove ordinary Studio Publish compatibility."
+    },
+    {
+      "id": "OS03",
+      "url": "https://github.com/ProjectOpenSea/seadrop/blob/main/docs/Deployments.md",
+      "heading": "Deployments / Networks",
+      "assessment": "Current primary registry lists Robinhood4663 Standard V1. No new runtime probe here; prior dated witness retained."
+    },
+    {
+      "id": "OS04",
+      "url": "https://docs.opensea.io/docs/drop-from-an-existing-contract",
+      "heading": "Optional: Drop from a contract you already deployed",
+      "assessment": "Adapters require platform linking and are described as unaudited; not a preapproved replacement for custom PoPL minting."
+    },
+    {
+      "id": "OS05",
+      "url": "https://support.opensea.io/en/articles/8867091-what-fees-do-i-pay-on-opensea",
+      "heading": "What fees do I pay on OpenSea? / OpenSea Fee",
+      "assessment": "Typical primary fee10%, changeable. Collection-specific fee/recipient/payer still unapproved; conditional0.05 gross yields0.045 net."
+    },
+    {
+      "id": "VRF01",
+      "url": "https://docs.chain.link/vrf/v2-5/supported-networks",
+      "heading": "Supported Networks",
+      "assessment": "No Robinhood entry found in current full catalog. Other-chain coordinator addresses not portable qualification."
+    },
+    {
+      "id": "VRF02",
+      "url": "https://rh-vrf.com/docs",
+      "heading": "Documentation / A consumer contract / Addresses chain id4663",
+      "assessment": "Published tuple, zero-lane example, native funding and retry are leads; no inference that nonzero lanes are rejected without code review."
+    },
+    {
+      "id": "VRF03",
+      "url": "https://rh-vrf.com/",
+      "heading": "Before you integrate / What if a signature never arrives at all?",
+      "assessment": "Unserved refund after7200L1blocks permanently prevents later fulfillment, incompatible with required valid-original-request recovery."
+    },
+    {
+      "id": "VRF04",
+      "url": "https://d20dao.org/docs/security",
+      "heading": "Security model / Robinhood Chain delivery and refunds / upgrades",
+      "assessment": "Distinct interface/trust,60second fee-refund and owner-controlled UUPS coordinator require separate original-request/code review."
+    },
+    {
+      "id": "RPC01",
+      "url": "https://docs.robinhood.com/chain/connecting/",
+      "heading": "Connecting to Robinhood Chain / Developer Endpoints / Public Endpoints",
+      "assessment": "Provider-backed/archive guidance; public endpoints rate-limited/not recommended for production. No account/tier selected."
+    },
+    {
+      "id": "RPC02",
+      "url": "https://www.quicknode.com/chains/robinhood",
+      "heading": "The Robinhood Chain RPC Provider Builders Ship On",
+      "assessment": "Chain-specific archive/debug product lead, not PoPL full-call acceptance or actual service agreement."
+    },
+    {
+      "id": "RPC03",
+      "url": "https://www.quicknode.com/docs/robinhood/debug_traceCall",
+      "heading": "debug_traceCall RPC Method",
+      "assessment": "Chain-specific trace method parameters documented; withLog/canonical-hash/full32M capacity/tier bounds still unverified."
+    },
+    {
+      "id": "RPC04",
+      "url": "https://www.alchemy.com/docs/chains/robinhood-chain/robinhood-chain-api-endpoints/eth-estimate-gas",
+      "heading": "eth_estimateGas - Robinhood Chain API",
+      "assessment": "Specific estimate method documentation; does not establish required debug trace/full-work gas limits."
+    },
+    {
+      "id": "RPC05",
+      "url": "https://www.alchemy.com/docs/reference/gas-limits-for-eth_call-and-eth_estimategas",
+      "heading": "Gas Limits",
+      "assessment": "550M table names Ethereum/Polygon/Optimism/Arbitrum, not Robinhood; do not transplant its ceiling."
+    },
+    {
+      "id": "RPC06",
+      "url": "https://docs.robinhood.com/chain/gas-and-fees/",
+      "heading": "Gas & Fees / How fees are charged",
+      "assessment": "Execution and posting are bundled in gas estimate; preserve exact complete-fee review and no posting double count."
+    }
+  ],
+  "research_limitations": [
+    "Official text is a dated observed document, not frozen upstream runtime or provider acceptance.",
+    "Explorer contract-page fetch failed for current RH-VRF source; no source absence was inferred.",
+    "Direct raw-registry/document-markdown requests also failed before HTML fallback; no network failure counted as approval.",
+    "No live OpenSea Studio test, platform contact, account creation or service agreement."
+  ],
+  "local_read_only_methods": [
+    "Current source inspection",
+    "Existing trusted compiler-output ABI read without compiling",
+    "Current template unqualified/null field inspection"
+  ],
+  "new_tests": 0,
+  "rpc_probes": 0,
+  "production_ready": false,
+  "provider_selected": false,
+  "onboarding_approved": false,
+  "randomness_approved": false,
+  "deployment_authorized": false
+}

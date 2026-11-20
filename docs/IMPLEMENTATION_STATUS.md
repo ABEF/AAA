@@ -1,5 +1,10 @@
 # Feature and evidence reference
 
+The [Gate A follow-through](../reports/readiness-gate-a-20261120/REVIEW.md)
+adds exact compiler-advisory applicability, fresh bounded market evidence and
+actual platform/provider compatibility questions. It changes no implementation,
+financial limit or environment. No complete launch dependency is newly approved.
+
 Use the [production qualification plan](ROADMAP.md) for the remaining cross-layer
 acceptance work. Implemented features are distinct from actual market/provider/
 wallet/operating approval; this documentation review changes no implementation.

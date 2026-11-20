@@ -1,5 +1,12 @@
 # Consolidated audit findings and evidence
 
+[Current Gate A evidence](../reports/readiness-gate-a-20261120/REVIEW.md)
+closes the current compiler-advisory applicability subtask within P02, without
+closing release approval. Fresh actual markets still fail qualification; custom
+OpenSea configuration and VRF original-request compatibility have concrete open
+questions. Fixed-token control inspection and artwork-count corrections narrow
+requirements; they do not imply current-route or whole-dependency approval.
+
 The [production qualification plan](ROADMAP.md) consolidates remaining acceptance
 work across contracts, markets, services, recovery and launch without reopening
 resolved or retired findings. Its [dated reconciliation](../reports/production-readiness-plan-20261119/REVIEW.md)

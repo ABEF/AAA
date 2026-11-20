@@ -1,0 +1,22 @@
+[
+  {
+    "name": "bugs.json",
+    "url": "https://raw.githubusercontent.com/ethereum/solidity/develop/docs/bugs.json",
+    "final_url": "https://raw.githubusercontent.com/ethereum/solidity/develop/docs/bugs.json",
+    "status": 200,
+    "bytes": 75501,
+    "sha256": "0da30cec4b9678f4b884e506540b88fa7e6885eb8de4c5c7485e3d83de5f8406",
+    "observed_utc": "2026-11-20T11:00:36.494205+00:00",
+    "etag": "\"4d464cb3a1c05f6272f049c964e09780f3d90825b84e53299c39457e3384ed6d\""
+  },
+  {
+    "name": "bugs_by_version.json",
+    "url": "https://raw.githubusercontent.com/ethereum/solidity/develop/docs/bugs_by_version.json",
+    "final_url": "https://raw.githubusercontent.com/ethereum/solidity/develop/docs/bugs_by_version.json",
+    "status": 200,
+    "bytes": 102153,
+    "sha256": "e131b93baa16786dcdff0490dca8dc69fef56116b58db47b16de5d47a9935d86",
+    "observed_utc": "2026-11-20T11:00:36.796430+00:00",
+    "etag": "\"d8f60ad33fb18d61c4d3df8b3bb60bacc493e31b66a5a0a557ec7ff2db8ca47b\""
+  }
+]

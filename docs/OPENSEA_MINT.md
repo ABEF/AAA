@@ -1,5 +1,12 @@
 # OpenSea primary mint: fresh source profile
 
+Current [platform qualification](../reports/platform-provider-gate-20261120/REVIEW.md)
+distinguishes the observed SeaDrop deployment from custom collection acceptance.
+Studio's documented signed-allowlist/`multiConfigure` route does not establish
+support for our Merkle/typed-setter/Access-authority route. Confirm the actual
+builder/configuration/ownership-proof path before adding capabilities or sealing.
+No mint authority or contract code changes in that assessment.
+
 This is a source candidate, not an approved or deployed OpenSea collection.
 The website Mint page remains demonstrative. Existing sites, Anvil deployments,
 wallet signer and journals retain their original profiles.

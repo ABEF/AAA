@@ -1,0 +1,5 @@
+{
+  "initial_restricted_fetch": "Windows10013 socket refused before response",
+  "fallback": "separately reviewed read-only official raw HTTPS fetch",
+  "production_or_rpc_calls": 0
+}

@@ -1,5 +1,9 @@
 # Documentation map
 
+For current readiness results read the [Gate A follow-through](../reports/readiness-gate-a-20261120/REVIEW.md):
+compiler applicability, actual markets, fixed-token controls and OpenSea/VRF/RPC
+compatibility. The [roadmap](ROADMAP.md) still owns sequence and the sole Todo owns status.
+
 Start with the [production qualification plan](ROADMAP.md) for the ordered remaining
 checks and [source-bound readiness reconciliation](../reports/production-readiness-plan-20261119/REVIEW.md).
 The sole Todo owns status; the plan covers23 acceptance packages and distinguishes

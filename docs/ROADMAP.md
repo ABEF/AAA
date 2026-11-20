@@ -1,6 +1,6 @@
 # Engineering roadmap and production qualification plan
 
-Reviewed 19 November 2026 against `4fde8d63b54dadc0d87cb2ba4d2af0d5da8e1527`. **Production is undeployed and NOT APPROVED.**
+Reviewed 20 November 2026 against `519ff4f075022f789f46facbab56f0a944705b11`. **Production is undeployed and NOT APPROVED.**
 This is the plan for checking readiness, not authorization to execute public
 transactions, deploy, seal, restart services or open mint. [TODO.md](../TODO.md)
 remains the only task-status checklist; record actual approval in the
@@ -9,6 +9,13 @@ and [matrix](../reports/production-readiness-plan-20261119/MATRIX.json) retain
 source provenance and map every stable Todo task to the packages below.
 
 ## Current evidence and limits
+
+The [Gate A review](../reports/readiness-gate-a-20261120/REVIEW.md) completes the
+current compiler-advisory applicability subtask and refreshes actual markets.
+No confirmed reachable compiler defect requiring an upgrade was found; exact
+Yul optimization is disabled. The selected pool still lacks active liquidity,
+independent feeds/routes remain unqualified, and OpenSea custom configuration
+and original-request VRF support need concrete acceptance before launch.
 
 The trusted normal build is `activation-final-six-20261118`, Factory6/allocation2.
 Its 61 project sources, 39 dependencies, 4 controls and 48 size gates retain their
@@ -104,7 +111,7 @@ Owning Todo: [`native-production-preflight`](../TODO.md#task-native-production-p
 
 ### P02 — Compiler, dependencies and evidence validity
 
-Check pinned Solidity0.8.26 optimized via-IR/Cancun against the current official compiler bug registry, including later-published optimizer, mutual-recursion, custom-error and recursive storage-copy advisories. Version matching is a candidate applicability test, not proof PoPL is affected.
+The [current compiler assessment](../reports/compiler-applicability-20261120/REVIEW.md) evaluates all eight registry variants against exact0.8.26/Cancun, via-IR/EVM optimization with Yul optimization DISABLED. No confirmed reachable defect requiring upgrade was found. This completes current applicability review only; re-evaluate after new advisories or source/dependency/settings changes. A version match alone is not a project defect.
 
 Inspect exact settings, dependency source, relevant call graph and generated IR where needed; give every candidate a reviewable disposition. Do not upgrade compiler automatically.
 
@@ -244,7 +251,7 @@ Owning Todo: [`fair-draw`](../TODO.md#task-fair-draw), [`nft-lifecycle`](../TODO
 
 ### P16 — Artwork, metadata and marketplace delivery
 
-Authenticate1000 prepared designs and all four evolution paths, rarity inventory, immutable URI/root/content and renderer before sealing. Nonempty content root is not proof the assets exist or are correct.
+Authenticate the1,000-entry mint inventory, its542 distinct selected base looks and all2,784 supported renderer SVG states (58palettes×4patterns×3rarities×4evolutions), immutable URI/root/content and renderer before sealing. These are different counts; nonempty content root does not prove content exists or is correct.
 
 Qualify cold tokenURI at final root/state/provider and actual marketplace retrieval/cache/ERC4906 behavior through reveal, activation, growth, value changes, unavailable prices, parking, movement and terminal LP-exited state.
 

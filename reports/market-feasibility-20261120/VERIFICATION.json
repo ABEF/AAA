@@ -1,0 +1,30 @@
+{
+  "actual_public_HTTP_requests": 36,
+  "application_RPC_errors": 5,
+  "chain_or_service_writes": 0,
+  "checker_sha256": "db860757b2710927aa130e6adcad19acaf825dc049f18d34ebc6be0629d87651",
+  "compiler_runs": 0,
+  "discovery_raw_responses_bound": 3,
+  "knownPoolKeys": 95,
+  "network_calls_in_checker": 0,
+  "new_application_tests": 0,
+  "old_tests_or_suites_rerun": 0,
+  "outcome": "PASS",
+  "positive_quote_results": 2,
+  "primary_raw_responses_bound": 33,
+  "production_ready": false,
+  "quote_directions_bound": 6,
+  "restricted_transport_attempts": 1,
+  "schema": 1,
+  "scope": "Fresh artifact semantics and source/transport integrity, not EVM or application test cases",
+  "semantic_claims": [
+    "exact canonical anchor and closing header",
+    "whitelisted methods/strictrequestIDs/rawresponsehashes",
+    "actual2sstartspacing/original90sdeadline/256KiBbound",
+    "wire-boundETHround/aggregator/Pyth/API3observations",
+    "complete6quoteencoding/value/errorrelationship",
+    "samecore/paircontiguousNov16toNov20filtereddiscovery",
+    "initialrestrictedURLErrorattemptretained",
+    "unchangedrecordermarketlogicwithbaseline-labeldelta"
+  ]
+}

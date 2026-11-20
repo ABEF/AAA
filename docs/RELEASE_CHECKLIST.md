@@ -1,5 +1,10 @@
 # Release approval record - NOT APPROVED
 
+[Gate A follow-through](../reports/readiness-gate-a-20261120/REVIEW.md)
+records completed current compiler-advisory applicability review and fresh market/
+platform blockers. All production approval fields stay unapproved; no source,
+compiler, selected pool/provider or signing policy changed.
+
 Follow the [production qualification plan](ROADMAP.md) and its
 [source-bound reconciliation](../reports/production-readiness-plan-20261119/REVIEW.md).
 Deployment readiness, authorization to seal and authorization to open public

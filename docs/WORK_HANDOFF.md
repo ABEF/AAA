@@ -2,8 +2,10 @@
 
 Next work follows the [ordered production qualification plan](ROADMAP.md) and
 [readiness reconciliation](../reports/production-readiness-plan-20261119/REVIEW.md):
-resolve actual market/provider/platform feasibility and launch choices alongside
-compiler review and missing local proof. Deployment, seal and public opening
+use [fresh Gate A results](../reports/readiness-gate-a-20261120/REVIEW.md). Current
+compiler applicability is assessed with no confirmed reachable upgrade-requiring
+defect; actual prices/routes and OpenSea/VRF/provider acceptance remain open.
+Continue missing local proofs alongside those external decisions. Deployment, seal and public opening
 remain separate, unauthorized gates. Reuse valid unchanged-source evidence.
 
 ## Current source and findings

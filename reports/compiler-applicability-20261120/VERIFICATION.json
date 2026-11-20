@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "purpose": "Fresh offline compiler applicability and checker controls only",
+  "new_offline_methods": {
+    "count": 7,
+    "methods": [
+      "test_array_recursive_struct_is_detected",
+      "test_cycle_detection_distinguishes_mutual_self_and_dag",
+      "test_explicit_base_dispatch_does_not_create_override_recursion",
+      "test_mapping_only_recursive_member_is_not_array_trigger",
+      "test_named_error_require_trigger_and_nontrigger",
+      "test_super_dispatch_does_not_create_override_recursion",
+      "test_virtual_identifier_dispatch_includes_override"
+    ],
+    "result": "passed",
+    "execution_source": "test_analysis.py",
+    "initial_false_positive_preserved": "AST_ASSESSMENT.unrefined.json",
+    "initial_source_preserved": "analyse.unrefined.py.txt"
+  },
+  "artifact_reuse": {
+    "source": "activation-final-six-20261118/build/final",
+    "compiler_builds_rerun": 0,
+    "normal_size_gates_rerun": 0,
+    "evm_methods_run": 0,
+    "unchanged_tests_rerun": 0
+  },
+  "checks": [
+    "Official current8 variant names for0.8.26 exactly covered once",
+    "61project+39dependency+4control hashes match exact captured compiler input",
+    "Captured input/output SHA256 matches trusted normal evidence",
+    "Source AST excludes claimed named-require/recursive-array/internal-cycle triggers with stated limits",
+    "Two current scoped Oracle Yul words functions manually checked nonrecursive",
+    "No source/compiler/runtime/default/rights/environment change"
+  ],
+  "stage_note": "Initial conservative graph incorrectly expanded static super/explicit-base calls into overrides. That artifact is retained. The final graph corrects dispatch;7 new controls include positive cyclic and recursive-array triggers and static-versus-virtual negatives. Three analysis executions are revisions of one review, not separate feature/test passes.",
+  "new_public_rpc_calls": 0,
+  "signing_deployment_sealing_or_service_changes": false,
+  "production_approved": false,
+  "files_sha256": {
+    "analyse.py": "12456293010ce0ab18ff013e13d95a24feafaa939c552d51d1bf3bcf9630fa09",
+    "analyse.unrefined.py.txt": "6099f641ac76d5693ca88eb0da6dcf34a156e04c311c99f57ccdbc03a2924ee4",
+    "ASSESSMENT.json": "bc683a5c882cba011b1ebf6e4494759e1687c76f7736852aaea104825ede115e",
+    "AST_ASSESSMENT.json": "5f5b56da29fe11d488176d647b4722c887c9b14c7e0d56068a041cd67449f264",
+    "AST_ASSESSMENT.unrefined.json": "351a9ebd091a8e71659b3e526eca70d23166e56c7d04b8004d244627c1b05b01",
+    "bugs.json": "0da30cec4b9678f4b884e506540b88fa7e6885eb8de4c5c7485e3d83de5f8406",
+    "bugs_by_version.json": "e131b93baa16786dcdff0490dca8dc69fef56116b58db47b16de5d47a9935d86",
+    "FETCH_LIMITATION.json": "0109c24d7fae43675ea17e1cee2fb7276e51bd12a3c72799861e2865f2dd230d",
+    "OFFICIAL_FETCH.json": "54a8de11d0d2feada3934154820deb420bdada1e7fb1050040eafea0cd4c16ed",
+    "REVIEW.md": "0b8de4f1af40c22952b4185c53242a77b9b0bef4f0c16d8d8da9a20fbeba6c8c",
+    "test_analysis.py": "26b8f149dc60e387872b1523604cbddf4f899c60229773bfa4fccc0b970cc2f5"
+  }
+}

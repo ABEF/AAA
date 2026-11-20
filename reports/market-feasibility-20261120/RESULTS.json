@@ -1,0 +1,964 @@
+{
+  "actual_completed_public_HTTP_calls": 36,
+  "anchor": {
+    "chain_id": 4663,
+    "hash": "0x2d9e3d565cef3714f0dbc40bb6ed0253adab8a1a1b41a3eb53b2a8fe93f87547",
+    "number": 119000058,
+    "selector": {
+      "blockHash": "0x2d9e3d565cef3714f0dbc40bb6ed0253adab8a1a1b41a3eb53b2a8fe93f87547",
+      "requireCanonical": true
+    },
+    "timestamp": 1795172468
+  },
+  "anchor_utc": "2026-11-20T11:01:08+00:00",
+  "canonical_closure": true,
+  "date": "2026-11-20",
+  "deployable_configuration": false,
+  "discovery": {
+    "canonical_closed": true,
+    "elapsed_seconds": 4.405127800004266,
+    "exact_pair": {
+      "currency0": "0x0000000000000000000000000000000000000000",
+      "currency1": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a"
+    },
+    "global_inventory_complete": false,
+    "initialize_abi_source_sha256": "a98405333567e4ab344489728014795721cf0071c151536377d2fcc986e0600c",
+    "new_pool_keys": [],
+    "prior_capture_sha256": "fa86ec793ddccc4035c70583b4609b4f04ca8750e46cb38e3ee3a56bd8ba74ed",
+    "production_approved": false,
+    "query": {
+      "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+      "fromBlock": "0x6e59303",
+      "toBlock": "0x717cbfa",
+      "topics": [
+        "0xdd466e674ea557f56295e2d0218a125ea4b4f0f6f3307b95f85e6110838d6438",
+        null,
+        "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "0x0000000000000000000000007dbf38976f6d3b9c529e7d9484a71898b409ee6a"
+      ]
+    },
+    "range_end": 119000058,
+    "range_start": 115708675,
+    "raw_log_count": 0,
+    "requests": 3
+  },
+  "feeds": {
+    "api3": {
+      "current_base_name_subscription_state": "not_refreshed; historical Nov13 zero values remain dated",
+      "current_read": {
+        "rpc_error": {
+          "code": 3,
+          "data": "0x8086c764",
+          "message": "execution reverted"
+        }
+      },
+      "round_compatible_adapter_qualified": false
+    },
+    "chainlink": {
+      "age_seconds": 1478,
+      "decimals": 8,
+      "max_age_policy_unapproved": true,
+      "qualified_independent_pair": false,
+      "two_proxies_same_aggregator": true,
+      "updated_at": 1795170990,
+      "usd": {
+        "decimal": "1757.103401700000000000000000",
+        "denominator": "10000000",
+        "numerator": "17571034017"
+      }
+    },
+    "pyth": {
+      "age_seconds": 1147315,
+      "agreement_300bps_pass": false,
+      "confidence_bps": {
+        "decimal": "8.809376000317755274533696",
+        "denominator": "112086259",
+        "numerator": "987410000"
+      },
+      "confidence_usd": {
+        "decimal": "1.974820000000000000000000",
+        "denominator": "50000",
+        "numerator": "98741"
+      },
+      "hard_86400_seconds_pass": false,
+      "publish_time": 1794025153,
+      "qualified": false,
+      "spread_vs_chainlink_bps": {
+        "decimal": "2758.072051030848562041116900",
+        "denominator": "17571034017",
+        "numerator": "48462177830000"
+      },
+      "stored_usd": {
+        "decimal": "2241.725180000000000000000000",
+        "denominator": "50000",
+        "numerator": "112086259"
+      }
+    }
+  },
+  "largest_known_L_ETH_per_ZZZ_ratio_to_selected": {
+    "approximate": 5.811925956511054,
+    "denominator": "76885612297395205375838172673821837659962301161319347082855236",
+    "numerator": "446853485793476668812012109334398305007234838768954246418911041"
+  },
+  "limitations": [
+    "No PoPL deployment: no wholeactivation/growth/maintenance/claim operation simulated.",
+    "Nominal100/5USD ETH quotes are fullinput diagnostics, not assumed protocol swap fractions.",
+    "Positive quoter responses provide output/gas only, not postspot/fullstate.",
+    "ActiveL0 does not prove emptyticks; rawL ranking does not proveTVL/depth/sourceindependence.",
+    "API3 current base/subscription not read. No Pyth publication/update/funding performed.",
+    "Oracle sourceage/depth/reviewIDs/routes/operating fees remain unapproved.",
+    "No current decimals/admin/owner/burn/tax behavior qualification beyond outer runtime equality.",
+    "No newPoolKey in one filtered same-core interval does not prove global/provider-complete discovery.",
+    "Primary capture has33requests;95PoolKeys are read via4bulkstoragecalls, not95network requests.",
+    "The2positivequotes overlap the6directions and33primaryrequests; not extra scenario successes.",
+    "No Pyth update/publication, API3 activation/subscription purchase, provider adoption or governance operation performed."
+  ],
+  "markets": {
+    "active_by_rawL_not_TVL": [
+      {
+        "active_liquidity": "2183174546570489921452",
+        "combined_fee_pips_ETH_to_ZZZ": 10999,
+        "combined_fee_pips_ZZZ_to_ETH": 10999,
+        "common_500bps_continuous_reference_possible": false,
+        "conditional_zzz_usd_from_single_ETH_and_this_pool": {
+          "decimal": "0.035863396552668727219027",
+          "denominator": "1501672115183500104996839310035582766796138694557018497712016328125",
+          "numerator": "53855062558910693530311620779897810474864728549073586308182441984"
+        },
+        "eth_per_zzz": {
+          "decimal": "0.000020410521383073324466",
+          "denominator": "19221403074348801343959543168455459414990575290329836770713809",
+          "numerator": "392318858461667547739736838950479151006397215279002157056"
+        },
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10009,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "poolId": "0x012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+        "price_ratio_to_selected": {
+          "decimal": "0.172060003427901221403888",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "numerator": "76885612297395205375838172673821837659962301161319347082855236"
+        },
+        "reference_fee_only_candidate": true,
+        "slot0": {
+          "lpFee": 10009,
+          "protocolFee": 4097000,
+          "sqrtPriceX96": 17536888241349456165021772949212,
+          "tick": 107999
+        },
+        "strict_principal_fee_only_candidate": true,
+        "zzz_per_eth": {
+          "decimal": "48994.338813378440989592476367",
+          "denominator": "392318858461667547739736838950479151006397215279002157056",
+          "numerator": "19221403074348801343959543168455459414990575290329836770713809"
+        }
+      },
+      {
+        "active_liquidity": "265494416382117651707",
+        "combined_fee_pips_ETH_to_ZZZ": 11013,
+        "combined_fee_pips_ZZZ_to_ETH": 11013,
+        "common_500bps_continuous_reference_possible": false,
+        "conditional_zzz_usd_from_single_ETH_and_this_pool": {
+          "decimal": "0.011020710171889903635234",
+          "denominator": "2171873045039095972175800350286300009356107528276543192600038203125",
+          "numerator": "23935583359515863791249609235510137988828768244032705025858863104"
+        },
+        "eth_per_zzz": {
+          "decimal": "0.000006272089713802472365",
+          "denominator": "250199774788503855994652200352981761077823587257457775787524401",
+          "numerator": "1569275433846670190958947355801916604025588861116008628224"
+        },
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10023,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "poolId": "0x19820dbeeaeb726070d4db09e562d6860e94ff4f81b3e2fc00a402842b7d1747",
+        "price_ratio_to_selected": {
+          "decimal": "0.559914564265342392310220",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "numerator": "250199774788503855994652200352981761077823587257457775787524401"
+        },
+        "reference_fee_only_candidate": true,
+        "slot0": {
+          "lpFee": 10023,
+          "protocolFee": 4097000,
+          "sqrtPriceX96": 31635408945578930574549486684402,
+          "tick": 119799
+        },
+        "strict_principal_fee_only_candidate": true,
+        "zzz_per_eth": {
+          "decimal": "159436.494953090703464095871123",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "numerator": "250199774788503855994652200352981761077823587257457775787524401"
+        }
+      },
+      {
+        "active_liquidity": "150095629180827131515",
+        "combined_fee_pips_ETH_to_ZZZ": 11008,
+        "combined_fee_pips_ZZZ_to_ETH": 11008,
+        "common_500bps_continuous_reference_possible": false,
+        "conditional_zzz_usd_from_single_ETH_and_this_pool": {
+          "decimal": "0.004054495126705892172930",
+          "denominator": "53131214492459563921730425131973018836257481454988454793661863203125",
+          "numerator": "215420250235642774121246483119591241899458914196294345232729767936"
+        },
+        "eth_per_zzz": {
+          "decimal": "0.000002307488064039465443",
+          "denominator": "680079545503482418198149441689254641104095762623852221358871849",
+          "numerator": "1569275433846670190958947355801916604025588861116008628224"
+        },
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10018,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "poolId": "0x9fa18577c6a55769bab7ee3e3885b3a1b32ef6f8e898386638b1147b3c8d7155",
+        "price_ratio_to_selected": {
+          "decimal": "1.521929596892070320297090",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "numerator": "680079545503482418198149441689254641104095762623852221358871849"
+        },
+        "reference_fee_only_candidate": true,
+        "slot0": {
+          "lpFee": 10018,
+          "protocolFee": 4097000,
+          "sqrtPriceX96": 52156669583227126071248119597414,
+          "tick": 129799
+        },
+        "strict_principal_fee_only_candidate": true,
+        "zzz_per_eth": {
+          "decimal": "433371.689147292938849957358493",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "numerator": "680079545503482418198149441689254641104095762623852221358871849"
+        }
+      },
+      {
+        "active_liquidity": "9003301259096843454",
+        "combined_fee_pips_ETH_to_ZZZ": 97404,
+        "combined_fee_pips_ZZZ_to_ETH": 97404,
+        "common_500bps_continuous_reference_possible": false,
+        "conditional_zzz_usd_from_single_ETH_and_this_pool": {
+          "decimal": "0.004129013265979243307223",
+          "denominator": "52172331828183983166800917642378509998930742103899173059317993828125",
+          "numerator": "215420250235642774121246483119591241899458914196294345232729767936"
+        },
+        "eth_per_zzz": {
+          "decimal": "0.000002349897713466616247",
+          "denominator": "667805847400754984535051745822444927986313498929909415159270321",
+          "numerator": "1569275433846670190958947355801916604025588861116008628224"
+        },
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          96500,
+          965,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "poolId": "0x6db792e122c610d1ce21bb17a068106d0917c5f542325e7c8dae5196b30f3a5f",
+        "price_ratio_to_selected": {
+          "decimal": "1.494462656400528540737261",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "numerator": "667805847400754984535051745822444927986313498929909415159270321"
+        },
+        "reference_fee_only_candidate": true,
+        "slot0": {
+          "lpFee": 96500,
+          "protocolFee": 4097000,
+          "sqrtPriceX96": 51683879397767926628735466321778,
+          "tick": 129617
+        },
+        "strict_principal_fee_only_candidate": true,
+        "zzz_per_eth": {
+          "decimal": "425550.437480438218502860823985",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "numerator": "667805847400754984535051745822444927986313498929909415159270321"
+        }
+      },
+      {
+        "active_liquidity": "8873927460709817880",
+        "combined_fee_pips_ETH_to_ZZZ": 49951,
+        "combined_fee_pips_ZZZ_to_ETH": 49951,
+        "common_500bps_continuous_reference_possible": false,
+        "conditional_zzz_usd_from_single_ETH_and_this_pool": {
+          "decimal": "0.004066089171023399305967",
+          "denominator": "52979716178094384819959400616377470537281725351083703187281421953125",
+          "numerator": "215420250235642774121246483119591241899458914196294345232729767936"
+        },
+        "eth_per_zzz": {
+          "decimal": "0.000002314086448805148486",
+          "denominator": "678140367079608125695480327889631622877206084493871400797202201",
+          "numerator": "1569275433846670190958947355801916604025588861116008628224"
+        },
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          49000,
+          490,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "poolId": "0x7e78b246b4d72d832cb005cbddb3cb64bdf83c180b07aee336e959f4f38c9192",
+        "price_ratio_to_selected": {
+          "decimal": "1.517589967717127446121999",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "numerator": "678140367079608125695480327889631622877206084493871400797202201"
+        },
+        "reference_fee_only_candidate": true,
+        "slot0": {
+          "lpFee": 49000,
+          "protocolFee": 4097000,
+          "sqrtPriceX96": 52082256751396943502068675820298,
+          "tick": 129771
+        },
+        "strict_principal_fee_only_candidate": true,
+        "zzz_per_eth": {
+          "decimal": "432135.973362766253544094343872",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "numerator": "678140367079608125695480327889631622877206084493871400797202201"
+        }
+      },
+      {
+        "active_liquidity": "3211615466002690223",
+        "combined_fee_pips_ETH_to_ZZZ": 880120,
+        "combined_fee_pips_ZZZ_to_ETH": 880120,
+        "common_500bps_continuous_reference_possible": false,
+        "conditional_zzz_usd_from_single_ETH_and_this_pool": {
+          "decimal": "0.023856043092075858472162",
+          "denominator": "4013336707539135156676692274905890218133937070888075329602431953125",
+          "numerator": "95742333438063455164998436942040551955315072976130820103435452416"
+        },
+        "eth_per_zzz": {
+          "decimal": "0.000013576914750147944280",
+          "denominator": "462336388708508370049154950069158553129029550566306277970200161",
+          "numerator": "6277101735386680763835789423207666416102355444464034512896"
+        },
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          880000,
+          8800,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "poolId": "0xd0ad42e0f491e7a40c81a5892df899b952e9d06ad194bf8593b4c0e593e67bba",
+        "price_ratio_to_selected": {
+          "decimal": "0.258662180897805209834826",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "numerator": "462336388708508370049154950069158553129029550566306277970200161"
+        },
+        "reference_fee_only_candidate": true,
+        "slot0": {
+          "lpFee": 880000,
+          "protocolFee": 4097000,
+          "sqrtPriceX96": 21502008945875461384089488328369,
+          "tick": 112077
+        },
+        "strict_principal_fee_only_candidate": false,
+        "zzz_per_eth": {
+          "decimal": "73654.436107371392863885490504",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "numerator": "462336388708508370049154950069158553129029550566306277970200161"
+        }
+      },
+      {
+        "active_liquidity": "2902755569488206966",
+        "combined_fee_pips_ETH_to_ZZZ": 200800,
+        "combined_fee_pips_ZZZ_to_ETH": 200800,
+        "common_500bps_continuous_reference_possible": false,
+        "conditional_zzz_usd_from_single_ETH_and_this_pool": {
+          "decimal": "0.003861872735073863175158",
+          "denominator": "223125167516969034235809430755555309927163001115529613571195744453125",
+          "numerator": "861681000942571096484985932478364967597835656785177380930919071744"
+        },
+        "eth_per_zzz": {
+          "decimal": "0.000002197863103183054509",
+          "denominator": "2856002144217203638218360713671107967067686414278779053711305529",
+          "numerator": "6277101735386680763835789423207666416102355444464034512896"
+        },
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          200000,
+          2000,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "poolId": "0x8713aa35ccea9dbb98d15cec7e72579510332c07e8d04fc3eef416c2253b9559",
+        "price_ratio_to_selected": {
+          "decimal": "1.597840363237744158668315",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "numerator": "2856002144217203638218360713671107967067686414278779053711305529"
+        },
+        "reference_fee_only_candidate": true,
+        "slot0": {
+          "lpFee": 200000,
+          "protocolFee": 4097000,
+          "sqrtPriceX96": 53441576924873798471313959892523,
+          "tick": 130286
+        },
+        "strict_principal_fee_only_candidate": false,
+        "zzz_per_eth": {
+          "decimal": "454987.391412936653028637438703",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "numerator": "2856002144217203638218360713671107967067686414278779053711305529"
+        }
+      },
+      {
+        "active_liquidity": "140804759258110720",
+        "combined_fee_pips_ETH_to_ZZZ": 790210,
+        "combined_fee_pips_ZZZ_to_ETH": 790210,
+        "common_500bps_continuous_reference_possible": false,
+        "conditional_zzz_usd_from_single_ETH_and_this_pool": {
+          "decimal": "0.017096296216744249809410",
+          "denominator": "50401618573889343604444908269481953034650330593100267786883393828125",
+          "numerator": "861681000942571096484985932478364967597835656785177380930919071744"
+        },
+        "eth_per_zzz": {
+          "decimal": "0.000009729817949361181189",
+          "denominator": "645140717745783598136894825849368998843524231591683427672107441",
+          "numerator": "6277101735386680763835789423207666416102355444464034512896"
+        },
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          790000,
+          7900,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "poolId": "0x10a5ec60423aa0b45043fefd34fcbc954da5f11fac92ded27144b23bd9bc1b53",
+        "price_ratio_to_selected": {
+          "decimal": "0.360935260804897137892880",
+          "denominator": "1787413943173906675248048437337593220028939355075816985675644164",
+          "numerator": "645140717745783598136894825849368998843524231591683427672107441"
+        },
+        "reference_fee_only_candidate": true,
+        "slot0": {
+          "lpFee": 790000,
+          "protocolFee": 4097000,
+          "sqrtPriceX96": 25399620425230444733345689772729,
+          "tick": 115408
+        },
+        "strict_principal_fee_only_candidate": false,
+        "zzz_per_eth": {
+          "decimal": "102776.845898299236161783708299",
+          "denominator": "6277101735386680763835789423207666416102355444464034512896",
+          "numerator": "645140717745783598136894825849368998843524231591683427672107441"
+        }
+      },
+      {
+        "active_liquidity": "112025816170762569",
+        "combined_fee_pips_ETH_to_ZZZ": 20980,
+        "combined_fee_pips_ZZZ_to_ETH": 20980,
+        "common_500bps_continuous_reference_possible": false,
+        "conditional_zzz_usd_from_single_ETH_and_this_pool": {
+          "decimal": "0.004604792717620536053869",
+          "denominator": "46781747506532336519604672222427685959959611343860308020252189453125",
+          "numerator": "215420250235642774121246483119591241899458914196294345232729767936"
+        },
+        "eth_per_zzz": {
+          "decimal": "0.000002620672587148481220",
+          "denominator": "598806368083613907450939804447074380287483025201411942659228025",
+          "numerator": "1569275433846670190958947355801916604025588861116008628224"
+        },
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          20000,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "poolId": "0x1e2ed4084a9e5b594d725d8a022554dc8e4c759a7a7a3f396018be916941c331",
+        "price_ratio_to_selected": {
+          "decimal": "1.340050793204208462244330",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "numerator": "598806368083613907450939804447074380287483025201411942659228025"
+        },
+        "reference_fee_only_candidate": true,
+        "slot0": {
+          "lpFee": 20000,
+          "protocolFee": 4097000,
+          "sqrtPriceX96": 48941040776984459526186089145110,
+          "tick": 128527
+        },
+        "strict_principal_fee_only_candidate": true,
+        "zzz_per_eth": {
+          "decimal": "381581.432531442861823705354536",
+          "denominator": "1569275433846670190958947355801916604025588861116008628224",
+          "numerator": "598806368083613907450939804447074380287483025201411942659228025"
+        }
+      },
+      {
+        "active_liquidity": "33550706298976055",
+        "combined_fee_pips_ETH_to_ZZZ": 900001,
+        "combined_fee_pips_ZZZ_to_ETH": 900001,
+        "common_500bps_continuous_reference_possible": true,
+        "conditional_zzz_usd_from_single_ETH_and_this_pool": {
+          "decimal": "0.005709734233536823304956",
+          "denominator": "2358037185101645705207883914621808779306778359540817479009158203125",
+          "numerator": "13463765639727673382577905194974452618716182137268396577045610496"
+        },
+        "eth_per_zzz": {
+          "decimal": "0.000003249515212373186145",
+          "denominator": "30182875969301065026660914107159152375126763002122463731317225",
+          "numerator": "98079714615416886934934209737619787751599303819750539264"
+        },
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          899900,
+          8999,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "poolId": "0x4d9cd3f1c7a5508b2a024be59983b00521e597563a1c772c3ee76c241e7187d3",
+        "price_ratio_to_selected": {
+          "decimal": "1.080725631246417305317443",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "numerator": "482926015508817040426574625714546438002028208033959419701075600"
+        },
+        "reference_fee_only_candidate": true,
+        "slot0": {
+          "lpFee": 899900,
+          "protocolFee": 4097000,
+          "sqrtPriceX96": 43951155411834944862066499655320,
+          "tick": 126376
+        },
+        "strict_principal_fee_only_candidate": false,
+        "zzz_per_eth": {
+          "decimal": "307738.211593008650669265300666",
+          "denominator": "98079714615416886934934209737619787751599303819750539264",
+          "numerator": "30182875969301065026660914107159152375126763002122463731317225"
+        }
+      },
+      {
+        "active_liquidity": "26834233608609276",
+        "combined_fee_pips_ETH_to_ZZZ": 900100,
+        "combined_fee_pips_ZZZ_to_ETH": 900100,
+        "common_500bps_continuous_reference_possible": false,
+        "conditional_zzz_usd_from_single_ETH_and_this_pool": {
+          "decimal": "0.015379170379282722193700",
+          "denominator": "875454612159360025654563727482779682284291294253168634271418828125",
+          "numerator": "13463765639727673382577905194974452618716182137268396577045610496"
+        },
+        "eth_per_zzz": {
+          "decimal": "0.000008752569919563842020",
+          "denominator": "11205819035639808328378415711779579933238928566440558518674161",
+          "numerator": "98079714615416886934934209737619787751599303819750539264"
+        },
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          900000,
+          60,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "poolId": "0x35983e58bb96b73ab03d763865256a9ce97016a12ae88b8595c0332fa998678b",
+        "price_ratio_to_selected": {
+          "decimal": "0.401234655810878581710747",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "numerator": "179293104570236933254054651388473278931822857063048936298786576"
+        },
+        "reference_fee_only_candidate": true,
+        "slot0": {
+          "lpFee": 900000,
+          "protocolFee": 4097000,
+          "sqrtPriceX96": 26780075023811037356117432560952,
+          "tick": 116467
+        },
+        "strict_principal_fee_only_candidate": false,
+        "zzz_per_eth": {
+          "decimal": "114252.157845067747870554566998",
+          "denominator": "98079714615416886934934209737619787751599303819750539264",
+          "numerator": "11205819035639808328378415711779579933238928566440558518674161"
+        }
+      },
+      {
+        "active_liquidity": "21143702381770390",
+        "combined_fee_pips_ETH_to_ZZZ": 790210,
+        "combined_fee_pips_ZZZ_to_ETH": 790210,
+        "common_500bps_continuous_reference_possible": false,
+        "conditional_zzz_usd_from_single_ETH_and_this_pool": {
+          "decimal": "0.017126874912947149741307",
+          "denominator": "786119225378920123780230432777009241993693974606935563950665703125",
+          "numerator": "13463765639727673382577905194974452618716182137268396577045610496"
+        },
+        "eth_per_zzz": {
+          "decimal": "0.000009747220850165604538",
+          "denominator": "10062326084850177584386949539545718297519282874968775218568521",
+          "numerator": "98079714615416886934934209737619787751599303819750539264"
+        },
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          790000,
+          60,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "poolId": "0x719b599b7a492252c04b81b43b9c21d05448b715b7d32c71671589481582fc21",
+        "price_ratio_to_selected": {
+          "decimal": "0.360290839114123651797035",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "numerator": "160997217357602841350191192632731492760308525999500403497096336"
+        },
+        "reference_fee_only_candidate": true,
+        "slot0": {
+          "lpFee": 790000,
+          "protocolFee": 4097000,
+          "sqrtPriceX96": 25376935777008448058416755537688,
+          "tick": 115391
+        },
+        "strict_principal_fee_only_candidate": false,
+        "zzz_per_eth": {
+          "decimal": "102593.345874892131575973596225",
+          "denominator": "98079714615416886934934209737619787751599303819750539264",
+          "numerator": "10062326084850177584386949539545718297519282874968775218568521"
+        }
+      },
+      {
+        "active_liquidity": "1824799176298748",
+        "combined_fee_pips_ETH_to_ZZZ": 11005,
+        "combined_fee_pips_ZZZ_to_ETH": 11005,
+        "common_500bps_continuous_reference_possible": true,
+        "conditional_zzz_usd_from_single_ETH_and_this_pool": {
+          "decimal": "0.006507533398156465019179",
+          "denominator": "2068950678538485308743493713694562711310151030457320621791125078125",
+          "numerator": "13463765639727673382577905194974452618716182137268396577045610496"
+        },
+        "eth_per_zzz": {
+          "decimal": "0.000003703557452487097430",
+          "denominator": "26482568685292611951916719535290402704769933189853703958926401",
+          "numerator": "98079714615416886934934209737619787751599303819750539264"
+        },
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          10015,
+          200,
+          "0x0000000000000000000000000000000000000000"
+        ],
+        "poolId": "0x07ee2b09374d11c2d87d0a0418481394a03bc05f01282e2f799b69dfa4c65417",
+        "price_ratio_to_selected": {
+          "decimal": "0.948232726018196426354861",
+          "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+          "numerator": "423721098964681791230667512564646443276318931037659263342822416"
+        },
+        "reference_fee_only_candidate": true,
+        "slot0": {
+          "lpFee": 10015,
+          "protocolFee": 4097000,
+          "sqrtPriceX96": 41168973704219627594273315504392,
+          "tick": 125068
+        },
+        "strict_principal_fee_only_candidate": true,
+        "zzz_per_eth": {
+          "decimal": "270010.662134715144272647531643",
+          "denominator": "98079714615416886934934209737619787751599303819750539264",
+          "numerator": "26482568685292611951916719535290402704769933189853703958926401"
+        }
+      }
+    ],
+    "active_reference_fee_only_count": 13,
+    "active_strict_principal_fee_only_count": 7,
+    "global_highest_or_ownership_or_depth_qualified": false,
+    "known_pool_count": 95,
+    "selected": {
+      "active_liquidity": "0",
+      "combined_fee_pips_ETH_to_ZZZ": 11010,
+      "combined_fee_pips_ZZZ_to_ETH": 11010,
+      "common_500bps_continuous_reference_possible": true,
+      "conditional_zzz_usd_from_single_ETH_and_this_pool": {
+        "decimal": "0.006170656133788362051891",
+        "denominator": "34910428577615364750938446041749867578690221778824550501477425078125",
+        "numerator": "215420250235642774121246483119591241899458914196294345232729767936"
+      },
+      "eth_per_zzz": {
+        "decimal": "0.000003511834379136847386",
+        "denominator": "446853485793476668812012109334398305007234838768954246418911041",
+        "numerator": "1569275433846670190958947355801916604025588861116008628224"
+      },
+      "key": [
+        "0x0000000000000000000000000000000000000000",
+        "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        10020,
+        200,
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "poolId": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "price_ratio_to_selected": {
+        "decimal": "1.000000000000000000000000",
+        "denominator": "1",
+        "numerator": "1"
+      },
+      "reference_fee_only_candidate": true,
+      "slot0": {
+        "lpFee": 10020,
+        "protocolFee": 4097000,
+        "sqrtPriceX96": 42277818571609234285824917886142,
+        "tick": 125599
+      },
+      "strict_principal_fee_only_candidate": true,
+      "zzz_per_eth": {
+        "decimal": "284751.469471571143737312365584",
+        "denominator": "1569275433846670190958947355801916604025588861116008628224",
+        "numerator": "446853485793476668812012109334398305007234838768954246418911041"
+      }
+    }
+  },
+  "old_test_suites_rerun": 0,
+  "primary": {
+    "primary_phase_seconds": 64.46349399999599,
+    "primary_requests": 33,
+    "read_only": true,
+    "retries": 0,
+    "rpc_errors": 5,
+    "rpc_results": 28
+  },
+  "production_approved": false,
+  "provider_adopted": false,
+  "public_transactions": 0,
+  "quotes": [
+    {
+      "amount_out_raw": "13823520605943693719228",
+      "analytical_floor_scope": "Owninitialspot only; not two-sourceUSD, configuredvenue/userfloor, LPdeployment or finalsourceagreement.",
+      "conditional_extra_loss_after_known_fee_bps": {
+        "decimal": "1375.019745637845704769474432",
+        "denominator": "89825925295842635540922523811116919278819348570978772850242944712047576436687380373",
+        "numerator": "123512420951973670908504132781612389777482040231244018615228608239788446785049803730000"
+      },
+      "conditional_own_spot_gross_loss_bps": {
+        "decimal": "1469.980778238373023559962519",
+        "denominator": "908259186602924554757100919231912549963289300912838075716063304098601365399927",
+        "numerator": "1335123545964718702563798139023557469525778554342943658288624652179140478181030000"
+      },
+      "gas_ceiling": 500000,
+      "input_raw": "56911847022349316",
+      "key": [
+        "0x0000000000000000000000000000000000000000",
+        "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        10020,
+        200,
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "known_directional_total_fee_pips": 11010,
+      "nominal_USD_from_single_ETH_round_only": 100,
+      "passes_analytic_1pct_additional_after_fee_floor": false,
+      "passes_analytic_1pct_conversion_gross_floor": false,
+      "passes_analytic_3pct_swap_value_floor": false,
+      "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "postspot": null,
+      "qualified_usd": false,
+      "quoter_reported_gas": 98524,
+      "result": "0x0000000000000000000000000000000000000000000002ed5fe2bef4666e36bc00000000000000000000000000000000000000000000000000000000000180dc",
+      "venue_label": "selected",
+      "whole_operation_qualified": false,
+      "zero_for_one": true
+    },
+    {
+      "analytical_floor_scope": "Owninitialspot only; not two-sourceUSD, configuredvenue/userfloor, LPdeployment or finalsourceagreement.",
+      "error_decode": {
+        "canonical_wrapped_bytes": "0x7a5ed734501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+        "classification": "exact_full_input_incomplete",
+        "rpc_error": {
+          "code": 3,
+          "data": "0x6190b2b0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000247a5ed734501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b00000000000000000000000000000000000000000000000000000000",
+          "message": "execution reverted"
+        }
+      },
+      "gas_ceiling": 500000,
+      "input_raw": "1000000000000000000000",
+      "key": [
+        "0x0000000000000000000000000000000000000000",
+        "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        10020,
+        200,
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "known_directional_total_fee_pips": 11010,
+      "nominal_USD_from_single_ETH_round_only": null,
+      "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "postspot": null,
+      "qualified_usd": false,
+      "result": {
+        "rpc_error": {
+          "code": 3,
+          "data": "0x6190b2b0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000247a5ed734501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b00000000000000000000000000000000000000000000000000000000",
+          "message": "execution reverted"
+        }
+      },
+      "venue_label": "selected",
+      "whole_operation_qualified": false,
+      "zero_for_one": false
+    },
+    {
+      "amount_out_raw": "2742041196968548457293",
+      "analytical_floor_scope": "Owninitialspot only; not two-sourceUSD, configuredvenue/userfloor, LPdeployment or finalsourceagreement.",
+      "conditional_extra_loss_after_known_fee_bps": {
+        "decimal": "56.743035584648337554450954",
+        "denominator": "270473366045815087062177450752051201760662572555534290188199582982758673784538955161",
+        "numerator": "15347479834237300900139454669022566511793228642565502749838762905066501321869551610000"
+      },
+      "conditional_own_spot_gross_loss_bps": {
+        "decimal": "166.108918936252790489689548",
+        "denominator": "273481387830563454498203187612602213507026355439007938503802911203081365726161",
+        "numerator": "45427697681720975260396823274532683975431057477301985905872045108293420738090000"
+      },
+      "gas_ceiling": 500000,
+      "input_raw": "56911847022349316",
+      "key": [
+        "0x0000000000000000000000000000000000000000",
+        "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        10009,
+        200,
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "known_directional_total_fee_pips": 10999,
+      "nominal_USD_from_single_ETH_round_only": 100,
+      "passes_analytic_1pct_additional_after_fee_floor": true,
+      "passes_analytic_1pct_conversion_gross_floor": false,
+      "passes_analytic_3pct_swap_value_floor": true,
+      "pool_id": "0x012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+      "postspot": null,
+      "qualified_usd": false,
+      "quoter_reported_gas": 59941,
+      "result": "0x000000000000000000000000000000000000000000000094a57744af9d3f5b4d000000000000000000000000000000000000000000000000000000000000ea25",
+      "venue_label": "largest-known-active-L",
+      "whole_operation_qualified": false,
+      "zero_for_one": true
+    },
+    {
+      "analytical_floor_scope": "Owninitialspot only; not two-sourceUSD, configuredvenue/userfloor, LPdeployment or finalsourceagreement.",
+      "error_decode": {
+        "canonical_wrapped_bytes": "0x7a5ed734012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+        "classification": "exact_full_input_incomplete",
+        "rpc_error": {
+          "code": 3,
+          "data": "0x6190b2b0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000247a5ed734012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e55100000000000000000000000000000000000000000000000000000000",
+          "message": "execution reverted"
+        }
+      },
+      "gas_ceiling": 500000,
+      "input_raw": "1000000000000000000000",
+      "key": [
+        "0x0000000000000000000000000000000000000000",
+        "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        10009,
+        200,
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "known_directional_total_fee_pips": 10999,
+      "nominal_USD_from_single_ETH_round_only": null,
+      "pool_id": "0x012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+      "postspot": null,
+      "qualified_usd": false,
+      "result": {
+        "rpc_error": {
+          "code": 3,
+          "data": "0x6190b2b0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000247a5ed734012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e55100000000000000000000000000000000000000000000000000000000",
+          "message": "execution reverted"
+        }
+      },
+      "venue_label": "largest-known-active-L",
+      "whole_operation_qualified": false,
+      "zero_for_one": false
+    },
+    {
+      "analytical_floor_scope": "Owninitialspot only; not two-sourceUSD, configuredvenue/userfloor, LPdeployment or finalsourceagreement.",
+      "error_decode": {
+        "canonical_wrapped_bytes": "0x",
+        "classification": "empty_wrapped_revert_at_500k_unknown_cause",
+        "rpc_error": {
+          "code": 3,
+          "data": "0x6190b2b000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000",
+          "message": "execution reverted"
+        }
+      },
+      "gas_ceiling": 500000,
+      "input_raw": "2845592351117465",
+      "key": [
+        "0x0000000000000000000000000000000000000000",
+        "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        75,
+        1,
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "known_directional_total_fee_pips": 95,
+      "nominal_USD_from_single_ETH_round_only": 5,
+      "pool_id": "0x1d37ef75bc4c02916c8f03dac1db8bb428cde1d3385447f24708c8d08f4cded1",
+      "postspot": null,
+      "qualified_usd": false,
+      "result": {
+        "rpc_error": {
+          "code": 3,
+          "data": "0x6190b2b000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000",
+          "message": "execution reverted"
+        }
+      },
+      "venue_label": "cheap-fee-only",
+      "whole_operation_qualified": false,
+      "zero_for_one": true
+    },
+    {
+      "analytical_floor_scope": "Owninitialspot only; not two-sourceUSD, configuredvenue/userfloor, LPdeployment or finalsourceagreement.",
+      "error_decode": {
+        "canonical_wrapped_bytes": "0x",
+        "classification": "empty_wrapped_revert_at_500k_unknown_cause",
+        "rpc_error": {
+          "code": 3,
+          "data": "0x6190b2b000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000",
+          "message": "execution reverted"
+        }
+      },
+      "gas_ceiling": 500000,
+      "input_raw": "1000000000000000000000",
+      "key": [
+        "0x0000000000000000000000000000000000000000",
+        "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        75,
+        1,
+        "0x0000000000000000000000000000000000000000"
+      ],
+      "known_directional_total_fee_pips": 95,
+      "nominal_USD_from_single_ETH_round_only": null,
+      "pool_id": "0x1d37ef75bc4c02916c8f03dac1db8bb428cde1d3385447f24708c8d08f4cded1",
+      "postspot": null,
+      "qualified_usd": false,
+      "result": {
+        "rpc_error": {
+          "code": 3,
+          "data": "0x6190b2b000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000",
+          "message": "execution reverted"
+        }
+      },
+      "venue_label": "cheap-fee-only",
+      "whole_operation_qualified": false,
+      "zero_for_one": false
+    }
+  ],
+  "restricted_transport_attempt": {
+    "attempts": 1,
+    "error_class": "URLError",
+    "further_detail": "No HTTP status or chain result retained; separate tool-authorized network-capable phase used identical recorder in exclusive output path.",
+    "response_received": false,
+    "retry_in_that_recorder": false
+  },
+  "routes_adopted": [],
+  "safeguards_changed": false,
+  "schema": 1,
+  "source_baseline": "519ff4f075022f789f46facbab56f0a944705b11",
+  "source_proof": {
+    "analyzer": "Exact prior analyzer, offline data replay only",
+    "current_recorder_sha256": "913a6914c6b230500ad61171dc1cbeb11e1723def1ba50d336109a7e6c17b2a8",
+    "discovery_delta": "Only starting anchor changed fromNov13 to exact already-closedNov16 anchor; transport/log logic and original bounds unchanged",
+    "prior_recorder_sha256": "f0cd1487229df7807765bca1997dfc8b013b8407709c9107cdd9ea9e432241e5",
+    "recorder_delta": "Only source_baseline label changed; transport, methods, budgets, runtime checks and market logic unchanged"
+  },
+  "sources_qualified": {
+    "independent_ETH_pair": false,
+    "independent_ZZZ_pair": false
+  }
+}

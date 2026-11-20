@@ -1,6 +1,6 @@
 # AAA / ZZZ PoPL project instructions
 
-Reviewed 19 November 2026. Read [context](PROJECT_CONTEXT.md), [README](README.md),
+Reviewed 20 November 2026. Read [context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md),
 [current findings](docs/AUDIT_FINDINGS.md) and the relevant
 [operator procedure](docs/OPERATOR_MANUAL.md) before changing behavior.
@@ -123,9 +123,11 @@ unprepared later setup. New source publication is not a deployment workflow.
 Use the [ordered readiness plan](docs/ROADMAP.md) before choosing further launch
 work. Its23 acceptance packages map all83 stable tasks and preserve current
 policies, exact evidence reuse and separate deployment/seal/public-opening gates.
-Compiler advisories, actual market/provider/platform feasibility, production user
-submission, current full graph and real operating acceptance remain qualification,
-not completed by documentation. No live action or signer change is authorized.
+The [Gate A follow-through](reports/readiness-gate-a-20261120/REVIEW.md) completes
+current compiler-advisory applicability with no confirmed reachable defect requiring
+upgrade; exact Yul optimization is disabled. New offline screen controls and fresh
+read-only market evidence do not approve real feeds/routes/OpenSea/VRF/providers.
+Production user submission, full graph and actual operating acceptance stay open. No live action or signer change is authorized.
 
 ## Authorization and preservation
 

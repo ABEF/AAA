@@ -1,5 +1,11 @@
 # PoPL operator manual
 
+For the next launch decisions use the [Gate A evidence](../reports/readiness-gate-a-20261120/REVIEW.md).
+Current compiler applicability has no confirmed reachable upgrade-requiring issue.
+Actual markets, custom OpenSea configuration and original-request VRF remain
+unqualified; do not relax guards, admit a candidate, fund a provider or seal based
+only on a deployment listing or forward quote. All existing call/role procedures remain.
+
 For launch preparation, follow the [ordered qualification plan](ROADMAP.md).
 It separates predeployment work, actual unsealed readback, sealing and public
 opening; each still needs its own evidence/authorization. Current call procedures

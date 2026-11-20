@@ -1,5 +1,11 @@
 # Verification evidence
 
+[20 November Gate A follow-through](readiness-gate-a-20261120/REVIEW.md)
+links current [compiler applicability](compiler-applicability-20261120/REVIEW.md),
+[actual markets](market-feasibility-20261120/REVIEW.md) and
+[platform/provider review](platform-provider-gate-20261120/REVIEW.md).
+Current source/configuration/operating approval remains separate.
+
 [Production readiness planning](production-readiness-plan-20261119/REVIEW.md)
 consolidates launch acceptance packages, source provenance, current findings and
 all stable Todo ownership. It adds no dynamic pass or deployment approval.

@@ -48,6 +48,10 @@ Host restart, RPC inclusion, gas and writer/checker rollout remain qualification
 
 ## Verification and release status
 
+The [current Gate A results](reports/readiness-gate-a-20261120/REVIEW.md) complete
+compiler-advisory applicability review and refresh actual market/platform blockers.
+Production remains unapproved; no source/compiler or live configuration changed.
+
 The [production qualification plan](docs/ROADMAP.md) orders23 acceptance packages
 from real-market feasibility through source, services, deployment, sealing and
 public opening. It preserves the sole Todo and separates predeployment checks

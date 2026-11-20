@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "date": "2026-11-20",
+  "source_baseline": "519ff4f075022f789f46facbab56f0a944705b11",
+  "purpose": "Dated source/default/input evidence, not a deployable configuration or second task checklist",
+  "source_decisions": {
+    "normal_build": "activation-final-six-20261118",
+    "factory_payload": 6,
+    "royalty_allocation": 2,
+    "input_assets": [
+      "native ETH",
+      "fixed ZZZ"
+    ],
+    "fixed_zzz": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+    "selected_pool": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+    "spot_placement_and_valuation": true,
+    "loss_defaults_bps": {
+      "contribution": 300,
+      "lp_conversion": 100,
+      "maintenance": 300,
+      "additional_execution": 100,
+      "source_agreement": 300
+    },
+    "shared_browser_signer": "Anvil only",
+    "production_consumer": "read/unsigned only"
+  },
+  "selected_nonlive_gas": {
+    "contribution": {
+      "gas_limit": "32000000",
+      "activation_policy_schema": 2,
+      "estimate_padding_percent": 20,
+      "maximum_estimate_before_padding": "26666666",
+      "response_schema": 2,
+      "assets": [
+        "native ETH",
+        "fixed deployment ZZZ"
+      ],
+      "claims_policy": "unchanged; policy1 remains12M"
+    },
+    "maintenance_keeper": {
+      "gas_limit": 24000000,
+      "estimate_padding_percent": 25,
+      "maximum_estimate_before_padding": "19200000",
+      "receipt_fee_policy": "must be separately reviewed",
+      "pending_recovery": "original journal first; no relabeling",
+      "scope": "Global cap for all jobs enabled in that loaded keeper config; per-job economics and transaction/day limits remain"
+    },
+    "maintenance_manual": {
+      "gas_limit": "24000000",
+      "estimate_padding_percent": 25,
+      "maximum_estimate_before_padding": "19200000",
+      "governance_authority": "unchanged; unsigned preparation only"
+    }
+  },
+  "artwork_cardinality": {
+    "inventory_entries": 1000,
+    "selected_distinct_base_looks": 542,
+    "supported_svg_states": 2784,
+    "source_sha256": "9dbb671330bcc70c2f246fc4cd81e1ce0374bc441c491b59dfd063cc897c8f41",
+    "content_published_or_verified_here": false
+  },
+  "missing_actual_inputs": [
+    {
+      "family": "prices/markets",
+      "value": null,
+      "needed": "independent ETH/ZZZ publication and compatible meaningful two-way depth"
+    },
+    {
+      "family": "OpenSea custom route",
+      "value": null,
+      "needed": "actual accepted Merkle/configuration/authority-proof/buyer-builder/fee/payer path"
+    },
+    {
+      "family": "randomness",
+      "value": null,
+      "needed": "actual provider with verified proof and still-deliverable original-request policy"
+    },
+    {
+      "family": "RPC/fees",
+      "value": null,
+      "needed": "reviewed account/tier/current32M/24M/trace/archive/complete-fee and spending budgets"
+    },
+    {
+      "family": "authorities",
+      "value": null,
+      "needed": "actual governance wallet/signature/recovery policy,keeper/guardian/bootstrap/payee/VRF funding identities"
+    },
+    {
+      "family": "launch policy",
+      "value": null,
+      "needed": "actual initial admitted royalty currencies/capacity,width/residual profile,workers and qualified workloads"
+    },
+    {
+      "family": "user submission",
+      "value": null,
+      "needed": "separately reviewed production activation/growth/claim client; no implicit shared-signer extension"
+    },
+    {
+      "family": "content/hosting",
+      "value": null,
+      "needed": "final immutable root,CID/importer/retention/provider and marketplace retrieval acceptance"
+    }
+  ],
+  "compiler_advisory_review": "reports/compiler-applicability-20261120/ASSESSMENT.json",
+  "token_controls": "reports/readiness-gate-a-20261120/TOKEN_REVIEW.json",
+  "live_adoption": false,
+  "public_signing": false,
+  "gate_a_complete": false,
+  "production_approved": false
+}

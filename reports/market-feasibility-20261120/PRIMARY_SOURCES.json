@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-20",
+  "scope": "Primary documentation reviewed; reference index, not a raw HTML or signed-service archive.",
+  "sources": [
+    {
+      "supports": "Robinhood ETH/USD availability is documented; does not establish two independent services or operating policy.",
+      "url": "https://docs.chain.link/changelog?product=Data+Feeds"
+    },
+    {
+      "supports": "Core stores prices; Pro transaction-signed prices are a different interface. An address alone does not provide fresh publication.",
+      "url": "https://docs.pyth.network/pro/contract-addresses"
+    },
+    {
+      "supports": "Current documented sponsored EVM list does not contain Robinhood; publication owner/transport/funding/recovery needs an explicit operating arrangement. No pusher installed.",
+      "url": "https://docs.pyth.network/pro/sponsored-feeds"
+    },
+    {
+      "supports": "API3 standard market plans specify24h heartbeat and3-month mainnet expiry; current activation/subscription is not established by those docs.",
+      "url": "https://docs.api3.org/dapps/integration/"
+    },
+    {
+      "supports": "API3 asynchronous prices do not provide meaningful Chainlink rounds; Oracle round-dependent compatibility needs reviewed custom adaptation, not weaker checks.",
+      "url": "https://docs.api3.org/dapps/integration/aggregatorv2v3interface.html"
+    },
+    {
+      "supports": "Official market is a commercial service lead; dynamic page did not expose readable activation terms in this tool. No subscription/fees selected.",
+      "url": "https://market.api3.org/robinhood?search=ETH%2FUSD"
+    }
+  ],
+  "unverified": "No newly authenticated exact-ZZZ independent on-chain price path found in this bounded primary-source review. This is not proof custom/private products or other markets do not exist."
+}

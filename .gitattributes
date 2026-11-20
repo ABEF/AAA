@@ -315,3 +315,12 @@ reports/whole-workload-review-20261119/** -text whitespace=cr-at-eol
 reports/maximum-workload-20261119/** -text whitespace=cr-at-eol
 test/MaximumWorkload20261119.t.sol -text whitespace=cr-at-eol,-blank-at-eof
 test/MaximumMaintenanceWorkload20261119.t.sol -text whitespace=cr-at-eol,-blank-at-eof
+
+# Preserve exact source-bound Gate A analysis, official fetch and wire evidence bytes.
+reports/compiler-applicability-20261120/** -text whitespace=cr-at-eol
+reports/market-feasibility-20261120/** -text whitespace=cr-at-eol
+reports/platform-provider-gate-20261120/** -text whitespace=cr-at-eol
+reports/readiness-gate-a-20261120/** -text whitespace=cr-at-eol
+
+# Retain the current native service-guide line endings.
+docs/PRODUCTION_SERVICES.md -text whitespace=cr-at-eol
