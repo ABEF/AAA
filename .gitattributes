@@ -336,3 +336,6 @@ reports/full-claim-admission-20261120/** -text whitespace=cr-at-eol
 
 # Preserve exact real-market quote and source-stage evidence.
 reports/market-route-qualification-20261120/** -text whitespace=cr-at-eol
+
+# Preserve exact documentation reconciliation receipts.
+reports/documentation-sync-20261120/** -text whitespace=cr-at-eol
