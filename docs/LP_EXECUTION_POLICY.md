@@ -1,5 +1,9 @@
 # LP execution and operator-selected maintenance
 
+[Actual-market follow-up](../reports/market-route-qualification-20261120/REVIEW.md)
+qualifies no complete route. Low fees, raw active L or positive v3 quotes do not
+admit an unsupported venue or replace complete native-v4 operation proof.
+
 ## Reference and venue overlap
 
 The fresh explicit execution-price1/LP-routing3 graph permits a reviewed external

@@ -1,5 +1,11 @@
 # Feature and evidence reference
 
+[Real-market route follow-up](../reports/market-route-qualification-20261120/REVIEW.md)
+adds independent reconstruction of117 read-only observations, including previously
+untested native candidates and three actual WETH/v3 markets. It qualifies no
+complete production operation or new source/route. The current native-only
+implementation, all limits, NFT rights and environments remain unchanged.
+
 [Full normal admission evidence](../reports/full-claim-admission-20261120/REVIEW.md)
 adds real sealed Access/Registry,26 API runtime pins,32 Entry activations and65
 royalty currencies. Bounded planning now stops at the first successful prefix

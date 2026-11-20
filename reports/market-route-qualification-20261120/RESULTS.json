@@ -1,0 +1,695 @@
+{
+  "schema": 1,
+  "baseline": "73658567cb605b58c992698e2103535e782269dd",
+  "anchor": {
+    "chain_id": 4663,
+    "number": 119107223,
+    "hash": "0x13f4c5b0ff38d2e13f17b12b1af8b0894b8d642d8aa1093083441e30e2ed9335",
+    "timestamp": 1795183655
+  },
+  "anchor_utc": "2026-11-20T14:07:35+00:00",
+  "read_only_http_calls": 117,
+  "phase_counts": {
+    "discovery": 13,
+    "quotes": 21,
+    "state": 16,
+    "state-continuation": 14,
+    "v3-quotes": 21,
+    "v3-state": 32
+  },
+  "independent_verification_sha256": "3bbb5ca783744a353b0c9f2494eb3d4d8c9e052c832485f20abf82fd9d486144",
+  "feeds": {
+    "chainlink_eth": {
+      "address": "0x78f3556b67e17df817d51ef5a990cdaf09e8d3a9",
+      "usd": {
+        "numerator": "87349836277",
+        "denominator": "50000000",
+        "decimal": "1746.99672554"
+      },
+      "age_seconds": 1051,
+      "two_proxies_same_aggregator": true,
+      "max_age_policy_approved": false,
+      "qualified_pair": false
+    },
+    "pyth_eth": {
+      "stored_usd": {
+        "numerator": "112086259",
+        "denominator": "50000",
+        "decimal": "2241.72518"
+      },
+      "age_seconds": 1158502,
+      "hard_one_day_pass": false,
+      "spread_bps_vs_chainlink": {
+        "numerator": "247364227230000",
+        "denominator": "87349836277",
+        "decimal": "2831.879689454360578549250163925410284602"
+      },
+      "qualified": false
+    },
+    "api3_eth": {
+      "observation": {
+        "rpc_error": {
+          "code": 3,
+          "data": "0x8086c764",
+          "message": "execution reverted"
+        }
+      },
+      "cause_not_inferred": true,
+      "qualified": false
+    },
+    "zzz_independent_pair_qualified": false
+  },
+  "native_v4": {
+    "known_pool_count": 95,
+    "selected_active_liquidity": "0",
+    "cheap_fee_only_count": 4,
+    "excluded_extreme_pool_ids": [
+      "0xb21d7557cf03c3662a0f90d189234108fb91edd8fcd39b73a1eaaefd6e3dc342"
+    ],
+    "diagnostic_pool_ids": [
+      "0x1d37ef75bc4c02916c8f03dac1db8bb428cde1d3385447f24708c8d08f4cded1",
+      "0x9078e455075c45244ee1e6a89e4f7ace33b680d55e74a9f4af061bc98872d92e",
+      "0x902f816cd5fc0479fb7a930d295bfe61873184a3473a4b524f8760a2367e1475"
+    ],
+    "quote_status_counts": {
+      "opaque_wrapped_revert": 5,
+      "full_input_not_consumed": 12,
+      "positive_full_input_quote": 2
+    },
+    "quotes": [
+      {
+        "fee_pips": 95,
+        "gas_ceiling": 500000,
+        "inferred_cause": null,
+        "input_raw": "1000000000000000000",
+        "pool_id": "0x1d37ef75bc4c02916c8f03dac1db8bb428cde1d3385447f24708c8d08f4cded1",
+        "status": "opaque_wrapped_revert",
+        "wrapped_data": "0x",
+        "zero_for_one": false
+      },
+      {
+        "fee_pips": 95,
+        "gas_ceiling": 500000,
+        "inferred_cause": null,
+        "input_raw": "100000000000000000000",
+        "pool_id": "0x1d37ef75bc4c02916c8f03dac1db8bb428cde1d3385447f24708c8d08f4cded1",
+        "status": "opaque_wrapped_revert",
+        "wrapped_data": "0x",
+        "zero_for_one": false
+      },
+      {
+        "fee_pips": 95,
+        "gas_ceiling": 500000,
+        "inferred_cause": null,
+        "input_raw": "1000000000000000000000",
+        "pool_id": "0x1d37ef75bc4c02916c8f03dac1db8bb428cde1d3385447f24708c8d08f4cded1",
+        "status": "opaque_wrapped_revert",
+        "wrapped_data": "0x",
+        "zero_for_one": false
+      },
+      {
+        "fee_pips": 95,
+        "gas_ceiling": 500000,
+        "inferred_cause": null,
+        "input_raw": "2862054591690485",
+        "pool_id": "0x1d37ef75bc4c02916c8f03dac1db8bb428cde1d3385447f24708c8d08f4cded1",
+        "status": "opaque_wrapped_revert",
+        "wrapped_data": "0x",
+        "zero_for_one": true
+      },
+      {
+        "fee_pips": 3497,
+        "gas_ceiling": 500000,
+        "input_raw": "1000000000000000000",
+        "pool_id": "0x9078e455075c45244ee1e6a89e4f7ace33b680d55e74a9f4af061bc98872d92e",
+        "status": "full_input_not_consumed",
+        "wrapped_data": "0x7a5ed7349078e455075c45244ee1e6a89e4f7ace33b680d55e74a9f4af061bc98872d92e",
+        "zero_for_one": false
+      },
+      {
+        "fee_pips": 3497,
+        "gas_ceiling": 500000,
+        "input_raw": "100000000000000000000",
+        "pool_id": "0x9078e455075c45244ee1e6a89e4f7ace33b680d55e74a9f4af061bc98872d92e",
+        "status": "full_input_not_consumed",
+        "wrapped_data": "0x7a5ed7349078e455075c45244ee1e6a89e4f7ace33b680d55e74a9f4af061bc98872d92e",
+        "zero_for_one": false
+      },
+      {
+        "fee_pips": 3497,
+        "gas_ceiling": 500000,
+        "input_raw": "1000000000000000000000",
+        "pool_id": "0x9078e455075c45244ee1e6a89e4f7ace33b680d55e74a9f4af061bc98872d92e",
+        "status": "full_input_not_consumed",
+        "wrapped_data": "0x7a5ed7349078e455075c45244ee1e6a89e4f7ace33b680d55e74a9f4af061bc98872d92e",
+        "zero_for_one": false
+      },
+      {
+        "fee_pips": 3497,
+        "gas_ceiling": 500000,
+        "input_raw": "2862054591690485",
+        "pool_id": "0x9078e455075c45244ee1e6a89e4f7ace33b680d55e74a9f4af061bc98872d92e",
+        "status": "full_input_not_consumed",
+        "wrapped_data": "0x7a5ed7349078e455075c45244ee1e6a89e4f7ace33b680d55e74a9f4af061bc98872d92e",
+        "zero_for_one": true
+      },
+      {
+        "fee_pips": 7936,
+        "gas_ceiling": 500000,
+        "input_raw": "1000000000000000000",
+        "pool_id": "0x902f816cd5fc0479fb7a930d295bfe61873184a3473a4b524f8760a2367e1475",
+        "status": "full_input_not_consumed",
+        "wrapped_data": "0x7a5ed734902f816cd5fc0479fb7a930d295bfe61873184a3473a4b524f8760a2367e1475",
+        "zero_for_one": false
+      },
+      {
+        "fee_pips": 7936,
+        "gas_ceiling": 500000,
+        "input_raw": "100000000000000000000",
+        "pool_id": "0x902f816cd5fc0479fb7a930d295bfe61873184a3473a4b524f8760a2367e1475",
+        "status": "full_input_not_consumed",
+        "wrapped_data": "0x7a5ed734902f816cd5fc0479fb7a930d295bfe61873184a3473a4b524f8760a2367e1475",
+        "zero_for_one": false
+      },
+      {
+        "fee_pips": 7936,
+        "gas_ceiling": 500000,
+        "input_raw": "1000000000000000000000",
+        "pool_id": "0x902f816cd5fc0479fb7a930d295bfe61873184a3473a4b524f8760a2367e1475",
+        "status": "full_input_not_consumed",
+        "wrapped_data": "0x7a5ed734902f816cd5fc0479fb7a930d295bfe61873184a3473a4b524f8760a2367e1475",
+        "zero_for_one": false
+      },
+      {
+        "fee_pips": 7936,
+        "gas_ceiling": 500000,
+        "input_raw": "2862054591690485",
+        "pool_id": "0x902f816cd5fc0479fb7a930d295bfe61873184a3473a4b524f8760a2367e1475",
+        "status": "full_input_not_consumed",
+        "wrapped_data": "0x7a5ed734902f816cd5fc0479fb7a930d295bfe61873184a3473a4b524f8760a2367e1475",
+        "zero_for_one": true
+      },
+      {
+        "additional_1pct_screen": false,
+        "analytical_only": true,
+        "complete_operation_qualified": false,
+        "fee_pips": 11010,
+        "gas_ceiling": 500000,
+        "gross_1pct_screen": false,
+        "gross_3pct_screen": false,
+        "input_raw": "28620545916904855",
+        "output_raw": "6987330249112896112579",
+        "own_spot_additional_loss_bps": {
+          "decimal": "1330.87065834141708",
+          "denominator": "3162095429645753538616896371564779436974033837551273918994426956177428913150253",
+          "numerator": "4208340026191030013016283912407588649412088962849266112954590428156508979428290000"
+        },
+        "own_spot_gross_loss_bps": {
+          "decimal": "1426.31777239307826",
+          "denominator": "2557838141656238060779314815742210420776782878691806680993980822860648461200811",
+          "numerator": "3648290000349176309271004314829939631505229256787288348348064921712260490348718000"
+        },
+        "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+        "post_state_qualified": false,
+        "quoter_reported_gas": 98488,
+        "status": "positive_full_input_quote",
+        "zero_for_one": true
+      },
+      {
+        "fee_pips": 11010,
+        "gas_ceiling": 500000,
+        "input_raw": "1000000000000000000",
+        "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+        "status": "full_input_not_consumed",
+        "wrapped_data": "0x7a5ed734501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+        "zero_for_one": false
+      },
+      {
+        "fee_pips": 11010,
+        "gas_ceiling": 500000,
+        "input_raw": "100000000000000000000",
+        "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+        "status": "full_input_not_consumed",
+        "wrapped_data": "0x7a5ed734501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+        "zero_for_one": false
+      },
+      {
+        "additional_1pct_screen": true,
+        "analytical_only": true,
+        "complete_operation_qualified": false,
+        "fee_pips": 10999,
+        "gas_ceiling": 500000,
+        "gross_1pct_screen": false,
+        "gross_3pct_screen": true,
+        "input_raw": "28620545916904855",
+        "output_raw": "1382852854267753523404",
+        "own_spot_additional_loss_bps": {
+          "decimal": "28.6163711926708437",
+          "denominator": "272038100930870592162260123558299690831442319555473641332349785042448329185881",
+          "numerator": "7784743274787048412486224921960040087315897743606582863635009059182393165690000"
+        },
+        "own_spot_gross_loss_bps": {
+          "decimal": "138.291619725922828",
+          "denominator": "110025409855347202668639299827850422284261004706618284217066227806183657528539",
+          "numerator": "15215592139904477402346994014089475551767127941730909986717141515716215808142000"
+        },
+        "pool_id": "0x012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+        "post_state_qualified": false,
+        "quoter_reported_gas": 59913,
+        "status": "positive_full_input_quote",
+        "zero_for_one": true
+      },
+      {
+        "fee_pips": 10999,
+        "gas_ceiling": 500000,
+        "input_raw": "1000000000000000000",
+        "pool_id": "0x012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+        "status": "full_input_not_consumed",
+        "wrapped_data": "0x7a5ed734012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+        "zero_for_one": false
+      },
+      {
+        "fee_pips": 10999,
+        "gas_ceiling": 500000,
+        "input_raw": "100000000000000000000",
+        "pool_id": "0x012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+        "status": "full_input_not_consumed",
+        "wrapped_data": "0x7a5ed734012aa49a334942d5d1c4a6bb1e244b3d3066b00249f6f5fd8a35a9146583e551",
+        "zero_for_one": false
+      },
+      {
+        "fee_pips": 95,
+        "gas_ceiling": 1000000,
+        "inferred_cause": null,
+        "input_raw": "1000000000000000000",
+        "pool_id": "0x1d37ef75bc4c02916c8f03dac1db8bb428cde1d3385447f24708c8d08f4cded1",
+        "status": "opaque_wrapped_revert",
+        "wrapped_data": "0x",
+        "zero_for_one": false
+      }
+    ],
+    "largest_known_eth_per_zzz_ratio_to_selected": {
+      "decimal": "5.81192595651105393",
+      "denominator": "76885612297395205375838172673821837659962301161319347082855236",
+      "numerator": "446853485793476668812012109334398305007234838768954246418911041"
+    },
+    "selected_pool_changed": false
+  },
+  "other_markets": {
+    "stoa_keys": [
+      {
+        "discovery_only": true,
+        "key": [
+          "0x0000000000000000000000000000000000000000",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          0,
+          200,
+          "0xe5e702641ea86f4ae6cc3cdaed2b886f976be044"
+        ],
+        "poolId": "0x6538e2c223ed70228114983afecbe5e69fe627e2fafdf367bdd6bdeff2ad391f"
+      }
+    ],
+    "hook_fee_zero_is_not_effective_fee_proof": true,
+    "v2_pair_lookup": {
+      "factory": "0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f",
+      "kind": "v2",
+      "result": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "v3_requested_fee_tiers": [
+      100,
+      500,
+      2500,
+      3000,
+      10000
+    ],
+    "v3_states": [
+      {
+        "address": "0x0d803c604c61598e9bf4dac4b22d6d75d9d08912",
+        "balances": {
+          "0x0bd7d308f8e1639fab988df18a8011f41eacad73": "0x0000000000000000000000000000000000000000000000000000000000000261",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a": "0x000000000000000000000000000000000000000000000000000000000000024f"
+        },
+        "factory()": "0x0000000000000000000000001f7d7550b1b028f7571e69a784071f0205fd2efa",
+        "factory_lead": "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
+        "fee()": "0x00000000000000000000000000000000000000000000000000000000000001f4",
+        "liquidity()": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "qualified": false,
+        "reported_fee": 500,
+        "runtime": {
+          "bytes": 22142,
+          "keccak256": "0xaa63c78a9f719963228df778dbeaf4b8f995185a8e9deb9a0655513df82ac505"
+        },
+        "slot0()": "0x00000000000000000000000000000000000000000000000000000001000276a4fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff2761800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000440000000000000000000000000000000000000000000000000000000000000001",
+        "tickSpacing()": "0x000000000000000000000000000000000000000000000000000000000000000a",
+        "token0()": "0x0000000000000000000000000bd7d308f8e1639fab988df18a8011f41eacad73",
+        "token1()": "0x0000000000000000000000007dbf38976f6d3b9c529e7d9484a71898b409ee6a"
+      },
+      {
+        "address": "0xfe290f54bd48afa72f3a463c65e61de558603a0b",
+        "balances": {
+          "0x0bd7d308f8e1639fab988df18a8011f41eacad73": "0x0000000000000000000000000000000000000000000000000000008fafcd1138",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a": "0x000000000000000000000000000000000000000000000000000000000000034d"
+        },
+        "factory()": "0x0000000000000000000000001f7d7550b1b028f7571e69a784071f0205fd2efa",
+        "factory_lead": "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
+        "fee()": "0x0000000000000000000000000000000000000000000000000000000000000bb8",
+        "liquidity()": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "qualified": false,
+        "reported_fee": 3000,
+        "runtime": {
+          "bytes": 22142,
+          "keccak256": "0x31fe128d0c44484c50d212641463e7892ae25d07c6f9b87d76ab6b5f1f56fd0a"
+        },
+        "slot0()": "0x00000000000000000000000000000000000000f4a0c77805673dee71c8c4359b000000000000000000000000000000000000000000000000000000000001adb000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000660000000000000000000000000000000000000000000000000000000000000001",
+        "tickSpacing()": "0x000000000000000000000000000000000000000000000000000000000000003c",
+        "token0()": "0x0000000000000000000000000bd7d308f8e1639fab988df18a8011f41eacad73",
+        "token1()": "0x0000000000000000000000007dbf38976f6d3b9c529e7d9484a71898b409ee6a"
+      },
+      {
+        "address": "0xdd3c8aa6551bf5049310399c124cbb699b7d1c5c",
+        "balances": {
+          "0x0bd7d308f8e1639fab988df18a8011f41eacad73": "0x0000000000000000000000000000000000000000000000000d830f8d9c371154",
+          "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a": "0x000000000000000000000000000000000000000000030d69920a9693a0d47058"
+        },
+        "factory()": "0x0000000000000000000000001f7d7550b1b028f7571e69a784071f0205fd2efa",
+        "factory_lead": "0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
+        "fee()": "0x0000000000000000000000000000000000000000000000000000000000002710",
+        "liquidity()": "0x0000000000000000000000000000000000000000000000d00d1f40f755ced0e7",
+        "qualified": false,
+        "reported_fee": 10000,
+        "runtime": {
+          "bytes": 22142,
+          "keccak256": "0x2499ff261fa00ce66f9807a8552177863648ef91c185d0eac707eae70a22cc6d"
+        },
+        "slot0()": "0x0000000000000000000000000000000000000295b7c1cf1ac89301bd6934baa2000000000000000000000000000000000000000000000000000000000001fb6f000000000000000000000000000000000000000000000000000000000000009b0000000000000000000000000000000000000000000000000000000000000578000000000000000000000000000000000000000000000000000000000000057800000000000000000000000000000000000000000000000000000000000000660000000000000000000000000000000000000000000000000000000000000001",
+        "tickSpacing()": "0x00000000000000000000000000000000000000000000000000000000000000c8",
+        "token0()": "0x0000000000000000000000000bd7d308f8e1639fab988df18a8011f41eacad73",
+        "token1()": "0x0000000000000000000000007dbf38976f6d3b9c529e7d9484a71898b409ee6a"
+      }
+    ],
+    "v3_quote_status_counts": {
+      "rpc_revert": 10,
+      "positive_quote_full_consumption_unproved": 5
+    },
+    "v3_quotes": [
+      {
+        "complete_input_consumption_proved": false,
+        "complete_operation_qualified": false,
+        "data": "0x08c379a00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000353504c0000000000000000000000000000000000000000000000000000000000",
+        "fee_pips": 500,
+        "gas_ceiling": 500000,
+        "inferred_cause": null,
+        "input_raw": "2862054591690485",
+        "pool": "0x0d803c604c61598e9bf4dac4b22d6d75d9d08912",
+        "status": "rpc_revert",
+        "token_in": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+        "token_out": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a"
+      },
+      {
+        "complete_input_consumption_proved": false,
+        "complete_operation_qualified": false,
+        "data": "0x08c379a00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000353504c0000000000000000000000000000000000000000000000000000000000",
+        "fee_pips": 500,
+        "gas_ceiling": 500000,
+        "inferred_cause": null,
+        "input_raw": "28620545916904855",
+        "pool": "0x0d803c604c61598e9bf4dac4b22d6d75d9d08912",
+        "status": "rpc_revert",
+        "token_in": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+        "token_out": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a"
+      },
+      {
+        "complete_input_consumption_proved": false,
+        "complete_operation_qualified": false,
+        "data": "0x08c379a000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000010556e6578706563746564206572726f7200000000000000000000000000000000",
+        "fee_pips": 500,
+        "gas_ceiling": 500000,
+        "inferred_cause": null,
+        "input_raw": "1000000000000000000",
+        "pool": "0x0d803c604c61598e9bf4dac4b22d6d75d9d08912",
+        "status": "rpc_revert",
+        "token_in": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "token_out": "0x0bd7d308f8e1639fab988df18a8011f41eacad73"
+      },
+      {
+        "complete_input_consumption_proved": false,
+        "complete_operation_qualified": false,
+        "data": "0x08c379a000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000010556e6578706563746564206572726f7200000000000000000000000000000000",
+        "fee_pips": 500,
+        "gas_ceiling": 500000,
+        "inferred_cause": null,
+        "input_raw": "100000000000000000000",
+        "pool": "0x0d803c604c61598e9bf4dac4b22d6d75d9d08912",
+        "status": "rpc_revert",
+        "token_in": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "token_out": "0x0bd7d308f8e1639fab988df18a8011f41eacad73"
+      },
+      {
+        "complete_input_consumption_proved": false,
+        "complete_operation_qualified": false,
+        "data": "0x08c379a000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000010556e6578706563746564206572726f7200000000000000000000000000000000",
+        "fee_pips": 500,
+        "gas_ceiling": 500000,
+        "inferred_cause": null,
+        "input_raw": "1000000000000000000000",
+        "pool": "0x0d803c604c61598e9bf4dac4b22d6d75d9d08912",
+        "status": "rpc_revert",
+        "token_in": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "token_out": "0x0bd7d308f8e1639fab988df18a8011f41eacad73"
+      },
+      {
+        "complete_input_consumption_proved": false,
+        "complete_operation_qualified": false,
+        "data": "0x08c379a000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000010556e6578706563746564206572726f7200000000000000000000000000000000",
+        "fee_pips": 3000,
+        "gas_ceiling": 500000,
+        "inferred_cause": null,
+        "input_raw": "2862054591690485",
+        "pool": "0xfe290f54bd48afa72f3a463c65e61de558603a0b",
+        "status": "rpc_revert",
+        "token_in": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+        "token_out": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a"
+      },
+      {
+        "complete_input_consumption_proved": false,
+        "complete_operation_qualified": false,
+        "data": "0x08c379a000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000010556e6578706563746564206572726f7200000000000000000000000000000000",
+        "fee_pips": 3000,
+        "gas_ceiling": 500000,
+        "inferred_cause": null,
+        "input_raw": "28620545916904855",
+        "pool": "0xfe290f54bd48afa72f3a463c65e61de558603a0b",
+        "status": "rpc_revert",
+        "token_in": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+        "token_out": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a"
+      },
+      {
+        "complete_input_consumption_proved": false,
+        "complete_operation_qualified": false,
+        "data": "0x08c379a000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000010556e6578706563746564206572726f7200000000000000000000000000000000",
+        "fee_pips": 3000,
+        "gas_ceiling": 500000,
+        "inferred_cause": null,
+        "input_raw": "1000000000000000000",
+        "pool": "0xfe290f54bd48afa72f3a463c65e61de558603a0b",
+        "status": "rpc_revert",
+        "token_in": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "token_out": "0x0bd7d308f8e1639fab988df18a8011f41eacad73"
+      },
+      {
+        "complete_input_consumption_proved": false,
+        "complete_operation_qualified": false,
+        "data": "0x08c379a000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000010556e6578706563746564206572726f7200000000000000000000000000000000",
+        "fee_pips": 3000,
+        "gas_ceiling": 500000,
+        "inferred_cause": null,
+        "input_raw": "100000000000000000000",
+        "pool": "0xfe290f54bd48afa72f3a463c65e61de558603a0b",
+        "status": "rpc_revert",
+        "token_in": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "token_out": "0x0bd7d308f8e1639fab988df18a8011f41eacad73"
+      },
+      {
+        "complete_input_consumption_proved": false,
+        "complete_operation_qualified": false,
+        "data": "0x08c379a000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000010556e6578706563746564206572726f7200000000000000000000000000000000",
+        "fee_pips": 3000,
+        "gas_ceiling": 500000,
+        "inferred_cause": null,
+        "input_raw": "1000000000000000000000",
+        "pool": "0xfe290f54bd48afa72f3a463c65e61de558603a0b",
+        "status": "rpc_revert",
+        "token_in": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "token_out": "0x0bd7d308f8e1639fab988df18a8011f41eacad73"
+      },
+      {
+        "additional_1pct_screen": true,
+        "analytical_only": true,
+        "complete_input_consumption_proved": false,
+        "complete_operation_qualified": false,
+        "fee_pips": 10000,
+        "gas_ceiling": 500000,
+        "gross_1pct_screen": false,
+        "initialized_ticks_crossed": 1,
+        "input_raw": "2862054591690485",
+        "output_raw": "1240071217173686134005",
+        "own_spot_additional_loss_bps": {
+          "decimal": "4.88296645263898377",
+          "denominator": "690412763587727362985993836858827669325639262059114239981968102319492259939",
+          "numerator": "3371262363072642647415262353704338717133118220944714837175218016022283230000"
+        },
+        "own_spot_gross_loss_bps": {
+          "decimal": "104.834136788113113",
+          "denominator": "393326059256038639735637021902957918976308855949361997342720006807540209967057",
+          "numerator": "41233997898377040568507187113280381802946200156828479097066793954502321356330000"
+        },
+        "pool": "0xdd3c8aa6551bf5049310399c124cbb699b7d1c5c",
+        "quoter_reported_gas": 96169,
+        "runtime_behavior_qualified": false,
+        "sqrt_price_after": "52401085704791236375712662878518",
+        "status": "positive_quote_full_consumption_unproved",
+        "token_in": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+        "token_out": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a"
+      },
+      {
+        "additional_1pct_screen": true,
+        "analytical_only": true,
+        "complete_input_consumption_proved": false,
+        "complete_operation_qualified": false,
+        "fee_pips": 10000,
+        "gas_ceiling": 500000,
+        "gross_1pct_screen": false,
+        "initialized_ticks_crossed": 1,
+        "input_raw": "28620545916904855",
+        "output_raw": "12346453584938974752996",
+        "own_spot_additional_loss_bps": {
+          "decimal": "48.6160132010203796",
+          "denominator": "3244939988862319293173508623088141188726678651295435128564009981943986063772981",
+          "numerator": "157756045335049434218539799880328227881599191613448939238463977099801980797970000"
+        },
+        "own_spot_gross_loss_bps": {
+          "decimal": "148.129853069010323",
+          "denominator": "3933260592560387084495707808881230332659262679111218174075959969117774541730251",
+          "numerator": "582633313658098647937222371611002935330402005503098925077636680369675028984302000"
+        },
+        "pool": "0xdd3c8aa6551bf5049310399c124cbb699b7d1c5c",
+        "quoter_reported_gas": 96195,
+        "runtime_behavior_qualified": false,
+        "sqrt_price_after": "52171807836097762581783877018258",
+        "status": "positive_quote_full_consumption_unproved",
+        "token_in": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+        "token_out": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a"
+      },
+      {
+        "additional_1pct_screen": true,
+        "analytical_only": true,
+        "complete_input_consumption_proved": false,
+        "complete_operation_qualified": false,
+        "fee_pips": 10000,
+        "gas_ceiling": 500000,
+        "gross_1pct_screen": false,
+        "initialized_ticks_crossed": 1,
+        "input_raw": "1000000000000000000",
+        "output_raw": "2260941833615",
+        "own_spot_additional_loss_bps": {
+          "decimal": "0.00389827214084167159",
+          "denominator": "31071653590164069780987157644877948759706659450096970838835200000000000",
+          "numerator": "121125761560419700579189664183433387168122321982888559967898519604637"
+        },
+        "own_spot_gross_loss_bps": {
+          "decimal": "100.003859289419438",
+          "denominator": "31385508676933403819178947116038332080511777222320172564480000000000000",
+          "numerator": "3138671993454900801618473901268016641438345844554000145007967898519604637"
+        },
+        "pool": "0xdd3c8aa6551bf5049310399c124cbb699b7d1c5c",
+        "quoter_reported_gas": 85565,
+        "runtime_behavior_qualified": false,
+        "sqrt_price_after": "52426705916789120701444988280571",
+        "status": "positive_quote_full_consumption_unproved",
+        "token_in": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "token_out": "0x0bd7d308f8e1639fab988df18a8011f41eacad73"
+      },
+      {
+        "additional_1pct_screen": true,
+        "analytical_only": true,
+        "complete_input_consumption_proved": false,
+        "complete_operation_qualified": false,
+        "fee_pips": 10000,
+        "gas_ceiling": 500000,
+        "gross_1pct_screen": false,
+        "initialized_ticks_crossed": 1,
+        "input_raw": "100000000000000000000",
+        "output_raw": "226085458069656",
+        "own_spot_additional_loss_bps": {
+          "decimal": "0.389812156032892154",
+          "denominator": "215775372153917151256855261422763533053518468403451186380800000000000000",
+          "numerator": "84111863038118126099675556926061388938375706406454493602098096624900837"
+        },
+        "own_spot_gross_loss_bps": {
+          "decimal": "100.385914034472563",
+          "denominator": "1961594292308337738698684194752395755031986076395010785280000000000000000",
+          "numerator": "196916435998176837004765499487574128003643988997159168970418882869624107533"
+        },
+        "pool": "0xdd3c8aa6551bf5049310399c124cbb699b7d1c5c",
+        "quoter_reported_gas": 95580,
+        "runtime_behavior_qualified": false,
+        "sqrt_price_after": "52428729215030307480803973786993",
+        "status": "positive_quote_full_consumption_unproved",
+        "token_in": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "token_out": "0x0bd7d308f8e1639fab988df18a8011f41eacad73"
+      },
+      {
+        "additional_1pct_screen": true,
+        "analytical_only": true,
+        "complete_input_consumption_proved": false,
+        "complete_operation_qualified": false,
+        "fee_pips": 10000,
+        "gas_ceiling": 500000,
+        "gross_1pct_screen": false,
+        "initialized_ticks_crossed": 1,
+        "input_raw": "1000000000000000000000",
+        "output_raw": "2260061681131616",
+        "own_spot_additional_loss_bps": {
+          "decimal": "3.89675445796027908",
+          "denominator": "4854945873463135903279243382012179493704165539077651693568000000000000000",
+          "numerator": "18918531975573336577889651181949095808267847111148026406091542671316000797"
+        },
+        "own_spot_gross_loss_bps": {
+          "decimal": "103.857786913380679",
+          "denominator": "4903985730770844346746710486880989387579965190987526963200000000000000000",
+          "numerator": "509317105052657771252560699870048034566264366209900722726091542671316000797"
+        },
+        "pool": "0xdd3c8aa6551bf5049310399c124cbb699b7d1c5c",
+        "quoter_reported_gas": 95592,
+        "runtime_behavior_qualified": false,
+        "sqrt_price_after": "52447122835404732747703842027201",
+        "status": "positive_quote_full_consumption_unproved",
+        "token_in": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "token_out": "0x0bd7d308f8e1639fab988df18a8011f41eacad73"
+      }
+    ],
+    "v3_independently_recompiled_runtime": false,
+    "current_native_v4_profile_compatible": false
+  },
+  "complete_entry_or_conversion_operations_qualified": false,
+  "source_or_route_adopted": false,
+  "configuration_deployable": false,
+  "production_approved": false,
+  "safeguards_changed": false,
+  "gas_fee_work_limits_changed": false,
+  "public_transactions": 0,
+  "unchanged_tests_rerun": 0,
+  "limitations": [
+    "One provider/finite captured anchor; not global discovery, TVL or provider-completeness proof.",
+    "Pinned runtime identity reuses prior source qualification; no independent recompilation.",
+    "Quotes are finite full-input diagnostics, not actual PoPL swap fractions or marginal deployed LP.",
+    "Own-spot analytical screens are not independently qualified USD bounds or final live-source agreement.",
+    "Native-v4 quotes lack post-state; v3 post-sqrt does not prove complete input consumption or current-profile compatibility.",
+    "No full-operation gas/fees, HTTP production API or operating acceptance.",
+    "Discovery factories/registry/WETH/hook pool remain unqualified and unsupported by current direct native-v4 profile.",
+    "No online probes, transactions, production tests, code changes or adoption by this verifier.",
+    "No new Initialize log interval was queried; historical95-key inventory is extended only by the documented Stoa registry and selected v2/v3 factory queries.",
+    "Aero/Ramses, other cores/forks/quote assets and private publishers are outside this bounded current native-v4 qualification; no global no-route claim.",
+    "Any V3/WETH or hooked pricing/execution support needs separately reviewed adapters and compatibility decisions; no removed input/custody feature is restored."
+  ]
+}

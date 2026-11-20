@@ -1,0 +1,42 @@
+{
+  "reviewed_utc_date": "2026-11-20",
+  "scope": "Primary documentation reference index; not an archived HTML snapshot, contract source verification or operating acceptance",
+  "sources": [
+    {
+      "url": "https://developers.uniswap.org/docs/protocols/v4/deployments",
+      "supports": "Official native-v4 core/periphery deployment identities"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Uniswap/contracts/main/deployments/4663.md",
+      "supports": "Official v2/v3 factory and QuoterV2 identities"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Uniswap/v3-periphery/main/contracts/interfaces/IQuoterV2.sol",
+      "supports": "Exact quote tuple field order and output ABI"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Uniswap/v3-periphery/main/contracts/lens/QuoterV2.sol",
+      "supports": "Exact-input positive output does not itself check paid input against requested input"
+    },
+    {
+      "url": "https://stoadex.com/docs/contracts",
+      "supports": "Documented current registry/factory/WETH discovery leads; not PoPL admission"
+    },
+    {
+      "url": "https://stoadex.com/docs/api",
+      "supports": "External quote API and separate2bps output fee; not a qualified oracle or executor"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/StoaDex/Stoa/main/contracts/src/adapters/UniswapV4Adapter.sol",
+      "supports": "Registry keysFor interface; old source is not verification of currentV2 runtime"
+    },
+    {
+      "url": "https://docs.pyth.network/pro/contract-addresses",
+      "supports": "Core stored-price versus transaction-carried Pro interface"
+    },
+    {
+      "url": "https://docs.pyth.network/pro/sponsored-feeds",
+      "supports": "Current sponsored EVM list excludes Robinhood; self-operated publication remains an operating choice"
+    }
+  ]
+}

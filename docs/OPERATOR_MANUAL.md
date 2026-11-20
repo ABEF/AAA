@@ -57,6 +57,26 @@ pending work first. A source/config update still needs the reviewed stop/reconci
 dry-run/restart process; no running service was changed. See the
 [remaining-findings verification](../reports/remaining-271-20261111/VERIFICATION.md).
 
+## Qualify actual markets before configuring routes
+
+Use the [20November expanded review](../reports/market-route-qualification-20261120/REVIEW.md).
+No tested destination/reference/conversion combination is approved. Selected
+activeL0 and incompatible larger-market spot remain actual launch blockers.
+
+| Operator decision | Required evidence | Do not substitute |
+| --- | --- | --- |
+| Keep selected pool or select a reviewed native replacement | Sustainable external two-way depth, market-consistent spot, complete PoolKey/runtime/control review | Highest raw L or a liquidity label |
+| Approve a conversion route | Full input/output, independent valuation,1% gross cap, separate additional-loss and caller floors | Low fee alone or forward-only quotes |
+| Select two valuation paths | Defensible ZZZ independence plus fresh ETH publication, controls/ages/funding/recovery | Two ETH proxies over one aggregator or ZZZ pool |
+| Use WETH/v3 or a hook | Separate supported adapter/profile and upstream-control review | Entering an unsupported pool address |
+| Declare complete operation ready | Current Entry/Vault/converter simulation,97% marginal LP, post-state/depth, padded gas and complete fees | Arbitrary-$50 quote or quoter gas |
+
+The three newly discovered v3 pool addresses are recorded in the review; they
+are not values to paste into the current native-v4 configuration. Core fee0 on
+the discovered hooked pool is not proof that swaps cost0. Keep unknown ages,
+minimum depths, review hashes and routes blocked. No pool selection, liquidity
+funding, source admission, service restart or signing is performed by this review.
+
 ## Review capacity before admitting more royalty currencies
 
 The [controlled maximum-state record](../reports/maximum-workload-20261119/REVIEW.md)

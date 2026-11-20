@@ -1,5 +1,16 @@
 # Project context
 
+## Actual-market qualification follow-up
+
+[Expanded actual-market review](reports/market-route-qualification-20261120/REVIEW.md)
+checks previously untested low-fee native candidates and documented v2/v3/registry
+leads. Native cheap routes still refuse at tested sizes; selected activeL0 and
+price-band incompatibility remain. Three real WETH/ZZZ v3 pools are identified;
+only the1% market gives positive outputs, all above1% gross against own spot.
+These are discovery/quote screens, not compatible complete PoPL operations.
+Independent source/publication and sustainable two-way depth remain release gates.
+No source/route/pool/default, signer or live environment changes.
+
 ## Latest full normal claim validation
 
 [Current evidence](reports/full-claim-admission-20261120/REVIEW.md) exercises the

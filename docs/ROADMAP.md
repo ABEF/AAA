@@ -10,6 +10,13 @@ source provenance and map every stable Todo task to the packages below.
 
 ## Current evidence and limits
 
+The [expanded actual-market review](../reports/market-route-qualification-20261120/REVIEW.md)
+adds previously untested low-fee native and documented v2/v3 registry discovery.
+P03/P04 remain blocked by actual depth, compatible prices, independent publication
+and complete route proof. Finite v3 positives are not native-profile compatibility
+or1% conversion approval. No destination, source or safeguard changes.
+
+
 The [Gate A review](../reports/readiness-gate-a-20261120/REVIEW.md) completes the
 current compiler-advisory applicability subtask and refreshes actual markets.
 No confirmed reachable compiler defect requiring an upgrade was found; exact

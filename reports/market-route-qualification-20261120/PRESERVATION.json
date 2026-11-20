@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "protected_files": {
+    "reports/source-checks.json": {
+      "sha256": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "preserved": true
+    },
+    "scripts/run-fork-checks.py": {
+      "sha256": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "preserved": true
+    },
+    "tests_python/test_fork_runner.py": {
+      "sha256": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "preserved": true
+    },
+    "tests_python/test_frontend_history.py": {
+      "sha256": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "preserved": true
+    }
+  },
+  "all83_task_ids_statuses_preserved": true,
+  "production_contract_python_browser_sources_changed": false,
+  "source_build_and_profiles_changed": false,
+  "financial_or_work_limits_changed": false,
+  "services_websites_journals_existing_anvil_changed": false,
+  "public_transactions": 0,
+  "deployment_or_sealing": false,
+  "unchanged_tests_rerun": 0,
+  "production_approved": false
+}

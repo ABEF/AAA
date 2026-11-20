@@ -14,6 +14,10 @@ The [full normal backend claim review](reports/full-claim-admission-20261120/REV
 adds real contract-graph validation and fixes a request-budget failure by returning
 a freshly validated safe prefix. Current live environments and financial limits stay unchanged.
 
+[Expanded market qualification](reports/market-route-qualification-20261120/REVIEW.md)
+checks additional native and WETH/v3 routes; no complete production route or
+independent source pair is approved. The selected pool and safeguards stay unchanged.
+
 The [maximum-state LP settlement and claim review](reports/lp-claims-maximum-20261120/REVIEW.md)
 adds exact same-NFT conversions, cold partial claims and a bounded claim-planner
 CPU improvement. Actual routes, production HTTP/provider admission, maximum-state

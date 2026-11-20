@@ -1,5 +1,17 @@
 # Work handoff
 
+## Latest real-market and route review
+
+[Current report](../reports/market-route-qualification-20261120/REVIEW.md)
+adds117 bounded read-only observations and independent offline reconstruction.
+No deployable market configuration is qualified. Previously untested native
+2999/6942-pip keys fail full-input quotes; native75pips remains opaque even at a
+separate1M diagnostic. SelectedL0 and incompatible larger-market price persist.
+Documented v3 factories reveal500/3000/10000-pip WETH/ZZZ pools; only the1% pool
+returns output, above the1% gross own-spot screen and not current-profile compatible.
+Keep actual destination/depth, conversion-route and independent valuation/publication
+decisions separate. No production source, limit, signer or live state changes.
+
 ## Latest full normal admission and prefix planning
 
 The [current report](../reports/full-claim-admission-20261120/REVIEW.md) fills the

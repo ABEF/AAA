@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "anchor": {
+    "chain_id": 4663,
+    "number": 119107223,
+    "hash": "0x13f4c5b0ff38d2e13f17b12b1af8b0894b8d642d8aa1093083441e30e2ed9335",
+    "timestamp": 1795183655
+  },
+  "selected_pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+  "selected_pool_change_authorized_or_performed": false,
+  "approved_eth_secondary": null,
+  "approved_zzz_source_pair": null,
+  "approved_swap_routes": [],
+  "approved_conversion_routes": [],
+  "actual_max_age_and_depth_policies": null,
+  "deployable_configuration": false,
+  "production_approved": false,
+  "evidence_only": true,
+  "blocked_reasons": [
+    "Selected pool activeL0; approximately50USD forward diagnostic fails existing screens and tested reverse inputs incomplete",
+    "No tested compatible native low-fee conversion route",
+    "Discovered WETH/v3 markets not current-profile compatible and positive1pct-fee quotes exceed1pct ownspot gross screen",
+    "Independent ETH and fixed-ZZZ source pairs/publication arrangements remain unqualified"
+  ]
+}

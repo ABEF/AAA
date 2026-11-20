@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "todo_check": "passed",
+  "trusted_source_workload_inventory_check": "passed",
+  "git_diff_check": "passed",
+  "new_link_check": "passed",
+  "all83_task_statuses_preserved": true,
+  "new_offline_wire_verifier_passed": true,
+  "production_tests_or_unchanged_suites_rerun": false,
+  "captured_http_calls": 117,
+  "production_approved": false
+}

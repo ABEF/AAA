@@ -1,5 +1,13 @@
 # Selected Robinhood ETH / ZZZ pool
 
+[20November expanded qualification](../reports/market-route-qualification-20261120/REVIEW.md)
+records selected activeL0 and a nominal-$50 ETH quote losing14.263178% against
+its own starting spot. Tested1/100ZZZ reverse quotes cannot consume full input.
+Additional native low-fee and WETH/v3 discovery qualifies no complete alternative.
+Destination, source requirements and safeguards remain unchanged.
+
+## Historical13November qualification
+
 [Fresh13November qualification](../reports/predeployment-qualification-20261113/markets/REVIEW.md)
 binds block113296579/10:48:31UTC. Selected activeL is now0, independently
 cross-checked in core/StateView; distant ticks remain and an ETH quote crosses

@@ -1,5 +1,10 @@
 # Verification evidence
 
+[Expanded market and route qualification](market-route-qualification-20261120/REVIEW.md):
+117 bounded read-only observations close additional native low-fee/discovery gaps.
+Independent raw-wire reconstruction confirms the refusals and finite v3 leads;
+no complete route, independent source pair or live configuration is approved.
+
 [Full normal claim admission](full-claim-admission-20261120/REVIEW.md) exercises
 real F6 Access/Registry,26 API pins and65 royalty currencies. A late-currency
 search exhausted1,024 calls despite healthy prefixes; the planner now stops at

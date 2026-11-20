@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "scope": "New links in changed current guides plus all local links in new report Markdown",
+  "links": [
+    {
+      "file": "AGENTS.md",
+      "target": "reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "PROJECT_CONTEXT.md",
+      "target": "reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "README.md",
+      "target": "reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "TODO.md",
+      "target": "reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "docs/OPERATOR_MANUAL.md",
+      "target": "../reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "docs/POOL_SPOT_PRICE_SOURCE.md",
+      "target": "../reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "docs/PRODUCTION_SERVICES.md",
+      "target": "../reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "docs/AUDIT_FINDINGS.md",
+      "target": "../reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "docs/IMPLEMENTATION_STATUS.md",
+      "target": "../reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "docs/WORK_HANDOFF.md",
+      "target": "../reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "docs/ROADMAP.md",
+      "target": "../reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "reports/README.md",
+      "target": "market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "docs/POOL_SELECTION.md",
+      "target": "../reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "docs/PRICE_SECURITY.md",
+      "target": "../reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "docs/LP_EXECUTION_POLICY.md",
+      "target": "../reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "reports\\market-route-qualification-20261120\\REVIEW.md",
+      "target": "../market-feasibility-20261120/REVIEW.md"
+    },
+    {
+      "file": "reports\\market-route-qualification-20261120\\REVIEW.md",
+      "target": "RESULTS.json"
+    },
+    {
+      "file": "reports\\market-route-qualification-20261120\\REVIEW.md",
+      "target": "EVIDENCE.md"
+    },
+    {
+      "file": "reports\\market-route-qualification-20261120\\REVIEW.md",
+      "target": "VERIFICATION.json"
+    }
+  ],
+  "all_resolve": true,
+  "historical_report_bytes_rewritten": false
+}

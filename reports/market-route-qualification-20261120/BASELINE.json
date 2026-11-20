@@ -1,0 +1,29 @@
+{
+  "baseline": "73658567cb605b58c992698e2103535e782269dd",
+  "original_documents": {
+    "AGENTS.md": "fe2ad90f1d94022fa1a37e39f4b3dd1434bbd7598941bd2cbc03851dd0d7ece1",
+    "PROJECT_CONTEXT.md": "2965f46cc962e1a2c1037deed522cf13fb56aacb670cc41a91c44c6f6b6b1110",
+    "README.md": "9192b62b3cd65989aec5f642756bfe2876b22d41ed98ad17ecaab5b447b39959",
+    "TODO.md": "bc8eac70d8a4d3516790534936c8fb3c25a937a396f1e3d4b76917645e73bc0d",
+    "docs/project-todo.json": "bd6f1ee4ea2cd8cab97ca07d9777311a390b8deca439d81c0c2510abf98e9e9c",
+    "docs/OPERATOR_MANUAL.md": "cbbb5e477d4dbc8038c3f8aa80bb4389038575f4f15c54e404fc6acedea8ff15",
+    "docs/POOL_SPOT_PRICE_SOURCE.md": "43f31f38126e8c7d6aa04a00cac690c638318bbc2c3b41a3b217e91d8febd1a6",
+    "docs/PRODUCTION_SERVICES.md": "40e829594c36f2e5e968bdac56ab09cda1662a8ce684b1f0f75db2350fbe35c8",
+    "docs/AUDIT_FINDINGS.md": "4d10ec7289a828fd6f71dc185e6fb0be88f2945a28b1bd0d9a0fc3cd5d7c20d9",
+    "docs/IMPLEMENTATION_STATUS.md": "3667715b7b259c4607b6ff3e3e981d1b8ab019d476ff27f76301cd8beb03f04c",
+    "docs/WORK_HANDOFF.md": "ba452a334cff6b75ded2bed055b28f7d7ceaa9b906f80070fd39068d5db4021e",
+    "docs/ROADMAP.md": "2b724ac152a1431dbb7122b9810fc813661927cbf5290817b79613f61188ab96",
+    "reports/README.md": "62037d51c6c225af416cc91e156c91eaf592da056c4640b04a34e84316f16381",
+    "docs/POOL_SELECTION.md": "e108a1c207fce053f61ba59826d3065f70a4607f097c68a42c48afa0e4c7cd0a",
+    "docs/PRICE_SECURITY.md": "14564dad9026a242d1eb4e08c88e6ed6819cee9891481a22d49fe2da41d86ab5",
+    "docs/LP_EXECUTION_POLICY.md": "01d0e7ae5befb286f312f6eabe0aec4a1cce4f67105f54195d4898a55b3fb041"
+  },
+  "archive_external": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\market-route-qualification-20261120\\original-documents",
+  "protected": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "production_approved": false
+}

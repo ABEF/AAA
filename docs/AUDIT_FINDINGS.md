@@ -1,5 +1,12 @@
 # Consolidated audit findings and evidence
 
+[Expanded actual-market qualification](../reports/market-route-qualification-20261120/REVIEW.md)
+closes bounded native low-fee and documented alternative-market discovery gaps,
+not release approval. SelectedL0/price-band incompatibility, tested native reverse
+failures and missing independent source/publication remain. Newly observed
+WETH/v3 pools require separate compatibility review; positive1%-fee quotes exceed
+the1% gross own-spot screen. No source, route, destination or guard is changed.
+
 [Full normal claim admission](../reports/full-claim-admission-20261120/REVIEW.md)
 now has real F6 Access/Registry and complete26-pin API checks on32 activated NFTs
 and65 royalty currencies. A late-Tax32 selection confirmed1,024-read exhaustion

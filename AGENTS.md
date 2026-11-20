@@ -1,5 +1,17 @@
 # AAA / ZZZ PoPL project instructions
 
+## Latest actual-market and route qualification
+
+[Expanded actual-market review](reports/market-route-qualification-20261120/REVIEW.md)
+adds117 read-only HTTP observations at block119107223:95 native keys,19 native
+quotes,one hooked registry lead,three WETH/ZZZ v3 pools and15 v3 quotes. No tested
+complete route or independent source pair qualifies. Selected activeL0 remains;
+the active v3 market charges1% and exceeds the1% own-spot gross screen. Do not
+automatically admit WETH/v3/hooks, change the selected pool or relax guards.
+The original recorder KeyError and exact continuation/source stages are retained.
+New independent offline wire verification passes; no unchanged tests, source
+contracts, services, authorities, public transactions or signing changes.
+
 ## Latest full normal claim admission
 
 Use [the current report](reports/full-claim-admission-20261120/REVIEW.md) for real

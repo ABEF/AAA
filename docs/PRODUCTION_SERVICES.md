@@ -1,5 +1,11 @@
 # Production service decisions
 
+[Expanded20November market/route review](../reports/market-route-qualification-20261120/REVIEW.md)
+checks additional native candidates and actual WETH/v3 discovery. No complete route
+or independent source pair is approved. A documented market or deployed Pyth
+contract does not supply a qualified source/publication operation; the fixed
+native profile does not automatically support WETH/v3/hooks. No service selected.
+
 [20 November actual feasibility](../reports/readiness-gate-a-20261120/REVIEW.md)
 refreshes prices/markets and identifies exact OpenSea/VRF/provider questions.
 No dependency is admitted or selected. Current-source compiler applicability is
