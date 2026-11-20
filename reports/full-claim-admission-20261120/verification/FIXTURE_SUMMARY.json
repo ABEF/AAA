@@ -1,0 +1,14 @@
+{
+  "setup_transactions": 400,
+  "construction_transactions": 44,
+  "entry_activations": 32,
+  "worst_entry_estimate": 16720367,
+  "worst_entry_padded": 20064441,
+  "entry_padding_bps": 2000,
+  "entry_cap": 32000000,
+  "external_depth_helpers": 3,
+  "maximum_native_funded": "300000000000000000000",
+  "actual_external_native_spent": "268328157299974762917",
+  "actual_external_zzz_spent": "536656314599949527137551",
+  "fixture_total_setup_rawgas": 512109126
+}

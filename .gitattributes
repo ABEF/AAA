@@ -330,3 +330,6 @@ reports/f6-construction-20261120/** -text whitespace=cr-at-eol
 
 # Preserve exact captured maximum-state accounting and planner evidence.
 reports/lp-claims-maximum-20261120/** -text whitespace=cr-at-eol
+
+# Preserve exact full normal API admission and restored-chain evidence.
+reports/full-claim-admission-20261120/** -text whitespace=cr-at-eol

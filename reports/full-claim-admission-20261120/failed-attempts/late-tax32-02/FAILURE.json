@@ -1,0 +1,6 @@
+{
+  "completed_setup_transactions": 0,
+  "error_type": "ValueError",
+  "message": "Owned restored Anvil exited",
+  "no_automatic_retry": true
+}

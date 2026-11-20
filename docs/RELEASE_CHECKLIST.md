@@ -1,5 +1,10 @@
 # Release approval record - NOT APPROVED
 
+[Full normal claim admission](../reports/full-claim-admission-20261120/REVIEW.md)
+adds finite real F6/26-pin control and claim checks, plus a confirmed bounded-
+planning fix. It does not approve real feeds/routes/complete fees, production
+HTTP/provider operation,1,000-active-NFT full-normal workloads or public launch.
+
 [Controlled maximum-state LP settlement and claims](../reports/lp-claims-maximum-20261120/REVIEW.md)
 adds local unit-accounting, gas/refusal and planner evidence, with explicit
 mock control/admission seams. One backend CPU optimization preserves existing

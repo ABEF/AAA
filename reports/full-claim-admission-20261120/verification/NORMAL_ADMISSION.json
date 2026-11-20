@@ -1,0 +1,207 @@
+{
+  "schema": 1,
+  "complete": true,
+  "production_approved": false,
+  "normal_projection_replayed": true,
+  "configured_contract_pins": 26,
+  "positive_plans": [
+    {
+      "entries": 32,
+      "published": 32,
+      "trials": 1,
+      "estimate": 5107263,
+      "padded": 6128716,
+      "label": "baseline-full32",
+      "rpc_reads": 684,
+      "captured_seconds": 3.875,
+      "replay_seconds": 3.688000000001921
+    },
+    {
+      "entries": 32,
+      "published": 0,
+      "trials": 0,
+      "label": "fresh-original32-after-prefix",
+      "rpc_reads": 444,
+      "captured_seconds": 4.875,
+      "replay_seconds": 3.2030000000013388
+    },
+    {
+      "entries": 1,
+      "published": 1,
+      "trials": 1,
+      "estimate": 220029,
+      "padded": 264035,
+      "label": "normal-funded-currency-control-baseline",
+      "rpc_reads": 411,
+      "captured_seconds": 3.2030000000013388,
+      "replay_seconds": 3.5
+    },
+    {
+      "entries": 2,
+      "published": 1,
+      "trials": 2,
+      "estimate": 220029,
+      "padded": 264035,
+      "label": "tax-last-fresh-healthy-prefix",
+      "rpc_reads": 435,
+      "captured_seconds": 3.485000000000582,
+      "replay_seconds": 3.8440000000045984
+    },
+    {
+      "entries": 1,
+      "published": 0,
+      "trials": 1,
+      "label": "tax-only-remains-unavailable",
+      "rpc_reads": 375,
+      "captured_seconds": 3.0939999999973224,
+      "replay_seconds": 3.297000000005937
+    }
+  ],
+  "refusals": [
+    {
+      "label": "normal-only-helper-runtime-refusal",
+      "error": {
+        "type": "ProjectionError"
+      },
+      "replayed": true,
+      "rpc_reads": 24,
+      "explicit_interceptions": 0
+    },
+    {
+      "label": "intercepted-unsealed-refusal",
+      "error": {
+        "type": "ProjectionError"
+      },
+      "replayed": true,
+      "rpc_reads": 36,
+      "explicit_interceptions": 1
+    },
+    {
+      "label": "intercepted-final-lifecycle-refusal",
+      "error": {
+        "type": "ProjectionError"
+      },
+      "replayed": true,
+      "rpc_reads": 386,
+      "explicit_interceptions": 1
+    }
+  ],
+  "executions": [
+    {
+      "label": "claim-confirmed-prefix",
+      "plan_label": "baseline-full32",
+      "transaction_hash": "0xcbef0ff14ea83692966929c56a4d373b78f086b3e98cd00902429931dfb04f62",
+      "entries_paid": 32,
+      "paid_by_asset": {
+        "0x0000000000000000000000000000000000000000": 1600060441818303385
+      },
+      "estimate": 5107263,
+      "padded": 6128716,
+      "gas_fee": 4254663029782641
+    },
+    {
+      "label": "claim-confirmed-healthy-currency-prefix",
+      "plan_label": "tax-last-fresh-healthy-prefix",
+      "transaction_hash": "0x4c62b83907c88daea7de53bada477e75b56b72e556a821cf0f88d0b934cbbd46",
+      "entries_paid": 1,
+      "paid_by_asset": {
+        "0x68b69a639b8954cf204b6423612ed373cf491a87": 1000000
+      },
+      "estimate": 220029,
+      "padded": 264035,
+      "gas_fee": 212597001488179
+    }
+  ],
+  "faults": {
+    "cases": 1,
+    "healthy_prefix_paid_once": true,
+    "unavailable_original_units_retained": 1000000000000000000,
+    "scope": "Exact selected-right/recipient snapshots and opaque read-only execution refusal; not a full global rollback snapshot"
+  },
+  "original32_paid_exactly_once_and_confirmed_zero": true,
+  "construction": {
+    "instances": 39,
+    "transactions": 44,
+    "binding_observations": 112,
+    "unchanged_compiler_source_pins": 100,
+    "build_profile": "activation-final-six-20261118",
+    "runtime_pins": {
+      "access": "0x3f926ed299995d5d9e7a7262305ba7da9bf94c3b7b5eb5711c718f909ff1ab75",
+      "protocol_policy": "0xb63da654df2b1bb0da41de050801e0cda9b603b6674a9bfc2fb30705970562a0",
+      "migration_budget": "0xbd2dce9a43ca62de7e0b2581b154a371e8112faec11f3979d7753ed09bbf8711",
+      "metadata_renderer": "0x5420aea17c40c5f7b65da7b9c9c9e9869b1cd3d7686a146d6bb2f8ab71c99a4a",
+      "portfolio_policy": "0x2538647453135fae1d343d80b490a4c3fb271324d56e4d317da637ff9abb5314",
+      "rebalance_confirmation": "0x3016b2ab532cc361205db1ffae7ee891e7b0d92b6f176b5266eded396c40491e",
+      "balancing_router": "0x77d8d33051a77f8bd2d3819c746ff27973176f2c016b6d431e33d752e2ef76be",
+      "oracle": "0xe36d16ea038cf200d81dfe2e9ac1f50e76c82a3a057243605b1a317164119cca",
+      "liquidity": "0x875348c9c8ba7857c4df7e97c9bf5de9cfefad43f37e47613289760cefa43f4e",
+      "pools": "0xa9ea3d581f8f9eb5dd4ae5b7aae538f7b9f28581e8f44ad98c27d3b5802e5c67",
+      "strategy": "0x425a1cfc358d4251c75a433833c4e31e9594b482da7c00f75e75492f18a7cb60",
+      "vault": "0xad69abbb0d6b705ec015320fe1c89f9c87d61efb71afa863923c8a20c48d63f8",
+      "rewards": "0xf1d730682e1393bae78684e07e05a1f6b06a2ec326531bf4d150c8632046b783",
+      "fees": "0x848b8fbeba0bcceb49de3f7ea9c06c7145bc1e6d71cb26ec5533fc67d47f0a23",
+      "membership": "0x878d3b99c763dc5336e7f61879ca4f3d4cfb8ebcfd158dd2c68fca93929a2f82",
+      "migration": "0x372f618bf19fc74f50b6bd1f8ef2cb5d60b02c35918c7a9ec67ed0adb0bcc5de",
+      "compounder": "0x67c3fefd704a210fc942bf028877b7ee5d6d9842f32bff168f234e2d40051cc2",
+      "buyback": "0xd9a1ccf34b2a021ac1ba5057267c3335a5c34b07c3ba7c7bb965da5336aff7ec",
+      "nft": "0xd7d27d96e138c2b5a56643863100c3239c0c55944668f95b9bde1bb4d5cd6803",
+      "nft_canonical": "0xd910ad9d1add85394b92c65de172f42ba3725ea131093c5ef3412820d0b0568d",
+      "vault_canonical": "0xa23bd9b3a548e10ee1a5c24d69a48ce5ef3b0e43c05e8465d39571c0552030b5",
+      "fees_canonical": "0xd94b8e9ee7eebf5f50ce76edf103c3a060fdc6a86c3d98edaa68507bf5051e14",
+      "canonical": "0xa09c11caddb17be1346fe9cf8e2585336748345311a57e97184d9d12192b17c7",
+      "lp_converter": "0x8071907682582631cea287a02bffa829e23b334657e1c26ab746c99121d6b2bb",
+      "seadrop_mint": "0x3473e7c407a62abaaf4c987682777c48bc738ae24d0db18585def3ba4d96ef9f",
+      "royalty_factory": "0xe70dc5a947cbc6f437d8cfe437e84a6a2b841247ee0db0aacc168890bcef9beb",
+      "activation_assets_factory": "0x7b6017d382eb05a90ae6beb97f76cdc0e529fbe15e8f64d166e49bd735b79855",
+      "lp_balance_math": "0xbd068a73c86391e45b55240d172ec7011b464d2a479036ebc9e747f5ba6110bd",
+      "lp_position_executor": "0xd51ea1a2dcec52d0a44ec6a187c825b00b1fa794770046bf536fb67c1a8d51e2",
+      "contribution_pricing": "0x3751ddb8c6ed5dd14410a4e4225896a20fe74f6351d1bf637642a10f8ef3e74b",
+      "activation_assets": "0x4f96fb87284fc0c484464e7a375ad79a284877199a628e0d70bfea97ff7ff77a",
+      "activation_entry": "0x3e62b6e15fdeafac959f819b5102a00f56576e5726f0d6dc9b4681c16fa30e5a",
+      "royalty_rewards": "0x513c8134fa19521af457bc4a51da1e946aa5e31237c55db6a49cb85ad2c1ed21",
+      "claim_router": "0x800e0db2fca11f09957bd4daa1cfd7b745e043336ef0efc8f1c7e5555f3faf05",
+      "rewards_canonical": "0xcb7bd830e43419e4f9832293876819d18062a773d862c2a160f896f6df81f362",
+      "custody_validation": "0xf8b803ed4fed15ab64363ecd2ce246426ae32834422c979c7ce1ef23e6891a2f",
+      "lp_v4_executor": "0x88b1dfdfb3cd3de4b6295ac22810393d1e45e75b988074d74cf6be13f3dd16b7",
+      "royalty_data_part0": "0x2e06520e18cee238c91ce41e7579a89b7af142ffb1d64462585f4111c0caf3ae",
+      "royalty_data_part1": "0x2d83ab4133bac0772613a43a88bc8f3050fcbe3371bbda296f866504a7f72765"
+    }
+  },
+  "fixture": {
+    "owned_node_stopped": true,
+    "fresh_protocol_construction": true,
+    "exact_native_runtimes": 5,
+    "explicit_external_genesis_defaults_verified": true,
+    "real_market_or_supply_qualified": false
+  },
+  "original_wire": {
+    "compressed_sha256": "c5839ee2301e6107b7e5ab2a964919c385ea89566db47cd89ddc7db19a150001",
+    "compressed_bytes": 352968569,
+    "compression": "gzip",
+    "expanded_sha256": "c80a0ab40130adeead4668d3909e87febb4d529ff6b58f856a76a53d3e7595ff",
+    "expanded_bytes": 1568472867,
+    "original_records": 94335,
+    "selected_records": 8630,
+    "selected_json_bytes": 31617662,
+    "construction_prefix_exact": true,
+    "all_normal_request_ranges_retained": true,
+    "scope": "Original fully streamed; omitted repeated nonrequest guard-code responses only from selected in-memory view"
+  },
+  "source_sha256": {
+    "frontend_api/service.py": "af0e9f494721d11be4c027fdc15dc4bb6c40583eaa87e06cc704b035c6c2a1b9",
+    "frontend_api/portfolio_v6.py": "4f44737dcffeb7630bf52d6079c69519f0e7981dd72420b7fa41ee6803410c59",
+    "frontend_api/portfolio_v7.py": "28ae93df6983be4fc37267cdfadcb276d28486689840c84dd9efcf74f75b6e99",
+    "frontend_api/lifecycle.py": "1ac10191bbc0002e81fd00108512ee4844af9db2e96cef7dc462a1484b7c2235",
+    "frontend_api/transactions.py": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e",
+    "frontend_api/transaction_gas.py": "35f5c2221726e8987bb1ad28a9e62034ee65a51e2696dd382d66a800c2a13d9b",
+    "frontend_api/claim_planner.py": "6d5241d61e5d48a6b2d77f10d09114426ad8a33fc7dddf47d2ec804b48136d5f",
+    "frontend_api/royalty_reporting.py": "94985af003bd51ebd5435ea3fa43b99464483b2357e410e6b3cabaa266e4f1c3",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+    "zzz_ops/abi.py": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d",
+    "zzz_ops/rpc.py": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305"
+  },
+  "scope": "Independent offline exact-wire normal API replay; not additional EVM/network/provider acceptance",
+  "planner_source_scope": "Exact archived6d5 source stage; no relabeling as later first-success planner",
+  "checker_source_sha256": "d03cfdb0bd7adf11127bf5043fbfd494ceda7768c01cb39573e6f1eac84e61e2"
+}

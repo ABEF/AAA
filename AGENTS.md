@@ -1,17 +1,26 @@
 # AAA / ZZZ PoPL project instructions
 
-## Latest LP conversion and claims qualification
+## Latest full normal claim admission
 
-Use [the scoped report](reports/lp-claims-maximum-20261120/REVIEW.md) for reused
-maximum-state F6 population and NEW conversion/claim/transfer/fault evidence.
-Claim planning now caches only successful exact runtime proofs within one
-canonical request/target/pin/block; ownership, balances, lifecycle, simulations,
-fees, final freshness and25s/1024RPC limits remain. service.py and Solidity are
-unchanged. The current inventory is [this new source-pinned record](reports/lp-claims-maximum-20261120/FUNCTION_INVENTORY.json):
-1,977 named Python definitions,179 files; old1,976 counts retain their historical
-scope. Normal verification checks the new record without rewriting old evidence.
-12M/full20% claims and24M/full25% conversion remain. No service/site/chain,
-checkpoint/journal, signer, gas default, public deployment or sealing changes.
+Use [the current report](reports/full-claim-admission-20261120/REVIEW.md) for real
+normal F6 Access/Registry,26 API pins,32 new activations and65 royalty currencies.
+The original32 mixed claims pass684 RPC reads; a late-Tax32 case exhausts1024
+while maximizing a batch despite healthy prefixes. Current planner now stops
+at the FIRST successful prefix and still performs complete fresh final review.
+Current16-prefix885 RPC, actual payout and remaining16 review653 RPC pass.
+Retain old6d5 and current7a3 source stages; no relabeling or population rerun.
+
+Three new and one updated affected Python method pass; no unchanged method or
+contract/browser suite rerun. The current [source inventory](reports/full-claim-admission-20261120/FUNCTION_INVENTORY.json)
+retains1977 named Python definitions/179 files and unchanged F6 Solidity pins.
+service.py/checkpoint semantics,12M/full20% claims,25s/1024RPC/2048POST budgets,
+all financial guards and public signer restrictions stay unchanged. Smaller
+prefixes may mean more claim transactions; no optimal-packing promise or queue.
+Exact current-state restoration requires pending-clock readback in local Anvil;
+see the ordered wire supplement. All owned nodes stop. Public feeds/routes/fees,
+1,000-active-NFT full-normal workloads, actual HTTP/host/consumer operation and
+independent release approval remain open. Source publication changes no running
+site/service/chain/journal/checkpoint or production authority.
 
 Reviewed 20 November 2026. Read [context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md),

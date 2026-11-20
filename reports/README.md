@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Full normal claim admission](full-claim-admission-20261120/REVIEW.md) exercises
+real F6 Access/Registry,26 API pins and65 royalty currencies. A late-currency
+search exhausted1,024 calls despite healthy prefixes; the planner now stops at
+first success with fresh final verification. Source stages, receipts, restoration
+clock correction, independent replays and lossless original evidence stay explicit.
+
 [Maximum-state LP conversion and claims](lp-claims-maximum-20261120/REVIEW.md):
 new same-NFT settlement, cold partial claims, current-owner/fault recovery and
 unchanged-budget refusal evidence. A narrowly scoped backend runtime-proof reuse

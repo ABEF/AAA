@@ -1,15 +1,24 @@
 # Work handoff
 
-## Latest LP settlement and claim work
+## Latest full normal admission and prefix planning
 
-Use the [maximum-state report](../reports/lp-claims-maximum-20261120/REVIEW.md)
-for same-NFT ZZZ-to-ETH conversion, claims, partial batches, transfer/fault
-isolation and the new request-local runtime-proof optimization. The normal F6
-Solidity graph is unchanged. Preserve12M/full20% claim qualification,
-24M/full25% conversion, all financial guards and all original evidence.
-Actual1%-eligible routes, complete fees, full API deployment admission and
-matching consumer/operating adoption remain open. Do not repeat the completed
-1,000-NFT population or old suites merely to refresh their date.
+The [current report](../reports/full-claim-admission-20261120/REVIEW.md) fills the
+finite normal backend admission gap with real F6 Access/Registry,26 pins and65
+royalty currencies. Healthy32 claims pass; late-Tax32 exhausts1024 reads under
+old6d5. Current7a3 stops at first proven prefix, then performs full fresh final
+review. Actual16 claims pay under12M/full20% using885 reads; a fresh remaining16
+review uses653. Every unpaid selection, including Tax, stays explicit/backed.
+
+Use current source/inventory and preserve both original evidence stages. Three
+new and one updated affected methods pass; do not repeat old suites/populations.
+service.py/checkpoint semantic identities and all Solidity sources are unchanged.
+A local Anvil restore pending-clock mismatch was corrected on an owned node with
+one empty block and unchanged state root/nonce, verified by ordered wire.
+
+Remaining:1,000-active-NFT full-normal workload partitions, actual HTTP/provider/
+complete fees, real feeds/routes, matching consumer/host adoption and independent
+approval. The slow-ZZZ maximum-state opening still needs476135 less estimated
+gas. No public deployment/seal/signing or running environment changes occurred.
 
 Next work follows the [ordered production qualification plan](ROADMAP.md) and
 [readiness reconciliation](../reports/production-readiness-plan-20261119/REVIEW.md):

@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "archive_file_names_checked": 946,
+  "credential_or_cache_file_names_included": false,
+  "rpc_transports": "New owned loopback, keyless archive inputs; no public calls or credentials",
+  "process_environment": "Allowlisted OS variables, no user signer/key/RPC credentials",
+  "private_keys_used": false,
+  "evidence_source_bytes_changed": false
+}

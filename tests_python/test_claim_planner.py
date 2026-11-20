@@ -99,8 +99,8 @@ class ClaimPlannerTests(unittest.TestCase):
                          [c['token_id'] for c in entries[:2]])
         self.assertEqual([r['selection_index'] for r in result['remaining_claims']],[2,3])
         self.assertTrue(all(r['status']=='unassessed' for r in result['remaining_claims']))
-        self.assertEqual(result['planning']['trial_count'],3)
-        self.assertEqual(len(self.rpc.simulations),4)
+        self.assertEqual(result['planning']['trial_count'],2)
+        self.assertEqual(len(self.rpc.simulations),3)
         self.assertTrue(all('transaction' not in r for r in result['remaining_claims']))
 
     def test_successful_estimate_above_reviewed_gas_or_fee_bound_is_sized_down(self):

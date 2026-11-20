@@ -4019,7 +4019,18 @@ separate estimated gas and draft expiry. The wallet must refresh gas/state and
 confirm account/chain before signing. Mint checks the global/mint switches and
 preparation; claims retain their independent availability. Selected currency
 faults reject a batch; unselected faults do not excuse missing core/inventory
-checks. Use [gas-aware claim planning](CLAIM_PLANNING.md) for an explicit selection
+checks. The [full normal claim review](../reports/full-claim-admission-20261120/REVIEW.md)
+confirms the complete F6 admission path on a controlled32-NFT/65-currency graph.
+The planner now stops at the FIRST successful prefix to preserve request capacity
+for complete final validation. Smaller batches may require more transactions.
+Review only that draft, confirm it, refresh balances and replan the remainder.
+Do not raise1,024 reads/25seconds/12M/full20% or repeat a confirmed claim to work
+around a failed currency. A known healthy selection can omit the failed currency
+while retaining its original entitlement; an opaque revert proves no token cause.
+For source adoption, discard old reviews and use the existing reviewed service
+rollout procedure. No running service or website is changed by source publication.
+
+Use [gas-aware claim planning](CLAIM_PLANNING.md) for an explicit selection
 of at most32 NFT/currency/ledger entries. Review only next_batch, submit through
 the independently reviewed wallet, confirm it, then replan remaining_claims.
 Every zero, blocked or unavailable entry stays explicit; opaque refusal does

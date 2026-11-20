@@ -1,5 +1,12 @@
 # Unsigned mint and claim preparation
 
+The [full normal claim review](../reports/full-claim-admission-20261120/REVIEW.md)
+verifies complete F6 runtime/binding/lifecycle checks on a new controlled fixture.
+Claim planning stops at the first successful prefix and still freshly prepares
+that exact next batch. Show remaining claims and require a new review after
+confirmation; there is no queued transaction or maximum-batch guarantee.
+Gas/work/fee safeguards, profiles, public signing and deployed sites are unchanged.
+
 **Mint-profile boundary:** the backend implements explicit opt-in
 `mint_integration_version:2` for accounting7/V10 reads and owned reward claims.
 On accounting7, omitted/default1 retains the historical direct-mint/V9 profile; source9 website

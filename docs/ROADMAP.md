@@ -266,6 +266,13 @@ Owning Todo: [`metadata-ops`](../TODO.md#task-metadata-ops).
 
 ### P17 — API security and complete portfolio reads
 
+The [current full-normal claim evidence](../reports/full-claim-admission-20261120/REVIEW.md)
+adds real F6/26-pin admission on32 activated NFTs/65 royalty currencies and a
+first-success planning fix for an actual1,024-read exhaustion. Actual payout,
+remaining claims and all guards stay verified. This is finite claim evidence;
+full1,000-active-NFT normal workloads, HTTP/provider/complete-fee and matching
+consumer/operating acceptance remain open. Prior LPQ03's P16 reference was wrong.
+
 Match current F6/profile/runtime/canonical manifests, both physical legs, owner and funded rights at canonical state. Adopt coherent complete wallet paging;1000 NFTs need63 ownership pages plus summary/history.
 
 Verify owner/chain/NFT/block/config/digest/count and contiguous complete assembly within reviewed freshness budgets or explicit incomplete/unavailable output. Preserve1024call/1MiB bounds and ingress rates. Final page alone is not a whole wallet.

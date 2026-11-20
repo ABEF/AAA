@@ -1,5 +1,14 @@
 # Gas-aware unsigned claim planning
 
+[Current full-normal evidence](../reports/full-claim-admission-20261120/REVIEW.md)
+uses the normal Projection with real F6 Access/Registry and all26 API pins.
+A32-entry late-currency failure exhausted1,024 calls after healthy prefixes.
+Planning now stops at its FIRST successful prefix, then performs the same full
+fresh final preparation. This can produce smaller batches/more transactions;
+optimal packing is not promised. Every remaining selection stays explicit.
+Current16 claims pay under12M/full20% using885 reads; remaining review uses653.
+The previous1,000-NFT fixture/admission seam retains its original scope.
+
 [Current maximum-state evidence](../reports/lp-claims-maximum-20261120/REVIEW.md)
 adds cold actual F6 claims and planner checks, with an explicit full deployment-
 admission seam. Eight unsettled LP-ETH entries fit12M/full20%;16 require13,656,959

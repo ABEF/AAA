@@ -1,0 +1,94 @@
+{
+  "clock": {
+    "empty_block_number": 446,
+    "pending_clock_refusal_retained": true,
+    "source_nonce_unchanged": true,
+    "state_root_unchanged": true
+  },
+  "closing_paid_zero": 16,
+  "closing_unselected_positive": 16,
+  "complete": true,
+  "continuation_plans": [
+    {
+      "captured_seconds": 6.561999999998079,
+      "entries": 32,
+      "estimate": 1849611,
+      "label": "late-tax32-followup-admitted-prefix",
+      "padded": 2219534,
+      "published": 16,
+      "replay_seconds": 4.046999999998661,
+      "rpc_reads": 885,
+      "trials": 2
+    },
+    {
+      "captured_seconds": 6.89100000000326,
+      "entries": 16,
+      "estimate": 951813,
+      "label": "late-tax32-followup-fresh-remainder16",
+      "padded": 1142176,
+      "published": 8,
+      "replay_seconds": 3.6410000000032596,
+      "rpc_reads": 653,
+      "trials": 2
+    }
+  ],
+  "continuation_wire": {
+    "all_original_methods_retained": true,
+    "compressed_bytes": 1280820,
+    "compressed_sha256": "f4a88b3087a3ba865b0f5632df1b858f958845aa63223b8da7c0ad7253068613",
+    "expanded_bytes": 6561736,
+    "expanded_sha256": "9562618c7240045cded4276b95e4e9faf78460d4d1d7612bf237444257b0d96c",
+    "original_records": 1816
+  },
+  "execution": {
+    "entries_paid": 16,
+    "estimate": 1849611,
+    "gas_fee": 1801969012613783,
+    "label": "late-tax32-confirmed-healthy16",
+    "padded": 2219534,
+    "paid_by_asset": {
+      "0x68b69a639b8954cf204b6423612ed373cf491a87": 16000000
+    },
+    "plan_label": "late-tax32-followup-admitted-prefix",
+    "transaction_hash": "0x4c0ee06e6edfe24e5e20549216797c3af5abc207fde6de5160d5128d373c4cf2"
+  },
+  "failure_wire": {
+    "all_original_methods_retained": true,
+    "compressed_bytes": 1169463,
+    "compressed_sha256": "ba64c6cee949ac39867a2a419966a12c838e71a988dc50dabb2c7c07e3c605b9",
+    "expanded_bytes": 6147306,
+    "expanded_sha256": "5e78be8d6f66bda372085b9316339014b47d7162509e8e55d3dff5e6ef1539cf",
+    "original_records": 2091
+  },
+  "first_changed_source_proof": {
+    "captured_seconds": 6.686999999998079,
+    "entries": 32,
+    "estimate": 1849611,
+    "label": "late-tax32-first-success",
+    "padded": 2219534,
+    "published": 16,
+    "replay_seconds": 3.9689999999973224,
+    "rpc_reads": 885,
+    "trials": 2
+  },
+  "original_population_rerun": false,
+  "original_resource_failure": {
+    "error": {
+      "reason": "rpc_budget",
+      "type": "WorkLimit"
+    },
+    "explicit_interceptions": 0,
+    "label": "late-tax32-baseline",
+    "replayed": true,
+    "rpc_reads": 1024
+  },
+  "production_approved": false,
+  "schema": 1,
+  "scope": "Independent offline exact-stage normal API replay and actual receipt/balance verification; finite32-NFT65-currency case, not the1,000-NFT maximum state or actual provider acceptance",
+  "shared_checker_sha256": "d03cfdb0bd7adf11127bf5043fbfd494ceda7768c01cb39573e6f1eac84e61e2",
+  "source_stages": {
+    "new": "7a3e720b97acf38e2ebfc7f4dde7a5912852a3eabd0a39629546aa1097cab810",
+    "old": "6d5241d61e5d48a6b2d77f10d09114426ad8a33fc7dddf47d2ec804b48136d5f"
+  },
+  "taxed_last_right_retained": true
+}

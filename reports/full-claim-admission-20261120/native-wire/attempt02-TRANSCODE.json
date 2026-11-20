@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "kind": "lossless_rpc_evidence_transcode",
+  "original_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\full-claim-admission-20261120\\attempt02\\node\\rpc-records.json.gz",
+  "original_compression": "gzip",
+  "original_compressed_sha256": "c5839ee2301e6107b7e5ab2a964919c385ea89566db47cd89ddc7db19a150001",
+  "original_compressed_bytes": 352968569,
+  "published_path": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\reports\\full-claim-admission-20261120\\native-wire\\attempt02.json.xz",
+  "published_compression": "xz",
+  "published_sha256": "df987c79c4c1e1968bc8d57b0f1951c06b3ef77fd0e19d80d3b2e5640b13371c",
+  "published_bytes": 6298516,
+  "exact_expanded_sha256": "c80a0ab40130adeead4668d3909e87febb4d529ff6b58f856a76a53d3e7595ff",
+  "exact_expanded_bytes": 1568472867,
+  "roundtrip_verified": true,
+  "json_or_record_order_changed": false,
+  "source_modified": false,
+  "evm_executed": false,
+  "production_approved": false,
+  "elapsed_seconds": 429.0630000000019
+}

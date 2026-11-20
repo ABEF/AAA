@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "passed": true,
+  "controls": [
+    {
+      "name": "altered_normal_only_helper_runtime",
+      "rejected": true,
+      "error_type": "ProjectionError"
+    },
+    {
+      "name": "omitted_normal_only_helper_read",
+      "rejected": true,
+      "error_type": "ValueError"
+    },
+    {
+      "name": "altered_canonical_anchor_response",
+      "rejected": true,
+      "error_type": "ProjectionError"
+    },
+    {
+      "name": "altered_claim_caller",
+      "rejected": true,
+      "error_type": "ValueError"
+    },
+    {
+      "name": "reduced_full_twenty_percent_padding",
+      "rejected": true,
+      "error_type": "ValueError"
+    },
+    {
+      "name": "altered_actual_recipient_balance",
+      "rejected": true,
+      "error_type": "ValueError"
+    },
+    {
+      "name": "forged_normal_admission_source_identity",
+      "rejected": true,
+      "error_type": "ValueError"
+    },
+    {
+      "name": "erased_unavailable_original_currency_right",
+      "rejected": true,
+      "error_type": "ValueError"
+    }
+  ],
+  "evm_transactions": 0,
+  "rpc_calls": 0,
+  "unchanged_test_methods_rerun": 0,
+  "scope": "New offline corruptions of copies of this actual captured evidence only",
+  "checker_source_sha256": "d03cfdb0bd7adf11127bf5043fbfd494ceda7768c01cb39573e6f1eac84e61e2"
+}

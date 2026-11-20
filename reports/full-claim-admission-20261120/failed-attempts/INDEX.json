@@ -1,0 +1,585 @@
+{
+  "schema": 1,
+  "stages": [
+    {
+      "stage": "attempt01",
+      "original_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\full-claim-admission-20261120\\attempt01",
+      "files": [
+        {
+          "path": "construction/01-create-access-trace.json.gz",
+          "bytes": 83492,
+          "sha256": "4753573815dc2b5dc19a4ad9c7f01f7a02be9f03b53ce66ad3692016b84eacca"
+        },
+        {
+          "path": "construction/01-create-access.json",
+          "bytes": 122186,
+          "sha256": "0c8ea9634e799ca5a9f649c9f29c907d90e99dc31bd13ce7369e5293458de1e3"
+        },
+        {
+          "path": "construction/02-create-protocol_policy-trace.json.gz",
+          "bytes": 10697,
+          "sha256": "237b8dc58c5f872ce83aad6dc3f4a19783af9575eda96268a76e07425a193f30"
+        },
+        {
+          "path": "construction/02-create-protocol_policy.json",
+          "bytes": 69229,
+          "sha256": "f532d4336b83d4ca45409c7642cc79a4d3270d48e1a1a6f3c1f03261949a0b0f"
+        },
+        {
+          "path": "construction/03-bind-protocol_policy.json",
+          "bytes": 2837,
+          "sha256": "ac767cab3ada9df478c6f77dd9769ffaaef2b218ab9400e8e9543560a1b76bc9"
+        },
+        {
+          "path": "construction/04-create-migration_budget-trace.json.gz",
+          "bytes": 25155,
+          "sha256": "f97b1ba5627377eecf166b817e69d19bc3384bb883b991da9718729e9a3a6ded"
+        },
+        {
+          "path": "construction/04-create-migration_budget.json",
+          "bytes": 101730,
+          "sha256": "e81fbcd209960993047f7a5c0a935e771dfabfade4dc16cd34d68af0ed15b351"
+        },
+        {
+          "path": "construction/05-create-metadata_renderer-trace.json.gz",
+          "bytes": 29599,
+          "sha256": "31d23641cf2e21c96fe6edc7904da00ec4d0bc8ba80a8ab16fce33a0753fd822"
+        },
+        {
+          "path": "construction/05-create-metadata_renderer.json",
+          "bytes": 99289,
+          "sha256": "634c5d09e94a61744a5a3576522c7ec2c7dafa47e4bb1f9e4cf512d0e4b1d2db"
+        },
+        {
+          "path": "construction/06-create-portfolio_policy-trace.json.gz",
+          "bytes": 22078,
+          "sha256": "65be651ca31302ec6ee6b36e0a9c72de22f196f23818f287f691f8e03f5d39b2"
+        },
+        {
+          "path": "construction/06-create-portfolio_policy.json",
+          "bytes": 80420,
+          "sha256": "43e9d295b46276781b29def534601322dc8fe0ff90f79990da6b1d179227e8f4"
+        },
+        {
+          "path": "construction/07-create-rebalance_confirmation-trace.json.gz",
+          "bytes": 8865,
+          "sha256": "8f450845e9817c3db1f9ebc4707e9b8478db6261a7616c149a355292649c7087"
+        },
+        {
+          "path": "construction/07-create-rebalance_confirmation.json",
+          "bytes": 61604,
+          "sha256": "f2650a8af5fdd16be24efbbff46957a4c75389f95c010982d53ff9b6df5e8ac4"
+        },
+        {
+          "path": "construction/08-create-balancing_router-trace.json.gz",
+          "bytes": 63095,
+          "sha256": "4ef89bc41a072a85d35edaaeedb7bfac40a6c5e09d151762395eaa9e6ff4924a"
+        },
+        {
+          "path": "construction/08-create-balancing_router.json",
+          "bytes": 137831,
+          "sha256": "89a50a9e518a5069ffc2e44d21d23d29dad5715f81a4bf20e708f07cd01f8475"
+        },
+        {
+          "path": "construction/09-create-oracle-trace.json.gz",
+          "bytes": 58810,
+          "sha256": "aa44527f682d638cdeaf6974ae3b6b21a9c891f20b7de371e6d91873048f2583"
+        },
+        {
+          "path": "construction/09-create-oracle.json",
+          "bytes": 144253,
+          "sha256": "cd732ad433a4fb3ec47bc76914b5fc855a207d503df25d19eb5e0f1345052a51"
+        },
+        {
+          "path": "construction/10-bind-oracle.json",
+          "bytes": 2908,
+          "sha256": "b66e8a4091bb5f8007ad1b56c1a938c7aa3c10b852cc063fad8034a48ef08b34"
+        },
+        {
+          "path": "construction/11-create-liquidity-trace.json.gz",
+          "bytes": 58785,
+          "sha256": "ae43403db4a644749a49ef97192ece2c556e855e35648e1db331120fe2ae40cd"
+        },
+        {
+          "path": "construction/11-create-liquidity.json",
+          "bytes": 147618,
+          "sha256": "81ff8ac091c0692b5a10044cf9a47abdc13a0c1629c91952f7789935f2105b60"
+        },
+        {
+          "path": "construction/12-bind-liquidity.json",
+          "bytes": 2911,
+          "sha256": "2337031622218a7d41dff7d98d6d65aaa16f32754d58b2066dd3aa67d2b4dacd"
+        },
+        {
+          "path": "construction/13-create-pools-trace.json.gz",
+          "bytes": 28490,
+          "sha256": "f263ae43b1a51deeae2273c64060dc1b98fedae6c94a054d3ec224c5d13a28f5"
+        },
+        {
+          "path": "construction/13-create-pools.json",
+          "bytes": 68465,
+          "sha256": "70fb4c68234433724f66f8f8458da87876cd52331103a1ac652bcb19745626da"
+        },
+        {
+          "path": "construction/14-bind-pools.json",
+          "bytes": 2907,
+          "sha256": "ef6b3f9c5ae659ee99fed5031ae2eaea4175c0c283a74ca04cef367d4cf05154"
+        },
+        {
+          "path": "construction/15-create-strategy-trace.json.gz",
+          "bytes": 25995,
+          "sha256": "b01b95751d253056bd720715867834a44b8e3d043bad392d03d0c4017d54f8bc"
+        },
+        {
+          "path": "construction/15-create-strategy.json",
+          "bytes": 100860,
+          "sha256": "8bcb0406f73e87326c4adad16ffa407c3b6bd3b03275c1ebd8d3f9ff434d5444"
+        },
+        {
+          "path": "construction/16-bind-strategy.json",
+          "bytes": 2913,
+          "sha256": "ab11b2eaa29d04c7be2c2c49d669d921f81c753b07770a75ee788d009efa30ce"
+        },
+        {
+          "path": "construction/17-create-vault-trace.json.gz",
+          "bytes": 28177,
+          "sha256": "0df9282ed028ffbc2befab946a2e885bf48983089c04a8451117ec80057c8448"
+        },
+        {
+          "path": "construction/17-create-vault.json",
+          "bytes": 103277,
+          "sha256": "d3647a2e2361f70054d1236a811b65ca40679238dc8670cd182fa2b0792cea87"
+        },
+        {
+          "path": "construction/18-bind-vault.json",
+          "bytes": 2912,
+          "sha256": "15a13ff03ec61b7c9cfaa4fb8cb18633cd94af47e062ab37d024e15fff1a18ad"
+        },
+        {
+          "path": "construction/19-create-rewards-trace.json.gz",
+          "bytes": 54555,
+          "sha256": "8ef12d9de59e1dbc26f6408176533fd8f9ef0ebea4fe2e4a964815b0c565989e"
+        },
+        {
+          "path": "construction/19-create-rewards.json",
+          "bytes": 139636,
+          "sha256": "7bd2cc332b4e220d195f8d098062a5d20bfec292e43e8404f76319e221055842"
+        },
+        {
+          "path": "construction/20-bind-rewards.json",
+          "bytes": 2914,
+          "sha256": "a307df4f9fa90e609e47e24c86556d596ea7d719c42167ec713bc353d63f5c78"
+        },
+        {
+          "path": "construction/21-create-fees-trace.json.gz",
+          "bytes": 6349,
+          "sha256": "92639f5d17705c280189afa6e4853c7b8509ae25edbc5fd3ff4311b80a73e5a8"
+        },
+        {
+          "path": "construction/21-create-fees.json",
+          "bytes": 41848,
+          "sha256": "4a8bddf7a59b62d8ce1b4e4a111a57af94a4250e01b750c25028301b849ba9cc"
+        },
+        {
+          "path": "construction/22-bind-fees.json",
+          "bytes": 2911,
+          "sha256": "a88f845eb73f2b48abfcfd8fb8c2499878e301c3b189fa25054dcbe05864f634"
+        },
+        {
+          "path": "construction/23-create-membership-trace.json.gz",
+          "bytes": 4261,
+          "sha256": "ba1cf8d5ab526546c82475e32b7d21366f0c237a229a79b629ff362c1b2fcf61"
+        },
+        {
+          "path": "construction/23-create-membership.json",
+          "bytes": 29236,
+          "sha256": "d79b3c0a9dde913eded5c284d5bbf01d704215e1518fc2dcab926843e6038668"
+        },
+        {
+          "path": "construction/24-bind-membership.json",
+          "bytes": 2917,
+          "sha256": "ec30c45378a354cc37a17f404acabb1e880225af10c7224dbc6b04ec31cf0140"
+        },
+        {
+          "path": "construction/25-create-migration-trace.json.gz",
+          "bytes": 53826,
+          "sha256": "91fba1006e810efe239746226c6021ce17904e1f2564c1ac038ef21da643db64"
+        },
+        {
+          "path": "construction/25-create-migration.json",
+          "bytes": 138770,
+          "sha256": "cfb500d8d90540f474874ec26c9fb3cc7cb7f4451382f9fed3a106f745521fed"
+        },
+        {
+          "path": "construction/26-bind-migration.json",
+          "bytes": 2916,
+          "sha256": "f484cb48debd25b5c5590ded7ea2d289560c55dbb70a2f43863cf299d4b4ad6f"
+        },
+        {
+          "path": "construction/27-create-compounder-trace.json.gz",
+          "bytes": 1787,
+          "sha256": "2f12df18d4294053dc2cfc621f905c54b07e351c9973fa5687d4f7c31a1440a5"
+        },
+        {
+          "path": "construction/27-create-compounder.json",
+          "bytes": 11709,
+          "sha256": "02cb93a1afb90d07b48589c26d1fb9cc8b1bde3548526797a8e42349299f460e"
+        },
+        {
+          "path": "construction/28-bind-compounder.json",
+          "bytes": 2917,
+          "sha256": "cd6cbc2592fda745691e677d54a64999f5fc9b84a9fed3693828887778575972"
+        },
+        {
+          "path": "construction/29-create-buyback-trace.json.gz",
+          "bytes": 5368,
+          "sha256": "4afd4e801a80b3d3e91f5785696af56f44993e08658443a419579e2d029ec707"
+        },
+        {
+          "path": "construction/29-create-buyback.json",
+          "bytes": 35223,
+          "sha256": "81a86017e8619e4922ae4e45157c7c25a9c52a738973bd972dabc6c958be984a"
+        },
+        {
+          "path": "construction/30-bind-buyback.json",
+          "bytes": 2914,
+          "sha256": "443a451d7f1cbf840febd51ce174df6af207ff8caf1e828cc892561c44ece512"
+        },
+        {
+          "path": "construction/31-create-nft-trace.json.gz",
+          "bytes": 60337,
+          "sha256": "cf32bd7e7c8d96a2210c69e2d102b83f368742203515fb556d9e578392128734"
+        },
+        {
+          "path": "construction/31-create-nft.json",
+          "bytes": 113431,
+          "sha256": "52d3022cae3fcfdf3cdd47bb9389042a6472122e09ea70bda79cf847ee83ef62"
+        },
+        {
+          "path": "construction/32-bind-nft.json",
+          "bytes": 2910,
+          "sha256": "2927ca84adcfe849b4f90b693f9a353b3badea33989019833501149eaf38d588"
+        },
+        {
+          "path": "construction/33-create-nft_canonical-trace.json.gz",
+          "bytes": 23289,
+          "sha256": "36e77d09de368f18bf34457eae957aa7e6b48fe9d41b067de644a7c4194045d0"
+        },
+        {
+          "path": "construction/33-create-nft_canonical.json",
+          "bytes": 96841,
+          "sha256": "d7249c995e14a5765f34082314c831482847fb26cc1666e01fedd4200f68a888"
+        },
+        {
+          "path": "construction/34-bind-nft_canonical.json",
+          "bytes": 2920,
+          "sha256": "f1fecbf53b7f31663ce829374016a1b937d01301001f2357530688a7b249587c"
+        },
+        {
+          "path": "construction/35-create-vault_canonical-trace.json.gz",
+          "bytes": 23574,
+          "sha256": "08932672d576e4274b6af11f4f464a4b508be0c6395565aa43d8415489371855"
+        },
+        {
+          "path": "construction/35-create-vault_canonical.json",
+          "bytes": 102647,
+          "sha256": "1706fbdd134f4aa561031761aa4a52cf0e5a8408520c65070e98256fdad507ea"
+        },
+        {
+          "path": "construction/36-bind-vault_canonical.json",
+          "bytes": 2922,
+          "sha256": "aa631a3fe86abd3e34dff3501dcd3aef5af7fa85e6993476317322adcde6db6d"
+        },
+        {
+          "path": "construction/37-create-fees_canonical-trace.json.gz",
+          "bytes": 6674,
+          "sha256": "14d53a34ea0b2d633768a220b1b66b23a862cb11010c97bf627a082cb04179d3"
+        },
+        {
+          "path": "construction/37-create-fees_canonical.json",
+          "bytes": 45068,
+          "sha256": "ad26aadb085a81c8ab42d9fc5189fa7b1d9611dff76ff54a5665986c4ec70eac"
+        },
+        {
+          "path": "construction/38-bind-fees_canonical.json",
+          "bytes": 2921,
+          "sha256": "9872b74e9c26a03655f55ec65287d05a370ff89a9d253d66d74f69c8066afd56"
+        },
+        {
+          "path": "construction/39-create-canonical-trace.json.gz",
+          "bytes": 24732,
+          "sha256": "edbffc5b8404a075a620b0446a9836e064cf5f16298ac25262d57ecdedc44281"
+        },
+        {
+          "path": "construction/39-create-canonical.json",
+          "bytes": 101007,
+          "sha256": "cce3a574491083f70a4123be83500a085b9c5b38c2a1fadb056938e51cd95069"
+        },
+        {
+          "path": "construction/40-bind-canonical.json",
+          "bytes": 2916,
+          "sha256": "5eadd464e5fba04898216098b7db1244f70a011e072e063289c45775cdefba83"
+        },
+        {
+          "path": "construction/41-create-lp_converter-trace.json.gz",
+          "bytes": 31482,
+          "sha256": "3517e39313d84d895120f2ee10faa7314a28930e57cc7e96c67ada64adf9bc33"
+        },
+        {
+          "path": "construction/41-create-lp_converter.json",
+          "bytes": 95626,
+          "sha256": "a615382d0b88ab78f44dba16771efedef51495fd894ff6fba9e00ad3ab28d423"
+        },
+        {
+          "path": "construction/42-create-seadrop_mint-trace.json.gz",
+          "bytes": 22225,
+          "sha256": "871794fd07df8a0668e9c1340bd55e3db364bb87ce9d529615d4287d85e44aef"
+        },
+        {
+          "path": "construction/42-create-seadrop_mint.json",
+          "bytes": 88428,
+          "sha256": "bddcdefdfaac6d9887d864f711c88bf01341ace2bcffb3fdd82f12652f18adfe"
+        },
+        {
+          "path": "construction/43-bind-lp_converter.json",
+          "bytes": 2777,
+          "sha256": "4cfe71f28771b4c8fd7ad62c185b56d036f399a62c60672488c6821f18d6a79d"
+        },
+        {
+          "path": "construction/44-bind-seadrop_mint.json",
+          "bytes": 2778,
+          "sha256": "464e3a09c292750a2c47adc0da3693c9d4b7e498bb28f2444e191777cdda9779"
+        },
+        {
+          "path": "construction/actual-address-input.json",
+          "bytes": 2915,
+          "sha256": "35e55d171ab0ca6d321566cea50e0a7510cac8082cabc76224ccd293d8745e8a"
+        },
+        {
+          "path": "construction/bindings.json",
+          "bytes": 30645,
+          "sha256": "c79d30ae3bc56ed900646bc2d8ad7da81bc60867290f8d737ae37be9ac6e0dd5"
+        },
+        {
+          "path": "construction/construction-rpc-records.json.gz",
+          "bytes": 24654583,
+          "sha256": "47232fc113ed6431cd491120eea2ddeb9ac1515b160dab6954b42aa469ad349d"
+        },
+        {
+          "path": "construction/instances.json",
+          "bytes": 4845414,
+          "sha256": "7e846b00e06b899b2cb750f3185287862562d2f3803386feafe5d1a740353e57"
+        },
+        {
+          "path": "construction/offline-plan.json",
+          "bytes": 1974598,
+          "sha256": "989c87248fb0aaf7e68c7cb9773053e6592e44038c6757ca3d4664c7d100c179"
+        },
+        {
+          "path": "construction/RESULT.json",
+          "bytes": 648,
+          "sha256": "86ce49a1582e9b641d1faa8a29466079c2037d5aa6072f8238698b7c037aee64"
+        },
+        {
+          "path": "construction/source-stage.json",
+          "bytes": 12706,
+          "sha256": "35e67a757c5f9474b23c76e8554c7fb650ad274e4b5cff759f698cb968dba990"
+        },
+        {
+          "path": "FAILURE.json",
+          "bytes": 164,
+          "sha256": "57ecb3d4333cfc2e42b84fb3e12e3b6ba6d03151e12c8ff9e0b96bf272b04304"
+        },
+        {
+          "path": "helper-source.json",
+          "bytes": 46331,
+          "sha256": "ba2175535ed6bf7554acceb0ec32e2d281a42ce55b2fbf520c1e3acafa63817c"
+        },
+        {
+          "path": "intent-0001.json",
+          "bytes": 818,
+          "sha256": "e13320dda4cee5cdbc162ed7cef4d01a73fc161509da0f9be2bbdbdef59f1ddd"
+        },
+        {
+          "path": "native-source.json",
+          "bytes": 131109,
+          "sha256": "3d9c36dd286ef8732015b18fa046f2061e99cdeed9028ef164936704f8e68658"
+        },
+        {
+          "path": "native_fixture.py",
+          "bytes": 27528,
+          "sha256": "80c2e9ef09714fec1a0a3de1dc47c54cd4f075723eb4907857d9d1f047bad6d4"
+        },
+        {
+          "path": "node/cleanup.json",
+          "bytes": 212,
+          "sha256": "52cea8c4c4261cddeb410eb5004a0187405e84f887cc91dc5ae6fa3bdf6f1048"
+        },
+        {
+          "path": "node/genesis.json",
+          "bytes": 172380,
+          "sha256": "ed4f266619b2c651b4d728ee025fd8e8d2874eb00e5d6c71daaa29f4d8112281"
+        },
+        {
+          "path": "node/process.json",
+          "bytes": 833,
+          "sha256": "6083270e0950cb969730b7f481e2fa17be08c7b3f9a9cd187824acca5d242645"
+        },
+        {
+          "path": "node/rpc-records.json.gz",
+          "bytes": 25421191,
+          "sha256": "bb6beff15da4f54f6bd5c09f2c176236f594c592c44b2099da3374ca6ae7632c"
+        },
+        {
+          "path": "node/socket-ownership.json",
+          "bytes": 12377,
+          "sha256": "abd1f8158da4dd860682346340ab7f19e78b405c5b3314b85286ac12748da1a1"
+        },
+        {
+          "path": "PREPARATION.json",
+          "bytes": 12521,
+          "sha256": "2598ce1a975fe3c3f025ba689b6cef17b6a3f5de7beb194afdb0a8c0c083c9f6"
+        },
+        {
+          "path": "run_campaign.py",
+          "bytes": 1158,
+          "sha256": "696c2f08c6c6ca8ee06d6cd9b96c9eca52be16b58a28a83d63f8ae9a91f29918"
+        },
+        {
+          "path": "setup-transactions.json",
+          "bytes": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        }
+      ],
+      "published_small_records": [
+        "FAILURE.json",
+        "node/cleanup.json",
+        "PREPARATION.json"
+      ],
+      "financial_pass": false,
+      "originals_retained": true
+    },
+    {
+      "stage": "late-tax32-01",
+      "original_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\full-claim-admission-20261120\\late-tax32-01",
+      "files": [
+        {
+          "path": "exact-anvil-state.json",
+          "bytes": 60980479,
+          "sha256": "4713b6e99987927b32061fa5c3965e0d403f3c048f9281ddff0826a93eccafda"
+        },
+        {
+          "path": "FIXTURE_MANIFEST.json",
+          "bytes": 36680,
+          "sha256": "3cc6bc33b754995e149af837c853a8984b1fe6a8d0f3c621dd2ea4a1652bc69a"
+        },
+        {
+          "path": "node/cleanup.json",
+          "bytes": 148,
+          "sha256": "1a43c20d3739e53564ff4fcac936bd5ed517544f8fbc94a1971462ca7746cb1c"
+        },
+        {
+          "path": "node/genesis.json",
+          "bytes": 172380,
+          "sha256": "8ebb1db1d9605834cb69ffee11bb5de8c0cc89a02cbee8372c0b330d30751535"
+        },
+        {
+          "path": "node/rpc-records.json.gz",
+          "bytes": 45,
+          "sha256": "bb6878fc92b0491592a261e103ba39b25e0d56d5e33116e8999b7d8d1812bfe3"
+        },
+        {
+          "path": "node/socket-ownership.json",
+          "bytes": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        {
+          "path": "restore_case.py",
+          "bytes": 8462,
+          "sha256": "0dd7a624d396e8af734e08a4c2746d9ea9c31454fbe7f3560bea2ce01c905382"
+        },
+        {
+          "path": "RESTORE_PROVENANCE.json",
+          "bytes": 15017,
+          "sha256": "9da03e7af5f2f5bb81d672d6a04ea3acd5424cf9ba120c2523b8be6f3c837d1f"
+        }
+      ],
+      "published_small_records": [
+        "node/cleanup.json",
+        "RESTORE_PROVENANCE.json"
+      ],
+      "financial_pass": false,
+      "originals_retained": true
+    },
+    {
+      "stage": "late-tax32-02",
+      "original_root": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\full-claim-admission-20261120\\late-tax32-02",
+      "files": [
+        {
+          "path": "exact-anvil-state.json",
+          "bytes": 60980479,
+          "sha256": "4713b6e99987927b32061fa5c3965e0d403f3c048f9281ddff0826a93eccafda"
+        },
+        {
+          "path": "FAILURE.json",
+          "bytes": 144,
+          "sha256": "74164c69ef2f18dae220aecf0f6291bb68cadc9458abf0035466dc5de45def30"
+        },
+        {
+          "path": "FIXTURE_MANIFEST.json",
+          "bytes": 36680,
+          "sha256": "3cc6bc33b754995e149af837c853a8984b1fe6a8d0f3c621dd2ea4a1652bc69a"
+        },
+        {
+          "path": "node/cleanup.json",
+          "bytes": 148,
+          "sha256": "768c7e449943516730bc0b68ac297c6b20aa18fb773be0870dd5e5bde12e9d78"
+        },
+        {
+          "path": "node/genesis.json",
+          "bytes": 172380,
+          "sha256": "8ebb1db1d9605834cb69ffee11bb5de8c0cc89a02cbee8372c0b330d30751535"
+        },
+        {
+          "path": "node/rpc-records.json.gz",
+          "bytes": 45,
+          "sha256": "d8aafed63b89e3bfa73d306f8b92457cfffc57368598e9abdc0492d5ca71b1a6"
+        },
+        {
+          "path": "node/socket-ownership.json",
+          "bytes": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        {
+          "path": "node/startup-stderr.log",
+          "bytes": 270,
+          "sha256": "269018be3be9b8919c700580660429aa5cfd160c89e7053dfb0e2e4c47e42658"
+        },
+        {
+          "path": "restore_case.py",
+          "bytes": 8655,
+          "sha256": "2336385f56917a7dcff5e079620d170f8a433ff0922043b19765a4fa27af1dc1"
+        },
+        {
+          "path": "RESTORE_PROVENANCE.json",
+          "bytes": 15017,
+          "sha256": "fd54f75ed77982ae694333589c730977e6e3a859d523fd2f542027aabcc9c6aa"
+        },
+        {
+          "path": "setup-transactions.json",
+          "bytes": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        }
+      ],
+      "published_small_records": [
+        "FAILURE.json",
+        "node/cleanup.json",
+        "RESTORE_PROVENANCE.json"
+      ],
+      "financial_pass": false,
+      "originals_retained": true
+    }
+  ],
+  "omitted_large_originals_retained_external": true,
+  "production_approved": false
+}

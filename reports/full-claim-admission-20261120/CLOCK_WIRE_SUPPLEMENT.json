@@ -1,0 +1,42 @@
+{
+  "after_pending_open_bound_to_actual_wire": true,
+  "api_replays": 0,
+  "checker_source_sha256": "0e6a80cba5b57b44362d57076f845d7529c2ad8eab0a8148c24a3055642d1cdf",
+  "complete": true,
+  "empty_block_state_root_unchanged": true,
+  "evm_calls": 0,
+  "new_corruption_controls": [
+    {
+      "control": "missing_after_pending_open_wire",
+      "rejected": true
+    },
+    {
+      "control": "nonce444_only_before_mine",
+      "rejected": true
+    },
+    {
+      "control": "pending_open_before_empty_mine",
+      "rejected": true
+    }
+  ],
+  "node_starts": 0,
+  "nonce444_bound_after_mine_before_first_send": true,
+  "ordered_wire_indices_zero_based": {
+    "after_latest": 172,
+    "after_mine_nonce444": 175,
+    "after_pending_header": 173,
+    "after_pending_open": 174,
+    "before_latest": 19,
+    "before_pending_closed": 153,
+    "empty_mine": 171,
+    "first_actual_send": 1103,
+    "set_next_timestamp": 162
+  },
+  "original_wire_sha256": {
+    "continuation": "f4a88b3087a3ba865b0f5632df1b858f958845aa63223b8da7c0ad7253068613",
+    "failure": "ba64c6cee949ac39867a2a419966a12c838e71a988dc50dabb2c7c07e3c605b9"
+  },
+  "production_approved": false,
+  "schema": 1,
+  "scope": "Clock-only ordered-wire supplement to retained LATE_TAX_VERIFICATION_FINAL.json; source results and original evidence remain unchanged"
+}

@@ -304,6 +304,10 @@ class ClaimPlanner:
                 reads.assert_available()
                 attempts.append(dict(selection_indices=selected, outcome='simulated'))
                 best, low = selected, size+1
+                # Publish a conservatively sized proven prefix. Searching for
+                # a larger batch can exhaust the shared request allowance even
+                # after a usable prefix; final preparation still runs below.
+                break
             size = (low+high+1)//2
 
         draft = None

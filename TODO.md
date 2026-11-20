@@ -794,6 +794,7 @@ The data and services behind the app.
   - [Current backend corrections](reports/whole-project-review-20261111/REVIEW.md) reject lossy ABI inputs and malformed/duplicate indexer inventories before side effects. Valid encoding/DB identities persist; no live indexer migration is performed. Checkpoint source pins require reviewed rebuild on consumer adoption.
   - [Reference-execution implementation](reports/reference-execution-20261111/REVIEW.md): explicit execution-price1/LP3 supports an external reference as a swap venue with original two-source valuation, exact actual-core output/full-state proof and later live agreement/control checks. Old LP2 profiles stay separate; no financial cap,12M default, signer or environment changes. Qualify final full-operation gas, real independent sources/routes and matching consumer adoption separately.
   - [Whole-project workload review](reports/whole-workload-review-20261119/REVIEW.md): New fixed-block inventory pages verify16 IDs each under unchanged1,024-call/1MiB limits. Thirteen new methods cover63 pages/1,000 full-width IDs, faults/reorg/ownership/cursors/HTTP/workers and selected16/64-currency states. Legacy complete inventory remains complete-or-failed; consumers must verify every coherent page before completeness.
+  - [Current full-normal claims](reports/full-claim-admission-20261120/REVIEW.md) exercise normal runtime/binding/lifecycle admission and original-currency claims on32 actual activations/65 royalty currencies. No Projection admission replacement is used for positive cases. P17 owns this work; the previous LPQ03 P16 reference was wrong. Complete portfolio paging, production HTTP/ingress/provider and matching deployment adoption remain separate.
 
   </details>
 
@@ -921,6 +922,7 @@ The data and services behind the app.
 
   - [Scoped verification](reports/factory-claims-20261105/VERIFICATION.md) covers bounded batching, refusal isolation, freshness/canonicality/ownership/work limits and HTTP worker dispatch. Matching website/service rollout and actual currency/fee/gas qualification remain open.
   - [Current maximum-state evidence](reports/lp-claims-maximum-20261120/REVIEW.md) adds actual cold12M/full20% claims, larger-batch refusal, current-owner and failed-currency isolation. Repeated runtime hashing caused a25-second timeout; exact request-local proof reuse removes that CPU bottleneck with unchanged work/fee/gas limits. Full production deployment admission is an explicit fixture seam; real endpoint/provider/consumer approval remains open.
+  - [Full normal F6 admission](reports/full-claim-admission-20261120/REVIEW.md) uses real sealed Access/Registry,26 API pins and65 royalty currencies. A late-currency32-entry request hit1,024 reads after healthy prefixes; first-success planning preserves complete fresh final validation. Actual16 payout885reads and fresh remainder653reads pass without raising12M/full20% or work/fee bounds. Three new/one updated affected methods pass; complete1,000-active-NFT normal workloads, real HTTP/provider fees and consumer adoption remain open.
 
   </details>
 
@@ -1858,4 +1860,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `b3f97675093a16da19f701cfb9afc0db562c73275b32911c1131add7e9238980`.
+Snapshot SHA-256: `16201773209d6bcf16928bafe9807f1d78681dc809f061de70e842c2d5c7fb84`.

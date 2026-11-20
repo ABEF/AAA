@@ -1,5 +1,13 @@
 # Consolidated audit findings and evidence
 
+[Full normal claim admission](../reports/full-claim-admission-20261120/REVIEW.md)
+now has real F6 Access/Registry and complete26-pin API checks on32 activated NFTs
+and65 royalty currencies. A late-Tax32 selection confirmed1,024-read exhaustion
+after healthy prefixes; first-success planning fixes it without relaxing guards
+or work limits. Actual16 payout and fresh remainder pass. Full1,000-active-NFT
+normal workloads and real HTTP/provider/market acceptance remain separate.
+The correct roadmap owner is P17; P16 in the prior LPQ03 index was a reference error.
+
 [Maximum-state LP settlement and claims](../reports/lp-claims-maximum-20261120/REVIEW.md)
 adds actual same-NFT conversion, cold claim/refusal, transfer and faulty-currency
 checks while preserving principal/reserves. Repeated runtime hashing in claim

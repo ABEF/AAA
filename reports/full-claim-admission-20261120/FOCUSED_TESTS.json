@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "new_methods": 3,
+  "changed_existing_methods": 1,
+  "unchanged_methods_rerun": 0,
+  "methods": [
+    "tests_python.test_claim_planner_first_prefix.ClaimPlannerFirstPrefixTests.test_final_lifecycle_change_discards_the_first_success",
+    "tests_python.test_claim_planner_first_prefix.ClaimPlannerFirstPrefixTests.test_final_owner_change_discards_the_first_success",
+    "tests_python.test_claim_planner_first_prefix.ClaimPlannerFirstPrefixTests.test_late_refusal_stops_at_first_success_and_freshly_revalidates_prefix",
+    "tests_python.test_claim_planner.ClaimPlannerTests.test_oversized_execution_is_reduced_with_every_remaining_entry_preserved"
+  ],
+  "argv": [
+    "-m",
+    "unittest",
+    "-v",
+    "tests_python.test_claim_planner_first_prefix",
+    "tests_python.test_claim_planner.ClaimPlannerTests.test_oversized_execution_is_reduced_with_every_remaining_entry_preserved"
+  ],
+  "returncode": 0,
+  "unittest_elapsed_seconds": 3.191,
+  "observed_summary": "Ran 4 tests in 3.191s; OK",
+  "capture_scope": "Original tool output observed once; no independently captured raw stdout file; no rerun to manufacture a receipt.",
+  "source_sha256": {
+    "frontend_api/claim_planner.py": "7a3e720b97acf38e2ebfc7f4dde7a5912852a3eabd0a39629546aa1097cab810",
+    "tests_python/test_claim_planner_first_prefix.py": "0ecd84ad0a812534f742217adf0752dc28d0ece64e3a75cf06f67e20669e7a6c",
+    "tests_python/test_claim_planner.py": "b8ec2245e12c4f99e049ec97a9daeea807cc0054ef4de90da8a60da775fe778d"
+  }
+}

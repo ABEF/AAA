@@ -1,13 +1,16 @@
 # Whole-project workload coverage
 
-The [current LP settlement/claim report](../reports/lp-claims-maximum-20261120/REVIEW.md)
+The [full normal admission report](../reports/full-claim-admission-20261120/REVIEW.md)
+adds finite real-control claim evidence and first-success planning. Only the
+planner Python source changes; current counts stay1,977 named definitions/179 files.
+The previous [LP settlement/claim report](../reports/lp-claims-maximum-20261120/REVIEW.md)
 updates only the Python claim planner and its source inventory; the original
 [whole-workload report](../reports/whole-workload-review-20261119/REVIEW.md) retains
 its historical counts/evidence. The current anonymous supplement is
-[here](../reports/lp-claims-maximum-20261120/ANONYMOUS_CODE_INVENTORY.json).
+[here](../reports/full-claim-admission-20261120/ANONYMOUS_CODE_INVENTORY.json).
 
 The [workload plan](WORKLOAD_PLAN.json) and
-[whole-project function inventory](../reports/lp-claims-maximum-20261120/FUNCTION_INVENTORY.json)
+[whole-project function inventory](../reports/full-claim-admission-20261120/FUNCTION_INVENTORY.json)
 define the scope. [The report](../reports/whole-workload-review-20261119/REVIEW.md)
 records what actually ran and what remains unqualified. The [Todo](../TODO.md)
 owns work status; this page is a verification map.
@@ -39,7 +42,7 @@ running application modules, tests, RPC or signing. Preserve the unrelated dirty
 fork runner: its published HEAD blob is inventoried instead of adopting it.
 
 ```text
-python scripts/build-workload-inventory.py --check reports/lp-claims-maximum-20261120/FUNCTION_INVENTORY.json
+python scripts/build-workload-inventory.py --check reports/full-claim-admission-20261120/FUNCTION_INVENTORY.json
 ```
 
 Future F6 source/reference changes require reviewed trusted-pin/plan updates and

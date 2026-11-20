@@ -1,5 +1,12 @@
 # Feature and evidence reference
 
+[Full normal admission evidence](../reports/full-claim-admission-20261120/REVIEW.md)
+adds real sealed Access/Registry,26 API runtime pins,32 Entry activations and65
+royalty currencies. Bounded planning now stops at the first successful prefix
+and always freshly revalidates it. Actual claims and retained remainder pass;
+3 new/1 updated affected methods pass. All limits/rights and live environments
+remain unchanged; broader workload/provider/consumer qualification stays open.
+
 [Maximum-state LP conversion and claims](../reports/lp-claims-maximum-20261120/REVIEW.md)
 adds controlled F6/1,000-NFT/two-LP/65-currency evidence. Smaller actual batches
 preserve exact rights; larger padded reviews correctly refuse unchanged limits.

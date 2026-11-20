@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "workload_inventory_check": "passed",
+  "todo_check": "passed",
+  "git_diff_check": "passed",
+  "qualification_source_records_checked": 9,
+  "protected_files_current_hashes_match": true,
+  "new_planner_hash_matches": true,
+  "unchanged_tests_rerun": false,
+  "production_approved": false
+}

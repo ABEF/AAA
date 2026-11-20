@@ -1,14 +1,19 @@
 # Project context
 
-## Latest controlled LP settlement and claims
+## Latest full normal claim validation
 
-The [20 November report](reports/lp-claims-maximum-20261120/REVIEW.md) reuses the
-frozen1,000-NFT/two-LP/65-currency population for NEW same-NFT LP conversion,
-partial claims, transfer/fault recovery and gas admission. Only the Python claim
-planner changes: successful exact-code proofs are request/block/target/pin scoped,
-with mutable checks and25s/1024RPC/12M bounds preserved. service.py/checkpoint
-semantics and all Solidity sources remain unchanged. Public signing, websites,
-services, journals and old Anvil remain unchanged; no deployment or seal approval.
+[Current evidence](reports/full-claim-admission-20261120/REVIEW.md) exercises the
+complete normal Projection against real F6 Access/Registry and26 API pins on a
+new native fixture:32 activations,65 royalty currencies. A late-currency32-entry
+search found a genuine1024-read failure after healthy prefixes. A four-line
+planner change stops at first success, preserving fresh final validation and
+all entries. Current16 claims pay within12M/full20%,885 reads; remaining review
+uses653. Three new/one affected updated methods pass, no unchanged suites rerun.
+
+Earlier [1,000-NFT/two-LP settlement evidence](reports/lp-claims-maximum-20261120/REVIEW.md)
+retains its admission seam/source scope; the new fixture does not relabel it or
+qualify every maximum-state search. Contracts, service.py/checkpoint semantics,
+financial/work/gas defaults, signing, websites/services and old Anvil are unchanged.
 
 The [production qualification plan](docs/ROADMAP.md) consolidates current findings,
 all83 stable Todo tasks and whole-workload families into23 acceptance packages.
