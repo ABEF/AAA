@@ -1,5 +1,11 @@
 # Consolidated audit findings and evidence
 
+Final production-pool selection is operator-deferred; old target/fees remain
+dated integration evidence. The [documentation reconciliation](../reports/documentation-sync-20261120/REVIEW.md)
+corrects a stale manual launch requirement, outdated current-evidence links and
+the [v3 conversion scope](../reports/market-route-qualification-20261120/ERRATA.md).
+No new code defect, approval or qualified route is implied.
+
 [Expanded actual-market qualification](../reports/market-route-qualification-20261120/REVIEW.md)
 closes bounded native low-fee and documented alternative-market discovery gaps,
 not release approval. SelectedL0/price-band incompatibility, tested native reverse

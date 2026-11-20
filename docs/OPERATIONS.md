@@ -465,7 +465,7 @@ Enable LP/royalty conversion, idle-only compounding, buyback and metadata watchi
 only under their reviewed configs/bindings/budgets. They are separate jobs;
 harvesting, conversion and payout are different accounting actions. Native ETH
 fees need no conversion. ZZZ conversion at default 1% requires a cheaper qualified
-route than the selected pool's recorded effective fee. Unconverted balances stay
+route than the existing integration target's dated effective fee. Unconverted balances stay
 backed; failure is not permission to widen a caller floor. Noncanonical converter
 or route Boolean flags are errors/deferred work, not legitimate disabled controls;
 valid0remains off. Preserve degraded telemetry while independent upkeep continues. Do not schedule creator

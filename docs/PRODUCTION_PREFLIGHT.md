@@ -1,9 +1,10 @@
 # Current production inventory and read-only preflight
 
-The [latest market capture](../reports/real-market-refresh-20261116/REVIEW.md) is diagnostic,
+The [20November market capture](../reports/market-route-qualification-20261120/REVIEW.md) is diagnostic,
 not an admitted inventory. Its incomplete candidate JSON contains null review/
 policy fields deliberately; never copy observations into production admission.
-Actual independent sources, full operations, gas/fees and operator approval remain required.
+Final production-pool selection is deferred. Actual independent sources, full
+operations, gas/fees and operator approval remain required.
 
 Fresh source: [accounting7 / exact LP1 / custody5 / portfolio2](POSITION_V7.md),
 canonicalV10 and inventory17. **Undeployed; production NOT APPROVED.** The

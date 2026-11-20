@@ -21,9 +21,10 @@ financial checks, accepting potentially near-total principal loss; these ordinar
 ceilings are not an unconditional bound against governance.
 [Exact controls](EXECUTION_LOSS_POLICY.md), [typed routes](TYPED_V4_ROUTES.md).
 
-The [selected pool](POOL_SELECTION.md) is Robinhood v4 native ETH/ZZZ
+The existing [integration target](POOL_SELECTION.md) is Robinhood v4 native ETH/ZZZ
 `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`,
-static 1.002% LP fee, no hook; recorded combined fee about 1.101%. Only actual
+static 1.002% LP fee, no hook; recorded combined fee about 1.101%. Final production
+pool selection is deferred; these are dated target observations, not launch fees. Only actual
 earned LP fees fund PoPL, not Uniswap's separate protocol fee.
 
 ## One fixed ZZZ token
@@ -131,9 +132,9 @@ Twenty raw units split16/2/1/1; smaller receipts carry forward. Before membershi
 
 Already-funded dust across local buckets is settled once before entry. Fees earned by the current contribution swap are harvested under incumbent weights before issuing new shares. Only the bound Vault allocates actual local LP proceeds; an arbitrary callback or unsolicited raw Vault prefund cannot fabricate such proceeds. Actual PoolManager donations do change fee growth and fund the normal allocation at harvest; they do not prove organic trading volume. Creator inboxes and remote intake are removed.
 
-The selected hookless native ETH/ZZZ pool has a static 1.002% LP fee. Fees actually earned by PoPL's position fund the allocation above when harvested; the separate Uniswap protocol fee is not PoPL revenue. The current candidate has no Pons creator-payment intake. No creator percentage or TVL-derived entitlement is assumed.
+The existing hookless native ETH/ZZZ integration target has a static 1.002% LP fee; the final launch pool is not selected. Fees actually earned by PoPL's position fund the allocation above when harvested; the separate Uniswap protocol fee is not PoPL revenue. The current candidate has no Pons creator-payment intake. No creator percentage or TVL-derived entitlement is assumed.
 
-Current [native accounting](NATIVE_ETH_ARCHITECTURE.md) keeps venue ETH as ETH throughout Vault, fee reserves and Rewards. Native holder fees accrue directly through whole-unit individual/equal-collective books; no wrapper or keeper conversion is needed for those receipts. Already-converted ETH remains an attributed balance and never becomes new fee income. ZZZ rewards still need a cheaper qualified route under the **default 1% loss cap, governed up to 10%, gas separate**; the selected pool's recorded approximately 1.101% combined fee does not qualify that full conversion at reference prices. An explicitly configured v3/WETH conversion retains its wrapper dependency. Typed hookless static-fee v4 conversion is implemented; actual route/feed qualification remains open. Earlier [native-port evidence](../reports/native-eth-port/VERIFICATION.md) retains its source scope and does not verify later accounting V3 changes.
+Current [native accounting](NATIVE_ETH_ARCHITECTURE.md) keeps venue ETH as ETH throughout Vault, fee reserves and Rewards. Native holder fees accrue directly through whole-unit individual/equal-collective books; no wrapper or keeper conversion is needed for those receipts. Already-converted ETH remains an attributed balance and never becomes new fee income. ZZZ rewards still need a cheaper qualified route under the **default 1% loss cap, governed up to 10%, gas separate**; the integration target's dated approximately 1.101% combined fee does not qualify that full conversion at reference prices. An explicitly configured v3/WETH conversion retains its wrapper dependency. Typed hookless static-fee v4 conversion is implemented; actual route/feed qualification remains open. Earlier [native-port evidence](../reports/native-eth-port/VERIFICATION.md) retains its source scope and does not verify later accounting V3 changes.
 
 The old bridge/pair execution stack, external-custodian exits and remote-fee
 intake are removed. Historical profiles retain their original ledgers and

@@ -4,7 +4,9 @@
 checks additional native candidates and actual WETH/v3 discovery. No complete route
 or independent source pair is approved. A documented market or deployed Pyth
 contract does not supply a qualified source/publication operation; the fixed
-native profile does not automatically support WETH/v3/hooks. No service selected.
+native profile does not automatically support WETH/v3/hooks. No service selected. Final production-pool selection is operator-deferred.
+The [conversion scope correction](../reports/market-route-qualification-20261120/ERRATA.md)
+distinguishes implemented manual v3 capability from current graph/worker support.
 
 [20 November actual feasibility](../reports/readiness-gate-a-20261120/REVIEW.md)
 refreshes prices/markets and identifies exact OpenSea/VRF/provider questions.
@@ -32,17 +34,17 @@ remain open. Current market/source failures are retained; no live endpoint,
 source/route, zero-tip policy or operating service is selected.
 [Operator procedure](OPERATOR_MANUAL.md#robinhood-rpc-fees).
 
-Reviewed2026-11-16. [Feed/market read-only qualification](../reports/market-followup-20261109/REVIEW.md) records shared-anchor20:04:50UTC observations and a separate20:18:44UTC feed follow-up, not selected live configuration. This records required capabilities and actual selection limits;
+Current guide reviewed2026-11-20. Dated [9November feed/market read-only qualification](../reports/market-followup-20261109/REVIEW.md) records shared-anchor20:04:50UTC observations and a separate20:18:44UTC feed follow-up, not selected live configuration. This records required capabilities and actual selection limits;
 [Todo](../TODO.md) alone owns status. **No production deployment is approved.**
 
 ## Dependency inventory
 
 | Dependency | Required capability / current boundary | Procedure/evidence |
 | --- | --- | --- |
-| ETH and fixedZZZ USD prices | Two independent reviewed USD sources per asset, original age/round/decimals, upstream controls and300bps agreement. At20November anchor119000058 Chainlink proxies still share one aggregator; Pyth is stale/disagreeing and API3 read reverts. Its current base/subscription is not refreshed. No two fixedZZZ paths are approved; prior CEX books are dated leads, not USD feeds. | [Price security](PRICE_SECURITY.md), [current capture](../reports/market-feasibility-20261120/REVIEW.md) |
+| ETH and fixedZZZ USD prices | Two independently reviewed paths per asset, original rounds/ages/decimals, controls and300bps agreement. At20November block119107223 checked ETH proxies share one aggregator; Pyth is stale/disagreeing and API3 read reverts with cause unrefreshed. No fixedZZZ pair approved. | [Price security](PRICE_SECURITY.md), [current capture](../reports/market-route-qualification-20261120/REVIEW.md) |
 | Optional Pyth reader | Immutable reader preserves original publishTime and hard86400s age ceiling; the20November stored ETH observation fails age/agreement. Robinhood is absent from the documented sponsored EVM list: a compatible authenticated own publisher or another qualified service needs an operator, data access, gas funds, age alerts and recovery. Prior zero on-chain update-fee observations do not establish free data/operation. | [Reader policy](PYTH_PRICE_SOURCE.md), [current research](../reports/market-feasibility-20261120/PRIMARY_SOURCES.json) |
 | Sequencer liveness | Chainlink lists no Robinhood uptime feed and says expansion to additional networks has stopped. Review an actual correct-chain outage/recovery policy; never copy another chain or synthesize always-up data. | [Primary-source findings](../reports/market-followup-20261109/feeds/FINDINGS.md), [operator procedure](OPERATOR_MANUAL.md#configure-stop-and-recover-usd-pricing---2026-10-24) |
-| Contribution/conversion markets | Qualify full input/direction/actual size, source and physical price bands, output, deployed LP, depth and complete gas. The20November larger known raw-L pool passes only forward quote-loss screens; tested1000ZZZ reverse fill fails, selected activeL is0 and stored prices differ5.811926×. Stored spot is not recent-trade evidence. Earlier696 calls/tiny favorable outputs retain their dated scopes; no venue is enabled. | [Current diagnostics](../reports/market-feasibility-20261120/REVIEW.md), [pool](POOL_SELECTION.md), [typed conversion](TYPED_V4_ROUTES.md) |
+| Contribution/conversion markets | Final production pool is deferred. Qualify both directions, complete input/output/marginal LP, compatible reference prices, external depth and gas/fees. Current native low-fee diagnostics do not qualify; v3 positive outputs are finite discovery, not prepared graph/worker adoption. | [Current diagnostics](../reports/market-route-qualification-20261120/REVIEW.md), [scope correction](../reports/market-route-qualification-20261120/ERRATA.md), [pool](POOL_SELECTION.md) |
 | RPC/archive | Canonical hashes/ancestry, complete logs, durable historical state, trace/simulation/gas and recovery. The official endpoint retained an anchor header but refused its state roughly11minutes later; a bounded alternate-provider read recovered it. This is not provider approval. | [RPC qualification](RPC_PREPARATION_QUALIFICATION.md), [current failures](../reports/market-followup-20261109/VERIFICATION.md), [history](HISTORY_AUDIT.md) |
 | Randomness | Exact original subscription-v2.5 two-word request, proof-verifying actual coordinator, immutable lane/subscription/payment policy, funded consumer, same-request recovery/no reroll. Current Chainlink catalog omits Robinhood; candidate permanent refund/expiry rules can conflict with original-request recovery. No qualified provider. | [Mint/provider qualification](MINT_INTEGRATION_QUALIFICATION.md) |
 | OpenSea | Mint2 source implements free TEAM and governed-price AL/public dormant minting(default0.05ETH gross), recipient net after the actual platform fee, gas separate. The pinned SeaDrop runtime is historically observed; current Studio signed-allowlist/multiConfigure/authority-proof compatibility with PoPL Merkle/typed setters remains unverified. Actual onboarding/fees/payers/VRF/operation remain open. Secondary listing support is different evidence. | [Marketplace qualification](MINT_INTEGRATION_QUALIFICATION.md) |

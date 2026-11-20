@@ -65,7 +65,8 @@ approved; no pool, price source, operating parameter or guard was changed.
 
 ## Admission and revenue
 
-`SELECTED_NATIVE_POOL` records the launch identity. Governance can also use
+`SELECTED_NATIVE_POOL` records the existing integration/reference identity, not
+the deferred final production selection. Governance can use
 `configureNative` after sealing for future initialized static, hookless native
 ETH/ZZZ fee tiers on the same pinned Robinhood core. It checks the real slot fee,
 code/wiring, admitted native/token assets and feeds, and existing strategy bounds.

@@ -38,6 +38,7 @@ Custody, ownership and reward accounting.
   - [Latest conversion-market evidence](reports/market-followup-20261109/routes/ROUTES_FINAL_v2.md) preserves favorable tiny ZZZ-to-ETH point-vector quotes; do not claim every1% numeric floor fails. Their output is below intrinsic-only gas at the anchor, with no independently qualified USD/whole-entitlement operation. V3 additionally needs nonzero immutable wrapper before sealing and matching qualified manual/worker support; current automated fresh7 remains native-v4 only.
   - [16November reverse diagnostics](reports/real-market-refresh-20261116/REVIEW.md) qualify no complete tested1000ZZZ-to-ETH conversion: selected and larger-known-L routes report incomplete input; the95pips lead has an opaque error at a diagnostic500k quote ceiling. This does not rule out other sizes/venues or establish the error cause. Keep the1% conversion guard and actual operating gas limits; complete output, source prices and economic gas remain required.
   - [Maximum-state LP settlement](reports/lp-claims-maximum-20261120/REVIEW.md) adds actual same-NFT/component conversion, reserves/prefund isolation, transfer/raw-ZZZ recovery and cold24M/full25% subset/refusal checks on frozen F6/1,000NFT/twoLP/65currency state. Actual1%-eligible market routes, complete fees, consumer/worker adoption and independent approval remain open.
+  - [Documentation scope correction](reports/market-route-qualification-20261120/ERRATA.md): Solidity already supports reviewed manual typed v3 earned conversion with a nonzero wrapper fixed at construction. Current planner uses zero wrapper and accounting7 worker requiresv4_native; existing v3 code does not imply current graph/automation support. No wrapper/route/profile or financial setting is changed.
 
   </details>
 
@@ -97,6 +98,7 @@ Custody, ownership and reward accounting.
   - [20November actual market refresh](reports/market-feasibility-20261120/REVIEW.md): selectedactiveL0; larger-known-L price differs5.811926×, tested1000ZZZ reverse input is incomplete. Ordinary price bands cannot overlap at that anchor. Restoring market conditions or selecting another same-pair destination is a deliberate external decision; no setting/route/guard changed.
   - [Expanded20November market review](reports/market-route-qualification-20261120/REVIEW.md): selected activeL0; nominal50USD ETH diagnostic loses14.263178% own-spot gross and tested1/100ZZZ reverse input is incomplete. Larger-known-L ETH-per-ZZZ remains5.811926 times selected. Actual compatible destination/depth is still required; no pool or guard changes.
   - Operator decision20November2026: select the final production pool later. Preserve existing integration configuration and historical observations; do not infer replacement selection, funding or admission. Qualify actual pool/reference/routes/depth before deployment or opening; current status remains in progress.
+  - Final production pool remains operator-deferred. Current operator/economics/architecture guides now label0x501122... as the existing integration target, not a mandatory launch choice. Original recorded fee/depth evidence and configuration examples remain unchanged; actual later selection still needs qualification.
 
   </details>
 
@@ -1135,7 +1137,7 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
 
 <a id="task-creator-market-controls"></a>
 
-- [ ] **[Confirm ZZZ token and selected pool controls](docs/POOL_SELECTION.md)** - In progress. Current fixed-ZZZ runtime matches the retained explorer-verified ordinary ERC20Burnable source: deployer/curve/factory references grant no token privileges; no owner/upgrade/pause/tax/post-constructor mint interface is present in the inspected source. Independent upstream verification and issuer/liquidity plans remain open. The selected pool is hookless; no creator-payment or Pons-hook integration is required.
+- [ ] **[Confirm ZZZ token and pool controls](docs/POOL_SELECTION.md)** - In progress. Current fixed-ZZZ runtime matches the retained explorer-verified ordinary ERC20Burnable source: deployer/curve/factory references grant no token privileges; no owner/upgrade/pause/tax/post-constructor mint interface is present in the inspected source. Independent upstream verification and issuer/liquidity plans remain open. Current principal admission supports static hookless native ETH/fixedZZZ; final production-pool selection is deferred. No creator-payment or Pons-hook integration is required by this profile.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1663,6 +1665,7 @@ Decisions and rehearsals before real funds.
   - [16November refresh](reports/real-market-refresh-20261116/REVIEW.md) records39 read-only requests across three bounded phases, canonical hash closure and source-scoped offline verification. Pyth publication needs a named authenticated updater or another qualified ETH secondary; API3 needs activation/renewal review and round-compatible adaptation if chosen. No source age, independence ID, review hash, route or service is admitted. A recent block/ETH timestamp does not prove a recent trade or reliable price in a stored pool spot.
   - [Stronger dated evidence closure](reports/five-audit-reconciliation-20261116/REVIEW.md): new scripts/check-market-evidence.py rebuilds all market/feed/quote/pass/gas and null/empty candidate summaries from the recorded39responses. It rejects forged qualification fields but keeps every live approval false. Historical capture/checker/files remain unchanged; no source, route, provider, feed or operating policy is admitted.
   - [20November independent capture](reports/market-route-qualification-20261120/REVIEW.md) retains same-aggregator ETH proxies, stale/disagreeing Pyth and reverting API3. No independent fixed-ZZZ pair or publication operation qualifies. Discovered WETH/v3 or hooked markets require separately reviewed supported source adapters, depth/control and common-mode review; no TWAP or API fallback.
+  - [Documentation consistency review](reports/documentation-sync-20261120/REVIEW.md) points current guides to the117-response20November evidence and keeps older API3/price observations dated. Independent sources/publication and actual route approval remain open; docs changes do not produce on-chain evidence.
 
   </details>
 
@@ -1865,4 +1868,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `4a8879dbe34614f4e8afcbb3d6d8baebd696f33b3af9a0d94780e1b88b3b932d`.
+Snapshot SHA-256: `19b13437d7098ab5f22d4c4e9bdc2eb051330e314d16a002e53b7125e5e1387e`.

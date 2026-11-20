@@ -1,5 +1,12 @@
 # Work handoff
 
+Latest [documentation reconciliation](../reports/documentation-sync-20261120/REVIEW.md)
+removes stale instructions requiring the old pool for launch and labels older
+market observations correctly. Read the [v3 scope correction](../reports/market-route-qualification-20261120/ERRATA.md):
+manual earned-conversion code exists; zero-wrapper construction/accounting7
+worker and native-v4 principal/reference support remain distinct. No source or
+configuration changes; production-pool selection remains deferred.
+
 **Operator decision20November2026:** final production pool will be selected later.
 Preserve the current integration configuration and dated market evidence; no
 replacement search, liquidity funding or switch follows from this decision.

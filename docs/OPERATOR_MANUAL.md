@@ -2618,8 +2618,10 @@ For a supported new LP venue, qualify the SAME native ETH/fixed-ZZZ identity, fe
 
 `PoolRegistry.contributionPool()` is the only pool whose `depositsEnabled` flag
 can be true; zero means new activations/top-ups are stopped. Initial production
-configuration must select the reviewed Robinhood hookless native ETH/ZZZ pool
-`0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`.
+configuration must use the operator's later-selected, independently reviewed
+compatible native ETH/fixed-ZZZ pool. The existing integration target
+`0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`
+is a dated reference, not a required or approved launch destination.
 Selection may change among compatible fee tiers; it cannot change this
 deployment's fixed native ETH/ZZZ pair, chain or pinned core bindings. A second
 enabled pool is rejected even through governance; comments/UI restrictions are
@@ -2854,7 +2856,7 @@ Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: indi
 
 | Operation | Entry point / owner of action | Verify and recover |
 | --- | --- | --- |
-| Harvest selected pool LP fees | Permissionless `Vault.collectFees(bucketId,deadline)` while live and locally active | Verify actual venue fees collected and funded 80/10/5/5 allocation. The selected hookless pool has a static 1.002% LP fee; PoPL earns its eligible position's share, not Uniswap's separate protocol fee. No creator payment is required for this LP income. |
+| Harvest selected pool LP fees | Permissionless `Vault.collectFees(bucketId,deadline)` while live and locally active | Verify actual venue fees collected and funded 80/10/5/5 allocation. The existing hookless integration target has a static 1.002% LP fee; PoPL earns its eligible position's share, not Uniswap's separate protocol fee. No creator payment is required for this LP income. |
 | Compound | Keeper `Compounder.compound(bucketId,minimumLiquidity,deadline)`; contributions/rebalances also pull the bucket's compound reserve | Current Budget4 / policy3 compound waits after both the last compound and LP replacement, and yields to eligible rebalance/range selection. Uses attributed backing and guards; funds never pass through keeper. Holder claim balances are separate. |
 | Buy back and burn | Keeper `Buyback.execute(token,amount,poolId,deadline)` | Check reserve, oracle value ≤ current `operatingTradeUSD` ≤ reviewed `maxTradeUSD`, swap minima, actual ZZZ acquired and total-supply reduction. Governance tunes the operating ceiling with `setOperatingTradeUSD`; zero stops buys. The buyback target is immutable and must be the same ZZZ as contribution and collective holder return. There is no retargeting setter. Bind Buyback before `Migration.configureZZZ`; mismatched or unbound targets cannot complete setup. Token migration requires collective holder return and a fresh reviewed deployment. |
 | Bind LP ZZZ book | Pre-seal governance `Rewards.addAsset(ZZZ_TOKEN)` | Exactly native ETH plus fixed ZZZ, maximum2total. One-time pre-seal binding, separate from venue or royalty admission. |

@@ -55,7 +55,7 @@ can later change both assets/values. It does not force a 40% residual allocation
 | ETH activation/growth | Exact ETH through Entry/Vault into native settlement, without wrapping. Original value floors default100/5USD and are governed for future contributions; captured default3% contribution loss applies; actual marginal LP, venue/caller minima and gas remain separate. |
 | ZZZ activation/growth | Exact allowance and measured ZZZ input; guarded balancing into ETH/ZZZ. New assets cannot be subsidized by incumbents' LP, idle or compound. |
 | Harvest | Actual ETH/ZZZ receipts from both live legs enter fixed80/10/5/5 allocation. ETH holder fees need no conversion; fees are separated before principal close. |
-| Earned-fee conversion | Only earned source balances become the same NFTs' ETH credits. Default 1% loss, governance maximum 10%, gas separate. The selected pool's observed fee requires a cheaper route at that default. |
+| Earned-fee conversion | Only earned source balances become the same NFTs' ETH credits. Default 1% loss, governance maximum 10%, gas separate. The existing integration target's dated fee requires a cheaper route at that default; final pool selection is deferred. |
 | Royalties | Separate actual-receipt rarity-weighted ledger; optional currency faults preserve earlier cohorts. Royalties remain live after LP exit; no external custody drain exists. |
 | Compound/buyback | Only classified reserves fund each job; keeper pays gas. LP shares are not minted by idle reinvestment. Claims do not trigger these jobs. |
 | Rebalance/move/resume | Guarded native ETH/ZZZ LP, same actual pair. Default 3% maintenance cap uses starting prices and includes released compound; stronger venue/caller and idle limits still apply. |

@@ -44,7 +44,7 @@ routes, VRF, authorities or services. Historical
 [post-seal-control evidence](../reports/post-seal-controls/VERIFICATION.md) retains
 its own source scope.
 
-The selected pool's observed approximately1.101% swap fee cannot qualify a
+The existing integration target's dated approximately1.101% swap fee cannot qualify a
 full-balance ZZZ conversion at the default 1% ceiling at reference prices. Require
 a cheaper reviewed route or leave balances backed and report unavailable. Do not
 silently widen policy or use spot to manufacture independent valuation.

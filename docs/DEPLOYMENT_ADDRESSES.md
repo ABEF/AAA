@@ -250,7 +250,7 @@ once to Rewards before sealing for optional ETH settlement. Its typed hookless
 v4 path settles actual ETH without a wrapper. Historical v3/unwrap profiles keep
 their reviewed wrapper; no such wrapper is admitted by the fresh7 keeper.
 Royalty currencies stay claimable as received and are not LP conversion assets. Record controller/ledger, parent-bound executor, current conversion cap, route/feed review and keeper pins. This
-helper has no custody of LP principal. The conversion limit defaults to 1%, governance-adjustable up to 10%, with gas separate. At the default cap the selected approximately 1.101%-fee pool still needs a cheaper independently qualified conversion route. [Versioned inventory and observation](PRODUCTION_PREFLIGHT.md) must match the selected contract profile; no route is invented. See [setup and recovery](LP_ETH_SETTLEMENT.md).
+helper has no custody of LP principal. The conversion limit defaults to 1%, governance-adjustable up to 10%, with gas separate. At the default cap the dated approximately 1.101%-fee integration target still needs a cheaper independently qualified conversion route. [Versioned inventory and observation](PRODUCTION_PREFLIGHT.md) must match the selected contract profile; no route is invented. See [setup and recovery](LP_ETH_SETTLEMENT.md).
 
 ## Native accounting and canonical version inventory
 

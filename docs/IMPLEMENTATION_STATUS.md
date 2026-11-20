@@ -1,5 +1,10 @@
 # Feature and evidence reference
 
+The [documentation reconciliation](../reports/documentation-sync-20261120/REVIEW.md)
+adds no feature or new dynamic verification. It corrects launch-pool instructions,
+dated market pointers and manual-v3 versus current graph/worker capability scope.
+Final production-pool selection and all actual qualification remain open.
+
 [Real-market route follow-up](../reports/market-route-qualification-20261120/REVIEW.md)
 adds independent reconstruction of117 read-only observations, including previously
 untested native candidates and three actual WETH/v3 markets. It qualifies no

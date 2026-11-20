@@ -8,8 +8,13 @@ conversion estimates12,290,506 gas,15,363,133 with full25%;32 estimates19,966,53
 batch sizes. Re-quote and simulate each affordable subset; the configured worker
 must retain the remainder. No actual-market1%-eligible route is qualified here.
 
-The [latest market follow-up](../reports/market-followup-20261109/REVIEW.md)
-does not establish a practical default1% conversion route. Favorable tiny reverse
+The [20November expanded market review](../reports/market-route-qualification-20261120/REVIEW.md)
+qualifies no complete route. Its [scope correction](../reports/market-route-qualification-20261120/ERRATA.md)
+distinguishes existing manual v3 contract capability from the zero-wrapper
+construction and accounting7 worker restrictions.
+
+The [historical9November follow-up](../reports/market-followup-20261109/REVIEW.md)
+did not establish a practical default1% conversion route. Favorable tiny reverse
 quotes are retained, but their observed output is below intrinsic-only gas cost
 and no independent USD pair/full converter operation is qualified. This is not a
 blanket claim that every numeric1% quote fails. A v3 pool's existence does not make
@@ -172,7 +177,7 @@ their own schemas; they are not accounting4 imports. No external custody exit
 remains. Terminal holder return preserves these reward liabilities but permanently
 blocks canonical replacement; see [the lifecycle boundary](HOLDER_COLLECTIVE_EXIT.md).
 
-The selected pool's recorded approximately 1.101% combined fee does not qualify
+The existing integration target's dated approximately 1.101% combined fee does not qualify
 a full ZZZ conversion at the default 1% cap. Qualify a cheaper funded route or
 explicitly review changed policy; never widen a signed review or invent output.
 Typed v4 support exists, but actual routes/feeds, wallet/API and keeper services,

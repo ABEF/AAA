@@ -13,7 +13,7 @@ policy, stronger caller/venue minima and
 backing remain. [Exact controls](EXECUTION_LOSS_POLICY.md), [typed routes](TYPED_V4_ROUTES.md).
 
 
-The collection uses one shared contribution pool at a time, initially the [selected hookless native ETH/ZZZ pool](POOL_SELECTION.md), not one pool per NFT. Historical buckets and supported future venue moves retain their original accounting identities. `ZZZVault.MAX_BUCKETS = 4` limits all historical bucket registrations, including imports; returning an existing bucket or migrating it to another reviewed pool does not allocate a new bucket. This bounds incumbent-dust settlement without changing reward accounting or the 1,000 NFT cap. Actual Entry, venue, token and maximal target-chain gas still require qualification.
+The collection uses one shared contribution pool at a time, not one pool per NFT. Final production-pool selection is deferred; the [existing hookless native ETH/ZZZ integration target](POOL_SELECTION.md) retains its dated evidence. Historical buckets and supported future venue moves retain their original accounting identities. `ZZZVault.MAX_BUCKETS = 4` limits all historical bucket registrations, including imports; returning an existing bucket or migrating it to another reviewed pool does not allocate a new bucket. This bounds incumbent-dust settlement without changing reward accounting or the 1,000 NFT cap. Actual Entry, venue, token and maximal target-chain gas still require qualification.
 
 Pool reservations now permanently admit a bucket into the same four-slot set.
 Aliases and returns reuse their slot; reserved None-state entries have no
@@ -223,7 +223,7 @@ recipient is available in the current source.
 The [same-chain canonical handoff](CANONICAL_HANDOFF.md) freezes ownership and accounting, imports exact state and classified backing, and atomically retires the source/activates one replacement. It supports exact abort restoration before retirement and late funding afterward. Current schema is `ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10`; older schemas are rejected. Exact group records are 12 words / 384 bytes, with malformed/trailing layouts rejected. Funds transfer before zero-value acknowledgment, with separate Vault, Fees, Rewards and royalty backing. It requires revealed mints, parked local custody, complete classified accounting and `lpExitStarted == false`. It remains
 permanently blocked after collective LP exit begins. No integrated future-chain transport or post-halt recovery is provided. Missing immutable capabilities require a separately reviewed replacement while the source works, not a configuration edit.
 
-Production LP admission supports initialized static hookless native ETH/fixedZZZ fee tiers on pinned Robinhood dependencies. Generic ERC20-only LP admission is removed; separate conversion venues retain their own explicit checks. The selected pool has a static 1.002% LP fee and a recorded approximately 1.101% combined swap fee; only actual earned LP fees are PoPL revenue. Actual ETH identity is preserved. Other native pairs, dynamic native fees, hooks and pairs without fixed ZZZ are rejected.
+Production LP admission supports initialized static hookless native ETH/fixedZZZ fee tiers on pinned Robinhood dependencies. Generic ERC20-only LP admission is removed; separate conversion venues retain their own explicit checks. The existing integration target has a static 1.002% LP fee and a dated approximately 1.101% combined swap fee; final production-pool selection is deferred; only actual earned LP fees are PoPL revenue. Actual ETH identity is preserved. Other native pairs, dynamic native fees, hooks and pairs without fixed ZZZ are rejected.
 
 Use the [feature/evidence reference](IMPLEMENTATION_STATUS.md) for completed checks
 and their exact source scopes, and the [callable reference](CONTRACT_FUNCTIONS.md)
@@ -235,7 +235,7 @@ that actually need it. Earlier [native V2 evidence](../reports/native-eth-port/V
 predates current accounting7 and retains that source scope. Atomic ETH/WETH
 conversion and old-schema import are unsupported. Actual route/provider/inventory
 qualification remains open. ZZZ conversion at the default 1% needs a cheaper
-qualified route; the selected pool does not qualify at reference prices. Actual
+qualified route; the recorded integration target does not qualify at reference prices. Actual
 independent feeds, proof-verifying VRF, authority wallets, OpenSea primary mint,
 native wallet/service operation, maximal gas/strategy economics, recovery
 rehearsals and independent audit/remediation remain open. Production NOT APPROVED.

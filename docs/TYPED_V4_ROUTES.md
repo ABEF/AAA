@@ -10,7 +10,13 @@ No real route, RPC or oracle is qualified by the local tests.
 
 ## Actual market qualification
 
-[Latest route evidence](../reports/market-followup-20261109/routes/ROUTES_FINAL_v2.md)
+[Current20November market evidence](../reports/market-route-qualification-20261120/REVIEW.md)
+qualifies no complete route. The [explicit scope correction](../reports/market-route-qualification-20261120/ERRATA.md)
+preserves existing Solidity v3 earned-conversion capability, while separating
+current zero-wrapper construction, accounting7 worker limits and native-v4
+principal/reference admission. No wrapper/route/profile is enabled.
+
+[Historical9November route evidence](../reports/market-followup-20261109/routes/ROUTES_FINAL_v2.md)
 preserves some favorable tiny ZZZ-to-ETH outputs against a conditional selected-
 spot vector. Thus a known fee alone is not proof that every possible quote fails
 the1% output floor. None establishes useful economics, independent USD truth,

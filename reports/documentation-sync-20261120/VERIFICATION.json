@@ -1,0 +1,190 @@
+{
+  "schema": 1,
+  "kind": "documentation_consistency_and_preservation",
+  "contract_baseline": "b9baa01ceb2ca8520cfe058b74bc736bb7355c40",
+  "website_baseline": "2183e1ac676e4eb7d7ccac6dc0ce597c419aef0c",
+  "todo_check": "passed",
+  "main_and_website_diff_checks": "passed",
+  "all83_task_ids_statuses_unchanged": true,
+  "new_current_links_checked": 33,
+  "links": [
+    {
+      "file": "AGENTS.md",
+      "target": "reports/documentation-sync-20261120/REVIEW.md"
+    },
+    {
+      "file": "AGENTS.md",
+      "target": "reports/market-route-qualification-20261120/ERRATA.md"
+    },
+    {
+      "file": "PROJECT_CONTEXT.md",
+      "target": "reports/documentation-sync-20261120/REVIEW.md"
+    },
+    {
+      "file": "PROJECT_CONTEXT.md",
+      "target": "reports/market-route-qualification-20261120/ERRATA.md"
+    },
+    {
+      "file": "README.md",
+      "target": "reports/market-route-qualification-20261120/ERRATA.md"
+    },
+    {
+      "file": "TODO.md",
+      "target": "reports/documentation-sync-20261120/REVIEW.md"
+    },
+    {
+      "file": "TODO.md",
+      "target": "reports/market-route-qualification-20261120/ERRATA.md"
+    },
+    {
+      "file": "docs\\AUDIT_FINDINGS.md",
+      "target": "../reports/market-route-qualification-20261120/ERRATA.md"
+    },
+    {
+      "file": "docs\\AUDIT_FINDINGS.md",
+      "target": "../reports/documentation-sync-20261120/REVIEW.md"
+    },
+    {
+      "file": "docs\\PRODUCTION_PREFLIGHT.md",
+      "target": "../reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "docs\\TYPED_V4_ROUTES.md",
+      "target": "../reports/market-route-qualification-20261120/ERRATA.md"
+    },
+    {
+      "file": "docs\\TYPED_V4_ROUTES.md",
+      "target": "../reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "docs\\LP_ETH_SETTLEMENT.md",
+      "target": "../reports/market-route-qualification-20261120/ERRATA.md"
+    },
+    {
+      "file": "docs\\LP_ETH_SETTLEMENT.md",
+      "target": "../reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "docs\\PRODUCTION_SERVICES.md",
+      "target": "../reports/market-route-qualification-20261120/ERRATA.md"
+    },
+    {
+      "file": "docs\\WORK_HANDOFF.md",
+      "target": "../reports/market-route-qualification-20261120/ERRATA.md"
+    },
+    {
+      "file": "docs\\WORK_HANDOFF.md",
+      "target": "../reports/documentation-sync-20261120/REVIEW.md"
+    },
+    {
+      "file": "docs\\IMPLEMENTATION_STATUS.md",
+      "target": "../reports/documentation-sync-20261120/REVIEW.md"
+    },
+    {
+      "file": "reports\\README.md",
+      "target": "documentation-sync-20261120/REVIEW.md"
+    },
+    {
+      "file": "reports\\README.md",
+      "target": "market-route-qualification-20261120/ERRATA.md"
+    },
+    {
+      "file": "AGENTS.md",
+      "target": "https://github.com/ABEF/AAA/blob/5653dbd32c34b9af5d7a12222f4c11a1c24370e9/reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "AGENTS.md",
+      "target": "https://github.com/ABEF/AAA/blob/73658567cb605b58c992698e2103535e782269dd/reports/full-claim-admission-20261120/REVIEW.md"
+    },
+    {
+      "file": "AGENTS.md",
+      "target": "https://github.com/ABEF/AAA/blob/main/reports/market-route-qualification-20261120/ERRATA.md"
+    },
+    {
+      "file": "PROJECT_CONTEXT.md",
+      "target": "https://github.com/ABEF/AAA/blob/5653dbd32c34b9af5d7a12222f4c11a1c24370e9/reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "PROJECT_CONTEXT.md",
+      "target": "https://github.com/ABEF/AAA/blob/73658567cb605b58c992698e2103535e782269dd/reports/full-claim-admission-20261120/REVIEW.md"
+    },
+    {
+      "file": "PROJECT_CONTEXT.md",
+      "target": "https://github.com/ABEF/AAA/blob/main/reports/market-route-qualification-20261120/ERRATA.md"
+    },
+    {
+      "file": "README.md",
+      "target": "https://github.com/ABEF/AAA/blob/5653dbd32c34b9af5d7a12222f4c11a1c24370e9/reports/market-route-qualification-20261120/REVIEW.md"
+    },
+    {
+      "file": "README.md",
+      "target": "https://github.com/ABEF/AAA/blob/73658567cb605b58c992698e2103535e782269dd/reports/full-claim-admission-20261120/REVIEW.md"
+    },
+    {
+      "file": "README.md",
+      "target": "https://github.com/ABEF/AAA/blob/main/reports/market-route-qualification-20261120/ERRATA.md"
+    },
+    {
+      "file": "reports\\documentation-sync-20261120\\REVIEW.md",
+      "target": "../market-route-qualification-20261120/ERRATA.md"
+    },
+    {
+      "file": "reports\\market-route-qualification-20261120\\ERRATA.md",
+      "target": "../../docs/LP_ETH_SETTLEMENT.md"
+    },
+    {
+      "file": "reports\\market-route-qualification-20261120\\ERRATA.md",
+      "target": "../documentation-sync-20261120/REVIEW.md"
+    },
+    {
+      "file": "reports\\market-route-qualification-20261120\\ERRATA.md",
+      "target": "../../docs/POOL_SELECTION.md"
+    }
+  ],
+  "source_pins_unchanged": {
+    "src/base/ZZZRewardConverter.sol": "d4a7b761522bc9eebc18a7611b77a506a27abf2a1532d3f0a4e129b2dce4654e",
+    "src/ZZZLPRewardConverter.sol": "5e92251fc9e59831a7cc4c7fcb91f33ade02b642d7e32950a92ae599c591d7bf",
+    "zzz_ops/deployment_plan.py": "1cc30fa06a8c509e2a7e56d9c5d8af4fab469aa2457e545a7366376c4ab93965",
+    "keeper/royalties.py": "02e04783068eed60db827673c9c27d3a37175edd7dccfa5ddefb8b54c055904c",
+    "src/ZZZPoolRegistry.sol": "ada00046465ce293619b8094a4244345998bb614b80c58fe018f1b33b254b3fa",
+    "src/ZZZV4SpotPriceFeed.sol": "e098d2c9c6b1f996fc0da69e602c0bc49e6b0d985eb25a7c0e24220e87a1031c",
+    "config/production.example.json": "25b7f19d1e7e6df1cf8bbf5f7f0995f0250fac7fe9ed21a4d5e167173f87a4ee"
+  },
+  "old_market_report_files_preserved": {
+    "reports/market-route-qualification-20261120/BASELINE.json": "6f06832010cc4d26800fe6ebc0aeabe6016e590f810f14fa8261458f42b201ee",
+    "reports/market-route-qualification-20261120/CANDIDATE_CONFIG.json": "90aceaf7c02d5c3714618ce436eeea1c7bb7eb2ecbaa23cb479f9abacb63f1b7",
+    "reports/market-route-qualification-20261120/DOCUMENT_LINK_CHECK.json": "fea4bdcd844cdd6a9d8f574c6d955fb8395dfcf30734f479ee212c8df8f9292b",
+    "reports/market-route-qualification-20261120/EVIDENCE.md": "e44b2d82a3f439989efb4839ff99ca4deb57db50d4f281c6101ea85d1aa9dda0",
+    "reports/market-route-qualification-20261120/EVIDENCE_MANIFEST.json": "d3f18ca0d3d28105a38093ef448e3a73ec4d3d66d0b838f2a0ec90b6cba57ef0",
+    "reports/market-route-qualification-20261120/FINAL_CHECKS.json": "6742e0a2e9ca994acc497798ce1a8d9c4cbda38c3c70566a94be10cd1b6879ae",
+    "reports/market-route-qualification-20261120/FINDINGS.json": "3af9dafba4366f396148743660665c3cacdfaa5407d6da92b6bc98f489266ea1",
+    "reports/market-route-qualification-20261120/PLAN.md": "d054853f87da4e54803a162c188222b9e1e5d25c81d1ad3cc15f5f40ca0322c7",
+    "reports/market-route-qualification-20261120/PRESERVATION.json": "242c606d67d695b40b8b0aa66eefe1b68a278ce57743d3240496245eca66ba6e",
+    "reports/market-route-qualification-20261120/PRIMARY_SOURCES.json": "077d2a19f02c13a7d1312c54bcfcae91da9af600386fe06b35e75e4af2ae8192",
+    "reports/market-route-qualification-20261120/PYTHON_PUBLICATION_INDEX.json": "ae00ecc59d5b85663b68581d3111aaa7a854aac31543c8c3cacdf39e03984260",
+    "reports/market-route-qualification-20261120/RESULTS.json": "6793fea8f74e4a46beea8717f696f690c4526e82612eb4c49ea2a89781739b80",
+    "reports/market-route-qualification-20261120/REVIEW.md": "f9907e17cb653eef53ec039fb9d81b53fdca20fb167d999a8fc84f77b5fe7eb4",
+    "reports/market-route-qualification-20261120/VERIFICATION.json": "3bbb5ca783744a353b0c9f2494eb3d4d8c9e052c832485f20abf82fd9d486144",
+    "reports/market-route-qualification-20261120/evidence.zip": "ffb479de76dd2cadbd8df240305c71c6d290545328a4dc9569ee23e04ac9c2c2",
+    "reports/market-route-qualification-20261120/tools/capture_market.py": "d9f6ad8e5fd4bc3914eedbd911d5f78222008fe46d6961345efd0fb38eebf1a5",
+    "reports/market-route-qualification-20261120/tools/capture_v3.py": "6d6d67c1332edfea1a99eccac4d5e6bfb6c7010618d3b827fb7e78c109c17cad",
+    "reports/market-route-qualification-20261120/tools/capture_v3_quotes.py": "29a7359cd839ab51cf9b8c73e4242b8175fba67d3c8bb50ead8c444b1e033bda",
+    "reports/market-route-qualification-20261120/tools/transport_base.py": "913a6914c6b230500ad61171dc1cbeb11e1723def1ba50d336109a7e6c17b2a8",
+    "reports/market-route-qualification-20261120/tools/verify_capture.py": "5e95a38c50799f5327bc2ffc957f0fc77b7291f9b1f71df59fc07f982631e4e3"
+  },
+  "unrelated_tracked_files_preserved": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "website_only_changed_files": [
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md",
+    "README.md"
+  ],
+  "no_production_or_unchanged_tests_rerun": true,
+  "no_build_rpc_signing_or_rollout": true,
+  "financial_or_resource_policy_changes": false,
+  "production_approved": false
+}

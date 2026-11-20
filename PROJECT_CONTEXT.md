@@ -1,5 +1,12 @@
 # Project context
 
+Read the [current documentation reconciliation](reports/documentation-sync-20261120/REVIEW.md)
+and [v3 scope correction](reports/market-route-qualification-20261120/ERRATA.md).
+Solidity already supports reviewed manual v3 earned conversion; the current
+zero-wrapper construction/accounting7 worker cannot enable it by configuration.
+Principal routing/spot-reader support remains native-v4-only. Existing code,
+configs, histories, public signer and environments stay unchanged.
+
 Final production-pool selection is deferred by the operator (20 November2026).
 Keep the existing0x501122...afe1b integration target/configuration unchanged as
 a historical reference; it is not a launch-pool approval. Do not choose, fund,

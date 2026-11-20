@@ -119,12 +119,13 @@ prices cannot prove that liquidity was deployed.
 
 ## Current market and provider qualification
 
-[Latest evidence](../reports/market-followup-20261109/REVIEW.md) preserves actual
-round/control/ABI failures and both-direction route outputs. Fresh Chainlink ETH
-is only one source; its second proxy is the same upstream. Pyth stored ETH is
-stale, and the captured pair differs546.2675655bps versus the300bps rule. API3
-has a real ETH proxy and authenticated offers, but an unset binding/base and zero
-round IDs prevent direct admission. No independently qualified fixedZZZ pair exists.
+[Current20November evidence](../reports/market-route-qualification-20261120/REVIEW.md)
+retains same-aggregator ETH proxies, stale Pyth outside300bps agreement and a
+reverting API3 read. Current API3 binding/subscription cause was not refreshed
+and is not inferred from that error. No independently qualified fixedZZZ pair
+exists. The [9November evidence](../reports/market-followup-20261109/REVIEW.md)
+retains its dated546.2675655bps spread and then-observed binding/round failures;
+those values are not the latest market observation.
 
 Keep market-source, runtime/control, ABI, freshness, funding and price agreement
 as separate acceptance gates. Literal nonoverlapping admin-owner sets do not
@@ -251,7 +252,7 @@ cannot identify that error. Governance can also admit unsafe sources despite
 their labels. Independent qualification, restricted operating procedures and
 reviewed deployment pins remain necessary.
 
-The selected pool is hookless. Uniswap v4 separates optional oracle functionality
+Current principal admission permits only hookless pools. Uniswap v4 separates optional oracle functionality
 from its core concentrated-liquidity mechanism; reading its current `slot0` is
 not an independent historical TWAP. A TWAP needs an actual reviewed history
 mechanism and manipulation assessment.

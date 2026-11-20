@@ -1,5 +1,10 @@
 # Verification evidence
 
+[Current documentation reconciliation](documentation-sync-20261120/REVIEW.md)
+corrects stale launch-pool instructions and evidence links. An explicit
+[v3 capability erratum](market-route-qualification-20261120/ERRATA.md) supplements
+the unchanged117-response report; no old evidence is relabeled or rerun.
+
 [Expanded market and route qualification](market-route-qualification-20261120/REVIEW.md):
 117 bounded read-only observations close additional native low-fee/discovery gaps.
 Independent raw-wire reconstruction confirms the refusals and finite v3 leads;
