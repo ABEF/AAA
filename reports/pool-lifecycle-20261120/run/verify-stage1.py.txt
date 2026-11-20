@@ -1,0 +1,148 @@
+"""Read-only verification of this new finite physical-LP partition, no rerun."""
+from pathlib import Path
+import collections,gzip,hashlib,json,sys
+ROOT=Path(__file__).resolve().parents[3]
+sys.path.insert(0,str(ROOT));sys.path.insert(0,str(Path(__file__).resolve().parent))
+from scripts import source9_rehearsal_fork as F
+from zzz_ops.deployment_plan import Artifacts
+from zzz_ops.abi import keccak256
+from warm_cache import BLOCK,ANCHOR,GENESIS
+V=Path('C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9')
+CASE=V/'pool-lifecycle-20261120/run/attempt4'
+HERE=Path(__file__).resolve().parent
+OWNER='0x000000000000000000000000000000000000a0a0'
+def load(p):return json.loads(Path(p).read_bytes())
+def sha(raw):return hashlib.sha256(raw).hexdigest()
+def save(n,d):
+    with (HERE/n).open('x',encoding='utf8',newline='\n')as f:json.dump(d,f,indent=2);f.write('\n')
+def main():
+    artifacts=Artifacts();stage=load(CASE/'source-stage.json');assert stage['source_sha256']==artifacts.source_pins
+    assert stage['runner_sha256']==sha((HERE/'run_pool.py').read_bytes())
+    identity=load(CASE/'FRESH_IDENTITY.json');assert identity['genesis_hash']==GENESIS and identity['anchor_hash']==ANCHOR and identity['anchor_number']==BLOCK
+    pristine=load(CASE/'pristine.json');assert pristine['block']==BLOCK and pristine['hash']==ANCHOR and pristine['active_L']=='0'and pristine['no_added_local_liquidity_yet']
+    wire=json.loads(gzip.decompress((CASE/'local-wire.json.gz').read_bytes()))
+    for i,row in enumerate(wire,1):
+        q,a=row['request'],row['response'];assert q['id']==a['id']==i and ('result'in a)!=('error'in a)
+        assert row['serialized_request_sha256']==sha(json.dumps(q).encode()),i
+    first=next(i for i,row in enumerate(wire)if row['request']['method'].startswith('anvil_'))
+    for target,pin in pristine['runtime_hashes'].items():
+        rows=[x for x in wire[:first]if x['request']['method']=='eth_getCode'and x['request']['params']==[target,'latest']]
+        assert len(rows)==1 and '0x'+keccak256(bytes.fromhex(rows[0]['response']['result'][2:])).hex()==pin
+    seed=load(CASE/'DERIVED_SEED.json');assert seed['kind']=='derived_hash_verified_seed_not_raw_upstream_export'and not seed['latest_or_errors_admitted']
+    cache=load(CASE/'relay/full-cache.json');validator=object.__new__(F._ForkCache);validator.anchor_number=BLOCK;validator.anchor_hash=ANCHOR
+    for key,row in cache['entries'].items():
+        method,params=row['method'],row['params'];assert validator._validate(dict(jsonrpc='2.0',id=1,method=method,params=params))==(method,params)
+        assert validator._cacheable(method,params)and validator._valid_result(method,row['result'],params)
+        assert key==F._digest(dict(method=method,params=params))and row['result_sha256']==F._digest(row['result'])
+    included=[];last=0
+    for index,row in enumerate(wire):
+        if row['request']['method']!='eth_sendTransaction':continue
+        tx=row['request']['params'][0];hash_=row['response']['result']
+        actual=[r['response']['result']for r in wire[index+1:]if r['request']['method']=='eth_getTransactionByHash'and r['request']['params']==[hash_]]
+        receipts=[r['response']['result']for r in wire[index+1:]if r['request']['method']=='eth_getTransactionReceipt'and r['request']['params']==[hash_]and r['response'].get('result')is not None]
+        assert len(actual)==len(receipts)==1;actual=actual[0];receipt=receipts[0]
+        assert actual['from']==tx['from']==OWNER and actual['to']==tx.get('to')and actual['input']==tx['data']
+        assert actual['nonce']==tx['nonce']and actual['gas']==tx['gas']and int(actual['value'],16)==int(tx['value'],16)and actual['gasPrice']==tx['gasPrice']
+        assert receipt['transactionHash']==hash_ and receipt['from']==OWNER and receipt['to']==tx.get('to')
+        assert actual['type']==receipt['type']=='0x0'and actual.get('chainId','0x1237')=='0x1237'
+        section=wire[last:index];last=index+1
+        calls=[r for r in section if r['request']['method']=='eth_call'and r['request']['params'][0].get('data')==tx['data']and r['request']['params'][0].get('from')==OWNER]
+        estimates=[r for r in section if r['request']['method']=='eth_estimateGas'and r['request']['params'][0].get('data')==tx['data']]
+        cap=32_000_000 if tx.get('to')is None else 24_000_000
+        if receipt['status']=='0x1':
+            assert len(estimates)==1 and len(calls)==2
+            estimate=int(estimates[0]['response']['result'],16);padded=(estimate*12500+9999)//10000
+            assert padded==int(tx['gas'],16)<=cap
+            assert int(calls[0]['request']['params'][0]['gas'],16)==cap and int(estimates[0]['request']['params'][0]['gas'],16)==cap
+            assert int(calls[1]['request']['params'][0]['gas'],16)==padded and calls[0]['response']['result']==calls[1]['response']['result']
+        else:
+            assert len(calls)==1 and not estimates
+            assert calls[0]['response']['error']['data']=='0x'+keccak256(b'Slippage()')[:4].hex()
+            assert int(receipt['gasUsed'],16)<int(tx['gas'],16)==1_000_000
+        if included:assert int(tx['nonce'],16)==int(included[-1]['transaction']['nonce'],16)+1
+        included.append({'transaction':actual,'receipt':receipt,'immutable_request_capture_verified':True,'positive_full_and_padded_preflight_verified':receipt['status']=='0x1','negative_full_simulation_and_actual_envelope_verified':receipt['status']=='0x0'})
+    result=load(CASE/'RESULT.json');assert result['successful']and result['source_unchanged']
+    assert int(result['new_increased_L'])>int(result['new_initial_L'])>0
+    assert int(result['collected_ETH'])>0 and int(result['collected_ZZZ'])>0
+    assert result['repeat_harvest_no_new_income']and result['actual_failed_growth_rollback']and result['manager_child_residuals_zero']and result['final_active_L']=='0'
+    trades=load(CASE/'bounded-trade-inputs.json');assert int(trades['reverse_input_ZZZ'])==int(trades['actual_forward_ZZZ_gain'])//2
+    rows=load(CASE/'receipts.json');labels={row['label']:row for row in rows};assert len(labels)==len(rows)
+    receipt_indices={r['response']['result']:i for i,r in enumerate(wire)if r['request']['method']=='eth_sendTransaction'}
+    def send_index(label):return receipt_indices[labels[label]['receipt']['transactionHash']]
+    manager=labels['deploy:ZZZLiquidityManager']['receipt']['contractAddress'].lower()
+    vault=labels['deploy:PoolCustodyFixture']['receipt']['contractAddress'].lower()
+    posm='0x58daec3116aae6d93017baaea7749052e8a04fa7';zzz='0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a'
+    stateview='0xf3334192d15450cdd385c8b70e03f9a6bd9e673b';pool='0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b'
+    def encoded(sig,*args):return '0x'+(keccak256(sig.encode())[:4]+b''.join((int(x,16)if isinstance(x,str)else x).to_bytes(32,'big')for x in args)).hex()
+    def readings(method,params):return [(i,r['response'])for i,r in enumerate(wire)if r['request']['method']==method and r['request']['params']==params]
+    def call_readings(target,sig,*args):return readings('eth_call',[{'to':target,'data':encoded(sig,*args)},'latest'])
+    def before(values,index):return next(answer for i,answer in reversed(values)if i<index)
+    def after(values,index):return next(answer for i,answer in values if i>index)
+    mint_index=send_index('new_current_f6_mint');id_=int(before(call_readings(posm,'nextTokenId()'),mint_index)['result'],16)
+    liquidities=call_readings(posm,'getPositionLiquidity(uint256)',id_)
+    first_L=int(after(liquidities,mint_index)['result'],16)
+    increase_index=send_index('new_current_f6_increase');second_L=int(after(liquidities,increase_index)['result'],16)
+    assert second_L>first_L>0 and str(first_L)==result['new_initial_L']and str(second_L)==result['new_increased_L']
+    assert int(after(call_readings(posm,'ownerOf(uint256)',id_),mint_index)['result'],16)==int(vault,16)
+    tick_rows=call_readings(manager,'ticks(uint256)',id_)
+    assert before(tick_rows,increase_index)['result']==after(tick_rows,increase_index)['result']
+    natives=readings('eth_getBalance',[vault,'latest']);tokens=call_readings(zzz,'balanceOf(address)',vault)
+    def state_pair(index,side):
+        choose=before if side=='before'else after
+        return (int(choose(natives,index)['result'],16),int(choose(tokens,index)['result'],16),int(choose(liquidities,index)['result'],16))
+    negative_index=send_index('new_impossible_minL_actual_rollback')
+    assert state_pair(negative_index,'before')==state_pair(negative_index,'after')
+    harvest_index=send_index('new_current_f6_harvest');harvest_before=state_pair(harvest_index,'before');harvest_after=state_pair(harvest_index,'after')
+    assert harvest_after[0]>harvest_before[0]and harvest_after[1]>harvest_before[1]and harvest_after[2]==harvest_before[2]
+    assert str(harvest_after[0]-harvest_before[0])==result['collected_ETH']and str(harvest_after[1]-harvest_before[1])==result['collected_ZZZ']
+    assert state_pair(send_index('new_current_f6_second_harvest'),'after')==harvest_after
+    close_index=send_index('new_current_f6_close');principal_raw=before(call_readings(manager,'amounts(uint256)',id_),close_index)['result']
+    principal=[int(principal_raw[n:n+64],16)for n in range(2,len(principal_raw),64)]
+    assert list(map(str,principal))==result['principal_before_close']
+    assert int(after(natives,close_index)['result'],16)>=harvest_after[0]+principal[0]
+    assert int(after(tokens,close_index)['result'],16)>=harvest_after[1]+principal[1]
+    assert 'error'in after(call_readings(posm,'ownerOf(uint256)',id_),close_index)
+    assert int(after(call_readings(stateview,'getLiquidity(bytes32)',pool),close_index)['result'],16)==0
+    child='0x'+before(call_readings(manager,'positionOperator()'),mint_index)['result'][-40:]
+    permit2='0x000000000022d473030f116ddee9f6b43ac78ba3'
+    for target in (manager,child):
+        assert int(after(readings('eth_getBalance',[target,'latest']),close_index)['result'],16)==0
+        assert int(after(call_readings(zzz,'balanceOf(address)',target),close_index)['result'],16)==0
+        assert int(after(call_readings(zzz,'allowance(address,address)',target,permit2),close_index)['result'],16)==0
+        allowance=after(call_readings(permit2,'allowance(address,address,address)',target,zzz,posm),close_index)['result']
+        assert int(allowance[2:66],16)==0
+    vault_allowance=call_readings(zzz,'allowance(address,address)',vault,child)
+    assert int(before(vault_allowance,negative_index)['result'],16)==int(after(vault_allowance,negative_index)['result'],16)==0
+    swap_topic='0x'+keccak256(b'ActualRehearsalSwap(bool,uint256,uint256)').hex()
+    swap_rows=[]
+    for label,native in [('new_actual_core_native_swap',True),('new_actual_core_token_swap',False)]:
+        logs=[x for x in labels[label]['receipt']['logs']if x['topics']==[swap_topic]];assert len(logs)==1
+        data=logs[0]['data'];values=[int(data[n:n+64],16)for n in range(2,len(data),64)]
+        assert values[0]==int(native)and values[1]>0 and values[2]>0;swap_rows.append(values)
+    assert swap_rows[0][1]==int(trades['native_input_wei'])and swap_rows[0][2]==int(trades['actual_forward_ZZZ_gain'])and swap_rows[1][1]==int(trades['reverse_input_ZZZ'])
+    deadlines=load(CASE/'deadline-records.json');assert len(deadlines)==6
+    for record in deadlines:assert record['deadline']==record['timestamp']+300 and record['owned_empty_block_refresh']
+    for label,record in zip(['new_current_f6_mint','new_current_f6_increase','new_impossible_minL_actual_rollback','new_current_f6_harvest','new_current_f6_second_harvest','new_current_f6_close'],deadlines):
+        receipt=labels[label]['receipt'];assert int(receipt['blockNumber'],16)>int(record['block'],16)
+        if 'blockTimestamp'in receipt:assert record['timestamp']<=int(receipt['blockTimestamp'],16)<=record['deadline']
+    upstream=[json.loads(x)for x in (CASE/'upstream-wire.jsonl').read_text().splitlines()]
+    assert all(x['http_status']==200 for x in upstream)
+    for row in upstream:
+        request=json.loads(row['request_bytes_utf8']);assert sha(row['request_bytes_utf8'].encode())==row['request_sha256']
+        assert request['method']in F.READ_METHODS and sha(row['response_bytes_utf8'].encode())==row['response_sha256']
+    public_responses=[(json.loads(r['request_bytes_utf8']),json.loads(r['response_bytes_utf8']))for r in upstream]
+    assert any(q['method']=='eth_chainId'and a.get('result')=='0x1237'for q,a in public_responses)
+    assert any(q['method']=='eth_getBlockByNumber'and q['params']==['0x0',False]and a.get('result',{}).get('hash')==GENESIS and a['result'].get('number')=='0x0'for q,a in public_responses)
+    assert any(q['method']=='eth_getBlockByNumber'and q['params']==[hex(BLOCK),False]and a.get('result',{}).get('hash')==ANCHOR for q,a in public_responses)
+    cleanup=load(CASE/'cleanup.json');assert cleanup['owned_node_stopped']and cleanup['pending']is None and not cleanup['existing_nodes_contacted']
+    output={'schema':1,'kind':'independent_saved_wire_verification_no_execution','production_source_pins':len(artifacts.source_pins),'fresh_genesis_chain_anchor_verified':True,
+        'original_active_L':'0','derived_seed_entries':len(seed['entries']),'full_exported_cache_entries':len(cache['entries']),
+        'local_wire_rows':len(wire),'included_transactions':len(included),'failed_guard_transactions':sum(r['receipt']['status']=='0x0'for r in included),
+        'immutable_original_full_and_padded_input_envelopes_verified':True,'local_physical_LP_partition_passed':True,
+        'independent_wire_physical_balance_L_ownership_tick_fee_repeat_close_reconciliation':True,
+        'owned_empty_block_deadline_refreshes':len(deadlines),'per_operation_TTL_seconds':300,
+        'production_swap_router_or_Entry_or_NFT_economic_flow_qualified':False,'fee_generator':'Source9RehearsalTrader directly to actual core',
+        'correlated_price_and_mock_control_seams':True,'synthetic_local_funding':True,'actual_external_depth_or_provider_or_fees_qualified':False,
+        'upstream_posts':len(upstream),'upstream_http429':0,'owned_node_stopped':True,'owned_pid':cleanup['pid'],'unchanged_tests_rerun':False,'production_approved':False}
+    save('VERIFICATION.json',output);save('INCLUDED_TRANSACTIONS.json',included);print(json.dumps(output))
+if __name__=='__main__':main()

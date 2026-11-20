@@ -1,5 +1,11 @@
 # Selected Robinhood ETH / ZZZ pool
 
+The [new current-F6 physical LP run](../reports/pool-lifecycle-20261120/REVIEW.md)
+passed against the supplied initialized pool, originally activeL0, with explicitly local
+funding. The initial fork-only main LP can be created/increased, earn/collect actual
+fees and close. This is not proof that single-asset user Entry activation works without
+an independent executable swap route, or that public depth/prices/fees are qualified.
+
 The [new current-F6 fork
 attempt](../reports/recommendations-execution-20261120/REVIEW.md) preserves original
 pool state at119107223 and completes12 local setup receipts before recurring provider429

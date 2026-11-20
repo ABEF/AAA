@@ -1,0 +1,12 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "reports\\pool-lifecycle-20261120\\harness\\check_boolean_encoder.py"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 0.75,
+  "test_source_sha256": "8fd8eb6762addc9ecd92e6a0b18a1b249840752cf56f21dc5d915dbc8b1f6346",
+  "stdout_sha256": "74c13acae9e0a8c3acee9e66480b25b1d7844e4174f1424dc4ca1d2c690ded72",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "old_tests_rerun": false
+}

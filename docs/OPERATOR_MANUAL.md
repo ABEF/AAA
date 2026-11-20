@@ -2663,6 +2663,13 @@ To stop an input immediately, use `ActivationAssets.setAsset(token,false,expecte
 
 ## Pool admission and retirement
 
+The [current physical LP rehearsal](../reports/pool-lifecycle-20261120/REVIEW.md) completes native Manager mint/increase, intended rollback, actual fee collection/no-repeat and closure on a new isolated fork. It uses typed test custody/control/price/funding fixtures; it is not a permission for an EOA to call Vault-only Manager methods, holder principal withdrawal, or production Entry/route qualification. The burned NFT is the underlying Uniswap position NFT, not a PoPL collection NFT. Final pool selection and actual sources/routes/depth remain unapproved.
+
+### LP deadlines and ABI scalar inputs
+
+The unchanged base contract accepts `now <= deadline <= now + 600 seconds`, using chain block time. Obtain a recent reviewed head and prepare a short deadline with room for inclusion; re-simulate when inputs/head or market conditions change. A one-hour deadline is invalid. The isolated fixture uses fresh300-second deadlines after owned empty test blocks; this does not instruct mining public blocks or changing a production clock. For native/token amounts use exact raw integer units, and ABI Booleans are `true`/`false` (not Python string spellings `True`/`False`). The rehearsal wrapper was corrected; no contract, financial guard or manual permission changed. Existing call tables and operation-specific input snapshots remain authoritative.
+
+
 For a supported new LP venue, qualify the SAME native ETH/fixed-ZZZ identity, feeds, exact venue key/manager and strategy. Rewards books were bound before seal; a later same-pair fee tier does not call `Rewards.addAsset`. Then governance calls `configureNative`; the removed generic pool `configure` entrypoint is unavailable. Not every Uniswap v4 hook/native pair is supported. Native admission permits only supported static, hookless ETH/ZZZ keys on the pinned Robinhood dependencies; immutable bindings are not arbitrary venue plug-ins.
 
 ### One contribution pool at a time

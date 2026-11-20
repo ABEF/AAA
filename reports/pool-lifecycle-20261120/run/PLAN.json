@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "baseline": "4b6497be76191a8a3a5295267b4706f811d5a899",
+  "anchor": 119107223,
+  "hash": "0x13f4c5b0ff38d2e13f17b12b1af8b0894b8d642d8aa1093083441e30e2ed9335",
+  "genesis": "0xaad15f3d702aaea00caf3e9bb56395efe9127bc3b31b24921abf1eee3409305c",
+  "fixture_output_reused": true,
+  "production_compile": false,
+  "maximum_http_rps": 0.5,
+  "stop_on_HTTP_refusal": true,
+  "max_public_posts": 600,
+  "deadline_seconds": 900,
+  "derived_seed_entries": 64,
+  "seed_preview_sha256": "4fb781bb4c08d1aeb4e3be1fa01df533e9b2214f58c7516975d7c5a7d8796ec9",
+  "source_sha256": {
+    "run_pool.py": "e055e2c033e85264ba0329d36e08f05ee16ca618f7ab109d4c48f610308fc0aa",
+    "warm_cache.py": "269b2640749f49dcd4887cafc22f42461aab4fe55cc1594262089f5f9ca4f9ff",
+    "PoolCustodyFixture.sol": "1f423528c40a6b533fc63d7fd329cd22255bdcba088044316b22a50b349ec05a"
+  },
+  "production_approved": false
+}

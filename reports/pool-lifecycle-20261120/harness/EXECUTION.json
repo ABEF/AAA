@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "started_utc": "2026-11-20T17:38:53.299399+00:00",
+  "elapsed_seconds": 0.48399999999674037,
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "reports\\pool-lifecycle-20261120\\harness\\check_prepared_driver.py"
+  ],
+  "returncode": 0,
+  "test_source_sha256": "68a88bfef71101972c90c39d295350ca9b7cca9682f970cd4b98e8519fa6da96",
+  "prepared_driver_sha256": "1d34fcc272a8623088682333af8e6b33b57b12abaa70bc913ca5aaf2892430a5",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "d95ab393e6c3d87e4a6c2cce8e7336dd0f0fff85df6cfa6eb0928c177b2bffba",
+  "network_calls": 0,
+  "actual_nodes_or_processes_started": 0,
+  "new_offline_controls": 8,
+  "old_tests_rerun": false,
+  "scope": "Prepared report-driver behavior using fake transport/process only, not EVM or production security acceptance"
+}

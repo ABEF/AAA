@@ -1,0 +1,37 @@
+{
+  "successful": true,
+  "original_active_L": "0",
+  "new_initial_L": "180704995773128430458",
+  "new_increased_L": "198775495350441273503",
+  "ticks": [
+    121400,
+    132600
+  ],
+  "collected_ETH": "10009999999",
+  "collected_ZZZ": "1409486118578156",
+  "repeat_harvest_no_new_income": true,
+  "actual_failed_growth_rollback": true,
+  "principal_before_close": [
+    "110000499938733592",
+    "20090434875760894260190"
+  ],
+  "final_custody_native": "110000509948733591",
+  "final_custody_ZZZ": "569502797994530429659082",
+  "final_active_L": "0",
+  "manager_child_residuals_zero": true,
+  "source_unchanged": true,
+  "production_approved": false,
+  "control_seams": [
+    "MockAccess",
+    "typed fixture custody/budget/asset admission book",
+    "correlated USD feed pair",
+    "local balance substitutions"
+  ],
+  "excluded": [
+    "Entry activation/growth accounting",
+    "NFT shares/rewards allocation",
+    "independent source qualification",
+    "external depth",
+    "production gas/fees or operation"
+  ]
+}

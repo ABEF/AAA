@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "files": {
+    "probe_candidates.py": {
+      "bytes": 5557,
+      "sha256": "6c1f93aa4d5014e661e7f0e172955913e4e176be3441628ed743b22d1ed3820a"
+    },
+    "probe-candidates-sandbox.py.txt": {
+      "bytes": 5549,
+      "sha256": "2bc0b8df082d90ff3cc135e6a45c1f621ab3f1f103bd243d98ab96450744017f"
+    },
+    "capture/RESULT.json": {
+      "bytes": 2172,
+      "sha256": "7c6992b145c7fe4c5a0b13b6a7b62675648a89f120c5ef833d8ad33e93fa2029"
+    },
+    "capture-network/RESULT.json": {
+      "bytes": 3602,
+      "sha256": "0e7cf87c1368119f4a294b0fe91465e5c022e05253dce4f6922fa5e1e7d34b9f"
+    },
+    "capture-network/response-01.json": {
+      "bytes": 64643,
+      "sha256": "6d7e81518e891f97464a2e4b6a4bf99c1e39988e864dd5a0a5de141a072e7b45"
+    },
+    "capture-network/response-02.json": {
+      "bytes": 42,
+      "sha256": "32105525c2fd6d4b0e3cb05db2622f4d9156a5277f1ac34da121c580af7eca4d"
+    },
+    "capture-network/response-03.json": {
+      "bytes": 282,
+      "sha256": "f71063b7dc8dcbc6983f606265f8665ecb1b43943ca70f6a51f25ebc2a00436d"
+    }
+  }
+}

@@ -1,5 +1,11 @@
 # Feature and evidence reference
 
+[Current supplied-pool lifecycle evidence](../reports/pool-lifecycle-20261120/REVIEW.md)
+verifies the current Manager physical LP on an isolated real-core fork, including
+rollback/fees/no-repeat/close and cleared permissions. Eight offline driver controls,
+two deadline controls and two Cast cases have their own source scopes. No production
+routing, Entry/NFT, hybrid, actual source/provider or release acceptance is added.
+
 The [latest recommendation
 execution](../reports/recommendations-execution-20261120/REVIEW.md) reuses completed
 finite evidence, qualifies optional separate maximum-state synchronization and adds nine

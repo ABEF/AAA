@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "kind": "interpretation_of_saved_wire_verification_not_new_execution",
+  "positive_transactions": 38,
+  "positive_preflights": "Each has original full-cap call, estimate response, full25% padded call and identical included gas envelope.",
+  "intended_negative_transactions": 1,
+  "negative_preflight": "Exact Slippage full-cap simulation; fixed1M actual transaction; gasUsed858751 is below provided1M. No successful estimate or second padded eth_call is claimed for this expected revert.",
+  "parent_summary_flag": "immutable_original_full_and_padded_input_envelopes_verified describes source-faithful capture, with the positive/negative distinction above; it does not imply39 successful estimated envelopes.",
+  "actual_execution_timestamps": "Not independently recovered for all6 operations; reviewed head hashes/calldata TTL300 are bound and unchanged deadline guard executes. Close alone also has an exact matching latest header in the state-capture artifact.",
+  "aggregate_new_online_public_posts": 107,
+  "aggregate_cache_hits": 314,
+  "aggregate_http429": 0,
+  "aggregate_retries": 0,
+  "all_owned_nodes_stopped": true,
+  "production_approved": false
+}

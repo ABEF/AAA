@@ -1,5 +1,12 @@
 # Whole-project workload coverage
 
+The [new physical-LP partition](../reports/pool-lifecycle-20261120/REVIEW.md) adds
+actual current Manager/native venue proof with explicit control/price/funding fixtures.
+It does not relabel old accounting3 results, replay the normal suites, or close
+production routing/Entry/NFT/hybrid/actual-market obligations.38 positive local
+submissions and1 intended failure are a journey, not39 test methods. Source inventory
+remains179 production Python files/1,979 definitions and the unchanged F6 graph.
+
 The [current readiness advance](../reports/readiness-advance-20261120/REVIEW.md)
 adds a strict offline saved-mint intent reviewer to the existing OpenSea tool.
 Only that production Python module changes in this advance:179files/1,979named

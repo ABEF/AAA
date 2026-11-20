@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "kind": "read_only_final_publication_and_preservation_check",
+  "baseline": "4b6497be76191a8a3a5295267b4706f811d5a899",
+  "original_archives_verified": 14,
+  "protected_unrelated_dirty_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "source_inventory_check": "passed unchanged d0a2de1c507c2540a61f438e9d6aba160919966c52aabaf455ca9f70d3f46e97",
+  "todo_check": "passed",
+  "stable_task_ids": 83,
+  "task_counts": {
+    "done": 35,
+    "progress": 40,
+    "excluded": 1,
+    "todo": 7
+  },
+  "archive_members_verified": 89,
+  "RPC_capture_files_verified": 7,
+  "report_scripts_syntax_checked": 9,
+  "new_local_links_checked": 34,
+  "offline_harness_controls": 8,
+  "offline_deadline_controls": 2,
+  "offline_Cast_parser_cases": 2,
+  "included_positive_transactions": 38,
+  "intended_failed_transactions": 1,
+  "original_full_and_padded_capture_verified_with_negative_scope": true,
+  "internal_second_agent_read_only_review": "completed; not an independent production audit",
+  "production_source_profile_or_right_change": false,
+  "unchanged_tests_rerun": false,
+  "running_environments_changed": false,
+  "production_approved": false
+}

@@ -347,3 +347,6 @@ zzz_ops/opensea_drop.py -text whitespace=cr-at-eol
 tests_python/test_opensea_mint_review.py -text whitespace=cr-at-eol
 # Preserve exact new recommendation-execution diagnostics and receipt bytes.
 reports/recommendations-execution-20261120/** -text whitespace=cr-at-eol
+# Keep fixed-anchor pool lifecycle source, captures and receipts byte-identical.
+reports/pool-lifecycle-20261120/** -text whitespace=cr-at-eol
+reports/pool-lifecycle-20261120/harness/unittest.stderr whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

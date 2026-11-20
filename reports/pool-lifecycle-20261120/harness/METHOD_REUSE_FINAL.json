@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "kind": "fresh_static_AST_comparison_no_test_rerun",
+  "prepared_sha256": "1d34fcc272a8623088682333af8e6b33b57b12abaa70bc913ca5aaf2892430a5",
+  "frozen_executed_driver_sha256": "500d6cf389830184fe3658857b534f37ecd332346f81714eb42005fac92afab1",
+  "AST_equivalent_methods": {
+    "call": true,
+    "__enter__": true,
+    "__exit__": true
+  },
+  "new_fixture_LOCAL_method": "evm_mine; still requires owned listener and is not public-proxy allowlisted",
+  "changed_send_and_deadline_methods_have_separate_scope": true,
+  "old_tests_rerun": false,
+  "earlier_comparison": "METHOD_REUSE.json retains its earlier source scope; this fresh comparison supersedes it for current500d source."
+}

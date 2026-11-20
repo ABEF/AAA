@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "kind": "read_only_AST_body_equivalence_not_additional_execution",
+  "prepared_source": "reports/recommendations-execution-20261120/pool/run_pool.py",
+  "prepared_sha256": "1d34fcc272a8623088682333af8e6b33b57b12abaa70bc913ca5aaf2892430a5",
+  "new_run_source": "reports/pool-lifecycle-20261120/run/run_pool.py",
+  "new_run_sha256": "8d9b049b95f7ea8ca04cb9717b61c4509215cfd6d39d4077a1f84aa90ee6047c",
+  "unchanged_tested_methods": {
+    "call": true,
+    "__enter__": true,
+    "__exit__": true
+  },
+  "changed_methods_include": [
+    "send"
+  ],
+  "changed_method_limit": "New per-operation fixture cap and stricter included transaction checks retain own runtime/source verification; eight controls are not relabeled as a complete fresh-driver suite.",
+  "old_tests_rerun": false
+}

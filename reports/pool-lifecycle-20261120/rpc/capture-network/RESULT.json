@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "kind": "finite_read_only_public_RPC_candidate_screen",
+  "block": 119107223,
+  "block_hash": "0x13f4c5b0ff38d2e13f17b12b1af8b0894b8d642d8aa1093083441e30e2ed9335",
+  "elapsed_seconds": 1.1560000000026776,
+  "maximum75_seconds": true,
+  "maximum8_RPC_per_candidate": true,
+  "retries": 0,
+  "requests": [
+    {
+      "label": "blockvectra-public-policy",
+      "public_url": "https://api.blockvectra.com/v1/chains",
+      "observed_utc": "2026-11-20T17:38:17.715034+00:00",
+      "request_bytes_sha256": null,
+      "request": null,
+      "elapsed_start": 0.0,
+      "status": 200,
+      "elapsed_end": 0.20299999999406282,
+      "response_file": "response-01.json",
+      "response_bytes": 64643,
+      "response_sha256": "6d7e81518e891f97464a2e4b6a4bf99c1e39988e864dd5a0a5de141a072e7b45"
+    },
+    {
+      "label": "blockvectra-chain",
+      "public_url": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "observed_utc": "2026-11-20T17:38:17.914675+00:00",
+      "request_bytes_sha256": "6e32966af65d035f43046ba9f6e5ea5d7bfec0d218b114f3ed513c89c4b145dd",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "eth_chainId",
+        "params": []
+      },
+      "elapsed_start": 0.20299999999406282,
+      "status": 200,
+      "elapsed_end": 0.3600000000005821,
+      "response_file": "response-02.json",
+      "response_bytes": 42,
+      "response_sha256": "32105525c2fd6d4b0e3cb05db2622f4d9156a5277f1ac34da121c580af7eca4d"
+    },
+    {
+      "label": "blockvectra-fixed-header",
+      "public_url": "https://api.blockvectra.com/v1/robinhood_mainnet/public",
+      "observed_utc": "2026-11-20T17:38:18.578076+00:00",
+      "request_bytes_sha256": "ce728602246f1479e80692c72ae4151a11b257804763b7b12850ce0ae107e0c4",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "0x7196e97",
+          false
+        ]
+      },
+      "elapsed_start": 0.8600000000005821,
+      "status": 200,
+      "elapsed_end": 1.0310000000026776,
+      "response_file": "response-03.json",
+      "response_bytes": 282,
+      "response_sha256": "f71063b7dc8dcbc6983f606265f8665ecb1b43943ca70f6a51f25ebc2a00436d",
+      "rpc_error": {
+        "code": -32011,
+        "message": "block reference is outside the public history window",
+        "data": {
+          "reason": "state_window",
+          "docs_url": "https://docs.blockvectra.com/en/errors/#state_window",
+          "retryable": false,
+          "request_id": "01a1fa09-a618-728e-b35d-232247a2b881"
+        }
+      }
+    },
+    {
+      "label": "official-chain",
+      "public_url": "https://rpc.mainnet.chain.robinhood.com",
+      "observed_utc": "2026-11-20T17:38:18.739472+00:00",
+      "request_bytes_sha256": "b7eb856907edb10efe3aab93404d9d68c0fce9f52acc8b614837da7b860771fe",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "eth_chainId",
+        "params": []
+      },
+      "elapsed_start": 1.0310000000026776,
+      "status": 403,
+      "retry_after": null,
+      "elapsed_end": 1.1560000000026776
+    }
+  ],
+  "results": {
+    "catalog_received": true,
+    "blockvectra": {
+      "read_calls": 2,
+      "qualified": false,
+      "stop": "fixed_anchor_unavailable_or_mismatch"
+    },
+    "official": {
+      "read_calls": 1,
+      "qualified": false,
+      "stop": "chain_unavailable_or_mismatch"
+    }
+  },
+  "credentials_used": false,
+  "writes_or_signing": false,
+  "production_approved": false,
+  "source_sha256": "6c1f93aa4d5014e661e7f0e172955913e4e176be3441628ed743b22d1ed3820a"
+}

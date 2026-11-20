@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Supplied-pool physical lifecycle](pool-lifecycle-20261120/REVIEW.md) completes the new
+current-F6 Manager journey on an isolated fork. Exact wire/receipt/fee/close/rollback
+proof, authenticated cache provenance, negative RPC screens and all fixture failures are
+retained. This is scoped LP adapter evidence, not production routing, full NFT economics
+or release approval.
+
 [Ten-recommendation execution](recommendations-execution-20261120/REVIEW.md) records
 exact chat pointers, reused finite evidence, new optional maximum-state preparation,
 source-pinned platform diagnostics/custom Merkle preparation and a partial current-pool

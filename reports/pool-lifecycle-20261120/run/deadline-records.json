@@ -1,0 +1,50 @@
+[
+  {
+    "block": "0x7196eb5",
+    "hash": "0xa0951309e3d045f265a44c188ed0bd6e30345285441fbbf6cc7c03f1410784a3",
+    "timestamp": 1795183667,
+    "deadline": 1795183967,
+    "TTL_seconds": 300,
+    "owned_empty_block_refresh": true
+  },
+  {
+    "block": "0x7196eb7",
+    "hash": "0xae319268df7d97be9c14aace185611564b4ccd319ef829fd2a09e3e87b8bef00",
+    "timestamp": 1795183669,
+    "deadline": 1795183969,
+    "TTL_seconds": 300,
+    "owned_empty_block_refresh": true
+  },
+  {
+    "block": "0x7196eb9",
+    "hash": "0xf7fb92050e92fa5d6ba7212c30a760a1092d6a944443c1b854327980b5a49c38",
+    "timestamp": 1795183671,
+    "deadline": 1795183971,
+    "TTL_seconds": 300,
+    "owned_empty_block_refresh": true
+  },
+  {
+    "block": "0x7196ebf",
+    "hash": "0xaa9e83f4c7ac9af11060c2c2ea62626f01d608d34611233fef841b761217f2be",
+    "timestamp": 1795183679,
+    "deadline": 1795183979,
+    "TTL_seconds": 300,
+    "owned_empty_block_refresh": true
+  },
+  {
+    "block": "0x7196ec1",
+    "hash": "0xa8ffb2c383053a010dd5883d01f8f2866cb7b5c85c9b77dab29da3498a973b93",
+    "timestamp": 1795183679,
+    "deadline": 1795183979,
+    "TTL_seconds": 300,
+    "owned_empty_block_refresh": true
+  },
+  {
+    "block": "0x7196ec3",
+    "hash": "0x677b867f8cde11a9d631d1b8cfc8bbf191c7798a8d49f17d6192aa8422d6f92f",
+    "timestamp": 1795183680,
+    "deadline": 1795183980,
+    "TTL_seconds": 300,
+    "owned_empty_block_refresh": true
+  }
+]

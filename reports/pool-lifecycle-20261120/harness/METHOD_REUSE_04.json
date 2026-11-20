@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "kind": "final04_static_AST_scope_no_test_rerun",
+  "prepared_source_sha256": "1d34fcc272a8623088682333af8e6b33b57b12abaa70bc913ca5aaf2892430a5",
+  "successful_driver_sha256": "0ba103a4a98e71057c224ca2f5e798311519620625185a217a49850f80885cc9",
+  "AST_equivalent_methods": {
+    "call": true,
+    "__enter__": true,
+    "__exit__": false
+  },
+  "changed_methods_scope": [
+    "send has stricter envelope checks and per-operation fixture cap",
+    "__exit__ adds owned-state snapshot before cleanup",
+    "deadline and ABI Boolean helpers have separate new offline controls"
+  ],
+  "positive_actual_cleanup_evidence": "../run/VERIFICATION.json confirms stopped owned node and no pending submission; no unexecuted failure guarantee",
+  "old_tests_rerun": false,
+  "earlier_comparison_scopes": "METHOD_REUSE and METHOD_REUSE_FINAL preserve earlier sources; neither is relabeled as the entire04 driver."
+}

@@ -1,5 +1,11 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+The [current physical LP rehearsal](reports/pool-lifecycle-20261120/REVIEW.md) passes
+Manager mint/increase, guarded rollback, funded fee collection/no-repeat and closure on
+an isolated fork of the supplied pool. The final cached run has19 public read requests
+and no rate-limit refusal. Production routing, Entry/NFT accounting and
+actual-market/provider approval remain separate.
+
 The [recommendation execution](reports/recommendations-execution-20261120/REVIEW.md)
 consolidates ten recent recommendations, verifies a separately paid maximum-state
 preparation option and adds reproducible platform compatibility diagnostics. Direct

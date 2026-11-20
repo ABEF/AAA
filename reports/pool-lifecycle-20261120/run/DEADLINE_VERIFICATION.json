@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "kind": "new_saved_deadline_binding_check_no_execution",
+  "LP_operations_bound": 6,
+  "calldata_last_word_equals_reviewed_deadline": true,
+  "reviewed_head_hash_number_timestamp_match_wire": true,
+  "deadline_TTL_seconds": 300,
+  "receipt_in_next_owned_block": true,
+  "execution_timestamp_independently_recovered": false,
+  "execution_guard_acceptance_basis": "Five successful actual contract receipts and one intended Slippage failure under unchanged source deadline guard; receipt timestamps are absent, not fabricated.",
+  "network_calls": 0,
+  "EVM_tests_rerun": false,
+  "production_approved": false
+}

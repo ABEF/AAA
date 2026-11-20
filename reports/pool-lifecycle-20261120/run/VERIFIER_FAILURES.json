@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "stage1_sha256": "9a9188b19ce9ff5ca32975cd85df60f1394bf4e8754fe82c113fa4ed36b290ea",
+  "reason": "Setup labels legitimately repeat for bind/feed calls; initial verifier incorrectly required every label globally unique. Corrected to require uniqueness for exact physical-LP phase labels only. No newEVMrun or artifact was produced by this failure.",
+  "scope": "report-only analysis correction"
+}

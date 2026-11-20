@@ -1,5 +1,12 @@
 # Engineering roadmap and production qualification plan
 
+[Current physical-LP verification](../reports/pool-lifecycle-20261120/REVIEW.md)
+completes the earlier interrupted P07 Manager partition under explicit fixtures; P04/P05
+gain bounded read-only/cache evidence only. The final warm run uses19 live reads
+without429; the full online campaign retains107 reads. No actual route/feed/provider/fee
+or full Entry/NFT acceptance closes. All23 packages/83 task IDs and separate release
+gates remain.
+
 [Latest recommendation
 execution](../reports/recommendations-execution-20261120/REVIEW.md) consolidates ten
 exact chat recommendations with this plan. P06 gains a separately paid optional

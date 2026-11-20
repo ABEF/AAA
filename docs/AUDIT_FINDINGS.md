@@ -1,5 +1,13 @@
 # Consolidated audit findings and evidence
 
+[Current physical LP proof](../reports/pool-lifecycle-20261120/REVIEW.md) completes the
+earlier interrupted partition: mint/increase, same-budget minimum-L rollback, external
+test-trader fee generation, real harvest/no-repeat and exact close/burn/cleared
+allowances. Source-bound wire verifies38 positive receipts plus1 intended failure;
+control/price/funding fixtures remain explicit. No source-contract finding, changed
+safeguard or production approval is inferred. Report-wrapper deadline/Boolean defects
+and all failed stages stay preserved.
+
 [Ten-recommendation
 reconciliation](../reports/recommendations-execution-20261120/REVIEW.md) reuses
 completed finite evidence without rerunning it. New optional synchronization puts the

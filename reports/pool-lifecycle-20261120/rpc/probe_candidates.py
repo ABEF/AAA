@@ -1,0 +1,102 @@
+"""Finite public read-only candidate screen; no accounts, keys, retries or writes."""
+from pathlib import Path
+from datetime import datetime, timezone
+import hashlib
+import json
+import threading
+import time
+import urllib.error
+import urllib.request
+
+OUT = Path(__file__).resolve().parent / 'capture-network'
+OUT.mkdir(exist_ok=False)
+BLOCK = 119107223
+HASH = '0x13f4c5b0ff38d2e13f17b12b1af8b0894b8d642d8aa1093083441e30e2ed9335'
+STATE = '0xf3334192d15450cdd385c8b70e03f9a6bd9e673b'
+CORE = '0x8366a39cc670b4001a1121b8f6a443a643e40951'
+CAP = 262144
+rows = []
+started = time.monotonic()
+deadline = started + 75
+
+class NoRedirects(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *args):
+        return None
+
+def request(label, url, method=None, params=None):
+    remaining = deadline - time.monotonic()
+    if remaining < 1:
+        raise RuntimeError('Total deadline reached')
+    body = None if method is None else json.dumps({'jsonrpc':'2.0','id':len(rows)+1,'method':method,'params':params},separators=(',',':')).encode()
+    row = {'label':label,'public_url':url,'observed_utc':datetime.now(timezone.utc).isoformat(),'request_bytes_sha256':None if body is None else hashlib.sha256(body).hexdigest(),'request':None if body is None else json.loads(body),'elapsed_start':time.monotonic()-started}
+    rows.append(row)
+    outcome = {}
+    done = threading.Event()
+    timeout = min(12, remaining)
+    def perform():
+        try:
+            req = urllib.request.Request(url,body,{'Content-Type':'application/json','Accept':'application/json'},method='GET' if body is None else 'POST')
+            opener = urllib.request.build_opener(urllib.request.ProxyHandler({}),NoRedirects())
+            with opener.open(req,timeout=timeout) as response:
+                outcome['status'] = response.status
+                outcome['raw'] = response.read(CAP+1)
+        except urllib.error.HTTPError as error:
+            outcome['status'] = error.code
+            outcome['retry_after'] = error.headers.get('Retry-After')
+            error.close()
+        except BaseException as error:
+            outcome['error_class'] = type(error).__name__
+        finally:
+            done.set()
+    threading.Thread(target=perform,daemon=True).start()
+    if not done.wait(timeout):
+        row['failure'] = 'absolute_request_deadline_no_retry'
+        raise RuntimeError(row['failure'])
+    row.update({k:v for k,v in outcome.items() if k != 'raw'})
+    row['elapsed_end'] = time.monotonic()-started
+    raw = outcome.get('raw')
+    if raw is None or outcome.get('status') != 200:
+        return None
+    if len(raw)>CAP:
+        row['failure'] = 'response_byte_limit'
+        return None
+    filename = f'response-{len(rows):02d}.json'
+    (OUT/filename).write_bytes(raw)
+    row.update(response_file=filename,response_bytes=len(raw),response_sha256=hashlib.sha256(raw).hexdigest())
+    result=json.loads(raw)
+    if body is not None:
+        if not isinstance(result,dict) or result.get('jsonrpc')!='2.0' or result.get('id')!=len(rows) or ('result'in result)==('error'in result):
+            row['failure']='invalid_RPC_envelope';return None
+        if 'error'in result:
+            row['rpc_error']=result['error'];return None
+        return result['result']
+    return result
+
+results = {}
+try:
+    catalog=request('blockvectra-public-policy','https://api.blockvectra.com/v1/chains')
+    results['catalog_received']=isinstance(catalog,dict)
+    for name,url in [('blockvectra','https://api.blockvectra.com/v1/robinhood_mainnet/public'),('official','https://rpc.mainnet.chain.robinhood.com')]:
+        candidate={'read_calls':0,'qualified':False}
+        results[name]=candidate
+        chain=request(name+'-chain',url,'eth_chainId',[]);candidate['read_calls']+=1
+        if chain!='0x1237':candidate['stop']='chain_unavailable_or_mismatch';continue
+        time.sleep(.5)
+        header=request(name+'-fixed-header',url,'eth_getBlockByNumber',[hex(BLOCK),False]);candidate['read_calls']+=1
+        if not isinstance(header,dict) or header.get('hash')!=HASH or header.get('number')!=hex(BLOCK):
+            candidate['stop']='fixed_anchor_unavailable_or_mismatch';continue
+        time.sleep(.5)
+        code=request(name+'-state-view-code',url,'eth_getCode',[STATE,hex(BLOCK)]);candidate['read_calls']+=1
+        if not isinstance(code,str) or not code.startswith('0x') or len(code)<4:
+            candidate['stop']='fixed_code_unavailable';continue
+        time.sleep(.5)
+        storage=request(name+'-core-storage',url,'eth_getStorageAt',[CORE,'0x0',hex(BLOCK)]);candidate['read_calls']+=1
+        if not isinstance(storage,str) or len(storage)!=66:
+            candidate['stop']='fixed_storage_unavailable';continue
+        candidate.update(finite_fixed_header_code_storage_positive=True,stop='screen_complete_not_fork_or_capacity_qualification')
+except BaseException as error:
+    results['bounded_stop']=type(error).__name__
+finally:
+    report={'schema':1,'kind':'finite_read_only_public_RPC_candidate_screen','block':BLOCK,'block_hash':HASH,'elapsed_seconds':time.monotonic()-started,'maximum75_seconds':True,'maximum8_RPC_per_candidate':True,'retries':0,'requests':rows,'results':results,'credentials_used':False,'writes_or_signing':False,'production_approved':False,'source_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
+    (OUT/'RESULT.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8',newline='\n')
+    print(json.dumps({'requests':len(rows),'results':results,'elapsed_seconds':report['elapsed_seconds']}))

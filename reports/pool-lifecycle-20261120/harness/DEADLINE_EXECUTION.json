@@ -1,0 +1,12 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "reports\\pool-lifecycle-20261120\\harness\\check_deadline_helper.py"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 0.10899999999674037,
+  "test_source_sha256": "e15f51c96dc5b1d282a6204a538d848e29d3314a06a535139decfd2e1168017d",
+  "stdout_sha256": "c200880a848588aaf23d978b654e216329081e2e26c0da2c14d208e124b1612d",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "old_tests_rerun": false
+}

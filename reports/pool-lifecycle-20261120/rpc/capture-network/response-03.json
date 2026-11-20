@@ -1,0 +1,1 @@
+{"jsonrpc":"2.0","id":3,"error":{"code":-32011,"message":"block reference is outside the public history window","data":{"reason":"state_window","docs_url":"https://docs.blockvectra.com/en/errors/#state_window","retryable":false,"request_id":"01a1fa09-a618-728e-b35d-232247a2b881"}}}

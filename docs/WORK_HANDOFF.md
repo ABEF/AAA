@@ -1,5 +1,18 @@
 # Work handoff
 
+## Current supplied-pool lifecycle verification
+
+[Current report](../reports/pool-lifecycle-20261120/REVIEW.md). The current F6 physical
+LP rehearsal passed on the supplied pool at pinned block119107223. Real Manager
+mint/increase, an intended Slippage rollback, fee collection/no-repeat and
+close/burn/cleared balances were reconciled from saved wire. External test-trader swaps
+generated the fees; production routing, Entry/NFT accounting and
+hybrid/actual-market/provider/fee approval remain separate. The final warm run has38
+positive receipts plus1 intended failure,19 live public reads and no429;107 live reads
+across the online attempts are retained. All owned nodes are stopped. No production
+source, financial right, safeguard, profile, live environment or existing journal
+changes. Reuse valid old evidence; no unchanged suite rerun.
+
 ## Consolidated recommendations and new execution
 
 The operator selected custom OpenSea qualification using the CURRENT Merkle design.
@@ -15,7 +28,7 @@ separate24M/full25% and32M/full20% profiles; activation pads to27,734,834. This 
 work to a separate operator-paid transaction, not a direct cold-gas fix.
 The476,135-estimate direct shortfall stays open. Nine source/ABI/arithmetic platform
 diagnostics preserve exact mint and original-request rules; no signed authority or
-provider is adopted. The new pool attempt captured pristine state and12 local setup receipts, then stopped under repeated provider429; no LP lifecycle pass is claimed. No
+provider is adopted. The earlier recommendation campaign stopped after12 setup receipts under provider429; the later completed physical partition has its own scope above. No
 production source, limit, financial right, signer, website, service or journal changes.
 
 **Testing target clarified, 20 November 2026:** the supplied pool

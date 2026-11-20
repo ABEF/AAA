@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "date": "2026-11-20",
+  "baseline": "4b6497be76191a8a3a5295267b4706f811d5a899",
+  "kind": "finite_read_only_candidate_screen_not_provider_acceptance",
+  "selected_block": 119107223,
+  "selected_hash": "0x13f4c5b0ff38d2e13f17b12b1af8b0894b8d642d8aa1093083441e30e2ed9335",
+  "restricted_transport_attempts": 3,
+  "network_attempts": 4,
+  "network_RPC_reads": 3,
+  "network_catalog_GET": 1,
+  "retries": 0,
+  "credentials_used": false,
+  "public_writes": 0,
+  "candidate_results": {
+    "official": "HTTP403 at chainId; stop without retry",
+    "blockvectra": "4663 identity positive; selected historical header refused outside900-block state window; no code/storage reads attempted",
+    "pinax": "No new probe; existing exact-url-only cache helper/prior429 evidence reused"
+  },
+  "blockvectra_observed_catalog": {
+    "state_window_blocks": 900,
+    "public_history_blocks": 900,
+    "public_rate_limit": {
+      "per_ip_rps": 3,
+      "burst": 20,
+      "batch_max": 10
+    },
+    "public_pool": {
+      "in_flight": 1,
+      "heavy_in_flight": 1,
+      "cu_per_sec": 1250
+    }
+  },
+  "archive_alternative_qualified": false,
+  "production_approved": false,
+  "limitations": [
+    "Only two anonymous documented candidates screened; not a global provider search or no-provider assertion.",
+    "No registration, endpoint purchase, key use, trace, fork or complete PoPL operation test.",
+    "Catalogue policy can change; keyed access alone does not prove archive retention or capacity.",
+    "Provider-supported archive products are leads, not selected tiers or independently qualified service."
+  ]
+}
