@@ -38,8 +38,10 @@ Fixture depth and correlated controlled prices remain synthetic. Only the
 owned clock and controlled feed timestamps are aligned with Ubuntu UTC; their
 answers remain unchanged. None of this qualifies live markets or Robinhood fees.
 
-A new encrypted disposable signer is funded/authorized only on the owned fork.
-No private key, password, encrypted keystore or raw signed payload is exported.
+A new encrypted disposable signer was created; funding was attempted only on
+the owned fork, and its keeper authorization was not established. This is
+preparation evidence, not a completed signing run. No private key, password,
+encrypted keystore or raw signed payload was exported.
 The worker must use the unchanged stock `python3 -m keeper.monitor --live`
 entry point and real pinned Cast, with the existing 24M/full-25% maintenance
 profile and hourly harvest interval. Optional jobs are explicitly disabled in
@@ -156,9 +158,10 @@ Future separately reviewed execution still needs to establish:
   and recovery, then intentional stop without an unintended restart.
 - All owned processes/units stopped and installed-service baseline preserved.
 
-`Vault.collectFees` is permissionless under its lifecycle/custody guards. Its
-receipt proves this signing/recovery journey, not privileged rebalance
-authorization. Fresh signer-role admission is a separate check.
+`Vault.collectFees` is permissionless under its lifecycle/custody guards. An
+actually observed receipt would prove that signing/recovery journey, not
+privileged rebalance authorization. No such live-daemon receipt was produced
+in this attempt. Fresh signer-role admission remains a separate check.
 
 ## Remaining release limits
 

@@ -43,9 +43,10 @@ sequences and source-bound evidence. No inventory count is a dynamic pass rate.
 - 1,056 implemented project Solidity definitions and29 modifiers from the
   authenticated compiler AST;511 bodyless declarations remain separately labelled.
 - Eight internal-only objects are included, beyond the public ABI catalogue.
-- 179 production Python files and1,979 named lexical definitions:1,799 functions
-  and180 classes, including nested helpers. The anonymous-code supplement also
-  records276 lambdas and2 named project Yul helpers. This is source inventory, not a claim that each body was exercised.
+- 179 production Python files and1,980 named lexical definitions:1,800 functions
+  and180 classes, including nested helpers. The [current anonymous-code inventory](../reports/last48h-audit-20261121/ANONYMOUS_CODE_INVENTORY.json)
+  records278 lambdas and2 named project Yul helpers. Earlier supplements retain
+  their own source scope. Inventory does not establish execution coverage.
 
 The [separate published website scope](../reports/whole-workload-review-20261119/WEBSITE_SOURCE_SCOPE.json)
 adds29 production JavaScript modules/1,178 function nodes and39 test/helper

@@ -2,6 +2,10 @@
 
 ## Ubuntu preparation and focused keeper fixes — 21 November 2026
 
+The [48-hour re-audit](../reports/last48h-audit-20261121/REVIEW.md) reviews15commits/five changed Python modules;
+no additional confirmed production defect was found. Coverage labels and
+qualification wording were corrected; old test/runtime evidence was not rerun.
+
 [Current review](../reports/ubuntu-keeper-20261121/REVIEW.md) records FOUR confirmed
 Python corrections: reject zero signer hashes without poisoning durable intent;
 match profile2 diagnostic fee envelopes; authenticate tracked confirmation
@@ -70,8 +74,9 @@ acceptance packages and83stable tasks, then adds offline saved-mint intent revie
 to the EXISTING OpenSea preparation tool.14new focused methods and one current-
 source illustrative CLI example pass; no unchanged test suite rerun. Original
 transaction data stays unchanged and every live-readiness gate remainsfalse.
-Use the new function inventory (179files/1,979definitions); only opensea_drop.py
-changes in production Python. Existing self-source-bound OpenSea artifacts must
+That advance used its historical179file/1,979definition inventory; only
+opensea_drop.py changed in production Python at that stage. Use the current
+inventory above for the later1,980definition source. Existing self-source-bound OpenSea artifacts must
 be rebuilt/reviewed explicitly; do not relabel old manifests. service.py and all
 Solidity profiles/runtime/codec/checkpoint identities remain unchanged.
 

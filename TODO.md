@@ -1282,6 +1282,7 @@ Three required testing layers, with source-bound evidence.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [48-hour audit](reports/last48h-audit-20261121/REVIEW.md): reviewed15commits and five changed production Python modules; no additional confirmed production defect found. Corrected ambiguous Ubuntu authorization/receipt wording, current inventory labels and stale anonymous-code coverage (278lambdas/1980named definitions). Verified11archive outer hashes and940payload hashes offline, without dynamic test/RPC/service reruns. Earlier evidence retains exact source scope; no task/release gate closed.
   - The [day audit verification](reports/day-readiness-20261025/VERIFICATION.md) adds3project EVM cases,4isolated Access gas comparisons and83distinct Python methods across scoped runs. New native tests independently exercise partial exact-input rejection and intended uint128 bounds.37normal gates reuse exact75-source bindings;265-input AST refreshed for one changed test. Earlier full/regional counts retain their original scope; no new full regression is claimed.
   - [Full audit verification](reports/full-audit-20261025/VERIFICATION.md):11distinct scoped Python passes (9new/2compatibility), one new cold-capacity optional-currency gas case at9,591,082<12M,265closed AST inputs, fresh actual399-flag Slither triage and37unchanged object lengths from successful solc output. Forge postcompile signature-cache CLI failure and analyzer bootstrap repair remain explicit; no unchanged broad suite rerun or full release approval.
   - [Additional audit verification](reports/confirmation-followup-20261028/VERIFICATION.md):399distinct affected Python methods,398pass/1explicit missing-cast skip,53new. Retained failed attempts have explicit corrected-case receipts; counts are not summed across overlap. Unchanged217Solidity/39normal gates reused only after exact source/test/dependency/build comparison.
@@ -1877,4 +1878,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `6be3e2a0cb68fe9dd2e8aeb622c24b7fa2504d9fcd555b6fdeb7b804d2d3cf8c`.
+Snapshot SHA-256: `0b730399ceab73ed2f1b3bfd92ac9aef1ea649551dffdda2e2cd25dd4d858b62`.

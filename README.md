@@ -1,5 +1,9 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+[48-hour audit](reports/last48h-audit-20261121/REVIEW.md): five changed production modules reviewed,
+with no additional confirmed code defect. Corrected evidence wording and current
+coverage inventories; no new operating or release qualification is claimed.
+
 [Current keeper review](reports/ubuntu-keeper-20261121/REVIEW.md) fixes four
 recovery, locking and diagnostic inconsistencies, verified by18 focused checks
 including8 on Ubuntu. The full normal-daemon/real-Cast Ubuntu rehearsal remains

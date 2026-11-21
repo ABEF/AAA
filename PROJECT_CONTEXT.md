@@ -2,6 +2,10 @@
 
 ## Ubuntu preparation and focused keeper fixes — 21 November 2026
 
+The [48-hour re-audit](reports/last48h-audit-20261121/REVIEW.md) reviews15commits/five changed Python modules;
+no additional confirmed production defect was found. Coverage labels and
+qualification wording were corrected; old test/runtime evidence was not rerun.
+
 [Current review](reports/ubuntu-keeper-20261121/REVIEW.md) records FOUR confirmed
 Python corrections: reject zero signer hashes without poisoning durable intent;
 match profile2 diagnostic fee envelopes; authenticate tracked confirmation
@@ -73,8 +77,9 @@ checks normalized saved mintPublic/mintAllowList calldata against a source-bound
 manifest and explicit caller/minter/phase/quantity/time intent. Fourteen NEW
 focused methods pass in two disjoint stages, plus one illustrative current-source
 CLI example. All actual readiness flags stayfalse; no network/signing/queue.
-The maintained source inventory is now [here](reports/readiness-advance-20261120/FUNCTION_INVENTORY.json):
-179Pythonfiles/1,979named definitions; Solidity61/dependencies39/controls4 unchanged.
+That advance's historical inventory is [here](reports/readiness-advance-20261120/FUNCTION_INVENTORY.json):
+179Pythonfiles/1,979named definitions at that source. The current inventory above
+has1,980definitions; Solidity61/dependencies39/controls4 remain unchanged.
 Existing OpenSea artifacts bind this module's old hash; preserve them and rebuild/
 review new artifacts explicitly. service.py/checkpoint and runtime identities stay.
 

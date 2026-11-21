@@ -1,5 +1,9 @@
 # PoPL operator manual
 
+The [48-hour audit](../reports/last48h-audit-20261121/REVIEW.md) changes no operator functions, inputs,
+permissions or recovery steps. The Ubuntu authorization/signing journey remains
+unproved; use actual preflight/receipt evidence, not narrative fixture intentions.
+
 ## Keeper lock and recovery source adoption
 
 The [focused review](../reports/ubuntu-keeper-20261121/REVIEW.md) changes Python

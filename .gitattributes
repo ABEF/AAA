@@ -363,3 +363,5 @@ zzz_ops/state.py -text whitespace=cr-at-eol
 tests_python/test_keeper_broadcast_hash.py -text whitespace=cr-at-eol
 tests_python/test_keeper_operation_review_followup.py -text whitespace=cr-at-eol
 tests_python/test_process_lock_safety.py -text whitespace=cr-at-eol
+# Preserve the exact 48-hour audit scope and offline integrity receipts.
+reports/last48h-audit-20261121/** -text whitespace=cr-at-eol

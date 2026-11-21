@@ -1,5 +1,10 @@
 # Feature and evidence reference
 
+[48-hour source/evidence audit](../reports/last48h-audit-20261121/REVIEW.md) reuses unchanged behavior
+evidence and corrects report/inventory clarity. No feature, permission, contract,
+limit, journal or runtime changes. The18keeper methods are prior evidence,
+not rerun by this audit.
+
 [21 November keeper follow-through](../reports/ubuntu-keeper-20261121/REVIEW.md)
 adds strict nonzero broadcast-hash admission, protected persistent Unix locks
 for keeper/indexer, matching profile2 read-only simulation fee inputs and

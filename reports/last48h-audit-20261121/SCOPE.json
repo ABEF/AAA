@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "window_utc": {
+    "from": "2026-11-19T15:48:43Z",
+    "through": "2026-11-21T15:48:43Z"
+  },
+  "window_paris": "19 November2026 16:48:43 to21November2026 16:48:43 CET",
+  "reviewed_head": "83a721a0ae48561819fddb366ab0958230dc7ae5",
+  "boundary_parent": "519ff4f075022f789f46facbab56f0a944705b11",
+  "commits": [
+    {
+      "commit": "83a721a0ae48561819fddb366ab0958230dc7ae5",
+      "committed_at": "2026-11-21T16:47:31+01:00",
+      "subject": "Harden keeper recovery locks and operation diagnostics"
+    },
+    {
+      "commit": "a5570c95bbaba7472ba5370e43494b87246e0ea7",
+      "committed_at": "2026-11-21T14:04:03+01:00",
+      "subject": "Verify actual LP fee splits and current-owner payouts"
+    },
+    {
+      "commit": "33af0ab927d6724b724df99e926fedf78e4febcf",
+      "committed_at": "2026-11-20T19:50:14+01:00",
+      "subject": "Verify supplied-pool production swaps and Entry NFT flows"
+    },
+    {
+      "commit": "bb5ef4de5afc9dd8cebf4ee96d5b044477a52bf5",
+      "committed_at": "2026-11-20T19:23:01+01:00",
+      "subject": "Complete isolated current-pool physical LP lifecycle rehearsal"
+    },
+    {
+      "commit": "4b6497be76191a8a3a5295267b4706f811d5a899",
+      "committed_at": "2026-11-20T18:31:22+01:00",
+      "subject": "Consolidate recommendations and verify missing preparation workflows"
+    },
+    {
+      "commit": "c8124e6f51bbcefa86879709cae5d78036877bac",
+      "committed_at": "2026-11-20T18:05:15+01:00",
+      "subject": "Keep supplied pool available for isolated fork testing"
+    },
+    {
+      "commit": "a4720ecef3e0b0d97a1d16f8032cf751cc8b16e5",
+      "committed_at": "2026-11-20T17:58:26+01:00",
+      "subject": "Reconcile readiness and add offline mint intent review"
+    },
+    {
+      "commit": "9d1033a60029fb5b4112c28b6c8bd9015ebd0321",
+      "committed_at": "2026-11-20T17:20:55+01:00",
+      "subject": "Preserve documentation verification receipt line endings"
+    },
+    {
+      "commit": "277d74e4b6c357b80281e230b9832552d6c07f3c",
+      "committed_at": "2026-11-20T17:19:55+01:00",
+      "subject": "Synchronize current guides and correct qualification scope"
+    },
+    {
+      "commit": "b9baa01ceb2ca8520cfe058b74bc736bb7355c40",
+      "committed_at": "2026-11-20T16:55:41+01:00",
+      "subject": "Record deferred production pool selection"
+    },
+    {
+      "commit": "5653dbd32c34b9af5d7a12222f4c11a1c24370e9",
+      "committed_at": "2026-11-20T15:28:34+01:00",
+      "subject": "Expand actual market discovery and document route blockers"
+    },
+    {
+      "commit": "73658567cb605b58c992698e2103535e782269dd",
+      "committed_at": "2026-11-20T14:59:58+01:00",
+      "subject": "Qualify full claim admission and preserve safe prefixes"
+    },
+    {
+      "commit": "be5d3c75df1dcdfbd523abd0935ad37292c253d2",
+      "committed_at": "2026-11-20T13:40:19+01:00",
+      "subject": "Qualify maximum-state LP claims and reduce planner hashing"
+    },
+    {
+      "commit": "f1713c1b0b3005f6367943ceb88219cae7b786aa",
+      "committed_at": "2026-11-20T12:55:47+01:00",
+      "subject": "Rehearse current F6 construction and unsealed authority in isolation"
+    },
+    {
+      "commit": "2891f6b29691449d6667d36b9c678a0746ce5d80",
+      "committed_at": "2026-11-20T12:19:14+01:00",
+      "subject": "Assess first production gate and record actual market blockers"
+    }
+  ],
+  "changed_production_python": [
+    "frontend_api/claim_planner.py",
+    "keeper/monitor.py",
+    "keeper/operation_review.py",
+    "zzz_ops/opensea_drop.py",
+    "zzz_ops/state.py"
+  ],
+  "source_sha256": {
+    "frontend_api/claim_planner.py": "7a3e720b97acf38e2ebfc7f4dde7a5912852a3eabd0a39629546aa1097cab810",
+    "keeper/monitor.py": "daa79a1071d0fb86f1bf345871e5834b8ba7a76f39707bde5bc43fa810583ce1",
+    "keeper/operation_review.py": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48",
+    "zzz_ops/opensea_drop.py": "01f86be5db2a2d8102b51e1d7fe3a4aae451d53cce7726dfbf3f32e064047480",
+    "zzz_ops/state.py": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf"
+  },
+  "solidity_changes": [],
+  "website_scope": "69c4b62 documentation only; no behavior or rollout",
+  "changed_report_families": [
+    "compiler-applicability-20261120",
+    "documentation-sync-20261120",
+    "f6-construction-20261120",
+    "full-claim-admission-20261120",
+    "lp-claims-maximum-20261120",
+    "market-feasibility-20261120",
+    "market-route-qualification-20261120",
+    "platform-provider-gate-20261120",
+    "pool-fees-20261121",
+    "pool-integration-20261120",
+    "pool-lifecycle-20261120",
+    "readiness-advance-20261120",
+    "readiness-gate-a-20261120",
+    "recommendations-execution-20261120",
+    "test-pool-scope-20261120",
+    "ubuntu-keeper-20261121"
+  ],
+  "protected_unrelated_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "archived_docs_external": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\last48h-audit-20261121\\originals",
+  "original_docs_sha256": {
+    "AGENTS.md": "29cfb6ba40d6c02f744c20ec2b139e4a1f176407ad9ac2234e4fb9d3b4f8d1c5",
+    "PROJECT_CONTEXT.md": "c89987941a711400fa69dee2d236c928b925d4ff31057344732ce0bd864f5132",
+    "README.md": "d18d6b5d50c847d30bdc9874e3d8199334a80ab68d5ac3f3a14418eaa6841b24",
+    "TODO.md": "93885bfd4cc86b1f9eca3358500d77a122b5a2464301e5bff2cd22e3cfd6f8db",
+    "docs/AUDIT_FINDINGS.md": "b759ad90a5044beca843c0c67cfd4c4f30d4666cb1f34edcb6a50e757714ae9f",
+    "docs/OPERATOR_MANUAL.md": "6aedd09550f5ffcdf7ec5f2fc0140e0dfb3d1316f4e40ab60fe61ce9c3463c62",
+    "docs/WORK_HANDOFF.md": "cb4622ba20f5380aabfbd2b34f2d9ca6114be26922a500f30c49a24ec85b10ee",
+    "docs/WORKLOAD_COVERAGE.md": "7f6be45d1cb79dade812f5660d969aca8aaa0e46807e83b1691147aa7d2bb8df",
+    "docs/project-todo.json": "2af05dd4e774e6c5d2cf5c54faa2d1ccf97bbf19627ba881b07c7f4f34712f66",
+    "docs/IMPLEMENTATION_STATUS.md": "6e52bd050251136c0b5c794c17da2b0f12d42101c99fc957d7f60e2172181beb",
+    "docs/KEEPER_RECOVERY.md": "afdafff1a5e16c845ebc016157e60fd7418da424e4667622ae9feda4c3822fa5",
+    "reports/README.md": "c9d6ecff8123688a3d9065e70043e2066d73474366e9de1b1f0b436d6b432ea0",
+    "scripts/verify.sh": "3914407af1e8bda36a89ddf18bc804c4f8590ed52fd185d35cde34ee351c3fb3"
+  },
+  "production_approved": false,
+  "remote_actions_authorized_by_this_audit": false,
+  "report_index_changed": true
+}

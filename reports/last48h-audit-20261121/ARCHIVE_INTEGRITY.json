@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "scope": "Offline integrity of11 changed-report archives; no contracts/models/tests/RPC/services executed",
+  "archives": [
+    {
+      "manifest": "reports/f6-construction-20261120/EVIDENCE_MANIFEST.json",
+      "archive_sha256": "ab4526e297f7b05633f7b26a12be1d803fe6d105055d075837d16fc8116f94aa",
+      "outer_hash_matches": true,
+      "hashed_payloads_verified": 108,
+      "zip_members": 108,
+      "additional_members_bound_by_outer_hash": []
+    },
+    {
+      "manifest": "reports/market-feasibility-20261120/EVIDENCE_MANIFEST.json",
+      "archive_sha256": "34b7053b51c6167c45a819ff8229ffa1596a5c09e855d3bb412e26a17e580a6c",
+      "outer_hash_matches": true,
+      "hashed_payloads_verified": 60,
+      "zip_members": 61,
+      "additional_members_bound_by_outer_hash": [
+        "manifest.json"
+      ]
+    },
+    {
+      "manifest": "reports/market-route-qualification-20261120/EVIDENCE_MANIFEST.json",
+      "archive_sha256": "ffb479de76dd2cadbd8df240305c71c6d290545328a4dc9569ee23e04ac9c2c2",
+      "outer_hash_matches": true,
+      "hashed_payloads_verified": 134,
+      "zip_members": 134,
+      "additional_members_bound_by_outer_hash": []
+    },
+    {
+      "manifest": "reports/pool-fees-20261121/run/EVIDENCE_MANIFEST.json",
+      "archive_sha256": "13aa22d3dd99108d06d58a6aa96505a08b6a16c74e633e90b142bde826edb22b",
+      "outer_hash_matches": true,
+      "hashed_payloads_verified": 114,
+      "zip_members": 114,
+      "additional_members_bound_by_outer_hash": []
+    },
+    {
+      "manifest": "reports/pool-integration-20261120/entry/EVIDENCE_MANIFEST.json",
+      "archive_sha256": "e56b8d78aba465c673aa0379e6a4214860189e935c133dafc7da8c46aa99d2ff",
+      "outer_hash_matches": true,
+      "hashed_payloads_verified": 220,
+      "zip_members": 220,
+      "additional_members_bound_by_outer_hash": []
+    },
+    {
+      "manifest": "reports/pool-integration-20261120/swap/EVIDENCE_MANIFEST.json",
+      "archive_sha256": "1bc0e50a93d6734b48351dc98c27c630b4266de738bba4653896c7aeae278b78",
+      "outer_hash_matches": true,
+      "hashed_payloads_verified": 62,
+      "zip_members": 62,
+      "additional_members_bound_by_outer_hash": []
+    },
+    {
+      "manifest": "reports/pool-lifecycle-20261120/run/EVIDENCE_MANIFEST.json",
+      "archive_sha256": "ef4a40fe3e06d5502441c9808395dc10451e6f055ca6225dbc8e3e89cc511e0f",
+      "outer_hash_matches": true,
+      "hashed_payloads_verified": 89,
+      "zip_members": 89,
+      "additional_members_bound_by_outer_hash": []
+    },
+    {
+      "manifest": "reports/readiness-advance-20261120/EVIDENCE_MANIFEST.json",
+      "archive_sha256": "eee6b0df53065e00af171f2faa1c13c5a7a165974c48a2bfea19b561e03ee143",
+      "outer_hash_matches": true,
+      "hashed_payloads_verified": 22,
+      "zip_members": 22,
+      "additional_members_bound_by_outer_hash": []
+    },
+    {
+      "manifest": "reports/recommendations-execution-20261120/gas/EVIDENCE_MANIFEST.json",
+      "archive_sha256": "959d20a5c23b0a46e219a296cd8b33634996dc3c03cff7d31f7510f866d9181f",
+      "outer_hash_matches": true,
+      "hashed_payloads_verified": 8,
+      "zip_members": 8,
+      "additional_members_bound_by_outer_hash": []
+    },
+    {
+      "manifest": "reports/recommendations-execution-20261120/pool/EVIDENCE_MANIFEST.json",
+      "archive_sha256": "d1010145cf42181c98e5b967ca487eb2327ec6b50a34c24394b81606c2bad6d1",
+      "outer_hash_matches": true,
+      "hashed_payloads_verified": 26,
+      "zip_members": 26,
+      "additional_members_bound_by_outer_hash": []
+    },
+    {
+      "manifest": "reports/ubuntu-keeper-20261121/EVIDENCE.json",
+      "archive_sha256": "ba41f8f49d30b9f697842c214acc0f330d11ff82cee464591de6d1fbc0587553",
+      "outer_hash_matches": true,
+      "hashed_payloads_verified": 97,
+      "zip_members": 98,
+      "additional_members_bound_by_outer_hash": [
+        "MEMBERS.json"
+      ]
+    }
+  ],
+  "archive_count": 11,
+  "verified_payload_count": 940,
+  "new_dynamic_test_passes": 0,
+  "production_approved": false
+}
