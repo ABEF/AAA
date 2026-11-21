@@ -432,7 +432,7 @@ class Projection:
                 scope='Controls, supply and the collection sale window are coarse observations only. '
                       'SeaDrop phase, proof, payer and wallet eligibility are not verified here.')
         self._finish(header)
-        return {'schema': 2, 'chain_id': self.chain, 'lifecycle': lifecycle,
+        result = {'schema': 2, 'chain_id': self.chain, 'lifecycle': lifecycle,
                 'minting': minting,
                 'contracts': {role: item.address for role, item in self.contracts.items()},
                 'provenance': {'block_number': header['number'], 'block_hash': header['hash'],
@@ -441,6 +441,9 @@ class Projection:
                                'finality': 'confirmation_depth_only', 'eip1898_require_canonical': True,
                                'deployment_block': self.start, 'deployment_block_hash': self.start_hash,
                                'configuration_sha256': self.identity, 'accounting_version': self.accounting_version}}
+        if self.accounting_version == 7 and self.earnings_history is not None:
+            result['wallet_view_profile'] = 1
+        return result
 
     def _admitted(self, block: dict[str, Any], *, asset_health=None,
                   historical_descriptors=False) -> tuple[list[str], list[str]]:
@@ -731,6 +734,11 @@ class Projection:
         if self.earnings_history is None:
             raise HistoryError('Reviewed earnings-history profile is not configured')
         return read(self.earnings_history, wallet_address, block_number, offset)
+
+    @bounded_request
+    def wallet_view(self, wallet_address, block_number, offset=0, asset_offset=0):
+        from frontend_api.wallet_view import read
+        return read(self, wallet_address, block_number, offset, asset_offset)
 
     @bounded_request
     def wallet_page(self, wallet_address: Any, block_number: int, offset: int = 0) -> dict[str, Any]:

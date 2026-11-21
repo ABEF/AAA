@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "scope": "Current compact-wallet task, not closure of historical release registries",
+  "findings": [
+    {
+      "id": "CWR01",
+      "status": "fixed-scoped",
+      "title": "Impossible separate-route request count",
+      "result": "Combined page reduces190 to64 core reads for controlled1000/3, without higher limits."
+    },
+    {
+      "id": "CWR02",
+      "status": "fixed-scoped",
+      "title": "Unsliced65currency paid-entitlement overflow",
+      "result": "Four-currency pages complete16NFT/66fullypriced descriptors under1024, full replay retained."
+    },
+    {
+      "id": "CWR03",
+      "status": "fixed",
+      "title": "Unbounded new canonical cache retention",
+      "result": "64KiBentry/8MiBencodedtotal; oversize bypasses cache with all ordinary charges."
+    },
+    {
+      "id": "CWR04",
+      "status": "fixed",
+      "title": "Financial age could expire during final cards/proofs",
+      "result": "Strict post-await age/future/cancel checks before portfolio publication."
+    },
+    {
+      "id": "CWR05",
+      "status": "fixed",
+      "title": "Generic503 could hide integrity/work failure",
+      "result": "Only429/classifiedservice_busy503 can isolate later currency availability."
+    },
+    {
+      "id": "CWR06",
+      "status": "fixed",
+      "title": "Proxy omitted legacy verified ownership-page route",
+      "result": "Strict optional fixed-block ownership suffix added; red/green focused check."
+    },
+    {
+      "id": "CWR07",
+      "status": "open",
+      "title": "Huge wallet/currency rectangle freshness",
+      "result": "1000x66 explicit earnings unavailability; provider/host full capacity unqualified."
+    },
+    {
+      "id": "CWR08",
+      "status": "open-adoption",
+      "title": "New semantic source requires reviewed artifact adoption",
+      "result": "Preserve/rebuild/review/re-pin checkpoints and matching consumer/proxy/worker before authorized rollout."
+    }
+  ]
+}

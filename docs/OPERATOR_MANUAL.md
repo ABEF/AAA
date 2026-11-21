@@ -2,48 +2,58 @@
 
 ## Complete wallet financial view
 
-The wallet uses one fully verified ownership inventory as the input to two
-independent reads: attached LP/funded ETH and24h/all-time earnings. Each branch
-requests one16-NFT chunk at a time; the two branches may overlap. No financial
-metric is published from incomplete pages, and a failed branch does not hide a
-healthy complete result from the other branch.
+The current exact-LP API advertises `wallet_view_profile: 1` on confirmed
+`GET /v1/protocol` only with configured earnings history. Source9/source10 then
+use combined ownership, LP/funded ETH and currency-paged earnings. Missing
+capability retains the explicit legacy reader; unknown capability or failure of
+an advertised compact endpoint never silently falls back.
 
 | Read / control | Operator procedure and boundary |
 | --- | --- |
-| Ownership input | Existing reviewed manifest/API and all fixed-block ownership pages; capture owner, chain, NFT, block/hash/time, configuration, ordered IDs and digest |
-| LP and claimable ETH | GET `/v1/wallets/{owner}/summary/{block}/{offset}`, offsets0/16/32...; sum only complete matching pages. LP and ETH can independently be unavailable |
-|24h/all-time earnings | GET `/v1/wallets/{owner}/earnings/{block}/{offset}`, same ordered inventory and full86,400-second window. Sum exact raw amounts per asset/metric before current-price USD rounding |
-| Reward scope | Header ETH is funded LP plus ETH royalties only. Unconverted ZZZ LP and original-currency token royalties are excluded from that ETH number and remain separately shown per NFT; never relabel them ETH |
-| Current owner history | History follows currently held NFTs, including earlier owners. Claims, conversions and imports add no income. Principal and compound/buyback reserves are excluded |
-| Missing price or payout read | Preserve raw earnings and per-metric unavailable state; nonzero unpriced earnings do not become zero USD. No partial wallet sum or invented balance |
-| Empty holdings | Verified empty inventory cannot have positive LP or claimable ETH; contradictory summaries are rejected, with no invented zero or partial amount |
-| Cancellation / expiry | Account/page refresh, `api.cancel()`, parent abort and anchor expiry discard in-flight financial results. Refresh obtains a new complete inventory; there is no automatic transaction or retry |
-| Existing limits | Keep per-request25s/1,024 RPC/1MiB backend limits, existing manifest freshness and separate fees/gas policies. Two financial streams are a per-wallet read bound, not a new server-wide allowance |
-| Maximum currency refusal |16 NFTs with65 royalty currencies require1,040 royalty claimable reads alone; the actual fixture refuses at1,024. Do not expand operating currency capacity or raise limits to hide this; qualify a bounded financial-page strategy separately |
-| Large-wallet HTTP bound |190 minimum reads need178s at unchanged1/s burst12, beyond maximum120s freshness. The default1000-NFT live path stays blocked; qualify fewer bounded reads, not higher limits |
+| Anchor | GET `/v1/protocol`; capture owner, chain, NFT, block/hash/time, configuration and lifecycle |
+| Combined page | GET `/v1/wallets/{owner}/view/{block}/{offset}/{asset_offset}`; example `/v1/wallets/0x000000000000000000000000000000000000001e/view/99/0/0` is illustrative only |
+| NFT pages | Offsets0/16/32...; at most16 IDs, strict numeric order, full count and recomputed ID digest. Last page alone does not prove completeness |
+| Currency pages | Offsets0/4/8...; at most4 descriptors from the sorted complete union, including LP-only ZZZ. Match list/count/digest/selected list and both cursors. Complete EVERY currency slice for EVERY NFT page |
+| LP / funded ETH | `summary` appears only at asset_offset0; add it once per NFT page. Other slices have summary:null. LP and ETH can independently be null |
+|24h / all-time | Sum exact raw amounts per original currency/metric across all NFT pages, then calculate current-price USD once per currency. Preserve full86,400-second history |
+| Reward scope | Claimable header is ETH LP plus ETH royalties only; pending ZZZ LP and token royalties stay separate per NFT. Principal/compound/buyback are excluded |
+| Owner history | Current owner owns NFT lifetime history, including earlier owners. Claims/conversions/imports create no income; unpriced nonzero earnings stay unavailable in USD |
+| Request pacing | Current-profile GETs share one per-origin/prefix gate: one active, starts at least1second apart, at most32 queued. This does not reserve server capacity; shared-IP traffic may still refuse |
+| Currency outage | A later currency fetch returning429 or an explicitly classified503 service_busy discards ALL earnings while complete ownership/summary may finish. Generic503 remains terminal. Integrity, canonicality, expiry and work-limit failures remain terminal |
+| Infeasible cross-product | If even ideal pacing cannot fit complete currency pages plus16 card reads in the remaining snapshot, collect only each NFT page's first slice for complete ownership/summary; earnings stays unavailable |
+| Existing limits | Keep25s/1,024 RPC/2,048 POSTs/1MiB backend response,16NFTs,120s maximum age, ingress/admission limits and all gas/financial safeguards |
+| Cancel / refresh | Account/page changes, cancellation, reorg or expiry discard results. Refresh starts a new confirmed read; no transaction, API retry or automatic resend |
 
-No new contract function, signature, authority, gas setting, keeper job or JSON
-switch is needed for these reader fixes. Both public configurations stay null;
-source9/source10 remain unsigned and the shared signer stays Anvil-only. NFT
-ownership, claim rights, original currencies and all exact accounting rules stay.
-Individual NFT cards retain independently confirmed latest snapshots; inventory
-and financial totals use the captured fixed block, with final canonical/freshness
-checks. Action preparation continues to obtain its own fresh review.
+[Current evidence](../reports/compact-wallet-20261121/REVIEW.md) records finite
+controlled workloads and original failures. Three currencies need63 combined
+pages for1,000 NFTs, plus protocol and up to16 card/history reads:80 versus206
+previously including cards. Sixteen NFTs and66 fully priced descriptors use17
+currency slices. Their1,000-by66 cross-product still exceeds complete-history
+freshness; explicit unavailable history is not release qualification.
 
-[Controlled evidence](../reports/wallet-view-20261121/REVIEW.md) verifies1/17/1,000
-holdings with three currencies in new SQLite/production-handler journeys and83
-NEW browser-module methods in explicit stages. Fixed synthetic clocks, cached
-transport and synthetic graph/views/prices do not qualify actual provider or
-host freshness. Preserve current services, old checkpoints/reviews/DBs and
-pending journals; this website-only fix changes no checkpoint semantic source.
-Publish/review matching runtime/API/history/consumer configuration under the
-existing site procedure before a separately authorized rollout.
+No new contract function, key, keeper job, signing capability or gas setting is
+needed. Both public configurations remain null; the shared signer is Anvil-only.
+Cards retain independent confirmed latest reads; wallet totals/history keep the
+captured fixed block and final proofs. Action preparation has its own fresh review.
+
+**Adoption:** review matching backend, worker dispatch, Nginx allowlist and website
+source under the [site procedure](SITE_ENVIRONMENTS.md). Changed service/earnings
+code and new helpers change checkpoint semantic identity. Preserve original
+checkpoint1/2/3, review, raw DB and journal bytes; explicitly rebuild/review/re-pin
+checkpoints before separately authorized rollout. Never edit old hashes or
+reinterpret artifacts. Publication changes no running site/service/chain or
+user-paused heartbeat.
+
+Legacy `/nfts/{block}/{offset}`, `/summary/{block}/{offset}` and
+`/earnings/{block}/{offset}` wires retain their original bounds; the old16-NFT
+all-currency earnings route may still refuse65 currencies. Do not automatically
+fall back or raise its budget to hide the refusal.
 
 
 ## Website ownership paging
 
-Current source9/schema4 and source10/schema5 automatically select the verified
-ownership-page endpoint. No contract call, key, signature or new configuration
+Current source9/schema4 and source10/schema5 use compact pages when advertised;
+otherwise they select the verified ownership-page endpoint. No contract call, key, signature or new configuration
 field is required. Historical schemas1-3 retain the complete ownership endpoint.
 
 | Operator check | Required input / expected result |
@@ -65,8 +75,9 @@ Source publication changes no installed API, checkpoint, website release or
 service. Keep both public configurations null and the shared signer Anvil-only.
 Before a separately authorized rollout, review the matching build/API/history,
 actual provider latency and existing [site procedure](SITE_ENVIRONMENTS.md).
-Preserve old checkpoint/review/DB bytes; this website-only change does not change
-backend checkpoint semantic-source identity. See [focused evidence](../reports/ownership-paging-20261121/REVIEW.md).
+Preserve old checkpoint/review/DB bytes; that historical website-only change did not change
+backend checkpoint semantic-source identity. Current compact backend adoption
+requires the checkpoint rebuild/review/re-pin described above. See [focused evidence](../reports/ownership-paging-20261121/REVIEW.md).
 
 
 ## Bounded Cast output and uncertain transactions

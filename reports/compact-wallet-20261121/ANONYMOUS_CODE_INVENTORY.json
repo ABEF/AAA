@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "inventory_sha256": "2c1b92d6a5c6aa26fa5fa36001a3bf989ef95da5714e8a395b08444a53083ee8",
+  "python_files": 182,
+  "named_definitions": 2001,
+  "named_kinds": {
+    "class": 183,
+    "function": 1818
+  },
+  "lambdas": 278,
+  "scope": "Static inventory only; no dynamic coverage claim. Protected run-fork working-tree edits excluded in favor of published HEAD. F6 Solidity and Yul evidence reused unchanged."
+}

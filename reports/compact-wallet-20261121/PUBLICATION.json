@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "contracts_base_head": "06fd7028dd4566b66fe697087dac7c6b444834f6",
+  "website_base_head": "ceb6066e180ce9e71ea915afe26f22997f09b0cd",
+  "contracts_source_sha256": {
+    "frontend_api/canonical_cache.py": "cd2784ef2c4ada773b09be8b4c3d8122e0f77df3f638c665f424a5bdead690f9",
+    "frontend_api/wallet_view.py": "d6d62d527c4e13b06a4c0e45472a56caf74a6fd72e0545a1ee65466ab47a509c",
+    "frontend_api/wallet_earnings.py": "a9b0155c6d94f726218d943440d7b90949444b5d4851d8783d05e0c542e03e7e",
+    "frontend_api/earnings_prices.py": "32921e735f7989dbf83083b0737933584a08364f55ba2d1597b4e387bf51c827",
+    "frontend_api/portfolio.py": "edf1c11ac78d867392a65e6d679791c72d8075b8b233f8e2a0ec6d9cebdcc678",
+    "frontend_api/service.py": "e0d8fd9512e080f40afa26f760240d2188ae3d02ecf34c4d0fb601854b5a38ce",
+    "frontend_api/server.py": "e9e7d5ea410c69b145701403d216013c0dea76d5dc8488095bdc5852198e27b3",
+    "frontend_api/worker.py": "17fd5681a892ea3122ace41df8e469f8b9d763d5653276c1d0feaeda44402a14",
+    "frontend_api/earnings_checkpoint.py": "f4ee790cc9381722f365af1907abe3cc5396f67be3fc70784dbee759dd8302d3",
+    "tests_python/test_canonical_cache.py": "a5770cfc77186d88af7aa5f3d6b0271a909f861085133c747840f78dcedb1187",
+    "tests_python/test_wallet_view.py": "d8d93096c8ddc21c773da71c0e5c341f7d87ae1ba7929f3f06f35d21cac26f98",
+    "config/nginx/popl-api-locations.conf": "ee710e6e1187631c85113da2f90d08055e95010671c6b96a52a3ebfae026c365"
+  },
+  "website_source_sha256": {
+    "deployment-api.js": "c0b5943974dd484f6f52ebeaf051188d26eb50dc01738f4b9a7d3f561144daba",
+    "deployment-wallet-view.js": "208710c3114aa0c5c87cc3adab8876e45b57726ceed9ad82db22a4d6e592c63d",
+    "deployment-view.js": "3f10dd6d17ca5f8ef912bcb41756de80e5f956531b970fa4e346f18c69e44388",
+    "tests/compact-wallet-view.test.mjs": "9c23eb422361f7c96be2bba0e3a6beb88638f373718b57c61db2d5377427ef2f"
+  },
+  "source_publication_only": true,
+  "deployed": false,
+  "services_changed": false,
+  "budgets_or_financial_rights_changed": false,
+  "old_checkpoint_bytes_rewritten": false
+}

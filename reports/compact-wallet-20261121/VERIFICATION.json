@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "checks": {
+    "workload_inventory": {
+      "exit_code": 0,
+      "tool_chunk": "83bac5",
+      "sha256": "2c1b92d6a5c6aa26fa5fa36001a3bf989ef95da5714e8a395b08444a53083ee8",
+      "finalization": "Final LF-only plan verified successfully."
+    },
+    "operator_reference": {
+      "exit_code": 0,
+      "tool_chunk": "81f751",
+      "rows": 1021,
+      "explanation_gaps": 0,
+      "unannotated_inputs": 0,
+      "unannotated_outputs": 0
+    },
+    "todo": {
+      "exit_code": 0,
+      "tool_chunk": "236293"
+    },
+    "changed_js_syntax": {
+      "exit_code": 0,
+      "tool_chunk": "c7f0c0",
+      "files": 4
+    },
+    "local_document_targets": {
+      "checked": 1885,
+      "missing": []
+    },
+    "protected_files": {
+      "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+    },
+    "shared_signer_and_public_configs_byte_identical": true,
+    "static_python_publication_index": {
+      "exit_code": 0,
+      "tool_chunk": "11305d",
+      "files": 484,
+      "errors": []
+    }
+  },
+  "distinct_new_methods": {
+    "python_cache": 26,
+    "python_wallet_and_proxy": 19,
+    "javascript": 90
+  },
+  "suites_rerun": [],
+  "actual_deployed_or_host_approval": false
+}

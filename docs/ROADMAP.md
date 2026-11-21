@@ -1,9 +1,20 @@
 # Engineering roadmap and production qualification plan
 
-Default1,000-NFT HTTP admission is separately BLOCKED:190 minimum API reads
-need178s at unchanged1/s burst12, beyond the maximum120s snapshot age.
-Controlled DTO/per-request passes do not close it; reduce bounded request count
-under a reviewed API strategy, keeping all limits and exact rights.
+[Compact wallet reads](../reports/compact-wallet-20261121/REVIEW.md) combine verified ownership, LP/funded ETH and
+four-currency earnings pages without changing exact accounting or limits.
+Controlled1,000-NFT/three-currency journeys need64 API reads instead190 before
+cards; sixteen NFTs with66 fully priced descriptors finish17 currency pages,
+with at most904 RPC reads per request. Legacy all-currency wires stay explicit.
+Current-profile GETs are paced1second apart; complete NFT/currency coverage,
+raw-first USD rounding, full86,400-second history and final proofs remain.
+Very large NFT-by-currency combinations can still exceed freshness: complete
+ownership/totals may remain usable while earnings is explicitly unavailable.
+Real provider/host/freshness and full normal F6/V10 acceptance remain open.
+
+Changed backend helpers enter checkpoint semantic identity: preserve original
+checkpoint/review/raw DB/journal bytes; explicitly rebuild/review/re-pin for
+separately authorized adoption. No running site/service/chain, signer/public
+configuration, gas/resource limit, economic right or paused heartbeat changes.
 
 [Current actual-fee proof](../reports/pool-fees-20261121/REVIEW.md) advances P08
 with real-core harvested receipts, exact80/10/5/5+dust/reserve conservation and
@@ -357,15 +368,18 @@ remaining claims and all guards stay verified. This is finite claim evidence;
 full1,000-active-NFT normal workloads, HTTP/provider/complete-fee and matching
 consumer/operating acceptance remain open. Prior LPQ03's P16 reference was wrong.
 
-Match current F6/profile/runtime/canonical manifests, both physical legs, owner and funded rights at canonical state. Current source9/source10 now adopts coherent complete ownership paging ([69 NEW focused checks](../reports/ownership-paging-20261121/REVIEW.md));1000 NFTs need63 ownership pages plus independently completed summary/history. Qualify matching live consumer/provider operation within the unchanged freshness limits.
-
-[Controlled complete wallet financial qualification](../reports/wallet-view-20261121/REVIEW.md)
-now covers1/17/1,000 holdings with three currencies through new production
-handlers/SQLite/exact replay and83 NEW JS methods. Captured snapshots and
-independent LP/ETH-versus-earnings loading retain existing limits. Actual
-provider/host/freshness and full normal F6/V10 are unqualified. The65-currency/
-16-NFT earnings page refuses at1,024 reads; qualify bounded financial selection
-before enabling that workload rather than raising the limits.
+Match current F6/profile/runtime/canonical manifests, both physical legs, owner and
+funded rights at canonical state. [Compact wallet qualification](../reports/compact-wallet-20261121/REVIEW.md)
+reduces the previous190 core wallet reads to64 for1,000 NFTs/three currencies;
+including16 card/history calls gives80. Sixteen NFTs/66 fully priced descriptors
+complete17 four-currency pages under existing1,024-read and response bounds.
+Keep full replay/global reconciliation and complete two-dimensional coverage.
+The ideal admission bound is68s for80 reads; actual fixed-clock producer handler
+work is83.621s, excluding real network, isolated-worker startup and card costs.
+Neither number qualifies deployed freshness. The1,000-by66 cross-product still
+cannot fit120s; earnings is unavailable without losing complete holdings/totals.
+Rebuild/review/re-pin matching checkpoint semantic sources before separate
+backend/worker/Nginx/website adoption. Legacy wires and all limits remain.
 
 Verify owner/chain/NFT/block/config/digest/count and contiguous complete assembly within reviewed freshness budgets or explicit incomplete/unavailable output. Preserve1024call/1MiB bounds and ingress rates. Final page alone is not a whole wallet.
 

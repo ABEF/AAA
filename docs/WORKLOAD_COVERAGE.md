@@ -1,8 +1,18 @@
 # Whole-project workload coverage
 
+[Compact wallet qualification](../reports/compact-wallet-20261121/REVIEW.md) adds
+four-currency combined pages and bounded request-local canonical reuse. Current
+inventory is182 Python files/2,001 named definitions (1,818 functions/183 classes),
+278 lambdas; F6 Solidity61/dependencies39/controls4 and1,021 ABI rows are unchanged.
+Forty-five distinct new Python and90 distinct new JS methods have staged passing
+evidence; only affected failures/assertions rerun. Counts are not full dynamic
+coverage. New producer/consumer cases retain explicit synthetic V9 versus controlled
+source10 scopes; actual provider/host/freshness/full normal F6/V10 stay open.
+
+
 The [bounded Cast change](../reports/bounded-cast-20261121/REVIEW.md) adds one production helper and
 16NEW focused methods (8actual Ubuntu pipe/process cases,8composed keeper/health
-cases). No old test bodies ran. Current named inventory is180files/1,984definitions;
+cases). No old test bodies ran. That source inventory is180files/1,984definitions;
 source-only anonymous count278. F6 source/ABI/build pins stay unchanged.
 
 The [focused keeper review](../reports/ubuntu-keeper-20261121/REVIEW.md) adds
@@ -32,7 +42,7 @@ The earlier [anonymous supplement](../reports/readiness-advance-20261120/ANONYMO
 retains276lambdas and2named project Yul helpers with refreshed changed-source pins.
 
 The [workload plan](WORKLOAD_PLAN.json) and
-[whole-project function inventory](../reports/bounded-cast-20261121/FUNCTION_INVENTORY.json)
+[whole-project function inventory](../reports/compact-wallet-20261121/FUNCTION_INVENTORY.json)
 define the scope. [The report](../reports/whole-workload-review-20261119/REVIEW.md)
 records what actually ran and what remains unqualified. The [Todo](../TODO.md)
 owns work status; this page is a verification map.
@@ -48,8 +58,8 @@ sequences and source-bound evidence. No inventory count is a dynamic pass rate.
 - 1,056 implemented project Solidity definitions and29 modifiers from the
   authenticated compiler AST;511 bodyless declarations remain separately labelled.
 - Eight internal-only objects are included, beyond the public ABI catalogue.
-- 180 production Python files and1,984 named lexical definitions:1,803 functions
-  and181 classes, including nested helpers. The [current anonymous-code inventory](../reports/bounded-cast-20261121/ANONYMOUS_CODE_INVENTORY.json)
+- 182 production Python files and2,001 named lexical definitions:1,818 functions
+  and183 classes, including nested helpers. The [current anonymous-code inventory](../reports/compact-wallet-20261121/ANONYMOUS_CODE_INVENTORY.json)
   records278 lambdas and2 named project Yul helpers. Earlier supplements retain
   their own source scope. Inventory does not establish execution coverage.
 

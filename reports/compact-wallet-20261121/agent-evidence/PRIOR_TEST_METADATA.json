@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "kind": "post-run faithful tool-result transcription",
+  "raw_stdout_stderr_files_existed": false,
+  "original_stream_separation_captured": false,
+  "test_time_source_hashes_captured": false,
+  "no_test_rerun_for_transcription": true,
+  "transcript_newlines": "normalized LF; verbose passing method names recovered from unchanged test source and visible tool results",
+  "source_recovery": {
+    "canonical_cache.py": {
+      "source": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\frontend_api\\canonical_cache.py",
+      "recovered_snapshot": "recovered-canonical_cache.py",
+      "sha256": "caf79630c1c24da5355b7f5cd64e36b0bad8f882d4dc27e7fcede8c5b8c3250a",
+      "capture_timing": "post-run recovery, not contemporaneous test-time hashing"
+    },
+    "test_canonical_cache.py": {
+      "source": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\tests_python\\test_canonical_cache.py",
+      "recovered_snapshot": "recovered-test_canonical_cache.py",
+      "sha256": "86d3af78b06b3bc0751394811923afd09e370fad2862aefb0109ceae57756f94",
+      "capture_timing": "post-run recovery, not contemporaneous test-time hashing"
+    },
+    "compact-wallet-view.test.mjs": {
+      "source": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\aaa-website\\tests\\compact-wallet-view.test.mjs",
+      "recovered_snapshot": "recovered-compact-wallet-view.test.mjs",
+      "sha256": "ec58b0b8fb5b6a4212b77ba3f7295ecdb6a1884ebad43723d939c9da9c62baae",
+      "capture_timing": "post-run recovery, not contemporaneous test-time hashing"
+    },
+    "deployment-wallet-view.js": {
+      "source": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\aaa-website\\deployment-wallet-view.js",
+      "recovered_snapshot": "recovered-deployment-wallet-view.js",
+      "sha256": "87932c0954ab685ab9dc325d64325fb8b74f9d22f1dd49bd6dfb5e9a41451a16",
+      "capture_timing": "post-run recovery, not contemporaneous test-time hashing"
+    },
+    "deployment-api.js": {
+      "source": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\aaa-website\\deployment-api.js",
+      "recovered_snapshot": "recovered-deployment-api.js",
+      "sha256": "ae308d82dfe64d05c21d49170e23600084cfa744c2386ef5649a37cb9894dd16",
+      "capture_timing": "post-run recovery, not contemporaneous test-time hashing"
+    },
+    "deployment-view.js": {
+      "source": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\aaa-website\\deployment-view.js",
+      "recovered_snapshot": "recovered-deployment-view.js",
+      "sha256": "3f10dd6d17ca5f8ef912bcb41756de80e5f956531b970fa4e346f18c69e44388",
+      "capture_timing": "post-run recovery, not contemporaneous test-time hashing"
+    },
+    "build.mjs": {
+      "source": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\aaa-website\\build.mjs",
+      "recovered_snapshot": "recovered-build.mjs",
+      "sha256": "ec230203a0984f4e2b64039161041bf86b8a90df940d82db4cbf9a50546ddd3f",
+      "capture_timing": "post-run recovery, not contemporaneous test-time hashing"
+    }
+  },
+  "reconstructed_sources": {
+    "reconstructed-cache-before-capture-fix.py": {
+      "sha256": "b0b8d336bab746eb642af7a9a2b748c6381cf91db4566a4f099eede0b6b51a16",
+      "basis": "exact owned capture-fix patch reversed; no contemporaneous hash claim"
+    },
+    "reconstructed-cache-stage21-tests.py": {
+      "sha256": "a3a1641fea537fd4dd2d8e95f601e6bae7e25f37dcb2b8ea38d85e396a152050",
+      "basis": "exact owned added mutation regression/import reversed; no contemporaneous hash claim"
+    },
+    "reconstructed-wallet-module-before-ascii.js": {
+      "sha256": "406774d707fe2099ac3cf4fff6aca1b790d3c5594c853f63d238f2defa633541",
+      "basis": "only the root-reported explicit ASCII comparator change reversed in current bytes; no contemporaneous byte pin claim"
+    }
+  },
+  "stages": [
+    {
+      "name": "python-stage21",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "tests_python.test_canonical_cache",
+        "-v"
+      ],
+      "cwd": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2",
+      "tool_chunk_id": "e1839e",
+      "exit_code": 0,
+      "tests": 21,
+      "passed": 21,
+      "failed": 0,
+      "unittest_seconds": 0.009,
+      "transcript": "python-stage21.tool-output.transcript.txt",
+      "source_scope": "pre-capture-fix helper and 21-method test source; recovered/reconstructed above"
+    },
+    {
+      "name": "python-capture-red",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "tests_python.test_canonical_cache.CanonicalCacheTests.test_key_is_derived_from_captured_params_even_if_source_changes_during_capture",
+        "-v"
+      ],
+      "cwd": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2",
+      "tool_chunk_id": "c9ada4",
+      "exit_code": 1,
+      "tests": 1,
+      "passed": 0,
+      "failed": 1,
+      "unittest_seconds": 0.002,
+      "transcript": "python-capture-red.tool-output.transcript.txt",
+      "source_scope": "pre-capture-fix helper, final 22-method test source"
+    },
+    {
+      "name": "python-capture-green",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "tests_python.test_canonical_cache.CanonicalCacheTests.test_key_is_derived_from_captured_params_even_if_source_changes_during_capture",
+        "-v"
+      ],
+      "cwd": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2",
+      "tool_chunk_id": "a9d955",
+      "exit_code": 0,
+      "tests": 1,
+      "passed": 1,
+      "failed": 0,
+      "unittest_seconds": 0.001,
+      "transcript": "python-capture-green.tool-output.transcript.txt",
+      "source_scope": "final recovered helper and final 22-method test source; earlier 21 methods not rerun"
+    },
+    {
+      "name": "node-stage80",
+      "command": [
+        "node",
+        "--test",
+        "tests/compact-wallet-view.test.mjs"
+      ],
+      "cwd": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\aaa-website",
+      "tool_chunk_id": "2e3a35",
+      "exit_code": 0,
+      "tests": 80,
+      "passed": 80,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "node_duration_ms": 841.4013,
+      "transcript": "node-stage80.tool-output.transcript.txt",
+      "source_scope": "earlier localeCompare module; later API/view/build newline normalization and ASCII comparator change are not mislabeled as the exact tested bytes"
+    }
+  ]
+}

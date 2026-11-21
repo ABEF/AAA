@@ -1,9 +1,11 @@
 # Confirmed frontend read API
 
-Default1,000-NFT HTTP admission is separately BLOCKED:190 minimum API reads
-need178s at unchanged1/s burst12, beyond the maximum120s snapshot age.
-Controlled DTO/per-request passes do not close it; reduce bounded request count
-under a reviewed API strategy, keeping all limits and exact rights.
+[Compact wallet pages](../reports/compact-wallet-20261121/REVIEW.md) replace the
+separate-route190-read shape with64 core reads for1,000 NFTs/three currencies.
+Four-currency slices also keep the16NFT/66descriptor workload within1,024 RPC
+reads per request. Existing limits, exact accounting and all final proofs stay;
+actual host/provider freshness, full F6/V10 and huge currency cross-products
+remain unqualified. Legacy routes retain their original refusal boundaries.
 
 The local [mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now implements explicit
 website schema5/source10 over accounting7, with33 browser runtime pins and
@@ -238,6 +240,7 @@ The separate [offline history recovery tool](HISTORY_RECOVERY.md) snapshots/vali
 | `/v1/earnings` | Processed collection LP/royalty history; requires `earnings_history` |
 | `/v1/nfts/{token-id}/earnings` | That NFT's processed lifetime/24h earnings, including previous owners |
 | `/v1/wallets/{address}/earnings/{block}/{offset}` | Up to 16 current holdings' lifetime earnings; requires `earnings_history` |
+| `/v1/wallets/{address}/view/{block}/{offset}/{asset_offset}` | Combined ownership/LP/ETH plus4-currency earnings; complete both page dimensions |
 
 Base protocol/NFT/inventory/readiness responses use schema 2. Collection,
 summary and earnings chunk responses have their own schema 1 under that same
@@ -554,7 +557,43 @@ LP uses currentLPValue; funded ETH combines LP and royalties. Missing values
 remain null. Historical earnings and unconverted source currencies are excluded.
 See [aggregation and recovery procedure](LOCAL_API_REHEARSAL.md#full-wallet-totals).
 
-## Current wallet financial consumer
+## Compact wallet view and bounded currencies
+
+Current accounting7 with configured earnings history advertises
+`wallet_view_profile: 1` on `/v1/protocol`. Additive GET
+`/v1/wallets/{owner}/view/{block}/{offset}/{asset_offset}` uses schema1/kind
+`fixed_block_wallet_view_page`; legacy wires are unchanged. NFT offsets align16
+within0..999, currency offsets align4 within the complete descriptor union.
+
+Every page binds owner/chain/NFT, block number/hash/time, configuration, lifecycle,
+raw history, full ordered NFT digest/count and selected IDs. It also binds sorted
+full `asset_ids`, `asset_count`, `asset_inventory_sha256`, selected_asset_ids and
+asset_offset/asset_chunk_size4/next_asset_offset. Complete earnings require the
+entire NFT-by-currency rectangle. `summary` is present only on asset_offset0;
+otherwise null. Earnings scope remains wallet_chunk with selected currency rows.
+A safe earnings transport failure yields earnings:null/earnings_error:
+`earnings_unavailable`; work, integrity, history and freshness failures still fail
+requests. Selected currencies bound paid-entitlement and price reads. Full replay,
+global reconciliation and all selected NFTs' exact LP components remain checked.
+
+Only identical complete eth_call/eth_getCode canonical blockHash requests can
+reuse raw successful replies within one existing request. Decoders/runtime and
+semantic checks still run. Errors, head/chain/header and final/checkpoint proofs
+are never cached. Copied replies are cleared on every exit; misses retain work
+charges. No cross-request trust cache or higher budget is introduced.
+
+The website requires complete two-dimensional coverage, sums raw currencies
+before USD rounding and paces current-profile GETs1second apart with one active
+per origin/prefix. Infeasible currency windows remain unavailable while complete
+ownership/summary can remain usable. No age, work, admission, monetary or signing
+limit changes. See [operation](OPERATOR_MANUAL.md#complete-wallet-financial-view)
+and [evidence](../reports/compact-wallet-20261121/REVIEW.md).
+
+Checkpoint semantic identity changes: preserve original checkpoint/review/raw DB
+bytes and explicitly rebuild/review/re-pin before separate adoption. Source
+publication upgrades no installed services or consumers.
+
+## Earlier separate wallet financial consumer
 
 [The current source qualification](../reports/wallet-view-20261121/REVIEW.md)
 adds captured input/revision/expiry guards to wallet totals and earnings and

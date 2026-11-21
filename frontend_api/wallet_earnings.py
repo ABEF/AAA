@@ -15,9 +15,28 @@ from zzz_ops.abi import address
 from zzz_ops.work_budget import checkpoint, expire_at
 
 
-def read(engine, wallet_address, block_number, offset):
+ASSET_CHUNK_SIZE = 4
+
+
+def asset_page(engine, offset):
+    """The cursor covers the complete descriptor union, including LP-only assets."""
+    assets = tuple(sorted(engine.descriptors))
+    if (not assets or len(assets) > 2048 or type(offset) is not int or offset < 0 or offset % ASSET_CHUNK_SIZE or
+            offset >= len(assets)):
+        raise ValueError('Invalid wallet earnings asset cursor')
+    selected = assets[offset:offset + ASSET_CHUNK_SIZE]
+    return dict(asset_offset=offset, asset_chunk_size=ASSET_CHUNK_SIZE,
+        asset_count=len(assets), asset_ids=list(assets), selected_asset_ids=list(selected),
+        asset_inventory_sha256=hashlib.sha256(','.join(assets).encode('ascii')).hexdigest(),
+        next_asset_offset=offset + len(selected) if offset + len(selected) < len(assets) else None)
+
+
+def read(engine, wallet_address, block_number, offset, *, asset_offset=None):
     p = engine.p
     wallet = address(wallet_address)
+    asset_cursor = None if asset_offset is None else asset_page(engine, asset_offset)
+    descriptors = (engine.descriptors if asset_cursor is None else
+                   {a:engine.descriptors[a] for a in asset_cursor['selected_asset_ids']})
     if type(block_number) is not int or type(offset) is not int or not 0 <= offset < 1000 or offset % CHUNK_SIZE:
         raise ValueError('Invalid wallet earnings cursor')
     safe, head, _ = p._snapshot()
@@ -110,11 +129,14 @@ def read(engine, wallet_address, block_number, offset):
                      royalties_raw=str(claims[i, a][1])) for a in engine.descriptors]},
                      'lp_conversions': conversion_report(lp_conversions, i, engine.descriptors, {}),
                      'royalty_conversions': conversion_report(conversions, i, engine.descriptors, {})}
-        engine.check_paid(p, account, financial, block, lp, royalties)
-    result = model.report(engine.descriptors)
-    prices = engine.prices.read(block,timestamp=header['timestamp']) if engine.prices else {
-        a: {'available': False, 'usd_per_token_18': None, 'reason': 'price_not_configured'} for a in engine.descriptors}
-    value_report(result, engine.descriptors, prices)
+        engine.check_paid(p, account, financial, block,
+                          lp if asset_cursor is None else [a for a in lp if a in descriptors],
+                          royalties if asset_cursor is None else [a for a in royalties if a in descriptors])
+    result = model.report(descriptors)
+    prices = ((engine.prices.read(block,timestamp=header['timestamp']) if asset_cursor is None else
+               engine.prices.read(block,timestamp=header['timestamp'],selected=tuple(descriptors))) if engine.prices else {
+        a: {'available': False, 'usd_per_token_18': None, 'reason': 'price_not_configured'} for a in descriptors})
+    value_report(result, descriptors, prices)
     result.update(schema=1, chain_id=p.chain, wallet=wallet, nft_contract=p.contracts['nft'].address,
         inventory_sha256=hashlib.sha256(','.join(map(str, ids)).encode('ascii')).hexdigest(),
         count=count, offset=offset, chunk_size=CHUNK_SIZE, token_ids=list(map(str, selected)),
@@ -124,6 +146,8 @@ def read(engine, wallet_address, block_number, offset):
         block_timestamp=header['timestamp'], observed_head=head, confirmations=p.confirmations,
         configuration_sha256=p.identity, epochs=provenance, finality='confirmation_depth_only',
         completeness='Complete configured indexed history and pinned RPC reconciliation; not a log-completeness proof.'))
+    if asset_cursor is not None:
+        result.update(asset_cursor)
     for peer, cutoff, _ in epochs:
         require(p._header(hex(cutoff['number'])) == cutoff, 'Earnings epoch changed during replay')
     engine.finish_checkpoint()

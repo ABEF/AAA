@@ -1,22 +1,20 @@
 # Project context
 
-Default1,000-NFT HTTP admission is separately BLOCKED:190 minimum API reads
-need178s at unchanged1/s burst12, beyond the maximum120s snapshot age.
-Controlled DTO/per-request passes do not close it; reduce bounded request count
-under a reviewed API strategy, keeping all limits and exact rights.
+[Compact wallet reads](reports/compact-wallet-20261121/REVIEW.md) combine verified ownership, LP/funded ETH and
+four-currency earnings pages without changing exact accounting or limits.
+Controlled1,000-NFT/three-currency journeys need64 API reads instead190 before
+cards; sixteen NFTs with66 fully priced descriptors finish17 currency pages,
+with at most904 RPC reads per request. Legacy all-currency wires stay explicit.
+Current-profile GETs are paced1second apart; complete NFT/currency coverage,
+raw-first USD rounding, full86,400-second history and final proofs remain.
+Very large NFT-by-currency combinations can still exceed freshness: complete
+ownership/totals may remain usable while earnings is explicitly unavailable.
+Real provider/host/freshness and full normal F6/V10 acceptance remain open.
 
-[Wallet financial qualification](reports/wallet-view-20261121/REVIEW.md) captures immutable wallet inputs across
-asynchronous reads, rejects late cancelled/expired results, and loads totals and
-earnings independently with at most two financial requests in flight.83 NEW JS
-methods pass across explicit78+3+2 stages; no earlier passing method is rerun.
-New production-handler/SQLite/exact-replay journeys cover1/17/1,000 holdings with
-three currencies and literal independent raw/USD expectations. Producer scope is
-synthetic V9/source9, with separate controlled source9/source10 browser composition.
-Claimable wallet total stays ETH-only; original token claims remain per NFT.
-65-currency/16-NFT earnings correctly refuses at1,024 reads. Actual provider/
-hosting/freshness, full normal F6/V10 and wider currency workloads stay open.
-No backend/contract, accounting, limit, signer, public config or live rollout changes.
-
+Changed backend helpers enter checkpoint semantic identity: preserve original
+checkpoint/review/raw DB/journal bytes; explicitly rebuild/review/re-pin for
+separately authorized adoption. No running site/service/chain, signer/public
+configuration, gas/resource limit, economic right or paused heartbeat changes.
 
 [Ownership-page adoption](reports/ownership-paging-20261121/REVIEW.md) connects current source9/source10 website holdings to
 all16-ID fixed-block pages, bounded to two in flight with full count/order/digest,
@@ -37,7 +35,7 @@ intent, nonce, spend, fee review and exact recovery/no-resend rules remain.
 16NEW methods pass:8 composed integration/identity plus8 actual unprivileged
 Ubuntu helper methods. No old test bodies ran.157 old Cast-mock literals in47
 fixtures were mechanically migrated with AST equivalence; assertions stay.
-Current inventory:180Python files/1,984named definitions (1,803functions/181classes),
+Bounded-Cast source inventory:180Python files/1,984named definitions (1,803functions/181classes),
 278lambdas, unchanged F6 Solidity61/dependencies39/controls4 and1,021ABI rows.
 Helper is in keeper health source identity: adopt matching writer/checker code,
 not edited source hashes or rewritten journals. No service/site/chain/key rollout.

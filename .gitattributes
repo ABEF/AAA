@@ -424,3 +424,14 @@ docs/SITE_ENVIRONMENTS.md -text whitespace=cr-at-eol
 
 # Preserve exact wallet-financial qualification evidence.
 reports/wallet-view-20261121/** -text whitespace=cr-at-eol
+
+# Exact bounded compact-wallet read source and qualification bytes.
+frontend_api/canonical_cache.py -text whitespace=cr-at-eol
+frontend_api/wallet_view.py -text whitespace=cr-at-eol
+tests_python/test_canonical_cache.py -text whitespace=cr-at-eol
+tests_python/test_wallet_view.py -text whitespace=cr-at-eol
+reports/compact-wallet-20261121/** -text whitespace=cr-at-eol
+
+# Preserve tested Windows checkpoint and focused-check source bytes.
+frontend_api/earnings_checkpoint.py -text whitespace=cr-at-eol
+tests_python/test_wallet_view.py -text whitespace=cr-at-eol,-blank-at-eof

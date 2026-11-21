@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "kind": "offline_saved_wire_retention_cap_compatibility",
+  "old_test_or_producer_execution": false,
+  "method": "Maximum actual saved eligible encoded entry times maximum physical RPC misses in any request; includes live misses conservatively, transport id upper-bounded as unsigned64. No handler, RPC or replay executed.",
+  "cache_entry_limit": 65536,
+  "cache_retention_limit": 8388608,
+  "source_sha256": "cd2784ef2c4ada773b09be8b4c3d8122e0f77df3f638c665f424a5bdead690f9",
+  "rows": [
+    {
+      "artifact": "backend-stage01/scenario-1.json",
+      "sha256": "581584aef83caa384920ce4da7c55f65bce45433bc256c7eff455dc0b01f9a9c",
+      "saved_unique_canonical_replies": 247,
+      "maximum_encoded_entry_bytes": 1194,
+      "maximum_rpc_per_request": 274,
+      "conservative_retention_upper_bound": 327156
+    },
+    {
+      "artifact": "backend-stage02/scenario-17.json",
+      "sha256": "7a30167635b7e940c4a7c6ba461f7d9213040d4942027fc201bc3f5eecb850d7",
+      "saved_unique_canonical_replies": 487,
+      "maximum_encoded_entry_bytes": 1194,
+      "maximum_rpc_per_request": 499,
+      "conservative_retention_upper_bound": 595806
+    },
+    {
+      "artifact": "backend-stage03/scenario-16-65currencies.json",
+      "sha256": "d9b8600f32b181c57a89fc0d4be95fafc2ef647a7564253570306a34f680c869",
+      "saved_unique_canonical_replies": 2551,
+      "maximum_encoded_entry_bytes": 1194,
+      "maximum_rpc_per_request": 904,
+      "conservative_retention_upper_bound": 1079376
+    },
+    {
+      "artifact": "backend-stage04/scenario-1000.json",
+      "sha256": "93f539af02864bd8e75ffdcb7f53860af75d87368cc58559e45226e1891ed537",
+      "saved_unique_canonical_replies": 15232,
+      "maximum_encoded_entry_bytes": 1194,
+      "maximum_rpc_per_request": 499,
+      "conservative_retention_upper_bound": 595806
+    }
+  ],
+  "limitation": "Shows retention caps cannot exclude these saved small synthetic replies; not runtime timing, real normal F6/code-size/provider or entire process memory qualification."
+}

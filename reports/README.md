@@ -1,9 +1,17 @@
 # Verification evidence
 
+[Compact wallet reads](compact-wallet-20261121/REVIEW.md) add combined ownership/
+summary and four-currency earnings pages with request-local bounded canonical
+reuse. New finite1/17/1,000 and66-descriptor journeys retain exact accounting and
+all limits; current checkpoints need reviewed source rebuild/re-pin for separate
+adoption. Actual hosting/provider/freshness and full normal acceptance remain open.
+
+Earlier separate-route qualification (historical source scope):
+
 [Wallet financial qualification](wallet-view-20261121/REVIEW.md) captures immutable wallet inputs across
 asynchronous reads, rejects late cancelled/expired results, and loads totals and
-earnings independently with at most two financial requests in flight.81 NEW JS
-methods pass across explicit78+3 stages; no earlier passing method is rerun.
+earnings independently with at most two financial requests in flight.83 NEW JS
+methods pass across explicit78+3+2 stages; no earlier passing method is rerun.
 New production-handler/SQLite/exact-replay journeys cover1/17/1,000 holdings with
 three currencies and literal independent raw/USD expectations. Producer scope is
 synthetic V9/source9, with separate controlled source9/source10 browser composition.

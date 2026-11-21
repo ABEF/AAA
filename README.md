@@ -1,5 +1,22 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+[Compact wallet reads](reports/compact-wallet-20261121/REVIEW.md) combine verified ownership, LP/funded ETH and
+four-currency earnings pages without changing exact accounting or limits.
+Controlled1,000-NFT/three-currency journeys need64 API reads instead190 before
+cards; sixteen NFTs with66 fully priced descriptors finish17 currency pages,
+with at most904 RPC reads per request. Legacy all-currency wires stay explicit.
+Current-profile GETs are paced1second apart; complete NFT/currency coverage,
+raw-first USD rounding, full86,400-second history and final proofs remain.
+Very large NFT-by-currency combinations can still exceed freshness: complete
+ownership/totals may remain usable while earnings is explicitly unavailable.
+Real provider/host/freshness and full normal F6/V10 acceptance remain open.
+
+Changed backend helpers enter checkpoint semantic identity: preserve original
+checkpoint/review/raw DB/journal bytes; explicitly rebuild/review/re-pin for
+separately authorized adoption. No running site/service/chain, signer/public
+configuration, gas/resource limit, economic right or paused heartbeat changes.
+
+
 [Bounded Cast capture](reports/bounded-cast-20261121/REVIEW.md) now limits total stdout/stderr to64KiB,
 retaining30/90-second deadlines and exact pending recovery without resending.
 16new checks pass, including8 on Ubuntu. Code publication changes no running

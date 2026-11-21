@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "kind": "NEW_compact_wallet_producer_and_api_focused_qualification",
+  "producer_old_test_bodies_run": 0,
+  "producer_old_scenario_main_calls": 0,
+  "producer_scope": "Production Projection/History/ExactReplay/Prices with synthetic V9/source9 graph/RPC/feed observations and new isolated SQLite input, fixed producer clock; no F6/V10 EVM, actual provider or hosting/freshness acceptance",
+  "stages": [
+    {
+      "stage": "backend-stage01",
+      "result": "pass",
+      "scenarios": [
+        {
+          "count": 1,
+          "royalty_count": 2,
+          "descriptor_count": 3,
+          "requests": 2,
+          "complete_nft_currency_pairs": 3,
+          "total_rpc": 413,
+          "total_physical_rpc": 413,
+          "max_rpc": 274,
+          "total_seconds": 1.0860667000015383,
+          "max_seconds": 0.9286353999996209,
+          "max_json_bytes": 13399,
+          "output_sha256": "581584aef83caa384920ce4da7c55f65bce45433bc256c7eff455dc0b01f9a9c",
+          "source_identity_sha256": "ff0525be23d387dd90e033162c3f3f8b48f61e72dcc2ec436023a483836ff4d3"
+        }
+      ],
+      "source_scope": "Original first-stage source before the intentional checkpoint SOURCE_FILES trust-pin update; exact stage source map preserved; no checkpoint configured."
+    },
+    {
+      "stage": "backend-stage02",
+      "result": "17-NFT pass; maximum-currency failed final source-immutability check after all 17 new selection pages; intentional checkpoint SOURCE_FILES edit occurred during run",
+      "completed": [
+        {
+          "count": 17,
+          "royalty_count": 2,
+          "descriptor_count": 3,
+          "requests": 3,
+          "complete_nft_currency_pairs": 51,
+          "total_rpc": 912,
+          "total_physical_rpc": 912,
+          "max_rpc": 499,
+          "total_seconds": 1.0885218999974313,
+          "max_seconds": 0.6264614999963669,
+          "max_json_bytes": 17042,
+          "output_sha256": "7a30167635b7e940c4a7c6ba461f7d9213040d4942027fc201bc3f5eecb850d7",
+          "source_identity_sha256": "ff0525be23d387dd90e033162c3f3f8b48f61e72dcc2ec436023a483836ff4d3"
+        }
+      ],
+      "exception_type": "AssertionError",
+      "message": "Source changed during producer case",
+      "source_scope": "17-NFT pass retains original pre-trust-pin-update source map; maximum case failed source immutability during intentional trust-pin update and only that affected case was retried."
+    },
+    {
+      "stage": "backend-stage03",
+      "result": "only affected maximum-currency case retried; pass",
+      "scenarios": [
+        {
+          "count": 16,
+          "royalty_count": 65,
+          "descriptor_count": 66,
+          "requests": 18,
+          "complete_nft_currency_pairs": 1056,
+          "total_rpc": 14333,
+          "total_physical_rpc": 14333,
+          "max_rpc": 904,
+          "total_seconds": 16.809957200006465,
+          "max_seconds": 1.1845044000001508,
+          "max_json_bytes": 24159,
+          "output_sha256": "d9b8600f32b181c57a89fc0d4be95fafc2ef647a7564253570306a34f680c869",
+          "source_identity_sha256": "f49195877a14495a21f57c8bc63b6e3ed08084f4868e75c03195816ceebd3a86"
+        }
+      ],
+      "source_scope": "Stable source after intentional checkpoint SOURCE_FILES trust-pin update; no checkpoint configured."
+    },
+    {
+      "stage": "backend-stage04",
+      "result": "new 1000-NFT case; pass",
+      "scenarios": [
+        {
+          "count": 1000,
+          "royalty_count": 2,
+          "descriptor_count": 3,
+          "requests": 64,
+          "complete_nft_currency_pairs": 3000,
+          "total_rpc": 31456,
+          "total_physical_rpc": 31456,
+          "max_rpc": 499,
+          "total_seconds": 83.62107399996603,
+          "max_seconds": 2.6602178999964963,
+          "max_json_bytes": 17069,
+          "output_sha256": "93f539af02864bd8e75ffdcb7f53860af75d87368cc58559e45226e1891ed537",
+          "source_identity_sha256": "f49195877a14495a21f57c8bc63b6e3ed08084f4868e75c03195816ceebd3a86"
+        }
+      ],
+      "source_scope": "Stable source after intentional checkpoint SOURCE_FILES trust-pin update; no checkpoint configured."
+    },
+    {
+      "stage": "python-stage01",
+      "result": "Original raw 18-method run retained; 17 unaffected methods accepted, one admission card-count assumption corrected and rechecked separately in python-stage02.",
+      "module": "tests_python.test_wallet_view",
+      "tests": 18,
+      "seconds": 0.663,
+      "old_test_modules_imported": 0,
+      "test_source_sha256": "16eda023f7fd0fb1d794866a5a95c6668ccd961f00320c47feb1e41c5266b696",
+      "accepted_unaffected_methods": 17
+    },
+    {
+      "stage": "python-stage02",
+      "result": "Only affected admission method passes after visible card HTTP count corrected to 2 * min(count, 8). Other 17 methods not rerun.",
+      "module": "tests_python.test_wallet_view.WalletViewWireTests.test_default_admission_ideal_clock_covers_complete_compact_refresh_and_visible_cards",
+      "tests": 1,
+      "seconds": 0.001,
+      "test_source_sha256": "4b0190e7b237c7fa34357dd0d664c85862c297fdb6a4543f5c464c359aafac97",
+      "stdout": "python-stage02.stdout",
+      "stderr": "python-stage02.stderr",
+      "original_source_and_outputs_preserved": true
+    }
+  ],
+  "admission": [
+    {
+      "compact_requests": 1,
+      "count": 1,
+      "earliest_last_read_seconds": 0.0,
+      "protocol_requests": 1,
+      "snapshot_maximum_seconds": 120,
+      "total_requests": 4,
+      "visible_card_requests": 2,
+      "zero_latency_ideal_clock_only": true
+    },
+    {
+      "compact_requests": 2,
+      "count": 17,
+      "earliest_last_read_seconds": 7.0,
+      "protocol_requests": 1,
+      "snapshot_maximum_seconds": 120,
+      "total_requests": 19,
+      "visible_card_requests": 16,
+      "zero_latency_ideal_clock_only": true
+    },
+    {
+      "compact_requests": 63,
+      "count": 1000,
+      "earliest_last_read_seconds": 68.0,
+      "protocol_requests": 1,
+      "snapshot_maximum_seconds": 120,
+      "total_requests": 80,
+      "visible_card_requests": 16,
+      "zero_latency_ideal_clock_only": true
+    }
+  ],
+  "limits": {
+    "work_seconds": 25,
+    "rpc_reads": 1024,
+    "post_work": 2048,
+    "result_bytes": 1048576,
+    "per_client_reads_per_second": 1,
+    "read_burst": 12,
+    "active_requests": 2,
+    "snapshot_maximum_seconds": 120
+  },
+  "unchanged_passing_cases_rerun": 0,
+  "distinct_current_focused_methods_passed": 18,
+  "affected_admission_method_reruns": 1
+}

@@ -1,0 +1,14 @@
+✔ NEW compact later currency HTTP 503 preserves complete holdings and totals without retry (33.7918ms)
+✔ NEW producer portfolio capability and UI branch reuse compact financials without duplicate wallet reads (5.9206ms)
+✔ NEW producer exact service_busy currency refusal preserves complete holdings and totals (5.0019ms)
+✔ NEW producer generic confirmed projection currency refusal fails the complete view (2.7312ms)
+✔ NEW producer portfolio final identity expiry rejects already assembled financials (3.5408ms)
+✔ NEW producer portfolio final identity cancellation rejects already assembled financials (1.8539ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 195.6793

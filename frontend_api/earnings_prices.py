@@ -47,11 +47,16 @@ class Prices:
                     token_code_hash=None if native else _hash(item['token_code_hash']), source_code_hash=_hash(item['source_code_hash']))
 
 
-    def read(self, block, *, timestamp=None):
+    def read(self, block, *, timestamp=None, selected=None):
         from frontend_api.service import _address_word, ProjectionError
         p = self.p
+        if selected is not None and (not isinstance(selected, tuple) or
+                len(set(selected)) != len(selected) or not set(selected) <= set(self.descriptors)):
+            raise ValueError('Invalid earnings price selection')
+        descriptors = self.descriptors if selected is None else {a:self.descriptors[a] for a in selected}
+        feeds = self.feeds if selected is None else {a:self.feeds[a] for a in selected if a in self.feeds}
         result = {asset: {'available': False, 'usd_per_token_18': None, 'reason': 'price_not_configured'}
-                  for asset in self.descriptors}
+                  for asset in descriptors}
         try:
             oracle, code = self.oracle
             p._code(oracle, code, block)
@@ -66,10 +71,10 @@ class Prices:
         except WorkLimit:
             raise
         except RpcError:
-            for asset in self.feeds:
+            for asset in feeds:
                 result[asset]['reason'] = 'price_module_verification_unavailable'
             return result
-        for asset, policy in self.feeds.items():
+        for asset, policy in feeds.items():
             try:
                 if self.pricing_version == 2:
                     from zzz_ops.price_policy import observe

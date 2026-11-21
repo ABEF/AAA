@@ -1,0 +1,6 @@
+test_key_is_derived_from_captured_params_even_if_source_changes_during_capture (tests_python.test_canonical_cache.CanonicalCacheTests.test_key_is_derived_from_captured_params_even_if_source_changes_during_capture) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK

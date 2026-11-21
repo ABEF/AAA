@@ -1,0 +1,36 @@
+✔ NEW producer 1 exact compact DTOs compose complete browser earnings (31.5821ms)
+✔ NEW producer 17 exact compact DTOs compose complete browser earnings (4.8617ms)
+✔ NEW producer 1000 exact compact DTOs compose complete browser earnings (51.7347ms)
+✔ NEW producer 16-65currencies exact compact DTOs compose complete browser earnings (17.2655ms)
+✔ NEW producer ASCII currency ordering is independent of String localeCompare (5.2184ms)
+✖ NEW producer portfolio capability and UI branch reuse compact financials without duplicate wallet reads (1.6254ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 291.3753
+
+✖ failing tests:
+
+test at tests\compact-wallet-view.test.mjs:383:1
+✖ NEW producer portfolio capability and UI branch reuse compact financials without duplicate wallet reads (1.6254ms)
+  AssertionError [ERR_ASSERTION]: Only compact read endpoints are permitted
+      at api.fetcher (file:///C:/Users/Ali/Desktop/2.x%20holas/Oto/aaa-website/tests/compact-wallet-view.test.mjs:85:12)
+      at api.fetcher (file:///C:/Users/Ali/Desktop/2.x%20holas/Oto/aaa-website/tests/compact-wallet-view.test.mjs:393:12)
+      at jsonRequest (file:///C:/Users/Ali/Desktop/2.x%20holas/Oto/aaa-website/deployment-api.js:90:19)
+      at read (file:///C:/Users/Ali/Desktop/2.x%20holas/Oto/aaa-website/deployment-api.js:108:111)
+      at DeploymentAPI.request (file:///C:/Users/Ali/Desktop/2.x%20holas/Oto/aaa-website/deployment-api.js:108:263)
+      at DeploymentAPI.portfolio (file:///C:/Users/Ali/Desktop/2.x%20holas/Oto/aaa-website/deployment-api.js:240:232)
+      at async TestContext.<anonymous> (file:///C:/Users/Ali/Desktop/2.x%20holas/Oto/aaa-website/tests/compact-wallet-view.test.mjs:398:13)
+      at async Test.run (node:internal/test_runner/test:1110:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:785:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

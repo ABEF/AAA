@@ -21,7 +21,9 @@ ROOT = Path(__file__).resolve().parents[1]
 MAX_BYTES = 32 * 1024 * 1024
 SOURCE_FILES = ('frontend_api/earnings_checkpoint.py', 'frontend_api/earnings_checkpoint_build.py',
     'frontend_api/earnings_replay.py', 'frontend_api/history.py', 'frontend_api/earnings.py',
-    'frontend_api/service.py', 'frontend_api/wallet_earnings.py', 'zzz_ops/abi.py',
+    'frontend_api/service.py', 'frontend_api/wallet_earnings.py',
+    'frontend_api/wallet_view.py', 'frontend_api/canonical_cache.py',
+    'frontend_api/portfolio.py', 'frontend_api/earnings_prices.py', 'zzz_ops/abi.py',
     'zzz_ops/log_provenance.py')
 SHARED = ('mints', 'shares', 'supply', 'members', 'weights', 'activation_order',
           'cohorts', 'owner_index', 'collective_index', 'royalty_index', 'fee_dust',

@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "purpose": "Whole-project workload/function/state inventory and verification plan; inventory completeness is never dynamic coverage or proof of all possible market states.",
-  "date": "2026-11-19",
+  "date": "2026-11-21",
   "source_baseline": "53ce73159004ec60031786b2c5c26af382dc1af7",
   "trusted_build_record": {
     "path": "reports/activation-final-six-20261118/build/final/normal-size-evidence.json",
@@ -421,7 +421,10 @@
         "fixedblock inventory pages require every verified page",
         "price/currency outage retains custody/raw rights",
         "both-LP decomposition/NAV/marginal values and exact units",
-        "cache identity/config/runtime/owner change and no falsezero"
+        "cache identity/config/runtime/owner change and no falsezero",
+        "compact16NFT by4currency complete rectangle versus missing/contradictory cursor/digest/price",
+        "request-local canonical raw reuse bounded memory and live final proofs",
+        "unchanged admission/freshness large-wallet request count versus infeasible NFTcurrency cross-product"
       ]
     },
     {

@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "kind": "Explicit_checkpoint_trust_pin_source_stage_reconciliation",
+  "before_identity_sha256": "ff0525be23d387dd90e033162c3f3f8b48f61e72dcc2ec436023a483836ff4d3",
+  "after_identity_sha256": "f49195877a14495a21f57c8bc63b6e3ed08084f4868e75c03195816ceebd3a86",
+  "changed_loaded_or_declared_sources": [
+    {
+      "path": "frontend_api/earnings_checkpoint.py",
+      "before_sha256": "fe47bb6c8df5a05526a6d53bfbf1d0e881d9792c4803bc1f11442f1e18aeb621",
+      "after_sha256": "f4ee790cc9381722f365af1907abe3cc5396f67be3fc70784dbee759dd8302d3"
+    }
+  ],
+  "checkpoint_configured": false,
+  "old_artifacts_relabelled": false,
+  "unchanged_producer_passes_rerun": 0,
+  "first_stages": "backend-stage01/1-NFT and backend-stage02/17-NFT retain exact original before-source maps",
+  "later_stages": "backend-stage03/max-currency retry and backend-stage04/1000-NFT bind after-source maps",
+  "preserved_failure": "backend-stage02 maximum failed final source-immutability check during intentional checkpoint SOURCE_FILES edit"
+}

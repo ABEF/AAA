@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "kind": "Static_AST_affected_method_scope",
+  "before_sha256": "16eda023f7fd0fb1d794866a5a95c6668ccd961f00320c47feb1e41c5266b696",
+  "after_sha256": "4b0190e7b237c7fa34357dd0d664c85862c297fdb6a4543f5c464c359aafac97",
+  "changed_methods": [
+    "WalletViewWireTests.test_default_admission_ideal_clock_covers_complete_compact_refresh_and_visible_cards"
+  ],
+  "unchanged_methods": 17,
+  "change": "Two visible-card request count expressions corrected from min(count,16) to 2*min(count,8); one affected method rerun.",
+  "ast_equal_outside_affected_method": true,
+  "test_body_executions": 0
+}

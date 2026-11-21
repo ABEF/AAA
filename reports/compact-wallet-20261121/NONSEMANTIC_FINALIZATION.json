@@ -1,0 +1,52 @@
+{
+  "scripts/verify.sh": {
+    "before": "9ce6bbd8cd2396ad645a62047deb011ab8d3c316cb509217de257be82d356d73",
+    "after": "d8f0832e9baf6e629b20a87c64c1dadb0e9424643b59822f73530998975a036a",
+    "only_crlf_to_lf": true
+  },
+  "config/nginx/popl-api-locations.conf": {
+    "before": "91f9e88b8116dfbf05020c14fee8a7263f4ab70a73fc562b7755d64dc469326e",
+    "after": "ee710e6e1187631c85113da2f90d08055e95010671c6b96a52a3ebfae026c365",
+    "only_crlf_to_lf": true
+  },
+  "docs/WORKLOAD_PLAN.json": {
+    "before": "bb3b58142749724cea00a7ce9209be0a4162add7386255aa5b52dd3b81dada33",
+    "after": "9b2b3f9d6e2210d6025a788314511a07e2497615b70748f7c0b8cb3bda4dce44",
+    "only_crlf_to_lf": true
+  },
+  "docs/FRONTEND_API.md": {
+    "before": "a760c48f9d6ae94c532c9548d3b5e6470358a45bf32e8cd5285945b9e31de86a",
+    "after": "1c881a8d0c913e0ae0b7381a619df0ea45177dfe7805d7ffab58872e4d933109",
+    "only_crlf_to_lf": true
+  },
+  "docs/WORKLOAD_COVERAGE.md": {
+    "before": "f84a324b6a257b92791a450af16323eca5c9e9211cb76794aaec3076bc7de63e",
+    "after": "da3192806b58b4a4607cf119ebda807263fe5a7bfedd36861f6b7e08c0e277b5",
+    "only_crlf_to_lf": true
+  },
+  "website/.gitattributes": {
+    "before": "bbf78f1d12a6ee3076d7a87dd717caee47be4154c1605b082871e9955c8d4d0a",
+    "after": "d9bf4a119b1b0282a238b5ca4950acc7efe44031006913f3ccd7341382e2cd82",
+    "only_crlf_to_lf": true
+  },
+  "website/AGENTS.md": {
+    "before": "5cb444ed538cb450b3c0f487f0acd81523863be2b37f86712e00d4d97af6195f",
+    "after": "27b3b6243996b7deb1c609b2cf5db4320578efab479413d80e6e3b4a4ddff8ae",
+    "only_crlf_to_lf": true
+  },
+  "website/PROJECT_CONTEXT.md": {
+    "before": "a193cbd1ffbc2dd89d8022efbaab46a7e247baf424854f1846eb24f33359f505",
+    "after": "3c369440e077ea89249c67fb266146f1104e2c690b2dfe9be2d4f9a8c007632b",
+    "only_crlf_to_lf": true
+  },
+  "website/README.md": {
+    "before": "63d56b5941b06a7997d0667f49950df5f2f7c69957b344752b542fcf3e03cdb4",
+    "after": "80824cc99793a548a543f101ea0ef1c19000f5057520a6d8452eb0c994b07d5f",
+    "only_crlf_to_lf": true
+  },
+  "website/build.mjs": {
+    "before": "ec230203a0984f4e2b64039161041bf86b8a90df940d82db4cbf9a50546ddd3f",
+    "after": "cfff8a10b4c3e681b8cb4edbca2581b8a96ded222278c3b3de8ba513fcfbff9f",
+    "only_crlf_to_lf": true
+  }
+}

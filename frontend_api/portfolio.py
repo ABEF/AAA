@@ -14,8 +14,10 @@ from zzz_ops.work_budget import expire_at
 CHUNK_SIZE=16
 
 
-def read(p, wallet_address, block_number, offset):
+def read(p, wallet_address, block_number, offset, *, include_history=False):
     wallet=address(wallet_address)
+    if type(include_history) is not bool:
+        raise ValueError('Invalid wallet summary history selection')
     if type(block_number) is not int or type(offset) is not int or not 0<=offset<1000 or offset%CHUNK_SIZE:
         raise ValueError('Invalid wallet summary cursor')
     if p.history is None:raise HistoryError('Complete indexed ownership is required')
@@ -95,7 +97,7 @@ def read(p, wallet_address, block_number, offset):
             except RpcError:eth_ok=False
     p._finish(header)
     digest=hashlib.sha256(','.join(map(str,ids)).encode('ascii')).hexdigest()
-    return dict(schema=1,chain_id=p.chain,wallet=wallet,nft_contract=p.contracts['nft'].address,
+    result=dict(schema=1,chain_id=p.chain,wallet=wallet,nft_contract=p.contracts['nft'].address,
         inventory_sha256=digest,count=count,offset=offset,token_ids=list(map(str,selected)),
         next_offset=offset+len(selected) if offset+len(selected)<count else None,chunk_size=CHUNK_SIZE,
         lp_usd_18=str(total_lp) if lp_ok else None,claimable_eth_wei=str(total_eth) if eth_ok else None,
@@ -104,3 +106,6 @@ def read(p, wallet_address, block_number, offset):
             configuration_sha256=p.identity,finality='confirmation_depth_only'),
         scope='Chunk only. Sum all chunks of the same inventory and block before displaying wallet totals. '
               'ETH is funded LP plus royalties; unconverted source currencies and historical earnings are excluded.')
+    if include_history:
+        result['history']=dict(history.provenance)
+    return result

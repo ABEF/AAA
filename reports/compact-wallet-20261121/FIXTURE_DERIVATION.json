@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "kind": "NEW_compact_wallet_fixture_derivation",
+  "transformation_source_sha256": "8ee9a3c03f00e4ab43f73454ac2f0e1469d9a4625e79271d0f7491562d0511ad",
+  "production_producer_or_test_reexecuted": false,
+  "original_DTO_values_changed": false,
+  "omitted": "Monetary/native graph RPC transcripts, raw-history/metric/source maps, private temporary DB path and runtime-only configuration.",
+  "fixtures": [
+    {
+      "source_stage": "backend-stage01",
+      "producer_artifact_name": "scenario-1.json",
+      "producer_artifact_sha256": "581584aef83caa384920ce4da7c55f65bce45433bc256c7eff455dc0b01f9a9c",
+      "producer_script_source_sha256": "78a43a813eef9f345a10da2c87525cd0c50df78310a79c4ad4b3f5920b97ddf5",
+      "neutral_helper_source_sha256": "e33edb79077f8f13ad2b0bd1a803679fe77348e91a747293c37a57d61edfe941",
+      "portable_fixture_sha256": "9ddb6d0292fe6a0cfed825f70f17c4037721354068c9b70d8b7ca9e7a5530e91",
+      "portable_bytes": 24280,
+      "protocol_pages_expected_byte_values_unchanged": true
+    },
+    {
+      "source_stage": "backend-stage02",
+      "producer_artifact_name": "scenario-17.json",
+      "producer_artifact_sha256": "7a30167635b7e940c4a7c6ba461f7d9213040d4942027fc201bc3f5eecb850d7",
+      "producer_script_source_sha256": "78a43a813eef9f345a10da2c87525cd0c50df78310a79c4ad4b3f5920b97ddf5",
+      "neutral_helper_source_sha256": "e33edb79077f8f13ad2b0bd1a803679fe77348e91a747293c37a57d61edfe941",
+      "portable_fixture_sha256": "09659b434bcf8cf28348b79a206053a27c5067e218d2532f1eafa1b6a0d60d62",
+      "portable_bytes": 42645,
+      "protocol_pages_expected_byte_values_unchanged": true
+    },
+    {
+      "source_stage": "backend-stage03",
+      "producer_artifact_name": "scenario-16-65currencies.json",
+      "producer_artifact_sha256": "d9b8600f32b181c57a89fc0d4be95fafc2ef647a7564253570306a34f680c869",
+      "producer_script_source_sha256": "78a43a813eef9f345a10da2c87525cd0c50df78310a79c4ad4b3f5920b97ddf5",
+      "neutral_helper_source_sha256": "e33edb79077f8f13ad2b0bd1a803679fe77348e91a747293c37a57d61edfe941",
+      "portable_fixture_sha256": "5cecac2c03dc904491197533cf3bc97a55ad187d46b95fdb5ec777ad8fe43a34",
+      "portable_bytes": 385411,
+      "protocol_pages_expected_byte_values_unchanged": true
+    },
+    {
+      "source_stage": "backend-stage04",
+      "producer_artifact_name": "scenario-1000.json",
+      "producer_artifact_sha256": "93f539af02864bd8e75ffdcb7f53860af75d87368cc58559e45226e1891ed537",
+      "producer_script_source_sha256": "78a43a813eef9f345a10da2c87525cd0c50df78310a79c4ad4b3f5920b97ddf5",
+      "neutral_helper_source_sha256": "e33edb79077f8f13ad2b0bd1a803679fe77348e91a747293c37a57d61edfe941",
+      "portable_fixture_sha256": "f08be9f9fcb580d32ebdf9977f0b7e8fd935b452a0b166fd6b47eb294ea5aa9b",
+      "portable_bytes": 1164303,
+      "protocol_pages_expected_byte_values_unchanged": true
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "kind": "additive correction to a manually transcribed tool result",
+  "retained_original_transcript": "node-stage80.tool-output.transcript.txt",
+  "tool_chunk_id": "2e3a35",
+  "case": "NEW compact rejects block timestamp before publishing any partial result",
+  "mistyped_transcript_duration_ms": 2.1112,
+  "original_visible_tool_duration_ms": 2.1121,
+  "outcome_unchanged": "passed",
+  "tests_rerun": false,
+  "recorded_transcript_rewritten": false,
+  "reason": "Manual transcription typo. Automatic approval review rejected editing the retained transcript; preserve the original and this explicit correction."
+}

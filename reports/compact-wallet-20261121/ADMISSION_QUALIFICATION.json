@@ -1,0 +1,32 @@
+[
+  {
+    "compact_requests": 1,
+    "count": 1,
+    "earliest_last_read_seconds": 0.0,
+    "protocol_requests": 1,
+    "snapshot_maximum_seconds": 120,
+    "total_requests": 4,
+    "visible_card_requests": 2,
+    "zero_latency_ideal_clock_only": true
+  },
+  {
+    "compact_requests": 2,
+    "count": 17,
+    "earliest_last_read_seconds": 7.0,
+    "protocol_requests": 1,
+    "snapshot_maximum_seconds": 120,
+    "total_requests": 19,
+    "visible_card_requests": 16,
+    "zero_latency_ideal_clock_only": true
+  },
+  {
+    "compact_requests": 63,
+    "count": 1000,
+    "earliest_last_read_seconds": 68.0,
+    "protocol_requests": 1,
+    "snapshot_maximum_seconds": 120,
+    "total_requests": 80,
+    "visible_card_requests": 16,
+    "zero_latency_ideal_clock_only": true
+  }
+]

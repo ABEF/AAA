@@ -1,0 +1,21 @@
+test_key_is_derived_from_captured_params_even_if_source_changes_during_capture (tests_python.test_canonical_cache.CanonicalCacheTests.test_key_is_derived_from_captured_params_even_if_source_changes_during_capture) ... FAIL
+
+======================================================================
+FAIL: test_key_is_derived_from_captured_params_even_if_source_changes_during_capture (tests_python.test_canonical_cache.CanonicalCacheTests.test_key_is_derived_from_captured_params_even_if_source_changes_during_capture)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_canonical_cache.py", line 310, in test_key_is_derived_from_captured_params_even_if_source_changes_during_capture
+    self.assertEqual([row[1][0]['data'] for row in transport.calls], ['0x87654321', '0x12345678'])
+AssertionError: Lists differ: ['0x87654321'] != ['0x87654321', '0x12345678']
+
+Second list contains 1 additional elements.
+First extra element 1:
+'0x12345678'
+
+- ['0x87654321']
++ ['0x87654321', '0x12345678']
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+FAILED (failures=1)
