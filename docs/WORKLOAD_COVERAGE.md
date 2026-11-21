@@ -1,12 +1,12 @@
 # Whole-project workload coverage
 
-The [new composed integration](../reports/pool-integration-20261120/REVIEW.md) adds
-2direct production swaps and4real ETH/ZZZ Entry activation/growth behaviors on
-separate supplied-pool forks. New normal graph construction is setup, not repeated
-constructor-suite coverage. Two-NFT state and captured-NAV share arithmetic pass;
-this is not independent physical valuation, multi-venue selection, full fee-split,
-hybrid/maximum-state or actual source/provider/fee acceptance. Earlier physical-LP
-and workload evidence retain their exact scopes. No unchanged suite is rerun.
+The [actual-fee extension](../reports/pool-fees-20261121/REVIEW.md) reuses the saved
+normal F6 graph and original Entry history. Independent current-phase eager
+replay,17new local receipts, three harvests, seven claims and25state checkpoints
+cover fee intake/split/carry/reserves, NFT transfer and feed-fault isolation.
+Receipt count is not method count. The two-NFT/single-main/source-currency scope
+does not qualify ETH conversion, royalties, hybrid/maximum cohorts, real markets/
+provider fees, consumers or normal services. No unchanged suite is rerun.
 
 The [current readiness advance](../reports/readiness-advance-20261120/REVIEW.md)
 adds a strict offline saved-mint intent reviewer to the existing OpenSea tool.

@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "kind": "offline_publication_checks_no_behavioral_rerun",
+  "baseline": "33af0ab927d6724b724df99e926fedf78e4febcf",
+  "archive_sha256": "13aa22d3dd99108d06d58a6aa96505a08b6a16c74e633e90b142bde826edb22b",
+  "archive_members_verified": 114,
+  "archive_bytes": 10411086,
+  "original_docs_verified": 13,
+  "protected_unrelated_dirty_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "stable_task_ids": 83,
+  "task_status_changes": 0,
+  "task_counts": {
+    "done": 35,
+    "progress": 40,
+    "excluded": 1,
+    "todo": 7
+  },
+  "report_python_syntax_checked": [
+    "reports/pool-fees-20261121/check_package.py",
+    "reports/pool-fees-20261121/review/verify_archive.py",
+    "reports/pool-fees-20261121/review/verify_baseline_eager.py",
+    "reports/pool-fees-20261121/review/verify_extension_saved.py",
+    "reports/pool-fees-20261121/run/driver_base.py",
+    "reports/pool-fees-20261121/run/eager_oracle.py",
+    "reports/pool-fees-20261121/run/package.py",
+    "reports/pool-fees-20261121/run/run_fees.py",
+    "reports/pool-fees-20261121/run/supervise.py",
+    "reports/pool-fees-20261121/run/verify_saved.py",
+    "reports/pool-fees-20261121/run/warm_cache.py"
+  ],
+  "new_local_links_checked": 29,
+  "source_checks": [
+    {
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "scripts/build-workload-inventory.py",
+        "--check",
+        "reports/readiness-advance-20261120/FUNCTION_INVENTORY.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"action\": \"verified\", \"counts\": {\"abi_kinds\": {\"constructor\": 40, \"fallback\": 0, \"function\": 968, \"receive\": 13}, \"abi_rows\": 1021, \"build_controls\": 4, \"callable_contracts\": 40, \"dependency_sources\": 39, \"excluded_internal_objects\": 8, \"project_sources\": 61, \"python_definitions\": 1979, \"python_files\": 179, \"solidity_bodyless_declarations\": 511, \"solidity_implemented_definitions\": 1056, \"solidity_modifiers\": 29}, \"inventory_only\": true, \"output_bytes\": 4859094, \"output_sha256\": \"d0a2de1c507c2540a61f438e9d6aba160919966c52aabaf455ca9f70d3f46e97\"}\r\n",
+      "stderr": "",
+      "stdout_sha256": "b9460e077d5eb52db861a020fae02600fa729427f38da889e2496180022300d3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "scripts/sync-project-todo.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "Project Todo verified.\r\n",
+      "stderr": "",
+      "stdout_sha256": "84da3985b677083ac5dbd5a81b35925d8966cf6a0d6fc610df91cb30dce624ee",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "source_inventory_only": {
+    "action": "verified",
+    "counts": {
+      "abi_kinds": {
+        "constructor": 40,
+        "fallback": 0,
+        "function": 968,
+        "receive": 13
+      },
+      "abi_rows": 1021,
+      "build_controls": 4,
+      "callable_contracts": 40,
+      "dependency_sources": 39,
+      "excluded_internal_objects": 8,
+      "project_sources": 61,
+      "python_definitions": 1979,
+      "python_files": 179,
+      "solidity_bodyless_declarations": 511,
+      "solidity_implemented_definitions": 1056,
+      "solidity_modifiers": 29
+    },
+    "inventory_only": true,
+    "output_bytes": 4859094,
+    "output_sha256": "d0a2de1c507c2540a61f438e9d6aba160919966c52aabaf455ca9f70d3f46e97"
+  },
+  "new_successful_local_transactions": 17,
+  "saved_wire_rows": 1333,
+  "saved_eager_checkpoints": 25,
+  "old_behavioral_suites_rerun": false,
+  "production_source_changes": false,
+  "existing_environment_changes": false,
+  "production_approved": false
+}

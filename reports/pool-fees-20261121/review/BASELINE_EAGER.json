@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "passed": true,
+  "kind": "new_independent_offline_baseline_eager_replay",
+  "prior_archive_sha256": "e56b8d78aba465c673aa0379e6a4214860189e935c133dafc7da8c46aa99d2ff",
+  "archive_members": {
+    "attempt1/construction/instances.json": {
+      "sha256": "e94a9dc5d4f3f04211ad77e62612b2284301584c3e363203198311d34d128e56",
+      "bytes": 4845414
+    },
+    "attempt1/ALL_SETUP_SCENARIO_RECEIPTS.json": {
+      "sha256": "425902fae92cdbb210f3a12afc80908b9bd186ec1ae80060c427d9f302f3c519",
+      "bytes": 696971
+    },
+    "attempt1/STATES.json": {
+      "sha256": "cccf7753a5aded7a26f65fc5466172a43b129e11a1d97ae9a0ae6886cfc0989b",
+      "bytes": 27110
+    }
+  },
+  "source_sha256": "a6f58ea4e8427fbb5c8d75f066bef75b7692142445ea65c513b0b5614abaf1a0",
+  "pool_credit_events_replayed": 6,
+  "checkpoints": [
+    {
+      "label": "new_ETH_activation",
+      "claimable_ETH": [
+        "0",
+        "0"
+      ],
+      "claimable_ZZZ": [
+        "0",
+        "0"
+      ],
+      "shares": [
+        "109509127161703203286",
+        "0"
+      ],
+      "eligible": 1
+    },
+    {
+      "label": "new_ZZZ_activation",
+      "claimable_ETH": [
+        "0",
+        "0"
+      ],
+      "claimable_ZZZ": [
+        "162113572165739202",
+        "0"
+      ],
+      "shares": [
+        "109509127161703203286",
+        "109270019550375409891"
+      ],
+      "eligible": 2
+    },
+    {
+      "label": "new_ETH_growth",
+      "claimable_ETH": [
+        "66538615219",
+        "66409458501"
+      ],
+      "claimable_ZZZ": [
+        "162113572165739202",
+        "0"
+      ],
+      "shares": [
+        "129424971487399448345",
+        "109270019550375409891"
+      ],
+      "eligible": 2
+    },
+    {
+      "label": "new_ZZZ_growth",
+      "claimable_ETH": [
+        "66538615219",
+        "66409458501"
+      ],
+      "claimable_ZZZ": [
+        "196580114856647102",
+        "29653912041960014"
+      ],
+      "shares": [
+        "129424971487399448345",
+        "129130912612388018059"
+      ],
+      "eligible": 2
+    }
+  ],
+  "final_components": {
+    "personal_ETH": [
+      "59152611124",
+      "59023454406"
+    ],
+    "collective_ETH": [
+      "7386004095",
+      "7386004095"
+    ],
+    "personal_ZZZ": [
+      "175005248241961198",
+      "26091664556800686"
+    ],
+    "collective_ZZZ": [
+      "21574866614685904",
+      "3562247485159328"
+    ]
+  },
+  "independently_derived_nonzero_phase": {
+    "0,0,512": [
+      "146844373177373127359507587236013365562",
+      "68540985689845081932"
+    ],
+    "0,1,512": [
+      "52459533424854047147126133233457662538",
+      "167325416654439501444"
+    ]
+  },
+  "no_production_phase_pending_or_accrued_getter_used": true,
+  "existing_Entry_execution_repeated": false,
+  "unchanged_tests_run": false,
+  "network_or_EVM_calls": 0,
+  "production_approved": false
+}

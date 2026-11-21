@@ -1,6 +1,6 @@
 # Project Todo
 
-**Reviewed 2026-11-20 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-11-21 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
@@ -369,7 +369,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-reward-ledgers"></a>
 
-- [x] **[LP fees & separate royalty shares](docs/ECONOMICS.md)** - Implemented. Funded80/10/5/5 LP allocation preserves raw-unit carry/incumbent flush and equal activated collective shares. Fresh accounting7 assigns every ALLOCATED LP unit through exact share/membership trees; royalty4 separately assigns original-currency rarity1/2/3 units. Current-owner claims and same-NFT conversion preserve both components; actual ETH conversion routes remain separately qualified.
+- [x] **[LP fees & separate royalty shares](docs/ECONOMICS.md)** - Implemented. Funded80/10/5/5 LP allocation preserves raw-unit carry/incumbent flush and equal activated collective shares. Fresh accounting7 assigns every ALLOCATED LP unit through exact share/membership trees; royalty4 separately assigns original-currency rarity1/2/3 units. Current-owner claims and same-NFT conversion preserve both components; actual ETH conversion routes remain separately qualified. The current supplied-pool fee extension independently reconciles actual receipts/splits/reserves and current-owner direct ETH/ZZZ payouts; all allocated LP liabilities drain while classified reserves/carry remain backed. See reports/pool-fees-20261121/REVIEW.md.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -387,7 +387,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-lp-exact-unit-allocation"></a>
 
-- [x] **[Assign every allocated LP reward unit](docs/EXACT_LP_ALLOCATION.md)** - Implemented. Fresh accounting7 integrates whole-unit LP books with authenticated Vault/Membership hooks, current-owner claims, same-NFT conversion and lossless raw accounting; mint2 extends the outer canonical schema to V10. Original profile7/schema16/source9 readers and actual event/getter replay reconcile exact rights. Local host/canonical/consumer verification is source-scoped; target maximum-workload gas, operating rollout and independent audit remain release work.
+- [x] **[Assign every allocated LP reward unit](docs/EXACT_LP_ALLOCATION.md)** - Implemented. Fresh accounting7 integrates whole-unit LP books with authenticated Vault/Membership hooks, current-owner claims, same-NFT conversion and lossless raw accounting; mint2 extends the outer canonical schema to V10. Original profile7/schema16/source9 readers and actual event/getter replay reconcile exact rights. Local host/canonical/consumer verification is source-scoped; target maximum-workload gas, operating rollout and independent audit remain release work. A new eager Q128 prefix/extension replay matches the saved two-NFT real-core fee and transfer/claim journey, preserving dynamic-weight phase rather than adopting the old reset model. This finite proof does not replace larger workloads. See reports/pool-fees-20261121/REVIEW.md.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1206,7 +1206,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-mainnet-fork"></a>
 
-- [ ] **[Robinhood mainnet-fork qualification](reports/pool-integration-20261120/REVIEW.md)** - In progress. Current F6 physical LP and composed integration pass on the supplied native ETH/ZZZ test pool at block119107223. New real Manager swaps cover both directions and a simulation-only impossible output floor; a separate normal39-instance/two-NFT graph covers ETH/ZZZ activation and growth, shares/membership/custody and stable main geometry/rebalance clock. All four contributions fit32M/full20%. Correlated prices, controlled VRF/SeaDrop materialization, local funding and synthetic external depth remain explicit. This is not multiple-venue selection, maximum-state, independent pricing/depth, complete fees/provider or release acceptance. Original physical and historical accounting3 evidence keep their source scopes.
+- [ ] **[Robinhood mainnet-fork qualification](reports/pool-fees-20261121/REVIEW.md)** - In progress. Current F6 physical LP and composed integration pass on the supplied native ETH/ZZZ test pool at block119107223. New real Manager swaps cover both directions and a simulation-only impossible output floor; a separate normal39-instance/two-NFT graph covers ETH/ZZZ activation and growth, shares/membership/custody and stable main geometry/rebalance clock. All four contributions fit32M/full20%. Correlated prices, controlled VRF/SeaDrop materialization, local funding and synthetic external depth remain explicit. This is not multiple-venue selection, maximum-state, independent pricing/depth, complete fees/provider or release acceptance. Original physical and historical accounting3 evidence keep their source scopes. The next saved-graph extension now verifies actual fee intake,80/10/5/5/carry/reserves and current-owner direct claims through a controlled feed outage; ETH conversion and broader qualification remain separate. See reports/pool-fees-20261121/REVIEW.md.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1375,7 +1375,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
 
 <a id="task-security-share-accounting"></a>
 
-- [ ] **[Shared LP accounting & economic manipulation](docs/SECURITY_AUDIT_PLAN.md#2-shared-lp-accounting-and-economic-manipulation)** - In progress. Verify 1,000 independent NFT share accounts through deposits, top-ups, compounding, rebalancing and migrations. Extend local conservation and gas evidence with adversarial prices, donation/front-running, dilution, rounding and multi-asset economic tests on qualified venues.
+- [ ] **[Shared LP accounting & economic manipulation](docs/SECURITY_AUDIT_PLAN.md#2-shared-lp-accounting-and-economic-manipulation)** - In progress. Verify 1,000 independent NFT share accounts through deposits, top-ups, compounding, rebalancing and migrations. Extend local conservation and gas evidence with adversarial prices, donation/front-running, dilution, rounding and multi-asset economic tests on qualified venues. New finite actual-core two-NFT evidence reconciles Q128 dynamic-weight history and fee allocation/current-owner claims/reserve backing across transfer and a controlled price fault; no market-manipulation immunity or1000-NFT acceptance is inferred. See reports/pool-fees-20261121/REVIEW.md.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1872,4 +1872,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `922f03d448ee0594200fd661fb371bc90602bbfc81e169566657ca476aa29dbc`.
+Snapshot SHA-256: `5bfc94bcf573afeb1fdbb00b3a3b394f3c6bb925a41250e829366f530b966f26`.

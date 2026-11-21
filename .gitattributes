@@ -353,3 +353,6 @@ reports/pool-lifecycle-20261120/harness/unittest.stderr whitespace=cr-at-eol,-bl
 # Preserve exact composed swap/Entry evidence, source stages and receipts.
 reports/pool-integration-20261120/** -text whitespace=cr-at-eol
 reports/pool-integration-20261120/swap/driver_base.py whitespace=cr-at-eol,-blank-at-eof
+# Preserve exact fee-flow sources, failures, requests and state artifacts.
+reports/pool-fees-20261121/** -text whitespace=cr-at-eol
+reports/pool-fees-20261121/run/driver_base.py whitespace=cr-at-eol,-blank-at-eof

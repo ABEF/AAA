@@ -1,5 +1,13 @@
 # Verification evidence
 
+[Actual LP fees and current-owner claims](pool-fees-20261121/REVIEW.md) extends the
+saved normal F6 graph without repeating Entry/construction. Independent eager
+prefix/extension replay,17new local receipts and exact reserve/payout proofs cover
+real fee splitting, transfer, zero repeats and a controlled feed outage. Bounded
+file-based restore corrects a report-tool failure; production source/rights and
+live environments stay unchanged. Normal ETH conversion remains unqualified.
+
+
 [Composed supplied-pool integration](pool-integration-20261120/REVIEW.md) adds
 production direct swaps and four real Entry/NFT activation/growth calls on new
 owned forks. Source-bound wire/trace/share checks, unchanged geometry/clock,

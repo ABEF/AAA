@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "original_prefix_stage_sha256": "d8c942e18df2af55c0ca95b6b56efb97312f060c260a12d2e7c7ada69648e99e",
+  "current_driver_sha256": "be0f6f52a71bbc690f39f4f19cd615803eaf6df54b7e4b124df9362ef291b424",
+  "Model_AST_equal": true,
+  "changes": "local trace capture and extra state assertions only",
+  "prefix_replay_rerun": false
+}

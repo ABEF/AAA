@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "offline_only": true,
+  "passed": true,
+  "authenticated_archive_sha256": "e56b8d78aba465c673aa0379e6a4214860189e935c133dafc7da8c46aa99d2ff",
+  "snapshot_sha256": "b4c01efff093fa73d69c837d004c534f456a1776af8fb84dfb6043e69bda238a",
+  "replayed_receipts": 47,
+  "expected_components": {
+    "0x0000000000000000000000000000000000000000": {
+      "personal": [
+        "59152611124",
+        "59023454406"
+      ],
+      "collective": [
+        "7386004095",
+        "7386004095"
+      ],
+      "prior_units": "7386004095",
+      "prior_dust": 0,
+      "prior_dust_flushes": "10"
+    },
+    "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a": {
+      "personal": [
+        "175005248241961198",
+        "26091664556800686"
+      ],
+      "collective": [
+        "21574866614685904",
+        "3562247485159328"
+      ],
+      "prior_units": "12568557049922616",
+      "prior_dust": 0,
+      "prior_dust_flushes": "28"
+    }
+  },
+  "normal_RPC_or_new_EVM_calls": 0,
+  "source_sha256": {
+    "run_fees.py": "d8c942e18df2af55c0ca95b6b56efb97312f060c260a12d2e7c7ada69648e99e",
+    "eager_oracle.py": "4311ed4b309a73604a50f29142d4c7149657ab3037bba4610d2c6e7cc7052e78"
+  }
+}

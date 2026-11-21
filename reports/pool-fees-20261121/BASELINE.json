@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "baseline": "33af0ab927d6724b724df99e926fedf78e4febcf",
+  "client_date": "2026-11-21",
+  "observed_utc": "2026-11-21T12:29:21.134806+00:00",
+  "original_docs_external": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\pool-fees-20261121\\original-docs",
+  "original_docs": {
+    ".gitattributes": {
+      "sha256": "f8e717a5db7709274ae56905c7ac07e6a71ec2be93511fb61c062077c2406fe3",
+      "bytes": 20753
+    },
+    "AGENTS.md": {
+      "sha256": "44f161b905bab87bf300126845a113197b6f3b37beb93973d40ebf04a9634804",
+      "bytes": 53092
+    },
+    "PROJECT_CONTEXT.md": {
+      "sha256": "5a26f42976e6867cea07eb3294fe236e31c2cc7266c9a9213585a79219914a31",
+      "bytes": 24197
+    },
+    "README.md": {
+      "sha256": "da39ada6634791bbfbe48fade20b5e7eda91521fe184013567276d628cca5d11",
+      "bytes": 10278
+    },
+    "TODO.md": {
+      "sha256": "5dd6f30813e5d1c6e41e2bb876f3ffd8c0d916455d0cdbd970d4f2068c2b1116",
+      "bytes": 461047
+    },
+    "docs/WORK_HANDOFF.md": {
+      "sha256": "b7197908c0012897ef8cf871f92d0f9670dec1c3da8e42180eb971aa1f3e4394",
+      "bytes": 15381
+    },
+    "docs/AUDIT_FINDINGS.md": {
+      "sha256": "c03a0e23387337f41497350652a890682193883d53ff3d33d77d3ef2d28a15f5",
+      "bytes": 28561
+    },
+    "docs/OPERATOR_MANUAL.md": {
+      "sha256": "b78e5637ba0c69ebe951057c77e77ab154ced58411b324ed699d2b85173e992b",
+      "bytes": 666322
+    },
+    "docs/IMPLEMENTATION_STATUS.md": {
+      "sha256": "df49b7fa70cd28d9f114ebb7f66ffc71756475a5e27a6bbc07ee1977df1b0ed0",
+      "bytes": 35098
+    },
+    "docs/ROADMAP.md": {
+      "sha256": "18b5b9a55aea996787c5d42d61d902574efaf1adcae172430ae9be685decfd50",
+      "bytes": 42976
+    },
+    "docs/WORKLOAD_COVERAGE.md": {
+      "sha256": "26c635c327cbc7bcee44c6e7d1307fb8335c6e9578ae824eb0a34daddc716f28",
+      "bytes": 9711
+    },
+    "docs/project-todo.json": {
+      "sha256": "c10c7dea8b7d6853c4bb42066bd7d4ff922af7027bbb5b1b4555d37b53e9469e",
+      "bytes": 478366
+    },
+    "reports/README.md": {
+      "sha256": "bd71cf4bceaa51e60a97eb65c1d2b708319fbd592766e7fca2d74c83de19b88c",
+      "bytes": 36681
+    }
+  },
+  "protected_unrelated_dirty_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "stable_task_ids": [
+    "lp-only-simplification",
+    "immediate-governance",
+    "operator-stop-controls",
+    "price-security",
+    "nft-lifecycle",
+    "reward-ledgers",
+    "lp-exact-unit-allocation",
+    "lp-eth-settlement",
+    "royalty-eth-settlement",
+    "shared-custody",
+    "pons-qualification",
+    "activation-assets",
+    "fair-draw",
+    "custody-composition",
+    "opensea-mint",
+    "native-custody-recovery",
+    "post-seal-configuration",
+    "typed-v4-conversion",
+    "governed-loss-limits",
+    "reviewed-contribution-policy",
+    "liquidity-placement-idle",
+    "adaptive-range-policy",
+    "callable-reference",
+    "lp-execution-routing",
+    "manual-reference-swap-proof",
+    "rebalance-confirmation-buffer",
+    "manual-emergency-rebalance",
+    "passive-inventory",
+    "royalty-factory-gas",
+    "pool-spot-price-source",
+    "read-api",
+    "royalty-reporting",
+    "unsigned-actions",
+    "activation-quotes",
+    "financial-history",
+    "api-client-admission",
+    "host-services",
+    "holder-preflight",
+    "native-production-preflight",
+    "operation-review",
+    "manual-recovery-gas-rehearsal",
+    "manual-lp-diagnostics",
+    "parked-emergency-preparation",
+    "operator-management-preparation",
+    "claim-batch-planner",
+    "preview",
+    "wallet",
+    "portfolio",
+    "transaction-ui",
+    "live-history-ui",
+    "purchase-rights",
+    "creator-zzz-price",
+    "creator-market-controls",
+    "creator-input-liquidity",
+    "local-verification",
+    "activation-gas-six-cases",
+    "mainnet-fork",
+    "testnet-rehearsal",
+    "audit-release",
+    "economic-rights-audit",
+    "local-dollar-rehearsal",
+    "local-browser-stack",
+    "capacity-campaign",
+    "mainnet-rehearsal-retirement",
+    "security-governance",
+    "security-share-accounting",
+    "security-ownership-rewards",
+    "security-strategy",
+    "security-keeper-manipulation",
+    "security-external-manipulation",
+    "security-dependencies",
+    "security-chain-recovery",
+    "security-integration",
+    "historical-findings",
+    "authorities-prices",
+    "dual-price-qualification",
+    "metadata-ops",
+    "keeper-guardrails",
+    "keeper-recovery",
+    "asset-liveness-dust",
+    "deployment-initcode",
+    "migration-framework",
+    "destination-slots"
+  ],
+  "production_approved": false
+}

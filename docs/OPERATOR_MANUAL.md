@@ -1,13 +1,17 @@
 # PoPL operator manual
 
-[Current supplied-pool integration](../reports/pool-integration-20261120/REVIEW.md)
-verifies direct swaps and finite ETH/ZZZ Entry activation/growth using a fresh
-normal F6 test graph. Ownership/shares/membership and existing-main ticks/clock
-are preserved; all four contributions fit32M/full20%. This changes no operator
-function, permission, default, production configuration or running environment.
-The restored-node clock correction is a disposable rehearsal-tool fix, not a
-production recovery instruction. Actual independent feeds/routes/depth, full
-workloads and complete fees still need qualification before adoption.
+[Current LP fee-flow proof](../reports/pool-fees-20261121/REVIEW.md) verifies actual
+harvested ETH/ZZZ,80/10/5/5+dust and exact current-owner claims on the saved normal
+F6 test graph. `Vault.collectFees(bucket,deadline)` remains permissionless under
+its existing lifecycle/custody checks; collection sends no money to its caller.
+Harvest does not compound or burn. Those5%reserves and any <20raw-unit carry
+remain classified. Direct `Rewards.claim(id,token)` pays the current NFT owner;
+ETH and fixed ZZZ are existing source-currency capabilities, while the normal
+consumer remains ETH-only. A controlled invalid feed does not block these
+non-swapping actions; conversion/placement financial guards remain.24M/full25%
+harvest and12M/full20% claims/defaults are unchanged. The new state-file restore
+is disposable rehearsal tooling, not a production recovery instruction. Actual
+routes, consumer/keeper operation, broader workloads and complete fees stay open.
 
 [Current F6 construction/readback](../reports/f6-construction-20261120/REVIEW.md)
 passes39instances/112bindings plus172defaults and35separate unsealed permission

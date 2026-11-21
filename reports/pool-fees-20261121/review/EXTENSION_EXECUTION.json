@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "command": [
+    "C:/Users/Ali/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+    "reports/pool-fees-20261121/review/verify_extension_saved.py",
+    "--evidence",
+    "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/pool-fees-20261121/run/attempt2",
+    "--output",
+    "reports/pool-fees-20261121/review/EXTENSION_REVIEW.json"
+  ],
+  "exit_code": 0,
+  "source_sha256": "44e3626f71d69c8a311de9acdc46c6562a119265ff4167d8f7c53fd8f32e621c",
+  "result_sha256": "5b7e29a919ad07ef02fa7ce4fb78381aabb5274da525412d3a1a1ca6c5dd93ac",
+  "prior_verifier_only_failures": [
+    "EXTENSION_STAGE1_FAILURE.json",
+    "EXTENSION_STAGE2_FAILURE.json"
+  ],
+  "EVM_or_network_calls": 0,
+  "production_approved": false
+}

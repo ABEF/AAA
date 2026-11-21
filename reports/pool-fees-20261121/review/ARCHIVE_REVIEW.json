@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "passed": true,
+  "source_sha256": "a23ffa2e18b2a106ad5212c18a7ff911950fb8eaf5cfda7ce7d230a22d39b9c8",
+  "archive_sha256": "13aa22d3dd99108d06d58a6aa96505a08b6a16c74e633e90b142bde826edb22b",
+  "archive_bytes": 10411086,
+  "unique_members_verified": 114,
+  "current_sources_match_successful_stage": {
+    "run_fees.py": "ac2cc3c66f0126574bb1b5ed79af3a48b856d0923e11de8d2cbfddeef6c381aa",
+    "driver_base.py": "06f9e2202d74b60382ea0a16bb670d127174d5b67901ca2c9ff6f25a01cb0575",
+    "warm_cache.py": "0d8452f88154379cd21d96ea1a21137be337dc64b6cfe087488ccf707d83ffb1",
+    "eager_oracle.py": "4311ed4b309a73604a50f29142d4c7149657ab3037bba4610d2c6e7cc7052e78"
+  },
+  "oracle_counterexample_source_pin_matches": true,
+  "network": [
+    {
+      "stage": "attempt1",
+      "public_reads": 3,
+      "cache_hits": 2,
+      "local_rejections": 1,
+      "all_public_HTTP200": true,
+      "retries": 0
+    },
+    {
+      "stage": "attempt2",
+      "public_reads": 32,
+      "cache_hits": 174,
+      "local_rejections": 2,
+      "all_public_HTTP200": true,
+      "retries": 0
+    }
+  ],
+  "closed_nodes": [
+    {
+      "stage": "attempt1",
+      "pid": 4368,
+      "stopped": true,
+      "pending": null
+    },
+    {
+      "stage": "attempt2",
+      "pid": 22444,
+      "stopped": true,
+      "pending": null
+    }
+  ],
+  "EVM_or_network_calls": 0,
+  "production_approved": false
+}

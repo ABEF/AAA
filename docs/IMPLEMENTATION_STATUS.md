@@ -1,13 +1,14 @@
 # Feature and evidence reference
 
-[Current composed supplied-pool evidence](../reports/pool-integration-20261120/REVIEW.md)
-adds real direct Manager swaps and four ETH/ZZZ Entry activation/growth calls with
-two NFTs and the normal F6 graph. Shares, membership, custody and unchanged main
-geometry/clock reconcile; full20% padded contributions fit32M. Direct swaps retain
-24M/full25%. Fixture prices/depth/sale/VRF remain explicit; multi-venue selection,
-maximum-state gas, independent sources, actual fees and release approval stay open.
-[Earlier physical-LP evidence](../reports/pool-lifecycle-20261120/REVIEW.md) remains
-separate, without repeating its unchanged suite or relabeling older profiles.
+[Current actual-fee evidence](../reports/pool-fees-20261121/REVIEW.md) verifies
+actual harvested ETH/ZZZ ->80/10/5/5+dust ->exact NFT claims/reserves on the saved
+normal F6 graph.17new local receipts and independent eager replay cover transfer,
+former-owner refusal, direct payouts, zero repeats and collection/claims during
+a controlled invalid feed. All allocated LP liabilities drain; compound/buyback
+reserves and carry remain backed. Normal ETH conversion, royalties, full cohorts,
+actual services/markets/fees and release approval remain separate.
+[Previous composed evidence](../reports/pool-integration-20261120/REVIEW.md) keeps
+its swaps and four Entry cases; no unchanged construction/population suite rerun.
 
 The [latest recommendation
 execution](../reports/recommendations-execution-20261120/REVIEW.md) reuses completed

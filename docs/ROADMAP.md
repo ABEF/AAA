@@ -1,12 +1,13 @@
 # Engineering roadmap and production qualification plan
 
-[Current composed integration](../reports/pool-integration-20261120/REVIEW.md)
-advances P07 with real Manager direct swaps and two-NFT ETH/ZZZ Entry activation
-and growth on new isolated forks. All four contributions fit32M/full20%, preserve
-main geometry/clock and reconcile shares/membership. Controlled source/depth/sale/VRF
-fixtures remain; P03/P04/P05 actual qualification and broader P06/P07 acceptance
-are still open. This adds no whole-package or release approval; all23 packages,
-83stable tasks and separate deployment/seal/opening gates remain.
+[Current actual-fee proof](../reports/pool-fees-20261121/REVIEW.md) advances P08
+with real-core harvested receipts, exact80/10/5/5+dust/reserve conservation and
+current-owner direct ETH/ZZZ claims on the saved two-NFT normal graph. A controlled
+invalid price feed blocks Oracle.price while harvest/claims continue under their
+existing rules. This reuses P07 setup without repeating Entry or old suites.
+ETH conversion, actual sources/depth/fees, maximum workloads and normal operating
+acceptance remain open. All23 packages/83stable tasks and separate release gates
+remain; no whole package is approved.
 
 [Latest recommendation
 execution](../reports/recommendations-execution-20261120/REVIEW.md) consolidates ten
@@ -21,7 +22,7 @@ empty-state and locally seeded-depth forks. Only final production selection is d
 it does not block those tests. Actual market/source/route qualification remains
 separate. See [testing scope](../reports/test-pool-scope-20261120/REVIEW.md).
 
-Progress reconciled20November2026 against `9d1033a60029fb5b4112c28b6c8bd9015ebd0321`; original plan baseline `519ff4f075022f789f46facbab56f0a944705b11` is retained. **Production is undeployed and NOT APPROVED.**
+Progress reconciled21November2026 against `33af0ab927d6724b724df99e926fedf78e4febcf`; original plan baseline `519ff4f075022f789f46facbab56f0a944705b11` is retained. **Production is undeployed and NOT APPROVED.**
 This is the plan for checking readiness, not authorization to execute public
 transactions, deploy, seal, restart services or open mint. [TODO.md](../TODO.md)
 remains the only task-status checklist; record actual approval in the
@@ -29,7 +30,7 @@ remains the only task-status checklist; record actual approval in the
 and [matrix](../reports/production-readiness-plan-20261119/MATRIX.json) retain
 source provenance and map every stable Todo task to the packages below.
 
-## Current progress snapshot — 20 November 2026
+## Current progress snapshot — 21 November 2026
 
 The23 acceptance packages still map all83 stable Todo tasks:35done,40in progress,
 7todo and1excluded. These are task states, not a release-readiness percentage.
@@ -52,7 +53,7 @@ full-normal1000-NFT workloads, the476135-estimate gap and independent approval r
 | P05 | Finite provider evidence only | Exact32M/24M capacity, complete fees, selected tier/failover/finality remain open. |
 | P06 | Partial maximum-state qualification | Prior11/12 contributions; slow-ZZZ still needs476135 less estimated gas; new cold claim/conversion subsets. |
 | P07 | Added real-core composed local evidence | Two-NFT ETH/ZZZ Entry and direct swaps pass with explicit fixtures; actual sources/depth, multiple venues and expanded lifecycle acceptance remain. |
-| P08 | New bounded settlement evidence | Controlled maximum-state conversions/claims/transfer/fault checks; actual1%-eligible route remains. |
+| P08 | Added actual-core fee/claim proof | Two-NFT exact intake/reserves and current-owner direct payouts pass; ETH conversion, maximum claims and actual operation remain open. |
 | P09 | Implemented; release qualification open | Exact original-currency rights retain opening/outage rules; actual platform/currencies still needed. |
 | P10 | Implemented; operating/economic review open | Existing safeguards and local scenarios are not real-market manipulation immunity. |
 | P11 | Added local role evidence | Distinct-role constructor fixture checked; actual operator/guardian/keeper wallets remain unselected. |

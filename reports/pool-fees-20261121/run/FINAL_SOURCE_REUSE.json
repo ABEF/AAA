@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "kind": "final_source_scoped_prefix_model_reuse_no_behavioral_replay",
+  "archive_sha256": "13aa22d3dd99108d06d58a6aa96505a08b6a16c74e633e90b142bde826edb22b",
+  "original_prefix_stage_sha256": "d8c942e18df2af55c0ca95b6b56efb97312f060c260a12d2e7c7ada69648e99e",
+  "original_prefix_member": "offline-prefix-stage/run_fees.py",
+  "original_prefix_result_member": "tools/PREFIX_REPLAY.json",
+  "final_executed_driver_sha256": "ac2cc3c66f0126574bb1b5ed79af3a48b856d0923e11de8d2cbfddeef6c381aa",
+  "final_executed_driver_member": "attempt2/source-run_fees.py",
+  "Model_AST_equal": true,
+  "Model_AST_sha256": "8a0e1ae619a16d7b79d0f8febb62ad60d64c52b6606f5f9e0326d594073a997d",
+  "unchanged_dispatch_helpers_AST_sha256": {
+    "sig": "b421e181c08232cf0228f589fe5457f453a0ee52793ae9137d67ce6b3756a304",
+    "token_topic": "1ff3a51af0d25f1429cc2c60a41e5a52f15882947d33b7a36161da2760bdb614"
+  },
+  "eager_oracle_sha256": "4311ed4b309a73604a50f29142d4c7149657ab3037bba4610d2c6e7cc7052e78",
+  "eager_matches_original_counterexample_control_and_actual_run": true,
+  "historical_record_member": "tools/PREFIX_SOURCE_REUSE.json",
+  "historical_record_current_driver_sha256": "be0f6f52a71bbc690f39f4f19cd615803eaf6df54b7e4b124df9362ef291b424",
+  "historical_record_scope": "earlier trace/custody stage, not the final file-restore stage",
+  "final_delta_scope": "file restore, trace capture and extra state/claim assertions; exact allocation Model and eager policy unchanged",
+  "EVM_or_RPC_calls": 0,
+  "prefix_replay_or_counterexample_tests_rerun": false,
+  "raw_archive_rewritten": false,
+  "production_approved": false
+}

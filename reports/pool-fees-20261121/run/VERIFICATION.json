@@ -1,0 +1,197 @@
+{
+  "schema": 1,
+  "passed": true,
+  "offline_only": true,
+  "immutable_wire_rows": 1333,
+  "exact_included_successful_transactions": 17,
+  "all_state_eager_components_reconciled": 25,
+  "transaction_gas": [
+    {
+      "label": "setup:external_fee_trader",
+      "hash": "0x6396e7a0db005182a2c7a218a1eb2cea5fb68513f94a806f06093df36eaa6a65",
+      "estimate": 1165862,
+      "padded": 1457328,
+      "actual": 1165862,
+      "padding_bps": 2500,
+      "cap": 24000000
+    },
+    {
+      "label": "new:external_native_to_ZZZ",
+      "hash": "0x4ab28808d9e1bb471f01c21155e2a7ee7d42216b867b8a3d265ed566f8e5fd1c",
+      "estimate": 155244,
+      "padded": 194055,
+      "actual": 124196,
+      "padding_bps": 2500,
+      "cap": 24000000
+    },
+    {
+      "label": "setup:approve_exact_reverse",
+      "hash": "0x574f76b9a5b698daa86157b039a481c24a7050e3c6829a4201f53341711d3c8f",
+      "estimate": 45985,
+      "padded": 57482,
+      "actual": 45985,
+      "padding_bps": 2500,
+      "cap": 24000000
+    },
+    {
+      "label": "new:external_ZZZ_to_native",
+      "hash": "0x2ccc61c53cefc3ed92d612cc7603334d5d3928a34e6ee2f22f9a9a13a7fa3616",
+      "estimate": 172083,
+      "padded": 215104,
+      "actual": 137667,
+      "padding_bps": 2500,
+      "cap": 24000000
+    },
+    {
+      "label": "new:collect_actual_both_asset_fees",
+      "hash": "0x7ba89fc23525f3d68d6a9201f9e7d338c3edfe089b009f91555c052b55dc8bff",
+      "estimate": 940343,
+      "padded": 1175429,
+      "actual": 816293,
+      "padding_bps": 2500,
+      "cap": 24000000
+    },
+    {
+      "label": "new:repeat_collection_no_fee",
+      "hash": "0x798043de37ac5c224c3dee897735b51beeb125c81c31e489004b2b139fa2ad5c",
+      "estimate": 331252,
+      "padded": 414065,
+      "actual": 300802,
+      "padding_bps": 2500,
+      "cap": 24000000
+    },
+    {
+      "label": "new:partial_ETH_claim",
+      "hash": "0x9993db53caacb6ec24caec123aae6e1cd41f84f7895e10b36c24feb48c516bd2",
+      "estimate": 407229,
+      "padded": 488675,
+      "actual": 387922,
+      "padding_bps": 2000,
+      "cap": 12000000
+    },
+    {
+      "label": "new:transfer_NFT_to_second_owner",
+      "hash": "0x26fb679f5fca492bae07d96f6172886875271712e777ea73bf535dbeea9922a2",
+      "estimate": 73663,
+      "padded": 92079,
+      "actual": 73663,
+      "padding_bps": 2500,
+      "cap": 24000000
+    },
+    {
+      "label": "new:controlled_ETH_feed_fault",
+      "hash": "0x5056837925fb6f90462bf41f4f193cd117edc0312a76cd672a3e633e7c5774c1",
+      "estimate": 48700,
+      "padded": 60875,
+      "actual": 43900,
+      "padding_bps": 2500,
+      "cap": 24000000
+    },
+    {
+      "label": "new:post_transfer_native_trade",
+      "hash": "0x017bc3395cd9cd39bb796503a4fdcb56c3b00c5ca81e8d96d350e37cdd7befcf",
+      "estimate": 155244,
+      "padded": 194055,
+      "actual": 124196,
+      "padding_bps": 2500,
+      "cap": 24000000
+    },
+    {
+      "label": "new:collect_during_feed_fault",
+      "hash": "0x1b34e48d582751ac4a4f4f8a96e9392a8b4c17f6d1432f99b56d2e234365e5e0",
+      "estimate": 606537,
+      "padded": 758172,
+      "actual": 550587,
+      "padding_bps": 2500,
+      "cap": 24000000
+    },
+    {
+      "label": "new:new_owner_ETH_claim",
+      "hash": "0x06c70f55366d1ddd64380ba8b31f2af3d560cbd8febbe3c401e1c5dde8a1b13a",
+      "estimate": 386142,
+      "padded": 463371,
+      "actual": 371635,
+      "padding_bps": 2000,
+      "cap": 12000000
+    },
+    {
+      "label": "new:new_owner_ZZZ_claim",
+      "hash": "0x8243caacab2c82c53a444430473f0df44724aa8252b55cd7ee61112a2b0c58cc",
+      "estimate": 445408,
+      "padded": 534490,
+      "actual": 421301,
+      "padding_bps": 2000,
+      "cap": 12000000
+    },
+    {
+      "label": "new:other_NFT_ETH_claim",
+      "hash": "0x1d8e76751e2d246e71f4266d9cce18e72f24a82a35fc9db913ac0617112ae482",
+      "estimate": 198832,
+      "padded": 238599,
+      "actual": 169925,
+      "padding_bps": 2000,
+      "cap": 12000000
+    },
+    {
+      "label": "new:other_NFT_ZZZ_claim",
+      "hash": "0xb30fb9106835d94026639c2ee142953be2a2b1ed60f1884034818e84b285718b",
+      "estimate": 216917,
+      "padded": 260301,
+      "actual": 183210,
+      "padding_bps": 2000,
+      "cap": 12000000
+    },
+    {
+      "label": "new:repeat_empty_ETH_claim",
+      "hash": "0x12c3631ee47a2f82e23737c05f3b43fcbb0007d14dbfec8868ddcde85ae8ecf8",
+      "estimate": 171239,
+      "padded": 205487,
+      "actual": 166332,
+      "padding_bps": 2000,
+      "cap": 12000000
+    },
+    {
+      "label": "new:repeat_empty_ZZZ_claim",
+      "hash": "0xc09e2da3a13ac18dc555496f9fbe404cc188e1a6271031a697768dbab447d9c4",
+      "estimate": 177503,
+      "padded": 213004,
+      "actual": 172596,
+      "padding_bps": 2000,
+      "cap": 12000000
+    }
+  ],
+  "physical_receipt_proofs": [
+    {
+      "label": "new:collect_actual_both_asset_fees",
+      "actual_native_receipt": "44297574637",
+      "actual_ZZZ_receipt": "6240265720857220",
+      "allocate_inputs_match": true,
+      "Oracle_and_feed_calls": 0
+    },
+    {
+      "label": "new:repeat_collection_no_fee",
+      "actual_native_receipt": "0",
+      "actual_ZZZ_receipt": "0",
+      "allocate_inputs_match": true,
+      "Oracle_and_feed_calls": 0
+    },
+    {
+      "label": "new:collect_during_feed_fault",
+      "actual_native_receipt": "22148787318",
+      "actual_ZZZ_receipt": "0",
+      "allocate_inputs_match": true,
+      "Oracle_and_feed_calls": 0
+    }
+  ],
+  "new_actual_fee_receipts": {
+    "0x0000000000000000000000000000000000000000": "66446361955",
+    "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a": "6240265720857220"
+  },
+  "claim_payouts_verified": 7,
+  "funded_claims": 5,
+  "empty_repeat_claims": 2,
+  "reserve_cash_and_zero_Reward_liabilities": true,
+  "normal_ETH_only_conversion_qualified": false,
+  "independent_physical_valuation_qualified": false,
+  "production_approved": false
+}

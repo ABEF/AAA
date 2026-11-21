@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "action": "new_source_preserved_offline_baseline_replay",
+  "command": [
+    "C:/Users/Ali/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+    "reports/pool-fees-20261121/review/verify_baseline_eager.py",
+    "--output",
+    "reports/pool-fees-20261121/review/BASELINE_EAGER.json"
+  ],
+  "exit_code": 0,
+  "source_sha256": "a6f58ea4e8427fbb5c8d75f066bef75b7692142445ea65c513b0b5614abaf1a0",
+  "output_sha256": "3dad3d634e9a30bfb120cea558de9f7c4dfb8d2a1ffd3d78f85cee15b10254b8",
+  "abi_keccak_helper_sha256": "154d92685b6e473bd064880ec15a16a9b8aafa0b9104df671538cf1375a7250d",
+  "assertions": {
+    "archived_Entry_identity": true,
+    "six_credits_replayed": true,
+    "four_after_state_matches": true,
+    "phase_not_imported_from_production": true,
+    "all_assigned_units_conserved": true
+  },
+  "existing_Entry_execution_repeated": false,
+  "network_or_EVM_calls": 0,
+  "unchanged_suites_rerun": false,
+  "production_approved": false
+}

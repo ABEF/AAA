@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "new_counterexample_control": "phase preserved across actual weight change; no-op and zero credit stable",
+  "source_sha256": "4311ed4b309a73604a50f29142d4c7149657ab3037bba4610d2c6e7cc7052e78",
+  "passed": true,
+  "initial_credit": [
+    0,
+    1
+  ],
+  "after_weight_change_and_credit": [
+    1,
+    1
+  ],
+  "network_calls": 0,
+  "unchanged_tests_rerun": false
+}

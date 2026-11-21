@@ -1,0 +1,116 @@
+"""Independent offline saved fee-flow wire, trace, payout and eager review."""
+from pathlib import Path
+from collections import defaultdict
+import argparse,gzip,hashlib,json,sys,zipfile
+ROOT=Path(__file__).resolve().parents[3]
+sys.path.insert(0,str(ROOT))
+from zzz_ops.abi import keccak256
+V=Path('C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9')
+ZERO='0x'+'0'*40;ZZZ='0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a'
+CORE='0x8366a39cc670b4001a1121b8f6a443a643e40951';Q=1<<128
+
+def sha(raw):return hashlib.sha256(raw).hexdigest()
+def load(p):return json.loads(Path(p).read_bytes())
+def words(raw):return[int(raw[i:i+64],16)for i in range(2,len(raw),64)]
+def sig(s):return '0x'+keccak256(s.encode()).hex()
+def frames(f):
+    yield f
+    for child in f.get('calls',[]):yield from frames(child)
+def main():
+    p=argparse.ArgumentParser();p.add_argument('--evidence',required=True,type=Path);p.add_argument('--output',required=True,type=Path);a=p.parse_args();assert not a.output.exists()
+    e=a.evidence;baseline_path=Path(__file__).with_name('BASELINE_EAGER.json');raw=baseline_path.read_bytes();assert sha(raw)=='3dad3d634e9a30bfb120cea558de9f7c4dfb8d2a1ffd3d78f85cee15b10254b8';baseline=json.loads(raw)
+    prior=ROOT/'reports/pool-integration-20261120/entry';manifest=load(prior/'EVIDENCE_MANIFEST.json');assert sha((prior/'evidence.zip').read_bytes())==manifest['sha256']==baseline['prior_archive_sha256']
+    with zipfile.ZipFile(prior/'evidence.zip')as archive:
+        def member(name):
+            raw=archive.read('attempt1/'+name);pin=manifest['members']['attempt1/'+name];assert len(raw)==pin['bytes']and sha(raw)==pin['sha256'];return json.loads(raw)
+        instances=member('construction/instances.json');old=member('ALL_SETUP_SCENARIO_RECEIPTS.json');oldstates=member('STATES.json')
+    roles={row['role']:row['address']for row in instances};ids=list(map(int,oldstates[0]['ids']));bucket=int(oldstates[-1]['bucket'])
+    rows=load(e/'receipts.json');assert len(rows)==17
+    wire=json.loads(gzip.decompress((e/'local-wire.json.gz').read_bytes()))
+    for index,row in enumerate(wire,1):
+        req=row['request'];reply=row['response'];assert req['id']==reply['id']==index
+        assert row['serialized_request_sha256']==sha(json.dumps(req).encode())
+    sent={x['response']['result']:x['request']['params'][0]for x in wire if x['request']['method']=='eth_sendTransaction'}
+    send_positions={x['response']['result']:index for index,x in enumerate(wire)if x['request']['method']=='eth_sendTransaction'}
+    previous_send=-1
+    assert len(sent)==len(rows)
+    harvests=[];claims=[];alltraces={};forbidden={roles['oracle']}
+    for oldrow in old:
+        if oldrow['label'].startswith('helper:')and oldrow['label'].endswith(('feed_a','feed_b')):forbidden.add(oldrow['receipt']['contractAddress'])
+    for row in rows:
+        tx=row['submitted'];rc=row['receipt'];h=rc['transactionHash'];assert sent[h]==tx and int(rc['status'],16)==1
+        actual,=[x['response']['result']for x in wire if x['request']['method']=='eth_getTransactionByHash'and x['request']['params']==[h]]
+        for name in('from','to','nonce','gas','gasPrice','value'):assert actual[name]==tx[name],(row['label'],name)
+        assert actual['input']==tx['data']and actual['type']=='0x0'and int(actual.get('chainId','0x1237'),16)==4663
+        assert rc['from']==tx['from']and rc['to']==tx.get('to')
+        fetched=[x['response']['result']for x in wire if x['request']['method']=='eth_getTransactionReceipt'and x['request']['params']==[h]and x['response'].get('result')]
+        assert fetched[-1]==rc
+        full=[x['request']['params'][0]for x in wire[previous_send+1:send_positions[h]]if x['request']['method']=='eth_estimateGas'and x['request']['params'][0].get('data')==tx['data']and x['request']['params'][0].get('from')==tx['from']]
+        previous_send=send_positions[h]
+        assert len(full)==1 and int(full[0]['gas'],16)==row['cap']
+        assert int(tx['gas'],16)==row['padded_gas']==(row['estimate']*(10000+row['padding_bps'])+9999)//10000<=row['cap']
+        trace=load(e/row['trace']);assert not trace.get('error')and trace['from']==tx['from']
+        alltraces[row['label']]=list(frames(trace))
+        if tx['to']==roles['vault']and tx['data'].startswith(sig('collectFees(uint256,uint256)')[:10]):harvests.append(row)
+        if tx['to']==roles['rewards']and tx['data'].startswith(sig('claim(uint256,address)')[:10]):claims.append(row)
+    # Seed only independently derived rights/phase, never live pending/carry/getters.
+    weight=[list(map(int,baseline['checkpoints'][-1]['shares'])),[1,1]]
+    money={};phase={}
+    for kind,name in((0,'personal'),(1,'collective')):
+        for asset,symbol in((ZERO,'ETH'),(ZZZ,'ZZZ')):
+            money[kind,asset]=list(map(int,baseline['final_components'][name+'_'+symbol]));key=f'{kind},{int(asset==ZZZ)},512';phase[kind,asset]=list(map(int,baseline['independently_derived_nonzero_phase'].get(key,[0,0])))
+    def credit(kind,asset,amount):
+        if not amount:return
+        total=sum(weight[kind]);whole,rem=divmod(amount*weight[kind][0],total);high,low=phase[kind,asset];extra,rest=divmod(rem*Q+high*total+low,total*Q);left=whole+extra;phase[kind,asset]=list(divmod(rest,total));money[kind,asset][0]+=left;money[kind,asset][1]+=amount-left
+    states=load(e/'STATES.json');cursor=0
+    for state in states:
+        height=int(state['head']['number'],16)
+        while cursor<len(rows)and int(rows[cursor]['receipt']['blockNumber'],16)<=height:
+            for log in rows[cursor]['receipt']['logs']:
+                if log['address']!=roles['rewards']:continue
+                topic=log['topics'][0];d=words(log['data'])
+                if topic==sig('PoolRewardsCredited(uint256,address,uint256,uint256)'):
+                    asset='0x'+log['topics'][2][-40:];credit(0,asset,d[0]);credit(1,asset,d[1])
+                elif topic==sig('Claimed(uint256,address,address,uint256)'):
+                    nft=int(log['topics'][1],16);index=ids.index(nft);asset='0x'+log['topics'][2][-40:];amount=money[0,asset][index]+money[1,asset][index];assert amount==d[0];money[0,asset][index]=money[1,asset][index]=0
+            cursor+=1
+        for asset in(ZERO,ZZZ):
+            expected=[[money[0,asset][i],money[1,asset][i]]for i in(0,1)];assert expected==state['assets'][asset]['claims']
+            assert state['assets'][asset]['liabilities']==state['assets'][asset]['rewards_cash']==sum(map(sum,expected))
+            fees=state['assets'][asset]['fees'];assert fees['accounted']==fees['cash']==fees['dust']+fees['compound']+fees['buyback']
+        assert state['group']==states[0]['group']and state['L']==states[0]['L']and state['ticks']==states[0]['ticks']and state['shares']==states[0]['shares']
+    assert cursor==len(rows)
+    actualfees=[]
+    for row in harvests:
+        logs=[x for x in row['receipt']['logs']if x['address']==roles['vault']and x['topics'][0]==sig('FeesCollected(uint256,uint256,uint256)')];assert len(logs)==1;amounts=words(logs[0]['data']);trace=alltraces[row['label']]
+        assert not any(x.get('to')in forbidden for x in trace)
+        allocate=[f for f in trace if f.get('to')==roles['fees']and f.get('input','').startswith(sig('allocate(uint256,address,uint256)')[:10])]
+        for asset,amount in zip((ZERO,ZZZ),amounts):
+            calls=[f for f in allocate if words('0x'+f['input'][10:])[1]==int(asset,16)];assert len(calls)==int(amount>0)
+            if amount:
+                assert words('0x'+calls[0]['input'][10:])==[bucket,int(asset,16),amount]
+                assert int(calls[0].get('value','0x0'),16)==(amount if asset==ZERO else 0)
+                if asset==ZERO:
+                    payouts=[f for f in trace if f.get('from')==roles['lp_position_executor']and f.get('to')==roles['vault']and int(f.get('value','0x0'),16)>0];assert sum(int(f['value'],16)for f in payouts)==amount
+                else:
+                    transfers=[f for f in trace if f.get('from')==roles['lp_position_executor']and f.get('to')==ZZZ and f.get('input','').startswith(sig('transfer(address,uint256)')[:10])and words('0x'+f['input'][10:])[0]==int(roles['vault'],16)];assert sum(words('0x'+f['input'][10:])[1]for f in transfers)==amount
+        actualfees.append({'label':row['label'],'amounts':list(map(str,amounts))})
+    payouts=load(e/'PAYOUTS.json')
+    for pay in payouts:
+        row,=[x for x in claims if x['receipt']['transactionHash']==pay['hash']];asset=pay['token'];amount=int(pay['amount']);gas=int(row['receipt']['gasUsed'],16)*int(row['receipt']['effectiveGasPrice'],16)
+        assert int(pay['recipient_after'])-int(pay['recipient_before'])==amount-(gas if asset==ZERO else 0)
+        assert not any(f.get('to')in forbidden for f in alltraces[row['label']])
+        event,=[l for l in row['receipt']['logs']if l['address']==roles['rewards']and l['topics'][0]==sig('Claimed(uint256,address,address,uint256)')]
+        assert int(event['topics'][1],16)==int(pay['nft'])and '0x'+event['topics'][2][-40:]==asset and '0x'+event['topics'][3][-40:]==pay['recipient']==row['submitted']['from']and words(event['data'])==[amount]
+        assert row['cap']==12_000_000 and row['padding_bps']==2000
+    assert len(harvests)==3 and len(claims)==len(payouts)==7
+    for row in harvests:assert row['cap']==24_000_000 and row['padding_bps']==2500
+    assert load(e/'ORACLE_REFUSAL.json')['response']['error']['data']==sig('InvalidPrice(address)')[:10]+'0'*64
+    assert load(e/'FORMER_OWNER_REFUSAL.json')['response']['error']['data']==sig('Unauthorized()')[:10]
+    assert load(e/'cleanup.json')['owned_node_stopped']and load(e/'cleanup.json')['pending']is None
+    final=states[-1]
+    for asset in(ZERO,ZZZ):assert final['assets'][asset]['liabilities']==final['assets'][asset]['rewards_cash']==0
+    result={'schema':1,'passed':True,'source_sha256':sha(Path(__file__).read_bytes()),'baseline_eager_output_sha256':sha(raw),'wire_rows':len(wire),'included_successful_transactions':len(rows),'state_eager_checkpoints':len(states),'three_harvests_actual_receipts':actualfees,'claim_payments':len(payouts),'former_owner_and_Oracle_negatives':'simulation_only','no_Oracle_or_feed_calls_in_harvest_or_claim_traces':True,'all_allocated_LP_liabilities_drained':True,'classified_fee_reserves_and_dust_retained':{asset:{key:str(value)for key,value in final['assets'][asset]['fees'].items()}for asset in(ZERO,ZZZ)},'same_L_ticks_shares_group':True,'no_EVM_or_network_calls':True,'unchanged_suites_rerun':False,'production_approved':False,'input_sha256':{name:sha((e/name).read_bytes())for name in ['local-wire.json.gz','receipts.json','STATES.json','PAYOUTS.json','ORACLE_REFUSAL.json','FORMER_OWNER_REFUSAL.json','cleanup.json']}}
+    with a.output.open('x',encoding='utf8',newline='\n')as out:json.dump(result,out,indent=2);out.write('\n')
+    print(json.dumps({'passed':True,'transactions':len(rows),'wire_rows':len(wire),'states':len(states),'output':str(a.output)}))
+if __name__=='__main__':main()

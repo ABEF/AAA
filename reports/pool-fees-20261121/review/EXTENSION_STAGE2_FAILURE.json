@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "source_sha256": "8103faf7067e1a0ccfd8732e59429e1b7fc64c189a290886f16a56b897229902",
+  "exit_code": 1,
+  "error": "KeyError: to in action filter (constructor has no transaction to key)",
+  "EVM_or_network_calls": 0,
+  "evidence_changed": false,
+  "output_created": false
+}

@@ -1,15 +1,16 @@
 # Consolidated audit findings and evidence
 
-[Current composed integration](../reports/pool-integration-20261120/REVIEW.md)
-adds two production direct swaps and four real ETH/ZZZ Entry contributions on
-separate owned forks. Two-NFT ownership/share/membership/main-custody and stable
-geometry/clock checks pass, with captured-NAV share arithmetic replay. All four
-fit32M/full20%. The direct-swap impossible output floor is simulation-only.
-A report-driver restore-clock defect is corrected with its original failed stage
-preserved; no production Solidity fix or relaxed guard was needed. Controlled
-prices/VRF/sale/funding/depth, maximum workloads, independent valuation, actual
-routes/provider/fees and release approval remain separate. Full80/10/5/5
-requalification is not inferred from exercised incumbent checkpointing.
+[Current actual-fee proof](../reports/pool-fees-20261121/REVIEW.md) closes the finite
+real-core receipt-to-allocation/reserve/direct-claim gap on the saved normal F6
+graph. Independent Q128 eager replay matches the earlier prefix and25new state
+checkpoints.17successful local transactions cover three harvests, transfer,
+current-owner ETH/ZZZ payouts and zero repeats, with typed former-owner/price
+refusals checked separately. All allocated LP liabilities drain;5%reserves and
+fee dust remain classified/backed. A report-only oversized-restore failure is
+preserved and corrected with bounded file loading, not relaxed RPC IDs/limits.
+No confirmed production source defect required a new F6 build. Actual ETH
+conversion, markets/providers/fees, larger workloads and independent approval
+remain open. Royalties and existing environments are unchanged.
 
 [Ten-recommendation
 reconciliation](../reports/recommendations-execution-20261120/REVIEW.md) reuses

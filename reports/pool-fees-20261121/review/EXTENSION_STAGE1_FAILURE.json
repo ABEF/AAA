@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "source_sha256": "63256d4e85a9ea4dc70743f3e53657f28c8ac4fc75e27f82ead57fd578ee19ad",
+  "exit_code": 1,
+  "error": "KeyError: to (constructor has no transaction to key)",
+  "EVM_or_network_calls": 0,
+  "evidence_changed": false,
+  "output_created": false
+}

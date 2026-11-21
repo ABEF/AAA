@@ -1,21 +1,24 @@
 # Project context
 
-## Current supplied-pool composed integration
+## Current supplied-pool LP fee and claim proof
 
-[Current report](reports/pool-integration-20261120/REVIEW.md) adds two direct production Manager swaps and four
-real Entry contributions (ETH/ZZZ activation and growth) on new owned forks.
-The Entry partition uses the normal39-instance F6 graph/112binding proofs and
-tracks two NFTs, main LP, shares, membership and unchanged ticks/centre/clock.
-All four fit32M/full20%; this is not the maximum-state workload. Direct swaps
-retain24M/full25%; their negative output-floor case is simulation-only.
-Correlated feeds, controlled VRF/sale, local funding and synthetic depth are
-explicit. No best-multiple-venue, independent-price, actual-market/fee or release
-approval follows. Incumbent fee checkpointing is exercised, not a full new
-80/10/5/5 audit. The report-only restore-clock defect and original failure remain.
-All owned nodes stop. F6 source, safeguards, profiles, NFT rights, existing
-Anvil/journals/sites/services and paused heartbeat remain unchanged. Only the
-fresh isolated test Access was locally sealed; no production sealing occurred.
-Reuse unchanged evidence; the476,135-estimate maximum-state shortfall stays open.
+[Current report](reports/pool-fees-20261121/REVIEW.md) extends the saved normal39-instance/two-NFT graph
+without repeating construction or Entry calls. Independent current-Q128 eager
+prefix/extension replay, actual core receipts,80/10/5/5+dust/reserves, three
+harvests and seven direct ETH/ZZZ claims reconcile across an NFT transfer.
+All allocated LP liabilities drain; compound/buyback reserves and15weiETH fee
+dust stay classified/backed. One controlled feed0 makes Oracle.price reject,
+while harvest/claims retain their existing no-USD dependency. Normal consumer
+ETH-only settlement and the separate1% conversion route remain unchanged/open.
+17new local success receipts fit24M/full25% harvest and12M/full20% claims.
+No old population/suite/Entry call is rerun. A pre-transaction2MB restore failure
+is preserved; report tooling now uses a hash-bound <=16MiB local state file,
+keeping the default HTTP limit/strict RPC IDs. Both owned nodes stop.
+F6 source/financial rights/profiles/authorities, existing Anvil/journals/sites/
+services and paused heartbeat stay unchanged. Actual feeds/depth/fees, hybrid/
+maximum workloads, consumer/normal-daemon acceptance and independent approval
+remain open. The476,135-estimate maximum-state shortfall stays open.
+[Prior composed integration](reports/pool-integration-20261120/REVIEW.md) retains its swap and four Entry cases.
 
 ## Consolidated recommendations and new execution
 

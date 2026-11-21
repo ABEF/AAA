@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "passed": true,
+  "source_sha256": "44e3626f71d69c8a311de9acdc46c6562a119265ff4167d8f7c53fd8f32e621c",
+  "baseline_eager_output_sha256": "3dad3d634e9a30bfb120cea558de9f7c4dfb8d2a1ffd3d78f85cee15b10254b8",
+  "wire_rows": 1333,
+  "included_successful_transactions": 17,
+  "state_eager_checkpoints": 25,
+  "three_harvests_actual_receipts": [
+    {
+      "label": "new:collect_actual_both_asset_fees",
+      "amounts": [
+        "44297574637",
+        "6240265720857220"
+      ]
+    },
+    {
+      "label": "new:repeat_collection_no_fee",
+      "amounts": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "label": "new:collect_during_feed_fault",
+      "amounts": [
+        "22148787318",
+        "0"
+      ]
+    }
+  ],
+  "claim_payments": 7,
+  "former_owner_and_Oracle_negatives": "simulation_only",
+  "no_Oracle_or_feed_calls_in_harvest_or_claim_traces": true,
+  "all_allocated_LP_liabilities_drained": true,
+  "classified_fee_reserves_and_dust_retained": {
+    "0x0000000000000000000000000000000000000000": {
+      "dust": "15",
+      "compound": "3322318097",
+      "buyback": "10708322192",
+      "accounted": "14030640304",
+      "cash": "14030640304"
+    },
+    "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a": {
+      "dust": "0",
+      "compound": "312013286042861",
+      "buyback": "12880570335965477",
+      "accounted": "13192583622008338",
+      "cash": "13192583622008338"
+    }
+  },
+  "same_L_ticks_shares_group": true,
+  "no_EVM_or_network_calls": true,
+  "unchanged_suites_rerun": false,
+  "production_approved": false,
+  "input_sha256": {
+    "local-wire.json.gz": "f5f38eb3e79732156d4a8dcabc9d66bd6996421aab9c9865fafbed2839151c2c",
+    "receipts.json": "01010af8dec411185c5ff5e9f3e1f1ff4a78f36d0e8a2c6f2044513f352f92c3",
+    "STATES.json": "1062b854fa670eaa1729fac494958320f25c9a1863944b7418856de751adad04",
+    "PAYOUTS.json": "029c6914632c9acc4943a2e784bc608e8995ed532c62fb60d659ba7b1e77b304",
+    "ORACLE_REFUSAL.json": "b49f6ec558bf5fccf11ca2ba2284bdb26cfe59173ef6f8cb0a0219ce22b680c9",
+    "FORMER_OWNER_REFUSAL.json": "f9aaccf259200f44a919224bf311d8155b850c258ed441cea2b64ed9b4389989",
+    "cleanup.json": "b00c0162e848e921bd5e643fb592d01542988005721a8701ab8dd129189e1af8"
+  }
+}

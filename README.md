@@ -1,13 +1,13 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-The [current composed integration](reports/pool-integration-20261120/REVIEW.md)
-adds production Manager swaps in both directions and real ETH/ZZZ Entry activation
-and growth on isolated supplied-pool forks. The two-NFT normal graph preserves
-ownership, shares, membership and main LP geometry/clock; all four contributions
-fit32M with full20% headroom. Controlled prices/funding/depth and sale/VRF fixtures
-remain explicit. Actual sources/routes/fees, larger workloads and production approval
-remain open. The [earlier physical-LP proof](reports/pool-lifecycle-20261120/REVIEW.md)
-retains its separate mint/harvest/close and rollback scope.
+The [current actual-fee proof](reports/pool-fees-20261121/REVIEW.md) reconciles
+real LP receipts through80/10/5/5, exact NFT entitlements, current-owner transfers
+and direct ETH/ZZZ claims on an isolated saved graph. All allocated LP rewards
+drain while compound/buyback reserves and dust remain backed. Harvest/claims
+work during a controlled price-feed fault without relaxing a guard. This is
+LP-only finite evidence; normal ETH conversion and real release qualification
+remain open. The [prior composed integration](reports/pool-integration-20261120/REVIEW.md)
+retains its swaps and four ETH/ZZZ Entry activation/growth cases.
 
 The [recommendation execution](reports/recommendations-execution-20261120/REVIEW.md)
 consolidates ten recent recommendations, verifies a separately paid maximum-state
