@@ -1,5 +1,7 @@
 # Consolidated audit findings and evidence
 
+[Architecture-claim audit](../reports/architecture-claims-20261121/REVIEW.md) confirms the seven presentation areas at current source, corrects three documentation categories (selected gas profile, transaction-driven opening allocation and funded failure isolation), and retains existing consumer/market/operating gaps. No production code, rights, policies or test results change.
+
 [Bounded Cast capture](../reports/bounded-cast-20261121/REVIEW.md) closes the previously recorded
 missing output-byte ceiling. The64KiB aggregate bound,30/90work deadlines and
 2-second cleanup preserve durable intent/no-resend/accounting.16new methods

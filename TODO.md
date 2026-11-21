@@ -49,6 +49,7 @@ Custody, ownership and reward accounting.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Architecture-claim audit](reports/architecture-claims-20261121/REVIEW.md): selected non-live contribution policy is32M/full20%, separate from historical20M results and legacy12M defaults. Initial royalty allocation is materialized by the next successful sync/claim after the1hour opening; isolated failure continuation requires funded frames. No source, gas setting, entitlement, authority, service or status change; actual qualification remains open.
   - User decision5November2026: no royalty swaps or unwraps; keep LP conversion separate. ETH, WETH, USDC and every admitted currency retain their own amounts and exact decimals. No route/feed is needed merely to claim original units.
   - Preserve activated rarity1/2/3, successful activation-time cohorts, current-owner unpaid rights, outage isolation, claim atomicity and zero dormant dilution. Fresh4 uses exact whole-unit rights, not a scaled royalty fraction reserve. Keep historical royalty fractions/readers separate. LP allocation1 whole-unit books and the fixed80/10/5/5 split remain separate; historical LP fractions keep their own profile.
   - Recovery2 requires reviewed admission first and governance allocateUnallocated(asset,amount,reviewHash), bounded by actual orphaned backing. Allocate the original currency at active weights at recovery; never consume earned/deferred/ticket liabilities or choose a custody recipient.
@@ -1878,4 +1879,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `b011bc71f2b1bbef5c54a689d2a7d23f222c8288407601ef26d30a3cef7b4168`.
+Snapshot SHA-256: `59b06c3cbdb44f6a0f05c8eb2ffaa42ac1cdb603a1e7344b0514f76bde5eb220`.

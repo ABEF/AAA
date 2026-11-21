@@ -1,6 +1,6 @@
 # Marketplace royalty settlement: original currencies
 
-Current [Factory6/allocation2](../reports/activation-final-six-20261118/REVIEW.md) preserves constant-size receipt credit, bounded enrollment lookup and exact original-currency rights. Private round books compact223 coefficient bits with a full256-bit spill;16-bit count/weight/cursor fields remain proven within1,000 NFTs/3,000 tickets. Checked monetary liabilities, one-hour opening and faulty-currency cohorts are unchanged. Fresh payload6/source/runtime/read-policy pins are required; earlier Factory5 creation bytes and [round-book evidence](../reports/royalty-rounds-20261118/REVIEW.md) retain their original scope. The12M default, reviewed20M/full20%,50,000gas activation-only balance read,1M complete sync and read-plus120k funding proof remain unchanged. No conversion, mandatory pre-sync or keeper worker is added.
+Current [Factory6/allocation2](../reports/activation-final-six-20261118/REVIEW.md) preserves constant-size receipt credit, bounded enrollment lookup and exact original-currency rights. Private round books compact223 coefficient bits with a full256-bit spill;16-bit count/weight/cursor fields remain proven within1,000 NFTs/3,000 tickets. Checked monetary liabilities, one-hour opening and faulty-currency cohorts are unchanged. Fresh payload6/source/runtime/read-policy pins are required; earlier Factory5 creation bytes and [round-book evidence](../reports/royalty-rounds-20261118/REVIEW.md) retain their original scope. The legacy12M default remains; the selected non-live [32M contribution candidate](../config/activation-gas-32m.candidate.json) retains full20% padding and requires explicit adoption. Recorded20M measurements remain source-scoped evidence. The50,000gas activation-only balance read,1M complete sync and read-plus120k funding proof remain unchanged. No conversion, mandatory pre-sync or keeper worker is added.
 
 All13 controlled cold calls now fit20M with full20%; worst16,460,899 raw/19,753,079 padded. They cover16 ERC20s plus ETH and one main LP; real tokens/markets/providers/fees,64-currency/LP2 workloads, operating and independent approval remain open. This does not imply that every state or currency fits.
 
@@ -16,7 +16,7 @@ Existing runtimes/journals retain their original profiles. Production NOT APPROV
 The [sale-close/window procedure](ROYALTY_LAUNCH_WINDOW.md) is part of this fresh
 release: governance configures the final OpenSea sale end; royalties stay locked
 through the next1hour. Admitted receipts accumulate separately in openingPool,
-then allocate automatically to NFTs activated strictly before the deadline.
+then become allocatable to NFTs activated strictly before the deadline. The next successful synchronization or holder claim materializes that allocation; passage of time does not submit a transaction.
 Late activations earn future receipts only. Zero initial participants leaves
 funds unallocated for explicit governance allocation. LP claims are independent.
 Unconfigured mint end rejects minting/royalty claims. No keeper is required.
@@ -55,7 +55,7 @@ not accounting inputs. The current owner inherits all unpaid rights on transfer.
 New activations settle readable currencies to incumbents before joining. A
 growth contribution does not add another royalty weight.
 
-An optional currency failure does not undo activation or healthy-currency claims.
+A supported currency fault in a sufficiently funded isolated call can defer that currency while activation continues. Insufficiently funded partial frames and other invalid conditions revert activation to preserve entitlements. Claims selecting only healthy currencies remain separate from failed-currency claims.
 Its earlier eligible cohort remains entitled to unseen receipts. Once readable,
 `sync(asset)` settles those receipts first, then enrolls waiting NFTs for future
 receipts. This is sampled balance accounting, not reconstruction of every payment

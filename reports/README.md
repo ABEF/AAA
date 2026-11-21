@@ -1,5 +1,7 @@
 # Verification evidence
 
+[Architecture-claim audit](architecture-claims-20261121/REVIEW.md) traces all seven technical presentation statements against current code and evidence. Three stale documentation categories are corrected. No new confirmed production-code defect or dynamic test result; existing website adoption and release qualification remain open.
+
 [Bounded Cast capture](bounded-cast-20261121/REVIEW.md) implements64KiB combined
 stdout/stderr, existing30/90work deadlines and bounded group/pipe cleanup while
 preserving uncertain pending/no-resend/financial guards.16NEW methods pass,

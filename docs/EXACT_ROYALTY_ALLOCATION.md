@@ -134,7 +134,7 @@ Fresh activation caps only the optional token `balanceOf` STATICCALL through `Pr
 
 The self-only `syncForActivation(asset,readLimits)` helper receives the captured cap in the low32bits and authenticated full-frame witness in bit32. External callers cannot supply or bypass that witness. These are internal gas units/flags, not token values or operator inputs.
 
-A higher cap or currency capacity requires renewed full-workload qualification. Each exact contribution still needs its estimate plus20% below20M, separate fees and successful padded-call simulation. A cap is a maximum, not a promise the full amount can be forwarded inside the complete frame. Cheap reads do not fail merely because the configured maximum is high.
+A higher cap or currency capacity requires renewed full-workload qualification. The selected non-live [32M contribution candidate](../config/activation-gas-32m.candidate.json) admits estimates up to26,666,666 with full20% padding. Each contribution still requires separate fee/funding checks and successful padded-call simulation. Legacy12M defaults and recorded20M fixture results retain their own scope; a reviewed profile requires explicit adoption. A cap is a maximum, not a promise the full amount can be forwarded inside the complete frame. Cheap reads do not fail merely because the configured maximum is high.
 
 Permissionless `sync(asset)` remains optional maintenance; no pre-sync transaction, receipt queue or new keeper worker is required by the accounting design. It preserves the captured old-cohort rule without swaps or payouts. `syncAll` is atomic and can fail for a broken currency. Neither prior synchronization nor a capacity setting substitutes for a fresh complete estimate.
 
