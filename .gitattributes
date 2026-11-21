@@ -421,3 +421,6 @@ tests_python/test_keeper_cast_capture.py -text whitespace=cr-at-eol
 # Preserve ownership-page adoption evidence and updated environment-guide bytes.
 reports/ownership-paging-20261121/** -text whitespace=cr-at-eol
 docs/SITE_ENVIRONMENTS.md -text whitespace=cr-at-eol
+
+# Preserve exact wallet-financial qualification evidence.
+reports/wallet-view-20261121/** -text whitespace=cr-at-eol

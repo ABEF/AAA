@@ -1,5 +1,45 @@
 # PoPL operator manual
 
+## Complete wallet financial view
+
+The wallet uses one fully verified ownership inventory as the input to two
+independent reads: attached LP/funded ETH and24h/all-time earnings. Each branch
+requests one16-NFT chunk at a time; the two branches may overlap. No financial
+metric is published from incomplete pages, and a failed branch does not hide a
+healthy complete result from the other branch.
+
+| Read / control | Operator procedure and boundary |
+| --- | --- |
+| Ownership input | Existing reviewed manifest/API and all fixed-block ownership pages; capture owner, chain, NFT, block/hash/time, configuration, ordered IDs and digest |
+| LP and claimable ETH | GET `/v1/wallets/{owner}/summary/{block}/{offset}`, offsets0/16/32...; sum only complete matching pages. LP and ETH can independently be unavailable |
+|24h/all-time earnings | GET `/v1/wallets/{owner}/earnings/{block}/{offset}`, same ordered inventory and full86,400-second window. Sum exact raw amounts per asset/metric before current-price USD rounding |
+| Reward scope | Header ETH is funded LP plus ETH royalties only. Unconverted ZZZ LP and original-currency token royalties are excluded from that ETH number and remain separately shown per NFT; never relabel them ETH |
+| Current owner history | History follows currently held NFTs, including earlier owners. Claims, conversions and imports add no income. Principal and compound/buyback reserves are excluded |
+| Missing price or payout read | Preserve raw earnings and per-metric unavailable state; nonzero unpriced earnings do not become zero USD. No partial wallet sum or invented balance |
+| Empty holdings | Verified empty inventory cannot have positive LP or claimable ETH; contradictory summaries are rejected, with no invented zero or partial amount |
+| Cancellation / expiry | Account/page refresh, `api.cancel()`, parent abort and anchor expiry discard in-flight financial results. Refresh obtains a new complete inventory; there is no automatic transaction or retry |
+| Existing limits | Keep per-request25s/1,024 RPC/1MiB backend limits, existing manifest freshness and separate fees/gas policies. Two financial streams are a per-wallet read bound, not a new server-wide allowance |
+| Maximum currency refusal |16 NFTs with65 royalty currencies require1,040 royalty claimable reads alone; the actual fixture refuses at1,024. Do not expand operating currency capacity or raise limits to hide this; qualify a bounded financial-page strategy separately |
+| Large-wallet HTTP bound |190 minimum reads need178s at unchanged1/s burst12, beyond maximum120s freshness. The default1000-NFT live path stays blocked; qualify fewer bounded reads, not higher limits |
+
+No new contract function, signature, authority, gas setting, keeper job or JSON
+switch is needed for these reader fixes. Both public configurations stay null;
+source9/source10 remain unsigned and the shared signer stays Anvil-only. NFT
+ownership, claim rights, original currencies and all exact accounting rules stay.
+Individual NFT cards retain independently confirmed latest snapshots; inventory
+and financial totals use the captured fixed block, with final canonical/freshness
+checks. Action preparation continues to obtain its own fresh review.
+
+[Controlled evidence](../reports/wallet-view-20261121/REVIEW.md) verifies1/17/1,000
+holdings with three currencies in new SQLite/production-handler journeys and83
+NEW browser-module methods in explicit stages. Fixed synthetic clocks, cached
+transport and synthetic graph/views/prices do not qualify actual provider or
+host freshness. Preserve current services, old checkpoints/reviews/DBs and
+pending journals; this website-only fix changes no checkpoint semantic source.
+Publish/review matching runtime/API/history/consumer configuration under the
+existing site procedure before a separately authorized rollout.
+
+
 ## Website ownership paging
 
 Current source9/schema4 and source10/schema5 automatically select the verified

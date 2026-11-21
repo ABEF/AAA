@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "website_commit": "ceb6066e180ce9e71ea915afe26f22997f09b0cd",
+  "website_main_remote_verified": true,
+  "worktree_clean": true,
+  "published_source_test_hashes": {
+    "deployment-api.js": "23d80851d3f134ab2c4a4ab2628584531c37b8edde54d3ea6a5247517dfd06ef",
+    "deployment-view.js": "c2f804ed865c8e98bc7e38058732ffb627f63190a7a8bba68ed83852d1f50b0e",
+    "tests/wallet-financial-view.test.mjs": "f0d1b8287306bb91c58aa5d2496a2946132c5f61150a72a9a71d1afbd20da237",
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300"
+  },
+  "qualification_scope": "83 distinct NEW JS passes across explicit78+3+2 stages; controlled V9 backend1/17/1000; final empty-only change with prior nonempty arithmetic reuse proof",
+  "unchanged_tests_rerun": 0,
+  "live_site_service_or_chain_rollout": false,
+  "default1000NFT_HTTP": "blocked by unchanged admission/freshness",
+  "65currency16NFT_earnings": "blocked at1024, unchanged"
+}

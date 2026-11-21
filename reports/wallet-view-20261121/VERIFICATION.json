@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "new_unique_JS_passes": 83,
+  "pass_stages": [
+    78,
+    3,
+    2
+  ],
+  "new_empty_summary_expected_failures_before_fix": 2,
+  "unchanged_or_previously_passing_JS_methods_repeated": 0,
+  "new_backend_controlled_holding_counts": [
+    1,
+    17,
+    1000
+  ],
+  "new_actual_admission_boundary_control": true,
+  "backend_contract_or_economic_source_changes": 0,
+  "task_ids_and_statuses_preserved": 83,
+  "protected_unrelated_files_preserved": 4,
+  "operator_reference_rows_checked": 1021,
+  "todo_generation_and_check": true,
+  "local_link_targets_checked": 1367,
+  "archive_members": 41,
+  "global_limits_changed": false,
+  "public_signer_changed": false,
+  "site_service_chain_deployment": false,
+  "live_qualification": "NOT APPROVED; default1000NFTHTTP and65currency16NFTEarnings blocked"
+}

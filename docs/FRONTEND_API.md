@@ -1,5 +1,10 @@
 # Confirmed frontend read API
 
+Default1,000-NFT HTTP admission is separately BLOCKED:190 minimum API reads
+need178s at unchanged1/s burst12, beyond the maximum120s snapshot age.
+Controlled DTO/per-request passes do not close it; reduce bounded request count
+under a reviewed API strategy, keeping all limits and exact rights.
+
 The local [mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now implements explicit
 website schema5/source10 over accounting7, with33 browser runtime pins and
 unsigned holdings, contribution and claim/history reviews. Source9/schema4/V9
@@ -548,6 +553,26 @@ Only display totals once every chunk is verified; never present partial sums.
 LP uses currentLPValue; funded ETH combines LP and royalties. Missing values
 remain null. Historical earnings and unconverted source currencies are excluded.
 See [aggregation and recovery procedure](LOCAL_API_REHEARSAL.md#full-wallet-totals).
+
+## Current wallet financial consumer
+
+[The current source qualification](../reports/wallet-view-20261121/REVIEW.md)
+adds captured input/revision/expiry guards to wallet totals and earnings and
+starts the two independent financial branches together, each with serial16-ID
+pages. Each branch requires complete matching owner/chain/NFT/block/hash/time/
+configuration/ID/digest coverage and rechecks after final asynchronous proof.
+The wallet claimable total is explicitly ETH-only; original token claims stay
+separate. Earnings preserve original raw currencies, full24h/current-owner
+history and raw-first USD rounding; claims/conversions are not new income.
+
+New actual production-handler/SQLite/exact-replay fixtures cover1/17/1,000
+holdings and three currencies. The1,000 case uses190 handler requests,67,388 RPC
+reads total; each request stays at most546 reads/8,743 JSON bytes/0.999 seconds.
+These are controlled V9 fixtures with a fixed clock, not hosted throughput or
+freshness approval.65-currency/16-NFT earnings correctly exhausts1,024 reads;
+its1,040 royalty claimable calls alone cannot fit. Keep that workload open and
+retain all limits.83 NEW JS methods pass across disjoint stages; no old suite
+or previously passing method is rerun. Backend source and API wire are unchanged.
 
 ## Accounting7 policy and exact LP observation
 

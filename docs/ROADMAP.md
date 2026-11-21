@@ -1,5 +1,10 @@
 # Engineering roadmap and production qualification plan
 
+Default1,000-NFT HTTP admission is separately BLOCKED:190 minimum API reads
+need178s at unchanged1/s burst12, beyond the maximum120s snapshot age.
+Controlled DTO/per-request passes do not close it; reduce bounded request count
+under a reviewed API strategy, keeping all limits and exact rights.
+
 [Current actual-fee proof](../reports/pool-fees-20261121/REVIEW.md) advances P08
 with real-core harvested receipts, exact80/10/5/5+dust/reserve conservation and
 current-owner direct ETH/ZZZ claims on the saved two-NFT normal graph. A controlled
@@ -353,6 +358,14 @@ full1,000-active-NFT normal workloads, HTTP/provider/complete-fee and matching
 consumer/operating acceptance remain open. Prior LPQ03's P16 reference was wrong.
 
 Match current F6/profile/runtime/canonical manifests, both physical legs, owner and funded rights at canonical state. Current source9/source10 now adopts coherent complete ownership paging ([69 NEW focused checks](../reports/ownership-paging-20261121/REVIEW.md));1000 NFTs need63 ownership pages plus independently completed summary/history. Qualify matching live consumer/provider operation within the unchanged freshness limits.
+
+[Controlled complete wallet financial qualification](../reports/wallet-view-20261121/REVIEW.md)
+now covers1/17/1,000 holdings with three currencies through new production
+handlers/SQLite/exact replay and83 NEW JS methods. Captured snapshots and
+independent LP/ETH-versus-earnings loading retain existing limits. Actual
+provider/host/freshness and full normal F6/V10 are unqualified. The65-currency/
+16-NFT earnings page refuses at1,024 reads; qualify bounded financial selection
+before enabling that workload rather than raising the limits.
 
 Verify owner/chain/NFT/block/config/digest/count and contiguous complete assembly within reviewed freshness budgets or explicit incomplete/unavailable output. Preserve1024call/1MiB bounds and ingress rates. Final page alone is not a whole wallet.
 

@@ -1,5 +1,10 @@
 # Demo and contract-integration websites
 
+Default1,000-NFT HTTP admission is separately BLOCKED:190 minimum API reads
+need178s at unchanged1/s burst12, beyond the maximum120s snapshot age.
+Controlled DTO/per-request passes do not close it; reduce bounded request count
+under a reviewed API strategy, keeping all limits and exact rights.
+
 The local [mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now implements explicit
 website schema5/source10 over accounting7, with33 browser runtime pins and
 unsigned holdings, contribution and claim/history reviews. Current source9/source10 also [assembles all verified ownership pages](../reports/ownership-paging-20261121/REVIEW.md) before publishing complete holdings, with69 NEW focused checks and no live rollout. Source9/schema4/V9
@@ -37,6 +42,13 @@ site and certificate are separate from the demo. DNS, TLS and serving an HTML
 page do not establish API availability, deployed current contracts, price-feed
 qualification or production approval. Never point public browsers at a developer's
 `127.0.0.1` RPC/API or expose disposable Anvil accounts to the internet.
+
+The [current wallet-financial source](../reports/wallet-view-20261121/REVIEW.md)
+adds captured snapshot/cancellation/expiry guards and independent complete
+financial reads.83 NEW JS methods and controlled1/17/1,000-NFT V9 backend
+journeys retain all limits and exact accounting. These are local source/data
+checks; served sites, both null public configs and shared signer are unchanged.
+Actual full normal F6/V10/provider/history/financial latency remains open.
 
 ## Version and data boundaries
 

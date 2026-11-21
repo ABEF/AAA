@@ -10,6 +10,21 @@ profiles; historical accounting6/V6 remains separately decoded. Served poplint
 current3 and historical Anvil installations are not upgraded by source support. Admission does not qualify contracts,
 prices or routes, and preparation never broadcasts a transaction.
 
+## Full-wallet freshness and read admission
+
+[The new wallet-view qualification](../reports/wallet-view-20261121/REVIEW.md)
+confirms a default single-client capacity conflict:1,000 holdings need at least
+190 protocol/ownership/summary/earnings API reads before card requests. With the
+unchanged one-read/second burst12 policy, the earliest last read is178seconds;
+at most132 can enter in120seconds, the maximum website snapshot age. More
+concurrent requests do not replenish tokens faster. Controlled per-request/
+saved-response passes are not full HTTP acceptance.
+
+Preserve admission and freshness limits. Keep this maximum wallet unqualified
+until reviewed bounded combined/selected reads reduce the request count while
+preserving exact ownership, accounting and independently unavailable metrics.
+Do not split identities, multiply services or raise rate/age limits to claim a pass.
+
 ## Capacity and identity
 
 | Control | Default, per API process |

@@ -1,5 +1,18 @@
 # Verification evidence
 
+[Wallet financial qualification](wallet-view-20261121/REVIEW.md) captures immutable wallet inputs across
+asynchronous reads, rejects late cancelled/expired results, and loads totals and
+earnings independently with at most two financial requests in flight.81 NEW JS
+methods pass across explicit78+3 stages; no earlier passing method is rerun.
+New production-handler/SQLite/exact-replay journeys cover1/17/1,000 holdings with
+three currencies and literal independent raw/USD expectations. Producer scope is
+synthetic V9/source9, with separate controlled source9/source10 browser composition.
+Claimable wallet total stays ETH-only; original token claims remain per NFT.
+65-currency/16-NFT earnings correctly refuses at1,024 reads. Actual provider/
+hosting/freshness, full normal F6/V10 and wider currency workloads stay open.
+No backend/contract, accounting, limit, signer, public config or live rollout changes.
+
+
 [Ownership-page adoption](ownership-paging-20261121/REVIEW.md) connects current source9/source10 website holdings to
 all16-ID fixed-block pages, bounded to two in flight with full count/order/digest,
 identity/history/lifecycle and final canonical/freshness checks.69 NEW focused

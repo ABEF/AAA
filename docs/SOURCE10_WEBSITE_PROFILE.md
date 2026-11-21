@@ -1,5 +1,10 @@
 # Mint2/V10 website read and unsigned profile
 
+Default1,000-NFT HTTP admission is separately BLOCKED:190 minimum API reads
+need178s at unchanged1/s burst12, beyond the maximum120s snapshot age.
+Controlled DTO/per-request passes do not close it; reduce bounded request count
+under a reviewed API strategy, keeping all limits and exact rights.
+
 Fresh payload6/allocation2 preserves schema17/canonicalV10/reporting5 and this read/unsigned consumer wire shape. The current `activation-final-six-20261118` build requires exact new factory, read-policy and runtime/source pins; explicit historical3/4/5 observations are not relabelled. Source compatibility and source publication update neither served website nor signing. See the [current source review](../reports/activation-final-six-20261118/REVIEW.md).
 
 ## Optional execution-price1
@@ -36,6 +41,19 @@ they are not claimed to share the ownership inventory block. Wallet totals and
 history retain their own complete fixed-block checks. See [the69-check source
 record](../reports/ownership-paging-20261121/REVIEW.md). This is local source
 adoption, not public configuration, provider/hosting or financial-load approval.
+
+## Wallet financial snapshot guards
+
+Current source9/source10 financial readers capture inventory and anchor before
+asynchronous work, bind full page identity/time, and refuse cancellation,
+revision changes or expiry even after the final awaited verification. The view
+starts independent totals/earnings branches concurrently; each keeps serial
+bounded pages and complete-or-unavailable results. Exact raw-first per-currency
+USD valuation and the existing ETH-only claimable header remain unchanged.
+[83 NEW focused methods](../reports/wallet-view-20261121/REVIEW.md) cover these
+changes plus actual new V9 backend DTO consumption; controlled V10 constructor/
+native-reader/NFT composition is separate. No actual full normal F6/V10,
+provider/hosting/freshness, all-currency capacity or live adoption is implied.
 
 ## Review and configuration
 
