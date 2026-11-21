@@ -20,6 +20,23 @@ custody5, direct Entry3/review2, royalty4/reporting5 and canonical
 change the contract accounting version. Schema4/source9/V9 stays separate;
 existing runtimes, journals and served current3 poplint are not upgraded.
 
+## Complete confirmed ownership inventory
+
+Source10/schema5 and source9/schema4 use the fixed-block ownership page API.
+They validate every contiguous16-ID page at one confirmed protocol block, with
+at most two page requests in flight, then recompute the ordered full-inventory
+SHA256 before publishing holdings. Caller anchor/lifecycle values are captured;
+changed pages, missing history, reorg, expiry or cancellation fail the whole read.
+There is no fallback to the legacy complete endpoint after a page failure.
+Schemas1-3 retain that older endpoint without reinterpretation.
+
+The8-card visual page remains unchanged. Individual NFT cards use independently
+confirmed latest snapshots because their endpoint has no fixed-block selector;
+they are not claimed to share the ownership inventory block. Wallet totals and
+history retain their own complete fixed-block checks. See [the69-check source
+record](../reports/ownership-paging-20261121/REVIEW.md). This is local source
+adoption, not public configuration, provider/hosting or financial-load approval.
+
 ## Review and configuration
 
 Use a separately reviewed immutable build configuration. Both shipped public

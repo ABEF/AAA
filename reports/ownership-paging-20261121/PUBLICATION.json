@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "website_commit": "7271b79cfc330616d2278f87c0110bd239e669c3",
+  "website_main_local_remote_match": true,
+  "website_worktree_clean": true,
+  "published_tested_bytes_sha256": {
+    "deployment-api.js": "ca1a6415b2160d5e22c009b18b95610252d38d760a0d70861d2291d8ef66073d",
+    "tests/ownership-paging.test.mjs": "05e024f3655048f011d49960b4cc08e3d3f07ebfccbc2a8369447f23580648d5",
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300"
+  },
+  "new_methods_passed": 69,
+  "unchanged_test_methods_executed": 0,
+  "website_build_or_rollout": false,
+  "backend_contract_or_checkpoint_change": false,
+  "public_signing_enabled": false
+}

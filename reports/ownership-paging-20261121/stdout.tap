@@ -1,0 +1,424 @@
+TAP version 13
+# Subtest: NEW: 1000 full-width NFTs assemble from 63 contiguous same-anchor pages with at most two in flight
+ok 1 - NEW: 1000 full-width NFTs assemble from 63 contiguous same-anchor pages with at most two in flight
+  ---
+  duration_ms: 72.2497
+  type: 'test'
+  ...
+# Subtest: NEW: a constructed source10 consumer composes native graph, synthetic ownership page and real NFT validation
+ok 2 - NEW: a constructed source10 consumer composes native graph, synthetic ownership page and real NFT validation
+  ---
+  duration_ms: 119.4088
+  type: 'test'
+  ...
+# Subtest: NEW: 0 NFTs require every page before a complete inventory returns
+ok 3 - NEW: 0 NFTs require every page before a complete inventory returns
+  ---
+  duration_ms: 0.8314
+  type: 'test'
+  ...
+# Subtest: NEW: 16 NFTs require every page before a complete inventory returns
+ok 4 - NEW: 16 NFTs require every page before a complete inventory returns
+  ---
+  duration_ms: 0.9305
+  type: 'test'
+  ...
+# Subtest: NEW: 17 NFTs require every page before a complete inventory returns
+ok 5 - NEW: 17 NFTs require every page before a complete inventory returns
+  ---
+  duration_ms: 1.7516
+  type: 'test'
+  ...
+# Subtest: NEW: source9 portfolio adopts ownership pages before requesting its eight cards
+ok 6 - NEW: source9 portfolio adopts ownership pages before requesting its eight cards
+  ---
+  duration_ms: 33.9593
+  type: 'test'
+  ...
+# Subtest: NEW: source10 portfolio adopts ownership pages before requesting its eight cards
+ok 7 - NEW: source10 portfolio adopts ownership pages before requesting its eight cards
+  ---
+  duration_ms: 32.7639
+  type: 'test'
+  ...
+# Subtest: NEW: legacy schema1 portfolio retains its complete endpoint and never selects pages
+ok 8 - NEW: legacy schema1 portfolio retains its complete endpoint and never selects pages
+  ---
+  duration_ms: 1.229
+  type: 'test'
+  ...
+# Subtest: NEW: legacy schema2 portfolio retains its complete endpoint and never selects pages
+ok 9 - NEW: legacy schema2 portfolio retains its complete endpoint and never selects pages
+  ---
+  duration_ms: 2.0402
+  type: 'test'
+  ...
+# Subtest: NEW: legacy schema3 portfolio retains its complete endpoint and never selects pages
+ok 10 - NEW: legacy schema3 portfolio retains its complete endpoint and never selects pages
+  ---
+  duration_ms: 2.397
+  type: 'test'
+  ...
+# Subtest: NEW: duplicate ID within a page rejects the whole ownership result before cards
+ok 11 - NEW: duplicate ID within a page rejects the whole ownership result before cards
+  ---
+  duration_ms: 1.3715
+  type: 'test'
+  ...
+# Subtest: NEW: duplicate ID across pages rejects the whole ownership result before cards
+ok 12 - NEW: duplicate ID across pages rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.9515
+  type: 'test'
+  ...
+# Subtest: NEW: missing returned ID rejects the whole ownership result before cards
+ok 13 - NEW: missing returned ID rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.933
+  type: 'test'
+  ...
+# Subtest: NEW: reversed page order rejects the whole ownership result before cards
+ok 14 - NEW: reversed page order rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.8936
+  type: 'test'
+  ...
+# Subtest: NEW: noncanonical decimal ID rejects the whole ownership result before cards
+ok 15 - NEW: noncanonical decimal ID rejects the whole ownership result before cards
+  ---
+  duration_ms: 1.1021
+  type: 'test'
+  ...
+# Subtest: NEW: zero ID rejects the whole ownership result before cards
+ok 16 - NEW: zero ID rejects the whole ownership result before cards
+  ---
+  duration_ms: 1.59
+  type: 'test'
+  ...
+# Subtest: NEW: uint256-overflow ID rejects the whole ownership result before cards
+ok 17 - NEW: uint256-overflow ID rejects the whole ownership result before cards
+  ---
+  duration_ms: 1.0675
+  type: 'test'
+  ...
+# Subtest: NEW: changed count rejects the whole ownership result before cards
+ok 18 - NEW: changed count rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.9308
+  type: 'test'
+  ...
+# Subtest: NEW: changed owner rejects the whole ownership result before cards
+ok 19 - NEW: changed owner rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.8323
+  type: 'test'
+  ...
+# Subtest: NEW: changed chain rejects the whole ownership result before cards
+ok 20 - NEW: changed chain rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.908
+  type: 'test'
+  ...
+# Subtest: NEW: changed NFT contract rejects the whole ownership result before cards
+ok 21 - NEW: changed NFT contract rejects the whole ownership result before cards
+  ---
+  duration_ms: 1.0249
+  type: 'test'
+  ...
+# Subtest: NEW: wrong page schema rejects the whole ownership result before cards
+ok 22 - NEW: wrong page schema rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.8324
+  type: 'test'
+  ...
+# Subtest: NEW: wrong page kind rejects the whole ownership result before cards
+ok 23 - NEW: wrong page kind rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.8276
+  type: 'test'
+  ...
+# Subtest: NEW: unavailable page rejects the whole ownership result before cards
+ok 24 - NEW: unavailable page rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.8475
+  type: 'test'
+  ...
+# Subtest: NEW: wrong verified count rejects the whole ownership result before cards
+ok 25 - NEW: wrong verified count rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.7856
+  type: 'test'
+  ...
+# Subtest: NEW: wrong chunk size rejects the whole ownership result before cards
+ok 26 - NEW: wrong chunk size rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.7512
+  type: 'test'
+  ...
+# Subtest: NEW: replayed page offset rejects the whole ownership result before cards
+ok 27 - NEW: replayed page offset rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.949
+  type: 'test'
+  ...
+# Subtest: NEW: premature end cursor rejects the whole ownership result before cards
+ok 28 - NEW: premature end cursor rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.8553
+  type: 'test'
+  ...
+# Subtest: NEW: skipped next cursor rejects the whole ownership result before cards
+ok 29 - NEW: skipped next cursor rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.8271
+  type: 'test'
+  ...
+# Subtest: NEW: multi-page complete flag rejects the whole ownership result before cards
+ok 30 - NEW: multi-page complete flag rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.7676
+  type: 'test'
+  ...
+# Subtest: NEW: changed inventory digest rejects the whole ownership result before cards
+ok 31 - NEW: changed inventory digest rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.8436
+  type: 'test'
+  ...
+# Subtest: NEW: changed block number rejects the whole ownership result before cards
+ok 32 - NEW: changed block number rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.7826
+  type: 'test'
+  ...
+# Subtest: NEW: changed block hash rejects the whole ownership result before cards
+ok 33 - NEW: changed block hash rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.8045
+  type: 'test'
+  ...
+# Subtest: NEW: changed block timestamp rejects the whole ownership result before cards
+ok 34 - NEW: changed block timestamp rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.8472
+  type: 'test'
+  ...
+# Subtest: NEW: changed configuration identity rejects the whole ownership result before cards
+ok 35 - NEW: changed configuration identity rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.9416
+  type: 'test'
+  ...
+# Subtest: NEW: missing accounting profile rejects the whole ownership result before cards
+ok 36 - NEW: missing accounting profile rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.7987
+  type: 'test'
+  ...
+# Subtest: NEW: changed accounting profile rejects the whole ownership result before cards
+ok 37 - NEW: changed accounting profile rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.8033
+  type: 'test'
+  ...
+# Subtest: NEW: lost observed confirmation depth rejects the whole ownership result before cards
+ok 38 - NEW: lost observed confirmation depth rejects the whole ownership result before cards
+  ---
+  duration_ms: 3.8783
+  type: 'test'
+  ...
+# Subtest: NEW: noncanonical provenance flag rejects the whole ownership result before cards
+ok 39 - NEW: noncanonical provenance flag rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.7825
+  type: 'test'
+  ...
+# Subtest: NEW: forged protocol finality rejects the whole ownership result before cards
+ok 40 - NEW: forged protocol finality rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.763
+  type: 'test'
+  ...
+# Subtest: NEW: changed finality scope rejects the whole ownership result before cards
+ok 41 - NEW: changed finality scope rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.7494
+  type: 'test'
+  ...
+# Subtest: NEW: unavailable history rejects the whole ownership result before cards
+ok 42 - NEW: unavailable history rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.8173
+  type: 'test'
+  ...
+# Subtest: NEW: changed history block rejects the whole ownership result before cards
+ok 43 - NEW: changed history block rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.8348
+  type: 'test'
+  ...
+# Subtest: NEW: changed history hash rejects the whole ownership result before cards
+ok 44 - NEW: changed history hash rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.7713
+  type: 'test'
+  ...
+# Subtest: NEW: changed history start block rejects the whole ownership result before cards
+ok 45 - NEW: changed history start block rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.7596
+  type: 'test'
+  ...
+# Subtest: NEW: changed history start hash rejects the whole ownership result before cards
+ok 46 - NEW: changed history start hash rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.8265
+  type: 'test'
+  ...
+# Subtest: NEW: changed history start parent rejects the whole ownership result before cards
+ok 47 - NEW: changed history start parent rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.9861
+  type: 'test'
+  ...
+# Subtest: NEW: history cursor behind the anchor rejects the whole ownership result before cards
+ok 48 - NEW: history cursor behind the anchor rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.9392
+  type: 'test'
+  ...
+# Subtest: NEW: malformed lifecycle availability rejects the whole ownership result before cards
+ok 49 - NEW: malformed lifecycle availability rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.9816
+  type: 'test'
+  ...
+# Subtest: NEW: changed valid lifecycle availability rejects the whole ownership result before cards
+ok 50 - NEW: changed valid lifecycle availability rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.8873
+  type: 'test'
+  ...
+# Subtest: NEW: changed lifecycle state rejects the whole ownership result before cards
+ok 51 - NEW: changed lifecycle state rejects the whole ownership result before cards
+  ---
+  duration_ms: 0.7901
+  type: 'test'
+  ...
+# Subtest: NEW: a consistent but false full-inventory digest is rejected after all pages
+ok 52 - NEW: a consistent but false full-inventory digest is rejected after all pages
+  ---
+  duration_ms: 9.2389
+  type: 'test'
+  ...
+# Subtest: NEW: fewer than advertised IDs on the final page is never a complete wallet
+ok 53 - NEW: fewer than advertised IDs on the final page is never a complete wallet
+  ---
+  duration_ms: 0.776
+  type: 'test'
+  ...
+# Subtest: NEW: history ingestion cursor and counters may advance while its exact start and target stay anchored
+ok 54 - NEW: history ingestion cursor and counters may advance while its exact start and target stay anchored
+  ---
+  duration_ms: 1.3159
+  type: 'test'
+  ...
+# Subtest: NEW: semantically identical lifecycle objects with reordered flat and nested keys are accepted
+ok 55 - NEW: semantically identical lifecycle objects with reordered flat and nested keys are accepted
+  ---
+  duration_ms: 2.0583
+  type: 'test'
+  ...
+# Subtest: NEW: a first ownership page whose lifecycle differs from the protocol anchor is rejected
+ok 56 - NEW: a first ownership page whose lifecycle differs from the protocol anchor is rejected
+  ---
+  duration_ms: 0.4602
+  type: 'test'
+  ...
+# Subtest: NEW: mutating the caller anchor while its first page is pending cannot retarget ownership reads
+ok 57 - NEW: mutating the caller anchor while its first page is pending cannot retarget ownership reads
+  ---
+  duration_ms: 1.0062
+  type: 'test'
+  ...
+# Subtest: NEW: out-of-order pair completion retains inventory offset order
+ok 58 - NEW: out-of-order pair completion retains inventory offset order
+  ---
+  duration_ms: 1.3847
+  type: 'test'
+  ...
+# Subtest: NEW: ownership page HTTP 404 rejects without legacy fallback or card display
+ok 59 - NEW: ownership page HTTP 404 rejects without legacy fallback or card display
+  ---
+  duration_ms: 0.5543
+  type: 'test'
+  ...
+# Subtest: NEW: ownership page HTTP 429 rejects without legacy fallback or card display
+ok 60 - NEW: ownership page HTTP 429 rejects without legacy fallback or card display
+  ---
+  duration_ms: 0.5624
+  type: 'test'
+  ...
+# Subtest: NEW: ownership page HTTP 503 rejects without legacy fallback or card display
+ok 61 - NEW: ownership page HTTP 503 rejects without legacy fallback or card display
+  ---
+  duration_ms: 0.5987
+  type: 'test'
+  ...
+# Subtest: NEW: a rejected page read never becomes a cached partial inventory on refresh
+ok 62 - NEW: a rejected page read never becomes a cached partial inventory on refresh
+  ---
+  duration_ms: 3.6463
+  type: 'test'
+  ...
+# Subtest: NEW: external cancellation after a page discards ownership and stops later requests
+ok 63 - NEW: external cancellation after a page discards ownership and stops later requests
+  ---
+  duration_ms: 1.2349
+  type: 'test'
+  ...
+# Subtest: NEW: an already aborted read starts no ownership request
+ok 64 - NEW: an already aborted read starts no ownership request
+  ---
+  duration_ms: 0.2274
+  type: 'test'
+  ...
+# Subtest: NEW: a revision change during page reading discards an otherwise valid inventory
+ok 65 - NEW: a revision change during page reading discards an otherwise valid inventory
+  ---
+  duration_ms: 0.9434
+  type: 'test'
+  ...
+# Subtest: NEW: failure of one ownership page aborts its in-flight sibling
+ok 66 - NEW: failure of one ownership page aborts its in-flight sibling
+  ---
+  duration_ms: 0.8701
+  type: 'test'
+  ...
+# Subtest: NEW: the remaining snapshot freshness deadline aborts a pending ownership read
+ok 67 - NEW: the remaining snapshot freshness deadline aborts a pending ownership read
+  ---
+  duration_ms: 24.4798
+  type: 'test'
+  ...
+# Subtest: NEW: a reorg after the last ownership page is rejected by final canonical revalidation
+ok 68 - NEW: a reorg after the last ownership page is rejected by final canonical revalidation
+  ---
+  duration_ms: 1.3468
+  type: 'test'
+  ...
+# Subtest: NEW: loss of confirmation depth after the last ownership page rejects the whole result
+ok 69 - NEW: loss of confirmation depth after the last ownership page rejects the whole result
+  ---
+  duration_ms: 1.0169
+  type: 'test'
+  ...
+1..69
+# tests 69
+# suites 0
+# pass 69
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 495.3511

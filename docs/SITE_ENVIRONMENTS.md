@@ -2,7 +2,7 @@
 
 The local [mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now implements explicit
 website schema5/source10 over accounting7, with33 browser runtime pins and
-unsigned holdings, contribution and claim/history reviews. Source9/schema4/V9
+unsigned holdings, contribution and claim/history reviews. Current source9/source10 also [assembles all verified ownership pages](../reports/ownership-paging-20261121/REVIEW.md) before publishing complete holdings, with69 NEW focused checks and no live rollout. Source9/schema4/V9
 retains its original profile and evidence. Direct mint preparation is disabled
 for mint2; OpenSea eligibility is unverified. Both public configurations stay
 null, source10 never constructs the unchanged shared signer (even on Anvil),

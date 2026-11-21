@@ -1001,7 +1001,7 @@ What holders see and use.
 
 <a id="task-portfolio"></a>
 
-- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. Local source10/schema5/mint2/V10 website integration supports current accounting7 reads and unsigned contribution/claim/history reviews; source9/schema4/V9 remains explicit. Qualify actual deployments, market/feeds, runtime/API/provider manifests, mint2 Entry3 traces, history/workloads and wallet/hosting acceptance before a separately authorized rollout. Public signing stays disabled; served current3 and popldemo are unchanged.
+- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. Local source9/source10 now assembles every verified fixed-block ownership page with bounded concurrency and complete digest/canonical checks;69 NEW focused checks pass. Existing accounting7 unsigned reviews remain; actual populated financial reads, matching deployment/provider and served-site adoption are unqualified. Qualify actual deployments, market/feeds, runtime/API/provider manifests, mint2 Entry3 traces, history/workloads and wallet/hosting acceptance before a separately authorized rollout. Public signing stays disabled; served current3 and popldemo are unchanged.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1026,7 +1026,7 @@ What holders see and use.
   - [Source9 website consumer](reports/source9-website-20261109/REVIEW.md): local schema4/accounting7/LP1/custody5/direct Entry3/royalty4/V9 read/unsigned path, governed minima/metadata, exact approvals, pending LP ZZZ versus ETH, original royalty currencies, terminal principal and complete gas-aware claim plans. Synthetic offline handler/transport evidence does not qualify actual Entry3 traces, providers, wallets, hosts or site rollout. Public configs remain null and signer/live environments unchanged.
   - [Actual source9 follow-up](reports/source9-actual-entry-20261109/REVIEW.md) verifies real unsigned API/consumer activation and growth with exact approvals and confirmed LP/share/artwork state on a separately seeded disposable fork. Original unmodified-depth rejection remains; actual markets/feeds/providers/wallets/hosting and site rollout remain open.
   - [Mint2 website consumer](reports/v10-website-20261109/REVIEW.md): local schema5/source10/accounting7/mint2/V10/33-pin reads, unsigned ETH/ZZZ contributions and exact approvals, original-currency claims and checkpoint2 history. Synthetic current-handler/browser evidence; no actual market, OpenSea, wallet or operating acceptance. Source9/V9, null public configurations, signer and all running environments remain unchanged.
-  - [Whole-project workload review](reports/whole-workload-review-20261119/REVIEW.md): The new ownership-page API requires matching wallet/chain/NFT/block/configuration/digest/count and every contiguous page. The website has not adopted this capability. Do not display partial inventory or totals as complete; actual provider latency and populated financial pages remain unqualified.
+  - [Ownership-page adoption](reports/ownership-paging-20261121/REVIEW.md): source9/schema4 and source10/schema5 now verify every contiguous16-ID page at one protocol block, with at most two in flight, full numeric order/count/digest and identity/history/lifecycle checks, final revalidation and cancellation/expiry refusal.69 NEW focused checks pass including1000NFT/63pages and current constructor/native/NFT composition. No partial inventory/fallback or signing change. Legacy1-3 reads remain; actual providers, financial/history freshness and matching site/service rollout remain open.
   - Qualify complete1000NFT wallet assembly: all63 fixed-block ownership pages plus summaries/history must finish within reviewed freshness/admission limits or show explicit incomplete/unavailable state; individual-page passes are insufficient.
 
   </details>
@@ -1879,4 +1879,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `59b06c3cbdb44f6a0f05c8eb2ffaa42ac1cdb603a1e7344b0514f76bde5eb220`.
+Snapshot SHA-256: `a44bd92a04b9ccd30f8e8daa4bb2b17a525ed2acfcd2c8489911672bf3dc2563`.

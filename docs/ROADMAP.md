@@ -352,7 +352,7 @@ remaining claims and all guards stay verified. This is finite claim evidence;
 full1,000-active-NFT normal workloads, HTTP/provider/complete-fee and matching
 consumer/operating acceptance remain open. Prior LPQ03's P16 reference was wrong.
 
-Match current F6/profile/runtime/canonical manifests, both physical legs, owner and funded rights at canonical state. Adopt coherent complete wallet paging;1000 NFTs need63 ownership pages plus summary/history.
+Match current F6/profile/runtime/canonical manifests, both physical legs, owner and funded rights at canonical state. Current source9/source10 now adopts coherent complete ownership paging ([69 NEW focused checks](../reports/ownership-paging-20261121/REVIEW.md));1000 NFTs need63 ownership pages plus independently completed summary/history. Qualify matching live consumer/provider operation within the unchanged freshness limits.
 
 Verify owner/chain/NFT/block/config/digest/count and contiguous complete assembly within reviewed freshness budgets or explicit incomplete/unavailable output. Preserve1024call/1MiB bounds and ingress rates. Final page alone is not a whole wallet.
 

@@ -417,3 +417,7 @@ keeper/cast_process.py -text whitespace=cr-at-eol
 keeper/health.py -text whitespace=cr-at-eol
 tests_python/test_cast_process.py -text whitespace=cr-at-eol
 tests_python/test_keeper_cast_capture.py -text whitespace=cr-at-eol
+
+# Preserve ownership-page adoption evidence and updated environment-guide bytes.
+reports/ownership-paging-20261121/** -text whitespace=cr-at-eol
+docs/SITE_ENVIRONMENTS.md -text whitespace=cr-at-eol

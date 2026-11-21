@@ -533,8 +533,7 @@ snapshot; never merge changing blocks or replace missing IDs with an empty walle
 Use existing admission/concurrency bounds, not an unbounded page fan-out.
 
 The [workload review](../reports/whole-workload-review-20261119/REVIEW.md) records
-13 new injected/owned-loopback methods. Actual provider latency/history and website
-adoption are separate. Existing websites/configurations are not changed here.
+13 new injected/owned-loopback methods at that source. [Current website adoption](../reports/ownership-paging-20261121/REVIEW.md) adds69 NEW focused checks, with bounded all-page assembly in source9/source10 and unchanged legacy1-3 complete reads. Actual provider latency/history and populated financial workloads remain separate. Served websites/configurations are unchanged.
 `service.py` is part of checkpoint semantic-source identity: preserve original
 checkpoint1/2/3/review/raw DB bytes and explicitly rebuild/review/re-pin for a
 separately authorized consumer rollout. No automatic hot-edit, migration or reset.

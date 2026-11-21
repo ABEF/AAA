@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "scope": "NEW ownership paging methods only; synthetic wire/RPC with one saved DTO/native graph composition",
+  "returncode": 0,
+  "elapsed_seconds": 0.563,
+  "source_sha256_before": {
+    "deployment-api.js": "ca1a6415b2160d5e22c009b18b95610252d38d760a0d70861d2291d8ef66073d",
+    "tests/ownership-paging.test.mjs": "05e024f3655048f011d49960b4cc08e3d3f07ebfccbc2a8369447f23580648d5",
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300"
+  },
+  "source_sha256_after": {
+    "deployment-api.js": "ca1a6415b2160d5e22c009b18b95610252d38d760a0d70861d2291d8ef66073d",
+    "tests/ownership-paging.test.mjs": "05e024f3655048f011d49960b4cc08e3d3f07ebfccbc2a8369447f23580648d5",
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300"
+  },
+  "stdout_sha256": "94b2209a7a68412293bc45ce94594707d540c812266d892ab0018d86592d48a9",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "unchanged_test_methods_executed": 0,
+  "network_services_or_signing": false
+}

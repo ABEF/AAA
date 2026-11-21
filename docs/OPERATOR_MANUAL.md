@@ -1,5 +1,34 @@
 # PoPL operator manual
 
+## Website ownership paging
+
+Current source9/schema4 and source10/schema5 automatically select the verified
+ownership-page endpoint. No contract call, key, signature or new configuration
+field is required. Historical schemas1-3 retain the complete ownership endpoint.
+
+| Operator check | Required input / expected result |
+| --- | --- |
+| Match the consumer | Reviewed source9/V9 or source10/V10 manifest, existing projection configuration hash, actual runtime pins and matching API/history/checkpoint profile |
+| Obtain the anchor | Existing GET `/v1/protocol`; use its confirmed block number/hash/time and lifecycle |
+| Inspect a page | GET `/v1/wallets/{owner}/nfts/{block}/0`; example owner0x000000000000000000000000000000000000001e/block99 is illustrative only |
+| Complete ownership | Offsets0/16/32...; at most16 IDs per page, two requests in flight, all contiguous pages and matching recomputed full digest;1,000 NFTs require63 pages |
+| Handle failed/stale reads | Leave the new inventory unavailable; Refresh starts a new complete read. Do not mix anchors, use the legacy endpoint as fallback, widen age/work limits or invent empty holdings |
+| Preserve payout rights | Reads change no ownership, LP shares, royalty eligibility, claim inputs or pending transactions; no transaction is sent |
+
+Per-page canonical provenance and immutable graph proofs remain, with final
+anchor revalidation after assembly and the card reads. The inventory and wallet
+summary/history use a fixed block; NFT cards retain independently confirmed
+latest snapshots. A complete ownership list does not prove that all financial
+summaries/history can finish within provider/freshness limits.
+
+Source publication changes no installed API, checkpoint, website release or
+service. Keep both public configurations null and the shared signer Anvil-only.
+Before a separately authorized rollout, review the matching build/API/history,
+actual provider latency and existing [site procedure](SITE_ENVIRONMENTS.md).
+Preserve old checkpoint/review/DB bytes; this website-only change does not change
+backend checkpoint semantic-source identity. See [focused evidence](../reports/ownership-paging-20261121/REVIEW.md).
+
+
 ## Bounded Cast output and uncertain transactions
 
 The [reviewed helper](../reports/bounded-cast-20261121/REVIEW.md) is automatic in the existing keeper.

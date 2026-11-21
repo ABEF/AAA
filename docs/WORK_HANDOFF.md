@@ -1,5 +1,15 @@
 # Work handoff
 
+[Ownership-page adoption](../reports/ownership-paging-20261121/REVIEW.md) connects current source9/source10 website holdings to
+all16-ID fixed-block pages, bounded to two in flight with full count/order/digest,
+identity/history/lifecycle and final canonical/freshness checks.69 NEW focused
+checks pass, including1,000 IDs/63 pages and one actual constructor/native-reader/
+NFT-validator composition with synthetic DTOs. No old test runs, backend/contract
+changes, signer/configuration adoption, live build/rollout or service/chain/journal
+changes. Cards remain individually confirmed latest reads; full populated wallet
+financial/history latency and actual provider/hosting qualification remain open.
+
+
 ## Bounded Cast output — 21 November 2026
 
 [Current implementation](../reports/bounded-cast-20261121/REVIEW.md) uses64KiB TOTAL stdout+stderr,
@@ -193,7 +203,7 @@ methods pass. The old fractional market oracle's one-unit mismatch is a repaired
 test-model defect, not an established production-accounting failure.
 
 New inventory pages fix the request-size bottleneck by verifying16 IDs at a time,
-with complete assembly required. Existing website adoption remains open. Preserve
+with complete assembly required. Current source9/source10 adopts that assembly; matching served-site/provider/financial acceptance remains open. Preserve
 old checkpoints/reviews/raw DBs: service.py changed their semantic source identity;
 rebuild/review/re-pin explicitly before separate consumer rollout. No live change.
 

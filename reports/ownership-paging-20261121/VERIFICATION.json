@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "new_JS_tests_passed": 69,
+  "new_run_stages": 1,
+  "unchanged_tests_rerun": 0,
+  "new_source_and_test_syntax_checks": 2,
+  "todo_generation_and_check": true,
+  "operator_reference_rows_checked": 1021,
+  "task_ids_and_statuses_preserved": 83,
+  "local_link_targets_checked": 1360,
+  "protected_unrelated_files_preserved": 4,
+  "production_backend_or_contract_changes": 0,
+  "shared_signer_and_configs_unchanged": true,
+  "website_build_or_rollout": false
+}

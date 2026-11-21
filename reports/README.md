@@ -1,5 +1,15 @@
 # Verification evidence
 
+[Ownership-page adoption](ownership-paging-20261121/REVIEW.md) connects current source9/source10 website holdings to
+all16-ID fixed-block pages, bounded to two in flight with full count/order/digest,
+identity/history/lifecycle and final canonical/freshness checks.69 NEW focused
+checks pass, including1,000 IDs/63 pages and one actual constructor/native-reader/
+NFT-validator composition with synthetic DTOs. No old test runs, backend/contract
+changes, signer/configuration adoption, live build/rollout or service/chain/journal
+changes. Cards remain individually confirmed latest reads; full populated wallet
+financial/history latency and actual provider/hosting qualification remain open.
+
+
 [Architecture-claim audit](architecture-claims-20261121/REVIEW.md) traces all seven technical presentation statements against current code and evidence. Three stale documentation categories are corrected. No new confirmed production-code defect or dynamic test result; existing website adoption and release qualification remain open.
 
 [Bounded Cast capture](bounded-cast-20261121/REVIEW.md) implements64KiB combined

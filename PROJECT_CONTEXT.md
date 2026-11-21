@@ -1,5 +1,15 @@
 # Project context
 
+[Ownership-page adoption](reports/ownership-paging-20261121/REVIEW.md) connects current source9/source10 website holdings to
+all16-ID fixed-block pages, bounded to two in flight with full count/order/digest,
+identity/history/lifecycle and final canonical/freshness checks.69 NEW focused
+checks pass, including1,000 IDs/63 pages and one actual constructor/native-reader/
+NFT-validator composition with synthetic DTOs. No old test runs, backend/contract
+changes, signer/configuration adoption, live build/rollout or service/chain/journal
+changes. Cards remain individually confirmed latest reads; full populated wallet
+financial/history latency and actual provider/hosting qualification remain open.
+
+
 ## Bounded Cast output — 21 November 2026
 
 [Current implementation](reports/bounded-cast-20261121/REVIEW.md) uses64KiB TOTAL stdout+stderr,
@@ -206,7 +216,7 @@ now replaces old fractional expectations; nine selected composed journeys pass.
 The explicit fixed-block wallet-page endpoint returns at most16 verified IDs.
 A1,000NFT owner needs63 coherent pages; the final8-IDpage alone is not complete.
 13 new backend methods pass without raising the1024call/1MiB limits. Actual
-website/provider/history/latency admission remains open. service.py semantic
+source9/source10 ownership-page adoption now passes69 NEW checks; actual provider/history/financial/latency admission remains open. service.py semantic
 source changes require reviewed checkpoint rebuild/re-pin on new adoption;
 old artifacts/databases/journals and running sites/services remain unchanged.
 
