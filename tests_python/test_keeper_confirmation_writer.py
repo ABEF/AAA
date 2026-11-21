@@ -18,7 +18,7 @@ class KeeperConfirmationWriterTests(unittest.TestCase):
         before=self.k.path.read_bytes()
         with patch.object(self.k,'cycle'),patch.object(self.k,'_observe_revert_cooldowns'), \
                 patch.object(self.k,'_observe_execution_health'), \
-                patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('subprocess.run') as signer:
+                patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('keeper.monitor.run_cast') as signer:
             result=self.k.run_cycle()
         signer.assert_not_called();self.assertEqual(before,self.k.path.read_bytes())
         return result,json.loads(self.k.health_path.read_text())

@@ -73,7 +73,7 @@ class KeeperPreparationTests(unittest.TestCase):
         self.fixture.preparing = True
         self.fixture.group_words[7] = 2
         self.k.maintenance = {'reward_routes':[{'token':fixtures.B,'minimum_units':1,'route_id':fixtures.H}]}
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             with self.assertRaisesRegex(ValueError,'retired'): self.fixture.invoke()
             signer.assert_not_called()
         self.assertIsNone(self.k.state['pending'])
@@ -82,7 +82,7 @@ class KeeperPreparationTests(unittest.TestCase):
         for response in ('0x','0x00',word(2),word(0)+word(0)[2:],None,RpcError('unknown selector')):
             with self.subTest(response=response):
                 self.override_flag(response)
-                with patch('keeper.monitor.subprocess.run') as signer:
+                with patch('keeper.monitor.run_cast') as signer:
                     with self.assertRaises(RpcError):
                         self.k.submit('vault','rebalance(uint256,uint128,uint256)',(7,1,self.rpc.now+180),'rebalance:7')
                 signer.assert_not_called()
@@ -95,7 +95,7 @@ class KeeperPreparationTests(unittest.TestCase):
                  ('compounder','compound(uint256,uint128,uint256)',(7,1,self.rpc.now+180)),
                  ('buyback','execute(address,uint256,bytes32,uint256)',(fixtures.B,1,fixtures.H,self.rpc.now+180)))
         for name,signature,args in tasks:
-            with self.subTest(name=name),patch('keeper.monitor.subprocess.run') as signer:
+            with self.subTest(name=name),patch('keeper.monitor.run_cast') as signer:
                 self.assertFalse(self.k.submit(name,signature,args,name))
                 signer.assert_not_called()
         self.assertFalse(any(method == 'eth_estimateGas' for method,_ in self.rpc.calls))
@@ -109,7 +109,7 @@ class KeeperPreparationTests(unittest.TestCase):
             if method == 'eth_getBalance': self.fixture.preparing = True
             return result
         self.rpc.call = call
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.k.submit('vault','rebalance(uint256,uint128,uint256)',
                                           (7,1,self.rpc.now+180),'rebalance:7'))
         signer.assert_not_called()
@@ -127,7 +127,7 @@ class KeeperPreparationTests(unittest.TestCase):
                 if reads == 3: return '0x'
             return self.original_call(method, params)
         self.rpc.call = call
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             with self.assertRaises(RpcError):
                 self.k.submit('vault','rebalance(uint256,uint128,uint256)',(7,1,self.rpc.now+180),'rebalance:7')
         signer.assert_not_called()
@@ -138,7 +138,7 @@ class KeeperPreparationTests(unittest.TestCase):
     def test_harvest_can_use_actual_submission_path_during_preparation(self):
         self.fixture.preparing = True
         self.fixture.enable_test_signer()
-        with patch('keeper.monitor.subprocess.run',return_value=subprocess.CompletedProcess([],0,fixtures.H,'')) as signer:
+        with patch('keeper.monitor.run_cast',return_value=subprocess.CompletedProcess([],0,fixtures.H,'')) as signer:
             self.assertTrue(self.k.submit('vault','collectFees(uint256,uint256)',(7,self.rpc.now+180),'harvest:7'))
         signer.assert_called_once()
         self.assertEqual(self.k.state['pending']['hash'],fixtures.H)
@@ -190,7 +190,7 @@ class KeeperPreparationTests(unittest.TestCase):
             return original(method, params)
         fixture.rpc.call = call
         before = fixture.k.path.read_bytes()
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             report = preflight(fixture.cfg,rpc=fixture.rpc)
         signer.assert_not_called()
         self.assertEqual(report['reasons'],['canonical_preparation_active'])

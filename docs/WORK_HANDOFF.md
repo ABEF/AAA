@@ -1,5 +1,22 @@
 # Work handoff
 
+## Bounded Cast output — 21 November 2026
+
+[Current implementation](../reports/bounded-cast-20261121/REVIEW.md) uses64KiB TOTAL stdout+stderr,
+existing30/90-second work deadlines and2-second bounded failure cleanup.
+Overflow/invalid UTF-8 never publishes a partial hash; existing durable pending
+intent, nonce, spend, fee review and exact recovery/no-resend rules remain.
+16NEW methods pass:8 composed integration/identity plus8 actual unprivileged
+Ubuntu helper methods. No old test bodies ran.157 old Cast-mock literals in47
+fixtures were mechanically migrated with AST equivalence; assertions stay.
+Current inventory:180Python files/1,984named definitions (1,803functions/181classes),
+278lambdas, unchanged F6 Solidity61/dependencies39/controls4 and1,021ABI rows.
+Helper is in keeper health source identity: adopt matching writer/checker code,
+not edited source hashes or rewritten journals. No service/site/chain/key rollout.
+Full normal-daemon/real-Cast Ubuntu qualification remains open. Terminal Ctrl-C
+stops future jobs but an active Cast may finish; reviewed whole-cgroup stop and
+pending reconciliation remain required. No transactional cancellation is promised.
+
 ## Ubuntu preparation and focused keeper fixes — 21 November 2026
 
 The [48-hour re-audit](../reports/last48h-audit-20261121/REVIEW.md) reviews15commits/five changed Python modules;
@@ -76,7 +93,8 @@ source illustrative CLI example pass; no unchanged test suite rerun. Original
 transaction data stays unchanged and every live-readiness gate remainsfalse.
 That advance used its historical179file/1,979definition inventory; only
 opensea_drop.py changed in production Python at that stage. Use the current
-inventory above for the later1,980definition source. Existing self-source-bound OpenSea artifacts must
+keeper-fix inventory for that later1,980definition source; the current capture
+inventory above contains1,984definitions. Existing self-source-bound OpenSea artifacts must
 be rebuilt/reviewed explicitly; do not relabel old manifests. service.py and all
 Solidity profiles/runtime/codec/checkpoint identities remain unchanged.
 

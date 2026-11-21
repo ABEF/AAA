@@ -27,7 +27,7 @@ class KeeperSimulationEnvelopeTests(unittest.TestCase):
             self.assertEqual(pending['fee_review']['gas_limit'], 125)
             self.assertEqual(pending['fee_review']['maximum_cost_wei'], 250)
             return subprocess.CompletedProcess(command, 0, json.dumps({'hash': basic.H}), '')
-        with patch('keeper.monitor.subprocess.run', side_effect=sign):
+        with patch('keeper.monitor.run_cast', side_effect=sign):
             self.assertTrue(self.submit(keeper, rpc))
         calls = [(method, params) for method, params in rpc.calls
             if method == 'eth_estimateGas' or
@@ -42,7 +42,7 @@ class KeeperSimulationEnvelopeTests(unittest.TestCase):
             with self.subTest(value=value):
                 keeper, rpc, config = self.fixture(); config['max_gas_limit'] = value
                 before = copy.deepcopy(keeper.state); rpc.calls.clear()
-                with patch('keeper.monitor.subprocess.run') as signer:
+                with patch('keeper.monitor.run_cast') as signer:
                     with self.assertRaises(ValueError): self.submit(keeper, rpc)
                     signer.assert_not_called()
                 self.assertEqual(rpc.calls, [])
@@ -60,7 +60,7 @@ class KeeperSimulationEnvelopeTests(unittest.TestCase):
                         raise RemoteRPCError(method, -32000)
                     return original(method, params)
                 rpc.call = call; before = copy.deepcopy(keeper.state)
-                with patch('keeper.monitor.subprocess.run') as signer:
+                with patch('keeper.monitor.run_cast') as signer:
                     with self.assertRaises(RemoteRPCError): self.submit(keeper, rpc)
                     signer.assert_not_called()
                 self.assertEqual(sum(method == failure_method for method, _ in rpc.calls), 1)
@@ -80,7 +80,7 @@ class KeeperSimulationEnvelopeTests(unittest.TestCase):
                         rpc.calls.append((method, params)); return '0x'+f'{1:064x}'
                     return original(method, params)
                 rpc.call = call; review = {}; before = copy.deepcopy(keeper.state)
-                with patch('keeper.monitor.subprocess.run') as signer:
+                with patch('keeper.monitor.run_cast') as signer:
                     self.assertFalse(keeper.submit('rewards', ROYALTY_BATCH,
                         (basic.C, [1], basic.H, 1, rpc.now+180), 'bounded:convert', capacity_review=review))
                     signer.assert_not_called()
@@ -90,7 +90,7 @@ class KeeperSimulationEnvelopeTests(unittest.TestCase):
     def test_padding_remains_stronger_than_the_initial_execution_envelope(self):
         keeper, rpc, config = self.fixture(); rpc.gas = config['max_gas_limit']*4//5+1
         before = copy.deepcopy(keeper.state)
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.submit(keeper, rpc)); signer.assert_not_called()
         self.assertEqual(keeper.gas_review_health['last_review']['reason'], 'gas_limit_cap')
         self.assertEqual(before, keeper.state); self.assertFalse(keeper.path.exists())
@@ -99,6 +99,6 @@ class KeeperSimulationEnvelopeTests(unittest.TestCase):
         keeper, rpc, config = self.fixture()
         keeper.state['pending'] = {'hash': basic.H, 'evidence': 'historical'}
         config['max_gas_limit'] = 0; before = copy.deepcopy(keeper.state); rpc.calls.clear()
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.submit(keeper, rpc)); signer.assert_not_called()
         self.assertEqual(rpc.calls, []); self.assertEqual(before, keeper.state)

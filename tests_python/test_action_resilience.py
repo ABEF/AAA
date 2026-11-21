@@ -102,7 +102,7 @@ class MaintenanceConfigurationRecoveryTests(unittest.TestCase):
         f=fixtures.PoolKeeperTests('runTest');f.setUp();self.addCleanup(f.doCleanups)
         for bucket in (1<<256,10**78):
             cfg=copy.deepcopy(f.cfg);cfg['bucket_overrides']={str(bucket):{'harvest':False}}
-            with self.subTest(bucket=bucket),patch('keeper.monitor.subprocess.run') as signer:
+            with self.subTest(bucket=bucket),patch('keeper.monitor.run_cast') as signer:
                 with self.assertRaisesRegex(ValueError,'bucket'):
                     Keeper(cfg,rpc=f.rpc)
                 signer.assert_not_called()
@@ -117,7 +117,7 @@ class MaintenanceConfigurationRecoveryTests(unittest.TestCase):
                 cfg=copy.deepcopy(f.cfg)
                 cfg['bucket_overrides']={'7':settings} if override else {}
                 if not override:cfg['maintenance']=settings
-                with self.subTest(settings=settings,override=override),patch('keeper.monitor.subprocess.run') as signer:
+                with self.subTest(settings=settings,override=override),patch('keeper.monitor.run_cast') as signer:
                     with self.assertRaisesRegex(ValueError,'Unknown maintenance') as observed:Keeper(cfg,rpc=f.rpc)
                     self.assertNotIn('secret_endpoint',str(observed.exception));signer.assert_not_called()
                     self.assertEqual(before,f.k.path.read_bytes())
@@ -126,7 +126,7 @@ class MaintenanceConfigurationRecoveryTests(unittest.TestCase):
         for settings in ({'harvest':'false'},{'sync_external_rewards':'false'},{'rebalance':False}):
             f=fixtures.KeeperTests('runTest');f.setUp();self.addCleanup(f.doCleanups);f.receipt()
             original=copy.deepcopy(f.k.state['pending']);f.k.save();f.cfg['maintenance']=settings
-            with self.subTest(settings=settings),patch('keeper.monitor.subprocess.run') as signer:
+            with self.subTest(settings=settings),patch('keeper.monitor.run_cast') as signer:
                 recovered=Keeper(f.cfg,rpc=f.rpc)
                 self.assertEqual(recovered.state['pending'],original)
                 with self.assertRaises(ValueError):recovered.cycle()
@@ -160,13 +160,13 @@ class PortfolioTransientFaultTests(unittest.TestCase):
         with patch.object(self.rpc,'read',side_effect=failed),self.assertRaises(RpcError):self.due()
         self.assertTrue(self.k.state[CONFIRMATION_RESETS]['7']);self.assertNotIn('7',self.k.state.get(PORTFOLIO_STATE_NAMESPACE,{}))
         self.rpc.now+=60;self.k=Keeper(self.cfg,rpc=self.rpc)
-        with patch('keeper.monitor.subprocess.run') as signer:self.assertFalse(self.due());signer.assert_not_called()
+        with patch('keeper.monitor.run_cast') as signer:self.assertFalse(self.due());signer.assert_not_called()
         self.assertEqual(self.k._rebalance_reset_due,7);self.assertIsNone(self.k.state['pending'])
 
     def test_fast_market_reversal_invalidates_mature_evidence_before_submission(self):
         with patch('keeper.monitor.secrets.randbelow',return_value=0):self.assertFalse(self.due())
         self.rpc.now+=60;self.rpc.physical_side=1 # independent reference remains2.
-        with patch('keeper.monitor.subprocess.run') as signer:self.assertFalse(self.due());signer.assert_not_called()
+        with patch('keeper.monitor.run_cast') as signer:self.assertFalse(self.due());signer.assert_not_called()
         self.assertTrue(self.k.state[CONFIRMATION_RESETS]['7']);self.assertNotIn('7',self.k.state.get(PORTFOLIO_STATE_NAMESPACE,{}))
         self.rpc.reference=1 # Recovery cannot make old-side evidence valid again.
         self.assertFalse(self.due());self.assertEqual(self.k._rebalance_reset_due,7)

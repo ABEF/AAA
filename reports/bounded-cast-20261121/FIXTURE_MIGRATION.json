@@ -1,0 +1,1220 @@
+{
+  "schema": 1,
+  "scope": "Affected existing Cast fixture boundary migration only; no methods executed or assertions weakened",
+  "files": [
+    {
+      "path": "tests_python/test_action_resilience.py",
+      "before_sha256": "1978a717a1592096f4eb531897dc965e6bf0548e7b88be2e4e7c7e0f442fbb36",
+      "after_sha256": "60111ef07c16fff92fa0aa6e3a692f9c630f6e121c259513694d920c3a2d90a6",
+      "patches": [
+        {
+          "line": 163,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 169,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 105,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 129,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 120,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_exact_lp_conversion_capacity.py",
+      "before_sha256": "cf0382df9b8a7983eb3534c30480055eb21fdf2a0d730d84bcbb6866698da4d9",
+      "after_sha256": "a1e884392a051d112147268ca98e82972a2fcd8b5407157c1e69e3539c5cb946",
+      "patches": [
+        {
+          "line": 117,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_exact_lp_profile7.py",
+      "before_sha256": "16c13274e3281c3393612e3dd87a927432e07bf414e16c3dab682d9ad4337e6d",
+      "after_sha256": "0d60a942f7f04892f5c16655563d6d4482d6684286091acd4755e013c6212375",
+      "patches": [
+        {
+          "line": 212,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_execution_quality_profile.py",
+      "before_sha256": "9c2f1b73737504ab150a12b237cd207f6ab3d2aceff182bda50a1a1ff5f339c5",
+      "after_sha256": "72cf46cd7fb05f3905cc270e2c07538de9f074ee367cb9435276c1ec71663055",
+      "patches": [
+        {
+          "line": 122,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 142,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper.py",
+      "before_sha256": "fbf2b6de581c018e7d903d7e125772116c345ca5b70ecd51799e5e5f0b123bbe",
+      "after_sha256": "1d974a75679b1b88c46600a85cccde1d9b57bf0fe3fe5da08ff717ed60d19afe",
+      "patches": [
+        {
+          "line": 55,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 65,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 85,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 90,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 110,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 148,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 159,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 531,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 574,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_broadcast_hash.py",
+      "before_sha256": "98f597af423e0156d4076beac3f0b3ed8ac204cfa578d84fdc9256d060231091",
+      "after_sha256": "b4726c10b2c5acd2d37c316bc632ecdd56f860c2cabb088de2b589b097349180",
+      "patches": [
+        {
+          "line": 34,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 45,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 61,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_canonical.py",
+      "before_sha256": "9dca7a563680d33727ee6e493a1e4654a8aa4c33a92efa450e1b3b614592ba1b",
+      "after_sha256": "060e49ab3cf14a67753b44cb37ff2a2ca9e147cd931d7399827d89ce4313aeb6",
+      "patches": [
+        {
+          "line": 80,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 94,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 108,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 179,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 48,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 60,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_compound_range_policy.py",
+      "before_sha256": "773604fc6be1816c0f0cf28f1f26264d3458f6c54fa1c6bfb168030fc9c01877",
+      "after_sha256": "5b3518e9843028bdf37b43fe1f500bffba560ec6cae8a2eeab873fb03531b607",
+      "patches": [
+        {
+          "line": 280,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 315,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 293,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_confirmation_health.py",
+      "before_sha256": "8bca6f0908055f3f1e20ad14782ca07f40059126c56bab776b04cc91fe38ba3a",
+      "after_sha256": "45ebfa15e646577062977e782f6ffd8a09cbaf28f00748564895a9cc73afffc1",
+      "patches": [
+        {
+          "line": 35,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 72,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 76,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_confirmation_incidents.py",
+      "before_sha256": "ff1c87cd93ed1e4a8481b02589d510a5d818821a0aead78d7ad2868ea88a72d4",
+      "after_sha256": "a1b64e7e90365672d9286d350108bee380999df4aa2417146c761b76de90b01f",
+      "patches": [
+        {
+          "line": 142,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 151,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_confirmation_priority.py",
+      "before_sha256": "f67547aa2f7800fb5cedda04e25cfaf3de3d94bc0606f1870caef3a19722821f",
+      "after_sha256": "cb6795346293f71e025f4052cb8d032f03ba7c0bb35dcc37518ec9c87b405c0e",
+      "patches": [
+        {
+          "line": 305,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_confirmation_writer.py",
+      "before_sha256": "cfd446487daf2dde0672a7fc1569002338149f3ef2ef000f7a59227b374c45b4",
+      "after_sha256": "e1a5f538e7b86aa39f0ddb587336568e897de9142f34a486b5df8b7136270341",
+      "patches": [
+        {
+          "line": 21,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_execution_telemetry.py",
+      "before_sha256": "d13ead921393d67fb449541a5161bbe1f0db9b1ac9abd7c74cd06a2d8afdafe3",
+      "after_sha256": "14b657aba160a380c9d396895dfbba320dbea7b34fe32d226c818aa2671178c4",
+      "patches": [
+        {
+          "line": 43,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 50,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 223,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 248,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 150,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 168,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_fees.py",
+      "before_sha256": "9b52a4ed67d8b72a9036489cc3971636b4e671d73739a5cea65c71fb1c943c30",
+      "after_sha256": "dece0403f72097eca208d236bd4adc69948fdfec4c9b939da969f436399ab41f",
+      "patches": [
+        {
+          "line": 185,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_harvest_coalescing.py",
+      "before_sha256": "4166b2710b8c9346b097985e269c6510e86e64852a03ec3b4d3970255094facc",
+      "after_sha256": "037728d56eb91e73d8964ba28bb030b5a1e6cc3426d691939edd1e93491fa8b1",
+      "patches": [
+        {
+          "line": 53,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 159,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_harvest_identity.py",
+      "before_sha256": "efa1a66ba26de72a5e36b99f77e1cf4b7c706a2772bd7b90b14619161d589c15",
+      "after_sha256": "ab3728ce3151a82a64c99b6ebd6acf9a8c0634e65ffb3a684a134c9006c187a4",
+      "patches": [
+        {
+          "line": 87,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 75,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_harvest_isolation.py",
+      "before_sha256": "3dd5b801d87052649787dc44451ca97cbaa24dc2c1eed5470bc2650e2c4c87ed",
+      "after_sha256": "d415889e167a10c60061f5a4343e450d313a4e492e5bc73963ea5079b05a2330",
+      "patches": [
+        {
+          "line": 178,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 195,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_health_identity.py",
+      "before_sha256": "a62bb0e0dfe04b3c311e92360e53a866a249b4cca6c469a5007e64ce57022f0e",
+      "after_sha256": "059afc92d7e54057317507af4ab14864074b45d3d972e4324d41b042a4cf9758",
+      "patches": [
+        {
+          "line": 44,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_intent_shutdown.py",
+      "before_sha256": "4b436945f07261ef77c6410df244c971680457f49e8564f14d9fd1d1f92ac59f",
+      "after_sha256": "f816913fee56a2b44b7f8375568f677ec365e0886621851a69953a8c8e5f8f6d",
+      "patches": [
+        {
+          "line": 82,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 102,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 114,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 137,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 144,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_late_job_budget.py",
+      "before_sha256": "2a2d5d52f4a78a7612163d21626972b83b8c70f55fa2f44b89f532e4b71531a9",
+      "after_sha256": "bdc9d2fa7592605fedef47218fc3e6ec52a52a5feefed005fe56ac9422256624",
+      "patches": [
+        {
+          "line": 68,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 77,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 95,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 51,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 107,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_late_lp_review.py",
+      "before_sha256": "b031b7e74fb72d530723265cd215391e87c7b90a5821510e3f0c5808e7ae5111",
+      "after_sha256": "f051863e80b58ca2fe5f65159b1ee92b3ef0db0fe8bf03fa7c10fb60b06b7799",
+      "patches": [
+        {
+          "line": 117,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 121,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 170,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 181,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 193,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 203,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 222,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 234,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 269,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 282,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 297,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 334,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 339,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 345,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 108,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 135,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 149,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 247,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 257,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 323,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 83,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 99,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_maintenance_clock.py",
+      "before_sha256": "1ebd22ee1a6a42ed871c66dc480e5dcb5ebb51c46ac29fe364e1027e8a3a782c",
+      "after_sha256": "8993ee0ae3b3978a3b8b6004e2043b93b35d7d0ca3f1f288c626857d7ed2fc9c",
+      "patches": [
+        {
+          "line": 43,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 189,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_maintenance_policy.py",
+      "before_sha256": "b1b2b5b244d545879669e39d92a205cda0c96ac19a3bb0296f12e805d026b787",
+      "after_sha256": "f0d6f1d69bec5280886cf2be1535132c6b42dfb562584cc79ee8f52c6699fa5e",
+      "patches": [
+        {
+          "line": 83,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 31,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_operation_review.py",
+      "before_sha256": "8bd79315a99ac6e6da2303ce78f8a0beb6dffd4793e2570612e9828a0a36aa6a",
+      "after_sha256": "8dd0126c3d4498b6f808e50fe169a47eb37373827429e7ea6a1f2323c8cb8283",
+      "patches": [
+        {
+          "line": 130,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_operational_integrity.py",
+      "before_sha256": "ef0715e8ab2bd78952c6619a52933239a9619ed6d8a27efd43a30e690e9d03cc",
+      "after_sha256": "4a6e3240c8a5d0c079ce79d4c2c64e22659f0f93db3f97fc9c9360f1ba71f515",
+      "patches": [
+        {
+          "line": 56,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 79,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 95,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 176,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_ops.py",
+      "before_sha256": "38ce4fe7fe715f07f1b6bfb0952cb718dc45c1cc51cf135e6bf90f87703e1d71",
+      "after_sha256": "09884f6496ef9262197604b0fa708deaee27359aebe51a54166999c19c368d09",
+      "patches": [
+        {
+          "line": 79,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 102,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 139,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_outside_schedule.py",
+      "before_sha256": "ffe5de6a23ef4f2e1dc24407bf93cbcb46b97b4ba38c08b75c85a312a59997a6",
+      "after_sha256": "59b03b41c181c9d8659e0cd59705f702f6803b15dfef7c7076e69d739ab25d09",
+      "patches": [
+        {
+          "line": 185,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 205,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 213,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 228,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_preparation.py",
+      "before_sha256": "e4894c04310649fde7f6fa3de4954e9dadf6e03af69e05d64aaadb0a4fdca3f4",
+      "after_sha256": "0da46b851f0f19133733b5075376716253b99aafd4c9c3342db21cebbb869894",
+      "patches": [
+        {
+          "line": 76,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 112,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 130,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 141,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 193,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 98,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 85,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_principal_distribution.py",
+      "before_sha256": "928411b57580c7637b0f432070833c72ebf9609446246e296a7f8ca2e3dfe8ae",
+      "after_sha256": "66d56408e878ea5dd9bc606fb2ae388661c4dd03896a7d9c20a857deb7f43eff",
+      "patches": [
+        {
+          "line": 239,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 270,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_range_policy.py",
+      "before_sha256": "f07c178fd3b95d042a4dcc343eb27bcd04179143ac9b3a723f07f50fa22f0cd9",
+      "after_sha256": "9f307a986841924b5ef470463fd94e4f05187d2301d2009cf4d34acdbaffd7d2",
+      "patches": [
+        {
+          "line": 102,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 67,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_rebalance_confirmation.py",
+      "before_sha256": "4756b8776078a12125670af4824b5a9e85a8df78f35fd8d83dd60e74adb7ac34",
+      "after_sha256": "127fc750a19bb4767b7bc869aaac71c111654be6dd0dd8c57a4204ffcb985160",
+      "patches": [
+        {
+          "line": 208,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 260,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_recovery.py",
+      "before_sha256": "accbba17f829d9d9cf58928ff8e20fd44ef7b7ec4859ba2740095d83f45646d4",
+      "after_sha256": "4c6d9bdfebdbc69af9f8d32d9f9bf7137b741108a46a457ac68f2ce4d34d18dd",
+      "patches": [
+        {
+          "line": 114,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 172,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 185,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 65,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 142,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_revert_health.py",
+      "before_sha256": "2011f5dc5806c2b7a90e518d7025bc9c7ec10d7c4117fb93c30e82241f1ec5aa",
+      "after_sha256": "c6adeba749a3b98632ff119c6ce46e92c198f12e8a667bc85ae9f2c26f85f761",
+      "patches": [
+        {
+          "line": 61,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_review_retry.py",
+      "before_sha256": "4ad7c479e5d6715b839fcb865b15cb31b67f7ac454df791244aca862887b277f",
+      "after_sha256": "23dc97c868ccf5513b5135acc7af20153dca2f1841bc1e48079cfa21cf687d74",
+      "patches": [
+        {
+          "line": 34,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_simulation_envelope.py",
+      "before_sha256": "2094348e8da4b4b2e09da1334cdfacf7392c3c6adf7b94a7e51c5b71a5f582ef",
+      "after_sha256": "bb51036580c531a711a00c956e2386245779b95770ac4da16c472e34667aa3bd",
+      "patches": [
+        {
+          "line": 30,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 93,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 102,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 45,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 63,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 83,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_simulation_outputs.py",
+      "before_sha256": "5cfdf2422850fe44c921735afc45257df248d804a27fad25461074c401b43f47",
+      "after_sha256": "68e044a70117e53da37cd2ab91a005197bdddfa2fea5f9d29e865698c9db2a82",
+      "patches": [
+        {
+          "line": 60,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 77,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 51,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_standalone_harvest_review.py",
+      "before_sha256": "6342cdd9394fc0c83c3db534fd39355a8993f8ee868f49bba965e04a9794b669",
+      "after_sha256": "40981912acfcc7077857f8058eb0158271545cf2e68af565cd5551d4d78670c0",
+      "patches": [
+        {
+          "line": 95,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 186,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 165,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_telemetry_completion.py",
+      "before_sha256": "de5d067fffbf73faad3f576f197cba6f80678e9f7c40bb84fdc28295dd1483c7",
+      "after_sha256": "1ec7d10a3ce3062e03a52ef24d4f508df7d5931aee973423571b2aa4e25fe435",
+      "patches": [
+        {
+          "line": 88,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_keeper_zero_tip_profile.py",
+      "before_sha256": "5e2db513c4ffac76f2834df9086939d12c57c51a3115c0a8881cb7005097a9f7",
+      "after_sha256": "c985c9c3062eaba49ffb341a7f8ce3bb0ef952dad476d0fe1907795f526e1416",
+      "patches": [
+        {
+          "line": 87,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 173,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 189,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 183,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 106,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 118,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_lp_conversion.py",
+      "before_sha256": "80347c4777751fc1161aa136dde2d7fe9a02c1cfc9dc7be8f4aaee8e83f79ec2",
+      "after_sha256": "cb793c4492d0d854f6924e9edb835513f251ecf5ebe8c9693171942ce5e4c7f0",
+      "patches": [
+        {
+          "line": 143,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_lp_execution_profile.py",
+      "before_sha256": "dc10eca510d1050c56bab5bc9fe0eeb3fa9c05b98f97cfef93ee83a4eff6767e",
+      "after_sha256": "7abc7f9830ba158e5b1eb40c454d6459fbf0e747e8cee305fc54173d7fd68d11",
+      "patches": [
+        {
+          "line": 194,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 253,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_manual_lp_review.py",
+      "before_sha256": "3db78ca9dceb6329af7dda354eb3508987f7d7a9bbb0c900d5d24350ebc5b7d8",
+      "after_sha256": "cf39311652426bcb324fa0569c74316642a8e961ee570610e3cfd838c283af18",
+      "patches": [
+        {
+          "line": 402,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_market_lifecycle_keeper.py",
+      "before_sha256": "8e8a8aa0bd26df49cb46de3670632091b2724743bb93dc2870353eae3a86d6a7",
+      "after_sha256": "620d7c5fe574b3387fa3b57e1988bc1492b49d26f8a30857b91c4495b120974b",
+      "patches": [
+        {
+          "line": 76,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 88,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_metadata_keeper.py",
+      "before_sha256": "e57747d3e89888e28be63e447a684fbb7e0a10195ee3c6db40665d9dded90fbe",
+      "after_sha256": "15dfe67519a2c0cd1a9485be1f77c7905b22d830baa271d488a9f48d097a66f7",
+      "patches": [
+        {
+          "line": 126,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 166,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 184,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 369,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 424,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 415,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_reviewed_gas_profiles_20_24.py",
+      "before_sha256": "0d009f204a31a937125ab4705102a19cb7348436447180959411cde93bab2800",
+      "after_sha256": "2b08074d0ba2cdc2e919d87478aaa3f943e5d66e4f0ac4a2e2553d9c52ae34aa",
+      "patches": [
+        {
+          "line": 201,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 210,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 170,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 189,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_royalty_keeper.py",
+      "before_sha256": "4f18a1be9bf7262f51d915744bf3d0db9ab17f853a9cf906cbaaeec7a3df3c5b",
+      "after_sha256": "59c5b9bebf44aa67dc8863bc75536537b32645efd944a7ab6ad4424cbeb78069",
+      "patches": [
+        {
+          "line": 100,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        },
+        {
+          "line": 104,
+          "from": "subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    },
+    {
+      "path": "tests_python/test_state_json_integrity.py",
+      "before_sha256": "89fa99f4dd5512271cee44312d54d75e17d68967b0a2d0d6bed414a2deead89b",
+      "after_sha256": "cb06d77120d4d7a7b46f337a0c01b24481fd62a7914f8eaca099acc13fd3d5f6",
+      "patches": [
+        {
+          "line": 108,
+          "from": "keeper.monitor.subprocess.run",
+          "to": "keeper.monitor.run_cast"
+        }
+      ],
+      "only_patch_target_literals_changed": true,
+      "test_methods_executed": 0
+    }
+  ],
+  "file_count": 47,
+  "patch_count": 157,
+  "unrelated_cli_subprocess_calls_unchanged": true,
+  "originals_external": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\bounded-cast-output-20261121\\fixture-migration",
+  "new_tests_run": 0,
+  "unchanged_tests_run": 0
+}

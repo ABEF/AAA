@@ -72,7 +72,7 @@ class KeeperHarvestIdentityTests(unittest.TestCase):
                 if signature=='getSlot0(bytes32)':raise AssertionError('Harvest must not read market prices')
                 return original(target,signature,*args,count=count)
             rpc.read=read
-            with self.subTest(profile=keeper.accounting_version),patch('subprocess.run') as signer:
+            with self.subTest(profile=keeper.accounting_version),patch('keeper.monitor.run_cast') as signer:
                 result=report.harvest_custody(position)
                 self.assertTrue(result['allowed']);signer.assert_not_called()
                 self.assertFalse(result['geometry_sources_independent'])
@@ -84,7 +84,7 @@ class KeeperHarvestIdentityTests(unittest.TestCase):
         rpc,keeper,_,_=self.fixture(PolicyRPC);rpc.secondary=124;rpc.secondary_count=1
         keeper.save();before=keeper.path.read_bytes()
         rpc.code_overrides[rpc.contracts['state_view']]='0x6001'
-        with patch('subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             result=review(rpc.cfg,[7],rpc=rpc,now=lambda:rpc.now)
         rows={row['operation']:row for row in result['operations']}
         self.assertEqual('observed_eligible',rows['harvest']['state'])

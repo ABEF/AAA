@@ -73,7 +73,7 @@ class MarketLifecycleKeeperTests(unittest.TestCase):
         header = self.rpc.call("eth_getBlockByNumber", ["latest", False])
         position = decode_position(self.rpc.read(self.rpc.contracts["vault"], "group(uint256)", 7, count=8), 6)
         self.k.rpc = PinnedReads(self.rpc, header)
-        with patch("subprocess.run") as signer:
+        with patch("keeper.monitor.run_cast") as signer:
             result = Review(self.k, header, False, simulate=False).harvest_custody(position)
         self.assertTrue(result["allowed"])
         self.assertEqual(2, len(result["physical_legs"]))
@@ -85,7 +85,7 @@ class MarketLifecycleKeeperTests(unittest.TestCase):
         before = copy.deepcopy(self.k.state)
         with patch.object(self.k, "poll_pending", return_value=True) as recover, \
                 patch.object(self.k, "_validate_accounting_version", side_effect=AssertionError("recovery first")), \
-                patch("subprocess.run") as signer:
+                patch("keeper.monitor.run_cast") as signer:
             self.k.cycle()
         recover.assert_called_once()
         signer.assert_not_called()

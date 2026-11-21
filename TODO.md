@@ -1765,13 +1765,13 @@ Decisions and rehearsals before real funds.
   - The [behavior follow-up](reports/operator-behavior-followup-20261117/KEEPER_REVIEW.md) fixes interval crossings during slow reads by refreshing chain time before compound/harvest due decisions. Nine new worker checks plus one adapted timing check pass with injected RPC. Actual-core authorized/revoked/replacement/pause checks are separate. Extra compound waiting remains software-only by explicit operator choice; governance can revoke/replace its limited keeper key. Existing cooldowns/guards/journals and running services stay unchanged.
   - Verify the actual cycle-to-submit dry-run path after the hourly harvest clock crosses during another maintenance failure: complete void simulation is required, malformed output must stop before estimation, and no simulated submission may advance pending/spend/harvest-success state. New injected-RPC checks cover this without changing keeper software or operating configuration. [Impact follow-up](reports/test-impact-followup-20261117/TOOLS_REVIEW.md).
   - [Latest seven-report reconciliation](reports/seven-report-consolidation-20261119/REVIEW.md): Observed-stop signer gating and completed bounded failover watchdog progress remain implemented. Extra compound waiting stays software-only by explicit choice; actual operating rollout and adversarial-provider/host recovery remain unqualified.
-  - Review bounded Cast stdout/stderr capture: current30/90-second subprocess timeouts do not impose an output byte ceiling. Retain ambiguous pending intent on any future capture-limit failure; no automatic resend or new financial allowance. This is a resource-hardening follow-up, not a demonstrated fund-loss exploit.
+  - [Bounded Cast capture](reports/bounded-cast-20261121/REVIEW.md): 64KiB aggregate stdout/stderr, original30/90-second work deadlines and2-second bounded failure cleanup are implemented at startup and send.16NEW methods pass (8inert integration/identity and8actual unprivileged Ubuntu helper); no old bodies ran. Preserve exact hashless intent/no automatic resend/accounting; helper enters health source identity with matching writer/checker adoption. Full encrypted-Cast/daemon and host/provider acceptance remain separate.
 
   </details>
 
 <a id="task-keeper-recovery"></a>
 
-- [ ] **[Rehearse keeper outage & server recovery](docs/KEEPER_REHEARSALS.md)** - In progress. Current focused review fixes zero-hash recovery and unsafe process locks;18focused checks pass, including8 unprivileged Ubuntu lock methods. The stock-daemon/real-Cast Ubuntu attempt stopped during fixture setup: no live journal or Cast transaction ran. All8owned units stopped; installed services/journals remain unchanged. Full normal scheduling, production keys/providers, off-host restore/alerts and sustained operation stay open.
+- [ ] **[Rehearse keeper outage & server recovery](docs/KEEPER_REHEARSALS.md)** - In progress. Bounded Cast capture now preserves uncertain intent under output/time failures;16NEW focused methods pass,8 on Ubuntu. Earlier zero-hash/lock/diagnostic evidence retains its18-method source scope. Full normal-daemon/real-Cast signing/recovery, actual providers, off-host restore/alerts and sustained operation remain open. No installed service/journal rollout; original failed rehearsal units stay stopped.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -1878,4 +1878,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `0b730399ceab73ed2f1b3bfd92ac9aef1ea649551dffdda2e2cd25dd4d858b62`.
+Snapshot SHA-256: `b011bc71f2b1bbef5c54a689d2a7d23f222c8288407601ef26d30a3cef7b4168`.

@@ -53,7 +53,7 @@ class KeeperOpsJSONIntegrityTests(unittest.TestCase):
         path.write_text(raw.replace('"pending": null',
             '"pending": {"nonce": 7}, "pending": null'))
         before = path.read_bytes()
-        with patch('subprocess.run') as signer, patch('zzz_ops.rpc.Rpc.call') as rpc, \
+        with patch('keeper.monitor.run_cast') as signer, patch('zzz_ops.rpc.Rpc.call') as rpc, \
                 self.assertRaises(ValueError):
             ops.verify_snapshot(self.f.cfg, path)
         signer.assert_not_called()
@@ -76,7 +76,7 @@ class KeeperOpsJSONIntegrityTests(unittest.TestCase):
         self.assertTrue(self.f.check_health()['ok'])
         path = self.f.root / 'snapshot.json'
         before = self.f.k.path.read_bytes()
-        with patch('subprocess.run') as signer, patch('zzz_ops.rpc.Rpc.call') as rpc:
+        with patch('keeper.monitor.run_cast') as signer, patch('zzz_ops.rpc.Rpc.call') as rpc:
             ops.create_snapshot(self.f.cfg, path)
             self.assertTrue(ops.verify_snapshot(self.f.cfg, path)['ok'])
         signer.assert_not_called()
@@ -92,7 +92,7 @@ class KeeperOpsJSONIntegrityTests(unittest.TestCase):
     def shape_cli(self, config, command):
         output = io.StringIO()
         with patch('sys.argv', ['keeper.ops', '--config', str(config), *command]), \
-                patch('sys.stdout', output), patch('subprocess.run') as signer, \
+                patch('sys.stdout', output), patch('keeper.monitor.run_cast') as signer, \
                 patch('zzz_ops.rpc.Rpc.call') as rpc:
             self.assertEqual(1, ops.main())
         signer.assert_not_called()
@@ -173,7 +173,7 @@ class KeeperCheckpointOrderTests(unittest.TestCase):
 
     def reject_without_mutating_paid_truth(self, body):
         before, disk = copy.deepcopy(self.k.state), self.k.path.read_bytes()
-        with patch('subprocess.run') as signer, self.assertRaises(RpcError):
+        with patch('keeper.monitor.run_cast') as signer, self.assertRaises(RpcError):
             body()
         signer.assert_not_called()
         self.assertEqual(before, self.k.state)

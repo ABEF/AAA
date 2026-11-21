@@ -1,5 +1,11 @@
 # Consolidated audit findings and evidence
 
+[Bounded Cast capture](../reports/bounded-cast-20261121/REVIEW.md) closes the previously recorded
+missing output-byte ceiling. The64KiB aggregate bound,30/90work deadlines and
+2-second cleanup preserve durable intent/no-resend/accounting.16new methods
+pass (8actual Ubuntu helper/8inert integration), with current helper source
+identity enforced. No old suite or operating rollout; full keeper acceptance stays open.
+
 [48-hour review](../reports/last48h-audit-20261121/REVIEW.md) found no additional confirmed production
 defect across15commits. A48-01–03correct misleading qualification wording and stale
 current/anonymous inventory labels.11archives/940payload hashes match; these are
@@ -11,9 +17,9 @@ drift and missing tracked-confirmation checks in compound diagnostics.18focused
 checks pass (15new/3affected), including8 actual unprivileged Ubuntu lock checks.
 The stock-daemon/real-Cast rehearsal stopped at fixture setup; no live journal or
 Cast transaction ran. All8owned units stop and original host safe fields match.
-Do not close Q06/P20/P21 or relabel earlier inert/Windows evidence. Bounded Cast
-output capture remains a hardening review item; current capture has a timeout
-but no byte ceiling. This is not a demonstrated fund-loss exploit.
+Do not close Q06/P20/P21 or relabel earlier inert/Windows evidence. The output
+byte-ceiling item recorded by that review is implemented in the bounded-capture
+follow-through above; that does not establish a completed live-daemon rehearsal.
 
 [Current actual-fee proof](../reports/pool-fees-20261121/REVIEW.md) closes the finite
 real-core receipt-to-allocation/reserve/direct-claim gap on the saved normal F6

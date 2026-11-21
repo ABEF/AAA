@@ -139,7 +139,7 @@ class KeeperConfirmationIncidentTests(unittest.TestCase):
             raise subprocess.TimeoutExpired('inert signer',1)
         with patch.object(self.k,'_validate_checkpoint'),patch.object(self.k,'_validate_code_hashes'), \
                 patch('keeper.monitor.time.time',return_value=self.rpc.now), \
-                patch('keeper.monitor.subprocess.run',side_effect=signer),self.assertRaises(subprocess.TimeoutExpired):
+                patch('keeper.monitor.run_cast',side_effect=signer),self.assertRaises(subprocess.TimeoutExpired):
             self.k.submit('rebalance_confirmation','observe(uint256)',(7,),'rebalance_observation:7')
         self.assertNotIn('7',self.k.state.get(CONFIRMATION_CLEARS,{}))
         self.assertIsNone(self.k.state['pending']['hash'])
@@ -148,7 +148,7 @@ class KeeperConfirmationIncidentTests(unittest.TestCase):
         self._ack(False);self._signer_context();self.k.save();before=self.k.path.read_bytes();state=copy.deepcopy(self.k.state)
         with patch.object(self.k,'_validate_checkpoint'),patch.object(self.k,'_validate_code_hashes'), \
                 patch.object(self.k,'save',side_effect=OSError('inert storage failure')), \
-                patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('keeper.monitor.subprocess.run') as signer, \
+                patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('keeper.monitor.run_cast') as signer, \
                 self.assertRaises(OSError):
             self.k.submit('rebalance_confirmation','observe(uint256)',(7,),'rebalance_observation:7')
         signer.assert_not_called();self.assertEqual(before,self.k.path.read_bytes());self.assertEqual(state,self.k.state)

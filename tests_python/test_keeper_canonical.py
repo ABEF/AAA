@@ -45,7 +45,7 @@ class KeeperCanonicalTests(unittest.TestCase):
         for state in range(1,5):
             self.fixture.canonical_state = state
             for name, signature, args in actions:
-                with self.subTest(state=state,action=name+signature), patch('keeper.monitor.subprocess.run') as signer:
+                with self.subTest(state=state,action=name+signature), patch('keeper.monitor.run_cast') as signer:
                     self.assertFalse(self.k.submit(name,signature,args,'test'))
                     signer.assert_not_called()
         self.assertEqual(self.k.state,before)
@@ -57,7 +57,7 @@ class KeeperCanonicalTests(unittest.TestCase):
         for response in ('0x','0x00',word(5),word(256),word(0)+word(0)[2:],None,True,RpcError('unsupported')):
             with self.subTest(response=response):
                 self.override_state(response)
-                with patch('keeper.monitor.subprocess.run') as signer, self.assertRaises(RpcError):
+                with patch('keeper.monitor.run_cast') as signer, self.assertRaises(RpcError):
                     self.k.submit('fees','syncExternal(uint256)',(7,),'sync:7')
                 signer.assert_not_called()
                 self.assertIsNone(self.k.canonical_lifecycle)
@@ -77,7 +77,7 @@ class KeeperCanonicalTests(unittest.TestCase):
             if method == 'eth_estimateGas': self.fixture.canonical_state = 1
             return result
         self.rpc.call = call
-        with patch('keeper.monitor.subprocess.run') as signer, patch('keeper.monitor.log') as logger:
+        with patch('keeper.monitor.run_cast') as signer, patch('keeper.monitor.log') as logger:
             self.assertFalse(self.k.submit('vault','collectFees(uint256,uint256)',(7,self.rpc.now+180),'harvest:7'))
         signer.assert_not_called()
         self.assertNotIn('dry_run',[entry.args[0] for entry in logger.call_args_list])
@@ -91,7 +91,7 @@ class KeeperCanonicalTests(unittest.TestCase):
             if method == 'eth_getBalance': self.fixture.canonical_state = 3
             return result
         self.rpc.call = call
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.k.submit('vault','collectFees(uint256,uint256)',(7,self.rpc.now+180),'harvest:7'))
         signer.assert_not_called(); self.assertEqual(self.k.state,before); self.assertFalse(self.k.path.exists())
 
@@ -105,7 +105,7 @@ class KeeperCanonicalTests(unittest.TestCase):
                 if reads == 3: return '0x'
             return self.original_call(method,params)
         self.rpc.call = call
-        with patch('keeper.monitor.subprocess.run') as signer, self.assertRaises(RpcError):
+        with patch('keeper.monitor.run_cast') as signer, self.assertRaises(RpcError):
             self.k.submit('fees','syncExternal(uint256)',(7,),'sync:7')
         signer.assert_not_called(); self.assertEqual(reads,3)
         self.assertIsNone(self.k.state['pending']); self.assertIsNone(self.k.canonical_lifecycle)
@@ -176,7 +176,7 @@ class KeeperCanonicalTests(unittest.TestCase):
             if method == 'eth_call' and params[0]['data'] == calldata('canonicalState()'): return word(2)
             return original(method,params)
         fixture.rpc.call = call; before = fixture.k.path.read_bytes()
-        with patch('keeper.monitor.subprocess.run') as signer: result = preflight(fixture.cfg,rpc=fixture.rpc)
+        with patch('keeper.monitor.run_cast') as signer: result = preflight(fixture.cfg,rpc=fixture.rpc)
         signer.assert_not_called(); self.assertEqual(fixture.k.path.read_bytes(),before)
         self.assertEqual(result['reasons'],['canonical_lifecycle_locked']); self.assertEqual(result['canonical_state'],2)
 

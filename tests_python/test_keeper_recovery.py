@@ -62,7 +62,7 @@ class RecoveryTests(unittest.TestCase):
         cases=[('eth_getTransactionCount','pending','0x8'),('eth_getTransactionCount','latest','0x8'),('eth_getBalance','latest','0x0')]
         for target,tag,value in cases:
             def call(method,params):return value if method==target and params[-1]==tag else original(method,params)
-            with self.subTest(target=target,tag=tag),patch.object(self.rpc,'call',side_effect=call),patch('subprocess.run') as signer:
+            with self.subTest(target=target,tag=tag),patch.object(self.rpc,'call',side_effect=call),patch('keeper.monitor.run_cast') as signer:
                 with self.assertRaises(RpcError):self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'harvest:1')
                 signer.assert_not_called();self.assertIsNone(self.k.state['pending'])
 
@@ -111,7 +111,7 @@ class RecoveryTests(unittest.TestCase):
     def test_confirmed_checkpoint_reorg_blocks_all_work(self):
         self.k.state.update(next_nonce=7,receipt_anchor={'number':98,'hash':'0x'+'cd'*32,'timestamp':self.rpc.now,'nonce':6})
         self.k.save();before=self.k.path.read_bytes()
-        with patch.object(self.k,'view') as view,patch('subprocess.run') as signer:
+        with patch.object(self.k,'view') as view,patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.k.run_cycle());signer.assert_not_called();view.assert_not_called()
         self.assertEqual(self.k.path.read_bytes(),before)
 
@@ -139,7 +139,7 @@ class RecoveryTests(unittest.TestCase):
         for method in ('eth_estimateGas','eth_gasPrice'):
             for bad in ('-0x1','0x01',None,True,'0x'+'f'*65):
                 def call(name,params):return bad if name==method else original(name,params)
-                with self.subTest(method=method,bad=bad),patch.object(self.rpc,'call',side_effect=call),patch('subprocess.run') as signer:
+                with self.subTest(method=method,bad=bad),patch.object(self.rpc,'call',side_effect=call),patch('keeper.monitor.run_cast') as signer:
                     with self.assertRaises(RpcError):self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'harvest:1')
                     signer.assert_not_called()
 
@@ -169,7 +169,7 @@ class RecoveryTests(unittest.TestCase):
         self.k.live=True;self.k.fee_policy='included';self.k.state['next_nonce']=7
         self.k.state['receipt_anchor']={'number':98,'hash':H,'timestamp':self.rpc.now,'nonce':6}
         self.k._validate_code_hashes=lambda:None
-        with patch.object(self.k,'save',side_effect=OSError('disk full')),patch('subprocess.run') as signer:
+        with patch.object(self.k,'save',side_effect=OSError('disk full')),patch('keeper.monitor.run_cast') as signer:
             with self.assertRaises(OSError):self.k.submit('vault','collectFees(uint256,uint256)',(1,self.rpc.now+180),'harvest:1')
             signer.assert_not_called();self.assertIsNotNone(self.k.state['pending'])
 
@@ -182,6 +182,6 @@ class RecoveryTests(unittest.TestCase):
             result=original(method,params)
             if method=='eth_getBalance':self.k.stop_requested=lambda:True
             return result
-        with patch.object(self.rpc,'call',side_effect=call),patch('subprocess.run') as signer:
+        with patch.object(self.rpc,'call',side_effect=call),patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'harvest:1'))
             signer.assert_not_called();self.assertIsNone(self.k.state['pending'])

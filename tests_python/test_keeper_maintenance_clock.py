@@ -40,7 +40,7 @@ class KeeperMaintenanceClockTests(unittest.TestCase):
     def run_cycle(self,k,rpc):
         with patch('keeper.monitor.time.time',side_effect=lambda:rpc.now),\
                 patch.object(k,'submit',return_value=True) as submit,\
-                patch('keeper.monitor.subprocess.run',side_effect=AssertionError('signer')):
+                patch('keeper.monitor.run_cast',side_effect=AssertionError('signer')):
             k.cycle()
         return submit
 
@@ -186,7 +186,7 @@ class KeeperHarvestSubmissionFlowTests(unittest.TestCase):
         with patch.object(self.k,'_rebalance_due',side_effect=slow_price_failure), \
                 patch('keeper.monitor.time.time',side_effect=lambda:self.rpc.now), \
                 patch('keeper.monitor.log') as events, \
-                patch('keeper.monitor.subprocess.run',side_effect=AssertionError('signer')):
+                patch('keeper.monitor.run_cast',side_effect=AssertionError('signer')):
             self.k.cycle()
         return events
 

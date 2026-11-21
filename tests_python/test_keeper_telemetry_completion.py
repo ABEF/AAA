@@ -85,7 +85,7 @@ class KeeperTelemetryCompletionTests(unittest.TestCase):
         self.k.last_success_at = previous
         with self.final_head(self.fixture.confirmed_header), \
                 patch.object(self.k, 'cycle'), patch('keeper.monitor.time.time', return_value=self.rpc.now), \
-                patch('subprocess.run') as signer:
+                patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.k.run_cycle())
         signer.assert_not_called()
         report = json.loads(self.k.health_path.read_text(encoding='utf-8'))

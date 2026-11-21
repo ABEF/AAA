@@ -50,7 +50,7 @@ class KeeperHarvestCoalescingTests(unittest.TestCase):
                 'logIndex': hex(index), 'removed': False}
 
     def confirm(self):
-        with patch('subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.k.poll_pending())
         signer.assert_not_called()
         self.assertIsNone(self.k.state['pending'])
@@ -156,7 +156,7 @@ class KeeperHarvestCoalescingTests(unittest.TestCase):
                 self.rpc.receipt['to'] = pending['to']
                 self.k.save()
                 old = self.k.state['last']['harvest:1']
-                with patch('subprocess.run') as signer:
+                with patch('keeper.monitor.run_cast') as signer:
                     self.assertFalse(self.k.poll_pending())
                 signer.assert_not_called()
                 self.assertEqual(old, self.k.state['last']['harvest:1'])

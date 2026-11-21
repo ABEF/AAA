@@ -1,0 +1,13 @@
+test_address_capture_overflow_is_bounded_to_30_seconds_without_journal_change (tests_python.test_keeper_cast_capture.KeeperCastCaptureTests.test_address_capture_overflow_is_bounded_to_30_seconds_without_journal_change) ... ok
+test_address_capture_still_rejects_wrong_address_and_nonzero_exit (tests_python.test_keeper_cast_capture.KeeperCastCaptureTests.test_address_capture_still_rejects_wrong_address_and_nonzero_exit) ... ok
+test_capture_overflow_and_invalid_encoding_preserve_exact_pending_intent (tests_python.test_keeper_cast_capture.KeeperCastCaptureTests.test_capture_overflow_and_invalid_encoding_preserve_exact_pending_intent) ... ok
+test_capture_timeout_preserves_exact_pending_intent_and_never_resends (tests_python.test_keeper_cast_capture.KeeperCastCaptureTests.test_capture_timeout_preserves_exact_pending_intent_and_never_resends) ... ok
+test_confirmation_health_authenticates_the_capture_helper_source (tests_python.test_keeper_cast_capture.KeeperCastCaptureTests.test_confirmation_health_authenticates_the_capture_helper_source) ... ok
+test_execution_health_authenticates_the_capture_helper_source (tests_python.test_keeper_cast_capture.KeeperCastCaptureTests.test_execution_health_authenticates_the_capture_helper_source) ... ok
+test_shutdown_after_intent_does_not_invoke_new_capture_hook (tests_python.test_keeper_cast_capture.KeeperCastCaptureTests.test_shutdown_after_intent_does_not_invoke_new_capture_hook) ... ok
+test_successful_bounded_hook_preserves_original_review_and_hash (tests_python.test_keeper_cast_capture.KeeperCastCaptureTests.test_successful_bounded_hook_preserves_original_review_and_hash) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 12.910s
+
+OK

@@ -209,7 +209,7 @@ class ExactLPProfile7Tests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             rpc=Fresh7KeeperRPC(Path(tmp)/'fresh7.json')
             Keeper(rpc.cfg,rpc=rpc).save();before=Path(rpc.cfg['state_path']).read_bytes()
-            with patch('keeper.monitor.subprocess.run') as signer:
+            with patch('keeper.monitor.run_cast') as signer:
                 result=review(rpc.cfg,[7],rpc=rpc,now=lambda:rpc.now)
             signer.assert_not_called()
             self.assertEqual(result['profile']['accounting_version'],7)

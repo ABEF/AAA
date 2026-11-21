@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "scope": "eight_new_Cast_capture_helper_methods_only",
+  "uid": 65534,
+  "source_sha256": {
+    "keeper/cast_process.py": "b6203067b022625bce2bfb415bb6ed85620dc8c7002b51f2d3d4c9296c5ac3e1",
+    "test_cast_process.py": "875628819dae4d09ebc5a214dba634788d798182d2b3e882eefa22d7f2c2a9a2"
+  },
+  "exit_code": 0,
+  "outer_timeout": false,
+  "stdout": "",
+  "stderr": "test_deadline_covers_idle_active_and_closed_pipes (test_cast_process.CastProcessTests.test_deadline_covers_idle_active_and_closed_pipes) ... ok\ntest_exact_aggregate_byte_budget_is_admitted (test_cast_process.CastProcessTests.test_exact_aggregate_byte_budget_is_admitted) ... ok\ntest_exited_parent_cannot_leave_inherited_pipe_descendant_running (test_cast_process.CastProcessTests.test_exited_parent_cannot_leave_inherited_pipe_descendant_running) ... ok\ntest_failure_reaps_direct_child_and_closes_both_pipes (test_cast_process.CastProcessTests.test_failure_reaps_direct_child_and_closes_both_pipes) ... ok\ntest_interrupted_pipe_wait_reaps_child_and_preserves_interrupt (test_cast_process.CastProcessTests.test_interrupted_pipe_wait_reaps_child_and_preserves_interrupt) ... ok\ntest_invalid_utf8_cannot_return_a_partial_valid_hash (test_cast_process.CastProcessTests.test_invalid_utf8_cannot_return_a_partial_valid_hash) ... ok\ntest_stdout_stderr_and_split_overflow_are_refused_without_disclosure (test_cast_process.CastProcessTests.test_stdout_stderr_and_split_overflow_are_refused_without_disclosure) ... ok\ntest_successful_text_and_nonzero_exit_are_preserved (test_cast_process.CastProcessTests.test_successful_text_and_nonzero_exit_are_preserved) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 1.610s\n\nOK\n",
+  "orphaned_test_descendants_reaped": 1,
+  "unexpected_live_descendants_killed": 0,
+  "all_children_reaped": true,
+  "services_chain_signer_or_RPC_used": false,
+  "temporary_directory": "/tmp/popl-cast-check-jnq1smoc",
+  "temporary_directory_removed": true,
+  "successful": true
+}

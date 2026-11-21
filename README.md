@@ -1,5 +1,10 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+[Bounded Cast capture](reports/bounded-cast-20261121/REVIEW.md) now limits total stdout/stderr to64KiB,
+retaining30/90-second deadlines and exact pending recovery without resending.
+16new checks pass, including8 on Ubuntu. Code publication changes no running
+service; full normal-daemon/real-Cast qualification remains open.
+
 [48-hour audit](reports/last48h-audit-20261121/REVIEW.md): five changed production modules reviewed,
 with no additional confirmed code defect. Corrected evidence wording and current
 coverage inventories; no new operating or release qualification is claimed.

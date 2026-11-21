@@ -58,7 +58,7 @@ class KeeperRevertHealthTests(unittest.TestCase):
     def _run(self, body=None, *, desktop_time=None):
         with patch.object(self.k,'cycle',side_effect=body or (lambda:None)), \
                 patch('keeper.monitor.time.time',return_value=self.rpc.now if desktop_time is None else desktop_time), \
-                patch('keeper.monitor.subprocess.run') as signer:
+                patch('keeper.monitor.run_cast') as signer:
             result = self.k.run_cycle()
         signer.assert_not_called()
         return result

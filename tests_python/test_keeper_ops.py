@@ -76,7 +76,7 @@ class OpsTests(unittest.TestCase):
         self.k.state.update(spent={'2026-10-16':42},pending={'nonce':0,'to':B,'data':calldata('collectFees(uint256,uint256)',1,123),
             'value':0,'day':'2026-10-16','key':'harvest:1','hash':None});self.k.save()
         path = self.root/'snapshot.json'
-        with patch('subprocess.run') as signer,patch('zzz_ops.rpc.Rpc.call') as rpc:
+        with patch('keeper.monitor.run_cast') as signer,patch('zzz_ops.rpc.Rpc.call') as rpc:
             create_snapshot(self.cfg,path);signer.assert_not_called();rpc.assert_not_called()
         content = path.read_text();self.assertNotIn('DO-NOT-EXPORT',content);self.assertNotIn('/secret',content)
         self.assertEqual(json.loads(content)['payload']['state'],self.k.state)
@@ -99,7 +99,7 @@ class OpsTests(unittest.TestCase):
 
     def test_preflight_is_read_only_and_never_calls_signer(self):
         before = self.k.path.read_bytes()
-        with patch('subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertTrue(preflight(self.cfg,rpc=self.rpc)['ok']);signer.assert_not_called()
         self.assertEqual(before,self.k.path.read_bytes())
 
@@ -136,7 +136,7 @@ class OpsTests(unittest.TestCase):
         self.k.save(); before = self.k.path.read_bytes()
         # Runtime pin is present and matches. The actual version getter is 1,
         # so the native profile must fail just as live startup would.
-        with patch('subprocess.run') as signer, self.assertRaisesRegex(RpcError,'accounting version differs'):
+        with patch('keeper.monitor.run_cast') as signer, self.assertRaisesRegex(RpcError,'accounting version differs'):
             preflight(self.cfg,rpc=self.rpc)
         signer.assert_not_called()
         self.assertEqual(self.k.path.read_bytes(),before)

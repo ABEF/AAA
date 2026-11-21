@@ -48,7 +48,7 @@ class KeeperSimulationOutputTests(unittest.TestCase):
                 with self.subTest(output=output,job=index):
                     k,rpc=self.fixture(output);name,signature,args=self.jobs(rpc.now)[index]
                     before=copy.deepcopy(k.state)
-                    with patch('keeper.monitor.subprocess.run',return_value=subprocess.CompletedProcess([],0,basic.H,'')) as signer:
+                    with patch('keeper.monitor.run_cast',return_value=subprocess.CompletedProcess([],0,basic.H,'')) as signer:
                         with self.assertRaises(RpcError):k.submit(name,signature,args,'output:test')
                         signer.assert_not_called()
                     self.assertEqual(before,k.state);self.assertFalse(k.path.exists())
@@ -57,7 +57,7 @@ class KeeperSimulationOutputTests(unittest.TestCase):
         for output in ('0x','0x01','0x'+f'{2:064x}','0x'+'g'*64,None):
             with self.subTest(output=output):
                 k,rpc=self.fixture(output);before=copy.deepcopy(k.state)
-                with patch('keeper.monitor.subprocess.run',return_value=subprocess.CompletedProcess([],0,basic.H,'')) as signer:
+                with patch('keeper.monitor.run_cast',return_value=subprocess.CompletedProcess([],0,basic.H,'')) as signer:
                     with self.assertRaises(RpcError):
                         k.submit('rebalance_confirmation','observe(uint256)',(1,),'output:observe')
                     signer.assert_not_called()
@@ -74,6 +74,6 @@ class KeeperSimulationOutputTests(unittest.TestCase):
                     pending=json.loads(k.path.read_text())['pending']
                     self.assertIsNone(pending['hash']);self.assertEqual(pending['fee_review']['maximum_cost_wei'],250)
                     return subprocess.CompletedProcess(command,0,basic.H,'')
-                with patch('keeper.monitor.subprocess.run',side_effect=sign):
+                with patch('keeper.monitor.run_cast',side_effect=sign):
                     self.assertTrue(k.submit(name,signature,args,'output:valid'))
                 self.assertEqual(before,k.state['spent']);self.assertEqual(k.state['pending']['hash'],basic.H)

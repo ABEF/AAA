@@ -28,7 +28,7 @@ class KeeperMaintenancePolicyTests(unittest.TestCase):
                   {'minimum_compound_units': 1 << 256},
                   {'compound_interval_seconds': 1}, {'compound_interval_seconds': 604801}]
         for settings in cases:
-            with self.subTest(settings=settings), patch('keeper.monitor.subprocess.run') as signer:
+            with self.subTest(settings=settings), patch('keeper.monitor.run_cast') as signer:
                 self.cfg['maintenance'] = settings
                 with self.assertRaises(ValueError): Keeper(self.cfg, rpc=self.fixture.rpc)
                 signer.assert_not_called()
@@ -80,7 +80,7 @@ class KeeperMaintenancePolicyTests(unittest.TestCase):
     def test_retired_bridge_configuration_and_direct_submission_are_rejected(self):
         self.cfg['maintenance'] = {'reward_routes': [{'token': fixtures.B}]}
         with self.assertRaisesRegex(ValueError, 'retired'): Keeper(self.cfg, rpc=self.fixture.rpc)
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             with self.assertRaisesRegex(ValueError, 'retired'):
                 self.k.submit('fees', 'bridgeRewards(uint256,address,bytes32)',
                     (7, fixtures.B, fixtures.H), 'bridge:7')

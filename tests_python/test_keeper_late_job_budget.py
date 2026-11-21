@@ -48,7 +48,7 @@ class KeeperLateJobBudgetTests(unittest.TestCase):
                 keeper.state['spent']['2026-11-11'] = config['max_daily_cost_wei']
                 before = copy.deepcopy(keeper.state)
                 self.after_balance(rpc, lambda: setattr(rpc, 'now', rpc.now+2))
-                with patch('keeper.monitor.subprocess.run', return_value=
+                with patch('keeper.monitor.run_cast', return_value=
                         subprocess.CompletedProcess([], 0, json.dumps({'hash': basic.H}), '')) as signer:
                     self.assertFalse(self.submit(keeper, rpc, buyback))
                     signer.assert_not_called()
@@ -65,7 +65,7 @@ class KeeperLateJobBudgetTests(unittest.TestCase):
             self.assertIsNone(pending['hash'])
             self.assertEqual(pending['fee_review']['maximum_cost_wei'], 250)
             return subprocess.CompletedProcess(command, 0, json.dumps({'hash': basic.H}), '')
-        with patch('keeper.monitor.subprocess.run', side_effect=sign):
+        with patch('keeper.monitor.run_cast', side_effect=sign):
             self.assertTrue(self.submit(keeper, rpc))
         self.assertEqual(before, keeper.state['spent'])
         self.assertEqual(keeper.state['pending']['hash'], basic.H)
@@ -74,7 +74,7 @@ class KeeperLateJobBudgetTests(unittest.TestCase):
         keeper, rpc, _ = self.fixture()
         before = copy.deepcopy(keeper.state)
         self.after_balance(rpc, lambda: setattr(rpc, 'now', rpc.now-1))
-        with patch('keeper.monitor.subprocess.run', return_value=
+        with patch('keeper.monitor.run_cast', return_value=
                 subprocess.CompletedProcess([], 0, json.dumps({'hash': basic.H}), '')) as signer:
             with self.assertRaises(RpcError): self.submit(keeper, rpc)
             signer.assert_not_called()
@@ -92,7 +92,7 @@ class KeeperLateJobBudgetTests(unittest.TestCase):
             if method == 'eth_getBalance': funded = True
             return result
         rpc.call = call
-        with patch('keeper.monitor.subprocess.run', return_value=
+        with patch('keeper.monitor.run_cast', return_value=
                 subprocess.CompletedProcess([], 0, json.dumps({'hash': basic.H}), '')) as signer:
             with self.assertRaises(RpcError): self.submit(keeper, rpc)
             signer.assert_not_called()
@@ -104,7 +104,7 @@ class KeeperLateJobBudgetTests(unittest.TestCase):
             with self.subTest(buyback=buyback):
                 keeper, rpc, _ = self.fixture(); before = copy.deepcopy(keeper.state)
                 self.after_balance(rpc, lambda: setattr(rpc, 'now', rpc.now+181))
-                with patch('keeper.monitor.subprocess.run', return_value=
+                with patch('keeper.monitor.run_cast', return_value=
                         subprocess.CompletedProcess([], 0, json.dumps({'hash': basic.H}), '')) as signer:
                     self.assertFalse(self.submit(keeper, rpc, buyback))
                     signer.assert_not_called()

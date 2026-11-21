@@ -1,5 +1,12 @@
 # Verification evidence
 
+[Bounded Cast capture](bounded-cast-20261121/REVIEW.md) implements64KiB combined
+stdout/stderr, existing30/90work deadlines and bounded group/pipe cleanup while
+preserving uncertain pending/no-resend/financial guards.16NEW methods pass,
+including8real unprivileged Ubuntu helper methods.47old fixture files receive
+only157 mock-target literal changes; no old bodies run. No real Cast/chain/service
+or full normal-daemon acceptance is claimed.
+
 [48-hour audit](last48h-audit-20261121/REVIEW.md) covers15commits/five changed
 production modules. No new confirmed code defect; three wording/inventory issues
 corrected.11archives/940recorded payload hashes match; no dynamic test, network,

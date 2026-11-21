@@ -114,7 +114,7 @@ class ExactLPConversionCapacityTests(unittest.TestCase):
             p=patch.object(self.k,name);p.start();self.addCleanup(p.stop)
         p=patch('keeper.monitor.time.time',side_effect=lambda:self.rpc.now);p.start();self.addCleanup(p.stop)
         p=patch('keeper.monitor.log');self.logs=p.start();self.addCleanup(p.stop)
-        p=patch('keeper.monitor.subprocess.run');self.signer=p.start();self.addCleanup(p.stop)
+        p=patch('keeper.monitor.run_cast');self.signer=p.start();self.addCleanup(p.stop)
         self.signer.return_value.returncode=0
         self.signer.return_value.stdout=json.dumps({'hash':'0x'+'12'*32})
 

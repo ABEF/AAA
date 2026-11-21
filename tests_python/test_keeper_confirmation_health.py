@@ -32,7 +32,7 @@ class KeeperConfirmationHealthTests(unittest.TestCase):
 
     def observe(self, previous=None):
         before=self.k.path.read_bytes()
-        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('subprocess.run') as signer:
+        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('keeper.monitor.run_cast') as signer:
             report=observe_confirmation_health(self.k,previous)
         signer.assert_not_called(); self.assertEqual(before,self.k.path.read_bytes())
         return report
@@ -69,11 +69,11 @@ class KeeperConfirmationHealthTests(unittest.TestCase):
 
     def test_preflight_checks_budget_capability_under_cooldown_with_compounding_off(self):
         before=self.k.path.read_bytes()
-        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('subprocess.run') as signer:
+        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('keeper.monitor.run_cast') as signer:
             result=preflight(self.cfg,rpc=self.rpc)
         signer.assert_not_called();self.assertTrue(result['ok'],result['reasons'])
         self.f.bad[self.f.budget,calldata('REBALANCE_CONFIRMATION_VERSION()')]=fixtures.words(0)
-        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('subprocess.run') as signer:
+        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('keeper.monitor.run_cast') as signer:
             result=preflight(self.cfg,rpc=self.rpc)
         signer.assert_not_called();self.assertFalse(result['ok'])
         self.assertIn('rebalance_confirmation_unavailable',result['reasons'])

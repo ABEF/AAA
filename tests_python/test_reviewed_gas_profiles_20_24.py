@@ -167,7 +167,7 @@ class Keeper24MProfileTests(unittest.TestCase):
     def test24m_bound_and_padded_only_mock_signing_for_both_lp_actions(self):
         for action in late.LP_ACTIONS:
             f=self.fixture();f.rpc.gas=16_631_798;before=copy.deepcopy(f.k.state['spent'])
-            with self.subTest(action=action[0]),patch('keeper.monitor.subprocess.run',
+            with self.subTest(action=action[0]),patch('keeper.monitor.run_cast',
                     return_value=SimpleNamespace(stdout=basic.H,returncode=0)) as signer:
                 self.assertTrue(f.submit(action))
             command=signer.call_args.args[0]
@@ -186,7 +186,7 @@ class Keeper24MProfileTests(unittest.TestCase):
             elif fault=='transaction':f.cfg['max_transaction_cost_wei']=41_579_495
             else:f.cfg['max_daily_cost_wei']=41_579_495
             before=copy.deepcopy(f.k.state)
-            with self.subTest(fault=fault),patch('keeper.monitor.subprocess.run') as signer:
+            with self.subTest(fault=fault),patch('keeper.monitor.run_cast') as signer:
                 self.assertFalse(f.submit());signer.assert_not_called()
             f.assert_no_intent(before);self.assertEqual(f.cfg['max_gas_limit'],24_000_000)
 
@@ -198,7 +198,7 @@ class Keeper24MProfileTests(unittest.TestCase):
                 raise RemoteRPCError(method,-32000)
             return original(method,params)
         f.rpc.call=call;before=copy.deepcopy(f.k.state)
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             with self.assertRaises(RemoteRPCError):f.submit()
             signer.assert_not_called()
         f.assert_no_intent(before)
@@ -207,6 +207,6 @@ class Keeper24MProfileTests(unittest.TestCase):
     def test_older_pending_operation_blocks_new24m_work_without_relabeling(self):
         f=self.fixture();f.k.state['pending']={'hash':basic.H,'fee_review':{'gas_limit':12_000_000}}
         before=copy.deepcopy(f.k.state);f.rpc.calls.clear()
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(f.submit());signer.assert_not_called()
         self.assertEqual(before,f.k.state);self.assertEqual(f.rpc.calls,[])

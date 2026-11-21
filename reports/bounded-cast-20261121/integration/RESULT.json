@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "scope": "Eight NEW fresh7 capture-integration and health source-identity methods; inert RPC/Cast hook, no real key/signing/chain/service/network",
+  "started_utc": "2026-11-21T16:16:59.579649+00:00",
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-m",
+    "unittest",
+    "tests_python.test_keeper_cast_capture.KeeperCastCaptureTests",
+    "-v"
+  ],
+  "exit_code": 0,
+  "new_methods_selected": 8,
+  "old_test_methods_executed": 0,
+  "source_sha256_before": {
+    "keeper/cast_process.py": "b6203067b022625bce2bfb415bb6ed85620dc8c7002b51f2d3d4c9296c5ac3e1",
+    "keeper/health.py": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04",
+    "keeper/monitor.py": "46f9c9fd87a9cc5e65456e5bc0daa3ee5ff27e61757a88b6bd3185b7de6c1cf7",
+    "tests_python/test_execution_quality_profile.py": "72cf46cd7fb05f3905cc270e2c07538de9f074ee367cb9435276c1ec71663055",
+    "tests_python/test_keeper.py": "1d974a75679b1b88c46600a85cccde1d9b57bf0fe3fe5da08ff717ed60d19afe",
+    "tests_python/test_keeper_cast_capture.py": "53f97d6459633680d2c7dd38835d63bfd74fe3833a378a5dbdddb79be32a59c8",
+    "tests_python/test_keeper_confirmation_health.py": "45ebfa15e646577062977e782f6ffd8a09cbaf28f00748564895a9cc73afffc1",
+    "tests_python/test_keeper_execution_price.py": "b6a1c637a0c9828aa4056633d946e84870c9a563778de40a7fc1b18a369f14bd",
+    "tests_python/test_keeper_execution_telemetry.py": "14b657aba160a380c9d396895dfbba320dbea7b34fe32d226c818aa2671178c4",
+    "tests_python/test_keeper_intent_shutdown.py": "f816913fee56a2b44b7f8375568f677ec365e0886621851a69953a8c8e5f8f6d",
+    "tests_python/test_keeper_rebalance_confirmation.py": "127fc750a19bb4767b7bc869aaac71c111654be6dd0dd8c57a4204ffcb985160"
+  },
+  "source_sha256_after": {
+    "keeper/cast_process.py": "b6203067b022625bce2bfb415bb6ed85620dc8c7002b51f2d3d4c9296c5ac3e1",
+    "keeper/health.py": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04",
+    "keeper/monitor.py": "46f9c9fd87a9cc5e65456e5bc0daa3ee5ff27e61757a88b6bd3185b7de6c1cf7",
+    "tests_python/test_execution_quality_profile.py": "72cf46cd7fb05f3905cc270e2c07538de9f074ee367cb9435276c1ec71663055",
+    "tests_python/test_keeper.py": "1d974a75679b1b88c46600a85cccde1d9b57bf0fe3fe5da08ff717ed60d19afe",
+    "tests_python/test_keeper_cast_capture.py": "53f97d6459633680d2c7dd38835d63bfd74fe3833a378a5dbdddb79be32a59c8",
+    "tests_python/test_keeper_confirmation_health.py": "45ebfa15e646577062977e782f6ffd8a09cbaf28f00748564895a9cc73afffc1",
+    "tests_python/test_keeper_execution_price.py": "b6a1c637a0c9828aa4056633d946e84870c9a563778de40a7fc1b18a369f14bd",
+    "tests_python/test_keeper_execution_telemetry.py": "14b657aba160a380c9d396895dfbba320dbea7b34fe32d226c818aa2671178c4",
+    "tests_python/test_keeper_intent_shutdown.py": "f816913fee56a2b44b7f8375568f677ec365e0886621851a69953a8c8e5f8f6d",
+    "tests_python/test_keeper_rebalance_confirmation.py": "127fc750a19bb4767b7bc869aaac71c111654be6dd0dd8c57a4204ffcb985160"
+  },
+  "changed_sources": [],
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "51612087be9c66e441b4de8aaffb8a1fef545b2cc604724593bd323361255fba"
+}

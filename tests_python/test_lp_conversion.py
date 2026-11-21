@@ -140,7 +140,7 @@ class LPKeeperTests(unittest.TestCase):
         self.k.lp_rewards.routes[0]['minimum_source_units']=1000
         with patch.object(self.k,'submit') as submit:self.k.lp_rewards.scan_once();submit.assert_not_called()
     def test_dry_run_does_not_sign(self):
-        with patch('subprocess.run') as signer,patch('keeper.monitor.log'):
+        with patch('keeper.monitor.run_cast') as signer,patch('keeper.monitor.log'):
             self.assertFalse(self.k.lp_rewards.scan_once());signer.assert_not_called()
     def test_busy_conversion_streams_leave_maintenance_a_turn_and_pending_blocks_all(self):
         k=self.k;k.royalties.enabled=True

@@ -1,5 +1,11 @@
 # Feature and evidence reference
 
+[Bounded Cast output](../reports/bounded-cast-20261121/REVIEW.md) is implemented at both address/send
+boundaries:64KiB aggregate raw bytes, existing30/90work deadlines, bounded group
+cleanup, sanitized errors and unchanged uncertain-intent/no-resend rules.16NEW
+methods pass,8 on Ubuntu. Matching keeper/checker source adoption is required;
+no contract/profile/journal/health schema or financial limit changes.
+
 [48-hour source/evidence audit](../reports/last48h-audit-20261121/REVIEW.md) reuses unchanged behavior
 evidence and corrects report/inventory clarity. No feature, permission, contract,
 limit, journal or runtime changes. The18keeper methods are prior evidence,

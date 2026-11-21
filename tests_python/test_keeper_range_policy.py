@@ -64,7 +64,7 @@ class KeeperRangePolicyTests(unittest.TestCase):
         cases = [('version',2),('orientation',2),('target',3000),('policy',[2,*self.policy[1:]]),
                  ('policy',[1,1000,1000,*self.policy[3:]]),('policy',[*self.policy[:4],1 << 64,*self.policy[5:]])]
         for name,value in cases:
-            with self.subTest(name=name,value=value),patch('keeper.monitor.subprocess.run') as signer:
+            with self.subTest(name=name,value=value),patch('keeper.monitor.run_cast') as signer:
                 before = getattr(self,name)
                 setattr(self,name,value)
                 self.fixture.invoke().assert_not_called()
@@ -99,7 +99,7 @@ class KeeperRangePolicyTests(unittest.TestCase):
     def test_preparation_guard_covers_direct_range_submission_before_simulation(self):
         self.fixture.preparing = True
         before = copy.deepcopy(self.k.state)
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.k.submit('strategy','applyKeeperRange(bytes32)',(self.fixture.pool,),'range:7'))
             signer.assert_not_called()
         self.assertEqual(self.k.state,before)

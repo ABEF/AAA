@@ -175,7 +175,7 @@ class KeeperHarvestIsolationTests(unittest.TestCase):
         self.cfg['max_gas_limit'] = 1
         with patch.object(self.k, 'view', side_effect=self._view_fault('needsRebalance(uint256)')), \
                 patch('keeper.monitor.time.time', side_effect=lambda: self.rpc.now), \
-                patch('keeper.monitor.subprocess.run') as signer:
+                patch('keeper.monitor.run_cast') as signer:
             self.k.cycle()
         methods = [method for method, params in self.rpc.calls]
         self.assertIn('eth_estimateGas', methods)
@@ -192,7 +192,7 @@ class KeeperHarvestIsolationTests(unittest.TestCase):
         with patch.object(self.k, 'view', side_effect=self._view_fault('needsRebalance(uint256)')), \
                 patch.object(self.rpc, 'call', side_effect=call), \
                 patch('keeper.monitor.time.time', side_effect=lambda: self.rpc.now), \
-                patch('keeper.monitor.subprocess.run') as signer:
+                patch('keeper.monitor.run_cast') as signer:
             self.k.cycle()
         self.assertEqual(self.k.skipped_buckets, 1)
         self.assertEqual(self.k.blocked_actions, 1)

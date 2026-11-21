@@ -29,6 +29,7 @@ from zzz_ops.position import decode_position
 from keeper.royalties import RoyaltyAutomation, BATCH as ROYALTY_BATCH, encode_batch
 from zzz_ops.errors import RemoteRPCError
 from keeper.watchdog import ProgressWatchdog, ProgressRPC
+from keeper.cast_process import run_cast
 from keeper.principal import PrincipalDistribution, BATCH as PRINCIPAL_BATCH, encode_batch as encode_principal_batch
 from keeper.health import HEALTH_SCHEMA, OBSERVATION_SCHEMA, source_hashes, observe_confirmation_health
 from keeper.rebalance_confirmation import RebalanceConfirmation, CHECK_SECONDS as CONFIRMATION_CHECK_SECONDS, LEGACY_CHECK_SECONDS as LEGACY_CONFIRMATION_CHECK_SECONDS, STATE_NAMESPACE as CONFIRMATION_STATE, PORTFOLIO_STATE_NAMESPACE
@@ -1456,9 +1457,9 @@ class Keeper:
             if not stat.S_ISREG(st.st_mode) or st.st_mode & 0o077:
                 raise ValueError('Signing files must be regular files with mode 0600')
             if st.st_uid != os.getuid(): raise ValueError('Signing files must belong to the keeper user')
-        result = subprocess.run([self.cast,'wallet','address','--keystore',str(self.keystore),
+        result = run_cast([self.cast,'wallet','address','--keystore',str(self.keystore),
             '--password-file',str(self.password)],env=signer_environment(),
-            capture_output=True,text=True,timeout=30,check=False)
+            timeout=30)
         if result.returncode or address(result.stdout.strip()) != self.sender:
             raise ValueError('Encrypted keystore does not match configured sender')
 
@@ -2031,7 +2032,7 @@ class Keeper:
         if self.stop_requested():
             log('shutdown_after_intent_before_signer',action=key);return False
         try:
-            result = subprocess.run(command,env=environment,capture_output=True,text=True,timeout=90,check=False)
+            result = run_cast(command,env=environment,timeout=90)
             if result.returncode: raise RuntimeError('Signer command failed; broadcast status must be checked')
             try: parsed = json.loads(result.stdout)
             except json.JSONDecodeError: parsed = result.stdout.strip()

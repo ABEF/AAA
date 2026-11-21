@@ -52,7 +52,7 @@ class KeeperTests(unittest.TestCase):
             'blockNumber':'0x63','blockHash':H,'transactionIndex':'0x0','gas':'0x100',
             'type':'0x0','chainId':'0x1','v':'0x25','gasPrice':'0x2'}
     def test_default_dry_run_never_signs(self):
-        with patch('subprocess.run') as run:
+        with patch('keeper.monitor.run_cast') as run:
             self.assertFalse(self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'c'))
             run.assert_not_called();self.assertIsNone(self.k.state['pending']);self.assertFalse(self.k.path.exists())
     def test_live_requires_explicit_review(self):
@@ -62,7 +62,7 @@ class KeeperTests(unittest.TestCase):
         with self.assertRaises(ValueError):Keeper(self.cfg,rpc=self.rpc)
     def test_simulation_failure_never_signs(self):
         self.enable_test_signer();self.rpc.error=True
-        with patch('subprocess.run') as run:
+        with patch('keeper.monitor.run_cast') as run:
             with self.assertRaises(RpcError):self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'c')
             run.assert_not_called();self.assertIsNone(self.k.state['pending'])
     def test_gas_cap(self):
@@ -82,12 +82,12 @@ class KeeperTests(unittest.TestCase):
         def run(*args,**kwargs):
             state=json.loads(self.k.path.read_text());self.assertIsNone(state['pending']['hash']);self.assertEqual(state['pending']['nonce'],7)
             return subprocess.CompletedProcess(args[0],0,json.dumps(H),'')
-        with patch('subprocess.run',side_effect=run):
+        with patch('keeper.monitor.run_cast',side_effect=run):
             self.assertTrue(self.k.submit('vault','collectFees(uint256,uint256)',(1,self.rpc.now+180),'c'))
         self.assertEqual(self.k.state['pending']['hash'],H)
     def test_timeout_preserves_ambiguous_state(self):
         self.enable_test_signer()
-        with patch('subprocess.run',side_effect=subprocess.TimeoutExpired('cast',90)) as run:
+        with patch('keeper.monitor.run_cast',side_effect=subprocess.TimeoutExpired('cast',90)) as run:
             with self.assertRaises(subprocess.TimeoutExpired):
                 self.k.submit('vault','collectFees(uint256,uint256)',(1,self.rpc.now+180),'c')
             self.assertIsNotNone(self.k.state['pending']);self.assertIsNone(self.k.state['pending']['hash'])
@@ -107,7 +107,7 @@ class KeeperTests(unittest.TestCase):
         self.assertEqual(self.k.state['retry_after']['collect:1'],self.rpc.now+3600)
     def test_reverted_action_cannot_immediately_spend_again(self):
         self.receipt(False);self.k.poll_pending()
-        with patch('subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'collect:1'))
             signer.assert_not_called()
         self.assertEqual(self.k.blocked_actions,1)
@@ -145,7 +145,7 @@ class KeeperTests(unittest.TestCase):
         ambient={'ETH_FROM':B,'ETH_PASSWORD':'ambient-password','ETH_PRIORITY_GAS_PRICE':'999',
             'CAST_ASYNC':'false','FOUNDRY_CONFIG':'/unreviewed/config','CHAIN':'2',
             'AWS_KMS_KEY_ID':'other-key','GCP_PROJECT_ID':'other-project','PRIVATE_KEY':'ambient-key'}
-        with patch.dict(os.environ,ambient),patch('subprocess.run',return_value=subprocess.CompletedProcess([],0,H,'')) as run:
+        with patch.dict(os.environ,ambient),patch('keeper.monitor.run_cast',return_value=subprocess.CompletedProcess([],0,H,'')) as run:
             self.k.submit('vault','collectFees(uint256,uint256)',(1,self.rpc.now+180),'c')
         command=run.call_args.args[0];environment=run.call_args.kwargs['env']
         self.assertEqual(command[:4],[self.k.cast,'send',B,calldata('collectFees(uint256,uint256)',1,self.rpc.now+180)])
@@ -156,7 +156,7 @@ class KeeperTests(unittest.TestCase):
     @unittest.skipUnless(shutil.which('cast'),'Foundry cast is not installed')
     def test_cast_cli_accepts_generated_command_without_signing(self):
         self.enable_test_signer();self.k.cast=shutil.which('cast')
-        with patch('subprocess.run',return_value=subprocess.CompletedProcess([],0,H,'')) as run:
+        with patch('keeper.monitor.run_cast',return_value=subprocess.CompletedProcess([],0,H,'')) as run:
             self.k.submit('vault','collectFees(uint256,uint256)',(1,self.rpc.now+180),'c')
         # --help validates the actual installed parser and exits before RPC/signing.
         result=subprocess.run(run.call_args.args[0]+['--help'],capture_output=True,text=True,timeout=30,check=False)
@@ -528,7 +528,7 @@ class PoolKeeperTests(unittest.TestCase):
             self.assertEqual(persisted['accounting_model'],ACCOUNTING_MODEL)
             self.assertEqual(persisted['pending']['key'],'rebalance:7')
             return subprocess.CompletedProcess(args[0],0,H,'')
-        with patch('subprocess.run',side_effect=run):self.k.cycle()
+        with patch('keeper.monitor.run_cast',side_effect=run):self.k.cycle()
     def test_external_pending_rewards_sync_before_lp_maintenance(self):
         self.ids=[7];self.inbox=int(A,16);self.inbox_pending=[0,500]
         self.invoke().assert_called_once_with('fees','syncExternal(uint256)',(7,),'external_rewards:7')
@@ -571,4 +571,4 @@ class PoolKeeperTests(unittest.TestCase):
             self.assertEqual(state['pending']['data'],calldata('syncExternal(uint256)',7))
             self.assertEqual(state['pending']['value'],0)
             return subprocess.CompletedProcess(args[0],0,H,'')
-        with patch('subprocess.run',side_effect=run):self.k.cycle()
+        with patch('keeper.monitor.run_cast',side_effect=run):self.k.cycle()

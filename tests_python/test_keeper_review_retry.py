@@ -31,7 +31,7 @@ class KeeperReviewRetryTests(unittest.TestCase):
                 self.setUp();self.ready(action)
                 self.saved(retry_after={action+':7':self.rpc.now+3600})
                 before=self.path.read_bytes()
-                with patch('keeper.monitor.subprocess.run') as signer:rows=self.f.rows(simulate=True)
+                with patch('keeper.monitor.run_cast') as signer:rows=self.f.rows(simulate=True)
                 signer.assert_not_called();self.assertEqual(before,self.path.read_bytes())
                 row=rows[action]
                 self.assertEqual(('not_due',['confirmed_revert_retry']),(row['state'],row['reasons']))

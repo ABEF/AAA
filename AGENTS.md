@@ -1,5 +1,22 @@
 # AAA / ZZZ PoPL project instructions
 
+## Bounded Cast output — 21 November 2026
+
+[Current implementation](reports/bounded-cast-20261121/REVIEW.md) uses64KiB TOTAL stdout+stderr,
+existing30/90-second work deadlines and2-second bounded failure cleanup.
+Overflow/invalid UTF-8 never publishes a partial hash; existing durable pending
+intent, nonce, spend, fee review and exact recovery/no-resend rules remain.
+16NEW methods pass:8 composed integration/identity plus8 actual unprivileged
+Ubuntu helper methods. No old test bodies ran.157 old Cast-mock literals in47
+fixtures were mechanically migrated with AST equivalence; assertions stay.
+Current inventory:180Python files/1,984named definitions (1,803functions/181classes),
+278lambdas, unchanged F6 Solidity61/dependencies39/controls4 and1,021ABI rows.
+Helper is in keeper health source identity: adopt matching writer/checker code,
+not edited source hashes or rewritten journals. No service/site/chain/key rollout.
+Full normal-daemon/real-Cast Ubuntu qualification remains open. Terminal Ctrl-C
+stops future jobs but an active Cast may finish; reviewed whole-cgroup stop and
+pending reconciliation remain required. No transactional cancellation is promised.
+
 ## Ubuntu preparation and focused keeper fixes — 21 November 2026
 
 The [48-hour re-audit](reports/last48h-audit-20261121/REVIEW.md) reviews15commits/five changed Python modules;
@@ -16,7 +33,7 @@ The attempted stock-daemon/real-Cast rehearsal did NOT complete: no live journal
 or real Cast transaction ran. Both labs/all8 owned units are stopped; original
 host service states and existing environments remain unchanged. Keep Q06/P20/P21
 open. No rollout, signing, financial guard/profile or frozen F6 Solidity change.
-New source inventory:179Python files/1,980named definitions; the original F6
+That stage’s inventory:179Python files/1,980named definitions; the original F6
 61/39/4 source maps and1,021ABI rows remain. Old inventories/reports retain their
 source scope. Read the operator's lock/recovery adoption procedure before use.
 
@@ -79,7 +96,8 @@ focused methods pass in two disjoint stages, plus one illustrative current-sourc
 CLI example. All actual readiness flags stayfalse; no network/signing/queue.
 That advance's historical inventory is [here](reports/readiness-advance-20261120/FUNCTION_INVENTORY.json):
 179Pythonfiles/1,979named definitions at that source. The current inventory above
-has1,980definitions; Solidity61/dependencies39/controls4 remain unchanged.
+had1,980definitions at that keeper-fix stage. Use the bounded-capture inventory
+above for current1,984definitions; Solidity61/dependencies39/controls4 stay.
 Existing OpenSea artifacts bind this module's old hash; preserve them and rebuild/
 review new artifacts explicitly. service.py/checkpoint and runtime identities stay.
 

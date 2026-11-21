@@ -182,5 +182,5 @@ class KeeperSignedFeeTests(unittest.TestCase):
             self.assertEqual(saved['fee_review'], {'schema':1,'gas_limit':125,'max_fee_per_gas':2,
                 'l1_fee_allowance_wei':0,'maximum_cost_wei':250,'receipt_fee_policy':'included'})
             return subprocess.CompletedProcess(args[0],0,H,'')
-        with patch('keeper.monitor.subprocess.run',side_effect=sign):
+        with patch('keeper.monitor.run_cast',side_effect=sign):
             self.assertTrue(self.k.submit('vault','collectFees(uint256,uint256)',(1,self.k.rpc.now+180),'harvest:1'))

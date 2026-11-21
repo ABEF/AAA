@@ -119,7 +119,7 @@ class ExecutionQualityKeeperTests(unittest.TestCase):
         self.k=Keeper(self.cfg,rpc=self.rpc)
 
     def test_quality_is_pinned_to_one_block_without_signing(self):
-        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('keeper.monitor.run_cast') as signer:
             self.k._validate_lp_routing();signer.assert_not_called()
         self.assertEqual(100,self.k.lp_execution_observation['execution_quality']['additional_loss_bps'])
         self.assertEqual(self.cfg['contracts']['strategy'],self.k.lp_execution_observation['execution_quality']['policy_owner'])
@@ -139,7 +139,7 @@ class ExecutionQualityKeeperTests(unittest.TestCase):
             self.fixture.values[key]=LP.words(value)
             try:
                 with self.subTest(role=role,signature=signature),patch('keeper.monitor.time.time',return_value=self.rpc.now), \
-                        patch('keeper.monitor.subprocess.run') as signer,self.assertRaises(RpcError):
+                        patch('keeper.monitor.run_cast') as signer,self.assertRaises(RpcError):
                     self.k.submit('compounder','compound(uint256,uint128,uint256)',(7,1,self.rpc.now+180),'compound:7')
                 signer.assert_not_called();self.assertIsNone(self.k.state['pending'])
             finally:self.fixture.values[key]=old

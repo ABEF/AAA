@@ -399,7 +399,7 @@ class ManualLPReviewTests(unittest.TestCase):
 
     def test_read_only_execution_never_touches_keeper_journals_or_signer(self):
         from keeper.monitor import Keeper
-        with patch('subprocess.run',side_effect=AssertionError('signer')),patch.object(Keeper,'save',side_effect=AssertionError('journal')):
+        with patch('keeper.monitor.run_cast',side_effect=AssertionError('signer')),patch.object(Keeper,'save',side_effect=AssertionError('journal')):
             result=self.prepare()
         self.assertTrue(result['read_only']);self.assertEqual([],list(Path(self.tmp.name).iterdir()))
 

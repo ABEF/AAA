@@ -205,7 +205,7 @@ class KeeperConfirmationTests(unittest.TestCase):
 
     def test_reset_validation_does_not_need_prices_or_candidate_readiness(self):
         self.bad[self.helper,calldata('condition(uint256)',7)]=RpcError('inert unavailable price')
-        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('subprocess.run') as signer:
+        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.k.submit('rebalance_confirmation','resetObservation(uint256)',(7,),'rebalance_reset:7'))
         signer.assert_not_called();self.assertIsNone(self.k.state['pending'])
         self.assertEqual('within_configured_caps',self.k.gas_review_health['last_review']['state'])
@@ -257,7 +257,7 @@ class KeeperConfirmationTests(unittest.TestCase):
         selector=calldata('module(bytes32)','0x'+keccak256(b'ZZZVault').hex())
         self.bad[self.cfg['contracts']['access'],selector]=words(basic.A)
         before=copy.deepcopy(self.k.state)
-        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('subprocess.run') as signer, \
+        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('keeper.monitor.run_cast') as signer, \
                 self.assertRaisesRegex(RpcError,'Vault module differs'):
             self.k.rebalance_confirmation.validate()
         signer.assert_not_called();self.assertEqual(before,self.k.state)

@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "probe_sha256": "901ce79c19340797da4f2006b46a93f8d1dc061318cb716fe4e65237b8d53a4b",
+  "transport_sha256": "a7f7f91863833bca9081b0ad6af833a1cf5147e65f1c2cfe7e058449f1bddc45",
+  "source_sha256": {
+    "keeper/cast_process.py": "b6203067b022625bce2bfb415bb6ed85620dc8c7002b51f2d3d4c9296c5ac3e1",
+    "test_cast_process.py": "875628819dae4d09ebc5a214dba634788d798182d2b3e882eefa22d7f2c2a9a2"
+  },
+  "exit_code": 0,
+  "elapsed_seconds": 2.8909999999996217,
+  "timeout_seconds": 29,
+  "stdout_sha256": "adf11e23cd764a0524bf541caf2a7b410eda2c4dfa15e145a1226a567d161ea6",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "strict_pinned_host": true,
+  "environment_scope": "existing_strict_driver_default_local_environment_no_SendEnv",
+  "scope": "eight_new_unprivileged_Ubuntu_helper_checks_only_no_services_chain_RPC_key_or_Cast"
+}

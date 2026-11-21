@@ -92,7 +92,7 @@ class StandaloneHarvestRecoveryTests(unittest.TestCase):
         return self.f.event(*args,**kwargs)
 
     def recover(self):
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.k.poll_pending())
         signer.assert_not_called();self.assertIsNone(self.k.state['pending'])
         self.assertEqual(8,self.k.state['next_nonce'])
@@ -162,7 +162,7 @@ class StandaloneHarvestRecoveryTests(unittest.TestCase):
                 if ambiguous:self.k.state['pending']['hash']=None
                 else:self.rpc.receipt=None
                 self.k.save();before=copy.deepcopy(self.k.state);disk=self.k.path.read_bytes()
-                with patch('keeper.monitor.subprocess.run') as signer:self.assertTrue(self.k.poll_pending())
+                with patch('keeper.monitor.run_cast') as signer:self.assertTrue(self.k.poll_pending())
                 signer.assert_not_called();self.assertEqual(before,self.k.state)
                 self.assertEqual(disk,self.k.path.read_bytes())
 
@@ -183,7 +183,7 @@ class StandaloneHarvestRecoveryTests(unittest.TestCase):
             return result
         self.rpc.call=call
         before=copy.deepcopy(self.k.state);disk=self.k.path.read_bytes()
-        with patch('keeper.monitor.subprocess.run') as signer,self.assertRaises(RpcError):self.k.poll_pending()
+        with patch('keeper.monitor.run_cast') as signer,self.assertRaises(RpcError):self.k.poll_pending()
         signer.assert_not_called();self.assertEqual(before,self.k.state)
         self.assertEqual(disk,self.k.path.read_bytes())
 

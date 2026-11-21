@@ -127,7 +127,7 @@ class KeeperOperationReviewTests(unittest.TestCase):
 
     def test_report_never_writes_signs_reconciles_or_acquires_lock(self):
         before=self.path.read_bytes()
-        with patch('subprocess.run') as signer,patch.object(Keeper,'submit',side_effect=AssertionError),\
+        with patch('keeper.monitor.run_cast') as signer,patch.object(Keeper,'submit',side_effect=AssertionError),\
                 patch.object(Keeper,'poll_pending',side_effect=AssertionError),patch('zzz_ops.state.process_lock',side_effect=AssertionError):
             result=self.read(simulate=True)
         signer.assert_not_called();self.assertEqual(before,self.path.read_bytes())

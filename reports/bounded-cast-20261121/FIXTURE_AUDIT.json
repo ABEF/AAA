@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "files": 47,
+  "patch_sites": 157,
+  "ast_only_expected_mock_target_changes": true,
+  "originals_match_published_baseline_AST": true,
+  "unchanged_test_methods_run": 0
+}

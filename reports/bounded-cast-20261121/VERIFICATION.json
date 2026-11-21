@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "new_integration_methods_passed": 8,
+  "new_Ubuntu_helper_methods_passed": 8,
+  "new_methods_total": 16,
+  "unchanged_test_methods_rerun": 0,
+  "source_and_log_hashes_match": true,
+  "all_Ubuntu_children_reaped": true,
+  "temporary_directory_removed": true,
+  "fixture_AST_only_patches": 157,
+  "fixture_files": 47,
+  "protected_unrelated_files_unchanged": 4,
+  "stable_task_ids_statuses": 83,
+  "current_named_inventory_checked": true,
+  "todo_operator_reference_checked": true,
+  "targeted_local_links_checked": 18,
+  "production_approved": false,
+  "service_or_chain_rollout": false
+}

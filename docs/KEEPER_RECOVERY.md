@@ -1,5 +1,12 @@
 # Keeper outage and server recovery
 
+The [bounded capture procedure](OPERATOR_MANUAL.md#bounded-cast-output-and-uncertain-transactions)
+retains uncertain sends exactly.64KiB combined output or30/90work-time failure
+never authorizes a resend, journal reset or discarded intent. Active Cast is
+in its own session; stop/fence the complete reviewed service group and reconcile
+any saved nonce/hash. Matching helper-aware keeper/checker source is required.
+No health/journal/checkpoint schema or existing operating state changes.
+
 [Focused recovery/lock correction](../reports/ubuntu-keeper-20261121/REVIEW.md):
 invalid/zero signer output preserves reloadable hashless intent; it is not proof
 that no transaction was sent. Follow exact-chain/nonce/hash reconciliation and

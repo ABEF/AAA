@@ -40,14 +40,14 @@ class KeeperExecutionTelemetryTests(unittest.TestCase):
         self.k.canonical_lifecycle=0;self.k.preparing=False
 
     def _observe(self):
-        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('subprocess.run') as signer:
+        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('keeper.monitor.run_cast') as signer:
             self.k._observe_execution_health()
             signer.assert_not_called()
         return copy.deepcopy(self.k.lp_execution_health)
 
     def _run(self,body=None):
         with patch.object(self.k,'cycle',side_effect=body or (lambda:None)), \
-                patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('subprocess.run') as signer:
+                patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('keeper.monitor.run_cast') as signer:
             result=self.k.run_cycle()
         signer.assert_not_called()
         return result,json.loads(self.k.health_path.read_text())
@@ -147,7 +147,7 @@ class KeeperExecutionTelemetryTests(unittest.TestCase):
         with patch('keeper.monitor.time.time',return_value=self.rpc.now):
             self.k._validate_lp_routing(use_cache=True)
             self.values[self.cfg['contracts']['strategy'],calldata('additionalLossBps()')]='0x'+f'{99:064x}'
-            with patch('subprocess.run') as signer,patch.object(self.k,'_validate_accounting_version'), \
+            with patch('keeper.monitor.run_cast') as signer,patch.object(self.k,'_validate_accounting_version'), \
                     patch.object(self.k,'_defer_for_lifecycle',return_value=False),self.assertRaises(RpcError):
                 self.k.submit('compounder','compound(uint256,uint128,uint256)',(7,1,self.rpc.now+180),'compound:7')
             signer.assert_not_called();self.assertIsNone(self.k.state['pending'])
@@ -165,7 +165,7 @@ class KeeperExecutionTelemetryTests(unittest.TestCase):
         self.rpc.call=call
         with patch('keeper.monitor.time.time',return_value=self.rpc.now):
             self.k._validate_lp_routing(use_cache=True)
-            with patch('subprocess.run') as signer,patch.object(self.k,'_validate_accounting_version'), \
+            with patch('keeper.monitor.run_cast') as signer,patch.object(self.k,'_validate_accounting_version'), \
                     patch.object(self.k,'_validate_checkpoint'),patch.object(self.k,'_validate_code_hashes'), \
                     patch.object(self.k,'_compound_submission_ready',return_value=True), \
                     patch.object(self.k,'_defer_for_lifecycle',return_value=False), \
@@ -220,7 +220,7 @@ class KeeperGasTelemetryTests(unittest.TestCase):
         self.k,self.rpc,self.cfg=self.fixture.k,self.fixture.rpc,self.fixture.cfg
 
     def _submit(self):
-        with patch('subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             result=self.k.submit('vault','collectFees(uint256,uint256)',(7,self.rpc.now+180),'harvest:7')
             signer.assert_not_called()
         self.assertFalse(result);self.assertIsNone(self.k.state['pending'])
@@ -245,7 +245,7 @@ class KeeperGasTelemetryTests(unittest.TestCase):
             if method=='eth_estimateGas':raise RpcError('DO-NOT-EXPORT')
             return original(method,params)
         self.rpc.call=call
-        with patch('subprocess.run') as signer,self.assertRaises(RpcError):
+        with patch('keeper.monitor.run_cast') as signer,self.assertRaises(RpcError):
             self.k.submit('vault','collectFees(uint256,uint256)',(7,self.rpc.now+180),'harvest:7')
         signer.assert_not_called();record=self.k.gas_review_health['last_review']
         self.assertEqual('unavailable',record['state']);self.assertIsNone(record['estimated_gas'])

@@ -80,7 +80,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
                     self.assertEqual(len(self.simulations),2)
                     self.assertEqual(self.rpc.calls[-1],('eth_getBlockByNumber',['latest',False]))
                     return subprocess.CompletedProcess(command,0,basic.H,'')
-                with patch('keeper.monitor.subprocess.run',side_effect=sign) as signer:
+                with patch('keeper.monitor.run_cast',side_effect=sign) as signer:
                     self.assertTrue(self.submit(action,args))
                 self.assertEqual(signer.call_count,1)
                 first,last=self.simulations
@@ -96,7 +96,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
             for reason in ('changed market floor','route exceeds gas envelope'):
                 def fail(*_):raise RpcError(reason)
                 self.late=fail
-                with self.subTest(action=action[0],reason=reason),patch('keeper.monitor.subprocess.run') as signer:
+                with self.subTest(action=action[0],reason=reason),patch('keeper.monitor.run_cast') as signer:
                     with self.assertRaises(RpcError):self.submit(action)
                     signer.assert_not_called();self.assert_no_intent(before)
                     self.assertEqual(self.k.gas_review_health['last_review']['reason'],'lp_final_simulation_unavailable')
@@ -105,7 +105,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
         before=copy.deepcopy(self.k.state)
         for result in (None,True,'0x00','0x'+'0'*64,'0X','DO-NOT-EXPORT https://secret.invalid',{'result':'0x'}):
             self.late=lambda *_:result
-            with self.subTest(result_type=type(result).__name__),patch('keeper.monitor.subprocess.run') as signer:
+            with self.subTest(result_type=type(result).__name__),patch('keeper.monitor.run_cast') as signer:
                 with self.assertRaises(RpcError):self.submit()
                 signer.assert_not_called();self.assert_no_intent(before)
                 self.assertNotIn('DO-NOT-EXPORT',json.dumps(self.k.gas_review_health))
@@ -114,11 +114,11 @@ class KeeperLateLPReviewTests(unittest.TestCase):
         before=copy.deepcopy(self.k.state)
         def fail(*_):raise RpcError('old market unavailable')
         self.late=fail
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             with self.assertRaises(RpcError):self.submit()
             signer.assert_not_called();self.assert_no_intent(before)
         self.late=None
-        with patch('keeper.monitor.subprocess.run',return_value=subprocess.CompletedProcess([],0,basic.H,'')) as signer:
+        with patch('keeper.monitor.run_cast',return_value=subprocess.CompletedProcess([],0,basic.H,'')) as signer:
             self.assertTrue(self.submit())
         signer.assert_called_once()
 
@@ -132,7 +132,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
                 if advance>0:self.rpc.now+=advance
                 return '0x'
             self.late=change
-            with self.subTest(advance=advance),patch('keeper.monitor.subprocess.run') as signer:
+            with self.subTest(advance=advance),patch('keeper.monitor.run_cast') as signer:
                 self.assertFalse(self.submit(args=args))
                 signer.assert_not_called();self.assert_no_intent(before)
                 self.assertEqual(self.simulations[-1][0]['data'],calldata(LP_ACTIONS[0][1],*args))
@@ -146,7 +146,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
                 if kind=='timestamp':self.rpc.now-=1
                 return '0x'
             self.late=late
-            with self.subTest(kind=kind),patch('keeper.monitor.subprocess.run') as signer:
+            with self.subTest(kind=kind),patch('keeper.monitor.run_cast') as signer:
                 if kind=='height':
                     old=self.rpc.call
                     def height(method,params):
@@ -167,7 +167,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
         before=copy.deepcopy(self.k.state)
         def late(*_):self.rpc.now+=20;return '0x'
         self.late=late
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.submit())
             signer.assert_not_called();self.assert_no_intent(before)
         self.assertEqual(self.k.gas_review_health['last_review']['reason'],'cost_cap')
@@ -178,7 +178,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
         tx={'from':self.k.sender,'to':self.k.contracts['vault'],
             'data':calldata(LP_ACTIONS[0][1],7,1,timestamp+180),'value':'0x0'}
         with patch.object(self.k,'_head',return_value=(101,timestamp)), \
-                patch('keeper.monitor.subprocess.run') as signer:
+                patch('keeper.monitor.run_cast') as signer:
             with self.assertRaisesRegex(RpcError,'UTC date'):
                 self.k._late_lp_submission_review('vault',LP_ACTIONS[0][1],tx,(7,1,timestamp+180),'rebalance:7',
                     review_head=100,reviewed_at=self.rpc.now,gas_limit=125,gas_price=2,cost=250,nonce=7,gas_review=review)
@@ -190,7 +190,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
         before=copy.deepcopy(self.k.state['spent'])
         def late(*_):self.rpc.now+=20;return '0x'
         self.late=late
-        with patch('keeper.monitor.subprocess.run',return_value=subprocess.CompletedProcess([],0,basic.H,'')):
+        with patch('keeper.monitor.run_cast',return_value=subprocess.CompletedProcess([],0,basic.H,'')):
             self.assertTrue(self.submit())
         self.assertEqual(self.k.state['pending']['day'],'2026-11-07')
         self.assertEqual(self.k.state['spent'],before)
@@ -200,7 +200,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
             self.k.state.setdefault('retry_after',{})['rebalance:7']=self.rpc.now+60
             return '0x'
         self.late=late
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.submit())
             signer.assert_not_called()
         self.assertIsNone(self.k.state['pending']);self.assertFalse(self.k.path.exists())
@@ -219,7 +219,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
             if method=='eth_getTransactionCount' and changed:return '0x8'
             return original(method,params)
         self.original=call
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             with self.assertRaises(RpcError):self.submit()
             signer.assert_not_called();self.assert_no_intent(before)
 
@@ -231,7 +231,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
             changed=True;return '0x'
         self.late=late;original=self.original
         self.original=lambda method,params:'0x0' if method=='eth_getBalance' and changed else original(method,params)
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             with self.assertRaises(RpcError):self.submit()
             signer.assert_not_called();self.assert_no_intent(before)
 
@@ -244,7 +244,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
                 else:self.lifecycle=True
                 return '0x'
             self.late=late
-            with self.subTest(kind=kind),patch('keeper.monitor.subprocess.run') as signer:
+            with self.subTest(kind=kind),patch('keeper.monitor.run_cast') as signer:
                 self.assertFalse(self.submit())
                 signer.assert_not_called();self.assert_no_intent(before)
 
@@ -254,7 +254,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
             self.readiness[action[0]]=True
             def late(*_):self.readiness[action[0]]=False;return '0x'
             self.late=late
-            with self.subTest(action=action[0]),patch('keeper.monitor.subprocess.run') as signer:
+            with self.subTest(action=action[0]),patch('keeper.monitor.run_cast') as signer:
                 self.assertFalse(self.submit(action))
                 signer.assert_not_called();self.assert_no_intent(before)
 
@@ -266,7 +266,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
             if reads==3:self.stopping=True
             return True
         self.k._rebalance_submission_ready=ready
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.submit())
             signer.assert_not_called();self.assert_no_intent(before)
         self.assertEqual(reads,3)
@@ -279,7 +279,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
             if reads==3:self.rpc.now+=181
             return True
         self.k._rebalance_submission_ready=ready
-        with patch('keeper.monitor.subprocess.run',return_value=subprocess.CompletedProcess([],0,basic.H,'')) as signer:
+        with patch('keeper.monitor.run_cast',return_value=subprocess.CompletedProcess([],0,basic.H,'')) as signer:
             self.assertFalse(self.submit(args=args))
             signer.assert_not_called();self.assert_no_intent(before)
         self.assertEqual(self.simulations[-1][0]['data'],calldata(LP_ACTIONS[0][1],*args))
@@ -294,7 +294,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
             if reads==3:self.rpc.now+=20
             return True
         self.k._compound_submission_ready=ready
-        with patch('keeper.monitor.subprocess.run',return_value=subprocess.CompletedProcess([],0,basic.H,'')) as signer:
+        with patch('keeper.monitor.run_cast',return_value=subprocess.CompletedProcess([],0,basic.H,'')) as signer:
             self.assertFalse(self.submit(LP_ACTIONS[1]))
             signer.assert_not_called();self.assert_no_intent(before)
 
@@ -320,7 +320,7 @@ class KeeperLateLPReviewTests(unittest.TestCase):
                 else:threshold=True
                 return '0x'
             self.late=late;before=copy.deepcopy(self.k.state)
-            with self.subTest(kind=kind),patch('keeper.monitor.subprocess.run') as signer:
+            with self.subTest(kind=kind),patch('keeper.monitor.run_cast') as signer:
                 self.assertFalse(self.submit(LP_ACTIONS[1]))
                 signer.assert_not_called();self.assert_no_intent(before)
                 self.assertEqual(len(proofs),3)
@@ -331,18 +331,18 @@ class KeeperLateLPReviewTests(unittest.TestCase):
         self.k.state['pending']={'hash':None,'nonce':7,'key':'rebalance:7'}
         before=copy.deepcopy(self.k.state)
         with patch.object(self.rpc,'call',side_effect=AssertionError('Must recover saved intent first')), \
-                patch('keeper.monitor.subprocess.run') as signer:
+                patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.submit())
             signer.assert_not_called();self.assertEqual(self.k.state,before)
         self.k.state['pending']=None;self.k.live=False
         self.late=lambda *_:self.fail('Dry-run must not enter live late submission stage')
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.submit())
             signer.assert_not_called();self.assertEqual(len(self.simulations),1)
 
     def test_harvesting_keeps_its_existing_independent_submission_path(self):
         self.late=lambda *_:self.fail('Fee-only harvest must not acquire LP late-review policy')
-        with patch('keeper.monitor.subprocess.run',return_value=subprocess.CompletedProcess([],0,basic.H,'')):
+        with patch('keeper.monitor.run_cast',return_value=subprocess.CompletedProcess([],0,basic.H,'')):
             self.assertTrue(self.k.submit('vault','collectFees(uint256,uint256)',(7,self.rpc.now+180),'harvest:7'))
         self.assertEqual(len(self.simulations),1)
 

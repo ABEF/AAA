@@ -191,7 +191,7 @@ class KeeperLPExecutionProfileTests(unittest.TestCase):
         self.k=Keeper(self.cfg,rpc=self.rpc)
 
     def test_capability_metadata_is_pinned_to_one_block_and_no_signer(self):
-        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('keeper.monitor.run_cast') as signer:
             self.k._validate_lp_routing()
             signer.assert_not_called()
         self.assertFalse(self.k.lp_execution_observation['swaps_enabled'])
@@ -250,7 +250,7 @@ class KeeperLPExecutionProfileTests(unittest.TestCase):
 
     def test_next_balance_submission_still_requires_healthy_router_and_never_signs(self):
         with patch.object(self.k,'_validate_lp_routing',side_effect=RpcError('router unavailable')), \
-                patch('keeper.monitor.subprocess.run') as signer, \
+                patch('keeper.monitor.run_cast') as signer, \
                 self.assertRaises(RpcError):
             self.k.submit('compounder','compound(uint256,uint128,uint256)',(7,1,self.rpc.now+180),'compound:7')
         signer.assert_not_called();self.assertIsNone(self.k.state['pending'])

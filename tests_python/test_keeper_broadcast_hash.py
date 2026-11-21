@@ -31,7 +31,7 @@ class KeeperBroadcastHashTests(unittest.TestCase):
             return subprocess.CompletedProcess(command, 0, json.dumps(
                 {'transactionHash': '0x' + '0' * 64}), '')
 
-        with patch('keeper.monitor.subprocess.run', side_effect=signer) as send:
+        with patch('keeper.monitor.run_cast', side_effect=signer) as send:
             with self.assertRaisesRegex(RuntimeError, 'Signer did not return a transaction hash'):
                 self.fixture.submit()
         send.assert_called_once()
@@ -42,7 +42,7 @@ class KeeperBroadcastHashTests(unittest.TestCase):
             self.assertEqual(self.k.state[field], previous[field])
         restored = Keeper(self.fixture.cfg, rpc=self.rpc)
         restored.live = True
-        with patch('keeper.monitor.subprocess.run') as resend:
+        with patch('keeper.monitor.run_cast') as resend:
             self.assertFalse(self.fixture.submit(restored))
             restored.cycle()
             resend.assert_not_called()
@@ -58,7 +58,7 @@ class KeeperBroadcastHashTests(unittest.TestCase):
             published.append(json.loads(self.k.path.read_bytes()))
             return subprocess.CompletedProcess(command, 0, json.dumps({'hash': mixed}), '')
 
-        with patch('keeper.monitor.subprocess.run', side_effect=signer) as send:
+        with patch('keeper.monitor.run_cast', side_effect=signer) as send:
             self.assertTrue(self.fixture.submit())
         send.assert_called_once()
         final = json.loads(self.k.path.read_bytes())

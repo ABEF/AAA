@@ -97,11 +97,11 @@ class RoyaltyKeeperTests(unittest.TestCase):
         self.assertEqual(self.k.state['royalty_conversion']['asset'],1);self.assertEqual(self.k.state['next_nonce'],7)
     def test_failed_swap_does_not_broadcast_or_erase_rights(self):
         self.rpc.gas=10000
-        with patch('subprocess.run') as signer,patch('keeper.monitor.log') as log:
+        with patch('keeper.monitor.run_cast') as signer,patch('keeper.monitor.log') as log:
             self.assertFalse(self.k.royalties.scan_once());signer.assert_not_called()
         self.assertTrue(any(c.args[0]=='royalty_conversion_uneconomic' for c in log.call_args_list));self.assertIsNone(self.k.state['pending'])
     def test_dry_run_uses_common_simulation_without_signer(self):
-        with patch('subprocess.run') as signer,patch('keeper.monitor.log') as log:
+        with patch('keeper.monitor.run_cast') as signer,patch('keeper.monitor.log') as log:
             self.assertFalse(self.k.royalties.scan_once());signer.assert_not_called()
         self.assertTrue(any(c.args[0]=='dry_run' for c in log.call_args_list))
     def test_preparation_blocks_submission(self):

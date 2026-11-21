@@ -1,5 +1,10 @@
 # Keeper, indexer and service operations
 
+[Bounded Cast output](../reports/bounded-cast-20261121/REVIEW.md) applies automatically to startup
+address checking and sending, with64KiB aggregate raw output, existing30/90work
+deadlines and bounded failure cleanup. See [operator recovery](OPERATOR_MANUAL.md#bounded-cast-output-and-uncertain-transactions).
+16NEW methods pass; no operating adoption or full normal-daemon qualification follows.
+
 The [21 November focused fixes](../reports/ubuntu-keeper-20261121/REVIEW.md)
 preserve guards/defaults/journal schemas. Adopt matching keeper/checker Python
 sources only through the [lock and recovery procedure](OPERATOR_MANUAL.md#keeper-lock-and-recovery-source-adoption).

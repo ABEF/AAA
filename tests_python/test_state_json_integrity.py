@@ -105,7 +105,7 @@ class KeeperStateJSONStartupTests(unittest.TestCase):
             with self.subTest(raw_kind=cases.index(raw)), \
                     patch.object(Keeper, '_validate_runtime_files') as files, \
                     patch.object(Keeper, '_validate_signer') as signer, \
-                    patch('keeper.monitor.subprocess.run') as external:
+                    patch('keeper.monitor.run_cast') as external:
                 with self.assertRaises(ValueError): Keeper(config, live=True, rpc=fixture.rpc)
                 files.assert_not_called()
                 signer.assert_not_called()

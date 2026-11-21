@@ -1,0 +1,16 @@
+[
+  {
+    "label": "version",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "OpenSSH_for_Windows_9.5p2, LibreSSL 3.8.2\r\n",
+    "elapsed_seconds": 0.01599999999962165
+  },
+  {
+    "label": "public_probe",
+    "exit_code": 0,
+    "stdout": "1\n",
+    "stderr": "",
+    "elapsed_seconds": 1.1090000000003783
+  }
+]

@@ -84,7 +84,7 @@ class KeeperZeroTipProfileTests(unittest.TestCase):
             self.assertNotIn('ETH_LEGACY', kwargs['env'])
             return subprocess.CompletedProcess(command, 0, basic.H, '')
         with patch.dict(os.environ, {'ETH_PRIORITY_GAS_PRICE': '99', 'ETH_LEGACY': 'true'}), \
-                patch('keeper.monitor.subprocess.run', side_effect=sign) as signer:
+                patch('keeper.monitor.run_cast', side_effect=sign) as signer:
             self.assertTrue(self.submit(k, rpc))
         signer.assert_called_once(); self.assertEqual(k.state['spent'], before)
         self.assertEqual(sum(m == 'eth_gasPrice' for m, _ in rpc.calls), 1)
@@ -103,7 +103,7 @@ class KeeperZeroTipProfileTests(unittest.TestCase):
                 k._validate_lp_routing = lambda **_: None
                 k._rebalance_submission_ready = lambda _: True
                 k._compound_submission_ready = lambda _: True
-                with patch('keeper.monitor.subprocess.run', return_value=subprocess.CompletedProcess([], 0, basic.H, '')):
+                with patch('keeper.monitor.run_cast', return_value=subprocess.CompletedProcess([], 0, basic.H, '')):
                     self.assertTrue(k.submit(name, signature, (1, 1, rpc.now+180), 'qualification:'+name))
                 calls = [p[0] for m, p in rpc.calls if m == 'eth_call' and 'from' in p[0]]
                 self.assertEqual(len(calls), 2)
@@ -115,7 +115,7 @@ class KeeperZeroTipProfileTests(unittest.TestCase):
         for profile in (None, 1):
             with self.subTest(profile=profile):
                 k, rpc, _ = self.submission(profile)
-                with patch('keeper.monitor.subprocess.run', return_value=subprocess.CompletedProcess([], 0, basic.H, '')) as signer:
+                with patch('keeper.monitor.run_cast', return_value=subprocess.CompletedProcess([], 0, basic.H, '')) as signer:
                     self.assertTrue(self.submit(k, rpc))
                 self.assertNotIn('--priority-gas-price', signer.call_args.args[0])
                 self.assertEqual(k.state['pending']['fee_review']['schema'], 1)
@@ -170,7 +170,7 @@ class KeeperZeroTipProfileTests(unittest.TestCase):
             if method == 'eth_estimateGas': raise RpcError('insufficient funds for the full simulated fee envelope')
             return original(method, params)
         rpc.call = unavailable
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             with self.assertRaises(RpcError): self.submit(k, rpc)
             signer.assert_not_called()
         self.assertEqual(k.state, before); self.assertFalse(k.path.exists())
@@ -180,13 +180,13 @@ class KeeperZeroTipProfileTests(unittest.TestCase):
         for field, value in (('max_gas_limit', 124), ('max_gas_price_wei', 1),
                 ('max_transaction_cost_wei', 249), ('max_daily_cost_wei', 249)):
             k, rpc, cfg = self.submission(); cfg[field] = value; before = copy.deepcopy(k.state)
-            with self.subTest(field=field), patch('keeper.monitor.subprocess.run') as signer:
+            with self.subTest(field=field), patch('keeper.monitor.run_cast') as signer:
                 self.assertFalse(self.submit(k, rpc)); signer.assert_not_called()
             self.assertEqual(k.state, before); self.assertFalse(k.path.exists())
 
     def test_signer_failure_keeps_schema2_intent_and_never_resends(self):
         k, rpc, _ = self.submission()
-        with patch('keeper.monitor.subprocess.run', side_effect=subprocess.TimeoutExpired('/mock/cast', 90)) as signer:
+        with patch('keeper.monitor.run_cast', side_effect=subprocess.TimeoutExpired('/mock/cast', 90)) as signer:
             with self.assertRaises(subprocess.TimeoutExpired): self.submit(k, rpc)
             raw = k.path.read_bytes(); pending = copy.deepcopy(k.state['pending'])
             self.assertEqual(pending['fee_review']['schema'], 2); self.assertIsNone(pending['hash'])

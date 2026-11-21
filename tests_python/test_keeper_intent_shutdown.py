@@ -79,7 +79,7 @@ class KeeperIntentShutdownTests(unittest.TestCase):
             published.append(self.k.path.read_bytes())
             self.stopping = True
         with patch.object(self.k,'save',side_effect=save_then_stop), \
-                patch('keeper.monitor.subprocess.run',side_effect=self.signer) as signer:
+                patch('keeper.monitor.run_cast',side_effect=self.signer) as signer:
             result = self.submit()
         self.boundary_evidence = {'signer_calls':signer.call_count,
             'submit_result':result,'published_hashless':json.loads(published[0])['pending']['hash'] is None,
@@ -99,7 +99,7 @@ class KeeperIntentShutdownTests(unittest.TestCase):
         before = self.k.path.read_bytes()
         restored = Keeper(self.cfg,rpc=self.rpc)
         restored.live = True
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.submit(restored))
             restored.cycle()
             signer.assert_not_called()
@@ -111,7 +111,7 @@ class KeeperIntentShutdownTests(unittest.TestCase):
 
     def test_uninterrupted_submission_keeps_durable_intent_exact_review_and_hash(self):
         previous = copy.deepcopy(self.k.state)
-        with patch('keeper.monitor.subprocess.run',side_effect=self.signer) as signer:
+        with patch('keeper.monitor.run_cast',side_effect=self.signer) as signer:
             self.assertTrue(self.submit())
         signer.assert_called_once()
         saved = json.loads(self.k.path.read_bytes())
@@ -134,14 +134,14 @@ class KeeperIntentShutdownTests(unittest.TestCase):
             published.append(self.k.path.read_bytes())
             raise OSError('inert post-publication storage fault')
         with patch.object(self.k,'save',side_effect=publish_then_fail), \
-                patch('keeper.monitor.subprocess.run') as signer:
+                patch('keeper.monitor.run_cast') as signer:
             with self.assertRaises(OSError):self.submit()
             signer.assert_not_called()
         self.assertEqual(len(published),1)
         self.assertEqual(self.k.path.read_bytes(),published[0])
         self.assertIsNone(json.loads(published[0])['pending']['hash'])
         restored = Keeper(self.cfg,rpc=self.rpc)
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertTrue(restored.poll_pending())
             self.assertFalse(self.submit(restored))
             signer.assert_not_called()

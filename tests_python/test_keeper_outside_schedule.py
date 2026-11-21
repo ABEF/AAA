@@ -182,7 +182,7 @@ class KeeperOutsideScheduleTests(unittest.TestCase):
         self.k.save();before=self.k.path.read_bytes()
         with patch.object(self.k,'save',side_effect=OSError('inert storage fault')), \
                 patch('keeper.monitor.secrets.randbelow',return_value=0), \
-                patch('keeper.monitor.subprocess.run') as signer:
+                patch('keeper.monitor.run_cast') as signer:
             with self.assertRaises(OSError):self.cycle()
             signer.assert_not_called()
         self.assertEqual(before,self.k.path.read_bytes());self.assertIsNone(self.scheduled())
@@ -202,7 +202,7 @@ class KeeperOutsideScheduleTests(unittest.TestCase):
     def test_fresh_due_submission_revalidates_and_cancels_if_inside(self):
         with patch('keeper.monitor.secrets.randbelow',return_value=0):self.cycle()
         self.rpc.now+=60;self.needed=0
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.k.submit('vault','rebalance(uint256,uint128,uint256)',
                 (7,1,self.rpc.now+180),'rebalance:7'))
             signer.assert_not_called()
@@ -210,7 +210,7 @@ class KeeperOutsideScheduleTests(unittest.TestCase):
         self.assertIsNone(self.k.state['pending'])
 
     def test_direct_service_submission_cannot_skip_initial_jitter(self):
-        with patch('keeper.monitor.secrets.randbelow',return_value=0),patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.secrets.randbelow',return_value=0),patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.k.submit('vault','rebalance(uint256,uint128,uint256)',
                 (7,1,self.rpc.now+180),'rebalance:7'))
             signer.assert_not_called()
@@ -225,7 +225,7 @@ class KeeperOutsideScheduleTests(unittest.TestCase):
             if method=='eth_estimateGas':self.needed=0
             return result
         self.rpc.call=call
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.k.submit('vault','rebalance(uint256,uint128,uint256)',
                 (7,1,self.rpc.now+180),'rebalance:7'))
             signer.assert_not_called()

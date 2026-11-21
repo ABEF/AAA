@@ -236,7 +236,7 @@ class PrincipalDistributionTests(unittest.TestCase):
     def test_reverted_delivery_keeps_existing_paid_failure_cooldown(self):
         self.count=4;key='principal_distribute:1'
         self.k.state.setdefault('retry_after',{})[key]=self.rpc.now+3600
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.k.principal_distribution.run());signer.assert_not_called()
         self.assertEqual(1,self.k.blocked_actions)
         self.assertEqual(self.rpc.now+3600,self.k.state['retry_after'][key])
@@ -267,7 +267,7 @@ class PrincipalDistributionTests(unittest.TestCase):
 
     def test_actual_submit_reuses_simulation_and_gas_cap_without_any_signing(self):
         self.cfg['max_gas_limit']=1
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.k.submit('principal_exit',BATCH,([10001,10002],),'principal_distribute:1'))
             signer.assert_not_called()
         simulated=[args[0] for method,args in self.rpc.calls if method=='eth_call' and 'from' in args[0]]

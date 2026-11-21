@@ -302,7 +302,7 @@ class KeeperConfirmationPriorityTests(unittest.TestCase):
         with patch.object(self.rpc, 'call', side_effect=nonce_mismatch), \
                 patch.object(self.k, '_validate_checkpoint'), \
                 patch('keeper.monitor.time.time', return_value=self.rpc.now), \
-                patch('keeper.monitor.subprocess.run') as signer, self.assertRaises(RpcError):
+                patch('keeper.monitor.run_cast') as signer, self.assertRaises(RpcError):
             self.k.submit('rebalance_confirmation', 'observe(uint256)', (7,), 'rebalance_observation:7')
         signer.assert_not_called()
         self.assertTrue(self.k._cycle_error)

@@ -277,7 +277,7 @@ class KeeperCompoundRangePolicyTests(unittest.TestCase):
                 patch.object(self.k, '_validate_checkpoint'), \
                 patch.object(self.k, '_validate_code_hashes'), \
                 patch.object(self.k, '_compound_policy_status', side_effect=proofs) as physical, \
-                patch('subprocess.run') as signer:
+                patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.k.submit('compounder', 'compound(uint256,uint128,uint256)',
                 (7, 1, self.rpc.now + 180), 'compound:7'))
         self.assertEqual(2, physical.call_count); signer.assert_not_called()
@@ -290,7 +290,7 @@ class KeeperCompoundRangePolicyTests(unittest.TestCase):
                     patch.object(self.k, '_validate_accounting_version'), \
                     patch.object(self.k, '_defer_for_lifecycle', return_value=False), \
                     patch.object(self.k, '_compound_policy_status', return_value={'allowed': False, 'status': status}), \
-                    patch('subprocess.run') as signer:
+                    patch('keeper.monitor.run_cast') as signer:
                 self.assertFalse(self.k.submit('compounder', 'compound(uint256,uint128,uint256)',
                     (7, 1, self.rpc.now + 180), 'compound:7'))
                 signer.assert_not_called()
@@ -312,7 +312,7 @@ class KeeperCompoundRangePolicyTests(unittest.TestCase):
                 patch.object(self.k, '_validate_checkpoint'), \
                 patch.object(self.k, '_validate_code_hashes'), \
                 patch.object(self.k, '_compound_policy_status', return_value=proof) as physical, \
-                patch('subprocess.run', side_effect=sign) as signer:
+                patch('keeper.monitor.run_cast', side_effect=sign) as signer:
             self.assertTrue(self.k.submit('compounder', 'compound(uint256,uint128,uint256)',
                 (7, 1, self.rpc.now + 180), 'compound:7'))
         self.assertEqual(3, physical.call_count); signer.assert_called_once()

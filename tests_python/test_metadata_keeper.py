@@ -123,7 +123,7 @@ class MetadataKeeperTests(unittest.TestCase):
 
     def submit(self):
         self.live()
-        with patch('keeper.monitor.subprocess.run',return_value=subprocess.CompletedProcess([],0,TX_HASH,'')):
+        with patch('keeper.monitor.run_cast',return_value=subprocess.CompletedProcess([],0,TX_HASH,'')):
             self.assertTrue(self.keeper._refresh_metadata())
         return self.keeper.state['pending']
 
@@ -163,7 +163,7 @@ class MetadataKeeperTests(unittest.TestCase):
             payload = state['pending']['metadata_observation']
             self.assertEqual(state['metadata_refresh']['cursor'],payload['last_ordinal'] % len(self.rpc.ids)+1)
             return subprocess.CompletedProcess([],0,TX_HASH,'')
-        with patch('keeper.monitor.subprocess.run',side_effect=sign):
+        with patch('keeper.monitor.run_cast',side_effect=sign):
             self.assertTrue(self.keeper._refresh_metadata())
         payload = copy.deepcopy(self.keeper.state['pending']['metadata_observation'])
         self.receipt(block=self.rpc.head)
@@ -181,7 +181,7 @@ class MetadataKeeperTests(unittest.TestCase):
         self.assertEqual(self.rpc.calls,[])
 
     def test_dry_run_does_not_mark_notified_or_sign(self):
-        with patch('keeper.monitor.subprocess.run') as signer:
+        with patch('keeper.monitor.run_cast') as signer:
             self.assertFalse(self.keeper._refresh_metadata())
         signer.assert_not_called()
         self.assertIsNone(self.keeper.state['pending'])
@@ -366,7 +366,7 @@ class MetadataKeeperTests(unittest.TestCase):
             self.assertEqual(state['pending']['metadata_observation']['records'][0]['token_id'],str(TOKENS[0]))
             self.assertEqual(state['metadata_refresh']['notified'],{})
             return subprocess.CompletedProcess([],0,TX_HASH,'')
-        with patch('keeper.monitor.subprocess.run',side_effect=sign):
+        with patch('keeper.monitor.run_cast',side_effect=sign):
             self.assertTrue(self.keeper._refresh_metadata())
 
     def test_unchanged_stage_and_availability_skip_notification(self):
@@ -412,7 +412,7 @@ class MetadataKeeperTests(unittest.TestCase):
             with self.subTest(field=field):
                 previous = self.config[field]
                 self.config[field] = 1
-                with patch('keeper.monitor.subprocess.run') as signer:
+                with patch('keeper.monitor.run_cast') as signer:
                     self.assertFalse(self.keeper._refresh_metadata())
                 signer.assert_not_called()
                 self.assertEqual(self.keeper.state['metadata_refresh']['notified'],{})
@@ -421,7 +421,7 @@ class MetadataKeeperTests(unittest.TestCase):
 
     def test_ambiguous_broadcast_blocks_resubmission_and_keeps_snapshots(self):
         self.live()
-        with patch('keeper.monitor.subprocess.run',side_effect=subprocess.TimeoutExpired('cast',90)) as sign:
+        with patch('keeper.monitor.run_cast',side_effect=subprocess.TimeoutExpired('cast',90)) as sign:
             with self.assertRaises(subprocess.TimeoutExpired): self.keeper._refresh_metadata()
             self.assertIsNone(self.keeper.state['pending']['hash'])
             self.assertTrue(self.keeper.poll_pending())

@@ -50,6 +50,8 @@ MODULES=(
  'test_keeper_broadcast_hash',
  'test_keeper_operation_review_followup',
  'test_process_lock_safety',
+ 'test_cast_process',
+ 'test_keeper_cast_capture',
 )
 def select_tests(modules=MODULES,importer=importlib.import_module):
  """Build a strict inventory without executing any selected test body."""

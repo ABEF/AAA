@@ -41,7 +41,7 @@ class KeeperHealthIdentityTests(unittest.TestCase):
         self.keeper.live = True  # Emit the healthy branch; no real live initialization/signing.
         self.keeper.canonical_lifecycle = 0
         self.keeper.preparing = False
-        with patch.object(self.keeper, 'cycle'), patch('keeper.monitor.log'), patch('subprocess.run') as signer:
+        with patch.object(self.keeper, 'cycle'), patch('keeper.monitor.log'), patch('keeper.monitor.run_cast') as signer:
             self.assertTrue(self.keeper.run_cycle())
             signer.assert_not_called()
         self.original_health = Path(self.config['health_path']).read_bytes()

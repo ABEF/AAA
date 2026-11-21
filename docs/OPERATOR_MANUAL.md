@@ -1,5 +1,44 @@
 # PoPL operator manual
 
+## Bounded Cast output and uncertain transactions
+
+The [reviewed helper](../reports/bounded-cast-20261121/REVIEW.md) is automatic in the existing keeper.
+It adds no operator contract call or JSON setting.
+
+| Boundary | Rule | Operator response |
+| --- | --- | --- |
+| Wallet-address startup | Complete decoded address;30-second work deadline | Fix local signer/tool admission; preserve any existing journal |
+| Transaction send | Complete response;90-second work deadline | A failed response can still mean a broadcast occurred |
+| Raw output |64KiB TOTAL stdout AND stderr, including warnings; exact boundary accepted | Do not trust a valid-looking hash prefix from refused output |
+| Overflow/encoding failure | No partial result; owned group terminated, both pipes closed, bounded2-second cleanup | Stop and reconcile original pending intent |
+| Timeout | Same original work deadline across reads/EOF/exit wait; sanitized timeout | Never automatically resend, reset nonce or erase pending |
+| Successful output | Existing exact address/nonzero-hash and fee/nonce checks remain | Only canonical receipt recovery advances spend/harvest clocks |
+| Source identity | Helper is included in both health source maps | Adopt matching keeper/checker code; never edit a saved hash map |
+
+If a send is interrupted or capture fails, retain exact journal/config/nonce,
+calldata/value, fee review and any known hash. Use the existing exact-chain/
+nonce/hash reconciliation procedure. No output failure proves “transaction not
+sent.” Do not repeat a confirmed transaction or replace pending state.
+
+The final observed stop check still prevents a new signer launch, including
+stop received during intent publication. Cast runs in a new process session:
+terminal Ctrl-C stops future worker jobs, while an active Cast may finish within
+its timeout. Use the reviewed systemd unit’s whole-cgroup stop/fencing when
+terminating an active worker, then reconcile pending before restart. Neither
+process termination nor Ctrl-C guarantees cancellation of an in-flight broadcast.
+
+64KiB bounds captured raw output, not child-process RSS/CPU, kernel spawn/kill
+latency or malicious escaped descendants. Existing watchdog/cgroup and trusted
+host controls remain required. No output is dumped to disk or logged; failure
+messages contain no command, environment or partial output. The work deadline
+remains30/90seconds; failure cleanup has a separate at-most2-second userspace wait.
+
+Keep the reviewed64KiB engineering limit. If a future approved Cast release
+requires different output handling, review the helper and focused checks before
+source adoption; do not raise gas/fee/loss limits or loosen transaction checks.
+No installed service, source journal, public signing or website is updated by
+this source publication. All NFT rights and contract permissions remain intact.
+
 The [48-hour audit](../reports/last48h-audit-20261121/REVIEW.md) changes no operator functions, inputs,
 permissions or recovery steps. The Ubuntu authorization/signing journey remains
 unproved; use actual preflight/receipt evidence, not narrative fixture intentions.

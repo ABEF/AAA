@@ -1,9 +1,14 @@
 # Whole-project workload coverage
 
+The [bounded Cast change](../reports/bounded-cast-20261121/REVIEW.md) adds one production helper and
+16NEW focused methods (8actual Ubuntu pipe/process cases,8composed keeper/health
+cases). No old test bodies ran. Current named inventory is180files/1,984definitions;
+source-only anonymous count278. F6 source/ABI/build pins stay unchanged.
+
 The [focused keeper review](../reports/ubuntu-keeper-20261121/REVIEW.md) adds
 18distinct affected checks in explicit stages (15new/3existing), including8
 unprivileged Ubuntu lock checks. It does not qualify the unfinished stock-daemon
-journey. Current Python inventory is179files/1,980named definitions; F6 source
+journey. That earlier source inventory was179files/1,980named definitions; F6
 maps/ABI inventory remain unchanged. Earlier dynamic results and anonymous-code
 supplements retain their exact earlier source scope.
 
@@ -27,7 +32,7 @@ The earlier [anonymous supplement](../reports/readiness-advance-20261120/ANONYMO
 retains276lambdas and2named project Yul helpers with refreshed changed-source pins.
 
 The [workload plan](WORKLOAD_PLAN.json) and
-[whole-project function inventory](../reports/ubuntu-keeper-20261121/FUNCTION_INVENTORY.json)
+[whole-project function inventory](../reports/bounded-cast-20261121/FUNCTION_INVENTORY.json)
 define the scope. [The report](../reports/whole-workload-review-20261119/REVIEW.md)
 records what actually ran and what remains unqualified. The [Todo](../TODO.md)
 owns work status; this page is a verification map.
@@ -43,8 +48,8 @@ sequences and source-bound evidence. No inventory count is a dynamic pass rate.
 - 1,056 implemented project Solidity definitions and29 modifiers from the
   authenticated compiler AST;511 bodyless declarations remain separately labelled.
 - Eight internal-only objects are included, beyond the public ABI catalogue.
-- 179 production Python files and1,980 named lexical definitions:1,800 functions
-  and180 classes, including nested helpers. The [current anonymous-code inventory](../reports/last48h-audit-20261121/ANONYMOUS_CODE_INVENTORY.json)
+- 180 production Python files and1,984 named lexical definitions:1,803 functions
+  and181 classes, including nested helpers. The [current anonymous-code inventory](../reports/bounded-cast-20261121/ANONYMOUS_CODE_INVENTORY.json)
   records278 lambdas and2 named project Yul helpers. Earlier supplements retain
   their own source scope. Inventory does not establish execution coverage.
 
@@ -60,7 +65,7 @@ running application modules, tests, RPC or signing. Preserve the unrelated dirty
 fork runner: its published HEAD blob is inventoried instead of adopting it.
 
 ```text
-python scripts/build-workload-inventory.py --check reports/ubuntu-keeper-20261121/FUNCTION_INVENTORY.json
+python scripts/build-workload-inventory.py --check reports/bounded-cast-20261121/FUNCTION_INVENTORY.json
 ```
 
 Future F6 source/reference changes require reviewed trusted-pin/plan updates and
