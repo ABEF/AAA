@@ -1,0 +1,172 @@
+{
+  "schema": 1,
+  "baseline": "a5570c95bbaba7472ba5370e43494b87246e0ea7",
+  "client_date": "2026-11-21",
+  "observed_utc": "2026-11-21T13:41:18.960768+00:00",
+  "target_OS": "Ubuntu",
+  "original_docs_external": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\ubuntu-keeper-20261121\\original-docs",
+  "original_docs": {
+    ".gitattributes": {
+      "sha256": "b21456247f1aab34af7d0cb4bf81f22e81882c61c0f3b4b1965d34fab56187c3",
+      "bytes": 20969
+    },
+    "AGENTS.md": {
+      "sha256": "6166501aeb1e9ddb7732327208c2a12953294e806557378e6c256e9f4935d463",
+      "bytes": 53336
+    },
+    "PROJECT_CONTEXT.md": {
+      "sha256": "8d1eb99973a1aa9b87a36d256114f5a71464b7b50c2fb4ed019ec2dec2a63c80",
+      "bytes": 24444
+    },
+    "README.md": {
+      "sha256": "5ec3fa5fddf35c1984fc1d549ece68de2a06f0f1a0e58096a46b2247da058e01",
+      "bytes": 10267
+    },
+    "TODO.md": {
+      "sha256": "4f9d4d36ca16043f7c08158a5fea01758c4217ca67598cbc5600102efd904ddb",
+      "bytes": 462124
+    },
+    "docs/WORK_HANDOFF.md": {
+      "sha256": "c72702415be2c098eb25506751a5d4dd9fa1f874b940c1ea26c9b76bad206fa8",
+      "bytes": 15631
+    },
+    "docs/AUDIT_FINDINGS.md": {
+      "sha256": "05c022279abd07bceed1c1b915b5e0b20a0aa5a4a472af46206f49cf9c4518ed",
+      "bytes": 28635
+    },
+    "docs/OPERATOR_MANUAL.md": {
+      "sha256": "d121ca3ce0c5ffa360f6e7ff9a22fd5c7cbd81a32afdc86d53a124c845de5941",
+      "bytes": 666660
+    },
+    "docs/IMPLEMENTATION_STATUS.md": {
+      "sha256": "b3f9fe9cfd3f9e963447c8c0580e187a4cb9d727e079ee696dc47f0e38746d9a",
+      "bytes": 35150
+    },
+    "docs/ROADMAP.md": {
+      "sha256": "d66de7696b17dc3e5eb284a0e7451f0933f0eeba73bf3517491e35127631ba65",
+      "bytes": 43061
+    },
+    "docs/WORKLOAD_COVERAGE.md": {
+      "sha256": "944d8a7ee6a981a651fc9c433f4762548ed7b5b259f47f59c03e20b6a1e23a9e",
+      "bytes": 9696
+    },
+    "docs/project-todo.json": {
+      "sha256": "6a1c32c24b319c62c87a017fb120ee6141bc02119f3aa59878d9f136f868334f",
+      "bytes": 479443
+    },
+    "reports/README.md": {
+      "sha256": "a03eebd281b7331dfac9fd20a3c2708d9529e237bd86326e72a07dc8260fdec3",
+      "bytes": 37166
+    },
+    "docs/OPERATIONS.md": {
+      "sha256": "af7c8dab6c7f612c74d9add1d56c97ab967d49abb44d62ebd32717f113e0c5e7",
+      "bytes": 40883
+    },
+    "docs/KEEPER_RECOVERY.md": {
+      "sha256": "05d16edfd7d050b900855184c0744578c7552b969d47d115065f200f566010cf",
+      "bytes": 45593
+    },
+    "docs/KEEPER_REHEARSALS.md": {
+      "sha256": "edcfcdb8f405899c070b5f92b3e196c7cc72cdb7ff42bccac2fc0e3ea6cda780",
+      "bytes": 12844
+    }
+  },
+  "original_operating_sources_sha256": {
+    "keeper/monitor.py": "e0474aa16e8377ad9c276492fcd01d4bf5570614bf7430658d8669ae4c288645",
+    "keeper/watchdog.py": "59b4bb7783453a8f271fd5ab265fd5d2857d55096479be34f10ffe56c8408372",
+    "zzz_ops/rpc.py": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f",
+    "keeper/zzz-keeper.service": "4a76852eaa165879c350252b893fbd9cae7764722f01353e23ee1c6ee687e229"
+  },
+  "protected_unrelated_dirty_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "stable_task_ids": [
+    "lp-only-simplification",
+    "immediate-governance",
+    "operator-stop-controls",
+    "price-security",
+    "nft-lifecycle",
+    "reward-ledgers",
+    "lp-exact-unit-allocation",
+    "lp-eth-settlement",
+    "royalty-eth-settlement",
+    "shared-custody",
+    "pons-qualification",
+    "activation-assets",
+    "fair-draw",
+    "custody-composition",
+    "opensea-mint",
+    "native-custody-recovery",
+    "post-seal-configuration",
+    "typed-v4-conversion",
+    "governed-loss-limits",
+    "reviewed-contribution-policy",
+    "liquidity-placement-idle",
+    "adaptive-range-policy",
+    "callable-reference",
+    "lp-execution-routing",
+    "manual-reference-swap-proof",
+    "rebalance-confirmation-buffer",
+    "manual-emergency-rebalance",
+    "passive-inventory",
+    "royalty-factory-gas",
+    "pool-spot-price-source",
+    "read-api",
+    "royalty-reporting",
+    "unsigned-actions",
+    "activation-quotes",
+    "financial-history",
+    "api-client-admission",
+    "host-services",
+    "holder-preflight",
+    "native-production-preflight",
+    "operation-review",
+    "manual-recovery-gas-rehearsal",
+    "manual-lp-diagnostics",
+    "parked-emergency-preparation",
+    "operator-management-preparation",
+    "claim-batch-planner",
+    "preview",
+    "wallet",
+    "portfolio",
+    "transaction-ui",
+    "live-history-ui",
+    "purchase-rights",
+    "creator-zzz-price",
+    "creator-market-controls",
+    "creator-input-liquidity",
+    "local-verification",
+    "activation-gas-six-cases",
+    "mainnet-fork",
+    "testnet-rehearsal",
+    "audit-release",
+    "economic-rights-audit",
+    "local-dollar-rehearsal",
+    "local-browser-stack",
+    "capacity-campaign",
+    "mainnet-rehearsal-retirement",
+    "security-governance",
+    "security-share-accounting",
+    "security-ownership-rewards",
+    "security-strategy",
+    "security-keeper-manipulation",
+    "security-external-manipulation",
+    "security-dependencies",
+    "security-chain-recovery",
+    "security-integration",
+    "historical-findings",
+    "authorities-prices",
+    "dual-price-qualification",
+    "metadata-ops",
+    "keeper-guardrails",
+    "keeper-recovery",
+    "asset-liveness-dust",
+    "deployment-initcode",
+    "migration-framework",
+    "destination-slots"
+  ],
+  "production_approved": false
+}

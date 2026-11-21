@@ -1,0 +1,239 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-21T13:30:03.239669+00:00",
+  "scope": "read_only_host_and_tool_inventory_no_service_or_configuration_changes",
+  "os_release": {
+    "PRETTY_NAME": "Ubuntu 24.04.3 LTS",
+    "NAME": "Ubuntu",
+    "VERSION_ID": "24.04",
+    "VERSION": "24.04.3 LTS (Noble Numbat)",
+    "ID": "ubuntu"
+  },
+  "kernel": "6.8.0-137-generic",
+  "machine": "x86_64",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "transport_effective_uid": 0,
+  "cpu_count": 2,
+  "memory": {
+    "MemTotal": "7933300 kB",
+    "MemAvailable": "7009492 kB",
+    "SwapTotal": "0 kB",
+    "SwapFree": "0 kB"
+  },
+  "disk_bytes": {
+    "/opt": {
+      "total": 80307429376,
+      "used": 14520860672,
+      "free": 62463954944
+    },
+    "/run": {
+      "total": 812371968,
+      "used": 22122496,
+      "free": 790249472
+    },
+    "/tmp": {
+      "total": 80307429376,
+      "used": 14520860672,
+      "free": 62463954944
+    }
+  },
+  "tools": {
+    "python3": [
+      {
+        "path": "/usr/bin/python3",
+        "resolved": "/usr/bin/python3.12",
+        "bytes": 8020928,
+        "version": {
+          "argv": [
+            "/usr/bin/python3",
+            "--version"
+          ],
+          "exit_code": 0,
+          "stdout": "Python 3.12.3\n",
+          "stderr": ""
+        }
+      }
+    ],
+    "anvil": [
+      {
+        "path": "/opt/zzz-keeper-staging/bin/anvil",
+        "resolved": "/opt/zzz-keeper-staging/bin/anvil",
+        "bytes": 32747544,
+        "version": {
+          "argv": [
+            "/opt/zzz-keeper-staging/bin/anvil",
+            "--version"
+          ],
+          "exit_code": 0,
+          "stdout": "anvil Version: 1.4.4-v1.4.4\nCommit SHA: 05794498bf47257b144e2e2789a1d5bf8566be0e\nBuild Timestamp: 2025-10-30T15:50:28.714367747Z (1761839428)\nBuild Profile: maxperf\n",
+          "stderr": ""
+        },
+        "sha256": "05ee0cf1758024ea5e23dae562d92955ace205ab299091a43d2fa5bdeb6933bd"
+      }
+    ],
+    "cast": [
+      {
+        "path": "/opt/zzz-keeper-staging/bin/cast",
+        "resolved": "/opt/zzz-keeper-staging/bin/cast",
+        "bytes": 48291080,
+        "version": {
+          "argv": [
+            "/opt/zzz-keeper-staging/bin/cast",
+            "--version"
+          ],
+          "exit_code": 0,
+          "stdout": "cast Version: 1.4.4-v1.4.4\nCommit SHA: 05794498bf47257b144e2e2789a1d5bf8566be0e\nBuild Timestamp: 2025-10-30T15:50:28.714367747Z (1761839428)\nBuild Profile: maxperf\n",
+          "stderr": ""
+        },
+        "sha256": "d55f540256f0dd8b940a125d435919948a5e8c140262e9923067cbfa95ef2970"
+      }
+    ],
+    "forge": [
+      {
+        "path": "/opt/zzz-keeper-staging/bin/forge",
+        "resolved": "/opt/zzz-keeper-staging/bin/forge",
+        "bytes": 67759784,
+        "version": {
+          "argv": [
+            "/opt/zzz-keeper-staging/bin/forge",
+            "--version"
+          ],
+          "exit_code": 0,
+          "stdout": "forge Version: 1.4.4-v1.4.4\nCommit SHA: 05794498bf47257b144e2e2789a1d5bf8566be0e\nBuild Timestamp: 2025-10-30T15:50:28.714367747Z (1761839428)\nBuild Profile: maxperf\n",
+          "stderr": ""
+        },
+        "sha256": "b2506b895566aef3e1748444640a8f4aac2f4bf063173005993021bd2f8681b9"
+      }
+    ],
+    "solc": [],
+    "docker": [],
+    "podman": []
+  },
+  "systemd_version": {
+    "argv": [
+      "systemctl",
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout": "systemd 255 (255.4-1ubuntu8.18)\n+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT -GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY +P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified\n",
+    "stderr": ""
+  },
+  "mounts": {
+    "/opt": {
+      "argv": [
+        "findmnt",
+        "--noheadings",
+        "--target",
+        "/opt",
+        "--output",
+        "TARGET,FSTYPE,OPTIONS"
+      ],
+      "exit_code": 0,
+      "stdout": "/      ext4   rw,relatime\n",
+      "stderr": ""
+    },
+    "/run": {
+      "argv": [
+        "findmnt",
+        "--noheadings",
+        "--target",
+        "/run",
+        "--output",
+        "TARGET,FSTYPE,OPTIONS"
+      ],
+      "exit_code": 0,
+      "stdout": "/run   tmpfs  rw,nosuid,nodev,noexec,relatime,size=793332k,mode=755,inode64\n",
+      "stderr": ""
+    },
+    "/tmp": {
+      "argv": [
+        "findmnt",
+        "--noheadings",
+        "--target",
+        "/tmp",
+        "--output",
+        "TARGET,FSTYPE,OPTIONS"
+      ],
+      "exit_code": 0,
+      "stdout": "/      ext4   rw,relatime\n",
+      "stderr": ""
+    }
+  },
+  "selected_unit_inventory_exit_code": 0,
+  "selected_units": [
+    {
+      "unit": "nginx.service",
+      "properties": {
+        "MainPID": "3557118",
+        "NRestarts": "0",
+        "Id": "nginx.service",
+        "LoadState": "loaded",
+        "ActiveState": "active",
+        "SubState": "running",
+        "InvocationID": "51dd71d08a274e7b96567acce9baa333"
+      },
+      "exit_code": 0
+    },
+    {
+      "unit": "zzz-stage-anvil.service",
+      "properties": {
+        "MainPID": "0",
+        "NRestarts": "6",
+        "Id": "zzz-stage-anvil.service",
+        "LoadState": "loaded",
+        "ActiveState": "failed",
+        "SubState": "failed",
+        "InvocationID": "ed6b44aacbcc499597641edd312b52f7"
+      },
+      "exit_code": 0
+    },
+    {
+      "unit": "zzz-stage-keeper.service",
+      "properties": {
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Id": "zzz-stage-keeper.service",
+        "LoadState": "loaded",
+        "ActiveState": "inactive",
+        "SubState": "dead",
+        "InvocationID": "285933ad8986477ea79ccd994bbdc16b"
+      },
+      "exit_code": 0
+    },
+    {
+      "unit": "zzz-stage-observer.service",
+      "properties": {
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Id": "zzz-stage-observer.service",
+        "LoadState": "loaded",
+        "ActiveState": "inactive",
+        "SubState": "dead",
+        "InvocationID": "da079805b70e45de9e1502ca2ceca0ee"
+      },
+      "exit_code": 0
+    },
+    {
+      "unit": "zzz-stage-observer.timer",
+      "properties": {
+        "Id": "zzz-stage-observer.timer",
+        "LoadState": "loaded",
+        "ActiveState": "active",
+        "SubState": "waiting",
+        "InvocationID": "7fa9fdf628aa4d6abce6e238cd8404d3"
+      },
+      "exit_code": 0
+    }
+  ],
+  "listening_tcp": {
+    "argv": [
+      "ss",
+      "-H",
+      "-ltnp"
+    ],
+    "exit_code": 0,
+    "stdout": "LISTEN 0      5            0.0.0.0:8443 0.0.0.0:* users:((\"python3\",pid=481246,fd=3))                                                        \nLISTEN 0      4096   127.0.0.53%lo:53   0.0.0.0:* users:((\"systemd-resolve\",pid=3253528,fd=15))                                              \nLISTEN 0      511          0.0.0.0:80   0.0.0.0:* users:((\"nginx\",pid=3557122,fd=7),(\"nginx\",pid=3557121,fd=7),(\"nginx\",pid=3557118,fd=7))   \nLISTEN 0      4096         0.0.0.0:22   0.0.0.0:* users:((\"sshd\",pid=3257978,fd=3),(\"systemd\",pid=1,fd=75))                                  \nLISTEN 0      511          0.0.0.0:443  0.0.0.0:* users:((\"nginx\",pid=3557122,fd=10),(\"nginx\",pid=3557121,fd=10),(\"nginx\",pid=3557118,fd=10))\nLISTEN 0      4096      127.0.0.54:53   0.0.0.0:* users:((\"systemd-resolve\",pid=3253528,fd=17))                                              \nLISTEN 0      511             [::]:80      [::]:* users:((\"nginx\",pid=3557122,fd=8),(\"nginx\",pid=3557121,fd=8),(\"nginx\",pid=3557118,fd=8))   \nLISTEN 0      4096            [::]:22      [::]:* users:((\"sshd\",pid=3257978,fd=4),(\"systemd\",pid=1,fd=76))                                  \nLISTEN 0      511             [::]:443     [::]:* users:((\"nginx\",pid=3557122,fd=9),(\"nginx\",pid=3557121,fd=9),(\"nginx\",pid=3557118,fd=9))   \n",
+    "stderr": ""
+  },
+  "production_approved": false
+}

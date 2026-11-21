@@ -1,5 +1,11 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+[Current keeper review](reports/ubuntu-keeper-20261121/REVIEW.md) fixes four
+recovery, locking and diagnostic inconsistencies, verified by18 focused checks
+including8 on Ubuntu. The full normal-daemon/real-Cast Ubuntu rehearsal remains
+unfinished; no operating service, website or chain was changed. Production is
+not approved.
+
 The [current actual-fee proof](reports/pool-fees-20261121/REVIEW.md) reconciles
 real LP receipts through80/10/5/5, exact NFT entitlements, current-owner transfers
 and direct ETH/ZZZ claims on an isolated saved graph. All allocated LP rewards

@@ -47,6 +47,9 @@ MODULES=(
  'test_keeper_maintenance_clock',
  'test_keeper_intent_shutdown',
  'test_keeper_watchdog_failover_progress',
+ 'test_keeper_broadcast_hash',
+ 'test_keeper_operation_review_followup',
+ 'test_process_lock_safety',
 )
 def select_tests(modules=MODULES,importer=importlib.import_module):
  """Build a strict inventory without executing any selected test body."""

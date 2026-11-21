@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-21T13:33:25.650713+00:00",
+  "method": "read_only_shutil.which_no_process_or_environment_start",
+  "paths": {
+    "wsl.exe": "C:\\WINDOWS\\system32\\wsl.exe",
+    "docker.exe": null,
+    "podman.exe": null,
+    "ssh.exe": "C:\\WINDOWS\\System32\\OpenSSH\\ssh.exe"
+  },
+  "WSL_result": "wsl-list.json",
+  "ssh_user_config_exists": false,
+  "production_approved": false
+}

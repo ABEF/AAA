@@ -1,0 +1,2823 @@
+"""ZZZKeeper: serial, dry-run-by-default automation. Python 3.11+, Linux.
+
+Live signing is delegated to a local Foundry `cast` encrypted keystore. No private
+key is accepted by this program. Ambiguous broadcasts stop further submissions.
+"""
+from __future__ import annotations
+import argparse
+import copy
+import datetime as dt
+import hashlib
+import json
+import math
+import os
+from pathlib import Path
+import re
+import secrets
+import shutil
+import signal
+import stat
+import subprocess
+import time
+from typing import Any
+from zzz_ops.abi import address, calldata, decode_words, keccak256, uint_result
+from zzz_ops.rpc import Rpc, RpcError
+from zzz_ops.state import atomic_json, integer, process_lock, read_json
+from zzz_ops.ethereum_fees import execution_price, fee_cap, transaction_chain_id
+from zzz_ops.range_policy import observe as observe_range_policy, verify as verify_range_policy
+from zzz_ops.position import decode_position
+from keeper.royalties import RoyaltyAutomation, BATCH as ROYALTY_BATCH, encode_batch
+from zzz_ops.errors import RemoteRPCError
+from keeper.watchdog import ProgressWatchdog, ProgressRPC
+from keeper.principal import PrincipalDistribution, BATCH as PRINCIPAL_BATCH, encode_batch as encode_principal_batch
+from keeper.health import HEALTH_SCHEMA, OBSERVATION_SCHEMA, source_hashes, observe_confirmation_health
+from keeper.rebalance_confirmation import RebalanceConfirmation, CHECK_SECONDS as CONFIRMATION_CHECK_SECONDS, LEGACY_CHECK_SECONDS as LEGACY_CONFIRMATION_CHECK_SECONDS, STATE_NAMESPACE as CONFIRMATION_STATE, PORTFOLIO_STATE_NAMESPACE
+
+ACCOUNTING_MODEL = 'shared-pools-v2'
+NATIVE_ASSET = '0x'+'0'*40
+# Only these argument positions are currencies. Contract/owner/sender zeroes
+# remain invalid in the shared ABI codec and all other keeper calls.
+ASSET_ARGUMENTS = {
+    'compoundBalance(uint256,address)': (1,),
+    'buybackBalance(address)': (0,),
+    'execute(address,uint256,bytes32,uint256)': (0,),
+}
+MAX_METADATA_SUPPLY = 1000
+MAX_METADATA_BATCH = 50
+MAX_BUYBACK_TASKS = 32
+OUTSIDE_REBALANCE_STATE = 'outside_rebalance_v2'
+REBALANCE_CHECK_SECONDS = 3600
+MAX_OUTSIDE_SCHEDULES = 10000
+MAINTENANCE_FIELDS = frozenset({
+    'compound','compound_idle','harvest','sync_external_rewards',
+    'minimum_liquidity','minimum_compound_units','harvest_interval_seconds',
+    'compound_interval_seconds','compound_thresholds','reward_routes',
+})
+CONFIRMATION_RESETS = 'confirmation_reset_v1'
+CONFIRMATION_CLEARS = 'confirmation_clear_v1'
+FEES_COLLECTED_TOPIC = '0x'+keccak256(b'FeesCollected(uint256,uint256,uint256)').hex()
+CANONICAL_STATES = ('operating', 'frozen', 'importing', 'retired', 'cancelled')
+JOB_DEADLINE_ARGUMENTS = {
+    ('vault','collectFees(uint256,uint256)'): 1,
+    ('buyback','execute(address,uint256,bytes32,uint256)'): 3,
+    ('rewards',ROYALTY_BATCH): 4,
+    ('royalties',ROYALTY_BATCH): 4,
+}
+VOID_SIMULATION_RESULTS = frozenset((
+    ('vault','collectFees(uint256,uint256)'),
+    ('vault','rebalance(uint256,uint128,uint256)'),
+    ('compounder','compound(uint256,uint128,uint256)'),
+    ('buyback','execute(address,uint256,bytes32,uint256)'),
+    ('nft','refreshMetadataRange(uint256,uint256)'),
+    ('rebalance_confirmation','resetObservation(uint256)'),
+))
+
+
+class CompoundPolicyUnconfigured(RpcError):
+    """Required local reader bindings are absent before any physical read."""
+
+PREPARATION_BLOCKED_ACTIONS = frozenset((
+    ('strategy','applyKeeperRange(bytes32)'),
+    ('vault','rebalance(uint256,uint128,uint256)'),
+    ('compounder','compound(uint256,uint128,uint256)'),
+    ('buyback','execute(address,uint256,bytes32,uint256)'),
+    ('royalties',ROYALTY_BATCH),
+    ('rewards',ROYALTY_BATCH),
+    ('rebalance_confirmation','observe(uint256)'),
+    ('rebalance_confirmation','resetObservation(uint256)'),
+))
+LP_EXIT_BLOCKED_ACTIONS = frozenset((
+    ('strategy','applyKeeperRange(bytes32)'),
+    ('vault','rebalance(uint256,uint128,uint256)'),
+    ('compounder','compound(uint256,uint128,uint256)'),
+    ('vault','collectFees(uint256,uint256)'),
+    ('rebalance_confirmation','observe(uint256)'),
+    ('rebalance_confirmation','resetObservation(uint256)'),
+))
+
+def log(event: str, **fields: Any) -> None:
+    print(json.dumps({'time':dt.datetime.now(dt.timezone.utc).isoformat(),'event':event,**fields},sort_keys=True),flush=True)
+
+def error_context(exc: Exception) -> dict[str,str]:
+    # Never log exception text, signer output, RPC URLs or the full traceback.
+    trace = exc.__traceback__
+    while trace and trace.tb_next: trace = trace.tb_next
+    return {'error_type':type(exc).__name__, 'error_site':
+        f'{Path(trace.tb_frame.f_code.co_filename).name}:{trace.tb_frame.f_code.co_name}:{trace.tb_lineno}' if trace else 'unknown'}
+
+def positive(value: Any, field: str, *, zero: bool = False) -> int:
+    return integer(value,field,minimum=0 if zero else 1)
+
+def rpc_quantity(value: Any, field: str, *, minimum: int = 0) -> int:
+    """Require a complete canonical RPC quantity, without defaults/coercion."""
+    if not isinstance(value,str) or not re.fullmatch(r'0x(?:0|[1-9a-fA-F][0-9a-fA-F]{0,63})',value):
+        raise RpcError(f'Malformed {field}')
+    number = int(value,16)
+    if number < minimum: raise RpcError(f'Invalid {field}')
+    return number
+
+def rpc_hash(value: Any, field: str) -> str:
+    if not isinstance(value,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',value) or int(value,16) == 0:
+        raise RpcError(f'Malformed {field}')
+    return value.lower()
+
+def signer_environment(rpc_url: str | None = None) -> dict[str,str]:
+    """Keep host/runtime settings, excluding ambient Foundry wallet/tx overrides."""
+    blocked = ('ETH_', 'ETHERSCAN_', 'CAST_', 'FOUNDRY_', 'AWS_', 'GCP_')
+    environment = {key:value for key,value in os.environ.items()
+        if not key.startswith(blocked) and key not in ('CHAIN','PRIVATE_KEY','MNEMONIC','MNEMONIC_PASSPHRASE')}
+    if rpc_url is not None: environment['ETH_RPC_URL'] = rpc_url
+    return environment
+
+class Keeper:
+    def __init__(self, config: dict[str,Any], *, live: bool = False, rpc: Rpc | None = None):
+        self.config, self.live = config, live
+        # A heartbeat must identify the actual loaded configuration, not just a
+        # signer/chain which may be reused across deployments or policy reviews.
+        # Export only the digest: endpoint and signer-file secrets stay private.
+        self.configuration_sha256 = hashlib.sha256(json.dumps(
+            config,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+        self.source_files_sha256 = source_hashes()
+        self._lp_metadata_cache = None
+        self._lp_validation_failed = False
+        self.lp_execution_health = {'schema':OBSERVATION_SCHEMA,'state':'not_observed',
+            'last_confirmed':None,'last_error':None}
+        self.confirmation_policy_health = {'schema':OBSERVATION_SCHEMA,'state':'not_observed',
+            'last_observed':None,'last_error':None}
+        self.gas_review_health = {'state':'not_reviewed_this_cycle','last_review':None}
+        self.accounting_version = config.get('accounting_version',1)
+        self.royalty_settlement_version = config.get('royalty_settlement_version',0)
+        if type(self.royalty_settlement_version) is not int or self.royalty_settlement_version not in (0,2,3,4):
+            raise ValueError('Unsupported explicit royalty settlement profile')
+        if self.royalty_settlement_version in (2,3,4) and self.accounting_version not in (6,7):
+            raise ValueError('Original-currency royalty profile requires accounting6 or accounting7')
+        if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3,4,5,6,7):
+            raise ValueError('Unsupported keeper accounting version')
+        from zzz_ops.execution_price import version as execution_price_version
+        self.execution_price_version=execution_price_version(config.get('execution_price_version',0))
+        if self.execution_price_version and self.accounting_version!=7:
+            raise ValueError('Execution-price1 requires explicit keeper accounting7')
+        historical_custody = 4 if self.accounting_version in (5,6,7) else 3 if self.accounting_version==4 else 0
+        self.custody_version = config.get('custody_version',historical_custody)
+        allowed_custody = (5,) if self.accounting_version==7 else (4,5) if self.accounting_version==6 else (historical_custody,)
+        if type(self.custody_version) is not int or self.custody_version not in allowed_custody:
+            raise ValueError('Unsupported explicit custody authorization profile')
+        self.protocol_policy_version=config.get('protocol_policy_version',0)
+        if type(self.protocol_policy_version) is not int or self.protocol_policy_version!=(1 if self.accounting_version in (6,7) else 0):
+            raise ValueError('Accounting6/7 keeper requires explicit protocol-policy1')
+        self.fee_intake_version = config.get('fee_intake_version',0)
+        if type(self.fee_intake_version) is not int or self.fee_intake_version not in (0,1) or \
+                (self.fee_intake_version == 1 and self.accounting_version not in (2,3,4,5,6,7)) or \
+                (self.accounting_version in (3,4,5,6,7) and self.fee_intake_version != 1):
+            raise ValueError('Unsupported keeper fee-intake profile')
+        self.chain = positive(config['chain_id'],'chain_id')
+        self.rpc = rpc or Rpc(config['rpc_urls'],self.chain)
+        self.sender = address(config['sender'])
+        self.contracts = {k:address(v) for k,v in config['contracts'].items()}
+        for name in ('access','vault','strategy','fees','compounder','buyback','pools') + (('principal_exit',) if self.accounting_version in (4,5,6,7) else ()):
+            if name not in self.contracts: raise ValueError(f'Missing contract: {name}')
+        if self.accounting_version==7:
+            reward_pin=config.get('code_hashes',{}).get('rewards')
+            if ('rewards' not in self.contracts or not isinstance(reward_pin,str) or
+                    not re.fullmatch(r'0x[0-9a-fA-F]{64}',reward_pin) or int(reward_pin,16)==0):
+                raise ValueError('Accounting7 requires an explicit reviewed Rewards runtime')
+        adaptive = config.get('adaptive_range',{})
+        if not isinstance(adaptive,dict) or type(adaptive.get('enabled',False)) is not bool:
+            raise ValueError('Adaptive range requires explicit boolean configuration')
+        self.adaptive_range_enabled = adaptive.get('enabled',False)
+        # Absent accounting4 policy is explicitly the historical service mode.
+        # A fresh deployment must opt into version2; never probe/fallback from a
+        # failed getter or relabel a saved old deployment to activate new rules.
+        self.maintenance_policy_version = config.get('maintenance_policy_version',1 if self.accounting_version in (4,5,6,7) else 0)
+        if type(self.maintenance_policy_version) is not int or self.maintenance_policy_version not in (
+                (3,) if self.accounting_version in (5,6,7) else (1,2) if self.accounting_version == 4 else (0,)):
+            raise ValueError('Unsupported keeper maintenance policy version')
+        if self.maintenance_policy_version in (2,3) and self.adaptive_range_enabled:
+            raise ValueError('Threshold-based rebalancing requires operator-selected ranges')
+        self.lp_routing_version = config.get('lp_routing_version',0)
+        if type(self.lp_routing_version) is not int or self.lp_routing_version not in (0,1,2,3):
+            raise ValueError('Unsupported keeper LP-routing profile')
+        if (self.lp_routing_version==3)!=bool(self.execution_price_version):
+            raise ValueError('Keeper LP routing3 requires explicit execution-price1')
+        self.execution_quality_version = config.get('execution_quality_version',0)
+        if type(self.execution_quality_version) is not int or self.execution_quality_version not in (0,1):
+            raise ValueError('Unsupported keeper execution-quality profile')
+        if self.execution_quality_version == 1 and self.lp_routing_version not in (1,2,3):
+            raise ValueError('Execution quality requires explicit LP-routing profile1')
+        if self.lp_routing_version in (1,2,3):
+            if self.accounting_version not in (4,5,6,7) or self.maintenance_policy_version not in (2,3):
+                raise ValueError('LP routing requires a supported matching accounting and maintenance profile')
+            for role in ('liquidity','balancing_router','pool_manager','state_view'):
+                if role not in self.contracts: raise ValueError('Missing reviewed LP execution contract: '+role)
+                pin=config.get('code_hashes',{}).get(role,'')
+                if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or int(pin,16)==0:
+                    raise ValueError('Missing reviewed LP execution runtime: '+role)
+        if self.adaptive_range_enabled and (type(adaptive.get('policy_version')) is not int or adaptive['policy_version'] != 1):
+            raise ValueError('Adaptive range requires the explicit reviewed policy version 1')
+        self.portfolio_version = config.get('portfolio_version',0)
+        if (type(self.portfolio_version) is not int or
+                (self.accounting_version in (5,6,7) and (self.portfolio_version!=(2 if self.accounting_version in (6,7) else 1) or self.lp_routing_version!=(3 if self.execution_price_version else 2) or
+                 self.maintenance_policy_version!=3 or config.get('rebalance_confirmation_version')!=3 or
+                 self.execution_quality_version!=1)) or
+                (self.accounting_version not in (5,6,7) and (self.portfolio_version!=0 or self.lp_routing_version in (2,3)))):
+            raise ValueError('Fresh portfolio requires matching accounting, portfolio, LP routing, maintenance, confirmation and quality profiles')
+        if self.accounting_version in (5,6,7):
+            for role in ('portfolio_policy','lp_balance_math','lp_position_executor')+(('protocol_policy',) if self.accounting_version in (6,7) else ()):
+                if role not in self.contracts:raise ValueError('Missing reviewed portfolio helper: '+role)
+                pin=config.get('code_hashes',{}).get(role,'')
+                if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or int(pin,16)==0:
+                    raise ValueError('Missing reviewed portfolio helper runtime: '+role)
+        if self.execution_price_version:
+            for role in ('oracle','contribution_pricing'):
+                pin=config.get('code_hashes',{}).get(role,'')
+                if role not in self.contracts or not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or int(pin,16)==0:
+                    raise ValueError('Missing reviewed execution-price runtime: '+role)
+        self.rebalance_confirmation=RebalanceConfirmation(self)
+        self._rebalance_observation_due=None
+        self._confirmation_seen_buckets=set()
+        self._confirmation_pause_seen=set()
+        self._confirmation_recovery_interrupted=set()
+        self._rebalance_reset_due=None
+        if 'positions' in config or config.get('accounting_model',ACCOUNTING_MODEL) != ACCOUNTING_MODEL:
+            raise ValueError('Keeper configuration must use the shared-pool accounting model')
+        discovery = config.get('bucket_discovery',{})
+        if not isinstance(discovery,dict): raise ValueError('Bucket discovery settings must be an object')
+        self.max_buckets = positive(discovery.get('maximum_count',10000),'bucket_discovery.maximum_count')
+        self.batch_size = positive(discovery.get('max_per_cycle',32),'bucket_discovery.max_per_cycle')
+        if self.max_buckets > 100000 or self.batch_size > min(self.max_buckets,1000):
+            raise ValueError('Bucket discovery exceeds its bounded scan limits')
+        self.maintenance = config.get('maintenance',{})
+        self.overrides = config.get('bucket_overrides',{})
+        if not isinstance(self.maintenance,dict) or not isinstance(self.overrides,dict):
+            raise ValueError('Maintenance defaults and bucket overrides must be objects')
+        for bucket,settings in self.overrides.items():
+            number = positive(bucket,'bucket_overrides key')
+            if str(number) != bucket or number >= 1 << 256 or not isinstance(settings,dict):
+                raise ValueError('Bucket overrides require canonical uint256 bucket IDs and object settings')
+        self.path = Path(config.get('state_path','var/keeper.json'))
+        self.health_path = Path(config.get('health_path',str(self.path.with_suffix('.health.json'))))
+        paths = [self.path.resolve(),self.health_path.resolve(),Path(config.get('lock_path','var/keeper.lock')).resolve()]
+        paths.extend(Path(config[name]).resolve() for name in ('keystore','password_file') if config.get(name))
+        if len(set(paths)) != len(paths): raise ValueError('State, health and lock paths must be distinct')
+        if live and not self.path.is_file():
+            raise ValueError('Live state is missing; restore a verified backup or initialize an unused keeper')
+        self.state = read_json(self.path,{'chain_id':self.chain,'sender':self.sender,'contracts':self.contracts,'accounting_model':ACCOUNTING_MODEL,'accounting_version':self.accounting_version,'fee_intake_version':self.fee_intake_version,
+            'bucket_cursor':0,'last':{},'spent':{},'pending':None,'next_nonce':None,'receipt_anchor':None,
+            **({'execution_price_version':1} if self.execution_price_version else {})})
+        if not isinstance(self.state,dict): raise ValueError('Malformed persistent state')
+        if self.state['chain_id'] != self.chain or self.state['sender'] != self.sender:
+            raise ValueError('Persistent state belongs to another chain or sender')
+        if self.state.get('accounting_model') != ACCOUNTING_MODEL:
+            raise ValueError('Persistent keeper state requires a reviewed shared-pool migration; preserve pending records')
+        # A missing field is a historical WETH-accounting journal, never an
+        # implicit native port. No pending intent, nonce or receipt is rewritten.
+        if self.state.get('accounting_version',1) != self.accounting_version or type(self.state.get('accounting_version',1)) is not int:
+            raise ValueError('Persistent keeper state belongs to another accounting version; preserve recovery records')
+        if type(self.state.get('fee_intake_version',0)) is not int or self.state.get('fee_intake_version',0) != self.fee_intake_version:
+            raise ValueError('Persistent keeper state belongs to another fee-intake version; preserve recovery records')
+        if self.state.get('contracts') != self.contracts:
+            raise ValueError('Persistent keeper state belongs to another deployment')
+        if type(self.state.get('execution_price_version',0)) is not int or self.state.get('execution_price_version',0)!=self.execution_price_version:
+            raise ValueError('Persistent keeper state belongs to another execution-price profile; preserve recovery records')
+        positive(self.state.get('bucket_cursor'),'bucket_cursor',zero=True)
+        self._validate_state()
+        # Recover an existing validated intent before checking new scheduling
+        # values. The validator itself is always strict: no permissive mode can
+        # leak into cycle()/submit(). Deployment/signer/journal checks still run.
+        if not self.state.get('pending'): self._validate_maintenance_config()
+        self.retry_cooldown = positive(config.get('revert_cooldown_seconds',3600),'revert_cooldown_seconds')
+        if not 60 <= self.retry_cooldown <= 86400: raise ValueError('Revert cooldown must be 60-86400 seconds')
+        self.cycle_failures = 0
+        self._cycle_error = False
+        # Ephemeral local wake-up anchor, never persisted or used as permission
+        # to sign. Fresh canonical reads/on-chain guards still authorize work.
+        self._poll_clock = None
+        self.skipped_buckets = 0
+        self.blocked_actions = 0
+        self.confirmed_reverts = 0
+        self.active_revert_cooldowns = None
+        self.next_revert_retry_after = None
+        self.strategy_paused = False
+        self.preparing = None
+        self.canonical_lifecycle = None
+        self.principal_exit_started = None
+        self.stop_requested = lambda: False
+        self.last_success_at = None
+        self.confirmations = positive(config.get('confirmations',12),'confirmations')
+        self.fee_policy = config.get('receipt_fee_policy','unverified')
+        if self.fee_policy not in ('unverified','included','separate_l1_fee'):
+            raise ValueError('Unsupported receipt fee policy')
+        # Future submission settings never reinterpret an existing fee review.
+        if not self.state.get('pending'): self._submission_fee_profile()
+        self._configure_metadata()
+        self.royalties = RoyaltyAutomation(self)
+        self.lp_rewards = RoyaltyAutomation(self, lp=True)
+        self.principal_distribution = PrincipalDistribution(self)
+        turn = self.state.get('conversion_turn',0)
+        if type(turn) is not int or not 0 <= turn <= 2: raise ValueError('Invalid conversion scheduling state')
+        if type(self.state.get('buyback_priority',False)) is not bool:
+            raise ValueError('Invalid buyback priority state')
+        cursor = self.state.get('buyback_cursor',0)
+        if type(cursor) is not int or not 0 <= cursor <= MAX_BUYBACK_TASKS:
+            raise ValueError('Invalid buyback scheduling cursor')
+        # A bad new task must not prevent recovery of an already saved hash.
+        if not self.state.get('pending'): self._buyback_tasks()
+        if self.live:
+            if config.get('reviewed_for_live_use') is not True:
+                raise ValueError('Live use requires an explicit reviewed deployment configuration')
+            if self.state.get('next_nonce') is None:
+                raise ValueError('Live state needs a reviewed nonce checkpoint; do not reset old recovery state')
+            if self.fee_policy == 'unverified': raise ValueError('Qualify network receipt fee accounting before live use')
+            if self.fee_policy == 'separate_l1_fee': positive(config.get('l1_fee_allowance_wei'),'l1_fee_allowance_wei')
+            self._validate_runtime_files()
+            self._validate_signer()
+            self._validate_code_hashes()
+            self._validate_accounting_version()
+            # Receipt recovery needs no new balancing decision. Preserve the
+            # saved intent through a helper-read outage; every later balance
+            # action still rechecks this capability before simulation/signing.
+            if not self.state.get('pending'): self._validate_lp_routing()
+            self._validate_checkpoint()
+
+    def _validate_state(self) -> None:
+        clears=self.state.get(CONFIRMATION_CLEARS,{})
+        if not isinstance(clears,dict) or len(clears)>min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
+            raise ValueError('Malformed confirmation clear inventory')
+        for bucket,record in clears.items():
+            if (not isinstance(bucket,str) or str(positive(bucket,'confirmation clear bucket'))!=bucket or
+                    int(bucket)>=1<<256 or not isinstance(record,dict) or
+                    set(record)!={'number','hash','timestamp','nonce','awaiting_healthy_read'} or
+                    type(record['awaiting_healthy_read']) is not bool):
+                raise ValueError('Malformed confirmation clear acknowledgement')
+            rpc_hash(record['hash'],'confirmation clear block hash')
+            for name in ('number','timestamp','nonce'):
+                if type(record[name]) is not int or not 0<=record[name]<1<<256:
+                    raise ValueError('Malformed confirmation clear receipt')
+        resets=self.state.get(CONFIRMATION_RESETS,{})
+        if not isinstance(resets,dict) or len(resets)>min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
+            raise ValueError('Malformed confirmation reset inventory')
+        for bucket,needed in resets.items():
+            if (not isinstance(bucket,str) or str(positive(bucket,'confirmation reset bucket'))!=bucket or
+                    int(bucket)>=1<<256 or needed is not True):
+                raise ValueError('Malformed confirmation reset marker')
+        for namespace in (OUTSIDE_REBALANCE_STATE,CONFIRMATION_STATE,PORTFOLIO_STATE_NAMESPACE):
+            schedules = self.state.get(namespace,{})
+            if not isinstance(schedules,dict) or len(schedules) > min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
+                raise ValueError('Malformed outside-rebalance schedule inventory')
+            for bucket,record in schedules.items():
+                if not isinstance(bucket,str) or str(positive(bucket,'schedule bucket')) != bucket or int(bucket) >= 1 << 256:
+                    raise ValueError('Outside-rebalance bucket identity must be canonical')
+                fields={'identity','observed_at','next_check_at','execute_after'}
+                if namespace in (CONFIRMATION_STATE,PORTFOLIO_STATE_NAMESPACE):fields.add('last_checked_at')
+                if not isinstance(record,dict) or set(record) != fields:
+                    raise ValueError('Malformed outside-rebalance schedule')
+                rpc_hash(record['identity'],'outside-rebalance identity')
+                for name in fields-{'identity'}:
+                    value = record[name]
+                    if type(value) is not int or not 0 <= value < 1 << 64:
+                        raise ValueError('Malformed outside-rebalance schedule time')
+                observed,check,execute = (record[name] for name in ('observed_at','next_check_at','execute_after'))
+                if namespace in (CONFIRMATION_STATE,PORTFOLIO_STATE_NAMESPACE):
+                    last=record['last_checked_at']
+                    cadence=(1<=check-last<=CONFIRMATION_CHECK_SECONDS if namespace==PORTFOLIO_STATE_NAMESPACE else
+                        check-last in (CONFIRMATION_CHECK_SECONDS,LEGACY_CONFIRMATION_CHECK_SECONDS))
+                    valid=last>=observed and cadence and (
+                        execute==0 or 60<=execute-observed<=(300 if namespace==PORTFOLIO_STATE_NAMESPACE else 600))
+                else:valid=(execute==0 and check==observed+REBALANCE_CHECK_SECONDS or
+                    check==0 and 60<=execute-observed<=600)
+                if not valid:raise ValueError('Invalid outside-rebalance schedule bounds')
+        prior_draws=self.state.get('adjustment_jitter_last_v3',{})
+        if (not isinstance(prior_draws,dict) or len(prior_draws)>min(self.max_buckets,MAX_OUTSIDE_SCHEDULES) or
+                any(not isinstance(k,str) or not re.fullmatch(r'[1-9][0-9]{0,77}',k) or int(k)>=1<<256 or
+                    type(v) is not int or not 60<=v<=300 for k,v in prior_draws.items())):
+            raise ValueError('Invalid saved adjustment jitter history')
+        for field in ('last','spent','retry_after'):
+            values = self.state.get(field,{}) if field == 'retry_after' else self.state.get(field)
+            if not isinstance(values,dict): raise ValueError('Malformed keeper counters')
+            for key,value in values.items():
+                if not isinstance(key,str) or not key: raise ValueError('Malformed keeper counter key')
+                positive(value,field,zero=True)
+                if field == 'spent': dt.date.fromisoformat(key)
+        nonce = self.state.get('next_nonce')
+        if nonce is not None: positive(nonce,'next_nonce',zero=True)
+        anchor = self.state.get('receipt_anchor')
+        if anchor is not None:
+            if not isinstance(anchor,dict): raise ValueError('Malformed receipt checkpoint')
+            for field in ('number','nonce','timestamp'): positive(anchor.get(field),field,zero=True)
+            rpc_hash(anchor.get('hash'),'receipt checkpoint hash')
+            if nonce != anchor['nonce']+1: raise ValueError('Receipt checkpoint nonce mismatch')
+        pending = self.state.get('pending')
+        if pending is not None:
+            if not isinstance(pending,dict): raise ValueError('Malformed pending intent')
+            for field in ('nonce','value'): positive(pending.get(field),field,zero=True)
+            if nonce is not None and pending['nonce'] != nonce: raise ValueError('Pending nonce checkpoint mismatch')
+            address(pending.get('to'))
+            if not isinstance(pending.get('key'),str) or not pending['key']: raise ValueError('Missing action identity')
+            if not isinstance(pending.get('data'),str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2}){4,}',pending['data']):
+                raise ValueError('Malformed pending calldata')
+            dt.date.fromisoformat(pending['day'])
+            if pending.get('hash') is not None: rpc_hash(pending['hash'],'pending hash')
+            # Older pending intents remain recoverable evidence. Never invent
+            # the signing-time budget they did not record; reconciliation stops
+            # with an explicit diagnostic until an operator reviews that record.
+            if 'fee_review' in pending: self._fee_review(pending)
+
+    def _submission_fee_profile(self) -> int:
+        """Explicit future-only Robinhood type-2 zero-tip opt-in; never adoption."""
+        profile = self.config.get('submission_fee_profile',1)
+        if type(profile) is not int or profile not in (1,2):
+            raise ValueError('Unsupported keeper submission fee profile')
+        if profile == 2 and (self.chain != 4663 or self.fee_policy != 'included' or
+                positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True) != 0):
+            raise ValueError('Submission fee profile2 requires Robinhood4663 and reviewed inclusive fees without a separate L1 allowance')
+        return profile
+
+    @staticmethod
+    def _fee_review(pending: dict[str,Any]) -> dict[str,Any]:
+        review = pending.get('fee_review')
+        fields = {'schema','gas_limit','max_fee_per_gas','l1_fee_allowance_wei',
+                  'maximum_cost_wei','receipt_fee_policy'}
+        if review is None:
+            log('pending_fee_review_required',operator_action='preserve_and_review_original_evidence_never_resend')
+            raise RpcError('Legacy pending intent lacks its original fee review; preserve it and perform reviewed operator reconciliation, never resend')
+        if isinstance(review,dict) and type(review.get('schema')) is int and review['schema'] == 2:
+            fields.add('execution_fee_model')
+        if not isinstance(review,dict) or set(review) != fields or type(review.get('schema')) is not int or review['schema'] not in (1,2):
+            raise RpcError('Malformed pending fee review')
+        for name in ('gas_limit','max_fee_per_gas','l1_fee_allowance_wei','maximum_cost_wei'):
+            if type(review[name]) is not int or not 0 <= review[name] < 1 << 256:
+                raise RpcError('Malformed pending fee bound')
+        if review['gas_limit'] == 0 or review['maximum_cost_wei'] != \
+                review['gas_limit']*review['max_fee_per_gas']+review['l1_fee_allowance_wei']+pending['value']:
+            raise RpcError('Pending fee review arithmetic differs')
+        if review['receipt_fee_policy'] not in ('included','separate_l1_fee'):
+            raise RpcError('Pending network fee semantics are unqualified')
+        if review['schema'] == 2 and (review['execution_fee_model'] != 'eip1559_zero_tip' or
+                review['receipt_fee_policy'] != 'included' or review['l1_fee_allowance_wei'] != 0 or
+                review['max_fee_per_gas'] == 0):
+            raise RpcError('Malformed zero-tip pending fee review')
+        return review
+
+    def _validate_runtime_files(self) -> None:
+        if os.name != 'posix': raise ValueError('Live keeper requires supported Unix ownership/locking')
+        for path in (self.path,self.health_path):
+            parent = path.parent.stat()
+            if parent.st_uid != os.getuid() or parent.st_mode & 0o022:
+                raise ValueError('Runtime directory must belong to keeper and not be writable by others')
+            if path.is_symlink(): raise ValueError('Runtime state/health symlinks are forbidden')
+            if path.exists():
+                st = path.stat()
+                if not stat.S_ISREG(st.st_mode) or st.st_uid != os.getuid() or st.st_mode & 0o077:
+                    raise ValueError('Runtime files must be private regular files owned by keeper')
+
+    def _validate_checkpoint(self) -> None:
+        anchor = self.state.get('receipt_anchor')
+        if anchor is None:
+            if self.live and self.state.get('next_nonce') != 0:
+                raise RpcError('Missing confirmed checkpoint for a used signer')
+            return
+        head,head_timestamp = self._head()
+        block = positive(anchor['number'],'receipt checkpoint block',zero=True)
+        header = self.rpc.call('eth_getBlockByNumber',[hex(block),False])
+        if (head-block+1 < self.confirmations or not isinstance(header,dict) or
+                rpc_quantity(header.get('number'),'checkpoint header number') != block or
+                rpc_hash(header.get('hash'),'checkpoint header hash') != anchor['hash'] or
+                rpc_quantity(header.get('timestamp'),'checkpoint header timestamp') != anchor['timestamp'] or
+                head_timestamp < anchor['timestamp']):
+            log('confirmed_checkpoint_invalidated',block_number=block)
+            raise RpcError('Confirmed receipt checkpoint changed; manual reorg reconciliation required')
+
+    def initialize_state(self) -> None:
+        """Explicit bootstrap only. Used signers require restoration, never reset."""
+        if self.live or self.path.exists(): raise ValueError('Initialization requires missing state in dry-run mode')
+        if self.config.get('reviewed_for_live_use') is not True: raise ValueError('Review configuration before initialization')
+        self._validate_code_hashes()
+        self._validate_accounting_version()
+        self._validate_lp_routing()
+        self._head()
+        for tag in ('latest','pending'):
+            if rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,tag]),'initial nonce') != 0:
+                raise ValueError('Used keeper requires restored/reconciled state or a fresh authorized signer')
+        self.state['next_nonce'] = 0
+        self.save()
+        log('state_initialized',sender=self.sender,chain_id=self.chain)
+
+    def run_cycle(self) -> bool:
+        """Write a heartbeat separately from durable transaction recovery state."""
+        start = time.monotonic()
+        previous_success, previous_failures = self.last_success_at, self.cycle_failures
+        self.skipped_buckets = 0
+        self.blocked_actions = 0
+        self.confirmed_reverts = 0
+        self._cycle_error = False
+        self.active_revert_cooldowns = None
+        self.next_revert_retry_after = None
+        self._lp_metadata_cache = {}
+        self._lp_validation_failed = False
+        started_pending = bool(self.state.get('pending'))
+        self.lp_execution_health['state'] = ('pending_recovery' if started_pending else 'not_observed_this_cycle')
+        self.lp_execution_health['last_error'] = None
+        self.confirmation_policy_health.update(
+            state='pending_recovery' if started_pending else 'not_observed_this_cycle',last_error=None)
+        self.gas_review_health['state'] = 'not_reviewed_this_cycle'
+        def health(status: str, **extra: Any) -> None:
+            atomic_json(self.health_path,{'time':dt.datetime.now(dt.timezone.utc).isoformat(),
+                'health_schema':HEALTH_SCHEMA,
+                'status':status,'live':self.live,'chain_id':self.chain,'sender':self.sender,
+                'configuration_sha256':self.configuration_sha256,
+                'lp_execution_health':self.lp_execution_health,
+                'gas_review':self.gas_review_health,
+                'rebalance_confirmation_health':{
+                    'version':self.rebalance_confirmation.version,
+                    'check_interval_seconds':CONFIRMATION_CHECK_SECONDS if self.rebalance_confirmation.version in (1,2,3) else None,
+                    'pending_reset_buckets':sorted(self.state.get(CONFIRMATION_RESETS,{}),key=int),
+                    'awaiting_healthy_read_buckets':sorted((bucket for bucket,record in
+                        self.state.get(CONFIRMATION_CLEARS,{}).items() if record['awaiting_healthy_read']),key=int),
+                    'scope':'last_observed_latest_state_not_continuous_evidence',
+                    'last_observation':self.rebalance_confirmation.last_observation,
+                    'policy':self.confirmation_policy_health},
+                'last_success_at':self.last_success_at,'consecutive_failures':self.cycle_failures,
+                'skipped_buckets':self.skipped_buckets,'pending':bool(self.state.get('pending')),
+                'blocked_actions':self.blocked_actions,'strategy_paused':self.strategy_paused,
+                'confirmed_reverts':self.confirmed_reverts,
+                'active_revert_cooldowns':self.active_revert_cooldowns,
+                'next_revert_retry_after':self.next_revert_retry_after,
+                'preparation_active':self.preparing,
+                'canonical_state':self.canonical_lifecycle,
+                'lp_exit_started':self.principal_exit_started,
+                'pending_action':(self.state.get('pending') or {}).get('key'),
+                'pending_day':(self.state.get('pending') or {}).get('day'),
+                'duration_seconds':round(time.monotonic()-start,3),**extra})
+        health('running')  # A failed health write stops the cycle before signing.
+        try:
+            self.cycle()
+            self._observe_revert_cooldowns()
+            # Saved intent/receipt recovery always comes first and never needs
+            # a new route dependency. These observations cannot authorize work.
+            if not started_pending and not self.state.get('pending'):
+                self._observe_execution_health()
+                self.confirmation_policy_health=observe_confirmation_health(self,self.confirmation_policy_health)
+            elif self.rebalance_confirmation.version in (1,2,3):
+                self.confirmation_policy_health['state']='pending_recovery'
+        except Exception as exc:
+            self._cycle_error = True
+            self.cycle_failures += 1
+            details = error_context(exc)
+            retryable = isinstance(exc,(RpcError,subprocess.TimeoutExpired))
+            health('error' if retryable else 'halted',**details)
+            self._lp_metadata_cache = None
+            log('cycle_failed',retryable=retryable,consecutive_failures=self.cycle_failures,**details)
+            if not retryable: raise
+            return False
+        pending = bool(self.state.get('pending'))
+        if self.skipped_buckets or self.blocked_actions:
+            self.cycle_failures += 1
+            status = 'degraded'
+        elif pending:
+            status = 'awaiting_receipt' if self.state['pending'].get('hash') else 'recovery_required'
+        elif self.canonical_lifecycle not in (None,0):
+            self.cycle_failures = 0
+            self.last_success_at = dt.datetime.now(dt.timezone.utc).isoformat()
+            status = 'canonical_locked'
+        else:
+            self.cycle_failures = 0
+            if not self.confirmed_reverts:
+                self.last_success_at = dt.datetime.now(dt.timezone.utc).isoformat()
+            # A paid failure remains an observable restriction until its
+            # existing action cooldown expires, including after restart or
+            # another job succeeds. It does not stop independent scheduling or
+            # introduce additional loop backoff.
+            status = ('revert_cooldown' if self.active_revert_cooldowns else
+                ('degraded' if self.confirmed_reverts else ('healthy' if self.live else 'dry_run')))
+        # Older checkers do not understand schema2 metadata requirements. Their
+        # old success strings must not approve the new quality profile silently.
+        if (self.execution_quality_version == 1 or self.rebalance_confirmation.version in (1,2,3)) and status in ('healthy','dry_run'):
+            status += '_v2'
+        quality_fault=self.execution_quality_version==1 and self.lp_execution_health['state']!='observed_this_cycle'
+        confirmation_fault=(self.rebalance_confirmation.version in (1,2,3) and
+            self.confirmation_policy_health['state']!='observed_this_cycle' and not (
+                self.principal_exit_started and self.confirmation_policy_health['state'] in ('stopped','incompatible_cadence')))
+        metadata_degraded=not pending and self.canonical_lifecycle in (None,0) and (quality_fault or confirmation_fault)
+        if metadata_degraded:
+            status='degraded'
+            self.last_success_at=previous_success
+            self.cycle_failures=previous_failures+1
+        health(status)
+        self._lp_metadata_cache = None
+        log('cycle_completed',status=status,skipped_buckets=self.skipped_buckets,pending=pending,
+            confirmed_reverts=self.confirmed_reverts,
+            active_revert_cooldowns=self.active_revert_cooldowns,next_revert_retry_after=self.next_revert_retry_after)
+        return not (self.skipped_buckets or self.blocked_actions or metadata_degraded)
+
+    def poll_delay(self, interval: int) -> int:
+        # Optional-job/metadata degradation remains unhealthy, but must not
+        # stretch a known confirmation's polling deadline. Actual cycle-level
+        # RPC/recovery failures retain the historical exponential backoff.
+        known = (self.state.get(self._confirmation_namespace()) or self.state.get(CONFIRMATION_RESETS) or
+            any(record['awaiting_healthy_read'] for record in self.state.get(CONFIRMATION_CLEARS,{}).values()))
+        if self.rebalance_confirmation.version in (1,2,3) and known and not self._cycle_error:
+            # Saved confirmation maturity/jitter can be sooner than the outer
+            # interval. Count work since the latest validated head too; adding a
+            # full sleep after slow RPCs can otherwise miss the strict gap.
+            if self.state.get('pending') or self._poll_clock is None:return interval
+            stamp,captured = self._poll_clock
+            elapsed = time.monotonic()-captured
+            if not math.isfinite(elapsed) or not 0<=elapsed<=600:return interval
+            now = stamp+elapsed
+            delay = interval
+            for record in self.state.get(self._confirmation_namespace(),{}).values():
+                deadline = min(record['next_check_at'],record['last_checked_at']+CONFIRMATION_CHECK_SECONDS)
+                if record['execute_after']:deadline = min(deadline,record['execute_after'])
+                # An already-blocked job must not cause a one-second busy loop.
+                # Retrying a read adds no permission or paid observation itself.
+                remaining = 60 if deadline<=now else math.ceil(deadline-now)
+                delay = min(delay,remaining)
+            return max(1,delay)
+        return min(interval * 2**min(self.cycle_failures,3),max(interval,3600))
+
+    def save(self) -> None: atomic_json(self.path,self.state)
+
+    def _observe_revert_cooldowns(self) -> None:
+        """Summarize existing paid-revert restrictions without changing the journal."""
+        deadlines = self.state.get('retry_after',{})
+        count,earliest = 0,None
+        if deadlines:
+            _,timestamp = self._head()
+            for value in deadlines.values():
+                deadline = positive(value,'retry_after',zero=True)
+                if timestamp < deadline:
+                    count += 1
+                    earliest = deadline if earliest is None else min(earliest,deadline)
+        self.active_revert_cooldowns = count
+        self.next_revert_retry_after = earliest
+
+    def _validate_maintenance_settings(self,settings: dict[str,Any]) -> None:
+        if not isinstance(settings,dict): raise ValueError('Maintenance settings must be an object')
+        if set(settings)-MAINTENANCE_FIELDS: raise ValueError('Unknown maintenance setting; use documented fields')
+        if self.fee_intake_version == 1 and settings.get('sync_external_rewards',False):
+            raise ValueError('LP-only fee intake has no creator-payment synchronization job')
+        for name in ('compound','compound_idle','harvest','sync_external_rewards'):
+            if name in settings and type(settings[name]) is not bool:
+                raise ValueError(f'{name} must be an explicit boolean')
+        limits = {'minimum_liquidity':128,'minimum_compound_units':256}
+        for name,bits in limits.items():
+            if name in settings and positive(settings[name],name) >= 1 << bits:
+                raise ValueError(f'{name} exceeds uint{bits}')
+        if 'harvest_interval_seconds' in settings:
+            positive(settings['harvest_interval_seconds'],'harvest_interval_seconds')
+        if 'compound_interval_seconds' in settings:
+            interval = positive(settings['compound_interval_seconds'],'compound_interval_seconds',zero=True)
+            if interval != 0 and not 600 <= interval <= 604800:
+                raise ValueError('Compounding interval must be zero or 600-604800 seconds')
+        if 'compound_thresholds' in settings:
+            thresholds = settings['compound_thresholds']
+            if not isinstance(thresholds,dict) or not 1 <= len(thresholds) <= 33:
+                raise ValueError('Compound thresholds require a bounded nonempty currency map')
+            for currency,raw in thresholds.items():
+                if self._asset(currency) != currency:
+                    raise ValueError('Compound threshold currencies must use canonical lowercase addresses')
+                if positive(raw,'compound threshold') >= 1 << 256:
+                    raise ValueError('Compound threshold exceeds uint256')
+        if 'reward_routes' in settings:
+            routes = settings['reward_routes']
+            if not isinstance(routes,list) or routes:
+                raise ValueError('Reward bridge scheduling is retired; remove reward_routes without changing pending evidence')
+
+    def _validate_maintenance_config(self) -> None:
+        for settings in (self.maintenance,*self.overrides.values()):
+            self._validate_maintenance_settings(settings)
+        for override in ({},*self.overrides.values()):
+            settings = {**self.maintenance,**override}
+            if self.maintenance_policy_version in (2,3) and settings.get('compound',True) and not settings.get('compound_thresholds'):
+                raise ValueError('Fresh compounding requires explicit actual-currency thresholds')
+            if settings.get('compound_idle',False):
+                if self.accounting_version not in (2,3,4,5,6,7) or not settings.get('compound_thresholds') or \
+                        not 600 <= positive(settings.get('compound_interval_seconds',0),'compound_interval_seconds',zero=True) <= 604800:
+                    raise ValueError('Idle compounding requires native V2, currency thresholds and an explicit 600-604800-second interval')
+                address(self.config.get('idle_compounding_budget'))
+                pin = self.config.get('code_hashes',{}).get('idle_compounding_budget','')
+                if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or int(pin,16) == 0:
+                    raise ValueError('Idle compounding requires an exact reviewed budget runtime pin')
+
+    def _compound_budget(self,version: int) -> str:
+        """Authenticate the reviewed companion before trusting maintenance eligibility."""
+        try:
+            budget = address(self.config.get('idle_compounding_budget'))
+        except ValueError as exc:
+            raise RpcError('Compounding requires a reviewed budget binding') from exc
+        pin = self.config.get('code_hashes',{}).get('idle_compounding_budget','')
+        if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or int(pin,16) == 0:
+            raise RpcError('Compounding requires an exact reviewed budget runtime pin')
+        code = self.rpc.call('eth_getCode',[budget,'latest'])
+        if not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or \
+                '0x'+keccak256(bytes.fromhex(code[2:])).hex() != pin.lower():
+            raise RpcError('Compounding budget runtime differs from the reviewed profile')
+        def read(signature: str,*args: int) -> int:
+            return uint_result(self.rpc.eth_call(budget,calldata(signature,*args)))
+        if self.view('vault','migrationBudget()') != int(budget,16) or \
+                read('vault()') != int(self.contracts['vault'],16) or read('IDLE_COMPOUNDING_VERSION()') != version:
+            raise RpcError('Compounding budget capability or Vault binding differs')
+        return budget
+
+    def _idle_compound_checkpoint(self,bucket: int,fields: list[str]) -> tuple[int,int]:
+        """Preserve the explicitly opted-in historical V1 cooldown reader."""
+        budget = self._compound_budget(1)
+        last = uint_result(self.rpc.eth_call(budget,calldata('lastCompound(uint256)',bucket)))
+        if last >= 1 << 64: raise RpcError('Malformed compound checkpoint')
+        config = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('get(bytes32)','0x'+fields[0])))
+        if len(config) != 14 or not 600 <= int(config[11],16) <= 604800:
+            raise RpcError('Malformed on-chain compound cooldown')
+        if int(config[6],16) != 1: raise RpcError('Pool operations are not enabled for idle compounding')
+        return last,int(config[11],16)
+
+    def _compound_ready(self,bucket: int) -> bool:
+        """Read the exact historical V2 or separate-interval V3 companion policy."""
+        budget = self._compound_budget(4 if self.accounting_version in (5,6,7) else 3 if self.maintenance_policy_version==2 else 2)
+        ready = uint_result(self.rpc.eth_call(budget,calldata('compoundReady(uint256)',bucket)))
+        if ready not in (0,1): raise RpcError('Malformed compound eligibility')
+        return ready == 1
+
+    def _compound_policy_status(self,bucket: int) -> dict[str,Any]:
+        """One fresh physical snapshot; no confirmation or scheduling mutation."""
+        from keeper.compound_policy import observe
+        roles=('access','vault','strategy','pools','liquidity','pool_manager','state_view')+(
+            ('portfolio_policy','rebalance_confirmation','lp_position_executor','balancing_router','lp_balance_math') if self.accounting_version in (5,6,7) else ())
+        if any(role not in self.contracts or
+                not isinstance(self.config.get('code_hashes',{}).get(role),str) or
+                re.fullmatch(r'0x[0-9a-fA-F]{64}',self.config['code_hashes'][role]) is None or
+                int(self.config['code_hashes'][role],16)==0 for role in roles):
+            raise CompoundPolicyUnconfigured('Compound physical readers require reviewed configuration')
+        try:
+            header=self.rpc.call('eth_getBlockByNumber',['latest',False])
+            if not isinstance(header,dict):raise ValueError('Missing compound policy header')
+            number=rpc_quantity(header.get('number'),'compound policy block number')
+            stamp=rpc_quantity(header.get('timestamp'),'compound policy timestamp',minimum=1)
+            block={'blockHash':rpc_hash(header.get('hash'),'compound policy block hash'),'requireCanonical':True}
+            if abs(time.time()-stamp)>600:raise ValueError('Stale compound policy header')
+            def read(target,signature,*args,count=1):
+                return decode_words(self.rpc.call('eth_call',[{'to':target,'data':calldata(signature,*args)},block]))
+            profile={'accounting_version':self.accounting_version} if self.accounting_version in (5,6,7) else {}
+            if self.execution_price_version:profile['execution_price_version']=1
+            proof=observe(read,lambda target:self.rpc.call('eth_getCode',[target,block]),
+                contracts=self.contracts,code_hashes=self.config.get('code_hashes',{}),bucket=bucket,**profile)
+            if proof['last_rebalance']>stamp:raise ValueError('Compound position checkpoint is in the future')
+            final=self.rpc.call('eth_getBlockByNumber',[hex(number),False])
+            if (not isinstance(final,dict) or
+                    rpc_quantity(final.get('number'),'final compound policy block number')!=number or
+                    rpc_hash(final.get('hash'),'final compound policy block hash')!=block['blockHash'] or
+                    rpc_quantity(final.get('timestamp'),'final compound policy timestamp',minimum=1)!=stamp):
+                raise RpcError('Compound physical observation block changed')
+            if abs(time.time()-stamp)>600:raise RpcError('Compound physical observation became stale')
+            return {**proof,'block_number':number,'block_hash':block['blockHash'],'block_timestamp':stamp}
+        except (ValueError,TypeError,KeyError) as exc:
+            raise RpcError('Compound physical policy observation is unavailable') from exc
+
+    def _compound_policy_allowed(self,bucket: int) -> bool:
+        key=str(bucket)
+        confirmation=self.rebalance_confirmation.version in (1,2,3)
+        if confirmation and self.state.get(CONFIRMATION_RESETS,{}).get(key):
+            self._rebalance_reset_due=bucket
+            log('compound_waiting',bucket_id=key,reason='waiting_confirmation_clear',
+                scope='keeper_policy_not_contract_eligibility')
+            return False
+        tracked=key in self.state.get(self._confirmation_namespace(),{}) or key in self.state.get(CONFIRMATION_CLEARS,{})
+        try:status=self._compound_policy_status(bucket)
+        except CompoundPolicyUnconfigured:raise
+        except (ValueError,RpcError):
+            if confirmation and tracked:self._mark_confirmation_reset(bucket)
+            raise
+        if confirmation and tracked and not status['range_update_pending']:
+            try:record=self._compound_confirmation_record(bucket,status)
+            except (ValueError,RpcError):
+                self._mark_confirmation_reset(bucket)
+                raise
+            side=(status['threshold_side'] if self.rebalance_confirmation.version==3 else
+                1 if status['tick']<status['tick_lower'] else 2 if status['tick']>=status['tick_upper'] else 0)
+            if (self.rebalance_confirmation.version==3 and status['reference_threshold_required'] and
+                    side!=status['reference_threshold_side']):side=0
+            acknowledged=key in self.state.get(CONFIRMATION_CLEARS,{})
+            if record['nonempty'] and (acknowledged or side==0 or side!=record['side']):
+                # A same-hash inside/opposite-side read is negative evidence. A
+                # retained clear plus a nonempty record is foreign evidence;
+                # only that authenticated contradiction forces another clear.
+                self._mark_confirmation_reset(bucket,force=acknowledged)
+                self._rebalance_reset_due=bucket
+                log('compound_waiting',bucket_id=key,reason='waiting_confirmation_clear',
+                    scope='keeper_policy_not_contract_eligibility')
+                return False
+        if not status['allowed']:
+            log('compound_waiting',bucket_id=str(bucket),reason=status['status'],
+                scope='keeper_policy_not_contract_eligibility')
+        return status['allowed']
+
+    def _compound_confirmation_record(self,bucket: int,proof: dict[str,Any]) -> dict[str,Any]:
+        """Authenticate an existing window at the physical proof hash; no writes."""
+        try:
+            number,stamp=proof['block_number'],proof['block_timestamp']
+            digest=rpc_hash(proof['block_hash'],'compound confirmation proof hash')
+            schedule=self.state.get(self._confirmation_namespace(),{}).get(str(bucket))
+            clear=self.state.get(CONFIRMATION_CLEARS,{}).get(str(bucket))
+            if (schedule is not None and stamp<schedule['last_checked_at'] or
+                    clear is not None and (stamp<clear['timestamp'] or number<clear['number'])):
+                raise RpcError('Compound confirmation proof precedes tracked evidence')
+            if abs(time.time()-stamp)>600:raise RpcError('Stale compound confirmation proof')
+            block={'blockHash':digest,'requireCanonical':True}
+            helper=self.contracts['rebalance_confirmation'];strategy=self.contracts['strategy'];access=self.contracts['access']
+            for role,target in (('rebalance_confirmation',helper),('strategy',strategy),('access',access)):
+                code=self.rpc.call('eth_getCode',[target,block])
+                expected=self.config.get('code_hashes',{}).get(role,'')
+                if (not isinstance(expected,str) or re.fullmatch(r'0x[0-9a-fA-F]{64}',expected) is None or
+                        not isinstance(code,str) or re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) is None or
+                        '0x'+keccak256(bytes.fromhex(code[2:])).hex()!=expected.lower()):
+                    raise RpcError('Compound confirmation runtime differs')
+            def read(target,signature,*args,count=1):
+                values=decode_words(self.rpc.call('eth_call',[{'to':target,'data':calldata(signature,*args)},block]))
+                if len(values)!=count:raise RpcError('Malformed compound confirmation response')
+                return [int(word,16) for word in values]
+            for target,signature,expected in (
+                    (helper,'strategy()',int(strategy,16)),(helper,'access()',int(access,16)),
+                    (helper,'REBALANCE_CONFIRMATION_VERSION()',self.rebalance_confirmation.version),
+                    (strategy,'access()',int(access,16)),(strategy,'rebalanceConfirmation()',int(helper,16)),
+                    (strategy,'REBALANCE_CONFIRMATION_VERSION()',self.rebalance_confirmation.version)):
+                if read(target,signature)!=[expected]:raise RpcError('Compound confirmation binding differs')
+            for label,target in (('ZZZStrategy',strategy),('ZZZVault',self.contracts['vault'])):
+                if read(access,'module(bytes32)','0x'+keccak256(label.encode()).hex())!=[int(target,16)]:
+                    raise RpcError('Compound confirmation module differs')
+            identity,first,last,side=read(helper,'observations(uint256)',bucket,count=4)
+            if (not 0<=first<=last<=stamp or last>=1<<64 or side not in (0,1,2) or
+                    identity==0 and (first!=0 or last!=0 or side!=0) or
+                    identity!=0 and (first==0 or side==0)):
+                raise RpcError('Malformed compound confirmation record')
+            final=self.rpc.call('eth_getBlockByNumber',[hex(number),False])
+            if (not isinstance(final,dict) or rpc_quantity(final.get('number'),'compound confirmation number')!=number or
+                    rpc_hash(final.get('hash'),'compound confirmation hash')!=digest or
+                    rpc_quantity(final.get('timestamp'),'compound confirmation timestamp',minimum=1)!=stamp or
+                    abs(time.time()-stamp)>600):
+                raise RpcError('Compound confirmation proof changed or became stale')
+            return {'nonempty':identity!=0,'side':side}
+        except (ValueError,TypeError,KeyError) as exc:
+            raise RpcError('Compound confirmation evidence is unavailable') from exc
+
+    def _compound_submission_ready(self,args: tuple[int|str,...]) -> bool:
+        if self.accounting_version not in (4,5,6,7) or self.maintenance_policy_version not in (2,3):return True
+        if len(args)!=3 or type(args[0]) is not int or not 0<args[0]<1<<256:
+            raise ValueError('Malformed compound submission')
+        return self._compound_policy_allowed(args[0])
+
+    def _validate_upkeep_policy(self) -> None:
+        if self.maintenance_policy_version not in (2,3): return
+        for name in ('strategy','pools'):
+            pin = self.config.get('code_hashes',{}).get(name,'')
+            code = self.rpc.call('eth_getCode',[self.contracts[name],'latest'])
+            if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or int(pin,16) == 0 or \
+                    not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or \
+                    '0x'+keccak256(bytes.fromhex(code[2:])).hex() != pin.lower():
+                raise RpcError('Outside-only runtime differs from the reviewed profile')
+            module = '0x'+keccak256(('ZZZStrategy' if name == 'strategy' else 'ZZZPoolRegistry').encode()).hex()
+            if self.view(name,'access()') != int(self.contracts['access'],16) or \
+                    self.view('access','module(bytes32)',module) != int(self.contracts[name],16):
+                raise RpcError('Outside-only module binding differs from the reviewed profile')
+        if self.view('strategy','MAINTENANCE_POLICY_VERSION()') != self.maintenance_policy_version:
+            raise RpcError('Outside-only maintenance policy version differs')
+
+    def _lp_routing_snapshot(self,header: dict[str,Any],*,use_cache: bool = False) -> dict[str,Any]:
+        """Read one exact canonical state; only cycle discovery can reuse it."""
+        if self.lp_routing_version not in (1,2,3): return
+        from zzz_ops.lp_execution import observe
+        if not isinstance(header,dict): raise RpcError('Missing LP execution header')
+        block={'blockHash':rpc_hash(header.get('hash'),'LP execution block hash'),'requireCanonical':True}
+        number=rpc_quantity(header.get('number'),'LP execution block number')
+        if abs(time.time()-rpc_quantity(header.get('timestamp'),'LP execution timestamp',minimum=1))>600:
+            raise RpcError('Stale LP execution snapshot')
+        identity=hashlib.sha256(json.dumps(self.config,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+        if identity != self.configuration_sha256:
+            raise RpcError('Loaded LP execution configuration changed; controlled restart required')
+        cache_key=(block['blockHash'],number,header['timestamp'],identity,
+            self.lp_routing_version,self.execution_quality_version)
+        cache=self._lp_metadata_cache if use_cache else None
+        if cache is not None and cache_key in cache:
+            # A canonical hash cache is never a fallback for a failed new head.
+            current=self.rpc.call('eth_getBlockByNumber',[hex(number),False])
+            if current != header: raise RpcError('Cached LP execution anchor changed')
+            return copy.deepcopy(cache[cache_key])
+        def read(target,method,*args,count=1):
+            values=decode_words(self.rpc.call('eth_call',[{'to':target,'data':calldata(method,*args)},block]))
+            if len(values)!=count:raise ValueError('LP execution getter ABI differs')
+            return values
+        try:
+            runtime_roles=('access','pools','liquidity','balancing_router','pool_manager','state_view')+(
+                ('strategy',) if self.execution_quality_version==1 else ())+(
+                ('lp_balance_math','lp_position_executor') if self.lp_routing_version in (2,3) else ())+(
+                ('oracle','contribution_pricing') if self.execution_price_version else ())
+            for role in runtime_roles:
+                expected=self.config.get('code_hashes',{}).get(role,'')
+                code=self.rpc.call('eth_getCode',[self.contracts[role],block])
+                if (not isinstance(expected,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',expected) or
+                        not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or
+                        '0x'+keccak256(bytes.fromhex(code[2:])).hex()!=expected.lower()):
+                    raise ValueError('LP execution runtime differs')
+            for role,label in (('pools','ZZZPoolRegistry'),('liquidity','ZZZLiquidityManager')):
+                if (read(self.contracts['access'],'module(bytes32)','0x'+keccak256(label.encode()).hex())!=[f'{int(self.contracts[role],16):064x}'] or
+                        read(self.contracts[role],'access()')!=[f'{int(self.contracts["access"],16):064x}']):
+                    raise ValueError('LP execution module binding differs')
+            observation=observe(read,liquidity=self.contracts['liquidity'],
+                router=self.contracts['balancing_router'],pool_manager=self.contracts['pool_manager'],
+                state_view=self.contracts['state_view'],access=self.contracts['access'],pools=self.contracts['pools'],
+                quality_version=self.execution_quality_version,strategy=self.contracts['strategy'],
+                **({'routing_version':self.lp_routing_version,'math_helper':self.contracts['lp_balance_math'],
+                    'position_executor':self.contracts['lp_position_executor'],'portfolio_version':self.portfolio_version,
+                    'execution_price_version':self.execution_price_version} if self.lp_routing_version in (2,3) else {}))
+            if self.execution_price_version:
+                from zzz_ops.execution_price import observe as observe_prices
+                if (read(self.contracts['oracle'],'access()')!=[f'{int(self.contracts["access"],16):064x}'] or
+                        read(self.contracts['contribution_pricing'],'access()')!=[f'{int(self.contracts["access"],16):064x}'] or
+                        read(self.contracts['oracle'],'contributionPricing()')!=[f'{int(self.contracts["contribution_pricing"],16):064x}'] or
+                        read(self.contracts['contribution_pricing'],'oracle()')!=[f'{int(self.contracts["oracle"],16):064x}']):
+                    raise ValueError('Execution-price parent binding differs')
+                observation['execution_price']=observe_prices(read,self.contracts)
+        except (ValueError,TypeError,KeyError) as exc:
+            raise RpcError('LP execution capability differs from the reviewed profile') from exc
+        if hashlib.sha256(json.dumps(self.config,sort_keys=True,separators=(',',':')).encode()).hexdigest() != identity:
+            raise RpcError('LP execution configuration changed during observation')
+        result={'metadata':observation,'block_number':number,'block_hash':block['blockHash'],
+            'block_timestamp':rpc_quantity(header.get('timestamp'),'LP execution timestamp',minimum=1),
+            'configuration_sha256':identity,
+            'runtime_code_hashes':{role:self.config['code_hashes'][role].lower()
+                for role in runtime_roles}}
+        if cache is not None:
+            if len(cache)>=8: cache.clear()
+            cache[cache_key]=copy.deepcopy(result)
+        return result
+
+    def _validate_lp_routing(self,*,use_cache: bool = False) -> None:
+        """Fresh pre-simulation/signing checks never reuse discovery metadata."""
+        if self.lp_routing_version not in (1,2,3): return
+        try:
+            header=self.rpc.call('eth_getBlockByNumber',['latest',False])
+            result=self._lp_routing_snapshot(header,use_cache=use_cache)
+            self.lp_execution_observation=result['metadata']
+        except (RpcError,ValueError,TypeError,KeyError) as exc:
+            self._lp_validation_failed=True
+            if self._lp_metadata_cache is not None:self._lp_metadata_cache.clear()
+            self.lp_execution_health.update(state='unavailable',last_error=error_context(exc))
+            raise
+
+    def _observe_execution_health(self) -> None:
+        """Best-effort confirmed observation, separate from inclusion guards."""
+        if self.execution_quality_version != 1:
+            self.lp_execution_health['state']='not_configured'
+            return
+        if self._lp_validation_failed: return
+        try:
+            head=self.rpc.call('eth_getBlockByNumber',['latest',False])
+            if not isinstance(head,dict): raise RpcError('Missing observation head')
+            tip=rpc_quantity(head.get('number'),'observation head number')
+            tip_hash=rpc_hash(head.get('hash'),'observation head hash')
+            tip_stamp=rpc_quantity(head.get('timestamp'),'observation head timestamp',minimum=1)
+            if tip+1<self.confirmations: raise RpcError('Insufficient observation confirmations')
+            number=tip-self.confirmations+1
+            header=head if number==tip else self.rpc.call('eth_getBlockByNumber',[hex(number),False])
+            if not isinstance(header,dict) or rpc_quantity(header.get('number'),'observation number')!=number:
+                raise RpcError('Observation block number differs')
+            result=self._lp_routing_snapshot(header,use_cache=True)
+            if result['block_timestamp']>tip_stamp:
+                raise RpcError('Observation timestamp exceeds its head')
+            # Exact anchor identity alone does not retain confirmation depth:
+            # a failover/reorg can leave the anchor canonical under a lower tip.
+            final_head=self.rpc.call('eth_getBlockByNumber',['latest',False])
+            if not isinstance(final_head,dict): raise RpcError('Missing final observation head')
+            final_tip=rpc_quantity(final_head.get('number'),'final observation head number')
+            final_hash=rpc_hash(final_head.get('hash'),'final observation head hash')
+            final_stamp=rpc_quantity(final_head.get('timestamp'),'final observation head timestamp',minimum=1)
+            if (final_tip<tip or final_tip-number+1<self.confirmations or final_stamp<tip_stamp or
+                    final_tip==tip and (final_hash!=tip_hash or final_stamp!=tip_stamp)):
+                raise RpcError('Observation head changed or lost confirmation depth')
+            canonical=self.rpc.call('eth_getBlockByNumber',[hex(number),False])
+            if canonical != header: raise RpcError('Confirmed observation anchor changed')
+            observed_at=int(time.time())
+            if any(not -30<=observed_at-stamp<=600 for stamp in (result['block_timestamp'],final_stamp)):
+                raise RpcError('Confirmed observation became stale or future')
+            result.update(head_number=final_tip,observed_at_unix=observed_at,
+                source_files_sha256=self.source_files_sha256,
+                source_identity_scope='local_files_at_keeper_start_not_runtime_attestation')
+            self.lp_execution_health.update(state='observed_this_cycle',last_confirmed=result,last_error=None)
+        except (RpcError,ValueError,TypeError,KeyError) as exc:
+            if self._lp_metadata_cache is not None:self._lp_metadata_cache.clear()
+            self.lp_execution_health.update(state='unavailable',last_error=error_context(exc))
+
+    def _confirmation_namespace(self):
+        return PORTFOLIO_STATE_NAMESPACE if self.rebalance_confirmation.version==3 else CONFIRMATION_STATE
+
+    def _rebalance_delay(self,bucket):
+        if self.rebalance_confirmation.version!=3:return 60+secrets.randbelow(541)
+        previous=self.state.get('adjustment_jitter_last_v3',{}).get(str(bucket))
+        if previous is None:return 60+secrets.randbelow(241)
+        # Uniform over the other240delays; no unbounded rejection/restart loop.
+        selected=60+secrets.randbelow(240)
+        return selected+1 if selected>=previous else selected
+
+    def _store_rebalance_schedule(self,bucket: int,record: dict[str,Any] | None) -> None:
+        # Durability precedes both waiting and any eventual signer. A failed save
+        # restores memory too; restart never draws a fresh delay to bypass it.
+        previous = self.state
+        updated = copy.deepcopy(previous)
+        namespace=self._confirmation_namespace() if self.rebalance_confirmation.version in (1,2,3) else OUTSIDE_REBALANCE_STATE
+        schedules = updated.setdefault(namespace,{})
+        if record is None:
+            if str(bucket) not in schedules: return
+            del schedules[str(bucket)]
+        else:
+            if str(bucket) not in schedules and len(schedules) >= min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
+                raise ValueError('Outside-rebalance schedule inventory is full')
+            old=schedules.get(str(bucket))
+            schedules[str(bucket)] = record
+            if namespace==PORTFOLIO_STATE_NAMESPACE and record['execute_after'] and (
+                    old is None or old['execute_after']==0 or old['identity']!=record['identity']):
+                delay=record['execute_after']-record['observed_at']
+                if not 60<=delay<=300:raise ValueError('Invalid fresh adjustment delay')
+                updated.setdefault('adjustment_jitter_last_v3',{})[str(bucket)]=delay
+        self.state = updated
+        try: self.save()
+        except BaseException:
+            self.state = previous
+            raise
+
+    def _rebalance_due(self,bucket: int,fields: list[str],now: int,*,force: bool = False) -> bool:
+        try:return self._rebalance_due_checked(bucket,fields,now,force=force)
+        except (ValueError,RpcError):
+            if self.rebalance_confirmation.version in (1,2,3):self._mark_confirmation_reset(bucket)
+            raise
+
+    def _rebalance_due_checked(self,bucket: int,fields: list[str],now: int,*,force: bool = False) -> bool:
+        self._rebalance_observation_due=None
+        self._rebalance_reset_due=None
+        if self.maintenance_policy_version not in (2,3):
+            return bool(self.view('strategy','needsRebalance(uint256)',bucket))
+        position = decode_position(fields,self.accounting_version)
+        if position['status'] != 'active' or position['lp_token_id'] == 0:
+            return False
+        config = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('get(bytes32)',position['pool_id'])))
+        if len(config) != 14 or '0x'+keccak256(bytes.fromhex(''.join(config[:5]))).hex() != position['pool_id']:
+            raise RpcError('Outside-rebalance pool configuration differs')
+        interval = int(config[11],16)
+        if not 600 <= interval <= 604800 or int(config[6],16) not in (0,1):
+            raise RpcError('Malformed outside-rebalance interval or operation flag')
+        if type(now) is not int or not 0 <= now < (1 << 64)-REBALANCE_CHECK_SECONDS or position['last_rebalance'] > now:
+            raise RpcError('Invalid outside-rebalance chain clock')
+        orientation = self.view('strategy','rangeOrientation(bytes32)',position['pool_id'])
+        if orientation not in (0,1): raise RpcError('Malformed range orientation')
+        # Deliberately exclude balances, idle, NAV and prices: contributions and
+        # harvesting must not reset a replacement's waiting period or jitter.
+        basis = [2,self.chain,self.contracts['vault'],self.contracts['strategy'],
+            self.config['code_hashes']['strategy'],self.contracts['pools'],self.config['code_hashes']['pools'],
+            bucket,position['pool_id'],position['lp_token_id'],position['last_rebalance'],config,orientation]
+        identity = '0x'+keccak256(json.dumps(basis,separators=(',',':')).encode()).hex()
+        if self.rebalance_confirmation.version in (1,2,3):
+            record=self.state.get(self._confirmation_namespace(),{}).get(str(bucket))
+            if record is not None and now<record['last_checked_at']:
+                raise RpcError('Confirmation chain clock retreated')
+            if int(config[6],16)!=1 or (self.rebalance_confirmation.version!=3 and now<position['last_rebalance']+interval):return False
+            return self._confirmed_rebalance_due(bucket,identity,now,force=force)
+        record = self.state.get(OUTSIDE_REBALANCE_STATE,{}).get(str(bucket))
+        if record is not None and record['identity'] != identity:
+            self._store_rebalance_schedule(bucket,None)
+            record = None
+        if record is not None and now < record['observed_at']:
+            raise RpcError('Outside-rebalance chain clock retreated')
+        if int(config[6],16) != 1 or now < position['last_rebalance']+interval:
+            return False
+        manual = self.view('strategy','rangeUpdatePending(uint256)',bucket)
+        if manual not in (0,1): raise RpcError('Malformed desired-range flag')
+        if record is not None and not manual and record['execute_after'] == 0 and now < record['next_check_at']:
+            return False
+        needed = self.view('strategy','needsRebalance(uint256)',bucket)
+        if needed not in (0,1): raise RpcError('Malformed outside-rebalance eligibility')
+        if not needed:
+            self._store_rebalance_schedule(bucket,dict(identity=identity,observed_at=now,
+                next_check_at=now+REBALANCE_CHECK_SECONDS,execute_after=0))
+            return False
+        if record is not None and record['execute_after']:
+            return now >= record['execute_after']
+        delay = 60+secrets.randbelow(541)
+        self._store_rebalance_schedule(bucket,dict(identity=identity,observed_at=now,
+            next_check_at=0,execute_after=now+delay))
+        log('rebalance_scheduled',bucket_id=str(bucket),execute_after=now+delay,manual_range=bool(manual))
+        return False
+
+    def _confirmed_rebalance_due(self,bucket: int,basis: str,now: int,*,force: bool = False) -> bool:
+        if self.state.get(CONFIRMATION_RESETS,{}).get(str(bucket)):
+            self._rebalance_reset_due=bucket
+            return False
+        record=self.state.get(self._confirmation_namespace(),{}).get(str(bucket))
+        if record is not None and now<record['last_checked_at']:
+            raise RpcError('Confirmation chain clock retreated')
+        # The four-minute cadence is an evaluation schedule, not an attestation
+        # or an inclusion-time guard. Submission always calls this with force.
+        manual=self.view('strategy','rangeUpdatePending(uint256)',bucket)
+        if manual not in (0,1):raise RpcError('Malformed desired-range flag')
+        # Read old300-second journals without rewriting pending work or jitter.
+        # A normal healthy evaluation, not construction/recovery, writes240.
+        next_check=min(record['next_check_at'],record['last_checked_at']+CONFIRMATION_CHECK_SECONDS) if record is not None else 0
+        if (not force and record is not None and not manual and now<next_check and
+                (record['execute_after']==0 or now<record['execute_after'])):
+            return False
+        status=self._confirmation_status(bucket)
+        if status['block_timestamp']<now:raise RpcError('Confirmation snapshot precedes the scheduling head')
+        now=status['block_timestamp']
+        clear=self.state.get(CONFIRMATION_CLEARS,{}).get(str(bucket))
+        if clear is not None:
+            if status['observation_identity']!='0x'+'0'*64:
+                # Our own observation intent atomically removes the clear ack.
+                # While it remains, a new nonempty record is foreign evidence,
+                # including after an earlier healthy empty recovery read.
+                self._mark_confirmation_reset(bucket,force=True)
+                self._rebalance_reset_due=bucket
+                return False
+            elif clear['awaiting_healthy_read']:
+                previous=self.state;updated=copy.deepcopy(previous)
+                updated[CONFIRMATION_CLEARS][str(bucket)]['awaiting_healthy_read']=False
+                self.state=updated
+                try:self.save()
+                except BaseException:
+                    self.state=previous
+                    raise
+        if bucket not in self._confirmation_seen_buckets:
+            self._confirmation_seen_buckets.add(bucket)
+            if status['observation_identity']!='0x'+'0'*64:
+                self._mark_confirmation_reset(bucket)
+                self._rebalance_reset_due=bucket
+                return False
+        if (not status['manual'] and status['observation_identity']!='0x'+'0'*64 and
+                (status['side']==0 or status['identity']!=status['observation_identity'] or
+                 status['side']!=status['observation_side'])):
+            # A negative sampled condition was actually observed by this worker.
+            # Persist a CLEAR, not a renewal: prices may recover before inclusion,
+            # when observe() could otherwise extend the old, invalidated window.
+            self._mark_confirmation_reset(bucket)
+            self._rebalance_reset_due=bucket
+            return False
+        policy=[basis,status['policy_revision'],status['duration_seconds'],
+            status['maximum_gap_seconds'],status['review_hash'],status['manual'],
+            status['identity'] if not status['manual'] else None,
+            status['first_seen'] if not status['manual'] else None]
+        if self.rebalance_confirmation.version==3:
+            policy.extend((status['portfolio_control_fingerprint'],status['portfolio_policy_revision']))
+        identity='0x'+keccak256(json.dumps(policy,separators=(',',':')).encode()).hex()
+        if record is not None and record['identity']!=identity:
+            self._store_rebalance_schedule(bucket,None);record=None
+        if not status['manual'] and 0<status['maximum_gap_seconds']<CONFIRMATION_CHECK_SECONDS:
+            self.blocked_actions+=1
+            log('confirmation_cadence_unsupported',bucket_id=str(bucket))
+            self._store_rebalance_schedule(bucket,dict(identity=identity,observed_at=now,
+                last_checked_at=now,next_check_at=now+CONFIRMATION_CHECK_SECONDS,execute_after=0))
+            return False
+        enrolled=(self.rebalance_confirmation.version!=3 or
+            now>=self._confirmation_enrollment_at(status))
+        if enrolled and self.rebalance_confirmation.observation_due(status,now):
+            self._rebalance_observation_due=bucket
+        if not status['manual'] and status['maximum_gap_seconds']==0:
+            self.blocked_actions+=1
+            log('confirmation_policy_stopped',bucket_id=str(bucket))
+        if not status['ready']:
+            self._store_rebalance_schedule(bucket,dict(identity=identity,observed_at=now,
+                last_checked_at=now,next_check_at=self._next_confirmation_check(status,now),execute_after=0))
+            return False
+        if record is not None and record['execute_after']:
+            if now>=record['execute_after']:return True
+            updated=dict(record,last_checked_at=now,next_check_at=now+CONFIRMATION_CHECK_SECONDS)
+            self._store_rebalance_schedule(bucket,updated)
+            return False
+        delay=self._rebalance_delay(bucket)
+        self._store_rebalance_schedule(bucket,dict(identity=identity,observed_at=now,
+            last_checked_at=now,next_check_at=now+CONFIRMATION_CHECK_SECONDS,execute_after=now+delay))
+        log('rebalance_scheduled',bucket_id=str(bucket),execute_after=now+delay,manual_range=status['manual'],
+            sampled_confirmation=True)
+        return False
+
+    def _next_confirmation_check(self,status,now):
+        """A maturity/cooldown boundary may precede the ordinary240-second read.
+
+        Early reads grant no execution permission and never extend the strict
+        on-chain maximum gap. Historical schedules keep their original cadence.
+        """
+        due=now+CONFIRMATION_CHECK_SECONDS
+        if self.rebalance_confirmation.version==3:
+            enrollment=self._confirmation_enrollment_at(status)
+            boundaries=((enrollment,) if now<enrollment and not status['manual'] else
+                (status.get('earliest_confirmation_at'),status.get('earliest_cooldown_at')))
+            for stamp in boundaries:
+                if type(stamp) is int and now<stamp<due:due=stamp
+        return due
+
+    @staticmethod
+    def _confirmation_enrollment_at(status):
+        """Service-only paid-window lead; raw checks and resets remain active.
+
+        Only the final duration+max-gap before the hard cooldown needs a paid
+        ordinary window. Already-eligible work begins immediately. No earlier
+        uninterrupted history is inferred or old on-chain observation erased.
+        """
+        return max(0,status['earliest_cooldown_at']-status['duration_seconds']-status['maximum_gap_seconds'])
+
+    def _confirmation_status(self,bucket: int) -> dict[str,Any]:
+        try:return self.rebalance_confirmation.status(bucket)
+        except (ValueError,RpcError):
+            self._mark_confirmation_reset(bucket)
+            raise
+
+    def _mark_confirmation_reset(self,bucket: int,*,force: bool = False) -> None:
+        if self.rebalance_confirmation.version not in (1,2,3):return
+        already_needed=self.state.get(CONFIRMATION_RESETS,{}).get(str(bucket))
+        if already_needed and str(bucket) not in self.state.get(self._confirmation_namespace(),{}):return
+        previous=self.state;updated=copy.deepcopy(previous)
+        clear=updated.get(CONFIRMATION_CLEARS,{}).get(str(bucket))
+        schedules=updated.get(self._confirmation_namespace(),{})
+        stale_schedule=schedules.pop(str(bucket),None)
+        if clear is not None and not force:
+            if clear['awaiting_healthy_read'] and stale_schedule is None:return
+            clear['awaiting_healthy_read']=True
+            self.state=updated
+            try:self.save()
+            except BaseException:
+                self.state=previous
+                raise
+            log('confirmation_recovery_read_required',bucket_id=str(bucket))
+            return
+        resets=updated.setdefault(CONFIRMATION_RESETS,{})
+        if str(bucket) not in resets and len(resets)>=min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
+            raise ValueError('Confirmation reset inventory is full')
+        resets[str(bucket)]=True
+        self.state=updated
+        try:self.save()
+        except BaseException:
+            self.state=previous
+            raise
+        log('confirmation_reset_required',bucket_id=str(bucket))
+
+    def _mark_known_confirmation_resets(self) -> None:
+        """Invalidate only known fresh windows after an initial raw-state fault."""
+        if self.rebalance_confirmation.version not in (1,2,3) or self.state.get('pending'):return
+        buckets=set(self.state.get(self._confirmation_namespace(),{})) | set(self.state.get(CONFIRMATION_CLEARS,{}))
+        for bucket in sorted(buckets,key=int):self._mark_confirmation_reset(int(bucket))
+
+    def _rebalance_submission_ready(self,args: tuple[int|str,...]) -> bool:
+        if self.maintenance_policy_version not in (2,3): return True
+        if len(args) != 3 or type(args[0]) is not int:
+            raise ValueError('Malformed outside-rebalance submission')
+        try:
+            fields,_ = self._bucket(args[0])
+            _,fresh = self._head()
+            return self._rebalance_due(args[0],fields,fresh,force=self.rebalance_confirmation.version in (1,2,3))
+        except (ValueError,RpcError):
+            if self.rebalance_confirmation.version in (1,2,3):self._mark_confirmation_reset(args[0])
+            raise
+
+    def _adaptive_range_target(self,pool: str,now: int) -> int:
+        # Opt-in only; historical profiles never call new Strategy getters.
+        for name in ('strategy','pools'):
+            pin = self.config.get('code_hashes',{}).get(name,'')
+            code = self.rpc.call('eth_getCode',[self.contracts[name],'latest'])
+            if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or \
+                    not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or \
+                    '0x'+keccak256(bytes.fromhex(code[2:])).hex() != pin.lower():
+                raise RpcError('Adaptive range runtime differs from the reviewed profile')
+        def read(signature: str,*args: int|str,count: int) -> list[str]:
+            result = decode_words(self.rpc.eth_call(self.contracts['strategy'],calldata(signature,*args)))
+            if len(result) != count: raise RpcError('Malformed adaptive range response')
+            return result
+        observed = observe_range_policy(read,pool)
+        config = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('get(bytes32)',pool)))
+        # The on-chain governance-approved policy is the authority. Independently
+        # check its ABI/bounds/fingerprint; no local raw-width override is used.
+        metadata = verify_range_policy({key:observed[key] for key in ('orientation','keeper')},observed,config,now)
+        return metadata['target_half_width_bps']
+
+    def _compound_due(self,bucket: int,tokens: list[str],reserves: list[int],item: dict[str,Any],now: int,
+                      fields: list[str]) -> bool:
+        interval = positive(item.get('compound_interval_seconds',0),'compound_interval_seconds',zero=True)
+        last = positive(self.state['last'].get(f'compound:{bucket}',0),'last compound',zero=True)
+        if now < last+interval: return False
+        if item.get('compound_idle',False):
+            # Only this bucket's attributed balances, never a raw contract
+            # balance or another NFT/bucket's rewards, can become principal.
+            reserves = [amount+int(fields[index],16) for amount,index in zip(reserves,(2,3))]
+            if any(amount >= 1 << 256 for amount in reserves): raise RpcError('Compound amount exceeds uint256')
+        thresholds = item.get('compound_thresholds')
+        if thresholds is not None:
+            if any(currency not in thresholds for currency in tokens):
+                raise ValueError('Missing compound threshold for the actual pool currency')
+            # Raw units belong to one currency only: never sum ETH, ZZZ or a
+            # six-decimal stablecoin, and never silently reuse another's bound.
+            due = any(amount >= positive(thresholds[currency],'compound threshold')
+                      for currency,amount in zip(tokens,reserves))
+        else:
+            threshold = positive(item.get('minimum_compound_units',1),'minimum_compound_units')
+            due = any(amount >= threshold for amount in reserves)
+        if due and self.accounting_version in (4,5,6,7):
+            # Authoritative shared cooldown includes other keepers and the last
+            # rebalance. Never infer it solely from this sender's journal.
+            if not self._compound_ready(bucket):return False
+            # Avoid physical reads when no compound is possible. During hard
+            # cooldown Budget may allow a range exit, so the service still
+            # requires this additional fresh physical proof before proceeding.
+            return self.maintenance_policy_version not in (2,3) or self._compound_policy_allowed(bucket)
+        if due and item.get('compound_idle',False):
+            chain_last,chain_interval = self._idle_compound_checkpoint(bucket,fields)
+            if now < max(last,chain_last)+max(interval,chain_interval): return False
+        return due
+
+    def view(self,name: str,signature: str,*args: int|str) -> int:
+        return uint_result(self.rpc.eth_call(self.contracts[name],self._calldata(signature,*args)))
+
+    def _asset(self,value: Any) -> str:
+        if self.accounting_version in (2,3,4,5,6,7) and isinstance(value,str) and value.lower() == NATIVE_ASSET:
+            return NATIVE_ASSET
+        return address(value)
+
+    def _calldata(self,signature: str,*args: int|str) -> str:
+        positions = ASSET_ARGUMENTS.get(signature,())
+        values = list(args)
+        native = []
+        for index in positions:
+            if index >= len(values): raise ValueError('Missing currency argument')
+            values[index] = self._asset(values[index])
+            if values[index] == NATIVE_ASSET:
+                native.append(index)
+                # Use the strict shared encoder, replacing only reviewed asset
+                # words afterwards. Never loosen address() globally.
+                values[index] = '0x'+'0'*39+'1'
+        data = calldata(signature,*values)
+        for index in native:
+            start=10+64*index
+            data=data[:start]+'0'*64+data[start+64:]
+        return data
+
+    def _validate_accounting_version(self) -> None:
+        if self.accounting_version == 1: return
+        pin=self.config.get('code_hashes',{}).get('vault','')
+        if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin):
+            raise RpcError('Native accounting requires a reviewed Vault runtime pin')
+        code=self.rpc.call('eth_getCode',[self.contracts['vault'],'latest'])
+        if not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or '0x'+keccak256(bytes.fromhex(code[2:])).hex()!=pin.lower():
+            raise RpcError('Native Vault runtime differs from the reviewed keeper profile')
+        try: version = self.view('vault','ACCOUNTING_VERSION()')
+        except (ValueError,RpcError) as exc: raise RpcError('Native accounting version is unavailable') from exc
+        if version != self.accounting_version: raise RpcError('Vault accounting version differs from the reviewed keeper profile')
+        if self.accounting_version==7:
+            code=self.rpc.call('eth_getCode',[self.contracts['rewards'],'latest'])
+            if (not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or
+                    '0x'+keccak256(bytes.fromhex(code[2:])).hex()!=self.config['code_hashes']['rewards'].lower() or
+                    self.view('rewards','LP_ALLOCATION_VERSION()')!=1 or
+                    self.view('rewards','access()')!=int(self.contracts['access'],16) or
+                    self.view('access','module(bytes32)','0x'+keccak256(b'ZZZRewards').hex())!=int(self.contracts['rewards'],16)):
+                raise RpcError('Accounting7 exact LP ledger binding or runtime differs')
+        if self.fee_intake_version == 1:
+            pin = self.config.get('code_hashes',{}).get('fees','')
+            if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin):
+                raise RpcError('LP-only fee intake requires a reviewed fee-controller runtime pin')
+            code = self.rpc.call('eth_getCode',[self.contracts['fees'],'latest'])
+            if not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or \
+                    '0x'+keccak256(bytes.fromhex(code[2:])).hex() != pin.lower():
+                raise RpcError('LP-only fee-controller runtime differs from the reviewed keeper profile')
+            if self.view('fees','FEE_INTAKE_VERSION()') != 1:
+                raise RpcError('LP-only fee-intake version differs from the reviewed keeper profile')
+        if self.accounting_version in (4,5,6,7):
+            for name in ('access', 'principal_exit'):
+                pin = self.config.get('code_hashes',{}).get(name, '')
+                code = self.rpc.call('eth_getCode', [self.contracts[name], 'latest'])
+                if (not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or
+                        not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or
+                        '0x'+keccak256(bytes.fromhex(code[2:])).hex() != pin.lower()):
+                    raise RpcError('Holder-exit runtime differs from the reviewed keeper profile')
+            module = '0x'+keccak256(b'ZZZMigration').hex()
+            if (self.view('access','module(bytes32)',module) != int(self.contracts['principal_exit'],16) or
+                    self.view('principal_exit','access()') != int(self.contracts['access'],16) or
+                    self.view('principal_exit','CUSTODY_VERSION()') != self.custody_version):
+                raise RpcError('Holder-exit module binding or capability differs')
+        self._validate_upkeep_policy()
+
+    def lp_exit_started(self) -> bool:
+        # Historical controllers have no such getter. Their profiles and
+        # pending journals must never inherit a fabricated retirement state.
+        if self.accounting_version not in (4,5,6,7): return False
+        value = self.view('access','lpExitStarted()')
+        phase = self.view('principal_exit','exitPhase()')
+        if value not in (0,1) or not 0 <= phase <= 3 or bool(value) != bool(phase):
+            raise RpcError('Inconsistent collective LP exit lifecycle')
+        self.principal_exit_started = bool(value)
+        return bool(value)
+
+    def preparation_active(self) -> bool:
+        """Current deployments must expose this strict ABI; no legacy fallback."""
+        try:
+            value = self.view('access','preparationActive()')
+        except ValueError as exc:
+            raise RpcError('Malformed canonical preparation flag') from exc
+        if value not in (0,1): raise RpcError('Noncanonical preparation flag')
+        active = bool(value)
+        if self.preparing is not active and (self.preparing is not None or active):
+            log('canonical_preparation_observed',active=active)
+        self.preparing = active
+        return active
+
+    def canonical_state(self) -> int:
+        """Fail closed on absent/old/malformed controller interfaces, never infer operating."""
+        previous = self.canonical_lifecycle
+        self.canonical_lifecycle = None
+        try:
+            state = self.view('access','canonicalState()')
+        except ValueError as exc:
+            raise RpcError('Malformed canonical lifecycle state') from exc
+        if type(state) is not int or not 0 <= state < len(CANONICAL_STATES):
+            raise RpcError('Unknown canonical lifecycle state')
+        if previous != state and (previous is not None or state != 0):
+            log('canonical_lifecycle_observed',state=state,name=CANONICAL_STATES[state])
+        self.canonical_lifecycle = state
+        return state
+
+    def _defer_for_lifecycle(self, name: str, signature: str) -> bool:
+        # All newly submitted transactions stop while ownership/accounting is
+        # frozen or inert. Receipt reconciliation runs before these observations.
+        if self.canonical_state() != 0: return True
+        # Read even for drain actions: unsupported deployments cannot silently
+        # inherit new-source compatibility. Reconciliation remains independent.
+        preparing = self.preparation_active()
+        exiting = self.lp_exit_started()
+        return (preparing and (name,signature) in PREPARATION_BLOCKED_ACTIONS or
+                exiting and (name,signature) in LP_EXIT_BLOCKED_ACTIONS)
+
+    def _validate_signer(self) -> None:
+        self.cast = shutil.which(self.config.get('cast_binary','cast'))
+        if not self.cast: raise ValueError('Foundry cast is required for live signing')
+        self.keystore = Path(self.config['keystore']).resolve()
+        self.password = Path(self.config['password_file']).resolve()
+        for path in (self.keystore,self.password):
+            st = path.stat()
+            if not stat.S_ISREG(st.st_mode) or st.st_mode & 0o077:
+                raise ValueError('Signing files must be regular files with mode 0600')
+            if st.st_uid != os.getuid(): raise ValueError('Signing files must belong to the keeper user')
+        result = subprocess.run([self.cast,'wallet','address','--keystore',str(self.keystore),
+            '--password-file',str(self.password)],env=signer_environment(),
+            capture_output=True,text=True,timeout=30,check=False)
+        if result.returncode or address(result.stdout.strip()) != self.sender:
+            raise ValueError('Encrypted keystore does not match configured sender')
+
+    def _validate_code_hashes(self) -> None:
+        hashes = self.config.get('code_hashes',{})
+        targets = dict(self.contracts)
+        if any(({**self.maintenance,**override}).get('compound_idle',False)
+               for override in ({},*self.overrides.values())):
+            targets['idle_compounding_budget'] = address(self.config['idle_compounding_budget'])
+        if self.metadata_enabled or (self.state.get('pending') or {}).get('metadata_observation'):
+            targets['nft'] = self.metadata_nft
+        for name,contract in targets.items():
+            expected = hashes.get(name,'').lower()
+            if not re.fullmatch(r'0x[0-9a-f]{64}',expected): raise ValueError(f'Missing reviewed code hash: {name}')
+            code = self.rpc.call('eth_getCode',[contract,'latest'])
+            if code == '0x' or '0x'+keccak256(bytes.fromhex(code[2:])).hex() != expected:
+                raise ValueError(f'Deployment bytecode mismatch: {name}')
+
+    def _head(self) -> tuple[int,int]:
+        head = self.rpc.call('eth_getBlockByNumber',['latest',False])
+        if not isinstance(head,dict): raise RpcError('Missing RPC head')
+        number = rpc_quantity(head.get('number'),'head block number')
+        timestamp = rpc_quantity(head.get('timestamp'),'head timestamp',minimum=1)
+        rpc_hash(head.get('hash'),'head block hash')
+        if abs(time.time()-timestamp) > 600: raise RpcError('RPC head timestamp is stale or implausible')
+        self._poll_clock = (timestamp,time.monotonic())
+        return number,timestamp
+
+    def _receipt_harvest_bucket(self,pending: dict[str,Any],receipt: dict[str,Any]) -> int | None:
+        """Accounting4+ collection-clock proof; never replace paid recovery."""
+        if self.accounting_version not in (4,5,6,7):return None
+        match=re.fullmatch(r'(harvest|compound|rebalance):([1-9][0-9]{0,77})',pending['key'])
+        if match is None or pending['value']!=0:return None
+        action,bucket=match[1],int(match[2])
+        target=self.contracts['compounder' if action=='compound' else 'vault']
+        if bucket>=1<<256 or pending['to']!=target:return None
+        try:
+            data=pending['data'].lower()
+            words=decode_words('0x'+data[10:])
+            if action=='harvest':
+                if len(words)!=2 or data!=calldata('collectFees(uint256,uint256)',bucket,int(words[1],16)):return None
+            elif len(words)!=3 or data!=calldata(action+'(uint256,uint128,uint256)',
+                    bucket,int(words[1],16),int(words[2],16)):return None
+        except (ValueError,TypeError):return None
+        try:
+            logs=receipt.get('logs')
+            if not isinstance(logs,list):raise ValueError('Missing receipt logs')
+            found=False;indices=set()
+            for event in logs:
+                if not isinstance(event,dict):raise ValueError('Malformed receipt log')
+                emitter=event.get('address')
+                if not isinstance(emitter,str) or emitter.lower()!=self.contracts['vault']:continue
+                topics=event.get('topics')
+                if not isinstance(topics,list) or not topics or not isinstance(topics[0],str) or topics[0].lower()!=FEES_COLLECTED_TOPIC:continue
+                if len(topics)!=2:raise ValueError('Malformed harvest topics')
+                if uint_result(topics[1])!=bucket:continue
+                if len(decode_words(event.get('data')))!=2:raise ValueError('Malformed harvest amounts')
+                # removed is derived/optional in receipt logs; an explicit value
+                # must be false. Inclusion still needs the exact parent receipt.
+                if (event.get('removed',False) is not False or
+                        rpc_hash(event.get('transactionHash'),'harvest transaction hash')!=rpc_hash(receipt['transactionHash'],'receipt hash') or
+                        rpc_hash(event.get('blockHash'),'harvest block hash')!=rpc_hash(receipt['blockHash'],'receipt block hash') or
+                        rpc_quantity(event.get('blockNumber'),'harvest block number')!=rpc_quantity(receipt['blockNumber'],'receipt block number') or
+                        rpc_quantity(event.get('transactionIndex'),'harvest transaction index')!=rpc_quantity(receipt['transactionIndex'],'receipt transaction index')):
+                    raise ValueError('Harvest inclusion differs')
+                index=rpc_quantity(event.get('logIndex'),'harvest log index')
+                if index in indices:raise ValueError('Repeated harvest log')
+                indices.add(index);found=True
+            if found:return bucket
+        except (ValueError,TypeError,RpcError):
+            log('harvest_coalescing_unverified',action=pending['key'],reason='missing_or_malformed_receipt_proof')
+            return None
+        log('harvest_coalescing_unverified',action=pending['key'],reason='no_matching_harvest_event')
+        return None
+
+    def poll_pending(self) -> bool:
+        self._validate_checkpoint()
+        pending = self.state.get('pending')
+        if not pending: return False
+        tx_hash = pending.get('hash')
+        if not tx_hash:
+            log('broadcast_ambiguous',nonce=pending['nonce'],action=pending['key'])
+            return True
+        receipt = self.rpc.call('eth_getTransactionReceipt',[tx_hash])
+        if receipt is None:
+            log('pending',transaction=tx_hash)
+            return True
+        if not isinstance(receipt,dict): raise RpcError('Malformed pending receipt')
+        if rpc_hash(receipt.get('transactionHash'),'receipt transaction hash') != rpc_hash(tx_hash,'pending transaction hash'):
+            raise RpcError('Pending receipt transaction hash mismatch')
+        try:
+            if address(receipt.get('from')) != self.sender or address(receipt.get('to')) != pending['to']:
+                raise ValueError('Receipt sender or target differs')
+        except (ValueError,TypeError,AttributeError) as exc:
+            raise RpcError('Pending receipt sender/target mismatch') from exc
+        block = rpc_quantity(receipt.get('blockNumber'),'receipt block number')
+        block_hash = rpc_hash(receipt.get('blockHash'),'receipt block hash')
+        transaction_index = rpc_quantity(receipt.get('transactionIndex'),'receipt transaction index')
+        status = rpc_quantity(receipt.get('status'),'receipt status')
+        if status not in (0,1): raise RpcError('Unsupported receipt status')
+        success = status == 1
+        gas_used = rpc_quantity(receipt.get('gasUsed'),'receipt gas used',minimum=1)
+        # Keep the provider's derived field as evidence, but calculate dynamic
+        # execution cost from signed caps and the canonical inclusion block.
+        reported_price = rpc_quantity(receipt.get('effectiveGasPrice'),'receipt effective gas price')
+        review = self._fee_review(pending)
+        # Optional chain-specific extension: production must qualify whether
+        # additional L1 cost is reported separately or included in gasUsed.
+        if review['receipt_fee_policy'] == 'separate_l1_fee' and 'l1Fee' not in receipt:
+            raise RpcError('Required separate L1 fee is missing')
+        l1_fee = rpc_quantity(receipt['l1Fee'],'receipt L1 fee') if 'l1Fee' in receipt else 0
+        if review['receipt_fee_policy'] == 'included' and l1_fee != 0:
+            raise RpcError('Separate L1 fee conflicts with reviewed inclusive accounting')
+        if l1_fee > review['l1_fee_allowance_wei']:
+            raise RpcError('Actual L1 fee exceeds the captured allowance; preserve pending intent for operator reconciliation')
+        head,head_timestamp = self._head()
+        if head-block+1 < self.confirmations: return True
+        header = self.rpc.call('eth_getBlockByNumber',[hex(block),False])
+        if header is None:
+            log('receipt_reorged',transaction=tx_hash); return True
+        if not isinstance(header,dict) or rpc_quantity(header.get('number'),'receipt header number') != block:
+            raise RpcError('Receipt header has the wrong block number')
+        if rpc_hash(header.get('hash'),'receipt header hash') != block_hash:
+            log('receipt_reorged',transaction=tx_hash); return True
+        timestamp = rpc_quantity(header.get('timestamp'),'receipt header timestamp',minimum=1)
+        if timestamp > head_timestamp: raise RpcError('Receipt block timestamp exceeds the head')
+        anchor = self.state.get('receipt_anchor')
+        if anchor is not None and (block < anchor['number'] or timestamp < anchor['timestamp']):
+            # This intent's nonce immediately follows the saved receipt. It may
+            # share that block, but cannot predate its canonical height/time.
+            raise RpcError('Successor receipt precedes the confirmed checkpoint')
+        if anchor is not None and block == anchor['number'] and (
+                block_hash != anchor['hash'] or timestamp != anchor['timestamp']):
+            # Entry validation may precede an RPC failover/reorg. A successor in
+            # the saved block must still have that exact canonical identity.
+            raise RpcError('Successor receipt contradicts the confirmed checkpoint')
+        try: day = dt.datetime.fromtimestamp(timestamp,dt.timezone.utc).date().isoformat()
+        except (ValueError,OverflowError,OSError) as exc: raise RpcError('Invalid receipt inclusion date') from exc
+        transaction = self.rpc.call('eth_getTransactionByHash',[tx_hash])
+        self._validate_pending_transaction(transaction,pending,tx_hash)
+        if (rpc_quantity(transaction.get('blockNumber'),'transaction block number') != block or
+                rpc_hash(transaction.get('blockHash'),'transaction block hash') != block_hash or
+                rpc_quantity(transaction.get('transactionIndex'),'transaction index') != transaction_index):
+            raise RpcError('Transaction and receipt inclusion differ')
+        if gas_used > rpc_quantity(transaction.get('gas'),'transaction gas limit',minimum=1):
+            raise RpcError('Receipt gas exceeds the transaction limit')
+        try: gas_price = execution_price(transaction,header,receipt)
+        except (ValueError,TypeError,KeyError) as exc: raise RpcError('Canonical transaction execution fee cannot be verified') from exc
+        if review['schema'] == 2 and reported_price != gas_price:
+            raise RpcError('Zero-tip receipt price differs from the canonical base fee')
+        if rpc_quantity(transaction.get('type','0x0'),'transaction type') in (0,1) and gas_price != fee_cap(transaction):
+            raise RpcError('Legacy receipt price differs from signed gas price')
+        if gas_price > review['max_fee_per_gas']:
+            raise RpcError('Actual execution price exceeds the captured fee cap')
+        cost = gas_used*gas_price + l1_fee + (pending['value'] if success else 0)
+        if cost > review['maximum_cost_wei']:
+            raise RpcError('Actual transaction cost exceeds the captured fee budget')
+        harvest_bucket=self._receipt_harvest_bucket(pending,receipt) if success else None
+        metadata_records = None
+        if success and pending.get('metadata_observation') is not None:
+            metadata_records = self._confirm_metadata(pending,block,block_hash,head)
+        # RPC failover/reorgs can happen during transaction or metadata reads.
+        # Recheck depth and the exact header before changing ANY durable state.
+        final_head,final_timestamp = self._head()
+        if final_head-block+1 < self.confirmations: return True
+        final = self.rpc.call('eth_getBlockByNumber',[hex(block),False])
+        if (not isinstance(final,dict) or rpc_quantity(final.get('number'),'final receipt header number') != block or
+                rpc_hash(final.get('hash'),'final receipt header hash') != block_hash or
+                rpc_quantity(final.get('timestamp'),'final receipt timestamp') != timestamp or timestamp > final_timestamp):
+            raise RpcError('Receipt block changed before checkpoint')
+        try:
+            if execution_price(transaction,final,receipt) != gas_price:
+                raise RpcError('Canonical execution price changed before checkpoint')
+        except (ValueError,TypeError,KeyError) as exc: raise RpcError('Final canonical execution fee cannot be verified') from exc
+        previous_state = self.state
+        updated = copy.deepcopy(previous_state)
+        updated['spent'][day] = positive(updated['spent'].get(day,0),'recorded daily spend',zero=True) + cost
+        if success:
+            # A recovered paid transaction may carry stale action metadata.
+            # Only the exact call and canonical event can advance a fresh
+            # harvest clock; unverifiable telemetry must not strand recovery.
+            if self.accounting_version in (4,5,6,7) and pending['key'].startswith('harvest:') and harvest_bucket is None:
+                log('harvest_clock_unverified',action=pending['key'],reason='saved_call_or_receipt_not_proved')
+            if self.accounting_version not in (4,5,6,7) or not pending['key'].startswith('harvest:'):
+                updated['last'][pending['key']] = timestamp
+            if harvest_bucket is not None:updated['last'][f'harvest:{harvest_bucket}']=timestamp
+            updated.setdefault('retry_after',{}).pop(pending['key'],None)
+            reset=re.fullmatch(r'rebalance_reset:([1-9][0-9]{0,77})',pending['key'])
+            if (reset is not None and pending['to']==self.contracts.get('rebalance_confirmation') and
+                    pending['data']==calldata('resetObservation(uint256)',int(reset[1]))):
+                updated.setdefault(CONFIRMATION_RESETS,{}).pop(reset[1],None)
+                clears=updated.setdefault(CONFIRMATION_CLEARS,{})
+                if reset[1] not in clears and len(clears)>=min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
+                    raise RpcError('Confirmation clear inventory is full; preserve pending recovery')
+                clears[reset[1]]={
+                    'number':block,'hash':block_hash,'timestamp':timestamp,'nonce':pending['nonce'],
+                    'awaiting_healthy_read':True}
+                updated.get(self._confirmation_namespace(),{}).pop(reset[1],None)
+        else:
+            updated.setdefault('retry_after',{})[pending['key']] = timestamp+self.retry_cooldown
+            failed_confirmation=self._interrupted_confirmation_bucket(pending)
+            if failed_confirmation is not None:
+                key=str(failed_confirmation)
+                resets=updated.setdefault(CONFIRMATION_RESETS,{})
+                if key not in resets and len(resets)>=min(self.max_buckets,MAX_OUTSIDE_SCHEDULES):
+                    raise RpcError('Confirmation reset inventory is full; preserve pending recovery')
+                resets[key]=True
+                updated.get(self._confirmation_namespace(),{}).pop(key,None)
+        if metadata_records is not None: updated['metadata_refresh']['notified'] = metadata_records
+        updated['pending'] = None
+        updated['next_nonce'] = pending['nonce']+1
+        updated['receipt_anchor'] = {'number':block,'hash':block_hash,'timestamp':timestamp,'nonce':pending['nonce']}
+        updated['last_fee_observation'] = {'transaction':tx_hash,'reported_price_wei':reported_price,
+            'execution_price_wei':gas_price,'gas_used':gas_used,'l1_fee_wei':l1_fee,
+            'receipt_fee_policy':review['receipt_fee_policy'],'cost_wei':cost}
+        self.state = updated
+        try: self.save()
+        except Exception:
+            self.state = previous_state
+            raise
+        if not success: self.confirmed_reverts += 1
+        log('confirmed' if success else 'reverted',transaction=tx_hash,cost_wei=str(cost),action=pending['key'])
+        return False
+
+    def resolve_pending(self, tx_hash: str) -> None:
+        if not re.fullmatch(r'0x[0-9a-fA-F]{64}',tx_hash): raise ValueError('Invalid transaction hash')
+        if not self.state.get('pending'): raise ValueError('No ambiguous submission exists')
+        pending = self.state['pending']
+        # Verify the human-supplied candidate BEFORE changing durable recovery state.
+        transaction = self.rpc.call('eth_getTransactionByHash',[tx_hash])
+        self._validate_pending_transaction(transaction,pending,tx_hash)
+        pending['hash'] = tx_hash.lower(); self.save()
+        self.poll_pending()  # Independently checks sender, nonce, target and calldata.
+
+    def _validate_pending_transaction(self,transaction: Any,pending: dict[str,Any],tx_hash: str) -> None:
+        review = self._fee_review(pending)
+        try:
+            valid = isinstance(transaction,dict) and rpc_hash(transaction.get('hash'),'transaction hash') == rpc_hash(tx_hash,'pending transaction hash') and \
+                address(transaction['from']) == self.sender and rpc_quantity(transaction.get('nonce'),'transaction nonce') == pending['nonce'] and \
+                address(transaction['to']) == pending['to'] and transaction['input'].lower() == pending['data'].lower() and \
+                rpc_quantity(transaction.get('value'),'transaction value') == pending['value'] and \
+                transaction_chain_id(transaction) == self.chain and \
+                rpc_quantity(transaction.get('gas'),'transaction gas limit',minimum=1) == review['gas_limit'] and \
+                fee_cap(transaction) == review['max_fee_per_gas']
+            if valid and review['schema'] == 2:
+                valid = (self.chain == 4663 and rpc_quantity(transaction.get('type'),'transaction type') == 2 and
+                    rpc_quantity(transaction.get('maxPriorityFeePerGas'),'transaction priority fee') == 0)
+        except (KeyError,TypeError,ValueError,AttributeError,RpcError):
+            valid = False
+        if not valid: raise RpcError('Pending transaction identity mismatch')
+
+    def _late_lp_submission_review(self, name: str, signature: str, tx: dict[str,Any], args: tuple, key: str, *,
+            review_head: int, reviewed_at: int, gas_limit: int, gas_price: int,
+            cost: int, nonce: int, gas_review: dict[str,Any]) -> str | None:
+        """One final whole-call check inside the original reviewed gas envelope.
+
+        The two ordinary LP methods have void return ABIs. No calldata, floor,
+        deadline, budget or saved intent is rewritten, and this is not a promise
+        about later inclusion. Non-LP actions keep their separate review paths.
+        """
+        gas_review.update(state='unavailable',reason='lp_final_simulation_unavailable')
+        exact_tx={**tx,'gas':hex(gas_limit)}
+        if 'maxFeePerGas' not in tx:exact_tx['gasPrice']=hex(gas_price)
+        result=self.rpc.call('eth_call',[exact_tx,'latest'])
+        if result != '0x':
+            raise RpcError('Unexpected return data from void LP submission simulation')
+        gas_review.update(state='within_configured_caps',reason=None)
+        if self.stop_requested():
+            log('shutdown_before_submission',action=key); return None
+        if self._defer_for_lifecycle(name,signature):return None
+        if name=='vault' and not self._rebalance_submission_ready(args):return None
+        if name=='compounder' and not self._compound_submission_ready(args):return None
+        if self.stop_requested():
+            log('shutdown_before_submission',action=key); return None
+        gas_review.update(state='unavailable',reason='lp_submission_nonce_changed')
+        pending_nonce=rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,'pending']),'pending nonce')
+        latest_nonce=rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,'latest']),'latest nonce')
+        if pending_nonce!=nonce or latest_nonce!=nonce or self.state.get('next_nonce')!=nonce:
+            self._cycle_error=True
+            log('nonce_reconciliation_required',action=key,expected_nonce=self.state.get('next_nonce'),
+                latest_nonce=latest_nonce,pending_nonce=pending_nonce)
+            raise RpcError('Unreconciled keeper nonce after LP submission review')
+        gas_review['reason']='lp_submission_balance_insufficient'
+        balance=rpc_quantity(self.rpc.call('eth_getBalance',[self.sender,'latest']),'keeper balance')
+        if balance<cost:
+            log('keeper_balance_insufficient',action=key,balance_wei=str(balance),required_wei=str(cost))
+            raise RpcError('Keeper native balance is below the bounded transaction cost')
+        gas_review.update(state='within_configured_caps',reason=None)
+        if self.stop_requested():
+            log('shutdown_before_submission',action=key); return None
+        if self._defer_for_lifecycle(name,signature):return None
+        # Keep the deadline/day proof AFTER the potentially slow policy, nonce,
+        # funding and lifecycle reads. No further RPC follows this final head.
+        gas_review.update(state='unavailable',reason='lp_submission_head_invalid')
+        head,timestamp=self._head()
+        if head<review_head or timestamp<reviewed_at:
+            raise RpcError('LP submission head or timestamp retreated after review')
+        deadline=positive(args[2],'LP submission deadline',zero=True)
+        if not timestamp<=deadline<=timestamp+600:
+            gas_review.update(state='blocked',reason='lp_submission_deadline_invalid')
+            self.blocked_actions+=1
+            log('lp_submission_deferred',action=key,reason='deadline_invalid')
+            return None
+        retry_after=positive(self.state.get('retry_after',{}).get(key,0),'retry_after',zero=True)
+        if timestamp<retry_after:
+            gas_review.update(state='blocked',reason='lp_submission_retry_cooldown')
+            self.blocked_actions+=1
+            log('action_cooldown',action=key,retry_after=retry_after)
+            return None
+        try:day=dt.datetime.fromtimestamp(timestamp,dt.timezone.utc).date().isoformat()
+        except (OverflowError,OSError,ValueError) as exc:
+            raise RpcError('LP submission head timestamp cannot form a UTC date') from exc
+        if cost>positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei') or \
+                int(self.state['spent'].get(day,0))+cost>positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei'):
+            gas_review.update(state='blocked',reason='cost_cap')
+            self.blocked_actions+=1
+            log('cost_cap_exceeded',action=key)
+            return None
+        gas_review.update(state='within_configured_caps',reason=None)
+        if self.stop_requested():
+            log('shutdown_before_submission',action=key); return None
+        return day
+
+    def submit(self, name: str, signature: str, args: tuple[int|str|list[int],...], key: str, *, value: int = 0,
+               metadata_observation: dict[str,Any] | None = None, maximum_cost: int | None = None,
+               capacity_review: dict[str,str] | None = None) -> bool:
+        # A caller-owned result belongs to this exact attempt, never a previous
+        # health observation. Only fresh LP conversion can request bounded sizing.
+        if capacity_review is not None:
+            if not isinstance(capacity_review,dict) or self.accounting_version != 7 or \
+                    name != 'rewards' or signature != ROYALTY_BATCH or value != 0:
+                raise ValueError('Capacity review requires an accounting7 LP conversion')
+            capacity_review.clear()
+        if self.state.get('pending'): return False
+        submission_fee_profile=self._submission_fee_profile()
+        if getattr(self,'royalty_settlement_version',0) in (2,3,4) and name == 'royalties' and signature == ROYALTY_BATCH:
+            raise ValueError('Original-currency royalties cannot be swapped')
+        if signature == 'bridgeRewards(uint256,address,bytes32)':
+            raise ValueError('Reward bridge scheduling is retired')
+        if self.fee_intake_version == 1 and signature in ('syncExternal(uint256)','syncAllExternal()'):
+            raise ValueError('Creator-payment synchronization is retired in the LP-only profile')
+        gas_cap=positive(self.config['max_gas_limit'],'max_gas_limit')
+        self._validate_maintenance_config()
+        if self.stop_requested():
+            log('shutdown_before_submission',action=key); return False
+        self._validate_accounting_version()
+        if self._defer_for_lifecycle(name,signature): return False
+        lp_balance_action=(name,signature) in (('vault','rebalance(uint256,uint128,uint256)'),
+            ('compounder','compound(uint256,uint128,uint256)'))
+        lp_conversion_action=self.accounting_version==7 and name=='rewards' and signature==ROYALTY_BATCH
+        if lp_balance_action:self._validate_lp_routing()
+        confirmation_action=name=='rebalance_confirmation' and signature in ('observe(uint256)','resetObservation(uint256)')
+        if confirmation_action:
+            if self.rebalance_confirmation.version not in (1,2,3) or len(args)!=1:
+                raise ValueError('Observation requires the explicit reviewed confirmation profile')
+            if signature=='observe(uint256)':self._confirmation_status(args[0])
+            else:self.rebalance_confirmation.validate()
+        if name == 'vault' and signature == 'rebalance(uint256,uint128,uint256)' and not self._rebalance_submission_ready(args): return False
+        if name == 'compounder' and signature == 'compound(uint256,uint128,uint256)' and not self._compound_submission_ready(args): return False
+        if self.live: self._validate_checkpoint()
+        review_head,timestamp = self._head()
+        retry_after = positive(self.state.get('retry_after',{}).get(key,0),'retry_after',zero=True)
+        if timestamp < retry_after:
+            self.blocked_actions += 1
+            log('action_cooldown',action=key,retry_after=retry_after)
+            return False
+        to = self.metadata_nft if name == 'nft' and self.metadata_enabled else self.contracts[name]
+        if name == 'principal_exit' and signature == PRINCIPAL_BATCH:
+            if len(args) != 1: raise ValueError('Principal delivery accepts exactly one array')
+            data = encode_principal_batch(args[0])
+        else:
+            data = encode_batch(*args) if name in ('royalties','rewards') and signature == ROYALTY_BATCH else self._calldata(signature,*args)
+        if metadata_observation is not None:
+            self._validate_metadata_payload(metadata_observation)
+            self._metadata_transaction({'to':to,'data':data,'value':value,'key':key,
+                'metadata_observation':metadata_observation})
+        tx = {'from':self.sender,'to':to,'data':data,'value':hex(value)}
+        # Profile2 fixes the type-2 fee envelope before provider execution.
+        # Reuse this single quote; never bump its cap after a slow read.
+        profile_gas_price = None
+        if submission_fee_profile == 2:
+            profile_gas_price=rpc_quantity(self.rpc.call('eth_gasPrice',[]),'gas price',minimum=1)
+            tx.update(type='0x2',maxFeePerGas=hex(profile_gas_price),maxPriorityFeePerGas='0x0')
+        # Bound provider EVM work before estimation; signed gas remains the
+        # padded estimate below, never this larger simulation ceiling.
+        simulation_tx={**tx,'gas':hex(gas_cap)}
+        day = dt.datetime.fromtimestamp(timestamp,dt.timezone.utc).date().isoformat()
+        def capacity_failure(exc, method):
+            # Opaque execution rejection proves no bad token or zero balance.
+            # It only allows a fresh bounded prefix probe BEFORE any intent or
+            # signer invocation. Transport/work/malformed errors never qualify.
+            if (capacity_review is None or self.state.get('pending') or
+                    exc.method != method or exc.code not in (3,-32000) or exc.reason != 'unclassified' or
+                    int(self.state['spent'].get(day,0)) >= positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei')):
+                return False
+            capacity_review['reason']='opaque_pre_send_rejection'
+            self.blocked_actions+=1
+            log('lp_conversion_deferred',action=key,reason='opaque_pre_send_rejection',**error_context(exc))
+            return True
+        try:simulation=self.rpc.call('eth_call',[simulation_tx,'latest'])
+        except RemoteRPCError as exc:
+            if capacity_failure(exc,'eth_call'):return False
+            raise
+        if (name,signature) in VOID_SIMULATION_RESULTS and simulation!='0x':
+            raise RpcError('Unexpected return data from void job simulation')
+        if name=='rebalance_confirmation' and signature=='observe(uint256)':
+            try:observed=uint_result(simulation)
+            except (ValueError,TypeError) as exc:
+                raise RpcError('Malformed observation simulation output') from exc
+            if observed not in (0,1):
+                raise RpcError('Observation simulation output is not a canonical boolean')
+        if lp_conversion_action and uint_result(simulation)<args[3]:
+            raise RpcError('LP conversion simulation output is below its prepared minimum')
+        price_cap=positive(self.config['max_gas_price_wei'],'max_gas_price_wei')
+        gas_review={'action':name+'.'+signature,'head_number':review_head,
+            'configuration_sha256':self.configuration_sha256,
+            'scope':'latest_simulation_estimate_not_inclusion_guarantee',
+            'gas_limit_cap':gas_cap,'gas_price_cap_wei':price_cap,'estimated_gas':None,
+            'transaction_cost_cap_wei':positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei'),
+            'daily_cost_cap_wei':positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei'),
+            'padded_gas_required':None,'gas_price_wei':None,'state':'unavailable',
+            'reason':'estimate_or_price_unavailable'}
+        self.gas_review_health={'state':'reviewed_this_cycle','last_review':gas_review}
+        try:estimated = rpc_quantity(self.rpc.call('eth_estimateGas',[simulation_tx]),'estimated gas',minimum=1)
+        except RemoteRPCError as exc:
+            if capacity_failure(exc,'eth_estimateGas'):return False
+            raise
+        gas_limit = (estimated*125+99)//100
+        gas_review.update(estimated_gas=estimated,padded_gas_required=gas_limit)
+        gas_price = profile_gas_price if profile_gas_price is not None else rpc_quantity(self.rpc.call('eth_gasPrice',[]),'gas price')
+        gas_review['gas_price_wei']=gas_price
+        cost = gas_limit*gas_price + value + positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True)
+        within_daily = int(self.state['spent'].get(day,0))+cost <= positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei')
+        can_resize = (capacity_review is not None and gas_price <= price_cap and within_daily and
+            (maximum_cost is None or cost <= positive(maximum_cost,'maximum_cost',zero=True)))
+        if gas_limit > gas_cap or gas_price > price_cap:
+            gas_review.update(state='blocked',reason='gas_limit_cap' if gas_limit>gas_cap else 'gas_price_cap')
+            if gas_limit > gas_cap and can_resize: capacity_review['reason']='gas_limit_cap'
+            self.blocked_actions += 1
+            log('gas_cap_exceeded',action=key); return False
+        if maximum_cost is not None and cost > positive(maximum_cost,'maximum_cost',zero=True):
+            gas_review.update(state='blocked',reason='conversion_uneconomic',maximum_cost_wei=cost)
+            self.blocked_actions += 1
+            log('lp_conversion_uneconomic' if name == 'rewards' else 'royalty_conversion_uneconomic',action=key,gas_cost_wei=str(cost),maximum_cost_wei=str(maximum_cost))
+            return False
+        if cost > positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei') or \
+            not within_daily:
+            gas_review.update(state='blocked',reason='cost_cap',maximum_cost_wei=cost)
+            if cost > positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei') and can_resize:
+                capacity_review['reason']='transaction_cost_cap'
+            self.blocked_actions += 1
+            log('cost_cap_exceeded',action=key); return False
+        gas_review.update(state='within_configured_caps',reason=None,maximum_cost_wei=cost)
+        if self._defer_for_lifecycle(name,signature): return False
+        if not self.live:
+            log('dry_run',action=key,to=to,calldata=data,estimated_cost_wei=str(cost))
+            return False
+        # Revalidate code after simulation and before signing; stop on mutable deployments.
+        self._validate_code_hashes()
+        if lp_balance_action:self._validate_lp_routing()
+        if confirmation_action:
+            if signature=='observe(uint256)':self._confirmation_status(args[0])
+            else:self.rebalance_confirmation.validate()
+        nonce = rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,'pending']),'pending nonce')
+        latest_nonce = rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,'latest']),'latest nonce')
+        if nonce != latest_nonce or nonce != self.state.get('next_nonce'):
+            self._cycle_error = True
+            log('nonce_reconciliation_required',action=key,expected_nonce=self.state.get('next_nonce'),
+                latest_nonce=latest_nonce,pending_nonce=nonce)
+            raise RpcError('Unreconciled keeper nonce; stop other signers and restore/reconcile state')
+        balance = rpc_quantity(self.rpc.call('eth_getBalance',[self.sender,'latest']),'keeper balance')
+        if balance < cost:
+            log('keeper_balance_insufficient',action=key,balance_wei=str(balance),required_wei=str(cost))
+            raise RpcError('Keeper native balance is below the bounded transaction cost')
+        if self.stop_requested():
+            log('shutdown_before_submission',action=key); return False
+        # A notice may become active during simulation, code/nonce or balance
+        # reads. The on-chain guard still covers later inclusion-time races.
+        if self._defer_for_lifecycle(name,signature): return False
+        if name == 'vault' and signature == 'rebalance(uint256,uint128,uint256)' and not self._rebalance_submission_ready(args): return False
+        if name == 'compounder' and signature == 'compound(uint256,uint128,uint256)' and not self._compound_submission_ready(args): return False
+        if lp_balance_action:
+            final_day=self._late_lp_submission_review(name,signature,tx,args,key,review_head=review_head,reviewed_at=timestamp,
+                gas_limit=gas_limit,gas_price=gas_price,cost=cost,nonce=nonce,gas_review=gas_review)
+            if final_day is None:return False
+            day=final_day
+        elif lp_conversion_action:
+            # Simulation, code, nonce and funding reads may age a conversion or
+            # cross UTC midnight. Preserve the exact reviewed intent and caps;
+            # the final head is a stop check, never permission to rewrite it.
+            gas_review.update(state='unavailable',reason='lp_submission_head_invalid')
+            head,fresh=self._head()
+            if head<review_head or fresh<timestamp:
+                raise RpcError('LP conversion head or timestamp retreated after review')
+            deadline=positive(args[4],'LP conversion deadline')
+            if not fresh<=deadline<=fresh+600:
+                gas_review.update(state='blocked',reason='lp_submission_deadline_invalid')
+                self.blocked_actions+=1
+                log('lp_conversion_deferred',action=key,reason='deadline_invalid')
+                return False
+            day=dt.datetime.fromtimestamp(fresh,dt.timezone.utc).date().isoformat()
+            if (cost>positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei') or
+                    int(self.state['spent'].get(day,0))+cost>positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei')):
+                gas_review.update(state='blocked',reason='cost_cap')
+                self.blocked_actions+=1
+                log('cost_cap_exceeded',action=key)
+                return False
+            gas_review.update(state='within_configured_caps',reason=None)
+            if self.stop_requested():
+                log('shutdown_before_submission',action=key);return False
+        else:
+            # Every other job can cross UTC midnight during code, nonce or
+            # funding reads too. Recheck the current day's budget immediately
+            # before publishing an intent, just as LP maintenance/conversion do.
+            # This never reprices, resigns, charges or changes the calldata.
+            gas_review.update(state='unavailable',reason='submission_head_invalid')
+            head,fresh=self._head()
+            if head<review_head or fresh<timestamp:
+                raise RpcError('Submission head or timestamp retreated after review')
+            index=JOB_DEADLINE_ARGUMENTS.get((name,signature))
+            if index is not None:
+                deadline=positive(args[index],'submission deadline',zero=True)
+                if not fresh<=deadline<=fresh+600:
+                    gas_review.update(state='blocked',reason='submission_deadline_invalid')
+                    self.blocked_actions+=1
+                    log('job_submission_deferred',action=key,reason='deadline_invalid')
+                    return False
+            try:day=dt.datetime.fromtimestamp(fresh,dt.timezone.utc).date().isoformat()
+            except (OverflowError,OSError,ValueError) as exc:
+                raise RpcError('Submission head timestamp cannot form a UTC date') from exc
+            if (cost>positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei') or
+                    int(self.state['spent'].get(day,0))+cost>positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei')):
+                gas_review.update(state='blocked',reason='cost_cap')
+                self.blocked_actions+=1
+                log('cost_cap_exceeded',action=key)
+                return False
+            gas_review.update(state='within_configured_caps',reason=None)
+            if self.stop_requested():
+                log('shutdown_before_submission',action=key);return False
+        pending = {'key':key,'nonce':nonce,'to':to,'data':data,'value':value,'day':day,'hash':None}
+        pending['fee_review'] = {'schema':1,'gas_limit':gas_limit,'max_fee_per_gas':gas_price,
+            'l1_fee_allowance_wei':positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True),
+            'maximum_cost_wei':cost,'receipt_fee_policy':self.fee_policy}
+        if submission_fee_profile == 2:
+            pending['fee_review'].update(schema=2,execution_fee_model='eip1559_zero_tip')
+        self._fee_review(pending)
+        if metadata_observation is not None: pending['metadata_observation'] = metadata_observation
+        if confirmation_action and signature=='observe(uint256)':
+            # Once an intent can broadcast, the earlier empty-state receipt is
+            # no longer sufficient to suppress another incident reset. Persist
+            # this invalidation together with pending, before any signer call.
+            previous=self.state;updated=copy.deepcopy(previous)
+            updated.get(CONFIRMATION_CLEARS,{}).pop(str(args[0]),None)
+            updated['pending']=pending
+            self.state=updated
+            try:self.save()
+            except BaseException:
+                self.state=previous
+                raise
+        else:
+            self.state['pending'] = pending; self.save()  # Durable BEFORE the external signer can broadcast.
+        # Foundry 1.4.4 accepts raw calldata as positional SIG; --data is invalid.
+        command = [self.cast,'send',to,data,'--from',self.sender,'--keystore',str(self.keystore),
+            '--password-file',str(self.password),'--chain',str(self.chain),'--nonce',str(nonce),
+            '--gas-limit',str(gas_limit),'--gas-price',str(gas_price),'--value',str(value),'--async','--json']
+        if submission_fee_profile == 2:command.extend(['--priority-gas-price','0'])
+        environment = signer_environment(self.rpc.active_url)
+        # A stop can arrive during durable publication. Keep that exact intent
+        # for reconciliation, but do not launch a signer after observing it.
+        if self.stop_requested():
+            log('shutdown_after_intent_before_signer',action=key);return False
+        try:
+            result = subprocess.run(command,env=environment,capture_output=True,text=True,timeout=90,check=False)
+            if result.returncode: raise RuntimeError('Signer command failed; broadcast status must be checked')
+            try: parsed = json.loads(result.stdout)
+            except json.JSONDecodeError: parsed = result.stdout.strip()
+            candidate = parsed.get('transactionHash',parsed.get('hash')) if isinstance(parsed,dict) else parsed
+            try: candidate = rpc_hash(candidate,'signer transaction hash')
+            except RpcError:
+                raise RuntimeError('Signer did not return a transaction hash') from None
+            pending['hash'] = candidate; self.save()
+            log('submitted',action=key,transaction=candidate)
+        except Exception as exc:
+            # Deliberately retain pending state. NEVER automatically resubmit on timeout.
+            log('submission_requires_reconciliation',action=key,error_type=type(exc).__name__)
+            raise
+        return True
+
+    def _configure_metadata(self) -> None:
+        settings = self.config.get('metadata_refresh',{})
+        if not isinstance(settings,dict) or type(settings.get('enabled',False)) is not bool:
+            raise ValueError('metadata_refresh requires an object and explicit boolean enabled flag')
+        self.metadata_enabled = settings.get('enabled',False)
+        self.metadata_lifecycle_version = settings.get('lifecycle_version',0)
+        if type(self.metadata_lifecycle_version) is not int or self.metadata_lifecycle_version not in (0,2):
+            raise ValueError('Unsupported explicit metadata lifecycle profile')
+        self.metadata_renderer = None
+        self.metadata_renderer_hash = None
+        configured = settings.get('nft')
+        self.metadata_nft = address(configured) if configured is not None else None
+        self.metadata_maximum = positive(settings.get('maximum_count',MAX_METADATA_SUPPLY),'metadata_refresh.maximum_count')
+        self.metadata_scan = positive(settings.get('max_per_cycle',MAX_METADATA_BATCH),'metadata_refresh.max_per_cycle')
+        self.metadata_batch = positive(settings.get('max_refresh_batch',min(self.metadata_scan,MAX_METADATA_BATCH)),
+            'metadata_refresh.max_refresh_batch')
+        self.metadata_age = positive(settings.get('maximum_observation_age_blocks',256),'metadata_refresh.maximum_observation_age_blocks')
+        if self.metadata_maximum > MAX_METADATA_SUPPLY or self.metadata_scan > MAX_METADATA_BATCH or \
+            self.metadata_batch > min(self.metadata_scan,MAX_METADATA_BATCH) or self.metadata_age > 10000:
+            raise ValueError('Metadata discovery or refresh exceeds its bounded limits')
+        if self.metadata_enabled and self.metadata_nft is None:
+            raise ValueError('Enabled metadata refresh requires an explicit NFT address')
+        state = self.state.get('metadata_refresh')
+        stored_identity = state.get('identity',{}) if isinstance(state,dict) else {}
+        if not isinstance(stored_identity,dict):
+            raise ValueError('Malformed persistent metadata identity')
+        if ('metadata_lifecycle_version' in stored_identity and
+                (type(stored_identity['metadata_lifecycle_version']) is not int or
+                 stored_identity['metadata_lifecycle_version'] != 2)):
+            raise ValueError('Malformed persistent metadata lifecycle version')
+        # Disabling a job may drain its original saved transaction. This does
+        # not enable new work or reinterpret a historical notification record.
+        if (not self.metadata_enabled and 'lifecycle_version' not in settings and
+                stored_identity.get('metadata_lifecycle_version') == 2):
+            self.metadata_lifecycle_version = 2
+        if self.metadata_lifecycle_version == 2:
+            if self.accounting_version != 7:
+                raise ValueError('Metadata lifecycle2 requires explicit accounting7')
+            self.metadata_renderer = address(settings.get('renderer',
+                stored_identity.get('renderer') if not self.metadata_enabled else None))
+            self.metadata_renderer_hash = settings.get('renderer_code_hash',
+                stored_identity.get('renderer_code_hash') if not self.metadata_enabled else None)
+            if (not isinstance(self.metadata_renderer_hash,str) or
+                    not re.fullmatch(r'0x[0-9a-fA-F]{64}',self.metadata_renderer_hash) or
+                    int(self.metadata_renderer_hash,16) == 0):
+                raise ValueError('Metadata lifecycle2 requires the reviewed renderer runtime')
+            self.metadata_renderer_hash = self.metadata_renderer_hash.lower()
+        elif 'renderer' in settings or 'renderer_code_hash' in settings:
+            raise ValueError('Metadata renderer settings require explicit lifecycle2')
+        def expected_identity(nft: str) -> dict[str,Any]:
+            value = {'chain_id':self.chain,'controller':self.contracts['access'],'nft':nft}
+            if self.metadata_lifecycle_version == 2:
+                value.update(metadata_lifecycle_version=2,renderer=self.metadata_renderer,
+                    renderer_code_hash=self.metadata_renderer_hash)
+            return value
+        if state is not None:
+            if not isinstance(state,dict) or not isinstance(state.get('identity'),dict):
+                raise ValueError('Malformed persistent metadata state')
+            identity = state['identity']
+            stored_nft = address(identity.get('nft'))
+            expected = expected_identity(stored_nft)
+            if type(identity.get('chain_id')) is not int or identity != expected or \
+                self.metadata_nft is not None and self.metadata_nft != stored_nft:
+                raise ValueError('Persistent metadata state belongs to another NFT deployment')
+            self.metadata_nft = stored_nft
+            cursor = positive(state.get('cursor'),'metadata cursor')
+            if cursor > MAX_METADATA_SUPPLY or type(state.get('next_first')) is not bool:
+                raise ValueError('Malformed metadata scan cursor')
+            records = state.get('notified')
+            if not isinstance(records,dict) or len(records) > MAX_METADATA_SUPPLY:
+                raise ValueError('Malformed notified metadata inventory')
+            for ordinal,record in records.items():
+                self._validate_metadata_record(record)
+                if ordinal != str(record['ordinal']): raise ValueError('Metadata ordinal identity mismatch')
+                for prefix in ('observed','notification'):
+                    if type(record.get(prefix+'_number')) is not int:
+                        raise ValueError('Malformed metadata block number')
+                    positive(record.get(prefix+'_number'),prefix+' block',zero=True)
+                    self._metadata_hash(record.get(prefix+'_hash'))
+                if record['notification_number'] < record['observed_number']:
+                    raise ValueError('Metadata notification precedes its observation')
+        elif self.metadata_enabled:
+            self.state['metadata_refresh'] = {'identity':expected_identity(self.metadata_nft),
+                'cursor':1,'next_first':True,'notified':{}}
+        if self.metadata_nft is not None and 'nft' in self.contracts and self.contracts['nft'] != self.metadata_nft:
+            raise ValueError('Conflicting configured NFT addresses')
+        pending = self.state.get('pending')
+        if pending and pending.get('metadata_observation') is not None:
+            self._validate_metadata_payload(pending['metadata_observation'])
+            self._metadata_transaction(pending)
+
+    @staticmethod
+    def _metadata_hash(value: Any) -> str:
+        if not isinstance(value,str) or not re.fullmatch(r'0x[0-9a-f]{64}',value):
+            raise ValueError('Malformed metadata block hash')
+        return value
+
+    def _validate_metadata_record(self, record: Any) -> None:
+        if not isinstance(record,dict): raise ValueError('Malformed metadata observation')
+        lifecycle = getattr(self,'metadata_lifecycle_version',0) == 2
+        if lifecycle != ('lifecycle_fingerprint' in record):
+            raise ValueError('Metadata record belongs to another lifecycle profile')
+        if lifecycle: self._metadata_hash(record['lifecycle_fingerprint'])
+        ordinal = positive(record.get('ordinal'),'metadata ordinal')
+        token = positive(record.get('token_id'),'metadata token ID',zero=True)
+        if type(record.get('ordinal')) is not int or record.get('token_id') != str(token) or \
+            ordinal > MAX_METADATA_SUPPLY or token >= 1 << 256 or \
+            type(record.get('available')) is not bool or type(record.get('traits_ready')) is not bool or \
+            type(record.get('stage')) is not int or not 0 <= record['stage'] <= (4 if self.accounting_version in (4,5,6,7) else 3) or \
+            not record['available'] and record['stage'] != 1 or \
+            not record['traits_ready'] and (record['stage'] != 0 or not record['available']):
+            raise ValueError('Noncanonical metadata state')
+
+    def _validate_metadata_payload(self, payload: Any) -> None:
+        state = self.state.get('metadata_refresh')
+        if not isinstance(payload,dict) or not state or payload.get('identity') != state['identity']:
+            raise ValueError('Pending metadata belongs to another deployment')
+        for field in ('first_ordinal','last_ordinal','observed_number','maximum_age'):
+            if type(payload.get(field)) is not int: raise ValueError('Malformed pending metadata integer')
+        first = positive(payload.get('first_ordinal'),'metadata first ordinal')
+        last = positive(payload.get('last_ordinal'),'metadata last ordinal')
+        records = payload.get('records')
+        if last < first or last > MAX_METADATA_SUPPLY or last-first+1 > MAX_METADATA_BATCH or \
+            not isinstance(records,list) or len(records) != last-first+1:
+            raise ValueError('Malformed pending metadata range')
+        positive(payload.get('observed_number'),'metadata observed block',zero=True)
+        self._metadata_hash(payload.get('observed_hash'))
+        age = positive(payload.get('maximum_age'),'metadata observation maximum age')
+        if age > 10000: raise ValueError('Metadata observation age exceeds bounded limit')
+        ids = set()
+        for ordinal,record in zip(range(first,last+1),records):
+            self._validate_metadata_record(record)
+            if record['ordinal'] != ordinal or str(record['token_id']) in ids:
+                raise ValueError('Malformed pending metadata token inventory')
+            ids.add(str(record['token_id']))
+
+    def _metadata_transaction(self, pending: dict[str,Any]) -> None:
+        payload = pending['metadata_observation']
+        first,last = payload['first_ordinal'],payload['last_ordinal']
+        if pending['to'] != self.metadata_nft or pending['value'] != 0 or \
+            pending['key'] != f'metadata:{first}:{last}' or \
+            pending['data'] != calldata('refreshMetadataRange(uint256,uint256)',first,last):
+            raise ValueError('Pending metadata transaction does not match its observations')
+
+    def _metadata_words(self, target: str, signature: str, block: int, *args: int|str) -> list[int]:
+        result = self.rpc.call('eth_call',[{'to':target,'data':calldata(signature,*args)},hex(block)])
+        return [int(word,16) for word in decode_words(result)]
+
+    def _metadata_uint(self, target: str, signature: str, block: int, *args: int|str) -> int:
+        words = self._metadata_words(target,signature,block,*args)
+        if len(words) != 1: raise RpcError('Unexpected metadata getter ABI')
+        return words[0]
+
+    def _metadata_anchor(self, number: int, expected_hash: str) -> bool:
+        header = self.rpc.call('eth_getBlockByNumber',[hex(number),False])
+        return isinstance(header,dict) and header.get('number') == hex(number) and \
+            isinstance(header.get('hash'),str) and header['hash'].lower() == expected_hash
+
+    def _metadata_bindings(self, block: int) -> None:
+        access,vault = self.contracts['access'],self.contracts['vault']
+        reads = ((self.metadata_nft,'access()',(),int(access,16)),
+            (access,'module(bytes32)',('0x'+keccak256(b'ZZZNFT').hex(),),int(self.metadata_nft,16)),
+            (access,'module(bytes32)',('0x'+keccak256(b'ZZZVault').hex(),),int(vault,16)),
+            (vault,'access()',(),int(access,16)),(vault,'canonicalChainId()',(),self.chain),
+            (access,'isSealed()',(),1),(self.metadata_nft,'MAX_SUPPLY()',(),MAX_METADATA_SUPPLY),
+            (self.metadata_nft,'MAX_METADATA_REFRESH_BATCH()',(),MAX_METADATA_BATCH))
+        for target,signature,args,expected in reads:
+            if self._metadata_uint(target,signature,block,*args) != expected:
+                raise RpcError('Metadata deployment binding or protocol limit mismatch')
+        if self.live: self._metadata_code_hash(block)
+        if self.metadata_lifecycle_version == 2:
+            for target,signature,expected in (
+                    (self.metadata_nft,'metadataRenderer()',int(self.metadata_renderer,16)),
+                    (self.metadata_renderer,'access()',int(access,16)),
+                    (self.metadata_renderer,'METADATA_LIFECYCLE_VERSION()',2)):
+                if self._metadata_uint(target,signature,block) != expected:
+                    raise RpcError('Metadata lifecycle renderer binding or version mismatch')
+            code = self.rpc.call('eth_getCode',[self.metadata_renderer,hex(block)])
+            if (not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or
+                    '0x'+keccak256(bytes.fromhex(code[2:])).hex() != self.metadata_renderer_hash):
+                raise RpcError('Metadata lifecycle renderer runtime mismatch')
+
+    def _metadata_code_hash(self, block: int) -> None:
+        expected = self.config.get('code_hashes',{}).get('nft','').lower()
+        if not re.fullmatch(r'0x[0-9a-f]{64}',expected): raise ValueError('Missing reviewed code hash: nft')
+        code = self.rpc.call('eth_getCode',[self.metadata_nft,hex(block)])
+        if not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or \
+            '0x'+keccak256(bytes.fromhex(code[2:])).hex() != expected:
+            raise RpcError('Metadata NFT deployment bytecode mismatch')
+
+    def _metadata_record_at(self, ordinal: int, block: int, expected_token: str | None = None) -> dict[str,Any]:
+        token = self._metadata_uint(self.metadata_nft,'tokenAtOrdinal(uint256)',block,ordinal)
+        if expected_token is not None and str(token) != expected_token or \
+            self._metadata_uint(self.metadata_nft,'mintOrdinalOf(uint256)',block,token) != ordinal:
+            raise RpcError('NFT mint ordinal identity mismatch')
+        ready = self._metadata_uint(self.metadata_nft,'traitsReady(uint256)',block,token)
+        values = self._metadata_words(self.metadata_nft,'evolution(uint256)',block,token)
+        if ready not in (0,1) or len(values) != 2 or values[0] not in (0,1):
+            raise RpcError('Noncanonical NFT evolution ABI')
+        record = {'ordinal':ordinal,'token_id':str(token),'traits_ready':bool(ready),
+            'available':bool(values[0]),'stage':values[1]}
+        if self.metadata_lifecycle_version == 2:
+            fingerprint = self._metadata_uint(self.metadata_renderer,'metadataLifecycleFingerprint(uint256)',block,token)
+            record['lifecycle_fingerprint'] = '0x'+f'{fingerprint:064x}'
+        self._validate_metadata_record(record)
+        return record
+
+    def _refresh_metadata(self) -> bool:
+        """Separate bounded NFT notification scan; never an LP maintenance loop."""
+        if not self.metadata_enabled or self.state.get('pending'): return False
+        head,_ = self._head()
+        block = head-self.confirmations+1
+        if block < 0: raise RpcError('Insufficient chain history for confirmed metadata observation')
+        header = self.rpc.call('eth_getBlockByNumber',[hex(block),False])
+        if not isinstance(header,dict) or header.get('number') != hex(block):
+            raise RpcError('Missing pinned metadata observation block')
+        block_hash = self._metadata_hash(header.get('hash','').lower())
+        self._metadata_bindings(block)
+        count = self._metadata_uint(self.metadata_nft,'mintedCount()',block)
+        if count > self.metadata_maximum: raise RpcError('NFT inventory exceeds reviewed metadata discovery limit')
+        state = self.state['metadata_refresh']
+        if count == 0:
+            if not self._metadata_anchor(block,block_hash): raise RpcError('Metadata observation block reorged')
+            state['cursor'] = 1; self.save(); return False
+        first = (positive(state['cursor'],'metadata cursor')-1) % count+1
+        records,changed,seen,anchors = [],[],set(),{}
+        for offset in range(min(self.metadata_scan,count)):
+            ordinal = (first-1+offset) % count+1
+            record = self._metadata_record_at(ordinal,block)
+            if record['token_id'] in seen: raise RpcError('Duplicate NFT token identity')
+            seen.add(record['token_id'])
+            records.append(record)
+            previous = state['notified'].get(str(ordinal))
+            differs = previous is None or any(previous[key] != value for key,value in record.items())
+            if previous is not None and not differs:
+                for prefix in ('observed','notification'):
+                    anchor = (previous[prefix+'_number'],previous[prefix+'_hash'])
+                    if anchor not in anchors: anchors[anchor] = self._metadata_anchor(*anchor)
+                    if not anchors[anchor]: differs = True
+            if differs: changed.append(ordinal)
+        if not self._metadata_anchor(block,block_hash): raise RpcError('Metadata observation block reorged')
+        if not changed:
+            state['cursor'] = records[-1]['ordinal'] % count+1
+            self.save(); return False
+        start = changed[0]
+        end = max(ordinal for ordinal in changed if start <= ordinal < start+self.metadata_batch)
+        selected = [record for record in records if start <= record['ordinal'] <= end]
+        # Retry unsent trailing work before rescanning a continuously changing
+        # prefix, including when a discovery window wraps through ordinal one.
+        state['cursor'] = end % count+1
+        self.save()  # A fair scan cursor is not a successfully notified baseline.
+        payload = {'identity':dict(state['identity']),'observed_number':block,'observed_hash':block_hash,
+            'maximum_age':self.metadata_age,'first_ordinal':start,'last_ordinal':end,'records':selected}
+        return self.submit('nft','refreshMetadataRange(uint256,uint256)',(start,end),f'metadata:{start}:{end}',
+            metadata_observation=payload)
+
+    def _confirm_metadata(self, pending: dict[str,Any], block: int, block_hash: str, head: int) -> dict[str,Any]:
+        payload = pending['metadata_observation']
+        self._validate_metadata_payload(payload)
+        self._metadata_transaction(pending)
+        observed = payload['observed_number']
+        observation_valid = observed <= block and head-observed <= payload['maximum_age'] and \
+            self._metadata_anchor(observed,payload['observed_hash'])
+        execution_records = []
+        if observation_valid:
+            self._metadata_bindings(block)
+            execution_records = [self._metadata_record_at(record['ordinal'],block,record['token_id'])
+                for record in payload['records']]
+        if not self._metadata_anchor(block,block_hash.lower()):
+            raise RpcError('Metadata confirmation block changed before checkpoint')
+        # Return a candidate checkpoint. Receipt finality and the durable save
+        # must succeed before publishing it, including in-memory state.
+        records = dict(self.state['metadata_refresh']['notified'])
+        if not observation_valid:
+            # The event still happened, but its old trigger cannot describe the
+            # cache state. Forget prior fingerprints so a retry is never hidden.
+            for record in payload['records']: records.pop(str(record['ordinal']),None)
+            log('metadata_observation_invalidated',action=pending['key']); return records
+        for record in execution_records:
+            records[str(record['ordinal'])] = {**record,'observed_number':block,
+                'observed_hash':block_hash.lower(),'notification_number':block,
+                'notification_hash':self._metadata_hash(block_hash.lower())}
+        return records
+
+    @staticmethod
+    def _address_word(word: str) -> str:
+        if int(word,16) >= 1 << 160: raise RpcError('Noncanonical address in contract response')
+        return address('0x'+word[-40:])
+
+    def _bucket_batch(self) -> list[tuple[int,int]]:
+        """Discover a bounded rotating batch of on-chain groups, never NFT IDs."""
+        count = self.view('vault','bucketCount()')
+        if count > self.max_buckets: raise RpcError('Bucket inventory exceeds reviewed discovery limit')
+        if count == 0:
+            self.state['bucket_cursor'] = 0
+            return []
+        start = positive(self.state['bucket_cursor'],'bucket_cursor',zero=True) % count
+        batch: list[tuple[int,int]] = []
+        seen: set[int] = set()
+        for offset in range(min(self.batch_size,count)):
+            slot = (start+offset) % count
+            bucket = self.view('vault','bucketAt(uint256)',slot)
+            if bucket == 0 or bucket in seen:
+                raise RpcError('Malformed shared-pool inventory')
+            seen.add(bucket); batch.append((slot,bucket))
+        return batch
+
+    def _asset_word(self,word: str) -> str:
+        if int(word,16) >= 1 << 160: raise RpcError('Noncanonical currency in contract response')
+        return self._asset('0x'+word[-40:])
+
+    def _bucket(self,bucket: int) -> tuple[list[str],list[str]]:
+        try:
+            fields = decode_words(self.rpc.eth_call(self.contracts['vault'],calldata('group(uint256)',bucket)))
+            position = decode_position(fields,self.accounting_version)
+        except (ValueError,RpcError) as exc:
+            self._mark_confirmation_reset(bucket)
+            if isinstance(exc,ValueError):raise RpcError('Unexpected or malformed vault group ABI') from exc
+            raise
+        status = position['status']
+        if status in ('none','dormant'): return fields,[]
+        if int(fields[0],16) == 0:
+            if self.principal_exit_started is not True:
+                self._mark_confirmation_reset(bucket)
+            raise RpcError('Malformed shared-pool state')
+        if self.accounting_version not in (3,4,5,6,7):
+            if int(fields[8],16) == 0 or int(fields[13],16) == 0:
+                raise RpcError('Missing shared-pool provenance')
+            for index in (9,10,12,14): self._address_word(fields[index])
+            self._asset_word(fields[11])
+        if self.view('vault','bucketTotalShares(uint256)',bucket) == 0:
+            raise RpcError('Shared pool has no shares')
+        pool_id = '0x'+fields[0]
+        try:
+            if self.view('vault','poolBucket(bytes32)',pool_id) != bucket:
+                raise RpcError('Pool occupancy does not match discovered bucket')
+            if status == 'active' and int(fields[1],16) == 0:
+                raise RpcError('Active shared pool has no LP position')
+            if status == 'parked' and int(fields[1],16) != 0:
+                raise RpcError('Parked shared pool still has an LP position')
+        except (ValueError,RpcError):
+            # These are the sampled LP's identity, unlike unrelated share-count
+            # reads above. A recovered pool cannot reuse old evidence/jitter.
+            # Once terminal exit starts there is no ordinary window to renew.
+            if self.principal_exit_started is not True:
+                self._mark_confirmation_reset(bucket)
+            raise
+        if status == 'exited' and (int(fields[1],16) or int(fields[2],16) or int(fields[3],16) or not self.lp_exit_started()):
+            raise RpcError('Exited shared pool retains principal or lacks its lifecycle lock')
+        if status == 'parked' and self.accounting_version not in (3,4,5,6,7) and (
+                position['location_chain'] != self.chain or position['location_vault'] != self.contracts['vault']):
+            raise RpcError('Parked principal is not in this local vault')
+        try:
+            config = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('get(bytes32)',pool_id)))
+            if len(config) != 14 or '0x'+keccak256(bytes.fromhex(''.join(config[:5]))).hex() != pool_id:
+                raise RpcError('Pool configuration does not match its identity')
+            if int(config[0],16) >= int(config[1],16): raise RpcError('Invalid venue currency ordering')
+            accounting = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('accounting(bytes32)',pool_id)))
+            if len(accounting) != 14 or accounting[1:] != config[1:]:
+                raise RpcError('Accounting configuration differs from the venue policy')
+            tokens = [self._asset_word(accounting[0]),self._address_word(accounting[1])]
+            if self.accounting_version in (2,3,4,5,6,7):
+                if accounting != config: raise RpcError('Native accounting currencies differ from actual venue currencies')
+            elif int(config[0],16) == 0:
+                wrapper = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('nativeAsset(bytes32)',pool_id)))
+                if len(wrapper) != 1 or self._address_word(wrapper[0]) != tokens[0] or tokens[0] == tokens[1]:
+                    raise RpcError('Native accounting wrapper mismatch')
+            elif accounting[0] != config[0]:
+                raise RpcError('ERC20 accounting asset differs from the venue')
+        except (ValueError,RpcError):
+            self._mark_confirmation_reset(bucket)
+            raise
+        # Legacy WETH normalization is confined to version1; native versions2/3
+        # keeps assetzero and never consults the optional wrapper getter.
+        return fields,tokens
+
+    def _sync_external(self, bucket: int) -> bool:
+        if self.fee_intake_version == 1:
+            raise RpcError('Creator-payment synchronization is retired in the LP-only profile')
+        receiver = self.view('fees','rewardReceiver(uint256)',bucket)
+        if receiver == 0: return False
+        if receiver >= 1 << 160: raise RpcError('Noncanonical reward receiver address')
+        inbox = '0x'+f'{receiver:040x}'
+        bound_fees = uint_result(self.rpc.eth_call(inbox,calldata('fees()')))
+        bound_bucket = uint_result(self.rpc.eth_call(inbox,calldata('bucketId()')))
+        if bound_fees != int(self.contracts['fees'],16) or bound_bucket != bucket:
+            raise RpcError('Reward receiver does not bind the discovered bucket and fee controller')
+        pending = decode_words(self.rpc.eth_call(inbox,calldata('pending()')))
+        if len(pending) != 2: raise RpcError('Unexpected reward receiver pending ABI')
+        if any(int(amount,16) != 0 for amount in pending):
+            return self.submit('fees','syncExternal(uint256)',(bucket,),f'external_rewards:{bucket}')
+        return False
+
+    def _convert_royalties(self) -> bool:
+        return self._convert_rewards(self.royalties)
+
+    def _convert_rewards(self, worker) -> bool:
+        try: return worker.scan_once()
+        except (ValueError,RpcError) as exc:
+            if self.state.get('pending'): raise
+            self.blocked_actions += 1
+            log(worker.key+'_deferred',**error_context(exc))
+            return False
+
+    def _buyback_tasks(self) -> list[dict[str,Any]]:
+        tasks = self.config.get('buybacks',[])
+        if not isinstance(tasks,list) or len(tasks) > MAX_BUYBACK_TASKS:
+            raise ValueError('Buybacks require a bounded task list')
+        tokens = set()
+        for task in tasks:
+            if not isinstance(task,dict): raise ValueError('Buyback task must be an object')
+            token = self._asset(task.get('token'))
+            amount = positive(task.get('amount'),'buyback amount')
+            pool = task.get('pool_id')
+            if amount >= 1 << 256 or not isinstance(pool,str) or \
+                    not re.fullmatch(r'0x[0-9a-fA-F]{64}',pool) or token in tokens:
+                raise ValueError('Invalid or duplicate buyback task')
+            tokens.add(token)
+        return tasks
+
+    def _buyback_once(self,tasks: list[dict[str,Any]]) -> bool:
+        """Bounded currency rotation; every actual submission uses normal guards."""
+        if not tasks: return False
+        start = self.state.get('buyback_cursor',0) % len(tasks)
+        for offset in range(len(tasks)):
+            slot = (start+offset) % len(tasks)
+            task = tasks[slot]
+            token = self._asset(task['token'])
+            amount = positive(task['amount'],'buyback amount')
+            # Advance before submit() persists any intent. Even a funded first
+            # currency or a reverted/deferred task cannot monopolize the next turn.
+            self.state['buyback_cursor'] = slot+1
+            try:
+                if self.view('fees','buybackBalance(address)',token) >= amount:
+                    _,fresh = self._head()
+                    if self.submit('buyback','execute(address,uint256,bytes32,uint256)',
+                            (token,amount,task['pool_id'],fresh+180),f'buyback:{token}'):
+                        return True
+            except (ValueError,RpcError) as exc:
+                if self.state.get('pending'): raise
+                self.blocked_actions += 1
+                log('buyback_deferred',token=token,**error_context(exc))
+        self.save()
+        return False
+
+    def _interrupted_confirmation_bucket(self,pending: Any) -> int | None:
+        if self.rebalance_confirmation.version not in (1,2,3) or not isinstance(pending,dict):return None
+        key=pending.get('key')
+        if not isinstance(key,str):return None
+        match=re.fullmatch(r'(rebalance|rebalance_observation|rebalance_reset):([1-9][0-9]{0,77})',key)
+        if match is None:return None
+        bucket=int(match[2])
+        if bucket>=1<<256:return None
+        data=pending.get('data')
+        if not isinstance(data,str):return None
+        data=data.lower()
+        if match[1]=='rebalance':
+            if (pending.get('to')==self.contracts['vault'] and len(data)==202 and
+                    re.fullmatch(r'0x[0-9a-f]{200}',data) is not None and
+                    data[:10]=='0x'+keccak256(b'rebalance(uint256,uint128,uint256)').hex()[:8] and
+                    data[10:74]==f'{bucket:064x}'):
+                return bucket
+        else:
+            method='observe(uint256)' if match[1]=='rebalance_observation' else 'resetObservation(uint256)'
+            if pending.get('to')==self.contracts['rebalance_confirmation'] and data==calldata(method,bucket):return bucket
+        return None
+
+    def _confirmation_priority(self, *, paused: bool, preparing: bool, lp_exit: bool,
+                               checked: set[int]) -> bool:
+        """Service existing sample/reset deadlines before optional nonce users.
+
+        This runs only AFTER saved-intent recovery and shared lifecycle/authority
+        gates. No new journal namespace, signing path or on-chain exception is
+        introduced. Cold discovery and time between checks retain normal queue
+        fairness. A serial sender can still miss strict gaps under slow finality
+        or several simultaneous windows; this is priority, never an SLA.
+        """
+        if self.rebalance_confirmation.version not in (1,2,3) or preparing or lp_exit:
+            return False
+        schedules = self.state.get(self._confirmation_namespace(),{})
+        resets = self.state.get(CONFIRMATION_RESETS,{})
+        clears = {key for key,record in self.state.get(CONFIRMATION_CLEARS,{}).items()
+            if record['awaiting_healthy_read']}
+        if not schedules and not resets and not clears:
+            return False
+        try: _,now = self._head()
+        except (ValueError,RpcError):
+            self._mark_known_confirmation_resets()
+            raise
+        if any(now < record['last_checked_at'] for record in schedules.values()):
+            # A retreated head must not disguise an old deadline as future and
+            # yield its nonce slot to optional work before raw reset handling.
+            self._mark_known_confirmation_resets()
+            raise RpcError('Confirmation priority chain clock retreated')
+        deadlines = {key:0 for key in set(resets) | clears}
+        for key,record in schedules.items():
+            deadline = min(record['next_check_at'],record['last_checked_at']+CONFIRMATION_CHECK_SECONDS)
+            if record['execute_after']:
+                deadline = min(deadline,record['execute_after'])
+            if paused or now >= deadline:
+                deadlines[key] = min(deadlines.get(key,deadline),deadline)
+        for key in sorted(deadlines,key=lambda key:(deadlines[key],int(key))):
+            bucket = int(key)
+            checked.add(bucket)
+            try:
+                _,fresh = self._head()
+                if fresh < now: raise RpcError('Confirmation priority chain clock retreated')
+            except (ValueError,RpcError):
+                self._mark_known_confirmation_resets()
+                raise
+            try:
+                item = {**self.maintenance,**self.overrides.get(key,{})}
+                self._validate_maintenance_settings(item)
+                fields,_ = self._bucket(bucket)
+                if decode_position(fields,self.accounting_version)['status'] != 'active':
+                    self._store_rebalance_schedule(bucket,None)
+                    continue
+                if paused:
+                    if bucket not in self._confirmation_pause_seen:
+                        self._mark_confirmation_reset(bucket)
+                        self._confirmation_pause_seen.add(bucket)
+                    if self.state.get(CONFIRMATION_RESETS,{}).get(key):
+                        if self.submit('rebalance_confirmation','resetObservation(uint256)',(bucket,),f'rebalance_reset:{bucket}'):
+                            return True
+                    continue
+                if self.state.get(CONFIRMATION_RESETS,{}).get(key):
+                    # Clear-only evidence recovery has no swap or router
+                    # dependency. Its own submission still verifies the helper,
+                    # authority, lifecycle, simulation, costs and saved nonce.
+                    self._rebalance_reset_due=bucket
+                    if self.submit('rebalance_confirmation','resetObservation(uint256)',(bucket,),f'rebalance_reset:{bucket}'):
+                        return True
+                    continue
+                self._validate_lp_routing(use_cache=True)
+                minimum = positive(item.get('minimum_liquidity',1),'minimum_liquidity')
+                if self._rebalance_due(bucket,fields,fresh):
+                    if self.submit('vault','rebalance(uint256,uint128,uint256)',
+                            (bucket,minimum,fresh+180),f'rebalance:{bucket}'):
+                        return True
+                elif self._rebalance_reset_due is not None:
+                    if self.submit('rebalance_confirmation','resetObservation(uint256)',(bucket,),f'rebalance_reset:{bucket}'):
+                        return True
+                elif self._rebalance_observation_due is not None:
+                    if self.submit('rebalance_confirmation','observe(uint256)',(bucket,),f'rebalance_observation:{bucket}'):
+                        return True
+            except (ValueError,RpcError) as exc:
+                if self.state.get('pending'): raise
+                self.blocked_actions += 1
+                log('confirmation_priority_deferred',bucket_id=key,**error_context(exc))
+        return False
+
+    def cycle(self) -> None:
+        pending=self.state.get('pending')
+        try:
+            if self.poll_pending(): return
+        except (ValueError,RpcError):
+            # poll_pending also validates a used signer's receipt checkpoint
+            # when no intent exists. A failed canonical head/anchor read is a
+            # raw-state fault, before the later lifecycle/clock boundary.
+            if pending is None:
+                self._mark_known_confirmation_resets()
+            else:
+                # Saved-intent recovery stays independent of new reset work.
+                bucket=self._interrupted_confirmation_bucket(pending)
+                if bucket is not None:self._confirmation_recovery_interrupted.add(bucket)
+            raise
+        if self.rebalance_confirmation.version in (1,2,3) and self._confirmation_recovery_interrupted:
+            for bucket in self._confirmation_recovery_interrupted:
+                self._mark_confirmation_reset(bucket)
+            self._confirmation_recovery_interrupted.clear()
+        self.principal_distribution.configure()
+        self._validate_maintenance_config()
+        buybacks = self._buyback_tasks()
+        self._validate_accounting_version()
+        try:
+            if self.canonical_state() != 0: return
+            paused = self.view('access','paused()') != 0
+            self.strategy_paused = paused
+            if not paused:self._confirmation_pause_seen.clear()
+            preparing = self.preparation_active()
+            lp_exit = self.lp_exit_started()
+            if self.view('access','isSealed()') != 1: raise RpcError('Protocol is not sealed')
+            if self.view('access','keepers(address)',self.sender) != 1: raise RpcError('Configured sender is not an authorized keeper')
+        except (ValueError,RpcError):
+            self._mark_known_confirmation_resets()
+            raise
+        confirmation_checked: set[int] = set()
+        if self._confirmation_priority(paused=paused,preparing=preparing,lp_exit=lp_exit,checked=confirmation_checked):
+            return
+        principal_first = False
+        if lp_exit and self.principal_distribution.enabled:
+            principal_first = self.principal_distribution.prefer_first()
+            if principal_first and self.principal_distribution.run(): return
+        # Three-way durable priority: LP conversion, royalty conversion, then
+        # maintenance. One busy stream cannot consume every serial nonce slot.
+        workers = (self.lp_rewards,self.royalties)
+        turn = self.state.get('conversion_turn',0)
+        self.state['conversion_turn'] = (turn+1)%3
+        self.save()
+        if turn < 2 and workers[turn].enabled and not paused and not preparing:
+            if self._convert_rewards(workers[turn]): return
+        # Keep the historical three-way conversion cursor intact. Alternate
+        # buyback priority only when reaching maintenance; busy maintenance and
+        # metadata cannot indefinitely hide funded buyback reserves. Metadata's
+        # own alternation advances only if reached, preserving LP opportunities.
+        buyback_first = False
+        if buybacks and not paused and not preparing:
+            buyback_first = self.state.get('buyback_priority',False)
+            self.state['buyback_priority'] = not buyback_first
+            self.save()
+            if buyback_first and self._buyback_once(buybacks): return
+        metadata_first = False
+        if self.metadata_enabled:
+            # Alternate priority so changing artwork cannot starve LP maintenance
+            # and a busy LP cannot indefinitely starve metadata notifications.
+            metadata_first = self.state['metadata_refresh']['next_first']
+            # Publish the turn before optional RPCs. A watchdog/process exit
+            # must not restart the same blocked metadata ahead of every LP job.
+            previous = self.state
+            updated = copy.deepcopy(previous)
+            updated['metadata_refresh']['next_first'] = not metadata_first
+            self.state = updated
+            try: self.save()
+            except BaseException:
+                self.state = previous
+                raise
+            if metadata_first and self._refresh_metadata(): return
+        try:_,now = self._head()
+        except (ValueError,RpcError):
+            self._mark_known_confirmation_resets()
+            raise
+        batch = self._bucket_batch()
+        for slot,bucket in batch:
+            # Advance before a submission: submit() persists this cursor together
+            # with the intended nonce before the signer can broadcast.
+            self.state['bucket_cursor'] = slot+1
+            item = {**self.maintenance,**self.overrides.get(str(bucket),{})}
+            try:
+                self._validate_maintenance_settings(item)
+                fields,tokens = self._bucket(bucket)
+                status = decode_position(fields,self.accounting_version)['status']
+                if self.maintenance_policy_version in (2,3) and status != 'active':
+                    self._store_rebalance_schedule(bucket,None)
+                if status in ('none','dormant'): continue
+                # Canonical funded revenue and claims remain available during
+                # pauses and while the physical LP is away. No principal moves.
+                if self.fee_intake_version == 0 and item.get('sync_external_rewards',True) and self._sync_external(bucket): return
+                if paused:
+                    if (self.rebalance_confirmation.version in (1,2,3) and status=='active' and not lp_exit and
+                            bucket not in confirmation_checked):
+                        if bucket not in self._confirmation_pause_seen:
+                            self._mark_confirmation_reset(bucket)
+                            self._confirmation_pause_seen.add(bucket)
+                        if self.state.get(CONFIRMATION_RESETS,{}).get(str(bucket)):
+                            if self.submit('rebalance_confirmation','resetObservation(uint256)',(bucket,),f'rebalance_reset:{bucket}'):return
+                    continue
+                if status == 'active' and not lp_exit:
+                    minimum = positive(item.get('minimum_liquidity',1),'minimum_liquidity')
+                    _,fresh = self._head(); deadline = fresh+180
+                    if not preparing:
+                        try:
+                            self._validate_lp_routing(use_cache=True)
+                            if self.adaptive_range_enabled and self._adaptive_range_target('0x'+fields[0],fresh):
+                                if self.submit('strategy','applyKeeperRange(bytes32)',('0x'+fields[0],),f'range_policy:{bucket}'): return
+                            if bucket not in confirmation_checked:
+                                if self._rebalance_due(bucket,fields,fresh):
+                                    if self.submit('vault','rebalance(uint256,uint128,uint256)',(bucket,minimum,deadline),f'rebalance:{bucket}'): return
+                                elif self._rebalance_reset_due is not None:
+                                    confirmation_checked.add(bucket)
+                                    if self.submit('rebalance_confirmation','resetObservation(uint256)',(bucket,),f'rebalance_reset:{bucket}'):return
+                                elif self._rebalance_observation_due is not None:
+                                    if self.submit('rebalance_confirmation','observe(uint256)',(bucket,),f'rebalance_observation:{bucket}'):return
+                            if item.get('compound',True):
+                                reserves = [self.view('fees','compoundBalance(uint256,address)',bucket,t) for t in tokens]
+                                # Local intervals must use a current chain clock,
+                                # not the head from before slow strategy/reserve
+                                # reads. Authoritative compoundReady and the
+                                # submission checks remain separate safeguards.
+                                _,compound_now = self._head()
+                                if compound_now < fresh:raise RpcError('Compound scheduling chain clock retreated')
+                                fresh=compound_now;deadline=fresh+180
+                                if self._compound_due(bucket,tokens,reserves,item,fresh,fields):
+                                    if self.submit('compounder','compound(uint256,uint128,uint256)',(bucket,minimum,deadline),f'compound:{bucket}'): return
+                                if (self._rebalance_reset_due==bucket and bucket not in confirmation_checked and
+                                        self.state.get(CONFIRMATION_RESETS,{}).get(str(bucket))):
+                                    confirmation_checked.add(bucket)
+                                    if self.submit('rebalance_confirmation','resetObservation(uint256)',(bucket,),f'rebalance_reset:{bucket}'):return
+                        except RpcError as exc:
+                            # Fee collection has no price dependency or principal
+                            # movement. Only an authenticated active bucket may
+                            # proceed to its separately guarded due harvest.
+                            # Config/ABI ValueError stays fail-closed outside.
+                            if self.state.get('pending'): raise
+                            self.blocked_actions += 1
+                            log('maintenance_deferred',bucket_id=str(bucket),**error_context(exc))
+                    # Fresh accounting4 defaults to hourly independent collection;
+                    # historical profiles keep their original omitted-field schedule.
+                    default_harvest = 3600 if self.accounting_version in (4,5,6,7) else 14400
+                    interval = positive(item.get('harvest_interval_seconds',default_harvest),'harvest_interval_seconds')
+                    if item.get('harvest',True):
+                        # Refresh BEFORE deciding whether the interval is due:
+                        # a slow successful/failed maintenance read can cross
+                        # that boundary even if the old head was not due yet.
+                        _,harvest_now = self._head()
+                        if harvest_now < fresh:raise RpcError('Harvest scheduling chain clock retreated')
+                        if harvest_now-int(self.state['last'].get(f'harvest:{bucket}',0)) >= interval:
+                            deadline = harvest_now+180
+                            if self.submit('vault','collectFees(uint256,uint256)',(bucket,deadline),f'harvest:{bucket}'): return
+            except (ValueError,RpcError) as exc:
+                if self.state.get('pending'): raise
+                self.skipped_buckets += 1
+                log('bucket_skipped',bucket_id=str(bucket),**error_context(exc))
+        if batch: self.save()
+        if self.metadata_enabled and not metadata_first and self._refresh_metadata(): return
+        if paused:
+            log('protocol_paused')
+        elif not preparing:
+            if not buyback_first and self._buyback_once(buybacks): return
+            for i in ((turn+1)%2, turn%2):
+                if i != turn and workers[i].enabled and self._convert_rewards(workers[i]): return
+        if lp_exit and self.principal_distribution.enabled and not principal_first:
+            if self.principal_distribution.run(): return
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--config',required=True);parser.add_argument('--live',action='store_true')
+    parser.add_argument('--once',action='store_true');parser.add_argument('--resolve-pending')
+    parser.add_argument('--initialize-state',action='store_true')
+    args = parser.parse_args()
+    if args.initialize_state and (args.live or args.resolve_pending): parser.error('Initialization cannot sign or resolve a transaction')
+    watchdog = ProgressWatchdog.from_environment()
+    watchdog.pulse(force=True)
+    config = read_json(args.config)
+    if not isinstance(config,dict):
+        raise ValueError('Keeper configuration must be a JSON object')
+    interval = positive(config.get('interval_seconds',600),'interval_seconds')
+    if interval < 60: raise ValueError('Polling interval must be at least 60 seconds')
+    stop = False
+    def halt(*_: Any) -> None:
+        nonlocal stop;stop=True
+    signal.signal(signal.SIGINT,halt);signal.signal(signal.SIGTERM,halt)
+    with process_lock(config.get('lock_path','var/keeper.lock')):
+        # Wrap before construction: a live startup also validates signer/chain
+        # state. Completed reads report progress; blocked I/O has no pulse thread.
+        if watchdog.enabled:
+            rpc = ProgressRPC(Rpc(config['rpc_urls'],positive(config['chain_id'],'chain_id'),
+                transport_attempt_complete=watchdog.pulse),watchdog)
+            keeper = Keeper(config,live=args.live,rpc=rpc)
+        else:
+            keeper = Keeper(config,live=args.live)
+        watchdog.pulse(force=True)
+        keeper.stop_requested = lambda: stop
+        if args.initialize_state:
+            keeper.initialize_state();return
+        if args.resolve_pending:
+            keeper.resolve_pending(args.resolve_pending);return
+        while not stop:
+            watchdog.pulse(force=True)
+            success = keeper.run_cycle()
+            watchdog.pulse(force=True)
+            if args.once and not success: raise SystemExit(1)
+            if args.once: break
+            delay = keeper.poll_delay(interval)
+            wake_at = time.monotonic()+delay
+            while not stop and time.monotonic()<wake_at:
+                watchdog.pulse()
+                remaining = wake_at-time.monotonic()
+                if remaining>0:time.sleep(min(1,remaining))
+
+if __name__ == '__main__':
+    try: main()
+    except Exception as exc:
+        log('keeper_halted',**error_context(exc))
+        raise SystemExit(1) from None

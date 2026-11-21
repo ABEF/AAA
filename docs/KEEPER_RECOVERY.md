@@ -1,5 +1,14 @@
 # Keeper outage and server recovery
 
+[Focused recovery/lock correction](../reports/ubuntu-keeper-20261121/REVIEW.md):
+invalid/zero signer output preserves reloadable hashless intent; it is not proof
+that no transaction was sent. Follow exact-chain/nonce/hash reconciliation and
+never resend/delete the intent. Keeper/indexer locks now reject unsafe paths,
+symlinks and nonregular files while preserving safe legacy0644 inodes. See the
+[adoption procedure](OPERATOR_MANUAL.md#keeper-lock-and-recovery-source-adoption).
+No journal schema or existing operating service is changed. Full Ubuntu normal
+daemon recovery remains unqualified; the attempted labs are stopped.
+
 Durable/config JSON now rejects duplicate keys and nonfinite/overflowing numbers.
 On rejection preserve the original file and inspect its retained evidence/backups;
 do not delete pending work, edit spending truth or weaken the parser. Review

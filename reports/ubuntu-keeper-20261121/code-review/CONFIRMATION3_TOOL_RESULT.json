@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "record_kind": "preserved_existing_tool_console_result",
+  "capture_limitation": "This method was run directly through exec_command, not through the report runner. The combined console output below is preserved from its existing tool response; stdout and stderr were not separately captured to files at execution time. No test was rerun to create this record.",
+  "tool": "exec_command",
+  "tool_chunk_id": "a056a9",
+  "tool_exit_code": 0,
+  "tool_wall_time_seconds": 7.7102331,
+  "command": "& 'C:/Users/Ali/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' -m unittest tests_python.test_keeper_operation_review_followup.KeeperOperationReviewFollowupTests.test_confirmation3_threshold_return_reports_existing_clear_requirement -v",
+  "working_directory": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2",
+  "combined_output": "test_confirmation3_threshold_return_reports_existing_clear_requirement (tests_python.test_keeper_operation_review_followup.KeeperOperationReviewFollowupTests.test_confirmation3_threshold_return_reports_existing_clear_requirement) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 7.220s\n\nOK\n",
+  "source_identity_scope": "These hashes were read back after execution. No intervening edits to these three files were made between this method's execution and the readback. Earlier seven-method results retain their original test-file hash and are not relabelled as this source stage.",
+  "source_sha256": {
+    "tests_python/test_keeper_operation_review_followup.py": "9ef99e0e5fc5de59538db736046c8b8b543e2559cf37f92239fcae683d90476b",
+    "keeper/operation_review.py": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48",
+    "keeper/monitor.py": "daa79a1071d0fb86f1bf345871e5834b8ba7a76f39707bde5bc43fa810583ce1"
+  },
+  "coverage": "One new confirmation3 threshold-return diagnostic case using the existing accounting5/portfolio1 transcript fixture. Not a current F6 deployed-runtime or normal-daemon acceptance result.",
+  "tests_run_in_this_disjoint_stage": 1,
+  "rerun_to_create_record": false
+}

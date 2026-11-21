@@ -1,0 +1,6 @@
+{
+  "scope": "existing_public_known_host_file_only",
+  "exit_code": 0,
+  "stdout": "256 SHA256:b2oOFCCP3CUXqKUbVSPcBf5usfmZK7LFDJVG12h5mGA 46.225.185.212 (ED25519)\r\n3072 SHA256:ycAl8c6Suz78+3ryC7Z8gr0XT6Qj76BbetK7atnLom4 46.225.185.212 (RSA)\r\n256 SHA256:xEXiA1YVXqAUPqeDlw3d711Fz2ZiQrGL3BbF++DWgis 46.225.185.212 (ECDSA)\r\n",
+  "private_key_read": false
+}

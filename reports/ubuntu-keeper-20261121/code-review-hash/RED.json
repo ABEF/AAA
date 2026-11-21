@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "stage": "new_zero_hash_regression_before_fix",
+  "time_utc": "2026-11-21T15:31:12.897020+00:00",
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-m",
+    "unittest",
+    "tests_python.test_keeper_broadcast_hash.KeeperBroadcastHashTests.test_zero_signer_hash_preserves_reloadable_intent_and_never_resends",
+    "-v"
+  ],
+  "exit_code": 1,
+  "monitor_sha256": "e0474aa16e8377ad9c276492fcd01d4bf5570614bf7430658d8669ae4c288645",
+  "new_test_sha256": "98f597af423e0156d4076beac3f0b3ed8ac204cfa578d84fdc9256d060231091",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "18dcdbeb390a7ea5322348f01e454ab6a38cc6e3d0c1e4c04866365711ffb834",
+  "unchanged_test_methods_run": 0,
+  "public_signing": false
+}

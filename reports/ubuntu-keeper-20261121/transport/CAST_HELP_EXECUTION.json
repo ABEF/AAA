@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "source_sha256": "49dc7b527c5d8580d921d512a434e2b5e71cdcc61c025e4c8911ae300304166c",
+  "stdout_sha256": "cf2ae53e42d3533b76464eb3b077ee9a810c2110208f0d8f75d66ef7a844117a",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "exit_code": 0,
+  "wallet_generated_or_accessed": false
+}

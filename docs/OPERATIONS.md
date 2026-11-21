@@ -1,5 +1,12 @@
 # Keeper, indexer and service operations
 
+The [21 November focused fixes](../reports/ubuntu-keeper-20261121/REVIEW.md)
+preserve guards/defaults/journal schemas. Adopt matching keeper/checker Python
+sources only through the [lock and recovery procedure](OPERATOR_MANUAL.md#keeper-lock-and-recovery-source-adoption).
+The stock-daemon/real-Cast Ubuntu attempt remains unfinished;18focused methods,
+including8Unix lock methods, are not complete normal-loop acceptance. No actual
+provider, operating key, service rollout or complete Robinhood fee is approved.
+
 **Production NOT APPROVED.** This is an operating guide, not permission to deploy,
 sign publicly or change running services. Start with the [operator manual](OPERATOR_MANUAL.md)
 for authority/exact calls and [recovery runbook](KEEPER_RECOVERY.md) for journals.

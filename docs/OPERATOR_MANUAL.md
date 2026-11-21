@@ -1,5 +1,42 @@
 # PoPL operator manual
 
+## Keeper lock and recovery source adoption
+
+The [focused review](../reports/ubuntu-keeper-20261121/REVIEW.md) changes Python
+code only. It does not install or restart a service. Before adopting it, stop
+and fence the old writer, retain its exact journal/config/receipt evidence,
+review the matching release, then use the existing dry-run/recovery procedure.
+The journal schema, pending hash/nonce/spend and financial limits do not change.
+
+For BOTH keeper and indexer `lock_path`:
+
+| Check | Required setup | If rejected |
+| --- | --- | --- |
+| Direct parent | Real directory owned by the service user or root; no group/other write bits | Review ownership/permissions while writer stopped |
+| Existing lock | Regular file owned by that service user; no group/other write bits | Correct the existing inode's permissions; do not delete it |
+| Legacy0644 | Accepted unchanged when owner/parent are safe | No migration or chmod is required |
+| New lock | Created0600; same persistent inode across restarts | Never replace/unlink to clear contention |
+| Symlink/FIFO/device | Rejected before entering the worker | Select a reviewed real regular lock path |
+| Host trust | Protect ancestor directories and the service UID; one fenced writer host | Local flock is not multi-host fencing |
+
+These checks happen before keeper/indexer startup work. The open uses no-follow
+and nonblocking flags; after flock the named inode must still match. An existing
+lock can remain on disk after exit: process death releases the kernel lock.
+Use the configured service identity (the supplied unit example uses `zzz`),
+not a guessed user. Do not change a live lock path or repair it by removing it.
+
+A zero or malformed signer hash now leaves the original durable **hashless**
+intent intact and halts submission. The transaction may have been sent: inspect
+its actual chain/nonce/receipt and follow the existing exact-hash reconciliation
+procedure. Never erase pending state or resend merely because output was bad.
+
+`keeper.ops review` remains read-only. Profile2 diagnostics capture one positive
+quote before simulation and use the same type2/max-fee/zero-tip envelope for
+`eth_call`, estimation and cost. Legacy profile1 semantics remain unchanged.
+Tracked compound observations are authenticated at the review block; required
+clears report blocked, missing proof reports unavailable. The report does not
+write resets/acknowledgements, draw jitter, load a signer or authorize execution.
+
 [Current LP fee-flow proof](../reports/pool-fees-20261121/REVIEW.md) verifies actual
 harvested ETH/ZZZ,80/10/5/5+dust and exact current-owner claims on the saved normal
 F6 test graph. `Vault.collectFees(bucket,deadline)` remains permissionless under

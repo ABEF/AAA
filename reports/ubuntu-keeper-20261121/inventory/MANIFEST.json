@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "kind": "sanitized_read_only_platform_inventory",
+  "members": {
+    "HOST_PROBE.json": {
+      "bytes": 8129,
+      "sha256": "520ceeaa2f0e493d413c22a062243f58149197d47ee9909f68f599216f5df75f"
+    },
+    "host_probe.py": {
+      "bytes": 4269,
+      "sha256": "d8311fc1e941fb122cd895a5ba923c915cbb729b430365dab7c44f18a587abaf"
+    },
+    "HOST_PROBE.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "HOST_PROBE_EXECUTION.json": {
+      "bytes": 530,
+      "sha256": "de0b46bd4142c92360ffe87ee8d86170c94e86291edacb051818de1aeebf33bf"
+    },
+    "HOST_PROBE_RAW.json": {
+      "bytes": 7892,
+      "sha256": "de52bf247f40b9ae6eddf17610b4f7cf02908d0d92d7f89590edbff503fa0f50"
+    },
+    "LOCAL_TOOLS.json": {
+      "bytes": 414,
+      "sha256": "5cc2823d5f1925cd651ddd6d307206c42804fbcf19a20dbf6c427066909fd209"
+    },
+    "PERMISSIONS_PROBE.json": {
+      "bytes": 482,
+      "sha256": "254d0a15f2734f373bac759d63105add18ad875d671cb3307bb025490f5786a5"
+    },
+    "permissions_probe.py": {
+      "bytes": 360,
+      "sha256": "b4401d1a7a6cdb853114a5c3dc8b6bcae8ef7d2aec53803e2e19c12bddbcbcde"
+    },
+    "wsl-list.json": {
+      "bytes": 439,
+      "sha256": "1add7fa9d25d2827d43a6f5a6a84cc31ac5f155bf7a9512b8bb8b339b0571662"
+    }
+  },
+  "raw_remote_stdout": "HOST_PROBE_RAW.json",
+  "normalized_remote_json": "HOST_PROBE.json",
+  "remote_source": "host_probe.py",
+  "permission_source": "permissions_probe.py",
+  "credential_material_included": false,
+  "service_config_or_state_changes": false,
+  "production_approved": false
+}

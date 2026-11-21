@@ -2036,9 +2036,10 @@ class Keeper:
             try: parsed = json.loads(result.stdout)
             except json.JSONDecodeError: parsed = result.stdout.strip()
             candidate = parsed.get('transactionHash',parsed.get('hash')) if isinstance(parsed,dict) else parsed
-            if not isinstance(candidate,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',candidate):
-                raise RuntimeError('Signer did not return a transaction hash')
-            pending['hash'] = candidate.lower(); self.save()
+            try: candidate = rpc_hash(candidate,'signer transaction hash')
+            except RpcError:
+                raise RuntimeError('Signer did not return a transaction hash') from None
+            pending['hash'] = candidate; self.save()
             log('submitted',action=key,transaction=candidate)
         except Exception as exc:
             # Deliberately retain pending state. NEVER automatically resubmit on timeout.

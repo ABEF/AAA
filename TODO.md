@@ -674,6 +674,7 @@ The data and services behind the app.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Ubuntu preparation and focused code review](reports/ubuntu-keeper-20261121/REVIEW.md): 15new and3affected methods pass in disjoint source stages. Reject zero hashes before intent mutation; use protected same-inode Unix locks; match profile2 diagnostic fee envelopes; authenticate tracked compound observations without writes. Core live daemon/Cast journey did not run; preserve failed setup, all8stopped units and original host states. No source publication adopts a service, journal, signer or financial policy.
   - [Collection ingress delta](reports/collection-reads/nginx.json): the reviewed GET allowlist and supervised workers support bounded collection reads; all 34 isolated Nginx checks pass. Roll out matching API/proxy/frontend versions; Linux/TLS/provider qualification remains open.
   - [Wallet earnings proxy check](reports/wallet-earnings/VERIFICATION.md): summary and earnings GET chunks are admitted by the reviewed Nginx allowlist. 30 isolated actual Nginx checks pass, including cursor/method rejection; deploy matching includes and qualify Linux/TLS separately.
   - Publish and qualify the confirmed read API, optional unsigned preparation and ownership/claim-history indexer for the reviewed deployment. Independently verify hashes/configuration and response freshness after all RPC/history reads.
@@ -747,6 +748,7 @@ The data and services behind the app.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Ubuntu preparation and focused code review](reports/ubuntu-keeper-20261121/REVIEW.md): 15new and3affected methods pass in disjoint source stages. Reject zero hashes before intent mutation; use protected same-inode Unix locks; match profile2 diagnostic fee envelopes; authenticate tracked compound observations without writes. Core live daemon/Cast journey did not run; preserve failed setup, all8stopped units and original host states. No source publication adopts a service, journal, signer or financial policy.
   - Cover NFT/reveal/ownership, activation/growth, principal NAV, fee allocation/reserves, LP conversion/claims, original-currency royalty claims, harvest/compound/rebalance/buyback, same-pair move/parking, terminal return and canonical handoff. Historical conversion records keep their original meaning. Existing on-chain functions without typed preparation adapters remain explicitly unsupported by the report; do not create arbitrary-call drafts.
   - Bind exact chain/deployment/profile/runtime/config, action/input units/caller, canonical block and expiry. Separate principal, earned/claimable/paid rewards, compound/buyback, royalties/cohorts/dust and returned principal. Reuse existing projection/accounting math, not a second balance ledger.
   - Distinguish not-needed/not-due from verified blocked/unavailable/not-configured/unsupported. Report physical/reference sides, hard cooldown, sampled readiness, service jitter/nonce recovery and execution feasibility independently; never promise the next execution from a timing lower bound.
@@ -1708,6 +1710,7 @@ Decisions and rehearsals before real funds.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Ubuntu preparation and focused code review](reports/ubuntu-keeper-20261121/REVIEW.md): 15new and3affected methods pass in disjoint source stages. Reject zero hashes before intent mutation; use protected same-inode Unix locks; match profile2 diagnostic fee envelopes; authenticate tracked compound observations without writes. Core live daemon/Cast journey did not run; preserve failed setup, all8stopped units and original host states. No source publication adopts a service, journal, signer or financial policy.
   - Stage keeper keystore isolation, nonce/receipt recovery, RPC failover, budgets, indexer backfill/reorgs, alerts and Unix state locking. The supplied systemd unit defaults to dry run.
   - Qualify canonical-hash RPC selectors for every activation state read, stale-snapshot rejection, strict receipt recovery across midnight/reorgs, and the chain's complete L2/L1 fee reporting. Offline mocks do not establish provider support or complete real network costs.
   - Qualify independent production alerts/backups/retention, redundant RPCs and complete real fee accounting.
@@ -1761,16 +1764,18 @@ Decisions and rehearsals before real funds.
   - The [behavior follow-up](reports/operator-behavior-followup-20261117/KEEPER_REVIEW.md) fixes interval crossings during slow reads by refreshing chain time before compound/harvest due decisions. Nine new worker checks plus one adapted timing check pass with injected RPC. Actual-core authorized/revoked/replacement/pause checks are separate. Extra compound waiting remains software-only by explicit operator choice; governance can revoke/replace its limited keeper key. Existing cooldowns/guards/journals and running services stay unchanged.
   - Verify the actual cycle-to-submit dry-run path after the hourly harvest clock crosses during another maintenance failure: complete void simulation is required, malformed output must stop before estimation, and no simulated submission may advance pending/spend/harvest-success state. New injected-RPC checks cover this without changing keeper software or operating configuration. [Impact follow-up](reports/test-impact-followup-20261117/TOOLS_REVIEW.md).
   - [Latest seven-report reconciliation](reports/seven-report-consolidation-20261119/REVIEW.md): Observed-stop signer gating and completed bounded failover watchdog progress remain implemented. Extra compound waiting stays software-only by explicit choice; actual operating rollout and adversarial-provider/host recovery remain unqualified.
+  - Review bounded Cast stdout/stderr capture: current30/90-second subprocess timeouts do not impose an output byte ceiling. Retain ambiguous pending intent on any future capture-limit failure; no automatic resend or new financial allowance. This is a resource-hardening follow-up, not a demonstrated fund-loss exploit.
 
   </details>
 
 <a id="task-keeper-recovery"></a>
 
-- [ ] **[Rehearse keeper outage & server recovery](docs/KEEPER_REHEARSALS.md)** - In progress. Current Q06: two shutdown/failover defects fixed;12 new unit methods and finite isolated Linux/systemd interruption/recovery cases pass with synthetic contracts and inert signing. All owned units stopped; no installed service/journal rollout. Actual keys/providers, full normal daemon, off-host restore/alerts and sustained operation remain open. Historical 2026-10-16 receipts retain their original profile.
+- [ ] **[Rehearse keeper outage & server recovery](docs/KEEPER_REHEARSALS.md)** - In progress. Current focused review fixes zero-hash recovery and unsafe process locks;18focused checks pass, including8 unprivileged Ubuntu lock methods. The stock-daemon/real-Cast Ubuntu attempt stopped during fixture setup: no live journal or Cast transaction ran. All8owned units stopped; installed services/journals remain unchanged. Full normal scheduling, production keys/providers, off-host restore/alerts and sustained operation stay open.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Ubuntu preparation and focused code review](reports/ubuntu-keeper-20261121/REVIEW.md): 15new and3affected methods pass in disjoint source stages. Reject zero hashes before intent mutation; use protected same-inode Unix locks; match profile2 diagnostic fee envelopes; authenticate tracked compound observations without writes. Core live daemon/Cast journey did not run; preserve failed setup, all8stopped units and original host states. No source publication adopts a service, journal, signer or financial policy.
   - [Q06 current-profile recovery](reports/q06-keeper-recovery-20261117/REVIEW.md): actual private-network Linux header-stall watchdog, manual main-kill/descendant cleanup, same-inode locking, exact hashless intent and synthetic receipt/nonce/spend recovery pass. A127.445s completed failover avoids false watchdog expiry. Twelve NEW source checks pass; no unchanged suite rerun. Recovery-only dispatcher/inert signer does not qualify real encrypted Cast, full maintenance scheduling, external RPC/fees, DNS/body variants, off-host backups/alerts/fencing or soak. The raw cgroup warning and existing observer timer activity remain explicit; preserve all existing state. Task stays in progress.
   - Stage [the keeper recovery runbook](docs/KEEPER_RECOVERY.md): multi-day outage, lost server, stale/missing state, nonce/budget reconciliation, old-host fencing and key rotation.
   - Verify off-host backups, health/log alert delivery, permissions/disk failures and actual Linux service restart/locking. Local guards are not production operating evidence.
@@ -1872,4 +1877,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `5bfc94bcf573afeb1fdbb00b3a3b394f3c6bb925a41250e829366f530b966f26`.
+Snapshot SHA-256: `6be3e2a0cb68fe9dd2e8aeb622c24b7fa2504d9fcd555b6fdeb7b804d2d3cf8c`.

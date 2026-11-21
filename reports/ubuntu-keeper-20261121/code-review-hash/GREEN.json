@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "stage": "two_new_hash_regressions_after_fix",
+  "time_utc": "2026-11-21T15:31:58.867173+00:00",
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-m",
+    "unittest",
+    "tests_python.test_keeper_broadcast_hash.KeeperBroadcastHashTests.test_zero_signer_hash_preserves_reloadable_intent_and_never_resends",
+    "tests_python.test_keeper_broadcast_hash.KeeperBroadcastHashTests.test_valid_mixed_case_signer_hash_is_normalized_without_changing_review",
+    "-v"
+  ],
+  "exit_code": 0,
+  "new_methods": 2,
+  "monitor_sha256": "daa79a1071d0fb86f1bf345871e5834b8ba7a76f39707bde5bc43fa810583ce1",
+  "new_test_sha256": "98f597af423e0156d4076beac3f0b3ed8ac204cfa578d84fdc9256d060231091",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "a41529bd68f5523fe253ab2fca33a4895eb4535717409cf0cf2c145e27c15282",
+  "unchanged_test_methods_run": 0,
+  "public_signing": false,
+  "scope": "inert_fresh7_submit_and_reload_not_Linux_daemon_or_real_signer"
+}

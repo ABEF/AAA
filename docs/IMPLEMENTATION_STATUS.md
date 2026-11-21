@@ -1,5 +1,13 @@
 # Feature and evidence reference
 
+[21 November keeper follow-through](../reports/ubuntu-keeper-20261121/REVIEW.md)
+adds strict nonzero broadcast-hash admission, protected persistent Unix locks
+for keeper/indexer, matching profile2 read-only simulation fee inputs and
+authenticated compound confirmation diagnostics.18focused methods pass,8 on
+Ubuntu. Economic rules, contract runtimes, journal schemas and service defaults
+are unchanged. Full stock-daemon/encrypted-Cast qualification remains open;
+attempted setup and stopped-owned-unit evidence are retained separately.
+
 [Current actual-fee evidence](../reports/pool-fees-20261121/REVIEW.md) verifies
 actual harvested ETH/ZZZ ->80/10/5/5+dust ->exact NFT claims/reserves on the saved
 normal F6 graph.17new local receipts and independent eager replay cover transfer,

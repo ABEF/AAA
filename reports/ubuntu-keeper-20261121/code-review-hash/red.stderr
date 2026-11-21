@@ -1,0 +1,15 @@
+test_zero_signer_hash_preserves_reloadable_intent_and_never_resends (tests_python.test_keeper_broadcast_hash.KeeperBroadcastHashTests.test_zero_signer_hash_preserves_reloadable_intent_and_never_resends) ... FAIL
+
+======================================================================
+FAIL: test_zero_signer_hash_preserves_reloadable_intent_and_never_resends (tests_python.test_keeper_broadcast_hash.KeeperBroadcastHashTests.test_zero_signer_hash_preserves_reloadable_intent_and_never_resends)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_keeper_broadcast_hash.py", line 35, in test_zero_signer_hash_preserves_reloadable_intent_and_never_resends
+    with self.assertRaisesRegex(RuntimeError, 'Signer did not return a transaction hash'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 1.543s
+
+FAILED (failures=1)

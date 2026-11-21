@@ -382,6 +382,8 @@ Owning Todo: [`wallet`](../TODO.md#task-wallet), [`portfolio`](../TODO.md#task-p
 
 ### P20 — Actual full normal keeper scheduling
 
+[21 November follow-through](../reports/ubuntu-keeper-20261121/REVIEW.md) fixes four Python issues and verifies18focused methods,8 on Ubuntu. The normal-daemon/real-Cast attempt stopped during fixture setup; all8owned units are stopped. This advances source safety, not P20/P21 acceptance.
+
 Rehearse the actual normal daemon/Cast/provider/key path in isolation: pending-first recovery, observation deadlines, independent job retry delays and correct per-pool scheduling. Start with disposable keys and an owned isolated chain; production keys/providers need separate authorization. Inert recovery-only dispatcher results do not prove the normal loop.
 
 Verify hourly harvest and authenticated internal-harvest coalescing, compound wait/interval, conversion/burn fairness, no-op handling, UTC fee-day/deadline budgets, mode/range changes and multiple historical buckets over representative multi-day transitions.

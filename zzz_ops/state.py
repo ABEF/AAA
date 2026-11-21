@@ -5,6 +5,7 @@ import math
 import os
 from pathlib import Path
 import re
+import stat
 import tempfile
 from typing import Any, Iterator
 
@@ -69,11 +70,34 @@ def atomic_json(path: str | Path, data: Any) -> None:
 
 @contextlib.contextmanager
 def process_lock(path: str | Path) -> Iterator[None]:
-    """Linux/Unix advisory lock, automatically released on process death."""
+    """Private Unix advisory lock, released on death; never replace its inode.
+
+    The direct parent is pinned and must be a real, protected directory. Its
+    ancestors and the current user remain trusted host configuration; this is
+    not multi-host fencing or protection from a hostile process with our UID.
+    """
     import fcntl
     path = Path(path); path.parent.mkdir(parents=True,exist_ok=True)
-    with path.open('a+') as handle:
-        try: fcntl.flock(handle,fcntl.LOCK_EX|fcntl.LOCK_NB)
-        except BlockingIOError as exc: raise RuntimeError('Another instance holds the process lock') from exc
-        try: yield
-        finally: fcntl.flock(handle,fcntl.LOCK_UN)
+    parent = os.open(path.parent,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW|os.O_CLOEXEC)
+    try:
+        directory = os.fstat(parent)
+        if directory.st_uid not in (0,os.getuid()) or directory.st_mode & 0o022:
+            raise ValueError('Process-lock directory must be protected and owned by keeper or root')
+        descriptor = os.open(path.name,os.O_RDWR|os.O_CREAT|os.O_NOFOLLOW|os.O_NONBLOCK|os.O_CLOEXEC,
+                             0o600,dir_fd=parent)
+        try:
+            opened = os.fstat(descriptor)
+            if not stat.S_ISREG(opened.st_mode) or opened.st_uid != os.getuid() or opened.st_mode & 0o022:
+                raise ValueError('Process lock must be a protected regular file owned by this user')
+            try: fcntl.flock(descriptor,fcntl.LOCK_EX|fcntl.LOCK_NB)
+            except BlockingIOError as exc: raise RuntimeError('Another instance holds the process lock') from exc
+            try:
+                named = os.stat(path.name,dir_fd=parent,follow_symlinks=False)
+                current = path.lstat()
+                identity = (opened.st_dev,opened.st_ino)
+                if (named.st_dev,named.st_ino) != identity or (current.st_dev,current.st_ino) != identity:
+                    raise RuntimeError('Process-lock path changed during acquisition')
+                yield
+            finally: fcntl.flock(descriptor,fcntl.LOCK_UN)
+        finally: os.close(descriptor)
+    finally: os.close(parent)

@@ -356,3 +356,10 @@ reports/pool-integration-20261120/swap/driver_base.py whitespace=cr-at-eol,-blan
 # Preserve exact fee-flow sources, failures, requests and state artifacts.
 reports/pool-fees-20261121/** -text whitespace=cr-at-eol
 reports/pool-fees-20261121/run/driver_base.py whitespace=cr-at-eol,-blank-at-eof
+# Preserve exact Ubuntu preparation failures and focused code-review evidence.
+reports/ubuntu-keeper-20261121/** -text whitespace=cr-at-eol
+keeper/operation_review.py -text whitespace=cr-at-eol
+zzz_ops/state.py -text whitespace=cr-at-eol
+tests_python/test_keeper_broadcast_hash.py -text whitespace=cr-at-eol
+tests_python/test_keeper_operation_review_followup.py -text whitespace=cr-at-eol
+tests_python/test_process_lock_safety.py -text whitespace=cr-at-eol

@@ -1,5 +1,15 @@
 # Consolidated audit findings and evidence
 
+[Focused keeper review](../reports/ubuntu-keeper-20261121/REVIEW.md) fixes zero-hash
+journal poisoning, unsafe process-lock paths, profile2 diagnostic fee-envelope
+drift and missing tracked-confirmation checks in compound diagnostics.18focused
+checks pass (15new/3affected), including8 actual unprivileged Ubuntu lock checks.
+The stock-daemon/real-Cast rehearsal stopped at fixture setup; no live journal or
+Cast transaction ran. All8owned units stop and original host safe fields match.
+Do not close Q06/P20/P21 or relabel earlier inert/Windows evidence. Bounded Cast
+output capture remains a hardening review item; current capture has a timeout
+but no byte ceiling. This is not a demonstrated fund-loss exploit.
+
 [Current actual-fee proof](../reports/pool-fees-20261121/REVIEW.md) closes the finite
 real-core receipt-to-allocation/reserve/direct-claim gap on the saved normal F6
 graph. Independent Q128 eager replay matches the earlier prefix and25new state

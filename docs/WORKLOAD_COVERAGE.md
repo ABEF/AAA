@@ -1,5 +1,12 @@
 # Whole-project workload coverage
 
+The [focused keeper review](../reports/ubuntu-keeper-20261121/REVIEW.md) adds
+18distinct affected checks in explicit stages (15new/3existing), including8
+unprivileged Ubuntu lock checks. It does not qualify the unfinished stock-daemon
+journey. Current Python inventory is179files/1,980named definitions; F6 source
+maps/ABI inventory remain unchanged. Earlier dynamic results and anonymous-code
+supplements retain their exact earlier source scope.
+
 The [actual-fee extension](../reports/pool-fees-20261121/REVIEW.md) reuses the saved
 normal F6 graph and original Entry history. Independent current-phase eager
 replay,17new local receipts, three harvests, seven claims and25state checkpoints
@@ -8,7 +15,7 @@ Receipt count is not method count. The two-NFT/single-main/source-currency scope
 does not qualify ETH conversion, royalties, hybrid/maximum cohorts, real markets/
 provider fees, consumers or normal services. No unchanged suite is rerun.
 
-The [current readiness advance](../reports/readiness-advance-20261120/REVIEW.md)
+The [earlier readiness advance](../reports/readiness-advance-20261120/REVIEW.md)
 adds a strict offline saved-mint intent reviewer to the existing OpenSea tool.
 Only that production Python module changes in this advance:179files/1,979named
 definitions (1,799functions/180classes). The F6 Solidity/dependency/control/ABI
@@ -16,11 +23,11 @@ source scope is unchanged. This is inventory, not full dynamic coverage.
 The prior [full-normal claim](../reports/full-claim-admission-20261120/REVIEW.md)
 and [maximum settlement](../reports/lp-claims-maximum-20261120/REVIEW.md) evidence
 retain their exact earlier source/inventory identities and finite boundaries.
-The current [anonymous supplement](../reports/readiness-advance-20261120/ANONYMOUS_CODE_INVENTORY.json)
+The earlier [anonymous supplement](../reports/readiness-advance-20261120/ANONYMOUS_CODE_INVENTORY.json)
 retains276lambdas and2named project Yul helpers with refreshed changed-source pins.
 
 The [workload plan](WORKLOAD_PLAN.json) and
-[whole-project function inventory](../reports/readiness-advance-20261120/FUNCTION_INVENTORY.json)
+[whole-project function inventory](../reports/ubuntu-keeper-20261121/FUNCTION_INVENTORY.json)
 define the scope. [The report](../reports/whole-workload-review-20261119/REVIEW.md)
 records what actually ran and what remains unqualified. The [Todo](../TODO.md)
 owns work status; this page is a verification map.
@@ -52,7 +59,7 @@ running application modules, tests, RPC or signing. Preserve the unrelated dirty
 fork runner: its published HEAD blob is inventoried instead of adopting it.
 
 ```text
-python scripts/build-workload-inventory.py --check reports/readiness-advance-20261120/FUNCTION_INVENTORY.json
+python scripts/build-workload-inventory.py --check reports/ubuntu-keeper-20261121/FUNCTION_INVENTORY.json
 ```
 
 Future F6 source/reference changes require reviewed trusted-pin/plan updates and

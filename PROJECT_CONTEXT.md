@@ -1,5 +1,21 @@
 # Project context
 
+## Ubuntu preparation and focused keeper fixes — 21 November 2026
+
+[Current review](reports/ubuntu-keeper-20261121/REVIEW.md) records FOUR confirmed
+Python corrections: reject zero signer hashes without poisoning durable intent;
+match profile2 diagnostic fee envelopes; authenticate tracked confirmation
+evidence in compound diagnostics; harden the persistent keeper/indexer lock.
+18 focused methods pass in disjoint stages (15 new and 3 affected existing),
+including 8 unprivileged Ubuntu lock methods. No unchanged suite is rerun.
+The attempted stock-daemon/real-Cast rehearsal did NOT complete: no live journal
+or real Cast transaction ran. Both labs/all8 owned units are stopped; original
+host service states and existing environments remain unchanged. Keep Q06/P20/P21
+open. No rollout, signing, financial guard/profile or frozen F6 Solidity change.
+New source inventory:179Python files/1,980named definitions; the original F6
+61/39/4 source maps and1,021ABI rows remain. Old inventories/reports retain their
+source scope. Read the operator's lock/recovery adoption procedure before use.
+
 ## Current supplied-pool LP fee and claim proof
 
 [Current report](reports/pool-fees-20261121/REVIEW.md) extends the saved normal39-instance/two-NFT graph

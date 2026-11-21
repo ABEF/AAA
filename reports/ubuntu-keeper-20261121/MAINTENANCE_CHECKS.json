@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "archive_outer_and_all_97_payload_hashes_and_embedded_manifest": true,
+  "archive_members_including_manifest": 98,
+  "protected_four_unchanged": true,
+  "stable_tasks": 83,
+  "statuses": {
+    "done": 35,
+    "progress": 40,
+    "todo": 7,
+    "excluded": 1
+  },
+  "runtime_qualification": false,
+  "production_approved": false
+}

@@ -259,6 +259,29 @@ class Review:
             'source': 'local_receipt_journal' if recorded is not None else 'no_success_record_worker_default_zero'}
         return _set(row, 'not_due', 'local_interval') if self.stamp < last+interval else _set(row, 'observed_eligible', 'evaluated_view_prerequisites_satisfied')
 
+    def compound_confirmation(self, bucket, market):
+        """Read the worker's existing-evidence gate without requesting a reset."""
+        key = str(bucket)
+        tracked = (key in self.k.state.get(self.k._confirmation_namespace(), {}) or
+                   key in self.k.state.get(CONFIRMATION_CLEARS, {}))
+        if (self.k.rebalance_confirmation.version not in (1, 2, 3) or not tracked or
+                market['range_update_pending']):
+            return {'checked': False, 'allowed': True, 'reason': 'no_tracked_confirmation_check_required'}
+        proof = {**market, 'block_number': rpc_quantity(self.header['number'], 'review number'),
+                 'block_hash': rpc_hash(self.header['hash'], 'review hash'), 'block_timestamp': self.stamp}
+        record = self.k._compound_confirmation_record(bucket, proof)
+        side = (market['threshold_side'] if self.k.rebalance_confirmation.version == 3 else
+                1 if market['tick'] < market['tick_lower'] else 2 if market['tick'] >= market['tick_upper'] else 0)
+        if (self.k.rebalance_confirmation.version == 3 and market['reference_threshold_required'] and
+                side != market['reference_threshold_side']):
+            side = 0
+        acknowledged = key in self.k.state.get(CONFIRMATION_CLEARS, {})
+        allowed = not (record['nonempty'] and (acknowledged or side == 0 or side != record['side']))
+        return {'checked': True, 'allowed': allowed, 'record': record,
+                'clear_ack_present': acknowledged, 'current_side': side,
+                'reason': None if allowed else 'waiting_confirmation_clear',
+                'scope': 'Pinned worker-policy evidence only; no journal reset or acknowledgement mutation.'}
+
     def simulate_action(self, row, item, bucket):
         if not self.simulate: return
         required_caps = ('max_gas_limit', 'max_gas_price_wei', 'max_transaction_cost_wei', 'max_daily_cost_wei')
@@ -276,6 +299,17 @@ class Review:
         self.pin(target)
         tx = {'from': self.k.sender, 'to': self.k.contracts[target], 'value': '0x0',
               'data': self.k._calldata(signature, *args), 'gas': hex(integer(self.k.config['max_gas_limit'], 'max_gas_limit', minimum=1))}
+        submission_fee_profile = self.k._submission_fee_profile()
+        profile_price = None
+        if submission_fee_profile == 2:
+            quote = _attempt(lambda: rpc_quantity(self.k.rpc.call('eth_gasPrice', []),
+                             'review gas price', minimum=1), 'gas_price_quote_unavailable')
+            row['checks']['submission_fee_quote'] = quote
+            if not quote['available']:
+                row['simulation'] = {'state': 'not_requested', 'reason': quote['reason']}
+                _set(row, 'unavailable', quote['reason']); return
+            profile_price = quote['value']
+            tx.update(type='0x2', maxFeePerGas=hex(profile_price), maxPriorityFeePerGas='0x0')
         row['simulation'] = {'state': 'unavailable', 'reason': 'simulation_failed_unclassified',
             'transaction': tx, 'block': self.k.rpc.block, 'scope': 'Discarded fixed typed call; no nonce, signature, state override or inclusion guarantee.'}
         try:
@@ -287,10 +321,11 @@ class Review:
         row['simulation'].update(state='succeeded', reason=None)
         def gas():
             estimate = rpc_quantity(self.k.rpc.call('eth_estimateGas', [tx, self.k.rpc.block]), 'review gas', minimum=1)
-            price = rpc_quantity(self.k.rpc.call('eth_gasPrice', []), 'review gas price')
+            price = profile_price if profile_price is not None else rpc_quantity(self.k.rpc.call('eth_gasPrice', []), 'review gas price')
             padded = (estimate*125+99)//100
             allowance = integer(self.k.config.get('l1_fee_allowance_wei', 0), 'l1_fee_allowance_wei')
             return dict(estimated_units=estimate, padded_units=padded, price_wei=price,
+                        submission_fee_profile=submission_fee_profile,
                         l1_fee_allowance_wei=allowance, maximum_estimated_cost_wei=padded*price+allowance,
                         price_scope='current_RPC_suggestion_not_hash_pinned', gas_scope='estimate_not_actual_paid_fee')
         observed = _attempt(gas, 'gas_estimate_or_price_unavailable')
@@ -489,6 +524,12 @@ class Review:
                     row['checks']['onchain_compound_ready'] = ready
                     if not ready['available']: _set(row, 'unavailable', ready['reason']); continue
                     if not ready['value']: _set(row, 'blocked', 'onchain_compound_not_ready_unclassified'); continue
+                    coordination = _attempt(lambda: self.compound_confirmation(bucket, m),
+                                            'compound_confirmation_evidence_unavailable')
+                    row['checks']['compound_confirmation_coordination'] = coordination
+                    if not coordination['available']: _set(row, 'unavailable', coordination['reason']); continue
+                    if not coordination['value']['allowed']:
+                        _set(row, 'blocked', coordination['value']['reason']); continue
             if action != 'harvest':
                 if not financial['available'] or not financial['value']['maintenance_policy']['available']:
                     _set(row, 'unavailable', 'financial_policy_unavailable'); continue

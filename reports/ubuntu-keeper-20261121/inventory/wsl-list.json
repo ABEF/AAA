@@ -1,0 +1,12 @@
+{
+  "command": [
+    "C:/Windows/System32/wsl.exe",
+    "--list",
+    "--verbose"
+  ],
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "Le Sous-syst\u00e8me Windows pour Linux n\u2019est pas install\u00e9. Vous pouvez effectuer l\u2019installation en ex\u00e9cutant \u00ab wsl.exe --install \u00bb.\r\r\nPour plus d\u2019informations, visitez https://aka.ms/wslinstall\r\r\n",
+  "read_only": true,
+  "started_environment": false
+}

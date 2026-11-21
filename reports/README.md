@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Ubuntu preparation and focused keeper review](ubuntu-keeper-20261121/REVIEW.md)
+retains failed setup and all-owned-stopped evidence, then fixes four production
+Python inconsistencies with18focused passes (8actual Ubuntu lock methods).
+No normal live keeper/real Cast transaction ran. Earlier Q06 and F6 evidence
+are reused only within their original scopes; source publication is no rollout.
+
 [Actual LP fees and current-owner claims](pool-fees-20261121/REVIEW.md) extends the
 saved normal F6 graph without repeating Entry/construction. Independent eager
 prefix/extension replay,17new local receipts and exact reserve/payout proofs cover

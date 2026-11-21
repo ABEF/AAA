@@ -1,5 +1,21 @@
 # Keeper service qualification and rehearsal
 
+## Latest Ubuntu attempt and focused code checks
+
+The [21 November record](../reports/ubuntu-keeper-20261121/REVIEW.md) is NOT a
+completed normal-daemon rehearsal. Platform/source/namespace preparation ran,
+but the saved fork lacked new signer account/mapping reads and setup receipt
+polling raced mining. The operator redirected work to code review. No live
+journal or normal live monitor/real Cast transaction ran. All8new units are
+stopped; installed services and old journals are preserved.
+
+Separately,8NEW lock methods pass on Ubuntu24.04/Python3.12 as UID65534, using
+only the reviewed helper and temporary files/child processes. They prove that
+helper's path, contention and death/reacquisition behavior, not keeper signing,
+full scheduling, providers, fees, off-host restore, alerts or sustained operation.
+The other10 focused methods cover changed Python logic with inert RPC/signer
+fixtures. Preserve the exact source/test stages and prior evidence scope.
+
 This is an operating candidate, not production approval. Public production contracts are still
 undeployed; local/staging deployments are separate fixtures. No public signing or real funds are needed for the isolated rehearsal.
 
