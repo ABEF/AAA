@@ -1,7 +1,14 @@
 # Whole-project workload coverage
 
+The [wallet-stack advance](../reports/wallet-stack-20261123/REVIEW.md) adds a bounded
+pure ABI-selector cache and corrects real-timer early-wake handling in the website.
+The current static inventory is182 Python files/2,002 named definitions
+(1,819 functions/183 classes),278 lambdas and2 named project Yul helpers.
+F6 Solidity61/dependencies39/controls4 and1,021 ABI rows remain unchanged.
+These counts establish source scope, not dynamic or production acceptance.
+
 [Compact wallet qualification](../reports/compact-wallet-20261121/REVIEW.md) adds
-four-currency combined pages and bounded request-local canonical reuse. Current
+four-currency combined pages and bounded request-local canonical reuse. That source
 inventory is182 Python files/2,001 named definitions (1,818 functions/183 classes),
 278 lambdas; F6 Solidity61/dependencies39/controls4 and1,021 ABI rows are unchanged.
 Forty-five distinct new Python and90 distinct new JS methods have staged passing
@@ -42,7 +49,7 @@ The earlier [anonymous supplement](../reports/readiness-advance-20261120/ANONYMO
 retains276lambdas and2named project Yul helpers with refreshed changed-source pins.
 
 The [workload plan](WORKLOAD_PLAN.json) and
-[whole-project function inventory](../reports/compact-wallet-20261121/FUNCTION_INVENTORY.json)
+[whole-project function inventory](../reports/wallet-stack-20261123/FUNCTION_INVENTORY.json)
 define the scope. [The report](../reports/whole-workload-review-20261119/REVIEW.md)
 records what actually ran and what remains unqualified. The [Todo](../TODO.md)
 owns work status; this page is a verification map.
@@ -58,8 +65,8 @@ sequences and source-bound evidence. No inventory count is a dynamic pass rate.
 - 1,056 implemented project Solidity definitions and29 modifiers from the
   authenticated compiler AST;511 bodyless declarations remain separately labelled.
 - Eight internal-only objects are included, beyond the public ABI catalogue.
-- 182 production Python files and2,001 named lexical definitions:1,818 functions
-  and183 classes, including nested helpers. The [current anonymous-code inventory](../reports/compact-wallet-20261121/ANONYMOUS_CODE_INVENTORY.json)
+- 182 production Python files and2,002 named lexical definitions:1,819 functions
+  and183 classes, including nested helpers. The [current anonymous-code inventory](../reports/wallet-stack-20261123/ANONYMOUS_CODE_INVENTORY.json)
   records278 lambdas and2 named project Yul helpers. Earlier supplements retain
   their own source scope. Inventory does not establish execution coverage.
 
@@ -75,7 +82,7 @@ running application modules, tests, RPC or signing. Preserve the unrelated dirty
 fork runner: its published HEAD blob is inventoried instead of adopting it.
 
 ```text
-python scripts/build-workload-inventory.py --check reports/bounded-cast-20261121/FUNCTION_INVENTORY.json
+python scripts/build-workload-inventory.py --check reports/wallet-stack-20261123/FUNCTION_INVENTORY.json
 ```
 
 Future F6 source/reference changes require reviewed trusted-pin/plan updates and

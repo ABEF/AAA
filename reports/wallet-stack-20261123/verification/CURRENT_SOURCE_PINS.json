@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "scope": "Current source, distinct from exact earlier runtime stages; normalized LF pin is portable across Git text checkout",
+  "sources": [
+    {
+      "repository": "contracts",
+      "path": "zzz_ops/abi.py",
+      "raw_sha256": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91",
+      "normalized_newlines_sha256": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91"
+    },
+    {
+      "repository": "contracts",
+      "path": "tests_python/test_abi_selector_cache.py",
+      "raw_sha256": "c88038d334789ffa5d7d98cbdd4cce2ef2e347c6c785c27dc77ec9b5997e3bf3",
+      "normalized_newlines_sha256": "c88038d334789ffa5d7d98cbdd4cce2ef2e347c6c785c27dc77ec9b5997e3bf3"
+    },
+    {
+      "repository": "website",
+      "path": "deployment-wallet-view.js",
+      "raw_sha256": "d5a4f653cf35524e32332dabf0b02f25392a6e363d5f8f214f5f7d9155a6deeb",
+      "normalized_newlines_sha256": "d5e00cf667b265729e96f63518040286294bb3f071c299120b884f48c98cf066"
+    },
+    {
+      "repository": "website",
+      "path": "deployment-api.js",
+      "raw_sha256": "920604276c0e6a8a557dfcf9408706a9c6bc709800f2bea53f60cbecb9a7e6c4",
+      "normalized_newlines_sha256": "974e0af6caa619b6ae10fbd14c16a8f9a92a428fda5964dc899bdc34447a4717"
+    },
+    {
+      "repository": "website",
+      "path": "package.json",
+      "raw_sha256": "442a2c2269a0b76830c4ab81a65381f77400b0b086c0f3976f40e7b3af15fa02",
+      "normalized_newlines_sha256": "c218450a6ab394e31cccab17d7a3df5148640e19dc6db42b1c04b2d57a3f62ca"
+    },
+    {
+      "repository": "website",
+      "path": "tests/wallet-gate-deadline.test.mjs",
+      "raw_sha256": "9a502448aa0de9fd64114e48730acb7515a007c2b607a229a8712b56d4c7463a",
+      "normalized_newlines_sha256": "9a502448aa0de9fd64114e48730acb7515a007c2b607a229a8712b56d4c7463a"
+    },
+    {
+      "repository": "website",
+      "path": "tests/portfolio-controller-cleanup.test.mjs",
+      "raw_sha256": "eb86bfa8fa3f5bb29cf4e7ac572531bd53ed197281dc82a7da0a41566152e72e",
+      "normalized_newlines_sha256": "eb86bfa8fa3f5bb29cf4e7ac572531bd53ed197281dc82a7da0a41566152e72e"
+    }
+  ]
+}

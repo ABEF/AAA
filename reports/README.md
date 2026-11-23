@@ -8,6 +8,12 @@ adoption. Actual hosting/provider/freshness and full normal acceptance remain op
 
 Earlier separate-route qualification (historical source scope):
 
+[Isolated wallet-stack rehearsal](wallet-stack-20261123/REVIEW.md) fixes early
+read-gate timer wakeups and repeated ABI selector hashing, with23 NEW focused
+checks. Actual source9/V9 HTTP/worker/proxy small-wallet and recovery phases pass;
+1,000-NFT freshness and restored F6/V10 archive proof remain open. All five owned
+labs stop; no operating rollout, signing, rights or limit change.
+
 [Wallet financial qualification](wallet-view-20261121/REVIEW.md) captures immutable wallet inputs across
 asynchronous reads, rejects late cancelled/expired results, and loads totals and
 earnings independently with at most two financial requests in flight.83 NEW JS

@@ -37,7 +37,8 @@ unavailable, and the shared signer remains Anvil-only.
 | Fresh schema17/mint2/helper1/accounting7/canonicalV10 contract source | Backend read/owned-claim support is implemented with explicit mint_integration_version2 and pinned SeaDrop/helper bindings. Direct mint drafts reject with UseOpenSea. The local [source10/schema5 consumer](SOURCE10_WEBSITE_PROFILE.md) is implemented; no running service or signer is adopted by source publication; actual configuration/hosting/marketplace acceptance remains open. |
 
 The legacy configuration and local-wallet procedures below retain their own
-profile scope; they are not instructions to configure fresh7. Native2 supports a captured governed contribution cap;
+profile scope; use the separate source9/schema4 or source10/schema5 guide for
+accounting7. Native2 supports a captured governed contribution cap;
 the schema 1 99% fixture floor is not a universal current rule. The contract
 candidate accepts ETH/fixed ZZZ only and defaults to 3% contribution loss; manifest
 input admission, code/runtime pins and quote policy must match the selected
@@ -78,17 +79,37 @@ DEPLOYMENT stays null; this does not enable signing or qualify live hosting.
 | ETH claim review | One to eight selected NFTs, funded ETH LP/royalty entries only. Source currencies are disclosed separately and are never relabeled ETH. |
 | Mint | Website: demonstration only. Mint2 backend rejects direct preparation and directs primary mint to OpenSea; actual custom-drop onboarding/URL remains unqualified. Historical local rehearsal retains its actual direct selector/price. See [mint qualification](MINT_INTEGRATION_QUALIFICATION.md). |
 | Activation review | Token units from the reviewed Oracle, targeting exactly $100 in value with the smallest necessary raw-unit round-up. A changed price requires a new quote. |
-| Growth review | Historical manifests may expose ETH/ZZZ/USDC/USDG units. Served current3 restricts contributions to ETH/fixed ZZZ and a verified $5 minimum. Fresh7 uses the separate schema4/source9 consumer with the same fixed identities and captured governed minima. |
+| Growth review | Historical manifests may expose ETH/ZZZ/USDC/USDG units. Served current3 restricts contributions to ETH/fixed ZZZ and a verified $5 minimum. Accounting7 uses the separate schema4/source9 or schema5/source10 consumer with the same fixed identities and captured governed minima. |
 | Approval review | Exact selected amount to the pinned Entry, never unlimited or a hidden zero-reset sequence. Complete preparation must run again after an actual confirmed approval. |
 | LP execution review | Exact Entry calldata, selected NFT/pool/source/route, minimum output/liquidity and expiry; the trace must meet the selected version's captured marginal-LP floor. Legacy schema 1 uses 99%; native2 uses its reviewed governed cap. Show simulated LP added and gas separately. |
 | Submit | Nonlocal: unavailable. Local Anvil rehearsal: explicit wallet confirmation, independent preflight, same-hash recovery and confirmed-state reconciliation through the unchanged signer. |
 
-Wallet-wide LP and claimable ETH totals aggregate every holding in bounded
-16-item chunks at one canonical block. Card pagination never becomes a total.
-Missing/incomplete data remains unavailable. Historical current-holdings earnings
-use separately reconciled 16-NFT chunks at the same block. Collection holder
-allocations consume the existing earnings endpoint; full collection inventory/LP
-aggregation uses the separately checked collection source. See [definitions and operations](EARNINGS_HISTORY.md#current-holdings-totals). The
+Current source9/source10 use the combined wallet wire only when the protocol
+advertises `wallet_view_profile:1`: at most 16 NFTs/four reward descriptors per
+fixed-block page, with complete ordered NFT/currency inventories and digests.
+Complete earnings require every NFT/currency page; LP/funded ETH summaries at
+currency offset zero are counted once per NFT page. Raw amounts are summed per
+currency and income component before USD rounding, preserving the full 86,400-second
+window. Card pagination never becomes a total; independently confirmed cards need
+not share the financial block. Final canonical/identity/freshness checks also run
+after cards finish. Missing/incomplete data remains unavailable, not zero.
+
+Current-profile GETs start at least one second apart through a shared per-origin/
+API-prefix gate, with one active request, at most 32 queued and no automatic retry.
+Absent capability retains explicit earlier ownership/totals/earnings wires; unknown
+capability or a failed advertised compact read never silently falls back. The
+[controlled compact-wallet record](../reports/compact-wallet-20261121/REVIEW.md)
+needs 64 protocol/compact reads for 1,000 NFTs/three descriptors, or 80 including eight
+cards and their earnings. It does not qualify actual full-normal F6/V10, provider,
+hosting or elapsed-time freshness. Very large NFT/currency cross-products can leave
+earnings unavailable while complete holdings/totals remain usable; no partial
+income is published. Existing request, response, age and accounting limits remain.
+Changed checkpoint semantic sources require explicit rebuild/review/re-pin for
+separate adoption; preserve original checkpoint/review/raw database/journal bytes.
+
+Collection holder allocations consume the existing earnings endpoint; full
+collection inventory/LP aggregation uses the separately checked collection source.
+See [definitions and operations](EARNINGS_HISTORY.md#current-holdings-totals). The
 ordinary overview artwork/examples remain educational examples, not live totals.
 An account change invalidates a review; navigation closes it. Expiry is displayed
 and a new review is required. There is no automatic payment or approval retry. Local recovery only reads the saved transaction.
@@ -130,8 +151,10 @@ profile ignores this configuration and retains its own local wallet admission.
    inventory, fee semantics and RPC hash selectors first. Read the
    [production services record](PRODUCTION_SERVICES.md) and the central
    [wallet task](../TODO.md#task-wallet). Select a frontend profile that actually
-   supports that contract version. Fresh7 support remains open; native2/current3
-   builds cannot be made compatible by changing a version field.
+   supports that contract version. Accounting7 source9/schema4 and mint2
+   source10/schema5 read/unsigned consumers are implemented; actual matching
+   deployment/provider/hosting acceptance remains open. Native2/current3 builds
+   cannot be made compatible by changing a version field.
 2. Run the existing read/mint-claim and activation services under their reviewed
    configurations. Keep their independent admission, Origin and resource limits.
    Reverse-proxy only the enumerated reviewed GET routes and exact POST
@@ -157,9 +180,10 @@ profile ignores this configuration and retains its own local wallet admission.
 - For a configuration/runtime/hash mismatch: stop preparation, investigate the
   reviewed deployment/service config and reissue a reviewed build. Never accept
   the changed target automatically or turn off identity checks to resume.
-- For a fresh accounting7/portfolio2/holder-exit deployment: stop at the unsupported-profile
-  boundary until its frontend is implemented and qualified. Do not substitute
-  a schema3 manifest, historical API or example data to make the site load.
+- For an accounting7/portfolio2/holder-exit deployment: select the exact reviewed
+  source9/schema4/V9 or source10/schema5/V10 consumer and qualify its matching
+  configuration before adoption. Unknown profiles remain unsupported. Do not
+  substitute a schema3 manifest, historical API or example data to make it load.
 - For a missing/failed input route: disable that input in the operator manifest
   and follow the on-chain [asset/route procedure](OPERATOR_MANUAL.md#activation-assets-and-routes).
   Removing a selector does not itself revoke on-chain acceptance or old allowances.

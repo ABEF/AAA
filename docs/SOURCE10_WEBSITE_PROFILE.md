@@ -1,9 +1,11 @@
 # Mint2/V10 website read and unsigned profile
 
-Default1,000-NFT HTTP admission is separately BLOCKED:190 minimum API reads
-need178s at unchanged1/s burst12, beyond the maximum120s snapshot age.
-Controlled DTO/per-request passes do not close it; reduce bounded request count
-under a reviewed API strategy, keeping all limits and exact rights.
+The [compact-wallet source record](../reports/compact-wallet-20261121/REVIEW.md)
+reduces the controlled 1,000-NFT/three-descriptor journey to 64 protocol/compact API
+reads, or 80 including eight cards and their earnings. The previous 190 core reads
+and 178-second ideal admission bound describe the historical separate-route wire.
+Current actual full-normal F6/V10, provider, hosting and elapsed-time freshness
+qualification remain open; request counts alone do not establish acceptance.
 
 Fresh payload6/allocation2 preserves schema17/canonicalV10/reporting5 and this read/unsigned consumer wire shape. The current `activation-final-six-20261118` build requires exact new factory, read-policy and runtime/source pins; explicit historical3/4/5 observations are not relabelled. Source compatibility and source publication update neither served website nor signing. See the [current source review](../reports/activation-final-six-20261118/REVIEW.md).
 
@@ -27,33 +29,51 @@ existing runtimes, journals and served current3 poplint are not upgraded.
 
 ## Complete confirmed ownership inventory
 
-Source10/schema5 and source9/schema4 use the fixed-block ownership page API.
-They validate every contiguous16-ID page at one confirmed protocol block, with
-at most two page requests in flight, then recompute the ordered full-inventory
-SHA256 before publishing holdings. Caller anchor/lifecycle values are captured;
-changed pages, missing history, reorg, expiry or cancellation fail the whole read.
-There is no fallback to the legacy complete endpoint after a page failure.
-Schemas1-3 retain that older endpoint without reinterpretation.
+Source10/schema5 and source9/schema4 select the combined fixed-block wallet wire
+when the protocol explicitly advertises `wallet_view_profile:1`. Each page covers
+at most 16 NFTs/four reward descriptors and binds both complete ordered inventories,
+their SHA256 digests, canonical block, history and lifecycle. Complete earnings
+require every NFT/currency page. LP and funded ETH summaries appear only at currency
+offset zero and are counted once per NFT page. Changed pages, missing history,
+reorg, expiry, cancellation or supersession reject the read.
+
+Missing capability retains the earlier fixed-block ownership/totals/earnings
+readers, including complete 16-ID ownership pages. Unknown capability or failure
+of an advertised compact page never silently downgrades. An ownership-page failure
+does not fall back to the legacy complete endpoint. Schemas1-3 retain their older
+endpoint without reinterpretation. Current-profile GETs share a per-origin/API-prefix
+gate with starts at least one second apart, one active request, at most 32 queued
+and no automatic retry; previous two-page concurrency is not a promise of parallel
+HTTP execution.
 
 The8-card visual page remains unchanged. Individual NFT cards use independently
 confirmed latest snapshots because their endpoint has no fixed-block selector;
 they are not claimed to share the ownership inventory block. Wallet totals and
-history retain their own complete fixed-block checks. See [the69-check source
-record](../reports/ownership-paging-20261121/REVIEW.md). This is local source
-adoption, not public configuration, provider/hosting or financial-load approval.
+history retain complete fixed-block checks. The [earlier 69-check source
+record](../reports/ownership-paging-20261121/REVIEW.md) retains its original scope;
+the current compact wire is covered separately above. Neither is public
+configuration, provider/hosting or financial-load approval.
 
 ## Wallet financial snapshot guards
 
-Current source9/source10 financial readers capture inventory and anchor before
-asynchronous work, bind full page identity/time, and refuse cancellation,
-revision changes or expiry even after the final awaited verification. The view
-starts independent totals/earnings branches concurrently; each keeps serial
-bounded pages and complete-or-unavailable results. Exact raw-first per-currency
-USD valuation and the existing ETH-only claimable header remain unchanged.
-[83 NEW focused methods](../reports/wallet-view-20261121/REVIEW.md) cover these
-changes plus actual new V9 backend DTO consumption; controlled V10 constructor/
-native-reader/NFT composition is separate. No actual full normal F6/V10,
-provider/hosting/freshness, all-currency capacity or live adoption is implied.
+Current source9/source10 capture inventory and anchor before asynchronous work,
+bind full page identity/time, and refuse cancellation, revision changes or expiry
+even after the final awaited canonical/identity verification and card reads. When
+the compact capability is present, the view reuses that complete financial result
+instead of starting independent totals/earnings branches. Each currency and income
+component is summed in raw units across NFT pages before USD rounding. The full
+86,400-second history and existing ETH-only claimable header remain unchanged.
+
+Later optional currency reads may leave earnings unavailable while complete
+holdings/summary survive only for 429 or an explicitly classified 503 `service_busy`.
+Generic 503, integrity/history/work failures and stale/reorged proofs remain terminal.
+The 1,000-NFT/66-descriptor cross-product cannot finish within 120 seconds and is not
+published as partial income. The [earlier 83-method record](../reports/wallet-view-20261121/REVIEW.md)
+describes the preceding separate-route stage; controlled V10 constructor/native-reader/
+NFT composition remains separately scoped. Matching checkpoint semantic sources
+require a newly built, reviewed and pinned artifact, preserving original checkpoint,
+review, raw database and journal bytes. No actual full-normal F6/V10, provider/hosting/
+freshness, all-currency capacity or live adoption is implied.
 
 ## Review and configuration
 

@@ -1,20 +1,26 @@
 # Consolidated audit findings and evidence
 
-[Compact wallet reads](../reports/compact-wallet-20261121/REVIEW.md) combine verified ownership, LP/funded ETH and
-four-currency earnings pages without changing exact accounting or limits.
-Controlled1,000-NFT/three-currency journeys need64 API reads instead190 before
-cards; sixteen NFTs with66 fully priced descriptors finish17 currency pages,
-with at most904 RPC reads per request. Legacy all-currency wires stay explicit.
-Current-profile GETs are paced1second apart; complete NFT/currency coverage,
-raw-first USD rounding, full86,400-second history and final proofs remain.
-Very large NFT-by-currency combinations can still exceed freshness: complete
-ownership/totals may remain usable while earnings is explicitly unavailable.
-Real provider/host/freshness and full normal F6/V10 acceptance remain open.
+[Isolated wallet-stack rehearsal](../reports/wallet-stack-20261123/REVIEW.md) fixes an early timer-wakeup
+error and adds a bounded immutable ABI-selector cache. Fourteen NEW JS and nine NEW
+Python checks pass; no unchanged test bodies run. Actual Ubuntu API workers,
+Nginx and the source9 reader pass the 17-NFT financial journey, cancellation,
+restart, two independent concurrent contexts and genuine expiry checks.
 
-Changed backend helpers enter checkpoint semantic identity: preserve original
-checkpoint/review/raw DB/journal bytes; explicitly rebuild/review/re-pin for
-separately authorized adoption. No running site/service/chain, signer/public
-configuration, gas/resource limit, economic right or paused heartbeat changes.
+The full 1,000-NFT/three-currency portfolio remains UNQUALIFIED: the optimization
+advances 58→70 GET attempts, but visible-card/history work still exceeds 120s
+freshness. The separate restored F6/V10 graph cannot serve its required historical
+NFT-creation proof. Preserve both refusals; no guard or limit is relaxed.
+Current inventory: 182 Python files/2,002 named definitions/278 lambdas; frozen
+F6 Solidity 61/dependencies 39/controls 4 and 1,021 ABI rows remain unchanged.
+
+HTTP outcomes retain their earlier source stages; the later sibling-read cleanup
+has five separate unit checks. The journeys were not rerun.
+
+Changed abi.py enters checkpoint semantic identity. Preserve original checkpoint,
+review, raw DB and journal bytes; explicitly rebuild/review/re-pin for separately
+authorized adoption. All five owned private-network labs stopped. Existing sites,
+services, Anvil8902, signer/null public configurations and paused heartbeat stay
+unchanged. Actual F6/V10/provider/market/production operating approval stays open.
 
 [Ownership-page adoption](../reports/ownership-paging-20261121/REVIEW.md) connects current source9/source10 website holdings to
 all16-ID fixed-block pages, bounded to two in flight with full count/order/digest,

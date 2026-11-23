@@ -19,12 +19,38 @@ an advertised compact endpoint never silently falls back.
 | Reward scope | Claimable header is ETH LP plus ETH royalties only; pending ZZZ LP and token royalties stay separate per NFT. Principal/compound/buyback are excluded |
 | Owner history | Current owner owns NFT lifetime history, including earlier owners. Claims/conversions/imports create no income; unpriced nonzero earnings stay unavailable in USD |
 | Request pacing | Current-profile GETs share one per-origin/prefix gate: one active, starts at least1second apart, at most32 queued. This does not reserve server capacity; shared-IP traffic may still refuse |
+| Timer behavior | Early timer wakeups wait again until the actual deadline. Invalid/backward/stalled clocks fail closed. No shortened spacing, automatic HTTP retry or new operator setting |
+| Portfolio cleanup | Completion/failure aborts only that read controller and pending sibling cards. Another account/context/replacement operation retains its own controller; no automatic retry or resend |
 | Currency outage | A later currency fetch returning429 or an explicitly classified503 service_busy discards ALL earnings while complete ownership/summary may finish. Generic503 remains terminal. Integrity, canonicality, expiry and work-limit failures remain terminal |
 | Infeasible cross-product | If even ideal pacing cannot fit complete currency pages plus16 card reads in the remaining snapshot, collect only each NFT page's first slice for complete ownership/summary; earnings stays unavailable |
 | Existing limits | Keep25s/1,024 RPC/2,048 POSTs/1MiB backend response,16NFTs,120s maximum age, ingress/admission limits and all gas/financial safeguards |
 | Cancel / refresh | Account/page changes, cancellation, reorg or expiry discard results. Refresh starts a new confirmed read; no transaction, API retry or automatic resend |
 
-[Current evidence](../reports/compact-wallet-20261121/REVIEW.md) records finite
+[Actual Ubuntu stack evidence](../reports/wallet-stack-20261123/REVIEW.md) adds
+verified17-NFT reads, cancellation/restart, two independent concurrent contexts
+and genuine expiry. The1,000-NFT/three-currency full portfolio still refuses:
+all63 combined wallet pages succeed after optimization, but visible-card/history
+work exceeds120s freshness. Do not publish the partial journey as a complete
+wallet or raise age, page, worker, request, gas or fee limits to hide it.
+The separate F6/V10 saved graph lacks the historical NFT-creation proof; do not
+invent an empty parent or reuse current storage as historical state.
+
+The bounded selector cache changes only CPU work: calldata arguments and live
+proofs remain fresh. Since abi.py contributes to checkpoint semantic identity,
+preserve existing checkpoint/review/raw DB bytes and explicitly rebuild/review/
+re-pin for separately authorized adoption. This ABI source also participates in
+keeper health, OpenSea drop, conditional deployment-sequence and pre-seal-plan
+source identities. Use matching keeper writer/checker releases and newly reviewed
+future preparation artifacts; preserve the originals and never rewrite pending
+journals or old source hashes. This is no automatic rollout or migration.
+Copy a preserved SQLite snapshot into
+a NEW writable service-owned directory before opening it; readonly WAL templates
+may need bookkeeping beside the private copy. Verify source/copy hashes and close
+all connections before recording a backup hash. Never loosen original evidence
+permissions or hot-edit a checkpoint's source hashes. Releasing source restarts
+no site, service, chain or heartbeat.
+
+[Earlier compact evidence](../reports/compact-wallet-20261121/REVIEW.md) records finite
 controlled workloads and original failures. Three currencies need63 combined
 pages for1,000 NFTs, plus protocol and up to16 card/history reads:80 versus206
 previously including cards. Sixteen NFTs and66 fully priced descriptors use17
@@ -61,7 +87,7 @@ field is required. Historical schemas1-3 retain the complete ownership endpoint.
 | Match the consumer | Reviewed source9/V9 or source10/V10 manifest, existing projection configuration hash, actual runtime pins and matching API/history/checkpoint profile |
 | Obtain the anchor | Existing GET `/v1/protocol`; use its confirmed block number/hash/time and lifecycle |
 | Inspect a page | GET `/v1/wallets/{owner}/nfts/{block}/0`; example owner0x000000000000000000000000000000000000001e/block99 is illustrative only |
-| Complete ownership | Offsets0/16/32...; at most16 IDs per page, two requests in flight, all contiguous pages and matching recomputed full digest;1,000 NFTs require63 pages |
+| Complete ownership | Offsets0/16/32...; at most16 IDs per page, all contiguous pages; current-profile GETs are one active with starts at least1second apart and matching recomputed full digest;1,000 NFTs require63 pages |
 | Handle failed/stale reads | Leave the new inventory unavailable; Refresh starts a new complete read. Do not mix anchors, use the legacy endpoint as fallback, widen age/work limits or invent empty holdings |
 | Preserve payout rights | Reads change no ownership, LP shares, royalty eligibility, claim inputs or pending transactions; no transaction is sent |
 

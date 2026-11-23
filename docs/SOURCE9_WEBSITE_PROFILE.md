@@ -33,6 +33,36 @@ Only native ETH and the fixed deployment ZZZ are contribution inputs. Original
 royalty currencies have separately reviewed descriptors, including decimals and
 bounded symbols; they are not contribution assets. No token peg is inferred.
 
+## Complete wallet reads
+
+Source9 and source10 select the combined fixed-block wallet wire only when the
+protocol explicitly advertises `wallet_view_profile:1`. Each page covers at most
+16 NFTs and four reward descriptors, binding the complete ordered NFT/currency
+inventories, their digests, the canonical block, history and lifecycle. Complete
+earnings require every NFT/currency page. LP and funded ETH summaries appear only
+at currency offset zero and are counted once per NFT page. Raw amounts are summed
+per currency and income component before USD rounding; claims, conversions and
+principal returns are not new income. The full history window remains 86,400 seconds.
+
+Current-profile GETs share a per-origin/API-prefix gate: starts at least one second
+apart, one active request and at most 32 queued, without automatic retry. Missing
+capability retains the explicit earlier ownership/totals/earnings wires; an unknown
+capability or failed advertised compact page never silently falls back. Every page
+and final canonical/identity/freshness check must pass, including the check after
+the separately confirmed NFT cards finish. Cancellation or supersession rejects
+the result. Cards are not claimed to share the fixed financial snapshot block.
+
+The [compact-wallet source record](../reports/compact-wallet-20261121/REVIEW.md)
+shows 64 protocol/compact reads for 1,000 NFTs/three descriptors, or 80 with eight
+NFT cards and their earnings. Sixteen NFTs/66 descriptors need 17 currency pages
+plus the protocol read. These are controlled synthetic V9/source9 workloads, not
+actual full-normal F6/V10, provider, hosting or elapsed-time freshness acceptance.
+The 1,000-by-66 cross-product still exceeds the 120-second window: complete holdings
+and totals may remain available while earnings is explicitly unavailable, never
+partial. Existing limits, exact accounting and ETH-only claimable totals remain.
+Matching checkpoint semantic sources require a newly built, reviewed and pinned
+artifact; preserve original checkpoints, reviews, raw databases and journals.
+
 ## Reads and user reviews
 
 | Flow | Fresh behavior |

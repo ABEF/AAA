@@ -1,5 +1,6 @@
 """Small static-ABI codec. Never used for signing or wallet key handling."""
 from __future__ import annotations
+from functools import lru_cache
 import re
 
 _MASK = (1 << 64) - 1
@@ -63,12 +64,23 @@ def word(value: int | str, typ: str) -> str:
     if n < 0 or n >= 1 << bits: raise ValueError(f'Value exceeds {typ}')
     return f'{n:064x}'
 
+@lru_cache(maxsize=256)
+def _selector(signature: str) -> str:
+    """Reuse only bounded immutable function-name hashes, never arguments."""
+    return keccak256(signature.encode()).hex()[:8]
+
+
 def calldata(signature: str, *args: int | str) -> str:
     match = re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*\(([^()]*)\)',signature)
     if not match: raise ValueError('Only flat static ABI signatures are supported')
     types = match[1].split(',') if match[1] else []
     if len(types) != len(args): raise ValueError('Argument count mismatch')
-    return '0x' + keccak256(signature.encode()).hex()[:8] + ''.join(word(a,t) for a,t in zip(args,types))
+    # Preserve uncached behavior for long/non-ASCII strings and subclasses,
+    # whose encode() behavior may differ. All validation and argument encoding
+    # still run on every call; this cache contains no chain or account state.
+    selector = (_selector(signature) if type(signature) is str and len(signature) <= 256 and signature.isascii()
+                else keccak256(signature.encode()).hex()[:8])
+    return '0x' + selector + ''.join(word(a,t) for a,t in zip(args,types))
 
 def uint_result(result: str) -> int:
     if not isinstance(result,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}', result):

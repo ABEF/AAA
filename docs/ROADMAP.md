@@ -1,20 +1,26 @@
 # Engineering roadmap and production qualification plan
 
-[Compact wallet reads](../reports/compact-wallet-20261121/REVIEW.md) combine verified ownership, LP/funded ETH and
-four-currency earnings pages without changing exact accounting or limits.
-Controlled1,000-NFT/three-currency journeys need64 API reads instead190 before
-cards; sixteen NFTs with66 fully priced descriptors finish17 currency pages,
-with at most904 RPC reads per request. Legacy all-currency wires stay explicit.
-Current-profile GETs are paced1second apart; complete NFT/currency coverage,
-raw-first USD rounding, full86,400-second history and final proofs remain.
-Very large NFT-by-currency combinations can still exceed freshness: complete
-ownership/totals may remain usable while earnings is explicitly unavailable.
-Real provider/host/freshness and full normal F6/V10 acceptance remain open.
+[Isolated wallet-stack rehearsal](../reports/wallet-stack-20261123/REVIEW.md) fixes an early timer-wakeup
+error and adds a bounded immutable ABI-selector cache. Fourteen NEW JS and nine NEW
+Python checks pass; no unchanged test bodies run. Actual Ubuntu API workers,
+Nginx and the source9 reader pass the 17-NFT financial journey, cancellation,
+restart, two independent concurrent contexts and genuine expiry checks.
 
-Changed backend helpers enter checkpoint semantic identity: preserve original
-checkpoint/review/raw DB/journal bytes; explicitly rebuild/review/re-pin for
-separately authorized adoption. No running site/service/chain, signer/public
-configuration, gas/resource limit, economic right or paused heartbeat changes.
+The full 1,000-NFT/three-currency portfolio remains UNQUALIFIED: the optimization
+advances 58→70 GET attempts, but visible-card/history work still exceeds 120s
+freshness. The separate restored F6/V10 graph cannot serve its required historical
+NFT-creation proof. Preserve both refusals; no guard or limit is relaxed.
+Current inventory: 182 Python files/2,002 named definitions/278 lambdas; frozen
+F6 Solidity 61/dependencies 39/controls 4 and 1,021 ABI rows remain unchanged.
+
+HTTP outcomes retain their earlier source stages; the later sibling-read cleanup
+has five separate unit checks. The journeys were not rerun.
+
+Changed abi.py enters checkpoint semantic identity. Preserve original checkpoint,
+review, raw DB and journal bytes; explicitly rebuild/review/re-pin for separately
+authorized adoption. All five owned private-network labs stopped. Existing sites,
+services, Anvil8902, signer/null public configurations and paused heartbeat stay
+unchanged. Actual F6/V10/provider/market/production operating approval stays open.
 
 [Current actual-fee proof](../reports/pool-fees-20261121/REVIEW.md) advances P08
 with real-core harvested receipts, exact80/10/5/5+dust/reserve conservation and
@@ -38,7 +44,7 @@ empty-state and locally seeded-depth forks. Only final production selection is d
 it does not block those tests. Actual market/source/route qualification remains
 separate. See [testing scope](../reports/test-pool-scope-20261120/REVIEW.md).
 
-Progress reconciled21November2026 against `33af0ab927d6724b724df99e926fedf78e4febcf`; original plan baseline `519ff4f075022f789f46facbab56f0a944705b11` is retained. **Production is undeployed and NOT APPROVED.**
+Progress reconciled23November2026; exact new scopes are in the [isolated-stack record](../reports/wallet-stack-20261123/REVIEW.md). Earlier reconciliation against `33af0ab927d6724b724df99e926fedf78e4febcf`; original plan baseline `519ff4f075022f789f46facbab56f0a944705b11` is retained. **Production is undeployed and NOT APPROVED.**
 This is the plan for checking readiness, not authorization to execute public
 transactions, deploy, seal, restart services or open mint. [TODO.md](../TODO.md)
 remains the only task-status checklist; record actual approval in the
@@ -46,7 +52,7 @@ remains the only task-status checklist; record actual approval in the
 and [matrix](../reports/production-readiness-plan-20261119/MATRIX.json) retain
 source provenance and map every stable Todo task to the packages below.
 
-## Current progress snapshot — 21 November 2026
+## Current progress snapshot — 23 November 2026
 
 The23 acceptance packages still map all83 stable Todo tasks:35done,40in progress,
 7todo and1excluded. These are task states, not a release-readiness percentage.
@@ -78,7 +84,7 @@ full-normal1000-NFT workloads, the476135-estimate gap and independent approval r
 | P14 | Custom Merkle qualification selected; acceptance open | Existing offline reviewer plus nine new platform diagnostics/current-source phase preparation; preserve exact sale guarantees. Actual custom OpenSea onboarding/payload/terms remain unapproved. |
 | P15 | Pinned new source lead; no provider qualified | OpenVRF9fb960c inspected; ABI/funding/two-word derivation, timestamp/drand/crypto and self-hosted operation remain unqualified. |
 | P16 | Catalogue mapped; delivery open | Actual content publication/retrieval/OpenSea refresh and final media acceptance remain. |
-| P17 | Two fixes; finite normal flow verified | Real26-pin32-NFT65-currency claim admission/payout;1000/fullHTTP/provider acceptance remains. |
+| P17 | Finite actual HTTP/recovery verified; maximum remains blocked | Prior26-pin/32-NFT/65-currency claims retain their scope. New17-NFT source9 reads and recovery pass;1,000-NFT full portfolio exceeds freshness. Matching F6/V10 archive/provider acceptance remains. |
 | P18 | Offline tools implemented | Matching checkpoint/consumer and actual host/archive/restore adoption remain. |
 | P19 | Production submission unresolved | Current consumer unsigned, shared signer Anvil-only; no production signing decision or rollout. |
 | P20 | Finite recovery evidence only | Actual complete normal-loop scheduling with real accepted services remains. |
