@@ -1,0 +1,92 @@
+{
+  "actual_signed_envelope_predecoded": false,
+  "all_enabled_jobs_qualified": false,
+  "cleanup": [
+    {
+      "feature": "confirmation",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    }
+  ],
+  "features": [
+    {
+      "RPC_method_counts": {
+        "anvil_impersonateAccount": 1,
+        "anvil_setBalance": 1,
+        "eth_call": 115,
+        "eth_chainId": 1,
+        "eth_estimateGas": 4,
+        "eth_gasPrice": 1,
+        "eth_getBlockByNumber": 19,
+        "eth_getCode": 39,
+        "eth_getTransactionByHash": 4,
+        "eth_getTransactionCount": 8,
+        "eth_getTransactionReceipt": 4,
+        "eth_maxPriorityFeePerGas": 1,
+        "eth_sendTransaction": 4,
+        "evm_mine": 5,
+        "evm_setAutomine": 1,
+        "evm_setIntervalMining": 1,
+        "evm_setNextBlockTimestamp": 5
+      },
+      "RPC_phase_counts": {
+        "controlled_fee_readback": 4,
+        "model_start": 2,
+        "sealed_graph_identity": 208
+      },
+      "RPC_requests": 214,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "error_class": "HarnessRefusal",
+      "fault_attempts": 0,
+      "feature": "confirmation",
+      "fixed_guard": "Controlled fixture fee policy readback differs",
+      "gateway_refusals": [],
+      "last_model_RPC_failure": null,
+      "last_stage": "controlled_fee_readback",
+      "message_sha256": "2984e0ece309de93007afbb1f3b912857a520895e3f4068bd0a414db39619073",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 0,
+      "raw_forwarded": 0,
+      "setup_transactions": 4,
+      "site": {
+        "file": "run_jobs.py",
+        "function": "fee_readback",
+        "line": 18
+      },
+      "status": "failed",
+      "stock_transactions": 0
+    }
+  ],
+  "new_seals": 0,
+  "old_test_bodies_run": 0,
+  "planned_jobs": [
+    "confirmation"
+  ],
+  "postforward_exact_transaction_verification_required": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_submission_attempts": 0,
+  "reviewed_raw_forward_attempts": 0,
+  "schema": 1,
+  "scope": "NEW missing ordinary single-main replacement only;600s sampled/240s checks/strict300gap/fresh60-300jitter/12h cooldown; copied sealed state with actual synthetic low-fee node",
+  "secret_disposition": {
+    "contents_or_content_hashes_exported": false,
+    "retained_only_in_new_owned_lab": true
+  },
+  "shared_RPC_requests": 214,
+  "source_inputs_preserved": true,
+  "stock_events_bytes": 0,
+  "success": false,
+  "tracked_children_stopped": true,
+  "unattempted_jobs": [],
+  "unexecuted": [
+    "continuous_daemon_timing",
+    "sample_reset_job_after_new_market_recovery",
+    "different_key_rotation"
+  ],
+  "whole_cgroup_cleanup_requires_external_readback": true
+}

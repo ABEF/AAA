@@ -1,0 +1,32 @@
+{
+  "health_gas_review": {
+    "last_review": {
+      "action": "vault.rebalance(uint256,uint128,uint256)",
+      "configuration_sha256": "a09466f794122a2ef0474f3fe019663d761978fb0d2b63819b4411bd36e80c82",
+      "daily_cost_cap_wei": 50000000000000000,
+      "estimated_gas": 10476884,
+      "gas_limit_cap": 24000000,
+      "gas_price_cap_wei": 5000000000,
+      "gas_price_wei": 7,
+      "head_number": 119107385,
+      "maximum_cost_wei": 91672735,
+      "padded_gas_required": 13096105,
+      "reason": null,
+      "scope": "latest_simulation_estimate_not_inclusion_guarantee",
+      "state": "within_configured_caps",
+      "transaction_cost_cap_wei": 10000000000000000
+    },
+    "state": "reviewed_this_cycle"
+  },
+  "last_fee_observation": {
+    "cost_wei": 7790384,
+    "execution_price_wei": 7,
+    "gas_used": 1112912,
+    "l1_fee_wei": 0,
+    "receipt_fee_policy": "included",
+    "reported_price_wei": 8,
+    "transaction": "0xeafba6eaa880fe53ac438fad18e497d9a27ecdc3eb56dceb33bd5c83c800582c"
+  },
+  "scope": "Gas review/fee fields only; original cycle/journal retained privately",
+  "source_artifact_sha256": "f9d2c7fdbeee7d71d6db18acfb881128434ff9ce215a85bdf265e9623921ea04"
+}

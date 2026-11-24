@@ -1,0 +1,381 @@
+{
+  "actual_reported_receipt_price_wei": 79,
+  "actual_transaction_without_signature": {
+    "blockHash": "0xc33f65c9d4dfce33f80b798fe112c55e13a8f27385e5ebce7f1e262bc450afa1",
+    "blockNumber": "0x7196f02",
+    "chainId": "0x1237",
+    "from": "0x240ba966a29b7ecbb44507c0dc291337959703d1",
+    "gas": "0x54a29",
+    "gasPrice": "0x4f",
+    "hash": "0x8d3a1309e7b2925c52234ef1af3296cbcfe83b4aef79db0e61ab3302a1b95e1c",
+    "input": "0xa8c162fb0000000000000000000000007dbf38976f6d3b9c529e7d9484a71898b409ee6a000000000000000000000000000000000000000000000000002dc2cf7b613125501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b000000000000000000000000000000000000000000000000000000006b05fc56",
+    "maxFeePerGas": "0x4e",
+    "maxPriorityFeePerGas": "0x1",
+    "nonce": "0x0",
+    "to": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+    "transactionIndex": "0x0",
+    "type": "0x2",
+    "value": "0x0"
+  },
+  "canonical_inclusion_header": {
+    "baseFeePerGas": "0x4e",
+    "blobGasUsed": "0x0",
+    "difficulty": "0x0",
+    "excessBlobGas": "0x0",
+    "extraData": "0x",
+    "gasLimit": "0x1e84800",
+    "gasUsed": "0x3c4f8",
+    "hash": "0xc33f65c9d4dfce33f80b798fe112c55e13a8f27385e5ebce7f1e262bc450afa1",
+    "logsBloom": "0x00000000600100000000020000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000020000000000000000010800000000000000004000000010000024000000000000000000000000000000000000000000000000200000000000000040000000000000000000000018000000000000000000000000800000000000000020000002000000000000000000000000000000000000000000000010000032000000000000000000000000000000000000000000000000000000000000000000",
+    "miner": "0x0000000000000000000000000000000000000000",
+    "mixHash": "0x4cff1de1ec6a3f8a6676d3caa47cad03175faab0990a9aec60595c7c0b90f89c",
+    "nonce": "0x0000000000000000",
+    "number": "0x7196f02",
+    "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "parentHash": "0xa3bf2973be58f6c33d9ce05a117f52c2194ddbbb6b205c036ef11a6785e27c45",
+    "receiptsRoot": "0x1a26251f06bc1a71b764bb06f31f8a2cd1087f6a361c6e520422d0209f766842",
+    "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+    "size": "0x339",
+    "stateRoot": "0xc311ac123301b2cae7e54acd6d6ddb0bb17220f3010fbdcd8e06ae6c0dc1e3a2",
+    "timestamp": "0x6b05fba3",
+    "totalDifficulty": "0x0",
+    "transactions": [
+      "0x8d3a1309e7b2925c52234ef1af3296cbcfe83b4aef79db0e61ab3302a1b95e1c"
+    ],
+    "transactionsRoot": "0xedc86ebfabb320f405e6947c4f78cbaad68625d197e7422e62f845f515236e3a",
+    "uncles": [],
+    "withdrawals": [],
+    "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+  },
+  "durable_review": {
+    "gas_limit": 346665,
+    "l1_fee_allowance_wei": 0,
+    "max_fee_per_gas": 78,
+    "maximum_cost_wei": 27039870,
+    "receipt_fee_policy": "included",
+    "schema": 1
+  },
+  "fee_readback": {
+    "fixture_quote_and_base_screen_wei": 1000,
+    "gas_price_wei": 78,
+    "latest": {
+      "baseFeePerGas": "0x58",
+      "blobGasUsed": "0x0",
+      "difficulty": "0x0",
+      "excessBlobGas": "0x0",
+      "extraData": "0x",
+      "gasLimit": "0x1e84800",
+      "gasUsed": "0xd407",
+      "hash": "0xa3bf2973be58f6c33d9ce05a117f52c2194ddbbb6b205c036ef11a6785e27c45",
+      "logsBloom": "0x00000100000400000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000000000000000000000020000000",
+      "miner": "0x0000000000000000000000000000000000000000",
+      "mixHash": "0xe519ccd5139e3c8e87242e15596ec0b04a9df9435c62cbf2a3fed7a347243125",
+      "nonce": "0x0000000000000000",
+      "number": "0x7196f01",
+      "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "parentHash": "0xa15fe17f2a3f2214231043954d25e44f59ce65e323d8ecb12d21a6cf1d1f5d9c",
+      "receiptsRoot": "0xecf721d7714f0abe41c50bbcefad96ec4f43c7af82159b606189aff0ebdddfa1",
+      "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+      "size": "0x2b8",
+      "stateRoot": "0x0eba060b642215ab2e83aee9f534e22cdfaa7de54971348dc14e36ba5fecc0b4",
+      "timestamp": "0x6b05fba2",
+      "totalDifficulty": "0x0",
+      "transactions": [
+        "0xfc1efeb4c408e38504ae1118fbebe1b08fcf184f582b342014b8c44ece95febf"
+      ],
+      "transactionsRoot": "0x6e762d055aeca8ab590cb9de601b4026e0ee7447ab5ab07817759759e8af95a6",
+      "uncles": [],
+      "withdrawals": [],
+      "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+    },
+    "pending": {
+      "baseFeePerGas": "0x4e",
+      "blobGasUsed": "0x0",
+      "difficulty": "0x0",
+      "excessBlobGas": "0x0",
+      "extraData": "0x",
+      "gasLimit": "0x1e84800",
+      "gasUsed": "0x0",
+      "hash": "0x3505639ac0f1d37a108f6af2179706f363ab3c52bee4a70223069cd038045751",
+      "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "miner": "0x0000000000000000000000000000000000000000",
+      "mixHash": "0xe519ccd5139e3c8e87242e15596ec0b04a9df9435c62cbf2a3fed7a347243125",
+      "nonce": "0x0000000000000000",
+      "number": "0x7196f02",
+      "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "parentHash": "0xa3bf2973be58f6c33d9ce05a117f52c2194ddbbb6b205c036ef11a6785e27c45",
+      "receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+      "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+      "size": "0x246",
+      "stateRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "timestamp": "0x6b05fba8",
+      "totalDifficulty": "0x0",
+      "transactions": [],
+      "transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+      "uncles": [],
+      "withdrawals": [],
+      "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+    },
+    "scope": "Synthetic local fee model, no actual Robinhood fee/provider qualification",
+    "suggested_priority_fee_wei": 1000000000,
+    "tip_suggestion_not_signed_priority": true
+  },
+  "independently_derived_cost_wei": 19268496,
+  "independently_derived_execution_price_wei": 78,
+  "post": {
+    "money": {
+      "0x0000000000000000000000000000000000000000": {
+        "accounted": 11815761574,
+        "buyback": 9600882826,
+        "buyback_balance": 0,
+        "claims": [
+          [
+            76891793049,
+            9600882826
+          ],
+          [
+            76722332177,
+            9600882826
+          ]
+        ],
+        "compound": 2214878731,
+        "dust": 17,
+        "fees_balance": 11815761574,
+        "liabilities": 172815890878,
+        "orphaned": 0,
+        "rewards_balance": 172815890878,
+        "total_idle": 3091488024740,
+        "vault_balance": 3091488024740
+      },
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a": {
+        "accounted": 312013286042861,
+        "buyback": 0,
+        "buyback_balance": 0,
+        "claims": [
+          [
+            177504193383535427,
+            21886879900728765
+          ],
+          [
+            28584931991912233,
+            3874260771202189
+          ]
+        ],
+        "compound": 312013286042861,
+        "dust": 0,
+        "fees_balance": 312013286042861,
+        "liabilities": 231850266047378614,
+        "orphaned": 0,
+        "rewards_balance": 231850266047378614,
+        "total_idle": 1003565393572226070,
+        "vault_balance": 1003565393572226070
+      }
+    },
+    "physical": {
+      "group": [
+        36215304117639473942956184678598083808932734028250661589202473382530834431515,
+        4331098,
+        3091488024740,
+        1003565393572226070,
+        260000000000000000000,
+        42277818571609236609753742835712,
+        1795183935,
+        1
+      ],
+      "liquidity": 142316833039121843140,
+      "main": 4331098,
+      "owner": "0x0000000000000000000000006e113da826ec57f968fff0f7cb7c0163b6b31db1",
+      "secondary": 0,
+      "ticks": [
+        121400,
+        132600
+      ]
+    },
+    "rights": [
+      {
+        "eligible": 1,
+        "id": "40184212847679983674243184633288579841995169513279304157869508944424510570653",
+        "owner": "0x000000000000000000000000000000000000000000000000000000000000a0a0",
+        "royalty_weight": 1,
+        "shares": 129424971487399448345
+      },
+      {
+        "eligible": 1,
+        "id": "64035115818100271688741973822286304906190058428760669687570531617680779079388",
+        "owner": "0x000000000000000000000000000000000000000000000000000000000000a0a0",
+        "royalty_weight": 1,
+        "shares": 129130912612388018059
+      }
+    ],
+    "total_supply": 839999999987119429664034523,
+    "zero_address_balance": 0
+  },
+  "pre": {
+    "money": {
+      "0x0000000000000000000000000000000000000000": {
+        "accounted": 11815761574,
+        "buyback": 9600882826,
+        "buyback_balance": 0,
+        "claims": [
+          [
+            76891793049,
+            9600882826
+          ],
+          [
+            76722332177,
+            9600882826
+          ]
+        ],
+        "compound": 2214878731,
+        "dust": 17,
+        "fees_balance": 11815761574,
+        "liabilities": 172815890878,
+        "orphaned": 0,
+        "rewards_balance": 172815890878,
+        "total_idle": 3091488024740,
+        "vault_balance": 3091488024740
+      },
+      "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a": {
+        "accounted": 13192583622008338,
+        "buyback": 12880570335965477,
+        "buyback_balance": 0,
+        "claims": [
+          [
+            177504193383535427,
+            21886879900728765
+          ],
+          [
+            28584931991912233,
+            3874260771202189
+          ]
+        ],
+        "compound": 312013286042861,
+        "dust": 0,
+        "fees_balance": 13192583622008338,
+        "liabilities": 231850266047378614,
+        "orphaned": 0,
+        "rewards_balance": 231850266047378614,
+        "total_idle": 1003565393572226070,
+        "vault_balance": 1003565393572226070
+      }
+    },
+    "physical": {
+      "group": [
+        36215304117639473942956184678598083808932734028250661589202473382530834431515,
+        4331098,
+        3091488024740,
+        1003565393572226070,
+        260000000000000000000,
+        42277818571609236609753742835712,
+        1795183935,
+        1
+      ],
+      "liquidity": 142316833039121843140,
+      "main": 4331098,
+      "owner": "0x0000000000000000000000006e113da826ec57f968fff0f7cb7c0163b6b31db1",
+      "secondary": 0,
+      "ticks": [
+        121400,
+        132600
+      ]
+    },
+    "rights": [
+      {
+        "eligible": 1,
+        "id": "40184212847679983674243184633288579841995169513279304157869508944424510570653",
+        "owner": "0x000000000000000000000000000000000000000000000000000000000000a0a0",
+        "royalty_weight": 1,
+        "shares": 129424971487399448345
+      },
+      {
+        "eligible": 1,
+        "id": "64035115818100271688741973822286304906190058428760669687570531617680779079388",
+        "owner": "0x000000000000000000000000000000000000000000000000000000000000a0a0",
+        "royalty_weight": 1,
+        "shares": 129130912612388018059
+      }
+    ],
+    "total_supply": 840000000000000000000000000,
+    "zero_address_balance": 0
+  },
+  "receipt": {
+    "blobGasPrice": "0x1",
+    "blockHash": "0xc33f65c9d4dfce33f80b798fe112c55e13a8f27385e5ebce7f1e262bc450afa1",
+    "blockNumber": "0x7196f02",
+    "contractAddress": null,
+    "cumulativeGasUsed": "0x3c4f8",
+    "effectiveGasPrice": "0x4f",
+    "from": "0x240ba966a29b7ecbb44507c0dc291337959703d1",
+    "gasUsed": "0x3c4f8",
+    "logs": [
+      {
+        "address": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "blockHash": "0xc33f65c9d4dfce33f80b798fe112c55e13a8f27385e5ebce7f1e262bc450afa1",
+        "blockNumber": "0x7196f02",
+        "blockTimestamp": "0x6b05fba3",
+        "data": "0x000000000000000000000000000000000000000000000000002dc2cf7b613125",
+        "logIndex": "0x0",
+        "removed": false,
+        "topics": [
+          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+          "0x00000000000000000000000003c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "0x000000000000000000000000ae3190875cb5ee986ac2c618d7b0393a5c0d3a2c"
+        ],
+        "transactionHash": "0x8d3a1309e7b2925c52234ef1af3296cbcfe83b4aef79db0e61ab3302a1b95e1c",
+        "transactionIndex": "0x0"
+      },
+      {
+        "address": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "blockHash": "0xc33f65c9d4dfce33f80b798fe112c55e13a8f27385e5ebce7f1e262bc450afa1",
+        "blockNumber": "0x7196f02",
+        "blockTimestamp": "0x6b05fba3",
+        "data": "0x000000000000000000000000000000000000000000000000002dc2cf7b613125",
+        "logIndex": "0x1",
+        "removed": false,
+        "topics": [
+          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+          "0x000000000000000000000000ae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "0x0000000000000000000000000000000000000000000000000000000000000000"
+        ],
+        "transactionHash": "0x8d3a1309e7b2925c52234ef1af3296cbcfe83b4aef79db0e61ab3302a1b95e1c",
+        "transactionIndex": "0x0"
+      },
+      {
+        "address": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+        "blockHash": "0xc33f65c9d4dfce33f80b798fe112c55e13a8f27385e5ebce7f1e262bc450afa1",
+        "blockNumber": "0x7196f02",
+        "blockTimestamp": "0x6b05fba3",
+        "data": "0x000000000000000000000000000000000000000000000000002dc2cf7b613125000000000000000000000000000000000000000000000000002dc2cf7b613125",
+        "logIndex": "0x2",
+        "removed": false,
+        "topics": [
+          "0xf887dacc92cb9c4a8ce46c0aaef10c7a85f7758495f717c5e568259998610ed3",
+          "0x0000000000000000000000007dbf38976f6d3b9c529e7d9484a71898b409ee6a"
+        ],
+        "transactionHash": "0x8d3a1309e7b2925c52234ef1af3296cbcfe83b4aef79db0e61ab3302a1b95e1c",
+        "transactionIndex": "0x0"
+      }
+    ],
+    "logsBloom": "0x00000000600100000000020000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000020000000000000000010800000000000000004000000010000024000000000000000000000000000000000000000000000000200000000000000040000000000000000000000018000000000000000000000000800000000000000020000002000000000000000000000000000000000000000000000010000032000000000000000000000000000000000000000000000000000000000000000000",
+    "status": "0x1",
+    "to": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+    "transactionHash": "0x8d3a1309e7b2925c52234ef1af3296cbcfe83b4aef79db0e61ab3302a1b95e1c",
+    "transactionIndex": "0x0",
+    "type": "0x2"
+  },
+  "requested_burn_amount": 12880570335965477,
+  "saved_before_terminal_assertions": true,
+  "scope": "NEW stock direct-ZZZ burn, exact historical supply scalar plus controlled copied state; not full global-state/provider acceptance",
+  "stock_last_fee_observation": {
+    "cost_wei": 19268496,
+    "execution_price_wei": 78,
+    "gas_used": 247032,
+    "l1_fee_wei": 0,
+    "receipt_fee_policy": "included",
+    "reported_price_wei": 79,
+    "transaction": "0x8d3a1309e7b2925c52234ef1af3296cbcfe83b4aef79db0e61ab3302a1b95e1c"
+  },
+  "stock_spent": {
+    "2026-11-24": 19268496
+  }
+}

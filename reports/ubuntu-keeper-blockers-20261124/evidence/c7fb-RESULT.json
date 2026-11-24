@@ -1,0 +1,103 @@
+{
+  "actual_signed_envelope_predecoded": false,
+  "all_enabled_jobs_qualified": false,
+  "cleanup": [
+    {
+      "feature": "buyback",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    }
+  ],
+  "features": [
+    {
+      "RPC_method_counts": {
+        "anvil_impersonateAccount": 1,
+        "anvil_mine": 1,
+        "anvil_setBalance": 2,
+        "anvil_setStorageAt": 1,
+        "anvil_stopImpersonatingAccount": 1,
+        "eth_call": 728,
+        "eth_chainId": 734,
+        "eth_estimateGas": 11,
+        "eth_feeHistory": 1,
+        "eth_gasPrice": 2,
+        "eth_getBalance": 10,
+        "eth_getBlockByNumber": 68,
+        "eth_getCode": 208,
+        "eth_getStorageAt": 2,
+        "eth_getTransactionByHash": 13,
+        "eth_getTransactionCount": 26,
+        "eth_getTransactionReceipt": 12,
+        "eth_maxPriorityFeePerGas": 1,
+        "eth_sendRawTransaction": 1,
+        "eth_sendTransaction": 10,
+        "evm_mine": 12,
+        "evm_setAutomine": 1,
+        "evm_setIntervalMining": 1,
+        "evm_setNextBlockTimestamp": 12
+      },
+      "RPC_phase_counts": {
+        "genuine_fee_setup": 101,
+        "model_start": 2,
+        "restore_historical_token_supply": 3,
+        "sealed_graph_identity": 211,
+        "stock_direct_ZZZ_burn": 1542
+      },
+      "RPC_requests": 1859,
+      "actual_signed_envelope_predecoded": false,
+      "burned": "12880570335965477",
+      "canonical_cost_wei": 19268496,
+      "controlled_copied_state_only": true,
+      "fault_attempts": 0,
+      "feature": "buyback",
+      "gateway_refusals": [],
+      "historical_supply_restore_writes": 1,
+      "last_model_RPC_failure": null,
+      "last_stage": "stock_direct_ZZZ_burn",
+      "new_seal": false,
+      "no_dead_address_transfer_fiction": true,
+      "no_resend_or_repeated_burn": true,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 1,
+      "raw_forwarded": 1,
+      "reserves_rights_and_principal_preserved": true,
+      "saved_review": "BURN_REVIEW.json",
+      "setup_transactions": 10,
+      "status": "passed",
+      "stock_transactions": 1,
+      "supply_after": "839999999987119429664034523",
+      "supply_before": "840000000000000000000000000"
+    }
+  ],
+  "new_seals": 0,
+  "old_test_bodies_run": 0,
+  "postforward_exact_transaction_verification_required": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_submission_attempts": 1,
+  "reviewed_raw_forward_attempts": 1,
+  "schema": 1,
+  "scope": "NEW positive stock direct-ZZZ burn only; copied F6 plus authenticated historical supply-slot restore and synthetic local fees; no actual provider/market/global-state qualification",
+  "secret_disposition": {
+    "contents_or_content_hashes_exported": false,
+    "retained_only_in_new_owned_lab": true
+  },
+  "shared_RPC_requests": 1859,
+  "shared_maximum_reviewed_cost_wei": 27039870,
+  "source_inputs_preserved": true,
+  "stock_events_bytes": 1058,
+  "success": true,
+  "tracked_children_stopped": true,
+  "unattempted_jobs": [],
+  "unexecuted": [
+    "ordinary_confirmation_and_jitter",
+    "ordinary_rebalance",
+    "manual_geometry_exception",
+    "LP_native_conversion",
+    "different_key_rotation",
+    "continuous_long_duration_operation"
+  ],
+  "whole_cgroup_cleanup_requires_external_readback": true
+}

@@ -1,0 +1,69 @@
+{
+  "actual_signed_envelope_predecoded": false,
+  "all_enabled_jobs_qualified": false,
+  "cleanup": [
+    {
+      "feature": "compound",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    }
+  ],
+  "features": [
+    {
+      "RPC_requests": 3116,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "error_class": "HarnessRefusal",
+      "fault_attempts": 0,
+      "feature": "compound",
+      "fixed_guard": "Actual charged spend differs/exceeds reviewed unchanged fee cap",
+      "gateway_refusals": [],
+      "last_model_RPC_failure": null,
+      "last_stage": "stock_compound",
+      "message_sha256": "170a4b9012faeffe3252b54f42307298cc30ee1319abf36b8dd469b794c8b44d",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 1,
+      "raw_forwarded": 1,
+      "setup_transactions": 10,
+      "site": {
+        "file": "run_jobs.py",
+        "function": "compound",
+        "line": 41
+      },
+      "status": "failed",
+      "stock_transactions": 1
+    }
+  ],
+  "new_seals": 0,
+  "old_test_bodies_run": 0,
+  "postforward_exact_transaction_verification_required": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_submission_attempts": 1,
+  "reviewed_raw_forward_attempts": 1,
+  "schema": 1,
+  "scope": "NEW positive stock compound only; copied sealed F6 and genuine local quotes in explicit synthetic fee model; not Robinhood/provider/global-state qualification",
+  "secret_disposition": {
+    "contents_or_content_hashes_exported": false,
+    "retained_only_in_new_owned_lab": true
+  },
+  "shared_RPC_requests": 3116,
+  "shared_maximum_reviewed_cost_wei": 843957036,
+  "source_inputs_preserved": true,
+  "stock_events_bytes": 1131,
+  "success": false,
+  "tracked_children_stopped": true,
+  "unattempted_jobs": [],
+  "unexecuted": [
+    "ordinary_confirmation_and_jitter",
+    "ordinary_rebalance",
+    "manual_geometry_exception",
+    "LP_native_conversion",
+    "different_key_rotation",
+    "continuous_long_duration_operation"
+  ],
+  "whole_cgroup_cleanup_requires_external_readback": true
+}

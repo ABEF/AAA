@@ -1,0 +1,197 @@
+{
+  "schema": 1,
+  "lab": "/opt/popl-ubuntu-keeper-compound-20261124-c7fe",
+  "scope": "NEW offline reconciliation of existing actual compound; no new runtime, transactions, test body, service or production change",
+  "original_aggregate_success": false,
+  "original_results_preserved": true,
+  "supplemental_classification": "compound executed and its preceding accounting/rights/physical/clock checks passed; final harness fee expectation defective; canonical stock fee ledger reconciles",
+  "production_defect_confirmed": false,
+  "cause": {
+    "component": "private run_jobs.py compound() final line41",
+    "wrong_expectation": "saved spent == gasUsed * receipt.effectiveGasPrice",
+    "correct_stock_model": "For type2 schema1, signed maxFee/maxPriority and canonical inclusion basefee determine min(maxFee,base+priority); receipt effectiveGasPrice is separately recorded telemetry. Profile2 additionally rejects disagreement.",
+    "reported_price_wei": 79,
+    "recorded_canonical_price_wei": 78,
+    "signed_cap_wei": 78,
+    "reported_price_exceeds_signed_cap": true,
+    "no_reserve_or_daily_budget_miscount_found": true,
+    "Anvil_discrepancy_origin": "Not traced to Anvil internal cause by this reconciliation; do not infer real-network fee semantics."
+  },
+  "transaction": {
+    "hash": "0x3effd006301c13d2a463b2cae6b8f76711ab273944125abb68992e2fec3ed6a0",
+    "block_number": 119107330,
+    "block_hash": "0x2dbcea2a8dda9e1df1de8b4b66ebba2fe29e40b60fcf99012955515603c547a4",
+    "type": 2,
+    "gas_used": 7923272,
+    "padded_gas_limit": 10819962,
+    "maximum_cost_wei": 843957036,
+    "reported_receipt_multiplication_wei": 625938488,
+    "canonical_cost_and_saved_spent_wei": 618015216,
+    "difference_wei": 7923272,
+    "fee_profile": 1,
+    "l1_fee_wei": 0,
+    "value": 0,
+    "next_nonce": 1,
+    "pending": null,
+    "compound_and_harvest_clock": 1795553663
+  },
+  "checks": [
+    {
+      "check": "Successful actual compound transaction",
+      "proof": "One retained receipt status1/type2, exact durable pending identity, nonce0 and one raw forward",
+      "result": "passed"
+    },
+    {
+      "check": "Exact allocation/reserve/backing/NFT rights/physical increase",
+      "proof": "Frozen helper reached failing final line41; all preceding need() assertions in compound() returned without raising. Raw before/after state vectors were local and not saved because outcome.update follows line41.",
+      "result": "passed_source_path_evidence_not_independent_vector_replay"
+    },
+    {
+      "check": "Stock12-confirmation receipt reconciliation",
+      "proof": "Retained RECEIPTS records confirmations12; CYCLE02 receipt_anchor matches transaction/receipt, pendingnull and next_nonce1. Frozen settle() requires stock poll_pending success with no resend.",
+      "result": "passed"
+    },
+    {
+      "check": "Immediate no-repeat and clock",
+      "proof": "CYCLE02 successtrue/no pending, same one raw forward, last compound and coalesced harvest timestamp1795553663; frozen helper passed the preceding immediate-no-repeat assertion.",
+      "result": "passed"
+    },
+    {
+      "check": "Canonical fee ledger arithmetic",
+      "proof": "Recorded canonical78wei*7,923,272gas=618,015,216wei equals saved spent and last_fee_observation.cost, below843,957,036wei reviewed maximum.",
+      "result": "passed_offline_arithmetic_and_stock_path"
+    },
+    {
+      "check": "Original final harness assertion",
+      "proof": "It trusted reported effectiveGasPrice79wei;79*7,923,272=625,938,488wei disagrees with canonical ledger by7,923,272wei.",
+      "result": "confirmed_harness_expectation_defect"
+    },
+    {
+      "check": "Independent signed-fields/canonical-header fee replay",
+      "proof": "Full actual transaction and inclusion header held only in locals before failing assertion; not present in fetched artifacts. Exact min(cap,base+priority) calculation was executed and checked by source-pinned stock recovery, but cannot be independently reproduced from supplied raw fields.",
+      "result": "not_independently_replayable_from_retained_artifacts"
+    },
+    {
+      "check": "Wallet ETH debit",
+      "proof": "No independent sender balance delta retained for this compound; canonical execution cost is established by stock recovery/arithmetic, not a separately reconstructed account debit.",
+      "result": "not_separately_claimed"
+    }
+  ],
+  "sources": {
+    "source/contracts/keeper/monitor.py": {
+      "bytes": 193517,
+      "sha256": "9bb7c3b227b93ab2003cd380e1e5549448c31a894c9d50ac712dbcdf422bb8c3"
+    },
+    "source/contracts/zzz_ops/ethereum_fees.py": {
+      "bytes": 2464,
+      "sha256": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe"
+    },
+    "source/helpers/run_jobs.py": {
+      "bytes": 11199,
+      "sha256": "0725c498bab1fc0786f8a74e7da32a12d6c9d4433b1c7aed91e913cd55a820f1"
+    },
+    "source/helpers/job_cases.py": {
+      "bytes": 18453,
+      "sha256": "c3e99757a6382ba03323e5ed03c756ab627e41cd2a3e2be8307a39422c5ee391"
+    },
+    "source/helpers/keeper_jobs.py": {
+      "bytes": 10046,
+      "sha256": "53cda7ce538e63f4fa04340f39e5fc0a9efb6b55a159735929e2ccf5c7cf86f2"
+    },
+    "source/helpers/keeper_runtime.py": {
+      "bytes": 37193,
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+    },
+    "inputs/SOURCE_MANIFEST.json": {
+      "bytes": 29439,
+      "sha256": "120a661acbbcd77595aea963815892ed9b14b16e2ceaa18f4767873ca1adf6e4"
+    }
+  },
+  "source_function_lines": {
+    "monitor.poll_pending": {
+      "first_line": 1551,
+      "last_line": 1698
+    },
+    "fees.fee_cap": {
+      "first_line": 16,
+      "last_line": 25
+    },
+    "fees.execution_price": {
+      "first_line": 45,
+      "last_line": 57
+    }
+  },
+  "evidence": {
+    "aggregate": {
+      "relative_path": "fetch-result-001/RESULT.json",
+      "bytes": 2176,
+      "sha256": "fdb47fdf0c81b081568707a16c7d195de968c750c208f8c44d62d774ca69730d"
+    },
+    "cycle_after_no_repeat": {
+      "relative_path": "fetch-compound-CYCLE-02-001/compound-CYCLE-02.json",
+      "bytes": 18118,
+      "sha256": "9b5c5913e93f1fd5452705bb63c88f87e2c5a4bacbd70acf883e745f2bd36265"
+    },
+    "receipts": {
+      "relative_path": "fetch-compound-RECEIPTS-001/compound-RECEIPTS.json",
+      "bytes": 31662,
+      "sha256": "993182bb3241a9e3b8d881adb83c93154086da2dd2ce16713d327cc75133cbf2"
+    },
+    "presend_review": {
+      "relative_path": "fetch-compound-RAW_REVIEWS-001/compound-RAW_REVIEWS.json",
+      "bytes": 852,
+      "sha256": "7edb8c929bf8067775b6c8ad05d0a504dcb3fbedf28bcb92982809ceedb4606c"
+    },
+    "bundle": {
+      "relative_path": "c7fe.inputs.tar.gz",
+      "bytes": 747751,
+      "sha256": "5902ecb2d876ed987d3bbed993993c0bb0e27f4e0b381383cfc09532cb95c8d0"
+    },
+    "build_receipt": {
+      "relative_path": "BUILD_RECEIPT.json",
+      "bytes": 2461,
+      "sha256": "75c42667fabf56d5925f82abf65a620e9d6409f4b8174318f7eeb6300b3da810"
+    }
+  },
+  "original_failure_and_cleanup": {
+    "source_result_sha256": "fdb47fdf0c81b081568707a16c7d195de968c750c208f8c44d62d774ca69730d",
+    "RPC_requests": 3116,
+    "original_aggregate_success": false,
+    "raw_attempts": 1,
+    "raw_forwarded": 1,
+    "cleanup": [
+      {
+        "feature": "compound",
+        "output_bytes": 0,
+        "overflow": false,
+        "returncode": 0,
+        "stopped": true
+      }
+    ],
+    "tracked_children_stopped": true,
+    "whole_cgroup_readback": "root-owned external verification, not inferred here"
+  },
+  "future_harness_correction_not_applied": [
+    "Capture unsigned public transaction fields and canonical inclusion header BEFORE any final assertions.",
+    "Compare spent with independently derived signed/canonical price or authenticate last_fee_observation; keep reported-price discrepancy explicit.",
+    "Save before/after financial vectors before terminal assertions for independent accounting replay."
+  ],
+  "limits_unchanged": {
+    "RPC": 6000,
+    "worker_seconds": 900,
+    "confirmations": 12,
+    "maintenance_gas": 24000000,
+    "padding_percent": 25,
+    "per_tx_wei": 10000000000000000,
+    "daily_wei": 50000000000000000
+  },
+  "no_rerun": true,
+  "new_public_transactions": 0,
+  "new_seals": 0,
+  "production_approved": false,
+  "limitations": [
+    "Controlled copied F6 state, synthetic local fee model and correlated controlled price answers are not provider/market approval.",
+    "No full consumer/maximum-workload/all-feature/soak qualification follows.",
+    "All raw artifact bytes and frozen helpers remain unchanged; this is a separately labeled supplemental report."
+  ]
+}

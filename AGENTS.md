@@ -1,5 +1,17 @@
 # AAA / ZZZ PoPL project instructions
 
+[Remaining Ubuntu keeper blockers](reports/ubuntu-keeper-blockers-20261124/REVIEW.md) now have finite positive paths:
+ordinary one-main rebalance5,259RPC, compound3,116RPC, directZZZ burn1,859RPC and
+same-NFT native LP conversion1,220RPC, within unchanged6,000/900s/24M/full25% and
+fee/economic limits. Compound's original aggregate remains false at a private
+reported-fee assertion; saved canonical-fee reconciliation closes that assertion
+without repeating its transaction. No maintained production source changes.
+Burn restores one authenticated omitted historical supply scalar in a NEW clone;
+conversion uses a NEW synthetic cheap venue/depth. Actual markets/fees/providers,
+two-leg/maximum/soak/off-host operation and release approval remain open. All five
+new labs stopped; five original service states preserved. No old test body reran.
+
+
 [Wallet checkpoint follow-through](reports/wallet-latency-20261123/REVIEW.md) preserves full admission,
 exact rights and all guards while removing repeated tree walks/accounting decode.
 28 distinct NEW backend methods pass in explicit stages; no old bodies rerun.

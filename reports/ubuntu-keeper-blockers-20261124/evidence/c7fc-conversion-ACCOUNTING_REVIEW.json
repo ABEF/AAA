@@ -1,0 +1,28 @@
+{
+  "allocation": [
+    {
+      "id": "40184212847679983674243184633288579841995169513279304157869508944424510570653",
+      "native_personal": "612459711789",
+      "native_shared": "75504801836",
+      "source_personal": "175005248241961198",
+      "source_shared": "21574866614685904"
+    },
+    {
+      "id": "64035115818100271688741973822286304906190058428760669687570531617680779079388",
+      "native_personal": "91312080724",
+      "native_shared": "12466672229",
+      "source_personal": "26091664556800686",
+      "source_shared": "3562247485159328"
+    }
+  ],
+  "assigned_exact_units": "791743266578",
+  "canonical_execution_price_wei": 17,
+  "canonical_fee_wei": "17913070",
+  "minimum_native": "786551469060",
+  "native_output": "791743266578",
+  "oracle_expected_native": "794496433393",
+  "original_rights_LP_reserves_preserved": true,
+  "provider_reported_effective_price_wei": 18,
+  "source_total": "226234026898607116",
+  "unchanged1percent_loss_and_gas_to_output": true
+}

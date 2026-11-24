@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Ubuntu keeper blocker follow-through](ubuntu-keeper-blockers-20261124/REVIEW.md)
+records the missing positive worker paths, exact source/evidence pins, original
+failed aggregates and remaining real-market/operating gates. This is finite
+isolated evidence, not production approval or a service rollout.
+
+
 [Ubuntu recovery and operating follow-through](ubuntu-complete-20261124/REVIEW.md)
 completes the NEW constructor fixture's full export/reload under its explicitly
 approved isolated snapshot budget. It verifies finite stock-daemon/Cast

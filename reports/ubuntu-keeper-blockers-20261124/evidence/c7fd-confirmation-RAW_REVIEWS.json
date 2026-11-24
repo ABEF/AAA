@@ -1,0 +1,107 @@
+[
+  {
+    "config_sha256": "bf94ec00ea1311426c9f2e4548c068ec0bd6fc17b3008d10d01fa108160f8364",
+    "intent": {
+      "data": "0x80020513684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be",
+      "day": "2026-11-24",
+      "fee_review": {
+        "gas_limit": 1086803,
+        "l1_fee_allowance_wei": 0,
+        "max_fee_per_gas": 76,
+        "maximum_cost_wei": 82597028,
+        "receipt_fee_policy": "included",
+        "schema": 1
+      },
+      "hash": null,
+      "key": "rebalance_observation:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+      "nonce": 0,
+      "to": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+      "value": 0
+    },
+    "raw_signature_retained": false
+  },
+  {
+    "config_sha256": "bf94ec00ea1311426c9f2e4548c068ec0bd6fc17b3008d10d01fa108160f8364",
+    "intent": {
+      "data": "0x80020513684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be",
+      "day": "2026-11-24",
+      "fee_review": {
+        "gas_limit": 1041955,
+        "l1_fee_allowance_wei": 0,
+        "max_fee_per_gas": 15,
+        "maximum_cost_wei": 15629325,
+        "receipt_fee_policy": "included",
+        "schema": 1
+      },
+      "hash": null,
+      "key": "rebalance_observation:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+      "nonce": 1,
+      "to": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+      "value": 0
+    },
+    "raw_signature_retained": false
+  },
+  {
+    "config_sha256": "bf94ec00ea1311426c9f2e4548c068ec0bd6fc17b3008d10d01fa108160f8364",
+    "intent": {
+      "data": "0x80020513684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be",
+      "day": "2026-11-24",
+      "fee_review": {
+        "gas_limit": 1041955,
+        "l1_fee_allowance_wei": 0,
+        "max_fee_per_gas": 7,
+        "maximum_cost_wei": 7293685,
+        "receipt_fee_policy": "included",
+        "schema": 1
+      },
+      "hash": null,
+      "key": "rebalance_observation:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+      "nonce": 2,
+      "to": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+      "value": 0
+    },
+    "raw_signature_retained": false
+  },
+  {
+    "config_sha256": "bf94ec00ea1311426c9f2e4548c068ec0bd6fc17b3008d10d01fa108160f8364",
+    "intent": {
+      "data": "0x80020513684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be",
+      "day": "2026-11-24",
+      "fee_review": {
+        "gas_limit": 1394640,
+        "l1_fee_allowance_wei": 0,
+        "max_fee_per_gas": 7,
+        "maximum_cost_wei": 9762480,
+        "receipt_fee_policy": "included",
+        "schema": 1
+      },
+      "hash": null,
+      "key": "rebalance_observation:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+      "nonce": 3,
+      "to": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+      "value": 0
+    },
+    "raw_signature_retained": false
+  },
+  {
+    "config_sha256": "bf94ec00ea1311426c9f2e4548c068ec0bd6fc17b3008d10d01fa108160f8364",
+    "intent": {
+      "data": "0x5b2a63ee684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000006b05fac0",
+      "day": "2026-11-24",
+      "fee_review": {
+        "gas_limit": 13096105,
+        "l1_fee_allowance_wei": 0,
+        "max_fee_per_gas": 7,
+        "maximum_cost_wei": 91672735,
+        "receipt_fee_policy": "included",
+        "schema": 1
+      },
+      "hash": null,
+      "key": "rebalance:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+      "nonce": 4,
+      "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+      "value": 0
+    },
+    "raw_signature_retained": false
+  }
+]

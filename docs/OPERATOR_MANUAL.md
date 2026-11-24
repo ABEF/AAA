@@ -1,5 +1,34 @@
 # PoPL operator manual
 
+## Ubuntu keeper follow-through — 24 November 2026
+
+The [new bounded operating record](../reports/ubuntu-keeper-blockers-20261124/REVIEW.md)
+adds positive single-main rebalance, compound, classifiedZZZ burn and native LP
+conversion execution. These are isolated model results; production acceptance
+and installation remain separate. No callable function, authority, profile or
+operating limit changes.
+
+| Situation | Operator action / input | Meaning |
+| --- | --- | --- |
+| Ordinary rebalance | Existing reviewed keeper configuration; fresh trigger, samples, jitter and fee review |5,259RPC completes sampled window and replacement. Do not bypass timing or financial checks |
+| Compound fee refusal | Inspect `gas_review` estimate, full25% allowance, captured gas quote and `max_transaction_cost_wei` | Existing0.01ETH ceiling still applies; an actual expensive quote remains a refusal |
+| Local Anvil fee model | NEW isolated lab only; reviewed node flags and actual quote/base readback | Imported state can retain329/312wei despite genesis options. Local synthetic fee settings are never production RPC approval |
+| Receipt fee discrepancy | Inspect signed transaction, canonical inclusion header and stock `last_fee_observation` | Fee-review1 derives canonical execution price; do not multiply an inconsistent reported receipt field. Fee-review2 adoption/strict provider checks remain separate |
+| Burn classified ZZZ | Existing keeper `buybacks` task, exact fixedZZZ and funded reserve | Genuine token burn reduces supply; it does not send ETH to a dead address or spend holder rewards |
+| Missing fork supply | NEW owned fixture only, reviewed historical block/hash/runtime/slot/getter proof | One proven missing global scalar may be restored for rehearsal. Never invent supply or modify an original/public chain |
+| Native LP conversion | Admitted native-v4 route, exact source/runtime pins, funded NFT balances and worker configuration | Converts existing LP ZZZ to ETH for the SAME NFTs;1% loss and1% gas/output remain. No royalty conversion |
+| Selected route too expensive | Keep original backed ZZZ rights and require a cheaper reviewed real route | New local fee3000/tick60 synthetic venue proves code execution only; production pool selection stays deferred |
+
+The new burn/conversion checks retain paired pre/post balances, NFT components,
+LP state, signed transaction fields and canonical header before assertions.
+Earlier compound/rebalance vectors held only in locals remain executed-source
+assertions; the report does not relabel them as independent raw replay.
+
+All five newly owned units/process groups are stopped and five original service
+states match. All journals, original fixtures/checkpoints, Anvil8902, sites,
+public-null signer configurations and the paused heartbeat remain unchanged.
+
+
 ## Complete wallet financial view
 
 The current exact-LP API advertises `wallet_view_profile: 1` on confirmed

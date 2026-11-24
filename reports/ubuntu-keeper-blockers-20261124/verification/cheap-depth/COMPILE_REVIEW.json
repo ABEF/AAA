@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "scope": "NEW disposable actual-core fee3000/tick60 native ETH/ZZZ depth fixture only; not real market qualification",
+  "pool_id": "0xb21d7557cf03c3662a0f90d189234108fb91edd8fcd39b73a1eaaefd6e3dc342",
+  "key": [
+    "0x0000000000000000000000000000000000000000",
+    "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+    3000,
+    60,
+    "0x0000000000000000000000000000000000000000"
+  ],
+  "source_origin": "test/local/Source9DepthSeeder.sol",
+  "source_origin_sha256": "cc490fe4d9d90b54d3988f8671fb4081feed0fc0c0a2e0a7d01eabda8d0b7d3b",
+  "sources": {
+    "UbuntuCheapDepthSeeder.sol": {
+      "bytes": 7992,
+      "sha256": "d0e3264d999fba6fb21dfbb2e4b1980d53cd15e15d28ed2450f794d18e6c5ae3"
+    },
+    "compile-input.json": {
+      "bytes": 8644,
+      "sha256": "883d73348b849982f9f50e4eee76af9f0ab9db15ab66f8a8bd02450f7361d6a7"
+    }
+  },
+  "compiled": false,
+  "executed": false,
+  "production_changed": false,
+  "no_hooks": true,
+  "no_withdrawal_function": true,
+  "exact_budget_settlement_and_all_unused_refunds": true,
+  "pool_must_be_initialized_before_seed": true,
+  "source_pin_and_core_state_pins_unchanged": true,
+  "one_shot": true
+}

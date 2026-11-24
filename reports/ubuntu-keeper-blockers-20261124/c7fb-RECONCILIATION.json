@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "lab": "/opt/popl-ubuntu-keeper-burn-20261124-c7fb",
+  "scope": "NEW offline arithmetic/source/retained-wire verification of existing actual stock burn, not a worker/test/RPC rerun",
+  "success": true,
+  "original_full_success_preserved": true,
+  "checks": [
+    "Seven original raw RPC envelopes, IDs, SHA256 bytes and exact canonical block-hash reads reconcile runtime/slot2/totalSupply; one private omitted-scalar restore matches.",
+    "Historical token/OZ/source pins and byte-exact executed archive helpers verified; Buyback/Fees source matches authenticated F6 compiler input without compilation.",
+    "Every saved pre/post ETH and ZZZ field independently reconciles: only designated ZZZ buyback/accounted/physical reserve decreases; shares/owners/eligibility/weights and LP complete vector unchanged.",
+    "Actual signed type2 fields/header independently give min(78,78+1)=78wei;247032gas costs19268496wei, equals stock spent and remains below27039870wei reviewed maximum. Reported79wei is retained as inconsistent derived telemetry.",
+    "All3 receipt logs exactly encode Fees\u2192Buyback reserve delivery, Buyback\u2192zero genuine burn and BoughtAndBurned; no swap/dead-address substitute. Exact receipt anchor plus12genuine empty descendants supplies13 observed confirmation depth for configured12."
+  ],
+  "historical_scalar": {
+    "seven_original_readonly_RPC_raw_envelopes_and_hashes_verified": true,
+    "block_number": 119107223,
+    "block_hash": "0x13f4c5b0ff38d2e13f17b12b1af8b0894b8d642d8aa1093083441e30e2ed9335",
+    "runtime_keccak256": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597",
+    "runtime_bytes": 3248,
+    "slot": "0x2",
+    "copied_missing_before": 0,
+    "restored_value": 840000000000000000000000000,
+    "metadata_sha256": "1d662fc392b6ec588fe107b58a80db23b4ac2588f43308e05f4bdeb562784f86",
+    "one_private_write_on_new_copy_only": true,
+    "storage_layout": "Plain OZ ERC20 balances0/allowances1/totalSupply2; Burnable adds no storage, exact PonsV2 historical runtime matched.",
+    "not_complete_global_account_state": true
+  },
+  "supply": {
+    "before": 840000000000000000000000000,
+    "burned": 12880570335965477,
+    "after": 839999999987119429664034523,
+    "zero_address_balance_before": 0,
+    "zero_address_balance_after": 0,
+    "exact_supply_and_event_reconciliation": true
+  },
+  "asset_ledgers": {
+    "0x0000000000000000000000000000000000000000": {
+      "fees_accounted_before": 11815761574,
+      "fees_accounted_after": 11815761574,
+      "exact_fee_debit": 0,
+      "compound_and_dust_unchanged": true,
+      "all_claim_components_liabilities_and_backing_unchanged": true,
+      "vault_idle_and_module_balances_preserved": true,
+      "all_recorded_classes_reconcile_exactly": true
+    },
+    "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a": {
+      "fees_accounted_before": 13192583622008338,
+      "fees_accounted_after": 312013286042861,
+      "exact_fee_debit": 12880570335965477,
+      "compound_and_dust_unchanged": true,
+      "all_claim_components_liabilities_and_backing_unchanged": true,
+      "vault_idle_and_module_balances_preserved": true,
+      "all_recorded_classes_reconcile_exactly": true
+    }
+  },
+  "NFT_and_LP": {
+    "saved_full_vectors_equal": true,
+    "owners_shares_eligibility_and_royalty_weights_unchanged": true,
+    "main_ID": 4331098,
+    "liquidity": 142316833039121843140,
+    "ticks": [
+      121400,
+      132600
+    ],
+    "residual_ID": 0,
+    "centre_lastRebalance_idle_and_status_preserved": true,
+    "two_active_NFT_single_main_scope": true
+  },
+  "transaction": {
+    "hash": "0x8d3a1309e7b2925c52234ef1af3296cbcfe83b4aef79db0e61ab3302a1b95e1c",
+    "gas_used": 247032,
+    "signed_padded_limit": 346665,
+    "uniquely_consistent_estimate_from_full25pct_rule": 277332,
+    "base_fee_wei": 78,
+    "signed_max_fee_wei": 78,
+    "signed_priority_wei": 1,
+    "canonical_price_wei": 78,
+    "canonical_cost_and_stock_spent_wei": 19268496,
+    "reviewed_maximum_cost_wei": 27039870,
+    "reported_price_wei": 79,
+    "reported_price_disagreement_preserved": true,
+    "profile": 1,
+    "configured_confirmations": 12,
+    "genuine_empty_descendants": 12,
+    "observed_confirmation_depth": 13,
+    "raw_attempts": 1,
+    "raw_forwarded": 1
+  },
+  "no_repeat_and_cleanup": {
+    "source_pinned_final_no_second_raw_assertion_passed": true,
+    "source_result_no_resend_or_repeated_burn": true,
+    "final_followup_journal_separately_fetched": false,
+    "source_inputs_preserved": true,
+    "RPC_requests": 1859,
+    "tracked_children_stopped": true,
+    "external_cgroup_verification": "Owned by root, not inferred here"
+  },
+  "source_proofs": {
+    "reports/market-qualification-20261109/markets/verified-sources/zzz/contracts/lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol": {
+      "bytes": 10800,
+      "sha256": "50f34ae16a067a41c2c1091445d11d63788e54c717677cb6d6b0e4cdea2ad21d"
+    },
+    "reports/market-qualification-20261109/markets/verified-sources/zzz/contracts/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Burnable.sol": {
+      "bytes": 1182,
+      "sha256": "2e6108a11184dd0caab3f3ef31bd15fed1bc7e4c781a55bc867ccedd8474565c"
+    },
+    "reports/market-qualification-20261109/markets/verified-sources/zzz/contracts/src/v2/PonsV2LauncherToken.sol": {
+      "bytes": 3444,
+      "sha256": "f3642bd24ecbcd902d7a09e9fa91100b0ac93723f0bfa41b66241c091b094c3e"
+    },
+    "reports/market-route-qualification-20261120/tools/transport_base.py": {
+      "bytes": 17424,
+      "sha256": "913a6914c6b230500ad61171dc1cbeb11e1723def1ba50d336109a7e6c17b2a8"
+    },
+    "src/ZZZBuyback.sol": {
+      "utf8_bytes": 5111,
+      "sha256": "05b6b39d60d25e44e39f3a02bc2cc78949bfd461ba4dc0ae239c4d6826518742",
+      "authenticated_by_F6_compressed_input_sha256": "279eba80e69c65d9085196ff4bd0fd9753881363517686dd20b2cedc769a5b0c"
+    },
+    "src/ZZZFeeController.sol": {
+      "utf8_bytes": 8888,
+      "sha256": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "authenticated_by_F6_compressed_input_sha256": "279eba80e69c65d9085196ff4bd0fd9753881363517686dd20b2cedc769a5b0c"
+    }
+  },
+  "archived_helpers_and_source": {
+    "source/helpers/keeper_runtime.py": {
+      "bytes": 37193,
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+    },
+    "source/helpers/keeper_jobs.py": {
+      "bytes": 11863,
+      "sha256": "b016bca18a39b5c61ad0c5bb66aaa0472ad0278b4663e4cf9d0e120d90b8451b"
+    },
+    "source/helpers/job_cases.py": {
+      "bytes": 19665,
+      "sha256": "77f50aff2847200335a98b906c6264fc595389a5faab2044e3e3e7d93c1441c4"
+    },
+    "source/helpers/run_jobs.py": {
+      "bytes": 10248,
+      "sha256": "47d4de1c93ebeab7b227c21cb426c4781e6cfc8d7c1f662befc0090278a9b997"
+    },
+    "source/contracts/keeper/monitor.py": {
+      "bytes": 193517,
+      "sha256": "9bb7c3b227b93ab2003cd380e1e5549448c31a894c9d50ac712dbcdf422bb8c3"
+    },
+    "source/contracts/zzz_ops/ethereum_fees.py": {
+      "bytes": 2464,
+      "sha256": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe"
+    },
+    "source/contracts/zzz_ops/abi.py": {
+      "bytes": 4797,
+      "sha256": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91"
+    },
+    "inputs/SOURCE_MANIFEST.json": {
+      "bytes": 29439,
+      "sha256": "120a661acbbcd77595aea963815892ed9b14b16e2ceaa18f4767873ca1adf6e4"
+    },
+    "inputs/BURN_STATE.json": {
+      "bytes": 3125,
+      "sha256": "1d662fc392b6ec588fe107b58a80db23b4ac2588f43308e05f4bdeb562784f86"
+    }
+  },
+  "evidence": {
+    "result": {
+      "relative_path": "fetch-RESULT-001/RESULT.json",
+      "bytes": 3344,
+      "sha256": "00fb544348ca3976b57600f495d2bd8027c8170222d69eed9bb25a299c3b0f82"
+    },
+    "review": {
+      "relative_path": "fetch-buyback-BURN_REVIEW-001/buyback-BURN_REVIEW.json",
+      "bytes": 16320,
+      "sha256": "33ad396a359c172493c9972568762ccdca6877feb258fb5d7bb2e718472fe8f8"
+    },
+    "restore": {
+      "relative_path": "fetch-buyback-SUPPLY_RESTORE-001/buyback-SUPPLY_RESTORE.json",
+      "bytes": 813,
+      "sha256": "eea6471e8991e3b9e595a63ecaf3d2978e3512c717a4980aa64a16588e86521f"
+    },
+    "receipts": {
+      "relative_path": "fetch-buyback-RECEIPTS-001/buyback-RECEIPTS.json",
+      "bytes": 8742,
+      "sha256": "ad5c69e912b5d64256d95124b99a808181b3ae1bdbee5214da92a30a30bda9a6"
+    },
+    "metadata": {
+      "relative_path": "BURN_STATE.json",
+      "bytes": 3125,
+      "sha256": "1d662fc392b6ec588fe107b58a80db23b4ac2588f43308e05f4bdeb562784f86"
+    },
+    "probe": {
+      "relative_path": "probe-001/RESULT.json",
+      "bytes": 10617,
+      "sha256": "aec8b7eeecf5fa40e41908e87e61ac2928da7ed756f74a217576b67f97e64b25"
+    },
+    "wire": {
+      "relative_path": "probe-001/RPC.json",
+      "bytes": 23856,
+      "sha256": "f3f73ce65836c1e40178c1672f365a310aa4986e7719845c3193fae47c090f46"
+    },
+    "bundle": {
+      "relative_path": "c7fb.inputs.tar.gz",
+      "bytes": 753617,
+      "sha256": "3dd5fab372e80d81045f3df35c45bcdec69acc515d89088650c5196c5b53ee2a"
+    },
+    "build": {
+      "relative_path": "BUILD_RECEIPT.json",
+      "bytes": 2468,
+      "sha256": "ffd033967608d3681e1e8e8ce6cf096804104507c608548943dc89c4a7e9501e"
+    },
+    "draft_inputs": {
+      "relative_path": "DRAFT_INPUTS.json",
+      "bytes": 4249,
+      "sha256": "2bbbb4417947c236b02f4a4366579aa219a3609a25d7488076e29615ab24184b"
+    }
+  },
+  "limits_unchanged": {
+    "RPC": 6000,
+    "worker_seconds": 900,
+    "confirmations": 12,
+    "maintenance_gas": 24000000,
+    "padding_pct": 25,
+    "per_tx_wei": 10000000000000000,
+    "daily_wei": 50000000000000000,
+    "local_quote_base_fixture_screen_wei": 1000
+  },
+  "production_changes": false,
+  "old_test_bodies_run": 0,
+  "new_runtime_or_RPC": 0,
+  "new_public_transactions": 0,
+  "new_seals": 0,
+  "production_approved": false,
+  "limitations": [
+    "Historical single-scalar restore plus copied F6 is not complete Robinhood account/global/archive state.",
+    "Synthetic local fees and controlled correlated prices do not qualify actual provider fees or market sources.",
+    "Only direct fixed-ZZZ burn qualified; native swap-and-burn, hybrid, maximum population and soak remain separate.",
+    "No independent sender balance-debit reconstruction; fee amount derives signed fields/header and matches stock spent."
+  ]
+}

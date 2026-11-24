@@ -1,0 +1,240 @@
+{
+  "RPC": {
+    "actual": 5259,
+    "ceiling": 6000,
+    "headroom": 741,
+    "method_phase_sums_match": true
+  },
+  "all_keeper_features_qualified": false,
+  "classification": "scoped_pass",
+  "cleanup": {
+    "all_original_environments_preserved": "separate root campaign comparison; not inferred from this partition",
+    "root_readback_empty_cgroup": true,
+    "tracked_children_stopped": true
+  },
+  "fee_model": {
+    "actual_gas_price_readback_wei": 162,
+    "actual_latest_base_fee_wei": 184,
+    "actual_pending_base_fee_wei": 162,
+    "keeper_financial_caps_unchanged": true,
+    "node_suggested_tip_wei": 1000000000,
+    "synthetic": true
+  },
+  "gas": {
+    "canonical_fee_proof": "executed stock derives price from actual signed caps and canonical header; confirmed log costs retained; actual transaction envelopes not separately serialized",
+    "max_daily_cost_wei": 50000000000000000,
+    "max_gas": 24000000,
+    "max_transaction_cost_wei": 10000000000000000,
+    "no_reported_price_multiplication_as_canonical_cost": true,
+    "prerequisite_observation_padding": "same unchanged stock arithmetic/source assertion; raw estimates not separately fetched",
+    "rebalance_actual_receipt": 9815384,
+    "rebalance_estimated": 10476884,
+    "rebalance_padded_25_percent": 13096105,
+    "rebalance_padding_independently_recomputed": true,
+    "reported_effective_price_differs_all_five": true,
+    "sum_captured_maximum_costs_wei": 206955253,
+    "sum_stock_confirmed_costs_wei": 160639672
+  },
+  "historical_failures": {
+    "c7f0": "original6000RPC refusal and last-observed146 jitter unchanged; no earlier end-to-end pass",
+    "c7f9": "pre-stock100wei fixture-screen refusal retained; CLOCK proves329/312wei headers; exact failed-call gas quote not captured and no exact rejected field inferred"
+  },
+  "inputs": {
+    "cleanup": {
+      "bytes": 3460,
+      "path": "status-002/PUBLIC_RESULT.json",
+      "sha256": "12ad8d7c11d0e8f26e9f85283408e404e2e4c7eb4671baaa9dba9089de8a3186"
+    },
+    "cycle5": {
+      "bytes": 9007,
+      "path": "fetch-confirmation-CYCLE-05-001/confirmation-CYCLE-05.json",
+      "sha256": "f9d2c7fdbeee7d71d6db18acfb881128434ff9ce215a85bdf265e9623921ea04"
+    },
+    "events": {
+      "bytes": 4665,
+      "path": "fetch-EVENTS-001/EVENTS.json",
+      "sha256": "7f107f7d866210113cd845f72615ddce91ab1013cd8d7295e7e27fd21bea23c4"
+    },
+    "fees": {
+      "bytes": 4207,
+      "path": "fetch-confirmation-CONTROLLED_FEES-001/confirmation-CONTROLLED_FEES.json",
+      "sha256": "f712a686b119f2dcee2556db6749fbe1ef45a803af15a04a04317d0d565b7298"
+    },
+    "final_views": {
+      "bytes": 1465,
+      "path": "fetch-confirmation-FINAL_ACCOUNTING_VIEWS-001/confirmation-FINAL_ACCOUNTING_VIEWS.json",
+      "sha256": "0d40a64127f363872317deebd89ff7a67bed18a99cf5365327d167fa753f5c3a"
+    },
+    "raw_reviews": {
+      "bytes": 3775,
+      "path": "fetch-confirmation-RAW_REVIEWS-001/confirmation-RAW_REVIEWS.json",
+      "sha256": "34601e5561b533ee88f1dbc55a2cdff767529a998644a15ed6979818240a0a58"
+    },
+    "receipts": {
+      "bytes": 62019,
+      "path": "fetch-confirmation-RECEIPTS-001/confirmation-RECEIPTS.json",
+      "sha256": "e069a459a1e033d7e39424d52f9697ba780c3a603ede46d652991b069f8267da"
+    },
+    "result": {
+      "bytes": 6760,
+      "path": "fetch-result-002/RESULT.json",
+      "sha256": "dfde9111e98951572fd1a63598d3cc35f24ee512e09632fa4eeb89d654a0e694"
+    }
+  },
+  "new_runtime_actions": 0,
+  "principal": {
+    "NFT_rights_unchanged": "executed source compares owner/shares/eligibility/rarity weight to in-memory before_rights; before_rights not independently serialized",
+    "Vault_owner": "0x0000000000000000000000006e113da826ec57f968fff0f7cb7c0163b6b31db1",
+    "actual_tick": 121905,
+    "exact_Rebalanced_event": true,
+    "fee_allocation_oracle": "not independently requalified; classified final balances only",
+    "final_rights": [
+      {
+        "eligible": 1,
+        "id": "40184212847679983674243184633288579841995169513279304157869508944424510570653",
+        "owner": "0x000000000000000000000000000000000000000000000000000000000000a0a0",
+        "royalty_weight": 1,
+        "shares": 129424971487399448345
+      },
+      {
+        "eligible": 1,
+        "id": "64035115818100271688741973822286304906190058428760669687570531617680779079388",
+        "owner": "0x000000000000000000000000000000000000000000000000000000000000a0a0",
+        "royalty_weight": 1,
+        "shares": 129130912612388018059
+      }
+    ],
+    "keeper_gas_only_debit": "executed source assertion; no paired balance values separately serialized",
+    "new_main": 4331099,
+    "new_rebalance_clock_matches_receipt": true,
+    "new_ticks": [
+      117800,
+      129000
+    ],
+    "old_main": 4331098,
+    "positive_new_liquidity": "128661039518651200817",
+    "secondary": 0,
+    "sum_captured_final_NFT_shares_matches_total": true,
+    "total_shares": "258555884099787466404"
+  },
+  "production_approved": false,
+  "remaining": [
+    "ordinary two-leg/hybrid replacement and full moving-market lifecycle",
+    "wall-clock daemon timing, different-key/off-host recovery",
+    "actual providers, independent prices/depth, complete fees and production acceptance"
+  ],
+  "schema": 1,
+  "scope": "NEW finite single-main directed ordinary stock-keeper/Cast replacement; independent saved-artifact arithmetic and source-assertion provenance, no runtime/tests",
+  "tests_rerun": 0,
+  "timing": {
+    "actual_elapsed_since_old_rebalance": 369870,
+    "actual_gaps_seconds": [
+      240,
+      240,
+      121
+    ],
+    "actual_rebalance_timestamp": 1795553805,
+    "execute_after": 1795553804,
+    "first_observation_to_rebalance_seconds": 676,
+    "hard_cooldown_seconds": 43200,
+    "jitter_seconds": 75,
+    "logical_clock_not_wallclock_or_continuous_price_proof": true,
+    "max_gap_seconds": 300,
+    "old_last_rebalance": 1795183935,
+    "same_identity_side": true,
+    "sample_check_seconds": 240,
+    "sample_seconds": 600
+  },
+  "transactions": [
+    {
+      "action": "rebalance_observation",
+      "actual_recorded_depth": 13,
+      "block_number": 119107330,
+      "captured_gas_limit": 1086803,
+      "captured_max_fee_wei": 76,
+      "captured_maximum_cost_wei": 82597028,
+      "confirmations_configured": 12,
+      "gas_used": 866642,
+      "hash": "0xc9088e8978f6f4049f7e7baa3d10806de48352ba27d364f61fa38badd84f74a2",
+      "inclusion_base_fee_wei": 76,
+      "inclusion_timestamp": 1795553129,
+      "nonce": 0,
+      "provider_reported_effective_price_wei": 77,
+      "reported_field_differs": true,
+      "stock_confirmed_cost_wei": 65864792,
+      "stock_derived_execution_price_wei": 76
+    },
+    {
+      "action": "rebalance_observation",
+      "actual_recorded_depth": 13,
+      "block_number": 119107344,
+      "captured_gas_limit": 1041955,
+      "captured_max_fee_wei": 15,
+      "captured_maximum_cost_wei": 15629325,
+      "confirmations_configured": 12,
+      "gas_used": 830764,
+      "hash": "0xafd171feebbc38fac2489f9ee4d1adba3ae1334b5b419880cd85678737582a65",
+      "inclusion_base_fee_wei": 15,
+      "inclusion_timestamp": 1795553369,
+      "nonce": 1,
+      "provider_reported_effective_price_wei": 16,
+      "reported_field_differs": true,
+      "stock_confirmed_cost_wei": 12461460,
+      "stock_derived_execution_price_wei": 15
+    },
+    {
+      "action": "rebalance_observation",
+      "actual_recorded_depth": 13,
+      "block_number": 119107358,
+      "captured_gas_limit": 1041955,
+      "captured_max_fee_wei": 7,
+      "captured_maximum_cost_wei": 7293685,
+      "confirmations_configured": 12,
+      "gas_used": 830764,
+      "hash": "0xbd5e195e233e9ee111910869d4f21403858339def3a347c2fe140b5bc20c71aa",
+      "inclusion_base_fee_wei": 7,
+      "inclusion_timestamp": 1795553609,
+      "nonce": 2,
+      "provider_reported_effective_price_wei": 8,
+      "reported_field_differs": true,
+      "stock_confirmed_cost_wei": 5815348,
+      "stock_derived_execution_price_wei": 7
+    },
+    {
+      "action": "rebalance_observation",
+      "actual_recorded_depth": 13,
+      "block_number": 119107372,
+      "captured_gas_limit": 1394640,
+      "captured_max_fee_wei": 7,
+      "captured_maximum_cost_wei": 9762480,
+      "confirmations_configured": 12,
+      "gas_used": 1112912,
+      "hash": "0xeafba6eaa880fe53ac438fad18e497d9a27ecdc3eb56dceb33bd5c83c800582c",
+      "inclusion_base_fee_wei": 7,
+      "inclusion_timestamp": 1795553730,
+      "nonce": 3,
+      "provider_reported_effective_price_wei": 8,
+      "reported_field_differs": true,
+      "stock_confirmed_cost_wei": 7790384,
+      "stock_derived_execution_price_wei": 7
+    },
+    {
+      "action": "rebalance",
+      "actual_recorded_depth": 13,
+      "block_number": 119107386,
+      "captured_gas_limit": 13096105,
+      "captured_max_fee_wei": 7,
+      "captured_maximum_cost_wei": 91672735,
+      "confirmations_configured": 12,
+      "gas_used": 9815384,
+      "hash": "0xcf143416d26b8ab8bceccb22d4742791525e5a839dbd5e77344b00b3a174dc2c",
+      "inclusion_base_fee_wei": 7,
+      "inclusion_timestamp": 1795553805,
+      "nonce": 4,
+      "provider_reported_effective_price_wei": 8,
+      "reported_field_differs": true,
+      "stock_confirmed_cost_wei": 68707688,
+      "stock_derived_execution_price_wei": 7
+    }
+  ]
+}

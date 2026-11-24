@@ -1,0 +1,23 @@
+[
+  {
+    "config_sha256": "82695e8ec7d4545c992719d080e44b13296d53f784e484ba7382a2dd18da46f1",
+    "intent": {
+      "data": "0xd65cdd98684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000006b05fa32",
+      "day": "2026-11-24",
+      "fee_review": {
+        "gas_limit": 10819962,
+        "l1_fee_allowance_wei": 0,
+        "max_fee_per_gas": 78,
+        "maximum_cost_wei": 843957036,
+        "receipt_fee_policy": "included",
+        "schema": 1
+      },
+      "hash": null,
+      "key": "compound:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+      "nonce": 0,
+      "to": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+      "value": 0
+    },
+    "raw_signature_retained": false
+  }
+]

@@ -1,0 +1,141 @@
+{
+  "actual_signed_envelope_predecoded": false,
+  "all_enabled_jobs_qualified": false,
+  "cleanup": [
+    {
+      "feature": "conversion",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    }
+  ],
+  "features": [
+    {
+      "LP_unchanged": true,
+      "RPC_method_counts": {
+        "anvil_impersonateAccount": 1,
+        "anvil_mine": 1,
+        "anvil_setBalance": 3,
+        "anvil_stopImpersonatingAccount": 1,
+        "eth_call": 429,
+        "eth_chainId": 385,
+        "eth_estimateGas": 12,
+        "eth_feeHistory": 1,
+        "eth_gasPrice": 2,
+        "eth_getBalance": 12,
+        "eth_getBlockByNumber": 85,
+        "eth_getCode": 168,
+        "eth_getTransactionByHash": 14,
+        "eth_getTransactionCount": 28,
+        "eth_getTransactionReceipt": 13,
+        "eth_maxPriorityFeePerGas": 1,
+        "eth_sendRawTransaction": 1,
+        "eth_sendTransaction": 11,
+        "evm_mine": 25,
+        "evm_setAutomine": 1,
+        "evm_setIntervalMining": 1,
+        "evm_setNextBlockTimestamp": 25
+      },
+      "RPC_phase_counts": {
+        "controlled_fee_readback": 4,
+        "funded_original_rights_snapshot": 38,
+        "model_start": 2,
+        "new_cheap_pool_and_depth": 57,
+        "new_native_conversion_route": 24,
+        "sealed_graph_identity": 208,
+        "stock_configuration": 558,
+        "stock_positive_native_LP_conversion": 329
+      },
+      "RPC_requests": 1220,
+      "actual_signed_envelope_predecoded": false,
+      "actual_transaction_without_signature": {
+        "blockHash": "0xa02bab4e79e571974743a0cad99353d1553b776c4be625d62b96afab1eb22f17",
+        "blockNumber": "0x7196f0f",
+        "chainId": "0x1237",
+        "from": "0x11b32c59b6b88452060069c94f9b60227307c5e7",
+        "gas": "0x1875c5",
+        "gasPrice": "0x12",
+        "hash": "0x1b1a50789d80acb7ee005f3d719f3a52fb227f6bafc0b87d59dc7a2e0fdf9b66",
+        "input": "0x5fc5ee890000000000000000000000007dbf38976f6d3b9c529e7d9484a71898b409ee6a00000000000000000000000000000000000000000000000000000000000000a063b1a4c8524de22667cf411b6b00fdcfd9e42cced0e91e404c81b0c5c6f1e39e000000000000000000000000000000000000000000000000000000b7221ef404000000000000000000000000000000000000000000000000000000006b05fd78000000000000000000000000000000000000000000000000000000000000000258d7755e8d2d336808a266d9d1fd7b01f45ff339a7dfc5e55620eeb6f7f2409d8d929756865895476a4e85eb76cd150cbb0a285c2edf42e6be97220f6c2f6edc",
+        "maxFeePerGas": "0x11",
+        "maxPriorityFeePerGas": "0x1",
+        "nonce": "0x0",
+        "to": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+        "type": "0x2",
+        "value": "0x0"
+      },
+      "allocation": [
+        {
+          "id": "40184212847679983674243184633288579841995169513279304157869508944424510570653",
+          "native_personal": "612459711789",
+          "native_shared": "75504801836",
+          "source_personal": "175005248241961198",
+          "source_shared": "21574866614685904"
+        },
+        {
+          "id": "64035115818100271688741973822286304906190058428760669687570531617680779079388",
+          "native_personal": "91312080724",
+          "native_shared": "12466672229",
+          "source_personal": "26091664556800686",
+          "source_shared": "3562247485159328"
+        }
+      ],
+      "canonical_fee_observation": {
+        "cost_wei": 17913070,
+        "execution_price_wei": 17,
+        "gas_used": 1053710,
+        "l1_fee_wei": 0,
+        "receipt_fee_policy": "included",
+        "reported_price_wei": 18,
+        "transaction": "0x1b1a50789d80acb7ee005f3d719f3a52fb227f6bafc0b87d59dc7a2e0fdf9b66"
+      },
+      "controlled_copied_state_only": true,
+      "fault_attempts": 0,
+      "feature": "conversion",
+      "full_original_rights_backed": true,
+      "gateway_refusals": [],
+      "last_model_RPC_failure": null,
+      "last_stage": "stock_positive_native_LP_conversion",
+      "native_output": "791743266578",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "production_route_qualified": false,
+      "raw_attempts": 1,
+      "raw_forwarded": 1,
+      "setup_transactions": 11,
+      "source_total": "226234026898607116",
+      "status": "passed",
+      "stock_transactions": 1,
+      "synthetic_new_pool_depth_and_fee_model": true
+    }
+  ],
+  "new_seals": 0,
+  "old_test_bodies_run": 0,
+  "planned_jobs": [
+    "conversion"
+  ],
+  "postforward_exact_transaction_verification_required": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_submission_attempts": 1,
+  "reviewed_raw_forward_attempts": 1,
+  "schema": 1,
+  "scope": "NEW positive native LP conversion only; existing earned same-NFT rights; controlled new fee3000 pool/depth and node fees; no production route/provider acceptance",
+  "secret_disposition": {
+    "contents_or_content_hashes_exported": false,
+    "retained_only_in_new_owned_lab": true
+  },
+  "shared_RPC_requests": 1220,
+  "source_inputs_preserved": true,
+  "stock_events_bytes": 854,
+  "success": true,
+  "tracked_children_stopped": true,
+  "unattempted_jobs": [],
+  "unexecuted": [
+    "continuous_daemon_timing",
+    "sample_reset_job_after_new_market_recovery",
+    "different_key_rotation"
+  ],
+  "whole_cgroup_cleanup_requires_external_readback": true
+}

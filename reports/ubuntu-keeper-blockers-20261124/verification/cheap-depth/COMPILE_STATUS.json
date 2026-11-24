@@ -1,0 +1,13 @@
+{
+  "scope": "ONCE NEW disposable local depth helper only",
+  "compiler_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+  "input_sha256": "883d73348b849982f9f50e4eee76af9f0ab9db15ab66f8a8bd02450f7361d6a7",
+  "source_sha256": "d0e3264d999fba6fb21dfbb2e4b1980d53cd15e15d28ed2450f794d18e6c5ae3",
+  "output_sha256": "4aac92839d924ca53c3d8cac783762d96974340b687498ba258daf1562d217d1",
+  "exit_code": 0,
+  "errors": [],
+  "warnings": [],
+  "production_sources_compiled": false,
+  "runtime_tests": 0,
+  "remote_actions": 0
+}

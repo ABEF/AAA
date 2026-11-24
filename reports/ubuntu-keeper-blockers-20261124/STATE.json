@@ -1,0 +1,57 @@
+{
+  "all_keeper_features_qualified": false,
+  "current_source_commit": "5beb7d7d005017a3e1a5ee574eab3bcb7bae79b9",
+  "date": "2026-11-24",
+  "initial_c7f9_pre_stock_refusal_preserved": true,
+  "limits_unchanged": {
+    "confirmations": 12,
+    "conversion_gas_to_output_bps": 100,
+    "conversion_loss_bps": 100,
+    "daily_cost_wei": "50000000000000000",
+    "maintenance_gas": 24000000,
+    "padding_percent": 25,
+    "per_lab_RPC": 6000,
+    "per_lab_seconds": 900,
+    "transaction_cost_wei": "10000000000000000"
+  },
+  "partitions": [
+    {
+      "RPC_requests": 5259,
+      "case": "ordinary single-main rebalance",
+      "partition": "K06",
+      "scope": "Directed logical time; one main; sampled/jitter/recovery completed; not two-leg or real-provider approval",
+      "status": "new_finite_pass",
+      "stock_transactions": 5
+    },
+    {
+      "RPC_requests": 3116,
+      "case": "compound existing main",
+      "original_aggregate_success": false,
+      "partition": "K07",
+      "scope": "All earlier allocation/rights/L/clock assertions executed; final harness compared wrong reported fee. Some original vectors not serialized; no complete independent raw replay claim",
+      "status": "successful_transaction_and_prior_assertions_with_offline_fee_reconciliation",
+      "stock_transactions": 1
+    },
+    {
+      "RPC_requests": 1859,
+      "case": "direct classified ZZZ reserve burn",
+      "partition": "K10",
+      "scope": "One authenticated omitted historical totalSupply scalar restored in new clone; actual supply burn; not complete global state or ETH-funded swap/buyback",
+      "status": "new_finite_pass",
+      "stock_transactions": 1
+    },
+    {
+      "RPC_requests": 1220,
+      "case": "earned LP ZZZ conversion to native ETH",
+      "partition": "K09",
+      "scope": "New synthetic cheap hookless route/depth; same-NFT exact personal/collective credits; actual launch route remains unqualified",
+      "status": "new_finite_pass",
+      "stock_transactions": 1
+    }
+  ],
+  "prior_33_partition_inventory": "../ubuntu-complete-20261124/FEATURE_MATRIX.json",
+  "production_approved": false,
+  "production_source_changes": false,
+  "unchanged_tests_rerun": 0,
+  "uninstalled_c7fa_draft_not_counted_as_runtime": true
+}

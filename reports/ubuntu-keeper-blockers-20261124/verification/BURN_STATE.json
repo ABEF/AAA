@@ -1,0 +1,67 @@
+{
+  "authoritative_observation_at_historical_block_only": true,
+  "block_hash": "0x13f4c5b0ff38d2e13f17b12b1af8b0894b8d642d8aa1093083441e30e2ed9335",
+  "block_number": 119107223,
+  "chain_id": 4663,
+  "current_production_token_not_mutated": true,
+  "maximum_state_restore_writes": 1,
+  "new_clone_precondition": {
+    "copied_slot2": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "copied_totalSupply": "0",
+    "same_runtime_keccak256": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597"
+  },
+  "no_supply_invention_or_token_replacement": true,
+  "not_current_chain_or_complete_account_state": true,
+  "public_probe_files": {
+    "RESULT.json": {
+      "bytes": 10617,
+      "sha256": "aec8b7eeecf5fa40e41908e87e61ac2928da7ed756f74a217576b67f97e64b25"
+    },
+    "RPC.json": {
+      "bytes": 23856,
+      "sha256": "f3f73ce65836c1e40178c1672f365a310aa4986e7719845c3193fae47c090f46"
+    },
+    "rpc-01.raw": {
+      "bytes": 42,
+      "sha256": "1fb0f19b45a4203bd13cb5be1e8ad3aa569f42905377cd4643fc8bc07ecd3aa3"
+    },
+    "rpc-02.raw": {
+      "bytes": 1589,
+      "sha256": "d0b7d8164b27278f0fb1c3928f44c0bccb2a943c2d15e3a9fee2d85af9166389"
+    },
+    "rpc-03.raw": {
+      "bytes": 3892,
+      "sha256": "b22346724aa00c20b13f768ef8d88cb0d94fe78654ef4beb3dd6f770d72aa5a9"
+    },
+    "rpc-04.raw": {
+      "bytes": 6534,
+      "sha256": "3f32a1f815a720c67bb8d30bba20fefe727cb759907d1a5e3d3580a704566121"
+    },
+    "rpc-05.raw": {
+      "bytes": 102,
+      "sha256": "a1740ea9c6fe0c4b532ef64c2d523e181fc6e8546b4bca1bb3676f1d726e5719"
+    },
+    "rpc-06.raw": {
+      "bytes": 102,
+      "sha256": "d0d7a129bba34c641cb2fc931172423ff572ba2435d09593ac85a395c5e03186"
+    },
+    "rpc-07.raw": {
+      "bytes": 3892,
+      "sha256": "5ede24035babde118d35377a6dae41a514dda2441aa05910776a47816402f344"
+    }
+  },
+  "restore_only_target_and_slot": true,
+  "runtime_keccak256": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597",
+  "schema": 1,
+  "scope": "Exact historical fixed ZZZ totalSupply missing-slot restoration for a NEW controlled copied-state clone only",
+  "slot": "0x2",
+  "source_pins": {
+    "reports/market-qualification-20261109/markets/verified-sources/zzz/contracts/lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol": "50f34ae16a067a41c2c1091445d11d63788e54c717677cb6d6b0e4cdea2ad21d",
+    "reports/market-qualification-20261109/markets/verified-sources/zzz/contracts/lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Burnable.sol": "2e6108a11184dd0caab3f3ef31bd15fed1bc7e4c781a55bc867ccedd8474565c",
+    "reports/market-qualification-20261109/markets/verified-sources/zzz/contracts/src/v2/PonsV2LauncherToken.sol": "f3642bd24ecbcd902d7a09e9fa91100b0ac93723f0bfa41b66241c091b094c3e",
+    "reports/market-route-qualification-20261120/tools/transport_base.py": "913a6914c6b230500ad61171dc1cbeb11e1723def1ba50d336109a7e6c17b2a8"
+  },
+  "token": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+  "total_supply_decimal": "840000000000000000000000000",
+  "word": "0x000000000000000000000000000000000000000002b6d4eb3e906bb848000000"
+}

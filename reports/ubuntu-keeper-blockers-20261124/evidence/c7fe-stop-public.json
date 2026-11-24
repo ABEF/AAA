@@ -1,0 +1,215 @@
+{
+  "after": {
+    "attempt": 1,
+    "network_namespace": {},
+    "owned_cgroup_pids": [],
+    "phase": "status",
+    "properties": {
+      "ActiveState": "inactive",
+      "CPUQuotaPerSecUSec": "infinity",
+      "CPUWeight": "[not set]",
+      "ControlGroup": "",
+      "ExecMainStatus": "0",
+      "Group": "",
+      "IOWeight": "[not set]",
+      "KillMode": "control-group",
+      "LoadState": "not-found",
+      "MainPID": "0",
+      "MemoryMax": "infinity",
+      "MemorySwapMax": "infinity",
+      "Nice": "0",
+      "NoNewPrivileges": "no",
+      "PrivateDevices": "no",
+      "PrivateNetwork": "no",
+      "ProtectHome": "no",
+      "ProtectSystem": "no",
+      "Result": "success",
+      "RuntimeMaxUSec": "infinity",
+      "SubState": "dead",
+      "TasksMax": "9211",
+      "TimeoutStopUSec": "1min 30s",
+      "User": ""
+    },
+    "public_files": {
+      "EVENTS.json": {
+        "bytes": 1265,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "RESULT.json": {
+        "bytes": 2176,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-BINDINGS.json": {
+        "bytes": 26538,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-CLOCK_REPAIR.json": {
+        "bytes": 5761,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-CYCLE-01.json": {
+        "bytes": 8199,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-CYCLE-02.json": {
+        "bytes": 18118,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-FEE_READBACK-BEFORE_JOB.json": {
+        "bytes": 3927,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-RAW_RECEIPT-01.json": {
+        "bytes": 28340,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-RAW_REVIEWS.json": {
+        "bytes": 852,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-RECEIPTS.json": {
+        "bytes": 31662,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-RESULT.json": {
+        "bytes": 753,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-SETUP.json": {
+        "bytes": 48611,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "controller.stderr.log": {
+        "bytes": 0,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "controller.stdout.log": {
+        "bytes": 91,
+        "mode": "0o600",
+        "uid": 65534
+      }
+    },
+    "unit": "popl-ubuntu-keeper-compound-20261124-c7fe.service"
+  },
+  "before": {
+    "attempt": 1,
+    "network_namespace": {},
+    "owned_cgroup_pids": [],
+    "phase": "status",
+    "properties": {
+      "ActiveState": "inactive",
+      "CPUQuotaPerSecUSec": "infinity",
+      "CPUWeight": "[not set]",
+      "ControlGroup": "",
+      "ExecMainStatus": "0",
+      "Group": "",
+      "IOWeight": "[not set]",
+      "KillMode": "control-group",
+      "LoadState": "not-found",
+      "MainPID": "0",
+      "MemoryMax": "infinity",
+      "MemorySwapMax": "infinity",
+      "Nice": "0",
+      "NoNewPrivileges": "no",
+      "PrivateDevices": "no",
+      "PrivateNetwork": "no",
+      "ProtectHome": "no",
+      "ProtectSystem": "no",
+      "Result": "success",
+      "RuntimeMaxUSec": "infinity",
+      "SubState": "dead",
+      "TasksMax": "9211",
+      "TimeoutStopUSec": "1min 30s",
+      "User": ""
+    },
+    "public_files": {
+      "EVENTS.json": {
+        "bytes": 1265,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "RESULT.json": {
+        "bytes": 2176,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-BINDINGS.json": {
+        "bytes": 26538,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-CLOCK_REPAIR.json": {
+        "bytes": 5761,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-CYCLE-01.json": {
+        "bytes": 8199,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-CYCLE-02.json": {
+        "bytes": 18118,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-FEE_READBACK-BEFORE_JOB.json": {
+        "bytes": 3927,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-RAW_RECEIPT-01.json": {
+        "bytes": 28340,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-RAW_REVIEWS.json": {
+        "bytes": 852,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-RECEIPTS.json": {
+        "bytes": 31662,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-RESULT.json": {
+        "bytes": 753,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "compound-SETUP.json": {
+        "bytes": 48611,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "controller.stderr.log": {
+        "bytes": 0,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "controller.stdout.log": {
+        "bytes": 91,
+        "mode": "0o600",
+        "uid": 65534
+      }
+    },
+    "unit": "popl-ubuntu-keeper-compound-20261124-c7fe.service"
+  },
+  "lab_and_artifacts_retained": true,
+  "only_owned_unit_stopped": true,
+  "phase": "stopped"
+}

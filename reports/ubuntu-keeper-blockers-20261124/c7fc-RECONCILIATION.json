@@ -1,0 +1,155 @@
+{
+  "all_keeper_features_qualified": false,
+  "classification": "scoped_pass",
+  "cleanup": {
+    "helper_children_stopped": true,
+    "whole_cgroup_and_original_services": "separate root cleanup/preservation readback; not inferred from financial vectors"
+  },
+  "fees": {
+    "actual_receipt_gas": 1053710,
+    "actual_recorded_depth": 13,
+    "canonical_charge_wei": 17913070,
+    "canonical_execution_price_wei": 17,
+    "captured_signed_max_fee_wei": 17,
+    "chain": 4663,
+    "configured_confirmations": 12,
+    "estimated_gas": 1282410,
+    "full_signed_envelope_not_predecoded": true,
+    "inclusion_base_fee_wei": 17,
+    "keeper_balance_and_durable_spend_delta_equal_charge": true,
+    "max_gas_limit": 24000000,
+    "maximum_reviewed_cost_wei": 27251221,
+    "nonce": 0,
+    "padded25percent": 1603013,
+    "public_transaction_fields_checked_afterforward": true,
+    "reported_effective_and_derived_gasPrice_wei": 18,
+    "reported_fields_not_used_as_signed_cap_or_charge": true,
+    "signed_priority_wei": 1,
+    "transaction": "0x1b1a50789d80acb7ee005f3d719f3a52fb227f6bafc0b87d59dc7a2e0fdf9b66",
+    "type": 2,
+    "unchanged1percent_gas_to_minimum_output_budget_wei": 7865514690,
+    "unchanged_transaction_daily_caps_wei": [
+      10000000000000000,
+      50000000000000000
+    ]
+  },
+  "funded_conversion": {
+    "credits_not_holder_payout": true,
+    "cumulative_source_assigned": "226234026898607116",
+    "native_balance_after": "924691340298",
+    "native_balance_liability_and_sum_claims_equal_before_and_after": true,
+    "native_output_wei": "791743266578",
+    "native_units_assigned": "791743266578",
+    "old_native_credits_preserved": true,
+    "oracle_expected_native_wei": "794496433393",
+    "same_NFT_individual_collective_prefixes": [
+      {
+        "exact_event_and_same_NFT_credit_match": true,
+        "native_collective": "75504801836",
+        "native_individual": "612459711789",
+        "nft_id": "40184212847679983674243184633288579841995169513279304157869508944424510570653",
+        "source_collective": "21574866614685904",
+        "source_individual": "175005248241961198"
+      },
+      {
+        "exact_event_and_same_NFT_credit_match": true,
+        "native_collective": "12466672229",
+        "native_individual": "91312080724",
+        "nft_id": "64035115818100271688741973822286304906190058428760669687570531617680779079388",
+        "source_collective": "3562247485159328",
+        "source_individual": "26091664556800686"
+      }
+    ],
+    "source_asset": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+    "source_claims_and_liabilities_drained": true,
+    "source_units": "226234026898607116",
+    "unassigned_native_units": 0,
+    "unchanged1percent_floor_wei": "786551469060"
+  },
+  "inputs": {
+    "accounting": {
+      "bytes": 991,
+      "path": "fetch-conversion-ACCOUNTING_REVIEW-001/conversion-ACCOUNTING_REVIEW.json",
+      "sha256": "db57d33f10f24aca3ef19f14c8d66e071da1a5c3fd07675b200462df5e33a79b"
+    },
+    "after": {
+      "bytes": 17346,
+      "path": "fetch-conversion-CONVERSION_AFTER-001/conversion-CONVERSION_AFTER.json",
+      "sha256": "ae3ed977a97aa9c70ef5113a6f948bd3a7318ef997a400698930fec7febb7bf0"
+    },
+    "before": {
+      "bytes": 3178,
+      "path": "fetch-conversion-CONVERSION_BEFORE-001/conversion-CONVERSION_BEFORE.json",
+      "sha256": "ebea08fc70ac9a21487fdc1123f487b294060304b240dc63d36078cf66e4a10c"
+    },
+    "cycle": {
+      "bytes": 5691,
+      "path": "fetch-conversion-CYCLE-01-001/conversion-CYCLE-01.json",
+      "sha256": "f150a6242a2b25e143e1166c3d47443d4cc6caa98ba48e9c5510fe444fe6f60c"
+    },
+    "depth": {
+      "bytes": 6799,
+      "path": "fetch-conversion-DEPTH_REVIEW-001/conversion-DEPTH_REVIEW.json",
+      "sha256": "decd8860a832ac9d7498ab36c68778df7a9cc1b4eca679752b8c2f6af8ac1ae8"
+    },
+    "receipts": {
+      "bytes": 17178,
+      "path": "fetch-conversion-RECEIPTS-001/conversion-RECEIPTS.json",
+      "sha256": "5df151753813244ca2874a61ec1a1998466d54ea95238b18f8753eb85b2ecfd5"
+    },
+    "result": {
+      "bytes": 5288,
+      "path": "fetch-RESULT-001/RESULT.json",
+      "sha256": "474bd69c9287badf116046bd7a76ba362bf29284045de0797b4a2b618257c97a"
+    }
+  },
+  "new_runtime_actions": 0,
+  "preserved": {
+    "both_exact_approvals_zero_after": true,
+    "compound_buyback_and_fee_reserve_balances_equal": true,
+    "converter_executor_balances_zero": true,
+    "paired_owner_shares_membership_rarity_weights_equal": true,
+    "physical_main_ID_ticks_liquidity_centre_clock_idle_all_equal": true,
+    "residual_mode_not_exercised": true,
+    "total_bucket_shares_unchanged": true,
+    "two_distinct_NFTs_same_owner_and_weight1_different_shares": true
+  },
+  "production_approved": false,
+  "remaining": [
+    "actual independent prices/routes/depth/provider fees and operating qualification",
+    "larger populations and differing owners/rarities/market paths",
+    "wall-clock daemon soak, different-key/off-host recovery and independent approval"
+  ],
+  "schema": 1,
+  "scope": "NEW finite positive native LP conversion on controlled copied sealed F6; independent offline reconciliation of saved paired views/receipt/signed-fee fields, no runtime or test rerun",
+  "synthetic_route": {
+    "actual_owner_ZZZ_budget": "82896402986190079249385592",
+    "all_unused_seed_budgets_refunded": true,
+    "directional_total_fee_ppm": 3000,
+    "liquidity": "528407987365502886404",
+    "native_ETH_fixed_ZZZ_LP_fee_ppm": 3000,
+    "native_and_ZZZ_actual_spent": [
+      "989999999999999972",
+      "282035354658243896998474"
+    ],
+    "native_and_ZZZ_refunded": [
+      "10000000000000028",
+      "82614367631531835352387118"
+    ],
+    "native_budget_wei": "1000000000000000000",
+    "new_external_depth_and_low_fee_node_are_not_production_qualification": true,
+    "new_fixture_compile": "one approved0.8.26/Cancun/viaIR200 compile, no production sources",
+    "pool_id": "0xb21d7557cf03c3662a0f90d189234108fb91edd8fcd39b73a1eaaefd6e3dc342",
+    "price_unchanged_by_new_seed": true,
+    "principals_route_not_changed": true,
+    "tick_spacing": 60
+  },
+  "tests_rerun": 0,
+  "work": {
+    "actual_RPC_requests": 1220,
+    "maximum_RPC_requests": 6000,
+    "new_setup_transactions": 11,
+    "no_old_refusal_case_rerun": true,
+    "one_Cast_submission": true
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "after_supply": 840000000000000000000000000,
+  "after_word": "0x000000000000000000000000000000000000000002b6d4eb3e906bb848000000",
+  "before_supply": 0,
+  "before_word": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "historical_block_hash": "0x13f4c5b0ff38d2e13f17b12b1af8b0894b8d642d8aa1093083441e30e2ed9335",
+  "historical_block_number": 119107223,
+  "metadata_sha256": "1d662fc392b6ec588fe107b58a80db23b4ac2588f43308e05f4bdeb562784f86",
+  "new_clone_only": true,
+  "public_state_unchanged": true,
+  "runtime_keccak256": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597",
+  "scope": "One omitted historical global scalar restored; not complete account/global/fork state",
+  "slot": "0x2",
+  "token": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+  "writes": 1
+}
