@@ -1,0 +1,79 @@
+{
+  "cleanup": {
+    "all_owned_stopped": true,
+    "capture_failures": 0,
+    "contexts": 1,
+    "nonzero_exit_count": 0,
+    "output_overflows": 0,
+    "stopped_contexts": 1
+  },
+  "construction": {
+    "bindings": 19,
+    "exact_initcode_authenticated": true,
+    "instances": 39,
+    "passed": true,
+    "planner_payloads_match": true,
+    "receipts": 44,
+    "submissions": 44,
+    "top_level_creates": 25
+  },
+  "failure": {
+    "class": "validation_refusal",
+    "pending_intent_present": null,
+    "phase": "history_export"
+  },
+  "history": {
+    "bindings_rechecked": null,
+    "creation_code_proof": true,
+    "export_reported_success": false,
+    "refusal": "bounded_export_or_reload_refused",
+    "reload_roundtrip": false,
+    "runtime_count": null,
+    "same_genesis_and_head": null,
+    "same_historical_code": null
+  },
+  "limitations": [
+    "Unsealed constructor/history evidence only; constructor dependency doubles are explicit.",
+    "No financial, API, source-fork, provider, production or operating qualification.",
+    "A bounded history-export refusal remains visible and never becomes reload success."
+  ],
+  "resources": {
+    "child_output_bytes_total": 0,
+    "export_compressed_bytes": null,
+    "export_decompressed_bytes": null,
+    "export_decompressed_bytes_observed": null,
+    "total_actual_gas": 144113280,
+    "wire_capture": {
+      "construction": {
+        "deduplicated_code_responses": 2666,
+        "encoded_bytes": 14620075,
+        "records": 3659,
+        "unique_code_blobs": 44
+      },
+      "reload": null
+    },
+    "worst_padded_gas": 14214494
+  },
+  "safety": {
+    "financial_or_API_qualified": false,
+    "old_test_bodies_run": 0,
+    "production_approved": false,
+    "public_calls": 0,
+    "public_signing": false,
+    "sealed": false,
+    "source_fork_qualified": false
+  },
+  "schema": 1,
+  "scope": "isolated_unsealed_normal_F6_constructor_history",
+  "source": {
+    "build_artifact_count": 4,
+    "build_pinset_sha256": "2d3c549366c1f611731b1e4487077bbe4ac7806c225ef9ce5bb0886fde7b2537",
+    "capture_sha256": "07a5fd2f578d2c244d73e12e8004d6209c3103ff46da34aa72ecae445a28e566",
+    "maintained_constructor_sha256": "7200f6f4cd03738d71a4024efa18be6490f60344553197ec8f9d4bdb6ceed206",
+    "normal_build": "activation-final-six-20261118",
+    "runner_sha256": "cc36100e6eb11abf1dd0fb317c2c473bfbfac25546c6f12b1af61c229ef4ff9c",
+    "solidity_count": 100,
+    "solidity_pinset_sha256": "d27a24758a48eeb129c5fd79ea6468f11c3003088ec3cb5d98f8d3aaf0507607"
+  },
+  "status": "constructor_history_only"
+}

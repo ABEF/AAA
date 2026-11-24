@@ -1,22 +1,25 @@
 # Engineering roadmap and production qualification plan
 
-[Wallet checkpoint follow-through](../reports/wallet-latency-20261123/REVIEW.md) removes repeated tree walks and
-full accounting decode from history-only reads. Full checkpoint admission,
-independent request state, exact rights and all existing guards remain.
-28 distinct NEW backend methods pass in explicit stages; no old test bodies run.
+[Wallet checkpoint follow-through](../reports/wallet-latency-20261123/REVIEW.md) preserves full admission,
+exact rights and all guards while removing repeated tree walks/accounting decode.
+28 distinct NEW backend methods pass in explicit stages; no old bodies rerun.
 
-The final 1,000-NFT wallet journey and corrected unsealed history fixture are
-prepared, pending approved Ubuntu execution. Preserve the earlier final-request
-expiry and 38-transaction capture-bound refusal; neither is a completed pass.
-The unused late-tip alternative stays unused. No freshness/resource limit changes.
+The controlled source9/V9 1,000-NFT/three-currency view now completes80 GETs
+including eight cards in98.834s. Final snapshot age116.018s leaves only3.982s
+under120s: a finite synthetic pass, not robust-provider or full F6/V10 acceptance.
+Original expiry evidence remains; the late-tip alternative stays unused.
 
-Current inventory:182 Python files/2,003 named definitions/278 lambdas;
-F6 Solidity61/dependencies39/controls4 and1,021 ABI rows remain unchanged.
-Changed checkpoint1/2/3 identities require explicit rebuild/review/re-pin for
-separately authorized adoption. Preserve original artifacts and journals.
-Existing sites/services/Anvil8902, null public configurations, the Anvil-only
-signer and user-paused heartbeat stay unchanged. Full normal
-F6/V10/provider/market/production acceptance remains open.
+A new unsealed F6 fixture completes44 setup transactions/39 instances and proves
+NFT contract code absent at its parent and present at creation/latest. Exact
+capture stays within64MiB. Full history export/reload refuses; its precise cause
+was not retained. Do not assume oversize, raise bounds or claim recovery complete.
+
+All five existing service states match the actual pre-upload snapshot; all five
+owned lab units are stopped. No public transactions, sealing or live rollout.
+Sites, Anvil8902, journals, signer/null public configurations and paused heartbeat
+stay unchanged. Checkpoint1/2/3 adoption requires new reviewed matching artifacts.
+Current inventory182files/2,003definitions/278lambdas and frozen F6 maps61/39/4,
+1,021ABI rows remain. Full F6/V10/provider/market/production acceptance stays open.
 
 [Current actual-fee proof](../reports/pool-fees-20261121/REVIEW.md) advances P08
 with real-core harvested receipts, exact80/10/5/5+dust/reserve conservation and
@@ -80,7 +83,7 @@ full-normal1000-NFT workloads, the476135-estimate gap and independent approval r
 | P14 | Custom Merkle qualification selected; acceptance open | Existing offline reviewer plus nine new platform diagnostics/current-source phase preparation; preserve exact sale guarantees. Actual custom OpenSea onboarding/payload/terms remain unapproved. |
 | P15 | Pinned new source lead; no provider qualified | OpenVRF9fb960c inspected; ABI/funding/two-word derivation, timestamp/drand/crypto and self-hosted operation remain unqualified. |
 | P16 | Catalogue mapped; delivery open | Actual content publication/retrieval/OpenSea refresh and final media acceptance remain. |
-| P17 | Finite actual HTTP/recovery verified; maximum remains blocked | Prior26-pin/32-NFT/65-currency claims retain their scope. New17-NFT source9 reads and recovery pass;1,000-NFT full portfolio exceeds freshness. Matching F6/V10 archive/provider acceptance remains. |
+| P17 | Finite HTTP/recovery and controlled maximum verified | Source9/V9 1,000-NFT full view passes80GETs with3.982s freshness margin; actual F6/V10, archive/provider/load and separately authorized adoption remain. |
 | P18 | Offline tools implemented | Matching checkpoint/consumer and actual host/archive/restore adoption remain. |
 | P19 | Production submission unresolved | Current consumer unsigned, shared signer Anvil-only; no production signing decision or rollout. |
 | P20 | Finite recovery evidence only | Actual complete normal-loop scheduling with real accepted services remains. |

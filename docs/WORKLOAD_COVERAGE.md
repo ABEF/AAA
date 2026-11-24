@@ -6,7 +6,12 @@ checkpoint validation. Current static inventory:182 Python files/2,003 named
 definitions (1,820 functions/183 classes),278 lambdas and2 unchanged named Yul
 helpers; F6 maps61/39/4 and1,021 ABI rows remain.28 NEW backend methods pass
 in explicit stages. Inventory and finite checks do not establish full dynamic,
-provider, maximum-wallet, operating or production acceptance.
+provider, all maximum NFT-by-currency workloads, operating or production acceptance.
+A controlled source9/V9 1,000-NFT/three-currency wallet now completes80 GETs and37
+assertions on Ubuntu, with3.982s remaining freshness. New unsealed F6 construction
+and live contract-code history also verify; full portable history export/reload
+remains refused. These are separate finite scopes, not full F6/V10 financial,
+provider/load or lifetime recovery acceptance. See the linked runtime receipts.
 
 [Compact wallet qualification](../reports/compact-wallet-20261121/REVIEW.md) adds
 four-currency combined pages and bounded request-local canonical reuse. That source

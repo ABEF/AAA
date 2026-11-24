@@ -27,25 +27,34 @@ an advertised compact endpoint never silently falls back.
 | Cancel / refresh | Account/page changes, cancellation, reorg or expiry discard results. Refresh starts a new confirmed read; no transaction, API retry or automatic resend |
 
 [Wallet checkpoint follow-through](../reports/wallet-latency-20261123/REVIEW.md)
-adds bulk read-only tree validation and history-only decoding AFTER complete
-checkpoint admission.28 NEW focused backend methods pass in explicit stages;
-no unchanged test bodies run. Financial replay, exact rights and all proofs
-remain. There is no new operator function, setting, keeper job or switch.
+now verifies the controlled source9/V9 1,000-NFT/three-currency wallet over actual
+Ubuntu workers/HTTP/proxy:80 successful GETs and37 assertions, including eight
+cards, exact raw/component USD, full86,400-second history and final proofs.
+Elapsed98.834s; snapshot age116.018s leaves3.982s before120s expiry. This is a
+narrow finite synthetic pass, not provider/load or full F6/V10 qualification.
+The original expiry refusal remains; no late-tip alternative was used.
 
-The final affected1,000-NFT/three-currency Ubuntu read and corrected unsealed
-history fixture await explicit source-upload authorization. The earlier bulk-only
-run reaches80 GET attempts but expires on its last request; no completed wallet
-or later aggregate assertions are claimed. Eight visible cards require16 reads.
-Preserve all failures and keep120s freshness,15s fixture confirmation age and
-existing request/page/gas/fee/resource limits. The late-tip alternative is unused.
-The original saved F6/V10 graph still lacks historical NFT-creation proof; never
-invent an empty parent or reuse current storage as historical state.
+28 NEW backend methods pass in explicit stages. Full artifact validation precedes
+history-only decoding; financial replay and every guard remain. No operator
+function, configuration switch, keeper job, resource or financial limit changes.
 
-These earnings/checkpoint edits also change checkpoint1/2/3 semantic identity.
-Preserve original raw DB, checkpoint, review and journal bytes. Build a NEW
-candidate from complete retained raw history, independently review it and pin its
-exact SHA with matching code only under separately authorized adoption. Never
-edit old source hashes. Publication restarts no running site, service or chain.
+A separate standalone normal F6 fixture completes44 unsealed setup transactions,
+39 instances and genuine NFT-contract parent/creation/latest code proof. Its
+native dependencies are explicit constructor doubles, not qualified markets.
+Full history export/reload refuses; no dump response or file was retained, so
+the precise cause is unknown. Do not claim a16MiB overflow or recovery pass.
+Never invent an empty parent or substitute current storage for historical state.
+The original saved F6/V10 graph's missing history is not repaired by this fixture.
+
+For adoption, preserve raw DB/checkpoint/review/journal bytes. Rebuild a NEW
+checkpoint1/2/3 candidate from complete retained history, independently review it,
+and pin its SHA with matching code only under separately authorized rollout.
+Never edit old source hashes, hot-reload files or infer live adoption from this
+publication. Saved code proofs alone do not replace a required archive RPC.
+
+All five existing service states match the actual pre-upload snapshot; all five
+owned lab units are stopped. Existing sites/Anvil8902/signers/configurations and
+the user-paused heartbeat remain unchanged. No public transaction or sealing.
 
 The bounded selector cache changes only CPU work: calldata arguments and live
 proofs remain fresh. Since abi.py contributes to checkpoint semantic identity,

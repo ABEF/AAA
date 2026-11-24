@@ -1,0 +1,17 @@
+{
+  "actual_authorized_pre_upload_baseline_used": true,
+  "all_owned_lab_units_stopped": true,
+  "existing_operating_service_changes": 0,
+  "existing_unit_states_preserved": true,
+  "existing_units_checked": 5,
+  "ignored_periodic_observer_invocation_ids": 1,
+  "late_tip_alternative_unused": true,
+  "non_ambient_differences": 0,
+  "original_older_baseline_preserved": true,
+  "original_private_observations_retained": true,
+  "owned_lab_units_checked": 5,
+  "raw_host_details_published": false,
+  "schema": 1,
+  "scope": "Read-only comparison of actual pre-upload and final observations for the two explicitly authorized isolated runs.",
+  "success": true
+}

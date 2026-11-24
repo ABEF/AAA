@@ -8,10 +8,11 @@ adoption. Actual hosting/provider/freshness and full normal acceptance remain op
 
 Earlier separate-route qualification (historical source scope):
 
-[Wallet checkpoint performance](wallet-latency-20261123/REVIEW.md) adds bulk
-read-only validation and history-only seeds after full admission.28 NEW backend
-checks pass in explicit stages; the affected Ubuntu wallet/history runs are
-prepared pending source-upload approval. Earlier failures and all limits remain.
+[Wallet checkpoint performance](wallet-latency-20261123/REVIEW.md) records28 NEW
+backend methods and a complete controlled source9/V9 1,000-NFT80-GET journey:
+98.834s elapsed,3.982s freshness margin. New44-transaction/39-instance unsealed
+construction and live code history pass; portable history export/reload remains
+refused. Existing services/rights/limits preserved; all owned labs stopped.
 
 [Isolated wallet-stack rehearsal](wallet-stack-20261123/REVIEW.md) fixes early
 read-gate timer wakeups and repeated ABI selector hashing, with23 NEW focused
