@@ -1,26 +1,22 @@
 # Work handoff
 
-[Isolated wallet-stack rehearsal](../reports/wallet-stack-20261123/REVIEW.md) fixes an early timer-wakeup
-error and adds a bounded immutable ABI-selector cache. Fourteen NEW JS and nine NEW
-Python checks pass; no unchanged test bodies run. Actual Ubuntu API workers,
-Nginx and the source9 reader pass the 17-NFT financial journey, cancellation,
-restart, two independent concurrent contexts and genuine expiry checks.
+[Wallet checkpoint follow-through](../reports/wallet-latency-20261123/REVIEW.md) removes repeated tree walks and
+full accounting decode from history-only reads. Full checkpoint admission,
+independent request state, exact rights and all existing guards remain.
+28 distinct NEW backend methods pass in explicit stages; no old test bodies run.
 
-The full 1,000-NFT/three-currency portfolio remains UNQUALIFIED: the optimization
-advances 58→70 GET attempts, but visible-card/history work still exceeds 120s
-freshness. The separate restored F6/V10 graph cannot serve its required historical
-NFT-creation proof. Preserve both refusals; no guard or limit is relaxed.
-Current inventory: 182 Python files/2,002 named definitions/278 lambdas; frozen
-F6 Solidity 61/dependencies 39/controls 4 and 1,021 ABI rows remain unchanged.
+The final 1,000-NFT wallet journey and corrected unsealed history fixture are
+prepared, pending approved Ubuntu execution. Preserve the earlier final-request
+expiry and 38-transaction capture-bound refusal; neither is a completed pass.
+The unused late-tip alternative stays unused. No freshness/resource limit changes.
 
-HTTP outcomes retain their earlier source stages; the later sibling-read cleanup
-has five separate unit checks. The journeys were not rerun.
-
-Changed abi.py enters checkpoint semantic identity. Preserve original checkpoint,
-review, raw DB and journal bytes; explicitly rebuild/review/re-pin for separately
-authorized adoption. All five owned private-network labs stopped. Existing sites,
-services, Anvil8902, signer/null public configurations and paused heartbeat stay
-unchanged. Actual F6/V10/provider/market/production operating approval stays open.
+Current inventory:182 Python files/2,003 named definitions/278 lambdas;
+F6 Solidity61/dependencies39/controls4 and1,021 ABI rows remain unchanged.
+Changed checkpoint1/2/3 identities require explicit rebuild/review/re-pin for
+separately authorized adoption. Preserve original artifacts and journals.
+Existing sites/services/Anvil8902, null public configurations, the Anvil-only
+signer and user-paused heartbeat stay unchanged. Full normal
+F6/V10/provider/market/production acceptance remains open.
 
 [Ownership-page adoption](../reports/ownership-paging-20261121/REVIEW.md) connects current source9/source10 website holdings to
 all16-ID fixed-block pages, bounded to two in flight with full count/order/digest,

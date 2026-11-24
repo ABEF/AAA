@@ -1,0 +1,41 @@
+{
+  "EVM_executions_in_offline_review": 0,
+  "bounds": {
+    "construction_seconds": 900,
+    "encoded_capture_bytes": 67108864,
+    "request_bytes": 131072,
+    "requests": 6000,
+    "response_bytes": 16777216,
+    "response_seconds": 30
+  },
+  "byte_exact_code_response_reconstruction": true,
+  "kind": "private_fixture_offline_verification_summary",
+  "old_test_bodies_run": 0,
+  "production_edits": false,
+  "public_signing": false,
+  "result": {
+    "names": [
+      "test_complete_encoded_bound_accepts_exact_and_rejects_atomically",
+      "test_duplicate_literal_and_duplicate_result_key_refuse",
+      "test_empty_code_remains_actual_empty_code_with_distinct_blob",
+      "test_full_reconstruction_different_ids_and_unicode_envelopes",
+      "test_invalid_ascii_hex_or_escaped_result_never_falls_back",
+      "test_nested_result_and_escaped_quotes_preserve_exact_bytes",
+      "test_offline_verifier_refuses_orphans_and_full_document_overflow",
+      "test_original_dump_summary_is_unchanged",
+      "test_raw_hash_envelope_and_blob_reference_tampering_refuse",
+      "test_requests_and_envelopes_are_frozen_before_retention",
+      "test_tampered_missing_and_malformed_blobs_refuse",
+      "test_unknown_method_and_error_result_keep_original_record_shape"
+    ],
+    "passed": 12,
+    "stage": "first new-test invocation; no unchanged or prior tests invoked",
+    "total": 12
+  },
+  "review_source_sha256": "403f2d452831a9ae818cd840c0684ee774d2635285adeeccb2b5e1f1873ff337",
+  "runtime_functions_and_authorization_guards_unchanged": true,
+  "runtime_rehearsal_complete": false,
+  "schema": 1,
+  "scope": "New fixture evidence-capture codec only; no production behavior or live environment change. Detailed archives stay private.",
+  "sealing": false
+}

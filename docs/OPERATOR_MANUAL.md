@@ -26,14 +26,26 @@ an advertised compact endpoint never silently falls back.
 | Existing limits | Keep25s/1,024 RPC/2,048 POSTs/1MiB backend response,16NFTs,120s maximum age, ingress/admission limits and all gas/financial safeguards |
 | Cancel / refresh | Account/page changes, cancellation, reorg or expiry discard results. Refresh starts a new confirmed read; no transaction, API retry or automatic resend |
 
-[Actual Ubuntu stack evidence](../reports/wallet-stack-20261123/REVIEW.md) adds
-verified17-NFT reads, cancellation/restart, two independent concurrent contexts
-and genuine expiry. The1,000-NFT/three-currency full portfolio still refuses:
-all63 combined wallet pages succeed after optimization, but visible-card/history
-work exceeds120s freshness. Do not publish the partial journey as a complete
-wallet or raise age, page, worker, request, gas or fee limits to hide it.
-The separate F6/V10 saved graph lacks the historical NFT-creation proof; do not
+[Wallet checkpoint follow-through](../reports/wallet-latency-20261123/REVIEW.md)
+adds bulk read-only tree validation and history-only decoding AFTER complete
+checkpoint admission.28 NEW focused backend methods pass in explicit stages;
+no unchanged test bodies run. Financial replay, exact rights and all proofs
+remain. There is no new operator function, setting, keeper job or switch.
+
+The final affected1,000-NFT/three-currency Ubuntu read and corrected unsealed
+history fixture await explicit source-upload authorization. The earlier bulk-only
+run reaches80 GET attempts but expires on its last request; no completed wallet
+or later aggregate assertions are claimed. Eight visible cards require16 reads.
+Preserve all failures and keep120s freshness,15s fixture confirmation age and
+existing request/page/gas/fee/resource limits. The late-tip alternative is unused.
+The original saved F6/V10 graph still lacks historical NFT-creation proof; never
 invent an empty parent or reuse current storage as historical state.
+
+These earnings/checkpoint edits also change checkpoint1/2/3 semantic identity.
+Preserve original raw DB, checkpoint, review and journal bytes. Build a NEW
+candidate from complete retained raw history, independently review it and pin its
+exact SHA with matching code only under separately authorized adoption. Never
+edit old source hashes. Publication restarts no running site, service or chain.
 
 The bounded selector cache changes only CPU work: calldata arguments and live
 proofs remain fresh. Since abi.py contributes to checkpoint semantic identity,

@@ -38,7 +38,14 @@ matches. Preserve independent raw-provider/history-audit evidence and raw SQLite
 
 The file contains public contract identities and exact token accounting, not
 RPC URLs, private configuration paths, keys, USD estimates or nonce journals.
-The API loads immutable bytes; each request restores separate maps. No HTTP
+The API loads immutable bytes; each request restores separate maps.
+Current readers validate the complete artifact before retaining a compact,
+immutable history-only section under the existing32MiB artifact bound.
+History reads decode independent payout-history maps; financial consumers
+retain full restoration. Read-only bulk LP validation retains every denominator,
+phase and whole-unit backing check. This adds no operator setting, financial
+right or schema conversion; it is not process-RAM or provider qualification.
+See the [source-bound review](../reports/wallet-latency-20261123/REVIEW.md). No HTTP
 request builds, approves, edits or rotates checkpoints.
 An existing reader retains its already validated bytes; it never hot-reloads a
 changed path. New readers/restarts validate the file again. Stop/restart is the

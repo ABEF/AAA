@@ -1,0 +1,2537 @@
+{
+  "function_inventory_sha256": "fac45cfefb60f530d779ef3608601170226180d050747b74f655df17716467d5",
+  "inline_assembly_and_generator_bodies": "Remain within authenticated parent-function source; no dynamic coverage claimed.",
+  "kind": "anonymous_code_source_inventory_not_execution",
+  "lambda_count": 278,
+  "named_yul_helper_count": 2,
+  "python_files": 182,
+  "python_lambdas": [
+    {
+      "column": 37,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 232,
+      "kind": "lambda",
+      "line": 232,
+      "source": "frontend_api/activation.py",
+      "source_sha256": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117"
+    },
+    {
+      "column": 23,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 297,
+      "kind": "lambda",
+      "line": 297,
+      "source": "frontend_api/activation.py",
+      "source_sha256": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117"
+    },
+    {
+      "column": 22,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 304,
+      "kind": "lambda",
+      "line": 304,
+      "source": "frontend_api/activation.py",
+      "source_sha256": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117"
+    },
+    {
+      "column": 20,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 313,
+      "kind": "lambda",
+      "line": 313,
+      "source": "frontend_api/activation_config.py",
+      "source_sha256": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd"
+    },
+    {
+      "column": 20,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 328,
+      "kind": "lambda",
+      "line": 328,
+      "source": "frontend_api/activation_config.py",
+      "source_sha256": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd"
+    },
+    {
+      "column": 20,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 348,
+      "kind": "lambda",
+      "line": 348,
+      "source": "frontend_api/activation_config.py",
+      "source_sha256": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd"
+    },
+    {
+      "column": 31,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 359,
+      "kind": "lambda",
+      "line": 359,
+      "source": "frontend_api/activation_config.py",
+      "source_sha256": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd"
+    },
+    {
+      "column": 51,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 377,
+      "kind": "lambda",
+      "line": 377,
+      "source": "frontend_api/activation_config.py",
+      "source_sha256": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd"
+    },
+    {
+      "column": 10,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 222,
+      "kind": "lambda",
+      "line": 222,
+      "source": "frontend_api/activation_trace.py",
+      "source_sha256": "3f59bef3da40ea846b407291ac7eb7d5fc3111f36c8e35a747bb8b2f250a21f5"
+    },
+    {
+      "column": 46,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 341,
+      "kind": "lambda",
+      "line": 341,
+      "source": "frontend_api/activation_trace.py",
+      "source_sha256": "3f59bef3da40ea846b407291ac7eb7d5fc3111f36c8e35a747bb8b2f250a21f5"
+    },
+    {
+      "column": 26,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 342,
+      "kind": "lambda",
+      "line": 342,
+      "source": "frontend_api/activation_trace.py",
+      "source_sha256": "3f59bef3da40ea846b407291ac7eb7d5fc3111f36c8e35a747bb8b2f250a21f5"
+    },
+    {
+      "column": 17,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 408,
+      "kind": "lambda",
+      "line": 408,
+      "source": "frontend_api/activation_trace.py",
+      "source_sha256": "3f59bef3da40ea846b407291ac7eb7d5fc3111f36c8e35a747bb8b2f250a21f5"
+    },
+    {
+      "column": 22,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 211,
+      "kind": "lambda",
+      "line": 211,
+      "source": "frontend_api/claim_planner.py",
+      "source_sha256": "7a3e720b97acf38e2ebfc7f4dde7a5912852a3eabd0a39629546aa1097cab810"
+    },
+    {
+      "column": 43,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 46,
+      "kind": "lambda",
+      "line": 46,
+      "source": "frontend_api/collection.py",
+      "source_sha256": "33ca3f1b6787625cc774eafaaaa84039347ac30984379a877d36de5e84224929"
+    },
+    {
+      "column": 40,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 80,
+      "kind": "lambda",
+      "line": 80,
+      "source": "frontend_api/earnings_checkpoint.py",
+      "source_sha256": "b593738648a0677bbcca77b7a3a4dc0ca5131a6bb8b8ce6509e93282c17829b3"
+    },
+    {
+      "column": 37,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 84,
+      "kind": "lambda",
+      "line": 84,
+      "source": "frontend_api/earnings_checkpoint.py",
+      "source_sha256": "b593738648a0677bbcca77b7a3a4dc0ca5131a6bb8b8ce6509e93282c17829b3"
+    },
+    {
+      "column": 31,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 255,
+      "kind": "lambda",
+      "line": 255,
+      "source": "frontend_api/earnings_checkpoint_v2.py",
+      "source_sha256": "525dfae493248780d6025d88ab7ea7cdd0e507465ed378f0c2b56d7e4044ac98"
+    },
+    {
+      "column": 25,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 114,
+      "kind": "lambda",
+      "line": 114,
+      "source": "frontend_api/earnings_checkpoint_v3.py",
+      "source_sha256": "ab00ba2b9972d336e70f0b7559ee45903939245060e3d3b1bf081cf61b1258eb"
+    },
+    {
+      "column": 53,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 126,
+      "kind": "lambda",
+      "line": 126,
+      "source": "frontend_api/earnings_checkpoint_v3.py",
+      "source_sha256": "ab00ba2b9972d336e70f0b7559ee45903939245060e3d3b1bf081cf61b1258eb"
+    },
+    {
+      "column": 19,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 202,
+      "kind": "lambda",
+      "line": 202,
+      "source": "frontend_api/earnings_checkpoint_v3.py",
+      "source_sha256": "ab00ba2b9972d336e70f0b7559ee45903939245060e3d3b1bf081cf61b1258eb"
+    },
+    {
+      "column": 80,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 21,
+      "kind": "lambda",
+      "line": 21,
+      "source": "frontend_api/earnings_exact_lp.py",
+      "source_sha256": "77e0694b2d800dafd5dc05e760648d0ece86304ca47abb5f05d3ff76b32bb604"
+    },
+    {
+      "column": 54,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 85,
+      "kind": "lambda",
+      "line": 85,
+      "source": "frontend_api/earnings_prices.py",
+      "source_sha256": "32921e735f7989dbf83083b0737933584a08364f55ba2d1597b4e387bf51c827"
+    },
+    {
+      "column": 48,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 68,
+      "kind": "lambda",
+      "line": 68,
+      "source": "frontend_api/history.py",
+      "source_sha256": "000af63258776ad42cc16c25b2638e1e0877a4217fb254f0d4fe52ba42a280cc"
+    },
+    {
+      "column": 52,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 87,
+      "kind": "lambda",
+      "line": 87,
+      "source": "frontend_api/history.py",
+      "source_sha256": "000af63258776ad42cc16c25b2638e1e0877a4217fb254f0d4fe52ba42a280cc"
+    },
+    {
+      "column": 37,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 54,
+      "kind": "lambda",
+      "line": 54,
+      "source": "frontend_api/history_audit.py",
+      "source_sha256": "74a04ed5cbb47ab0e23794760cd83d75eeb59aa9a76a57453475bef8d6f1c912"
+    },
+    {
+      "column": 16,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 215,
+      "kind": "lambda",
+      "line": 215,
+      "source": "frontend_api/history_recovery.py",
+      "source_sha256": "8e10b8a4820ca29e425707e7469032a1d0d91590edadf98b0a2afb44ad4a7a3f"
+    },
+    {
+      "column": 31,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 47,
+      "kind": "lambda",
+      "line": 47,
+      "source": "frontend_api/liquidity_context.py",
+      "source_sha256": "bb9719ad15df52457692821d9f650a0c981579748c51213698876346ba864fc3"
+    },
+    {
+      "column": 16,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 111,
+      "kind": "lambda",
+      "line": 111,
+      "source": "frontend_api/liquidity_context.py",
+      "source_sha256": "bb9719ad15df52457692821d9f650a0c981579748c51213698876346ba864fc3"
+    },
+    {
+      "column": 12,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 71,
+      "kind": "lambda",
+      "line": 71,
+      "source": "frontend_api/portfolio_v5.py",
+      "source_sha256": "e5da08e708ecb7072abf85bd0b3398bc2accdec29c7e44964e42b01e777f98c7"
+    },
+    {
+      "column": 12,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 72,
+      "kind": "lambda",
+      "line": 72,
+      "source": "frontend_api/portfolio_v5.py",
+      "source_sha256": "e5da08e708ecb7072abf85bd0b3398bc2accdec29c7e44964e42b01e777f98c7"
+    },
+    {
+      "column": 31,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 104,
+      "kind": "lambda",
+      "line": 104,
+      "source": "frontend_api/portfolio_v5.py",
+      "source_sha256": "e5da08e708ecb7072abf85bd0b3398bc2accdec29c7e44964e42b01e777f98c7"
+    },
+    {
+      "column": 16,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 128,
+      "kind": "lambda",
+      "line": 128,
+      "source": "frontend_api/portfolio_v5.py",
+      "source_sha256": "e5da08e708ecb7072abf85bd0b3398bc2accdec29c7e44964e42b01e777f98c7"
+    },
+    {
+      "column": 12,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 85,
+      "kind": "lambda",
+      "line": 85,
+      "source": "frontend_api/portfolio_v6.py",
+      "source_sha256": "4f44737dcffeb7630bf52d6079c69519f0e7981dd72420b7fa41ee6803410c59"
+    },
+    {
+      "column": 12,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 86,
+      "kind": "lambda",
+      "line": 86,
+      "source": "frontend_api/portfolio_v6.py",
+      "source_sha256": "4f44737dcffeb7630bf52d6079c69519f0e7981dd72420b7fa41ee6803410c59"
+    },
+    {
+      "column": 31,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 121,
+      "kind": "lambda",
+      "line": 121,
+      "source": "frontend_api/portfolio_v6.py",
+      "source_sha256": "4f44737dcffeb7630bf52d6079c69519f0e7981dd72420b7fa41ee6803410c59"
+    },
+    {
+      "column": 16,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 145,
+      "kind": "lambda",
+      "line": 145,
+      "source": "frontend_api/portfolio_v6.py",
+      "source_sha256": "4f44737dcffeb7630bf52d6079c69519f0e7981dd72420b7fa41ee6803410c59"
+    },
+    {
+      "column": 47,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 645,
+      "kind": "lambda",
+      "line": 645,
+      "source": "frontend_api/service.py",
+      "source_sha256": "e0d8fd9512e080f40afa26f760240d2188ae3d02ecf34c4d0fb601854b5a38ce"
+    },
+    {
+      "column": 40,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 203,
+      "kind": "lambda",
+      "line": 203,
+      "source": "frontend_api/transactions.py",
+      "source_sha256": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e"
+    },
+    {
+      "column": 38,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 205,
+      "kind": "lambda",
+      "line": 205,
+      "source": "frontend_api/transactions.py",
+      "source_sha256": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e"
+    },
+    {
+      "column": 25,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 77,
+      "kind": "lambda",
+      "line": 77,
+      "source": "frontend_api/wallet_earnings.py",
+      "source_sha256": "a9b0155c6d94f726218d943440d7b90949444b5d4851d8783d05e0c542e03e7e"
+    },
+    {
+      "column": 47,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 274,
+      "kind": "lambda",
+      "line": 274,
+      "source": "indexer/monitor.py",
+      "source_sha256": "ef7796e5904a995c59f46346478e952400fa5010a03694f6e45ea5c7e581ec36"
+    },
+    {
+      "column": 30,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 305,
+      "kind": "lambda",
+      "line": 305,
+      "source": "keeper/monitor.py",
+      "source_sha256": "46f9c9fd87a9cc5e65456e5bc0daa3ee5ff27e61757a88b6bd3185b7de6c1cf7"
+    },
+    {
+      "column": 31,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 762,
+      "kind": "lambda",
+      "line": 762,
+      "source": "keeper/monitor.py",
+      "source_sha256": "46f9c9fd87a9cc5e65456e5bc0daa3ee5ff27e61757a88b6bd3185b7de6c1cf7"
+    },
+    {
+      "column": 40,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 2552,
+      "kind": "lambda",
+      "line": 2552,
+      "source": "keeper/monitor.py",
+      "source_sha256": "46f9c9fd87a9cc5e65456e5bc0daa3ee5ff27e61757a88b6bd3185b7de6c1cf7"
+    },
+    {
+      "column": 32,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 2802,
+      "kind": "lambda",
+      "line": 2802,
+      "source": "keeper/monitor.py",
+      "source_sha256": "46f9c9fd87a9cc5e65456e5bc0daa3ee5ff27e61757a88b6bd3185b7de6c1cf7"
+    },
+    {
+      "column": 34,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 140,
+      "kind": "lambda",
+      "line": 140,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 40,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 206,
+      "kind": "lambda",
+      "line": 206,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 37,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 237,
+      "kind": "lambda",
+      "line": 237,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 29,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 306,
+      "kind": "lambda",
+      "line": 305,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 27,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 343,
+      "kind": "lambda",
+      "line": 342,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 24,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 397,
+      "kind": "lambda",
+      "line": 397,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 26,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 404,
+      "kind": "lambda",
+      "line": 404,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 27,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 409,
+      "kind": "lambda",
+      "line": 409,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 29,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 410,
+      "kind": "lambda",
+      "line": 410,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 46,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 462,
+      "kind": "lambda",
+      "line": 462,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 35,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 473,
+      "kind": "lambda",
+      "line": 473,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 64,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 478,
+      "kind": "lambda",
+      "line": 478,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 40,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 498,
+      "kind": "lambda",
+      "line": 498,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 37,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 523,
+      "kind": "lambda",
+      "line": 523,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 44,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 527,
+      "kind": "lambda",
+      "line": 527,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 33,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 547,
+      "kind": "lambda",
+      "line": 547,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 46,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 597,
+      "kind": "lambda",
+      "line": 597,
+      "source": "keeper/operation_review.py",
+      "source_sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "column": 42,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 205,
+      "kind": "lambda",
+      "line": 205,
+      "source": "keeper/probe.py",
+      "source_sha256": "42142395fa2e43a6360644effdafab7e3be26b37b985a9bd3ae6fcd9d1374a10"
+    },
+    {
+      "column": 46,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 206,
+      "kind": "lambda",
+      "line": 206,
+      "source": "keeper/probe.py",
+      "source_sha256": "42142395fa2e43a6360644effdafab7e3be26b37b985a9bd3ae6fcd9d1374a10"
+    },
+    {
+      "column": 41,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 207,
+      "kind": "lambda",
+      "line": 207,
+      "source": "keeper/probe.py",
+      "source_sha256": "42142395fa2e43a6360644effdafab7e3be26b37b985a9bd3ae6fcd9d1374a10"
+    },
+    {
+      "column": 32,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 221,
+      "kind": "lambda",
+      "line": 221,
+      "source": "keeper/probe.py",
+      "source_sha256": "42142395fa2e43a6360644effdafab7e3be26b37b985a9bd3ae6fcd9d1374a10"
+    },
+    {
+      "column": 8,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 29,
+      "kind": "lambda",
+      "line": 29,
+      "source": "keeper/staging.py",
+      "source_sha256": "28b2b33d64a881dfdc5edafe6dc2daec4825e1729f5e97d9ee964f855aa3bae5"
+    },
+    {
+      "column": 34,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 35,
+      "kind": "lambda",
+      "line": 35,
+      "source": "keeper/staging.py",
+      "source_sha256": "28b2b33d64a881dfdc5edafe6dc2daec4825e1729f5e97d9ee964f855aa3bae5"
+    },
+    {
+      "column": 42,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 80,
+      "kind": "lambda",
+      "line": 79,
+      "source": "scripts/build-workload-inventory.py",
+      "source_sha256": "eda2e6d33c107b18e3b92e81d12808e9dbd63d4cfed16b50ac12a067c269405d"
+    },
+    {
+      "column": 36,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 237,
+      "kind": "lambda",
+      "line": 237,
+      "source": "scripts/build-workload-inventory.py",
+      "source_sha256": "eda2e6d33c107b18e3b92e81d12808e9dbd63d4cfed16b50ac12a067c269405d"
+    },
+    {
+      "column": 34,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 238,
+      "kind": "lambda",
+      "line": 238,
+      "source": "scripts/build-workload-inventory.py",
+      "source_sha256": "eda2e6d33c107b18e3b92e81d12808e9dbd63d4cfed16b50ac12a067c269405d"
+    },
+    {
+      "column": 42,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 313,
+      "kind": "lambda",
+      "line": 313,
+      "source": "scripts/build-workload-inventory.py",
+      "source_sha256": "eda2e6d33c107b18e3b92e81d12808e9dbd63d4cfed16b50ac12a067c269405d"
+    },
+    {
+      "column": 8,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 152,
+      "kind": "lambda",
+      "line": 152,
+      "source": "scripts/check-local-deployment-evidence.py",
+      "source_sha256": "fc3bb047ae882ce22639937acc9e589d5513b0e0db28941ac762081cddae439d"
+    },
+    {
+      "column": 23,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 53,
+      "kind": "lambda",
+      "line": 53,
+      "source": "scripts/generate_event_schema.py",
+      "source_sha256": "1c47bde2c3d1e02b7c73e700a384b41610572f03baa9d94755208aff0d4fc60e"
+    },
+    {
+      "column": 21,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 74,
+      "kind": "lambda",
+      "line": 74,
+      "source": "scripts/generate_event_schema.py",
+      "source_sha256": "1c47bde2c3d1e02b7c73e700a384b41610572f03baa9d94755208aff0d4fc60e"
+    },
+    {
+      "column": 9,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 70,
+      "kind": "lambda",
+      "line": 70,
+      "source": "scripts/local-api-stack.py",
+      "source_sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70"
+    },
+    {
+      "column": 18,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 40,
+      "kind": "lambda",
+      "line": 40,
+      "source": "scripts/prepare-dollar-rehearsal.py",
+      "source_sha256": "332539a26071b28e6b0ab3002f12bb1a0cc924e8d2d31ac1e421f599a5cf8591"
+    },
+    {
+      "column": 19,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 105,
+      "kind": "lambda",
+      "line": 105,
+      "source": "scripts/rehearse-keeper.py",
+      "source_sha256": "6e76859a45b40cdbc3f930a7c976110d964fb95be6b4ada210327912eb2f4f1b"
+    },
+    {
+      "column": 29,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 163,
+      "kind": "lambda",
+      "line": 163,
+      "source": "scripts/rehearse-keeper.py",
+      "source_sha256": "6e76859a45b40cdbc3f930a7c976110d964fb95be6b4ada210327912eb2f4f1b"
+    },
+    {
+      "column": 19,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 227,
+      "kind": "lambda",
+      "line": 227,
+      "source": "scripts/rehearse-keeper.py",
+      "source_sha256": "6e76859a45b40cdbc3f930a7c976110d964fb95be6b4ada210327912eb2f4f1b"
+    },
+    {
+      "column": 19,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 132,
+      "kind": "lambda",
+      "line": 132,
+      "source": "scripts/rehearse-manual-recovery.py",
+      "source_sha256": "fabaf02efa8654efa3d3e4c606749d2632a20b09af1a2eb12e7553583119851e"
+    },
+    {
+      "column": 16,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 453,
+      "kind": "lambda",
+      "line": 453,
+      "source": "scripts/rehearse-manual-recovery.py",
+      "source_sha256": "fabaf02efa8654efa3d3e4c606749d2632a20b09af1a2eb12e7553583119851e"
+    },
+    {
+      "column": 31,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 656,
+      "kind": "lambda",
+      "line": 656,
+      "source": "scripts/rehearse-manual-recovery.py",
+      "source_sha256": "fabaf02efa8654efa3d3e4c606749d2632a20b09af1a2eb12e7553583119851e"
+    },
+    {
+      "column": 23,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 658,
+      "kind": "lambda",
+      "line": 658,
+      "source": "scripts/rehearse-manual-recovery.py",
+      "source_sha256": "fabaf02efa8654efa3d3e4c606749d2632a20b09af1a2eb12e7553583119851e"
+    },
+    {
+      "column": 84,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 676,
+      "kind": "lambda",
+      "line": 676,
+      "source": "scripts/rehearse-manual-recovery.py",
+      "source_sha256": "fabaf02efa8654efa3d3e4c606749d2632a20b09af1a2eb12e7553583119851e"
+    },
+    {
+      "column": 11,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 684,
+      "kind": "lambda",
+      "line": 684,
+      "source": "scripts/rehearse-manual-recovery.py",
+      "source_sha256": "fabaf02efa8654efa3d3e4c606749d2632a20b09af1a2eb12e7553583119851e"
+    },
+    {
+      "column": 8,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 54,
+      "kind": "lambda",
+      "line": 54,
+      "source": "scripts/rehearse-manual-reference.py",
+      "source_sha256": "52f94c917b8a489bdf534572dedd848847f20c49b372b81607f1d4385e0e5895"
+    },
+    {
+      "column": 31,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 112,
+      "kind": "lambda",
+      "line": 112,
+      "source": "scripts/source9_rehearsal_fork.py",
+      "source_sha256": "6c52f68b6d66cfa28d18c13eee0a1930123dec82d54143446ac76ef9069629b4"
+    },
+    {
+      "column": 23,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 190,
+      "kind": "lambda",
+      "line": 190,
+      "source": "scripts/source9_rehearsal_fork.py",
+      "source_sha256": "6c52f68b6d66cfa28d18c13eee0a1930123dec82d54143446ac76ef9069629b4"
+    },
+    {
+      "column": 22,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 191,
+      "kind": "lambda",
+      "line": 191,
+      "source": "scripts/source9_rehearsal_fork.py",
+      "source_sha256": "6c52f68b6d66cfa28d18c13eee0a1930123dec82d54143446ac76ef9069629b4"
+    },
+    {
+      "column": 8,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 20,
+      "kind": "lambda",
+      "line": 20,
+      "source": "scripts/source_checks.py",
+      "source_sha256": "04970d1947ca23ec0a52666b0d5473fd9cb03f995eeb3ddab3f0c05e8e1a15ca"
+    },
+    {
+      "column": 45,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 38,
+      "kind": "lambda",
+      "line": 38,
+      "source": "scripts/sync-project-todo.py",
+      "source_sha256": "2f6ce95de448d4f742274d7861e97a4ff9fd965085f435e19bce3cbc3b18292a"
+    },
+    {
+      "column": 23,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 46,
+      "kind": "lambda",
+      "line": 46,
+      "source": "scripts/validate-production-config.py",
+      "source_sha256": "dcdd205a9228050c249134b11dcde81d736f99aebdc987d8b7e44b195ed7e305"
+    },
+    {
+      "column": 87,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 161,
+      "kind": "lambda",
+      "line": 161,
+      "source": "zzz_ops/deployment_plan.py",
+      "source_sha256": "1cc30fa06a8c509e2a7e56d9c5d8af4fab469aa2457e545a7366376c4ab93965"
+    },
+    {
+      "column": 135,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 161,
+      "kind": "lambda",
+      "line": 161,
+      "source": "zzz_ops/deployment_plan.py",
+      "source_sha256": "1cc30fa06a8c509e2a7e56d9c5d8af4fab469aa2457e545a7366376c4ab93965"
+    },
+    {
+      "column": 85,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 265,
+      "kind": "lambda",
+      "line": 265,
+      "source": "zzz_ops/deployment_plan.py",
+      "source_sha256": "1cc30fa06a8c509e2a7e56d9c5d8af4fab469aa2457e545a7366376c4ab93965"
+    },
+    {
+      "column": 23,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 57,
+      "kind": "lambda",
+      "line": 57,
+      "source": "zzz_ops/factory_code_v2.py",
+      "source_sha256": "7764d4563269ee180ad406d6c8eef1f2f33bc1048c892b8017156ef0348f32df"
+    },
+    {
+      "column": 23,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 57,
+      "kind": "lambda",
+      "line": 57,
+      "source": "zzz_ops/factory_code_v3.py",
+      "source_sha256": "8b27d237a39d81c2b6d3ac7a7186723569f8bef2a59ad811aca39e0b55f6665a"
+    },
+    {
+      "column": 23,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 57,
+      "kind": "lambda",
+      "line": 57,
+      "source": "zzz_ops/factory_code_v4.py",
+      "source_sha256": "a10204b8230499f0d4f8380ae4f01b337823a15080cd6d4795c528a3f5fb517c"
+    },
+    {
+      "column": 23,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 57,
+      "kind": "lambda",
+      "line": 57,
+      "source": "zzz_ops/factory_code_v5.py",
+      "source_sha256": "3e41c39666784e514d35a53e6ed7996b0bd3522126d22c55dcf63dfc943dfb46"
+    },
+    {
+      "column": 23,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 59,
+      "kind": "lambda",
+      "line": 59,
+      "source": "zzz_ops/factory_code_v6.py",
+      "source_sha256": "a8596f54f4084fbf17c7a78fa13d7e6ef66cdaae4fcfab9f206fd6f9faa68552"
+    },
+    {
+      "column": 23,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 47,
+      "kind": "lambda",
+      "line": 47,
+      "source": "zzz_ops/function_reference.py",
+      "source_sha256": "dbe5e526d94311efb82b92f572af96c12f9fe905a3493fdd63991e12dc635834"
+    },
+    {
+      "column": 80,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 319,
+      "kind": "lambda",
+      "line": 319,
+      "source": "zzz_ops/function_reference.py",
+      "source_sha256": "dbe5e526d94311efb82b92f572af96c12f9fe905a3493fdd63991e12dc635834"
+    },
+    {
+      "column": 53,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 321,
+      "kind": "lambda",
+      "line": 321,
+      "source": "zzz_ops/function_reference.py",
+      "source_sha256": "dbe5e526d94311efb82b92f572af96c12f9fe905a3493fdd63991e12dc635834"
+    },
+    {
+      "column": 34,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 393,
+      "kind": "lambda",
+      "line": 393,
+      "source": "zzz_ops/function_reference.py",
+      "source_sha256": "dbe5e526d94311efb82b92f572af96c12f9fe905a3493fdd63991e12dc635834"
+    },
+    {
+      "column": 59,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 453,
+      "kind": "lambda",
+      "line": 453,
+      "source": "zzz_ops/function_reference.py",
+      "source_sha256": "dbe5e526d94311efb82b92f572af96c12f9fe905a3493fdd63991e12dc635834"
+    },
+    {
+      "column": 33,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 506,
+      "kind": "lambda",
+      "line": 506,
+      "source": "zzz_ops/function_reference.py",
+      "source_sha256": "dbe5e526d94311efb82b92f572af96c12f9fe905a3493fdd63991e12dc635834"
+    },
+    {
+      "column": 37,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 507,
+      "kind": "lambda",
+      "line": 507,
+      "source": "zzz_ops/function_reference.py",
+      "source_sha256": "dbe5e526d94311efb82b92f572af96c12f9fe905a3493fdd63991e12dc635834"
+    },
+    {
+      "column": 38,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 508,
+      "kind": "lambda",
+      "line": 508,
+      "source": "zzz_ops/function_reference.py",
+      "source_sha256": "dbe5e526d94311efb82b92f572af96c12f9fe905a3493fdd63991e12dc635834"
+    },
+    {
+      "column": 52,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 509,
+      "kind": "lambda",
+      "line": 509,
+      "source": "zzz_ops/function_reference.py",
+      "source_sha256": "dbe5e526d94311efb82b92f572af96c12f9fe905a3493fdd63991e12dc635834"
+    },
+    {
+      "column": 8,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 84,
+      "kind": "lambda",
+      "line": 84,
+      "source": "zzz_ops/management_custody.py",
+      "source_sha256": "7be6440b45c35bfcf43b6dd94f40c271c6dd9fa1519c1fcbc66a2df8fe0bac0f"
+    },
+    {
+      "column": 16,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 100,
+      "kind": "lambda",
+      "line": 100,
+      "source": "zzz_ops/management_exit.py",
+      "source_sha256": "cbecf0656a38a516769876376ed4415643033009e3ee4d157f8c940fe2e0ec74"
+    },
+    {
+      "column": 41,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 367,
+      "kind": "lambda",
+      "line": 367,
+      "source": "zzz_ops/manual_lp_review.py",
+      "source_sha256": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e"
+    },
+    {
+      "column": 17,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 371,
+      "kind": "lambda",
+      "line": 371,
+      "source": "zzz_ops/manual_lp_review.py",
+      "source_sha256": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e"
+    },
+    {
+      "column": 17,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 372,
+      "kind": "lambda",
+      "line": 372,
+      "source": "zzz_ops/manual_lp_review.py",
+      "source_sha256": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e"
+    },
+    {
+      "column": 17,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 373,
+      "kind": "lambda",
+      "line": 373,
+      "source": "zzz_ops/manual_lp_review.py",
+      "source_sha256": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e"
+    },
+    {
+      "column": 17,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 374,
+      "kind": "lambda",
+      "line": 374,
+      "source": "zzz_ops/manual_lp_review.py",
+      "source_sha256": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e"
+    },
+    {
+      "column": 17,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 375,
+      "kind": "lambda",
+      "line": 375,
+      "source": "zzz_ops/manual_lp_review.py",
+      "source_sha256": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e"
+    },
+    {
+      "column": 17,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 376,
+      "kind": "lambda",
+      "line": 376,
+      "source": "zzz_ops/manual_lp_review.py",
+      "source_sha256": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e"
+    },
+    {
+      "column": 17,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 377,
+      "kind": "lambda",
+      "line": 377,
+      "source": "zzz_ops/manual_lp_review.py",
+      "source_sha256": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e"
+    },
+    {
+      "column": 17,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 378,
+      "kind": "lambda",
+      "line": 378,
+      "source": "zzz_ops/manual_lp_review.py",
+      "source_sha256": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e"
+    },
+    {
+      "column": 50,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 393,
+      "kind": "lambda",
+      "line": 393,
+      "source": "zzz_ops/manual_lp_review.py",
+      "source_sha256": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e"
+    },
+    {
+      "column": 12,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 388,
+      "kind": "lambda",
+      "line": 388,
+      "source": "zzz_ops/market_evidence.py",
+      "source_sha256": "b7c3be52d153590490659a86df2979866398d112f8e0f99d707437e4c659c5fd"
+    },
+    {
+      "column": 29,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 392,
+      "kind": "lambda",
+      "line": 392,
+      "source": "zzz_ops/market_evidence.py",
+      "source_sha256": "b7c3be52d153590490659a86df2979866398d112f8e0f99d707437e4c659c5fd"
+    },
+    {
+      "column": 51,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 544,
+      "kind": "lambda",
+      "line": 544,
+      "source": "zzz_ops/market_evidence.py",
+      "source_sha256": "b7c3be52d153590490659a86df2979866398d112f8e0f99d707437e4c659c5fd"
+    },
+    {
+      "column": 73,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 186,
+      "kind": "lambda",
+      "line": 186,
+      "source": "zzz_ops/opensea_drop.py",
+      "source_sha256": "01f86be5db2a2d8102b51e1d7fe3a4aae451d53cce7726dfbf3f32e064047480"
+    },
+    {
+      "column": 18,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 277,
+      "kind": "lambda",
+      "line": 277,
+      "source": "zzz_ops/opensea_drop.py",
+      "source_sha256": "01f86be5db2a2d8102b51e1d7fe3a4aae451d53cce7726dfbf3f32e064047480"
+    },
+    {
+      "column": 30,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 264,
+      "kind": "lambda",
+      "line": 263,
+      "source": "zzz_ops/operator_reference.py",
+      "source_sha256": "691dc2698acd86009b4bb8856cb1b5865d529f94d7f69c61ea7ef04889f2aefb"
+    },
+    {
+      "column": 67,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 276,
+      "kind": "lambda",
+      "line": 276,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 24,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 283,
+      "kind": "lambda",
+      "line": 283,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 81,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 292,
+      "kind": "lambda",
+      "line": 291,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 63,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 300,
+      "kind": "lambda",
+      "line": 300,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 20,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 311,
+      "kind": "lambda",
+      "line": 311,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 107,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 321,
+      "kind": "lambda",
+      "line": 321,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 16,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 325,
+      "kind": "lambda",
+      "line": 325,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 94,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 334,
+      "kind": "lambda",
+      "line": 334,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 68,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 337,
+      "kind": "lambda",
+      "line": 337,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 68,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 341,
+      "kind": "lambda",
+      "line": 341,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 81,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 347,
+      "kind": "lambda",
+      "line": 347,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 72,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 352,
+      "kind": "lambda",
+      "line": 352,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 16,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 354,
+      "kind": "lambda",
+      "line": 354,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 61,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 422,
+      "kind": "lambda",
+      "line": 422,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 78,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 433,
+      "kind": "lambda",
+      "line": 433,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 77,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 455,
+      "kind": "lambda",
+      "line": 454,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 63,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 456,
+      "kind": "lambda",
+      "line": 456,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 113,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 458,
+      "kind": "lambda",
+      "line": 457,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 68,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 459,
+      "kind": "lambda",
+      "line": 459,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 76,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 460,
+      "kind": "lambda",
+      "line": 460,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 109,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 468,
+      "kind": "lambda",
+      "line": 467,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 28,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 468,
+      "kind": "lambda",
+      "line": 468,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 84,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 478,
+      "kind": "lambda",
+      "line": 478,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 56,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 483,
+      "kind": "lambda",
+      "line": 483,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 81,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 491,
+      "kind": "lambda",
+      "line": 491,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 97,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 496,
+      "kind": "lambda",
+      "line": 495,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 87,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 499,
+      "kind": "lambda",
+      "line": 498,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 87,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 511,
+      "kind": "lambda",
+      "line": 510,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 100,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 518,
+      "kind": "lambda",
+      "line": 517,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 83,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 536,
+      "kind": "lambda",
+      "line": 536,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 96,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 542,
+      "kind": "lambda",
+      "line": 541,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 106,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 546,
+      "kind": "lambda",
+      "line": 545,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 93,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 556,
+      "kind": "lambda",
+      "line": 555,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 96,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 558,
+      "kind": "lambda",
+      "line": 557,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 99,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 560,
+      "kind": "lambda",
+      "line": 559,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 104,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 562,
+      "kind": "lambda",
+      "line": 561,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 68,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 574,
+      "kind": "lambda",
+      "line": 574,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 90,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 581,
+      "kind": "lambda",
+      "line": 580,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 93,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 583,
+      "kind": "lambda",
+      "line": 582,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 96,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 589,
+      "kind": "lambda",
+      "line": 588,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 73,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 596,
+      "kind": "lambda",
+      "line": 595,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 123,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 598,
+      "kind": "lambda",
+      "line": 597,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 96,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 602,
+      "kind": "lambda",
+      "line": 601,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 111,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 604,
+      "kind": "lambda",
+      "line": 603,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 108,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 608,
+      "kind": "lambda",
+      "line": 607,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 80,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 641,
+      "kind": "lambda",
+      "line": 640,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 66,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 643,
+      "kind": "lambda",
+      "line": 642,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 77,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 646,
+      "kind": "lambda",
+      "line": 645,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 79,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 649,
+      "kind": "lambda",
+      "line": 648,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 71,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 662,
+      "kind": "lambda",
+      "line": 661,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 79,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 671,
+      "kind": "lambda",
+      "line": 670,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 87,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 683,
+      "kind": "lambda",
+      "line": 682,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 76,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 689,
+      "kind": "lambda",
+      "line": 689,
+      "source": "zzz_ops/production_observer.py",
+      "source_sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "column": 82,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 10,
+      "kind": "lambda",
+      "line": 10,
+      "source": "zzz_ops/production_observer_v10.py",
+      "source_sha256": "40b34711155a1746e0a2703961628204d2b7a3a6b58b4151ae5422866711c72c"
+    },
+    {
+      "column": 82,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 10,
+      "kind": "lambda",
+      "line": 10,
+      "source": "zzz_ops/production_observer_v11.py",
+      "source_sha256": "69d137284a5d9c96a7b1f0b1bfaead102e73606e195d259bb4bdc29da957d14b"
+    },
+    {
+      "column": 68,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 25,
+      "kind": "lambda",
+      "line": 24,
+      "source": "zzz_ops/production_observer_v12.py",
+      "source_sha256": "7af8da17d1543af31e4ed8d3c3bdd01d5ca4c7281611b0ff9ef1c6be500645c5"
+    },
+    {
+      "column": 67,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 26,
+      "kind": "lambda",
+      "line": 26,
+      "source": "zzz_ops/production_observer_v12.py",
+      "source_sha256": "7af8da17d1543af31e4ed8d3c3bdd01d5ca4c7281611b0ff9ef1c6be500645c5"
+    },
+    {
+      "column": 70,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 22,
+      "kind": "lambda",
+      "line": 21,
+      "source": "zzz_ops/production_observer_v13.py",
+      "source_sha256": "7275dbdef0f6a35a660355fa6ba612e07c1d95b413960544384d38c10f9a9d10"
+    },
+    {
+      "column": 71,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 23,
+      "kind": "lambda",
+      "line": 23,
+      "source": "zzz_ops/production_observer_v13.py",
+      "source_sha256": "7275dbdef0f6a35a660355fa6ba612e07c1d95b413960544384d38c10f9a9d10"
+    },
+    {
+      "column": 64,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 23,
+      "kind": "lambda",
+      "line": 23,
+      "source": "zzz_ops/production_observer_v14.py",
+      "source_sha256": "d592358ba052ba4af78c9a8bf09da6244edd0d63b2f3b595fafded78f7141b01"
+    },
+    {
+      "column": 86,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 30,
+      "kind": "lambda",
+      "line": 29,
+      "source": "zzz_ops/production_observer_v14.py",
+      "source_sha256": "d592358ba052ba4af78c9a8bf09da6244edd0d63b2f3b595fafded78f7141b01"
+    },
+    {
+      "column": 89,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 32,
+      "kind": "lambda",
+      "line": 31,
+      "source": "zzz_ops/production_observer_v14.py",
+      "source_sha256": "d592358ba052ba4af78c9a8bf09da6244edd0d63b2f3b595fafded78f7141b01"
+    },
+    {
+      "column": 82,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 36,
+      "kind": "lambda",
+      "line": 36,
+      "source": "zzz_ops/production_observer_v14.py",
+      "source_sha256": "d592358ba052ba4af78c9a8bf09da6244edd0d63b2f3b595fafded78f7141b01"
+    },
+    {
+      "column": 103,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 46,
+      "kind": "lambda",
+      "line": 45,
+      "source": "zzz_ops/production_observer_v14.py",
+      "source_sha256": "d592358ba052ba4af78c9a8bf09da6244edd0d63b2f3b595fafded78f7141b01"
+    },
+    {
+      "column": 69,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 47,
+      "kind": "lambda",
+      "line": 47,
+      "source": "zzz_ops/production_observer_v14.py",
+      "source_sha256": "d592358ba052ba4af78c9a8bf09da6244edd0d63b2f3b595fafded78f7141b01"
+    },
+    {
+      "column": 90,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 36,
+      "kind": "lambda",
+      "line": 34,
+      "source": "zzz_ops/production_observer_v15.py",
+      "source_sha256": "deded3c0e07ef6f80351315d5dd65ddbd92aca7e1c2e441078873184f679cbf9"
+    },
+    {
+      "column": 99,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 50,
+      "kind": "lambda",
+      "line": 44,
+      "source": "zzz_ops/production_observer_v15.py",
+      "source_sha256": "deded3c0e07ef6f80351315d5dd65ddbd92aca7e1c2e441078873184f679cbf9"
+    },
+    {
+      "column": 20,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 45,
+      "kind": "lambda",
+      "line": 45,
+      "source": "zzz_ops/production_observer_v15.py",
+      "source_sha256": "deded3c0e07ef6f80351315d5dd65ddbd92aca7e1c2e441078873184f679cbf9"
+    },
+    {
+      "column": 28,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 146,
+      "kind": "lambda",
+      "line": 146,
+      "source": "zzz_ops/production_observer_v15.py",
+      "source_sha256": "deded3c0e07ef6f80351315d5dd65ddbd92aca7e1c2e441078873184f679cbf9"
+    },
+    {
+      "column": 23,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 148,
+      "kind": "lambda",
+      "line": 148,
+      "source": "zzz_ops/production_observer_v15.py",
+      "source_sha256": "deded3c0e07ef6f80351315d5dd65ddbd92aca7e1c2e441078873184f679cbf9"
+    },
+    {
+      "column": 81,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 50,
+      "kind": "lambda",
+      "line": 49,
+      "source": "zzz_ops/production_observer_v4.py",
+      "source_sha256": "2354c83760f490f35738e48afe62a4eb5f54b35b2e6ba0416a2505f9dddc08bf"
+    },
+    {
+      "column": 94,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 54,
+      "kind": "lambda",
+      "line": 53,
+      "source": "zzz_ops/production_observer_v4.py",
+      "source_sha256": "2354c83760f490f35738e48afe62a4eb5f54b35b2e6ba0416a2505f9dddc08bf"
+    },
+    {
+      "column": 64,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 67,
+      "kind": "lambda",
+      "line": 67,
+      "source": "zzz_ops/production_observer_v4.py",
+      "source_sha256": "2354c83760f490f35738e48afe62a4eb5f54b35b2e6ba0416a2505f9dddc08bf"
+    },
+    {
+      "column": 86,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 74,
+      "kind": "lambda",
+      "line": 73,
+      "source": "zzz_ops/production_observer_v4.py",
+      "source_sha256": "2354c83760f490f35738e48afe62a4eb5f54b35b2e6ba0416a2505f9dddc08bf"
+    },
+    {
+      "column": 89,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 76,
+      "kind": "lambda",
+      "line": 75,
+      "source": "zzz_ops/production_observer_v4.py",
+      "source_sha256": "2354c83760f490f35738e48afe62a4eb5f54b35b2e6ba0416a2505f9dddc08bf"
+    },
+    {
+      "column": 90,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 85,
+      "kind": "lambda",
+      "line": 84,
+      "source": "zzz_ops/production_observer_v4.py",
+      "source_sha256": "2354c83760f490f35738e48afe62a4eb5f54b35b2e6ba0416a2505f9dddc08bf"
+    },
+    {
+      "column": 99,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 94,
+      "kind": "lambda",
+      "line": 90,
+      "source": "zzz_ops/production_observer_v4.py",
+      "source_sha256": "2354c83760f490f35738e48afe62a4eb5f54b35b2e6ba0416a2505f9dddc08bf"
+    },
+    {
+      "column": 30,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 91,
+      "kind": "lambda",
+      "line": 91,
+      "source": "zzz_ops/production_observer_v4.py",
+      "source_sha256": "2354c83760f490f35738e48afe62a4eb5f54b35b2e6ba0416a2505f9dddc08bf"
+    },
+    {
+      "column": 81,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 63,
+      "kind": "lambda",
+      "line": 62,
+      "source": "zzz_ops/production_observer_v5.py",
+      "source_sha256": "fa62d042cf95f45d1a3e90fba52e9ffb14ba964c9b992b611f50d4cfd70e00cc"
+    },
+    {
+      "column": 94,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 67,
+      "kind": "lambda",
+      "line": 66,
+      "source": "zzz_ops/production_observer_v5.py",
+      "source_sha256": "fa62d042cf95f45d1a3e90fba52e9ffb14ba964c9b992b611f50d4cfd70e00cc"
+    },
+    {
+      "column": 64,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 80,
+      "kind": "lambda",
+      "line": 80,
+      "source": "zzz_ops/production_observer_v5.py",
+      "source_sha256": "fa62d042cf95f45d1a3e90fba52e9ffb14ba964c9b992b611f50d4cfd70e00cc"
+    },
+    {
+      "column": 86,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 87,
+      "kind": "lambda",
+      "line": 86,
+      "source": "zzz_ops/production_observer_v5.py",
+      "source_sha256": "fa62d042cf95f45d1a3e90fba52e9ffb14ba964c9b992b611f50d4cfd70e00cc"
+    },
+    {
+      "column": 89,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 89,
+      "kind": "lambda",
+      "line": 88,
+      "source": "zzz_ops/production_observer_v5.py",
+      "source_sha256": "fa62d042cf95f45d1a3e90fba52e9ffb14ba964c9b992b611f50d4cfd70e00cc"
+    },
+    {
+      "column": 90,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 98,
+      "kind": "lambda",
+      "line": 97,
+      "source": "zzz_ops/production_observer_v5.py",
+      "source_sha256": "fa62d042cf95f45d1a3e90fba52e9ffb14ba964c9b992b611f50d4cfd70e00cc"
+    },
+    {
+      "column": 99,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 108,
+      "kind": "lambda",
+      "line": 103,
+      "source": "zzz_ops/production_observer_v5.py",
+      "source_sha256": "fa62d042cf95f45d1a3e90fba52e9ffb14ba964c9b992b611f50d4cfd70e00cc"
+    },
+    {
+      "column": 30,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 104,
+      "kind": "lambda",
+      "line": 104,
+      "source": "zzz_ops/production_observer_v5.py",
+      "source_sha256": "fa62d042cf95f45d1a3e90fba52e9ffb14ba964c9b992b611f50d4cfd70e00cc"
+    },
+    {
+      "column": 81,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 63,
+      "kind": "lambda",
+      "line": 62,
+      "source": "zzz_ops/production_observer_v6.py",
+      "source_sha256": "d7d9905d0ce104ce28f9f955075aa388333c2dfd98faba26acd323f78ef37623"
+    },
+    {
+      "column": 94,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 67,
+      "kind": "lambda",
+      "line": 66,
+      "source": "zzz_ops/production_observer_v6.py",
+      "source_sha256": "d7d9905d0ce104ce28f9f955075aa388333c2dfd98faba26acd323f78ef37623"
+    },
+    {
+      "column": 64,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 80,
+      "kind": "lambda",
+      "line": 80,
+      "source": "zzz_ops/production_observer_v6.py",
+      "source_sha256": "d7d9905d0ce104ce28f9f955075aa388333c2dfd98faba26acd323f78ef37623"
+    },
+    {
+      "column": 86,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 87,
+      "kind": "lambda",
+      "line": 86,
+      "source": "zzz_ops/production_observer_v6.py",
+      "source_sha256": "d7d9905d0ce104ce28f9f955075aa388333c2dfd98faba26acd323f78ef37623"
+    },
+    {
+      "column": 89,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 89,
+      "kind": "lambda",
+      "line": 88,
+      "source": "zzz_ops/production_observer_v6.py",
+      "source_sha256": "d7d9905d0ce104ce28f9f955075aa388333c2dfd98faba26acd323f78ef37623"
+    },
+    {
+      "column": 90,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 98,
+      "kind": "lambda",
+      "line": 97,
+      "source": "zzz_ops/production_observer_v6.py",
+      "source_sha256": "d7d9905d0ce104ce28f9f955075aa388333c2dfd98faba26acd323f78ef37623"
+    },
+    {
+      "column": 99,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 108,
+      "kind": "lambda",
+      "line": 103,
+      "source": "zzz_ops/production_observer_v6.py",
+      "source_sha256": "d7d9905d0ce104ce28f9f955075aa388333c2dfd98faba26acd323f78ef37623"
+    },
+    {
+      "column": 30,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 104,
+      "kind": "lambda",
+      "line": 104,
+      "source": "zzz_ops/production_observer_v6.py",
+      "source_sha256": "d7d9905d0ce104ce28f9f955075aa388333c2dfd98faba26acd323f78ef37623"
+    },
+    {
+      "column": 24,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 291,
+      "kind": "lambda",
+      "line": 291,
+      "source": "zzz_ops/production_v15.py",
+      "source_sha256": "29b1a7447ef2f117b85a7330a459ce4d1efc537b05535bc448a4cb1b445a8f54"
+    },
+    {
+      "column": 8,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 35,
+      "kind": "lambda",
+      "line": 35,
+      "source": "zzz_ops/production_v4.py",
+      "source_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "column": 8,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 36,
+      "kind": "lambda",
+      "line": 36,
+      "source": "zzz_ops/production_v4.py",
+      "source_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "column": 8,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 37,
+      "kind": "lambda",
+      "line": 37,
+      "source": "zzz_ops/production_v4.py",
+      "source_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "column": 23,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 568,
+      "kind": "lambda",
+      "line": 568,
+      "source": "zzz_ops/production_v4.py",
+      "source_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "column": 31,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 587,
+      "kind": "lambda",
+      "line": 587,
+      "source": "zzz_ops/production_v4.py",
+      "source_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "column": 44,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 588,
+      "kind": "lambda",
+      "line": 588,
+      "source": "zzz_ops/production_v4.py",
+      "source_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "column": 42,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 589,
+      "kind": "lambda",
+      "line": 589,
+      "source": "zzz_ops/production_v4.py",
+      "source_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "column": 38,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 590,
+      "kind": "lambda",
+      "line": 590,
+      "source": "zzz_ops/production_v4.py",
+      "source_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "column": 36,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 591,
+      "kind": "lambda",
+      "line": 591,
+      "source": "zzz_ops/production_v4.py",
+      "source_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "column": 31,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 597,
+      "kind": "lambda",
+      "line": 597,
+      "source": "zzz_ops/production_v4.py",
+      "source_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "column": 34,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 598,
+      "kind": "lambda",
+      "line": 598,
+      "source": "zzz_ops/production_v4.py",
+      "source_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "column": 36,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 599,
+      "kind": "lambda",
+      "line": 599,
+      "source": "zzz_ops/production_v4.py",
+      "source_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "column": 68,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 600,
+      "kind": "lambda",
+      "line": 600,
+      "source": "zzz_ops/production_v4.py",
+      "source_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "column": 47,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 601,
+      "kind": "lambda",
+      "line": 601,
+      "source": "zzz_ops/production_v4.py",
+      "source_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "column": 32,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 602,
+      "kind": "lambda",
+      "line": 602,
+      "source": "zzz_ops/production_v4.py",
+      "source_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "column": 29,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 603,
+      "kind": "lambda",
+      "line": 603,
+      "source": "zzz_ops/production_v4.py",
+      "source_sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "column": 6,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 40,
+      "kind": "lambda",
+      "line": 40,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 6,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 41,
+      "kind": "lambda",
+      "line": 41,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 6,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 42,
+      "kind": "lambda",
+      "line": 42,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 23,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 501,
+      "kind": "lambda",
+      "line": 501,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 31,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 520,
+      "kind": "lambda",
+      "line": 520,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 44,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 521,
+      "kind": "lambda",
+      "line": 521,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 42,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 522,
+      "kind": "lambda",
+      "line": 522,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 38,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 523,
+      "kind": "lambda",
+      "line": 523,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 36,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 524,
+      "kind": "lambda",
+      "line": 524,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 31,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 530,
+      "kind": "lambda",
+      "line": 530,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 34,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 531,
+      "kind": "lambda",
+      "line": 531,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 36,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 532,
+      "kind": "lambda",
+      "line": 532,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 68,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 533,
+      "kind": "lambda",
+      "line": 533,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 34,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 534,
+      "kind": "lambda",
+      "line": 534,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 47,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 535,
+      "kind": "lambda",
+      "line": 535,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 32,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 536,
+      "kind": "lambda",
+      "line": 536,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 29,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 537,
+      "kind": "lambda",
+      "line": 537,
+      "source": "zzz_ops/production_v5.py",
+      "source_sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "column": 6,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 40,
+      "kind": "lambda",
+      "line": 40,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 6,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 41,
+      "kind": "lambda",
+      "line": 41,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 6,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 42,
+      "kind": "lambda",
+      "line": 42,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 24,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 507,
+      "kind": "lambda",
+      "line": 507,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 23,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 525,
+      "kind": "lambda",
+      "line": 525,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 31,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 544,
+      "kind": "lambda",
+      "line": 544,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 44,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 545,
+      "kind": "lambda",
+      "line": 545,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 54,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 547,
+      "kind": "lambda",
+      "line": 547,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 42,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 548,
+      "kind": "lambda",
+      "line": 548,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 38,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 549,
+      "kind": "lambda",
+      "line": 549,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 36,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 550,
+      "kind": "lambda",
+      "line": 550,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 40,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 560,
+      "kind": "lambda",
+      "line": 560,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 31,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 561,
+      "kind": "lambda",
+      "line": 561,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 34,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 562,
+      "kind": "lambda",
+      "line": 562,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 36,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 563,
+      "kind": "lambda",
+      "line": 563,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 68,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 564,
+      "kind": "lambda",
+      "line": 564,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 34,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 565,
+      "kind": "lambda",
+      "line": 565,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 47,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 566,
+      "kind": "lambda",
+      "line": 566,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 32,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 567,
+      "kind": "lambda",
+      "line": 567,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 29,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 568,
+      "kind": "lambda",
+      "line": 568,
+      "source": "zzz_ops/production_v6.py",
+      "source_sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "column": 21,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 138,
+      "kind": "lambda",
+      "line": 138,
+      "source": "zzz_ops/review_bundle.py",
+      "source_sha256": "439bea792ce03b97f376485589dbf69a16f68ac23f7531d835bd9c9ad5ee8eb3"
+    },
+    {
+      "column": 64,
+      "coverage_status": "source_inventory_only_not_execution",
+      "end_line": 155,
+      "kind": "lambda",
+      "line": 155,
+      "source": "zzz_ops/review_bundle.py",
+      "source_sha256": "439bea792ce03b97f376485589dbf69a16f68ac23f7531d835bd9c9ad5ee8eb3"
+    }
+  ],
+  "python_named_definition_kinds": {
+    "class": 183,
+    "function": 1820
+  },
+  "schema": 1,
+  "solidity_named_yul_helpers": [
+    {
+      "coverage_status": "source_inventory_only_not_execution",
+      "name": "words",
+      "source": "src/ZZZOracle.sol",
+      "src": "22032:204:62"
+    },
+    {
+      "coverage_status": "source_inventory_only_not_execution",
+      "name": "words",
+      "source": "src/ZZZOracle.sol",
+      "src": "20160:204:62"
+    }
+  ],
+  "source_boundary": "Current hash-checked production Python list; protected run-fork edits remain excluded in favor of HEAD. No application, tests, network or compiler executed.",
+  "yul_reuse": {
+    "path": "reports/readiness-advance-20261120/ANONYMOUS_CODE_INVENTORY.json",
+    "sha256": "295b430fa1379971d27755272552796cc15891490b8d35a987e47f27a4787a23",
+    "unchanged_authenticated_f6_source_maps": true
+  }
+}

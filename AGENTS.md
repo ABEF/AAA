@@ -1,30 +1,26 @@
 # AAA / ZZZ PoPL project instructions
 
-[Isolated wallet-stack rehearsal](reports/wallet-stack-20261123/REVIEW.md) fixes an early timer-wakeup
-error and adds a bounded immutable ABI-selector cache. Fourteen NEW JS and nine NEW
-Python checks pass; no unchanged test bodies run. Actual Ubuntu API workers,
-Nginx and the source9 reader pass the 17-NFT financial journey, cancellation,
-restart, two independent concurrent contexts and genuine expiry checks.
+[Wallet checkpoint follow-through](reports/wallet-latency-20261123/REVIEW.md) removes repeated tree walks and
+full accounting decode from history-only reads. Full checkpoint admission,
+independent request state, exact rights and all existing guards remain.
+28 distinct NEW backend methods pass in explicit stages; no old test bodies run.
 
-The full 1,000-NFT/three-currency portfolio remains UNQUALIFIED: the optimization
-advances 58→70 GET attempts, but visible-card/history work still exceeds 120s
-freshness. The separate restored F6/V10 graph cannot serve its required historical
-NFT-creation proof. Preserve both refusals; no guard or limit is relaxed.
-Current inventory: 182 Python files/2,002 named definitions/278 lambdas; frozen
-F6 Solidity 61/dependencies 39/controls 4 and 1,021 ABI rows remain unchanged.
+The final 1,000-NFT wallet journey and corrected unsealed history fixture are
+prepared, pending approved Ubuntu execution. Preserve the earlier final-request
+expiry and 38-transaction capture-bound refusal; neither is a completed pass.
+The unused late-tip alternative stays unused. No freshness/resource limit changes.
 
-HTTP outcomes retain their earlier source stages; the later sibling-read cleanup
-has five separate unit checks. The journeys were not rerun.
+Current inventory:182 Python files/2,003 named definitions/278 lambdas;
+F6 Solidity61/dependencies39/controls4 and1,021 ABI rows remain unchanged.
+Changed checkpoint1/2/3 identities require explicit rebuild/review/re-pin for
+separately authorized adoption. Preserve original artifacts and journals.
+Existing sites/services/Anvil8902, null public configurations, the Anvil-only
+signer and user-paused heartbeat stay unchanged. Full normal
+F6/V10/provider/market/production acceptance remains open.
 
-Changed abi.py enters checkpoint semantic identity. Preserve original checkpoint,
-review, raw DB and journal bytes; explicitly rebuild/review/re-pin for separately
-authorized adoption. All five owned private-network labs stopped. Existing sites,
-services, Anvil8902, signer/null public configurations and paused heartbeat stay
-unchanged. Actual F6/V10/provider/market/production operating approval stays open.
-
-Current workload inventory:182Python files/2,002named definitions,278lambdas,
+Current workload inventory:182Python files/2,003named definitions,278lambdas,
 unchanged F6 maps61/39/4 and1,021ABI rows; normal verifier checks
-reports/wallet-stack-20261123/FUNCTION_INVENTORY.json. The earlier forty-five distinct
+reports/wallet-latency-20261123/FUNCTION_INVENTORY.json. The earlier forty-five distinct
 NEW Python and90 NEW JS methods have precise staged scopes. Cache retention is
 encoded key+JSON bytes64KiB/entry and8MiBtotal, not process-RAM qualification.
 Original producer/cache/fixture failures and updated-only reruns remain recorded.
@@ -137,7 +133,7 @@ That advance's historical inventory is [here](reports/readiness-advance-20261120
 179Pythonfiles/1,979named definitions at that source. The current inventory above
 had1,980definitions at that keeper-fix stage. Use the bounded-capture inventory
 above for that historical1,984-definition stage. Current source inventory is
-reports/wallet-stack-20261123/FUNCTION_INVENTORY.json (2,002 definitions); Solidity61/dependencies39/controls4 stay.
+reports/wallet-latency-20261123/FUNCTION_INVENTORY.json (2,003 definitions); Solidity61/dependencies39/controls4 stay.
 Existing OpenSea artifacts bind this module's old hash; preserve them and rebuild/
 review new artifacts explicitly. service.py/checkpoint and runtime identities stay.
 
@@ -196,7 +192,7 @@ see the ordered wire supplement. All owned nodes stop. Public feeds/routes/fees,
 independent release approval remain open. Source publication changes no running
 site/service/chain/journal/checkpoint or production authority.
 
-Reviewed 23 November 2026. Read [context](PROJECT_CONTEXT.md), [README](README.md),
+Reviewed 24 November 2026. Read [context](PROJECT_CONTEXT.md), [README](README.md),
 [sole Todo](TODO.md), [handoff](docs/WORK_HANDOFF.md),
 [current findings](docs/AUDIT_FINDINGS.md) and the relevant
 [operator procedure](docs/OPERATOR_MANUAL.md) before changing behavior.

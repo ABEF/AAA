@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "kind": "source_and_new_test_verification_receipt",
+  "scope": "Sixteen NEW focused Python methods use tracked setup helpers, fresh temporary SQLite databases and synthetic RPC. No old test method, live service, network, EVM, host operating action, signing or checkpoint adoption.",
+  "production_approved": false,
+  "bounds": "Constructor fully authenticates and validates the entire schema1/schema2 artifact first. The extra history section is compact immutable UTF-8 bytes under the existing 32MiB artifact bound. Each seed independently decodes maps. Strict boolean selection defaults to full restore; only absent/None consumer selects history-only. All existing history identity, indexed/canonical anchors, final freshness, work, NFT, asset and financial guards remain.",
+  "result": {
+    "new_methods": 16,
+    "passed": 16,
+    "execution_stages": 2,
+    "unchanged_tests_rerun": false,
+    "final_whole_file_rerun": false,
+    "original_errors": 1,
+    "unresolved_errors": 0,
+    "failures": 0,
+    "skips": 0
+  },
+  "method_names": [
+    "test_new_actual_suffix_history_matches_full_seed_and_unseeded_replay",
+    "test_new_claims_conversions_transfer_and_earned_units_remain_exact",
+    "test_new_constructor_fully_rejects_accounting_before_any_history_seed",
+    "test_new_default_seed_keeps_full_schema1_and_schema2_restore",
+    "test_new_final_freshness_still_rejects_after_successful_checkpoint_replay",
+    "test_new_history_decode_is_immutable_compact_and_keeps_work_deadline",
+    "test_new_history_flag_is_strict_boolean_and_keyword_only",
+    "test_new_history_seed_has_only_local_payout_state_and_minimal_identity",
+    "test_new_history_seed_still_authenticates_indexed_anchor",
+    "test_new_lineage_dispatch_retains_its_existing_snapshot_path",
+    "test_new_non_none_falsey_consumer_always_selects_full_state",
+    "test_new_oversized_artifact_still_refuses_before_history_decode",
+    "test_new_parallel_history_seeds_do_not_share_any_mutable_maps",
+    "test_new_real_earnings_selects_history_only_then_full_and_finishes_proofs",
+    "test_new_reorg_at_final_checkpoint_anchor_refuses_the_completed_report",
+    "test_new_seed_maps_and_nested_conversion_provenance_are_independent"
+  ],
+  "execution_stages": [
+    {
+      "stage": "stage1",
+      "selected_methods": [
+        "test_new_constructor_fully_rejects_accounting_before_any_history_seed",
+        "test_new_default_seed_keeps_full_schema1_and_schema2_restore",
+        "test_new_history_seed_has_only_local_payout_state_and_minimal_identity",
+        "test_new_actual_suffix_history_matches_full_seed_and_unseeded_replay",
+        "test_new_claims_conversions_transfer_and_earned_units_remain_exact",
+        "test_new_seed_maps_and_nested_conversion_provenance_are_independent",
+        "test_new_parallel_history_seeds_do_not_share_any_mutable_maps",
+        "test_new_real_earnings_selects_history_only_then_full_and_finishes_proofs",
+        "test_new_reorg_at_final_checkpoint_anchor_refuses_the_completed_report",
+        "test_new_final_freshness_still_rejects_after_successful_checkpoint_replay",
+        "test_new_history_seed_still_authenticates_indexed_anchor",
+        "test_new_history_flag_is_strict_boolean_and_keyword_only",
+        "test_new_history_decode_is_immutable_compact_and_keeps_work_deadline",
+        "test_new_oversized_artifact_still_refuses_before_history_decode",
+        "test_new_non_none_falsey_consumer_always_selects_full_state",
+        "test_new_lineage_dispatch_retains_its_existing_snapshot_path"
+      ],
+      "passed_methods": [
+        "test_new_constructor_fully_rejects_accounting_before_any_history_seed",
+        "test_new_default_seed_keeps_full_schema1_and_schema2_restore",
+        "test_new_history_seed_has_only_local_payout_state_and_minimal_identity",
+        "test_new_actual_suffix_history_matches_full_seed_and_unseeded_replay",
+        "test_new_claims_conversions_transfer_and_earned_units_remain_exact",
+        "test_new_parallel_history_seeds_do_not_share_any_mutable_maps",
+        "test_new_real_earnings_selects_history_only_then_full_and_finishes_proofs",
+        "test_new_reorg_at_final_checkpoint_anchor_refuses_the_completed_report",
+        "test_new_final_freshness_still_rejects_after_successful_checkpoint_replay",
+        "test_new_history_seed_still_authenticates_indexed_anchor",
+        "test_new_history_flag_is_strict_boolean_and_keyword_only",
+        "test_new_history_decode_is_immutable_compact_and_keeps_work_deadline",
+        "test_new_oversized_artifact_still_refuses_before_history_decode",
+        "test_new_non_none_falsey_consumer_always_selects_full_state",
+        "test_new_lineage_dispatch_retains_its_existing_snapshot_path"
+      ],
+      "error_method": "test_new_seed_maps_and_nested_conversion_provenance_are_independent",
+      "errors": 1,
+      "failures": 0,
+      "skips": 0,
+      "duration_seconds": 12.282,
+      "source_pins": {
+        "frontend_api/earnings.py": "33f104d8e531ff26999197790247baebef940d72696a662d262ff585f7077be8",
+        "frontend_api/earnings_checkpoint.py": "b593738648a0677bbcca77b7a3a4dc0ca5131a6bb8b8ce6509e93282c17829b3",
+        "frontend_api/earnings_checkpoint_v2.py": "525dfae493248780d6025d88ab7ea7cdd0e507465ed378f0c2b56d7e4044ac98",
+        "tests_python/test_checkpoint_history_seed.py": "076be8fe4ec02a866afd9ed85391f182f6c0420c107369dc60b6e768c939a19e"
+      },
+      "captured_output_sha256": {
+        "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "93149d623bdd232254df9bf017e924e13df9c2b951ef2ec5211273264418a273"
+      }
+    },
+    {
+      "stage": "stage2",
+      "selected_methods": [
+        "test_new_seed_maps_and_nested_conversion_provenance_are_independent"
+      ],
+      "passed_methods": [
+        "test_new_seed_maps_and_nested_conversion_provenance_are_independent"
+      ],
+      "errors": 0,
+      "failures": 0,
+      "skips": 0,
+      "duration_seconds": 1.046,
+      "source_pins": {
+        "frontend_api/earnings.py": "33f104d8e531ff26999197790247baebef940d72696a662d262ff585f7077be8",
+        "frontend_api/earnings_checkpoint.py": "b593738648a0677bbcca77b7a3a4dc0ca5131a6bb8b8ce6509e93282c17829b3",
+        "frontend_api/earnings_checkpoint_v2.py": "525dfae493248780d6025d88ab7ea7cdd0e507465ed378f0c2b56d7e4044ac98",
+        "tests_python/test_checkpoint_history_seed.py": "2eb924a968a73048b260645b61c1b72884cde1a6b3423cc5c34003585230e24d"
+      },
+      "captured_output_sha256": {
+        "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "171ddacbb177b55858c36121c5054356c549ac9457b82f6ed9f8651a92a9b626"
+      }
+    }
+  ],
+  "original_error": "A read-only mapping assignment using a uint256 NFT key raised CPython IndexError instead of the asserted TypeError. The test assertion now uses key 1 to check immutability. Production source was unchanged; only this affected NEW method reran.",
+  "covered_partitions": [
+    "Constructor rejects corrupt shares, exact tree backing and fractional LP accounts before a seed is available",
+    "Default full restore preserves schema1 indexed and schema2 exact allocation state and earnings",
+    "Compact seed includes only history, LP/royalty asset lists and minimal chain/history identity; Unicode stays UTF-8",
+    "Actual SQLite suffix history equals full seed and unseeded replay for financial history",
+    "Transferred current owner, exact native claims, zero conversion rows and original earned units reconcile",
+    "Repeated/concurrent seeds, nested conversion provenance, identity and anchor maps are independent",
+    "Real Earnings selects compact history first and full model restore second; final canonical/freshness guards run",
+    "Final checkpoint reorg, indexed anchor mismatch and late freshness refuse reports",
+    "Strict keyword-only boolean, falsey non-None consumers, unchanged lineage dispatch and artifact size bound",
+    "Immutable compact section parsing and periodic decode deadline interruption; injected synthetic 1000-owner codec section is not an artifact-admission claim"
+  ],
+  "raw_stream_policy": "Original captured streams, original error and stage metadata/source hashes are retained privately; this public receipt publishes hashes only.",
+  "source_pins": {
+    "frontend_api/earnings.py": "33f104d8e531ff26999197790247baebef940d72696a662d262ff585f7077be8",
+    "frontend_api/earnings_checkpoint.py": "b593738648a0677bbcca77b7a3a4dc0ca5131a6bb8b8ce6509e93282c17829b3",
+    "frontend_api/earnings_checkpoint_v2.py": "525dfae493248780d6025d88ab7ea7cdd0e507465ed378f0c2b56d7e4044ac98",
+    "frontend_api/earnings_checkpoint_v3.py": "ab00ba2b9972d336e70f0b7559ee45903939245060e3d3b1bf081cf61b1258eb",
+    "frontend_api/earnings_replay.py": "8c0d10fba14d2b584f3043ec922f78f49701b27b5bde03635b52e177a4005624",
+    "frontend_api/earnings_exact_lp.py": "77e0694b2d800dafd5dc05e760648d0ece86304ca47abb5f05d3ff76b32bb604",
+    "frontend_api/history.py": "000af63258776ad42cc16c25b2638e1e0877a4217fb254f0d4fe52ba42a280cc",
+    "frontend_api/service.py": "e0d8fd9512e080f40afa26f760240d2188ae3d02ecf34c4d0fb601854b5a38ce",
+    "tests_python/test_checkpoint_history_seed.py": "2eb924a968a73048b260645b61c1b72884cde1a6b3423cc5c34003585230e24d"
+  },
+  "fixture_policy": "Existing fixture constructors, setup, cleanup and data/helper methods are reused; the explicit runner selects only the sixteen new methods. No private fixture or host/runtime path is a test input.",
+  "unchanged_protected_dirty_file_pins": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "qualification": "This scoped source/test evidence does not qualify whole-wallet latency, 1000-NFT provider/hosting operation, restored F6/V10 historical creation service, production, operating adoption or independent release approval."
+}

@@ -1,26 +1,22 @@
 # Engineering roadmap and production qualification plan
 
-[Isolated wallet-stack rehearsal](../reports/wallet-stack-20261123/REVIEW.md) fixes an early timer-wakeup
-error and adds a bounded immutable ABI-selector cache. Fourteen NEW JS and nine NEW
-Python checks pass; no unchanged test bodies run. Actual Ubuntu API workers,
-Nginx and the source9 reader pass the 17-NFT financial journey, cancellation,
-restart, two independent concurrent contexts and genuine expiry checks.
+[Wallet checkpoint follow-through](../reports/wallet-latency-20261123/REVIEW.md) removes repeated tree walks and
+full accounting decode from history-only reads. Full checkpoint admission,
+independent request state, exact rights and all existing guards remain.
+28 distinct NEW backend methods pass in explicit stages; no old test bodies run.
 
-The full 1,000-NFT/three-currency portfolio remains UNQUALIFIED: the optimization
-advances 58→70 GET attempts, but visible-card/history work still exceeds 120s
-freshness. The separate restored F6/V10 graph cannot serve its required historical
-NFT-creation proof. Preserve both refusals; no guard or limit is relaxed.
-Current inventory: 182 Python files/2,002 named definitions/278 lambdas; frozen
-F6 Solidity 61/dependencies 39/controls 4 and 1,021 ABI rows remain unchanged.
+The final 1,000-NFT wallet journey and corrected unsealed history fixture are
+prepared, pending approved Ubuntu execution. Preserve the earlier final-request
+expiry and 38-transaction capture-bound refusal; neither is a completed pass.
+The unused late-tip alternative stays unused. No freshness/resource limit changes.
 
-HTTP outcomes retain their earlier source stages; the later sibling-read cleanup
-has five separate unit checks. The journeys were not rerun.
-
-Changed abi.py enters checkpoint semantic identity. Preserve original checkpoint,
-review, raw DB and journal bytes; explicitly rebuild/review/re-pin for separately
-authorized adoption. All five owned private-network labs stopped. Existing sites,
-services, Anvil8902, signer/null public configurations and paused heartbeat stay
-unchanged. Actual F6/V10/provider/market/production operating approval stays open.
+Current inventory:182 Python files/2,003 named definitions/278 lambdas;
+F6 Solidity61/dependencies39/controls4 and1,021 ABI rows remain unchanged.
+Changed checkpoint1/2/3 identities require explicit rebuild/review/re-pin for
+separately authorized adoption. Preserve original artifacts and journals.
+Existing sites/services/Anvil8902, null public configurations, the Anvil-only
+signer and user-paused heartbeat stay unchanged. Full normal
+F6/V10/provider/market/production acceptance remains open.
 
 [Current actual-fee proof](../reports/pool-fees-20261121/REVIEW.md) advances P08
 with real-core harvested receipts, exact80/10/5/5+dust/reserve conservation and
@@ -44,7 +40,7 @@ empty-state and locally seeded-depth forks. Only final production selection is d
 it does not block those tests. Actual market/source/route qualification remains
 separate. See [testing scope](../reports/test-pool-scope-20261120/REVIEW.md).
 
-Progress reconciled23November2026; exact new scopes are in the [isolated-stack record](../reports/wallet-stack-20261123/REVIEW.md). Earlier reconciliation against `33af0ab927d6724b724df99e926fedf78e4febcf`; original plan baseline `519ff4f075022f789f46facbab56f0a944705b11` is retained. **Production is undeployed and NOT APPROVED.**
+Progress reconciled24November2026; exact new scopes are in the [checkpoint follow-through](../reports/wallet-latency-20261123/REVIEW.md). Earlier reconciliation against `33af0ab927d6724b724df99e926fedf78e4febcf`; original plan baseline `519ff4f075022f789f46facbab56f0a944705b11` is retained. **Production is undeployed and NOT APPROVED.**
 This is the plan for checking readiness, not authorization to execute public
 transactions, deploy, seal, restart services or open mint. [TODO.md](../TODO.md)
 remains the only task-status checklist; record actual approval in the
@@ -52,7 +48,7 @@ remains the only task-status checklist; record actual approval in the
 and [matrix](../reports/production-readiness-plan-20261119/MATRIX.json) retain
 source provenance and map every stable Todo task to the packages below.
 
-## Current progress snapshot — 23 November 2026
+## Current progress snapshot — 24 November 2026
 
 The23 acceptance packages still map all83 stable Todo tasks:35done,40in progress,
 7todo and1excluded. These are task states, not a release-readiness percentage.

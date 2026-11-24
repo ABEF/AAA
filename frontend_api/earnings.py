@@ -51,7 +51,7 @@ class Earnings:
                 return self.checkpoint.snapshot(p,header,block,lp,royalties,**kwargs)
             require(p is self.p and p.lineage is None, 'Checkpoint lineage is unsupported')
             self.checkpoint.check_anchor(p)
-            kwargs['seed'] = self.checkpoint.seed()
+            kwargs['seed'] = self.checkpoint.seed(history_only=kwargs.get('consumer') is None)
         return p._history_snapshot(header,block,lp,royalties,**kwargs)
 
     def replay_start(self,epochs):

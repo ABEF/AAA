@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "static_only": true,
+  "scope": "Earnings dispatch changes only seed history selection; all other module AST is identical to published baseline.",
+  "predicate": "consumer is None",
+  "full_artifact_constructor_validation_retained": true,
+  "lineage_branch_unchanged": true,
+  "canonical_anchor_before_dispatch_unchanged": true,
+  "final_checkpoint_anchor_and_financial_reconciliation_unchanged": true,
+  "default_seed_full_restore_preserved": true,
+  "limits_or_rights_changed": false,
+  "source_sha256": "33f104d8e531ff26999197790247baebef940d72696a662d262ff585f7077be8"
+}

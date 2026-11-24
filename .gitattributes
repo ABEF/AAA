@@ -435,3 +435,6 @@ reports/compact-wallet-20261121/** -text whitespace=cr-at-eol
 # Preserve tested Windows checkpoint and focused-check source bytes.
 frontend_api/earnings_checkpoint.py -text whitespace=cr-at-eol
 tests_python/test_wallet_view.py -text whitespace=cr-at-eol,-blank-at-eof
+
+# Preserve exact native checkpoint-performance review and focused-check receipts.
+reports/wallet-latency-20261123/** -text whitespace=cr-at-eol

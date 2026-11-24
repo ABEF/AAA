@@ -1,0 +1,53 @@
+{
+  "bounds": "Bulk traversal only; seed decode, tree restoration, source identity and all existing validation/resource limits remain. No state is shared across seeds or requests.",
+  "captured_output_sha256": {
+    "stderr": "61b451614d0a0b9a5640367b53e490a9dd23590dd13607df41a790a29d031229",
+    "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "command": "python -X utf8 -m unittest tests_python.test_checkpoint_bulk_validation -v",
+  "covered_partitions": [
+    "Zero to 1000 minted ordinals, exact leaves and immutable tree books",
+    "Zero ancestor incoming with positive pending descendants",
+    "High/low phase extremes, dormant leaves and explicit zero entries",
+    "Uint256 boundaries and overflowing path rejection",
+    "Four LP owner buckets and collective rights with arbitrary NFT IDs",
+    "Credits, claims and positive share changes",
+    "Malformed checkpoint identity, denominators, phases, backing and fractional accounts",
+    "Conservation guard, per-node deadline interruption and independent output lists"
+  ],
+  "kind": "source_and_new_test_verification_receipt",
+  "method_names": [
+    "test_new_bulk_selection_rejects_invalid_books_and_counts",
+    "test_new_empty_and_all_dormant_artifacts_keep_exact_zero_books",
+    "test_new_full_allocation_conservation_check_remains_required",
+    "test_new_malformed_checkpoint_guards_match_original_calculation",
+    "test_new_node_work_checks_stop_without_mutating_any_book",
+    "test_new_phase_extremes_and_explicit_zero_entries_remain_valid",
+    "test_new_prefix_boundaries_match_every_original_leaf",
+    "test_new_returned_lists_never_share_or_change_lp_state",
+    "test_new_thousand_nfts_four_buckets_and_dormant_rights",
+    "test_new_uint_boundaries_match_views_and_reject_path_overflow",
+    "test_new_varied_credits_claims_and_weight_changes_match_views",
+    "test_new_zero_ancestor_still_reads_pending_descendants"
+  ],
+  "production_approved": false,
+  "raw_stream_policy": "Original captured streams retained privately; only their hashes are published.",
+  "reference": "Existing Tree.claimable per ordinal; both books and complete state use the preceding per-leaf allocation calculation as a differential reference.",
+  "result": {
+    "duration_seconds": 0.486,
+    "errors": 0,
+    "execution_stages": 1,
+    "failures": 0,
+    "new_methods": 12,
+    "passed": 12,
+    "skips": 0,
+    "unchanged_tests_rerun": false
+  },
+  "schema": 1,
+  "scope": "Twelve NEW focused Python unit methods only; no historical or unchanged test bodies, service, network or EVM execution. This receipt is not whole-wallet or production qualification.",
+  "source_pins": {
+    "frontend_api/earnings_checkpoint_v2.py": "525dfae493248780d6025d88ab7ea7cdd0e507465ed378f0c2b56d7e4044ac98",
+    "tests_python/test_checkpoint_bulk_validation.py": "9fcd1eed887c0e166ef3b707326b9c4f8355a4420cc4d1bf3c5fe572c0d0b1e0",
+    "zzz_ops/exact_lp.py": "397279d87ef7caa85f98f329277cce8da2e10ad7129d5a6e54b5d7b361129259"
+  }
+}

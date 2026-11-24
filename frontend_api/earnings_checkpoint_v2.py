@@ -11,7 +11,7 @@ from frontend_api.earnings_exact_lp import ExactReplay
 from frontend_api.earnings_replay import SCALE, require
 from frontend_api.history import HistoryError, ZERO
 from zzz_ops.abi import address
-from zzz_ops.exact_lp import Tree, UINT, Q, LEAVES, MAX_ORDINAL
+from zzz_ops.exact_lp import Tree, UINT, Q, LEAVES, MAX_ORDINAL, split, uint
 from zzz_ops.work_budget import checkpoint
 
 
@@ -80,6 +80,38 @@ def _tree(raw, expected):
             require((phase == (0, 0)) if weight == 0 else phase[1] < weight,
                     'Checkpoint2 LP phase denominator differs')
     return _restore_tree(raw)
+
+
+def _claimable_prefix(tree, book, count):
+    """Read validated contiguous ordinals once, without changing any LP phase.
+
+    The caller still validates all weights, pending nodes and carry first. A
+    zero incoming amount does not imply an empty subtree: descendants may hold
+    pending units. Reuse only this traversal's shared ancestors, never state
+    between trees, books, seeds or requests.
+    """
+    if type(book) is not int or book not in (0, 1) or type(count) is not int or not 0 <= count <= MAX_ORDINAL:
+        raise ValueError('Invalid bulk checkpoint leaf selection')
+    result = [0] * count
+    pending, carry = tree.pending[book], tree.carry[book]
+    stack = [(1, 0, 1, LEAVES)]
+    while stack:
+        checkpoint()
+        node, incoming, lower, upper = stack.pop()
+        if lower > count:
+            continue
+        incoming = uint(incoming + pending.get(node, 0))
+        if lower == upper:
+            result[lower - 1] = incoming
+            continue
+        left = right = 0
+        if incoming:
+            left, right, _, _ = split(incoming, tree.weights.get(node * 2, 0),
+                                      tree.weights.get(node, 0), *carry.get(node, (0, 0)))
+        middle = (lower + upper) // 2
+        stack.append((node * 2 + 1, right, middle + 1, upper))
+        stack.append((node * 2, left, lower, middle))
+    return result
 
 
 def validate(exact, shared, lp_assets, accounts):
@@ -155,7 +187,8 @@ def validate(exact, shared, lp_assets, accounts):
         require(_uint(liability + orphaned.get(asset, 0)), 'Checkpoint2 LP backing total overflow')
         for tree in (collective, *owner_trees.values()):
             try:
-                amounts = [tree.claimable(book, n) for n in ordinals.values()]
+                # The immutable ordinal check above proves exactly 1..len(mints).
+                amounts = _claimable_prefix(tree, book, len(mints))
             except ValueError as exc:
                 raise HistoryError('Invalid checkpoint2 LP phase allocation') from exc
             require(sum(amounts) == tree.outstanding[book], 'Checkpoint2 LP assigned units differ from outstanding')

@@ -1,0 +1,36 @@
+{
+  "anonymous_code_inventory_sha256": "498b1c62227498dd5ff162cc52e78d1752fea6396ed69b726effab5438f0d454",
+  "function_inventory_sha256": "fac45cfefb60f530d779ef3608601170226180d050747b74f655df17716467d5",
+  "kind": "current_source_and_new_test_pins",
+  "normalization": "LF-normalized SHA256 replaces CRLF with LF only, matching checkpoint semantic identity; raw SHA256 authenticates exact saved bytes.",
+  "production_approved": false,
+  "schema": 1,
+  "scope": "Source inventory and byte identity only; no tests, network, compiler, service, signing or adoption executed by this receipt generation.",
+  "source_pins": {
+    "frontend_api/earnings.py": {
+      "lf_normalized_sha256": "33f104d8e531ff26999197790247baebef940d72696a662d262ff585f7077be8",
+      "raw_byte_length": 17935,
+      "raw_sha256": "33f104d8e531ff26999197790247baebef940d72696a662d262ff585f7077be8"
+    },
+    "frontend_api/earnings_checkpoint.py": {
+      "lf_normalized_sha256": "d801fcf9ade08ff07027fc3bb5babeedc30c7d8929faec8d7b0ace274d7727c8",
+      "raw_byte_length": 26296,
+      "raw_sha256": "b593738648a0677bbcca77b7a3a4dc0ca5131a6bb8b8ce6509e93282c17829b3"
+    },
+    "frontend_api/earnings_checkpoint_v2.py": {
+      "lf_normalized_sha256": "525dfae493248780d6025d88ab7ea7cdd0e507465ed378f0c2b56d7e4044ac98",
+      "raw_byte_length": 13889,
+      "raw_sha256": "525dfae493248780d6025d88ab7ea7cdd0e507465ed378f0c2b56d7e4044ac98"
+    },
+    "tests_python/test_checkpoint_bulk_validation.py": {
+      "lf_normalized_sha256": "9fcd1eed887c0e166ef3b707326b9c4f8355a4420cc4d1bf3c5fe572c0d0b1e0",
+      "raw_byte_length": 10604,
+      "raw_sha256": "9fcd1eed887c0e166ef3b707326b9c4f8355a4420cc4d1bf3c5fe572c0d0b1e0"
+    },
+    "tests_python/test_checkpoint_history_seed.py": {
+      "lf_normalized_sha256": "2eb924a968a73048b260645b61c1b72884cde1a6b3423cc5c34003585230e24d",
+      "raw_byte_length": 16012,
+      "raw_sha256": "2eb924a968a73048b260645b61c1b72884cde1a6b3423cc5c34003585230e24d"
+    }
+  }
+}

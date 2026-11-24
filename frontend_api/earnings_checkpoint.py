@@ -276,9 +276,18 @@ class Checkpoint:
             self._validate(payload,anchor,engine)
             require(data['previous_sha256'] is None or isinstance(data['previous_sha256'],str) and
                     re.fullmatch('[0-9a-f]{64}',data['previous_sha256']), 'Invalid previous checkpoint identity')
+            # Only after full artifact validation, retain a compact immutable
+            # section for history reads that never restore an earnings model.
+            # Each seed still decodes its own independent maps, as in lineage.
+            history_raw=json.dumps(dict(schema=data['schema'],
+                state=encode({name:payload[name] for name in ('history','lp_assets','royalty_assets')}),
+                anchor=data['anchor'],identity=encode({name:bound[name] for name in ('chain','history')})),
+                separators=(',', ':'),allow_nan=False,ensure_ascii=False).encode('utf-8')
+            require(len(history_raw)<=MAX_BYTES, 'Checkpoint history section exceeds the reviewed artifact size bound')
             # Retain immutable encoded bytes. Each request gets independent maps;
             # model replay must never mutate another user's checkpoint state.
             self._raw=raw
+            self._history_raw=history_raw
             self.anchor=MappingProxyType(anchor)
         except (OSError,UnicodeError,ValueError,KeyError,TypeError,AttributeError,RecursionError):
             raise HistoryError('Earnings checkpoint is unavailable or malformed') from None
@@ -382,8 +391,9 @@ class Checkpoint:
         probe.begin(v['emitters'],v['lp_assets'],v['royalty_assets'],fee_intake_version=1,royalty_settlement_version=royalty_profile(engine.p))
         seed=Seed('',anchor,{},v,None,version);seed.restore(probe);probe.finish()
 
-    def seed(self):
-        data=_stored_json(self._raw.decode('utf-8'))
+    def seed(self, *, history_only=False):
+        require(type(history_only) is bool, 'Invalid checkpoint history-only selection')
+        data=_stored_json((self._history_raw if history_only else self._raw).decode('utf-8'))
         payload=decode(data['state']);anchor=decode(data['anchor']);bound=decode(data['identity'])
         h=payload['history']
         history=HistorySnapshot(MappingProxyType(h['owners']),MappingProxyType(h['claims']),

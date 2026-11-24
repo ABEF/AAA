@@ -1,11 +1,12 @@
 # Whole-project workload coverage
 
-The [wallet-stack advance](../reports/wallet-stack-20261123/REVIEW.md) adds a bounded
-pure ABI-selector cache and corrects real-timer early-wake handling in the website.
-The current static inventory is182 Python files/2,002 named definitions
-(1,819 functions/183 classes),278 lambdas and2 named project Yul helpers.
-F6 Solidity61/dependencies39/controls4 and1,021 ABI rows remain unchanged.
-These counts establish source scope, not dynamic or production acceptance.
+The [wallet checkpoint follow-through](../reports/wallet-latency-20261123/REVIEW.md)
+adds read-only bulk validation and immutable history-only seeds after full
+checkpoint validation. Current static inventory:182 Python files/2,003 named
+definitions (1,820 functions/183 classes),278 lambdas and2 unchanged named Yul
+helpers; F6 maps61/39/4 and1,021 ABI rows remain.28 NEW backend methods pass
+in explicit stages. Inventory and finite checks do not establish full dynamic,
+provider, maximum-wallet, operating or production acceptance.
 
 [Compact wallet qualification](../reports/compact-wallet-20261121/REVIEW.md) adds
 four-currency combined pages and bounded request-local canonical reuse. That source

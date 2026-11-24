@@ -1,0 +1,19 @@
+{
+  "all_original_artifacts_preserved": true,
+  "allowed_changes": [
+    "import existing split and uint",
+    "add private read-only _claimable_prefix",
+    "replace repeated per-leaf validation calculation"
+  ],
+  "checkpoint_schema_changed": false,
+  "claim_or_allocation_mutations_changed": false,
+  "current_sha256": "525dfae493248780d6025d88ab7ea7cdd0e507465ed378f0c2b56d7e4044ac98",
+  "existing_contracts_changed": false,
+  "guard_removals": 0,
+  "kind": "static_source_boundary_not_dynamic_coverage",
+  "limits_or_financial_rights_changed": false,
+  "original_sha256": "7dee675ca520ff0b84f368d479851a2e4194a830b33c59a3bced06387a714172",
+  "production_source_change": "frontend_api/earnings_checkpoint_v2.py",
+  "remaining_module_ast_identical": true,
+  "schema": 1
+}
