@@ -1,0 +1,22 @@
+{
+  "actual_canonical_charges_wei": [
+    33196004713832,
+    1369966
+  ],
+  "actual_service_stop_not_qualified_here": "direct actor stop_requested fence/lock handoff only",
+  "combined_actual_charge_wei": 33196006083798,
+  "combined_captured_maximum_cost_wei": 138728011583788,
+  "new_hash": "0x4eff90d64f5933af4f4087ebec83b04c1298eab428d4c5284961ed47f9baf66f",
+  "new_sender": "0xc57eb5119b3f4f1b13b8014168accf71899f9824",
+  "new_status": 1,
+  "no_new_old_raw_submission_or_resend": true,
+  "old_archived_bytes_unchanged_through_new_work": true,
+  "old_final_journal_sha256": "dd9c9aff5461029df222d2a2c496bb74e9993b571cc521a95835e19b1054aff3",
+  "old_hash": "0x3ec5b763a09300105fbd78744a6bf1cffed0912a439f0dd0709d018d238e2840",
+  "old_sender": "0x2d249dd6797990cf59fc00d479a4a8337827a918",
+  "old_status": 0,
+  "operator_must_review_crosskey_remaining_budget": true,
+  "other_existing_keeper_grants_preserved": true,
+  "production_daily_counters_are_per_journal_not_global": true,
+  "shared_lab_ceiling_wei": 50000000000000000
+}

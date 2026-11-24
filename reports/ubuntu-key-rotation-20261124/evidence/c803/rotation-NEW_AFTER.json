@@ -1,0 +1,273 @@
+{
+  "final": {
+    "bytes": 2668,
+    "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"confirmation_clear_v1\": {\n    \"47181787163762592248710325652087236475813397965818762058663276509558631703230\": {\n      \"awaiting_healthy_read\": true,\n      \"hash\": \"0x732f49936a282f22c3969e17697d05a04b339dfef8cfa1aa316758c4f24d78af\",\n      \"nonce\": 0,\n      \"number\": 119107339,\n      \"timestamp\": 1795560223\n    }\n  },\n  \"confirmation_reset_v1\": {},\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {\n    \"rebalance_reset:47181787163762592248710325652087236475813397965818762058663276509558631703230\": 1795560223\n  },\n  \"last_fee_observation\": {\n    \"cost_wei\": 1369966,\n    \"execution_price_wei\": 26,\n    \"gas_used\": 52691,\n    \"l1_fee_wei\": 0,\n    \"receipt_fee_policy\": \"included\",\n    \"reported_price_wei\": 26,\n    \"transaction\": \"0x4eff90d64f5933af4f4087ebec83b04c1298eab428d4c5284961ed47f9baf66f\"\n  },\n  \"next_nonce\": 1,\n  \"pending\": null,\n  \"receipt_anchor\": {\n    \"hash\": \"0x732f49936a282f22c3969e17697d05a04b339dfef8cfa1aa316758c4f24d78af\",\n    \"nonce\": 0,\n    \"number\": 119107339,\n    \"timestamp\": 1795560223\n  },\n  \"retry_after\": {},\n  \"sender\": \"0xc57eb5119b3f4f1b13b8014168accf71899f9824\",\n  \"spent\": {\n    \"2026-11-24\": 1369966\n  }\n}\n",
+    "sha256": "848f00c240fff7583394eab6fa84b672f131a34b8f90d2a91160601bd3f15546",
+    "state": {
+      "accounting_model": "shared-pools-v2",
+      "accounting_version": 7,
+      "bucket_cursor": 0,
+      "chain_id": 4663,
+      "confirmation_clear_v1": {
+        "47181787163762592248710325652087236475813397965818762058663276509558631703230": {
+          "awaiting_healthy_read": true,
+          "hash": "0x732f49936a282f22c3969e17697d05a04b339dfef8cfa1aa316758c4f24d78af",
+          "nonce": 0,
+          "number": 119107339,
+          "timestamp": 1795560223
+        }
+      },
+      "confirmation_reset_v1": {},
+      "contracts": {
+        "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+        "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+        "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+        "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+        "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+        "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+        "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+        "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+        "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+        "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+        "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+        "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+        "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+        "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+        "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+        "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+        "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+        "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+        "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+        "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+        "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+      },
+      "execution_price_version": 1,
+      "fee_intake_version": 1,
+      "last": {
+        "rebalance_reset:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795560223
+      },
+      "last_fee_observation": {
+        "cost_wei": 1369966,
+        "execution_price_wei": 26,
+        "gas_used": 52691,
+        "l1_fee_wei": 0,
+        "receipt_fee_policy": "included",
+        "reported_price_wei": 26,
+        "transaction": "0x4eff90d64f5933af4f4087ebec83b04c1298eab428d4c5284961ed47f9baf66f"
+      },
+      "next_nonce": 1,
+      "pending": null,
+      "receipt_anchor": {
+        "hash": "0x732f49936a282f22c3969e17697d05a04b339dfef8cfa1aa316758c4f24d78af",
+        "nonce": 0,
+        "number": 119107339,
+        "timestamp": 1795560223
+      },
+      "retry_after": {},
+      "sender": "0xc57eb5119b3f4f1b13b8014168accf71899f9824",
+      "spent": {
+        "2026-11-24": 1369966
+      }
+    }
+  },
+  "initial": {
+    "bytes": 1708,
+    "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"pending\": null,\n  \"receipt_anchor\": null,\n  \"sender\": \"0xc57eb5119b3f4f1b13b8014168accf71899f9824\",\n  \"spent\": {}\n}\n",
+    "sha256": "b0abdb4da08514ec70d23a40d8c69c14927e01222cb1425289e3ac54c3772768",
+    "state": {
+      "accounting_model": "shared-pools-v2",
+      "accounting_version": 7,
+      "bucket_cursor": 0,
+      "chain_id": 4663,
+      "contracts": {
+        "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+        "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+        "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+        "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+        "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+        "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+        "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+        "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+        "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+        "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+        "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+        "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+        "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+        "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+        "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+        "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+        "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+        "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+        "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+        "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+        "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+      },
+      "execution_price_version": 1,
+      "fee_intake_version": 1,
+      "last": {},
+      "next_nonce": 0,
+      "pending": null,
+      "receipt_anchor": null,
+      "sender": "0xc57eb5119b3f4f1b13b8014168accf71899f9824",
+      "spent": {}
+    }
+  },
+  "money": {
+    "0x0000000000000000000000000000000000000000": {
+      "buyback": 7386004095,
+      "claims": [
+        [
+          59152611124,
+          7386004095
+        ],
+        [
+          59023454406,
+          7386004095
+        ]
+      ],
+      "compound": 0,
+      "liabilities": 132948073720
+    },
+    "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a": {
+      "buyback": 12568557049922616,
+      "claims": [
+        [
+          175005248241961198,
+          21574866614685904
+        ],
+        [
+          26091664556800686,
+          3562247485159328
+        ]
+      ],
+      "compound": 0,
+      "liabilities": 226234026898607116
+    }
+  },
+  "new_fee": {
+    "cost_wei": 1369966,
+    "execution_price_wei": 26,
+    "gas_used": 52691,
+    "l1_fee_wei": 0,
+    "receipt_fee_policy": "included",
+    "reported_price_wei": 26,
+    "transaction": "0x4eff90d64f5933af4f4087ebec83b04c1298eab428d4c5284961ed47f9baf66f"
+  },
+  "new_header": {
+    "baseFeePerGas": "0x19",
+    "blobGasUsed": "0x0",
+    "difficulty": "0x0",
+    "excessBlobGas": "0x0",
+    "extraData": "0x",
+    "gasLimit": "0x1e84800",
+    "gasUsed": "0xcdd3",
+    "hash": "0x732f49936a282f22c3969e17697d05a04b339dfef8cfa1aa316758c4f24d78af",
+    "logsBloom": "0x00000000000000000000000800000400000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000800000000000000000200000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000200000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000",
+    "miner": "0x0000000000000000000000000000000000000000",
+    "mixHash": "0x679d3e8f754ca4311c36701ff753fdafff59c27ce8d4d7f674c3cfe8819f975e",
+    "nonce": "0x0000000000000000",
+    "number": "0x7196f0b",
+    "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "parentHash": "0x6f8d5aad19f6423d6812a76d25b9bafcde231fc525fe659cea17f6f6da82bbce",
+    "receiptsRoot": "0xa529a437fefdb86c997ba0f7177a1dbbbd559947fe9d678d3cf00c32a36abea4",
+    "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+    "size": "0x2db",
+    "stateRoot": "0x2d6deb143b29644ab0fc63f8507337c527f23bb9eb0aad59bb7f87ee72324bcf",
+    "timestamp": "0x6b06131f",
+    "totalDifficulty": "0x0",
+    "transactions": [
+      "0x4eff90d64f5933af4f4087ebec83b04c1298eab428d4c5284961ed47f9baf66f"
+    ],
+    "transactionsRoot": "0x06cc525221c803c4248b17f1935ce1a0787dee17546b7495f8cced2e1d4ed6d9",
+    "uncles": [],
+    "withdrawals": [],
+    "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+  },
+  "new_receipt": {
+    "blobGasPrice": "0x1",
+    "blockHash": "0x732f49936a282f22c3969e17697d05a04b339dfef8cfa1aa316758c4f24d78af",
+    "blockNumber": "0x7196f0b",
+    "contractAddress": null,
+    "cumulativeGasUsed": "0xcdd3",
+    "effectiveGasPrice": "0x1a",
+    "from": "0xc57eb5119b3f4f1b13b8014168accf71899f9824",
+    "gasUsed": "0xcdd3",
+    "logs": [
+      {
+        "address": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+        "blockHash": "0x732f49936a282f22c3969e17697d05a04b339dfef8cfa1aa316758c4f24d78af",
+        "blockNumber": "0x7196f0b",
+        "blockTimestamp": "0x6b06131f",
+        "data": "0x0000000000000000000000000000000000000000000000000000000000000005",
+        "logIndex": "0x0",
+        "removed": false,
+        "topics": [
+          "0xed377ef7177931bf925f7a5af408042d8f521d3cc984d24f9e401c0e49461fee",
+          "0x684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be"
+        ],
+        "transactionHash": "0x4eff90d64f5933af4f4087ebec83b04c1298eab428d4c5284961ed47f9baf66f",
+        "transactionIndex": "0x0"
+      }
+    ],
+    "logsBloom": "0x00000000000000000000000800000400000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000800000000000000000200000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000200000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000",
+    "status": "0x1",
+    "to": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+    "transactionHash": "0x4eff90d64f5933af4f4087ebec83b04c1298eab428d4c5284961ed47f9baf66f",
+    "transactionIndex": "0x0",
+    "type": "0x2"
+  },
+  "new_transaction_without_signature": {
+    "blockHash": "0x732f49936a282f22c3969e17697d05a04b339dfef8cfa1aa316758c4f24d78af",
+    "blockNumber": "0x7196f0b",
+    "chainId": "0x1237",
+    "from": "0xc57eb5119b3f4f1b13b8014168accf71899f9824",
+    "gas": "0x10ef4",
+    "gasPrice": "0x1a",
+    "hash": "0x4eff90d64f5933af4f4087ebec83b04c1298eab428d4c5284961ed47f9baf66f",
+    "input": "0x7cd5329f684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be",
+    "maxFeePerGas": "0x3b9aca19",
+    "maxPriorityFeePerGas": "0x1",
+    "nonce": "0x0",
+    "to": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+    "transactionIndex": "0x0",
+    "type": "0x2",
+    "value": "0x0"
+  },
+  "old_final_sha256": "dd9c9aff5461029df222d2a2c496bb74e9993b571cc521a95835e19b1054aff3",
+  "physical": {
+    "group": [
+      36215304117639473942956184678598083808932734028250661589202473382530834431515,
+      4331098,
+      3091488024740,
+      1003565393572226070,
+      260000000000000000000,
+      42277818571609236609753742835712,
+      1795183935,
+      1
+    ],
+    "liquidity": 142316833039121843140,
+    "main": 4331098,
+    "owner": "0x0000000000000000000000006e113da826ec57f968fff0f7cb7c0163b6b31db1",
+    "secondary": 0,
+    "ticks": [
+      121400,
+      132600
+    ]
+  },
+  "rights": [
+    {
+      "eligible": 1,
+      "id": "40184212847679983674243184633288579841995169513279304157869508944424510570653",
+      "owner": "0x000000000000000000000000000000000000000000000000000000000000a0a0",
+      "royalty_weight": 1,
+      "shares": 129424971487399448345
+    },
+    {
+      "eligible": 1,
+      "id": "64035115818100271688741973822286304906190058428760669687570531617680779079388",
+      "owner": "0x000000000000000000000000000000000000000000000000000000000000a0a0",
+      "royalty_weight": 1,
+      "shares": 129130912612388018059
+    }
+  ]
+}

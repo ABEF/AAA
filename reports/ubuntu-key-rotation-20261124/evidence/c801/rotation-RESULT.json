@@ -1,0 +1,53 @@
+{
+  "RPC_method_counts": {
+    "anvil_impersonateAccount": 2,
+    "anvil_setBalance": 2,
+    "anvil_stopImpersonatingAccount": 1,
+    "eth_call": 394,
+    "eth_chainId": 387,
+    "eth_estimateGas": 6,
+    "eth_feeHistory": 1,
+    "eth_gasPrice": 1,
+    "eth_getBalance": 1,
+    "eth_getBlockByNumber": 29,
+    "eth_getCode": 159,
+    "eth_getTransactionByHash": 5,
+    "eth_getTransactionCount": 18,
+    "eth_getTransactionReceipt": 5,
+    "eth_sendRawTransaction": 1,
+    "eth_sendTransaction": 5,
+    "evm_mine": 6,
+    "evm_setAutomine": 1,
+    "evm_setIntervalMining": 1,
+    "evm_setNextBlockTimestamp": 6
+  },
+  "RPC_phase_counts": {
+    "model_start": 2,
+    "old_actor_configuration": 526,
+    "old_protected_hash_pending": 295,
+    "sealed_graph_identity": 208
+  },
+  "RPC_requests": 1031,
+  "actual_signed_envelope_predecoded": false,
+  "controlled_copied_state_only": true,
+  "error_class": "RuntimeError",
+  "fault_attempts": 0,
+  "feature": "rotation",
+  "fixed_guard": null,
+  "gateway_refusals": [],
+  "last_model_RPC_failure": null,
+  "last_stage": "old_protected_hash_pending",
+  "message_sha256": "5dd7da4e2e2f7e47331beeb403dc8b562cabe872eff8991c146eb355cb44c088",
+  "new_seal": false,
+  "postforward_exact_transaction_verification_required": true,
+  "raw_attempts": 1,
+  "raw_forwarded": 1,
+  "setup_transactions": 5,
+  "site": {
+    "file": "run_jobs.py",
+    "function": "submit_reset",
+    "line": 20
+  },
+  "status": "failed",
+  "stock_transactions": 0
+}

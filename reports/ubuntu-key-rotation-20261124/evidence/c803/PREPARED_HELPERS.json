@@ -1,0 +1,46 @@
+{
+  "status": "DRAFT_ROOT_REVIEW_REQUIRED_NOT_EXECUTED",
+  "remote_root": "/opt/popl-ubuntu-key-rotation-20261124-c803",
+  "helper_pins": {
+    "keeper_runtime.py": {
+      "bytes": 37193,
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+    },
+    "keeper_jobs.py": {
+      "bytes": 12753,
+      "sha256": "af3efcd7e0ae1bd33ebd41f13d7229ac0a39829daff47789a27543dd8ebde92c"
+    },
+    "job_cases.py": {
+      "bytes": 16328,
+      "sha256": "c0d168f069cecfded5a7cc5bc09bafefd7cd5379ed282ec49ca9a823d5292482"
+    },
+    "run_jobs.py": {
+      "bytes": 19647,
+      "sha256": "4c7265164914cacf705a8ba3aec78f472874bc33e0a4ed210cfac18abf001e1f"
+    }
+  },
+  "public_records": [
+    "OLD_PENDING",
+    "ORDERED_BLOCK",
+    "REVOKED_CALL",
+    "OLD_RECOVERED",
+    "NEW_INITIAL",
+    "CROSS_IDENTITY_REFUSAL",
+    "NEW_AFTER",
+    "ROTATION_REVIEW",
+    "SETUP",
+    "RECEIPTS",
+    "RAW_REVIEWS",
+    "RESULT",
+    "EVENTS",
+    "FINANCIAL_BEFORE",
+    "ROTATION_VECTORS",
+    "RAW_SUBMISSION_RESPONSE",
+    "FEE_INPUTS"
+  ],
+  "production_source_changed": false,
+  "tests_run": 0,
+  "runtime_or_remote_actions": 0,
+  "scope": "NEW coherent normal-priority Anvil fixture inputs only; c801/c802 untouched; no production fee profile/guard/cap change",
+  "cause_scope": "Only c802 authenticated actualNode-32003 priority>maxFee; c801 exactnodecause remains uncaptured"
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "config_sha256": "a2d75ad0f2f9b8e6284e9bb941b52a37db186a93e072be7c6e2889fcd80923e5",
+    "intent": {
+      "data": "0x7cd5329f684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be",
+      "day": "2026-11-24",
+      "fee_review": {
+        "gas_limit": 69364,
+        "l1_fee_allowance_wei": 0,
+        "max_fee_per_gas": 1000000142,
+        "maximum_cost_wei": 69364009849688,
+        "receipt_fee_policy": "included",
+        "schema": 1
+      },
+      "hash": null,
+      "key": "rebalance_reset:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+      "nonce": 0,
+      "to": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+      "value": 0
+    },
+    "raw_signature_retained": false
+  },
+  {
+    "config_sha256": "a34419bb641cdad30f6fb609bdecd02bff9b60b97468d6bd4f650f343f633335",
+    "intent": {
+      "data": "0x7cd5329f684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be",
+      "day": "2026-11-24",
+      "fee_review": {
+        "gas_limit": 69364,
+        "l1_fee_allowance_wei": 0,
+        "max_fee_per_gas": 1000000025,
+        "maximum_cost_wei": 69364001734100,
+        "receipt_fee_policy": "included",
+        "schema": 1
+      },
+      "hash": null,
+      "key": "rebalance_reset:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+      "nonce": 0,
+      "to": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+      "value": 0
+    },
+    "raw_signature_retained": false
+  }
+]

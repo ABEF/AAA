@@ -1,0 +1,44 @@
+{
+  "status": "DRAFT_ROOT_REVIEW_REQUIRED_NOT_EXECUTED",
+  "remote_root": "/opt/popl-ubuntu-key-rotation-20261124-c802",
+  "helper_pins": {
+    "keeper_runtime.py": {
+      "bytes": 37193,
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+    },
+    "keeper_jobs.py": {
+      "bytes": 12773,
+      "sha256": "678751b6efc69f599208e269e3b829f167b25b376c6f8465a5b023aae3c952fa"
+    },
+    "job_cases.py": {
+      "bytes": 16328,
+      "sha256": "c0d168f069cecfded5a7cc5bc09bafefd7cd5379ed282ec49ca9a823d5292482"
+    },
+    "run_jobs.py": {
+      "bytes": 19238,
+      "sha256": "5509b4664983bdb70888418159f2a61f1d5eac7c257a9cc5969f2df2aee62454"
+    }
+  },
+  "public_records": [
+    "OLD_PENDING",
+    "ORDERED_BLOCK",
+    "REVOKED_CALL",
+    "OLD_RECOVERED",
+    "NEW_INITIAL",
+    "CROSS_IDENTITY_REFUSAL",
+    "NEW_AFTER",
+    "ROTATION_REVIEW",
+    "SETUP",
+    "RECEIPTS",
+    "RAW_REVIEWS",
+    "RESULT",
+    "EVENTS",
+    "FINANCIAL_BEFORE",
+    "ROTATION_VECTORS",
+    "RAW_SUBMISSION_RESPONSE"
+  ],
+  "production_source_changed": false,
+  "tests_run": 0,
+  "runtime_or_remote_actions": 0,
+  "scope": "first old actual node sendRaw response only; original c801 never retried; no Cast observer"
+}

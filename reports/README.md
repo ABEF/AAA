@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Ubuntu key replacement](ubuntu-key-rotation-20261124/REVIEW.md) adds a finite
+direct stock/Cast revocation-first pending-recovery and fresh-key proof. It keeps
+the original hashless failures, exact diagnostic node refusal, fixture-only input
+correction and production/off-host limits distinct. No original environment or
+production source changes.
+
 [Ubuntu one→two→one keeper check](ubuntu-hybrid-20261124/REVIEW.md) records two
 ordinary stock/Cast replacements, a genuinely mixed residual, paired custody and
 rights, independent aggregate accounting, fixed logical12h evidence and preserved

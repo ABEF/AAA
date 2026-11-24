@@ -378,6 +378,43 @@ consistency does not authenticate an attacker who can replace protected files.
 
 An unused signer can explicitly bootstrap using `python -m keeper.monitor --config REVIEWED_CONFIG --initialize-state`. This never signs; it requires reviewed deployment pins, a fresh head and zero latest/pending nonces, and refuses existing state. Legacy state without a nonce checkpoint requires reviewed migration, never deletion or a blind nonce insertion.
 
+### Different keeper key: recovery boundary
+
+Use the operator's [key-replacement procedure](OPERATOR_MANUAL.md#revoke-and-replace-a-keeper-key).
+Preserve original old release/configuration, encrypted signer evidence, state
+and log bytes before recovery. Only the matching recovery process may commit
+its authenticated receipt/nonce/spend updates; never hand-edit the journal.
+Stop/fence the old full service group and its restart paths; a local file lock
+is not cross-host or compromised-key fencing.
+
+Read canonical transaction ordering. A successful old-key call included before
+revocation remains successful even when receipt recovery happens later. A
+keeper-only call executed while that key is revoked fails authorization, but its
+reverted gas still belongs in the old journal. Permissionless `Vault.collectFees`
+can succeed after revocation if its own guards permit. Recover the original hash
+and original fee policy; no new transaction is needed to read its result.
+Unknown/hashless submissions remain unresolved work, not permission to delete,
+reset nonce, reinitialize the old journal or repeat the action from a new wallet.
+
+Prepare the new sender's separate reviewed configuration and state identity.
+An unused wallet may use the explicit dry-run `--initialize-state` procedure;
+confirmed and pending nonces must both be zero, with no existing state file.
+Never copy the old sender's nonce, pending record or receipt anchor to it.
+Review both signers' same-day actual spending and unresolved fee commitments
+before approving new work: per-journal limits do not automatically combine
+wallets' budgets. Retain the old history and independently reviewed recovery
+record. Dry-run and verify current keeper authority and matching pins before
+starting the separately authorized replacement service.
+
+The [isolated Ubuntu record](../reports/ubuntu-key-rotation-20261124/REVIEW.md)
+verifies the revocation-first reverted-receipt branch, exact old-state recovery,
+identity refusal and a separate fresh-key protected success. A later authorization
+error in the old cycle is expected after its receipt has been correctly recovered;
+check pending/nonce/anchor/spend and logs before deciding recovery failed. The
+original hashless failures remain preserved; they are not automatic resend cases.
+Full supervisor/off-host fencing, recovery without old encrypted signing files,
+other transaction orderings and actual-provider qualification remain separate.
+
 ## Manually submitted keeper operations
 
 Follow [manual rebalance](OPERATOR_MANUAL.md#manual-rebalance-at-a-chosen-time)

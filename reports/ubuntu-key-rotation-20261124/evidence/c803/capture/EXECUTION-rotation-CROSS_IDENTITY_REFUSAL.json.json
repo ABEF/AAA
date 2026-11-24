@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "action": "fetch",
+  "controller_sha256": "95255d241153871c7742f0f47c81343abefb25f397cb971e64157cca709a90dd",
+  "transport_source_sha256": "a7f7f91863833bca9081b0ad6af833a1cf5147e65f1c2cfe7e058449f1bddc45",
+  "strict_pinned_host": true,
+  "credentials_read_or_exported": false,
+  "only_fixed_owned_lab": true,
+  "exit_code": 0,
+  "failed_capture_reason": null,
+  "elapsed_seconds": 0.7190000000000509,
+  "timeout_seconds": 45,
+  "stdout_bytes": 485,
+  "stderr_bytes": 0,
+  "capture_status": [],
+  "stdout.raw_sha256": "a1fd5e15fe9b46d1c2ba7a55b4c548fea1b25c385da35f8b9a9120049648cf0a",
+  "stderr.raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "artifact_sha256": "25fadd6b9207f172f90a07ab454482f91e72377e4a3d68608dacad432651d0ab"
+}

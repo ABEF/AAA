@@ -1,0 +1,3 @@
+{
+  "combined_stdout_stderr": "{\"chain_id\": 4663, \"event\": \"state_initialized\", \"sender\": \"0x724d23098014cc590d39963fb981bc0570b10b61\", \"time\": \"2026-11-24T22:40:24.694484+00:00\"}\n{\"action\": \"rebalance_reset:47181787163762592248710325652087236475813397965818762058663276509558631703230\", \"error_type\": \"RuntimeError\", \"event\": \"submission_requires_reconciliation\", \"time\": \"2026-11-24T22:40:31.693296+00:00\"}\n"
+}

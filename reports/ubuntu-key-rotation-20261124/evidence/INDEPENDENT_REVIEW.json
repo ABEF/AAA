@@ -1,0 +1,62 @@
+{
+  "inputs": {
+    "result": {
+      "bytes": 3522,
+      "name": "RESULT.json",
+      "sha256": "807a809fbb78d4d7502fc17b6e91d3520bddaf6763f1574713e17fc612b6cca2"
+    },
+    "review": {
+      "bytes": 33534,
+      "name": "rotation-ROTATION_VECTORS.json",
+      "sha256": "a655bac0bf3c4ee954216ebaa1afc3960fc36ba8ccb866a6afc783f2020da8a8"
+    }
+  },
+  "limitations": [
+    "Exact prescribed c803 projection required; do not invent missing fields.",
+    "A same-block revocation-first status0 proves this controlled ordering, not guaranteed public mempool ordering or cancellation.",
+    "Saved projection/source counters bind only this finite local case, not off-host fencing, all lifecycle states or a daemon soak.",
+    "Daily budgets remain journal-local; the two-key total is checked separately.",
+    "Normal Anvil priority enforcement and2gwei governance are controlled fixture inputs, not actual provider-fee or profile2 approval.",
+    "C801 node cause remains unknown; only c802 captured exact-32003 priority-above-max error.",
+    "Periphery/LP/accounting/claim workloads are not requalified by a reset-only rotation."
+  ],
+  "old_test_bodies_run": 0,
+  "production_approved": false,
+  "production_source_changes": false,
+  "proof": {
+    "canonical_revocation_index": 0,
+    "combined_actual_cost_wei": 33196006083798,
+    "combined_reviewed_maximum_wei": 138728011583788,
+    "new_fee": {
+      "actual_cost_wei": 1369966,
+      "canonical_price_wei": 26,
+      "fee_review_schema": 1,
+      "gas_used": 52691,
+      "reported_price_wei": 26,
+      "reviewed_maximum_wei": 69364001734100,
+      "signed_gas_limit": 69364
+    },
+    "new_grant_index": 0,
+    "new_role_false_before_grant": "executed-source assertion only; not separately stored in raw role_getters",
+    "new_sender": "0xc57eb5119b3f4f1b13b8014168accf71899f9824",
+    "new_zero_nonce_separate_journal": true,
+    "old_fee": {
+      "actual_cost_wei": 33196004713832,
+      "canonical_price_wei": 1000000142,
+      "fee_review_schema": 1,
+      "gas_used": 33196,
+      "reported_price_wei": 1000000142,
+      "reviewed_maximum_wei": 69364009849688,
+      "signed_gas_limit": 69364
+    },
+    "old_hash_recovered_after_revocation": true,
+    "old_journal_preserved_after_takeover": true,
+    "old_reverted_index": 1,
+    "old_sender": "0x2d249dd6797990cf59fc00d479a4a8337827a918",
+    "source_counters_show_two_raw_attempts_only": true
+  },
+  "runtime_actions": 0,
+  "schema": 1,
+  "stage": "c803_fixture_consistency",
+  "status": "passed"
+}

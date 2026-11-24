@@ -1,0 +1,26 @@
+{
+  "accepted_hash": null,
+  "durable_pending_intent": {
+    "data": "0x7cd5329f684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be",
+    "day": "2026-11-24",
+    "fee_review": {
+      "gas_limit": 69364,
+      "l1_fee_allowance_wei": 0,
+      "max_fee_per_gas": 142,
+      "maximum_cost_wei": 9849688,
+      "receipt_fee_policy": "included",
+      "schema": 1
+    },
+    "hash": null,
+    "key": "rebalance_reset:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+    "nonce": 0,
+    "to": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+    "value": 0
+  },
+  "error_code": -32003,
+  "error_message_sanitized": "max priority fee per gas higher than max fee per gas",
+  "no_automatic_hash_adoption_retry_or_resend": true,
+  "original_answer_returned_unchanged": true,
+  "request_id": 1,
+  "scope": "first old actual Anvil sendRaw response, not gateway refusal"
+}

@@ -1,0 +1,80 @@
+{
+  "bundle": {
+    "bytes": 750484,
+    "sha256": "383ce0935e8c568b8603c0adc946ed8eebe7e8a1638e64032f8fda518585b86a"
+  },
+  "controller": {
+    "bytes": 35432,
+    "sha256": "95255d241153871c7742f0f47c81343abefb25f397cb971e64157cca709a90dd"
+  },
+  "current_production_members_byte_identical": 190,
+  "extra_reviewed_inputs": [],
+  "feature": "rotation-fee-coherent",
+  "helpers": {
+    "job_cases.py": {
+      "bytes": 16328,
+      "sha256": "c0d168f069cecfded5a7cc5bc09bafefd7cd5379ed282ec49ca9a823d5292482"
+    },
+    "keeper_jobs.py": {
+      "bytes": 12753,
+      "sha256": "af3efcd7e0ae1bd33ebd41f13d7229ac0a39829daff47789a27543dd8ebde92c"
+    },
+    "keeper_runtime.py": {
+      "bytes": 37193,
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+    },
+    "run_jobs.py": {
+      "bytes": 19647,
+      "sha256": "4c7265164914cacf705a8ba3aec78f472874bc33e0a4ed210cfac18abf001e1f"
+    }
+  },
+  "host_wrapper": {
+    "bytes": 7177,
+    "sha256": "a1a90c301ee370f6dba87dbbf765fb2f35fb4e2d9d322e65b5a6b6ef5d3836ce"
+  },
+  "lab": "/opt/popl-ubuntu-key-rotation-20261124-c803",
+  "limits": {
+    "RPC_requests": 6000,
+    "confirmations": 12,
+    "daily_maximum_cost_wei": "50000000000000000",
+    "maintenance_gas": 24000000,
+    "padding_percent": 25,
+    "single_maximum_cost_wei": "10000000000000000",
+    "worker_seconds": 900
+  },
+  "manifest": {
+    "bytes": 33444,
+    "sha256": "d9e4eb767e43840fb1711f87ec745d211ac83db17ca56e03651c5fe865c912fe"
+  },
+  "production_sources_changed": false,
+  "remote_actions": 0,
+  "runtime_executed": false,
+  "schema": 1,
+  "source_manifest_sha256": "8b4e6ff3f53f80e861c9d8c5df1d5c843c216134a5e2865957bd0eaa7480f09c",
+  "source_updates_from_previous_bundle": [
+    {
+      "current": {
+        "bytes": 4725,
+        "sha256": "b66878fee51f54ac36656646d41f57e70955b9b43c5aff228b5ecd02b3e258b3"
+      },
+      "not_executed_by_jobs": true,
+      "original": {
+        "bytes": 4422,
+        "sha256": "fde49b9780dcdbb352e8286f8b649689c8b48aa021226d02a5b84bfa94d9b2ad"
+      },
+      "path": "keeper/staging-install.sh"
+    },
+    {
+      "current": {
+        "bytes": 2522,
+        "sha256": "0a3e54ce89fadb434aaf032299db8a1aa955bd41d0108f1e209a26ce4328598f"
+      },
+      "not_executed_by_jobs": true,
+      "original": {
+        "bytes": 2521,
+        "sha256": "904440e83018e9706184dd19fb28e44b8a6f4b9509509c820d24c0174c80a7bc"
+      },
+      "path": "scripts/verify.sh"
+    }
+  ]
+}

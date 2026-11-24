@@ -1,19 +1,23 @@
 # Consolidated audit findings and evidence
 
-[Ubuntu one→two→one keeper check](../reports/ubuntu-hybrid-20261124/REVIEW.md)
-passes with two actual stock Keeper/Cast replacements in5,662/6,000RPC:
-main4331098 → main4331099+residual4331100 → active main4331101. A genuine trade
-makes the residual mixed before OFF; paired custody/amount/fingerprint/NFT-right
-and independent aggregate80/10/5/5+dust/backing checks pass. Hard12h cooldown,
-fresh85/234s jitter,24M/full25% and all fee/source/financial limits remain.
-The12h interval uses an explicit fixed module-local logical clock; no real12h
-soak or new ordinary600s market-trigger proof is claimed. The pre-stock c7ff
-setup failure stays recorded. Both new labs stopped; five original service
-states preserved. No production source change or old test body rerun.
-[Earlier positive worker paths](../reports/ubuntu-keeper-blockers-20261124/REVIEW.md)
-retain their exact scopes and compound fee reconciliation. Actual markets,
-providers/fees, maximum/concurrent workloads, soak/off-host and release approval
-remain open. Existing chains, sites, journals and paused heartbeat stay unchanged.
+[Ubuntu keeper key replacement](../reports/ubuntu-key-rotation-20261124/REVIEW.md)
+passes a new direct stock/Cast partition in2,077/6,000RPC: governance revokes the
+old key before its pending protected reset, its reverted receipt/gas/nonce recover
+without resend, then a distinct new key succeeds at nonce0 with its own journal.
+Old recovered bytes and NFT/LP rights remain; cross-identity adoption refuses.
+An independent saved-vector review passes. This is not daemon/off-host fencing
+or all-state rotation approval. Journal budgets are per sender; operator review
+must also cover combined spending and unresolved commitments.
+C801's original hashless failure remains unresolved/source-scoped; c802 captures
+an actual priority>maxfee node refusal. C803 corrects only isolated Anvil inputs,
+within unchanged24M/full25%,5gwei,0.01/0.05ETH and12-confirmation limits; no
+production code, fee profile, guard or default changes. All three new labs stop;
+five original service states match. No old passed tests or LP journeys rerun.
+The [earlier hybrid proof](../reports/ubuntu-hybrid-20261124/REVIEW.md) retains its
+one→two→one mixed-residual scope and explicit logical12h limitation; earlier
+positive worker paths remain separately pinned. Actual provider/fees/markets,
+combined scheduling, supervisor/storage faults, off-host/soak and release approval
+stay open. Existing chains, sites, journals and paused heartbeat stay unchanged.
 
 
 [Wallet checkpoint follow-through](../reports/wallet-latency-20261123/REVIEW.md) preserves full admission,

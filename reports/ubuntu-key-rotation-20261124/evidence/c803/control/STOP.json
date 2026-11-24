@@ -1,0 +1,305 @@
+{
+  "after": {
+    "attempt": 1,
+    "network_namespace": {},
+    "owned_cgroup_pids": [],
+    "phase": "status",
+    "properties": {
+      "ActiveState": "inactive",
+      "CPUQuotaPerSecUSec": "infinity",
+      "CPUWeight": "[not set]",
+      "ControlGroup": "",
+      "ExecMainStatus": "0",
+      "Group": "",
+      "IOWeight": "[not set]",
+      "KillMode": "control-group",
+      "LoadState": "not-found",
+      "MainPID": "0",
+      "MemoryMax": "infinity",
+      "MemorySwapMax": "infinity",
+      "Nice": "0",
+      "NoNewPrivileges": "no",
+      "PrivateDevices": "no",
+      "PrivateNetwork": "no",
+      "ProtectHome": "no",
+      "ProtectSystem": "no",
+      "Result": "success",
+      "RuntimeMaxUSec": "infinity",
+      "SubState": "dead",
+      "TasksMax": "9211",
+      "TimeoutStopUSec": "1min 30s",
+      "User": ""
+    },
+    "public_files": {
+      "EVENTS.json": {
+        "bytes": 1729,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "RESULT.json": {
+        "bytes": 3522,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "controller.stderr.log": {
+        "bytes": 0,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "controller.stdout.log": {
+        "bytes": 56,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-BINDINGS.json": {
+        "bytes": 26538,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-CLOCK_REPAIR.json": {
+        "bytes": 3840,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-CROSS_IDENTITY_REFUSAL.json": {
+        "bytes": 186,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-FEE_INPUTS.json": {
+        "bytes": 621,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-FINANCIAL_BEFORE.json": {
+        "bytes": 1727,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-NEW_AFTER.json": {
+        "bytes": 16350,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-NEW_INITIAL.json": {
+        "bytes": 3769,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-OLD_PENDING.json": {
+        "bytes": 9312,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-OLD_RECOVERED.json": {
+        "bytes": 19834,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-ORDERED_BLOCK.json": {
+        "bytes": 6502,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-RAW_RECEIPT-02.json": {
+        "bytes": 1751,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-RAW_REVIEWS.json": {
+        "bytes": 1479,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-RAW_SUBMISSION_RESPONSE.json": {
+        "bytes": 929,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-RECEIPTS.json": {
+        "bytes": 13276,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-RESULT.json": {
+        "bytes": 2048,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-REVOKED_CALL.json": {
+        "bytes": 234,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-ROTATION_REVIEW.json": {
+        "bytes": 1031,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-ROTATION_VECTORS.json": {
+        "bytes": 33534,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-SETUP.json": {
+        "bytes": 14407,
+        "mode": "0o600",
+        "uid": 65534
+      }
+    },
+    "unit": "popl-ubuntu-key-rotation-20261124-c803.service"
+  },
+  "before": {
+    "attempt": 1,
+    "network_namespace": {},
+    "owned_cgroup_pids": [],
+    "phase": "status",
+    "properties": {
+      "ActiveState": "inactive",
+      "CPUQuotaPerSecUSec": "infinity",
+      "CPUWeight": "[not set]",
+      "ControlGroup": "",
+      "ExecMainStatus": "0",
+      "Group": "",
+      "IOWeight": "[not set]",
+      "KillMode": "control-group",
+      "LoadState": "not-found",
+      "MainPID": "0",
+      "MemoryMax": "infinity",
+      "MemorySwapMax": "infinity",
+      "Nice": "0",
+      "NoNewPrivileges": "no",
+      "PrivateDevices": "no",
+      "PrivateNetwork": "no",
+      "ProtectHome": "no",
+      "ProtectSystem": "no",
+      "Result": "success",
+      "RuntimeMaxUSec": "infinity",
+      "SubState": "dead",
+      "TasksMax": "9211",
+      "TimeoutStopUSec": "1min 30s",
+      "User": ""
+    },
+    "public_files": {
+      "EVENTS.json": {
+        "bytes": 1729,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "RESULT.json": {
+        "bytes": 3522,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "controller.stderr.log": {
+        "bytes": 0,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "controller.stdout.log": {
+        "bytes": 56,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-BINDINGS.json": {
+        "bytes": 26538,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-CLOCK_REPAIR.json": {
+        "bytes": 3840,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-CROSS_IDENTITY_REFUSAL.json": {
+        "bytes": 186,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-FEE_INPUTS.json": {
+        "bytes": 621,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-FINANCIAL_BEFORE.json": {
+        "bytes": 1727,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-NEW_AFTER.json": {
+        "bytes": 16350,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-NEW_INITIAL.json": {
+        "bytes": 3769,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-OLD_PENDING.json": {
+        "bytes": 9312,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-OLD_RECOVERED.json": {
+        "bytes": 19834,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-ORDERED_BLOCK.json": {
+        "bytes": 6502,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-RAW_RECEIPT-02.json": {
+        "bytes": 1751,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-RAW_REVIEWS.json": {
+        "bytes": 1479,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-RAW_SUBMISSION_RESPONSE.json": {
+        "bytes": 929,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-RECEIPTS.json": {
+        "bytes": 13276,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-RESULT.json": {
+        "bytes": 2048,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-REVOKED_CALL.json": {
+        "bytes": 234,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-ROTATION_REVIEW.json": {
+        "bytes": 1031,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-ROTATION_VECTORS.json": {
+        "bytes": 33534,
+        "mode": "0o600",
+        "uid": 65534
+      },
+      "rotation-SETUP.json": {
+        "bytes": 14407,
+        "mode": "0o600",
+        "uid": 65534
+      }
+    },
+    "unit": "popl-ubuntu-key-rotation-20261124-c803.service"
+  },
+  "lab_and_artifacts_retained": true,
+  "only_owned_unit_stopped": true,
+  "phase": "stopped"
+}

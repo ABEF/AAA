@@ -1,0 +1,32 @@
+{
+  "existing_gas_ceiling_wei": 5000000000,
+  "fee_history": {
+    "baseFeePerBlobGas": [
+      "0x1",
+      "0x1"
+    ],
+    "baseFeePerGas": [
+      "0xa2",
+      "0x8e"
+    ],
+    "blobGasUsedRatio": [
+      0.0
+    ],
+    "gasUsedRatio": [
+      0.00169584375
+    ],
+    "oldestBlock": "0x7196efc",
+    "reward": [
+      [
+        "0x0",
+        "0x0",
+        "0x0"
+      ]
+    ]
+  },
+  "fixture_only_default_minimum_priority_enforced": true,
+  "gas_price": "0x3b9aca8e",
+  "governance_ordering_legacy_gas_price_wei": 2000000000,
+  "production_fee_profile_changed": false,
+  "suggested_priority_fee": "0x3b9aca00"
+}

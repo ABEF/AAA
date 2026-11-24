@@ -1,14 +1,19 @@
 # PoPL operator manual
 
-## Ubuntu one→two→one operating evidence — 24 November 2026
+## Ubuntu keeper operating evidence — 24 November 2026
 
-The [new hybrid record](../reports/ubuntu-hybrid-20261124/REVIEW.md) completes two
-ordinary stock-keeper/Cast replacements, including a mixed residual before the
-OFF merge. The actual new cooldown refusal and fixed logical12h transition are
-explicit; this is not twelve real hours or production-provider qualification.
-No function, authority, guard or operating limit changes. Both new labs are
-stopped and original service states preserved; no running environment is adopted.
-See [the ordinary mode-change steps](#applying-on--off-through-ordinary-keeper-operations).
+The [key-replacement record](../reports/ubuntu-key-rotation-20261124/REVIEW.md)
+checks a genuinely pending protected call, governance revocation before inclusion,
+reverted-receipt recovery without resend and a separate new-key success. Per-key
+journals stay separate; old cost/nonce evidence remains. Earlier hashless/node
+refusals and the fixture-only fee correction are explicit. No source, fee profile,
+financial guard or production limit changes. This direct recovery check is not
+supervisor/off-host fencing or whole operating approval.
+
+See [pending-key replacement](#pending-transactions-during-keeper-key-replacement)
+and the [earlier hybrid rehearsal](../reports/ubuntu-hybrid-20261124/REVIEW.md).
+All three new rotation labs are stopped and original service states preserved;
+no running environment is adopted.
 
 ## Ubuntu keeper follow-through — 24 November 2026
 
@@ -2032,7 +2037,9 @@ Roles can technically share an address, but this combines their compromise and a
 
 ### Revoke and replace a keeper key
 
-Only an authorized keeper address can perform keeper work. The extra software
+Keeper-only operations require an authorized keeper address. Harvesting and
+metadata notifications are intentionally permissionless under their own guards;
+their success does not prove keeper authority. The extra software
 rule that waits near/outside the adjustment threshold or during pending geometry
 remains **service-only by the operator's explicit decision**. An authorized key
 using other software can ignore that extra rule where the contracts permit;
@@ -2063,6 +2070,49 @@ wallet:
    `Access.setPaused(false)`. A new key does not reset cooldowns, observation
    evidence, liabilities, LP geometry or NFT shares. Verify old-key rejection
    and inspect new-key readiness before resuming work.
+
+#### Pending transactions during keeper-key replacement
+
+Revocation changes authorization at execution; it does not cancel a transaction
+or undo an earlier result. Order transactions by their canonical block and
+transaction index, not the time a wallet showed “submitted.”
+
+| Old transaction outcome | Required treatment |
+| --- | --- |
+| Included successfully before revocation, awaiting confirmations | Recover that same hash under the old sender/configuration and original fee review. Verify canonical inclusion and confirmation depth; record its actual cost and authenticated maintenance clock. Revocation does not reverse it. |
+| Keeper-only call executes after revocation | Its authorization fails while the old key remains revoked. Recover the actual reverted receipt and paid gas; do not mark maintenance successful or send the same operation again automatically. |
+| Permissionless call executes after revocation | Revocation alone does not block it. `Vault.collectFees` is permissionless while its lifecycle/pause guards permit. Verify the actual receipt rather than expecting `Unauthorized`. |
+| Pending, absent receipt, or saved intent without a known hash | Preserve the exact intent, hash/nonce evidence and original spend review. Resolve the existing submission; do not erase it, manufacture a receipt or blindly resend from either key. |
+
+Stop and fence the entire old service group, including its signer children and
+automatic restart paths. An active Cast may already have submitted; reconcile
+its outcome after stopping. A file lock protects cooperating processes using the
+same local lock, not a second host or someone holding the key. On-chain revocation
+and old-host/credential isolation are separate controls.
+
+The replacement uses its own reviewed sender, keystore, configuration and new
+state/health/lock paths. Never relabel the old journal or copy its nonce/receipt
+anchor into the new identity. For an unused new wallet, explicit dry-run state
+initialization requires zero confirmed and pending nonces and no existing state;
+a used wallet needs independently reviewed reconstruction instead.
+
+Keep both histories. Review old actual costs, unresolved maximum fee commitments
+and the new wallet's proposed work against the operator's same-day spending
+approval. Each journal enforces its own configured cap; rotation does not
+automatically aggregate several wallets' spending or grant a fresh project
+allowance. Never edit historical `spent` entries to make a new review pass.
+Verify old-key rejection on a genuinely keeper-only function, new-key authority,
+matching deployment/source pins and a fresh dry run before the reviewed restart.
+NFT ownership, shares, earned rewards and on-chain timing do not reset.
+
+The [isolated Ubuntu record](../reports/ubuntu-key-rotation-20261124/REVIEW.md)
+verifies the revocation-before-execution branch and separate replacement journal.
+Recovery can clear the original pending hash and book reverted gas, then the same
+cycle can correctly report unauthorized new work. Check durable state and receipt
+logs; do not interpret that final role error as permission to resend. Recovery
+without old encrypted signing files and full supervisor/off-host fencing remain
+separate. Revoking a protocol role does not secure the compromised EOA itself.
+
 
 One human may operate both roles, but reusing the same signing key removes this
 recovery separation: compromised governance can grant authority again. There is

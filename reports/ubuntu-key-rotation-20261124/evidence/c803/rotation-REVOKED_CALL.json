@@ -1,0 +1,8 @@
+{
+  "error_code": 3,
+  "expected_selector": "0x82b42900",
+  "method": "resetObservation(uint256)",
+  "revert_selector": "0x82b42900",
+  "sender": "0x2d249dd6797990cf59fc00d479a4a8337827a918",
+  "simulated_not_new_transaction": true
+}
