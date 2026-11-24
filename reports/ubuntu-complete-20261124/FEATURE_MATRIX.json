@@ -1,0 +1,1179 @@
+{
+  "aggregate_failures_preserved": [
+    {
+      "capture": "c7ed_actor",
+      "reason": "Later reviewed utility fixture refused; earlier authenticated actor subproofs are separate.",
+      "success": false
+    },
+    {
+      "capture": "c7ed_utilities",
+      "reason": "Same-graph negative fixture raised HistoryError before its intended CLI test; no complete aggregate pass.",
+      "success": false
+    },
+    {
+      "capture": "c7ef_boundary",
+      "reason": "Ten root ownership/syntax commands passed; first unprivileged help spawn raised PermissionError before a completed help command. No entire26-command pass.",
+      "success": false
+    },
+    {
+      "capture": "c7f3_jobs",
+      "reason": "Metadata/refusal subproofs pass; compound/supply/role-harness limitations keep aggregatefalse.",
+      "success": false
+    },
+    {
+      "capture": "c7f0_normal",
+      "reason": "6000 shared RPC ceiling after four observation transactions; no ordinary rebalance broadcast.",
+      "success": false
+    },
+    {
+      "capture": "c7f7_aux",
+      "reason": "Conversion is an expected financial refusal; geometry replacement exceeds existing transaction-cost budget.",
+      "success": false
+    },
+    {
+      "capture": "c7f6_role_rpc",
+      "reason": "Incorrect harness assertion expected collectFees to be keeper-only; permissionless harvesting is intentional. RPC-fault branch passes separately; c7f8 completes the correct unexecuted authorization probe.",
+      "success": false
+    }
+  ],
+  "all_features_qualified": false,
+  "changed_sources": {
+    "keeper/monitor.py": "9bb7c3b227b93ab2003cd380e1e5549448c31a894c9d50ac712dbcdf422bb8c3",
+    "keeper/ops.py": "a81eb06001024f11f751691ba2b8fd7f37605f10feba925006bf57242751fa6b",
+    "keeper/staging-install.sh": "b66878fee51f54ac36656646d41f57e70955b9b43c5aff228b5ecd02b3e258b3"
+  },
+  "date": "2026-11-24",
+  "evidence": {
+    "api_isolation_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "docs/WORKLOAD_COVERAGE.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "buyback_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "keeper/monitor.py",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "c7eb_snapshot": {
+      "kind": "new_Ubuntu",
+      "public_path": "evidence/snapshot-reload.json",
+      "scope": "operator-approved isolated snapshot1; unsealed constructor-double fixture",
+      "sha256": "12aec00e10008f39dd9cecb620be74436a192b9baff0f9847dabaeef17ec7a3b"
+    },
+    "c7ed_actor": {
+      "aggregate_success": false,
+      "kind": "new_Ubuntu_partial_aggregate",
+      "known_failure_stage": "reviewed_readonly_utilities",
+      "public_path": "evidence/c7ed-aggregate-refusal.json",
+      "scope": "actual stock daemon/Cast subproofs; aggregate retained false",
+      "sha256": "0a63d3ffc145a1b89e8dd12fa54326cd958b47ea95210e12c53b8accef0472ee"
+    },
+    "c7ed_healthy": {
+      "kind": "new_Ubuntu",
+      "scope": "fresh healthy_v2 normal cycle after receipt-only recovery",
+      "sha256": "6ef7b192623b0153f3a17c941f868d33f488f61adec912c18f141122a0bcc821"
+    },
+    "c7ed_indexer": {
+      "kind": "new_Ubuntu",
+      "public_path": "evidence/ubuntu-indexer.json",
+      "scope": "actual actor log and future empty-header reorg only",
+      "sha256": "32070939c2168cdcb4f75465874cc9a92fb3ac0ff460abf94e030c82cf7092d7"
+    },
+    "c7ed_journal": {
+      "kind": "new_Ubuntu_private_original_retained",
+      "scope": "same journal recovery; raw journal is not published",
+      "sha256": "b6e80fb0fde04f691bbfb69405762ea22bff5655c8c04ee333fc3ffdb862505c"
+    },
+    "c7ed_lock": {
+      "kind": "new_Ubuntu",
+      "scope": "actual typed flock exclusion and unchanged state/nonce/send count",
+      "sha256": "6ca89483afe7380ebfbe5fb30062350a6c3a8d5d3fefc3f8e2df1981732f8293"
+    },
+    "c7ed_receipt": {
+      "actual_fee_wei": "300814033089540",
+      "gas_used": 300814,
+      "kind": "new_Ubuntu",
+      "scope": "local copied-state model; not Robinhood complete-fee qualification",
+      "sha256": "65914d3d24616f7f3ac6074e09461953b2ee1e5190324f67f86ca4b1d8554f16",
+      "transaction_hash": "0x0909e373970398caf90df6f89cafc74600cae88f40d0c25f7b6810be929ecc24"
+    },
+    "c7ed_utilities": {
+      "aggregate_success": false,
+      "kind": "new_Ubuntu_partial_aggregate",
+      "known_failure_stage": "same_graph_import_refusal",
+      "public_path": "evidence/ubuntu-utilities.json",
+      "scope": "five keeper.ops, indexer and history restore subproofs pass; later fixture failure retained",
+      "sha256": "3cb045c353dc8124bb9fd5acdbd9009aca0427ea5a9e027b001ff2e05b60ac60"
+    },
+    "c7ee_import_partial": {
+      "aggregate_success": false,
+      "kind": "new_Ubuntu_injected_fixture_partial",
+      "known_validation_stop": "Comparison stopped; parent review identifies six source-provenance metadata fields, not a confirmed financial/raw difference.",
+      "public_path": "evidence/ubuntu-history-import-initial.json",
+      "scope": "Distinct schema3 two-epoch prefix to three-epoch import uses current production CLI/replay with fixture-injected lifecycle/getter truths; no stock HTTP/provider admission. Two CLI commands exit0; validation/recovery continuation remains.",
+      "sha256": "5e72b7f64d1a943b63ec5f2f3a209f5a4ffe91d8528055c22bd003bb9fa2698f",
+      "standalone_negative_CLI_passed": true,
+      "two_actual_CLI_exits": 0
+    },
+    "c7ef_boundary": {
+      "aggregate_success": false,
+      "completed_help_commands": 0,
+      "completed_root_commands": 10,
+      "error_class": "PermissionError",
+      "exact_OS_cause_proved": false,
+      "kind": "new_Ubuntu_partial_aggregate",
+      "known_failure_stage": "unprivileged_help_only",
+      "public_path": "evidence/ubuntu-installer-boundary.json",
+      "scope": "Synthetic archive ownership, exact GNUstat fields and five bash-n commands pass; no full installer/observer/financial execution.",
+      "sha256": "cae14bf32cba08c6cfddd668cd26bfc8a1eed0635db871ffb20915fb5c01bfbc",
+      "tested_installer_sha256": "6304b5735a33f4a5ac79efc89ea6916c2e3d3a656f2d9219aaa32baf6f10b347"
+    },
+    "c7f0_normal": {
+      "aggregate_success": false,
+      "kind": "new_Ubuntu_partial_aggregate",
+      "public_path": "evidence/ubuntu-normal-confirmation.json",
+      "scope": "Four real observation transactions reach600s sampled maturity;146s durable jitter is LAST OBSERVED only.6000 lab-wide RPC refusal prevents full rebalance; aggregatefalse.",
+      "sha256": "c490831cbce4dabe419580982b33e4757558538ae000712da12e995f723757f7"
+    },
+    "c7f1_help": {
+      "completed_help_commands": 16,
+      "financial_features_executed": false,
+      "kind": "new_Ubuntu_syntax_only",
+      "public_path": "evidence/ubuntu-help-continuation.json",
+      "root_commands_repeated": 0,
+      "scope": "Separate already-unprivileged16-command continuation; prior c7ef aggregatefalse retained; all190 source files and prior helper preserved.",
+      "sha256": "e2d5464385cc0a7432f71faaf41b0ab31caa7f19f46f8812c0ba5b54eb7afa27",
+      "uid_gid": 65534
+    },
+    "c7f2_history_continuation": {
+      "kind": "new_Ubuntu_fixture_injected_continuation",
+      "public_path": "evidence/ubuntu-history-import.json",
+      "scope": "Only unexecuted exact six-field source-provenance validation and four recovery CLIs after c7ee; no builder/importer/keeper/indexer rerun. Synthetic3epochs/1000NFTs/900active/nonzero high-low phase and86400s window; no stock HTTP/provider admission.",
+      "sha256": "a41754237788f1aefd344a637e33dbe173803ae8af7c4f1d2c2ea256acccccb2"
+    },
+    "c7f3_jobs": {
+      "aggregate_success": false,
+      "kind": "new_Ubuntu_partial_aggregate",
+      "public_path": "evidence/ubuntu-keeper-jobs.json",
+      "scope": "Metadata real-Cast pass and three exact forbidden-config refusals; compound cost-cap block, buyback incomplete model supply and role harness refusal retained; aggregatefalse.",
+      "sha256": "f6ed25e8b6881e9f5ded9d547ec04a30809cba16de3caba3e3200ef5fd1e7494"
+    },
+    "c7f5_guard": {
+      "actual_chmod_executed": false,
+      "kind": "new_Ubuntu_targeted_Bash_branches",
+      "legacy_FIFO_baseline": {
+        "chmod_sentinel": true,
+        "exit_code": 0
+      },
+      "new_guard_cases": 5,
+      "new_negative_chmod_sentinel": false,
+      "new_negative_exit_code": 1,
+      "new_negative_types": [
+        "FIFO",
+        "directory",
+        "symlink",
+        "hardlink"
+      ],
+      "new_valid_regular": {
+        "chmod_sentinel": true,
+        "exit_code": 0
+      },
+      "public_path": "evidence/ubuntu-installer-guards.json",
+      "scope": "Actual Bash with exact preserved6304 and currentb668 fragments, sentinel chmod only; all fixture bytes/modes/inodes and old inputs preserved.",
+      "sha256": "2355ee2b7f32519eebe7420f4eb19da2d3d28db433bcb71b072e080318854f05",
+      "tar_or_help_repeated": false
+    },
+    "c7f6_role_rpc": {
+      "aggregate_success": false,
+      "kind": "new_Ubuntu_partial_aggregate",
+      "public_path": "evidence/ubuntu-role-rpc.json",
+      "scope": "Pause/reset and software-revocation stages reached; wrong private-harness assumption expected keeper authorization on permissionless collectFees and failed. Separate RPC-fault branch passes six injected attempts, preserves pending/nonce and recovers same hash without resend. No contract permission change.",
+      "sha256": "aac6a8c296f31d4eca3fdf6a63a360097d8ec3bf55033195c31743c18020fb35"
+    },
+    "c7f7_aux": {
+      "aggregate_success": false,
+      "kind": "new_Ubuntu_partial_aggregate",
+      "public_path": "evidence/ubuntu-lp-aux.json",
+      "scope": "Typed1% native LP conversion refusal with original rights preserved; manual width-change trigger/jitter observed but complete replacement refused by0.01ETH transaction-cost bound; aggregatefalse.",
+      "sha256": "c13d078eaa2c8bc68125b339cd654d8585911dd64ca0c9889d8e51707be3a0cf"
+    },
+    "c7f8_authority": {
+      "aggregate_success": true,
+      "kind": "new_Ubuntu_correct_probe_continuation",
+      "public_path": "evidence/ubuntu-authority-completion.json",
+      "scope": "Only unexecuted correct keeper-only Vault.rebalance Unauthorized probe, permissionless harvest eth_call/state readback, restored SAME-key real harvest/receipt. Prior cases not repeated; different-key rotation remains unqualified.",
+      "sha256": "ed0ce89e7c50078aeb6fde82e170497e7f8f0a77cf203dcf6b3da98540559268"
+    },
+    "claims_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "reports/full-claim-admission-20261120/REVIEW.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "compound_policy_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "keeper/compound_policy.py",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "confirmation_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "reports/confirmation-audit-20261104/REVIEW.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "construction_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "reports/f6-construction-20261120/REVIEW.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "conversion_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "reports/exact-lp-integration-20261106/VERIFICATION.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "custody_boundary_source": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "keeper/principal.py",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "entry_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "reports/pool-integration-20261120/REVIEW.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "harvest_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "reports/pool-fees-20261121/REVIEW.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "history_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "reports/wallet-latency-20261123/REVIEW.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "installer_source": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "keeper/staging-install.sh",
+      "scope": "Current standalone -f and !-L guards fix set-e AND-list gap; actual c7f5 legacy FIFO baseline and five new corrected guard cases pass. Old6304 ownership/syntax proof remains distinct.",
+      "sha256": "b66878fee51f54ac36656646d41f57e70955b9b43c5aff228b5ecd02b3e258b3"
+    },
+    "lock_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "reports/ubuntu-keeper-20261121/REVIEW.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "lp_keeper_reconciliation": {
+      "kind": "new_readonly_reconciliation_of_actual_captures",
+      "public_path": "LP_KEEPER_RECONCILIATION.json",
+      "scope": "Exact600s maturity, last-observed146s jitter, known refusals/cost ceilings; no runtime or cap change.",
+      "sha256": "82d6a4787f1132ff3f878cf8b20fdfbdf7b6aa99b3716af09b52a314d6e3d217"
+    },
+    "lp_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "reports/maximum-workload-20261119/REVIEW.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "manual_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "reports/manual-reference-swap-fix-20261115/REVIEW.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "metadata_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "reports/metadata-lifecycle-fixes-20261116/REVIEW.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "nginx_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "docs/WORKLOAD_COVERAGE.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "observer_source": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "keeper/staging_observer.py",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "platform_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "reports/readiness-advance-20261120/REVIEW.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "preflight_source_checks": {
+      "kind": "new_focused_source",
+      "public_path": "evidence/preflight-routing-four-new.json",
+      "scope": "four NEW methods following retained baseline refusal"
+    },
+    "recovery_source_checks": {
+      "kind": "new_focused_source",
+      "public_paths": [
+        "evidence/recovery-cadence-first-seven.json",
+        "evidence/recovery-deadlines-three-new.json"
+      ],
+      "scope": "10 distinct NEW methods in7+3 stages; no old method rerun"
+    },
+    "retired_boundary_source": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "keeper/royalties.py",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "rpc_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "zzz_ops/rpc.py",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "site_environment_policy": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "docs/SITE_ENVIRONMENTS.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "snapshot_prior_refusals": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "reports/history-export-20261124/REVIEW.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "wallet_ubuntu_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "reports/wallet-latency-20261123/REVIEW.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "watchdog_prior": {
+      "kind": "scoped_source_or_prior_evidence",
+      "repository_path": "reports/ubuntu-keeper-20261121/REVIEW.md",
+      "scope": "Reuse only the original recorded source/workload; source pointers alone are not a dynamic pass"
+    },
+    "windows_prefix": {
+      "kind": "new_Windows_only",
+      "scope": "Synthetic three-epoch source-matched history continuation; does not imply Ubuntu execution or F6 financial approval.",
+      "sha256": "8863b5770d94163685a28a2945ddbd420804daf0f25fb462105fa3c5fc3eaa03"
+    },
+    "windows_recovery": {
+      "kind": "new_Windows_only",
+      "scope": "Synthetic three-epoch source-matched history continuation; does not imply Ubuntu execution or F6 financial approval.",
+      "sha256": "e25ea15561f576b3975cdc8fe1cadfe3673112d7ebbb4c4dc695e9f034f5b6cb"
+    }
+  },
+  "frozen_F6": {
+    "ABI_rows": 1021,
+    "build_controls": 4,
+    "changed": false,
+    "dependency_sources": 39,
+    "project_sources": 61
+  },
+  "input_reconciliation": {
+    "critical_adjustments": [
+      "O03 remains partial: actual stop/restart is recorded, installed production watchdog/failover/soak is not qualified.",
+      "I02 remains partial: actual two-empty-header replacement passes, financial orphaned-log replay and storage faults are not qualified.",
+      "K03 records stop while submitted transaction is still unmined, then genuine mining/depth and restart; it does not call this an already-included receipt interruption.",
+      "Current ops/monitor edits do not alter API semantic sources; prior actual API/HTTP/Nginx evidence is reused without rerun."
+    ],
+    "initial33partition_inventory_preserved": true,
+    "private_overlay_sha256": "09adccc5cd80ec866e69594496f27b9da2e06fb5a768ce07ea8829559de5b9a3"
+  },
+  "matrix": [
+    {
+      "evidence": [
+        "c7ed_actor",
+        "c7ed_healthy"
+      ],
+      "feature": "keeper daemon admission/bootstrap",
+      "id": "K01",
+      "implementation": "keeper/monitor.py:Keeper.__init__, initialize_state, main",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Wrong runtime/role/nonce/config fault matrix under real normal daemon; real production authorities and operational adoption."
+      ],
+      "status": "new_pass",
+      "summary": [
+        "Stock admission and fresh journal.",
+        "Actual-provider and adverse admission cases."
+      ],
+      "verified_now": [
+        "Actual stock monitor CLI validates39 F6 runtimes and91 bindings on a copied already-sealed two-NFT model; exact sealed bootstrap expectation retained.",
+        "Fresh encrypted local Cast signer receives keeper role through actual copied Access; fresh journal initializes."
+      ]
+    },
+    {
+      "evidence": [
+        "c7ed_actor",
+        "c7ed_receipt",
+        "c7ed_journal"
+      ],
+      "feature": "serial signer and fee admission",
+      "id": "K02",
+      "implementation": "keeper/monitor.py:submit; keeper/cast_process.py:run_cast",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Real target-chain complete fees/funding; output/time/signing-failure branch matrix.",
+        "The harness authenticates typed durable intent before forward and public transaction fields after forward; signed raw envelope is not predecoded."
+      ],
+      "status": "new_pass",
+      "summary": [
+        "One real Cast send and exact fee.",
+        "Target fees and signer-failure coverage."
+      ],
+      "verified_now": [
+        "One actual Cast harvest broadcast with durable saved intent, nonce0 and configured24M/full25% gas, gas-price/fee/day bounds.",
+        "Real receipt300814gas and exactly300814033089540wei; nonce0\u21921; no second submission."
+      ]
+    },
+    {
+      "evidence": [
+        "c7ed_actor",
+        "c7ed_journal",
+        "c7ed_healthy",
+        "recovery_source_checks",
+        "c7f6_role_rpc"
+      ],
+      "feature": "pending recovery",
+      "id": "K03",
+      "implementation": "keeper/monitor.py:poll_pending, resolve_pending, _validate_pending_transaction",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Before/during-Cast interruption, hashless ambiguity, orphan/reorg/missing receipt and provider-fault combinations; off-host fencing and soak."
+      ],
+      "status": "new_pass",
+      "summary": [
+        "Same-journal recovery, no resend.",
+        "Additional crash/reorg/off-host cases."
+      ],
+      "verified_now": [
+        "Stop after durable hash, mine12 genuine local confirmation blocks, restart same journal, clear pending and reach a later fresh healthy normal cycle.",
+        "Successful recovery keeps health degraded until fresh observations and retains earlier sample/jitter wake-ups;10 distinct new methods pass in7+3 stages.",
+        "Actual c7f6 pre-send and receipt-lookup fault points inject six failure attempts; pre-send nonce is preserved, saved pending bytes stay exact, and recovery uses the same hash without resend."
+      ]
+    },
+    {
+      "evidence": [
+        "c7f0_normal",
+        "lp_keeper_reconciliation",
+        "recovery_source_checks",
+        "confirmation_prior"
+      ],
+      "feature": "rebalance sampled confirmation",
+      "id": "K04",
+      "implementation": "keeper/rebalance_confirmation.py:RebalanceConfirmation.status; keeper/monitor.py:_confirmation_priority",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Full wall-clock daemon600s window and reset matrix under returns/opposite side/reference/source/identity/gap changes.",
+        "Actual independent production references and market/provider behavior; ordinary end-to-end replacement is still blocked in this lab."
+      ],
+      "status": "new_pass",
+      "summary": [
+        "600s sampled maturity;4 actual observations.",
+        "Wall-clock/reset and real-source proof."
+      ],
+      "verified_now": [
+        "Executed control-flow proof rejects physical/reference threshold disagreement before starting the observation record.",
+        "Four real Cast observations preserve one side/identity with240/240/121s gaps; a captured snapshot is mature at exactly600s.",
+        "This uses directed logical chain time and controlled correlated reference feeds; it is not uninterrupted price history or real-wall-clock daemon proof."
+      ]
+    },
+    {
+      "evidence": [
+        "c7f0_normal",
+        "lp_keeper_reconciliation",
+        "confirmation_prior"
+      ],
+      "feature": "durable jitter and cooldown",
+      "id": "K05",
+      "implementation": "keeper/monitor.py:_rebalance_delay, _confirmed_rebalance_due, poll_delay",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Complete jitter expiry, continued valid observations, ordinary LP replacement and restart/renewal/fault behavior in actual daemon cadence.",
+        "Do not assume the old146s schedule survives the later failure, or raise the6000 work bound to obtain a pass."
+      ],
+      "status": "partial",
+      "summary": [
+        "146s last-observed durable jitter.",
+        "Expiry/restart and full replacement."
+      ],
+      "verified_now": [
+        "Captured service schedule draws146s inside60\u2013300s after sampled maturity, with durable identity/deadlines.",
+        "That record is LAST OBSERVED before terminal RPC-budget failure, not authenticated final/current schedule. Executed source derives a reset requirement on RPC failure; no final journal was fetched."
+      ]
+    },
+    {
+      "evidence": [
+        "c7f0_normal",
+        "c7f7_aux",
+        "lp_keeper_reconciliation",
+        "lp_prior"
+      ],
+      "feature": "automatic rebalance one/two legs",
+      "id": "K06",
+      "implementation": "keeper/monitor.py:cycle, _rebalance_submission_ready, _late_lp_submission_review",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Positive full ordinary replacement through completed jitter and manual geometry replacement under reviewed fee/work budgets.",
+        "Full current stock one\u2194two-leg lifecycle, moving input/range/mode cases and independent markets; no automatic cap increase or guard bypass."
+      ],
+      "status": "partial",
+      "summary": [
+        "Triggers observed; work/cost caps refuse.",
+        "Completed one/two-leg stock replacement."
+      ],
+      "verified_now": [
+        "Current ordinary observation flow reaches maturity and last-observed jitter, then hits unchanged6000 total lab RPC limit; zero Vault.rebalance broadcasts.",
+        "Operator5000\u21922500 width-only change reaches its manual/ready trigger and jitter, then current0.01ETH transaction-cost guard refuses replacement.",
+        "Existing F6 direct-contract one/two-leg proofs retain their original scope."
+      ]
+    },
+    {
+      "evidence": [
+        "c7f3_jobs",
+        "compound_policy_prior",
+        "lp_prior"
+      ],
+      "feature": "compounding",
+      "id": "K07",
+      "implementation": "keeper/monitor.py:_compound_due, _compound_policy_allowed, _compound_submission_ready",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Positive current stock compounding with authenticated complete-fee economics inside approved budgets; reserve/idle, repeat, disagreement and internal-harvest clocks.",
+        "No source budget or financial safeguard was weakened to turn this local fee-environment refusal into a pass."
+      ],
+      "status": "partial",
+      "summary": [
+        "Actual0.01ETH cost-cap refusal.",
+        "Positive budget-feasible compounding."
+      ],
+      "verified_now": [
+        "Actual compound job reaches review but emits cost_cap_exceeded at existing0.01ETH maximum transaction cost; no compound broadcast.",
+        "Software-only in-range/below-threshold/no-pending-geometry policy and contract budgets stay intact."
+      ]
+    },
+    {
+      "evidence": [
+        "c7ed_actor",
+        "c7ed_receipt",
+        "c7ed_journal",
+        "harvest_prior",
+        "c7f8_authority"
+      ],
+      "feature": "independent hourly harvest",
+      "id": "K08",
+      "implementation": "keeper/monitor.py:cycle, _receipt_harvest_bucket; Vault.collectFees",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Current two-leg/zero-fee/outage/not-due branches and authenticated compound/rebalance harvest coalescing in composed daemon."
+      ],
+      "status": "new_pass",
+      "summary": [
+        "Real hourly-harvest path.",
+        "Both-leg/outage/coalescing branches."
+      ],
+      "verified_now": [
+        "Actual stock daemon performs independent due harvest and authenticates its receipt clock; configured hourly interval3600s stays.",
+        "Previous three-harvest/seven-claim supplied-pool financial proof remains source-applicable.",
+        "c7f8 confirms collectFees is intentionally permissionless: a nonkeeper eth_call succeeds while state/nonces remain unchanged. Keeper-only principal maintenance is separately probed correctly."
+      ]
+    },
+    {
+      "evidence": [
+        "c7f7_aux",
+        "lp_keeper_reconciliation",
+        "conversion_prior"
+      ],
+      "feature": "LP earned ZZZ-to-ETH conversion",
+      "id": "K09",
+      "implementation": "keeper/royalties.py:RoyaltyAutomation(lp=True).scan_once; keeper/monitor.py:_convert_rewards",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Positive funded ETH credit conversion using a genuinely qualified cheaper route under unchanged1% loss and gas-to-output limits.",
+        "Actual worker economics/gas/prefix/fairness/outage matrix; this refusal is not positive conversion approval."
+      ],
+      "status": "refusal",
+      "summary": [
+        "Typed1% refusal; exact rights retained.",
+        "Positive cheaper-route conversion."
+      ],
+      "verified_now": [
+        "Actual native LP conversion simulation returns typed Slippage0x7dd37f70: directional core fee11010ppm already exceeds1% conversion loss allowance.",
+        "No conversion broadcast; exact original NFT/source-currency rights remain unchanged."
+      ]
+    },
+    {
+      "evidence": [
+        "c7f3_jobs",
+        "buyback_prior"
+      ],
+      "feature": "buyback and burn",
+      "id": "K10",
+      "implementation": "keeper/monitor.py:_buyback_tasks, _buyback_once",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Authenticated complete token/global state and a positive actual fixed-ZZZ reserve burn; ETH\u2192ZZZ buyback route, gas, terminal restrictions and reserve separation."
+      ],
+      "status": "partial",
+      "summary": [
+        "Model lacks authenticated token supply.",
+        "Positive burn with complete token state."
+      ],
+      "verified_now": [
+        "Copied model reports ZZZ totalSupply()=0, exposing omitted global token state; burn job stops before attempting a burn.",
+        "This does not establish that the actual ZZZ token has zero supply or that its burn behavior fails."
+      ]
+    },
+    {
+      "evidence": [
+        "c7f3_jobs",
+        "metadata_prior"
+      ],
+      "feature": "optional metadata refresh",
+      "id": "K11",
+      "implementation": "keeper/monitor.py:_configure_metadata, _refresh_metadata, _confirm_metadata",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Dormant/enhanced/singular/parked/exited and all failure/restart/concurrency branches, plus actual marketplace refresh and large batches."
+      ],
+      "status": "new_pass",
+      "summary": [
+        "Real metadata Cast/receipt; no repeat.",
+        "All lifecycle/marketplace/batch cases."
+      ],
+      "verified_now": [
+        "Actual encrypted-Cast metadata batch confirms exact two current NFT IDs and lifecycle fingerprints; next cycle suppresses unchanged repeat.",
+        "Copied NFT rights remain unchanged and metadata routine reaches healthy state; this is a two-NFT controlled stage1 scope."
+      ]
+    },
+    {
+      "evidence": [
+        "c7f3_jobs",
+        "custody_boundary_source"
+      ],
+      "feature": "terminal principal distribution boundary",
+      "id": "K12",
+      "implementation": "keeper/principal.py:PrincipalDistribution.configure/run",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Keep historical custody4 separate and exercise actual governance holder-return operations independently; no keeper principal payout authority is added."
+      ],
+      "status": "refusal",
+      "summary": [
+        "Exact custody5 worker refusal.",
+        "Separate governance holder-return proof."
+      ],
+      "verified_now": [
+        "Actual fresh-profile Keeper admission returns the exact governance-only custody5 refusal when principal_distribution is enabled; no broadcast or journal change."
+      ]
+    },
+    {
+      "evidence": [
+        "c7f3_jobs",
+        "retired_boundary_source"
+      ],
+      "feature": "retired/historical scheduler boundary",
+      "id": "K13",
+      "implementation": "keeper/monitor.py:_sync_external, _adaptive_range_target; keeper/royalties.py:RoyaltyAutomation.__init__",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Retain historical scopes and no bridge/wrapper/inbox revival; broader malformed configuration combinations remain separate."
+      ],
+      "status": "refusal",
+      "summary": [
+        "2 retired configs refuse;3 inclK12.",
+        "Historical boundaries and config edges."
+      ],
+      "verified_now": [
+        "Actual fresh-profile admission rejects royalty_conversion and adaptive_range with their exact current reasons; together with K12 these are three expected configuration refusals.",
+        "Removed creator-inbox synchronization remains a source-reviewed restriction; this run does not claim a new inbox-specific dynamic check."
+      ]
+    },
+    {
+      "evidence": [
+        "c7ed_utilities",
+        "preflight_source_checks"
+      ],
+      "feature": "read-only operator diagnostics",
+      "id": "O01",
+      "implementation": "keeper/ops.py:preflight, health_check; keeper/operation_review.py:review",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Malformed/stale/wrong-binding/adverse diagnostics under actual provider; operation-review output is not transaction approval."
+      ],
+      "status": "new_pass",
+      "summary": [
+        "Five actual diagnostic commands.",
+        "Adverse provider/diagnostic cases."
+      ],
+      "verified_now": [
+        "Five real Ubuntu keeper.ops commands complete: preflight, simulated operation review, health, snapshot, verification.",
+        "New preflight validates reciprocal LP routing when no pending; pending recovery adds no route dependency."
+      ]
+    },
+    {
+      "evidence": [
+        "c7ed_utilities"
+      ],
+      "feature": "keeper recovery snapshots",
+      "id": "O02",
+      "implementation": "keeper/ops.py:create_snapshot, verify_snapshot",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Corruption/staleness/config negatives, actual off-host restore, old-signer fencing and failover; no original journal rewrite."
+      ],
+      "status": "new_pass",
+      "summary": [
+        "New snapshot and verification.",
+        "Off-host recovery and fencing."
+      ],
+      "verified_now": [
+        "Exclusive new keeper snapshot and matching-source/configuration verification pass using recovered journal."
+      ]
+    },
+    {
+      "evidence": [
+        "c7ed_actor",
+        "watchdog_prior"
+      ],
+      "feature": "systemd supervision and shutdown",
+      "id": "O03",
+      "implementation": "keeper/zzz-keeper.service; keeper/watchdog.py",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Loaded production watchdog/NotifyAccess/control-group settings; DNS/header/body stalls and healthy failover with actual current Cast; restart/soak."
+      ],
+      "status": "partial",
+      "summary": [
+        "Actual stop/restart; watchdog reuse.",
+        "Full watchdog/failover unit rehearsal."
+      ],
+      "verified_now": [
+        "Actual local daemon is stopped, restarted and its children terminate; source120s main-progress watchdog policy stays."
+      ]
+    },
+    {
+      "evidence": [
+        "c7ed_lock",
+        "c7ed_actor",
+        "lock_prior"
+      ],
+      "feature": "persistent lock and filesystem",
+      "id": "O04",
+      "implementation": "zzz_ops/state.py:process_lock, atomic_json",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Private-quota disk/full/read-only/fsync faults and persistent recovery; never fill shared disk."
+      ],
+      "status": "new_pass",
+      "summary": [
+        "Real lock exclusion/reacquisition.",
+        "Storage fault and quota cases."
+      ],
+      "verified_now": [
+        "Actual contender fails at process_lock/flock; same inode/mode, unchanged journal/nonces/send count.",
+        "Recovered daemon reacquires the same lock and completes; earlier eight new Ubuntu lock methods reused."
+      ]
+    },
+    {
+      "evidence": [
+        "c7f6_role_rpc",
+        "watchdog_prior",
+        "rpc_prior"
+      ],
+      "feature": "RPC failover and provider bounds",
+      "id": "O05",
+      "implementation": "zzz_ops/rpc.py; keeper/watchdog.py:ProgressRPC",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Actual provider/private-fault proxy matrix: wrong chain, slow/trickled DNS/header/body, stale ancestry, malformed/rate-limited responses, failover and independent-job recovery.",
+        "Preserve production Rpc8MiB response bound, existing work/deadline policies and reviewed systemd watchdog; no automatic budget increase."
+      ],
+      "status": "new_pass",
+      "summary": [
+        "Six injected fault attempts; no resend.",
+        "Real providers and full adverse failover."
+      ],
+      "verified_now": [
+        "Actual c7f6 stock worker passes two injected read-fault points with six fault attempts: no pre-send submission/nonce advance, then exact saved pending bytes and same-hash receipt recovery with no resend.",
+        "Controlled copied-state gateway faults are not public-provider capacity, DNS/body deadlines, independent-provider failover or production complete-fee qualification."
+      ]
+    },
+    {
+      "evidence": [
+        "c7ed_actor",
+        "c7f6_role_rpc",
+        "c7f8_authority"
+      ],
+      "feature": "role rotation/fencing and fee profiles",
+      "id": "O06",
+      "implementation": "keeper/monitor.py:cycle, _submission_fee_profile; docs/OPERATOR_MANUAL.md",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Different-key rotation, old-host/signer fencing and off-host recovery; actual production authority wallets/multisig and manual nonce interference.",
+        "Future fee-profile2 adoption and sustained operation remain separately unqualified."
+      ],
+      "status": "new_pass",
+      "summary": [
+        "Correct keeper auth and same-key restore.",
+        "Different-key/off-host/real authorities."
+      ],
+      "verified_now": [
+        "Actual copied governance grants/revokes/restores the SAME local keeper key; source permissions remain unchanged. c7f6 pause/reset and software-revocation subproofs retain their aggregate failure caused by a wrong harvest-authorization assertion.",
+        "c7f8 correctly verifies typed Unauthorized on keeper-only Vault.rebalance; permissionless collectFees eth_call succeeds without state/nonce mutation.",
+        "Restored same key signs one actual due harvest, with exact canonical receipt/harvest clock; this continuation repeats no completed prior body."
+      ]
+    },
+    {
+      "evidence": [
+        "c7ed_indexer"
+      ],
+      "feature": "indexer normal ingestion/restart",
+      "id": "I01",
+      "implementation": "indexer/monitor.py:Indexer.__init__, step, main",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Complete sealed-F6 NFT creation/lifetime history and all financial event workloads."
+      ],
+      "status": "new_pass",
+      "summary": [
+        "Actual log ingestion and restart.",
+        "Complete F6 lifetime history."
+      ],
+      "verified_now": [
+        "Actual current indexer CLI stores the real harvest log at12 confirmations, advances contiguous cursor and restarts same new database."
+      ]
+    },
+    {
+      "evidence": [
+        "c7ed_indexer"
+      ],
+      "feature": "indexer reorg/fetch/storage failure",
+      "id": "I02",
+      "implementation": "indexer/monitor.py:reconcile, step; zzz_ops/log_provenance.py",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Nonempty orphaned financial-log deletion/replay, unstable ancestry/413/429/provenance, storage/lock faults and restart."
+      ],
+      "status": "partial",
+      "summary": [
+        "Two empty confirmed headers replaced.",
+        "Financial-log reorg and fault coverage."
+      ],
+      "verified_now": [
+        "Controlled future branch replacement changes exactly two indexed confirmed EMPTY headers;13 genuine descendants per branch; actor anchor/journal retained."
+      ]
+    },
+    {
+      "evidence": [
+        "c7eb_snapshot",
+        "snapshot_prior_refusals"
+      ],
+      "feature": "complete Anvil history export/reload",
+      "id": "H01",
+      "implementation": "reports/history-export-20261124/REVIEW.md",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Sealed F6/accounting7 full historical state and financial/API consumers; equality of every historical account/storage slot is not proved.",
+        "No production/default budget adoption; snapshot1 only allows32MiB exact true-dump response and128MiB expansion."
+      ],
+      "status": "new_pass",
+      "summary": [
+        "Complete isolated snapshot/reload.",
+        "Sealed financial/history integration."
+      ],
+      "verified_now": [
+        "Approved isolated snapshot1 exports12805401compressed/47369005expanded bytes and reloads45headers/44receipts/39runtimes/112bindings plus genuine NFT parent/creation/latest-code proof.",
+        "Original default16MiB refusal and c7e9 capture refusal retained; no pruning/latest-only substitution."
+      ]
+    },
+    {
+      "evidence": [
+        "c7ed_utilities",
+        "history_prior",
+        "windows_recovery",
+        "c7f2_history_continuation"
+      ],
+      "feature": "raw history backup/verify/restore",
+      "id": "H02",
+      "implementation": "scripts/history-recovery.py; frontend_api/history_recovery.py",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Actual F6 data/off-host long-lived restore, corrupted/partial package and operating-adoption matrix."
+      ],
+      "status": "new_pass",
+      "summary": [
+        "Ubuntu single/three-epoch recovery proofs.",
+        "Full F6 and off-host long-lived restore."
+      ],
+      "verified_now": [
+        "Actual Ubuntu backup/verify/restore and bad-manifest refusal pass on new copies of source9/V9 synthetic history.",
+        "All phase/checkpoint bytes and86400s raw-retention window preserved; originals unchanged.",
+        "Separate new Windows three-epoch recovery preserves exact tables/checkpoint/review bytes; it is not relabelled Linux evidence.",
+        "Actual c7f2 three-epoch/1000-NFT recovery preserves nonzero high/low phase, all raw tables/checkpoint/review bytes and full86400s, with originals unchanged."
+      ]
+    },
+    {
+      "evidence": [
+        "c7ed_utilities",
+        "history_prior",
+        "windows_prefix",
+        "c7ee_import_partial",
+        "c7f2_history_continuation"
+      ],
+      "feature": "earnings checkpoint build/import",
+      "id": "H03",
+      "implementation": "scripts/build-earnings-checkpoint.py; scripts/import-earnings-checkpoint.py",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Actual F6/V10 complete historical source matching and independently reviewed artifacts for consumer adoption.",
+        "Stock provider/HTTP import admission, lifetime history, off-host restore/fencing and sustained operation remain unqualified."
+      ],
+      "status": "new_pass",
+      "summary": [
+        "Distinct schema3 import plus exact recovery.",
+        "Actual F6/provider/off-host adoption."
+      ],
+      "verified_now": [
+        "Existing same-semantic-source actual Ubuntu checkpoint builder evidence reused; no unchanged rebuild.",
+        "c7ed aggregate remains false: private negative-import fixture fails before intended CLI due standalone graph without lineage.",
+        "c7ee actual standalone negative CLI passes and two distinct schema3 prefix/import CLI commands exit0; aggregate still stops at provenance comparison before recovery stages.",
+        "Actual c7f2 validates the six exact new-prefix Seed provenance differences and every other decoded financial/raw field, then backup/verify/restore/reverify all pass; no completed importer or builder is rerun."
+      ]
+    },
+    {
+      "evidence": [
+        "wallet_ubuntu_prior"
+      ],
+      "feature": "read API + full wallet/history",
+      "id": "A01",
+      "implementation": "frontend_api/server.py; frontend_api/service.py; wallet_view.py; earnings.py",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Full F6/V10 matched history/consumer, actual independent pricing/provider performance, sustained load and practical freshness margin."
+      ],
+      "status": "scoped_reuse",
+      "summary": [
+        "80 GET Ubuntu wallet proof reused.",
+        "Full F6 and robust latency."
+      ],
+      "verified_now": [
+        "Actual current-semantic source9/V9 Ubuntu1000NFT/3-currency view completes80GETs/37assertions/eightcards in98.834s; final age116.018s leaves3.982s.",
+        "Current ops/monitor corrections do not change API/checkpoint semantic sources."
+      ]
+    },
+    {
+      "evidence": [
+        "entry_prior"
+      ],
+      "feature": "activation/growth unsigned API",
+      "id": "A02",
+      "implementation": "frontend_api/activation_server.py; activation.py; activation_v4.py",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Current host/provider prepared ETH/ZZZ activation/growth with exact decimals, approvals, fresh state/race/refusal cases; no public submission."
+      ],
+      "status": "scoped_reuse",
+      "summary": [
+        "Entry/unsigned evidence reused.",
+        "Current provider and full HTTP flow."
+      ],
+      "verified_now": [
+        "Existing actual Entry/financial and unsigned-preparation evidence retained;32M/full20% contribution candidate unchanged."
+      ]
+    },
+    {
+      "evidence": [
+        "claims_prior"
+      ],
+      "feature": "mint/claim unsigned preparation",
+      "id": "A03",
+      "implementation": "frontend_api/transactions.py; claim_planner.py; server.py",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Current actual Linux financial worker unsigned requests under owner/account/currency/gas/expiry changes; production submission remains disabled."
+      ],
+      "status": "scoped_reuse",
+      "summary": [
+        "Exact claim planner proof reused.",
+        "Current financial worker integration."
+      ],
+      "verified_now": [
+        "Existing normal F6 first-successful-prefix claim planner and actual payout/remainder evidence retained;12M/full20% claims unchanged."
+      ]
+    },
+    {
+      "evidence": [
+        "wallet_ubuntu_prior",
+        "api_isolation_prior"
+      ],
+      "feature": "worker isolation/admission",
+      "id": "A04",
+      "implementation": "frontend_api/worker.py; http_runtime.py; admission.py",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Full current F6 malformed/large/stalled/disconnect/fullqueue/fault partitions and sustained multi-client capacity."
+      ],
+      "status": "scoped_reuse",
+      "summary": [
+        "Ubuntu worker/HTTP proofs reused.",
+        "Current F6 fault/load capacity."
+      ],
+      "verified_now": [
+        "Actual Ubuntu isolated HTTP cancellation/restart/context and source9 ingress evidence retained; API semantics unchanged."
+      ]
+    },
+    {
+      "evidence": [
+        "nginx_prior",
+        "wallet_ubuntu_prior"
+      ],
+      "feature": "Nginx ingress",
+      "id": "E01",
+      "implementation": "config/nginx/popl-api-*.conf; scripts/rehearse-api-ingress.py",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Actual production host/origin/header/body/rate/secret-log operating qualification; any new check must use owned config/prefix/listeners."
+      ],
+      "status": "scoped_reuse",
+      "summary": [
+        "Isolated Nginx evidence reused.",
+        "Production ingress qualification."
+      ],
+      "verified_now": [
+        "Actual isolated Ubuntu Nginx/HTTP source9 route/worker journey remains applicable; no live proxy reload."
+      ]
+    },
+    {
+      "evidence": [
+        "observer_source",
+        "c7ef_boundary"
+      ],
+      "feature": "staging observer and health export",
+      "id": "E02",
+      "implementation": "keeper/staging_observer.py; staging-monitor-install.sh; scripts/check-staging-monitor.py",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Separately reviewed owned-fixture relocation and actual export/retention/off-host checks; desktop heartbeat stays paused.",
+        "c7ef bash-n/--help can prove syntax only, not observer execution."
+      ],
+      "status": "unqualified",
+      "summary": [
+        "Original observer preserved.",
+        "Relocated observer functional proof."
+      ],
+      "verified_now": [
+        "Fixed existing staging observer/installer paths are deliberately not executed.",
+        "New bash-n accepts both staging installer scripts; this is syntax only and does not execute the fixed observer."
+      ]
+    },
+    {
+      "evidence": [
+        "site_environment_policy",
+        "wallet_ubuntu_prior"
+      ],
+      "feature": "static site separation",
+      "id": "E03",
+      "implementation": "docs/SITE_ENVIRONMENTS.md; website source9/source10 profiles",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Actual current F6 browser/HTTP consumer adoption on separate configuration; no rollout or existing dist changes inferred."
+      ],
+      "status": "scoped_reuse",
+      "summary": [
+        "Site/signer boundaries retained.",
+        "Reviewed current F6 consumer adoption."
+      ],
+      "verified_now": [
+        "Popldemo simulation and poplint read/unsigned separation retained; public deployment/signing stays null."
+      ]
+    },
+    {
+      "evidence": [
+        "c7ed_utilities",
+        "manual_prior",
+        "c7f1_help"
+      ],
+      "feature": "operator/manual preparation tools",
+      "id": "P01",
+      "implementation": "scripts/prepare-manual-lp.py; prepare-operator-review.py; prepare-operator-management.py; prepare-preseal.py",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Actual Ubuntu unsigned governance/manual LP preparation and stale/moving-market/bypass-mask refusal cases; help parsing is complete but does not execute these flows.",
+        "No governance key, forced operation, sealing or broadcast is exercised by CLI syntax."
+      ],
+      "status": "partial",
+      "summary": [
+        "Manual evidence plus ordinary diagnostics.",
+        "Unsigned manual action input coverage."
+      ],
+      "verified_now": [
+        "Current manual C/D/recovery diagnostics and gas evidence reused; five actual ordinary keeper.ops commands complete.",
+        "Actual separate c7f1 nobody-only CLI continuation completes all16 --help parsers, preserving190 source files; no financial/configuration action."
+      ]
+    },
+    {
+      "evidence": [
+        "construction_prior",
+        "platform_prior",
+        "installer_source",
+        "c7ef_boundary",
+        "c7f1_help",
+        "c7f5_guard"
+      ],
+      "feature": "deployment/platform qualification tools",
+      "id": "P02",
+      "implementation": "scripts/prepare-deployment.py; prepare-deployment-sequence.py; prepare-opensea-drop.py; observe-production-config.py; keeper/probe.py",
+      "production_accepted": false,
+      "remaining_obligations": [
+        "Real feeds/routes/fees/authorities/VRF/OpenSea custom Merkle support and independent approval; all16 planned help parsers now pass separately.",
+        "No full installer/platform/API-feature acceptance follows from --help."
+      ],
+      "status": "partial",
+      "summary": [
+        "10 root+16help+6 new guard proofs.",
+        "Real services and financial inputs."
+      ],
+      "verified_now": [
+        "Current construction/platform/RPC offline evidence reused; new future installer ownership source fix prepared.",
+        "Actual isolated GNUtar preserves UID/GID1001 with original extraction; --no-same-owner yields0:0:1, passes ownership guard then mode0755. Five shell parser checks also pass;10 root commands total.",
+        "Actual separate c7f1 nobody-only CLI continuation completes all16 --help parsers, preserving190 source files; no financial/configuration action.",
+        "Actual c7f5 reproduces the legacy FIFO reaching chmod sentinel, then current FIFO/directory/symlink/hardlink each exit1 before sentinel; valid regular exits0/reaches sentinel. Five new cases plus one new baseline; no tar/help repeat."
+      ]
+    }
+  ],
+  "new_sealing": false,
+  "old_tests_rerun": 0,
+  "pending_results": {},
+  "preserve": [
+    "existing sites/services/Anvil8902/NFTs/LP/balances",
+    "original journals/DB/checkpoints/reviews",
+    "paused desktop heartbeat",
+    "financial/resource/profile limits",
+    "public signer remains disabled"
+  ],
+  "production_approved": false,
+  "public_transactions": 0,
+  "runtime_partitions_terminal": true,
+  "runtime_scope_note": "All planned local stage attempts are terminal, with separate successes/refusals/partial failures. This is not all-feature, market, provider, off-host or production acceptance.",
+  "schema": 1,
+  "scope": "33 Ubuntu operating partitions: finite new proofs, exact semantic reuse, preserved refusals and remaining obligations. Not complete feature/market/release acceptance.",
+  "source_base": "064cd93060b626b885cf88772fa2eb959d51c706",
+  "source_stage": "source_base_plus_reviewed_overrides",
+  "stage_results": {
+    "c7ec": "Six attempted directed-job clones refuse at initial clock preparation before any keeper job or raw submission. Reserved c7f4 clock diagnostic/job retry pending; no feature pass.",
+    "c7ee": "Actual standalone negative importer CLI passes; two distinct schema3 import CLI commands exit0. Six provenance metadata comparison fields require the reserved c7f2 validation/recovery-only continuation.",
+    "c7ef": "Aggregatefalse after10 passing root GNUtar/stat/bash commands; PermissionError at first help spawn, exact OS cause unproved.",
+    "c7f0": "Four real on-chain observations reach600s maturity in directed chain time; last captured jitter146s.6000 total RPC ceiling stops full LP replacement, which remains unqualified; final schedule readback absent.",
+    "c7f1": "Actual16 UID/GID65534 help commands pass with no root/tar/bash repetition; no financial-feature acceptance.",
+    "c7f2": "Actual continuation passes all decoded fields except six exact authenticated provenance values, exact restored raw tables/checkpoint/review and four recovery CLI stages. No prefix/import rerun.",
+    "c7f3": "Actual metadata Cast/receipt/repeat-suppression passes; original-currency royalty conversion, keeper principal distribution and adaptive-range configs each refuse exactly. Compound hits cost ceiling, copied buyback token supply is0, role reset is blocked by private harness; aggregatefalse.",
+    "c7f5": "Actual six Bash cases pass: one NEW legacyFIFO baseline and five NEW guarded cases; no tar/help rerun and no actual chmod.",
+    "c7f6": "Actual six injected RPC-fault attempts pass pre-send no-submission/nonce preservation and saved-hash exact-pending/no-resend recovery. Roles reach pause/reset/software revocation, then harness incorrectly expects Unauthorized on permissionless collectFees; aggregatefalse retained.",
+    "c7f7": "Conversion simulates typedSlippage under actual11010ppm directional fees against1% loss limit, no broadcast and rights unchanged.5000\u21922500 width-only manual trigger/jitter occurs; replacement stops at0.01ETH transaction-cost cap.",
+    "c7f8": "Actual correct Vault.rebalance keeper-only Unauthorized probe passes. Permissionless collectFees eth_call succeeds with state/nonces unchanged; restored same key performs one real harvest with exact canonical receipt clock. No prior role/pause/RPC case repeats."
+  },
+  "status_counts": {
+    "new_pass": 15,
+    "partial": 8,
+    "refusal": 3,
+    "scoped_reuse": 6,
+    "unqualified": 1
+  },
+  "status_definitions": {
+    "new_pass": "Only the listed new finite partition has passed; remaining obligations and production gate remain open.",
+    "partial": "Some evidence exists but a required partition is pending, failed or materially narrower.",
+    "refusal": "Specified prohibited or invalid path refuses as designed; this is not a positive financial flow.",
+    "scoped_reuse": "Applicable existing source/semantics evidence retained; no unchanged test or journey repeated.",
+    "unqualified": "No functional proof for this scope, or intentionally not executed."
+  },
+  "unchanged_API_semantic_sources": true
+}

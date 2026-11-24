@@ -1,5 +1,17 @@
 # Verification evidence
 
+[Ubuntu recovery and operating follow-through](ubuntu-complete-20261124/REVIEW.md)
+completes the NEW constructor fixture's full export/reload under its explicitly
+approved isolated snapshot budget. It verifies finite stock-daemon/Cast
+harvest/recovery/health, diagnostics, indexing and exact multi-epoch history
+restore, and corrects routing preflight, refresh-only recovery scheduling and
+future installer ownership/type checks. The [33-partition map](ubuntu-complete-20261124/COVERAGE.md)
+separates new passes, partial results, expected refusals and source-exact reuse.
+Original aggregate/fixture failures stay immutable. Ordinary rebalance execution,
+positive conversion/compound/burn and actual production operating approval retain
+their recorded limits; no unchanged suite, existing environment rollout, public
+transaction or new sealing is implied.
+
 [Compact wallet reads](compact-wallet-20261121/REVIEW.md) add combined ownership/
 summary and four-currency earnings pages with request-local bounded canonical
 reuse. New finite1/17/1,000 and66-descriptor journeys retain exact accounting and

@@ -1,0 +1,190 @@
+{
+  "attempt": 1,
+  "network_namespace": {},
+  "owned_cgroup_pids": [],
+  "phase": "status",
+  "properties": {
+    "ActiveState": "inactive",
+    "CPUQuotaPerSecUSec": "infinity",
+    "CPUWeight": "[not set]",
+    "ControlGroup": "",
+    "ExecMainStatus": "0",
+    "Group": "",
+    "IOWeight": "[not set]",
+    "KillMode": "control-group",
+    "LoadState": "not-found",
+    "MainPID": "0",
+    "MemoryMax": "infinity",
+    "MemorySwapMax": "infinity",
+    "Nice": "0",
+    "NoNewPrivileges": "no",
+    "PrivateDevices": "no",
+    "PrivateNetwork": "no",
+    "ProtectHome": "no",
+    "ProtectSystem": "no",
+    "Result": "success",
+    "RuntimeMaxUSec": "infinity",
+    "SubState": "dead",
+    "TasksMax": "9211",
+    "TimeoutStopUSec": "1min 30s",
+    "User": ""
+  },
+  "public_files": {
+    "RESULT.json": {
+      "bytes": 1578,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "controller.stderr.log": {
+      "bytes": 0,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "controller.stdout.log": {
+      "bytes": 101,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "indexer-RESULT.json": {
+      "bytes": 1937,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-ACTUAL_RECEIPT.json": {
+      "bytes": 2772,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-BEFORE_RAW_SUBMISSION.json": {
+      "bytes": 933,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-BOOTSTRAP.json": {
+      "bytes": 9965,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-CONFIRMATION_BLOCKS.json": {
+      "bytes": 22352,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-DURABLE_PENDING.json": {
+      "bytes": 1334,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-HEALTHY_NORMAL_CYCLE.json": {
+      "bytes": 13938,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-IMPORTED_HEAD.json": {
+      "bytes": 1824,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-INITIAL_JOURNAL.json": {
+      "bytes": 1651,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-INTERRUPTED_PENDING.json": {
+      "bytes": 203,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-LOCK_CONTENTION.json": {
+      "bytes": 272,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-PREMUTATION_BINDINGS.json": {
+      "bytes": 46416,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-RECOVERED_JOURNAL.json": {
+      "bytes": 2652,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-UTILITY_CONTROLS.json": {
+      "bytes": 791,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-initialize.stderr": {
+      "bytes": 0,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-initialize.stdout": {
+      "bytes": 149,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-lock-contender.stderr": {
+      "bytes": 0,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-lock-contender.stdout": {
+      "bytes": 143,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-stock-live-001.stderr": {
+      "bytes": 0,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-stock-live-001.stdout": {
+      "bytes": 480,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-stock-live-002.stderr": {
+      "bytes": 0,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-stock-live-002.stdout": {
+      "bytes": 728,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-utilities-runner.stderr": {
+      "bytes": 0,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "keeper-utilities-runner.stdout": {
+      "bytes": 152,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "utility-HEALTH.json": {
+      "bytes": 399,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "utility-OPERATION_REVIEW.json": {
+      "bytes": 21250,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "utility-PREFLIGHT.json": {
+      "bytes": 5486,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "utility-RESULT.json": {
+      "bytes": 7988,
+      "mode": "0o600",
+      "uid": 65534
+    }
+  },
+  "unit": "popl-ubuntu-features-20261124-c7ed.service"
+}

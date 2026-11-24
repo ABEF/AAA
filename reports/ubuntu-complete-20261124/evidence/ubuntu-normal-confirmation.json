@@ -1,0 +1,123 @@
+{
+  "actual_signed_envelope_predecoded": false,
+  "all_enabled_jobs_qualified": false,
+  "cleanup": [
+    {
+      "feature": "confirmation",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    }
+  ],
+  "features": [
+    {
+      "RPC_requests": 6000,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "error_class": "RpcError",
+      "fault_attempts": 0,
+      "feature": "confirmation",
+      "fixed_guard": null,
+      "gateway_refusals": [
+        {
+          "error_class": "HarnessRefusal",
+          "fixed_guard": "Shared feature work budget exceeded",
+          "message_sha256": "8799f10e2282b924cd836cf7cccc60abb6da8e87d3b031395bb625340f89e968",
+          "method": "eth_chainId"
+        },
+        {
+          "error_class": "HarnessRefusal",
+          "fixed_guard": "Shared feature work budget exceeded",
+          "message_sha256": "8799f10e2282b924cd836cf7cccc60abb6da8e87d3b031395bb625340f89e968",
+          "method": "eth_chainId"
+        },
+        {
+          "error_class": "HarnessRefusal",
+          "fixed_guard": "Shared feature work budget exceeded",
+          "message_sha256": "8799f10e2282b924cd836cf7cccc60abb6da8e87d3b031395bb625340f89e968",
+          "method": "eth_chainId"
+        },
+        {
+          "error_class": "HarnessRefusal",
+          "fixed_guard": "Shared feature work budget exceeded",
+          "message_sha256": "8799f10e2282b924cd836cf7cccc60abb6da8e87d3b031395bb625340f89e968",
+          "method": "eth_chainId"
+        },
+        {
+          "error_class": "HarnessRefusal",
+          "fixed_guard": "Shared feature work budget exceeded",
+          "message_sha256": "8799f10e2282b924cd836cf7cccc60abb6da8e87d3b031395bb625340f89e968",
+          "method": "eth_chainId"
+        },
+        {
+          "error_class": "HarnessRefusal",
+          "fixed_guard": "Shared feature work budget exceeded",
+          "message_sha256": "8799f10e2282b924cd836cf7cccc60abb6da8e87d3b031395bb625340f89e968",
+          "method": "eth_chainId"
+        },
+        {
+          "error_class": "HarnessRefusal",
+          "fixed_guard": "Shared feature work budget exceeded",
+          "message_sha256": "8799f10e2282b924cd836cf7cccc60abb6da8e87d3b031395bb625340f89e968",
+          "method": "eth_chainId"
+        },
+        {
+          "error_class": "HarnessRefusal",
+          "fixed_guard": "Shared feature work budget exceeded",
+          "message_sha256": "8799f10e2282b924cd836cf7cccc60abb6da8e87d3b031395bb625340f89e968",
+          "method": "eth_chainId"
+        },
+        {
+          "error_class": "HarnessRefusal",
+          "fixed_guard": "Shared feature work budget exceeded",
+          "message_sha256": "8799f10e2282b924cd836cf7cccc60abb6da8e87d3b031395bb625340f89e968",
+          "method": "eth_chainId"
+        }
+      ],
+      "last_model_RPC_failure": null,
+      "last_stage": "stock_sample_window_and_jitter",
+      "message_sha256": "547fba372b4e777f27279d2fc739250df65844d5ad506e185f1152244bfa4ef9",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 4,
+      "raw_forwarded": 4,
+      "setup_transactions": 11,
+      "site": {
+        "file": "run_jobs.py",
+        "function": "confirmation",
+        "line": 48
+      },
+      "status": "failed",
+      "stock_transactions": 4
+    }
+  ],
+  "new_seals": 0,
+  "old_test_bodies_run": 0,
+  "planned_jobs": [
+    "confirmation"
+  ],
+  "postforward_exact_transaction_verification_required": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_submission_attempts": 4,
+  "reviewed_raw_forward_attempts": 4,
+  "schema": 1,
+  "scope": "NEW directed stock confirmation/rebalance/geometry/native LP conversion; copied sealed state; not global market or wallclock soak",
+  "secret_disposition": {
+    "contents_or_content_hashes_exported": false,
+    "retained_only_in_new_owned_lab": true
+  },
+  "shared_RPC_requests": 6000,
+  "source_inputs_preserved": true,
+  "stock_events_bytes": 4525,
+  "success": false,
+  "tracked_children_stopped": true,
+  "unattempted_jobs": [],
+  "unexecuted": [
+    "continuous_daemon_timing",
+    "sample_reset_job_after_new_market_recovery",
+    "different_key_rotation"
+  ],
+  "whole_cgroup_cleanup_requires_external_readback": true
+}

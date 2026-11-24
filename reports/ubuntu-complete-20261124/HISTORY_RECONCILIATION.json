@@ -1,0 +1,276 @@
+{
+  "complete_Ubuntu_or_project_qualification": false,
+  "date": "2026-11-24",
+  "fixture": {
+    "LP_assets": [
+      "ETH",
+      "ZZZ"
+    ],
+    "NFTs": 1000,
+    "activated": 900,
+    "all_getter_lifecycle_truths": "Explicit controlled synthetic fixture; some getter truths derive from the exact replay model. No external chain proof.",
+    "authenticated_synthetic_handoffs": 2,
+    "chain_id": 31337,
+    "epochs": 3,
+    "full_rolling_window_seconds": 86400,
+    "old_scale_population_or_wallet_journey_rerun": false,
+    "raw_history_preserved": true,
+    "royalty_assets": [
+      "ETH",
+      "USDC"
+    ]
+  },
+  "kind": "popl-current-semantic-history-reconciliation",
+  "preserved_failures": {
+    "c7ed_utility_aggregate_success_remains_false": true,
+    "c7ee_aggregate_success_remains_false": true,
+    "no_failed_aggregate_relabelled_as_pass": true,
+    "windows_initial_comparison_stop": true
+  },
+  "production_approved": false,
+  "proof_artifacts": {
+    "ubuntu_cleanup": {
+      "bytes": 2074,
+      "sha256": "358fd0d2ddeded966905b73da955a26023a53012b3d26f59725a57180436001c"
+    },
+    "ubuntu_initial": {
+      "bytes": 2933,
+      "sha256": "5e72b7f64d1a943b63ec5f2f3a209f5a4ffe91d8528055c22bd003bb9fa2698f"
+    },
+    "ubuntu_provenance_diff": {
+      "bytes": 4971,
+      "sha256": "ba96e32cdabe12c89008c18bf8fb0e9bb31571dbce5080568d4f1470682285ae"
+    },
+    "ubuntu_recovery_continuation": {
+      "bytes": 3082,
+      "sha256": "a41754237788f1aefd344a637e33dbe173803ae8af7c4f1d2c2ea256acccccb2"
+    },
+    "ubuntu_review_three": {
+      "bytes": 22578,
+      "sha256": "472659deb39a970d4ab170a266e0cb25b996c923eae0ab4bd8924e8564221713"
+    },
+    "ubuntu_review_two": {
+      "bytes": 16707,
+      "sha256": "0cd55a1c662d8ea6614e890737262986e3a39e07a092c0e49305a6de170bf9c7"
+    },
+    "windows_build_import": {
+      "bytes": 3740,
+      "sha256": "8863b5770d94163685a28a2945ddbd420804daf0f25fb462105fa3c5fc3eaa03"
+    },
+    "windows_recovery_continuation": {
+      "bytes": 4058,
+      "sha256": "e25ea15561f576b3975cdc8fe1cadfe3673112d7ebbb4c4dc695e9f034f5b6cb"
+    }
+  },
+  "raw_table_digests": [
+    {
+      "blocks": {
+        "rows": 131,
+        "sha256": "4c618eac79b3b5c96d94717c6677cfd1dfb05282ea52dce31b85212c2089c07b"
+      },
+      "cursors": {
+        "rows": 1,
+        "sha256": "6148b2cdaa2c98087a6cb23c2183f7ccccb89e75a320b33e8b667ff99313d013"
+      },
+      "logs": {
+        "rows": 5613,
+        "sha256": "d3d99bc21fe2e78060f62ff3233af0d80373236c53fbc895ee8a3d67f24404b4"
+      }
+    },
+    {
+      "blocks": {
+        "rows": 121,
+        "sha256": "a9a21204451f8000a94a919486fb5096cb6690c83b5982a6ec00101b0bc9c94c"
+      },
+      "cursors": {
+        "rows": 1,
+        "sha256": "303f34a1771c2a07a5d1140ee4b3d1631719d303955305901622546e7f3358b2"
+      },
+      "logs": {
+        "rows": 1089,
+        "sha256": "cca6154f4b0e97eee49b2317657bb1b57175852070fa5f6f4df339591fe21ecd"
+      }
+    },
+    {
+      "blocks": {
+        "rows": 80,
+        "sha256": "afb53009aeaa2cb87f22a03838cf0ef99409b8b7cbe248aec3ef8737668bc0ba"
+      },
+      "cursors": {
+        "rows": 1,
+        "sha256": "5db454fe97955816e6c1541f3588f8106e9f5ec9f35fea9ae05ebd66069448f0"
+      },
+      "logs": {
+        "rows": 1055,
+        "sha256": "a26787546f44314e6031fec4964bddf87873c891eb3ee748098b9bf867a93af8"
+      }
+    }
+  ],
+  "remaining_boundaries": [
+    "Complete F6/V10 EVM history and actual deployed handoff proof",
+    "Production RPC/archive/provider and reorg/finality qualification",
+    "Actual live-consumer adoption and configuration review",
+    "Off-host recovery/fencing and long-duration service operation",
+    "External audit and production approval"
+  ],
+  "safety_and_limits": {
+    "checkpoint_installation_or_service_adoption": false,
+    "full_window_seconds_preserved": 86400,
+    "offline_explicit_RPC_budget_not_HTTP_budget": 65536,
+    "old_test_methods_run": 0,
+    "old_wallet_journeys_run": 0,
+    "owned_continuation_processes_stopped": true,
+    "prior_raw_DB_checkpoint_review_bytes_preserved": true,
+    "public_transactions": 0,
+    "recovery_package_bytes": 67108864,
+    "sealing": false,
+    "signing": false
+  },
+  "schema": 1,
+  "scope": "Finite offline current-semantic replay/import/recovery on preserved synthetic multi-epoch data; not F6 EVM, production-provider or live-consumer acceptance.",
+  "source_binding": {
+    "base_revision": "064cd93060b626b885cf88772fa2eb959d51c706",
+    "import_producer_sources_LF_normalized": {
+      "frontend_api/earnings_checkpoint_import.py": "326ce729718e113af7bb8f993f05c79ade3ddf5b2ac901d9a72c221ba4d71457",
+      "scripts/import-earnings-checkpoint.py": "0c3f25bad6e3f50a122f34da0bf7b24c6a14b29547b2a743e35428111c01343a"
+    },
+    "protected_dirty_python_in_capsule": "HEAD bytes; original working files not adopted or changed",
+    "protected_dirty_working_files_preserved": true,
+    "recovery_producer_sources_LF_normalized": {
+      "frontend_api/earnings_checkpoint_import.py": "326ce729718e113af7bb8f993f05c79ade3ddf5b2ac901d9a72c221ba4d71457",
+      "frontend_api/history_recovery.py": "8e10b8a4820ca29e425707e7469032a1d0d91590edadf98b0a2afb44ad4a7a3f",
+      "scripts/history-recovery.py": "ed440feac85ff49b8204469d8c3e5778dbe49f486500b00aa81f111680d1743f"
+    },
+    "semantic_sources_LF_normalized": {
+      "frontend_api/canonical_cache.py": "cd2784ef2c4ada773b09be8b4c3d8122e0f77df3f638c665f424a5bdead690f9",
+      "frontend_api/earnings.py": "33f104d8e531ff26999197790247baebef940d72696a662d262ff585f7077be8",
+      "frontend_api/earnings_checkpoint.py": "d801fcf9ade08ff07027fc3bb5babeedc30c7d8929faec8d7b0ace274d7727c8",
+      "frontend_api/earnings_checkpoint_build.py": "f5eca20abda61ef591d3a8dc65a50eb8275aea363e07e0ed25a3b8134d64e192",
+      "frontend_api/earnings_checkpoint_v2.py": "525dfae493248780d6025d88ab7ea7cdd0e507465ed378f0c2b56d7e4044ac98",
+      "frontend_api/earnings_checkpoint_v3.py": "ab00ba2b9972d336e70f0b7559ee45903939245060e3d3b1bf081cf61b1258eb",
+      "frontend_api/earnings_exact_lp.py": "77e0694b2d800dafd5dc05e760648d0ece86304ca47abb5f05d3ff76b32bb604",
+      "frontend_api/earnings_prices.py": "32921e735f7989dbf83083b0737933584a08364f55ba2d1597b4e387bf51c827",
+      "frontend_api/earnings_replay.py": "a28591ccfe03f891ccd5bc50122c975bc5204f98ac351dd7d4fdc38768eb115d",
+      "frontend_api/history.py": "45fe56e50de8e2673d54b96c80d481e11da65e28d01a614025e0f1ffb6b28599",
+      "frontend_api/lineage.py": "3af5fb169d1843bfca7dc81460338cfde4abfec7d085bbe9972d4a49aeeab91b",
+      "frontend_api/portfolio.py": "edf1c11ac78d867392a65e6d679791c72d8075b8b233f8e2a0ec6d9cebdcc678",
+      "frontend_api/service.py": "f1e313243437fe416da53f619c93d2af25bfb429d59233bdb239b37cfa971c81",
+      "frontend_api/wallet_earnings.py": "a9b0155c6d94f726218d943440d7b90949444b5d4851d8783d05e0c542e03e7e",
+      "frontend_api/wallet_view.py": "d6d62d527c4e13b06a4c0e45472a56caf74a6fd72e0545a1ee65466ab47a509c",
+      "zzz_ops/abi.py": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91",
+      "zzz_ops/exact_lp.py": "397279d87ef7caa85f98f329277cce8da2e10ad7129d5a6e54b5d7b361129259",
+      "zzz_ops/log_provenance.py": "9edf223d19c2cc04f4829822c282ea534e24afe489016ccb90103f2ce98bb230"
+    },
+    "ubuntu_source_inventory_sha256": "1c7b060b510a26e4fc58f4897bda6cfad016373afcaee010fdd596d13cecaa41",
+    "ubuntu_source_members": {
+      "tracked_Python_including_fixtures_and_tests": 487,
+      "tracked_event_schema_JSON": 2
+    }
+  },
+  "stages": [
+    {
+      "CLI_boundary": "Actual main/argparse entry in fixture-injected process; no HTTP RPC",
+      "CLI_exits": [
+        0,
+        0
+      ],
+      "checkpoint_sha256": "3aa212be10e7f0bbc0c9552d7a4b14c99d583aa469145206d2c5358076405cd3",
+      "continuation": "Previously unexecuted state validation + backup/verify/restore/restored-verify only; no successful build/import repeated.",
+      "continuation_success": true,
+      "environment": "Windows offline",
+      "id": "windows-one-to-three",
+      "initial_aggregate_success": false,
+      "initial_stop_preserved": "Strict comparison detected the legitimate NEW prefix digest in provenance.",
+      "path": "NEW current-semantic schema2 prefix at46 -> schema3 three-epoch candidate at161",
+      "prefix_sha256": "f105958bac8a54566c7e67c44bb51594ebc4ab94c9e461c239ef9a1342415049",
+      "proofs": [
+        "windows_build_import",
+        "windows_recovery_continuation"
+      ]
+    },
+    {
+      "CLI_boundary": "Positive importer main/argparse entries use explicit fixture injection; standalone negative is an unmodified CLI subprocess.",
+      "aggregate_success": false,
+      "checkpoint3_sha256": "90b354c9bf31e0a591128ea4520902ec963e84add30fbe608d5a6e515d048ee3",
+      "environment": "Actual isolated unprivileged Ubuntu",
+      "id": "ubuntu-negative-and-one-to-two-to-three",
+      "initial_stop_preserved": "Verification expected active Seed metadata but omitted legitimate completed-epoch Seed metadata. Both importer entries had already exited0.",
+      "path": "Reused current prefix46 -> NEW schema3 two-epoch prefix161 -> NEW schema3 three-epoch candidate161",
+      "positive_CLI_exits": [
+        0,
+        0
+      ],
+      "prefix2_sha256": "0cbc526d54791249de03915e2f8c8f35d9bf51961e74410679a2b25c85db454e",
+      "proofs": [
+        "ubuntu_initial",
+        "ubuntu_review_two",
+        "ubuntu_review_three",
+        "ubuntu_provenance_diff"
+      ],
+      "standalone_negative": {
+        "CLI_exit": 1,
+        "candidate_or_review_published": false,
+        "exact_source_precondition": "Checkpoint3 requires the complete configured lineage",
+        "previous_successful_ops_indexer_backup_repeated": false
+      }
+    },
+    {
+      "all_other_decoded_financial_raw_fields_equal": true,
+      "all_restored_tables_phase_checkpoint_review_bytes_exact": true,
+      "derivation": {
+        "active_anchor": {
+          "hash": "0x0000000000000000000000000000000000000000000000000000000000018741",
+          "number": 161,
+          "timestamp": 1193200
+        },
+        "both_checkpoints_use_exact_prefix2_sha256": true,
+        "both_suffix_log_counts": 0,
+        "completed_anchor": {
+          "hash": "0x000000000000000000000000000000000000000000000000000000000001872c",
+          "number": 140,
+          "timestamp": 1168000
+        },
+        "completed_anchor_matches_authenticated_first_handoff": true
+      },
+      "environment": "New isolated unprivileged Ubuntu c7f2; c7ee inputs read-only",
+      "full_window_seconds": 86400,
+      "id": "ubuntu-unexecuted-recovery-continuation",
+      "importer_or_builder_repeated": false,
+      "manifest_sha256": "5498f2fc2936f8b68a34d9e0a6a560e050b816ce404b9c02a886b460f65a721e",
+      "nonzero_exact_LP_high_low_phase_preserved": true,
+      "permitted_difference_paths": [
+        "state.active.history.provenance.checkpoint",
+        "state.active.history.provenance.suffix_logs_examined",
+        "state.completed[0].history.provenance.checkpoint.block_hash",
+        "state.completed[0].history.provenance.checkpoint.block_number",
+        "state.completed[0].history.provenance.checkpoint.sha256",
+        "state.completed[0].history.provenance.suffix_logs_examined"
+      ],
+      "prior_source_and_artifacts_unchanged": true,
+      "proofs": [
+        "ubuntu_recovery_continuation",
+        "ubuntu_cleanup"
+      ],
+      "source_semantics": "LineageCheckpoint.snapshot wraps completed and active histories in Seed(prefix2 digest, respective local anchor); History._read records the new checkpoint and suffix0.",
+      "success": true,
+      "unexecuted_CLI_stages": [
+        {
+          "exit_code": 0,
+          "name": "backup"
+        },
+        {
+          "exit_code": 0,
+          "name": "verify"
+        },
+        {
+          "exit_code": 0,
+          "name": "restore"
+        },
+        {
+          "exit_code": 0,
+          "name": "restored-verify"
+        }
+      ]
+    }
+  ]
+}

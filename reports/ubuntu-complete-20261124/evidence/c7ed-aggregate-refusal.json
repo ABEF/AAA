@@ -1,0 +1,55 @@
+{
+  "actual_Cast_broadcasts": 1,
+  "binding_progress": {
+    "current": null,
+    "runtime_count": 39,
+    "sealed_read": "0x0000000000000000000000000000000000000000000000000000000000000001",
+    "static_count": 91
+  },
+  "cleanup": [
+    {
+      "label": "first-stock-daemon",
+      "output_bytes": 480,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    },
+    {
+      "label": "recovered-stock-daemon",
+      "output_bytes": 728,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    },
+    {
+      "label": "owned-model",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    }
+  ],
+  "error_class": "HarnessRefusal",
+  "failure_stage": "reviewed_readonly_utilities",
+  "fixed_guard": "Reviewed utilities refused",
+  "gateway_refusals": [],
+  "last_model_RPC_failure": null,
+  "message_sha256": "8723c3b3715a84f6ff53c69404992b2aafb430b712975f84ae2369975e431e97",
+  "model_RPC_requests": 3732,
+  "new_seals": 0,
+  "old_test_bodies_run": 0,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_submission_attempts": 1,
+  "schema": 1,
+  "scope": "NEW actual stock daemon/real Cast in controlled copied-state model; no original global-state/archive or production qualification",
+  "secret_disposition": {
+    "contents_or_content_hashes_exported": false,
+    "created_files": 2,
+    "retained_only_in_new_owned_lab": true
+  },
+  "success": false,
+  "tracked_children_stopped": true,
+  "utility_control_attempts": 7,
+  "whole_cgroup_cleanup_requires_external_readback": true
+}

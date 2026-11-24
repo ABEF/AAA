@@ -290,6 +290,7 @@ class Keeper:
         if not 60 <= self.retry_cooldown <= 86400: raise ValueError('Revert cooldown must be 60-86400 seconds')
         self.cycle_failures = 0
         self._cycle_error = False
+        self._recovery_refresh_due = False
         # Ephemeral local wake-up anchor, never persisted or used as permission
         # to sign. Fresh canonical reads/on-chain guards still authorize work.
         self._poll_clock = None
@@ -511,6 +512,7 @@ class Keeper:
         self.blocked_actions = 0
         self.confirmed_reverts = 0
         self._cycle_error = False
+        self._recovery_refresh_due = False
         self.active_revert_cooldowns = None
         self.next_revert_retry_after = None
         self._lp_metadata_cache = {}
@@ -600,6 +602,14 @@ class Keeper:
                 self.principal_exit_started and self.confirmation_policy_health['state'] in ('stopped','incompatible_cadence')))
         metadata_degraded=not pending and self.canonical_lifecycle in (None,0) and (quality_fault or confirmation_fault)
         if metadata_degraded:
+            # A validated receipt can clear pending while this cycle deliberately
+            # skips new metadata dependencies. Keep health fail-closed, but do
+            # not mistake that expected refresh for a transport failure/backoff.
+            self._recovery_refresh_due = (started_pending and not self.skipped_buckets and
+                not self.blocked_actions and not self.confirmed_reverts and
+                (self.execution_quality_version!=1 or self.lp_execution_health['state']=='pending_recovery') and
+                (self.rebalance_confirmation.version not in (1,2,3) or
+                 self.confirmation_policy_health['state']=='pending_recovery'))
             status='degraded'
             self.last_success_at=previous_success
             self.cycle_failures=previous_failures+1
@@ -634,6 +644,9 @@ class Keeper:
                 remaining = 60 if deadline<=now else math.ceil(deadline-now)
                 delay = min(delay,remaining)
             return max(1,delay)
+        # Refresh-only recovery never supersedes a known sample/jitter deadline.
+        if getattr(self,'_recovery_refresh_due',False) and not self._cycle_error:
+            return interval
         return min(interval * 2**min(self.cycle_failures,3),max(interval,3600))
 
     def save(self) -> None: atomic_json(self.path,self.state)

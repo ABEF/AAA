@@ -1,0 +1,160 @@
+{
+  "attempt": 1,
+  "network_namespace": {},
+  "owned_cgroup_pids": [],
+  "phase": "status",
+  "properties": {
+    "ActiveState": "inactive",
+    "CPUQuotaPerSecUSec": "infinity",
+    "CPUWeight": "[not set]",
+    "ControlGroup": "",
+    "ExecMainStatus": "0",
+    "Group": "",
+    "IOWeight": "[not set]",
+    "KillMode": "control-group",
+    "LoadState": "not-found",
+    "MainPID": "0",
+    "MemoryMax": "infinity",
+    "MemorySwapMax": "infinity",
+    "Nice": "0",
+    "NoNewPrivileges": "no",
+    "PrivateDevices": "no",
+    "PrivateNetwork": "no",
+    "ProtectHome": "no",
+    "ProtectSystem": "no",
+    "Result": "success",
+    "RuntimeMaxUSec": "infinity",
+    "SubState": "dead",
+    "TasksMax": "9211",
+    "TimeoutStopUSec": "1min 30s",
+    "User": ""
+  },
+  "public_files": {
+    "EVENTS.json": {
+      "bytes": 3139,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "RESULT.json": {
+      "bytes": 3412,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "controller.stderr.log": {
+      "bytes": 0,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "controller.stdout.log": {
+      "bytes": 113,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "roles-BINDINGS.json": {
+      "bytes": 26538,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "roles-CLOCK_REPAIR.json": {
+      "bytes": 5761,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "roles-CYCLE-01.json": {
+      "bytes": 4910,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "roles-CYCLE-02.json": {
+      "bytes": 15101,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "roles-CYCLE-03.json": {
+      "bytes": 15182,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "roles-RAW_RECEIPT-01.json": {
+      "bytes": 1757,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "roles-RAW_REVIEWS.json": {
+      "bytes": 741,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "roles-RECEIPTS.json": {
+      "bytes": 2867,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "roles-RESULT.json": {
+      "bytes": 741,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "roles-SETUP.json": {
+      "bytes": 16443,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "rpc_fault-BINDINGS.json": {
+      "bytes": 26538,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "rpc_fault-CLOCK_REPAIR.json": {
+      "bytes": 5761,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "rpc_fault-CYCLE-01.json": {
+      "bytes": 3334,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "rpc_fault-CYCLE-02.json": {
+      "bytes": 8145,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "rpc_fault-PREREAD_FAULT.json": {
+      "bytes": 165,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "rpc_fault-RAW_RECEIPT-01.json": {
+      "bytes": 2772,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "rpc_fault-RAW_REVIEWS.json": {
+      "bytes": 799,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "rpc_fault-RECEIPTS.json": {
+      "bytes": 3995,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "rpc_fault-RECEIPT_FAULT.json": {
+      "bytes": 474,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "rpc_fault-RESULT.json": {
+      "bytes": 757,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "rpc_fault-SETUP.json": {
+      "bytes": 9470,
+      "mode": "0o600",
+      "uid": 65534
+    }
+  },
+  "unit": "popl-ubuntu-jobs-20261124-c7f6.service"
+}

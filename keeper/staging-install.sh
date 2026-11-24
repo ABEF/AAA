@@ -16,8 +16,15 @@ curl --fail --location --silent --show-error --max-time 120 \
   https://github.com/foundry-rs/foundry/releases/download/v1.4.4/foundry_v1.4.4_linux_amd64.tar.gz \
   --output "$base/foundry.tar.gz"
 printf '%s  %s\n' 22ba110a40e4de7791b007b08284e7b038c6bd4ce141b7ac34b5accec04f71a4 "$base/foundry.tar.gz" | sha256sum --check --status
-tar -xzf "$base/foundry.tar.gz" -C "$base/bin" cast anvil forge
-chmod 0755 "$base/bin/"{cast,anvil,forge}
+tar --no-same-owner -xzf "$base/foundry.tar.gz" -C "$base/bin" cast anvil forge
+# A release archive may record its builder's UID/GID. Keep executable ownership
+# with this root installer and refuse links or pre-existing foreign ownership.
+for binary in "$base/bin/"{cast,anvil,forge}; do
+  test -f "$binary"
+  test ! -L "$binary"
+  test "$(stat -c '%u:%g:%h' "$binary")" = '0:0:1'
+  chmod 0755 "$binary"
+done
 install -m 0600 -o zzz-stage -g zzz-stage "$base/keeper/rehearsal/KeeperVenue.sol" "$state/build/src/KeeperVenue.sol"
 printf '[profile.default]\nsolc_version="0.8.26"\nevm_version="cancun"\n' > "$state/build/foundry.toml"
 chown zzz-stage:zzz-stage "$state/build/foundry.toml"

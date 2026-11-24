@@ -1,0 +1,34 @@
+{
+  "cleanup": [
+    {
+      "label": "owned-model",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    }
+  ],
+  "error_class": "HarnessRefusal",
+  "failure_stage": "runtime_and_static_binding_proof",
+  "fixed_guard": "Static controller or module binding differs",
+  "gateway_refusals": [],
+  "last_model_RPC_failure": null,
+  "message_sha256": "3cc79128d7526c465c8de65066da7493e92c8edd7de9f69941a343ab24dda98e",
+  "model_RPC_requests": 59,
+  "new_seals": 0,
+  "old_test_bodies_run": 0,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_submission_attempts": 0,
+  "schema": 1,
+  "scope": "NEW actual stock daemon/real Cast in controlled copied-state model; no original global-state/archive or production qualification",
+  "secret_disposition": {
+    "contents_or_content_hashes_exported": false,
+    "created_files": 0,
+    "retained_only_in_new_owned_lab": true
+  },
+  "success": false,
+  "tracked_children_stopped": true,
+  "utility_control_attempts": 0,
+  "whole_cgroup_cleanup_requires_external_readback": true
+}

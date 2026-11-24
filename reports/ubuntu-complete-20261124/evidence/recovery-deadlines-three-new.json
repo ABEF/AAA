@@ -1,0 +1,13 @@
+{
+  "exit_code": 0,
+  "monitor_sha256": "9bb7c3b227b93ab2003cd380e1e5549448c31a894c9d50ac712dbcdf422bb8c3",
+  "test_sha256": "b156f3181c0da7e42cb39ef1e41d1b7a29be51fc232054fd0ba5e43fed13d392",
+  "new_methods_selected": [
+    "test_paid_recovery_preserves_earlier_sample_deadline",
+    "test_paid_recovery_preserves_earlier_existing_jitter",
+    "test_paid_recovery_preserves_bounded_overdue_retry"
+  ],
+  "old_test_bodies_run": 0,
+  "first_seven_methods_rerun": false,
+  "first_seven_bodies_and_helpers_AST_unchanged": true
+}

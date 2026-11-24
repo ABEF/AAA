@@ -1,0 +1,8 @@
+{
+  "exit_code": 0,
+  "monitor_sha256": "93f021125acd973bbc8b68c372cfa7752574bafcad0e8c4c8d16292e9fc1e76b",
+  "test_sha256": "bb7cd5c3367bd598aff98a911ea3163de9aad9120c16de92d9f7eb307e19d312",
+  "test_selection": "tests_python.test_keeper_recovery_refresh.KeeperRecoveryRefreshTests",
+  "new_methods_selected": 7,
+  "old_test_bodies_run": 0
+}

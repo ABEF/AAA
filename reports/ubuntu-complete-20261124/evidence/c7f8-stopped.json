@@ -1,0 +1,100 @@
+{
+  "attempt": 1,
+  "network_namespace": {},
+  "owned_cgroup_pids": [],
+  "phase": "status",
+  "properties": {
+    "ActiveState": "inactive",
+    "CPUQuotaPerSecUSec": "infinity",
+    "CPUWeight": "[not set]",
+    "ControlGroup": "",
+    "ExecMainStatus": "0",
+    "Group": "",
+    "IOWeight": "[not set]",
+    "KillMode": "control-group",
+    "LoadState": "not-found",
+    "MainPID": "0",
+    "MemoryMax": "infinity",
+    "MemorySwapMax": "infinity",
+    "Nice": "0",
+    "NoNewPrivileges": "no",
+    "PrivateDevices": "no",
+    "PrivateNetwork": "no",
+    "ProtectHome": "no",
+    "ProtectSystem": "no",
+    "Result": "success",
+    "RuntimeMaxUSec": "infinity",
+    "SubState": "dead",
+    "TasksMax": "9211",
+    "TimeoutStopUSec": "1min 30s",
+    "User": ""
+  },
+  "public_files": {
+    "EVENTS.json": {
+      "bytes": 1022,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "RESULT.json": {
+      "bytes": 2649,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "auth_completion-AUTHORIZATION_PROBES.json": {
+      "bytes": 601,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "auth_completion-BINDINGS.json": {
+      "bytes": 26538,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "auth_completion-CLOCK_REPAIR.json": {
+      "bytes": 5761,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "auth_completion-CYCLE-01.json": {
+      "bytes": 8145,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "auth_completion-RAW_RECEIPT-01.json": {
+      "bytes": 2772,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "auth_completion-RAW_REVIEWS.json": {
+      "bytes": 799,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "auth_completion-RECEIPTS.json": {
+      "bytes": 3996,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "auth_completion-RESULT.json": {
+      "bytes": 882,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "auth_completion-SETUP.json": {
+      "bytes": 14347,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "controller.stderr.log": {
+      "bytes": 0,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "controller.stdout.log": {
+      "bytes": 97,
+      "mode": "0o600",
+      "uid": 65534
+    }
+  },
+  "unit": "popl-ubuntu-jobs-20261124-c7f8.service"
+}

@@ -1,0 +1,279 @@
+{
+  "adoption": false,
+  "commands": [
+    {
+      "elapsed_seconds": 4.3370144329965115,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "name": "keeper-preflight",
+      "stderr_bytes": 0,
+      "stdout_bytes": 4834
+    },
+    {
+      "elapsed_seconds": 5.351043121889234,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "name": "keeper-review",
+      "stderr_bytes": 0,
+      "stdout_bytes": 15344
+    },
+    {
+      "elapsed_seconds": 0.11125610210001469,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "name": "keeper-health",
+      "stderr_bytes": 0,
+      "stdout_bytes": 375
+    },
+    {
+      "elapsed_seconds": 0.12626572884619236,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "name": "keeper-snapshot",
+      "stderr_bytes": 0,
+      "stdout_bytes": 193
+    },
+    {
+      "elapsed_seconds": 0.10960869863629341,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "name": "keeper-verify-snapshot",
+      "stderr_bytes": 0,
+      "stdout_bytes": 212
+    },
+    {
+      "elapsed_seconds": 1.7942776568233967,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "name": "indexer-initial",
+      "stderr_bytes": 0,
+      "stdout_bytes": 61
+    },
+    {
+      "elapsed_seconds": 1.9281298127025366,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "name": "indexer-catchup-0",
+      "stderr_bytes": 0,
+      "stdout_bytes": 61
+    },
+    {
+      "elapsed_seconds": 1.0237557590007782,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "name": "indexer-catchup-1",
+      "stderr_bytes": 0,
+      "stdout_bytes": 60
+    },
+    {
+      "elapsed_seconds": 0.12145310826599598,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "name": "indexer-restart",
+      "stderr_bytes": 0,
+      "stdout_bytes": 59
+    },
+    {
+      "elapsed_seconds": 0.4247957542538643,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "name": "indexer-old-empty-branch",
+      "stderr_bytes": 0,
+      "stdout_bytes": 60
+    },
+    {
+      "elapsed_seconds": 0.27871437184512615,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "name": "indexer-reorg",
+      "stderr_bytes": 0,
+      "stdout_bytes": 59
+    },
+    {
+      "elapsed_seconds": 0.6635469701141119,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "name": "history-backup",
+      "stderr_bytes": 0,
+      "stdout_bytes": 282
+    },
+    {
+      "elapsed_seconds": 0.4611812811344862,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "name": "history-verify",
+      "stderr_bytes": 0,
+      "stdout_bytes": 282
+    },
+    {
+      "elapsed_seconds": 0.8017281778156757,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "name": "history-restore",
+      "stderr_bytes": 0,
+      "stdout_bytes": 289
+    },
+    {
+      "elapsed_seconds": 0.11808975040912628,
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "name": "history-bad-manifest",
+      "stderr_bytes": 267,
+      "stdout_bytes": 0
+    }
+  ],
+  "complete_Ubuntu_qualification": false,
+  "error_class": "HistoryError",
+  "failure_stage": "same_graph_import_refusal",
+  "history": {
+    "all_phase_bytes_preserved": true,
+    "checkpoint_bytes_preserved": true,
+    "checkpoint_info": {
+      "anchor": {
+        "hash": "0x4f6b2f17db8cf3ce4b672f560696b1afd7ba015d29d37fc1fe6369ed314d602f",
+        "number": 26,
+        "timestamp": 1795435389
+      },
+      "cursor": 0,
+      "earliest_served_timestamp": 1795521789,
+      "path": "checkpoint.json",
+      "schema": 2,
+      "sha256": "861f01fb3f6ca00d99a02b722bf2c434d126ff469ef36958875bab336492bf48"
+    },
+    "database_summaries": [
+      {
+        "controller": "0x0000000000000000000000000000000000000001",
+        "path": "databases/000.sqlite",
+        "snapshot": {
+          "block_count": 102,
+          "first": {
+            "hash": "0xd0c4b082802f003f403320c9ba13afb3cfbdf7868e4069796d6bff38302c2cf4",
+            "number": 10,
+            "timestamp": 1795416189
+          },
+          "log_count": 6034,
+          "next_block": 112,
+          "tip": {
+            "hash": "0x81a79bf833c8a3eb6cd9ae1774e401273e6a6002413cb8908477fb45c7926870",
+            "number": 111,
+            "timestamp": 1795523013
+          }
+        }
+      }
+    ],
+    "defaults_or_HTTP_limits_changed": false,
+    "full_window_seconds": 86400,
+    "manifest_sha256": "7d172b366e0d7b05371e72871770248adc2376ccc324b724ea4ca4a72e5cc319",
+    "negative_manifest_refused": true,
+    "old_original_pins": {
+      "api-checkpoint.json": "b8ab1db98c31b9b18ae4a2cee3df4d3e6a8d5b3cdd4596c00c602504b85c95b0",
+      "checkpoint-candidate.json": "861f01fb3f6ca00d99a02b722bf2c434d126ff469ef36958875bab336492bf48",
+      "raw.sqlite": "aed6781e5a3214fca0d553000d0ebe2a0937669d86f1d3e62d41936ab7eda091"
+    },
+    "package_byte_cap": 67108864,
+    "raw_retention": {
+      "mode": "all_retained_rows",
+      "pruned": false,
+      "serving_eligibility": "unverified",
+      "window_seconds": 86400
+    },
+    "scope": "preserved synthetic V9/source9 only; no new chain/RPC acceptance"
+  },
+  "indexer": {
+    "actual_actor_transaction": "0x0909e373970398caf90df6f89cafc74600cae88f40d0c25f7b6810be929ecc24",
+    "actual_log_count": 1,
+    "complete_original_NFT_history": false,
+    "configuration_sha256": "d338839ce5bdd39fb8ddb954719fcea0ee48d7898b0c5c2edb5b74ac7aadf05b",
+    "confirmations": 12,
+    "controls": [
+      {
+        "method": "anvil_setIntervalMining",
+        "parameters": [
+          0
+        ],
+        "result": null,
+        "state": "confirmed_response"
+      },
+      {
+        "method": "evm_snapshot",
+        "parameters": [],
+        "result": "0x0",
+        "state": "confirmed_response"
+      },
+      {
+        "method": "anvil_mine",
+        "parameters": [
+          "0xd"
+        ],
+        "result": null,
+        "state": "confirmed_response"
+      },
+      {
+        "method": "evm_revert",
+        "parameters": [
+          "0x0"
+        ],
+        "result": true,
+        "state": "confirmed_response"
+      },
+      {
+        "method": "evm_setNextBlockTimestamp",
+        "parameters": [
+          1795542113
+        ],
+        "result": null,
+        "state": "confirmed_response"
+      },
+      {
+        "method": "anvil_mine",
+        "parameters": [
+          "0xd"
+        ],
+        "result": null,
+        "state": "confirmed_response"
+      },
+      {
+        "method": "anvil_setIntervalMining",
+        "parameters": [
+          1
+        ],
+        "result": null,
+        "state": "confirmed_response"
+      }
+    ],
+    "final_next_block": 119107586,
+    "initial_next_block": 119107573,
+    "mined_empty_blocks_per_branch": 13,
+    "one_second_interval_restored": true,
+    "orphaned_financial_log_deletion_qualified": false,
+    "production_approved": false,
+    "public_transactions": 0,
+    "replaced_empty_headers": 2,
+    "same_actor_anchor": true,
+    "same_actor_journal": true,
+    "schema": 1,
+    "scope": "actual isolated actor receipt + incremental/restart and 13-empty-block future branches replacing TWO CONFIRMED indexed headers",
+    "sealing": false,
+    "signing": false,
+    "start": 119107327,
+    "success": true
+  },
+  "keeper_snapshot_sha256": "c05db059440b92df4d084052c51fe74901234f4ded7b677420179ba045ebab61",
+  "keeper_state_preserved": {
+    "configuration": true,
+    "health": true,
+    "state": true
+  },
+  "not_executed": {
+    "checkpoint_builder": "Existing same-semantic-source current1000NFT c7e5 actualUbuntu CLI evidence reused; no unchanged rerun",
+    "positive_checkpoint_importer": "Standalone c7e5 graph has no appended authenticated replacement; a valid shorter-prefix/new-lineage fixture is required. Same-graph negative CLI is separate."
+  },
+  "old_history_inputs_preserved": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "schema": 1,
+  "scope": "actual isolated keeper.ops CLI plus offline synthetic-history integrity only",
+  "sealing": false,
+  "signing": false,
+  "success": false
+}

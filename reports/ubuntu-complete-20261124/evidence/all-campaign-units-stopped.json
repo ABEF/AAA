@@ -1,0 +1,235 @@
+{
+  "all_16_campaign_units_stopped": true,
+  "production_approved": false,
+  "read_only": true,
+  "schema": 1,
+  "service_actions": 0,
+  "units": [
+    {
+      "cgroup_pids": [],
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "stopped": true,
+      "unit": "popl-history-export-20261124-c7e9.service"
+    },
+    {
+      "cgroup_pids": [],
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "stopped": true,
+      "unit": "popl-history-export-20261124-c7eb.service"
+    },
+    {
+      "cgroup_pids": [],
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "stopped": true,
+      "unit": "popl-ubuntu-features-20261124-c7ea.service"
+    },
+    {
+      "cgroup_pids": [],
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "stopped": true,
+      "unit": "popl-ubuntu-features-20261124-c7ed.service"
+    },
+    {
+      "cgroup_pids": [],
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "stopped": true,
+      "unit": "popl-ubuntu-jobs-20261124-c7ec.service"
+    },
+    {
+      "cgroup_pids": [],
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "stopped": true,
+      "unit": "popl-ubuntu-jobs-20261124-c7f3.service"
+    },
+    {
+      "cgroup_pids": [],
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "stopped": true,
+      "unit": "popl-ubuntu-install-proof-20261124-c7ef.service"
+    },
+    {
+      "cgroup_pids": [],
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "stopped": true,
+      "unit": "popl-ubuntu-help-20261124-c7f1.service"
+    },
+    {
+      "cgroup_pids": [],
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "stopped": true,
+      "unit": "popl-ubuntu-features-20261124-c7ee.service"
+    },
+    {
+      "cgroup_pids": [],
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "stopped": true,
+      "unit": "popl-ubuntu-features-20261124-c7f2.service"
+    },
+    {
+      "cgroup_pids": [],
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "stopped": true,
+      "unit": "popl-ubuntu-clock-20261124-c7f4.service"
+    },
+    {
+      "cgroup_pids": [],
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "stopped": true,
+      "unit": "popl-installer-guards-20261124-c7f5.service"
+    },
+    {
+      "cgroup_pids": [],
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "stopped": true,
+      "unit": "popl-ubuntu-lp-jobs-20261124-c7f0.service"
+    },
+    {
+      "cgroup_pids": [],
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "stopped": true,
+      "unit": "popl-ubuntu-lp-aux-20261124-c7f7.service"
+    },
+    {
+      "cgroup_pids": [],
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "stopped": true,
+      "unit": "popl-ubuntu-jobs-20261124-c7f6.service"
+    },
+    {
+      "cgroup_pids": [],
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "Result": "success",
+        "SubState": "dead"
+      },
+      "stopped": true,
+      "unit": "popl-ubuntu-jobs-20261124-c7f8.service"
+    }
+  ],
+  "reviewed_controller_sha256": {
+    "popl-history-export-20261124-c7e9.service": "e153a08414731b10d811199b2bfd69933a723c5d09464b0b7a9f4bb0d0b6fa88",
+    "popl-history-export-20261124-c7eb.service": "3494934fda7520f2d5758953bc1a2e9b240beb987d22c71f26b3e24fc5943ec3",
+    "popl-ubuntu-features-20261124-c7ea.service": "dd7870550c5e27ead80c9d7dd9d0467fdcae2cfe573765c290c63cca108fff0e",
+    "popl-ubuntu-features-20261124-c7ed.service": "f04e7ed1584ff6c426418feb354ffe6dca4530697cddd672374ee1c97e31247b",
+    "popl-ubuntu-jobs-20261124-c7ec.service": "43d4c087ccd90315098b56ef730c5d4037fc6833c47a67f26b4570ae5cdd8795",
+    "popl-ubuntu-jobs-20261124-c7f3.service": "9a64177f390e6f5a8b2664a9d684d214e5e164b65fc52fa0631fbbbfdf334ef5",
+    "popl-ubuntu-install-proof-20261124-c7ef.service": "ce7bb03c6e6bf38521a94fe42e4f60f5a77d43b90ee31e0a4fcd911e39f99d87",
+    "popl-ubuntu-help-20261124-c7f1.service": "895d5718a0269e2de5d75afe4ebc384436004d82bd743f2715d8fa47c18031cc",
+    "popl-ubuntu-features-20261124-c7ee.service": "29b8e8762818b863d6dc9446e43b1d673ae8ee37a68cb089d44b6280e6af76f9",
+    "popl-ubuntu-features-20261124-c7f2.service": "a317fd1b0d2509403259c6d0a106aba383ec90e420e69bcef02b3916f8d3ee0d",
+    "popl-ubuntu-clock-20261124-c7f4.service": "0c1cc30f75fd796202ae22b5307c20deea0fbca79e9c1fd83ee46825440e8b77",
+    "popl-installer-guards-20261124-c7f5.service": "a3d6b9727a2eab3813e6b051af81ffd9dd0e53bfdfd5b67945bc85e6414b2881",
+    "popl-ubuntu-lp-jobs-20261124-c7f0.service": "e119bcaba1c65710c93e5fdf2bf3a5d790eae99da21ea26b7ed8e48d516a2359",
+    "popl-ubuntu-lp-aux-20261124-c7f7.service": "c95161f6b5c4db584f4c6def9e4db1f98d4a2e860542504a3956cb280411b814",
+    "popl-ubuntu-jobs-20261124-c7f6.service": "7e2833f9b34bfc8b45851040aeef6d63468de6fec479c67de0c5b916b6b1439e",
+    "popl-ubuntu-jobs-20261124-c7f8.service": "a64e43e68309ae350a378bbfc18362732b4575d65308f17056ec0ead9b2d52a9"
+  }
+}

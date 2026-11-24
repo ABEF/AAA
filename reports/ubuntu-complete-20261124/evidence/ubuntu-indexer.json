@@ -1,0 +1,79 @@
+{
+  "actual_actor_transaction": "0x0909e373970398caf90df6f89cafc74600cae88f40d0c25f7b6810be929ecc24",
+  "actual_log_count": 1,
+  "complete_original_NFT_history": false,
+  "configuration_sha256": "d338839ce5bdd39fb8ddb954719fcea0ee48d7898b0c5c2edb5b74ac7aadf05b",
+  "confirmations": 12,
+  "controls": [
+    {
+      "method": "anvil_setIntervalMining",
+      "parameters": [
+        0
+      ],
+      "result": null,
+      "state": "confirmed_response"
+    },
+    {
+      "method": "evm_snapshot",
+      "parameters": [],
+      "result": "0x0",
+      "state": "confirmed_response"
+    },
+    {
+      "method": "anvil_mine",
+      "parameters": [
+        "0xd"
+      ],
+      "result": null,
+      "state": "confirmed_response"
+    },
+    {
+      "method": "evm_revert",
+      "parameters": [
+        "0x0"
+      ],
+      "result": true,
+      "state": "confirmed_response"
+    },
+    {
+      "method": "evm_setNextBlockTimestamp",
+      "parameters": [
+        1795542113
+      ],
+      "result": null,
+      "state": "confirmed_response"
+    },
+    {
+      "method": "anvil_mine",
+      "parameters": [
+        "0xd"
+      ],
+      "result": null,
+      "state": "confirmed_response"
+    },
+    {
+      "method": "anvil_setIntervalMining",
+      "parameters": [
+        1
+      ],
+      "result": null,
+      "state": "confirmed_response"
+    }
+  ],
+  "final_next_block": 119107586,
+  "initial_next_block": 119107573,
+  "mined_empty_blocks_per_branch": 13,
+  "one_second_interval_restored": true,
+  "orphaned_financial_log_deletion_qualified": false,
+  "production_approved": false,
+  "public_transactions": 0,
+  "replaced_empty_headers": 2,
+  "same_actor_anchor": true,
+  "same_actor_journal": true,
+  "schema": 1,
+  "scope": "actual isolated actor receipt + incremental/restart and 13-empty-block future branches replacing TWO CONFIRMED indexed headers",
+  "sealing": false,
+  "signing": false,
+  "start": 119107327,
+  "success": true
+}

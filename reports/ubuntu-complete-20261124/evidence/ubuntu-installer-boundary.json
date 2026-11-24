@@ -1,0 +1,141 @@
+{
+  "archive": {
+    "bytes": 162,
+    "gid": 1001,
+    "member_count": 1,
+    "regular_member_only": true,
+    "sha256": "bfcaf089f4bd49b9476de51f08b436d4ca2246b15ae4db33331d0ef0c8f8cac3",
+    "uid": 1001
+  },
+  "commands": [
+    {
+      "argv_kind": "fixed_tar_or_parser_only",
+      "captured_total_bytes": 313,
+      "gid": 0,
+      "name": "gnu-tar-version",
+      "returncode": 0,
+      "timed_out_or_overflow": false,
+      "uid": 0
+    },
+    {
+      "argv_kind": "fixed_tar_or_parser_only",
+      "captured_total_bytes": 0,
+      "gid": 0,
+      "name": "tar-original",
+      "returncode": 0,
+      "timed_out_or_overflow": false,
+      "uid": 0
+    },
+    {
+      "argv_kind": "fixed_tar_or_parser_only",
+      "captured_total_bytes": 0,
+      "gid": 0,
+      "name": "tar-fixed",
+      "returncode": 0,
+      "timed_out_or_overflow": false,
+      "uid": 0
+    },
+    {
+      "argv_kind": "fixed_tar_or_parser_only",
+      "captured_total_bytes": 16,
+      "gid": 0,
+      "name": "original-stat-proof",
+      "returncode": 0,
+      "timed_out_or_overflow": false,
+      "uid": 0
+    },
+    {
+      "argv_kind": "fixed_tar_or_parser_only",
+      "captured_total_bytes": 10,
+      "gid": 0,
+      "name": "fixed-stat-proof",
+      "returncode": 0,
+      "timed_out_or_overflow": false,
+      "uid": 0
+    },
+    {
+      "argv_kind": "fixed_tar_or_parser_only",
+      "captured_total_bytes": 0,
+      "gid": 0,
+      "name": "updated-installer-bash-n",
+      "returncode": 0,
+      "timed_out_or_overflow": false,
+      "uid": 0
+    },
+    {
+      "argv_kind": "fixed_tar_or_parser_only",
+      "captured_total_bytes": 0,
+      "gid": 0,
+      "name": "bash-n-staging-monitor-install",
+      "returncode": 0,
+      "timed_out_or_overflow": false,
+      "uid": 0
+    },
+    {
+      "argv_kind": "fixed_tar_or_parser_only",
+      "captured_total_bytes": 0,
+      "gid": 0,
+      "name": "bash-n-install-deps",
+      "returncode": 0,
+      "timed_out_or_overflow": false,
+      "uid": 0
+    },
+    {
+      "argv_kind": "fixed_tar_or_parser_only",
+      "captured_total_bytes": 0,
+      "gid": 0,
+      "name": "bash-n-verify-slither",
+      "returncode": 0,
+      "timed_out_or_overflow": false,
+      "uid": 0
+    },
+    {
+      "argv_kind": "fixed_tar_or_parser_only",
+      "captured_total_bytes": 0,
+      "gid": 0,
+      "name": "bash-n-verify",
+      "returncode": 0,
+      "timed_out_or_overflow": false,
+      "uid": 0
+    }
+  ],
+  "error_class": "PermissionError",
+  "failure_stage": "unprivileged_help_only",
+  "financial_features_executed": false,
+  "fixed": {
+    "archive_extraction_mode": "0o644",
+    "bytes": 64,
+    "content_sha256": "385e0d79b785d438b693e70a34f99580f88ffebe539299cfef7377ba8f9c150a",
+    "file_never_executed": true,
+    "gid": 0,
+    "installer_ownership_guard_passed": true,
+    "links": 1,
+    "nonexecutable_at_extraction": true,
+    "post_guard_mode": "0o755",
+    "uid": 0
+  },
+  "fixed_guard": null,
+  "future_installer_sha256": "6304b5735a33f4a5ac79efc89ea6916c2e3d3a656f2d9219aaa32baf6f10b347",
+  "new_sealing": false,
+  "old_installation_changed": false,
+  "old_test_bodies": 0,
+  "original": {
+    "archive_extraction_mode": "0o644",
+    "bytes": 64,
+    "content_sha256": "385e0d79b785d438b693e70a34f99580f88ffebe539299cfef7377ba8f9c150a",
+    "file_never_executed": true,
+    "gid": 1001,
+    "installer_ownership_guard_passed": false,
+    "links": 1,
+    "nonexecutable_at_extraction": true,
+    "uid": 1001
+  },
+  "production_approved": false,
+  "public_transactions": 0,
+  "schema": 1,
+  "scope": "NEW synthetic GNUtar ownership boundary, parser-only shell and unprivileged --help only",
+  "source_files_verified": 190,
+  "source_manifest_sha256": "c8b2c3f25572a9c64f1b701dde1aba5601261f805707bb460726537f44532f23",
+  "source_stage": "source_base_plus_overrides",
+  "success": false
+}

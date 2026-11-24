@@ -1,0 +1,106 @@
+{
+  "actual_signed_envelope_predecoded": false,
+  "all_enabled_jobs_qualified": false,
+  "cleanup": [
+    {
+      "feature": "conversion",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    },
+    {
+      "feature": "geometry",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    }
+  ],
+  "features": [
+    {
+      "RPC_requests": 1568,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "conversion": {
+        "actual_directional_fee_ppm": 11010,
+        "conversion_loss_bps": 100,
+        "error_code": 3,
+        "minimum_ETH_wei": "786551469060",
+        "oracle_output_wei": "794496433393",
+        "revert_selector": "0x7dd37f70",
+        "simulation_succeeded": false,
+        "source_units": "226234026898607116",
+        "stock_gas_to_output_bps": 100
+      },
+      "exact_original_rights_preserved": true,
+      "fault_attempts": 0,
+      "feature": "conversion",
+      "gateway_refusals": [],
+      "last_model_RPC_failure": null,
+      "last_stage": "stock_native_LP_conversion",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "qualified_positive_conversion": false,
+      "raw_attempts": 0,
+      "raw_forwarded": 0,
+      "setup_transactions": 7,
+      "status": "expected_refusal",
+      "stock_transactions": 0
+    },
+    {
+      "RPC_requests": 2103,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "error_class": "FeatureBlocked",
+      "fault_attempts": 0,
+      "feature": "geometry",
+      "fixed_guard": "Manual geometry stock replacement refused; inspect diagnostics",
+      "gateway_refusals": [],
+      "last_model_RPC_failure": null,
+      "last_stage": "stock_geometry_exception",
+      "message_sha256": "5cef2bf71dd3f484d808417dd5b1c21817725f6c2f1c3352b3ca63db90d23974",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 0,
+      "raw_forwarded": 0,
+      "setup_transactions": 6,
+      "site": {
+        "file": "run_jobs.py",
+        "function": "geometry",
+        "line": 60
+      },
+      "status": "blocked",
+      "stock_transactions": 0
+    }
+  ],
+  "new_seals": 0,
+  "old_test_bodies_run": 0,
+  "planned_jobs": [
+    "conversion",
+    "geometry"
+  ],
+  "postforward_exact_transaction_verification_required": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_submission_attempts": 0,
+  "reviewed_raw_forward_attempts": 0,
+  "schema": 1,
+  "scope": "NEW directed stock confirmation/rebalance/geometry/native LP conversion; copied sealed state; not global market or wallclock soak",
+  "secret_disposition": {
+    "contents_or_content_hashes_exported": false,
+    "retained_only_in_new_owned_lab": true
+  },
+  "shared_RPC_requests": 3671,
+  "source_inputs_preserved": true,
+  "stock_events_bytes": 1531,
+  "success": false,
+  "tracked_children_stopped": true,
+  "unattempted_jobs": [],
+  "unexecuted": [
+    "continuous_daemon_timing",
+    "sample_reset_job_after_new_market_recovery",
+    "different_key_rotation"
+  ],
+  "whole_cgroup_cleanup_requires_external_readback": true
+}

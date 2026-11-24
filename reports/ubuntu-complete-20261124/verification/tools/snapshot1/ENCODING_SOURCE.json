@@ -1,0 +1,146 @@
+{
+  "binary_vs_upstream_limit": "Binary bytes are separately pinned. This static review does not independently rebuild or prove that binary was built from the resolved source commit.",
+  "chain_calls": 0,
+  "commit": "05794498bf47257b144e2e2789a1d5bf8566be0e",
+  "commit_resolution": {
+    "official_release_commit_link": "https://github.com/foundry-rs/foundry/commit/05794498bf47257b144e2e2789a1d5bf8566be0e",
+    "source": "https://github.com/foundry-rs/foundry/releases/tag/v1.4.4"
+  },
+  "expected_encoding": {
+    "CLI_reload": "--load-state path to bounded decompressed JSON; do not combine with --init",
+    "decompressed": "UTF-8 JSON SerializableState object",
+    "gzip_magic": "1f8b08",
+    "history_field": "historical_states present/non-null when true; empty genesis may contain zero snapshots",
+    "params": [
+      true
+    ],
+    "request_method": "anvil_dumpState",
+    "rpc_result": "0x-prefixed even-length ASCII hexadecimal encoding of gzip bytes"
+  },
+  "host_actions": 0,
+  "local_binary_sha256": "05ee0cf1758024ea5e23dae562d92955ace205ab299091a43d2fa5bdeb6933bd",
+  "production_edits": 0,
+  "schema": 1,
+  "scope": "Primary upstream static encoding/flags analysis only; no chain or host action",
+  "source_hash_limit": "Web source retrieval supplied line-addressable primary text; full raw file bytes were not available for hashing. A direct shell public-source fetch was blocked by network permission. Source-file SHA256 values remain null, not invented. Immutable commit/path URLs are recorded.",
+  "sources": [
+    {
+      "direct_commit_URL_opened": false,
+      "finding": "DumpState takes optional Params<Option<bool>>; upstream serde example explicitly accepts params [true].",
+      "immutable_url": "https://raw.githubusercontent.com/foundry-rs/foundry/05794498bf47257b144e2e2789a1d5bf8566be0e/crates/anvil/core/src/eth/mod.rs",
+      "lines": [
+        [
+          437,
+          440
+        ],
+        [
+          1019,
+          1022
+        ]
+      ],
+      "path": "crates/anvil/core/src/eth/mod.rs",
+      "reviewed_tag_url": "https://raw.githubusercontent.com/foundry-rs/foundry/v1.4.4/crates/anvil/core/src/eth/mod.rs",
+      "source_file_sha256": null
+    },
+    {
+      "direct_commit_URL_opened": true,
+      "finding": "RPC optional boolean is passed to backend; omitted defaults false.",
+      "immutable_url": "https://raw.githubusercontent.com/foundry-rs/foundry/05794498bf47257b144e2e2789a1d5bf8566be0e/crates/anvil/src/eth/api.rs",
+      "lines": [
+        [
+          2112,
+          2121
+        ]
+      ],
+      "path": "crates/anvil/src/eth/api.rs",
+      "reviewed_tag_url": "https://raw.githubusercontent.com/foundry-rs/foundry/v1.4.4/crates/anvil/src/eth/api.rs",
+      "source_file_sha256": null
+    },
+    {
+      "direct_commit_URL_opened": true,
+      "finding": "True includes currently retained historical snapshots. Result is gzip-compressed JSON SerializableState as Bytes. Load imports history when present; RPC load accepts gzip or plain JSON bytes.",
+      "immutable_url": "https://raw.githubusercontent.com/foundry-rs/foundry/05794498bf47257b144e2e2789a1d5bf8566be0e/crates/anvil/src/eth/backend/mem/mod.rs",
+      "lines": [
+        [
+          934,
+          969
+        ],
+        [
+          1040,
+          1068
+        ]
+      ],
+      "path": "crates/anvil/src/eth/backend/mem/mod.rs",
+      "reviewed_tag_url": "https://raw.githubusercontent.com/foundry-rs/foundry/v1.4.4/crates/anvil/src/eth/backend/mem/mod.rs",
+      "source_file_sha256": null
+    },
+    {
+      "direct_commit_URL_opened": false,
+      "finding": "CLI --init conflicts with --dump-state, --preserve-historical-states and --load-state; RPC true is independent of CLI preserve flag. Existing reload invocation uses load-state alone.",
+      "immutable_url": "https://raw.githubusercontent.com/foundry-rs/foundry/05794498bf47257b144e2e2789a1d5bf8566be0e/crates/anvil/src/cmd.rs",
+      "lines": [
+        [
+          111,
+          155
+        ],
+        [
+          297,
+          299
+        ],
+        [
+          601,
+          615
+        ]
+      ],
+      "path": "crates/anvil/src/cmd.rs",
+      "reviewed_tag_url": "https://raw.githubusercontent.com/foundry-rs/foundry/v1.4.4/crates/anvil/src/cmd.rs",
+      "source_file_sha256": null
+    },
+    {
+      "direct_commit_URL_opened": false,
+      "finding": "SerializableState has optional historical_states; CLI parser loads a plain JSON file using read_json_file.",
+      "immutable_url": "https://raw.githubusercontent.com/foundry-rs/foundry/05794498bf47257b144e2e2789a1d5bf8566be0e/crates/anvil/src/eth/backend/db.rs",
+      "lines": [
+        [
+          444,
+          478
+        ]
+      ],
+      "path": "crates/anvil/src/eth/backend/db.rs",
+      "reviewed_tag_url": "https://raw.githubusercontent.com/foundry-rs/foundry/v1.4.4/crates/anvil/src/eth/backend/db.rs",
+      "source_file_sha256": null
+    },
+    {
+      "direct_commit_URL_opened": false,
+      "finding": "Historical snapshots are serialized from retained memory/disk entries and loaded back; defaults500 memory/3600 disk are count capacities, not byte/latency qualification.",
+      "immutable_url": "https://raw.githubusercontent.com/foundry-rs/foundry/05794498bf47257b144e2e2789a1d5bf8566be0e/crates/anvil/src/eth/backend/mem/storage.rs",
+      "lines": [
+        [
+          39,
+          42
+        ],
+        [
+          185,
+          208
+        ]
+      ],
+      "path": "crates/anvil/src/eth/backend/mem/storage.rs",
+      "reviewed_tag_url": "https://raw.githubusercontent.com/foundry-rs/foundry/v1.4.4/crates/anvil/src/eth/backend/mem/storage.rs",
+      "source_file_sha256": null
+    }
+  ],
+  "static_result": "Existing v4 params, hex/gzip/JSON flow and CLI load shape are supported. No source-confirmed encoding/flag cause explains c7e6 refusal.",
+  "tag": "v1.4.4",
+  "unchanged_limits": {
+    "compressed_bytes": 16777216,
+    "decompressed_bytes": 16777216,
+    "encoded_capture_bytes": 67108864,
+    "node_work_seconds": 900,
+    "request_bytes": 131072,
+    "requests": 6000,
+    "response_bytes": 16777216,
+    "response_seconds": 30
+  },
+  "unchanged_test_bodies_run": 0,
+  "upstream": "foundry-rs/foundry"
+}

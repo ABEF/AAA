@@ -41,13 +41,13 @@ function, configuration switch, keeper job, resource or financial limit changes.
 A separate standalone normal F6 fixture completes44 unsealed setup transactions,
 39 instances and genuine NFT-contract parent/creation/latest code proof. Its
 native dependencies are explicit constructor doubles, not qualified markets.
-The original export's precise cause was not retained. The [targeted follow-up](../reports/history-export-20261124/REVIEW.md)
-replays44 captured setup envelopes and proves a new response-size refusal:
-25,625,277 bytes declared,16,777,217 actually read against16MiB. Neither deadline
-expired. Complete export/reload stays unqualified; diagnostics now retain the
-exact failing stage and guard. No limit is raised and no old tests rerun.
-Never invent an empty parent or substitute current storage for historical state.
-The original saved F6/V10 graph's missing history is not repaired by this fixture.
+The original export's precise cause was not retained. The [initial targeted
+diagnosis](../reports/history-export-20261124/REVIEW.md) proves a separate16MiB
+response refusal. The [approved isolated follow-through](../reports/ubuntu-complete-20261124/REVIEW.md)
+now exports/reloads the NEW constructor fixture completely:45 headers/44 receipts,
+39 runtimes/112 bindings, nonce/balance and NFT-contract creation proof match.
+This does not repair the separate old graph's missing historical state or approve
+a production archive provider. Original failed attempts remain immutable.
 
 For adoption, preserve raw DB/checkpoint/review/journal bytes. Rebuild a NEW
 checkpoint1/2/3 candidate from complete retained history, independently review it,
@@ -55,9 +55,10 @@ and pin its SHA with matching code only under separately authorized rollout.
 Never edit old source hashes, hot-reload files or infer live adoption from this
 publication. Saved code proofs alone do not replace a required archive RPC.
 
-Five existing service states match the pre-diagnostic snapshot; all seven owned
-lab units are stopped. Existing sites/Anvil8902/signers/configurations and
-the user-paused heartbeat remain unchanged. No public transaction or sealing.
+Existing sites, services, Anvil8902, signer/null public configurations,
+journals and the user-paused heartbeat are preserved. There is no public
+transaction, new sealing or installed-service rollout. See the current report's
+owned-lab cleanup and host-preservation evidence.
 
 The bounded selector cache changes only CPU work: calldata arguments and live
 proofs remain fresh. Since abi.py contributes to checkpoint semantic identity,
@@ -110,18 +111,46 @@ contract function, role, signer or production configuration is added.
 | --- | --- | --- |
 | Preserve | Original source manifest, full genesis, capture, receipts, DB/checkpoint/journal bytes | Hash originals; use a NEW owned private-network lab and an authenticated bytecopy. Never overwrite originals |
 | Recreate only if necessary | Reviewed captured setup envelopes, original nonce/value/gas/fee bounds | Recover pending first; no resend, new compiler run or repetition of the old constructor test matrix |
-| Export | `anvil_dumpState` with `[true]` on the owned node | Keep16MiB HTTP/compressed/decompressed limits,64MiB encoded capture,6,000 requests,30s response and900s node deadlines. The hex envelope counts before decoding |
+| Default export | `anvil_dumpState` with `[true]` on the owned node | Original16MiB response/compressed/expanded bounds remain the default; hex envelope counts before decoding |
+| Specifically approved isolated profile | NEW reviewed lab, exact `anvil_dumpState([true])` and matching recorder |32MiB response/capture for that method/parameter form only;16MiB compressed/128MiB expanded. Other responses retain16MiB. Keep6,000 requests/30s response/900s node deadlines and original request/resource bounds |
 | Diagnose refusal | Stage, known guard, request ID, HTTP status, observed/declared bytes and deadline state | Retain bounded typed facts before returning failure. Hash unknown error text; never log response bodies, credentials or key material |
 | Reload only a complete export | Bounded gzip decoding to NEW plain JSON; new node `--load-state` | Do not combine with `--init`. Verify exact numeric0/head, expected runtimes/bindings, nonce/balance and genuine NFT parent/creation reads; no fabricated empty history |
 | Stop / verify | Only the lab's owned process group | Confirm all owned processes stop and existing service/chain/journal states remain unchanged |
 
-The current complete response exceeds the HTTP cap; export and reload remain
-refused. Do not repeat the same setup merely for a green result, raise the cap,
-prune history, aggregate hidden larger chunks or use latest-only state. A revised
-bounded recovery design requires independent review; a larger isolated snapshot
-budget requires an explicit decision. The published report-only diagnostic
-function is not automatically adopted by services. The exact old refusal remains
-unknown, distinct from the new measured size refusal.
+The approved lab-only profile completes recovery; it adds no production setting
+or automatic adoption. Both transport and recorder must enforce the same exact
+method-specific ceiling. Reject malformed/odd/whitespace hex before decoding,
+oversized compressed data, oversized expansion and partial exports atomically.
+Read the full bounded response; never prune history, substitute latest state,
+invent parent code or reinterpret an older fixture as this new replay.
+
+The privately fetched gzip is12,805,401 bytes and expands to47,369,005 bytes.
+Its hash,45 retained headers/44 transactions and39 runtime matches are independently
+checked. Full historical storage tries are not independently recomputed. A future
+larger workload may still refuse; this explicit fixture budget is not approval to
+raise API, keeper, gas, fee, freshness or financial limits.
+
+## Current Ubuntu keeper admission and recovery
+
+| Action | Inputs / short example | Required interpretation |
+| --- | --- | --- |
+| Check readiness | `python3 -m keeper.ops --config REVIEWED_CONFIG preflight` | No-pending LP1/2/3 requires `lp_routing.state=validated`; code hashes alone do not establish reciprocal bindings |
+| Review maintenance | `python3 -m keeper.ops --config REVIEWED_CONFIG review --bucket DECIMAL_BUCKET --simulate` | Use the actual discovered bucket ID. Fresh report/simulation is not an inclusion guarantee or authority to bypass a guard |
+| Recover pending | Restart matching writer under the existing fenced same-journal procedure | Recover the saved hash/nonce/calldata/value/fee review first. No new router dependency, automatic resend or journal deletion |
+| Observe recovery | Existing health file / `keeper.ops health` | Paid recovery can remain degraded until fresh metadata reads pass. Refresh-only waiting uses normal240s cadence; earlier sample/jitter deadlines retain priority. Real failures/reverts retain backoff |
+| Observe a pause | Existing pause and journal/receipt reads | The keeper may submit a guarded `resetObservation(bucket)` to invalidate old confirmation evidence. That moves no principal and is separate from paused LP maintenance; recover this saved transaction normally |
+| Save recovery evidence | `python3 -m keeper.ops --config REVIEWED_CONFIG snapshot --output NEW_SNAPSHOT` | Exclusive new output; preserve original state/config/health bytes |
+| Verify saved evidence | `python3 -m keeper.ops --config REVIEWED_CONFIG verify-snapshot --input NEW_SNAPSHOT` | Integrity/age/configuration observation; not multi-host fencing or provider approval |
+| Adopt source fixes | Matching reviewed keeper AND checker files, original journal/config retained | `monitor.py`/`ops.py` change health source identity, not checkpoint semantic identity. No checkpoint rebuild is implied by these two changes alone |
+| Install future staging tools | Explicitly authorized fresh staging install only | Reviewed tar bytes; `--no-same-owner`; regular/nonsymlink UID:GID:nlink0:0:1 before chmod/execution. Refuse foreign ownership; never silently repair an existing host |
+
+The real stock Ubuntu daemon/Cast interruption/recovery partition passes on a
+controlled copied-state model with240-second cadence,12 confirmations, hourly
+harvest,24M/full25% and unchanged fee/spend limits. Five ops CLIs and actual
+indexer ingestion/restart/two-empty-header reorg have separate proofs. Original
+aggregate/private-fixture failures are retained. This is finite local operating
+evidence, not production providers, complete original archive state, long-lived
+soak, off-host fencing/restore or every feature/workload acceptance.
 
 ## Website ownership paging
 
@@ -193,8 +222,9 @@ No installed service, source journal, public signing or website is updated by
 this source publication. All NFT rights and contract permissions remain intact.
 
 The [48-hour audit](../reports/last48h-audit-20261121/REVIEW.md) changes no operator functions, inputs,
-permissions or recovery steps. The Ubuntu authorization/signing journey remains
-unproved; use actual preflight/receipt evidence, not narrative fixture intentions.
+permissions or recovery steps. That earlier Ubuntu authorization/signing journey remained unproved; the
+current finite stock-daemon/Cast receipt proof is linked above. Production
+operating acceptance remains open.
 
 ## Keeper lock and recovery source adoption
 

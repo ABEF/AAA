@@ -1,0 +1,20 @@
+{
+  "accounts": 48,
+  "bootstrap_nonce": 150,
+  "compressed_bytes": 12805401,
+  "compressed_sha256": "a3d1a772d10dcfaa86f1559bcf75175edf991a38777bd80bafb295d1279b13da",
+  "expanded_bytes": 47369005,
+  "expanded_sha256": "43ced28dc8a29a1e66beced02910f0435604dda361130729c8f9d91c54d44acd",
+  "headers_retained": 45,
+  "independently_matching_original_normal_runtimes": 39,
+  "limitation": "Does not recompute every historical account/storage trie; actual reload/header/receipt/binding/NFT proof is separately source-bound server execution.",
+  "live_environments_changed": false,
+  "original_C6_exact_restore_claimed": false,
+  "schema": 1,
+  "scope": "Independent local integrity and current runtime comparison of privately fetched complete c7eb snapshot",
+  "secrets_or_raw_data_published": false,
+  "success": true,
+  "transactions_retained": 44,
+  "unchanged_tests_run": 0,
+  "unique_historical_snapshots": 44
+}

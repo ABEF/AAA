@@ -1,0 +1,101 @@
+{
+  "all_owned_stopped": true,
+  "cleanup": [
+    {
+      "label": "reload",
+      "output_bytes": 0,
+      "output_overflow": false,
+      "pid": 4154600,
+      "returncode": 0,
+      "stopped": true
+    },
+    {
+      "label": "replay",
+      "output_bytes": 0,
+      "output_overflow": false,
+      "pid": 4154584,
+      "returncode": 0,
+      "stopped": true
+    }
+  ],
+  "compiler_runs": 0,
+  "diagnostics": [],
+  "estimates": 0,
+  "export_complete": true,
+  "export_compressed_bytes": 12805401,
+  "export_decompressed_bytes": 47369005,
+  "export_decompressed_bytes_observed": 47369005,
+  "financial_or_API_qualified": false,
+  "historical_code_proof": true,
+  "historical_snapshot_count": 44,
+  "history_scope": "Complete returned true-dump bytes retained; success requires all45 NEW headers/44 receipts and NFT proof after reload, not equality of every historical account/storage slot.",
+  "instances": 39,
+  "new_replay_header_count": 45,
+  "old_C6_complete_header_history_known": false,
+  "old_constructor_runner_calls": 0,
+  "old_fixed_source_members_preserved": 113,
+  "old_genesis_raw_sha256_before_after": "fefbea359a426656023691a31e66b6d7580223c01e0a6fc8f977e0fab38b723f",
+  "old_inputs_preserved": true,
+  "old_test_bodies_run": 0,
+  "pending": null,
+  "production_approved": false,
+  "public_calls": 0,
+  "public_signing": false,
+  "reload_complete": true,
+  "reloaded_bindings": 112,
+  "reloaded_header_count": 45,
+  "reloaded_receipt_count": 44,
+  "reloaded_runtime_count": 39,
+  "replay_complete": true,
+  "same_actual_historical_code": true,
+  "same_complete_new_replay_headers_and_receipts": true,
+  "same_numeric0_and_head": true,
+  "same_owner_nonce_balance": true,
+  "schema": 1,
+  "scope": "NEW snapshot1 targeted44 captured-envelope fixture plus full returned-state export/reload; not exact old c7e6 reconstruction",
+  "sealed": false,
+  "snapshot_profile": {
+    "HTTP_response_bytes": {
+      "default": 16777216,
+      "exact_anvil_dumpState_true": 33554432
+    },
+    "approval_scope": "NEW c7eb isolated local Anvil recovery retry only; production limits unchanged",
+    "compressed_export_bytes": 16777216,
+    "existing_evidence_preserved": true,
+    "expanded_restore_JSON_bytes": 134217728,
+    "no_pruning_latest_only_or_partial_history": true,
+    "operator_approved": true,
+    "preserved_limits": {
+      "CPU_percent": 150,
+      "RPC_requests": 6000,
+      "absolute_response_seconds": 30,
+      "cgroup_memory_bytes": 2147483648,
+      "encoded_capture_bytes": 67108864,
+      "local_block_gas": 32000000,
+      "per_node_seconds": 900,
+      "request_bytes": 131072,
+      "tasks": 128
+    },
+    "profile": "isolated_snapshot1",
+    "public_RPC_or_transactions": false,
+    "schema": 1,
+    "sealing": false
+  },
+  "source_identities": {
+    "new_diagnostics_sha256": "fda75faca27ecf9bea24d9e9b9c8cd46daeefeec0ffbb5c78e40d1bb2020acef",
+    "new_snapshot_Capture_sha256": "a334fc775c3e04fc035f78e6e6d89925e4bfe26d4978eec8ed21b4e684eef128",
+    "new_snapshot_Node_sha256": "777018092e71bc383bf00b11d616f5b377448ec78ead7f054943026b7bbf769a",
+    "original_C6_Capture_sha256": "07a5fd2f578d2c244d73e12e8004d6209c3103ff46da34aa72ecae445a28e566",
+    "original_C6_Node_sha256": "cc36100e6eb11abf1dd0fb317c2c473bfbfac25546c6f12b1af61c229ef4ff9c",
+    "snapshot_policy_sha256": "8c0cf81ebf4a21742ef79965c9421f427256faaa04fada5eac6f0f0e6141a900"
+  },
+  "state_container_observations": {
+    "blocks_container_length": 45,
+    "blocks_type": "list",
+    "transactions_container_length": 44,
+    "transactions_type": "list"
+  },
+  "status": "complete",
+  "success": true,
+  "transactions": 44
+}

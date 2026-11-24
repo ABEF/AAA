@@ -1,0 +1,105 @@
+{
+  "actual_signed_envelope_predecoded": false,
+  "all_enabled_jobs_qualified": false,
+  "cleanup": [
+    {
+      "feature": "roles",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    },
+    {
+      "feature": "rpc_fault",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    }
+  ],
+  "features": [
+    {
+      "RPC_requests": 1621,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "error_class": "HarnessRefusal",
+      "fault_attempts": 0,
+      "feature": "roles",
+      "fixed_guard": "Revoked wallet lacks exact typed on-chain Unauthorized refusal",
+      "gateway_refusals": [],
+      "last_model_RPC_failure": null,
+      "last_stage": "revocation",
+      "message_sha256": "7b8c1593164cf1a48e838c23c5aee8ff61c33e6701c8cd5b9f63f87c7114645b",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 1,
+      "raw_forwarded": 1,
+      "setup_transactions": 8,
+      "site": {
+        "file": "run_jobs.py",
+        "function": "roles",
+        "line": 51
+      },
+      "status": "failed",
+      "stock_transactions": 1
+    },
+    {
+      "RPC_requests": 1339,
+      "actual_signed_envelope_predecoded": false,
+      "clear_resets_after_fault": [],
+      "confirmed_harvest": "0x8d24ce599273d4c590ab4cfd895ca7c5f7312a542acdec68a4fefc670536ce0f",
+      "controlled_copied_state_only": true,
+      "fault_attempts": 6,
+      "feature": "rpc_fault",
+      "gateway_refusals": [],
+      "last_model_RPC_failure": null,
+      "last_stage": "saved_hash_receipt_fault",
+      "new_seal": false,
+      "post_send_identical_hash_no_resend": true,
+      "postforward_exact_transaction_verification_required": true,
+      "pre_send_no_submission": true,
+      "pre_send_nonce_preserved": true,
+      "raw_attempts": 1,
+      "raw_forwarded": 1,
+      "receipt_fault_exact_pending_bytes": true,
+      "setup_transactions": 5,
+      "status": "passed",
+      "stock_transactions": 1
+    }
+  ],
+  "new_seals": 0,
+  "old_test_bodies_run": 0,
+  "passed_or_blocked_cases_not_repeated": [
+    "metadata",
+    "retired",
+    "compound",
+    "buyback"
+  ],
+  "postforward_exact_transaction_verification_required": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_submission_attempts": 2,
+  "reviewed_raw_forward_attempts": 2,
+  "schema": 1,
+  "scope": "ONLY remaining stock role/pause/reset and previously unexecuted RPC faults.\n\nTwo NEW independent sealed-state clones share6000RPC/900s and unchanged\nmaintenance24M/full25%, confirmations12,240s cadence/hourly harvest and fees.\nNo passed metadata/retired or blocked compound/buyback case is repeated.\n",
+  "secret_disposition": {
+    "contents_or_content_hashes_exported": false,
+    "retained_only_in_new_owned_lab": true
+  },
+  "shared_RPC_requests": 2966,
+  "shared_maximum_reviewed_cost_wei": 483444067469860,
+  "source_inputs_preserved": true,
+  "stock_events_bytes": 2844,
+  "success": false,
+  "tracked_children_stopped": true,
+  "unattempted_jobs": [],
+  "unexecuted": [
+    "ordinary_confirmation_and_jitter",
+    "ordinary_rebalance",
+    "manual_geometry_exception",
+    "LP_native_conversion",
+    "different_key_rotation",
+    "continuous_long_duration_operation"
+  ],
+  "whole_cgroup_cleanup_requires_external_readback": true
+}

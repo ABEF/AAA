@@ -1,0 +1,242 @@
+{
+  "all_keeper_features_qualified": false,
+  "c7f6": {
+    "RPC_fault_partition": {
+      "actual_local_harvest": "0x8d24ce599273d4c590ab4cfd895ca7c5f7312a542acdec68a4fefc670536ce0f",
+      "controlled_faults": 6,
+      "not_a_real_provider_outage_or_failover_proof": true,
+      "pre_submission_no_raw_send_or_nonce_change": true,
+      "same_hash_recovery_no_resend": true,
+      "saved_hash_pending_bytes_exact": true,
+      "status": "passed"
+    },
+    "aggregate_success": false,
+    "proof": {
+      "aggregate_result": {
+        "bytes": 3412,
+        "sha256": "aac6a8c296f31d4eca3fdf6a63a360097d8ec3bf55033195c31743c18020fb35"
+      },
+      "external_cleanup": {
+        "bytes": 3533,
+        "owned_cgroup_empty": true,
+        "sha256": "2428c1cfd23236f1f20247cf7377d94dacd3b06203442acb745cc6560a709c00"
+      }
+    },
+    "roles_partial": {
+      "completed_controlflow_checks": [
+        "Exact clear-only ObservationReset(bucket,5) during pause",
+        "No paused harvest/principal work and checked LP/reward/NFT rights unchanged",
+        "Stock software refuses revoked key without broadcast or nonce advancement"
+      ],
+      "failure_preserved": true,
+      "onchain_probe_error": "The harness incorrectly expected permissionless collectFees to return Unauthorized.",
+      "original_fixed_guard": "Revoked wallet lacks exact typed on-chain Unauthorized refusal",
+      "original_stock_transactions": 1,
+      "status": "Assertions before the later incorrect harness endpoint guard completed; original feature/aggregate remains failed."
+    },
+    "shared_RPC_requests": 2966
+  },
+  "c7f8": {
+    "actual_stock_transactions": 1,
+    "aggregate_success": true,
+    "different_key_rotation_qualified": false,
+    "exact_transaction_receipt_fee_depth_and_clock_checks": true,
+    "injected_RPC_faults": 0,
+    "keeper_only_rebalance_eth_call": "Exact Unauthorized while keeperAuthorized(sender)==false; onlyKeeper executes first.",
+    "one_new_clone": true,
+    "only_new_case": "Proper revoked-key on-chain authorization probes, then restored SAME-key ordinary harvest",
+    "permissionless_collect_eth_call": "Expected success while revoked; checked latest head, actor/owner nonces, LP geometry/liquidity, classified reward views and NFT rights remain unchanged.",
+    "prior_pause_reset_software_revocation_RPC_fault_case_bodies_repeated": false,
+    "proof": {
+      "aggregate_result": {
+        "bytes": 2649,
+        "sha256": "ed0ce89e7c50078aeb6fde82e170497e7f8f0a77cf203dcf6b3da98540559268"
+      },
+      "external_cleanup": {
+        "bytes": 2324,
+        "owned_cgroup_empty": true,
+        "sha256": "2fb2ff23ce56386f160effa766f0d054233c3e2857a1988e09ed187ac33f82d2"
+      }
+    },
+    "raw_submission_attempts": 1,
+    "restored_same_key_real_Cast_harvest": "0x9695c22f92a245e566a7939c790b3911008cbf8e36de2899a3616352c08dda05",
+    "shared_RPC_requests": 1368,
+    "unauthorized_or_permissionless_probe_transaction_submitted": false,
+    "unexpected_gateway_refusals": 0
+  },
+  "date": "2026-11-24",
+  "kind": "popl-keeper-authority-and-recovery-reconciliation",
+  "permission_basis": {
+    "collectFees(uint256,uint256)": {
+      "caller_payout": false,
+      "declaration": "external live nonReentrant canonicalAccounting principalOperating",
+      "keeper_authorization_required": false,
+      "live_checks": [
+        "canonical accounting",
+        "sealed",
+        "not globally paused"
+      ],
+      "operator_reference": "docs/OPERATOR_MANUAL.md permissionless LP fee collection",
+      "other_guards_preserved": true,
+      "purpose": "Collects funded LP fees into the configured accounting ledgers."
+    },
+    "rebalance(uint256,uint128,uint256)": {
+      "authorization": "access.keeperAuthorized(msg.sender)",
+      "expected_error_selector": "0x82b42900",
+      "financial_or_timing_checks_not_bypassed": true,
+      "first_modifier": "onlyKeeper"
+    },
+    "source_roles_unchanged": true
+  },
+  "permission_change": false,
+  "preservation_and_limits": {
+    "Cast_capture_bytes": 65536,
+    "actual_signed_envelope_predecoded": false,
+    "c7f6_two_clones_share_one_RPC_time_and_spend_budget": true,
+    "confirmations": 12,
+    "existing_services_sites_Anvil8902_or_journals_adopted": false,
+    "full_maintenance_padding_percent": 25,
+    "harvest_interval_seconds": 3600,
+    "maintenance_gas_ceiling": 24000000,
+    "maximum_daily_reviewed_cost_wei": 50000000000000000,
+    "maximum_per_transaction_cost_wei": 10000000000000000,
+    "new_seals": 0,
+    "old_test_methods_rerun": 0,
+    "original_c7f6_false_aggregate_retained": true,
+    "owned_process_groups_empty_after_root_readback": true,
+    "postforward_exact_transaction_and_receipt_verification_required": true,
+    "production_contract_permission_changes": 0,
+    "production_source_changes_by_these_partitions": 0,
+    "public_transactions": 0,
+    "shared_RPC_limit": 6000,
+    "shared_capsule_worker_seconds": 900,
+    "source_check_seconds": 240,
+    "source_inputs_preserved": true
+  },
+  "production_approved": false,
+  "publication": {
+    "byte_exact_archive_members_only": true,
+    "configurations_wrappers_signed_envelopes_keystores_journals_private_inputs_copied": false,
+    "helper_files_copied": 8,
+    "historical_helper_headers_preserved": true,
+    "tool_scope": "Fixed report/reproduction tools, not generic production commands. They require reviewed private lab inputs and controls."
+  },
+  "remaining_boundaries": [
+    "Production authority selection and different-key rotation/fencing",
+    "Provider outages/failover/reorg/finality and complete real fees",
+    "Broader market and maximum workloads",
+    "Long-duration installed-service operation and independent approval"
+  ],
+  "schema": 1,
+  "scope": "Finite actual Ubuntu directed stock Keeper/Cast partitions in isolated copied-state F6 models. Not production-provider, full market/fault coverage, different-key rotation or sustained-daemon acceptance.",
+  "source_binding": {
+    "all190_production_source_members_equal_between_c7f6_and_c7f8": true,
+    "contract_source_LF_SHA256": {
+      "src/ZZZVault.sol": "1d24910c1ed1d6e8267c51f654ca8c30b8ff6f8a1dbb50583a2da0f5567980a7",
+      "src/base/ZZZModule.sol": "6371819083a2af0b715c3892390223f9376ffea5b1d196d4f4e494b047255295"
+    },
+    "frozen_runtime_graph_checks_per_clone": {
+      "runtimes": 39,
+      "static_bindings": 91
+    },
+    "global_Python_source_manifest_sha256": "c8b2c3f25572a9c64f1b701dde1aba5601261f805707bb460726537f44532f23",
+    "published_helpers": [
+      {
+        "byte_identity_basis": {
+          "archive_sha256": "fb66ea682f7c39d29aebda6ef95bc95eb56fd76c80f278447c33cf230814efcf",
+          "kind": "exact_executed_archive_member",
+          "manifest_sha256": "9b463977b994dc80e3675addc422008f920bc8374eb4dde8a4aa75a0c7032e1c",
+          "member": "source/helpers/keeper_runtime.py"
+        },
+        "bytes": 37193,
+        "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f6/keeper_runtime.py",
+        "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4",
+        "status": "executed_source"
+      },
+      {
+        "byte_identity_basis": {
+          "archive_sha256": "fb66ea682f7c39d29aebda6ef95bc95eb56fd76c80f278447c33cf230814efcf",
+          "kind": "exact_executed_archive_member",
+          "manifest_sha256": "9b463977b994dc80e3675addc422008f920bc8374eb4dde8a4aa75a0c7032e1c",
+          "member": "source/helpers/keeper_jobs.py"
+        },
+        "bytes": 7883,
+        "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f6/keeper_jobs.py",
+        "sha256": "d8525eb40801f956edfed344d5056122ebfac7da3302ed562c878da810cc5f38",
+        "status": "executed_source"
+      },
+      {
+        "byte_identity_basis": {
+          "archive_sha256": "fb66ea682f7c39d29aebda6ef95bc95eb56fd76c80f278447c33cf230814efcf",
+          "kind": "exact_executed_archive_member",
+          "manifest_sha256": "9b463977b994dc80e3675addc422008f920bc8374eb4dde8a4aa75a0c7032e1c",
+          "member": "source/helpers/job_cases.py"
+        },
+        "bytes": 15618,
+        "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f6/job_cases.py",
+        "sha256": "5dc33ff30aa59fa681a02febef0622d9ef729512131b276f01b7df08458e1528",
+        "status": "executed_source"
+      },
+      {
+        "byte_identity_basis": {
+          "archive_sha256": "fb66ea682f7c39d29aebda6ef95bc95eb56fd76c80f278447c33cf230814efcf",
+          "kind": "exact_executed_archive_member",
+          "manifest_sha256": "9b463977b994dc80e3675addc422008f920bc8374eb4dde8a4aa75a0c7032e1c",
+          "member": "source/helpers/run_jobs.py"
+        },
+        "bytes": 12051,
+        "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f6/run_jobs.py",
+        "sha256": "33d6577bc3bf74c4db666d6c0f2b7718f563fb1cbb215f860cd86ea20f335896",
+        "status": "executed_source"
+      },
+      {
+        "byte_identity_basis": {
+          "archive_sha256": "cd0fa44c8940c1c72c23c13d884f541d9515782403f6b8c0370a621c520f4312",
+          "kind": "exact_executed_archive_member",
+          "manifest_sha256": "a8c371f16900c4e257bcb675288651184dd98b4329636fce63cf699bb83d4b40",
+          "member": "source/helpers/keeper_runtime.py"
+        },
+        "bytes": 37193,
+        "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f8/keeper_runtime.py",
+        "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4",
+        "status": "executed_source"
+      },
+      {
+        "byte_identity_basis": {
+          "archive_sha256": "cd0fa44c8940c1c72c23c13d884f541d9515782403f6b8c0370a621c520f4312",
+          "kind": "exact_executed_archive_member",
+          "manifest_sha256": "a8c371f16900c4e257bcb675288651184dd98b4329636fce63cf699bb83d4b40",
+          "member": "source/helpers/keeper_jobs.py"
+        },
+        "bytes": 7281,
+        "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f8/keeper_jobs.py",
+        "sha256": "922e22e21c48e6334c8ba5150c28522e727ca539eb0eead567282076860309f4",
+        "status": "executed_source"
+      },
+      {
+        "byte_identity_basis": {
+          "archive_sha256": "cd0fa44c8940c1c72c23c13d884f541d9515782403f6b8c0370a621c520f4312",
+          "kind": "exact_executed_archive_member",
+          "manifest_sha256": "a8c371f16900c4e257bcb675288651184dd98b4329636fce63cf699bb83d4b40",
+          "member": "source/helpers/job_cases.py"
+        },
+        "bytes": 14508,
+        "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f8/job_cases.py",
+        "sha256": "62d886de71eedb464e0538a53825e8dcc6cce18980ffebfc986ab0e432836ba8",
+        "status": "executed_source"
+      },
+      {
+        "byte_identity_basis": {
+          "archive_sha256": "cd0fa44c8940c1c72c23c13d884f541d9515782403f6b8c0370a621c520f4312",
+          "kind": "exact_executed_archive_member",
+          "manifest_sha256": "a8c371f16900c4e257bcb675288651184dd98b4329636fce63cf699bb83d4b40",
+          "member": "source/helpers/run_jobs.py"
+        },
+        "bytes": 10234,
+        "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f8/run_jobs.py",
+        "sha256": "09809d1c8c2ce6d40fb0a8122a979b218196dad28b54c79c7255c6c80c3b2409",
+        "status": "executed_source"
+      }
+    ]
+  }
+}

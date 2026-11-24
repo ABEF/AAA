@@ -1,0 +1,32 @@
+{
+  "Node_runs": 0,
+  "elapsed_seconds": 1.2340000000003783,
+  "new_method_count": 9,
+  "new_methods": [
+    "test_exact_true_dump_accepts_32m_and_retains_only_authenticated_metadata",
+    "test_true_dump_over_32m_refuses_atomically_before_recording",
+    "test_every_other_method_or_parameter_form_keeps_16m_ceiling",
+    "test_large_snapshot_does_not_bypass_existing_request_bound",
+    "test_strict_decoder_accepts_empty_uppercase_and_mixed_hex_values",
+    "test_strict_decoder_refuses_wrong_types_prefixes_odd_digits_and_invalid_unicode",
+    "test_strict_decoder_rejects_all_ascii_whitespace_accepted_by_fromhex",
+    "test_strict_decoder_preserves_exact_16m_compressed_limit_and_refuses_overflow",
+    "test_new_node_composes_new_capture_while_original_capture_identity_stays_original"
+  ],
+  "old_test_bodies_run": 0,
+  "remote_actions": 0,
+  "returncode": 0,
+  "schema": 1,
+  "scope": "Only9NEW snapshot1 capture/decode methods; no Node/network/oldtestbodies",
+  "source_pins": {
+    "replay_snapshot_profile.py": "c717df8240fec6a43ee8e3cf0036bd082b834a9636bcb971768166a02a0e01ab",
+    "snapshot_node.py": "777018092e71bc383bf00b11d616f5b377448ec78ead7f054943026b7bbf769a",
+    "snapshot_wire_capture.py": "a334fc775c3e04fc035f78e6e6d89925e4bfe26d4978eec8ed21b4e684eef128",
+    "tests_new_snapshot_profile.py": "8bd77acafa4a85ed9e5b2ef34512cefd8f4c17f81e683607d4280dc891b59bec",
+    "wire_capture.py": "07a5fd2f578d2c244d73e12e8004d6209c3103ff46da34aa72ecae445a28e566"
+  },
+  "stderr_bytes": 1724,
+  "stderr_sha256": "f7d3b2c251701f4ba59d5c95fb73fd6e5c18640ed8641908fac0d95eedf8139a",
+  "stdout_bytes": 0,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

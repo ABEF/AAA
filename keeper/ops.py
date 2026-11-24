@@ -17,6 +17,7 @@ import time
 
 from keeper.monitor import Keeper, error_context, positive, rpc_quantity
 from keeper.health import execution_reasons, observe_confirmation_health, summary as health_summary
+from zzz_ops.rpc import RpcError
 from zzz_ops.state import read_json
 
 
@@ -138,11 +139,28 @@ def preflight(config, *, rpc=None):
             if confirmation['state']=='stopped': reasons.append('rebalance_confirmation_stopped')
             elif confirmation['state']=='incompatible_cadence': reasons.append('rebalance_confirmation_cadence_incompatible')
             elif confirmation['state']!='observed_this_cycle': reasons.append('rebalance_confirmation_unavailable')
+    routing = None
+    if keeper.lp_routing_version in (1,2,3):
+        if keeper.state.get('pending') is not None:
+            routing = {'version':keeper.lp_routing_version,'state':'pending_recovery',
+                'scope':'routing_not_observed_while_recovery_pending'}
+        else:
+            # Matching bytecode does not prove reciprocal Manager/router/core
+            # bindings. Use the same fresh observer as normal job admission,
+            # without adding that dependency to saved-intent reconciliation.
+            routing = {'version':keeper.lp_routing_version,'state':'unavailable',
+                'scope':'fresh_canonical_latest_routing_not_inclusion_guarantee'}
+            try:
+                keeper._validate_lp_routing()
+                routing['state'] = 'validated'
+            except (RpcError,ValueError,TypeError,KeyError) as exc:
+                reasons.append('lp_routing_unavailable')
+                routing['last_error'] = error_context(exc)
     # Recheck the existing anchor after the RPC calls; this is still a point-in-time observation.
     keeper._validate_checkpoint()
     return {'ok':not reasons,'reasons':reasons,'chain_id':keeper.chain,'head':head,'preparation_active':preparing,'canonical_state':lifecycle,
             'expected_nonce':expected,'latest_nonce':latest,'pending_nonce':pending,
-            'rebalance_confirmation_policy':confirmation,
+            'rebalance_confirmation_policy':confirmation,'lp_routing':routing,
             'scope':'read_only_point_in_time; not production approval or multi-host fencing'}
 
 

@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-24",
+  "exact_archive_reproduction_entries": 44,
+  "kind": "static_publication_evidence_review",
+  "limitations": [
+    "Static consistency and byte identity only; earlier runtime/test receipts retain their separate source stages."
+  ],
+  "local_markdown_links_exist": 10,
+  "maintained_source_sha256": {
+    "keeper/monitor.py": "9bb7c3b227b93ab2003cd380e1e5549448c31a894c9d50ac712dbcdf422bb8c3",
+    "keeper/ops.py": "a81eb06001024f11f751691ba2b8fd7f37605f10feba925006bf57242751fa6b",
+    "keeper/staging-install.sh": "b66878fee51f54ac36656646d41f57e70955b9b43c5aff228b5ecd02b3e258b3"
+  },
+  "new_tests_inventory": {
+    "tests_python/test_keeper_preflight_routing.py": {
+      "named_test_methods": 4,
+      "sha256": "b67750f4e14a737e1f37e1558b515486ec00b31cf556ad16f075cb4363bd893b"
+    },
+    "tests_python/test_keeper_recovery_refresh.py": {
+      "named_test_methods": 10,
+      "sha256": "b156f3181c0da7e42cb39ef1e41d1b7a29be51fc232054fd0ba5e43fed13d392"
+    }
+  },
+  "production_or_lab_runtime_executed": false,
+  "protected_unrelated_files_byte_identical": 4,
+  "report_json_documents_parsed": 51,
+  "report_python_sources_parsed_only": 41,
+  "successful": true,
+  "test_bodies_executed": 0,
+  "todo_stable_ids_and_statuses_preserved": 83,
+  "todo_status_counts": {
+    "done": 35,
+    "excluded": 1,
+    "progress": 40,
+    "todo": 7
+  }
+}

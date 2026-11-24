@@ -1,0 +1,527 @@
+{
+  "excluded": [
+    "host_control.py",
+    "remote_capsule.py",
+    "strict_transport.py",
+    "SSH transport/key/credential paths",
+    "raw state/DB/checkpoints/journals/keystores/passwords/raw signed envelopes",
+    "bundles/tars",
+    "ad-hoc unfinished diagnostics",
+    "unfinished c7f0/c7f3/final-job drafts"
+  ],
+  "files": [
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "d29f46f5c7eb437e35345f3de326fd244b4ff5282b9289b2e4f53b4ada9dae57",
+        "kind": "exact_executed_archive_member",
+        "member": "source/helpers/replay_snapshot_profile.py"
+      },
+      "bytes": 32331,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/snapshot1/replay_snapshot_profile.py",
+      "sha256": "c717df8240fec6a43ee8e3cf0036bd082b834a9636bcb971768166a02a0e01ab",
+      "status": "executed_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "d29f46f5c7eb437e35345f3de326fd244b4ff5282b9289b2e4f53b4ada9dae57",
+        "kind": "exact_executed_archive_member",
+        "member": "source/helpers/v4_node.py"
+      },
+      "bytes": 20015,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/snapshot1/v4_node.py",
+      "sha256": "cc36100e6eb11abf1dd0fb317c2c473bfbfac25546c6f12b1af61c229ef4ff9c",
+      "status": "executed_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "d29f46f5c7eb437e35345f3de326fd244b4ff5282b9289b2e4f53b4ada9dae57",
+        "kind": "exact_executed_archive_member",
+        "member": "source/helpers/wire_capture.py"
+      },
+      "bytes": 6980,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/snapshot1/wire_capture.py",
+      "sha256": "07a5fd2f578d2c244d73e12e8004d6209c3103ff46da34aa72ecae445a28e566",
+      "status": "executed_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "d29f46f5c7eb437e35345f3de326fd244b4ff5282b9289b2e4f53b4ada9dae57",
+        "kind": "exact_executed_archive_member",
+        "member": "source/helpers/snapshot_diagnostics.py"
+      },
+      "bytes": 2279,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/snapshot1/snapshot_diagnostics.py",
+      "sha256": "fda75faca27ecf9bea24d9e9b9c8cd46daeefeec0ffbb5c78e40d1bb2020acef",
+      "status": "executed_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "d29f46f5c7eb437e35345f3de326fd244b4ff5282b9289b2e4f53b4ada9dae57",
+        "kind": "exact_executed_archive_member",
+        "member": "source/helpers/snapshot_node.py"
+      },
+      "bytes": 20493,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/snapshot1/snapshot_node.py",
+      "sha256": "777018092e71bc383bf00b11d616f5b377448ec78ead7f054943026b7bbf769a",
+      "status": "executed_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "d29f46f5c7eb437e35345f3de326fd244b4ff5282b9289b2e4f53b4ada9dae57",
+        "kind": "exact_executed_archive_member",
+        "member": "source/helpers/snapshot_wire_capture.py"
+      },
+      "bytes": 7375,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/snapshot1/snapshot_wire_capture.py",
+      "sha256": "a334fc775c3e04fc035f78e6e6d89925e4bfe26d4978eec8ed21b4e684eef128",
+      "status": "executed_source"
+    },
+    {
+      "byte_identity_basis": {
+        "Node_runs": 0,
+        "expected_source_sha256": "8bd77acafa4a85ed9e5b2ef34512cefd8f4c17f81e683607d4280dc891b59bec",
+        "kind": "exact_executed_nine_NEW_offline_source_pin",
+        "old_test_bodies_run": 0,
+        "verification_receipt_sha256": "e4ce54fdd976d7daf0ac3e043e62a0ac884ea90d1dabd3b6f730a370b071d230"
+      },
+      "bytes": 6540,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/snapshot1/tests_new_snapshot_profile.py",
+      "sha256": "8bd77acafa4a85ed9e5b2ef34512cefd8f4c17f81e683607d4280dc891b59bec",
+      "status": "executed_nine_new_offline_checks_no_Node"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "d29f46f5c7eb437e35345f3de326fd244b4ff5282b9289b2e4f53b4ada9dae57",
+        "kind": "exact_executed_archive_member",
+        "member": "source/helpers/ENCODING_SOURCE.json"
+      },
+      "bytes": 6349,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/snapshot1/ENCODING_SOURCE.json",
+      "sha256": "577f1c6d9142c5909a38f7b2d05bc73d4a7e40af7b04367299dad95cfc77cd55",
+      "status": "executed_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "d29f46f5c7eb437e35345f3de326fd244b4ff5282b9289b2e4f53b4ada9dae57",
+        "kind": "exact_executed_archive_member",
+        "member": "source/helpers/SNAPSHOT_POLICY.json"
+      },
+      "bytes": 820,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/snapshot1/SNAPSHOT_POLICY.json",
+      "sha256": "8c0cf81ebf4a21742ef79965c9421f427256faaa04fada5eac6f0f0e6141a900",
+      "status": "executed_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "d29f46f5c7eb437e35345f3de326fd244b4ff5282b9289b2e4f53b4ada9dae57",
+        "kind": "exact_executed_archive_member",
+        "member": "source/helpers/C6_INPUT_PINS.json"
+      },
+      "bytes": 25091,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/snapshot1/C6_INPUT_PINS.json",
+      "sha256": "b43e2ad6fdf895e672af4d7f544908197373cebe4623f648aa01b283d8210193",
+      "status": "executed_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "f98554a8e64e87cc5e411264904f52f1519c1dcc6153edbdf6f3c9a124ddddb2",
+        "kind": "exact_executed_archive_member",
+        "member": "source/helpers/keeper_runtime.py"
+      },
+      "bytes": 38688,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/stock-keeper/keeper_runtime.py",
+      "sha256": "ee0cdf934a6ea243006df003842adb95516d350c5f97d370c7d609dc7f98f892",
+      "status": "executed_partial_aggregate_successful_actor_or_utility_subproof"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "f98554a8e64e87cc5e411264904f52f1519c1dcc6153edbdf6f3c9a124ddddb2",
+        "kind": "exact_executed_archive_member",
+        "member": "source/helpers/utility_runtime.py"
+      },
+      "bytes": 15625,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/stock-keeper/utility_runtime.py",
+      "sha256": "a1747b3873450e6e965ba5b16331a91ddbaaf289625263b63a4ba97499352765",
+      "status": "executed_partial_aggregate_successful_actor_or_utility_subproof"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "f98554a8e64e87cc5e411264904f52f1519c1dcc6153edbdf6f3c9a124ddddb2",
+        "kind": "exact_executed_archive_member",
+        "member": "source/helpers/indexer_utility.py"
+      },
+      "bytes": 10164,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/stock-keeper/indexer_utility.py",
+      "sha256": "3fdb663902b77dd5828f60527acd8b5e7137b1b1961f2ca2f0e37d86414daf80",
+      "status": "executed_partial_aggregate_successful_actor_or_utility_subproof"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "f90d3386159463fb89552aa2fd84d29f2c3b76a4688119d0510c518b6c24c69c",
+        "kind": "exact_executed_archive_member",
+        "member": "source/helpers/history_prefix_linux.py"
+      },
+      "bytes": 10214,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/history-prefix/history_prefix_linux.py",
+      "sha256": "79bedc10a914622ca712ac44335fd55e41fc344ace38af3ed6e12c0cd3209e3f",
+      "status": "executed_c7ee_partial_preserved"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "f90d3386159463fb89552aa2fd84d29f2c3b76a4688119d0510c518b6c24c69c",
+        "kind": "exact_executed_archive_member",
+        "member": "source/helpers/negative_import.py"
+      },
+      "bytes": 5844,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/history-prefix/negative_import.py",
+      "sha256": "8665957921776e9ee508dcad109149d48880f62c21c40538bc4bf2b31ab192f6",
+      "status": "executed_c7ee_partial_preserved"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "f90d3386159463fb89552aa2fd84d29f2c3b76a4688119d0510c518b6c24c69c",
+        "kind": "exact_executed_archive_member",
+        "member": "source/helpers/preserved_fixture.py"
+      },
+      "bytes": 5281,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/history-prefix/preserved_fixture.py",
+      "sha256": "d420989fdd5ccc899789dab71e60eb8300ce3d3cdfa6820bffcfaaf9c2c6176c",
+      "status": "executed_c7ee_partial_preserved"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "f5381d018ac32c93ceb0604e65c200442a6ed769ff10a991483d780bf2dff693",
+        "kind": "exact_executed_archive_member",
+        "member": "source/helpers/history_recovery_continue.py"
+      },
+      "bytes": 12532,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/history-recovery/history_recovery_continue.py",
+      "sha256": "943babe170b46c196009fa7fed9ed4fc49ac07137ad848df618d39dc37d8afe7",
+      "status": "executed_unfinished_stages_continuation_pass"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "00f22f96ffa1abfea62ec2ea956755e5feaef099bcd534b21ab310592d268e3c",
+        "kind": "exact_executed_archive_member",
+        "member": "source/installer_boundary.py"
+      },
+      "bytes": 16466,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/installer-boundary/installer_boundary.py",
+      "sha256": "d4a787ef82c56b9792e8fffa2b8f358b74ef315cb120d328189c82db65b8ddf6",
+      "status": "executed_ten_root_commands_aggregate_false_preserved"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "84f0b8b3e63cf754d7ebba74d0a46645fba1079ca4f239ea7817ef1304b74a02",
+        "kind": "exact_executed_archive_member",
+        "member": "source/help_only.py"
+      },
+      "bytes": 6713,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/help-continuation/help_only.py",
+      "sha256": "9cb5472e4d701a7384a80ef942b8754032b5cbd58f567e2b7acd99b110203fd4",
+      "status": "executed_sixteen_help_only_pass"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "0bf687fe9280e44570bf19e089551949648d72878df106f2dd6e3cf18e0b531e",
+        "kind": "exact_executed_archive_member",
+        "member": "source/guard_proof.py"
+      },
+      "bytes": 7651,
+      "execution_result_sha256": "2355ee2b7f32519eebe7420f4eb19da2d3d28db433bcb71b072e080318854f05",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/installer-guards/guard_proof.py",
+      "sha256": "f5e5c42fe2453a49bbcbfc44bf4377e86496e965793fa574dd8ca0c371db9bdd",
+      "status": "executed_NEW_FIFO_baseline_and_five_corrected_guard_cases_pass"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "11e11e762b4a171be1a8a55c06529f0450f826d65e7446be5a438e84ef656ad7",
+        "member": "source/helpers/keeper_runtime.py"
+      },
+      "bytes": 37193,
+      "private_source_filename": "keeper_runtime.py",
+      "private_source_group": "keeper-jobs",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7ec/keeper_runtime.py",
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4",
+      "status": "exact_executed_archive_member_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "11e11e762b4a171be1a8a55c06529f0450f826d65e7446be5a438e84ef656ad7",
+        "member": "source/helpers/keeper_jobs.py"
+      },
+      "bytes": 7816,
+      "private_source_filename": "keeper_jobs.py",
+      "private_source_group": "keeper-jobs",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7ec/keeper_jobs.py",
+      "sha256": "c0324206d6e1e520c614f72a2800bf4d1bbbebbf2bda0c9b9c4c59572f701566",
+      "status": "exact_executed_archive_member_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "11e11e762b4a171be1a8a55c06529f0450f826d65e7446be5a438e84ef656ad7",
+        "member": "source/helpers/job_cases.py"
+      },
+      "bytes": 15125,
+      "private_source_filename": "job_cases.py",
+      "private_source_group": "keeper-jobs",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7ec/job_cases.py",
+      "sha256": "83ea97cb1fd629f4c69bab17da48f5987527ff2c8a6f285eac8259a72d971b54",
+      "status": "exact_executed_archive_member_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "11e11e762b4a171be1a8a55c06529f0450f826d65e7446be5a438e84ef656ad7",
+        "member": "source/helpers/run_jobs.py"
+      },
+      "bytes": 11552,
+      "private_source_filename": "run_jobs.py",
+      "private_source_group": "keeper-jobs",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7ec/run_jobs.py",
+      "sha256": "270ca160471dbb6015edcbc3a7fb9f308bfaa875032bafbdf689c4d27b65b8e1",
+      "status": "exact_executed_archive_member_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "38219a09984759002a00fdcde64cd2988c5838edfdf64379c707b8756f15f96e",
+        "member": "source/helpers/keeper_runtime.py"
+      },
+      "bytes": 37193,
+      "private_source_filename": "keeper_runtime.py",
+      "private_source_group": "keeper-jobs-retry",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f3/keeper_runtime.py",
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4",
+      "status": "exact_executed_archive_member_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "38219a09984759002a00fdcde64cd2988c5838edfdf64379c707b8756f15f96e",
+        "member": "source/helpers/keeper_jobs.py"
+      },
+      "bytes": 7816,
+      "private_source_filename": "keeper_jobs.py",
+      "private_source_group": "keeper-jobs-retry",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f3/keeper_jobs.py",
+      "sha256": "911fa8247cbc5256b3b6624b55b2ac364962284a9290c29bed1024ba8eb9a30a",
+      "status": "exact_executed_archive_member_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "38219a09984759002a00fdcde64cd2988c5838edfdf64379c707b8756f15f96e",
+        "member": "source/helpers/job_cases.py"
+      },
+      "bytes": 16062,
+      "private_source_filename": "job_cases.py",
+      "private_source_group": "keeper-jobs-retry",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f3/job_cases.py",
+      "sha256": "ef05241e1afc8905dbb00d322878286279e722b555f30486e086c3f34808fe76",
+      "status": "exact_executed_archive_member_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "38219a09984759002a00fdcde64cd2988c5838edfdf64379c707b8756f15f96e",
+        "member": "source/helpers/run_jobs.py"
+      },
+      "bytes": 11838,
+      "private_source_filename": "run_jobs.py",
+      "private_source_group": "keeper-jobs-retry",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f3/run_jobs.py",
+      "sha256": "630b45b0f86f7f5b6344dd3b83ad25173e41487b9dfad6a9e8f2d55d3d0a977a",
+      "status": "exact_executed_archive_member_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "e1b14a9b883e3dba45e0ede5fc0ffe0efbee8e3e32ade16e6db21c0c0632694a",
+        "member": "source/helpers/keeper_runtime.py"
+      },
+      "bytes": 37193,
+      "private_source_filename": "keeper_runtime.py",
+      "private_source_group": "keeper-lp-jobs",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f0/keeper_runtime.py",
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4",
+      "status": "exact_executed_archive_member_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "e1b14a9b883e3dba45e0ede5fc0ffe0efbee8e3e32ade16e6db21c0c0632694a",
+        "member": "source/helpers/keeper_jobs.py"
+      },
+      "bytes": 9477,
+      "private_source_filename": "keeper_jobs.py",
+      "private_source_group": "keeper-lp-jobs",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f0/keeper_jobs.py",
+      "sha256": "363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4",
+      "status": "exact_executed_archive_member_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "e1b14a9b883e3dba45e0ede5fc0ffe0efbee8e3e32ade16e6db21c0c0632694a",
+        "member": "source/helpers/job_cases.py"
+      },
+      "bytes": 15671,
+      "private_source_filename": "job_cases.py",
+      "private_source_group": "keeper-lp-jobs",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f0/job_cases.py",
+      "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7",
+      "status": "exact_executed_archive_member_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "e1b14a9b883e3dba45e0ede5fc0ffe0efbee8e3e32ade16e6db21c0c0632694a",
+        "member": "source/helpers/run_jobs.py"
+      },
+      "bytes": 16807,
+      "private_source_filename": "run_jobs.py",
+      "private_source_group": "keeper-lp-jobs",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f0/run_jobs.py",
+      "sha256": "3327e0b086ecd5dae5ec5a029ec9a2d33cdee499960ddd3f445e67e41465a9ac",
+      "status": "exact_executed_archive_member_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "fba3c827df360d186d6097a1780e9f38e35befef503b2c0f8df0af8a10dc469e",
+        "member": "source/helpers/keeper_runtime.py"
+      },
+      "bytes": 37193,
+      "private_source_filename": "keeper_runtime.py",
+      "private_source_group": "keeper-lp-aux",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f7/keeper_runtime.py",
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4",
+      "status": "exact_executed_archive_member_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "fba3c827df360d186d6097a1780e9f38e35befef503b2c0f8df0af8a10dc469e",
+        "member": "source/helpers/keeper_jobs.py"
+      },
+      "bytes": 9476,
+      "private_source_filename": "keeper_jobs.py",
+      "private_source_group": "keeper-lp-aux",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f7/keeper_jobs.py",
+      "sha256": "64fee9557d65d92225e0a365148a33a0d1527bd9e9b86f157da1b3b01f1726b0",
+      "status": "exact_executed_archive_member_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "fba3c827df360d186d6097a1780e9f38e35befef503b2c0f8df0af8a10dc469e",
+        "member": "source/helpers/job_cases.py"
+      },
+      "bytes": 15671,
+      "private_source_filename": "job_cases.py",
+      "private_source_group": "keeper-lp-aux",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f7/job_cases.py",
+      "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7",
+      "status": "exact_executed_archive_member_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "fba3c827df360d186d6097a1780e9f38e35befef503b2c0f8df0af8a10dc469e",
+        "member": "source/helpers/run_jobs.py"
+      },
+      "bytes": 16825,
+      "private_source_filename": "run_jobs.py",
+      "private_source_group": "keeper-lp-aux",
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f7/run_jobs.py",
+      "sha256": "8b98c713cafc6a6594634cd92cb506baf812476033da4d4a225ab19015ca913e",
+      "status": "exact_executed_archive_member_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "fb66ea682f7c39d29aebda6ef95bc95eb56fd76c80f278447c33cf230814efcf",
+        "kind": "exact_executed_archive_member",
+        "manifest_sha256": "9b463977b994dc80e3675addc422008f920bc8374eb4dde8a4aa75a0c7032e1c",
+        "member": "source/helpers/keeper_runtime.py"
+      },
+      "bytes": 37193,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f6/keeper_runtime.py",
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4",
+      "status": "executed_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "fb66ea682f7c39d29aebda6ef95bc95eb56fd76c80f278447c33cf230814efcf",
+        "kind": "exact_executed_archive_member",
+        "manifest_sha256": "9b463977b994dc80e3675addc422008f920bc8374eb4dde8a4aa75a0c7032e1c",
+        "member": "source/helpers/keeper_jobs.py"
+      },
+      "bytes": 7883,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f6/keeper_jobs.py",
+      "sha256": "d8525eb40801f956edfed344d5056122ebfac7da3302ed562c878da810cc5f38",
+      "status": "executed_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "fb66ea682f7c39d29aebda6ef95bc95eb56fd76c80f278447c33cf230814efcf",
+        "kind": "exact_executed_archive_member",
+        "manifest_sha256": "9b463977b994dc80e3675addc422008f920bc8374eb4dde8a4aa75a0c7032e1c",
+        "member": "source/helpers/job_cases.py"
+      },
+      "bytes": 15618,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f6/job_cases.py",
+      "sha256": "5dc33ff30aa59fa681a02febef0622d9ef729512131b276f01b7df08458e1528",
+      "status": "executed_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "fb66ea682f7c39d29aebda6ef95bc95eb56fd76c80f278447c33cf230814efcf",
+        "kind": "exact_executed_archive_member",
+        "manifest_sha256": "9b463977b994dc80e3675addc422008f920bc8374eb4dde8a4aa75a0c7032e1c",
+        "member": "source/helpers/run_jobs.py"
+      },
+      "bytes": 12051,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f6/run_jobs.py",
+      "sha256": "33d6577bc3bf74c4db666d6c0f2b7718f563fb1cbb215f860cd86ea20f335896",
+      "status": "executed_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "cd0fa44c8940c1c72c23c13d884f541d9515782403f6b8c0370a621c520f4312",
+        "kind": "exact_executed_archive_member",
+        "manifest_sha256": "a8c371f16900c4e257bcb675288651184dd98b4329636fce63cf699bb83d4b40",
+        "member": "source/helpers/keeper_runtime.py"
+      },
+      "bytes": 37193,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f8/keeper_runtime.py",
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4",
+      "status": "executed_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "cd0fa44c8940c1c72c23c13d884f541d9515782403f6b8c0370a621c520f4312",
+        "kind": "exact_executed_archive_member",
+        "manifest_sha256": "a8c371f16900c4e257bcb675288651184dd98b4329636fce63cf699bb83d4b40",
+        "member": "source/helpers/keeper_jobs.py"
+      },
+      "bytes": 7281,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f8/keeper_jobs.py",
+      "sha256": "922e22e21c48e6334c8ba5150c28522e727ca539eb0eead567282076860309f4",
+      "status": "executed_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "cd0fa44c8940c1c72c23c13d884f541d9515782403f6b8c0370a621c520f4312",
+        "kind": "exact_executed_archive_member",
+        "manifest_sha256": "a8c371f16900c4e257bcb675288651184dd98b4329636fce63cf699bb83d4b40",
+        "member": "source/helpers/job_cases.py"
+      },
+      "bytes": 14508,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f8/job_cases.py",
+      "sha256": "62d886de71eedb464e0538a53825e8dcc6cce18980ffebfc986ab0e432836ba8",
+      "status": "executed_source"
+    },
+    {
+      "byte_identity_basis": {
+        "archive_sha256": "cd0fa44c8940c1c72c23c13d884f541d9515782403f6b8c0370a621c520f4312",
+        "kind": "exact_executed_archive_member",
+        "manifest_sha256": "a8c371f16900c4e257bcb675288651184dd98b4329636fce63cf699bb83d4b40",
+        "member": "source/helpers/run_jobs.py"
+      },
+      "bytes": 10234,
+      "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f8/run_jobs.py",
+      "sha256": "09809d1c8c2ce6d40fb0a8122a979b218196dad28b54c79c7255c6c80c3b2409",
+      "status": "executed_source"
+    }
+  ],
+  "schema": 1,
+  "scope": "These are fixed isolated-lab report tools, not maintained production commands or generic deployment/transaction executors. Fixed private inputs are withheld. Historical initial-review/not-executed headers retain source-stage context; actual receipts determine execution. Do not run against live services or public chains."
+}

@@ -1,0 +1,571 @@
+{
+  "all_keeper_features_qualified": false,
+  "date": "2026-11-24",
+  "evidence": [
+    {
+      "bytes": 4344,
+      "private_artifact": "keeper-lp-jobs/root-fetch-RESULT-001/RESULT.json",
+      "sha256": "c490831cbce4dabe419580982b33e4757558538ae000712da12e995f723757f7"
+    },
+    {
+      "bytes": 12346,
+      "private_artifact": "keeper-lp-jobs/root-fetch-confirmation-RECEIPTS-001/confirmation-RECEIPTS.json",
+      "sha256": "8c5c57a8b05750a77c8e408542d134be967771b47560acca8592519a28789bde"
+    },
+    {
+      "bytes": 8933,
+      "private_artifact": "keeper-lp-jobs/root-fetch-confirmation-CYCLE-04-001/confirmation-CYCLE-04.json",
+      "sha256": "34121514829920a5ea514d6f7f3ad06879989c51b3f58661d49fab571dbd7d3d"
+    },
+    {
+      "bytes": 3251,
+      "private_artifact": "keeper-lp-aux/root-fetch-RESULT-001/RESULT.json",
+      "sha256": "c13d078eaa2c8bc68125b339cd654d8585911dd64ca0c9889d8e51707be3a0cf"
+    },
+    {
+      "bytes": 1714,
+      "private_artifact": "keeper-lp-aux/root-fetch-EVENTS-001/EVENTS.json",
+      "sha256": "d5fd653067203c0b49515d6dcfef41263fe5febb0164709e1ac90826f1f9a16a"
+    }
+  ],
+  "frozen_source_groups": [
+    {
+      "archive_sha256": "11e11e762b4a171be1a8a55c06529f0450f826d65e7446be5a438e84ef656ad7",
+      "excluded": [
+        "wrappers",
+        "controllers",
+        "configurations",
+        "keys",
+        "passwords",
+        "journals",
+        "datasets",
+        "state_archives",
+        "raw_signed_envelopes"
+      ],
+      "execution_scope": "initial_common_clock_refusal_before_setup_or_signer",
+      "publication_allowlist": [
+        {
+          "byte_identity_basis": {
+            "archive_sha256": "11e11e762b4a171be1a8a55c06529f0450f826d65e7446be5a438e84ef656ad7",
+            "member": "source/helpers/keeper_runtime.py"
+          },
+          "bytes": 37193,
+          "private_source_filename": "keeper_runtime.py",
+          "private_source_group": "keeper-jobs",
+          "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7ec/keeper_runtime.py",
+          "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4",
+          "status": "exact_executed_archive_member_source"
+        },
+        {
+          "byte_identity_basis": {
+            "archive_sha256": "11e11e762b4a171be1a8a55c06529f0450f826d65e7446be5a438e84ef656ad7",
+            "member": "source/helpers/keeper_jobs.py"
+          },
+          "bytes": 7816,
+          "private_source_filename": "keeper_jobs.py",
+          "private_source_group": "keeper-jobs",
+          "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7ec/keeper_jobs.py",
+          "sha256": "c0324206d6e1e520c614f72a2800bf4d1bbbebbf2bda0c9b9c4c59572f701566",
+          "status": "exact_executed_archive_member_source"
+        },
+        {
+          "byte_identity_basis": {
+            "archive_sha256": "11e11e762b4a171be1a8a55c06529f0450f826d65e7446be5a438e84ef656ad7",
+            "member": "source/helpers/job_cases.py"
+          },
+          "bytes": 15125,
+          "private_source_filename": "job_cases.py",
+          "private_source_group": "keeper-jobs",
+          "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7ec/job_cases.py",
+          "sha256": "83ea97cb1fd629f4c69bab17da48f5987527ff2c8a6f285eac8259a72d971b54",
+          "status": "exact_executed_archive_member_source"
+        },
+        {
+          "byte_identity_basis": {
+            "archive_sha256": "11e11e762b4a171be1a8a55c06529f0450f826d65e7446be5a438e84ef656ad7",
+            "member": "source/helpers/run_jobs.py"
+          },
+          "bytes": 11552,
+          "private_source_filename": "run_jobs.py",
+          "private_source_group": "keeper-jobs",
+          "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7ec/run_jobs.py",
+          "sha256": "270ca160471dbb6015edcbc3a7fb9f308bfaa875032bafbdf689c4d27b65b8e1",
+          "status": "exact_executed_archive_member_source"
+        }
+      ],
+      "stage": "c7ec"
+    },
+    {
+      "archive_sha256": "38219a09984759002a00fdcde64cd2988c5838edfdf64379c707b8756f15f96e",
+      "excluded": [
+        "wrappers",
+        "controllers",
+        "configurations",
+        "keys",
+        "passwords",
+        "journals",
+        "datasets",
+        "state_archives",
+        "raw_signed_envelopes"
+      ],
+      "execution_scope": "corrected_clock_six_job_partition_with_independent_outcomes",
+      "publication_allowlist": [
+        {
+          "byte_identity_basis": {
+            "archive_sha256": "38219a09984759002a00fdcde64cd2988c5838edfdf64379c707b8756f15f96e",
+            "member": "source/helpers/keeper_runtime.py"
+          },
+          "bytes": 37193,
+          "private_source_filename": "keeper_runtime.py",
+          "private_source_group": "keeper-jobs-retry",
+          "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f3/keeper_runtime.py",
+          "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4",
+          "status": "exact_executed_archive_member_source"
+        },
+        {
+          "byte_identity_basis": {
+            "archive_sha256": "38219a09984759002a00fdcde64cd2988c5838edfdf64379c707b8756f15f96e",
+            "member": "source/helpers/keeper_jobs.py"
+          },
+          "bytes": 7816,
+          "private_source_filename": "keeper_jobs.py",
+          "private_source_group": "keeper-jobs-retry",
+          "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f3/keeper_jobs.py",
+          "sha256": "911fa8247cbc5256b3b6624b55b2ac364962284a9290c29bed1024ba8eb9a30a",
+          "status": "exact_executed_archive_member_source"
+        },
+        {
+          "byte_identity_basis": {
+            "archive_sha256": "38219a09984759002a00fdcde64cd2988c5838edfdf64379c707b8756f15f96e",
+            "member": "source/helpers/job_cases.py"
+          },
+          "bytes": 16062,
+          "private_source_filename": "job_cases.py",
+          "private_source_group": "keeper-jobs-retry",
+          "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f3/job_cases.py",
+          "sha256": "ef05241e1afc8905dbb00d322878286279e722b555f30486e086c3f34808fe76",
+          "status": "exact_executed_archive_member_source"
+        },
+        {
+          "byte_identity_basis": {
+            "archive_sha256": "38219a09984759002a00fdcde64cd2988c5838edfdf64379c707b8756f15f96e",
+            "member": "source/helpers/run_jobs.py"
+          },
+          "bytes": 11838,
+          "private_source_filename": "run_jobs.py",
+          "private_source_group": "keeper-jobs-retry",
+          "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f3/run_jobs.py",
+          "sha256": "630b45b0f86f7f5b6344dd3b83ad25173e41487b9dfad6a9e8f2d55d3d0a977a",
+          "status": "exact_executed_archive_member_source"
+        }
+      ],
+      "stage": "c7f3"
+    },
+    {
+      "archive_sha256": "e1b14a9b883e3dba45e0ede5fc0ffe0efbee8e3e32ade16e6db21c0c0632694a",
+      "excluded": [
+        "wrappers",
+        "controllers",
+        "configurations",
+        "keys",
+        "passwords",
+        "journals",
+        "datasets",
+        "state_archives",
+        "raw_signed_envelopes"
+      ],
+      "execution_scope": "normal_window_partial_execution_request_budget_refusal",
+      "publication_allowlist": [
+        {
+          "byte_identity_basis": {
+            "archive_sha256": "e1b14a9b883e3dba45e0ede5fc0ffe0efbee8e3e32ade16e6db21c0c0632694a",
+            "member": "source/helpers/keeper_runtime.py"
+          },
+          "bytes": 37193,
+          "private_source_filename": "keeper_runtime.py",
+          "private_source_group": "keeper-lp-jobs",
+          "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f0/keeper_runtime.py",
+          "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4",
+          "status": "exact_executed_archive_member_source"
+        },
+        {
+          "byte_identity_basis": {
+            "archive_sha256": "e1b14a9b883e3dba45e0ede5fc0ffe0efbee8e3e32ade16e6db21c0c0632694a",
+            "member": "source/helpers/keeper_jobs.py"
+          },
+          "bytes": 9477,
+          "private_source_filename": "keeper_jobs.py",
+          "private_source_group": "keeper-lp-jobs",
+          "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f0/keeper_jobs.py",
+          "sha256": "363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4",
+          "status": "exact_executed_archive_member_source"
+        },
+        {
+          "byte_identity_basis": {
+            "archive_sha256": "e1b14a9b883e3dba45e0ede5fc0ffe0efbee8e3e32ade16e6db21c0c0632694a",
+            "member": "source/helpers/job_cases.py"
+          },
+          "bytes": 15671,
+          "private_source_filename": "job_cases.py",
+          "private_source_group": "keeper-lp-jobs",
+          "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f0/job_cases.py",
+          "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7",
+          "status": "exact_executed_archive_member_source"
+        },
+        {
+          "byte_identity_basis": {
+            "archive_sha256": "e1b14a9b883e3dba45e0ede5fc0ffe0efbee8e3e32ade16e6db21c0c0632694a",
+            "member": "source/helpers/run_jobs.py"
+          },
+          "bytes": 16807,
+          "private_source_filename": "run_jobs.py",
+          "private_source_group": "keeper-lp-jobs",
+          "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f0/run_jobs.py",
+          "sha256": "3327e0b086ecd5dae5ec5a029ec9a2d33cdee499960ddd3f445e67e41465a9ac",
+          "status": "exact_executed_archive_member_source"
+        }
+      ],
+      "stage": "c7f0"
+    },
+    {
+      "archive_sha256": "fba3c827df360d186d6097a1780e9f38e35befef503b2c0f8df0af8a10dc469e",
+      "excluded": [
+        "wrappers",
+        "controllers",
+        "configurations",
+        "keys",
+        "passwords",
+        "journals",
+        "datasets",
+        "state_archives",
+        "raw_signed_envelopes"
+      ],
+      "execution_scope": "native_conversion_financial_refusal_and_geometry_cost_refusal",
+      "publication_allowlist": [
+        {
+          "byte_identity_basis": {
+            "archive_sha256": "fba3c827df360d186d6097a1780e9f38e35befef503b2c0f8df0af8a10dc469e",
+            "member": "source/helpers/keeper_runtime.py"
+          },
+          "bytes": 37193,
+          "private_source_filename": "keeper_runtime.py",
+          "private_source_group": "keeper-lp-aux",
+          "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f7/keeper_runtime.py",
+          "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4",
+          "status": "exact_executed_archive_member_source"
+        },
+        {
+          "byte_identity_basis": {
+            "archive_sha256": "fba3c827df360d186d6097a1780e9f38e35befef503b2c0f8df0af8a10dc469e",
+            "member": "source/helpers/keeper_jobs.py"
+          },
+          "bytes": 9476,
+          "private_source_filename": "keeper_jobs.py",
+          "private_source_group": "keeper-lp-aux",
+          "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f7/keeper_jobs.py",
+          "sha256": "64fee9557d65d92225e0a365148a33a0d1527bd9e9b86f157da1b3b01f1726b0",
+          "status": "exact_executed_archive_member_source"
+        },
+        {
+          "byte_identity_basis": {
+            "archive_sha256": "fba3c827df360d186d6097a1780e9f38e35befef503b2c0f8df0af8a10dc469e",
+            "member": "source/helpers/job_cases.py"
+          },
+          "bytes": 15671,
+          "private_source_filename": "job_cases.py",
+          "private_source_group": "keeper-lp-aux",
+          "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f7/job_cases.py",
+          "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7",
+          "status": "exact_executed_archive_member_source"
+        },
+        {
+          "byte_identity_basis": {
+            "archive_sha256": "fba3c827df360d186d6097a1780e9f38e35befef503b2c0f8df0af8a10dc469e",
+            "member": "source/helpers/run_jobs.py"
+          },
+          "bytes": 16825,
+          "private_source_filename": "run_jobs.py",
+          "private_source_group": "keeper-lp-aux",
+          "public_target": "reports/ubuntu-complete-20261124/verification/tools/keeper-c7f7/run_jobs.py",
+          "sha256": "8b98c713cafc6a6594634cd92cb506baf812476033da4d4a225ab19015ca913e",
+          "status": "exact_executed_archive_member_source"
+        }
+      ],
+      "stage": "c7f7"
+    }
+  ],
+  "manual_geometry": {
+    "classification": "blocked_transaction_cost_ceiling",
+    "cost_event": {
+      "action": "rebalance:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+      "event": "cost_cap_exceeded",
+      "time": "2026-11-24T18:17:23.405793+00:00"
+    },
+    "daily_spend_previously_zero_in_new_actor": true,
+    "estimate_or_padded_amount_not_captured_here": true,
+    "limits_unchanged": true,
+    "maximum_daily_cost_wei": 50000000000000000,
+    "maximum_transaction_cost_wei": 10000000000000000
+  },
+  "matrix": [
+    {
+      "classification": "scoped_pass",
+      "evidence": "Executed helper reached stock_sample_window_and_jitter only after its exact side0/not-ready/empty-firstSeen assertion and saved REFERENCE_DISAGREEMENT.json; control-flow proof, separate artifact not fetched here.",
+      "feature": "ordinary physical/reference threshold disagreement",
+      "limits": "controlled correlated feeds and isolated actual core movement; no independent production-source qualification"
+    },
+    {
+      "classification": "scoped_pass",
+      "evidence": "Four real Cast observations, stable identity/side,240/240/121second gaps; CYCLE04 records maturity at exactly600seconds.",
+      "feature": "ordinary600second sampled confirmation",
+      "limits": "directed logical chain time, not uninterrupted price history or wall-clock daemon timing"
+    },
+    {
+      "classification": "scoped_pass",
+      "evidence": "CYCLE04 durable schedule contains146seconds within60\u2013300, execute_after1795544353.",
+      "feature": "ordinary jitter drawing and durable publication",
+      "limits": "last-observed schedule; expiry wake-up and subsequent rebalance were not reached"
+    },
+    {
+      "classification": "unqualified_request_budget_refusal",
+      "evidence": "Four observation transactions only, zero Vault.rebalance transactions; exactly6000RPC ceiling reached.",
+      "feature": "ordinary jitter completion and LP replacement",
+      "limits": "Do not mark ordinary end-to-end rebalance qualified or increase the limit automatically"
+    },
+    {
+      "classification": "expected_financial_refusal_pass",
+      "evidence": "Actual11010ppm directional fee; typed Slippage0x7dd37f70; source rights unchanged and no broadcast.",
+      "feature": "native LP conversion1% financial refusal",
+      "limits": "Positive funded ETH conversion remains unqualified;1%loss and1%gas-to-output limits remain"
+    },
+    {
+      "classification": "scoped_pass",
+      "evidence": "Exact5000\u21922500width-only setup; helper asserted manual/ready, then event rebalance_scheduled(manual_range=true).",
+      "feature": "manual geometry exception trigger and jitter",
+      "limits": "No completed main LP replacement"
+    },
+    {
+      "classification": "blocked_transaction_cost_ceiling",
+      "evidence": "cost_cap_exceeded for rebalance in fresh-signer clone, zero broadcasts.",
+      "feature": "manual geometry replacement",
+      "limits": "Existing maximum transaction cost10^16wei is binding; not an opaque price/authorization conflict and not a deployment pass"
+    }
+  ],
+  "native_conversion": {
+    "RPC_requests": 1568,
+    "actual_signed_envelope_predecoded": false,
+    "controlled_copied_state_only": true,
+    "conversion": {
+      "actual_directional_fee_ppm": 11010,
+      "conversion_loss_bps": 100,
+      "error_code": 3,
+      "minimum_ETH_wei": "786551469060",
+      "oracle_output_wei": "794496433393",
+      "revert_selector": "0x7dd37f70",
+      "simulation_succeeded": false,
+      "source_units": "226234026898607116",
+      "stock_gas_to_output_bps": 100
+    },
+    "exact_original_rights_preserved": true,
+    "fault_attempts": 0,
+    "feature": "conversion",
+    "gateway_refusals": [],
+    "last_model_RPC_failure": null,
+    "last_stage": "stock_native_LP_conversion",
+    "new_seal": false,
+    "postforward_exact_transaction_verification_required": true,
+    "qualified_positive_conversion": false,
+    "raw_attempts": 0,
+    "raw_forwarded": 0,
+    "setup_transactions": 7,
+    "status": "expected_refusal",
+    "stock_transactions": 0
+  },
+  "new_remote_actions": 0,
+  "normal_jitter": {
+    "classification": "LAST_OBSERVED_NOT_FINAL_CURRENT_STATE",
+    "completion_qualified": false,
+    "journal_capture": "CYCLE04 before fourth observation receipt recovery",
+    "schedule": {
+      "execute_after": 1795544353,
+      "identity": "0xfdbd562d77e7df5025edc9ff8beb8993f9c2bc858d337eaf0d7f62c368cf4dc8",
+      "last_checked_at": 1795544207,
+      "next_check_at": 1795544447,
+      "observed_at": 1795544207
+    },
+    "seconds": 146
+  },
+  "normal_maturity_snapshot": {
+    "applied_revision": 0,
+    "block_hash": "0x3ce42edeed77b4f2446fb4c3ff8f7edf16516804bed0eda689844439b6f25723",
+    "block_number": 119107373,
+    "block_timestamp": 1795544207,
+    "condition_identity": "0xf7967cd21b365d9f4b829ec498cd20ba219bc7333239dc9a7ec18b7e681e3b5d",
+    "configuration_pending": false,
+    "configured": true,
+    "continuous_price_proof": false,
+    "cooldown_elapsed": true,
+    "duration_seconds": 600,
+    "earliest_confirmation_at": 1795544207,
+    "earliest_cooldown_at": 1795227135,
+    "enabled": false,
+    "evidence_kind": "bounded_recorded_onchain_observations",
+    "exit_side": 1,
+    "first_observed_at": 1795543607,
+    "first_seen": 1795543607,
+    "geometry_revision": 0,
+    "helper": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+    "identity": "0xf7967cd21b365d9f4b829ec498cd20ba219bc7333239dc9a7ec18b7e681e3b5d",
+    "last_observed_at": 1795544087,
+    "last_seen": 1795544087,
+    "maintenance_policy": {
+      "domain": "maintenance",
+      "fingerprint": "0x5549a08cae546aff947ee49e7eaecf06097a833961ca0fe74d1493e87aa5ab4c",
+      "maximum_idle_bps": 500,
+      "policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+      "revision": 1,
+      "version": 1
+    },
+    "manual": false,
+    "manual_range_exception": false,
+    "max_observation_gap_seconds": 300,
+    "maximum_gap_seconds": 300,
+    "maximum_residual_bps": 4000,
+    "minimum_main_bps": 6000,
+    "observation_expires_at": 1795544387,
+    "observation_identity": "0xf7967cd21b365d9f4b829ec498cd20ba219bc7333239dc9a7ec18b7e681e3b5d",
+    "observation_side": 1,
+    "physical_threshold_side": 1,
+    "policy_revision": 2,
+    "portfolio_control_fingerprint": "0x96299757e37d486534dfe47cf9718a86dcb4f3b3e33a6075c4e86d67bd7d6850",
+    "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+    "portfolio_policy_revision": 0,
+    "portfolio_version": 2,
+    "raw_eligible_at_snapshot": true,
+    "ready": true,
+    "ready_at_snapshot": true,
+    "record_matches_condition": true,
+    "recorded_identity": "0xf7967cd21b365d9f4b829ec498cd20ba219bc7333239dc9a7ec18b7e681e3b5d",
+    "recorded_side": 1,
+    "reference_exit_required": true,
+    "reference_review_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "reference_threshold_side": 1,
+    "residual_gap_spacings": 1,
+    "residual_side_bps": 5000,
+    "review_hash": "0x61cd4c1e7e10a59b6ff459235081221d62b88e1d2ba30decb08b26d0edaea1a8",
+    "sampled_mature": true,
+    "schedule_source": "unavailable",
+    "seconds_remaining": 0,
+    "side": 1,
+    "status": "ready",
+    "threshold_basis": "ZZZ_in_ETH_actual_centre_to_physical_boundary",
+    "threshold_bps": 8500,
+    "threshold_condition_at_snapshot": true,
+    "threshold_observation_scope": "ordinary_market_threshold",
+    "version": 3
+  },
+  "normal_observation_receipts": [
+    {
+      "block_number": 119107332,
+      "configured_confirmations": 12,
+      "exact_transaction_and_canonical_recovery_asserted_by_executed_helper": true,
+      "first_seen": 1795543607,
+      "gap_from_previous_seconds": null,
+      "gas_used": 866642,
+      "identity": "0xf7967cd21b365d9f4b829ec498cd20ba219bc7333239dc9a7ec18b7e681e3b5d",
+      "last_seen": 1795543607,
+      "nonce": 0,
+      "side": 1,
+      "transaction_hash": "0xda60b0c50a300dc080b6998785846b1d0948d5c063f195dc7fa4e020994cf3c9"
+    },
+    {
+      "block_number": 119107346,
+      "configured_confirmations": 12,
+      "exact_transaction_and_canonical_recovery_asserted_by_executed_helper": true,
+      "first_seen": 1795543607,
+      "gap_from_previous_seconds": 240,
+      "gas_used": 830764,
+      "identity": "0xf7967cd21b365d9f4b829ec498cd20ba219bc7333239dc9a7ec18b7e681e3b5d",
+      "last_seen": 1795543847,
+      "nonce": 1,
+      "side": 1,
+      "transaction_hash": "0x599d23424684b3f68f0b813747138770f66c64801d3341b46a6494fab55d4a3b"
+    },
+    {
+      "block_number": 119107360,
+      "configured_confirmations": 12,
+      "exact_transaction_and_canonical_recovery_asserted_by_executed_helper": true,
+      "first_seen": 1795543607,
+      "gap_from_previous_seconds": 240,
+      "gas_used": 830764,
+      "identity": "0xf7967cd21b365d9f4b829ec498cd20ba219bc7333239dc9a7ec18b7e681e3b5d",
+      "last_seen": 1795544087,
+      "nonce": 2,
+      "side": 1,
+      "transaction_hash": "0x435152d9b0b4b64d4a933368224061a7e257b9ab86c5258dcf63f409c2aa55b2"
+    },
+    {
+      "block_number": 119107374,
+      "configured_confirmations": 12,
+      "exact_transaction_and_canonical_recovery_asserted_by_executed_helper": true,
+      "first_seen": 1795543607,
+      "gap_from_previous_seconds": 121,
+      "gas_used": 1112912,
+      "identity": "0xf7967cd21b365d9f4b829ec498cd20ba219bc7333239dc9a7ec18b7e681e3b5d",
+      "last_seen": 1795544208,
+      "nonce": 3,
+      "side": 1,
+      "transaction_hash": "0x8b2233d87c8f211f594cb69f240d5c6ad1719f9c1efe6270d79e30d6c0302278"
+    }
+  ],
+  "preservation": {
+    "c7f0_source_inputs_preserved": true,
+    "c7f0_tracked_children_stopped": true,
+    "c7f7_source_inputs_preserved": true,
+    "c7f7_tracked_children_stopped": true,
+    "existing_environments_modified": false,
+    "new_seals": 0,
+    "public_transactions": 0,
+    "whole_cgroup_cleanup_requires_root_readback": true
+  },
+  "production_approved": false,
+  "remaining": [
+    "positive full ordinary rebalance through completed jitter",
+    "positive stock compounding under approved complete-fee budget",
+    "actual fixed-ZZZ burn with authenticated complete token state",
+    "positive funded native LP conversion using qualified route",
+    "manual geometry completed replacement under approved cost budget",
+    "sample reset recovery and different-key rotation as separately scoped evidence",
+    "actual providers/routes/depth/prices/fees",
+    "continuous Ubuntu operation and independent release approval"
+  ],
+  "runtime_tests_rerun": 0,
+  "schema": 1,
+  "scope": "Read-only reconciliation of already executed private keeper partitions; no new runtime, test or altered cap",
+  "source_publication_scope": "Exactly16byte-identical helper .py files only; existing SOURCE_REPRODUCTION.json is not edited. Source headers are preserved and actual evidence controls execution status.",
+  "source_stage": {
+    "F6_Solidity_dependency_control_maps": "61/39/4 unchanged",
+    "base_head": "064cd93060b626b885cf88772fa2eb959d51c706",
+    "reviewed_overrides": {
+      "keeper/monitor.py": "9bb7c3b227b93ab2003cd380e1e5549448c31a894c9d50ac712dbcdf422bb8c3",
+      "keeper/ops.py": "a81eb06001024f11f751691ba2b8fd7f37605f10feba925006bf57242751fa6b"
+    },
+    "source_manifest_sha256": "c8b2c3f25572a9c64f1b701dde1aba5601261f805707bb460726537f44532f23"
+  },
+  "terminal_normal_failure": {
+    "actual_RPC_requests": 6000,
+    "executed_helper_site": "run_jobs.py:confirmation:48 after fourth settle",
+    "no_ordinary_rebalance_broadcast": true,
+    "request_ceiling": 6000,
+    "source_derived_reset": {
+      "behavior": "An observed RPC failure calls _mark_confirmation_reset, removes the service schedule and requires a reset acknowledgement before fresh evidence.",
+      "final_current_schedule_readback_available": false,
+      "monitor_sha256": "9bb7c3b227b93ab2003cd380e1e5549448c31a894c9d50ac712dbcdf422bb8c3",
+      "no_claim_that_old146second_schedule_remains_current": true,
+      "proof_kind": "Exact executed source and terminal call-site/error-class derivation; no final journal was fetched",
+      "reset_function_line": 1242,
+      "status_function_line": 1236
+    },
+    "source_exception": "RpcError"
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "actual_signed_envelope_predecoded": false,
+  "all_enabled_jobs_qualified": false,
+  "cleanup": [
+    {
+      "feature": "compound",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    },
+    {
+      "feature": "buyback",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    },
+    {
+      "feature": "metadata",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    },
+    {
+      "feature": "retired",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    },
+    {
+      "feature": "roles",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    }
+  ],
+  "features": [
+    {
+      "RPC_requests": 1888,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "error_class": "FeatureBlocked",
+      "fault_attempts": 0,
+      "feature": "compound",
+      "fixed_guard": "Stock compound refused; inspect exact diagnostics",
+      "gateway_refusals": [],
+      "last_model_RPC_failure": null,
+      "last_stage": "stock_compound",
+      "message_sha256": "aa20e229d8b6df173f30c2d39b32feac5bada92deac26d9f497d601171bf05ba",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 0,
+      "raw_forwarded": 0,
+      "setup_transactions": 10,
+      "site": {
+        "file": "run_jobs.py",
+        "function": "compound",
+        "line": 8
+      },
+      "status": "blocked",
+      "stock_transactions": 0
+    },
+    {
+      "RPC_requests": 282,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "copied_token_supply_read": "0",
+      "error_class": "FeatureBlocked",
+      "fault_attempts": 0,
+      "feature": "buyback",
+      "fixed_guard": "Copied model lacks adequate ZZZ supply state; burn support remains unqualified",
+      "gateway_refusals": [],
+      "last_model_RPC_failure": null,
+      "last_stage": "genuine_fee_setup",
+      "message_sha256": "7b081584c402b78ec17a20bc4e32c14ffb3439623792bacafdff6b4bb08fd2b9",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 0,
+      "raw_forwarded": 0,
+      "setup_transactions": 9,
+      "site": {
+        "file": "run_jobs.py",
+        "function": "buyback",
+        "line": 13
+      },
+      "status": "blocked",
+      "stock_transactions": 0
+    },
+    {
+      "RPC_requests": 1780,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "fault_attempts": 0,
+      "feature": "metadata",
+      "gateway_refusals": [],
+      "last_model_RPC_failure": null,
+      "last_stage": "stock_metadata2",
+      "new_seal": false,
+      "notified": {
+        "1": {
+          "available": true,
+          "lifecycle_fingerprint": "0xefa300f0f1385d7b7be63b443f7079b098217fbc04d43b167f45a99d6d021a6d",
+          "notification_hash": "0xcf1885cb0013521601ad95e0e4793a8c6dd512aabe2b98dea67c01b87c96329f",
+          "notification_number": 119107337,
+          "observed_hash": "0xcf1885cb0013521601ad95e0e4793a8c6dd512aabe2b98dea67c01b87c96329f",
+          "observed_number": 119107337,
+          "ordinal": 1,
+          "stage": 1,
+          "token_id": "40184212847679983674243184633288579841995169513279304157869508944424510570653",
+          "traits_ready": true
+        },
+        "2": {
+          "available": true,
+          "lifecycle_fingerprint": "0xefa300f0f1385d7b7be63b443f7079b098217fbc04d43b167f45a99d6d021a6d",
+          "notification_hash": "0xcf1885cb0013521601ad95e0e4793a8c6dd512aabe2b98dea67c01b87c96329f",
+          "notification_number": 119107337,
+          "observed_hash": "0xcf1885cb0013521601ad95e0e4793a8c6dd512aabe2b98dea67c01b87c96329f",
+          "observed_number": 119107337,
+          "ordinal": 2,
+          "stage": 1,
+          "token_id": "64035115818100271688741973822286304906190058428760669687570531617680779079388",
+          "traits_ready": true
+        }
+      },
+      "notified_ids": [
+        "40184212847679983674243184633288579841995169513279304157869508944424510570653",
+        "64035115818100271688741973822286304906190058428760669687570531617680779079388"
+      ],
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 1,
+      "raw_forwarded": 1,
+      "setup_transactions": 5,
+      "status": "passed",
+      "stock_transactions": 1
+    },
+    {
+      "RPC_requests": 706,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "fault_attempts": 0,
+      "feature": "retired",
+      "gateway_refusals": [],
+      "last_model_RPC_failure": null,
+      "last_stage": "retired_worker_admission",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 0,
+      "raw_forwarded": 0,
+      "refusals": [
+        {
+          "fixed_reason": "Original-currency royalties prohibit conversion settings",
+          "setting": "royalty_conversion",
+          "type": "ValueError"
+        },
+        {
+          "fixed_reason": "Custody5 principal allocation/distribution is governance-only; disable keeper principal_distribution",
+          "setting": "principal_distribution",
+          "type": "ValueError"
+        },
+        {
+          "fixed_reason": "Threshold-based rebalancing requires operator-selected ranges",
+          "setting": "adaptive_range",
+          "type": "ValueError"
+        }
+      ],
+      "setup_transactions": 5,
+      "status": "expected_refusal",
+      "stock_transactions": 0
+    },
+    {
+      "RPC_requests": 1078,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "error_class": "RuntimeError",
+      "fault_attempts": 0,
+      "feature": "roles",
+      "fixed_guard": null,
+      "gateway_refusals": [
+        {
+          "error_class": "HarnessRefusal",
+          "fixed_guard": "Only explicitly reviewed stock jobs may broadcast",
+          "message_sha256": "902db77bb0cddfb2ab0ab93124637f400b24f1fb1ee8de22119e1067790a416a",
+          "method": "eth_sendRawTransaction"
+        }
+      ],
+      "last_model_RPC_failure": null,
+      "last_stage": "pause",
+      "message_sha256": "5dd7da4e2e2f7e47331beeb403dc8b562cabe872eff8991c146eb355cb44c088",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 1,
+      "raw_forwarded": 0,
+      "setup_transactions": 6,
+      "site": {
+        "file": "job_cases.py",
+        "function": "cycle",
+        "line": 66
+      },
+      "status": "failed",
+      "stock_transactions": 0
+    }
+  ],
+  "new_seals": 0,
+  "old_test_bodies_run": 0,
+  "postforward_exact_transaction_verification_required": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_submission_attempts": 2,
+  "reviewed_raw_forward_attempts": 1,
+  "schema": 1,
+  "scope": "NEW directed stock job methods/real Cast; copied sealed F6; not a daemon soak or global fork",
+  "secret_disposition": {
+    "contents_or_content_hashes_exported": false,
+    "retained_only_in_new_owned_lab": true
+  },
+  "shared_RPC_requests": 5734,
+  "shared_maximum_reviewed_cost_wei": 47819001482389,
+  "source_inputs_preserved": true,
+  "stock_events_bytes": 2420,
+  "success": false,
+  "tracked_children_stopped": true,
+  "unattempted_jobs": [
+    "rpc_fault"
+  ],
+  "unexecuted": [
+    "ordinary_confirmation_and_jitter",
+    "ordinary_rebalance",
+    "manual_geometry_exception",
+    "LP_native_conversion",
+    "different_key_rotation",
+    "continuous_long_duration_operation"
+  ],
+  "whole_cgroup_cleanup_requires_external_readback": true
+}

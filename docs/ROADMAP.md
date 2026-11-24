@@ -9,19 +9,34 @@ including eight cards in98.834s. Final snapshot age116.018s leaves only3.982s
 under120s: a finite synthetic pass, not robust-provider or full F6/V10 acceptance.
 Original expiry evidence remains; the late-tip alternative stays unused.
 
-The unsealed F6 fixture proves genuine NFT-contract creation history. Its original
-export guard was not retained. A [targeted follow-up](../reports/history-export-20261124/REVIEW.md) replays44 captured setup
-envelopes/39 instances and now proves a response-size refusal:25,625,277 bytes
-declared,16,777,217 read against16MiB. Precise diagnostics are fixed; complete
-export/reload remains blocked. No bound, partial-history fallback or production
-source changed; no unchanged test body reran.
+[Ubuntu recovery and operating follow-through](../reports/ubuntu-complete-20261124/REVIEW.md)
+now completes export/reload of the NEW unsealed F6 constructor fixture:45 headers,
+44 receipts,39 runtimes,112 bindings and genuine NFT creation history match.
+The explicitly approved lab-only profile is32MiB for exact dump[true] response/
+capture,16MiB compressed and128MiB expanded. Production/default limits stay.
+Original failed exports and the separate old graph's missing history stay distinct.
 
-Five existing service states match the pre-diagnostic snapshot; all seven owned
-lab units are stopped. No public transactions, sealing or live rollout.
-Sites, Anvil8902, journals, signer/null public configurations and paused heartbeat
-stay unchanged. Checkpoint1/2/3 adoption requires new reviewed matching artifacts.
-Current inventory182files/2,003definitions/278lambdas and frozen F6 maps61/39/4,
-1,021ABI rows remain. Full F6/V10/provider/market/production acceptance stays open.
+Actual stock Ubuntu keeper/Cast harvesting, same-journal interruption/recovery,
+lock exclusion and a fresh healthy cycle pass with240s/12confirmations/hourly
+harvest and24M/full25%. Diagnostics, indexer/restart/empty-header reorg and history
+backup/restore have separate finite proofs. The original private fixture's later negative-import failure is retained. Separate
+current-semantic1,000-NFT/three-epoch import/restore passes with full86,400s and
+exact phase/raw bytes; injected lifecycle/getter seams remain explicit. This is
+not all-feature or full F6/V10 qualification.
+
+Preflight now validates reciprocal LP routing without burdening saved pending
+recovery; successful recovery no longer doubles refresh-only waiting or delays
+earlier confirmation deadlines. Four plus7+3 distinct NEW Python methods pass;
+nine NEW snapshot checks pass separately. Future staging installs retain root
+tool ownership. No unchanged suite, public transaction, new sealing or rollout.
+
+Adopt matching keeper/checker code with original journals preserved. These two
+Python fixes alone change no checkpoint semantic source. Earlier API/ABI source
+adoption still requires newly reviewed matching checkpoints. Sites, services,
+Anvil8902, signer/null public configurations and paused heartbeat are preserved.
+Current [inventory](../reports/ubuntu-complete-20261124/FUNCTION_INVENTORY.json):
+182Python files/2,003definitions/278lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
+Actual F6/V10 consumer, provider, market and production approval stay open.
 
 [Current actual-fee proof](../reports/pool-fees-20261121/REVIEW.md) advances P08
 with real-core harvested receipts, exact80/10/5/5+dust/reserve conservation and
@@ -88,7 +103,7 @@ full-normal1000-NFT workloads, the476135-estimate gap and independent approval r
 | P17 | Finite HTTP/recovery and controlled maximum verified | Source9/V9 1,000-NFT full view passes80GETs with3.982s freshness margin; actual F6/V10, archive/provider/load and separately authorized adoption remain. |
 | P18 | Offline tools implemented | Matching checkpoint/consumer and actual host/archive/restore adoption remain. |
 | P19 | Production submission unresolved | Current consumer unsigned, shared signer Anvil-only; no production signing decision or rollout. |
-| P20 | Finite recovery evidence only | Actual complete normal-loop scheduling with real accepted services remains. |
+| P20 | Finite stock Keeper/Cast harvest/recovery and normal cycle pass | Full sampled-window→replacement and all-feature/provider operating qualification remain. |
 | P21 | Operating acceptance open | Off-host restore, fencing, alerts and agreed operating observation remain. |
 | P22 | Controlled construction complete | 25CREATE/19bindings/39instances verified locally; actual deployment/readback/seal approval remain. |
 | P23 | Independent approval open | No final release freeze/audit/remediation/public-opening approval or deployment. |
@@ -415,6 +430,16 @@ Popldemo stays simulation; served poplint current3 is not fresh F6/source10. Mis
 Owning Todo: [`wallet`](../TODO.md#task-wallet), [`portfolio`](../TODO.md#task-portfolio), [`transaction-ui`](../TODO.md#task-transaction-ui), [`unsigned-actions`](../TODO.md#task-unsigned-actions), [`preview`](../TODO.md#task-preview), [`purchase-rights`](../TODO.md#task-purchase-rights).
 
 ### P20 — Actual full normal keeper scheduling
+
+The [current Ubuntu follow-through](../reports/ubuntu-complete-20261124/REVIEW.md)
+adds real stock-daemon/Cast harvesting, same-journal interruption/recovery and a
+fresh healthy cycle. Four sampled observations mature600s and record146s jitter,
+but the lab-wide6,000-request cap stops full ordinary replacement. Compound/manual
+geometry hit the unchanged0.01ETH fee ceiling; native conversion correctly rejects
+1.101% directional fees under1%. Preserve those refusals and qualify full normal
+operation against actual provider capacity/fees; do not raise defaults or infer
+release acceptance from finite partitions. History import/restore now has separate
+exact1,000-NFT/three-epoch/full86,400s proof with explicit synthetic getter seams.
 
 [21 November follow-through](../reports/ubuntu-keeper-20261121/REVIEW.md) fixes four Python issues and verifies18focused methods,8 on Ubuntu. The normal-daemon/real-Cast attempt stopped during fixture setup; all8owned units are stopped. This advances source safety, not P20/P21 acceptance.
 

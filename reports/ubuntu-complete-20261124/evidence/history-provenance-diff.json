@@ -1,0 +1,131 @@
+{
+  "active_actual_provenance": {
+    "available": true,
+    "block_hash": "0x0000000000000000000000000000000000000000000000000000000000018741",
+    "checkpoint": {
+      "block_hash": "0x0000000000000000000000000000000000000000000000000000000000018741",
+      "block_number": 161,
+      "sha256": "0cbc526d54791249de03915e2f8c8f35d9bf51961e74410679a2b25c85db454e",
+      "trust": "Explicitly reviewed configuration pin; not a log-completeness proof."
+    },
+    "claim_events": 8,
+    "completeness": "Operator-maintained complete indexer ingestion; SQLite is not a cryptographic log-completeness proof.",
+    "from_block": 120,
+    "indexer_next_block": 241,
+    "logs_examined": 1055,
+    "lp_conversion_events": 0,
+    "minted_count": 1000,
+    "royalty_conversion_events": 0,
+    "scope": "All owners and all prior claims through the exact confirmed block, per NFT and asset.",
+    "start_block_hash": "0x0000000000000000000000000000000000000000000000000000000000018718",
+    "start_parent_hash": "0x0000000000000000000000000000000000000000000000000000000000018717",
+    "suffix_logs_examined": 0,
+    "through_block": 161
+  },
+  "active_reference_provenance": {
+    "available": true,
+    "block_hash": "0x0000000000000000000000000000000000000000000000000000000000018741",
+    "claim_events": 8,
+    "completeness": "Operator-maintained complete indexer ingestion; SQLite is not a cryptographic log-completeness proof.",
+    "from_block": 120,
+    "indexer_next_block": 241,
+    "logs_examined": 1055,
+    "lp_conversion_events": 0,
+    "minted_count": 1000,
+    "royalty_conversion_events": 0,
+    "scope": "All owners and all prior claims through the exact confirmed block, per NFT and asset.",
+    "start_block_hash": "0x0000000000000000000000000000000000000000000000000000000000018718",
+    "start_parent_hash": "0x0000000000000000000000000000000000000000000000000000000000018717",
+    "through_block": 161
+  },
+  "full_differences": [
+    {
+      "actual": {
+        "canonical_sha256": "0035f00c5786abfd91530e65ed8e53554e201b770f904eb765d63d56298a76f1",
+        "type": "dict"
+      },
+      "kind": "added",
+      "path": "state.active.history.provenance.checkpoint"
+    },
+    {
+      "actual": 0,
+      "kind": "added",
+      "path": "state.active.history.provenance.suffix_logs_examined"
+    },
+    {
+      "actual": "0x000000000000000000000000000000000000000000000000000000000001872c",
+      "kind": "value",
+      "path": "state.completed[0].history.provenance.checkpoint.block_hash",
+      "reference": "0x00000000000000000000000000000000000000000000000000000000000186ce"
+    },
+    {
+      "actual": 140,
+      "kind": "value",
+      "path": "state.completed[0].history.provenance.checkpoint.block_number",
+      "reference": 46
+    },
+    {
+      "actual": "0cbc526d54791249de03915e2f8c8f35d9bf51961e74410679a2b25c85db454e",
+      "kind": "value",
+      "path": "state.completed[0].history.provenance.checkpoint.sha256",
+      "reference": "f105958bac8a54566c7e67c44bb51594ebc4ab94c9e461c239ef9a1342415049"
+    },
+    {
+      "actual": 0,
+      "kind": "value",
+      "path": "state.completed[0].history.provenance.suffix_logs_examined",
+      "reference": 30
+    }
+  ],
+  "input_files_unchanged": true,
+  "no_DB_open": true,
+  "no_network": true,
+  "no_test_or_import_rerun": true,
+  "pins": {
+    "new": {
+      "bytes": 2435584,
+      "sha256": "90b354c9bf31e0a591128ea4520902ec963e84add30fbe608d5a6e515d048ee3"
+    },
+    "prefix2": {
+      "bytes": 2428908,
+      "sha256": "0cbc526d54791249de03915e2f8c8f35d9bf51961e74410679a2b25c85db454e"
+    },
+    "reference": {
+      "bytes": 2435248,
+      "sha256": "3aa212be10e7f0bbc0c9552d7a4b14c99d583aa469145206d2c5358076405cd3"
+    },
+    "result": {
+      "bytes": 2933,
+      "sha256": "5e72b7f64d1a943b63ec5f2f3a209f5a4ffe91d8528055c22bd003bb9fa2698f"
+    }
+  },
+  "production_approved": false,
+  "read_only": true,
+  "remaining_after_exact_expected_prefix_fields": [
+    {
+      "actual": "0x000000000000000000000000000000000000000000000000000000000001872c",
+      "kind": "value",
+      "path": "state.completed[0].history.provenance.checkpoint.block_hash",
+      "reference": "0x00000000000000000000000000000000000000000000000000000000000186ce"
+    },
+    {
+      "actual": 140,
+      "kind": "value",
+      "path": "state.completed[0].history.provenance.checkpoint.block_number",
+      "reference": 46
+    },
+    {
+      "actual": "0cbc526d54791249de03915e2f8c8f35d9bf51961e74410679a2b25c85db454e",
+      "kind": "value",
+      "path": "state.completed[0].history.provenance.checkpoint.sha256",
+      "reference": "f105958bac8a54566c7e67c44bb51594ebc4ab94c9e461c239ef9a1342415049"
+    },
+    {
+      "actual": 0,
+      "kind": "value",
+      "path": "state.completed[0].history.provenance.suffix_logs_examined",
+      "reference": 30
+    }
+  ],
+  "schema": 1
+}

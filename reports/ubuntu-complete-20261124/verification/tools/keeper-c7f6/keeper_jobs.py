@@ -1,0 +1,94 @@
+"""Private c7f6 ONLY role/pause/reset and RPC-fault stock partitions. NOT EXECUTED.
+
+Fresh copies of already-sealed state, no new seal/public fork/old journals.
+Stock run_cycle and real Cast, not a continuous daemon/provider/market soak.
+"""
+from pathlib import Path
+import argparse,contextlib,copy,json,os,re,sys,threading,time
+from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
+import keeper_runtime as B
+
+LAB=Path('/opt/popl-ubuntu-jobs-20261124-c7f6');SOURCE=LAB/'source/contracts';OUT=LAB/'runtime/run-001/jobs'
+B.LAB=LAB;B.SOURCE=SOURCE;B.OUT=OUT
+OWNER=B.OWNER;ZERO='0x'+'0'*40;ZZZ='0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a'
+POOL='0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b'
+BUCKET=47181787163762592248710325652087236475813397965818762058663276509558631703230
+POSM='0x58daec3116aae6d93017baaea7749052e8a04fa7'
+need=B.need;save=B.save;sha=B.sha
+class FeatureBlocked(ValueError):pass
+
+class Work:
+ def __init__(self):self.count=0;self.raw=0;self.raw_attempts=0;self.maximum_cost=0;self.deadline=time.monotonic()+900;self.lock=threading.Lock()
+ def consume(self):
+  with self.lock:
+   need(time.monotonic()<self.deadline and self.count<6000,'Shared feature work budget exceeded');self.count+=1
+
+class Events:
+ def __init__(self):self.parts=[];self.size=0
+ def write(self,value):
+  raw=value.encode('utf8','strict');need(self.size+len(raw)<=65536,'Combined stock events exceed64KiB');self.size+=len(raw);self.parts.append(value);return len(value)
+ def flush(self):pass
+
+def encode(signature,*args):
+ from zzz_ops.abi import keccak256
+ types=signature[signature.index('(')+1:-1].split(',')if args else[];need(len(types)==len(args),'Flat typed argument count differs');words=[]
+ for kind,value in zip(types,args):
+  number=int(value,16)if type(value)is str and value.startswith('0x')else int(value)
+  if kind=='address':need(0<=number<1<<160,'Typed asset/address bound')
+  elif kind=='bool':need(type(value)is bool,'Typed boolean differs')
+  elif kind=='bytes32':need(0<=number<1<<256,'Typed bytes32 differs')
+  elif kind.startswith('uint'):need(0<=number<1<<int(kind[4:]or'256'),'Typed unsigned bound')
+  elif kind.startswith('int'):bits=int(kind[3:]or'256');need(-(1<<(bits-1))<=number<1<<(bits-1),'Typed signed bound')
+  else:raise B.HarnessRefusal('Only flat reviewed static types')
+  words.append(f'{number%(1<<256):064x}')
+ return'0x'+keccak256(signature.encode()).hex()[:8]+''.join(words)
+
+class Model(B.Model):
+ def __init__(self,folder,work):
+  super().__init__(LAB/'tools/anvil',folder);self.work=work;self.deadline=work.deadline;self.review=None;self.raw_records=[];self.raw_forwarded=0;self.fault=None;self.fault_attempts=0
+ def request(self,q,*,already_charged=False):
+  if not already_charged:self.work.consume()
+  return super().request(q)
+ def guard(self):
+  from zzz_ops.abi import keccak256
+  r=self.review;need(type(r)is dict,'Reviewed job intent is absent');raw=r['config'].read_bytes();need(sha(raw)==r['config_sha'],'Reviewed configuration changed');cfg=json.loads(raw);st=B.json_file(r['journal']);p=st.get('pending')
+  need(type(p)is dict and st.get('chain_id')==cfg['chain_id']==4663 and p.get('hash')is None and p.get('value')==0 and st['sender']==cfg['sender']==r['sender']and p.get('nonce')==st['next_nonce'],'Durable job identity differs')
+  data=p.get('data');key=p.get('key');need(type(data)is str and re.fullmatch(r'0x[0-9a-f]+',data)is not None and(len(data)-10)%64==0 and type(key)is str,'Job calldata encoding differs');matched=False
+  for kind,role,signature in r['allowed']:
+   need((kind,role,signature)in(('harvest','vault','collectFees(uint256,uint256)'),('rebalance_reset','rebalance_confirmation','resetObservation(uint256)')),'Unreviewed allowlist row')
+   if key==kind+':'+str(BUCKET)and p['to']==cfg['contracts'][role]and data[:10]=='0x'+keccak256(signature.encode()).hex()[:8]:
+    values=[int(data[i:i+64],16)for i in range(10,len(data),64)];deadline=None
+    if kind=='harvest':need(len(values)==2 and values[0]==BUCKET,'Exact harvest arguments differ');deadline=values[1]
+    elif kind=='rebalance_reset':need(values==[BUCKET]and data==encode('resetObservation(uint256)',BUCKET),'Exact confirmation-reset arguments differ')
+    matched=True;break
+  need(matched,'Only exact reviewed harvest or clear-only reset may broadcast')
+  stamp=int(self.rpc('eth_getBlockByNumber',['latest',False])['timestamp'],16)
+  if deadline is not None:need(stamp<=deadline<=stamp+600,'Job deadline differs')
+  need(all(int(self.rpc('eth_getTransactionCount',[r['sender'],tag]),16)==p['nonce']for tag in('latest','pending')),'Job nonce is not free')
+  f=p.get('fee_review');need(type(f)is dict and f.get('schema')==1 and f.get('receipt_fee_policy')=='included'and 0<f.get('gas_limit',0)<=24000000 and 0<f.get('max_fee_per_gas',0)<=5000000000 and f.get('l1_fee_allowance_wei')==0 and f.get('maximum_cost_wei')==f['gas_limit']*f['max_fee_per_gas']<=10**16,'Job gas/fee bounds differ');need(sum(int(v)for v in st['spent'].values())+f['maximum_cost_wei']<=5*10**16,'Job daily budget differs')
+  with self.work.lock:
+   need(self.work.raw<12 and self.work.maximum_cost+f['maximum_cost_wei']<=5*10**16,'Shared feature broadcast/spend bound');self.work.raw+=1;self.work.maximum_cost+=f['maximum_cost_wei']
+  self.raw_records.append({'intent':copy.deepcopy(p),'config_sha256':r['config_sha'],'raw_signature_retained':False})
+ def gateway_start(self):
+  model=self
+  class Handler(BaseHTTPRequestHandler):
+   def log_message(self,*args):pass
+   def do_POST(self):
+    identifier=None;method=None
+    try:
+     model.work.consume();self.connection.settimeout(30);size=int(self.headers.get('Content-Length','0'));need(0<size<=B.MAX_REQUEST,'Job gateway request bound');q=json.loads(self.rfile.read(size));need(type(q)is dict and q.get('jsonrpc')=='2.0'and type(q.get('id'))is int,'Job gateway envelope');identifier=q['id'];method=q.get('method')
+     if set(q)=={'jsonrpc','id','method'}and method in {'web3_clientVersion','net_version','eth_chainId','eth_blockNumber','eth_gasPrice','eth_maxPriorityFeePerGas'}:q=dict(q,params=[])
+     need(set(q)=={'jsonrpc','id','method','params'}and type(q['params'])is list and type(method)is str and method in B.READ_METHODS|{'eth_sendRawTransaction'},'Job gateway method/shape')
+     if model.fault is not None and method==model.fault['method']and(model.fault.get('params')is None or q['params']==model.fault['params']):
+      model._identity();model.fault_attempts+=1;need(model.fault_attempts<=12,'Injected fault attempt bound');answer={'jsonrpc':'2.0','id':identifier,'error':{'code':-32098,'message':'Controlled isolated read fault'}}
+     else:
+      if method=='eth_sendRawTransaction':
+       model.raw_send_count+=1
+       with model.work.lock:model.work.raw_attempts+=1;need(model.work.raw_attempts<=12,'Shared raw submission attempt bound')
+       need(len(q['params'])==1 and type(q['params'][0])is str and len(q['params'][0])<=262144 and re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',q['params'][0])is not None,'Signed envelope encoding differs');model.guard();model.raw_forwarded+=1
+      answer=model.request(q,already_charged=True)
+    except Exception as exc:
+     if len(model.gateway_refusals)<16:model.gateway_refusals.append({'method':method if type(method)is str and method in B.READ_METHODS|{'eth_sendRawTransaction'}else'refused_method',**B.safe_error(exc)})
+     answer={'jsonrpc':'2.0','id':identifier,'error':{'code':-32070,'message':'Owned feature gateway refused'}}
+    raw=B.enc(answer);self.send_response(200);self.send_header('Content-Type','application/json');self.send_header('Content-Length',str(len(raw)));self.end_headers();self.wfile.write(raw)
+  self.gateway=ThreadingHTTPServer(('127.0.0.1',19592),Handler);self.gateway.daemon_threads=True;self.gateway_thread=threading.Thread(target=self.gateway.serve_forever,daemon=True);self.gateway_thread.start()

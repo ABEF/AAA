@@ -8,9 +8,15 @@ deadlines and bounded failure cleanup. See [operator recovery](OPERATOR_MANUAL.m
 The [21 November focused fixes](../reports/ubuntu-keeper-20261121/REVIEW.md)
 preserve guards/defaults/journal schemas. Adopt matching keeper/checker Python
 sources only through the [lock and recovery procedure](OPERATOR_MANUAL.md#keeper-lock-and-recovery-source-adoption).
-The stock-daemon/real-Cast Ubuntu attempt remains unfinished;18focused methods,
-including8Unix lock methods, are not complete normal-loop acceptance. No actual
-provider, operating key, service rollout or complete Robinhood fee is approved.
+That earlier stock-daemon attempt remains failed. The [current follow-through](../reports/ubuntu-complete-20261124/REVIEW.md)
+now verifies a real stock Ubuntu daemon/Cast harvest, interruption/same-journal
+recovery and fresh healthy cycle under unchanged240s/12-confirmation/hourly/24M
+policy. Preflight now checks reciprocal LP routing; refresh-only paid recovery
+preserves normal cadence and earlier sample/jitter deadlines. Match writer/checker
+source on adoption; original journals remain. Future staging tar extraction also
+preserves root tool ownership before chmod/execution. No existing installation
+is repaired or rolled out automatically. Actual providers, authority keys,
+complete Robinhood fees, full-feature operation and sustained acceptance stay open.
 
 **Production NOT APPROVED.** This is an operating guide, not permission to deploy,
 sign publicly or change running services. Start with the [operator manual](OPERATOR_MANUAL.md)

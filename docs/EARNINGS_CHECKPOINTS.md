@@ -49,12 +49,14 @@ See the [source-bound review](../reports/wallet-latency-20261123/REVIEW.md).
 Its authorized controlled Ubuntu source9/V9 journey completes1,000 NFTs/three
 currencies and eight cards in80 GETs, but only3.982s freshness margin remains.
 Actual provider/load/full F6/V10 qualification stays open. A new unsealed
-constructor fixture proves actual NFT-contract creation code history. The
-[targeted recovery follow-up](../reports/history-export-20261124/REVIEW.md) now identifies
-its new replay's response-size refusal:25,625,277 declared bytes exceed16MiB;
-export/reload still fails. The original guard remains unrecorded. Diagnostics
-are corrected without raising any limit or changing production sources.
-It neither repairs the old saved graph nor authorizes a historical-state fallback. No HTTP
+constructor fixture proves actual NFT-contract creation code history. The [initial diagnosis](../reports/history-export-20261124/REVIEW.md) retains
+its16MiB refusal. The [explicitly approved isolated follow-through](../reports/ubuntu-complete-20261124/REVIEW.md)
+now exports/reloads the NEW unsealed constructor fixture completely under a
+method-specific32MiB-response/16MiB-compressed/128MiB-expanded budget. Defaults and
+production limits stay unchanged. It does not repair the old saved graph or
+authorize a historical-state fallback. Separate current-semantic multi-epoch
+checkpoint import/recovery evidence retains the full86,400-second window and raw
+exact accounting; fixture-injected lifecycle/getter truths are labeled. No HTTP
 request builds, approves, edits or rotates checkpoints.
 An existing reader retains its already validated bytes; it never hot-reloads a
 changed path. New readers/restarts validate the file again. Stop/restart is the

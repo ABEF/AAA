@@ -1,0 +1,175 @@
+{
+  "active_command": null,
+  "commands": [
+    {
+      "elapsed_seconds": 0.2936638072133064,
+      "gid": 65534,
+      "name": "help-keeper-monitor",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stdout_bytes": 526,
+      "uid": 65534
+    },
+    {
+      "elapsed_seconds": 0.2122648060321808,
+      "gid": 65534,
+      "name": "help-keeper-ops",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stdout_bytes": 604,
+      "uid": 65534
+    },
+    {
+      "elapsed_seconds": 0.21124344505369663,
+      "gid": 65534,
+      "name": "help-keeper-probe",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stdout_bytes": 816,
+      "uid": 65534
+    },
+    {
+      "elapsed_seconds": 0.11623981408774853,
+      "gid": 65534,
+      "name": "help-indexer-monitor",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stdout_bytes": 217,
+      "uid": 65534
+    },
+    {
+      "elapsed_seconds": 0.1925254426896572,
+      "gid": 65534,
+      "name": "help-frontend_api-server",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stdout_bytes": 1195,
+      "uid": 65534
+    },
+    {
+      "elapsed_seconds": 0.2653540689498186,
+      "gid": 65534,
+      "name": "help-frontend_api-activation_server",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stdout_bytes": 1051,
+      "uid": 65534
+    },
+    {
+      "elapsed_seconds": 0.3326188810169697,
+      "gid": 65534,
+      "name": "help-prepare-manual-lp",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stdout_bytes": 604,
+      "uid": 65534
+    },
+    {
+      "elapsed_seconds": 0.38569862581789494,
+      "gid": 65534,
+      "name": "help-prepare-operator-management",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stdout_bytes": 593,
+      "uid": 65534
+    },
+    {
+      "elapsed_seconds": 0.09895582683384418,
+      "gid": 65534,
+      "name": "help-prepare-operator-review",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stdout_bytes": 699,
+      "uid": 65534
+    },
+    {
+      "elapsed_seconds": 0.09438938461244106,
+      "gid": 65534,
+      "name": "help-prepare-deployment",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stdout_bytes": 651,
+      "uid": 65534
+    },
+    {
+      "elapsed_seconds": 0.0957737285643816,
+      "gid": 65534,
+      "name": "help-prepare-deployment-sequence",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stdout_bytes": 569,
+      "uid": 65534
+    },
+    {
+      "elapsed_seconds": 0.13647027872502804,
+      "gid": 65534,
+      "name": "help-prepare-preseal",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stdout_bytes": 409,
+      "uid": 65534
+    },
+    {
+      "elapsed_seconds": 0.09560590051114559,
+      "gid": 65534,
+      "name": "help-prepare-opensea-drop",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stdout_bytes": 592,
+      "uid": 65534
+    },
+    {
+      "elapsed_seconds": 0.271422915160656,
+      "gid": 65534,
+      "name": "help-history-recovery",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stdout_bytes": 249,
+      "uid": 65534
+    },
+    {
+      "elapsed_seconds": 0.21177882328629494,
+      "gid": 65534,
+      "name": "help-import-earnings-checkpoint",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stdout_bytes": 782,
+      "uid": 65534
+    },
+    {
+      "elapsed_seconds": 0.20432065427303314,
+      "gid": 65534,
+      "name": "help-build-earnings-checkpoint",
+      "returncode": 0,
+      "stderr_bytes": 0,
+      "stdout_bytes": 581,
+      "uid": 65534
+    }
+  ],
+  "financial_features_executed": false,
+  "gid": 65534,
+  "help_only_commands": 16,
+  "new_sealing": false,
+  "old_test_bodies": 0,
+  "prior_aggregate_success": false,
+  "prior_completed_root_commands": 10,
+  "prior_failure_cause": "PermissionError at first attempted unprivileged help spawn; exact OS cause not established",
+  "prior_helper_preserved": true,
+  "prior_result_sha256": "cae14bf32cba08c6cfddd668cd26bfc8a1eed0635db871ffb20915fb5c01bfbc",
+  "production_approved": false,
+  "public_transactions": 0,
+  "root_commands_repeated": 0,
+  "root_drop_attempted": false,
+  "schema": 1,
+  "scope": "ONLY16 previously uncompleted Ubuntu unprivileged CLI --help parsers; no financial feature approval",
+  "signing": false,
+  "source_changes": false,
+  "source_files_preserved": true,
+  "source_files_verified": 190,
+  "source_manifest_sha256": "c8b2c3f25572a9c64f1b701dde1aba5601261f805707bb460726537f44532f23",
+  "success": true,
+  "supplementary_groups": [
+    65534
+  ],
+  "uid": 65534
+}

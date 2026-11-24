@@ -1,0 +1,100 @@
+{
+  "attempt": 1,
+  "network_namespace": {},
+  "owned_cgroup_pids": [],
+  "phase": "status",
+  "properties": {
+    "ActiveState": "inactive",
+    "CPUQuotaPerSecUSec": "infinity",
+    "CPUWeight": "[not set]",
+    "ControlGroup": "",
+    "ExecMainStatus": "0",
+    "Group": "",
+    "IOWeight": "[not set]",
+    "KillMode": "control-group",
+    "LoadState": "not-found",
+    "MainPID": "0",
+    "MemoryMax": "infinity",
+    "MemorySwapMax": "infinity",
+    "Nice": "0",
+    "NoNewPrivileges": "no",
+    "PrivateDevices": "no",
+    "PrivateNetwork": "no",
+    "ProtectHome": "no",
+    "ProtectSystem": "no",
+    "Result": "success",
+    "RuntimeMaxUSec": "infinity",
+    "SubState": "dead",
+    "TasksMax": "9211",
+    "TimeoutStopUSec": "1min 30s",
+    "User": ""
+  },
+  "public_files": {
+    "NEGATIVE.json": {
+      "bytes": 885,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "PROGRESS.json": {
+      "bytes": 2735,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "RESULT.json": {
+      "bytes": 2933,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "controller.stderr.log": {
+      "bytes": 2072,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "controller.stdout.log": {
+      "bytes": 0,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "import.stderr": {
+      "bytes": 0,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "import.stdout": {
+      "bytes": 310,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "negative.stderr": {
+      "bytes": 197,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "negative.stdout": {
+      "bytes": 0,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "prefix.stderr": {
+      "bytes": 0,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "prefix.stdout": {
+      "bytes": 310,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "three-epoch-review.json": {
+      "bytes": 22578,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "two-epoch-review.json": {
+      "bytes": 16707,
+      "mode": "0o600",
+      "uid": 65534
+    }
+  },
+  "unit": "popl-ubuntu-features-20261124-c7ee.service"
+}

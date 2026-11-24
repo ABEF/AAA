@@ -9,23 +9,38 @@ including eight cards in98.834s. Final snapshot age116.018s leaves only3.982s
 under120s: a finite synthetic pass, not robust-provider or full F6/V10 acceptance.
 Original expiry evidence remains; the late-tip alternative stays unused.
 
-The unsealed F6 fixture proves genuine NFT-contract creation history. Its original
-export guard was not retained. A [targeted follow-up](reports/history-export-20261124/REVIEW.md) replays44 captured setup
-envelopes/39 instances and now proves a response-size refusal:25,625,277 bytes
-declared,16,777,217 read against16MiB. Precise diagnostics are fixed; complete
-export/reload remains blocked. No bound, partial-history fallback or production
-source changed; no unchanged test body reran.
+[Ubuntu recovery and operating follow-through](reports/ubuntu-complete-20261124/REVIEW.md)
+now completes export/reload of the NEW unsealed F6 constructor fixture:45 headers,
+44 receipts,39 runtimes,112 bindings and genuine NFT creation history match.
+The explicitly approved lab-only profile is32MiB for exact dump[true] response/
+capture,16MiB compressed and128MiB expanded. Production/default limits stay.
+Original failed exports and the separate old graph's missing history stay distinct.
 
-Five existing service states match the pre-diagnostic snapshot; all seven owned
-lab units are stopped. No public transactions, sealing or live rollout.
-Sites, Anvil8902, journals, signer/null public configurations and paused heartbeat
-stay unchanged. Checkpoint1/2/3 adoption requires new reviewed matching artifacts.
-Current inventory182files/2,003definitions/278lambdas and frozen F6 maps61/39/4,
-1,021ABI rows remain. Full F6/V10/provider/market/production acceptance stays open.
+Actual stock Ubuntu keeper/Cast harvesting, same-journal interruption/recovery,
+lock exclusion and a fresh healthy cycle pass with240s/12confirmations/hourly
+harvest and24M/full25%. Diagnostics, indexer/restart/empty-header reorg and history
+backup/restore have separate finite proofs. The original private fixture's later negative-import failure is retained. Separate
+current-semantic1,000-NFT/three-epoch import/restore passes with full86,400s and
+exact phase/raw bytes; injected lifecycle/getter seams remain explicit. This is
+not all-feature or full F6/V10 qualification.
+
+Preflight now validates reciprocal LP routing without burdening saved pending
+recovery; successful recovery no longer doubles refresh-only waiting or delays
+earlier confirmation deadlines. Four plus7+3 distinct NEW Python methods pass;
+nine NEW snapshot checks pass separately. Future staging installs retain root
+tool ownership. No unchanged suite, public transaction, new sealing or rollout.
+
+Adopt matching keeper/checker code with original journals preserved. These two
+Python fixes alone change no checkpoint semantic source. Earlier API/ABI source
+adoption still requires newly reviewed matching checkpoints. Sites, services,
+Anvil8902, signer/null public configurations and paused heartbeat are preserved.
+Current [inventory](reports/ubuntu-complete-20261124/FUNCTION_INVENTORY.json):
+182Python files/2,003definitions/278lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
+Actual F6/V10 consumer, provider, market and production approval stay open.
 
 Current workload inventory:182Python files/2,003named definitions,278lambdas,
 unchanged F6 maps61/39/4 and1,021ABI rows; normal verifier checks
-reports/wallet-latency-20261123/FUNCTION_INVENTORY.json. The earlier forty-five distinct
+reports/ubuntu-complete-20261124/FUNCTION_INVENTORY.json. The earlier forty-five distinct
 NEW Python and90 NEW JS methods have precise staged scopes. Cache retention is
 encoded key+JSON bytes64KiB/entry and8MiBtotal, not process-RAM qualification.
 Original producer/cache/fixture failures and updated-only reruns remain recorded.
@@ -138,7 +153,7 @@ That advance's historical inventory is [here](reports/readiness-advance-20261120
 179Pythonfiles/1,979named definitions at that source. The current inventory above
 had1,980definitions at that keeper-fix stage. Use the bounded-capture inventory
 above for that historical1,984-definition stage. Current source inventory is
-reports/wallet-latency-20261123/FUNCTION_INVENTORY.json (2,003 definitions); Solidity61/dependencies39/controls4 stay.
+reports/ubuntu-complete-20261124/FUNCTION_INVENTORY.json (2,003 definitions); Solidity61/dependencies39/controls4 stay.
 Existing OpenSea artifacts bind this module's old hash; preserve them and rebuild/
 review new artifacts explicitly. service.py/checkpoint and runtime identities stay.
 

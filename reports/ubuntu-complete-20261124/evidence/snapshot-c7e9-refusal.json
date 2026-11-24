@@ -1,0 +1,125 @@
+{
+  "all_owned_stopped": true,
+  "cleanup": [
+    {
+      "label": "replay",
+      "output_bytes": 0,
+      "output_overflow": false,
+      "pid": 4154045,
+      "returncode": 0,
+      "stopped": true
+    }
+  ],
+  "compiler_runs": 0,
+  "diagnostics": [
+    {
+      "Node_record_count": 1860,
+      "Node_retained_encoded_bytes": 8070950,
+      "Node_sent": 44,
+      "Node_work_deadline_elapsed": false,
+      "error_class": "ValueError",
+      "fixed_export_guard": null,
+      "fixed_guard_message": "Local response exceeds16MiB",
+      "message_sha256": "999ea7daf3d24f7929e8eb9dcb6e66ac2b257119ffba4b52a2dff1d4f0425dd1",
+      "original_wire_frame_facts": [
+        {
+          "HTTP_status": 200,
+          "RPC_error_present": false,
+          "deadline_elapsed": false,
+          "declared_content_length": "25590677",
+          "file": "snapshot_node.py",
+          "function": "wire",
+          "line": 140,
+          "raw_bytes": 25590677,
+          "read_bytes": 25590677,
+          "request_id": 1861,
+          "response_id_matches": true,
+          "response_id_type": "int",
+          "response_limit_bytes": 33554432
+        }
+      ],
+      "stage": "original_Node_wire_dump",
+      "traceback_frames": [
+        {
+          "file": "replay_snapshot_profile.py",
+          "function": "main",
+          "line": 244
+        },
+        {
+          "file": "snapshot_node.py",
+          "function": "wire",
+          "line": 140
+        },
+        {
+          "file": "wire_capture.py",
+          "function": "add",
+          "line": 69
+        },
+        {
+          "file": "wire_capture.py",
+          "function": "need",
+          "line": 12
+        }
+      ]
+    }
+  ],
+  "error_class": "ValueError",
+  "estimates": 0,
+  "export_complete": false,
+  "failure_stage": "original_Node_wire_dump",
+  "financial_or_API_qualified": false,
+  "historical_code_proof": true,
+  "instances": 39,
+  "new_replay_header_count": 45,
+  "old_C6_complete_header_history_known": false,
+  "old_constructor_runner_calls": 0,
+  "old_fixed_source_members_preserved": 113,
+  "old_genesis_raw_sha256_before_after": "fefbea359a426656023691a31e66b6d7580223c01e0a6fc8f977e0fab38b723f",
+  "old_inputs_preserved": true,
+  "old_test_bodies_run": 0,
+  "pending": null,
+  "production_approved": false,
+  "public_calls": 0,
+  "public_signing": false,
+  "reload_complete": false,
+  "replay_complete": true,
+  "schema": 1,
+  "scope": "NEW snapshot1 targeted44 captured-envelope fixture plus full returned-state export/reload; not exact old c7e6 reconstruction",
+  "sealed": false,
+  "snapshot_profile": {
+    "HTTP_response_bytes": {
+      "default": 16777216,
+      "exact_anvil_dumpState_true": 33554432
+    },
+    "approval_scope": "NEW c7e9 isolated local Anvil recovery only; production limits unchanged",
+    "compressed_export_bytes": 16777216,
+    "existing_evidence_preserved": true,
+    "expanded_restore_JSON_bytes": 134217728,
+    "no_pruning_latest_only_or_partial_history": true,
+    "operator_approved": true,
+    "preserved_limits": {
+      "CPU_percent": 150,
+      "RPC_requests": 6000,
+      "absolute_response_seconds": 30,
+      "cgroup_memory_bytes": 2147483648,
+      "encoded_capture_bytes": 67108864,
+      "local_block_gas": 32000000,
+      "per_node_seconds": 900,
+      "request_bytes": 131072,
+      "tasks": 128
+    },
+    "profile": "isolated_snapshot1",
+    "public_RPC_or_transactions": false,
+    "schema": 1,
+    "sealing": false
+  },
+  "source_identities": {
+    "new_diagnostics_sha256": "fda75faca27ecf9bea24d9e9b9c8cd46daeefeec0ffbb5c78e40d1bb2020acef",
+    "new_snapshot_Node_sha256": "d483cd132a3cf4af0a641c7acfd21eb89a3b6686f82a7964d008f259f7cbbb65",
+    "original_C6_Node_sha256": "cc36100e6eb11abf1dd0fb317c2c473bfbfac25546c6f12b1af61c229ef4ff9c",
+    "snapshot_policy_sha256": "d0206d0b20711da91498563f8df8b3051e61e83e1c5e5fa10bd112f4e7f2e6d2"
+  },
+  "status": "replay_complete_export_or_reload_refused",
+  "success": false,
+  "transactions": 44
+}

@@ -1,0 +1,222 @@
+{
+  "actual_signed_envelope_predecoded": false,
+  "all_enabled_jobs_qualified": false,
+  "cleanup": [
+    {
+      "feature": "compound",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    },
+    {
+      "feature": "buyback",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    },
+    {
+      "feature": "metadata",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    },
+    {
+      "feature": "retired",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    },
+    {
+      "feature": "roles",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    },
+    {
+      "feature": "rpc_fault",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    }
+  ],
+  "features": [
+    {
+      "RPC_requests": 152,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "error_class": "HarnessRefusal",
+      "fault_attempts": 0,
+      "feature": "compound",
+      "fixed_guard": "Owned RPC refused; inspect bounded method/code/selector",
+      "gateway_refusals": [],
+      "last_stage": "sealed_graph_identity",
+      "message_sha256": "f9eca214034836e781bade963fb03def028d570822f45e52606543ea4bad7368",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 0,
+      "raw_forwarded": 0,
+      "setup_transactions": 0,
+      "site": {
+        "file": "job_cases.py",
+        "function": "advance",
+        "line": 15
+      },
+      "status": "failed",
+      "stock_transactions": 0
+    },
+    {
+      "RPC_requests": 152,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "error_class": "HarnessRefusal",
+      "fault_attempts": 0,
+      "feature": "buyback",
+      "fixed_guard": "Owned RPC refused; inspect bounded method/code/selector",
+      "gateway_refusals": [],
+      "last_stage": "sealed_graph_identity",
+      "message_sha256": "f9eca214034836e781bade963fb03def028d570822f45e52606543ea4bad7368",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 0,
+      "raw_forwarded": 0,
+      "setup_transactions": 0,
+      "site": {
+        "file": "job_cases.py",
+        "function": "advance",
+        "line": 15
+      },
+      "status": "failed",
+      "stock_transactions": 0
+    },
+    {
+      "RPC_requests": 152,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "error_class": "HarnessRefusal",
+      "fault_attempts": 0,
+      "feature": "metadata",
+      "fixed_guard": "Owned RPC refused; inspect bounded method/code/selector",
+      "gateway_refusals": [],
+      "last_stage": "sealed_graph_identity",
+      "message_sha256": "f9eca214034836e781bade963fb03def028d570822f45e52606543ea4bad7368",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 0,
+      "raw_forwarded": 0,
+      "setup_transactions": 0,
+      "site": {
+        "file": "job_cases.py",
+        "function": "advance",
+        "line": 15
+      },
+      "status": "failed",
+      "stock_transactions": 0
+    },
+    {
+      "RPC_requests": 152,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "error_class": "HarnessRefusal",
+      "fault_attempts": 0,
+      "feature": "retired",
+      "fixed_guard": "Owned RPC refused; inspect bounded method/code/selector",
+      "gateway_refusals": [],
+      "last_stage": "sealed_graph_identity",
+      "message_sha256": "f9eca214034836e781bade963fb03def028d570822f45e52606543ea4bad7368",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 0,
+      "raw_forwarded": 0,
+      "setup_transactions": 0,
+      "site": {
+        "file": "job_cases.py",
+        "function": "advance",
+        "line": 15
+      },
+      "status": "failed",
+      "stock_transactions": 0
+    },
+    {
+      "RPC_requests": 152,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "error_class": "HarnessRefusal",
+      "fault_attempts": 0,
+      "feature": "roles",
+      "fixed_guard": "Owned RPC refused; inspect bounded method/code/selector",
+      "gateway_refusals": [],
+      "last_stage": "sealed_graph_identity",
+      "message_sha256": "f9eca214034836e781bade963fb03def028d570822f45e52606543ea4bad7368",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 0,
+      "raw_forwarded": 0,
+      "setup_transactions": 0,
+      "site": {
+        "file": "job_cases.py",
+        "function": "advance",
+        "line": 15
+      },
+      "status": "failed",
+      "stock_transactions": 0
+    },
+    {
+      "RPC_requests": 152,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "error_class": "HarnessRefusal",
+      "fault_attempts": 0,
+      "feature": "rpc_fault",
+      "fixed_guard": "Owned RPC refused; inspect bounded method/code/selector",
+      "gateway_refusals": [],
+      "last_stage": "sealed_graph_identity",
+      "message_sha256": "f9eca214034836e781bade963fb03def028d570822f45e52606543ea4bad7368",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 0,
+      "raw_forwarded": 0,
+      "setup_transactions": 0,
+      "site": {
+        "file": "job_cases.py",
+        "function": "advance",
+        "line": 15
+      },
+      "status": "failed",
+      "stock_transactions": 0
+    }
+  ],
+  "new_seals": 0,
+  "old_test_bodies_run": 0,
+  "postforward_exact_transaction_verification_required": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_submission_attempts": 0,
+  "reviewed_raw_forward_attempts": 0,
+  "schema": 1,
+  "scope": "NEW directed stock job methods/real Cast; copied sealed F6; not a daemon soak or global fork",
+  "secret_disposition": {
+    "contents_or_content_hashes_exported": false,
+    "retained_only_in_new_owned_lab": true
+  },
+  "shared_RPC_requests": 912,
+  "shared_maximum_reviewed_cost_wei": 0,
+  "source_inputs_preserved": true,
+  "stock_events_bytes": 0,
+  "success": false,
+  "tracked_children_stopped": true,
+  "unexecuted": [
+    "ordinary_confirmation_and_jitter",
+    "ordinary_rebalance",
+    "manual_geometry_exception",
+    "LP_native_conversion",
+    "different_key_rotation",
+    "continuous_long_duration_operation"
+  ],
+  "whole_cgroup_cleanup_requires_external_readback": true
+}

@@ -1,0 +1,78 @@
+{
+  "actual_signed_envelope_predecoded": false,
+  "all_enabled_jobs_qualified": false,
+  "cleanup": [
+    {
+      "feature": "auth_completion",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    }
+  ],
+  "features": [
+    {
+      "RPC_requests": 1368,
+      "actual_signed_envelope_predecoded": false,
+      "confirmed_harvest_clock": true,
+      "controlled_copied_state_only": true,
+      "different_key_rotation_qualified": false,
+      "eth_call_state_and_nonces_unchanged": true,
+      "fault_attempts": 0,
+      "feature": "auth_completion",
+      "gateway_refusals": [],
+      "last_model_RPC_failure": null,
+      "last_stage": "restored_same_key_due_harvest",
+      "new_seal": false,
+      "permission_change": false,
+      "permissionless_harvest_eth_call_expected": true,
+      "postforward_exact_transaction_verification_required": true,
+      "prior_case_bodies_repeated": false,
+      "proper_keeper_only_rebalance_Unauthorized": true,
+      "raw_attempts": 1,
+      "raw_forwarded": 1,
+      "restored_same_key_harvest": "0x9695c22f92a245e566a7939c790b3911008cbf8e36de2899a3616352c08dda05",
+      "setup_transactions": 7,
+      "status": "passed",
+      "stock_transactions": 1
+    }
+  ],
+  "new_seals": 0,
+  "old_test_bodies_run": 0,
+  "passed_or_blocked_cases_not_repeated": [
+    "metadata",
+    "retired",
+    "compound",
+    "buyback",
+    "pause_resets",
+    "software_revocation",
+    "RPC_fault"
+  ],
+  "postforward_exact_transaction_verification_required": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_submission_attempts": 1,
+  "reviewed_raw_forward_attempts": 1,
+  "schema": 1,
+  "scope": "ONLY unexecuted correct authorization probe and restored same-key harvest.\n\nPermissionless collectFees stays unchanged. Reuse c7f6 pause/reset, software\nrevocation and RPC-fault proofs; do not rerun their case bodies. One NEW sealed\nclone uses the same6000RPC/900s/24M+25%/12confirmation/240s/hourly/fee bounds.\n",
+  "secret_disposition": {
+    "contents_or_content_hashes_exported": false,
+    "retained_only_in_new_owned_lab": true
+  },
+  "shared_RPC_requests": 1368,
+  "shared_maximum_reviewed_cost_wei": 414080045548800,
+  "source_inputs_preserved": true,
+  "stock_events_bytes": 911,
+  "success": true,
+  "tracked_children_stopped": true,
+  "unattempted_jobs": [],
+  "unexecuted": [
+    "ordinary_confirmation_and_jitter",
+    "ordinary_rebalance",
+    "manual_geometry_exception",
+    "LP_native_conversion",
+    "different_key_rotation",
+    "continuous_long_duration_operation"
+  ],
+  "whole_cgroup_cleanup_requires_external_readback": true
+}

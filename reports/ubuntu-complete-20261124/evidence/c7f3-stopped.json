@@ -1,0 +1,230 @@
+{
+  "attempt": 1,
+  "network_namespace": {},
+  "owned_cgroup_pids": [],
+  "phase": "status",
+  "properties": {
+    "ActiveState": "inactive",
+    "CPUQuotaPerSecUSec": "infinity",
+    "CPUWeight": "[not set]",
+    "ControlGroup": "",
+    "ExecMainStatus": "0",
+    "Group": "",
+    "IOWeight": "[not set]",
+    "KillMode": "control-group",
+    "LoadState": "not-found",
+    "MainPID": "0",
+    "MemoryMax": "infinity",
+    "MemorySwapMax": "infinity",
+    "Nice": "0",
+    "NoNewPrivileges": "no",
+    "PrivateDevices": "no",
+    "PrivateNetwork": "no",
+    "ProtectHome": "no",
+    "ProtectSystem": "no",
+    "Result": "success",
+    "RuntimeMaxUSec": "infinity",
+    "SubState": "dead",
+    "TasksMax": "9211",
+    "TimeoutStopUSec": "1min 30s",
+    "User": ""
+  },
+  "public_files": {
+    "EVENTS.json": {
+      "bytes": 2686,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "RESULT.json": {
+      "bytes": 7811,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "buyback-BINDINGS.json": {
+      "bytes": 26538,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "buyback-CLOCK_REPAIR.json": {
+      "bytes": 5761,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "buyback-RAW_REVIEWS.json": {
+      "bytes": 3,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "buyback-RECEIPTS.json": {
+      "bytes": 3,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "buyback-RESULT.json": {
+      "bytes": 803,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "buyback-SETUP.json": {
+      "bytes": 46181,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "compound-BINDINGS.json": {
+      "bytes": 26538,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "compound-CLOCK_REPAIR.json": {
+      "bytes": 5761,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "compound-CYCLE-01.json": {
+      "bytes": 12690,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "compound-RAW_REVIEWS.json": {
+      "bytes": 3,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "compound-RECEIPTS.json": {
+      "bytes": 3,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "compound-RESULT.json": {
+      "bytes": 739,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "compound-SETUP.json": {
+      "bytes": 48611,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "controller.stderr.log": {
+      "bytes": 0,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "controller.stdout.log": {
+      "bytes": 194,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "metadata-BINDINGS.json": {
+      "bytes": 26538,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "metadata-CLOCK_REPAIR.json": {
+      "bytes": 5761,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "metadata-CONFIRMED_ANCHOR.json": {
+      "bytes": 5612,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "metadata-CYCLE-01.json": {
+      "bytes": 6466,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "metadata-CYCLE-02.json": {
+      "bytes": 19675,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "metadata-RAW_RECEIPT-01.json": {
+      "bytes": 2274,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "metadata-RAW_REVIEWS.json": {
+      "bytes": 2119,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "metadata-RECEIPTS.json": {
+      "bytes": 4733,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "metadata-RESULT.json": {
+      "bytes": 1821,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "metadata-SETUP.json": {
+      "bytes": 9470,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "retired-BINDINGS.json": {
+      "bytes": 26538,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "retired-CLOCK_REPAIR.json": {
+      "bytes": 5761,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "retired-RAW_REVIEWS.json": {
+      "bytes": 3,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "retired-RECEIPTS.json": {
+      "bytes": 3,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "retired-RESULT.json": {
+      "bytes": 1028,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "retired-SETUP.json": {
+      "bytes": 9470,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "roles-BINDINGS.json": {
+      "bytes": 26538,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "roles-CLOCK_REPAIR.json": {
+      "bytes": 5761,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "roles-RAW_REVIEWS.json": {
+      "bytes": 3,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "roles-RECEIPTS.json": {
+      "bytes": 3,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "roles-RESULT.json": {
+      "bytes": 936,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "roles-SETUP.json": {
+      "bytes": 11741,
+      "mode": "0o600",
+      "uid": 65534
+    }
+  },
+  "unit": "popl-ubuntu-jobs-20261124-c7f3.service"
+}

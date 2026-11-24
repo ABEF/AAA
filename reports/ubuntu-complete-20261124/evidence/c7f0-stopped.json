@@ -1,0 +1,111 @@
+{
+  "attempt": 1,
+  "network_namespace": {
+    "host": "net:[4026531840]",
+    "owned": "net:[4026532431]"
+  },
+  "owned_cgroup_pids": [
+    4169165,
+    4169167
+  ],
+  "phase": "status",
+  "properties": {
+    "ActiveState": "active",
+    "CPUQuotaPerSecUSec": "1.500000s",
+    "CPUWeight": "10",
+    "ControlGroup": "/system.slice/popl-ubuntu-lp-jobs-20261124-c7f0.service",
+    "ExecMainStatus": "0",
+    "Group": "nogroup",
+    "IOWeight": "10",
+    "KillMode": "control-group",
+    "LoadState": "loaded",
+    "MainPID": "4169165",
+    "MemoryMax": "2147483648",
+    "MemorySwapMax": "0",
+    "Nice": "10",
+    "NoNewPrivileges": "yes",
+    "PrivateDevices": "yes",
+    "PrivateNetwork": "yes",
+    "ProtectHome": "yes",
+    "ProtectSystem": "strict",
+    "Result": "success",
+    "RuntimeMaxUSec": "15min",
+    "SubState": "running",
+    "TasksMax": "128",
+    "TimeoutStopUSec": "5s",
+    "User": "nobody"
+  },
+  "public_files": {
+    "confirmation-BINDINGS.json": {
+      "bytes": 26538,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "confirmation-CLOCK_REPAIR.json": {
+      "bytes": 3840,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "confirmation-CYCLE-01.json": {
+      "bytes": 8125,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "confirmation-CYCLE-02.json": {
+      "bytes": 8803,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "confirmation-CYCLE-03.json": {
+      "bytes": 8803,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "confirmation-CYCLE-04.json": {
+      "bytes": 8933,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "confirmation-MARKET_MOVE.json": {
+      "bytes": 6676,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "confirmation-RAW_RECEIPT-01.json": {
+      "bytes": 1959,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "confirmation-RAW_RECEIPT-02.json": {
+      "bytes": 1958,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "confirmation-RAW_RECEIPT-03.json": {
+      "bytes": 1958,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "confirmation-RAW_RECEIPT-04.json": {
+      "bytes": 1960,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "confirmation-REFERENCE_DISAGREEMENT.json": {
+      "bytes": 2657,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "controller.stderr.log": {
+      "bytes": 0,
+      "mode": "0o600",
+      "uid": 65534
+    },
+    "controller.stdout.log": {
+      "bytes": 0,
+      "mode": "0o600",
+      "uid": 65534
+    }
+  },
+  "unit": "popl-ubuntu-lp-jobs-20261124-c7f0.service"
+}

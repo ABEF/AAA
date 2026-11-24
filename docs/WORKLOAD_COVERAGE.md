@@ -9,11 +9,16 @@ in explicit stages. Inventory and finite checks do not establish full dynamic,
 provider, all maximum NFT-by-currency workloads, operating or production acceptance.
 A controlled source9/V9 1,000-NFT/three-currency wallet now completes80 GETs and37
 assertions on Ubuntu, with3.982s remaining freshness. New unsealed F6 construction
-and live contract-code history also verify. [Targeted recovery](../reports/history-export-20261124/REVIEW.md)
-now measures a25,625,277-byte declared response, refusing at16MiB+1. Precise
-diagnostics are fixed; full portable export/reload stays refused with limits
-unchanged. No unchanged tests reran. These are separate finite scopes, not full F6/V10 financial,
-provider/load or lifetime recovery acceptance. See the linked runtime receipts.
+and live contract-code history also verify. The [current Ubuntu follow-through](../reports/ubuntu-complete-20261124/REVIEW.md)
+completes full export/reload for the NEW unsealed fixture under its explicitly
+approved isolated budget, while retaining all original refusals. Real stock
+keeper/Cast recovery, a healthy normal cycle and finite diagnostics/indexer/history
+partitions have separate receipts. Four plus7+3 NEW source methods and nine NEW
+snapshot methods pass in their exact stages; no unchanged bodies rerun.
+Use [the current inventory](../reports/ubuntu-complete-20261124/FUNCTION_INVENTORY.json)
+and [33 operating partitions](../reports/ubuntu-complete-20261124/COVERAGE.md).
+Neither inventory nor a finite partition closes full F6/V10 consumer, provider,
+market, maximum workload or sustained operating approval.
 
 [Compact wallet qualification](../reports/compact-wallet-20261121/REVIEW.md) adds
 four-currency combined pages and bounded request-local canonical reuse. That source

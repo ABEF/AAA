@@ -1,0 +1,148 @@
+{
+  "active_command": null,
+  "actual_chmod_executed": false,
+  "commands": [
+    {
+      "chmod_sentinel": true,
+      "elapsed_seconds": 0.003588542342185974,
+      "exit_code": 0,
+      "expected_chmod_sentinel": true,
+      "expected_exit_code": 0,
+      "name": "legacy-fifo",
+      "stderr_bytes": 0,
+      "stdout_bytes": 0
+    },
+    {
+      "chmod_sentinel": false,
+      "elapsed_seconds": 0.0016466043889522552,
+      "exit_code": 1,
+      "expected_chmod_sentinel": false,
+      "expected_exit_code": 1,
+      "name": "new-fifo",
+      "stderr_bytes": 0,
+      "stdout_bytes": 0
+    },
+    {
+      "chmod_sentinel": false,
+      "elapsed_seconds": 0.001556396484375,
+      "exit_code": 1,
+      "expected_chmod_sentinel": false,
+      "expected_exit_code": 1,
+      "name": "new-directory",
+      "stderr_bytes": 0,
+      "stdout_bytes": 0
+    },
+    {
+      "chmod_sentinel": false,
+      "elapsed_seconds": 0.0015805251896381378,
+      "exit_code": 1,
+      "expected_chmod_sentinel": false,
+      "expected_exit_code": 1,
+      "name": "new-symlink",
+      "stderr_bytes": 0,
+      "stdout_bytes": 0
+    },
+    {
+      "chmod_sentinel": false,
+      "elapsed_seconds": 0.0029541850090026855,
+      "exit_code": 1,
+      "expected_chmod_sentinel": false,
+      "expected_exit_code": 1,
+      "name": "new-hardlink",
+      "stderr_bytes": 0,
+      "stdout_bytes": 0
+    },
+    {
+      "chmod_sentinel": true,
+      "elapsed_seconds": 0.003020394593477249,
+      "exit_code": 0,
+      "expected_chmod_sentinel": true,
+      "expected_exit_code": 0,
+      "name": "new-valid-regular",
+      "stderr_bytes": 0,
+      "stdout_bytes": 0
+    }
+  ],
+  "fixture_bytes_modes_and_inodes_preserved": true,
+  "fixtures_before": {
+    "directory": {
+      "bytes": 4096,
+      "device": 2049,
+      "gid": 0,
+      "inode": 645946,
+      "links": 2,
+      "mode": 16832,
+      "uid": 0
+    },
+    "fifo": {
+      "bytes": 0,
+      "device": 2049,
+      "gid": 0,
+      "inode": 645945,
+      "links": 1,
+      "mode": 4480,
+      "uid": 0
+    },
+    "hardlink": {
+      "bytes": 42,
+      "content_sha256": "8ff7915295c4928d750674a68b0b6d087cd43c99eaca3600766960afd7b6b9aa",
+      "device": 2049,
+      "gid": 0,
+      "inode": 645944,
+      "links": 2,
+      "mode": 33188,
+      "uid": 0
+    },
+    "hardlink-source.txt": {
+      "bytes": 42,
+      "content_sha256": "8ff7915295c4928d750674a68b0b6d087cd43c99eaca3600766960afd7b6b9aa",
+      "device": 2049,
+      "gid": 0,
+      "inode": 645944,
+      "links": 2,
+      "mode": 33188,
+      "uid": 0
+    },
+    "symlink": {
+      "bytes": 9,
+      "device": 2049,
+      "gid": 0,
+      "inode": 645947,
+      "links": 1,
+      "mode": 41471,
+      "target": "valid.txt",
+      "uid": 0
+    },
+    "valid.txt": {
+      "bytes": 42,
+      "content_sha256": "8ff7915295c4928d750674a68b0b6d087cd43c99eaca3600766960afd7b6b9aa",
+      "device": 2049,
+      "gid": 0,
+      "inode": 645943,
+      "links": 1,
+      "mode": 33188,
+      "uid": 0
+    }
+  },
+  "fragment_sha256": {
+    "legacy": "0d966494482531566dda686d59b980b99a8f546f389fa8f18b61d37216dc89e6",
+    "new": "b222e41f04f7ca1a7b376b3aa872fdac3ee87f7979efc2b1cf242017d4dcb24e"
+  },
+  "full_installer_or_observer_executed": false,
+  "help_commands_repeated": 0,
+  "legacy_fifo_baseline_reproduced": true,
+  "legacy_installer_sha256": "6304b5735a33f4a5ac79efc89ea6916c2e3d3a656f2d9219aaa32baf6f10b347",
+  "negative_types_refuse_before_chmod": true,
+  "new_guard_cases": 5,
+  "new_installer_sha256": "b66878fee51f54ac36656646d41f57e70955b9b43c5aff228b5ecd02b3e258b3",
+  "new_sealing": false,
+  "old_inputs_preserved": true,
+  "old_test_bodies": 0,
+  "production_approved": false,
+  "public_transactions": 0,
+  "schema": 1,
+  "scope": "NEW actual Bash FIFO baseline and5 negative/positive guard cases using exact extracted installer fragments and sentinel chmod only",
+  "success": true,
+  "tar_commands_repeated": 0,
+  "valid_regular_reaches_chmod_sentinel": true
+}

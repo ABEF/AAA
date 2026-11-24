@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "original_ops_HEAD_sha256": "7d49446e3cee73b46c41257ee0e4dca2683bde1bf9c18772bb11538af9e7752f",
+  "new_ops_sha256": "a81eb06001024f11f751691ba2b8fd7f37605f10feba925006bf57242751fa6b",
+  "new_tests_sha256": "b67750f4e14a737e1f37e1558b515486ec00b31cf556ad16f075cb4363bd893b",
+  "files_changed": [
+    "keeper/ops.py",
+    "tests_python/test_keeper_preflight_routing.py"
+  ],
+  "new_methods_passed": 4,
+  "baseline_new_method_failed_before_fix": 1,
+  "unchanged_methods_run": 0,
+  "network_calls": 0,
+  "public_transactions": 0,
+  "production_config_or_limit_changes": 0,
+  "source_identity_effect": "keeper.health.SOURCE_FILES includes keeper/ops.py; matching writer/checker adoption necessary. Checkpoint1/2/3 semantic lists exclude ops.py, no checkpoint rebuild implied by this fix alone."
+}

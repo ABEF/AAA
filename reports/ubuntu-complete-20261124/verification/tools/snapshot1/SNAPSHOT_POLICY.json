@@ -1,0 +1,27 @@
+{
+  "HTTP_response_bytes": {
+    "default": 16777216,
+    "exact_anvil_dumpState_true": 33554432
+  },
+  "approval_scope": "NEW c7eb isolated local Anvil recovery retry only; production limits unchanged",
+  "compressed_export_bytes": 16777216,
+  "existing_evidence_preserved": true,
+  "expanded_restore_JSON_bytes": 134217728,
+  "no_pruning_latest_only_or_partial_history": true,
+  "operator_approved": true,
+  "preserved_limits": {
+    "CPU_percent": 150,
+    "RPC_requests": 6000,
+    "absolute_response_seconds": 30,
+    "cgroup_memory_bytes": 2147483648,
+    "encoded_capture_bytes": 67108864,
+    "local_block_gas": 32000000,
+    "per_node_seconds": 900,
+    "request_bytes": 131072,
+    "tasks": 128
+  },
+  "profile": "isolated_snapshot1",
+  "public_RPC_or_transactions": false,
+  "schema": 1,
+  "sealing": false
+}
