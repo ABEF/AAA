@@ -1,0 +1,57 @@
+{
+  "RPC_method_counts": {
+    "anvil_impersonateAccount": 3,
+    "anvil_setBalance": 3,
+    "anvil_stopImpersonatingAccount": 2,
+    "eth_call": 245,
+    "eth_chainId": 1,
+    "eth_estimateGas": 9,
+    "eth_gasPrice": 1,
+    "eth_getBlockByNumber": 29,
+    "eth_getCode": 40,
+    "eth_getTransactionByHash": 8,
+    "eth_getTransactionCount": 18,
+    "eth_getTransactionReceipt": 8,
+    "eth_maxPriorityFeePerGas": 1,
+    "eth_sendTransaction": 9,
+    "evm_mine": 9,
+    "evm_setAutomine": 1,
+    "evm_setIntervalMining": 1,
+    "evm_setNextBlockTimestamp": 9
+  },
+  "RPC_phase_counts": {
+    "actual_market_move": 177,
+    "controlled_fee_readback": 4,
+    "model_start": 2,
+    "sealed_graph_identity": 208,
+    "stock_configuration": 6
+  },
+  "RPC_requests": 397,
+  "actual_signed_envelope_predecoded": false,
+  "controlled_copied_state_only": true,
+  "error_class": "HarnessRefusal",
+  "fault_attempts": 0,
+  "feature": "hybrid",
+  "fixed_guard": "Owned RPC refused; inspect bounded method/code/selector",
+  "gateway_refusals": [],
+  "last_model_RPC_failure": {
+    "error_code": -32602,
+    "method": "eth_sendTransaction",
+    "request_id": 397,
+    "revert_selector": null
+  },
+  "last_stage": "stock_configuration",
+  "message_sha256": "f9eca214034836e781bade963fb03def028d570822f45e52606543ea4bad7368",
+  "new_seal": false,
+  "postforward_exact_transaction_verification_required": true,
+  "raw_attempts": 0,
+  "raw_forwarded": 0,
+  "setup_transactions": 8,
+  "site": {
+    "file": "job_cases.py",
+    "function": "setup",
+    "line": 40
+  },
+  "status": "failed",
+  "stock_transactions": 0
+}

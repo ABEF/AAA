@@ -1,0 +1,13 @@
+{
+  "UTC_offset_initial": 0,
+  "driver_time_seam": "job_cases.time,keeper_jobs.time,run_jobs.time",
+  "monotonic_unchanged": true,
+  "production_sources_changed": false,
+  "stock_time_seams": [
+    "keeper.monitor.time",
+    "keeper.rebalance_confirmation.time",
+    "keeper.health.time",
+    "keeper.monitor.dt.datetime.now"
+  ],
+  "wallclock_soak": false
+}

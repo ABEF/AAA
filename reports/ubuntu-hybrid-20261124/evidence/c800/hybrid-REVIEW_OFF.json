@@ -1,0 +1,33 @@
+{
+  "burned_old_ids": [
+    4331099,
+    4331100
+  ],
+  "canonical_charge_wei": "68946577",
+  "canonical_price_wei": 7,
+  "exact_NFT_rights_unchanged": true,
+  "fee_allocation": {
+    "0x0000000000000000000000000000000000000000": {
+      "allocation_units": 0,
+      "compound_released": 0,
+      "dust_after": 1,
+      "harvested": 0,
+      "holder_credit": 0,
+      "scope": "aggregate independent conservation, not fresh per-NFT phase oracle"
+    },
+    "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a": {
+      "allocation_units": 4608171302316885543,
+      "compound_released": 4608171302316885543,
+      "dust_after": 13,
+      "harvested": 92163426046337710873,
+      "holder_credit": 82947083441703939774,
+      "scope": "aggregate independent conservation, not fresh per-NFT phase oracle"
+    }
+  },
+  "idle_value": "32856315474000",
+  "main_floor_bps": 6000,
+  "main_value": "265743503787320589175",
+  "provider_reported_price_wei": 8,
+  "residual_value": "0",
+  "total_postcost_principal": "265743536643636063175"
+}

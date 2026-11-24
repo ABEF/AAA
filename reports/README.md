@@ -1,9 +1,12 @@
 # Verification evidence
 
-[Ubuntu keeper blocker follow-through](ubuntu-keeper-blockers-20261124/REVIEW.md)
-records the missing positive worker paths, exact source/evidence pins, original
-failed aggregates and remaining real-market/operating gates. This is finite
-isolated evidence, not production approval or a service rollout.
+[Ubuntu one→two→one keeper check](ubuntu-hybrid-20261124/REVIEW.md) records two
+ordinary stock/Cast replacements, a genuinely mixed residual, paired custody and
+rights, independent aggregate accounting, fixed logical12h evidence and preserved
+environments. Original setup failure and remaining gates stay explicit.
+[Earlier positive worker paths](ubuntu-keeper-blockers-20261124/REVIEW.md) retain
+their source/evidence scopes and compound fee reconciliation. Neither approves
+production operation or changes an existing service.
 
 
 [Ubuntu recovery and operating follow-through](ubuntu-complete-20261124/REVIEW.md)

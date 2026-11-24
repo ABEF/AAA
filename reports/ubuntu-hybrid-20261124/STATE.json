@@ -1,0 +1,56 @@
+{
+  "RPC_limit": 6000,
+  "RPC_remaining": 338,
+  "RPC_requests": 5662,
+  "actual_mixed_residual_before_merge": true,
+  "actual_wallclock_12h_qualified": false,
+  "all_keeper_features_qualified": false,
+  "current_source_commit": "e20e5d602dd59226e3dfb2f03ee2d206d0b8f9e8",
+  "date": "2026-11-24",
+  "fresh_jitter_seconds": [
+    85,
+    234
+  ],
+  "full_operating_gates": [
+    "Q06",
+    "P20",
+    "P21"
+  ],
+  "independent_aggregate_accounting": "passed",
+  "lifecycle": [
+    4331098,
+    [
+      4331099,
+      4331100
+    ],
+    4331101
+  ],
+  "limits_unchanged": {
+    "Cast_output_bytes": 65536,
+    "confirmations": 12,
+    "maintenance_gas": 24000000,
+    "padding_percent": 25,
+    "quote_ceiling_wei": "5000000000",
+    "shared_daily_ceiling_wei": "50000000000000000",
+    "single_cost_ceiling_wei": "10000000000000000",
+    "worker_real_seconds": 900
+  },
+  "logical_UTC_offset_seconds": 43200,
+  "new_independent_per_NFT_phase_oracle": false,
+  "newly_owned_labs_stopped": 2,
+  "original_c7ff_failure_retained": true,
+  "original_services_preserved": 5,
+  "prior_33_partition_map": "../ubuntu-complete-20261124/FEATURE_MATRIX.json",
+  "production_approved": false,
+  "production_implementation_changes": false,
+  "raw_runtime_result": "evidence/c800/RESULT.json",
+  "setup_transactions": 21,
+  "stock_transactions": 2,
+  "task_counts_unchanged": {
+    "done": 35,
+    "excluded": 1,
+    "progress": 40,
+    "todo": 7
+  },
+  "unchanged_test_bodies_rerun": 0
+}

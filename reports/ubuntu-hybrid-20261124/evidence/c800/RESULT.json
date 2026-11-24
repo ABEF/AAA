@@ -1,0 +1,121 @@
+{
+  "actual_signed_envelope_predecoded": false,
+  "all_enabled_jobs_qualified": false,
+  "cleanup": [
+    {
+      "feature": "hybrid",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    }
+  ],
+  "features": [
+    {
+      "RPC_method_counts": {
+        "anvil_impersonateAccount": 8,
+        "anvil_mine": 2,
+        "anvil_setBalance": 3,
+        "anvil_stopImpersonatingAccount": 7,
+        "eth_call": 2543,
+        "eth_chainId": 2250,
+        "eth_estimateGas": 23,
+        "eth_feeHistory": 2,
+        "eth_gasPrice": 3,
+        "eth_getBalance": 30,
+        "eth_getBlockByNumber": 186,
+        "eth_getCode": 417,
+        "eth_getTransactionByHash": 27,
+        "eth_getTransactionCount": 56,
+        "eth_getTransactionReceipt": 25,
+        "eth_maxPriorityFeePerGas": 1,
+        "eth_sendRawTransaction": 2,
+        "eth_sendTransaction": 21,
+        "evm_mine": 27,
+        "evm_setAutomine": 1,
+        "evm_setIntervalMining": 1,
+        "evm_setNextBlockTimestamp": 27
+      },
+      "RPC_phase_counts": {
+        "actual_market_into_residual": 264,
+        "actual_market_move": 177,
+        "controlled_fee_readback": 4,
+        "fixed_logical_clock_transition": 63,
+        "governance_mode_OFF": 74,
+        "governance_mode_ON": 127,
+        "hard_cooldown_negative": 626,
+        "model_start": 2,
+        "sealed_graph_identity": 208,
+        "stock_configuration": 498,
+        "stock_guarded_mode_OFF": 1855,
+        "stock_guarded_mode_ON": 1764
+      },
+      "RPC_requests": 5662,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "fault_attempts": 0,
+      "feature": "hybrid",
+      "final_main": 4331101,
+      "first_schedule": {
+        "execute_after": 1795556715,
+        "identity": "0x5c79fbb733e887b0ac1fa2d49b63b8d61dfd08dfc69f04ba63647156fa823ba9",
+        "last_checked_at": 1795556630,
+        "next_check_at": 1795556870,
+        "observed_at": 1795556630
+      },
+      "gateway_refusals": [],
+      "independent_per_NFT_phase_oracle_requalified": false,
+      "last_model_RPC_failure": null,
+      "last_stage": "stock_guarded_mode_OFF",
+      "logical_clock_offset": 43200,
+      "main_and_residual_ids": [
+        4331099,
+        4331100
+      ],
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 2,
+      "raw_forwarded": 2,
+      "second_schedule": {
+        "execute_after": 1795600161,
+        "identity": "0xa40c2a917fcf85ccd0d98b648fe276575ff4891a1bf0dbc92dae04acb76a9c4b",
+        "last_checked_at": 1795599927,
+        "next_check_at": 1795600167,
+        "observed_at": 1795599927
+      },
+      "setup_transactions": 21,
+      "source_guards_and_onchain_timers_unchanged": true,
+      "status": "passed",
+      "stock_transactions": 2,
+      "wallclock_qualification": false
+    }
+  ],
+  "new_seals": 0,
+  "old_test_bodies_run": 0,
+  "planned_jobs": [
+    "hybrid"
+  ],
+  "postforward_exact_transaction_verification_required": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_submission_attempts": 2,
+  "reviewed_raw_forward_attempts": 2,
+  "schema": 1,
+  "scope": "NEW one-to-two-to-one actual stock keeper roundtrip; explicit fixed12h logical UTC facade, not wall-clock daemon/soak; copied sealed F6, real core and synthetic low fees",
+  "secret_disposition": {
+    "contents_or_content_hashes_exported": false,
+    "retained_only_in_new_owned_lab": true
+  },
+  "shared_RPC_requests": 5662,
+  "source_inputs_preserved": true,
+  "stock_events_bytes": 2840,
+  "success": true,
+  "tracked_children_stopped": true,
+  "unattempted_jobs": [],
+  "unexecuted": [
+    "continuous_daemon_timing",
+    "sample_reset_job_after_new_market_recovery",
+    "different_key_rotation"
+  ],
+  "whole_cgroup_cleanup_requires_external_readback": true
+}

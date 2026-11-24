@@ -1,15 +1,19 @@
 # Project context
 
-[Remaining Ubuntu keeper blockers](reports/ubuntu-keeper-blockers-20261124/REVIEW.md) now have finite positive paths:
-ordinary one-main rebalance5,259RPC, compound3,116RPC, directZZZ burn1,859RPC and
-same-NFT native LP conversion1,220RPC, within unchanged6,000/900s/24M/full25% and
-fee/economic limits. Compound's original aggregate remains false at a private
-reported-fee assertion; saved canonical-fee reconciliation closes that assertion
-without repeating its transaction. No maintained production source changes.
-Burn restores one authenticated omitted historical supply scalar in a NEW clone;
-conversion uses a NEW synthetic cheap venue/depth. Actual markets/fees/providers,
-two-leg/maximum/soak/off-host operation and release approval remain open. All five
-new labs stopped; five original service states preserved. No old test body reran.
+[Ubuntu one→two→one keeper check](reports/ubuntu-hybrid-20261124/REVIEW.md)
+passes with two actual stock Keeper/Cast replacements in5,662/6,000RPC:
+main4331098 → main4331099+residual4331100 → active main4331101. A genuine trade
+makes the residual mixed before OFF; paired custody/amount/fingerprint/NFT-right
+and independent aggregate80/10/5/5+dust/backing checks pass. Hard12h cooldown,
+fresh85/234s jitter,24M/full25% and all fee/source/financial limits remain.
+The12h interval uses an explicit fixed module-local logical clock; no real12h
+soak or new ordinary600s market-trigger proof is claimed. The pre-stock c7ff
+setup failure stays recorded. Both new labs stopped; five original service
+states preserved. No production source change or old test body rerun.
+[Earlier positive worker paths](reports/ubuntu-keeper-blockers-20261124/REVIEW.md)
+retain their exact scopes and compound fee reconciliation. Actual markets,
+providers/fees, maximum/concurrent workloads, soak/off-host and release approval
+remain open. Existing chains, sites, journals and paused heartbeat stay unchanged.
 
 
 [Wallet checkpoint follow-through](reports/wallet-latency-20261123/REVIEW.md) preserves full admission,

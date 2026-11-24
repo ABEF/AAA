@@ -1,5 +1,15 @@
 # PoPL operator manual
 
+## Ubuntu one→two→one operating evidence — 24 November 2026
+
+The [new hybrid record](../reports/ubuntu-hybrid-20261124/REVIEW.md) completes two
+ordinary stock-keeper/Cast replacements, including a mixed residual before the
+OFF merge. The actual new cooldown refusal and fixed logical12h transition are
+explicit; this is not twelve real hours or production-provider qualification.
+No function, authority, guard or operating limit changes. Both new labs are
+stopped and original service states preserved; no running environment is adopted.
+See [the ordinary mode-change steps](#applying-on--off-through-ordinary-keeper-operations).
+
 ## Ubuntu keeper follow-through — 24 November 2026
 
 The [new bounded operating record](../reports/ubuntu-keeper-blockers-20261124/REVIEW.md)
@@ -2176,6 +2186,33 @@ immutable Manager/core/state/PosM/Permit2/router graph and the Balancer math chi
    revision, token amounts, unchanged NFT shares/rewards, retained backing, idle
    and new clock. On-chain settings need no service restart; matching fresh local
    source/config needs controlled rollout. Preserve submitted transaction truth.
+
+#### Applying ON → OFF through ordinary keeper operations
+
+For the pool and review commitment described above, governance calls
+`PortfolioPolicy.setMode(POOL,true,reviewHash)` to request hybrid mode, or
+`setMode(POOL,false,reviewHash)` to request single-main mode. Confirm the setter
+receipt, desired mode and pending geometry revision. This call moves no funds.
+
+The keeper applies the request through a successful ordinary `Vault.rebalance`
+only after the configured hard cooldown—initially **12 hours since the last
+successful replacement**—and a newly saved **60–300-second random delay**.
+A deliberate mode change has the documented exception to the **600-second
+sampled market-trigger window**; it does not bypass cooldown, prices, execution
+limits or custody checks. A failed attempt leaves the requested change pending.
+
+After switching ON, inspect the actual IDs: useful inventory and geometry may
+produce one main plus one residual, or validly leave only the main. The main's
+minimum60% allocation applies at replacement; no continuing exact60/40 ratio is
+promised. After switching OFF, both existing legs remain valued and harvested
+until a successful atomic merge closes them and creates one active main.
+A subsequent ordinary merge still waits its own full cooldown and fresh delay.
+
+Changing on-chain mode needs no keeper restart. Keep the matching reviewed
+software/configuration, recover pending transactions first, and verify actual
+positions and applied revisions after confirmation. The [Ubuntu hybrid
+rehearsal](../reports/ubuntu-hybrid-20261124/REVIEW.md) records its executed cases
+and limits; it is not production or continuous-market approval.
 
 `portfolioAmounts(main)` is the sum of actual token amounts; never add raw
 liquidity across ranges. Stable `portfolioFingerprint` excludes liquidity so

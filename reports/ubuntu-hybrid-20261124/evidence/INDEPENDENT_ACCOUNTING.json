@@ -1,0 +1,115 @@
+{
+  "accounting_verification": "passed",
+  "input_identities": {
+    "after_off": {
+      "bytes": 47524,
+      "name": "hybrid-AFTER_OFF.json",
+      "sha256": "0955bef614a9a5ce8528d6d23b53a8743375294bf6cbf723a3523002388fbf9e"
+    },
+    "after_on": {
+      "bytes": 37599,
+      "name": "hybrid-AFTER_ON.json",
+      "sha256": "6725dea46ddea0a57399e22f7b323fa1fbbea9bd1d18860d75eb931283f2e597"
+    },
+    "before_off": {
+      "bytes": 4581,
+      "name": "hybrid-BEFORE_OFF.json",
+      "sha256": "8a27b63120f2a19d5aed2511a8a8f9cc7c38f3b6f69b263c2a393b06b06df347"
+    },
+    "before_on": {
+      "bytes": 4050,
+      "name": "hybrid-BEFORE_ON.json",
+      "sha256": "7abda1b20442a8bceeed1b0a254f1b44a13aae8f36b910f7f0530c8b0d6bacac"
+    },
+    "result": {
+      "bytes": 3874,
+      "name": "RESULT.json",
+      "sha256": "f940b50e84279b91c298fa1ab49fe5953f637750fea3a1e2973dc2788cf7e498"
+    }
+  },
+  "limitations": [
+    "Only this finite two-NFT controlled logical-time journey is checked.",
+    "Exact aggregate80/10/5/5 and full compound release are checked; per-NFT prior phase carry is not independently replayed.",
+    "Snapshot physical-amount/fingerprint and clock-seam proofs retain the original runtime source scope.",
+    "Hash/closure checks bind retained bytes, not honesty of RPC/providers or actual market-source independence.",
+    "Unlisted top-level narrative docs are outside artifact closure; all listed manifest paths are still verified."
+  ],
+  "new_runtime_transactions": 0,
+  "old_test_bodies_run": 0,
+  "production_approved": false,
+  "production_source_changes": false,
+  "public_evidence_closure": {
+    "status": "not_requested_not_verified"
+  },
+  "schema": 1,
+  "stages": [
+    {
+      "attributed_idle_value": 0,
+      "captured_price_scope": "saved stable controlled pre-execution lower marks; no live market-source qualification",
+      "fees": {
+        "0x0000000000000000000000000000000000000000": {
+          "actual_harvested": 546220834665161,
+          "buyback_credit": 27311041733258,
+          "collective_credit": 54622083466516,
+          "holder_credit": 491598751198644,
+          "individual_credit": 436976667732128,
+          "post_compound": 0,
+          "released_all_old_and_new_compound": 27311041733258,
+          "remaining_dust": 1,
+          "units_of_twenty": 27311041733258
+        },
+        "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a": {
+          "actual_harvested": 0,
+          "buyback_credit": 0,
+          "collective_credit": 0,
+          "holder_credit": 0,
+          "individual_credit": 0,
+          "post_compound": 0,
+          "released_all_old_and_new_compound": 0,
+          "remaining_dust": 0,
+          "units_of_twenty": 0
+        }
+      },
+      "main_floor_bps": 6000,
+      "main_value": 169041573704237312894,
+      "per_NFT_phase_oracle_requalified": false,
+      "residual_value": 112193409149671622000,
+      "tag": "ON",
+      "total_postcost_value": 281234982853908934894
+    },
+    {
+      "attributed_idle_value": 32856315474000,
+      "captured_price_scope": "saved stable controlled pre-execution lower marks; no live market-source qualification",
+      "fees": {
+        "0x0000000000000000000000000000000000000000": {
+          "actual_harvested": 0,
+          "buyback_credit": 0,
+          "collective_credit": 0,
+          "holder_credit": 0,
+          "individual_credit": 0,
+          "post_compound": 0,
+          "released_all_old_and_new_compound": 0,
+          "remaining_dust": 1,
+          "units_of_twenty": 0
+        },
+        "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a": {
+          "actual_harvested": 92163426046337710873,
+          "buyback_credit": 4608171302316885543,
+          "collective_credit": 9216342604633771086,
+          "holder_credit": 82947083441703939774,
+          "individual_credit": 73730740837070168688,
+          "post_compound": 0,
+          "released_all_old_and_new_compound": 4608171302316885543,
+          "remaining_dust": 13,
+          "units_of_twenty": 4608171302316885543
+        }
+      },
+      "main_floor_bps": 6000,
+      "main_value": 265743503787320589175,
+      "per_NFT_phase_oracle_requalified": false,
+      "residual_value": 0,
+      "tag": "OFF",
+      "total_postcost_value": 265743536643636063175
+    }
+  ]
+}

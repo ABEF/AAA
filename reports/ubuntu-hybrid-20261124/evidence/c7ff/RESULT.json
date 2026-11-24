@@ -1,0 +1,100 @@
+{
+  "actual_signed_envelope_predecoded": false,
+  "all_enabled_jobs_qualified": false,
+  "cleanup": [
+    {
+      "feature": "hybrid",
+      "output_bytes": 0,
+      "overflow": false,
+      "returncode": 0,
+      "stopped": true
+    }
+  ],
+  "features": [
+    {
+      "RPC_method_counts": {
+        "anvil_impersonateAccount": 3,
+        "anvil_setBalance": 3,
+        "anvil_stopImpersonatingAccount": 2,
+        "eth_call": 245,
+        "eth_chainId": 1,
+        "eth_estimateGas": 9,
+        "eth_gasPrice": 1,
+        "eth_getBlockByNumber": 29,
+        "eth_getCode": 40,
+        "eth_getTransactionByHash": 8,
+        "eth_getTransactionCount": 18,
+        "eth_getTransactionReceipt": 8,
+        "eth_maxPriorityFeePerGas": 1,
+        "eth_sendTransaction": 9,
+        "evm_mine": 9,
+        "evm_setAutomine": 1,
+        "evm_setIntervalMining": 1,
+        "evm_setNextBlockTimestamp": 9
+      },
+      "RPC_phase_counts": {
+        "actual_market_move": 177,
+        "controlled_fee_readback": 4,
+        "model_start": 2,
+        "sealed_graph_identity": 208,
+        "stock_configuration": 6
+      },
+      "RPC_requests": 397,
+      "actual_signed_envelope_predecoded": false,
+      "controlled_copied_state_only": true,
+      "error_class": "HarnessRefusal",
+      "fault_attempts": 0,
+      "feature": "hybrid",
+      "fixed_guard": "Owned RPC refused; inspect bounded method/code/selector",
+      "gateway_refusals": [],
+      "last_model_RPC_failure": {
+        "error_code": -32602,
+        "method": "eth_sendTransaction",
+        "request_id": 397,
+        "revert_selector": null
+      },
+      "last_stage": "stock_configuration",
+      "message_sha256": "f9eca214034836e781bade963fb03def028d570822f45e52606543ea4bad7368",
+      "new_seal": false,
+      "postforward_exact_transaction_verification_required": true,
+      "raw_attempts": 0,
+      "raw_forwarded": 0,
+      "setup_transactions": 8,
+      "site": {
+        "file": "job_cases.py",
+        "function": "setup",
+        "line": 40
+      },
+      "status": "failed",
+      "stock_transactions": 0
+    }
+  ],
+  "new_seals": 0,
+  "old_test_bodies_run": 0,
+  "planned_jobs": [
+    "hybrid"
+  ],
+  "postforward_exact_transaction_verification_required": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_submission_attempts": 0,
+  "reviewed_raw_forward_attempts": 0,
+  "schema": 1,
+  "scope": "NEW one-to-two-to-one actual stock keeper roundtrip; explicit fixed12h logical UTC facade, not wall-clock daemon/soak; copied sealed F6, real core and synthetic low fees",
+  "secret_disposition": {
+    "contents_or_content_hashes_exported": false,
+    "retained_only_in_new_owned_lab": true
+  },
+  "shared_RPC_requests": 397,
+  "source_inputs_preserved": true,
+  "stock_events_bytes": 0,
+  "success": false,
+  "tracked_children_stopped": true,
+  "unattempted_jobs": [],
+  "unexecuted": [
+    "continuous_daemon_timing",
+    "sample_reset_job_after_new_market_recovery",
+    "different_key_rotation"
+  ],
+  "whole_cgroup_cleanup_requires_external_readback": true
+}

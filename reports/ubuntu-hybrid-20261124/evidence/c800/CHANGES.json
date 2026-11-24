@@ -1,0 +1,35 @@
+{
+  "prior_original_preserved": true,
+  "production_changes": false,
+  "changes": [
+    "fixed new setup owner impersonation before configure only",
+    "tightened post-replacement compound reserve assertion",
+    "new fixed isolated c800 path"
+  ],
+  "helpers": [
+    {
+      "file": "keeper_runtime.py",
+      "before": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4",
+      "after": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4",
+      "bytes": 37193
+    },
+    {
+      "file": "keeper_jobs.py",
+      "before": "042c916b2eae5f41080c63e6e459349a464e89d0e110dfca59cefe1eeb8083d0",
+      "after": "b1bebe414c7edc528e17c1490b528571630817a0ecf08a11eff5babbf0a284e7",
+      "bytes": 13573
+    },
+    {
+      "file": "job_cases.py",
+      "before": "fc34a4cf75d3f5413230ad30234d19a47bc34ba16587c70236829a107b2abc99",
+      "after": "fc34a4cf75d3f5413230ad30234d19a47bc34ba16587c70236829a107b2abc99",
+      "bytes": 15779
+    },
+    {
+      "file": "run_jobs.py",
+      "before": "5d3bb66bd14c44c994830657c9fb765913d20d61c8d211abf1c4636e2283ab40",
+      "after": "d779e888d31f5d89128d3943b866c7c17a9bb8b1f8373dd9acf905cbce6240fd",
+      "bytes": 28507
+    }
+  ]
+}
