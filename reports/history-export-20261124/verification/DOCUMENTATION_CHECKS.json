@@ -1,0 +1,27 @@
+{
+  "generated_todo_check": "passed",
+  "new_or_changed_local_report_links_checked": 22,
+  "new_report_JSON_and_diagnostic_AST": "valid",
+  "production_inventory_unchanged": {
+    "abi_rows": 1021,
+    "definitions": 2003,
+    "files": 182,
+    "sha256": "fac45cfefb60f530d779ef3608601170226180d050747b74f655df17716467d5"
+  },
+  "production_source_changes": 0,
+  "protected_dirty_files_byte_identical": 4,
+  "public_transactions": 0,
+  "schema": 1,
+  "scope": "Documentation and static evidence consistency only; no test suite",
+  "sealing": false,
+  "selected_diff_whitespace_check": "passed",
+  "stable_task_ids": 83,
+  "status_counts": {
+    "done": 35,
+    "excluded": 1,
+    "progress": 40,
+    "todo": 7
+  },
+  "task_statuses_unchanged": true,
+  "unchanged_tests_run": 0
+}

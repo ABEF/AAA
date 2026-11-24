@@ -1,0 +1,67 @@
+{
+  "all_owned_stopped": true,
+  "contracts_created": 0,
+  "diagnostics": [
+    {
+      "RPC_passed": true,
+      "characters": 1228,
+      "compressed_bytes": 613,
+      "decompressed_bytes_observed": 2162,
+      "encoding_qualified": true,
+      "even_ASCII_hex": true,
+      "gzip_magic": true,
+      "historical_states_present": false,
+      "params": [],
+      "reload_same_empty_genesis_and_head": true,
+      "result_type": "str",
+      "state_top_level_keys": [
+        "accounts",
+        "best_block_number",
+        "block",
+        "blocks",
+        "historical_states",
+        "transactions"
+      ],
+      "state_type": "dict"
+    },
+    {
+      "RPC_passed": true,
+      "characters": 1220,
+      "compressed_bytes": 609,
+      "decompressed_bytes_observed": 2160,
+      "encoding_qualified": true,
+      "even_ASCII_hex": true,
+      "gzip_magic": true,
+      "historical_states_present": true,
+      "params": [
+        true
+      ],
+      "reload_same_empty_genesis_and_head": true,
+      "result_type": "str",
+      "state_top_level_keys": [
+        "accounts",
+        "best_block_number",
+        "block",
+        "blocks",
+        "historical_states",
+        "transactions"
+      ],
+      "state_type": "dict"
+    }
+  ],
+  "mutating_RPC_calls": 0,
+  "production_approved": false,
+  "public_calls": 0,
+  "schema": 1,
+  "scope": "NEW empty-genesis original-v4 export/reload codec only; no actual historical-code qualification",
+  "sealed": false,
+  "sources": {
+    "Anvil_sha256": "05ee0cf1758024ea5e23dae562d92955ace205ab299091a43d2fa5bdeb6933bd",
+    "Node_source_sha256": "cc36100e6eb11abf1dd0fb317c2c473bfbfac25546c6f12b1af61c229ef4ff9c",
+    "WireCapture_source_sha256": "07a5fd2f578d2c244d73e12e8004d6209c3103ff46da34aa72ecae445a28e566",
+    "encoding_source_manifest_sha256": "577f1c6d9142c5909a38f7b2d05bc73d4a7e40af7b04367299dad95cfc77cd55",
+    "upstream_commit": "05794498bf47257b144e2e2789a1d5bf8566be0e"
+  },
+  "success": true,
+  "transactions": 0
+}

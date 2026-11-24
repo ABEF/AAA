@@ -1,0 +1,15 @@
+{
+  "executed_diagnostic_module_sha256": "e249e7f0d4d794233e6597c824024ee89355ed4845ca0af4ce2d2a320c99eed6",
+  "executed_replay_entry_sha256": "a9d78360b7dbebb320e1f74f30755c0c123560bf7e83a4a0554ee9a7ce876858",
+  "frozen_F6_sources_changed": false,
+  "inventory_regeneration_required": false,
+  "original_Node_sha256": "cc36100e6eb11abf1dd0fb317c2c473bfbfac25546c6f12b1af61c229ef4ff9c",
+  "original_WireCapture_sha256": "07a5fd2f578d2c244d73e12e8004d6209c3103ff46da34aa72ecae445a28e566",
+  "production_sources_changed": false,
+  "public_source_contains_no_transport_or_credentials": true,
+  "published_failure_body_AST_equal_to_executed_body": true,
+  "published_report_only_module_sha256": "0bb63a8e944d980f4967143e913bf746009de791d79c580d4ad06b0d845f78b0",
+  "reviewed_bundle_sha256": "b280db6e6ac4a506bf1016104159404760b24804dfb0a24fde1d602068530a63",
+  "runtime_scope": "new private-network diagnostic only; no production API/service adoption",
+  "schema": 1
+}

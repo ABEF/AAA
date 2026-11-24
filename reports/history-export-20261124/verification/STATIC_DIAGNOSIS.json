@@ -1,0 +1,51 @@
+{
+  "capture": {
+    "capture_encoded_bytes": 14620075,
+    "capture_records": 3659,
+    "captured_dump_state_records": 0
+  },
+  "confirmed_defect": "Original inner exception handler discarded the specific guard and its stage measurements. New affected diagnostics preserve bounded typed failure evidence.",
+  "excluded_for_valid_dump": [
+    "request count",
+    "request bytes",
+    "retained capture capacity",
+    "dump method disallowed",
+    "post-capture decode/reload failure"
+  ],
+  "format": {
+    "CLI_load": "plain JSON via --load-state without --init",
+    "RPC_result": "hex-encoded gzip JSON",
+    "anvil_version": "1.4.4",
+    "params": [
+      true
+    ],
+    "upstream_commit": "05794498bf47257b144e2e2789a1d5bf8566be0e"
+  },
+  "limits": {
+    "HTTP_response_bytes": 16777216,
+    "compressed_file_bytes": 16777216,
+    "decompressed_state_bytes": 16777216,
+    "request_bytes": 131072,
+    "requests": 6000,
+    "response_absolute_seconds": 30,
+    "retained_encoded_capture_bytes": 67108864,
+    "whole_node_seconds": 900
+  },
+  "original_failure": {
+    "dump_file_retained": false,
+    "dump_response_retained": false,
+    "error_class": "ValueError",
+    "exact_guard_recoverable": false,
+    "stage": "bounded_preserved_history_export"
+  },
+  "production_approved": false,
+  "schema": 1,
+  "scope": "Static analysis of original retained refusal; not an execution result",
+  "source_reference": "https://github.com/foundry-rs/foundry/blob/v1.4.4/crates/anvil/src/eth/backend/mem/mod.rs",
+  "unresolved_original_guard": [
+    "response bytes",
+    "response deadline",
+    "HTTP/envelope/node identity or work deadline",
+    "shape-specific parsing failure"
+  ]
+}

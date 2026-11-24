@@ -8,6 +8,12 @@ adoption. Actual hosting/provider/freshness and full normal acceptance remain op
 
 Earlier separate-route qualification (historical source scope):
 
+[History export/reload diagnosis](history-export-20261124/REVIEW.md) fixes lost
+failure-stage diagnostics. A targeted44-envelope/39-instance replay now proves
+the new export exceeds16MiB (25,625,277 bytes declared); full recovery remains
+refused. No limit or production source changed, no unchanged tests reran, and
+all seven owned labs stop with existing environments preserved.
+
 [Wallet checkpoint performance](wallet-latency-20261123/REVIEW.md) records28 NEW
 backend methods and a complete controlled source9/V9 1,000-NFT80-GET journey:
 98.834s elapsed,3.982s freshness margin. New44-transaction/39-instance unsealed

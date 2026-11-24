@@ -41,8 +41,11 @@ function, configuration switch, keeper job, resource or financial limit changes.
 A separate standalone normal F6 fixture completes44 unsealed setup transactions,
 39 instances and genuine NFT-contract parent/creation/latest code proof. Its
 native dependencies are explicit constructor doubles, not qualified markets.
-Full history export/reload refuses; no dump response or file was retained, so
-the precise cause is unknown. Do not claim a16MiB overflow or recovery pass.
+The original export's precise cause was not retained. The [targeted follow-up](../reports/history-export-20261124/REVIEW.md)
+replays44 captured setup envelopes and proves a new response-size refusal:
+25,625,277 bytes declared,16,777,217 actually read against16MiB. Neither deadline
+expired. Complete export/reload stays unqualified; diagnostics now retain the
+exact failing stage and guard. No limit is raised and no old tests rerun.
 Never invent an empty parent or substitute current storage for historical state.
 The original saved F6/V10 graph's missing history is not repaired by this fixture.
 
@@ -52,8 +55,8 @@ and pin its SHA with matching code only under separately authorized rollout.
 Never edit old source hashes, hot-reload files or infer live adoption from this
 publication. Saved code proofs alone do not replace a required archive RPC.
 
-All five existing service states match the actual pre-upload snapshot; all five
-owned lab units are stopped. Existing sites/Anvil8902/signers/configurations and
+Five existing service states match the pre-diagnostic snapshot; all seven owned
+lab units are stopped. Existing sites/Anvil8902/signers/configurations and
 the user-paused heartbeat remain unchanged. No public transaction or sealing.
 
 The bounded selector cache changes only CPU work: calldata arguments and live
@@ -96,6 +99,29 @@ Legacy `/nfts/{block}/{offset}`, `/summary/{block}/{offset}` and
 all-currency earnings route may still refuse65 currencies. Do not automatically
 fall back or raise its budget to hide the refusal.
 
+
+## Isolated Anvil history export/reload diagnostics
+
+This is a fixture-recovery procedure, not an earnings checkpoint or production
+chain backup. A saved code proof cannot replace an archive provider. No new
+contract function, role, signer or production configuration is added.
+
+| Step | Inputs / action | Required result / refusal |
+| --- | --- | --- |
+| Preserve | Original source manifest, full genesis, capture, receipts, DB/checkpoint/journal bytes | Hash originals; use a NEW owned private-network lab and an authenticated bytecopy. Never overwrite originals |
+| Recreate only if necessary | Reviewed captured setup envelopes, original nonce/value/gas/fee bounds | Recover pending first; no resend, new compiler run or repetition of the old constructor test matrix |
+| Export | `anvil_dumpState` with `[true]` on the owned node | Keep16MiB HTTP/compressed/decompressed limits,64MiB encoded capture,6,000 requests,30s response and900s node deadlines. The hex envelope counts before decoding |
+| Diagnose refusal | Stage, known guard, request ID, HTTP status, observed/declared bytes and deadline state | Retain bounded typed facts before returning failure. Hash unknown error text; never log response bodies, credentials or key material |
+| Reload only a complete export | Bounded gzip decoding to NEW plain JSON; new node `--load-state` | Do not combine with `--init`. Verify exact numeric0/head, expected runtimes/bindings, nonce/balance and genuine NFT parent/creation reads; no fabricated empty history |
+| Stop / verify | Only the lab's owned process group | Confirm all owned processes stop and existing service/chain/journal states remain unchanged |
+
+The current complete response exceeds the HTTP cap; export and reload remain
+refused. Do not repeat the same setup merely for a green result, raise the cap,
+prune history, aggregate hidden larger chunks or use latest-only state. A revised
+bounded recovery design requires independent review; a larger isolated snapshot
+budget requires an explicit decision. The published report-only diagnostic
+function is not automatically adopted by services. The exact old refusal remains
+unknown, distinct from the new measured size refusal.
 
 ## Website ownership paging
 

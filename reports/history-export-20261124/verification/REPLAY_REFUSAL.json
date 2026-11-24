@@ -1,0 +1,67 @@
+{
+  "all_owned_stopped": true,
+  "compiler_runs": 0,
+  "diagnostics": [
+    {
+      "Node_record_count": 1816,
+      "Node_retained_encoded_bytes": 7985646,
+      "Node_sent": 44,
+      "Node_work_deadline_elapsed": false,
+      "error_class": "ValueError",
+      "fixed_export_guard": null,
+      "fixed_guard_message": "Local response exceeds16MiB",
+      "message_sha256": "999ea7daf3d24f7929e8eb9dcb6e66ac2b257119ffba4b52a2dff1d4f0425dd1",
+      "original_wire_frame_facts": [
+        {
+          "HTTP_status": 200,
+          "deadline_elapsed": false,
+          "declared_content_length": "25625277",
+          "file": "v4_node.py",
+          "function": "wire",
+          "line": 130,
+          "raw_bytes": null,
+          "read_bytes": 16777217,
+          "request_id": 1817
+        }
+      ],
+      "stage": "original_Node_wire_dump",
+      "traceback_frames": [
+        {
+          "file": "replay_affected_state.py",
+          "function": "main",
+          "line": 226
+        },
+        {
+          "file": "v4_node.py",
+          "function": "wire",
+          "line": 130
+        },
+        {
+          "file": "v4_node.py",
+          "function": "need",
+          "line": 34
+        }
+      ]
+    }
+  ],
+  "estimates": 0,
+  "evidence_limit": "Authenticated aggregate helper result and reviewed executed code; no new independent per-receipt/wire authentication claimed. Original c7e6 exact guard remains unrecorded. Declared full response length is not a measured full-body or decoded-state size.",
+  "export_complete": false,
+  "failure_stage": "original_Node_wire_dump",
+  "historical_code_proof": true,
+  "instances": 39,
+  "old_fixed_source_members_preserved": 113,
+  "old_inputs_preserved": true,
+  "old_test_bodies_run": 0,
+  "production_approved": false,
+  "public_calls": 0,
+  "public_signing": false,
+  "reload_complete": false,
+  "replay_complete": true,
+  "schema": 1,
+  "scope": "NEW targeted44 exact captured-envelope replay and affected export/reload only",
+  "sealed": false,
+  "source_result_sha256": "85582b90674efaf5524a7c5bd7e74a60b73b029432e22014a15b25c69cc19f52",
+  "success": false,
+  "transactions": 44
+}

@@ -9,13 +9,15 @@ including eight cards in98.834s. Final snapshot age116.018s leaves only3.982s
 under120s: a finite synthetic pass, not robust-provider or full F6/V10 acceptance.
 Original expiry evidence remains; the late-tip alternative stays unused.
 
-A new unsealed F6 fixture completes44 setup transactions/39 instances and proves
-NFT contract code absent at its parent and present at creation/latest. Exact
-capture stays within64MiB. Full history export/reload refuses; its precise cause
-was not retained. Do not assume oversize, raise bounds or claim recovery complete.
+The unsealed F6 fixture proves genuine NFT-contract creation history. Its original
+export guard was not retained. A [targeted follow-up](reports/history-export-20261124/REVIEW.md) replays44 captured setup
+envelopes/39 instances and now proves a response-size refusal:25,625,277 bytes
+declared,16,777,217 read against16MiB. Precise diagnostics are fixed; complete
+export/reload remains blocked. No bound, partial-history fallback or production
+source changed; no unchanged test body reran.
 
-All five existing service states match the actual pre-upload snapshot; all five
-owned lab units are stopped. No public transactions, sealing or live rollout.
+Five existing service states match the pre-diagnostic snapshot; all seven owned
+lab units are stopped. No public transactions, sealing or live rollout.
 Sites, Anvil8902, journals, signer/null public configurations and paused heartbeat
 stay unchanged. Checkpoint1/2/3 adoption requires new reviewed matching artifacts.
 Current inventory182files/2,003definitions/278lambdas and frozen F6 maps61/39/4,

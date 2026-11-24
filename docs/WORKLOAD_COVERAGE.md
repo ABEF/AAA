@@ -9,8 +9,10 @@ in explicit stages. Inventory and finite checks do not establish full dynamic,
 provider, all maximum NFT-by-currency workloads, operating or production acceptance.
 A controlled source9/V9 1,000-NFT/three-currency wallet now completes80 GETs and37
 assertions on Ubuntu, with3.982s remaining freshness. New unsealed F6 construction
-and live contract-code history also verify; full portable history export/reload
-remains refused. These are separate finite scopes, not full F6/V10 financial,
+and live contract-code history also verify. [Targeted recovery](../reports/history-export-20261124/REVIEW.md)
+now measures a25,625,277-byte declared response, refusing at16MiB+1. Precise
+diagnostics are fixed; full portable export/reload stays refused with limits
+unchanged. No unchanged tests reran. These are separate finite scopes, not full F6/V10 financial,
 provider/load or lifetime recovery acceptance. See the linked runtime receipts.
 
 [Compact wallet qualification](../reports/compact-wallet-20261121/REVIEW.md) adds
