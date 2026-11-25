@@ -1,0 +1,30 @@
+{
+  "actual_costs_wei": {
+    "2026-11-25": 300814051439194
+  },
+  "actual_paid_transactions": 2,
+  "cleanup": {
+    "output_bytes": 0,
+    "overflow": false,
+    "returncode": 0,
+    "stopped": true
+  },
+  "current_rights_backing_preserved": true,
+  "direct_stock_calls_not_normal_daemon": true,
+  "exact_old_checkpoints_preserved": true,
+  "failures": 6,
+  "final_nonce": 2,
+  "host_physical_disk_filled": false,
+  "new_seals": 0,
+  "old_passed_tests_or_worker_journeys_run": 0,
+  "power_loss_or_ext4_durability_qualified": false,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_attempts": 2,
+  "raw_forwarded": 2,
+  "raw_resends": 0,
+  "real_seconds_remaining": 861.7074918858707,
+  "schema": 1,
+  "shared_RPC_requests": 2265,
+  "success": true
+}

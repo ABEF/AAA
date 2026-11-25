@@ -2,20 +2,37 @@
 
 ## Ubuntu keeper operating evidence — 25 November 2026
 
-The [supervisor record](../reports/ubuntu-supervisor-20261125/REVIEW.md) now
-verifies two separate stock-keeper/Cast cases: a real stalled-body watchdog
-restart with saved-hash recovery, and a deliberate main-process kill while real
-Cast is active. The latter retains the exact hashless intent, refuses a resend,
-then uses explicit stock resolution of the node's accepted hash before healthy
-resume. Neither case changes production code, safeguards or limits.
+The [storage-recovery record](../reports/ubuntu-storage-20261125/REVIEW.md)
+covers six real disk-full/permission failures in a private1MiBtmpfs, before
+signing, while saving an accepted hash and while saving a paid receipt.
+Direct stock reconstruction preserves exact journals, nonce, costs and NFT/LP
+projections with two original transactions and no resend. Independent saved-vector
+checks pass; seven NEW diagnostics methods run in two disjoint source stages.
 
-The exact journals, native process/lock evidence, canonical costs and final
-healthy cycles pass independent offline verification. All new units stop;
-original services/sites/chains remain unchanged. This does not approve DNS,
-storage failures, restart storms, off-host fencing/restore, alerts or soak.
-See the [stop/recover procedure](KEEPER_RECOVERY.md#stalled-rpc-and-progress-watchdog),
-[prior key replacement](../reports/ubuntu-key-rotation-20261124/REVIEW.md) and
-[hybrid LP rehearsal](../reports/ubuntu-hybrid-20261124/REVIEW.md).
+The keeper now logs the original sanitized cycle failure before trying a health
+write that may also fail. Fixed os_errno names distinguish storage causes;
+reported_transaction retains only a strictly formatted signer hash candidate,
+which still needs full stock transaction validation. No raw signer output,
+authority, accounting, persistence order or financial limit change.
+
+Use the [storage-recovery procedure](KEEPER_RECOVERY.md#journal-storage-failures-preserve-repair-and-reconcile).
+This source changes keeper/checker identity; preserve original journals and use a
+separately reviewed matching rollout. The lab is not physical-filesystem/power-loss
+or full-daemon storage qualification. Existing environments remain unchanged.
+Earlier [supervisor recovery](../reports/ubuntu-supervisor-20261125/REVIEW.md),
+[key replacement](../reports/ubuntu-key-rotation-20261124/REVIEW.md) and
+[hybrid LP](../reports/ubuntu-hybrid-20261124/REVIEW.md) keep their original scopes.
+
+### Storage failure quick actions
+
+Stop the actual service and preserve its exact journal/configuration. Check the
+first cycle_failed diagnostic and the surviving complete file; health may remain
+stale when its own write fails. Repair capacity/permissions, then recover the
+original hash or use the stock no-live resolver for an independently reviewed
+reported_transaction candidate. Never clear intent, reset nonce/spending or resend
+merely because a command failed. A failed post-replacement directory fsync may
+leave a complete new journal; do not roll it back by assumption.
+See the [full procedure](KEEPER_RECOVERY.md#journal-storage-failures-preserve-repair-and-reconcile).
 
 ## Ubuntu keeper follow-through — 24 November 2026
 

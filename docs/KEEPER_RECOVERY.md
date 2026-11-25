@@ -206,6 +206,35 @@ LP stays on chain. The keeper discovers the Vault's shared buckets and reads cur
 
 The state file preserves deployment identity, next nonce, pending intent/hash, daily costs, maintenance times, discovery cursor and metadata checkpoints. Live startup refuses missing/corrupt state, an absent nonce checkpoint or an unqualified network fee policy. Used signers require a canonical confirmed receipt anchor; a later deep reorganization blocks further signing until reviewed reconciliation. Submission refuses nonce drift, unknown pending transactions and insufficient native balance. Ambiguous broadcasts never trigger blind resubmission.
 
+## Journal storage failures: preserve, repair and reconcile
+
+A journal write failure stops stock live execution. Stop the actual service as a
+whole group and preserve its exact configuration, state, logs and lock path.
+Do not delete a pending record, reset its nonce/spending, recreate a used sender
+with --initialize-state, or resend because the last command failed.
+
+| Evidence | Meaning and action |
+| --- | --- |
+| os_errno ENOSPC or EDQUOT | Storage or quota exhausted. Restore capacity only on the actual affected filesystem after preserving evidence. |
+| os_errno EACCES, EPERM or EROFS | Review the service identity, directory permissions and mount policy. Atomic replacement needs directory write permission; changing only the state file mode does not prove recovery. |
+| os_errno EIO | Treat as a storage fault; inspect the host/filesystem before trusting further writes. |
+| cycle_failed followed by another health-write failure | The first sanitized diagnostic identifies the original cycle error. The health file may remain stale/running; it is not a success signal. Logging itself is not guaranteed when its own destination fails. |
+| reported_transaction on submission_requires_reconciliation | A strictly formatted hash was reported by the signer before persistence failed. It is a candidate, not proof of acceptance/finality; stock recovery must verify sender, nonce, destination, calldata, value, fees and canonical receipt. |
+| Hashless pending intent | Broadcasting may already have happened. Identify the original transaction and use the existing --resolve-pending procedure without --live; never guess a replacement. |
+| Failed paid-receipt save | Preserve the surviving journal, repair storage and restart with that original identity. Recheck the canonical transaction; book its cost/nonce once. |
+
+The writer flushes and fsyncs a private temporary file, replaces the state and
+fsyncs its directory. A failure before replacement normally leaves the old
+complete file; a directory-fsync failure after replacement can leave the new
+complete file despite the exception. Inspect the actual surviving file rather
+than assuming that every raised error means nothing was published. Do not
+manually roll back a newer complete checkpoint to an older backup.
+
+Adopt matching keeper and health-checker source after a separate reviewed rollout:
+the new diagnostics change keeper source identity, not the journal codec or
+frontend history/checkpoint semantics. Retain original source and journal bytes;
+do not edit health-source hashes to make an old observation pass.
+
 ## Stalled RPC and progress watchdog
 
 The [25 November stock-daemon record](../reports/ubuntu-supervisor-20261125/REVIEW.md)

@@ -1,0 +1,12 @@
+{
+  "block_bytes": 4096,
+  "bytes": 1048576,
+  "fstype": "tmpfs",
+  "host_physical_filesystem_never_filled": true,
+  "mode": "0o700",
+  "mount": "/opt/popl-ubuntu-storage-20261125-c808/runtime/storage",
+  "mount_namespace": "mnt:[4026532487]",
+  "network_namespace": "net:[4026532431]",
+  "power_loss_or_ext4_durability_qualified": false,
+  "uid": 65534
+}

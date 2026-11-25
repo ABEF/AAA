@@ -1,0 +1,22 @@
+{
+  "helper_pins": {
+    "job_cases.py": {
+      "bytes": 15671,
+      "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7"
+    },
+    "keeper_jobs.py": {
+      "bytes": 9477,
+      "sha256": "363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4"
+    },
+    "keeper_runtime.py": {
+      "bytes": 37193,
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+    },
+    "run_storage.py": {
+      "bytes": 15423,
+      "sha256": "4ed678d59492f515903190b8b31dafe9a44ac3f91c888a188770396712748a32"
+    }
+  },
+  "public_records": [],
+  "remote_root": "/opt/popl-ubuntu-storage-20261125-c808"
+}

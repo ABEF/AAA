@@ -1,0 +1,10 @@
+test_journal_and_failure_health_refusals_retain_first_diagnostic (tests_python.test_keeper_storage_diagnostics.KeeperStorageDiagnosticTests.test_journal_and_failure_health_refusals_retain_first_diagnostic) ... ok
+test_retryable_cycle_with_failed_health_still_raises_storage_error (tests_python.test_keeper_storage_diagnostics.KeeperStorageDiagnosticTests.test_retryable_cycle_with_failed_health_still_raises_storage_error) ... ok
+test_reviewed_os_errnos_are_fixed_names_without_exception_contents (tests_python.test_keeper_storage_diagnostics.KeeperStorageDiagnosticTests.test_reviewed_os_errnos_are_fixed_names_without_exception_contents) ... ok
+test_unreviewed_or_noninteger_errnos_preserve_original_two_fields (tests_python.test_keeper_storage_diagnostics.KeeperStorageDiagnosticTests.test_unreviewed_or_noninteger_errnos_preserve_original_two_fields) ... ok
+test_writable_failure_health_keeps_original_exception_and_errno (tests_python.test_keeper_storage_diagnostics.KeeperStorageDiagnosticTests.test_writable_failure_health_keeps_original_exception_and_errno) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.076s
+
+OK

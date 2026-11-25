@@ -1,0 +1,703 @@
+[
+  {
+    "accepted_hash": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d",
+    "canonical_execution_price_wei": 1000000142,
+    "confirmed_head": {
+      "baseFeePerGas": "0x1f",
+      "blobGasUsed": "0x0",
+      "difficulty": "0x0",
+      "excessBlobGas": "0x0",
+      "extraData": "0x",
+      "gasLimit": "0x1e84800",
+      "gasUsed": "0x0",
+      "hash": "0xe127a3456635b9380f41e578a826b348790208680a3c502570fbeb8da0a35564",
+      "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "miner": "0x0000000000000000000000000000000000000000",
+      "mixHash": "0xb4f93c5e319058a109396a24f9ae25f3d7c37dec589a35fb3cbac5aa6fa6628e",
+      "nonce": "0x0000000000000000",
+      "number": "0x7196f09",
+      "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "parentHash": "0x43df3b4654f62cdfb52e895d2709ffcd064964062aecae46571793d29794198e",
+      "receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+      "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+      "size": "0x246",
+      "stateRoot": "0xfed2e87b18a684aa1de15723fa1e6a7662afb29c352d7d270472bb07d6989447",
+      "timestamp": "0x6b073ec7",
+      "totalDifficulty": "0x0",
+      "transactions": [],
+      "transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+      "uncles": [],
+      "withdrawals": [],
+      "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+    },
+    "known_at_acceptance": {
+      "durable_hashless": {
+        "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000142,\n      \"maximum_cost_wei\": 414080058799360,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": null,\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 0,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": null,\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {}\n}\n",
+        "sha256": "96cae1560b53549f24c1658c84df3ca247cefc2390f485527bbed49522fa1684",
+        "state": {
+          "accounting_model": "shared-pools-v2",
+          "accounting_version": 7,
+          "bucket_cursor": 0,
+          "chain_id": 4663,
+          "contracts": {
+            "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+            "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+            "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+            "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+            "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+            "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+            "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+            "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+            "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+            "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+            "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+            "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+            "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+            "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+            "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+            "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+            "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+            "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+            "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+            "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+            "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+          },
+          "execution_price_version": 1,
+          "fee_intake_version": 1,
+          "last": {},
+          "next_nonce": 0,
+          "pending": {
+            "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e",
+            "day": "2026-11-25",
+            "fee_review": {
+              "gas_limit": 414080,
+              "l1_fee_allowance_wei": 0,
+              "max_fee_per_gas": 1000000142,
+              "maximum_cost_wei": 414080058799360,
+              "receipt_fee_policy": "included",
+              "schema": 1
+            },
+            "hash": null,
+            "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+            "nonce": 0,
+            "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+            "value": 0
+          },
+          "receipt_anchor": null,
+          "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+          "spent": {}
+        }
+      },
+      "fault": {
+        "free_before": 1044480,
+        "mode": "EACCES",
+        "parent_mode": "0o500"
+      },
+      "hash": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d"
+    },
+    "original_pending": {
+      "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e",
+      "day": "2026-11-25",
+      "fee_review": {
+        "gas_limit": 414080,
+        "l1_fee_allowance_wei": 0,
+        "max_fee_per_gas": 1000000142,
+        "maximum_cost_wei": 414080058799360,
+        "receipt_fee_policy": "included",
+        "schema": 1
+      },
+      "hash": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d",
+      "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+      "nonce": 0,
+      "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+      "value": 0
+    },
+    "paid_wei": 300814042715588,
+    "published_hash": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000142,\n      \"maximum_cost_wei\": 414080058799360,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\",\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 0,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": null,\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {}\n}\n",
+      "sha256": "676d14fdabd6e673317e63eee89c46599b85136df2770988702cdda614ee28aa",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {},
+        "next_nonce": 0,
+        "pending": {
+          "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e",
+          "day": "2026-11-25",
+          "fee_review": {
+            "gas_limit": 414080,
+            "l1_fee_allowance_wei": 0,
+            "max_fee_per_gas": 1000000142,
+            "maximum_cost_wei": 414080058799360,
+            "receipt_fee_policy": "included",
+            "schema": 1
+          },
+          "hash": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d",
+          "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+          "nonce": 0,
+          "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+          "value": 0
+        },
+        "receipt_anchor": null,
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {}
+      }
+    },
+    "raw_sends": 1,
+    "receipt": {
+      "blobGasPrice": "0x1",
+      "blockHash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+      "blockNumber": "0x7196efd",
+      "contractAddress": null,
+      "cumulativeGasUsed": "0x4970e",
+      "effectiveGasPrice": "0x3b9aca8e",
+      "from": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+      "gasUsed": "0x4970e",
+      "logs": [
+        {
+          "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "blockHash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+          "blockNumber": "0x7196efd",
+          "blockTimestamp": "0x6b073ebb",
+          "data": "0x000000000000000000000000000000000000000000000000000000000001da3800000000000000000000000000000000000000000000000000000000000205f80000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000042165a",
+          "logIndex": "0x0",
+          "removed": false,
+          "topics": [
+            "0xf208f4912782fd25c7f114ca3723a2d5dd6f3bcc3ac8db5af63baa85f711d5ec",
+            "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+            "0x00000000000000000000000058daec3116aae6d93017baaea7749052e8a04fa7"
+          ],
+          "transactionHash": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d",
+          "transactionIndex": "0x0"
+        },
+        {
+          "address": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+          "blockHash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+          "blockNumber": "0x7196efd",
+          "blockTimestamp": "0x6b073ebb",
+          "data": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "logIndex": "0x1",
+          "removed": false,
+          "topics": [
+            "0xa54e6c2fc0861aa9c991b26891d71059d517983b9e84b91020f42609c452eb9d",
+            "0x684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be"
+          ],
+          "transactionHash": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d",
+          "transactionIndex": "0x0"
+        }
+      ],
+      "logsBloom": "0x00000000000000000100000800000000000000000000000000008000000000000000000000000000000000000000000000000000000000000010000000000000000000000000400000000000004000001000200000000000000000000002000000000000000002000000000000000000080100000000000000000000000000000000010001000000200000000000000000080000000000000000000000000000000004000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000004000000000000000000000002000000",
+      "status": "0x1",
+      "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+      "transactionHash": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d",
+      "transactionIndex": "0x0",
+      "type": "0x2"
+    },
+    "receipt_header": {
+      "baseFeePerGas": "0x8e",
+      "blobGasUsed": "0x0",
+      "difficulty": "0x0",
+      "excessBlobGas": "0x0",
+      "extraData": "0x",
+      "gasLimit": "0x1e84800",
+      "gasUsed": "0x4970e",
+      "hash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+      "logsBloom": "0x00000000000000000100000800000000000000000000000000008000000000000000000000000000000000000000000000000000000000000010000000000000000000000000400000000000004000001000200000000000000000000002000000000000000002000000000000000000080100000000000000000000000000000000010001000000200000000000000000080000000000000000000000000000000004000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000004000000000000000000000002000000",
+      "miner": "0x0000000000000000000000000000000000000000",
+      "mixHash": "0x939c7940a46746677ffad48c7ef74b2a71aa0a49d87b07d9de590be7dd068e0e",
+      "nonce": "0x0000000000000000",
+      "number": "0x7196efd",
+      "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "parentHash": "0x2ee65c0d543eeb9b6eb853a60adb07b6e6a018c25bb438a01a29ac57f020c508",
+      "receiptsRoot": "0x0792a74744d6bbc227f67ebfc861856f74e4c8bfcebc0f7fb9cbd5f010bf2239",
+      "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+      "size": "0x302",
+      "stateRoot": "0xfed2e87b18a684aa1de15723fa1e6a7662afb29c352d7d270472bb07d6989447",
+      "timestamp": "0x6b073ebb",
+      "totalDifficulty": "0x0",
+      "transactions": [
+        "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d"
+      ],
+      "transactionsRoot": "0x95ae6fdd18a7858de79abff35c1aef1aefe505387029badc064ee715b28175ae",
+      "uncles": [],
+      "withdrawals": [],
+      "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+    },
+    "recovered": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {\n    \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\": 1795636923\n  },\n  \"last_fee_observation\": {\n    \"cost_wei\": 300814042715588,\n    \"execution_price_wei\": 1000000142,\n    \"gas_used\": 300814,\n    \"l1_fee_wei\": 0,\n    \"receipt_fee_policy\": \"included\",\n    \"reported_price_wei\": 1000000142,\n    \"transaction\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\"\n  },\n  \"next_nonce\": 1,\n  \"pending\": null,\n  \"receipt_anchor\": {\n    \"hash\": \"0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b\",\n    \"nonce\": 0,\n    \"number\": 119107325,\n    \"timestamp\": 1795636923\n  },\n  \"retry_after\": {},\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {\n    \"2026-11-25\": 300814042715588\n  }\n}\n",
+      "sha256": "51d2c285720f13e9ffb2f5f2459df98bad617fa98c21099b7e6725828ff812b0",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {
+          "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795636923
+        },
+        "last_fee_observation": {
+          "cost_wei": 300814042715588,
+          "execution_price_wei": 1000000142,
+          "gas_used": 300814,
+          "l1_fee_wei": 0,
+          "receipt_fee_policy": "included",
+          "reported_price_wei": 1000000142,
+          "transaction": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d"
+        },
+        "next_nonce": 1,
+        "pending": null,
+        "receipt_anchor": {
+          "hash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+          "nonce": 0,
+          "number": 119107325,
+          "timestamp": 1795636923
+        },
+        "retry_after": {},
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {
+          "2026-11-25": 300814042715588
+        }
+      }
+    },
+    "transaction_without_signature": {
+      "accessList": [],
+      "blockHash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+      "blockNumber": "0x7196efd",
+      "chainId": "0x1237",
+      "from": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+      "gas": "0x65180",
+      "gasPrice": "0x3b9aca8e",
+      "hash": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d",
+      "input": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e",
+      "maxFeePerGas": "0x3b9aca8e",
+      "maxPriorityFeePerGas": "0x3b9aca00",
+      "nonce": "0x0",
+      "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+      "transactionIndex": "0x0",
+      "type": "0x2",
+      "value": "0x0"
+    }
+  },
+  {
+    "accepted_hash": "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35",
+    "canonical_execution_price_wei": 29,
+    "confirmed_head": {
+      "baseFeePerGas": "0x8",
+      "blobGasUsed": "0x0",
+      "difficulty": "0x0",
+      "excessBlobGas": "0x0",
+      "extraData": "0x",
+      "gasLimit": "0x1e84800",
+      "gasUsed": "0x0",
+      "hash": "0x6b39a7e1c80b4aa309360611ce6aa769d88943ce98307cdba98dafb928bb7bb8",
+      "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "miner": "0x0000000000000000000000000000000000000000",
+      "mixHash": "0x166850e5164900d5cda3a67fd4750ea1cea1d1ab862ff94e36c84647908e15d8",
+      "nonce": "0x0000000000000000",
+      "number": "0x7196f16",
+      "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "parentHash": "0xa8d7421272a5df861d9a2097a758b867026eb60b04e9968055c2eef919913d70",
+      "receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+      "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+      "size": "0x246",
+      "stateRoot": "0x438a56e8e1cbb555b28813c8b898d7409a6cf240eb2b2c59abc09ba30c6d1f3c",
+      "timestamp": "0x6b073ed4",
+      "totalDifficulty": "0x0",
+      "transactions": [],
+      "transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+      "uncles": [],
+      "withdrawals": [],
+      "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+    },
+    "known_at_acceptance": {
+      "durable_hashless": {
+        "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {\n    \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\": 1795636923\n  },\n  \"last_fee_observation\": {\n    \"cost_wei\": 300814042715588,\n    \"execution_price_wei\": 1000000142,\n    \"gas_used\": 300814,\n    \"l1_fee_wei\": 0,\n    \"receipt_fee_policy\": \"included\",\n    \"reported_price_wei\": 1000000142,\n    \"transaction\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\"\n  },\n  \"next_nonce\": 1,\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000028,\n      \"maximum_cost_wei\": 414080011594240,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": null,\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 1,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": {\n    \"hash\": \"0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b\",\n    \"nonce\": 0,\n    \"number\": 119107325,\n    \"timestamp\": 1795636923\n  },\n  \"retry_after\": {},\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {\n    \"2026-11-25\": 300814042715588\n  }\n}\n",
+        "sha256": "465ff45464fdef209978ac1f01e55303194ecc4b544d3dc08fda7a10c59a4ab0",
+        "state": {
+          "accounting_model": "shared-pools-v2",
+          "accounting_version": 7,
+          "bucket_cursor": 0,
+          "chain_id": 4663,
+          "contracts": {
+            "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+            "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+            "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+            "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+            "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+            "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+            "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+            "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+            "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+            "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+            "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+            "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+            "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+            "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+            "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+            "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+            "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+            "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+            "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+            "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+            "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+          },
+          "execution_price_version": 1,
+          "fee_intake_version": 1,
+          "last": {
+            "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795636923
+          },
+          "last_fee_observation": {
+            "cost_wei": 300814042715588,
+            "execution_price_wei": 1000000142,
+            "gas_used": 300814,
+            "l1_fee_wei": 0,
+            "receipt_fee_policy": "included",
+            "reported_price_wei": 1000000142,
+            "transaction": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d"
+          },
+          "next_nonce": 1,
+          "pending": {
+            "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b",
+            "day": "2026-11-25",
+            "fee_review": {
+              "gas_limit": 414080,
+              "l1_fee_allowance_wei": 0,
+              "max_fee_per_gas": 1000000028,
+              "maximum_cost_wei": 414080011594240,
+              "receipt_fee_policy": "included",
+              "schema": 1
+            },
+            "hash": null,
+            "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+            "nonce": 1,
+            "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+            "value": 0
+          },
+          "receipt_anchor": {
+            "hash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+            "nonce": 0,
+            "number": 119107325,
+            "timestamp": 1795636923
+          },
+          "retry_after": {},
+          "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+          "spent": {
+            "2026-11-25": 300814042715588
+          }
+        }
+      },
+      "fault": {
+        "filler_bytes": 1044480,
+        "filler_errno": 28,
+        "filler_errno_name": "ENOSPC",
+        "free_after": 0,
+        "free_before": 1044480,
+        "mode": "ENOSPC"
+      },
+      "hash": "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35"
+    },
+    "original_pending": {
+      "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b",
+      "day": "2026-11-25",
+      "fee_review": {
+        "gas_limit": 414080,
+        "l1_fee_allowance_wei": 0,
+        "max_fee_per_gas": 1000000028,
+        "maximum_cost_wei": 414080011594240,
+        "receipt_fee_policy": "included",
+        "schema": 1
+      },
+      "hash": "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35",
+      "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+      "nonce": 1,
+      "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+      "value": 0
+    },
+    "paid_wei": 8723606,
+    "published_hash": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {\n    \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\": 1795636923\n  },\n  \"last_fee_observation\": {\n    \"cost_wei\": 300814042715588,\n    \"execution_price_wei\": 1000000142,\n    \"gas_used\": 300814,\n    \"l1_fee_wei\": 0,\n    \"receipt_fee_policy\": \"included\",\n    \"reported_price_wei\": 1000000142,\n    \"transaction\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\"\n  },\n  \"next_nonce\": 1,\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000028,\n      \"maximum_cost_wei\": 414080011594240,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": \"0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35\",\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 1,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": {\n    \"hash\": \"0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b\",\n    \"nonce\": 0,\n    \"number\": 119107325,\n    \"timestamp\": 1795636923\n  },\n  \"retry_after\": {},\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {\n    \"2026-11-25\": 300814042715588\n  }\n}\n",
+      "sha256": "d31b5905ae7be985bbb0e56d35dce8f7b086d43c27cfd10b273068aefe0ff725",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {
+          "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795636923
+        },
+        "last_fee_observation": {
+          "cost_wei": 300814042715588,
+          "execution_price_wei": 1000000142,
+          "gas_used": 300814,
+          "l1_fee_wei": 0,
+          "receipt_fee_policy": "included",
+          "reported_price_wei": 1000000142,
+          "transaction": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d"
+        },
+        "next_nonce": 1,
+        "pending": {
+          "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b",
+          "day": "2026-11-25",
+          "fee_review": {
+            "gas_limit": 414080,
+            "l1_fee_allowance_wei": 0,
+            "max_fee_per_gas": 1000000028,
+            "maximum_cost_wei": 414080011594240,
+            "receipt_fee_policy": "included",
+            "schema": 1
+          },
+          "hash": "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35",
+          "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+          "nonce": 1,
+          "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+          "value": 0
+        },
+        "receipt_anchor": {
+          "hash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+          "nonce": 0,
+          "number": 119107325,
+          "timestamp": 1795636923
+        },
+        "retry_after": {},
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {
+          "2026-11-25": 300814042715588
+        }
+      }
+    },
+    "raw_sends": 2,
+    "receipt": {
+      "blobGasPrice": "0x1",
+      "blockHash": "0x08534aa11dba150d46f681382d75a8538e924f597710f4002b2212f5a1b77bc1",
+      "blockNumber": "0x7196f0a",
+      "contractAddress": null,
+      "cumulativeGasUsed": "0x4970e",
+      "effectiveGasPrice": "0x1d",
+      "from": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+      "gasUsed": "0x4970e",
+      "logs": [
+        {
+          "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "blockHash": "0x08534aa11dba150d46f681382d75a8538e924f597710f4002b2212f5a1b77bc1",
+          "blockNumber": "0x7196f0a",
+          "blockTimestamp": "0x6b073ec8",
+          "data": "0x000000000000000000000000000000000000000000000000000000000001da3800000000000000000000000000000000000000000000000000000000000205f80000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000042165a",
+          "logIndex": "0x0",
+          "removed": false,
+          "topics": [
+            "0xf208f4912782fd25c7f114ca3723a2d5dd6f3bcc3ac8db5af63baa85f711d5ec",
+            "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+            "0x00000000000000000000000058daec3116aae6d93017baaea7749052e8a04fa7"
+          ],
+          "transactionHash": "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35",
+          "transactionIndex": "0x0"
+        },
+        {
+          "address": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+          "blockHash": "0x08534aa11dba150d46f681382d75a8538e924f597710f4002b2212f5a1b77bc1",
+          "blockNumber": "0x7196f0a",
+          "blockTimestamp": "0x6b073ec8",
+          "data": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "logIndex": "0x1",
+          "removed": false,
+          "topics": [
+            "0xa54e6c2fc0861aa9c991b26891d71059d517983b9e84b91020f42609c452eb9d",
+            "0x684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be"
+          ],
+          "transactionHash": "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35",
+          "transactionIndex": "0x0"
+        }
+      ],
+      "logsBloom": "0x00000000000000000100000800000000000000000000000000008000000000000000000000000000000000000000000000000000000000000010000000000000000000000000400000000000004000001000200000000000000000000002000000000000000002000000000000000000080100000000000000000000000000000000010001000000200000000000000000080000000000000000000000000000000004000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000004000000000000000000000002000000",
+      "status": "0x1",
+      "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+      "transactionHash": "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35",
+      "transactionIndex": "0x0",
+      "type": "0x2"
+    },
+    "receipt_header": {
+      "baseFeePerGas": "0x1c",
+      "blobGasUsed": "0x0",
+      "difficulty": "0x0",
+      "excessBlobGas": "0x0",
+      "extraData": "0x",
+      "gasLimit": "0x1e84800",
+      "gasUsed": "0x4970e",
+      "hash": "0x08534aa11dba150d46f681382d75a8538e924f597710f4002b2212f5a1b77bc1",
+      "logsBloom": "0x00000000000000000100000800000000000000000000000000008000000000000000000000000000000000000000000000000000000000000010000000000000000000000000400000000000004000001000200000000000000000000002000000000000000002000000000000000000080100000000000000000000000000000000010001000000200000000000000000080000000000000000000000000000000004000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000004000000000000000000000002000000",
+      "miner": "0x0000000000000000000000000000000000000000",
+      "mixHash": "0x18ab87b4459229994b3d5e26d91778bb31a19287e71e0ef4743bd96c01c13f01",
+      "nonce": "0x0000000000000000",
+      "number": "0x7196f0a",
+      "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "parentHash": "0xe127a3456635b9380f41e578a826b348790208680a3c502570fbeb8da0a35564",
+      "receiptsRoot": "0x0792a74744d6bbc227f67ebfc861856f74e4c8bfcebc0f7fb9cbd5f010bf2239",
+      "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+      "size": "0x2fd",
+      "stateRoot": "0x438a56e8e1cbb555b28813c8b898d7409a6cf240eb2b2c59abc09ba30c6d1f3c",
+      "timestamp": "0x6b073ec8",
+      "totalDifficulty": "0x0",
+      "transactions": [
+        "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35"
+      ],
+      "transactionsRoot": "0x1c5666ca20087279cb6d329b44010253ace212c8e696a693b57960d5ea0c3951",
+      "uncles": [],
+      "withdrawals": [],
+      "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+    },
+    "recovered": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {\n    \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\": 1795636936\n  },\n  \"last_fee_observation\": {\n    \"cost_wei\": 8723606,\n    \"execution_price_wei\": 29,\n    \"gas_used\": 300814,\n    \"l1_fee_wei\": 0,\n    \"receipt_fee_policy\": \"included\",\n    \"reported_price_wei\": 29,\n    \"transaction\": \"0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35\"\n  },\n  \"next_nonce\": 2,\n  \"pending\": null,\n  \"receipt_anchor\": {\n    \"hash\": \"0x08534aa11dba150d46f681382d75a8538e924f597710f4002b2212f5a1b77bc1\",\n    \"nonce\": 1,\n    \"number\": 119107338,\n    \"timestamp\": 1795636936\n  },\n  \"retry_after\": {},\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {\n    \"2026-11-25\": 300814051439194\n  }\n}\n",
+      "sha256": "67b272fc68d1f80087477cf0f62f2690845ff206f83736cd07044c83115a62eb",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {
+          "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795636936
+        },
+        "last_fee_observation": {
+          "cost_wei": 8723606,
+          "execution_price_wei": 29,
+          "gas_used": 300814,
+          "l1_fee_wei": 0,
+          "receipt_fee_policy": "included",
+          "reported_price_wei": 29,
+          "transaction": "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35"
+        },
+        "next_nonce": 2,
+        "pending": null,
+        "receipt_anchor": {
+          "hash": "0x08534aa11dba150d46f681382d75a8538e924f597710f4002b2212f5a1b77bc1",
+          "nonce": 1,
+          "number": 119107338,
+          "timestamp": 1795636936
+        },
+        "retry_after": {},
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {
+          "2026-11-25": 300814051439194
+        }
+      }
+    },
+    "transaction_without_signature": {
+      "accessList": [],
+      "blockHash": "0x08534aa11dba150d46f681382d75a8538e924f597710f4002b2212f5a1b77bc1",
+      "blockNumber": "0x7196f0a",
+      "chainId": "0x1237",
+      "from": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+      "gas": "0x65180",
+      "gasPrice": "0x1d",
+      "hash": "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35",
+      "input": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b",
+      "maxFeePerGas": "0x3b9aca1c",
+      "maxPriorityFeePerGas": "0x1",
+      "nonce": "0x1",
+      "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+      "transactionIndex": "0x0",
+      "type": "0x2",
+      "value": "0x0"
+    }
+  }
+]

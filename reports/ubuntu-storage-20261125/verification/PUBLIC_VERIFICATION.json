@@ -1,0 +1,16 @@
+{
+  "five_original_service_states_preserved": true,
+  "independent_checks": 8,
+  "network_calls": 0,
+  "new_distinct_unit_methods": 7,
+  "original_source_and_capture_hashes_verified": true,
+  "private_original_archives_required_for_full_source_replay": true,
+  "production_approved": false,
+  "protected_dirty_files_unchanged": true,
+  "report_relative_links": 12,
+  "runtime_actions": 0,
+  "schema": 1,
+  "status": "passed",
+  "stopped_unit_empty_group": true,
+  "unchanged_methods_rerun": 0
+}

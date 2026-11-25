@@ -1,0 +1,28 @@
+{
+  "accounting_persistence_authority_and_limits_changes": false,
+  "baseline_monitor_sha256": "9bb7c3b227b93ab2003cd380e1e5549448c31a894c9d50ac712dbcdf422bb8c3",
+  "changed_named_function_ASTs_vs_published": [
+    "Keeper.run_cycle",
+    "Keeper.submit",
+    "error_context"
+  ],
+  "earlier_green_methods_rerun": 0,
+  "error_context_and_run_cycle_AST_unchanged_after_five_method_run": true,
+  "final_monitor_sha256": "5ab6bbb20eea21e301d81d2e829a827594079561e2f10770336ec8585b234631",
+  "five_method_initial_source_reconstructed_with_matching_preexisting_digest": true,
+  "five_method_initial_source_sha256": "5dda81c9829fdb4ef2d3cd2943f932ce9a78390184a70b05ed6986c29f804a32",
+  "new_method_count": 2,
+  "new_methods_executed_once": [
+    "test_malformed_signer_candidate_never_reaches_reconciliation_diagnostic",
+    "test_valid_reported_hash_survives_in_diagnostic_when_hash_save_fails"
+  ],
+  "new_test_file": "tests_python\\test_keeper_storage_hash_diagnostics.py",
+  "new_test_sha256": "5a55367836e8162a3ae8a20a0c274bb97d9bb95f549d42484a7bab64c7c0fe7d",
+  "old_tests_run": 0,
+  "only_second_source_function_change": "Keeper.submit",
+  "other_named_functions_unchanged": 93,
+  "result": "2passed",
+  "schema": 1,
+  "stderr_sha256": "dfe7cc235dc6aba4e44f72baf0ec3625984b201b8bdce4aee9da5f3700b918a3",
+  "stdout_sha256": "b76a245f598550b66e0d114233429d52c3f301eaf6469b81de56f83024241c1b"
+}

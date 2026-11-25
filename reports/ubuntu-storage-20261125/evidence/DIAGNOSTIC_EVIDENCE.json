@@ -1,0 +1,28 @@
+{
+  "AST_comparison_ignores_source_locations": true,
+  "after_sha256": "5dda81c9829fdb4ef2d3cd2943f932ce9a78390184a70b05ed6986c29f804a32",
+  "baseline_commit": "352ebe0aa479a10f2220857edadbf049720616c5",
+  "before_sha256": "9bb7c3b227b93ab2003cd380e1e5549448c31a894c9d50ac712dbcdf422bb8c3",
+  "changed_named_function_ASTs": [
+    "Keeper.run_cycle",
+    "error_context"
+  ],
+  "changed_production_module": "keeper/monitor.py",
+  "financial_transaction_or_checkpoint_schema_changes": false,
+  "new_method_count": 5,
+  "new_methods_executed_once": [
+    "test_journal_and_failure_health_refusals_retain_first_diagnostic",
+    "test_retryable_cycle_with_failed_health_still_raises_storage_error",
+    "test_reviewed_os_errnos_are_fixed_names_without_exception_contents",
+    "test_unreviewed_or_noninteger_errnos_preserve_original_two_fields",
+    "test_writable_failure_health_keeps_original_exception_and_errno"
+  ],
+  "new_test_file": "tests_python/test_keeper_storage_diagnostics.py",
+  "new_test_sha256": "1fab094e76b02977713519432ec92c0b6e74dd1d9b78be9db0e1acb68eed1a6e",
+  "old_test_methods_executed": 0,
+  "result": "5passed",
+  "schema": 1,
+  "stderr_sha256": "9b4d3a3ec010bdcf08006d28302b78ef7c9eb0b039316c4b56fd4926b80b58ad",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "unchanged_named_function_ASTs": 94
+}

@@ -1,0 +1,314 @@
+{
+  "members": {
+    "FUNCTION_INVENTORY.json": {
+      "bytes": 4879248,
+      "sha256": "2aee756b8c43bd291be7199a3b33884e0f1aa8dbc8e777cc51d612008f9d8bf7"
+    },
+    "REVIEW.md": {
+      "bytes": 7312,
+      "sha256": "3b5957d41c5d38b2f0bc7441130eb27219afc0f8136bf730d1d7a5f3f2bdee69"
+    },
+    "STATE.json": {
+      "bytes": 2474,
+      "sha256": "2ce2409c286d3ce682176da9d632dfab750b3d298e62f80d09071bc5de64601f"
+    },
+    "evidence/DIAGNOSTIC_EVIDENCE.json": {
+      "bytes": 1389,
+      "sha256": "085233a7d2d5e9d3d28e2174f355320a6bc4ec6f42e4492d9e2f49f5b6a02f5b"
+    },
+    "evidence/HASH_DIAGNOSTIC_EVIDENCE.json": {
+      "bytes": 1421,
+      "sha256": "6a95f8da8b4781495360491969cdd3e36323a5e8fb7bdb6378fb8f2cc30bf5b7"
+    },
+    "evidence/HOST_PRESERVATION.json": {
+      "bytes": 848,
+      "sha256": "9682e421ce137fcb4e50199f8d373d4eaeedf681e7a9cfcc94ce088743e24675"
+    },
+    "evidence/INDEPENDENT_REVIEW.json": {
+      "bytes": 5519,
+      "sha256": "8dedc39fde997817726976d59f0300e0495eb39d27922eeef0e3c839ccbcbcb2"
+    },
+    "evidence/NEW_DIAGNOSTICS.stderr.log": {
+      "bytes": 1181,
+      "sha256": "9b4d3a3ec010bdcf08006d28302b78ef7c9eb0b039316c4b56fd4926b80b58ad"
+    },
+    "evidence/NEW_DIAGNOSTICS.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/NEW_HASH_DIAGNOSTICS.stderr.log": {
+      "bytes": 571,
+      "sha256": "dfe7cc235dc6aba4e44f72baf0ec3625984b201b8bdce4aee9da5f3700b918a3"
+    },
+    "evidence/NEW_HASH_DIAGNOSTICS.stdout.log": {
+      "bytes": 113,
+      "sha256": "b76a245f598550b66e0d114233429d52c3f301eaf6469b81de56f83024241c1b"
+    },
+    "evidence/c807-unused/BUILD_RECEIPT.json": {
+      "bytes": 3344,
+      "sha256": "2b9262092081a3de7b0f7109bae80686245b5f6d373e728ecad40e99d4d3642b"
+    },
+    "evidence/c807-unused/upload-EXECUTION.json": {
+      "bytes": 905,
+      "sha256": "2ce3d442e91fcfa6449f6cc32cb1c92a2341a79717f4c69d3e7fb2335bb7e462"
+    },
+    "evidence/c807-unused/upload-PUBLIC_RESULT.json": {
+      "bytes": 267,
+      "sha256": "4e0934d8c5a7e563319eaf9ac14a2229c73e03a39ff366d9156831d39ed2a75e"
+    },
+    "evidence/c808/ACCEPTED_0.json": {
+      "bytes": 5371,
+      "sha256": "4bb0f6b90e5258fd6ae600c567b767c1fc1921877f748fb21dbc1221a1fd7638"
+    },
+    "evidence/c808/ACCEPTED_1.json": {
+      "bytes": 6845,
+      "sha256": "1d0eb6723210a1d0140aca8cd55777cc40686dde0b6f9d5fe1cf1cc8a1d1380b"
+    },
+    "evidence/c808/AFTER.json": {
+      "bytes": 1727,
+      "sha256": "f2bf79b0c707fb5e35a9ac99860f618fc0066b2a1cafa0ace0a4936e50b976b7"
+    },
+    "evidence/c808/BEFORE.json": {
+      "bytes": 1727,
+      "sha256": "f2bf79b0c707fb5e35a9ac99860f618fc0066b2a1cafa0ace0a4936e50b976b7"
+    },
+    "evidence/c808/BRANCHES.json": {
+      "bytes": 125349,
+      "sha256": "17762e436628ba0a64064b8b02a2911b60d8828675aa7b6e2885166bbc2a117f"
+    },
+    "evidence/c808/BUILD_RECEIPT.json": {
+      "bytes": 3344,
+      "sha256": "7ee55cb3db7c73fa78b8e06c4a0c978089cfd9c816e006265317ae54a5c20484"
+    },
+    "evidence/c808/EVENTS.json": {
+      "bytes": 2424,
+      "sha256": "2a2cf151ec65e36ffada525b2b30254e7ac809dbe37f7eebd93f75f9aebb64f6"
+    },
+    "evidence/c808/FILESYSTEM.json": {
+      "bytes": 356,
+      "sha256": "94dcbdf6931a4a8f67c3a4905239dca2a99e421354c615d1753dc04420073eec"
+    },
+    "evidence/c808/FINAL_JOURNAL.json": {
+      "bytes": 5059,
+      "sha256": "124d1cbc4802a0e6846d0c5218c2ff62b856939b78a69c3c1d41e07129c9f575"
+    },
+    "evidence/c808/INITIAL_JOURNAL.json": {
+      "bytes": 3752,
+      "sha256": "e3c583d9959c17949ed36d2fb1510cdad4d016dbe0549a8cef3e59b753ce2fac"
+    },
+    "evidence/c808/JOURNAL_AT_STOP.json": {
+      "bytes": 5059,
+      "sha256": "124d1cbc4802a0e6846d0c5218c2ff62b856939b78a69c3c1d41e07129c9f575"
+    },
+    "evidence/c808/MANIFEST.json": {
+      "bytes": 34348,
+      "sha256": "33cc11f846e8f0da329625591b8368b056e34f78a1c1487aac9ae027e8be3078"
+    },
+    "evidence/c808/PREPARED_HELPERS.json": {
+      "bytes": 653,
+      "sha256": "d8553c5c3243fd50d602730e66f6cfbec8c423c46eeaf2eb7dd5c0c6bc1bb3c2"
+    },
+    "evidence/c808/RESULT.json": {
+      "bytes": 769,
+      "sha256": "db3e9cb0d809e0c6b3327177ac0387f9d41219532c91cd62625398c04f374f77"
+    },
+    "evidence/c808/SOURCE.json": {
+      "bytes": 30263,
+      "sha256": "a04de34e5e6e1e865fa37bc8c1e29319710ef6727bf984b299b4b333fbbad5d6"
+    },
+    "evidence/c808/SOURCE_MANIFEST.json": {
+      "bytes": 30263,
+      "sha256": "a04de34e5e6e1e865fa37bc8c1e29319710ef6727bf984b299b4b333fbbad5d6"
+    },
+    "evidence/c808/TRANSACTIONS.json": {
+      "bytes": 52940,
+      "sha256": "2ee9cd30d1ee82b529ca528027154205e0067131fe7e119bb4ef1b844098ceb1"
+    },
+    "evidence/c808/capture/EXECUTION-ACCEPTED_0.json.json": {
+      "bytes": 806,
+      "sha256": "520d07a6b27547bb72561227e92782ebec9214cd7ced5f3f7eda27f95c08351e"
+    },
+    "evidence/c808/capture/EXECUTION-ACCEPTED_1.json.json": {
+      "bytes": 805,
+      "sha256": "c15563d58b33fca383a5e692fb5f9b4a3c5a2f4717070bef2e3a090396f8091e"
+    },
+    "evidence/c808/capture/EXECUTION-AFTER.json.json": {
+      "bytes": 793,
+      "sha256": "a751055be6ee1baa6db55249d47ac7310a45a04cd0cbc5955573388fe37efb05"
+    },
+    "evidence/c808/capture/EXECUTION-BEFORE.json.json": {
+      "bytes": 805,
+      "sha256": "ab42d4ae1d1940740cd14be410a6ac0e19b16e8ef1e9732ffd58ff93374ba77d"
+    },
+    "evidence/c808/capture/EXECUTION-BRANCHES.json.json": {
+      "bytes": 794,
+      "sha256": "b791f50013eb261cc8f08d2b75ed9dbb5647357db480f07777f316cd58a7a5f1"
+    },
+    "evidence/c808/capture/EXECUTION-EVENTS.json.json": {
+      "bytes": 806,
+      "sha256": "90817194e25a8f2f258b2d87cf6ef85a9f01ad6b74e005ec88e7ee840c429b29"
+    },
+    "evidence/c808/capture/EXECUTION-FILESYSTEM.json.json": {
+      "bytes": 805,
+      "sha256": "a6b028fbae5b1589f5e3a8f84a106393d1277b53e6bcdcb165c76b53071936a7"
+    },
+    "evidence/c808/capture/EXECUTION-FINAL_JOURNAL.json.json": {
+      "bytes": 806,
+      "sha256": "0bbb6e97ceeecb2ffe3d4036f614f7e87dfdcf73a460d9a722d1bc992c2cba80"
+    },
+    "evidence/c808/capture/EXECUTION-INITIAL_JOURNAL.json.json": {
+      "bytes": 806,
+      "sha256": "c40585879a5f7907738f4baa833f5e31091ac143493619df7ff7661e9e9d26bb"
+    },
+    "evidence/c808/capture/EXECUTION-JOURNAL_AT_STOP.json.json": {
+      "bytes": 805,
+      "sha256": "78555d148cc0f997e488344d827e5450f2fae780789d74ffb6f36dafb6442ad7"
+    },
+    "evidence/c808/capture/EXECUTION-RESULT.json.json": {
+      "bytes": 806,
+      "sha256": "26e58ddc71d5a1935ab2c3b0303cb75b58a7bf348b11b264ef6f0b735274ae01"
+    },
+    "evidence/c808/capture/EXECUTION-SOURCE.json.json": {
+      "bytes": 807,
+      "sha256": "a29172957fb240b89fa08086a1578e09c26228f2ce819f54563ad447accd0f3c"
+    },
+    "evidence/c808/capture/EXECUTION-TRANSACTIONS.json.json": {
+      "bytes": 794,
+      "sha256": "c593ac4826bdeaf5bc13fb436f1a8cad99c6a11bcc49d41e37996a6c7ca6257e"
+    },
+    "evidence/c808/capture/EXECUTION-storage-BINDINGS.json.json": {
+      "bytes": 807,
+      "sha256": "53ae01be22ff5d182980ddfc21625fcbb157b4b08d56bf3510f74d3d04aade2f"
+    },
+    "evidence/c808/capture/EXECUTION-storage-CLOCK_REPAIR.json.json": {
+      "bytes": 806,
+      "sha256": "a2974bab7bb0398aaebaec02a76559a73ad5ba26a289e2d8b9ea85ab4fbe3f64"
+    },
+    "evidence/c808/capture/EXECUTION-storage-RAW_REVIEWS.json.json": {
+      "bytes": 806,
+      "sha256": "f31fc9ff8f42002da4559c61a3c6a00da7254514cbd53677a3f258ab7cb818fb"
+    },
+    "evidence/c808/capture/EXECUTION-storage-RECEIPTS.json.json": {
+      "bytes": 807,
+      "sha256": "d99e8d50275ea1c54e45678e60a85db6f0d381c80f541476b73dda0425864c5b"
+    },
+    "evidence/c808/capture/EXECUTION-storage-RESULT.json.json": {
+      "bytes": 805,
+      "sha256": "a3b438c179f42119aa10c9cce7ffb993af8101a053360bb8cccdaa7d3b970687"
+    },
+    "evidence/c808/capture/EXECUTION-storage-SETUP.json.json": {
+      "bytes": 793,
+      "sha256": "1fe15403bffa506d16616542ee4885856590d135ba2ae472480cd738af36ab6d"
+    },
+    "evidence/c808/control/INSTALL.json": {
+      "bytes": 1616,
+      "sha256": "ef291d3d10ae7d163eac5ebe25c1e005d75bcc6f5940ab82f18f66771d3d53ba"
+    },
+    "evidence/c808/control/START.json": {
+      "bytes": 2707,
+      "sha256": "1338d0f2f497d5e33d0ff1d636c5b245386eeba377e21b4d0392e3262ac0e0f1"
+    },
+    "evidence/c808/control/STOP.json": {
+      "bytes": 7202,
+      "sha256": "22eaf18ee01ad132f68f995a56ca36f1ec44ee193ebbe6d440a50ace1b96a7bd"
+    },
+    "evidence/c808/control/UPLOAD.json": {
+      "bytes": 267,
+      "sha256": "7379e5853f745a0ab09cdeb9b78e6efc03401d2f6279728ce9a0efdf645cdd4a"
+    },
+    "evidence/c808/control/install-EXECUTION.json": {
+      "bytes": 719,
+      "sha256": "4d452deeff66a8f49f1c0db635b10effc8ddf46ed9e1d2023de91dcc77dad170"
+    },
+    "evidence/c808/control/start-EXECUTION.json": {
+      "bytes": 716,
+      "sha256": "bdf38045e9702cf3dbe7e842bf0e5cede449f3ad4faff5c6520e3b51538c9229"
+    },
+    "evidence/c808/control/stop-EXECUTION.json": {
+      "bytes": 715,
+      "sha256": "beb613f298b0a80faa5ea290b20894a4e398307e39c4267d49e9a1fb5a022566"
+    },
+    "evidence/c808/control/upload-EXECUTION.json": {
+      "bytes": 905,
+      "sha256": "5c5bfe8101ee48e92d04b7dcff2f36048d2b72e01b83985eef6e3ddaefe1b8ce"
+    },
+    "evidence/c808/control/validate-EXECUTION.json": {
+      "bytes": 595,
+      "sha256": "97576eeddca0c88106b8cdfbdf41c952a6b3c701b5b55fadf93d36317e29899a"
+    },
+    "evidence/c808/storage-BINDINGS.json": {
+      "bytes": 26538,
+      "sha256": "4c3ebfb14daae3b806253fe2197fdeef5a72e66448132eadf7d670a68ab1b960"
+    },
+    "evidence/c808/storage-CLOCK_REPAIR.json": {
+      "bytes": 3840,
+      "sha256": "347e695c1d715b05ce5f3a7b113fe310e13e94ff9e6098952de9bcb62d0d1ad6"
+    },
+    "evidence/c808/storage-RAW_REVIEWS.json": {
+      "bytes": 1595,
+      "sha256": "11843cdb1cdf1c963613327a1ff4285c6bdcca06ef7efb77241a2914838da64c"
+    },
+    "evidence/c808/storage-RECEIPTS.json": {
+      "bytes": 7981,
+      "sha256": "3f71796f2787e5f6b8a37682d6957252af74d5dfebbd915e45f3eae446ac1033"
+    },
+    "evidence/c808/storage-RESULT.json": {
+      "bytes": 517,
+      "sha256": "fe1bcaa21acaf171a418bc0a3e10d7baa25d1a91abdc21a0dcf6f2710c89a7e5"
+    },
+    "evidence/c808/storage-SETUP.json": {
+      "bytes": 9470,
+      "sha256": "beaa67069d8dbccb24a2f9608377afc2268d8d0f69e492c1dfc9e308485c0dd1"
+    },
+    "verification/PUBLIC_VERIFICATION.json": {
+      "bytes": 511,
+      "sha256": "4ef515f6895eb5f0b566a974788dbec96935b2722b9d87bb1da19e6e71b9e3d0"
+    },
+    "verification/c807-unused/run_storage.py": {
+      "bytes": 14504,
+      "sha256": "92e444730e2d757bb899972afb1be4dbbeb1f80616d848e9d4ad93d3eaa43ec4"
+    },
+    "verification/c808/host_control.py": {
+      "bytes": 7150,
+      "sha256": "fe69d92822b687ff67cfa2052869bebe95c3488f30f94e178a828ad287835ad7"
+    },
+    "verification/c808/job_cases.py": {
+      "bytes": 15671,
+      "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7"
+    },
+    "verification/c808/keeper_jobs.py": {
+      "bytes": 9477,
+      "sha256": "363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4"
+    },
+    "verification/c808/keeper_runtime.py": {
+      "bytes": 37193,
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+    },
+    "verification/c808/remote_capsule.py": {
+      "bytes": 35701,
+      "sha256": "87df4e2cf363ba44afa402b2a6f62a93b41bb32ece035d83e0b802adefd3d8f3"
+    },
+    "verification/c808/run_storage.py": {
+      "bytes": 15423,
+      "sha256": "4ed678d59492f515903190b8b31dafe9a44ac3f91c888a188770396712748a32"
+    },
+    "verification/controller_extension_c808.py": {
+      "bytes": 4737,
+      "sha256": "e2ca785223d8e1338bcb5cd801e6039ea208b5ac481c9d4e87559c66b13f9ae1"
+    },
+    "verification/finalize_evidence.py": {
+      "bytes": 3964,
+      "sha256": "3a2dccc15c7ee86676244553da7e67ad3118f67eb9c30537f7f9e5f862d92bc8"
+    },
+    "verification/package_storage_c808.py": {
+      "bytes": 9581,
+      "sha256": "16a9c10090bcff231db579366afd91da6796f1ce695a4cd564bd4970c486368c"
+    },
+    "verification/verify_saved_storage.py": {
+      "bytes": 21522,
+      "sha256": "2c346840cd35e318f0109edd23ee8dbff124e3588952d041c76022111ef5d7ae"
+    }
+  },
+  "report": "ubuntu-storage-20261125",
+  "schema": 1
+}

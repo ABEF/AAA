@@ -1,0 +1,20 @@
+[
+  "{\"chain_id\": 4663, \"event\": \"state_initialized\", \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\", \"time\": \"2026-11-25T20:01:58.114266+00:00\"}",
+  "\n",
+  "{\"action\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\", \"error_site\": \"tempfile.py:_mkstemp_inner:395\", \"error_type\": \"PermissionError\", \"event\": \"submission_requires_reconciliation\", \"os_errno\": \"EACCES\", \"reported_transaction\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\", \"time\": \"2026-11-25T20:02:18.109501+00:00\"}",
+  "\n",
+  "{\"action\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\", \"event\": \"broadcast_ambiguous\", \"nonce\": 0, \"time\": \"2026-11-25T20:02:20.107928+00:00\"}",
+  "\n",
+  "{\"event\": \"pending\", \"time\": \"2026-11-25T20:02:20.148762+00:00\", \"transaction\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\"}",
+  "\n",
+  "{\"action\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\", \"cost_wei\": \"300814042715588\", \"event\": \"confirmed\", \"time\": \"2026-11-25T20:02:22.814165+00:00\", \"transaction\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\"}",
+  "\n",
+  "{\"action\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\", \"error_site\": \"state.py:atomic_json:59\", \"error_type\": \"OSError\", \"event\": \"submission_requires_reconciliation\", \"os_errno\": \"ENOSPC\", \"reported_transaction\": \"0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35\", \"time\": \"2026-11-25T20:02:25.351369+00:00\"}",
+  "\n",
+  "{\"action\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\", \"event\": \"broadcast_ambiguous\", \"nonce\": 1, \"time\": \"2026-11-25T20:02:27.521783+00:00\"}",
+  "\n",
+  "{\"event\": \"pending\", \"time\": \"2026-11-25T20:02:27.603460+00:00\", \"transaction\": \"0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35\"}",
+  "\n",
+  "{\"action\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\", \"cost_wei\": \"8723606\", \"event\": \"confirmed\", \"time\": \"2026-11-25T20:02:30.555427+00:00\", \"transaction\": \"0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35\"}",
+  "\n"
+]

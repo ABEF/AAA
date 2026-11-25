@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Ubuntu keeper storage recovery](ubuntu-storage-20261125/REVIEW.md) adds six
+actual bounded ENOSPC/EACCES failures and two diagnostic fixes, with seven NEW
+focused methods across two source stages and independent exact recovery review.
+Direct reconstruction/tmpfs is distinct from daemon/power-loss qualification;
+existing services/journals and limits remain unchanged.
+
 [Ubuntu supervisor recovery](ubuntu-supervisor-20261125/REVIEW.md) adds separate
 actual stock watchdog/saved-hash and active-Cast manual-kill/hashless-resolution
 checks with independent exact-state review. All new units stop; production

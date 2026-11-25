@@ -15,7 +15,7 @@ approved isolated budget, while retaining all original refusals. Real stock
 keeper/Cast recovery, a healthy normal cycle and finite diagnostics/indexer/history
 partitions have separate receipts. Four plus7+3 NEW source methods and nine NEW
 snapshot methods pass in their exact stages; no unchanged bodies rerun.
-Use [the current inventory](../reports/ubuntu-complete-20261124/FUNCTION_INVENTORY.json)
+Use [the current inventory](../reports/ubuntu-storage-20261125/FUNCTION_INVENTORY.json)
 and [33 operating partitions](../reports/ubuntu-complete-20261124/COVERAGE.md).
 Neither inventory nor a finite partition closes full F6/V10 consumer, provider,
 market, maximum workload or sustained operating approval.
@@ -95,7 +95,7 @@ running application modules, tests, RPC or signing. Preserve the unrelated dirty
 fork runner: its published HEAD blob is inventoried instead of adopting it.
 
 ```text
-python scripts/build-workload-inventory.py --check reports/ubuntu-complete-20261124/FUNCTION_INVENTORY.json
+python scripts/build-workload-inventory.py --check reports/ubuntu-storage-20261125/FUNCTION_INVENTORY.json
 ```
 
 Future F6 source/reference changes require reviewed trusted-pin/plan updates and

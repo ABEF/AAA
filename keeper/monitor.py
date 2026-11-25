@@ -7,6 +7,7 @@ from __future__ import annotations
 import argparse
 import copy
 import datetime as dt
+import errno
 import hashlib
 import json
 import math
@@ -103,8 +104,13 @@ def error_context(exc: Exception) -> dict[str,str]:
     # Never log exception text, signer output, RPC URLs or the full traceback.
     trace = exc.__traceback__
     while trace and trace.tb_next: trace = trace.tb_next
-    return {'error_type':type(exc).__name__, 'error_site':
+    details = {'error_type':type(exc).__name__, 'error_site':
         f'{Path(trace.tb_frame.f_code.co_filename).name}:{trace.tb_frame.f_code.co_name}:{trace.tb_lineno}' if trace else 'unknown'}
+    if isinstance(exc,OSError) and type(exc.errno) is int:
+        code = {errno.ENOSPC:'ENOSPC',errno.EACCES:'EACCES',errno.EPERM:'EPERM',
+            errno.EROFS:'EROFS',errno.EIO:'EIO',errno.EDQUOT:'EDQUOT'}.get(exc.errno)
+        if code is not None: details['os_errno'] = code
+    return details
 
 def positive(value: Any, field: str, *, zero: bool = False) -> int:
     return integer(value,field,minimum=0 if zero else 1)
@@ -567,9 +573,11 @@ class Keeper:
             self.cycle_failures += 1
             details = error_context(exc)
             retryable = isinstance(exc,(RpcError,subprocess.TimeoutExpired))
-            health('error' if retryable else 'halted',**details)
             self._lp_metadata_cache = None
+            # Preserve the original sanitized failure even if storage also
+            # prevents publishing health. A failed health write still halts.
             log('cycle_failed',retryable=retryable,consecutive_failures=self.cycle_failures,**details)
+            health('error' if retryable else 'halted',**details)
             if not retryable: raise
             return False
         pending = bool(self.state.get('pending'))
@@ -2044,20 +2052,24 @@ class Keeper:
         # for reconciliation, but do not launch a signer after observing it.
         if self.stop_requested():
             log('shutdown_after_intent_before_signer',action=key);return False
+        reported_hash = None
         try:
             result = run_cast(command,env=environment,timeout=90)
             if result.returncode: raise RuntimeError('Signer command failed; broadcast status must be checked')
             try: parsed = json.loads(result.stdout)
             except json.JSONDecodeError: parsed = result.stdout.strip()
             candidate = parsed.get('transactionHash',parsed.get('hash')) if isinstance(parsed,dict) else parsed
-            try: candidate = rpc_hash(candidate,'signer transaction hash')
+            try: reported_hash = rpc_hash(candidate,'signer transaction hash')
             except RpcError:
                 raise RuntimeError('Signer did not return a transaction hash') from None
-            pending['hash'] = candidate; self.save()
-            log('submitted',action=key,transaction=candidate)
+            pending['hash'] = reported_hash; self.save()
+            log('submitted',action=key,transaction=reported_hash)
         except Exception as exc:
-            # Deliberately retain pending state. NEVER automatically resubmit on timeout.
-            log('submission_requires_reconciliation',action=key,error_type=type(exc).__name__)
+            # A validated signer-reported candidate helps manual recovery if
+            # hash persistence fails. It is not proof of node acceptance.
+            # Retain pending state; NEVER automatically resubmit on timeout.
+            log('submission_requires_reconciliation',action=key,**error_context(exc),
+                **({'reported_transaction':reported_hash} if reported_hash is not None else {}))
             raise
         return True
 

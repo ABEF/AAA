@@ -1,0 +1,107 @@
+{
+  "approved_worktree_overrides": [
+    {
+      "current": {
+        "bytes": 194265,
+        "sha256": "5ab6bbb20eea21e301d81d2e829a827594079561e2f10770336ec8585b234631"
+      },
+      "path": "keeper/monitor.py",
+      "published": {
+        "bytes": 193517,
+        "sha256": "9bb7c3b227b93ab2003cd380e1e5549448c31a894c9d50ac712dbcdf422bb8c3"
+      },
+      "scope": "bounded errno storage diagnostics only"
+    },
+    {
+      "current": {
+        "bytes": 2521,
+        "sha256": "fec6b85a42d95d2015cb77653b8e5d844e7e117949e2b230af3cf171d548aaf1"
+      },
+      "path": "scripts/verify.sh",
+      "published": {
+        "bytes": 2522,
+        "sha256": "0a3e54ce89fadb434aaf032299db8a1aa955bd41d0108f1e209a26ce4328598f"
+      },
+      "scope": "current workload inventory pointer only; not executed by lab"
+    }
+  ],
+  "bundle": {
+    "bytes": 751436,
+    "sha256": "00bead0368c16889df24f11b58aa1899d61db470412f0c61f3411cf3943b0533"
+  },
+  "controller": {
+    "bytes": 35701,
+    "sha256": "7b5f1473debc3bf6df470649840c87f739d22310f15bca46cf989e854ca22847"
+  },
+  "current_production_members": 190,
+  "feature": "storage_os_failures",
+  "helpers": {
+    "job_cases.py": {
+      "bytes": 15671,
+      "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7"
+    },
+    "keeper_jobs.py": {
+      "bytes": 9477,
+      "sha256": "363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4"
+    },
+    "keeper_runtime.py": {
+      "bytes": 37193,
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+    },
+    "run_storage.py": {
+      "bytes": 14504,
+      "sha256": "92e444730e2d757bb899972afb1be4dbbeb1f80616d848e9d4ad93d3eaa43ec4"
+    }
+  },
+  "host_wrapper": {
+    "bytes": 7150,
+    "sha256": "6c25176aefbf025cdd61d3e1f9574aba4b2f37d04ea4baff5286ec1920c766aa"
+  },
+  "lab": "/opt/popl-ubuntu-storage-20261125-c807",
+  "limits": {
+    "RPC_requests": 6000,
+    "confirmations": 12,
+    "daily_maximum_cost_wei": "50000000000000000",
+    "gas_price_wei": 5000000000,
+    "maintenance_gas": 24000000,
+    "namespace_private_tmpfs_bytes": 1048576,
+    "padding_percent": 25,
+    "single_maximum_cost_wei": "10000000000000000",
+    "worker_seconds": 900
+  },
+  "manifest": {
+    "bytes": 34348,
+    "sha256": "72ec0eab4c140e6ee5b4f7f35bd33b1fa1d95a63958e4ed15b4fa128024a08f9"
+  },
+  "published_source_base": "352ebe0aa479a10f2220857edadbf049720616c5",
+  "remote_actions": 0,
+  "runtime_executed": false,
+  "schema": 1,
+  "source_manifest_sha256": "a04de34e5e6e1e865fa37bc8c1e29319710ef6727bf984b299b4b333fbbad5d6",
+  "source_updates_from_previous_bundle": [
+    {
+      "not_executed_by_job": true,
+      "original": {
+        "bytes": 4422,
+        "sha256": "fde49b9780dcdbb352e8286f8b649689c8b48aa021226d02a5b84bfa94d9b2ad"
+      },
+      "path": "keeper/staging-install.sh",
+      "published": {
+        "bytes": 4725,
+        "sha256": "b66878fee51f54ac36656646d41f57e70955b9b43c5aff228b5ecd02b3e258b3"
+      }
+    },
+    {
+      "not_executed_by_job": true,
+      "original": {
+        "bytes": 2521,
+        "sha256": "904440e83018e9706184dd19fb28e44b8a6f4b9509509c820d24c0174c80a7bc"
+      },
+      "path": "scripts/verify.sh",
+      "published": {
+        "bytes": 2522,
+        "sha256": "0a3e54ce89fadb434aaf032299db8a1aa955bd41d0108f1e209a26ce4328598f"
+      }
+    }
+  ]
+}

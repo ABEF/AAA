@@ -1,0 +1,157 @@
+{
+  "checks": {
+    "actual_bounded_tmpfs": {
+      "proof": {
+        "mount_namespace": "mnt:[4026532487]",
+        "physical_power_loss_qualified": false,
+        "tmpfs_bytes": 1048576,
+        "uid": 65534
+      },
+      "status": "passed"
+    },
+    "canonical_paid_recovery_once": {
+      "proof": {
+        "actual_paid_transactions": 2,
+        "daily_costs_wei": {
+          "2026-11-25": 300814051439194
+        },
+        "final_next_nonce": 2,
+        "hashes": [
+          "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d",
+          "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35"
+        ],
+        "onchain_final_nonce_getters": "source assertions only; separate read vectors not supplied",
+        "paid_costs_wei": [
+          300814042715588,
+          8723606
+        ],
+        "raw_resends": 0
+      },
+      "status": "passed"
+    },
+    "captured_NFT_LP_projections_and_scope": {
+      "proof": {
+        "NFT_count": 2,
+        "RPC_requests": 2265,
+        "direct_stock_calls_not_normal_daemon": true,
+        "financial_allocation_requalified": false,
+        "projection_equality": true
+      },
+      "status": "passed"
+    },
+    "final_native_cleanup": {
+      "proof": {
+        "empty_owned_cgroup": true,
+        "native_stopped": true
+      },
+      "status": "passed"
+    },
+    "frozen_source_and_limits": {
+      "proof": {
+        "bundle_sha256": "eacc39387311733ae3ec69f744c0e96d1b62f3e7479fff857b9ec3498d27fd79",
+        "monitor_sha256": "5ab6bbb20eea21e301d81d2e829a827594079561e2f10770336ec8585b234631",
+        "production_members": 190,
+        "source_head": "352ebe0aa479a10f2220857edadbf049720616c5",
+        "source_manifest_sha256": "a04de34e5e6e1e865fa37bc8c1e29319710ef6727bf984b299b4b333fbbad5d6"
+      },
+      "status": "passed"
+    },
+    "loaded_private_native_unit": {
+      "proof": {
+        "loaded_private_mounts": true,
+        "loaded_private_network": true,
+        "native_user": "nobody"
+      },
+      "status": "passed"
+    },
+    "reported_hash_storage_failure_diagnostics": {
+      "proof": {
+        "candidate_log_is_acceptance_guarantee": false,
+        "confirmed_once_per_original_hash": true,
+        "raw_signer_output_exported": false,
+        "validated_reported_candidates": 2
+      },
+      "status": "passed"
+    },
+    "six_actual_OS_failure_boundaries": {
+      "proof": {
+        "branches": 6,
+        "errno_EACCES_count": 3,
+        "errno_ENOSPC_count": 3,
+        "unchanged_checkpoints": true,
+        "unexpected_resends": 0
+      },
+      "status": "passed"
+    }
+  },
+  "input_files": {
+    "ACCEPTED_0.json": {
+      "bytes": 5371,
+      "sha256": "4bb0f6b90e5258fd6ae600c567b767c1fc1921877f748fb21dbc1221a1fd7638"
+    },
+    "ACCEPTED_1.json": {
+      "bytes": 6845,
+      "sha256": "1d0eb6723210a1d0140aca8cd55777cc40686dde0b6f9d5fe1cf1cc8a1d1380b"
+    },
+    "AFTER.json": {
+      "bytes": 1727,
+      "sha256": "f2bf79b0c707fb5e35a9ac99860f618fc0066b2a1cafa0ace0a4936e50b976b7"
+    },
+    "BEFORE.json": {
+      "bytes": 1727,
+      "sha256": "f2bf79b0c707fb5e35a9ac99860f618fc0066b2a1cafa0ace0a4936e50b976b7"
+    },
+    "BRANCHES.json": {
+      "bytes": 125349,
+      "sha256": "17762e436628ba0a64064b8b02a2911b60d8828675aa7b6e2885166bbc2a117f"
+    },
+    "EVENTS.json": {
+      "bytes": 2424,
+      "sha256": "2a2cf151ec65e36ffada525b2b30254e7ac809dbe37f7eebd93f75f9aebb64f6"
+    },
+    "FILESYSTEM.json": {
+      "bytes": 356,
+      "sha256": "94dcbdf6931a4a8f67c3a4905239dca2a99e421354c615d1753dc04420073eec"
+    },
+    "FINAL_JOURNAL.json": {
+      "bytes": 5059,
+      "sha256": "124d1cbc4802a0e6846d0c5218c2ff62b856939b78a69c3c1d41e07129c9f575"
+    },
+    "INITIAL_JOURNAL.json": {
+      "bytes": 3752,
+      "sha256": "e3c583d9959c17949ed36d2fb1510cdad4d016dbe0549a8cef3e59b753ce2fac"
+    },
+    "JOURNAL_AT_STOP.json": {
+      "bytes": 5059,
+      "sha256": "124d1cbc4802a0e6846d0c5218c2ff62b856939b78a69c3c1d41e07129c9f575"
+    },
+    "RESULT.json": {
+      "bytes": 769,
+      "sha256": "db3e9cb0d809e0c6b3327177ac0387f9d41219532c91cd62625398c04f374f77"
+    },
+    "SOURCE.json": {
+      "bytes": 30263,
+      "sha256": "a04de34e5e6e1e865fa37bc8c1e29319710ef6727bf984b299b4b333fbbad5d6"
+    },
+    "TRANSACTIONS.json": {
+      "bytes": 52940,
+      "sha256": "2ee9cd30d1ee82b529ca528027154205e0067131fe7e119bb4ef1b844098ceb1"
+    }
+  },
+  "limitations": [
+    "Saved vectors/source pins do not authenticate a hostile host or provider.",
+    "Genuine tmpfs ENOSPC and Unix directory EACCES do not prove physical-power-loss, ext4 or directory-fsync-failure durability.",
+    "These direct stock submit/resolve/poll calls are not a new normal-daemon/supervisor proof.",
+    "Zero-fee harvests compare selected NFT/LP/reserve projections; economic allocation and arbitrary faults are not requalified.",
+    "Final on-chain nonce values are executed-source assertions, without separate getter vectors.",
+    "Restart storms, additional transports/storage failures, off-host fencing/restore, alerts and soak remain open.",
+    "Original service and heartbeat preservation needs its separate host comparison."
+  ],
+  "network_calls": 0,
+  "old_test_bodies_run": 0,
+  "production_approved": false,
+  "runtime_actions": 0,
+  "schema": 1,
+  "stage": "storage_saved_vectors_independent_review",
+  "status": "passed"
+}

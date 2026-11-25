@@ -1,0 +1,7 @@
+test_malformed_signer_candidate_never_reaches_reconciliation_diagnostic (tests_python.test_keeper_storage_hash_diagnostics.KeeperStorageHashDiagnosticTests.test_malformed_signer_candidate_never_reaches_reconciliation_diagnostic) ... ok
+test_valid_reported_hash_survives_in_diagnostic_when_hash_save_fails (tests_python.test_keeper_storage_hash_diagnostics.KeeperStorageHashDiagnosticTests.test_valid_reported_hash_survives_in_diagnostic_when_hash_save_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.063s
+
+OK

@@ -1,0 +1,1596 @@
+[
+  {
+    "actual_errno": 13,
+    "actual_errno_name": "EACCES",
+    "after": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"pending\": null,\n  \"receipt_anchor\": null,\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {}\n}\n",
+      "sha256": "1cd8c6c05e29134a5525da64510a011098420aa60f7ccbe71f48de7c7b88f402",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {},
+        "next_nonce": 0,
+        "pending": null,
+        "receipt_anchor": null,
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {}
+      }
+    },
+    "before": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"pending\": null,\n  \"receipt_anchor\": null,\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {}\n}\n",
+      "sha256": "1cd8c6c05e29134a5525da64510a011098420aa60f7ccbe71f48de7c7b88f402",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {},
+        "next_nonce": 0,
+        "pending": null,
+        "receipt_anchor": null,
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {}
+      }
+    },
+    "expected_unchanged_checkpoint": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"pending\": null,\n  \"receipt_anchor\": null,\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {}\n}\n",
+      "sha256": "1cd8c6c05e29134a5525da64510a011098420aa60f7ccbe71f48de7c7b88f402",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {},
+        "next_nonce": 0,
+        "pending": null,
+        "receipt_anchor": null,
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {}
+      }
+    },
+    "fault": {
+      "free_before": 1044480,
+      "mode": "EACCES",
+      "parent_mode": "0o500"
+    },
+    "memory_after": {
+      "accounting_model": "shared-pools-v2",
+      "accounting_version": 7,
+      "bucket_cursor": 0,
+      "chain_id": 4663,
+      "contracts": {
+        "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+        "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+        "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+        "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+        "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+        "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+        "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+        "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+        "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+        "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+        "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+        "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+        "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+        "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+        "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+        "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+        "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+        "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+        "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+        "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+        "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+      },
+      "execution_price_version": 1,
+      "fee_intake_version": 1,
+      "last": {},
+      "next_nonce": 0,
+      "pending": {
+        "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e",
+        "day": "2026-11-25",
+        "fee_review": {
+          "gas_limit": 414080,
+          "l1_fee_allowance_wei": 0,
+          "max_fee_per_gas": 1000000142,
+          "maximum_cost_wei": 414080058799360,
+          "receipt_fee_policy": "included",
+          "schema": 1
+        },
+        "hash": null,
+        "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+        "nonce": 0,
+        "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+        "value": 0
+      },
+      "receipt_anchor": null,
+      "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+      "spent": {}
+    },
+    "mode": "EACCES",
+    "raw_sends_after": 0,
+    "raw_sends_before": 0,
+    "stage": "intent_EACCES"
+  },
+  {
+    "actual_errno": 28,
+    "actual_errno_name": "ENOSPC",
+    "after": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"pending\": null,\n  \"receipt_anchor\": null,\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {}\n}\n",
+      "sha256": "1cd8c6c05e29134a5525da64510a011098420aa60f7ccbe71f48de7c7b88f402",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {},
+        "next_nonce": 0,
+        "pending": null,
+        "receipt_anchor": null,
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {}
+      }
+    },
+    "before": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"pending\": null,\n  \"receipt_anchor\": null,\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {}\n}\n",
+      "sha256": "1cd8c6c05e29134a5525da64510a011098420aa60f7ccbe71f48de7c7b88f402",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {},
+        "next_nonce": 0,
+        "pending": null,
+        "receipt_anchor": null,
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {}
+      }
+    },
+    "expected_unchanged_checkpoint": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"pending\": null,\n  \"receipt_anchor\": null,\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {}\n}\n",
+      "sha256": "1cd8c6c05e29134a5525da64510a011098420aa60f7ccbe71f48de7c7b88f402",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {},
+        "next_nonce": 0,
+        "pending": null,
+        "receipt_anchor": null,
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {}
+      }
+    },
+    "fault": {
+      "filler_bytes": 1044480,
+      "filler_errno": 28,
+      "filler_errno_name": "ENOSPC",
+      "free_after": 0,
+      "free_before": 1044480,
+      "mode": "ENOSPC"
+    },
+    "memory_after": {
+      "accounting_model": "shared-pools-v2",
+      "accounting_version": 7,
+      "bucket_cursor": 0,
+      "chain_id": 4663,
+      "contracts": {
+        "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+        "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+        "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+        "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+        "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+        "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+        "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+        "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+        "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+        "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+        "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+        "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+        "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+        "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+        "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+        "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+        "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+        "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+        "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+        "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+        "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+      },
+      "execution_price_version": 1,
+      "fee_intake_version": 1,
+      "last": {},
+      "next_nonce": 0,
+      "pending": {
+        "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e",
+        "day": "2026-11-25",
+        "fee_review": {
+          "gas_limit": 414080,
+          "l1_fee_allowance_wei": 0,
+          "max_fee_per_gas": 1000000142,
+          "maximum_cost_wei": 414080058799360,
+          "receipt_fee_policy": "included",
+          "schema": 1
+        },
+        "hash": null,
+        "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+        "nonce": 0,
+        "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+        "value": 0
+      },
+      "receipt_anchor": null,
+      "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+      "spent": {}
+    },
+    "mode": "ENOSPC",
+    "raw_sends_after": 0,
+    "raw_sends_before": 0,
+    "stage": "intent_ENOSPC"
+  },
+  {
+    "accepted_boundary": {
+      "durable_hashless": {
+        "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000142,\n      \"maximum_cost_wei\": 414080058799360,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": null,\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 0,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": null,\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {}\n}\n",
+        "sha256": "96cae1560b53549f24c1658c84df3ca247cefc2390f485527bbed49522fa1684",
+        "state": {
+          "accounting_model": "shared-pools-v2",
+          "accounting_version": 7,
+          "bucket_cursor": 0,
+          "chain_id": 4663,
+          "contracts": {
+            "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+            "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+            "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+            "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+            "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+            "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+            "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+            "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+            "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+            "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+            "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+            "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+            "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+            "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+            "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+            "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+            "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+            "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+            "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+            "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+            "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+          },
+          "execution_price_version": 1,
+          "fee_intake_version": 1,
+          "last": {},
+          "next_nonce": 0,
+          "pending": {
+            "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e",
+            "day": "2026-11-25",
+            "fee_review": {
+              "gas_limit": 414080,
+              "l1_fee_allowance_wei": 0,
+              "max_fee_per_gas": 1000000142,
+              "maximum_cost_wei": 414080058799360,
+              "receipt_fee_policy": "included",
+              "schema": 1
+            },
+            "hash": null,
+            "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+            "nonce": 0,
+            "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+            "value": 0
+          },
+          "receipt_anchor": null,
+          "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+          "spent": {}
+        }
+      },
+      "fault": {
+        "free_before": 1044480,
+        "mode": "EACCES",
+        "parent_mode": "0o500"
+      },
+      "hash": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d"
+    },
+    "actual_errno": 13,
+    "actual_errno_name": "EACCES",
+    "after": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000142,\n      \"maximum_cost_wei\": 414080058799360,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": null,\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 0,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": null,\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {}\n}\n",
+      "sha256": "96cae1560b53549f24c1658c84df3ca247cefc2390f485527bbed49522fa1684",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {},
+        "next_nonce": 0,
+        "pending": {
+          "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e",
+          "day": "2026-11-25",
+          "fee_review": {
+            "gas_limit": 414080,
+            "l1_fee_allowance_wei": 0,
+            "max_fee_per_gas": 1000000142,
+            "maximum_cost_wei": 414080058799360,
+            "receipt_fee_policy": "included",
+            "schema": 1
+          },
+          "hash": null,
+          "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+          "nonce": 0,
+          "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+          "value": 0
+        },
+        "receipt_anchor": null,
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {}
+      }
+    },
+    "before": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"pending\": null,\n  \"receipt_anchor\": null,\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {}\n}\n",
+      "sha256": "1cd8c6c05e29134a5525da64510a011098420aa60f7ccbe71f48de7c7b88f402",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {},
+        "next_nonce": 0,
+        "pending": null,
+        "receipt_anchor": null,
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {}
+      }
+    },
+    "expected_unchanged_checkpoint": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000142,\n      \"maximum_cost_wei\": 414080058799360,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": null,\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 0,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": null,\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {}\n}\n",
+      "sha256": "96cae1560b53549f24c1658c84df3ca247cefc2390f485527bbed49522fa1684",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {},
+        "next_nonce": 0,
+        "pending": {
+          "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e",
+          "day": "2026-11-25",
+          "fee_review": {
+            "gas_limit": 414080,
+            "l1_fee_allowance_wei": 0,
+            "max_fee_per_gas": 1000000142,
+            "maximum_cost_wei": 414080058799360,
+            "receipt_fee_policy": "included",
+            "schema": 1
+          },
+          "hash": null,
+          "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+          "nonce": 0,
+          "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+          "value": 0
+        },
+        "receipt_anchor": null,
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {}
+      }
+    },
+    "memory_after": {
+      "accounting_model": "shared-pools-v2",
+      "accounting_version": 7,
+      "bucket_cursor": 0,
+      "chain_id": 4663,
+      "contracts": {
+        "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+        "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+        "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+        "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+        "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+        "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+        "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+        "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+        "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+        "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+        "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+        "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+        "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+        "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+        "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+        "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+        "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+        "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+        "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+        "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+        "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+      },
+      "execution_price_version": 1,
+      "fee_intake_version": 1,
+      "last": {},
+      "next_nonce": 0,
+      "pending": {
+        "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e",
+        "day": "2026-11-25",
+        "fee_review": {
+          "gas_limit": 414080,
+          "l1_fee_allowance_wei": 0,
+          "max_fee_per_gas": 1000000142,
+          "maximum_cost_wei": 414080058799360,
+          "receipt_fee_policy": "included",
+          "schema": 1
+        },
+        "hash": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d",
+        "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+        "nonce": 0,
+        "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+        "value": 0
+      },
+      "receipt_anchor": null,
+      "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+      "spent": {}
+    },
+    "mode": "EACCES",
+    "raw_sends_after": 1,
+    "raw_sends_before": 0,
+    "stage": "accepted_hash_EACCES"
+  },
+  {
+    "actual_errno": 28,
+    "actual_errno_name": "ENOSPC",
+    "after": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000142,\n      \"maximum_cost_wei\": 414080058799360,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\",\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 0,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": null,\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {}\n}\n",
+      "sha256": "676d14fdabd6e673317e63eee89c46599b85136df2770988702cdda614ee28aa",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {},
+        "next_nonce": 0,
+        "pending": {
+          "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e",
+          "day": "2026-11-25",
+          "fee_review": {
+            "gas_limit": 414080,
+            "l1_fee_allowance_wei": 0,
+            "max_fee_per_gas": 1000000142,
+            "maximum_cost_wei": 414080058799360,
+            "receipt_fee_policy": "included",
+            "schema": 1
+          },
+          "hash": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d",
+          "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+          "nonce": 0,
+          "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+          "value": 0
+        },
+        "receipt_anchor": null,
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {}
+      }
+    },
+    "before": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000142,\n      \"maximum_cost_wei\": 414080058799360,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\",\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 0,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": null,\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {}\n}\n",
+      "sha256": "676d14fdabd6e673317e63eee89c46599b85136df2770988702cdda614ee28aa",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {},
+        "next_nonce": 0,
+        "pending": {
+          "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e",
+          "day": "2026-11-25",
+          "fee_review": {
+            "gas_limit": 414080,
+            "l1_fee_allowance_wei": 0,
+            "max_fee_per_gas": 1000000142,
+            "maximum_cost_wei": 414080058799360,
+            "receipt_fee_policy": "included",
+            "schema": 1
+          },
+          "hash": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d",
+          "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+          "nonce": 0,
+          "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+          "value": 0
+        },
+        "receipt_anchor": null,
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {}
+      }
+    },
+    "expected_unchanged_checkpoint": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000142,\n      \"maximum_cost_wei\": 414080058799360,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\",\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 0,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": null,\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {}\n}\n",
+      "sha256": "676d14fdabd6e673317e63eee89c46599b85136df2770988702cdda614ee28aa",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {},
+        "next_nonce": 0,
+        "pending": {
+          "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e",
+          "day": "2026-11-25",
+          "fee_review": {
+            "gas_limit": 414080,
+            "l1_fee_allowance_wei": 0,
+            "max_fee_per_gas": 1000000142,
+            "maximum_cost_wei": 414080058799360,
+            "receipt_fee_policy": "included",
+            "schema": 1
+          },
+          "hash": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d",
+          "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+          "nonce": 0,
+          "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+          "value": 0
+        },
+        "receipt_anchor": null,
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {}
+      }
+    },
+    "fault": {
+      "filler_bytes": 1044480,
+      "filler_errno": 28,
+      "filler_errno_name": "ENOSPC",
+      "free_after": 0,
+      "free_before": 1044480,
+      "mode": "ENOSPC"
+    },
+    "memory_after": {
+      "accounting_model": "shared-pools-v2",
+      "accounting_version": 7,
+      "bucket_cursor": 0,
+      "chain_id": 4663,
+      "contracts": {
+        "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+        "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+        "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+        "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+        "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+        "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+        "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+        "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+        "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+        "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+        "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+        "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+        "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+        "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+        "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+        "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+        "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+        "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+        "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+        "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+        "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+      },
+      "execution_price_version": 1,
+      "fee_intake_version": 1,
+      "last": {},
+      "next_nonce": 0,
+      "pending": {
+        "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f6e",
+        "day": "2026-11-25",
+        "fee_review": {
+          "gas_limit": 414080,
+          "l1_fee_allowance_wei": 0,
+          "max_fee_per_gas": 1000000142,
+          "maximum_cost_wei": 414080058799360,
+          "receipt_fee_policy": "included",
+          "schema": 1
+        },
+        "hash": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d",
+        "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+        "nonce": 0,
+        "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+        "value": 0
+      },
+      "receipt_anchor": null,
+      "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+      "spent": {}
+    },
+    "mode": "ENOSPC",
+    "raw_sends_after": 1,
+    "raw_sends_before": 1,
+    "stage": "receipt_ENOSPC"
+  },
+  {
+    "accepted_boundary": {
+      "durable_hashless": {
+        "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {\n    \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\": 1795636923\n  },\n  \"last_fee_observation\": {\n    \"cost_wei\": 300814042715588,\n    \"execution_price_wei\": 1000000142,\n    \"gas_used\": 300814,\n    \"l1_fee_wei\": 0,\n    \"receipt_fee_policy\": \"included\",\n    \"reported_price_wei\": 1000000142,\n    \"transaction\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\"\n  },\n  \"next_nonce\": 1,\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000028,\n      \"maximum_cost_wei\": 414080011594240,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": null,\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 1,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": {\n    \"hash\": \"0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b\",\n    \"nonce\": 0,\n    \"number\": 119107325,\n    \"timestamp\": 1795636923\n  },\n  \"retry_after\": {},\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {\n    \"2026-11-25\": 300814042715588\n  }\n}\n",
+        "sha256": "465ff45464fdef209978ac1f01e55303194ecc4b544d3dc08fda7a10c59a4ab0",
+        "state": {
+          "accounting_model": "shared-pools-v2",
+          "accounting_version": 7,
+          "bucket_cursor": 0,
+          "chain_id": 4663,
+          "contracts": {
+            "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+            "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+            "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+            "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+            "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+            "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+            "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+            "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+            "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+            "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+            "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+            "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+            "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+            "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+            "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+            "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+            "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+            "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+            "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+            "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+            "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+          },
+          "execution_price_version": 1,
+          "fee_intake_version": 1,
+          "last": {
+            "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795636923
+          },
+          "last_fee_observation": {
+            "cost_wei": 300814042715588,
+            "execution_price_wei": 1000000142,
+            "gas_used": 300814,
+            "l1_fee_wei": 0,
+            "receipt_fee_policy": "included",
+            "reported_price_wei": 1000000142,
+            "transaction": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d"
+          },
+          "next_nonce": 1,
+          "pending": {
+            "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b",
+            "day": "2026-11-25",
+            "fee_review": {
+              "gas_limit": 414080,
+              "l1_fee_allowance_wei": 0,
+              "max_fee_per_gas": 1000000028,
+              "maximum_cost_wei": 414080011594240,
+              "receipt_fee_policy": "included",
+              "schema": 1
+            },
+            "hash": null,
+            "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+            "nonce": 1,
+            "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+            "value": 0
+          },
+          "receipt_anchor": {
+            "hash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+            "nonce": 0,
+            "number": 119107325,
+            "timestamp": 1795636923
+          },
+          "retry_after": {},
+          "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+          "spent": {
+            "2026-11-25": 300814042715588
+          }
+        }
+      },
+      "fault": {
+        "filler_bytes": 1044480,
+        "filler_errno": 28,
+        "filler_errno_name": "ENOSPC",
+        "free_after": 0,
+        "free_before": 1044480,
+        "mode": "ENOSPC"
+      },
+      "hash": "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35"
+    },
+    "actual_errno": 28,
+    "actual_errno_name": "ENOSPC",
+    "after": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {\n    \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\": 1795636923\n  },\n  \"last_fee_observation\": {\n    \"cost_wei\": 300814042715588,\n    \"execution_price_wei\": 1000000142,\n    \"gas_used\": 300814,\n    \"l1_fee_wei\": 0,\n    \"receipt_fee_policy\": \"included\",\n    \"reported_price_wei\": 1000000142,\n    \"transaction\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\"\n  },\n  \"next_nonce\": 1,\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000028,\n      \"maximum_cost_wei\": 414080011594240,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": null,\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 1,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": {\n    \"hash\": \"0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b\",\n    \"nonce\": 0,\n    \"number\": 119107325,\n    \"timestamp\": 1795636923\n  },\n  \"retry_after\": {},\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {\n    \"2026-11-25\": 300814042715588\n  }\n}\n",
+      "sha256": "465ff45464fdef209978ac1f01e55303194ecc4b544d3dc08fda7a10c59a4ab0",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {
+          "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795636923
+        },
+        "last_fee_observation": {
+          "cost_wei": 300814042715588,
+          "execution_price_wei": 1000000142,
+          "gas_used": 300814,
+          "l1_fee_wei": 0,
+          "receipt_fee_policy": "included",
+          "reported_price_wei": 1000000142,
+          "transaction": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d"
+        },
+        "next_nonce": 1,
+        "pending": {
+          "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b",
+          "day": "2026-11-25",
+          "fee_review": {
+            "gas_limit": 414080,
+            "l1_fee_allowance_wei": 0,
+            "max_fee_per_gas": 1000000028,
+            "maximum_cost_wei": 414080011594240,
+            "receipt_fee_policy": "included",
+            "schema": 1
+          },
+          "hash": null,
+          "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+          "nonce": 1,
+          "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+          "value": 0
+        },
+        "receipt_anchor": {
+          "hash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+          "nonce": 0,
+          "number": 119107325,
+          "timestamp": 1795636923
+        },
+        "retry_after": {},
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {
+          "2026-11-25": 300814042715588
+        }
+      }
+    },
+    "before": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {\n    \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\": 1795636923\n  },\n  \"last_fee_observation\": {\n    \"cost_wei\": 300814042715588,\n    \"execution_price_wei\": 1000000142,\n    \"gas_used\": 300814,\n    \"l1_fee_wei\": 0,\n    \"receipt_fee_policy\": \"included\",\n    \"reported_price_wei\": 1000000142,\n    \"transaction\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\"\n  },\n  \"next_nonce\": 1,\n  \"pending\": null,\n  \"receipt_anchor\": {\n    \"hash\": \"0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b\",\n    \"nonce\": 0,\n    \"number\": 119107325,\n    \"timestamp\": 1795636923\n  },\n  \"retry_after\": {},\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {\n    \"2026-11-25\": 300814042715588\n  }\n}\n",
+      "sha256": "51d2c285720f13e9ffb2f5f2459df98bad617fa98c21099b7e6725828ff812b0",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {
+          "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795636923
+        },
+        "last_fee_observation": {
+          "cost_wei": 300814042715588,
+          "execution_price_wei": 1000000142,
+          "gas_used": 300814,
+          "l1_fee_wei": 0,
+          "receipt_fee_policy": "included",
+          "reported_price_wei": 1000000142,
+          "transaction": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d"
+        },
+        "next_nonce": 1,
+        "pending": null,
+        "receipt_anchor": {
+          "hash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+          "nonce": 0,
+          "number": 119107325,
+          "timestamp": 1795636923
+        },
+        "retry_after": {},
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {
+          "2026-11-25": 300814042715588
+        }
+      }
+    },
+    "expected_unchanged_checkpoint": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {\n    \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\": 1795636923\n  },\n  \"last_fee_observation\": {\n    \"cost_wei\": 300814042715588,\n    \"execution_price_wei\": 1000000142,\n    \"gas_used\": 300814,\n    \"l1_fee_wei\": 0,\n    \"receipt_fee_policy\": \"included\",\n    \"reported_price_wei\": 1000000142,\n    \"transaction\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\"\n  },\n  \"next_nonce\": 1,\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000028,\n      \"maximum_cost_wei\": 414080011594240,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": null,\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 1,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": {\n    \"hash\": \"0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b\",\n    \"nonce\": 0,\n    \"number\": 119107325,\n    \"timestamp\": 1795636923\n  },\n  \"retry_after\": {},\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {\n    \"2026-11-25\": 300814042715588\n  }\n}\n",
+      "sha256": "465ff45464fdef209978ac1f01e55303194ecc4b544d3dc08fda7a10c59a4ab0",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {
+          "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795636923
+        },
+        "last_fee_observation": {
+          "cost_wei": 300814042715588,
+          "execution_price_wei": 1000000142,
+          "gas_used": 300814,
+          "l1_fee_wei": 0,
+          "receipt_fee_policy": "included",
+          "reported_price_wei": 1000000142,
+          "transaction": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d"
+        },
+        "next_nonce": 1,
+        "pending": {
+          "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b",
+          "day": "2026-11-25",
+          "fee_review": {
+            "gas_limit": 414080,
+            "l1_fee_allowance_wei": 0,
+            "max_fee_per_gas": 1000000028,
+            "maximum_cost_wei": 414080011594240,
+            "receipt_fee_policy": "included",
+            "schema": 1
+          },
+          "hash": null,
+          "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+          "nonce": 1,
+          "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+          "value": 0
+        },
+        "receipt_anchor": {
+          "hash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+          "nonce": 0,
+          "number": 119107325,
+          "timestamp": 1795636923
+        },
+        "retry_after": {},
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {
+          "2026-11-25": 300814042715588
+        }
+      }
+    },
+    "memory_after": {
+      "accounting_model": "shared-pools-v2",
+      "accounting_version": 7,
+      "bucket_cursor": 0,
+      "chain_id": 4663,
+      "contracts": {
+        "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+        "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+        "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+        "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+        "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+        "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+        "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+        "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+        "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+        "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+        "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+        "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+        "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+        "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+        "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+        "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+        "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+        "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+        "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+        "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+        "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+      },
+      "execution_price_version": 1,
+      "fee_intake_version": 1,
+      "last": {
+        "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795636923
+      },
+      "last_fee_observation": {
+        "cost_wei": 300814042715588,
+        "execution_price_wei": 1000000142,
+        "gas_used": 300814,
+        "l1_fee_wei": 0,
+        "receipt_fee_policy": "included",
+        "reported_price_wei": 1000000142,
+        "transaction": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d"
+      },
+      "next_nonce": 1,
+      "pending": {
+        "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b",
+        "day": "2026-11-25",
+        "fee_review": {
+          "gas_limit": 414080,
+          "l1_fee_allowance_wei": 0,
+          "max_fee_per_gas": 1000000028,
+          "maximum_cost_wei": 414080011594240,
+          "receipt_fee_policy": "included",
+          "schema": 1
+        },
+        "hash": "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35",
+        "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+        "nonce": 1,
+        "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+        "value": 0
+      },
+      "receipt_anchor": {
+        "hash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+        "nonce": 0,
+        "number": 119107325,
+        "timestamp": 1795636923
+      },
+      "retry_after": {},
+      "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+      "spent": {
+        "2026-11-25": 300814042715588
+      }
+    },
+    "mode": "ENOSPC",
+    "raw_sends_after": 2,
+    "raw_sends_before": 1,
+    "stage": "accepted_hash_ENOSPC"
+  },
+  {
+    "actual_errno": 13,
+    "actual_errno_name": "EACCES",
+    "after": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {\n    \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\": 1795636923\n  },\n  \"last_fee_observation\": {\n    \"cost_wei\": 300814042715588,\n    \"execution_price_wei\": 1000000142,\n    \"gas_used\": 300814,\n    \"l1_fee_wei\": 0,\n    \"receipt_fee_policy\": \"included\",\n    \"reported_price_wei\": 1000000142,\n    \"transaction\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\"\n  },\n  \"next_nonce\": 1,\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000028,\n      \"maximum_cost_wei\": 414080011594240,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": \"0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35\",\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 1,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": {\n    \"hash\": \"0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b\",\n    \"nonce\": 0,\n    \"number\": 119107325,\n    \"timestamp\": 1795636923\n  },\n  \"retry_after\": {},\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {\n    \"2026-11-25\": 300814042715588\n  }\n}\n",
+      "sha256": "d31b5905ae7be985bbb0e56d35dce8f7b086d43c27cfd10b273068aefe0ff725",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {
+          "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795636923
+        },
+        "last_fee_observation": {
+          "cost_wei": 300814042715588,
+          "execution_price_wei": 1000000142,
+          "gas_used": 300814,
+          "l1_fee_wei": 0,
+          "receipt_fee_policy": "included",
+          "reported_price_wei": 1000000142,
+          "transaction": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d"
+        },
+        "next_nonce": 1,
+        "pending": {
+          "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b",
+          "day": "2026-11-25",
+          "fee_review": {
+            "gas_limit": 414080,
+            "l1_fee_allowance_wei": 0,
+            "max_fee_per_gas": 1000000028,
+            "maximum_cost_wei": 414080011594240,
+            "receipt_fee_policy": "included",
+            "schema": 1
+          },
+          "hash": "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35",
+          "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+          "nonce": 1,
+          "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+          "value": 0
+        },
+        "receipt_anchor": {
+          "hash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+          "nonce": 0,
+          "number": 119107325,
+          "timestamp": 1795636923
+        },
+        "retry_after": {},
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {
+          "2026-11-25": 300814042715588
+        }
+      }
+    },
+    "before": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {\n    \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\": 1795636923\n  },\n  \"last_fee_observation\": {\n    \"cost_wei\": 300814042715588,\n    \"execution_price_wei\": 1000000142,\n    \"gas_used\": 300814,\n    \"l1_fee_wei\": 0,\n    \"receipt_fee_policy\": \"included\",\n    \"reported_price_wei\": 1000000142,\n    \"transaction\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\"\n  },\n  \"next_nonce\": 1,\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000028,\n      \"maximum_cost_wei\": 414080011594240,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": \"0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35\",\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 1,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": {\n    \"hash\": \"0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b\",\n    \"nonce\": 0,\n    \"number\": 119107325,\n    \"timestamp\": 1795636923\n  },\n  \"retry_after\": {},\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {\n    \"2026-11-25\": 300814042715588\n  }\n}\n",
+      "sha256": "d31b5905ae7be985bbb0e56d35dce8f7b086d43c27cfd10b273068aefe0ff725",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {
+          "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795636923
+        },
+        "last_fee_observation": {
+          "cost_wei": 300814042715588,
+          "execution_price_wei": 1000000142,
+          "gas_used": 300814,
+          "l1_fee_wei": 0,
+          "receipt_fee_policy": "included",
+          "reported_price_wei": 1000000142,
+          "transaction": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d"
+        },
+        "next_nonce": 1,
+        "pending": {
+          "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b",
+          "day": "2026-11-25",
+          "fee_review": {
+            "gas_limit": 414080,
+            "l1_fee_allowance_wei": 0,
+            "max_fee_per_gas": 1000000028,
+            "maximum_cost_wei": 414080011594240,
+            "receipt_fee_policy": "included",
+            "schema": 1
+          },
+          "hash": "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35",
+          "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+          "nonce": 1,
+          "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+          "value": 0
+        },
+        "receipt_anchor": {
+          "hash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+          "nonce": 0,
+          "number": 119107325,
+          "timestamp": 1795636923
+        },
+        "retry_after": {},
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {
+          "2026-11-25": 300814042715588
+        }
+      }
+    },
+    "expected_unchanged_checkpoint": {
+      "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 0,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {\n    \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\": 1795636923\n  },\n  \"last_fee_observation\": {\n    \"cost_wei\": 300814042715588,\n    \"execution_price_wei\": 1000000142,\n    \"gas_used\": 300814,\n    \"l1_fee_wei\": 0,\n    \"receipt_fee_policy\": \"included\",\n    \"reported_price_wei\": 1000000142,\n    \"transaction\": \"0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d\"\n  },\n  \"next_nonce\": 1,\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000028,\n      \"maximum_cost_wei\": 414080011594240,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": \"0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35\",\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 1,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": {\n    \"hash\": \"0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b\",\n    \"nonce\": 0,\n    \"number\": 119107325,\n    \"timestamp\": 1795636923\n  },\n  \"retry_after\": {},\n  \"sender\": \"0x1969df8300e3ad62650c37cf2bb7964f055ba203\",\n  \"spent\": {\n    \"2026-11-25\": 300814042715588\n  }\n}\n",
+      "sha256": "d31b5905ae7be985bbb0e56d35dce8f7b086d43c27cfd10b273068aefe0ff725",
+      "state": {
+        "accounting_model": "shared-pools-v2",
+        "accounting_version": 7,
+        "bucket_cursor": 0,
+        "chain_id": 4663,
+        "contracts": {
+          "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+          "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+          "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+          "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+          "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+          "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+          "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+          "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+          "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+          "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+          "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+          "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+          "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+        },
+        "execution_price_version": 1,
+        "fee_intake_version": 1,
+        "last": {
+          "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795636923
+        },
+        "last_fee_observation": {
+          "cost_wei": 300814042715588,
+          "execution_price_wei": 1000000142,
+          "gas_used": 300814,
+          "l1_fee_wei": 0,
+          "receipt_fee_policy": "included",
+          "reported_price_wei": 1000000142,
+          "transaction": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d"
+        },
+        "next_nonce": 1,
+        "pending": {
+          "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b",
+          "day": "2026-11-25",
+          "fee_review": {
+            "gas_limit": 414080,
+            "l1_fee_allowance_wei": 0,
+            "max_fee_per_gas": 1000000028,
+            "maximum_cost_wei": 414080011594240,
+            "receipt_fee_policy": "included",
+            "schema": 1
+          },
+          "hash": "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35",
+          "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+          "nonce": 1,
+          "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+          "value": 0
+        },
+        "receipt_anchor": {
+          "hash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+          "nonce": 0,
+          "number": 119107325,
+          "timestamp": 1795636923
+        },
+        "retry_after": {},
+        "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+        "spent": {
+          "2026-11-25": 300814042715588
+        }
+      }
+    },
+    "fault": {
+      "free_before": 1044480,
+      "mode": "EACCES",
+      "parent_mode": "0o500"
+    },
+    "memory_after": {
+      "accounting_model": "shared-pools-v2",
+      "accounting_version": 7,
+      "bucket_cursor": 0,
+      "chain_id": 4663,
+      "contracts": {
+        "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+        "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+        "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+        "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+        "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+        "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+        "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+        "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+        "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+        "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+        "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+        "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+        "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+        "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+        "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+        "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+        "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+        "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+        "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+        "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+        "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+      },
+      "execution_price_version": 1,
+      "fee_intake_version": 1,
+      "last": {
+        "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795636923
+      },
+      "last_fee_observation": {
+        "cost_wei": 300814042715588,
+        "execution_price_wei": 1000000142,
+        "gas_used": 300814,
+        "l1_fee_wei": 0,
+        "receipt_fee_policy": "included",
+        "reported_price_wei": 1000000142,
+        "transaction": "0x12f66f701b19e70b1faf84175233640cfcbaa7168f18338ed429133b4c4d537d"
+      },
+      "next_nonce": 1,
+      "pending": {
+        "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b073f7b",
+        "day": "2026-11-25",
+        "fee_review": {
+          "gas_limit": 414080,
+          "l1_fee_allowance_wei": 0,
+          "max_fee_per_gas": 1000000028,
+          "maximum_cost_wei": 414080011594240,
+          "receipt_fee_policy": "included",
+          "schema": 1
+        },
+        "hash": "0xbbf220ba3647c2ce6593ceaa3928f260486ca851fbf780869b8f7a2429400d35",
+        "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+        "nonce": 1,
+        "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+        "value": 0
+      },
+      "receipt_anchor": {
+        "hash": "0x6026b25825f5465adbda186fb80f538ccdd12662fec389a133b561ae25313f6b",
+        "nonce": 0,
+        "number": 119107325,
+        "timestamp": 1795636923
+      },
+      "retry_after": {},
+      "sender": "0x1969df8300e3ad62650c37cf2bb7964f055ba203",
+      "spent": {
+        "2026-11-25": 300814042715588
+      }
+    },
+    "mode": "EACCES",
+    "raw_sends_after": 2,
+    "raw_sends_before": 2,
+    "stage": "receipt_EACCES"
+  }
+]

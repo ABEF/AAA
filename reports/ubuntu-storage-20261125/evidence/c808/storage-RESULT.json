@@ -1,0 +1,19 @@
+{
+  "RPC_requests": 2265,
+  "actual_paid_transactions": 2,
+  "actual_signed_envelope_predecoded": false,
+  "controlled_copied_state_only": true,
+  "fault_attempts": 0,
+  "feature": "storage",
+  "gateway_refusals": [],
+  "last_model_RPC_failure": null,
+  "last_stage": "receipt_EACCES",
+  "new_seal": false,
+  "postforward_exact_transaction_verification_required": true,
+  "raw_attempts": 2,
+  "raw_forwarded": 2,
+  "setup_transactions": 5,
+  "status": "passed",
+  "stock_transactions": 2,
+  "storage_boundaries": 6
+}

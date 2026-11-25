@@ -1,0 +1,85 @@
+{
+  "ABI_rows": 1021,
+  "F6_source_dependency_control_counts": [
+    61,
+    39,
+    4
+  ],
+  "Q06_P20_P21_closed": false,
+  "RPC_limit": 6000,
+  "RPC_requests": 2265,
+  "ambient_observer_invocation_changes": 1,
+  "boundaries": [
+    "pre-signing intent publication",
+    "accepted signer hash publication",
+    "canonical paid-receipt persistence"
+  ],
+  "c807_uploaded_only_not_installed_or_run": true,
+  "c808_stopped_empty_cgroup": true,
+  "canonical_spend_wei": "300814051439194",
+  "current_production_inventory": [
+    182,
+    2003,
+    278
+  ],
+  "date": "2026-11-25",
+  "direct_stock_reconstruction_not_full_daemon_restart": true,
+  "errno_names": [
+    "EACCES",
+    "ENOSPC"
+  ],
+  "final_nonce": 2,
+  "five_original_service_states_preserved": true,
+  "independent_saved_vector_checks": "8passed",
+  "limits_unchanged": {
+    "configured_harvest_seconds": 3600,
+    "configured_poll_seconds": 240,
+    "confirmations": 12,
+    "daily_cost_wei": "50000000000000000",
+    "gas": 24000000,
+    "gas_price_wei": 5000000000,
+    "padding_percent": 25,
+    "single_cost_wei": "10000000000000000"
+  },
+  "new_distinct_unit_methods": 7,
+  "new_seals": 0,
+  "nonambient_host_differences": 0,
+  "physical_disk_full_power_loss_ext4_durability_qualified": false,
+  "private_tmpfs_bytes": 1048576,
+  "production_approved": false,
+  "production_changes": [
+    "sanitized original cycle error before possibly failing health write",
+    "fixed allowlisted os_errno labels",
+    "validated signer-reported hash candidate on failed persistence"
+  ],
+  "production_monitor_sha256": "5ab6bbb20eea21e301d81d2e829a827594079561e2f10770336ec8585b234631",
+  "public_transactions": 0,
+  "raw_resends": 0,
+  "real_transactions": 2,
+  "runtime_limit_seconds": 900,
+  "runtime_seconds_approximately": 38.3,
+  "six_OS_failures": true,
+  "source_baseline": "352ebe0aa479a10f2220857edadbf049720616c5",
+  "unchanged": [
+    "authorization",
+    "financial rights",
+    "journal codec",
+    "persistence ordering",
+    "automatic no-resend rules",
+    "gas and fee limits",
+    "all Solidity F6 source maps",
+    "existing environments",
+    "frontend history semantics"
+  ],
+  "unchanged_test_methods_rerun": 0,
+  "unit_method_source_stages": [
+    {
+      "count": 5,
+      "monitor_sha256": "5dda81c9829fdb4ef2d3cd2943f932ce9a78390184a70b05ed6986c29f804a32"
+    },
+    {
+      "count": 2,
+      "monitor_sha256": "5ab6bbb20eea21e301d81d2e829a827594079561e2f10770336ec8585b234631"
+    }
+  ]
+}

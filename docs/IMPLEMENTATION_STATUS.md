@@ -1,16 +1,22 @@
 # Feature and evidence reference
 
-[Ubuntu supervisor recovery](../reports/ubuntu-supervisor-20261125/REVIEW.md)
-adds two distinct stock-keeper/Cast fault checks: saved-hash recovery after a
-native watchdog restart (2,932 RPC), and real Cast cleanup after a manual main
-kill, hashless refusal, explicit stock hash resolution and healthy resume
-(2,357 RPC). Independent saved-vector checks pass. All nine new fixed unit names
-are stopped; five original service states match. No production code, profile,
-financial limit or unchanged test changes. Earlier [key replacement](../reports/ubuntu-key-rotation-20261124/REVIEW.md)
-and [hybrid LP evidence](../reports/ubuntu-hybrid-20261124/REVIEW.md) retain their scopes.
-Keep Q06/P20/P21 open for additional transports/storage faults, restart storms,
-off-host fencing/restore, alerts, sustained operation and release approval.
-Existing chains, sites, journals and the user-paused heartbeat stay unchanged.
+[Ubuntu keeper storage recovery](../reports/ubuntu-storage-20261125/REVIEW.md)
+passes six actual ENOSPC/EACCES refusals at intent, reported-hash and paid-receipt
+publication in2,265/6,000RPC with two original transactions and no resend.
+Seven distinct NEW diagnostics methods pass in separate5+2 source stages;
+independent saved-vector review passes. Original sanitized cycle errors now
+precede a possibly failing health write; six fixed os_errno labels and a validated
+reported_transaction candidate help recovery without exposing signer output.
+Accounting, authority, persistence order, financial limits and F6 stay unchanged.
+Current Python inventory is182files/2,003definitions/278lambdas; normal verification
+uses the [new inventory](../reports/ubuntu-storage-20261125/FUNCTION_INVENTORY.json).
+The private1MiBtmpfs check is direct stock reconstruction, not physical disk,
+power-loss durability or full daemon qualification. Its unit stops; five original
+service states match. Previous [supervisor](../reports/ubuntu-supervisor-20261125/REVIEW.md)
+and key/hybrid evidence retain their scopes. Existing environments/journals stay
+untouched; matching source/checker adoption needs separate review. Q06/P20/P21,
+off-host restore/fencing, alerts, restart storms, sustained operation and release
+approval remain open. The desktop heartbeat stays user-paused.
 
 [Wallet checkpoint follow-through](../reports/wallet-latency-20261123/REVIEW.md) preserves full admission,
 exact rights and all guards while removing repeated tree walks/accounting decode.
@@ -46,7 +52,7 @@ Adopt matching keeper/checker code with original journals preserved. These two
 Python fixes alone change no checkpoint semantic source. Earlier API/ABI source
 adoption still requires newly reviewed matching checkpoints. Sites, services,
 Anvil8902, signer/null public configurations and paused heartbeat are preserved.
-Current [inventory](../reports/ubuntu-complete-20261124/FUNCTION_INVENTORY.json):
+Current [inventory](../reports/ubuntu-storage-20261125/FUNCTION_INVENTORY.json):
 182Python files/2,003definitions/278lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
 Actual F6/V10 consumer, provider, market and production approval stay open.
 
