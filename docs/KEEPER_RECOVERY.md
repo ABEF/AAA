@@ -208,6 +208,42 @@ The state file preserves deployment identity, next nonce, pending intent/hash, d
 
 ## Stalled RPC and progress watchdog
 
+The [25 November stock-daemon record](../reports/ubuntu-supervisor-20261125/REVIEW.md)
+adds an actual unfinished chunk-framing watchdog restart and a separate active
+Cast/manual-main-kill check. Exact pending bytes and the lock inode survive;
+old groups are observed empty before replacement. Saved-hash recovery is
+automatic; a hashless intent correctly requires explicit identity reconciliation.
+Both resume a fresh healthy cycle. These finite proofs do not close the broader
+DNS/storage/off-host/alert/soak requirements below.
+
+### Stop and recover without another submission
+
+| Observed state | Operator action | Required evidence |
+| --- | --- | --- |
+| Stalled managed keeper | Stop the actual reviewed service as a whole group; inspect its effective unit, main PID and recursive cgroup before another writer starts. Preserve config, journals and logs. | Old main/signer generations dead; lock released; pending bytes intact. |
+| Original hash saved | Resume only the same reviewed service/configuration/journal. Let stock recovery inspect that hash. | Canonical receipt, signed identity, confirmation depth, nonce, anchor and cost booked once. |
+| Intent exists but no hash | Keep live signing stopped. Independently identify the accepted transaction; use the exact original configuration and stock resolver below. | Identity/nonce/calldata/value/fee review match; an absent hash is not proof that broadcast failed. |
+| Exact pending transaction identified | Run the resolver without live signing, inspect its exit and updated journal, then resume one reviewed service. | Pending reconciled; nonce/spend/anchor consistent; no resend or guessed replacement. |
+| No trustworthy transaction identity | Keep blocked and investigate; retain original evidence and spending commitments. | Do not clear intent, reset nonce/budgets or initialize the used sender again. |
+
+The explicit resolver command is:
+
+```sh
+python3 -m keeper.monitor --config ORIGINAL_CONFIG_PATH --resolve-pending EXACT_ACCEPTED_TRANSACTION_HASH
+```
+
+Do not add `--live`. The resolver still validates the original configuration and
+transaction, may wait/refuse when evidence is incomplete, and writes legitimate
+pending/receipt/nonce/spend recovery. It sends no replacement transaction.
+Stopping a signer cannot cancel a transaction the node already accepted.
+
+Temporary systemd units may be garbage-collected after a clean stop. The new lab
+captures successful resolver completion synchronously before that collection and
+recreates only its exact reviewed temporary keeper definition with the same
+journal/configuration and append log paths. This is lab tooling, not approval to
+recreate an unknown production unit or discard its overrides. Persistent installed
+services must use their actual reviewed definitions.
+
 A peer can trickle HTTP headers/body, or DNS can stall, beyond urllib's socket
 inactivity timeout. Without an outer supervisor, retries cannot begin until
 that call returns. API workers have a separate killable30 second deadline; a

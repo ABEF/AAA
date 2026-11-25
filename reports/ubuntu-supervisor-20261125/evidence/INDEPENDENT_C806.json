@@ -1,0 +1,279 @@
+{
+  "checks": {
+    "NFT_LP_rights": {
+      "proof": {
+        "main_LP_identity_liquidity_ticks_custody_projection_equal": true,
+        "money_projection_differences": [],
+        "money_projection_equal": true,
+        "scope": "saved getter projections; no new allocation/LP-flow requalification",
+        "two_NFT_owner_share_membership_royalty_projections_equal": true
+      },
+      "status": "passed"
+    },
+    "accepted_hashless_restart_block": {
+      "proof": {
+        "accepted_hash": "0xf09ab753db7cc646059e8ced61963c7950561f99032a4869966ce25a3f6e270b",
+        "four_raw_journal_snapshots_equal": true,
+        "hashless_journal_sha256": "00d9fc3a1d8e34faf66f527fd4c6aff97bba3308a262e0f4a937e1d3558e0a28",
+        "reply_was_not_returned": true,
+        "scope": "accepted original transaction remains valid; no transactional cancellation",
+        "stock_restart_blocked_new_signing": true
+      },
+      "status": "passed"
+    },
+    "actual_Cast_manual_main_kill_cleanup": {
+      "proof": {
+        "actual_Cast_generation_captured_alive": true,
+        "automatic_restarts": 1,
+        "manager_warning_messages": [],
+        "manual_main_SIGKILL": true,
+        "observed_old_processes": 2,
+        "same_lock_inode_and_exclusive_empty_probe": true,
+        "separately_sessioned_Cast_dead_before_new_main": true,
+        "universal_fencing_or_transaction_cancellation": false,
+        "watchdog_experiment": false
+      },
+      "status": "passed"
+    },
+    "authority_projection_only": {
+      "proof": {
+        "before_after_role_getters": "not supplied; no authority equality inferred",
+        "governance_or_guardian_authority_added": "not inferred",
+        "permissionless_harvest_is_authorization_proof": false,
+        "saved_grant_envelope_and_event_consistent": true,
+        "setup_canonical_header": "not supplied for this grant; receipt projection/source bound"
+      },
+      "status": "passed"
+    },
+    "canonical_paid_recovery_once": {
+      "proof": {
+        "accepted_hash": "0xf09ab753db7cc646059e8ced61963c7950561f99032a4869966ce25a3f6e270b",
+        "canonical_price_wei": 8,
+        "gas_used": 300814,
+        "nonce_after": 1,
+        "nonce_before": 0,
+        "one_original_source_bound_raw_send_only": true,
+        "original_maximum_cost_wei": 414080002898560,
+        "paid_wei": 2406512,
+        "recovered_digest": "reported journal_sha256 only until final raw journal supplied",
+        "reported_price_wei": 8
+      },
+      "status": "passed"
+    },
+    "explicit_stock_resolver_and_normal_resume": {
+      "proof": {
+        "independent_log_prefix_bytes_unchanged": "not supplied; append policy is not a byte-prefix comparison",
+        "nonsigning_argv_verified": true,
+        "normal_keeper_recreated_after_transient_GC": true,
+        "request_is_completion": "systemd-run --wait returned success; not merely an asynchronous start request",
+        "resolved_journal_sha256": "aa86deffe102d0378a9e79dcf54187c5be42d429ecbb1aefd39c86fa39576965",
+        "resolver_property_load_state_after_completion": "not-found",
+        "restart_count_scope": "one automatic signal restart before intentional stop; recreated unit may reset NRestarts",
+        "root_owned_manager_wait_completed_returncode": 0,
+        "same_existing_append_log_paths_source_and_policy_bound": true,
+        "stock_resolver_exact_accepted_hash": "0xf09ab753db7cc646059e8ced61963c7950561f99032a4869966ce25a3f6e270b"
+      },
+      "status": "passed"
+    },
+    "final_native_cleanup": {
+      "proof": {
+        "all_three_fixed_native_cgroups_finally_empty": true,
+        "collected_unit_not_found": "acceptable only with empty fixed recursive cgroup census"
+      },
+      "status": "passed"
+    },
+    "frozen_sources": {
+      "proof": {
+        "build_receipt_sha256": "28aadac237842f90f44164f91056c1a606bedcbd2e54ccafcda840aa13f9be0f",
+        "bundle_sha256": "eae95d0a6f45c15092850e960eb46723ec9ef25e16beada8c51040ddc7e82952",
+        "companion_verifier_sha256": "4cd9e8723d56d0be0ca531df6c86d1fac02c8bf402aef907b9f37bca186d1265",
+        "helper_pins": {
+          "job_cases.py": {
+            "bytes": 15671,
+            "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7"
+          },
+          "keeper_jobs.py": {
+            "bytes": 9477,
+            "sha256": "363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4"
+          },
+          "keeper_runtime.py": {
+            "bytes": 37193,
+            "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+          },
+          "model_service.py": {
+            "bytes": 22541,
+            "sha256": "58d8d510cb1aae1f76cd7358ae1aa27c848a90f8b793ca88851f08318ba1116c"
+          },
+          "model_service_base.py": {
+            "bytes": 23311,
+            "sha256": "9054e71cd737a95185dc9228d7ccfac114b8bb227df0baddab1953f2fef23bda"
+          },
+          "native_control.py": {
+            "bytes": 41965,
+            "sha256": "fe476c1f95d1c72a9f604889c500f501d3e7fe951714edd7806e2ae406d72765"
+          }
+        },
+        "production_members": 190,
+        "source_head": "7f862557df8e8cbaf8494c7b1c12f18e07be436d"
+      },
+      "status": "passed"
+    },
+    "optional_final_raw_journal": {
+      "proof": {
+        "all_settled_critical_fields_equal": true,
+        "capture_after_stop": "requires separate final native-stop vector",
+        "equals_reported_recovered_digest": false,
+        "final_sha256": "e93a136d80340bd18d3c1efe2d4cd14c091392c809c0f9f7f357c36ed888517a",
+        "other_top_level_fields_changed_after_normal_cycle": [
+          "conversion_turn"
+        ],
+        "sidecar_supplied": true
+      },
+      "status": "passed"
+    }
+  },
+  "input_files": {
+    "FINAL_JOURNAL.raw": {
+      "bytes": 2675,
+      "identical_copies": 1,
+      "sha256": "e93a136d80340bd18d3c1efe2d4cd14c091392c809c0f9f7f357c36ed888517a"
+    },
+    "FINAL_JOURNAL.sha256": {
+      "bytes": 64,
+      "identical_copies": 1,
+      "sha256": "4fb27767e7c5024e829529924709c7596d2623c4a0dfa6efd8dae975b3fed7e6"
+    },
+    "case-CAST_CLIENT_CLOSED.json": {
+      "bytes": 319,
+      "identical_copies": 1,
+      "sha256": "bc982ab22b2b0dd99f626bbf01421f3fad0799bed6a0a4f0ab80b5e957b792d0"
+    },
+    "case-CAST_REPLY_HELD.json": {
+      "bytes": 7542,
+      "identical_copies": 1,
+      "sha256": "5d00b466a0f0972ca91dd3ef74b7dd8fa28f0d7213dcba03b6fe1dbc9c14b12e"
+    },
+    "case-FINANCIAL_AFTER.json": {
+      "bytes": 1727,
+      "identical_copies": 1,
+      "sha256": "f2bf79b0c707fb5e35a9ac99860f618fc0066b2a1cafa0ace0a4936e50b976b7"
+    },
+    "case-FINANCIAL_BEFORE.json": {
+      "bytes": 1727,
+      "identical_copies": 1,
+      "sha256": "f2bf79b0c707fb5e35a9ac99860f618fc0066b2a1cafa0ace0a4936e50b976b7"
+    },
+    "case-HASHLESS_RESTART_BLOCKED.json": {
+      "bytes": 7568,
+      "identical_copies": 1,
+      "sha256": "cfb58ce5253938294782a29f74ec26ac541f8e03b284554565bf9072ae61b44a"
+    },
+    "case-HEALTHY_NORMAL_CYCLE.json": {
+      "bytes": 11019,
+      "identical_copies": 1,
+      "sha256": "7db38b055845f41d5cf52a38d1f75dbbcc497981746050975c36a80caf2eb296"
+    },
+    "case-INITIAL_JOURNAL.json": {
+      "bytes": 3752,
+      "identical_copies": 1,
+      "sha256": "06d9fd10594cd887fd9bfc425282bf5703850ff1de2190655582b960534a1875"
+    },
+    "case-RAW_REVIEWS.json": {
+      "bytes": 799,
+      "identical_copies": 1,
+      "sha256": "f4301d3b319c1a22c0927b0833b7984575d67503e197269c4a061bd492f991a6"
+    },
+    "case-RECEIPTS.json": {
+      "bytes": 3934,
+      "identical_copies": 1,
+      "sha256": "6561a441d5eb195b16ab10fbd2fdde89be87ea0916c679c0a2be1dd88bdc48e6"
+    },
+    "case-RECOVERED_JOURNAL.json": {
+      "bytes": 10491,
+      "identical_copies": 1,
+      "sha256": "da98e7431f4fd4f1505079a1dc703e798ac35df86d7c44a28bff703501ce3010"
+    },
+    "case-RESULT.json": {
+      "bytes": 477,
+      "identical_copies": 1,
+      "sha256": "987babedd4f5d2d12b325e46ab65610ba2fea0a4e6e23c000d3a458ddaf196cf"
+    },
+    "case-SETUP.json": {
+      "bytes": 9470,
+      "identical_copies": 1,
+      "sha256": "e07dac891f6e13bf840445bf93f4625e842f27c45838cbd44721819b2b6b5b51"
+    },
+    "model-COMPLETE.json": {
+      "bytes": 588,
+      "identical_copies": 1,
+      "sha256": "5f2c59e38a630e3855c00f212f96965fc31e2059dc7747135ddfb27876f2563d"
+    },
+    "model-READY.json": {
+      "bytes": 1186,
+      "identical_copies": 1,
+      "sha256": "28dc6a3df10943eb0a601379e28947bc1f888af636f7dfd0e2250c25971aa271"
+    },
+    "model-RESULT.json": {
+      "bytes": 885,
+      "identical_copies": 1,
+      "sha256": "6a31c07e0a5ab410050b3c37f1f9a26f2b6fc31a1cfb0448e1f99e133d7ffa33"
+    },
+    "native-BASELINE.json": {
+      "bytes": 14620,
+      "identical_copies": 1,
+      "sha256": "b0a2826bb70db37be05ddd26c841741707514251358ed07ea63122f94e306712"
+    },
+    "native-JOURNAL_DURING_RESTART.json": {
+      "bytes": 3150,
+      "identical_copies": 1,
+      "sha256": "74718b888b85677415230d726a07d3d9eb9ec1a5cbac288a959ee7e837478b6d"
+    },
+    "native-NATIVE_RESTART_PROOF.json": {
+      "bytes": 73613,
+      "identical_copies": 1,
+      "sha256": "670e1c1985504c41a9fc50363e6193150c49274415bc417f4618dcb6a82ab712"
+    },
+    "native-NORMAL_RESUME.json": {
+      "bytes": 12471,
+      "identical_copies": 1,
+      "sha256": "58282694a5d610212c7bd96c71bf7166b84849be3a40514a537cb71364fad5a7"
+    },
+    "native-RESOLUTION_COMPLETE.json": {
+      "bytes": 3817,
+      "identical_copies": 1,
+      "sha256": "108617298b5a9a3b9e715d60e557759086dbeb6d45bf5e283c2b773bd05efb7b"
+    },
+    "native-RESOLUTION_REQUEST.json": {
+      "bytes": 3817,
+      "identical_copies": 1,
+      "sha256": "108617298b5a9a3b9e715d60e557759086dbeb6d45bf5e283c2b773bd05efb7b"
+    },
+    "native-SIGNER_KILL.json": {
+      "bytes": 9823,
+      "identical_copies": 1,
+      "sha256": "60ddc5acdf879cfe9e4940ee37b0b36437561c8ed69e2ec3b5c258417e3c1658"
+    },
+    "native-STOP_KEEPER.json": {
+      "bytes": 3802,
+      "identical_copies": 1,
+      "sha256": "6ff28400391114d3c4db39b6679ae1362dd036d589a1b3858f2e6212afbdf407"
+    }
+  },
+  "limits": [
+    "Manual main SIGKILL while actual Cast awaits its withheld accepted reply; not a watchdog/90s Cast-timeout experiment.",
+    "Original accepted transaction remains valid; a disconnected signer does not cancel EVM work.",
+    "Hashless intent blocks ordinary restart until explicit stock resolution of that exact independently captured hash.",
+    "Collected transient-unit recreation requires its own root-owned completion and append-only log evidence.",
+    "Saved role grant is a projection; no absent role-getter equality or authorization is inferred from permissionless harvest.",
+    "Source-bound counters establish one finite send; no global mempool/provider/host guarantee is claimed.",
+    "Off-host fencing, storage faults, restart storms, alerts, soak, provider fees and release approval remain open.",
+    "Existing-service/heartbeat preservation requires a separate host before/after comparison."
+  ],
+  "network_calls": 0,
+  "old_test_bodies_run": 0,
+  "production_approved": false,
+  "runtime_actions": 0,
+  "schema": 1,
+  "stage": "c806_saved_vectors_independent_review",
+  "status": "passed"
+}

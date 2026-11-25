@@ -1,19 +1,21 @@
 # PoPL operator manual
 
-## Ubuntu keeper operating evidence — 24 November 2026
+## Ubuntu keeper operating evidence — 25 November 2026
 
-The [key-replacement record](../reports/ubuntu-key-rotation-20261124/REVIEW.md)
-checks a genuinely pending protected call, governance revocation before inclusion,
-reverted-receipt recovery without resend and a separate new-key success. Per-key
-journals stay separate; old cost/nonce evidence remains. Earlier hashless/node
-refusals and the fixture-only fee correction are explicit. No source, fee profile,
-financial guard or production limit changes. This direct recovery check is not
-supervisor/off-host fencing or whole operating approval.
+The [supervisor record](../reports/ubuntu-supervisor-20261125/REVIEW.md) now
+verifies two separate stock-keeper/Cast cases: a real stalled-body watchdog
+restart with saved-hash recovery, and a deliberate main-process kill while real
+Cast is active. The latter retains the exact hashless intent, refuses a resend,
+then uses explicit stock resolution of the node's accepted hash before healthy
+resume. Neither case changes production code, safeguards or limits.
 
-See [pending-key replacement](#pending-transactions-during-keeper-key-replacement)
-and the [earlier hybrid rehearsal](../reports/ubuntu-hybrid-20261124/REVIEW.md).
-All three new rotation labs are stopped and original service states preserved;
-no running environment is adopted.
+The exact journals, native process/lock evidence, canonical costs and final
+healthy cycles pass independent offline verification. All new units stop;
+original services/sites/chains remain unchanged. This does not approve DNS,
+storage failures, restart storms, off-host fencing/restore, alerts or soak.
+See the [stop/recover procedure](KEEPER_RECOVERY.md#stalled-rpc-and-progress-watchdog),
+[prior key replacement](../reports/ubuntu-key-rotation-20261124/REVIEW.md) and
+[hybrid LP rehearsal](../reports/ubuntu-hybrid-20261124/REVIEW.md).
 
 ## Ubuntu keeper follow-through — 24 November 2026
 

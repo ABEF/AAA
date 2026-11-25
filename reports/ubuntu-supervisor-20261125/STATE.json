@@ -1,0 +1,82 @@
+{
+  "ABI_rows": 1021,
+  "Python_files_named_definitions_lambdas": [
+    182,
+    2003,
+    278
+  ],
+  "Q06_P20_P21_closed": false,
+  "all_nine_new_fixed_unit_names_stopped": true,
+  "ambient_observer_invocation_changes": 1,
+  "c804": {
+    "RPC_limit": 6000,
+    "RPC_requests": 2932,
+    "fresh_healthy_cycle": true,
+    "independent_review": "passed",
+    "saved_hash_recovered": true,
+    "watchdog_restart": true
+  },
+  "c805": {
+    "installed_but_not_started": true,
+    "static_transient_unit_GC_risk": "corrected before execution in c806; original installed bytes retained"
+  },
+  "c806": {
+    "RPC_limit": 6000,
+    "RPC_requests": 2357,
+    "actual_Cast_child_cleanup": true,
+    "collected_native_unit_recreated": true,
+    "explicit_stock_hash_resolution": true,
+    "fresh_healthy_cycle": true,
+    "hashless_restart_refuses_resend": true,
+    "independent_review": "passed",
+    "manual_main_SIGKILL_not_watchdog": true
+  },
+  "current_copied_production_members": 190,
+  "date": "2026-11-25",
+  "existing_environments_modified": false,
+  "fixture_containment_each_lab": {
+    "RPC_requests": 6000,
+    "combined_CPU_percent": 150,
+    "combined_memory_bytes": 2147483648,
+    "combined_tasks": 128,
+    "one_second_empty_block_mining": true,
+    "runtime_seconds": 900
+  },
+  "frozen_F6_project_dependency_control_counts": [
+    61,
+    39,
+    4
+  ],
+  "limits_unchanged": {
+    "Cast_total_output_bytes": 65536,
+    "confirmations": 12,
+    "daily_cost_wei": "50000000000000000",
+    "gas": 24000000,
+    "gas_price_wei": 5000000000,
+    "harvest_seconds": 3600,
+    "padding_percent": 25,
+    "poll_seconds": 240,
+    "restart_seconds": 30,
+    "stop_seconds": 120,
+    "transaction_cost_wei": "10000000000000000",
+    "watchdog_seconds": 120
+  },
+  "new_distinct_runtime_partitions": 2,
+  "new_seals": 0,
+  "non_ambient_host_differences": 0,
+  "original_services_checked": 5,
+  "previously_stopped_labs_checked": 7,
+  "production_approved": false,
+  "production_source_or_policy_changes": false,
+  "public_transactions": 0,
+  "remaining": [
+    "DNS and further malformed/slow transports",
+    "storage/fsync/permissions failures",
+    "restart storms",
+    "off-host fencing/restore",
+    "alert delivery and sustained combined scheduling",
+    "actual provider/fees/market and independent release approval"
+  ],
+  "source_commit": "7f862557df8e8cbaf8494c7b1c12f18e07be436d",
+  "unchanged_test_bodies_rerun": 0
+}

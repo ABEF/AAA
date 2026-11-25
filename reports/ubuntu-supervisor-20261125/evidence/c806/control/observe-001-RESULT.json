@@ -1,0 +1,10 @@
+{
+  "hashless_restart_block_available": false,
+  "new_invocation_seen": true,
+  "old_empty_seen": true,
+  "phase": "native_observed",
+  "proof_available": true,
+  "samples_added": 6,
+  "samples_total": 6,
+  "watchdog_experiment": false
+}

@@ -1,0 +1,393 @@
+{
+  "all_fixed_owned_cgroups_empty": true,
+  "all_fixed_owned_units_stopped": true,
+  "journal": {
+    "bytes": 2675,
+    "dev": 2049,
+    "ino": 906649,
+    "mode": "0o600",
+    "sha256": "755033d5a1effd8967224d3d887d4a7cfe4ecb19fb7176713d33e1793842e689",
+    "uid": 65534
+  },
+  "journal_path": "/opt/popl-ubuntu-supervisor-20261125-c804/runtime/run-001/model/supervisor/actor/state.json",
+  "lab": "/opt/popl-ubuntu-supervisor-20261125-c804",
+  "only_exact_public_journal_exported": true,
+  "phase": "final_stopped_journal",
+  "pins": {
+    "bundle_sha256": "ec23d1fff6f17bb3e3f29446e81223763a1ff1134737107e743cbe3c902e710e",
+    "controller_sha256": "3d5f6d2b79e604c442c5c6ded1ef04e2f5feb2dbb2c117fecdbf9a90981a40f4",
+    "lab": "/opt/popl-ubuntu-supervisor-20261125-c804",
+    "manifest_sha256": "2f43ef13cc3679b8fdc26546234618bc381205416a93db3f3c0a2f13a415f0dd",
+    "native_sha256": "cdc34179f146fedd19d13e3e7fdcbbe1efce9719d800c63148e6971d1069d18f",
+    "source_manifest_sha256": "4a1812fc018799f0d71d20f681ad73cecc593e69fe6b25736dd1c759923f060a",
+    "variant": "body"
+  },
+  "read_only": true,
+  "root_marker_sha256": "33365710c284472bc6af3471bd5f550a6d8edb358b18934a40146ac12561ce20",
+  "schema": 1,
+  "units_after": {
+    "popl-ubuntu-supervisor-20261125-c804-keeper.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c804-keeper.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c804-keeper.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    },
+    "popl-ubuntu-supervisor-20261125-c804-model.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c804-model.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c804-model.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    },
+    "popl-ubuntu-supervisor-20261125-c804-resolve.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c804-resolve.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c804-resolve.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    },
+    "popl-ubuntu-supervisor-20261125-c805-keeper.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c805-keeper.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c805-keeper.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    },
+    "popl-ubuntu-supervisor-20261125-c805-model.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c805-model.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c805-model.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    },
+    "popl-ubuntu-supervisor-20261125-c805-resolve.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c805-resolve.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c805-resolve.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    },
+    "popl-ubuntu-supervisor-20261125-c806-keeper.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c806-keeper.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c806-keeper.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    },
+    "popl-ubuntu-supervisor-20261125-c806-model.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c806-model.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c806-model.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    },
+    "popl-ubuntu-supervisor-20261125-c806-resolve.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c806-resolve.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c806-resolve.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    }
+  },
+  "units_before": {
+    "popl-ubuntu-supervisor-20261125-c804-keeper.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c804-keeper.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c804-keeper.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    },
+    "popl-ubuntu-supervisor-20261125-c804-model.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c804-model.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c804-model.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    },
+    "popl-ubuntu-supervisor-20261125-c804-resolve.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c804-resolve.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c804-resolve.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    },
+    "popl-ubuntu-supervisor-20261125-c805-keeper.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c805-keeper.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c805-keeper.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    },
+    "popl-ubuntu-supervisor-20261125-c805-model.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c805-model.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c805-model.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    },
+    "popl-ubuntu-supervisor-20261125-c805-resolve.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c805-resolve.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c805-resolve.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    },
+    "popl-ubuntu-supervisor-20261125-c806-keeper.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c806-keeper.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c806-keeper.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    },
+    "popl-ubuntu-supervisor-20261125-c806-model.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c806-model.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c806-model.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    },
+    "popl-ubuntu-supervisor-20261125-c806-resolve.service": {
+      "cgroup": {
+        "exists": false,
+        "fixed_path": "/system.slice/popl-ubuntu-supervisor-20261125-c806-resolve.service",
+        "groups": [],
+        "pids": []
+      },
+      "properties": {
+        "ActiveState": "inactive",
+        "ControlGroup": "",
+        "ExecMainStatus": "0",
+        "Id": "popl-ubuntu-supervisor-20261125-c806-resolve.service",
+        "InvocationID": "",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "NRestarts": "0",
+        "Result": "success",
+        "SubState": "dead"
+      }
+    }
+  },
+  "variant": "body"
+}

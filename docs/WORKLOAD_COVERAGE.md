@@ -78,7 +78,7 @@ sequences and source-bound evidence. No inventory count is a dynamic pass rate.
 - 1,056 implemented project Solidity definitions and29 modifiers from the
   authenticated compiler AST;511 bodyless declarations remain separately labelled.
 - Eight internal-only objects are included, beyond the public ABI catalogue.
-- 182 production Python files and2,002 named lexical definitions:1,819 functions
+- 182 production Python files and2,003 named lexical definitions:1,820 functions
   and183 classes, including nested helpers. The [current anonymous-code inventory](../reports/wallet-stack-20261123/ANONYMOUS_CODE_INVENTORY.json)
   records278 lambdas and2 named project Yul helpers. Earlier supplements retain
   their own source scope. Inventory does not establish execution coverage.
@@ -95,7 +95,7 @@ running application modules, tests, RPC or signing. Preserve the unrelated dirty
 fork runner: its published HEAD blob is inventoried instead of adopting it.
 
 ```text
-python scripts/build-workload-inventory.py --check reports/wallet-stack-20261123/FUNCTION_INVENTORY.json
+python scripts/build-workload-inventory.py --check reports/ubuntu-complete-20261124/FUNCTION_INVENTORY.json
 ```
 
 Future F6 source/reference changes require reviewed trusted-pin/plan updates and

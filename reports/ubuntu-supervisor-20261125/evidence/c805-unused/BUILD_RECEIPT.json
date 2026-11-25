@@ -1,0 +1,94 @@
+{
+  "base_model_dependency_sha256": "9054e71cd737a95185dc9228d7ccfac114b8bb227df0baddab1953f2fef23bda",
+  "bundle": {
+    "bytes": 763175,
+    "sha256": "ff4071769b0902e611f39ec4c97c7718799475581104ec1c8b040f1a14fa7020"
+  },
+  "controller": {
+    "bytes": 42185,
+    "sha256": "9e60f7ac75acaaf6581e07efb8c6e8c9c384de5bcbc2708d74e5ce8ebbea95a0"
+  },
+  "current_production_members_byte_identical": 190,
+  "extra_reviewed_inputs": [],
+  "feature": "signer",
+  "helpers": {
+    "job_cases.py": {
+      "bytes": 15671,
+      "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7"
+    },
+    "keeper_jobs.py": {
+      "bytes": 9477,
+      "sha256": "363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4"
+    },
+    "keeper_runtime.py": {
+      "bytes": 37193,
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+    },
+    "model_service.py": {
+      "bytes": 22541,
+      "sha256": "050fcf0cfb9e5c63c0258d00bb3ebc3a49285a8b412ac865d7dfcb469f3ea0f8"
+    },
+    "model_service_base.py": {
+      "bytes": 23311,
+      "sha256": "9054e71cd737a95185dc9228d7ccfac114b8bb227df0baddab1953f2fef23bda"
+    },
+    "native_control.py": {
+      "bytes": 39259,
+      "sha256": "e8825a0a06ebc650ae424c474e8192806c8a6d3e353e6f45fcdeccf7f430e37d"
+    }
+  },
+  "host_wrapper": {
+    "bytes": 7225,
+    "sha256": "dc9b23521754b45c0ad4b16f64340b06ca10e394872eddd31dbc99b69d87de69"
+  },
+  "lab": "/opt/popl-ubuntu-supervisor-20261125-c805",
+  "limits": {
+    "RPC_requests": 6000,
+    "combined_fixture_CPU_percent": 150,
+    "combined_fixture_memory_MiB": 2048,
+    "combined_fixture_tasks": 128,
+    "confirmations": 12,
+    "daily_maximum_cost_wei": "50000000000000000",
+    "maintenance_gas": 24000000,
+    "padding_percent": 25,
+    "single_maximum_cost_wei": "10000000000000000",
+    "worker_seconds": 900
+  },
+  "manifest": {
+    "bytes": 33799,
+    "sha256": "a4b4febc3f1f1d693bf59a4afa23c567a606398f37fed54e9ef7e1272b08a7ff"
+  },
+  "manual_main_kill_not_watchdog": true,
+  "old_test_bodies_run": 0,
+  "production_sources_changed": false,
+  "remote_actions": 0,
+  "runtime_executed": false,
+  "schema": 1,
+  "source_manifest_sha256": "4a1812fc018799f0d71d20f681ad73cecc593e69fe6b25736dd1c759923f060a",
+  "source_updates_from_previous_bundle": [
+    {
+      "current": {
+        "bytes": 4725,
+        "sha256": "b66878fee51f54ac36656646d41f57e70955b9b43c5aff228b5ecd02b3e258b3"
+      },
+      "not_executed_by_jobs": true,
+      "original": {
+        "bytes": 4422,
+        "sha256": "fde49b9780dcdbb352e8286f8b649689c8b48aa021226d02a5b84bfa94d9b2ad"
+      },
+      "path": "keeper/staging-install.sh"
+    },
+    {
+      "current": {
+        "bytes": 2522,
+        "sha256": "0a3e54ce89fadb434aaf032299db8a1aa955bd41d0108f1e209a26ce4328598f"
+      },
+      "not_executed_by_jobs": true,
+      "original": {
+        "bytes": 2521,
+        "sha256": "904440e83018e9706184dd19fb28e44b8a6f4b9509509c820d24c0174c80a7bc"
+      },
+      "path": "scripts/verify.sh"
+    }
+  ]
+}

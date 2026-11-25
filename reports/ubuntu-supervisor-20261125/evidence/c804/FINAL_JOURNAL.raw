@@ -1,0 +1,66 @@
+{
+  "accounting_model": "shared-pools-v2",
+  "accounting_version": 7,
+  "bucket_cursor": 1,
+  "chain_id": 4663,
+  "contracts": {
+    "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+    "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+    "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+    "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+    "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+    "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+    "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+    "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+    "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+    "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+    "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+    "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+    "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+    "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+    "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+    "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+    "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+    "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+    "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+    "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+    "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+  },
+  "conversion_turn": 0,
+  "execution_price_version": 1,
+  "fee_intake_version": 1,
+  "last": {
+    "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795633181
+  },
+  "last_fee_observation": {
+    "cost_wei": 2406512,
+    "execution_price_wei": 8,
+    "gas_used": 300814,
+    "l1_fee_wei": 0,
+    "receipt_fee_policy": "included",
+    "reported_price_wei": 8,
+    "transaction": "0x9036605ead52c462dafc5fc56534588d3ea50f3a076d14a2e58299b3f7c15b7c"
+  },
+  "next_nonce": 1,
+  "observed_adjustment_v3": {
+    "47181787163762592248710325652087236475813397965818762058663276509558631703230": {
+      "execute_after": 0,
+      "identity": "0xb15dba2b63fdf786e4fe3ddf7b1ddb29bea1998703ce0ea5532c928af8a472a4",
+      "last_checked_at": 1795633818,
+      "next_check_at": 1795634058,
+      "observed_at": 1795633818
+    }
+  },
+  "pending": null,
+  "receipt_anchor": {
+    "hash": "0x45bf6ba03c0e8fcb6ab4e02f251233100985427d6e4e09fe1c883d96b8e53cfc",
+    "nonce": 0,
+    "number": 119107365,
+    "timestamp": 1795633181
+  },
+  "retry_after": {},
+  "sender": "0x37757247d648d23b9c906d92d9f8222c4638cab8",
+  "spent": {
+    "2026-11-25": 2406512
+  }
+}

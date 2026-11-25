@@ -1,0 +1,28 @@
+{
+  "accepted_hash": "0xf09ab753db7cc646059e8ced61963c7950561f99032a4869966ce25a3f6e270b",
+  "cleanup": {
+    "output_bytes": 0,
+    "overflow": false,
+    "returncode": 0,
+    "stopped": true
+  },
+  "controlled_copied_state": true,
+  "explicit_resolution_recovered": true,
+  "fresh_native_healthy_cycle": true,
+  "frontend_requests": 2030,
+  "hashless_restart_blocked": true,
+  "manual_SIGKILL_main_case_not_watchdog_case": true,
+  "native_active_Cast_cleanup_requires_root_receipt": true,
+  "new_seals": 0,
+  "old_feature_journeys_or_tests_run": 0,
+  "principal_rights_preserved": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_attempts": 1,
+  "raw_forwarded": 1,
+  "schema": 1,
+  "secret_disposition": "retained only in new owned lab; no contents/hashes exported",
+  "shared_RPC_requests": 2357,
+  "source_and_fixture_preserved": true,
+  "success": true
+}

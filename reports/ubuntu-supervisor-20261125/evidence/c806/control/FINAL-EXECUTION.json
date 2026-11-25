@@ -1,0 +1,29 @@
+{
+  "build_receipt_sha256": "28aadac237842f90f44164f91056c1a606bedcbd2e54ccafcda840aa13f9be0f",
+  "capture_errors": [],
+  "capture_failure": null,
+  "deadline_seconds": 45,
+  "elapsed_seconds": 1.125,
+  "exit_code": 0,
+  "journal_bytes": 2675,
+  "journal_sha256": "e93a136d80340bd18d3c1efe2d4cd14c091392c809c0f9f7f357c36ed888517a",
+  "maximum_combined_output_bytes": 16777216,
+  "only_fixed_public_journal_requested": true,
+  "pins": {
+    "bundle_sha256": "eae95d0a6f45c15092850e960eb46723ec9ef25e16beada8c51040ddc7e82952",
+    "controller_sha256": "9ca5568034d96d344ff7a8d281c1f4b45b71aec328bf7fddd7c7dc2967b3d476",
+    "lab": "/opt/popl-ubuntu-supervisor-20261125-c806",
+    "manifest_sha256": "a7765a23ca668bc8bb0a1dab4643062b4925cc44190b5b29518081211af5af7f",
+    "native_sha256": "fe476c1f95d1c72a9f604889c500f501d3e7fe951714edd7806e2ae406d72765",
+    "source_manifest_sha256": "4a1812fc018799f0d71d20f681ad73cecc593e69fe6b25736dd1c759923f060a",
+    "variant": "signer"
+  },
+  "remote_readonly_source_sha256": "cc347ca8e766314a6300b79b4c967bc54035370fc52d3020f6ada39440662252",
+  "schema": 1,
+  "stderr.raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_bytes": 0,
+  "stdout.raw_sha256": "37e0b812984ac63260046668395740cae078999f657c35ca7cce38950756b30c",
+  "stdout_bytes": 13110,
+  "transport_source_sha256": "a7f7f91863833bca9081b0ad6af833a1cf5147e65f1c2cfe7e058449f1bddc45",
+  "variant": "signer"
+}

@@ -1,0 +1,25 @@
+{
+  "cleanup": {
+    "output_bytes": 0,
+    "overflow": false,
+    "returncode": 0,
+    "stopped": true
+  },
+  "controlled_copied_state": true,
+  "fresh_stock_healthy_cycle": true,
+  "frontend_requests": 2606,
+  "native_watchdog_verification_requires_root_receipt": true,
+  "new_seals": 0,
+  "old_feature_journeys_or_tests_run": 0,
+  "principal_rights_preserved": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_attempts": 1,
+  "raw_forwarded": 1,
+  "saved_hash_recovered": true,
+  "schema": 1,
+  "secret_disposition": "retained only in new owned lab; no contents/hashes exported",
+  "shared_RPC_requests": 2932,
+  "source_and_fixture_preserved": true,
+  "success": true
+}

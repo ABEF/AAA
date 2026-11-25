@@ -1,0 +1,30 @@
+{
+  "remote_root": "/opt/popl-ubuntu-supervisor-20261125-c805",
+  "helper_pins": {
+    "keeper_runtime.py": {
+      "bytes": 37193,
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+    },
+    "keeper_jobs.py": {
+      "bytes": 9477,
+      "sha256": "363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4"
+    },
+    "job_cases.py": {
+      "bytes": 15671,
+      "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7"
+    },
+    "model_service_base.py": {
+      "bytes": 23311,
+      "sha256": "9054e71cd737a95185dc9228d7ccfac114b8bb227df0baddab1953f2fef23bda"
+    },
+    "model_service.py": {
+      "bytes": 22541,
+      "sha256": "050fcf0cfb9e5c63c0258d00bb3ebc3a49285a8b412ac865d7dfcb469f3ea0f8"
+    },
+    "native_control.py": {
+      "bytes": 39259,
+      "sha256": "e8825a0a06ebc650ae424c474e8192806c8a6d3e353e6f45fcdeccf7f430e37d"
+    }
+  },
+  "public_records": []
+}

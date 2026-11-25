@@ -1,0 +1,42 @@
+{
+  "bundle_sha256": "eae95d0a6f45c15092850e960eb46723ec9ef25e16beada8c51040ddc7e82952",
+  "controlled_copied_state_only": true,
+  "controller_sha256": "9ca5568034d96d344ff7a8d281c1f4b45b71aec328bf7fddd7c7dc2967b3d476",
+  "copied_inputs": {
+    "entry-receipts.json": {
+      "bytes": 696971,
+      "sha256": "425902fae92cdbb210f3a12afc80908b9bd186ec1ae80060c427d9f302f3c519"
+    },
+    "instances.json": {
+      "bytes": 4845414,
+      "sha256": "e94a9dc5d4f3f04211ad77e62612b2284301584c3e363203198311d34d128e56"
+    },
+    "restore-state.json": {
+      "bytes": 13643211,
+      "sha256": "42ab11fd14bd02868359fb3fdd84e961f3f8050245f0cb370d1962be823d9b9a"
+    }
+  },
+  "existing_services_changed": false,
+  "lab": "/opt/popl-ubuntu-supervisor-20261125-c806",
+  "members": 199,
+  "new_sealing": false,
+  "phase": "installed",
+  "schema": 1,
+  "source_identity_manifest_sha256": "4a1812fc018799f0d71d20f681ad73cecc593e69fe6b25736dd1c759923f060a",
+  "source_manifest_sha256": "a7765a23ca668bc8bb0a1dab4643062b4925cc44190b5b29518081211af5af7f",
+  "source_readonly": true,
+  "source_stage": "source_base_plus_overrides",
+  "tools": {
+    "anvil": {
+      "path": "/opt/popl-ubuntu-supervisor-20261125-c806/tools/anvil",
+      "sha256": "05ee0cf1758024ea5e23dae562d92955ace205ab299091a43d2fa5bdeb6933bd"
+    },
+    "cast": {
+      "path": "/opt/popl-ubuntu-supervisor-20261125-c806/tools/cast",
+      "sha256": "d55f540256f0dd8b940a125d435919948a5e8c140262e9923067cbfa95ef2970"
+    }
+  },
+  "uid": 65534,
+  "unit": "popl-ubuntu-supervisor-20261125-c806-model.service",
+  "upload_retained": true
+}

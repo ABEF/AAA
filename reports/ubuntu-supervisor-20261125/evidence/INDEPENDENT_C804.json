@@ -1,0 +1,247 @@
+{
+  "checks": {
+    "NFT_LP_rights": {
+      "proof": {
+        "main_LP_identity_liquidity_ticks_custody_projection_equal": true,
+        "money_projection_differences": [],
+        "money_projection_equal": true,
+        "scope": "saved getter projections; no new allocation/LP-flow requalification",
+        "two_NFT_owner_share_membership_royalty_projections_equal": true
+      },
+      "status": "passed"
+    },
+    "authority_projection_only": {
+      "proof": {
+        "before_after_role_getters": "not supplied; no authority equality inferred",
+        "governance_or_guardian_authority_added": "not inferred",
+        "permissionless_harvest_is_authorization_proof": false,
+        "saved_grant_envelope_and_event_consistent": true,
+        "setup_canonical_header": "not supplied for this grant; receipt projection/source bound"
+      },
+      "status": "passed"
+    },
+    "canonical_paid_recovery_once": {
+      "proof": {
+        "canonical_price_wei": 8,
+        "fee_profile": "original schema1, not profile2 adoption",
+        "gas_used": 300814,
+        "nonce_after": 1,
+        "nonce_before": 0,
+        "one_source_bound_raw_attempt": true,
+        "original_maximum_cost_wei": 414080002898560,
+        "paid_wei": 2406512,
+        "recovered_digest": "reported SHA only; RECOVERED_JOURNAL has no raw_utf8",
+        "reported_price_wei": 8,
+        "transaction_hash": "0x9036605ead52c462dafc5fc56534588d3ea50f3a076d14a2e58299b3f7c15b7c"
+      },
+      "status": "passed"
+    },
+    "final_native_cleanup": {
+      "proof": {
+        "both_owned_native_units_finally_empty": true,
+        "scope": "final recursive process census; existing-service preservation is separate"
+      },
+      "status": "passed"
+    },
+    "frozen_sources": {
+      "proof": {
+        "build_receipt_sha256": "991952b0122895dec8a10a7d178f0e27e049e0181bdd62d1ab9013e80350b7c2",
+        "bundle_sha256": "ec23d1fff6f17bb3e3f29446e81223763a1ff1134737107e743cbe3c902e710e",
+        "helper_pins": {
+          "job_cases.py": {
+            "bytes": 15671,
+            "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7"
+          },
+          "keeper_jobs.py": {
+            "bytes": 9477,
+            "sha256": "363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4"
+          },
+          "keeper_runtime.py": {
+            "bytes": 37193,
+            "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+          },
+          "model_service.py": {
+            "bytes": 23311,
+            "sha256": "9054e71cd737a95185dc9228d7ccfac114b8bb227df0baddab1953f2fef23bda"
+          },
+          "native_control.py": {
+            "bytes": 29204,
+            "sha256": "cdc34179f146fedd19d13e3e7fdcbbe1efce9719d800c63148e6971d1069d18f"
+          }
+        },
+        "production_members": 190,
+        "scope": "saved local archive/source identity; remote adoption needs native receipts",
+        "source_head": "7f862557df8e8cbaf8494c7b1c12f18e07be436d"
+      },
+      "status": "passed"
+    },
+    "native_watchdog_and_group_restart": {
+      "proof": {
+        "DNS_header_soak_offhost_fencing": "not newly tested by these c804 vectors",
+        "active_Cast_cleanup_experiment": "not this case; verify separate manual-main-kill lab",
+        "empty_before_actual_new_main_start": true,
+        "fault": "incomplete chunk-size framing with completed headers",
+        "manager_warning_messages": [],
+        "native_watchdog_restarts": 1,
+        "observed_old_cgroup_processes": 1,
+        "old_cgroup_had_processes_beyond_main": false,
+        "same_persistent_lock_inode": true,
+        "sampled_empty_to_new_observation_seconds": 8.04944896325469
+      },
+      "status": "passed"
+    },
+    "optional_final_raw_journal": {
+      "proof": {
+        "all_settled_critical_fields_equal": true,
+        "capture_after_stop": "requires separate final native-stop vector",
+        "equals_reported_recovered_digest": false,
+        "final_sha256": "755033d5a1effd8967224d3d887d4a7cfe4ecb19fb7176713d33e1793842e689",
+        "other_top_level_fields_changed_after_normal_cycle": [
+          "conversion_turn",
+          "observed_adjustment_v3"
+        ],
+        "sidecar_supplied": true
+      },
+      "status": "passed"
+    },
+    "saved_hash_bytes": {
+      "proof": {
+        "four_raw_snapshots_identical": true,
+        "saved_intent": {
+          "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b0730cd",
+          "day": "2026-11-25",
+          "fee_review": {
+            "gas_limit": 414080,
+            "l1_fee_allowance_wei": 0,
+            "max_fee_per_gas": 1000000007,
+            "maximum_cost_wei": 414080002898560,
+            "receipt_fee_policy": "included",
+            "schema": 1
+          },
+          "hash": "0x9036605ead52c462dafc5fc56534588d3ea50f3a076d14a2e58299b3f7c15b7c",
+          "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+          "nonce": 0,
+          "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+          "value": 0
+        },
+        "saved_journal_sha256": "7bdae916277e967e01410227c345cded13fc3e423f2eb7ce73079804f7213668",
+        "transaction_hash": "0x9036605ead52c462dafc5fc56534588d3ea50f3a076d14a2e58299b3f7c15b7c"
+      },
+      "status": "passed"
+    }
+  },
+  "input_files": {
+    "FINAL_JOURNAL.raw": {
+      "bytes": 2675,
+      "identical_copies": 1,
+      "sha256": "755033d5a1effd8967224d3d887d4a7cfe4ecb19fb7176713d33e1793842e689"
+    },
+    "FINAL_JOURNAL.sha256": {
+      "bytes": 64,
+      "identical_copies": 1,
+      "sha256": "404e7a3afb7bf390ac11b504a50f193c7610ab8df7d8b07bbfbfe8496fbd24c2"
+    },
+    "case-DURABLE_PENDING.json": {
+      "bytes": 6747,
+      "identical_copies": 1,
+      "sha256": "9793641d7f55fdfae02f0a6b650dc181614ae3d172d61405fdbda437a551d7c8"
+    },
+    "case-FAULT_CLOSED.json": {
+      "bytes": 189,
+      "identical_copies": 1,
+      "sha256": "a0db91996b17e8d8657691dc9d30a7a2a84f7b21d16db4ef65778ded966eb4ec"
+    },
+    "case-FAULT_TRIGGER.json": {
+      "bytes": 4147,
+      "identical_copies": 1,
+      "sha256": "3d354b9027836fb4cf22a19c29fc9e7b02b2e8dd105f6445863f28f7057ad8ed"
+    },
+    "case-FINANCIAL_AFTER.json": {
+      "bytes": 1727,
+      "identical_copies": 1,
+      "sha256": "f2bf79b0c707fb5e35a9ac99860f618fc0066b2a1cafa0ace0a4936e50b976b7"
+    },
+    "case-FINANCIAL_BEFORE.json": {
+      "bytes": 1727,
+      "identical_copies": 1,
+      "sha256": "f2bf79b0c707fb5e35a9ac99860f618fc0066b2a1cafa0ace0a4936e50b976b7"
+    },
+    "case-HEALTHY_NORMAL_CYCLE.json": {
+      "bytes": 13939,
+      "identical_copies": 1,
+      "sha256": "38b9a1f31cf0636b780130804105a6a20ad24113dcd3b7af6560841c3e58eb2d"
+    },
+    "case-INITIAL_JOURNAL.json": {
+      "bytes": 3752,
+      "identical_copies": 1,
+      "sha256": "0ed83e418074d44363fdfcadc2745dc072d72cbf14e7dbea788c21d3b557f084"
+    },
+    "case-RAW_REVIEWS.json": {
+      "bytes": 799,
+      "identical_copies": 1,
+      "sha256": "85ec2dbf7449f4a6c6747f4d3f604b3f7a2617c4a498e804b73b6b79b9071646"
+    },
+    "case-RECEIPTS.json": {
+      "bytes": 4016,
+      "identical_copies": 1,
+      "sha256": "49990c0e8252050e37a81252926f2c511343000dc8c01bec7d54c69591661afa"
+    },
+    "case-RECOVERED_JOURNAL.json": {
+      "bytes": 10424,
+      "identical_copies": 1,
+      "sha256": "64ad8a2453c8c3cc3a38dee4cb5e77963596a50a6dd3035db5934169868ef232"
+    },
+    "case-RESULT.json": {
+      "bytes": 474,
+      "identical_copies": 1,
+      "sha256": "f9e18eac26a9bc9f23a76133f3d9c9fdba49e9bd1c2d5020f844fb871ecd04cd"
+    },
+    "case-SETUP.json": {
+      "bytes": 9470,
+      "identical_copies": 1,
+      "sha256": "a0458c70636f1f0aa85eab2b5de9a0912cb776107c315ffed4f278b8a31bd02f"
+    },
+    "model-COMPLETE.json": {
+      "bytes": 475,
+      "identical_copies": 1,
+      "sha256": "cd0469838568f27df75a9cb5394567e28e06885e503f89a5821b05d61b433e4f"
+    },
+    "model-RESULT.json": {
+      "bytes": 698,
+      "identical_copies": 1,
+      "sha256": "9806b6986b01ee3b110fa36dbbad02a1867a87238f0594e13e19c21782139ea9"
+    },
+    "native-BASELINE.json": {
+      "bytes": 11023,
+      "identical_copies": 1,
+      "sha256": "0667a2c3119e238ca1e347c8a426b5dd768a4d3f6f1981b345c165c8fb15a86f"
+    },
+    "native-JOURNAL_DURING_RESTART.json": {
+      "bytes": 3215,
+      "identical_copies": 1,
+      "sha256": "be1f987dcbee32c3acee8820661130279a76494935fd7dfea81d287d3473e781"
+    },
+    "native-NATIVE_RESTART_PROOF.json": {
+      "bytes": 231279,
+      "identical_copies": 1,
+      "sha256": "6e2263ba35979205f2d8e3e66934af0f30a07a2da67374a737a2aed14ba6e449"
+    }
+  },
+  "limits": [
+    "Only supplied frozen vectors are checked; input hashes provide identity, not hostile-host authentication.",
+    "Incomplete chunk-size framing is a body-framing watchdog experiment; DNS is not newly tested.",
+    "Saved-hash watchdog recovery does not prove active Cast watchdog/timeout cleanup.",
+    "A separate actual-Cast manual main SIGKILL must retain its signal outcome, hashless intent and no-resend scope.",
+    "Role getter equality is not supplied; permissionless harvest cannot prove keeper authorization.",
+    "Money projections are compared but full nonzero fee allocation is not newly requalified.",
+    "Off-host fencing/restore, storage/fsync/permission faults, restart storms, alerts, soak and provider fees stay open.",
+    "Existing-service/heartbeat preservation requires its separate before/after host review."
+  ],
+  "network_calls": 0,
+  "old_test_bodies_run": 0,
+  "production_approved": false,
+  "runtime_actions": 0,
+  "schema": 1,
+  "stage": "c804_saved_vectors_independent_review",
+  "status": "passed"
+}

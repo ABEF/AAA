@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "action": "install",
+  "controller_sha256": "9e60f7ac75acaaf6581e07efb8c6e8c9c384de5bcbc2708d74e5ce8ebbea95a0",
+  "transport_source_sha256": "a7f7f91863833bca9081b0ad6af833a1cf5147e65f1c2cfe7e058449f1bddc45",
+  "strict_pinned_host": true,
+  "credentials_read_or_exported": false,
+  "only_fixed_owned_lab": true,
+  "exit_code": 0,
+  "failed_capture_reason": null,
+  "elapsed_seconds": 1.625,
+  "timeout_seconds": 120,
+  "stdout_bytes": 1436,
+  "stderr_bytes": 0,
+  "capture_status": [],
+  "stdout.raw_sha256": "f8d310a1ae9e75c4118d1ef3cdcd115687b4b32c7fd89cacaa9f44747cea6e18",
+  "stderr.raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

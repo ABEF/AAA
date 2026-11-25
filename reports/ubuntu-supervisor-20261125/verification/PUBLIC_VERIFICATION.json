@@ -1,0 +1,15 @@
+{
+  "all_nine_new_units_stopped": true,
+  "both_independent_reviews_passed": true,
+  "five_original_service_states_preserved": true,
+  "network_calls": 0,
+  "old_test_bodies_run": 0,
+  "private_original_input_archives_required_for_full_source_replay": true,
+  "production_approved": false,
+  "protected_dirty_files_unchanged": true,
+  "public_capture_hashes_verified": true,
+  "relative_report_links_verified": 12,
+  "runtime_actions": 0,
+  "schema": 1,
+  "status": "passed"
+}

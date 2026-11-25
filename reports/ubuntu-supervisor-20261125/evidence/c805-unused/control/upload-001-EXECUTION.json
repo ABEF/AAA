@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "action": "upload",
+  "controller_sha256": "9e60f7ac75acaaf6581e07efb8c6e8c9c384de5bcbc2708d74e5ce8ebbea95a0",
+  "transport_source_sha256": "a7f7f91863833bca9081b0ad6af833a1cf5147e65f1c2cfe7e058449f1bddc45",
+  "strict_pinned_host": true,
+  "credentials_read_or_exported": false,
+  "only_fixed_owned_lab": true,
+  "bundle_sha256": "ff4071769b0902e611f39ec4c97c7718799475581104ec1c8b040f1a14fa7020",
+  "bundle_bytes": 763175,
+  "members": 200,
+  "no_signer_or_credentials": true,
+  "sealing_forbidden": true,
+  "exit_code": 0,
+  "failed_capture_reason": null,
+  "elapsed_seconds": 0.7660000000000764,
+  "timeout_seconds": 120,
+  "stdout_bytes": 248,
+  "stderr_bytes": 0,
+  "capture_status": [],
+  "stdout.raw_sha256": "bf20721eaf78f6b7b359d63bc94884eb161c9bedb5114a0e07ddb8da802fb7e5",
+  "stderr.raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

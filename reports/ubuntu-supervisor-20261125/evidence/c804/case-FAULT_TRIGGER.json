@@ -1,0 +1,30 @@
+{
+  "completed_http_reply": false,
+  "fault": "chunk_size_without_CRLF",
+  "intent": {
+    "data": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b0730cd",
+    "day": "2026-11-25",
+    "fee_review": {
+      "gas_limit": 414080,
+      "l1_fee_allowance_wei": 0,
+      "max_fee_per_gas": 1000000007,
+      "maximum_cost_wei": 414080002898560,
+      "receipt_fee_policy": "included",
+      "schema": 1
+    },
+    "hash": "0x9036605ead52c462dafc5fc56534588d3ea50f3a076d14a2e58299b3f7c15b7c",
+    "key": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+    "nonce": 0,
+    "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+    "value": 0
+  },
+  "journal_raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 1,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"conversion_turn\": 1,\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {},\n  \"next_nonce\": 0,\n  \"observed_adjustment_v3\": {\n    \"47181787163762592248710325652087236475813397965818762058663276509558631703230\": {\n      \"execute_after\": 0,\n      \"identity\": \"0xb15dba2b63fdf786e4fe3ddf7b1ddb29bea1998703ce0ea5532c928af8a472a4\",\n      \"last_checked_at\": 1795633175,\n      \"next_check_at\": 1795633415,\n      \"observed_at\": 1795633175\n    }\n  },\n  \"pending\": {\n    \"data\": \"0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b0730cd\",\n    \"day\": \"2026-11-25\",\n    \"fee_review\": {\n      \"gas_limit\": 414080,\n      \"l1_fee_allowance_wei\": 0,\n      \"max_fee_per_gas\": 1000000007,\n      \"maximum_cost_wei\": 414080002898560,\n      \"receipt_fee_policy\": \"included\",\n      \"schema\": 1\n    },\n    \"hash\": \"0x9036605ead52c462dafc5fc56534588d3ea50f3a076d14a2e58299b3f7c15b7c\",\n    \"key\": \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\",\n    \"nonce\": 0,\n    \"to\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n    \"value\": 0\n  },\n  \"receipt_anchor\": null,\n  \"sender\": \"0x37757247d648d23b9c906d92d9f8222c4638cab8\",\n  \"spent\": {}\n}\n",
+  "journal_sha256": "7bdae916277e967e01410227c345cded13fc3e423f2eb7ce73079804f7213668",
+  "maximum_trickle_seconds": 160,
+  "method": "eth_getTransactionReceipt",
+  "monotonic": 8948535.425533552,
+  "pending_hash": "0x9036605ead52c462dafc5fc56534588d3ea50f3a076d14a2e58299b3f7c15b7c",
+  "request_id": 720,
+  "trickle_interval_seconds": 1,
+  "utc": 1795633409.1169379
+}

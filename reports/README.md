@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Ubuntu supervisor recovery](ubuntu-supervisor-20261125/REVIEW.md) adds separate
+actual stock watchdog/saved-hash and active-Cast manual-kill/hashless-resolution
+checks with independent exact-state review. All new units stop; production
+source/limits and original environments stay unchanged. Broader operating
+acceptance remains open.
+
 [Ubuntu key replacement](ubuntu-key-rotation-20261124/REVIEW.md) adds a finite
 direct stock/Cast revocation-first pending-recovery and fresh-key proof. It keeps
 the original hashless failures, exact diagnostic node refusal, fixture-only input

@@ -1,0 +1,258 @@
+{
+  "native": {
+    "finished_monotonic": 8948412.494090881,
+    "host_network_namespace": "net:[4026531840]",
+    "lab": "/opt/popl-ubuntu-supervisor-20261125-c804",
+    "old_processes": [],
+    "schema": 1,
+    "started_monotonic": 8948412.459318405,
+    "units": {
+      "popl-ubuntu-supervisor-20261125-c804-keeper.service": {
+        "cgroup": {
+          "exists": true,
+          "groups": [
+            "."
+          ],
+          "path": "/system.slice/popl-ubuntu-supervisor-20261125-c804-keeper.service",
+          "pids": [
+            40860
+          ],
+          "processes": [
+            {
+              "cgroup": [
+                "0::/system.slice/popl-ubuntu-supervisor-20261125-c804-keeper.service"
+              ],
+              "network_namespace": "net:[4026532431]",
+              "pgrp": 40860,
+              "pid": 40860,
+              "ppid": 1,
+              "session": 40860,
+              "start_ticks": 894828206,
+              "state": "S",
+              "uid": 65534
+            }
+          ]
+        },
+        "manager_journal": [
+          {
+            "INVOCATION_ID": "b16edc46cb4a46c5873ed8ac7aca6d90",
+            "JOB_RESULT": "done",
+            "MESSAGE": "Started popl-ubuntu-supervisor-20261125-c804-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-supervisor-20261125-c804/runtime/run-001/model/supervisor/actor/config.json --live.",
+            "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-supervisor-20261125-c804-keeper.service",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8012f;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=8236f2ca554;t=6611e6c657660;x=53d168f962e99e24",
+            "__MONOTONIC_TIMESTAMP": "8948282074452",
+            "__REALTIME_TIMESTAMP": "1795633155765856"
+          }
+        ],
+        "properties": {
+          "ActiveEnterTimestampMonotonic": "8948282073435",
+          "ActiveState": "active",
+          "CPUQuotaPerSecUSec": "500ms",
+          "ControlGroup": "/system.slice/popl-ubuntu-supervisor-20261125-c804-keeper.service",
+          "ExecMainCode": "0",
+          "ExecMainExitTimestampMonotonic": "0",
+          "ExecMainStartTimestampMonotonic": "8948282073085",
+          "ExecMainStatus": "0",
+          "ExecStart": "{ path=/usr/bin/python3 ; argv[]=/usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-supervisor-20261125-c804/runtime/run-001/model/supervisor/actor/config.json --live ; ignore_errors=no ; start_time=[Wed 2026-11-25 18:59:15 UTC] ; stop_time=[n/a] ; pid=40860 ; code=(null) ; status=0/0 }",
+          "FinalKillSignal": "9",
+          "Group": "nogroup",
+          "Id": "popl-ubuntu-supervisor-20261125-c804-keeper.service",
+          "InactiveEnterTimestampMonotonic": "0",
+          "InvocationID": "b16edc46cb4a46c5873ed8ac7aca6d90",
+          "JoinsNamespaceOf": "popl-ubuntu-supervisor-20261125-c804-model.service",
+          "KillMode": "control-group",
+          "LimitCORE": "0",
+          "LoadState": "loaded",
+          "MainPID": "40860",
+          "MemoryMax": "536870912",
+          "MemorySwapMax": "0",
+          "NRestarts": "0",
+          "NoNewPrivileges": "yes",
+          "NotifyAccess": "main",
+          "PrivateDevices": "yes",
+          "PrivateNetwork": "yes",
+          "ProtectControlGroups": "yes",
+          "ProtectHome": "yes",
+          "ProtectSystem": "strict",
+          "ReadWritePaths": "/opt/popl-ubuntu-supervisor-20261125-c804/runtime",
+          "Restart": "on-failure",
+          "RestartUSec": "30s",
+          "RestrictAddressFamilies": "AF_INET AF_INET6 AF_UNIX",
+          "Result": "success",
+          "RuntimeMaxUSec": "15min",
+          "SendSIGKILL": "yes",
+          "StartLimitBurst": "5",
+          "StartLimitIntervalUSec": "10min",
+          "SubState": "running",
+          "TasksMax": "64",
+          "TimeoutStopUSec": "2min",
+          "User": "nobody",
+          "WatchdogSignal": "9",
+          "WatchdogTimestampMonotonic": "8948405430115",
+          "WatchdogUSec": "2min",
+          "WorkingDirectory": "/opt/popl-ubuntu-supervisor-20261125-c804/source/contracts"
+        }
+      },
+      "popl-ubuntu-supervisor-20261125-c804-model.service": {
+        "cgroup": {
+          "exists": true,
+          "groups": [
+            "."
+          ],
+          "path": "/system.slice/popl-ubuntu-supervisor-20261125-c804-model.service",
+          "pids": [
+            39732,
+            39734
+          ],
+          "processes": [
+            {
+              "cgroup": [
+                "0::/system.slice/popl-ubuntu-supervisor-20261125-c804-model.service"
+              ],
+              "network_namespace": "net:[4026532431]",
+              "pgrp": 39732,
+              "pid": 39732,
+              "ppid": 1,
+              "session": 39732,
+              "start_ticks": 894825697,
+              "state": "S",
+              "uid": 65534
+            },
+            {
+              "cgroup": [
+                "0::/system.slice/popl-ubuntu-supervisor-20261125-c804-model.service"
+              ],
+              "network_namespace": "net:[4026532431]",
+              "pgrp": 39734,
+              "pid": 39734,
+              "ppid": 39732,
+              "session": 39734,
+              "start_ticks": 894825721,
+              "state": "S",
+              "uid": 65534
+            }
+          ]
+        },
+        "manager_journal": [
+          {
+            "INVOCATION_ID": "e9424c98f1e44ee6af215f06ff40325a",
+            "JOB_RESULT": "done",
+            "MESSAGE": "Started popl-ubuntu-supervisor-20261125-c804-model.service - /usr/bin/python3 -B /opt/popl-ubuntu-supervisor-20261125-c804/source/helpers/model_service.py --source-manifest-sha256 4a1812fc018799f0d71d20f681ad73cecc593e69fe6b25736dd1c759923f060a --base-sha256 f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4 --jobs-sha256 363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4 --cases-sha256 7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7.",
+            "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-supervisor-20261125-c804-model.service",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b80057;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=8236dadbce9;t=6611e6ae68df5;x=4f469ba824e69a2",
+            "__MONOTONIC_TIMESTAMP": "8948256980201",
+            "__REALTIME_TIMESTAMP": "1795633130671605"
+          }
+        ],
+        "properties": {
+          "ActiveEnterTimestampMonotonic": "8948256979326",
+          "ActiveState": "active",
+          "CPUQuotaPerSecUSec": "1s",
+          "ControlGroup": "/system.slice/popl-ubuntu-supervisor-20261125-c804-model.service",
+          "ExecMainCode": "0",
+          "ExecMainExitTimestampMonotonic": "0",
+          "ExecMainStartTimestampMonotonic": "8948256979134",
+          "ExecMainStatus": "0",
+          "ExecStart": "{ path=/usr/bin/python3 ; argv[]=/usr/bin/python3 -B /opt/popl-ubuntu-supervisor-20261125-c804/source/helpers/model_service.py --source-manifest-sha256 4a1812fc018799f0d71d20f681ad73cecc593e69fe6b25736dd1c759923f060a --base-sha256 f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4 --jobs-sha256 363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4 --cases-sha256 7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7 ; ignore_errors=no ; start_time=[Wed 2026-11-25 18:58:50 UTC] ; stop_time=[n/a] ; pid=39732 ; code=(null) ; status=0/0 }",
+          "FinalKillSignal": "9",
+          "Group": "nogroup",
+          "Id": "popl-ubuntu-supervisor-20261125-c804-model.service",
+          "InactiveEnterTimestampMonotonic": "0",
+          "InvocationID": "e9424c98f1e44ee6af215f06ff40325a",
+          "JoinsNamespaceOf": "popl-ubuntu-supervisor-20261125-c804-keeper.service",
+          "KillMode": "control-group",
+          "LimitCORE": "0",
+          "LoadState": "loaded",
+          "MainPID": "39732",
+          "MemoryMax": "1610612736",
+          "MemorySwapMax": "0",
+          "NRestarts": "0",
+          "NoNewPrivileges": "yes",
+          "NotifyAccess": "none",
+          "PrivateDevices": "yes",
+          "PrivateNetwork": "yes",
+          "ProtectControlGroups": "yes",
+          "ProtectHome": "yes",
+          "ProtectSystem": "strict",
+          "ReadWritePaths": "/opt/popl-ubuntu-supervisor-20261125-c804/runtime",
+          "Restart": "no",
+          "RestartUSec": "100ms",
+          "RestrictAddressFamilies": "AF_INET AF_INET6 AF_UNIX",
+          "Result": "success",
+          "RuntimeMaxUSec": "15min",
+          "SendSIGKILL": "yes",
+          "StartLimitBurst": "5",
+          "StartLimitIntervalUSec": "10s",
+          "SubState": "running",
+          "TasksMax": "64",
+          "TimeoutStopUSec": "2min",
+          "User": "nobody",
+          "WatchdogSignal": "6",
+          "WatchdogTimestampMonotonic": "0",
+          "WatchdogUSec": "0",
+          "WorkingDirectory": "/opt/popl-ubuntu-supervisor-20261125-c804/source/contracts"
+        }
+      }
+    },
+    "utc": 1795633286.1854956
+  },
+  "phase": "native_status",
+  "public_files": {
+    "case-BINDINGS.json": {
+      "bytes": 26538,
+      "uid": 65534
+    },
+    "case-CLOCK_REPAIR.json": {
+      "bytes": 3840,
+      "uid": 65534
+    },
+    "case-DURABLE_PENDING.json": {
+      "bytes": 6747,
+      "uid": 65534
+    },
+    "case-FINANCIAL_BEFORE.json": {
+      "bytes": 1727,
+      "uid": 65534
+    },
+    "case-INITIAL_JOURNAL.json": {
+      "bytes": 3752,
+      "uid": 65534
+    },
+    "model-READY.json": {
+      "bytes": 1066,
+      "uid": 65534
+    },
+    "native-BASELINE.json": {
+      "bytes": 11023,
+      "uid": 0
+    },
+    "native-WITNESS_STATE.json": {
+      "bytes": 45259,
+      "uid": 0
+    },
+    "native-keeper.stderr.log": {
+      "bytes": 0,
+      "uid": 65534
+    },
+    "native-keeper.stdout.log": {
+      "bytes": 480,
+      "uid": 65534
+    },
+    "native-model.stderr.log": {
+      "bytes": 0,
+      "uid": 65534
+    },
+    "native-model.stdout.log": {
+      "bytes": 0,
+      "uid": 65534
+    }
+  }
+}

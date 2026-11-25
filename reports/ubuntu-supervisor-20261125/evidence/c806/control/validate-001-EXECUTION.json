@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "action": "validate-bundle",
+  "controller_sha256": "9ca5568034d96d344ff7a8d281c1f4b45b71aec328bf7fddd7c7dc2967b3d476",
+  "transport_source_sha256": "a7f7f91863833bca9081b0ad6af833a1cf5147e65f1c2cfe7e058449f1bddc45",
+  "strict_pinned_host": true,
+  "credentials_read_or_exported": false,
+  "only_fixed_owned_lab": true,
+  "bundle_sha256": "eae95d0a6f45c15092850e960eb46723ec9ef25e16beada8c51040ddc7e82952",
+  "bundle_bytes": 763664,
+  "members": 200,
+  "no_signer_or_credentials": true,
+  "sealing_forbidden": true,
+  "exit_code": 0,
+  "network_used": false
+}

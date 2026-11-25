@@ -1,24 +1,16 @@
 # Engineering roadmap and production qualification plan
 
-[Ubuntu keeper key replacement](../reports/ubuntu-key-rotation-20261124/REVIEW.md)
-passes a new direct stock/Cast partition in2,077/6,000RPC: governance revokes the
-old key before its pending protected reset, its reverted receipt/gas/nonce recover
-without resend, then a distinct new key succeeds at nonce0 with its own journal.
-Old recovered bytes and NFT/LP rights remain; cross-identity adoption refuses.
-An independent saved-vector review passes. This is not daemon/off-host fencing
-or all-state rotation approval. Journal budgets are per sender; operator review
-must also cover combined spending and unresolved commitments.
-C801's original hashless failure remains unresolved/source-scoped; c802 captures
-an actual priority>maxfee node refusal. C803 corrects only isolated Anvil inputs,
-within unchanged24M/full25%,5gwei,0.01/0.05ETH and12-confirmation limits; no
-production code, fee profile, guard or default changes. All three new labs stop;
-five original service states match. No old passed tests or LP journeys rerun.
-The [earlier hybrid proof](../reports/ubuntu-hybrid-20261124/REVIEW.md) retains its
-one→two→one mixed-residual scope and explicit logical12h limitation; earlier
-positive worker paths remain separately pinned. Actual provider/fees/markets,
-combined scheduling, supervisor/storage faults, off-host/soak and release approval
-stay open. Existing chains, sites, journals and paused heartbeat stay unchanged.
-
+[Ubuntu supervisor recovery](../reports/ubuntu-supervisor-20261125/REVIEW.md)
+adds two distinct stock-keeper/Cast fault checks: saved-hash recovery after a
+native watchdog restart (2,932 RPC), and real Cast cleanup after a manual main
+kill, hashless refusal, explicit stock hash resolution and healthy resume
+(2,357 RPC). Independent saved-vector checks pass. All nine new fixed unit names
+are stopped; five original service states match. No production code, profile,
+financial limit or unchanged test changes. Earlier [key replacement](../reports/ubuntu-key-rotation-20261124/REVIEW.md)
+and [hybrid LP evidence](../reports/ubuntu-hybrid-20261124/REVIEW.md) retain their scopes.
+Keep Q06/P20/P21 open for additional transports/storage faults, restart storms,
+off-host fencing/restore, alerts, sustained operation and release approval.
+Existing chains, sites, journals and the user-paused heartbeat stay unchanged.
 
 [Wallet checkpoint follow-through](../reports/wallet-latency-20261123/REVIEW.md) preserves full admission,
 exact rights and all guards while removing repeated tree walks/accounting decode.
@@ -476,11 +468,14 @@ Owning Todo: [`keeper-guardrails`](../TODO.md#task-keeper-guardrails), [`keeper-
 
 ### P21 — Host, interruption, restore and alerts
 
-[Ubuntu key replacement](../reports/ubuntu-key-rotation-20261124/REVIEW.md) now
-verifies distinct-key revocation-first pending recovery and separate fresh state
-in one isolated host. Old/new actual fees and captured maxima reconcile; no old
-journal is relabelled. This does not close old-host fencing, supervisor stop,
-storage failure, off-host restore, other ordering or sustained operation.
+The [25 November supervisor record](../reports/ubuntu-supervisor-20261125/REVIEW.md)
+verifies a stock watchdog/saved-hash restart and a separate active-Cast manual
+kill/hashless-resolution/healthy-resume partition. Native old groups are empty
+before replacements; exact journals/locks and one-time cost recovery reconcile.
+The [earlier key-replacement proof](../reports/ubuntu-key-rotation-20261124/REVIEW.md)
+remains separately scoped. These checks leave additional transport and storage
+faults, restart storms, off-host fencing/restore, alerts and sustained operation
+open; no existing service is adopted.
 
 Qualify least-privilege host/service/TLS/secret setup, actual disk/WAL/fsync/locks, single-writer fencing and off-host storage. Interrupt at durable intent/save/sign/send/hash/receipt boundaries, including hashless uncertainty, RPC stalls/refusal, disk full, permission failure, corrupt state and restart storms.
 

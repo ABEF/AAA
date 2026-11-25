@@ -1,0 +1,23 @@
+{
+  "all_guard_limits_unchanged": true,
+  "configuration_path": "/opt/popl-ubuntu-supervisor-20261125-c804/runtime/run-001/model/supervisor/actor/config.json",
+  "configuration_sha256": "baa8711aef4cde37be7b5fecf331b145651b22ed65fea8f6db6a054671b497a6",
+  "health_path": "/opt/popl-ubuntu-supervisor-20261125-c804/runtime/run-001/model/supervisor/actor/health.json",
+  "model_pid": 39732,
+  "monitor_argv": [
+    "/usr/bin/python3",
+    "-m",
+    "keeper.monitor",
+    "--config",
+    "/opt/popl-ubuntu-supervisor-20261125-c804/runtime/run-001/model/supervisor/actor/config.json",
+    "--live"
+  ],
+  "monitor_working_directory": "/opt/popl-ubuntu-supervisor-20261125-c804/source/contracts",
+  "namespace": "net:[4026532431]",
+  "native_main_pid_required": true,
+  "notify_access_required": "main",
+  "sender": "0x37757247d648d23b9c906d92d9f8222c4638cab8",
+  "source_head": "7f862557df8e8cbaf8494c7b1c12f18e07be436d",
+  "state_path": "/opt/popl-ubuntu-supervisor-20261125-c804/runtime/run-001/model/supervisor/actor/state.json",
+  "watchdog_seconds_required": 120
+}

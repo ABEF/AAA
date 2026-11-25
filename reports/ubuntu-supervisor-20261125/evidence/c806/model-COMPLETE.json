@@ -1,0 +1,17 @@
+{
+  "accepted_hash": "0xf09ab753db7cc646059e8ced61963c7950561f99032a4869966ce25a3f6e270b",
+  "controlled_copied_state": true,
+  "explicit_resolution_recovered": true,
+  "fresh_native_healthy_cycle": true,
+  "hashless_restart_blocked": true,
+  "manual_SIGKILL_main_case_not_watchdog_case": true,
+  "native_active_Cast_cleanup_requires_root_receipt": true,
+  "new_seals": 0,
+  "old_feature_journeys_or_tests_run": 0,
+  "principal_rights_preserved": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "schema": 1,
+  "source_and_fixture_preserved": true,
+  "success": true
+}

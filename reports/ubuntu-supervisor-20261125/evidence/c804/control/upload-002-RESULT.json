@@ -1,0 +1,8 @@
+{
+  "phase": "uploaded",
+  "path": "/tmp/popl-ubuntu-supervisor-20261125-c804.inputs.tar.gz",
+  "bytes": 757454,
+  "sha256": "ec23d1fff6f17bb3e3f29446e81223763a1ff1134737107e743cbe3c902e710e",
+  "exclusive_new_file": true,
+  "existing_services_changed": false
+}

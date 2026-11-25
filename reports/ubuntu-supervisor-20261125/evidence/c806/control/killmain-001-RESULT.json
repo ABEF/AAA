@@ -1,0 +1,9 @@
+{
+  "actual_cast_pid": 50643,
+  "journal_sha256": "00d9fc3a1d8e34faf66f527fd4c6aff97bba3308a262e0f4a937e1d3558e0a28",
+  "known_accepted_hash": "0xf09ab753db7cc646059e8ced61963c7950561f99032a4869966ce25a3f6e270b",
+  "next_action": "observe immediately until native restart proof exists",
+  "old_main_pid": 49143,
+  "phase": "actual_cast_captured_and_main_killed",
+  "watchdog_experiment": false
+}

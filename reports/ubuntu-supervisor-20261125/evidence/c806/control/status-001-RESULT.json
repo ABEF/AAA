@@ -1,0 +1,262 @@
+{
+  "native": {
+    "finished_monotonic": 8949020.371777836,
+    "host_network_namespace": "net:[4026531840]",
+    "lab": "/opt/popl-ubuntu-supervisor-20261125-c806",
+    "old_processes": [],
+    "schema": 1,
+    "started_monotonic": 8949020.298483843,
+    "units": {
+      "popl-ubuntu-supervisor-20261125-c806-keeper.service": {
+        "cgroup": {
+          "exists": false,
+          "groups": [],
+          "path": "/system.slice/popl-ubuntu-supervisor-20261125-c806-keeper.service",
+          "pids": [],
+          "processes": []
+        },
+        "manager_journal": [],
+        "properties": {
+          "ActiveEnterTimestampMonotonic": "0",
+          "ActiveState": "inactive",
+          "CPUQuotaPerSecUSec": "infinity",
+          "ControlGroup": "",
+          "ExecMainCode": "0",
+          "ExecMainExitTimestampMonotonic": "0",
+          "ExecMainStartTimestampMonotonic": "0",
+          "ExecMainStatus": "0",
+          "FinalKillSignal": "9",
+          "Group": "",
+          "Id": "popl-ubuntu-supervisor-20261125-c806-keeper.service",
+          "InactiveEnterTimestampMonotonic": "0",
+          "InvocationID": "",
+          "JoinsNamespaceOf": "",
+          "KillMode": "control-group",
+          "LimitCORE": "infinity",
+          "LoadState": "not-found",
+          "MainPID": "0",
+          "MemoryMax": "infinity",
+          "MemorySwapMax": "infinity",
+          "NRestarts": "0",
+          "NoNewPrivileges": "no",
+          "NotifyAccess": "none",
+          "PrivateDevices": "no",
+          "PrivateNetwork": "no",
+          "ProtectControlGroups": "no",
+          "ProtectHome": "no",
+          "ProtectSystem": "no",
+          "ReadWritePaths": "",
+          "Restart": "no",
+          "RestartUSec": "100ms",
+          "RestrictAddressFamilies": "~",
+          "Result": "success",
+          "RuntimeMaxUSec": "infinity",
+          "SendSIGKILL": "yes",
+          "StartLimitBurst": "5",
+          "StartLimitIntervalUSec": "10s",
+          "SubState": "dead",
+          "TasksMax": "9211",
+          "TimeoutStopUSec": "1min 30s",
+          "User": "",
+          "WatchdogSignal": "6",
+          "WatchdogTimestampMonotonic": "0",
+          "WatchdogUSec": "infinity",
+          "WorkingDirectory": ""
+        }
+      },
+      "popl-ubuntu-supervisor-20261125-c806-model.service": {
+        "cgroup": {
+          "exists": true,
+          "groups": [
+            "."
+          ],
+          "path": "/system.slice/popl-ubuntu-supervisor-20261125-c806-model.service",
+          "pids": [
+            47584,
+            47587
+          ],
+          "processes": [
+            {
+              "cgroup": [
+                "0::/system.slice/popl-ubuntu-supervisor-20261125-c806-model.service"
+              ],
+              "network_namespace": "net:[4026532431]",
+              "pgrp": 47584,
+              "pid": 47584,
+              "ppid": 1,
+              "session": 47584,
+              "start_ticks": 894900084,
+              "state": "S",
+              "uid": 65534
+            },
+            {
+              "cgroup": [
+                "0::/system.slice/popl-ubuntu-supervisor-20261125-c806-model.service"
+              ],
+              "network_namespace": "net:[4026532431]",
+              "pgrp": 47587,
+              "pid": 47587,
+              "ppid": 47584,
+              "session": 47587,
+              "start_ticks": 894900108,
+              "state": "S",
+              "uid": 65534
+            }
+          ]
+        },
+        "manager_journal": [
+          {
+            "INVOCATION_ID": "74f17d9a80134965bf8cb6be00ff51b2",
+            "JOB_RESULT": "done",
+            "MESSAGE": "Started popl-ubuntu-supervisor-20261125-c806-model.service - /usr/bin/python3 -B /opt/popl-ubuntu-supervisor-20261125-c806/source/helpers/model_service.py --source-manifest-sha256 4a1812fc018799f0d71d20f681ad73cecc593e69fe6b25736dd1c759923f060a --base-sha256 f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4 --jobs-sha256 363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4 --cases-sha256 7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7 --base-model-sha256 9054e71cd737a95185dc9228d7ccfac114b8bb227df0baddab1953f2fef23bda.",
+            "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-supervisor-20261125-c806-model.service",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b806c1;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=8239a043cec;t=6611e973d0df7;x=a46e99f70ea5da23",
+            "__MONOTONIC_TIMESTAMP": "8949000846572",
+            "__REALTIME_TIMESTAMP": "1795633874537975"
+          }
+        ],
+        "properties": {
+          "ActiveEnterTimestampMonotonic": "8949000845424",
+          "ActiveState": "active",
+          "CPUQuotaPerSecUSec": "1s",
+          "ControlGroup": "/system.slice/popl-ubuntu-supervisor-20261125-c806-model.service",
+          "ExecMainCode": "0",
+          "ExecMainExitTimestampMonotonic": "0",
+          "ExecMainStartTimestampMonotonic": "8949000845050",
+          "ExecMainStatus": "0",
+          "ExecStart": "{ path=/usr/bin/python3 ; argv[]=/usr/bin/python3 -B /opt/popl-ubuntu-supervisor-20261125-c806/source/helpers/model_service.py --source-manifest-sha256 4a1812fc018799f0d71d20f681ad73cecc593e69fe6b25736dd1c759923f060a --base-sha256 f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4 --jobs-sha256 363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4 --cases-sha256 7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7 --base-model-sha256 9054e71cd737a95185dc9228d7ccfac114b8bb227df0baddab1953f2fef23bda ; ignore_errors=no ; start_time=[Wed 2026-11-25 19:11:14 UTC] ; stop_time=[n/a] ; pid=47584 ; code=(null) ; status=0/0 }",
+          "FinalKillSignal": "9",
+          "Group": "nogroup",
+          "Id": "popl-ubuntu-supervisor-20261125-c806-model.service",
+          "InactiveEnterTimestampMonotonic": "0",
+          "InvocationID": "74f17d9a80134965bf8cb6be00ff51b2",
+          "JoinsNamespaceOf": "",
+          "KillMode": "control-group",
+          "LimitCORE": "0",
+          "LoadState": "loaded",
+          "MainPID": "47584",
+          "MemoryMax": "1610612736",
+          "MemorySwapMax": "0",
+          "NRestarts": "0",
+          "NoNewPrivileges": "yes",
+          "NotifyAccess": "none",
+          "PrivateDevices": "yes",
+          "PrivateNetwork": "yes",
+          "ProtectControlGroups": "yes",
+          "ProtectHome": "yes",
+          "ProtectSystem": "strict",
+          "ReadWritePaths": "/opt/popl-ubuntu-supervisor-20261125-c806/runtime",
+          "Restart": "no",
+          "RestartUSec": "100ms",
+          "RestrictAddressFamilies": "AF_INET AF_INET6 AF_UNIX",
+          "Result": "success",
+          "RuntimeMaxUSec": "15min",
+          "SendSIGKILL": "yes",
+          "StartLimitBurst": "5",
+          "StartLimitIntervalUSec": "10s",
+          "SubState": "running",
+          "TasksMax": "64",
+          "TimeoutStopUSec": "2min",
+          "User": "nobody",
+          "WatchdogSignal": "6",
+          "WatchdogTimestampMonotonic": "0",
+          "WatchdogUSec": "0",
+          "WorkingDirectory": "/opt/popl-ubuntu-supervisor-20261125-c806/source/contracts"
+        }
+      },
+      "popl-ubuntu-supervisor-20261125-c806-resolve.service": {
+        "cgroup": {
+          "exists": false,
+          "groups": [],
+          "path": "/system.slice/popl-ubuntu-supervisor-20261125-c806-resolve.service",
+          "pids": [],
+          "processes": []
+        },
+        "manager_journal": [],
+        "properties": {
+          "ActiveEnterTimestampMonotonic": "0",
+          "ActiveState": "inactive",
+          "CPUQuotaPerSecUSec": "infinity",
+          "ControlGroup": "",
+          "ExecMainCode": "0",
+          "ExecMainExitTimestampMonotonic": "0",
+          "ExecMainStartTimestampMonotonic": "0",
+          "ExecMainStatus": "0",
+          "FinalKillSignal": "9",
+          "Group": "",
+          "Id": "popl-ubuntu-supervisor-20261125-c806-resolve.service",
+          "InactiveEnterTimestampMonotonic": "0",
+          "InvocationID": "",
+          "JoinsNamespaceOf": "",
+          "KillMode": "control-group",
+          "LimitCORE": "infinity",
+          "LoadState": "not-found",
+          "MainPID": "0",
+          "MemoryMax": "infinity",
+          "MemorySwapMax": "infinity",
+          "NRestarts": "0",
+          "NoNewPrivileges": "no",
+          "NotifyAccess": "none",
+          "PrivateDevices": "no",
+          "PrivateNetwork": "no",
+          "ProtectControlGroups": "no",
+          "ProtectHome": "no",
+          "ProtectSystem": "no",
+          "ReadWritePaths": "",
+          "Restart": "no",
+          "RestartUSec": "100ms",
+          "RestrictAddressFamilies": "~",
+          "Result": "success",
+          "RuntimeMaxUSec": "infinity",
+          "SendSIGKILL": "yes",
+          "StartLimitBurst": "5",
+          "StartLimitIntervalUSec": "10s",
+          "SubState": "dead",
+          "TasksMax": "9211",
+          "TimeoutStopUSec": "1min 30s",
+          "User": "",
+          "WatchdogSignal": "6",
+          "WatchdogTimestampMonotonic": "0",
+          "WatchdogUSec": "infinity",
+          "WorkingDirectory": ""
+        }
+      }
+    },
+    "utc": 1795633894.0631824
+  },
+  "phase": "native_status",
+  "public_files": {
+    "case-BINDINGS.json": {
+      "bytes": 26538,
+      "uid": 65534
+    },
+    "case-CLOCK_REPAIR.json": {
+      "bytes": 3840,
+      "uid": 65534
+    },
+    "case-FINANCIAL_BEFORE.json": {
+      "bytes": 1727,
+      "uid": 65534
+    },
+    "case-INITIAL_JOURNAL.json": {
+      "bytes": 3752,
+      "uid": 65534
+    },
+    "model-READY.json": {
+      "bytes": 1186,
+      "uid": 65534
+    },
+    "native-model.stderr.log": {
+      "bytes": 0,
+      "uid": 65534
+    },
+    "native-model.stdout.log": {
+      "bytes": 0,
+      "uid": 65534
+    }
+  }
+}

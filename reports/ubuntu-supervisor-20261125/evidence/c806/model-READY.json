@@ -1,0 +1,23 @@
+{
+  "actual_active_Cast_native_capture_required": true,
+  "all_guard_limits_unchanged": true,
+  "configuration_path": "/opt/popl-ubuntu-supervisor-20261125-c806/runtime/run-001/model/supervisor/actor/config.json",
+  "configuration_sha256": "152ba5851458bf283e71998fe401f662998ad112ca843eb952f87f9189c6082c",
+  "health_path": "/opt/popl-ubuntu-supervisor-20261125-c806/runtime/run-001/model/supervisor/actor/health.json",
+  "manual_SIGKILL_main_required_within_seconds_of_CAST_REPLY_HELD": true,
+  "model_pid": 47584,
+  "monitor_argv": [
+    "/usr/bin/python3",
+    "-m",
+    "keeper.monitor",
+    "--config",
+    "/opt/popl-ubuntu-supervisor-20261125-c806/runtime/run-001/model/supervisor/actor/config.json",
+    "--live"
+  ],
+  "monitor_working_directory": "/opt/popl-ubuntu-supervisor-20261125-c806/source/contracts",
+  "namespace": "net:[4026532431]",
+  "resolver_required": "stock --resolve-pending accepted_hash after native hashless restart proof",
+  "sender": "0x01f632e17331f3e7ea912c9f5f20ae15a49a643c",
+  "source_head": "7f862557df8e8cbaf8494c7b1c12f18e07be436d",
+  "state_path": "/opt/popl-ubuntu-supervisor-20261125-c806/runtime/run-001/model/supervisor/actor/state.json"
+}
