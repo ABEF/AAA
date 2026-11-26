@@ -4,6 +4,7 @@
 
 | Partition | Completed finite evidence | Limit |
 | --- | --- | --- |
+| [Full-day audit](../reports/keeper-day-audit-20261126/REVIEW.md) | 18 distinct NEW methods across c81617passes and corrected c8171pass; actual FIFO and two self-SIGINT events, clocks/defaults/source changes | c816 original NONPASS retained; no old or17 green methods rerun, no chain journey, rollout or sustained approval |
 | [Keeper alerts](../reports/keeper-alerts-20261126/REVIEW.md) | 21 NEW Ubuntu methods; real private-loopback ACK/loss/timeout, stale/corrupt backup, pending grace, full64 queue progress, locks/races and redaction | One-shot only; no live scheduler/external channel, off-host or sustained approval; one health-source adapter needs matching adoption |
 | [24 November stock keeper](../reports/ubuntu-complete-20261124/REVIEW.md) | Real daemon/Cast harvest, same-journal interruption/recovery and healthy cycle | Separate history/diagnostic partitions; no full-feature/provider or sustained approval |
 | [Maintenance workers](../reports/ubuntu-keeper-blockers-20261124/REVIEW.md), [hybrid LP](../reports/ubuntu-hybrid-20261124/REVIEW.md), [key replacement](../reports/ubuntu-key-rotation-20261124/REVIEW.md) | Positive worker, one–two–one and role/recovery partitions | Original fixture, fee and logical-clock scopes remain |

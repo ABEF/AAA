@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "template_bindings": [
+    {
+      "template": "reports/keeper-alerts-20261126/preparation/capsule_template.py",
+      "generated": "reports/keeper-alerts-20261126/preparation/remote_capsule.py",
+      "exact_render_matches": true,
+      "generated_sha256": "ef97e4afdfbaa303175d0100a628b666b82bc10d4be77a05873915bfd85bd913"
+    },
+    {
+      "template": "reports/keeper-backup-20261126/preparation/ubuntu/capsule_template.py",
+      "generated": "reports/keeper-backup-20261126/preparation/ubuntu/remote_capsule.py",
+      "exact_render_matches": true,
+      "generated_sha256": "f086ebb8977139f99370e2a49b36fd4235dce9619e09ece4d8a2aebdd6296a2c"
+    },
+    {
+      "template": "reports/keeper-alerts-20261126/preparation/REPRODUCIBLE_RUNNER_TEMPLATE.py",
+      "generated": "reports/keeper-alerts-20261126/preparation/run_selected.py",
+      "exact_render_matches": true,
+      "archived_unexecuted_template_differs": true
+    }
+  ],
+  "c813_c814_body_reuse": [
+    {
+      "old": "reports/ubuntu-backup-recovery-20261126/preparation/c813/capsule_extension.py",
+      "new": "reports/ubuntu-backup-recovery-20261126/preparation/c814/capsule_extension.py",
+      "exact_after_fixed_lab_label_substitution": true
+    },
+    {
+      "old": "reports/ubuntu-backup-recovery-20261126/preparation/c813/host_control.py",
+      "new": "reports/ubuntu-backup-recovery-20261126/preparation/c814/host_control.py",
+      "exact_after_fixed_lab_label_substitution": true
+    },
+    {
+      "old": "reports/ubuntu-backup-recovery-20261126/preparation/c813/independent_private.py",
+      "new": "reports/ubuntu-backup-recovery-20261126/preparation/c814/independent_private.py",
+      "exact_after_fixed_lab_label_substitution": true
+    },
+    {
+      "old": "reports/ubuntu-backup-recovery-20261126/preparation/c813/model_service.py",
+      "new": "reports/ubuntu-backup-recovery-20261126/preparation/c814/model_service.py",
+      "exact_after_fixed_lab_label_substitution": false,
+      "genuine_behavior_change": "Capturefinalvectors+independentreview beforeCOMPLETE with once-onlyflags; originalfailedpost-stop capture keptseparate."
+    },
+    {
+      "old": "reports/ubuntu-backup-recovery-20261126/preparation/c813/orchestrate_c813.py",
+      "new": "reports/ubuntu-backup-recovery-20261126/preparation/c814/orchestrate_c814.py",
+      "exact_after_fixed_lab_label_substitution": true
+    },
+    {
+      "old": "reports/ubuntu-backup-recovery-20261126/preparation/c813/package_c813.py",
+      "new": "reports/ubuntu-backup-recovery-20261126/preparation/c814/package_c814.py",
+      "exact_after_fixed_lab_label_substitution": true
+    },
+    {
+      "old": "reports/ubuntu-backup-recovery-20261126/preparation/c813/recovery_control.py",
+      "new": "reports/ubuntu-backup-recovery-20261126/preparation/c814/recovery_control.py",
+      "exact_after_fixed_lab_label_substitution": true
+    },
+    {
+      "old": "reports/ubuntu-backup-recovery-20261126/preparation/c813/remote_capsule.py",
+      "new": "reports/ubuntu-backup-recovery-20261126/preparation/c814/remote_capsule.py",
+      "exact_after_fixed_lab_label_substitution": false,
+      "AST_equal_after_lab_and_SHA256_constant_substitution": true
+    }
+  ],
+  "tests_or_server_actions": 0,
+  "scope": "Offline source rendering and AST identity, not historical scenario reexecution or bytecode qualification."
+}

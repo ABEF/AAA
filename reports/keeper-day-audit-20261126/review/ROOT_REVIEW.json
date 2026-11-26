@@ -1,0 +1,603 @@
+{
+  "inherited_limits": [
+    "trusted_provider_truth",
+    "trusted_local_ancestors_and_invoking_user",
+    "exclusive_child_ownership_and_per_thread_masks",
+    "cooperative_filesystem_deadlines",
+    "lost_alert_state_cannot_reconstruct_dedup_or_first_seen",
+    "no_real_channel_offhost_or_sustained_approval"
+  ],
+  "monitor_source_sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f",
+  "no_new_confirmed_financial_defect_in_earlier_today_anchor_changes": true,
+  "no_whole_Solidity_or_browser_audit_claimed": true,
+  "primary_references": [
+    "https://docs.python.org/3.12/library/os.html#os.fsync",
+    "https://docs.python.org/3.12/library/subprocess.html#subprocess.Popen.communicate",
+    "https://github.com/python/cpython/blob/v3.12.3/Lib/subprocess.py",
+    "https://docs.python.org/3.12/library/signal.html#signal.pthread_sigmask",
+    "https://man7.org/linux/man-pages/man2/open.2.html",
+    "https://www.freedesktop.org/software/systemd/man/255/systemd.service.html#TimeoutStartSec=",
+    "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2"
+  ],
+  "related_source": {
+    "keeper/compound_policy.py": {
+      "review": "Main/residual custody and principal amount decomposition, exact geometry/fingerprints and threshold/range waiting. A healthy physical read is not swap permission.",
+      "sha256": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29"
+    },
+    "keeper/health.py": {
+      "review": "Complete local source, execution/confirmation metadata, timestamps/profile/runtime policy and allowlisted summaries. Missing first pending observations are distinct from present invalid proofs and never imply readiness.",
+      "sha256": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04"
+    },
+    "keeper/operation_review.py": {
+      "review": "Read-only subclass forbids mutations and transaction recovery, pinned reads and bounded typed simulation. An unavailable/unclassified stage is not an exact diagnosis or authorization.",
+      "sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    "keeper/ops.py": {
+      "review": "Complete health/snapshot/preflight input and output review: bounded snapshot preserves legacy body; legacy snapshot is diagnostic rather than exact backup. Source hashes and health verdicts do not approve adoption.",
+      "sha256": "da396ec9c65295fe540f9dc812a0612d8ed27f1ab677fd388b479e2f2372ad89"
+    },
+    "keeper/principal.py": {
+      "review": "Current custody5 rejects keeper distribution; governance-only paths not exposed. Historical worker progress never marks failed receiver as paid.",
+      "sha256": "b602340db5c7a52ad281c6b60885e2f74cc2708b731595fac5eeb9e026da6874"
+    },
+    "keeper/probe.py": {
+      "review": "Actual bounded read-only/provider observations are not qualification/adoption; no public probing was run in this audit.",
+      "sha256": "42142395fa2e43a6360644effdafab7e3be26b37b985a9bd3ae6fcd9d1374a10"
+    },
+    "keeper/rebalance_confirmation.py": {
+      "review": "Same canonical snapshot/capability proof and strict sampled readiness; historical schedule readers keep explicit scope. No continuous observation is inferred.",
+      "sha256": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d"
+    },
+    "keeper/royalties.py": {
+      "review": "Original-currency royalty4 disables conversion. LP native-v4 fixed-ZZZ conversion retains confirmed hash, captured route/floors and bounded prefix/nonce safeguards.",
+      "sha256": "02e04783068eed60db827673c9c27d3a37175edd7dccfa5ddefb8b54c055904c"
+    },
+    "keeper/staging_observer.py": {
+      "review": "Legacy fixed local Anvil export and coarse snapshot interface remains used by the forced monitor; not removed or adopted as current release.",
+      "sha256": "f5f5e77aa62605aa54b326e88245ff5d9f8e14bf723dad359786e706cbc021ce"
+    },
+    "keeper/watchdog.py": {
+      "review": "Only completed progress sends a pulse. No notification thread during DNS/body stalls; systemd/cgroup required. Remaining process creation/kernel boundaries retained.",
+      "sha256": "59b4bb7783453a8f271fd5ab265fd5d2857d55096479be34f10ffe56c8408372"
+    },
+    "zzz_ops/state.py": {
+      "review": "Strict finite/unique JSON, private atomic file then directory durability and same-inode advisory locks. Replace-before-directory-fsync failure may expose a new file; no old-file-survival guarantee.",
+      "sha256": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf"
+    }
+  },
+  "review_kind": "source_and_cross_component_reasoning_not_test_execution_or_exhaustive_behavioral_proof",
+  "schema": 1,
+  "source_end": "1cc67c50ece5b41fbd8c78b902ceb7ab70f96914",
+  "source_start": "5331d3a5d051aad3da61d85aa43fafb870487f35",
+  "website_README_read_no_website_change_required": true,
+  "workflow_reviews": [
+    {
+      "definitions": [
+        {
+          "AST_sha256": "5726b2f70f1530bebab159b0f5f0a4ba36d1c192cf46911dc12a656faf5d324e",
+          "function": "__init__",
+          "line_end": 348,
+          "line_start": 140
+        },
+        {
+          "AST_sha256": "c0a43434e14bb383873cf3c226023fc734cf5951bb9586ee3299c4901688bee1",
+          "function": "_validate_state",
+          "line_end": 431,
+          "line_start": 350
+        },
+        {
+          "AST_sha256": "871e237a349e1a45362d1a11e9756785ef2dd43114af36a537267c01f79a9f47",
+          "function": "_submission_fee_profile",
+          "line_end": 441,
+          "line_start": 433
+        },
+        {
+          "AST_sha256": "f58ad19aa02ef39663349734bf096651a9541a2b50e2539fca16d4840a3262f4",
+          "function": "_fee_review",
+          "line_end": 467,
+          "line_start": 444
+        },
+        {
+          "AST_sha256": "b301d8f2f02eb464d95e39a5264c930d3fc94a5ee871fc62ee0587d2dc0fab94",
+          "function": "_validate_runtime_files",
+          "line_end": 479,
+          "line_start": 469
+        },
+        {
+          "AST_sha256": "2776dd9b007a6f894a700cd8ffd8c8dbd40c4cc13746a056d091111bc3f79e1e",
+          "function": "_validate_accounting_version",
+          "line_end": 1419,
+          "line_start": 1377
+        },
+        {
+          "AST_sha256": "1a42052c00656915ce714e529b5a2df6297c4779bb8a98a9db93fb3b3bbe5582",
+          "function": "_validate_signer",
+          "line_end": 1485,
+          "line_start": 1471
+        },
+        {
+          "AST_sha256": "4869a9e1c4d122623631bf83e81c4713ec848f5981d4a775627948f70cc41517",
+          "function": "_validate_code_hashes",
+          "line_end": 1500,
+          "line_start": 1487
+        }
+      ],
+      "reasoning": "Explicit fresh and historical profiles, exact saved intent/fee review, code/role bindings, private files and pending recovery before future job admission; malformed future configuration may still require the original reviewed config. No permissive repair mode.",
+      "workflow": "admission"
+    },
+    {
+      "definitions": [
+        {
+          "AST_sha256": "38a82e26a956656a8b17d7877d18b126eb3508ffe06b13c505c52b3d3fd790a9",
+          "function": "_validate_checkpoint",
+          "line_end": 496,
+          "line_start": 481
+        },
+        {
+          "AST_sha256": "9de55008b84de1a68e51b71e6a6b83a7e93b766ed458271d2b2c8bde5ebe567e",
+          "function": "initialize_state",
+          "line_end": 511,
+          "line_start": 498
+        },
+        {
+          "AST_sha256": "e2ecc0ca8f2c73299fbde5110ad0eea082ee411bcc067f23a5e49a2bd4021730",
+          "function": "poll_pending",
+          "line_end": 1708,
+          "line_start": 1559
+        },
+        {
+          "AST_sha256": "84bd8eb827b894740e9e187d0205c66bfd38365d5b79c77d2ba2ee7b4ae569de",
+          "function": "resolve_pending",
+          "line_end": 1718,
+          "line_start": 1710
+        },
+        {
+          "AST_sha256": "f9443c0818f3f203926c1e2b03c107631e2a5c2f79aa35062554965cae56d429",
+          "function": "_validate_pending_transaction",
+          "line_end": 1735,
+          "line_start": 1720
+        },
+        {
+          "AST_sha256": "f2dbb9cc595aeaaf781d817952923c951e1bbe3b31e91284259c7c9159cd9ba1",
+          "function": "_receipt_harvest_bucket",
+          "line_end": 1557,
+          "line_start": 1512
+        }
+      ],
+      "reasoning": "Canonical old/new anchors and final inclusion are checked before cost/nonce settlement. No resend/repricing; exact captured bounds, once-only clone/save and receipt event coalescing. Initialization is unused-signer only; provider truth remains a trust boundary.",
+      "workflow": "recovery"
+    },
+    {
+      "definitions": [
+        {
+          "AST_sha256": "3cffe14b08079d518e226759543a921498d436b501c7c21409a92473d2d7c48d",
+          "function": "_late_lp_submission_review",
+          "line_end": 1808,
+          "line_start": 1737
+        },
+        {
+          "AST_sha256": "e3e27daa17871b28f70bf17cd4501ea7ce0540b255fd952e171c6b19554065d6",
+          "function": "submit",
+          "line_end": 2079,
+          "line_start": 1810
+        },
+        {
+          "AST_sha256": "f97634be9866c37ea05f2750e3a5070ec1592e39dc67d476ce7799735039c4fc",
+          "function": "_defer_for_lifecycle",
+          "line_end": 1469,
+          "line_start": 1460
+        },
+        {
+          "AST_sha256": "96b9506ab8649196e94274fba7c94e6ab006ae048be7fb458b186212c4b7ead5",
+          "function": "lp_exit_started",
+          "line_end": 1430,
+          "line_start": 1421
+        },
+        {
+          "AST_sha256": "8831e547fb0ceda8bd4231a0cb07ab026dac7482a2625017d440c0de23b01d7f",
+          "function": "preparation_active",
+          "line_end": 1443,
+          "line_start": 1432
+        },
+        {
+          "AST_sha256": "16ec20e67afe69a7c2b20381e007218499d72d203ad8993041ed9eb715be3d75",
+          "function": "canonical_state",
+          "line_end": 1458,
+          "line_start": 1445
+        }
+      ],
+      "reasoning": "Distinct canonical/preparation/exit admission, late whole-call and prior-cost checks, deadline/day/funding/nonce, exact simulation ABI, padded limits and durable intent before Cast. Hash-save failure retains evidence; a stop/exception is not cancellation.",
+      "workflow": "submission"
+    },
+    {
+      "definitions": [
+        {
+          "AST_sha256": "fb371ec4272fa46a4c86cd852b7ac768d2259e3b40bf8efe65091eb6b1dccc0d",
+          "function": "_confirmation_namespace",
+          "line_end": 1031,
+          "line_start": 1030
+        },
+        {
+          "AST_sha256": "53a2d001fa72035bf3e20c2376c92095976b229c26f57496fcef9c67802e4751",
+          "function": "_rebalance_delay",
+          "line_end": 1039,
+          "line_start": 1033
+        },
+        {
+          "AST_sha256": "708c8ddf05560d513548d59da21484d909cdd76190d7051a4df54ac6ece7f817",
+          "function": "_store_rebalance_schedule",
+          "line_end": 1065,
+          "line_start": 1041
+        },
+        {
+          "AST_sha256": "ea9a14e805aa8359e7f95430f117ac3f1cadc46d4eced5bcd36846f1d0673c32",
+          "function": "_rebalance_due",
+          "line_end": 1071,
+          "line_start": 1067
+        },
+        {
+          "AST_sha256": "5716d6cace18297b5dadac9588adbefe5af764a4df54cc04fb0b3a9b57935f2d",
+          "function": "_rebalance_due_checked",
+          "line_end": 1127,
+          "line_start": 1073
+        },
+        {
+          "AST_sha256": "3ee832411d791a7596755b831f3ccd5863db82f44234eda5ae07baf2115027f7",
+          "function": "_confirmed_rebalance_due",
+          "line_end": 1217,
+          "line_start": 1129
+        },
+        {
+          "AST_sha256": "5884434a87ccc271b4e291c3a7b60da3874ae395b25e20641c4bec4b897aa970",
+          "function": "_next_confirmation_check",
+          "line_end": 1232,
+          "line_start": 1219
+        },
+        {
+          "AST_sha256": "e6443c76c1bed606e407121bc3b665716bcab4471f9cf0de2ad384003ef2b5fe",
+          "function": "_confirmation_enrollment_at",
+          "line_end": 1242,
+          "line_start": 1235
+        },
+        {
+          "AST_sha256": "bd431f4e8aaf6d3269826144787558beb27488d032dfa8aec11f391dfba8e9a6",
+          "function": "_confirmation_status",
+          "line_end": 1248,
+          "line_start": 1244
+        },
+        {
+          "AST_sha256": "2e1ddcecff817fc0d5b5d8b3edaee8af66ae41a17e9d4fc56ffe693b1ab014fc",
+          "function": "_mark_confirmation_reset",
+          "line_end": 1277,
+          "line_start": 1250
+        },
+        {
+          "AST_sha256": "4677fe7f676b79f903c1f22cb44038c3eaf866b236df5e94fdb03122d8baa90d",
+          "function": "_mark_known_confirmation_resets",
+          "line_end": 1283,
+          "line_start": 1279
+        },
+        {
+          "AST_sha256": "7ffc6cb73b6c416051b2ccb79c06ad3ea7f4cf67846562b9a08e4ed0b09dcff0",
+          "function": "_rebalance_submission_ready",
+          "line_end": 1295,
+          "line_start": 1285
+        },
+        {
+          "AST_sha256": "370d8afd083f7ef87f588038c81a6e9105923819af850ba1fdb51922fbd5f511",
+          "function": "_interrupted_confirmation_bucket",
+          "line_end": 2546,
+          "line_start": 2526
+        },
+        {
+          "AST_sha256": "01816f67bf9213f8d446e230b6fd284b83b6cc13f5fb187034c9b5de3cdee286",
+          "function": "_confirmation_priority",
+          "line_end": 2630,
+          "line_start": 2548
+        }
+      ],
+      "reasoning": "Hard cooldown, sampled condition/reset acknowledgements, strict gap, jitter and deadline priority remain. Price/LP identity changes reset evidence; contributions do not reset clock. Serial finality/provider delays may miss a gap; no SLA or emergency bypass is added.",
+      "workflow": "confirmation"
+    },
+    {
+      "definitions": [
+        {
+          "AST_sha256": "c3c007cae0a76a35f519849a3748b8769f86e961d3bfeab030d5cf84ffb937c2",
+          "function": "_validate_maintenance_settings",
+          "line_end": 706,
+          "line_start": 676
+        },
+        {
+          "AST_sha256": "397f1900aa4deb8d0d85a05f21adb09d892739035a0bdea2de73c7a1a9ef9d82",
+          "function": "_validate_maintenance_config",
+          "line_end": 722,
+          "line_start": 708
+        },
+        {
+          "AST_sha256": "6cf499a42f4e0e0cd249d99b91bf06aa11b1ade4548c9b1ea3d4b8e945e1a6ee",
+          "function": "_compound_budget",
+          "line_end": 742,
+          "line_start": 724
+        },
+        {
+          "AST_sha256": "0a8bbdaa3e9e2dc9d3eaa671f0e8ebe71df57c79e8657acf9ad8848bc556d001",
+          "function": "_idle_compound_checkpoint",
+          "line_end": 753,
+          "line_start": 744
+        },
+        {
+          "AST_sha256": "a81ddae10e2c347eaa48407b89a000bfaa8344a4350eb5c893f622214393608a",
+          "function": "_compound_ready",
+          "line_end": 760,
+          "line_start": 755
+        },
+        {
+          "AST_sha256": "3695ecdec24141539ac0754b3ad707bdf39235e98a5ca695d76ac5adfbe137c9",
+          "function": "_compound_policy_status",
+          "line_end": 795,
+          "line_start": 762
+        },
+        {
+          "AST_sha256": "6074a3d66d0d75470b63981ec686a7576f3f32b385dcf0a6241b61bd1db9499c",
+          "function": "_compound_policy_allowed",
+          "line_end": 833,
+          "line_start": 797
+        },
+        {
+          "AST_sha256": "c2de63c3bfb5c65cf573438099c703a169a4569a50206bc14350c26fe67dbf40",
+          "function": "_compound_confirmation_record",
+          "line_end": 881,
+          "line_start": 835
+        },
+        {
+          "AST_sha256": "4e602c228f6b82c263f8bf3b9e672737df50a48586efc52ecd7931f84a943a8c",
+          "function": "_compound_submission_ready",
+          "line_end": 887,
+          "line_start": 883
+        },
+        {
+          "AST_sha256": "4b82dfae5a485006d4cbfbeab2a042c115a466306f4671d312ff42d75b16a947",
+          "function": "_adaptive_range_target",
+          "line_end": 1315,
+          "line_start": 1297
+        },
+        {
+          "AST_sha256": "97cd5489612d91b5a75ac96ffacbb5ff46aada865ff18bd103e1900892c56532",
+          "function": "_compound_due",
+          "line_end": 1349,
+          "line_start": 1317
+        }
+      ],
+      "reasoning": "Actual currencies/raw-unit thresholds, attributed idle plus designated reserves, independent interval and same-hash physical/confirmation proof. In-range/threshold waiting remains accepted software policy; do not silently move it on-chain or let compound bypass reset/reference checks.",
+      "workflow": "compound"
+    },
+    {
+      "definitions": [
+        {
+          "AST_sha256": "6cbb28e2d7f5617c614acb5e9995c5a29a321cdb0063873b65bd0956e234bb54",
+          "function": "run_cycle",
+          "line_end": 629,
+          "line_start": 513
+        },
+        {
+          "AST_sha256": "aeb36790d297d2ee1643afc9cd864e6262a4fb6695adf562ef26ab7e5b7d9e73",
+          "function": "poll_delay",
+          "line_end": 658,
+          "line_start": 631
+        },
+        {
+          "AST_sha256": "d3f9c2a00aa460e4c93d29bbbeb4ee354beee837715746489ebcb50f0a00114d",
+          "function": "save",
+          "line_end": 660,
+          "line_start": 660
+        },
+        {
+          "AST_sha256": "a4445e1f5015542703052a5eabf72eba9d3355a44c9ef60273f7d3f3cf10a375",
+          "function": "_observe_revert_cooldowns",
+          "line_end": 674,
+          "line_start": 662
+        },
+        {
+          "AST_sha256": "e74801076aebbdaf8762ba768131ed0bc9a16eb2f4fd1078a5db8ff26619f1c8",
+          "function": "_bucket_batch",
+          "line_end": 2386,
+          "line_start": 2370
+        },
+        {
+          "AST_sha256": "5e2c0ae4093c88437a0ad80f0fab2f7d6105a7b8bdce81754afc6c982e31a599",
+          "function": "_bucket",
+          "line_end": 2455,
+          "line_start": 2392
+        },
+        {
+          "AST_sha256": "b1f7a99e2499f94bf1972ab61265d484cd50521f1a2f556eb9552baa32ed74c6",
+          "function": "_sync_external",
+          "line_end": 2472,
+          "line_start": 2457
+        },
+        {
+          "AST_sha256": "e3caf4f2750c7cef9b6944cab7cf61e8d7fc3b4bbd8da58f6c5b5ead369596f2",
+          "function": "_convert_royalties",
+          "line_end": 2475,
+          "line_start": 2474
+        },
+        {
+          "AST_sha256": "ca62cbdd5e242ac1880f53c44e96daa2543d9b9296114e9083879f3eda0b6208",
+          "function": "_convert_rewards",
+          "line_end": 2483,
+          "line_start": 2477
+        },
+        {
+          "AST_sha256": "75ce50735d1639d8a2b2ba94682851f56ea0701b2332dbb09fc6c0addf4f3f3f",
+          "function": "_buyback_tasks",
+          "line_end": 2499,
+          "line_start": 2485
+        },
+        {
+          "AST_sha256": "7019943a1385c4bfc6d68c4535bb603f95c928c6928d21b7e7026f76bef2c196",
+          "function": "_buyback_once",
+          "line_end": 2524,
+          "line_start": 2501
+        },
+        {
+          "AST_sha256": "ed70e693f82ec53f9c24f5918c719d9e4de56aced036008a5871912998c4acbb",
+          "function": "cycle",
+          "line_end": 2802,
+          "line_start": 2632
+        }
+      ],
+      "reasoning": "Recover first, retain authority/lifecycle admission and rotation fairness. Hourly collection is independent of swaps; only authenticated actual receipt events coalesce clock. Blocked optional work does not establish financial truth. Failed saves stop rather than resetting journals.",
+      "workflow": "loop"
+    },
+    {
+      "definitions": [
+        {
+          "AST_sha256": "0ad323e3a8e8a36cc2019ccca9a50b8c43dd97569d82b64e6bcb7eb40968cd21",
+          "function": "_validate_upkeep_policy",
+          "line_end": 903,
+          "line_start": 889
+        },
+        {
+          "AST_sha256": "7b41d807cae869400837be0e752a3e72a38c7e45fdb40e1f18519a8dd1b5c6ae",
+          "function": "_lp_routing_snapshot",
+          "line_end": 972,
+          "line_start": 905
+        },
+        {
+          "AST_sha256": "33f5c375cda349ccc6699b70ee30bcf914a6a58283bd57e4b897e89e8b961d94",
+          "function": "_validate_lp_routing",
+          "line_end": 985,
+          "line_start": 974
+        },
+        {
+          "AST_sha256": "ea183e2eba2d4a660ec67857e52ede0f72df4f42cd23d23737fb9b33802bf882",
+          "function": "_observe_execution_health",
+          "line_end": 1028,
+          "line_start": 987
+        },
+        {
+          "AST_sha256": "18df51ef2fe24dffbb721e38158b30e17ae4e109a3feafed0a4645014dbfd34a",
+          "function": "_head",
+          "line_end": 1510,
+          "line_start": 1502
+        },
+        {
+          "AST_sha256": "4c5f4d27f5b95b7dc8f5e1ba71d962f733a65ef48d1b7a8ce91747883e592db3",
+          "function": "view",
+          "line_end": 1352,
+          "line_start": 1351
+        },
+        {
+          "AST_sha256": "c7845c028a61239778914a178379b680a8a2606f9bddfc40287d018c44aef52c",
+          "function": "_asset",
+          "line_end": 1357,
+          "line_start": 1354
+        },
+        {
+          "AST_sha256": "fb70250ca21469216f1d4aa4dbc36e0b6c30572aed4ec98c302c7a8413847045",
+          "function": "_calldata",
+          "line_end": 1375,
+          "line_start": 1359
+        },
+        {
+          "AST_sha256": "d2bf46939fe020f113b00186a49890eaa96eb86db5a6ffb3bc0f1e024c45e2ac",
+          "function": "_address_word",
+          "line_end": 2368,
+          "line_start": 2366
+        },
+        {
+          "AST_sha256": "3b590422c8605bacc9cdf5b727b8dc86efa31ac7a98526c7a55e7c59ca7c4ca1",
+          "function": "_asset_word",
+          "line_end": 2390,
+          "line_start": 2388
+        }
+      ],
+      "reasoning": "Native identity is scoped to typed asset slots. Runtime/reciprocal bindings and exact hash snapshots precede work; caches are bounded discovery-only and cannot replace signing-time checks. Confirmed health metadata is local observed evidence, not chain authentication.",
+      "workflow": "routing"
+    },
+    {
+      "definitions": [
+        {
+          "AST_sha256": "eb5674acc2335c8b8b43967db5cbd9c7126a5f516b632402af36d41d176e4bcc",
+          "function": "_configure_metadata",
+          "line_end": 2170,
+          "line_start": 2081
+        },
+        {
+          "AST_sha256": "431a76785d67b72f1a0692f4af81fe69623dea5fce8dc38618708578427f7f9e",
+          "function": "_metadata_hash",
+          "line_end": 2176,
+          "line_start": 2173
+        },
+        {
+          "AST_sha256": "b83b8c8e7981e1df024618ab76260d2cd8c04a795d58502cc94c9ec8c899ce3d",
+          "function": "_validate_metadata_record",
+          "line_end": 2192,
+          "line_start": 2178
+        },
+        {
+          "AST_sha256": "85e887084e2e13c27c16cd39b4214f5bdba01e793d812b504ba8d5ad907ad93e",
+          "function": "_validate_metadata_payload",
+          "line_end": 2215,
+          "line_start": 2194
+        },
+        {
+          "AST_sha256": "21f30da1b0af5a91fc0eae584c757d45760e5a5bb6268676b143021709713156",
+          "function": "_metadata_transaction",
+          "line_end": 2223,
+          "line_start": 2217
+        },
+        {
+          "AST_sha256": "16426f7d328839f0fe18d9c5652f8f55b5b60729d753a44fa1faa523ca8ab1f8",
+          "function": "_metadata_words",
+          "line_end": 2227,
+          "line_start": 2225
+        },
+        {
+          "AST_sha256": "d43048d479aaf82a6c491e423ed581286a9b8b3f63f5f845dc6e05c12f93a3eb",
+          "function": "_metadata_uint",
+          "line_end": 2232,
+          "line_start": 2229
+        },
+        {
+          "AST_sha256": "97b1fafe71e6e5ce2173d1d6b0d8e580f239efa222923f261af93b27a80228b1",
+          "function": "_metadata_anchor",
+          "line_end": 2237,
+          "line_start": 2234
+        },
+        {
+          "AST_sha256": "0e0b67f3ef2458ba59c107af5913f51a8c6a9b0c624272869d56321403b057ff",
+          "function": "_metadata_bindings",
+          "line_end": 2261,
+          "line_start": 2239
+        },
+        {
+          "AST_sha256": "b599122573ae7e720ed97fb6f0e3647a2da3f19273e31fa80f437fc8ac441462",
+          "function": "_metadata_code_hash",
+          "line_end": 2269,
+          "line_start": 2263
+        },
+        {
+          "AST_sha256": "578d99c3c76949e5ac876f6bd9814fdfbc40eee9f7d48c2d0a15499e5cbb1910",
+          "function": "_metadata_record_at",
+          "line_end": 2286,
+          "line_start": 2271
+        },
+        {
+          "AST_sha256": "952eeb514df14e85d0110a3a4204bdbeb0ba56693e5c39f4ba189c6386b6f18f",
+          "function": "_refresh_metadata",
+          "line_end": 2335,
+          "line_start": 2288
+        },
+        {
+          "AST_sha256": "affa155d51015ededb3ffc53283d0b740112930c4d1ea6924621747b8c14010e",
+          "function": "_confirm_metadata",
+          "line_end": 2363,
+          "line_start": 2337
+        }
+      ],
+      "reasoning": "Ordinal/token identity, lifecycle2 renderer pins and bounded fair paging remain separate from principal work. Successful canonical receipt, not submission, publishes notified state; reorg/expired trigger drops stale fingerprints. Existing old-source records are not relabelled.",
+      "workflow": "metadata"
+    }
+  ]
+}

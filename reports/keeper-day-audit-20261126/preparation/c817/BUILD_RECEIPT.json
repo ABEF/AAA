@@ -1,0 +1,37 @@
+{
+  "affected_method_rerun": true,
+  "archive_members": 43,
+  "bundle": {
+    "bytes": 195677,
+    "sha256": "2c0361bfe2fbd345554900f816417f2e2b28b04179177f1cc14a6d99d0acd2d8"
+  },
+  "combined_output_bytes": 65536,
+  "controller": {
+    "bytes": 18592,
+    "sha256": "8f92370a338306bccc1d58de7495f128867fd0965e01cb79f5e6450a34f2028f"
+  },
+  "existing_environments_adopted": false,
+  "health_identity_changed_files": [
+    "keeper/cast_process.py"
+  ],
+  "network_actions": 0,
+  "previously_green_methods_run": 0,
+  "runner": {
+    "bytes": 7723,
+    "sha256": "08393e0ab48b4517f56339409c5bd6bd676192c96dd9d187205fcd929d3d7528"
+  },
+  "schema": 1,
+  "selected_affected_methods": [
+    "KeeperAlertAuditTests.test_actual_observer_source_change_alerts_without_resetting_pending_age"
+  ],
+  "source_head": "1cc67c50ece5b41fbd8c78b902ceb7ab70f96914",
+  "source_manifest": {
+    "bytes": 20584,
+    "sha256": "ef8cd2e573a741594c9cbf414842f62f4f14784d2f02e32d804ac190476356fd"
+  },
+  "source_members": 39,
+  "stop_seconds": 2,
+  "tests_run": 0,
+  "unit": "popl-keeper-day-audit-20261126-c817.service",
+  "work_seconds": 180
+}

@@ -1,0 +1,57 @@
+{
+  "source_head": "1cc67c50ece5b41fbd8c78b902ceb7ab70f96914",
+  "reviewed_worktree_files": {
+    "tests_python/test_keeper_backup_audit.py": "265e2e8f7360a2ff0a5e409e9045992867d255745577d51212991ab8522da575",
+    "tests_python/test_keeper_alert_audit.py": "8f33bb6b9a19f2bff0ba6c0ac80401ad9215daa0a4f9ee65cb38087fe8c40ae3",
+    "tests_python/test_keeper_process_audit.py": "5b790e2cac04bae6befff32ffa826bb6b5b83ae687dec6fe5f7031825060bf11",
+    "keeper/recovery_bundle.py": "022cd3b9a3692f9b5576fded8fb15d4aca2797f4ad3bd449561a4d57173de550",
+    "keeper/alerts.py": "053ac2a70f38801b77afde8ba107c78e322a11630cb04620e1aa35a3f811fe13",
+    "keeper/cast_process.py": "5856fec6fb15e1abb66750394c2fb7a24314686e964eca0e9363b5007aa5ba3a",
+    "zzz_ops/read_process.py": "601ac78236bda39b1b9e1388b5f3a29bbec26e6824f0d97e941f32a138cb67bb"
+  },
+  "reviewed_preparation_files": {
+    "package_c816.py": "383b099f8e6393fc57b100ce658814de9dea300288b2d1c6759cdbd7e97a78c9",
+    "capsule_template.py": "b427bf0bc5895b54ebb7453a064ac66399e08910ae97535286421f496c634ee1",
+    "run_selected_template.py": "b12abbfb105df53d2a4bb20e68c0ee9e2203599b5ea4200dc7a2ab747e8bddfa",
+    "host_control.py": "2d5cf5aabc5f5191d57a823c7a8148b9d216f540b5fdd09d56c3b73828b313c7",
+    "orchestrate_c816.py": "7c9ab5a72f244873c71a24cd75fcf77d80bbfa9ce3483cda58f4e926b32a17b7"
+  },
+  "selection": [
+    {
+      "file": "tests_python/test_keeper_backup_audit.py",
+      "class": "KeeperBackupAuditTests",
+      "methods": [
+        "test_fifo_substituted_at_open_refuses_without_waiting_or_complete_output",
+        "test_guarded_regular_reads_preserve_exact_pending_and_restore_bytes"
+      ]
+    },
+    {
+      "file": "tests_python/test_keeper_alert_audit.py",
+      "class": "KeeperAlertAuditTests",
+      "methods": [
+        "test_actual_observer_source_change_alerts_without_resetting_pending_age",
+        "test_default_model_identity_matches_backup_and_preserves_same_intent_age",
+        "test_invalidated_snapshot_cannot_replace_the_last_known_intent_clock",
+        "test_legacy_omitted_model_fingerprint_keeps_existing_first_seen",
+        "test_missing_configuration_does_not_erase_pending_observation",
+        "test_missing_health_preserves_pending_clock_and_prolonged_alert",
+        "test_missing_or_invalid_journal_preserves_last_known_pending_clock",
+        "test_pending_grace_can_lack_observations_but_cannot_mask_invalid_present_proof",
+        "test_unrecognized_pending_envelope_cannot_clear_last_known_clock",
+        "test_valid_new_intent_restarts_clock_and_valid_empty_journal_clears_it"
+      ]
+    },
+    {
+      "file": "tests_python/test_keeper_process_audit.py",
+      "class": "KeeperProcessAuditTests",
+      "methods": [
+        "test_actual_sigint_is_delivered_only_after_reaped_ownership_is_recorded",
+        "test_cast_capture_never_signals_a_reaped_group_and_still_cleans_owned_interrupts",
+        "test_read_capture_never_signals_a_reaped_group_and_still_cleans_owned_interrupts",
+        "test_reaped_flag_is_published_before_deferred_signal_delivery",
+        "test_repeated_wait_timeouts_expire_original_deadline_and_keep_cleanup_budget",
+        "test_wait_retry_slices_preserve_mask_and_original_absolute_budget"
+      ]
+    }
+  ]
+}

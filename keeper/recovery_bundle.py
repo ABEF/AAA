@@ -178,7 +178,11 @@ def _read(path, maximum, budget):
     if os.name != 'nt':
         _need(before.st_uid in (0, os.getuid()) and not before.st_mode & 0o022)
     _need(before.st_size <= maximum, 'resource_budget')
-    fd = os.open(path, os.O_RDONLY | getattr(os, 'O_BINARY', 0) | getattr(os, 'O_NOFOLLOW', 0))
+    # A same-user replacement can occur after lstat. Nonblocking open avoids
+    # hanging on a substituted FIFO before the descriptor type check below.
+    # It has no effect on supported regular files; this is still not fencing.
+    fd = os.open(path, os.O_RDONLY | getattr(os, 'O_BINARY', 0) | getattr(os, 'O_NOFOLLOW', 0) |
+                 getattr(os, 'O_NONBLOCK', 0) | getattr(os, 'O_CLOEXEC', 0))
     try:
         opened = os.fstat(fd)
         _need(_stat_identity(opened) == _stat_identity(before) and stat.S_ISREG(opened.st_mode) and opened.st_nlink == 1,

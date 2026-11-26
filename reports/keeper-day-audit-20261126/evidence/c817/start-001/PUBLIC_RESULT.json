@@ -1,0 +1,33 @@
+{
+  "phase": "started",
+  "properties": {
+    "ActiveState": "activating",
+    "ControlGroup": "/system.slice/popl-keeper-day-audit-20261126-c817.service",
+    "ExecMainCode": "0",
+    "ExecMainStatus": "0",
+    "ExecStart": "{ path=/usr/bin/python3 ; argv[]=/usr/bin/python3 -B /opt/popl-keeper-day-audit-20261126-c817/source/run_selected.py ; ignore_errors=no ; start_time=[Thu 2026-11-26 17:06:09 UTC] ; stop_time=[n/a] ; pid=117472 ; code=(null) ; status=0/0 }",
+    "Group": "nogroup",
+    "Id": "popl-keeper-day-audit-20261126-c817.service",
+    "KillMode": "control-group",
+    "LoadState": "loaded",
+    "MainPID": "117472",
+    "MemoryMax": "536870912",
+    "MemorySwapMax": "0",
+    "NRestarts": "0",
+    "NoNewPrivileges": "yes",
+    "PrivateDevices": "yes",
+    "PrivateNetwork": "yes",
+    "ProtectHome": "yes",
+    "ProtectSystem": "strict",
+    "ReadWritePaths": "/opt/popl-keeper-day-audit-20261126-c817/runtime",
+    "Restart": "no",
+    "Result": "success",
+    "RuntimeMaxUSec": "3min",
+    "SubState": "start",
+    "TasksMax": "64",
+    "TimeoutStopUSec": "2s",
+    "User": "nobody",
+    "WorkingDirectory": "/opt/popl-keeper-day-audit-20261126-c817/source"
+  },
+  "unit": "popl-keeper-day-audit-20261126-c817.service"
+}

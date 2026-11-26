@@ -1,0 +1,462 @@
+{
+  "schema": 1,
+  "kind": "source_reasoning_review_not_dynamic_coverage",
+  "baseline": "5331d3a5d051aad3da61d85aa43fafb870487f35",
+  "end": "1cc67c50ece5b41fbd8c78b902ceb7ab70f96914",
+  "production_review": [
+    {
+      "path": "keeper/monitor.py",
+      "bytes": 194496,
+      "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f",
+      "before": {
+        "bytes": 194496,
+        "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f"
+      },
+      "review": "Full affected recovery and submission bodies plus _validate_checkpoint/_head, original saved-fee and metadata/harvest call boundaries; all five added lines examined. No additional confirmed accounting or authority defect.",
+      "functions": [
+        {
+          "name": "_validate_checkpoint",
+          "line": 481,
+          "end": 496,
+          "body_AST_sha256": "38a82e26a956656a8b17d7877d18b126eb3508ffe06b13c505c52b3d3fd790a9",
+          "reasoning": "Retains used-signer anchor existence, depth, exact number/hash/time proof; no-anchor first nonce remains free of added anchor RPC."
+        },
+        {
+          "name": "_head",
+          "line": 1502,
+          "end": 1510,
+          "body_AST_sha256": "18df51ef2fe24dffbb721e38158b30e17ae4e109a3feafed0a4645014dbfd34a",
+          "reasoning": "Latest header number/hash/time validated before consumers use current UTC/deadline."
+        },
+        {
+          "name": "poll_pending",
+          "line": 1559,
+          "end": 1708,
+          "body_AST_sha256": "e2ecc0ca8f2c73299fbde5110ad0eea082ee411bcc067f23a5e49a2bd4021730",
+          "reasoning": "Late predecessor proof follows transaction/metadata reads, final depth/header/execution price proof precedes clone/save; original pending/spent state survives refusal."
+        },
+        {
+          "name": "_late_lp_submission_review",
+          "line": 1737,
+          "end": 1808,
+          "body_AST_sha256": "3cffe14b08079d518e226759543a921498d436b501c7c21409a92473d2d7c48d",
+          "reasoning": "Final exact void call, policy/nonce/balance/lifecycle and previous anchor rechecks; original deadline/day/budget and stop flag checked before return."
+        },
+        {
+          "name": "submit",
+          "line": 1810,
+          "end": 2079,
+          "body_AST_sha256": "e3e27daa17871b28f70bf17cd4501ea7ce0540b255fd952e171c6b19554065d6",
+          "reasoning": "LP balance/conversion/general branches revalidate previous anchor before final head; saved intent before signer, original envelope and no-resend remain."
+        }
+      ]
+    },
+    {
+      "path": "keeper/cast_process.py",
+      "bytes": 5694,
+      "sha256": "5856fec6fb15e1abb66750394c2fb7a24314686e964eca0e9363b5007aa5ba3a",
+      "before": {
+        "bytes": 4617,
+        "sha256": "b6203067b022625bce2bfb415bb6ed85620dc8c7002b51f2d3d4c9296c5ac3e1"
+      },
+      "review": "Full module and all call paths reviewed; confirmed interruption/reaping process-group ownership hazard corrected.",
+      "functions": [
+        {
+          "name": "_terminate",
+          "line": 25,
+          "end": 47,
+          "body_AST_sha256": "604971cc4a01d0408a83feae9511b628ee4b65e60ce93eea64640e4ea56dd8af",
+          "reasoning": "Refuse stale numeric process-group signaling after a known reap; still kill/reap an owned unreaped leader within existing2s cleanup."
+        },
+        {
+          "name": "run_cast",
+          "line": 50,
+          "end": 138,
+          "body_AST_sha256": "73e359189146824f8381d77f028cd73a73048d84d438e40b5f1a61b7d6ef4c31",
+          "reasoning": "Existing64KiB/UTF8/oneabsolute deadline preserved. Parent wait uses\u226450ms signal-masked reap/bookkeeping slices; starts child before mask, restores prior mask on all slice outcomes."
+        }
+      ]
+    },
+    {
+      "path": "zzz_ops/read_process.py",
+      "bytes": 7007,
+      "sha256": "601ac78236bda39b1b9e1388b5f3a29bbec26e6824f0d97e941f32a138cb67bb",
+      "before": {
+        "bytes": 5632,
+        "sha256": "6c3fd87acf6efc39da2742cca0b16e1f4dc289b55b09d95513710c5679454ba7"
+      },
+      "review": "All144original new lines plus new correction reviewed. Bounded combined bytes, Windows PeekNamedPipe, Unix nonblocking reads and exact failure/no-partial-result semantics retained.",
+      "functions": [
+        {
+          "name": "_windows_available",
+          "line": 26,
+          "end": 43,
+          "body_AST_sha256": "e58a87b609dd6a68e3748eb22c71e367f9837b5ba2bc60f225ffd5cc08d511f6",
+          "reasoning": "Only fixed kernel pipe peek and closed/broken statuses; no body execution for unchanged Windows path."
+        },
+        {
+          "name": "_cleanup",
+          "line": 46,
+          "end": 67,
+          "body_AST_sha256": "2014ba8cb908753ab1de9ec633f2002ecff82d0d8fe200999f750bd18ecc9893",
+          "reasoning": "Same stale-PGID defense as Cast while Windows process-handle kill remains unchanged."
+        },
+        {
+          "name": "run_read_process",
+          "line": 70,
+          "end": 170,
+          "body_AST_sha256": "d738973fc640aa798729275e080c07021ce2210717f5d6a04ed1dd0a00a7f9f5",
+          "reasoning": "1MiB aggregate bound, no shell/stdin, originaldeadline/2scleanup retained. POSIX wait slices own reap before signal restoration; Windows wait unchanged."
+        }
+      ]
+    },
+    {
+      "path": "keeper/staging.py",
+      "bytes": 4086,
+      "sha256": "9ebae1142434baee326e766d6a4c69ccf3d568e7d7881c92715a3a5024c09710",
+      "before": {
+        "bytes": 4086,
+        "sha256": "9ebae1142434baee326e766d6a4c69ccf3d568e7d7881c92715a3a5024c09710"
+      },
+      "review": "Full initializer and changed wallet-creation/address calls inspected. Fixed localAnvil/31337 and unprivileged fresh-only behavior; two run_cast substitutions use original60/30s and sanitized failures. Not executed.",
+      "functions": [
+        {
+          "name": "main",
+          "line": 22,
+          "end": 64,
+          "body_AST_sha256": "0bf290ff800b40d1b9116b1a05a0675b2befef47c6e39e427213e5b0bd470640",
+          "reasoning": "Legacyfixture never a productionconfiguration; signer material stays local. No random publicchain/wallet/authority action is introduced."
+        }
+      ]
+    },
+    {
+      "path": "scripts/check-staging-monitor.py",
+      "bytes": 3425,
+      "sha256": "f8b1f237c09e9dec0d28a4e3519a69af5c47fa4f284f2bda9f4714bdae93a4e9",
+      "before": {
+        "bytes": 3425,
+        "sha256": "f8b1f237c09e9dec0d28a4e3519a69af5c47fa4f284f2bda9f4714bdae93a4e9"
+      },
+      "review": "Full paused fixed monitor inspected including pre-existing export validation and backup writing. Newcapture invocation retains strict hostkeys/account/exactforcedcommand/30s. No monitoring or SSH execution performed.",
+      "functions": [
+        {
+          "name": "validate_export",
+          "line": 21,
+          "end": 37,
+          "body_AST_sha256": "14b8a330d1f562d43d20b47c1f0273e349533a23bb4b32bb0693d469474bfe92",
+          "reasoning": "Pre-existing JSON export age/health/snapshot hash logic, 31337only. Existing local trusted export/schema boundary is distinct from newcurrent-accounting backup format; no automatic adoption."
+        },
+        {
+          "name": "main",
+          "line": 40,
+          "end": 63,
+          "body_AST_sha256": "751247ebf102b9c4c55715286aaecefaf230a4d54469f826992c657a2a4e2541",
+          "reasoning": "Boundedcombinedcapture precedes parsing/writing; failureexports onlyfixedreason/errorcontext. Relative key/knownhosts paths resolved butcontents neverprinted."
+        }
+      ]
+    },
+    {
+      "path": "scripts/run-keeper-tests.py",
+      "bytes": 7139,
+      "sha256": "6a22c88f0b0bd331817274b40c7fba4c84d929261fb768a9f99566fbc9b71559",
+      "before": {
+        "bytes": 6997,
+        "sha256": "d1303ef60c6f17959e6ee545d0de22bf105885520f078b96b53488ca654190ec"
+      },
+      "review": "All selection/defined-class/dedup/evidence code read. Five missing current keeper-tool/audit modules added for FUTURE selection; staticASTreview only, no imports/testexecution.",
+      "functions": [
+        {
+          "name": "select_tests",
+          "line": 64,
+          "end": 81,
+          "body_AST_sha256": "5000e6f1d884a859c2b100e8758e60b36e1cdb7d4a232f40e3a6875211b66c64",
+          "reasoning": "Rejectempty/repeatedmodules/customload hooks, only owned definedTestCases, deduplicatedIDs; allfiveaddedmodules haveownedlexicalmethods."
+        },
+        {
+          "name": "inputs",
+          "line": 83,
+          "end": 93,
+          "body_AST_sha256": "41e79902dc140bcf00f4173dde67f15e270749d503ac5299a14d6455cc6bacf4",
+          "reasoning": "CapturedwholelocalPythonpool is sourceidentity, not dynamiccoverage; unrelateddirty filesnever stageadopted."
+        },
+        {
+          "name": "main",
+          "line": 97,
+          "end": 119,
+          "body_AST_sha256": "1d20f844ee35c4a06289ead684054364647f8477d2eb77c9e5b8a6eb429b2968",
+          "reasoning": "Evidencecontext exits before processSystemExit; --list remains no test-body execution; not invoked."
+        }
+      ]
+    }
+  ],
+  "test_review": [
+    {
+      "path": "tests_python/test_keeper_anchor_recheck.py",
+      "sha256": "e15aec346e75364d8d5c2708d0ac360fcec3f8d95fed646a95aff5139e125d9e",
+      "methods": [
+        {
+          "name": "test_successor_cannot_replace_a_prior_anchor_changed_during_recovery",
+          "line": 158,
+          "end": 159,
+          "AST_sha256": "82afadd6818795c349211fb032bff155a5f6f56cee2704ea89130982a3011fe4"
+        },
+        {
+          "name": "test_reverted_successor_cannot_hide_invalidated_prior_spending",
+          "line": 161,
+          "end": 162,
+          "AST_sha256": "88768ae40b55876f4edbe8affb5f603db0520a106b6185fd4f478b1e1c0427f5"
+        },
+        {
+          "name": "test_metadata_read_completes_before_the_late_prior_anchor_check",
+          "line": 164,
+          "end": 179,
+          "AST_sha256": "6cd8348605d149d7c8d3fb7747a02183880ddfd54388733dfd7a85ed152d4aee"
+        },
+        {
+          "name": "test_healthy_success_and_revert_keep_fee_accounting_and_final_proof_order",
+          "line": 181,
+          "end": 203,
+          "AST_sha256": "5b22b1a6b99d024fd6cf90fc3514a6cefded32224f4d371503839b7e841c2df6"
+        },
+        {
+          "name": "test_first_nonce_recovery_has_no_extra_anchor_rpc",
+          "line": 205,
+          "end": 214,
+          "AST_sha256": "ccc804de4fc93c68e47134c3413b8377dcd94e8ff6bc87dd8968d423eca626db"
+        },
+        {
+          "name": "test_successor_change_after_late_anchor_check_is_still_blocked_by_final_header",
+          "line": 216,
+          "end": 231,
+          "AST_sha256": "040f36483bed629e7c9913d2ee53516a5a430f5124dfba0417eb5ee3092b251a"
+        },
+        {
+          "name": "test_late_rebalance_review_cannot_sign_against_an_invalidated_cost_anchor",
+          "line": 264,
+          "end": 265,
+          "AST_sha256": "8ee86ad32beb4b2abb5917c4992550bd29c63021281a3276075abd1bdc12cad7"
+        },
+        {
+          "name": "test_late_compound_review_cannot_sign_against_an_invalidated_cost_anchor",
+          "line": 267,
+          "end": 268,
+          "AST_sha256": "9af2667dafb054a2b77969485a5cc6392afa4f4306b965fa1ec37c5bbed859a7"
+        },
+        {
+          "name": "test_late_lp_conversion_review_cannot_sign_against_an_invalidated_cost_anchor",
+          "line": 270,
+          "end": 271,
+          "AST_sha256": "34943c3fe9f68653d57b65f9a12ec35473148c5d3c9a83b4bb44d6628751ab4c"
+        },
+        {
+          "name": "test_late_harvest_review_cannot_sign_against_an_invalidated_cost_anchor",
+          "line": 273,
+          "end": 274,
+          "AST_sha256": "56e9cb61c7f44233a36e1e002ea66e359ca0e3aa59a28cae0c3bfacadd33eb0a"
+        },
+        {
+          "name": "test_healthy_submission_keeps_exact_intent_and_last_head_after_anchor_for_all_branches",
+          "line": 276,
+          "end": 303,
+          "AST_sha256": "5b42072f22dfea10179b23832974bc916541d94718f82c73c956ff4057aa2a5d"
+        },
+        {
+          "name": "test_first_nonce_submission_keeps_anchor_checks_rpc_free",
+          "line": 305,
+          "end": 314,
+          "AST_sha256": "7d39accc82915ef250888108d0339001652dda8b679040def457858ffeb72ea7"
+        }
+      ],
+      "review": "Readsetup/assertions and actual callcomposition; inert RPC/runtime/lifecycle seams in anchor methods, actual disposablechild cases in oldutility evidence and structural/inertmonitor checks remain separately scoped. NEW6ownership methods combine inert paths with one actual self-SIGINT POSIX method. No bodies executed by this reviewer."
+    },
+    {
+      "path": "tests_python/test_read_process.py",
+      "sha256": "1a70235996cb9fce2b22bd67bb49ef0e695fd3e67ece123bb107f326c94145e7",
+      "methods": [
+        {
+          "name": "test_complete_bytes_nonzero_exit_and_closed_stdin",
+          "line": 35,
+          "end": 38,
+          "AST_sha256": "e737df05944282437ae7cd8d14f88124d657817289c1b1a247e156f0673c66ce"
+        },
+        {
+          "name": "test_exact_combined_mebibyte_is_retained",
+          "line": 40,
+          "end": 44,
+          "AST_sha256": "9a861a499aa7aa9c3efe35fbe2381458e64e6764fc4264687ce083ac5ed3e6f8"
+        },
+        {
+          "name": "test_each_stream_and_combined_overflow_refuse_without_partial_result",
+          "line": 46,
+          "end": 51,
+          "AST_sha256": "efb68f1d0760e1c80db0608a10ecbbeb824a8272b78cdb3ca6f088269a56c7db"
+        },
+        {
+          "name": "test_one_deadline_bounds_idle_active_and_closed_pipes",
+          "line": 53,
+          "end": 61,
+          "AST_sha256": "69837b523859a496e377cfb7eedb15ed35f100d542a6775ddf1d90dbae45992b"
+        },
+        {
+          "name": "test_failure_reaps_child_closes_pipes_and_never_uses_shell",
+          "line": 63,
+          "end": 78,
+          "AST_sha256": "754613901bcfe00d403b6f128b0a754527dc65c21b9e92f1c78123d93a9124ea"
+        },
+        {
+          "name": "test_invalid_deadlines_and_startup_error_do_not_disclose_arguments",
+          "line": 80,
+          "end": 87,
+          "AST_sha256": "ad72c42813e23af4dedb4d9aca57665db5a9efc4d3302a8bd237e58f8b10dfa8"
+        },
+        {
+          "name": "test_exited_parent_cannot_strand_a_unix_inherited_pipe",
+          "line": 90,
+          "end": 117,
+          "AST_sha256": "b41ae2c30c8b08e8a880d1ee5742f6b23f55a8da4b6b3409fb13e30401ccba48"
+        }
+      ],
+      "review": "Readsetup/assertions and actual callcomposition; inert RPC/runtime/lifecycle seams in anchor methods, actual disposablechild cases in oldutility evidence and structural/inertmonitor checks remain separately scoped. NEW6ownership methods combine inert paths with one actual self-SIGINT POSIX method. No bodies executed by this reviewer."
+    },
+    {
+      "path": "tests_python/test_keeper_utility_capture.py",
+      "sha256": "782b775fc62e4e5e822a78fe25fed3edf9d3ed42be22db2f8de92e15175694b1",
+      "methods": [
+        {
+          "name": "test_staging_wallet_commands_use_reviewed_cast_capture_and_original_deadlines",
+          "line": 22,
+          "end": 34,
+          "AST_sha256": "c786a9ad5f5e6ca3c3f66945737c2094c036c58ad6b9b28fbbc484f4beaf13cd"
+        },
+        {
+          "name": "test_monitor_retains_exact_forced_account_and_thirty_second_deadline",
+          "line": 47,
+          "end": 56,
+          "AST_sha256": "b7d7b3e37eaab621635051c3e6b5e210f1b4c9e9fa2b774b9abf5bb8b37d0823"
+        },
+        {
+          "name": "test_monitor_capture_failure_exports_no_secret_or_partial_snapshot",
+          "line": 58,
+          "end": 62,
+          "AST_sha256": "57fb7665f8057c089716402c1ac82be8bf1061853ee6532e0d6144599e09cce7"
+        },
+        {
+          "name": "test_nonzero_monitor_exit_fails_before_parsing_or_backup",
+          "line": 64,
+          "end": 69,
+          "AST_sha256": "90bdd400ab8df7178506ca77041cb8d1ba25d88ca9c9bd57d82254c7b3dc8601"
+        }
+      ],
+      "review": "Readsetup/assertions and actual callcomposition; inert RPC/runtime/lifecycle seams in anchor methods, actual disposablechild cases in oldutility evidence and structural/inertmonitor checks remain separately scoped. NEW6ownership methods combine inert paths with one actual self-SIGINT POSIX method. No bodies executed by this reviewer."
+    },
+    {
+      "path": "tests_python/test_keeper_process_audit.py",
+      "sha256": "5b790e2cac04bae6befff32ffa826bb6b5b83ae687dec6fe5f7031825060bf11",
+      "methods": [
+        {
+          "name": "test_read_capture_never_signals_a_reaped_group_and_still_cleans_owned_interrupts",
+          "line": 149,
+          "end": 159,
+          "AST_sha256": "713ce8a62e76597ccc962d38fbf24ab3bf3380f3d22a7dc359a5ceb7a5a26307"
+        },
+        {
+          "name": "test_cast_capture_never_signals_a_reaped_group_and_still_cleans_owned_interrupts",
+          "line": 161,
+          "end": 171,
+          "AST_sha256": "d8091810cd43f159bfaf2d2ad82234ec3ae59c61871d4c6b74dff2bd6920d0e1"
+        },
+        {
+          "name": "test_reaped_flag_is_published_before_deferred_signal_delivery",
+          "line": 173,
+          "end": 181,
+          "AST_sha256": "80bdfa8baa1834afc6d759cd5af3cf6a2ca0f14a57956a3d625a654beb7ba6d1"
+        },
+        {
+          "name": "test_wait_retry_slices_preserve_mask_and_original_absolute_budget",
+          "line": 183,
+          "end": 195,
+          "AST_sha256": "c09a6de2990f7582fd2d660b87f139bc51e6cf7f0379f4cb5de4193fe024947b"
+        },
+        {
+          "name": "test_repeated_wait_timeouts_expire_original_deadline_and_keep_cleanup_budget",
+          "line": 197,
+          "end": 206,
+          "AST_sha256": "0829e00da57ef4415fdcefe9701c8648e68544ca653f0a7422fdc4a65864b2e3"
+        },
+        {
+          "name": "test_actual_sigint_is_delivered_only_after_reaped_ownership_is_recorded",
+          "line": 210,
+          "end": 263,
+          "AST_sha256": "d02bb1d4a93a2b43d5b503273c64a65d071cc1f202bd11533ec7f1840e8cdb03"
+        }
+      ],
+      "review": "Readsetup/assertions and actual callcomposition; inert RPC/runtime/lifecycle seams in anchor methods, actual disposablechild cases in oldutility evidence and structural/inertmonitor checks remain separately scoped. NEW6ownership methods combine inert paths with one actual self-SIGINT POSIX method. No bodies executed by this reviewer."
+    }
+  ],
+  "new_method_count": 6,
+  "test_bodies_executed_by_reviewer": 0,
+  "remote_actions_by_reviewer": 0,
+  "primary_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/python/cpython/v3.12.3/Lib/subprocess.py",
+      "scope": "Popen.wait lines1146-1167 can call _wait during KeyboardInterrupt handling then re-raise; this can setreturncode before caller bookkeeping."
+    },
+    {
+      "url": "https://docs.python.org/3.12/library/signal.html#signal.pthread_sigmask",
+      "scope": "Per-thread block/setmask and empty-mask query; API contract corroborates short wait bookkeeping and restored mask."
+    }
+  ],
+  "confirmed_finding": {
+    "id": "PROCESS-OWNERSHIP-01",
+    "severity": "medium",
+    "counterexample": "Popen.wait catches KeyboardInterrupt, completes child reap in its own _wait and re-raises; callerreapedflag remainsfalse, originalfinally could killpg oldnumericPID afterownershiplost.",
+    "correction": "Short\u226450ms signalmaskedwait/reaped-flag slices plus defensive returncodeguard; keep originalabsolute deadline, outputbounds and2s cleanup.",
+    "scope": "read_process newtoday helper and same existing Cast sibling; no financial/authority or pending-state changes."
+  },
+  "harness_review": {
+    "file_count": 32,
+    "function_instances": 397,
+    "unique_function_AST_bodies": 227,
+    "exact_duplicate_function_instances": 170,
+    "identity_map": "HARNESS_FUNCTION_IDENTITY.json",
+    "method": "Exactcopied functions mechanically grouped; reviewed new native controller/model/gateway/storage/timing/curation/package execution boundaries and bodydiffs. Large sourcepin/allowlist tables checked structurally, not manually claimed as handwritten-line proof. Exact historical fixture copies retain prior scope and are not fresh runtime verification.",
+    "direct_boundary_sources": [
+      "c809/c810 model_service and restart_control diffs",
+      "c810 remote_capsule handwritten functions and host_control/orchestrate/package",
+      "shared native_base full command/ownership/cgroup/status/start/stop/witness paths",
+      "shared keeper_runtime Child/model/gateway/source validator plus exact copied fixture composition",
+      "shared keeper_jobs/job_cases jobguard/configure/recovery/financial projection paths",
+      "c811 model_service storagefault/naturalfailure/resolve/recovery/finalcapture",
+      "c811 storage_control/capsule_extension/orchestrate/package",
+      "c811 independent verify_saved_vectors/reconcile_saved_vectors, curators and stopped-health probe"
+    ],
+    "retained_findings": [
+      {
+        "id": "HARNESS-OWNERSHIP-01",
+        "scope": "historical_native_base._run and generated capsule run",
+        "state": "future-template correction required; immutable oldsource/results untouched",
+        "detail": "Same unmasked wait/finished bookkeeping race; actual saved runs do not show interruption at this boundary, so no false invalidation of their finite results. New auditcontroller mustuse correctedownership."
+      },
+      {
+        "id": "HARNESS-FINAL-01",
+        "scope": "c811 model_service lines416-442 and finally",
+        "state": "known originalNONPASS retained",
+        "detail": "Incorrect239s minimum healthy-cycle assertion occurs before finalfinancialcapture; later reconciliation provescoreonly and explicitlylacksphysicalaftervectors. Do not manufacture or rerunoldjourney toclose."
+      },
+      {
+        "id": "HARNESS-SUPERVISION-01",
+        "scope": "legacyshared Child.stop and stopped-health managerprobe",
+        "state": "existing finite-test boundary",
+        "detail": "Read-onlymanagerprobe captures sysctl output before checkingbytes; sharedChild polls/reaps leader before descendant closure. Private fixedunits and finalcgroupverificationcontain scope; no universalhardRAM/orphan/powerloss claim."
+      }
+    ],
+    "limitations": [
+      "No old helper/test/financial body executed.",
+      "Historical source/pin equality is not running-code attestation.",
+      "Single-thread reviewed caller/no hostile externalreaper remains boundary; processcreation and kernelstalls require cgroup/host supervision.",
+      "Signal set protects common interruption handlers; it is not global transactional cancellation or protection against SIGKILL.",
+      "No foreigngroup was actually signaled to demonstrate risk.",
+      "Current paused desktop monitor remains unexecuted."
+    ]
+  }
+}

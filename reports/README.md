@@ -1,10 +1,11 @@
 # Verification evidence
 
-[Keeper alerts and stale-backup checks](keeper-alerts-20261126/REVIEW.md)
-records21 NEW Ubuntu methods, each run once. A private loopback receiver proves
-durable retries/recovery and backup faults. One health-source adapter preserves
-readiness logic; matching source/backup adoption stays separate. The new unit
-stops empty; existing environments and the paused heartbeat remain unchanged.
+[Full-day keeper audit](keeper-day-audit-20261126/REVIEW.md) reviews all six
+26 November commits, fixes clock/identity/read/reaping issues and improves
+source notifications and test selection.18 distinct new methods pass in17+1
+Ubuntu stages; original c816 NONPASS and affected-only correction are explicit.
+Current source, historical scope and later adoption remain separate. Earlier
+[21-method alerts](keeper-alerts-20261126/REVIEW.md) keep their exact old pins.
 
 [Ubuntu exact-backup adoption](ubuntu-backup-recovery-20261126/REVIEW.md)
 retains c813's failed final-capture run and records the corrected c814 actual

@@ -1,0 +1,52 @@
+{
+  "archive_members": 43,
+  "bundle": {
+    "bytes": 197256,
+    "sha256": "51f5219b762eb2fc5735ed51d5b39eba0cde3fc91318ed16584c9a31e5918fe6"
+  },
+  "combined_output_bytes": 65536,
+  "controller": {
+    "bytes": 20225,
+    "sha256": "279beba222b76796d25e7e2d2b84b4880534cf85d766402e359f48420bdb3c71"
+  },
+  "existing_environments_adopted": false,
+  "health_identity_changed_files": [
+    "keeper/cast_process.py"
+  ],
+  "network_actions": 0,
+  "runner": {
+    "bytes": 10603,
+    "sha256": "272e5cc6c7da801596b4373e69cc0eed7b5c87327313e95f2c97f3b17e7316e7"
+  },
+  "schema": 1,
+  "selected_NEW_methods": [
+    "KeeperBackupAuditTests.test_fifo_substituted_at_open_refuses_without_waiting_or_complete_output",
+    "KeeperBackupAuditTests.test_guarded_regular_reads_preserve_exact_pending_and_restore_bytes",
+    "KeeperAlertAuditTests.test_actual_observer_source_change_alerts_without_resetting_pending_age",
+    "KeeperAlertAuditTests.test_default_model_identity_matches_backup_and_preserves_same_intent_age",
+    "KeeperAlertAuditTests.test_invalidated_snapshot_cannot_replace_the_last_known_intent_clock",
+    "KeeperAlertAuditTests.test_legacy_omitted_model_fingerprint_keeps_existing_first_seen",
+    "KeeperAlertAuditTests.test_missing_configuration_does_not_erase_pending_observation",
+    "KeeperAlertAuditTests.test_missing_health_preserves_pending_clock_and_prolonged_alert",
+    "KeeperAlertAuditTests.test_missing_or_invalid_journal_preserves_last_known_pending_clock",
+    "KeeperAlertAuditTests.test_pending_grace_can_lack_observations_but_cannot_mask_invalid_present_proof",
+    "KeeperAlertAuditTests.test_unrecognized_pending_envelope_cannot_clear_last_known_clock",
+    "KeeperAlertAuditTests.test_valid_new_intent_restarts_clock_and_valid_empty_journal_clears_it",
+    "KeeperProcessAuditTests.test_actual_sigint_is_delivered_only_after_reaped_ownership_is_recorded",
+    "KeeperProcessAuditTests.test_cast_capture_never_signals_a_reaped_group_and_still_cleans_owned_interrupts",
+    "KeeperProcessAuditTests.test_read_capture_never_signals_a_reaped_group_and_still_cleans_owned_interrupts",
+    "KeeperProcessAuditTests.test_reaped_flag_is_published_before_deferred_signal_delivery",
+    "KeeperProcessAuditTests.test_repeated_wait_timeouts_expire_original_deadline_and_keep_cleanup_budget",
+    "KeeperProcessAuditTests.test_wait_retry_slices_preserve_mask_and_original_absolute_budget"
+  ],
+  "source_head": "1cc67c50ece5b41fbd8c78b902ceb7ab70f96914",
+  "source_manifest": {
+    "bytes": 26700,
+    "sha256": "bfc89106574dc271ac81f1a643ce9af4da00c85d2497dc4b19a854ddbfa191d1"
+  },
+  "source_members": 39,
+  "stop_seconds": 2,
+  "tests_run": 0,
+  "unit": "popl-keeper-day-audit-20261126-c816.service",
+  "work_seconds": 180
+}

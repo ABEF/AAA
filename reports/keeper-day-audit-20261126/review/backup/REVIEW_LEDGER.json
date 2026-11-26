@@ -1,0 +1,670 @@
+{
+  "schema": 1,
+  "assigned_scope": "All handwritten backup producer/CLI plus original test bodies and relevant actual keeper/worker/state/health dependencies",
+  "source_baseline": "1cc67c50ece5b41fbd8c78b902ceb7ab70f96914",
+  "definitions": [
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "RecoveryRefusal",
+      "line_start": 48,
+      "line_end": 52,
+      "review": "Whitelist code and fixed text; no attacker values/paths. Exception boundary preserves explicit refusal codes.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_need",
+      "line_start": 55,
+      "line_end": 57,
+      "review": "Single refusal path; validation preconditions do not mutate originals.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_uint",
+      "line_start": 60,
+      "line_end": 62,
+      "review": "Exact int check rejects bool and negatives; uint256 default supports exact raw accounting.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_sha",
+      "line_start": 65,
+      "line_end": 66,
+      "review": "SHA256 for identity only; not authority or source attestation.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_hash",
+      "line_start": 69,
+      "line_end": 72,
+      "review": "Exact shape, case-normalized parsing, optional prefix/zero; manifest trusted pin separately canonical lowercase/nonzero.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_address",
+      "line_start": 75,
+      "line_end": 78,
+      "review": "Exact EVM address shape with scoped zero exclusion, lowercase identity matches keeper codec.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_json",
+      "line_start": 81,
+      "line_end": 82,
+      "review": "Deterministic strict finite JSON; newline is manifest representation, not keeper semantic digest.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_pairs",
+      "line_start": 85,
+      "line_end": 90,
+      "review": "Reject duplicate JSON object keys including escaped equivalents.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_constant",
+      "line_start": 93,
+      "line_end": 94,
+      "review": "Reject JSON NaN/Infinity without echoing raw values.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_decode",
+      "line_start": 97,
+      "line_end": 111,
+      "review": "Object root, finite floats and post-parse node/depth bounds; byte bounds precede decode. These are not process-RAM or preemptive deadlines.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_Budget",
+      "line_start": 114,
+      "line_end": 122,
+      "review": "Int-only finite byte/time resource policy; cooperative monotonic deadline distinct from processing hard supervision.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_path",
+      "line_start": 125,
+      "line_end": 158,
+      "review": "Explicit daemon-relative base, absolute normalized paths, no dotdot/reparse/symlink/ADS/UNC; new paths require protected existing parent. Ancestors/current UID stay trusted.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_stat_identity",
+      "line_start": 161,
+      "line_end": 162,
+      "review": "Before/open/after metadata tuple pins current read content identity, not cross-host fencing.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_directory_identity",
+      "line_start": 165,
+      "line_end": 166,
+      "review": "Parent/output inode/device checks; same-UID path attacks not universally eliminated.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_protected",
+      "line_start": 169,
+      "line_end": 173,
+      "review": "Require directory and POSIX protected owner/root parent. Windows ACL qualification remains separate.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_read",
+      "line_start": 176,
+      "line_end": 203,
+      "review": "Bounded read plus descriptor/path/parent identity and regular-single-link checks; fixed FIFO substitution open race with portable O_NONBLOCK and CLOEXEC. Kernel/fsync stalls remain outside cooperative guarantee.",
+      "status": "confirmed_fix"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_sources",
+      "line_start": 206,
+      "line_end": 207,
+      "review": "Hash fixed explicit source member paths with same byte/deadline policy.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "source_hashes",
+      "line_start": 210,
+      "line_end": 212,
+      "review": "Exactly same thirteen paths as keeper.health SOURCE_FILES; no daemon import, RPC or running-code attestation.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_semantic",
+      "line_start": 215,
+      "line_end": 217,
+      "review": "Keeper-compatible JSON digest has no newline and default ASCII; separate raw config digest intentionally stricter.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_configuration",
+      "line_start": 220,
+      "line_end": 245,
+      "review": "Minimal explicit accounting7/custody5/maintenance3/profile pair validation and deployment identity; no Keeper construction. It is not full live configuration admission.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_references",
+      "line_start": 248,
+      "line_end": 264,
+      "review": "Resolve runtime/signer references against actual working directory, reject path/inode aliases without opening signer files.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_no_sensitive_fields",
+      "line_start": 267,
+      "line_end": 280,
+      "review": "Reject known secret-bearing keys/HTTP strings across accepted envelope. Does not prove arbitrary allowed strings contain no secret.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_fee",
+      "line_start": 283,
+      "line_end": 300,
+      "review": "Preserve exact captured schema1/2 envelopes and arithmetic; missing legacy envelope remains explicitly manual, explicit-null rejected; current limits never reprice old pending.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_bucket",
+      "line_start": 303,
+      "line_end": 304,
+      "review": "Canonical positive uint256 decimal, no overflow.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_action",
+      "line_start": 307,
+      "line_end": 312,
+      "review": "Bounded known action key grammar includes 78-digit uint256 bucket strings; preservation does not enable disabled legacy worker.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_record",
+      "line_start": 315,
+      "line_end": 332,
+      "review": "Metadata ordinal/token/stage/availability/fingerprint shape; current lifecycle2 and dormant/LP-exited stages remain supported.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_metadata_identity",
+      "line_start": 335,
+      "line_end": 342,
+      "review": "Typed legacy/current lifecycle identity; helpers preserve dormant old worker data without authorizing tasks.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_metadata_payload",
+      "line_start": 345,
+      "line_end": 357,
+      "review": "Bounded contiguous ordinal range and unique IDs against saved identity, not canonical on-chain proof.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_optional_state",
+      "line_start": 360,
+      "line_end": 434,
+      "review": "Reviewed monitor scheduling/reset/jitter shapes match current cadence and raw history; conversion state preserves explicit native-v4/configurable legacy identity and metadata notification shape.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_state",
+      "line_start": 437,
+      "line_end": 483,
+      "review": "Strict supported root envelope, config/deployment/accounting identity and counters/anchor/pending consistency; exact data returned unchanged. Full canonical transaction/nonce/accounting checks remain stock recovery responsibility.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_summary",
+      "line_start": 486,
+      "line_end": 491,
+      "review": "Secret-free derived pending facts and manual missing-fee marker, not permission.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_time",
+      "line_start": 494,
+      "line_end": 495,
+      "review": "Finite exact UTC Unix int input; no implicit bool timestamps.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_sync",
+      "line_start": 498,
+      "line_end": 504,
+      "review": "POSIX parent fsync for directory durability; failures propagate and may leave incomplete output.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_reserve",
+      "line_start": 507,
+      "line_end": 521,
+      "review": "Exclusive new protected directory with descriptor-relative mkdir and pinned parent/output identity; no old folder overwrite.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_output_identity",
+      "line_start": 524,
+      "line_end": 527,
+      "review": "Rechecks reserved inode pair before/after publication.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_write",
+      "line_start": 530,
+      "line_end": 548,
+      "review": "Exclusive private file plus file/directory fsync and output identity; no partial marker acceptance claim if error.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_overlap",
+      "line_start": 551,
+      "line_end": 552,
+      "review": "Prevents output overwriting/containing protected source references; backup additionally forbids source-journal parent subtree.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_capture",
+      "line_start": 555,
+      "line_end": 562,
+      "review": "Read config/runtime mapping, exact supported state and thirteen source hashes without lock, signer or daemon access.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_check_capture",
+      "line_start": 565,
+      "line_end": 569,
+      "review": "Re-read source/config/journal/producer before completion marker; stable bytes are point-in-time coherence, not newest chain state.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "backup",
+      "line_start": 572,
+      "line_end": 598,
+      "review": "Capture, bounded canonical manifest, exact journal then completion marker; repeated checks refuse mutation; no source rollback or deletion.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_inventory",
+      "line_start": 601,
+      "line_end": 607,
+      "review": "Exact two entries, stops at first unexpected item; no unbounded directory traversal.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "_verified",
+      "line_start": 610,
+      "line_end": 649,
+      "review": "External pin, exact raw/semantic config, identity/source, capture age/floors, journal bytes, pending-summary equality and repeated snapshot checks; compatible producer hashes remain provenance instead of forced reader equality.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "verify",
+      "line_start": 652,
+      "line_end": 664,
+      "review": "Sanitized wrapper over full selected package proof; false canonical/live/fencing flags retained.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "keeper/recovery_bundle.py",
+      "definition": "restore",
+      "line_start": 667,
+      "line_end": 700,
+      "review": "Exclusive new exact journal plus unsigned plan; re-verifies source after journal write before plan completion; no install/lock/health rewrite/service restart.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "scripts/keeper-recovery.py",
+      "definition": "SafeArgumentParser",
+      "line_start": 13,
+      "line_end": 17,
+      "review": "Suppress rejected values; child parsers inherit class, retaining safe errors.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    },
+    {
+      "file": "scripts/keeper-recovery.py",
+      "definition": "main",
+      "line_start": 20,
+      "line_end": 62,
+      "review": "Offline-only three operations and explicit paths/pins/age; fixed ordinary-exception diagnostics; KeyboardInterrupt not swallowed; no live/install/private-key flags.",
+      "status": "reviewed_no_additional_confirmed_defect"
+    }
+  ],
+  "old_tests_read": [
+    {
+      "method": "test_captured_hashless_pending_round_trip_is_exact_bytes",
+      "line_start": 127,
+      "line_end": 137,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_known_hash_and_zero_tip_fee_review_survive_without_repricing",
+      "line_start": 139,
+      "line_end": 150,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_settled_anchor_and_large_historical_spend_preserve_exact_values",
+      "line_start": 152,
+      "line_end": 162,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_legacy_missing_fee_review_is_preserved_for_manual_reconciliation",
+      "line_start": 164,
+      "line_end": 173,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_backup_and_restore_flags_never_approve_signing_fencing_or_installation",
+      "line_start": 175,
+      "line_end": 182,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_supported_worker_and_schedule_inventory_round_trips_without_timer_reset",
+      "line_start": 184,
+      "line_end": 213,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_secret_named_fields_nested_in_known_state_are_refused_without_disclosure",
+      "line_start": 215,
+      "line_end": 225,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_signer_files_and_credentialed_config_are_not_opened_or_exported",
+      "line_start": 227,
+      "line_end": 254,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_configuration_file_and_semantic_identities_cannot_be_substituted",
+      "line_start": 256,
+      "line_end": 268,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_trusted_manifest_pin_rejects_changed_manifest_and_journal",
+      "line_start": 270,
+      "line_end": 278,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_recomputed_manifest_pin_does_not_authorize_boolean_integer_substitutions",
+      "line_start": 280,
+      "line_end": 291,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_missing_extra_and_nonfile_package_entries_are_refused",
+      "line_start": 293,
+      "line_end": 300,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_package_inventory_stops_at_first_unexpected_entry",
+      "line_start": 302,
+      "line_end": 315,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_duplicate_nonfinite_malformed_and_unknown_secret_fields_refuse_backup",
+      "line_start": 317,
+      "line_end": 330,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_source_compatible_producer_provenance_is_retained_without_reader_relabelling",
+      "line_start": 332,
+      "line_end": 343,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_current_profile_pairs_and_unsupported_combinations_are_explicit",
+      "line_start": 345,
+      "line_end": 358,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_age_and_reviewed_floors_are_explicit_without_latest_state_claim",
+      "line_start": 360,
+      "line_end": 369,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_occupied_outputs_and_source_overlap_never_overwrite_existing_truth",
+      "line_start": 371,
+      "line_end": 382,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_state_aliases_to_configuration_or_signer_files_are_refused",
+      "line_start": 384,
+      "line_end": 397,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_hardlink_journal_and_bundle_payload_are_refused",
+      "line_start": 399,
+      "line_end": 408,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_symlink_source_parent_and_package_payload_are_refused",
+      "line_start": 410,
+      "line_end": 423,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_tool_limits_do_not_mutate_financial_configuration",
+      "line_start": 425,
+      "line_end": 436,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_source_release_drift_is_detected_without_mutating_originals",
+      "line_start": 438,
+      "line_end": 446,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_selected_refusal_codes_are_actionable_and_never_echo_private_values",
+      "line_start": 448,
+      "line_end": 466,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_atomic_source_change_after_capture_refuses_publication_without_rollback",
+      "line_start": 468,
+      "line_end": 483,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_mid_publication_fsync_refusal_preserves_source_and_no_complete_bundle",
+      "line_start": 485,
+      "line_end": 498,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_cli_real_backup_verify_restore_round_trip_stays_offline_unsigned",
+      "line_start": 500,
+      "line_end": 517,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_posix_private_output_modes_and_writable_parent_refusal",
+      "line_start": 520,
+      "line_end": 536,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_posix_atomic_source_replace_during_open_fd_capture_refuses_without_rollback",
+      "line_start": 539,
+      "line_end": 553,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_no_signing_installation_replacement_or_private_key_option_exists",
+      "line_start": 562,
+      "line_end": 572,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_rejected_argument_values_are_not_echoed",
+      "line_start": 574,
+      "line_end": 584,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_bad_private_input_error_does_not_echo_value_path_or_traceback",
+      "line_start": 586,
+      "line_end": 599,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    },
+    {
+      "method": "test_cli_starts_without_importing_daemon_or_any_network_signing_operation",
+      "line_start": 601,
+      "line_end": 620,
+      "reviewed_static_only": true,
+      "body_run": false,
+      "assertion_scope": "Read each assertion and fixture; count/name not proof of behavior. Exact-byte, explicit refusal, alias/secret guards and source-preservation assertions retained. Mocks/stock/canonical seams remain original evidence scope."
+    }
+  ],
+  "confirmed_fix": {
+    "issue": "regular input replaced by FIFO at open can hang before descriptor validation",
+    "correction": "Portable nonblocking and close-on-exec flags; exact regular-file bytes/limits/validators preserved",
+    "source": "keeper/recovery_bundle.py",
+    "api_changed": false,
+    "health_source_files_changed_by_this_fix": [],
+    "producer_hash_changes": true
+  },
+  "new_tests_prepared_not_run": [
+    "KeeperBackupAuditTests.test_guarded_regular_reads_preserve_exact_pending_and_restore_bytes",
+    "KeeperBackupAuditTests.test_fifo_substituted_at_open_refuses_without_waiting_or_complete_output"
+  ],
+  "limitations": [
+    "No old test body, CLI invocation, server, RPC or public transaction executed by this reviewer.",
+    "Reader integrity/freshness is not canonical proof, newest chain state, loaded-code attestation or cross-host fencing.",
+    "Input/owner/ancestors remain trusted; byte/node limits are not process-RAM qualification and cooperative budget cannot stop kernel or fsync stalls.",
+    "Private helper coupling between alerts and backup remains; no broad validator refactor is justified by this isolated fix.",
+    "Existing tests do not prove every worker history combination or physical durability; their synthetic/source/canonical seams retain scope."
+  ],
+  "primary_reference_review": [
+    {
+      "url": "https://docs.python.org/3.12/library/os.html#os.open",
+      "point": "Low-level flags are platform-specific; Unix-only O_NONBLOCK/O_CLOEXEC require getattr portability. Python descriptors are already non-inheritable; the flag makes the kernel open intent explicit."
+    },
+    {
+      "url": "https://man7.org/linux/man-pages/man2/open.2.html",
+      "point": "O_NONBLOCK avoids FIFO open waiting. It does not make regular-file/device I/O nonblocking or eliminate kernel/filesystem stalls."
+    }
+  ]
+}

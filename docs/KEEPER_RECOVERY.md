@@ -1,5 +1,13 @@
 # Keeper outage and server recovery
 
+Use the [full-day audit](../reports/keeper-day-audit-20261126/REVIEW.md) and
+[updated alert procedure](KEEPER_ALERTS.md) for pending-clock continuity, source
+adoption and observer temporary-file/lost-state handling. Unknown input does not
+clear an existing intent clock; an interrupt does not establish that no send
+occurred. Exact journals, original fee reviews and current safeguards remain.
+Later rollout must use matching writer/checker and separately reviewed backup
+pins. The desktop monitor stays paused.
+
 The [one-shot alert observer](KEEPER_ALERTS.md) checks fresh health and a
 selected verified backup, retaining incident/recovery events outside the keeper
 journal. Its [21-method Ubuntu proof](../reports/keeper-alerts-20261126/REVIEW.md)

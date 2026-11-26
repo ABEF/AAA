@@ -1,0 +1,43 @@
+{
+  "all_owned_group_empty": true,
+  "phase": "stopped",
+  "status": {
+    "combined_output_bytes": 73,
+    "group_empty": true,
+    "output_limit_exceeded": false,
+    "phase": "status",
+    "properties": {
+      "ActiveState": "failed",
+      "ControlGroup": "",
+      "ExecMainCode": "1",
+      "ExecMainStatus": "1",
+      "ExecStart": "{ path=/usr/bin/python3 ; argv[]=/usr/bin/python3 -B /opt/popl-keeper-day-audit-20261126-c816/source/run_selected.py ; ignore_errors=no ; start_time=[Thu 2026-11-26 17:01:38 UTC] ; stop_time=[Thu 2026-11-26 17:01:39 UTC] ; pid=116999 ; code=exited ; status=1 }",
+      "Group": "nogroup",
+      "Id": "popl-keeper-day-audit-20261126-c816.service",
+      "KillMode": "control-group",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "MemoryMax": "536870912",
+      "MemorySwapMax": "0",
+      "NRestarts": "0",
+      "NoNewPrivileges": "yes",
+      "PrivateDevices": "yes",
+      "PrivateNetwork": "yes",
+      "ProtectHome": "yes",
+      "ProtectSystem": "strict",
+      "ReadWritePaths": "/opt/popl-keeper-day-audit-20261126-c816/runtime",
+      "Restart": "no",
+      "Result": "exit-code",
+      "RuntimeMaxUSec": "3min",
+      "SubState": "failed",
+      "TasksMax": "64",
+      "TimeoutStartUSec": "3min",
+      "TimeoutStopUSec": "2s",
+      "User": "nobody",
+      "WorkingDirectory": "/opt/popl-keeper-day-audit-20261126-c816/source"
+    },
+    "result_present": true,
+    "terminal": true,
+    "unit": "popl-keeper-day-audit-20261126-c816.service"
+  }
+}

@@ -1,0 +1,784 @@
+{
+  "affected_c817": {
+    "RLIMIT_FSIZE_soft_hard_bytes": [
+      65536,
+      65536
+    ],
+    "elapsed_seconds": 0.09532681852579117,
+    "errors": 0,
+    "failures": 0,
+    "passed": 1,
+    "selected_method": "KeeperAlertAuditTests.test_actual_observer_source_change_alerts_without_resetting_pending_age",
+    "skipped": 0
+  },
+  "checks": [
+    {
+      "detail": "Reviewed pins, all unique archive member bytes and four production files match frozen/current source.",
+      "name": "c816_preparation_archive_and_current_production",
+      "passed": true
+    },
+    {
+      "detail": "Exact complete source map before/after equals archive; owned group empty and MainPID0.",
+      "name": "c816_source_graph_and_cleanup",
+      "passed": true
+    },
+    {
+      "detail": "Effective runtime3min, stop2s, private nobody/no-restart proved; startup3min readback captured.",
+      "name": "c816_isolation_and_timeout",
+      "passed": true
+    },
+    {
+      "detail": "Reviewed selection/started/finished/outcomes reconcile; no old or previously-green methods, signing or public network.",
+      "name": "c816_exact_selection_progress_and_no_old_bodies",
+      "passed": true
+    },
+    {
+      "detail": "All outer controller/action stdout/stderr hashes, inner bounded wire hashes and exact decoded curated artifacts match.",
+      "name": "c816_raw_wire_artifact_and_action_provenance",
+      "passed": true
+    },
+    {
+      "detail": "Reviewed pins, all unique archive member bytes and four production files match frozen/current source.",
+      "name": "c817_preparation_archive_and_current_production",
+      "passed": true
+    },
+    {
+      "detail": "Exact complete source map before/after equals archive; owned group empty and MainPID0.",
+      "name": "c817_source_graph_and_cleanup",
+      "passed": true
+    },
+    {
+      "detail": "Effective runtime3min, stop2s, private nobody/no-restart proved; startup180seconds requested but effective property omitted; no effective-startup qualification.",
+      "name": "c817_isolation_and_timeout",
+      "passed": true
+    },
+    {
+      "detail": "Reviewed selection/started/finished/outcomes reconcile; no old or previously-green methods, signing or public network.",
+      "name": "c817_exact_selection_progress_and_no_old_bodies",
+      "passed": true
+    },
+    {
+      "detail": "All outer controller/action stdout/stderr hashes, inner bounded wire hashes and exact decoded curated artifacts match.",
+      "name": "c817_raw_wire_artifact_and_action_provenance",
+      "passed": true
+    },
+    {
+      "detail": "c81617passes/one original fixture OSError remains NONPASS. Only affected method passes c817.18 distinct successes across19 invocations, no green rerun; two actual self-SIGINT events.",
+      "name": "distinct_17_plus_1_with_original_nonpass",
+      "passed": true
+    },
+    {
+      "detail": "Only failed alert method AST changed; nine other alert ASTs and two backup bytes unchanged. All six process method ASTs and full non-doc AST unchanged; doc-only correction after c816.",
+      "name": "affected_fixture_ast_and_unchanged_green_bodies",
+      "passed": true
+    },
+    {
+      "detail": "All final file bytes match frozen pins; all five requested future runner modules each occur once. Static AST-only check; no imports/test execution.",
+      "name": "current_five_pins_and_future_runner",
+      "passed": true
+    },
+    {
+      "detail": "Raw snapshot/capture hashes match; five existing units have exactly one ambient observer InvocationID difference, zero other differences. Seven prior labs stopped; both new groups independently empty.",
+      "name": "saved_host_preservation_independently_compared",
+      "passed": true
+    }
+  ],
+  "combined": {
+    "actual_child_processes_spawned_by_selected_methods": 0,
+    "actual_self_SIGINT_events": 2,
+    "actual_self_SIGINT_methods": 1,
+    "distinct_successful_method_count": 18,
+    "method_invocations_including_original_error": 19,
+    "old_test_bodies_run": 0,
+    "previously_green_method_reruns": 0,
+    "successful_method_ids": [
+      "KeeperAlertAuditTests.test_actual_observer_source_change_alerts_without_resetting_pending_age",
+      "KeeperAlertAuditTests.test_default_model_identity_matches_backup_and_preserves_same_intent_age",
+      "KeeperAlertAuditTests.test_invalidated_snapshot_cannot_replace_the_last_known_intent_clock",
+      "KeeperAlertAuditTests.test_legacy_omitted_model_fingerprint_keeps_existing_first_seen",
+      "KeeperAlertAuditTests.test_missing_configuration_does_not_erase_pending_observation",
+      "KeeperAlertAuditTests.test_missing_health_preserves_pending_clock_and_prolonged_alert",
+      "KeeperAlertAuditTests.test_missing_or_invalid_journal_preserves_last_known_pending_clock",
+      "KeeperAlertAuditTests.test_pending_grace_can_lack_observations_but_cannot_mask_invalid_present_proof",
+      "KeeperAlertAuditTests.test_unrecognized_pending_envelope_cannot_clear_last_known_clock",
+      "KeeperAlertAuditTests.test_valid_new_intent_restarts_clock_and_valid_empty_journal_clears_it",
+      "KeeperBackupAuditTests.test_fifo_substituted_at_open_refuses_without_waiting_or_complete_output",
+      "KeeperBackupAuditTests.test_guarded_regular_reads_preserve_exact_pending_and_restore_bytes",
+      "KeeperProcessAuditTests.test_actual_sigint_is_delivered_only_after_reaped_ownership_is_recorded",
+      "KeeperProcessAuditTests.test_cast_capture_never_signals_a_reaped_group_and_still_cleans_owned_interrupts",
+      "KeeperProcessAuditTests.test_read_capture_never_signals_a_reaped_group_and_still_cleans_owned_interrupts",
+      "KeeperProcessAuditTests.test_reaped_flag_is_published_before_deferred_signal_delivery",
+      "KeeperProcessAuditTests.test_repeated_wait_timeouts_expire_original_deadline_and_keep_cleanup_budget",
+      "KeeperProcessAuditTests.test_wait_retry_slices_preserve_mask_and_original_absolute_budget"
+    ]
+  },
+  "effective_timeouts": {
+    "c816": {
+      "runtime_readback": "3min",
+      "startup_readback": "3min",
+      "stop_readback": "2s"
+    },
+    "c817": {
+      "limitation": "Reviewed source requests180seconds; query omitted TimeoutStartUSec and unit later GC/not-found. Effective startup value not claimed/inferred; no replay.",
+      "runtime_readback": "3min",
+      "startup_readback": null,
+      "startup_seconds_requested": 180,
+      "stop_readback": "2s"
+    }
+  },
+  "initial_verifier_refusal": "Initial verifier required TimeoutStartUSec in both stages and stopped before writing on missing c817 field. Missing readback is now explicit; evidence/source unchanged. A later static shape mismatch in host-list parsing also stopped before writing; corrected list parsing changes no evidence.",
+  "input_count": 157,
+  "inputs": {
+    "cache-keeper-day-audit-20261126/c816-final/c816.inputs.tar.gz": {
+      "bytes": 197254,
+      "sha256": "0920bb2236ad3557ce5e159d115516a727e2d841980577b39aeb34225537e446"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-001.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-001.stdout": {
+      "bytes": 670,
+      "sha256": "d23ef461ee4524404560614899e93f1c9cf18e24fa6cf8e9dc1a82e9497efd63"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-001/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "fc46b14a78c9cfd11ae6c537515286c8f4dde19de7f66f47123702611fe4427f"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-001/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-001/stdout.raw": {
+      "bytes": 9102,
+      "sha256": "164a2e2205eadb45ddaaa7c6bd07f94b107b3a7361a4c53bfed289cf7391f289"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-002.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-002.stdout": {
+      "bytes": 671,
+      "sha256": "3ed74b28c555c96de8a408d0953fbf530ab4a8bbdf0ae7efd26ceabf037c3aa9"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-002/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "62516a7e28058a5094f4402ffb9af640006a661365b1f0f307556b600f5ba968"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-002/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-002/stdout.raw": {
+      "bytes": 13942,
+      "sha256": "1ab1421c2b9f2e39917bde2fa98089a1ec585e38c8e664a950b2fb63cefe0fab"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-003.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-003.stdout": {
+      "bytes": 671,
+      "sha256": "5be92c0669bf31e1747bb37cfb0604f6775279c98a476407265e6bde98c72681"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-003/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "977d211ce337368074ca5d25e90a662dd447dd433be4f3349362560bea6a5d93"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-003/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-003/stdout.raw": {
+      "bytes": 10552,
+      "sha256": "c0c298d8f4ace3c3f348d9ed82b6877e7ff27ca4f95f30e7323ac8837409e171"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/install-001.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/install-001.stdout": {
+      "bytes": 672,
+      "sha256": "fa19ee736d25efc1280eb480fd7cfad042c316b0d7906dacd82381b55787c2ca"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/install-001/EXECUTION.json": {
+      "bytes": 723,
+      "sha256": "fd46f3fd4eb58b040cb48ecd2c14802bd33815cd4fa77e18924da5044e2f8915"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/install-001/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/install-001/stdout.raw": {
+      "bytes": 4561,
+      "sha256": "dcf6f8cdaa4e090c1fef37ac50d8279a27cf5ab3c70272b80237ad02c5387929"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/start-001.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/start-001.stdout": {
+      "bytes": 670,
+      "sha256": "911029623b6f8b26e0ba054ce6e1bbf4d7f76845dc2d263b5c0808d9a79f0dd0"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/start-001/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "4ed124515873037cb067d6e7592a95eb27e128a7afb7ed2867804d5739bea171"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/start-001/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/start-001/stdout.raw": {
+      "bytes": 1149,
+      "sha256": "1d553351cb52899165996feb790fab7873debd170897118583629860e7a28d3c"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/status-001.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/status-001.stdout": {
+      "bytes": 671,
+      "sha256": "0ad27d4cdccbe7e04029c08b9f2e4641872c0fb7e76745e164df38943ca46c8e"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/status-001/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "3fb8e601eb8bdef15f10747d4ff8af009d97a4c14f2f6f2f9ed58772ef892870"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/status-001/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/status-001/stdout.raw": {
+      "bytes": 1274,
+      "sha256": "5ebd685a6d4f4b9f8386ad6389fafc8a2eea5bb1ca52b9df2cb9bb10c9decaac"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/status-002.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/status-002.stdout": {
+      "bytes": 671,
+      "sha256": "724402f6ba39491f53202c0b728473bbcc4f6aeec50b00a9becc2c99100c91c9"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/status-002/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "c431c1d883b7799e440632776ccac668005f383d28909357091b803da9d24da2"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/status-002/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/status-002/stdout.raw": {
+      "bytes": 1231,
+      "sha256": "85199cf602c7ebc789c60b5ee8b7f42639669bf924e740d03f16f9edc5fa4dbb"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/stop-001.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/stop-001.stdout": {
+      "bytes": 669,
+      "sha256": "ac9a9e5c1e2d4f9aa3b67fd6d67f2b0f10b4f19ccd17d6756698a214c89ac7ac"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/stop-001/EXECUTION.json": {
+      "bytes": 720,
+      "sha256": "7aad67f7a52f6258cdbefbaddd4a50c4f2fc8e784eb413cd2a134ad132000006"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/stop-001/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/stop-001/stdout.raw": {
+      "bytes": 1294,
+      "sha256": "db3fbbb4953c8b46aa249259b0cdee8eb0672986dfbbd3b5d18ca857633d0de0"
+    },
+    "cache-keeper-day-audit-20261126/c817/c817.inputs.tar.gz": {
+      "bytes": 195677,
+      "sha256": "2c0361bfe2fbd345554900f816417f2e2b28b04179177f1cc14a6d99d0acd2d8"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/fetch-001.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/fetch-001.stdout": {
+      "bytes": 670,
+      "sha256": "da033e46c4f9a0413032d99e162a013629bc811a23a802a43f586d453c70ead9"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/fetch-001/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "498d0c5b477e7bbfcdaee0948678e6af5b542c0029848ba62ef2d26957883b94"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/fetch-001/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/fetch-001/stdout.raw": {
+      "bytes": 1750,
+      "sha256": "fc89bf24e4f0fed7e9238b9a3e618baac5bdf0e62fd7117da1078b92f5b214f1"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/fetch-002.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/fetch-002.stdout": {
+      "bytes": 671,
+      "sha256": "66497fc06b749e73c61073e0d6bbbe64cabe4e52d1cd51d5477b82bb791a34dd"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/fetch-002/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "ec46d6f8f175447dfde6808a7da7ad7e0f05ca49a30253774b82a455098d4605"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/fetch-002/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/fetch-002/stdout.raw": {
+      "bytes": 13405,
+      "sha256": "bb2cb4b82bfeac70d1bb13e6a68ca1f5af376e1d0691e6e3819d9e8392c4a008"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/fetch-003.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/fetch-003.stdout": {
+      "bytes": 669,
+      "sha256": "6be453f36332563f4d73fb710f9e6adbbed36c9dcbf520cb476452bda83c4d99"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/fetch-003/EXECUTION.json": {
+      "bytes": 720,
+      "sha256": "ac62aecf20c45ae69a07847b491d4bd7d36325babc9156c97d932b4e5a124a9d"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/fetch-003/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/fetch-003/stdout.raw": {
+      "bytes": 907,
+      "sha256": "50450999af0193590c6bed9f2fd4391160e698350c1e85d085a9d4f38a37239b"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/install-001.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/install-001.stdout": {
+      "bytes": 671,
+      "sha256": "6d9e5295baa576a6a7c491a10e068c73b6707dac23421f91483d4642d4ee76cb"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/install-001/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "de456487eef0740d3601f6d6c49aff9f525749db1f1628a0080cb76ba6804d6c"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/install-001/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/install-001/stdout.raw": {
+      "bytes": 4561,
+      "sha256": "1c909d036dfbd34c863ed930453b0ad0416046ee53e9da14a242e811ea47ec0e"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/start-001.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/start-001.stdout": {
+      "bytes": 670,
+      "sha256": "bd9fae4fc9f8c1473915f70fcaa21a888fddd2c127bb59635f24f432f314526f"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/start-001/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "48be3eff3ca63f17ed9a856b2e428bf5ee73d184fbc6bf4b3ec1ceef6e066cbb"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/start-001/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/start-001/stdout.raw": {
+      "bytes": 1121,
+      "sha256": "afeb115c38e86439e5bccab89343c25624f555654250b6761e64a7a37b5bc259"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/status-001.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/status-001.stdout": {
+      "bytes": 671,
+      "sha256": "ef153978f480e1137910726e4bc43e7daae394e0681b30cfa1e8a59093d87871"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/status-001/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "85bdcc7c016981aba5120be51cf6fcf5baa33c08ccf61598e1c4be253a72ee0e"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/status-001/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/status-001/stdout.raw": {
+      "bytes": 1201,
+      "sha256": "7114a970fade2415ad0d8926f2bce51185378ed99f144a65db6cd23481a78763"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/stop-001.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/stop-001.stdout": {
+      "bytes": 668,
+      "sha256": "7ebf6223dee952051e912cd1c4a412a63e5a23cbcae65e040eaf12847cec84fb"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/stop-001/EXECUTION.json": {
+      "bytes": 719,
+      "sha256": "043aabbf7b6f5a4e6bad4b97d534e75a5412e2b1fe732a376a0b896b2cc27d67"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/stop-001/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-day-audit-20261126/c817/campaign-001/stop-001/stdout.raw": {
+      "bytes": 892,
+      "sha256": "f63946f7f575e7259dfc3e03c783ef3516df6367146b8b1a382492717bbe3ff4"
+    },
+    "keeper/alerts.py": {
+      "bytes": 23149,
+      "sha256": "053ac2a70f38801b77afde8ba107c78e322a11630cb04620e1aa35a3f811fe13"
+    },
+    "keeper/cast_process.py": {
+      "bytes": 5694,
+      "sha256": "5856fec6fb15e1abb66750394c2fb7a24314686e964eca0e9363b5007aa5ba3a"
+    },
+    "keeper/recovery_bundle.py": {
+      "bytes": 36532,
+      "sha256": "022cd3b9a3692f9b5576fded8fb15d4aca2797f4ad3bd449561a4d57173de550"
+    },
+    "private-host-preservation/before-014/EXECUTION.json": {
+      "bytes": 1228,
+      "sha256": "1a00764906dc21f20f52c2f88f0e2a27e7746feac11a851fe99a464cd8e68620"
+    },
+    "private-host-preservation/before-014/HOST_SNAPSHOT.json": {
+      "bytes": 7195,
+      "sha256": "a82e7d5e38ee4ce21f13cdfce72db7ecbf448cfa1ca4ba82ef86670bd0b0470f"
+    },
+    "private-host-preservation/before-014/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "private-host-preservation/before-014/stdout.raw": {
+      "bytes": 5123,
+      "sha256": "39d8f21400657e084223a9804b6848d9678eaac466aa07880c84a28fe5fcd42c"
+    },
+    "private-host-preservation/final-014/EXECUTION.json": {
+      "bytes": 1228,
+      "sha256": "b195ffeb4b6f35b647fd2552fae4f03f8fdeeba1baa62ab30cd803bbb45f8bca"
+    },
+    "private-host-preservation/final-014/HOST_SNAPSHOT.json": {
+      "bytes": 7194,
+      "sha256": "e3d66613227310f018fda380dbb4315c94aa9309f4589e257bbf756e00c0a9d4"
+    },
+    "private-host-preservation/final-014/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "private-host-preservation/final-014/stdout.raw": {
+      "bytes": 5123,
+      "sha256": "121988564452d1db1f37d3120c9b811f2d686c1d666f3df012eb3b2423d57641"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/ORCHESTRATION_RESULT.json": {
+      "bytes": 5297,
+      "sha256": "d41437431b9a899afb5da9adff5e1dc200ccea9d467fa664e13f1780b91a8f14"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/fetch-001/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "fc46b14a78c9cfd11ae6c537515286c8f4dde19de7f66f47123702611fe4427f"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/fetch-001/RESULT.json": {
+      "bytes": 6708,
+      "sha256": "29de204c08885bc66d8f147b5f565a7b920160133aec53a8ca42fcde1fc88257"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/fetch-002/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "62516a7e28058a5094f4402ffb9af640006a661365b1f0f307556b600f5ba968"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/fetch-002/FINAL.json": {
+      "bytes": 10336,
+      "sha256": "1a7f2119894d3fd481d57ca0803bab26c16dde06ebb6017c6da7e9d61cb34037"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/fetch-003/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "977d211ce337368074ca5d25e90a662dd447dd433be4f3349362560bea6a5d93"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/fetch-003/PROGRESS.json": {
+      "bytes": 7794,
+      "sha256": "cc7aa4003e4fc0e8fbea10b5bb975559d41e1f364a4892c693fdd5a84a8f2a7a"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/install-001/EXECUTION.json": {
+      "bytes": 723,
+      "sha256": "fd46f3fd4eb58b040cb48ecd2c14802bd33815cd4fa77e18924da5044e2f8915"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/install-001/PUBLIC_RESULT.json": {
+      "bytes": 4794,
+      "sha256": "a57c08de776ff0c6700d4bb0ccd2e3980b3a8b094d0c62b4c47f91914462df58"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/start-001/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "4ed124515873037cb067d6e7592a95eb27e128a7afb7ed2867804d5739bea171"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/start-001/PUBLIC_RESULT.json": {
+      "bytes": 1307,
+      "sha256": "4bab925a1d1dac1901c9ff4294aded55ee7a49b17a7d905617dca10236ef35f5"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/status-001/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "3fb8e601eb8bdef15f10747d4ff8af009d97a4c14f2f6f2f9ed58772ef892870"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/status-001/PUBLIC_RESULT.json": {
+      "bytes": 1447,
+      "sha256": "d6dbb53cd25929d420450f11dc8372dd12b9454f6c618a304d5d5c768f7417bc"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/status-002/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "c431c1d883b7799e440632776ccac668005f383d28909357091b803da9d24da2"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/status-002/PUBLIC_RESULT.json": {
+      "bytes": 1404,
+      "sha256": "54abc6816823c3d90dcad25d01fe8c653a192e0bbd2df107bc1c37895ec57b71"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/stop-001/EXECUTION.json": {
+      "bytes": 720,
+      "sha256": "7aad67f7a52f6258cdbefbaddd4a50c4f2fc8e784eb413cd2a134ad132000006"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c816/stop-001/PUBLIC_RESULT.json": {
+      "bytes": 1555,
+      "sha256": "edde174e1047671ded69cd65960e312ca856244f1c19bd7e6938b66b3ddfe3e7"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c817/ORCHESTRATION_RESULT.json": {
+      "bytes": 4998,
+      "sha256": "1f19c5d90b4f50bfc7e32c54a4fd3f7136b30b27406783c85a0a7f9a27a0bd42"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c817/fetch-001/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "498d0c5b477e7bbfcdaee0948678e6af5b542c0029848ba62ef2d26957883b94"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c817/fetch-001/RESULT.json": {
+      "bytes": 1194,
+      "sha256": "6a4ed3f5acf7ce8c85c44c6a980aa36c890f1991b0287844c5197fe93e21f94a"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c817/fetch-002/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "ec46d6f8f175447dfde6808a7da7ad7e0f05ca49a30253774b82a455098d4605"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c817/fetch-002/FINAL.json": {
+      "bytes": 9934,
+      "sha256": "0bb5d4c58840012f90d68e7df0d61446128ec87c723ea2da138dc6e2ec53bebf"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c817/fetch-003/EXECUTION.json": {
+      "bytes": 720,
+      "sha256": "ac62aecf20c45ae69a07847b491d4bd7d36325babc9156c97d932b4e5a124a9d"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c817/fetch-003/PROGRESS.json": {
+      "bytes": 561,
+      "sha256": "6d86c14d6e325427df2166a777b56b5280ef3f15b1abc393b6f4f3c383c3ffda"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c817/install-001/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "de456487eef0740d3601f6d6c49aff9f525749db1f1628a0080cb76ba6804d6c"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c817/install-001/PUBLIC_RESULT.json": {
+      "bytes": 4794,
+      "sha256": "46347e9cad5e3263e8d2343fff5fc6de05352ba43df9a7233a76076f27835382"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c817/start-001/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "48be3eff3ca63f17ed9a856b2e428bf5ee73d184fbc6bf4b3ec1ceef6e066cbb"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c817/start-001/PUBLIC_RESULT.json": {
+      "bytes": 1274,
+      "sha256": "9b87b972b0c906826d436314e677e88ffe6fb45558fbb0e1b1bb3b57686a24f9"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c817/status-001/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "85bdcc7c016981aba5120be51cf6fcf5baa33c08ccf61598e1c4be253a72ee0e"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c817/status-001/PUBLIC_RESULT.json": {
+      "bytes": 1369,
+      "sha256": "08ce6036bcca0474921e6d6c3a70a0df48888d89ac35807475edff9573f9789c"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c817/stop-001/EXECUTION.json": {
+      "bytes": 719,
+      "sha256": "043aabbf7b6f5a4e6bad4b97d534e75a5412e2b1fe732a376a0b896b2cc27d67"
+    },
+    "reports/keeper-day-audit-20261126/evidence/c817/stop-001/PUBLIC_RESULT.json": {
+      "bytes": 1139,
+      "sha256": "b26b789cd6c9a3067ba67698c4cba08756efbf9f3044407c1a1ab1916c47d297"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c816/BUILD_RECEIPT.json": {
+      "bytes": 2746,
+      "sha256": "ba4da7ce9e2860226a2345eb69d1adca9302c8d40616a33d6545da8f9ec5abfa"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c816/PARENT_REVIEW_PINS.json": {
+      "bytes": 1866,
+      "sha256": "729f9f1fc843c4492bcd42bd791c13ecf0ff617469dfa9859708816576c5f8f1"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c816/PREP_REVIEW_PINS.json": {
+      "bytes": 3303,
+      "sha256": "6556bc5d8e7c81f43c575c2e4d1a25fd4ddf67577084207741b57071c35d29fa"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c816/SOURCE_MANIFEST.json": {
+      "bytes": 26700,
+      "sha256": "c842555f343b847e886645acf2831c25165fb4d91db73535af33f805b1e0a5a5"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c816/capsule_template.py": {
+      "bytes": 12776,
+      "sha256": "b427bf0bc5895b54ebb7453a064ac66399e08910ae97535286421f496c634ee1"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c816/host_control.py": {
+      "bytes": 5728,
+      "sha256": "2d5cf5aabc5f5191d57a823c7a8148b9d216f540b5fdd09d56c3b73828b313c7"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c816/orchestrate_c816.py": {
+      "bytes": 6546,
+      "sha256": "7c9ab5a72f244873c71a24cd75fcf77d80bbfa9ce3483cda58f4e926b32a17b7"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c816/package_c816.py": {
+      "bytes": 9704,
+      "sha256": "383b099f8e6393fc57b100ce658814de9dea300288b2d1c6759cdbd7e97a78c9"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c816/remote_capsule.py": {
+      "bytes": 20242,
+      "sha256": "2e5596674a0395cadf0819a3b6eadb8e8f24859c435cafa6dc4e0672f90abbe1"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c816/run_selected.py": {
+      "bytes": 10603,
+      "sha256": "272e5cc6c7da801596b4373e69cc0eed7b5c87327313e95f2c97f3b17e7316e7"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c816/run_selected_template.py": {
+      "bytes": 7272,
+      "sha256": "b12abbfb105df53d2a4bb20e68c0ee9e2203599b5ea4200dc7a2ab747e8bddfa"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c817/BUILD_RECEIPT.json": {
+      "bytes": 1119,
+      "sha256": "c8df9804f55788d79743667f7fbdcc470b18738a72a2a3d10593f4114698b920"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c817/PARENT_REVIEW_PINS.json": {
+      "bytes": 1866,
+      "sha256": "4035d8eeb093b3322280f1142308996d53a57d19ec8ee6797d92a5bcd4c155ce"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c817/PREP_REVIEW_PINS.json": {
+      "bytes": 1615,
+      "sha256": "24d265d7f445330668de9d2d86aabba7c9970c8caa75bd88e33453a45bfe11b3"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c817/SOURCE_MANIFEST.json": {
+      "bytes": 20584,
+      "sha256": "ef8cd2e573a741594c9cbf414842f62f4f14784d2f02e32d804ac190476356fd"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c817/capsule_template.py": {
+      "bytes": 12759,
+      "sha256": "71f796bcdd26b2c2eadc6219c7d8fb9ea7504d2dbfa1e18fee23ae4e0f6f7bc1"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c817/host_control.py": {
+      "bytes": 5728,
+      "sha256": "af45fb043dc0c0b87ac51b3d29b36fe482ad01b08a7c2aebf4229cbd09f5fc0f"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c817/orchestrate_c817.py": {
+      "bytes": 6659,
+      "sha256": "2ea9fe94e8bb1ed7db5297f3bb43c47051a9281c6766235354c937c09c0538bf"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c817/package_c817.py": {
+      "bytes": 10036,
+      "sha256": "74937049d1a2bca9be815f67a702c8ed96e77ded71b0e2fc19a2b0a4b234bb77"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c817/remote_capsule.py": {
+      "bytes": 18592,
+      "sha256": "8f92370a338306bccc1d58de7495f128867fd0965e01cb79f5e6450a34f2028f"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c817/run_selected.py": {
+      "bytes": 7723,
+      "sha256": "08393e0ab48b4517f56339409c5bd6bd676192c96dd9d187205fcd929d3d7528"
+    },
+    "reports/keeper-day-audit-20261126/preparation/c817/run_selected_template.py": {
+      "bytes": 7474,
+      "sha256": "d23141dc63f4f2341b86b7642cff528b4a81521a7019177ac42b166513cedd0e"
+    },
+    "reports/keeper-day-audit-20261126/review/alerts/C816_AFFECTED_FIXTURE_REVIEW.json": {
+      "bytes": 617,
+      "sha256": "c85f64d0b747fbdf2688fccf8f31022b7f01e5be828b9be9b6feab12f30829a3"
+    },
+    "reports/keeper-day-audit-20261126/review/alerts/TEST_BEFORE_C816_FIX.py": {
+      "bytes": 14659,
+      "sha256": "8f33bb6b9a19f2bff0ba6c0ac80401ad9215daa0a4f9ee65cb38087fe8c40ae3"
+    },
+    "reports/keeper-day-audit-20261126/review/process/C816_DOCSTRING_REVIEW.json": {
+      "bytes": 440,
+      "sha256": "8c16023794b966d104391d1501540ee0d17e47355db738bfe953739d482bf93d"
+    },
+    "reports/keeper-day-audit-20261126/review/process/C816_TESTED_PROCESS_AUDIT.py": {
+      "bytes": 12663,
+      "sha256": "5b790e2cac04bae6befff32ffa826bb6b5b83ae687dec6fe5f7031825060bf11"
+    },
+    "reports/keeper-day-audit-20261126/review/process/INDEPENDENT_C816_REVIEW.json": {
+      "bytes": 9425,
+      "sha256": "32aa59d228019a7fe1cc027dd1976e55e10b9ada35ecb2e1042b7b73bc90dd09"
+    },
+    "reports/keeper-day-audit-20261126/review/process/RUNNER_AST_REVIEW.json": {
+      "bytes": 14334,
+      "sha256": "a8e4b285a321306df57d1307f157fc90cf9165c5bfdc670770c17d795b8a5f08"
+    },
+    "reports/keeper-day-audit-20261126/verification/FINAL_SOURCE_PINS.json": {
+      "bytes": 990,
+      "sha256": "ef75a96535831ccd264b41c6907d39109ed07b737a833420a1f458e51e49668e"
+    },
+    "reports/keeper-day-audit-20261126/verification/HOST_PRESERVATION.json": {
+      "bytes": 848,
+      "sha256": "9a63d68ba66f886157aa1ea944ca80ca389af8e0b68acb1119648e9e9909e450"
+    },
+    "reports/keeper-day-audit-20261126/verification/before-014-CAPTURE.json": {
+      "bytes": 1228,
+      "sha256": "1a00764906dc21f20f52c2f88f0e2a27e7746feac11a851fe99a464cd8e68620"
+    },
+    "reports/keeper-day-audit-20261126/verification/final-014-CAPTURE.json": {
+      "bytes": 1228,
+      "sha256": "b195ffeb4b6f35b647fd2552fae4f03f8fdeeba1baa62ab30cd803bbb45f8bca"
+    },
+    "scripts/run-keeper-tests.py": {
+      "bytes": 7139,
+      "sha256": "6a22c88f0b0bd331817274b40c7fba4c84d929261fb768a9f99566fbc9b71559"
+    },
+    "tests_python/test_keeper_alert_audit.py": {
+      "bytes": 15110,
+      "sha256": "3bbad9cb06c42896e1bd37234fce81c371d223d6cefbd1e05411b19a8822376e"
+    },
+    "tests_python/test_keeper_backup_audit.py": {
+      "bytes": 6616,
+      "sha256": "265e2e8f7360a2ff0a5e409e9045992867d255745577d51212991ab8522da575"
+    },
+    "tests_python/test_keeper_process_audit.py": {
+      "bytes": 12872,
+      "sha256": "d8bb3dedc116948988de34fb397248d4f38cd26f3a2a0d669dec3d5a36c753c3"
+    },
+    "zzz_ops/read_process.py": {
+      "bytes": 7007,
+      "sha256": "601ac78236bda39b1b9e1388b5f3a29bbec26e6824f0d97e941f32a138cb67bb"
+    }
+  },
+  "limitations": [
+    "Finite new-method proof does not qualify full normal daemon, real Cast signing, providers/markets, sustained operation, adoption or release.",
+    "Process wait proof assumes exclusively owned child and main-thread signal handling. SIGKILL, hostile external reapers/escaped descendants and kernel stalls remain host/supervisor boundaries.",
+    "Earlier interrupted/failed campaigns and original source boundaries remain unchanged. Two actual self-signals used only the isolated test process; Popen and killpg remained inert.",
+    "Host comparison is saved finite evidence with one ambient observer invocation, not continuous uptime."
+  ],
+  "network_calls_by_this_verifier": 0,
+  "original_c816": {
+    "elapsed_seconds": 1.027312884107232,
+    "errors": 1,
+    "failures": 0,
+    "passed": 17,
+    "skipped": 0,
+    "status": "NONPASS retained; original fixture OSError retained; errno was not captured"
+  },
+  "original_c816_campaign_pass": false,
+  "phase": "independent_offline_c816_c817_reconciliation",
+  "production_approved": false,
+  "schema": 1,
+  "scope": "Saved source/preparation/wire/progress/outcome/preservation validation only; not test execution or production approval.",
+  "server_or_service_actions_by_this_verifier": 0,
+  "success": true,
+  "test_bodies_executed_by_this_verifier": 0
+}

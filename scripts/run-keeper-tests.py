@@ -55,6 +55,11 @@ MODULES=(
  'test_keeper_anchor_recheck',
  'test_read_process',
  'test_keeper_utility_capture',
+ 'test_keeper_recovery_bundle',
+ 'test_keeper_alerts',
+ 'test_keeper_backup_audit',
+ 'test_keeper_alert_audit',
+ 'test_keeper_process_audit',
 )
 def select_tests(modules=MODULES,importer=importlib.import_module):
  """Build a strict inventory without executing any selected test body."""

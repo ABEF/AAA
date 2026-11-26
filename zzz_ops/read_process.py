@@ -16,6 +16,7 @@ import time
 MAX_OUTPUT_BYTES = 1024 * 1024
 READ_BYTES = 4096
 CLEANUP_SECONDS = 2
+WAIT_SLICE_SECONDS = .05
 
 
 class ReadProcessError(RuntimeError):
@@ -43,6 +44,11 @@ def _windows_available(pipe):
 
 
 def _cleanup(process):
+    # Popen.wait may reap the child while handling KeyboardInterrupt and then
+    # re-raise it before our caller records reaped=True. Never signal that old
+    # numeric group: its leader is no longer an owned, unreaped identity.
+    if os.name == 'posix' and process.returncode is not None:
+        return
     failed = False
     try:
         if os.name == 'posix':
@@ -118,11 +124,31 @@ def run_read_process(command, *, timeout):
         remaining = deadline - time.monotonic()
         if remaining <= 0:
             raise ReadProcessError('Read-only process deadline exceeded')
-        try:
-            returncode = process.wait(timeout=remaining)
-            reaped = True
-        except subprocess.TimeoutExpired:
-            raise ReadProcessError('Read-only process deadline exceeded') from None
+        if os.name == 'posix':
+            # Mask only short wait/reaped bookkeeping slices. The child was
+            # already started unmasked; no inherited signal policy is changed.
+            signals = {signal.SIGINT, signal.SIGTERM, signal.SIGHUP, signal.SIGALRM}
+            while True:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    raise ReadProcessError('Read-only process deadline exceeded')
+                previous_mask = signal.pthread_sigmask(signal.SIG_BLOCK, set())
+                try:
+                    signal.pthread_sigmask(signal.SIG_BLOCK, signals)
+                    try:
+                        returncode = process.wait(timeout=min(WAIT_SLICE_SECONDS, remaining))
+                    except subprocess.TimeoutExpired:
+                        continue
+                    reaped = True
+                    break
+                finally:
+                    signal.pthread_sigmask(signal.SIG_SETMASK, previous_mask)
+        else:
+            try:
+                returncode = process.wait(timeout=remaining)
+                reaped = True
+            except subprocess.TimeoutExpired:
+                raise ReadProcessError('Read-only process deadline exceeded') from None
         if time.monotonic() >= deadline:
             raise ReadProcessError('Read-only process deadline exceeded')
         result = subprocess.CompletedProcess('read-only process', returncode,

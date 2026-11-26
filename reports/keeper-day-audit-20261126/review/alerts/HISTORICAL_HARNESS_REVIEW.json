@@ -1,0 +1,385 @@
+{
+  "schema": 1,
+  "source_scope": "Historical26November preparation and related required native boundaries only; no executable/report edits or reruns.",
+  "files": [
+    {
+      "path": "reports/keeper-alerts-20261126/preparation/capsule_template.py",
+      "lines": 204,
+      "bytes": 12272,
+      "sha256": "14e4f6d23fbf3e69831f8f3c36ab403afb23ed95a02a70596b6a618b5fc68511",
+      "functions": 15
+    },
+    {
+      "path": "reports/keeper-alerts-20261126/preparation/host_control.py",
+      "lines": 94,
+      "bytes": 5712,
+      "sha256": "56ab189437b29bc34dff8331a593068edb4cb85bf265e959e13a3e0436270bf9",
+      "functions": 5
+    },
+    {
+      "path": "reports/keeper-alerts-20261126/preparation/orchestrate_c815.py",
+      "lines": 93,
+      "bytes": 6268,
+      "sha256": "6c5a9a99a83f29ffab026f27f0518b9b4cd8f644c0426a22840450284be39e91",
+      "functions": 5
+    },
+    {
+      "path": "reports/keeper-alerts-20261126/preparation/package_c815.py",
+      "lines": 109,
+      "bytes": 7816,
+      "sha256": "3fa48c54755165247fbbbff3fd7684fe52128ddc8acdb689eade53aa543368a2",
+      "functions": 4
+    },
+    {
+      "path": "reports/keeper-alerts-20261126/preparation/remote_capsule.py",
+      "lines": 204,
+      "bytes": 18846,
+      "sha256": "ef97e4afdfbaa303175d0100a628b666b82bc10d4be77a05873915bfd85bd913",
+      "functions": 15
+    },
+    {
+      "path": "reports/keeper-alerts-20261126/preparation/REPRODUCIBLE_RUNNER_TEMPLATE.py",
+      "lines": 77,
+      "bytes": 5063,
+      "sha256": "379b977df00940c97d6bad2cd1ddcc5be122a905a950c61f4fd0f16d3201da45",
+      "functions": 16
+    },
+    {
+      "path": "reports/keeper-alerts-20261126/preparation/run_selected.py",
+      "lines": 77,
+      "bytes": 6492,
+      "sha256": "78af5193870b435b1618dba8e582dca8396f4f9adaaa87b87b24c89bdddf8f63",
+      "functions": 16
+    },
+    {
+      "path": "reports/keeper-alerts-20261126/preparation/run_selected_template.py",
+      "lines": 77,
+      "bytes": 5087,
+      "sha256": "0c52049c44e1fc1236792dac53bbe6fec5706b48dab5b2259568234ba3a7a648",
+      "functions": 16
+    },
+    {
+      "path": "reports/keeper-backup-20261126/preparation/check_publication.py",
+      "lines": 123,
+      "bytes": 7174,
+      "sha256": "c64e946831876e46262c26c49e9cccf5393d4a0e45e1819f7eb79440c93345b9",
+      "functions": 1
+    },
+    {
+      "path": "reports/keeper-backup-20261126/preparation/check_saved.py",
+      "lines": 105,
+      "bytes": 8629,
+      "sha256": "e953db80d1898798b774b097bab4855197e832f5b83d6c62b6134b532ffb8558",
+      "functions": 4
+    },
+    {
+      "path": "reports/keeper-backup-20261126/preparation/read_observer_lifecycle.py",
+      "lines": 50,
+      "bytes": 3391,
+      "sha256": "6545d5e92182ca8ba45ddd034b1fea55756cd17c99a780558d30821f9113cd51",
+      "functions": 2
+    },
+    {
+      "path": "reports/keeper-backup-20261126/preparation/reconcile_host.py",
+      "lines": 95,
+      "bytes": 7245,
+      "sha256": "8b53385a77d0d900bccd08ed878ede9dcbf3b76da92f669892e5eb7d844eb320",
+      "functions": 4
+    },
+    {
+      "path": "reports/keeper-backup-20261126/preparation/run_new_windows.py",
+      "lines": 52,
+      "bytes": 3755,
+      "sha256": "52c54267ba8b22ab32166d8829f1ea6776f2d5844bd08bab1cfded526039d85b",
+      "functions": 2
+    },
+    {
+      "path": "reports/keeper-backup-20261126/preparation/ubuntu/capsule_template.py",
+      "lines": 182,
+      "bytes": 8746,
+      "sha256": "3a365634fd9096885ccc31e9f015b3e3b08dc8053745b95b8777e03258b8c312",
+      "functions": 7
+    },
+    {
+      "path": "reports/keeper-backup-20261126/preparation/ubuntu/host_control.py",
+      "lines": 54,
+      "bytes": 3169,
+      "sha256": "9839879f08168d17513313a84f4f1901490d651ce58b4d0d0e1930a9408e1b1b",
+      "functions": 2
+    },
+    {
+      "path": "reports/keeper-backup-20261126/preparation/ubuntu/package_c812.py",
+      "lines": 81,
+      "bytes": 5012,
+      "sha256": "e364496cf18b7486aa91c7258500106c9dacc67c2ed0d084c79ec3352bd1662a",
+      "functions": 3
+    },
+    {
+      "path": "reports/keeper-backup-20261126/preparation/ubuntu/remote_capsule.py",
+      "lines": 182,
+      "bytes": 11645,
+      "sha256": "f086ebb8977139f99370e2a49b36fd4235dce9619e09ece4d8a2aebdd6296a2c",
+      "functions": 7
+    },
+    {
+      "path": "reports/keeper-backup-20261126/preparation/ubuntu/run_selected.py",
+      "lines": 73,
+      "bytes": 3517,
+      "sha256": "819bd9f1dedfffbbe2e2225753f0f8add8e0eb8de614b5337c5c92689005c8bd",
+      "functions": 6
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c813/capsule_extension.py",
+      "lines": 150,
+      "bytes": 9112,
+      "sha256": "dc3434dd65a75963370a9a001888fb0728596d80fcd4ff0e3855e2ff33e7e5ac",
+      "functions": 16
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c813/host_control.py",
+      "lines": 108,
+      "bytes": 7504,
+      "sha256": "afbfe47157194acae20ecc1da7b1e5857813a7ebdd412f6ddc2095bdb8ccf127",
+      "functions": 6
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c813/independent_private.py",
+      "lines": 305,
+      "bytes": 19694,
+      "sha256": "5efec210669a694827fd2f75f9052ce0be5ab9196f27c9ce1da2f2fa363eb4c2",
+      "functions": 16
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c813/model_service.py",
+      "lines": 291,
+      "bytes": 21546,
+      "sha256": "2b596730226e88b59a7e2ff48189eb88a7b0ed5803134c66ac8ebc6149943747",
+      "functions": 8
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c813/orchestrate_c813.py",
+      "lines": 153,
+      "bytes": 9405,
+      "sha256": "df3f8b13e8fc19dee84d33cca5069d7528e6ea32bb64df9594f4a0436a44235e",
+      "functions": 7
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c813/package_c813.py",
+      "lines": 130,
+      "bytes": 10115,
+      "sha256": "8c0e84e3dc8a0521096e9aaaebfaf84e00465994cbae2aedad0c2205fee96174",
+      "functions": 3
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c813/recovery_control.py",
+      "lines": 167,
+      "bytes": 12742,
+      "sha256": "62b0b8fcc6801a219806f667499ce5965552e86b7954790c626453875c371455",
+      "functions": 13
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c813/remote_capsule.py",
+      "lines": 313,
+      "bytes": 33167,
+      "sha256": "063843eb5d8f354045d70206dc213ab2275f1686876016daeab3629f08057e8c",
+      "functions": 27
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c814/capsule_extension.py",
+      "lines": 150,
+      "bytes": 9112,
+      "sha256": "1d681782c4946b0d9cea875d4284ca87e1f22fb41a822c76ffc5dc34e20b773d",
+      "functions": 16
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c814/finish_saved_run.py",
+      "lines": 65,
+      "bytes": 3976,
+      "sha256": "52f000cc2314391191a23d6fbfa01083c065995ca637559f42de30a0a19aa71e",
+      "functions": 1
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c814/host_control.py",
+      "lines": 108,
+      "bytes": 7504,
+      "sha256": "60ba859d5b62df2b5b67e8759e25a71100c7ac71d4dc7553f632b3cb39168cb9",
+      "functions": 6
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c814/independent_private.py",
+      "lines": 305,
+      "bytes": 19694,
+      "sha256": "0116857d1b13b57971ce90bd8c8dc5536e675fb0de93da616adf2e0859b9618b",
+      "functions": 16
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c814/model_service.py",
+      "lines": 304,
+      "bytes": 22200,
+      "sha256": "0b16b4d06a3743a4255e3ca46f583bc6330b72b95d947caae310c46b76aa3a8e",
+      "functions": 9
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c814/orchestrate_c814.py",
+      "lines": 153,
+      "bytes": 9405,
+      "sha256": "8430236625e71d2611e3492beaf7f26166bdd2976fdda0a01fc2e92c17c8921b",
+      "functions": 7
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c814/package_c814.py",
+      "lines": 130,
+      "bytes": 10115,
+      "sha256": "cd8ff093275b8168fcd2c64e8bfe2c38df4b53bc70c16ecd66db88c0be1ccf46",
+      "functions": 3
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c814/recovery_control.py",
+      "lines": 167,
+      "bytes": 12742,
+      "sha256": "35a7e36ee5a568fb55bd7d4b16d9bbc1ee2df661c40b07593edc8c1987e30809",
+      "functions": 13
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/c814/remote_capsule.py",
+      "lines": 313,
+      "bytes": 33167,
+      "sha256": "023f50bf286a7166a4d9537e527a0df332483b919e2602ce39c6a4574f5a0e74",
+      "functions": 27
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/check_publication.py",
+      "lines": 76,
+      "bytes": 4949,
+      "sha256": "a30888c18895c1184dd90f7bc23d30ab5af9784cc81633975d58e624293bcdab",
+      "functions": 2
+    },
+    {
+      "path": "reports/ubuntu-backup-recovery-20261126/preparation/verify_saved_evidence.py",
+      "lines": 365,
+      "bytes": 24208,
+      "sha256": "9b5ea0451c505ecb11046d4c5938da6a5c655d49fd219913e302d074d939d6f4",
+      "functions": 11
+    }
+  ],
+  "named_function_instances": 337,
+  "unique_function_ASTs": 175,
+  "exact_copied_AST_groups": 109,
+  "template_and_label_binding_file": "HISTORICAL_TEMPLATE_BINDINGS.json",
+  "review_groups": [
+    {
+      "group": "c815 source package and root capsule",
+      "files": [
+        "capsule_template.py",
+        "remote_capsule.py",
+        "package_c815.py"
+      ],
+      "review": "Exact source closure/manifest/reviewpins, explicit new+override stages, safe fixed archive inventory/noextractall, readonly root source and private writable runtime, owned LAB_ID/controller identity. Template renders generated capsule exactly.",
+      "limits": "Read process and filesystem calls have host/trustedlocal kernel boundary; no generic production installer or release approval."
+    },
+    {
+      "group": "c815 local execution and saved results",
+      "files": [
+        "host_control.py",
+        "orchestrate_c815.py",
+        "run_selected.py",
+        "REPRODUCIBLE_RUNNER_TEMPLATE.py",
+        "run_selected_template.py"
+      ],
+      "review": "Only fixed actions and unit; bounded parent/SSH output, exact capture and selectedmethod identity, pending start reply still schedules stop, native cgroup empty check, sourcebeforeafter. Current template drift is preserved and reproducible original template matches actual runner.",
+      "limits": "175second TimeoutError may be swallowed by unittest/application handlers; actual oneshot supervision uses TimeoutStartSec180 (RuntimeMaxSec also requested). Effective TimeoutStartUSec was not separately exported; future harness should capture it. Windows clients reap direct child, not arbitrary process-tree containment."
+    },
+    {
+      "group": "c812 POSIX file-only capsule",
+      "files": [
+        "ubuntu/capsule_template.py",
+        "ubuntu/remote_capsule.py",
+        "ubuntu/host_control.py",
+        "ubuntu/package_c812.py",
+        "ubuntu/run_selected.py"
+      ],
+      "review": "Exact reviewed package,3explicit firstcompletion methods, UID/GID65534/dropgroups, no-network/noPopen guards, 90/110/125 nestedwork,64KiB stdout+stderr, owned unreaped leader until cleanup, sourcebeforeafter and final groupempty.",
+      "limits": "Python socket/Popen guards are not a private network namespace or proof of physical filesystem durability; old client depends on original private helper paths and should not be rerun as a general tool."
+    },
+    {
+      "group": "c812 portable and saved-evidence checks",
+      "files": [
+        "run_new_windows.py",
+        "check_saved.py",
+        "check_publication.py"
+      ],
+      "review": "No generic suite discovery; explicit31portableinvocations withoriginalskip retained and disjoint3Ubuntu completions, exact testAST/source/log/artifactpins. Publication checker only Todo/inventory/diff/links, no test body.",
+      "limits": "Sourcepins are historical; later sourcechanges deliberately make rerun against currenttree refuse. Recorded33distinctpasses is finite stagedevidence, not all-market/runtime qualification."
+    },
+    {
+      "group": "ambient observer reconciliation",
+      "files": [
+        "read_observer_lifecycle.py",
+        "reconcile_host.py"
+      ],
+      "review": "Fixed old service/timer and PID1 manager field selection, no MESSAGEtext export or servicecontrols; original five-difference NONPASS preserved and separately classified using manager IDs and timestamps.",
+      "limits": "Read-only helper enforces its32KiB manager output after subprocess capture rather than a streaming memory cap; fixed query fields/40rows scope must not become general unbounded capture. Published preparation location is archival, not installation-aware CLI. No whole-host or uptime approval."
+    },
+    {
+      "group": "c813/c814 build and fixed native controls",
+      "files": [
+        "c813/package_c813.py",
+        "c814/package_c814.py",
+        "c813/remote_capsule.py",
+        "c814/remote_capsule.py",
+        "c813/capsule_extension.py",
+        "c814/capsule_extension.py",
+        "c813/recovery_control.py",
+        "c814/recovery_control.py",
+        "c813/host_control.py",
+        "c814/host_control.py",
+        "c813/orchestrate_c813.py",
+        "c814/orchestrate_c814.py"
+      ],
+      "review": "Eight pairs mechanicallycompared;6have exactlogic afterfixedlab-label replacement; generatedremote differs only labels and reviewedSHA literals. Fixednewnamespace/units/copiedstate/tools, no oldservice/rootcredential mutation. Sourcewriterexplicitstop+emptygroup+restartjobabsence before exactbackup; targetdiffexactly3paths, --once withoutlive; keeper\u2192resolver\u2192model stoporder traced to pinned nativebase.",
+      "limits": "Same-host fencing only. Setting disposable signer directory0000 under its owner UID proves stockreadonly flow didnot needkey, not isolation against malicious sameUID code that could chmod. An external root actor remains trusted."
+    },
+    {
+      "group": "c813/c814 model and independent checker",
+      "files": [
+        "c813/model_service.py",
+        "c814/model_service.py",
+        "c813/independent_private.py",
+        "c814/independent_private.py"
+      ],
+      "review": "Oneactualguardedlocalharvest; exactnonce/calldata/value/gasfee and12confirmations. Backup/verify/restore actualCLIs, raworiginal/restoredbyteequality, originalconfiguration/secretsseparate, canonicaltype2cost/day/anchor and once-onlystate, legitimate dryschedulerdelta. c814 realbehavior correction: finalphysicalvectors+independentreview BEFORE COMPLETE; once-onlyflags avoid rewriting/rechecking successfuloutputs.",
+      "limits": "Originalc813earlyCOMPLETE insufficient and NONPASS retained. Privatechecker is separate stdlibread/arithmetic, not cryptographic independentprovider; fees explicitlyl1=0, twoNFToneMainfeeemptyfixture only, not general productionfee or80/10/5/5 allocation proof."
+    },
+    {
+      "group": "c814 continuation and public reviews",
+      "files": [
+        "c814/finish_saved_run.py",
+        "verify_saved_evidence.py",
+        "check_publication.py"
+      ],
+      "review": "Saved-only fetch/stop/status continuation, no restart/resend; curatedpublicproof binds actualprivatechecker/source/rawhashes without pretending privatefiles can be reconstructed. Actual6privatecheckIDs and10savedreviewpartitions are distinct.",
+      "limits": "Archived finish_saved_run still contains original mistaken7-row expectation; correctedofflinefollowthrough is a separate record and existing review discloses it. Do not copy this collector as current procedure or rerun completed scenario to repair historicalmarker."
+    }
+  ],
+  "mechanically_bound_not_repeated_manual_read": "Generated constants/sourceinventories and duplicate or fixed-label-only copies were bound mechanically; unique handwritten logic and genuine c813/c814 model diff were read.",
+  "new_production_defects_confirmed_in_this_partition": 0,
+  "historical_failures_preserved": true,
+  "test_bodies_executed": 0,
+  "server_actions": 0,
+  "source_or_historical_report_edits": 0,
+  "additional_dependency_scope": {
+    "path": "reports/ubuntu-daemon-storage-20261126/preparation/c811/native_base.py",
+    "sha256": "fe476c1f95d1c72a9f604889c500f501d3e7fe951714edd7806e2ae406d72765",
+    "reviewed_relevant_definitions": [
+      "_read",
+      "_run",
+      "_common_policy",
+      "_start",
+      "_keeper_policy_checks",
+      "_keeper_launch_parts",
+      "native_request_stop",
+      "native_stop_owned"
+    ],
+    "other_unchanged_definitions": "historical pinned reuse, not fresh wholefile manual audit"
+  }
+}

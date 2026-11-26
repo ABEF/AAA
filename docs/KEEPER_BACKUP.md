@@ -3,10 +3,10 @@
 Use the [alert observer](KEEPER_ALERTS.md) to check one explicitly selected
 bundle's age and integrity against its externally retained manifest pin and
 separate original configuration. Rotation never selects the newest folder
-automatically. The [Ubuntu alert proof](../reports/keeper-alerts-20261126/REVIEW.md)
-does not alter backup bytes, configuration, journals or signer files. A new
-health snapshot adapter changes one local source pin; retain old bundles under
-their original release rather than rewriting them.
+automatically. The [day audit](../reports/keeper-day-audit-20261126/REVIEW.md)
+reviews the combined backup, recovery and alert paths. Current producer and
+daemon-source changes require separate reviewed adoption; preserve older
+bundles, original configurations and release pins rather than rewriting them.
 
 Use `scripts/keeper-recovery.py` to capture exact keeper journal bytes, verify a
 reviewed backup and prepare an unsigned restore folder. Existing journals,
@@ -17,6 +17,11 @@ The journal carries pending intent/hash, original fee reviews, nonce, spending,
 receipt anchors and scheduling/worker state. Ownership, LP and reward balances
 remain in the contracts. Use the separate [history recovery procedure](HISTORY_RECOVERY.md)
 for API history databases.
+
+The older `keeper.ops snapshot` / `verify-snapshot` commands provide diagnostic
+normalized-state integrity/age evidence. They are **not** this exact-byte backup
+and restore package. Use `keeper-recovery.py backup/verify/restore` for current
+review-only restoration preparation; neither interface authorizes adoption.
 
 ## What to keep separately
 
@@ -112,6 +117,20 @@ local storage and existing host supervision. Windows supports offline file
 preparation; live atomic-journal capture and Unix permissions need Ubuntu checks.
 Linux outputs request directory/file modes0700/0600. Windows NTFS ACLs are not
 qualified by these checks and require separate review.
+
+The current reader also opens nonblocking and checks the descriptor type,
+preventing a FIFO substituted after `lstat` from blocking before validation.
+Regular-file snapshot checks and source identities remain. This is not a hard
+kernel-I/O deadline, protection from a hostile same-user process or host fencing.
+
+The Cast interruption correction changes one of the thirteen daemon source
+identities; reader hardening changes the backup producer's provenance hash.
+Verify old packages using their separately preserved matching release and exact
+original configuration. Do not rewrite bundles, source hashes or captured fee
+reviews to fit new software. A new writer/checker release needs separately
+reviewed adoption and canonical reconciliation, with original pending journals
+retained. Producer hashes record which tool created a package; they do not
+silently relabel it or introduce a current-producer equality requirement.
 
 ## Before adopting a restored journal
 

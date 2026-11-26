@@ -28,6 +28,7 @@ MAX_OUTBOX=64
 MAX_DELIVERIES=8
 MAX_HTTP_BYTES=8192
 HTTP_SECONDS=2
+OBSERVER_SOURCE_FILES=('keeper/alerts.py','scripts/keeper-alerts.py',*recovery_bundle.PRODUCER_FILES)
 REASONS=frozenset(('configuration_unavailable','input_identity_invalid','health_unavailable',
  'health_stale','health_identity_mismatch','health_not_healthy','journal_unavailable',
  'journal_identity_mismatch','pending_ambiguous','pending_prolonged','backup_unavailable',
@@ -37,10 +38,6 @@ REFUSAL_CODES=frozenset(('invalid_input','input_identity','sidecar_state','sidec
  'resource_budget','publication','delivery_unavailable','outbox_full'))
 EVENT_FIELDS=frozenset(('schema','event_id','type','reason_code','sequence','observed_at',
  'scope_sha256','unsigned','readiness_approved'))
-IDENTITY_KEYS=('chain_id','sender','contracts','accounting_model','accounting_version',
- 'custody_version','protocol_policy_version','portfolio_version','maintenance_policy_version',
- 'rebalance_confirmation_version','fee_intake_version','lp_routing_version',
- 'execution_quality_version','execution_price_version','royalty_settlement_version')
 PENDING_HEALTH_REASONS=frozenset(('pending','maintenance_not_healthy','no_successful_cycle_yet',
  'execution_observation_not_current','execution_observation_unavailable',
  'confirmation_observation_not_current','confirmation_observation_unavailable'))
@@ -113,13 +110,6 @@ def _read(path,maximum,budget):
         _need(key(before)==key(after)==key(named)and total==before.st_size,'input_identity')
         return b''.join(parts)
     finally:os.close(fd)
-
-def _identity(config):
-    value={k:config.get(k,0 if k.endswith('_version')else None)for k in IDENTITY_KEYS}
-    if type(value['sender'])is str:value['sender']=value['sender'].lower()
-    contracts=value['contracts']
-    if type(contracts)is dict:value['contracts']={k:v.lower()if type(v)is str else v for k,v in contracts.items()}
-    return value
 
 def _sidecar(directory,protected):
     # The caller and trusted ancestors remain the host boundary, matching the
@@ -206,7 +196,7 @@ def _deliver(port,event,budget):
         ack=_decode(bytes(raw[offset:]));_need(set(ack)=={'event_id','accepted'}and
          ack['event_id']==event['event_id']and ack['accepted']is True,'delivery_unavailable')
 
-def _pending(state,health,config,prior,now):
+def _pending(state,health,identity,prior,now):
     pending=state.get('pending')
     if pending is None:return None,None,False
     if not(type(pending)is dict and type(pending.get('key'))is str and len(pending['key'])<=200
@@ -214,9 +204,16 @@ def _pending(state,health,config,prior,now):
      and type(pending.get('to'))is str and re.fullmatch('0x[0-9a-fA-F]{40}',pending['to'])
      and type(pending.get('data'))is str and len(pending['data'])<=262144
      and re.fullmatch('0x(?:[0-9a-fA-F]{2})*',pending['data'])and pending.get('value')==0):
-        return None,None,False
-    fingerprint=_digest([_identity(config),pending['key'],pending['nonce'],pending['to'].lower(),pending['data'].lower(),pending['value']])
-    observed=prior if type(prior)is dict and prior['intent_sha256']==fingerprint else{'intent_sha256':fingerprint,'first_seen':now}
+        return prior,None,False
+    intent=[pending['key'],pending['nonce'],pending['to'].lower(),pending['data'].lower(),pending['value']]
+    fingerprint=_digest([identity,*intent])
+    # Earlier observers represented the supported omitted model as None. Keep
+    # that same verified intent's age when adopting its canonical default.
+    legacy=_digest([{**identity,'accounting_model':None},*intent])
+    if type(prior)is dict and prior['intent_sha256']in (fingerprint,legacy):
+        observed={**prior,'intent_sha256':fingerprint}
+    else:
+        observed={'intent_sha256':fingerprint,'first_seen':now}
     age=now-observed['first_seen'];h=pending.get('hash')
     ordinary=(type(h)is str and re.fullmatch('0x[0-9a-fA-F]{64}',h)is not None and int(h,16)!=0
      and health.get('status')=='awaiting_receipt'and health.get('pending')is True
@@ -239,8 +236,8 @@ def run_once(config_path,*,working_directory,backup_bundle,backup_manifest_sha25
     base=Path(working_directory);_need(base.is_absolute());base=_path(base,Path('/'))
     cfg_path=_path(config_path,base);backup_cfg_path=_path(backup_config_path,base)
     bundle=_path(backup_bundle,base);sidecar=_path(directory,base)
-    reasons=[];config=backup_config=None;health=journal=None;health_ok=backup_ok=False;health_reasons=None;current_identity=None
-    cfg_raw=backup_cfg_raw=None;health_raw=journal_raw=None;health_path=journal_path=None;sources=None
+    reasons=[];config=None;health=journal=None;health_ok=backup_ok=False;health_reasons=None;current_identity=None
+    cfg_raw=backup_cfg_raw=None;health_raw=journal_raw=None;health_path=journal_path=None;sources=observer_sources=None
     try:
         # Share the current reviewed profile parser, without constructing Keeper.
         # The first bounded read rejects FIFOs/oversized files before its reader.
@@ -248,7 +245,7 @@ def run_once(config_path,*,working_directory,backup_bundle,backup_manifest_sha25
         _,checked_raw,config,current_identity=recovery_bundle._configuration(cfg_path,budget)
         _need(checked_raw==cfg_raw,'input_identity')
     except Exception:reasons.append('configuration_unavailable')
-    try:backup_cfg_raw=_read(backup_cfg_path,MAX_CONFIG_BYTES,budget);backup_config=_decode(backup_cfg_raw)
+    try:backup_cfg_raw=_read(backup_cfg_path,MAX_CONFIG_BYTES,budget)
     except Exception:reasons.append('backup_unavailable')
     protected=[cfg_path,backup_cfg_path,bundle]
     if config is not None:
@@ -282,28 +279,32 @@ def run_once(config_path,*,working_directory,backup_bundle,backup_manifest_sha25
                 journal_raw=_read(journal_path,max_bytes,budget)
                 journal=recovery_bundle._state(journal_raw,current_identity)
             except Exception:reasons.append('journal_unavailable')
-        try:sources=recovery_bundle.source_hashes(budget=budget)
+        try:
+            sources=recovery_bundle.source_hashes(budget=budget)
+            observer_sources=recovery_bundle._sources(OBSERVER_SOURCE_FILES,budget)
         except Exception:reasons.append('source_unavailable')
-        if backup_config is not None:
+        if backup_cfg_raw is not None:
             try:
-                recovery_bundle.verify(bundle,backup_manifest_sha256,backup_cfg_path,max_age_seconds=max_backup_age_seconds,
+                manifest=recovery_bundle.verify(bundle,backup_manifest_sha256,backup_cfg_path,max_age_seconds=max_backup_age_seconds,
                  max_bytes=max_bytes,max_seconds=budget.remaining(),now=now)
                 backup_ok=True
-                if config is None or _digest(_identity(backup_config))!=_digest(_identity(config)):
+                if current_identity is None or manifest['identity']!=current_identity:
                     backup_ok=False;reasons.append('backup_identity_mismatch')
             except recovery_bundle.RecoveryRefusal as exc:
                 reasons.append('backup_stale'if exc.code=='backup_age_or_floor'else'backup_invalid')
             except Exception:reasons.append('backup_unavailable')
-        scope=_digest([1,_sha(cfg_raw)if cfg_raw else None,_sha(backup_cfg_raw)if backup_cfg_raw else None,sources,
+        scope=_digest([1,_sha(cfg_raw)if cfg_raw else None,_sha(backup_cfg_raw)if backup_cfg_raw else None,sources,observer_sources,
          max_health_age_seconds,max_backup_age_seconds,pending_max_age_seconds,allow_dry_run])
         if state['scope_sha256']is not None and scope!=state['scope_sha256']:reasons.append('monitor_identity_changed')
-        pending_observed=None;pending_age=None;ordinary=False
-        if journal is not None and health is not None and config is not None:
-            pending_observed,pending_age,ordinary=_pending(journal,health,config,state['pending'],observed_at)
+        # Unknown input is not proof that an earlier intent disappeared. Only
+        # a validated current journal can clear or replace its observed clock.
+        pending_observed=state['pending'];pending_age=None;ordinary=False
+        if journal is not None and current_identity is not None:
+            pending_observed,pending_age,ordinary=_pending(journal,health or {},current_identity,state['pending'],observed_at)
             if journal.get('pending')is not None:
                 if not ordinary:reasons.append('pending_ambiguous')
                 elif pending_age>pending_max_age_seconds:reasons.append('pending_prolonged')
-            elif health.get('pending')is not False:reasons.append('pending_ambiguous')
+            elif health is not None and health.get('pending')is not False:reasons.append('pending_ambiguous')
         ordinary=(ordinary and not reasons and health_reasons is not None and set(health_reasons)<=PENDING_HEALTH_REASONS
          and health is not None and health.get('live')is(not allow_dry_run)
          and health.get('strategy_paused')is False and health.get('canonical_state')==0 and health.get('preparation_active')is False
@@ -317,7 +318,10 @@ def run_once(config_path,*,working_directory,backup_bundle,backup_manifest_sha25
             if health_raw is not None:_need(_read(health_path,MAX_HEALTH_BYTES,budget)==health_raw,'input_identity')
             if journal_raw is not None:_need(_read(journal_path,max_bytes,budget)==journal_raw,'input_identity')
             _need(recovery_bundle.source_hashes(budget=budget)==sources,'input_identity')
-        except Exception:reasons.append('input_identity_invalid');health_ok=backup_ok=False;ordinary=False
+            _need(recovery_bundle._sources(OBSERVER_SOURCE_FILES,budget)==observer_sources,'input_identity')
+        except Exception:
+            reasons.append('input_identity_invalid');health_ok=backup_ok=False;ordinary=False
+            pending_observed=state['pending'];pending_age=None
         reasons=sorted(set(reasons));_need(set(reasons)<=REASONS)
         healthy=health_ok and backup_ok and not reasons
         classification='healthy'if healthy else'pending_grace'if ordinary and backup_ok and not reasons else'incident'

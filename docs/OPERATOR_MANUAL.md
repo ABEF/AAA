@@ -9,19 +9,39 @@ Its state directory must be private and outside the keeper journal's directory.
 | Situation / required inputs | Operator action | Verify / next step |
 | --- | --- | --- |
 | First use: current configuration, absolute daemon working directory, selected backup, external manifest SHA-256, original backup configuration and three reviewed age limits in seconds | Call `scripts/keeper-alerts.py` with the [complete example](KEEPER_ALERTS.md#inputs-and-units); optional receiver is literal local `/alerts` only | Inspect fixed reason codes and separate `health_ok`/`backup_ok`; `readiness_approved` always stays false |
-| `pending_grace` | Preserve the same journal/hash and observer directory | Age starts at first observation, not actual submission; unrelated source/runtime faults still alert |
+| `pending_grace` | Preserve the same journal/hash and observer directory | Clock survives unavailable inputs and rejected snapshots. Initial observations may be missing; present invalid/stale proofs alert. Readiness stays false |
+| Observer directory contains `.state.json.*.tmp` | Fence this observer, preserve files/metadata and review committed state; archive only identified unpublished residue outside the directory | Never auto-delete, promote temporary data, replace the lock or discard queued IDs; see [recovery](KEEPER_ALERTS.md#state-delivery-and-recovery) |
+| Observer `state.json` is missing | Preserve what remains and review separately secured observer-state recovery before invoking | Fresh initialization cannot reconstruct old event IDs or pending age; keeper backup covers the keeper journal only |
 | `backup_stale`, `backup_invalid` or `backup_unavailable` | Preserve the old backup and investigate; create/select a separately reviewed replacement with its exact original configuration and external pin | Fresh capture age is not canonical freshness; no automatic restore or restart |
 | Delivery failed or `outbox_full` | Repair the local receiver and rerun the same observer state | Existing IDs drain first, at most8 attempts; retain all64 queued events and deduplicate received IDs |
-| Health/configuration/source changed | Review matching keeper/checker source and newly pinned backups separately | One `ops.py` snapshot adapter changes health-source identity, not journal schema. Never edit old hashes/journals to appear current |
+| Health/configuration/source changed | Review matching keeper/checker source and newly pinned backups separately | The current Cast fix changes one daemon source identity; earlier `ops.py`/`monitor.py` changes keep their scopes. Verify older backups with their matching original release; never edit hashes/journals |
 | Stop / resume this observer | Stop its separately reviewed invocation or scheduler; keep `state.json` and `alert.lock` | Rerun with the same directory; saved events and observed pending age persist. This change installs no scheduler and leaves the desktop heartbeat paused |
 
-The [isolated Ubuntu evidence](../reports/keeper-alerts-20261126/REVIEW.md)
-passes21 NEW methods with a private-network receiver; the new test unit stops
-empty and five existing service states match. It is not real-channel/off-host or
+The [day audit](../reports/keeper-day-audit-20261126/REVIEW.md) adds18 distinct
+NEW Ubuntu passes across17+1 stages, retaining the original fixture failure and
+all previous evidence. The two new units stop empty; existing states match. It is not real-channel/off-host or
 sustained-operation approval. Original financial/gas/RPC/time limits and journals
 are untouched. Explicitly supervise the observer for a hard overall timeout;
 its work budget is cooperative, while HTTP has a true two-second total deadline.
 
+
+### Capture interruption and source adoption
+
+Unix Cast and read-only capture now protect wait/reaped bookkeeping in at most
+50ms signal-masked slices. The original work deadlines,64KiB Cast/1MiB SSH
+output limits and two-second failure cleanup remain. Child creation stays
+unmasked; kernel stalls and escaped descendants still need host/cgroup
+supervision. A stop or capture exception never proves that a send did not occur.
+Preserve the exact pending intent/hash and use the existing no-resend procedure.
+
+One daemon identity file, `keeper/cast_process.py`, changes relative to the prior
+alert release; the backup producer and observer also change. For later adoption:
+fence the original writer/restart paths, preserve exact journals and original
+configuration, verify old bundles with their matching release, then separately
+review the new source/configuration and compatible state. Create/review new
+backup pins without rewriting old manifests. Publication performs none of those
+live steps. The observer's own four source hashes notify changes; they do not
+attest loaded code or grant adoption authority.
 
 ## Keeper audit and controlled recovery — 26 November 2026
 

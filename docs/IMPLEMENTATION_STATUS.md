@@ -1,17 +1,20 @@
 # Feature and evidence reference
 
-[Keeper alerts and stale-backup checks](../reports/keeper-alerts-20261126/REVIEW.md)
-now have **21 NEW Ubuntu method passes**, using a real receiver inside a private
-network. Durable incident/recovery events, exact ACK retries, pending-observation
-grace, stale/corrupt backups and full-outbox recovery are covered. The one-shot
-tool writes only separate alert state; all existing journals and limits remain.
-One of thirteen health-source files (`keeper/ops.py`) changes for bounded snapshot
-input; its readiness body is unchanged. Matching writer/checker and backup adoption
-remain separately reviewed. Real external channels, off-host fencing and sustained
-operation remain open; the desktop heartbeat stays paused. The current
-[inventory](../reports/keeper-alerts-20261126/FUNCTION_INVENTORY.json) has
-187 Python files, 2,087 named definitions and 279 lambdas; F6 maps61/39/4 and1,021ABI
-rows remain unchanged. See the [operator procedure](KEEPER_ALERTS.md).
+[Full-day keeper audit](../reports/keeper-day-audit-20261126/REVIEW.md) reviews
+all six26 November commits and fixes pending-clock loss, effective-identity
+defaults, FIFO reopen and interrupted process-reap ownership. Observer/tool source
+changes now participate in notification scope; future keeper selection includes
+all added tests. **18 distinct NEW Ubuntu methods pass:**17 in c816 plus only its
+affected method in c817. Original c816NONPASS remains; no passing body repeats.
+Both units stop empty; five existing service states match. Journals, financial
+rights/limits and frozen F6 remain unchanged; the desktop monitor stays paused.
+The current [inventory](../reports/keeper-day-audit-20261126/FUNCTION_INVENTORY.json)
+has187files/2,086named definitions/279lambdas, with61/39/4 F6 maps and1,021ABI rows.
+Matching source/backup adoption, real channels, off-host and sustained operation
+remain separate. See the [alert procedure](KEEPER_ALERTS.md).
+
+Earlier [alert evidence](../reports/keeper-alerts-20261126/REVIEW.md) retains its
+21-method original source scope; it is not re-executed or relabelled here.
 
 [Isolated Ubuntu backup/recovery](../reports/ubuntu-backup-recovery-20261126/REVIEW.md) verifies exact pending-state
 restoration and once-only unsigned receipt recovery with a fresh dry cycle,
@@ -94,8 +97,8 @@ Adopt matching keeper/checker code with original journals preserved. These two
 Python fixes alone change no checkpoint semantic source. Earlier API/ABI source
 adoption still requires newly reviewed matching checkpoints. Sites, services,
 Anvil8902, signer/null public configurations and paused heartbeat are preserved.
-Current [inventory](../reports/keeper-alerts-20261126/FUNCTION_INVENTORY.json):
-187Python files/2,087definitions/279lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
+Current [inventory](../reports/keeper-day-audit-20261126/FUNCTION_INVENTORY.json):
+187Python files/2,086definitions/279lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
 Actual F6/V10 consumer, provider, market and production approval stay open.
 
 [Ownership-page adoption](../reports/ownership-paging-20261121/REVIEW.md) connects current source9/source10 website holdings to

@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "old_tested_sha256": "5b790e2cac04bae6befff32ffa826bb6b5b83ae687dec6fe5f7031825060bf11",
+  "current_sha256": "d8bb3dedc116948988de34fb397248d4f38cd26f3a2a0d669dec3d5a36c753c3",
+  "only_module_docstring_changed": true,
+  "non_doc_module_AST_unchanged": true,
+  "all_test_method_ASTs_unchanged": 6,
+  "test_body_reruns": 0,
+  "reason": "Correct old no-signal prose after one actual self-SIGINT test was added."
+}

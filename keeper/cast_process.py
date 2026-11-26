@@ -15,6 +15,7 @@ import time
 MAX_OUTPUT_BYTES = 64 * 1024
 READ_CHUNK_BYTES = 4096
 CLEANUP_TIMEOUT_SECONDS = 2
+WAIT_SLICE_SECONDS = .05
 
 
 class CastCaptureError(RuntimeError):
@@ -24,6 +25,10 @@ class CastCaptureError(RuntimeError):
 def _terminate(process):
     # The unreaped leader anchors this newly created process-group identity.
     # Do not poll/reap it before killing descendants holding inherited pipes.
+    # A waiter may already have reaped while propagating an interruption.
+    # Its numeric group is no longer an owned identity and must not be killed.
+    if process.returncode is not None:
+        return
     failed = False
     try:
         os.killpg(process.pid, signal.SIGKILL)
@@ -99,8 +104,23 @@ def run_cast(command, *, env, timeout):
             if output is None:
                 raise CastCaptureError('Cast output was not valid UTF-8')
             stdout, stderr = output
-            returncode = process.wait(timeout=remaining())
-            reaped = True
+            # Preserve ownership across reaping and bookkeeping. SIGINT can
+            # otherwise make Popen.wait reap internally before it re-raises.
+            # Short slices keep interruption responsive within the same deadline.
+            signals = {signal.SIGINT, signal.SIGTERM, signal.SIGHUP, signal.SIGALRM}
+            while True:
+                wait_seconds = min(WAIT_SLICE_SECONDS, remaining())
+                previous_mask = signal.pthread_sigmask(signal.SIG_BLOCK, set())
+                try:
+                    signal.pthread_sigmask(signal.SIG_BLOCK, signals)
+                    try:
+                        returncode = process.wait(timeout=wait_seconds)
+                    except subprocess.TimeoutExpired:
+                        continue
+                    reaped = True
+                    break
+                finally:
+                    signal.pthread_sigmask(signal.SIG_SETMASK, previous_mask)
             remaining()
             return subprocess.CompletedProcess(command, returncode, stdout, stderr)
         except subprocess.TimeoutExpired:

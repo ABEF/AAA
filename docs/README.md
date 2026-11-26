@@ -1,5 +1,11 @@
 # Documentation map
 
+The [day audit](../reports/keeper-day-audit-20261126/REVIEW.md) records code fixes
+and18 distinct new Ubuntu passes, preserving c816's original failure and rerunning
+only its affected method. Use the [operator manual](OPERATOR_MANUAL.md),
+[alert guide](KEEPER_ALERTS.md) and [exact backup guide](KEEPER_BACKUP.md).
+Source publication is not service or backup adoption.
+
 Use the [keeper alerts procedure](KEEPER_ALERTS.md) for unsigned health,
 pending-observation and explicitly pinned stale-backup checks. The
 [Ubuntu record](../reports/keeper-alerts-20261126/REVIEW.md) has21 new method passes

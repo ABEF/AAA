@@ -1,0 +1,31 @@
+{
+  "baseline": "1cc67c50ece5b41fbd8c78b902ceb7ab70f96914",
+  "changed_daemon_health_sources": [
+    "keeper/cast_process.py"
+  ],
+  "files": {
+    "keeper/alerts.py": {
+      "bytes": 23149,
+      "sha256": "053ac2a70f38801b77afde8ba107c78e322a11630cb04620e1aa35a3f811fe13"
+    },
+    "keeper/cast_process.py": {
+      "bytes": 5694,
+      "sha256": "5856fec6fb15e1abb66750394c2fb7a24314686e964eca0e9363b5007aa5ba3a"
+    },
+    "keeper/recovery_bundle.py": {
+      "bytes": 36532,
+      "sha256": "022cd3b9a3692f9b5576fded8fb15d4aca2797f4ad3bd449561a4d57173de550"
+    },
+    "scripts/run-keeper-tests.py": {
+      "bytes": 7139,
+      "sha256": "6a22c88f0b0bd331817274b40c7fba4c84d929261fb768a9f99566fbc9b71559"
+    },
+    "zzz_ops/read_process.py": {
+      "bytes": 7007,
+      "sha256": "601ac78236bda39b1b9e1388b5f3a29bbec26e6824f0d97e941f32a138cb67bb"
+    }
+  },
+  "no_financial_or_journal_profile_change": true,
+  "production_journals_or_environments_adopted": false,
+  "schema": 1
+}

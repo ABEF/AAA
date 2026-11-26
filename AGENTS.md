@@ -1,27 +1,38 @@
 # AAA / ZZZ PoPL project instructions
 
-[Unsigned keeper alerts and stale-backup checks](reports/keeper-alerts-20261126/REVIEW.md)
-records 21 distinct NEW Ubuntu passes in 4.072 seconds; no old test body ran.
-The separate one-shot observer validates current health/journal and an explicitly
-selected backup, persists deduplicated incidents/recoveries, and retries local
-HTTP delivery with stable event IDs. Pending age means first sidecar observation,
-not submission time. Full-outbox progress and bounded delivery are checked;
-readiness is never approved. See the [operating procedure](docs/KEEPER_ALERTS.md).
-The isolated c815 group stopped empty; five existing service states were preserved
-with zero non-ambient differences and one observer invocation. Real notification
-channels, off-host monitoring/fencing, sustained operation and release approval
-remain open.
+[The full-day keeper audit](reports/keeper-day-audit-20261126/REVIEW.md)
+checks all six26November changes and their recovery/backup/alert interactions.
+It preserves the pending observation clock across unavailable or racing inputs,
+normalizes validated configuration defaults, and binds the observer's four own
+source/producer files. Backup reads now refuse a FIFO substituted at open;
+Cast/read-process cleanup retains ownership through interruptible reaping.
+Five missing modules are added to future maintained test selection; the
+selector itself was not run. Only the reviewed new methods ran in this audit.
 
-Only `keeper/ops.py` changes among the thirteen daemon health-source files: an
-optional bounded-snapshot input preserves the existing readiness logic and
-omitted-input behavior. The other twelve, including `keeper/monitor.py`, are
-unchanged. Adopt matching writer/checker code and newly reviewed backups separately;
-never relabel old health/source pins, backup manifests or journals. Frozen F6,
-journal codecs, authorities, financial rights and existing limits are unchanged.
-No service/site/chain/journal adoption; the desktop heartbeat stays user-paused.
-The [current source inventory](reports/keeper-alerts-20261126/FUNCTION_INVENTORY.json)
-is 187 Python files / 2,087 named definitions / 279 lambdas. The earlier
-185-file/2,057-definition backup-tool inventory remains historical.
+**18 distinct NEW Ubuntu methods pass:**17 in c816, plus only the affected
+observer-source method in c817. The original c816 campaign remains NONPASS:
+its fixture tried to copy a194,496-byte file under the unchanged64KiB file-size cap.
+c817 corrects only that fixture, directly reads both65536-byte limits and does
+not rerun the17 passing methods. The process proof sends two actual SIGINTs to
+its own process without children; the test module's later wording correction
+preserves all six method ASTs. Both new units stop empty; five existing states
+match with zero non-ambient differences and one observer invocation.
+
+Relative to pre-audit `1cc67c50`, only `keeper/cast_process.py` changes among the
+thirteen daemon health-source files. The `ops.py` snapshot adapter changed in
+the earlier alert commit; `monitor.py` changed earlier that day. Adopt matching
+writer/checker source separately. The new backup producer pin preserves original
+package provenance: retain old releases/manifests/journals, never rewrite hashes.
+Backup/alert CLI interfaces, journal codecs, profiles, financial limits/rights
+and frozen F6 remain unchanged. No service/site/chain/journal adoption occurred;
+the desktop heartbeat stays user-paused. Real channels, off-host monitoring/
+fencing, sustained operation and independent release approval remain open.
+
+The [current inventory](reports/keeper-day-audit-20261126/FUNCTION_INVENTORY.json)
+is187 Python files /2,086 named definitions /279 lambdas, with unchanged F6
+maps61/39/4 and1,021ABI rows. Earlier [alert evidence](reports/keeper-alerts-20261126/REVIEW.md)
+retains its original21-method/source scope. See the [operator guide](docs/OPERATOR_MANUAL.md)
+and [alert procedure](docs/KEEPER_ALERTS.md) before any separately reviewed adoption.
 
 Earlier [exact backup/restore](reports/keeper-backup-20261126/REVIEW.md) has 33 distinct
 NEW passes at its original source. The separate [c814 composition](reports/ubuntu-backup-recovery-20261126/REVIEW.md)
@@ -102,13 +113,13 @@ Adopt matching keeper/checker code with original journals preserved. These two
 Python fixes alone change no checkpoint semantic source. Earlier API/ABI source
 adoption still requires newly reviewed matching checkpoints. Sites, services,
 Anvil8902, signer/null public configurations and paused heartbeat are preserved.
-Current [inventory](reports/keeper-alerts-20261126/FUNCTION_INVENTORY.json):
-187Python files/2,087definitions/279lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
+Current [inventory](reports/keeper-day-audit-20261126/FUNCTION_INVENTORY.json):
+187Python files/2,086definitions/279lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
 Actual F6/V10 consumer, provider, market and production approval stay open.
 
-Current workload inventory:187Python files/2,087named definitions,279lambdas,
+Current workload inventory:187Python files/2,086named definitions,279lambdas,
 unchanged F6 maps61/39/4 and1,021ABI rows; normal verifier checks
-reports/keeper-alerts-20261126/FUNCTION_INVENTORY.json. The earlier forty-five distinct
+reports/keeper-day-audit-20261126/FUNCTION_INVENTORY.json. The earlier forty-five distinct
 NEW Python and90 NEW JS methods have precise staged scopes. Cache retention is
 encoded key+JSON bytes64KiB/entry and8MiBtotal, not process-RAM qualification.
 Original producer/cache/fixture failures and updated-only reruns remain recorded.
@@ -218,10 +229,9 @@ manifest and explicit caller/minter/phase/quantity/time intent. Fourteen NEW
 focused methods pass in two disjoint stages, plus one illustrative current-source
 CLI example. All actual readiness flags stayfalse; no network/signing/queue.
 That advance's historical inventory is [here](reports/readiness-advance-20261120/FUNCTION_INVENTORY.json):
-179Pythonfiles/1,979named definitions at that source. The current inventory above
-had1,980definitions at that keeper-fix stage. Use the bounded-capture inventory
+179Pythonfiles/1,979named definitions at that source. That keeper-fix stage had1,980definitions. Use the bounded-capture inventory
 above for that historical1,984-definition stage. Current source inventory is
-reports/keeper-alerts-20261126/FUNCTION_INVENTORY.json (2,087 definitions); Solidity61/dependencies39/controls4 stay.
+reports/keeper-day-audit-20261126/FUNCTION_INVENTORY.json (2,086 definitions); Solidity61/dependencies39/controls4 stay.
 Existing OpenSea artifacts bind this module's old hash; preserve them and rebuild/
 review new artifacts explicitly. service.py/checkpoint and runtime identities stay.
 

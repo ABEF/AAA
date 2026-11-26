@@ -1,0 +1,72 @@
+{
+  "baseline": "1cc67c50ece5b41fbd8c78b902ceb7ab70f96914",
+  "c817_effective_startup_readback_missing": true,
+  "combined_verification_sha256": "62dfa7795d3fe8a435d88994710d2358ac499ea5596e1f4e1a4e3a913ecd983a",
+  "distinct_new_methods_passed": 18,
+  "green_bodies_rerun": 0,
+  "historical_artifact_families": {
+    "keeper-alerts-20261126": {
+      "bound_files": 38,
+      "manifest_sha256": "ba28a746209efd6b081f37900bb148a51c4f23299c41acef79827ab7b604cb8f"
+    },
+    "keeper-backup-20261126": {
+      "bound_files": 31,
+      "manifest_sha256": "87ecf554727a0f214977fae01b3fc849b64b4d9db5b4ec503246c1990f7bf659"
+    },
+    "keeper-full-audit-20261126": {
+      "bound_files": 77,
+      "manifest_sha256": "522788216fcd0b50e0e6f78f069278d6ed47e53f876e7d388de91a490fe1feb5"
+    },
+    "ubuntu-backup-recovery-20261126": {
+      "bound_files": 103,
+      "manifest_sha256": "200b6bccbf3b147079c9c46eb09ce62442e438ca388b680a98cc055d42be22c2"
+    },
+    "ubuntu-daemon-storage-20261126": {
+      "bound_files": 88,
+      "manifest_sha256": "81d3f76d5973c8ef132eae0b5754087f428a6c3ded421a3a2ae616a12f046e2b"
+    }
+  },
+  "historical_bound_file_count": 337,
+  "old_bodies_run": 0,
+  "original_c816_nonpass_retained": true,
+  "production_tool_pins_verified": {
+    "keeper/alerts.py": {
+      "bytes": 23149,
+      "sha256": "053ac2a70f38801b77afde8ba107c78e322a11630cb04620e1aa35a3f811fe13"
+    },
+    "keeper/cast_process.py": {
+      "bytes": 5694,
+      "sha256": "5856fec6fb15e1abb66750394c2fb7a24314686e964eca0e9363b5007aa5ba3a"
+    },
+    "keeper/recovery_bundle.py": {
+      "bytes": 36532,
+      "sha256": "022cd3b9a3692f9b5576fded8fb15d4aca2797f4ad3bd449561a4d57173de550"
+    },
+    "scripts/run-keeper-tests.py": {
+      "bytes": 7139,
+      "sha256": "6a22c88f0b0bd331817274b40c7fba4c84d929261fb768a9f99566fbc9b71559"
+    },
+    "zzz_ops/read_process.py": {
+      "bytes": 7007,
+      "sha256": "601ac78236bda39b1b9e1388b5f3a29bbec26e6824f0d97e941f32a138cb67bb"
+    }
+  },
+  "protected_dirty_file_hashes": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "public_transactions": 0,
+  "schema": 1,
+  "scope": "Offline saved-byte/state/pin checks, not new application or test execution.",
+  "services_or_journals_adopted": false,
+  "success": true,
+  "unchanged_83_task_ids_and_statuses": true,
+  "unchanged_current_cli_daemon_paths": [
+    "keeper/monitor.py",
+    "keeper/ops.py",
+    "scripts/keeper-recovery.py",
+    "scripts/keeper-alerts.py"
+  ]
+}

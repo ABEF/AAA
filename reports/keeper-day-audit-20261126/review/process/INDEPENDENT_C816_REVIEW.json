@@ -1,0 +1,125 @@
+{
+  "c816_original_errors": 1,
+  "c816_passed_methods": 17,
+  "c816_whole_campaign_pass": false,
+  "c817_assessed": false,
+  "checks": [
+    {
+      "archive_members": 43,
+      "check": "exact_four_production_pins_and_archive_members_match_actual_test_stage",
+      "passed": true,
+      "production_files": [
+        "keeper/recovery_bundle.py",
+        "keeper/alerts.py",
+        "keeper/cast_process.py",
+        "zzz_ops/read_process.py"
+      ]
+    },
+    {
+      "check": "all_installed_source_bytes_equal_before_and_after",
+      "passed": true,
+      "source_members": 43
+    },
+    {
+      "actual_SIGINT_methods": 1,
+      "actual_self_SIGINT_events": 2,
+      "check": "original_c816_nonpass_and_exact_seventeen_passes_preserved_no_old_bodies",
+      "errors": 1,
+      "passed": 17,
+      "selected": 18
+    },
+    {
+      "check": "all_eighteen_selected_methods_exist_in_exact_archived_test_bodies",
+      "passed": true
+    },
+    {
+      "check": "effective_three_minute_oneshot_start_timeout_private_nobody_unit_and_empty_final_group",
+      "passed": true
+    },
+    {
+      "check": "all_saved_action_capture_and_fetch_bindings_match_without_server_calls",
+      "passed": true
+    },
+    {
+      "check": "future_runner_five_module_additions_are_unique_static_only",
+      "passed": true
+    },
+    {
+      "check": "six_green_process_bodies_preserved_after_module_docstring_correction",
+      "current_sha256": "d8bb3dedc116948988de34fb397248d4f38cd26f3a2a0d669dec3d5a36c753c3",
+      "original_sha256": "5b790e2cac04bae6befff32ffa826bb6b5b83ae687dec6fe5f7031825060bf11",
+      "passed": true
+    },
+    {
+      "check": "original_refusal_precedes_new_observer_probe_and_large_fixture_copy_exceeds_unchanged_file_cap",
+      "copied_monitor_bytes": 194496,
+      "errno_recorded": false,
+      "error_line": 247,
+      "file_cap": 65536,
+      "passed": true
+    },
+    {
+      "check": "wait_fix_retains_short_masked_slices_prior_mask_restore_and_defensive_owned_identity",
+      "passed": true
+    }
+  ],
+  "inputs_sha256": {
+    "cache-keeper-day-audit-20261126/c816-final/PARENT_REVIEW_PINS.json": "729f9f1fc843c4492bcd42bd791c13ecf0ff617469dfa9859708816576c5f8f1",
+    "cache-keeper-day-audit-20261126/c816-final/PREP_REVIEW_PINS.json": "6556bc5d8e7c81f43c575c2e4d1a25fd4ddf67577084207741b57071c35d29fa",
+    "cache-keeper-day-audit-20261126/c816-final/SOURCE_MANIFEST.json": "c842555f343b847e886645acf2831c25165fb4d91db73535af33f805b1e0a5a5",
+    "cache-keeper-day-audit-20261126/c816-final/c816.inputs.tar.gz": "0920bb2236ad3557ce5e159d115516a727e2d841980577b39aeb34225537e446",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/ORCHESTRATION_RESULT.json": "d41437431b9a899afb5da9adff5e1dc200ccea9d467fa664e13f1780b91a8f14",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-001/EXECUTION.json": "fc46b14a78c9cfd11ae6c537515286c8f4dde19de7f66f47123702611fe4427f",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-001/RESULT.json": "29de204c08885bc66d8f147b5f565a7b920160133aec53a8ca42fcde1fc88257",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-001/stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-001/stdout.raw": "164a2e2205eadb45ddaaa7c6bd07f94b107b3a7361a4c53bfed289cf7391f289",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-002/EXECUTION.json": "62516a7e28058a5094f4402ffb9af640006a661365b1f0f307556b600f5ba968",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-002/FINAL.json": "1a7f2119894d3fd481d57ca0803bab26c16dde06ebb6017c6da7e9d61cb34037",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-002/stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-002/stdout.raw": "1ab1421c2b9f2e39917bde2fa98089a1ec585e38c8e664a950b2fb63cefe0fab",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-003/EXECUTION.json": "977d211ce337368074ca5d25e90a662dd447dd433be4f3349362560bea6a5d93",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-003/PROGRESS.json": "cc7aa4003e4fc0e8fbea10b5bb975559d41e1f364a4892c693fdd5a84a8f2a7a",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-003/stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/fetch-003/stdout.raw": "c0c298d8f4ace3c3f348d9ed82b6877e7ff27ca4f95f30e7323ac8837409e171",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/install-001/EXECUTION.json": "fd46f3fd4eb58b040cb48ecd2c14802bd33815cd4fa77e18924da5044e2f8915",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/install-001/stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/install-001/stdout.raw": "dcf6f8cdaa4e090c1fef37ac50d8279a27cf5ab3c70272b80237ad02c5387929",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/start-001/EXECUTION.json": "4ed124515873037cb067d6e7592a95eb27e128a7afb7ed2867804d5739bea171",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/start-001/PUBLIC_RESULT.json": "4bab925a1d1dac1901c9ff4294aded55ee7a49b17a7d905617dca10236ef35f5",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/start-001/stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/start-001/stdout.raw": "1d553351cb52899165996feb790fab7873debd170897118583629860e7a28d3c",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/status-001/EXECUTION.json": "3fb8e601eb8bdef15f10747d4ff8af009d97a4c14f2f6f2f9ed58772ef892870",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/status-001/stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/status-001/stdout.raw": "5ebd685a6d4f4b9f8386ad6389fafc8a2eea5bb1ca52b9df2cb9bb10c9decaac",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/status-002/EXECUTION.json": "c431c1d883b7799e440632776ccac668005f383d28909357091b803da9d24da2",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/status-002/stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/status-002/stdout.raw": "85199cf602c7ebc789c60b5ee8b7f42639669bf924e740d03f16f9edc5fa4dbb",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/stop-001/EXECUTION.json": "7aad67f7a52f6258cdbefbaddd4a50c4f2fc8e784eb413cd2a134ad132000006",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/stop-001/stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cache-keeper-day-audit-20261126/c816-final/campaign-001/stop-001/stdout.raw": "db3fbbb4953c8b46aa249259b0cdee8eb0672986dfbbd3b5d18ca857633d0de0",
+    "cache-keeper-day-audit-20261126/c816-final/remote_capsule.py": "2e5596674a0395cadf0819a3b6eadb8e8f24859c435cafa6dc4e0672f90abbe1",
+    "cache-keeper-day-audit-20261126/process/C816_TESTED_PROCESS_AUDIT.py": "5b790e2cac04bae6befff32ffa826bb6b5b83ae687dec6fe5f7031825060bf11",
+    "keeper/alerts.py": "053ac2a70f38801b77afde8ba107c78e322a11630cb04620e1aa35a3f811fe13",
+    "keeper/cast_process.py": "5856fec6fb15e1abb66750394c2fb7a24314686e964eca0e9363b5007aa5ba3a",
+    "keeper/recovery_bundle.py": "022cd3b9a3692f9b5576fded8fb15d4aca2797f4ad3bd449561a4d57173de550",
+    "scripts/run-keeper-tests.py": "6a22c88f0b0bd331817274b40c7fba4c84d929261fb768a9f99566fbc9b71559",
+    "tests_python/test_keeper_process_audit.py": "d8bb3dedc116948988de34fb397248d4f38cd26f3a2a0d669dec3d5a36c753c3",
+    "zzz_ops/read_process.py": "601ac78236bda39b1b9e1388b5f3a29bbec26e6824f0d97e941f32a138cb67bb"
+  },
+  "limitations": [
+    "One c816 test fails before exercising its new observer-source probe; its corrected fixture needs its own affected-only result.",
+    "The recorded OSError site plus194496-byte copy under64KiB cap explains the fixture refusal; original errno was not captured.",
+    "One actual POSIX method sends two SIGINT events, not two independent method passes.",
+    "Signal masking is per-thread and supports reviewed single-thread/exclusive child ownership; hostile external reapers, SIGKILL, process-creation/kernel stalls and escaped descendants remain host/cgroup boundaries.",
+    "\u226450ms slices preserve original absolute deadline and responsiveness but are not hard scheduling guarantees.",
+    "A source hash observes bytes, not loaded-code or off-host attestation.",
+    "Existing-host preservation is a separate parent reconciliation; this review uses saved c816 group/source observations only.",
+    "Original c816 NONPASS and affected fixture source remain unchanged; six process methods were not rerun after docstring correction."
+  ],
+  "process_test_module_docstring_only_changed": true,
+  "production_files_changed_by_reviewer": false,
+  "review_kind": "independent_saved_evidence_and_patch_review_no_execution",
+  "schema": 1,
+  "success": true,
+  "test_bodies_or_server_actions_by_reviewer": 0
+}

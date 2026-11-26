@@ -2,7 +2,7 @@
   "schema": 1,
   "purpose": "Whole-project workload/function/state inventory and verification plan; inventory completeness is never dynamic coverage or proof of all possible market states.",
   "date": "2026-11-26",
-  "source_baseline": "fe2db714e0ef14252cf43f8afb7c1f0d772c1bbd",
+  "source_baseline": "1cc67c50ece5b41fbd8c78b902ceb7ab70f96914",
   "trusted_build_record": {
     "path": "reports/activation-final-six-20261118/build/final/normal-size-evidence.json",
     "sha256": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2"
@@ -464,7 +464,10 @@
         "capture age and trusted nonce floors remain separate from canonical reconciliation and cross-host fencing",
         "one-shot bounded health snapshot plus exact selected backup validation without journal writes or signing",
         "durable incident/recovery outbox local ACK loss repeated stable IDs full64 backpressure and eight-delivery progress",
-        "pending first-observed grace never masks source/runtime/profile faults; recovery requires fresh health and verified backup"
+        "pending first-observed grace never masks source/runtime/profile faults; recovery requires fresh health and verified backup",
+        "pending first-seen retained across absent malformed or final-invalidated snapshots; validated new/empty journal is decisive",
+        "canonical configuration defaults and legacy observer fingerprint preserve existing clock; own observer producer source notifications",
+        "POSIX interrupted reap bookkeeping never signals obsolete numeric process group; unchanged absolute deadlines and cleanup"
       ]
     },
     {
@@ -897,13 +900,19 @@
       "id": "S19",
       "name": "Actual host operation and health",
       "sources": [
-        "keeper/watchdog.py"
+        "keeper/watchdog.py",
+        "keeper/alerts.py",
+        "keeper/recovery_bundle.py",
+        "keeper/cast_process.py",
+        "zzz_ops/read_process.py"
       ],
       "cases": [
         "wrongrelease/config/key andstaleexports/backups",
         "actualcompletedprogressversusblockedIOfakepulse",
         "diskfull/restartstorm/hostloss/keyloss/rotation",
-        "splitbrainfencing/offhostrestore/alerts/soak"
+        "splitbrainfencing/offhostrestore/alerts/soak",
+        "observer queue and exact selected backup checks remain unsigned and isolated from keeper journal",
+        "source identity and incomplete observations do not approve readiness; lost observer state requires separate recovery review"
       ]
     },
     {

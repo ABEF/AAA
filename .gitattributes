@@ -465,3 +465,9 @@ keeper/ops.py -text whitespace=cr-at-eol
 scripts/keeper-alerts.py -text whitespace=cr-at-eol
 tests_python/test_keeper_alerts.py -text whitespace=cr-at-eol,-blank-at-eof
 reports/keeper-alerts-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact day-audit test sources and staged Ubuntu evidence.
+tests_python/test_keeper_backup_audit.py -text whitespace=cr-at-eol,-blank-at-eof
+tests_python/test_keeper_alert_audit.py -text whitespace=cr-at-eol,-blank-at-eof
+tests_python/test_keeper_process_audit.py -text whitespace=cr-at-eol,-blank-at-eof
+reports/keeper-day-audit-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "path": "tests_python/test_keeper_alert_audit.py",
+  "bytes": 15110,
+  "sha256": "3bbad9cb06c42896e1bd37234fce81c371d223d6cefbd1e05411b19a8822376e",
+  "changed_NEW_methods": [
+    "test_actual_observer_source_change_alerts_without_resetting_pending_age"
+  ],
+  "other_method_ASTs_unchanged": 9,
+  "production_source_changed": false,
+  "test_bodies_executed_by_agent": 0,
+  "fixture_dispatch_seam": "Only exact OBSERVER_SOURCE_FILES tuple reads copied4files under tempROOT through actual bounded reader; daemon13 and backup verification retain realroot.",
+  "file_cap_raised": false
+}

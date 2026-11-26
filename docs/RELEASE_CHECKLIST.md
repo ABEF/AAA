@@ -1,5 +1,11 @@
 # Release approval record - NOT APPROVED
 
+The [full-day keeper audit](../reports/keeper-day-audit-20261126/REVIEW.md)
+adds source corrections and18 distinct finite Ubuntu passes. Existing journals,
+financial controls and environments stay unchanged; original nonpasses remain.
+Matching source adoption, external notification delivery, off-host fencing and
+sustained operation still require separate review. Release remains unapproved.
+
 The [local alert rehearsal](../reports/keeper-alerts-20261126/REVIEW.md)
 adds finite unsigned observer evidence only. Actual channel delivery, off-host
 fencing, scheduling, sustained operation and matching source/backup adoption

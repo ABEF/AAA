@@ -1,0 +1,597 @@
+{
+  "schema": 1,
+  "scope": "All handwritten lines of alertcore/CLI/ops and old+new alert tests, including relevant health/recovery/state dependencies. Static analysis only.",
+  "source_baseline": "1cc67c50ece5b41fbd8c78b902ceb7ab70f96914",
+  "functions": [
+    {
+      "file": "keeper/alerts.py",
+      "function": "AlertRefusal.__init__",
+      "start": 47,
+      "end": 49,
+      "AST_sha256": "4e8f8b893a79b9f5c88c11b03031b359e580ba2539f9ee634a5e7ef7968d987d",
+      "review": "Allowlisted fixed refusal codes only; arbitrary exception/path/configuration text is excluded."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_need",
+      "start": 51,
+      "end": 52,
+      "AST_sha256": "54c3dba3052bbc0a0ca13e07e27a87e12cfaea5fe6d2a3d1904496663a6e86ce",
+      "review": "Fail closed without echoing rejected values; no state changes."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_uint",
+      "start": 54,
+      "end": 55,
+      "AST_sha256": "c03bbe54dca087826d1acd58b352c38bc56aa898e7c3b66911f9819bec229593",
+      "review": "Exact integer type excludes bool; bounded nonnegative observer metadata, not monetary truncation."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_sha",
+      "start": 57,
+      "end": 57,
+      "AST_sha256": "471e48df49bffa87d1eadf88a13a3c891580b9edcd1329969db723dac799dd5c",
+      "review": "Raw-byte SHA-256 identity primitive; no claim of authentication or loaded-code attestation."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_json",
+      "start": 58,
+      "end": 58,
+      "AST_sha256": "5b944d7cf215c3d230a31beda12ad2ca17495e1f890135923d9755d18f4f2f00",
+      "review": "Canonical JSON bytes with no NaN/Infinity; event identity and size checks."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_digest",
+      "start": 59,
+      "end": 59,
+      "AST_sha256": "cd5adfaa6d61c9132a60f66c085e7369dc3edd899ee9fdc606774be11ebb2231",
+      "review": "Canonical JSON hash, whose meaning depends on the selected fields, not universal integrity."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_hex",
+      "start": 60,
+      "end": 60,
+      "AST_sha256": "34960ffdf32b2c7bf46eba13d432c9329b539f4a85da14f8931523aa2d69504f",
+      "review": "Canonical lowercase64 digest syntax; zero pin is subsequently rejected by actual backup verification."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_Budget.__init__",
+      "start": 63,
+      "end": 64,
+      "AST_sha256": "7b173ae5301e8653b91dfaf7d320cf04cc81af93012a807909b7ac0c71d75d11",
+      "review": "Preserved1..120second cooperative budget; does not promise kernel-I/O preemption."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_Budget.check",
+      "start": 65,
+      "end": 65,
+      "AST_sha256": "13b714e608eb10f2d137362e93c34eff58e174cc37f16762454a724bce1a2da4",
+      "review": "Monotonic work-boundary refusal; no financial/keeper limits changed."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_Budget.remaining",
+      "start": 66,
+      "end": 66,
+      "AST_sha256": "9050ca41991848e27de9eceb026df425f5374d4f738250a7134c7f6bf27b0306",
+      "review": "Shares remaining cooperative budget with verifier; integer rounding does not establish hard timeout."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_pairs",
+      "start": 68,
+      "end": 71,
+      "AST_sha256": "a0143e57a73fe17e2ac33ceeaf8c742cd025f301d979dd4552ecb60b22bd6932",
+      "review": "Duplicate-object-key refusal during parsing, including nested objects."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_decode",
+      "start": 73,
+      "end": 82,
+      "AST_sha256": "e2eae10daee2e09160a7b7305b95cb263fa9c292bd8991fac10f48487b1b16d5",
+      "review": "Top object, depth/node and finite-number checks; health finite floats allowed, persistent state stays integer typed."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_decode.constant",
+      "start": 74,
+      "end": 74,
+      "AST_sha256": "935d7f9c47df00f1e487a55d0cd6fbbc63b2ca0e767d33eab8f35bf7f9c15768",
+      "review": "Reject nonstandard NaN/Infinity before any trust decision."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_path",
+      "start": 84,
+      "end": 93,
+      "AST_sha256": "c293554374708e140e10c820145cbad6ee2927ed0af92e2d4d6f107cabfc28a7",
+      "review": "Explicit daemon working-directory resolution; symlink/ancestor checks inside trusted-local/sameUID model."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_read",
+      "start": 95,
+      "end": 112,
+      "AST_sha256": "43231be474e814a817d20bfbeebf30a5300bef92ab915ed6ff12c45360ca0c9b",
+      "review": "Nonblocking first open, regular/owner/mode/link/size checks, bounded descriptor read and repeated identity; inherited producer reopens remain boundary."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_sidecar",
+      "start": 114,
+      "end": 131,
+      "AST_sha256": "826f4d7b760f27552e7ca55aaeb3d328c9b9cade4cb0682ed84bc0277b2b0843",
+      "review": "Separate0700 state directory, only state/lock supported; aliases/original runtime overlap refused. Stale atomic temp residue intentionally fail-stop, needs documented reviewed archival."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_event_valid",
+      "start": 133,
+      "end": 140,
+      "AST_sha256": "cbaa9ad08cd3893f1c22715c8eff7c974de3c887aa9828b4924d2cb48a3bb0ce",
+      "review": "Fixed public event fields, typed counters and stable event IDs; observed_at is metadata, not authenticated remote truth."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_load_state",
+      "start": 142,
+      "end": 158,
+      "AST_sha256": "d96beb20bc15a3c10011ba6331911a49fa0cf888d0c701646812356142730955",
+      "review": "Exact schema1 field set, typed sequence/pending/outbox, ordered uniqueIDs; valid existing state retained, not reset."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_receiver",
+      "start": 160,
+      "end": 169,
+      "AST_sha256": "4208dc94aa0bdb31dd80e600022f29bb916f2220abfc12ab80ada0b2e0dc8bdd",
+      "review": "Literal127.0.0.1 integer port exact/alerts only, no credentials/hostnames/query/fragment/redirect destinations."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_deliver",
+      "start": 171,
+      "end": 197,
+      "AST_sha256": "752cb6b5d13e8bab88ec5707551f7c4cd0337dc924065a681cf493978eb6ce6d",
+      "review": "Restricted local HTTP with absolute2s/8192byte response/strictACK; lost ACK retains same eventID for at-least-once retries."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "_pending",
+      "start": 199,
+      "end": 221,
+      "AST_sha256": "f643f7d9ff0cd026c8552a55a83dbe8b095e5cadb4f0df4a93dec4c35c989678",
+      "review": "Canonical validated identity replaces duplicated config normalization; legacy None-model fingerprint preserves first_seen. Unknown envelope preserves prior; valid absent pending alone clears."
+    },
+    {
+      "file": "keeper/alerts.py",
+      "function": "run_once",
+      "start": 223,
+      "end": 367,
+      "AST_sha256": "77ed4e0fbbe32929ab95c47b279cf56b1bf6334d0bb5ed7a2659c662241080c7",
+      "review": "Independent health/current-journal/backup validation, source/config consistency, conservative pending-clock preservation through outages/races; durable outbox remains separate from keeper journals."
+    },
+    {
+      "file": "scripts/keeper-alerts.py",
+      "function": "SafeArgumentParser.error",
+      "start": 17,
+      "end": 19,
+      "AST_sha256": "3b6d2084aa69cd8ad91c0d2f74309a6cc866910e4bbe60b209ea3856285a9580",
+      "review": "Sanitized usage error ignores rejected-value text."
+    },
+    {
+      "file": "scripts/keeper-alerts.py",
+      "function": "main",
+      "start": 21,
+      "end": 50,
+      "AST_sha256": "9a2bb3660dab4176267d78807cf2ad4f8ddc75491a9762f5dae3c4eda86d4054",
+      "review": "Explicit one-shot inputs, fixed result/refusal JSON and existing exit contract; no scheduler/signing/service/adoption path."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "_read_required_json",
+      "start": 24,
+      "end": 31,
+      "AST_sha256": "f0ea7783510f5b10098558588faf5e5bb033433af2f7c96dfe0032d856b36980",
+      "review": "Existing strict state parser, explicit missing sentinel; snapshot adapter did not alter this reader."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "_review_bucket",
+      "start": 34,
+      "end": 38,
+      "AST_sha256": "976e873e448b55f6d73dc832e86afc2b9c8c779f81592fc8dbe96b63ff9cd75b",
+      "review": "Existing canonical nonzero uint256 decimal reader; no hex/float/bool ambiguity."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "digest",
+      "start": 41,
+      "end": 42,
+      "AST_sha256": "581c6f2def049c3f5cf8667e010cf50d168fcbe1a976acac92f7dd408edfc41a",
+      "review": "Existing Keeper-compatible semantic config hash; no arbitrary source/loaded-code attestation."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "timestamp",
+      "start": 45,
+      "end": 50,
+      "AST_sha256": "b7bc75329e180a674ecd5df8166bf28b319c593ba5baaf4407971738faf238e6",
+      "review": "Existing UTC-aware ISO timestamp parser; wall-clock freshness is distinct from monotonic HTTP budget."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "health_check",
+      "start": 56,
+      "end": 111,
+      "AST_sha256": "508a52e84dfa3a48c52bbb4328c1db2f52b7a75997ea99b9f07391c60b264d44",
+      "review": "Every original verdict check preserved after optional snapshot input: source/runtime/profile/cadence/pause/lifecycle/errors/revert/last-success. Snapshot is not readiness approval bypass."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "preflight",
+      "start": 114,
+      "end": 177,
+      "AST_sha256": "6c7b6ebd36705b002a084cf7d77771f75c74bd929d170d2181191bafab33a83b",
+      "review": "Existing read-only chain/role/code/nonce/funding/profile checks; final checkpoint recheck, no pending recovery dependency on new routing."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "create_snapshot",
+      "start": 180,
+      "end": 204,
+      "AST_sha256": "3e85970b04df729d600937fde1cbdeec1cae46bd5d1452f3948c43d2ee4a1c2b",
+      "review": "Legacy diagnostic normalized Keeper.state snapshot, exclusive hardlink publication, not new exact-journal backup; retain compatibility and clearly distinguish operator purpose."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "verify_snapshot",
+      "start": 207,
+      "end": 221,
+      "AST_sha256": "6fe39e72c542bd393d7164792317fa053e5501362813922f197fd24945fc770d",
+      "review": "Legacy config/identity/age/integrity-only report, scope explicitly not canonical freshness; no restore/adoption action."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "main",
+      "start": 224,
+      "end": 250,
+      "AST_sha256": "2ff26c73982a081acbeeea3027006553469fa9b0377c33fd6873404dd5df0a94",
+      "review": "Explicit one-shot inputs, fixed result/refusal JSON and existing exit contract; no scheduler/signing/service/adoption path."
+    }
+  ],
+  "tests": [
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_real_current_health_and_backup_validators_compose_without_side_effects",
+      "start": 275,
+      "end": 286,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_snapshot_adapter_has_identical_checks_without_rereading_health_file",
+      "start": 288,
+      "end": 299,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_dry_health_requires_explicit_alert_mode",
+      "start": 301,
+      "end": 308,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_known_pending_grace_tracks_first_observation_across_restarts",
+      "start": 310,
+      "end": 323,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_hashless_pending_and_mismatched_health_never_receive_known_hash_grace",
+      "start": 325,
+      "end": 347,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_pending_grace_cannot_mask_wrong_configuration_or_source",
+      "start": 349,
+      "end": 359,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_health_and_backup_age_failures_are_independently_visible",
+      "start": 361,
+      "end": 373,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_corrupt_health_is_sanitized_and_does_not_hide_backup_result",
+      "start": 375,
+      "end": 392,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_incident_dedup_is_durable_across_repeated_one_shots",
+      "start": 394,
+      "end": 401,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_real_local_receiver_acknowledges_incident_and_later_recovery",
+      "start": 403,
+      "end": 419,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_wrong_ack_keeps_event_for_identical_retry",
+      "start": 421,
+      "end": 431,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_dropped_ack_is_at_least_once_with_same_event_id",
+      "start": 433,
+      "end": 443,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_redirect_is_not_followed_and_environment_proxies_are_ignored",
+      "start": 445,
+      "end": 457,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_backup_rotation_and_hash_publication_preserve_pending_age_and_outbox",
+      "start": 459,
+      "end": 473,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_recovery_requires_fresh_health_and_a_verified_backup",
+      "start": 475,
+      "end": 489,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_slow_trickle_headers_obey_absolute_delivery_budget",
+      "start": 491,
+      "end": 500,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_failed_durable_publication_sends_nothing_and_keeps_original_outbox",
+      "start": 502,
+      "end": 514,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_competing_sidecar_lock_refuses_without_mutating_state",
+      "start": 516,
+      "end": 529,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_unsafe_receiver_resource_bounds_and_input_aliases_fail_without_secret_echo",
+      "start": 531,
+      "end": 559,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_configuration_race_preserves_outbox_and_cannot_emit_recovery",
+      "start": 561,
+      "end": 587,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alerts.py",
+      "method": "test_full_publicly_generated_outbox_drains_without_pruning_or_reset",
+      "start": 589,
+      "end": 614,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "existing finite proof retained; no unchanged body selected"
+    },
+    {
+      "file": "tests_python/test_keeper_alert_audit.py",
+      "method": "test_missing_health_preserves_pending_clock_and_prolonged_alert",
+      "start": 62,
+      "end": 74,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "NEW targeted regression; parent must review/select before first execution",
+      "AST_sha256": "ef8b2a58520bd9d5824122f4114b299cdc8847b7805536be40cb2671d624a286"
+    },
+    {
+      "file": "tests_python/test_keeper_alert_audit.py",
+      "method": "test_missing_or_invalid_journal_preserves_last_known_pending_clock",
+      "start": 76,
+      "end": 96,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "NEW targeted regression; parent must review/select before first execution",
+      "AST_sha256": "0459219b55c8fd3da24de93816a56ab4434a8e304426b1664c9b237c3a55dc71"
+    },
+    {
+      "file": "tests_python/test_keeper_alert_audit.py",
+      "method": "test_missing_configuration_does_not_erase_pending_observation",
+      "start": 98,
+      "end": 111,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "NEW targeted regression; parent must review/select before first execution",
+      "AST_sha256": "229b1a682d15aebe9bc7f08aba54c18b92136fc3b49fa790b0c0fa6bcf4723a1"
+    },
+    {
+      "file": "tests_python/test_keeper_alert_audit.py",
+      "method": "test_invalidated_snapshot_cannot_replace_the_last_known_intent_clock",
+      "start": 113,
+      "end": 141,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "NEW targeted regression; parent must review/select before first execution",
+      "AST_sha256": "5ffe67b6de119d0210fd16383b9b258310dbcaf051ef2ecf178b0097e6699d0f"
+    },
+    {
+      "file": "tests_python/test_keeper_alert_audit.py",
+      "method": "test_valid_new_intent_restarts_clock_and_valid_empty_journal_clears_it",
+      "start": 143,
+      "end": 159,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "NEW targeted regression; parent must review/select before first execution",
+      "AST_sha256": "7fdce628d22b9b79c76ee1eb6393ed37424bad1795b15f30de2fa77b0111470d"
+    },
+    {
+      "file": "tests_python/test_keeper_alert_audit.py",
+      "method": "test_unrecognized_pending_envelope_cannot_clear_last_known_clock",
+      "start": 161,
+      "end": 176,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "NEW targeted regression; parent must review/select before first execution",
+      "AST_sha256": "e49d4451e7be8fb1cb262bca202a0fd4eccc5553d0078140f210afc9b56f0393"
+    },
+    {
+      "file": "tests_python/test_keeper_alert_audit.py",
+      "method": "test_default_model_identity_matches_backup_and_preserves_same_intent_age",
+      "start": 178,
+      "end": 192,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "NEW targeted regression; parent must review/select before first execution",
+      "AST_sha256": "5075648e9db7252d40f32b2dcd02a6a482a6f37825a1e05c7ae226c53ea248f6"
+    },
+    {
+      "file": "tests_python/test_keeper_alert_audit.py",
+      "method": "test_legacy_omitted_model_fingerprint_keeps_existing_first_seen",
+      "start": 194,
+      "end": 215,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "NEW targeted regression; parent must review/select before first execution",
+      "AST_sha256": "c188a1f84d31e9b088070e84ff77a49023892319c38b9b0a2587ac156cb2577b"
+    },
+    {
+      "file": "tests_python/test_keeper_alert_audit.py",
+      "method": "test_pending_grace_can_lack_observations_but_cannot_mask_invalid_present_proof",
+      "start": 217,
+      "end": 240,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "NEW targeted regression; parent must review/select before first execution",
+      "AST_sha256": "65cd567e016fd6f0aa5c97fe4cd06c9b57fb38d40d0014d23de693296f3c72dc"
+    },
+    {
+      "file": "tests_python/test_keeper_alert_audit.py",
+      "method": "test_actual_observer_source_change_alerts_without_resetting_pending_age",
+      "start": 242,
+      "end": 264,
+      "reviewed": true,
+      "executed_by_this_agent": false,
+      "scope": "NEW targeted regression; parent must review/select before first execution",
+      "AST_sha256": "3cb0ecb4c9879aa53aa6438de200bc45218c37e4b3cb3aa5b0ea096758758d86"
+    }
+  ],
+  "test_bodies_executed": 0,
+  "server_actions": 0,
+  "fixes": [
+    {
+      "id": "A01",
+      "priority": "operational P2",
+      "issue": "Unavailable inputs, unsupported pending envelope or invalidated final capture could erase/replace prior pending first_seen and grant fresh grace on return.",
+      "fix": "Preserve prior through unknown/untrusted states; valid canonical intent replaces, explicit validated absence clears."
+    },
+    {
+      "id": "A02",
+      "priority": "operational P2",
+      "issue": "Optional accounting_model omission meant None in duplicated alert identity but shared-pools-v2 in validated keeper/backup identity; equivalent restored configs mismatched and pending clock reset.",
+      "fix": "Use validated identities; normalize existing legacy None fingerprint once without resetting age; remove duplicated identity/parser."
+    },
+    {
+      "id": "A03",
+      "priority": "observability gap",
+      "issue": "Scope covered daemon13 but not observercore/CLI or backup producer; own release changes could go unreported despite broad guide wording.",
+      "fix": "Bounded reader hashes those four files in independent observer scope and final consistency check; provenance does not force equality to old producer or claim attestation."
+    }
+  ],
+  "documentation_limits": [
+    "Normal first-awaiting-receipt may lack prior observation records within finite grace; any present invalid/stale/mismatched proof still alerts and underlying readiness alwaysfalse.",
+    "Active incidents are not recovered during pending grace; fully valid fresh health plus verified backup required.",
+    "Strict stale atomic-temp refusal remains; preserve/fence/inspect/archivethe exact leftover ratherthanblinddelete.",
+    "Legacy ops snapshot is diagnostic, not exact-journal restore preparation.",
+    "Source identities are local bytes; protected ancestors/sameUID trusted, inherited filesystem budget cooperative; localHTTP actual2s deadline."
+  ],
+  "production_files_changed": [
+    "keeper/alerts.py"
+  ],
+  "CLI_and_ops_unchanged": true,
+  "original_test_file_unchanged": true,
+  "new_intent_case_changes_actual_calldata": true
+}

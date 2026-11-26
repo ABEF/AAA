@@ -1,0 +1,33 @@
+{
+  "all_test_bodies_NEW": true,
+  "cleanup_seconds": 60,
+  "combined_output_bytes": 65536,
+  "new_seals": 0,
+  "only_private_loopback_HTTP": true,
+  "phase_seconds": 240,
+  "pins": {
+    "BUILD_RECEIPT.json": "ba4da7ce9e2860226a2345eb69d1adca9302c8d40616a33d6545da8f9ec5abfa",
+    "SOURCE_MANIFEST.json": "c842555f343b847e886645acf2831c25165fb4d91db73535af33f805b1e0a5a5",
+    "c816.inputs.tar.gz": "0920bb2236ad3557ce5e159d115516a727e2d841980577b39aeb34225537e446",
+    "capsule_template.py": "b427bf0bc5895b54ebb7453a064ac66399e08910ae97535286421f496c634ee1",
+    "host_control.py": "2d5cf5aabc5f5191d57a823c7a8148b9d216f540b5fdd09d56c3b73828b313c7",
+    "keeper/alerts.py": "053ac2a70f38801b77afde8ba107c78e322a11630cb04620e1aa35a3f811fe13",
+    "keeper/cast_process.py": "5856fec6fb15e1abb66750394c2fb7a24314686e964eca0e9363b5007aa5ba3a",
+    "keeper/recovery_bundle.py": "022cd3b9a3692f9b5576fded8fb15d4aca2797f4ad3bd449561a4d57173de550",
+    "orchestrate_c816.py": "7c9ab5a72f244873c71a24cd75fcf77d80bbfa9ce3483cda58f4e926b32a17b7",
+    "package_c816.py": "383b099f8e6393fc57b100ce658814de9dea300288b2d1c6759cdbd7e97a78c9",
+    "remote_capsule.py": "2e5596674a0395cadf0819a3b6eadb8e8f24859c435cafa6dc4e0672f90abbe1",
+    "run_selected.py": "272e5cc6c7da801596b4373e69cc0eed7b5c87327313e95f2c97f3b17e7316e7",
+    "run_selected_template.py": "b12abbfb105df53d2a4bb20e68c0ee9e2203599b5ea4200dc7a2ab747e8bddfa",
+    "scripts/keeper-alerts.py": "4f3b6b3efa9401c4039b9dcdc1fa9bf0c4136c2342f02c7286c895bc0ef027c5",
+    "scripts/keeper-recovery.py": "450b87f611b90d2cdb4139bd2bb2cc8f10696821c1ae6b72ccba7613a64ff6cf",
+    "tests_python/test_keeper_alert_audit.py": "8f33bb6b9a19f2bff0ba6c0ac80401ad9215daa0a4f9ee65cb38087fe8c40ae3",
+    "tests_python/test_keeper_backup_audit.py": "265e2e8f7360a2ff0a5e409e9045992867d255745577d51212991ab8522da575",
+    "tests_python/test_keeper_process_audit.py": "5b790e2cac04bae6befff32ffa826bb6b5b83ae687dec6fe5f7031825060bf11",
+    "zzz_ops/read_process.py": "601ac78236bda39b1b9e1388b5f3a29bbec26e6824f0d97e941f32a138cb67bb"
+  },
+  "production_adoption": false,
+  "public_transactions": 0,
+  "schema": 1,
+  "unit_work_seconds": 180
+}

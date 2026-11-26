@@ -1,0 +1,669 @@
+{
+  "Anvil_Cast_signer_or_service_adoption": false,
+  "all_selected_methods_NEW_and_not_previously_executed": true,
+  "explicit_reviewed_worktree_overrides": [
+    "keeper/recovery_bundle.py",
+    "keeper/alerts.py",
+    "keeper/cast_process.py",
+    "zzz_ops/read_process.py"
+  ],
+  "health_source_changed_files": [
+    "keeper/cast_process.py"
+  ],
+  "health_sources": [
+    "keeper/monitor.py",
+    "keeper/ops.py",
+    "keeper/health.py",
+    "keeper/rebalance_confirmation.py",
+    "keeper/compound_policy.py",
+    "keeper/cast_process.py",
+    "zzz_ops/protocol_policy.py",
+    "zzz_ops/lp_execution.py",
+    "zzz_ops/execution_price.py",
+    "zzz_ops/rebalance_confirmation.py",
+    "zzz_ops/abi.py",
+    "zzz_ops/rpc.py",
+    "zzz_ops/state.py"
+  ],
+  "members": {
+    "source/keeper/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "source/keeper/alerts.py": {
+      "bytes": 23149,
+      "sha256": "053ac2a70f38801b77afde8ba107c78e322a11630cb04620e1aa35a3f811fe13"
+    },
+    "source/keeper/cast_process.py": {
+      "bytes": 5694,
+      "sha256": "5856fec6fb15e1abb66750394c2fb7a24314686e964eca0e9363b5007aa5ba3a"
+    },
+    "source/keeper/compound_policy.py": {
+      "bytes": 17260,
+      "sha256": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29"
+    },
+    "source/keeper/health.py": {
+      "bytes": 24415,
+      "sha256": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04"
+    },
+    "source/keeper/monitor.py": {
+      "bytes": 194496,
+      "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f"
+    },
+    "source/keeper/operation_review.py": {
+      "bytes": 43774,
+      "sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    "source/keeper/ops.py": {
+      "bytes": 14444,
+      "sha256": "da396ec9c65295fe540f9dc812a0612d8ed27f1ab677fd388b479e2f2372ad89"
+    },
+    "source/keeper/principal.py": {
+      "bytes": 9171,
+      "sha256": "b602340db5c7a52ad281c6b60885e2f74cc2708b731595fac5eeb9e026da6874"
+    },
+    "source/keeper/rebalance_confirmation.py": {
+      "bytes": 11926,
+      "sha256": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d"
+    },
+    "source/keeper/recovery_bundle.py": {
+      "bytes": 36532,
+      "sha256": "022cd3b9a3692f9b5576fded8fb15d4aca2797f4ad3bd449561a4d57173de550"
+    },
+    "source/keeper/royalties.py": {
+      "bytes": 17321,
+      "sha256": "02e04783068eed60db827673c9c27d3a37175edd7dccfa5ddefb8b54c055904c"
+    },
+    "source/keeper/watchdog.py": {
+      "bytes": 5707,
+      "sha256": "59b4bb7783453a8f271fd5ab265fd5d2857d55096479be34f10ffe56c8408372"
+    },
+    "source/reports/ubuntu-backup-recovery-20261126/evidence/c814/model-DRY.json": {
+      "bytes": 11810,
+      "sha256": "ad430c2dfbb5909f7925196d575965b91dff0f6c8397f9f54133749c2ac36d13"
+    },
+    "source/reports/ubuntu-daemon-storage-20261126/evidence/fetched/case-HASH_SAVE_FAULT_ARMED.json": {
+      "bytes": 7965,
+      "sha256": "70b4e6081c561092d7c7cadf173da48180b912839818ee262c2cf830b83e463f"
+    },
+    "source/run_selected.py": {
+      "bytes": 10603,
+      "sha256": "272e5cc6c7da801596b4373e69cc0eed7b5c87327313e95f2c97f3b17e7316e7"
+    },
+    "source/scripts/keeper-alerts.py": {
+      "bytes": 2629,
+      "sha256": "4f3b6b3efa9401c4039b9dcdc1fa9bf0c4136c2342f02c7286c895bc0ef027c5"
+    },
+    "source/scripts/keeper-recovery.py": {
+      "bytes": 3423,
+      "sha256": "450b87f611b90d2cdb4139bd2bb2cc8f10696821c1ae6b72ccba7613a64ff6cf"
+    },
+    "source/tests_python/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "source/tests_python/test_keeper_alert_audit.py": {
+      "bytes": 14659,
+      "sha256": "8f33bb6b9a19f2bff0ba6c0ac80401ad9215daa0a4f9ee65cb38087fe8c40ae3"
+    },
+    "source/tests_python/test_keeper_alerts.py": {
+      "bytes": 32525,
+      "sha256": "f960f5a50dd1469b3d1f9c1bfb1002e68e1c83982586bc59eec390db83915b6d"
+    },
+    "source/tests_python/test_keeper_backup_audit.py": {
+      "bytes": 6616,
+      "sha256": "265e2e8f7360a2ff0a5e409e9045992867d255745577d51212991ab8522da575"
+    },
+    "source/tests_python/test_keeper_process_audit.py": {
+      "bytes": 12663,
+      "sha256": "5b790e2cac04bae6befff32ffa826bb6b5b83ae687dec6fe5f7031825060bf11"
+    },
+    "source/zzz_ops/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "source/zzz_ops/abi.py": {
+      "bytes": 4797,
+      "sha256": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91"
+    },
+    "source/zzz_ops/errors.py": {
+      "bytes": 992,
+      "sha256": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305"
+    },
+    "source/zzz_ops/ethereum_fees.py": {
+      "bytes": 2464,
+      "sha256": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe"
+    },
+    "source/zzz_ops/execution_price.py": {
+      "bytes": 2280,
+      "sha256": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2"
+    },
+    "source/zzz_ops/lp_execution.py": {
+      "bytes": 6860,
+      "sha256": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0"
+    },
+    "source/zzz_ops/physical_portfolio.py": {
+      "bytes": 2125,
+      "sha256": "f119b665860cb4aaa9fbebe81aa1f2564906dff8466d1febf96ea4eef46e719b"
+    },
+    "source/zzz_ops/position.py": {
+      "bytes": 2437,
+      "sha256": "54075cb2329e6e1defb4942683378d6a3995a74a6ea5e1f239a8fcf611e30d4d"
+    },
+    "source/zzz_ops/price_policy.py": {
+      "bytes": 7148,
+      "sha256": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958"
+    },
+    "source/zzz_ops/production_v2.py": {
+      "bytes": 102622,
+      "sha256": "109531b48b9c8a85166c9585351dc40b4b534ec5eea14c5b81d895c1b2209889"
+    },
+    "source/zzz_ops/production_v4.py": {
+      "bytes": 65998,
+      "sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    "source/zzz_ops/protocol_policy.py": {
+      "bytes": 5907,
+      "sha256": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3"
+    },
+    "source/zzz_ops/range_policy.py": {
+      "bytes": 5859,
+      "sha256": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171"
+    },
+    "source/zzz_ops/read_process.py": {
+      "bytes": 7007,
+      "sha256": "601ac78236bda39b1b9e1388b5f3a29bbec26e6824f0d97e941f32a138cb67bb"
+    },
+    "source/zzz_ops/rebalance_confirmation.py": {
+      "bytes": 17194,
+      "sha256": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331"
+    },
+    "source/zzz_ops/rpc.py": {
+      "bytes": 9709,
+      "sha256": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f"
+    },
+    "source/zzz_ops/state.py": {
+      "bytes": 4644,
+      "sha256": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf"
+    },
+    "source/zzz_ops/tick_math.py": {
+      "bytes": 4949,
+      "sha256": "5224a360f3fecbc9c1d42094863e74771cee8036a60d8b81647d9e6d45e0c70a"
+    },
+    "source/zzz_ops/work_budget.py": {
+      "bytes": 3633,
+      "sha256": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b"
+    }
+  },
+  "new_reviewed_files": [
+    "tests_python/test_keeper_backup_audit.py",
+    "tests_python/test_keeper_alert_audit.py",
+    "tests_python/test_keeper_process_audit.py"
+  ],
+  "observer_core_cli_producer_files": [
+    "keeper/alerts.py",
+    "scripts/keeper-alerts.py",
+    "keeper/recovery_bundle.py",
+    "scripts/keeper-recovery.py"
+  ],
+  "old_test_bodies": 0,
+  "old_test_helpers_imported_not_test_bodies": [
+    "tests_python/test_keeper_alerts.py"
+  ],
+  "only_private_loopback_HTTP_and_same_process_SIGINT": true,
+  "reviewed_preparation_sha256": {
+    "capsule_template.py": "b427bf0bc5895b54ebb7453a064ac66399e08910ae97535286421f496c634ee1",
+    "host_control.py": "2d5cf5aabc5f5191d57a823c7a8148b9d216f540b5fdd09d56c3b73828b313c7",
+    "orchestrate_c816.py": "7c9ab5a72f244873c71a24cd75fcf77d80bbfa9ce3483cda58f4e926b32a17b7",
+    "package_c816.py": "383b099f8e6393fc57b100ce658814de9dea300288b2d1c6759cdbd7e97a78c9",
+    "run_selected_template.py": "b12abbfb105df53d2a4bb20e68c0ee9e2203599b5ea4200dc7a2ab747e8bddfa"
+  },
+  "schema": 1,
+  "selected_method_AST_sha256": {
+    "KeeperAlertAuditTests.test_actual_observer_source_change_alerts_without_resetting_pending_age": "3cb0ecb4c9879aa53aa6438de200bc45218c37e4b3cb3aa5b0ea096758758d86",
+    "KeeperAlertAuditTests.test_default_model_identity_matches_backup_and_preserves_same_intent_age": "5075648e9db7252d40f32b2dcd02a6a482a6f37825a1e05c7ae226c53ea248f6",
+    "KeeperAlertAuditTests.test_invalidated_snapshot_cannot_replace_the_last_known_intent_clock": "5ffe67b6de119d0210fd16383b9b258310dbcaf051ef2ecf178b0097e6699d0f",
+    "KeeperAlertAuditTests.test_legacy_omitted_model_fingerprint_keeps_existing_first_seen": "c188a1f84d31e9b088070e84ff77a49023892319c38b9b0a2587ac156cb2577b",
+    "KeeperAlertAuditTests.test_missing_configuration_does_not_erase_pending_observation": "229b1a682d15aebe9bc7f08aba54c18b92136fc3b49fa790b0c0fa6bcf4723a1",
+    "KeeperAlertAuditTests.test_missing_health_preserves_pending_clock_and_prolonged_alert": "ef8b2a58520bd9d5824122f4114b299cdc8847b7805536be40cb2671d624a286",
+    "KeeperAlertAuditTests.test_missing_or_invalid_journal_preserves_last_known_pending_clock": "0459219b55c8fd3da24de93816a56ab4434a8e304426b1664c9b237c3a55dc71",
+    "KeeperAlertAuditTests.test_pending_grace_can_lack_observations_but_cannot_mask_invalid_present_proof": "65cd567e016fd6f0aa5c97fe4cd06c9b57fb38d40d0014d23de693296f3c72dc",
+    "KeeperAlertAuditTests.test_unrecognized_pending_envelope_cannot_clear_last_known_clock": "e49d4451e7be8fb1cb262bca202a0fd4eccc5553d0078140f210afc9b56f0393",
+    "KeeperAlertAuditTests.test_valid_new_intent_restarts_clock_and_valid_empty_journal_clears_it": "7fdce628d22b9b79c76ee1eb6393ed37424bad1795b15f30de2fa77b0111470d",
+    "KeeperBackupAuditTests.test_fifo_substituted_at_open_refuses_without_waiting_or_complete_output": "9e475197fc8ecbeac7f3557891f518ca636842932546a5b7f021be74e20acdd4",
+    "KeeperBackupAuditTests.test_guarded_regular_reads_preserve_exact_pending_and_restore_bytes": "9975c5b9176a7045e18c66a8b2e608c26f4ef78309ceae6a1a7f9cd6064fc92e",
+    "KeeperProcessAuditTests.test_actual_sigint_is_delivered_only_after_reaped_ownership_is_recorded": "d02bb1d4a93a2b43d5b503273c64a65d071cc1f202bd11533ec7f1840e8cdb03",
+    "KeeperProcessAuditTests.test_cast_capture_never_signals_a_reaped_group_and_still_cleans_owned_interrupts": "d8091810cd43f159bfaf2d2ad82234ec3ae59c61871d4c6b74dff2bd6920d0e1",
+    "KeeperProcessAuditTests.test_read_capture_never_signals_a_reaped_group_and_still_cleans_owned_interrupts": "713ce8a62e76597ccc962d38fbf24ab3bf3380f3d22a7dc359a5ceb7a5a26307",
+    "KeeperProcessAuditTests.test_reaped_flag_is_published_before_deferred_signal_delivery": "80bdfa8baa1834afc6d759cd5af3cf6a2ca0f14a57956a3d625a654beb7ba6d1",
+    "KeeperProcessAuditTests.test_repeated_wait_timeouts_expire_original_deadline_and_keep_cleanup_budget": "0829e00da57ef4415fdcefe9701c8648e68544ca653f0a7422fdc4a65864b2e3",
+    "KeeperProcessAuditTests.test_wait_retry_slices_preserve_mask_and_original_absolute_budget": "c09a6de2990f7582fd2d660b87f139bc51e6cf7f0379f4cb5de4193fe024947b"
+  },
+  "selected_methods": [
+    "KeeperBackupAuditTests.test_fifo_substituted_at_open_refuses_without_waiting_or_complete_output",
+    "KeeperBackupAuditTests.test_guarded_regular_reads_preserve_exact_pending_and_restore_bytes",
+    "KeeperAlertAuditTests.test_actual_observer_source_change_alerts_without_resetting_pending_age",
+    "KeeperAlertAuditTests.test_default_model_identity_matches_backup_and_preserves_same_intent_age",
+    "KeeperAlertAuditTests.test_invalidated_snapshot_cannot_replace_the_last_known_intent_clock",
+    "KeeperAlertAuditTests.test_legacy_omitted_model_fingerprint_keeps_existing_first_seen",
+    "KeeperAlertAuditTests.test_missing_configuration_does_not_erase_pending_observation",
+    "KeeperAlertAuditTests.test_missing_health_preserves_pending_clock_and_prolonged_alert",
+    "KeeperAlertAuditTests.test_missing_or_invalid_journal_preserves_last_known_pending_clock",
+    "KeeperAlertAuditTests.test_pending_grace_can_lack_observations_but_cannot_mask_invalid_present_proof",
+    "KeeperAlertAuditTests.test_unrecognized_pending_envelope_cannot_clear_last_known_clock",
+    "KeeperAlertAuditTests.test_valid_new_intent_restarts_clock_and_valid_empty_journal_clears_it",
+    "KeeperProcessAuditTests.test_actual_sigint_is_delivered_only_after_reaped_ownership_is_recorded",
+    "KeeperProcessAuditTests.test_cast_capture_never_signals_a_reaped_group_and_still_cleans_owned_interrupts",
+    "KeeperProcessAuditTests.test_read_capture_never_signals_a_reaped_group_and_still_cleans_owned_interrupts",
+    "KeeperProcessAuditTests.test_reaped_flag_is_published_before_deferred_signal_delivery",
+    "KeeperProcessAuditTests.test_repeated_wait_timeouts_expire_original_deadline_and_keep_cleanup_budget",
+    "KeeperProcessAuditTests.test_wait_retry_slices_preserve_mask_and_original_absolute_budget"
+  ],
+  "selection": [
+    {
+      "class": "KeeperBackupAuditTests",
+      "file": "tests_python/test_keeper_backup_audit.py",
+      "methods": [
+        "test_fifo_substituted_at_open_refuses_without_waiting_or_complete_output",
+        "test_guarded_regular_reads_preserve_exact_pending_and_restore_bytes"
+      ]
+    },
+    {
+      "class": "KeeperAlertAuditTests",
+      "file": "tests_python/test_keeper_alert_audit.py",
+      "methods": [
+        "test_actual_observer_source_change_alerts_without_resetting_pending_age",
+        "test_default_model_identity_matches_backup_and_preserves_same_intent_age",
+        "test_invalidated_snapshot_cannot_replace_the_last_known_intent_clock",
+        "test_legacy_omitted_model_fingerprint_keeps_existing_first_seen",
+        "test_missing_configuration_does_not_erase_pending_observation",
+        "test_missing_health_preserves_pending_clock_and_prolonged_alert",
+        "test_missing_or_invalid_journal_preserves_last_known_pending_clock",
+        "test_pending_grace_can_lack_observations_but_cannot_mask_invalid_present_proof",
+        "test_unrecognized_pending_envelope_cannot_clear_last_known_clock",
+        "test_valid_new_intent_restarts_clock_and_valid_empty_journal_clears_it"
+      ]
+    },
+    {
+      "class": "KeeperProcessAuditTests",
+      "file": "tests_python/test_keeper_process_audit.py",
+      "methods": [
+        "test_actual_sigint_is_delivered_only_after_reaped_ownership_is_recorded",
+        "test_cast_capture_never_signals_a_reaped_group_and_still_cleans_owned_interrupts",
+        "test_read_capture_never_signals_a_reaped_group_and_still_cleans_owned_interrupts",
+        "test_reaped_flag_is_published_before_deferred_signal_delivery",
+        "test_repeated_wait_timeouts_expire_original_deadline_and_keep_cleanup_budget",
+        "test_wait_retry_slices_preserve_mask_and_original_absolute_budget"
+      ]
+    }
+  ],
+  "source_files": {
+    "keeper/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "stage": "exact_HEAD"
+    },
+    "keeper/alerts.py": {
+      "bytes": 23149,
+      "sha256": "053ac2a70f38801b77afde8ba107c78e322a11630cb04620e1aa35a3f811fe13",
+      "stage": "reviewed_worktree_override"
+    },
+    "keeper/cast_process.py": {
+      "bytes": 5694,
+      "sha256": "5856fec6fb15e1abb66750394c2fb7a24314686e964eca0e9363b5007aa5ba3a",
+      "stage": "reviewed_worktree_override"
+    },
+    "keeper/compound_policy.py": {
+      "bytes": 17260,
+      "sha256": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29",
+      "stage": "exact_HEAD"
+    },
+    "keeper/health.py": {
+      "bytes": 24415,
+      "sha256": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04",
+      "stage": "exact_HEAD"
+    },
+    "keeper/monitor.py": {
+      "bytes": 194496,
+      "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f",
+      "stage": "exact_HEAD"
+    },
+    "keeper/operation_review.py": {
+      "bytes": 43774,
+      "sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48",
+      "stage": "exact_HEAD"
+    },
+    "keeper/ops.py": {
+      "bytes": 14444,
+      "sha256": "da396ec9c65295fe540f9dc812a0612d8ed27f1ab677fd388b479e2f2372ad89",
+      "stage": "exact_HEAD"
+    },
+    "keeper/principal.py": {
+      "bytes": 9171,
+      "sha256": "b602340db5c7a52ad281c6b60885e2f74cc2708b731595fac5eeb9e026da6874",
+      "stage": "exact_HEAD"
+    },
+    "keeper/rebalance_confirmation.py": {
+      "bytes": 11926,
+      "sha256": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d",
+      "stage": "exact_HEAD"
+    },
+    "keeper/recovery_bundle.py": {
+      "bytes": 36532,
+      "sha256": "022cd3b9a3692f9b5576fded8fb15d4aca2797f4ad3bd449561a4d57173de550",
+      "stage": "reviewed_worktree_override"
+    },
+    "keeper/royalties.py": {
+      "bytes": 17321,
+      "sha256": "02e04783068eed60db827673c9c27d3a37175edd7dccfa5ddefb8b54c055904c",
+      "stage": "exact_HEAD"
+    },
+    "keeper/watchdog.py": {
+      "bytes": 5707,
+      "sha256": "59b4bb7783453a8f271fd5ab265fd5d2857d55096479be34f10ffe56c8408372",
+      "stage": "exact_HEAD"
+    },
+    "scripts/keeper-alerts.py": {
+      "bytes": 2629,
+      "sha256": "4f3b6b3efa9401c4039b9dcdc1fa9bf0c4136c2342f02c7286c895bc0ef027c5",
+      "stage": "exact_HEAD"
+    },
+    "scripts/keeper-recovery.py": {
+      "bytes": 3423,
+      "sha256": "450b87f611b90d2cdb4139bd2bb2cc8f10696821c1ae6b72ccba7613a64ff6cf",
+      "stage": "exact_HEAD"
+    },
+    "tests_python/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "stage": "exact_HEAD"
+    },
+    "tests_python/test_keeper_alert_audit.py": {
+      "bytes": 14659,
+      "sha256": "8f33bb6b9a19f2bff0ba6c0ac80401ad9215daa0a4f9ee65cb38087fe8c40ae3",
+      "stage": "new_reviewed_source"
+    },
+    "tests_python/test_keeper_alerts.py": {
+      "bytes": 32525,
+      "sha256": "f960f5a50dd1469b3d1f9c1bfb1002e68e1c83982586bc59eec390db83915b6d",
+      "stage": "exact_HEAD"
+    },
+    "tests_python/test_keeper_backup_audit.py": {
+      "bytes": 6616,
+      "sha256": "265e2e8f7360a2ff0a5e409e9045992867d255745577d51212991ab8522da575",
+      "stage": "new_reviewed_source"
+    },
+    "tests_python/test_keeper_process_audit.py": {
+      "bytes": 12663,
+      "sha256": "5b790e2cac04bae6befff32ffa826bb6b5b83ae687dec6fe5f7031825060bf11",
+      "stage": "new_reviewed_source"
+    },
+    "zzz_ops/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/abi.py": {
+      "bytes": 4797,
+      "sha256": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/errors.py": {
+      "bytes": 992,
+      "sha256": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/ethereum_fees.py": {
+      "bytes": 2464,
+      "sha256": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/execution_price.py": {
+      "bytes": 2280,
+      "sha256": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/lp_execution.py": {
+      "bytes": 6860,
+      "sha256": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/physical_portfolio.py": {
+      "bytes": 2125,
+      "sha256": "f119b665860cb4aaa9fbebe81aa1f2564906dff8466d1febf96ea4eef46e719b",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/position.py": {
+      "bytes": 2437,
+      "sha256": "54075cb2329e6e1defb4942683378d6a3995a74a6ea5e1f239a8fcf611e30d4d",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/price_policy.py": {
+      "bytes": 7148,
+      "sha256": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/production_v2.py": {
+      "bytes": 102622,
+      "sha256": "109531b48b9c8a85166c9585351dc40b4b534ec5eea14c5b81d895c1b2209889",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/production_v4.py": {
+      "bytes": 65998,
+      "sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/protocol_policy.py": {
+      "bytes": 5907,
+      "sha256": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/range_policy.py": {
+      "bytes": 5859,
+      "sha256": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/read_process.py": {
+      "bytes": 7007,
+      "sha256": "601ac78236bda39b1b9e1388b5f3a29bbec26e6824f0d97e941f32a138cb67bb",
+      "stage": "reviewed_worktree_override"
+    },
+    "zzz_ops/rebalance_confirmation.py": {
+      "bytes": 17194,
+      "sha256": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/rpc.py": {
+      "bytes": 9709,
+      "sha256": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/state.py": {
+      "bytes": 4644,
+      "sha256": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/tick_math.py": {
+      "bytes": 4949,
+      "sha256": "5224a360f3fecbc9c1d42094863e74771cee8036a60d8b81647d9e6d45e0c70a",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/work_budget.py": {
+      "bytes": 3633,
+      "sha256": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+      "stage": "exact_HEAD"
+    }
+  },
+  "source_head": "1cc67c50ece5b41fbd8c78b902ceb7ab70f96914",
+  "static_import_edges": {
+    "keeper/__init__.py": [],
+    "keeper/alerts.py": [
+      "keeper/__init__.py",
+      "keeper/ops.py",
+      "keeper/recovery_bundle.py",
+      "zzz_ops/state.py"
+    ],
+    "keeper/cast_process.py": [],
+    "keeper/compound_policy.py": [
+      "zzz_ops/abi.py",
+      "zzz_ops/execution_price.py",
+      "zzz_ops/physical_portfolio.py",
+      "zzz_ops/position.py",
+      "zzz_ops/production_v4.py",
+      "zzz_ops/protocol_policy.py",
+      "zzz_ops/tick_math.py"
+    ],
+    "keeper/health.py": [
+      "keeper/monitor.py",
+      "keeper/rebalance_confirmation.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/execution_price.py",
+      "zzz_ops/rpc.py"
+    ],
+    "keeper/monitor.py": [
+      "keeper/cast_process.py",
+      "keeper/compound_policy.py",
+      "keeper/health.py",
+      "keeper/principal.py",
+      "keeper/rebalance_confirmation.py",
+      "keeper/royalties.py",
+      "keeper/watchdog.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/errors.py",
+      "zzz_ops/ethereum_fees.py",
+      "zzz_ops/execution_price.py",
+      "zzz_ops/lp_execution.py",
+      "zzz_ops/position.py",
+      "zzz_ops/range_policy.py",
+      "zzz_ops/rpc.py",
+      "zzz_ops/state.py"
+    ],
+    "keeper/operation_review.py": [
+      "keeper/compound_policy.py",
+      "keeper/monitor.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/errors.py",
+      "zzz_ops/position.py",
+      "zzz_ops/production_v4.py",
+      "zzz_ops/protocol_policy.py",
+      "zzz_ops/rpc.py",
+      "zzz_ops/state.py",
+      "zzz_ops/tick_math.py",
+      "zzz_ops/work_budget.py"
+    ],
+    "keeper/ops.py": [
+      "keeper/health.py",
+      "keeper/monitor.py",
+      "keeper/operation_review.py",
+      "zzz_ops/rpc.py",
+      "zzz_ops/state.py"
+    ],
+    "keeper/principal.py": [
+      "zzz_ops/abi.py",
+      "zzz_ops/rpc.py"
+    ],
+    "keeper/rebalance_confirmation.py": [
+      "keeper/monitor.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/protocol_policy.py",
+      "zzz_ops/rebalance_confirmation.py",
+      "zzz_ops/rpc.py"
+    ],
+    "keeper/recovery_bundle.py": [],
+    "keeper/royalties.py": [
+      "keeper/monitor.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/rpc.py",
+      "zzz_ops/state.py"
+    ],
+    "keeper/watchdog.py": [],
+    "scripts/keeper-alerts.py": [
+      "keeper/alerts.py"
+    ],
+    "scripts/keeper-recovery.py": [
+      "keeper/recovery_bundle.py"
+    ],
+    "tests_python/__init__.py": [],
+    "tests_python/test_keeper_alert_audit.py": [
+      "keeper/__init__.py",
+      "keeper/alerts.py",
+      "keeper/recovery_bundle.py",
+      "tests_python/__init__.py",
+      "tests_python/test_keeper_alerts.py"
+    ],
+    "tests_python/test_keeper_alerts.py": [
+      "keeper/__init__.py",
+      "keeper/alerts.py",
+      "keeper/health.py",
+      "keeper/ops.py",
+      "keeper/recovery_bundle.py"
+    ],
+    "tests_python/test_keeper_backup_audit.py": [
+      "keeper/__init__.py",
+      "keeper/recovery_bundle.py"
+    ],
+    "tests_python/test_keeper_process_audit.py": [
+      "keeper/__init__.py",
+      "keeper/cast_process.py",
+      "zzz_ops/__init__.py",
+      "zzz_ops/read_process.py"
+    ],
+    "zzz_ops/__init__.py": [],
+    "zzz_ops/abi.py": [],
+    "zzz_ops/errors.py": [],
+    "zzz_ops/ethereum_fees.py": [],
+    "zzz_ops/execution_price.py": [
+      "zzz_ops/abi.py"
+    ],
+    "zzz_ops/lp_execution.py": [
+      "zzz_ops/abi.py",
+      "zzz_ops/execution_price.py"
+    ],
+    "zzz_ops/physical_portfolio.py": [
+      "zzz_ops/abi.py",
+      "zzz_ops/tick_math.py"
+    ],
+    "zzz_ops/position.py": [],
+    "zzz_ops/price_policy.py": [
+      "zzz_ops/abi.py"
+    ],
+    "zzz_ops/production_v2.py": [
+      "zzz_ops/__init__.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/price_policy.py",
+      "zzz_ops/range_policy.py",
+      "zzz_ops/state.py",
+      "zzz_ops/tick_math.py"
+    ],
+    "zzz_ops/production_v4.py": [
+      "zzz_ops/__init__.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/production_v2.py",
+      "zzz_ops/range_policy.py",
+      "zzz_ops/tick_math.py"
+    ],
+    "zzz_ops/protocol_policy.py": [
+      "zzz_ops/abi.py"
+    ],
+    "zzz_ops/range_policy.py": [
+      "zzz_ops/abi.py"
+    ],
+    "zzz_ops/read_process.py": [],
+    "zzz_ops/rebalance_confirmation.py": [
+      "zzz_ops/abi.py"
+    ],
+    "zzz_ops/rpc.py": [
+      "zzz_ops/errors.py",
+      "zzz_ops/work_budget.py"
+    ],
+    "zzz_ops/state.py": [],
+    "zzz_ops/tick_math.py": [],
+    "zzz_ops/work_budget.py": [
+      "zzz_ops/errors.py"
+    ]
+  },
+  "static_published_JSON_only": [
+    "reports/ubuntu-backup-recovery-20261126/evidence/c814/model-DRY.json",
+    "reports/ubuntu-daemon-storage-20261126/evidence/fetched/case-HASH_SAVE_FAULT_ARMED.json"
+  ]
+}

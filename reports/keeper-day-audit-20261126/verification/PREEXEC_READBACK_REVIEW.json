@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "source_and_tests_unchanged": true,
+  "old_offline_package_preserved": true,
+  "server_actions_before_this_revision": 0,
+  "test_bodies_run": 0,
+  "change": "Capture effective TimeoutStartUSec for Type=oneshot; existing TimeoutStartSec180 setting is unchanged."
+}
