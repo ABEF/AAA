@@ -1,6 +1,6 @@
 # Keeper outage and server recovery
 
-[Actual concurrent keeper/timer evidence](../reports/ubuntu-keeper-composition-20261126/REVIEW.md) now reconciles one normal daemon harvest and pending-first recovery while backup/observer timers operate. Exact raw journals, canonical fees and final physical vectors pass independent review. Receipt-clearing degradation is expected; the next known confirmation-check deadline can precede the outer240s interval. This is finite same-host composition, not off-host or sustained acceptance.
+[Unsigned off-host transfer evidence](../reports/keeper-offhost-20261126/REVIEW.md) verifies desktop-held backup possession and return to fresh Ubuntu review folders, with exact pending/outbox history and no live adoption. Original configuration/release remain server dependencies; full host-loss reconstruction, signer fencing and canonical reconciliation remain required.
 
 Use the [full-day audit](../reports/keeper-day-audit-20261126/REVIEW.md) and
 [updated alert procedure](KEEPER_ALERTS.md) for pending-clock continuity, source

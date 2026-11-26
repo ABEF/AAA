@@ -1,0 +1,38 @@
+{
+  "actual_clock_recovery_age_seconds": 86400,
+  "application_imports": 0,
+  "baseline": "a1b1a5ab4f3f334305b34a4761952d5c215a3a96",
+  "closed_five_payloads": true,
+  "existing_native_CLI_operations": 4,
+  "new_exclusive_review_folders_only": true,
+  "operating_policy_changed": false,
+  "original_operating_age_seconds": 900,
+  "private_desktop_store_outside_source_checkout": true,
+  "production_approved": false,
+  "production_source_changes": 0,
+  "schema": 1,
+  "server_actions": 0,
+  "signers_masked_network_isolated": true,
+  "sources": {
+    "desktop_verify.py": {
+      "bytes": 16021,
+      "sha256": "63b15230e42130b618874561f82f911747f02881546e12d13fe49f219c88bf8d"
+    },
+    "host_control.py": {
+      "bytes": 10011,
+      "sha256": "7763663d728b420854a190f5209227c9452a8ff787e9fcbbf407ebbd9158fa2c"
+    },
+    "remote_capsule.py": {
+      "bytes": 35773,
+      "sha256": "d6e37f02c1e35ba8d61dce2debd4cc0bd917a26c5d95f9480b6a8a5486d24d35"
+    },
+    "worker.py": {
+      "bytes": 12260,
+      "sha256": "5ec39493c3f79e22ca8b42eb67833b35556fab68612172434ed9d5e01b93fa9e"
+    }
+  },
+  "static_review_only": true,
+  "success": true,
+  "test_bodies_run": 0,
+  "trust_separate_from_incoming": true
+}

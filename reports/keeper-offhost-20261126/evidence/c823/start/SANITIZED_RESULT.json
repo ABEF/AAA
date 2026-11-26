@@ -1,0 +1,28 @@
+{
+  "phase": "started",
+  "properties": {
+    "ActiveState": "activating",
+    "BindReadOnlyPaths": "/opt/popl-keeper-sidecar-recovery-20261126-c821/source:/opt/popl-keeper-sidecar-recovery-20261126-c821/source:rbind /opt/popl-keeper-sidecar-recovery-20261126-c821/runtime:/opt/popl-keeper-sidecar-recovery-20261126-c821/runtime:rbind /opt/popl-keeper-offhost-20261126-c823/masks/key.empty:/opt/popl-keeper-sidecar-recovery-20261126-c821/runtime/working/keystore.secret:rbind /opt/popl-keeper-offhost-20261126-c823/masks/password.empty:/opt/popl-keeper-sidecar-recovery-20261126-c821/runtime/working/password.secret:rbind",
+    "ControlGroup": "/system.slice/popl-keeper-offhost-20261126-c823.service",
+    "ExecMainCode": "0",
+    "ExecMainStartTimestampMonotonic": "9046169271130",
+    "ExecMainStatus": "0",
+    "Group": "nogroup",
+    "Id": "popl-keeper-offhost-20261126-c823.service",
+    "InvocationID": "9557f9035f4c476e8bd653947c090fc5",
+    "KillMode": "control-group",
+    "LoadState": "loaded",
+    "MainPID": "132118",
+    "PrivateNetwork": "yes",
+    "ReadWritePaths": "/opt/popl-keeper-offhost-20261126-c823/runtime",
+    "Restart": "no",
+    "RestrictAddressFamilies": "AF_UNIX",
+    "Result": "success",
+    "SubState": "start",
+    "TimeoutStartUSec": "3min",
+    "TimeoutStopUSec": "2s",
+    "Type": "oneshot",
+    "User": "nobody"
+  },
+  "unit": "popl-keeper-offhost-20261126-c823.service"
+}

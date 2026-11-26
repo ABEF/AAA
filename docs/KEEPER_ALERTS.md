@@ -1,6 +1,6 @@
 # Keeper alerts: one-shot observation and local delivery
 
-[Concurrent normal-keeper evidence](../reports/ubuntu-keeper-composition-20261126/REVIEW.md) preserves actual pending first_seen and queued IDs through timer contention, then reconciles delivery and genuine healthy recovery. Incident/lock-refusal outcomes are not healthy readiness; delivery ACK alone is not recovery. Short lab timings are not launch choices.
+[Off-host history preservation](../reports/keeper-offhost-20261126/REVIEW.md) verifies exact queued IDs, sequence and pending first_seen across desktop transfer and Ubuntu review restoration. Historical recovery allowance never refreshes backup age or approves observer readiness. Live host-down/remote notification and fencing remain separate.
 
 The [alert module](../keeper/alerts.py) and [command](../scripts/keeper-alerts.py) inspect keeper health, the current journal and one explicitly selected recovery backup. They write a **separate alert state/outbox**, and can send sanitized events to a local test receiver. They never sign, submit transactions, read configured signer-file contents, repair a journal or approve a keeper for live use.
 

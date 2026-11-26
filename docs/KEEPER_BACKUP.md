@@ -1,6 +1,6 @@
 # Keeper journal backup and restore preparation
 
-The [combined Ubuntu rehearsal](../reports/ubuntu-keeper-composition-20261126/REVIEW.md) verifies a real keeper journal changing during capture: the raced snapshot refuses, the old selection stays exact, and later ordinary backups progress. A coherent point-in-time snapshot is not a guarantee of newest canonical state. No source or limits change.
+The [desktop round-trip](../reports/keeper-offhost-20261126/REVIEW.md) now authenticates actual off-host possession and same-server review-only return of the exact retained package. Recovery age86400 is explicit; operating freshness900 is unchanged and exceeded. No current canonical or second-host failover approval follows. Prior [concurrent-capture evidence](../reports/ubuntu-keeper-composition-20261126/REVIEW.md) retains its distinct race/refusal/progress scope.
 
 Use the [alert observer](KEEPER_ALERTS.md) to check one explicitly selected
 bundle's age and integrity against its externally retained manifest pin and

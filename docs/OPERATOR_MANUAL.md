@@ -1,5 +1,38 @@
 # PoPL operator manual
 
+## Off-host backup transfer and review
+
+The [bounded desktop round-trip](../reports/keeper-offhost-20261126/REVIEW.md)
+proves exact package possession and review-only return. It does not move a live
+keeper. No governance wallet or transaction is required for these file operations.
+
+| Step | Required inputs / action | Verification / boundary |
+| --- | --- | --- |
+| Retain trust separately | Original manifest SHA-256, configuration, policy and matching reviewed release; keep signer material separately | A hash supplied only with the incoming package is not independent authentication |
+| Copy off-host | Stop/fence the reviewed capture source or use its existing exact capture tool; transfer the trusted root manifest plus every declared package file | Preserve complete package, original generation and timestamps; never choose the newest folder by scan |
+| Check the saved copy | Re-read actual saved files against independently retained lengths/hashes, complete inventory and outer/nested pins | A Windows hash check is not native Ubuntu configuration/source validation or live readiness |
+| Return for review | Build transfer from those saved files; use a fresh protected Ubuntu package folder | No server-original fallback, overwrite or automatic repair of incomplete output |
+| Verify journal | `python3 -B scripts/keeper-recovery.py verify --config ORIGINAL_CONFIG --bundle JOURNAL_PACKAGE --manifest-sha256 TRUSTED_JOURNAL_SHA --max-age-seconds REVIEWED_AGE --minimum-created-at TRUSTED_CAPTURE_FLOOR` | Same exact original configuration and matching release; all values independently reviewed |
+| Prepare journal | Same command with `restore` and `--output NEW_JOURNAL_REVIEW` | Exact journal plus unsigned plan only |
+| Verify sidecars | `python3 -B scripts/keeper-sidecar-recovery.py verify --policy ORIGINAL_POLICY --policy-sha256 REVIEWED_POLICY_SHA --bundle SIDECAR_PACKAGE --manifest-sha256 TRUSTED_SIDECAR_SHA --max-age-seconds REVIEWED_AGE --minimum-created-at TRUSTED_CAPTURE_FLOOR` | Original policy/configuration/release and protected original layout still needed |
+| Prepare sidecars | Same command with `restore` and `--output NEW_SIDECAR_REVIEW` | Exact selection/outbox/pending clock plus new empty locks and unsigned plan |
+| Review result | Compare raw restored bytes, pending nonce/cost/anchor, selected generation, event IDs/sequence/first_seen and every false adoption flag | New lock files do not restore old lock ownership; these tools install/start nothing |
+
+Replace capitalized placeholders with absolute protected paths and reviewed
+values. Digests are64lowercase hex characters without `0x`; capture floors are
+UTC Unix seconds. `--max-age-seconds` is a deliberate historical recovery limit,
+separate from the live observer's backup freshness policy. The rehearsal used
+86400 for recovery, while operating freshness remained900 and was exceeded.
+Never backdate a clock, regenerate a manifest, reset pending age or call an old
+backup fresh. Default native16MiB/60s limits and stricter policy budgets remain.
+
+The native CLIs use separately retained server-only configuration/release; a
+desktop copy cannot reconstruct lost dependencies or current chain truth.
+Actual host-loss adoption additionally requires old-host/signer/restart fencing,
+reviewed path/permission reconstruction, canonical nonce/receipt/fee reconciliation,
+dry recovery and separately approved single-signer operation. Keep originals and
+partial outputs; do not reinitialize or overwrite state to bypass a refusal.
+
 ## Scheduler and alert-state recovery
 
 The [complete input and recovery guide](KEEPER_SIDECAR_RECOVERY.md) covers the
@@ -32,7 +65,7 @@ needs separately reviewed layout preparation. Before adoption, fence old jobs
 and restart paths, review the mapping to original logical paths, retain original
 records and reconcile the keeper independently. Do not use scheduler `init` or
 hand-edit saved records to reset an incident. The tool performs none of these
-adoption steps; real off-host recovery and release approval remain open.
+adoption steps; second-host/host-loss recovery, fencing and release approval remain open.
 
 ## Unsigned Ubuntu backup and alert schedules
 

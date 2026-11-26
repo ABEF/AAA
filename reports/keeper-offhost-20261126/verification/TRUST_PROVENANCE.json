@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "source_commit": "a1b1a5ab4f3f334305b34a4761952d5c215a3a96",
+  "source_path": "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-6/SOURCE_RESULT.json",
+  "bytes": 9032,
+  "sha256": "9bec125bedd73b6f80cb3f316a7822aa09aeb9198927ca8d901c476f3798c371",
+  "derived_from_incoming_packet": false,
+  "native_recovery_age_review_seconds": 86400,
+  "original_operating_backup_age_seconds": 900,
+  "operating_policy_changed": false
+}

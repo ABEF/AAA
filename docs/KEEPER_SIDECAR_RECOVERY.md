@@ -133,8 +133,14 @@ Missing source state requires recovery from independently retained data, not an
 invented empty queue. A cooperative work budget cannot preempt blocked kernel
 I/O/fsync; separately reviewed supervision remains required.
 
-Same-host isolated recovery proves neither off-host possession nor cross-host
-fencing. Real notification delivery, host-loss handling, provider operation,
+Earlier same-host isolated recovery proves neither off-host possession nor cross-host
+fencing. The [desktop round-trip](../reports/keeper-offhost-20261126/REVIEW.md) now
+proves possession of the exact synthetic package and its return to fresh review
+folders on the same Ubuntu host. It uses actual clock86400-second historical
+review, leaving the original900-second operating freshness policy unchanged and
+unapproved. Original release/configuration/layout remain server-only dependencies.
+Independent second-host execution, cross-host fencing, real notification delivery,
+host-loss handling, provider operation,
 sustained qualification and independent release approval remain open. Existing
 services, journals and the user-paused desktop monitor are not adopted by this
 source publication.

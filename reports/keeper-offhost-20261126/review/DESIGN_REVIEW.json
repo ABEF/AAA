@@ -1,0 +1,92 @@
+{
+  "activity": {
+    "application_imports": 0,
+    "network_requests": 0,
+    "server_actions": 0,
+    "test_bodies": 0
+  },
+  "baseline": "a1b1a5ab4f3f334305b34a4761952d5c215a3a96",
+  "fixed_payloads": [
+    "manifest.json",
+    "selection.json",
+    "alert-state.json",
+    "selected/manifest.json",
+    "selected/journal.json"
+  ],
+  "kind": "offhost_roundtrip_independent_design_review",
+  "known_design_decisions": {
+    "clock_override_or_asof": false,
+    "fresh_capture": false,
+    "historical_review_age_seconds": 86400,
+    "minimum_created_at": "Use exact trusted original manifest creation time; not a new capture or clock reset.",
+    "new_negative_scope": "Only a genuinely new transport framing/incomplete-capture/writer/link partition if justified; no repeat existing bundle corruption tests.",
+    "original_configuration_policy_release": "Stay on Ubuntu separate from transport; never exported or rewritten.",
+    "original_operating_backup_age_seconds": 900,
+    "private_signer_material": "Never read or copied; no actual signing worker in this task."
+  },
+  "no_repeated_partitions": [
+    "No new backup capture, test body, RPC, signing, observer delivery, journal reconciliation or old bundle-tamper suite.",
+    "Existing component integrity/exact allocation/source-profile proofs retain original scope; new evidence concerns authenticated transport, desktop-held bytes and returned Linux review-only restore."
+  ],
+  "objective": "Authenticate possession of the exact already-reviewed c821 unsigned package on the Windows desktop, then return those desktop-held bytes to a fresh isolated Ubuntu review-only restore without signing, configuration export or source adoption.",
+  "phase": "design_only_not_execution_or_acceptance",
+  "production_approved": false,
+  "remaining_before_execution": [
+    "Final Windows verifier/transport schema/server helper/worker source and fixed-path commands must be reviewed before approval.",
+    "All new private service properties, resource bounds, trusted pin provenance and preservation predicates must be bound into frozen preparation."
+  ],
+  "required_acceptance": [
+    {
+      "goal": "Trusted pins originate separately from the exported packet and cannot be silently recomputed to accept drift.",
+      "id": "O01"
+    },
+    {
+      "goal": "Read-only c821 export is closed to exactly five regular single-link raw files; no signer/config/policy/source-release export. Source records and four original c821 service groups inspected before and after, never changed/control-restarted.",
+      "id": "O02"
+    },
+    {
+      "goal": "Windows bounded verification authenticates exact outer pin, exact member set/hash/length/nested pin and typed structural bindings; explicitly not original Linux configuration/source/current-chain admission.",
+      "id": "O03"
+    },
+    {
+      "goal": "Write actual five desktop-held files to fresh exclusive output and reread their bytes; return packet is rebuilt from these persisted files, not cached original export response or a new server copy.",
+      "id": "O04"
+    },
+    {
+      "goal": "Both source and return transport use pinned authenticated host transport; frame lengths/global bytes/duplicate keys/base64 and expected path set validated before output allocation.",
+      "id": "O05"
+    },
+    {
+      "goal": "Remote install writes only new fixed c823 paths exclusively with complete-publication marker last; partials preserved, no overwrite or cleanup fallback. Rehash installed returned bytes before worker execution.",
+      "id": "O06"
+    },
+    {
+      "goal": "Actual existing keeper verify/restore and sidecar verify/restore run unsigned in one isolated Ubuntu worker with original server-only policy/config/source identities and two distinct root000 empty read-only signer masks.",
+      "id": "O07"
+    },
+    {
+      "goal": "Keep real wall time. Caller explicitly reviews historical recovery max_age86400 and original captured minimum; original operating max_backup_age900, all raw timestamps, pending nonce/cost/first_seen/outbox IDs and policy/config bytes remain unchanged.",
+      "id": "O08"
+    },
+    {
+      "goal": "Reconcile returned input and both fresh restored layouts byte-for-byte, generation identity and false readiness/fencing/freshness/install/restart fields; original/source inventories and groups unchanged; all newly owned units stopped.",
+      "id": "O09"
+    }
+  ],
+  "review_focus": [
+    "Fixed relative paths and exact five-member allowlist; no path traversal/unknown metadata/duplicate JSON names/nonfinite values.",
+    "Descriptor/aggregate/wire/base64 bounds before reads/decode/write; resource ceilings and default16MiB/60s unchanged.",
+    "Exclusive fresh publication and complete-read semantics; no final path visible with incomplete bytes, no transient hardlink-count false refusal, no source mutation.",
+    "Parent/descriptor/path identity during read/write/readback; reject symlink/reparse/hardlink aliases where applicable without claiming Unix ownership controls on Windows.",
+    "Windows structural/hash result cannot grant Linux source/config/current-chain validation, freshness, signer fencing or operation readiness.",
+    "Source fencing is a point-in-time readback of the exact original four c821 groups and their queued/automatic restart state, not cross-host fencing.",
+    "Returned bytes must genuinely originate from persisted off-host desktop files; both independent copy inventories and manifest pins retained.",
+    "No claim of second-Linux-host failover, production backup retention/durability, host-loss recovery, canonical latest state or independent launch approval."
+  ],
+  "schema": 1,
+  "trusted_pins": {
+    "outer_manifest_sha256": "a9dea475a22014c7eb5fcf965896eb691a2ba5c8de352e0c23d6fd1611dbb05b",
+    "policy_sha256": "7e85ff8b6709803cb9f4e621150d05b08262599e94a2dccd9a23e01bb41452ba",
+    "selected_manifest_sha256": "911d98ef86b1cd229378ae15ac685e8ce67285c0035c8cf670dfca3cccc5d0d1"
+  }
+}

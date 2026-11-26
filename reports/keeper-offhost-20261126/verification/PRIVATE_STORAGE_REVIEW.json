@@ -1,0 +1,11 @@
+{
+  "new_task_entries_updated": 11,
+  "original_receipt_sha256": "ff4e6fec66f2db3814fd27f38664824fdd229af4c2cbf88a2d79e6e0ea841e55",
+  "private_storage_outside_checkout": true,
+  "public_or_Everyone_grant_added": false,
+  "raw_payloads_or_credentials_published": false,
+  "retained_owner_System_Administrators_permissions": true,
+  "schema": 1,
+  "scope": "new private task store only; not production Windows ACL qualification",
+  "two_local_execution_accounts_added": true
+}

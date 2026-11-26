@@ -1,0 +1,32 @@
+{
+  "ACL_changes_performed_by_preparation": 0,
+  "POSIX_mkdir_mode_retained": "0700",
+  "Windows_mkdir_mode_omitted": true,
+  "all_other_AST_unchanged": true,
+  "application_imports": 0,
+  "changed_mkdir_calls": 3,
+  "locations": [
+    "new action output",
+    "exported package",
+    "exported selected subdirectory"
+  ],
+  "network_or_server_actions": 0,
+  "original_wrapper": {
+    "bytes": 10011,
+    "path": "host_control.before-windows-acl.py",
+    "sha256": "7763663d728b420854a190f5209227c9452a8ff787e9fcbbf407ebbd9158fa2c"
+  },
+  "remote_code_pins_unchanged": {
+    "remote_capsule.py": "d6e37f02c1e35ba8d61dce2debd4cc0bd917a26c5d95f9480b6a8a5486d24d35",
+    "worker.py": "5ec39493c3f79e22ca8b42eb67833b35556fab68612172434ed9d5e01b93fa9e"
+  },
+  "schema": 1,
+  "scope": "Windows-only directory creation inherits the separately protected parent ACL",
+  "test_bodies_run": 0,
+  "transport_code_and_pin_unchanged": true,
+  "updated_wrapper": {
+    "bytes": 10101,
+    "path": "host_control.py",
+    "sha256": "281d9ded160451bf733e79c14b94c93a0ce0e18329bebf587fa316031c5a7774"
+  }
+}

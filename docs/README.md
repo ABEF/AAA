@@ -1,6 +1,6 @@
 # Documentation map
 
-The [combined Ubuntu composition](../reports/ubuntu-keeper-composition-20261126/REVIEW.md) verifies the actual normal keeper alongside backup/observer timers, once-only recovery and truthful deadline-driven fresh health. Use the [operator manual](OPERATOR_MANUAL.md#concurrent-keeper-and-unsigned-jobs) for the five operating states; no existing installation is adopted.
+The [off-host transfer and review procedure](OPERATOR_MANUAL.md#off-host-backup-transfer-and-review) covers exact desktop-held packages, independent pins and fresh unsigned Ubuntu outputs. The [bounded evidence](../reports/keeper-offhost-20261126/REVIEW.md) preserves real capture age and all false adoption flags; it does not approve second-host failover.
 
 Use the [scheduler/alert recovery guide](KEEPER_SIDECAR_RECOVERY.md) for exact selected-generation, event-ID and pending-clock capture, verification and fresh review-only restoration. Original configuration/release and host-layout review remain separate. The [Ubuntu record](../reports/keeper-sidecar-recovery-20261126/REVIEW.md) preserves the original setup failure and eight new passes.
 

@@ -1,0 +1,56 @@
+{
+  "canonical_state_verified": false,
+  "configuration_sha256": "1c3d51343b990a2abc4a87cf9dd7049237f23a34a39708f945d98f228e3f5cb8",
+  "current_operating_freshness_approved": false,
+  "files": {
+    "alert-state.json": {
+      "bytes": 812,
+      "sha256": "f256fd8ca53e4d45ac11b5c75333f6b4172b8f9579460a1fd7bab48536b3dc98"
+    },
+    "manifest.json": {
+      "bytes": 5261,
+      "sha256": "a9dea475a22014c7eb5fcf965896eb691a2ba5c8de352e0c23d6fd1611dbb05b"
+    },
+    "selected/journal.json": {
+      "bytes": 2752,
+      "sha256": "dbb5f86672bd14f017d9c99f3b8ff6b8e6a8cf041d2aa9c2eada60b7598a9112"
+    },
+    "selected/manifest.json": {
+      "bytes": 3867,
+      "sha256": "911d98ef86b1cd229378ae15ac685e8ce67285c0035c8cf670dfca3cccc5d0d1"
+    },
+    "selection.json": {
+      "bytes": 2354,
+      "sha256": "dfdabc2c7d8e2510efeaab4861fb034af2536269705ee0000f805ccaadce9bb2"
+    }
+  },
+  "kind": "popl-keeper-offhost-desktop-proof",
+  "nested_created_at": 1795723324,
+  "nested_manifest_sha256": "911d98ef86b1cd229378ae15ac685e8ce67285c0035c8cf670dfca3cccc5d0d1",
+  "ok": true,
+  "operating_max_age_seconds": 900,
+  "outer_created_at": 1795723324,
+  "outer_manifest_sha256": "a9dea475a22014c7eb5fcf965896eb691a2ba5c8de352e0c23d6fd1611dbb05b",
+  "policy_sha256": "7e85ff8b6709803cb9f4e621150d05b08262599e94a2dccd9a23e01bb41452ba",
+  "posix_core_verified": false,
+  "preserved_state": {
+    "economic_identity_sha256": "273decf455b06d46bfabe24bd491e7b76a73239d782c9fc9d96fa281ef9655b3",
+    "event_ids": [
+      "148b095e315df4f9e94f7f6602c52782d9e90d2ccdcb5fc8bd483e2c8fdb5308"
+    ],
+    "next_nonce": 0,
+    "observer_sequence": 1,
+    "pending_first_seen": 1795723324,
+    "pending_intent_sha256": "daced37cc50be0d64768e04bbd37874552dc66633c29ace02fd87ec6a70aab71",
+    "pending_sha256": "4ffcce340fc8c93dbc75767d17e7b0371b40b45c06f25c8e002b4d2b88bfd30c",
+    "receipt_anchor_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+    "spent_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  "production_approved": false,
+  "readiness_approved": false,
+  "recovery_review_max_age_seconds": 86400,
+  "schema": 1,
+  "source_trust_report_sha256": "9bec125bedd73b6f80cb3f316a7822aa09aeb9198927ca8d901c476f3798c371",
+  "unsigned": true,
+  "verified_at_unix": 1795731008
+}

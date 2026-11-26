@@ -1,0 +1,602 @@
+{
+  "application_imports": 0,
+  "changed_vs_archived_before": {
+    ".gitattributes": {
+      "after_sha256": "c3ac2e201d5e4b9f8729965e96e490a3df79926e859578d3e7e1277aa479340b",
+      "before_sha256": "d30df3c0eeca81f1ef1b902cca476522a1f431bfa287145ace760da82939521b"
+    },
+    "AGENTS.md": {
+      "after_sha256": "4d209677efaf649c1bb82c01131a1894d2b6102e1f63c494402f26c830f9683c",
+      "before_sha256": "6a1327d70e80c18e0c8185e86ffcd5d98a112424d93379f66b2e57ae6b0955e4"
+    },
+    "PROJECT_CONTEXT.md": {
+      "after_sha256": "5be5426853a46e5325cc7dc71651cee6d184fa02b4d61a1330bb5919b5c6504d",
+      "before_sha256": "22d9754a215d2cd920cf476be7eeecc8c53f180a7faf76824f72ba37842ad0cb"
+    },
+    "README.md": {
+      "after_sha256": "de45238fcee78ad067fae88b9a1d5ecba5a85d8e6bdaa42a875119bd2af8e9b1",
+      "before_sha256": "d7140b40fcf8c8a7cb42d50f84493427c1f5e341b985485f70f710bb25eccbac"
+    },
+    "TODO.md": {
+      "after_sha256": "a0a61977b926535385da0e191f164998fd123f6a57d9cf2abf3fb9ecb75ef1eb",
+      "before_sha256": "12180b04ba28e2dc817c0c22a83a4f80c3483eb44c6dce409e1c87a01b229200"
+    },
+    "docs/AUDIT_FINDINGS.md": {
+      "after_sha256": "f4f422cfbcc166ede5d9d6356fcf7f181cc9d3812489e04439272a60646f91f8",
+      "before_sha256": "8a7b9d36268124abefbdcebf3c9177dca3c0c903055b22fb6d2c3cf5967f535f"
+    },
+    "docs/IMPLEMENTATION_STATUS.md": {
+      "after_sha256": "2e87738d02ebc0692c1e634cf827b78031a69924db303cf24b34815bbd72d774",
+      "before_sha256": "96bbb27fd35217d850ab37709e8bfdbe0587242bcfcef4117db3542e9561c5cd"
+    },
+    "docs/KEEPER_ALERTS.md": {
+      "after_sha256": "08ae50e3d251e9001989f435dd8caf3e1b14af600bee65d2fc33e025545d9e8e",
+      "before_sha256": "167513d1c49a211ee41b045501da4386b61ce4a8fb469d7dae11a3b0c4babd7d"
+    },
+    "docs/KEEPER_BACKUP.md": {
+      "after_sha256": "76b7bccc566ac6fac1ab130ccb7b080a92bc27ea5c12dafa1258228cd162e3cc",
+      "before_sha256": "9adf52eb22f6b25e2e027aece45133a26d526ce660397f97c7b1852b2a3d7852"
+    },
+    "docs/KEEPER_RECOVERY.md": {
+      "after_sha256": "fb8a9ab46bb8d1ca4b716cb8a92089285200c045b0e6edf755324c5a17e8433a",
+      "before_sha256": "93ba5deaeabcc78c3c2feef93aa824e563b8c9d907924c98a32c46113b8f400f"
+    },
+    "docs/KEEPER_REHEARSALS.md": {
+      "after_sha256": "7a29ec84499d776212127ed2dabce2aac730b48e7035e8210b5f72645b438dd9",
+      "before_sha256": "37fe66fed5f91dad082dc24c82878260eb0f86d3bb100d65aad90e1f34578b08"
+    },
+    "docs/KEEPER_SCHEDULING.md": {
+      "after_sha256": "5fbd145d93aa0f1b3e1e3b6a3a16e336b550ad533b7d62f71e9042ead056b07c",
+      "before_sha256": "21cdee0cff100eef9d7681e657268c2e11395e1be1b830322ec7b712e608dcbd"
+    },
+    "docs/KEEPER_SIDECAR_RECOVERY.md": {
+      "after_sha256": "0334588c2749f1f6e4593a9cb085bcd0bf1c433c3252a00426b15ee03554648e",
+      "before_sha256": "a226857131839244a57ef20ffc9ed9079d6b96d0e411a510796b94468136087a"
+    },
+    "docs/OPERATOR_MANUAL.md": {
+      "after_sha256": "f4cc475f931be968ea7f4757412609b1101630e6307cee6d6272e27fdaa6135d",
+      "before_sha256": "099c164a594749b5b4d16e5ff89a8890085c14bcaa52c9f7917cace032968756"
+    },
+    "docs/README.md": {
+      "after_sha256": "d453d19113a28511633c5bb072f85784b5985f8ae548f7b51c28fe1808bd8548",
+      "before_sha256": "cc844475842caccc021a97f27a59bc51b960c7ec90560538906b6299140f8b77"
+    },
+    "docs/RELEASE_CHECKLIST.md": {
+      "after_sha256": "400abd646743bbfbad8b454790e17e97ac0e170cf564e35ec81f2b298b16277e",
+      "before_sha256": "9453501984827b672b4adbb98e25f2720e57d7d8bdebfa0985f8361a1935be67"
+    },
+    "docs/ROADMAP.md": {
+      "after_sha256": "433403965815eab09e41308b29606ca4beeb908f4efcdd34a87d088257ce5ff7",
+      "before_sha256": "f6772e94715634a8b82f284a0c3c0423ca3a137827750a42ff51f91c69bde9e7"
+    },
+    "docs/WORKLOAD_COVERAGE.md": {
+      "after_sha256": "bf9bbe1f0697f84ea1d4671ce6e1ec055b40b7340f164baafef2c3e0ba66b1e6",
+      "before_sha256": "7bc7e8319f28f52f98172cf4cfc2b7a78a84780a697a8c0b27fd260b935c671a"
+    },
+    "docs/WORK_HANDOFF.md": {
+      "after_sha256": "42f8f95c98d27d7cce4e1ba1b644e04b8557432c1bd5ccfd2ed3f8c8dbb68b3f",
+      "before_sha256": "00fa8743afc5f172c6635709a09a89887ac00bc0160038727bfd70a2d88d9a0d"
+    },
+    "docs/project-todo.json": {
+      "after_sha256": "598cdec2811fffe3947e9721a0fc5ccaf611dfa75ead93302c93280cb17b1ca4",
+      "before_sha256": "c8eb6849c11abbfa957cc5700f5062d4f717c98c058f695c3c22da9a139b2c4f"
+    },
+    "reports/README.md": {
+      "after_sha256": "fced6f3b6f3bb0cd4e2f73b9102fb25a43a87aa49fbdd4a6e44782d4b70c1e12",
+      "before_sha256": "9a40ae6f12ba3adca31e647077df73f65f5879fed4257de0ae365be58a47c864"
+    }
+  },
+  "checks": [
+    {
+      "detail": "Actual7719-second age exceeds unchanged900 operating freshness. All four original CLI calls use deliberate86400 review allowance plus original capture floor; no fakeclock/newcapture/timestamp or policy rewrite. Examples supply proper original config/policy, trustedpins, freshoutputs and exact units.",
+      "result": "consistent",
+      "topic": "Historical age and native inputs"
+    },
+    {
+      "detail": "Five exact files15046bytes persist offhost and return from those saved copies to sameUbuntu server fresh reviewfolders. Synthetic c821 pending/accounting is not current canonical transaction proof. Windows proof stays hash/structure-only; Linux fourCLI operations validate original protected source/config/layout. No secondhost/failover/liveadoption claims.",
+      "result": "consistent",
+      "topic": "Possession versus adoption"
+    },
+    {
+      "detail": "Independent9bec baselineGitblob trust precedes package. Root+nested manifests and all declaredpayloads retained; originalconfig/policy/release/signers remain server-only/separate. Only allowlisted sanitizedreceipts/code/hashes inGit; rawpayloads/privateSSHframes outsidecheckout.",
+      "result": "consistent",
+      "topic": "Trust and privacy"
+    },
+    {
+      "detail": "Exact pending/nonce/spend/anchor, outboxIDs/sequence/first_seen and historicalgeneration remain preserved. Fresh private emptylocks do not restore old flockownership or prove fencing; originalrecords/locks untouched. No reset/reinit/overwrite/fallbacksuggested.",
+      "result": "consistent",
+      "topic": "State and locks"
+    },
+    {
+      "detail": "One newtransport/restore composition,fourCLI operations0.4524936s,zero oldtestbodies/RPC/transactions/deployment. First localSSH/DACL and trusted-float helperfailure are retained; first midobserver hostcomparison remainsNONPASS, later settled5state comparison0nonambient/1observerID disclosed. No failure relabelled.",
+      "result": "consistent",
+      "topic": "Evidence and failures"
+    },
+    {
+      "detail": "Production source13/19/F6, profiles/limits/workloadplan/selectors unchanged;191/2137/279existinginventory reused. Currentstatus block replaces prior datedfrontblock and links distinct earlier actualtransaction composition. No broadretest/inventoryregeneration claimed.",
+      "result": "consistent",
+      "topic": "Source and inventory"
+    },
+    {
+      "detail": "83 stabletask IDs/statuses remain35done/40progress/7todo/1excluded. Q06/P20/P21 and secondhost/hostloss/configsignerreconstruction/fencing, currentcanonicalreconciliation, realchannels/providers, physicaldurability/sustained/independentrelease stayopen; existingenvironments andpausedheartbeat unchanged.",
+      "result": "consistent",
+      "topic": "Remaining gates and Todo"
+    }
+  ],
+  "document_edits_by_reviewer": 0,
+  "document_hashes": {
+    ".gitattributes": "c3ac2e201d5e4b9f8729965e96e490a3df79926e859578d3e7e1277aa479340b",
+    "AGENTS.md": "4d209677efaf649c1bb82c01131a1894d2b6102e1f63c494402f26c830f9683c",
+    "PROJECT_CONTEXT.md": "5be5426853a46e5325cc7dc71651cee6d184fa02b4d61a1330bb5919b5c6504d",
+    "README.md": "de45238fcee78ad067fae88b9a1d5ecba5a85d8e6bdaa42a875119bd2af8e9b1",
+    "TODO.md": "a0a61977b926535385da0e191f164998fd123f6a57d9cf2abf3fb9ecb75ef1eb",
+    "docs/AUDIT_FINDINGS.md": "f4f422cfbcc166ede5d9d6356fcf7f181cc9d3812489e04439272a60646f91f8",
+    "docs/IMPLEMENTATION_STATUS.md": "2e87738d02ebc0692c1e634cf827b78031a69924db303cf24b34815bbd72d774",
+    "docs/KEEPER_ALERTS.md": "08ae50e3d251e9001989f435dd8caf3e1b14af600bee65d2fc33e025545d9e8e",
+    "docs/KEEPER_BACKUP.md": "76b7bccc566ac6fac1ab130ccb7b080a92bc27ea5c12dafa1258228cd162e3cc",
+    "docs/KEEPER_RECOVERY.md": "fb8a9ab46bb8d1ca4b716cb8a92089285200c045b0e6edf755324c5a17e8433a",
+    "docs/KEEPER_REHEARSALS.md": "7a29ec84499d776212127ed2dabce2aac730b48e7035e8210b5f72645b438dd9",
+    "docs/KEEPER_SCHEDULING.md": "5fbd145d93aa0f1b3e1e3b6a3a16e336b550ad533b7d62f71e9042ead056b07c",
+    "docs/KEEPER_SIDECAR_RECOVERY.md": "0334588c2749f1f6e4593a9cb085bcd0bf1c433c3252a00426b15ee03554648e",
+    "docs/OPERATOR_MANUAL.md": "f4cc475f931be968ea7f4757412609b1101630e6307cee6d6272e27fdaa6135d",
+    "docs/README.md": "d453d19113a28511633c5bb072f85784b5985f8ae548f7b51c28fe1808bd8548",
+    "docs/RELEASE_CHECKLIST.md": "400abd646743bbfbad8b454790e17e97ac0e170cf564e35ec81f2b298b16277e",
+    "docs/ROADMAP.md": "433403965815eab09e41308b29606ca4beeb908f4efcdd34a87d088257ce5ff7",
+    "docs/WORKLOAD_COVERAGE.md": "bf9bbe1f0697f84ea1d4671ce6e1ec055b40b7340f164baafef2c3e0ba66b1e6",
+    "docs/WORK_HANDOFF.md": "42f8f95c98d27d7cce4e1ba1b644e04b8557432c1bd5ccfd2ed3f8c8dbb68b3f",
+    "docs/project-todo.json": "598cdec2811fffe3947e9721a0fc5ccaf611dfa75ead93302c93280cb17b1ca4",
+    "reports/README.md": "fced6f3b6f3bb0cd4e2f73b9102fb25a43a87aa49fbdd4a6e44782d4b70c1e12",
+    "reports/keeper-offhost-20261126/REVIEW.md": "56a8fec1d7deb9ef56c84a4e500e72463cda0e31cbc5c1071a01134c5c1f8c0c"
+  },
+  "document_metadata": {
+    ".gitattributes": {
+      "bytes": 29572,
+      "sha256": "c3ac2e201d5e4b9f8729965e96e490a3df79926e859578d3e7e1277aa479340b"
+    },
+    "AGENTS.md": {
+      "bytes": 65223,
+      "sha256": "4d209677efaf649c1bb82c01131a1894d2b6102e1f63c494402f26c830f9683c"
+    },
+    "PROJECT_CONTEXT.md": {
+      "bytes": 36129,
+      "sha256": "5be5426853a46e5325cc7dc71651cee6d184fa02b4d61a1330bb5919b5c6504d"
+    },
+    "README.md": {
+      "bytes": 18516,
+      "sha256": "de45238fcee78ad067fae88b9a1d5ecba5a85d8e6bdaa42a875119bd2af8e9b1"
+    },
+    "TODO.md": {
+      "bytes": 531433,
+      "sha256": "a0a61977b926535385da0e191f164998fd123f6a57d9cf2abf3fb9ecb75ef1eb"
+    },
+    "docs/AUDIT_FINDINGS.md": {
+      "bytes": 39279,
+      "sha256": "f4f422cfbcc166ede5d9d6356fcf7f181cc9d3812489e04439272a60646f91f8"
+    },
+    "docs/IMPLEMENTATION_STATUS.md": {
+      "bytes": 44542,
+      "sha256": "2e87738d02ebc0692c1e634cf827b78031a69924db303cf24b34815bbd72d774"
+    },
+    "docs/KEEPER_ALERTS.md": {
+      "bytes": 14521,
+      "sha256": "08ae50e3d251e9001989f435dd8caf3e1b14af600bee65d2fc33e025545d9e8e"
+    },
+    "docs/KEEPER_BACKUP.md": {
+      "bytes": 14376,
+      "sha256": "76b7bccc566ac6fac1ab130ccb7b080a92bc27ea5c12dafa1258228cd162e3cc"
+    },
+    "docs/KEEPER_RECOVERY.md": {
+      "bytes": 63782,
+      "sha256": "fb8a9ab46bb8d1ca4b716cb8a92089285200c045b0e6edf755324c5a17e8433a"
+    },
+    "docs/KEEPER_REHEARSALS.md": {
+      "bytes": 18505,
+      "sha256": "7a29ec84499d776212127ed2dabce2aac730b48e7035e8210b5f72645b438dd9"
+    },
+    "docs/KEEPER_SCHEDULING.md": {
+      "bytes": 13203,
+      "sha256": "5fbd145d93aa0f1b3e1e3b6a3a16e336b550ad533b7d62f71e9042ead056b07c"
+    },
+    "docs/KEEPER_SIDECAR_RECOVERY.md": {
+      "bytes": 9188,
+      "sha256": "0334588c2749f1f6e4593a9cb085bcd0bf1c433c3252a00426b15ee03554648e"
+    },
+    "docs/OPERATOR_MANUAL.md": {
+      "bytes": 721878,
+      "sha256": "f4cc475f931be968ea7f4757412609b1101630e6307cee6d6272e27fdaa6135d"
+    },
+    "docs/README.md": {
+      "bytes": 22011,
+      "sha256": "d453d19113a28511633c5bb072f85784b5985f8ae548f7b51c28fe1808bd8548"
+    },
+    "docs/RELEASE_CHECKLIST.md": {
+      "bytes": 18826,
+      "sha256": "400abd646743bbfbad8b454790e17e97ac0e170cf564e35ec81f2b298b16277e"
+    },
+    "docs/ROADMAP.md": {
+      "bytes": 56027,
+      "sha256": "433403965815eab09e41308b29606ca4beeb908f4efcdd34a87d088257ce5ff7"
+    },
+    "docs/WORKLOAD_COVERAGE.md": {
+      "bytes": 15334,
+      "sha256": "bf9bbe1f0697f84ea1d4671ce6e1ec055b40b7340f164baafef2c3e0ba66b1e6"
+    },
+    "docs/WORK_HANDOFF.md": {
+      "bytes": 29370,
+      "sha256": "42f8f95c98d27d7cce4e1ba1b644e04b8557432c1bd5ccfd2ed3f8c8dbb68b3f"
+    },
+    "docs/project-todo.json": {
+      "bytes": 549754,
+      "sha256": "598cdec2811fffe3947e9721a0fc5ccaf611dfa75ead93302c93280cb17b1ca4"
+    },
+    "reports/README.md": {
+      "bytes": 47741,
+      "sha256": "fced6f3b6f3bb0cd4e2f73b9102fb25a43a87aa49fbdd4a6e44782d4b70c1e12"
+    },
+    "reports/keeper-offhost-20261126/REVIEW.md": {
+      "bytes": 7821,
+      "sha256": "56a8fec1d7deb9ef56c84a4e500e72463cda0e31cbc5c1071a01134c5c1f8c0c"
+    }
+  },
+  "findings": [],
+  "helper_executions": 0,
+  "kind": "static_offhost_documentation_concordance_review",
+  "limitations": [
+    "Consumes already saved positive verification and command receipts; does not rerun application, desktop helper, tests or server operation.",
+    "No independent livehost/physicaldurability, genericWindowsACL/POSIXfencing or secondhost proof.",
+    "External web URLs are not fetched during this static review."
+  ],
+  "local_links_checked": [
+    {
+      "exists": true,
+      "path": "README.md",
+      "target": "reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "README.md",
+      "target": "reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "README.md",
+      "target": "reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "AGENTS.md",
+      "target": "reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "AGENTS.md",
+      "target": "reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "AGENTS.md",
+      "target": "reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "PROJECT_CONTEXT.md",
+      "target": "reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "PROJECT_CONTEXT.md",
+      "target": "reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "PROJECT_CONTEXT.md",
+      "target": "reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORK_HANDOFF.md",
+      "target": "../reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORK_HANDOFF.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORK_HANDOFF.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/ROADMAP.md",
+      "target": "../reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/ROADMAP.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "docs/ROADMAP.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/AUDIT_FINDINGS.md",
+      "target": "../reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/AUDIT_FINDINGS.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "docs/AUDIT_FINDINGS.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "target": "../reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORKLOAD_COVERAGE.md",
+      "target": "../reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORKLOAD_COVERAGE.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORKLOAD_COVERAGE.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/RELEASE_CHECKLIST.md",
+      "target": "../reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/RELEASE_CHECKLIST.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "docs/RELEASE_CHECKLIST.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/OPERATOR_MANUAL.md",
+      "target": "../reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_SIDECAR_RECOVERY.md",
+      "target": "../reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/README.md",
+      "target": "OPERATOR_MANUAL.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/README.md",
+      "target": "../reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/README.md",
+      "target": "keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_REHEARSALS.md",
+      "target": "../reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_RECOVERY.md",
+      "target": "../reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_BACKUP.md",
+      "target": "../reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_BACKUP.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_ALERTS.md",
+      "target": "../reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_SCHEDULING.md",
+      "target": "../reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_SCHEDULING.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "TODO.md",
+      "target": "docs/KEEPER_RECOVERY.md"
+    },
+    {
+      "exists": true,
+      "path": "TODO.md",
+      "target": "reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "TODO.md",
+      "target": "docs/KEEPER_REHEARSALS.md"
+    },
+    {
+      "exists": true,
+      "path": "TODO.md",
+      "target": "reports/keeper-offhost-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/keeper-offhost-20261126/REVIEW.md",
+      "target": "../ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/keeper-offhost-20261126/REVIEW.md",
+      "target": "../keeper-sidecar-recovery-20261126/evidence/c821/fetch-6/SOURCE_RESULT.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/keeper-offhost-20261126/REVIEW.md",
+      "target": "verification/TRUST_PROVENANCE.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/keeper-offhost-20261126/REVIEW.md",
+      "target": "verification/ORIGINAL_HOST_COMPARISON_NONPASS.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/keeper-offhost-20261126/REVIEW.md",
+      "target": "verification/HOST_PRESERVATION.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/keeper-offhost-20261126/REVIEW.md",
+      "target": "evidence/c823/fetch-result/RESULT.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/keeper-offhost-20261126/REVIEW.md",
+      "target": "evidence/desktop/DESKTOP_PROOF.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/keeper-offhost-20261126/REVIEW.md",
+      "target": "evidence/c823/fetch-install/INSTALL.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/keeper-offhost-20261126/REVIEW.md",
+      "target": "evidence/c823/fetch-final/FINAL.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/keeper-offhost-20261126/REVIEW.md",
+      "target": "verification/OFFHOST_VERIFICATION.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/keeper-offhost-20261126/REVIEW.md",
+      "target": "../keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/keeper-offhost-20261126/REVIEW.md",
+      "target": "../../docs/OPERATOR_MANUAL.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/keeper-offhost-20261126/REVIEW.md",
+      "target": "../../docs/KEEPER_SIDECAR_RECOVERY.md"
+    }
+  ],
+  "network_calls": 0,
+  "new_report_documents": 1,
+  "resolved_findings": [
+    {
+      "id": "DOC-ROOT-MANIFEST",
+      "line": 12,
+      "path": "docs/OPERATOR_MANUAL.md",
+      "problem": "Manifest-declared files alone can omit the root manifest itself.",
+      "resolved_by_root": true,
+      "verified_text": "transfer the trusted root manifest plus every declared package file"
+    }
+  ],
+  "reused_inventory": {
+    "bytes": 4982512,
+    "path": "reports\\keeper-sidecar-recovery-20261126\\FUNCTION_INVENTORY.json",
+    "sha256": "c1a24939407576250dd1d5c620497860afdd6636f04cd38472b1dd5ebc4abf44"
+  },
+  "reviewed_current_documents": 21,
+  "saved_evidence_input_hashes": {
+    "evidence/c823/fetch-result/RESULT.json": {
+      "bytes": 5537,
+      "sha256": "832df4ddc26130137bb491c9ca7d43563feea7f0ff0403c1172743ccbb077468"
+    },
+    "evidence/desktop/DESKTOP_PROOF.json": {
+      "bytes": 2327,
+      "sha256": "75d2189e6e5ecc177d6836a8dc01fb3b598a3a60f187f3a727bdbad751d2b878"
+    },
+    "verification/HOST_PRESERVATION.json": {
+      "bytes": 848,
+      "sha256": "83c79353a5fc6a4422fe067441bc4b479c0e3b2e2b990f0ce3122a1d72e7b87a"
+    },
+    "verification/OFFHOST_VERIFICATION.json": {
+      "bytes": 18142,
+      "sha256": "2e0dcff03dda888ce763f1a1fd44630fffdf5a5c196f67edead1609359f08c61"
+    },
+    "verification/ORIGINAL_HOST_COMPARISON_NONPASS.json": {
+      "bytes": 850,
+      "sha256": "336ea1f3e32670dc9e7e5b2956f29399fa93e61fccaae5138924967aaddc2c3f"
+    }
+  },
+  "schema": 1,
+  "scope": "Current changed additions against archived before bytes plus full new REVIEW; historical report bodies were preserved, not re-audited or rerun.",
+  "server_actions": 0,
+  "source_and_plan_preservation": {
+    "docs/WORKLOAD_PLAN.json": {
+      "bytes": 39099,
+      "matches_archived_before": true,
+      "sha256": "5964db420fcc0050877da9e3be17fc3679d3d7ce5e710e1336b6269e871cd0ab"
+    },
+    "scripts/run-keeper-tests.py": {
+      "bytes": 7199,
+      "matches_archived_before": true,
+      "sha256": "66581b8fbf68ce8cf5ff7aa07301328da7357206b1011dbee3b29bc04b9497aa"
+    },
+    "scripts/verify.sh": {
+      "bytes": 2530,
+      "matches_archived_before": true,
+      "sha256": "5bce718fd618a891a2ef287d0aadedfb1ee309f5e7b825e8c031dc5b2a072640"
+    }
+  },
+  "success": true,
+  "test_bodies_run": 0,
+  "todo_counts": {
+    "statuses": {
+      "done": 35,
+      "excluded": 1,
+      "progress": 40,
+      "todo": 7
+    },
+    "total": 83
+  }
+}

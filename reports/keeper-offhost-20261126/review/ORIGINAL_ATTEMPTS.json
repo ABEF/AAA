@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "scope": "new round-trip preparation only; no production defect inferred",
+  "attempts": [
+    {"id": "export-001", "outcome": "SSH connection refused by restricted local environment", "SSH_exit_code": 255, "remote_capsule_executed": false, "raw_capture_preserved_privately": true},
+    {"id": "export-002", "outcome": "network-enabled local account refused access to new private directory", "remote_capsule_executed": false, "output_directory_created": false},
+    {"id": "desktop-proof-001", "helper_sha256": "63b15230e42130b618874561f82f911747f02881546e12d13fe49f219c88bf8d", "outcome": "trusted report duration rejected by over-strict new helper JSON parser", "package_modified": false, "proof_published": false, "original_stdout": "{\"ok\":false,\"readiness_approved\":false,\"schema\":1,\"unsigned\":true}"}
+  ],
+  "new_task_DACL_only": true,
+  "Windows_SetAcl_attempt": "SeSecurityPrivilege refusal; DACL-only icacls grant completed",
+  "signer_or_configuration_access_changed": false,
+  "production_source_changes": 0,
+  "test_bodies_run": 0
+}

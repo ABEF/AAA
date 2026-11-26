@@ -490,3 +490,6 @@ reports/keeper-sidecar-recovery-20261126/** -text whitespace=cr-at-eol,-blank-at
 
 # Exact combined Ubuntu keeper/timer evidence bytes.
 reports/ubuntu-keeper-composition-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Exact unsigned off-host preparation and sanitized evidence bytes.
+reports/keeper-offhost-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

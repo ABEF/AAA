@@ -1,36 +1,30 @@
 # Project context
 
-[Combined Ubuntu keeper and timers](reports/ubuntu-keeper-composition-20261126/REVIEW.md)
-passes one actual current-release composition: normal daemon/Cast execution,
-native backup and observer timers, a controlled capture race, retained pending
-clock/outbox, canonical once-only receipt/cost recovery and fresh accepted health.
-Four stages finish in308.219s using2,942/6,000local RPC requests. One keeper
-harvest is booked once; final nonce is1. All nine owned units stop. Five existing
-service states match with0nonambient differences/1observer invocation-ID change.
+[Unsigned off-host round-trip](reports/keeper-offhost-20261126/REVIEW.md)
+now verifies desktop possession of five exact c821 package files and their return
+to fresh Ubuntu review folders. Four native journal/sidecar verify/restore
+operations pass; pending/accounting bytes, queued IDs, sequence and pending age
+stay exact. This synthetic fixture is not current canonical transaction proof.
+Original release/configuration/policy remain separately retained on Ubuntu.
 
-The [saved independent review](reports/ubuntu-keeper-composition-20261126/verification/UBUNTU_VERIFICATION.json)
-rehashes nine raw records and reconciles actual type2 fees, rights/principal,
-reserves, pending history and final source/cleanup. No unchanged component body
-is rerun. Receipt recovery remains correctly degraded until fresh metadata;
-the retained deadline yields accepted health11.691s later, with245s between
-checks under the unchanged300s maximum. Do not claim another full240s sleep.
+Actual historical age7,719s exceeds the unchanged900s operating freshness limit.
+The explicit86,400s recovery-review allowance changes no operating policy, clock
+or capture timestamp. All readiness/adoption/freshness flags remain false.
+Raw operational packages stay outside Git; only sanitized evidence is published.
+New unit stops empty, original source/package/lock metadata is unchanged, and a
+separate settled check matches5existing states with0nonambient differences/
+1observer invocation change. Initial transfer/helper and mid-observer snapshot
+failures are retained, not relabelled.
 
-Production Python/Solidity, source13/source19, journal/API profiles and financial
-limits are unchanged. Preparation fixes are lab-only. Operator guidance now
-separates coherent capture refusal, sidecar lock deferral, canonical recovery,
-metadata refresh and delivery ACK. Short45s/10s lab timers and1s pending alert
-age are not launch settings. Existing services/sites/Anvil8902/journals/signers
-and the user-paused desktop heartbeat are not adopted.
-
-Reuse the [unchanged current inventory](reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json):
-191Python files/2,137named definitions/279lambdas; F6 stays61/39/4 and1,021ABI rows.
-No duplicate inventory is generated for unchanged production/workload inputs.
-Earlier [scheduler/alert recovery](reports/keeper-sidecar-recovery-20261126/REVIEW.md)
-and [native scheduling](reports/keeper-scheduling-20261126/REVIEW.md) retain their
-separate new-method scopes and original preparation failures. Q06/P20/P21,
-off-host possession/restore/fencing, real notification routing/host-down
-monitoring, physical durability, provider/maximum workload/multi-day operation
-and independent release approval remain open.
+Production sources, source13/19, financial/resource limits, workload plan and
+existing services/sites/Anvil8902/journals remain unchanged; no old test bodies
+rerun. Reuse the [191-file/2,137-definition/279-lambda inventory](reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json),
+with unchanged F6 maps61/39/4 and1,021ABI rows. The earlier [normal keeper/timer
+composition](reports/ubuntu-keeper-composition-20261126/REVIEW.md) retains its
+actual transaction, once-only recovery and deadline-driven health proof.
+Q06/P20/P21 remain open for second-host/host-loss recovery and fencing, actual
+providers/channels/host-down monitoring, physical durability, sustained operation
+and independent approval. The desktop heartbeat stays user-paused.
 
 Earlier [exact backup/restore](reports/keeper-backup-20261126/REVIEW.md) has 33 distinct
 NEW passes at its original source. The separate [c814 composition](reports/ubuntu-backup-recovery-20261126/REVIEW.md)

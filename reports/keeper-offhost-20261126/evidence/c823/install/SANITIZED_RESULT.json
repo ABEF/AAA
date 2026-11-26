@@ -1,0 +1,29 @@
+{
+  "desktop_proof_sha256": "75d2189e6e5ecc177d6836a8dc01fb3b598a3a60f187f3a727bdbad751d2b878",
+  "input_files": {
+    "alert-state.json": {
+      "bytes": 812,
+      "sha256": "f256fd8ca53e4d45ac11b5c75333f6b4172b8f9579460a1fd7bab48536b3dc98"
+    },
+    "manifest.json": {
+      "bytes": 5261,
+      "sha256": "a9dea475a22014c7eb5fcf965896eb691a2ba5c8de352e0c23d6fd1611dbb05b"
+    },
+    "selected/journal.json": {
+      "bytes": 2752,
+      "sha256": "dbb5f86672bd14f017d9c99f3b8ff6b8e6a8cf041d2aa9c2eada60b7598a9112"
+    },
+    "selected/manifest.json": {
+      "bytes": 3867,
+      "sha256": "911d98ef86b1cd229378ae15ac685e8ce67285c0035c8cf670dfca3cccc5d0d1"
+    },
+    "selection.json": {
+      "bytes": 2354,
+      "sha256": "dfdabc2c7d8e2510efeaab4861fb034af2536269705ee0000f805ccaadce9bb2"
+    }
+  },
+  "input_wire_bytes": 23891,
+  "original_unchanged": true,
+  "phase": "installed",
+  "same_desktop_bytes_imported": true
+}

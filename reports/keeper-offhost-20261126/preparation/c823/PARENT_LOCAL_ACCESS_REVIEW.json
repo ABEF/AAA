@@ -1,0 +1,15 @@
+{
+  "POSIX_modes_unchanged": true,
+  "first_attempt_failed_SSH_before_remote": true,
+  "new_wrapper_sha256": "281d9ded160451bf733e79c14b94c93a0ce0e18329bebf587fa316031c5a7774",
+  "old_attempts_preserved": true,
+  "old_wrapper_sha256": "7763663d728b420854a190f5209227c9452a8ff787e9fcbbf407ebbd9158fa2c",
+  "only_three_Windows_mkdir_calls_inherit_protected_parent": true,
+  "private_DACL_new_task_store_only": true,
+  "production_source_changes": 0,
+  "remote_capsule_and_worker_unchanged": true,
+  "schema": 1,
+  "second_attempt_failed_local_DACL_before_remote": true,
+  "success": true,
+  "test_bodies_run": 0
+}

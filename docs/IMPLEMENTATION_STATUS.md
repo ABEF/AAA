@@ -1,21 +1,21 @@
 # Feature and evidence reference
 
-[Combined Ubuntu keeper and timers](../reports/ubuntu-keeper-composition-20261126/REVIEW.md)
-passes four new composition stages in308.219s/2,942local RPC: actual normal
-daemon/Cast pending recovery with native backup/observer jobs, capture refusal,
-lock/outbox continuity and fresh health. One keeper transaction/cost booking,
-nonce1, nine stopped units and5existing states with0nonambient/1observer-ID
-change reconcile. Nine raw records are independently rehashed. Actual retained
-deadline timing gives245s between checks (maximum300), not another full240s sleep.
-Production code, source13/19 and financial/resource defaults are unchanged;
-no old component body reruns. The [existing191-file/2,137-definition inventory](../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json)
-is reused; F6 stays61/39/4 and1,021ABI rows. Read the operator's concurrent-state
-procedure; lab45s/10s timers and1s pending alert age are not launch settings.
-Q06/P20/P21, off-host/fencing/real alerts/host-down, physical durability,
-provider/maximum workload/sustained operation and release approval stay open.
-Existing environments and paused heartbeat remain untouched. Earlier
-[scheduler/alert restoration](../reports/keeper-sidecar-recovery-20261126/REVIEW.md)
-retains its exact eight-method/source scope and original setup failure.
+[Unsigned off-host round-trip](../reports/keeper-offhost-20261126/REVIEW.md)
+passes desktop possession and same-server return of the exact five-file synthetic
+package, with four existing native verify/restore operations. Pending/accounting
+bytes, outbox IDs, sequence and observed pending age remain exact. Raw packages
+stay outside Git; original source/configuration/policy remain separately secured.
+New job stops; original records/locks stay unchanged; settled5-state comparison
+passes0nonambient/1observer-ID change, preserving the initial mid-run NONPASS.
+
+Historical recovery uses real clock86,400s allowance, original timestamps and
+capture floors; unchanged900s operating freshness is not approved. All adoption
+flags stay false. Production sources/limits, source13/19 and existing environments
+are unchanged, with no old test-body reruns. Reuse the [current inventory](../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json).
+Prior [normal keeper/timer composition](../reports/ubuntu-keeper-composition-20261126/REVIEW.md)
+keeps its distinct actual transaction scope. Q06/P20/P21, second-host/host-loss
+recovery/fencing, real channels/providers, durability, sustained operation and
+independent approval remain open. Heartbeat stays paused.
 
 Earlier [alert evidence](../reports/keeper-alerts-20261126/REVIEW.md) retains its
 21-method original source scope; it is not re-executed or relabelled here.

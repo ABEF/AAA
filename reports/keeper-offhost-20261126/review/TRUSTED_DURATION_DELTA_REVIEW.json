@@ -1,0 +1,21 @@
+{
+  "all_other_AST_equal_except_math_import_decode_body_and_single_trust_keyword": true,
+  "application_imports": 0,
+  "changed_call_lines": [
+    190
+  ],
+  "duplicates_and_nonfinite_constants_rejected": true,
+  "exact_hash_checked_before_relaxed_decode": true,
+  "finite_nonnegative_required": true,
+  "kind": "c823-trusted-report-duration-static-review",
+  "network_or_server_actions": 0,
+  "only_trusted_root_elapsed_seconds_accepts_float": true,
+  "original_sha256": "63b15230e42130b618874561f82f911747f02881546e12d13fe49f219c88bf8d",
+  "package_default_decode_unchanged": true,
+  "ready": true,
+  "runtime_result_claimed": false,
+  "schema": 1,
+  "test_bodies": 0,
+  "trusted_report_sha256": "9bec125bedd73b6f80cb3f316a7822aa09aeb9198927ca8d901c476f3798c371",
+  "updated_sha256": "6186169eb96941b81eea71b608a0101490f003015b48faebe7852de1e6037f14"
+}

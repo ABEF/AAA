@@ -1,0 +1,153 @@
+{
+  "application_imports": 0,
+  "baseline": "a1b1a5ab4f3f334305b34a4761952d5c215a3a96",
+  "final_candidate_frozen": true,
+  "findings": [],
+  "helper_executions": 0,
+  "inputs": {
+    "output": "ABS new proof in existing separate sibling receipt directory beneath V/private",
+    "package": "ABS newdir strictly beneath V/private",
+    "trust": "ABS public SOURCE_RESULT copy strictly beneath V/trust, compiled9bec125b pin froma1b1a5ab"
+  },
+  "kind": "desktop_offhost_preexecution_static_review",
+  "limitations": [
+    "Windows proof is hash/structure only; no POSIX permissions/flock/currentsource installation/canonical/fencing or runtime qualification.",
+    "Hostile sameUID and physical/kernel I/O stalls are not eliminated; deadline is cooperative.",
+    "No generic future-package framework: this helper is intentionally fixed to originalc821 metadata."
+  ],
+  "native_followthrough": "Four original Linux CLI operations only: nested journal verify/restore and sidecar verify/restore at actual wallclock with reviewed caller86400 and authentic capture minimum; original protected policy/config/source/layout stay separate readonly and unchanged. No newcapture, observer, RPC, signing or adoption.",
+  "network_requests": 0,
+  "prior_candidate_sha256": "815d4bc3dcec7d6043ad0e5eaa86f9c68a9b3ddc033b440c4eda9703b64dd4c9",
+  "production_source_changes": 0,
+  "proof_schema": {
+    "data": [
+      "files{name:{bytes,sha256}}",
+      "outer_created_at",
+      "nested_created_at",
+      "verified_at_unix",
+      "preserved_state"
+    ],
+    "false_flags": [
+      "readiness_approved",
+      "production_approved",
+      "posix_core_verified",
+      "canonical_state_verified",
+      "current_operating_freshness_approved"
+    ],
+    "kind": "popl-keeper-offhost-desktop-proof",
+    "mandatory_pins": [
+      "outer_manifest_sha256",
+      "nested_manifest_sha256",
+      "policy_sha256",
+      "configuration_sha256",
+      "source_trust_report_sha256"
+    ]
+  },
+  "schema": 1,
+  "server_actions": 0,
+  "source": {
+    "AST_syntax_valid": true,
+    "bytes": 16021,
+    "definitions": [
+      {
+        "AST_sha256": "19d70cbefe568c103f60ada4932a296d6df6719c9f0ae2ea5a18bb4ebf5f7cc7",
+        "end": 66,
+        "name": "need",
+        "start": 64
+      },
+      {
+        "AST_sha256": "5d2f17cf600e426b5b233fbac6acbf635ebc09f06bca0fad37d5385c1d852ed6",
+        "end": 70,
+        "name": "sha",
+        "start": 69
+      },
+      {
+        "AST_sha256": "607c1be2eeda114ca2ae4b8d5e5748d4d2a34982bd0c51f36808ab75cb9011ee",
+        "end": 74,
+        "name": "encoded",
+        "start": 73
+      },
+      {
+        "AST_sha256": "86859e7c974e2f16e693eb5cee4e9b6718d14e18cef769ce90828ab62409e224",
+        "end": 98,
+        "name": "decode",
+        "start": 77
+      },
+      {
+        "AST_sha256": "21f23ec2479a269d3d4237e4fbee11559d80a17daeacac9842978a850d5f9581",
+        "end": 117,
+        "name": "clean_path",
+        "start": 101
+      },
+      {
+        "AST_sha256": "533b62a5010328cd85e2e67e756502afce18c9178a719fb867122c759e2edd7e",
+        "end": 122,
+        "name": "identity",
+        "start": 120
+      },
+      {
+        "AST_sha256": "c5357e1dd480a3a6949151877bb92d6e99c2969d058d4df5bd9014ca17026989",
+        "end": 150,
+        "name": "read",
+        "start": 125
+      },
+      {
+        "AST_sha256": "c0dfa5319ffd9747934a41c7e7bb9bbaafcfeb67d16138003072d4d36e9793ea",
+        "end": 167,
+        "name": "inventory",
+        "start": 153
+      },
+      {
+        "AST_sha256": "5daff4439b02edf8bd069637da4b5cd384cfc3ecd890dc6f2c752c74e2758d73",
+        "end": 173,
+        "name": "hashes",
+        "start": 170
+      },
+      {
+        "AST_sha256": "13cead307a6be21c3af5fa6cd5cf9bc44655ed9835141a358711e7f48f77fdbc",
+        "end": 272,
+        "name": "verify",
+        "start": 176
+      },
+      {
+        "AST_sha256": "dc6db74ffdd8657418a51248af8325c071744fa39ec6f6dd42c26a15bd0371dd",
+        "end": 311,
+        "name": "main",
+        "start": 275
+      },
+      {
+        "AST_sha256": "8b334edadd4ca5c8a5d1a03a5534135b63d9c7cad167f75e1774f16cda8099f0",
+        "end": 83,
+        "name": "pairs",
+        "start": 78
+      },
+      {
+        "AST_sha256": "eb396d44511fc6642ba4b9ec73bb52595cba4c0ce305690581b9b0741cdbe3c2",
+        "end": 85,
+        "name": "reject",
+        "start": 84
+      }
+    ],
+    "path": "cache-keeper-offhost-20261126\\core\\desktop_verify.py",
+    "sha256": "63b15230e42130b618874561f82f911747f02881546e12d13fe49f219c88bf8d"
+  },
+  "success": true,
+  "test_bodies_run": 0,
+  "trust_anchors": {
+    "config": "1c3d51343b990a2abc4a87cf9dd7049237f23a34a39708f945d98f228e3f5cb8",
+    "nested": "911d98ef86b1cd229378ae15ac685e8ce67285c0035c8cf670dfca3cccc5d0d1",
+    "outer": "a9dea475a22014c7eb5fcf965896eb691a2ba5c8de352e0c23d6fd1611dbb05b",
+    "policy": "7e85ff8b6709803cb9f4e621150d05b08262599e94a2dccd9a23e01bb41452ba",
+    "source_result_sha256": "9bec125bedd73b6f80cb3f316a7822aa09aeb9198927ca8d901c476f3798c371"
+  },
+  "verified_before_output": [
+    "Closed exact5 files with bounded4root/2nested enumeration and cooperative time checks.",
+    "Only rooted private/trust paths, nonoverlapping package/trust/receipt directories; reject UNC/device/relative/dotdot/ADS, symlink/reparse/linked files and aliases.",
+    "Bounded stable descriptors and rereads;16MiB combined fivefile+separate trust input budget,60s cooperative total through proof publication/readback.",
+    "Externally fixed outer/nested/policy/config/raw4 pins, exact schemas/flags/source13/19 and producer2 maps, matching historical economic identity.",
+    "Independent observer exact match to trusted original preserves event IDs/sequence/first_seen; nested historical journal pending/nonce/spend/anchor retain rawhash without forcing equality to newer observer.",
+    "Actual wallclockage <=review86400 with original operating900 reported separately and present operating freshness false.",
+    "Fresh exclusive proof<=8KiB is sanitized only; readsback actual saved proof. No raw package/base64/config/policy/signers are written or printed by helper.",
+    "Reviewer-requested Windows lexical guard rejects every non-drive component ending in dot or space before filesystem access, including Win32 parent-navigation aliases such as dotdot-space. Existing ADS/UNC/reparse/link guards remain unchanged."
+  ]
+}
