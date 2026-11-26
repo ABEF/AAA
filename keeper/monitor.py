@@ -1643,6 +1643,8 @@ class Keeper:
         if success and pending.get('metadata_observation') is not None:
             metadata_records = self._confirm_metadata(pending,block,block_hash,head)
         # RPC failover/reorgs can happen during transaction or metadata reads.
+        # Preserve the previously booked cost anchor before replacing it.
+        self._validate_checkpoint()
         # Recheck depth and the exact header before changing ANY durable state.
         final_head,final_timestamp = self._head()
         if final_head-block+1 < self.confirmations: return True
@@ -1775,6 +1777,7 @@ class Keeper:
         # Keep the deadline/day proof AFTER the potentially slow policy, nonce,
         # funding and lifecycle reads. No further RPC follows this final head.
         gas_review.update(state='unavailable',reason='lp_submission_head_invalid')
+        self._validate_checkpoint()
         head,timestamp=self._head()
         if head<review_head or timestamp<reviewed_at:
             raise RpcError('LP submission head or timestamp retreated after review')
@@ -1972,6 +1975,7 @@ class Keeper:
             # cross UTC midnight. Preserve the exact reviewed intent and caps;
             # the final head is a stop check, never permission to rewrite it.
             gas_review.update(state='unavailable',reason='lp_submission_head_invalid')
+            self._validate_checkpoint()
             head,fresh=self._head()
             if head<review_head or fresh<timestamp:
                 raise RpcError('LP conversion head or timestamp retreated after review')
@@ -1997,6 +2001,7 @@ class Keeper:
             # before publishing an intent, just as LP maintenance/conversion do.
             # This never reprices, resigns, charges or changes the calldata.
             gas_review.update(state='unavailable',reason='submission_head_invalid')
+            self._validate_checkpoint()
             head,fresh=self._head()
             if head<review_head or fresh<timestamp:
                 raise RpcError('Submission head or timestamp retreated after review')

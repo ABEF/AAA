@@ -1,0 +1,15 @@
+{
+  "RPC_maximum": 6000,
+  "authorization": "Root reviewed generated capsule/build/hostwrapper and authorized ONLY fixed NEW c809 upload/install/start/status/prove/repair/stop/fetch",
+  "cleanup_seconds": 240,
+  "no_public_transactions_or_sealing": true,
+  "original_environments_preserved": true,
+  "phase_seconds": 600,
+  "pins": {
+    "c809.inputs.tar.gz": "96224579d6e05e990aa207e53dc6b6829713d4b3c8c0f17866b18dfae25b39cd",
+    "host_control.py": "478b39e3c9797ed2381e3284ec7a71490ac5c6dddf2d8a08a98fe569ad10cdc0",
+    "remote_capsule.py": "85affe72b0e9b25144523db3176d36db39756702c263a589b373430ae941f94b"
+  },
+  "total_seconds": 840,
+  "utc": "2026-11-26T11:28:08.192845+00:00"
+}

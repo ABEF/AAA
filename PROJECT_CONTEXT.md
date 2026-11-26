@@ -1,5 +1,16 @@
 # Project context
 
+[Full keeper audit — 26 November](reports/keeper-full-audit-20261126/REVIEW.md) adds late booked-cost anchor checks,
+bounded staging wallet utilities and bounded read-only monitor output. Exact
+new verification, the original interrupted utility evidence and isolated Ubuntu
+results have separate scopes; no unchanged test body is rerun. Current source
+[inventory](reports/keeper-full-audit-20261126/FUNCTION_INVENTORY.json):183 Python files/2,007 named definitions/278 lambdas;
+F6 source/dependency/control maps61/39/4 and1,021 ABI rows remain unchanged.
+Installed legacy staging is not the current candidate and was left untouched.
+Q06/P20/P21, provider/off-host/sustained operation and independent approval
+remain open. No service/site/chain/journal adoption; heartbeat stays paused.
+
+
 [Ubuntu keeper storage recovery](reports/ubuntu-storage-20261125/REVIEW.md)
 passes six actual ENOSPC/EACCES refusals at intent, reported-hash and paid-receipt
 publication in2,265/6,000RPC with two original transactions and no resend.
@@ -8,8 +19,8 @@ independent saved-vector review passes. Original sanitized cycle errors now
 precede a possibly failing health write; six fixed os_errno labels and a validated
 reported_transaction candidate help recovery without exposing signer output.
 Accounting, authority, persistence order, financial limits and F6 stay unchanged.
-Current Python inventory is182files/2,003definitions/278lambdas; normal verification
-uses the [new inventory](reports/ubuntu-storage-20261125/FUNCTION_INVENTORY.json).
+That 25 November source inventory was182files/2,003definitions/278lambdas; see
+its historical [inventory](reports/ubuntu-storage-20261125/FUNCTION_INVENTORY.json).
 The private1MiBtmpfs check is direct stock reconstruction, not physical disk,
 power-loss durability or full daemon qualification. Its unit stops; five original
 service states match. Previous [supervisor](reports/ubuntu-supervisor-20261125/REVIEW.md)
@@ -52,8 +63,8 @@ Adopt matching keeper/checker code with original journals preserved. These two
 Python fixes alone change no checkpoint semantic source. Earlier API/ABI source
 adoption still requires newly reviewed matching checkpoints. Sites, services,
 Anvil8902, signer/null public configurations and paused heartbeat are preserved.
-Current [inventory](reports/ubuntu-storage-20261125/FUNCTION_INVENTORY.json):
-182Python files/2,003definitions/278lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
+Current [inventory](reports/keeper-full-audit-20261126/FUNCTION_INVENTORY.json):
+183Python files/2,007definitions/278lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
 Actual F6/V10 consumer, provider, market and production approval stay open.
 
 [Ownership-page adoption](reports/ownership-paging-20261121/REVIEW.md) connects current source9/source10 website holdings to
@@ -164,7 +175,7 @@ That advance's historical inventory is [here](reports/readiness-advance-20261120
 179Pythonfiles/1,979named definitions at that source. The current inventory above
 had1,980definitions at that keeper-fix stage. Use the bounded-capture inventory
 above for that historical1,984-definition stage. Current source inventory is
-reports/ubuntu-storage-20261125/FUNCTION_INVENTORY.json (2,003 definitions); Solidity61/dependencies39/controls4 stay.
+reports/keeper-full-audit-20261126/FUNCTION_INVENTORY.json (2,007 definitions); Solidity61/dependencies39/controls4 stay.
 Existing OpenSea artifacts bind this module's old hash; preserve them and rebuild/
 review new artifacts explicitly. service.py/checkpoint and runtime identities stay.
 

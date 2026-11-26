@@ -1,5 +1,11 @@
 # Keeper outage and server recovery
 
+The [26 November keeper audit](../reports/keeper-full-audit-20261126/REVIEW.md) records current late cost-anchor checks,
+bounded utility capture and isolated operating verification. Historical failures,
+new source checks, reused runtime proofs and existing-server observations retain
+separate scopes. Production/adoption remains unapproved; journals and limits stay.
+
+
 The [bounded capture procedure](OPERATOR_MANUAL.md#bounded-cast-output-and-uncertain-transactions)
 retains uncertain sends exactly.64KiB combined output or30/90work-time failure
 never authorizes a resend, journal reset or discarded intent. Active Cast is
@@ -13,8 +19,12 @@ that no transaction was sent. Follow exact-chain/nonce/hash reconciliation and
 never resend/delete the intent. Keeper/indexer locks now reject unsafe paths,
 symlinks and nonregular files while preserving safe legacy0644 inodes. See the
 [adoption procedure](OPERATOR_MANUAL.md#keeper-lock-and-recovery-source-adoption).
-No journal schema or existing operating service is changed. Full Ubuntu normal
-daemon recovery remains unqualified; the attempted labs are stopped.
+No journal schema or existing operating service is changed. That 21 November
+normal-daemon attempt did not complete. The later
+[24 November follow-through](../reports/ubuntu-complete-20261124/REVIEW.md)
+records finite stock Ubuntu daemon/Cast harvesting and same-journal recovery;
+full-feature operation, actual providers, off-host recovery and sustained
+operation remain unqualified. The historical failed attempt stays distinct.
 
 Durable/config JSON now rejects duplicate keys and nonfinite/overflowing numbers.
 On rejection preserve the original file and inspect its retained evidence/backups;
@@ -200,11 +210,29 @@ Historical observations provide no coverage after that pause and no proof of
 continuous server uptime. Pausing it did not itself stop the staging services.
 Do not resume monitoring or administer those services without authorization.
 
+Future use of the fixed read-only SSH monitor bounds stdout and stderr together
+to 1 MiB while reading, with the existing 30-second work deadline and at most
+2 seconds of failure cleanup. Overflow returns no partial export or backup;
+strict host-key checking, forced account/command and backup validation remain.
+Windows cleanup reaps the direct SSH process; descendant containment, process
+creation and kernel stalls still require host supervision. This single-threaded
+utility change neither enables monitoring nor changes a keeper signer/journal.
+
 ## Restart and custody
 
 LP stays on chain. The keeper discovers the Vault's shared buckets and reads current state. A restart reconciles a pending transaction before evaluating current maintenance with fresh prices, deadlines, simulations and budgets. It does not replay missed rebalances or restore missed earnings; LP may remain out of range while offline.
 
 The state file preserves deployment identity, next nonce, pending intent/hash, daily costs, maintenance times, discovery cursor and metadata checkpoints. Live startup refuses missing/corrupt state, an absent nonce checkpoint or an unqualified network fee policy. Used signers require a canonical confirmed receipt anchor; a later deep reorganization blocks further signing until reviewed reconciliation. Submission refuses nonce drift, unknown pending transactions and insufficient native balance. Ambiguous broadcasts never trigger blind resubmission.
+
+The previously booked receipt anchor is rechecked after potentially slow review
+or receipt/metadata reads, before a new intent or replacement checkpoint. A
+`Confirmed receipt checkpoint changed` refusal preserves the original journal
+and sends no new transaction. Stop/fence the writer, retain original receipt,
+spending, configuration and provider evidence, and compare the exact block with
+a reviewed independent provider. Resolve a genuine reorganization through manual
+accounting review; do not reset the nonce/spending, replace the anchor with the
+latest head or delete pending work to make startup pass. A provider outage or
+contradiction is not permission to forget an already booked cost.
 
 ## Journal storage failures: preserve, repair and reconcile
 
@@ -326,6 +354,27 @@ Before a separately authorized rollout:
    monitor remains paused; source watchdog support neither resumes it nor proves
    uninterrupted uptime. For rollback, stop/fence, restore the reviewed matching
    source/unit pair and inspect effective settings with the same journal intact.
+
+### Service start-limit recovery
+
+The source unit permits at most 5 starts in 600 seconds. Inspect the actual unit's
+effective limit, `Result`, `NRestarts`, main PID, manager journal and recursive
+cgroup; unit text alone proves neither installation nor cleanup. On systemd255,
+the service can retain `Result=exit-code` while its manager reports
+`Start request repeated too quickly.` Inspect the actual rate-limit refusal and
+start/exit history; do not rely on the service result string alone. If the limit is hit,
+stop the reviewed unit, preserve logs/configuration/journal and repair the
+underlying fault first. Confirm the old writer/signer group is gone and review
+the original pending transaction before another writer starts.
+
+Only then, under separately authorized service administration, clear that exact
+unit's failed/start-limit state with `systemctl reset-failed ACTUAL_UNIT` and
+start the same reviewed definition deliberately once. This manager counter is
+separate from keeper nonces, fees and retry records: reset-failed must never edit
+the journal or become an automatic retry loop. Verify same-journal recovery and
+a fresh healthy cycle; another failure requires investigation rather than repeated
+counter resets. This procedure is not evidence that a restart-storm rehearsal
+has passed or authorization to change an existing service.
 
 A stop observed after durable intent publication retains the original hashless
 intent and prevents launching a new signer after that observation. It does not

@@ -1,8 +1,14 @@
 # Whole-project workload coverage
 
+The [26 November keeper audit](../reports/keeper-full-audit-20261126/REVIEW.md) records current late cost-anchor checks,
+bounded utility capture and isolated operating verification. Historical failures,
+new source checks, reused runtime proofs and existing-server observations retain
+separate scopes. Production/adoption remains unapproved; journals and limits stay.
+
+
 The [wallet checkpoint follow-through](../reports/wallet-latency-20261123/REVIEW.md)
 adds read-only bulk validation and immutable history-only seeds after full
-checkpoint validation. Current static inventory:182 Python files/2,003 named
+checkpoint validation. That wallet-stage static inventory:182 Python files/2,003 named
 definitions (1,820 functions/183 classes),278 lambdas and2 unchanged named Yul
 helpers; F6 maps61/39/4 and1,021 ABI rows remain.28 NEW backend methods pass
 in explicit stages. Inventory and finite checks do not establish full dynamic,
@@ -15,7 +21,7 @@ approved isolated budget, while retaining all original refusals. Real stock
 keeper/Cast recovery, a healthy normal cycle and finite diagnostics/indexer/history
 partitions have separate receipts. Four plus7+3 NEW source methods and nine NEW
 snapshot methods pass in their exact stages; no unchanged bodies rerun.
-Use [the current inventory](../reports/ubuntu-storage-20261125/FUNCTION_INVENTORY.json)
+Use [the current inventory](../reports/keeper-full-audit-20261126/FUNCTION_INVENTORY.json)
 and [33 operating partitions](../reports/ubuntu-complete-20261124/COVERAGE.md).
 Neither inventory nor a finite partition closes full F6/V10 consumer, provider,
 market, maximum workload or sustained operating approval.
@@ -62,7 +68,7 @@ The earlier [anonymous supplement](../reports/readiness-advance-20261120/ANONYMO
 retains276lambdas and2named project Yul helpers with refreshed changed-source pins.
 
 The [workload plan](WORKLOAD_PLAN.json) and
-[whole-project function inventory](../reports/wallet-stack-20261123/FUNCTION_INVENTORY.json)
+[whole-project function inventory](../reports/keeper-full-audit-20261126/FUNCTION_INVENTORY.json)
 define the scope. [The report](../reports/whole-workload-review-20261119/REVIEW.md)
 records what actually ran and what remains unqualified. The [Todo](../TODO.md)
 owns work status; this page is a verification map.
@@ -78,9 +84,9 @@ sequences and source-bound evidence. No inventory count is a dynamic pass rate.
 - 1,056 implemented project Solidity definitions and29 modifiers from the
   authenticated compiler AST;511 bodyless declarations remain separately labelled.
 - Eight internal-only objects are included, beyond the public ABI catalogue.
-- 182 production Python files and2,003 named lexical definitions:1,820 functions
-  and183 classes, including nested helpers. The [current anonymous-code inventory](../reports/wallet-stack-20261123/ANONYMOUS_CODE_INVENTORY.json)
-  records278 lambdas and2 named project Yul helpers. Earlier supplements retain
+- 183 production Python files and2,007 named lexical definitions:1,823 functions
+  and184 classes, including nested helpers. The [wallet-stage anonymous-code inventory](../reports/wallet-stack-20261123/ANONYMOUS_CODE_INVENTORY.json)
+  records278 lambdas and2 named project Yul helpers; the new utility adds neither. Earlier supplements retain
   their own source scope. Inventory does not establish execution coverage.
 
 The [separate published website scope](../reports/whole-workload-review-20261119/WEBSITE_SOURCE_SCOPE.json)
@@ -95,7 +101,7 @@ running application modules, tests, RPC or signing. Preserve the unrelated dirty
 fork runner: its published HEAD blob is inventoried instead of adopting it.
 
 ```text
-python scripts/build-workload-inventory.py --check reports/ubuntu-storage-20261125/FUNCTION_INVENTORY.json
+python scripts/build-workload-inventory.py --check reports/keeper-full-audit-20261126/FUNCTION_INVENTORY.json
 ```
 
 Future F6 source/reference changes require reviewed trusted-pin/plan updates and

@@ -1,0 +1,23 @@
+{
+  "cleanup": {
+    "output_bytes": 0,
+    "overflow": false,
+    "returncode": 0,
+    "stopped": true
+  },
+  "healthy_idle_cycle": true,
+  "keeper_nonce": 0,
+  "new_seals": 0,
+  "old_feature_journeys_or_tests_run": 0,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_attempts": 0,
+  "raw_forwarded": 0,
+  "restart_proof_requires_root_systemd_evidence": true,
+  "rights_backing_preserved": true,
+  "schema": 1,
+  "secret_disposition": "fresh local lab only; no credential content/hash exported",
+  "shared_RPC_requests": 1652,
+  "source_head": "5331d3a5d051aad3da61d85aa43fafb870487f35",
+  "success": true
+}

@@ -1,0 +1,206 @@
+{
+  "kind": "retrospective_saved_vector_observation_NOT_campaign_pass",
+  "original_campaign_success": false,
+  "actual_starts": 5,
+  "actual_main_exits": 5,
+  "unique_invocations": 5,
+  "native_restart_count": "5",
+  "service_result_retained": "exit-code",
+  "explicit_PID1_unit_start_limit_refusal": [
+    {
+      "INVOCATION_ID": "9d306c28262f44d3a20a13388a8f6335",
+      "MESSAGE": "popl-keeper-full-audit-20261126-c809-keeper.service: Start request repeated too quickly.",
+      "SYSLOG_IDENTIFIER": "systemd",
+      "UNIT": "popl-keeper-full-audit-20261126-c809-keeper.service",
+      "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+      "_PID": "1",
+      "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b87820;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83149eddacf;t=6612c4726abdb;x=7cd90a526f38b3c9",
+      "__MONOTONIC_TIMESTAMP": "9007786744527",
+      "__REALTIME_TIMESTAMP": "1795692660435931"
+    }
+  ],
+  "start_rows": [
+    {
+      "INVOCATION_ID": "17028aa4f960473389a1b37ab611311e",
+      "JOB_RESULT": "done",
+      "MESSAGE": "Started popl-keeper-full-audit-20261126-c809-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-keeper-full-audit-20261126-c809/runtime/run-001/model/supervisor/actor/config.json --live.",
+      "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+      "SYSLOG_IDENTIFIER": "systemd",
+      "UNIT": "popl-keeper-full-audit-20261126-c809-keeper.service",
+      "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+      "_PID": "1",
+      "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b87504;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83140da6655;t=6612c3e133760;x=81345bfe7c43dd2c",
+      "__MONOTONIC_TIMESTAMP": "9007634474581",
+      "__REALTIME_TIMESTAMP": "1795692508165984"
+    },
+    {
+      "INVOCATION_ID": "1b251ad3d7e541ce8edbccfcca2908ed",
+      "JOB_RESULT": "done",
+      "MESSAGE": "Started popl-keeper-full-audit-20261126-c809-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-keeper-full-audit-20261126-c809/runtime/run-001/model/supervisor/actor/config.json --live.",
+      "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+      "SYSLOG_IDENTIFIER": "systemd",
+      "UNIT": "popl-keeper-full-audit-20261126-c809-keeper.service",
+      "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+      "_PID": "1",
+      "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8758e;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83142a86562;t=6612c3fe1366d;x=a47937efb57214a0",
+      "__MONOTONIC_TIMESTAMP": "9007664751970",
+      "__REALTIME_TIMESTAMP": "1795692538443373"
+    },
+    {
+      "INVOCATION_ID": "35e1cef87e13408faa6cf58396eebe8d",
+      "JOB_RESULT": "done",
+      "MESSAGE": "Started popl-keeper-full-audit-20261126-c809-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-keeper-full-audit-20261126-c809/runtime/run-001/model/supervisor/actor/config.json --live.",
+      "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+      "SYSLOG_IDENTIFIER": "systemd",
+      "UNIT": "popl-keeper-full-audit-20261126-c809-keeper.service",
+      "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+      "_PID": "1",
+      "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8763f;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=8314479ca81;t=6612c41b29b8c;x=43465f9e79e44e14",
+      "__MONOTONIC_TIMESTAMP": "9007695252097",
+      "__REALTIME_TIMESTAMP": "1795692568943500"
+    },
+    {
+      "INVOCATION_ID": "52f026896b0946218b268ce8b13a458a",
+      "JOB_RESULT": "done",
+      "MESSAGE": "Started popl-keeper-full-audit-20261126-c809-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-keeper-full-audit-20261126-c809/runtime/run-001/model/supervisor/actor/config.json --live.",
+      "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+      "SYSLOG_IDENTIFIER": "systemd",
+      "UNIT": "popl-keeper-full-audit-20261126-c809-keeper.service",
+      "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+      "_PID": "1",
+      "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b876f4;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=831464b2f28;t=6612c43840033;x=fa44ee7b564e5699",
+      "__MONOTONIC_TIMESTAMP": "9007725752104",
+      "__REALTIME_TIMESTAMP": "1795692599443507"
+    },
+    {
+      "INVOCATION_ID": "9d306c28262f44d3a20a13388a8f6335",
+      "JOB_RESULT": "done",
+      "MESSAGE": "Started popl-keeper-full-audit-20261126-c809-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-keeper-full-audit-20261126-c809/runtime/run-001/model/supervisor/actor/config.json --live.",
+      "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+      "SYSLOG_IDENTIFIER": "systemd",
+      "UNIT": "popl-keeper-full-audit-20261126-c809-keeper.service",
+      "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+      "_PID": "1",
+      "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8776e;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=831481caba3;t=6612c45557caf;x=c5d50a6d3790d757",
+      "__MONOTONIC_TIMESTAMP": "9007756258211",
+      "__REALTIME_TIMESTAMP": "1795692629949615"
+    }
+  ],
+  "exit_rows": [
+    {
+      "EXIT_CODE": "exited",
+      "EXIT_STATUS": "1",
+      "INVOCATION_ID": "17028aa4f960473389a1b37ab611311e",
+      "MESSAGE": "popl-keeper-full-audit-20261126-c809-keeper.service: Main process exited, code=exited, status=1/FAILURE",
+      "MESSAGE_ID": "98e322203f7a4ed290d09fe03c09fe15",
+      "SYSLOG_IDENTIFIER": "systemd",
+      "UNIT": "popl-keeper-full-audit-20261126-c809-keeper.service",
+      "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+      "_PID": "1",
+      "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8750b;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83140dd55a8;t=6612c3e1626b4;x=9ada57b3f5734fbb",
+      "__MONOTONIC_TIMESTAMP": "9007634666920",
+      "__REALTIME_TIMESTAMP": "1795692508358324"
+    },
+    {
+      "EXIT_CODE": "exited",
+      "EXIT_STATUS": "1",
+      "INVOCATION_ID": "1b251ad3d7e541ce8edbccfcca2908ed",
+      "MESSAGE": "popl-keeper-full-audit-20261126-c809-keeper.service: Main process exited, code=exited, status=1/FAILURE",
+      "MESSAGE_ID": "98e322203f7a4ed290d09fe03c09fe15",
+      "SYSLOG_IDENTIFIER": "systemd",
+      "UNIT": "popl-keeper-full-audit-20261126-c809-keeper.service",
+      "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+      "_PID": "1",
+      "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8758f;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83142acacff;t=6612c3fe57e0b;x=30b662b472878844",
+      "__MONOTONIC_TIMESTAMP": "9007665032447",
+      "__REALTIME_TIMESTAMP": "1795692538723851"
+    },
+    {
+      "EXIT_CODE": "exited",
+      "EXIT_STATUS": "1",
+      "INVOCATION_ID": "35e1cef87e13408faa6cf58396eebe8d",
+      "MESSAGE": "popl-keeper-full-audit-20261126-c809-keeper.service: Main process exited, code=exited, status=1/FAILURE",
+      "MESSAGE_ID": "98e322203f7a4ed290d09fe03c09fe15",
+      "SYSLOG_IDENTIFIER": "systemd",
+      "UNIT": "popl-keeper-full-audit-20261126-c809-keeper.service",
+      "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+      "_PID": "1",
+      "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b87640;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=831447e1b35;t=6612c41b6ec40;x=c83838c2b752acb6",
+      "__MONOTONIC_TIMESTAMP": "9007695534901",
+      "__REALTIME_TIMESTAMP": "1795692569226304"
+    },
+    {
+      "EXIT_CODE": "exited",
+      "EXIT_STATUS": "1",
+      "INVOCATION_ID": "52f026896b0946218b268ce8b13a458a",
+      "MESSAGE": "popl-keeper-full-audit-20261126-c809-keeper.service: Main process exited, code=exited, status=1/FAILURE",
+      "MESSAGE_ID": "98e322203f7a4ed290d09fe03c09fe15",
+      "SYSLOG_IDENTIFIER": "systemd",
+      "UNIT": "popl-keeper-full-audit-20261126-c809-keeper.service",
+      "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+      "_PID": "1",
+      "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b876f5;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=831464f8ee4;t=6612c43885ff0;x=a5acf2a8cb2008fe",
+      "__MONOTONIC_TIMESTAMP": "9007726038756",
+      "__REALTIME_TIMESTAMP": "1795692599730160"
+    },
+    {
+      "EXIT_CODE": "exited",
+      "EXIT_STATUS": "1",
+      "INVOCATION_ID": "9d306c28262f44d3a20a13388a8f6335",
+      "MESSAGE": "popl-keeper-full-audit-20261126-c809-keeper.service: Main process exited, code=exited, status=1/FAILURE",
+      "MESSAGE_ID": "98e322203f7a4ed290d09fe03c09fe15",
+      "SYSLOG_IDENTIFIER": "systemd",
+      "UNIT": "popl-keeper-full-audit-20261126-c809-keeper.service",
+      "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+      "_PID": "1",
+      "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8776f;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=8314820838a;t=6612c45595495;x=5e8665ddc8ca92df",
+      "__MONOTONIC_TIMESTAMP": "9007756510090",
+      "__REALTIME_TIMESTAMP": "1795692630201493"
+    }
+  ],
+  "restart_gaps_microseconds": [
+    30085050,
+    30219650,
+    30217203,
+    30219455
+  ],
+  "keeper_stdout_halts": [
+    {
+      "error_site": "state.py:integer:19",
+      "error_type": "ValueError",
+      "event": "keeper_halted",
+      "time": "2026-11-26T11:28:28.349168+00:00"
+    },
+    {
+      "error_site": "state.py:integer:19",
+      "error_type": "ValueError",
+      "event": "keeper_halted",
+      "time": "2026-11-26T11:28:58.715192+00:00"
+    },
+    {
+      "error_site": "state.py:integer:19",
+      "error_type": "ValueError",
+      "event": "keeper_halted",
+      "time": "2026-11-26T11:29:29.216740+00:00"
+    },
+    {
+      "error_site": "state.py:integer:19",
+      "error_type": "ValueError",
+      "event": "keeper_halted",
+      "time": "2026-11-26T11:29:59.720838+00:00"
+    },
+    {
+      "error_site": "state.py:integer:19",
+      "error_type": "ValueError",
+      "event": "keeper_halted",
+      "time": "2026-11-26T11:30:30.191854+00:00"
+    }
+  ],
+  "stderr_bytes": 0,
+  "no_sixth_Started_event": true,
+  "empty_keeper_cgroup": true,
+  "source_vector": "campaign-001\\status-018\\PUBLIC_RESULT.json",
+  "source_vector_sha256": "fb3fc4d69d358ae9ac2b5204c3cdd0c24f829c852dcb1c9517a1ffb04294922f",
+  "configuration_recovery_attempted": false,
+  "linux_test_rerun": false
+}

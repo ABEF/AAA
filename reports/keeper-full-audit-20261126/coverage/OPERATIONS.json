@@ -1,0 +1,1247 @@
+{
+  "schema": 1,
+  "head_at_start": "5331d3a5d051aad3da61d85aa43fafb870487f35",
+  "scope": "ops partition; static review, no test or server execution at ledger creation",
+  "function_count": 120,
+  "files": [
+    {
+      "file": "keeper/ops.py",
+      "sha256": "a81eb06001024f11f751691ba2b8fd7f37605f10feba925006bf57242751fa6b",
+      "scope": "current read-only management"
+    },
+    {
+      "file": "keeper/health.py",
+      "sha256": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04",
+      "scope": "current observation/checker"
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48",
+      "scope": "current LP diagnostics"
+    },
+    {
+      "file": "keeper/probe.py",
+      "sha256": "42142395fa2e43a6360644effdafab7e3be26b37b985a9bd3ae6fcd9d1374a10",
+      "scope": "read-only provider evidence"
+    },
+    {
+      "file": "keeper/staging.py",
+      "sha256": "9ebae1142434baee326e766d6a4c69ccf3d568e7d7881c92715a3a5024c09710",
+      "scope": "legacy accounting3 fixture initializer"
+    },
+    {
+      "file": "keeper/staging_observer.py",
+      "sha256": "f5f5e77aa62605aa54b326e88245ff5d9f8e14bf723dad359786e706cbc021ce",
+      "scope": "legacy paused staging exporter"
+    },
+    {
+      "file": "scripts/check-staging-monitor.py",
+      "sha256": "f8b1f237c09e9dec0d28a4e3519a69af5c47fa4f284f2bda9f4714bdae93a4e9",
+      "scope": "legacy paused read-only off-host monitor"
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "sha256": "6e76859a45b40cdbc3f930a7c976110d964fb95be6b4ada210327912eb2f4f1b",
+      "scope": "legacy accounting3 operating fixture"
+    },
+    {
+      "file": "scripts/run-keeper-tests.py",
+      "sha256": "b8257d55e88263d6eb9358c12cf046db0932bd513abaf68ba1539ab9ad1073be",
+      "scope": "offline test selection tool"
+    },
+    {
+      "file": "zzz_ops/read_process.py",
+      "sha256": "6c3fd87acf6efc39da2742cca0b16e1f4dc289b55b09d95513710c5679454ba7",
+      "scope": "NEW read-only bounded utility capture"
+    },
+    {
+      "file": "keeper/zzz-keeper.service",
+      "sha256": "4a76852eaa165879c350252b893fbd9cae7764722f01353e23ee1c6ee687e229",
+      "scope": "configuration/script or relevant operating-document review"
+    },
+    {
+      "file": "keeper/staging-install.sh",
+      "sha256": "b66878fee51f54ac36656646d41f57e70955b9b43c5aff228b5ecd02b3e258b3",
+      "scope": "configuration/script or relevant operating-document review"
+    },
+    {
+      "file": "keeper/staging-monitor-install.sh",
+      "sha256": "a7e624900b81eba1f327ae66cb89d61081c8f5f08e99217d69511bf57f74bca0",
+      "scope": "configuration/script or relevant operating-document review"
+    },
+    {
+      "file": "keeper/config.example.json",
+      "sha256": "02ad7b05d1a967bbf3c37af768b87bd34112dbe22dbfa30ba6e5a8079ee45295",
+      "scope": "configuration/script or relevant operating-document review"
+    },
+    {
+      "file": "keeper/config.holder-exit.example.json",
+      "sha256": "a958eebbde2a9d7b444debbe7acd76cdb514e62f8c4f105fb233baac6e119d69",
+      "scope": "configuration/script or relevant operating-document review"
+    },
+    {
+      "file": "docs/OPERATIONS.md",
+      "sha256": "0c3589aebf1cebec32dfa1743226d5da44e9a17f8c6ae3a49df90e3179583ef7",
+      "scope": "configuration/script or relevant operating-document review"
+    },
+    {
+      "file": "docs/KEEPER_RECOVERY.md",
+      "sha256": "183a3e6d444118dc63c6fb40c1f09b5475564f3637b67e0f2cea3a70fdced387",
+      "scope": "configuration/script or relevant operating-document review"
+    },
+    {
+      "file": "docs/KEEPER_REHEARSALS.md",
+      "sha256": "f30443164f71138b170e15cadbab5b0cfd31465439c20dea7e33d7e6606e6c9a",
+      "scope": "configuration/script or relevant operating-document review"
+    }
+  ],
+  "functions": [
+    {
+      "file": "keeper/ops.py",
+      "function": "_read_required_json",
+      "line": 24,
+      "end_line": 31,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current read-only management",
+      "review": "Strict JSON/config/deployment/age validation; health-file scope; pinned preflight; exclusive private snapshots; no signer/state mutation for reads; snapshot verifier integrity only."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "_review_bucket",
+      "line": 34,
+      "end_line": 38,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current read-only management",
+      "review": "Strict JSON/config/deployment/age validation; health-file scope; pinned preflight; exclusive private snapshots; no signer/state mutation for reads; snapshot verifier integrity only."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "digest",
+      "line": 41,
+      "end_line": 42,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current read-only management",
+      "review": "Strict JSON/config/deployment/age validation; health-file scope; pinned preflight; exclusive private snapshots; no signer/state mutation for reads; snapshot verifier integrity only."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "timestamp",
+      "line": 45,
+      "end_line": 50,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current read-only management",
+      "review": "Strict JSON/config/deployment/age validation; health-file scope; pinned preflight; exclusive private snapshots; no signer/state mutation for reads; snapshot verifier integrity only."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "health_check",
+      "line": 53,
+      "end_line": 98,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current read-only management",
+      "review": "Strict JSON/config/deployment/age validation; health-file scope; pinned preflight; exclusive private snapshots; no signer/state mutation for reads; snapshot verifier integrity only."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "preflight",
+      "line": 101,
+      "end_line": 164,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current read-only management",
+      "review": "Strict JSON/config/deployment/age validation; health-file scope; pinned preflight; exclusive private snapshots; no signer/state mutation for reads; snapshot verifier integrity only."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "create_snapshot",
+      "line": 167,
+      "end_line": 191,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current read-only management",
+      "review": "Strict JSON/config/deployment/age validation; health-file scope; pinned preflight; exclusive private snapshots; no signer/state mutation for reads; snapshot verifier integrity only."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "verify_snapshot",
+      "line": 194,
+      "end_line": 208,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current read-only management",
+      "review": "Strict JSON/config/deployment/age validation; health-file scope; pinned preflight; exclusive private snapshots; no signer/state mutation for reads; snapshot verifier integrity only."
+    },
+    {
+      "file": "keeper/ops.py",
+      "function": "main",
+      "line": 211,
+      "end_line": 237,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current read-only management",
+      "review": "Strict JSON/config/deployment/age validation; health-file scope; pinned preflight; exclusive private snapshots; no signer/state mutation for reads; snapshot verifier integrity only."
+    },
+    {
+      "file": "keeper/health.py",
+      "function": "source_hashes",
+      "line": 20,
+      "end_line": 23,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current observation/checker",
+      "review": "Exact profile shape, runtime/control/config/source hashes, freshness, policy states and allowlisted diagnostics; file hashes do not attest loaded code."
+    },
+    {
+      "file": "keeper/health.py",
+      "function": "digest",
+      "line": 26,
+      "end_line": 28,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current observation/checker",
+      "review": "Exact profile shape, runtime/control/config/source hashes, freshness, policy states and allowlisted diagnostics; file hashes do not attest loaded code."
+    },
+    {
+      "file": "keeper/health.py",
+      "function": "_uint",
+      "line": 31,
+      "end_line": 32,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current observation/checker",
+      "review": "Exact profile shape, runtime/control/config/source hashes, freshness, policy states and allowlisted diagnostics; file hashes do not attest loaded code."
+    },
+    {
+      "file": "keeper/health.py",
+      "function": "_hash",
+      "line": 35,
+      "end_line": 37,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current observation/checker",
+      "review": "Exact profile shape, runtime/control/config/source hashes, freshness, policy states and allowlisted diagnostics; file hashes do not attest loaded code."
+    },
+    {
+      "file": "keeper/health.py",
+      "function": "_health_profile_valid",
+      "line": 40,
+      "end_line": 58,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current observation/checker",
+      "review": "Exact profile shape, runtime/control/config/source hashes, freshness, policy states and allowlisted diagnostics; file hashes do not attest loaded code."
+    },
+    {
+      "file": "keeper/health.py",
+      "function": "_confirmation_bindings",
+      "line": 61,
+      "end_line": 73,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current observation/checker",
+      "review": "Exact profile shape, runtime/control/config/source hashes, freshness, policy states and allowlisted diagnostics; file hashes do not attest loaded code."
+    },
+    {
+      "file": "keeper/health.py",
+      "function": "_confirmation_roles",
+      "line": 76,
+      "end_line": 78,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current observation/checker",
+      "review": "Exact profile shape, runtime/control/config/source hashes, freshness, policy states and allowlisted diagnostics; file hashes do not attest loaded code."
+    },
+    {
+      "file": "keeper/health.py",
+      "function": "_confirmation_capabilities",
+      "line": 81,
+      "end_line": 87,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current observation/checker",
+      "review": "Exact profile shape, runtime/control/config/source hashes, freshness, policy states and allowlisted diagnostics; file hashes do not attest loaded code."
+    },
+    {
+      "file": "keeper/health.py",
+      "function": "_maintenance_policy_valid",
+      "line": 90,
+      "end_line": 104,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current observation/checker",
+      "review": "Exact profile shape, runtime/control/config/source hashes, freshness, policy states and allowlisted diagnostics; file hashes do not attest loaded code."
+    },
+    {
+      "file": "keeper/health.py",
+      "function": "observe_confirmation_health",
+      "line": 107,
+      "end_line": 149,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current observation/checker",
+      "review": "Exact profile shape, runtime/control/config/source hashes, freshness, policy states and allowlisted diagnostics; file hashes do not attest loaded code."
+    },
+    {
+      "file": "keeper/health.py",
+      "function": "confirmation_reasons",
+      "line": 152,
+      "end_line": 248,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current observation/checker",
+      "review": "Exact profile shape, runtime/control/config/source hashes, freshness, policy states and allowlisted diagnostics; file hashes do not attest loaded code."
+    },
+    {
+      "file": "keeper/health.py",
+      "function": "execution_reasons",
+      "line": 251,
+      "end_line": 346,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current observation/checker",
+      "review": "Exact profile shape, runtime/control/config/source hashes, freshness, policy states and allowlisted diagnostics; file hashes do not attest loaded code."
+    },
+    {
+      "file": "keeper/health.py",
+      "function": "summary",
+      "line": 349,
+      "end_line": 371,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current observation/checker",
+      "review": "Exact profile shape, runtime/control/config/source hashes, freshness, policy states and allowlisted diagnostics; file hashes do not attest loaded code."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "ReadOnlyKeeper.save",
+      "line": 28,
+      "end_line": 28,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "ReadOnlyKeeper.submit",
+      "line": 29,
+      "end_line": 29,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "ReadOnlyKeeper._validate_signer",
+      "line": 30,
+      "end_line": 30,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "ReadOnlyKeeper.poll_pending",
+      "line": 31,
+      "end_line": 31,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "ReadOnlyKeeper.initialize_state",
+      "line": 32,
+      "end_line": 32,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "PinnedReads.__init__",
+      "line": 36,
+      "end_line": 38,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "PinnedReads.call",
+      "line": 40,
+      "end_line": 53,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "PinnedReads.eth_call",
+      "line": 55,
+      "end_line": 56,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "_header",
+      "line": 59,
+      "end_line": 63,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "_attempt",
+      "line": 66,
+      "end_line": 70,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "_row",
+      "line": 73,
+      "end_line": 77,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "_set",
+      "line": 80,
+      "end_line": 82,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.__init__",
+      "line": 86,
+      "end_line": 92,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.read",
+      "line": 94,
+      "end_line": 98,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.uint",
+      "line": 100,
+      "end_line": 101,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.flag",
+      "line": 103,
+      "end_line": 106,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.pin",
+      "line": 108,
+      "end_line": 117,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.bucket",
+      "line": 119,
+      "end_line": 136,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.market",
+      "line": 138,
+      "end_line": 143,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review._harvest_ticks",
+      "line": 145,
+      "end_line": 155,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.harvest_custody",
+      "line": 157,
+      "end_line": 201,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.execution",
+      "line": 203,
+      "end_line": 208,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.budget",
+      "line": 210,
+      "end_line": 216,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.financial",
+      "line": 218,
+      "end_line": 248,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.financial.maintenance",
+      "line": 219,
+      "end_line": 224,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.financial.current_idle",
+      "line": 236,
+      "end_line": 239,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.schedule",
+      "line": 250,
+      "end_line": 260,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.compound_confirmation",
+      "line": 262,
+      "end_line": 283,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.simulate_action",
+      "line": 285,
+      "end_line": 366,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.simulate_action.gas",
+      "line": 322,
+      "end_line": 330,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.operations",
+      "line": 368,
+      "end_line": 549,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.operations.complete",
+      "line": 387,
+      "end_line": 395,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "Review.operations.clock",
+      "line": 511,
+      "end_line": 518,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "review",
+      "line": 552,
+      "end_line": 606,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/operation_review.py",
+      "function": "review.controls",
+      "line": 588,
+      "end_line": 598,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "current LP diagnostics",
+      "review": "Enforced read-only subclass; EIP1898 pinned state and final canonical/journal checks; price-independent harvest custody; raw/eligible/blocked/unavailable/unconfigured separation; exact discarded simulation and resource/fee constraints."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "_remote_error",
+      "line": 23,
+      "end_line": 30,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "_EndpointBudget.__init__",
+      "line": 34,
+      "end_line": 42,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "_EndpointBudget.check",
+      "line": 44,
+      "end_line": 46,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "_EndpointBudget.transport",
+      "line": 48,
+      "end_line": 71,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "_EndpointBudget.call",
+      "line": 73,
+      "end_line": 84,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "_approval_trace",
+      "line": 86,
+      "end_line": 119,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "probe",
+      "line": 121,
+      "end_line": 253,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "probe.observe",
+      "line": 149,
+      "end_line": 162,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "probe.genesis",
+      "line": 164,
+      "end_line": 168,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "probe.head",
+      "line": 170,
+      "end_line": 174,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "probe.same_block",
+      "line": 188,
+      "end_line": 193,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "probe.hex_result",
+      "line": 196,
+      "end_line": 204,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "probe.reject_unknown_hash",
+      "line": 208,
+      "end_line": 214,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "probe.approval_trace",
+      "line": 217,
+      "end_line": 219,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "probe.tagged",
+      "line": 223,
+      "end_line": 225,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "probe.receipts",
+      "line": 227,
+      "end_line": 248,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "_Parser.error",
+      "line": 257,
+      "end_line": 257,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "_read_config",
+      "line": 259,
+      "end_line": 271,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "_read_config.pairs",
+      "line": 262,
+      "end_line": 267,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "_read_config.constant",
+      "line": 268,
+      "end_line": 268,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/probe.py",
+      "function": "main",
+      "line": 273,
+      "end_line": 295,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "read-only provider evidence",
+      "review": "Read-only RPC allowlist, explicit profiles, genesis/runtime pins, endpoint90s/100calls/200posts pacing, bounded callTracer frames/logs and fresh reference/receipts; never finality/fee/provider approval."
+    },
+    {
+      "file": "keeper/staging.py",
+      "function": "main",
+      "line": 22,
+      "end_line": 64,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 fixture initializer",
+      "review": "Loopback31337 Anvil only, refuses existing state/key/config, local fixture transactions, private encrypted key and no output disclosure; TWO unbounded Cast subprocess captures confirmed and replaced using existing64KiB helper at original60/30s."
+    },
+    {
+      "file": "keeper/staging.py",
+      "function": "main.send",
+      "line": 33,
+      "end_line": 37,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 fixture initializer",
+      "review": "Loopback31337 Anvil only, refuses existing state/key/config, local fixture transactions, private encrypted key and no output disclosure; TWO unbounded Cast subprocess captures confirmed and replaced using existing64KiB helper at original60/30s."
+    },
+    {
+      "file": "keeper/staging_observer.py",
+      "function": "main",
+      "line": 21,
+      "end_line": 46,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy paused staging exporter",
+      "review": "Fixed paths/chain/RPC/unit names; no network/signing; health plus exclusive snapshot;10,000 backup threshold; actual service state overrides file health; systemctl capture remains trusted fixed command with5s timeout, not complete adversarial-output bound."
+    },
+    {
+      "file": "scripts/check-staging-monitor.py",
+      "function": "validate_export",
+      "line": 21,
+      "end_line": 37,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy paused read-only off-host monitor",
+      "review": "Pinned SSH forced account/hostkey/timeout; secret-free snapshot checks and exclusive backups; unbounded pre-check SSH capture confirmed and replaced by portable1MiB aggregate helper. No heartbeat execution/adoption."
+    },
+    {
+      "file": "scripts/check-staging-monitor.py",
+      "function": "main",
+      "line": 40,
+      "end_line": 63,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy paused read-only off-host monitor",
+      "review": "Pinned SSH forced account/hostkey/timeout; secret-free snapshot checks and exclusive backups; unbounded pre-check SSH capture confirmed and replaced by portable1MiB aggregate helper. No heartbeat execution/adoption."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "check",
+      "line": 34,
+      "end_line": 35,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "wait_until",
+      "line": 38,
+      "end_line": 46,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "rpc",
+      "line": 49,
+      "end_line": 56,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "FaultProxy.__init__",
+      "line": 60,
+      "end_line": 62,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "FaultProxy.__enter__",
+      "line": 63,
+      "end_line": 86,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "FaultProxy.__enter__.Handler.log_message",
+      "line": 66,
+      "end_line": 66,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "FaultProxy.__enter__.Handler.do_POST",
+      "line": 67,
+      "end_line": 82,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "FaultProxy.__exit__",
+      "line": 87,
+      "end_line": 88,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "FaultProxy.fault",
+      "line": 89,
+      "end_line": 90,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "Lab.__init__",
+      "line": 94,
+      "end_line": 95,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "Lab.__enter__",
+      "line": 96,
+      "end_line": 99,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "Lab.start",
+      "line": 100,
+      "end_line": 135,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "Lab.__exit__",
+      "line": 136,
+      "end_line": 138,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "Lab.spawn",
+      "line": 139,
+      "end_line": 142,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "Lab.kill",
+      "line": 143,
+      "end_line": 147,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "Lab.write_config",
+      "line": 148,
+      "end_line": 148,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "Lab.cli",
+      "line": 149,
+      "end_line": 156,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "Lab.worker",
+      "line": 157,
+      "end_line": 157,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "Lab.state",
+      "line": 158,
+      "end_line": 158,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "Lab.health",
+      "line": 159,
+      "end_line": 159,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "Lab.nonce",
+      "line": 160,
+      "end_line": 160,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "Lab.tx",
+      "line": 161,
+      "end_line": 164,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "Lab.admin_call",
+      "line": 165,
+      "end_line": 165,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "Lab.count",
+      "line": 166,
+      "end_line": 166,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "Lab.settle",
+      "line": 167,
+      "end_line": 167,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "run",
+      "line": 170,
+      "end_line": 267,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "main",
+      "line": 270,
+      "end_line": 304,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/rehearse-keeper.py",
+      "function": "main.record",
+      "line": 285,
+      "end_line": 286,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "legacy accounting3 operating fixture",
+      "review": "Disposable unprivileged local Anvil/encrypted key, separate host directories, explicit groupkill; synthetic faults. Remaining wallet/version/build subprocess capture paths are unbounded; not run and not current F6 acceptance."
+    },
+    {
+      "file": "scripts/run-keeper-tests.py",
+      "function": "select_tests",
+      "line": 56,
+      "end_line": 73,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "offline test selection tool",
+      "review": "Defined-class dedup, no custom loaders, whole-local-Python source inventory, explicit Unix skips, optional inventory-only mode. Not invoked; unchanged tests not rerun."
+    },
+    {
+      "file": "scripts/run-keeper-tests.py",
+      "function": "sha",
+      "line": 74,
+      "end_line": 74,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "offline test selection tool",
+      "review": "Defined-class dedup, no custom loaders, whole-local-Python source inventory, explicit Unix skips, optional inventory-only mode. Not invoked; unchanged tests not rerun."
+    },
+    {
+      "file": "scripts/run-keeper-tests.py",
+      "function": "inputs",
+      "line": 75,
+      "end_line": 85,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "offline test selection tool",
+      "review": "Defined-class dedup, no custom loaders, whole-local-Python source inventory, explicit Unix skips, optional inventory-only mode. Not invoked; unchanged tests not rerun."
+    },
+    {
+      "file": "scripts/run-keeper-tests.py",
+      "function": "Results.__init__",
+      "line": 87,
+      "end_line": 87,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "offline test selection tool",
+      "review": "Defined-class dedup, no custom loaders, whole-local-Python source inventory, explicit Unix skips, optional inventory-only mode. Not invoked; unchanged tests not rerun."
+    },
+    {
+      "file": "scripts/run-keeper-tests.py",
+      "function": "Results.startTest",
+      "line": 88,
+      "end_line": 88,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "offline test selection tool",
+      "review": "Defined-class dedup, no custom loaders, whole-local-Python source inventory, explicit Unix skips, optional inventory-only mode. Not invoked; unchanged tests not rerun."
+    },
+    {
+      "file": "scripts/run-keeper-tests.py",
+      "function": "main",
+      "line": 89,
+      "end_line": 111,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "offline test selection tool",
+      "review": "Defined-class dedup, no custom loaders, whole-local-Python source inventory, explicit Unix skips, optional inventory-only mode. Not invoked; unchanged tests not rerun."
+    },
+    {
+      "file": "zzz_ops/read_process.py",
+      "function": "_windows_available",
+      "line": 23,
+      "end_line": 40,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "NEW read-only bounded utility capture",
+      "review": "Portable complete bytes;1MiB aggregate stdout+stderr; noninteractive fixed caller, deadline and bounded cleanup; Windows typed PeekNamedPipe; POSIX anchor-safe groupkill; not signer or Windows descendant containment."
+    },
+    {
+      "file": "zzz_ops/read_process.py",
+      "function": "_cleanup",
+      "line": 43,
+      "end_line": 59,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "NEW read-only bounded utility capture",
+      "review": "Portable complete bytes;1MiB aggregate stdout+stderr; noninteractive fixed caller, deadline and bounded cleanup; Windows typed PeekNamedPipe; POSIX anchor-safe groupkill; not signer or Windows descendant containment."
+    },
+    {
+      "file": "zzz_ops/read_process.py",
+      "function": "run_read_process",
+      "line": 62,
+      "end_line": 142,
+      "assessment": "static_reviewed_not_dynamic_pass",
+      "scope": "NEW read-only bounded utility capture",
+      "review": "Portable complete bytes;1MiB aggregate stdout+stderr; noninteractive fixed caller, deadline and bounded cleanup; Windows typed PeekNamedPipe; POSIX anchor-safe groupkill; not signer or Windows descendant containment."
+    }
+  ],
+  "preserved": [
+    "financial limits and rights",
+    "existing services/sites/Anvil/journals",
+    "paused heartbeat",
+    "private credentials",
+    "frozen Solidity"
+  ],
+  "confirmed_fixes": [
+    {
+      "id": "OPS-01",
+      "files": [
+        "keeper/staging.py"
+      ],
+      "issue": "Unbounded captured Cast setup output despite existing bounded helper",
+      "change": "Reuse run_cast64KiB at unchanged60/30s; no initializer run"
+    },
+    {
+      "id": "OPS-02",
+      "files": [
+        "scripts/check-staging-monitor.py",
+        "zzz_ops/read_process.py"
+      ],
+      "issue": "SSH capture accumulates stdout/stderr before posthoc1MiB check",
+      "change": "Bound1MiB aggregate while reading,30s deadline and2s cleanup; no SSH run"
+    }
+  ],
+  "remaining": [
+    {
+      "id": "OPS-DOC-01",
+      "file": "docs/KEEPER_RECOVERY.md:10",
+      "issue": "Nov21 failed-lab wording read as current blanket normal-daemon recovery status; distinguish later finiteNov24/25 proofs from broader still-open acceptance",
+      "followthrough_status": "Corrected in current recovery guide; original static review location/scope retained"
+    },
+    {
+      "id": "OPS-LEGACY-01",
+      "file": "scripts/rehearse-keeper.py",
+      "issue": "Legacy wallet/version/fixture-build subprocess captures and child log files remain finite-time but not byte-bounded; do not run/promote it as fullF6 qualification"
+    },
+    {
+      "id": "OPS-LEGACY-02",
+      "file": "keeper/staging_observer.py",
+      "issue": "Fixed trusted systemctl output not byte-bounded; retention enumeration scans all matching names; export can eventually exceed forcedSSH1MiB. Legacy environment was preserved; the desktop monitor is paused, while the installed observer timer remains active. Not fixed by utility change."
+    },
+    {
+      "id": "OPS-SCOPE-01",
+      "file": "keeper/health.py:12",
+      "issue": "Source hash list is subset/local files, not full closure or loaded-code attestation; documentation already explicit."
+    }
+  ],
+  "verification": {
+    "windows_stage": "../verification/utility-original/RESULT.json",
+    "selected_new_methods": 10,
+    "executed_new_methods": 10,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "elapsed_seconds": 1.4379999999998745,
+    "source_changed_during_execution": "Console reported none; original durable maps lost, not admitted",
+    "linux_only_new_method": "tests_python.test_read_process.ReadProcessTests.test_exited_parent_cannot_strand_a_unix_inherited_pipe",
+    "linux_method_executed": false,
+    "linux_execution_scope": "Not executed by this Windows partition; separate c809 original result is ../ubuntu/c809/model-SELECTED_LINUX_TEST.json, reused without execution in c810",
+    "unchanged_tests_executed": 0,
+    "server_actions_by_this_partition": 0,
+    "execution_producer_successful": false,
+    "original_before_after_hash_maps_lost": true,
+    "followthrough": "../verification/utility-original/LOG_FOLLOWTHROUGH.json"
+  }
+}

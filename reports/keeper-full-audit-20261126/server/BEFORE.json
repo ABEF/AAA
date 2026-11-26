@@ -1,0 +1,353 @@
+{
+  "application_code_executed": false,
+  "installed_stage_files": {
+    "bin/anvil": {
+      "bytes": 32747544,
+      "gid": 127,
+      "mode": "0o755",
+      "present": true,
+      "sha256": "05ee0cf1758024ea5e23dae562d92955ace205ab299091a43d2fa5bdeb6933bd",
+      "uid": 1001
+    },
+    "bin/cast": {
+      "bytes": 48291080,
+      "gid": 127,
+      "mode": "0o755",
+      "present": true,
+      "sha256": "d55f540256f0dd8b940a125d435919948a5e8c140262e9923067cbfa95ef2970",
+      "uid": 1001
+    },
+    "bin/forge": {
+      "bytes": 67759784,
+      "gid": 127,
+      "mode": "0o755",
+      "present": true,
+      "sha256": "b2506b895566aef3e1748444640a8f4aac2f4bf063173005993021bd2f8681b9",
+      "uid": 1001
+    },
+    "keeper/cast_process.py": {
+      "present": false
+    },
+    "keeper/compound_policy.py": {
+      "present": false
+    },
+    "keeper/health.py": {
+      "present": false
+    },
+    "keeper/monitor.py": {
+      "bytes": 56700,
+      "gid": 0,
+      "mode": "0o644",
+      "present": true,
+      "sha256": "64bfafea8859213edf0434147160c4f62bb329dc979356ef7ee7cd2014cc9f15",
+      "uid": 0
+    },
+    "keeper/ops.py": {
+      "bytes": 8701,
+      "gid": 0,
+      "mode": "0o644",
+      "present": true,
+      "sha256": "d70dc6e42db55d4b4a13b4e5da7bb74dec82acaae8cf34e822e2908d21f1eea1",
+      "uid": 0
+    },
+    "keeper/principal.py": {
+      "present": false
+    },
+    "keeper/rebalance_confirmation.py": {
+      "present": false
+    },
+    "keeper/royalties.py": {
+      "present": false
+    },
+    "keeper/staging-install.sh": {
+      "bytes": 4422,
+      "gid": 0,
+      "mode": "0o644",
+      "present": true,
+      "sha256": "fde49b9780dcdbb352e8286f8b649689c8b48aa021226d02a5b84bfa94d9b2ad",
+      "uid": 0
+    },
+    "keeper/staging-monitor-install.sh": {
+      "bytes": 2627,
+      "gid": 0,
+      "mode": "0o644",
+      "present": true,
+      "sha256": "a7e624900b81eba1f327ae66cb89d61081c8f5f08e99217d69511bf57f74bca0",
+      "uid": 0
+    },
+    "keeper/staging_observer.py": {
+      "bytes": 2490,
+      "gid": 0,
+      "mode": "0o644",
+      "present": true,
+      "sha256": "f5f5e77aa62605aa54b326e88245ff5d9f8e14bf723dad359786e706cbc021ce",
+      "uid": 0
+    },
+    "keeper/watchdog.py": {
+      "present": false
+    },
+    "zzz_ops/ethereum_fees.py": {
+      "present": false
+    },
+    "zzz_ops/rpc.py": {
+      "bytes": 4376,
+      "gid": 0,
+      "mode": "0o644",
+      "present": true,
+      "sha256": "75365d4ad8c11e49a63644e8c597abd6999fa83cafce4e04e512c7a0ba3fce89",
+      "uid": 0
+    },
+    "zzz_ops/state.py": {
+      "bytes": 2279,
+      "gid": 0,
+      "mode": "0o644",
+      "present": true,
+      "sha256": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+      "uid": 0
+    }
+  },
+  "limitations": [
+    "File digests are not loaded-code attestation",
+    "Staging is not a fresh F6 production installation",
+    "Active service observations may legitimately change between reads"
+  ],
+  "observed_utc_epoch": 1795691052.1848226,
+  "read_only": true,
+  "schema": 1,
+  "secrets_exported": false,
+  "service_actions": 0,
+  "staging_configuration_public_fields_only": {
+    "accounting_version": null,
+    "all_rpc_loopback": true,
+    "chain_id": 31337,
+    "configured_jobs": {
+      "lp_conversion": {},
+      "maintenance": {
+        "compound": false,
+        "harvest": true,
+        "harvest_interval_seconds": 14400
+      },
+      "metadata_refresh": {},
+      "principal_distribution": {},
+      "royalty_conversion": {}
+    },
+    "confirmations": 2,
+    "custody_version": null,
+    "execution_price_version": null,
+    "file_identity": {
+      "gid": 988,
+      "mode": "0o600",
+      "uid": 999
+    },
+    "interval_seconds": 60,
+    "lp_routing_version": null,
+    "maintenance_policy_version": null,
+    "max_daily_cost_wei": 1000000000000000000,
+    "max_gas_limit": 500000,
+    "max_gas_price_wei": 100000000000,
+    "max_transaction_cost_wei": 100000000000000000,
+    "portfolio_version": null,
+    "protocol_policy_version": null,
+    "rebalance_confirmation_version": null,
+    "receipt_fee_policy": "included",
+    "reviewed_for_live_use": true,
+    "royalty_settlement_version": null,
+    "rpc_count": 1
+  },
+  "staging_health_public_fields": {
+    "configuration_sha256": null,
+    "consecutive_failures": 0,
+    "health_schema": null,
+    "last_success_at": "2026-10-23T17:09:48.012539+00:00",
+    "pending": false,
+    "source_identity_claim_scope": "existing observation only; no loaded-code attestation",
+    "status": "healthy",
+    "time": "2026-10-23T17:09:48.012557+00:00"
+  },
+  "staging_journal_metadata": {
+    "accounting_version": null,
+    "chain_id": 31337,
+    "mode": "0o600",
+    "next_nonce": 42,
+    "pending_present": false,
+    "present": true,
+    "scope": "read_only_snapshot_of_original_running_journal; not restored or changed",
+    "sha256": "c3fa729da2d3ea71cfd0206c9fe0b2108dfb806ff2a4f0f96087cd3074862c07",
+    "uid": 999
+  },
+  "system": {
+    "python": "Python 3.12.3",
+    "systemd": "systemd 255 (255.4-1ubuntu8.18)"
+  },
+  "units": {
+    "nginx.service": {
+      "ActiveState": "active",
+      "Group": "",
+      "Id": "nginx.service",
+      "InvocationID": "5576eea7bf8b48b793748068c2800fbe",
+      "KillMode": "mixed",
+      "LimitCORE": "infinity",
+      "LoadState": "loaded",
+      "MainPID": "3603563",
+      "MemoryMax": "infinity",
+      "NoNewPrivileges": "no",
+      "NotifyAccess": "none",
+      "PrivateDevices": "no",
+      "PrivateNetwork": "no",
+      "ProtectSystem": "no",
+      "Restart": "no",
+      "RestartUSec": "100ms",
+      "StartLimitBurst": "5",
+      "StartLimitIntervalUSec": "10s",
+      "SubState": "running",
+      "TasksMax": "9211",
+      "TimeoutStopUSec": "5s",
+      "User": "",
+      "WatchdogUSec": "0",
+      "WorkingDirectory": "",
+      "exec_identity": {
+        "expected_staging_config": false,
+        "explicit_live_flag": false,
+        "keeper_module": false
+      }
+    },
+    "zzz-keeper.service": {
+      "ActiveState": "inactive",
+      "Group": "",
+      "Id": "zzz-keeper.service",
+      "InvocationID": "",
+      "KillMode": "control-group",
+      "LimitCORE": "infinity",
+      "LoadState": "not-found",
+      "MainPID": "0",
+      "MemoryMax": "infinity",
+      "NoNewPrivileges": "no",
+      "NotifyAccess": "none",
+      "PrivateDevices": "no",
+      "PrivateNetwork": "no",
+      "ProtectSystem": "no",
+      "Restart": "no",
+      "RestartUSec": "100ms",
+      "StartLimitBurst": "5",
+      "StartLimitIntervalUSec": "10s",
+      "SubState": "dead",
+      "TasksMax": "9211",
+      "TimeoutStopUSec": "1min 30s",
+      "User": "",
+      "WatchdogUSec": "infinity",
+      "WorkingDirectory": "",
+      "exec_identity": {
+        "expected_staging_config": false,
+        "explicit_live_flag": false,
+        "keeper_module": false
+      }
+    },
+    "zzz-stage-anvil.service": {
+      "ActiveState": "failed",
+      "Group": "zzz-stage",
+      "Id": "zzz-stage-anvil.service",
+      "InvocationID": "ed6b44aacbcc499597641edd312b52f7",
+      "KillMode": "control-group",
+      "LimitCORE": "infinity",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "MemoryMax": "536870912",
+      "NoNewPrivileges": "yes",
+      "NotifyAccess": "none",
+      "PrivateDevices": "yes",
+      "PrivateNetwork": "no",
+      "ProtectSystem": "strict",
+      "Restart": "on-failure",
+      "RestartUSec": "15s",
+      "StartLimitBurst": "5",
+      "StartLimitIntervalUSec": "10min",
+      "SubState": "failed",
+      "TasksMax": "64",
+      "TimeoutStopUSec": "1min",
+      "User": "zzz-stage",
+      "WatchdogUSec": "0",
+      "WorkingDirectory": "/opt/zzz-keeper-staging",
+      "exec_identity": {
+        "expected_staging_config": false,
+        "explicit_live_flag": false,
+        "keeper_module": false
+      }
+    },
+    "zzz-stage-keeper.service": {
+      "ActiveState": "inactive",
+      "Group": "zzz-stage",
+      "Id": "zzz-stage-keeper.service",
+      "InvocationID": "285933ad8986477ea79ccd994bbdc16b",
+      "KillMode": "control-group",
+      "LimitCORE": "infinity",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "MemoryMax": "268435456",
+      "NoNewPrivileges": "yes",
+      "NotifyAccess": "none",
+      "PrivateDevices": "yes",
+      "PrivateNetwork": "no",
+      "ProtectSystem": "strict",
+      "Restart": "on-failure",
+      "RestartUSec": "30s",
+      "StartLimitBurst": "5",
+      "StartLimitIntervalUSec": "10min",
+      "SubState": "dead",
+      "TasksMax": "64",
+      "TimeoutStopUSec": "2min",
+      "User": "zzz-stage",
+      "WatchdogUSec": "0",
+      "WorkingDirectory": "/opt/zzz-keeper-staging",
+      "exec_identity": {
+        "expected_staging_config": true,
+        "explicit_live_flag": true,
+        "keeper_module": true
+      }
+    },
+    "zzz-stage-observer.service": {
+      "ActiveState": "inactive",
+      "Group": "zzz-stage-monitor",
+      "Id": "zzz-stage-observer.service",
+      "InvocationID": "9944fe6f51fa4bdb8fd37b128cbabf01",
+      "KillMode": "control-group",
+      "LimitCORE": "infinity",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "MemoryMax": "67108864",
+      "NoNewPrivileges": "yes",
+      "NotifyAccess": "none",
+      "PrivateDevices": "yes",
+      "PrivateNetwork": "no",
+      "ProtectSystem": "strict",
+      "Restart": "no",
+      "RestartUSec": "100ms",
+      "StartLimitBurst": "5",
+      "StartLimitIntervalUSec": "10s",
+      "SubState": "dead",
+      "TasksMax": "16",
+      "TimeoutStopUSec": "1min 30s",
+      "User": "zzz-stage",
+      "WatchdogUSec": "0",
+      "WorkingDirectory": "/opt/zzz-keeper-staging",
+      "exec_identity": {
+        "expected_staging_config": false,
+        "explicit_live_flag": false,
+        "keeper_module": false
+      }
+    },
+    "zzz-stage-observer.timer": {
+      "ActiveState": "active",
+      "Id": "zzz-stage-observer.timer",
+      "InvocationID": "7fa9fdf628aa4d6abce6e238cd8404d3",
+      "LoadState": "loaded",
+      "StartLimitBurst": "5",
+      "StartLimitIntervalUSec": "10s",
+      "SubState": "waiting",
+      "exec_identity": {
+        "expected_staging_config": false,
+        "explicit_live_flag": false,
+        "keeper_module": false
+      }
+    }
+  }
+}

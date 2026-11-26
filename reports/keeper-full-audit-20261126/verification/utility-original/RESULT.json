@@ -1,0 +1,10 @@
+{
+  "kind": "keeper_utility_new_methods_windows",
+  "evidence_status": "interrupted",
+  "successful": false,
+  "completion_recorded": false,
+  "production_approved": false,
+  "created_at": "2026-11-26T11:11:41.541586+00:00",
+  "error_type": "SystemExit",
+  "notice": "Incomplete verification evidence; do not infer that no work executed or retry it automatically."
+}

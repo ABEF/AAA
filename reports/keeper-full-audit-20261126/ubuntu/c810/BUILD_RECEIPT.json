@@ -1,0 +1,147 @@
+{
+  "additional_members": 2,
+  "approved_worktree_overrides": [
+    {
+      "current": {
+        "bytes": 194496,
+        "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f"
+      },
+      "explicit_working_override": true,
+      "path": "keeper/monitor.py",
+      "published": {
+        "bytes": 194265,
+        "sha256": "5ab6bbb20eea21e301d81d2e829a827594079561e2f10770336ec8585b234631"
+      }
+    },
+    {
+      "current": {
+        "bytes": 4086,
+        "sha256": "9ebae1142434baee326e766d6a4c69ccf3d568e7d7881c92715a3a5024c09710"
+      },
+      "explicit_working_override": true,
+      "path": "keeper/staging.py",
+      "published": {
+        "bytes": 4135,
+        "sha256": "28b2b33d64a881dfdc5edafe6dc2daec4825e1729f5e97d9ee964f855aa3bae5"
+      }
+    },
+    {
+      "current": {
+        "bytes": 3425,
+        "sha256": "f8b1f237c09e9dec0d28a4e3519a69af5c47fa4f284f2bda9f4714bdae93a4e9"
+      },
+      "explicit_working_override": true,
+      "path": "scripts/check-staging-monitor.py",
+      "published": {
+        "bytes": 3411,
+        "sha256": "fab3707f73f2c792e3552056274ef150202109056cefc36de380c0893a75b6ab"
+      }
+    },
+    {
+      "current": {
+        "bytes": 6997,
+        "sha256": "d1303ef60c6f17959e6ee545d0de22bf105885520f078b96b53488ca654190ec"
+      },
+      "explicit_working_override": true,
+      "path": "scripts/run-keeper-tests.py",
+      "published": {
+        "bytes": 6912,
+        "sha256": "ef1bb2fefa5eddda7c4050c1882f5ba7d5a3066c9f881dbcb5c3e38d6e38ec93"
+      }
+    },
+    {
+      "current": {
+        "bytes": 2524,
+        "sha256": "f96962659192567d45b24e93e7f746d715728be40dba14b3bf826263055916e7"
+      },
+      "explicit_working_override": true,
+      "path": "scripts/verify.sh",
+      "published": {
+        "bytes": 2521,
+        "sha256": "fec6b85a42d95d2015cb77653b8e5d844e7e117949e2b230af3cf171d548aaf1"
+      }
+    },
+    {
+      "current": {
+        "bytes": 5639,
+        "sha256": "1a70235996cb9fce2b22bd67bb49ef0e695fd3e67ece123bb107f326c94145e7"
+      },
+      "explicit_working_addition": true,
+      "path": "tests_python/test_read_process.py",
+      "published": null
+    },
+    {
+      "current": {
+        "bytes": 5632,
+        "sha256": "6c3fd87acf6efc39da2742cca0b16e1f4dc289b55b09d95513710c5679454ba7"
+      },
+      "explicit_working_addition": true,
+      "path": "zzz_ops/read_process.py",
+      "published": null
+    }
+  ],
+  "bundle": {
+    "bytes": 767565,
+    "sha256": "8639fc9ad3073ef2ae883849f7df09d2e99a56af7da4d753bba8cef980e8db14"
+  },
+  "controller": {
+    "bytes": 30707,
+    "sha256": "63fe982e6bb4f28523254e32352f6fc065a957f765de3f00a3eb83406cdc5b62"
+  },
+  "feature": "native_restart_limit_recovery",
+  "helpers": {
+    "job_cases.py": {
+      "bytes": 15671,
+      "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7"
+    },
+    "keeper_jobs.py": {
+      "bytes": 9477,
+      "sha256": "363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4"
+    },
+    "keeper_runtime.py": {
+      "bytes": 37193,
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+    },
+    "model_service.py": {
+      "bytes": 11829,
+      "sha256": "96a8616ac0efef176c74bb47a3e4ff6eeda7736c8680b1e4f088a9798fe3281b"
+    },
+    "native_base.py": {
+      "bytes": 29204,
+      "sha256": "cdc34179f146fedd19d13e3e7fdcbbe1efce9719d800c63148e6971d1069d18f"
+    },
+    "restart_control.py": {
+      "bytes": 11680,
+      "sha256": "fcac6f8041a3aa8de591696da94252d76415113533b985834ab3b51d5ea9f1a7"
+    }
+  },
+  "host_wrapper": {
+    "bytes": 7194,
+    "sha256": "d32290e1a7a18c6b7b1f1142204b767c763525bbb01e580150927bb77443fc3c"
+  },
+  "lab": "/opt/popl-keeper-full-audit-20261126-c810",
+  "limits": {
+    "RPC_requests": 6000,
+    "confirmations": 12,
+    "maintenance_gas": 24000000,
+    "maximum_stock_signed_sends": 0,
+    "padding_percent": 25,
+    "restart_seconds": 30,
+    "seconds": 900,
+    "start_limit_burst": 5,
+    "start_limit_window_seconds": 600,
+    "stop_seconds": 120,
+    "watchdog_seconds": 120
+  },
+  "local_packaging_only": true,
+  "manifest": {
+    "bytes": 36911,
+    "sha256": "877ca9523e509ab09d54ee07fda6d96b142890bdd334d29fb20d4860a66c67f0"
+  },
+  "production_baseline_members": 190,
+  "remote_actions": 0,
+  "schema": 1,
+  "source_base": "5331d3a5d051aad3da61d85aa43fafb870487f35",
+  "source_manifest_sha256": "eabb3f0a919aae5ff2b19ecbb7754576b419f3d365a296d1ac424eec45b1450f",
+  "tests_run": 0
+}

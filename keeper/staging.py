@@ -8,9 +8,9 @@ import json
 import os
 from pathlib import Path
 import secrets
-import subprocess
 import sys
 from keeper.monitor import Keeper, error_context, signer_environment
+from keeper.cast_process import run_cast
 from zzz_ops.abi import calldata, keccak256
 from zzz_ops.state import atomic_json
 
@@ -39,11 +39,11 @@ def main():
     venue=send({'from':admin,'data':artifact['bytecode']['object'],'gas':'0x4c4b40'})['contractAddress'].lower()
     password=VAR/'keys/password';password.write_text(secrets.token_hex(32));password.chmod(0o600)
     cast=str(BASE/'bin/cast');env=signer_environment();env['CAST_PASSWORD']=password.read_text()
-    result=subprocess.run([cast,'wallet','new',str(VAR/'keys'),'keeper'],env=env,capture_output=True,text=True,timeout=60)
+    result=run_cast([cast,'wallet','new',str(VAR/'keys'),'keeper'],env=env,timeout=60)
     if result.returncode:raise ValueError('Encrypted fixture signer creation failed')
     key=VAR/'keys/keeper';key.chmod(0o600)
-    result=subprocess.run([cast,'wallet','address','--keystore',str(key),'--password-file',str(password)],
-        env=signer_environment(),capture_output=True,text=True,timeout=30)
+    result=run_cast([cast,'wallet','address','--keystore',str(key),'--password-file',str(password)],
+        env=signer_environment(),timeout=30)
     if result.returncode:raise ValueError('Cannot read fixture signer address')
     sender=result.stdout.strip().lower()
     rpc('anvil_setBalance',[sender,hex(10**20)])

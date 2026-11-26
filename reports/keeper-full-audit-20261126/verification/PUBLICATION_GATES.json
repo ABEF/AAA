@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "successful": true,
+  "checks": {
+    "PUBLICATION_INDEX": {
+      "returncode": 0,
+      "elapsed_seconds": 3.5,
+      "stdout_sha256": "4423b00600b32f3f233e195b1e3adf4ab69ffd4b0a29ab9c17d928210982be6f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "static_only": true
+    },
+    "INVENTORY_CHECK": {
+      "returncode": 0,
+      "elapsed_seconds": 4.25,
+      "stdout_sha256": "50f7cf19b9cc9812aa7a006fe38a2c0dcfd9a127ba64779010b7e0da2f04cd3e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "static_only": true
+    },
+    "STAGED_WHITESPACE": {
+      "returncode": 0,
+      "elapsed_seconds": 0.14099999999962165,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "ff925c8c59ae11c4b5c4bf15d0f19c590f9dcdeec6efa1398db3153b27dea1f2",
+      "static_only": true
+    }
+  },
+  "test_bodies_executed": 0,
+  "production_approved": false
+}

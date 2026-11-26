@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "scope": "Explicit post-cleanup public evidence copy; no node/process/transaction/test executed",
+  "campaigns": {
+    "c809": {
+      "success": false,
+      "cleanup": true,
+      "elapsed_seconds": 193.17200000000003
+    },
+    "c810": {
+      "success": true,
+      "cleanup": true,
+      "elapsed_seconds": 219.61000000000013
+    }
+  },
+  "files": {
+    "c809/BUILD_RECEIPT.json": {
+      "bytes": 4478,
+      "sha256": "943ff6a13104aa210f58b4386c77d8547e87a9f560dcff84d70c9d780cef6f86"
+    },
+    "c809/SOURCE_MANIFEST.json": {
+      "bytes": 31472,
+      "sha256": "eabb3f0a919aae5ff2b19ecbb7754576b419f3d365a296d1ac424eec45b1450f"
+    },
+    "c809/ORCHESTRATION_RESULT.json": {
+      "bytes": 46022,
+      "sha256": "402e70f1a155d5ce96b2344382a862746cc0a200bf8fc550e18e8198b33edd8a"
+    },
+    "c809/PARENT_PREEXECUTION_APPROVAL.json": {
+      "bytes": 701,
+      "sha256": "bf0fa361736f33db391f0d655a715d35394cdf1fd483a0b69c0f971a2f5a2ac9"
+    },
+    "c809/model-RESULT.json": {
+      "bytes": 769,
+      "sha256": "beef69a15e126ea209c00d37b37a7e76fd4095f6445e1d7902f9cafde151393b"
+    },
+    "c809/model-SELECTED_LINUX_TEST.json": {
+      "bytes": 610,
+      "sha256": "c577c2c51cb903cebbbf86fde5114f69d99b4c430c9575a90a2b493cab120645"
+    },
+    "c809/native-FINAL_STOP.json": {
+      "bytes": 24493,
+      "sha256": "98c5168fc4e622bb4b4ab5cfba8220a305952f4b99d5bea9953d008d2b534761"
+    },
+    "c809/case-INITIAL_JOURNAL.json": {
+      "bytes": 3752,
+      "sha256": "5a6c69daa41cd195b9e68f751a66e3ccc04436cb690502c4921b8c060dd6722d"
+    },
+    "c809/case-FINANCIAL_BEFORE.json": {
+      "bytes": 1727,
+      "sha256": "f2bf79b0c707fb5e35a9ac99860f618fc0066b2a1cafa0ace0a4936e50b976b7"
+    },
+    "c809/case-SETUP.json": {
+      "bytes": 9470,
+      "sha256": "48cc797d2a28129779c0e207b928687a44043278f1439df3759786ffa737a297"
+    },
+    "c809/case-RECEIPTS.json": {
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "c809/case-RAW_REVIEWS.json": {
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "c810/BUILD_RECEIPT.json": {
+      "bytes": 4478,
+      "sha256": "7aadc446f7b43140891fc3c9102d37fcbb8db6e92f1d578e7e1192879ff18f99"
+    },
+    "c810/SOURCE_MANIFEST.json": {
+      "bytes": 31472,
+      "sha256": "eabb3f0a919aae5ff2b19ecbb7754576b419f3d365a296d1ac424eec45b1450f"
+    },
+    "c810/ORCHESTRATION_RESULT.json": {
+      "bytes": 53125,
+      "sha256": "ef6d57864249de61fb481e31b9b1de07a9912851d54a27a0d7c1bd6a964b6942"
+    },
+    "c810/PARENT_PREEXECUTION_APPROVAL.json": {
+      "bytes": 701,
+      "sha256": "7d44f6200c70bc4f9666ddf849054c78305f84b3d05768a7a729dc9c7f34886f"
+    },
+    "c810/model-RESULT.json": {
+      "bytes": 627,
+      "sha256": "c218bea24316fe053e9010ca00dfa029f5e798479dc7c8a1e395f9feb9fd019c"
+    },
+    "c810/model-REUSED_LINUX_TEST.json": {
+      "bytes": 924,
+      "sha256": "8f3b1167abe7d4b8998844141024b8e4708eaa4709d638ddb0bfd1c5fd69c51d"
+    },
+    "c810/native-RATE_LIMIT_PROOF.json": {
+      "bytes": 29562,
+      "sha256": "3d1f3739ed5ed8de7af330383bc845551652dc20546b68f4fff7616d96cf3d8a"
+    },
+    "c810/native-REPAIR.json": {
+      "bytes": 4049,
+      "sha256": "9155ad5f57bd472c3b37fe9ce5b4cf9f80927250a4ce090018b590c468578996"
+    },
+    "c810/native-FINAL_STOP.json": {
+      "bytes": 25739,
+      "sha256": "e16baa2e912ca32a298d78006a0e73f2057bba6a042a3f26b234bcbb4dc1dc63"
+    },
+    "c810/case-INITIAL_JOURNAL.json": {
+      "bytes": 3752,
+      "sha256": "cc4bb903bd2d93527dd317d2a5e59ed92729f5911388a31d35f340337e3cf85e"
+    },
+    "c810/case-FINAL_JOURNAL.json": {
+      "bytes": 4540,
+      "sha256": "e102f36063ac8388eaf4c4a268e6c7faf286bea882f6872933bef072ec5244f8"
+    },
+    "c810/case-HEALTHY_IDLE_CYCLE.json": {
+      "bytes": 13939,
+      "sha256": "1724cf1ea8f7ebf718aaf83728ad246f41e4bfbcc654232836d8f1c45e749977"
+    },
+    "c810/case-FINANCIAL_BEFORE.json": {
+      "bytes": 1727,
+      "sha256": "f2bf79b0c707fb5e35a9ac99860f618fc0066b2a1cafa0ace0a4936e50b976b7"
+    },
+    "c810/case-FINANCIAL_AFTER.json": {
+      "bytes": 1727,
+      "sha256": "f2bf79b0c707fb5e35a9ac99860f618fc0066b2a1cafa0ace0a4936e50b976b7"
+    },
+    "c810/case-SETUP.json": {
+      "bytes": 9470,
+      "sha256": "1a78cf8b0aab95e7247264e312ba6cafe7498a004dffa8961f9db056606aed5e"
+    },
+    "c810/case-RECEIPTS.json": {
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "c810/case-RAW_REVIEWS.json": {
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "c809/NATIVE_RATE_LIMIT_OBSERVATION.json": {
+      "bytes": 10175,
+      "sha256": "e71c53500377ab18a535eaab4cb1fafa87538a388bacade01ba9ba482c5c21c5"
+    }
+  },
+  "no_secrets_or_keystores_selected": true,
+  "original_c809_nonpass_preserved": true,
+  "new_Linux_body_executions_total": 1,
+  "c810_reuses_original_pass_without_execution": true,
+  "production_approved": false
+}

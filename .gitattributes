@@ -438,3 +438,10 @@ tests_python/test_wallet_view.py -text whitespace=cr-at-eol,-blank-at-eof
 
 # Preserve exact native checkpoint-performance review and focused-check receipts.
 reports/wallet-latency-20261123/** -text whitespace=cr-at-eol
+
+# Preserve exact keeper audit evidence and the reviewed utility/test sources.
+reports/keeper-full-audit-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+zzz_ops/read_process.py -text whitespace=cr-at-eol
+tests_python/test_keeper_anchor_recheck.py -text whitespace=cr-at-eol
+tests_python/test_keeper_utility_capture.py -text whitespace=cr-at-eol
+tests_python/test_read_process.py -text whitespace=cr-at-eol,-blank-at-eof

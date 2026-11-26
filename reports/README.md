@@ -1,5 +1,11 @@
 # Verification evidence
 
+The [26 November keeper audit](keeper-full-audit-20261126/REVIEW.md) records current late cost-anchor checks,
+bounded utility capture and isolated operating verification. Historical failures,
+new source checks, reused runtime proofs and existing-server observations retain
+separate scopes. Production/adoption remains unapproved; journals and limits stay.
+
+
 [Ubuntu keeper storage recovery](ubuntu-storage-20261125/REVIEW.md) adds six
 actual bounded ENOSPC/EACCES failures and two diagnostic fixes, with seven NEW
 focused methods across two source stages and independent exact recovery review.

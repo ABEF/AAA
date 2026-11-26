@@ -1,5 +1,32 @@
 # PoPL operator manual
 
+## Keeper audit and controlled recovery — 26 November 2026
+
+The [full review](../reports/keeper-full-audit-20261126/REVIEW.md) distinguishes
+current source, new checks, earlier finite proofs and the installed legacy server.
+No callable contract, role, financial cap, journal or checkpoint schema changes.
+
+The isolated startup/recovery follow-through passes in1,652/6,000RPC: five failed
+starts, explicit sixth refusal, exact journal preservation during failures,
+restored240s configuration and fresh healthy idle cycle with no signed sends.
+Four owned lab cgroups stop empty; installed files/configuration/journal metadata
+and five original service states are preserved. This does not qualify sustained
+operation, actual providers or a rollout. The original failed verifier outcome
+and the single Linux check reused without rerun remain in the full report.
+
+| Situation / input | Required action | Verify before resuming |
+| --- | --- | --- |
+| `Confirmed receipt checkpoint changed`; exact existing journal/configuration/provider evidence | Stop/fence; preserve pending hash/nonce/costs and independently review canonical history. Do not reset spending, delete intent or adopt a guessed anchor | Matching source/checker, exact original transaction and reviewed reorg accounting |
+| Read-only monitor overflow/timeout; existing pinned SSH/key/known-hosts options | Preserve the failure; no partial backup is accepted. It now has1MiB combined output and30s work plus2s cleanup. Monitoring stays paused | Complete validated export only; no key/output disclosure or automatic heartbeat restart |
+| Manager refuses repeated starts; exact unit name and preserved original journal | Inspect manager start/exit history: systemd255 may retain `Result=exit-code`. Repair the cause and fence old processes before one deliberate reset/start. Follow [the procedure](KEEPER_RECOVERY.md#service-start-limit-recovery) | Effective5/600s policy, complete cgroup cleanup, compatible writer and fresh healthy recovery |
+| Adopt reviewed new keeper source | Separately review/fence rollout; preserve original journals and install matching keeper/checker and root-owned reviewed tools | New local source digests are identity observations, not running-code attestation. Do not rewrite source hashes or relabel older journals |
+
+The late checkpoint check adds two logical header reads for a previously used
+signer and none when no anchor exists. Existing RPC/deadline/gas/fee budgets
+remain. The current server's old60s/2-confirmation/4h/500k local staging profile
+is not current candidate qualification and was not changed by this audit.
+
+
 ## Ubuntu keeper operating evidence — 25 November 2026
 
 The [storage-recovery record](../reports/ubuntu-storage-20261125/REVIEW.md)

@@ -1,0 +1,17 @@
+{
+  "original_artifact_sha256": "c577c2c51cb903cebbbf86fde5114f69d99b4c430c9575a90a2b493cab120645",
+  "original_result": {
+    "errors": 0,
+    "failures": 0,
+    "method": "tests_python.test_read_process.ReadProcessTests.test_exited_parent_cannot_strand_a_unix_inherited_pipe",
+    "other_test_bodies_run": 0,
+    "output": "test_exited_parent_cannot_strand_a_unix_inherited_pipe (popl_c809_selected_read_process.ReadProcessTests.test_exited_parent_cannot_strand_a_unix_inherited_pipe) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.512s\n\nOK\n",
+    "skipped": 0,
+    "source_sha256": "1a70235996cb9fce2b22bd67bb49ef0e695fd3e67ece123bb107f326c94145e7",
+    "success": true,
+    "tests_run": 1
+  },
+  "original_source_manifest_sha256": "eabb3f0a919aae5ff2b19ecbb7754576b419f3d365a296d1ac424eec45b1450f",
+  "test_body_reexecuted": false,
+  "tests_run_this_partition": 0
+}

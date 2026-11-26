@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "checks": {
+    "installed_stage_files": true,
+    "staging_configuration_public_fields_only": true,
+    "staging_journal_metadata": true
+  },
+  "successful": true,
+  "scope": "Read-only before/after installed file, public configuration and journal metadata comparison; no loaded-code attestation",
+  "original_services_preserved": true,
+  "observer_invocation_change_is_ambient": true,
+  "new_c809_c810_cleanup": "Separate native cgroup proofs; not included in historical seven-lab comparison"
+}

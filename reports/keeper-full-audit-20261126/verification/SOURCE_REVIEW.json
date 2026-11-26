@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "baseline": "5331d3a5d051aad3da61d85aa43fafb870487f35",
+  "production_python_changes": {
+    "keeper/monitor.py": {
+      "baseline_sha256": "5ab6bbb20eea21e301d81d2e829a827594079561e2f10770336ec8585b234631",
+      "current_sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f",
+      "changed_or_added_definitions": [
+        "Keeper",
+        "Keeper._late_lp_submission_review",
+        "Keeper.poll_pending",
+        "Keeper.submit"
+      ],
+      "same_definitions": 94,
+      "removed_definitions": []
+    },
+    "keeper/staging.py": {
+      "baseline_sha256": "28b2b33d64a881dfdc5edafe6dc2daec4825e1729f5e97d9ee964f855aa3bae5",
+      "current_sha256": "9ebae1142434baee326e766d6a4c69ccf3d568e7d7881c92715a3a5024c09710",
+      "changed_or_added_definitions": [
+        "main"
+      ],
+      "same_definitions": 1,
+      "removed_definitions": []
+    },
+    "scripts/check-staging-monitor.py": {
+      "baseline_sha256": "fab3707f73f2c792e3552056274ef150202109056cefc36de380c0893a75b6ab",
+      "current_sha256": "f8b1f237c09e9dec0d28a4e3519a69af5c47fa4f284f2bda9f4714bdae93a4e9",
+      "changed_or_added_definitions": [
+        "main"
+      ],
+      "same_definitions": 1,
+      "removed_definitions": []
+    },
+    "scripts/run-keeper-tests.py": {
+      "baseline_sha256": "ef1bb2fefa5eddda7c4050c1882f5ba7d5a3066c9f881dbcb5c3e38d6e38ec93",
+      "current_sha256": "d1303ef60c6f17959e6ee545d0de22bf105885520f078b96b53488ca654190ec",
+      "changed_or_added_definitions": [],
+      "same_definitions": 7,
+      "removed_definitions": []
+    }
+  },
+  "unchanged_published_test_files": 307,
+  "changed_published_unprotected_tests": {},
+  "protected_dirty_files": {
+    "reports/source-checks.json": {
+      "expected": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "observed": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+      "matches": true
+    },
+    "scripts/run-fork-checks.py": {
+      "expected": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "observed": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+      "matches": true
+    },
+    "tests_python/test_fork_runner.py": {
+      "expected": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "observed": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+      "matches": true
+    },
+    "tests_python/test_frontend_history.py": {
+      "expected": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "observed": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb",
+      "matches": true
+    }
+  },
+  "new_test_files": [
+    "tests_python/test_keeper_anchor_recheck.py",
+    "tests_python/test_keeper_utility_capture.py",
+    "tests_python/test_read_process.py"
+  ],
+  "scope": "AST/source comparison only; no old test body or contract suite executed; same bodies are not an assertion of transitive behavioral equivalence."
+}

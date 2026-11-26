@@ -9,13 +9,13 @@ import hashlib
 import json
 import os
 from pathlib import Path
-import subprocess
 import sys
 import time
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from keeper.monitor import error_context
 from keeper.ops import digest,timestamp
+from zzz_ops.read_process import run_read_process
 
 
 def validate_export(data,now=None):
@@ -43,10 +43,10 @@ def main():
     parser.add_argument('--backup-directory',required=True);parser.add_argument('--ssh',default='ssh')
     args=parser.parse_args()
     try:
-        result=subprocess.run([args.ssh,'-T','-o','BatchMode=yes','-o','IdentitiesOnly=yes','-o','StrictHostKeyChecking=yes',
+        result=run_read_process([args.ssh,'-T','-o','BatchMode=yes','-o','IdentitiesOnly=yes','-o','StrictHostKeyChecking=yes',
             '-o','ConnectTimeout=10','-o','ServerAliveInterval=10','-o','ServerAliveCountMax=1',
             '-o','UserKnownHostsFile='+str(Path(args.known_hosts).resolve()),'-i',str(Path(args.key).resolve()),
-            'zzz-stage-monitor@46.225.185.212','status'],capture_output=True,timeout=30)
+            'zzz-stage-monitor@46.225.185.212','status'],timeout=30)
         if result.returncode or len(result.stdout)>1048576:raise ValueError('Monitor connection/output failed')
         report,snapshot=validate_export(json.loads(result.stdout))
         if snapshot is not None:

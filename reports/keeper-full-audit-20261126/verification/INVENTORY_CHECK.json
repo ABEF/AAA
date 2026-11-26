@@ -1,0 +1,25 @@
+{
+  "action": "verified",
+  "counts": {
+    "abi_kinds": {
+      "constructor": 40,
+      "fallback": 0,
+      "function": 968,
+      "receive": 13
+    },
+    "abi_rows": 1021,
+    "build_controls": 4,
+    "callable_contracts": 40,
+    "dependency_sources": 39,
+    "excluded_internal_objects": 8,
+    "project_sources": 61,
+    "python_definitions": 2007,
+    "python_files": 183,
+    "solidity_bodyless_declarations": 511,
+    "solidity_implemented_definitions": 1056,
+    "solidity_modifiers": 29
+  },
+  "inventory_only": true,
+  "output_bytes": 4881959,
+  "output_sha256": "0a0a8ca2dbae51879c37b9c2449c70e0c5d0f634209a7b50b88f06fe43a698f4"
+}

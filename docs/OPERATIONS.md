@@ -1,5 +1,11 @@
 # Keeper, indexer and service operations
 
+The [26 November keeper audit](../reports/keeper-full-audit-20261126/REVIEW.md) records current late cost-anchor checks,
+bounded utility capture and isolated operating verification. Historical failures,
+new source checks, reused runtime proofs and existing-server observations retain
+separate scopes. Production/adoption remains unapproved; journals and limits stay.
+
+
 [Bounded Cast output](../reports/bounded-cast-20261121/REVIEW.md) applies automatically to startup
 address checking and sending, with64KiB aggregate raw output, existing30/90work
 deadlines and bounded failure cleanup. See [operator recovery](OPERATOR_MANUAL.md#bounded-cast-output-and-uncertain-transactions).

@@ -1,0 +1,70 @@
+{
+  "scope": "Exact inspection-only source; no runtime, credential, snapshot input or executable rollout selected",
+  "files": {
+    "shared/keeper_runtime.py": {
+      "bytes": 37193,
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+    },
+    "shared/keeper_jobs.py": {
+      "bytes": 9477,
+      "sha256": "363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4"
+    },
+    "shared/job_cases.py": {
+      "bytes": 15671,
+      "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7"
+    },
+    "shared/native_base.py": {
+      "bytes": 29204,
+      "sha256": "cdc34179f146fedd19d13e3e7fdcbbe1efce9719d800c63148e6971d1069d18f"
+    },
+    "c809/model_service.py": {
+      "bytes": 11817,
+      "sha256": "61cf2970f9e92c1cdbfce20bc70ce0939558ac7928dd723b72de07e18ea6f11b"
+    },
+    "c809/restart_control.py": {
+      "bytes": 11037,
+      "sha256": "1b34faac915b6c1d61711b9c88f73dfe40b0a3c517f300faf15f681ef030877b"
+    },
+    "c809/remote_capsule.py": {
+      "bytes": 30671,
+      "sha256": "85affe72b0e9b25144523db3176d36db39756702c263a589b373430ae941f94b"
+    },
+    "c809/host_control.py": {
+      "bytes": 7189,
+      "sha256": "478b39e3c9797ed2381e3284ec7a71490ac5c6dddf2d8a08a98fe569ad10cdc0"
+    },
+    "c809/orchestrate_c809.py": {
+      "bytes": 9447,
+      "sha256": "783388cc6a561366fd8620e10303eae48a9e271da07614a464dee4a0a479097b"
+    },
+    "c809/package_c809.py": {
+      "bytes": 12208,
+      "sha256": "f291d48fcad0555afe2cc61362cd7ba2959bfe4ee62548671ce7d4071efbadd7"
+    },
+    "c810/model_service.py": {
+      "bytes": 11829,
+      "sha256": "96a8616ac0efef176c74bb47a3e4ff6eeda7736c8680b1e4f088a9798fe3281b"
+    },
+    "c810/restart_control.py": {
+      "bytes": 11680,
+      "sha256": "fcac6f8041a3aa8de591696da94252d76415113533b985834ab3b51d5ea9f1a7"
+    },
+    "c810/remote_capsule.py": {
+      "bytes": 30707,
+      "sha256": "63fe982e6bb4f28523254e32352f6fc065a957f765de3f00a3eb83406cdc5b62"
+    },
+    "c810/host_control.py": {
+      "bytes": 7194,
+      "sha256": "d32290e1a7a18c6b7b1f1142204b767c763525bbb01e580150927bb77443fc3c"
+    },
+    "c810/orchestrate_c810.py": {
+      "bytes": 10174,
+      "sha256": "5ee7fe26b79249d98e5e402172ab48c84513bf9ad9e636c05bcec1e93162c368"
+    },
+    "c810/package_c810.py": {
+      "bytes": 12451,
+      "sha256": "5e0da3478d7a0c642201bba4105cffb2ce4e791b3265209bb9780f7efe9f028c"
+    }
+  },
+  "execution_performed_by_publication": false
+}

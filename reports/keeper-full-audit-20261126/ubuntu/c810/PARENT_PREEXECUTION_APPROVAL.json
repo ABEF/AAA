@@ -1,0 +1,15 @@
+{
+  "RPC_maximum": 6000,
+  "authorization": "Root reviewed generated capsule/build/hostwrapper and authorized ONLY fixed NEW c810 upload/install/start/status/prove/repair/stop/fetch",
+  "cleanup_seconds": 240,
+  "no_public_transactions_or_sealing": true,
+  "original_environments_preserved": true,
+  "phase_seconds": 600,
+  "pins": {
+    "c810.inputs.tar.gz": "8639fc9ad3073ef2ae883849f7df09d2e99a56af7da4d753bba8cef980e8db14",
+    "host_control.py": "d32290e1a7a18c6b7b1f1142204b767c763525bbb01e580150927bb77443fc3c",
+    "remote_capsule.py": "63fe982e6bb4f28523254e32352f6fc065a957f765de3f00a3eb83406cdc5b62"
+  },
+  "total_seconds": 840,
+  "utc": "2026-11-26T11:38:05.117759+00:00"
+}
