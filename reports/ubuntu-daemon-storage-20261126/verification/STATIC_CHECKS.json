@@ -1,0 +1,14 @@
+{
+  "current_and_new_report_markdown_files": 126,
+  "limitations": "File targets only; fragments/external URLs and behavior are not retested.",
+  "local_file_links_checked": 3789,
+  "missing_local_file_links": [],
+  "network_or_server_calls": 0,
+  "new_curated_artifacts_unchanged": 82,
+  "prior_keeper_artifacts_unchanged": 77,
+  "production_source_changes": 0,
+  "protected_dirty_files_unchanged": 4,
+  "schema": 1,
+  "stable_task_ids_statuses": 83,
+  "test_bodies_executed": 0
+}

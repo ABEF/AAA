@@ -1,0 +1,24 @@
+{
+  "cleanup": {
+    "output_bytes": 0,
+    "overflow": false,
+    "returncode": 0,
+    "stopped": true
+  },
+  "error_class": "HarnessRefusal",
+  "failure_stage": "await_next_normal_240second_cycle",
+  "fixed_guard": "Fresh healthy cycle did not retain the normal240second wait",
+  "full_daemon_native_phase_proof_requires_root_evidence": true,
+  "message_sha256": "bfcf8668d7a89d6cb6495120d95e5ceb27b1217e4012534fa72b19afbba61c9e",
+  "new_seals": 0,
+  "old_feature_journeys_or_tests_run": 0,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_attempts": 1,
+  "raw_forwarded": 1,
+  "schema": 1,
+  "secret_disposition": "retained only in new owned lab; no contents or hashes exported",
+  "shared_RPC_requests": 2765,
+  "source_head": "c07d5b153149f7c072ee5ff785c1cabac60197f6",
+  "success": false
+}

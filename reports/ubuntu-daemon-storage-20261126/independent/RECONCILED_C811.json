@@ -1,0 +1,138 @@
+{
+  "actual_degraded_to_healthy_seconds": 228.2582139968872,
+  "actual_healthy_cycle_verified": true,
+  "actual_paid_keeper_transactions": 1,
+  "artifacts": {
+    "BUILD_RECEIPT.json": {
+      "bytes": 2102,
+      "sha256": "1cf71812efe40b5aa9964fe14a1aaa35cb37bbfcc0124b0ae3ab6253176eb962"
+    },
+    "ORCHESTRATION_RESULT.json": {
+      "bytes": 73270,
+      "sha256": "349dd5f81f3c88f113ab7bab6f7cf8f0d966def33943766019e9fc9f225fa6be"
+    },
+    "SOURCE_MANIFEST.json": {
+      "bytes": 28938,
+      "sha256": "add0173921b2461d1606c90d0c1b8b0f8f010254828a2ced8cc9420c750d7a04"
+    },
+    "STOPPED_HEALTH.json": {
+      "bytes": 38013,
+      "sha256": "9ef89c3809a0a958290acc8cd18a456b9c95d6481f29d2356f217ab2e423c3e4"
+    },
+    "STOPPED_HEALTH_EXECUTION.json": {
+      "bytes": 436,
+      "sha256": "e84127c4bd71eba9dc46960e8dd270a9ce56cea21a261e5ac4a3bd15c9b0c8e6"
+    },
+    "case-FINAL_JOURNAL.json": {
+      "bytes": 5831,
+      "sha256": "bad79f40b335fe06ac7587c054ecbffeb8e835c8ca7257f795758b5ebdc26292"
+    },
+    "case-HASHLESS_RESTART_BLOCKED.json": {
+      "bytes": 7544,
+      "sha256": "dab165a7bd7bffd9df629a4e327f997f90ed97c912300a0c1f78250aa871c087"
+    },
+    "case-HASH_SAVE_FAULT_ARMED.json": {
+      "bytes": 7965,
+      "sha256": "70b4e6081c561092d7c7cadf173da48180b912839818ee262c2cf830b83e463f"
+    },
+    "case-INITIAL_JOURNAL.json": {
+      "bytes": 3752,
+      "sha256": "217590d388c5310af6541a092c4e15e6489b8325176be942e9938d6787e570f0"
+    },
+    "case-RECOVERED_JOURNAL.json": {
+      "bytes": 13584,
+      "sha256": "bb237da88f04feb4071abf61df487df84e9b534b89497434588605fb6bed1436"
+    },
+    "case-RESOLUTION_READY.json": {
+      "bytes": 11261,
+      "sha256": "2b27f82f5f0c17bf87c8f9ff0389acccc6dd63ba51e16731134623358f5b68d7"
+    },
+    "model-READY.json": {
+      "bytes": 1431,
+      "sha256": "ae7017aaefdc89a65d674b7ce20bd73cb2767f912ccdf8d5d2b24c84072c48bd"
+    },
+    "model-RESULT.json": {
+      "bytes": 814,
+      "sha256": "2b5cee57e2d8283c4377dbe45f707bac74524c30e43e2a53601043d12d612f6c"
+    },
+    "native-FAULT_PROOF.json": {
+      "bytes": 13374,
+      "sha256": "d2a25932a3a145cc46864560393aeeda84ca31d6f055c2f2af31548f8788ee47"
+    },
+    "native-FINAL_STOP.json": {
+      "bytes": 20764,
+      "sha256": "00d50a3eba76ae113a61e6f1c8b8a4f7a9329c0daf0750a6788194f15663a117"
+    },
+    "native-REPAIR.json": {
+      "bytes": 4353,
+      "sha256": "5a361f96b5d2d4468721f675c877eb019f354905327bcd41141ceeb8c9ef9d0d"
+    },
+    "native-RESOLUTION_COMPLETE.json": {
+      "bytes": 244,
+      "sha256": "304962fdab326c15604919fd6a05ffa807682542c1fbbc93f2156718df8de2cc"
+    },
+    "native-RESOLUTION_RECEIPT.json": {
+      "bytes": 3702,
+      "sha256": "fa6b44ac2d0acfd778c83d4618ec775fbb3caad34b0d619420c29d42443b0eff"
+    },
+    "native-keeper.stdout.log": {
+      "bytes": 1920,
+      "sha256": "ba1cdabfd46ea8fe7a2a7b517fee0b3f2e7ff31536f44941931c89c123af2d42"
+    }
+  },
+  "canonical_execution_price_wei": 32,
+  "checks": [
+    {
+      "check": "exact191_HEAD_sources_frozen_F6_helpers_and_preserved_deadline_priority",
+      "passed": true
+    },
+    {
+      "check": "original_campaign_and_model_NONPASS_preserved_exactly_no_financial_replay",
+      "passed": true
+    },
+    {
+      "check": "real_accepted_hash_EACCES_original_diagnostics_natural_exit_and_hashless_restart_no_resend",
+      "passed": true
+    },
+    {
+      "check": "explicit_no_live_hash_only_resolution_before_twelve_actual_confirmations",
+      "passed": true
+    },
+    {
+      "check": "independent_canonical_fees_day_nonce_anchor_and_harvest_clock_booked_once",
+      "passed": true
+    },
+    {
+      "check": "actual_fresh_healthy_cycle_preserves240_config_earlier_known_deadline_is_not_minimum_wait",
+      "passed": true
+    },
+    {
+      "check": "original_recursive_groups_empty_and_post_read_units_stopped_missing_after_vectors_explicit",
+      "passed": true
+    }
+  ],
+  "core_recovery_verified": true,
+  "external_host_preservation_review_required": true,
+  "financial_after_vectors_available": false,
+  "financial_scenarios_replayed": 0,
+  "full_planned_scenario_pass": false,
+  "gas_used": 300814,
+  "keeper_raw_resends": 0,
+  "missing_scope": [
+    "new physical/rights/backing after-state vectors were not captured before harness refusal",
+    "no physical power-loss, off-host fencing, sustained operation or actual-provider qualification"
+  ],
+  "original_campaign_success": false,
+  "original_elapsed_seconds": 311.3130000000001,
+  "original_model_success": false,
+  "original_timing_assertion_passed": false,
+  "paid_wei": 9626048,
+  "primitives_source_sha256": "3b0da33bf74141af8ecc0734ebee0a5c78daa02dbc1af3b461a2a8f0022a0ed4",
+  "production_approved": false,
+  "schema": 1,
+  "shared_RPC_requests": 2765,
+  "source_head": "c07d5b153149f7c072ee5ff785c1cabac60197f6",
+  "timing_correction": "240 is outer polling interval; preserved known confirmation deadline can wake earlier",
+  "unchanged_test_bodies_rerun": 0,
+  "verifier_sha256": "4043894962a20cfc25a2f6184862ed0924b82546b78880acbc104c403299c441"
+}

@@ -1,0 +1,42 @@
+{
+  "bundle_sha256": "e38f0b6eb0cda38c535f4e279108d29213c7027592ef5a541a1766b6bc6f6a42",
+  "controlled_copied_state_only": true,
+  "controller_sha256": "f58246e042be8a6822cc57d0602d828b6c3ce050137a084c9e3a7e5c87857162",
+  "copied_inputs": {
+    "entry-receipts.json": {
+      "bytes": 696971,
+      "sha256": "425902fae92cdbb210f3a12afc80908b9bd186ec1ae80060c427d9f302f3c519"
+    },
+    "instances.json": {
+      "bytes": 4845414,
+      "sha256": "e94a9dc5d4f3f04211ad77e62612b2284301584c3e363203198311d34d128e56"
+    },
+    "restore-state.json": {
+      "bytes": 13643211,
+      "sha256": "42ab11fd14bd02868359fb3fdd84e961f3f8050245f0cb370d1962be823d9b9a"
+    }
+  },
+  "existing_services_changed": false,
+  "lab": "/opt/popl-ubuntu-daemon-storage-20261126-c811",
+  "members": 200,
+  "new_sealing": false,
+  "phase": "installed",
+  "schema": 1,
+  "source_identity_manifest_sha256": "add0173921b2461d1606c90d0c1b8b0f8f010254828a2ced8cc9420c750d7a04",
+  "source_manifest_sha256": "2ca85112108a9586fab2ac399748c2c9b5fd5526959310f24cbe817b60146a65",
+  "source_readonly": true,
+  "source_stage": "source_base_plus_overrides",
+  "tools": {
+    "anvil": {
+      "path": "/opt/popl-ubuntu-daemon-storage-20261126-c811/tools/anvil",
+      "sha256": "05ee0cf1758024ea5e23dae562d92955ace205ab299091a43d2fa5bdeb6933bd"
+    },
+    "cast": {
+      "path": "/opt/popl-ubuntu-daemon-storage-20261126-c811/tools/cast",
+      "sha256": "d55f540256f0dd8b940a125d435919948a5e8c140262e9923067cbfa95ef2970"
+    }
+  },
+  "uid": 65534,
+  "unit": "popl-ubuntu-daemon-storage-20261126-c811-model.service",
+  "upload_retained": true
+}

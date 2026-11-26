@@ -1,0 +1,1758 @@
+{
+  "actions": [
+    {
+      "action": "upload",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "1abe36274f4b95d3e733a70d71b4b324766828d851fde87f60b7d9961b5de341",
+      "reason": null,
+      "seconds": 1.4220000000004802
+    },
+    {
+      "action": "install",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "6bfa39ecb23bc5df51117e8be1bcd20515904ea78170494b49c53445375d3254",
+      "reason": null,
+      "seconds": 1.7179999999998472
+    },
+    {
+      "action": "start",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "6c9ae821c14429e4f48b8f56b2d4cf593d5e546b68d52a27f3312c0d98d25cb6",
+      "reason": null,
+      "seconds": 1.1090000000003783
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "07cfe0d1bfd0026f5fa0789a766a8da3cf8474ca356ad522ac31d5e9ccaba038",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 2,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "f4f48274e136839f001065eb4358fdfa131fe41336c1da71cf77c5e6eda2cad9",
+      "reason": null,
+      "seconds": 0.9220000000004802
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 3,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "643a59b4cb61dfb820667b6a26ded6b40353817fd756ec2a3b5ab72b3a86f554",
+      "reason": null,
+      "seconds": 0.9220000000004802
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 4,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "ed2842b5249b271968404cf89cf05e595015b76d2e6f83981b47ace31a3c6d86",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "startkeeper",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "faf4bcd8e7a1748d666e09e3e17f44015d89241151c53ad30f9c8aa9110f637e",
+      "reason": null,
+      "seconds": 1.0160000000005311
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 5,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "938c97d5a1bb8d1841041b3bdc4bec46a1ecbbda96754e69fa0a54fcd4e3d31a",
+      "reason": null,
+      "seconds": 0.9220000000004802
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 6,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "2aa3c3e50bf545d8cbf635163073f30280cb35ac07fababff2371e75b3f962cc",
+      "reason": null,
+      "seconds": 0.9220000000004802
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 7,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "43cfe468ba94e51074b446476d566a45419f6c614eaa51ab22df6ef33056fabf",
+      "reason": null,
+      "seconds": 0.9220000000004802
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 8,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "c05de3d26965620ce8ead5625df2691d9f1275404f8f1bd1c2a54a0f59a4b319",
+      "reason": null,
+      "seconds": 0.9220000000004802
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 9,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "b3c727e92722401463f4befb5e62789ba29659d8f834f78c503e0de0f5f8ac1a",
+      "reason": null,
+      "seconds": 1.0160000000005311
+    },
+    {
+      "action": "stopkeeper",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "d263e93dbbfef424886f57c3fba28c1192d271029e6d1e200479a06b015c9f38",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 10,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "aec822572a7113865606003e284a0a5be937d9d69e0a776b8f15b0fe796fe672",
+      "reason": null,
+      "seconds": 1.0160000000005311
+    },
+    {
+      "action": "prove",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "b59474cf819a68a596b6a9004217525d1b273d91af270b4927f7d9a476a3a2e6",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "repair",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "9a2f9ae5cb496633161b8e8b87d8da82dbe8fd60d268dd97573ad2b79a5e2c5f",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 11,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "cbd4dcea3d7ed9c69c01dea27665aa9573038edfdd4a1b325fe3440e9ce60600",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 12,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "f5094d165ec9377c288d57c5ef616df58ec2ccba9c513048b431bc03936dfccf",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "stopkeeper",
+      "artifact": null,
+      "attempt": 2,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "c5bf3e5608b77169197643b2683271a9cb987450c5d02d076c1173428d112778",
+      "reason": null,
+      "seconds": 0.9220000000004802
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 13,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "4e3966f07da064f7c3d1e28d73658c3480dea7372250252c6ad10e9795bd9a09",
+      "reason": null,
+      "seconds": 1.1089999999994689
+    },
+    {
+      "action": "resolve",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "ee247d00ed3f8162b8885fbfcf2fdbfa59b8146ebcfcaeb996c088bdfb159bce",
+      "reason": null,
+      "seconds": 1.3119999999998981
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 14,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "22aee43963a7db4b967348a58996cb02f70ab1be75be42e0db8fc381ba13fca0",
+      "reason": null,
+      "seconds": 1.0160000000005311
+    },
+    {
+      "action": "resume",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "e3d126fc887822ad20d4aa2e87294d073005707d3a7fdd9eb4e84f50ce07690e",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 15,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "c2dfba333514b3e30bf311eb359b816f59dbf76dc6dff6dc749d41ddff0ac2be",
+      "reason": null,
+      "seconds": 0.9070000000001528
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 16,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "8f597498f25765ba51afde2a71b64c4de1431fbdd5073ebf9e25c8a9baac003f",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 17,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "35cc7e964c6eb7c4850e589d348299adcebc7d4ea3479c392d805c9809ebd407",
+      "reason": null,
+      "seconds": 1.0
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 18,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "393ae2e2e29d6d1f3d4b7708647cb450f1d50acce33b78d7b21448564545b7ac",
+      "reason": null,
+      "seconds": 1.014999999999418
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 19,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "10276734a225d7dcbf2afae02d0a3702112b2333be125fca7e84fed165b3cc2d",
+      "reason": null,
+      "seconds": 1.2179999999998472
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 20,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "d6d84bb2057beb886b8f66733d79e929fb87048d448f8639786c2c83579a5f0a",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 21,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "1cfa160eefefaa0334e8e04f21609991658ea385bf86579ac59c5fce3d028819",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 22,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "6ba9b9bc2ab64baedb170bf36ff3345a982957cd0f37997bea8e233ffc2ae0b6",
+      "reason": null,
+      "seconds": 1.25
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 23,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "14a0b4b78c94d8fd5fe2163e4e4666f0d37dd4793a8eea6af0d799e5e653b3f2",
+      "reason": null,
+      "seconds": 1.0
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 24,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "c04de7148363d145fa987ceb683ddc60f3bd8b1aefdd9580ffc24dc75de5402f",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 25,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "e13bde5e0673ad221c85443ef5339346d0368de9fc35fe7f6dad938cc0eb0770",
+      "reason": null,
+      "seconds": 1.014999999999418
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 26,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "ae72d3c69abf408e56fd2449eabde08d9bee6e33cc596adf14124f6b08a4ef4a",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 27,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "75629e9e6ae4a0d25bf7757c942358fc8e5a557cae10a7152e128f5aecdf89c6",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 28,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "7b21fe421b9fb36bbe11e6e72a6809cd188d1e73479323f9f684a761be723ade",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 29,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "07c5408a88c6418d6e1cf39c1a5ecc431444fce4f70ad62e31e67b96a315eaff",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 30,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "fa455031273288f8134bbe7c261cabd389339a406b0babddebff0625b8c1867e",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 31,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "69b400443910b8c986721a5507cc74301e19bfdabbfc942d8cf5cf28eae69a66",
+      "reason": null,
+      "seconds": 1.0
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 32,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "5cf578b1b192fc01a4b037811100772713ed9fed8fc719df68d8173119aed05e",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 33,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "77e4e61b46d919550d71792b11cbd4929a183a9dc9ddb5780423eb85b04d61e7",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 34,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "ec1227e35a8af0c453f124eb995601c99a128bf470326bedb4cc1eea9e167d88",
+      "reason": null,
+      "seconds": 1.2030000000004293
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 35,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "362f6efd860bcdcadd2d47cf222138af38a74e669b74c31bae4ff99e5fd7e41c",
+      "reason": null,
+      "seconds": 1.014999999999418
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 36,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "5d7609ff511a4fd2948abcd49d73d77b965f7a4ac1b1363be77ba2737ac61db0",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 37,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "cb17d354f31f5aefdd22edc50a0e56cf9339c8d383d70b8168b56fa458d4ae48",
+      "reason": null,
+      "seconds": 1.0
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 38,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "d184c7047c3730bdaad61da92f50baccb13212b765938cf65d3275f0f4767f1a",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 39,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "df807f3780fe6b8af07b6dfe9e8f442c4f469bc7291107e425ffc7af523e784b",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 40,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "d9a7319036139cd02b21c0fab9ab0b9574e0c862f298257e0b8f090a124bae84",
+      "reason": null,
+      "seconds": 1.0
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 41,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "39591b7a8ce76737dd05c48fb6dec4f54be06e4f3c12c11ca4539d32b8c71d66",
+      "reason": null,
+      "seconds": 1.014999999999418
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 42,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "fb9e6ee942d3438fea5dd125c95e50934bf026b0a1505ed4f6abb0c085aafc96",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 43,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "ccfbfd6877eb314990926959c5f961c4796dc6be8845d3bcc8b105c673a238c6",
+      "reason": null,
+      "seconds": 1.0
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 44,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "eb0c19bec711fd35437466b56b34e8cb8bffc8d329d62ab5b6848866e73adcb5",
+      "reason": null,
+      "seconds": 1.014999999999418
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 45,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "8374c0196f6e8af66b8e19837c53189469228bc951fc4938ad01baf66428d497",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 46,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "8e323afc9113ac195d41f042fb795202264126713b470242ced2cf47d96f0f33",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 47,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "ac8f35cc51c7342a7fdc3669e15265d9c804fb139797a365d37db36dc5917405",
+      "reason": null,
+      "seconds": 1.0160000000005311
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 48,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "fabcfaff8bb79b264910ab9451b71645cff19557fd7f31b3b19455eee0f3101f",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 49,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "225ef2714a56f482c0e74f3644d1cc2da08dd1680f7611a96a564212a2d7a1a1",
+      "reason": null,
+      "seconds": 1.219000000000051
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 50,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "bb06c6032364299358110fc8f28a6cbe8d0523058ff3097b1f862efdf97e4a3a",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 51,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "5ba01b12881da37fd399d80446ac13ca892d071ae6b169e14319e05b87bffdf4",
+      "reason": null,
+      "seconds": 1.0160000000005311
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 52,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "6fdabc08c19bdfabb1e8bb7116ec9dba06f11f30c985dd53b85ec7269ebb4e3b",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 53,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "53e1981d763aa0012bd71716f611fad5d10f4780d795b4a2745f38e61acd90f8",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 54,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "b29f5c5a1005a8f46e14051d1b347eb5476e61fee909e07b19c844aad2e0682d",
+      "reason": null,
+      "seconds": 1.0160000000005311
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 55,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "1bb3ac1e853efc49c6a9c89a6c2b678d2ae27b83ac435e319cbe432f3e91ec52",
+      "reason": null,
+      "seconds": 1.0160000000005311
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 56,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "7cc4e678330b0e2410c4a3ca702363e229e91e583a4b7301fc0a39f62bf7ba4a",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 57,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "462a6208445aa3d23c100d31cc1ff687846d36e26c0f0a72050a9c34cd187ece",
+      "reason": null,
+      "seconds": 1.0
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 58,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "e27353be4e0bcf2bb1ab00c540b5cf2c4c3e8fb40d700fcf085b0de8150f0655",
+      "reason": null,
+      "seconds": 1.0160000000005311
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 59,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "edb1bc5a05b7ef8cd96f6a99912b7aa64ee38bf07df46734b19e47e3ea353eee",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 60,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "01686c254d951e15ae8c74f13a48e77276665e0cba4de19c4b31b7b9b5c8e33b",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 61,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "37a39a58fc5d1a5826dfc95e814b2a7f3b534aa409fce008e8a1c13cee6ec35c",
+      "reason": null,
+      "seconds": 1.014999999999418
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 62,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "06fdf111bf158896008f04ad98d9a49d57c70c231ca3f206850521ebbfafbb13",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 63,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "84b65dfc77b6d0958ea0615ad3ceb35b1f2335b68d139f57141a5725b629b5c3",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 64,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "73b72c54148da3a7a70caad832d43343e275c7ecfae8c528f1eb112a088cd12f",
+      "reason": null,
+      "seconds": 1.219000000000051
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 65,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "44c6ef42232d8bc1bb12ff868d06bfaf0bfa812e5aeefb958a5488543a8739d9",
+      "reason": null,
+      "seconds": 1.0160000000005311
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 66,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "bd6648cfcc45d7cef8c2268a5cc969c504939bdf1e2f36abcdebaf66fd1aa0c2",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 67,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "d9a7fd0182e7cc1e16bf3a32621b9c9155014bf5364a6829f3a33f973ae84876",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 68,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "f6d1050a0a3cf181d00e4655dc124ca7fde3c0f2aceea54002ba6a73c47691d0",
+      "reason": null,
+      "seconds": 1.0160000000005311
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 69,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "b54c99e64cd85af640bd2f5d29d71fd573929b42a2131a5546c2f2d1590d7c3d",
+      "reason": null,
+      "seconds": 1.0160000000005311
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 70,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "862514b0109392a8a673704628bd5dd09642b0f9e6e879121be3c33f9156cc56",
+      "reason": null,
+      "seconds": 1.0150000000003274
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 71,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "ccd10eb18c4bb9526d7c0d80ce664a77286b00d3131fc10e6d43c86b9beadec0",
+      "reason": null,
+      "seconds": 0.9070000000001528
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 72,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "e99eac60c652be419260a74044527d4d2d2fa071737d1fff6e506c1cd29a871c",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 73,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "5b21b0d34465e765c9ce78a069b99435f21ddd8f51f7e5ef75af89366b9c34fe",
+      "reason": null,
+      "seconds": 1.0
+    },
+    {
+      "action": "stop",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "6430c83dee017752af3e4f85ed36aec99af96a699f0bd2c93b34c2fcfd4bfb12",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    },
+    {
+      "action": "stop",
+      "artifact": null,
+      "attempt": 2,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "6c021e0dfb03456009a6b650c248f4bbbc8686e979a44b3fdbad205d96cb0a1e",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 74,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "89b7fdd087ff1b46b345ee5fc2212044cdb85fdb807bfb80c9fbd592967019b6",
+      "reason": null,
+      "seconds": 1.0160000000005311
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-BINDINGS.json",
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "ca3f5443199b0a13b991b55fc6ac72723c2b1a1f99cb6dd45d2b74077c4923dd",
+      "reason": null,
+      "seconds": 0.9070000000001528
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-CLOCK_REPAIR.json",
+      "attempt": 2,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "1a77e5d9c0d3c4284cddfd02cb2fe0db1619c4e5f9d31a08ea70191458cfd544",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-FINAL_JOURNAL.json",
+      "attempt": 3,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "8ede3e3e32ecfca837cce87c5f03e83b716c861d26b73a0a924565298b40266c",
+      "reason": null,
+      "seconds": 0.9070000000001528
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-FINANCIAL_BEFORE.json",
+      "attempt": 4,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "17e3b3b1ae83b94c989a809910a3e706399237c4e33b7dc082467a85eff62f16",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-HASHLESS_RESTART_BLOCKED.json",
+      "attempt": 5,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "ed24437b91687f3aff656cdb144fbe18ab579d03a73c152284884bf370b3f088",
+      "reason": null,
+      "seconds": 0.9070000000001528
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-HASH_SAVE_FAULT_ARMED.json",
+      "attempt": 6,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "556047071efc265f97a9909e8f6f72dbd16dddede50578246ca322b4d7f73a8f",
+      "reason": null,
+      "seconds": 0.9219999999995707
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-INITIAL_JOURNAL.json",
+      "attempt": 7,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "ca9a1a19a2c22ffbbf41db0d886f05c7e2a85399b269a16c180cbf2cbd66583d",
+      "reason": null,
+      "seconds": 0.9219999999995707
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-POST_RESOLUTION_MINING.json",
+      "attempt": 8,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "e4d3590b215afc52fa324c79810b59e87a2704d96c2e841f71aa151f80cfb838",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-RAW_REVIEWS.json",
+      "attempt": 9,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "ed1434624379ac0d0cbfc844b499399b0fa1189f8a98fd4bd8cdc674c31453f4",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-RECEIPTS.json",
+      "attempt": 10,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "7428a35a8437f08002044b27f2d1c97c8defc784f472fdbc207b629f1cac8f35",
+      "reason": null,
+      "seconds": 0.9210000000002765
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-RECOVERED_JOURNAL.json",
+      "attempt": 11,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "54e8dee3ab5e627c60f2dd67df077a85cdf6d44d372621e764635653a70f221a",
+      "reason": null,
+      "seconds": 0.9220000000004802
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-RECOVERY_REFRESH_HEALTH.json",
+      "attempt": 12,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "6c203cd41849f139669b49c9db63205d334ce165d36cc9885d3b620ee51f8304",
+      "reason": null,
+      "seconds": 0.9210000000002765
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-RESOLUTION_READY.json",
+      "attempt": 13,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "5d83f276a5fd797e0f984f6ed948662d35afb9beee4c2b2228babb0924140b47",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-RESULT.json",
+      "attempt": 14,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "8899bfa26ae00464bbcee5cdc7329105e33253de56b51045aea17a4a93075d5b",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-SETUP.json",
+      "attempt": 15,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "8633d2e5bc40abf049cae9413be23accf068b8881fb2611068bd68ca2b5a9071",
+      "reason": null,
+      "seconds": 0.9219999999995707
+    },
+    {
+      "action": "fetch",
+      "artifact": "model-EVENTS.json",
+      "attempt": 16,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "b06a4764fba6e14686702157588caa632dc9da3ddd7c69a330a9b0d9c311879c",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    },
+    {
+      "action": "fetch",
+      "artifact": "model-READY.json",
+      "attempt": 17,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "bff22714f665edb1e95e1aec1f04acf794994b401edd8be90da772f0e34ace97",
+      "reason": null,
+      "seconds": 1.030999999999949
+    },
+    {
+      "action": "fetch",
+      "artifact": "model-RESULT.json",
+      "attempt": 18,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "17ee9841d11f9858edb074859b44cc7cdd279fd3582b0841eae6741b6f6a221d",
+      "reason": null,
+      "seconds": 0.9210000000002765
+    },
+    {
+      "action": "fetch",
+      "artifact": "native-FAULT_PROOF.json",
+      "attempt": 19,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "73ed77bd743e96a2a7fb56b2df547c232ed35758b021cd6e9a0209e587d7adec",
+      "reason": null,
+      "seconds": 1.2029999999995198
+    },
+    {
+      "action": "fetch",
+      "artifact": "native-FINAL_STOP.json",
+      "attempt": 20,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "cf46684bbe55707ef889d9c1b9fbc88c71e4775f16d85ff3e69ec3afe3467aba",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    },
+    {
+      "action": "fetch",
+      "artifact": "native-REPAIR.json",
+      "attempt": 21,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "615b31f463678b3317bc1a9ed31aee1cf7766e22bbb71c8adbd310a3373f4318",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    },
+    {
+      "action": "fetch",
+      "artifact": "native-RESOLUTION_COMPLETE.json",
+      "attempt": 22,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "570db8ed6d98aba8fbf4d50dc73fbf78d58d3161fbf1d3b236b905895d6e0088",
+      "reason": null,
+      "seconds": 0.9220000000004802
+    },
+    {
+      "action": "fetch",
+      "artifact": "native-RESOLUTION_RECEIPT.json",
+      "attempt": 23,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "074921d9658ba43b63f7b0f32f04a80f18f5f1d7105d581a33478f4ab4aeee76",
+      "reason": null,
+      "seconds": 0.9210000000002765
+    },
+    {
+      "action": "fetch",
+      "artifact": "native-RESUME.json",
+      "attempt": 24,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "d51aec3aa0faaff15b1eddfd4f86631f747984b7cd300469cc70e18bba8c40b4",
+      "reason": null,
+      "seconds": 0.9059999999999491
+    }
+  ],
+  "cleanup": true,
+  "completed": false,
+  "elapsed_seconds": 311.3130000000001,
+  "exports": [
+    "case-BINDINGS.json",
+    "case-CLOCK_REPAIR.json",
+    "case-FINAL_JOURNAL.json",
+    "case-FINANCIAL_BEFORE.json",
+    "case-HASHLESS_RESTART_BLOCKED.json",
+    "case-HASH_SAVE_FAULT_ARMED.json",
+    "case-INITIAL_JOURNAL.json",
+    "case-POST_RESOLUTION_MINING.json",
+    "case-RAW_REVIEWS.json",
+    "case-RECEIPTS.json",
+    "case-RECOVERED_JOURNAL.json",
+    "case-RECOVERY_REFRESH_HEALTH.json",
+    "case-RESOLUTION_READY.json",
+    "case-RESULT.json",
+    "case-SETUP.json",
+    "model-EVENTS.json",
+    "model-READY.json",
+    "model-RESULT.json",
+    "native-FAULT_PROOF.json",
+    "native-FINAL_STOP.json",
+    "native-REPAIR.json",
+    "native-RESOLUTION_COMPLETE.json",
+    "native-RESOLUTION_RECEIPT.json",
+    "native-RESUME.json"
+  ],
+  "failure": {
+    "error_type": "RuntimeError",
+    "fixed_reason": "Private model exited before model-COMPLETE.json",
+    "stage": "phase"
+  },
+  "final_status": {
+    "native": {
+      "finished_monotonic": 9012773.822600607,
+      "host_network_namespace": "net:[4026531840]",
+      "lab": "/opt/popl-ubuntu-daemon-storage-20261126-c811",
+      "lock_identity": [
+        2049,
+        904301
+      ],
+      "old_processes": [],
+      "original_failure_complete": true,
+      "original_main_exit_records": [
+        {
+          "EXIT_CODE": "exited",
+          "EXIT_STATUS": "1",
+          "INVOCATION_ID": "b73f4214cd26414da1d5f56dbff508f1",
+          "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service: Main process exited, code=exited, status=1/FAILURE",
+          "MESSAGE_ID": "98e322203f7a4ed290d09fe03c09fe15",
+          "SYSLOG_IDENTIFIER": "systemd",
+          "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+          "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+          "_PID": "1",
+          "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8837c;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83263d38bea;t=6612d610c5cf6;x=9a2f8a79ebdb8258",
+          "__MONOTONIC_TIMESTAMP": "9012516195306",
+          "__REALTIME_TIMESTAMP": "1795697389886710"
+        }
+      ],
+      "schema": 1,
+      "started_monotonic": 9012773.76938128,
+      "units": {
+        "popl-ubuntu-daemon-storage-20261126-c811-keeper.service": {
+          "cgroup": {
+            "exists": false,
+            "groups": [],
+            "path": "/system.slice/popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+            "pids": [],
+            "processes": []
+          },
+          "manager_journal": [
+            {
+              "INVOCATION_ID": "b73f4214cd26414da1d5f56dbff508f1",
+              "JOB_RESULT": "done",
+              "MESSAGE": "Started popl-ubuntu-daemon-storage-20261126-c811-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json --live.",
+              "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88353;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=832631428be;t=6612d604cf9ca;x=c598442dd5185e17",
+              "__MONOTONIC_TIMESTAMP": "9012503652542",
+              "__REALTIME_TIMESTAMP": "1795697377343946"
+            },
+            {
+              "EXIT_CODE": "exited",
+              "EXIT_STATUS": "1",
+              "INVOCATION_ID": "b73f4214cd26414da1d5f56dbff508f1",
+              "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service: Main process exited, code=exited, status=1/FAILURE",
+              "MESSAGE_ID": "98e322203f7a4ed290d09fe03c09fe15",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8837c;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83263d38bea;t=6612d610c5cf6;x=9a2f8a79ebdb8258",
+              "__MONOTONIC_TIMESTAMP": "9012516195306",
+              "__REALTIME_TIMESTAMP": "1795697389886710"
+            },
+            {
+              "INVOCATION_ID": "b73f4214cd26414da1d5f56dbff508f1",
+              "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service: Failed with result 'exit-code'.",
+              "MESSAGE_ID": "d9b373ed55a64feb8242e02dbe79a49c",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+              "UNIT_RESULT": "exit-code",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8837d;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83263d38ca2;t=6612d610c5dae;x=cc7ba419795dd81b",
+              "__MONOTONIC_TIMESTAMP": "9012516195490",
+              "__REALTIME_TIMESTAMP": "1795697389886894"
+            },
+            {
+              "INVOCATION_ID": "b73f4214cd26414da1d5f56dbff508f1",
+              "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service: Consumed 5.004s CPU time, 31.5M memory peak, 0B memory swap peak.",
+              "MESSAGE_ID": "ae8f7b866b0347b9af31fe1c80b127c0",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8837e;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83263d38ed4;t=6612d610c5fdf;x=4174cb8461a0670c",
+              "__MONOTONIC_TIMESTAMP": "9012516196052",
+              "__REALTIME_TIMESTAMP": "1795697389887455"
+            },
+            {
+              "INVOCATION_ID": "b73f4214cd26414da1d5f56dbff508f1",
+              "JOB_RESULT": "done",
+              "MESSAGE": "Stopped popl-ubuntu-daemon-storage-20261126-c811-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json --live.",
+              "MESSAGE_ID": "9d1aaa27d60140bd96365438aad20286",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88393;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83263f5f425;t=6612d612ec531;x=fa0e2f282dec4e08",
+              "__MONOTONIC_TIMESTAMP": "9012518450213",
+              "__REALTIME_TIMESTAMP": "1795697392141617"
+            },
+            {
+              "INVOCATION_ID": "b73f4214cd26414da1d5f56dbff508f1",
+              "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service: Consumed 5.004s CPU time, 31.5M memory peak, 0B memory swap peak.",
+              "MESSAGE_ID": "ae8f7b866b0347b9af31fe1c80b127c0",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88394;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83263f5f943;t=6612d612eca4f;x=ca7012ae420238cb",
+              "__MONOTONIC_TIMESTAMP": "9012518451523",
+              "__REALTIME_TIMESTAMP": "1795697392142927"
+            },
+            {
+              "INVOCATION_ID": "ff2f7a363efe464fb819e46a48ad03cc",
+              "JOB_RESULT": "done",
+              "MESSAGE": "Started popl-ubuntu-daemon-storage-20261126-c811-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json --live.",
+              "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b883b3;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83264253ebd;t=6612d615e0fc8;x=8cfe762d90f8710e",
+              "__MONOTONIC_TIMESTAMP": "9012521549501",
+              "__REALTIME_TIMESTAMP": "1795697395240904"
+            },
+            {
+              "INVOCATION_ID": "ff2f7a363efe464fb819e46a48ad03cc",
+              "MESSAGE": "Stopping popl-ubuntu-daemon-storage-20261126-c811-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json --live...",
+              "MESSAGE_ID": "de5b426a63be47a7b6ac3eaac82e2f6f",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b883d5;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83264804b09;t=6612d61b91c15;x=d0098e4c5145c138",
+              "__MONOTONIC_TIMESTAMP": "9012527516425",
+              "__REALTIME_TIMESTAMP": "1795697401207829"
+            },
+            {
+              "INVOCATION_ID": "ff2f7a363efe464fb819e46a48ad03cc",
+              "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service: Deactivated successfully.",
+              "MESSAGE_ID": "7ad2d189f7e94e70a38c781354912448",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b883dc;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=8326482e53d;t=6612d61bbb648;x=a24b83a11ac1d1aa",
+              "__MONOTONIC_TIMESTAMP": "9012527686973",
+              "__REALTIME_TIMESTAMP": "1795697401378376"
+            },
+            {
+              "INVOCATION_ID": "ff2f7a363efe464fb819e46a48ad03cc",
+              "JOB_RESULT": "done",
+              "MESSAGE": "Stopped popl-ubuntu-daemon-storage-20261126-c811-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json --live.",
+              "MESSAGE_ID": "9d1aaa27d60140bd96365438aad20286",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b883dd;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=8326482e7c8;t=6612d61bbb8d4;x=af137ea87b48df24",
+              "__MONOTONIC_TIMESTAMP": "9012527687624",
+              "__REALTIME_TIMESTAMP": "1795697401379028"
+            },
+            {
+              "INVOCATION_ID": "ff2f7a363efe464fb819e46a48ad03cc",
+              "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service: Consumed 1.576s CPU time, 31.7M memory peak, 0B memory swap peak.",
+              "MESSAGE_ID": "ae8f7b866b0347b9af31fe1c80b127c0",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b883de;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=8326482e92e;t=6612d61bbba39;x=3d1515d5707d9689",
+              "__MONOTONIC_TIMESTAMP": "9012527687982",
+              "__REALTIME_TIMESTAMP": "1795697401379385"
+            },
+            {
+              "INVOCATION_ID": "b07a71595bbf476bbb3fa071a225852e",
+              "JOB_RESULT": "done",
+              "MESSAGE": "Started popl-ubuntu-daemon-storage-20261126-c811-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json --live.",
+              "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88403;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83264c51345;t=6612d61fde451;x=24e872317042f4aa",
+              "__MONOTONIC_TIMESTAMP": "9012532024133",
+              "__REALTIME_TIMESTAMP": "1795697405715537"
+            },
+            {
+              "INVOCATION_ID": "b07a71595bbf476bbb3fa071a225852e",
+              "MESSAGE": "Stopping popl-ubuntu-daemon-storage-20261126-c811-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json --live...",
+              "MESSAGE_ID": "de5b426a63be47a7b6ac3eaac82e2f6f",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8866d;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83272e22b6f;t=6612d701afc7b;x=6583850e50f9b7eb",
+              "__MONOTONIC_TIMESTAMP": "9012768811887",
+              "__REALTIME_TIMESTAMP": "1795697642503291"
+            },
+            {
+              "INVOCATION_ID": "b07a71595bbf476bbb3fa071a225852e",
+              "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service: Deactivated successfully.",
+              "MESSAGE_ID": "7ad2d189f7e94e70a38c781354912448",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88674;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83272e557f4;t=6612d701e28ff;x=608be84d7fd9be52",
+              "__MONOTONIC_TIMESTAMP": "9012769019892",
+              "__REALTIME_TIMESTAMP": "1795697642711295"
+            },
+            {
+              "INVOCATION_ID": "b07a71595bbf476bbb3fa071a225852e",
+              "JOB_RESULT": "done",
+              "MESSAGE": "Stopped popl-ubuntu-daemon-storage-20261126-c811-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json --live.",
+              "MESSAGE_ID": "9d1aaa27d60140bd96365438aad20286",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88675;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83272e55976;t=6612d701e2a82;x=eef9846405e91298",
+              "__MONOTONIC_TIMESTAMP": "9012769020278",
+              "__REALTIME_TIMESTAMP": "1795697642711682"
+            },
+            {
+              "INVOCATION_ID": "b07a71595bbf476bbb3fa071a225852e",
+              "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service: Consumed 5.656s CPU time, 31.6M memory peak, 0B memory swap peak.",
+              "MESSAGE_ID": "ae8f7b866b0347b9af31fe1c80b127c0",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88676;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83272e55bae;t=6612d701e2cb9;x=f42e901be7dbccf2",
+              "__MONOTONIC_TIMESTAMP": "9012769020846",
+              "__REALTIME_TIMESTAMP": "1795697642712249"
+            }
+          ],
+          "properties": {
+            "ActiveEnterTimestampMonotonic": "0",
+            "ActiveState": "inactive",
+            "CPUQuotaPerSecUSec": "infinity",
+            "ControlGroup": "",
+            "ExecMainCode": "0",
+            "ExecMainExitTimestampMonotonic": "0",
+            "ExecMainStartTimestampMonotonic": "0",
+            "ExecMainStatus": "0",
+            "FinalKillSignal": "9",
+            "Group": "",
+            "Id": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+            "InactiveEnterTimestampMonotonic": "0",
+            "InvocationID": "",
+            "JoinsNamespaceOf": "",
+            "KillMode": "control-group",
+            "LimitCORE": "infinity",
+            "LoadState": "not-found",
+            "MainPID": "0",
+            "MemoryMax": "infinity",
+            "MemorySwapMax": "infinity",
+            "NRestarts": "0",
+            "NoNewPrivileges": "no",
+            "NotifyAccess": "none",
+            "PrivateDevices": "no",
+            "PrivateNetwork": "no",
+            "ProtectControlGroups": "no",
+            "ProtectHome": "no",
+            "ProtectSystem": "no",
+            "ReadWritePaths": "",
+            "Restart": "no",
+            "RestartUSec": "100ms",
+            "RestrictAddressFamilies": "~",
+            "Result": "success",
+            "RuntimeMaxUSec": "infinity",
+            "SendSIGKILL": "yes",
+            "StartLimitBurst": "5",
+            "StartLimitIntervalUSec": "10s",
+            "SubState": "dead",
+            "TasksMax": "9211",
+            "TimeoutStopUSec": "1min 30s",
+            "User": "",
+            "WatchdogSignal": "6",
+            "WatchdogTimestampMonotonic": "0",
+            "WatchdogUSec": "infinity",
+            "WorkingDirectory": ""
+          }
+        },
+        "popl-ubuntu-daemon-storage-20261126-c811-model.service": {
+          "cgroup": {
+            "exists": false,
+            "groups": [],
+            "path": "/system.slice/popl-ubuntu-daemon-storage-20261126-c811-model.service",
+            "pids": [],
+            "processes": []
+          },
+          "manager_journal": [
+            {
+              "INVOCATION_ID": "a291109537694291bc1176bbf7e7e1a7",
+              "JOB_RESULT": "done",
+              "MESSAGE": "Started popl-ubuntu-daemon-storage-20261126-c811-model.service - /usr/bin/python3 -B /opt/popl-ubuntu-daemon-storage-20261126-c811/source/helpers/model_service.py --source-manifest-sha256 add0173921b2461d1606c90d0c1b8b0f8f010254828a2ced8cc9420c750d7a04 --base-sha256 f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4 --jobs-sha256 363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4 --cases-sha256 7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7.",
+              "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-model.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8831e;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83262409540;t=6612d5f79664c;x=3c4550f8f6131b2f",
+              "__MONOTONIC_TIMESTAMP": "9012489786688",
+              "__REALTIME_TIMESTAMP": "1795697363478092"
+            },
+            {
+              "EXIT_CODE": "exited",
+              "EXIT_STATUS": "1",
+              "INVOCATION_ID": "a291109537694291bc1176bbf7e7e1a7",
+              "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-model.service: Main process exited, code=exited, status=1/FAILURE",
+              "MESSAGE_ID": "98e322203f7a4ed290d09fe03c09fe15",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-model.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88660;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83272ceb11d;t=6612d70078229;x=5eb783fecc8b20e9",
+              "__MONOTONIC_TIMESTAMP": "9012767535389",
+              "__REALTIME_TIMESTAMP": "1795697641226793"
+            },
+            {
+              "INVOCATION_ID": "a291109537694291bc1176bbf7e7e1a7",
+              "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-model.service: Failed with result 'exit-code'.",
+              "MESSAGE_ID": "d9b373ed55a64feb8242e02dbe79a49c",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-model.service",
+              "UNIT_RESULT": "exit-code",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88661;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83272ceb1fd;t=6612d70078309;x=bc0d7ee152e5d36a",
+              "__MONOTONIC_TIMESTAMP": "9012767535613",
+              "__REALTIME_TIMESTAMP": "1795697641227017"
+            },
+            {
+              "INVOCATION_ID": "a291109537694291bc1176bbf7e7e1a7",
+              "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-model.service: Consumed 22.302s CPU time, 102.9M memory peak, 0B memory swap peak.",
+              "MESSAGE_ID": "ae8f7b866b0347b9af31fe1c80b127c0",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-model.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88662;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83272ceb340;t=6612d7007844c;x=373eff7a8d20fdae",
+              "__MONOTONIC_TIMESTAMP": "9012767535936",
+              "__REALTIME_TIMESTAMP": "1795697641227340"
+            }
+          ],
+          "properties": {
+            "ActiveEnterTimestampMonotonic": "9012489786265",
+            "ActiveState": "failed",
+            "CPUQuotaPerSecUSec": "1s",
+            "ControlGroup": "",
+            "ExecMainCode": "1",
+            "ExecMainExitTimestampMonotonic": "9012767535344",
+            "ExecMainStartTimestampMonotonic": "9012489786079",
+            "ExecMainStatus": "1",
+            "ExecStart": "{ path=/usr/bin/python3 ; argv[]=/usr/bin/python3 -B /opt/popl-ubuntu-daemon-storage-20261126-c811/source/helpers/model_service.py --source-manifest-sha256 add0173921b2461d1606c90d0c1b8b0f8f010254828a2ced8cc9420c750d7a04 --base-sha256 f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4 --jobs-sha256 363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4 --cases-sha256 7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7 ; ignore_errors=no ; start_time=[Thu 2026-11-26 12:49:23 UTC] ; stop_time=[Thu 2026-11-26 12:54:01 UTC] ; pid=93571 ; code=exited ; status=1 }",
+            "FinalKillSignal": "9",
+            "Group": "nogroup",
+            "Id": "popl-ubuntu-daemon-storage-20261126-c811-model.service",
+            "InactiveEnterTimestampMonotonic": "9012767535594",
+            "InvocationID": "a291109537694291bc1176bbf7e7e1a7",
+            "JoinsNamespaceOf": "",
+            "KillMode": "control-group",
+            "LimitCORE": "0",
+            "LoadState": "loaded",
+            "MainPID": "0",
+            "MemoryMax": "1610612736",
+            "MemorySwapMax": "0",
+            "NRestarts": "0",
+            "NoNewPrivileges": "yes",
+            "NotifyAccess": "none",
+            "PrivateDevices": "yes",
+            "PrivateNetwork": "yes",
+            "ProtectControlGroups": "yes",
+            "ProtectHome": "yes",
+            "ProtectSystem": "strict",
+            "ReadWritePaths": "/opt/popl-ubuntu-daemon-storage-20261126-c811/runtime",
+            "Restart": "no",
+            "RestartUSec": "100ms",
+            "RestrictAddressFamilies": "AF_INET AF_INET6 AF_UNIX",
+            "Result": "exit-code",
+            "RuntimeMaxUSec": "15min",
+            "SendSIGKILL": "yes",
+            "StartLimitBurst": "5",
+            "StartLimitIntervalUSec": "10s",
+            "SubState": "failed",
+            "TasksMax": "64",
+            "TimeoutStopUSec": "2min",
+            "User": "nobody",
+            "WatchdogSignal": "6",
+            "WatchdogTimestampMonotonic": "0",
+            "WatchdogUSec": "0",
+            "WorkingDirectory": "/opt/popl-ubuntu-daemon-storage-20261126-c811/source/contracts"
+          }
+        },
+        "popl-ubuntu-daemon-storage-20261126-c811-resolve.service": {
+          "cgroup": {
+            "exists": false,
+            "groups": [],
+            "path": "/system.slice/popl-ubuntu-daemon-storage-20261126-c811-resolve.service",
+            "pids": [],
+            "processes": []
+          },
+          "manager_journal": [
+            {
+              "INVOCATION_ID": "7e8e3e9159eb4dd89ec5ee57a605ca5c",
+              "JOB_RESULT": "done",
+              "MESSAGE": "Started popl-ubuntu-daemon-storage-20261126-c811-resolve.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json --resolve-pending 0xcb274063a9b169d3cc98262d053afc7f8a650073b910df0386fba44a74c1c8d8.",
+              "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-resolve.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b883ed;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83264a0674a;t=6612d61d93856;x=f28e8a8850d8c070",
+              "__MONOTONIC_TIMESTAMP": "9012529620810",
+              "__REALTIME_TIMESTAMP": "1795697403312214"
+            },
+            {
+              "INVOCATION_ID": "7e8e3e9159eb4dd89ec5ee57a605ca5c",
+              "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-resolve.service: Deactivated successfully.",
+              "MESSAGE_ID": "7ad2d189f7e94e70a38c781354912448",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-resolve.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b883ee;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83264a50d3c;t=6612d61ddde48;x=232a8717d1ef85b3",
+              "__MONOTONIC_TIMESTAMP": "9012529925436",
+              "__REALTIME_TIMESTAMP": "1795697403616840"
+            }
+          ],
+          "properties": {
+            "ActiveEnterTimestampMonotonic": "0",
+            "ActiveState": "inactive",
+            "CPUQuotaPerSecUSec": "infinity",
+            "ControlGroup": "",
+            "ExecMainCode": "0",
+            "ExecMainExitTimestampMonotonic": "0",
+            "ExecMainStartTimestampMonotonic": "0",
+            "ExecMainStatus": "0",
+            "FinalKillSignal": "9",
+            "Group": "",
+            "Id": "popl-ubuntu-daemon-storage-20261126-c811-resolve.service",
+            "InactiveEnterTimestampMonotonic": "0",
+            "InvocationID": "",
+            "JoinsNamespaceOf": "",
+            "KillMode": "control-group",
+            "LimitCORE": "infinity",
+            "LoadState": "not-found",
+            "MainPID": "0",
+            "MemoryMax": "infinity",
+            "MemorySwapMax": "infinity",
+            "NRestarts": "0",
+            "NoNewPrivileges": "no",
+            "NotifyAccess": "none",
+            "PrivateDevices": "no",
+            "PrivateNetwork": "no",
+            "ProtectControlGroups": "no",
+            "ProtectHome": "no",
+            "ProtectSystem": "no",
+            "ReadWritePaths": "",
+            "Restart": "no",
+            "RestartUSec": "100ms",
+            "RestrictAddressFamilies": "~",
+            "Result": "success",
+            "RuntimeMaxUSec": "infinity",
+            "SendSIGKILL": "yes",
+            "StartLimitBurst": "5",
+            "StartLimitIntervalUSec": "10s",
+            "SubState": "dead",
+            "TasksMax": "9211",
+            "TimeoutStopUSec": "1min 30s",
+            "User": "",
+            "WatchdogSignal": "6",
+            "WatchdogTimestampMonotonic": "0",
+            "WatchdogUSec": "infinity",
+            "WorkingDirectory": ""
+          }
+        }
+      },
+      "utc": 1795697647.5140052
+    },
+    "original_failure_complete": true,
+    "phase": "native_status",
+    "public_files": {
+      "case-BINDINGS.json": {
+        "bytes": 26538,
+        "uid": 65534
+      },
+      "case-CLOCK_REPAIR.json": {
+        "bytes": 3840,
+        "uid": 65534
+      },
+      "case-FINAL_JOURNAL.json": {
+        "bytes": 5831,
+        "uid": 65534
+      },
+      "case-FINANCIAL_BEFORE.json": {
+        "bytes": 1727,
+        "uid": 65534
+      },
+      "case-HASHLESS_RESTART_BLOCKED.json": {
+        "bytes": 7544,
+        "uid": 65534
+      },
+      "case-HASH_SAVE_FAULT_ARMED.json": {
+        "bytes": 7965,
+        "uid": 65534
+      },
+      "case-INITIAL_JOURNAL.json": {
+        "bytes": 3752,
+        "uid": 65534
+      },
+      "case-POST_RESOLUTION_MINING.json": {
+        "bytes": 206,
+        "uid": 65534
+      },
+      "case-RAW_REVIEWS.json": {
+        "bytes": 799,
+        "uid": 65534
+      },
+      "case-RECEIPTS.json": {
+        "bytes": 3935,
+        "uid": 65534
+      },
+      "case-RECOVERED_JOURNAL.json": {
+        "bytes": 13584,
+        "uid": 65534
+      },
+      "case-RECOVERY_REFRESH_HEALTH.json": {
+        "bytes": 1305,
+        "uid": 65534
+      },
+      "case-RESOLUTION_READY.json": {
+        "bytes": 11261,
+        "uid": 65534
+      },
+      "case-RESULT.json": {
+        "bytes": 479,
+        "uid": 65534
+      },
+      "case-SETUP.json": {
+        "bytes": 9470,
+        "uid": 65534
+      },
+      "model-EVENTS.json": {
+        "bytes": 197,
+        "uid": 65534
+      },
+      "model-READY.json": {
+        "bytes": 1431,
+        "uid": 65534
+      },
+      "model-RESULT.json": {
+        "bytes": 814,
+        "uid": 65534
+      },
+      "native-FAULT_PROOF.json": {
+        "bytes": 13374,
+        "uid": 0
+      },
+      "native-FINAL_STOP.json": {
+        "bytes": 20764,
+        "uid": 0
+      },
+      "native-REPAIR.json": {
+        "bytes": 4353,
+        "uid": 0
+      },
+      "native-RESOLUTION_COMPLETE.json": {
+        "bytes": 244,
+        "uid": 0
+      },
+      "native-RESOLUTION_RECEIPT.json": {
+        "bytes": 3702,
+        "uid": 0
+      },
+      "native-RESUME.json": {
+        "bytes": 4191,
+        "uid": 0
+      },
+      "native-keeper.stderr.log": {
+        "bytes": 0,
+        "uid": 65534
+      },
+      "native-keeper.stdout.log": {
+        "bytes": 1920,
+        "uid": 65534
+      },
+      "native-model.stderr.log": {
+        "bytes": 0,
+        "uid": 65534
+      },
+      "native-model.stdout.log": {
+        "bytes": 0,
+        "uid": 65534
+      },
+      "native-resolve.stderr.log": {
+        "bytes": 0,
+        "uid": 65534
+      },
+      "native-resolve.stdout.log": {
+        "bytes": 150,
+        "uid": 65534
+      }
+    }
+  },
+  "new_composed_scenarios": 1,
+  "new_seals": 0,
+  "new_test_bodies_run": 0,
+  "old_test_bodies_run": 0,
+  "production_approved": false,
+  "public_transactions": 0,
+  "root_original_host_comparison_required": true,
+  "schema": 1,
+  "success": false
+}

@@ -1,0 +1,97 @@
+{
+  "actual_scenario_or_test_body_reexecuted": false,
+  "artifact_sha256": {
+    "executed_original_model_source": "a02747cd750363b04280d0f01438338bfbbc4df73065d1d5a74b6825a1924eb4",
+    "original_degraded_health": "7aeca5d24dd969648838b0abb267ec042fcbad856fadd32064293bd43c8d9c23",
+    "original_final_journal": "bad79f40b335fe06ac7587c054ecbffeb8e835c8ca7257f795758b5ebdc26292",
+    "original_model_nonpass": "2b5cee57e2d8283c4377dbe45f707bac74524c30e43e2a53601043d12d612f6c",
+    "original_native_keeper_log": "ba1cdabfd46ea8fe7a2a7b517fee0b3f2e7ff31536f44941931c89c123af2d42",
+    "original_recovered_journal": "bb237da88f04feb4071abf61df487df84e9b534b89497434588605fb6bed1436"
+  },
+  "independent_reconciliation_requirements": [
+    "Use the original post-stop health and original native event log; do not manufacture missing runtime artifacts.",
+    "Authenticate raw and semantic configuration hashes separately and retain interval240/12confirmations/hourly harvest.",
+    "Verify the original confirmed receipt, one booked cost, nonce1 and unchanged accepted intent with no resend.",
+    "Verify known schedule identity and its saved deadline progression alongside distinct degraded/healthy events.",
+    "Treat the exact internal _poll_clock and numeric returned sleep as uncaptured; do not claim they were measured."
+  ],
+  "kind": "saved_evidence_source_diagnosis_only",
+  "limitations": [
+    "The original model stopped at its incorrect timing assertion; its overall result remains NONPASS.",
+    "FINANCIAL_AFTER and the intended end-of-run comparison reads were never executed.",
+    "Saved cost/nonce/anchor and actual healthy-state evidence do not manufacture missing final NFT/LP/backing reads.",
+    "This is no new ENOSPC, off-host, power-loss, sustained-service or broad workload qualification."
+  ],
+  "original_harness_defect": {
+    "failure_stage": "await_next_normal_240second_cycle",
+    "fixed_guard": "Fresh healthy cycle did not retain the normal240second wait",
+    "incorrect_condition": "At least239 seconds from recovery observation and degraded health to healthy health.",
+    "reason": "That minimum is incompatible with the already implemented earlier-deadline scheduling rule."
+  },
+  "original_nonpass_preserved": true,
+  "original_nonpass_promoted_to_pass": false,
+  "production_source_changed": false,
+  "saved_vectors": {
+    "accepted_hash": "0xcb274063a9b169d3cc98262d053afc7f8a650073b910df0386fba44a74c1c8d8",
+    "bucket": "47181787163762592248710325652087236475813397965818762058663276509558631703230",
+    "confirmed_event": {
+      "cost_wei": "9626048",
+      "event": "confirmed",
+      "time": "2026-11-26T12:50:09.028048+00:00",
+      "transaction": "0xcb274063a9b169d3cc98262d053afc7f8a650073b910df0386fba44a74c1c8d8"
+    },
+    "deadline": 1795697624,
+    "degraded_event": {
+      "confirmed_reverts": 0,
+      "event": "cycle_completed",
+      "pending": false,
+      "skipped_buckets": 0,
+      "status": "degraded",
+      "time": "2026-11-26T12:50:12.425318+00:00"
+    },
+    "degraded_health_time": "2026-11-26T12:50:12.423299+00:00",
+    "final_schedule": {
+      "execute_after": 0,
+      "identity": "0xb15dba2b63fdf786e4fe3ddf7b1ddb29bea1998703ce0ea5532c928af8a472a4",
+      "last_checked_at": 1795697626,
+      "next_check_at": 1795697866,
+      "observed_at": 1795697626
+    },
+    "healthy_event": {
+      "confirmed_reverts": 0,
+      "event": "cycle_completed",
+      "pending": false,
+      "skipped_buckets": 0,
+      "status": "healthy_v2",
+      "time": "2026-11-26T12:54:00.683532+00:00"
+    },
+    "healthy_minus_degraded_health_seconds": 228.26023292541504,
+    "healthy_minus_recovery_observed_seconds": 231.49578666687012,
+    "raw_attempts": 1,
+    "raw_forwarded": 1,
+    "recovered_head_timestamp": 1795697401,
+    "recovered_schedule": {
+      "execute_after": 0,
+      "identity": "0xb15dba2b63fdf786e4fe3ddf7b1ddb29bea1998703ce0ea5532c928af8a472a4",
+      "last_checked_at": 1795697384,
+      "next_check_at": 1795697624,
+      "observed_at": 1795697384
+    },
+    "shared_RPC_requests": 2765
+  },
+  "schema": 1,
+  "source": {
+    "end_line": 658,
+    "function": "Keeper.poll_delay",
+    "path": "keeper/monitor.py",
+    "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f",
+    "start_line": 631
+  },
+  "source_mechanics": [
+    "A known observed_adjustment_v3 record selects the earlier confirmation-deadline branch.",
+    "The remaining delay uses the latest chain timestamp plus elapsed monotonic time.",
+    "The result is bounded above by configured interval_seconds=240; 240 is not a mandatory minimum sleep.",
+    "Known confirmation deadlines take priority over the later recovery-refresh branch.",
+    "Receipt recovery and the next healthy metadata cycle are distinct actual cycles."
+  ]
+}

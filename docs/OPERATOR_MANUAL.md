@@ -50,6 +50,27 @@ Earlier [supervisor recovery](../reports/ubuntu-supervisor-20261125/REVIEW.md),
 [key replacement](../reports/ubuntu-key-rotation-20261124/REVIEW.md) and
 [hybrid LP](../reports/ubuntu-hybrid-20261124/REVIEW.md) keep their original scopes.
 
+### Daemon storage recovery: expected states
+
+The [26 November daemon record](../reports/ubuntu-daemon-storage-20261126/REVIEW.md)
+verifies the actual failure/restart/resolution core and healthy recovery in
+2,765/6,000RPC, with one keeper transaction and no resend. Original NONPASS
+and missing final physical reads remain explicit; no production rollout.
+
+| State / input | Operator action | Expected result |
+| --- | --- | --- |
+| Storage repaired; original intent has no hash | Fence the entire original service; independently identify the original transaction and use the no-live resolver below | Recovery block prevents resend |
+| Receipt confirmed; pending cleared; health degraded | Allow the next normal metadata review; inspect its exact reason if it remains degraded | Healthy only if checks pass |
+| Earlier saved confirmation deadline | Preserve its state and normal scheduler; do not reset timers or impose a fresh240s sleep | Existing deadlines retain priority |
+
+`interval_seconds=240` is the normal outer polling interval, **not a minimum
+sleep after recovery**. In c811 the next metadata/reference check occurred242chain seconds
+after the prior check, within the unchanged300s maximum, without a paid
+on-chain observation; the healthy
+cycle completed228.258wall seconds after the degraded recovery cycle.
+Do not confuse these two clocks or delay required observations to match
+an arbitrary elapsed-time assertion.
+
 ### Storage failure quick actions
 
 Stop the actual service and preserve its exact journal/configuration. Check the

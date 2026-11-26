@@ -1,0 +1,7 @@
+{
+  "accepted_hash": "0xcb274063a9b169d3cc98262d053afc7f8a650073b910df0386fba44a74c1c8d8",
+  "journal_sha256": "24ee6a0c34992a1163f5639593dac87df5983263f0313ec5cd24efe2dbb65258",
+  "keeper_fenced_empty": true,
+  "phase": "actual_hash_save_EACCES_proved",
+  "sha256": "d2a25932a3a145cc46864560393aeeda84ca31d6f055c2f2af31548f8788ee47"
+}

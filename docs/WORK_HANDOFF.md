@@ -1,5 +1,11 @@
 # Work handoff
 
+New [daemon-storage evidence](../reports/ubuntu-daemon-storage-20261126/REVIEW.md): real accepted-hash EACCES, same-journal
+restart and once-only recovery are independently reconciled. The original
+campaign remains **NONPASS** from a mistaken timing assertion; final physical
+after-state reads are missing. Q06/P21 remain open. No production code, limits
+or existing environments changed.
+
 [Full keeper audit — 26 November](../reports/keeper-full-audit-20261126/REVIEW.md) adds late booked-cost anchor checks,
 bounded staging wallet utilities and bounded read-only monitor output. Exact
 new verification, the original interrupted utility evidence and isolated Ubuntu
@@ -15,6 +21,10 @@ exact interval-only repair and fresh idle health in1,652/6,000RPC with zero sign
 sends. Both c809/c810 unit pairs stop empty; original installed sources/config/
 journal metadata and five service states match. Retain c809's failed verifier
 outcome and its one Linux pass; c810 reuses that pass without executing it.
+New c811 recovery is separately reconciled; its original timing refusal and
+missing final physical reads remain explicit. Do not replay completed
+financial work merely to turn that marker green. Future relevant journeys
+must capture after-state vectors even when a late assertion fails.
 Next operating work is actual-provider timing against the strict300s sample gap,
 fenced off-host restore/alerts and sustained full-feature operation. Source rollout
 is separate: preserve journals, review matching checker/writer/tool ownership and

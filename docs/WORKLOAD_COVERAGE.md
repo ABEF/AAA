@@ -1,5 +1,11 @@
 # Whole-project workload coverage
 
+The [c811 daemon-storage follow-through](../reports/ubuntu-daemon-storage-20261126/REVIEW.md)
+adds one actual composed scenario plus a seven-check independent saved-vector
+reconciliation. Original overall NONPASS and missing physical after-state
+reads remain explicit. No unchanged test body reruns; production inventory
+183files/2,007definitions/278lambdas and frozen F6 maps stay unchanged.
+
 The [26 November keeper audit](../reports/keeper-full-audit-20261126/REVIEW.md) records current late cost-anchor checks,
 bounded utility capture and isolated operating verification. Historical failures,
 new source checks, reused runtime proofs and existing-server observations retain

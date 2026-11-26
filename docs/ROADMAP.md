@@ -1,5 +1,11 @@
 # Engineering roadmap and production qualification plan
 
+New [daemon-storage evidence](../reports/ubuntu-daemon-storage-20261126/REVIEW.md): real accepted-hash EACCES, same-journal
+restart and once-only recovery are independently reconciled. The original
+campaign remains **NONPASS** from a mistaken timing assertion; final physical
+after-state reads are missing. Q06/P21 remain open. No production code, limits
+or existing environments changed.
+
 [Full keeper audit — 26 November](../reports/keeper-full-audit-20261126/REVIEW.md) adds late booked-cost anchor checks,
 bounded staging wallet utilities and bounded read-only monitor output. Exact
 new verification, the original interrupted utility evidence and isolated Ubuntu
@@ -133,7 +139,7 @@ full-normal1000-NFT workloads, the476135-estimate gap and independent approval r
 | P18 | Offline tools implemented | Matching checkpoint/consumer and actual host/archive/restore adoption remain. |
 | P19 | Production submission unresolved | Current consumer unsigned, shared signer Anvil-only; no production signing decision or rollout. |
 | P20 | Separate stock harvest/recovery, sampled-window/replacement and hybrid partitions pass | Combined full normal-daemon/provider, maximum workload and multi-day operation remain. |
-| P21 | Finite interruption, storage and c810 startup-limit recovery pass | Broader faults/restart storms, physical durability, off-host restore/fencing, alerts and sustained operation remain. |
+| P21 | Finite interruption/storage/startup proofs; c811 daemon recovery core reconciled | Original c811 timing NONPASS/missing physical after-reads retained; broader faults, durability, off-host/alerts and sustained operation remain. |
 | P22 | Controlled construction complete | 25CREATE/19bindings/39instances verified locally; actual deployment/readback/seal approval remain. |
 | P23 | Independent approval open | No final release freeze/audit/remediation/public-opening approval or deployment. |
 
@@ -484,6 +490,16 @@ Confirm all failure diagnostics, role revocation and funding behavior; no ordina
 Owning Todo: [`keeper-guardrails`](../TODO.md#task-keeper-guardrails), [`keeper-recovery`](../TODO.md#task-keeper-recovery), [`operation-review`](../TODO.md#task-operation-review).
 
 ### P21 — Host, interruption, restore and alerts
+
+The [new c811 record](../reports/ubuntu-daemon-storage-20261126/REVIEW.md)
+adds actual accepted-hash EACCES, natural daemon exit, fenced same-journal
+restart, explicit no-live resolution, twelve confirmations and one-time
+receipt recovery. Seven independent saved-vector checks verify that core
+and the actual healthy cycle, without replay. The original campaign stays
+NONPASS: it wrongly required a239s minimum after recovery, despite an
+earlier preserved confirmation deadline. Its final physical after-state
+vectors were not captured; no complete planned-partition pass is claimed.
+Keep those limits separate from the earlier c808/c806 proofs below.
 
 The [26 November follow-through](../reports/keeper-full-audit-20261126/REVIEW.md)
 adds c810 startup-rate-limit proof and interval-only repair to fresh healthy

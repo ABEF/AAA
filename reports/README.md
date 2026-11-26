@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Ubuntu daemon storage recovery](ubuntu-daemon-storage-20261126/REVIEW.md)
+retains c811’s original NONPASS and separately verifies actual failure,
+same-journal recovery and healthy operation from saved evidence. The
+mistaken minimum-wait assertion and absent physical after-reads are
+explicit; no financial replay, production change or release approval.
+
 The [26 November keeper audit](keeper-full-audit-20261126/REVIEW.md) records current late cost-anchor checks,
 bounded utility capture and isolated operating verification. Historical failures,
 new source checks, reused runtime proofs and existing-server observations retain

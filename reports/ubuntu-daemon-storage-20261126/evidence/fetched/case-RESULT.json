@@ -1,0 +1,17 @@
+{
+  "RPC_requests": 2765,
+  "actual_signed_envelope_predecoded": false,
+  "controlled_copied_state_only": true,
+  "fault_attempts": 0,
+  "feature": "supervisor",
+  "gateway_refusals": [],
+  "last_model_RPC_failure": null,
+  "last_stage": "await_next_normal_240second_cycle",
+  "new_seal": false,
+  "postforward_exact_transaction_verification_required": true,
+  "raw_attempts": 1,
+  "raw_forwarded": 1,
+  "setup_transactions": 5,
+  "status": "failed",
+  "stock_transactions": 1
+}

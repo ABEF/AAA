@@ -1,0 +1,67 @@
+{
+  "approved_worktree_overrides": [],
+  "bundle": {
+    "bytes": 766434,
+    "sha256": "e38f0b6eb0cda38c535f4e279108d29213c7027592ef5a541a1766b6bc6f6a42"
+  },
+  "controller": {
+    "bytes": 33192,
+    "sha256": "f58246e042be8a6822cc57d0602d828b6c3ce050137a084c9e3a7e5c87857162"
+  },
+  "feature": "actual_hash_save_EACCES_full_daemon_restart_recovery",
+  "helpers": {
+    "job_cases.py": {
+      "bytes": 15671,
+      "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7"
+    },
+    "keeper_jobs.py": {
+      "bytes": 9477,
+      "sha256": "363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4"
+    },
+    "keeper_runtime.py": {
+      "bytes": 37193,
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+    },
+    "model_service.py": {
+      "bytes": 29030,
+      "sha256": "a02747cd750363b04280d0f01438338bfbbc4df73065d1d5a74b6825a1924eb4"
+    },
+    "native_base.py": {
+      "bytes": 41965,
+      "sha256": "fe476c1f95d1c72a9f604889c500f501d3e7fe951714edd7806e2ae406d72765"
+    },
+    "storage_control.py": {
+      "bytes": 12615,
+      "sha256": "04943410dbb51c5f019ba6f8bd3c4d752653d7987631f02ec9865e90ee83f1bb"
+    }
+  },
+  "host_wrapper": {
+    "bytes": 7227,
+    "sha256": "cee03ff47188c3d69ba518886e21904584060a1373d1bc964ea167a5a150dbfd"
+  },
+  "lab": "/opt/popl-ubuntu-daemon-storage-20261126-c811",
+  "limits": {
+    "RPC_requests": 6000,
+    "confirmations": 12,
+    "harvest_seconds": 3600,
+    "maintenance_gas": 24000000,
+    "maximum_stock_signed_sends": 1,
+    "padding_percent": 25,
+    "poll_seconds": 240,
+    "restart_seconds": 30,
+    "seconds": 900,
+    "stop_seconds": 120,
+    "watchdog_seconds": 120
+  },
+  "local_packaging_only": true,
+  "manifest": {
+    "bytes": 34264,
+    "sha256": "2ca85112108a9586fab2ac399748c2c9b5fd5526959310f24cbe817b60146a65"
+  },
+  "production_source_members": 191,
+  "remote_actions": 0,
+  "schema": 1,
+  "source_base": "c07d5b153149f7c072ee5ff785c1cabac60197f6",
+  "source_manifest_sha256": "add0173921b2461d1606c90d0c1b8b0f8f010254828a2ced8cc9420c750d7a04",
+  "tests_run": 0
+}

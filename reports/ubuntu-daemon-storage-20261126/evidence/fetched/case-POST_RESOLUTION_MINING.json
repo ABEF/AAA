@@ -1,0 +1,7 @@
+{
+  "automine_remains_disabled": true,
+  "exact12_barrier_recorded_first": true,
+  "keeper_configuration_or_guard_changed": false,
+  "new_raw_submission": false,
+  "owned_node_interval_mining_seconds": 1
+}

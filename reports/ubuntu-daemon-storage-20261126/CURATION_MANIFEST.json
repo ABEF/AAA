@@ -1,0 +1,520 @@
+{
+  "actual_healthy_cycle_verified": true,
+  "all_three_owned_groups_empty": true,
+  "bundle_retained_privately_not_published": true,
+  "campaign_success": false,
+  "core_recovery_verified": true,
+  "derived_files": {
+    "postrun/STOCK_EVENTS_PROJECTION.json": {
+      "original_event_values_preserved": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\diagnostic-stock-log-001\\native-keeper.stdout.log",
+      "source_raw_sha256": "ba1cdabfd46ea8fe7a2a7b517fee0b3f2e7ff31536f44941931c89c123af2d42"
+    }
+  },
+  "files": {
+    "evidence/BUILD_RECEIPT.json": {
+      "bytes": 2102,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\BUILD_RECEIPT.json",
+      "sha256": "1cf71812efe40b5aa9964fe14a1aaa35cb37bbfcc0124b0ae3ab6253176eb962"
+    },
+    "evidence/CANDIDATE_REVIEW_PINS.json": {
+      "bytes": 367,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\CANDIDATE_REVIEW_PINS.json",
+      "sha256": "954794eba857462377d96037ef0abcb3ba63bd7d8016b20719bf2bb4b582ec80"
+    },
+    "evidence/ORCHESTRATION_RESULT.json": {
+      "bytes": 73270,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\ORCHESTRATION_RESULT.json",
+      "sha256": "349dd5f81f3c88f113ab7bab6f7cf8f0d966def33943766019e9fc9f225fa6be"
+    },
+    "evidence/PARENT_PREEXECUTION_APPROVAL.json": {
+      "bytes": 654,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\PARENT_PREEXECUTION_APPROVAL.json",
+      "sha256": "6ba162669efa6c6372397a1ffe66d809b0da7cb1c30d8ac3388a5a78fa44c992"
+    },
+    "evidence/PARENT_REVIEW_PINS.json": {
+      "bytes": 280,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\PARENT_REVIEW_PINS.json",
+      "sha256": "5c5e5712da3e960b8201447741f91d03c59f1cecaacf7ce55861593db8feb0c3"
+    },
+    "evidence/SOURCE_MANIFEST.json": {
+      "bytes": 28938,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\SOURCE_MANIFEST.json",
+      "sha256": "add0173921b2461d1606c90d0c1b8b0f8f010254828a2ced8cc9420c750d7a04"
+    },
+    "evidence/actions/install-001/EXECUTION.json": {
+      "bytes": 719,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\install-001\\EXECUTION.json",
+      "sha256": "32b0509f4dbaf6594ab847d97ae7bfb33256af54b0d3ebba559737edef889320"
+    },
+    "evidence/actions/install-001/PUBLIC_RESULT.json": {
+      "bytes": 1650,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\install-001\\PUBLIC_RESULT.json",
+      "sha256": "5662abb79509e3526c907a2549eeab3e558ce4da6a0b8fcd9ac1245b95e347e4"
+    },
+    "evidence/actions/prove-001/EXECUTION.json": {
+      "bytes": 715,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\prove-001\\EXECUTION.json",
+      "sha256": "aac8e0ca022ec24e4e9a9872921bb807f9c2b0009fa5a9b21a0f7cb5b2d06f0b"
+    },
+    "evidence/actions/prove-001/PUBLIC_RESULT.json": {
+      "bytes": 343,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\prove-001\\PUBLIC_RESULT.json",
+      "sha256": "629a074d1466f250da7548d6e7ea4efc1d1f42a8197159499562e48841173375"
+    },
+    "evidence/actions/repair-001/EXECUTION.json": {
+      "bytes": 717,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\repair-001\\EXECUTION.json",
+      "sha256": "3536a1c5b307053c3a94a5544f34970b9daad1109206d3f22e19b9cddf43b1cd"
+    },
+    "evidence/actions/repair-001/PUBLIC_RESULT.json": {
+      "bytes": 5543,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\repair-001\\PUBLIC_RESULT.json",
+      "sha256": "d8d73011569b9576883cc602ec774ffedf13a80d41d772ca9881657360e9ead2"
+    },
+    "evidence/actions/resolve-001/EXECUTION.json": {
+      "bytes": 718,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\resolve-001\\EXECUTION.json",
+      "sha256": "d4435e2dfdd8492a40de165b300c20f53a49d926afdd5388b8dca6f530163245"
+    },
+    "evidence/actions/resolve-001/PUBLIC_RESULT.json": {
+      "bytes": 4921,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\resolve-001\\PUBLIC_RESULT.json",
+      "sha256": "af86adc28f1457b7e3fe6b24383fdb4494e9d8b1264dac37fc91e5063a139744"
+    },
+    "evidence/actions/resume-001/EXECUTION.json": {
+      "bytes": 717,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\resume-001\\EXECUTION.json",
+      "sha256": "dc4a0f85dc7351e8f1d8ae467d3df0b0b95a7e6aa98a1f3d8e6afba0e23714e9"
+    },
+    "evidence/actions/resume-001/PUBLIC_RESULT.json": {
+      "bytes": 5340,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\resume-001\\PUBLIC_RESULT.json",
+      "sha256": "704dfad5d6eedc4f5cf8e5825c4770239601ab3695fbae7fcd0a1e1295171bff"
+    },
+    "evidence/actions/start-001/EXECUTION.json": {
+      "bytes": 716,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\start-001\\EXECUTION.json",
+      "sha256": "687eef9cebc9f2dec7b96000c6786094ce1dabe4f8ed959835edc566f202df54"
+    },
+    "evidence/actions/start-001/PUBLIC_RESULT.json": {
+      "bytes": 4917,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\start-001\\PUBLIC_RESULT.json",
+      "sha256": "aa92d0692f9204cd76307af8188178b77ef220dd91f71c59fb62511ed0317eff"
+    },
+    "evidence/actions/startkeeper-001/EXECUTION.json": {
+      "bytes": 708,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\startkeeper-001\\EXECUTION.json",
+      "sha256": "71c31cdc5be1342682b23ba787303b7ebe696f4ec86504ed73344866dde9976d"
+    },
+    "evidence/actions/startkeeper-001/PUBLIC_RESULT.json": {
+      "bytes": 4840,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\startkeeper-001\\PUBLIC_RESULT.json",
+      "sha256": "f5c70c8ffb69c2e4b59ed7839cf730dcdfafcb735a8f913ee1a105e6d33085bc"
+    },
+    "evidence/actions/stop-001/EXECUTION.json": {
+      "bytes": 715,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\stop-001\\EXECUTION.json",
+      "sha256": "7db7ab4a6f747e7124c8510aa8974ffc0f5deb1238f3ee64f6abdfb041191a2b"
+    },
+    "evidence/actions/stop-001/PUBLIC_RESULT.json": {
+      "bytes": 4569,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\stop-001\\PUBLIC_RESULT.json",
+      "sha256": "7927ec0fae30b6283d43f7ce84e35e245633418f1735cddf101392d2e52b618e"
+    },
+    "evidence/actions/stop-002/EXECUTION.json": {
+      "bytes": 716,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\stop-002\\EXECUTION.json",
+      "sha256": "0b4934ede44f1da1c645fc58a6eb535a7e9d0593210d6077cb4a05d70e7ca750"
+    },
+    "evidence/actions/stop-002/PUBLIC_RESULT.json": {
+      "bytes": 26291,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\stop-002\\PUBLIC_RESULT.json",
+      "sha256": "9e25b1b0f77b8aaf1f2ff3d9a2abc9e49dcf2256487bd1210f5fe9cd97270c21"
+    },
+    "evidence/actions/stopkeeper-001/EXECUTION.json": {
+      "bytes": 721,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\stopkeeper-001\\EXECUTION.json",
+      "sha256": "e1363e29d13250c3d3688288557b713a993a17c495ee2fa3ef57756e42d452b6"
+    },
+    "evidence/actions/stopkeeper-001/PUBLIC_RESULT.json": {
+      "bytes": 3891,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\stopkeeper-001\\PUBLIC_RESULT.json",
+      "sha256": "1869a88935b38755eaad047e326d65cb3bf556eff88e9f7ede6f7770b5e95a94"
+    },
+    "evidence/actions/stopkeeper-002/EXECUTION.json": {
+      "bytes": 721,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\stopkeeper-002\\EXECUTION.json",
+      "sha256": "22caecc6fd0d1186ae645ce111706992480afe6217585e79859cd7d64c2c11ce"
+    },
+    "evidence/actions/stopkeeper-002/PUBLIC_RESULT.json": {
+      "bytes": 4575,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\stopkeeper-002\\PUBLIC_RESULT.json",
+      "sha256": "e3294250e7ea3c5ab24d609a67b9cee94ab3eccf0f1af14c947d23ee60dbcb77"
+    },
+    "evidence/actions/upload-001/EXECUTION.json": {
+      "bytes": 918,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\upload-001\\EXECUTION.json",
+      "sha256": "5a71d0098a0f16934c5e06120ec26c300278b0f7b9fbddda50b3aa6634f071ee"
+    },
+    "evidence/actions/upload-001/PUBLIC_RESULT.json": {
+      "bytes": 274,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\upload-001\\PUBLIC_RESULT.json",
+      "sha256": "41faa4c3287ebfb653c5b01e0513509bed636dec411e96af92a8d13db68eaa13"
+    },
+    "evidence/fetched/case-BINDINGS.json": {
+      "bytes": 26538,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-001\\case-BINDINGS.json",
+      "sha256": "4c3ebfb14daae3b806253fe2197fdeef5a72e66448132eadf7d670a68ab1b960"
+    },
+    "evidence/fetched/case-CLOCK_REPAIR.json": {
+      "bytes": 3840,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-002\\case-CLOCK_REPAIR.json",
+      "sha256": "c71a9a1369327f7fec6b7e3d17d421218143f4be99ffd90cc9d654eec05e5210"
+    },
+    "evidence/fetched/case-FINAL_JOURNAL.json": {
+      "bytes": 5831,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-003\\case-FINAL_JOURNAL.json",
+      "sha256": "bad79f40b335fe06ac7587c054ecbffeb8e835c8ca7257f795758b5ebdc26292"
+    },
+    "evidence/fetched/case-FINANCIAL_BEFORE.json": {
+      "bytes": 1727,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-004\\case-FINANCIAL_BEFORE.json",
+      "sha256": "f2bf79b0c707fb5e35a9ac99860f618fc0066b2a1cafa0ace0a4936e50b976b7"
+    },
+    "evidence/fetched/case-HASHLESS_RESTART_BLOCKED.json": {
+      "bytes": 7544,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-005\\case-HASHLESS_RESTART_BLOCKED.json",
+      "sha256": "dab165a7bd7bffd9df629a4e327f997f90ed97c912300a0c1f78250aa871c087"
+    },
+    "evidence/fetched/case-HASH_SAVE_FAULT_ARMED.json": {
+      "bytes": 7965,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-006\\case-HASH_SAVE_FAULT_ARMED.json",
+      "sha256": "70b4e6081c561092d7c7cadf173da48180b912839818ee262c2cf830b83e463f"
+    },
+    "evidence/fetched/case-INITIAL_JOURNAL.json": {
+      "bytes": 3752,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-007\\case-INITIAL_JOURNAL.json",
+      "sha256": "217590d388c5310af6541a092c4e15e6489b8325176be942e9938d6787e570f0"
+    },
+    "evidence/fetched/case-POST_RESOLUTION_MINING.json": {
+      "bytes": 206,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-008\\case-POST_RESOLUTION_MINING.json",
+      "sha256": "39c3db1820536c857a2df87623cefacf64404544d384a05c499991983a58a2c1"
+    },
+    "evidence/fetched/case-RAW_REVIEWS.json": {
+      "bytes": 799,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-009\\case-RAW_REVIEWS.json",
+      "sha256": "7671f0324a4a31062ab981075cf68ed799ee7578e3eac43ee06f16224c68a37b"
+    },
+    "evidence/fetched/case-RECEIPTS.json": {
+      "bytes": 3935,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-010\\case-RECEIPTS.json",
+      "sha256": "5d5c38748be5c84e0bdac17688dde2526af26e42a1049f50165a9ee136eb2bd7"
+    },
+    "evidence/fetched/case-RECOVERED_JOURNAL.json": {
+      "bytes": 13584,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-011\\case-RECOVERED_JOURNAL.json",
+      "sha256": "bb237da88f04feb4071abf61df487df84e9b534b89497434588605fb6bed1436"
+    },
+    "evidence/fetched/case-RECOVERY_REFRESH_HEALTH.json": {
+      "bytes": 1305,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-012\\case-RECOVERY_REFRESH_HEALTH.json",
+      "sha256": "7aeca5d24dd969648838b0abb267ec042fcbad856fadd32064293bd43c8d9c23"
+    },
+    "evidence/fetched/case-RESOLUTION_READY.json": {
+      "bytes": 11261,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-013\\case-RESOLUTION_READY.json",
+      "sha256": "2b27f82f5f0c17bf87c8f9ff0389acccc6dd63ba51e16731134623358f5b68d7"
+    },
+    "evidence/fetched/case-RESULT.json": {
+      "bytes": 479,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-014\\case-RESULT.json",
+      "sha256": "af7275b455c79ed5fc2f523c1761eeddb072ec1ca8d5c3e51c0a34ebfcc25dba"
+    },
+    "evidence/fetched/case-SETUP.json": {
+      "bytes": 9470,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-015\\case-SETUP.json",
+      "sha256": "e7017331640463b363182bb862a728d8068e8f543da83c282b26cfc018a8b063"
+    },
+    "evidence/fetched/model-EVENTS.json": {
+      "bytes": 197,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-016\\model-EVENTS.json",
+      "sha256": "7126374c5602cf4e1780cdf2ab3315cb3610388b272c5b25e4ab858e486251c8"
+    },
+    "evidence/fetched/model-READY.json": {
+      "bytes": 1431,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-017\\model-READY.json",
+      "sha256": "ae7017aaefdc89a65d674b7ce20bd73cb2767f912ccdf8d5d2b24c84072c48bd"
+    },
+    "evidence/fetched/model-RESULT.json": {
+      "bytes": 814,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-018\\model-RESULT.json",
+      "sha256": "2b5cee57e2d8283c4377dbe45f707bac74524c30e43e2a53601043d12d612f6c"
+    },
+    "evidence/fetched/native-FAULT_PROOF.json": {
+      "bytes": 13374,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-019\\native-FAULT_PROOF.json",
+      "sha256": "d2a25932a3a145cc46864560393aeeda84ca31d6f055c2f2af31548f8788ee47"
+    },
+    "evidence/fetched/native-FINAL_STOP.json": {
+      "bytes": 20764,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-020\\native-FINAL_STOP.json",
+      "sha256": "00d50a3eba76ae113a61e6f1c8b8a4f7a9329c0daf0750a6788194f15663a117"
+    },
+    "evidence/fetched/native-REPAIR.json": {
+      "bytes": 4353,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-021\\native-REPAIR.json",
+      "sha256": "5a361f96b5d2d4468721f675c877eb019f354905327bcd41141ceeb8c9ef9d0d"
+    },
+    "evidence/fetched/native-RESOLUTION_COMPLETE.json": {
+      "bytes": 244,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-022\\native-RESOLUTION_COMPLETE.json",
+      "sha256": "304962fdab326c15604919fd6a05ffa807682542c1fbbc93f2156718df8de2cc"
+    },
+    "evidence/fetched/native-RESOLUTION_RECEIPT.json": {
+      "bytes": 3702,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-023\\native-RESOLUTION_RECEIPT.json",
+      "sha256": "fa6b44ac2d0acfd778c83d4618ec775fbb3caad34b0d619420c29d42443b0eff"
+    },
+    "evidence/fetched/native-RESUME.json": {
+      "bytes": 4191,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\fetch-024\\native-RESUME.json",
+      "sha256": "cb4fbfd121b1808dbbf9661e43100c574dcda1a4eb0512980ed52c78c32ccd98"
+    },
+    "evidence/semantic-status/01-model-ready.json": {
+      "bytes": 10320,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\status-004\\PUBLIC_RESULT.json",
+      "sha256": "a81a9a1fb4b774321de989d24bd2a6d1a5fe99c6c6f8509532d58be9d83674cc"
+    },
+    "evidence/semantic-status/02-original-natural-EACCES-exit.json": {
+      "bytes": 15389,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\status-008\\PUBLIC_RESULT.json",
+      "sha256": "c01a1295f4b877e17ac2228aa71b19425f00edbd38b47e0e2aa51207cc38c920"
+    },
+    "evidence/semantic-status/03-hashless-restart-blocked-active.json": {
+      "bytes": 18791,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\status-012\\PUBLIC_RESULT.json",
+      "sha256": "b893941a0dcd4f95b7049051829507c9639daeba4386a147fc1fbc8cf33bae93"
+    },
+    "evidence/semantic-status/04-hashless-restart-fenced.json": {
+      "bytes": 20886,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\status-013\\PUBLIC_RESULT.json",
+      "sha256": "7509bb6f5dbc2cff8e84886ace3726ac5819f4b7334c3fe7b79cb3c2f2c1c8e9"
+    },
+    "evidence/semantic-status/05-original-confirmations-ready.json": {
+      "bytes": 23156,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\status-014\\PUBLIC_RESULT.json",
+      "sha256": "5bc8235617a27dc1aa57645b303d147e19090da43dcb8a81e33d76b243ac0c8f"
+    },
+    "evidence/semantic-status/06-normal-receipt-recovery-active.json": {
+      "bytes": 25460,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\status-016\\PUBLIC_RESULT.json",
+      "sha256": "fdf6ff2f0c3c987f9798783da708ccd4b87d86250180a67b7d5f336b14f3cab4"
+    },
+    "evidence/semantic-status/07-final-all-groups-empty.json": {
+      "bytes": 29692,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\campaign-001\\status-074\\PUBLIC_RESULT.json",
+      "sha256": "d5c88d128df03491c14dee387e2340780eda76e153ba6b9d788fd531c8a87bf9"
+    },
+    "independent/RECONCILED_C811.json": {
+      "bytes": 5195,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\review\\RECONCILED_C811.json",
+      "sha256": "7464ba04c30f6679405f16d6e2c258f3db4f25b4a2058118b8aa5f4509f887ba"
+    },
+    "independent/SEMANTIC_REVIEW.md": {
+      "bytes": 7638,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\review\\SEMANTIC_REVIEW.md",
+      "sha256": "48cb0c01909d499a1b0940404e0253461420e4563019fdba155b0edaf3be558f"
+    },
+    "independent/reconcile_saved_vectors.py": {
+      "bytes": 21675,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\review\\reconcile_saved_vectors.py",
+      "sha256": "4043894962a20cfc25a2f6184862ed0924b82546b78880acbc104c403299c441"
+    },
+    "independent/verify_saved_vectors.py": {
+      "bytes": 22215,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\review\\verify_saved_vectors.py",
+      "sha256": "3b0da33bf74141af8ecc0734ebee0a5c78daa02dbc1af3b461a2a8f0022a0ed4"
+    },
+    "postrun/EXECUTION.json": {
+      "bytes": 436,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\postrun-read-001\\EXECUTION.json",
+      "sha256": "e84127c4bd71eba9dc46960e8dd270a9ce56cea21a261e5ac4a3bd15c9b0c8e6"
+    },
+    "postrun/STOCK_EVENTS_PROJECTION.json": {
+      "bytes": 2644,
+      "exact_byte_copy": false,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\diagnostic-stock-log-001\\native-keeper.stdout.log",
+      "sha256": "72c503eea5bfd6a2387698a21db8736277af90d5b4c468431029da8a66243458"
+    },
+    "postrun/STOPPED_HEALTH.json": {
+      "bytes": 38013,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\postrun-read-001\\STOPPED_HEALTH.json",
+      "sha256": "9ef89c3809a0a958290acc8cd18a456b9c95d6481f29d2356f217ab2e423c3e4"
+    },
+    "preparation/c811/capsule_extension.py": {
+      "bytes": 9084,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\capsule_extension.py",
+      "sha256": "1a7bf7d6299a2283017aea79981c70b07d5aae6629f9838f8d85dc7bdbb39a54"
+    },
+    "preparation/c811/curate_public.py": {
+      "bytes": 13460,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\curate_public.py",
+      "sha256": "1e122b71ac7426d28e873d2825e7cbae43d79c00386e2130c82a14b29b55954e"
+    },
+    "preparation/c811/curate_reconciled.py": {
+      "bytes": 19310,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\curate_reconciled.py",
+      "sha256": "d4cfa1735e9f03a3efd205d7bde07c834e468957eeebd9924c6108ba6905a409"
+    },
+    "preparation/c811/host_control.py": {
+      "bytes": 7227,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\host_control.py",
+      "sha256": "cee03ff47188c3d69ba518886e21904584060a1373d1bc964ea167a5a150dbfd"
+    },
+    "preparation/c811/model_service.py": {
+      "bytes": 29030,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\model_service.py",
+      "sha256": "a02747cd750363b04280d0f01438338bfbbc4df73065d1d5a74b6825a1924eb4"
+    },
+    "preparation/c811/native_base.py": {
+      "bytes": 41965,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\native_base.py",
+      "sha256": "fe476c1f95d1c72a9f604889c500f501d3e7fe951714edd7806e2ae406d72765"
+    },
+    "preparation/c811/orchestrate_c811.py": {
+      "bytes": 9234,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\orchestrate_c811.py",
+      "sha256": "cc590a414d4344edf5fd6b9af8ae7315bbaf3641da6837d02bc7bddb7b189b40"
+    },
+    "preparation/c811/package_c811.py": {
+      "bytes": 10725,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\package_c811.py",
+      "sha256": "c70ddd1b497d7428bbe3d8fc23260bf58e95ab9bc96c3890e859addae1077c82"
+    },
+    "preparation/c811/remote_capsule.py": {
+      "bytes": 33192,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\remote_capsule.py",
+      "sha256": "f58246e042be8a6822cc57d0602d828b6c3ce050137a084c9e3a7e5c87857162"
+    },
+    "preparation/c811/storage_control.py": {
+      "bytes": 12615,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\c811\\storage_control.py",
+      "sha256": "04943410dbb51c5f019ba6f8bd3c4d752653d7987631f02ec9865e90ee83f1bb"
+    },
+    "preparation/read_stopped_health.py": {
+      "bytes": 4801,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-daemon-storage-20261126\\read_stopped_health.py",
+      "sha256": "fcbed376ada4a96dfc56475ec73100dbc011b47d753642f1164e218cb7e4328f"
+    },
+    "preparation/shared/job_cases.py": {
+      "bytes": 15671,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-supervisor-20261125\\body\\job_cases.py",
+      "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7"
+    },
+    "preparation/shared/keeper_jobs.py": {
+      "bytes": 9477,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-supervisor-20261125\\body\\keeper_jobs.py",
+      "sha256": "363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4"
+    },
+    "preparation/shared/keeper_runtime.py": {
+      "bytes": 37193,
+      "exact_byte_copy": true,
+      "original_private_relative_path": "ubuntu-supervisor-20261125\\body\\keeper_runtime.py",
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+    }
+  },
+  "financial_after_vectors_available": false,
+  "full_planned_scenario_pass": false,
+  "host_baseline_and_independent_release_approval_not_inferred": true,
+  "new_seals": 0,
+  "original_model_success": false,
+  "original_timing_assertion_passed": false,
+  "public_transactions": 0,
+  "raw_logs_credentials_and_signed_envelopes_excluded": true,
+  "schema": 1,
+  "scope": "Original c811 NONPASS plus separate independent core recovery reconciliation",
+  "source_head": "c07d5b153149f7c072ee5ff785c1cabac60197f6",
+  "unchanged_test_bodies_run": 0
+}

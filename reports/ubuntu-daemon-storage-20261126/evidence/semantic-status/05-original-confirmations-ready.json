@@ -1,0 +1,498 @@
+{
+  "native": {
+    "finished_monotonic": 9012531.006479364,
+    "host_network_namespace": "net:[4026531840]",
+    "lab": "/opt/popl-ubuntu-daemon-storage-20261126-c811",
+    "lock_identity": [
+      2049,
+      904301
+    ],
+    "old_processes": [],
+    "original_failure_complete": true,
+    "original_main_exit_records": [
+      {
+        "EXIT_CODE": "exited",
+        "EXIT_STATUS": "1",
+        "INVOCATION_ID": "b73f4214cd26414da1d5f56dbff508f1",
+        "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service: Main process exited, code=exited, status=1/FAILURE",
+        "MESSAGE_ID": "98e322203f7a4ed290d09fe03c09fe15",
+        "SYSLOG_IDENTIFIER": "systemd",
+        "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+        "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+        "_PID": "1",
+        "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8837c;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83263d38bea;t=6612d610c5cf6;x=9a2f8a79ebdb8258",
+        "__MONOTONIC_TIMESTAMP": "9012516195306",
+        "__REALTIME_TIMESTAMP": "1795697389886710"
+      }
+    ],
+    "schema": 1,
+    "started_monotonic": 9012530.953571647,
+    "units": {
+      "popl-ubuntu-daemon-storage-20261126-c811-keeper.service": {
+        "cgroup": {
+          "exists": false,
+          "groups": [],
+          "path": "/system.slice/popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+          "pids": [],
+          "processes": []
+        },
+        "manager_journal": [
+          {
+            "INVOCATION_ID": "b73f4214cd26414da1d5f56dbff508f1",
+            "JOB_RESULT": "done",
+            "MESSAGE": "Started popl-ubuntu-daemon-storage-20261126-c811-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json --live.",
+            "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88353;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=832631428be;t=6612d604cf9ca;x=c598442dd5185e17",
+            "__MONOTONIC_TIMESTAMP": "9012503652542",
+            "__REALTIME_TIMESTAMP": "1795697377343946"
+          },
+          {
+            "EXIT_CODE": "exited",
+            "EXIT_STATUS": "1",
+            "INVOCATION_ID": "b73f4214cd26414da1d5f56dbff508f1",
+            "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service: Main process exited, code=exited, status=1/FAILURE",
+            "MESSAGE_ID": "98e322203f7a4ed290d09fe03c09fe15",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8837c;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83263d38bea;t=6612d610c5cf6;x=9a2f8a79ebdb8258",
+            "__MONOTONIC_TIMESTAMP": "9012516195306",
+            "__REALTIME_TIMESTAMP": "1795697389886710"
+          },
+          {
+            "INVOCATION_ID": "b73f4214cd26414da1d5f56dbff508f1",
+            "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service: Failed with result 'exit-code'.",
+            "MESSAGE_ID": "d9b373ed55a64feb8242e02dbe79a49c",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+            "UNIT_RESULT": "exit-code",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8837d;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83263d38ca2;t=6612d610c5dae;x=cc7ba419795dd81b",
+            "__MONOTONIC_TIMESTAMP": "9012516195490",
+            "__REALTIME_TIMESTAMP": "1795697389886894"
+          },
+          {
+            "INVOCATION_ID": "b73f4214cd26414da1d5f56dbff508f1",
+            "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service: Consumed 5.004s CPU time, 31.5M memory peak, 0B memory swap peak.",
+            "MESSAGE_ID": "ae8f7b866b0347b9af31fe1c80b127c0",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8837e;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83263d38ed4;t=6612d610c5fdf;x=4174cb8461a0670c",
+            "__MONOTONIC_TIMESTAMP": "9012516196052",
+            "__REALTIME_TIMESTAMP": "1795697389887455"
+          },
+          {
+            "INVOCATION_ID": "b73f4214cd26414da1d5f56dbff508f1",
+            "JOB_RESULT": "done",
+            "MESSAGE": "Stopped popl-ubuntu-daemon-storage-20261126-c811-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json --live.",
+            "MESSAGE_ID": "9d1aaa27d60140bd96365438aad20286",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88393;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83263f5f425;t=6612d612ec531;x=fa0e2f282dec4e08",
+            "__MONOTONIC_TIMESTAMP": "9012518450213",
+            "__REALTIME_TIMESTAMP": "1795697392141617"
+          },
+          {
+            "INVOCATION_ID": "b73f4214cd26414da1d5f56dbff508f1",
+            "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service: Consumed 5.004s CPU time, 31.5M memory peak, 0B memory swap peak.",
+            "MESSAGE_ID": "ae8f7b866b0347b9af31fe1c80b127c0",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88394;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83263f5f943;t=6612d612eca4f;x=ca7012ae420238cb",
+            "__MONOTONIC_TIMESTAMP": "9012518451523",
+            "__REALTIME_TIMESTAMP": "1795697392142927"
+          },
+          {
+            "INVOCATION_ID": "ff2f7a363efe464fb819e46a48ad03cc",
+            "JOB_RESULT": "done",
+            "MESSAGE": "Started popl-ubuntu-daemon-storage-20261126-c811-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json --live.",
+            "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b883b3;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83264253ebd;t=6612d615e0fc8;x=8cfe762d90f8710e",
+            "__MONOTONIC_TIMESTAMP": "9012521549501",
+            "__REALTIME_TIMESTAMP": "1795697395240904"
+          },
+          {
+            "INVOCATION_ID": "ff2f7a363efe464fb819e46a48ad03cc",
+            "MESSAGE": "Stopping popl-ubuntu-daemon-storage-20261126-c811-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json --live...",
+            "MESSAGE_ID": "de5b426a63be47a7b6ac3eaac82e2f6f",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b883d5;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83264804b09;t=6612d61b91c15;x=d0098e4c5145c138",
+            "__MONOTONIC_TIMESTAMP": "9012527516425",
+            "__REALTIME_TIMESTAMP": "1795697401207829"
+          },
+          {
+            "INVOCATION_ID": "ff2f7a363efe464fb819e46a48ad03cc",
+            "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service: Deactivated successfully.",
+            "MESSAGE_ID": "7ad2d189f7e94e70a38c781354912448",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b883dc;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=8326482e53d;t=6612d61bbb648;x=a24b83a11ac1d1aa",
+            "__MONOTONIC_TIMESTAMP": "9012527686973",
+            "__REALTIME_TIMESTAMP": "1795697401378376"
+          },
+          {
+            "INVOCATION_ID": "ff2f7a363efe464fb819e46a48ad03cc",
+            "JOB_RESULT": "done",
+            "MESSAGE": "Stopped popl-ubuntu-daemon-storage-20261126-c811-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json --live.",
+            "MESSAGE_ID": "9d1aaa27d60140bd96365438aad20286",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b883dd;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=8326482e7c8;t=6612d61bbb8d4;x=af137ea87b48df24",
+            "__MONOTONIC_TIMESTAMP": "9012527687624",
+            "__REALTIME_TIMESTAMP": "1795697401379028"
+          },
+          {
+            "INVOCATION_ID": "ff2f7a363efe464fb819e46a48ad03cc",
+            "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service: Consumed 1.576s CPU time, 31.7M memory peak, 0B memory swap peak.",
+            "MESSAGE_ID": "ae8f7b866b0347b9af31fe1c80b127c0",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b883de;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=8326482e92e;t=6612d61bbba39;x=3d1515d5707d9689",
+            "__MONOTONIC_TIMESTAMP": "9012527687982",
+            "__REALTIME_TIMESTAMP": "1795697401379385"
+          }
+        ],
+        "properties": {
+          "ActiveEnterTimestampMonotonic": "0",
+          "ActiveState": "inactive",
+          "CPUQuotaPerSecUSec": "infinity",
+          "ControlGroup": "",
+          "ExecMainCode": "0",
+          "ExecMainExitTimestampMonotonic": "0",
+          "ExecMainStartTimestampMonotonic": "0",
+          "ExecMainStatus": "0",
+          "FinalKillSignal": "9",
+          "Group": "",
+          "Id": "popl-ubuntu-daemon-storage-20261126-c811-keeper.service",
+          "InactiveEnterTimestampMonotonic": "0",
+          "InvocationID": "",
+          "JoinsNamespaceOf": "",
+          "KillMode": "control-group",
+          "LimitCORE": "infinity",
+          "LoadState": "not-found",
+          "MainPID": "0",
+          "MemoryMax": "infinity",
+          "MemorySwapMax": "infinity",
+          "NRestarts": "0",
+          "NoNewPrivileges": "no",
+          "NotifyAccess": "none",
+          "PrivateDevices": "no",
+          "PrivateNetwork": "no",
+          "ProtectControlGroups": "no",
+          "ProtectHome": "no",
+          "ProtectSystem": "no",
+          "ReadWritePaths": "",
+          "Restart": "no",
+          "RestartUSec": "100ms",
+          "RestrictAddressFamilies": "~",
+          "Result": "success",
+          "RuntimeMaxUSec": "infinity",
+          "SendSIGKILL": "yes",
+          "StartLimitBurst": "5",
+          "StartLimitIntervalUSec": "10s",
+          "SubState": "dead",
+          "TasksMax": "9211",
+          "TimeoutStopUSec": "1min 30s",
+          "User": "",
+          "WatchdogSignal": "6",
+          "WatchdogTimestampMonotonic": "0",
+          "WatchdogUSec": "infinity",
+          "WorkingDirectory": ""
+        }
+      },
+      "popl-ubuntu-daemon-storage-20261126-c811-model.service": {
+        "cgroup": {
+          "exists": true,
+          "groups": [
+            "."
+          ],
+          "path": "/system.slice/popl-ubuntu-daemon-storage-20261126-c811-model.service",
+          "pids": [
+            93571,
+            93573
+          ],
+          "processes": [
+            {
+              "cgroup": [
+                "0::/system.slice/popl-ubuntu-daemon-storage-20261126-c811-model.service"
+              ],
+              "network_namespace": "net:[4026532431]",
+              "pgrp": 93571,
+              "pid": 93571,
+              "ppid": 1,
+              "session": 93571,
+              "start_ticks": 901248977,
+              "state": "S",
+              "uid": 65534
+            },
+            {
+              "cgroup": [
+                "0::/system.slice/popl-ubuntu-daemon-storage-20261126-c811-model.service"
+              ],
+              "network_namespace": "net:[4026532431]",
+              "pgrp": 93573,
+              "pid": 93573,
+              "ppid": 93571,
+              "session": 93573,
+              "start_ticks": 901249002,
+              "state": "S",
+              "uid": 65534
+            }
+          ]
+        },
+        "manager_journal": [
+          {
+            "INVOCATION_ID": "a291109537694291bc1176bbf7e7e1a7",
+            "JOB_RESULT": "done",
+            "MESSAGE": "Started popl-ubuntu-daemon-storage-20261126-c811-model.service - /usr/bin/python3 -B /opt/popl-ubuntu-daemon-storage-20261126-c811/source/helpers/model_service.py --source-manifest-sha256 add0173921b2461d1606c90d0c1b8b0f8f010254828a2ced8cc9420c750d7a04 --base-sha256 f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4 --jobs-sha256 363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4 --cases-sha256 7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7.",
+            "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-model.service",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8831e;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83262409540;t=6612d5f79664c;x=3c4550f8f6131b2f",
+            "__MONOTONIC_TIMESTAMP": "9012489786688",
+            "__REALTIME_TIMESTAMP": "1795697363478092"
+          }
+        ],
+        "properties": {
+          "ActiveEnterTimestampMonotonic": "9012489786265",
+          "ActiveState": "active",
+          "CPUQuotaPerSecUSec": "1s",
+          "ControlGroup": "/system.slice/popl-ubuntu-daemon-storage-20261126-c811-model.service",
+          "ExecMainCode": "0",
+          "ExecMainExitTimestampMonotonic": "0",
+          "ExecMainStartTimestampMonotonic": "9012489786079",
+          "ExecMainStatus": "0",
+          "ExecStart": "{ path=/usr/bin/python3 ; argv[]=/usr/bin/python3 -B /opt/popl-ubuntu-daemon-storage-20261126-c811/source/helpers/model_service.py --source-manifest-sha256 add0173921b2461d1606c90d0c1b8b0f8f010254828a2ced8cc9420c750d7a04 --base-sha256 f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4 --jobs-sha256 363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4 --cases-sha256 7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7 ; ignore_errors=no ; start_time=[Thu 2026-11-26 12:49:23 UTC] ; stop_time=[n/a] ; pid=93571 ; code=(null) ; status=0/0 }",
+          "FinalKillSignal": "9",
+          "Group": "nogroup",
+          "Id": "popl-ubuntu-daemon-storage-20261126-c811-model.service",
+          "InactiveEnterTimestampMonotonic": "0",
+          "InvocationID": "a291109537694291bc1176bbf7e7e1a7",
+          "JoinsNamespaceOf": "",
+          "KillMode": "control-group",
+          "LimitCORE": "0",
+          "LoadState": "loaded",
+          "MainPID": "93571",
+          "MemoryMax": "1610612736",
+          "MemorySwapMax": "0",
+          "NRestarts": "0",
+          "NoNewPrivileges": "yes",
+          "NotifyAccess": "none",
+          "PrivateDevices": "yes",
+          "PrivateNetwork": "yes",
+          "ProtectControlGroups": "yes",
+          "ProtectHome": "yes",
+          "ProtectSystem": "strict",
+          "ReadWritePaths": "/opt/popl-ubuntu-daemon-storage-20261126-c811/runtime",
+          "Restart": "no",
+          "RestartUSec": "100ms",
+          "RestrictAddressFamilies": "AF_INET AF_INET6 AF_UNIX",
+          "Result": "success",
+          "RuntimeMaxUSec": "15min",
+          "SendSIGKILL": "yes",
+          "StartLimitBurst": "5",
+          "StartLimitIntervalUSec": "10s",
+          "SubState": "running",
+          "TasksMax": "64",
+          "TimeoutStopUSec": "2min",
+          "User": "nobody",
+          "WatchdogSignal": "6",
+          "WatchdogTimestampMonotonic": "0",
+          "WatchdogUSec": "0",
+          "WorkingDirectory": "/opt/popl-ubuntu-daemon-storage-20261126-c811/source/contracts"
+        }
+      },
+      "popl-ubuntu-daemon-storage-20261126-c811-resolve.service": {
+        "cgroup": {
+          "exists": false,
+          "groups": [],
+          "path": "/system.slice/popl-ubuntu-daemon-storage-20261126-c811-resolve.service",
+          "pids": [],
+          "processes": []
+        },
+        "manager_journal": [
+          {
+            "INVOCATION_ID": "7e8e3e9159eb4dd89ec5ee57a605ca5c",
+            "JOB_RESULT": "done",
+            "MESSAGE": "Started popl-ubuntu-daemon-storage-20261126-c811-resolve.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json --resolve-pending 0xcb274063a9b169d3cc98262d053afc7f8a650073b910df0386fba44a74c1c8d8.",
+            "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-resolve.service",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b883ed;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83264a0674a;t=6612d61d93856;x=f28e8a8850d8c070",
+            "__MONOTONIC_TIMESTAMP": "9012529620810",
+            "__REALTIME_TIMESTAMP": "1795697403312214"
+          },
+          {
+            "INVOCATION_ID": "7e8e3e9159eb4dd89ec5ee57a605ca5c",
+            "MESSAGE": "popl-ubuntu-daemon-storage-20261126-c811-resolve.service: Deactivated successfully.",
+            "MESSAGE_ID": "7ad2d189f7e94e70a38c781354912448",
+            "SYSLOG_IDENTIFIER": "systemd",
+            "UNIT": "popl-ubuntu-daemon-storage-20261126-c811-resolve.service",
+            "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+            "_PID": "1",
+            "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b883ee;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83264a50d3c;t=6612d61ddde48;x=232a8717d1ef85b3",
+            "__MONOTONIC_TIMESTAMP": "9012529925436",
+            "__REALTIME_TIMESTAMP": "1795697403616840"
+          }
+        ],
+        "properties": {
+          "ActiveEnterTimestampMonotonic": "0",
+          "ActiveState": "inactive",
+          "CPUQuotaPerSecUSec": "infinity",
+          "ControlGroup": "",
+          "ExecMainCode": "0",
+          "ExecMainExitTimestampMonotonic": "0",
+          "ExecMainStartTimestampMonotonic": "0",
+          "ExecMainStatus": "0",
+          "FinalKillSignal": "9",
+          "Group": "",
+          "Id": "popl-ubuntu-daemon-storage-20261126-c811-resolve.service",
+          "InactiveEnterTimestampMonotonic": "0",
+          "InvocationID": "",
+          "JoinsNamespaceOf": "",
+          "KillMode": "control-group",
+          "LimitCORE": "infinity",
+          "LoadState": "not-found",
+          "MainPID": "0",
+          "MemoryMax": "infinity",
+          "MemorySwapMax": "infinity",
+          "NRestarts": "0",
+          "NoNewPrivileges": "no",
+          "NotifyAccess": "none",
+          "PrivateDevices": "no",
+          "PrivateNetwork": "no",
+          "ProtectControlGroups": "no",
+          "ProtectHome": "no",
+          "ProtectSystem": "no",
+          "ReadWritePaths": "",
+          "Restart": "no",
+          "RestartUSec": "100ms",
+          "RestrictAddressFamilies": "~",
+          "Result": "success",
+          "RuntimeMaxUSec": "infinity",
+          "SendSIGKILL": "yes",
+          "StartLimitBurst": "5",
+          "StartLimitIntervalUSec": "10s",
+          "SubState": "dead",
+          "TasksMax": "9211",
+          "TimeoutStopUSec": "1min 30s",
+          "User": "",
+          "WatchdogSignal": "6",
+          "WatchdogTimestampMonotonic": "0",
+          "WatchdogUSec": "infinity",
+          "WorkingDirectory": ""
+        }
+      }
+    },
+    "utc": 1795697404.6978836
+  },
+  "original_failure_complete": true,
+  "phase": "native_status",
+  "public_files": {
+    "case-BINDINGS.json": {
+      "bytes": 26538,
+      "uid": 65534
+    },
+    "case-CLOCK_REPAIR.json": {
+      "bytes": 3840,
+      "uid": 65534
+    },
+    "case-FINANCIAL_BEFORE.json": {
+      "bytes": 1727,
+      "uid": 65534
+    },
+    "case-HASHLESS_RESTART_BLOCKED.json": {
+      "bytes": 7544,
+      "uid": 65534
+    },
+    "case-HASH_SAVE_FAULT_ARMED.json": {
+      "bytes": 7965,
+      "uid": 65534
+    },
+    "case-INITIAL_JOURNAL.json": {
+      "bytes": 3752,
+      "uid": 65534
+    },
+    "case-POST_RESOLUTION_MINING.json": {
+      "bytes": 206,
+      "uid": 65534
+    },
+    "case-RESOLUTION_READY.json": {
+      "bytes": 11261,
+      "uid": 65534
+    },
+    "model-READY.json": {
+      "bytes": 1431,
+      "uid": 65534
+    },
+    "native-FAULT_PROOF.json": {
+      "bytes": 13374,
+      "uid": 0
+    },
+    "native-REPAIR.json": {
+      "bytes": 4353,
+      "uid": 0
+    },
+    "native-RESOLUTION_COMPLETE.json": {
+      "bytes": 244,
+      "uid": 0
+    },
+    "native-RESOLUTION_RECEIPT.json": {
+      "bytes": 3702,
+      "uid": 0
+    },
+    "native-keeper.stderr.log": {
+      "bytes": 0,
+      "uid": 65534
+    },
+    "native-keeper.stdout.log": {
+      "bytes": 1200,
+      "uid": 65534
+    },
+    "native-model.stderr.log": {
+      "bytes": 0,
+      "uid": 65534
+    },
+    "native-model.stdout.log": {
+      "bytes": 0,
+      "uid": 65534
+    },
+    "native-resolve.stderr.log": {
+      "bytes": 0,
+      "uid": 65534
+    },
+    "native-resolve.stdout.log": {
+      "bytes": 150,
+      "uid": 65534
+    }
+  }
+}

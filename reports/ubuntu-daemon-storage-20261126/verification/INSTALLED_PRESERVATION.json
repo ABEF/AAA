@@ -1,0 +1,17 @@
+{
+  "after_sha256": "1ef5d799210398af69b2b72c8afa9b9f2114ec7ece44383b39baa2a0c86bb4e5",
+  "before_sha256": "2ec1c05d17f9f8d1bf9d0be38a60c3dc2d72feb12a0f5208cd333ba5cc8f6667",
+  "checks": {
+    "installed_stage_files": true,
+    "staging_configuration_public_fields_only": true,
+    "staging_journal_metadata": true
+  },
+  "configuration_scope": "public fields and file metadata only; raw configuration byte identity not independently captured",
+  "credentials_exported": false,
+  "journal_scope": "exact original journal digest and public identity metadata",
+  "network_calls": 0,
+  "schema": 1,
+  "service_actions": 0,
+  "source_scope": "installed application/tool file digests and ownership metadata; not running-code attestation",
+  "success": true
+}

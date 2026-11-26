@@ -1,0 +1,396 @@
+{
+  "after_units": {
+    "popl-ubuntu-daemon-storage-20261126-c811-keeper.service": {
+      "ActiveState": "inactive",
+      "LoadState": "not-found",
+      "MainPID": "0"
+    },
+    "popl-ubuntu-daemon-storage-20261126-c811-model.service": {
+      "ActiveState": "failed",
+      "LoadState": "loaded",
+      "MainPID": "0"
+    },
+    "popl-ubuntu-daemon-storage-20261126-c811-resolve.service": {
+      "ActiveState": "inactive",
+      "LoadState": "not-found",
+      "MainPID": "0"
+    }
+  },
+  "application_code_executed": false,
+  "before_units": {
+    "popl-ubuntu-daemon-storage-20261126-c811-keeper.service": {
+      "ActiveState": "inactive",
+      "LoadState": "not-found",
+      "MainPID": "0"
+    },
+    "popl-ubuntu-daemon-storage-20261126-c811-model.service": {
+      "ActiveState": "failed",
+      "LoadState": "loaded",
+      "MainPID": "0"
+    },
+    "popl-ubuntu-daemon-storage-20261126-c811-resolve.service": {
+      "ActiveState": "inactive",
+      "LoadState": "not-found",
+      "MainPID": "0"
+    }
+  },
+  "configuration_raw_sha256": "3e37d609f6fe3fe20e07b2b947b98d8a384297099a34c30b6ed4bc42d2ec9ff8",
+  "configuration_semantic_sha256": "1ca9d3b35f8b3f5bcbcc92a7b769f45dac93a58a4717af8c6bf064a0a4cac53d",
+  "configured_confirmations": 12,
+  "configured_interval_seconds": 240,
+  "configured_max_gas_limit": 24000000,
+  "health": {
+    "raw_utf8": "{\n  \"active_revert_cooldowns\": 0,\n  \"blocked_actions\": 0,\n  \"canonical_state\": 0,\n  \"chain_id\": 4663,\n  \"configuration_sha256\": \"1ca9d3b35f8b3f5bcbcc92a7b769f45dac93a58a4717af8c6bf064a0a4cac53d\",\n  \"confirmed_reverts\": 0,\n  \"consecutive_failures\": 0,\n  \"duration_seconds\": 8.255,\n  \"gas_review\": {\n    \"last_review\": null,\n    \"state\": \"not_reviewed_this_cycle\"\n  },\n  \"health_schema\": 2,\n  \"last_success_at\": \"2026-11-26T12:54:00.680886+00:00\",\n  \"live\": true,\n  \"lp_execution_health\": {\n    \"last_confirmed\": {\n      \"block_hash\": \"0x756b0662e4e0d45bb32d8cd5742e150e0c3f1ab8bd59c2cb06d85ed7d28b2ee2\",\n      \"block_number\": 119107570,\n      \"block_timestamp\": 1795697618,\n      \"configuration_sha256\": \"1ca9d3b35f8b3f5bcbcc92a7b769f45dac93a58a4717af8c6bf064a0a4cac53d\",\n      \"head_number\": 119107583,\n      \"metadata\": {\n        \"catalog_frozen_by_wallet_review\": false,\n        \"execution_pools\": [\n          \"0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b\"\n        ],\n        \"execution_price\": {\n          \"context_active\": false,\n          \"contracts\": {\n            \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n            \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n            \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n            \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n            \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n            \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\"\n          },\n          \"execution_strategy\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n          \"source_revision\": 0,\n          \"version\": 1\n        },\n        \"execution_price_version\": 1,\n        \"execution_quality\": {\n          \"additional_loss_bps\": 100,\n          \"known_pool_fees_excluded_from_additional_limit\": true,\n          \"maximum_additional_loss_bps\": 1000,\n          \"policy_frozen_by_wallet_review\": false,\n          \"policy_owner\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n          \"quality_policy_revision\": 0,\n          \"version\": 1\n        },\n        \"execution_revision\": 1,\n        \"math_helper\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n        \"portfolio_version\": 2,\n        \"position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n        \"quote_gas_limit\": 200000,\n        \"registry_configuration_revision\": 1,\n        \"router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n        \"search_iterations\": 8,\n        \"swaps_enabled\": true,\n        \"version\": 3\n      },\n      \"observed_at_unix\": 1795697639,\n      \"runtime_code_hashes\": {\n        \"access\": \"0x3f926ed299995d5d9e7a7262305ba7da9bf94c3b7b5eb5711c718f909ff1ab75\",\n        \"balancing_router\": \"0x77d8d33051a77f8bd2d3819c746ff27973176f2c016b6d431e33d752e2ef76be\",\n        \"contribution_pricing\": \"0x3751ddb8c6ed5dd14410a4e4225896a20fe74f6351d1bf637642a10f8ef3e74b\",\n        \"liquidity\": \"0x875348c9c8ba7857c4df7e97c9bf5de9cfefad43f37e47613289760cefa43f4e\",\n        \"lp_balance_math\": \"0xbd068a73c86391e45b55240d172ec7011b464d2a479036ebc9e747f5ba6110bd\",\n        \"lp_position_executor\": \"0xd51ea1a2dcec52d0a44ec6a187c825b00b1fa794770046bf536fb67c1a8d51e2\",\n        \"oracle\": \"0xe36d16ea038cf200d81dfe2e9ac1f50e76c82a3a057243605b1a317164119cca\",\n        \"pool_manager\": \"0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626\",\n        \"pools\": \"0xa9ea3d581f8f9eb5dd4ae5b7aae538f7b9f28581e8f44ad98c27d3b5802e5c67\",\n        \"state_view\": \"0x7d9c591e0956fd89d98feb4ffcfe8bf1f7a62bd485edd979fa21d104b49878a6\",\n        \"strategy\": \"0x425a1cfc358d4251c75a433833c4e31e9594b482da7c00f75e75492f18a7cb60\"\n      },\n      \"source_files_sha256\": {\n        \"keeper/cast_process.py\": \"b6203067b022625bce2bfb415bb6ed85620dc8c7002b51f2d3d4c9296c5ac3e1\",\n        \"keeper/compound_policy.py\": \"129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29\",\n        \"keeper/health.py\": \"dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04\",\n        \"keeper/monitor.py\": \"90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f\",\n        \"keeper/ops.py\": \"a81eb06001024f11f751691ba2b8fd7f37605f10feba925006bf57242751fa6b\",\n        \"keeper/rebalance_confirmation.py\": \"6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d\",\n        \"zzz_ops/abi.py\": \"c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91\",\n        \"zzz_ops/execution_price.py\": \"1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2\",\n        \"zzz_ops/lp_execution.py\": \"90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0\",\n        \"zzz_ops/protocol_policy.py\": \"4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3\",\n        \"zzz_ops/rebalance_confirmation.py\": \"77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331\",\n        \"zzz_ops/rpc.py\": \"6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f\",\n        \"zzz_ops/state.py\": \"78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf\"\n      },\n      \"source_identity_scope\": \"local_files_at_keeper_start_not_runtime_attestation\"\n    },\n    \"last_error\": null,\n    \"schema\": 1,\n    \"state\": \"observed_this_cycle\"\n  },\n  \"lp_exit_started\": false,\n  \"next_revert_retry_after\": null,\n  \"pending\": false,\n  \"pending_action\": null,\n  \"pending_day\": null,\n  \"preparation_active\": false,\n  \"rebalance_confirmation_health\": {\n    \"awaiting_healthy_read_buckets\": [],\n    \"check_interval_seconds\": 240,\n    \"last_observation\": {\n      \"applied_revision\": 0,\n      \"block_hash\": \"0x0df4f9c05bc5e03f9ec9e10f8c1857ca40f0fa0c0afbbffaf79897ab1e2b6b74\",\n      \"block_number\": 119107578,\n      \"block_timestamp\": 1795697626,\n      \"condition_identity\": \"0x0000000000000000000000000000000000000000000000000000000000000000\",\n      \"configuration_pending\": false,\n      \"configured\": true,\n      \"continuous_price_proof\": false,\n      \"cooldown_elapsed\": true,\n      \"duration_seconds\": 600,\n      \"earliest_confirmation_at\": null,\n      \"earliest_cooldown_at\": 1795227135,\n      \"enabled\": false,\n      \"evidence_kind\": \"bounded_recorded_onchain_observations\",\n      \"exit_side\": 0,\n      \"first_observed_at\": null,\n      \"first_seen\": 0,\n      \"geometry_revision\": 0,\n      \"helper\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n      \"identity\": \"0x0000000000000000000000000000000000000000000000000000000000000000\",\n      \"last_observed_at\": null,\n      \"last_seen\": 0,\n      \"maintenance_policy\": {\n        \"domain\": \"maintenance\",\n        \"fingerprint\": \"0x5549a08cae546aff947ee49e7eaecf06097a833961ca0fe74d1493e87aa5ab4c\",\n        \"maximum_idle_bps\": 500,\n        \"policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n        \"revision\": 1,\n        \"version\": 1\n      },\n      \"manual\": false,\n      \"manual_range_exception\": false,\n      \"max_observation_gap_seconds\": 300,\n      \"maximum_gap_seconds\": 300,\n      \"maximum_residual_bps\": 4000,\n      \"minimum_main_bps\": 6000,\n      \"observation_expires_at\": null,\n      \"observation_identity\": \"0x0000000000000000000000000000000000000000000000000000000000000000\",\n      \"observation_side\": 0,\n      \"physical_threshold_side\": 0,\n      \"policy_revision\": 2,\n      \"portfolio_control_fingerprint\": \"0x96299757e37d486534dfe47cf9718a86dcb4f3b3e33a6075c4e86d67bd7d6850\",\n      \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n      \"portfolio_policy_revision\": 0,\n      \"portfolio_version\": 2,\n      \"raw_eligible_at_snapshot\": false,\n      \"ready\": false,\n      \"ready_at_snapshot\": false,\n      \"record_matches_condition\": false,\n      \"recorded_identity\": \"0x0000000000000000000000000000000000000000000000000000000000000000\",\n      \"recorded_side\": 0,\n      \"reference_exit_required\": true,\n      \"reference_review_hash\": \"0x0000000000000000000000000000000000000000000000000000000000000000\",\n      \"reference_threshold_side\": 0,\n      \"residual_gap_spacings\": 1,\n      \"residual_side_bps\": 5000,\n      \"review_hash\": \"0x61cd4c1e7e10a59b6ff459235081221d62b88e1d2ba30decb08b26d0edaea1a8\",\n      \"sampled_mature\": false,\n      \"schedule_source\": \"unavailable\",\n      \"seconds_remaining\": null,\n      \"side\": 0,\n      \"status\": \"threshold_not_met\",\n      \"threshold_basis\": \"ZZZ_in_ETH_actual_centre_to_physical_boundary\",\n      \"threshold_bps\": 8500,\n      \"threshold_condition_at_snapshot\": false,\n      \"threshold_observation_scope\": \"ordinary_market_threshold\",\n      \"version\": 3\n    },\n    \"pending_reset_buckets\": [],\n    \"policy\": {\n      \"last_error\": null,\n      \"last_observed\": {\n        \"anchor_scope\": \"latest_canonical_policy_only_not_continuous_evidence\",\n        \"block_hash\": \"0x39ce0fd50aa3adc24c914af6226c2c655499e69048acd82747a47e70d9012cb3\",\n        \"block_number\": 119107583,\n        \"block_timestamp\": 1795697631,\n        \"configuration_sha256\": \"1ca9d3b35f8b3f5bcbcc92a7b769f45dac93a58a4717af8c6bf064a0a4cac53d\",\n        \"configured\": true,\n        \"continuous_price_proof\": false,\n        \"duration_seconds\": 600,\n        \"evidence_kind\": \"bounded_recorded_onchain_observations\",\n        \"helper\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n        \"maintenance_policy\": {\n          \"domain\": \"maintenance\",\n          \"fingerprint\": \"0x5549a08cae546aff947ee49e7eaecf06097a833961ca0fe74d1493e87aa5ab4c\",\n          \"maximum_idle_bps\": 500,\n          \"policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n          \"revision\": 1,\n          \"version\": 1\n        },\n        \"max_observation_gap_seconds\": 300,\n        \"maximum_gap_seconds\": 300,\n        \"maximum_residual_bps\": null,\n        \"minimum_main_bps\": null,\n        \"observed_at_unix\": 1795697640,\n        \"policy_revision\": 2,\n        \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n        \"portfolio_policy_revision\": 0,\n        \"portfolio_version\": 2,\n        \"reference_exit_required\": true,\n        \"reference_review_hash\": \"0x0000000000000000000000000000000000000000000000000000000000000000\",\n        \"review_hash\": \"0x61cd4c1e7e10a59b6ff459235081221d62b88e1d2ba30decb08b26d0edaea1a8\",\n        \"runtime_code_hashes\": {\n          \"access\": \"0x3f926ed299995d5d9e7a7262305ba7da9bf94c3b7b5eb5711c718f909ff1ab75\",\n          \"idle_compounding_budget\": \"0xbd2dce9a43ca62de7e0b2581b154a371e8112faec11f3979d7753ed09bbf8711\",\n          \"portfolio_policy\": \"0x2538647453135fae1d343d80b490a4c3fb271324d56e4d317da637ff9abb5314\",\n          \"protocol_policy\": \"0xb63da654df2b1bb0da41de050801e0cda9b603b6674a9bfc2fb30705970562a0\",\n          \"rebalance_confirmation\": \"0x3016b2ab532cc361205db1ffae7ee891e7b0d92b6f176b5266eded396c40491e\",\n          \"strategy\": \"0x425a1cfc358d4251c75a433833c4e31e9594b482da7c00f75e75492f18a7cb60\",\n          \"vault\": \"0xad69abbb0d6b705ec015320fe1c89f9c87d61efb71afa863923c8a20c48d63f8\"\n        },\n        \"schedule_source\": \"unavailable\",\n        \"source_files_sha256\": {\n          \"keeper/cast_process.py\": \"b6203067b022625bce2bfb415bb6ed85620dc8c7002b51f2d3d4c9296c5ac3e1\",\n          \"keeper/compound_policy.py\": \"129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29\",\n          \"keeper/health.py\": \"dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04\",\n          \"keeper/monitor.py\": \"90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f\",\n          \"keeper/ops.py\": \"a81eb06001024f11f751691ba2b8fd7f37605f10feba925006bf57242751fa6b\",\n          \"keeper/rebalance_confirmation.py\": \"6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d\",\n          \"zzz_ops/abi.py\": \"c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91\",\n          \"zzz_ops/execution_price.py\": \"1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2\",\n          \"zzz_ops/lp_execution.py\": \"90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0\",\n          \"zzz_ops/protocol_policy.py\": \"4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3\",\n          \"zzz_ops/rebalance_confirmation.py\": \"77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331\",\n          \"zzz_ops/rpc.py\": \"6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f\",\n          \"zzz_ops/state.py\": \"78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf\"\n        },\n        \"source_identity_scope\": \"local_files_at_keeper_start_not_runtime_attestation\",\n        \"threshold_basis\": \"ZZZ_in_ETH_actual_centre_to_physical_boundary\",\n        \"threshold_bps\": 8500,\n        \"validated_bindings\": {\n          \"access_strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n          \"access_vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n          \"budget_access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n          \"budget_vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\",\n          \"helper_access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n          \"helper_strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n          \"portfolio_policy_access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n          \"portfolio_policy_strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n          \"strategy_access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n          \"strategy_helper\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n          \"strategy_portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n          \"vault_budget\": \"0x596b344ab09a470bc468753e7bd3dc0a9fc5ebc1\"\n        },\n        \"validated_capabilities\": {\n          \"budget_compounding\": 4,\n          \"idle_compounding_budget\": 3,\n          \"portfolio_policy\": 2,\n          \"protocol_policy\": 1,\n          \"rebalance_confirmation\": 3,\n          \"strategy\": 3\n        },\n        \"version\": 3\n      },\n      \"schema\": 1,\n      \"state\": \"observed_this_cycle\"\n    },\n    \"scope\": \"last_observed_latest_state_not_continuous_evidence\",\n    \"version\": 3\n  },\n  \"sender\": \"0x20ff94d95eb27ce66880d20318f76bb38c9f1a14\",\n  \"skipped_buckets\": 0,\n  \"status\": \"healthy_v2\",\n  \"strategy_paused\": false,\n  \"time\": \"2026-11-26T12:54:00.680954+00:00\"\n}\n",
+    "sha256": "3576fd45e501576570d1f29b1729b0cef788bb3b12d61f55dd2dd6b9ee6c3fc4",
+    "state": {
+      "active_revert_cooldowns": 0,
+      "blocked_actions": 0,
+      "canonical_state": 0,
+      "chain_id": 4663,
+      "configuration_sha256": "1ca9d3b35f8b3f5bcbcc92a7b769f45dac93a58a4717af8c6bf064a0a4cac53d",
+      "confirmed_reverts": 0,
+      "consecutive_failures": 0,
+      "duration_seconds": 8.255,
+      "gas_review": {
+        "last_review": null,
+        "state": "not_reviewed_this_cycle"
+      },
+      "health_schema": 2,
+      "last_success_at": "2026-11-26T12:54:00.680886+00:00",
+      "live": true,
+      "lp_execution_health": {
+        "last_confirmed": {
+          "block_hash": "0x756b0662e4e0d45bb32d8cd5742e150e0c3f1ab8bd59c2cb06d85ed7d28b2ee2",
+          "block_number": 119107570,
+          "block_timestamp": 1795697618,
+          "configuration_sha256": "1ca9d3b35f8b3f5bcbcc92a7b769f45dac93a58a4717af8c6bf064a0a4cac53d",
+          "head_number": 119107583,
+          "metadata": {
+            "catalog_frozen_by_wallet_review": false,
+            "execution_pools": [
+              "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b"
+            ],
+            "execution_price": {
+              "context_active": false,
+              "contracts": {
+                "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+                "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+                "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+                "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+                "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+                "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206"
+              },
+              "execution_strategy": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+              "source_revision": 0,
+              "version": 1
+            },
+            "execution_price_version": 1,
+            "execution_quality": {
+              "additional_loss_bps": 100,
+              "known_pool_fees_excluded_from_additional_limit": true,
+              "maximum_additional_loss_bps": 1000,
+              "policy_frozen_by_wallet_review": false,
+              "policy_owner": "0xf4b21769b176555ab46c72bb610be2d271280206",
+              "quality_policy_revision": 0,
+              "version": 1
+            },
+            "execution_revision": 1,
+            "math_helper": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+            "portfolio_version": 2,
+            "position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+            "quote_gas_limit": 200000,
+            "registry_configuration_revision": 1,
+            "router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+            "search_iterations": 8,
+            "swaps_enabled": true,
+            "version": 3
+          },
+          "observed_at_unix": 1795697639,
+          "runtime_code_hashes": {
+            "access": "0x3f926ed299995d5d9e7a7262305ba7da9bf94c3b7b5eb5711c718f909ff1ab75",
+            "balancing_router": "0x77d8d33051a77f8bd2d3819c746ff27973176f2c016b6d431e33d752e2ef76be",
+            "contribution_pricing": "0x3751ddb8c6ed5dd14410a4e4225896a20fe74f6351d1bf637642a10f8ef3e74b",
+            "liquidity": "0x875348c9c8ba7857c4df7e97c9bf5de9cfefad43f37e47613289760cefa43f4e",
+            "lp_balance_math": "0xbd068a73c86391e45b55240d172ec7011b464d2a479036ebc9e747f5ba6110bd",
+            "lp_position_executor": "0xd51ea1a2dcec52d0a44ec6a187c825b00b1fa794770046bf536fb67c1a8d51e2",
+            "oracle": "0xe36d16ea038cf200d81dfe2e9ac1f50e76c82a3a057243605b1a317164119cca",
+            "pool_manager": "0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626",
+            "pools": "0xa9ea3d581f8f9eb5dd4ae5b7aae538f7b9f28581e8f44ad98c27d3b5802e5c67",
+            "state_view": "0x7d9c591e0956fd89d98feb4ffcfe8bf1f7a62bd485edd979fa21d104b49878a6",
+            "strategy": "0x425a1cfc358d4251c75a433833c4e31e9594b482da7c00f75e75492f18a7cb60"
+          },
+          "source_files_sha256": {
+            "keeper/cast_process.py": "b6203067b022625bce2bfb415bb6ed85620dc8c7002b51f2d3d4c9296c5ac3e1",
+            "keeper/compound_policy.py": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29",
+            "keeper/health.py": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04",
+            "keeper/monitor.py": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f",
+            "keeper/ops.py": "a81eb06001024f11f751691ba2b8fd7f37605f10feba925006bf57242751fa6b",
+            "keeper/rebalance_confirmation.py": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d",
+            "zzz_ops/abi.py": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91",
+            "zzz_ops/execution_price.py": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2",
+            "zzz_ops/lp_execution.py": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0",
+            "zzz_ops/protocol_policy.py": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3",
+            "zzz_ops/rebalance_confirmation.py": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331",
+            "zzz_ops/rpc.py": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f",
+            "zzz_ops/state.py": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf"
+          },
+          "source_identity_scope": "local_files_at_keeper_start_not_runtime_attestation"
+        },
+        "last_error": null,
+        "schema": 1,
+        "state": "observed_this_cycle"
+      },
+      "lp_exit_started": false,
+      "next_revert_retry_after": null,
+      "pending": false,
+      "pending_action": null,
+      "pending_day": null,
+      "preparation_active": false,
+      "rebalance_confirmation_health": {
+        "awaiting_healthy_read_buckets": [],
+        "check_interval_seconds": 240,
+        "last_observation": {
+          "applied_revision": 0,
+          "block_hash": "0x0df4f9c05bc5e03f9ec9e10f8c1857ca40f0fa0c0afbbffaf79897ab1e2b6b74",
+          "block_number": 119107578,
+          "block_timestamp": 1795697626,
+          "condition_identity": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "configuration_pending": false,
+          "configured": true,
+          "continuous_price_proof": false,
+          "cooldown_elapsed": true,
+          "duration_seconds": 600,
+          "earliest_confirmation_at": null,
+          "earliest_cooldown_at": 1795227135,
+          "enabled": false,
+          "evidence_kind": "bounded_recorded_onchain_observations",
+          "exit_side": 0,
+          "first_observed_at": null,
+          "first_seen": 0,
+          "geometry_revision": 0,
+          "helper": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+          "identity": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "last_observed_at": null,
+          "last_seen": 0,
+          "maintenance_policy": {
+            "domain": "maintenance",
+            "fingerprint": "0x5549a08cae546aff947ee49e7eaecf06097a833961ca0fe74d1493e87aa5ab4c",
+            "maximum_idle_bps": 500,
+            "policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+            "revision": 1,
+            "version": 1
+          },
+          "manual": false,
+          "manual_range_exception": false,
+          "max_observation_gap_seconds": 300,
+          "maximum_gap_seconds": 300,
+          "maximum_residual_bps": 4000,
+          "minimum_main_bps": 6000,
+          "observation_expires_at": null,
+          "observation_identity": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "observation_side": 0,
+          "physical_threshold_side": 0,
+          "policy_revision": 2,
+          "portfolio_control_fingerprint": "0x96299757e37d486534dfe47cf9718a86dcb4f3b3e33a6075c4e86d67bd7d6850",
+          "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+          "portfolio_policy_revision": 0,
+          "portfolio_version": 2,
+          "raw_eligible_at_snapshot": false,
+          "ready": false,
+          "ready_at_snapshot": false,
+          "record_matches_condition": false,
+          "recorded_identity": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "recorded_side": 0,
+          "reference_exit_required": true,
+          "reference_review_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "reference_threshold_side": 0,
+          "residual_gap_spacings": 1,
+          "residual_side_bps": 5000,
+          "review_hash": "0x61cd4c1e7e10a59b6ff459235081221d62b88e1d2ba30decb08b26d0edaea1a8",
+          "sampled_mature": false,
+          "schedule_source": "unavailable",
+          "seconds_remaining": null,
+          "side": 0,
+          "status": "threshold_not_met",
+          "threshold_basis": "ZZZ_in_ETH_actual_centre_to_physical_boundary",
+          "threshold_bps": 8500,
+          "threshold_condition_at_snapshot": false,
+          "threshold_observation_scope": "ordinary_market_threshold",
+          "version": 3
+        },
+        "pending_reset_buckets": [],
+        "policy": {
+          "last_error": null,
+          "last_observed": {
+            "anchor_scope": "latest_canonical_policy_only_not_continuous_evidence",
+            "block_hash": "0x39ce0fd50aa3adc24c914af6226c2c655499e69048acd82747a47e70d9012cb3",
+            "block_number": 119107583,
+            "block_timestamp": 1795697631,
+            "configuration_sha256": "1ca9d3b35f8b3f5bcbcc92a7b769f45dac93a58a4717af8c6bf064a0a4cac53d",
+            "configured": true,
+            "continuous_price_proof": false,
+            "duration_seconds": 600,
+            "evidence_kind": "bounded_recorded_onchain_observations",
+            "helper": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+            "maintenance_policy": {
+              "domain": "maintenance",
+              "fingerprint": "0x5549a08cae546aff947ee49e7eaecf06097a833961ca0fe74d1493e87aa5ab4c",
+              "maximum_idle_bps": 500,
+              "policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+              "revision": 1,
+              "version": 1
+            },
+            "max_observation_gap_seconds": 300,
+            "maximum_gap_seconds": 300,
+            "maximum_residual_bps": null,
+            "minimum_main_bps": null,
+            "observed_at_unix": 1795697640,
+            "policy_revision": 2,
+            "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+            "portfolio_policy_revision": 0,
+            "portfolio_version": 2,
+            "reference_exit_required": true,
+            "reference_review_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "review_hash": "0x61cd4c1e7e10a59b6ff459235081221d62b88e1d2ba30decb08b26d0edaea1a8",
+            "runtime_code_hashes": {
+              "access": "0x3f926ed299995d5d9e7a7262305ba7da9bf94c3b7b5eb5711c718f909ff1ab75",
+              "idle_compounding_budget": "0xbd2dce9a43ca62de7e0b2581b154a371e8112faec11f3979d7753ed09bbf8711",
+              "portfolio_policy": "0x2538647453135fae1d343d80b490a4c3fb271324d56e4d317da637ff9abb5314",
+              "protocol_policy": "0xb63da654df2b1bb0da41de050801e0cda9b603b6674a9bfc2fb30705970562a0",
+              "rebalance_confirmation": "0x3016b2ab532cc361205db1ffae7ee891e7b0d92b6f176b5266eded396c40491e",
+              "strategy": "0x425a1cfc358d4251c75a433833c4e31e9594b482da7c00f75e75492f18a7cb60",
+              "vault": "0xad69abbb0d6b705ec015320fe1c89f9c87d61efb71afa863923c8a20c48d63f8"
+            },
+            "schedule_source": "unavailable",
+            "source_files_sha256": {
+              "keeper/cast_process.py": "b6203067b022625bce2bfb415bb6ed85620dc8c7002b51f2d3d4c9296c5ac3e1",
+              "keeper/compound_policy.py": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29",
+              "keeper/health.py": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04",
+              "keeper/monitor.py": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f",
+              "keeper/ops.py": "a81eb06001024f11f751691ba2b8fd7f37605f10feba925006bf57242751fa6b",
+              "keeper/rebalance_confirmation.py": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d",
+              "zzz_ops/abi.py": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91",
+              "zzz_ops/execution_price.py": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2",
+              "zzz_ops/lp_execution.py": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0",
+              "zzz_ops/protocol_policy.py": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3",
+              "zzz_ops/rebalance_confirmation.py": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331",
+              "zzz_ops/rpc.py": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f",
+              "zzz_ops/state.py": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf"
+            },
+            "source_identity_scope": "local_files_at_keeper_start_not_runtime_attestation",
+            "threshold_basis": "ZZZ_in_ETH_actual_centre_to_physical_boundary",
+            "threshold_bps": 8500,
+            "validated_bindings": {
+              "access_strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+              "access_vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+              "budget_access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+              "budget_vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+              "helper_access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+              "helper_strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+              "portfolio_policy_access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+              "portfolio_policy_strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+              "strategy_access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+              "strategy_helper": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+              "strategy_portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+              "vault_budget": "0x596b344ab09a470bc468753e7bd3dc0a9fc5ebc1"
+            },
+            "validated_capabilities": {
+              "budget_compounding": 4,
+              "idle_compounding_budget": 3,
+              "portfolio_policy": 2,
+              "protocol_policy": 1,
+              "rebalance_confirmation": 3,
+              "strategy": 3
+            },
+            "version": 3
+          },
+          "schema": 1,
+          "state": "observed_this_cycle"
+        },
+        "scope": "last_observed_latest_state_not_continuous_evidence",
+        "version": 3
+      },
+      "sender": "0x20ff94d95eb27ce66880d20318f76bb38c9f1a14",
+      "skipped_buckets": 0,
+      "status": "healthy_v2",
+      "strategy_paused": false,
+      "time": "2026-11-26T12:54:00.680954+00:00"
+    }
+  },
+  "journal": {
+    "raw_utf8": "{\n  \"accounting_model\": \"shared-pools-v2\",\n  \"accounting_version\": 7,\n  \"bucket_cursor\": 1,\n  \"chain_id\": 4663,\n  \"contracts\": {\n    \"access\": \"0xfa26e96e5f11a855d737cff71a19e133d8349e83\",\n    \"balancing_router\": \"0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829\",\n    \"buyback\": \"0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c\",\n    \"compounder\": \"0x0dfa80c125aa917d363787e497cf950e1bbaadb7\",\n    \"contribution_pricing\": \"0x5811f58b8cc7c2e9b7be5d87092e2343f6296328\",\n    \"fees\": \"0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf\",\n    \"liquidity\": \"0xeffbc023e576f1ece7b9c53165352044029abe75\",\n    \"lp_balance_math\": \"0x954901082e6a54b3140eb9ec4fefbb40498bfb67\",\n    \"lp_position_executor\": \"0xd3e719b1f023c479e903d77050eb96d30adfc0ba\",\n    \"nft\": \"0xee893b86b3ca6ac1794f637af84f791c402d29a9\",\n    \"oracle\": \"0x75feca20691840cf46106d8d170c082c6c685150\",\n    \"pool_manager\": \"0x8366a39cc670b4001a1121b8f6a443a643e40951\",\n    \"pools\": \"0xd9d24f86dc2e8d632ba4701987b5c6c077da0819\",\n    \"portfolio_policy\": \"0xb33d4e8db748b43f93050df670c5ee3bf84a10df\",\n    \"principal_exit\": \"0x357e9811349d86f67e507b477def7b5e9e90e938\",\n    \"protocol_policy\": \"0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b\",\n    \"rebalance_confirmation\": \"0xb08943c851cd817e36f2040a47038e47ba769ca1\",\n    \"rewards\": \"0x05c2d0f16cc810acad17168446f52d60d4733062\",\n    \"state_view\": \"0xf3334192d15450cdd385c8b70e03f9a6bd9e673b\",\n    \"strategy\": \"0xf4b21769b176555ab46c72bb610be2d271280206\",\n    \"vault\": \"0x6e113da826ec57f968fff0f7cb7c0163b6b31db1\"\n  },\n  \"conversion_turn\": 0,\n  \"execution_price_version\": 1,\n  \"fee_intake_version\": 1,\n  \"last\": {\n    \"harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230\": 1795697385\n  },\n  \"last_fee_observation\": {\n    \"cost_wei\": 9626048,\n    \"execution_price_wei\": 32,\n    \"gas_used\": 300814,\n    \"l1_fee_wei\": 0,\n    \"receipt_fee_policy\": \"included\",\n    \"reported_price_wei\": 32,\n    \"transaction\": \"0xcb274063a9b169d3cc98262d053afc7f8a650073b910df0386fba44a74c1c8d8\"\n  },\n  \"next_nonce\": 1,\n  \"observed_adjustment_v3\": {\n    \"47181787163762592248710325652087236475813397965818762058663276509558631703230\": {\n      \"execute_after\": 0,\n      \"identity\": \"0xb15dba2b63fdf786e4fe3ddf7b1ddb29bea1998703ce0ea5532c928af8a472a4\",\n      \"last_checked_at\": 1795697626,\n      \"next_check_at\": 1795697866,\n      \"observed_at\": 1795697626\n    }\n  },\n  \"pending\": null,\n  \"receipt_anchor\": {\n    \"hash\": \"0xf214373a54c04f3188279ab639e2a2e0863a5a44fdd677b9a7b0a7b8f24d7d04\",\n    \"nonce\": 0,\n    \"number\": 119107337,\n    \"timestamp\": 1795697385\n  },\n  \"retry_after\": {},\n  \"sender\": \"0x20ff94d95eb27ce66880d20318f76bb38c9f1a14\",\n  \"spent\": {\n    \"2026-11-26\": 9626048\n  }\n}\n",
+    "sha256": "724bce2b3087e625b8a6cbc7e810d20c89aa84f62dcb40b6c2b671c188d124c5",
+    "state": {
+      "accounting_model": "shared-pools-v2",
+      "accounting_version": 7,
+      "bucket_cursor": 1,
+      "chain_id": 4663,
+      "contracts": {
+        "access": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+        "balancing_router": "0x4418ccd80e9bea2bb1c1274678a33ed0eda4b829",
+        "buyback": "0xae3190875cb5ee986ac2c618d7b0393a5c0d3a2c",
+        "compounder": "0x0dfa80c125aa917d363787e497cf950e1bbaadb7",
+        "contribution_pricing": "0x5811f58b8cc7c2e9b7be5d87092e2343f6296328",
+        "fees": "0x03c6b1de9474736f327d5ec1f57ee8cf4ca823cf",
+        "liquidity": "0xeffbc023e576f1ece7b9c53165352044029abe75",
+        "lp_balance_math": "0x954901082e6a54b3140eb9ec4fefbb40498bfb67",
+        "lp_position_executor": "0xd3e719b1f023c479e903d77050eb96d30adfc0ba",
+        "nft": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+        "oracle": "0x75feca20691840cf46106d8d170c082c6c685150",
+        "pool_manager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+        "pools": "0xd9d24f86dc2e8d632ba4701987b5c6c077da0819",
+        "portfolio_policy": "0xb33d4e8db748b43f93050df670c5ee3bf84a10df",
+        "principal_exit": "0x357e9811349d86f67e507b477def7b5e9e90e938",
+        "protocol_policy": "0x97c2d7ef54996afe6cdcbc4af293c9aa3f75a52b",
+        "rebalance_confirmation": "0xb08943c851cd817e36f2040a47038e47ba769ca1",
+        "rewards": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+        "state_view": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+        "strategy": "0xf4b21769b176555ab46c72bb610be2d271280206",
+        "vault": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1"
+      },
+      "conversion_turn": 0,
+      "execution_price_version": 1,
+      "fee_intake_version": 1,
+      "last": {
+        "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795697385
+      },
+      "last_fee_observation": {
+        "cost_wei": 9626048,
+        "execution_price_wei": 32,
+        "gas_used": 300814,
+        "l1_fee_wei": 0,
+        "receipt_fee_policy": "included",
+        "reported_price_wei": 32,
+        "transaction": "0xcb274063a9b169d3cc98262d053afc7f8a650073b910df0386fba44a74c1c8d8"
+      },
+      "next_nonce": 1,
+      "observed_adjustment_v3": {
+        "47181787163762592248710325652087236475813397965818762058663276509558631703230": {
+          "execute_after": 0,
+          "identity": "0xb15dba2b63fdf786e4fe3ddf7b1ddb29bea1998703ce0ea5532c928af8a472a4",
+          "last_checked_at": 1795697626,
+          "next_check_at": 1795697866,
+          "observed_at": 1795697626
+        }
+      },
+      "pending": null,
+      "receipt_anchor": {
+        "hash": "0xf214373a54c04f3188279ab639e2a2e0863a5a44fdd677b9a7b0a7b8f24d7d04",
+        "nonce": 0,
+        "number": 119107337,
+        "timestamp": 1795697385
+      },
+      "retry_after": {},
+      "sender": "0x20ff94d95eb27ce66880d20318f76bb38c9f1a14",
+      "spent": {
+        "2026-11-26": 9626048
+      }
+    }
+  },
+  "lab": "/opt/popl-ubuntu-daemon-storage-20261126-c811",
+  "observed_utc_epoch": 1795697935.1350343,
+  "read_only": true,
+  "schema": 1,
+  "secrets_exported": false,
+  "service_actions": 0
+}

@@ -1,0 +1,11 @@
+{
+  "capture_errors": [],
+  "capture_reason": null,
+  "elapsed_seconds": 1.0630000000001019,
+  "exit_code": 0,
+  "read_only": true,
+  "remote_source_sha256": "03ea8998a319fa260a2b94807088ab70f5fd36bb1faca01965da4e3b0dd5fb76",
+  "service_actions": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "91d7a4bc23131ee8610eeb4c4e788351dacdcea87de788698aff6531f8d6bd0f"
+}

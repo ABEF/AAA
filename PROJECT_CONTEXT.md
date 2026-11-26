@@ -1,5 +1,11 @@
 # Project context
 
+New [daemon-storage evidence](reports/ubuntu-daemon-storage-20261126/REVIEW.md): real accepted-hash EACCES, same-journal
+restart and once-only recovery are independently reconciled. The original
+campaign remains **NONPASS** from a mistaken timing assertion; final physical
+after-state reads are missing. Q06/P21 remain open. No production code, limits
+or existing environments changed.
+
 [Full keeper audit — 26 November](reports/keeper-full-audit-20261126/REVIEW.md) adds late booked-cost anchor checks,
 bounded staging wallet utilities and bounded read-only monitor output. Exact
 new verification, the original interrupted utility evidence and isolated Ubuntu

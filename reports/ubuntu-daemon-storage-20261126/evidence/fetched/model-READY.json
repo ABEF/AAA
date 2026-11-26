@@ -1,0 +1,25 @@
+{
+  "all_guard_limits_unchanged": true,
+  "all_other_financial_jobs_disabled": true,
+  "configuration_path": "/opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json",
+  "configuration_sha256": "3e37d609f6fe3fe20e07b2b947b98d8a384297099a34c30b6ed4bc42d2ec9ff8",
+  "fault_stage": "accepted_node_hash_before_Cast_response",
+  "health_path": "/opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/health.json",
+  "monitor_argv": [
+    "/usr/bin/python3",
+    "-m",
+    "keeper.monitor",
+    "--config",
+    "/opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/config.json",
+    "--live"
+  ],
+  "monitor_working_directory": "/opt/popl-ubuntu-daemon-storage-20261126-c811/source/contracts",
+  "namespace": "net:[4026532431]",
+  "only_actor_directory_will_be_chmod_0500": true,
+  "original_journal_sha256": "e141919729ae0763adc0fbd694bf428748fa9e3fafa7ee21133e428655348e49",
+  "required_root_resolution_marker": "/opt/popl-ubuntu-daemon-storage-20261126-c811/control/RESOLUTION_COMPLETE.json",
+  "semantic_configuration_sha256": "1ca9d3b35f8b3f5bcbcc92a7b769f45dac93a58a4717af8c6bf064a0a4cac53d",
+  "sender": "0x20ff94d95eb27ce66880d20318f76bb38c9f1a14",
+  "source_head": "c07d5b153149f7c072ee5ff785c1cabac60197f6",
+  "state_path": "/opt/popl-ubuntu-daemon-storage-20261126-c811/runtime/run-001/model/supervisor/actor/state.json"
+}

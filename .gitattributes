@@ -446,3 +446,6 @@ zzz_ops/read_process.py -text whitespace=cr-at-eol
 tests_python/test_keeper_anchor_recheck.py -text whitespace=cr-at-eol
 tests_python/test_keeper_utility_capture.py -text whitespace=cr-at-eol
 tests_python/test_read_process.py -text whitespace=cr-at-eol,-blank-at-eof
+
+# Preserve exact daemon-storage evidence, including the original NONPASS.
+reports/ubuntu-daemon-storage-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

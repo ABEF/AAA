@@ -263,6 +263,19 @@ the new diagnostics change keeper source identity, not the journal codec or
 frontend history/checkpoint semantics. Retain original source and journal bytes;
 do not edit health-source hashes to make an old observation pass.
 
+### Actual daemon follow-through and earlier deadlines
+
+The [26 November c811 record](../reports/ubuntu-daemon-storage-20261126/REVIEW.md)
+independently reconciles real accepted-hash EACCES, natural exit, same-journal
+hashless restart, fenced no-live resolution and once-only canonical receipt
+accounting. The unchanged240s outer interval can wake earlier for a saved
+confirmation deadline. A confirmed receipt may first leave health degraded
+until the next metadata review; preserve that schedule rather than resetting
+state, forcing a new delay or resending. Actual healthy recovery is retained
+in a read-only post-stop snapshot. The original overall campaign remains
+NONPASS from a mistaken minimum-wait assertion; its final physical after-state
+reads were not captured. The scoped reconciliation does not invent them.
+
 ## Stalled RPC and progress watchdog
 
 The [25 November stock-daemon record](../reports/ubuntu-supervisor-20261125/REVIEW.md)

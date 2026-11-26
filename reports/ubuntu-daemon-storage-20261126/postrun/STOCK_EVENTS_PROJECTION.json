@@ -1,0 +1,79 @@
+{
+  "all_original_event_values_preserved": true,
+  "derived_projection": true,
+  "events": [
+    {
+      "action": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+      "error_site": "tempfile.py:_mkstemp_inner:395",
+      "error_type": "PermissionError",
+      "event": "submission_requires_reconciliation",
+      "os_errno": "EACCES",
+      "reported_transaction": "0xcb274063a9b169d3cc98262d053afc7f8a650073b910df0386fba44a74c1c8d8",
+      "time": "2026-11-26T12:49:49.867804+00:00"
+    },
+    {
+      "consecutive_failures": 1,
+      "error_site": "tempfile.py:_mkstemp_inner:395",
+      "error_type": "PermissionError",
+      "event": "cycle_failed",
+      "os_errno": "EACCES",
+      "retryable": false,
+      "time": "2026-11-26T12:49:49.867905+00:00"
+    },
+    {
+      "error_site": "tempfile.py:_mkstemp_inner:395",
+      "error_type": "PermissionError",
+      "event": "keeper_halted",
+      "os_errno": "EACCES",
+      "time": "2026-11-26T12:49:49.868093+00:00"
+    },
+    {
+      "action": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+      "event": "broadcast_ambiguous",
+      "nonce": 0,
+      "time": "2026-11-26T12:49:58.351946+00:00"
+    },
+    {
+      "active_revert_cooldowns": 0,
+      "confirmed_reverts": 0,
+      "event": "cycle_completed",
+      "next_revert_retry_after": null,
+      "pending": true,
+      "skipped_buckets": 0,
+      "status": "recovery_required",
+      "time": "2026-11-26T12:49:58.353926+00:00"
+    },
+    {
+      "action": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+      "cost_wei": "9626048",
+      "event": "confirmed",
+      "time": "2026-11-26T12:50:09.028048+00:00",
+      "transaction": "0xcb274063a9b169d3cc98262d053afc7f8a650073b910df0386fba44a74c1c8d8"
+    },
+    {
+      "active_revert_cooldowns": 0,
+      "confirmed_reverts": 0,
+      "event": "cycle_completed",
+      "next_revert_retry_after": null,
+      "pending": false,
+      "skipped_buckets": 0,
+      "status": "degraded",
+      "time": "2026-11-26T12:50:12.425318+00:00"
+    },
+    {
+      "active_revert_cooldowns": 0,
+      "confirmed_reverts": 0,
+      "event": "cycle_completed",
+      "next_revert_retry_after": null,
+      "pending": false,
+      "skipped_buckets": 0,
+      "status": "healthy_v2",
+      "time": "2026-11-26T12:54:00.683532+00:00"
+    }
+  ],
+  "original_raw_log_retained_privately": true,
+  "raw_log_or_credentials_published": false,
+  "schema": 1,
+  "source_raw_bytes": 1920,
+  "source_raw_sha256": "ba1cdabfd46ea8fe7a2a7b517fee0b3f2e7ff31536f44941931c89c123af2d42"
+}
