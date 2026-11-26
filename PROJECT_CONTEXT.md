@@ -1,26 +1,36 @@
 # Project context
 
-[Ubuntu backup adoption](reports/ubuntu-backup-recovery-20261126/REVIEW.md) now has one successful c814
-known-hash pending journal -> exact backup/restore -> stock unsigned recovery
-and fresh dry_run_v2 composition in2,353/6,000RPC. Six independent private-vector
-check rows pass; original config/journal and all three financial vectors match.
-Only three reviewed runtime paths change; signer files stay separate/unreadable
-during target recovery. All three new groups stop; five existing service states
-match with0nonambient changes/1observer invocation. Original c813 NONPASS remains:
-whole-cgroup stop killed Anvil before final capture. The affected c814 driver
-captures diagnostics before COMPLETE; client interruption resumes only saved
-status/stop/export, never source start or resend. No production code, financial
-limit, existing environment or journal adoption changes. Actual second-host
-fencing, providers, alerts and sustained operation remain open.
+[Unsigned keeper alerts and stale-backup checks](reports/keeper-alerts-20261126/REVIEW.md)
+records 21 distinct NEW Ubuntu passes in 4.072 seconds; no old test body ran.
+The separate one-shot observer validates current health/journal and an explicitly
+selected backup, persists deduplicated incidents/recoveries, and retries local
+HTTP delivery with stable event IDs. Pending age means first sidecar observation,
+not submission time. Full-outbox progress and bounded delivery are checked;
+readiness is never approved. See the [operating procedure](docs/KEEPER_ALERTS.md).
+The isolated c815 group stopped empty; five existing service states were preserved
+with zero non-ambient differences and one observer invocation. Real notification
+channels, off-host monitoring/fencing, sustained operation and release approval
+remain open.
 
-[Unsigned keeper backup/restore](reports/keeper-backup-20261126/REVIEW.md)
-preserves exact journals with separate original configuration/signer material
-and exclusive review-only restore output. Thirty portable plus three Ubuntu
-methods give33distinct NEW passes; the original Windows symlink skip remains
-explicit. Current [inventory](reports/keeper-backup-20261126/FUNCTION_INVENTORY.json):
-185Python files/2,057named definitions/278lambdas. F6 and the thirteen daemon
-health-source files stay unchanged. No live adoption; off-host fencing,
-canonical reconciliation and release approval remain separate.
+Only `keeper/ops.py` changes among the thirteen daemon health-source files: an
+optional bounded-snapshot input preserves the existing readiness logic and
+omitted-input behavior. The other twelve, including `keeper/monitor.py`, are
+unchanged. Adopt matching writer/checker code and newly reviewed backups separately;
+never relabel old health/source pins, backup manifests or journals. Frozen F6,
+journal codecs, authorities, financial rights and existing limits are unchanged.
+No service/site/chain/journal adoption; the desktop heartbeat stays user-paused.
+The [current source inventory](reports/keeper-alerts-20261126/FUNCTION_INVENTORY.json)
+is 187 Python files / 2,087 named definitions / 279 lambdas. The earlier
+185-file/2,057-definition backup-tool inventory remains historical.
+
+Earlier [exact backup/restore](reports/keeper-backup-20261126/REVIEW.md) has 33 distinct
+NEW passes at its original source. The separate [c814 composition](reports/ubuntu-backup-recovery-20261126/REVIEW.md)
+verifies known-hash pending restoration, once-only unsigned receipt recovery,
+six independent checks and final NFT/LP/reserve equality in 2,353/6,000 RPC.
+Original c813 remains NONPASS: whole-cgroup stop killed Anvil before final capture.
+The corrected driver captures diagnostics before COMPLETE; client interruption
+continues saved status/stop/export only, without restarting or resending.
+Those historical source and finite-evidence boundaries remain explicit.
 
 New [daemon-storage evidence](reports/ubuntu-daemon-storage-20261126/REVIEW.md): real accepted-hash EACCES, same-journal
 restart and once-only recovery are independently reconciled. The original
@@ -56,7 +66,7 @@ power-loss durability or full daemon qualification. Its unit stops; five origina
 service states match. Previous [supervisor](reports/ubuntu-supervisor-20261125/REVIEW.md)
 and key/hybrid evidence retain their scopes. Existing environments/journals stay
 untouched; matching source/checker adoption needs separate review. Q06/P20/P21,
-off-host restore/fencing, alerts, restart storms, sustained operation and release
+off-host restore/fencing, real-channel alerts, restart storms, sustained operation and release
 approval remain open. The desktop heartbeat stays user-paused.
 
 [Wallet checkpoint follow-through](reports/wallet-latency-20261123/REVIEW.md) preserves full admission,
@@ -93,8 +103,8 @@ Adopt matching keeper/checker code with original journals preserved. These two
 Python fixes alone change no checkpoint semantic source. Earlier API/ABI source
 adoption still requires newly reviewed matching checkpoints. Sites, services,
 Anvil8902, signer/null public configurations and paused heartbeat are preserved.
-Current [inventory](reports/keeper-backup-20261126/FUNCTION_INVENTORY.json):
-185Python files/2,057definitions/278lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
+Current [inventory](reports/keeper-alerts-20261126/FUNCTION_INVENTORY.json):
+187Python files/2,087definitions/279lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
 Actual F6/V10 consumer, provider, market and production approval stay open.
 
 [Ownership-page adoption](reports/ownership-paging-20261121/REVIEW.md) connects current source9/source10 website holdings to
@@ -205,7 +215,7 @@ That advance's historical inventory is [here](reports/readiness-advance-20261120
 179Pythonfiles/1,979named definitions at that source. The current inventory above
 had1,980definitions at that keeper-fix stage. Use the bounded-capture inventory
 above for that historical1,984-definition stage. Current source inventory is
-reports/keeper-backup-20261126/FUNCTION_INVENTORY.json (2,057 definitions); Solidity61/dependencies39/controls4 stay.
+reports/keeper-alerts-20261126/FUNCTION_INVENTORY.json (2,087 definitions); Solidity61/dependencies39/controls4 stay.
 Existing OpenSea artifacts bind this module's old hash; preserve them and rebuild/
 review new artifacts explicitly. service.py/checkpoint and runtime identities stay.
 
@@ -300,7 +310,7 @@ never roll older source over schema2 pending. Use the
 Q06 source fixes prevent signer launch after an observed stop and report actual
 completed bounded RPC failover progress to the watchdog. Original finite Linux
 cases use inert signing/recovery-only restart. Real keys/Cast/provider/full loop,
-off-host recovery/fencing/alerts and soak remain required. Host observations and
+off-host recovery/fencing, real-channel alerts and soak remain required. Host observations and
 rehearsal evidence stay exact; installed services/journals and heartbeat untouched.
 
 ## Whole-project workload coverage

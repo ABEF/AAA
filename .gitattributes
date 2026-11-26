@@ -458,3 +458,10 @@ reports/keeper-backup-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blan
 
 # Preserve exact isolated backup adoption evidence and original failed stage.
 reports/ubuntu-backup-recovery-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve the exact Ubuntu-tested observer and bounded health adapter bytes.
+keeper/alerts.py -text whitespace=cr-at-eol
+keeper/ops.py -text whitespace=cr-at-eol
+scripts/keeper-alerts.py -text whitespace=cr-at-eol
+tests_python/test_keeper_alerts.py -text whitespace=cr-at-eol,-blank-at-eof
+reports/keeper-alerts-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

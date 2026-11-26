@@ -1,19 +1,29 @@
 # Consolidated audit findings and evidence
 
+[Keeper alerts and stale-backup checks](../reports/keeper-alerts-20261126/REVIEW.md)
+now have **21 NEW Ubuntu method passes**, using a real receiver inside a private
+network. Durable incident/recovery events, exact ACK retries, pending-observation
+grace, stale/corrupt backups and full-outbox recovery are covered. The one-shot
+tool writes only separate alert state; all existing journals and limits remain.
+One of thirteen health-source files (`keeper/ops.py`) changes for bounded snapshot
+input; its readiness body is unchanged. Matching writer/checker and backup adoption
+remain separately reviewed. Real external channels, off-host fencing and sustained
+operation remain open; the desktop heartbeat stays paused. The current
+[inventory](../reports/keeper-alerts-20261126/FUNCTION_INVENTORY.json) has
+187 Python files, 2,087 named definitions and 279 lambdas; F6 maps61/39/4 and1,021ABI
+rows remain unchanged. See the [operator procedure](KEEPER_ALERTS.md).
+
 [Isolated Ubuntu backup/recovery](../reports/ubuntu-backup-recovery-20261126/REVIEW.md) verifies exact pending-state
 restoration and once-only unsigned receipt recovery with a fresh dry cycle,
 six independent checks and final NFT/LP/reserve equality. c814 uses2,353/6,000RPC;
 the original c813 capture-order failure stays recorded. Existing services,
 journals, limits and production approval remain unchanged.
 
-[Unsigned keeper backup/restore](../reports/keeper-backup-20261126/REVIEW.md)
-preserves exact journals with separate original configuration/signer material
-and exclusive review-only restore output. Thirty portable plus three Ubuntu
-methods give33distinct NEW passes; the original Windows symlink skip remains
-explicit. Current [inventory](../reports/keeper-backup-20261126/FUNCTION_INVENTORY.json):
-185Python files/2,057named definitions/278lambdas. F6 and the thirteen daemon
-health-source files stay unchanged. No live adoption; off-host fencing,
-canonical reconciliation and release approval remain separate.
+[Earlier unsigned keeper backup/restore](../reports/keeper-backup-20261126/REVIEW.md)
+retains its original33 distinct NEW passes and one Windows symlink skip. Its
+185-file inventory and unchanged thirteen-source claim apply to that earlier
+source, before the bounded snapshot adapter below; they are historical scope.
+Off-host adoption and canonical reconciliation remain separate.
 
 New [daemon-storage evidence](../reports/ubuntu-daemon-storage-20261126/REVIEW.md): real accepted-hash EACCES, same-journal
 restart and once-only recovery are independently reconciled. The original

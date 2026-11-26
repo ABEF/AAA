@@ -1,5 +1,10 @@
 # Release approval record - NOT APPROVED
 
+The [local alert rehearsal](../reports/keeper-alerts-20261126/REVIEW.md)
+adds finite unsigned observer evidence only. Actual channel delivery, off-host
+fencing, scheduling, sustained operation and matching source/backup adoption
+remain unapproved. No deployment, sealing or existing service change occurred.
+
 Final production-pool identity is unresolved: the operator will select it later.
 The old integration target and example configuration are not launch approval.
 Actual pool/reference/routes/depth and complete-operation qualification stay open.

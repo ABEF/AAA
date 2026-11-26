@@ -1,12 +1,17 @@
 # Whole-project workload coverage
 
-[Unsigned keeper recovery](../reports/keeper-backup-20261126/REVIEW.md)
-adds two production Python files and three preparation scenario classes.
-The current [inventory](../reports/keeper-backup-20261126/FUNCTION_INVENTORY.json)
-contains185files/2,057named definitions/278lambdas; frozen F6 maps and1,021ABI
-rows remain. Thirty portable plus three Ubuntu methods are33distinct new
-passes; the Windows symlink skip and separate Ubuntu selection stay explicit.
-No previous green body, contract suite or financial journey was rerun.
+[Keeper alerts and stale-backup checks](../reports/keeper-alerts-20261126/REVIEW.md)
+now have **21 NEW Ubuntu method passes**, using a real receiver inside a private
+network. Durable incident/recovery events, exact ACK retries, pending-observation
+grace, stale/corrupt backups and full-outbox recovery are covered. The one-shot
+tool writes only separate alert state; all existing journals and limits remain.
+One of thirteen health-source files (`keeper/ops.py`) changes for bounded snapshot
+input; its readiness body is unchanged. Matching writer/checker and backup adoption
+remain separately reviewed. Real external channels, off-host fencing and sustained
+operation remain open; the desktop heartbeat stays paused. The current
+[inventory](../reports/keeper-alerts-20261126/FUNCTION_INVENTORY.json) has
+187 Python files, 2,087 named definitions and 279 lambdas; F6 maps61/39/4 and1,021ABI
+rows remain unchanged. See the [operator procedure](KEEPER_ALERTS.md).
 
 The [c811 daemon-storage follow-through](../reports/ubuntu-daemon-storage-20261126/REVIEW.md)
 adds one actual composed scenario plus a seven-check independent saved-vector
@@ -35,7 +40,7 @@ approved isolated budget, while retaining all original refusals. Real stock
 keeper/Cast recovery, a healthy normal cycle and finite diagnostics/indexer/history
 partitions have separate receipts. Four plus7+3 NEW source methods and nine NEW
 snapshot methods pass in their exact stages; no unchanged bodies rerun.
-Use [the current inventory](../reports/keeper-full-audit-20261126/FUNCTION_INVENTORY.json)
+Use [the current inventory](../reports/keeper-alerts-20261126/FUNCTION_INVENTORY.json)
 and the historical [24 November33-partition map](../reports/ubuntu-complete-20261124/COVERAGE.md).
 Later [supervisor](../reports/ubuntu-supervisor-20261125/REVIEW.md),
 [storage](../reports/ubuntu-storage-20261125/REVIEW.md) and
@@ -86,7 +91,7 @@ The earlier [anonymous supplement](../reports/readiness-advance-20261120/ANONYMO
 retains276lambdas and2named project Yul helpers with refreshed changed-source pins.
 
 The [workload plan](WORKLOAD_PLAN.json) and
-[whole-project function inventory](../reports/keeper-full-audit-20261126/FUNCTION_INVENTORY.json)
+[whole-project function inventory](../reports/keeper-alerts-20261126/FUNCTION_INVENTORY.json)
 define the scope. [The report](../reports/whole-workload-review-20261119/REVIEW.md)
 records what actually ran and what remains unqualified. The [Todo](../TODO.md)
 owns work status; this page is a verification map.
@@ -119,7 +124,7 @@ running application modules, tests, RPC or signing. Preserve the unrelated dirty
 fork runner: its published HEAD blob is inventoried instead of adopting it.
 
 ```text
-python scripts/build-workload-inventory.py --check reports/keeper-full-audit-20261126/FUNCTION_INVENTORY.json
+python scripts/build-workload-inventory.py --check reports/keeper-alerts-20261126/FUNCTION_INVENTORY.json
 ```
 
 Future F6 source/reference changes require reviewed trusted-pin/plan updates and

@@ -1,5 +1,13 @@
 # Keeper journal backup and restore preparation
 
+Use the [alert observer](KEEPER_ALERTS.md) to check one explicitly selected
+bundle's age and integrity against its externally retained manifest pin and
+separate original configuration. Rotation never selects the newest folder
+automatically. The [Ubuntu alert proof](../reports/keeper-alerts-20261126/REVIEW.md)
+does not alter backup bytes, configuration, journals or signer files. A new
+health snapshot adapter changes one local source pin; retain old bundles under
+their original release rather than rewriting them.
+
 Use `scripts/keeper-recovery.py` to capture exact keeper journal bytes, verify a
 reviewed backup and prepare an unsigned restore folder. Existing journals,
 configuration, health files and locks remain untouched. The tool performs no

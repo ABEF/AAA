@@ -1,19 +1,36 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-[Isolated Ubuntu backup/recovery](reports/ubuntu-backup-recovery-20261126/REVIEW.md) verifies exact pending-state
-restoration and once-only unsigned receipt recovery with a fresh dry cycle,
-six independent checks and final NFT/LP/reserve equality. c814 uses2,353/6,000RPC;
-the original c813 capture-order failure stays recorded. Existing services,
-journals, limits and production approval remain unchanged.
+[Unsigned keeper alerts and stale-backup checks](reports/keeper-alerts-20261126/REVIEW.md)
+records 21 distinct NEW Ubuntu passes in 4.072 seconds; no old test body ran.
+The separate one-shot observer validates current health/journal and an explicitly
+selected backup, persists deduplicated incidents/recoveries, and retries local
+HTTP delivery with stable event IDs. Pending age means first sidecar observation,
+not submission time. Full-outbox progress and bounded delivery are checked;
+readiness is never approved. See the [operating procedure](docs/KEEPER_ALERTS.md).
+The isolated c815 group stopped empty; five existing service states were preserved
+with zero non-ambient differences and one observer invocation. Real notification
+channels, off-host monitoring/fencing, sustained operation and release approval
+remain open.
 
-[Unsigned keeper backup/restore](reports/keeper-backup-20261126/REVIEW.md)
-preserves exact journals with separate original configuration/signer material
-and exclusive review-only restore output. Thirty portable plus three Ubuntu
-methods give33distinct NEW passes; the original Windows symlink skip remains
-explicit. Current [inventory](reports/keeper-backup-20261126/FUNCTION_INVENTORY.json):
-185Python files/2,057named definitions/278lambdas. F6 and the thirteen daemon
-health-source files stay unchanged. No live adoption; off-host fencing,
-canonical reconciliation and release approval remain separate.
+Only `keeper/ops.py` changes among the thirteen daemon health-source files: an
+optional bounded-snapshot input preserves the existing readiness logic and
+omitted-input behavior. The other twelve, including `keeper/monitor.py`, are
+unchanged. Adopt matching writer/checker code and newly reviewed backups separately;
+never relabel old health/source pins, backup manifests or journals. Frozen F6,
+journal codecs, authorities, financial rights and existing limits are unchanged.
+No service/site/chain/journal adoption; the desktop heartbeat stays user-paused.
+The [current source inventory](reports/keeper-alerts-20261126/FUNCTION_INVENTORY.json)
+is 187 Python files / 2,087 named definitions / 279 lambdas. The earlier
+185-file/2,057-definition backup-tool inventory remains historical.
+
+Earlier [exact backup/restore](reports/keeper-backup-20261126/REVIEW.md) has 33 distinct
+NEW passes at its original source. The separate [c814 composition](reports/ubuntu-backup-recovery-20261126/REVIEW.md)
+verifies known-hash pending restoration, once-only unsigned receipt recovery,
+six independent checks and final NFT/LP/reserve equality in 2,353/6,000 RPC.
+Original c813 remains NONPASS: whole-cgroup stop killed Anvil before final capture.
+The corrected driver captures diagnostics before COMPLETE; client interruption
+continues saved status/stop/export only, without restarting or resending.
+Those historical source and finite-evidence boundaries remain explicit.
 
 New [daemon-storage evidence](reports/ubuntu-daemon-storage-20261126/REVIEW.md): real accepted-hash EACCES, same-journal
 restart and once-only recovery are independently reconciled. The original
@@ -49,7 +66,7 @@ power-loss durability or full daemon qualification. Its unit stops; five origina
 service states match. Previous [supervisor](reports/ubuntu-supervisor-20261125/REVIEW.md)
 and key/hybrid evidence retain their scopes. Existing environments/journals stay
 untouched; matching source/checker adoption needs separate review. Q06/P20/P21,
-off-host restore/fencing, alerts, restart storms, sustained operation and release
+off-host restore/fencing, real-channel alerts, restart storms, sustained operation and release
 approval remain open. The desktop heartbeat stays user-paused.
 
 [Wallet checkpoint follow-through](reports/wallet-latency-20261123/REVIEW.md) preserves full admission,
@@ -86,8 +103,8 @@ Adopt matching keeper/checker code with original journals preserved. These two
 Python fixes alone change no checkpoint semantic source. Earlier API/ABI source
 adoption still requires newly reviewed matching checkpoints. Sites, services,
 Anvil8902, signer/null public configurations and paused heartbeat are preserved.
-Current [inventory](reports/keeper-backup-20261126/FUNCTION_INVENTORY.json):
-185Python files/2,057definitions/278lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
+Current [inventory](reports/keeper-alerts-20261126/FUNCTION_INVENTORY.json):
+187Python files/2,087definitions/279lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
 Actual F6/V10 consumer, provider, market and production approval stay open.
 
 

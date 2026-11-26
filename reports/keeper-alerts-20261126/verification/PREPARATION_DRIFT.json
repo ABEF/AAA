@@ -1,0 +1,14 @@
+{
+  "actual_executed_runner_sha256": "78af5193870b435b1618dba8e582dca8396f4f9adaaa87b87b24c89bdddf8f63",
+  "actual_method_seconds": 4.072014959529042,
+  "actual_runner_unchanged": true,
+  "difference": "Two client-template timeout-handler lines changed during offline packaging; generated and executed runner kept original TimeoutError.",
+  "hard_outer_unit_seconds": 180,
+  "original_preexecution_pins_preserved": true,
+  "preexecution_template_sha256": "0c52049c44e1fc1236792dac53bbe6fec5706b48dab5b2259568234ba3a7a648",
+  "production_source_changes_due_to_this_correction": 0,
+  "restored_template_reproduces_actual_runner": true,
+  "restored_template_sha256": "379b977df00940c97d6bad2cd1ddcc5be122a905a950c61f4fd0f16d3201da45",
+  "schema": 1,
+  "test_body_reruns": 0
+}

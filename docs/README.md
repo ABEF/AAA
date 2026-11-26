@@ -1,5 +1,11 @@
 # Documentation map
 
+Use the [keeper alerts procedure](KEEPER_ALERTS.md) for unsigned health,
+pending-observation and explicitly pinned stale-backup checks. The
+[Ubuntu record](../reports/keeper-alerts-20261126/REVIEW.md) has21 new method passes
+with a private local receiver, without scheduling or adopting a live channel.
+Matching source/backup adoption is separate; desktop monitoring stays paused.
+
 For actual keeper backup adoption use the [Ubuntu recovery record](../reports/ubuntu-backup-recovery-20261126/REVIEW.md)
 and [backup guide](KEEPER_BACKUP.md). Exact restore and unsigned receipt recovery
 now have finite same-host proof; real second-host fencing remains open.

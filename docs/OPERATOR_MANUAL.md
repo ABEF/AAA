@@ -1,5 +1,28 @@
 # PoPL operator manual
 
+## Keeper alerts and stale-backup checks
+
+Run the [one-shot command and exact input table](KEEPER_ALERTS.md) under the
+reviewed POSIX monitoring account. It never signs, repairs, submits or schedules.
+Its state directory must be private and outside the keeper journal's directory.
+
+| Situation / required inputs | Operator action | Verify / next step |
+| --- | --- | --- |
+| First use: current configuration, absolute daemon working directory, selected backup, external manifest SHA-256, original backup configuration and three reviewed age limits in seconds | Call `scripts/keeper-alerts.py` with the [complete example](KEEPER_ALERTS.md#inputs-and-units); optional receiver is literal local `/alerts` only | Inspect fixed reason codes and separate `health_ok`/`backup_ok`; `readiness_approved` always stays false |
+| `pending_grace` | Preserve the same journal/hash and observer directory | Age starts at first observation, not actual submission; unrelated source/runtime faults still alert |
+| `backup_stale`, `backup_invalid` or `backup_unavailable` | Preserve the old backup and investigate; create/select a separately reviewed replacement with its exact original configuration and external pin | Fresh capture age is not canonical freshness; no automatic restore or restart |
+| Delivery failed or `outbox_full` | Repair the local receiver and rerun the same observer state | Existing IDs drain first, at most8 attempts; retain all64 queued events and deduplicate received IDs |
+| Health/configuration/source changed | Review matching keeper/checker source and newly pinned backups separately | One `ops.py` snapshot adapter changes health-source identity, not journal schema. Never edit old hashes/journals to appear current |
+| Stop / resume this observer | Stop its separately reviewed invocation or scheduler; keep `state.json` and `alert.lock` | Rerun with the same directory; saved events and observed pending age persist. This change installs no scheduler and leaves the desktop heartbeat paused |
+
+The [isolated Ubuntu evidence](../reports/keeper-alerts-20261126/REVIEW.md)
+passes21 NEW methods with a private-network receiver; the new test unit stops
+empty and five existing service states match. It is not real-channel/off-host or
+sustained-operation approval. Original financial/gas/RPC/time limits and journals
+are untouched. Explicitly supervise the observer for a hard overall timeout;
+its work budget is cooperative, while HTTP has a true two-second total deadline.
+
+
 ## Keeper audit and controlled recovery — 26 November 2026
 
 The [full review](../reports/keeper-full-audit-20261126/REVIEW.md) distinguishes

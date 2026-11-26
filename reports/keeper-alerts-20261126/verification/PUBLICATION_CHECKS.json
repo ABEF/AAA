@@ -1,0 +1,22 @@
+{
+  "all_83_task_statuses_preserved": true,
+  "current_inventory_only_counts": [
+    187,
+    2087,
+    279,
+    1021
+  ],
+  "desktop_monitor_resume_actions": 0,
+  "historical_artifacts_unchanged": 299,
+  "new_document_links_checked": 78,
+  "old_test_bodies_run": 0,
+  "other_health_check_body_and_all_other_ops_definitions_AST_unchanged": true,
+  "pass": true,
+  "production_adoption": false,
+  "protected_unrelated_files": 4,
+  "public_transactions": 0,
+  "reviewed_source_pins_match_actual_tested_files": true,
+  "schema": 1,
+  "staging_monitor_source_unchanged": true,
+  "twelve_other_health_sources_unchanged": true
+}

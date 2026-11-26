@@ -50,10 +50,23 @@ def timestamp(value):
     return parsed.timestamp()
 
 
-def health_check(config, *, max_age=1800, allow_dry_run=False, now=None):
+_HEALTH_SNAPSHOT_UNSET = object()
+
+
+def health_check(config, *, max_age=1800, allow_dry_run=False, now=None,
+                 snapshot=_HEALTH_SNAPSHOT_UNSET):
+    """Keep readiness unchanged; optionally assess a caller's bounded snapshot.
+
+    Omission retains the original file reader. Supplying a snapshot neither
+    rewrites configuration paths/digests nor performs another health-file read.
+    """
     positive(max_age,'max_age')
     path = Path(config.get('health_path',str(Path(config.get('state_path','var/keeper.json')).with_suffix('.health.json'))))
-    data = _read_required_json(path)
+    if snapshot is _HEALTH_SNAPSHOT_UNSET:
+        data = _read_required_json(path)
+    else:
+        if type(snapshot) is not dict: raise ValueError('Keeper health snapshot must be an object')
+        data = snapshot
     now = time.time() if now is None else now
     age = now-timestamp(data.get('time'))
     reasons = []

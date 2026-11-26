@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "passed": false,
+  "stage": "offline_staged_evidence_verification",
+  "cause": "Windows backslash in generated artifact-relative keys was not a Git path separator",
+  "production_or_test_source_changed": false,
+  "test_bodies_rerun": 0,
+  "correction": "Canonical POSIX relative keys; retained all original artifact bytes."
+}

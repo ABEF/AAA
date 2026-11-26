@@ -1,5 +1,12 @@
 # Keeper outage and server recovery
 
+The [one-shot alert observer](KEEPER_ALERTS.md) checks fresh health and a
+selected verified backup, retaining incident/recovery events outside the keeper
+journal. Its [21-method Ubuntu proof](../reports/keeper-alerts-20261126/REVIEW.md)
+does not qualify a real notification channel, off-host recovery or scheduling.
+`keeper/ops.py` changes one health-source identity; adopt matching writer/checker
+and newly reviewed backup pins separately. The desktop monitor remains paused.
+
 The [26 November keeper audit](../reports/keeper-full-audit-20261126/REVIEW.md) records current late cost-anchor checks,
 bounded utility capture and isolated operating verification. Historical failures,
 new source checks, reused runtime proofs and existing-server observations retain

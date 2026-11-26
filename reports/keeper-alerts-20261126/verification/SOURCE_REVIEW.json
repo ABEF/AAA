@@ -1,0 +1,37 @@
+{
+  "all_passed": true,
+  "changed_health_source_files": [
+    "keeper/ops.py"
+  ],
+  "desktop_monitor_remains_paused": true,
+  "financial_or_authority_limits_changed": false,
+  "frozen_F6_changed": false,
+  "health_snapshot_adapter_original_body_AST_equal_after_input_selection": true,
+  "health_source_count": 13,
+  "new_ubuntu_methods": 21,
+  "old_or_previously_green_bodies_run": 0,
+  "production_journal_schema_changed": false,
+  "public_transactions": 0,
+  "reviewed_files": {
+    "keeper/alerts.py": {
+      "bytes": 22978,
+      "sha256": "41717ebe4045c82d32edfa3758c5b80c9481aeef2b4d2a5426c99fd12b6122fd"
+    },
+    "keeper/ops.py": {
+      "bytes": 14444,
+      "sha256": "da396ec9c65295fe540f9dc812a0612d8ed27f1ab677fd388b479e2f2372ad89"
+    },
+    "scripts/keeper-alerts.py": {
+      "bytes": 2629,
+      "sha256": "4f3b6b3efa9401c4039b9dcdc1fa9bf0c4136c2342f02c7286c895bc0ef027c5"
+    },
+    "tests_python/test_keeper_alerts.py": {
+      "bytes": 32525,
+      "sha256": "f960f5a50dd1469b3d1f9c1bfb1002e68e1c83982586bc59eec390db83915b6d"
+    }
+  },
+  "rollout": false,
+  "schema": 1,
+  "source_head": "fe2db714e0ef14252cf43f8afb7c1f0d772c1bbd",
+  "test_unit_stopped_empty": true
+}

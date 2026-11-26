@@ -2,7 +2,7 @@
   "schema": 1,
   "purpose": "Whole-project workload/function/state inventory and verification plan; inventory completeness is never dynamic coverage or proof of all possible market states.",
   "date": "2026-11-26",
-  "source_baseline": "f36b848278479ca1cb9499d5fa831757b1e34c45",
+  "source_baseline": "fe2db714e0ef14252cf43f8afb7c1f0d772c1bbd",
   "trusted_build_record": {
     "path": "reports/activation-final-six-20261118/build/final/normal-size-evidence.json",
     "sha256": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2"
@@ -461,7 +461,10 @@
         "adopt profile2 onlyfuture exactpending identity no rollbackrelabelling",
         "unsigned exact-journal backup verify fresh-folder restore with external manifest and separate config secrets",
         "stable atomic snapshot races exclusive publication partial failures and supported-profile refusal",
-        "capture age and trusted nonce floors remain separate from canonical reconciliation and cross-host fencing"
+        "capture age and trusted nonce floors remain separate from canonical reconciliation and cross-host fencing",
+        "one-shot bounded health snapshot plus exact selected backup validation without journal writes or signing",
+        "durable incident/recovery outbox local ACK loss repeated stable IDs full64 backpressure and eight-delivery progress",
+        "pending first-observed grace never masks source/runtime/profile faults; recovery requires fresh health and verified backup"
       ]
     },
     {
@@ -503,7 +506,9 @@
   "additional_python_paths": [
     "scripts/build-workload-inventory.py",
     "keeper/recovery_bundle.py",
-    "scripts/keeper-recovery.py"
+    "scripts/keeper-recovery.py",
+    "keeper/alerts.py",
+    "scripts/keeper-alerts.py"
   ],
   "axes": {
     "caller": [

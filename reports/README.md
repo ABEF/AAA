@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Keeper alerts and stale-backup checks](keeper-alerts-20261126/REVIEW.md)
+records21 NEW Ubuntu methods, each run once. A private loopback receiver proves
+durable retries/recovery and backup faults. One health-source adapter preserves
+readiness logic; matching source/backup adoption stays separate. The new unit
+stops empty; existing environments and the paused heartbeat remain unchanged.
+
 [Ubuntu exact-backup adoption](ubuntu-backup-recovery-20261126/REVIEW.md)
 retains c813's failed final-capture run and records the corrected c814 actual
 stock unsigned recovery. Six private-vector checks, complete final financial

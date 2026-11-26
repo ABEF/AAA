@@ -1,0 +1,565 @@
+{
+  "Anvil_Cast_signer_or_service_adoption": false,
+  "all_methods_NEW_and_not_previously_executed": true,
+  "explicit_reviewed_worktree_overrides": [
+    "keeper/ops.py"
+  ],
+  "health_source_changed_files": [
+    "keeper/ops.py"
+  ],
+  "health_sources": [
+    "keeper/monitor.py",
+    "keeper/ops.py",
+    "keeper/health.py",
+    "keeper/rebalance_confirmation.py",
+    "keeper/compound_policy.py",
+    "keeper/cast_process.py",
+    "zzz_ops/protocol_policy.py",
+    "zzz_ops/lp_execution.py",
+    "zzz_ops/execution_price.py",
+    "zzz_ops/rebalance_confirmation.py",
+    "zzz_ops/abi.py",
+    "zzz_ops/rpc.py",
+    "zzz_ops/state.py"
+  ],
+  "members": {
+    "source/keeper/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "source/keeper/alerts.py": {
+      "bytes": 22978,
+      "sha256": "41717ebe4045c82d32edfa3758c5b80c9481aeef2b4d2a5426c99fd12b6122fd"
+    },
+    "source/keeper/cast_process.py": {
+      "bytes": 4617,
+      "sha256": "b6203067b022625bce2bfb415bb6ed85620dc8c7002b51f2d3d4c9296c5ac3e1"
+    },
+    "source/keeper/compound_policy.py": {
+      "bytes": 17260,
+      "sha256": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29"
+    },
+    "source/keeper/health.py": {
+      "bytes": 24415,
+      "sha256": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04"
+    },
+    "source/keeper/monitor.py": {
+      "bytes": 194496,
+      "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f"
+    },
+    "source/keeper/operation_review.py": {
+      "bytes": 43774,
+      "sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    "source/keeper/ops.py": {
+      "bytes": 14444,
+      "sha256": "da396ec9c65295fe540f9dc812a0612d8ed27f1ab677fd388b479e2f2372ad89"
+    },
+    "source/keeper/principal.py": {
+      "bytes": 9171,
+      "sha256": "b602340db5c7a52ad281c6b60885e2f74cc2708b731595fac5eeb9e026da6874"
+    },
+    "source/keeper/rebalance_confirmation.py": {
+      "bytes": 11926,
+      "sha256": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d"
+    },
+    "source/keeper/recovery_bundle.py": {
+      "bytes": 36223,
+      "sha256": "fe1185f008e047a3c7447bc2dc36e748f1ecff3a7ca6f1552114ad236060f268"
+    },
+    "source/keeper/royalties.py": {
+      "bytes": 17321,
+      "sha256": "02e04783068eed60db827673c9c27d3a37175edd7dccfa5ddefb8b54c055904c"
+    },
+    "source/keeper/watchdog.py": {
+      "bytes": 5707,
+      "sha256": "59b4bb7783453a8f271fd5ab265fd5d2857d55096479be34f10ffe56c8408372"
+    },
+    "source/reports/ubuntu-backup-recovery-20261126/evidence/c814/model-DRY.json": {
+      "bytes": 11810,
+      "sha256": "ad430c2dfbb5909f7925196d575965b91dff0f6c8397f9f54133749c2ac36d13"
+    },
+    "source/reports/ubuntu-daemon-storage-20261126/evidence/fetched/case-HASH_SAVE_FAULT_ARMED.json": {
+      "bytes": 7965,
+      "sha256": "70b4e6081c561092d7c7cadf173da48180b912839818ee262c2cf830b83e463f"
+    },
+    "source/run_selected.py": {
+      "bytes": 6492,
+      "sha256": "78af5193870b435b1618dba8e582dca8396f4f9adaaa87b87b24c89bdddf8f63"
+    },
+    "source/scripts/keeper-alerts.py": {
+      "bytes": 2629,
+      "sha256": "4f3b6b3efa9401c4039b9dcdc1fa9bf0c4136c2342f02c7286c895bc0ef027c5"
+    },
+    "source/scripts/keeper-recovery.py": {
+      "bytes": 3423,
+      "sha256": "450b87f611b90d2cdb4139bd2bb2cc8f10696821c1ae6b72ccba7613a64ff6cf"
+    },
+    "source/tests_python/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "source/tests_python/test_keeper_alerts.py": {
+      "bytes": 32525,
+      "sha256": "f960f5a50dd1469b3d1f9c1bfb1002e68e1c83982586bc59eec390db83915b6d"
+    },
+    "source/zzz_ops/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "source/zzz_ops/abi.py": {
+      "bytes": 4797,
+      "sha256": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91"
+    },
+    "source/zzz_ops/errors.py": {
+      "bytes": 992,
+      "sha256": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305"
+    },
+    "source/zzz_ops/ethereum_fees.py": {
+      "bytes": 2464,
+      "sha256": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe"
+    },
+    "source/zzz_ops/execution_price.py": {
+      "bytes": 2280,
+      "sha256": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2"
+    },
+    "source/zzz_ops/lp_execution.py": {
+      "bytes": 6860,
+      "sha256": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0"
+    },
+    "source/zzz_ops/physical_portfolio.py": {
+      "bytes": 2125,
+      "sha256": "f119b665860cb4aaa9fbebe81aa1f2564906dff8466d1febf96ea4eef46e719b"
+    },
+    "source/zzz_ops/position.py": {
+      "bytes": 2437,
+      "sha256": "54075cb2329e6e1defb4942683378d6a3995a74a6ea5e1f239a8fcf611e30d4d"
+    },
+    "source/zzz_ops/price_policy.py": {
+      "bytes": 7148,
+      "sha256": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958"
+    },
+    "source/zzz_ops/production_v2.py": {
+      "bytes": 102622,
+      "sha256": "109531b48b9c8a85166c9585351dc40b4b534ec5eea14c5b81d895c1b2209889"
+    },
+    "source/zzz_ops/production_v4.py": {
+      "bytes": 65998,
+      "sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    "source/zzz_ops/protocol_policy.py": {
+      "bytes": 5907,
+      "sha256": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3"
+    },
+    "source/zzz_ops/range_policy.py": {
+      "bytes": 5859,
+      "sha256": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171"
+    },
+    "source/zzz_ops/rebalance_confirmation.py": {
+      "bytes": 17194,
+      "sha256": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331"
+    },
+    "source/zzz_ops/rpc.py": {
+      "bytes": 9709,
+      "sha256": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f"
+    },
+    "source/zzz_ops/state.py": {
+      "bytes": 4644,
+      "sha256": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf"
+    },
+    "source/zzz_ops/tick_math.py": {
+      "bytes": 4949,
+      "sha256": "5224a360f3fecbc9c1d42094863e74771cee8036a60d8b81647d9e6d45e0c70a"
+    },
+    "source/zzz_ops/work_budget.py": {
+      "bytes": 3633,
+      "sha256": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b"
+    }
+  },
+  "new_reviewed_files": [
+    "keeper/alerts.py",
+    "scripts/keeper-alerts.py",
+    "tests_python/test_keeper_alerts.py"
+  ],
+  "old_test_bodies": 0,
+  "only_loopback_HTTP_inside_private_network": true,
+  "schema": 1,
+  "selected_class": "KeeperAlertsTests",
+  "selected_method_AST_sha256": {
+    "test_backup_rotation_and_hash_publication_preserve_pending_age_and_outbox": "ef29939ca42b2f27effcbf6e6267838efbd4375ad378a67607dd90e1bdd46a1e",
+    "test_competing_sidecar_lock_refuses_without_mutating_state": "1ec5b34b4447903c2096b315b737c61ccf4d831aa6d6c9796c8d0ff8157489b9",
+    "test_configuration_race_preserves_outbox_and_cannot_emit_recovery": "f21d4c33f8e90931fddf0f455133b9f9770dd7f0a07e834a5aab5f95793fe535",
+    "test_corrupt_health_is_sanitized_and_does_not_hide_backup_result": "3105794460bd2b5f3b75dcebd5e0d1bba559504fd9147923606b9567cacdc676",
+    "test_dropped_ack_is_at_least_once_with_same_event_id": "c07f4a46eec2a6f954c5d1bdaa3245f4f9903b9347b82249fb3f79d7ef5145cc",
+    "test_dry_health_requires_explicit_alert_mode": "ab4f3c68bf56f09a92e7f03c56538ccde942803d2a0a262b671fbbd2693506f2",
+    "test_failed_durable_publication_sends_nothing_and_keeps_original_outbox": "e96e691f992cd9f1faae559903207702e68f015d18d8bb33ecd2cc28baedddde",
+    "test_full_publicly_generated_outbox_drains_without_pruning_or_reset": "f9b795ee0a308d280f4218ce8e028a1f0bc98e75e41026f2a5ef2afd19ef4b2d",
+    "test_hashless_pending_and_mismatched_health_never_receive_known_hash_grace": "fd9a3b3e883971a1da3d4c2d504051eb21736a51e148a648c300dad333b47dec",
+    "test_health_and_backup_age_failures_are_independently_visible": "7f2ac78bdbe14cddd781c3fb6564b7573e67bae310099dd5ba595bbaa4779267",
+    "test_incident_dedup_is_durable_across_repeated_one_shots": "c688161c0d512685ef2da6cf87e42a18376d73734012e799cb3033c35cd16ef6",
+    "test_known_pending_grace_tracks_first_observation_across_restarts": "645da86ff29edf5d59182936a5d7ecdc052850a12ec79f1985d0cb042803730c",
+    "test_pending_grace_cannot_mask_wrong_configuration_or_source": "8ab63b7d9aa086998726b9b871f60e3f639701d25344e6a30e840ed80352d503",
+    "test_real_current_health_and_backup_validators_compose_without_side_effects": "99f746c5c140ce3374b1b2c96898fb5df4b5f67002d9d52aa2dd1e1c5e6cc54c",
+    "test_real_local_receiver_acknowledges_incident_and_later_recovery": "b50784b1a78e653e5af7aa848937c362009806f0d707ec537bbf99e9185ebe5a",
+    "test_recovery_requires_fresh_health_and_a_verified_backup": "34564aa724b759d81a58263a6f43412fc5796366c2b3dbb7703b42db26c06627",
+    "test_redirect_is_not_followed_and_environment_proxies_are_ignored": "9f5d5cf92e15be99f861e19176fc31ad39de6902ea9aa38874db1254983adbea",
+    "test_slow_trickle_headers_obey_absolute_delivery_budget": "2b92b7c2e8b8c266f00bc391bd590f0e5a11e6e1432d219a0925bca1829ec70b",
+    "test_snapshot_adapter_has_identical_checks_without_rereading_health_file": "4d84342f4018661544cc337ab61df0a7addca00ac4457ba38152a044df7bc93c",
+    "test_unsafe_receiver_resource_bounds_and_input_aliases_fail_without_secret_echo": "7d4fe13e88caf5d1dd8ba7bc5d27dc92004604a8b084a4e6d64feb3e44dec666",
+    "test_wrong_ack_keeps_event_for_identical_retry": "a145f07b40e71adc7db2be84b76e8e1db12b9fec6738c675e1c5dfe88df55ad9"
+  },
+  "selected_methods": [
+    "test_backup_rotation_and_hash_publication_preserve_pending_age_and_outbox",
+    "test_competing_sidecar_lock_refuses_without_mutating_state",
+    "test_configuration_race_preserves_outbox_and_cannot_emit_recovery",
+    "test_corrupt_health_is_sanitized_and_does_not_hide_backup_result",
+    "test_dropped_ack_is_at_least_once_with_same_event_id",
+    "test_dry_health_requires_explicit_alert_mode",
+    "test_failed_durable_publication_sends_nothing_and_keeps_original_outbox",
+    "test_full_publicly_generated_outbox_drains_without_pruning_or_reset",
+    "test_hashless_pending_and_mismatched_health_never_receive_known_hash_grace",
+    "test_health_and_backup_age_failures_are_independently_visible",
+    "test_incident_dedup_is_durable_across_repeated_one_shots",
+    "test_known_pending_grace_tracks_first_observation_across_restarts",
+    "test_pending_grace_cannot_mask_wrong_configuration_or_source",
+    "test_real_current_health_and_backup_validators_compose_without_side_effects",
+    "test_real_local_receiver_acknowledges_incident_and_later_recovery",
+    "test_recovery_requires_fresh_health_and_a_verified_backup",
+    "test_redirect_is_not_followed_and_environment_proxies_are_ignored",
+    "test_slow_trickle_headers_obey_absolute_delivery_budget",
+    "test_snapshot_adapter_has_identical_checks_without_rereading_health_file",
+    "test_unsafe_receiver_resource_bounds_and_input_aliases_fail_without_secret_echo",
+    "test_wrong_ack_keeps_event_for_identical_retry"
+  ],
+  "source_files": {
+    "keeper/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "stage": "exact_HEAD"
+    },
+    "keeper/alerts.py": {
+      "bytes": 22978,
+      "sha256": "41717ebe4045c82d32edfa3758c5b80c9481aeef2b4d2a5426c99fd12b6122fd",
+      "stage": "new_reviewed_source"
+    },
+    "keeper/cast_process.py": {
+      "bytes": 4617,
+      "sha256": "b6203067b022625bce2bfb415bb6ed85620dc8c7002b51f2d3d4c9296c5ac3e1",
+      "stage": "exact_HEAD"
+    },
+    "keeper/compound_policy.py": {
+      "bytes": 17260,
+      "sha256": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29",
+      "stage": "exact_HEAD"
+    },
+    "keeper/health.py": {
+      "bytes": 24415,
+      "sha256": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04",
+      "stage": "exact_HEAD"
+    },
+    "keeper/monitor.py": {
+      "bytes": 194496,
+      "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f",
+      "stage": "exact_HEAD"
+    },
+    "keeper/operation_review.py": {
+      "bytes": 43774,
+      "sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48",
+      "stage": "exact_HEAD"
+    },
+    "keeper/ops.py": {
+      "bytes": 14444,
+      "sha256": "da396ec9c65295fe540f9dc812a0612d8ed27f1ab677fd388b479e2f2372ad89",
+      "stage": "reviewed_worktree_override"
+    },
+    "keeper/principal.py": {
+      "bytes": 9171,
+      "sha256": "b602340db5c7a52ad281c6b60885e2f74cc2708b731595fac5eeb9e026da6874",
+      "stage": "exact_HEAD"
+    },
+    "keeper/rebalance_confirmation.py": {
+      "bytes": 11926,
+      "sha256": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d",
+      "stage": "exact_HEAD"
+    },
+    "keeper/recovery_bundle.py": {
+      "bytes": 36223,
+      "sha256": "fe1185f008e047a3c7447bc2dc36e748f1ecff3a7ca6f1552114ad236060f268",
+      "stage": "exact_HEAD"
+    },
+    "keeper/royalties.py": {
+      "bytes": 17321,
+      "sha256": "02e04783068eed60db827673c9c27d3a37175edd7dccfa5ddefb8b54c055904c",
+      "stage": "exact_HEAD"
+    },
+    "keeper/watchdog.py": {
+      "bytes": 5707,
+      "sha256": "59b4bb7783453a8f271fd5ab265fd5d2857d55096479be34f10ffe56c8408372",
+      "stage": "exact_HEAD"
+    },
+    "scripts/keeper-alerts.py": {
+      "bytes": 2629,
+      "sha256": "4f3b6b3efa9401c4039b9dcdc1fa9bf0c4136c2342f02c7286c895bc0ef027c5",
+      "stage": "new_reviewed_source"
+    },
+    "scripts/keeper-recovery.py": {
+      "bytes": 3423,
+      "sha256": "450b87f611b90d2cdb4139bd2bb2cc8f10696821c1ae6b72ccba7613a64ff6cf",
+      "stage": "exact_HEAD"
+    },
+    "tests_python/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "stage": "exact_HEAD"
+    },
+    "tests_python/test_keeper_alerts.py": {
+      "bytes": 32525,
+      "sha256": "f960f5a50dd1469b3d1f9c1bfb1002e68e1c83982586bc59eec390db83915b6d",
+      "stage": "new_reviewed_source"
+    },
+    "zzz_ops/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/abi.py": {
+      "bytes": 4797,
+      "sha256": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/errors.py": {
+      "bytes": 992,
+      "sha256": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/ethereum_fees.py": {
+      "bytes": 2464,
+      "sha256": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/execution_price.py": {
+      "bytes": 2280,
+      "sha256": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/lp_execution.py": {
+      "bytes": 6860,
+      "sha256": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/physical_portfolio.py": {
+      "bytes": 2125,
+      "sha256": "f119b665860cb4aaa9fbebe81aa1f2564906dff8466d1febf96ea4eef46e719b",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/position.py": {
+      "bytes": 2437,
+      "sha256": "54075cb2329e6e1defb4942683378d6a3995a74a6ea5e1f239a8fcf611e30d4d",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/price_policy.py": {
+      "bytes": 7148,
+      "sha256": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/production_v2.py": {
+      "bytes": 102622,
+      "sha256": "109531b48b9c8a85166c9585351dc40b4b534ec5eea14c5b81d895c1b2209889",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/production_v4.py": {
+      "bytes": 65998,
+      "sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/protocol_policy.py": {
+      "bytes": 5907,
+      "sha256": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/range_policy.py": {
+      "bytes": 5859,
+      "sha256": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/rebalance_confirmation.py": {
+      "bytes": 17194,
+      "sha256": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/rpc.py": {
+      "bytes": 9709,
+      "sha256": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/state.py": {
+      "bytes": 4644,
+      "sha256": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/tick_math.py": {
+      "bytes": 4949,
+      "sha256": "5224a360f3fecbc9c1d42094863e74771cee8036a60d8b81647d9e6d45e0c70a",
+      "stage": "exact_HEAD"
+    },
+    "zzz_ops/work_budget.py": {
+      "bytes": 3633,
+      "sha256": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+      "stage": "exact_HEAD"
+    }
+  },
+  "source_head": "fe2db714e0ef14252cf43f8afb7c1f0d772c1bbd",
+  "static_import_edges": {
+    "keeper/__init__.py": [],
+    "keeper/alerts.py": [
+      "keeper/__init__.py",
+      "keeper/ops.py",
+      "keeper/recovery_bundle.py",
+      "zzz_ops/state.py"
+    ],
+    "keeper/cast_process.py": [],
+    "keeper/compound_policy.py": [
+      "zzz_ops/abi.py",
+      "zzz_ops/execution_price.py",
+      "zzz_ops/physical_portfolio.py",
+      "zzz_ops/position.py",
+      "zzz_ops/production_v4.py",
+      "zzz_ops/protocol_policy.py",
+      "zzz_ops/tick_math.py"
+    ],
+    "keeper/health.py": [
+      "keeper/monitor.py",
+      "keeper/rebalance_confirmation.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/execution_price.py",
+      "zzz_ops/rpc.py"
+    ],
+    "keeper/monitor.py": [
+      "keeper/cast_process.py",
+      "keeper/compound_policy.py",
+      "keeper/health.py",
+      "keeper/principal.py",
+      "keeper/rebalance_confirmation.py",
+      "keeper/royalties.py",
+      "keeper/watchdog.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/errors.py",
+      "zzz_ops/ethereum_fees.py",
+      "zzz_ops/execution_price.py",
+      "zzz_ops/lp_execution.py",
+      "zzz_ops/position.py",
+      "zzz_ops/range_policy.py",
+      "zzz_ops/rpc.py",
+      "zzz_ops/state.py"
+    ],
+    "keeper/operation_review.py": [
+      "keeper/compound_policy.py",
+      "keeper/monitor.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/errors.py",
+      "zzz_ops/position.py",
+      "zzz_ops/production_v4.py",
+      "zzz_ops/protocol_policy.py",
+      "zzz_ops/rpc.py",
+      "zzz_ops/state.py",
+      "zzz_ops/tick_math.py",
+      "zzz_ops/work_budget.py"
+    ],
+    "keeper/ops.py": [
+      "keeper/health.py",
+      "keeper/monitor.py",
+      "keeper/operation_review.py",
+      "zzz_ops/rpc.py",
+      "zzz_ops/state.py"
+    ],
+    "keeper/principal.py": [
+      "zzz_ops/abi.py",
+      "zzz_ops/rpc.py"
+    ],
+    "keeper/rebalance_confirmation.py": [
+      "keeper/monitor.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/protocol_policy.py",
+      "zzz_ops/rebalance_confirmation.py",
+      "zzz_ops/rpc.py"
+    ],
+    "keeper/recovery_bundle.py": [],
+    "keeper/royalties.py": [
+      "keeper/monitor.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/rpc.py",
+      "zzz_ops/state.py"
+    ],
+    "keeper/watchdog.py": [],
+    "scripts/keeper-alerts.py": [
+      "keeper/alerts.py"
+    ],
+    "scripts/keeper-recovery.py": [
+      "keeper/recovery_bundle.py"
+    ],
+    "tests_python/__init__.py": [],
+    "tests_python/test_keeper_alerts.py": [
+      "keeper/__init__.py",
+      "keeper/alerts.py",
+      "keeper/health.py",
+      "keeper/ops.py",
+      "keeper/recovery_bundle.py"
+    ],
+    "zzz_ops/__init__.py": [],
+    "zzz_ops/abi.py": [],
+    "zzz_ops/errors.py": [],
+    "zzz_ops/ethereum_fees.py": [],
+    "zzz_ops/execution_price.py": [
+      "zzz_ops/abi.py"
+    ],
+    "zzz_ops/lp_execution.py": [
+      "zzz_ops/abi.py",
+      "zzz_ops/execution_price.py"
+    ],
+    "zzz_ops/physical_portfolio.py": [
+      "zzz_ops/abi.py",
+      "zzz_ops/tick_math.py"
+    ],
+    "zzz_ops/position.py": [],
+    "zzz_ops/price_policy.py": [
+      "zzz_ops/abi.py"
+    ],
+    "zzz_ops/production_v2.py": [
+      "zzz_ops/__init__.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/price_policy.py",
+      "zzz_ops/range_policy.py",
+      "zzz_ops/state.py",
+      "zzz_ops/tick_math.py"
+    ],
+    "zzz_ops/production_v4.py": [
+      "zzz_ops/__init__.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/production_v2.py",
+      "zzz_ops/range_policy.py",
+      "zzz_ops/tick_math.py"
+    ],
+    "zzz_ops/protocol_policy.py": [
+      "zzz_ops/abi.py"
+    ],
+    "zzz_ops/range_policy.py": [
+      "zzz_ops/abi.py"
+    ],
+    "zzz_ops/rebalance_confirmation.py": [
+      "zzz_ops/abi.py"
+    ],
+    "zzz_ops/rpc.py": [
+      "zzz_ops/errors.py",
+      "zzz_ops/work_budget.py"
+    ],
+    "zzz_ops/state.py": [],
+    "zzz_ops/tick_math.py": [],
+    "zzz_ops/work_budget.py": [
+      "zzz_ops/errors.py"
+    ]
+  },
+  "static_published_JSON_only": [
+    "reports/ubuntu-backup-recovery-20261126/evidence/c814/model-DRY.json",
+    "reports/ubuntu-daemon-storage-20261126/evidence/fetched/case-HASH_SAVE_FAULT_ARMED.json"
+  ]
+}
