@@ -1,0 +1,173 @@
+{
+  "application_imports": 0,
+  "baseline": "7436933c153246f57eaa01cf42c5f3ec90363dad",
+  "confirmed_properties": [
+    {
+      "id": "KC-01",
+      "property": "Capture rejects concurrent journal replacement without claiming latest state",
+      "reasoning": "The bounded reader verifies the opened descriptor and final named file identity. Backup repeats exact journal/config/source reads before and after writing payload; scheduling verifies the complete generated package before replacing its selected record. Legitimate atomic daemon writes can refuse that capture. Existing selection is preserved until complete verified publication; an older completed generation is explicitly a point-in-time snapshot.",
+      "source_functions": [
+        "recovery_bundle._read",
+        "recovery_bundle._capture",
+        "recovery_bundle._check_capture",
+        "recovery_bundle.backup",
+        "scheduling._backup",
+        "scheduling._publish"
+      ]
+    },
+    {
+      "id": "KC-02",
+      "property": "Sidecar lock exclusion does not freeze keeper progress or spend a nonce",
+      "reasoning": "Scheduler acquires schedule.lock before calling observer alert.lock. These are nonblocking advisory locks, separate from the keeper lock. Backup/observer contention safely defers the unsigned job. Missing-state preconditions and selection inventories refuse rather than scheduling a fresh initialization.",
+      "source_functions": [
+        "scheduling.run_once",
+        "scheduling._observe",
+        "alerts.run_once",
+        "state.process_lock"
+      ]
+    },
+    {
+      "id": "KC-03",
+      "property": "Unstable observer inputs do not manufacture pending disappearance or recovery",
+      "reasoning": "Only a validated current journal can clear/replace the existing pending fingerprint/first_seen. Final config/health/journal/source reread failures restore the prior pending observation and add an identity incident. Recovery events require healthy current health, a valid selected backup, and no reasons. Persist-before-delivery plus event IDs retains at-least-once semantics; acknowledgement is not exactly-once delivery.",
+      "source_functions": [
+        "alerts._pending",
+        "alerts.run_once",
+        "alerts._load_state"
+      ]
+    },
+    {
+      "id": "KC-04",
+      "property": "Canonical receipt cost and nonce clear atomically",
+      "reasoning": "Sender/nonce/calldata, signed fee review, receipt/header inclusion and final canonical anchors are rechecked before one deep-copied state publishes cost, next_nonce, receipt_anchor and pending=None together. Failed save restores prior in-memory state; fsync/rename ambiguity remains an explicit restart/reconciliation condition. No observer or backup writes current keeper nonce/cost state.",
+      "source_functions": [
+        "monitor.poll_pending",
+        "monitor._validate_pending_transaction",
+        "monitor._validate_checkpoint",
+        "state.atomic_json"
+      ]
+    },
+    {
+      "id": "KC-05",
+      "property": "Receipt-clearing cycle is not immediately healthy metadata evidence",
+      "reasoning": "A cycle starting with pending first reconciles that exact intent and deliberately skips fresh execution/confirmation metadata, so cleared pending can still produce degraded health. Only a later ordinary cycle obtains current observations. Acceptance must call health_check rather than accept a healthy-looking status string or a successful transaction alone.",
+      "source_functions": [
+        "monitor.run_cycle",
+        "monitor.poll_delay",
+        "health.execution_reasons",
+        "health.confirmation_reasons",
+        "ops.health_check"
+      ]
+    },
+    {
+      "id": "KC-06",
+      "property": "Known confirmation deadlines have priority but no continuous-price or timing SLA",
+      "reasoning": "Existing observation/reset work precedes optional workers only after pending recovery and lifecycle/authority checks. Current chain clocks and elapsed monotonic work reduce the next sleep. Slow finality, pending nonce serialization or RPC failures can still miss a strict gap; on-chain readiness/reset checks remain authoritative. Fresh policy/execution health is not proof that price remained beyond a threshold continuously between recorded samples.",
+      "source_functions": [
+        "monitor._confirmation_priority",
+        "monitor._head",
+        "monitor.poll_delay",
+        "rebalance_confirmation.RebalanceConfirmation.status"
+      ]
+    }
+  ],
+  "findings": [],
+  "kind": "independent_static_keeper_sidecar_composition_source_review",
+  "limitations": [
+    "No production defect was confirmed in this interaction-focused pass; no speculative source edits or new production tools were added.",
+    "Static reasoning does not prove scheduler fairness, sustained timing, host durability, provider behavior or multi-host fencing.",
+    "An advisory local lock is not protection against a hostile same-UID writer or cross-host signer.",
+    "Native composition evidence must preserve its exact fixture and scope; existing passed component bodies should not be rerun."
+  ],
+  "network_requests": 0,
+  "new_composition_partitions_recommended": [
+    {
+      "expected": "Same exact raw configuration/source identities, sidecars denied signer contents, original pending clock retained and no extra signer action.",
+      "id": "KC-C01",
+      "scenario": "Actual live keeper pending intent/hash while unsigned timers independently capture and observe"
+    },
+    {
+      "expected": "Expected snapshot refusal/no complete selected replacement, original selected record survives, then a later normal capture succeeds. Explicitly disclose the lab coordination seam.",
+      "id": "KC-C02",
+      "scenario": "Deterministic lab-only pause around unmodified backup reader while actual daemon atomically changes its journal"
+    },
+    {
+      "expected": "Unsigned refusal/deferral preserves selected generation, outbox and pending clock; keeper receipt progress remains independent.",
+      "id": "KC-C03",
+      "scenario": "Real scheduled backup/observer contention around persistent schedule.lock"
+    },
+    {
+      "expected": "Exact once-only cost+nonce booking; initial receipt-clearing health remains degraded, a later ordinary cycle obtains current execution/confirmation metadata and health_check accepts only then.",
+      "id": "KC-C04",
+      "scenario": "Actual canonical receipt recovery followed by normal metadata refresh on unchanged cadence"
+    },
+    {
+      "expected": "Original queued IDs persist across invocations/restart and acknowledge later at least once; no false healthy recovery due to backup/health races.",
+      "id": "KC-C05",
+      "scenario": "Local receiver unavailable while pending state changes and capture refuses"
+    }
+  ],
+  "new_test_bodies_authored": 0,
+  "operational_limits_preserved": [
+    "240-second source confirmation cadence and strict on-chain gap unchanged",
+    "Original policy byte/time/age/capacity limits unchanged",
+    "Current keeper24M/full25% and financial guards unchanged",
+    "No current journal, existing service/site/Anvil or user-paused heartbeat adoption"
+  ],
+  "production_source_changes": 0,
+  "review_scope": "Interaction-focused static review of source journal publication, snapshot selection, observer history, actual run_cycle/poll_delay and receipt nonce/cost publication; not an assertion of whole-function or all-line formal correctness for these modules.",
+  "schema": 1,
+  "server_actions": 0,
+  "sources": [
+    {
+      "bytes": 17800,
+      "named_definitions": 20,
+      "path": "keeper/scheduling.py",
+      "sha256": "d79be28db6bac2978f7c8efdfb641e037ce6d2024faa4e60e02f6f7c62049f4a"
+    },
+    {
+      "bytes": 36532,
+      "named_definitions": 47,
+      "path": "keeper/recovery_bundle.py",
+      "sha256": "022cd3b9a3692f9b5576fded8fb15d4aca2797f4ad3bd449561a4d57173de550"
+    },
+    {
+      "bytes": 23149,
+      "named_definitions": 26,
+      "path": "keeper/alerts.py",
+      "sha256": "053ac2a70f38801b77afde8ba107c78e322a11630cb04620e1aa35a3f811fe13"
+    },
+    {
+      "bytes": 14444,
+      "named_definitions": 9,
+      "path": "keeper/ops.py",
+      "sha256": "da396ec9c65295fe540f9dc812a0612d8ed27f1ab677fd388b479e2f2372ad89"
+    },
+    {
+      "bytes": 194496,
+      "named_definitions": 98,
+      "path": "keeper/monitor.py",
+      "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f"
+    },
+    {
+      "bytes": 24415,
+      "named_definitions": 13,
+      "path": "keeper/health.py",
+      "sha256": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04"
+    },
+    {
+      "bytes": 11926,
+      "named_definitions": 7,
+      "path": "keeper/rebalance_confirmation.py",
+      "sha256": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d"
+    },
+    {
+      "bytes": 4644,
+      "named_definitions": 7,
+      "path": "zzz_ops/state.py",
+      "sha256": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf"
+    }
+  ],
+  "success": true,
+  "test_bodies_run": 0
+}

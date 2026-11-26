@@ -1,0 +1,27 @@
+{
+  "configuration_path": "/opt/popl-keeper-composition-20261126-c822/runtime/model/composition/actor/config.json",
+  "configuration_sha256": "d44a04b086435a52d8660250a92d651885f816ab7d0e9d0d1795015aef817d28",
+  "health_path": "/opt/popl-keeper-composition-20261126-c822/runtime/model/composition/actor/health.json",
+  "initial_health_present": false,
+  "keystore_path": "/opt/popl-keeper-composition-20261126-c822/runtime/model/composition/actor/secrets/keeper",
+  "limits_unchanged": true,
+  "lock_path": "/opt/popl-keeper-composition-20261126-c822/runtime/model/composition/actor/keeper.lock",
+  "monitor_argv": [
+    "/usr/bin/python3",
+    "-B",
+    "-m",
+    "keeper.monitor",
+    "--config",
+    "/opt/popl-keeper-composition-20261126-c822/runtime/model/composition/actor/config.json",
+    "--live"
+  ],
+  "monitor_working_directory": "/opt/popl-keeper-composition-20261126-c822/source/contracts",
+  "monotonic": 9042143.76113329,
+  "namespace": "net:[4026532431]",
+  "password_path": "/opt/popl-keeper-composition-20261126-c822/runtime/model/composition/actor/secrets/password",
+  "schema": 1,
+  "semantic_configuration_sha256": "ac4c5ba3a67c9b2bbb32f6b0cdf7fa280568c6aad83a770d32b1350766f79631",
+  "sender": "0x591fde29d6b06d25f65ef02c15bb928af4f38b6a",
+  "source_head": "7436933c153246f57eaa01cf42c5f3ec90363dad",
+  "state_path": "/opt/popl-keeper-composition-20261126-c822/runtime/model/composition/actor/state.json"
+}

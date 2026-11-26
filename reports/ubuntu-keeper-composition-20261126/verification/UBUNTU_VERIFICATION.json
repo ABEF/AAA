@@ -1,0 +1,265 @@
+{
+  "accounting": {
+    "UTC_fee_day": "2026-11-26",
+    "bucket": "47181787163762592248710325652087236475813397965818762058663276509558631703230",
+    "confirmations_final": 64,
+    "effective_gas_price_wei": 32,
+    "gas_limit": 414080,
+    "gas_used": 300814,
+    "harvest_amount0": 0,
+    "harvest_amount1": 0,
+    "hash": "0x6b93f5b978baa03066f0ec02b656b8e5b19088b48aa3de79a1bde29bad772957",
+    "paid_wei": 9626048,
+    "type": 2
+  },
+  "acknowledged_original_queued_ids": [
+    "2be9f278d5e6c67c53746324c23725ca77c6d8c4803710cb59fcbe6a4c479d89",
+    "7b52bc23186d50c13880e9fc3fd4d95d918624abfa84b2c0c6d073d8775c4eee",
+    "66680e14730f2012fd40c0ce0be26bf918f9a9a518b642861a14b0ceb2a72202"
+  ],
+  "actual_genuine_healthy_later_wake": true,
+  "actual_raw_vector_files_rehashed": 9,
+  "all_seven_services_and_two_timers_stopped": true,
+  "archive_bytes_reverified": false,
+  "archive_members": 45,
+  "component_test_bodies_executed": 0,
+  "disclosed_observer_invocations": 1,
+  "five_existing_units_preserved": true,
+  "included_final_financial_vectors_equal": true,
+  "initial_final_rights_and_principal_equal": true,
+  "input_pins": {
+    "evidence/early-1/EXECUTION.json": {
+      "bytes": 822,
+      "sha256": "21201495d1cdcd8ede800fcbbd16a38105bd2efbc9ddb22dc3d1919089dd0348"
+    },
+    "evidence/early-1/PENDING.json": {
+      "bytes": 1124,
+      "sha256": "8db349c715a89e5b3ce3092abed341072e5d812763036ad08e95b6b8db06c9a6"
+    },
+    "evidence/early-2/EXECUTION.json": {
+      "bytes": 822,
+      "sha256": "ec508b932e8064885c381de405978d2b2a4b38b7e8ebc8ebcbacc99fad79c289"
+    },
+    "evidence/early-2/INCLUDED.json": {
+      "bytes": 3921,
+      "sha256": "4d249e6db0c8f2756713dd5106a2c04c42f43d08403b750a84beff2a66853a85"
+    },
+    "evidence/early-3/EXECUTION.json": {
+      "bytes": 821,
+      "sha256": "989b17596e0cfab7eba9c6731abb251a1c42738c5163f0cd039ad326cdbdf19d"
+    },
+    "evidence/early-3/SETTLED.json": {
+      "bytes": 6176,
+      "sha256": "2e37af8d579e3cf8644e2018a3e407af26becbb371a28dc8ec49300781cd6e5d"
+    },
+    "evidence/fetch-1/EXECUTION.json": {
+      "bytes": 823,
+      "sha256": "6013c8689d8a5bf48f60e2b133705020091985d892e667bfd97e9928d3f2f333"
+    },
+    "evidence/fetch-1/RESULT.json": {
+      "bytes": 14583,
+      "sha256": "629dd696389216e6b35da26a82826e03eef6432d6ff051ff2e39a7a6ffd53626"
+    },
+    "evidence/fetch-10/COMPLETE.json": {
+      "bytes": 1378,
+      "sha256": "ff8d46dec1c2c3196584db0b107729e688f4ed91e0d0aabd62ac8067ef2e8d66"
+    },
+    "evidence/fetch-10/EXECUTION.json": {
+      "bytes": 822,
+      "sha256": "f8711cf4b1dffd33b3ccb0224c5aaaffedf18fc50ff444b9fc1a175ebd971a2d"
+    },
+    "evidence/fetch-11/EXECUTION.json": {
+      "bytes": 822,
+      "sha256": "46c027f16d17bdd2a18daf184306211db8749d58675940e3c1c9ad8f37358103"
+    },
+    "evidence/fetch-11/MODEL_RESULT.json": {
+      "bytes": 1378,
+      "sha256": "ff8d46dec1c2c3196584db0b107729e688f4ed91e0d0aabd62ac8067ef2e8d66"
+    },
+    "evidence/fetch-12/EXECUTION.json": {
+      "bytes": 822,
+      "sha256": "8aa6195387eb678a9358940aad17f527533de1c3cd23ba85757f4214684c5183"
+    },
+    "evidence/fetch-12/MODEL_STOP.json": {
+      "bytes": 1615,
+      "sha256": "751e3b42ab14f1d3925070d8bc3e3573c0033936f5ccafb2f6a7c99ed19bc1d5"
+    },
+    "evidence/fetch-13/EXECUTION.json": {
+      "bytes": 823,
+      "sha256": "b35214bc9b773656eae74b5eaa82a08ea0467ce5ddca1090f0e564289d0155f4"
+    },
+    "evidence/fetch-13/MODEL_EVIDENCE.json": {
+      "bytes": 12354,
+      "sha256": "620315138517f78ba100672d0938297d1295afe86d0c49d9199cad16b5597050"
+    },
+    "evidence/fetch-14/EXECUTION.json": {
+      "bytes": 821,
+      "sha256": "e87f6904721e66fa2e8ca3b9a69282a20fa880fa5a2c8cc4c30467e33898e563"
+    },
+    "evidence/fetch-14/RACE_READY.json": {
+      "bytes": 279,
+      "sha256": "85f9a5b5170495266c3d108f9f2edd1d234d30302071963a8e3c59520a848f58"
+    },
+    "evidence/fetch-15/EXECUTION.json": {
+      "bytes": 821,
+      "sha256": "07b20a0c24183aea1154e8050da0db838aa24afb57273e19de98978e41aa1661"
+    },
+    "evidence/fetch-15/RACE_RESULT.json": {
+      "bytes": 611,
+      "sha256": "5b543176ce353380a756e91ab0f6a00c9a457dd79f7631c775e954a310e0a9b5"
+    },
+    "evidence/fetch-16/EXECUTION.json": {
+      "bytes": 821,
+      "sha256": "b0eaf690a60c2699727479701bc5a976a014acf391ccabde278f924b11bf21c9"
+    },
+    "evidence/fetch-16/HOLD_READY.json": {
+      "bytes": 606,
+      "sha256": "d878b0f3537f2fbbccb2ba99420d0a43638742b05369f868672c03c5b5491733"
+    },
+    "evidence/fetch-17/EXECUTION.json": {
+      "bytes": 822,
+      "sha256": "75ab4ae855772222d36d17d24e4a7988f3d2e6cd340da9dc283683b077f0eacd"
+    },
+    "evidence/fetch-17/HOLD_RESULT.json": {
+      "bytes": 835,
+      "sha256": "27169bc59e4498cbc69b6ee3ea70bc20d98e233930316ff53f0dd7ca2825cc78"
+    },
+    "evidence/fetch-2/EXECUTION.json": {
+      "bytes": 823,
+      "sha256": "683ffabe9fc6594fc2568cef43fc5d02aea419f6a1be2d0f7f318ba2bc8d7717"
+    },
+    "evidence/fetch-2/FINAL.json": {
+      "bytes": 13823,
+      "sha256": "66164d73f402a4eab5e51e5aa6eaf2304c7639f0ddfdf779a701b6f6f2393695"
+    },
+    "evidence/fetch-3/EXECUTION.json": {
+      "bytes": 821,
+      "sha256": "096c2f93c4764bf689edbf346dbef67c4b8111e47c354eda99d0319fb7b050e9"
+    },
+    "evidence/fetch-3/PROGRESS.json": {
+      "bytes": 443,
+      "sha256": "f9cdd4ad1d9d388dee3b251c17a8f0cf2fde08f4871ef15121b8dc3c5dc3210c"
+    },
+    "evidence/fetch-4/EXECUTION.json": {
+      "bytes": 822,
+      "sha256": "ba98b00b9f9cfefa96a716adca7f98a7d678bf3447d00ae3cbaeea927835cc43"
+    },
+    "evidence/fetch-4/SIDECAR_RESULT.json": {
+      "bytes": 6359,
+      "sha256": "f39dee506f09dad11ac14248b65a7ee1fcf2aaed7f756a3f1a2fc3b02b5b38da"
+    },
+    "evidence/fetch-5/EXECUTION.json": {
+      "bytes": 822,
+      "sha256": "e652b71cd1dc7dcd7a7c6f7eae7c040a83181561f56156f369ea43ded4371aa7"
+    },
+    "evidence/fetch-5/WORKER_LOGS.json": {
+      "bytes": 5054,
+      "sha256": "3cba85b190292d86e27c0c683c58dbfd5a12410fc4f7372e3db50aea565df007"
+    },
+    "evidence/fetch-6/EXECUTION.json": {
+      "bytes": 822,
+      "sha256": "2bdf2ea0e8d4f570db623ed8250586840df0694233bbb839fe53b6572ba738ca"
+    },
+    "evidence/fetch-6/MANAGER_TRACE.json": {
+      "bytes": 3832,
+      "sha256": "49b64717e3014f9aee4e28b306218d88de27e88691878d8d833335b1a4176a22"
+    },
+    "evidence/fetch-7/EXECUTION.json": {
+      "bytes": 822,
+      "sha256": "e859abf659523c100bbcc9f7515f978407e0e0fca5e84c4429655a7037e696b7"
+    },
+    "evidence/fetch-7/NATIVE_PROPERTIES.json": {
+      "bytes": 2842,
+      "sha256": "415ff568745f082e0bc070bc1adacd87a0ac77b161f612369a2ec1b88120b2c8"
+    },
+    "evidence/fetch-8/EXECUTION.json": {
+      "bytes": 822,
+      "sha256": "40071355e3c1781839de2a69344cc187c64929e1112a618cbf7b5fa7fb4845a8"
+    },
+    "evidence/fetch-8/READY.json": {
+      "bytes": 1430,
+      "sha256": "d2346ee2804bbbf9057cc2cfacaf9cb0bde96421afffe947d4a5fd66006c909e"
+    },
+    "evidence/fetch-9/EXECUTION.json": {
+      "bytes": 823,
+      "sha256": "83c7b20ba4e46d1149636c1e245c1b2bdd70aab6d9f5c9c9a884326ff7ad0644"
+    },
+    "evidence/fetch-9/HEALTHY.json": {
+      "bytes": 16979,
+      "sha256": "df6f9438600940b98db6f31b9c8beb609a0da3422fbc0d0dc21b82bdf147f939"
+    },
+    "host/HOST_PRESERVATION.json": {
+      "bytes": 848,
+      "sha256": "ee6f12481cb3d628263e856b06ec314218e0e61c3757399732513f300b18deca"
+    },
+    "host/before-CAPTURE.json": {
+      "bytes": 1229,
+      "sha256": "679a29635f8bb8722f394c7a1faf13d8a1495d0f38443fc28bbfb6d828e60972"
+    },
+    "host/final-CAPTURE.json": {
+      "bytes": 1228,
+      "sha256": "e71b10ef3688cb2c30d50cbe86fffe9cc14edb0b5156dea1a1d6395efeb63571"
+    },
+    "preparation/BUILD_RECEIPT.json": {
+      "bytes": 1703,
+      "sha256": "0badf3888270b4f796113c4159a51d5d870956dbaa7d4d07badb6aa13938cc2b"
+    },
+    "preparation/PRODUCTION_SOURCE_MANIFEST.json": {
+      "bytes": 6023,
+      "sha256": "c80ec05cd90e34f5ad3f1c6ca25cc64abf62b8654bee13f58927d3e88161751a"
+    },
+    "preparation/SOURCE_MANIFEST.json": {
+      "bytes": 20162,
+      "sha256": "4f318d8f2d8d94ac629e9e1771872536f1a2400ea244b86c4912fcb770aeadd0"
+    },
+    "preparation/model_service.py": {
+      "bytes": 30387,
+      "sha256": "c829059ff6ec73c13037b82995e267397ab59073de5fc48eaf8a9f436e9e82e5"
+    },
+    "preparation/remote_capsule.py": {
+      "bytes": 24838,
+      "sha256": "69b3cee016793ab0cf18c6e1c2f40e41bf4bf8220053a079a52bd10209788a3f"
+    }
+  },
+  "journal_booked_fields_equal_settled_healthy_final": true,
+  "kind": "independent_saved_c822_composition_reconciliation",
+  "new_keeper_transactions": 1,
+  "non_ambient_host_differences": 0,
+  "notification_delivery_is_at_least_once": true,
+  "observed_monotonic_deltas_seconds": {
+    "explicit_hold_seconds": 1.8069101050496101,
+    "include_to_settled": 216.5698779337108,
+    "ready_to_pending": 10.557740960270166,
+    "settled_to_healthy": 11.691161593422294
+  },
+  "ordinary_sidecar_invocations": 40,
+  "production_approved": false,
+  "production_source_members": 36,
+  "receiver_events": 6,
+  "schema": 1,
+  "scope_limits": [
+    "same-host isolated copied F6 state and mock references; no actual market/provider qualification",
+    "instrumented RACE overlaps actual signing; explicit HOLD precedes inclusion; later recovery uses ordinary timers",
+    "observed timing and current300s anchor checks do not promise zero lag, exact periodic execution or multi-day soak",
+    "local canonical hash/receipt/header relationships are reconciled; not an independent consensus or RLP reconstruction",
+    "fee-empty or controlled fixture does not newly qualify dynamic funded80/10/5/5 allocation or Robinhood complete fees",
+    "no off-host possession/fencing, real notification relay, physical durability or independent release approval",
+    "sanitized host comparison is cross-bound to capture pins; private raw host details are not republished"
+  ],
+  "shared_RPC_requests": 2942,
+  "source51_and_inputs_unchanged": true,
+  "source_head": "7436933c153246f57eaa01cf42c5f3ec90363dad",
+  "stages_passed": [
+    "current_copied_state_and_normal_daemon",
+    "actual_timer_contention_and_same_pending_history",
+    "ordinary_pending_recovery_and_required_fresh_observations",
+    "fenced_final_physical_capture"
+  ],
+  "success": true,
+  "unique_receiver_event_ids": 6,
+  "verification_application_imports": 0,
+  "verification_network_requests": 0,
+  "verification_server_actions": 0,
+  "verification_test_bodies_run": 0,
+  "verifier_sha256": "380de9fdabcc5016be260accab2d7196860ac40747f2474f64f018f09394501a"
+}

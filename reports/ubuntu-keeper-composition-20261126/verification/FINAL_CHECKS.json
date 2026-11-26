@@ -1,0 +1,125 @@
+{
+  "all_source36_exact_HEAD": true,
+  "baseline": "7436933c153246f57eaa01cf42c5f3ec90363dad",
+  "component_test_bodies_run": 0,
+  "desktop_monitor_remains_paused": true,
+  "document_review_sha256": "e810ddcda8677801da3f96b9a478d629101f3cc587218c27d2eeb86d2c9d210f",
+  "existing_environment_adoption": false,
+  "historical_report_families": {
+    "keeper-alerts-20261126": {
+      "bound_files_unchanged": 38,
+      "manifest_sha256": "ba28a746209efd6b081f37900bb148a51c4f23299c41acef79827ab7b604cb8f"
+    },
+    "keeper-backup-20261126": {
+      "bound_files_unchanged": 31,
+      "manifest_sha256": "87ecf554727a0f214977fae01b3fc849b64b4d9db5b4ec503246c1990f7bf659"
+    },
+    "keeper-day-audit-20261126": {
+      "bound_files_unchanged": 80,
+      "manifest_sha256": "2751ff48398abdc71648cef6aa7c02fec88687cde48cb11185f1a26a665537b5"
+    },
+    "keeper-doc-sync-20261126": {
+      "bound_files_unchanged": 3,
+      "manifest_sha256": "3b755a99a6da6fd6442c94b88775b5dec83cc4003a76e9fc96c0727cf7cf6e8b"
+    },
+    "keeper-full-audit-20261126": {
+      "bound_files_unchanged": 77,
+      "manifest_sha256": "522788216fcd0b50e0e6f78f069278d6ed47e53f876e7d388de91a490fe1feb5"
+    },
+    "keeper-scheduling-20261126": {
+      "bound_files_unchanged": 92,
+      "manifest_sha256": "05ae6fe9ed024fbd83b0eabb2388df9072ee5a65fdd6314a6d3f59cae4ed65ba"
+    },
+    "keeper-sidecar-recovery-20261126": {
+      "bound_files_unchanged": 94,
+      "manifest_sha256": "631030cb4b80397ba54d45dad24e42821af51774020a736344cc1c7fe1a72d79"
+    },
+    "ubuntu-backup-recovery-20261126": {
+      "bound_files_unchanged": 103,
+      "manifest_sha256": "200b6bccbf3b147079c9c46eb09ce62442e438ca388b680a98cc055d42be22c2"
+    },
+    "ubuntu-daemon-storage-20261126": {
+      "bound_files_unchanged": 88,
+      "manifest_sha256": "81d3f76d5973c8ef132eae0b5754087f428a6c3ded421a3a2ae616a12f046e2b"
+    }
+  },
+  "inventory_not_regenerated": true,
+  "inventory_sha256": "c1a24939407576250dd1d5c620497860afdd6636f04cd38472b1dd5ebc4abf44",
+  "local_links_checked": 3505,
+  "new_compositions": 1,
+  "new_stages": 4,
+  "production_inventory_reused": "reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json",
+  "production_source_edits": 0,
+  "protected_hashes": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "raw_records_rehashed": 9,
+  "saved_verifier_input_label_paths": {
+    "evidence/early-1/EXECUTION.json": "evidence/c822/early-1/EXECUTION.json",
+    "evidence/early-1/PENDING.json": "evidence/c822/early-1/PENDING.json",
+    "evidence/early-2/EXECUTION.json": "evidence/c822/early-2/EXECUTION.json",
+    "evidence/early-2/INCLUDED.json": "evidence/c822/early-2/INCLUDED.json",
+    "evidence/early-3/EXECUTION.json": "evidence/c822/early-3/EXECUTION.json",
+    "evidence/early-3/SETTLED.json": "evidence/c822/early-3/SETTLED.json",
+    "evidence/fetch-1/EXECUTION.json": "evidence/c822/fetch-1/EXECUTION.json",
+    "evidence/fetch-1/RESULT.json": "evidence/c822/fetch-1/RESULT.json",
+    "evidence/fetch-10/COMPLETE.json": "evidence/c822/fetch-10/COMPLETE.json",
+    "evidence/fetch-10/EXECUTION.json": "evidence/c822/fetch-10/EXECUTION.json",
+    "evidence/fetch-11/EXECUTION.json": "evidence/c822/fetch-11/EXECUTION.json",
+    "evidence/fetch-11/MODEL_RESULT.json": "evidence/c822/fetch-11/MODEL_RESULT.json",
+    "evidence/fetch-12/EXECUTION.json": "evidence/c822/fetch-12/EXECUTION.json",
+    "evidence/fetch-12/MODEL_STOP.json": "evidence/c822/fetch-12/MODEL_STOP.json",
+    "evidence/fetch-13/EXECUTION.json": "evidence/c822/fetch-13/EXECUTION.json",
+    "evidence/fetch-13/MODEL_EVIDENCE.json": "evidence/c822/fetch-13/MODEL_EVIDENCE.json",
+    "evidence/fetch-14/EXECUTION.json": "evidence/c822/fetch-14/EXECUTION.json",
+    "evidence/fetch-14/RACE_READY.json": "evidence/c822/fetch-14/RACE_READY.json",
+    "evidence/fetch-15/EXECUTION.json": "evidence/c822/fetch-15/EXECUTION.json",
+    "evidence/fetch-15/RACE_RESULT.json": "evidence/c822/fetch-15/RACE_RESULT.json",
+    "evidence/fetch-16/EXECUTION.json": "evidence/c822/fetch-16/EXECUTION.json",
+    "evidence/fetch-16/HOLD_READY.json": "evidence/c822/fetch-16/HOLD_READY.json",
+    "evidence/fetch-17/EXECUTION.json": "evidence/c822/fetch-17/EXECUTION.json",
+    "evidence/fetch-17/HOLD_RESULT.json": "evidence/c822/fetch-17/HOLD_RESULT.json",
+    "evidence/fetch-2/EXECUTION.json": "evidence/c822/fetch-2/EXECUTION.json",
+    "evidence/fetch-2/FINAL.json": "evidence/c822/fetch-2/FINAL.json",
+    "evidence/fetch-3/EXECUTION.json": "evidence/c822/fetch-3/EXECUTION.json",
+    "evidence/fetch-3/PROGRESS.json": "evidence/c822/fetch-3/PROGRESS.json",
+    "evidence/fetch-4/EXECUTION.json": "evidence/c822/fetch-4/EXECUTION.json",
+    "evidence/fetch-4/SIDECAR_RESULT.json": "evidence/c822/fetch-4/SIDECAR_RESULT.json",
+    "evidence/fetch-5/EXECUTION.json": "evidence/c822/fetch-5/EXECUTION.json",
+    "evidence/fetch-5/WORKER_LOGS.json": "evidence/c822/fetch-5/WORKER_LOGS.json",
+    "evidence/fetch-6/EXECUTION.json": "evidence/c822/fetch-6/EXECUTION.json",
+    "evidence/fetch-6/MANAGER_TRACE.json": "evidence/c822/fetch-6/MANAGER_TRACE.json",
+    "evidence/fetch-7/EXECUTION.json": "evidence/c822/fetch-7/EXECUTION.json",
+    "evidence/fetch-7/NATIVE_PROPERTIES.json": "evidence/c822/fetch-7/NATIVE_PROPERTIES.json",
+    "evidence/fetch-8/EXECUTION.json": "evidence/c822/fetch-8/EXECUTION.json",
+    "evidence/fetch-8/READY.json": "evidence/c822/fetch-8/READY.json",
+    "evidence/fetch-9/EXECUTION.json": "evidence/c822/fetch-9/EXECUTION.json",
+    "evidence/fetch-9/HEALTHY.json": "evidence/c822/fetch-9/HEALTHY.json",
+    "host/HOST_PRESERVATION.json": "verification/HOST_PRESERVATION.json",
+    "host/before-CAPTURE.json": "verification/before-017-CAPTURE.json",
+    "host/final-CAPTURE.json": "verification/final-017-CAPTURE.json",
+    "preparation/BUILD_RECEIPT.json": "preparation/c822/BUILD_RECEIPT.json",
+    "preparation/PRODUCTION_SOURCE_MANIFEST.json": "preparation/c822/PRODUCTION_SOURCE_MANIFEST.json",
+    "preparation/SOURCE_MANIFEST.json": "preparation/c822/SOURCE_MANIFEST.json",
+    "preparation/model_service.py": "preparation/c822/model_service.py",
+    "preparation/remote_capsule.py": "preparation/c822/remote_capsule.py"
+  },
+  "schema": 1,
+  "success": true,
+  "task_counts": {
+    "done": 35,
+    "excluded": 1,
+    "progress": 40,
+    "todo": 7
+  },
+  "test_application_network_server_actions_by_check": 0,
+  "timing_review_sha256": "482d0b1389ec5b041ccf351eeec1057e5f9bfbe223ce2eea381b04bcd2243687",
+  "todo_generator_check_passed": true,
+  "ubuntu_verification_sha256": "d3b3bec7aa9585b1eb30e206ae5b853db2458ab1fae39e2663625981a533e16d",
+  "unchanged_historical_bound_files": 606,
+  "unchanged_task_ids_statuses": 83,
+  "workload_plan_verifier_selector_unchanged": true
+}

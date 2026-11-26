@@ -1,0 +1,32 @@
+{
+  "accepted_hash": "0x6b93f5b978baa03066f0ec02b656b8e5b19088b48aa3de79a1bde29bad772957",
+  "canonical_transaction": {
+    "blockHash": null,
+    "blockNumber": null,
+    "chainId": "0x1237",
+    "from": "0x591fde29d6b06d25f65ef02c15bb928af4f38b6a",
+    "gas": "0x65180",
+    "gasPrice": "0x3b9aca1f",
+    "hash": "0x6b93f5b978baa03066f0ec02b656b8e5b19088b48aa3de79a1bde29bad772957",
+    "input": "0x6cae7bf7684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be000000000000000000000000000000000000000000000000000000006b089f6a",
+    "maxFeePerGas": "0x3b9aca1f",
+    "maxPriorityFeePerGas": "0x1",
+    "nonce": "0x0",
+    "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+    "transactionIndex": null,
+    "type": "0x2",
+    "value": "0x0"
+  },
+  "fee_review": {
+    "gas_limit": 414080,
+    "l1_fee_allowance_wei": 0,
+    "max_fee_per_gas": 1000000031,
+    "maximum_cost_wei": 414080012836480,
+    "receipt_fee_policy": "included",
+    "schema": 1
+  },
+  "journal_sha256": "61c48e81e2c08f05594dd7c448a848151fc2b948abb419604a10da2ec087bcb0",
+  "monotonic": 9042154.318874251,
+  "schema": 1,
+  "unmined": true
+}

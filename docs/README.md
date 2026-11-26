@@ -1,5 +1,7 @@
 # Documentation map
 
+The [combined Ubuntu composition](../reports/ubuntu-keeper-composition-20261126/REVIEW.md) verifies the actual normal keeper alongside backup/observer timers, once-only recovery and truthful deadline-driven fresh health. Use the [operator manual](OPERATOR_MANUAL.md#concurrent-keeper-and-unsigned-jobs) for the five operating states; no existing installation is adopted.
+
 Use the [scheduler/alert recovery guide](KEEPER_SIDECAR_RECOVERY.md) for exact selected-generation, event-ID and pending-clock capture, verification and fresh review-only restoration. Original configuration/release and host-layout review remain separate. The [Ubuntu record](../reports/keeper-sidecar-recovery-20261126/REVIEW.md) preserves the original setup failure and eight new passes.
 
 Use the [unsigned scheduling procedure](KEEPER_SCHEDULING.md) for explicit policy/source pins, verified recurring backups, native timer supervision and state-preserving reconfiguration. The [isolated Ubuntu record](../reports/keeper-scheduling-20261126/REVIEW.md) has10new methods plus eight native stages; production timing/relay/off-host operation remain separate.

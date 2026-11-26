@@ -1,0 +1,717 @@
+{
+  "application_imports": 0,
+  "checks": [
+    {
+      "detail": "One four-stage c822 composition,308.218726s,2942/6000localRPC,one real local keeper harvest. Forty wrapper invocations are8backups+30observations+init+barrier, not40tests; six ordinary backups/three healthy observations are clearly separated from incidents/refusals. No old component body is rerun.",
+      "result": "consistent",
+      "topic": "Runtime counts and evidence scope"
+    },
+    {
+      "detail": "Nine exact raw records independently rehashed.300814gas*32wei=9626048wei booked once, nonce1 and originalhash retained. Initial/final rights and principal plus included/final reserves match; actual zero-fee harvest adds no new funded80/10/5/5 proof or Robinhood complete-fee qualification.",
+      "result": "consistent",
+      "topic": "Saved financial proof"
+    },
+    {
+      "detail": "Receipt-cycle degraded at ready+252.528747; accepted fresh health at+264.219904,11.691162s later. Existing check schedule7030->7275 gives245s<=300maximum. Existing deadline-aware poll_delay explains the next evaluation; docs expressly avoid a secondfull240s wait, unrecorded exact _poll_clock/sleep reconstruction, continuous-price proof or an operatingSLA.",
+      "result": "consistent",
+      "topic": "Timing and price-check semantics"
+    },
+    {
+      "detail": "Keeper240s/12confirmations/hourlyharvest/24M+full25% unchanged. Lab45s/10s timers,capacity32,health300s,backup900s,pending1s and5s emptyblocks are explicit fixture settings; no launch cadence is adopted or publicRPC/signing/seal performed.",
+      "result": "consistent",
+      "topic": "Lab parameters and authority"
+    },
+    {
+      "detail": "Production Python/Solidity and source13/19, profiles, financial/resource limits unchanged. Existing191/2137/279inventory reused, F6 counts61/39/4/1021ABI retained. Oldc820/c818NONPASS records and other historical failures remain under original source scope; no duplicate unchanged inventory or suite.",
+      "result": "consistent",
+      "topic": "Source, inventory and history"
+    },
+    {
+      "detail": "Same exact reviewed config with signer access isolated by service masks. Distinguishes safe capture refusal, nonblocking sidecar lock deferral, canonical pending recovery, fresh-metadata requirement and deliveryACK. No reset, discarded pending/outbox, invented initialization, changed signer or automatic restore/adoption suggested.",
+      "result": "consistent",
+      "topic": "Operator inputs and five-state handling"
+    },
+    {
+      "detail": "All7services+2timers stop. Five existing service states have0nonambient differences and1disclosedobserverID change. Actual host-loss/offhost/fencing/real-channel/durability/provider/maximum/concurrent/sustained/independent release gates stay open; existing sites/Anvil/journals and paused heartbeat are not adopted.",
+      "result": "consistent",
+      "topic": "Cleanup and remaining acceptance"
+    },
+    {
+      "detail": "All local links in reviewed new sections resolve.83 stable tasks retain35done/40progress/7todo/1excluded; Q06/P20/P21 remain open.",
+      "result": "consistent",
+      "topic": "Current links and Todo"
+    }
+  ],
+  "document_hashes": {
+    "AGENTS.md": "6a1327d70e80c18e0c8185e86ffcd5d98a112424d93379f66b2e57ae6b0955e4",
+    "PROJECT_CONTEXT.md": "22d9754a215d2cd920cf476be7eeecc8c53f180a7faf76824f72ba37842ad0cb",
+    "README.md": "d7140b40fcf8c8a7cb42d50f84493427c1f5e341b985485f70f710bb25eccbac",
+    "TODO.md": "12180b04ba28e2dc817c0c22a83a4f80c3483eb44c6dce409e1c87a01b229200",
+    "docs/AUDIT_FINDINGS.md": "8a7b9d36268124abefbdcebf3c9177dca3c0c903055b22fb6d2c3cf5967f535f",
+    "docs/IMPLEMENTATION_STATUS.md": "96bbb27fd35217d850ab37709e8bfdbe0587242bcfcef4117db3542e9561c5cd",
+    "docs/KEEPER_ALERTS.md": "167513d1c49a211ee41b045501da4386b61ce4a8fb469d7dae11a3b0c4babd7d",
+    "docs/KEEPER_BACKUP.md": "9adf52eb22f6b25e2e027aece45133a26d526ce660397f97c7b1852b2a3d7852",
+    "docs/KEEPER_RECOVERY.md": "93ba5deaeabcc78c3c2feef93aa824e563b8c9d907924c98a32c46113b8f400f",
+    "docs/KEEPER_SCHEDULING.md": "21cdee0cff100eef9d7681e657268c2e11395e1be1b830322ec7b712e608dcbd",
+    "docs/KEEPER_SIDECAR_RECOVERY.md": "a226857131839244a57ef20ffc9ed9079d6b96d0e411a510796b94468136087a",
+    "docs/OPERATOR_MANUAL.md": "099c164a594749b5b4d16e5ff89a8890085c14bcaa52c9f7917cace032968756",
+    "docs/RELEASE_CHECKLIST.md": "9453501984827b672b4adbb98e25f2720e57d7d8bdebfa0985f8361a1935be67",
+    "docs/ROADMAP.md": "f6772e94715634a8b82f284a0c3c0423ca3a137827750a42ff51f91c69bde9e7",
+    "docs/WORKLOAD_COVERAGE.md": "7bc7e8319f28f52f98172cf4cfc2b7a78a84780a697a8c0b27fd260b935c671a",
+    "docs/WORK_HANDOFF.md": "00fa8743afc5f172c6635709a09a89887ac00bc0160038727bfd70a2d88d9a0d",
+    "docs/project-todo.json": "c8eb6849c11abbfa957cc5700f5062d4f717c98c058f695c3c22da9a139b2c4f",
+    "reports/README.md": "9a40ae6f12ba3adca31e647077df73f65f5879fed4257de0ae365be58a47c864",
+    "reports/ubuntu-keeper-composition-20261126/PLAN.md": "545f0696909c06d154426a4ed8cba145175c624b1d5d2d9a80de6e34b091369b",
+    "reports/ubuntu-keeper-composition-20261126/REVIEW.md": "3699cdb6c40b2e813d12a2f92ab32a40bf546989986dc2a9b55da17d8010a95e"
+  },
+  "document_metadata": {
+    "AGENTS.md": {
+      "bytes": 65647,
+      "sha256": "6a1327d70e80c18e0c8185e86ffcd5d98a112424d93379f66b2e57ae6b0955e4"
+    },
+    "PROJECT_CONTEXT.md": {
+      "bytes": 36559,
+      "sha256": "22d9754a215d2cd920cf476be7eeecc8c53f180a7faf76824f72ba37842ad0cb"
+    },
+    "README.md": {
+      "bytes": 18946,
+      "sha256": "d7140b40fcf8c8a7cb42d50f84493427c1f5e341b985485f70f710bb25eccbac"
+    },
+    "TODO.md": {
+      "bytes": 528733,
+      "sha256": "12180b04ba28e2dc817c0c22a83a4f80c3483eb44c6dce409e1c87a01b229200"
+    },
+    "docs/AUDIT_FINDINGS.md": {
+      "bytes": 39345,
+      "sha256": "8a7b9d36268124abefbdcebf3c9177dca3c0c903055b22fb6d2c3cf5967f535f"
+    },
+    "docs/IMPLEMENTATION_STATUS.md": {
+      "bytes": 44608,
+      "sha256": "96bbb27fd35217d850ab37709e8bfdbe0587242bcfcef4117db3542e9561c5cd"
+    },
+    "docs/KEEPER_ALERTS.md": {
+      "bytes": 14537,
+      "sha256": "167513d1c49a211ee41b045501da4386b61ce4a8fb469d7dae11a3b0c4babd7d"
+    },
+    "docs/KEEPER_BACKUP.md": {
+      "bytes": 14256,
+      "sha256": "9adf52eb22f6b25e2e027aece45133a26d526ce660397f97c7b1852b2a3d7852"
+    },
+    "docs/KEEPER_RECOVERY.md": {
+      "bytes": 63897,
+      "sha256": "93ba5deaeabcc78c3c2feef93aa824e563b8c9d907924c98a32c46113b8f400f"
+    },
+    "docs/KEEPER_SCHEDULING.md": {
+      "bytes": 13230,
+      "sha256": "21cdee0cff100eef9d7681e657268c2e11395e1be1b830322ec7b712e608dcbd"
+    },
+    "docs/KEEPER_SIDECAR_RECOVERY.md": {
+      "bytes": 8730,
+      "sha256": "a226857131839244a57ef20ffc9ed9079d6b96d0e411a510796b94468136087a"
+    },
+    "docs/OPERATOR_MANUAL.md": {
+      "bytes": 718304,
+      "sha256": "099c164a594749b5b4d16e5ff89a8890085c14bcaa52c9f7917cace032968756"
+    },
+    "docs/RELEASE_CHECKLIST.md": {
+      "bytes": 18892,
+      "sha256": "9453501984827b672b4adbb98e25f2720e57d7d8bdebfa0985f8361a1935be67"
+    },
+    "docs/ROADMAP.md": {
+      "bytes": 56120,
+      "sha256": "f6772e94715634a8b82f284a0c3c0423ca3a137827750a42ff51f91c69bde9e7"
+    },
+    "docs/WORKLOAD_COVERAGE.md": {
+      "bytes": 15400,
+      "sha256": "7bc7e8319f28f52f98172cf4cfc2b7a78a84780a697a8c0b27fd260b935c671a"
+    },
+    "docs/WORK_HANDOFF.md": {
+      "bytes": 29806,
+      "sha256": "00fa8743afc5f172c6635709a09a89887ac00bc0160038727bfd70a2d88d9a0d"
+    },
+    "docs/project-todo.json": {
+      "bytes": 547030,
+      "sha256": "c8eb6849c11abbfa957cc5700f5062d4f717c98c058f695c3c22da9a139b2c4f"
+    },
+    "reports/README.md": {
+      "bytes": 47725,
+      "sha256": "9a40ae6f12ba3adca31e647077df73f65f5879fed4257de0ae365be58a47c864"
+    },
+    "reports/ubuntu-keeper-composition-20261126/PLAN.md": {
+      "bytes": 3998,
+      "sha256": "545f0696909c06d154426a4ed8cba145175c624b1d5d2d9a80de6e34b091369b"
+    },
+    "reports/ubuntu-keeper-composition-20261126/REVIEW.md": {
+      "bytes": 9649,
+      "sha256": "3699cdb6c40b2e813d12a2f92ab32a40bf546989986dc2a9b55da17d8010a95e"
+    }
+  },
+  "findings": [],
+  "kind": "independent_static_current_composition_documentation_review",
+  "limitations": [
+    "This static review consumes existing saved verification; it does not repeat the verifier, runtime or old component tests.",
+    "Historical bodies outside the current additions are not re-audited.",
+    "External web references are not fetched; no independent live host/physical durability proof is claimed."
+  ],
+  "local_links": [
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "../../docs/OPERATOR_MANUAL.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "PLAN.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "../keeper-scheduling-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "../keeper-sidecar-recovery-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "../ubuntu-backup-recovery-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "preparation/c822/SOURCE_MANIFEST.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "review/SOURCE_INTERACTION_REVIEW.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "review/FINAL_PACKAGE_REVIEW.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "preparation/c822/RESOURCE_CLOSURE_REVIEW.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "../keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "evidence/c822/fetch-1/RESULT.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "evidence/c822/fetch-15/RACE_RESULT.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "evidence/c822/fetch-17/HOLD_RESULT.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "evidence/c822/fetch-4/SIDECAR_RESULT.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "evidence/c822/early-1/PENDING.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "evidence/c822/early-2/INCLUDED.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "evidence/c822/early-3/SETTLED.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "evidence/c822/fetch-13/MODEL_EVIDENCE.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "verification/UBUNTU_VERIFICATION.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "verification/verify_saved.py"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "verification/TIMING_REVIEW.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "preparation/c822/OFFLINE_PREFLIGHT.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "evidence/c822/fetch-2/FINAL.json"
+    },
+    {
+      "exists": true,
+      "path": "reports/ubuntu-keeper-composition-20261126/REVIEW.md",
+      "target": "verification/HOST_PRESERVATION.json"
+    },
+    {
+      "exists": true,
+      "path": "README.md",
+      "target": "reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "README.md",
+      "target": "reports/ubuntu-keeper-composition-20261126/verification/UBUNTU_VERIFICATION.json"
+    },
+    {
+      "exists": true,
+      "path": "README.md",
+      "target": "reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "README.md",
+      "target": "reports/keeper-sidecar-recovery-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "README.md",
+      "target": "reports/keeper-scheduling-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "AGENTS.md",
+      "target": "reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "AGENTS.md",
+      "target": "reports/ubuntu-keeper-composition-20261126/verification/UBUNTU_VERIFICATION.json"
+    },
+    {
+      "exists": true,
+      "path": "AGENTS.md",
+      "target": "reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "AGENTS.md",
+      "target": "reports/keeper-sidecar-recovery-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "AGENTS.md",
+      "target": "reports/keeper-scheduling-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "PROJECT_CONTEXT.md",
+      "target": "reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "PROJECT_CONTEXT.md",
+      "target": "reports/ubuntu-keeper-composition-20261126/verification/UBUNTU_VERIFICATION.json"
+    },
+    {
+      "exists": true,
+      "path": "PROJECT_CONTEXT.md",
+      "target": "reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "PROJECT_CONTEXT.md",
+      "target": "reports/keeper-sidecar-recovery-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "PROJECT_CONTEXT.md",
+      "target": "reports/keeper-scheduling-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORK_HANDOFF.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORK_HANDOFF.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/verification/UBUNTU_VERIFICATION.json"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORK_HANDOFF.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORK_HANDOFF.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORK_HANDOFF.md",
+      "target": "../reports/keeper-scheduling-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/AUDIT_FINDINGS.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/AUDIT_FINDINGS.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "docs/AUDIT_FINDINGS.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/AUDIT_FINDINGS.md",
+      "target": "../reports/keeper-alerts-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/AUDIT_FINDINGS.md",
+      "target": "../reports/ubuntu-backup-recovery-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/AUDIT_FINDINGS.md",
+      "target": "../reports/keeper-backup-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "target": "../reports/keeper-alerts-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "target": "../reports/ubuntu-backup-recovery-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "target": "../reports/keeper-backup-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/ROADMAP.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/ROADMAP.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "docs/ROADMAP.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/ROADMAP.md",
+      "target": "../reports/keeper-alerts-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/ROADMAP.md",
+      "target": "../reports/keeper-backup-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/ROADMAP.md",
+      "target": "../reports/ubuntu-daemon-storage-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORKLOAD_COVERAGE.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORKLOAD_COVERAGE.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORKLOAD_COVERAGE.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORKLOAD_COVERAGE.md",
+      "target": "../reports/keeper-alerts-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORKLOAD_COVERAGE.md",
+      "target": "../reports/ubuntu-daemon-storage-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/WORKLOAD_COVERAGE.md",
+      "target": "../reports/keeper-full-audit-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/RELEASE_CHECKLIST.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/RELEASE_CHECKLIST.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "docs/RELEASE_CHECKLIST.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/RELEASE_CHECKLIST.md",
+      "target": "../reports/keeper-scheduling-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/RELEASE_CHECKLIST.md",
+      "target": "../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_SCHEDULING.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_ALERTS.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_ALERTS.md",
+      "target": "../keeper/alerts.py"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_ALERTS.md",
+      "target": "../scripts/keeper-alerts.py"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_ALERTS.md",
+      "target": "KEEPER_SCHEDULING.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_ALERTS.md",
+      "target": "../reports/keeper-day-audit-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_ALERTS.md",
+      "target": "../reports/keeper-alerts-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_BACKUP.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_BACKUP.md",
+      "target": "KEEPER_ALERTS.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_BACKUP.md",
+      "target": "../reports/keeper-day-audit-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_BACKUP.md",
+      "target": "KEEPER_SCHEDULING.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_BACKUP.md",
+      "target": "HISTORY_RECOVERY.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_BACKUP.md",
+      "target": "KEEPER_SIDECAR_RECOVERY.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_RECOVERY.md",
+      "target": "../reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_RECOVERY.md",
+      "target": "../reports/keeper-day-audit-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_RECOVERY.md",
+      "target": "KEEPER_ALERTS.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_RECOVERY.md",
+      "target": "KEEPER_SCHEDULING.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_RECOVERY.md",
+      "target": "KEEPER_SIDECAR_RECOVERY.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_SIDECAR_RECOVERY.md",
+      "target": "KEEPER_SCHEDULING.md"
+    },
+    {
+      "exists": true,
+      "path": "docs/KEEPER_SIDECAR_RECOVERY.md",
+      "target": "KEEPER_BACKUP.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/README.md",
+      "target": "ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/README.md",
+      "target": "keeper-sidecar-recovery-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/README.md",
+      "target": "keeper-scheduling-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/README.md",
+      "target": "../docs/KEEPER_SCHEDULING.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/README.md",
+      "target": "keeper-day-audit-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/README.md",
+      "target": "keeper-alerts-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/README.md",
+      "target": "ubuntu-backup-recovery-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/README.md",
+      "target": "keeper-backup-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/README.md",
+      "target": "../docs/KEEPER_BACKUP.md"
+    },
+    {
+      "exists": true,
+      "path": "reports/README.md",
+      "target": "ubuntu-daemon-storage-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "TODO.md",
+      "target": "reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    },
+    {
+      "exists": true,
+      "path": "TODO.md",
+      "target": "reports/ubuntu-keeper-composition-20261126/REVIEW.md"
+    }
+  ],
+  "network_requests": 0,
+  "saved_evidence_inputs": {
+    "HOST_PRESERVATION.json": {
+      "bytes": 848,
+      "sha256": "ee6f12481cb3d628263e856b06ec314218e0e61c3757399732513f300b18deca"
+    },
+    "TIMING_REVIEW.json": {
+      "bytes": 11470,
+      "sha256": "482d0b1389ec5b041ccf351eeec1057e5f9bfbe223ce2eea381b04bcd2243687"
+    },
+    "UBUNTU_VERIFICATION.json": {
+      "bytes": 10555,
+      "sha256": "d3b3bec7aa9585b1eb30e206ae5b853db2458ab1fae39e2663625981a533e16d"
+    },
+    "reused_FUNCTION_INVENTORY.json": {
+      "bytes": 4982512,
+      "sha256": "c1a24939407576250dd1d5c620497860afdd6636f04cd38472b1dd5ebc4abf44"
+    }
+  },
+  "schema": 1,
+  "scope": "Full new report/plan, current introductions/references, new operator five-state section and four related keeper guide introductions; existing sidecar recovery inputs are retained. Historical reports are preserved under original scopes rather than re-audited or re-executed.",
+  "server_actions": 0,
+  "source_or_document_edits": 0,
+  "success": true,
+  "test_bodies_run": 0,
+  "todo_counts": {
+    "statuses": {
+      "done": 35,
+      "excluded": 1,
+      "progress": 40,
+      "todo": 7
+    },
+    "total": 83
+  }
+}

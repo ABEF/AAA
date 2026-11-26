@@ -1,0 +1,45 @@
+{
+  "activity": {
+    "application_imports": 0,
+    "network_requests": 0,
+    "server_actions": 0,
+    "test_bodies": 0
+  },
+  "bytes": 30387,
+  "conclusion": "New export-only model revision READY; packaging/coordinator closure still independent.",
+  "existing_main_AST_matches_after_removing_one_new_export_call": true,
+  "imports_added": [
+    "base64",
+    "gzip"
+  ],
+  "kind": "independent_export_only_model_revision_review",
+  "model_sha256": "c829059ff6ec73c13037b82995e267397ab59073de5fc48eaf8a9f436e9e82e5",
+  "named_files": [
+    "INITIAL_JOURNAL.json",
+    "PENDING_JOURNAL.json",
+    "SETTLED_JOURNAL.json",
+    "HEALTHY_JOURNAL.json",
+    "FINAL_JOURNAL.json",
+    "FINANCIAL_INITIAL.json",
+    "FINANCIAL_INCLUDED.json",
+    "FINANCIAL_FINAL.json",
+    "CANONICAL_FINAL.json"
+  ],
+  "new_definition": {
+    "ast_sha256": "e76bd3d13aef1f955690a744a5f61dbce0e4dfcf0156996cbcbeb6132ed44458",
+    "end_line": 288,
+    "line": 262,
+    "name": "export_evidence"
+  },
+  "phase": "preexecution_not_pass",
+  "prior_definitions_AST_unchanged_except_single_export_call": true,
+  "prior_model_sha256": "659928b784846664d2fc410417b59cacdd30542e1c2feda248e2b257276426d7",
+  "review": [
+    "Exact raw bytes/base64/length/hash from nine private named current files; no config, key/password, signature or raw signed envelope is exported.",
+    "Export reads physical/raw files only after final fenced capture and before MODEL_RESULT/COMPLETE; no extra RPC, signing, contract call or node action.",
+    "Current source pins and exact transaction/RPC/nonce/config-digest/final-journal counters bind later saved independent verification.",
+    "Deterministic gzip envelope<=32768 rendered bytes and<=262144 decoded; oversize refuses before COMPLETE and retains original private evidence.",
+    "Existing safe publisher and all thirteen prior AST definitions retained; only main adds one export call."
+  ],
+  "schema": 1
+}

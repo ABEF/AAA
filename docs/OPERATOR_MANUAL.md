@@ -66,6 +66,28 @@ or off-host authentication is added; capacity needs reviewed manual archival.
 Failed scheduler units themselves require supervision: policy/config/source
 refusal occurs before the observer can deliver a new HTTP incident.
 
+### Concurrent keeper and unsigned jobs
+
+The keeper and unsigned jobs use the same reviewed configuration. Their signer
+access differs through the separately reviewed service masks, not by deleting
+signer fields from the configuration. The keeper transaction lock is separate
+from the shared backup/observer lock; this does not guarantee spare CPU or I/O.
+Verify actual service deadlines and health freshness under concurrent load.
+
+| Observed state | Operator response | Expected behavior |
+| --- | --- | --- |
+| Journal changes during capture | Preserve partial output and the previous selection; inspect the fixed refusal, then let the next reviewed backup invocation try | No inconsistent generation selected |
+| Backup or observer reports lock contention | Preserve lock inode, selection and alert state; inspect recurring failures and both jobs' hard bounds | Unsigned job safely defers |
+| Transaction pending or receipt just recovered | Inspect the saved hash and canonical receipt; retain the same journal and normal schedule | No resend or duplicate cost |
+| Receipt recovered but metadata still degraded | Wait for the next normal keeper evaluation; diagnose its exact reason if degradation persists | Fresh metadata still required |
+| Alert delivered or queue drained | Check current health proofs and the selected backup independently | Delivery acknowledgement is not readiness |
+
+Do not reset pending age, clear outboxes, replace locks, reinitialize scheduling
+or increase financial limits to conceal a capture/observation failure. Production
+timer cadence, allowed alert delay and backup capacity must be reviewed together,
+including failed/partial generations; the short timings of a lab are not launch
+settings. Keep external host-down/off-host monitoring separate.
+
 ## Keeper alerts and stale-backup checks
 
 Run the [one-shot command and exact input table](KEEPER_ALERTS.md) under the

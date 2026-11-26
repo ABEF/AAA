@@ -1,5 +1,7 @@
 # Keeper alerts: one-shot observation and local delivery
 
+[Concurrent normal-keeper evidence](../reports/ubuntu-keeper-composition-20261126/REVIEW.md) preserves actual pending first_seen and queued IDs through timer contention, then reconciles delivery and genuine healthy recovery. Incident/lock-refusal outcomes are not healthy readiness; delivery ACK alone is not recovery. Short lab timings are not launch choices.
+
 The [alert module](../keeper/alerts.py) and [command](../scripts/keeper-alerts.py) inspect keeper health, the current journal and one explicitly selected recovery backup. They write a **separate alert state/outbox**, and can send sanitized events to a local test receiver. They never sign, submit transactions, read configured signer-file contents, repair a journal or approve a keeper for live use.
 
 The original command is an unsigned one-shot tool; it installs no scheduler, service or notification channel. The separate [scheduling wrapper](KEEPER_SCHEDULING.md) coordinates reviewed timer invocations without changing that interface. Production ages, delivery destination, supervision and operating qualification still need review. The [day audit](../reports/keeper-day-audit-20261126/REVIEW.md) describes the current corrections and focused verification. The earlier [21-method receiver proof](../reports/keeper-alerts-20261126/REVIEW.md) retains its original source scope; neither record approves live-channel or sustained operation.

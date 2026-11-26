@@ -1,0 +1,12 @@
+{
+  "preparation_sha256": {
+    "build.py": "6edf4765612895c8ba200beaafe2582aa612f92f7a0fccd2935c9578d80312e4",
+    "capsule_template.py": "cde2ae6b2e0c3b2acea64392fb44a01a4b6803d182e9123eb523149455cfd6a2",
+    "host_control.py": "08860203ee458440f3d72a5fa359b56edb330bea2aeecde4f973529befe4be46",
+    "lab_common.py": "f7a43e9281ac878e8bca7c3a858169f6381f09d79cfddda7d1d14a479f8cc8e3",
+    "lab_driver.py": "b587f47595c8e1a88df42925f191027fe441234173d5894b2222316bbb47dc4c",
+    "model_service.py": "c829059ff6ec73c13037b82995e267397ab59073de5fc48eaf8a9f436e9e82e5",
+    "schedule_worker.py": "a5be2b912b7c9562470d2df3b8f393498276c86318c4e37c07689ed40a81d6d1"
+  },
+  "source_head": "7436933c153246f57eaa01cf42c5f3ec90363dad"
+}

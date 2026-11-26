@@ -1,5 +1,7 @@
 # Unsigned keeper backup and alert scheduling
 
+The [new combined Ubuntu record](../reports/ubuntu-keeper-composition-20261126/REVIEW.md) exercises these jobs against the actual current normal daemon, not only saved synthetic journal vectors. It verifies refusal/progress, pending history and fresh deadline-driven health. Its45s/10s timers and1s pending-alert threshold are explicitly lab-only; source examples remain uninstalled and production cadence stays unselected.
+
 The scheduler coordinates the existing exact-journal backup and alert tools.
 It never starts the keeper, signs, calls RPC, restores a journal or grants live
 readiness. The maintained systemd examples are not installed by publication.

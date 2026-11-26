@@ -1,0 +1,20 @@
+{
+  "action": "fetch",
+  "capture_errors": [],
+  "capture_reason": null,
+  "combined_output_limit": 65536,
+  "controller_sha256": "69b3cee016793ab0cf18c6e1c2f40e41bf4bf8220053a079a52bd10209788a3f",
+  "elapsed_seconds": 0.7190000000009604,
+  "exit_code": 0,
+  "fresh_disposable_lab_signer_used": true,
+  "host_wrapper_signer_files_accessed": false,
+  "only_fixed_c822_units": true,
+  "opaque_SSH_transport": true,
+  "production_signer_material_read_or_exported": false,
+  "schema": 1,
+  "stderr.raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_bytes": 0,
+  "stdout.raw_sha256": "58259426d9618f762d05f3a0fdadcc650ddc4e92d6866ca1948d35a61079e9f8",
+  "stdout_bytes": 18590,
+  "transport_sha256": "a7f7f91863833bca9081b0ad6af833a1cf5147e65f1c2cfe7e058449f1bddc45"
+}

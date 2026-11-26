@@ -1,22 +1,21 @@
 # Release approval record - NOT APPROVED
 
-[Unsigned scheduler/alert recovery](../reports/keeper-sidecar-recovery-20261126/REVIEW.md)
-adds exact dual-lock capture and review-only restoration of selected backup,
-queued IDs, sequence and pending history. Eight NEW Ubuntu methods and actual
-backup/verify/restore plus mapped observer recovery pass. Original c820 setup
-NONPASS has zero test/CLI actions; c821 adds one omitted existing dependency,
-with all prior production/test bytes unchanged. Both four-unit labs stop;
-five existing service states match with0nonambient differences/1observer.
-Original scheduling19/daemon13 and financial/resource limits remain unchanged.
-Current [inventory](../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json):
-191files/2,137named definitions/279lambdas; F6 stays61/39/4 and1,021ABI rows.
-Read the [recovery guide](KEEPER_SIDECAR_RECOVERY.md): exact original release,
-policy/configuration and original parent layout remain required separately.
-Fresh locks and a valid package do not prove fencing, canonical freshness,
-off-host possession or adoption. Real channels/host-loss/durability/providers/
-sustained qualification and Q06/P20/P21/release approval stay open. Existing
-environments and paused heartbeat remain untouched. Earlier [native scheduling](../reports/keeper-scheduling-20261126/REVIEW.md)
-retains its ten-method/eight-stage scope and original setup failure.
+[Combined Ubuntu keeper and timers](../reports/ubuntu-keeper-composition-20261126/REVIEW.md)
+passes four new composition stages in308.219s/2,942local RPC: actual normal
+daemon/Cast pending recovery with native backup/observer jobs, capture refusal,
+lock/outbox continuity and fresh health. One keeper transaction/cost booking,
+nonce1, nine stopped units and5existing states with0nonambient/1observer-ID
+change reconcile. Nine raw records are independently rehashed. Actual retained
+deadline timing gives245s between checks (maximum300), not another full240s sleep.
+Production code, source13/19 and financial/resource defaults are unchanged;
+no old component body reruns. The [existing191-file/2,137-definition inventory](../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json)
+is reused; F6 stays61/39/4 and1,021ABI rows. Read the operator's concurrent-state
+procedure; lab45s/10s timers and1s pending alert age are not launch settings.
+Q06/P20/P21, off-host/fencing/real alerts/host-down, physical durability,
+provider/maximum workload/sustained operation and release approval stay open.
+Existing environments and paused heartbeat remain untouched. Earlier
+[scheduler/alert restoration](../reports/keeper-sidecar-recovery-20261126/REVIEW.md)
+retains its exact eight-method/source scope and original setup failure.
 
 [Unsigned Ubuntu scheduling](../reports/keeper-scheduling-20261126/REVIEW.md)
 adds exact pinned policy/source/configuration, explicit initialization, verified

@@ -1,5 +1,7 @@
 # Keeper journal backup and restore preparation
 
+The [combined Ubuntu rehearsal](../reports/ubuntu-keeper-composition-20261126/REVIEW.md) verifies a real keeper journal changing during capture: the raced snapshot refuses, the old selection stays exact, and later ordinary backups progress. A coherent point-in-time snapshot is not a guarantee of newest canonical state. No source or limits change.
+
 Use the [alert observer](KEEPER_ALERTS.md) to check one explicitly selected
 bundle's age and integrity against its externally retained manifest pin and
 separate original configuration. Rotation never selects the newest folder

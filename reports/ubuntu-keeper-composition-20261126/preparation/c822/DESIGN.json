@@ -1,0 +1,78 @@
+{
+  "activity": {
+    "application_imports": 0,
+    "network_requests": 0,
+    "server_actions": 0,
+    "test_bodies": 0
+  },
+  "coverage_boundaries": [
+    "No old test body, constructors or previous financial scenario body rerun.",
+    "Directed local mining is not wallclock cadence proof.",
+    "First post-receipt metadata-degraded health must be labeled; any healthy claim requires actual health_check acceptance.",
+    "Production schedules/alert ages are not selected by lab cadence.",
+    "No off-host signer fencing, provider, market or soak acceptance."
+  ],
+  "limits": {
+    "RPC": 6000,
+    "combined_capture": 65536,
+    "confirmations": 12,
+    "gas": 24000000,
+    "hourly_harvest": 3600,
+    "keeper_poll_seconds": 240,
+    "maximum_signed_sends": 1,
+    "padding_percent": 25,
+    "seconds": 900,
+    "sidecar_bytes": 16777216,
+    "sidecar_seconds": 60
+  },
+  "namespace": "/opt/popl-keeper-composition-20261126-c822",
+  "normal_loop_wakes": 2,
+  "objective": "One missing composition: real stock daemon/Cast receipt recovery while actual unsigned backup and observer timers run on the same journal.",
+  "open_design_choice": null,
+  "phase": "offline_design_only",
+  "phases": [
+    "Reuse pinned copied-state graph and setup helpers to create one fresh isolated key/config/journal, read actual baseline vectors.",
+    "Initialize same-config unsigned selection/observer once; start actual timer units with explicit lab-only cadence.",
+    "NEW lab wrapper pauses first journal-read result during backup while actual daemon creates durable pending intent; release and require safe refusal with prior selection retained.",
+    "Actual observer records known pending clock and queued prolonged-pending alert while local receiver unavailable; brief schedule-lock holder makes actual timer jobs refuse without replacing state.",
+    "Mine genuine local inclusion/12 confirmations under disclosed synthetic local chain controls; wait actual stock daemon240-second wake for receipt recovery; never shorten keeper sleep.",
+    "Require canonical hash/nonce/receipt/cost single booking; successful ordinary timer capture and same-state observation/ACK after contention.",
+    "Capture actual final NFT/LP/balances/reserves and independently compare before stopping model/node; preserve all partial diagnostics.",
+    "Stop all new units/timers; parent compares original host service snapshot."
+  ],
+  "prior_state_pins": {
+    "bindings.json": "c79d30ae3bc56ed900646bc2d8ad7da81bc60867290f8d737ae37be9ac6e0dd5",
+    "entry-receipts.json": "425902fae92cdbb210f3a12afc80908b9bd186ec1ae80060c427d9f302f3c519",
+    "instances.json": "e94a9dc5d4f3f04211ad77e62612b2284301584c3e363203198311d34d128e56",
+    "restore-state.json": "42ab11fd14bd02868359fb3fdd84e961f3f8050245f0cb370d1962be823d9b9a"
+  },
+  "reused_helpers_setup_only": [
+    "reports/ubuntu-daemon-storage-20261126/preparation/shared/keeper_runtime.py",
+    "reports/ubuntu-daemon-storage-20261126/preparation/shared/keeper_jobs.py",
+    "reports/ubuntu-daemon-storage-20261126/preparation/shared/job_cases.py"
+  ],
+  "schema": 1,
+  "scope": "Two actual ordinary240s wakes, receipt-clearing metadata-degraded then genuine current healthy, no forced refresh.",
+  "sidecar_policy": {
+    "backup_seconds": 45,
+    "max_backup_age_seconds": 900,
+    "max_backups": 32,
+    "max_health_age_seconds": 300,
+    "observe_seconds": 10,
+    "pending_max_age_seconds": 1
+  },
+  "source_head": "7436933c153246f57eaa01cf42c5f3ec90363dad",
+  "timers": [
+    "backup",
+    "observer"
+  ],
+  "units": [
+    "coordinator",
+    "model",
+    "keeper",
+    "backup",
+    "observe",
+    "init",
+    "barrier"
+  ]
+}

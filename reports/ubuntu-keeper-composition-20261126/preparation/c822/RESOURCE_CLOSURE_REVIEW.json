@@ -1,0 +1,114 @@
+{
+  "actual_dynamic_Python_entrypoints": [
+    "source/contracts/keeper/monitor.py as module",
+    "source/contracts/scripts/keeper-schedule.py",
+    "source/helpers/model_service.py",
+    "source/helpers/schedule_worker.py"
+  ],
+  "actual_encrypted_Cast_commands": [
+    "wallet new (fresh local signer)",
+    "wallet address (same fresh signer)",
+    "send (one allowed local harvest)"
+  ],
+  "all_helper_repository_string_resources": [
+    {
+      "helper": "keeper_runtime.py",
+      "line": 224,
+      "packaged": true,
+      "repository_resource": "keeper/monitor.py",
+      "scope": "<module>.validate_source"
+    },
+    {
+      "helper": "keeper_runtime.py",
+      "line": 224,
+      "packaged": true,
+      "repository_resource": "keeper/cast_process.py",
+      "scope": "<module>.validate_source"
+    },
+    {
+      "helper": "keeper_runtime.py",
+      "line": 224,
+      "packaged": true,
+      "repository_resource": "keeper/ops.py",
+      "scope": "<module>.validate_source"
+    },
+    {
+      "helper": "keeper_runtime.py",
+      "line": 224,
+      "packaged": true,
+      "repository_resource": "keeper/health.py",
+      "scope": "<module>.validate_source"
+    },
+    {
+      "helper": "keeper_runtime.py",
+      "line": 224,
+      "packaged": true,
+      "repository_resource": "zzz_ops/abi.py",
+      "scope": "<module>.validate_source"
+    },
+    {
+      "helper": "keeper_runtime.py",
+      "line": 224,
+      "packaged": true,
+      "repository_resource": "indexer/event_schema.json",
+      "scope": "<module>.validate_source"
+    },
+    {
+      "helper": "schedule_worker.py",
+      "line": 39,
+      "packaged": true,
+      "repository_resource": "scripts/keeper-schedule.py",
+      "scope": "<module>.ordinary"
+    },
+    {
+      "helper": "lab_common.py",
+      "line": 46,
+      "packaged": true,
+      "repository_resource": "scripts/keeper-schedule.py",
+      "scope": "<module>.run"
+    }
+  ],
+  "application_imports": 0,
+  "fixed_fixture_inputs_and_toolpins_match_frozen_B_AST": true,
+  "fixed_inputs": {
+    "bindings.json": [
+      30645,
+      "c79d30ae3bc56ed900646bc2d8ad7da81bc60867290f8d737ae37be9ac6e0dd5"
+    ],
+    "entry-receipts.json": [
+      696971,
+      "425902fae92cdbb210f3a12afc80908b9bd186ec1ae80060c427d9f302f3c519"
+    ],
+    "instances.json": [
+      4845414,
+      "e94a9dc5d4f3f04211ad77e62612b2284301584c3e363203198311d34d128e56"
+    ],
+    "restore-state.json": [
+      13643211,
+      "42ab11fd14bd02868359fb3fdd84e961f3f8050245f0cb370d1962be823d9b9a"
+    ]
+  },
+  "generated_runtime_records_not_external_inputs": true,
+  "original_Case_methods_not_invoked": [
+    "cycle",
+    "settle",
+    "fees_setup"
+  ],
+  "original_helper_main_bodies_not_invoked": [
+    "keeper_runtime.main",
+    "keeper_jobs.main if present"
+  ],
+  "phase": "offline_static_resource_closure",
+  "schema": 1,
+  "server_actions": 0,
+  "test_bodies_run": 0,
+  "tool_pins": {
+    "anvil": "05ee0cf1758024ea5e23dae562d92955ace205ab299091a43d2fa5bdeb6933bd",
+    "cast": "d55f540256f0dd8b940a125d435919948a5e8c140262e9923067cbfa95ef2970"
+  },
+  "unneeded_reference_explanation": {
+    "indexer/events.py and historical schema": "No indexer import or body in the current36-member daemon/sidecar closure; event_schema.json included because frozen validate_source requires its membership.",
+    "inputs/TRADER.json": "Only C.Case.fees_setup; not called by this composition.",
+    "source/helpers/utility_runtime.py": "Only frozen B.main; no utility scenario is called."
+  }
+}

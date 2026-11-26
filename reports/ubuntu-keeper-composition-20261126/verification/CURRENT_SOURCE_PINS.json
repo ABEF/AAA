@@ -1,0 +1,34 @@
+{
+  "baseline": "7436933c153246f57eaa01cf42c5f3ec90363dad",
+  "existing_environment_or_journal_adoption": false,
+  "files": {
+    "keeper/alerts.py": {
+      "bytes": 23149,
+      "sha256": "053ac2a70f38801b77afde8ba107c78e322a11630cb04620e1aa35a3f811fe13"
+    },
+    "keeper/cast_process.py": {
+      "bytes": 5694,
+      "sha256": "5856fec6fb15e1abb66750394c2fb7a24314686e964eca0e9363b5007aa5ba3a"
+    },
+    "keeper/monitor.py": {
+      "bytes": 194496,
+      "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f"
+    },
+    "keeper/ops.py": {
+      "bytes": 14444,
+      "sha256": "da396ec9c65295fe540f9dc812a0612d8ed27f1ab677fd388b479e2f2372ad89"
+    },
+    "keeper/recovery_bundle.py": {
+      "bytes": 36532,
+      "sha256": "022cd3b9a3692f9b5576fded8fb15d4aca2797f4ad3bd449561a4d57173de550"
+    },
+    "keeper/scheduling.py": {
+      "bytes": 17800,
+      "sha256": "d79be28db6bac2978f7c8efdfb641e037ce6d2024faa4e60e02f6f7c62049f4a"
+    }
+  },
+  "production_source_edits": 0,
+  "reused_production_inventory": "reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json",
+  "schema": 1,
+  "source13_and_source19_unchanged": true
+}

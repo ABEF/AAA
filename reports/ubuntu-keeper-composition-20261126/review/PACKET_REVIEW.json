@@ -1,0 +1,48 @@
+{
+  "activity": {
+    "application_imports": 0,
+    "network_requests": 0,
+    "server_actions": 0,
+    "test_bodies_run": 0
+  },
+  "all_archive_member_lengths_hashes_and_modes_verified": true,
+  "all_production_bytes_match_current_baseline_checkout": true,
+  "archive_members": 45,
+  "archive_sha256": "7d1aa75502b81eb67eb23c073d366395a0715edb3398198754511108c4d108a5",
+  "baseline": "7436933c153246f57eaa01cf42c5f3ec90363dad",
+  "component_test_bodies_selected": 0,
+  "controller_sha256": "69b3cee016793ab0cf18c6e1c2f40e41bf4bf8220053a079a52bd10209788a3f",
+  "frozen_helpers": {
+    "job_cases.py": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7",
+    "keeper_jobs.py": "363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4",
+    "keeper_runtime.py": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+  },
+  "host_wrapper_sha256": "08860203ee458440f3d72a5fa359b56edb330bea2aeecde4f973529befe4be46",
+  "kind": "independent_combined_keeper_sidecars_preexecution_packet_review",
+  "model_sha256": "c829059ff6ec73c13037b82995e267397ab59073de5fc48eaf8a9f436e9e82e5",
+  "phase": "READY_for_parent_authorized_isolated_execution_not_a_pass",
+  "production_source_overrides": [],
+  "production_sources": 36,
+  "required_JSON_source_data_included": [
+    "indexer/event_schema.json"
+  ],
+  "reviewed_corrections": [
+    "Atomic complete marker/record publication; rootcontrol rename and model reporting exclusive-link nlink2 have separate appropriate readers.",
+    "Instrumented before-selection pin captured after schedule lock acquisition, after snapshot before original release.",
+    "Stop native timers/wait current jobs before explicit HOLD acquisition, then restart same timers to witness bounded refusal.",
+    "Explicit post-stop MODEL_STOP success/source-input revalidation/Anvil cleanup gates whole-result success.",
+    "Exact current event_schema JSON resource included in source manifest/archive required by frozen validator and runtime decoder.",
+    "Long runtime capacity/log bounds derived:45s backup/10s observer,capacity32,records128, bounded percall capture and compact summaries.",
+    "Metadata-degraded receipt cycle followed by authentic second240s normal health; health/anchors300 and local5s headers disclosed.",
+    "Raw9model evidence export before COMPLETE enables independent after-stop canonical/financial/pending verification without another RPC."
+  ],
+  "schema": 1,
+  "scoped_acceptance": [
+    "RACE schedule lock overlaps actual intent/hash/signing; explicit HOLD is before inclusion, not held-lock receipt clearing.",
+    "Later receipt and metadata wake recovery occur with ordinary timers active; no zero-lag or soak promise.",
+    "Final physical/canonical/raw records before COMPLETE and node teardown; saved independent verification required before acceptance.",
+    "Same-host synthetic copied F6 fixture and disposable signer only; no public provider/market/off-host/fencing/production approval."
+  ],
+  "source13_and_source19_unchanged": true,
+  "source_manifest_sha256": "4f318d8f2d8d94ac629e9e1771872536f1a2400ea244b86c4912fcb770aeadd0"
+}

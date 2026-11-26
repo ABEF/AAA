@@ -1,37 +1,36 @@
 # AAA / ZZZ PoPL project instructions
 
-[Unsigned scheduler/alert recovery](reports/keeper-sidecar-recovery-20261126/REVIEW.md)
-preserves the exact selected backup, queued alert IDs, sequence and pending
-`first_seen` clock. The [procedure](docs/KEEPER_SIDECAR_RECOVERY.md) keeps original
-policy/configuration/release and signer material separate. Capture uses both
-existing locks; restore writes only a fresh private tree and an unsigned mapping
-plan. New empty lock files do not prove old lock ownership or multi-host fencing.
+[Combined Ubuntu keeper and timers](reports/ubuntu-keeper-composition-20261126/REVIEW.md)
+passes one actual current-release composition: normal daemon/Cast execution,
+native backup and observer timers, a controlled capture race, retained pending
+clock/outbox, canonical once-only receipt/cost recovery and fresh accepted health.
+Four stages finish in308.219s using2,942/6,000local RPC requests. One keeper
+harvest is booked once; final nonce is1. All nine owned units stop. Five existing
+service states match with0nonambient differences/1observer invocation-ID change.
 
-**Eight NEW Ubuntu methods pass**, followed by actual unsigned backup/verify/
-restore commands and resumed delivery of the original queued alert in a fenced
-target namespace. Pending history, policy/configuration and original source
-folders remain unchanged. Original c820 is NONPASS before any test/CLI action;
-c821 adds its missing existing script dependency without changing production
-bytes or the eight test bodies. Both four-unit labs stop empty; five existing
-service states match, with zero non-ambient differences and one observer invocation.
+The [saved independent review](reports/ubuntu-keeper-composition-20261126/verification/UBUNTU_VERIFICATION.json)
+rehashes nine raw records and reconciles actual type2 fees, rights/principal,
+reserves, pending history and final source/cleanup. No unchanged component body
+is rerun. Receipt recovery remains correctly degraded until fresh metadata;
+the retained deadline yields accepted health11.691s later, with245s between
+checks under the unchanged300s maximum. Do not claim another full240s sleep.
 
-The original nineteen scheduling identity files, including thirteen daemon
-sources, remain byte-identical to `aae84e64`. Two new Python files and one future
-test-selector entry add the tool; no old test body runs. Historical snapshot
-integrity is distinct from package capture age and present canonical freshness.
-Verify/restore still require separately secured original configuration, release
-and protected working/parent layout; installation/path mapping is manual review.
+Production Python/Solidity, source13/source19, journal/API profiles and financial
+limits are unchanged. Preparation fixes are lab-only. Operator guidance now
+separates coherent capture refusal, sidecar lock deferral, canonical recovery,
+metadata refresh and delivery ACK. Short45s/10s lab timers and1s pending alert
+age are not launch settings. Existing services/sites/Anvil8902/journals/signers
+and the user-paused desktop heartbeat are not adopted.
 
-Earlier [native scheduling](reports/keeper-scheduling-20261126/REVIEW.md) retains
-its ten-method/eight-stage scope and original setup failure. Real off-host
-possession/restore/fencing, notification routing, physical durability, providers,
-sustained operation and Q06/P20/P21/independent approval remain open. Source
-publication changes no existing service, journal, site, chain, signer or limits;
-the desktop heartbeat remains paused.
-
-The [current inventory](reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json)
-is191 Python files /2,137 named definitions /279 lambdas. Frozen F6 remains
-61 project sources /39 dependencies /4 build controls and1,021 ABI rows.
+Reuse the [unchanged current inventory](reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json):
+191Python files/2,137named definitions/279lambdas; F6 stays61/39/4 and1,021ABI rows.
+No duplicate inventory is generated for unchanged production/workload inputs.
+Earlier [scheduler/alert recovery](reports/keeper-sidecar-recovery-20261126/REVIEW.md)
+and [native scheduling](reports/keeper-scheduling-20261126/REVIEW.md) retain their
+separate new-method scopes and original preparation failures. Q06/P20/P21,
+off-host possession/restore/fencing, real notification routing/host-down
+monitoring, physical durability, provider/maximum workload/multi-day operation
+and independent release approval remain open.
 
 Earlier [exact backup/restore](reports/keeper-backup-20261126/REVIEW.md) has 33 distinct
 NEW passes at its original source. The separate [c814 composition](reports/ubuntu-backup-recovery-20261126/REVIEW.md)

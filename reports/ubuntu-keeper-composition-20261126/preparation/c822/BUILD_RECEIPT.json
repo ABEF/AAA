@@ -1,0 +1,56 @@
+{
+  "archive_members": 45,
+  "bundle": {
+    "bytes": 225807,
+    "sha256": "7d1aa75502b81eb67eb23c073d366395a0715edb3398198754511108c4d108a5"
+  },
+  "controller": {
+    "bytes": 24838,
+    "sha256": "69b3cee016793ab0cf18c6e1c2f40e41bf4bf8220053a079a52bd10209788a3f"
+  },
+  "existing_environment_adoption": false,
+  "frozen_helpers": {
+    "job_cases.py": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7",
+    "keeper_jobs.py": "363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4",
+    "keeper_runtime.py": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+  },
+  "host_wrapper": {
+    "bytes": 6179,
+    "sha256": "08860203ee458440f3d72a5fa359b56edb330bea2aeecde4f973529befe4be46"
+  },
+  "limits": {
+    "RPC": 6000,
+    "backup_timer_seconds": 45,
+    "confirmations": 12,
+    "harvest_seconds": 3600,
+    "maintenance_gas": 24000000,
+    "max_backups": 32,
+    "normal_poll_seconds": 240,
+    "observer_timer_seconds": 10,
+    "padding_percent": 25,
+    "raw_submissions": 1,
+    "records": 128,
+    "seconds": 900,
+    "sidecar_bytes": 16777216,
+    "sidecar_seconds": 60,
+    "stdout_stderr_bytes": 65536
+  },
+  "model": {
+    "bytes": 30387,
+    "sha256": "c829059ff6ec73c13037b82995e267397ab59073de5fc48eaf8a9f436e9e82e5"
+  },
+  "new_owned_services": 7,
+  "new_owned_timers": 2,
+  "old_test_bodies_run": 0,
+  "production_approved": false,
+  "production_source_overrides": [],
+  "schema": 1,
+  "server_actions": 0,
+  "source_head": "7436933c153246f57eaa01cf42c5f3ec90363dad",
+  "source_manifest": {
+    "bytes": 20162,
+    "sha256": "4f318d8f2d8d94ac629e9e1771872536f1a2400ea244b86c4912fcb770aeadd0"
+  },
+  "source_members": 36,
+  "tests_run": 0
+}

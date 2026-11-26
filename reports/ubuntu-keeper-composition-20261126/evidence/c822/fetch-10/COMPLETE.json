@@ -1,0 +1,45 @@
+{
+  "accepted_hash": "0x6b93f5b978baa03066f0ec02b656b8e5b19088b48aa3de79a1bde29bad772957",
+  "actual_following_normal_health_accepted": true,
+  "canonical_receipt_booked_once": true,
+  "cleanup_still_required": true,
+  "configuration_raw_sha256": "d44a04b086435a52d8660250a92d651885f816ab7d0e9d0d1795015aef817d28",
+  "confirmations": 12,
+  "final_financial_capture_complete": true,
+  "final_journal_sha256": "126f23607f4198d55fa5236e7c871638b864a7da19c34e77efd94193b9bee978",
+  "gas_ceiling": 24000000,
+  "hourly_harvest": 3600,
+  "initial_NFT_rights_and_principal_unchanged": true,
+  "keeper_interval_seconds": 240,
+  "live_read_races": {
+    "before": 0,
+    "during": 0
+  },
+  "new_seals": 0,
+  "node_nonces": {
+    "latest": 1,
+    "pending": 1
+  },
+  "old_test_bodies_run": 0,
+  "padding_percent": 25,
+  "phases": [
+    "healthy",
+    "included",
+    "pending",
+    "settled"
+  ],
+  "post_inclusion_financial_unchanged": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_attempts": 1,
+  "raw_forwarded": 1,
+  "raw_guarded": 1,
+  "ready_elapsed_seconds": 298.70385474152863,
+  "same_host_synthetic_fixture": true,
+  "schema": 1,
+  "scope": "actual_local_stock_daemon_and_unsigned_sidecar_composition",
+  "shared_RPC_requests": 2942,
+  "signer_contents_exported": false,
+  "source_head": "7436933c153246f57eaa01cf42c5f3ec90363dad",
+  "success": true
+}

@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "source_head": "7436933c153246f57eaa01cf42c5f3ec90363dad",
+  "archive_members": 45,
+  "exact_current_production_members": 36,
+  "worktree_source_overrides": 0,
+  "component_test_bodies_selected": 0,
+  "frozen_F6_setup_only": true,
+  "one_new_combined_composition": true,
+  "instrumented_read_race_explicit": true,
+  "normal_second_wake_required_for_fresh_health": true,
+  "final_raw_vectors_before_COMPLETE": true,
+  "MODEL_STOP_semantic_success_required": true,
+  "actual_private_local_signer_only": true,
+  "production_signer_or_environment_adoption": false,
+  "five_existing_host_states_baselined": true,
+  "server_actions_or_tests_by_review": 0,
+  "limits": {
+    "seconds": 900,
+    "RPC": 6000,
+    "poll": 240,
+    "confirmations": 12,
+    "harvest": 3600,
+    "maintenance_gas": 24000000,
+    "padding_percent": 25,
+    "backup_capacity": 32,
+    "combined_capture_bytes": 65536
+  },
+  "independent_review_sha256": "8052d90d9342789e897936b491cdf49ea938f685a009f08d1fd01bb2564aa0ba",
+  "preflight_sha256": "03c5b2a148335dd5296e964cffc6d29dcecc49d3eeea5ce7ac8b8067cdadfed0",
+  "mandatory_cleanup": true,
+  "desktop_monitor_remains_paused": true,
+  "pins": {
+    "c822.inputs.tar.gz": "7d1aa75502b81eb67eb23c073d366395a0715edb3398198754511108c4d108a5",
+    "remote_capsule.py": "69b3cee016793ab0cf18c6e1c2f40e41bf4bf8220053a079a52bd10209788a3f",
+    "host_control.py": "08860203ee458440f3d72a5fa359b56edb330bea2aeecde4f973529befe4be46"
+  }
+}

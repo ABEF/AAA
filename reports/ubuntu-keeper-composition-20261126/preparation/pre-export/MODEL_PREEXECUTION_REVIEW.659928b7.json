@@ -1,0 +1,39 @@
+{
+  "AST_syntax_valid": true,
+  "application_imports": 0,
+  "bytes": 28557,
+  "file": "cache-keeper-composition-20261126\\lab\\model_service.py",
+  "final_candidate_frozen_for_parent_review": true,
+  "kind": "model_preexecution_static_review",
+  "named_definitions": 13,
+  "network_requests": 0,
+  "prior_candidate": {
+    "bytes": 26551,
+    "preserved": "core/pre-change/model_service.2de3d323.py",
+    "sha256": "2de3d3230963ce5dda2f71492f5a8ad38ddd90a0811581a7e948ca2fe77a20b2"
+  },
+  "reviewed": [
+    "Fresh source manifest/helper/tool/F6 snapshot pins before any fixture work.",
+    "Only one fresh harvest sender/nonce/signature admitted by closed gateway; canonical signed tx/fee and bucket event independently checked after forwarding.",
+    "Original config/journal are private; sidecar caller receives paths rather than signer bytes.",
+    "Actual stock daemon owns both ordinary240s wakes; no manual run_cycle/poll_pending call or forced healthy status.",
+    "Receipt-clearing degraded state is distinct from later health_check acceptance, with canonical execution/confirmation observation anchors.",
+    "Local mining refreshes current chain headers every approximately5s after inclusion; synthetic timing disclosed.",
+    "Original NFT rights/physical LP and post-inclusion reserves/balances are read while Anvil lives; final evidence and MODEL_RESULT precede COMPLETE.",
+    "Root0444 fixed control markers gate inclusion/final capture; coordinator owns unit fencing.",
+    "Cleanup/revalidation has separate MODEL_STOP evidence; original environments are never referenced."
+  ],
+  "reviewed_revisions": [
+    "Parent-approved live_file wrapper skips only exact changed-before/during raw_file race labels and waits for next .25s polling iteration under original900s deadline; no stale fallback and absent/malformed/other errors still fail. Source/config/fenced final reads retain strict raw_file.",
+    "Actual health_check maximum age and canonical observation-anchor age tightened to300s; lab policy coordinated to maxhealth300. No execution or financial default changed.",
+    "Parent-approved NEW model save wrapper writes bounded private random temp bytes, fsyncs, exclusively links final name, unlinks temp and fsyncs parent. No overwrite/deletion of partial failure evidence and frozen B helper is unchanged.",
+    "Lab confirmed coordinator reporting marker reader accepts complete bounded JSON during transientnlink2. Root control publisher uses rename, so model root_marker and B.json_file retain strictnlink1; sourcejournal/health strictnlink1 unchanged."
+  ],
+  "scenario_bodies_reused": false,
+  "schema": 1,
+  "server_actions": 0,
+  "setup_helpers_only": true,
+  "sha256": "659928b784846664d2fc410417b59cacdd30542e1c2feda248e2b257276426d7",
+  "source_head": "7436933c153246f57eaa01cf42c5f3ec90363dad",
+  "test_bodies_run": 0
+}

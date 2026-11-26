@@ -487,3 +487,6 @@ keeper/sidecar_recovery.py -text whitespace=cr-at-eol
 scripts/keeper-sidecar-recovery.py -text whitespace=cr-at-eol
 tests_python/test_keeper_sidecar_recovery.py -text whitespace=cr-at-eol,-blank-at-eof
 reports/keeper-sidecar-recovery-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Exact combined Ubuntu keeper/timer evidence bytes.
+reports/ubuntu-keeper-composition-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

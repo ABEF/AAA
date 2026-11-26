@@ -1,0 +1,166 @@
+{
+  "activity": {
+    "application_imports": 0,
+    "network_requests": 0,
+    "server_actions": 0,
+    "test_bodies_run": 0
+  },
+  "baseline": "7436933c153246f57eaa01cf42c5f3ec90363dad",
+  "budget_requirements": {
+    "cast_combined_output_bytes": 65536,
+    "confirmations": 12,
+    "harvest_interval_seconds": 3600,
+    "keeper_padding_percent": 25,
+    "keeper_poll_seconds": 240,
+    "maintenance_gas_limit": 24000000,
+    "new_signed_send_maximum": 1,
+    "no_default_or_financial_limit_raise": true,
+    "shared_RPC_maximum": 6000,
+    "shared_seconds_maximum": 900,
+    "sidecar_default_bytes": 16777216,
+    "sidecar_default_seconds": 60,
+    "sidecar_timer_intervals": "Production placeholders remain unselected; any explicit test-only timer cadence must be labeled rather than called production acceptance."
+  },
+  "inputs": {
+    "keeper/alerts.py": {
+      "bytes": 23149,
+      "sha256": "053ac2a70f38801b77afde8ba107c78e322a11630cb04620e1aa35a3f811fe13"
+    },
+    "keeper/health.py": {
+      "bytes": 24415,
+      "sha256": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04"
+    },
+    "keeper/recovery_bundle.py": {
+      "bytes": 36532,
+      "sha256": "022cd3b9a3692f9b5576fded8fb15d4aca2797f4ad3bd449561a4d57173de550"
+    },
+    "keeper/scheduling.py": {
+      "bytes": 17800,
+      "sha256": "d79be28db6bac2978f7c8efdfb641e037ce6d2024faa4e60e02f6f7c62049f4a"
+    },
+    "keeper/zzz-keeper-backup.service": {
+      "bytes": 1314,
+      "sha256": "cfce8b4a2a06264ae07550f03dca5c6770b684780a55a670df5b6ab16236f4a9"
+    },
+    "keeper/zzz-keeper-backup.timer": {
+      "bytes": 327,
+      "sha256": "c9f3e856d2459da8e3a0ade1cf3ab6ff9b713c5eab6b0b01b515e9dc638a4c7c"
+    },
+    "keeper/zzz-keeper-observer.service": {
+      "bytes": 1397,
+      "sha256": "1d8212f673e84dbdef42e2b8e67c7fc64a61640f12278f710d3a4204c423951b"
+    },
+    "keeper/zzz-keeper-observer.timer": {
+      "bytes": 339,
+      "sha256": "f78e1f409f5caa96668b5cfaa86962d3315bb81f7035fe05f61e50ce4ad44d90"
+    },
+    "keeper/zzz-keeper.service": {
+      "bytes": 1091,
+      "sha256": "4a76852eaa165879c350252b893fbd9cae7764722f01353e23ee1c6ee687e229"
+    }
+  },
+  "kind": "popl_combined_keeper_sidecars_preexecution_acceptance_review",
+  "objective": "One missing actual normal keeper/Cast plus live backup/observer timer composition; reuse earlier component and F6 construction evidence without rerunning old method bodies.",
+  "phase": "design_review_not_runtime_evidence",
+  "prior_evidence_boundaries": [
+    {
+      "not_proved": "concurrent actual normal daemon/Cast receipt recovery",
+      "proved": "native timers/lock/timeout/refusal/stale backup/outbox restart with synthetic health/journal",
+      "record": "keeper-scheduling-20261126/c819"
+    },
+    {
+      "not_proved": "live keeper concurrency, off-host or canonical signer fencing",
+      "proved": "eight new methods and native exact sidecar capture/restore plus mapped original observer",
+      "record": "keeper-sidecar-recovery-20261126/c821"
+    },
+    {
+      "not_proved": "uninterrupted concurrent timer/observer operation around actual journal mutation",
+      "proved": "actual known-hash normal keeper submission, separate fenced restore/recovery and final financial equality",
+      "record": "ubuntu-backup-recovery-20261126/c814"
+    }
+  ],
+  "production_approved": false,
+  "required_partitions": [
+    {
+      "evidence": "Exact source/runtime/profile inventory and fresh owned execution paths, with saved construction scope reused separately.",
+      "goal": "Current pinned immutable source and restored F6 current-profile lab graph, original raw config shared with sidecars",
+      "id": "C01"
+    },
+    {
+      "evidence": "One accepted hash, raw forward/send counters, exact target/calldata/value/nonce, no signer bytes in logs or sidecar package.",
+      "goal": "Actual stock keeper encrypted Cast submits only one allowed disposable local operation",
+      "id": "C02"
+    },
+    {
+      "evidence": "Monotonic actual invocation windows and journal/health snapshots; logical or directed chain time is disclosed separately from measured process wall-clock.",
+      "goal": "At least one backup/observer timer invocation truly overlaps actual pending recovery",
+      "id": "C03"
+    },
+    {
+      "evidence": "Actual controlled mutation tied to real daemon progress; complete/partial inventories preserved, no fallback or cleanup; next eligible reviewed backup succeeds.",
+      "goal": "Journal mutation during capture safely refuses without changing previous selected generation",
+      "id": "C04"
+    },
+    {
+      "evidence": "RACE lock overlaps real intent/hash/signing; explicit HOLD preserves sidecar records before inclusion. Later receipt/metadata wakes use ordinary timers. Measure these scopes separately rather than claiming held-HOLD receipt recovery or zero lag.",
+      "goal": "Scheduler locking demonstrably permits actual keeper intent/signing progress; ordinary timers also run during later receipt recovery",
+      "id": "C05"
+    },
+    {
+      "evidence": "Captured original pending summary/outbox, real receiver event IDs/ACKs, no premature clock reset or false healthy recovery; do not count repeated existing component cases as new methods.",
+      "goal": "Original pending first_seen/event IDs survive actual receipt transition and receiver unavailability",
+      "id": "C06"
+    },
+    {
+      "evidence": "Independent canonical transaction/header/receipt/12confirmation vector, exact booked costs/day/next nonce and raw send counters all1; preserved appropriate scheduling mutations only.",
+      "goal": "Actual receipt recovered and spend/nonce/anchor booked once without resend",
+      "id": "C07"
+    },
+    {
+      "evidence": "No early refresh/restart shortcut; preserve saved schedule deadlines and validate actual health_check acceptance before claiming healthy observer recovery.",
+      "goal": "Following actual ordinary240-second wake refreshes genuine metadata/health after intentionally degraded receipt-clearing cycle",
+      "id": "C07b"
+    },
+    {
+      "evidence": "All final physical/canonical/raw vectors captured while node lives before COMPLETE and teardown; independent saved-vector validation may run later but must pass before acceptance/publication. No repeated exclusive capture or missing after-state repair.",
+      "goal": "Final physical NFT/LP/backing and original-source state captured before node teardown",
+      "id": "C08"
+    },
+    {
+      "evidence": "Only signing keeper sees disposable encrypted key; sidecars get same config but two distinct root000 empty read-only masks; no public networking or foreign groups.",
+      "goal": "Fresh private units/namespace and secret exclusion are effective",
+      "id": "C09"
+    },
+    {
+      "evidence": "Actual cgroup emptiness plus separate before/final host snapshots, ambient observer invocation disclosed; desktop heartbeat remains paused.",
+      "goal": "All owned groups stopped and five existing service states preserved",
+      "id": "C10"
+    }
+  ],
+  "review_challenges": [
+    "A backup refusal during legitimate atomic journal mutation is expected safety; require later bounded progress and unchanged old selection rather than treating refusal alone as a defect.",
+    "Shared scheduler lock intentionally defers observation; measure and classify contention rather than claiming no lag or exact timer intervals.",
+    "Do not remove signer fields or change configuration for unsigned sidecars: preserve same raw configuration with effective per-service secret masks.",
+    "Receipt/pending recovery uses one sender lane and original journal; no source/codec relabel, guessed nonce, reset, blind resend or cross-sender adoption.",
+    "Do not use accelerated chain time or module-local logical clock as proof of real hourly/multi-day cadence.",
+    "Read/source health pins are local file identity, not hardware or remote loaded-code attestation.",
+    "Fresh local lock and source group stop are not multi-host signer fencing.",
+    "Reuse F6 constructor/snapshot proof under explicit source scope; no construction suite or old component body rerun merely to populate the new lab.",
+    "Actual receipt-clearing cycle intentionally skips fresh metadata; second real normal wake is necessary to prove healthy observer recovery, not a rerun of a previously passed test body.",
+    "Keep local headers fresh throughout real240-second waits; twelve directed confirmation blocks alone followed by an idle head could cause unrelated valid stale-head refusal.",
+    "Derive lab backup capacity from the entire900-second bound and explicit timer interval, including init and intentional partial capture; prior short-fixture32 capacity can exhaust.",
+    "Derive shared native log/output budgets from invocation count; repeated full JSON append can exceed64KiB file/capture caps even when each call is bounded. Preserve complete bounded outcome metadata rather than labeling truncated tails complete."
+  ],
+  "reviewed_model": {
+    "bytes": 28557,
+    "independent_ledger": "review/MODEL_REVIEW.json",
+    "remaining_coordinator_gate": "require MODEL_STOP success, final_source_and_inputs_unchanged and model cleanup result before whole campaign pass",
+    "sha256": "659928b784846664d2fc410417b59cacdd30542e1c2feda248e2b257276426d7"
+  },
+  "reviewer": "sidecar_recovery_review",
+  "schema": 1,
+  "unresolved_before_execution": [
+    "Final lab harness/current package closure/effective units and acceptance predicates remain unreviewed.",
+    "Confirm explicit lab-only timer ages/capacity and bounded log design are consistent with550\u2013650second two-wake campaign and900second shared cap."
+  ]
+}

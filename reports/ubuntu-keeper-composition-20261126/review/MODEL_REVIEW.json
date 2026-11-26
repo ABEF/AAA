@@ -1,0 +1,115 @@
+{
+  "activity": {
+    "application_imports": 0,
+    "network_requests": 0,
+    "server_actions": 0,
+    "test_bodies": 0
+  },
+  "baseline": "7436933c153246f57eaa01cf42c5f3ec90363dad",
+  "bytes": 28557,
+  "conclusion": "No additional confirmed defect in frozen model. Whole-composer readiness still requires final worker/coordinator/package review.",
+  "definitions": [
+    {
+      "ast_sha256": "3dbbb4b150afffece3a3e93bd2064730db5752f17e4dbebd4786eba2d2472bb2",
+      "end_line": 59,
+      "line": 40,
+      "name": "save",
+      "review": "New lab-only exclusive atomic marker publisher: bounded random temp/fsync, no-clobber final link, unlink temp and fsync parent; reporting readers allow transient nlink2 only."
+    },
+    {
+      "ast_sha256": "1b29b104951b8cdaa75ed5f4829bedb516570e7d1e9d3d25f7987a31e6290e1f",
+      "end_line": 86,
+      "line": 62,
+      "name": "raw_file",
+      "review": "Strict stable single-link bounded source/journal/health read, NOFOLLOW/NONBLOCK descriptor with inode/size/time identity recheck; final reads never use fallback."
+    },
+    {
+      "ast_sha256": "730c8ba37396a1293349c2346f5971aa71101d88bca932f5ac09317584a3da3f",
+      "end_line": 95,
+      "line": 89,
+      "name": "private_copy",
+      "review": "Exclusive private bounded evidence copies; physical/raw data retained for later independent saved verification."
+    },
+    {
+      "ast_sha256": "5f84b0f15d388d3ba20428547036b7faa8075b34e24ac8dddd7c78d390008c4a",
+      "end_line": 108,
+      "line": 98,
+      "name": "live_file",
+      "review": "Only two exact atomic-rename change labels skip current polling iteration under unchanged deadline; missing/corrupt/other failures still refuse, no stale value returned."
+    },
+    {
+      "ast_sha256": "691cea77a3c78a0fa5213c8837e8871b15be77a6b2e943d6bb031fafccba99ba",
+      "end_line": 125,
+      "line": 111,
+      "name": "root_marker",
+      "review": "Closed INCLUDE/CAPTURE_FINAL root0444 single-link controls; coordinator rename publication compatible with frozen strict helper."
+    },
+    {
+      "ast_sha256": "7a308cc875223eaf6ae300ee8993b1067810ecc8327d3771d44e4b45d60e18f8",
+      "end_line": 159,
+      "line": 128,
+      "name": "Model",
+      "review": "Fresh private local model specialization; fixed binaries/snapshot/profile, one closed harvest submission only."
+    },
+    {
+      "ast_sha256": "d797450311d2c147b931f573cd8d361386af3f80cab3f6792aceaf5cac7116bf",
+      "end_line": 153,
+      "line": 129,
+      "name": "start",
+      "review": "Exact owned Anvil namespace/listener/source-input hash, chain4663/Cancun/32M synthetic header and restored F6 anchor; no public endpoint/deployment."
+    },
+    {
+      "ast_sha256": "4ce87bfaa3290d5594ed9df7e0f8365fc424293352454db65f8dddbe38d7cc04",
+      "end_line": 159,
+      "line": 155,
+      "name": "guard",
+      "review": "At most one raw signing attempt/forward; retain inherited exact sender/nonce/target/calldata/value/fee/day admission and canonical post-forward verification."
+    },
+    {
+      "ast_sha256": "9c3c4c24708ad6a504f35823f36ff8dede490dfb3c23a0bebf077d8cf321cfee",
+      "end_line": 170,
+      "line": 165,
+      "name": "financial",
+      "review": "Actual integer-unit NFT rights, physical LP and reserves/Vault balances captured while node is alive; no claim of funded split from fee-empty fixture."
+    },
+    {
+      "ast_sha256": "f4324a43b702d6558f5b95dc1b04e3dae542a9f327d41c362a77170fc2fe3ded",
+      "end_line": 190,
+      "line": 173,
+      "name": "canonical",
+      "review": "Real local successful receipt, canonical transaction/header/depth, authenticated execution-price/cost; retain original selected hash and signature-free transaction evidence."
+    },
+    {
+      "ast_sha256": "5293d7851dbcd248948ede0d0417bb307894864e1c39f0ef7528bd096b4c5428",
+      "end_line": 232,
+      "line": 193,
+      "name": "validate_booking",
+      "review": "Exact sender/target/calldata/zero nonce/value/gas/cap/chain, actual bucket fee event, one receipt-anchor/nonce/spent/last record and exact complete execution cost; all raw counters1."
+    },
+    {
+      "ast_sha256": "51481157074d617694c4a352ce4b087497e1021d02fb27b272d2ec9a872c41fa",
+      "end_line": 257,
+      "line": 235,
+      "name": "current_health",
+      "review": "Use real health_check allow_dry_runFalse/max_age300, live healthy_v2 and canonical execution/confirmation anchor hashes/times\u2264300 rather than status alone."
+    },
+    {
+      "ast_sha256": "6375509b15c1f9d08fe5c510f76aae2ef748c8dc444e03aef1c4747e86e41c94",
+      "end_line": 522,
+      "line": 260,
+      "name": "main",
+      "review": "Current source/helper/tool/input pins and setup-only reuse; actual external stock daemon owns both240s wakes, receipt degradation then genuine later metadata health, synthetic5s header refresh disclosed, final physical/raw/canonical evidence before COMPLETE, stop revalidation separately captured."
+    }
+  ],
+  "file": "cache-keeper-composition-20261126/lab/model_service.py",
+  "kind": "independent_model_static_review",
+  "phase": "preexecution_not_pass",
+  "reporting_boundaries": [
+    "RACE schedule lock overlaps actual intent/hash/signing. Explicit HOLD occurs before inclusion; later receipt and metadata wakes run with ordinary timers, not a claim of receipt clearing under explicit HOLD.",
+    "Full physical/canonical/raw final capture occurs before COMPLETE/node teardown. Independent saved-vector verifier may run afterward but must pass before acceptance/publication.",
+    "MODEL_STOP source/input revalidation and cleanup success must gate whole-composer pass.",
+    "Only new disposable signer is used; original production secrets are neither read nor exported by this campaign; sidecars retain distinct masks and same original configuration."
+  ],
+  "schema": 1,
+  "sha256": "659928b784846664d2fc410417b59cacdd30542e1c2feda248e2b257276426d7"
+}

@@ -1,0 +1,263 @@
+{
+  "application_imports": 0,
+  "bucket": "47181787163762592248710325652087236475813397965818762058663276509558631703230",
+  "causal_explanation": [
+    "Before harvest submission, an ordinary in-range threshold check persisted last_checked_at1795727030 and next_check_at1795727270, exactly240s later; execute_after is0, so this is a check deadline, not rebalance jitter.",
+    "The actual daemon first submitted one harvest, then waited its normal polling interval; receipt recovery cleared pending and booked the one canonical nonce/cost, but its run_cycle intentionally skipped fresh metadata because that cycle began with pending. SETTLED is therefore correctly degraded/pending_recovery.",
+    "SETTLED retained the existing confirmation schedule. In poll_delay, known confirmation schedules with no cycle-level exception are considered BEFORE refresh-only recovery. The pending field is now null; latest validated head and elapsed monotonic work are used to shorten the next sleep toward next_check_at rather than unconditionally sleeping another240s.",
+    "The next real loop evaluation occurred approximately5s after degraded cycle completion, and took6.864s to complete fresh execution/confirmation metadata. Source metadata health acceptance became healthy_v2 roughly12s after SETTLED. No manual refresh, restart, changed polling setting or additional signature is needed to explain it.",
+    "The next actual source status read used block_timestamp1795727275 and moved next_check_at to1795727515, again240s later. Recorded physical/reference threshold sides are0, status threshold_not_met, ready false and on-chain observation identity empty; no rebalance or paid confirmation observation is claimed."
+  ],
+  "exact_source_branch": {
+    "cycle_level_error": false,
+    "execute_after": 0,
+    "generic_refresh_interval_seconds": 240,
+    "known_deadline_branch_precedes_refresh_only_branch": true,
+    "known_schedule": true,
+    "observed_sleep_approximately_seconds": 5,
+    "pending_after_settlement": false,
+    "schedule_deadline_seconds": 1795727270,
+    "sleep_rule": "min(interval, ceil(deadline - (validated_chain_stamp + elapsed_monotonic_work))) for a future deadline; overdue deadline uses60s"
+  },
+  "findings": [],
+  "health_acceptance": {
+    "canonical_observation_anchors": {
+      "confirmation": {
+        "hash": "0x5163f628d1f369c83ca784caa1e7a6cb50fdbabae5d1d59cf6bd99e606448d88",
+        "number": 119107393,
+        "timestamp": 1795727275,
+        "wall_age_seconds": 6.631499767303467
+      },
+      "execution": {
+        "hash": "0x44ae7fd71ce8e5912f6db80169ddbc3280b23c27cf12f04376e978f72c81e745",
+        "number": 119107382,
+        "timestamp": 1795727220,
+        "wall_age_seconds": 61.63149976730347
+      }
+    },
+    "checker_max_age_seconds": 300,
+    "no_second_full240_wait_claim": true,
+    "same_booked_fields_at_settled_healthy_final": true
+  },
+  "input_files": {
+    "healthy": {
+      "bytes": 16979,
+      "path": "cache-keeper-composition-20261126\\lab\\campaign-001\\fetch-9\\HEALTHY.json",
+      "sha256": "df6f9438600940b98db6f31b9c8beb609a0da3422fbc0d0dc21b82bdf147f939"
+    },
+    "model_evidence": {
+      "bytes": 12354,
+      "path": "cache-keeper-composition-20261126\\lab\\campaign-001\\fetch-13\\MODEL_EVIDENCE.json",
+      "sha256": "620315138517f78ba100672d0938297d1295afe86d0c49d9199cad16b5597050"
+    },
+    "model_source": {
+      "bytes": 30387,
+      "path": "cache-keeper-composition-20261126\\lab\\model_service.py",
+      "sha256": "c829059ff6ec73c13037b82995e267397ab59073de5fc48eaf8a9f436e9e82e5"
+    },
+    "monitor_source": {
+      "bytes": 194496,
+      "path": "keeper\\monitor.py",
+      "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f"
+    },
+    "settled": {
+      "bytes": 6176,
+      "path": "cache-keeper-composition-20261126\\lab\\campaign-001\\early-3\\SETTLED.json",
+      "sha256": "2e37af8d579e3cf8644e2018a3e407af26becbb371a28dc8ec49300781cd6e5d"
+    },
+    "worker_logs": {
+      "bytes": 5054,
+      "path": "cache-keeper-composition-20261126\\lab\\campaign-001\\fetch-5\\WORKER_LOGS.json",
+      "sha256": "3cba85b190292d86e27c0c683c58dbfd5a12410fc4f7372e3db50aea565df007"
+    }
+  },
+  "kind": "saved_c822_normal_loop_deadline_timing_review",
+  "limitations": [
+    "The private internal _poll_clock tuple and exact returned poll_delay integer were not exported, so the precise internal head sample and computed sleep are not directly reconstructed. Approximately5s idle is derived from saved health/log times and rounded cycle duration, and matches the only relevant source branch.",
+    "Saved proof uses authenticated compressed records and current unchanged source, without importing production modules or rerunning any body. It is not an operating SLA, continuous-price proof, real provider timing or sustained production acceptance.",
+    "Local blocks and feed timestamps are synthetic disclosed fixture controls; the keeper scheduler setting and on-chain protections remain unchanged."
+  ],
+  "network_requests": 0,
+  "observed_times": {
+    "degraded_to_healthy_log_gap_seconds": 11.867142915725708,
+    "first_ordinary_pending_to_recovery_start_approx_seconds": 240.00061082839966,
+    "health_publication_gap_seconds": 11.86646318435669,
+    "healthy_cycle_start_derived_from_rounded_duration_unix": 1795727274.749887,
+    "healthy_health_duration_seconds": 6.864,
+    "healthy_ready_elapsed_seconds": 264.2199037373066,
+    "idle_after_settled_cycle_completed_log_approx_seconds": 5.00041389465332,
+    "idle_after_settled_health_before_healthy_cycle_approx_seconds": 5.002463102340698,
+    "marker_monotonic_gap_seconds": 11.691161593422294,
+    "settled_health_duration_seconds": 1.996,
+    "settled_ready_elapsed_seconds": 252.5287472512573
+  },
+  "production_edits": 0,
+  "raw_record_pins": {
+    "CANONICAL_FINAL.json": {
+      "bytes": 7505,
+      "sha256": "fdedf01ed84f1b9cc4e5e3b35b6777f7c23cecd61b56ae1d80460b5500ce3682"
+    },
+    "FINAL_JOURNAL.json": {
+      "bytes": 2677,
+      "sha256": "126f23607f4198d55fa5236e7c871638b864a7da19c34e77efd94193b9bee978"
+    },
+    "FINANCIAL_FINAL.json": {
+      "bytes": 1889,
+      "sha256": "941688b5d4a4ef221ea0c86314e78dc2897bc695e3d97cd7cd85eeba7527118b"
+    },
+    "FINANCIAL_INCLUDED.json": {
+      "bytes": 1889,
+      "sha256": "941688b5d4a4ef221ea0c86314e78dc2897bc695e3d97cd7cd85eeba7527118b"
+    },
+    "FINANCIAL_INITIAL.json": {
+      "bytes": 1889,
+      "sha256": "941688b5d4a4ef221ea0c86314e78dc2897bc695e3d97cd7cd85eeba7527118b"
+    },
+    "HEALTHY_JOURNAL.json": {
+      "bytes": 2677,
+      "sha256": "126f23607f4198d55fa5236e7c871638b864a7da19c34e77efd94193b9bee978"
+    },
+    "INITIAL_JOURNAL.json": {
+      "bytes": 1708,
+      "sha256": "b7fecd70e3d92fc01a2005b7c59075e3da979f89b23670b0b5556ef8b308b5ac"
+    },
+    "PENDING_JOURNAL.json": {
+      "bytes": 2752,
+      "sha256": "61c48e81e2c08f05594dd7c448a848151fc2b948abb419604a10da2ec087bcb0"
+    },
+    "SETTLED_JOURNAL.json": {
+      "bytes": 2677,
+      "sha256": "9333c7f94e0d7441eab1567765d1db3d266b31357606b026045653d8bc1d13bf"
+    }
+  },
+  "recommended_report_wording": "The first ordinary receipt-recovery cycle finished degraded at ready+252.529s. Its existing confirmation-check deadline shortened the next normal-loop sleep; fresh source-bound health was accepted at ready+264.220s. This was a following deadline-aware evaluation, not a second full240-second wait or a forced refresh.",
+  "saved_log_records": [
+    {
+      "action": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+      "event": "submitted",
+      "time": "2026-11-26T21:03:47.749189+00:00",
+      "transaction": "0x6b93f5b978baa03066f0ec02b656b8e5b19088b48aa3de79a1bde29bad772957"
+    },
+    {
+      "active_revert_cooldowns": 0,
+      "confirmed_reverts": 0,
+      "event": "cycle_completed",
+      "next_revert_retry_after": null,
+      "pending": true,
+      "skipped_buckets": 0,
+      "status": "awaiting_receipt",
+      "time": "2026-11-26T21:03:47.750813+00:00"
+    },
+    {
+      "action": "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230",
+      "cost_wei": "9626048",
+      "event": "confirmed",
+      "time": "2026-11-26T21:07:47.854573+00:00",
+      "transaction": "0x6b93f5b978baa03066f0ec02b656b8e5b19088b48aa3de79a1bde29bad772957"
+    },
+    {
+      "active_revert_cooldowns": 0,
+      "confirmed_reverts": 0,
+      "event": "cycle_completed",
+      "next_revert_retry_after": null,
+      "pending": false,
+      "skipped_buckets": 0,
+      "status": "degraded",
+      "time": "2026-11-26T21:07:49.749473+00:00"
+    },
+    {
+      "active_revert_cooldowns": 0,
+      "confirmed_reverts": 0,
+      "event": "cycle_completed",
+      "next_revert_retry_after": null,
+      "pending": false,
+      "skipped_buckets": 0,
+      "status": "healthy_v2",
+      "time": "2026-11-26T21:08:01.616616+00:00"
+    }
+  ],
+  "schedule_history": {
+    "FINAL_JOURNAL.json": {
+      "execute_after": 0,
+      "identity": "0xb15dba2b63fdf786e4fe3ddf7b1ddb29bea1998703ce0ea5532c928af8a472a4",
+      "last_checked_at": 1795727275,
+      "next_check_at": 1795727515,
+      "observed_at": 1795727275
+    },
+    "HEALTHY_JOURNAL.json": {
+      "execute_after": 0,
+      "identity": "0xb15dba2b63fdf786e4fe3ddf7b1ddb29bea1998703ce0ea5532c928af8a472a4",
+      "last_checked_at": 1795727275,
+      "next_check_at": 1795727515,
+      "observed_at": 1795727275
+    },
+    "PENDING_JOURNAL.json": {
+      "execute_after": 0,
+      "identity": "0xb15dba2b63fdf786e4fe3ddf7b1ddb29bea1998703ce0ea5532c928af8a472a4",
+      "last_checked_at": 1795727030,
+      "next_check_at": 1795727270,
+      "observed_at": 1795727030
+    },
+    "SETTLED_JOURNAL.json": {
+      "execute_after": 0,
+      "identity": "0xb15dba2b63fdf786e4fe3ddf7b1ddb29bea1998703ce0ea5532c928af8a472a4",
+      "last_checked_at": 1795727030,
+      "next_check_at": 1795727270,
+      "observed_at": 1795727030
+    }
+  },
+  "schema": 1,
+  "server_actions": 0,
+  "source_functions": [
+    {
+      "AST_sha256": "6cbb28e2d7f5617c614acb5e9995c5a29a321cdb0063873b65bd0956e234bb54",
+      "end": 629,
+      "name": "run_cycle",
+      "start": 513
+    },
+    {
+      "AST_sha256": "aeb36790d297d2ee1643afc9cd864e6262a4fb6695adf562ef26ab7e5b7d9e73",
+      "end": 658,
+      "name": "poll_delay",
+      "start": 631
+    },
+    {
+      "AST_sha256": "3ee832411d791a7596755b831f3ccd5863db82f44234eda5ae07baf2115027f7",
+      "end": 1217,
+      "name": "_confirmed_rebalance_due",
+      "start": 1129
+    },
+    {
+      "AST_sha256": "5884434a87ccc271b4e291c3a7b60da3874ae395b25e20641c4bec4b897aa970",
+      "end": 1232,
+      "name": "_next_confirmation_check",
+      "start": 1219
+    },
+    {
+      "AST_sha256": "18df51ef2fe24dffbb721e38158b30e17ae4e109a3feafed0a4645014dbfd34a",
+      "end": 1510,
+      "name": "_head",
+      "start": 1502
+    },
+    {
+      "AST_sha256": "01816f67bf9213f8d446e230b6fd284b83b6cc13f5fb187034c9b5de3cdee286",
+      "end": 2630,
+      "name": "_confirmation_priority",
+      "start": 2548
+    },
+    {
+      "AST_sha256": "ed70e693f82ec53f9c24f5918c719d9e4de56aced036008a5871912998c4acbb",
+      "end": 2802,
+      "name": "cycle",
+      "start": 2632
+    },
+    {
+      "AST_sha256": "bf05022b900109c01b26a85398bf40c8f081572989da0b555073acf52c193e18",
+      "end": 2848,
+      "name": "main",
+      "start": 2804
+    }
+  ],
+  "success": true,
+  "test_bodies_run": 0
+}

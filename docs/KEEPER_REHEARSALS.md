@@ -1,5 +1,7 @@
 # Keeper service qualification and rehearsal
 
+[Current normal keeper plus timers](../reports/ubuntu-keeper-composition-20261126/REVIEW.md) adds four new operating stages, one actual local harvest and independent raw9 accounting/physical reconciliation in308.219s. It reuses previous setup/evidence without rerunning component bodies. The retained price-check deadline yields healthy metadata11.691s after settlement; no second full240s wait is claimed. Whole P20/P21, provider/off-host/sustained acceptance remain open.
+
 [Scheduler/alert recovery rehearsal](../reports/keeper-sidecar-recovery-20261126/REVIEW.md) passes eight NEW methods and actual unsigned backup/verify/restore, followed by delivery of the original queued ID with its pending clock intact. Source folders remain unchanged under a separately fenced target namespace. The original c820 setup failure is retained; no old body runs. Same-host synthetic evidence does not qualify off-host possession/fencing, real channels or sustained operation.
 
 [Native unsigned scheduling](../reports/keeper-scheduling-20261126/REVIEW.md) completes10NEWfocused methods and eight additional native stages with explicitly short lab timings. Both original failed setup and corrected execution remain; no old passing body repeats. No public transactions or service adoption; production cadence, off-host delivery/fencing and sustained operation remain open.

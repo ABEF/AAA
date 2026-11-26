@@ -1,5 +1,7 @@
 # Verification evidence
 
+[Combined Ubuntu keeper and timers](ubuntu-keeper-composition-20261126/REVIEW.md) completes one new four-stage composition in308.219s/2,942local RPC. Actual signing/recovery, native timer contention, raw accounting and final physical vectors reconcile; nine owned units stop. Existing sources/services/journals/limits stay unchanged; no old component body reruns.
+
 [Unsigned scheduler/alert recovery](keeper-sidecar-recovery-20261126/REVIEW.md) adds eight NEW Ubuntu passes, actual capture/verify/restore and mapped queued-alert recovery. c820 setup NONPASS remains; c821 adds only its missing dynamic dependency and lab namespace. No existing journal/service/signer adoption; real off-host recovery remains open.
 
 [Unsigned Ubuntu scheduling](keeper-scheduling-20261126/REVIEW.md) implements and verifies backup/alert coordination:10new methods and eight separate native operating stages. Original c818 setup NONPASS remains; c819 uses identical source/test bodies with corrected lab startup. All owned groups stop, existing host states match, and no existing journal/service/signing profile is adopted. See the [operator procedure](../docs/KEEPER_SCHEDULING.md).
