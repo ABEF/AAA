@@ -1,5 +1,39 @@
 # PoPL operator manual
 
+## Scheduler and alert-state recovery
+
+The [complete input and recovery guide](KEEPER_SIDECAR_RECOVERY.md) covers the
+selected-backup record, exact queued alert IDs, sequence and pending `first_seen`
+clock. This unsigned tool needs no wallet. It never installs files, starts a
+service, signs or changes the keeper journal.
+
+| Command | Required inputs | Example arguments | Purpose |
+| --- | --- | --- | --- |
+| `python3 -B scripts/keeper-sidecar-recovery.py backup` | Original policy, reviewed raw policy digest, fresh private output | `--policy /etc/zzz/schedule.json --policy-sha256 REVIEWED_POLICY_DIGEST --output /archive/sidecars-NEW` | Capture exact sidecar history |
+| `python3 -B scripts/keeper-sidecar-recovery.py verify` | Same original policy/digest, package, independent manifest digest, maximum age in seconds | Same policy arguments plus `--bundle /archive/sidecars-NEW --manifest-sha256 TRUSTED_PACKAGE_DIGEST --max-age-seconds 86400` | Verify captured state |
+| `python3 -B scripts/keeper-sidecar-recovery.py restore` | All verification inputs and a fresh private destination | Same verification arguments plus `--output /recovery/sidecars-REVIEW-NEW` | Prepare reviewed restore tree |
+
+Replace digest placeholders with64lowercase hexadecimal characters without `0x`.
+The example86400-second package age is an operator choice, not approval of its
+selected journal's age. Optional `--minimum-created-at` uses UTC Unix seconds;
+`--max-bytes` defaults16777216/ceiling67108864 and `--max-seconds` defaults60/
+ceiling120. The original policy's stricter budgets still apply.
+
+Capture requires both existing source locks, in schedule-then-alert order; a
+missing/busy lock is a refusal. Never replace it to force capture. Restore only
+writes a new private tree, four exact raw records, two new empty lock files and
+an unsigned mapping plan. It cannot restore lock ownership, prove fencing or
+make a historical selected backup fresh. Partial outputs remain for review.
+
+Keep the exact original policy/configuration and matching release separately.
+Verification/restoration still validates the original working and parent-path
+layout, even if live selection/alert files are missing. A new host therefore
+needs separately reviewed layout preparation. Before adoption, fence old jobs
+and restart paths, review the mapping to original logical paths, retain original
+records and reconcile the keeper independently. Do not use scheduler `init` or
+hand-edit saved records to reset an incident. The tool performs none of these
+adoption steps; real off-host recovery and release approval remain open.
+
 ## Unsigned Ubuntu backup and alert schedules
 
 Use the [complete policy, inputs and recovery procedure](KEEPER_SCHEDULING.md).

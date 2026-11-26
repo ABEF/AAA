@@ -1,5 +1,23 @@
 # Release approval record - NOT APPROVED
 
+[Unsigned scheduler/alert recovery](../reports/keeper-sidecar-recovery-20261126/REVIEW.md)
+adds exact dual-lock capture and review-only restoration of selected backup,
+queued IDs, sequence and pending history. Eight NEW Ubuntu methods and actual
+backup/verify/restore plus mapped observer recovery pass. Original c820 setup
+NONPASS has zero test/CLI actions; c821 adds one omitted existing dependency,
+with all prior production/test bytes unchanged. Both four-unit labs stop;
+five existing service states match with0nonambient differences/1observer.
+Original scheduling19/daemon13 and financial/resource limits remain unchanged.
+Current [inventory](../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json):
+191files/2,137named definitions/279lambdas; F6 stays61/39/4 and1,021ABI rows.
+Read the [recovery guide](KEEPER_SIDECAR_RECOVERY.md): exact original release,
+policy/configuration and original parent layout remain required separately.
+Fresh locks and a valid package do not prove fencing, canonical freshness,
+off-host possession or adoption. Real channels/host-loss/durability/providers/
+sustained qualification and Q06/P20/P21/release approval stay open. Existing
+environments and paused heartbeat remain untouched. Earlier [native scheduling](../reports/keeper-scheduling-20261126/REVIEW.md)
+retains its ten-method/eight-stage scope and original setup failure.
+
 [Unsigned Ubuntu scheduling](../reports/keeper-scheduling-20261126/REVIEW.md)
 adds exact pinned policy/source/configuration, explicit initialization, verified
 exclusive backup selection and state-preserving operational rebind. Backups and
@@ -10,8 +28,8 @@ backup/alert cores and CLIs, financial controls and journals are unchanged.
 in c819. Original c818 is NONPASS before any test started; setup-only correction
 reuses exact38source/10method ASTs. Both nine-unit labs stop empty; five existing
 states match with zero non-ambient differences and one observer invocation.
-Current [inventory](../reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json):
-189files/2,109named definitions/279lambdas; frozen F6 stays61/39/4 and1,021ABI rows.
+Current [inventory](../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json):
+191files/2,137named definitions/279lambdas; frozen F6 stays61/39/4 and1,021ABI rows.
 Source unit examples stay uninstalled with unknown cadence blocked. Read the
 [scheduling procedure](KEEPER_SCHEDULING.md); real timing/channels, off-host
 fencing/restore, durability/provider/sustained operation and release approval stay

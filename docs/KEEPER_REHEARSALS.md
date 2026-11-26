@@ -1,5 +1,7 @@
 # Keeper service qualification and rehearsal
 
+[Scheduler/alert recovery rehearsal](../reports/keeper-sidecar-recovery-20261126/REVIEW.md) passes eight NEW methods and actual unsigned backup/verify/restore, followed by delivery of the original queued ID with its pending clock intact. Source folders remain unchanged under a separately fenced target namespace. The original c820 setup failure is retained; no old body runs. Same-host synthetic evidence does not qualify off-host possession/fencing, real channels or sustained operation.
+
 [Native unsigned scheduling](../reports/keeper-scheduling-20261126/REVIEW.md) completes10NEWfocused methods and eight additional native stages with explicitly short lab timings. Both original failed setup and corrected execution remain; no old passing body repeats. No public transactions or service adoption; production cadence, off-host delivery/fencing and sustained operation remain open.
 
 ## Current operating evidence

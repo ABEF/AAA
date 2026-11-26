@@ -1,0 +1,440 @@
+{
+  "activity": {
+    "application_imports": 0,
+    "ast_only_local_checks": true,
+    "network_requests": 0,
+    "runtime_verification": "pending_parent_isolated_Ubuntu_campaign",
+    "server_actions": 0,
+    "test_bodies_run": 0
+  },
+  "baseline_head": "aae84e64d7f7fa470e5767630608755df91e75c1",
+  "confirmed_pre_execution_corrections": [
+    {
+      "issue": "Explicit flock unlock failure could skip fd close",
+      "resolution": "nested finally always closes descriptor; new real-FD EIO regression in new lock method"
+    },
+    {
+      "issue": "Lock identity checked too late could publish before refusing",
+      "resolution": "held-lock tokens checked before output reservation and again before final commit; new replacement regression"
+    },
+    {
+      "issue": "Individual payload bounds alone do not prove whole packet capacity",
+      "resolution": "all descriptor lengths prevalidated and aggregate stat/payload/metadata budget before reads/reservation"
+    },
+    {
+      "issue": "Output raw files or fresh locks could change before plan/manifest",
+      "resolution": "bounded destination readback and distinct empty private owner lock validation before final commit"
+    },
+    {
+      "issue": "Initial test patch targeted nonexported subject.fcntl",
+      "resolution": "test-only method-local import fcntl then patch standard module; no production source change required"
+    },
+    {
+      "issue": "POSIX-specific flock test should not claim unsupported Windows execution",
+      "resolution": "Parent added class-level POSIX-only decorator before first execution; all eight method ASTs unchanged."
+    }
+  ],
+  "kind": "popl-keeper-sidecar-recovery-static-review",
+  "lab_static_review": {
+    "authoritative_folder": "cache-keeper-sidecar-recovery-20261126/c820-final-labeled",
+    "conclusion": "Ready for parent-authorized isolated runtime verification; no additional confirmed blocker in current reviewed bytes.",
+    "files": [
+      {
+        "bytes": 13462,
+        "path": "cache-keeper-sidecar-recovery-20261126/c820-final-labeled/lab_driver.py",
+        "sha256": "0f7f5fbfa7bf427dc687388c082e49abffbee23583b002c992dbfe6660e3fa84"
+      },
+      {
+        "bytes": 7447,
+        "path": "cache-keeper-sidecar-recovery-20261126/c820-final-labeled/run_flow.py",
+        "sha256": "b213b1a5e9e54dbec76c5c088f3f5f11e3e071afbde8bb8d1805f43c9cf48e31"
+      },
+      {
+        "bytes": 4163,
+        "path": "cache-keeper-sidecar-recovery-20261126/c820-final-labeled/lab_common.py",
+        "sha256": "868af40b2c8daf0c392a8fc7d8b2e0472310f8ee46f450a6e1807145945c5d86"
+      },
+      {
+        "bytes": 6033,
+        "path": "cache-keeper-sidecar-recovery-20261126/c820-final-labeled/fixture.py",
+        "sha256": "0e5d4c5730a20364bd30f8c608bb0f0612753a3cc45d315aedc77a3436b9bb76"
+      },
+      {
+        "bytes": 6796,
+        "path": "cache-keeper-sidecar-recovery-20261126/c820-final-labeled/run_focused.py",
+        "sha256": "341553cde7a78270cd96fe8a1c2da8917344eea7e1bd2909ceaa2090d99b448b"
+      }
+    ],
+    "positive_checks": [
+      "exact eight new methods and zero inherited old body selection",
+      "source then stopped/empty worker before mapped target",
+      "target binds fresh restored folders onto original policy logical paths without raw rewrite",
+      "actual original observer resumes queued outbox IDs and pending first_seen",
+      "source policy/config/journal/selection/alert bytes checked unchanged",
+      "fresh distinct root000 signer masks unreadable by nobody",
+      "bounded worker stdout/stderr/time/output and root manager allowlist",
+      "actual oneshot invocation timestamp and empty-cgroup completion predicates"
+    ],
+    "receiver_correction": "Final labeled Handler.setup calls super().setup() then connection.settimeout(2), bounding incomplete local request read before receiver shutdown; original offline candidates preserved, no earlier test execution."
+  },
+  "new_focused_test_file": {
+    "bytes": 18390,
+    "class": "KeeperSidecarRecoveryTests",
+    "methods": [
+      {
+        "ast_sha256": "51a7528d7700c0f1d4e3aa1f63d5d63eccc370ec980ea70b78a859ad6ffad67a",
+        "end_line": 148,
+        "execution": "not_run_by_review_agent",
+        "line": 110,
+        "name": "test_stale_selected_generation_roundtrip_preserves_all_bytes_and_pending_outbox",
+        "purpose": "Real backup/verify/restore roundtrip; historically old selected generation with newer independent current pending; exact raw bytes/IDs/sequence/first_seen, unchanged source/policy/config/journal, new locks and explicit false flags, signer file nonreads."
+      },
+      {
+        "ast_sha256": "61bb3fdf56d2fde913d1e814d8730e17e91ef1b4dd0f6cebb6d563bf232a8e9f",
+        "end_line": 195,
+        "execution": "not_run_by_review_agent",
+        "line": 150,
+        "name": "test_schedule_and_alert_locks_refuse_contention_or_absence_without_recreation",
+        "purpose": "Actual flock contention and absent original lock for both roles; no recreation/source mutation; injected LOCK_UN EIO still closes actual descriptor (EBADF) and releases kernel lock."
+      },
+      {
+        "ast_sha256": "d5de529537003649b680104ba0ca4e350a75c5be664aa0a52df22c81d1520a5f",
+        "end_line": 219,
+        "execution": "not_run_by_review_agent",
+        "line": 197,
+        "name": "test_wrong_pins_tampered_payload_and_extra_package_entries_refuse_without_restore",
+        "purpose": "Wrong trusted pin, each of four payload tamper and package extras refuse before fresh restore output."
+      },
+      {
+        "ast_sha256": "463f80b1e15194f2b9a139ff1eac046e6a5be022beb9313543770e0a5ce7ebed",
+        "end_line": 236,
+        "execution": "not_run_by_review_agent",
+        "line": 221,
+        "name": "test_capture_bounds_and_output_separation_refuse_before_source_mutation",
+        "purpose": "Output overlap, exact max-byte refusal and bool/noninteger resource rejection preserve source."
+      },
+      {
+        "ast_sha256": "a1448158ded5d599f6cd03bbf46be8d251b40abc6c0b03a7452b70a828b88921",
+        "end_line": 259,
+        "execution": "not_run_by_review_agent",
+        "line": 238,
+        "name": "test_unreviewed_policy_profile_or_source_identity_cannot_capture",
+        "purpose": "Unsupported reviewed policy schema, config identity drift and source pin drift refuse without new output."
+      },
+      {
+        "ast_sha256": "7f256a196d1e57bee86d8139d526e1fae29d7c89bd26341d9c8519a1f9cc4797",
+        "end_line": 283,
+        "execution": "not_run_by_review_agent",
+        "line": 261,
+        "name": "test_missing_or_partial_commits_never_initialize_or_publish_a_complete_capture",
+        "purpose": "Missing selection/state/nested commit and orphan temporary sidecar entry refuse without source repair or complete capture."
+      },
+      {
+        "ast_sha256": "9a77e5d7c84fb9c9c26a7fdfb7ce47756ed4ce147b71811875d3478cbe57a464",
+        "end_line": 301,
+        "execution": "not_run_by_review_agent",
+        "line": 285,
+        "name": "test_restore_is_exclusive_and_capture_age_never_refreshes_old_entitlements",
+        "purpose": "Existing destination untouched; expired package and too-new minimum-created floor refuse; historical selected/pending clocks never refreshed."
+      },
+      {
+        "ast_sha256": "98e145afdaf717ede756b33e113776b78b3e42fdd62455632d6bdf97ab4edab3",
+        "end_line": 358,
+        "execution": "not_run_by_review_agent",
+        "line": 303,
+        "name": "test_noncooperating_state_and_lock_changes_block_complete_capture_publication",
+        "purpose": "Same-UID raw-byte alert change under advisory locks and lock inode replacement before output reserve are detected; no completed manifest; restore only test-owned injected state."
+      }
+    ],
+    "old_fixture_usage": "composition of helper setUp/doCleanups only; no old test body inheritance or selection",
+    "path": "tests_python/test_keeper_sidecar_recovery.py",
+    "platform": "New class skipped on unsupported non-POSIX platforms; actual Ubuntu expected8 methods/0 skips; no execution by review agent",
+    "selected_method_count": 8,
+    "sha256": "6811351e1e41563e7a7fe23c494b43938a3afeb81576b64c7b9d6d05239486ef"
+  },
+  "production_files": [
+    {
+      "bytes": 22768,
+      "definitions": [
+        {
+          "ast_sha256": "5c27c8767c98e54cabaa05af235307a72e8132bf1489a018016858f1f3c2d567",
+          "end_line": 41,
+          "kind": "ClassDef",
+          "line": 37,
+          "name": "SidecarRefusal",
+          "review": "Fixed refusal vocabulary; never return input paths, signer data or caught exception text.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "9e41ceff074b01939a61c0415820f27c385484ba209ecf52068ef83dbbabcdbb",
+          "end_line": 41,
+          "kind": "FunctionDef",
+          "line": 39,
+          "name": "__init__",
+          "review": "Unknown error categories collapse to invalid_input; output string is fixed-format.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "37b246ed6fa2470dfdca3a2a06465fd39c0c6b6741f93b94ec28a8899306ad40",
+          "end_line": 46,
+          "kind": "FunctionDef",
+          "line": 44,
+          "name": "_need",
+          "review": "Single fixed-category fail-closed predicate with no data-bearing exception.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "471e48df49bffa87d1eadf88a13a3c891580b9edcd1329969db723dac799dd5c",
+          "end_line": 50,
+          "kind": "FunctionDef",
+          "line": 49,
+          "name": "_sha",
+          "review": "SHA256 exact raw bytes; hashes are integrity evidence, not independent authentication.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "542ddabfc5fb99eae91931c21259cd510a859ab3de74f15596ade9c06ab7d6cf",
+          "end_line": 56,
+          "kind": "FunctionDef",
+          "line": 53,
+          "name": "_budget",
+          "review": "Reject booleans/nonintegers and bound time1..120s and bytes1..64MiB; preserve16MiB/60s defaults.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "f4811d69a567d780aac6b13778d23d3d0e4d656d9a41905ed5fc0d087c2cd018",
+          "end_line": 65,
+          "kind": "FunctionDef",
+          "line": 59,
+          "name": "_context",
+          "review": "Reuse original pinned policy/config/source19 identity and narrow caller budgets to policy budgets.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "1d8da9b9e15c4086696bb1884f806ab8a753d38d00176d0bd95425e4639f7c37",
+          "end_line": 69,
+          "kind": "FunctionDef",
+          "line": 68,
+          "name": "_key",
+          "review": "Concrete dev/inode/mode/uid/nlink/size/mtime identity prevents silently switching coordination objects.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "e015beaac98640be5a21749e2108878fe61feb229e5bf298e8cbb6a073ba14aa",
+          "end_line": 74,
+          "kind": "FunctionDef",
+          "line": 72,
+          "name": "_held_lock",
+          "review": "Validate pathname and held descriptor remain the originally reviewed inode before publication.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "1c6d27faa67f77e4552908f7dda11930358d255b7865456fc889b7a0213fb435",
+          "end_line": 104,
+          "kind": "FunctionDef",
+          "line": 78,
+          "name": "_existing_lock",
+          "review": "Existing-only no-O_CREAT locks, nonblocking schedule-before-alert acquisition, safe owner/mode/nlink, guaranteed fd close even failed explicit unlock.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "835de1780f78287a1398422e603f68ef1cc4c8ad0cbc071ae5c6a7168fa5f3e1",
+          "end_line": 119,
+          "kind": "FunctionDef",
+          "line": 107,
+          "name": "_selection",
+          "review": "Strict schema1/path-generation/policy/config/identity/time/pin; no latest-folder selection fallback.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "206a439cb1af5256d0f77c3914d197acdf6d24cabb6ae24a361c56b0b69c7555",
+          "end_line": 141,
+          "kind": "FunctionDef",
+          "line": 122,
+          "name": "_observer",
+          "review": "Validate existing schema1 exact pending first_seen, sequence, active reasons and ordered unique outbox IDs; no missing-file initialization.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "453fd2d3163aa1ff1286be0b9a1b0bc4a564e36cc0526843f599a7ff7b5f7f88",
+          "end_line": 146,
+          "kind": "FunctionDef",
+          "line": 144,
+          "name": "_summary",
+          "review": "Carry observer counters/pending as integrity summary without changing raw state.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "f913b77346a653e072425aba85d96d2106dacb9522cb4f5feb9bc9db412675be",
+          "end_line": 150,
+          "kind": "FunctionDef",
+          "line": 149,
+          "name": "_paths",
+          "review": "Original logical directories recorded exactly; relocation is separate reviewed mapping.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "336ac1a747f2ae9f63d9f273e88c22227bd706cb10a3847cfe6676da78ffda79",
+          "end_line": 161,
+          "kind": "FunctionDef",
+          "line": 153,
+          "name": "_selected",
+          "review": "Validate selected historical generation at its original creation time, never approve operational freshness; selected time cannot exceed capture time.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "9889e49a94f12ca408d91cde3fb9ae6007df7c1cc25956c36daa1938e3d92fbe",
+          "end_line": 172,
+          "kind": "FunctionDef",
+          "line": 164,
+          "name": "_separate_output",
+          "review": "Fresh output cannot overlap original config, policy, journal/parent, secret references, sidecar roots or package.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "5b406b6f3b1bf812f3156e2edaa97d2b7260f8510e5dc14b51604628fbc626ba",
+          "end_line": 194,
+          "kind": "FunctionDef",
+          "line": 175,
+          "name": "_source_files",
+          "review": "Require complete existing inventories; aggregate stat budget before nested journal read, exact four raw payloads, selected integrity and source summary.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "ecad9e77915208de99c38ed5d02fa324b10e5d8fd23aad9464014abb576a9ac8",
+          "end_line": 215,
+          "kind": "FunctionDef",
+          "line": 197,
+          "name": "_plan",
+          "review": "Exact reversible payload mapping, fresh coordination files and explicit false adoption/fencing/freshness/authority flags; original policy/config remain external.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "5784cd2747e729a06b0e33ce0c8f92653492ebb579ea3d174ed5a34dc4460e9c",
+          "end_line": 224,
+          "kind": "FunctionDef",
+          "line": 218,
+          "name": "_fits",
+          "review": "Preencode complete manifest and plan; charge total payload plus larger metadata against unchanged effective byte cap.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "abf1ec0df9dc4e78d05d60d9dd4e3713794469ce3c0ca4c292a97af854e541d9",
+          "end_line": 232,
+          "kind": "FunctionDef",
+          "line": 227,
+          "name": "_same_capture",
+          "review": "Revalidate original source/config policy and all four raw payloads, plus producer provenance, while locks remain held.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "2c779e35ec3d5672f7efacd0246da6b87a0626a368ae34c90e2cb73df814cb59",
+          "end_line": 248,
+          "kind": "FunctionDef",
+          "line": 235,
+          "name": "_package_inventory",
+          "review": "Exact root+selected allowlist; reject extra entries, links, unsupported inventory and malformed complete markers.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "382b247f54d6f2820a03ce25705ca4797129c2d8c815bab268d1fcf1960cfb0d",
+          "end_line": 298,
+          "kind": "FunctionDef",
+          "line": 251,
+          "name": "_verified",
+          "review": "Trusted outer pin and explicit capture age/floor, exact profile/flags/policy/source/original paths, full row prebudget, bounded digest read, nested integrity, final reread before success.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "0f23b31b459cd0ba4960a554ff8ef28875d0650cd7273750d0fa8d801fc90abd",
+          "end_line": 308,
+          "kind": "FunctionDef",
+          "line": 301,
+          "name": "_refusal",
+          "review": "Preserve fixed resource/source categories while sanitizing other external helper exceptions to fixed stage.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "9fec290dd32ce15932472d34c57f598391107bd7236ae1422ff1ec697259528c",
+          "end_line": 348,
+          "kind": "FunctionDef",
+          "line": 311,
+          "name": "backup",
+          "review": "Two original locks held throughout exact capture, prepublication state/lock rechecks, exclusive private payload output/readback and final manifest commit; no source mutation.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "ff76aeaba90a2cd6ab1567639d98943e06acdc542668640008008bb9564dbebe",
+          "end_line": 360,
+          "kind": "FunctionDef",
+          "line": 351,
+          "name": "verify",
+          "review": "Read-only explicit caller pin/age verification; returns data but performs no adoption, signer action or initialization.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "288e6b1775d8a30c838c42e3d46f50ac53d0781e136419b3e1c83cf27161aba6",
+          "end_line": 402,
+          "kind": "FunctionDef",
+          "line": 363,
+          "name": "restore",
+          "review": "Fresh exclusive tree, exact raw selected generation and observer preservation, new distinct private empty locks, package reread/output readback and final unsigned plan; never replace originals.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        }
+      ],
+      "named_definitions": 25,
+      "path": "keeper/sidecar_recovery.py",
+      "sha256": "eda3b43e316adab4fb8a2161a7d5e5f750ba4e1e0c9b3432037d6acf39396546"
+    },
+    {
+      "bytes": 2924,
+      "definitions": [
+        {
+          "ast_sha256": "84ed5112b4ea3c102fc27a4665dd0e78a3301e9fc11aab03982c9e6d8a48af58",
+          "end_line": 16,
+          "kind": "ClassDef",
+          "line": 13,
+          "name": "SafeArgumentParser",
+          "review": "Argparse failures print fixed text rather than echoing sensitive supplied arguments.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "6238dce0eecfe160bfe5b8cd1171c4db2a86f6f718448219d2f2a88822b4c35e",
+          "end_line": 16,
+          "kind": "FunctionDef",
+          "line": 14,
+          "name": "error",
+          "review": "Fixed safe parser diagnostics, no raw invalid input included.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        },
+        {
+          "ast_sha256": "2754db1d17c54d911ee218b9997f55df6bf8945c98f3df0485ed6af17f1cce88",
+          "end_line": 59,
+          "kind": "FunctionDef",
+          "line": 19,
+          "name": "main",
+          "review": "Three unsigned actions only, same bounded API, sanitized fixed refusals, machine-readable success pins; no subprocess/RPC/signing.",
+          "review_status": "reviewed_no_remaining_confirmed_defect"
+        }
+      ],
+      "named_definitions": 3,
+      "path": "scripts/keeper-sidecar-recovery.py",
+      "sha256": "408858a48eb2eb464d9745e7767603c1142f03aa96ba7b280ae7081f8deeca58"
+    }
+  ],
+  "remaining_boundaries": [
+    "Matching original policy/config/source identity and logical layout remain external prerequisites.",
+    "Fresh empty coordination files do not restore prior kernel flock ownership or provide multi-host fencing.",
+    "Selected backup integrity is not selected-generation freshness, current keeper journal or canonical chain truth.",
+    "Manifest pins need separate trusted/off-host handling; local hashes are not independent authentication.",
+    "After output final marker cleanup failure can leave an unapproved complete packet without successful returned pin; do not automatically adopt.",
+    "Advisory locks do not defend against hostile same-UID writers; exact-byte/identity rechecks bound observed races, not perpetual immutability.",
+    "Physical durability, filesystem/kernel stalls, host takeover, sustained operation, real notification channels and release acceptance are outside finite rehearsal.",
+    "No policy rewrite, signer material, service restart/adoption, timer initialization, clock reset, newest-folder fallback or deletion is provided."
+  ],
+  "review_date": "2026-11-26",
+  "reviewer": "sidecar_recovery_review",
+  "schema": 1,
+  "scope": "line_by_line_new_tool_and_new_focused_tests_with_original_source_read_only_design_composition",
+  "withdrawn_stale_flag": "Current source imports fcntl lazily inside _existing_lock; initial top-level import concern withdrawn after actual-byte read. No Windows execution claim."
+}

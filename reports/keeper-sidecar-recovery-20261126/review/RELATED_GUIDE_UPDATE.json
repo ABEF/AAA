@@ -1,0 +1,36 @@
+{
+  "application_imports": 0,
+  "files": {
+    "docs/KEEPER_ALERTS.md": {
+      "after_sha256": "cb32dff62e07f9e65def31157542e38435f33cecae9738b3433a3067e1580faf",
+      "before_sha256": "d46c1e658f2a4f4c4e545450ff8d196cdf44b5fe226c7be09c123dba1443c539",
+      "unchanged_line_endings_preserved": true
+    },
+    "docs/KEEPER_BACKUP.md": {
+      "after_sha256": "3d00c228c7b8b932de849237e126e78c2f6d221902738ffca0cca80548e17692",
+      "before_sha256": "b0dc17cdb4e6ae8dce80cd43be4de6eef8a002b5dcbd166e7c642c9a1fac5ca6",
+      "unchanged_line_endings_preserved": true
+    },
+    "docs/KEEPER_RECOVERY.md": {
+      "after_sha256": "5f6ea7039128267fd6294e759407bf23cf26288dbf5736605a31c8808f2d5105",
+      "before_sha256": "5c9db29772155f8dfb4bc6548956f21decf035efd19784c0adf0779db4cbcf12",
+      "unchanged_line_endings_preserved": true
+    },
+    "docs/KEEPER_SCHEDULING.md": {
+      "after_sha256": "56ba6849cb8e52cc316f2873b152030e204e3907f70dc6e7d6c00cc18d519937",
+      "before_sha256": "af5d7e39850abd6f60b0558c141d75843d791077d2138db0151e5e27c763a4e8",
+      "unchanged_line_endings_preserved": true
+    },
+    "docs/KEEPER_SIDECAR_RECOVERY.md": {
+      "after_sha256": "a226857131839244a57ef20ffc9ed9079d6b96d0e411a510796b94468136087a",
+      "before_sha256": "d1bef8f4d345882588091c9660f385c0287c6cea59149dc98a1041bdf29691ec",
+      "unchanged_line_endings_preserved": true
+    }
+  },
+  "network_or_server_actions": 0,
+  "original_policy_config_release_and_layout_requirement_explicit": true,
+  "schema": 1,
+  "scope": "Related guide linkage and implementation constraints only; no runtime pass claim.",
+  "source_edited": false,
+  "tests_run": 0
+}

@@ -1,22 +1,22 @@
 # Engineering roadmap and production qualification plan
 
-[Unsigned Ubuntu scheduling](../reports/keeper-scheduling-20261126/REVIEW.md)
-adds exact pinned policy/source/configuration, explicit initialization, verified
-exclusive backup selection and state-preserving operational rebind. Backups and
-observation isolate unrelated failures; shared locking, bounded no-delete capacity
-and committed-state refusal preserve pending clocks/outboxes. Existing daemon13,
-backup/alert cores and CLIs, financial controls and journals are unchanged.
-**10 NEW focused methods and eight additional native operating stages pass**
-in c819. Original c818 is NONPASS before any test started; setup-only correction
-reuses exact38source/10method ASTs. Both nine-unit labs stop empty; five existing
-states match with zero non-ambient differences and one observer invocation.
-Current [inventory](../reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json):
-189files/2,109named definitions/279lambdas; frozen F6 stays61/39/4 and1,021ABI rows.
-Source unit examples stay uninstalled with unknown cadence blocked. Read the
-[scheduling procedure](KEEPER_SCHEDULING.md); real timing/channels, off-host
-fencing/restore, durability/provider/sustained operation and release approval stay
-open. The desktop monitor remains paused. Earlier [day audit](../reports/keeper-day-audit-20261126/REVIEW.md)
-retains its distinct18-method/source scope and original failures.
+[Unsigned scheduler/alert recovery](../reports/keeper-sidecar-recovery-20261126/REVIEW.md)
+adds exact dual-lock capture and review-only restoration of selected backup,
+queued IDs, sequence and pending history. Eight NEW Ubuntu methods and actual
+backup/verify/restore plus mapped observer recovery pass. Original c820 setup
+NONPASS has zero test/CLI actions; c821 adds one omitted existing dependency,
+with all prior production/test bytes unchanged. Both four-unit labs stop;
+five existing service states match with0nonambient differences/1observer.
+Original scheduling19/daemon13 and financial/resource limits remain unchanged.
+Current [inventory](../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json):
+191files/2,137named definitions/279lambdas; F6 stays61/39/4 and1,021ABI rows.
+Read the [recovery guide](KEEPER_SIDECAR_RECOVERY.md): exact original release,
+policy/configuration and original parent layout remain required separately.
+Fresh locks and a valid package do not prove fencing, canonical freshness,
+off-host possession or adoption. Real channels/host-loss/durability/providers/
+sustained qualification and Q06/P20/P21/release approval stay open. Existing
+environments and paused heartbeat remain untouched. Earlier [native scheduling](../reports/keeper-scheduling-20261126/REVIEW.md)
+retains its ten-method/eight-stage scope and original setup failure.
 
 Earlier [alert evidence](../reports/keeper-alerts-20261126/REVIEW.md) retains its
 21-method original source scope; it is not re-executed or relabelled here.
@@ -96,8 +96,8 @@ Adopt matching keeper/checker code with original journals preserved. These two
 Python fixes alone change no checkpoint semantic source. Earlier API/ABI source
 adoption still requires newly reviewed matching checkpoints. Sites, services,
 Anvil8902, signer/null public configurations and paused heartbeat are preserved.
-Current [inventory](../reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json):
-189Python files/2,109definitions/279lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
+Current [inventory](../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json):
+191Python files/2,137definitions/279lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
 Actual F6/V10 consumer, provider, market and production approval stay open.
 
 [Current actual-fee proof](../reports/pool-fees-20261121/REVIEW.md) advances P08
@@ -165,8 +165,8 @@ full-normal1000-NFT workloads, the476135-estimate gap and independent approval r
 | P17 | Finite HTTP/recovery and controlled maximum verified | Source9/V9 1,000-NFT full view passes80GETs with3.982s freshness margin; actual F6/V10, archive/provider/load and separately authorized adoption remain. |
 | P18 | Offline tools implemented | Matching checkpoint/consumer and actual host/archive/restore adoption remain. |
 | P19 | Production submission unresolved | Current consumer unsigned, shared signer Anvil-only; no production signing decision or rollout. |
-| P20 | Separate stock maintenance/recovery/hybrid and unsigned scheduling partitions pass | Combined full normal-daemon/provider, maximum workload and multi-day operation remain. |
-| P21 | Finite interruption/storage/startup and native backup/alert schedules; c811 core reconciled | Original c811 timing NONPASS/missing physical after-reads retained; broader faults, durability, off-host/alerts and sustained operation remain. |
+| P20 | Stock maintenance/recovery/hybrid, unsigned scheduling and sidecar recovery partitions pass | Combined full normal-daemon/provider, maximum workload and multi-day operation remain. |
+| P21 | Finite interruption/storage/startup, backup/alert schedules and exact sidecar restore; c811 core reconciled | Original c811 timing NONPASS/missing physical after-reads retained; broader faults, durability, off-host/alerts and sustained operation remain. |
 | P22 | Controlled construction complete | 25CREATE/19bindings/39instances verified locally; actual deployment/readback/seal approval remain. |
 | P23 | Independent approval open | No final release freeze/audit/remediation/public-opening approval or deployment. |
 

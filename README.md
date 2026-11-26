@@ -1,36 +1,36 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-[Unsigned keeper scheduling](reports/keeper-scheduling-20261126/REVIEW.md)
-adds a pinned local policy, independent backup/observer jobs, explicit verified
-backup selection and operational-only policy rebinding. The [procedure](docs/KEEPER_SCHEDULING.md)
-preserves original configuration/source identities, pending clocks and outboxes;
-there is no newest-folder fallback, automatic deletion or timer initialization.
-Capacity includes partial captures. Uncertain selection publication requires
-review rather than rollback, a reset or another initialization.
+[Unsigned scheduler/alert recovery](reports/keeper-sidecar-recovery-20261126/REVIEW.md)
+preserves the exact selected backup, queued alert IDs, sequence and pending
+`first_seen` clock. The [procedure](docs/KEEPER_SIDECAR_RECOVERY.md) keeps original
+policy/configuration/release and signer material separate. Capture uses both
+existing locks; restore writes only a fresh private tree and an unsigned mapping
+plan. New empty lock files do not prove old lock ownership or multi-host fencing.
 
-**10 distinct NEW Ubuntu methods pass**, plus eight separate native scheduling
-stages in c819. Its40.288-second campaign includes1.469 seconds for the focused
-methods, with zero errors/failures/skips. Original c818 remains NONPASS with zero
-test bodies run. No old or previously passed body was rerun. All nine new owned
-unit groups stop; five existing service states have zero non-ambient differences
-and one disclosed observer invocation. These are finite isolated checks.
+**Eight NEW Ubuntu methods pass**, followed by actual unsigned backup/verify/
+restore commands and resumed delivery of the original queued alert in a fenced
+target namespace. Pending history, policy/configuration and original source
+folders remain unchanged. Original c820 is NONPASS before any test/CLI action;
+c821 adds its missing existing script dependency without changing production
+bytes or the eight test bodies. Both four-unit labs stop empty; five existing
+service states match, with zero non-ambient differences and one observer invocation.
 
-The thirteen daemon sources and original backup/alert cores and CLIs remain
-byte-identical to `03d6cadd`. Two new Python files, one future test-selector
-entry and four uninstalled unit templates provide the scheduling addition.
-Local automatic manifest handoff is not independent/off-host authentication,
-canonical freshness, signer fencing or release approval. Original journals,
-financial limits, existing sites/services/Anvil and the user-paused desktop
-heartbeat stay unchanged; publication adopts no running environment.
+The original nineteen scheduling identity files, including thirteen daemon
+sources, remain byte-identical to `aae84e64`. Two new Python files and one future
+test-selector entry add the tool; no old test body runs. Historical snapshot
+integrity is distinct from package capture age and present canonical freshness.
+Verify/restore still require separately secured original configuration, release
+and protected working/parent layout; installation/path mapping is manual review.
 
-Earlier [full-day audit](reports/keeper-day-audit-20261126/REVIEW.md) retains its
-original18-method17+1 source scope and original c816 NONPASS; that evidence was
-not rerun for scheduling. Production timing/notification routing, off-host
-restore/fencing, physical durability, real providers, sustained operation and
-Q06/P20/P21/independent release approval remain open.
+Earlier [native scheduling](reports/keeper-scheduling-20261126/REVIEW.md) retains
+its ten-method/eight-stage scope and original setup failure. Real off-host
+possession/restore/fencing, notification routing, physical durability, providers,
+sustained operation and Q06/P20/P21/independent approval remain open. Source
+publication changes no existing service, journal, site, chain, signer or limits;
+the desktop heartbeat remains paused.
 
-The [current inventory](reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json)
-is189 Python files /2,109 named definitions /279 lambdas. Frozen F6 remains
+The [current inventory](reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json)
+is191 Python files /2,137 named definitions /279 lambdas. Frozen F6 remains
 61 project sources /39 dependencies /4 build controls and1,021 ABI rows.
 
 Earlier [exact backup/restore](reports/keeper-backup-20261126/REVIEW.md) has 33 distinct
@@ -113,8 +113,8 @@ Adopt matching keeper/checker code with original journals preserved. These two
 Python fixes alone change no checkpoint semantic source. Earlier API/ABI source
 adoption still requires newly reviewed matching checkpoints. Sites, services,
 Anvil8902, signer/null public configurations and paused heartbeat are preserved.
-Current [inventory](reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json):
-189Python files/2,109definitions/279lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
+Current [inventory](reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json):
+191Python files/2,137definitions/279lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
 Actual F6/V10 consumer, provider, market and production approval stay open.
 
 

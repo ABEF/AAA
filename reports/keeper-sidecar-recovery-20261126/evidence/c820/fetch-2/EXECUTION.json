@@ -1,0 +1,18 @@
+{
+  "Ethereum_signer_files_read_or_copied": false,
+  "action": "fetch",
+  "capture_errors": [],
+  "capture_reason": null,
+  "combined_output_limit": 65536,
+  "controller_sha256": "9641ee6c5ccc595c21b58d457f3b0cfa5aa535a14b2a084987bbc8982688baa4",
+  "elapsed_seconds": 0.7179999999971187,
+  "exit_code": 0,
+  "only_fixed_c820_unit": true,
+  "opaque_SSH_transport": true,
+  "schema": 1,
+  "stderr.raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_bytes": 0,
+  "stdout.raw_sha256": "b4282314368f5dbd950ad96093f00f06fcac52f56211f71f4f4c75c9c7d0f203",
+  "stdout_bytes": 16266,
+  "transport_sha256": "a7f7f91863833bca9081b0ad6af833a1cf5147e65f1c2cfe7e058449f1bddc45"
+}

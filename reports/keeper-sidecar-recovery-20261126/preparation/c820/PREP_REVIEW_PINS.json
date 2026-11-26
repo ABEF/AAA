@@ -1,0 +1,18 @@
+{
+  "reviewed_preparation_files": {
+    "build.py": "6c3f6933d4df563b36a2254689fafc2cc198a3dc4eae8eebb0f83b70e1f611cf",
+    "capsule_template.py": "8fd04e67e989cf5fb51a8d7577455b50b9f27880156ef65734ff6abb1fcbb879",
+    "fixture.py": "0e5d4c5730a20364bd30f8c608bb0f0612753a3cc45d315aedc77a3436b9bb76",
+    "host_control.py": "f8d8842dad1dc89d7d757bdad865f5145b9015f4780e4d3a3257458c016ff2b7",
+    "lab_common.py": "868af40b2c8daf0c392a8fc7d8b2e0472310f8ee46f450a6e1807145945c5d86",
+    "lab_driver.py": "0f7f5fbfa7bf427dc687388c082e49abffbee23583b002c992dbfe6660e3fa84",
+    "run_flow.py": "b213b1a5e9e54dbec76c5c088f3f5f11e3e071afbde8bb8d1805f43c9cf48e31",
+    "run_focused_template.py": "c5762d8e3d398bc98ed2c533fa663f4840011ac87264c86bfba2c8ae08cb4ea9"
+  },
+  "reviewed_worktree_files": {
+    "keeper/sidecar_recovery.py": "eda3b43e316adab4fb8a2161a7d5e5f750ba4e1e0c9b3432037d6acf39396546",
+    "scripts/keeper-sidecar-recovery.py": "408858a48eb2eb464d9745e7767603c1142f03aa96ba7b280ae7081f8deeca58",
+    "tests_python/test_keeper_sidecar_recovery.py": "6811351e1e41563e7a7fe23c494b43938a3afeb81576b64c7b9d6d05239486ef"
+  },
+  "source_head": "aae84e64d7f7fa470e5767630608755df91e75c1"
+}

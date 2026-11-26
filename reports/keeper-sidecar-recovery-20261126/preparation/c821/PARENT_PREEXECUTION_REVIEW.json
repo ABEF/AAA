@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "source_head": "aae84e64d7f7fa470e5767630608755df91e75c1",
+  "correction": "add_exact_HEAD_dynamic_schedule_CLI",
+  "original_c820_failure_retained": true,
+  "original_test_bodies_started": 0,
+  "source_rows_unchanged": 40,
+  "additional_existing_dependency": 1,
+  "method_ASTs_unchanged": 8,
+  "archive_members": 49,
+  "only_lab_namespace_and_closure_changed": true,
+  "all_four_services_bounded": true,
+  "signer_masks_distinct_root000_readonly": true,
+  "source_target_mapping_unchanged": true,
+  "no_tests_or_server_actions_by_review": true,
+  "mandatory_cleanup": true,
+  "pins": {
+    "c821.inputs.tar.gz": "36f070ae24ae61ee58bf737d2cd86e78b9b1f0b03a7be675adf775395143d1fc",
+    "remote_capsule.py": "bd968894e65b59bc2cd1176a25e1c11b6a647e0a5e84d4b412e347de2e84be64",
+    "host_control.py": "877614fe3f35417db8f1a498a44f3d6421ed3e3261261dd9805d4ca6caa955cb"
+  }
+}

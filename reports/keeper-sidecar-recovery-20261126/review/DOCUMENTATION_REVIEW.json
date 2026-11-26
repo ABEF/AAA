@@ -1,0 +1,187 @@
+{
+  "application_imports": 0,
+  "checks": [
+    {
+      "detail": "backup/verify/restore require original policy and raw policy digest; verify/restore require bundle, independent manifest pin and positive package maximum age; backup/restore require fresh output. Optional minimum-created-at default0; total bytes16777216/67108864 maximum and seconds60/120 maximum; effective budgets are the minimum of caller and original policy.",
+      "result": "consistent",
+      "topic": "CLI inputs and limits"
+    },
+    {
+      "detail": "Original protected policy, exact referenced configuration, matching reviewed source and working/parent layout remain separately required. Verify/restore do not require live selection, alert state or source lock files; no source/config/path rewrite or automatic scheduler rebind is claimed.",
+      "result": "consistent",
+      "topic": "Original layout and external dependencies"
+    },
+    {
+      "detail": "Four raw records retain bytes; selected historical journal can differ from newer observer pending/outbox. Original nested capture time is used only for historical integrity, package age is checked independently, and neither new capture nor restore approves selected-generation or canonical freshness.",
+      "result": "consistent",
+      "topic": "Exact histories and freshness"
+    },
+    {
+      "detail": "unsigned is true. readiness_approved, old_sidecars_fenced, canonical_state_verified, signer_material_included, policy_or_configuration_installed, services_restarted, runtime_paths_mapped, lock_ownership_restored and selected_generation_freshness_approved remain false. New empty lock inodes do not transfer old ownership or establish fencing.",
+      "result": "consistent",
+      "topic": "Flags and authority"
+    },
+    {
+      "detail": "Original c820 remains setup NONPASS with zero test/CLI bodies. c821 has8 new methods once, zero failures/errors/skips/old bodies, plus actual unsigned CLI and mapped target outbox recovery. Same-host synthetic namespace proof is separate from host-loss/off-host/signer fencing, production adoption and sustained qualification.",
+      "result": "consistent",
+      "topic": "Evidence and exclusions"
+    },
+    {
+      "detail": "Report distinguishes native harness raw-byte assertions and saved hash/length reconciliation from the uncompleted independent fetch/rehash of all four physical raw payloads; saved verification physical_remote_payload_bytes_independently_rehashed is false.",
+      "result": "consistent",
+      "topic": "Raw payload verification claim"
+    },
+    {
+      "detail": "New guide/report local links resolve; current references point at the new191-file/2137-definition/279-lambda inventory. Frozen F6 counts remain61/39/4 and1021ABI rows. Inventory is not coverage.",
+      "result": "consistent",
+      "topic": "References and workload"
+    },
+    {
+      "detail": "83 stable tasks retain35done/40progress/7todo/1excluded. Q06/P20/P21 and independent production approval remain open; existing sites/services/Anvil/journals, signing/financial/resource limits and paused desktop monitor are preserved.",
+      "result": "consistent",
+      "topic": "Todo and release scope"
+    }
+  ],
+  "document_hashes": {
+    "AGENTS.md": "02c086a387bee8e032a1758a7da118d479055b2b5bae6558a7157a38588e032c",
+    "PROJECT_CONTEXT.md": "0a31dba6b71c9e56af8a29623db05b859ab77f73fca8cbcf4bd2185e2c9e7d7a",
+    "README.md": "141cc3c8972d09fda9ad4e1b52a6c0093a1e5d81d2240c69274ae1841dea4693",
+    "TODO.md": "9f92aa0d9297a7e77f4fc479be305e050548a6176f28fe4f4f79e860d9bfc727",
+    "docs/AUDIT_FINDINGS.md": "fd5692757a6a67fbad9fd21e942170dd9a56f0d44f8ad834996ee30cf3cc44d6",
+    "docs/IMPLEMENTATION_STATUS.md": "d6e4b0d4b99db2e7e239058eb61ab81510531c95ce119b89716ca594056f3b96",
+    "docs/KEEPER_ALERTS.md": "cb32dff62e07f9e65def31157542e38435f33cecae9738b3433a3067e1580faf",
+    "docs/KEEPER_BACKUP.md": "3d00c228c7b8b932de849237e126e78c2f6d221902738ffca0cca80548e17692",
+    "docs/KEEPER_RECOVERY.md": "5f6ea7039128267fd6294e759407bf23cf26288dbf5736605a31c8808f2d5105",
+    "docs/KEEPER_SCHEDULING.md": "56ba6849cb8e52cc316f2873b152030e204e3907f70dc6e7d6c00cc18d519937",
+    "docs/KEEPER_SIDECAR_RECOVERY.md": "a226857131839244a57ef20ffc9ed9079d6b96d0e411a510796b94468136087a",
+    "docs/OPERATOR_MANUAL.md": "e32a7124412addf13ecec144775506844ef6e9a134338c696fad4ec51ddd95e2",
+    "docs/RELEASE_CHECKLIST.md": "0b36bed2be731444087bce421ef60655764a4a9f0e86012fdf6eab9f45d0d309",
+    "docs/ROADMAP.md": "e5829e3b22b3a4c61a2ebe68ce49bb06bab075a3f1b53ce368396f661283b15c",
+    "docs/WORKLOAD_COVERAGE.md": "f3fa72d5802a970d23511782e41f7394fceecbba7ab3815f0987ece0c0451f18",
+    "docs/WORK_HANDOFF.md": "750be1023983ffbdbea4b66539f63946d0a3c63bfbad880b57a2b0cd20d789e3",
+    "docs/project-todo.json": "d40d1f61f8ddc26417f22728221f4228dabf6300e6999d6f512b8f3fa9d06f3b",
+    "reports/README.md": "53dda7127502e9a7cb90ea53f1d1e75dbe4b2fa67a236c09f637e6aa17533061",
+    "reports/keeper-sidecar-recovery-20261126/REVIEW.md": "cfc67051f615c1db704e9dadff90bce9c8c5442890b6ea506bf25f1e2b224634"
+  },
+  "document_metadata": {
+    "AGENTS.md": {
+      "bytes": 65604,
+      "sha256": "02c086a387bee8e032a1758a7da118d479055b2b5bae6558a7157a38588e032c"
+    },
+    "PROJECT_CONTEXT.md": {
+      "bytes": 36517,
+      "sha256": "0a31dba6b71c9e56af8a29623db05b859ab77f73fca8cbcf4bd2185e2c9e7d7a"
+    },
+    "README.md": {
+      "bytes": 18904,
+      "sha256": "141cc3c8972d09fda9ad4e1b52a6c0093a1e5d81d2240c69274ae1841dea4693"
+    },
+    "TODO.md": {
+      "bytes": 525947,
+      "sha256": "9f92aa0d9297a7e77f4fc479be305e050548a6176f28fe4f4f79e860d9bfc727"
+    },
+    "docs/AUDIT_FINDINGS.md": {
+      "bytes": 39399,
+      "sha256": "fd5692757a6a67fbad9fd21e942170dd9a56f0d44f8ad834996ee30cf3cc44d6"
+    },
+    "docs/IMPLEMENTATION_STATUS.md": {
+      "bytes": 44661,
+      "sha256": "d6e4b0d4b99db2e7e239058eb61ab81510531c95ce119b89716ca594056f3b96"
+    },
+    "docs/KEEPER_ALERTS.md": {
+      "bytes": 14175,
+      "sha256": "cb32dff62e07f9e65def31157542e38435f33cecae9738b3433a3067e1580faf"
+    },
+    "docs/KEEPER_BACKUP.md": {
+      "bytes": 13906,
+      "sha256": "3d00c228c7b8b932de849237e126e78c2f6d221902738ffca0cca80548e17692"
+    },
+    "docs/KEEPER_RECOVERY.md": {
+      "bytes": 63405,
+      "sha256": "5f6ea7039128267fd6294e759407bf23cf26288dbf5736605a31c8808f2d5105"
+    },
+    "docs/KEEPER_SCHEDULING.md": {
+      "bytes": 12805,
+      "sha256": "56ba6849cb8e52cc316f2873b152030e204e3907f70dc6e7d6c00cc18d519937"
+    },
+    "docs/KEEPER_SIDECAR_RECOVERY.md": {
+      "bytes": 8730,
+      "sha256": "a226857131839244a57ef20ffc9ed9079d6b96d0e411a510796b94468136087a"
+    },
+    "docs/OPERATOR_MANUAL.md": {
+      "bytes": 716497,
+      "sha256": "e32a7124412addf13ecec144775506844ef6e9a134338c696fad4ec51ddd95e2"
+    },
+    "docs/RELEASE_CHECKLIST.md": {
+      "bytes": 18946,
+      "sha256": "0b36bed2be731444087bce421ef60655764a4a9f0e86012fdf6eab9f45d0d309"
+    },
+    "docs/ROADMAP.md": {
+      "bytes": 56190,
+      "sha256": "e5829e3b22b3a4c61a2ebe68ce49bb06bab075a3f1b53ce368396f661283b15c"
+    },
+    "docs/WORKLOAD_COVERAGE.md": {
+      "bytes": 15453,
+      "sha256": "f3fa72d5802a970d23511782e41f7394fceecbba7ab3815f0987ece0c0451f18"
+    },
+    "docs/WORK_HANDOFF.md": {
+      "bytes": 29753,
+      "sha256": "750be1023983ffbdbea4b66539f63946d0a3c63bfbad880b57a2b0cd20d789e3"
+    },
+    "docs/project-todo.json": {
+      "bytes": 544220,
+      "sha256": "d40d1f61f8ddc26417f22728221f4228dabf6300e6999d6f512b8f3fa9d06f3b"
+    },
+    "reports/README.md": {
+      "bytes": 47360,
+      "sha256": "53dda7127502e9a7cb90ea53f1d1e75dbe4b2fa67a236c09f637e6aa17533061"
+    },
+    "reports/keeper-sidecar-recovery-20261126/REVIEW.md": {
+      "bytes": 10465,
+      "sha256": "cfc67051f615c1db704e9dadff90bce9c8c5442890b6ea506bf25f1e2b224634"
+    }
+  },
+  "documentation_or_source_edits": 0,
+  "findings": [],
+  "inventory_counts": {
+    "abi_rows": 1021,
+    "build_controls": 4,
+    "dependency_sources": 39,
+    "project_sources": 61,
+    "python_definitions": 2137,
+    "python_files": 191
+  },
+  "kind": "independent_static_sidecar_documentation_review",
+  "limitations": [
+    "No new runtime test or original test body was executed.",
+    "External web references were not fetched during this static consistency review.",
+    "Recorded execution is assessed from saved evidence; no independent physical remote raw4 payload rehash or production-host-wide integrity claim."
+  ],
+  "network_requests": 0,
+  "reviewed_source_sha256": {
+    "keeper/sidecar_recovery.py": "eda3b43e316adab4fb8a2161a7d5e5f750ba4e1e0c9b3432037d6acf39396546",
+    "scripts/keeper-sidecar-recovery.py": "408858a48eb2eb464d9745e7767603c1142f03aa96ba7b280ae7081f8deeca58"
+  },
+  "saved_evidence_scope": {
+    "c820": "original_setup_NONPASS_zero_test_or_CLI_bodies",
+    "c821_errors": 0,
+    "c821_failures": 0,
+    "c821_new_methods": 8,
+    "c821_skips": 0,
+    "physical_remote_payload_bytes_independently_rehashed": false
+  },
+  "schema": 1,
+  "scope": "Read complete new guide and report, current operator recovery section, five related guide additions, current documentation introductions and current inventory references; historical report bodies are not re-audited.",
+  "server_actions": 0,
+  "success": true,
+  "test_bodies_run": 0,
+  "todo_counts": {
+    "statuses": {
+      "done": 35,
+      "excluded": 1,
+      "progress": 40,
+      "todo": 7
+    },
+    "total": 83
+  }
+}

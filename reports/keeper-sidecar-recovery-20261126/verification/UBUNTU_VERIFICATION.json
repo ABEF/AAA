@@ -1,0 +1,190 @@
+{
+  "acknowledged_event_count": 1,
+  "all_four_owned_groups_stopped": true,
+  "archive_members": 49,
+  "at_least_once_delivery_not_exactly_once": true,
+  "campaign": "c821",
+  "campaign_seconds": 3.8252902403473854,
+  "deterministic_saved_selection_state_and_plan_encodings_match_recorded_pins": true,
+  "disclosed_observer_invocations": 1,
+  "errors": 0,
+  "existing_host_nonambient_differences": 0,
+  "existing_host_units_checked": 5,
+  "failures": 0,
+  "four_recorded_raw_payload_hash_length_mappings_equal": true,
+  "input_pins": {
+    "reports/keeper-sidecar-recovery-20261126/evidence/c820/fetch-1/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "3bfb5c54dc939257fbb87d1b3c016731fc6faead322696dfd9bc0410326721ed"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c820/fetch-1/RESULT.json": {
+      "bytes": 806,
+      "sha256": "983fcbc9bb3b874c354fbcfa43aa5d1497b31414961a8b4e09927b6cfd427d04"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c820/fetch-2/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "76bc7a54b3a887471ce52fc21bc843bc3c3e21c6de4ec26e2bcd533bef7277ec"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c820/fetch-2/FINAL.json": {
+      "bytes": 12079,
+      "sha256": "31a1f6630d8771f316db4c5836189252d8eb4425d093ae26ce92f3ab080eb9ae"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-1/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "7233ca7dd4e4ba2896639fe03e833e87b431547e54c9c3dc766ebadfc6d0b709"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-1/RESULT.json": {
+      "bytes": 15549,
+      "sha256": "1ac82c10edbb681050502de4dd8bbb3cf954b120f906abaf4c57e516de70d159"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-10/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "30d6d324475d363cd0e9cbfbc5c542fecf0dad58dfb2c91242335918e2fb7ba9"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-10/NATIVE_PROPERTIES.json": {
+      "bytes": 1618,
+      "sha256": "61aa99c6f71fce082da4732160f52123328b5d33dd9d027d2bff443be8cbe613"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-2/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "6694c4bd13a211e783e37fca25756325cc8abed6b32f5e4f540300b402e0702a"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-2/FINAL.json": {
+      "bytes": 12537,
+      "sha256": "0d2e4b0eb0c7cb6a2d28e1c8458efd432da41b7e95a5112cfe8c0f5871daa33f"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-3/EXECUTION.json": {
+      "bytes": 720,
+      "sha256": "49677f30a42b434d56befa8702dd547f7cb8e596b247c31978b3a8f41badc1af"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-3/PROGRESS.json": {
+      "bytes": 383,
+      "sha256": "cd34d5a55f420b9b7f5dfbec66e3fbe34b4c13c1ddb929ecf5940d7285c23bf2"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-4/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "f7852dee554c14bc421ab6c80d6b9f6c0e86dbe5a008e67f4eadb5d6bc90e976"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-4/FOCUSED_RESULT.json": {
+      "bytes": 3257,
+      "sha256": "4ad1d432b6c70848e77e3778fb3b6c2e41c16b50e5f7a18cb507008301df64bc"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-5/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "416ba7edd68c76068aebcb0ebafe80983dcd26657f90914277d08407c67e69bd"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-5/FOCUSED_PROGRESS.json": {
+      "bytes": 2715,
+      "sha256": "5db042fc16330008d888ff62445c2369b906adbaea508295e9ae2d8ccf20d4e1"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-6/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "e294aaa33fdb1e8cf4ba410efba974788b5e241f0c742b78eee7d91e07769e5d"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-6/SOURCE_RESULT.json": {
+      "bytes": 9032,
+      "sha256": "9bec125bedd73b6f80cb3f316a7822aa09aeb9198927ca8d901c476f3798c371"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-7/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "f5a49f4a8fcc0e57d34d256f79c611037bbdcbc0b1beeb0767dc8b99b427a439"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-7/TARGET_RESULT.json": {
+      "bytes": 2316,
+      "sha256": "e4fe8bdeabc4f25de5767fada58363142b6b0d4a72eea59109f2000ef1d8e181"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-8/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "e6fde810355e00e2f514436f0e9c2a1a2f854fcdee9b5cebd6467c3249ace388"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-8/WORKER_LOGS.json": {
+      "bytes": 1103,
+      "sha256": "093e5444ac904fe8e4c414c628cac7e9ec69eb381cc238c1fd52ee28f60a5501"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-9/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "052c9dc0e0567cc3e5e05aad427e350f76420a16021d8069de8aa2ec0d34142c"
+    },
+    "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-9/MANAGER_TRACE.json": {
+      "bytes": 1808,
+      "sha256": "c426a5dc0edc526dec0dc3dc5595ea1f95a15dc646eecdbf976a4d1a2e980bde"
+    },
+    "reports/keeper-sidecar-recovery-20261126/preparation/c820/SOURCE_MANIFEST.json": {
+      "bytes": 22286,
+      "sha256": "4d924f5d0b062b63ec1f79266651d3081c1de82ed19effa2c89e67b4e8b5b418"
+    },
+    "reports/keeper-sidecar-recovery-20261126/preparation/c820/remote_capsule.py": {
+      "bytes": 22583,
+      "sha256": "9641ee6c5ccc595c21b58d457f3b0cfa5aa535a14b2a084987bbc8982688baa4"
+    },
+    "reports/keeper-sidecar-recovery-20261126/preparation/c821/BUILD_RECEIPT.json": {
+      "bytes": 1666,
+      "sha256": "6d677500c061b457c57d6091afa9560ffb9e5e2d28632e9a027b8b41609fde1d"
+    },
+    "reports/keeper-sidecar-recovery-20261126/preparation/c821/SOURCE_MANIFEST.json": {
+      "bytes": 24910,
+      "sha256": "c287aa0c4b8e4113f7ffa1459f39a704bd17b5165f23084e3a8f26995cdb0e08"
+    },
+    "reports/keeper-sidecar-recovery-20261126/preparation/c821/remote_capsule.py": {
+      "bytes": 22715,
+      "sha256": "bd968894e65b59bc2cd1176a25e1c11b6a647e0a5e84d4b412e347de2e84be64"
+    },
+    "reports/keeper-sidecar-recovery-20261126/verification/HOST_PRESERVATION.json": {
+      "bytes": 848,
+      "sha256": "240f02950812a055a880a344c43397d6ff73cbfacac3d33531049677cff468a5"
+    },
+    "reports/keeper-sidecar-recovery-20261126/verification/before-016-CAPTURE.json": {
+      "bytes": 1229,
+      "sha256": "92a51507d0ef03fb29f7fb6077060cf9908190ceb04c1e0714304d58e33b2543"
+    },
+    "reports/keeper-sidecar-recovery-20261126/verification/final-016-CAPTURE.json": {
+      "bytes": 1228,
+      "sha256": "f7f3c6e64c4a9f7c0c28198af258e58db436e8889ed37e0110a2c7a485b6461e"
+    },
+    "tests_python/test_keeper_sidecar_recovery.py": {
+      "bytes": 18390,
+      "sha256": "6811351e1e41563e7a7fe23c494b43938a3afeb81576b64c7b9d6d05239486ef"
+    }
+  },
+  "kind": "saved_keeper_sidecar_Ubuntu_evidence_verification",
+  "masks_unchanged": true,
+  "native_actual_raw_equality_and_metadata_assertions": true,
+  "new_lock_inodes_distinct_and_original_lock_ownership_not_restored": true,
+  "new_method_seconds": 2.0177329052239656,
+  "new_methods_passed": 8,
+  "original_c820": {
+    "cause": "missing_dynamic_schedule_CLI_before_fixture_completed",
+    "new_test_bodies_run": 0,
+    "old_test_bodies_run": 0,
+    "result": "NONPASS"
+  },
+  "physical_remote_payload_bytes_independently_rehashed": false,
+  "production_approved": false,
+  "queued_event_ids_and_pending_first_seen_preserved": true,
+  "sanitized_comparison_only_not_raw_host_recomputation": true,
+  "schema": 1,
+  "scope_limits": [
+    "same-host isolated namespace and public synthetic vectors; no RPC or chain",
+    "recorded raw payload pins reconcile successful native byte/readback assertions; raw remote payloads not fetched",
+    "new empty locks and empty source job group do not prove independent host fencing or host-loss recovery",
+    "local manifest pins do not establish off-host authenticity or canonical freshness",
+    "sanitized host comparison is preserved and cross-bound to capture pins; private host raw details not republished",
+    "no production channel, physical durability, sustained-operation or independent release approval"
+  ],
+  "selected_backup_freshness_not_approved": true,
+  "skips": 0,
+  "source_members": 41,
+  "source_policy_config_journal_unchanged": true,
+  "stages_passed": [
+    "new_focused_recovery_methods",
+    "actual_unsigned_capture_verify_restore",
+    "mapped_target_resumes_same_outbox_and_pending_clock",
+    "final_fenced_preservation"
+  ],
+  "success": true,
+  "verification_application_imports": 0,
+  "verification_network_requests": 0,
+  "verification_server_actions": 0,
+  "verification_test_bodies_run": 0,
+  "verifier_sha256": "be6fe4f836301d63bcd8e8dfa1e46167456e5bf6e9a4e33adbdc7262b41137ea"
+}

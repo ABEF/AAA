@@ -20,6 +20,12 @@ receipt anchors and scheduling/worker state. Ownership, LP and reward balances
 remain in the contracts. Use the separate [history recovery procedure](HISTORY_RECOVERY.md)
 for API history databases.
 
+The journal package does not include the scheduler's `selected.json`, alert
+outbox/event IDs or observed pending clock. Back up those with the separate
+[sidecar recovery tool](KEEPER_SIDECAR_RECOVERY.md), retaining its original policy,
+configuration and release separately. Its selected journal is a historical
+generation, not a replacement for the keeper's current journal.
+
 The older `keeper.ops snapshot` / `verify-snapshot` commands provide diagnostic
 normalized-state integrity/age evidence. They are **not** this exact-byte backup
 and restore package. Use `keeper-recovery.py backup/verify/restore` for current

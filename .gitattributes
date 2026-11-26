@@ -481,3 +481,9 @@ keeper/zzz-keeper-backup.timer -text whitespace=cr-at-eol
 keeper/zzz-keeper-observer.service -text whitespace=cr-at-eol
 keeper/zzz-keeper-observer.timer -text whitespace=cr-at-eol
 reports/keeper-scheduling-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Exact sidecar recovery producer and isolated evidence bytes.
+keeper/sidecar_recovery.py -text whitespace=cr-at-eol
+scripts/keeper-sidecar-recovery.py -text whitespace=cr-at-eol
+tests_python/test_keeper_sidecar_recovery.py -text whitespace=cr-at-eol,-blank-at-eof
+reports/keeper-sidecar-recovery-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

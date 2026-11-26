@@ -1,0 +1,25 @@
+{
+  "baseline": "aae84e64d7f7fa470e5767630608755df91e75c1",
+  "daemon_source13_unchanged": true,
+  "existing_environment_or_journal_adoption": false,
+  "files": {
+    "keeper/sidecar_recovery.py": {
+      "bytes": 22768,
+      "sha256": "eda3b43e316adab4fb8a2161a7d5e5f750ba4e1e0c9b3432037d6acf39396546"
+    },
+    "scripts/keeper-sidecar-recovery.py": {
+      "bytes": 2924,
+      "sha256": "408858a48eb2eb464d9745e7767603c1142f03aa96ba7b280ae7081f8deeca58"
+    },
+    "scripts/run-keeper-tests.py": {
+      "bytes": 7199,
+      "sha256": "66581b8fbf68ce8cf5ff7aa07301328da7357206b1011dbee3b29bc04b9497aa"
+    },
+    "tests_python/test_keeper_sidecar_recovery.py": {
+      "bytes": 18390,
+      "sha256": "6811351e1e41563e7a7fe23c494b43938a3afeb81576b64c7b9d6d05239486ef"
+    }
+  },
+  "old_scheduling_source19_unchanged": true,
+  "schema": 1
+}

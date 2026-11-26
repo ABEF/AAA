@@ -1,0 +1,259 @@
+{
+  "application_imports": 0,
+  "definition_count": 28,
+  "files": {
+    "keeper/sidecar_recovery.py": {
+      "bytes": 22768,
+      "sha256": "eda3b43e316adab4fb8a2161a7d5e5f750ba4e1e0c9b3432037d6acf39396546"
+    },
+    "scripts/keeper-sidecar-recovery.py": {
+      "bytes": 2924,
+      "sha256": "408858a48eb2eb464d9745e7767603c1142f03aa96ba7b280ae7081f8deeca58"
+    }
+  },
+  "limitations": [
+    "Cooperative limits cannot preempt kernel I/O/fsync stalls; external supervision remains necessary.",
+    "Local advisory locks are not cross-host fencing or hostile same-UID containment.",
+    "Original policy/configuration and source release must be supplied separately; no automatic path migration.",
+    "A failed publication can leave partial or complete unapproved output; never reuse or silently promote it.",
+    "Actual provider, signer, canonical state, off-host possession and operating release approval remain separate."
+  ],
+  "named_definitions": [
+    {
+      "AST_sha256": "5c27c8767c98e54cabaa05af235307a72e8132bf1489a018016858f1f3c2d567",
+      "end_line": 41,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 37,
+      "name": "SidecarRefusal",
+      "review": "Fixed allowlisted diagnostics only; excludes input and exception text."
+    },
+    {
+      "AST_sha256": "37b246ed6fa2470dfdca3a2a06465fd39c0c6b6741f93b94ec28a8899306ad40",
+      "end_line": 46,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 44,
+      "name": "_need",
+      "review": "Explicit refusal rather than assertion removal under Python optimization."
+    },
+    {
+      "AST_sha256": "471e48df49bffa87d1eadf88a13a3c891580b9edcd1329969db723dac799dd5c",
+      "end_line": 50,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 49,
+      "name": "_sha",
+      "review": "Exact byte SHA-256; integrity pin is not external authentication by itself."
+    },
+    {
+      "AST_sha256": "542ddabfc5fb99eae91931c21259cd510a859ab3de74f15596ade9c06ab7d6cf",
+      "end_line": 56,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 53,
+      "name": "_budget",
+      "review": "Existing 16MiB default/64MiB ceiling and explicit 1..120s cooperative budget."
+    },
+    {
+      "AST_sha256": "f4811d69a567d780aac6b13778d23d3d0e4d656d9a41905ed5fc0d087c2cd018",
+      "end_line": 65,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 59,
+      "name": "_context",
+      "review": "Pinned original policy/config and19 sources; minimum of caller and policy budgets."
+    },
+    {
+      "AST_sha256": "1d8da9b9e15c4086696bb1884f806ab8a753d38d00176d0bd95425e4639f7c37",
+      "end_line": 69,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 68,
+      "name": "_key",
+      "review": "Descriptor/named identity includes inode, owner, mode, links, size and mtime."
+    },
+    {
+      "AST_sha256": "e015beaac98640be5a21749e2108878fe61feb229e5bf298e8cbb6a073ba14aa",
+      "end_line": 74,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 72,
+      "name": "_held_lock",
+      "review": "Confirms exact held source inode at acquisition, before publication and exit."
+    },
+    {
+      "AST_sha256": "1c6d27faa67f77e4552908f7dda11930358d255b7865456fc889b7a0213fb435",
+      "end_line": 104,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 78,
+      "name": "_existing_lock",
+      "review": "Existing-only no-create Unix advisory locks; nonblocking scheduler\u2192observer; guaranteed close even unlock failure."
+    },
+    {
+      "AST_sha256": "835de1780f78287a1398422e603f68ef1cc4c8ad0cbc071ae5c6a7168fa5f3e1",
+      "end_line": 119,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 107,
+      "name": "_selection",
+      "review": "Strict original schema/policy/config/identity/generation/pin/timestamp; no rewriting."
+    },
+    {
+      "AST_sha256": "206a439cb1af5256d0f77c3914d197acdf6d24cabb6ae24a361c56b0b69c7555",
+      "end_line": 141,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 122,
+      "name": "_observer",
+      "review": "Strict existing schema1 raw state with exact pending/outbox event validation; no missing-file default."
+    },
+    {
+      "AST_sha256": "453fd2d3163aa1ff1286be0b9a1b0bc4a564e36cc0526843f599a7ff7b5f7f88",
+      "end_line": 146,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 144,
+      "name": "_summary",
+      "review": "Separately identifies observer sequence/pending clock; does not equate it to an older selected journal."
+    },
+    {
+      "AST_sha256": "f913b77346a653e072425aba85d96d2106dacb9522cb4f5feb9bc9db412675be",
+      "end_line": 150,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 149,
+      "name": "_paths",
+      "review": "Original logical paths only; restored mapping requires explicit independent review."
+    },
+    {
+      "AST_sha256": "336ac1a747f2ae9f63d9f273e88c22227bd706cb10a3847cfe6676da78ffda79",
+      "end_line": 161,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 153,
+      "name": "_selected",
+      "review": "Existing frozen bundle integrity as-of its own exact capture time; not current freshness approval."
+    },
+    {
+      "AST_sha256": "9889e49a94f12ca408d91cde3fb9ae6007df7c1cc25956c36daa1938e3d92fbe",
+      "end_line": 172,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 164,
+      "name": "_separate_output",
+      "review": "Fresh output disjoint from policy/config/journal parent, signer/runtime paths and original sidecar directories."
+    },
+    {
+      "AST_sha256": "5b406b6f3b1bf812f3156e2edaa97d2b7260f8510e5dc14b51604628fbc626ba",
+      "end_line": 194,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 175,
+      "name": "_source_files",
+      "review": "Strict source inventory, bounded exact reads, current observer and older selected journal preserved independently."
+    },
+    {
+      "AST_sha256": "ecad9e77915208de99c38ed5d02fa324b10e5d8fd23aad9464014abb576a9ac8",
+      "end_line": 215,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 197,
+      "name": "_plan",
+      "review": "Exact raw-payload mapping and new empty coordination files; fencing, freshness, mapping and adoption flags remain false."
+    },
+    {
+      "AST_sha256": "5784cd2747e729a06b0e33ce0c8f92653492ebb579ea3d174ed5a34dc4460e9c",
+      "end_line": 224,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 218,
+      "name": "_fits",
+      "review": "Global payload sum counted once; both package manifest and predicted restore-plan headroom checked before publication."
+    },
+    {
+      "AST_sha256": "abf1ec0df9dc4e78d05d60d9dd4e3713794469ce3c0ca4c292a97af854e541d9",
+      "end_line": 232,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 227,
+      "name": "_same_capture",
+      "review": "Re-reads all source bytes and policy/config/19sources/producer2 before final marker."
+    },
+    {
+      "AST_sha256": "2c779e35ec3d5672f7efacd0246da6b87a0626a368ae34c90e2cb73df814cb59",
+      "end_line": 248,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 235,
+      "name": "_package_inventory",
+      "review": "Exact root/nested inventory; unknown, linked or mistyped members refused."
+    },
+    {
+      "AST_sha256": "382b247f54d6f2820a03ce25705ca4797129c2d8c815bab268d1fcf1960cfb0d",
+      "end_line": 298,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 251,
+      "name": "_verified",
+      "review": "Trusted outer pin, explicit package age/floor, strict profiles and global descriptor budget; nested existing verifier and final stable rereads."
+    },
+    {
+      "AST_sha256": "0f23b31b459cd0ba4960a554ff8ef28875d0650cd7273750d0fa8d801fc90abd",
+      "end_line": 308,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 301,
+      "name": "_refusal",
+      "review": "Preserves fixed sidecar/source/resource categories; ordinary failures sanitized by stage."
+    },
+    {
+      "AST_sha256": "9fec290dd32ce15932472d34c57f598391107bd7236ae1422ff1ec697259528c",
+      "end_line": 348,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 311,
+      "name": "backup",
+      "review": "No source file creation; both original locks held while exact package publishes into exclusive private output, with bounded destination-byte readback before final marker."
+    },
+    {
+      "AST_sha256": "ff76aeaba90a2cd6ab1567639d98943e06acdc542668640008008bb9564dbebe",
+      "end_line": 360,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 351,
+      "name": "verify",
+      "review": "Read-only complete package integrity/capture-age review; no locks, adoption, RPC or repair."
+    },
+    {
+      "AST_sha256": "288e6b1775d8a30c838c42e3d46f50ac53d0781e136419b3e1c83cf27161aba6",
+      "end_line": 402,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 363,
+      "name": "restore",
+      "review": "Exclusive private output with raw-byte readback and actual private/empty/distinct new lock checks; unsigned plan grants no in-place adoption or portable lock ownership."
+    },
+    {
+      "AST_sha256": "9e41ceff074b01939a61c0415820f27c385484ba209ecf52068ef83dbbabcdbb",
+      "end_line": 41,
+      "file": "keeper/sidecar_recovery.py",
+      "line": 39,
+      "name": "__init__",
+      "review": "Unknown diagnostic category is normalized; no credential-bearing payload."
+    },
+    {
+      "AST_sha256": "84ed5112b4ea3c102fc27a4665dd0e78a3301e9fc11aab03982c9e6d8a48af58",
+      "end_line": 16,
+      "file": "scripts/keeper-sidecar-recovery.py",
+      "line": 13,
+      "name": "SafeArgumentParser",
+      "review": "Safe usage errors do not echo rejected values."
+    },
+    {
+      "AST_sha256": "2754db1d17c54d911ee218b9997f55df6bf8945c98f3df0485ed6af17f1cce88",
+      "end_line": 59,
+      "file": "scripts/keeper-sidecar-recovery.py",
+      "line": 19,
+      "name": "main",
+      "review": "Explicit backup/verify/restore arguments, fixed JSON flags/refusals; never installs or starts a service."
+    },
+    {
+      "AST_sha256": "6238dce0eecfe160bfe5b8cd1171c4db2a86f6f718448219d2f2a88822b4c35e",
+      "end_line": 16,
+      "file": "scripts/keeper-sidecar-recovery.py",
+      "line": 14,
+      "name": "error",
+      "review": "Fixed CLI diagnostic avoids disclosing misplaced credentials."
+    }
+  ],
+  "preexecution_corrections": [
+    "Aggregate payload admission before file reads and publication; restore-plan headroom included.",
+    "Existing-only lock opens and guaranteed descriptor close on unlock failure.",
+    "Held inode checks before publication; no source lock recreation.",
+    "Explicit false lock-ownership/freshness flags; stale selected bundle integrity kept separate from package age.",
+    "Current observer pending history is not forced to equal an older selected-journal state.",
+    "Bounded destination readback precedes final manifest/plan; fresh lock privacy, emptiness and distinct inodes verified."
+  ],
+  "schema": 1,
+  "scope": "Static line/function review of new unsigned tool only; not runtime evidence.",
+  "server_or_network_actions": 0,
+  "test_bodies_run": 0
+}

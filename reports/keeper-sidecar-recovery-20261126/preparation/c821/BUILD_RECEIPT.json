@@ -1,0 +1,46 @@
+{
+  "archive_members": 49,
+  "bundle": {
+    "bytes": 213089,
+    "sha256": "36f070ae24ae61ee58bf737d2cd86e78b9b1f0b03a7be675adf775395143d1fc"
+  },
+  "capture_bytes": 65536,
+  "controller": {
+    "bytes": 22715,
+    "sha256": "bd968894e65b59bc2cd1176a25e1c11b6a647e0a5e84d4b412e347de2e84be64"
+  },
+  "driver_timeout_seconds": 180,
+  "existing_environment_adoption": false,
+  "focused_runner": {
+    "bytes": 6796,
+    "sha256": "40fbb12e3387a2f5f44a95d1cd042e681cc222bf8abee989bbe2c0f74b2380ae"
+  },
+  "network_or_server_actions": 0,
+  "new_method_count": 8,
+  "new_methods": [
+    "test_stale_selected_generation_roundtrip_preserves_all_bytes_and_pending_outbox",
+    "test_schedule_and_alert_locks_refuse_contention_or_absence_without_recreation",
+    "test_wrong_pins_tampered_payload_and_extra_package_entries_refuse_without_restore",
+    "test_capture_bounds_and_output_separation_refuse_before_source_mutation",
+    "test_unreviewed_policy_profile_or_source_identity_cannot_capture",
+    "test_missing_or_partial_commits_never_initialize_or_publish_a_complete_capture",
+    "test_restore_is_exclusive_and_capture_age_never_refreshes_old_entitlements",
+    "test_noncooperating_state_and_lock_changes_block_complete_capture_publication"
+  ],
+  "production_approved": false,
+  "root_driver_only_caps": [
+    "CHOWN",
+    "DAC_OVERRIDE",
+    "FOWNER"
+  ],
+  "schema": 1,
+  "source_head": "aae84e64d7f7fa470e5767630608755df91e75c1",
+  "source_manifest": {
+    "bytes": 24910,
+    "sha256": "c287aa0c4b8e4113f7ffa1459f39a704bd17b5165f23084e3a8f26995cdb0e08"
+  },
+  "source_members": 41,
+  "tests_run": 0,
+  "work_target_seconds": 165,
+  "worker_caps_empty": true
+}

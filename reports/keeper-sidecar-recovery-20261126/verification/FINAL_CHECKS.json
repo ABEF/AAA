@@ -1,0 +1,107 @@
+{
+  "baseline": "aae84e64d7f7fa470e5767630608755df91e75c1",
+  "desktop_monitor_remains_paused": true,
+  "document_review_sha256": "05bb4cb83bbc23bf170b1b85db629f75742641e69c61a0ec3b7d89f1de7fef76",
+  "exact_unchanged_HEAD_source_rows": [
+    "keeper/__init__.py",
+    "keeper/alerts.py",
+    "keeper/cast_process.py",
+    "keeper/compound_policy.py",
+    "keeper/health.py",
+    "keeper/monitor.py",
+    "keeper/operation_review.py",
+    "keeper/ops.py",
+    "keeper/principal.py",
+    "keeper/rebalance_confirmation.py",
+    "keeper/recovery_bundle.py",
+    "keeper/royalties.py",
+    "keeper/scheduling.py",
+    "keeper/watchdog.py",
+    "scripts/keeper-alerts.py",
+    "scripts/keeper-recovery.py",
+    "scripts/keeper-schedule.py",
+    "tests_python/__init__.py",
+    "tests_python/test_keeper_alerts.py",
+    "tests_python/test_keeper_scheduling.py",
+    "zzz_ops/__init__.py",
+    "zzz_ops/abi.py",
+    "zzz_ops/errors.py",
+    "zzz_ops/ethereum_fees.py",
+    "zzz_ops/execution_price.py",
+    "zzz_ops/lp_execution.py",
+    "zzz_ops/physical_portfolio.py",
+    "zzz_ops/position.py",
+    "zzz_ops/price_policy.py",
+    "zzz_ops/production_v2.py",
+    "zzz_ops/production_v4.py",
+    "zzz_ops/protocol_policy.py",
+    "zzz_ops/range_policy.py",
+    "zzz_ops/rebalance_confirmation.py",
+    "zzz_ops/rpc.py",
+    "zzz_ops/state.py",
+    "zzz_ops/tick_math.py",
+    "zzz_ops/work_budget.py"
+  ],
+  "existing_environment_adoption": false,
+  "future_selector_single_literal_AST_only": true,
+  "inventory_sha256": "c1a24939407576250dd1d5c620497860afdd6636f04cd38472b1dd5ebc4abf44",
+  "native_campaign_stages_passed": 4,
+  "new_methods_passed": 8,
+  "new_source_pin_rows": 4,
+  "old_test_bodies_run": 0,
+  "original_c820_nonpass_zero_test_CLI_execution_retained": true,
+  "previous_bound_files": 512,
+  "protected_hashes": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "schema": 1,
+  "server_network_or_application_actions_by_check": 0,
+  "success": true,
+  "task_counts": {
+    "done": 35,
+    "excluded": 1,
+    "progress": 40,
+    "todo": 7
+  },
+  "todo_and_inventory_CLIs_passed": true,
+  "ubuntu_verification_sha256": "d2711b1faa226b6b70d3b7ab0ac552aebdd95e9ed3f61dca71e86157971d1583",
+  "unchanged_previous_report_families": {
+    "keeper-alerts-20261126": {
+      "manifest_sha256": "ba28a746209efd6b081f37900bb148a51c4f23299c41acef79827ab7b604cb8f",
+      "unchanged_bound_files": 38
+    },
+    "keeper-backup-20261126": {
+      "manifest_sha256": "87ecf554727a0f214977fae01b3fc849b64b4d9db5b4ec503246c1990f7bf659",
+      "unchanged_bound_files": 31
+    },
+    "keeper-day-audit-20261126": {
+      "manifest_sha256": "2751ff48398abdc71648cef6aa7c02fec88687cde48cb11185f1a26a665537b5",
+      "unchanged_bound_files": 80
+    },
+    "keeper-doc-sync-20261126": {
+      "manifest_sha256": "3b755a99a6da6fd6442c94b88775b5dec83cc4003a76e9fc96c0727cf7cf6e8b",
+      "unchanged_bound_files": 3
+    },
+    "keeper-full-audit-20261126": {
+      "manifest_sha256": "522788216fcd0b50e0e6f78f069278d6ed47e53f876e7d388de91a490fe1feb5",
+      "unchanged_bound_files": 77
+    },
+    "keeper-scheduling-20261126": {
+      "manifest_sha256": "05ae6fe9ed024fbd83b0eabb2388df9072ee5a65fdd6314a6d3f59cae4ed65ba",
+      "unchanged_bound_files": 92
+    },
+    "ubuntu-backup-recovery-20261126": {
+      "manifest_sha256": "200b6bccbf3b147079c9c46eb09ce62442e438ca388b680a98cc055d42be22c2",
+      "unchanged_bound_files": 103
+    },
+    "ubuntu-daemon-storage-20261126": {
+      "manifest_sha256": "81d3f76d5973c8ef132eae0b5754087f428a6c3ded421a3a2ae616a12f046e2b",
+      "unchanged_bound_files": 88
+    }
+  },
+  "unchanged_task_ids_statuses": 83,
+  "valid_local_links_checked": 3499
+}

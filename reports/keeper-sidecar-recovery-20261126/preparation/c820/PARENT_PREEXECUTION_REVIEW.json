@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "source_head": "aae84e64d7f7fa470e5767630608755df91e75c1",
+  "archive_members": 48,
+  "source_rows": 40,
+  "new_first_execution_methods": 8,
+  "production_source_files_unchanged": true,
+  "old_test_bodies_selected": 0,
+  "namespace_mapping_reviewed": true,
+  "original_raw_policy_preserved": true,
+  "new_lock_inodes_not_restored_ownership": true,
+  "four_new_services_only": true,
+  "hard_supervision_and_bounded_receiver": true,
+  "mandatory_cleanup": true,
+  "public_transactions": 0,
+  "tests_run_by_this_check": 0,
+  "existing_environment_adoption": false,
+  "desktop_monitor_remains_paused": true,
+  "pins": {
+    "c820.inputs.tar.gz": "461931b484999c2f6eb090a724e46fc981d7c94e32539d4eb238f22365d3cf28",
+    "remote_capsule.py": "9641ee6c5ccc595c21b58d457f3b0cfa5aa535a14b2a084987bbc8982688baa4",
+    "host_control.py": "f8d8842dad1dc89d7d757bdad865f5145b9015f4780e4d3a3257458c016ff2b7"
+  }
+}

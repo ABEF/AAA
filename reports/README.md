@@ -1,5 +1,7 @@
 # Verification evidence
 
+[Unsigned scheduler/alert recovery](keeper-sidecar-recovery-20261126/REVIEW.md) adds eight NEW Ubuntu passes, actual capture/verify/restore and mapped queued-alert recovery. c820 setup NONPASS remains; c821 adds only its missing dynamic dependency and lab namespace. No existing journal/service/signer adoption; real off-host recovery remains open.
+
 [Unsigned Ubuntu scheduling](keeper-scheduling-20261126/REVIEW.md) implements and verifies backup/alert coordination:10new methods and eight separate native operating stages. Original c818 setup NONPASS remains; c819 uses identical source/test bodies with corrected lab startup. All owned groups stop, existing host states match, and no existing journal/service/signing profile is adopted. See the [operator procedure](../docs/KEEPER_SCHEDULING.md).
 
 [Full-day keeper audit](keeper-day-audit-20261126/REVIEW.md) reviews all six

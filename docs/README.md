@@ -1,5 +1,7 @@
 # Documentation map
 
+Use the [scheduler/alert recovery guide](KEEPER_SIDECAR_RECOVERY.md) for exact selected-generation, event-ID and pending-clock capture, verification and fresh review-only restoration. Original configuration/release and host-layout review remain separate. The [Ubuntu record](../reports/keeper-sidecar-recovery-20261126/REVIEW.md) preserves the original setup failure and eight new passes.
+
 Use the [unsigned scheduling procedure](KEEPER_SCHEDULING.md) for explicit policy/source pins, verified recurring backups, native timer supervision and state-preserving reconfiguration. The [isolated Ubuntu record](../reports/keeper-scheduling-20261126/REVIEW.md) has10new methods plus eight native stages; production timing/relay/off-host operation remain separate.
 
 The [day audit](../reports/keeper-day-audit-20261126/REVIEW.md) records code fixes

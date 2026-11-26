@@ -1,0 +1,64 @@
+{
+  "application_bodies_run_by_preparation": 0,
+  "archive_members_verified": 49,
+  "builder_change": "AST-data source groups and explicit command closure, no application imports",
+  "confirmed_defect": "AST-import-only packaging omitted string-named scripts/keeper-schedule.py",
+  "dynamic_command_entrypoints": [
+    "scripts/keeper-schedule.py",
+    "scripts/keeper-sidecar-recovery.py"
+  ],
+  "existing_eight_method_AST_unchanged": true,
+  "existing_source_rows_changed": [],
+  "frozen_core_CLI_and_tests_unchanged": true,
+  "limits_supervision_masks_rawpaths_and_fencing_unchanged": true,
+  "namespace": "/opt/popl-keeper-sidecar-recovery-20261126-c821",
+  "network_or_server_actions_by_preparation": 0,
+  "original_c820_kept_nonpass": true,
+  "original_c820_test_bodies_run": 0,
+  "pins": {
+    "SOURCE_MANIFEST.json": {
+      "bytes": 24910,
+      "sha256": "c287aa0c4b8e4113f7ffa1459f39a704bd17b5165f23084e3a8f26995cdb0e08"
+    },
+    "c821.inputs.tar.gz": {
+      "bytes": 213089,
+      "sha256": "36f070ae24ae61ee58bf737d2cd86e78b9b1f0b03a7be675adf775395143d1fc"
+    },
+    "host_control.py": {
+      "bytes": 5881,
+      "sha256": "877614fe3f35417db8f1a498a44f3d6421ed3e3261261dd9805d4ca6caa955cb"
+    },
+    "remote_capsule.py": {
+      "bytes": 22715,
+      "sha256": "bd968894e65b59bc2cd1176a25e1c11b6a647e0a5e84d4b412e347de2e84be64"
+    }
+  },
+  "preparation_namespace_only_changes": [
+    "capsule_template.py",
+    "lab_driver.py",
+    "lab_common.py",
+    "fixture.py",
+    "run_flow.py",
+    "run_focused_template.py",
+    "host_control.py",
+    "prepare_review.py"
+  ],
+  "recursive_imports_and_repository_py_literals_checked": true,
+  "schema": 1,
+  "source_groups_and_commands_all_packaged": true,
+  "source_identity_group_counts": {
+    "keeper/alerts.py:OBSERVER_SOURCE_FILES": 4,
+    "keeper/health.py:SOURCE_FILES": 13,
+    "keeper/recovery_bundle.py:PRODUCER_FILES": 2,
+    "keeper/recovery_bundle.py:SOURCE_FILES": 13,
+    "keeper/scheduling.py:SOURCE_FILES": 19,
+    "keeper/sidecar_recovery.py:PRODUCER_FILES": 2
+  },
+  "source_members": 41,
+  "source_rows_added": [
+    "scripts/keeper-schedule.py"
+  ],
+  "source_rows_removed": [],
+  "tests_run_by_preparation": 0,
+  "two_public_vector_pins_unchanged": true
+}

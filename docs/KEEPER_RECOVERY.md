@@ -23,6 +23,15 @@ outside the capture directory; never delete/reset state to make a job pass.
 A post-rename synchronization error leaves selection publication uncertain,
 requiring inspection rather than rollback or another `init`.
 
+Use [exact sidecar recovery](KEEPER_SIDECAR_RECOVERY.md) for a separately pinned
+package of committed selection, observer outbox/pending history and the selected
+generation. It prepares only fresh private output and a false-readiness mapping
+plan, with new empty coordination locks; it cannot restore old lock ownership.
+Verification/restoration still requires the protected original policy, referenced
+configuration, release and reviewed original working/parent layout, rather than
+live source selection or alert records. New-host mapping/fencing and actual
+adoption remain explicit operator reviews, not automatic path rewriting.
+
 Operational policy changes use explicit old/new-policy `rebind` with the
 same source, original configuration and paths, preserving every observer
 state byte and selected backup identity. Source/configuration migration,

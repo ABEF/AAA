@@ -169,6 +169,13 @@ stop **both timers and both services**. Stopping a timer alone does not cancel
 an already running invocation. Resume the same reviewed timers with original
 state retained. Do not run `init`, reset event IDs or replace lock files.
 
+For exact selected-record, pending-clock and queued-event recovery, use the
+separate [sidecar recovery package](KEEPER_SIDECAR_RECOVERY.md). It captures the
+committed scheduler/observer records and selected generation together, without
+copying signer material or installing restored state. Keeper journal backup
+remains separate; an outer package capture does not make its old selected
+journal fresh.
+
 ## Failure and recovery
 
 | Condition | Operator response |
@@ -176,7 +183,7 @@ state retained. Do not run `init`, reset event IDs or replace lock files.
 | Capture/verification refusal | Preserve failed generation and old selection; repair the cause and let a later invocation create a new copy |
 | Backup capacity reached | Stop backup timer; independently archive/verify older generations, preserve the selected one and external pins, review resulting inventory before resuming; no automatic pruning |
 | Missing selected record or temporary scheduler file | Stop both jobs, preserve files and review committed state; no auto-init or temporary-file promotion |
-| Missing/damaged observer state | Stop observer, preserve outbox evidence and recover separately reviewed state; never reset its pending clock |
+| Missing/damaged observer state | Stop observer, preserve outbox evidence and prepare fresh [sidecar recovery](KEEPER_SIDECAR_RECOVERY.md) from an independently retained package; never reset its pending clock |
 | Missing health/journal | Observation records the supported incident; it never invents empty state or repairs keeper data |
 | Configuration/source/policy pin mismatch | Fixed scheduler refusal before observation; preserve state and inspect failed service. This invocation cannot emit a new HTTP alert |
 | Receiver outage | Preserve queued IDs; repair the relay and retry through the same observer state; delivery remains at least once |
