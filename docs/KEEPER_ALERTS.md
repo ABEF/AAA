@@ -2,7 +2,7 @@
 
 The [alert module](../keeper/alerts.py) and [command](../scripts/keeper-alerts.py) inspect keeper health, the current journal and one explicitly selected recovery backup. They write a **separate alert state/outbox**, and can send sanitized events to a local test receiver. They never sign, submit transactions, read configured signer-file contents, repair a journal or approve a keeper for live use.
 
-This is an unsigned one-shot tool. It installs no scheduler, service or notification channel. Production ages, delivery destination, supervision and operating qualification still need review. The [day audit](../reports/keeper-day-audit-20261126/REVIEW.md) describes the current corrections and focused verification. The earlier [21-method receiver proof](../reports/keeper-alerts-20261126/REVIEW.md) retains its original source scope; neither record approves live-channel or sustained operation.
+The original command is an unsigned one-shot tool; it installs no scheduler, service or notification channel. The separate [scheduling wrapper](KEEPER_SCHEDULING.md) coordinates reviewed timer invocations without changing that interface. Production ages, delivery destination, supervision and operating qualification still need review. The [day audit](../reports/keeper-day-audit-20261126/REVIEW.md) describes the current corrections and focused verification. The earlier [21-method receiver proof](../reports/keeper-alerts-20261126/REVIEW.md) retains its original source scope; neither record approves live-channel or sustained operation.
 
 ## Inputs and units
 
@@ -79,6 +79,14 @@ Current and backup deployment identities use the same validated normalization. A
 Configuration, source or observation-policy changes produce an identity-change incident while preserving queued events. Source scope includes the thirteen daemon files plus four observer/tool files: `keeper/alerts.py`, `scripts/keeper-alerts.py`, `keeper/recovery_bundle.py` and `scripts/keeper-recovery.py`. Both maps are checked again before publishing an observation. These are local file hashes, not loaded-code attestation. Scope changes are notification transitions, not adoption approval. Recovery requires a subsequent stable evaluation with fresh valid health **and** the selected verified backup; missing, stale, changed or malformed inputs cannot produce it.
 
 Backup rotation is explicit: supply each new reviewed directory and manifest pin with its matching original configuration. Changing that selection alone does not invalidate the observer scope, erase the outbox or restart the pending clock. The tool never selects the newest folder automatically.
+
+## Scheduled observation
+
+Under the [pinned scheduling policy](KEEPER_SCHEDULING.md), automatic backup jobs create distinct generations, verify their exact bytes and publish one explicit `selected.json` path/pin record. Scheduled observation uses only that record; it never scans for the newest folder. This local producer handoff is not independent authentication or an off-host backup. The original CLI still requires its explicit bundle and manifest pin.
+
+Only explicit scheduler `init` creates its initial directories and observer state. Later scheduled observation refuses a missing/corrupt committed selection or observer state, unexpected temporary residue or a changed policy/configuration/source pin; it never silently initializes a new pending clock or outbox. Preserve the exact files and follow the recovery procedure. A scheduler pin/state refusal is supervisor-visible; it cannot itself guarantee an HTTP incident.
+
+Backup capture remains independent of observer-state failure, and observation remains independent of backup capacity or unrelated generations. A failed capture/verification keeps the selected backup available for normal stale/integrity checks. Operational `rebind` requires both exact old/new policies and the same configuration, runtime/output paths and source identities; it preserves the selected generation/pin and every observer-state byte. Next observation still applies its normal incident/recovery rules.
 
 ## Release and supervision boundary
 

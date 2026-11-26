@@ -1,0 +1,31 @@
+{
+  "all10_method_ASTs_identical": true,
+  "all38_source_rows_identical": true,
+  "correction_lab_only": [
+    "anchor Type=exec with RuntimeMaxSec180 and body165 budget",
+    "capture actual ExecMainStartTimestampMonotonic and InvocationID",
+    "require real start before completion and actual ExecMainCode for acceptance",
+    "explicit focused result marker; cleanup remains safe for never-started units"
+  ],
+  "diagnosis": "oneshot anchor start job blocks After/JoinsNamespace worker; initial inactive state mistaken for completion before actual ExecStart",
+  "evidence_sha256": {
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-001/RESULT.json": "f29a85c506412f135c65c1d90b98b32b863cd9761d5cf0cfd1a3721ca670b286",
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-003/MANAGER_TRACE.json": "1c4f0efec5dc68d322caadb23bf6ea28f46126dedfbc5f9c464e946e32db47af",
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-004/FINAL.json": "22c293425ebbb274874fc3443b6aae0262cec581e40d35a6e6efed06bc4b278a"
+  },
+  "green_method_reruns": 0,
+  "network_or_server_actions_by_this_preparation": 0,
+  "original_all_groups_empty": true,
+  "original_c818_success": false,
+  "original_checks_execmaincode": "0",
+  "original_checks_execstart": "{ path=/usr/bin/python3 ; argv[]=/usr/bin/python3 -B /opt/popl-keeper-scheduling-20261126-c818/source/run_focused.py ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+  "original_elapsed_seconds": 0.18923597410321236,
+  "original_failure_type": "FileNotFoundError",
+  "original_passed_scenarios": [],
+  "original_source_unchanged": true,
+  "original_started_scenarios": [
+    "new_focused_scheduler_methods"
+  ],
+  "schema": 1,
+  "test_bodies_executed_by_this_preparation": 0
+}

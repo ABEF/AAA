@@ -1,17 +1,22 @@
 # Consolidated audit findings and evidence
 
-[Full-day keeper audit](../reports/keeper-day-audit-20261126/REVIEW.md) reviews
-all six26 November commits and fixes pending-clock loss, effective-identity
-defaults, FIFO reopen and interrupted process-reap ownership. Observer/tool source
-changes now participate in notification scope; future keeper selection includes
-all added tests. **18 distinct NEW Ubuntu methods pass:**17 in c816 plus only its
-affected method in c817. Original c816NONPASS remains; no passing body repeats.
-Both units stop empty; five existing service states match. Journals, financial
-rights/limits and frozen F6 remain unchanged; the desktop monitor stays paused.
-The current [inventory](../reports/keeper-day-audit-20261126/FUNCTION_INVENTORY.json)
-has187files/2,086named definitions/279lambdas, with61/39/4 F6 maps and1,021ABI rows.
-Matching source/backup adoption, real channels, off-host and sustained operation
-remain separate. See the [alert procedure](KEEPER_ALERTS.md).
+[Unsigned Ubuntu scheduling](../reports/keeper-scheduling-20261126/REVIEW.md)
+adds exact pinned policy/source/configuration, explicit initialization, verified
+exclusive backup selection and state-preserving operational rebind. Backups and
+observation isolate unrelated failures; shared locking, bounded no-delete capacity
+and committed-state refusal preserve pending clocks/outboxes. Existing daemon13,
+backup/alert cores and CLIs, financial controls and journals are unchanged.
+**10 NEW focused methods and eight additional native operating stages pass**
+in c819. Original c818 is NONPASS before any test started; setup-only correction
+reuses exact38source/10method ASTs. Both nine-unit labs stop empty; five existing
+states match with zero non-ambient differences and one observer invocation.
+Current [inventory](../reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json):
+189files/2,109named definitions/279lambdas; frozen F6 stays61/39/4 and1,021ABI rows.
+Source unit examples stay uninstalled with unknown cadence blocked. Read the
+[scheduling procedure](KEEPER_SCHEDULING.md); real timing/channels, off-host
+fencing/restore, durability/provider/sustained operation and release approval stay
+open. The desktop monitor remains paused. Earlier [day audit](../reports/keeper-day-audit-20261126/REVIEW.md)
+retains its distinct18-method/source scope and original failures.
 
 Earlier [alert evidence](../reports/keeper-alerts-20261126/REVIEW.md) retains its
 21-method original source scope; it is not re-executed or relabelled here.
@@ -99,8 +104,8 @@ Adopt matching keeper/checker code with original journals preserved. These two
 Python fixes alone change no checkpoint semantic source. Earlier API/ABI source
 adoption still requires newly reviewed matching checkpoints. Sites, services,
 Anvil8902, signer/null public configurations and paused heartbeat are preserved.
-Current [inventory](../reports/keeper-day-audit-20261126/FUNCTION_INVENTORY.json):
-187Python files/2,086definitions/279lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
+Current [inventory](../reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json):
+189Python files/2,109definitions/279lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
 Actual F6/V10 consumer, provider, market and production approval stay open.
 
 [Ownership-page adoption](../reports/ownership-paging-20261121/REVIEW.md) connects current source9/source10 website holdings to

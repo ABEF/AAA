@@ -1,0 +1,104 @@
+{
+  "all_owned_groups_empty": true,
+  "cause_inference": "oneshot anchor still activating while After/Joins child is queued; initial idle was wrongly accepted as completed.",
+  "elapsed_seconds": 0.18923597410321236,
+  "evidence": "Never-started checks ExecStart (start_time n/a/pid0/code null), both zero-code idle captures, all12 empty logs, absent focused progress.",
+  "final_source_files_unchanged": 48,
+  "fixture_journal_unchanged": true,
+  "inputs": {
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-001/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "a89cd770a1b1e9c8abd95ab20681a8a33dfb17b185a85242f786928ca15f91da"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-001/RESULT.json": {
+      "bytes": 1082,
+      "sha256": "f29a85c506412f135c65c1d90b98b32b863cd9761d5cf0cfd1a3721ca670b286"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-001/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-001/stdout.raw": {
+      "bytes": 1602,
+      "sha256": "1f547617c4debfcf9db98d3fb06b7bbcbf788c12507bba4c59e040ca05e7d937"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-002/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "849c7bb7dd9622d8077ff46f2c9059ead8e35cd074899d77064d6f209cc65465"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-002/WORKER_LOGS.json": {
+      "bytes": 1839,
+      "sha256": "db9b37207338966b1b9b3686df8bfb367be2084d73a7ede5414af75b54691c54"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-002/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-002/stdout.raw": {
+      "bytes": 2615,
+      "sha256": "7b259c94368c5828df73b683c63febbbec70526fbe6d6b5e5cfab63183f0e2d5"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-003/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "2de734c1b761dc5c9c30080b5760daa28a69727612e5707743146dfb74c13f26"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-003/MANAGER_TRACE.json": {
+      "bytes": 1685,
+      "sha256": "1c4f0efec5dc68d322caadb23bf6ea28f46126dedfbc5f9c464e946e32db47af"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-003/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-003/stdout.raw": {
+      "bytes": 2413,
+      "sha256": "1d618179172bc7646423ae7b4432353881e6f13762f853f8e47460a92aa6b88c"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-004/EXECUTION.json": {
+      "bytes": 722,
+      "sha256": "f1c1e72a0f1b863889f3980493d6a52d6a83d3e0d423fc6e64c1a6aa39d85707"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-004/FINAL.json": {
+      "bytes": 12323,
+      "sha256": "22c293425ebbb274874fc3443b6aae0262cec581e40d35a6e6efed06bc4b278a"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-004/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-004/stdout.raw": {
+      "bytes": 16590,
+      "sha256": "3a70944a7ef34d79f47e568a71ae634513d4f483f7961bae7f360fbb5866920a"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-005/EXECUTION.json": {
+      "bytes": 721,
+      "sha256": "5e3c24e82b02c522bf0748eb2aafb058e717247116754eb4d818711390e69de5"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-005/NATIVE_PROPERTIES.json": {
+      "bytes": 1381,
+      "sha256": "a4dec3608f70acb37524acde86fed00837fee3a257ee57663515232fb52a605f"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-005/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-005/stdout.raw": {
+      "bytes": 2013,
+      "sha256": "26d2313824e41aa86631af3ffd9639e11097eb3ddbb8ff29eac5413a1a509a43"
+    },
+    "cache-keeper-scheduling-20261126/c818/campaign-001/fetch-006/EXECUTION.json": {
+      "bytes": 719,
+      "sha256": "dd84502bbf8324504ec04fff634726e4dcaeb15777fb5af654b6a19f338433b3"
+    }
+  },
+  "mask_sources_unchanged": true,
+  "new_test_bodies_started": 0,
+  "old_test_bodies_run": 0,
+  "original_c818_success": false,
+  "passed_scenarios": [],
+  "production_approved": false,
+  "schema": 1,
+  "scope": "Offline reconciliation only; original c818 remains NONPASS.",
+  "success": true,
+  "test_bodies_or_network_or_server_actions_by_verifier": 0
+}

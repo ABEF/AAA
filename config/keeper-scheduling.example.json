@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "kind": "popl-keeper-schedule",
+  "configuration": "/etc/zzz/keeper.json",
+  "configuration_sha256": "REVIEWED_EXACT_CONFIG_SHA256_REQUIRED",
+  "working_directory": "/opt/zzz-protocol",
+  "scheduler_directory": "/srv/zzz-keeper-schedule/state",
+  "backup_directory": "/srv/zzz-keeper-schedule/backups",
+  "alert_directory": "/srv/zzz-keeper-schedule/alerts",
+  "source_files_sha256": {},
+  "max_backups": null,
+  "max_health_age_seconds": null,
+  "max_backup_age_seconds": null,
+  "pending_max_age_seconds": null,
+  "receiver": null,
+  "allow_dry_run": null,
+  "max_bytes": 16777216,
+  "max_seconds": 60
+}

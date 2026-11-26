@@ -1,0 +1,40 @@
+{
+  "baseline": "03d6caddbe88b552d7edab102cfae0a32847cf37",
+  "daemon13_unchanged": true,
+  "existing_journal_or_environment_adoption": false,
+  "files": {
+    "keeper/scheduling.py": {
+      "bytes": 17800,
+      "sha256": "d79be28db6bac2978f7c8efdfb641e037ce6d2024faa4e60e02f6f7c62049f4a"
+    },
+    "keeper/zzz-keeper-backup.service": {
+      "bytes": 1314,
+      "sha256": "cfce8b4a2a06264ae07550f03dca5c6770b684780a55a670df5b6ab16236f4a9"
+    },
+    "keeper/zzz-keeper-backup.timer": {
+      "bytes": 327,
+      "sha256": "c9f3e856d2459da8e3a0ade1cf3ab6ff9b713c5eab6b0b01b515e9dc638a4c7c"
+    },
+    "keeper/zzz-keeper-observer.service": {
+      "bytes": 1397,
+      "sha256": "1d8212f673e84dbdef42e2b8e67c7fc64a61640f12278f710d3a4204c423951b"
+    },
+    "keeper/zzz-keeper-observer.timer": {
+      "bytes": 339,
+      "sha256": "f78e1f409f5caa96668b5cfaa86962d3315bb81f7035fe05f61e50ce4ad44d90"
+    },
+    "scripts/keeper-schedule.py": {
+      "bytes": 2140,
+      "sha256": "5c07ec965eba5c5a2d94895ba050f17d49b9689923cf67a05f20f2d0bf29c0b4"
+    },
+    "scripts/run-keeper-tests.py": {
+      "bytes": 7166,
+      "sha256": "01fe4076d6c5e4e4154defd6be9faca383f7029f3025ba5f613278213f0683e6"
+    },
+    "tests_python/test_keeper_scheduling.py": {
+      "bytes": 15979,
+      "sha256": "15a4f2bf088fc1853437838c3925f2eb5be9295305880dbaa052ef390bedae72"
+    }
+  },
+  "schema": 1
+}

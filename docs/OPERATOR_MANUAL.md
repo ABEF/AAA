@@ -1,5 +1,37 @@
 # PoPL operator manual
 
+## Unsigned Ubuntu backup and alert schedules
+
+Use the [complete policy, inputs and recovery procedure](KEEPER_SCHEDULING.md).
+These are Linux operations, requiring no governance wallet or transaction.
+Existing keeper/signing services and the paused desktop monitor are separate.
+
+| Operation | Required inputs / example | Purpose |
+| --- | --- | --- |
+| Initialize once | `python3 -B scripts/keeper-schedule.py init --policy /etc/zzz/schedule.json --policy-sha256 REVIEWED_DIGEST`; all three output directories absent | Create reviewed initial state |
+| Capture next backup | Same policy/digest; action `backup` | Verify and select generation |
+| Observe and deliver | Same policy/digest; action `observe` | Preserve durable alert history |
+| Change operational policy | Action `rebind --policy /etc/zzz/schedule-next.json --policy-sha256 NEW_DIGEST --previous-policy /etc/zzz/schedule.json --previous-policy-sha256 OLD_DIGEST` | Preserve state during reconfiguration |
+| Start reviewed installation | `systemctl start zzz-keeper-backup.timer zzz-keeper-observer.timer` after separately approved installation, initialization and effective-unit review | Start the two schedules |
+| Stop both schedules | `systemctl stop zzz-keeper-backup.timer zzz-keeper-observer.timer zzz-keeper-backup.service zzz-keeper-observer.service` | Stop timers and active jobs |
+| Resume | Start the same reviewed timers; keep selection, generations, outbox and lock inodes | Continue existing observation history |
+
+Timer intervals are deliberately unset in source examples. Review the actual
+account, paths, environment policy/digest, hard startup/stop bounds and the two
+distinct root-owned empty mode000 signer-mask bind mounts before installation.
+The existing signer-path alias guard stays enforced. Rebinding may change ages,
+receiver, capacity and tool budgets, but never paths, source/configuration or
+deployment identity. Preserve both old and new policy files and update the
+reviewed environment pin before resuming; do not edit selection by hand.
+
+Backups and observation share a nonblocking lock; a slow backup can defer an
+observation. Capture/verification failure retains the old selection; a late
+publication-sync failure has an uncertain old/new commit requiring review.
+Missing committed state never authorizes reinitialization. No automatic pruning
+or off-host authentication is added; capacity needs reviewed manual archival.
+Failed scheduler units themselves require supervision: policy/config/source
+refusal occurs before the observer can deliver a new HTTP incident.
+
 ## Keeper alerts and stale-backup checks
 
 Run the [one-shot command and exact input table](KEEPER_ALERTS.md) under the

@@ -1,5 +1,7 @@
 # Keeper service qualification and rehearsal
 
+[Native unsigned scheduling](../reports/keeper-scheduling-20261126/REVIEW.md) completes10NEWfocused methods and eight additional native stages with explicitly short lab timings. Both original failed setup and corrected execution remain; no old passing body repeats. No public transactions or service adoption; production cadence, off-host delivery/fencing and sustained operation remain open.
+
 ## Current operating evidence
 
 | Partition | Completed finite evidence | Limit |

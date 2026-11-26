@@ -1,5 +1,7 @@
 # Documentation map
 
+Use the [unsigned scheduling procedure](KEEPER_SCHEDULING.md) for explicit policy/source pins, verified recurring backups, native timer supervision and state-preserving reconfiguration. The [isolated Ubuntu record](../reports/keeper-scheduling-20261126/REVIEW.md) has10new methods plus eight native stages; production timing/relay/off-host operation remain separate.
+
 The [day audit](../reports/keeper-day-audit-20261126/REVIEW.md) records code fixes
 and18 distinct new Ubuntu passes, preserving c816's original failure and rerunning
 only its affected method. Use the [operator manual](OPERATOR_MANUAL.md),

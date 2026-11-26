@@ -1,0 +1,262 @@
+{
+  "definitions": [
+    {
+      "ast_sha256": "ff6e11c1739a8b74010f6ad9688f7fcbc898cdc440da825e5168dd2b7fe6f68d",
+      "end_line": 44,
+      "file": "keeper/scheduling.py",
+      "kind": "ClassDef",
+      "line": 38,
+      "name": "ScheduleRefusal",
+      "reasoning": "Only allowlisted scheduler/upstream codes are retained; no caller data or exception text escapes.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "6ecdcc83888ec0b0ef3337c51bcbc5a63b6c8855bd53feb6be9c67f02baebeb9",
+      "end_line": 44,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 40,
+      "name": "ScheduleRefusal.__init__",
+      "reasoning": "Normalize fixed code/cause fields; inherited string contains only the fixed scheduler code.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "8a8a012428674ab397dc0bb01103d173d7f179b0643c817facdd24f9dddfe23b",
+      "end_line": 49,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 47,
+      "name": "_need",
+      "reasoning": "One fail-closed branch; no automatic repair or fallback.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "2f7475170c5147b5889e5011ab8bd5682f4d5ab22d701d89b42acb079b91b769",
+      "end_line": 53,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 52,
+      "name": "_hash",
+      "reasoning": "Reject bool/non-string, wrong length/case, and zero trust pins.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "471e48df49bffa87d1eadf88a13a3c891580b9edcd1329969db723dac799dd5c",
+      "end_line": 57,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 56,
+      "name": "_sha",
+      "reasoning": "SHA256 over exact bytes; hashing is integrity/provenance, not authentication by itself.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "a5f2872c6c9d34d8b1e13f18b30018f09e8c592ef05e3b4ce833794896ce06ad",
+      "end_line": 62,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 60,
+      "name": "_integer",
+      "reasoning": "Require actual JSON integer in bounded inclusive range; bool/float/string refused.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "3d878fbd624a8600ecd4f2cb376387b3c0d3968059e4b4de403968ffde08ed0f",
+      "end_line": 69,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 65,
+      "name": "_absolute",
+      "reasoning": "Require explicit absolute local paths; no parent traversal, NUL, network-root spelling or linked path resolution.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "60c86972c6bdc6817912f54385df0a589a16bbb99b90fbd5c3797840cefeabd2",
+      "end_line": 74,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 72,
+      "name": "_separate",
+      "reasoning": "Reject equal/nested mutable outputs and protected input/runtime/signer references.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "c498d281b9cc22ef8fdc6c3c314c266a3ff084b484250c79a98c1f6ac42ebdd8",
+      "end_line": 80,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 77,
+      "name": "_remaining",
+      "reasoning": "Pass only integral remaining seconds under one original wrapper deadline; floor cannot replenish the budget.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "9abd5b8e4aa78adc60f528cbcf2d6bdeaa4e3141058ec65beddea740864e3c1a",
+      "end_line": 89,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 83,
+      "name": "_private_directory",
+      "reasoning": "Require direct real directory owned by invoking UID with0700 and protected parent; trusted ancestors/same UID remain host boundary.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "a065f98b963401565617a9152c5293389902dedcaac4dbfe0393bf58f95c5ade",
+      "end_line": 105,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 92,
+      "name": "_private_inventory",
+      "reasoning": "Exactly supported private single-link regular entries; unexpected temporary residue refuses without deletion or promotion.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "5cbdc871c41d3a24dbd4f99e588e2705fea60fe062ec03d573852cc04ba81a54",
+      "end_line": 158,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 108,
+      "name": "_load",
+      "reasoning": "Exact externally supplied policy SHA and strict schema, bounded settings, original raw config pin and exact19-source map before writes. Runtime refs inspected as metadata; missing/malformed journal/health bytes are not consumed. Rebind shares the NEW global budget.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "7d904ea553f0f6af27bcd19bd7e5b09e6d4deb0ae0f3d4ace2e72cdb3ba5ad17",
+      "end_line": 168,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 161,
+      "name": "_stable",
+      "reasoning": "Recheck original raw policy/config plus all source identities; no edited hash acceptance, source adoption or journal relabeling.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "4da4d7c528b02c80c63d022e297a39e1b804300e010f01bbe5ca999171e0ae9f",
+      "end_line": 186,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 171,
+      "name": "_selection",
+      "reasoning": "Require committed selection and lock, exact schema/deployment/config/policy identity, bounded generation basename and pin; no discovery/fallback.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "8876c0e45169711fa229af8b1c8d83bcde0f54b7d63f89638630f135de770a0a",
+      "end_line": 195,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 189,
+      "name": "_observer_state",
+      "reasoning": "Observe refuses missing/corrupt/unexpected state, preserving outbox/clock; backup does not depend on this state.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "f60579eddd77dbed1c2682d1598b4847519eb856564f0a77d3299894faf7fa7f",
+      "end_line": 213,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 198,
+      "name": "_generation_count",
+      "reasoning": "Backup-only bounded directory enumeration counts partial attempts, never selects a newest folder or prunes retained data.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "c2b75c1641864269ac57e9d7b9996f8b9701447f37e12acee0c8348689c3f1c5",
+      "end_line": 230,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 216,
+      "name": "_publish",
+      "reasoning": "Pre-bound encoded selection64KiB, hold shared lock, recheck new/previous policies immediately before atomic publication. Post-rename fsync errors remain uncertain and require review; no rollback guessing.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "aaeb935caa0c5eebe6525829a2305204acac0e4f1feb419cb0f7604450eb1be0",
+      "end_line": 258,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 233,
+      "name": "_backup",
+      "reasoning": "Create exclusive random generation, use original backup+verify guards with remaining budget, then publish selection. Capture/verify failures preserve prior selection; complete/unapproved attempts remain counted.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "a2f6c929d857a5b2cd66ab195eabca9b0137ade938a5f704c35db018890820a1",
+      "end_line": 277,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 261,
+      "name": "_observe",
+      "reasoning": "Use only explicit selected path+pin and original config through existing observer. Backup capture failure/capacity does not block observing selected backup. Fixed upstream refusal codes retained.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "6fc9cd31e0da3c52ff3541fef315b8fbaa65a1d32fa792d9db5245d2af2ef804",
+      "end_line": 367,
+      "file": "keeper/scheduling.py",
+      "kind": "FunctionDef",
+      "line": 280,
+      "name": "run_once",
+      "reasoning": "Explicit init only creates directories/state; partial init requires manual review. One persistent lock serializes wrappers. Independent backup/observe state gates, operational-only rebind preserves all selected fields except policy SHA and never reads/resets alert state. Final source/policy check after observation can refuse without undoing a committed outbox.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "553441f1cdcc2ff9055d4aa6363c6c896d2eb0d41bc21a6941db38687d0bdf38",
+      "end_line": 16,
+      "file": "scripts/keeper-schedule.py",
+      "kind": "ClassDef",
+      "line": 13,
+      "name": "SafeArgumentParser",
+      "reasoning": "CLI argument failures exclude arbitrary argument/error values.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "bf0e438fa50ea6d7de710d51b0ff776cd0888910ff9e3543e743b3f9361ba891",
+      "end_line": 16,
+      "file": "scripts/keeper-schedule.py",
+      "kind": "FunctionDef",
+      "line": 14,
+      "name": "SafeArgumentParser.error",
+      "reasoning": "Fixed usage/error message only; no input interpolation.",
+      "review": "static line/function review, not execution"
+    },
+    {
+      "ast_sha256": "0341af27175dfbeb44003c36bda8db6c80ff7ba9e0fe6439fd13f21830def7a7",
+      "end_line": 45,
+      "file": "scripts/keeper-schedule.py",
+      "kind": "FunctionDef",
+      "line": 19,
+      "name": "main",
+      "reasoning": "One explicit action; previous-policy flags only for rebind. Only bounded sanitized scheduler result/refusal JSON, no process/RPC/signer/service operation.",
+      "review": "static line/function review, not execution"
+    }
+  ],
+  "definitions_reviewed": 23,
+  "limitations": [
+    "Source-file hashes are not loaded-code attestation; host administrators/UID and protected ancestors remain trusted.",
+    "Automatic local manifest handoff is not independent or off-host authentication.",
+    "Cooperative deadlines cannot preempt kernel I/O or fsync stalls; separately reviewed systemd hard supervision is required.",
+    "Initial multi-directory publication is not transactional; incomplete init and unexpected temporary residue require preserved manual review.",
+    "Atomic rename followed by failed directory fsync may leave old or new selection; never blindly rollback or relaunch init.",
+    "Scheduler/source/config pin refusal is supervisor-visible and cannot itself queue an observer HTTP incident.",
+    "Rebind changes only operational policy with exact source/config/path identity; no release/journal/host migration is implemented.",
+    "Backup preserves exact journal bytes; it does not back up separate original configuration, signer material or observer state.",
+    "Capacity is bounded retained generations, including partial attempts; no automatic deletion or optimal retention policy.",
+    "Observe reports retained_generations null because unrelated backup inventory is deliberately not scanned."
+  ],
+  "network_or_server_actions": 0,
+  "schema": 1,
+  "scope": "New unsigned scheduler core and CLI only; static source reasoning before parent-approved execution.",
+  "sources": {
+    "keeper/scheduling.py": {
+      "bytes": 17800,
+      "sha256": "d79be28db6bac2978f7c8efdfb641e037ce6d2024faa4e60e02f6f7c62049f4a"
+    },
+    "scripts/keeper-schedule.py": {
+      "bytes": 2140,
+      "sha256": "5c07ec965eba5c5a2d94895ba050f17d49b9689923cf67a05f20f2d0bf29c0b4"
+    }
+  },
+  "tests_or_application_bodies_run": 0,
+  "unchanged_production_files_edited": false
+}

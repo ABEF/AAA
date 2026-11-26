@@ -1,0 +1,20 @@
+{
+  "reviewed_preparation_files": {
+    "build.py": "00045ad576973baeb96bd7340a9ba95b6b94457cdf32901a396af5d128e62d9b",
+    "capsule_template.py": "d920c81473e30f1bc07c5d8ede10b6f9db65128b5fe1e661864da471df488261",
+    "hold_lock.py": "454c5116ad2193a1e8a69573d6e8656d6cb72a5066c9fb9aeeaf67657c81163b",
+    "host_control.py": "35a3f7554bb71f03a24489eb436b80d92f562d0025abcb070d5c47036eb30bc3",
+    "lab_driver.py": "52c5fa16d2875472d0cf04f0a804bf0aae7791b66b088866c765acae34b87863",
+    "run_focused_template.py": "e64f20b26f19526c7e2c351187ba540d8df4e68cce2d34e933dc6216c292fc9b"
+  },
+  "reviewed_worktree_files": {
+    "keeper/scheduling.py": "d79be28db6bac2978f7c8efdfb641e037ce6d2024faa4e60e02f6f7c62049f4a",
+    "keeper/zzz-keeper-backup.service": "cfce8b4a2a06264ae07550f03dca5c6770b684780a55a670df5b6ab16236f4a9",
+    "keeper/zzz-keeper-backup.timer": "c9f3e856d2459da8e3a0ade1cf3ab6ff9b713c5eab6b0b01b515e9dc638a4c7c",
+    "keeper/zzz-keeper-observer.service": "1d8212f673e84dbdef42e2b8e67c7fc64a61640f12278f710d3a4204c423951b",
+    "keeper/zzz-keeper-observer.timer": "f78e1f409f5caa96668b5cfaa86962d3315bb81f7035fe05f61e50ce4ad44d90",
+    "scripts/keeper-schedule.py": "5c07ec965eba5c5a2d94895ba050f17d49b9689923cf67a05f20f2d0bf29c0b4",
+    "tests_python/test_keeper_scheduling.py": "15a4f2bf088fc1853437838c3925f2eb5be9295305880dbaa052ef390bedae72"
+  },
+  "source_head": "03d6caddbe88b552d7edab102cfae0a32847cf37"
+}

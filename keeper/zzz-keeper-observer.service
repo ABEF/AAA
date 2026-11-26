@@ -1,0 +1,42 @@
+[Unit]
+Description=PoPL unsigned keeper backup and health observation
+# Example only: review paths, policy pin and exact signer exclusions before install.
+# Timers control cadence; do not silently inherit a host-specific failure latch.
+StartLimitIntervalSec=0
+
+[Service]
+Type=oneshot
+User=zzz
+Group=zzz
+WorkingDirectory=/opt/zzz-protocol
+EnvironmentFile=/etc/zzz/keeper-schedule.env
+ExecStart=/usr/bin/python3 -B /opt/zzz-protocol/scripts/keeper-schedule.py observe --policy ${POPL_SCHEDULE_POLICY} --policy-sha256 ${POPL_SCHEDULE_POLICY_SHA256}
+Restart=no
+RemainAfterExit=no
+TimeoutStartSec=180s
+TimeoutStopSec=2s
+KillMode=control-group
+SendSIGKILL=yes
+FinalKillSignal=SIGKILL
+LimitCORE=0
+UMask=0077
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_UNIX AF_INET
+IPAddressDeny=any
+IPAddressAllow=127.0.0.1/32
+ReadWritePaths=/srv/zzz-keeper-schedule
+# Two DISTINCT root-owned empty mode000 mask files, outside writable paths.
+# Replace destinations with BOTH actual signer paths from the reviewed config.
+BindReadOnlyPaths=/etc/zzz/unsigned-masks/keystore:/etc/zzz/keeper-keystore.json /etc/zzz/unsigned-masks/password:/etc/zzz/keeper-password
+StandardOutput=journal
+StandardError=journal

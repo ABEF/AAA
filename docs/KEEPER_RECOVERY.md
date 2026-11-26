@@ -8,6 +8,28 @@ occurred. Exact journals, original fee reviews and current safeguards remain.
 Later rollout must use matching writer/checker and separately reviewed backup
 pins. The desktop monitor stays paused.
 
+The separate [unsigned scheduling procedure](KEEPER_SCHEDULING.md) covers
+backup/observer timers, their persistent shared lock and explicit selected
+backup. Stop/fence those reviewed scheduled units before manual scheduler
+state repair; this does not authorize stopping or changing the keeper.
+Preserve committed selection, generations, outbox, pending clock and any
+temporary residue. Timers never run `init` or restore a keeper journal.
+
+Missing observer state blocks scheduled observation rather than silently
+starting a new history; independent backup capture can continue. A full
+capture directory refuses new generations without blocking observation of
+the selected backup. Review partial attempts and archive approved copies
+outside the capture directory; never delete/reset state to make a job pass.
+A post-rename synchronization error leaves selection publication uncertain,
+requiring inspection rather than rollback or another `init`.
+
+Operational policy changes use explicit old/new-policy `rebind` with the
+same source, original configuration and paths, preserving every observer
+state byte and selected backup identity. Source/configuration migration,
+canonical reconciliation, signer fencing and live adoption remain separate.
+Local scheduling and manifest handoff do not establish off-host possession,
+host-down notification or sustained production operation.
+
 The [one-shot alert observer](KEEPER_ALERTS.md) checks fresh health and a
 selected verified backup, retaining incident/recovery events outside the keeper
 journal. Its [21-method Ubuntu proof](../reports/keeper-alerts-20261126/REVIEW.md)

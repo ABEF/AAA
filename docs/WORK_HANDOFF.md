@@ -1,38 +1,37 @@
 # Work handoff
 
-[The full-day keeper audit](../reports/keeper-day-audit-20261126/REVIEW.md)
-checks all six26November changes and their recovery/backup/alert interactions.
-It preserves the pending observation clock across unavailable or racing inputs,
-normalizes validated configuration defaults, and binds the observer's four own
-source/producer files. Backup reads now refuse a FIFO substituted at open;
-Cast/read-process cleanup retains ownership through interruptible reaping.
-Five missing modules are added to future maintained test selection; the
-selector itself was not run. Only the reviewed new methods ran in this audit.
+[Unsigned keeper scheduling](../reports/keeper-scheduling-20261126/REVIEW.md)
+adds a pinned local policy, independent backup/observer jobs, explicit verified
+backup selection and operational-only policy rebinding. The [procedure](KEEPER_SCHEDULING.md)
+preserves original configuration/source identities, pending clocks and outboxes;
+there is no newest-folder fallback, automatic deletion or timer initialization.
+Capacity includes partial captures. Uncertain selection publication requires
+review rather than rollback, a reset or another initialization.
 
-**18 distinct NEW Ubuntu methods pass:**17 in c816, plus only the affected
-observer-source method in c817. The original c816 campaign remains NONPASS:
-its fixture tried to copy a194,496-byte file under the unchanged64KiB file-size cap.
-c817 corrects only that fixture, directly reads both65536-byte limits and does
-not rerun the17 passing methods. The process proof sends two actual SIGINTs to
-its own process without children; the test module's later wording correction
-preserves all six method ASTs. Both new units stop empty; five existing states
-match with zero non-ambient differences and one observer invocation.
+**10 distinct NEW Ubuntu methods pass**, plus eight separate native scheduling
+stages in c819. Its40.288-second campaign includes1.469 seconds for the focused
+methods, with zero errors/failures/skips. Original c818 remains NONPASS with zero
+test bodies run. No old or previously passed body was rerun. All nine new owned
+unit groups stop; five existing service states have zero non-ambient differences
+and one disclosed observer invocation. These are finite isolated checks.
 
-Relative to pre-audit `1cc67c50`, only `keeper/cast_process.py` changes among the
-thirteen daemon health-source files. The `ops.py` snapshot adapter changed in
-the earlier alert commit; `monitor.py` changed earlier that day. Adopt matching
-writer/checker source separately. The new backup producer pin preserves original
-package provenance: retain old releases/manifests/journals, never rewrite hashes.
-Backup/alert CLI interfaces, journal codecs, profiles, financial limits/rights
-and frozen F6 remain unchanged. No service/site/chain/journal adoption occurred;
-the desktop heartbeat stays user-paused. Real channels, off-host monitoring/
-fencing, sustained operation and independent release approval remain open.
+The thirteen daemon sources and original backup/alert cores and CLIs remain
+byte-identical to `03d6cadd`. Two new Python files, one future test-selector
+entry and four uninstalled unit templates provide the scheduling addition.
+Local automatic manifest handoff is not independent/off-host authentication,
+canonical freshness, signer fencing or release approval. Original journals,
+financial limits, existing sites/services/Anvil and the user-paused desktop
+heartbeat stay unchanged; publication adopts no running environment.
 
-The [current inventory](../reports/keeper-day-audit-20261126/FUNCTION_INVENTORY.json)
-is187 Python files /2,086 named definitions /279 lambdas, with unchanged F6
-maps61/39/4 and1,021ABI rows. Earlier [alert evidence](../reports/keeper-alerts-20261126/REVIEW.md)
-retains its original21-method/source scope. See the [operator guide](./OPERATOR_MANUAL.md)
-and [alert procedure](./KEEPER_ALERTS.md) before any separately reviewed adoption.
+Earlier [full-day audit](../reports/keeper-day-audit-20261126/REVIEW.md) retains its
+original18-method17+1 source scope and original c816 NONPASS; that evidence was
+not rerun for scheduling. Production timing/notification routing, off-host
+restore/fencing, physical durability, real providers, sustained operation and
+Q06/P20/P21/independent release approval remain open.
+
+The [current inventory](../reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json)
+is189 Python files /2,109 named definitions /279 lambdas. Frozen F6 remains
+61 project sources /39 dependencies /4 build controls and1,021 ABI rows.
 
 Earlier [exact backup/restore](../reports/keeper-backup-20261126/REVIEW.md) has 33 distinct
 NEW passes at its original source. The separate [c814 composition](../reports/ubuntu-backup-recovery-20261126/REVIEW.md)
@@ -126,8 +125,8 @@ Adopt matching keeper/checker code with original journals preserved. These two
 Python fixes alone change no checkpoint semantic source. Earlier API/ABI source
 adoption still requires newly reviewed matching checkpoints. Sites, services,
 Anvil8902, signer/null public configurations and paused heartbeat are preserved.
-Current [inventory](../reports/keeper-day-audit-20261126/FUNCTION_INVENTORY.json):
-187Python files/2,086definitions/279lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
+Current [inventory](../reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json):
+189Python files/2,109definitions/279lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
 Actual F6/V10 consumer, provider, market and production approval stay open.
 
 [Ownership-page adoption](../reports/ownership-paging-20261121/REVIEW.md) connects current source9/source10 website holdings to
@@ -234,7 +233,7 @@ transaction data stays unchanged and every live-readiness gate remainsfalse.
 That advance used its historical179file/1,979definition inventory; only
 opensea_drop.py changed in production Python at that stage. The later keeper-fix
 1,980-definition and bounded-capture1,984-definition inventories are historical
-source stages. Use the [current187-file/2,086-definition inventory](../reports/keeper-day-audit-20261126/FUNCTION_INVENTORY.json). Existing self-source-bound OpenSea artifacts must
+source stages. Use the [current189-file/2,109-definition inventory](../reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json). Existing self-source-bound OpenSea artifacts must
 be rebuilt/reviewed explicitly; do not relabel old manifests. service.py and all
 Solidity profiles/runtime/codec/checkpoint identities remain unchanged.
 

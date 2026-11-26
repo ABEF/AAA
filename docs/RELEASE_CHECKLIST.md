@@ -1,5 +1,23 @@
 # Release approval record - NOT APPROVED
 
+[Unsigned Ubuntu scheduling](../reports/keeper-scheduling-20261126/REVIEW.md)
+adds exact pinned policy/source/configuration, explicit initialization, verified
+exclusive backup selection and state-preserving operational rebind. Backups and
+observation isolate unrelated failures; shared locking, bounded no-delete capacity
+and committed-state refusal preserve pending clocks/outboxes. Existing daemon13,
+backup/alert cores and CLIs, financial controls and journals are unchanged.
+**10 NEW focused methods and eight additional native operating stages pass**
+in c819. Original c818 is NONPASS before any test started; setup-only correction
+reuses exact38source/10method ASTs. Both nine-unit labs stop empty; five existing
+states match with zero non-ambient differences and one observer invocation.
+Current [inventory](../reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json):
+189files/2,109named definitions/279lambdas; frozen F6 stays61/39/4 and1,021ABI rows.
+Source unit examples stay uninstalled with unknown cadence blocked. Read the
+[scheduling procedure](KEEPER_SCHEDULING.md); real timing/channels, off-host
+fencing/restore, durability/provider/sustained operation and release approval stay
+open. The desktop monitor remains paused. Earlier [day audit](../reports/keeper-day-audit-20261126/REVIEW.md)
+retains its distinct18-method/source scope and original failures.
+
 The [full-day keeper audit](../reports/keeper-day-audit-20261126/REVIEW.md)
 adds source corrections and18 distinct finite Ubuntu passes. Existing journals,
 financial controls and environments stay unchanged; original nonpasses remain.
@@ -8,7 +26,7 @@ sustained operation still require separate review. Release remains unapproved.
 
 The [local alert rehearsal](../reports/keeper-alerts-20261126/REVIEW.md)
 adds finite unsigned observer evidence only. Actual channel delivery, off-host
-fencing, scheduling, sustained operation and matching source/backup adoption
+fencing, production scheduling, sustained operation and matching source/backup adoption
 remain unapproved. No deployment, sealing or existing service change occurred.
 
 Final production-pool identity is unresolved: the operator will select it later.

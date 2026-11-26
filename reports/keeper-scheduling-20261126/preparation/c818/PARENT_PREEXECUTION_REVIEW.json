@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "source_head": "03d6caddbe88b552d7edab102cfae0a32847cf37",
+  "approved_fixed_c818_only": true,
+  "archive_members_verified": 48,
+  "source_closure_files": 38,
+  "new_methods_selected": [
+    "test_initialization_rotation_and_observation_preserve_exact_journal_and_config",
+    "test_unreviewed_policy_configuration_source_and_overlapping_paths_refuse_before_output",
+    "test_missing_observer_commit_and_orphan_temp_never_reinitialize_history",
+    "test_missing_health_and_journal_remain_alertable_without_resetting_pending_clock",
+    "test_competing_schedule_lock_cannot_rotate_or_mutate_observer_state",
+    "test_failed_verified_rotation_retains_selection_counts_partial_and_allows_observation",
+    "test_selected_integrity_failure_is_reported_without_guessing_another_generation",
+    "test_backup_and_observation_do_not_inherit_each_others_unrelated_storage_fault",
+    "test_reviewed_rebind_changes_only_policy_pin_and_preserves_pending_outbox_and_old_capture",
+    "test_rebind_requires_previous_proof_and_cannot_change_runtime_identity_or_paths"
+  ],
+  "existing_environment_adoption": false,
+  "public_transactions": 0,
+  "tests_run_by_this_review": 0,
+  "no_previous_green_body_selection": true,
+  "lab_timing_overrides_explicit": true,
+  "signer_masks_distinct_empty_root_mode000": true,
+  "desktop_monitor_remains_paused": true,
+  "cleanup_required_even_if_failure": true,
+  "pins": {
+    "c818.inputs.tar.gz": "b736b0171663944141eb07cf0bbd2db74f463818e50ff0f7f749e967391d053a",
+    "remote_capsule.py": "59cfe0b56ae4b1c95504d0a72ed4d1fccdb3bd0e8a06201397271de32e7b5f25",
+    "host_control.py": "35a3f7554bb71f03a24489eb436b80d92f562d0025abcb070d5c47036eb30bc3"
+  }
+}

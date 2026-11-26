@@ -471,3 +471,13 @@ tests_python/test_keeper_backup_audit.py -text whitespace=cr-at-eol,-blank-at-eo
 tests_python/test_keeper_alert_audit.py -text whitespace=cr-at-eol,-blank-at-eof
 tests_python/test_keeper_process_audit.py -text whitespace=cr-at-eol,-blank-at-eof
 reports/keeper-day-audit-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact scheduler policy source pins and native rehearsal evidence.
+keeper/scheduling.py -text whitespace=cr-at-eol
+scripts/keeper-schedule.py -text whitespace=cr-at-eol
+tests_python/test_keeper_scheduling.py -text whitespace=cr-at-eol
+keeper/zzz-keeper-backup.service -text whitespace=cr-at-eol
+keeper/zzz-keeper-backup.timer -text whitespace=cr-at-eol
+keeper/zzz-keeper-observer.service -text whitespace=cr-at-eol
+keeper/zzz-keeper-observer.timer -text whitespace=cr-at-eol
+reports/keeper-scheduling-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

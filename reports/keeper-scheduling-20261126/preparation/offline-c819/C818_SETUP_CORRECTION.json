@@ -1,0 +1,18 @@
+{
+  "all10_method_AST_hashes_identical": true,
+  "all38_source_rows_identical": true,
+  "namespace_only_preparation_changes": [
+    "build.py",
+    "hold_lock.py",
+    "run_focused_template.py",
+    "host_control.py"
+  ],
+  "network_server_actions": 0,
+  "original_c818_nonpass_retained": true,
+  "schema": 1,
+  "setup_only_changed_preparation": [
+    "capsule_template.py",
+    "lab_driver.py"
+  ],
+  "tests_executed_by_preparation": 0
+}

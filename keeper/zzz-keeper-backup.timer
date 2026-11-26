@@ -1,0 +1,13 @@
+[Unit]
+Description=PoPL reviewed unsigned backup schedule
+
+[Timer]
+Unit=zzz-keeper-backup.service
+# Deliberately invalid placeholders: production cadence is not selected.
+OnActiveSec=__REVIEWED_INITIAL_DELAY__
+OnUnitInactiveSec=__REVIEWED_BACKUP_INTERVAL__
+AccuracySec=1s
+RandomizedDelaySec=0
+
+[Install]
+WantedBy=timers.target

@@ -11,7 +11,9 @@ bundles, original configurations and release pins rather than rewriting them.
 Use `scripts/keeper-recovery.py` to capture exact keeper journal bytes, verify a
 reviewed backup and prepare an unsigned restore folder. Existing journals,
 configuration, health files and locks remain untouched. The tool performs no
-RPC requests, signing, installation or service actions.
+RPC requests, signing, installation or service actions. For recurring unsigned
+invocations, use the separate [scheduling procedure](KEEPER_SCHEDULING.md);
+the original backup/verify/restore CLI remains one-shot and installs nothing.
 
 The journal carries pending intent/hash, original fee reviews, nonce, spending,
 receipt anchors and scheduling/worker state. Ownership, LP and reward balances
@@ -22,6 +24,28 @@ The older `keeper.ops snapshot` / `verify-snapshot` commands provide diagnostic
 normalized-state integrity/age evidence. They are **not** this exact-byte backup
 and restore package. Use `keeper-recovery.py backup/verify/restore` for current
 review-only restoration preparation; neither interface authorizes adoption.
+
+## Scheduled capture and local selection
+
+A reviewed, explicitly pinned scheduler policy may create and verify a fresh
+generation before atomically selecting its exact path/manifest pin. It never
+chooses the newest directory, edits an old bundle or copies signer material.
+Automatic local selection does not replace independent retention of the
+manifest pin, original configuration, matching release or off-host backup.
+
+Capacity counts retained generations, including partial attempts. There is
+no automatic deletion: fence the relevant scheduled jobs, preserve/review
+evidence and archive approved generations outside the capture directory.
+Never remove the selected generation as an unreviewed cleanup step. Capacity
+refusal or broken observer state does not reset a journal or observer clock.
+Backup jobs do not initialize/repair the observer; observation of the selected
+backup can continue while new capture is refused.
+
+Capture/verification failures leave the earlier selection unchanged. A
+selection rename followed by failed directory synchronization has an uncertain
+old/new commit; preserve both generations and inspect the committed record.
+Do not blindly roll back, promote temporary files or repeat initialization.
+See [scheduler recovery and policy rebinding](KEEPER_SCHEDULING.md).
 
 ## What to keep separately
 

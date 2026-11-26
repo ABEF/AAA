@@ -1,0 +1,312 @@
+{
+  "application_imports_or_network_or_server_actions": 0,
+  "confirmed_design_corrections_before_execution": [
+    "Backup no longer depends on readable observer state.",
+    "Observe no longer scans or depends on unrelated generation inventory/capacity.",
+    "Post-observation stability refusal preserves any committed outbox.",
+    "Narrow rebind avoids immutable receiver/age/capacity settings while preserving exact history.",
+    "Encoded selection size is bounded before publication to match its reader."
+  ],
+  "new_test_method_count": 10,
+  "official_sources": [
+    {
+      "fact": "Already active matching service is not restarted; RemainAfterExit prevents repeated one-shot activation.",
+      "url": "https://www.freedesktop.org/software/systemd/man/255/systemd.timer.html"
+    },
+    {
+      "fact": "One-shot execution requires an explicit startup timeout; recurring failure is not permission for restart storms.",
+      "url": "https://www.freedesktop.org/software/systemd/man/255/systemd.service.html"
+    },
+    {
+      "fact": "PrivateNetwork namespaces need explicit sharing for related local receiver services.",
+      "url": "https://www.freedesktop.org/software/systemd/man/255/systemd.exec.html"
+    }
+  ],
+  "old_bodies_run": 0,
+  "production_approved": false,
+  "remaining_boundaries": [
+    "Trusted local ancestors/current UID; advisory lock is not cross-host fencing.",
+    "Same-host automatic selection is not independent/off-host authentication.",
+    "No automatic deletion: reviewed capacity can stop captures until manual archival or narrow reviewed rebind.",
+    "Source/config/path migration remains separate; rebind changes only reviewed operational policy fields.",
+    "Policy/config/source refusal itself needs supervisor/off-host monitoring; it cannot invent a queued observer incident.",
+    "Kernel filesystem stalls require native supervisor; cooperative budgets do not preempt them.",
+    "Native systemd timers, hard timeout/cgroup cleanup, actual remote channel and sustained operation require separate evidence."
+  ],
+  "reviewed_files": {
+    "keeper/scheduling.py": {
+      "bytes": 17800,
+      "definitions": [
+        {
+          "ast_sha256": "6ecdcc83888ec0b0ef3337c51bcbc5a63b6c8855bd53feb6be9c67f02baebeb9",
+          "end_line": 44,
+          "line": 40,
+          "name": "ScheduleRefusal.__init__",
+          "review": "Fixed allowlisted codes only; no arbitrary exception/path/configuration text."
+        },
+        {
+          "ast_sha256": "8a8a012428674ab397dc0bb01103d173d7f179b0643c817facdd24f9dddfe23b",
+          "end_line": 49,
+          "line": 47,
+          "name": "_need",
+          "review": "Typed fixed refusal boundary."
+        },
+        {
+          "ast_sha256": "2f7475170c5147b5889e5011ab8bd5682f4d5ab22d701d89b42acb079b91b769",
+          "end_line": 53,
+          "line": 52,
+          "name": "_hash",
+          "review": "Canonical nonzero lowercase64hex pin; booleans/nonstrings rejected."
+        },
+        {
+          "ast_sha256": "471e48df49bffa87d1eadf88a13a3c891580b9edcd1329969db723dac799dd5c",
+          "end_line": 57,
+          "line": 56,
+          "name": "_sha",
+          "review": "SHA256 exact bytes, not semantic or guessed file identity."
+        },
+        {
+          "ast_sha256": "a5f2872c6c9d34d8b1e13f18b30018f09e8c592ef05e3b4ce833794896ce06ad",
+          "end_line": 62,
+          "line": 60,
+          "name": "_integer",
+          "review": "True integers and explicit bounds; bool is excluded."
+        },
+        {
+          "ast_sha256": "3d878fbd624a8600ecd4f2cb376387b3c0d3968059e4b4de403968ffde08ed0f",
+          "end_line": 69,
+          "line": 65,
+          "name": "_absolute",
+          "review": "Absolute path, no traversal/UNC/NUL; existing recovery path checks reused."
+        },
+        {
+          "ast_sha256": "60c86972c6bdc6817912f54385df0a589a16bbb99b90fbd5c3797840cefeabd2",
+          "end_line": 74,
+          "line": 72,
+          "name": "_separate",
+          "review": "Reject equal, nested and ancestor overlap with protected runtime/signer references."
+        },
+        {
+          "ast_sha256": "c498d281b9cc22ef8fdc6c3c314c266a3ff084b484250c79a98c1f6ac42ebdd8",
+          "end_line": 80,
+          "line": 77,
+          "name": "_remaining",
+          "review": "Positive floor of one shared absolute cooperative deadline; no per-call reset."
+        },
+        {
+          "ast_sha256": "9abd5b8e4aa78adc60f528cbcf2d6bdeaa4e3141058ec65beddea740864e3c1a",
+          "end_line": 89,
+          "line": 83,
+          "name": "_private_directory",
+          "review": "Exact invoking UID0700, protected parent and stable inode; trusted ancestors/UID boundary explicit."
+        },
+        {
+          "ast_sha256": "a065f98b963401565617a9152c5293389902dedcaac4dbfe0393bf58f95c5ade",
+          "end_line": 105,
+          "line": 92,
+          "name": "_private_inventory",
+          "review": "Exact small allowed file set, private regular nonlinks; required state cannot silently disappear."
+        },
+        {
+          "ast_sha256": "5cbdc871c41d3a24dbd4f99e588e2705fea60fe062ec03d573852cc04ba81a54",
+          "end_line": 158,
+          "line": 108,
+          "name": "_load",
+          "review": "External raw policy pin plus exact schema/19 source pins/config raw hash; metadata refs only so missing journal/health remains observable."
+        },
+        {
+          "ast_sha256": "7d904ea553f0f6af27bcd19bd7e5b09e6d4deb0ae0f3d4ace2e72cdb3ba5ad17",
+          "end_line": 168,
+          "line": 161,
+          "name": "_stable",
+          "review": "Re-read exact policy/config/source pins before publication and after observation; late uncertainty never rolls back outbox."
+        },
+        {
+          "ast_sha256": "4da4d7c528b02c80c63d022e297a39e1b804300e010f01bbe5ca999171e0ae9f",
+          "end_line": 186,
+          "line": 171,
+          "name": "_selection",
+          "review": "Typed bounded selected record; exact policy/config/deployment binding; generation grammar blocks traversal; no newest-folder fallback."
+        },
+        {
+          "ast_sha256": "8876c0e45169711fa229af8b1c8d83bcde0f54b7d63f89638630f135de770a0a",
+          "end_line": 195,
+          "line": 189,
+          "name": "_observer_state",
+          "review": "Require committed valid alert state without creating it; observer history is never automatically reset."
+        },
+        {
+          "ast_sha256": "f60579eddd77dbed1c2682d1598b4847519eb856564f0a77d3299894faf7fa7f",
+          "end_line": 213,
+          "line": 198,
+          "name": "_generation_count",
+          "review": "Bounded complete inventory only for capture capacity, counting partial generations; never gates observing the selected backup."
+        },
+        {
+          "ast_sha256": "c2b75c1641864269ac57e9d7b9996f8b9701447f37e12acee0c8348689c3f1c5",
+          "end_line": 230,
+          "line": 216,
+          "name": "_publish",
+          "review": "Size-check before atomic commit; stable old/new policy for rebind; post-rename fsync uncertainty remains preserve-and-review."
+        },
+        {
+          "ast_sha256": "aaeb935caa0c5eebe6525829a2305204acac0e4f1feb419cb0f7604450eb1be0",
+          "end_line": 258,
+          "line": 233,
+          "name": "_backup",
+          "review": "Exclusive new random generation; real exact backup then verify before selection; failure preserves prior selection and retains partial attempt."
+        },
+        {
+          "ast_sha256": "a2f6c929d857a5b2cd66ab195eabca9b0137ade938a5f704c35db018890820a1",
+          "end_line": 277,
+          "line": 261,
+          "name": "_observe",
+          "review": "Existing observer handles health/journal incidents and selected-backup verification; no signer/RPC/backup capture or fallback selection."
+        },
+        {
+          "ast_sha256": "6fc9cd31e0da3c52ff3541fef315b8fbaa65a1d32fa792d9db5245d2af2ef804",
+          "end_line": 367,
+          "line": 280,
+          "name": "run_once",
+          "review": "Explicit init only; shared process lock; separate backup/observe storage admission; narrow policy-only rebind preserves outbox/pending and capture identity."
+        }
+      ],
+      "sha256": "d79be28db6bac2978f7c8efdfb641e037ce6d2024faa4e60e02f6f7c62049f4a"
+    },
+    "scripts/keeper-schedule.py": {
+      "bytes": 2140,
+      "definitions": [
+        {
+          "ast_sha256": "bf0e438fa50ea6d7de710d51b0ff776cd0888910ff9e3543e743b3f9361ba891",
+          "end_line": 16,
+          "line": 14,
+          "name": "SafeArgumentParser.error",
+          "review": "Suppress raw invalid argument echo in diagnostics."
+        },
+        {
+          "ast_sha256": "0341af27175dfbeb44003c36bda8db6c80ff7ba9e0fe6439fd13f21830def7a7",
+          "end_line": 45,
+          "line": 19,
+          "name": "main",
+          "review": "Explicit action and pin inputs; old-policy flags only rebind; sanitized JSON false readiness, no service installation/signing."
+        }
+      ],
+      "sha256": "5c07ec965eba5c5a2d94895ba050f17d49b9689923cf67a05f20f2d0bf29c0b4"
+    },
+    "tests_python/test_keeper_scheduling.py": {
+      "bytes": 15979,
+      "definitions": [
+        {
+          "ast_sha256": "7e2b61bdb800307ce234842ec7d11f79d199671c8e9c3ff5ef97957790c0a087",
+          "end_line": 25,
+          "line": 24,
+          "name": "digest",
+          "review": "NEW test/fixture composition reviewed statically; execution not claimed."
+        },
+        {
+          "ast_sha256": "022d2e2feb8ae193b6a65f544cf6814f6210c2ba7401b9b79c9f6fdaab268ce2",
+          "end_line": 54,
+          "line": 29,
+          "name": "KeeperSchedulingTests.setUp",
+          "review": "NEW test/fixture composition reviewed statically; execution not claimed."
+        },
+        {
+          "ast_sha256": "ccfc161b098be145b2d53dad15f91cbfe55bf1ad5f9400ac25d6035ec950fa45",
+          "end_line": 60,
+          "line": 56,
+          "name": "KeeperSchedulingTests.write_policy",
+          "review": "NEW test/fixture composition reviewed statically; execution not claimed."
+        },
+        {
+          "ast_sha256": "b869ba570d28baa0994f910329b14e2cd3373da1bb40553be121f52d08263121",
+          "end_line": 75,
+          "line": 62,
+          "name": "KeeperSchedulingTests.run_action",
+          "review": "NEW test/fixture composition reviewed statically; execution not claimed."
+        },
+        {
+          "ast_sha256": "5979a17e4eb310effcb936c17df4409bd0c09d36b28112238ee1c723170cfe66",
+          "end_line": 78,
+          "line": 77,
+          "name": "KeeperSchedulingTests.observer_state",
+          "review": "NEW test/fixture composition reviewed statically; execution not claimed."
+        },
+        {
+          "ast_sha256": "f3e046420e749ab2d75d3618efddfef677bc4640ae5c712f58b01cc321d597a5",
+          "end_line": 95,
+          "line": 80,
+          "name": "KeeperSchedulingTests.test_initialization_rotation_and_observation_preserve_exact_journal_and_config",
+          "review": "NEW test/fixture composition reviewed statically; execution not claimed."
+        },
+        {
+          "ast_sha256": "73bf952810fe88bf8644a1844d37bd953d65bb1d25559965eabeb1f34e0c70e2",
+          "end_line": 117,
+          "line": 97,
+          "name": "KeeperSchedulingTests.test_unreviewed_policy_configuration_source_and_overlapping_paths_refuse_before_output",
+          "review": "NEW test/fixture composition reviewed statically; execution not claimed."
+        },
+        {
+          "ast_sha256": "b3cc44693d00aa99a84bebf5708a446bb65b2f00e0f9e8b21b16296e99ca51f6",
+          "end_line": 139,
+          "line": 119,
+          "name": "KeeperSchedulingTests.test_missing_observer_commit_and_orphan_temp_never_reinitialize_history",
+          "review": "NEW test/fixture composition reviewed statically; execution not claimed."
+        },
+        {
+          "ast_sha256": "673859cdb6f7f754d01436b7e82955c43cb86817a567ddc035946248d9c1d5eb",
+          "end_line": 159,
+          "line": 141,
+          "name": "KeeperSchedulingTests.test_missing_health_and_journal_remain_alertable_without_resetting_pending_clock",
+          "review": "NEW test/fixture composition reviewed statically; execution not claimed."
+        },
+        {
+          "ast_sha256": "fcd8850499385f6e0e3e3d0f7da02278fc9020242c946e1dcb70574b00ff9e37",
+          "end_line": 174,
+          "line": 161,
+          "name": "KeeperSchedulingTests.test_competing_schedule_lock_cannot_rotate_or_mutate_observer_state",
+          "review": "NEW test/fixture composition reviewed statically; execution not claimed."
+        },
+        {
+          "ast_sha256": "acbda53366e77a2d64436c2125b9df46476b6393656ceba22e3e4ec2110ed75b",
+          "end_line": 196,
+          "line": 176,
+          "name": "KeeperSchedulingTests.test_failed_verified_rotation_retains_selection_counts_partial_and_allows_observation",
+          "review": "NEW test/fixture composition reviewed statically; execution not claimed."
+        },
+        {
+          "ast_sha256": "e1c0e2ffe37a05f6ccc5209d112ac09878db6092c1ac6f151f3a0f6291188e2c",
+          "end_line": 218,
+          "line": 198,
+          "name": "KeeperSchedulingTests.test_selected_integrity_failure_is_reported_without_guessing_another_generation",
+          "review": "NEW test/fixture composition reviewed statically; execution not claimed."
+        },
+        {
+          "ast_sha256": "e4d436cdb545045a248e6b3cd6ad335e8f85983eaa21a57c5735433b374d5a01",
+          "end_line": 237,
+          "line": 220,
+          "name": "KeeperSchedulingTests.test_backup_and_observation_do_not_inherit_each_others_unrelated_storage_fault",
+          "review": "NEW test/fixture composition reviewed statically; execution not claimed."
+        },
+        {
+          "ast_sha256": "93c75e97918a0baab694f2b00620a1b3c03c36b89a82b14bfb0ef2b4c0daa7d6",
+          "end_line": 265,
+          "line": 239,
+          "name": "KeeperSchedulingTests.test_reviewed_rebind_changes_only_policy_pin_and_preserves_pending_outbox_and_old_capture",
+          "review": "NEW test/fixture composition reviewed statically; execution not claimed."
+        },
+        {
+          "ast_sha256": "8a3ab8b9e9ccbb311037066b71cf738d39db243e8c00758619032c20809905c6",
+          "end_line": 290,
+          "line": 267,
+          "name": "KeeperSchedulingTests.test_rebind_requires_previous_proof_and_cannot_change_runtime_identity_or_paths",
+          "review": "NEW test/fixture composition reviewed statically; execution not claimed."
+        }
+      ],
+      "sha256": "15a4f2bf088fc1853437838c3925f2eb5be9295305880dbaa052ef390bedae72"
+    }
+  },
+  "schema": 1,
+  "scope": "Independent static new scheduler/CLI and NEW regression review; not runtime qualification.",
+  "success": true,
+  "test_bodies_run": 0
+}

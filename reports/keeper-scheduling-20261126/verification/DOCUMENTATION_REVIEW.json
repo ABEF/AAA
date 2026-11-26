@@ -1,0 +1,532 @@
+{
+  "application_test_bodies_executed": 0,
+  "baseline": "03d6caddbe88b552d7edab102cfae0a32847cf37",
+  "documentation_consistent": false,
+  "evidence_levels": {
+    "additional_native_operating_stages": 8,
+    "new_focused_methods": 10,
+    "not_summed_as_independent_tests": true,
+    "original_c818_zero_body_nonpass_retained": true
+  },
+  "findings": [
+    {
+      "file": "docs/AUDIT_FINDINGS.md",
+      "fix": "Update only this current line to189Pythonfiles/2109nameddefinitions; preserve historical dated and187scenario counts.",
+      "issue": "Current scheduling inventory pointer is followed by stale187/2086 counts.",
+      "line": 108
+    },
+    {
+      "file": "docs/IMPLEMENTATION_STATUS.md",
+      "fix": "Update only this current line to189Pythonfiles/2109nameddefinitions; preserve historical dated and187scenario counts.",
+      "issue": "Current scheduling inventory pointer is followed by stale187/2086 counts.",
+      "line": 106
+    },
+    {
+      "file": "docs/ROADMAP.md",
+      "fix": "Update only this current line to189Pythonfiles/2109nameddefinitions; preserve historical dated and187scenario counts.",
+      "issue": "Current scheduling inventory pointer is followed by stale187/2086 counts.",
+      "line": 100
+    }
+  ],
+  "historical_artifact_families": {
+    "keeper-alerts-20261126": {
+      "bound_bytes": 5099935,
+      "bound_files": 38,
+      "manifest_sha256": "ba28a746209efd6b081f37900bb148a51c4f23299c41acef79827ab7b604cb8f"
+    },
+    "keeper-backup-20261126": {
+      "bound_bytes": 5059242,
+      "bound_files": 31,
+      "manifest_sha256": "87ecf554727a0f214977fae01b3fc849b64b4d9db5b4ec503246c1990f7bf659"
+    },
+    "keeper-day-audit-20261126": {
+      "bound_bytes": 5703216,
+      "bound_files": 80,
+      "manifest_sha256": "2751ff48398abdc71648cef6aa7c02fec88687cde48cb11185f1a26a665537b5"
+    },
+    "keeper-doc-sync-20261126": {
+      "bound_bytes": 6617,
+      "bound_files": 3,
+      "manifest_sha256": "3b755a99a6da6fd6442c94b88775b5dec83cc4003a76e9fc96c0727cf7cf6e8b"
+    },
+    "keeper-full-audit-20261126": {
+      "bound_bytes": 6047768,
+      "bound_files": 77,
+      "manifest_sha256": "522788216fcd0b50e0e6f78f069278d6ed47e53f876e7d388de91a490fe1feb5"
+    },
+    "ubuntu-backup-recovery-20261126": {
+      "bound_bytes": 846948,
+      "bound_files": 103,
+      "manifest_sha256": "200b6bccbf3b147079c9c46eb09ce62442e438ca388b680a98cc055d42be22c2"
+    },
+    "ubuntu-daemon-storage-20261126": {
+      "bound_bytes": 865334,
+      "bound_files": 88,
+      "manifest_sha256": "81d3f76d5973c8ef132eae0b5754087f428a6c3ded421a3a2ae616a12f046e2b"
+    }
+  },
+  "historical_bound_bytes": 23629060,
+  "historical_bound_files": 420,
+  "historical_manifest_count": 7,
+  "inventory": {
+    "F6_controls": 4,
+    "F6_dependencies": 39,
+    "F6_project_sources": 61,
+    "abi_rows": 1021,
+    "lambdas": 279,
+    "named_definitions": 2109,
+    "python_files": 189
+  },
+  "limitations": [
+    "Only new/changed Markdown targets were checked; historical entirecorpus anchors/external URL reachability were not probed.",
+    "Historical bound-artifact bytes and manifest identities were checked against03d6; current publication/adoption is separate.",
+    "Narrative/evidence consistency review is static; runtime facts retain their independent Ubuntu verification scopes.",
+    "Local file SHA256 pins are not loaded-code/host authenticity proof."
+  ],
+  "link_review": {
+    "checked_new_links": [
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "source": "AGENTS.md",
+        "target": "reports/keeper-scheduling-20261126/REVIEW.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "docs/KEEPER_SCHEDULING.md",
+        "source": "AGENTS.md",
+        "target": "docs/KEEPER_SCHEDULING.md"
+      },
+      {
+        "occurrences": 2,
+        "resolved_file": "reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json",
+        "source": "AGENTS.md",
+        "target": "reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "source": "PROJECT_CONTEXT.md",
+        "target": "reports/keeper-scheduling-20261126/REVIEW.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "docs/KEEPER_SCHEDULING.md",
+        "source": "PROJECT_CONTEXT.md",
+        "target": "docs/KEEPER_SCHEDULING.md"
+      },
+      {
+        "occurrences": 2,
+        "resolved_file": "reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json",
+        "source": "PROJECT_CONTEXT.md",
+        "target": "reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "source": "README.md",
+        "target": "reports/keeper-scheduling-20261126/REVIEW.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "docs/KEEPER_SCHEDULING.md",
+        "source": "README.md",
+        "target": "docs/KEEPER_SCHEDULING.md"
+      },
+      {
+        "occurrences": 2,
+        "resolved_file": "reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json",
+        "source": "README.md",
+        "target": "reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json"
+      },
+      {
+        "occurrences": 2,
+        "resolved_file": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "source": "TODO.md",
+        "target": "reports/keeper-scheduling-20261126/REVIEW.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "source": "docs/AUDIT_FINDINGS.md",
+        "target": "../reports/keeper-scheduling-20261126/REVIEW.md"
+      },
+      {
+        "occurrences": 2,
+        "resolved_file": "reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json",
+        "source": "docs/AUDIT_FINDINGS.md",
+        "target": "../reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "docs/KEEPER_SCHEDULING.md",
+        "source": "docs/AUDIT_FINDINGS.md",
+        "target": "KEEPER_SCHEDULING.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "source": "docs/IMPLEMENTATION_STATUS.md",
+        "target": "../reports/keeper-scheduling-20261126/REVIEW.md"
+      },
+      {
+        "occurrences": 2,
+        "resolved_file": "reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json",
+        "source": "docs/IMPLEMENTATION_STATUS.md",
+        "target": "../reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "docs/KEEPER_SCHEDULING.md",
+        "source": "docs/IMPLEMENTATION_STATUS.md",
+        "target": "KEEPER_SCHEDULING.md"
+      },
+      {
+        "occurrences": 2,
+        "resolved_file": "docs/KEEPER_SCHEDULING.md",
+        "source": "docs/KEEPER_ALERTS.md",
+        "target": "KEEPER_SCHEDULING.md"
+      },
+      {
+        "occurrences": 2,
+        "resolved_file": "docs/KEEPER_SCHEDULING.md",
+        "source": "docs/KEEPER_BACKUP.md",
+        "target": "KEEPER_SCHEDULING.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "docs/KEEPER_SCHEDULING.md",
+        "source": "docs/KEEPER_RECOVERY.md",
+        "target": "KEEPER_SCHEDULING.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "source": "docs/KEEPER_REHEARSALS.md",
+        "target": "../reports/keeper-scheduling-20261126/REVIEW.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "config/keeper-scheduling.example.json",
+        "source": "docs/KEEPER_SCHEDULING.md",
+        "target": "../config/keeper-scheduling.example.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "docs/KEEPER_SCHEDULING.md",
+        "source": "docs/OPERATOR_MANUAL.md",
+        "target": "KEEPER_SCHEDULING.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "docs/KEEPER_SCHEDULING.md",
+        "source": "docs/README.md",
+        "target": "KEEPER_SCHEDULING.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "source": "docs/README.md",
+        "target": "../reports/keeper-scheduling-20261126/REVIEW.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "source": "docs/RELEASE_CHECKLIST.md",
+        "target": "../reports/keeper-scheduling-20261126/REVIEW.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json",
+        "source": "docs/RELEASE_CHECKLIST.md",
+        "target": "../reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "docs/KEEPER_SCHEDULING.md",
+        "source": "docs/RELEASE_CHECKLIST.md",
+        "target": "KEEPER_SCHEDULING.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-day-audit-20261126/REVIEW.md",
+        "source": "docs/RELEASE_CHECKLIST.md",
+        "target": "../reports/keeper-day-audit-20261126/REVIEW.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "source": "docs/ROADMAP.md",
+        "target": "../reports/keeper-scheduling-20261126/REVIEW.md"
+      },
+      {
+        "occurrences": 2,
+        "resolved_file": "reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json",
+        "source": "docs/ROADMAP.md",
+        "target": "../reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "docs/KEEPER_SCHEDULING.md",
+        "source": "docs/ROADMAP.md",
+        "target": "KEEPER_SCHEDULING.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "source": "docs/WORKLOAD_COVERAGE.md",
+        "target": "../reports/keeper-scheduling-20261126/REVIEW.md"
+      },
+      {
+        "occurrences": 3,
+        "resolved_file": "reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json",
+        "source": "docs/WORKLOAD_COVERAGE.md",
+        "target": "../reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "docs/KEEPER_SCHEDULING.md",
+        "source": "docs/WORKLOAD_COVERAGE.md",
+        "target": "KEEPER_SCHEDULING.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "source": "docs/WORK_HANDOFF.md",
+        "target": "../reports/keeper-scheduling-20261126/REVIEW.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "docs/KEEPER_SCHEDULING.md",
+        "source": "docs/WORK_HANDOFF.md",
+        "target": "KEEPER_SCHEDULING.md"
+      },
+      {
+        "occurrences": 3,
+        "resolved_file": "reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json",
+        "source": "docs/WORK_HANDOFF.md",
+        "target": "../reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "source": "reports/README.md",
+        "target": "keeper-scheduling-20261126/REVIEW.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "docs/KEEPER_SCHEDULING.md",
+        "source": "reports/README.md",
+        "target": "../docs/KEEPER_SCHEDULING.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "keeper/scheduling.py",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "../../keeper/scheduling.py"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "scripts/keeper-schedule.py",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "../../scripts/keeper-schedule.py"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "config/keeper-scheduling.example.json",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "../../config/keeper-scheduling.example.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/review/CORE_REVIEW.json",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "review/CORE_REVIEW.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/review/DESIGN_REVIEW.json",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "review/DESIGN_REVIEW.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/evidence/c819/fetch-003/FOCUSED_RESULT.json",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "evidence/c819/fetch-003/FOCUSED_RESULT.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/evidence/c819/fetch-004/FOCUSED_PROGRESS.json",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "evidence/c819/fetch-004/FOCUSED_PROGRESS.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/evidence/c819/fetch-001/RESULT.json",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "evidence/c819/fetch-001/RESULT.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/verification/UBUNTU_VERIFICATION.json",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "verification/UBUNTU_VERIFICATION.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/evidence/c818/fetch-001/RESULT.json",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "evidence/c818/fetch-001/RESULT.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/review/C818_SETUP_REVIEW.json",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "review/C818_SETUP_REVIEW.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/evidence/c818/fetch-004/FINAL.json",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "evidence/c818/fetch-004/FINAL.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/evidence/c819/fetch-002/FINAL.json",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "evidence/c819/fetch-002/FINAL.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/verification/HOST_PRESERVATION.json",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "verification/HOST_PRESERVATION.json"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "docs/OPERATOR_MANUAL.md",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "../../docs/OPERATOR_MANUAL.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "docs/KEEPER_SCHEDULING.md",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "../../docs/KEEPER_SCHEDULING.md"
+      },
+      {
+        "occurrences": 1,
+        "resolved_file": "reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json",
+        "source": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "target": "FUNCTION_INVENTORY.json"
+      },
+      {
+        "occurrences": 2,
+        "resolved_file": "reports/keeper-scheduling-20261126/REVIEW.md",
+        "source": "docs/project-todo.json",
+        "target": "reports/keeper-scheduling-20261126/REVIEW.md"
+      }
+    ],
+    "missing_or_invalid_local_targets": [],
+    "new_local_link_occurrences": 71,
+    "resolved_target_file_sha256": {
+      "config/keeper-scheduling.example.json": "403e430600d5ebfc31eb32082f7a9790c34b5ea2444a1efbb77c64cb91c6d5d9",
+      "docs/KEEPER_SCHEDULING.md": "af5d7e39850abd6f60b0558c141d75843d791077d2138db0151e5e27c763a4e8",
+      "docs/OPERATOR_MANUAL.md": "954eabb3f2c0ecdeacf1d9ded96c007b7c28258e936a8a063364e95d17e1631c",
+      "keeper/scheduling.py": "d79be28db6bac2978f7c8efdfb641e037ce6d2024faa4e60e02f6f7c62049f4a",
+      "reports/keeper-day-audit-20261126/REVIEW.md": "020e0f2b33b2fff4e185c132a4940fb1eee8734e0005fbbc45b4693a77fbd3a0",
+      "reports/keeper-scheduling-20261126/FUNCTION_INVENTORY.json": "6baa3bfd9bfde7cccaa963dbc695489f14011517b4dcd4e18e748d5591635321",
+      "reports/keeper-scheduling-20261126/REVIEW.md": "c75398146b990b62b120108a7b6740c466cc405e5dd6d0964dcd5c7e2b7d78a6",
+      "reports/keeper-scheduling-20261126/evidence/c818/fetch-001/RESULT.json": "f29a85c506412f135c65c1d90b98b32b863cd9761d5cf0cfd1a3721ca670b286",
+      "reports/keeper-scheduling-20261126/evidence/c818/fetch-004/FINAL.json": "22c293425ebbb274874fc3443b6aae0262cec581e40d35a6e6efed06bc4b278a",
+      "reports/keeper-scheduling-20261126/evidence/c819/fetch-001/RESULT.json": "fe2062fe8f4c09f515647d3178d1fecf3dc59669807f9a349e9b1416917f0f8e",
+      "reports/keeper-scheduling-20261126/evidence/c819/fetch-002/FINAL.json": "ea06808f9de6336c21a38069efa2bee305f97f7a7e6fb5de9471eb5694ee1e08",
+      "reports/keeper-scheduling-20261126/evidence/c819/fetch-003/FOCUSED_RESULT.json": "94c2adb8232ed0527f5575d383408a2cc8507464883c7d4f5984a09aabec64ea",
+      "reports/keeper-scheduling-20261126/evidence/c819/fetch-004/FOCUSED_PROGRESS.json": "047b8cdb91173e7c8b22eda58d87c4b0c0c9ab11c3249a82009f7e8be3e06aac",
+      "reports/keeper-scheduling-20261126/review/C818_SETUP_REVIEW.json": "93d7d1c586892e4e1f6a0b730200c0abbee3b56c4b120d3905fe2d58e7faedf4",
+      "reports/keeper-scheduling-20261126/review/CORE_REVIEW.json": "3ef5ef3a8372547c8e1c9549b29cf96c7fcbb55077d41eae57d47559b6516f7e",
+      "reports/keeper-scheduling-20261126/review/DESIGN_REVIEW.json": "3b89a2fff2a1d212f02af2c4dd007f3510c1f46340b9c8dc00f219ab32f79c10",
+      "reports/keeper-scheduling-20261126/verification/HOST_PRESERVATION.json": "740e85f6342fe1e16f5de23e43c198a782344954c95524446c5b4cc5a3434f56",
+      "reports/keeper-scheduling-20261126/verification/UBUNTU_VERIFICATION.json": "b11d5328d299631a0324eec5c7d347fb18f758c04af7d71e111c1864d82d5b67",
+      "scripts/keeper-schedule.py": "5c07ec965eba5c5a2d94895ba050f17d49b9689923cf67a05f20f2d0bf29c0b4"
+    },
+    "reviewed_doc_sha256": {
+      "AGENTS.md": "57085dcf91546f4cddb70363d925287537fd3e422d85abbc2d575ce35f561b66",
+      "PROJECT_CONTEXT.md": "792fbe44db9e5da79f3cc7c158a74bc2108216d1497ef3988b85e568b23258e6",
+      "README.md": "5cf80a3729d5fc642ca6942e38327a8262246fe8303a3b476d1303de1956f3e4",
+      "TODO.md": "dea308de1ae9f14486c4c26fb3cd54b41bf66efc1402b649eef4ca704b03d6ce",
+      "docs/AUDIT_FINDINGS.md": "427167ce770d48ad99b453f668913742e5e6b1c292c5273268d7fb0dabc4f87e",
+      "docs/IMPLEMENTATION_STATUS.md": "3528655b9629a6da3a10c89b14836f340ce70592b370cf0dde6176a3b0be81b9",
+      "docs/KEEPER_ALERTS.md": "d46c1e658f2a4f4c4e545450ff8d196cdf44b5fe226c7be09c123dba1443c539",
+      "docs/KEEPER_BACKUP.md": "b0dc17cdb4e6ae8dce80cd43be4de6eef8a002b5dcbd166e7c642c9a1fac5ca6",
+      "docs/KEEPER_RECOVERY.md": "5c9db29772155f8dfb4bc6548956f21decf035efd19784c0adf0779db4cbcf12",
+      "docs/KEEPER_REHEARSALS.md": "a656407190977a8370384db9dd1385b0bd62f93f08ff9ccece3c304983b95f6b",
+      "docs/KEEPER_SCHEDULING.md": "af5d7e39850abd6f60b0558c141d75843d791077d2138db0151e5e27c763a4e8",
+      "docs/OPERATOR_MANUAL.md": "954eabb3f2c0ecdeacf1d9ded96c007b7c28258e936a8a063364e95d17e1631c",
+      "docs/README.md": "1991bef451d2373a8ed477499e6b9b1f71b41712bd4d477827fb71a4a128ceab",
+      "docs/RELEASE_CHECKLIST.md": "291c91f7984f22ef1170d66008ee8f145ad0d873eb7aaa52d2d28faf251005e6",
+      "docs/ROADMAP.md": "7415ae30de040b58ec882ae4fab703cd9dd531972656b6f265f9733d42c34e85",
+      "docs/WORKLOAD_COVERAGE.md": "971b6d72f4bc2852561c8977cb4d1c425c22243aed670c0b31384680507d9056",
+      "docs/WORK_HANDOFF.md": "66905abc385a55530d4d32ccae44af76f1e1c68f6a7e86c90df3bb0fe35c1316",
+      "docs/project-todo.json": "c117978b31dd9d67dd919eb2e6f3f8d7e89d3ad022efc4d90549026189abb88d",
+      "reports/README.md": "a0a094d4c0541d91282ff26646510b08c82d11cd7b09ffb13683bbb84dba9a4f",
+      "reports/keeper-scheduling-20261126/REVIEW.md": "c75398146b990b62b120108a7b6740c466cc405e5dd6d0964dcd5c7e2b7d78a6"
+    },
+    "reviewed_document_count": 20,
+    "reviewed_markdown_files": [
+      "AGENTS.md",
+      "PROJECT_CONTEXT.md",
+      "README.md",
+      "TODO.md",
+      "docs/AUDIT_FINDINGS.md",
+      "docs/IMPLEMENTATION_STATUS.md",
+      "docs/KEEPER_ALERTS.md",
+      "docs/KEEPER_BACKUP.md",
+      "docs/KEEPER_RECOVERY.md",
+      "docs/KEEPER_REHEARSALS.md",
+      "docs/KEEPER_SCHEDULING.md",
+      "docs/OPERATOR_MANUAL.md",
+      "docs/README.md",
+      "docs/RELEASE_CHECKLIST.md",
+      "docs/ROADMAP.md",
+      "docs/WORKLOAD_COVERAGE.md",
+      "docs/WORK_HANDOFF.md",
+      "reports/README.md",
+      "reports/keeper-scheduling-20261126/REVIEW.md"
+    ],
+    "success": true,
+    "unique_target_files": 19
+  },
+  "network_or_server_actions": 0,
+  "protected_dirty_hashes": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "reviewed_invariants": [
+    "Original backup/alert CLIs remain one-shot; scheduler coordinates unsigned jobs only.",
+    "Exactpolicy/config/source pins and19-file scope agree across procedure/report/ledger.",
+    "Backup remains independent of broken observer state; observer does not scan unrelated generations.",
+    "Capture/verification failure keeps prior selection; post-rename/fsync uncertainty requires review without rollback.",
+    "Capacity counts partials and never automatically deletes or chooses newest.",
+    "Operational rebind retains sameconfig/path/source identities and preserves observer/selected generation bytes.",
+    "Two distinct root-owned empty000 signer masks preserve the original metadata-alias guard.",
+    "The methods and native stages are separate evidence levels; no eighteen-test sum.",
+    "Original c818 failed before any method body; corrected c819 reused exact source/method ASTs.",
+    "No existing environment adoption, production timing approval, off-host/authenticity/fencing/durability/provider/sustained qualification is claimed."
+  ],
+  "schema": 1,
+  "scope": "Final static documentation/link/Todo/protected-file/historical-artifact review only. No application imports, test bodies, network or server actions.",
+  "success": false,
+  "task_identity_status_sha256": "64d1b13fa156eb5ec51db9dbb64188cb444e3472401a6c3bcef6c65c22446b58",
+  "todo_status_counts": {
+    "done": 35,
+    "excluded": 1,
+    "progress": 40,
+    "todo": 7
+  },
+  "todo_tasks": 83,
+  "unchanged_todo_ids_statuses": true
+}

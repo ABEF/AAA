@@ -1,0 +1,48 @@
+{
+  "archive_members": 48,
+  "bundle": {
+    "bytes": 206176,
+    "sha256": "b736b0171663944141eb07cf0bbd2db74f463818e50ff0f7f749e967391d053a"
+  },
+  "capture_bytes": 65536,
+  "controller": {
+    "bytes": 22172,
+    "sha256": "59cfe0b56ae4b1c95504d0a72ed4d1fccdb3bd0e8a06201397271de32e7b5f25"
+  },
+  "driver_timeout_seconds": 180,
+  "existing_environment_adoption": false,
+  "focused_runner": {
+    "bytes": 6978,
+    "sha256": "a6976dcde88135601202645dfe1b20f8f1f6b2980f240ce3c83619ea81ded057"
+  },
+  "network_or_server_actions": 0,
+  "new_method_count": 10,
+  "new_methods": [
+    "test_initialization_rotation_and_observation_preserve_exact_journal_and_config",
+    "test_unreviewed_policy_configuration_source_and_overlapping_paths_refuse_before_output",
+    "test_missing_observer_commit_and_orphan_temp_never_reinitialize_history",
+    "test_missing_health_and_journal_remain_alertable_without_resetting_pending_clock",
+    "test_competing_schedule_lock_cannot_rotate_or_mutate_observer_state",
+    "test_failed_verified_rotation_retains_selection_counts_partial_and_allows_observation",
+    "test_selected_integrity_failure_is_reported_without_guessing_another_generation",
+    "test_backup_and_observation_do_not_inherit_each_others_unrelated_storage_fault",
+    "test_reviewed_rebind_changes_only_policy_pin_and_preserves_pending_outbox_and_old_capture",
+    "test_rebind_requires_previous_proof_and_cannot_change_runtime_identity_or_paths"
+  ],
+  "production_approved": false,
+  "root_driver_only_caps": [
+    "CHOWN",
+    "DAC_OVERRIDE",
+    "FOWNER"
+  ],
+  "schema": 1,
+  "source_head": "03d6caddbe88b552d7edab102cfae0a32847cf37",
+  "source_manifest": {
+    "bytes": 21938,
+    "sha256": "0abe985a413ca84016696f8f64df6e0b1fba170756aa8cf3cb852b362bb14eb4"
+  },
+  "source_members": 38,
+  "tests_run": 0,
+  "work_target_seconds": 165,
+  "worker_caps_empty": true
+}

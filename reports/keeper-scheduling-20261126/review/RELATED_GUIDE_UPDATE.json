@@ -1,0 +1,29 @@
+{
+  "files": {
+    "docs/KEEPER_ALERTS.md": {
+      "after_bytes": 13859,
+      "after_sha256": "d46c1e658f2a4f4c4e545450ff8d196cdf44b5fe226c7be09c123dba1443c539",
+      "before_bytes": 12271,
+      "before_sha256": "16db0bb22b88dc3dc19fadca1199e0ebb1c7e05361f0c939b2882fe49d71f894",
+      "unchanged_bytes_preserved": true
+    },
+    "docs/KEEPER_BACKUP.md": {
+      "after_bytes": 13530,
+      "after_sha256": "b0dc17cdb4e6ae8dce80cd43be4de6eef8a002b5dcbd166e7c642c9a1fac5ca6",
+      "before_bytes": 12054,
+      "before_sha256": "033194076edf0edf68338d450491bbb6aca62d4bfda63e17156fae17d5387bc6",
+      "unchanged_bytes_preserved": true
+    },
+    "docs/KEEPER_RECOVERY.md": {
+      "after_bytes": 62763,
+      "after_sha256": "5c9db29772155f8dfb4bc6548956f21decf035efd19784c0adf0779db4cbcf12",
+      "before_bytes": 61365,
+      "before_sha256": "b95bc858520fe5f2f4b5bd7f58c613dd840ae469f07372b7ae20d8bfad689e96",
+      "unchanged_bytes_preserved": true
+    }
+  },
+  "new_native_passes_claimed": false,
+  "schema": 1,
+  "server_actions": 0,
+  "test_bodies_or_application_imports": 0
+}
