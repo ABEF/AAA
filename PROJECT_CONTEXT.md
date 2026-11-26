@@ -1,5 +1,18 @@
 # Project context
 
+[Ubuntu backup adoption](reports/ubuntu-backup-recovery-20261126/REVIEW.md) now has one successful c814
+known-hash pending journal -> exact backup/restore -> stock unsigned recovery
+and fresh dry_run_v2 composition in2,353/6,000RPC. Six independent private-vector
+check rows pass; original config/journal and all three financial vectors match.
+Only three reviewed runtime paths change; signer files stay separate/unreadable
+during target recovery. All three new groups stop; five existing service states
+match with0nonambient changes/1observer invocation. Original c813 NONPASS remains:
+whole-cgroup stop killed Anvil before final capture. The affected c814 driver
+captures diagnostics before COMPLETE; client interruption resumes only saved
+status/stop/export, never source start or resend. No production code, financial
+limit, existing environment or journal adoption changes. Actual second-host
+fencing, providers, alerts and sustained operation remain open.
+
 [Unsigned keeper backup/restore](reports/keeper-backup-20261126/REVIEW.md)
 preserves exact journals with separate original configuration/signer material
 and exclusive review-only restore output. Thirty portable plus three Ubuntu
@@ -192,7 +205,7 @@ That advance's historical inventory is [here](reports/readiness-advance-20261120
 179Pythonfiles/1,979named definitions at that source. The current inventory above
 had1,980definitions at that keeper-fix stage. Use the bounded-capture inventory
 above for that historical1,984-definition stage. Current source inventory is
-reports/keeper-full-audit-20261126/FUNCTION_INVENTORY.json (2,007 definitions); Solidity61/dependencies39/controls4 stay.
+reports/keeper-backup-20261126/FUNCTION_INVENTORY.json (2,057 definitions); Solidity61/dependencies39/controls4 stay.
 Existing OpenSea artifacts bind this module's old hash; preserve them and rebuild/
 review new artifacts explicitly. service.py/checkpoint and runtime identities stay.
 

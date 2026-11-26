@@ -1,0 +1,8 @@
+{
+  "accepted_hash": "0x7edd034ae1a886c82dbf252b8e8659ec7c1b138154bd186a9d74ac6cbbaff0b9",
+  "journal_sha256": "88d530f0511c65f3848c450445a71daf0c252e1c0ebf460bd5278aa09acf7193",
+  "schema": 1,
+  "source_fenced_before_backup": true,
+  "target_configuration_sha256": "7c0bb2c099860ec94daa2bdfd65a612678ed747283c5dfc37127800fa1b81564",
+  "target_semantic_configuration_sha256": "952f54adfcfc36d6c4cf2cbdbd57f67389e4aba37ec3a5854336d714120ae06e"
+}

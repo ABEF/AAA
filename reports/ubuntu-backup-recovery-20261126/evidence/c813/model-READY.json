@@ -1,0 +1,21 @@
+{
+  "all_guard_limits_unchanged": true,
+  "configuration_path": "/opt/popl-ubuntu-backup-recovery-20261126-c813/runtime/run-001/model/supervisor/actor/config.json",
+  "configuration_sha256": "4b2bdef73a3db7a05338352bc5fd37664b5cefa59376a8ad506d28811d026b78",
+  "health_path": "/opt/popl-ubuntu-backup-recovery-20261126-c813/runtime/run-001/model/supervisor/actor/health.json",
+  "monitor_argv": [
+    "/usr/bin/python3",
+    "-m",
+    "keeper.monitor",
+    "--config",
+    "/opt/popl-ubuntu-backup-recovery-20261126-c813/runtime/run-001/model/supervisor/actor/config.json",
+    "--live"
+  ],
+  "monitor_working_directory": "/opt/popl-ubuntu-backup-recovery-20261126-c813/source/contracts",
+  "namespace": "net:[4026532431]",
+  "schema": 1,
+  "semantic_configuration_sha256": "22666e922c837558e4e8315ea482a5fff1a7c35c46ecbdbc7c037de82adb2d35",
+  "sender": "0x74ad5f04f7a5bf634f3f7a19dff5eaf544854e7f",
+  "source_head": "5662a81ad9c9c5953d3578974e0c5840d626ba97",
+  "state_path": "/opt/popl-ubuntu-backup-recovery-20261126-c813/runtime/run-001/model/supervisor/actor/state.json"
+}

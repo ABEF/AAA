@@ -1,0 +1,17 @@
+{
+  "all_three_owned_groups_empty": true,
+  "local_collector_count_assertion_expected_7_actual_6_corrected_offline": true,
+  "new_server_actions_for_count_correction": 0,
+  "old_test_bodies_run": 0,
+  "original_orchestration_result_absent": true,
+  "original_orchestration_rewritten": false,
+  "original_server_scenario_restarted": false,
+  "private_independent_check_rows": 6,
+  "production_approved": false,
+  "public_transactions": 0,
+  "saved_only_continuation_after_client_interruption": true,
+  "schema": 1,
+  "shared_RPC_requests": 2353,
+  "success": true,
+  "transaction_resubmitted": false
+}

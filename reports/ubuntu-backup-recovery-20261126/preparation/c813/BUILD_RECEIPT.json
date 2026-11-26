@@ -1,0 +1,71 @@
+{
+  "approved_worktree_overrides": [],
+  "bundle": {
+    "bytes": 782493,
+    "sha256": "8316ada3b9846b7e22d87c0224c450232083b6d863308318953bfbc1b2a212f5"
+  },
+  "controller": {
+    "bytes": 33167,
+    "sha256": "063843eb5d8f354045d70206dc213ab2275f1686876016daeab3629f08057e8c"
+  },
+  "feature": "backup_exact_pending_fresh_runtime_unsigned_recovery",
+  "helpers": {
+    "independent_private.py": {
+      "bytes": 19694,
+      "sha256": "5efec210669a694827fd2f75f9052ce0be5ab9196f27c9ce1da2f2fa363eb4c2"
+    },
+    "job_cases.py": {
+      "bytes": 15671,
+      "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7"
+    },
+    "keeper_jobs.py": {
+      "bytes": 9477,
+      "sha256": "363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4"
+    },
+    "keeper_runtime.py": {
+      "bytes": 37193,
+      "sha256": "f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4"
+    },
+    "model_service.py": {
+      "bytes": 21546,
+      "sha256": "2b596730226e88b59a7e2ff48189eb88a7b0ed5803134c66ac8ebc6149943747"
+    },
+    "native_base.py": {
+      "bytes": 41965,
+      "sha256": "fe476c1f95d1c72a9f604889c500f501d3e7fe951714edd7806e2ae406d72765"
+    },
+    "recovery_control.py": {
+      "bytes": 12742,
+      "sha256": "62b0b8fcc6801a219806f667499ce5965552e86b7954790c626453875c371455"
+    }
+  },
+  "host_wrapper": {
+    "bytes": 7514,
+    "sha256": "0d208750eff04f1e3dc1c457eaff5f371aec3a0bdb615d44c1ad21a108454162"
+  },
+  "lab": "/opt/popl-ubuntu-backup-recovery-20261126-c813",
+  "limits": {
+    "RPC_requests": 6000,
+    "confirmations": 12,
+    "harvest_seconds": 3600,
+    "maintenance_gas": 24000000,
+    "maximum_stock_signed_sends": 1,
+    "padding_percent": 25,
+    "poll_seconds": 240,
+    "restart_seconds": 30,
+    "seconds": 900,
+    "stop_seconds": 120,
+    "watchdog_seconds": 120
+  },
+  "local_packaging_only": true,
+  "manifest": {
+    "bytes": 34731,
+    "sha256": "414aa69b6890d8255833d76e282106f9fe4e5bd07b02b4a8673bf7fd3c32e177"
+  },
+  "production_source_members": 193,
+  "remote_actions": 0,
+  "schema": 1,
+  "source_base": "5662a81ad9c9c5953d3578974e0c5840d626ba97",
+  "source_manifest_sha256": "d606c4ca389ea4177f1703de63e7a3b18ee524b18fd6a5da5b399d6e0dd78781",
+  "tests_run": 0
+}

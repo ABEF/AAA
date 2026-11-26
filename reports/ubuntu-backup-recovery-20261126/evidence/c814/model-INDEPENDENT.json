@@ -1,0 +1,223 @@
+{
+  "actual_paid_keeper_transactions": 1,
+  "artifacts": {
+    "control/DRY_COMPLETE.json": {
+      "bytes": 342,
+      "sha256": "42a9ef9e5fb2a27e0fe95a4e284d52fe79813193f5d29c6fb1769a4be5aac740"
+    },
+    "control/FENCED.json": {
+      "bytes": 253,
+      "sha256": "cb4de33be8d0531d146c96fec5491383c11c58e24988f2b2d033ff645f1d4017"
+    },
+    "control/RECOVERY_COMPLETE.json": {
+      "bytes": 342,
+      "sha256": "264b4404a7032b83fe24dbe08ab5e6d48f1c86eb080583fa8d3fc5f3d18f4eed"
+    },
+    "inputs/SOURCE_MANIFEST.json": {
+      "bytes": 29276,
+      "sha256": "d606c4ca389ea4177f1703de63e7a3b18ee524b18fd6a5da5b399d6e0dd78781"
+    },
+    "runtime/run-001/model/DRY.json": {
+      "bytes": 11810,
+      "sha256": "ad430c2dfbb5909f7925196d575965b91dff0f6c8397f9f54133749c2ac36d13"
+    },
+    "runtime/run-001/model/SETTLED.json": {
+      "bytes": 2427,
+      "sha256": "87b168d6e229044f6e50a6759ecc40d8f82c7ae2ac7411d96fa7da455e7eca11"
+    },
+    "runtime/run-001/model/supervisor/CANONICAL.json": {
+      "bytes": 7453,
+      "sha256": "fb54b293d517fac7f57da24520ac66b0d1d2b504b7a53248746a6b81eba0367f"
+    },
+    "runtime/run-001/model/supervisor/DRY_JOURNAL.json": {
+      "bytes": 2677,
+      "sha256": "15ce1b0107b0d7241e51cbe2445504cd1e2bf157553bcc36ce1973628da650da"
+    },
+    "runtime/run-001/model/supervisor/EVIDENCE.json": {
+      "bytes": 2845,
+      "sha256": "a2b913f27c02806cde2e0a2607a82dda5e7fac966e1ea26aba967a537a08f357"
+    },
+    "runtime/run-001/model/supervisor/FINANCIAL_FINAL.json": {
+      "bytes": 1889,
+      "sha256": "941688b5d4a4ef221ea0c86314e78dc2897bc695e3d97cd7cd85eeba7527118b"
+    },
+    "runtime/run-001/model/supervisor/FINANCIAL_INCLUDED.json": {
+      "bytes": 1889,
+      "sha256": "941688b5d4a4ef221ea0c86314e78dc2897bc695e3d97cd7cd85eeba7527118b"
+    },
+    "runtime/run-001/model/supervisor/FINANCIAL_INITIAL.json": {
+      "bytes": 1889,
+      "sha256": "941688b5d4a4ef221ea0c86314e78dc2897bc695e3d97cd7cd85eeba7527118b"
+    },
+    "runtime/run-001/model/supervisor/ORIGINAL_CONFIG.json": {
+      "bytes": 5514,
+      "sha256": "d6fa4ad0f5cab416ee064ab5d6c85af8c48177c2c6788533570b97cb247061da"
+    },
+    "runtime/run-001/model/supervisor/PENDING.json": {
+      "bytes": 2752,
+      "sha256": "88d530f0511c65f3848c450445a71daf0c252e1c0ebf460bd5278aa09acf7193"
+    },
+    "runtime/run-001/model/supervisor/RESTORED_BEFORE_LOAD.json": {
+      "bytes": 2752,
+      "sha256": "88d530f0511c65f3848c450445a71daf0c252e1c0ebf460bd5278aa09acf7193"
+    },
+    "runtime/run-001/model/supervisor/SETTLED_JOURNAL.json": {
+      "bytes": 2677,
+      "sha256": "337248b9bc8980dc9ea1cf7864e5c9586b8d37134802e95ee5e4e636dbb6479b"
+    },
+    "runtime/run-001/model/supervisor/SOURCE_PRESERVED.json": {
+      "bytes": 434,
+      "sha256": "abb9136a85d6d3b51c3f42f69ca705c258402c6ba8b8cbc2144861a9b6606648"
+    },
+    "runtime/run-001/model/supervisor/TARGET_CONFIG.json": {
+      "bytes": 5539,
+      "sha256": "7c0bb2c099860ec94daa2bdfd65a612678ed747283c5dfc37127800fa1b81564"
+    },
+    "runtime/run-001/model/supervisor/actor/config.json": {
+      "bytes": 5514,
+      "sha256": "d6fa4ad0f5cab416ee064ab5d6c85af8c48177c2c6788533570b97cb247061da"
+    },
+    "runtime/run-001/model/supervisor/actor/state.json": {
+      "bytes": 2752,
+      "sha256": "88d530f0511c65f3848c450445a71daf0c252e1c0ebf460bd5278aa09acf7193"
+    },
+    "runtime/run-001/model/supervisor/bundle-001/journal.json": {
+      "bytes": 2752,
+      "sha256": "88d530f0511c65f3848c450445a71daf0c252e1c0ebf460bd5278aa09acf7193"
+    },
+    "runtime/run-001/model/supervisor/bundle-001/manifest.json": {
+      "bytes": 3867,
+      "sha256": "59ca4ad5840aafdd15447d786fa967c015025dc723b74bad87a723c8452796f8"
+    },
+    "runtime/run-001/model/supervisor/restore-001/RESTORE_PLAN.json": {
+      "bytes": 2912,
+      "sha256": "15653ee0dc3d7473cc348fdf3c3ba70e711a1c15592a83b2e8e05c00d4d6d764"
+    },
+    "runtime/run-001/model/supervisor/restore-001/keeper-state.json": {
+      "bytes": 2677,
+      "sha256": "15ce1b0107b0d7241e51cbe2445504cd1e2bf157553bcc36ce1973628da650da"
+    },
+    "source/contracts/keeper/cast_process.py": {
+      "bytes": 4617,
+      "sha256": "b6203067b022625bce2bfb415bb6ed85620dc8c7002b51f2d3d4c9296c5ac3e1"
+    },
+    "source/contracts/keeper/compound_policy.py": {
+      "bytes": 17260,
+      "sha256": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29"
+    },
+    "source/contracts/keeper/health.py": {
+      "bytes": 24415,
+      "sha256": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04"
+    },
+    "source/contracts/keeper/monitor.py": {
+      "bytes": 194496,
+      "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f"
+    },
+    "source/contracts/keeper/ops.py": {
+      "bytes": 13932,
+      "sha256": "a81eb06001024f11f751691ba2b8fd7f37605f10feba925006bf57242751fa6b"
+    },
+    "source/contracts/keeper/rebalance_confirmation.py": {
+      "bytes": 11926,
+      "sha256": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d"
+    },
+    "source/contracts/keeper/recovery_bundle.py": {
+      "bytes": 36223,
+      "sha256": "fe1185f008e047a3c7447bc2dc36e748f1ecff3a7ca6f1552114ad236060f268"
+    },
+    "source/contracts/scripts/keeper-recovery.py": {
+      "bytes": 3423,
+      "sha256": "450b87f611b90d2cdb4139bd2bb2cc8f10696821c1ae6b72ccba7613a64ff6cf"
+    },
+    "source/contracts/zzz_ops/abi.py": {
+      "bytes": 4797,
+      "sha256": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91"
+    },
+    "source/contracts/zzz_ops/execution_price.py": {
+      "bytes": 2280,
+      "sha256": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2"
+    },
+    "source/contracts/zzz_ops/lp_execution.py": {
+      "bytes": 6860,
+      "sha256": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0"
+    },
+    "source/contracts/zzz_ops/protocol_policy.py": {
+      "bytes": 5907,
+      "sha256": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3"
+    },
+    "source/contracts/zzz_ops/rebalance_confirmation.py": {
+      "bytes": 17194,
+      "sha256": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331"
+    },
+    "source/contracts/zzz_ops/rpc.py": {
+      "bytes": 9709,
+      "sha256": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f"
+    },
+    "source/contracts/zzz_ops/state.py": {
+      "bytes": 4644,
+      "sha256": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf"
+    },
+    "source/helpers/independent_private.py": {
+      "bytes": 19694,
+      "sha256": "0116857d1b13b57971ce90bd8c8dc5536e675fb0de93da616adf2e0859b9618b"
+    }
+  },
+  "canonical_execution_price_wei": 32,
+  "checker_opened_signer_material": false,
+  "checks": [
+    {
+      "check": "exact_HEAD_and_thirteen_daemon_sources_with_reviewed_tool_sources",
+      "passed": true
+    },
+    {
+      "check": "private_actual_configuration_diff_is_exactly_three_runtime_paths_original_preserved",
+      "passed": true
+    },
+    {
+      "check": "exact_private_pending_backup_restore_bytes_and_unsigned_manifest_plan_provenance",
+      "passed": true
+    },
+    {
+      "check": "root_fence_acknowledgment_and_two_unsigned_process_results_with_unreadable_signer_directory",
+      "passed": true
+    },
+    {
+      "check": "independent_canonical_receipt_fee_day_anchor_nonce_once_and_documented_dry_scheduler_delta",
+      "passed": true
+    },
+    {
+      "check": "actual_unsigned_health_transition_and_all_three_financial_vectors_with_original_source_readback",
+      "passed": true
+    }
+  ],
+  "configuration_contents_exported": false,
+  "dry_journal_sha256": "15ce1b0107b0d7241e51cbe2445504cd1e2bf157553bcc36ce1973628da650da",
+  "exact_changed_configuration_keys": [
+    "health_path",
+    "lock_path",
+    "state_path"
+  ],
+  "financial_after_vectors_available": true,
+  "financial_final_sha256": "dedcea9b7b79b275eea65933aed4f7ca4219ec6d4919eae02b04fac3503b8a2f",
+  "financial_included_sha256": "dedcea9b7b79b275eea65933aed4f7ca4219ec6d4919eae02b04fac3503b8a2f",
+  "financial_initial_sha256": "dedcea9b7b79b275eea65933aed4f7ca4219ec6d4919eae02b04fac3503b8a2f",
+  "gas_used": 300814,
+  "keeper_raw_resends": 0,
+  "native_argv_and_final_cleanup_review_required": true,
+  "new_seals": 0,
+  "old_test_bodies_run": 0,
+  "original_configuration_raw_sha256": "d6fa4ad0f5cab416ee064ab5d6c85af8c48177c2c6788533570b97cb247061da",
+  "original_host_preservation_review_required": true,
+  "paid_wei": 9626048,
+  "pending_journal_sha256": "88d530f0511c65f3848c450445a71daf0c252e1c0ebf460bd5278aa09acf7193",
+  "production_approved": false,
+  "public_transactions": 0,
+  "restored_before_load_sha256": "88d530f0511c65f3848c450445a71daf0c252e1c0ebf460bd5278aa09acf7193",
+  "same_host_only": true,
+  "schema": 1,
+  "settled_journal_sha256": "337248b9bc8980dc9ea1cf7864e5c9586b8d37134802e95ee5e4e636dbb6479b",
+  "source_head": "5662a81ad9c9c5953d3578974e0c5840d626ba97",
+  "success": true,
+  "target_configuration_raw_sha256": "7c0bb2c099860ec94daa2bdfd65a612678ed747283c5dfc37127800fa1b81564",
+  "verifier_sha256": "0116857d1b13b57971ce90bd8c8dc5536e675fb0de93da616adf2e0859b9618b"
+}

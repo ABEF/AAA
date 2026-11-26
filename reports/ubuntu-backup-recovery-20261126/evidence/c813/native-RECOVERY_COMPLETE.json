@@ -1,0 +1,1 @@
+{"accepted_hash": "0x0608a3691bf8aa391449262dad2864ca98c9f3dab939c2522b586eccde29599f", "actual_exit_status": 1, "direct_exec_argv": ["/usr/bin/python3", "-m", "keeper.monitor", "--config", "/opt/popl-ubuntu-backup-recovery-20261126-c813/runtime/run-001/model/supervisor/TARGET_CONFIG.json", "--once"], "schema": 1, "signing_enabled": false}

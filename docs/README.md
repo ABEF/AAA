@@ -1,5 +1,9 @@
 # Documentation map
 
+For actual keeper backup adoption use the [Ubuntu recovery record](../reports/ubuntu-backup-recovery-20261126/REVIEW.md)
+and [backup guide](KEEPER_BACKUP.md). Exact restore and unsigned receipt recovery
+now have finite same-host proof; real second-host fencing remains open.
+
 Use the [unsigned keeper backup guide](KEEPER_BACKUP.md) for exact journal capture,
 explicit-pin verification and fresh restore preparation. The [26 November evidence](../reports/keeper-backup-20261126/REVIEW.md)
 records 33 distinct new passes; live adoption, signer fencing and canonical recovery remain separate.

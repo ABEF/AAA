@@ -1,0 +1,19 @@
+{
+  "accepted_hash": "0x0608a3691bf8aa391449262dad2864ca98c9f3dab939c2522b586eccde29599f",
+  "confirmed_harvests": 1,
+  "exact_restoration_before_load": true,
+  "fresh_dry_run_v2": true,
+  "new_seals": 0,
+  "old_test_bodies_run": 0,
+  "once_only_canonical_receipt_accounting": true,
+  "post_inclusion_financial_unchanged": true,
+  "production_approved": false,
+  "public_transactions": 0,
+  "raw_attempts": 1,
+  "schema": 1,
+  "scope": "same_host_isolated_known_hash_pending_backup_restore",
+  "source_fenced_before_backup": true,
+  "source_head": "5662a81ad9c9c5953d3578974e0c5840d626ba97",
+  "success": true,
+  "target_signing_enabled": false
+}

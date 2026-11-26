@@ -455,3 +455,6 @@ keeper/recovery_bundle.py -text whitespace=cr-at-eol
 scripts/keeper-recovery.py -text whitespace=cr-at-eol
 tests_python/test_keeper_recovery_bundle.py -text whitespace=cr-at-eol
 reports/keeper-backup-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact isolated backup adoption evidence and original failed stage.
+reports/ubuntu-backup-recovery-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

@@ -1,0 +1,81 @@
+{
+  "accepted_hash": "0x7edd034ae1a886c82dbf252b8e8659ec7c1b138154bd186a9d74ac6cbbaff0b9",
+  "actual_exit_status": 1,
+  "health": {
+    "active_revert_cooldowns": 0,
+    "blocked_actions": 0,
+    "canonical_state": 0,
+    "chain_id": 4663,
+    "configuration_sha256": "952f54adfcfc36d6c4cf2cbdbd57f67389e4aba37ec3a5854336d714120ae06e",
+    "confirmed_reverts": 0,
+    "consecutive_failures": 1,
+    "duration_seconds": 3.384,
+    "gas_review": {
+      "last_review": null,
+      "state": "not_reviewed_this_cycle"
+    },
+    "health_schema": 2,
+    "last_success_at": null,
+    "live": false,
+    "lp_execution_health": {
+      "last_confirmed": null,
+      "last_error": null,
+      "schema": 1,
+      "state": "pending_recovery"
+    },
+    "lp_exit_started": false,
+    "next_revert_retry_after": null,
+    "pending": false,
+    "pending_action": null,
+    "pending_day": null,
+    "preparation_active": false,
+    "rebalance_confirmation_health": {
+      "awaiting_healthy_read_buckets": [],
+      "check_interval_seconds": 240,
+      "last_observation": null,
+      "pending_reset_buckets": [],
+      "policy": {
+        "last_error": null,
+        "last_observed": null,
+        "schema": 1,
+        "state": "pending_recovery"
+      },
+      "scope": "last_observed_latest_state_not_continuous_evidence",
+      "version": 3
+    },
+    "sender": "0x49b24031f4103c904c63d483999e5200ae1d57e2",
+    "skipped_buckets": 0,
+    "status": "degraded",
+    "strategy_paused": false,
+    "time": "2026-11-26T15:02:16.946348+00:00"
+  },
+  "journal_sha256": "337248b9bc8980dc9ea1cf7864e5c9586b8d37134802e95ee5e4e636dbb6479b",
+  "paid_wei": 9626048,
+  "recovery_fields": {
+    "last": {
+      "harvest:47181787163762592248710325652087236475813397965818762058663276509558631703230": 1795705319
+    },
+    "last_fee_observation": {
+      "cost_wei": 9626048,
+      "execution_price_wei": 32,
+      "gas_used": 300814,
+      "l1_fee_wei": 0,
+      "receipt_fee_policy": "included",
+      "reported_price_wei": 32,
+      "transaction": "0x7edd034ae1a886c82dbf252b8e8659ec7c1b138154bd186a9d74ac6cbbaff0b9"
+    },
+    "next_nonce": 1,
+    "pending": null,
+    "receipt_anchor": {
+      "hash": "0xbe59a3553103a91184f0f298f3b1881dd0058bf23407e489fe32f675cb28800f",
+      "nonce": 0,
+      "number": 119107337,
+      "timestamp": 1795705319
+    },
+    "spent": {
+      "2026-11-26": 9626048
+    }
+  },
+  "schema": 1,
+  "source_fenced": true
+}

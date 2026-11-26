@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "reason": "separate Windows file/network execution contexts; no credentials or original ACL changed",
+  "only_host_base_literal_retargeted": true,
+  "files": {
+    "c813.inputs.tar.gz": {
+      "original_sha256": "8316ada3b9846b7e22d87c0224c450232083b6d863308318953bfbc1b2a212f5",
+      "copied_sha256": "8316ada3b9846b7e22d87c0224c450232083b6d863308318953bfbc1b2a212f5"
+    },
+    "remote_capsule.py": {
+      "original_sha256": "063843eb5d8f354045d70206dc213ab2275f1686876016daeab3629f08057e8c",
+      "copied_sha256": "063843eb5d8f354045d70206dc213ab2275f1686876016daeab3629f08057e8c"
+    },
+    "host_control.py": {
+      "original_sha256": "0d208750eff04f1e3dc1c457eaff5f371aec3a0bdb615d44c1ad21a108454162",
+      "copied_sha256": "afbfe47157194acae20ecc1da7b1e5857813a7ebdd412f6ddc2095bdb8ccf127"
+    },
+    "package_c813.py": {
+      "original_sha256": "8c0e84e3dc8a0521096e9aaaebfaf84e00465994cbae2aedad0c2205fee96174",
+      "copied_sha256": "8c0e84e3dc8a0521096e9aaaebfaf84e00465994cbae2aedad0c2205fee96174"
+    },
+    "capsule_extension.py": {
+      "original_sha256": "dc3434dd65a75963370a9a001888fb0728596d80fcd4ff0e3855e2ff33e7e5ac",
+      "copied_sha256": "dc3434dd65a75963370a9a001888fb0728596d80fcd4ff0e3855e2ff33e7e5ac"
+    },
+    "model_service.py": {
+      "original_sha256": "2b596730226e88b59a7e2ff48189eb88a7b0ed5803134c66ac8ebc6149943747",
+      "copied_sha256": "2b596730226e88b59a7e2ff48189eb88a7b0ed5803134c66ac8ebc6149943747"
+    },
+    "recovery_control.py": {
+      "original_sha256": "62b0b8fcc6801a219806f667499ce5965552e86b7954790c626453875c371455",
+      "copied_sha256": "62b0b8fcc6801a219806f667499ce5965552e86b7954790c626453875c371455"
+    },
+    "independent_private.py": {
+      "original_sha256": "5efec210669a694827fd2f75f9052ce0be5ab9196f27c9ce1da2f2fa363eb4c2",
+      "copied_sha256": "5efec210669a694827fd2f75f9052ce0be5ab9196f27c9ce1da2f2fa363eb4c2"
+    },
+    "BUILD_RECEIPT.json": {
+      "original_sha256": "f4aa0ee578f0b8790c560bb79f36958120e4aa347f686c2e23617195f3e4c7ec",
+      "copied_sha256": "f4aa0ee578f0b8790c560bb79f36958120e4aa347f686c2e23617195f3e4c7ec"
+    },
+    "SOURCE_MANIFEST.json": {
+      "original_sha256": "d606c4ca389ea4177f1703de63e7a3b18ee524b18fd6a5da5b399d6e0dd78781",
+      "copied_sha256": "d606c4ca389ea4177f1703de63e7a3b18ee524b18fd6a5da5b399d6e0dd78781"
+    },
+    "HELPER_REVIEW_PINS.json": {
+      "original_sha256": "8740dc63647b11aea6abc678b569281312ceef1081d39e7b9574498b7814dca5",
+      "copied_sha256": "8740dc63647b11aea6abc678b569281312ceef1081d39e7b9574498b7814dca5"
+    },
+    "FIRST_RUN_STATIC_REVIEW.json": {
+      "original_sha256": "963bc2c1fe9001ca9cd5da22a605dd6682d93002e02ddaa4e39fc9476cca9002",
+      "copied_sha256": "963bc2c1fe9001ca9cd5da22a605dd6682d93002e02ddaa4e39fc9476cca9002"
+    }
+  },
+  "original_failed_client_attempt_preserved": true,
+  "server_installed_by_failed_attempt": false
+}

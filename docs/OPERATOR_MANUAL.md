@@ -93,6 +93,27 @@ state. Outputs never overwrite an existing directory. Restore writes only
 old signer and perform stock canonical recovery before adoption. It starts no
 service, installs no configuration and authorizes no signing.
 
+### Verified unsigned restore: operator checks
+
+The [Ubuntu adoption record](../reports/ubuntu-backup-recovery-20261126/REVIEW.md)
+verifies this finite same-host flow with a real pending local transaction.
+It does not authorize moving a running production signer.
+
+| Situation / input | Operator action | Required evidence |
+| --- | --- | --- |
+| Original bundle, trusted digest and exact original config | Run backup verification with the original config bytes | Same deployment/profile, journal and local source identities |
+| New restore directory and separate target config | Review `state_path`, `health_path`, `lock_path`; retain original financial/identity settings | Target points to restored journal; source config/journal unchanged |
+| Saved hash has 12 confirmations; first unsigned `--once` exits1/degraded | Verify receipt, nonce, day spending and anchor; inspect exact metadata-refresh reason | Pending cleared once; original cost booked once; no resend |
+| Further unsigned `--once` | Require fresh metadata and `dry_run_v2` | Financial recovery fields unchanged; normal worker cursor may advance |
+| Stop a whole service cgroup | Save final diagnostic/financial vectors before stopping dependencies | A `finally` block cannot read a node already killed by group shutdown |
+
+The lab made its disposable signer directory unreadable only after backup and
+restore, proving target recovery needs no signer access. Keep real signer
+material separately secured; the unsigned tool never copies or installs it.
+Same-host locking/fencing does not prove second-host failover. Preserve the
+original failed run and partial evidence; do not delete/relabel it or resubmit
+its transaction to obtain a different result.
+
 ### Storage failure quick actions
 
 Stop the actual service and preserve its exact journal/configuration. Check the

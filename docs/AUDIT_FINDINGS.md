@@ -1,5 +1,11 @@
 # Consolidated audit findings and evidence
 
+[Isolated Ubuntu backup/recovery](../reports/ubuntu-backup-recovery-20261126/REVIEW.md) verifies exact pending-state
+restoration and once-only unsigned receipt recovery with a fresh dry cycle,
+six independent checks and final NFT/LP/reserve equality. c814 uses2,353/6,000RPC;
+the original c813 capture-order failure stays recorded. Existing services,
+journals, limits and production approval remain unchanged.
+
 [Unsigned keeper backup/restore](../reports/keeper-backup-20261126/REVIEW.md)
 preserves exact journals with separate original configuration/signer material
 and exclusive review-only restore output. Thirty portable plus three Ubuntu

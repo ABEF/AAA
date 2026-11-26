@@ -1,0 +1,1175 @@
+{
+  "actions": [
+    {
+      "action": "upload",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "eeadaeb09bcdb45e430fc444e0b1333803d830b4047d615fa71af87486e9ba45",
+      "reason": null,
+      "seconds": 1.875
+    },
+    {
+      "action": "install",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "49b219aabb49d0af88b4154c6525d8e46d0896ab71ce49c5c10f988ca5344996",
+      "reason": null,
+      "seconds": 1.8130000000001019
+    },
+    {
+      "action": "start",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "b62267c89c4693e359790700fef75f5cb4c6d0e87f5f5aee4d5a6407a9d5b3a8",
+      "reason": null,
+      "seconds": 1.2190000000009604
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "e2652d450a9fbcfa20067a4aec9d2e7ec911ab72425c6a3f99a53dbc7495d78d",
+      "reason": null,
+      "seconds": 1.1090000000003783
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 2,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "faf404d838560c6fe2c947f7708066301018f5fa3f8bcefdd22404bf67033042",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 3,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "a0fdabc82512a9e66aaed575a76c55c90855f055da3b2b92a8c455abecd1e7bb",
+      "reason": null,
+      "seconds": 0.9220000000004802
+    },
+    {
+      "action": "startkeeper",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "da57333eae723a951b5c6331e207df552bbf974daf0078953bf02a1e455b9e87",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 4,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "030a53e2ec4265b93b0b5ff242d3602d77feda384885111a2c7d8cd05736d6fc",
+      "reason": null,
+      "seconds": 0.9219999999986612
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 5,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "f62c432f404032080b5c263ed0c0d855e852741f1a6cc9e80d27b1b8b90217e7",
+      "reason": null,
+      "seconds": 0.9219999999986612
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 6,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "2c52e8d5345360b140d56eb8242ce72eb4e51e991f8403a799a3236ac2315912",
+      "reason": null,
+      "seconds": 0.9069999999992433
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 7,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "f8f5a5ef6c2f3b782ecd2d0d950ed72130888be90f3d4acc863821b7f06e0ef5",
+      "reason": null,
+      "seconds": 0.9059999999990396
+    },
+    {
+      "action": "stopkeeper",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "97c3bee459cd9f1a68556d8b87b3f0f979ab06286effb0ee1f5f7600bcf4e8e5",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 8,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "dc5fbb2f94c66be238049505dc141d0c47fde77847941db85e032fd803c1779e",
+      "reason": null,
+      "seconds": 1.015000000001237
+    },
+    {
+      "action": "fence",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "254e7128cbc8be27d58a43f90573f6dd41b36ca580f0a3f2d25d03900fa97896",
+      "reason": null,
+      "seconds": 1.014999999999418
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 9,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "8db0270721cfa2ba511dbdf1e3e99c1769f85525833e79f5d23da1cdd07c8437",
+      "reason": null,
+      "seconds": 0.9069999999992433
+    },
+    {
+      "action": "recover",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "3b4f5c261561c1bb9709f07e2e6319aa79bc8b0004e85210fef0e9912fa25435",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 10,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "ee891934ad11462ab6503b30e8b92be50f21365b5366ac104854bcd33554d8e6",
+      "reason": null,
+      "seconds": 1.014999999999418
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 11,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "dd2a326000eff78922fa568f27ac9ed59c4b8d3c75dd0bdbc914a8c8a4c558c3",
+      "reason": null,
+      "seconds": 1.015000000001237
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 12,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "218e3a140bee16c73d500b8a56acd96803aa2be25616e1dcfdbbc528707600c3",
+      "reason": null,
+      "seconds": 1.014999999999418
+    },
+    {
+      "action": "dry",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "c10926455457de785c1e45fc99f3e0e98bd800a9c816e28ab4657ecda700adfc",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 13,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "566c7427722d227aacdcf41333f17c8e8896d928dd2d66e3a15176ed832f68ac",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 14,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "d9a74473cbd9b6911548c7925c849b3d5c561ff0d924b595d3dac7935d93d185",
+      "reason": null,
+      "seconds": 0.9210000000002765
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 15,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "2c7880dac81e7b35cb635bd43f72f883ed9d07feee98a40239bf84324e3f74d8",
+      "reason": null,
+      "seconds": 1.015000000001237
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 16,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "00ea7a11e5ccd01bc8c2f3c2478b0fa67d6671fdd1ad212f5bea2266c13a4d77",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "fetch",
+      "artifact": "model-COMPLETE.json",
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "a086a8cc6bee0752b671b6c9fc0a78f6bb9da6b3ee2437bb7a12d843773844b9",
+      "reason": null,
+      "seconds": 0.9219999999986612
+    },
+    {
+      "action": "stop",
+      "artifact": null,
+      "attempt": 1,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "aaa4301a623d04e10199734395da93094b540b502770c7d4193daae9db2961b8",
+      "reason": null,
+      "seconds": 0.9059999999990396
+    },
+    {
+      "action": "stop",
+      "artifact": null,
+      "attempt": 2,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "4d312e95b141bcd8fc82724bd0b29bb4bd8c54cf54bfb4dac8f4ddc4baf39d3e",
+      "reason": null,
+      "seconds": 1.2039999999997235
+    },
+    {
+      "action": "stop",
+      "artifact": null,
+      "attempt": 3,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "9cff8bb532df1514a3d75a8ae3ea1c943698304bc761f28457cd81c2c7121faf",
+      "reason": null,
+      "seconds": 1.014999999999418
+    },
+    {
+      "action": "status",
+      "artifact": null,
+      "attempt": 17,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "62695adc3ac7bbc9a09499999c1f2098a282bd8caf42eda4919c501ea4121142",
+      "reason": null,
+      "seconds": 1.015000000001237
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-BINDINGS.json",
+      "attempt": 2,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "3ec23ee21b8b841c01747323bdd97d0d288332608ed85898e982fd6460554c1d",
+      "reason": null,
+      "seconds": 1.1090000000003783
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-CANONICAL.json",
+      "attempt": 3,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "a1266faddfdbb630748e5a02af37f70ee521b6170d107ba3a6febb305735dde0",
+      "reason": null,
+      "seconds": 3.625
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-CLOCK_REPAIR.json",
+      "attempt": 4,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "544115be4d920a0ccc95eacfa373642b3a40f8d535cca69b8bcc2fc506ab0fca",
+      "reason": null,
+      "seconds": 0.9220000000004802
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-EVIDENCE.json",
+      "attempt": 5,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "94c86b7dd4e25349f9a059662f7f68b172dac3069f7ba252fea5dc3a3bb13b9b",
+      "reason": null,
+      "seconds": 1.014999999999418
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-FINANCIAL_INCLUDED.json",
+      "attempt": 6,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "df650481ee916d98c8ab00364a3abfadc0c149e5185a07f18d6ff22dc8494aa6",
+      "reason": null,
+      "seconds": 1.2190000000009604
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-FINANCIAL_INITIAL.json",
+      "attempt": 7,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "e9a97e52a4f07b4ac734df19047065d2dc423cf6ce3db2552f72c0889218b9c0",
+      "reason": null,
+      "seconds": 1.2029999999995198
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-RAW_REVIEWS.json",
+      "attempt": 8,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "e1f3698415a70f3ed04dcafde784b4ae69436e5a0676ce4d5dc6773b8a0db738",
+      "reason": null,
+      "seconds": 1.25
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-RECEIPTS.json",
+      "attempt": 9,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "c5ecf16bf6b6200f9cd6d74fbb46a7de871736bf25d47a8328f776a06ef07421",
+      "reason": null,
+      "seconds": 1.234999999998763
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-RESULT.json",
+      "attempt": 10,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "89d8ef10917c7da6e37039dda44dafd869b5ca14e6621a417cec8d76d7d5c7ed",
+      "reason": null,
+      "seconds": 1.0319999999992433
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-SETUP.json",
+      "attempt": 11,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "57b3fa7060a20f0ce4d96c7392f945822b86e26df5b0778f518ae96e7752fc77",
+      "reason": null,
+      "seconds": 0.9220000000004802
+    },
+    {
+      "action": "fetch",
+      "artifact": "case-SOURCE_PRESERVED.json",
+      "attempt": 12,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "e40affc0719ddc8e450526bf14987c1ae28dc453ee9f8fde2f67d1f7d7739c18",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "fetch",
+      "artifact": "model-COMPLETE.json",
+      "attempt": 13,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "e0eedf88d72a846219cd392fdbaabcc0112734c3f75f571523d38eac5a660169",
+      "reason": null,
+      "seconds": 0.9220000000004802
+    },
+    {
+      "action": "fetch",
+      "artifact": "model-DRY.json",
+      "attempt": 14,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "8be3d68bcf869ba58995c39d1eced0f1290661bb8abf2d490d71ae3429fb57e4",
+      "reason": null,
+      "seconds": 1.015000000001237
+    },
+    {
+      "action": "fetch",
+      "artifact": "model-EVENTS.json",
+      "attempt": 15,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "6b3abda2859af06d7ab19765b9f8ac2ff27e66aaffb69b7fb52bf2d1d59963cc",
+      "reason": null,
+      "seconds": 0.9060000000008586
+    },
+    {
+      "action": "fetch",
+      "artifact": "model-INCLUDED.json",
+      "attempt": 16,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "2c059cb9777985584e7f102e14500e8051d8aaa6bf801fb636b41f325acad800",
+      "reason": null,
+      "seconds": 0.9220000000004802
+    },
+    {
+      "action": "fetch",
+      "artifact": "model-PENDING_READY.json",
+      "attempt": 17,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "68a30f3b719267326d13e9b3f5595fca80df50d0c6c061ba35cc3ddaf48422ae",
+      "reason": null,
+      "seconds": 0.9060000000008586
+    },
+    {
+      "action": "fetch",
+      "artifact": "model-READY.json",
+      "attempt": 18,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "df1597222f965d1dcb73b812a773b5042f48479d4408f964f2fcb69ac3317646",
+      "reason": null,
+      "seconds": 0.9060000000008586
+    },
+    {
+      "action": "fetch",
+      "artifact": "model-RESTORE_READY.json",
+      "attempt": 19,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "cae7c13f24d13349ab56b7ae23eb217ff75926d3ea19349937352d0c2efd2cce",
+      "reason": null,
+      "seconds": 0.9060000000008586
+    },
+    {
+      "action": "fetch",
+      "artifact": "model-RESULT.json",
+      "attempt": 20,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "e6cf7e14b2f93861e88efce676c86051efa17231986ef591277199bc1354e3a8",
+      "reason": null,
+      "seconds": 0.9060000000008586
+    },
+    {
+      "action": "fetch",
+      "artifact": "model-SETTLED.json",
+      "attempt": 21,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "b2054ef72146e7ce6ae8b0d04cdedda01772ca8682053c893ce497e119071a62",
+      "reason": null,
+      "seconds": 0.9219999999986612
+    },
+    {
+      "action": "fetch",
+      "artifact": "native-DRY_COMPLETE.json",
+      "attempt": 22,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "f748329e50b041f4f627c3d414aede128c4d2c301f78000ec0de69535674d7bd",
+      "reason": null,
+      "seconds": 0.9059999999990396
+    },
+    {
+      "action": "fetch",
+      "artifact": "native-DRY_RECEIPT.json",
+      "attempt": 23,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "baebbb99915378c97eb783915c6d3cf3e5c8ae28bf941173d7528e6805f56a86",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "fetch",
+      "artifact": "native-FENCED.json",
+      "attempt": 24,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "c7df038fcb6416f7e9c1ebefca8efa32cdcde5401ba7ba5699476ffb216c986a",
+      "reason": null,
+      "seconds": 0.9219999999986612
+    },
+    {
+      "action": "fetch",
+      "artifact": "native-FINAL_STOP.json",
+      "attempt": 25,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "f935ad38e1a105f11d89add16d364fc618653378ca9ccbf42e2b6b26adc370d6",
+      "reason": null,
+      "seconds": 0.9069999999992433
+    },
+    {
+      "action": "fetch",
+      "artifact": "native-RECOVERY_COMPLETE.json",
+      "attempt": 26,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "ee9ba80a3e05ad3c09275b8d181b34df4f3cd4802f7ed57900802fbd23b83b4a",
+      "reason": null,
+      "seconds": 1.0309999999990396
+    },
+    {
+      "action": "fetch",
+      "artifact": "native-RECOVERY_RECEIPT.json",
+      "attempt": 27,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "bb30c7001b395a0b651dd970dd754fdbef80332a7abf38ac5887740239f1b9bc",
+      "reason": null,
+      "seconds": 1.0159999999996217
+    },
+    {
+      "action": "fetch",
+      "artifact": "native-SOURCE_FENCE.json",
+      "attempt": 28,
+      "exit_code": 0,
+      "parent_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parent_stdout_sha256": "e73166ed48dd69be287cd6a45428e09d4afb7cc4e7673782b3ed2329114f6835",
+      "reason": null,
+      "seconds": 0.9069999999992433
+    }
+  ],
+  "cleanup": true,
+  "cleanup_required": true,
+  "cleanup_skipped_no_install_attempt": false,
+  "completed": true,
+  "elapsed_seconds": 97.98500000000058,
+  "exports": [
+    "case-BINDINGS.json",
+    "case-CANONICAL.json",
+    "case-CLOCK_REPAIR.json",
+    "case-EVIDENCE.json",
+    "case-FINANCIAL_INCLUDED.json",
+    "case-FINANCIAL_INITIAL.json",
+    "case-RAW_REVIEWS.json",
+    "case-RECEIPTS.json",
+    "case-RESULT.json",
+    "case-SETUP.json",
+    "case-SOURCE_PRESERVED.json",
+    "model-COMPLETE.json",
+    "model-DRY.json",
+    "model-EVENTS.json",
+    "model-INCLUDED.json",
+    "model-PENDING_READY.json",
+    "model-READY.json",
+    "model-RESTORE_READY.json",
+    "model-RESULT.json",
+    "model-SETTLED.json",
+    "native-DRY_COMPLETE.json",
+    "native-DRY_RECEIPT.json",
+    "native-FENCED.json",
+    "native-FINAL_STOP.json",
+    "native-RECOVERY_COMPLETE.json",
+    "native-RECOVERY_RECEIPT.json",
+    "native-SOURCE_FENCE.json"
+  ],
+  "failure": null,
+  "final_status": {
+    "native": {
+      "finished_monotonic": 9020016.790423844,
+      "host_network_namespace": "net:[4026531840]",
+      "lab": "/opt/popl-ubuntu-backup-recovery-20261126-c813",
+      "old_processes": [],
+      "schema": 1,
+      "started_monotonic": 9020016.73809952,
+      "units": {
+        "popl-ubuntu-backup-recovery-20261126-c813-keeper.service": {
+          "cgroup": {
+            "exists": false,
+            "groups": [],
+            "path": "/system.slice/popl-ubuntu-backup-recovery-20261126-c813-keeper.service",
+            "pids": [],
+            "processes": []
+          },
+          "manager_journal": [
+            {
+              "INVOCATION_ID": "e30a09c660974ccbb70089c7277c7367",
+              "JOB_RESULT": "done",
+              "MESSAGE": "Started popl-ubuntu-backup-recovery-20261126-c813-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-backup-recovery-20261126-c813/runtime/run-001/model/supervisor/actor/config.json --live.",
+              "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88fa2;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=8341fc6275f;t=6612f1cfef86b;x=d54fafce9340d00e",
+              "__MONOTONIC_TIMESTAMP": "9019964401503",
+              "__REALTIME_TIMESTAMP": "1795704838092907"
+            },
+            {
+              "INVOCATION_ID": "e30a09c660974ccbb70089c7277c7367",
+              "MESSAGE": "Stopping popl-ubuntu-backup-recovery-20261126-c813-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-backup-recovery-20261126-c813/runtime/run-001/model/supervisor/actor/config.json --live...",
+              "MESSAGE_ID": "de5b426a63be47a7b6ac3eaac82e2f6f",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88fd5;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=8342098b923;t=6612f1dd18a2f;x=91f7b810875482d5",
+              "__MONOTONIC_TIMESTAMP": "9019978201379",
+              "__REALTIME_TIMESTAMP": "1795704851892783"
+            },
+            {
+              "INVOCATION_ID": "e30a09c660974ccbb70089c7277c7367",
+              "MESSAGE": "popl-ubuntu-backup-recovery-20261126-c813-keeper.service: Deactivated successfully.",
+              "MESSAGE_ID": "7ad2d189f7e94e70a38c781354912448",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88fe0;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83420a36029;t=6612f1ddc3134;x=b511e1074b615cb0",
+              "__MONOTONIC_TIMESTAMP": "9019978899497",
+              "__REALTIME_TIMESTAMP": "1795704852590900"
+            },
+            {
+              "INVOCATION_ID": "e30a09c660974ccbb70089c7277c7367",
+              "JOB_RESULT": "done",
+              "MESSAGE": "Stopped popl-ubuntu-backup-recovery-20261126-c813-keeper.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-backup-recovery-20261126-c813/runtime/run-001/model/supervisor/actor/config.json --live.",
+              "MESSAGE_ID": "9d1aaa27d60140bd96365438aad20286",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88fe1;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83420a3615b;t=6612f1ddc3267;x=dfa15a2576da6520",
+              "__MONOTONIC_TIMESTAMP": "9019978899803",
+              "__REALTIME_TIMESTAMP": "1795704852591207"
+            },
+            {
+              "INVOCATION_ID": "e30a09c660974ccbb70089c7277c7367",
+              "MESSAGE": "popl-ubuntu-backup-recovery-20261126-c813-keeper.service: Consumed 5.023s CPU time, 41.5M memory peak, 0B memory swap peak.",
+              "MESSAGE_ID": "ae8f7b866b0347b9af31fe1c80b127c0",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-keeper.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88fe2;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83420a365c4;t=6612f1ddc36d0;x=309b055b6b744580",
+              "__MONOTONIC_TIMESTAMP": "9019978900932",
+              "__REALTIME_TIMESTAMP": "1795704852592336"
+            }
+          ],
+          "properties": {
+            "ActiveEnterTimestampMonotonic": "0",
+            "ActiveState": "inactive",
+            "CPUQuotaPerSecUSec": "infinity",
+            "ControlGroup": "",
+            "ExecMainCode": "0",
+            "ExecMainExitTimestampMonotonic": "0",
+            "ExecMainStartTimestampMonotonic": "0",
+            "ExecMainStatus": "0",
+            "FinalKillSignal": "9",
+            "Group": "",
+            "Id": "popl-ubuntu-backup-recovery-20261126-c813-keeper.service",
+            "InactiveEnterTimestampMonotonic": "0",
+            "InvocationID": "",
+            "JoinsNamespaceOf": "",
+            "KillMode": "control-group",
+            "LimitCORE": "infinity",
+            "LoadState": "not-found",
+            "MainPID": "0",
+            "MemoryMax": "infinity",
+            "MemorySwapMax": "infinity",
+            "NRestarts": "0",
+            "NoNewPrivileges": "no",
+            "NotifyAccess": "none",
+            "PrivateDevices": "no",
+            "PrivateNetwork": "no",
+            "ProtectControlGroups": "no",
+            "ProtectHome": "no",
+            "ProtectSystem": "no",
+            "ReadWritePaths": "",
+            "Restart": "no",
+            "RestartUSec": "100ms",
+            "RestrictAddressFamilies": "~",
+            "Result": "success",
+            "RuntimeMaxUSec": "infinity",
+            "SendSIGKILL": "yes",
+            "StartLimitBurst": "5",
+            "StartLimitIntervalUSec": "10s",
+            "SubState": "dead",
+            "TasksMax": "9211",
+            "TimeoutStopUSec": "1min 30s",
+            "User": "",
+            "WatchdogSignal": "6",
+            "WatchdogTimestampMonotonic": "0",
+            "WatchdogUSec": "infinity",
+            "WorkingDirectory": ""
+          }
+        },
+        "popl-ubuntu-backup-recovery-20261126-c813-model.service": {
+          "cgroup": {
+            "exists": false,
+            "groups": [],
+            "path": "/system.slice/popl-ubuntu-backup-recovery-20261126-c813-model.service",
+            "pids": [],
+            "processes": []
+          },
+          "manager_journal": [
+            {
+              "INVOCATION_ID": "1e0b56bed9a14a4288eeeea9d8dfce7d",
+              "JOB_RESULT": "done",
+              "MESSAGE": "Started popl-ubuntu-backup-recovery-20261126-c813-model.service - /usr/bin/python3 -B /opt/popl-ubuntu-backup-recovery-20261126-c813/source/helpers/model_service.py --source-manifest-sha256 d606c4ca389ea4177f1703de63e7a3b18ee524b18fd6a5da5b399d6e0dd78781 --base-sha256 f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4 --jobs-sha256 363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4 --cases-sha256 7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7 --independent-sha256 5efec210669a694827fd2f75f9052ce0be5ab9196f27c9ce1da2f2fa363eb4c2.",
+              "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-model.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b88f74;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=8341f29d231;t=6612f1c62a33c;x=2a0abe4984963784",
+              "__MONOTONIC_TIMESTAMP": "9019954156081",
+              "__REALTIME_TIMESTAMP": "1795704827847484"
+            },
+            {
+              "INVOCATION_ID": "1e0b56bed9a14a4288eeeea9d8dfce7d",
+              "MESSAGE": "Stopping popl-ubuntu-backup-recovery-20261126-c813-model.service - /usr/bin/python3 -B /opt/popl-ubuntu-backup-recovery-20261126-c813/source/helpers/model_service.py --source-manifest-sha256 d606c4ca389ea4177f1703de63e7a3b18ee524b18fd6a5da5b399d6e0dd78781 --base-sha256 f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4 --jobs-sha256 363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4 --cases-sha256 7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7 --independent-sha256 5efec210669a694827fd2f75f9052ce0be5ab9196f27c9ce1da2f2fa363eb4c2...",
+              "MESSAGE_ID": "de5b426a63be47a7b6ac3eaac82e2f6f",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-model.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b89077;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=8342297180c;t=6612f1fcfe918;x=dd8a70ac7af67425",
+              "__MONOTONIC_TIMESTAMP": "9020011649036",
+              "__REALTIME_TIMESTAMP": "1795704885340440"
+            },
+            {
+              "EXIT_CODE": "exited",
+              "EXIT_STATUS": "1",
+              "INVOCATION_ID": "1e0b56bed9a14a4288eeeea9d8dfce7d",
+              "MESSAGE": "popl-ubuntu-backup-recovery-20261126-c813-model.service: Main process exited, code=exited, status=1/FAILURE",
+              "MESSAGE_ID": "98e322203f7a4ed290d09fe03c09fe15",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-model.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8907e;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=834229d2a2d;t=6612f1fd5fb39;x=1ef6c7ba3a1e906f",
+              "__MONOTONIC_TIMESTAMP": "9020012046893",
+              "__REALTIME_TIMESTAMP": "1795704885738297"
+            },
+            {
+              "INVOCATION_ID": "1e0b56bed9a14a4288eeeea9d8dfce7d",
+              "MESSAGE": "popl-ubuntu-backup-recovery-20261126-c813-model.service: Failed with result 'exit-code'.",
+              "MESSAGE_ID": "d9b373ed55a64feb8242e02dbe79a49c",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-model.service",
+              "UNIT_RESULT": "exit-code",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8907f;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=834229d2bfe;t=6612f1fd5fd0a;x=58a110edda1247ea",
+              "__MONOTONIC_TIMESTAMP": "9020012047358",
+              "__REALTIME_TIMESTAMP": "1795704885738762"
+            },
+            {
+              "INVOCATION_ID": "1e0b56bed9a14a4288eeeea9d8dfce7d",
+              "JOB_RESULT": "done",
+              "MESSAGE": "Stopped popl-ubuntu-backup-recovery-20261126-c813-model.service - /usr/bin/python3 -B /opt/popl-ubuntu-backup-recovery-20261126-c813/source/helpers/model_service.py --source-manifest-sha256 d606c4ca389ea4177f1703de63e7a3b18ee524b18fd6a5da5b399d6e0dd78781 --base-sha256 f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4 --jobs-sha256 363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4 --cases-sha256 7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7 --independent-sha256 5efec210669a694827fd2f75f9052ce0be5ab9196f27c9ce1da2f2fa363eb4c2.",
+              "MESSAGE_ID": "9d1aaa27d60140bd96365438aad20286",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-model.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b89080;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=834229d2df1;t=6612f1fd5fefd;x=4b6349d44d458469",
+              "__MONOTONIC_TIMESTAMP": "9020012047857",
+              "__REALTIME_TIMESTAMP": "1795704885739261"
+            },
+            {
+              "INVOCATION_ID": "1e0b56bed9a14a4288eeeea9d8dfce7d",
+              "MESSAGE": "popl-ubuntu-backup-recovery-20261126-c813-model.service: Consumed 21.151s CPU time, 80.9M memory peak, 0B memory swap peak.",
+              "MESSAGE_ID": "ae8f7b866b0347b9af31fe1c80b127c0",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-model.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b89081;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=834229d2f7f;t=6612f1fd6008b;x=ccce5acbd47203a4",
+              "__MONOTONIC_TIMESTAMP": "9020012048255",
+              "__REALTIME_TIMESTAMP": "1795704885739659"
+            }
+          ],
+          "properties": {
+            "ActiveEnterTimestampMonotonic": "9019954154471",
+            "ActiveState": "failed",
+            "CPUQuotaPerSecUSec": "1s",
+            "ControlGroup": "",
+            "ExecMainCode": "1",
+            "ExecMainExitTimestampMonotonic": "9020012046800",
+            "ExecMainStartTimestampMonotonic": "9019954154098",
+            "ExecMainStatus": "1",
+            "ExecStart": "{ path=/usr/bin/python3 ; argv[]=/usr/bin/python3 -B /opt/popl-ubuntu-backup-recovery-20261126-c813/source/helpers/model_service.py --source-manifest-sha256 d606c4ca389ea4177f1703de63e7a3b18ee524b18fd6a5da5b399d6e0dd78781 --base-sha256 f588d01b7593d39805a4df4b836976c10e2477313c570f5ede8e53276df6b6a4 --jobs-sha256 363265dd9e026e7667c73baf1756e1959fbbd9a29d858c996686835b672c78d4 --cases-sha256 7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7 --independent-sha256 5efec210669a694827fd2f75f9052ce0be5ab9196f27c9ce1da2f2fa363eb4c2 ; ignore_errors=no ; start_time=[Thu 2026-11-26 14:53:47 UTC] ; stop_time=[Thu 2026-11-26 14:54:45 UTC] ; pid=104395 ; code=exited ; status=1 }",
+            "FinalKillSignal": "9",
+            "Group": "nogroup",
+            "Id": "popl-ubuntu-backup-recovery-20261126-c813-model.service",
+            "InactiveEnterTimestampMonotonic": "9020012047236",
+            "InvocationID": "1e0b56bed9a14a4288eeeea9d8dfce7d",
+            "JoinsNamespaceOf": "",
+            "KillMode": "control-group",
+            "LimitCORE": "0",
+            "LoadState": "loaded",
+            "MainPID": "0",
+            "MemoryMax": "1610612736",
+            "MemorySwapMax": "0",
+            "NRestarts": "0",
+            "NoNewPrivileges": "yes",
+            "NotifyAccess": "none",
+            "PrivateDevices": "yes",
+            "PrivateNetwork": "yes",
+            "ProtectControlGroups": "yes",
+            "ProtectHome": "yes",
+            "ProtectSystem": "strict",
+            "ReadWritePaths": "/opt/popl-ubuntu-backup-recovery-20261126-c813/runtime",
+            "Restart": "no",
+            "RestartUSec": "100ms",
+            "RestrictAddressFamilies": "AF_INET AF_INET6 AF_UNIX",
+            "Result": "exit-code",
+            "RuntimeMaxUSec": "15min",
+            "SendSIGKILL": "yes",
+            "StartLimitBurst": "5",
+            "StartLimitIntervalUSec": "10s",
+            "SubState": "failed",
+            "TasksMax": "64",
+            "TimeoutStopUSec": "2min",
+            "User": "nobody",
+            "WatchdogSignal": "6",
+            "WatchdogTimestampMonotonic": "0",
+            "WatchdogUSec": "0",
+            "WorkingDirectory": "/opt/popl-ubuntu-backup-recovery-20261126-c813/source/contracts"
+          }
+        },
+        "popl-ubuntu-backup-recovery-20261126-c813-resolve.service": {
+          "cgroup": {
+            "exists": false,
+            "groups": [],
+            "path": "/system.slice/popl-ubuntu-backup-recovery-20261126-c813-resolve.service",
+            "pids": [],
+            "processes": []
+          },
+          "manager_journal": [
+            {
+              "INVOCATION_ID": "24088a8e4cb14c71b947be79bc25b2c0",
+              "JOB_RESULT": "done",
+              "MESSAGE": "Started popl-ubuntu-backup-recovery-20261126-c813-resolve.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-backup-recovery-20261126-c813/runtime/run-001/model/supervisor/TARGET_CONFIG.json --once.",
+              "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-resolve.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b89001;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83420d70567;t=6612f1e0fd672;x=3177b20d20040a48",
+              "__MONOTONIC_TIMESTAMP": "9019982284135",
+              "__REALTIME_TIMESTAMP": "1795704855975538"
+            },
+            {
+              "EXIT_CODE": "exited",
+              "EXIT_STATUS": "1",
+              "INVOCATION_ID": "24088a8e4cb14c71b947be79bc25b2c0",
+              "MESSAGE": "popl-ubuntu-backup-recovery-20261126-c813-resolve.service: Main process exited, code=exited, status=1/FAILURE",
+              "MESSAGE_ID": "98e322203f7a4ed290d09fe03c09fe15",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-resolve.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b89012;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=834210ef6f4;t=6612f1e47c800;x=d79e1c01fbbf3ae",
+              "__MONOTONIC_TIMESTAMP": "9019985950452",
+              "__REALTIME_TIMESTAMP": "1795704859641856"
+            },
+            {
+              "INVOCATION_ID": "24088a8e4cb14c71b947be79bc25b2c0",
+              "MESSAGE": "popl-ubuntu-backup-recovery-20261126-c813-resolve.service: Failed with result 'exit-code'.",
+              "MESSAGE_ID": "d9b373ed55a64feb8242e02dbe79a49c",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-resolve.service",
+              "UNIT_RESULT": "exit-code",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b89013;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=834210ef8e5;t=6612f1e47c9f1;x=805c39e5097d15ad",
+              "__MONOTONIC_TIMESTAMP": "9019985950949",
+              "__REALTIME_TIMESTAMP": "1795704859642353"
+            },
+            {
+              "INVOCATION_ID": "24088a8e4cb14c71b947be79bc25b2c0",
+              "MESSAGE": "popl-ubuntu-backup-recovery-20261126-c813-resolve.service: Consumed 1.187s CPU time, 19.2M memory peak, 0B memory swap peak.",
+              "MESSAGE_ID": "ae8f7b866b0347b9af31fe1c80b127c0",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-resolve.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b89014;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=834210ef975;t=6612f1e47ca81;x=16fe7c8b77e0112e",
+              "__MONOTONIC_TIMESTAMP": "9019985951093",
+              "__REALTIME_TIMESTAMP": "1795704859642497"
+            },
+            {
+              "INVOCATION_ID": "ca919f5dd4c546499aa257199a560cfe",
+              "JOB_RESULT": "done",
+              "MESSAGE": "Started popl-ubuntu-backup-recovery-20261126-c813-resolve.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-backup-recovery-20261126-c813/runtime/run-001/model/supervisor/TARGET_CONFIG.json --once.",
+              "MESSAGE_ID": "39f53479d3a045ac8e11786248231fbf",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-resolve.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8902d;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83421728496;t=6612f1eab55a2;x=fd37ab57c963936",
+              "__MONOTONIC_TIMESTAMP": "9019992474774",
+              "__REALTIME_TIMESTAMP": "1795704866166178"
+            },
+            {
+              "INVOCATION_ID": "ca919f5dd4c546499aa257199a560cfe",
+              "MESSAGE": "popl-ubuntu-backup-recovery-20261126-c813-resolve.service: Deactivated successfully.",
+              "MESSAGE_ID": "7ad2d189f7e94e70a38c781354912448",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-resolve.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8906a;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83422575b74;t=6612f1f902c80;x=3f8de5dc19436b98",
+              "__MONOTONIC_TIMESTAMP": "9020007471988",
+              "__REALTIME_TIMESTAMP": "1795704881163392"
+            },
+            {
+              "INVOCATION_ID": "ca919f5dd4c546499aa257199a560cfe",
+              "JOB_RESULT": "done",
+              "MESSAGE": "Stopped popl-ubuntu-backup-recovery-20261126-c813-resolve.service - /usr/bin/python3 -m keeper.monitor --config /opt/popl-ubuntu-backup-recovery-20261126-c813/runtime/run-001/model/supervisor/TARGET_CONFIG.json --once.",
+              "MESSAGE_ID": "9d1aaa27d60140bd96365438aad20286",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-resolve.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8906b;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83422575cba;t=6612f1f902dc5;x=142878de9c395226",
+              "__MONOTONIC_TIMESTAMP": "9020007472314",
+              "__REALTIME_TIMESTAMP": "1795704881163717"
+            },
+            {
+              "INVOCATION_ID": "ca919f5dd4c546499aa257199a560cfe",
+              "MESSAGE": "popl-ubuntu-backup-recovery-20261126-c813-resolve.service: Consumed 2.186s CPU time, 19.1M memory peak, 0B memory swap peak.",
+              "MESSAGE_ID": "ae8f7b866b0347b9af31fe1c80b127c0",
+              "SYSLOG_IDENTIFIER": "systemd",
+              "UNIT": "popl-ubuntu-backup-recovery-20261126-c813-resolve.service",
+              "_BOOT_ID": "ccf0679420a04f31ba3be7cd8de0fe5f",
+              "_PID": "1",
+              "__CURSOR": "s=ffb04022650e4943b9e46e72796e33a3;i=b8906c;b=ccf0679420a04f31ba3be7cd8de0fe5f;m=83422575cfa;t=6612f1f902e06;x=e563dab264aab969",
+              "__MONOTONIC_TIMESTAMP": "9020007472378",
+              "__REALTIME_TIMESTAMP": "1795704881163782"
+            }
+          ],
+          "properties": {
+            "ActiveEnterTimestampMonotonic": "0",
+            "ActiveState": "inactive",
+            "CPUQuotaPerSecUSec": "infinity",
+            "ControlGroup": "",
+            "ExecMainCode": "0",
+            "ExecMainExitTimestampMonotonic": "0",
+            "ExecMainStartTimestampMonotonic": "0",
+            "ExecMainStatus": "0",
+            "FinalKillSignal": "9",
+            "Group": "",
+            "Id": "popl-ubuntu-backup-recovery-20261126-c813-resolve.service",
+            "InactiveEnterTimestampMonotonic": "0",
+            "InvocationID": "",
+            "JoinsNamespaceOf": "",
+            "KillMode": "control-group",
+            "LimitCORE": "infinity",
+            "LoadState": "not-found",
+            "MainPID": "0",
+            "MemoryMax": "infinity",
+            "MemorySwapMax": "infinity",
+            "NRestarts": "0",
+            "NoNewPrivileges": "no",
+            "NotifyAccess": "none",
+            "PrivateDevices": "no",
+            "PrivateNetwork": "no",
+            "ProtectControlGroups": "no",
+            "ProtectHome": "no",
+            "ProtectSystem": "no",
+            "ReadWritePaths": "",
+            "Restart": "no",
+            "RestartUSec": "100ms",
+            "RestrictAddressFamilies": "~",
+            "Result": "success",
+            "RuntimeMaxUSec": "infinity",
+            "SendSIGKILL": "yes",
+            "StartLimitBurst": "5",
+            "StartLimitIntervalUSec": "10s",
+            "SubState": "dead",
+            "TasksMax": "9211",
+            "TimeoutStopUSec": "1min 30s",
+            "User": "",
+            "WatchdogSignal": "6",
+            "WatchdogTimestampMonotonic": "0",
+            "WatchdogUSec": "infinity",
+            "WorkingDirectory": ""
+          }
+        }
+      },
+      "utc": 1795704890.4818285
+    },
+    "phase": "native_status",
+    "public_files": {
+      "case-BINDINGS.json": {
+        "bytes": 26538,
+        "uid": 65534
+      },
+      "case-CANONICAL.json": {
+        "bytes": 7453,
+        "uid": 65534
+      },
+      "case-CLOCK_REPAIR.json": {
+        "bytes": 3840,
+        "uid": 65534
+      },
+      "case-EVIDENCE.json": {
+        "bytes": 2845,
+        "uid": 65534
+      },
+      "case-FINANCIAL_INCLUDED.json": {
+        "bytes": 1889,
+        "uid": 65534
+      },
+      "case-FINANCIAL_INITIAL.json": {
+        "bytes": 1889,
+        "uid": 65534
+      },
+      "case-RAW_REVIEWS.json": {
+        "bytes": 799,
+        "uid": 65534
+      },
+      "case-RECEIPTS.json": {
+        "bytes": 3,
+        "uid": 65534
+      },
+      "case-RESULT.json": {
+        "bytes": 461,
+        "uid": 65534
+      },
+      "case-SETUP.json": {
+        "bytes": 9470,
+        "uid": 65534
+      },
+      "case-SOURCE_PRESERVED.json": {
+        "bytes": 434,
+        "uid": 65534
+      },
+      "model-COMPLETE.json": {
+        "bytes": 647,
+        "uid": 65534
+      },
+      "model-DRY.json": {
+        "bytes": 11811,
+        "uid": 65534
+      },
+      "model-EVENTS.json": {
+        "bytes": 197,
+        "uid": 65534
+      },
+      "model-INCLUDED.json": {
+        "bytes": 229,
+        "uid": 65534
+      },
+      "model-PENDING_READY.json": {
+        "bytes": 544,
+        "uid": 65534
+      },
+      "model-READY.json": {
+        "bytes": 1079,
+        "uid": 65534
+      },
+      "model-RESTORE_READY.json": {
+        "bytes": 445,
+        "uid": 65534
+      },
+      "model-RESULT.json": {
+        "bytes": 1296,
+        "uid": 65534
+      },
+      "model-SETTLED.json": {
+        "bytes": 2427,
+        "uid": 65534
+      },
+      "native-DRY_COMPLETE.json": {
+        "bytes": 342,
+        "uid": 0
+      },
+      "native-DRY_RECEIPT.json": {
+        "bytes": 19418,
+        "uid": 0
+      },
+      "native-FENCED.json": {
+        "bytes": 253,
+        "uid": 0
+      },
+      "native-FINAL_STOP.json": {
+        "bytes": 19689,
+        "uid": 0
+      },
+      "native-RECOVERY_COMPLETE.json": {
+        "bytes": 342,
+        "uid": 0
+      },
+      "native-RECOVERY_RECEIPT.json": {
+        "bytes": 10372,
+        "uid": 0
+      },
+      "native-SOURCE_FENCE.json": {
+        "bytes": 11038,
+        "uid": 0
+      },
+      "native-keeper.stderr.log": {
+        "bytes": 0,
+        "uid": 65534
+      },
+      "native-keeper.stdout.log": {
+        "bytes": 480,
+        "uid": 65534
+      },
+      "native-model.stderr.log": {
+        "bytes": 0,
+        "uid": 65534
+      },
+      "native-model.stdout.log": {
+        "bytes": 0,
+        "uid": 65534
+      },
+      "native-resolve.stderr.log": {
+        "bytes": 0,
+        "uid": 65534
+      },
+      "native-resolve.stdout.log": {
+        "bytes": 720,
+        "uid": 65534
+      }
+    }
+  },
+  "independent_check_passed": false,
+  "installation_attempted": true,
+  "installation_succeeded": true,
+  "new_composed_scenarios": 1,
+  "new_seals": 0,
+  "new_test_bodies_run": 0,
+  "old_test_bodies_run": 0,
+  "production_approved": false,
+  "public_transactions": 0,
+  "root_original_host_comparison_required": true,
+  "schema": 1,
+  "success": false
+}

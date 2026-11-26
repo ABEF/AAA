@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "server_payload_unchanged": true,
+  "changed_client_files": [
+    "host_control.py",
+    "orchestrate_c813.py"
+  ],
+  "original_network_refusal_before_server_install": true,
+  "source_files_all_AST_valid": true,
+  "credentials_or_original_ACLs_changed": false,
+  "pins": {
+    "c813.inputs.tar.gz": "8316ada3b9846b7e22d87c0224c450232083b6d863308318953bfbc1b2a212f5",
+    "capsule_extension.py": "dc3434dd65a75963370a9a001888fb0728596d80fcd4ff0e3855e2ff33e7e5ac",
+    "host_control.py": "afbfe47157194acae20ecc1da7b1e5857813a7ebdd412f6ddc2095bdb8ccf127",
+    "independent_private.py": "5efec210669a694827fd2f75f9052ce0be5ab9196f27c9ce1da2f2fa363eb4c2",
+    "model_service.py": "2b596730226e88b59a7e2ff48189eb88a7b0ed5803134c66ac8ebc6149943747",
+    "orchestrate_c813.py": "df3f8b13e8fc19dee84d33cca5069d7528e6ea32bb64df9594f4a0436a44235e",
+    "package_c813.py": "8c0e84e3dc8a0521096e9aaaebfaf84e00465994cbae2aedad0c2205fee96174",
+    "recovery_control.py": "62b0b8fcc6801a219806f667499ce5965552e86b7954790c626453875c371455",
+    "remote_capsule.py": "063843eb5d8f354045d70206dc213ab2275f1686876016daeab3629f08057e8c"
+  }
+}

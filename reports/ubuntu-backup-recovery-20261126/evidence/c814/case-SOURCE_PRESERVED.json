@@ -1,0 +1,15 @@
+{
+  "configuration_sha256": "d6fa4ad0f5cab416ee064ab5d6c85af8c48177c2c6788533570b97cb247061da",
+  "journal_sha256": "88d530f0511c65f3848c450445a71daf0c252e1c0ebf460bd5278aa09acf7193",
+  "node_nonces": {
+    "latest": 1,
+    "pending": 1
+  },
+  "original_configuration_unchanged": true,
+  "original_journal_unchanged": true,
+  "raw_attempts": 1,
+  "raw_forwarded": 1,
+  "raw_gateway_attempts": 1,
+  "raw_validated": 1,
+  "schema": 1
+}

@@ -7,12 +7,14 @@
 | [24 November stock keeper](../reports/ubuntu-complete-20261124/REVIEW.md) | Real daemon/Cast harvest, same-journal interruption/recovery and healthy cycle | Separate history/diagnostic partitions; no full-feature/provider or sustained approval |
 | [Maintenance workers](../reports/ubuntu-keeper-blockers-20261124/REVIEW.md), [hybrid LP](../reports/ubuntu-hybrid-20261124/REVIEW.md), [key replacement](../reports/ubuntu-key-rotation-20261124/REVIEW.md) | Positive worker, one–two–one and role/recovery partitions | Original fixture, fee and logical-clock scopes remain |
 | [25 November supervisor](../reports/ubuntu-supervisor-20261125/REVIEW.md), [storage](../reports/ubuntu-storage-20261125/REVIEW.md) | Saved-hash watchdog, active-Cast manual kill and six ENOSPC/EACCES refusals | Physical durability, off-host and broader faults remain open |
+| [Ubuntu exact-backup adoption](../reports/ubuntu-backup-recovery-20261126/REVIEW.md) | c814 exact pending restore, one canonical unsigned recovery, fresh dry cycle, six independent checks and final vectors;2,353/6,000RPC | Same host; original c813 NONPASS retained, no production/second-host/provider/soak approval |
 | [Unsigned keeper backup](../reports/keeper-backup-20261126/REVIEW.md) | Exact-byte backup/verify/fresh restore, input faults, source races and private Unix modes;30 portable plus3 Ubuntu passes | Capture-age/source integrity only; no actual old-key/second-host adoption or Windows ACL qualification |
 | [26 November daemon storage](../reports/ubuntu-daemon-storage-20261126/REVIEW.md) | Actual EACCES/restart/no-live resolution/once-only recovery and healthy cycle independently reconciled;2,765/6,000RPC, one keeper transaction | Original timing NONPASS/missing final physical after-reads preserved; no replay/full planned-case pass |
 | [26 November keeper audit](../reports/keeper-full-audit-20261126/REVIEW.md) | c810 five failed starts/sixth refusal, exact interval-only repair, fresh healthy idle;1,652/6,000RPC and zero keeper-signed submissions | Financial jobs disabled; c809 original nonpass retained; its one Linux check reused without execution |
 
-These are separate source-bound proofs, not one combined all-feature run. Both
-new lab unit pairs stop empty; original environments/journals remain. Actual
+These are separate source-bound proofs, not one combined all-feature run. Each
+record retains its own unit-count and cleanup proof; the c813/c814 groups stop
+empty and original environments/journals remain. Actual
 provider timing, off-host restore/alerts/fencing, additional faults and sustained
 operation remain open. Source publication does not install or restart services.
 

@@ -500,6 +500,16 @@ Owning Todo: [`keeper-guardrails`](../TODO.md#task-keeper-guardrails), [`keeper-
 
 ### P21 — Host, interruption, restore and alerts
 
+The [actual Ubuntu adoption composition](../reports/ubuntu-backup-recovery-20261126/REVIEW.md)
+now passes exact known-pending backup/restore, separate original configuration,
+unsigned canonical recovery and a fresh dry cycle in2,353/6,000RPC. Six
+independent checks and final NFT/LP/reserve vectors pass; all new groups stop
+and existing service states match. The original c813 shutdown/capture NONPASS
+stays separate from c814's corrected capture-before-teardown evidence. No
+production source, financial limit or existing environment changes. Actual
+second-host fencing/restore, alert delivery, provider timing and sustained
+normal operation still require qualification.
+
 The [unsigned keeper backup tool](KEEPER_BACKUP.md) now prepares exact
 journal backups, explicit-pin/config/source/age verification and exclusive
 review-only restore folders. [Evidence](../reports/keeper-backup-20261126/REVIEW.md)

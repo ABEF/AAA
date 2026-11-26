@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "success": false,
+  "stage": "new_offline_saved_evidence_checker_curation_schema",
+  "cause": "Initial checker compared an entire c813 descriptor to a two-field descriptor; c813 also records original_sha256. Saved bytes were unchanged. The corrected checker verifies bytes/sha256 and separately requires original_sha256 equality when present.",
+  "server_actions": 0,
+  "private_checker_rerun": false,
+  "tests_run": 0,
+  "original_evidence_changed": false
+}

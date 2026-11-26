@@ -1,5 +1,12 @@
 # Verification evidence
 
+[Ubuntu exact-backup adoption](ubuntu-backup-recovery-20261126/REVIEW.md)
+retains c813's failed final-capture run and records the corrected c814 actual
+stock unsigned recovery. Six private-vector checks, complete final financial
+vectors and all owned-group cleanup pass; existing environments stay unchanged.
+Client continuation does not restart or resend. Same-host proof is not off-host
+fencing, provider, sustained operation or production approval.
+
 [Keeper journal backup/restore](keeper-backup-20261126/REVIEW.md)
 adds the unsigned format1 tool and33distinct new Windows/Ubuntu checks.
 Configuration/signer material stays separate; original journals and

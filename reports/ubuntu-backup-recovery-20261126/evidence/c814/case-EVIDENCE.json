@@ -1,0 +1,65 @@
+{
+  "backup_manifest_sha256": "59ca4ad5840aafdd15447d786fa967c015025dc723b74bad87a723c8452796f8",
+  "bundle_file_names": [
+    "journal.json",
+    "manifest.json"
+  ],
+  "changed_configuration_keys": [
+    "health_path",
+    "lock_path",
+    "state_path"
+  ],
+  "configuration_raw_sha256": "d6fa4ad0f5cab416ee064ab5d6c85af8c48177c2c6788533570b97cb247061da",
+  "configuration_semantic_sha256": "64d2394b8ef15156ab16e2550370e351b6ab9c8f54f745fe5d95cd39a350b7f4",
+  "fence_marker": {
+    "accepted_hash": "0x7edd034ae1a886c82dbf252b8e8659ec7c1b138154bd186a9d74ac6cbbaff0b9",
+    "automatic_restart_inhibited": true,
+    "journal_sha256": "88d530f0511c65f3848c450445a71daf0c252e1c0ebf460bd5278aa09acf7193",
+    "keeper_fenced_empty": true,
+    "schema": 1
+  },
+  "known_hash": "0x7edd034ae1a886c82dbf252b8e8659ec7c1b138154bd186a9d74ac6cbbaff0b9",
+  "pending_journal_sha256": "88d530f0511c65f3848c450445a71daf0c252e1c0ebf460bd5278aa09acf7193",
+  "raw_configuration_exported": false,
+  "restore_file_names": [
+    "RESTORE_PLAN.json",
+    "keeper-state.json"
+  ],
+  "restore_plan_sha256": "15653ee0dc3d7473cc348fdf3c3ba70e711a1c15592a83b2e8e05c00d4d6d764",
+  "restored_journal_sha256": "88d530f0511c65f3848c450445a71daf0c252e1c0ebf460bd5278aa09acf7193",
+  "same_host_only": true,
+  "schema": 1,
+  "signer_material_bundled": false,
+  "source_head": "5662a81ad9c9c5953d3578974e0c5840d626ba97",
+  "target_configuration_raw_sha256": "7c0bb2c099860ec94daa2bdfd65a612678ed747283c5dfc37127800fa1b81564",
+  "target_configuration_semantic_sha256": "952f54adfcfc36d6c4cf2cbdbd57f67389e4aba37ec3a5854336d714120ae06e",
+  "tool_runs": [
+    {
+      "action": "backup",
+      "configuration_sha256": "d6fa4ad0f5cab416ee064ab5d6c85af8c48177c2c6788533570b97cb247061da",
+      "digest": "59ca4ad5840aafdd15447d786fa967c015025dc723b74bad87a723c8452796f8",
+      "output_sha256": "cde45fb60f136446cd695864f94e7839caaf4555647a4d880ed4e10ad616335c",
+      "returncode": 0,
+      "secret_contents_exported": false,
+      "signing_enabled": false
+    },
+    {
+      "action": "verify",
+      "configuration_sha256": "d6fa4ad0f5cab416ee064ab5d6c85af8c48177c2c6788533570b97cb247061da",
+      "digest": "59ca4ad5840aafdd15447d786fa967c015025dc723b74bad87a723c8452796f8",
+      "output_sha256": "cde45fb60f136446cd695864f94e7839caaf4555647a4d880ed4e10ad616335c",
+      "returncode": 0,
+      "secret_contents_exported": false,
+      "signing_enabled": false
+    },
+    {
+      "action": "restore",
+      "configuration_sha256": "d6fa4ad0f5cab416ee064ab5d6c85af8c48177c2c6788533570b97cb247061da",
+      "digest": "15653ee0dc3d7473cc348fdf3c3ba70e711a1c15592a83b2e8e05c00d4d6d764",
+      "output_sha256": "0a93e24b2f733743da7f25a7cb6ba01bee9110e32ed40df18da1b8e2b1fe5fce",
+      "returncode": 0,
+      "secret_contents_exported": false,
+      "signing_enabled": false
+    }
+  ]
+}

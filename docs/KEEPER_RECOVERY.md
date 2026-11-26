@@ -508,6 +508,18 @@ only a new unsigned restore folder. It does not install state or start a
 keeper. Backups may become older than later chain activity; the new-host
 procedure below still requires fencing and canonical reconciliation.
 
+### Actual unsigned fresh-runtime composition
+
+[c814 evidence](../reports/ubuntu-backup-recovery-20261126/REVIEW.md) binds the
+original pending journal to an exact restore, separate unchanged original
+configuration and a three-runtime-path target mapping. Stock unsigned recovery
+books one canonical receipt, then a fresh dry cycle confirms current metadata.
+Six independent private checks and final financial vectors pass in2,353RPC.
+The original c813 final-capture failure is retained; save diagnostics before
+stopping a whole cgroup. Client reconnection used saved status/stop/export only,
+with no source restart or resend. This is same-host isolation, not actual
+second-host fencing, production adoption or release approval.
+
 ## Move to a new host
 
 1. Stop the old signer and prevent simultaneous operation. File locking only protects one host. If key confidentiality is uncertain, revoke the old keeper and authorize a fresh signer through the reviewed immediate governance process.

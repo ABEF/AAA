@@ -124,6 +124,15 @@ qualified by these checks and require separate review.
    reconciliation procedure completes. Never initialize a used sender or
    blindly resend.
 
+With a confirmed saved receipt, the first unsigned `--once` cycle can clear
+pending and book the original nonce/cost correctly, then exit `1` with health
+`degraded`: it deliberately leaves fresh execution/reference metadata for a
+later cycle. Check the exact journal, receipt and health reason. This exit code
+alone is not permission to clear state or resend. A further unsigned `--once`
+cycle must obtain fresh metadata before reporting `dry_run_v2`; errors remain
+blocked. The health configuration digest belongs to the separately reviewed new
+configuration, while bundle verification still requires the original bytes.
+
 Every restore plan keeps live readiness, canonical verification, old-signer
 fencing, installation and restart flags false. The tool supports its explicit
 accounting7/custody5 profile; unsupported versions/unknown journal fields require
@@ -132,6 +141,22 @@ and existing economic rights remain unchanged.
 
 Backup verification checks the supported envelope and file integrity; the
 daemon's full configuration, runtime and canonical admission remain separate.
+
+## Actual Ubuntu adoption evidence
+
+The [26 November rehearsal](../reports/ubuntu-backup-recovery-20261126/REVIEW.md)
+uses a new isolated Ubuntu runtime and real locally signed known-hash pending
+transaction. Backup/restore preserve exact bytes; the target runs only unsigned
+`--once`, with signer files inaccessible, then reaches `dry_run_v2`. Canonical
+nonce, fee/day/anchor accounting is applied once; initial/included/final NFT,
+LP and reserve vectors match. This fee-empty harvest is not a new allocation
+or conversion qualification. All existing environments stay unchanged.
+
+Capture evidence while dependencies are still alive. Stopping a systemd cgroup
+can terminate its child node before the main process's `finally` block runs.
+The failed c813 record stays intact; c814 captures the final vectors and
+independent review before it permits teardown. Real off-host restore, signer
+fencing, provider robustness and sustained operation remain separate.
 
 ## Refusals and partial output
 

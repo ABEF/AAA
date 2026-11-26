@@ -1,0 +1,11 @@
+{
+  "c814.inputs.tar.gz": "79d4674ad1aed9e58aa018284f05643d56c9eb0be7db11acd847bf674a141f0b",
+  "capsule_extension.py": "1d681782c4946b0d9cea875d4284ca87e1f22fb41a822c76ffc5dc34e20b773d",
+  "host_control.py": "60ba859d5b62df2b5b67e8759e25a71100c7ac71d4dc7553f632b3cb39168cb9",
+  "independent_private.py": "0116857d1b13b57971ce90bd8c8dc5536e675fb0de93da616adf2e0859b9618b",
+  "model_service.py": "0b16b4d06a3743a4255e3ca46f583bc6330b72b95d947caae310c46b76aa3a8e",
+  "orchestrate_c814.py": "8430236625e71d2611e3492beaf7f26166bdd2976fdda0a01fc2e92c17c8921b",
+  "package_c814.py": "cd8ff093275b8168fcd2c64e8bfe2c38df4b53bc70c16ecd66db88c0be1ccf46",
+  "recovery_control.py": "35a7e36ee5a568fb55bd7d4b16d9bbc1ee2df661c40b07593edc8c1987e30809",
+  "remote_capsule.py": "023f50bf286a7166a4d9537e527a0df332483b919e2602ce39c6a4574f5a0e74"
+}
