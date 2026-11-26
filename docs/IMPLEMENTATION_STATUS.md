@@ -341,7 +341,9 @@ both-leg exit.10distinct selected methods span explicit stages, including one
 size/static evidence is reused at matching pins. Failed stale-fixture attempts
 remain recorded. This is not target-chain gas, full-suite or independent approval.
 
-## Latest report consolidation
+<a id="latest-report-consolidation"></a>
+
+## 19 November seven-report consolidation
 
 The [seven-report review](../reports/seven-report-consolidation-20261119/REVIEW.md)
 retains all64 original IDs, reinspects19 changed-source rows and separately

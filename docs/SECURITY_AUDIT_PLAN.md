@@ -1,8 +1,9 @@
 # Security audit plan
 
-[Current review](../reports/whole-project-review-20261111/REVIEW.md) updates
-source/ABI/storage/static evidence and identifies remaining design/release gates.
-This is internal verification, not independent production approval.
+Use [current findings](AUDIT_FINDINGS.md) and the [workload map](WORKLOAD_COVERAGE.md)
+for present scope. The [11 November project review](../reports/whole-project-review-20261111/REVIEW.md)
+retains its source/ABI/storage/static findings; the [26 November keeper audit](../reports/keeper-full-audit-20261126/REVIEW.md)
+adds separately scoped source and operating evidence. None is independent production approval.
 
 
 Current fresh source: **accounting7 / custody5 / portfolio2 / canonical mint2/V10**.

@@ -1,6 +1,22 @@
 # Keeper service qualification and rehearsal
 
-## Latest Ubuntu attempt and focused code checks
+## Current operating evidence
+
+| Partition | Completed finite evidence | Limit |
+| --- | --- | --- |
+| [24 November stock keeper](../reports/ubuntu-complete-20261124/REVIEW.md) | Real daemon/Cast harvest, same-journal interruption/recovery and healthy cycle | Separate history/diagnostic partitions; no full-feature/provider or sustained approval |
+| [Maintenance workers](../reports/ubuntu-keeper-blockers-20261124/REVIEW.md), [hybrid LP](../reports/ubuntu-hybrid-20261124/REVIEW.md), [key replacement](../reports/ubuntu-key-rotation-20261124/REVIEW.md) | Positive worker, one–two–one and role/recovery partitions | Original fixture, fee and logical-clock scopes remain |
+| [25 November supervisor](../reports/ubuntu-supervisor-20261125/REVIEW.md), [storage](../reports/ubuntu-storage-20261125/REVIEW.md) | Saved-hash watchdog, active-Cast manual kill and six ENOSPC/EACCES refusals | Physical durability, off-host and broader faults remain open |
+| [26 November keeper audit](../reports/keeper-full-audit-20261126/REVIEW.md) | c810 five failed starts/sixth refusal, exact interval-only repair, fresh healthy idle;1,652/6,000RPC and zero keeper-signed submissions | Financial jobs disabled; c809 original nonpass retained; its one Linux check reused without execution |
+
+These are separate source-bound proofs, not one combined all-feature run. Both
+new lab unit pairs stop empty; original environments/journals remain. Actual
+provider timing, off-host restore/alerts/fencing, additional faults and sustained
+operation remain open. Source publication does not install or restart services.
+
+<a id="latest-ubuntu-attempt-and-focused-code-checks"></a>
+
+## Historical 21 November attempt and focused code checks
 
 The [21 November record](../reports/ubuntu-keeper-20261121/REVIEW.md) is NOT a
 completed normal-daemon rehearsal. Platform/source/namespace preparation ran,
@@ -64,8 +80,8 @@ marketplace refresh, real server isolation, systemd lifecycle or Robinhood servi
 
 ## Current-profile process evidence
 
-The [Q06 recovery review](../reports/q06-keeper-recovery-20261117/REVIEW.md) records
-a completed finite current-accounting7 campaign on actual Linux/systemd. Read
+The historical [17 November Q06 recovery review](../reports/q06-keeper-recovery-20261117/REVIEW.md) records
+a finite accounting7 campaign on actual Linux/systemd. Read
 its actual outcome and source stage before treating any scenario as verified.
 The test-only worker uses the production keeper's HTTP decoding, runtime/version/
 binding checks, nonce/fee review, durable intent, recovery and process lock, with

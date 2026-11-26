@@ -1902,7 +1902,7 @@ pending work and preserve the journal before any config/release restart.
 Fresh keeper health schema2 separates confirmed execution/quality metadata from
 `rebalance_confirmation_health.policy`: a fresh latest canonical policy-only
 block/hash/time, config/source/runtime pins, helper/Budget versions and bindings.
-Confirmation1 requires this record independently of quality1, even during
+Enabled confirmation1/2/3 requires this record independently of quality1, even during
 cooldown with compounding off. It proves neither sampled readiness nor continuous
 history. `stopped` means gap 0; `incompatible_cadence` means a nonzero gap below 240;
 `unavailable` retains any old observation explicitly as stale. These states
@@ -3312,12 +3312,15 @@ See [Q06 evidence and limits](../reports/q06-keeper-recovery-20261117/REVIEW.md)
 | HTTP never completes / signer stalls | Inspect the actual manager result, all old descendant PIDs/cgroup and lock ownership before restart. Source120s watchdog,120s stop and30s restart are separate clocks; full recovery can take longer. | No assumed instant recovery. |
 | Roll back source | Stop/fence first; restore a reviewed compatible code/unit pair while retaining the original journal and pending fee schema. Inspect effective settings again. | No journal relabelling. |
 
-The new actual test uses unprivileged private-network units, synthetic contracts
-and an inert signer. Its restart dispatcher only reconciles recovery; it does
-not run normal maintenance. DNS/body stalls, real encrypted Cast/key/provider,
-off-host restore/alerts, restart storms and multi-day operation remain separate
-acceptance work. Existing services were not controlled; their observer timer
-continued normally. The desktop chat heartbeat remains paused.
+The 17 November Q06 partition used unprivileged private-network units, synthetic
+contracts and an inert signer; its dispatcher proved recovery only. Later
+[stock-daemon/Cast](../reports/ubuntu-complete-20261124/REVIEW.md),
+[supervisor](../reports/ubuntu-supervisor-20261125/REVIEW.md) and
+[c810 startup-limit recovery](../reports/keeper-full-audit-20261126/REVIEW.md)
+provide separate finite proofs. Actual-provider delays, uncovered fault classes,
+off-host restore/fencing/alerts, additional restart-storm cases and sustained
+full-feature operation remain open. Existing services and journals remain
+unchanged; the desktop chat heartbeat stays paused.
 
 ## Dependencies and pricing
 

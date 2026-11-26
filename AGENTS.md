@@ -1,3 +1,5 @@
+# AAA / ZZZ PoPL project instructions
+
 [Full keeper audit — 26 November](reports/keeper-full-audit-20261126/REVIEW.md) adds late booked-cost anchor checks,
 bounded staging wallet utilities and bounded read-only monitor output. Exact
 new verification, the original interrupted utility evidence and isolated Ubuntu
@@ -7,8 +9,8 @@ F6 source/dependency/control maps61/39/4 and1,021 ABI rows remain unchanged.
 Installed legacy staging is not the current candidate and was left untouched.
 Q06/P20/P21, provider/off-host/sustained operation and independent approval
 remain open. No service/site/chain/journal adoption; heartbeat stays paused.
-
-# AAA / ZZZ PoPL project instructions
+Keeper code/evidence is published at `843e02d7`; current documentation now
+distinguishes completed finite checks from remaining operating qualification.
 
 [Ubuntu keeper storage recovery](reports/ubuntu-storage-20261125/REVIEW.md)
 passes six actual ENOSPC/EACCES refusals at intent, reported-hash and paid-receipt

@@ -13,22 +13,23 @@ checks and [source-bound readiness reconciliation](../reports/production-readine
 The sole Todo owns status; the plan covers23 acceptance packages and distinguishes
 predeployment, deployed-unsealed, sealing and public-launch gates.
 
-For current changed-constructor, binding and cold metadata read measurements,
-use the [selective metadata2 rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md)
-and [operator read procedure](OPERATOR_MANUAL.md#metadata2-construction-and-cold-read-review).
-The earlier full construction capture remains historical; live release
-qualification stays separate.
+The [16 November selective metadata2 rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md)
+and [operator read procedure](OPERATOR_MANUAL.md#metadata2-construction-and-cold-read-review)
+retain their five-changed-constructor/cold-read source scope. Use the current
+F6 construction record above for the later full graph; neither approves live release.
 
-For the latest audit follow-through, use the [five-audit reconciliation](../reports/five-audit-reconciliation-20261116/REVIEW.md)
-and its single finding index. [Deployment preparation](DEPLOYMENT_PREPARATION.md)
+For current findings use [the maintained register](AUDIT_FINDINGS.md) and the
+[26 November keeper review](../reports/keeper-full-audit-20261126/REVIEW.md). The
+[16 November five-audit reconciliation](../reports/five-audit-reconciliation-20261116/REVIEW.md)
+and its original finding index retain that earlier source scope. [Deployment preparation](DEPLOYMENT_PREPARATION.md)
 explains current/historical artifact selection and offline evidence checks.
 
 For NFT evolution and marketplace behavior use the [metadata lifecycle matrix](METADATA_LIFECYCLE.md):
 80 scenarios, current-source assessment and [implemented lifecycle corrections](../reports/metadata-lifecycle-fixes-20261116/REVIEW.md). It complements
 [NFT rules](NFT_METADATA.md) and the operator procedure; it is not another Todo.
 
-For current external dependencies use the [16 November market refresh](../reports/real-market-refresh-20261116/REVIEW.md)
-and [service decisions](PRODUCTION_SERVICES.md). Dated captures remain separate;
+For latest recorded market observations use the [20 November market/route review](../reports/market-route-qualification-20261120/REVIEW.md)
+and [service decisions](PRODUCTION_SERVICES.md). The [16 November refresh](../reports/real-market-refresh-20261116/REVIEW.md) is historical. Dated captures remain separate;
 current discovery and quote diagnostics do not qualify sources, routes or services.
 
 The [isolated local construction record](../reports/local-deployment-rehearsal-20261115/REVIEW.md)
@@ -112,9 +113,10 @@ and rollout boundaries. [Verification](../reports/v10-website-20261109/REVIEW.md
 is synthetic current-handler/browser compatibility. Source9/V9 and all running
 sites/services retain their original profiles.
 
-[Current consistency record](../reports/documentation-consistency-20261109/REVIEW.md)
-reconciles current profiles, task descriptions and review exports while keeping
-historical evidence and running environments unchanged.
+[Current documentation concordance](../reports/keeper-doc-sync-20261126/REVIEW.md)
+aligns keeper profiles, task descriptions, procedures and both repositories' memory.
+The [9 November consistency record](../reports/documentation-consistency-20261109/REVIEW.md)
+retains its earlier profile/export scope. Historical evidence and running environments stay unchanged.
 
 The [total contribution3% policy](EXECUTION_LOSS_POLICY.md) requires97% actually
 added LP; the independent swap/spot/caller/NET floors remain unchanged.

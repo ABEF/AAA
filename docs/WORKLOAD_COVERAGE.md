@@ -22,7 +22,11 @@ keeper/Cast recovery, a healthy normal cycle and finite diagnostics/indexer/hist
 partitions have separate receipts. Four plus7+3 NEW source methods and nine NEW
 snapshot methods pass in their exact stages; no unchanged bodies rerun.
 Use [the current inventory](../reports/keeper-full-audit-20261126/FUNCTION_INVENTORY.json)
-and [33 operating partitions](../reports/ubuntu-complete-20261124/COVERAGE.md).
+and the historical [24 November33-partition map](../reports/ubuntu-complete-20261124/COVERAGE.md).
+Later [supervisor](../reports/ubuntu-supervisor-20261125/REVIEW.md),
+[storage](../reports/ubuntu-storage-20261125/REVIEW.md) and
+[c810 startup recovery](../reports/keeper-full-audit-20261126/REVIEW.md) add
+separate finite scopes;33 is not a current all-feature pass count.
 Neither inventory nor a finite partition closes full F6/V10 consumer, provider,
 market, maximum workload or sustained operating approval.
 

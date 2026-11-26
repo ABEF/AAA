@@ -233,7 +233,7 @@ evidence but labels it unavailable rather than fresh. Source identity is explici
 `local_files_at_keeper_start_not_runtime_attestation`. A health file is neither
 cryptographic proof of running code nor an independent RPC/market attestation.
 
-Quality1/confirmation1/2 successful statuses are `healthy_v2` or `dry_run_v2`, so
+Quality1 or enabled confirmation1/2/3 successful statuses are `healthy_v2` or `dry_run_v2`, so
 an older checker fails closed. Historical profiles retain their old success
 statuses and journal meanings. New checks require schema2 for the new profiles;
 missing/mismatched/stale source, configuration, block or policy evidence cannot
@@ -244,7 +244,7 @@ confirmation-policy reads; the policy state is `pending_recovery`. Recovery of
 the original intent remains first.
 
 `rebalance_confirmation_health.policy` independently requires a fresh latest
-canonical policy-only anchor for confirmation1/2, even with quality0, LP cooldown
+canonical policy-only anchor for enabled confirmation1/2/3, even with quality0, LP cooldown
 or compounding off. It records helper/Budget capabilities and bindings, runtime
 pins and config/source identity; it reads no bucket condition or price and proves
 neither readiness nor continuous history. `stopped` means gap 0 and

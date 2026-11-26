@@ -1,0 +1,18 @@
+{
+  "self_excluded": true,
+  "files": {
+    "AFTER.json": {
+      "bytes": 1942,
+      "sha256": "b6bce3dc2bfe3d9c9ab0b33c714fd9e5abc2ebb9217587133fb76863b276f76f"
+    },
+    "BEFORE.json": {
+      "bytes": 716,
+      "sha256": "6a09efdf7fecc3bee3eb0baa993a995824adfd8cdcd945612f5394cae93ed226"
+    },
+    "REVIEW.md": {
+      "bytes": 3959,
+      "sha256": "e66e5021a6b0a7266a98c9ac73af1140d0d82a5b293a37be2236a7f70b116313"
+    }
+  },
+  "production_approved": false
+}

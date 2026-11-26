@@ -373,8 +373,10 @@ start the same reviewed definition deliberately once. This manager counter is
 separate from keeper nonces, fees and retry records: reset-failed must never edit
 the journal or become an automatic retry loop. Verify same-journal recovery and
 a fresh healthy cycle; another failure requires investigation rather than repeated
-counter resets. This procedure is not evidence that a restart-storm rehearsal
-has passed or authorization to change an existing service.
+counter resets. Written instructions alone are not qualification. The isolated
+[c810 record](../reports/keeper-full-audit-20261126/REVIEW.md) verifies this one
+startup-limit/interval-repair/healthy-idle flow; broader restart-storm and
+operating acceptance remain open. It authorizes no existing-service change.
 
 A stop observed after durable intent publication retains the original hashless
 intent and prevents launching a new signer after that observation. It does not

@@ -179,9 +179,9 @@ to the EXISTING OpenSea preparation tool.14new focused methods and one current-
 source illustrative CLI example pass; no unchanged test suite rerun. Original
 transaction data stays unchanged and every live-readiness gate remainsfalse.
 That advance used its historical179file/1,979definition inventory; only
-opensea_drop.py changed in production Python at that stage. Use the current
-keeper-fix inventory for that later1,980definition source; the current capture
-inventory above contains1,984definitions. Existing self-source-bound OpenSea artifacts must
+opensea_drop.py changed in production Python at that stage. The later keeper-fix
+1,980-definition and bounded-capture1,984-definition inventories are historical
+source stages. Use the [current183-file/2,007-definition inventory](../reports/keeper-full-audit-20261126/FUNCTION_INVENTORY.json). Existing self-source-bound OpenSea artifacts must
 be rebuilt/reviewed explicitly; do not relabel old manifests. service.py and all
 Solidity profiles/runtime/codec/checkpoint identities remain unchanged.
 
@@ -313,9 +313,10 @@ qualification open; never replace estimates with trace gas to pass admission.
    permission probes. Next review actual release arguments/root/real dependencies,
    complete target fees, governance/keeper/guardian/payee and wallet envelopes;
    controlled local addresses and the consumed dummy root are not release inputs.
-4. Complete remaining keeper DNS/storage/permission failures, restart storms,
-   off-host restore/fencing/alerts and agreed sustained-operation acceptance.
-   Reuse the new stock supervisor/key/hybrid proofs within their exact scopes;
+4. Complete uncovered transport/storage fault classes, full-daemon storage
+   restart, physical durability, additional restart-storm cases, off-host
+   restore/fencing/alerts and sustained-operation acceptance. Reuse completed
+   ENOSPC/EACCES, supervisor/key/hybrid and c810 startup-limit proofs;
    recover original pending hash/intent/spend before any authorized restart.
 5. Roll out matching services/site only after separate authorization and exact
    profile/configuration review. Complete independent audit/remediation and final
@@ -351,6 +352,11 @@ browser signing Anvil-only, staging heartbeat user-paused. No service/site,
 existing-chain reset, signing or public transaction follows source publication.
 Contract wallets need their own reviewed execution envelope; do not change
 governance or weaken guards just to use the direct-EOA unsigned preparer.
+
+The 26 November documentation consistency originals and exact hashes are at
+`C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/keeper-doc-sync-20261126/originals`.
+This update changes documents only; reuse the published keeper source/evidence
+at843e02d7 without rerunning its tests or isolated chains.
 
 The subsequent storage-task originals, including the verifier pointer, are at
 `C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/ubuntu-storage-20261125/documentation-originals`.

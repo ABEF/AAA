@@ -9,6 +9,8 @@ F6 source/dependency/control maps61/39/4 and1,021 ABI rows remain unchanged.
 Installed legacy staging is not the current candidate and was left untouched.
 Q06/P20/P21, provider/off-host/sustained operation and independent approval
 remain open. No service/site/chain/journal adoption; heartbeat stays paused.
+Keeper code/evidence is published at `843e02d7`; current documentation now
+distinguishes completed finite checks from remaining operating qualification.
 
 
 [Ubuntu keeper storage recovery](reports/ubuntu-storage-20261125/REVIEW.md)

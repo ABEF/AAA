@@ -1,0 +1,57 @@
+{
+  "stage": "final",
+  "heads": {
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2": "843e02d70f67f0dce3253cafc19f808fbcc0eb27",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\aaa-website": "9b18e7a20bfeb89204b79c630309faf0bd52c93a"
+  },
+  "tracked_current_markdown_files": 124,
+  "markdown_bytes": 3091106,
+  "local_file_links_checked": 3754,
+  "missing_local_file_links": [],
+  "frozen_audit_artifacts_checked": 77,
+  "protected_files_unchanged": 4,
+  "test_bodies_executed": 0,
+  "server_or_site_actions": 0,
+  "limitations": "File existence only; remote URLs and renderer-generated fragment anchors are not checked; historical reports excluded from current-guide scan.",
+  "successful": true,
+  "kind": "static_document_consistency_not_runtime_qualification",
+  "contract_document_or_metadata_files_changed": [
+    ".gitattributes",
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md",
+    "README.md",
+    "TODO.md",
+    "docs/AUDIT_FINDINGS.md",
+    "docs/IMPLEMENTATION_STATUS.md",
+    "docs/KEEPER_RECOVERY.md",
+    "docs/KEEPER_REHEARSALS.md",
+    "docs/OPERATIONS.md",
+    "docs/OPERATOR_MANUAL.md",
+    "docs/README.md",
+    "docs/ROADMAP.md",
+    "docs/SECURITY_AUDIT_PLAN.md",
+    "docs/WORKLOAD_COVERAGE.md",
+    "docs/WORK_HANDOFF.md",
+    "docs/project-todo.json",
+    "reports/README.md"
+  ],
+  "website_documents_changed": [
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md",
+    "README.md"
+  ],
+  "stable_task_ids": 83,
+  "statuses_unchanged": true,
+  "status_counts": {
+    "done": 35,
+    "progress": 40,
+    "excluded": 1,
+    "todo": 7
+  },
+  "application_source_changes": 0,
+  "configuration_changes": 0,
+  "build_or_rollout_actions": 0,
+  "historical_confirmation1_2_API_timing_preserved": true,
+  "current_confirmation3_health_and_custody5_roles_checked_against_source": true,
+  "publication_CI_policy": "Docs-only commit skip marker prevents broad unchanged suites; no new CI pass claimed."
+}

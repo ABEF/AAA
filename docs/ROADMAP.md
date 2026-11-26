@@ -132,8 +132,8 @@ full-normal1000-NFT workloads, the476135-estimate gap and independent approval r
 | P17 | Finite HTTP/recovery and controlled maximum verified | Source9/V9 1,000-NFT full view passes80GETs with3.982s freshness margin; actual F6/V10, archive/provider/load and separately authorized adoption remain. |
 | P18 | Offline tools implemented | Matching checkpoint/consumer and actual host/archive/restore adoption remain. |
 | P19 | Production submission unresolved | Current consumer unsigned, shared signer Anvil-only; no production signing decision or rollout. |
-| P20 | Finite stock Keeper/Cast harvest/recovery and normal cycle pass | Full sampled-window→replacement and all-feature/provider operating qualification remain. |
-| P21 | Operating acceptance open | Off-host restore, fencing, alerts and agreed operating observation remain. |
+| P20 | Separate stock harvest/recovery, sampled-window/replacement and hybrid partitions pass | Combined full normal-daemon/provider, maximum workload and multi-day operation remain. |
+| P21 | Finite interruption, storage and c810 startup-limit recovery pass | Broader faults/restart storms, physical durability, off-host restore/fencing, alerts and sustained operation remain. |
 | P22 | Controlled construction complete | 25CREATE/19bindings/39instances verified locally; actual deployment/readback/seal approval remain. |
 | P23 | Independent approval open | No final release freeze/audit/remediation/public-opening approval or deployment. |
 
@@ -484,6 +484,14 @@ Confirm all failure diagnostics, role revocation and funding behavior; no ordina
 Owning Todo: [`keeper-guardrails`](../TODO.md#task-keeper-guardrails), [`keeper-recovery`](../TODO.md#task-keeper-recovery), [`operation-review`](../TODO.md#task-operation-review).
 
 ### P21 — Host, interruption, restore and alerts
+
+The [26 November follow-through](../reports/keeper-full-audit-20261126/REVIEW.md)
+adds c810 startup-rate-limit proof and interval-only repair to fresh healthy
+idle:1,652/6,000RPC, zero signed sends, exact journal during failed starts and
+unchanged rights/backing. The original c809 verifier refusal stays recorded;
+its one Linux check is reused without execution. Four new cgroups stop empty,
+and original service/file/configuration/journal identities are preserved. This
+does not close other restart faults, physical/off-host or sustained acceptance.
 
 The [new storage record](../reports/ubuntu-storage-20261125/REVIEW.md) adds
 six genuine ENOSPC/EACCES failures and exact direct stock recovery, with no
