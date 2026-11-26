@@ -1,0 +1,72 @@
+{
+  "checker_sha256": "c64e946831876e46262c26c49e9cccf5393d4a0e45e1819f7eb79440c93345b9",
+  "checks": [
+    {
+      "check": "tested_source_and_four_unrelated_dirty_files_exact",
+      "passed": true
+    },
+    {
+      "check": "independent_saved_review_artifact_pins_match",
+      "passed": true
+    },
+    {
+      "check": "prior_165_report_artifacts_unchanged",
+      "passed": true
+    },
+    {
+      "check": "daemon_identity_and_original_host_nonpass_supplement_retained",
+      "passed": true
+    },
+    {
+      "check": "current_todo_inventory_and_scoped_diff_static_checks",
+      "passed": true
+    },
+    {
+      "check": "new_guide_report_and_added_local_link_targets",
+      "passed": true,
+      "publication_outputs_created_after_this_read": [
+        "reports/keeper-backup-20261126/ARTIFACTS.json",
+        "reports/keeper-backup-20261126/verification/PUBLICATION_CHECKS.json"
+      ],
+      "targets_checked": 56
+    }
+  ],
+  "historical_artifacts_verified": {
+    "keeper-full-audit-20261126": 77,
+    "ubuntu-daemon-storage-20261126": 88
+  },
+  "preserved_unrelated": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "production_approved": false,
+  "schema": 1,
+  "server_actions": 0,
+  "signer_material_read": false,
+  "source_pins": {
+    "keeper/recovery_bundle.py": "fe1185f008e047a3c7447bc2dc36e748f1ecff3a7ca6f1552114ad236060f268",
+    "scripts/keeper-recovery.py": "450b87f611b90d2cdb4139bd2bb2cc8f10696821c1ae6b72ccba7613a64ff6cf",
+    "tests_python/test_keeper_recovery_bundle.py": "e7ba697edee57e08dcf4e40e55633a2cb82b76ae592a8ebea2489c66aea016d9"
+  },
+  "static_command_outputs": {
+    "diff": {
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    "inventory": {
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"action\": \"verified\", \"counts\": {\"abi_kinds\": {\"constructor\": 40, \"fallback\": 0, \"function\": 968, \"receive\": 13}, \"abi_rows\": 1021, \"build_controls\": 4, \"callable_contracts\": 40, \"dependency_sources\": 39, \"excluded_internal_objects\": 8, \"project_sources\": 61, \"python_definitions\": 2057, \"python_files\": 185, \"solidity_bodyless_declarations\": 511, \"solidity_implemented_definitions\": 1056, \"solidity_modifiers\": 29}, \"inventory_only\": true, \"output_bytes\": 4920151, \"output_sha256\": \"e9473165a955a2acfef36f883948eb689036770fa4ffea85d496b49ad2069991\"}\r\n"
+    },
+    "todo": {
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "Project Todo verified.\r\n"
+    }
+  },
+  "success": true,
+  "test_bodies_executed": 0
+}

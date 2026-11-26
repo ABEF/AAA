@@ -1,0 +1,36 @@
+{
+  "files": [
+    {
+      "bytes": 850,
+      "exact_copy": true,
+      "path": "verification/HOST_COMPARISON.json",
+      "sha256": "9eb199c0ffabf202ed5cb7eaad1c188ef58e11d9626baa07f3fbd7b57b23120b"
+    },
+    {
+      "bytes": 2604,
+      "exact_copy": true,
+      "path": "evidence/observer/RESULT.json",
+      "sha256": "5d3a691f2f60d3dd89e07f0a1d966369e79dfc92c74780103042f38875b9a579"
+    },
+    {
+      "bytes": 436,
+      "exact_copy": true,
+      "path": "evidence/observer/EXECUTION.json",
+      "sha256": "0af3f35865a393c844528fd9a391e3234221f001c145c98f23d5b79a08d48565"
+    },
+    {
+      "bytes": 2066,
+      "exact_copy": true,
+      "path": "evidence/observer/RAW_STDOUT.json",
+      "sha256": "401fbba51f8c890ce7a563406e4d31c62774903474c94047b79b1e5c846042b4"
+    },
+    {
+      "bytes": 3391,
+      "exact_copy": true,
+      "path": "preparation/read_observer_lifecycle.py",
+      "sha256": "6545d5e92182ca8ba45ddd034b1fea55756cd17c99a780558d30821f9113cd51"
+    }
+  ],
+  "original_permissions_unchanged": true,
+  "schema": 1
+}

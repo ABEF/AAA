@@ -1,5 +1,13 @@
 # Whole-project workload coverage
 
+[Unsigned keeper recovery](../reports/keeper-backup-20261126/REVIEW.md)
+adds two production Python files and three preparation scenario classes.
+The current [inventory](../reports/keeper-backup-20261126/FUNCTION_INVENTORY.json)
+contains185files/2,057named definitions/278lambdas; frozen F6 maps and1,021ABI
+rows remain. Thirty portable plus three Ubuntu methods are33distinct new
+passes; the Windows symlink skip and separate Ubuntu selection stay explicit.
+No previous green body, contract suite or financial journey was rerun.
+
 The [c811 daemon-storage follow-through](../reports/ubuntu-daemon-storage-20261126/REVIEW.md)
 adds one actual composed scenario plus a seven-check independent saved-vector
 reconciliation. Original overall NONPASS and missing physical after-state

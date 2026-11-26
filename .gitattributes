@@ -449,3 +449,9 @@ tests_python/test_read_process.py -text whitespace=cr-at-eol,-blank-at-eof
 
 # Preserve exact daemon-storage evidence, including the original NONPASS.
 reports/ubuntu-daemon-storage-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve verified unsigned recovery source and exact evidence bytes.
+keeper/recovery_bundle.py -text whitespace=cr-at-eol
+scripts/keeper-recovery.py -text whitespace=cr-at-eol
+tests_python/test_keeper_recovery_bundle.py -text whitespace=cr-at-eol
+reports/keeper-backup-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

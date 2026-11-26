@@ -1,0 +1,46 @@
+{
+  "before_observed_utc": "2026-11-26T13:36:24.364332+00:00",
+  "derived_projection": true,
+  "differences": [
+    {
+      "after": "inactive",
+      "before": "activating",
+      "property": "ActiveState",
+      "unit": "zzz-stage-observer.service"
+    },
+    {
+      "after": "",
+      "before": "/system.slice/zzz-stage-observer.service",
+      "property": "ControlGroup",
+      "unit": "zzz-stage-observer.service"
+    },
+    {
+      "after": "0",
+      "before": "102656",
+      "property": "MainPID",
+      "unit": "zzz-stage-observer.service"
+    },
+    {
+      "after": "dead",
+      "before": "start",
+      "property": "SubState",
+      "unit": "zzz-stage-observer.service"
+    },
+    {
+      "after": "waiting",
+      "before": "running",
+      "property": "SubState",
+      "unit": "zzz-stage-observer.timer"
+    }
+  ],
+  "final_observed_utc": "2026-11-26T13:47:38.321179+00:00",
+  "full_private_host_snapshot_exported": false,
+  "ignored": [
+    {
+      "property": "InvocationID",
+      "unit": "zzz-stage-observer.service"
+    }
+  ],
+  "schema": 1,
+  "source_sha256": "87bfe2ef16269fe2d519b99d98efe5b09161a0368f37b150a4679a6668341a62"
+}

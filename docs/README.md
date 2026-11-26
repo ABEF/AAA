@@ -1,5 +1,9 @@
 # Documentation map
 
+Use the [unsigned keeper backup guide](KEEPER_BACKUP.md) for exact journal capture,
+explicit-pin verification and fresh restore preparation. The [26 November evidence](../reports/keeper-backup-20261126/REVIEW.md)
+records 33 distinct new passes; live adoption, signer fencing and canonical recovery remain separate.
+
 For current construction use the [full F6 rehearsal](../reports/f6-construction-20261120/REVIEW.md)
 and [local/offline procedure](DEPLOYMENT_PREPARATION.md#current-f6-evidence-and-supplementary-checks).
 Earlier metadata2/manual captures retain their original scopes; none is relabelled.

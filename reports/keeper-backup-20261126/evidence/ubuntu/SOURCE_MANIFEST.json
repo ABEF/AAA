@@ -1,0 +1,129 @@
+{
+  "current_windows_stage": {
+    "POSIX_methods_not_run": 2,
+    "methods_run": 31,
+    "passes": 30,
+    "symlink_skip": 1
+  },
+  "members": {
+    "source/keeper/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "source/keeper/cast_process.py": {
+      "bytes": 4617,
+      "sha256": "b6203067b022625bce2bfb415bb6ed85620dc8c7002b51f2d3d4c9296c5ac3e1"
+    },
+    "source/keeper/compound_policy.py": {
+      "bytes": 17260,
+      "sha256": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29"
+    },
+    "source/keeper/health.py": {
+      "bytes": 24415,
+      "sha256": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04"
+    },
+    "source/keeper/monitor.py": {
+      "bytes": 194496,
+      "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f"
+    },
+    "source/keeper/ops.py": {
+      "bytes": 13932,
+      "sha256": "a81eb06001024f11f751691ba2b8fd7f37605f10feba925006bf57242751fa6b"
+    },
+    "source/keeper/rebalance_confirmation.py": {
+      "bytes": 11926,
+      "sha256": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d"
+    },
+    "source/keeper/recovery_bundle.py": {
+      "bytes": 36223,
+      "sha256": "fe1185f008e047a3c7447bc2dc36e748f1ecff3a7ca6f1552114ad236060f268"
+    },
+    "source/reports/ubuntu-daemon-storage-20261126/evidence/fetched/case-FINAL_JOURNAL.json": {
+      "bytes": 5831,
+      "sha256": "bad79f40b335fe06ac7587c054ecbffeb8e835c8ca7257f795758b5ebdc26292"
+    },
+    "source/reports/ubuntu-daemon-storage-20261126/evidence/fetched/case-HASH_SAVE_FAULT_ARMED.json": {
+      "bytes": 7965,
+      "sha256": "70b4e6081c561092d7c7cadf173da48180b912839818ee262c2cf830b83e463f"
+    },
+    "source/run_selected.py": {
+      "bytes": 3517,
+      "sha256": "819bd9f1dedfffbbe2e2225753f0f8add8e0eb8de614b5337c5c92689005c8bd"
+    },
+    "source/scripts/keeper-recovery.py": {
+      "bytes": 3423,
+      "sha256": "450b87f611b90d2cdb4139bd2bb2cc8f10696821c1ae6b72ccba7613a64ff6cf"
+    },
+    "source/tests_python/test_keeper_recovery_bundle.py": {
+      "bytes": 38398,
+      "sha256": "e7ba697edee57e08dcf4e40e55633a2cb82b76ae592a8ebea2489c66aea016d9"
+    },
+    "source/zzz_ops/abi.py": {
+      "bytes": 4797,
+      "sha256": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91"
+    },
+    "source/zzz_ops/execution_price.py": {
+      "bytes": 2280,
+      "sha256": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2"
+    },
+    "source/zzz_ops/lp_execution.py": {
+      "bytes": 6860,
+      "sha256": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0"
+    },
+    "source/zzz_ops/protocol_policy.py": {
+      "bytes": 5907,
+      "sha256": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3"
+    },
+    "source/zzz_ops/rebalance_confirmation.py": {
+      "bytes": 17194,
+      "sha256": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331"
+    },
+    "source/zzz_ops/rpc.py": {
+      "bytes": 9709,
+      "sha256": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f"
+    },
+    "source/zzz_ops/state.py": {
+      "bytes": 4644,
+      "sha256": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf"
+    }
+  },
+  "new_working_tree_source_files": [
+    "keeper/recovery_bundle.py",
+    "scripts/keeper-recovery.py",
+    "tests_python/test_keeper_recovery_bundle.py"
+  ],
+  "previously_green_portable_methods_selected": 0,
+  "schema": 1,
+  "selected_method_AST_sha256": {
+    "test_posix_atomic_source_replace_during_open_fd_capture_refuses_without_rollback": "ef9f1b1bd2f5833400534e9c70d1d1aace10a5879c5a7f3abcd591d11ac5f31b",
+    "test_posix_private_output_modes_and_writable_parent_refusal": "9c96ae802acacdc0675eeb76844a56c130a3381028be1b8fc9b3b77d7529de2f",
+    "test_symlink_source_parent_and_package_payload_are_refused": "fae5e49f31ea27d6d0f1413f40abe5bc11995abc6e9fc7f8d907cfbdaa218783"
+  },
+  "selected_methods": [
+    "test_posix_private_output_modes_and_writable_parent_refusal",
+    "test_posix_atomic_source_replace_during_open_fd_capture_refuses_without_rollback",
+    "test_symlink_source_parent_and_package_payload_are_refused"
+  ],
+  "service_or_signing_actions": 0,
+  "source_head": "f36b848278479ca1cb9499d5fa831757b1e34c45",
+  "static_published_fixtures_only": [
+    "reports/ubuntu-daemon-storage-20261126/evidence/fetched/case-HASH_SAVE_FAULT_ARMED.json",
+    "reports/ubuntu-daemon-storage-20261126/evidence/fetched/case-FINAL_JOURNAL.json"
+  ],
+  "unchanged_health_sources_from_HEAD": [
+    "keeper/monitor.py",
+    "keeper/ops.py",
+    "keeper/health.py",
+    "keeper/rebalance_confirmation.py",
+    "keeper/compound_policy.py",
+    "keeper/cast_process.py",
+    "zzz_ops/protocol_policy.py",
+    "zzz_ops/lp_execution.py",
+    "zzz_ops/execution_price.py",
+    "zzz_ops/rebalance_confirmation.py",
+    "zzz_ops/abi.py",
+    "zzz_ops/rpc.py",
+    "zzz_ops/state.py"
+  ],
+  "unsigned_file_tests_only": true
+}

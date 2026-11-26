@@ -1,0 +1,20 @@
+{
+  "Ethereum_signer_files_read_or_copied": false,
+  "bundle_sha256": "43f4a2ec6aeba418db3ed8aa9be24c54e130966a3045b18cd0769f14f118a59d",
+  "capture_errors": [],
+  "capture_reason": null,
+  "combined_output_limit": 65536,
+  "controller_sha256": "f086ebb8977139f99370e2a49b36fd4235dce9619e09ece4d8a2aebdd6296a2c",
+  "credential_contents_exported": false,
+  "elapsed_seconds": 1.2809999999990396,
+  "existing_environments_changed": false,
+  "exit_code": 0,
+  "opaque_existing_transport_used": true,
+  "schema": 1,
+  "selection_success": true,
+  "service_actions": 0,
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 6329,
+  "stdout_sha256": "0b7cd32c33785f77ead3610693cc7a56b534bbb5260c1bcb888404b576dcc566"
+}

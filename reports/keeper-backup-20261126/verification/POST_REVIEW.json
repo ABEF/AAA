@@ -1,0 +1,177 @@
+{
+  "Linux_NEW_method_invocations": 3,
+  "Linux_passes": 3,
+  "Linux_skips": 0,
+  "Windows_method_invocations": 31,
+  "Windows_passes": 30,
+  "Windows_skips_retained": 1,
+  "artifacts": {
+    "keeper/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "keeper/cast_process.py": {
+      "bytes": 4617,
+      "sha256": "b6203067b022625bce2bfb415bb6ed85620dc8c7002b51f2d3d4c9296c5ac3e1"
+    },
+    "keeper/compound_policy.py": {
+      "bytes": 17260,
+      "sha256": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29"
+    },
+    "keeper/health.py": {
+      "bytes": 24415,
+      "sha256": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04"
+    },
+    "keeper/monitor.py": {
+      "bytes": 194496,
+      "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f"
+    },
+    "keeper/ops.py": {
+      "bytes": 13932,
+      "sha256": "a81eb06001024f11f751691ba2b8fd7f37605f10feba925006bf57242751fa6b"
+    },
+    "keeper/rebalance_confirmation.py": {
+      "bytes": 11926,
+      "sha256": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d"
+    },
+    "keeper/recovery_bundle.py": {
+      "bytes": 36223,
+      "sha256": "fe1185f008e047a3c7447bc2dc36e748f1ecff3a7ca6f1552114ad236060f268"
+    },
+    "reports/keeper-backup-20261126/evidence/TEST_SELECTION.json": {
+      "bytes": 4967,
+      "sha256": "c4b4b2c74f8e0c7537b5205bb09322c690ac8618f2cf262cf63cbb3d9f74235e"
+    },
+    "reports/keeper-backup-20261126/evidence/ubuntu/BUILD_RECEIPT.json": {
+      "bytes": 1031,
+      "sha256": "67ab7b4f8a27586d16f4883fa8a59de829f84e7cb09c911fdafd598897a20eb5"
+    },
+    "reports/keeper-backup-20261126/evidence/ubuntu/EXECUTION.json": {
+      "bytes": 805,
+      "sha256": "82e7b91cfb471aea49855fa8d98903c4f2c80627476c6c8ae171ce6a100b6335"
+    },
+    "reports/keeper-backup-20261126/evidence/ubuntu/EXECUTION_APPROVAL.json": {
+      "bytes": 273,
+      "sha256": "c11ec0ea8e31a5525ff58bc4b6bd9ad2e254f5f5f3100165e0a6562ccb5401e5"
+    },
+    "reports/keeper-backup-20261126/evidence/ubuntu/RAW_STDOUT.json": {
+      "bytes": 6329,
+      "sha256": "0b7cd32c33785f77ead3610693cc7a56b534bbb5260c1bcb888404b576dcc566"
+    },
+    "reports/keeper-backup-20261126/evidence/ubuntu/RESULT.json": {
+      "bytes": 6796,
+      "sha256": "89859d7c00269ccdb2d5e5426613a5869bbc88a8ff70d32d6482caa219be1fc8"
+    },
+    "reports/keeper-backup-20261126/evidence/ubuntu/SOURCE_MANIFEST.json": {
+      "bytes": 5007,
+      "sha256": "b943bd4a2ff62ad73e6319eeab3da69c15faeeb5dd58748d17c1e553d0ff7320"
+    },
+    "reports/keeper-backup-20261126/evidence/windows/PREEXECUTION.json": {
+      "bytes": 5221,
+      "sha256": "44f32304d3731cd2762cf08b46043729e70f20608db4921de9f622a30c29ad73"
+    },
+    "reports/keeper-backup-20261126/evidence/windows/RESULT.json": {
+      "bytes": 8708,
+      "sha256": "7f126231639486c7bc059760d9fe8c7b548dd1ba3d35dc59b2646680c6cced87"
+    },
+    "reports/keeper-backup-20261126/evidence/windows/RUN.log": {
+      "bytes": 6734,
+      "sha256": "fecd79e166845561d86ca565b4e7433ab8be94628d33b4e57ae6bf67d1294f13"
+    },
+    "reports/keeper-backup-20261126/preparation/run_new_windows.py": {
+      "bytes": 3755,
+      "sha256": "52c54267ba8b22ab32166d8829f1ea6776f2d5844bd08bab1cfded526039d85b"
+    },
+    "reports/keeper-backup-20261126/preparation/ubuntu/remote_capsule.py": {
+      "bytes": 11645,
+      "sha256": "f086ebb8977139f99370e2a49b36fd4235dce9619e09ece4d8a2aebdd6296a2c"
+    },
+    "reports/keeper-backup-20261126/preparation/ubuntu/run_selected.py": {
+      "bytes": 3517,
+      "sha256": "819bd9f1dedfffbbe2e2225753f0f8add8e0eb8de614b5337c5c92689005c8bd"
+    },
+    "reports/ubuntu-daemon-storage-20261126/evidence/fetched/case-FINAL_JOURNAL.json": {
+      "bytes": 5831,
+      "sha256": "bad79f40b335fe06ac7587c054ecbffeb8e835c8ca7257f795758b5ebdc26292"
+    },
+    "reports/ubuntu-daemon-storage-20261126/evidence/fetched/case-HASH_SAVE_FAULT_ARMED.json": {
+      "bytes": 7965,
+      "sha256": "70b4e6081c561092d7c7cadf173da48180b912839818ee262c2cf830b83e463f"
+    },
+    "scripts/keeper-recovery.py": {
+      "bytes": 3423,
+      "sha256": "450b87f611b90d2cdb4139bd2bb2cc8f10696821c1ae6b72ccba7613a64ff6cf"
+    },
+    "tests_python/test_keeper_recovery_bundle.py": {
+      "bytes": 38398,
+      "sha256": "e7ba697edee57e08dcf4e40e55633a2cb82b76ae592a8ebea2489c66aea016d9"
+    },
+    "zzz_ops/abi.py": {
+      "bytes": 4797,
+      "sha256": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91"
+    },
+    "zzz_ops/execution_price.py": {
+      "bytes": 2280,
+      "sha256": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2"
+    },
+    "zzz_ops/lp_execution.py": {
+      "bytes": 6860,
+      "sha256": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0"
+    },
+    "zzz_ops/protocol_policy.py": {
+      "bytes": 5907,
+      "sha256": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3"
+    },
+    "zzz_ops/rebalance_confirmation.py": {
+      "bytes": 17194,
+      "sha256": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331"
+    },
+    "zzz_ops/rpc.py": {
+      "bytes": 9709,
+      "sha256": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f"
+    },
+    "zzz_ops/state.py": {
+      "bytes": 4644,
+      "sha256": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf"
+    }
+  },
+  "checks": [
+    {
+      "check": "exact_reviewed_module_CLI_and_33_method_source_identity",
+      "passed": true
+    },
+    {
+      "check": "Windows_31_exact_NEW_selections_RUN_log_30_pass_one_skip_source_stable",
+      "passed": true
+    },
+    {
+      "check": "Ubuntu_exact_raw_capture_build_approval_and_20_payloads_plus_manifest_unchanged",
+      "passed": true
+    },
+    {
+      "check": "three_exact_new_Linux_bodies_UID65534_no_signing_services_descendants_or_capture_overflow",
+      "passed": true
+    },
+    {
+      "check": "33_distinct_passes_from_30_Windows_plus_three_Linux_no_prior_green_reexecution",
+      "passed": true
+    }
+  ],
+  "distinct_NEW_methods_passed": 33,
+  "external_host_preservation_review_required": true,
+  "limitations": [
+    "Saved code/results and capture integrity only; original private source-copy provenance is separately recorded",
+    "No canonical freshness, signing, off-host fencing, production rollout or independent release approval"
+  ],
+  "postreview_test_or_server_actions": 0,
+  "previously_green_methods_reexecuted": 0,
+  "reviewer_source_sha256": "e953db80d1898798b774b097bab4855197e832f5b83d6c62b6134b532ffb8558",
+  "schema": 1,
+  "source_pins": {
+    "keeper/recovery_bundle.py": "fe1185f008e047a3c7447bc2dc36e748f1ecff3a7ca6f1552114ad236060f268",
+    "scripts/keeper-recovery.py": "450b87f611b90d2cdb4139bd2bb2cc8f10696821c1ae6b72ccba7613a64ff6cf",
+    "tests_python/test_keeper_recovery_bundle.py": "e7ba697edee57e08dcf4e40e55633a2cb82b76ae592a8ebea2489c66aea016d9"
+  },
+  "success": true,
+  "total_invocations_including_original_skip": 34
+}

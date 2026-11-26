@@ -71,6 +71,28 @@ cycle completed228.258wall seconds after the degraded recovery cycle.
 Do not confuse these two clocks or delay required observations to match
 an arbitrary elapsed-time assertion.
 
+### Unsigned keeper backup and restore
+
+Use the [keeper backup guide](KEEPER_BACKUP.md) for the full commands, all input
+units, refusal codes and new-host adoption procedure. The tool preserves exact
+journal bytes, pending fee reviews, nonce/spending and timers. Keep the original
+configuration and encrypted signer material separately; the package contains
+configuration digests, never raw config or signer files.
+
+| Command | Required inputs | Example arguments | Purpose |
+| --- | --- | --- | --- |
+| `python3 scripts/keeper-recovery.py backup` | Config, keeper working directory, new output | `--config /secure/popl/keeper-original.json --working-directory /opt/popl/releases/release-001 --output /srv/popl-backups/snapshot-001` | Capture exact journal |
+| `python3 scripts/keeper-recovery.py verify` | Bundle, trusted manifest digest, original config, maximum capture age | `--bundle /srv/popl-backups/snapshot-001 --manifest-sha256 "$MANIFEST_SHA256" --config /secure/popl/keeper-original.json --max-age-seconds 86400` | Verify selected backup |
+| `python3 scripts/keeper-recovery.py restore` | Verification inputs and a new output directory | Same verification arguments plus `--output /srv/popl-recovery/review-001` | Prepare unsigned restore |
+
+Use real protected paths and replace the digest with the separately retained
+backup hash. The example86400-second age is an operator choice. Optional trusted
+time/nonce floors refuse older selected evidence; they do not prove latest chain
+state. Outputs never overwrite an existing directory. Restore writes only
+`keeper-state.json` and `RESTORE_PLAN.json`; review new runtime paths, fence the
+old signer and perform stock canonical recovery before adoption. It starts no
+service, installs no configuration and authorizes no signing.
+
 ### Storage failure quick actions
 
 Stop the actual service and preserve its exact journal/configuration. Check the

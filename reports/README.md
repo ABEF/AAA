@@ -1,5 +1,11 @@
 # Verification evidence
 
+[Keeper journal backup/restore](keeper-backup-20261126/REVIEW.md)
+adds the unsigned format1 tool and33distinct new Windows/Ubuntu checks.
+Configuration/signer material stays separate; original journals and
+financial limits remain. Off-host adoption and canonical review are not
+implied by a valid backup. See the [operator procedure](../docs/KEEPER_BACKUP.md).
+
 [Ubuntu daemon storage recovery](ubuntu-daemon-storage-20261126/REVIEW.md)
 retains c811’s original NONPASS and separately verifies actual failure,
 same-journal recovery and healthy operation from saved evidence. The

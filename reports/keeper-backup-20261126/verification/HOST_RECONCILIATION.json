@@ -1,0 +1,105 @@
+{
+  "additional_recorded_InvocationID_changes": 1,
+  "artifacts": {
+    "evidence/observer/EXECUTION.json": {
+      "bytes": 436,
+      "sha256": "0af3f35865a393c844528fd9a391e3234221f001c145c98f23d5b79a08d48565"
+    },
+    "evidence/observer/RAW_STDOUT.json": {
+      "bytes": 2066,
+      "sha256": "401fbba51f8c890ce7a563406e4d31c62774903474c94047b79b1e5c846042b4"
+    },
+    "evidence/observer/RESULT.json": {
+      "bytes": 2604,
+      "sha256": "5d3a691f2f60d3dd89e07f0a1d966369e79dfc92c74780103042f38875b9a579"
+    },
+    "preparation/read_observer_lifecycle.py": {
+      "bytes": 3391,
+      "sha256": "6545d5e92182ca8ba45ddd034b1fea55756cd17c99a780558d30821f9113cd51"
+    },
+    "verification/HOST_COMPARISON.json": {
+      "bytes": 850,
+      "sha256": "9eb199c0ffabf202ed5cb7eaad1c188ef58e11d9626baa07f3fbd7b57b23120b"
+    },
+    "verification/HOST_COPY_RECEIPT.json": {
+      "bytes": 1081,
+      "sha256": "1b763ed1c65d9a3d7f8e034bf107b2de4459edc3c055b6b3fc9ba81e4b86d29c"
+    },
+    "verification/HOST_DIFFERENCES.json": {
+      "bytes": 1199,
+      "sha256": "0734321ec3e2b2bd0b05f29ac0042c3c4b35f82463aa3a1fb1b20ac9d86defdc"
+    }
+  },
+  "baseline_caught_between_start_and_first_clean_completion": true,
+  "classified_difference_count": 5,
+  "classified_differences": [
+    {
+      "after": "inactive",
+      "before": "activating",
+      "classification": "ambient_observer_oneshot_timer_lifecycle",
+      "property": "ActiveState",
+      "reason": "The baseline caught the oneshot during start; PID1 records clean completion before the final snapshot.",
+      "unit": "zzz-stage-observer.service"
+    },
+    {
+      "after": "",
+      "before": "/system.slice/zzz-stage-observer.service",
+      "classification": "ambient_observer_oneshot_timer_lifecycle",
+      "property": "ControlGroup",
+      "reason": "The completed observer invocation released its service cgroup.",
+      "unit": "zzz-stage-observer.service"
+    },
+    {
+      "after": "0",
+      "before": "102656",
+      "classification": "ambient_observer_oneshot_timer_lifecycle",
+      "property": "MainPID",
+      "reason": "The initial observer process completed; the service no longer had a main PID.",
+      "unit": "zzz-stage-observer.service"
+    },
+    {
+      "after": "dead",
+      "before": "start",
+      "classification": "ambient_observer_oneshot_timer_lifecycle",
+      "property": "SubState",
+      "reason": "The service finished start-to-dead; its timer returned from running to waiting for the next activation.",
+      "unit": "zzz-stage-observer.service"
+    },
+    {
+      "after": "waiting",
+      "before": "running",
+      "classification": "ambient_observer_oneshot_timer_lifecycle",
+      "property": "SubState",
+      "reason": "The service finished start-to-dead; its timer returned from running to waiting for the next activation.",
+      "unit": "zzz-stage-observer.timer"
+    }
+  ],
+  "final_snapshot_after_last_clean_completion": true,
+  "five_identical_service_states_claimed": false,
+  "full_host_acceptance": false,
+  "lifecycle_reconciliation_verified": true,
+  "limitations": [
+    "Classifies the supplied five-difference projection and bound read-only captures; does not recalculate private full host snapshots.",
+    "The separate InvocationID change remains recorded; its before/after values are not exported in the projection.",
+    "Normal observer lifecycle evidence is not sustained operation, source adoption, off-host recovery or release approval."
+  ],
+  "manager_clean_oneshot_completions_in_window": 3,
+  "original_comparison_rewritten": false,
+  "original_comparison_success": false,
+  "postreview_server_or_service_actions": 0,
+  "production_approved": false,
+  "read_only_probe_bound_to_exact_source_and_capture": true,
+  "remaining_six_comparison_checks_true": true,
+  "reviewer_source_sha256": "8b53385a77d0d900bccd08ed878ede9dcbf3b76da92f669892e5eb7d844eb320",
+  "schema": 1,
+  "seven_previously_owned_labs_stopped_before_and_after": true,
+  "systemd_message_source": {
+    "job_started": "39f53479d3a045ac8e11786248231fbf",
+    "scope": "v255 symbol meanings supplied and verified by the parent; UNIT_STARTED alone is not treated as continued activity.",
+    "starting": "7d4958e842da4a758f6c1cdc7b36dcc5",
+    "unit_success": "7ad2d189f7e94e70a38c781354912448",
+    "url": "https://raw.githubusercontent.com/systemd/systemd/v255/src/systemd/sd-messages.h"
+  },
+  "test_bodies_run": 0,
+  "unexplained_differences_in_supplied_projection": 0
+}

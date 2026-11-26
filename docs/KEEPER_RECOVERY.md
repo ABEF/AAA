@@ -497,6 +497,17 @@ healthy snapshot is invented and no file is rewritten. Snapshot checksum
 consistency does not authenticate an attacker who can replace protected files.
 [Review/evidence](../reports/operational-reliability-20261029/KEEPER.md).
 
+## Unsigned journal backup and restore preparation
+
+The [keeper backup guide](KEEPER_BACKUP.md) documents the implemented
+`scripts/keeper-recovery.py backup|verify|restore` commands, all inputs and
+fixed refusal codes. The tool captures stable point-in-time journal bytes
+without touching locks, retains original fee reviews/cursors/timers, binds
+separately secured configuration and local source identities, and writes
+only a new unsigned restore folder. It does not install state or start a
+keeper. Backups may become older than later chain activity; the new-host
+procedure below still requires fencing and canonical reconciliation.
+
 ## Move to a new host
 
 1. Stop the old signer and prevent simultaneous operation. File locking only protects one host. If key confidentiality is uncertain, revoke the old keeper and authorize a fresh signer through the reviewed immediate governance process.

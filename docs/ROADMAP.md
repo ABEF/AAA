@@ -1,5 +1,14 @@
 # Engineering roadmap and production qualification plan
 
+[Unsigned keeper backup/restore](../reports/keeper-backup-20261126/REVIEW.md)
+preserves exact journals with separate original configuration/signer material
+and exclusive review-only restore output. Thirty portable plus three Ubuntu
+methods give33distinct NEW passes; the original Windows symlink skip remains
+explicit. Current [inventory](../reports/keeper-backup-20261126/FUNCTION_INVENTORY.json):
+185Python files/2,057named definitions/278lambdas. F6 and the thirteen daemon
+health-source files stay unchanged. No live adoption; off-host fencing,
+canonical reconciliation and release approval remain separate.
+
 New [daemon-storage evidence](../reports/ubuntu-daemon-storage-20261126/REVIEW.md): real accepted-hash EACCES, same-journal
 restart and once-only recovery are independently reconciled. The original
 campaign remains **NONPASS** from a mistaken timing assertion; final physical
@@ -9,7 +18,7 @@ or existing environments changed.
 [Full keeper audit — 26 November](../reports/keeper-full-audit-20261126/REVIEW.md) adds late booked-cost anchor checks,
 bounded staging wallet utilities and bounded read-only monitor output. Exact
 new verification, the original interrupted utility evidence and isolated Ubuntu
-results have separate scopes; no unchanged test body is rerun. Current source
+results have separate scopes; no unchanged test body is rerun. That audit's source
 [inventory](../reports/keeper-full-audit-20261126/FUNCTION_INVENTORY.json):183 Python files/2,007 named definitions/278 lambdas;
 F6 source/dependency/control maps61/39/4 and1,021 ABI rows remain unchanged.
 Installed legacy staging is not the current candidate and was left untouched.
@@ -69,8 +78,8 @@ Adopt matching keeper/checker code with original journals preserved. These two
 Python fixes alone change no checkpoint semantic source. Earlier API/ABI source
 adoption still requires newly reviewed matching checkpoints. Sites, services,
 Anvil8902, signer/null public configurations and paused heartbeat are preserved.
-Current [inventory](../reports/keeper-full-audit-20261126/FUNCTION_INVENTORY.json):
-183Python files/2,007definitions/278lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
+Current [inventory](../reports/keeper-backup-20261126/FUNCTION_INVENTORY.json):
+185Python files/2,057definitions/278lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
 Actual F6/V10 consumer, provider, market and production approval stay open.
 
 [Current actual-fee proof](../reports/pool-fees-20261121/REVIEW.md) advances P08
@@ -490,6 +499,14 @@ Confirm all failure diagnostics, role revocation and funding behavior; no ordina
 Owning Todo: [`keeper-guardrails`](../TODO.md#task-keeper-guardrails), [`keeper-recovery`](../TODO.md#task-keeper-recovery), [`operation-review`](../TODO.md#task-operation-review).
 
 ### P21 — Host, interruption, restore and alerts
+
+The [unsigned keeper backup tool](KEEPER_BACKUP.md) now prepares exact
+journal backups, explicit-pin/config/source/age verification and exclusive
+review-only restore folders. [Evidence](../reports/keeper-backup-20261126/REVIEW.md)
+records33distinct new passes across Windows/Ubuntu, no previous green
+body rerun and unchanged existing operating limits. Capture age and
+trusted nonce floors do not establish newest canonical state or fencing;
+actual multi-host adoption/alerts/sustained operation remain open.
 
 The [new c811 record](../reports/ubuntu-daemon-storage-20261126/REVIEW.md)
 adds actual accepted-hash EACCES, natural daemon exit, fenced same-journal
