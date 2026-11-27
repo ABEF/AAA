@@ -77,8 +77,8 @@ missing, conflicting or unmatched entries reject the report.
 At every epoch cutoff, observed fee keys also reconcile `dust(bucket,asset)`
 against the actual pinned FeeController, including zero. Historical profile 0
 retains its reviewed semantics. This adds no transaction or policy setter.
-See [review and limitations](../reports/backend-remediation-20261026/HISTORY.md)
-and [final affected verification](../reports/backend-remediation-20261026/VERIFICATION.md).
+See [review and limitations](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/backend-remediation-20261026/HISTORY.md)
+and [final affected verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/backend-remediation-20261026/VERIFICATION.md).
 
 **Use the correct total:** NFT earnings = individual LP + collective LP + eligible
 royalties. Reserves and gross pool fees are not extra NFT income. Earned 24h/all
@@ -113,9 +113,9 @@ post-return synchronization credits earlier unseen receipts to the earlier
 cohort before waiting NFTs join; conversions and claims still do not create
 income. Missing/mismatched events and full earnings reconciliation while backing
 is external remain unavailable, never zero. See [reporting and safe replay](ROYALTY_REPORTING.md#current-native-eligibility-and-historical-custody)
-and the [source-scoped correction](../reports/day-readiness-20261025/royalty-matrix.md).
+and the [source-scoped correction](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/day-readiness-20261025/royalty-matrix.md).
 This is reader compatibility, not a running-service upgrade. Earlier
-[earnings verification](../reports/earnings-history/VERIFICATION.md) retains its
+[earnings verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/earnings-history/VERIFICATION.md) retains its
 original source/profile scope; current integrity evidence is linked above.
 
 ## Endpoints and definitions
@@ -170,7 +170,7 @@ versions, verify known inventory/cutoffs, and qualify actual feeds/coverage/late
 before public use.
 To stop reports, disable the optional profile and restart only the read service
 under its runbook, or roll back matching releases. Never reset the chain/index
-or substitute examples/zeros on failure. See [scoped evidence](../reports/wallet-earnings/VERIFICATION.md).
+or substitute examples/zeros on failure. See [scoped evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/wallet-earnings/VERIFICATION.md).
 
 | Metric | Meaning |
 | --- | --- |

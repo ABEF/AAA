@@ -7,15 +7,15 @@ Preserve exact free-team/paid prices, quotas and original requests; standard sig
 adaptation is not selected. Offline current-source TEAM/ALLOWLIST examples support
 preparation, not actual OpenSea acceptance.
 
-See the [new compatibility diagnostics and preparation](../reports/recommendations-execution-20261120/platform/REVIEW.md) and [recorded decision](../reports/recommendations-execution-20261120/DECISIONS.json). No platform approval, signed mint authority, contract or live deployment change follows.
+See the [new compatibility diagnostics and preparation](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/recommendations-execution-20261120/platform/REVIEW.md) and [recorded decision](../reports/recommendations-execution-20261120/DECISIONS.json). No platform approval, signed mint authority, contract or live deployment change follows.
 
-[Current preparation and provider research](../reports/readiness-advance-20261120/REVIEW.md)
+[Current preparation and provider research](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/readiness-advance-20261120/REVIEW.md)
 adds a strict offline saved-mint reviewer, a standard OpenSea adaptation PLAN and
 a pinned OpenVRF source lead. None approves onboarding, signed-stage authority,
 a provider adapter, public signing or deployment. Standard Studio explicitly
 rejects Merkle presales; see the plan's preserved-rights and trust questions.
 
-The [20 November platform assessment](../reports/platform-provider-gate-20261120/REVIEW.md)
+The [20 November platform assessment](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/platform-provider-gate-20261120/REVIEW.md)
 identifies a concrete compatibility question: Studio documents signed allowlists,
 `multiConfigure` and collection authority verification, while this NFT uses Merkle
 stages/typed setters/Access governance and lacks `multiConfigure`/`owner()`.
@@ -90,7 +90,7 @@ subscription consumer authorization and original-request recovery. Exercise
 those paths on the exact test network and then the separate approved rehearsal
 deployment. A mock coordinator, runtime presence or ABI match does not pass.
 
-The [dated candidate review](../reports/release-services-20261025/vrf-opensea/RESEARCH.md)
+The [dated candidate review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/release-services-20261025/vrf-opensea/RESEARCH.md)
 finds no selected compatible provider. Do not copy a zero key into PoPL or remove
 the nonzero guard merely to fit another service. An adapter is new reviewed code,
 not a configuration substitute. If a provider can permanently cancel an unanswered
@@ -122,7 +122,7 @@ made without a genuine still-valid original result.
 
 ## Current OpenSea investigation and remaining acceptance
 
-The [November9 source/runtime investigation](../reports/opensea-integration-20261109/REVIEW.md)
+The [November9 source/runtime investigation](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/opensea-integration-20261109/REVIEW.md)
 supersedes the historical missing-chain conclusion: the pinned official
 registry lists Robinhood4663 and an independent RPC read matches verified
 SeaDrop V1. The canonical callback is implemented against that exact runtime.

@@ -151,7 +151,7 @@ No general file browser or RPC forwarding endpoint is provided.
 
 ## Scope and verification
 
-[Scoped verification](../reports/local-website/VERIFICATION.md) records focused
+[Scoped verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/local-website/VERIFICATION.md) records focused
 client/server tests, browser checks and the confirmation integration campaign.
 Production Solidity is unchanged; its source-bound artifacts are reused.
 
@@ -208,7 +208,7 @@ prices from the local input feed; missing history prices remain unavailable.
 Production Entry still enforces a $100 minimum, not an exact-$100 upper bound.
 The fixed activation amount is a local UI/API product rule; real quote rounding
 and price-drift policy must be resolved before asserting contract-level equality.
-See [scoped verification](../reports/local-contribution-flow/VERIFICATION.md).
+See [scoped verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/local-contribution-flow/VERIFICATION.md).
 
 ## Independent local wallet confirmations - 2026-10-20
 
@@ -229,12 +229,12 @@ reset Anvil to resolve a browser confirmation issue. The guarded external recove
 script preserves existing contracts and positions; ordinary launcher restart does
 not promise persistence. The record's 8896/8898 status is historical; inspect the
 actual manifest/process instead of assuming either is running or upgraded.
-[70 distinct Python cases and two actual local mints](../reports/local-wallet-concurrency/NONCE_VERIFICATION.md).
+[70 distinct Python cases and two actual local mints](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/local-wallet-concurrency/NONCE_VERIFICATION.md).
 
 ## Capacity decision and manual acceptance - 2026-10-20
 
 The user reports the six local two-wallet flows passed; see the
-[manual acceptance record](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md).
+[manual acceptance record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md).
 This report does not change operator functions, roles, configuration, limits or
 stop/restart procedures. The dedicated 10/25/100-user load campaign is deferred;
 do not run it automatically or raise worker limits as part of this decision.

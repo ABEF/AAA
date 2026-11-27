@@ -81,8 +81,8 @@ The earlier downloadable dormant-metadata defect was corrected in website source
 of activation eligibility. The2,784SVGs, manifest, historical72metadata, signer
 and public configuration were preserved. Source publication did not rebuild or
 deploy a site or qualify an IPFS bundle. Current3's confirmed upgrade audio/effects
-remain a separate consumer gap. See [source correction](../reports/whole-project-execution-20261029/REVIEW.md)
-and [original findings](../reports/whole-project-audit-20261029/REVIEW.md).
+remain a separate consumer gap. See [source correction](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-project-execution-20261029/REVIEW.md)
+and [original findings](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-project-audit-20261029/REVIEW.md).
 
 ## Configuration and rollout
 
@@ -103,7 +103,7 @@ and [original findings](../reports/whole-project-audit-20261029/REVIEW.md).
    recovery retain their existing code/profile; this change does not authorize
    extending the signer, public minting or real-fund transactions.
 
-The served-profile [verification](../reports/current3-website-20261026/VERIFICATION.md)
+The served-profile [verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/current3-website-20261026/VERIFICATION.md)
 uses actual Python projection/preparation DTO code with synthetic RPC, venue,
 price and authority dependencies. It verifies integration behavior, not real
 prices, provider authenticity, deployed contracts, marketplace operation or an

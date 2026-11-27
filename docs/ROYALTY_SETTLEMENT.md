@@ -1,6 +1,6 @@
 # Marketplace royalty settlement: original currencies
 
-Current [Factory6/allocation2](../reports/activation-final-six-20261118/REVIEW.md) preserves constant-size receipt credit, bounded enrollment lookup and exact original-currency rights. Private round books compact223 coefficient bits with a full256-bit spill;16-bit count/weight/cursor fields remain proven within1,000 NFTs/3,000 tickets. Checked monetary liabilities, one-hour opening and faulty-currency cohorts are unchanged. Fresh payload6/source/runtime/read-policy pins are required; earlier Factory5 creation bytes and [round-book evidence](../reports/royalty-rounds-20261118/REVIEW.md) retain their original scope. The legacy12M default remains; the selected non-live [32M contribution candidate](../config/activation-gas-32m.candidate.json) retains full20% padding and requires explicit adoption. Recorded20M measurements remain source-scoped evidence. The50,000gas activation-only balance read,1M complete sync and read-plus120k funding proof remain unchanged. No conversion, mandatory pre-sync or keeper worker is added.
+Current [Factory6/allocation2](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-final-six-20261118/REVIEW.md) preserves constant-size receipt credit, bounded enrollment lookup and exact original-currency rights. Private round books compact223 coefficient bits with a full256-bit spill;16-bit count/weight/cursor fields remain proven within1,000 NFTs/3,000 tickets. Checked monetary liabilities, one-hour opening and faulty-currency cohorts are unchanged. Fresh payload6/source/runtime/read-policy pins are required; earlier Factory5 creation bytes and [round-book evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/royalty-rounds-20261118/REVIEW.md) retain their original scope. The legacy12M default remains; the selected non-live [32M contribution candidate](../config/activation-gas-32m.candidate.json) retains full20% padding and requires explicit adoption. Recorded20M measurements remain source-scoped evidence. The50,000gas activation-only balance read,1M complete sync and read-plus120k funding proof remain unchanged. No conversion, mandatory pre-sync or keeper worker is added.
 
 All13 controlled cold calls now fit20M with full20%; worst16,460,899 raw/19,753,079 padded. They cover16 ERC20s plus ETH and one main LP; real tokens/markets/providers/fees,64-currency/LP2 workloads, operating and independent approval remain open. This does not imply that every state or currency fits.
 
@@ -141,8 +141,8 @@ never relabel a deployed contract or rewrite an old transaction journal.
 
 ## Qualification boundary
 
-[Current gas/source evidence](../reports/activation-final-six-20261118/REVIEW.md),
-[historical settlement review](../reports/last24h-audit-20261105/REVIEW.md),
+[Current gas/source evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-final-six-20261118/REVIEW.md),
+[historical settlement review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/last24h-audit-20261105/REVIEW.md),
 [mixed claims](CLAIM_ROUTER.md), [reporting](ROYALTY_REPORTING.md).
 Actual token behavior, marketplace payment, API/site configuration, gas and
 independent audit remain open in the [sole task](../TODO.md#task-royalty-eth-settlement).

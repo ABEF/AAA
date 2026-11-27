@@ -12,7 +12,7 @@ contract's packed palette/pattern catalogue, source image SHA-256 hashes,
 self-contained SVG resources and reference JSON image paths. It rejects processing instructions/DTDs, XML base, active/style/escaped resource
 channels and duplicate/nonfinite JSON before packaging, then streams the resulting
 archive back and verifies every member. This validates the approved static format;
-it is not a general-purpose browser sanitizer. [Audit evidence](../reports/whole-project-execution-20261029/REVIEW.md). Existing output directories
+it is not a general-purpose browser sanitizer. [Audit evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-project-execution-20261029/REVIEW.md). Existing output directories
 are never overwritten.
 
 From the contract repository root, supply the actual website artwork directory
@@ -38,7 +38,7 @@ this revision contains the older artwork and must not be selected for the new
 release. Prepare/verify the full bundle from the matching website commit, obtain
 a new content root when publishing, and bind that root before sealing. Existing
 historical bundles remain evidence for their original bytes, not this revision.
-See [current artwork verification](../reports/twin-circuits/VERIFICATION.md).
+See [current artwork verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/twin-circuits/VERIFICATION.md).
 
 Reference metadata now keeps intrinsic rarity weight1/2/3 distinct from activation
 eligibility. The local website correction changes no SVGs, catalogue inventory or

@@ -7,9 +7,9 @@ Preserve exact free-team/paid prices, quotas and original requests; standard sig
 adaptation is not selected. Offline current-source TEAM/ALLOWLIST examples support
 preparation, not actual OpenSea acceptance.
 
-See the [new compatibility diagnostics and preparation](../reports/recommendations-execution-20261120/platform/REVIEW.md) and [recorded decision](../reports/recommendations-execution-20261120/DECISIONS.json). No platform approval, signed mint authority, contract or live deployment change follows.
+See the [new compatibility diagnostics and preparation](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/recommendations-execution-20261120/platform/REVIEW.md) and [recorded decision](../reports/recommendations-execution-20261120/DECISIONS.json). No platform approval, signed mint authority, contract or live deployment change follows.
 
-Current [platform qualification](../reports/platform-provider-gate-20261120/REVIEW.md)
+Current [platform qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/platform-provider-gate-20261120/REVIEW.md)
 distinguishes the observed SeaDrop deployment from custom collection acceptance.
 Studio's documented signed-allowlist/`multiConfigure` route does not establish
 support for our Merkle/typed-setter/Access-authority route. Confirm the actual
@@ -25,7 +25,7 @@ wallet signer and journals retain their original profiles.
 OpenSea's [standard Creator Studio edit API](https://docs.opensea.io/reference/save_drop_edits)
 explicitly rejects `merkle_presale`; the current PoPL source intentionally uses
 Merkle stages and rejects signed-stage configuration. A standard adaptation is
-now a [reviewable PLAN](../reports/readiness-advance-20261120/OPENSEA_ADAPTATION_PLAN.md),
+now a [reviewable PLAN](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/readiness-advance-20261120/OPENSEA_ADAPTATION_PLAN.md),
 not implemented or approved. Exact free-team/price enforcement, signer trust and
 stage-boundary interpretation need decisions; simply enabling a setter is not
 sufficient. Actual custom collection onboarding remains external acceptance.

@@ -504,3 +504,10 @@ reports/keeper-clean-restart-20261127/** -text whitespace=cr-at-eol,-blank-at-eo
 reports/keeper-efficiency-20261127/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 # Keep the source-pinned workload plan byte-exact across Windows/Ubuntu.
 docs/WORKLOAD_PLAN.json -text whitespace=cr-at-eol
+
+# Preserve consolidated documentation and source-bound verification bytes.
+docs/*.md -text whitespace=cr-at-eol
+reports/CURRENT_REVIEW.md -text whitespace=cr-at-eol
+evidence/documentation-consolidation-20261127/** -text whitespace=cr-at-eol
+zzz_ops/review_bundle.py -text whitespace=cr-at-eol
+tests_python/test_review_bundle_current_report.py -text whitespace=cr-at-eol

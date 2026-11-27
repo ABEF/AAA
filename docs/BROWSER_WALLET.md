@@ -153,7 +153,7 @@ Preserve localStorage and server journals while recovering the saved hash. Do
 not repeat mint/approval, reset Anvil or loosen receipt checks. A reviewed web-only
 reader fix must preserve the original session, chain and contracts; rollback
 cannot discard unresolved sends. The earlier incident's exact source scope and
-recovery are in [chain-reader verification](../reports/browser-wallet/CHAIN_READER.md).
+recovery are in [chain-reader verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/browser-wallet/CHAIN_READER.md).
 
 ## Submission, confirmation and artwork
 
@@ -161,7 +161,7 @@ For EIP-1559 transactions, observation derives execution gas price from the sign
 max fee/priority caps and canonical block base fee. It keeps the raw reported RPC
 fee separately because that convenience field may be inconsistent. Signed caps,
 gas used and paid cost still must fit the original review; no tolerance is added.
-Unknown fee types or invalid caps fail closed. See [scoped receipt evidence](../reports/browser-wallet/DYNAMIC_FEE_RECEIPTS.md).
+Unknown fee types or invalid caps fail closed. See [scoped receipt evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/browser-wallet/DYNAMIC_FEE_RECEIPTS.md).
 Specific deterministic mismatches return recovery immediately; do not resubmit.
 
 Before the single wallet send request, the browser saves a recovery record in
@@ -242,7 +242,7 @@ evidence before starting another disposable fixture.
 The mint button distinguishes loading/refreshing mint data from actual mint
 preparation, wallet confirmation and receipt waiting. Other NFT operations never
 show mint progress. Loading still disables actions until confirmed state is ready.
-See [presentation evidence](../reports/browser-wallet/MINT_LOADING.md).
+See [presentation evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/browser-wallet/MINT_LOADING.md).
 
 The dialog advances through Checking transaction, Confirm in your wallet,
 Transaction submitted, Waiting for confirmation and Updating confirmed balances.
@@ -259,7 +259,7 @@ Provider numeric failures name the field without logging raw wallet data.
 The shared signer accepts safe nonnegative integers as well as bounded hex at the
 provider response boundary. Unsafe numbers are rejected, never rounded; outgoing
 transactions remain canonical hex. Reload updated files before a new review.
-See [numeric nonce evidence](../reports/browser-wallet/NUMERIC_NONCE.md).
+See [numeric nonce evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/browser-wallet/NUMERIC_NONCE.md).
 That report records its original reproduction/fix scope; it does not qualify the
 current deployment or every wallet-extension version.
 
@@ -290,7 +290,7 @@ within a 45-second monotonic read budget; no retry sends a transaction.
 One confirmation requires two matching canonical block hash/number reads;
 additional confirmations still require the configured depth. This avoids a
 separate cached head vetoing checked inclusion. See
-[automatic confirmation evidence](../reports/browser-wallet/AUTO_CONFIRMATION.md). If still unresolved,
+[automatic confirmation evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/browser-wallet/AUTO_CONFIRMATION.md). If still unresolved,
 inspect the wallet and recover the saved hash. Keep the original request and
 review. Ordinary refresh shows labeled last-confirmed cards with actions disabled;
 read failures or account/session changes must not present those values as current.
@@ -299,7 +299,7 @@ Local portfolio reads reuse one literal-loopback HTTP connection only within the
 serialized read and close it on completion/failure. This changes no operator
 permissions or production RPC configuration. A web-only update must authenticate
 the original chain/session/journals; never restart Anvil to clear a slow read.
-See [latency and mint follow-up](../reports/browser-wallet/MINT_WAIT_PERFORMANCE.md).
+See [latency and mint follow-up](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/browser-wallet/MINT_WAIT_PERFORMANCE.md).
 
 ## Queued or changed transaction numbers
 
@@ -317,11 +317,11 @@ a disposable development chain; only after separately reconciling pending sends
 should its documented local activity/nonce reset be considered. That reset does
 not cancel a signed transaction on a node. Public-wallet cancellation/replacement
 reconciliation is not implemented here. See
-[scoped diagnosis and evidence](../reports/browser-wallet/PENDING_NONCE.md).
+[scoped diagnosis and evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/browser-wallet/PENDING_NONCE.md).
 
 ## Historical local mint cleanup
 
-The [8902 fixture reconciliation record](../reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md)
+The [8902 fixture reconciliation record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md)
 preserves the separately authorized nonce 35 cleanup, evidence, exact prerequisites
 and restoration instructions. It is an incident record, not a general permission
 to remove pending transactions, clear wallet activity or reset a chain. Its
@@ -356,9 +356,9 @@ EIP-1193-shaped local RPC adapter:
 mint, native ETH activation, exact USDC approval, USDC increase and ETH claim.
 The four original fixture NFT ownership/LP/activation records remained unchanged.
 The adapter exercise is **not** browser-extension acceptance or public signing.
-See the [verification record](../reports/browser-wallet/VERIFICATION.md) for exact
+See the [verification record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/browser-wallet/VERIFICATION.md) for exact
 source scope, receipts, corrections and limitations. The later
-[connection and recovery record](../reports/browser-wallet/CONNECTION_RECOVERY.md)
+[connection and recovery record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/browser-wallet/CONNECTION_RECOVERY.md)
 separates the actual extension observation from its focused fixes; the initial
 test counts above are not new evidence for those changes.
 

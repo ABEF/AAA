@@ -101,7 +101,7 @@ python -m unittest tests_python.test_local_stack tests_python.test_local_stack_e
 
 The journey changes only disposable local state. It verifies real receipts,
 ownership, LP allocation, funded fees, no retroactive income, rebalancing,
-combined claims and cumulative history. See [scoped evidence](../reports/local-stack/VERIFICATION.md).
+combined claims and cumulative history. See [scoped evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/local-stack/VERIFICATION.md).
 
 Both `verify-local-stack.py` and `verify-local-website.py` now require a new
 evidence output path. They exclusively reserve it before making any request to
@@ -150,7 +150,7 @@ user-paused staging monitor are changed. Production release remains NOT APPROVED
 
 The current 8892 session uses generic TEST-1/TEST-2 and native ETH royalties.
 These labels are not production assets. Its token LP claims do not test ETH-only
-payouts; see [the payout audit](../reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md).
+payouts; see [the payout audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md).
 Wallet A received 100,000 additional disposable input tokens on 2026-10-19 after
 reporting insufficient funds, with its existing NFTs and rewards preserved.
 Named asset fixtures, balance/faucet UX and complete source-to-ETH payout tests
@@ -195,7 +195,7 @@ initial/final freshness checks. The native fixture uses unchanged Entry for atom
 ETH; supported ERC20 uses exact replacement approval then Entry, with no automatic
 reset. The UI retains confirmation continuity and fixes local activation at $100.
 See [behavior and limits](LOCAL_WEBSITE.md#local-contribution-flow---2026-10-20) and
-[scoped verification](../reports/local-contribution-flow/VERIFICATION.md).
+[scoped verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/local-contribution-flow/VERIFICATION.md).
 Production venue/service qualification and fixed-$100 price/rounding policy remain open.
 
 For the new atomic-ETH browser rehearsal, add `--named-assets --native-input`

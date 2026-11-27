@@ -74,6 +74,8 @@ def admitted(name, *, schema=4):
         return False
     if any(p.casefold() in {'secrets', 'keystores', 'credentials'} for p in parts):
         return False
+    if schema == 4 and name == 'reports/CURRENT_REVIEW.md':
+        return True
     if name in TOP:
         return True
     if name in FIXTURES or (name.startswith(CATALOG) and name[len(CATALOG):] in CATALOG_FILES):

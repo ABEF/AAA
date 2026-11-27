@@ -8,10 +8,10 @@ core principal reference use stays unsupported. Explicit service/runtime/journal
 capability selection is required; older source records below keep their scope.
 [Reference execution and remaining gas/dependency limits](REFERENCE_SWAP_EXECUTION.md).
 
-Fresh [accounting6 / portfolio2](POSITION_V6.md) source: Strategy maintenance3,
+Fresh [accounting6 / portfolio2](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/docs/POSITION_V6.md) source: Strategy maintenance3,
 confirmation3, Budget compound4, LP routing2, custody5 and emergency2. The
-[current source review](../reports/optional-portfolio-20261030/REVIEW.md) and
-[verification record](../reports/residual-operations-20261031/VERIFICATION.md)
+[current source review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/optional-portfolio-20261030/REVIEW.md) and
+[verification record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/residual-operations-20261031/VERIFICATION.md)
 record passing normal gates, scoped offline checks and local actual-v4-core
 integration, with explicit external mocks and live operating/dependency limits.
 Earlier routing/timing evidence retains its original source scope.
@@ -68,7 +68,7 @@ read-only operation report does not sign, mutate journals or approve execution.
 - **No hidden fallback.** An empty execution catalog disables swaps; execution does not silently switch to an unapproved pool.
 - **Reverted quote effects.** Simulated quotes do not leave behind price changes, fees or token movements.
 
-These controls provide the best sampled valid result among the reviewed candidates, not a guarantee of globally optimal execution. [Routing implementation and review](../reports/atomic-routing-20261028/REVIEW.md).
+These controls provide the best sampled valid result among the reviewed candidates, not a guarantee of globally optimal execution. [Routing implementation and review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/atomic-routing-20261028/REVIEW.md).
 
 ## 3. Price-manipulation protections
 
@@ -152,7 +152,7 @@ alone is separate from interrupted raw evidence. The reader/report stay pure,
 while the live caller uses existing durable resets. [Coordination](KEEPER_COORDINATION.md).
 [Exact policy](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
 
-The [timing audit](../reports/confirmation-audit-20261104/REVIEW.md) corrects
+The [timing audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/confirmation-audit-20261104/REVIEW.md) corrects
 outer-loop sleep ignoring saved deadlines and incident-clear dependence on
 unrelated router metadata. Local monotonic wake-up estimates never authorize
 execution; pending/global-error recovery remains. Actual source rollout and
@@ -272,10 +272,10 @@ separately confirmed approval is not reverted by a later failed contribution.
   [physical executor](../src/ZZZLPPositionExecutor.sol) and [arithmetic child](../src/ZZZLPBalanceMath.sol).
 - [Buyback](../src/ZZZBuyback.sol), [conversion guards](../src/base/ZZZRewardConverter.sol),
   [keeper](../keeper/monitor.py), [RPC](../zzz_ops/rpc.py) and [journal](../zzz_ops/state.py).
-- [Atomic routing review/verification](../reports/atomic-routing-20261028/VERIFICATION.md),
-  [fee-aware execution verification](../reports/fee-impact-policy-20261028/VERIFICATION.md),
-  [timing verification](../reports/maintenance-policy-20261027/VERIFICATION.md),
-  [completion/health review](../reports/manipulation-hardening-20261027/REVIEW.md).
+- [Atomic routing review/verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/atomic-routing-20261028/VERIFICATION.md),
+  [fee-aware execution verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/fee-impact-policy-20261028/VERIFICATION.md),
+  [timing verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/maintenance-policy-20261027/VERIFICATION.md),
+  [completion/health review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manipulation-hardening-20261027/REVIEW.md).
 - [Keeper recovery](KEEPER_RECOVERY.md), [operating rehearsals](KEEPER_REHEARSALS.md)
   and [remaining outside-actor qualification](../TODO.md#task-security-external-manipulation).
 - [Execution-quality policy](EXECUTION_QUALITY.md) and [governance setting procedure](OPERATOR_MANUAL.md#set-additional-execution-loss).
@@ -292,13 +292,13 @@ allocates harvested fees separately and preserves main/shares/clock/policy.
 Post-callback main/control/pause/nonce checks and raw minima remain mandatory.
 No principal leaves Vault. [Operator procedure](OPERATOR_MANUAL.md#portfolio-management-controls).
 Shared terminal-lock checks are privately deduplicated with identical pre/post
-semantics; [current source evidence](../reports/residual-operations-20261031/VERIFICATION.md)
+semantics; [current source evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/residual-operations-20261031/VERIFICATION.md)
 is separate from the earlier portfolio build. Reconcile manual transactions and
 fresh physical observations before restarting a worker; never rewrite journals.
 
 ## Manual recovery does not weaken normal upkeep
 
-The [manual safeguard audit](../reports/manual-safeguard-audit-20261104/SAFEGUARD_MATRIX.md)
+The [manual safeguard audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-safeguard-audit-20261104/SAFEGUARD_MATRIX.md)
 separates optional paused-governance policies from mandatory custody/accounting.
 Emergency sample bit16 no longer silently retains hard cooldown bit1. Explicit
 zero review-time close floors permit raw parking/residual closure. Ordinary

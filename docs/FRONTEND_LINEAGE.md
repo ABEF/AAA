@@ -131,7 +131,7 @@ same role with the same runtime pin. PoPL modules/helpers must remain distinct;
 cross-role collisions and different pins for one shared address are rejected.
 Every predecessor still needs its own exact accounting/canonical profile,
 retirement/activation proof and complete history. Sharing Uniswap infrastructure
-does not establish economic lineage. See the [change audit](../reports/today-audit-20261031/REVIEW.md).
+does not establish economic lineage. See the [change audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/today-audit-20261031/REVIEW.md).
 
 RPC observations and operator-maintained complete indexer ingestion remain the
 data trust model. Stored SQLite rows and matching event receipts are not a
@@ -148,7 +148,7 @@ There is no integrated bridge or cross-chain ledger-import procedure in this
 release. Current governance may end LP and return assets directly to NFT owners;
 there is no external custody executor. A later token exchange or deployment is
 separate and acquires no same-chain lineage guarantees by copying configuration.
-See the [scoped verification](../reports/frontend-lineage/VERIFICATION.md).
+See the [scoped verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/frontend-lineage/VERIFICATION.md).
 
 ## Exact-royalty peer declaration
 
@@ -180,4 +180,4 @@ checkpoint semantic source file; its original checkpoint1/2 lineage exclusion
 is historical. Current checkpoint3 supports authenticated accounting7 lineages,
 with [separate offline prefix import](EARNINGS_CHECKPOINTS.md#import-a-reviewed-prefix-into-an-extended-graph) for an approved matching shorter graph. Earlier ABI-helper changes retain their
 separate explicit rebuild/re-pin requirement; no hash override is introduced.
-[Correction and scoped evidence](../reports/remaining-271-20261111/VERIFICATION.md).
+[Correction and scoped evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/remaining-271-20261111/VERIFICATION.md).

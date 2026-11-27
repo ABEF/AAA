@@ -1,6 +1,6 @@
 # Unsigned mint and claim preparation
 
-The [full normal claim review](../reports/full-claim-admission-20261120/REVIEW.md)
+The [full normal claim review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/full-claim-admission-20261120/REVIEW.md)
 verifies complete F6 runtime/binding/lifecycle checks on a new controlled fixture.
 Claim planning stops at the first successful prefix and still freshly prepares
 that exact next batch. Show remaining claims and require a new review after
@@ -66,8 +66,8 @@ by their saved hash. Publishing this procedure changes no actual configuration.
 
 The operator selected a [32M activation/growth candidate](../config/activation-gas-32m.candidate.json),
 with full20% padding and separate24M keeper/manual policies. The
-[profile review](../reports/contribution-gas32-20261119/REVIEW.md) records new
-software-boundary checks. Earlier [20M controlled qualification](../reports/gas-profiles-20261113/REVIEW.md)
+[profile review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/contribution-gas32-20261119/REVIEW.md) records new
+software-boundary checks. Earlier [20M controlled qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/gas-profiles-20261113/REVIEW.md)
 retains its original source and gas scope; it is not new32M provider acceptance.
 It does not select a higher mint/claim policy: transaction policy1 and checked-in
 defaults remain 12M. Claim-policy2 adoption still requires its own exact policy,
@@ -249,7 +249,7 @@ reward invariant; it does not repeat the full NFT/traits/LP projection or add th
 dependencies to claims. The weight is not used to calculate the payout. Activated parked/outbound NFTs
 and optional-currency deferrals retain their earned rights. Historical profiles
 do not acquire this getter requirement. No optional currency read is added merely
-to check activation. [Scoped review](../reports/reward-resilience-20261026/REVIEW.md).
+to check activation. [Scoped review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/reward-resilience-20261026/REVIEW.md).
 
 Accounting7 requires pinned `principal_exit` and custody5. Omitted/default mint
 integration1 authenticates V9; explicit2 authenticates V10 plus the fixed
@@ -367,7 +367,7 @@ python -m unittest tests_python.test_frontend_transactions tests_python.test_fro
 
 Current activation-integrity regressions are in
 `tests_python.test_claim_activation_integrity`; the latest
-[combined affected report](../reports/reward-resilience-20261026/VERIFICATION.md)
+[combined affected report](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/reward-resilience-20261026/VERIFICATION.md)
 records the exact selected modules and source pins without adding overlapping runs.
 
 Tests cover exact intent/ABI, uint256 precision, mixed/native claims, 32-operation
@@ -377,7 +377,7 @@ input/error boundaries. Frozen ABI vectors were independently checked against
 the actual router using Solidity `abi.encodeCall`. Offline RPC fixtures are not
 live service, production wallet or authority qualification.
 
-The [source-scoped evidence](../reports/wallet-preparation/VERIFICATION.md) distinguishes
+The [source-scoped evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/wallet-preparation/VERIFICATION.md) distinguishes
 reused compiler evidence from current Python tests. See the
 [operator procedure](OPERATOR_MANUAL.md#unsigned-mint-and-claim-service) to enable,
 disable and recover this service without changing contract permissions.

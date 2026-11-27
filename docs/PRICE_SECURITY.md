@@ -1,6 +1,6 @@
 # Price security and factual LP verification
 
-[20 November source/market evidence](../reports/market-route-qualification-20261120/REVIEW.md)
+[20 November source/market evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-route-qualification-20261120/REVIEW.md)
 still establishes no qualified independent pair. A recent canonical block or
 fresh ETH feed does not establish a recent ZZZ trade: native-v4 slot0 is the
 stored pool price and contains no last-trade timestamp. Current rawL, price
@@ -41,7 +41,7 @@ A separate paused governance emergency capability2 may explicitly bypass chosen
 financial/timing checks; exact custody/accounting remain, but near-total economic
 loss is possible. It is not an automatic keeper fallback or API signing feature.
 Live independent sources/routes remain unqualified. [Execution policy](LP_EXECUTION_POLICY.md),
-[optional portfolio](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md), [emergency procedure](EMERGENCY_REBALANCE.md).
+[optional portfolio](OPERATOR_MANUAL.md#portfolio-management-controls), [emergency procedure](EMERGENCY_REBALANCE.md).
 
 ## Status and security boundary
 
@@ -119,11 +119,11 @@ prices cannot prove that liquidity was deployed.
 
 ## Current market and provider qualification
 
-[Current20November evidence](../reports/market-route-qualification-20261120/REVIEW.md)
+[Current20November evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-route-qualification-20261120/REVIEW.md)
 retains same-aggregator ETH proxies, stale Pyth outside300bps agreement and a
 reverting API3 read. Current API3 binding/subscription cause was not refreshed
 and is not inferred from that error. No independently qualified fixedZZZ pair
-exists. The [9November evidence](../reports/market-followup-20261109/REVIEW.md)
+exists. The [9November evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-followup-20261109/REVIEW.md)
 retains its dated546.2675655bps spread and then-observed binding/round failures;
 those values are not the latest market observation.
 
@@ -153,7 +153,7 @@ custom data/provider and hosting bills may apply. The default500,000-gas source-
 limit is a governed ceiling (100,000–1,000,000 via ProtocolPolicy.sourceCallGas), not a flat charge. Actual provider terms and full-operation
 gas are release work; VRF/data-reporting products are separate services.
 
-[The dated 25 October observation](../reports/price-reference-20261025/OBSERVATION.md)
+[The dated 25 October observation](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/price-reference-20261025/OBSERVATION.md)
 is candidate research, not configured PoPL output. Its ETH round was last updated
 the previous evening; ZZZ was calculated from instantaneous pool spot. The
 catalog's second Shared-SVR proxy does not supply independent coverage. Record
@@ -352,7 +352,7 @@ Only the entrant budget can be swapped and deployed. Old idle/compound remains
 in incumbent NAV, but only repriced incumbent aggregate physical LP is subtracted from final
 aggregate LP to measure new deployment. Both legs remain incumbent backing;
 entrant funds increase only the existing main and do not repair the residual. Exact raw deltas exclude prefund subsidy.
-See [routing review](../reports/atomic-routing-20261028/REVIEW.md). These are
+See [routing review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/atomic-routing-20261028/REVIEW.md). These are
 execution protections, not new Oracle providers or independence qualification.
 
 ## Availability, recovery and release qualification
@@ -402,7 +402,7 @@ arithmetic; no mutable dependency call occurs inside those loops.
 Admission no longer repeats source validation that is already performed by its
 round read. A same-currency quote validates its source pair once before returning
 the unchanged amount; an unhealthy source still fails. The [security and cost
-review](../reports/onchain-safety/REVIEW.md) and [scoped measurements](../reports/onchain-safety/VERIFICATION.md)
+review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/onchain-safety/REVIEW.md) and [scoped measurements](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/onchain-safety/VERIFICATION.md)
 describe failure reproductions, accounting parity and local gas limits. No loss
 floor, approval, owner check, runtime pin or source-independence requirement is
 relaxed to save gas.

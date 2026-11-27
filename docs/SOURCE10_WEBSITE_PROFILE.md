@@ -1,13 +1,13 @@
 # Mint2/V10 website read and unsigned profile
 
-The [compact-wallet source record](../reports/compact-wallet-20261121/REVIEW.md)
+The [compact-wallet source record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/compact-wallet-20261121/REVIEW.md)
 reduces the controlled 1,000-NFT/three-descriptor journey to 64 protocol/compact API
 reads, or 80 including eight cards and their earnings. The previous 190 core reads
 and 178-second ideal admission bound describe the historical separate-route wire.
 Current actual full-normal F6/V10, provider, hosting and elapsed-time freshness
 qualification remain open; request counts alone do not establish acceptance.
 
-Fresh payload6/allocation2 preserves schema17/canonicalV10/reporting5 and this read/unsigned consumer wire shape. The current `activation-final-six-20261118` build requires exact new factory, read-policy and runtime/source pins; explicit historical3/4/5 observations are not relabelled. Source compatibility and source publication update neither served website nor signing. See the [current source review](../reports/activation-final-six-20261118/REVIEW.md).
+Fresh payload6/allocation2 preserves schema17/canonicalV10/reporting5 and this read/unsigned consumer wire shape. The current `activation-final-six-20261118` build requires exact new factory, read-policy and runtime/source pins; explicit historical3/4/5 observations are not relabelled. Source compatibility and source publication update neither served website nor signing. See the [current source review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-final-six-20261118/REVIEW.md).
 
 ## Optional execution-price1
 
@@ -50,7 +50,7 @@ The8-card visual page remains unchanged. Individual NFT cards use independently
 confirmed latest snapshots because their endpoint has no fixed-block selector;
 they are not claimed to share the ownership inventory block. Wallet totals and
 history retain complete fixed-block checks. The [earlier 69-check source
-record](../reports/ownership-paging-20261121/REVIEW.md) retains its original scope;
+record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ownership-paging-20261121/REVIEW.md) retains its original scope;
 the current compact wire is covered separately above. Neither is public
 configuration, provider/hosting or financial-load approval.
 
@@ -68,7 +68,7 @@ Later optional currency reads may leave earnings unavailable while complete
 holdings/summary survive only for 429 or an explicitly classified 503 `service_busy`.
 Generic 503, integrity/history/work failures and stale/reorged proofs remain terminal.
 The 1,000-NFT/66-descriptor cross-product cannot finish within 120 seconds and is not
-published as partial income. The [earlier 83-method record](../reports/wallet-view-20261121/REVIEW.md)
+published as partial income. The [earlier 83-method record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/wallet-view-20261121/REVIEW.md)
 describes the preceding separate-route stage; controlled V10 constructor/native-reader/
 NFT composition remains separately scoped. Matching checkpoint semantic sources
 require a newly built, reviewed and pinned artifact, preserving original checkpoint,
@@ -139,11 +139,11 @@ directory. Source publication does not install or restart anything. Follow the
 [environment map](SITE_ENVIRONMENTS.md); preserve popldemo, served current3
 poplint, existing Anvil8902, journals and the user-paused heartbeat.
 
-The [historical source10 verification](../reports/v10-website-20261109/REVIEW.md) uses actual
+The [historical source10 verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/v10-website-20261109/REVIEW.md) uses actual
 backend handlers with explicitly synthetic RPC/trace/graph state. It demonstrates
 consumer compatibility, not target-chain execution, live market depth, independent
 feeds, VRF, OpenSea onboarding, wallet extension acceptance, hosting/recovery or
 independent security approval. Those release gates remain open.
 
 
-The fresh `activation-final-six-20261118` build preserves public accounting7/LP-allocation1/schema17/canonicalV10 and exact original-currency rights, while introducing factory payload6 and new private Royalty/LP/pricing representations. Its compatible public ABI/read/unsigned wire does not qualify a served website, signing or installed consumer. Review fresh exact source/runtime/factory pins; never hot-copy old raw storage or relabel old snapshots/journals. The [controlled gas evidence](../reports/activation-final-six-20261118/REVIEW.md) passes all13 cold20M/full20% calls, worst16,460,899 raw/19,753,079 padded; target wallet/provider/fees, market and operating acceptance remain separate.
+The fresh `activation-final-six-20261118` build preserves public accounting7/LP-allocation1/schema17/canonicalV10 and exact original-currency rights, while introducing factory payload6 and new private Royalty/LP/pricing representations. Its compatible public ABI/read/unsigned wire does not qualify a served website, signing or installed consumer. Review fresh exact source/runtime/factory pins; never hot-copy old raw storage or relabel old snapshots/journals. The [controlled gas evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-final-six-20261118/REVIEW.md) passes all13 cold20M/full20% calls, worst16,460,899 raw/19,753,079 padded; target wallet/provider/fees, market and operating acceptance remain separate.

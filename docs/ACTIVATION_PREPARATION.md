@@ -2,7 +2,7 @@
 
 The selected contribution preparation ceiling is now32M/full20%, in the
 [non-live candidate](../config/activation-gas-32m.candidate.json). The
-[current F6 evidence](../reports/activation-final-six-20261118/REVIEW.md) passes
+[current F6 evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-final-six-20261118/REVIEW.md) passes
 all13 controlled cold cases at the earlier20M/full20% setting. Older launch16
 refusals keep their original source scope. Actual32M provider/execution/fee and
 expanded-workload acceptance remains open; no default or live setting changes.
@@ -43,13 +43,13 @@ the reviewed stop/reconcile/dry-run/restart procedure with journals preserved.
 
 ## Actual dependency qualification
 
-The [current read-only campaign](../reports/market-followup-20261109/REVIEW.md)
+The [current read-only campaign](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-followup-20261109/REVIEW.md)
 adds source/control/ABI and direction/size/spot/depth evidence, not a ready live
 configuration. Keep unavailable prices unavailable. Quote output or retained
 idle cannot substitute for actual marginal LP or independent USD valuation.
 That read-only market campaign performed no new complete activation/growth
 operation; previous2% fork rejections retain their original scope. The later
-[20M controlled qualification](../reports/gas-profiles-20261113/REVIEW.md) executes
+[20M controlled qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/gas-profiles-20261113/REVIEW.md) executes
 current $100/$5 ETH/ZZZ operations with controlled feeds and synthetic depth; it
 does not qualify those real market dependencies. Current3% total does not alter swap/spot/idle/caller
 guards, and a source spread can consume the available marginal-LP budget.
@@ -80,7 +80,7 @@ No version field upgrades old contracts or grants signing permission.
 Fresh LP-routing2 verification passes the configured `lp_position_executor`
 binding into the actual execution observer; a present address alone is not
 verification. Missing helpers, wrong parent/core/runtime and historical profile
-substitution fail closed. [Actual verifier tests](../reports/day-audit-20261031/VERIFICATION.md)
+substitution fail closed. [Actual verifier tests](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/day-audit-20261031/VERIFICATION.md)
 exercise the full graph, not just configuration construction.
 
 At one pinned canonical hash, authenticate both physical LP IDs, keys, owners,
@@ -138,7 +138,7 @@ Fresh7 Pricing.finish always records a composition epoch: exactly one epoch0
 witness for a new zero-supply bucket, and two matching epochs delimiting mark /
 value phases when shares exist. Exact bucket/type, bounds, phase and historical
 asset marks remain checked. Historical profiles keep their original decoder.
-[The actual trace regression](../reports/source9-actual-entry-20261109/REVIEW.md)
+[The actual trace regression](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/source9-actual-entry-20261109/REVIEW.md)
 replaces an unsupported synthetic assumption; it does not relax financial guards.
 
 Activation configuration `schema:1` retains the12M legacy cap and response shape.
@@ -157,13 +157,13 @@ on-chain governance call or permission to sign.
 The [Robinhood gas procedure](ROBINHOOD_GAS.md) records actual32M transaction
 and block execution parameters at its dated anchor, distinct from the synthetic
 header `gasLimit`. Earlier public history observations do not qualify this
-preparation path. The [latest bounded provider checks](../reports/gas-profiles-20261113/REVIEW.md#public-provider-outcome)
+preparation path. The [latest bounded provider checks](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/gas-profiles-20261113/REVIEW.md#public-provider-outcome)
 still find no complete canonical-hash call/estimate/trace provider. Missing
 `callTracer` logs or unsupported canonical-hash calls stop preparation; numbered
 blocks are not a fallback.
 
 The operator-selected [32M activation/growth candidate](../config/activation-gas-32m.candidate.json)
-uses existing schema2 software; the [review](../reports/contribution-gas32-20261119/REVIEW.md)
+uses existing schema2 software; the [review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/contribution-gas32-20261119/REVIEW.md)
 keeps older20M controlled results separate. Set `schema:2` and decimal string
 `fee_policy.max_gas_limit:"32000000"`; the matching website uses integer
 `limits.gas:32000000`. Full20% padding allows estimates at most26,666,666; the next
@@ -436,14 +436,14 @@ gas. The backend cannot guarantee execution or remove oracle/governance/venue ri
 
 Geth documents the [built-in call tracer and logs](https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers)
 and [hash-selected debug calls](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug).
-Local compatibility evidence is in the [scoped verification](../reports/activation-preparation/VERIFICATION.md);
+Local compatibility evidence is in the [scoped verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-preparation/VERIFICATION.md);
 it does not qualify a hosted production RPC or an actual ETH/ZZZ route. Current
 feature evidence and remaining gates are maintained in the [feature reference](IMPLEMENTATION_STATUS.md)
 and [sole Todo](../TODO.md). The older confirmation/schema6 additions have
-[historical scoped verification](../reports/practical-improvements-20261028/VERIFICATION.md).
-Use [Entry3 evidence](../reports/direct-entry-v3-20261103/VERIFICATION.md) for the
+[historical scoped verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/practical-improvements-20261028/VERIFICATION.md).
+Use [Entry3 evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/direct-entry-v3-20261103/VERIFICATION.md) for the
 direct-Entry behavior; that record predates the current accounting7 integration.
-Use [fresh7 integration evidence](../reports/exact-lp-integration-20261106/VERIFICATION.md)
+Use [fresh7 integration evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/exact-lp-integration-20261106/VERIFICATION.md)
 for current LP hooks and consumers. Neither record qualifies actual providers or upgrades poplint.
 
 ## Accounting7 policy and exact-LP boundary

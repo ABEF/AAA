@@ -1,223 +1,14 @@
 # Engineering roadmap and production qualification plan
 
-[Keeper output and storage review](../reports/keeper-efficiency-20261127/REVIEW.md) keeps every log event and field
-while compacting JSON. Health uses at most32 confirmation bucket IDs per
-preview, with full counts/completeness/digests and the complete original
-journal retained. Exact pretty-output bounds protect64KiB selections and
-1MiB staging exports before replacement; desktop snapshots have bounded
-reads and a10,000-entry serial-collector cap, with no automatic deletion.
+This guide owns acceptance requirements and execution order. The
+[current review](../reports/CURRENT_REVIEW.md) owns present evidence and
+readiness; [findings](AUDIT_FINDINGS.md) owns unresolved issues and accepted
+limits. [TODO.md](../TODO.md) remains the only task-status checklist.
 
-Journal defaults, durable write order, financial/native limits and existing
-environments stay unchanged. Source13/19 membership stays; changed pins need
-a reviewed matching release/policy. Preserve old packages with their original
-release. Earlier [desktop-kit restart](../reports/keeper-clean-restart-20261127/REVIEW.md) evidence keeps its own
-scope. Q06/P20/P21, second-host/signer recovery, providers/channels, durability,
-sustained operation and independent live approval remain open; heartbeat stays paused.
-
-Earlier [alert evidence](../reports/keeper-alerts-20261126/REVIEW.md) retains its
-21-method original source scope; it is not re-executed or relabelled here.
-
-[Earlier unsigned keeper backup/restore](../reports/keeper-backup-20261126/REVIEW.md)
-retains its original33 distinct NEW passes and one Windows symlink skip. Its
-185-file inventory and unchanged thirteen-source claim apply to that earlier
-source, before the bounded snapshot adapter below; they are historical scope.
-Off-host adoption and canonical reconciliation remain separate.
-
-New [daemon-storage evidence](../reports/ubuntu-daemon-storage-20261126/REVIEW.md): real accepted-hash EACCES, same-journal
-restart and once-only recovery are independently reconciled. The original
-campaign remains **NONPASS** from a mistaken timing assertion; final physical
-after-state reads are missing. Q06/P21 remain open. No production code, limits
-or existing environments changed.
-
-[Full keeper audit — 26 November](../reports/keeper-full-audit-20261126/REVIEW.md) adds late booked-cost anchor checks,
-bounded staging wallet utilities and bounded read-only monitor output. Exact
-new verification, the original interrupted utility evidence and isolated Ubuntu
-results have separate scopes; no unchanged test body is rerun. That audit's source
-[inventory](../reports/keeper-full-audit-20261126/FUNCTION_INVENTORY.json):183 Python files/2,007 named definitions/278 lambdas;
-F6 source/dependency/control maps61/39/4 and1,021 ABI rows remain unchanged.
-Installed legacy staging is not the current candidate and was left untouched.
-Q06/P20/P21, provider/off-host/sustained operation and independent approval
-remain open. No service/site/chain/journal adoption; heartbeat stays paused.
-
-
-[Ubuntu keeper storage recovery](../reports/ubuntu-storage-20261125/REVIEW.md)
-passes six actual ENOSPC/EACCES refusals at intent, reported-hash and paid-receipt
-publication in2,265/6,000RPC with two original transactions and no resend.
-Seven distinct NEW diagnostics methods pass in separate5+2 source stages;
-independent saved-vector review passes. Original sanitized cycle errors now
-precede a possibly failing health write; six fixed os_errno labels and a validated
-reported_transaction candidate help recovery without exposing signer output.
-Accounting, authority, persistence order, financial limits and F6 stay unchanged.
-That 25 November source inventory was182files/2,003definitions/278lambdas; see
-its historical [inventory](../reports/ubuntu-storage-20261125/FUNCTION_INVENTORY.json).
-The private1MiBtmpfs check is direct stock reconstruction, not physical disk,
-power-loss durability or full daemon qualification. Its unit stops; five original
-service states match. Previous [supervisor](../reports/ubuntu-supervisor-20261125/REVIEW.md)
-and key/hybrid evidence retain their scopes. Existing environments/journals stay
-untouched; matching source/checker adoption needs separate review. Q06/P20/P21,
-off-host restore/fencing, alerts, restart storms, sustained operation and release
-approval remain open. The desktop heartbeat stays user-paused.
-
-[Wallet checkpoint follow-through](../reports/wallet-latency-20261123/REVIEW.md) preserves full admission,
-exact rights and all guards while removing repeated tree walks/accounting decode.
-28 distinct NEW backend methods pass in explicit stages; no old bodies rerun.
-
-The controlled source9/V9 1,000-NFT/three-currency view now completes80 GETs
-including eight cards in98.834s. Final snapshot age116.018s leaves only3.982s
-under120s: a finite synthetic pass, not robust-provider or full F6/V10 acceptance.
-Original expiry evidence remains; the late-tip alternative stays unused.
-
-[Ubuntu recovery and operating follow-through](../reports/ubuntu-complete-20261124/REVIEW.md)
-now completes export/reload of the NEW unsealed F6 constructor fixture:45 headers,
-44 receipts,39 runtimes,112 bindings and genuine NFT creation history match.
-The explicitly approved lab-only profile is32MiB for exact dump[true] response/
-capture,16MiB compressed and128MiB expanded. Production/default limits stay.
-Original failed exports and the separate old graph's missing history stay distinct.
-
-Actual stock Ubuntu keeper/Cast harvesting, same-journal interruption/recovery,
-lock exclusion and a fresh healthy cycle pass with240s/12confirmations/hourly
-harvest and24M/full25%. Diagnostics, indexer/restart/empty-header reorg and history
-backup/restore have separate finite proofs. The original private fixture's later negative-import failure is retained. Separate
-current-semantic1,000-NFT/three-epoch import/restore passes with full86,400s and
-exact phase/raw bytes; injected lifecycle/getter seams remain explicit. This is
-not all-feature or full F6/V10 qualification.
-
-Preflight now validates reciprocal LP routing without burdening saved pending
-recovery; successful recovery no longer doubles refresh-only waiting or delays
-earlier confirmation deadlines. Four plus7+3 distinct NEW Python methods pass;
-nine NEW snapshot checks pass separately. Future staging installs retain root
-tool ownership. No unchanged suite, public transaction, new sealing or rollout.
-
-Adopt matching keeper/checker code with original journals preserved. These two
-Python fixes alone change no checkpoint semantic source. Earlier API/ABI source
-adoption still requires newly reviewed matching checkpoints. Sites, services,
-Anvil8902, signer/null public configurations and paused heartbeat are preserved.
-Current [inventory](../reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json):
-191Python files/2,140named definitions; [280lambdas](../reports/keeper-efficiency-20261127/ANONYMOUS_CODE_INVENTORY.json).
-Frozen F6 maps61/39/4 and1,021ABI rows remain.
-Actual F6/V10 consumer, provider, market and production approval stay open.
-
-[Current actual-fee proof](../reports/pool-fees-20261121/REVIEW.md) advances P08
-with real-core harvested receipts, exact80/10/5/5+dust/reserve conservation and
-current-owner direct ETH/ZZZ claims on the saved two-NFT normal graph. A controlled
-invalid price feed blocks Oracle.price while harvest/claims continue under their
-existing rules. This reuses P07 setup without repeating Entry or old suites.
-ETH conversion, actual sources/depth/fees, maximum workloads and normal operating
-acceptance remain open. All23 packages/83stable tasks and separate release gates
-remain; no whole package is approved.
-
-[Latest recommendation
-execution](../reports/recommendations-execution-20261120/REVIEW.md) consolidates ten
-exact chat recommendations with this plan. P06 gains a separately paid optional
-synchronization workflow, not closure of the direct cold-gas case. P14/P15 gain nine
-reproducible offline compatibility diagnostics; actual integration decisions stay open.
-The new pool partition keeps pristine versus synthetic state distinct. All23 packages/83
-task IDs and release gates remain.
-
-The supplied ETH/ZZZ pool remains the integration test target, including isolated
-empty-state and locally seeded-depth forks. Only final production selection is deferred;
-it does not block those tests. Actual market/source/route qualification remains
-separate. See [testing scope](../reports/test-pool-scope-20261120/REVIEW.md).
-
-Progress reconciled24November2026; exact new scopes are in the [checkpoint follow-through](../reports/wallet-latency-20261123/REVIEW.md). Earlier reconciliation against `33af0ab927d6724b724df99e926fedf78e4febcf`; original plan baseline `519ff4f075022f789f46facbab56f0a944705b11` is retained. **Production is undeployed and NOT APPROVED.**
-This is the plan for checking readiness, not authorization to execute public
-transactions, deploy, seal, restart services or open mint. [TODO.md](../TODO.md)
-remains the only task-status checklist; record actual approval in the
-[release record](RELEASE_CHECKLIST.md). The [readiness reconciliation](../reports/production-readiness-plan-20261119/REVIEW.md)
-and [matrix](../reports/production-readiness-plan-20261119/MATRIX.json) retain
-source provenance and map every stable Todo task to the packages below.
-
-## Current progress snapshot — 24 November 2026
-
-The23 acceptance packages still map all83 stable Todo tasks:35done,40in progress,
-7todo and1excluded. These are task states, not a release-readiness percentage.
-No whole package or production gate is approved. GateA remains incomplete while
-bounded GateB work proceeds. [Source-bound snapshot](../reports/readiness-advance-20261120/STATE.json).
-
-Since the original519ff4plan, current compiler-advisory applicability, controlled
-F6 construction, additional maximum-state LP settlement/claims and finite full-
-normal backend claim admission have advanced. Two claim-planner defects were
-fixed. The prior11/12 maximum-state activation result was already in that plan;
-it is not counted again. Actual sources/routes/platform/operating acceptance,
-full-normal1000-NFT workloads, the476135-estimate gap and independent approval remain.
-
-| Package | Current disposition | Remaining boundary |
-| --- | --- | --- |
-| P01 | Decision pending | Final production pool deferred; actual launch authorities/settings still needed. |
-| P02 | Bounded subcheck complete | Current compiler-advisory applicability reviewed; full release freeze/independent acceptance remains. |
-| P03 | Unqualified external sources | No approved independent ETH/fixed-ZZZ pair or publication operation. |
-| P04 | Operator-deferred pool; qualification open | 117 additional read-only observations qualify no complete route/depth configuration. |
-| P05 | Finite provider evidence only | Exact32M/24M capacity, complete fees, selected tier/failover/finality remain open. |
-| P06 | Partial maximum-state qualification | Prior11/12 contributions; slow-ZZZ still needs476135 less estimated gas; new cold claim/conversion subsets. |
-| P07 | Added real-core composed local evidence | Two-NFT ETH/ZZZ Entry and direct swaps pass with explicit fixtures; actual sources/depth, multiple venues and expanded lifecycle acceptance remain. |
-| P08 | Added actual-core fee/claim proof | Two-NFT exact intake/reserves and current-owner direct payouts pass; ETH conversion, maximum claims and actual operation remain open. |
-| P09 | Implemented; release qualification open | Exact original-currency rights retain opening/outage rules; actual platform/currencies still needed. |
-| P10 | Implemented; operating/economic review open | Existing safeguards and local scenarios are not real-market manipulation immunity. |
-| P11 | Added local role evidence | Distinct-role constructor fixture checked; actual operator/guardian/keeper wallets remain unselected. |
-| P12 | Source-scoped evidence retained | Actual target-chain holder-payout gas/fault/recovery acceptance remains. |
-| P13 | Full latest cutover qualification open | Complete F6/V10 coordinator, funding/import/abort/cold gas remains separate. |
-| P14 | Custom Merkle qualification selected; acceptance open | Existing offline reviewer plus nine new platform diagnostics/current-source phase preparation; preserve exact sale guarantees. Actual custom OpenSea onboarding/payload/terms remain unapproved. |
-| P15 | Pinned new source lead; no provider qualified | OpenVRF9fb960c inspected; ABI/funding/two-word derivation, timestamp/drand/crypto and self-hosted operation remain unqualified. |
-| P16 | Catalogue mapped; delivery open | Actual content publication/retrieval/OpenSea refresh and final media acceptance remain. |
-| P17 | Finite HTTP/recovery and controlled maximum verified | Source9/V9 1,000-NFT full view passes80GETs with3.982s freshness margin; actual F6/V10, archive/provider/load and separately authorized adoption remain. |
-| P18 | Offline tools implemented | Matching checkpoint/consumer and actual host/archive/restore adoption remain. |
-| P19 | Production submission unresolved | Current consumer unsigned, shared signer Anvil-only; no production signing decision or rollout. |
-| P20 | Current normal keeper plus backup/observer composition passes; prior partitions retained | Combined full normal-daemon/provider, maximum workload and multi-day operation remain. |
-| P21 | Desktop-kit stock unsigned receipt recovery and fresh dry cycle pass; prior c811/c825 scopes retained | Retained OS/runtime/local node are external; actual second-host/signer recovery/fencing, public canonical reconciliation, real alerts, durability and sustained operation remain. |
-| P22 | Controlled construction complete | 25CREATE/19bindings/39instances verified locally; actual deployment/readback/seal approval remain. |
-| P23 | Independent approval open | No final release freeze/audit/remediation/public-opening approval or deployment. |
-
-This advance implementsP14offline mint-payload review and prepares an OpenSea
-standard-adaptation plan. The documented standard API rejects Merkle presales;
-no mint authority or contract change is approved by preparing that plan. P15
-research adds a possible no-expiry OpenVRF source lead, not a selected service.
-Pool selection stays deferred; it does not prevent this work.
-
-## Current evidence and limits
-
-The [expanded actual-market review](../reports/market-route-qualification-20261120/REVIEW.md)
-adds previously untested low-fee native and documented v2/v3 registry discovery.
-P03/P04 remain blocked by actual depth, compatible prices, independent publication
-and complete route proof. Finite v3 positives are not native-profile compatibility
-or1% conversion approval. No destination, source or safeguard changes.
-
-
-The [Gate A review](../reports/readiness-gate-a-20261120/REVIEW.md) completes the
-current compiler-advisory applicability subtask and refreshes actual markets.
-No confirmed reachable compiler defect requiring an upgrade was found; exact
-Yul optimization is disabled. The then-selected integration target lacked active liquidity,
-independent feeds/routes remain unqualified, and OpenSea custom configuration
-and original-request VRF support need concrete acceptance before launch.
-
-The trusted normal build is `activation-final-six-20261118`, Factory6/allocation2.
-Its 61 project sources, 39 dependencies, 4 controls and 48 size gates retain their
-original exact scope. All 13 controlled 16-currency/one-main cold cases pass 20M/full 20%,
-closing the six earlier matched refusals. These are not current-market approval.
-
-The [maximum-state campaign](../reports/maximum-workload-20261119/REVIEW.md)
-adds 1,000 NFTs, 64 ERC20 royalties plus ETH, two LPs and reversed activation order.
-Eleven of twelve contributions fit 32M/full 20%; slow-ZZZ opening still needs
-32,571,362 padded, 571,362 above budget, requiring at least 476,135 less estimated gas.
-Five executable maintenance cases fit 24M/full 25%, three intended refusals reproduce,
-and actual royalty payouts/backing reconcile. Synthetic external depth and mocked
-controls are explicit; real Access/Registry were not instantiated by that producer.
-
-[Whole-workload coverage](WORKLOAD_COVERAGE.md) identifies 187 scenario classes
-across 17 contract/internal and 7 service families, plus 21 service subfamilies
-containing 85 finer partitions. These are obligations, not 272 executed tests.
-Inventory is not dynamic coverage. Q06's finite isolated Linux/systemd recovery
-uses inert signing and a recovery-only dispatcher; full normal-loop/key/provider/
-off-host/alerts/soak acceptance remains separate.
-
-The [seven-report reconciliation](../reports/seven-report-consolidation-20261119/REVIEW.md)
-retains 64 original records plus 24 subsequent assessments. The earlier 310-record
-reconciliation is not 310 open bugs. Keep fixes, accepted policy, structural limits
-and Q01-Q07 qualification distinct; never add overlapping historical pass totals.
-
-**Current source bounds:** four reviewed LP-execution venues, four lifetime
-logical buckets and at most two physical positions per bucket. Thirty-two is a
-separate claim/exit selection ceiling, not an LP-venue limit. The older maximum
-report's “32 venues” sentence is not the current code's bound.
+All23 acceptance packages and their task ownership remain. Historical progress
+snapshots and test transcripts are archived in Git, rather than repeated here.
+Unknown launch inputs remain blocked. Deployment, sealing and public opening
+require separate explicit approval; this roadmap authorizes none of them.
 
 ## Requirements that this plan preserves
 
@@ -287,7 +78,7 @@ Owning Todo: [`native-production-preflight`](../TODO.md#task-native-production-p
 
 ### P02 — Compiler, dependencies and evidence validity
 
-The [current compiler assessment](../reports/compiler-applicability-20261120/REVIEW.md) evaluates all eight registry variants against exact0.8.26/Cancun, via-IR/EVM optimization with Yul optimization DISABLED. No confirmed reachable defect requiring upgrade was found. This completes current applicability review only; re-evaluate after new advisories or source/dependency/settings changes. A version match alone is not a project defect.
+The [current compiler assessment](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/compiler-applicability-20261120/REVIEW.md) evaluates all eight registry variants against exact0.8.26/Cancun, via-IR/EVM optimization with Yul optimization DISABLED. No confirmed reachable defect requiring upgrade was found. This completes current applicability review only; re-evaluate after new advisories or source/dependency/settings changes. A version match alone is not a project defect.
 
 Inspect exact settings, dependency source, relevant call graph and generated IR where needed; give every candidate a reviewable disposition. Do not upgrade compiler automatically.
 
@@ -347,7 +138,7 @@ Owning Todo: [`activation-assets`](../TODO.md#task-activation-assets), [`shared-
 
 ### P08 — Harvest, LP settlement, compound and burn
 
-The [maximum-state settlement/claim report](../reports/lp-claims-maximum-20261120/REVIEW.md)
+The [maximum-state settlement/claim report](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/lp-claims-maximum-20261120/REVIEW.md)
 adds finite same-NFT conversion, cold gas/refusal and transfer/fault evidence; the
 new request-local code-proof reuse addresses a measured planner CPU bottleneck.
 Actual route/provider/complete-fee and full production API admission remain open.
@@ -442,7 +233,7 @@ Owning Todo: [`metadata-ops`](../TODO.md#task-metadata-ops).
 
 ### P17 — API security and complete portfolio reads
 
-The [current full-normal claim evidence](../reports/full-claim-admission-20261120/REVIEW.md)
+The [current full-normal claim evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/full-claim-admission-20261120/REVIEW.md)
 adds real F6/26-pin admission on32 activated NFTs/65 royalty currencies and a
 first-success planning fix for an actual1,024-read exhaustion. Actual payout,
 remaining claims and all guards stay verified. This is finite claim evidence;
@@ -450,7 +241,7 @@ full1,000-active-NFT normal workloads, HTTP/provider/complete-fee and matching
 consumer/operating acceptance remain open. Prior LPQ03's P16 reference was wrong.
 
 Match current F6/profile/runtime/canonical manifests, both physical legs, owner and
-funded rights at canonical state. [Compact wallet qualification](../reports/compact-wallet-20261121/REVIEW.md)
+funded rights at canonical state. [Compact wallet qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/compact-wallet-20261121/REVIEW.md)
 reduces the previous190 core wallet reads to64 for1,000 NFTs/three currencies;
 including16 card/history calls gives80. Sixteen NFTs/66 fully priced descriptors
 complete17 four-currency pages under existing1,024-read and response bounds.
@@ -490,20 +281,9 @@ Owning Todo: [`wallet`](../TODO.md#task-wallet), [`portfolio`](../TODO.md#task-p
 
 ### P20 — Actual full normal keeper scheduling
 
-The [Ubuntu follow-through](../reports/ubuntu-complete-20261124/REVIEW.md)
-adds finite stock-daemon/Cast harvest, same-journal recovery and healthy-cycle
-proof. Its original budget/fee/route refusals remain recorded. The
-[worker follow-through](../reports/ubuntu-keeper-blockers-20261124/REVIEW.md) later
-adds single-main replacement and positive compound/burn/conversion partitions,
-with its original compound aggregate and canonical-fee reconciliation distinct.
-The [hybrid check](../reports/ubuntu-hybrid-20261124/REVIEW.md) now completes ordinary
-governed mode ON/OFF with a genuinely mixed residual, exact custody/backing and
-unchanged limits. Its12h fixed logical clock and338-request remainder do not
-qualify wall-clock soak, maximum/concurrent workloads or provider robustness.
-Keep whole operating acceptance open. Separate history restore retains exact
-1,000-NFT/three-epoch/full86,400s evidence with explicit synthetic getter seams.
-
-[21 November follow-through](../reports/ubuntu-keeper-20261121/REVIEW.md) fixes four Python issues and verifies18focused methods,8 on Ubuntu. The normal-daemon/real-Cast attempt stopped during fixture setup; all8owned units are stopped. This advances source safety, not P20/P21 acceptance.
+Current finite evidence and its original failures are assessed in the
+[current review](../reports/CURRENT_REVIEW.md#keeper-recovery-and-diagnostic-data).
+The following operating acceptance remains separate.
 
 Rehearse the actual normal daemon/Cast/provider/key path in isolation: pending-first recovery, observation deadlines, independent job retry delays and correct per-pool scheduling. Start with disposable keys and an owned isolated chain; production keys/providers need separate authorization. Inert recovery-only dispatcher results do not prove the normal loop.
 
@@ -515,60 +295,9 @@ Owning Todo: [`keeper-guardrails`](../TODO.md#task-keeper-guardrails), [`keeper-
 
 ### P21 — Host, interruption, restore and alerts
 
-The [output/storage review](../reports/keeper-efficiency-20261127/REVIEW.md) bounds diagnostic output and local archive growth while preserving journals, recovery and historical pins. It adds no second-host, live-channel, physical durability or sustained-operation acceptance.
-
-The [actual Ubuntu adoption composition](../reports/ubuntu-backup-recovery-20261126/REVIEW.md)
-now passes exact known-pending backup/restore, separate original configuration,
-unsigned canonical recovery and a fresh dry cycle in2,353/6,000RPC. Six
-independent checks and final NFT/LP/reserve vectors pass; all new groups stop
-and existing service states match. The original c813 shutdown/capture NONPASS
-stays separate from c814's corrected capture-before-teardown evidence. No
-production source, financial limit or existing environment changes. Actual
-second-host fencing/restore, alert delivery, provider timing and sustained
-normal operation still require qualification.
-
-The [unsigned keeper backup tool](KEEPER_BACKUP.md) now prepares exact
-journal backups, explicit-pin/config/source/age verification and exclusive
-review-only restore folders. [Evidence](../reports/keeper-backup-20261126/REVIEW.md)
-records33distinct new passes across Windows/Ubuntu, no previous green
-body rerun and unchanged existing operating limits. Capture age and
-trusted nonce floors do not establish newest canonical state or fencing;
-actual multi-host adoption/alerts/sustained operation remain open.
-
-The [new c811 record](../reports/ubuntu-daemon-storage-20261126/REVIEW.md)
-adds actual accepted-hash EACCES, natural daemon exit, fenced same-journal
-restart, explicit no-live resolution, twelve confirmations and one-time
-receipt recovery. Seven independent saved-vector checks verify that core
-and the actual healthy cycle, without replay. The original campaign stays
-NONPASS: it wrongly required a239s minimum after recovery, despite an
-earlier preserved confirmation deadline. Its final physical after-state
-vectors were not captured; no complete planned-partition pass is claimed.
-Keep those limits separate from the earlier c808/c806 proofs below.
-
-The [26 November follow-through](../reports/keeper-full-audit-20261126/REVIEW.md)
-adds c810 startup-rate-limit proof and interval-only repair to fresh healthy
-idle:1,652/6,000RPC, zero signed sends, exact journal during failed starts and
-unchanged rights/backing. The original c809 verifier refusal stays recorded;
-its one Linux check is reused without execution. Four new cgroups stop empty,
-and original service/file/configuration/journal identities are preserved. This
-does not close other restart faults, physical/off-host or sustained acceptance.
-
-The [new storage record](../reports/ubuntu-storage-20261125/REVIEW.md) adds
-six genuine ENOSPC/EACCES failures and exact direct stock recovery, with no
-resend/double charge and unchanged financial guards. It fixes original-error
-masking and retains a validated reported hash candidate for manual recovery.
-This is bounded private-tmpfs evidence, not installed-filesystem/directory-fsync
-or power-loss durability, full-daemon storage restart, EIO/quota/readonly faults
-or broader operating acceptance. Reuse the saved proof; do not rerun old journeys.
-
-The [25 November supervisor record](../reports/ubuntu-supervisor-20261125/REVIEW.md)
-verifies a stock watchdog/saved-hash restart and a separate active-Cast manual
-kill/hashless-resolution/healthy-resume partition. Native old groups are empty
-before replacements; exact journals/locks and one-time cost recovery reconcile.
-The [earlier key-replacement proof](../reports/ubuntu-key-rotation-20261124/REVIEW.md)
-remains separately scoped. These checks leave additional transport and storage
-faults, restart storms, off-host fencing/restore, alerts and sustained operation
-open; no existing service is adopted.
+Current finite evidence and its original failures are assessed in the
+[current review](../reports/CURRENT_REVIEW.md#keeper-recovery-and-diagnostic-data).
+The following operating acceptance remains separate.
 
 Qualify least-privilege host/service/TLS/secret setup, actual disk/WAL/fsync/locks, single-writer fencing and off-host storage. Interrupt at durable intent/save/sign/send/hash/receipt boundaries, including hashless uncertainty, RPC stalls/refusal, disk full, permission failure, corrupt state and restart storms.
 
@@ -580,7 +309,7 @@ Owning Todo: [`host-services`](../TODO.md#task-host-services), [`keeper-recovery
 
 ### P22 — Fresh construction, deployed readback and seal
 
-The [current controlled F6 rehearsal](../reports/f6-construction-20261120/REVIEW.md) completes25CREATE+19bindings/39instances using real Access/Registry,112binding/state plus172default reads and a distinct-role35probe fixture. Its132preflights/260nonce reads/44receipt headers are independently reconciled. Before public deployment, still freeze actual release arguments/root/fees and verify real dependencies, direct-EOA nonce assumptions and getter-discovered children; controlled constructor doubles and local addresses are not adopted.
+The [current controlled F6 rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/f6-construction-20261120/REVIEW.md) completes25CREATE+19bindings/39instances using real Access/Registry,112binding/state plus172default reads and a distinct-role35probe fixture. Its132preflights/260nonce reads/44receipt headers are independently reconciled. Before public deployment, still freeze actual release arguments/root/fees and verify real dependencies, direct-EOA nonce assumptions and getter-discovered children; controlled constructor doubles and local addresses are not adopted.
 
 After separately authorized deployment, verify actual receipts, runtime/immutables, all children/parents/reciprocal bindings, addresses/roles and no unexpected grants. Failed/inserted/replaced/delegated-wallet steps invalidate simple sequence assumptions; reconcile rather than guess resume.
 

@@ -134,7 +134,7 @@ the state or market has changed; never compensate by bypassing safeguards.
 
 Sealing and release sign-off remain separate. This tool emits no seal call.
 Public signing stays disabled; existing Anvil, journals, sites/services and the
-user-paused heartbeat remain unchanged. See the [source-scoped report](../reports/preseal-planner-20261116/REVIEW.md)
+user-paused heartbeat remain unchanged. See the [source-scoped report](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/preseal-planner-20261116/REVIEW.md)
 and [operator procedure](OPERATOR_MANUAL.md#prepare-unsigned-pre-seal-configuration).
 
 The `seal_boundary_review` appendix covers all39 constructor instances and critical
@@ -145,11 +145,11 @@ See [irreversible setup](SEAL_READINESS.md); no seal calldata is generated.
 
 ## Launch royalty workload and gas reads
 
-The [launch-workload review](../reports/launch-workload-20261117/REVIEW.md) supplies separate finite gas evidence. The unsigned planner now includes unverified `royalty_workload` and `gas_policy` rows. Read the actual royalty `assetCapacity()`, `assetCount()` and `assets(index)` for every zero-based uint256 index strictly below the observed count. Capacity16 permits16 ERC20s plus ETH; it does not imply they are already admitted. Read `ProtocolPolicy.gasPolicy()`, `royaltySyncGas()`, `sourceCallGas()`, `payoutGas()` and `gasFingerprint()` from the matching deployment.
+The [launch-workload review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/launch-workload-20261117/REVIEW.md) supplies separate finite gas evidence. The unsigned planner now includes unverified `royalty_workload` and `gas_policy` rows. Read the actual royalty `assetCapacity()`, `assetCount()` and `assets(index)` for every zero-based uint256 index strictly below the observed count. Capacity16 permits16 ERC20s plus ETH; it does not imply they are already admitted. Read `ProtocolPolicy.gasPolicy()`, `royaltySyncGas()`, `sourceCallGas()`, `payoutGas()` and `gasFingerprint()` from the matching deployment.
 
 Measure healthy, pending/initial-allocation and full-budget fault states for the actual list. A1M per-currency allowance is not a20M operation guarantee. Full20% activation-policy2/25% maintenance padding and actual service/block/complete-fee bounds remain;32M local diagnostics do not adopt a larger profile. All checklist flags stay false, and no RPC/configuration/seal call is added. Repeat reviewed workload qualification before later currency admission/capacity expansion.
 
-The [current controlled workload](../reports/activation-final-six-20261118/REVIEW.md) passes all13 cold20M calls and their full20% padded calls; worst16,460,899 raw/19,753,079 padded. These exact tested inputs do not qualify another selected currency list, expanded64-currency/maximumLP2 state, target provider/fees or rollout. The planner still emits no signing, deployment or seal approval.
+The [current controlled workload](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-final-six-20261118/REVIEW.md) passes all13 cold20M calls and their full20% padded calls; worst16,460,899 raw/19,753,079 padded. These exact tested inputs do not qualify another selected currency list, expanded64-currency/maximumLP2 state, target provider/fees or rollout. The planner still emits no signing, deployment or seal approval.
 
 ## Optional activation royalty-read allowance
 

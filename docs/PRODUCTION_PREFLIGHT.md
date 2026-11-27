@@ -1,6 +1,6 @@
 # Current production inventory and read-only preflight
 
-The [20November market capture](../reports/market-route-qualification-20261120/REVIEW.md) is diagnostic,
+The [20November market capture](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-route-qualification-20261120/REVIEW.md) is diagnostic,
 not an admitted inventory. Its incomplete candidate JSON contains null review/
 policy fields deliberately; never copy observations into production admission.
 Final production-pool selection is deferred. Actual independent sources, full
@@ -8,10 +8,10 @@ operations, gas/fees and operator approval remain required.
 
 Fresh source: [accounting7 / exact LP1 / custody5 / portfolio2](POSITION_V7.md),
 canonicalV10 and inventory17. **Undeployed; production NOT APPROVED.** The
-[exact-LP integration record](../reports/exact-lp-integration-20261106/VERIFICATION.md)
+[exact-LP integration record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/exact-lp-integration-20261106/VERIFICATION.md)
 binds its changed LP ledger, typed canonical companion and consumers. Earlier
-[moving-market](../reports/moving-market-flows-20261106/VERIFICATION.md) and
-[factory/claims](../reports/factory-claims-20261105/REVIEW.md) reports retain their
+[moving-market](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/moving-market-flows-20261106/VERIFICATION.md) and
+[factory/claims](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/factory-claims-20261105/REVIEW.md) reports retain their
 original runtime/source scopes. Authenticate the complete matching graph before
 any fresh deployment; source publication never upgrades existing Anvil, service,
 website, inventory or journal identities.
@@ -350,4 +350,4 @@ SeaDrop setup. Constructor/sequence tools and old evidence stay unchanged;
 no configuration is installed, no seal call prepared and no release approved.
 
 
-The fresh `activation-final-six-20261118` build preserves public accounting7/LP-allocation1/schema17/canonicalV10 and original-currency exact royalty rights. Payload6/allocation2 has new private Royalty packing, LP carry sentinel encoding and transaction-scoped pricing state. New exact source/runtime pins are mandatory; never copy historical raw storage or relabel a deployment, snapshot or journal. All13 controlled cold20M contribution calls and full20% padded calls pass; worst16,460,899 raw/19,753,079 padded. This is finite controlled gas evidence, not real-market/provider/fee, operating or release approval. See the [current source and verification scope](../reports/activation-final-six-20261118/REVIEW.md).
+The fresh `activation-final-six-20261118` build preserves public accounting7/LP-allocation1/schema17/canonicalV10 and original-currency exact royalty rights. Payload6/allocation2 has new private Royalty packing, LP carry sentinel encoding and transaction-scoped pricing state. New exact source/runtime pins are mandatory; never copy historical raw storage or relabel a deployment, snapshot or journal. All13 controlled cold20M contribution calls and full20% padded calls pass; worst16,460,899 raw/19,753,079 padded. This is finite controlled gas evidence, not real-market/provider/fee, operating or release approval. See the [current source and verification scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-final-six-20261118/REVIEW.md).

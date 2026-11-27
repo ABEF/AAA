@@ -9,7 +9,7 @@ publish prices, verify Pyth updates itself, accept payments, own funds, change a
 source, or add a new protocol authority. No production reader is deployed or admitted.
 
 This is a compatible source shape, **not approval of Pyth or a production source
-pair**. The dated [research and evidence](../reports/release-services-20261025/feeds-routes/REVIEW.md)
+pair**. The dated [research and evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/release-services-20261025/feeds-routes/REVIEW.md)
 identify candidate ETH/USD, USDG/USD and USDC/USD products. No ZZZ/USD entry was
 found in the downloaded Chainlink or Pyth catalogs. Catalog absence is not proof
 that no custom service exists. ZZZ still needs two independently reviewed sources,
@@ -17,7 +17,7 @@ even if users contribute only ETH: the final LP contains and values ZZZ.
 
 ## Latest service observation
 
-[Current read-only evidence](../reports/market-followup-20261109/feeds/FINDINGS.md)
+[Current read-only evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-followup-20261109/feeds/FINDINGS.md)
 observes stored ETH age229537s at20:04:50UTC and the same stale observation at the
 separate20:18:44UTC follow-up. Both live single-update/transaction-fee getters
 return0; the current unauthenticated Hermes request returns401. Zero native

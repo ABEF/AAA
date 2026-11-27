@@ -1,20 +1,20 @@
 # Keeper, indexer and service operations
 
-The [26 November keeper audit](../reports/keeper-full-audit-20261126/REVIEW.md) records current late cost-anchor checks,
+The [26 November keeper audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-full-audit-20261126/REVIEW.md) records current late cost-anchor checks,
 bounded utility capture and isolated operating verification. Historical failures,
 new source checks, reused runtime proofs and existing-server observations retain
 separate scopes. Production/adoption remains unapproved; journals and limits stay.
 
 
-[Bounded Cast output](../reports/bounded-cast-20261121/REVIEW.md) applies automatically to startup
+[Bounded Cast output](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/bounded-cast-20261121/REVIEW.md) applies automatically to startup
 address checking and sending, with64KiB aggregate raw output, existing30/90work
 deadlines and bounded failure cleanup. See [operator recovery](OPERATOR_MANUAL.md#bounded-cast-output-and-uncertain-transactions).
 16NEW methods pass; no operating adoption or full normal-daemon qualification follows.
 
-The [21 November focused fixes](../reports/ubuntu-keeper-20261121/REVIEW.md)
+The [21 November focused fixes](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-keeper-20261121/REVIEW.md)
 preserve guards/defaults/journal schemas. Adopt matching keeper/checker Python
 sources only through the [lock and recovery procedure](OPERATOR_MANUAL.md#keeper-lock-and-recovery-source-adoption).
-That earlier stock-daemon attempt remains failed. The [current follow-through](../reports/ubuntu-complete-20261124/REVIEW.md)
+That earlier stock-daemon attempt remains failed. The [current follow-through](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-complete-20261124/REVIEW.md)
 now verifies a real stock Ubuntu daemon/Cast harvest, interruption/same-journal
 recovery and fresh healthy cycle under unchanged240s/12-confirmation/hourly/24M
 policy. Preflight now checks reciprocal LP routing; refresh-only paid recovery
@@ -72,7 +72,7 @@ provider/chain limits and fees, stop/reconcile pending work, then dry-run and
 restart the matching service with the same journal. The placeholder2.5M example
 is not a production approval. A gas field does not enforce a hard network/OS
 wall timeout; keep worker/watchdog/RPC containment and fee policy separate.
-[Focused change and evidence](../reports/remaining-271-20261111/VERIFICATION.md).
+[Focused change and evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/remaining-271-20261111/VERIFICATION.md).
 
 ## Future-only Robinhood zero-tip submissions
 
@@ -92,7 +92,7 @@ captured limits or roll old source onto a schema2 pending. Generic Ethereum fee
 arithmetic remains unchanged. This avoids an actual Nitro nonzero-tip spend
 overstatement without adding a mutable consensus-price rule or new oracle.
 
-The [RPC/fee report](../reports/rpc-fees-20261113/REVIEW.md) separates actual
+The [RPC/fee report](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/rpc-fees-20261113/REVIEW.md) separates actual
 provider/receipt observations, new source checks, harmless unsigned construction
 and still-open actual signer/host/full-operation fee acceptance. No running
 configuration or service is changed. Use the
@@ -181,13 +181,13 @@ in-progress blocked read. Use the reviewed systemd progress watchdog below for
 keeper stall containment; actual provider/OS behavior still needs qualification.
 API request workers retain their separate hard30 second supervisor. Affected
 worker termination/reaping and HTTP checks are in the
-[action resilience evidence](../reports/action-resilience-audit-20261102/VERIFICATION.md).
+[action resilience evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/action-resilience-audit-20261102/VERIFICATION.md).
 
 On persistent failure, keep pending intents/index state, inspect fixed error
 site/type diagnostics and compare the same canonical block with a reviewed
 independent endpoint. Do not echo raw provider responses/credentials, reset a
 journal, resend a saved transaction or bypass strict decoding. Actual provider
-qualification remains open. [Review and evidence](../reports/system-adversarial-20261026/VERIFICATION.md).
+qualification remains open. [Review and evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/system-adversarial-20261026/VERIFICATION.md).
 
 For indexer anchor changes, database preservation, streaming replay and controlled
 restart, use the [exact operator procedure](OPERATOR_MANUAL.md#indexer-anchor-and-ownership-history-recovery).
@@ -200,7 +200,7 @@ Review the new configuration and perform the documented controlled restart to
 change endpoints; mutating an existing config list does not rotate a running
 client. The shared budget wrapper's `call` and `eth_call` enforce the same call
 count and discard expired results. This is not preemption of blocking I/O.
-[Consolidation evidence](../reports/consolidation-20261103/VERIFICATION.md).
+[Consolidation evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/consolidation-20261103/VERIFICATION.md).
 
 `maintenance` and each `bucket_overrides` object accept only `compound`,
 `compound_idle`, `harvest`, `sync_external_rewards`, `minimum_liquidity`,
@@ -221,7 +221,7 @@ invalid maintenance values halt before any new job. Correct the configuration,
 review the matching source release and restart with the **same journal**; do not
 erase the confirmed receipt or resend it. Structural/deployment/signer and other
 job configuration still must be valid, or restore the original reviewed config
-to perform recovery. [Implemented boundary](../reports/action-resilience-audit-20261102/REVIEW.md).
+to perform recovery. [Implemented boundary](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/action-resilience-audit-20261102/REVIEW.md).
 
 ## Versioned health and execution diagnostics
 
@@ -268,7 +268,7 @@ configuration may be memoized within one cycle. No failure fallback or cross-cyc
 cache is used. Pre-simulation and pre-signing checks always reread a fresh header,
 runtime and policy. Confirmed telemetry adds bounded read work; the memoization
 removes repeated same-block discovery reads, not a claim of universally lower
-RPC usage. [Scoped evidence](../reports/practical-improvements-20261028/VERIFICATION.md).
+RPC usage. [Scoped evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/practical-improvements-20261028/VERIFICATION.md).
 
 ## Keeper progress watchdog
 
@@ -369,10 +369,10 @@ during successful or failed maintenance reads can therefore be handled in the
 same cycle; an unavailable/retreated clock cannot reuse the earlier timestamp.
 Enabled compounding similarly refreshes after reserve reads before its local
 interval decision, retaining `compoundReady` and all other guards. Disabled
-harvest adds no harvest-clock read. [Current behavior/evidence](../reports/operator-behavior-followup-20261117/KEEPER_REVIEW.md).
+harvest adds no harvest-clock read. [Current behavior/evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/operator-behavior-followup-20261117/KEEPER_REVIEW.md).
 Missing/mismatched standalone
 clock proof preserves paid recovery and leaves the clock unchanged; repair
-receipt metadata rather than editing a journal. [Scoped audit](../reports/harvesting-audit-20261106/VERIFICATION.md)
+receipt metadata rather than editing a journal. [Scoped audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/harvesting-audit-20261106/VERIFICATION.md)
 does not qualify a running service or exact hourly execution.
 
 One submitted transaction uses the serial nonce/receipt path per cycle. LP and
@@ -400,7 +400,7 @@ not move principal or waive a price guard for maintenance. Malformed configurati
 or ABI values still skip the bucket; invalid identity, pause/canonical locks and
 disabled/not-due harvesting never enter this path. A saved pending intent stops
 further work immediately, including conversion-error handlers; recover that exact
-intent before another action. See [review/evidence](../reports/reward-resilience-20261026/REVIEW.md).
+intent before another action. See [review/evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/reward-resilience-20261026/REVIEW.md).
 
 ## Maintenance and range policy
 
@@ -457,7 +457,7 @@ Incident resets discard only that bucket's fresh jitter. The jitter identity
 includes the condition and window's firstSeen, while normal lastSeen renewals do
 not redraw it; a newly completed window cannot reuse an old expired delay.
 Unknown hidden movements or pause/unpause between observations are not proven.
-Hourly harvest and saved-receipt recovery remain independent. [Verification](../reports/practical-improvements-20261028/VERIFICATION.md).
+Hourly harvest and saved-receipt recovery remain independent. [Verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/practical-improvements-20261028/VERIFICATION.md).
 
 Fresh policy3 accounting7 standalone compounding requires Budget capability4:
 `now >= max(lastCompound,lastRebalance) + compoundInterval(poolId)`, plus
@@ -594,4 +594,4 @@ eligible work and existing loop backoff continue unchanged. Its expiry permits
 a retry, not a claim that execution/market conditions recovered. Unknown markers
 or chain time cannot report healthy. See the
 [recovery procedure](KEEPER_RECOVERY.md#logs-health-and-fallback) and
-[scoped evidence](../reports/manipulation-hardening-20261027/VERIFICATION.md).
+[scoped evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manipulation-hardening-20261027/VERIFICATION.md).

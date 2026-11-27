@@ -70,11 +70,11 @@ required for those two operations: their captured records come from the
 package. Other configured runtime-path metadata remains subject to validation.
 If host loss removed the layout, use the [complete private kit procedure](OPERATOR_MANUAL.md#unsigned-recovery-kit-and-clean-filesystem-reconstruction)
 to reconstruct exact application inputs at reviewed logical paths. The
-[clean-root evidence](../reports/keeper-reconstruction-20261127/REVIEW.md) verifies
+[clean-root evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-reconstruction-20261127/REVIEW.md) verifies
 this without old application folders, but still supplies the existing OS runtime.
 Do not invent configuration or rewrite captured hashes; physical-host/OS/signer
 recovery and live adoption remain separate reviews.
-The [later stock keeper restart](../reports/keeper-clean-restart-20261127/REVIEW.md)
+The [later stock keeper restart](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-clean-restart-20261127/REVIEW.md)
 uses a separate fresh journal/configuration/release kit and real local receipt;
 it does not recapture or rerun this synthetic sidecar queue proof. Its
 [unsigned restart recipe](OPERATOR_MANUAL.md#unsigned-keeper-restart-from-a-reconstructed-kit)
@@ -143,7 +143,7 @@ invented empty queue. A cooperative work budget cannot preempt blocked kernel
 I/O/fsync; separately reviewed supervision remains required.
 
 Earlier same-host isolated recovery proves neither off-host possession nor cross-host
-fencing. The [desktop round-trip](../reports/keeper-offhost-20261126/REVIEW.md) now
+fencing. The [desktop round-trip](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-offhost-20261126/REVIEW.md) now
 proves possession of the exact synthetic package and its return to fresh review
 folders on the same Ubuntu host. It uses actual clock86400-second historical
 review, leaving the original900-second operating freshness policy unchanged and

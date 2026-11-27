@@ -5,7 +5,7 @@ increase the unchanged main, use [governance same-main consolidation](OPERATOR_M
 The new source requires residual-reinvest1 peers and fresh schema17 admission;
 old emergency2 runtimes keep their original dispatcher and profile.
 
-The [current manual reference-swap fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+The [current manual reference-swap fix](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-reference-swap-fix-20261115/REVIEW.md)
 preserves existing function/request schemas and capability numbers, while
 changing exact source/runtime identities. Retained-price manual C/D may use a
 reviewed external reference as their exact swap venue under the authenticated
@@ -16,7 +16,7 @@ publication does not authorize a deployment, public transaction or service chang
 
 Fresh accounting7 source candidate; production NOT APPROVED. Current normal
 gates, scoped offline checks and local actual-v4-core integration pass within
-their [source scope](../reports/residual-operations-20261031/VERIFICATION.md);
+their [source scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/residual-operations-20261031/VERIFICATION.md);
 live operation/dependency qualification remains open. No deployment, signing or service
 restart is supplied by this procedure. Ordinary upkeep uses the
 [independent confirmation policy](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer).
@@ -122,7 +122,7 @@ Budget disarms; C retains its later static custody and local policy checks.
 Masks0/8 do not add Oracle-health evaluation, while bits1/16 retain their
 independent eligibility/confirmation dependencies.
 
-The [earlier rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+The [earlier rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-recovery-rehearsal-20261115/REVIEW.md)
 at `da24f65` proves the former atomic self-reference rejection and separate-venue
 gas baseline; those bytes/results remain historical. Use the current report for
 changed-source gas and `scripts/rehearse-manual-reference.py` with its matching
@@ -133,7 +133,7 @@ fees, maximum workload, contract-wallet or operating acceptance is implied.
 For close-only recovery, use paused `park` or `closeResidual`, with both optional
 raw receipt floors zero if explicitly accepted. Follow the
 [operator call matrix](OPERATOR_MANUAL.md#force-close-and-redeploy-choose-the-correct-call)
-and [source-scoped audit](../reports/manual-safeguard-audit-20261104/REVIEW.md).
+and [source-scoped audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-safeguard-audit-20261104/REVIEW.md).
 This source fix changes runtime pins, not request/storage layout; installed old
 contracts and journals are unchanged.
 

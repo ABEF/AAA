@@ -30,7 +30,7 @@ qualify real native wallet/provider flows or approve deployment. The field and
 behavior descriptions below apply only to native2's reviewed source revision;
 they do not define the current contribution-asset or holder-exit policy.
 
-Read [scope and verification](../reports/native-readiness-20261025/VERIFICATION.md),
+Read [scope and verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/native-readiness-20261025/VERIFICATION.md),
 [existing hosting/session procedure](DEPLOYMENT_WEBSITE.md),
 [Entry review policy](EXECUTION_LOSS_POLICY.md#review-time-policy-binding) and
 [RPC qualification](RPC_PREPARATION_QUALIFICATION.md).

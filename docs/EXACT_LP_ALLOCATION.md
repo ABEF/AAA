@@ -5,7 +5,7 @@ into fresh [accounting7](POSITION_V7.md) Rewards, claims, same-NFT conversion an
 lossless canonical accounting(original V9 LP domain, current mint2 outerV10). Current-owner rights, fixed80/10/5/5 and separate original-
 currency rarity royalties are preserved. Historical6/V8 indices and checkpoints
 remain explicit; existing runtimes/journals are never reinterpreted or upgraded.
-See [integration evidence](../reports/exact-lp-integration-20261106/REVIEW.md).
+See [integration evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/exact-lp-integration-20261106/REVIEW.md).
 
 ## What the engine does
 
@@ -29,7 +29,7 @@ raw LP share intervals would be unsuitable.
 
 ## Rounding phase: improvement over the initial design
 
-The earlier [design](../reports/harvesting-audit-20261106/EXACT_LP_DESIGN.md)
+The earlier [design](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/harvesting-audit-20261106/EXACT_LP_DESIGN.md)
 proposed resetting split carry on genuine weight changes. Repeated growth
 between tiny receipts can repeatedly disadvantage the other branch. The engine
 instead preserves a high/low, bounded fairness phase; it is not owed money:
@@ -107,8 +107,8 @@ complete admitted raw history or explicit reviewed checkpoint2. Actual lifetime
 workload/archive/restore qualification remains open. Do not relabel old artifacts.
 
 Normal real-host size gates and scoped EVM/producer-consumer evidence are recorded
-in the [integration verification](../reports/exact-lp-integration-20261106/VERIFICATION.md).
-Earlier [engine measurements](../reports/exact-lp-engine-20261106/VERIFICATION.md)
+in the [integration verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/exact-lp-integration-20261106/VERIFICATION.md).
+Earlier [engine measurements](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/exact-lp-engine-20261106/VERIFICATION.md)
 retain their own source scope. Count limits/harness gas are not target-chain
 qualification. Fixed2023node records cost253 eight-row pages for any nonempty
 collection, plus headers/NFT/other domains; sparse optimization is deferred.
@@ -118,6 +118,6 @@ and independent audit remain open. No deployment, sealing, website/service chang
 old-chain reset or signing capability change accompanies source publication.
 
 
-The current `activation-final-six-20261118` / Factory6 build preserves public accounting7/LP-allocation1/schema17/canonicalV10 logical records, exact pending/high128/low256 values and all economic rights. MAX128 in the compact-low word is a sentinel: low values below it stay packed; MAX128 and larger values use the exact full256-bit spill. There is no monetary clamp or reduced numeric domain. Canonical reads/imports use logical values, never physical packed slots. Fresh source/runtime pins are required; never hot-copy old carry slots or relabel old snapshots/journals. Factory5 bytes and the [earlier carry review](../reports/activation-gas-20261118/REVIEW.md) retain their recorded source scope.
+The current `activation-final-six-20261118` / Factory6 build preserves public accounting7/LP-allocation1/schema17/canonicalV10 logical records, exact pending/high128/low256 values and all economic rights. MAX128 in the compact-low word is a sentinel: low values below it stay packed; MAX128 and larger values use the exact full256-bit spill. There is no monetary clamp or reduced numeric domain. Canonical reads/imports use logical values, never physical packed slots. Fresh source/runtime pins are required; never hot-copy old carry slots or relabel old snapshots/journals. Factory5 bytes and the [earlier carry review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-gas-20261118/REVIEW.md) retain their recorded source scope.
 
-The [current source and qualification](../reports/activation-final-six-20261118/REVIEW.md) records all13 controlled cold calls fitting20M with full20%; worst16,460,899 raw/19,753,079 padded. They cover16 ERC20 royalty currencies plus ETH and one main LP. Pricing contexts clear automatically per atomic operation; no extra manual step is required. The legacy12M default remains. The selected non-live [contribution candidate](../config/activation-gas-32m.candidate.json) is32M with full20% padding (maximum estimate26,666,666); historical20M measurements are not the current candidate ceiling, nor approval to adopt it in a running service. Real markets/providers/fees,64-currency/LP2 workloads, complete recovery/operating qualification and independent approval remain separate.
+The [current source and qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-final-six-20261118/REVIEW.md) records all13 controlled cold calls fitting20M with full20%; worst16,460,899 raw/19,753,079 padded. They cover16 ERC20 royalty currencies plus ETH and one main LP. Pricing contexts clear automatically per atomic operation; no extra manual step is required. The legacy12M default remains. The selected non-live [contribution candidate](../config/activation-gas-32m.candidate.json) is32M with full20% padding (maximum estimate26,666,666); historical20M measurements are not the current candidate ceiling, nor approval to adopt it in a running service. Real markets/providers/fees,64-currency/LP2 workloads, complete recovery/operating qualification and independent approval remain separate.

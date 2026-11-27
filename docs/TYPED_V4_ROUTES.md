@@ -10,13 +10,13 @@ No real route, RPC or oracle is qualified by the local tests.
 
 ## Actual market qualification
 
-[Current20November market evidence](../reports/market-route-qualification-20261120/REVIEW.md)
-qualifies no complete route. The [explicit scope correction](../reports/market-route-qualification-20261120/ERRATA.md)
+[Current20November market evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-route-qualification-20261120/REVIEW.md)
+qualifies no complete route. The [explicit scope correction](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-route-qualification-20261120/ERRATA.md)
 preserves existing Solidity v3 earned-conversion capability, while separating
 current zero-wrapper construction, accounting7 worker limits and native-v4
 principal/reference admission. No wrapper/route/profile is enabled.
 
-[Historical9November route evidence](../reports/market-followup-20261109/routes/ROUTES_FINAL_v2.md)
+[Historical9November route evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-followup-20261109/routes/ROUTES_FINAL_v2.md)
 preserves some favorable tiny ZZZ-to-ETH outputs against a conditional selected-
 spot vector. Thus a known fee alone is not proof that every possible quote fails
 the1% output floor. None establishes useful economics, independent USD truth,
@@ -151,5 +151,5 @@ cross-chain NFT/ledger transport are unsupported scope, not implied capabilities
 or required bridge-provider configuration. External custody-address exits are
 removed; terminal collective holder return and compatible pre-exit same-chain
 replacement retain their separate procedures.
-No public signing, deployment or existing local fixture change is enabled here. [Scoped evidence](../reports/typed-v4-routes/VERIFICATION.md)
+No public signing, deployment or existing local fixture change is enabled here. [Scoped evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/typed-v4-routes/VERIFICATION.md)
 and the [single Todo](../TODO.md) distinguish implementation from release approval.

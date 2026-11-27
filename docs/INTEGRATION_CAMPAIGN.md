@@ -77,12 +77,12 @@ limits. No signing script was executed or supplied by this checkpoint.
 
 ## Current execution record
 
-The [read-only route observation](../reports/activation-route-observation/VERIFICATION.md)
+The [read-only route observation](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-route-observation/VERIFICATION.md)
 recorded actual USDG/WETH dependencies and four quotes under its older input
 policy. These are historical route observations, not current contribution assets
 or qualification for native ETH/fixed ZZZ. The earlier
-[$1 local evidence](../reports/one-dollar-rehearsal/VERIFICATION.md) and
-[selected native/Pons fork evidence](../reports/range-policy/VERIFICATION.md)
+[$1 local evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/one-dollar-rehearsal/VERIFICATION.md) and
+[selected native/Pons fork evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/range-policy/VERIFICATION.md)
 retain their original scopes. They are not newly rerun or combined into a claim
 of complete real-transaction testing.
 

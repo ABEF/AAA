@@ -1,13 +1,13 @@
 # Selected Robinhood ETH / ZZZ pool
 
-The [new current-F6 physical LP run](../reports/pool-lifecycle-20261120/REVIEW.md)
+The [new current-F6 physical LP run](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/pool-lifecycle-20261120/REVIEW.md)
 passed against the supplied initialized pool, originally activeL0, with explicitly local
 funding. The initial fork-only main LP can be created/increased, earn/collect actual
 fees and close. This is not proof that single-asset user Entry activation works without
 an independent executable swap route, or that public depth/prices/fees are qualified.
 
 The [new current-F6 fork
-attempt](../reports/recommendations-execution-20261120/REVIEW.md) preserves original
+attempt](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/recommendations-execution-20261120/REVIEW.md) preserves original
 pool state at119107223 and completes12 local setup receipts before recurring provider429
 interrupts it. No token funding or LP operation follows. ActiveL0 is not what blocked
 this attempt; sustainable provider access and complete LP verification still need
@@ -19,10 +19,10 @@ for isolated fork testing even when active liquidity is zero. Production-pool se
 alone is deferred. Local fork funding may exercise LP flows; it is never public funding
 or evidence of independent market depth. Preserve the original empty-state observation
 and label synthetic depth and mock prices explicitly. See [test
-scope](../reports/test-pool-scope-20261120/REVIEW.md). The historical accounting3 fork
+scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/test-pool-scope-20261120/REVIEW.md). The historical accounting3 fork
 is not current F6 acceptance; no unchanged tests are rerun for this clarification.
 
-[20November expanded qualification](../reports/market-route-qualification-20261120/REVIEW.md)
+[20November expanded qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-route-qualification-20261120/REVIEW.md)
 records selected activeL0 and a nominal-$50 ETH quote losing14.263178% against
 its own starting spot. Tested1/100ZZZ reverse quotes cannot consume full input.
 Additional native low-fee and WETH/v3 discovery qualifies no complete alternative.
@@ -36,7 +36,7 @@ the actual chosen pool and related references/routes when the operator selects i
 
 ## Historical13November qualification
 
-[Fresh13November qualification](../reports/predeployment-qualification-20261113/markets/REVIEW.md)
+[Fresh13November qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/predeployment-qualification-20261113/markets/REVIEW.md)
 binds block113296579/10:48:31UTC. Selected activeL is now0, independently
 cross-checked in core/StateView; distant ticks remain and an ETH quote crosses
 the gap. Conditional nominal$50 ETH diagnostics lose14.211291% against selected
@@ -72,7 +72,7 @@ LP; token permissions, market depth and external governance remain separate risk
 
 ## Historical9November execution qualification
 
-[Read-only follow-up](../reports/market-followup-20261109/REVIEW.md) keeps this
+[Read-only follow-up](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-followup-20261109/REVIEW.md) keeps this
 destination unchanged. Selected reverse capacity at its shared anchor is only
 388557rawZZZ for1weiETH; the next raw unit rejects a full-input quote. ActiveL
 alone is not depth. Both-direction probes and exact current fee events are retained.
@@ -177,7 +177,7 @@ actual native wallet/service acceptance are required. Historical native2 and
 served accounting3 website artifacts do not qualify current accounting7 integration. Existing fixtures/journals keep their original
 profiles and public deployment is null.
 
-[Native candidate evidence](../reports/native-eth-port/VERIFICATION.md) |
-[Earlier selected-pool evidence](../reports/hookless-pool/VERIFICATION.md) |
+[Native candidate evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/native-eth-port/VERIFICATION.md) |
+[Earlier selected-pool evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/hookless-pool/VERIFICATION.md) |
 [Sole Todo](../TODO.md#task-pons-qualification). Public signing stays disabled;
 contracts are undeployed and production remains NOT APPROVED.

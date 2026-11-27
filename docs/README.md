@@ -1,196 +1,40 @@
 # Documentation map
 
-Use the [keeper output/storage procedure](OPERATOR_MANUAL.md#keeper-output-storage-and-source-adoption) for compact diagnostics, honest ID previews, exact publication bounds, explicit retention and matching-release adoption. [Current review](../reports/keeper-efficiency-20261127/REVIEW.md) keeps original journals and services intact; the [desktop-kit restart recipe](OPERATOR_MANUAL.md#unsigned-keeper-restart-from-a-reconstructed-kit) retains its earlier finite recovery scope.
+| Question | Authoritative document |
+| --- | --- |
+| What is the project and its stack? | [README](../README.md), [architecture](ARCHITECTURE.md) |
+| What is currently verified or still unqualified? | [One current review](../reports/CURRENT_REVIEW.md) |
+| Which findings and accepted limits remain? | [One findings register](AUDIT_FINDINGS.md) |
+| What should we work on next? | [Sole Todo](../TODO.md), [qualification roadmap](ROADMAP.md) |
+| What is implemented? | [Capability catalog](IMPLEMENTATION_STATUS.md) |
+| How do I operate, pause, force, recover or change settings? | [Operator manual](OPERATOR_MANUAL.md) |
+| Which functions can be called, with which inputs and outputs? | [Generated function reference](CONTRACT_FUNCTIONS.md), [short call tables](OPERATOR_MANUAL.md#operator-call-tables) |
+| Is a release approved? | [Release decision record](RELEASE_CHECKLIST.md) |
 
-Use the [scheduler/alert recovery guide](KEEPER_SIDECAR_RECOVERY.md) for exact selected-generation, event-ID and pending-clock capture, verification and fresh review-only restoration. Original configuration/release and host-layout review remain separate. The [Ubuntu record](../reports/keeper-sidecar-recovery-20261126/REVIEW.md) preserves the original setup failure and eight new passes.
-
-Use the [unsigned scheduling procedure](KEEPER_SCHEDULING.md) for explicit policy/source pins, verified recurring backups, native timer supervision and state-preserving reconfiguration. The [isolated Ubuntu record](../reports/keeper-scheduling-20261126/REVIEW.md) has10new methods plus eight native stages; production timing/relay/off-host operation remain separate.
-
-The [day audit](../reports/keeper-day-audit-20261126/REVIEW.md) records code fixes
-and18 distinct new Ubuntu passes, preserving c816's original failure and rerunning
-only its affected method. Use the [operator manual](OPERATOR_MANUAL.md),
-[alert guide](KEEPER_ALERTS.md) and [exact backup guide](KEEPER_BACKUP.md).
-Source publication is not service or backup adoption.
-
-Use the [keeper alerts procedure](KEEPER_ALERTS.md) for unsigned health,
-pending-observation and explicitly pinned stale-backup checks. The
-[Ubuntu record](../reports/keeper-alerts-20261126/REVIEW.md) has21 new method passes
-with a private local receiver, without scheduling or adopting a live channel.
-Matching source/backup adoption is separate; desktop monitoring stays paused.
-
-For actual keeper backup adoption use the [Ubuntu recovery record](../reports/ubuntu-backup-recovery-20261126/REVIEW.md)
-and [backup guide](KEEPER_BACKUP.md). Exact restore and unsigned receipt recovery
-now have finite same-host proof; real second-host fencing remains open.
-
-Use the [unsigned keeper backup guide](KEEPER_BACKUP.md) for exact journal capture,
-explicit-pin verification and fresh restore preparation. The [26 November evidence](../reports/keeper-backup-20261126/REVIEW.md)
-records 33 distinct new passes; live adoption, signer fencing and canonical recovery remain separate.
-
-For current construction use the [full F6 rehearsal](../reports/f6-construction-20261120/REVIEW.md)
-and [local/offline procedure](DEPLOYMENT_PREPARATION.md#current-f6-evidence-and-supplementary-checks).
-Earlier metadata2/manual captures retain their original scopes; none is relabelled.
-
-For current readiness results read the [Gate A follow-through](../reports/readiness-gate-a-20261120/REVIEW.md):
-compiler applicability, actual markets, fixed-token controls and OpenSea/VRF/RPC
-compatibility. The [roadmap](ROADMAP.md) still owns sequence and the sole Todo owns status.
-
-Start with the [production qualification plan](ROADMAP.md) for the ordered remaining
-checks and [source-bound readiness reconciliation](../reports/production-readiness-plan-20261119/REVIEW.md).
-The sole Todo owns status; the plan covers23 acceptance packages and distinguishes
-predeployment, deployed-unsealed, sealing and public-launch gates.
-
-The [16 November selective metadata2 rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md)
-and [operator read procedure](OPERATOR_MANUAL.md#metadata2-construction-and-cold-read-review)
-retain their five-changed-constructor/cold-read source scope. Use the current
-F6 construction record above for the later full graph; neither approves live release.
-
-For current findings use [the maintained register](AUDIT_FINDINGS.md) and the
-[26 November keeper review](../reports/keeper-full-audit-20261126/REVIEW.md). The
-[16 November five-audit reconciliation](../reports/five-audit-reconciliation-20261116/REVIEW.md)
-and its original finding index retain that earlier source scope. [Deployment preparation](DEPLOYMENT_PREPARATION.md)
-explains current/historical artifact selection and offline evidence checks.
-
-For NFT evolution and marketplace behavior use the [metadata lifecycle matrix](METADATA_LIFECYCLE.md):
-80 scenarios, current-source assessment and [implemented lifecycle corrections](../reports/metadata-lifecycle-fixes-20261116/REVIEW.md). It complements
-[NFT rules](NFT_METADATA.md) and the operator procedure; it is not another Todo.
-
-For latest recorded market observations use the [20 November market/route review](../reports/market-route-qualification-20261120/REVIEW.md)
-and [service decisions](PRODUCTION_SERVICES.md). The [16 November refresh](../reports/real-market-refresh-20261116/REVIEW.md) is historical. Dated captures remain separate;
-current discovery and quote diagnostics do not qualify sources, routes or services.
-
-The [isolated local construction record](../reports/local-deployment-rehearsal-20261115/REVIEW.md)
-supplies actual unsealed constructor/binding receipts and local gas, with original
-capture limitations explicit. Its disposable addresses/fixtures are never a
-production inventory. Use the owning guide for separate offline and local tools.
-
-For fresh constructor/size/binding preparation use the
-[offline deployment planner](DEPLOYMENT_PREPARATION.md). For an actual deployed
-graph use [production preflight](PRODUCTION_PREFLIGHT.md); an offline plan cannot
-satisfy live identity, market, gas, operating or release approval requirements.
-
-Use the [manual recovery rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) and
-[operator procedure](OPERATOR_MANUAL.md#local-manual-recovery-rehearsal) for actual
-local C/D receipts, gas and post-state checks. That earlier record closes its controlled local
-composition only. The [current guarded manual fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md) now
-accepts a proven own swap through an external reference, retaining all selected
-financial/live checks. New pins and current-source gas evidence remain required.
-
-Use [manual LP failure diagnostics](MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics)
-to interpret failed stages, known local causes, opaque RPC errors and uncertain
-review files. [Source verification](../reports/manual-lp-diagnostics-20261115/VERIFICATION.md)
-keeps successful manual reviews and all financial/authority controls intact.
-
-For paused parked-liquidity recovery, use the [explicit schema2 D inputs](MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2)
-and [source review](../reports/parked-recovery-preparation-20261115/REVIEW.md).
-Selected bypasses are disclosed; no permissions, signing or live settings change.
-
-The [44-linked-task source review](../reports/open-tasks-audit-20261113/REVIEW.md) corrects probe pacing/deadline/
-refusal handling and indexer retry amplification;20distinct new regression
-methods pass at their recorded stages. Existing task implementation milestones
-are separated from actual qualification and accepted boundaries. Operator spot/
-LP-profile instructions are corrected. All44broad tasks remain unfinished;
-source fixes do not approve providers, markets, fees, authorities or operating
-rollout. Contracts/defaults/financial rights and all live environments stay.
-
-The [earlier external qualification](../reports/predeployment-qualification-20261113/REVIEW.md)
-retains independently derived genesis and13checks at its original paced-wrapper
-source. New optional CLI pacing is not a fresh public provider profile; complete
-20M/24M capacity/fees and genuine independent ETH/ZZZ sources/routes stay open.
-
-[Current RPC/fee evidence](../reports/rpc-fees-20261113/REVIEW.md) and the
-[operator procedure](OPERATOR_MANUAL.md#robinhood-rpc-fees) separate actual Pinax
-traces, fee components and future zero-tip keeper recovery from still-open
-provider, complete-operation, fee-budget and rollout approval. The existing
-[read-only probe](RPC_PREPARATION_QUALIFICATION.md) remains the reusable tool.
-
-[20M/24M controlled qualification](../reports/gas-profiles-20261113/REVIEW.md)
-records exact launch amounts, actual estimates/padded calls and consumer checks.
-Use the [gas-profile procedure](OPERATOR_MANUAL.md#gas-profiles-20m-24m) for exact
-field types, matching caps, separate listeners, fee review and restart/rollback.
-Templates are incomplete/unapproved; defaults, safeguards and live sites stay.
-
-[Robinhood gas and RPC qualification](ROBINHOOD_GAS.md) explains actual execution
-parameters versus synthetic headers, complete fees, unchanged budgets and
-provider limitations. The [gas-feasibility review](../reports/gas-feasibility-20261111/REVIEW.md)
-records the source optimization and measured whole-operation costs.
-
-The [remaining271 review](../reports/remaining-271-20261111/REVIEW.md) completes
-individual reconciliation of the original310registry across two passes. Use its
-[reading index](../reports/remaining-271-20261111/INDEX.md), current procedures and
-sole Todo; old reports retain exact source/evidence/qualification boundaries.
-
-[Reference-as-swap execution](REFERENCE_SWAP_EXECUTION.md) documents fresh
-execution-price1/LP3, original valuation, exact market proofs, source admission,
-consumer compatibility and remaining gas/qualification gates.
-
-Use the [current project review](../reports/whole-project-review-20261111/REVIEW.md)
-for confirmed fixes and unresolved decisions, then the owning procedure below.
-Generated call tables and the sole Todo are updated together.
-
-
-[Pool-spot valuation and post-seal source changes](POOL_SPOT_PRICE_SOURCE.md)
-explains the optional reference-pool spot × ETH/USD adapter, exact inputs,
-external-depth selection, source independence and qualification limits.
-
-
-[Current mint2 website consumer](SOURCE10_WEBSITE_PROFILE.md) documents explicit
-schema5/source10/V10 reads and unsigned reviews,33 browser pins, configuration
-and rollout boundaries. [Verification](../reports/v10-website-20261109/REVIEW.md)
-is synthetic current-handler/browser compatibility. Source9/V9 and all running
-sites/services retain their original profiles.
-
-[Current documentation concordance](../reports/keeper-doc-sync-20261126/REVIEW.md)
-aligns keeper profiles, task descriptions, procedures and both repositories' memory.
-The [9 November consistency record](../reports/documentation-consistency-20261109/REVIEW.md)
-retains its earlier profile/export scope. Historical evidence and running environments stay unchanged.
-
-The [total contribution3% policy](EXECUTION_LOSS_POLICY.md) requires97% actually
-added LP; the independent swap/spot/caller/NET floors remain unchanged.
-[Verification](../reports/contribution-loss3-20261109/VERIFICATION.md) binds the
-new initializer/raw source pins without upgrading any existing environment.
-
-Fresh primary-mint source is [SeaDrop mint2/schema17/canonicalV10](OPENSEA_MINT.md);
-LP accounting7/royalty4 economics remain unchanged. Source9/schema16/V9
-reader/website guides keep their explicit prior implementation boundaries.
-Use the new mint procedure for team/allowlist/public quotas, proofs and
-configuration; it does not authorize public deployment or signer changes.
-
-
-Reviewed2026-11-15. [Latest feed/market qualification](../reports/market-followup-20261109/REVIEW.md) separates provider candidates, real direction/size quotes, current-guard fork rejections and still-open launch requirements. [README](../README.md) explains the project; [sole Todo](../TODO.md)
-owns tasks and [feature/evidence reference](IMPLEMENTATION_STATUS.md) owns source
-capabilities. **Undeployed; production NOT APPROVED.**
-
-Start with [current profile identities](POSITION_V7.md), [features](IMPLEMENTATION_STATUS.md),
-[findings](AUDIT_FINDINGS.md) and the maintained [Operator manual](OPERATOR_MANUAL.md).
-Its [short call tables](OPERATOR_MANUAL.md#operator-call-tables) cover every current
-ABI function, with exact inputs, examples and explanations of at most five words.
-The [full function reference](CONTRACT_FUNCTIONS.md) owns outputs and detailed
-caller/value notes. These are documentation templates, never transaction approval.
-
-Current source is accounting7/custody5/portfolio2/direct Entry3 plus royalty
-settlement4/recovery2, with original-currency claims and no royalty converter. Historical profiles, research, reports and actual running sites retain
-their original meaning. Use [the report map](../reports/README.md) for exact source
-scope; a historical audit is not a current operating procedure or release sign-off.
+Implementation, source-scoped verification, installed-service adoption and
+production approval are different. Public signing remains disabled; historical
+codecs and journals retain their exact identities. Use the owning guide below
+for procedures rather than copying instructions out of an old report.
 
 ## 1. Smart contracts
 
 | Topic | Current guide |
 | --- | --- |
-| Architecture and module jobs | [Architecture](ARCHITECTURE.md), [components](COMPONENT_STATUS.md), [current profile7](POSITION_V7.md), [simplified scope](SIMPLIFIED_RELEASE.md), [fixed factory data storage](FACTORY_CODE_STORAGE.md) |
+| Architecture and module jobs | [Architecture](ARCHITECTURE.md), [components](ARCHITECTURE.md#component-responsibilities), [current profile7](POSITION_V7.md), [simplified scope](SIMPLIFIED_RELEASE.md), [fixed factory data storage](FACTORY_CODE_STORAGE.md) |
 | Exact-unit LP upgrade | [Integrated whole-unit LP books, claims and unchanged raw LP domain inside V10](EXACT_LP_ALLOCATION.md); original V9 evidence and earlier6/V8 readers remain separately scoped. |
 | Economic rights and fee meaning | [Economics](ECONOMICS.md), [NFT traits/reveal](NFT_METADATA.md), [royalty settlement](ROYALTY_SETTLEMENT.md), [exact-unit allocation](EXACT_ROYALTY_ALLOCATION.md), [claims](CLAIM_ROUTER.md) |
 | Contribution and actual added LP | [Direct Entry and routing](ACTIVATION_ENTRY.md), [minimums](CONTRIBUTION_MINIMUMS.md), [dynamic valuation](DYNAMIC_LIQUIDITY.md) |
 | Prices and conversion | [Two-source security](PRICE_SECURITY.md), [optional Pyth reader](PYTH_PRICE_SOURCE.md), [typed routes](TYPED_V4_ROUTES.md), [ETH fee settlement](LP_ETH_SETTLEMENT.md) |
 | LP execution and upkeep | [Policy3/Budget4, optional LP routing3 and confirmation3](LP_EXECUTION_POLICY.md); bounded reviewed venues, atomic sizing, entrant isolation and sampled85%-threshold confirmation. Distinguish source implementation from live operating qualification. |
 | Pool, ranges and retained idle | [Selected pool/admission/settlement](POOL_SELECTION.md), [range policy](RANGE_POLICY_UPDATES.md), [idle ownership](IDLE_AND_DUST.md), [execution limits](EXECUTION_LOSS_POLICY.md), [additional loss after known fees](EXECUTION_QUALITY.md) |
-| Caller permissions | [Authority map](ACCESS_PERMISSIONS.md), [source-bound review](../reports/authority-audit-20261103/REVIEW.md) |
+| Caller permissions | [Authority map](ACCESS_PERMISSIONS.md), [source-bound review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/authority-audit-20261103/REVIEW.md) |
 | Governance and change limits | [Direct governance](GOVERNANCE.md), [post-seal settings](POST_SEAL_POLICY.md), [change/recovery matrix](CHANGE_AND_RECOVERY.md), [trust boundaries](ARCHITECTURE_EVOLUTION.md), [offline deployment sequence](DEPLOYMENT_SEQUENCE.md) |
 | Movement and recovery | [Same-pair movement](GOVERNED_CUSTODY_HANDOFF.md), [parking](CUSTODY_PARKING.md), [collective holder return](HOLDER_COLLECTIVE_EXIT.md), [maintenance/preparation safety](MIGRATION_SAFETY.md), [pre-exit same-chain V10 handoff](CANONICAL_HANDOFF.md), [holder preflight](HOLDER_PREFLIGHT.md) |
 | Callable inputs/outputs/permissions | [Short operator tables](OPERATOR_MANUAL.md#operator-call-tables), [full source-bound function reference](CONTRACT_FUNCTIONS.md) |
 
 Manual paused LP recovery: [emergency procedure](EMERGENCY_REBALANCE.md),
 [independent confirmation policy](LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer),
-[new scoped verification](../reports/independent-rebalance-20261029/VERIFICATION.md).
+[new scoped verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/independent-rebalance-20261029/VERIFICATION.md).
 Governance may bypass financial protections explicitly; this is an accepted
 authority risk and does not grant a keeper fallback or deployment approval.
 
@@ -228,33 +72,25 @@ operator procedures or the sole Todo.
 | Minting, randomness and content hosting | [OpenSea/VRF qualification](MINT_INTEGRATION_QUALIFICATION.md), [artwork bundle/publication](ARTWORK_PUBLICATION.md) |
 | Audit and development | [Security model](SECURITY.md), [seven audit workstreams](SECURITY_AUDIT_PLAN.md), [schema4 frozen review export, with original1/2/3 verification](FROZEN_REVIEW_BUNDLE.md), [development](DEVELOPMENT.md) |
 | Current consolidated findings | [Mechanisms, historical corrections and remaining limits](AUDIT_FINDINGS.md); task status stays in the sole Todo. |
-| Current state and evidence | [Project context](../PROJECT_CONTEXT.md), [resume instructions](WORK_HANDOFF.md), [report index](../reports/README.md), [current royalty-source evidence](../reports/royalties-in-kind-20261105/VERIFICATION.md) and [source-scoped historical catalogue](../reports/project-consolidation-20261103/REPORT_CATALOG.md) |
+| Current state and evidence | [Consolidated review](../reports/CURRENT_REVIEW.md), [findings](AUDIT_FINDINGS.md) and [historical retrieval manifest](../evidence/documentation-consolidation-20261127/RETIRED_DOCUMENTS.json) |
 
-## Historical references
+## Evidence and documentation maintenance
 
-[Bridge onboarding](BRIDGE_ONBOARDING.md), [creator inboxes](EXTERNAL_REWARDS.md),
-[creator-revenue measurement](REVENUE_SHARE.md), [Pons pool](ROBINHOOD_POOL.md),
-[different-pair executor](PAIR_MIGRATION.md), [cross-chain canonical proposal](CANONICAL_MIGRATION_DESIGN.md)
-and [v0.2 audit](AUDIT.md) are short stable historical pointers. Their full text
-is available at the exact linked Git revision. They are not current functions,
-launch requirements or operator instructions. [Changelog](CHANGELOG.md) is a
-historical chronology; audit/test receipts in reports keep original bytes and scope.
+The sole [current report](../reports/CURRENT_REVIEW.md#evidence-and-history)
+explains evidence reuse and historical retrieval. Retired narratives and
+superseded guides remain accessible at the
+[pre-consolidation Git revision](https://github.com/ABEF/AAA/tree/fdd599c7698d0e1c0709a4a8b50130e5557ba508).
+Required machine evidence remains source-bound; complete historical package
+verification uses its original Git tree, not the reduced current checkout.
 
-Redundant product, source-asset, native-adapter, OpenSea-summary and early-reference
-pages are merged into their owning guides; removal details and old Git paths are
-recorded in [documentation cleanup](../reports/documentation-cleanup-20261026/README.md).
-Existing actual dependency/package pins and [primary-source review](../reports/full-audit-20261025/UPSTREAM.md)
-take precedence over early unpinned upstream links.
+Follow [Todo and documentation maintenance](TODO_WORKFLOW.md). Update the owning
+guide, current review and findings when behavior or verification changes; keep
+one report and one findings register. Do not add another dated status preamble
+to every guide. Keep the operator's inputs, units, failure/reverse steps and
+generated callable references complete.
 
-## Current adaptable policy
-
-[Accounting7 profile](POSITION_V7.md) and [bounded post-seal controls](ADAPTABLE_POLICY.md)
-replace fresh accounting5 assumptions. [Operator inputs](OPERATOR_MANUAL.md#future-operating-settings)
-and [callable reference](CONTRACT_FUNCTIONS.md) describe exact procedures. Existing
-runtimes, source-scoped evidence and served websites retain their own boundaries.
-
-[Royalty launch window and currency capacity](ROYALTY_LAUNCH_WINDOW.md) owns sale end,1-hour initial cohort, locked receipts, allocate-all and reviewed expansion.
-
-[Controlled 1,000-NFT history recovery evidence](../reports/history-scale-rehearsal-20261116/REVIEW.md) records finite local scale, exact accounting, unchanged budgets and remaining operating qualification.
-
-[Unsigned pre-seal configuration](PRESEAL_CONFIGURATION.md): typed current-ABI calls, required inputs, setup order, blocked unknowns and explicit live prerequisites.
+Additional focused procedures: [adaptable policy](ADAPTABLE_POLICY.md),
+[royalty opening and capacity](ROYALTY_LAUNCH_WINDOW.md),
+[unsigned pre-seal configuration](PRESEAL_CONFIGURATION.md),
+[keeper backup](KEEPER_BACKUP.md), [alerts](KEEPER_ALERTS.md),
+[unsigned scheduling](KEEPER_SCHEDULING.md), [sidecar recovery](KEEPER_SIDECAR_RECOVERY.md).

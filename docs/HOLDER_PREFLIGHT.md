@@ -63,7 +63,7 @@ Invalid flags/commands/numeric values return exit1 with a fixed message instead
 of echoing supplied values. Static `--help` remains standard; valid flags and
 scan/summary exit0/2 semantics above remain. Credentials must use the external
 RPC environment setting, never command-line arguments, reports or Git. Failure
-preserves existing output and cannot approve a migration. [Scoped tests](../reports/system-adversarial-20261026/ops-input/VERIFICATION.md).
+preserves existing output and cannot approve a migration. [Scoped tests](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/system-adversarial-20261026/ops-input/VERIFICATION.md).
 
 ## Resolve each flagged owner
 
@@ -104,7 +104,7 @@ Use independently trusted RPC/code review for high-value migrations.
    and release the NFT, publish collection cutover notices, switch reviewed service
    bindings and verify late royalty forwarding. Keep both inventories and receipts.
 
-The implementation and [local verification](../reports/holder-preflight/VERIFICATION.md)
+The implementation and [local verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/holder-preflight/VERIFICATION.md)
 do not qualify any actual escrow or marketplace. No deployed PoPL inventory was
 available for a live rehearsal in this change. Holder principal return, any later
 token exchange and a new deployment are not qualified by this owner inventory.

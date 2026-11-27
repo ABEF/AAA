@@ -17,12 +17,14 @@ references. Preserve exact procedures and failure/recovery boundaries.
 | Document | Purpose | Update when |
 | --- | --- | --- |
 | [Project Todo](../TODO.md), generated from [the ledger](project-todo.json) | Tasks, status, remaining work and acceptance criteria | Work progresses or a requirement changes |
-| [Feature and evidence reference](IMPLEMENTATION_STATUS.md) | What the candidate implements, its boundaries and source-bound verification | Behavior or evidence changes |
+| [Capability catalog](IMPLEMENTATION_STATUS.md) | Implemented mechanisms and owning technical guides | Behavior changes |
+| [Current review](../reports/CURRENT_REVIEW.md) | Sole cross-project assessment and verification limits | Source or evidence changes |
+| [Findings](AUDIT_FINDINGS.md) | Sole current findings and accepted-limit register | A finding is reassessed or corrected |
 | [Release approval record](RELEASE_CHECKLIST.md) | Exact candidate, configuration, reviewer decisions and final go/no-go | A release is submitted for review or approved/rejected |
 | [Operator manual](OPERATOR_MANUAL.md) | Management actions, roles, parameters, incidents and recovery procedures | Any operator-facing functionality, command, permission, limit or behavior changes |
 | [Engineering roadmap](ROADMAP.md) | Work sequence and dependencies, linked to the owning Todo tasks | Sequencing, prerequisites or pre-seal boundaries change |
 
-The [security audit plan](SECURITY_AUDIT_PLAN.md) explains threat models and review criteria. It does not carry a separate task status. The old implementation/release filenames remain stable for existing links; neither is another Todo.
+The [security audit plan](SECURITY_AUDIT_PLAN.md) explains threat models and review criteria. It does not carry a separate task status. The capability catalog, current review, findings and approval record have separate roles; none is another Todo.
 A user-declined task may retain its stable ID with status `excluded` (Not planned);
 this is neither implemented work nor a launch blocker. Record the decision without
 changing the underlying economic or security rules.
@@ -44,9 +46,8 @@ This is a required development procedure, not a background synchronization servi
 
 Use [the documentation map](README.md). Replace obsolete guidance within its owning
 guide instead of adding another dated checkpoint above it. Current context belongs
-in AGENTS/PROJECT_CONTEXT/WORK_HANDOFF; exact historic changes belong in Git and
-source-scoped reports. Preserve original report bytes, failure evidence and source
-identities. Historical interfaces never override the selected current profile.
+in AGENTS and the single current review; exact historic changes belong in Git.
+Preserve required machine evidence, failure provenance and source identities. Historical interfaces never override the selected current profile.
 
 Merge duplicate pages only after retaining distinct procedures and repairing
 incoming links. If immutable evidence links an old design, keep a short explicit
@@ -57,7 +58,7 @@ do not rerun contract suites for documentation-only edits.
 
 ## Historical obligation reconciliation
 
-Use the [whole-history map](../reports/full-history-reconciliation-20261104/REVIEW.md)
+Use the [whole-history map](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/full-history-reconciliation-20261104/REVIEW.md)
 and original pointers when revisiting an old finding. Keep correction, changed
 architecture, accepted risk, open implementation and actual qualification
 separate. Removed creator/bridge tasks must not be revived without a new decision;
@@ -81,3 +82,16 @@ baseline. Avoid copying full original records already preserved in a tracked
 ledger; link their exact provenance instead. Do not rerun unchanged suites just
 to produce a new aggregate count. New focused verification must identify changed
 behavior, failed baseline, final correction, overlap and any skipped checks.
+
+## One report and one findings register
+
+Maintain reports/CURRENT_REVIEW.md and docs/AUDIT_FINDINGS.md in place. Do not add
+dated narrative reports or duplicate current finding ledgers. Retired narratives
+and taxonomies are preserved at the pre-consolidation Git revision; repair active
+links to their canonical owner or exact archived revision. Keep required compiler,
+analyzer, receipt, source and recovery evidence byte-exact. A historical artifact
+manifest describes its original Git tree, not completeness of the reduced checkout.
+
+Acceptance criteria describe current requirements, not a growing transcript of
+past pass counts. Preserve stable IDs, unresolved subclaims and original provenance.
+Use focused checks for changed behavior; do not rerun unchanged suites for cleanup.

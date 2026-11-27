@@ -2,7 +2,7 @@
 
 This describes the fresh [accounting7 / maintenance3 / portfolio2](POSITION_V7.md)
 source candidate. Normal gates, scoped offline checks and local actual-v4-core
-integration pass within their [recorded scope](../reports/residual-operations-20261031/VERIFICATION.md);
+integration pass within their [recorded scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/residual-operations-20261031/VERIFICATION.md);
 actual operating/dependency qualification remains open. It does not upgrade installed services,
 old deployments or journals. Read the
 [operator manual](OPERATOR_MANUAL.md) before changing an operating service.
@@ -86,7 +86,7 @@ The outer loop honors the earliest saved maturity/cooldown/jitter deadline,
 subtracting elapsed work from a recent head using a local monotonic estimate.
 That estimate never grants readiness. Pending/global-error polling stays intact;
 known clear-only resets no longer wait for unrelated router metadata. See the
-[audit](../reports/confirmation-audit-20261104/REVIEW.md) and the maintained
+[audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/confirmation-audit-20261104/REVIEW.md) and the maintained
 [configuration/rollout procedure](OPERATOR_MANUAL.md#configure-rebalance-confirmation).
 No running service or journal was updated.
 
@@ -105,7 +105,7 @@ compound decision. Disabled harvesting adds no harvest-clock read. Existing
 intervals, `compoundReady`, range/threshold policy, budgets and the final submit
 checks stay; pending recovery still precedes new work. The change does not
 advance a successful-harvest clock, reserve a nonce or guarantee hourly inclusion.
-See the [behavior/evidence](../reports/operator-behavior-followup-20261117/KEEPER_REVIEW.md).
+See the [behavior/evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/operator-behavior-followup-20261117/KEEPER_REVIEW.md).
 
 ## What idle means
 
@@ -159,7 +159,7 @@ prepare its180-second deadline, including when those earlier reads succeeded
 slowly. Failure of that read defers collection instead of sending an old deadline.
 Skipped/not-due harvests add no such head read. A further delay before inclusion
 can still expire the call; recover pending work, never automatically resend it.
-See the [harvesting audit](../reports/harvesting-audit-20261106/REVIEW.md).
+See the [harvesting audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/harvesting-audit-20261106/REVIEW.md).
 
 ## Read-only operation review
 
@@ -282,7 +282,7 @@ each leg's principal and both exact hashes from already captured sqrt/ticks/
 PosM L, while requiring residual containment. One extra same-block structural
 getter per bucket verifies the execution hash; contribution review reuses it.
 No market/feed request is added and fee-only harvest remains separate. Source
-hashes are not remote attestation. See the [lifecycle audit](../reports/residual-lifecycle-20261106/REVIEW.md).
+hashes are not remote attestation. See the [lifecycle audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/residual-lifecycle-20261106/REVIEW.md).
 
 Execution telemetry additionally rechecks the final latest head, depth,
 chronology, canonical anchor and freshness before publishing `last_confirmed`.
@@ -293,7 +293,7 @@ diagnostic changes do not add transaction authority or guarantee strict cadence.
 
 ## Late ordinary-LP review
 
-The [moving-market audit](../reports/moving-market-flows-20261106/REVIEW.md)
+The [moving-market audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/moving-market-flows-20261106/REVIEW.md)
 adds one late full rebalance/compound simulation with the captured gas/gasPrice
 envelope and exact void return. Original calldata, minL and deadline are retained.
 Final service/lifecycle readiness, nonce/funding and stop checks remain; the

@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "kind": "independent_final_documentation_static_check",
+  "ok": true,
+  "retained_tracked_or_explicit_canonical_Markdown_files": 115,
+  "Markdown_bytes": 3167942,
+  "counts": {
+    "relative_links_checked": 2966,
+    "external_links_not_contacted": 612,
+    "Markdown_anchors_checked": 1624,
+    "fixed_Git_archive_links": 538
+  },
+  "error_count": 0,
+  "errors": [],
+  "error_list_truncated": false,
+  "warnings": [],
+  "generated_callable_raw_exact": true,
+  "generated_operator_marker_section_raw_exact": true,
+  "generated_operator_suffix_raw_exact": true,
+  "protected_four_sha256": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "Todo_IDs_and_statuses_preserved": true,
+  "Todo_snapshot_sha256": "bc6996b755febc652f29901267000093994c638f0954e3238d5b8c102d3bc5f6",
+  "historical_machine_metadata": {
+    "sources_checked": 414,
+    "immutable_sources": 414,
+    "archived_or_rewritten_baseline_MD_references": 8310,
+    "bytes_read": 25951667,
+    "changed_source_count": 0,
+    "classification": "Expected fixed-Git archive references, never promoted to active current consumers. Current Markdown and Todo links are checked separately."
+  },
+  "interpretation_limits": [
+    "No external URL or remote anchor was contacted.",
+    "Markdown heading/reference/HTML anchors and local source-line anchors are checked statically; non-Markdown fragments are counted separately.",
+    "Historical machine classification uses the captured baseline dictionary-path catalog; current Todo scalar/list strings are checked completely."
+  ],
+  "application_imports": 0,
+  "application_or_generator_bodies_run": 0,
+  "tests_run": 0,
+  "server_network_calls": 0,
+  "tracked_files_modified": 0
+}

@@ -62,9 +62,9 @@ Only lifetime round, gross and paid coordinates wrap modulo2^256; these are not 
 
 Rarity weights, scalar claims/events and flattened canonical records remain unchanged. Private storage changes: require fresh `ROYALTY_ALLOCATION_VERSION()==2`, explicit factory payload6 and exact reviewed runtime/source pins. Never reinterpret a historical raw tree or payload5 round book. Settlement remains4, recovery2 and reporting5. After every entitled owner claims, allocated liability is zero; internal coordinates need not be zero. This append-only design is specific to royalties; mutable LP shares retain their separate engine.
 
-Current private allocation2 packs223 coefficient bits with a full-width uint256 spill, retaining modulo2^256 logical rounds/gross/paid coordinates. Cursor fields and asset status count/weight/cursor use16-bit fields; validated production bounds remain1,000NFTs and3,000rarity tickets. The one-hour opening, fault cohorts, enrollment history, checked monetary liabilities and every original-currency entitlement are unchanged. This is a fresh storage representation, not a hot-copy migration. See the [current packing and gas review](../reports/activation-final-six-20261118/REVIEW.md).
+Current private allocation2 packs223 coefficient bits with a full-width uint256 spill, retaining modulo2^256 logical rounds/gross/paid coordinates. Cursor fields and asset status count/weight/cursor use16-bit fields; validated production bounds remain1,000NFTs and3,000rarity tickets. The one-hour opening, fault cohorts, enrollment history, checked monetary liabilities and every original-currency entitlement are unchanged. This is a fresh storage representation, not a hot-copy migration. See the [current packing and gas review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-final-six-20261118/REVIEW.md).
 
-See the [round-accounting design review](../reports/royalty-rounds-20261118/ROUND_ACCOUNTING_REVIEW.md). The prior [Q03 tree implementation](../reports/q03-activation-gas-20261117/REVIEW.md) and rejected prefix-envelope experiment retain their original evidence. Population/currency capacities are engineering limits, not gas approval.
+See the [round-accounting design review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/royalty-rounds-20261118/ROUND_ACCOUNTING_REVIEW.md). The prior [Q03 tree implementation](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/q03-activation-gas-20261117/REVIEW.md) and rejected prefix-envelope experiment retain their original evidence. Population/currency capacities are engineering limits, not gas approval.
 
 For each admitted currency in ordinary operation:
 
@@ -161,7 +161,7 @@ The source books remain intact for abort; the successor imports flat accrued rig
 coverage, matching rarity and each currency's summed claims against liabilities.
 Ticket mapping and cursor are preserved despite mint and activation order differing.
 
-On a fresh replacement, publicly synchronized pre-import ETH/ERC20 receipts may already be in its opening pool. Import clears that old opening classification and counts the actual target prefund once as orphaned, separately from imported earned liabilities. The checked source identity and source-accounted-plus-prefund overflow bound remain. This prevents duplicate prefund accounting from blocking a correctly backed import; it does not award target prefunds to the imported cohort automatically. See the [prefund regression](../reports/royalty-rounds-20261118/synced-prefund/REVIEW.md).
+On a fresh replacement, publicly synchronized pre-import ETH/ERC20 receipts may already be in its opening pool. Import clears that old opening classification and counts the actual target prefund once as orphaned, separately from imported earned liabilities. The checked source identity and source-accounted-plus-prefund overflow bound remain. This prevents duplicate prefund accounting from blocking a correctly backed import; it does not award target prefunds to the imported cohort automatically. See the [prefund regression](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/royalty-rounds-20261118/synced-prefund/REVIEW.md).
 
 The existing completed-opening/every-initial-currency synchronization requirement
 remains. A permanently broken currency can block whole-collection handoff; LP
@@ -175,4 +175,4 @@ Every lineage peer declares its own profile. Old checkpoints require reviewed
 rebuild/re-pin; the rolling24-hour earnings period stays86,400seconds.
 
 See the [operator manual](OPERATOR_MANUAL.md), [original-currency procedure](ROYALTY_SETTLEMENT.md),
-[reporting](ROYALTY_REPORTING.md) and [historical royalty audit](../reports/last24h-audit-20261105/REVIEW.md).
+[reporting](ROYALTY_REPORTING.md) and [historical royalty audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/last24h-audit-20261105/REVIEW.md).

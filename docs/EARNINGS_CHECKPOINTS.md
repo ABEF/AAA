@@ -45,12 +45,12 @@ History reads decode independent payout-history maps; financial consumers
 retain full restoration. Read-only bulk LP validation retains every denominator,
 phase and whole-unit backing check. This adds no operator setting, financial
 right or schema conversion; it is not process-RAM or provider qualification.
-See the [source-bound review](../reports/wallet-latency-20261123/REVIEW.md).
+See the [source-bound review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/wallet-latency-20261123/REVIEW.md).
 Its authorized controlled Ubuntu source9/V9 journey completes1,000 NFTs/three
 currencies and eight cards in80 GETs, but only3.982s freshness margin remains.
 Actual provider/load/full F6/V10 qualification stays open. A new unsealed
-constructor fixture proves actual NFT-contract creation code history. The [initial diagnosis](../reports/history-export-20261124/REVIEW.md) retains
-its16MiB refusal. The [explicitly approved isolated follow-through](../reports/ubuntu-complete-20261124/REVIEW.md)
+constructor fixture proves actual NFT-contract creation code history. The [initial diagnosis](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/history-export-20261124/REVIEW.md) retains
+its16MiB refusal. The [explicitly approved isolated follow-through](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-complete-20261124/REVIEW.md)
 now exports/reloads the NEW unsealed constructor fixture completely under a
 method-specific32MiB-response/16MiB-compressed/128MiB-expanded budget. Defaults and
 production limits stay unchanged. It does not repair the old saved graph or
@@ -311,13 +311,13 @@ lineage; creation/retirement/cursor archive RPC and raw databases remain require
 The [offline recovery tool](HISTORY_RECOVERY.md) now implements current-profile snapshot backup, integrity verification and separate restore. It is not unattended rotation, archive pruning, automatic graph extension or
 operating approval. Measure realistic long-history latency/memory/storage and safe rotation/
 restore before hosting. The [financial-history task](../TODO.md#task-financial-history)
-remains in progress. [Original evidence](../reports/earnings-checkpoints-20261104/REVIEW.md);
-[lineage implementation](../reports/lineage-checkpoints-20261116/REVIEW.md);
-[current offline import evidence](../reports/checkpoint-prefix-import-20261116/REVIEW.md).
+remains in progress. [Original evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/earnings-checkpoints-20261104/REVIEW.md);
+[lineage implementation](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/lineage-checkpoints-20261116/REVIEW.md);
+[current offline import evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/checkpoint-prefix-import-20261116/REVIEW.md).
 
 ## Controlled collection-scale evidence
 
-The [1,000-NFT rehearsal](../reports/history-scale-rehearsal-20261116/REVIEW.md)
+The [1,000-NFT rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/history-scale-rehearsal-20261116/REVIEW.md)
 passes exact checkpoint2-to-3 prefix import, backup/verification/new-file restore,
 independent whole-unit accounting and complete per-copy wallet coverage. It spans
 three controlled deployments, 900 active/100 dormant NFTs, 7,757 raw logs and

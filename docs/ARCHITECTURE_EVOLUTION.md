@@ -2,7 +2,7 @@
 
 This is the current change-boundary guide for the undeployed candidate, not a
 second roadmap. [Architecture](ARCHITECTURE.md) explains interactions,
-[components](COMPONENT_STATUS.md) maps source ownership, and the [sole Todo](../TODO.md)
+[components](ARCHITECTURE.md#component-responsibilities) maps source ownership, and the [sole Todo](../TODO.md)
 tracks unfinished work. Production is NOT APPROVED.
 
 The current profile is accounting7 / direct governance2 / fee-intake1 /
@@ -147,12 +147,12 @@ public transaction, service action or existing-state migration.
 ## Historical evidence
 
 The October 16 design and later superseded bridge/pair/inbox work remain in
-[source-scoped architecture review](../reports/architecture-evolution/REVIEW.md),
-[verification](../reports/architecture-evolution/VERIFICATION.md) and its
-[review brief](../reports/architecture-evolution/REVISED_PROMPT.md). Later
-[pair-composition evidence](../reports/pair-composition/VERIFICATION.md),
-[custody evidence](../reports/custody-handoff/VERIFICATION.md) and
-[current-profile pruning review](../reports/architecture-pruning-20261025/REVIEW.md)
+[source-scoped architecture review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/architecture-evolution/REVIEW.md),
+[verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/architecture-evolution/VERIFICATION.md) and its
+[review brief](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/architecture-evolution/REVISED_PROMPT.md). Later
+[pair-composition evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/pair-composition/VERIFICATION.md),
+[custody evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/custody-handoff/VERIFICATION.md) and
+[current-profile pruning review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/architecture-pruning-20261025/REVIEW.md)
 retain their own recorded source identities. They do not re-enable removed
 selectors or prove later code. Current procedures above supersede obsolete
 operating instructions; historical reports are preserved unchanged.

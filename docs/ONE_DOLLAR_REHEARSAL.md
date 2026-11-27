@@ -52,7 +52,7 @@ patches and local-chain constructor guards, derives loss caps from the actual
 copied Budget and writes source/compiler hashes into a new external directory.
 It copies no deployment scripts, keys, RPC configuration or broadcasting tool.
 Its fixtures are explicit local substitutes, not production qualification.
-Historical generated artifacts and [their evidence](../reports/one-dollar-rehearsal/VERIFICATION.md)
+Historical generated artifacts and [their evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/one-dollar-rehearsal/VERIFICATION.md)
 keep their original source/runtime scope; they are never promoted to profile6.
 
 Real routes, dual feeds, wallet/API integration, target-chain gas and operating

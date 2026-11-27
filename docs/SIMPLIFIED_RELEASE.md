@@ -22,8 +22,8 @@ Production is **NOT APPROVED**; existing deployments and journals are unchanged.
 Separate ledgers and bounded helpers preserve economic domains and deployment
 size. Historical codecs/event readers remain where needed to inspect real old
 state; they do not re-enable removed current selectors. Earlier
-[cleanup](../reports/obsolete-code-20261025/REVIEW.md) and
-[Position3](POSITION_V3.md) evidence retains its recorded scope.
+[cleanup](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/obsolete-code-20261025/REVIEW.md) and
+[Position3](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/docs/POSITION_V3.md) evidence retains its recorded scope.
 
 ## Authority and configuration
 

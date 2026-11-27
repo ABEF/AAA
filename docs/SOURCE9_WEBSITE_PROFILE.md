@@ -52,7 +52,7 @@ and final canonical/identity/freshness check must pass, including the check afte
 the separately confirmed NFT cards finish. Cancellation or supersession rejects
 the result. Cards are not claimed to share the fixed financial snapshot block.
 
-The [compact-wallet source record](../reports/compact-wallet-20261121/REVIEW.md)
+The [compact-wallet source record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/compact-wallet-20261121/REVIEW.md)
 shows 64 protocol/compact reads for 1,000 NFTs/three descriptors, or 80 with eight
 NFT cards and their earnings. Sixteen NFTs/66 descriptors need 17 currency pages
 plus the protocol read. These are controlled synthetic V9/source9 workloads, not
@@ -105,8 +105,8 @@ capacity approval.
    integration artifact; never rewrite or relabel saved transaction journals.
 
 No service restart, public signing, chain reset, deployment or heartbeat restart
-is part of source publication. See [verification](../reports/source9-website-20261109/REVIEW.md)
-and the [environment map](SITE_ENVIRONMENTS.md). The [actual fork follow-up](../reports/source9-actual-entry-20261109/REVIEW.md)
+is part of source publication. See [verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/source9-website-20261109/REVIEW.md)
+and the [environment map](SITE_ENVIRONMENTS.md). The [actual fork follow-up](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/source9-actual-entry-20261109/REVIEW.md)
 verifies ETH/ZZZ activation/growth through real unsigned consumer/API reviews,
 with explicit synthetic external depth and controlled feeds/VRF. Unmodified
 market depth failed safely. Actual market/provider/browser-wallet acceptance,

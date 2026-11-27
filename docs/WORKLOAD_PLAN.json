@@ -2,7 +2,7 @@
   "schema": 1,
   "purpose": "Whole-project workload/function/state inventory and verification plan; inventory completeness is never dynamic coverage or proof of all possible market states.",
   "date": "2026-11-27",
-  "source_baseline": "1605dac2b2fd30e3b23e0adfc2c09ab8a913e2b7",
+  "source_baseline": "fdd599c7698d0e1c0709a4a8b50130e5557ba508",
   "trusted_build_record": {
     "path": "reports/activation-final-six-20261118/build/final/normal-size-evidence.json",
     "sha256": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2"
@@ -967,39 +967,49 @@
       "name": "Evidence integrity and source publication",
       "sources": [
         "scripts/check-python-publication.py",
-        "scripts/check-focused-evidence.py"
+        "scripts/check-focused-evidence.py",
+        "zzz_ops/review_bundle.py"
       ],
       "cases": [
         "exactsource/assertion/methodID binding",
         "sourceexactreuse/historical/newexecution distinct",
         "no name-match/count-only/summedoverlapcoverage",
-        "maxstate/runtime/fullproviderapproval staysseparate"
+        "maxstate/runtime/fullproviderapproval staysseparate",
+        "schema4 admits exactly the consolidated current report after existing guards; schema1-3 and other report exclusions unchanged"
       ]
     }
   ],
   "identified_scope_gaps": [
     {
       "id": "WG01",
-      "title": "Historical fractional independent model in current composed market test",
+      "title": "Exact-unit independent market model implemented; broader workload qualification remains",
       "owner": "test/OptionalPortfolioCore.t.sol",
-      "current_evidence": "reports/whole-workload-review-20261119/FINDINGS.json"
+      "current_evidence": "docs/AUDIT_FINDINGS.md",
+      "original_evidence": "https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-workload-review-20261119/FINDINGS.json",
+      "current_disposition": "resolved_source_not_universal_qualification"
     },
     {
       "id": "WG02",
-      "title": "Complete1000NFT wallet ownership verification exceeds fixedRPC budget",
+      "title": "Bounded complete ownership implemented; full financial wallet/provider freshness remains",
       "owner": "frontend_api/service.py",
-      "current_evidence": "reports/whole-workload-review-20261119/FINDINGS.json"
+      "current_evidence": "docs/AUDIT_FINDINGS.md",
+      "original_evidence": "https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-workload-review-20261119/FINDINGS.json",
+      "current_disposition": "partially_advanced_current_CWR07"
     },
     {
       "id": "WG03",
-      "title": "Full function/private/helper/service workload matrix and exact evidence statuses",
+      "title": "Complete function/private/helper/service obligation map implemented; dynamic evidence remains partitioned",
       "owner": "docs/WORKLOAD_PLAN.json",
-      "current_evidence": "reports/whole-workload-review-20261119/FINDINGS.json"
+      "current_evidence": "docs/AUDIT_FINDINGS.md",
+      "original_evidence": "https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-workload-review-20261119/FINDINGS.json",
+      "current_disposition": "inventory_implemented_not_dynamic_coverage"
     },
     {
       "id": "WG04",
       "title": "Real source/provider/OpenSea/VRF/key/host acceptance",
-      "current_evidence": "reports/whole-workload-review-20261119/FINDINGS.json"
+      "current_evidence": "docs/AUDIT_FINDINGS.md",
+      "original_evidence": "https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-workload-review-20261119/FINDINGS.json",
+      "current_disposition": "open_external_qualification"
     }
   ],
   "external_website_source_scope": "reports/whole-workload-review-20261119/WEBSITE_SOURCE_SCOPE.json",

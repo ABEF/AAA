@@ -1,6 +1,6 @@
 # Pool spot price multiplied by ETH/USD
 
-[20 November expanded source/market review](../reports/market-route-qualification-20261120/REVIEW.md)
+[20 November expanded source/market review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-route-qualification-20261120/REVIEW.md)
 still qualifies no independent pair or complete route. Same-aggregator Chainlink
 proxies, stale/disagreeing Pyth and reverting API3 remain unqualified as a pair.
 Additional native candidates and actual WETH/v3 markets do not repair destination
@@ -89,10 +89,10 @@ simulate the complete route; they do not inherit the new capability. For the
 fresh LP3 graph use the explicit source admission and full-operation procedure
 in [reference execution](REFERENCE_SWAP_EXECUTION.md). Existing fingerprints and
 financial guards are retained under that transaction-scoped design. The earlier
-[decision list](../reports/whole-project-review-20261111/REVIEW.md#decisions-and-release-gates)
+[decision list](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-project-review-20261111/REVIEW.md#decisions-and-release-gates)
 is historical evidence of the issue, not approval of a current configuration.
 
-The [dated market review](../reports/market-followup-20261109/REVIEW.md) does not
+The [dated market review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-followup-20261109/REVIEW.md) does not
 qualify such a pair or select a production pool, source age or minimum liquidity.
 The selected hookless v4 pool has no built-in oracle history; this implementation
 deliberately reads spot and does not pretend otherwise. See the official
@@ -158,7 +158,7 @@ existing requirements; a pricing incident does not invent a new payout authority
 
 ## Verification and open gates
 
-The [scoped implementation record](../reports/composite-spot-price-20261109/REVIEW.md)
+The [scoped implementation record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/composite-spot-price-20261109/REVIEW.md)
 separates actual offline Solidity checks from external-market qualification.
 Live reference selection/ranking, external depth, the second independent ZZZ
 path, ETH feeds/publication/liveness, proxy controls, target-chain gas and

@@ -78,7 +78,7 @@ payment uses the actual current owner, at inclusion. Those can move after the
 last read. Any observed control/progress/ownership change during preparation
 requires a new review. Every prepared artifact remains not approved/not ready;
 your actual wallet must revalidate before signing. A rejected or unavailable
-review changes nothing. [Source verification](../reports/operator-management-20261109/REVIEW.md).
+review changes nothing. [Source verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/operator-management-20261109/REVIEW.md).
 
 ## Operator procedure
 

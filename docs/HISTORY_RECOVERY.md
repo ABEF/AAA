@@ -166,12 +166,12 @@ evidence uses SQLite3.53.1 and does not approve an older runtime by analogy.
 
 The design follows the official [SQLite backup API](https://www.sqlite.org/backup.html),
 [WAL behavior](https://www.sqlite.org/wal.html) and [Python backup interface](https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.backup).
-The [source-scoped report](../reports/history-recovery-20261116/REVIEW.md) separates
+The [source-scoped report](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/history-recovery-20261116/REVIEW.md) separates
 new focused checks from reused semantic code and remaining operating obligations.
 
 ## Controlled collection-scale evidence
 
-The [1,000-NFT rehearsal](../reports/history-scale-rehearsal-20261116/REVIEW.md)
+The [1,000-NFT rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/history-scale-rehearsal-20261116/REVIEW.md)
 passes exact checkpoint2-to-3 prefix import, backup/verification/new-file restore,
 independent whole-unit accounting and complete per-copy wallet coverage. It spans
 three controlled deployments, 900 active/100 dormant NFTs, 7,757 raw logs and

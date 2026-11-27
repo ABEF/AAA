@@ -16,17 +16,17 @@ the transaction limit. A higher requirement refuses with
 `frozen_gas_insufficient`; funding and maximum fees use the frozen amount.
 Use the returned `transaction.gas`, not a newly selected smaller estimate.
 Old artifacts retain their original review scope and must not be rewritten.
-See the [operator-input audit](../reports/operator-input-audit-20261116/TOOLS_REVIEW.md).
+See the [operator-input audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/operator-input-audit-20261116/TOOLS_REVIEW.md).
 
 | Preparer | Scope |
 | --- | --- |
 | `scripts/prepare-operator-management.py` | Park, resume, raw residual close and each collective-exit step below. |
 | `scripts/prepare-manual-lp.py` | Schema1 Active B/C/D, plus explicit schema2 Parked emergency D below. |
 
-The [current manual reference-swap fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+The [current manual reference-swap fix](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-reference-swap-fix-20261115/REVIEW.md)
 allows a reviewed external price reference to execute the exact supplied manual
 swap while retaining selected financial guards. The
-[earlier controlled rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+[earlier controlled rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-recovery-rehearsal-20261115/REVIEW.md)
 at `da24f65` covers mint2/V10 C/D, Parked recovery and park-to-recovery through the
 production CLIs; its former reference-swap rejection and gas remain historical.
 Matching production deployments, target providers/fees, contract-wallet execution
@@ -158,7 +158,7 @@ exit cannot reopen LP. After each actual confirmed step, fetch fresh state befor
 preparing the next; reviews are not a preauthorized dependent sequence. See the
 [operator controls](OPERATOR_MANUAL.md#portfolio-management-controls),
 [holder-return procedure](HOLDER_COLLECTIVE_EXIT.md) and
-[current source verification](../reports/operator-management-20261109/REVIEW.md).
+[current source verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/operator-management-20261109/REVIEW.md).
 
 <a id="supported-selections"></a>
 
@@ -245,14 +245,14 @@ paused**. Review restored prices/settings and reconcile pending work before
 separate governance unpause. A revert leaves Parked state/funds unchanged except
 for transaction gas. Never repeat an ambiguous submitted transaction as new work.
 
-The earlier [source review](../reports/parked-recovery-preparation-20261115/REVIEW.md)
-retains its injected-RPC scope. The [actual local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+The earlier [source review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/parked-recovery-preparation-20261115/REVIEW.md)
+retains its injected-RPC scope. The [actual local rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-recovery-rehearsal-20261115/REVIEW.md)
 at `da24f65` adds CLI, gas and receipt evidence for that baseline. The
-[current reference-swap record](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+[current reference-swap record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-reference-swap-fix-20261115/REVIEW.md)
 separately owns the updated source's verification. Neither qualifies a target
 provider, production fee budget or contract-wallet envelope.
 
-Use the [complete B/C/D matrix](../reports/moving-market-flows-20261106/INPUT_MATRIX.md)
+Use the [complete B/C/D matrix](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/moving-market-flows-20261106/INPUT_MATRIX.md)
 and the maintained [operator procedure](OPERATOR_MANUAL.md#same-main-residual-consolidation).
 
 <a id="local-manual-recovery-rehearsal"></a>
@@ -266,13 +266,13 @@ full quoted core state immediately after the swap and before settlement, then
 validates live source freshness/agreement, controls and callbacks through LP
 placement and the final emergency fingerprint. A favorable later reference
 cannot replace the starting USD loss/output/idle vector. Public Oracle reads
-remain live. See the [current source/verification record](../reports/manual-reference-swap-fix-20261115/REVIEW.md).
+remain live. See the [current source/verification record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-reference-swap-fix-20261115/REVIEW.md).
 
 The following gas table belongs exclusively to the earlier `da24f65` source.
 Use the current report for new-source gas; do not reuse this table to approve a
 new runtime, budget or route.
 
-The [15 November record](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+The [15 November record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-recovery-rehearsal-20261115/REVIEW.md)
 covers four explicit manual flows on newly owned Anvil chains. Each actual
 production CLI uses its normal wall clock and unchanged 25-second review budget,
 two genuine canonical anchors, frozen caller inputs and the same exact unsigned
@@ -514,7 +514,7 @@ behavior stay. Preserve saved artifacts with their original provenance; do not
 rehash old reviews, pending records or journals. No contract/runtime/profile, earnings
 checkpoint or keeper-health identity is automatically refreshed by this change.
 
-[Source review and verification](../reports/manual-lp-diagnostics-20261115/REVIEW.md)
+[Source review and verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-lp-diagnostics-20261115/REVIEW.md)
 cover these local diagnostics; actual provider, gas and operating acceptance stay
 separate. No signer, service restart, deployment or setting change is performed.
 

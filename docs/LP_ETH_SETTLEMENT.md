@@ -1,6 +1,6 @@
 # LP holder rewards settled in ETH
 
-[Current maximum-state evidence](../reports/lp-claims-maximum-20261120/REVIEW.md)
+[Current maximum-state evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/lp-claims-maximum-20261120/REVIEW.md)
 uses1,000 NFTs, main+residual and65 royalty currencies, with controlled prices,
 external depth and explicit mock bootstrap/admission seams. Actual16-NFT LP
 conversion estimates12,290,506 gas,15,363,133 with full25%;32 estimates19,966,538,
@@ -8,12 +8,12 @@ conversion estimates12,290,506 gas,15,363,133 with full25%;32 estimates19,966,53
 batch sizes. Re-quote and simulate each affordable subset; the configured worker
 must retain the remainder. No actual-market1%-eligible route is qualified here.
 
-The [20November expanded market review](../reports/market-route-qualification-20261120/REVIEW.md)
-qualifies no complete route. Its [scope correction](../reports/market-route-qualification-20261120/ERRATA.md)
+The [20November expanded market review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-route-qualification-20261120/REVIEW.md)
+qualifies no complete route. Its [scope correction](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-route-qualification-20261120/ERRATA.md)
 distinguishes existing manual v3 contract capability from the zero-wrapper
 construction and accounting7 worker restrictions.
 
-The [historical9November follow-up](../reports/market-followup-20261109/REVIEW.md)
+The [historical9November follow-up](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-followup-20261109/REVIEW.md)
 did not establish a practical default1% conversion route. Favorable tiny reverse
 quotes are retained, but their observed output is below intrinsic-only gas cost
 and no independent USD pair/full converter operation is qualified. This is not a
@@ -160,7 +160,7 @@ conversion; healthy source-token claims and independent ETH claims remain.
 The contract's strengthened v3 manual route needs native ETH pricing IN ADDITION
 to source/wrapper policies; the fresh7 automated worker remains native-v4 only.
 Do not relabel a historical v3 worker or journal as fresh7. Source publication
-does not enable or restart any worker. [Audit/evidence](../reports/fee-flow-audit-20261107/VERIFICATION.md).
+does not enable or restart any worker. [Audit/evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/fee-flow-audit-20261107/VERIFICATION.md).
 
 ## History, replacements and qualification
 
@@ -182,6 +182,6 @@ a full ZZZ conversion at the default 1% cap. Qualify a cheaper funded route or
 explicitly review changed policy; never widen a signed review or invent output.
 Typed v4 support exists, but actual routes/feeds, wallet/API and keeper services,
 target gas, recovery rehearsals and independent audit remain open. Earlier
-[settlement evidence](../reports/lp-eth-settlement/VERIFICATION.md) and
-[native-port evidence](../reports/native-eth-port/VERIFICATION.md) retain their
+[settlement evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/lp-eth-settlement/VERIFICATION.md) and
+[native-port evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/native-eth-port/VERIFICATION.md) retain their
 original source scopes. No existing fixture, service or public signer is changed.

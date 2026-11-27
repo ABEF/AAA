@@ -1,10 +1,10 @@
 # Applying range settings after sealing
 
-Fresh [accounting6 / portfolio2](POSITION_V6.md) source candidate. Governance is
+Fresh [accounting6 / portfolio2](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/docs/POSITION_V6.md) source candidate. Governance is
 the user's operator wallet; the automated keeper has a separate limited grant.
 Changing desired policy and replacing physical LP are different actions. Current
 size/runtime gates, scoped offline checks and local actual-v4-core integration
-pass within their [recorded scope](../reports/residual-operations-20261031/VERIFICATION.md).
+pass within their [recorded scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/residual-operations-20261031/VERIFICATION.md).
 Market, gas, host and independent qualification remain open.
 No source or documentation update changes an installed service or deployment.
 
@@ -142,5 +142,5 @@ relabeled historical profiles are forbidden.
 
 Future next-check/execute times require fresh matching worker telemetry; a poll
 interval is not a promised deadline. Old profile4 outside-only timing and earlier
-[range evidence](../reports/range-policy/VERIFICATION.md) retain their scope.
+[range evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/range-policy/VERIFICATION.md) retain their scope.
 Source publication performs no deployment, service restart or website rollout.

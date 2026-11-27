@@ -167,4 +167,4 @@ never mean legacy support. Read-only historical profiles remain separate.
 The historical Anvil profile retains its original policy and runtime; never
 reinterpret saved journals. The current read/unsigned integration must explicitly require accounting7/ProtocolPolicy1/Portfolio2/Entry-routing3/review2, the
 reviewed selector and current limit checks; actual wallet/provider
-acceptance and public signing remain [open](../TODO.md#task-reviewed-contribution-policy). [Source-scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).
+acceptance and public signing remain [open](../TODO.md#task-reviewed-contribution-policy). [Source-scoped evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/comprehensive-improvement-20261025/VERIFICATION.md).

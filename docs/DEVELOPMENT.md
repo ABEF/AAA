@@ -3,7 +3,7 @@
 The [whole-project workload map](WORKLOAD_COVERAGE.md) indexes every current
 callable/internal source family and distinguishes scenario obligations from actual
 execution. Its source-pinned inventory checks existing compiler AST without a
-build. The [current market-model repair](../reports/whole-workload-review-20261119/REVIEW.md)
+build. The [current market-model repair](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-workload-review-20261119/REVIEW.md)
 replaces obsolete fractional LP expectations with an independent eager whole-unit
 oracle; seven affected journeys and two new compositions pass. Do not reuse the
 old fractional campaign as current exact-unit proof or call aggregate test-body
@@ -66,7 +66,7 @@ Check current percentage/unit expectations and callback timing; a generic
 revert or a passing setup does not establish the advertised failure. Use
 focused cross-action/physical checks for genuinely affected paths and keep
 inventory, source review and execution distinct. See the
-[impact follow-up](../reports/test-impact-followup-20261117/REVIEW.md).
+[impact follow-up](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/test-impact-followup-20261117/REVIEW.md).
 
 For bounded historical-record integrity, run
 `python3 scripts/check-focused-evidence.py`. Its code-pinned manifest admits
@@ -80,7 +80,7 @@ and forward actual accounting/guard math rather than returning unconditional
 success. Fund synthetic exchange/fee cash during explicit setup; do not change
 native balances with cheatcodes inside the operation whose rollback is tested.
 Require nonzero funded state and the intended error, recipient and backing
-changes. The [test/irreversibility review](../reports/test-seal-deep-review-20261117/REVIEW.md)
+changes. The [test/irreversibility review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/test-seal-deep-review-20261117/REVIEW.md)
 separates individually inspected methods, selected executions, historical
 compatibility fixtures and static inventories. None is a whole-suite or live
 market acceptance claim.
@@ -109,8 +109,8 @@ python3 scripts/verify-normal-profile.py
 counts are inventory metadata, not test passes. Existing JSON/log output paths
 are refused. The default full verifier is intentionally the normal profile;
 run separately scoped stronger audit/fuzz campaigns with explicit evidence.
-[Verification-tooling scope](../reports/operational-reliability-20261029/VERIFICATION.md) and
-[recent affected keeper/preflight evidence](../reports/keeper-coordination-20261029/VERIFICATION.md)
+[Verification-tooling scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/operational-reliability-20261029/VERIFICATION.md) and
+[recent affected keeper/preflight evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-coordination-20261029/VERIFICATION.md)
 retain separate source and execution scopes; neither is a fresh full-suite run.
 
 Python/keeper/source-check producers reserve fresh JSON (and execution logs)
@@ -155,7 +155,7 @@ checker strictly loads JSON objects and preserves source/finding coverage gates.
 CI uploads only these new static directories. Older canonical analysis/review
 files are not deleted or refreshed automatically.
 
-The [historical full audit](../reports/full-audit-20261025/VERIFICATION.md) records
+The [historical full audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/full-audit-20261025/VERIFICATION.md) records
 actual399-findings/47bindings internal static review coverage PASS, successful
 solc output and a later Forge host-cache CLI failure. Those are separate facts,
 not a current green workflow or independent approval. The [historical applicability
@@ -166,7 +166,7 @@ exact fingerprint/referenced-source reuses from the prior571record. Actual
 Slither reused the accepted100-source normal compiler output without compiling
 again; Vault, Metadata, MigrationBudget and CustodyValidation are the four
 changed production sources relative to003c8d8, and all48normal size gates pass
-under unchanged compiler settings. See the [current static scope](../reports/test-seal-deep-review-20261117/FINAL_STATIC_REVIEW.md).
+under unchanged compiler settings. See the [current static scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/test-seal-deep-review-20261117/FINAL_STATIC_REVIEW.md).
 The intermediate571record/65current+506reuse stage covers only the first two
 source changes; the earlier570record/5current+565reuse stage covers the earlier
 Access artwork-seal change. Both retain their original source scopes.
@@ -192,8 +192,8 @@ zero test bodies; count actual scoped executions separately.
 It now includes16 action-resilience regressions: streaming RPC, immutable endpoint
 configuration, metered contract reads, strict fields/uint256 overrides, paid
 recovery and source6 transient conditions. The cited858-method historical inventory
-ran zero bodies; it is not the current selection count. [Source-scoped stages](../reports/consolidation-20261103/VERIFICATION.md)
-and [earlier evidence](../reports/action-resilience-audit-20261102/VERIFICATION.md)
+ran zero bodies; it is not the current selection count. [Source-scoped stages](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/consolidation-20261103/VERIFICATION.md)
+and [earlier evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/action-resilience-audit-20261102/VERIFICATION.md)
 retain negative controls, source scopes and the Unix-only skip.
 
 ```bash
@@ -207,7 +207,7 @@ The dedicated CI list now includes the newer confirmation/checkpoint, cadence,
 principal-delivery, telemetry/watchdog/revert and conversion-header regressions.
 Imported fixture classes are not executed twice; duplicate/empty/wrong-identity
 selection fails. Full `verify.sh` separately discovers the wider Python suite.
-Use the [whole-project verification](../reports/whole-project-audit-20261029/VERIFICATION.md)
+Use the [whole-project verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-project-audit-20261029/VERIFICATION.md)
 for narrow selection checks; it does not claim all selected methods ran again.
 Unix-only assertions remain explicit on other hosts; Windows success does not
 qualify Linux operation.
@@ -216,7 +216,7 @@ qualify Linux operation.
 
 The separate [current native-pool harness](../test/CurrentNativePoolFork.t.sol)
 and [bounded read-only runner](../scripts/run-current-pool-fork.py) replace the
-archived wrapped fixture for this campaign. [Verification](../reports/current-pool-fork-20261026/VERIFICATION.md)
+archived wrapped fixture for this campaign. [Verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/current-pool-fork-20261026/VERIFICATION.md)
 records 11distinct successful methods across source-bound affected runs, not a
 fresh whole final11-case pass. Pinax served the fixed chain4663 block; mock
 governance/VRF/correlated USD feeds and fork-funded balances are explicit.
@@ -243,7 +243,7 @@ official Linux solc0.8.26 download verified before execution. It retains the sam
 reviewed normal profile and read-only relay; the historical dirty runner is not
 used or overwritten by that job. This wiring was checked statically, not run on
 GitHub or against live RPC during the audit. Require actual exact-revision CI
-artifacts before saying it passed. [Compiler/dependency scope](../reports/whole-project-audit-20261029/COMPILER_DEPENDENCIES.md).
+artifacts before saying it passed. [Compiler/dependency scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-project-audit-20261029/COMPILER_DEPENDENCIES.md).
 
 Actual feeds/routes, real keeper/rebalance and target-gas qualification remain
 open. Provider batching hit a documented429; serialized archive success is not
@@ -288,7 +288,7 @@ No deployment is authorized by this procedure.
 
 ## Metadata2 source and focused verification
 
-The [lifecycle implementation](../reports/metadata-lifecycle-fixes-20261116/VERIFICATION.md)
+The [lifecycle implementation](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/metadata-lifecycle-fixes-20261116/VERIFICATION.md)
 adds a read-only lens/context to the existing NFTCanonical helper; the canonical
 writer, record format, constructors and module count remain. Four new read ABI
 methods plus the existing expanded internal event hook are documented in the
@@ -328,11 +328,11 @@ classify the assertion and its actual imports before adapting or retiring it.
 Run focused changed assertions and affected behavior. Preserve genuine regression
 failures; change an expectation only when the approved rule or explicit profile
 changed. Do not raise a gas budget, weaken an invariant or replace a failed read
-with zero merely to keep a test green. The [current audit](../reports/last24h-audit-20261105/VERIFICATION.md)
+with zero merely to keep a test green. The [current audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/last24h-audit-20261105/VERIFICATION.md)
 separates these maintenance corrections from production source verification.
 
 Use [operations](OPERATIONS.md), [operator manual](OPERATOR_MANUAL.md),
-[current context](../PROJECT_CONTEXT.md) and [feature evidence](IMPLEMENTATION_STATUS.md).
+[current context](../reports/CURRENT_REVIEW.md) and [feature evidence](IMPLEMENTATION_STATUS.md).
 Keep keys outside Git. No command here authorizes public deployment or transactions.
 No integrated bridge/creator-inbox services are required for this release.
 
@@ -344,6 +344,6 @@ checkpoint or journal. Actual OpenSea stages/proofs and operation remain separat
 
 Earlier source9 accounting7/LP-allocation1 uses the explicit schema16 graph and
 constructor-fixed RewardsCanonical. Exact raw-tree replay replaces LP indices;
-checkpoint1 remains historical6-only. See [integration evidence](../reports/exact-lp-integration-20261106/VERIFICATION.md)
+checkpoint1 remains historical6-only. See [integration evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/exact-lp-integration-20261106/VERIFICATION.md)
 for test maintenance, final normal/static/ABI pins and measured limits. Earlier
 source-scoped test descriptions/counts do not establish current qualification.

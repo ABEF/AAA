@@ -1,5 +1,9 @@
 # PoPL operator manual
 
+Current cross-project status, source-scoped evidence and open qualification are in
+[CURRENT_REVIEW](../reports/CURRENT_REVIEW.md). This manual owns exact inputs,
+procedures, guards and recovery; its examples authorize no live action.
+
 ## Keeper output, storage and source adoption
 
 Keeper logs retain every event, field, order, duplicate and flush; only JSON
@@ -28,7 +32,7 @@ migration is not an operational `rebind`. Verify old packages using their exact
 original release/configuration/policy. Never edit hashes or reset journals,
 queues or clocks to make a refusal pass. Source publication starts no service,
 installs no state and does not resume the paused desktop heartbeat. See the
-[source-scoped review](../reports/keeper-efficiency-20261127/REVIEW.md).
+[source-scoped review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-efficiency-20261127/REVIEW.md).
 
 ## Unsigned keeper restart from a reconstructed kit
 
@@ -49,7 +53,7 @@ target mapping. Do not rewrite the original config/package, initialize a used
 sender, reset outboxes/nonces, replace a pending hash or retry a send to recover.
 Use the [native command definitions](#off-host-backup-transfer-and-review) and
 [keeper recovery guide](KEEPER_RECOVERY.md). The
-[current finite record](../reports/keeper-clean-restart-20261127/REVIEW.md)
+[current finite record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-clean-restart-20261127/REVIEW.md)
 preserves the failed first target and the separately pinned fresh-root continuation.
 Source scripts need their matching release on the import path; `-I -m` alone does
 not load a copied release through the working directory.
@@ -101,7 +105,7 @@ authorize silently extending the limit, recapturing or calling old state fresh.
 The report's preflight helper is fixed to this fixture, not a production recovery
 tool. A clean-root review is separate from a complete OS image, physical second
 host, old-host/signer/restart fencing, canonical transaction reconciliation and
-separately approved live adoption. The [reconstruction record](../reports/keeper-reconstruction-20261127/REVIEW.md)
+separately approved live adoption. The [reconstruction record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-reconstruction-20261127/REVIEW.md)
 retains the c824 loader failure and c825 metadata-reader refusal separately.
 The corrected composition passes one missing-config refusal and four successful
 native operations. Its existing OS runtime remains an external dependency.
@@ -109,7 +113,7 @@ native operations. Its existing OS runtime remains an external dependency.
 
 ## Off-host backup transfer and review
 
-The [bounded desktop round-trip](../reports/keeper-offhost-20261126/REVIEW.md)
+The [bounded desktop round-trip](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-offhost-20261126/REVIEW.md)
 proves exact package possession and review-only return. It does not move a live
 keeper. No governance wallet or transaction is required for these file operations.
 
@@ -247,7 +251,7 @@ Its state directory must be private and outside the keeper journal's directory.
 | Health/configuration/source changed | Review matching keeper/checker source and newly pinned backups separately | The current Cast fix changes one daemon source identity; earlier `ops.py`/`monitor.py` changes keep their scopes. Verify older backups with their matching original release; never edit hashes/journals |
 | Stop / resume this observer | Stop its separately reviewed invocation or scheduler; keep `state.json` and `alert.lock` | Rerun with the same directory; saved events and observed pending age persist. This change installs no scheduler and leaves the desktop heartbeat paused |
 
-The [day audit](../reports/keeper-day-audit-20261126/REVIEW.md) adds18 distinct
+The [day audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-day-audit-20261126/REVIEW.md) adds18 distinct
 NEW Ubuntu passes across17+1 stages, retaining the original fixture failure and
 all previous evidence. The two new units stop empty; existing states match. It is not real-channel/off-host or
 sustained-operation approval. Original financial/gas/RPC/time limits and journals
@@ -275,18 +279,6 @@ attest loaded code or grant adoption authority.
 
 ## Keeper audit and controlled recovery — 26 November 2026
 
-The [full review](../reports/keeper-full-audit-20261126/REVIEW.md) distinguishes
-current source, new checks, earlier finite proofs and the installed legacy server.
-No callable contract, role, financial cap, journal or checkpoint schema changes.
-
-The isolated startup/recovery follow-through passes in1,652/6,000RPC: five failed
-starts, explicit sixth refusal, exact journal preservation during failures,
-restored240s configuration and fresh healthy idle cycle with no signed sends.
-Four owned lab cgroups stop empty; installed files/configuration/journal metadata
-and five original service states are preserved. This does not qualify sustained
-operation, actual providers or a rollout. The original failed verifier outcome
-and the single Linux check reused without rerun remain in the full report.
-
 | Situation / input | Required action | Verify before resuming |
 | --- | --- | --- |
 | `Confirmed receipt checkpoint changed`; exact existing journal/configuration/provider evidence | Stop/fence; preserve pending hash/nonce/costs and independently review canonical history. Do not reset spending, delete intent or adopt a guessed anchor | Matching source/checker, exact original transaction and reviewed reorg accounting |
@@ -302,13 +294,6 @@ is not current candidate qualification and was not changed by this audit.
 
 ## Ubuntu keeper operating evidence — 25 November 2026
 
-The [storage-recovery record](../reports/ubuntu-storage-20261125/REVIEW.md)
-covers six real disk-full/permission failures in a private1MiBtmpfs, before
-signing, while saving an accepted hash and while saving a paid receipt.
-Direct stock reconstruction preserves exact journals, nonce, costs and NFT/LP
-projections with two original transactions and no resend. Independent saved-vector
-checks pass; seven NEW diagnostics methods run in two disjoint source stages.
-
 The keeper now logs the original sanitized cycle failure before trying a health
 write that may also fail. Fixed os_errno names distinguish storage causes;
 reported_transaction retains only a strictly formatted signer hash candidate,
@@ -319,16 +304,11 @@ Use the [storage-recovery procedure](KEEPER_RECOVERY.md#journal-storage-failures
 This source changes keeper/checker identity; preserve original journals and use a
 separately reviewed matching rollout. The lab is not physical-filesystem/power-loss
 or full-daemon storage qualification. Existing environments remain unchanged.
-Earlier [supervisor recovery](../reports/ubuntu-supervisor-20261125/REVIEW.md),
-[key replacement](../reports/ubuntu-key-rotation-20261124/REVIEW.md) and
-[hybrid LP](../reports/ubuntu-hybrid-20261124/REVIEW.md) keep their original scopes.
+Earlier [supervisor recovery](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-supervisor-20261125/REVIEW.md),
+[key replacement](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-key-rotation-20261124/REVIEW.md) and
+[hybrid LP](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-hybrid-20261124/REVIEW.md) keep their original scopes.
 
 ### Daemon storage recovery: expected states
-
-The [26 November daemon record](../reports/ubuntu-daemon-storage-20261126/REVIEW.md)
-verifies the actual failure/restart/resolution core and healthy recovery in
-2,765/6,000RPC, with one keeper transaction and no resend. Original NONPASS
-and missing final physical reads remain explicit; no production rollout.
 
 | State / input | Operator action | Expected result |
 | --- | --- | --- |
@@ -368,7 +348,7 @@ service, installs no configuration and authorizes no signing.
 
 ### Verified unsigned restore: operator checks
 
-The [Ubuntu adoption record](../reports/ubuntu-backup-recovery-20261126/REVIEW.md)
+The [Ubuntu adoption record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-backup-recovery-20261126/REVIEW.md)
 verifies this finite same-host flow with a real pending local transaction.
 It does not authorize moving a running production signer.
 
@@ -400,12 +380,6 @@ See the [full procedure](KEEPER_RECOVERY.md#journal-storage-failures-preserve-re
 
 ## Ubuntu keeper follow-through — 24 November 2026
 
-The [new bounded operating record](../reports/ubuntu-keeper-blockers-20261124/REVIEW.md)
-adds positive single-main rebalance, compound, classifiedZZZ burn and native LP
-conversion execution. These are isolated model results; production acceptance
-and installation remain separate. No callable function, authority, profile or
-operating limit changes.
-
 | Situation | Operator action / input | Meaning |
 | --- | --- | --- |
 | Ordinary rebalance | Existing reviewed keeper configuration; fresh trigger, samples, jitter and fee review |5,259RPC completes sampled window and replacement. Do not bypass timing or financial checks |
@@ -416,15 +390,6 @@ operating limit changes.
 | Missing fork supply | NEW owned fixture only, reviewed historical block/hash/runtime/slot/getter proof | One proven missing global scalar may be restored for rehearsal. Never invent supply or modify an original/public chain |
 | Native LP conversion | Admitted native-v4 route, exact source/runtime pins, funded NFT balances and worker configuration | Converts existing LP ZZZ to ETH for the SAME NFTs;1% loss and1% gas/output remain. No royalty conversion |
 | Selected route too expensive | Keep original backed ZZZ rights and require a cheaper reviewed real route | New local fee3000/tick60 synthetic venue proves code execution only; production pool selection stays deferred |
-
-The new burn/conversion checks retain paired pre/post balances, NFT components,
-LP state, signed transaction fields and canonical header before assertions.
-Earlier compound/rebalance vectors held only in locals remain executed-source
-assertions; the report does not relabel them as independent raw replay.
-
-All five newly owned units/process groups are stopped and five original service
-states match. All journals, original fixtures/checkpoints, Anvil8902, sites,
-public-null signer configurations and the paused heartbeat remain unchanged.
 
 
 ## Complete wallet financial view
@@ -453,7 +418,7 @@ an advertised compact endpoint never silently falls back.
 | Existing limits | Keep25s/1,024 RPC/2,048 POSTs/1MiB backend response,16NFTs,120s maximum age, ingress/admission limits and all gas/financial safeguards |
 | Cancel / refresh | Account/page changes, cancellation, reorg or expiry discard results. Refresh starts a new confirmed read; no transaction, API retry or automatic resend |
 
-[Wallet checkpoint follow-through](../reports/wallet-latency-20261123/REVIEW.md)
+[Wallet checkpoint follow-through](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/wallet-latency-20261123/REVIEW.md)
 now verifies the controlled source9/V9 1,000-NFT/three-currency wallet over actual
 Ubuntu workers/HTTP/proxy:80 successful GETs and37 assertions, including eight
 cards, exact raw/component USD, full86,400-second history and final proofs.
@@ -469,8 +434,8 @@ A separate standalone normal F6 fixture completes44 unsealed setup transactions,
 39 instances and genuine NFT-contract parent/creation/latest code proof. Its
 native dependencies are explicit constructor doubles, not qualified markets.
 The original export's precise cause was not retained. The [initial targeted
-diagnosis](../reports/history-export-20261124/REVIEW.md) proves a separate16MiB
-response refusal. The [approved isolated follow-through](../reports/ubuntu-complete-20261124/REVIEW.md)
+diagnosis](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/history-export-20261124/REVIEW.md) proves a separate16MiB
+response refusal. The [approved isolated follow-through](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-complete-20261124/REVIEW.md)
 now exports/reloads the NEW constructor fixture completely:45 headers/44 receipts,
 39 runtimes/112 bindings, nonce/balance and NFT-contract creation proof match.
 This does not repair the separate old graph's missing historical state or approve
@@ -502,7 +467,7 @@ all connections before recording a backup hash. Never loosen original evidence
 permissions or hot-edit a checkpoint's source hashes. Releasing source restarts
 no site, service, chain or heartbeat.
 
-[Earlier compact evidence](../reports/compact-wallet-20261121/REVIEW.md) records finite
+[Earlier compact evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/compact-wallet-20261121/REVIEW.md) records finite
 controlled workloads and original failures. Three currencies need63 combined
 pages for1,000 NFTs, plus protocol and up to16 card/history reads:80 versus206
 previously including cards. Sixteen NFTs and66 fully priced descriptors use17
@@ -571,14 +536,6 @@ raise API, keeper, gas, fee, freshness or financial limits.
 | Adopt source fixes | Matching reviewed keeper AND checker files, original journal/config retained | `monitor.py`/`ops.py` change health source identity, not checkpoint semantic identity. No checkpoint rebuild is implied by these two changes alone |
 | Install future staging tools | Explicitly authorized fresh staging install only | Reviewed tar bytes; `--no-same-owner`; regular/nonsymlink UID:GID:nlink0:0:1 before chmod/execution. Refuse foreign ownership; never silently repair an existing host |
 
-The real stock Ubuntu daemon/Cast interruption/recovery partition passes on a
-controlled copied-state model with240-second cadence,12 confirmations, hourly
-harvest,24M/full25% and unchanged fee/spend limits. Five ops CLIs and actual
-indexer ingestion/restart/two-empty-header reorg have separate proofs. Original
-aggregate/private-fixture failures are retained. This is finite local operating
-evidence, not production providers, complete original archive state, long-lived
-soak, off-host fencing/restore or every feature/workload acceptance.
-
 ## Website ownership paging
 
 Current source9/schema4 and source10/schema5 use compact pages when advertised;
@@ -606,12 +563,12 @@ Before a separately authorized rollout, review the matching build/API/history,
 actual provider latency and existing [site procedure](SITE_ENVIRONMENTS.md).
 Preserve old checkpoint/review/DB bytes; that historical website-only change did not change
 backend checkpoint semantic-source identity. Current compact backend adoption
-requires the checkpoint rebuild/review/re-pin described above. See [focused evidence](../reports/ownership-paging-20261121/REVIEW.md).
+requires the checkpoint rebuild/review/re-pin described above. See [focused evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ownership-paging-20261121/REVIEW.md).
 
 
 ## Bounded Cast output and uncertain transactions
 
-The [reviewed helper](../reports/bounded-cast-20261121/REVIEW.md) is automatic in the existing keeper.
+The [reviewed helper](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/bounded-cast-20261121/REVIEW.md) is automatic in the existing keeper.
 It adds no operator contract call or JSON setting.
 
 | Boundary | Rule | Operator response |
@@ -648,14 +605,9 @@ source adoption; do not raise gas/fee/loss limits or loosen transaction checks.
 No installed service, source journal, public signing or website is updated by
 this source publication. All NFT rights and contract permissions remain intact.
 
-The [48-hour audit](../reports/last48h-audit-20261121/REVIEW.md) changes no operator functions, inputs,
-permissions or recovery steps. That earlier Ubuntu authorization/signing journey remained unproved; the
-current finite stock-daemon/Cast receipt proof is linked above. Production
-operating acceptance remains open.
-
 ## Keeper lock and recovery source adoption
 
-The [focused review](../reports/ubuntu-keeper-20261121/REVIEW.md) changes Python
+The [focused review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-keeper-20261121/REVIEW.md) changes Python
 code only. It does not install or restart a service. Before adopting it, stop
 and fence the old writer, retain its exact journal/config/receipt evidence,
 review the matching release, then use the existing dry-run/recovery procedure.
@@ -690,7 +642,7 @@ Tracked compound observations are authenticated at the review block; required
 clears report blocked, missing proof reports unavailable. The report does not
 write resets/acknowledgements, draw jitter, load a signer or authorize execution.
 
-[Current LP fee-flow proof](../reports/pool-fees-20261121/REVIEW.md) verifies actual
+[Current LP fee-flow proof](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/pool-fees-20261121/REVIEW.md) verifies actual
 harvested ETH/ZZZ,80/10/5/5+dust and exact current-owner claims on the saved normal
 F6 test graph. `Vault.collectFees(bucket,deadline)` remains permissionless under
 its existing lifecycle/custody checks; collection sends no money to its caller.
@@ -703,14 +655,14 @@ harvest and12M/full20% claims/defaults are unchanged. The new state-file restore
 is disposable rehearsal tooling, not a production recovery instruction. Actual
 routes, consumer/keeper operation, broader workloads and complete fees stay open.
 
-[Current F6 construction/readback](../reports/f6-construction-20261120/REVIEW.md)
+[Current F6 construction/readback](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/f6-construction-20261120/REVIEW.md)
 passes39instances/112bindings plus172defaults and35separate unsealed permission
 probes. Use the [exact local procedure](DEPLOYMENT_PREPARATION.md#current-f6-evidence-and-supplementary-checks).
 Before sealing, bootstrap configures; distinct governance has pause/nomination
 powers but cannot perform those ordinary configuration writes yet. No sealing or
 production approval follows; the controlled graph must not be adopted.
 
-For the next launch decisions use the [Gate A evidence](../reports/readiness-gate-a-20261120/REVIEW.md).
+For the next launch decisions use the [Gate A evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/readiness-gate-a-20261120/REVIEW.md).
 Current compiler applicability has no confirmed reachable upgrade-requiring issue.
 Actual markets, custom OpenSea configuration and original-request VRF remain
 unqualified; do not relax guards, admit a candidate, fund a provider or seal based
@@ -720,11 +672,6 @@ For launch preparation, follow the [ordered qualification plan](ROADMAP.md).
 It separates predeployment work, actual unsealed readback, sealing and public
 opening; each still needs its own evidence/authorization. Current call procedures
 and the single human operator/governance model remain unchanged.
-
-The [16 November whole-project review](../reports/whole-project-audit-20261116/REVIEW.md)
-hardens offline governance input admission, saved-file presence and the website
-signing-profile boundary. Contract calls, permissions, economics and defaults
-stay unchanged. New source publication does not restart an operating service.
 
 **If startup encounters an unreadable, malformed or dangling state/configuration
 file:** stop and inspect the original file, permissions and reviewed backups.
@@ -742,7 +689,7 @@ downgrade a profile to enable signing. Both public configurations remain null.
 See the [fresh frozen-bundle procedure](FROZEN_REVIEW_BUNDLE.md) for complete
 operator examples and the independently authenticated matching Git checkout.
 
-The [daily reconciliation](../reports/daily-reconciliation-audit-20261111/REVIEW.md)
+The [daily reconciliation](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/daily-reconciliation-audit-20261111/REVIEW.md)
 updates current task/profile guidance and claim-planning efficiency without
 changing callable inputs, permissions or economic rules. Claim planning reuses
 only pinned same-block immutable metadata within one request; mutable ownership,
@@ -758,7 +705,7 @@ must fit the same cap and independent price/transaction/day limits. No automatic
 wider retry, signing, fee-policy or pending-journal change is added. Recover saved
 pending work first. A source/config update still needs the reviewed stop/reconcile/
 dry-run/restart process; no running service was changed. See the
-[remaining-findings verification](../reports/remaining-271-20261111/VERIFICATION.md).
+[remaining-findings verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/remaining-271-20261111/VERIFICATION.md).
 
 ## Review a saved mint transaction offline
 
@@ -806,7 +753,7 @@ Existing artifacts pin the preparation module's own bytes. Preserve old artifact
 and original requests; after source changes explicitly rebuild/review using the
 new source profile. Never edit an old hash or relabel it to bypass `check`.
 Output publication is exclusive; an existing output is never overwritten.
-See [verified finite scope](../reports/readiness-advance-20261120/REVIEW.md).
+See [verified finite scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/readiness-advance-20261120/REVIEW.md).
 
 ## Qualify actual markets before configuring routes
 
@@ -814,7 +761,7 @@ Final production-pool selection is deferred by the operator (20November2026).
 Keep the old integration target unchanged; do not treat it or a discovery lead
 as an approved launch pool. Choose and qualify the real pool before configuration.
 
-Use the [20November expanded review](../reports/market-route-qualification-20261120/REVIEW.md).
+Use the [20November expanded review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-route-qualification-20261120/REVIEW.md).
 No tested destination/reference/conversion combination is approved. Selected
 activeL0 and incompatible larger-market spot remain actual launch blockers.
 
@@ -834,7 +781,7 @@ funding, source admission, service restart or signing is performed by this revie
 
 ## Review capacity before admitting more royalty currencies
 
-The [controlled maximum-state record](../reports/maximum-workload-20261119/REVIEW.md)
+The [controlled maximum-state record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/maximum-workload-20261119/REVIEW.md)
 checks1,000 NFTs, a main/residual and64 ERC20 royalties PLUS ETH. That is65 assets,
 not64 total. Governance capacity admission alone does not approve operating gas.
 Read `Royalty.assetCapacity()` and `Royalty.assetCount()` and review the actual
@@ -870,7 +817,7 @@ operation, while exact quoted output/full state and live source checks validate
 the swap and later callbacks. Public Oracle reads stay live. No financial cap,
 authority or default gas budget changes.
 
-The [current manual reference-swap fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+The [current manual reference-swap fix](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-reference-swap-fix-20261115/REVIEW.md)
 extends that proof to paused forced C/D retaining bit2 or4, before their first
 fingerprint/harvest/unwind. Manager proves the exact supplied swap; it does not
 select a replacement venue or change its amount/floors. Masks0/8 introduce no
@@ -911,7 +858,7 @@ retains its original profile and evidence. Direct mint preparation is disabled
 for mint2; OpenSea eligibility is unverified. Both public configurations stay
 null, source10 never constructs the unchanged shared signer (even on Anvil),
 and served current3 poplint/popldemo, services, journals and existing Anvil8902
-are unchanged. [Verification](../reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
+are unchanged. [Verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
 not actual market/provider/VRF/OpenSea/wallet/hosting or independent acceptance.
 
 
@@ -948,7 +895,7 @@ the operation and the callback's state changes together. This is not a way to
 interrupt another transaction: send normal pause/revocation from the appropriate
 guardian/governance wallet, preserve any pending hash, then reconcile its receipt
 and gas. It adds no withdrawal power or economic-parameter change. See the
-[scoped review](../reports/manipulation-hardening-20261027/REVIEW.md).
+[scoped review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manipulation-hardening-20261027/REVIEW.md).
 
 For the complete permission map, see [who can call each class of function](ACCESS_PERMISSIONS.md).
 Holder reward claims stay owner-controlled. Fresh custody5 restricts terminal
@@ -1086,10 +1033,10 @@ idle/designated compound are redeployed in the current pool into one new main;
 shares and earned rewards stay. Recovery remains paused; verify the actual
 receipt/post-state, reconcile pending work, then separately unpause. No holder
 or keeper permission is added, and no service restart or live setting is applied
-by preparation. The earlier [source verification](../reports/parked-recovery-preparation-20261115/REVIEW.md)
-retains its injected-RPC scope; the [actual local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+by preparation. The earlier [source verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/parked-recovery-preparation-20261115/REVIEW.md)
+retains its injected-RPC scope; the [actual local rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-recovery-rehearsal-20261115/REVIEW.md)
 at `da24f65` adds CLI and receipt evidence for that baseline. The
-[current manual reference-swap record](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+[current manual reference-swap record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-reference-swap-fix-20261115/REVIEW.md)
 separately owns the changed source's results. Target-provider, complete-fee and
 contract-wallet acceptance remain open.
 
@@ -1111,7 +1058,7 @@ receipts/ledgers, then prepare the next explicit batch. No tool submits, pauses,
 unpauses, manages pending nonces or starts a future action automatically. The
 artifact expiry is not a contract deadline on begin/allocation/distribution;
 actual cursor/beneficiary are determined at inclusion. Readiness remains false.
-See [verification](../reports/operator-management-20261109/REVIEW.md).
+See [verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/operator-management-20261109/REVIEW.md).
 
 Fresh deployment inventories use chain-local `factory_payload_version:6`, `ROYALTY_ALLOCATION_VERSION()==2` and reviewed [payload6 pins](FACTORY_CODE_STORAGE.md) from `activation-final-six-20261118`. Factory6 selects new exact immutable Royalty bytes; allocation2 rights and wire records remain unchanged. This is not an after-seal upgrade. Existing payload3/4/5 configurations, deployments and journals remain historical. Use fresh source/runtime pins; never copy old private storage or rewrite saved reviews.
 
@@ -1164,21 +1111,21 @@ authorize any service/site release; preserve journals. Contract sealing and
 financial caps are unchanged. Revert by restoring the earlier reviewed config /
 consumer artifact, never by rewriting pending operations. Source9 stays unsigned.
 See [configuration](ACTIVATION_PREPARATION.md) and
-[actual rehearsal/market limits](../reports/source9-actual-entry-20261109/REVIEW.md).
+[actual rehearsal/market limits](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/source9-actual-entry-20261109/REVIEW.md).
 
 <a id="gas-profiles-20m-24m"></a>
 <a id="contribution-gas32"></a>
 
 ### Selected32M contribution and24M maintenance profiles
 
-The [latest reconciliation](../reports/seven-report-consolidation-20261119/REVIEW.md)
+The [latest reconciliation](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/seven-report-consolidation-20261119/REVIEW.md)
 separates current settings from historical gas measurements and retains every
 original finding ID. It introduces no new contract call, permission or restart.
 
 The operator selected32M for activation/growth on19November. Use the
 [new non-live overlay](../config/activation-gas-32m.candidate.json), not a patched
 historical report template. Full20% padding remains: estimate26,666,666 fits;
-26,666,667 refuses. The [review](../reports/contribution-gas32-20261119/REVIEW.md)
+26,666,667 refuses. The [review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/contribution-gas32-20261119/REVIEW.md)
 records new software checks and retains the earlier20M EVM measurements below.
 
 Freshly verify Robinhood transaction/block execution limits and provider capacity
@@ -1189,19 +1136,19 @@ required operating prerequisite. Complete data-posting fees remain separate;
 32M is a padded ceiling, not permission for32M raw work plus20%. Unknown
 limits/fees keep adoption blocked; do not infer capacity from the header.
 
-The historical [launch16 review](../reports/launch-workload-20261117/REVIEW.md) demonstrates why a passing20M body call is insufficient: its fresh estimate plus full20% can still exceed20M. Its pending/initial-allocation refusals retain that source scope. The current controlled13-case workload fits20M with full20%; it does not qualify every currency or state. Capacity16 means16 ERC20s plus ETH **if admitted**, not an automatic launch list or gas approval. Growth normally does not repeat royalty activation. Keep the exact preparation/estimate and margins; never widen a cap or mislabel an opaque refusal as a bad token.
+The historical [launch16 review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/launch-workload-20261117/REVIEW.md) demonstrates why a passing20M body call is insufficient: its fresh estimate plus full20% can still exceed20M. Its pending/initial-allocation refusals retain that source scope. The current controlled13-case workload fits20M with full20%; it does not qualify every currency or state. Capacity16 means16 ERC20s plus ETH **if admitted**, not an automatic launch list or gas approval. Growth normally does not repeat royalty activation. Keep the exact preparation/estimate and margins; never widen a cap or mislabel an opaque refusal as a bad token.
 
 Before admitting currencies, read `RoyaltyRewards.assetCount()`, every `assets(index)`, `assetCapacity()`, `ROYALTY_ALLOCATION_VERSION()` and `ProtocolPolicy.royaltyBalanceGas()`/`royaltySyncGas()`/`gasPolicy()`/`gasFingerprint()`. Qualify cold empty, pending/first-opening, rotated-allocation and failed-read workloads. Some rare royalty states are materially more expensive; component gas cannot be added to or substituted for a complete operation estimate. The new unsigned pre-seal rows record these reads only and remain unverified.
 
-The historical [Q03 near-capacity review](../reports/q03-activation-gas-20261117/REVIEW.md) measures the complete Entry flow after999 real activations, fixed600/300/100 mint quotas and16 admitted ERC20 currencies plus ETH. It separates unsynchronized opening/rotated receipts, one full-budget currency fault, already-synchronized states and ETH/ZZZ growth. A passed component check is not20M approval: require the exact estimate plus full20% and successful padded call. The1M per-currency allowance and12M default remain unchanged; its20M measurement policy stays historical.
+The historical [Q03 near-capacity review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/q03-activation-gas-20261117/REVIEW.md) measures the complete Entry flow after999 real activations, fixed600/300/100 mint quotas and16 admitted ERC20 currencies plus ETH. It separates unsynchronized opening/rotated receipts, one full-budget currency fault, already-synchronized states and ETH/ZZZ growth. A passed component check is not20M approval: require the exact estimate plus full20% and successful padded call. The1M per-currency allowance and12M default remain unchanged; its20M measurement policy stays historical.
 
 Historical payload4 cold Q03 estimates plus full20%: healthy pre-synced activation19,484,950/20M; one faulty currency19,877,529/20M; ETH growth14,963,820/20M; ZZZ growth15,864,753/20M. Four unsynchronised near-capacity cases refuse20M. These controlled results are not actual target-fee approval. Fresh tiny receipts can restore costly allocation work between sync and inclusion; the narrowest measured margin is122,471gas. Keep the fresh exact simulation and full margin.
 
 #### Bounded royalty reads and exact rounds
 
-Current [Factory6/allocation2 review](../reports/activation-final-six-20261118/REVIEW.md) preserves constant-size complete rounds and cursor updates. Enrollment is append-only, at most1,000 boundaries per currency; claims find their birth cohort within10 binary-search steps. Private round coefficients use223 compact bits with a full256-bit spill; count, weight and cursor use16-bit fields, proven within1,000 NFTs/3,000 tickets. These are storage encodings, not smaller monetary domains. No receipt queue or mandatory pre-sync worker is added. Failed reads protect the earlier cohort before waiting activations join. Original currencies, one-hour opening and recovery permissions remain.
+Current [Factory6/allocation2 review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-final-six-20261118/REVIEW.md) preserves constant-size complete rounds and cursor updates. Enrollment is append-only, at most1,000 boundaries per currency; claims find their birth cohort within10 binary-search steps. Private round coefficients use223 compact bits with a full256-bit spill; count, weight and cursor use16-bit fields, proven within1,000 NFTs/3,000 tickets. These are storage encodings, not smaller monetary domains. No receipt queue or mandatory pre-sync worker is added. Failed reads protect the earlier cohort before waiting activations join. Original currencies, one-hour opening and recovery permissions remain.
 
-Historical C08 qualification produced13 scenarios from one1,000-NFT method. At that source all actual20M calls/financial checks passed, but only5 fit full20% and8 activations were refused. Its estimates and outcomes remain in the [original scenario record](../reports/royalty-rounds-20261118/FINAL_FULL_FLOW_REVIEW.md); they are not current Factory6 results. Prepare every exact transaction; capacity16 and a configured50k read ceiling are not universal activation gas approval.
+Historical C08 qualification produced13 scenarios from one1,000-NFT method. At that source all actual20M calls/financial checks passed, but only5 fit full20% and8 activations were refused. Its estimates and outcomes remain in the [original scenario record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/royalty-rounds-20261118/FINAL_FULL_FLOW_REVIEW.md); they are not current Factory6 results. Prepare every exact transaction; capacity16 and a configured50k read ceiling are not universal activation gas approval.
 
 | Action | Exact inputs / reads | Verify |
 | --- | --- | --- |
@@ -1216,7 +1163,7 @@ Optional unsigned pre-seal input: `royalty_balance_policy:{"balanceGas":"50000",
 
 #### Activation gas reduction and fresh runtime pins
 
-The current [activation-final-six source review](../reports/activation-final-six-20261118/REVIEW.md) keeps public selectors, input types, monetary domains, permissions and economic checks. Pricing Basis, captured marks and asset list now share Oracle's transaction-only scope; each completed operation explicitly clears them. No manual clearing, pre-sync or extra holder transaction is required. LP carry uses MAX128 as the compact-low sentinel: values below it stay packed; MAX128 and larger values use the exact full-width spill. Operators never clamp, reset or choose this encoding. CanonicalV10 rows/checkpoints retain logical uint128 high/uint256 low, pending balances and exact LP-allocation1 semantics. Use fresh Factory6/source/runtime pins; never hot-copy older private slots or relabel deployments, journals or evidence.
+The current [activation-final-six source review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-final-six-20261118/REVIEW.md) keeps public selectors, input types, monetary domains, permissions and economic checks. Pricing Basis, captured marks and asset list now share Oracle's transaction-only scope; each completed operation explicitly clears them. No manual clearing, pre-sync or extra holder transaction is required. LP carry uses MAX128 as the compact-low sentinel: values below it stay packed; MAX128 and larger values use the exact full-width spill. Operators never clamp, reset or choose this encoding. CanonicalV10 rows/checkpoints retain logical uint128 high/uint256 low, pending balances and exact LP-allocation1 semantics. Use fresh Factory6/source/runtime pins; never hot-copy older private slots or relabel deployments, journals or evidence.
 
 | Operator concern | Required action | Unchanged rule |
 | --- | --- | --- |
@@ -1226,14 +1173,14 @@ The current [activation-final-six source review](../reports/activation-final-six
 | Upgrade local consumers | Review matching runtime/source identities and preserved history before adoption | No automatic DB/journal or live-site rewrite |
 | Failed gas review | Retain the explicit refusal and investigate that exact workload | No cap/headroom/default increase |
 
-The Oracle retains its canonical49-word transient format and every live source/control/mutable-boundary proof. Quote and hash codecs preserve exact bytes; the optional v4 feed keeps prices, ticks, fees, liquidity, source age and pins. All13 current cold calls and financial checks now pass20M with full20% headroom, closing the6 earlier tested refusals. Worst estimate16,460,899 pads to19,753,079. This is one affected1,000-NFT method with16 controlled ERC20 currencies plus ETH and one physical main LP, not13 new methods or universal maximum-state qualification. Real markets, providers/complete fees,64-currency/LP2 workloads, operations and independent approval remain open. These measurements retain their20M/full20% scope; the selected profile is now32M/full20%. The12M default,50k balance reads,1M sync and120k fallback funding proof remain unchanged. See the [current source and complete qualification](../reports/activation-final-six-20261118/REVIEW.md); the [earlier Factory5 report](../reports/activation-gas-20261118/REVIEW.md) retains its original scope.
+The Oracle retains its canonical49-word transient format and every live source/control/mutable-boundary proof. Quote and hash codecs preserve exact bytes; the optional v4 feed keeps prices, ticks, fees, liquidity, source age and pins. All13 current cold calls and financial checks now pass20M with full20% headroom, closing the6 earlier tested refusals. Worst estimate16,460,899 pads to19,753,079. This is one affected1,000-NFT method with16 controlled ERC20 currencies plus ETH and one physical main LP, not13 new methods or universal maximum-state qualification. Real markets, providers/complete fees,64-currency/LP2 workloads, operations and independent approval remain open. These measurements retain their20M/full20% scope; the selected profile is now32M/full20%. The12M default,50k balance reads,1M sync and120k fallback funding proof remain unchanged. See the [current source and complete qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-final-six-20261118/REVIEW.md); the [earlier Factory5 report](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-gas-20261118/REVIEW.md) retains its original scope.
 
 #### Optional royalty synchronization before activation
 
-The [new F6 maximum-state rehearsal](../reports/recommendations-execution-20261120/GAS_REVIEW.md) validates this OPTIONAL sequence at999 active NFTs, two LPs and64 slow ERC20 currencies plus ETH. Operator-paid `syncAll()` estimates5,893,025 (full25%7,366,282 within24M). After its successful receipt, the exact freshly prepared ZZZ activation estimates23,112,361 (full20%27,734,834 within32M). Combined actual gas is27,954,608 across TWO transactions; no total-gas saving is claimed. All65 old-cohort books and newcomer exclusion remain, with sampled incumbent claim checks. New receipts may restore the work; always repeat the fresh exact entry review. The unsynchronized cold case still refuses32M and needs476,135 less estimated gas. This does not create a required holder step or automatic worker.
+The [new F6 maximum-state rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/recommendations-execution-20261120/GAS_REVIEW.md) validates this OPTIONAL sequence at999 active NFTs, two LPs and64 slow ERC20 currencies plus ETH. Operator-paid `syncAll()` estimates5,893,025 (full25%7,366,282 within24M). After its successful receipt, the exact freshly prepared ZZZ activation estimates23,112,361 (full20%27,734,834 within32M). Combined actual gas is27,954,608 across TWO transactions; no total-gas saving is claimed. All65 old-cohort books and newcomer exclusion remain, with sampled incumbent claim checks. New receipts may restore the work; always repeat the fresh exact entry review. The unsynchronized cold case still refuses32M and needs476,135 less estimated gas. This does not create a required holder step or automatic worker.
 
 
-The historical [two-stage rehearsal](../reports/launch-workload-20261117/REVIEW.md#tested-optional-workflow-synchronize-before-activation) moved allocation into a separate operator-paid transaction at its earlier source. Current Factory6 passes the13 controlled cold cases without making pre-sync a required step. Synchronization remains optional; it does not promise less total gas, a new worker or another required holder transaction.
+The historical [two-stage rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/launch-workload-20261117/REVIEW.md#tested-optional-workflow-synchronize-before-activation) moved allocation into a separate operator-paid transaction at its earlier source. Current Factory6 passes the13 controlled cold cases without making pre-sync a required step. Synchronization remains optional; it does not promise less total gas, a new worker or another required holder transaction.
 
 | Step | Existing call / inputs | What to verify |
 | --- | --- | --- |
@@ -1247,12 +1194,12 @@ Anyone may call sync; that grants no management or payout authority. The operato
 
 For claims,32 is a total NFT/asset/ledger entry ceiling. The historical launch-workload1000-NFT cases include a19-entry pending mixed batch and32 LP entries that refused12M without losing rights. Those whole-claim gas numbers are not fresh F6 cold-batch qualification. Prepare the next exact smaller batch and replan after confirmation; choose healthy currencies when a selected transfer fails. Old schema1 clipping is not proof of full20% headroom. Raw fixed-ZZZ LP recovery remains distinct from normal ETH settlement and original-currency royalties.
 
-The earlier [controlled qualification](../reports/gas-profiles-20261113/REVIEW.md)
+The earlier [controlled qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/gas-profiles-20261113/REVIEW.md)
 passes all four $100/$5 contribution cases and six keeper operations at full
 padding; worst measured padded gas is18,098,846/20M and21,046,237/24M. Its keeper
-cases did not measure manual Migration C/D. The [manual recovery rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+cases did not measure manual Migration C/D. The [manual recovery rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-recovery-rehearsal-20261115/REVIEW.md)
 adds mint2/V10 C14, D14 and Parked D14/D0 CLI/receipt evidence at `da24f65`.
-Use the [current reference-swap report](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+Use the [current reference-swap report](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-reference-swap-fix-20261115/REVIEW.md)
 for changed-source gas; historical values do not qualify its new runtimes.
 Neither report qualifies maximum state, real markets, target providers or fees.
 The [current32M profile package](../config/activation-gas-32m.candidate.json)
@@ -1327,13 +1274,13 @@ nothing in a running environment.
 
 ### Manual reference swaps and historical recovery evidence
 
-The [current source](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+The [current source](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-reference-swap-fix-20261115/REVIEW.md)
 supports an admitted external reference as the exact selected manual swap venue
 without discarding selected financial guards. Refer to that report for its
 source-specific verification/gas. The table below is exclusively the earlier
 `da24f65` baseline; it must not approve a current runtime or spending budget.
 
-The [historical rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+The [historical rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-recovery-rehearsal-20261115/REVIEW.md)
 uses a disposable EOA with actual governance authority, current Access/mint2/V10
 and actual v4 contracts on
 new owned local nodes. The production CLI retains two exact simulations, its
@@ -1388,7 +1335,7 @@ a new review before preparation; it does not extend an existing review.
 
 ### Review a Robinhood tracing RPC and complete fees
 
-The [new external qualification](../reports/predeployment-qualification-20261113/REVIEW.md)
+The [new external qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/predeployment-qualification-20261113/REVIEW.md)
 independently establishes genesis and passes all13 existing RPC checks through
 unchanged `probe()` with1.5-second recording transport pacing. Specific historic
 reads/logs and a tiny nonpersistent code override also work. Anonymous sustained
@@ -1433,7 +1380,7 @@ never label those as missing-hash rejection. The remaining transport timeout
 does not preempt stuck DNS/headers. Source publication neither runs this probe
 nor changes an operating keeper's source identity/journal.
 
-Before scheduling the full operation campaign, resolve [current market blockers](../reports/predeployment-qualification-20261113/markets/REVIEW.md):
+Before scheduling the full operation campaign, resolve [current market blockers](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/predeployment-qualification-20261113/markets/REVIEW.md):
 two healthy independent ETH/ZZZ valuation paths and real compatible bidirectional
 depth. Selected activeL0 does not mean every tick is empty; current conditional
 quotes still show poor execution. Do not widen spot/loss guards, seed artificial
@@ -1494,9 +1441,9 @@ Strategy maintenance3 / confirmation3 / portfolio2, Budget compound4, LP routing
 emergency2, Access.GOVERNANCE_VERSION2 and
 `SCHEMA()==keccak256("ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10")`.
 Verify exact chain/runtime/module/helper pins and the [fresh profile](POSITION_V7.md).
-The [current normal/static source evidence](../reports/test-seal-deep-review-20261117/VERIFICATION.md)
-and historical [fee-flow evidence](../reports/fee-flow-audit-20261107/VERIFICATION.md)
-and [actual Entry3 follow-up](../reports/source9-actual-entry-20261109/VERIFICATION.md)
+The [current normal/static source evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/test-seal-deep-review-20261117/VERIFICATION.md)
+and historical [fee-flow evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/fee-flow-audit-20261107/VERIFICATION.md)
+and [actual Entry3 follow-up](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/source9-actual-entry-20261109/VERIFICATION.md)
 retain their distinct source, fixture and execution limits. Historical Entry3
 reports do not qualify later runtime changes. Live dependency/operating
 qualification and independent review remain open.
@@ -1548,7 +1495,7 @@ Current planning defaults to `activation-final-six-20261118`; historical
 the captured closed build identity, and admits an absent ID only with the original
 legacy pins. Neither a label nor an operator-selected `--build` directory can
 replace those trusted hashes. Historical planning also needs its old exact source
-checkout; old evidence replay does not. The [targeted metadata2 run](../reports/metadata2-rehearsal-20261116/REVIEW.md)
+checkout; old evidence replay does not. The [targeted metadata2 run](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/metadata2-rehearsal-20261116/REVIEW.md)
 now supplies five changed local constructor/binding and cold-read measurements.
 Final release dependencies, actual source-call cost and complete fees still need
 qualification. No compiler rerun is required merely to inspect accepted artifacts. [Full procedure](DEPLOYMENT_PREPARATION.md).
@@ -1559,7 +1506,7 @@ PASS means internal semantic evidence closure. It does not authenticate provider
 truth, current prices, depth, source independence or a deployable route. All
 `production_approved`, `deployable_configuration`, `template_ready` and
 `live_market_qualification` outputs remain false. Original report files stay
-unchanged; use the [reconciliation](../reports/five-audit-reconciliation-20261116/REVIEW.md)
+unchanged; use the [reconciliation](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/five-audit-reconciliation-20261116/REVIEW.md)
 for the stronger current checker. No keeper/server restart is needed to run an
 offline check; no running service is changed by publishing these tools.
 
@@ -1656,7 +1603,7 @@ required final reads and separate release requirements.
 
 ### Metadata2 construction and cold-read review
 
-Use the [selective local evidence](../reports/metadata2-rehearsal-20261116/REVIEW.md)
+Use the [selective local evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/metadata2-rehearsal-20261116/REVIEW.md)
 and [owning procedure](DEPLOYMENT_PREPARATION.md#selective-metadata2-local-evidence)
 for current metadata bytecode. Five creations/three bindings produce 12 real
 instances and 63 getter/state checks. Access stays unsealed/bootstrap-owned with
@@ -1757,10 +1704,10 @@ exit does not gain a conversion/buyback dependency.
 | Website read/unsigned review | [Served current3/fresh Entry3/accounting7 boundary](CURRENT_WEBSITE_PROFILE.md). Fresh profile7 readers are separate from the served accounting3 browser reader; source support is not a rollout. Neither accepts a historical accounting2 reader by relabeling. The [local source9/schema4 consumer](SOURCE9_WEBSITE_PROFILE.md) supports fresh reads/unsigned reviews; local actual Entry3 activation/growth evidence uses explicitly seeded depth; real market/provider/service/site acceptance remains open; public DEPLOYMENT is null and signing Anvil-only. |
 | RPC and exact frozen audit inputs | [Bounded RPC qualification](RPC_PREPARATION_QUALIFICATION.md) and [frozen review bundle](FROZEN_REVIEW_BUNDLE.md). A timeout is not proof of rejecting missing blocks; package export is not audit approval. |
 
-Source-scoped audit results belong to [reports](../reports/README.md), not to a
-second release history in this manual. The historical [October31 analysis](../reports/day-audit-20261031/VERIFICATION.md)
+Source-scoped audit results belong to [reports](../reports/CURRENT_REVIEW.md#evidence-and-history), not to a
+second release history in this manual. The historical [October31 analysis](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/day-audit-20261031/VERIFICATION.md)
 has463 contextually dispositioned findings at the unchanged final source closure;
-its source scope does not verify later window/capacity code. Current source evidence is the [same-main consolidation review](../reports/residual-main-consolidation-20261106/VERIFICATION.md); earlier royalty records retain their exact source scope. Older analyzer
+its source scope does not verify later window/capacity code. Current source evidence is the [same-main consolidation review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/residual-main-consolidation-20261106/VERIFICATION.md); earlier royalty records retain their exact source scope. Older analyzer
 and handwritten body reports retain their original scopes. Refresh analysis
 after source changes and qualify actual dependencies, target-chain gas/operations
 and independent audit before release; internal triage is not release approval.
@@ -1819,7 +1766,7 @@ During Closing/Allocating, pool admission/reopening remains blocked.
 
 This source behavior requires the reviewed new Registry deployment. Existing
 Anvil/old releases are not upgraded by changing configuration or this runbook.
-[Scope and evidence](../reports/comprehensive-popl-20261029/VERIFICATION.md).
+[Scope and evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/comprehensive-popl-20261029/VERIFICATION.md).
 
 ### Add or remove an execution pool after sealing
 
@@ -1867,7 +1814,7 @@ alternatives, then re-simulate and reconcile pending work before a new submissio
 This changes the swap list, not the LP destination, original ETH/ZZZ input or explicit
 conversion/buyback requests. No global optimum or automatic fallback is promised.
 An empty list disables swaps; no viable admitted venue leaves the operation
-blocked. [Implemented repair and remaining qualification](../reports/lp-lifecycle-audit-20261102/REVIEW.md).
+blocked. [Implemented repair and remaining qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/lp-lifecycle-audit-20261102/REVIEW.md).
 
 Governance can tune `configureSolver(iterations,gasLimit,reviewHash)` within 4-12
 iterations and 100000-300000 gas per attempted quote; defaults8/200000. More search
@@ -1974,7 +1921,7 @@ finding a provider or quote. Review these points before preparing a new policy:
   eleven-minute-old state while retaining its header. Use a separately qualified
   archive/trace provider; never merge a later observation into an older review.
 
-Before admission, use the [16 November market qualification record](../reports/real-market-refresh-20261116/REVIEW.md):
+Before admission, use the [16 November market qualification record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/real-market-refresh-20261116/REVIEW.md):
 two proxy addresses may share one aggregator, and a deployed Pyth Core may hold
 stale data. Feed catalogs and old answers are candidate discovery, never a live
 policy. The3% source agreement bound and3% contribution cap are different tests;
@@ -2065,7 +2012,7 @@ actual product and upstream authority. [Price operating requirements](PRICE_SECU
 
 <a id="pending-15-minute-rebalance-confirmation"></a>
 
-The [whole-operation assessment](../reports/normal-operation-design-20261029/REVIEW.md) explains the different
+The [whole-operation assessment](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/normal-operation-design-20261029/REVIEW.md) explains the different
 contribution, reserve, idle, harvest and maintenance paths. The implemented
 [read-only keeper review](KEEPER_COORDINATION.md#read-only-operation-review) covers
 rebalance, compound and harvest; broader operation adapters remain unfinished.
@@ -2097,7 +2044,7 @@ The15-minute initial enrollment lead is600+300seconds, not a15-minute window.
 This source change needs a reviewed matching stop/reconcile/install/restart
 through the existing recovery procedure. Keep deployment/profile/config and
 pending/nonce/spend journal; no journal migration, reseal or setter is needed.
-No running service was updated. [Audit](../reports/confirmation-audit-20261104/REVIEW.md).
+No running service was updated. [Audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/confirmation-audit-20261104/REVIEW.md).
 
 For fresh confirmation3, resolve `Strategy.rebalanceConfirmation()` from the
 sealed Access Strategy. Verify Strategy/helper/Budget capability3, Budget
@@ -2217,7 +2164,7 @@ replay, and complete-operation call/estimate gas caps remain unqualified.
 Keep explicit activation/transaction-policy2 full20% headroom and manual-LP/keeper25%
 padding. Legacy policy1 retains its original advisory-padding behavior and12M cap.
 
-The [complete-operation measurements](../reports/gas-feasibility-20261111/REVIEW.md)
+The [complete-operation measurements](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/gas-feasibility-20261111/REVIEW.md)
 now cover real main/both-leg harvesting, Compounder and ordinary single/hybrid
 replacement. Controlled raw gas is0.66M/1.02M for harvest,10.68M compound,
 13.45M single replacement and16.63M next two-leg replacement. Their keeper25%
@@ -2255,7 +2202,7 @@ qualification, with original journals intact. Discovery/health may reuse reads
 only at the identical block hash/config within one cycle; pre-signing validation
 stays fresh. Gas refusals report estimate,25%-padded requirement and configured
 ceiling/reason, without widening any budget. [Telemetry/recovery](KEEPER_RECOVERY.md)
-and [verification](../reports/practical-improvements-20261028/VERIFICATION.md).
+and [verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/practical-improvements-20261028/VERIFICATION.md).
 No installed service changed.
 
 ## Typed conversion and loss-limit operations
@@ -2296,11 +2243,11 @@ conversion1%, maintenance and additional-loss settings remain unchanged.
 
 ## Read input units and validity
 
-The [complete source/input audit](../reports/operator-input-audit-20261116/REVIEW.md)
+The [complete source/input audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/operator-input-audit-20261116/REVIEW.md)
 distinguishes92 governance/bootstrap/keeper/nominated actions from the complete
 ABI's reads, holder rights and module/callback endpoints. The
-[per-function inventory](../reports/operator-input-audit-20261116/INVENTORY.md)
-and [moving-state/guard matrix](../reports/operator-input-audit-20261116/OPERATIONS_AND_RISKS.md)
+[per-function inventory](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/operator-input-audit-20261116/INVENTORY.md)
+and [moving-state/guard matrix](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/operator-input-audit-20261116/OPERATIONS_AND_RISKS.md)
 provide authority, input source, invalidation, effect and recovery context.
 This is source review, not proof that every combination was dynamically tested.
 
@@ -2488,7 +2435,7 @@ Verify old-key rejection on a genuinely keeper-only function, new-key authority,
 matching deployment/source pins and a fresh dry run before the reviewed restart.
 NFT ownership, shares, earned rewards and on-chain timing do not reset.
 
-The [isolated Ubuntu record](../reports/ubuntu-key-rotation-20261124/REVIEW.md)
+The [isolated Ubuntu record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-key-rotation-20261124/REVIEW.md)
 verifies the revocation-before-execution branch and separate replacement journal.
 Recovery can clear the original pending hash and book reverted gas, then the same
 cycle can correctly report unauthorized new work. Check durable state and receipt
@@ -2539,7 +2486,7 @@ requires another valid configuration/replacement, with new costs and cooldown.
 Stop/reconcile in-flight keeper work around changes: a transaction is not bound
 to an earlier off-chain review hash. See [range application](RANGE_POLICY_UPDATES.md).
 
-The fresh [optional portfolio source](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md)
+The fresh [optional portfolio source](OPERATOR_MANUAL.md#portfolio-management-controls)
 implements a main plus at most one residual. Scoped local actual-core integration
 passes; live production qualification remains open. Historical deployments keep their own behavior;
 never set legacy `triggerBps` to 8500 or use emergency as a routine substitute.
@@ -2644,7 +2591,7 @@ A subsequent ordinary merge still waits its own full cooldown and fresh delay.
 Changing on-chain mode needs no keeper restart. Keep the matching reviewed
 software/configuration, recover pending transactions first, and verify actual
 positions and applied revisions after confirmation. The [Ubuntu hybrid
-rehearsal](../reports/ubuntu-hybrid-20261124/REVIEW.md) records its executed cases
+rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-hybrid-20261124/REVIEW.md) records its executed cases
 and limits; it is not production or continuous-market approval.
 
 `portfolioAmounts(main)` is the sum of actual token amounts; never add raw
@@ -2652,7 +2599,7 @@ liquidity across ranges. Stable `portfolioFingerprint` excludes liquidity so
 normal contributions do not reset samples. Custody reviews use the separate
 liquidity-sensitive `executionPortfolioFingerprint`. Parking/move/holder return
 must close both legs; canonical export requires no live residual. [Profile](POSITION_V7.md),
-[range guide](RANGE_POLICY_UPDATES.md), [current source qualification](../reports/optional-portfolio-20261030/VERIFICATION.md).
+[range guide](RANGE_POLICY_UPDATES.md), [current source qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/optional-portfolio-20261030/VERIFICATION.md).
 
 Every ordinary replacement, including single mode, checks that the new main
 is physically active before and after mint/refund callbacks. Narrow inverse-price
@@ -2661,7 +2608,7 @@ despite good USD retention. A rejection rolls back both legs. Simulate the exact
 configuration and candidate; review width/venue/reference validity rather than
 automatically widening loss caps. The explicit paused-governance emergency is a
 separate manual procedure, never a keeper fallback. Initial/growth outside-range
-policy is unchanged. [Audit and remaining route-ranking limit](../reports/day-audit-20261031/REVIEW.md).
+policy is unchanged. [Audit and remaining route-ranking limit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/day-audit-20261031/REVIEW.md).
 
 ### Portfolio creation contexts
 
@@ -2678,7 +2625,7 @@ activeSecondaryCount counts registered legs even when filled/outside; it is not
 a count of fee-active ranges. At count4, a normal replacement first closes its
 old residual before adding its new one, so it needs no fifth slot.
 
-See the complete [market/lifecycle/recovery matrix](../reports/residual-lifecycle-20261106/LIFECYCLE.md).
+See the complete [market/lifecycle/recovery matrix](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/residual-lifecycle-20261106/LIFECYCLE.md).
 
 ### Portfolio management controls
 
@@ -2899,8 +2846,8 @@ qualify the new physical association.
 
 #### Both moving-market flows and overlapping controls
 
-Use the [complete input matrix](../reports/moving-market-flows-20261106/INPUT_MATRIX.md)
-and [blocker/recovery table](../reports/moving-market-flows-20261106/BLOCKERS.md)
+Use the [complete input matrix](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/moving-market-flows-20261106/INPUT_MATRIX.md)
+and [blocker/recovery table](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/moving-market-flows-20261106/BLOCKERS.md)
 when diagnosing a failure. They separate fixed identity, live market, captured
 budgets, service scheduling and receipt recovery; no guard is a general override.
 
@@ -3015,7 +2962,7 @@ until governance enables it and a later eligible whole adjustment deploys one.
 Repeated months of operation require fresh IDs/state/reviews and preserved
 receipts/journals, not replaying an old manifest. Target gas/provider/operating
 and independent audit qualification remain open. See the
-[focused read-to-execution review](../reports/consolidation-races-20261106/REVIEW.md).
+[focused read-to-execution review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/consolidation-races-20261106/REVIEW.md).
 
 <a id="forced-consolidation-and-exceptional-markets"></a>
 
@@ -3101,16 +3048,16 @@ or future fee income.
 Actual route/feed/token/gas/host qualification and independent audit remain open.
 Current local tests establish their recorded source scope, not uninterrupted
 operation, manipulation immunity, maximum-holder gas or production approval.
-See the [residual-operation verification](../reports/residual-operations-20261031/VERIFICATION.md)
+See the [residual-operation verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/residual-operations-20261031/VERIFICATION.md)
 for actual executed cases and exact source boundaries.
-The [November3 journeys](../reports/smart-contract-lp-audit-20261103/VERIFICATION.md)
+The [November3 journeys](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/smart-contract-lp-audit-20261103/VERIFICATION.md)
 exercise infeasible-gap rollback/single-mode recovery and minute-long synthetic
 USD outage with harvest/partial claims/raw close/later merge. They do not qualify
 the actual operator wallet, provider, token, market depth or recovery host.
 
 ### Adopting the reviewed source fixes
 
-Use the [review and adoption checklist](../reports/whole-project-review-20261111/REVIEW.md)
+Use the [review and adoption checklist](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-project-review-20261111/REVIEW.md)
 before installing this candidate. Existing deployed code is not patched; source,
 runtime/configuration fingerprints and unsigned reviews must match the reviewed
 release. Old checkpoint1/2 artifacts bind `zzz_ops/abi.py`: retain raw/WAL backups
@@ -3204,13 +3151,13 @@ assets and does not independently require operations-enabled, but actual
 execution still applies retained bit8; ordinary price paths still require the
 flag. The same-core principal pool cannot double as the reference. Full details
 and remaining real-market/gas/operating qualifications are in the
-[current fix record](../reports/manual-reference-swap-fix-20261115/REVIEW.md).
+[current fix record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-reference-swap-fix-20261115/REVIEW.md).
 
 ### Force, close and redeploy: choose the correct call
 
 An ordinary manual call is not a force call. Use the following recovery sequence
 when deliberately bypassing optional policy; do not weaken the automated keeper.
-The [audited safeguard matrix](../reports/manual-safeguard-audit-20261104/SAFEGUARD_MATRIX.md)
+The [audited safeguard matrix](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-safeguard-audit-20261104/SAFEGUARD_MATRIX.md)
 maps every operation and dependency.
 
 | Intent | Governance transaction / inputs | Timing and financial policy |
@@ -3384,7 +3331,7 @@ skip irrelevant history replay. See [local setup](LOCAL_TEST_STACK.md).
 
 ### Read-only selected-pool evidence
 
-Use `scripts/verify-hookless-pool.py --block <confirmed-number> --expected-hash <reviewed-hash> --output <report.json>` with a reviewed RPC. It uses bounded read-only batches, EIP-1898 canonical-hash state selectors and reviewed dependency runtime pins. An incompatible provider fails; there is no latest-block or number-tag fallback. A failed observation/output replacement preserves the previous complete report, which remains old evidence and must not be mistaken for a fresh success. Check exit status and observation block/time. The report never authorizes deployment or financial actions and does not prove immutable proxy administrators, safe feeds or adequate liquidity. See [audit scope](../reports/daily-security-20261024/REVIEW.md).
+Use `scripts/verify-hookless-pool.py --block <confirmed-number> --expected-hash <reviewed-hash> --output <report.json>` with a reviewed RPC. It uses bounded read-only batches, EIP-1898 canonical-hash state selectors and reviewed dependency runtime pins. An incompatible provider fails; there is no latest-block or number-tag fallback. A failed observation/output replacement preserves the previous complete report, which remains old evidence and must not be mistaken for a fresh success. Check exit status and observation block/time. The report never authorizes deployment or financial actions and does not prove immutable proxy administrators, safe feeds or adequate liquidity. See [audit scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/daily-security-20261024/REVIEW.md).
 
 ## Activation assets and routes
 
@@ -3438,7 +3385,7 @@ To stop an input immediately, use `ActivationAssets.setAsset(token,false,expecte
 
 ## Pool admission and retirement
 
-The [current physical LP rehearsal](../reports/pool-lifecycle-20261120/REVIEW.md) completes native Manager mint/increase, intended rollback, actual fee collection/no-repeat and closure on a new isolated fork. It uses typed test custody/control/price/funding fixtures; it is not a permission for an EOA to call Vault-only Manager methods, holder principal withdrawal, or production Entry/route qualification. The burned NFT is the underlying Uniswap position NFT, not a PoPL collection NFT. Final pool selection and actual sources/routes/depth remain unapproved.
+The [current physical LP rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/pool-lifecycle-20261120/REVIEW.md) completes native Manager mint/increase, intended rollback, actual fee collection/no-repeat and closure on a new isolated fork. It uses typed test custody/control/price/funding fixtures; it is not a permission for an EOA to call Vault-only Manager methods, holder principal withdrawal, or production Entry/route qualification. The burned NFT is the underlying Uniswap position NFT, not a PoPL collection NFT. Final pool selection and actual sources/routes/depth remain unapproved.
 
 ### LP deadlines and ABI scalar inputs
 
@@ -3455,7 +3402,7 @@ unmodified state first; any test liquidity must be added only to the new owned f
 identified as synthetic depth. Preserve existing Anvil state and do not fund or change
 the public pool. A locally funded success does not qualify independent depth, price
 feeds or production routes. [Scope and next
-rehearsal](../reports/test-pool-scope-20261120/REVIEW.md).
+rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/test-pool-scope-20261120/REVIEW.md).
 
 `PoolRegistry.contributionPool()` is the only pool whose `depositsEnabled` flag
 can be true; zero means new activations/top-ups are stopped. Initial production
@@ -3629,14 +3576,14 @@ history boundary. Do not reset a database, accept missing logs as zero or lower
 confirmation/canonical checks. Preserve DB/raw/WAL backups and authorize the
 normal stop/dry-run/restart process separately before adopting source changes.
 No schema, stored event format or checkpoint identity changes solely for this
-indexer scheduling correction. [Evidence](../reports/open-tasks-audit-20261113/REVIEW.md).
+indexer scheduling correction. [Evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/open-tasks-audit-20261113/REVIEW.md).
 
 ## Keeper interruption and recovery (Q06)
 
 This is an off-chain service procedure; no contract write is required to restart
 the keeper. Source publication does not restart or upgrade an installed service.
 Use the actual reviewed unit/configuration, never an isolated test unit name.
-See [Q06 evidence and limits](../reports/q06-keeper-recovery-20261117/REVIEW.md).
+See [Q06 evidence and limits](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/q06-keeper-recovery-20261117/REVIEW.md).
 
 | Situation | Operator action / required input | Expected result |
 | --- | --- | --- |
@@ -3651,9 +3598,9 @@ See [Q06 evidence and limits](../reports/q06-keeper-recovery-20261117/REVIEW.md)
 
 The 17 November Q06 partition used unprivileged private-network units, synthetic
 contracts and an inert signer; its dispatcher proved recovery only. Later
-[stock-daemon/Cast](../reports/ubuntu-complete-20261124/REVIEW.md),
-[supervisor](../reports/ubuntu-supervisor-20261125/REVIEW.md) and
-[c810 startup-limit recovery](../reports/keeper-full-audit-20261126/REVIEW.md)
+[stock-daemon/Cast](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-complete-20261124/REVIEW.md),
+[supervisor](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-supervisor-20261125/REVIEW.md) and
+[c810 startup-limit recovery](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-full-audit-20261126/REVIEW.md)
 provide separate finite proofs. Actual-provider delays, uncovered fault classes,
 off-host restore/fencing/alerts, additional restart-storm cases and sustained
 full-feature operation remain open. Existing services and journals remain
@@ -3666,8 +3613,8 @@ unchanged; the desktop chat heartbeat stays paused.
 | USD source pair / freshness / disagreement | Governance `Oracle.setDualFeed(token,primary,secondary,maxDeviationBps,reviewHash)`; verify two independent reviewed sources, exact runtimes/decimals, valid current rounds, append-only identity and `priceBounds` fingerprint | Both sources are mandatory. No single-source, stale or $1 fallback. Spot composite sources require explicit review; an unreviewed target-pool spot is not a fallback. Disable affected work and follow the [pricing recovery procedure](#configure-stop-and-recover-usd-pricing---2026-10-24); raw funded claims and explicitly approved raw custody retain separate rules. |
 | Sequencer feed replacement | `setSequencerFeed(source,expectedCodeHash,reviewHash)` after reviewing the new nonzero source | Replacement does not require the failed old feed to work. Existing recovery grace remains. No setter removes the protection by setting zero. |
 | Pool manager, token, router or optional historical hook change | Compare actual code/config/authorities to the deployment pins; stop affected work | Some source/route policies can be replaced, but immutable venue bindings cannot be patched by changing a manifest. New unsupported implementations require compatible reviewed replacement work. |
-| Contradictory pool sqrt/tick/fee observation | Unsigned contribution/route reviews and observed/manual inventory gates reject inconsistent integer slot0, malformed directional protocol fees or reviewed static-fee mismatch. Valid downward-crossing boundary ticks are preserved. | Stop the affected preparation/release review; retain sanitized block/hash/error evidence. Compare the same canonical block using a reviewed independent provider and check runtime/key pins. Do not edit the tick, relax checks or substitute latest state. Consistent fabrication still requires provider review; this validator is not authentication. [Market/input review](../reports/market-adversarial-20261026/REVIEW.md). |
-| Malformed RPC identity/JSON or ambiguous success/error | Shared read transport rejects noncanonical chain quantities, duplicate fields, nonfinite values and invalid envelopes; decoder limits become bounded sanitized failures | Preserve pending intent/index evidence, compare the same canonical block at a reviewed alternate endpoint and inspect fixed error diagnostics. Do not relax parsing, guess zero, reset a journal or resend a saved transaction. A malformed result+error is not qualified missing-block rejection. [Exact scope](../reports/system-adversarial-20261026/VERIFICATION.md). |
+| Contradictory pool sqrt/tick/fee observation | Unsigned contribution/route reviews and observed/manual inventory gates reject inconsistent integer slot0, malformed directional protocol fees or reviewed static-fee mismatch. Valid downward-crossing boundary ticks are preserved. | Stop the affected preparation/release review; retain sanitized block/hash/error evidence. Compare the same canonical block using a reviewed independent provider and check runtime/key pins. Do not edit the tick, relax checks or substitute latest state. Consistent fabrication still requires provider review; this validator is not authentication. [Market/input review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-adversarial-20261026/REVIEW.md). |
+| Malformed RPC identity/JSON or ambiguous success/error | Shared read transport rejects noncanonical chain quantities, duplicate fields, nonfinite values and invalid envelopes; decoder limits become bounded sanitized failures | Preserve pending intent/index evidence, compare the same canonical block at a reviewed alternate endpoint and inspect fixed error diagnostics. Do not relax parsing, guess zero, reset a journal or resend a saved transaction. A malformed result+error is not qualified missing-block rejection. [Exact scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/system-adversarial-20261026/VERIFICATION.md). |
 | Stalled DNS or continuously trickled RPC data | Qualify the source120s systemd main-progress watchdog with matching code/unit, systemd>=240, main notification and full cgroup SIGKILL/no-core settings | A socket timeout alone is not total elapsed time; standalone commands remain unsupervised. Rehearse all-descendant kill/lock release and exact pending-journal recovery, with no automatic resend. Do not change a running unit without authorization. [Watchdog procedure](KEEPER_RECOVERY.md#stalled-rpc-and-progress-watchdog). |
 | RPC/trace/archive outage | Use chain-checked reviewed endpoints with required hash-pinned reads and trace/receipt semantics | Never fall back to latest/unconfirmed state or a wrong chain. Serve unavailable status; retain indexes/state. |
 
@@ -3716,7 +3663,7 @@ planner or smaller exact simulations, then replan after confirmation; do not rai
 gas/fee limits or repeat a confirmed claim to make a stale review work. The direct
 single-currency fixture measured1,259,505raw gas, excluding transaction overhead.
 These are controlled-host measurements, not target-chain approval or a fixed
-recommended batch size. [Scope](../reports/exact-lp-integration-20261106/VERIFICATION.md).
+recommended batch size. [Scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/exact-lp-integration-20261106/VERIFICATION.md).
 
 Pause generally preserves claims and transfers while canonical state is operating. A frozen/retired deployment has different rules; follow lifecycle status rather than presenting a failing claim button. Failed payout tokens, blacklists or recipient callbacks may still block their claims. There is no generic admin seizure/sweep/rewrite to clear a liability. Keep actual funded balances distinct from unharvested fees and UI estimates.
 
@@ -3754,7 +3701,7 @@ allocation log. If either leg fails, the entire call reverts. Pending receipts
 must be recovered by the same hash before retry; a manual call is not silently
 adopted into the keeper's own harvest clock.
 
-Small receipts carry to20raw-unit baskets. The existing share/membership barrier assigns remaining<=19raw units to incumbent individual rewards; this is a split-dust exception, not a second harvest. Fresh7 allocated LP units are wholly assigned and claimable, including the final unit. Old6 fractional receipts keep their historical semantics. [Current LP rule](EXACT_LP_ALLOCATION.md) and [integration review](../reports/exact-lp-integration-20261106/REVIEW.md) distinguish allocated books, unallocated receipts and upstream collection rounding.
+Small receipts carry to20raw-unit baskets. The existing share/membership barrier assigns remaining<=19raw units to incumbent individual rewards; this is a split-dust exception, not a second harvest. Fresh7 allocated LP units are wholly assigned and claimable, including the final unit. Old6 fractional receipts keep their historical semantics. [Current LP rule](EXACT_LP_ALLOCATION.md) and [integration review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/exact-lp-integration-20261106/REVIEW.md) distinguish allocated books, unallocated receipts and upstream collection rounding.
 
 ### LP fee conversion and claim gas operations
 
@@ -3990,7 +3937,7 @@ handoff does not copy the source's operating policy. Governance separately calls
 `Buyback.setMaximumTradeUSD(limit,reviewHash)` to change the positive uint128
 USD18 maximum. It must not be below operatingTradeUSD; lower the operating limit
 first when shrinking. Verify MaximumTradeLimitChanged and both getters. This
-changes no ZZZ identity, revenue allocation, holder entitlement or reserve. [Evidence and limits](../reports/post-seal-controls/VERIFICATION.md).
+changes no ZZZ identity, revenue allocation, holder entitlement or reserve. [Evidence and limits](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/post-seal-controls/VERIFICATION.md).
 
 ### Coordinate token and market dependencies
 
@@ -4253,7 +4200,7 @@ completeness. Actual storage/off-host/host recovery still requires qualification
 
 #### Collection-scale history rehearsal
 
-The [controlled 1,000-NFT record](../reports/history-scale-rehearsal-20261116/REVIEW.md) checks
+The [controlled 1,000-NFT record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/history-scale-rehearsal-20261116/REVIEW.md) checks
 three same-chain epochs, 900 active/100 dormant NFTs, exact LP/royalty units,
 claims, conversions, the full 24-hour boundary, and backup/restore. It uses NEW
 synthetic databases and controlled chain observations, never your installed DBs.
@@ -4451,7 +4398,7 @@ renderer bytecode, and qualify marketplace retrieval. A previously prepared bund
 has the old appearance. Roll back the complete website release if needed, keeping
 its matching manifest; do not mix old metadata/renderer labels with a new root.
 This pre-deployment visual change adds no operator function or authority and does
-not make sealed artwork mutable. See [verification](../reports/twin-circuits/VERIFICATION.md).
+not make sealed artwork mutable. See [verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/twin-circuits/VERIFICATION.md).
 
 Artwork URI is fixed once configured: `setBaseURI` can populate an initially empty base only once before sealing. Keep the same IPFS/Arweave content available with redundant pinning; a gateway UI change does not change canonical metadata. Permissionless `refreshMetadata(tokenId)` or `refreshMetadataRange(firstOrdinal,lastOrdinal)` (maximum 50 inclusive ordinals) emits ERC4906 notifications. The optional keeper watcher can request refreshes, but marketplace caches choose when to refetch. Current LP valuation drives evolution and can fall; activation eligibility does not disappear just because artwork downgrades. Never replace unavailable prices with zero or lifetime deposits.
 
@@ -4567,7 +4514,7 @@ collects both actual legs, allocating actual ETH/ZZZ receipts80/10/5/5 once per
 asset with carried dust. Claims spend only funded liabilities; they do not merge,
 compound, burn or redistribute other holders' balances. A failed all-in-one
 replacement rolls back its closes/harvest/mint, while earlier separately mined
-policy/pause transactions remain in effect. [Lifecycle evidence](../reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
+policy/pause transactions remain in effect. [Lifecycle evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/lp-lifecycle-audit-20261102/VERIFICATION.md).
 
 The fresh internal `planReplacement`/quote ABI change requires new runtime and
 constructor pins for a reviewed deployment. It changes no operator call and
@@ -4612,9 +4559,9 @@ For the default5USD flow the pool must also admit5USD; see
 assuming a5USD action floor overrides a higher pool minimum. A separately mined
 approval may remain after a failed contribution; inspect it before asking again.
 
-The [case matrix](../reports/portfolio-long-horizon-20261102/CASE_MATRIX.md) covers
+The [case matrix](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/portfolio-long-horizon-20261102/CASE_MATRIX.md) covers
 trends, reversals, ordering, repeated one/two-leg transitions and recovery.
-[Virtual-time contract evidence](../reports/portfolio-long-horizon-20261102/VERIFICATION.md)
+[Virtual-time contract evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/portfolio-long-horizon-20261102/VERIFICATION.md)
 does not qualify live keeper cadence, browser/RPC concurrency or target gas.
 On-chain setting changes need no host restart; installing matching service/config
 still uses the controlled restart and pending-recovery procedure below.
@@ -4649,7 +4596,7 @@ restart: existing clients retain their validated endpoint snapshot. Preserve the
 same journal and resolve pending transactions/checkpoints; do not erase history
 to switch providers. Call budgets cover both direct and convenience contract
 reads. They do not replace the process/host watchdog for blocked network I/O.
-[Current shared-client review](../reports/consolidation-20261103/REVIEW.md).
+[Current shared-client review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/consolidation-20261103/REVIEW.md).
 
 Keep transaction confirmation separate from availability of the next API read.
 If the chain confirms an action but the API/prices fail for a minute, retain the
@@ -4665,7 +4612,7 @@ idle also participates. Use actual LP/idle/reserve/share balances. Router claim
 results are input-ordered raw amounts; never add unlike currencies. A failed
 claim batch is atomic, not a partial payment. Conversion/claim/import is not new
 income, and a reserved buyback allocation is not an executed burn.
-[Action/output and fault matrix](../reports/action-resilience-audit-20261102/ACTION_MATRIX.md).
+[Action/output and fault matrix](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/action-resilience-audit-20261102/ACTION_MATRIX.md).
 
 Maintenance defaults/overrides now reject unknown names. There is no
 `rebalance:false` local stop setting. Use the actual documented Access/pool/pause
@@ -4695,7 +4642,7 @@ Before adopting a source release, run
 checkout. It checks published static imports rather than allowing untracked local
 readers to hide an incomplete release. Runtime/config/dependency checks and the
 stop/reconcile/restart procedure below remain separate; this command starts no
-service and changes no journal. [Publication/lineage repair](../reports/today-audit-20261031/REVIEW.md).
+service and changes no journal. [Publication/lineage repair](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/today-audit-20261031/REVIEW.md).
 
 The read/activation service CLIs and indexer now reject duplicate JSON fields,
 nonfinite numbers and nonobject configuration before starting resources. The
@@ -4705,7 +4652,7 @@ database, pending intent or chain state is automatically repaired. Frontend file
 retain UTF-8; existing journal/indexer default encoding is unchanged. Roll out
 matching source through this runbook with pending work preserved; changed local
 source hashes are not a reason to edit a journal or claim a running deployment
-has updated. [Scoped verification](../reports/historical-reconciliation-completion-20261029/VERIFICATION.md).
+has updated. [Scoped verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/historical-reconciliation-completion-20261029/VERIFICATION.md).
 
 The heartbeat now includes `configuration_sha256`, a hash of the exact loaded
 configuration. `keeper.ops health` requires the same hash, not merely chain and
@@ -4767,7 +4714,7 @@ supported persistent-history service. Preserve evidence before any approved
 rebuild. Rollback of source does not undo an existing database or restore missing
 history. Actual crash/power-loss/Unix/off-host restore qualification stays open.
 
-[Consolidated findings and scoped verification](../reports/four-report-consolidation-20261104/VERIFICATION.md).
+[Consolidated findings and scoped verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/four-report-consolidation-20261104/VERIFICATION.md).
 
 ### Indexer anchor and ownership-history recovery
 
@@ -4889,7 +4836,7 @@ separate estimated gas and draft expiry. The wallet must refresh gas/state and
 confirm account/chain before signing. Mint checks the global/mint switches and
 preparation; claims retain their independent availability. Selected currency
 faults reject a batch; unselected faults do not excuse missing core/inventory
-checks. The [full normal claim review](../reports/full-claim-admission-20261120/REVIEW.md)
+checks. The [full normal claim review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/full-claim-admission-20261120/REVIEW.md)
 confirms the complete F6 admission path on a controlled32-NFT/65-currency graph.
 The planner now stops at the FIRST successful prefix to preserve request capacity
 for complete final validation. Smaller batches may require more transactions.
@@ -4920,7 +4867,7 @@ This service is not installed on the server by this change.
 
 ## Financial reporting and recovery
 
-This [backend correction](../reports/backend-remediation-20261026/REVIEW.md)
+This [backend correction](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/backend-remediation-20261026/REVIEW.md)
 adds no on-chain function, permission, config key, write action or service rollout.
 
 | Check / symptom | Operator procedure |
@@ -4938,7 +4885,7 @@ bounded read on a separate copy. Upgrade/rollback only matching API releases
 under the existing service runbook when separately authorized; never reset chain
 or journals. Genuine view outages may null only their metric; malformed Boolean,
 ABI, or contradictory available/value data now rejects the request. See
-[earnings operations](EARNINGS_HISTORY.md) and [167-method evidence](../reports/backend-remediation-20261026/VERIFICATION.md).
+[earnings operations](EARNINGS_HISTORY.md) and [167-method evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/backend-remediation-20261026/VERIFICATION.md).
 Production feeds/history capacity and service acceptance remain open.
 
 In accounting4/5/6, native royalty eligibility cannot be delayed by an external
@@ -4984,7 +4931,7 @@ not another contribution.
 <a id="independent-local-wallet-confirmations---2026-10-20"></a>
 
 Local busy/review/nonce handling belongs to the matching fixture's
-[runbook](LOCAL_WEBSITE.md) and [concurrency evidence](../reports/local-wallet-concurrency/VERIFICATION.md).
+[runbook](LOCAL_WEBSITE.md) and [concurrency evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/local-wallet-concurrency/VERIFICATION.md).
 Keep the serialized local signer/mutation lock. Retry only a documented rejection
 that occurred before work began, using the identical saved operation identity;
 never retry an ambiguous broadcast as a new action. Two browsers have independent
@@ -5010,9 +4957,9 @@ when the UI read fails. Mask stale amounts and disable conflicting actions; only
 the target NFT's confirmed LP/tier change may update its artwork.
 
 The known local nonce 35 incident retains its separate
-[reconciliation evidence](../reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md);
+[reconciliation evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md);
 it is not a general authorization to clean pending state. Local two-wallet manual
-acceptance is [recorded](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md).
+acceptance is [recorded](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md).
 The 10/25/100-user campaign is deferred, not passed or implicitly scheduled.
 
 ## Concurrent read and preparation services
@@ -5037,7 +4984,7 @@ no price feed; optional USD display and LP conversions have separate requirement
 
 ## Convert LP holder fees to ETH
 
-The [current maximum-state rehearsal](../reports/lp-claims-maximum-20261120/REVIEW.md)
+The [current maximum-state rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/lp-claims-maximum-20261120/REVIEW.md)
 checks same-NFT conversion and current-owner claims with1,000 activated NFTs,
 main+residual and65 royalty currencies. Keep conversion24M/full25% and claim12M
 qualification/full20%; no default changes. Sixteen conversions fit the tested
@@ -5094,7 +5041,7 @@ Future changes must preserve this distinction: what can be configured now, what 
 
 ## Reviewing an old audit recommendation before operating
 
-Start with the [current reconciliation](../reports/full-history-reconciliation-20261104/REVIEW.md)
+Start with the [current reconciliation](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/full-history-reconciliation-20261104/REVIEW.md)
 and [sole Todo](../TODO.md), then the exact current procedure/profile and deployed
 runtime. Old wording such as “current”, “complete”, outside-only,15minutes,
 creator inbox, bridge or custody recipient describes that old revision. It does

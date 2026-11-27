@@ -66,11 +66,11 @@ pool; it is not an automatic force fallback. Deposits-disabled/operations-enable
 destinations can receive resumed existing LP. Existing bucket aliases cannot be
 reassigned. The tool neither signs nor changes pause state, mode or pending work.
 After actual execution inspect the receipt and source state before preparing
-the next step. The earlier [source verification](../reports/operator-management-20261109/REVIEW.md)
-retains its injected-RPC scope. The [earlier actual local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+the next step. The earlier [source verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/operator-management-20261109/REVIEW.md)
+retains its injected-RPC scope. The [earlier actual local rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-recovery-rehearsal-20261115/REVIEW.md)
 includes a production-CLI park receipt followed by schema2 D14 recovery on the
 same newly owned chain at `da24f65`; it does not approve a live provider or
-deployment. The [current manual reference-swap fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+deployment. The [current manual reference-swap fix](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-reference-swap-fix-20261115/REVIEW.md)
 has separate source/verification evidence.
 
 ## Exact price-independent close
@@ -115,7 +115,7 @@ verify exact source/runtime pins rather than relabeling installed contracts.
 
 ## Recovery outcome and current reference-swap protection
 
-The [baseline local rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+The [baseline local rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-recovery-rehearsal-20261115/REVIEW.md)
 at `da24f65` verifies both-leg parking and Parked D14 recovery through production
 CLIs, exact padded calls and included local receipts. Parking increments
 `parkingNonce` by 1, preserves `custodyEpoch`, previous centre/rebalance time and
@@ -134,7 +134,7 @@ last compound while preserving the main and rebalance clock.
 
 Checks14 recovery still requires working financial protections. The baseline
 traces reproduced the former reference-as-swap rejection. In the
-[current source](../reports/manual-reference-swap-fix-20261115/REVIEW.md), retaining
+[current source](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-reference-swap-fix-20261115/REVIEW.md), retaining
 bit2 or4 starts a whole-operation captured scope before the first emergency
 fingerprint. Manager proves the exact caller-selected swap output/full core
 post-state before settlement and revalidates live sources, controls and callbacks
@@ -200,7 +200,7 @@ No contract can force a failed PoolManager, frozen/nontransferable token, broken
 recipient or halted chain to return assets. Parking avoids price/swap dependency,
 not venue settlement or exact-token requirements. Historical custody/native2/
 delayed-governance evidence retains its recorded source scope, including the
-[earlier pruning review](../reports/architecture-pruning-20261025/REVIEW.md).
+[earlier pruning review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/architecture-pruning-20261025/REVIEW.md).
 Use the [holder-exit guide](HOLDER_COLLECTIVE_EXIT.md) for current terminal return.
 Actual raw minima/snapshots, authority review, target-chain operating
 gas/recovery beyond the controlled local rehearsal and independent audit remain

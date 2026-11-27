@@ -1,6 +1,6 @@
 # Unsigned keeper backup and alert scheduling
 
-The [current output/storage review](../reports/keeper-efficiency-20261127/REVIEW.md) checks the exact pretty-encoded selection against64KiB before replacement, preserving the previous committed record on refusal. Source19 membership stays unchanged but updated source pins require a separately reviewed release/policy; no automatic rebind, service adoption or restart follows. The earlier [desktop-kit restart](../reports/keeper-clean-restart-20261127/REVIEW.md) and [sidecar reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md) retain their original scopes.
+The [current output/storage review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-efficiency-20261127/REVIEW.md) checks the exact pretty-encoded selection against64KiB before replacement, preserving the previous committed record on refusal. Source19 membership stays unchanged but updated source pins require a separately reviewed release/policy; no automatic rebind, service adoption or restart follows. The earlier [desktop-kit restart](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-clean-restart-20261127/REVIEW.md) and [sidecar reconstruction](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-reconstruction-20261127/REVIEW.md) retain their original scopes.
 
 The scheduler coordinates the existing exact-journal backup and alert tools.
 It never starts the keeper, signs, calls RPC, restores a journal or grants live

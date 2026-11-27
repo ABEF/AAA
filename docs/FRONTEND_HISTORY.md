@@ -63,7 +63,7 @@ all real logs. If a rebuild is independently approved, retain the original
 forensic copy and rebuild into a separate database, then verify full creation,
 predecessor and cutoff coverage before serving results. See
 [indexer recovery](INDEXER_RECOVERY.md) and the
-[scoped service review](../reports/daily-security-20261025/SERVICE_REVIEW.md).
+[scoped service review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/daily-security-20261025/SERVICE_REVIEW.md).
 These source protections do not repair an existing database or restart its service.
 
 Before replay, the reader validates all stored block ancestry and timestamp

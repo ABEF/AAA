@@ -110,4 +110,4 @@ never splice old and new chunks. For transaction recovery follow
 [the coordinator procedure](DEPLOYMENT_WEBSITE.md#local-api-wallet-rehearsal).
 Actual extension acceptance, Linux/TLS/provider operation, production pricing,
 routes, capacity and independent review remain release requirements. See
-[scoped evidence](../reports/api-chain-rehearsal/VERIFICATION.md).
+[scoped evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/api-chain-rehearsal/VERIFICATION.md).

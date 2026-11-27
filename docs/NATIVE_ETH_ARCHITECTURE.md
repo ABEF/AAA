@@ -6,7 +6,7 @@ The fresh undeployed candidate uses `Vault.ACCOUNTING_VERSION()==7`, custody5,
 direct governance2 and canonical
 `ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10`. [Profile7](POSITION_V7.md) is explicit;
 older native/wrapped deployments and journals are not upgraded. Production is
-**NOT APPROVED**. Earlier [native-port evidence](../reports/native-eth-port/VERIFICATION.md)
+**NOT APPROVED**. Earlier [native-port evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/native-eth-port/VERIFICATION.md)
 retains its original source scope.
 
 ## Asset identities and backing
@@ -94,7 +94,7 @@ chains do not acquire new payout controls from source edits; popldemo stays a
 separate simulation, public DEPLOYMENT null and browser signing Anvil-only.
 
 Current source/runtime gates, scoped offline checks and local actual-v4-core
-integration pass within their [recorded scope](../reports/optional-portfolio-20261030/VERIFICATION.md).
+integration pass within their [recorded scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/optional-portfolio-20261030/VERIFICATION.md).
 Actual feed/route/VRF qualification, authorities, OpenSea, permanent artwork,
 accounting7 service/wallet acceptance, target-chain gas and operating/receiver
 failure rehearsals plus independent review remain [open](../TODO.md). No public

@@ -98,5 +98,5 @@ source9/schema16 pins19 plus2. Local source9 read/unsigned integration exists fo
 V9. The separate [source10/V10 consumer](SOURCE10_WEBSITE_PROFILE.md) is implemented locally; actual service/site qualification and rollout remain open. The served current3 site is unchanged and public signing stays disabled.
 
 See [settlement/operator steps](ROYALTY_SETTLEMENT.md), [claim router](CLAIM_ROUTER.md),
-[window](ROYALTY_LAUNCH_WINDOW.md) and [current audit](../reports/last24h-audit-20261105/REVIEW.md).
+[window](ROYALTY_LAUNCH_WINDOW.md) and [current audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/last24h-audit-20261105/REVIEW.md).
 No existing service/site/deployment is updated by source publication.

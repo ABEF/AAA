@@ -11,8 +11,8 @@ retain their original scope. [Full procedure](REFERENCE_SWAP_EXECUTION.md).
 The current candidate retains an independent limit on oracle-relative execution
 loss **after known trading fees**, alongside the existing all-in loss controls.
 It does not discount those fees from contribution, maintenance, venue or caller
-limits. [Review](../reports/fee-impact-policy-20261028/REVIEW.md) and
-[verification](../reports/fee-impact-policy-20261028/VERIFICATION.md) record the
+limits. [Review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/fee-impact-policy-20261028/REVIEW.md) and
+[verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/fee-impact-policy-20261028/VERIFICATION.md) record the
 source scope and remaining qualification. Production is **NOT APPROVED**.
 
 Fresh source uses accounting6, maintenance3, confirmation3 and optional portfolio2.
@@ -29,7 +29,7 @@ A separate paused governance emergency capability2 may explicitly bypass chosen
 financial/timing checks; exact custody/accounting remain, but near-total economic
 loss is possible. It is not an automatic keeper fallback or API signing feature.
 Live independent sources/routes remain unqualified. [Execution policy](LP_EXECUTION_POLICY.md),
-[optional portfolio](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md), [emergency procedure](EMERGENCY_REBALANCE.md).
+[optional portfolio](OPERATOR_MANUAL.md#portfolio-management-controls), [emergency procedure](EMERGENCY_REBALANCE.md).
 
 ## Policy and scope
 
@@ -105,7 +105,7 @@ policy until inclusion. The caller's signed maximum contribution loss remains
 binding. Keeper validation likewise checks policy owner/revision without replacing
 inclusion-time checks. Implemented source-anchored telemetry and block/config-local
 read caching require matching writer/checker operating qualification; fresh
-pre-signing checks are not cached. [Evidence](../reports/practical-improvements-20261028/VERIFICATION.md).
+pre-signing checks are not cached. [Evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/practical-improvements-20261028/VERIFICATION.md).
 
 ## Optional portfolio execution
 

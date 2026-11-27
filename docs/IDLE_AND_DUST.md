@@ -27,7 +27,7 @@ liquidity. The distinct unverified late-callback fee-netting question remains
 dependency qualification: ordinary external transactions cannot interleave inside
 that atomic operation. Do not turn an unverified hostile-dependency hypothesis
 into a claim of guaranteed protection or a demonstrated outsider exploit.
-[Exact scope](../reports/daily-reconciliation-audit-20261111/contracts/REVIEW.md).
+[Exact scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/daily-reconciliation-audit-20261111/contracts/REVIEW.md).
 
 The contribution floor counts **marginal deployed LP**, not idle, old principal,
 unclaimed fees or donations. At the current 3% default, conservative $100 input
@@ -60,7 +60,7 @@ This candidate deliberately adds neither. Governance-triggered collective return
 distributes only classified principal to NFT owners, not to an operator address.
 See [holder return and recovery boundaries](HOLDER_COLLECTIVE_EXIT.md).
 
-The [harvesting audit](../reports/harvesting-audit-20261106/REVIEW.md) measures
+The [harvesting audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/harvesting-audit-20261106/REVIEW.md) measures
 current finite-unit and upstream collection rounding separately. The
 [exact-unit LP accounting7](EXACT_LP_ALLOCATION.md) connects the internal engine to claims/conversion and lossless current V10 replacement; original V9 integration evidence remains separately scoped. Every allocated unit is assigned; unallocated funds and upstream rounding remain separately classified.
 
@@ -136,7 +136,7 @@ backing, runtime and pending-journal review; never reset a journal to force work
 
 [Current execution policy](LP_EXECUTION_POLICY.md) now implements reviewed venue
 selection independently of the LP target, bounded depth-aware sizing and entrant
-isolation. [Scoped review](../reports/atomic-routing-20261028/REVIEW.md) distinguishes
+isolation. [Scoped review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/atomic-routing-20261028/REVIEW.md) distinguishes
 these source changes from real economic/route qualification. Contributions keep
 the current LP ID/ticks and preserve old fee membership/share value. Attributed
 idle can be reinvested through conditional ordinary compounding or the new
@@ -149,11 +149,11 @@ fresh fees arrive. Actual thresholds/gas remain to be qualified.
 
 ## Qualification boundary
 
-The earlier [scoped verification](../reports/liquidity-operations-20261025/VERIFICATION.md)
+The earlier [scoped verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/liquidity-operations-20261025/VERIFICATION.md)
 separates actual installed-v4 local execution from substituted feeds, tokens,
 VRF and maximum-state gas fixtures; it does not verify later capability3 timing.
 That earlier maintenance-policy evidence is historical. Current profile6
-[portfolio evidence](../reports/optional-portfolio-20261030/VERIFICATION.md) records
+[portfolio evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/optional-portfolio-20261030/VERIFICATION.md) records
 local actual-v4-core and scoped offline checks without qualifying live services.
 Real depth/ticks, dual sources, route costs,
 MEV/turnover, keeper profitability, exact-release size/gas and independent audit

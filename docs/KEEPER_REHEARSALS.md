@@ -1,24 +1,24 @@
 # Keeper service qualification and rehearsal
 
-[Current clean-root keeper restart](../reports/keeper-clean-restart-20261127/REVIEW.md) uses45 desktop-held inputs, three native operations and four stock processes, with one original local harvest and zero recovery sends in2,119/6,000 RPC. Original c826/c827 refusals and the first c828 target226 remain; fresh target2 fixes only the new-root /run mapping, without source/setup replay. The [earlier synthetic reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md), retained OS/runtime/node and production-adoption boundaries stay explicit.
+[Current clean-root keeper restart](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-clean-restart-20261127/REVIEW.md) uses45 desktop-held inputs, three native operations and four stock processes, with one original local harvest and zero recovery sends in2,119/6,000 RPC. Original c826/c827 refusals and the first c828 target226 remain; fresh target2 fixes only the new-root /run mapping, without source/setup replay. The [earlier synthetic reconstruction](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-reconstruction-20261127/REVIEW.md), retained OS/runtime/node and production-adoption boundaries stay explicit.
 
-[Scheduler/alert recovery rehearsal](../reports/keeper-sidecar-recovery-20261126/REVIEW.md) passes eight NEW methods and actual unsigned backup/verify/restore, followed by delivery of the original queued ID with its pending clock intact. Source folders remain unchanged under a separately fenced target namespace. The original c820 setup failure is retained; no old body runs. Same-host synthetic evidence does not qualify off-host possession/fencing, real channels or sustained operation.
+[Scheduler/alert recovery rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-sidecar-recovery-20261126/REVIEW.md) passes eight NEW methods and actual unsigned backup/verify/restore, followed by delivery of the original queued ID with its pending clock intact. Source folders remain unchanged under a separately fenced target namespace. The original c820 setup failure is retained; no old body runs. Same-host synthetic evidence does not qualify off-host possession/fencing, real channels or sustained operation.
 
-[Native unsigned scheduling](../reports/keeper-scheduling-20261126/REVIEW.md) completes10NEWfocused methods and eight additional native stages with explicitly short lab timings. Both original failed setup and corrected execution remain; no old passing body repeats. No public transactions or service adoption; production cadence, off-host delivery/fencing and sustained operation remain open.
+[Native unsigned scheduling](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-scheduling-20261126/REVIEW.md) completes10NEWfocused methods and eight additional native stages with explicitly short lab timings. Both original failed setup and corrected execution remain; no old passing body repeats. No public transactions or service adoption; production cadence, off-host delivery/fencing and sustained operation remain open.
 
 ## Current operating evidence
 
 | Partition | Completed finite evidence | Limit |
 | --- | --- | --- |
-| [Full-day audit](../reports/keeper-day-audit-20261126/REVIEW.md) | 18 distinct NEW methods across c81617passes and corrected c8171pass; actual FIFO and two self-SIGINT events, clocks/defaults/source changes | c816 original NONPASS retained; no old or17 green methods rerun, no chain journey, rollout or sustained approval |
-| [Keeper alerts](../reports/keeper-alerts-20261126/REVIEW.md) | 21 NEW Ubuntu methods; real private-loopback ACK/loss/timeout, stale/corrupt backup, pending grace, full64 queue progress, locks/races and redaction | One-shot only; no live scheduler/external channel, off-host or sustained approval; one health-source adapter needs matching adoption |
-| [24 November stock keeper](../reports/ubuntu-complete-20261124/REVIEW.md) | Real daemon/Cast harvest, same-journal interruption/recovery and healthy cycle | Separate history/diagnostic partitions; no full-feature/provider or sustained approval |
-| [Maintenance workers](../reports/ubuntu-keeper-blockers-20261124/REVIEW.md), [hybrid LP](../reports/ubuntu-hybrid-20261124/REVIEW.md), [key replacement](../reports/ubuntu-key-rotation-20261124/REVIEW.md) | Positive worker, one–two–one and role/recovery partitions | Original fixture, fee and logical-clock scopes remain |
-| [25 November supervisor](../reports/ubuntu-supervisor-20261125/REVIEW.md), [storage](../reports/ubuntu-storage-20261125/REVIEW.md) | Saved-hash watchdog, active-Cast manual kill and six ENOSPC/EACCES refusals | Physical durability, off-host and broader faults remain open |
-| [Ubuntu exact-backup adoption](../reports/ubuntu-backup-recovery-20261126/REVIEW.md) | c814 exact pending restore, one canonical unsigned recovery, fresh dry cycle, six independent checks and final vectors;2,353/6,000RPC | Same host; original c813 NONPASS retained, no production/second-host/provider/soak approval |
-| [Unsigned keeper backup](../reports/keeper-backup-20261126/REVIEW.md) | Exact-byte backup/verify/fresh restore, input faults, source races and private Unix modes;30 portable plus3 Ubuntu passes | Capture-age/source integrity only; no actual old-key/second-host adoption or Windows ACL qualification |
-| [26 November daemon storage](../reports/ubuntu-daemon-storage-20261126/REVIEW.md) | Actual EACCES/restart/no-live resolution/once-only recovery and healthy cycle independently reconciled;2,765/6,000RPC, one keeper transaction | Original timing NONPASS/missing final physical after-reads preserved; no replay/full planned-case pass |
-| [26 November keeper audit](../reports/keeper-full-audit-20261126/REVIEW.md) | c810 five failed starts/sixth refusal, exact interval-only repair, fresh healthy idle;1,652/6,000RPC and zero keeper-signed submissions | Financial jobs disabled; c809 original nonpass retained; its one Linux check reused without execution |
+| [Full-day audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-day-audit-20261126/REVIEW.md) | 18 distinct NEW methods across c81617passes and corrected c8171pass; actual FIFO and two self-SIGINT events, clocks/defaults/source changes | c816 original NONPASS retained; no old or17 green methods rerun, no chain journey, rollout or sustained approval |
+| [Keeper alerts](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-alerts-20261126/REVIEW.md) | 21 NEW Ubuntu methods; real private-loopback ACK/loss/timeout, stale/corrupt backup, pending grace, full64 queue progress, locks/races and redaction | One-shot only; no live scheduler/external channel, off-host or sustained approval; one health-source adapter needs matching adoption |
+| [24 November stock keeper](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-complete-20261124/REVIEW.md) | Real daemon/Cast harvest, same-journal interruption/recovery and healthy cycle | Separate history/diagnostic partitions; no full-feature/provider or sustained approval |
+| [Maintenance workers](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-keeper-blockers-20261124/REVIEW.md), [hybrid LP](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-hybrid-20261124/REVIEW.md), [key replacement](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-key-rotation-20261124/REVIEW.md) | Positive worker, one–two–one and role/recovery partitions | Original fixture, fee and logical-clock scopes remain |
+| [25 November supervisor](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-supervisor-20261125/REVIEW.md), [storage](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-storage-20261125/REVIEW.md) | Saved-hash watchdog, active-Cast manual kill and six ENOSPC/EACCES refusals | Physical durability, off-host and broader faults remain open |
+| [Ubuntu exact-backup adoption](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-backup-recovery-20261126/REVIEW.md) | c814 exact pending restore, one canonical unsigned recovery, fresh dry cycle, six independent checks and final vectors;2,353/6,000RPC | Same host; original c813 NONPASS retained, no production/second-host/provider/soak approval |
+| [Unsigned keeper backup](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-backup-20261126/REVIEW.md) | Exact-byte backup/verify/fresh restore, input faults, source races and private Unix modes;30 portable plus3 Ubuntu passes | Capture-age/source integrity only; no actual old-key/second-host adoption or Windows ACL qualification |
+| [26 November daemon storage](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-daemon-storage-20261126/REVIEW.md) | Actual EACCES/restart/no-live resolution/once-only recovery and healthy cycle independently reconciled;2,765/6,000RPC, one keeper transaction | Original timing NONPASS/missing final physical after-reads preserved; no replay/full planned-case pass |
+| [26 November keeper audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-full-audit-20261126/REVIEW.md) | c810 five failed starts/sixth refusal, exact interval-only repair, fresh healthy idle;1,652/6,000RPC and zero keeper-signed submissions | Financial jobs disabled; c809 original nonpass retained; its one Linux check reused without execution |
 
 These are separate source-bound proofs, not one combined all-feature run. Each
 record retains its own unit-count and cleanup proof; the c813/c814 groups stop
@@ -30,7 +30,7 @@ operation remain open. Source publication does not install or restart services.
 
 ## Historical 21 November attempt and focused code checks
 
-The [21 November record](../reports/ubuntu-keeper-20261121/REVIEW.md) is NOT a
+The [21 November record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-keeper-20261121/REVIEW.md) is NOT a
 completed normal-daemon rehearsal. Platform/source/namespace preparation ran,
 but the saved fork lacked new signer account/mapping reads and setup receipt
 polling raced mining. The operator redirected work to code review. No live
@@ -92,7 +92,7 @@ marketplace refresh, real server isolation, systemd lifecycle or Robinhood servi
 
 ## Current-profile process evidence
 
-The historical [17 November Q06 recovery review](../reports/q06-keeper-recovery-20261117/REVIEW.md) records
+The historical [17 November Q06 recovery review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/q06-keeper-recovery-20261117/REVIEW.md) records
 a finite accounting7 campaign on actual Linux/systemd. Read
 its actual outcome and source stage before treating any scenario as verified.
 The test-only worker uses the production keeper's HTTP decoding, runtime/version/
@@ -218,7 +218,7 @@ verified alert destination. Pausing the chat monitor did not itself stop staging
 
 Operational evidence, including the full process suite, actual systemd crash
 recovery, off-host snapshot round trip, access restrictions and website checks,
-is recorded in [the rehearsal report](../reports/keeper-rehearsal/README.md).
+is recorded in [the rehearsal report](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-rehearsal/README.md).
 Those records are historical observations, not a current health check or a
 completed production multi-day soak. Record actual dates, fixture versions and
 monitor gaps before claiming any later operating interval.

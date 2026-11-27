@@ -4,7 +4,7 @@ Current accounting7 / mint2 / ProtocolPolicy1 / Portfolio2 source candidate. **P
 NOT APPROVED.** This does not upgrade an existing deployment, worker, journal,
 website or wallet signer. [Operator procedure](OPERATOR_MANUAL.md#future-operating-settings)
 and [exact profile](POSITION_V7.md). Historical accounting6 deployments retain
-their [separate profile](POSITION_V6.md); policy implementation identity alone
+their [separate profile](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/docs/POSITION_V6.md); policy implementation identity alone
 does not upgrade their mint or canonical integration.
 
 ## What can change

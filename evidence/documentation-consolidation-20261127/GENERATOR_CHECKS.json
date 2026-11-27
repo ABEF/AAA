@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "results": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "todo",
+        "chunk_id": "e22ba5",
+        "wall_time_seconds": 0.1393871,
+        "exit_code": 0,
+        "original_token_count": 6,
+        "output": "Project Todo verified.\r\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "function_reference",
+        "chunk_id": "148d55",
+        "wall_time_seconds": 0.8380036,
+        "exit_code": 0,
+        "original_token_count": 48,
+        "output": "{\"checked\": true, \"contracts\": 40, \"functions\": 968, \"constructors\": 40, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0}\r\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "operator_reference",
+        "chunk_id": "3c33b8",
+        "wall_time_seconds": 3.36e-05,
+        "exit_code": 0,
+        "original_token_count": 57,
+        "output": "{\"contracts\": 40, \"functions\": 968, \"constructors\": 40, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 0, \"example_rows\": 1021, \"ready_for_submission\": false}\r\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "workload_inventory",
+        "chunk_id": "fae651",
+        "wall_time_seconds": 3.561961,
+        "exit_code": 0,
+        "original_token_count": 139,
+        "output": "{\"action\": \"verified\", \"counts\": {\"abi_kinds\": {\"constructor\": 40, \"fallback\": 0, \"function\": 968, \"receive\": 13}, \"abi_rows\": 1021, \"build_controls\": 4, \"callable_contracts\": 40, \"dependency_sources\": 39, \"excluded_internal_objects\": 8, \"project_sources\": 61, \"python_definitions\": 2140, \"python_files\": 191, \"solidity_bodyless_declarations\": 511, \"solidity_implemented_definitions\": 1056, \"solidity_modifiers\": 29}, \"inventory_only\": true, \"output_bytes\": 4984637, \"output_sha256\": \"59ad34dde3b76cc1886af60b9042b0af9b51d063d1eda4f69c2e504ac3677824\"}\r\n"
+      }
+    }
+  ],
+  "final_todo_after_four_summary_corrections": {
+    "status": "fulfilled",
+    "value": {
+      "name": "final_todo",
+      "chunk_id": "7c7ce0",
+      "wall_time_seconds": 0.2106492,
+      "exit_code": 0,
+      "original_token_count": 6,
+      "output": "Project Todo verified.\r\n"
+    }
+  }
+}

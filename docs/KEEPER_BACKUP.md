@@ -1,11 +1,11 @@
 # Keeper journal backup and restore preparation
 
-The [current desktop-kit stock restart](../reports/keeper-clean-restart-20261127/REVIEW.md) preserves a fresh actual known-hash journal through native backup/verify/restore, then unsigned once-only receipt accounting and a fresh dry cycle. The45-file kit excludes signers; current900-second review and all native limits remain. Existing OS/runtime and the separately retained local chain remain external dependencies; the [earlier49-file synthetic reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md) keeps its own scope.
+The [current desktop-kit stock restart](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-clean-restart-20261127/REVIEW.md) preserves a fresh actual known-hash journal through native backup/verify/restore, then unsigned once-only receipt accounting and a fresh dry cycle. The45-file kit excludes signers; current900-second review and all native limits remain. Existing OS/runtime and the separately retained local chain remain external dependencies; the [earlier49-file synthetic reconstruction](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-reconstruction-20261127/REVIEW.md) keeps its own scope.
 
 Use the [alert observer](KEEPER_ALERTS.md) to check one explicitly selected
 bundle's age and integrity against its externally retained manifest pin and
 separate original configuration. Rotation never selects the newest folder
-automatically. The [day audit](../reports/keeper-day-audit-20261126/REVIEW.md)
+automatically. The [day audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-day-audit-20261126/REVIEW.md)
 reviews the combined backup, recovery and alert paths. Current producer and
 daemon-source changes require separate reviewed adoption; preserve older
 bundles, original configurations and release pins rather than rewriting them.
@@ -203,7 +203,7 @@ daemon's full configuration, runtime and canonical admission remain separate.
 
 ## Actual Ubuntu adoption evidence
 
-The [26 November rehearsal](../reports/ubuntu-backup-recovery-20261126/REVIEW.md)
+The [26 November rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-backup-recovery-20261126/REVIEW.md)
 uses a new isolated Ubuntu runtime and real locally signed known-hash pending
 transaction. Backup/restore preserve exact bytes; the target runs only unsigned
 `--once`, with signer files inaccessible, then reaches `dry_run_v2`. Canonical

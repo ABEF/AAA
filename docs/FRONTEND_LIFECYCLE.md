@@ -99,10 +99,10 @@ cutover and operating qualification remain in the [central Todo](../TODO.md).
 
 ## Verification and operational scope
 
-The earlier [source-bound verification](../reports/frontend-lifecycle/VERIFICATION.md)
+The earlier [source-bound verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/frontend-lifecycle/VERIFICATION.md)
 records its original lifecycle/API candidate. It does not qualify later Position3,
 direct-governance or V4 changes. Current exact-LP integration is recorded in
-[its scoped review](../reports/exact-lp-integration-20261106/REVIEW.md);
+[its scoped review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/exact-lp-integration-20261106/REVIEW.md);
 no production operating approval or broad fresh regression is inferred.
 
 Every read uses EIP-1898 `requireCanonical` with one block hash. Final checks

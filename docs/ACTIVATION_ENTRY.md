@@ -68,7 +68,7 @@ confirmed wallet approval remains an approval, not activation.
 `SourceContributed` retains its event wire for history: output equals sourceAsset
 and outputAmount equals amountIn in routing3. These fields no longer imply an
 Entry conversion. [Preparation](ACTIVATION_PREPARATION.md), [routing boundaries](ACTIVATION_ENTRY.md#routing-controls),
-[current change/evidence](../reports/direct-entry-v3-20261103/REVIEW.md).
+[current change/evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/direct-entry-v3-20261103/REVIEW.md).
 
 New runtimes/configuration require review and an authorized deployment/rollout;
 no existing contract, journal, service, site or public signer is upgraded here.

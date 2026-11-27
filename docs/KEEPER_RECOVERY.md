@@ -1,8 +1,8 @@
 # Keeper outage and server recovery
 
-The [output and storage review](../reports/keeper-efficiency-20261127/REVIEW.md) adds bounded diagnostic previews and exact publication/archive bounds without changing original journals, accounting or recovery rules. Use the [output/adoption procedure](OPERATOR_MANUAL.md#keeper-output-storage-and-source-adoption); old packages require their matching original release and policy. The earlier [desktop-kit stock restart](../reports/keeper-clean-restart-20261127/REVIEW.md) keeps its once-only unsigned local-chain proof; host/signer recovery and live adoption remain open.
+The [output and storage review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-efficiency-20261127/REVIEW.md) adds bounded diagnostic previews and exact publication/archive bounds without changing original journals, accounting or recovery rules. Use the [output/adoption procedure](OPERATOR_MANUAL.md#keeper-output-storage-and-source-adoption); old packages require their matching original release and policy. The earlier [desktop-kit stock restart](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-clean-restart-20261127/REVIEW.md) keeps its once-only unsigned local-chain proof; host/signer recovery and live adoption remain open.
 
-Use the [full-day audit](../reports/keeper-day-audit-20261126/REVIEW.md) and
+Use the [full-day audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-day-audit-20261126/REVIEW.md) and
 [updated alert procedure](KEEPER_ALERTS.md) for pending-clock continuity, source
 adoption and observer temporary-file/lost-state handling. Unknown input does not
 clear an existing intent clock; an interrupt does not establish that no send
@@ -43,12 +43,12 @@ host-down notification or sustained production operation.
 
 The [one-shot alert observer](KEEPER_ALERTS.md) checks fresh health and a
 selected verified backup, retaining incident/recovery events outside the keeper
-journal. Its [21-method Ubuntu proof](../reports/keeper-alerts-20261126/REVIEW.md)
+journal. Its [21-method Ubuntu proof](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-alerts-20261126/REVIEW.md)
 does not qualify a real notification channel, off-host recovery or scheduling.
 `keeper/ops.py` changes one health-source identity; adopt matching writer/checker
 and newly reviewed backup pins separately. The desktop monitor remains paused.
 
-The [26 November keeper audit](../reports/keeper-full-audit-20261126/REVIEW.md) records current late cost-anchor checks,
+The [26 November keeper audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-full-audit-20261126/REVIEW.md) records current late cost-anchor checks,
 bounded utility capture and isolated operating verification. Historical failures,
 new source checks, reused runtime proofs and existing-server observations retain
 separate scopes. Production/adoption remains unapproved; journals and limits stay.
@@ -61,7 +61,7 @@ in its own session; stop/fence the complete reviewed service group and reconcile
 any saved nonce/hash. Matching helper-aware keeper/checker source is required.
 No health/journal/checkpoint schema or existing operating state changes.
 
-[Focused recovery/lock correction](../reports/ubuntu-keeper-20261121/REVIEW.md):
+[Focused recovery/lock correction](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-keeper-20261121/REVIEW.md):
 invalid/zero signer output preserves reloadable hashless intent; it is not proof
 that no transaction was sent. Follow exact-chain/nonce/hash reconciliation and
 never resend/delete the intent. Keeper/indexer locks now reject unsafe paths,
@@ -69,7 +69,7 @@ symlinks and nonregular files while preserving safe legacy0644 inodes. See the
 [adoption procedure](OPERATOR_MANUAL.md#keeper-lock-and-recovery-source-adoption).
 No journal schema or existing operating service is changed. That 21 November
 normal-daemon attempt did not complete. The later
-[24 November follow-through](../reports/ubuntu-complete-20261124/REVIEW.md)
+[24 November follow-through](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-complete-20261124/REVIEW.md)
 records finite stock Ubuntu daemon/Cast harvesting and same-journal recovery;
 full-feature operation, actual providers, off-host recovery and sustained
 operation remain unqualified. The historical failed attempt stays distinct.
@@ -83,7 +83,7 @@ rollout or permission to modify existing journals.
 
 Operating runbook for an **undeployed candidate; production NOT APPROVED**.
 
-The [current consolidation](../reports/consolidation-20261103/REVIEW.md) makes
+The [current consolidation](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/consolidation-20261103/REVIEW.md) makes
 maintenance validation always strict, keeping constructor-only pending-intent
 deferral explicit. Oversized override IDs fail before work. RPC clients preserve
 their reviewed endpoint snapshot; changing providers needs controlled restart
@@ -98,9 +98,9 @@ the same journal. No new signer/adoption or journal migration is implied.
 The shared RPC body progress guard closes reads that exceed attempt/request work
 between fragments; DNS/headers/in-progress reads still need socket/process/host
 containment. API isolated-worker termination is separate from keeper watchdog
-qualification. [Scoped fault evidence](../reports/action-resilience-audit-20261102/VERIFICATION.md).
+qualification. [Scoped fault evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/action-resilience-audit-20261102/VERIFICATION.md).
 Use the [rehearsal guide](KEEPER_REHEARSALS.md) for commands and evidence, the
-[keeper internal review](../reports/keeper-recovery/REVIEW.md) for its original
+[keeper internal review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-recovery/REVIEW.md) for its original
 scope, and the [central Todo](../TODO.md#task-keeper-recovery) for remaining work.
 
 Fresh confirmation3 requires explicit matching policy/helper/Strategy/Budget
@@ -313,7 +313,7 @@ do not edit health-source hashes to make an old observation pass.
 
 ### Actual daemon follow-through and earlier deadlines
 
-The [26 November c811 record](../reports/ubuntu-daemon-storage-20261126/REVIEW.md)
+The [26 November c811 record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-daemon-storage-20261126/REVIEW.md)
 independently reconciles real accepted-hash EACCES, natural exit, same-journal
 hashless restart, fenced no-live resolution and once-only canonical receipt
 accounting. The unchanged240s outer interval can wake earlier for a saved
@@ -326,7 +326,7 @@ reads were not captured. The scoped reconciliation does not invent them.
 
 ## Stalled RPC and progress watchdog
 
-The [25 November stock-daemon record](../reports/ubuntu-supervisor-20261125/REVIEW.md)
+The [25 November stock-daemon record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-supervisor-20261125/REVIEW.md)
 adds an actual unfinished chunk-framing watchdog restart and a separate active
 Cast/manual-main-kill check. Exact pending bytes and the lock inode survive;
 old groups are observed empty before replacement. Saved-hash recovery is
@@ -435,7 +435,7 @@ separate from keeper nonces, fees and retry records: reset-failed must never edi
 the journal or become an automatic retry loop. Verify same-journal recovery and
 a fresh healthy cycle; another failure requires investigation rather than repeated
 counter resets. Written instructions alone are not qualification. The isolated
-[c810 record](../reports/keeper-full-audit-20261126/REVIEW.md) verifies this one
+[c810 record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-full-audit-20261126/REVIEW.md) verifies this one
 startup-limit/interval-repair/healthy-idle flow; broader restart-storm and
 operating acceptance remain open. It authorizes no existing-service change.
 
@@ -444,7 +444,7 @@ intent and prevents launching a new signer after that observation. It does not
 authorize clearing the intent: a process killed around signing may still have
 broadcast. Fence the prior signer and reconcile exact transaction identity,
 nonce, fee review and receipts before another submission. The
-[Q06 process record](../reports/q06-keeper-recovery-20261117/REVIEW.md) now records
+[Q06 process record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/q06-keeper-recovery-20261117/REVIEW.md) now records
 finite actual Linux/systemd evidence, not installed-service or production approval.
 Its header-stall watchdog restarts once; a separate manual main-process kill
 verifies signer/descendant cleanup before recovery-only restart. A completed
@@ -461,7 +461,7 @@ Notifications carry only fixed bytes; systemd environment fields are consumed
 before signer children start. This adds no financial capability or journal
 migration. With no configured watchdog, existing one-shot/init/resolve/standalone
 behavior remains. Live code/unit deployment and real kill/recovery qualification
-are separate approvals. [Internal evidence](../reports/system-adversarial-20261026/WATCHDOG.md).
+are separate approvals. [Internal evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/system-adversarial-20261026/WATCHDOG.md).
 
 ## Fee-review upgrades and legacy pending intents
 
@@ -481,7 +481,7 @@ equality in recovery. The saved schema governs recovery even if current future
 settings differ or are invalid. The generic Ethereum helper stays unchanged;
 no mutable `collectTips` assumption or arbitrary reported fee is accepted.
 Failed transactions consume gas; reverted native value is not spent. See the
-[fee evidence](../reports/rpc-fees-20261113/fees/REVIEW.md) and
+[fee evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/rpc-fees-20261113/fees/REVIEW.md) and
 [operator procedure](OPERATOR_MANUAL.md#robinhood-rpc-fees).
 
 Before upgrading a keeper that may have pending work:
@@ -511,7 +511,7 @@ review limits. A source rollback must retain schema2 readers until every schema2
 pending is recovered; an older source cannot safely read that new review. A
 compatible upgrade can recover original schema1 unchanged. Preserve
 historical schema1 costs and discrepancies for explicit operator reconciliation,
-never edit past spending to make a new budget pass. The [internal audit and scoped checks](../reports/preproduction-audit-20261025/services/REVIEW.md)
+never edit past spending to make a new budget pass. The [internal audit and scoped checks](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/preproduction-audit-20261025/services/REVIEW.md)
 do not upgrade any running service or journal. Stage this procedure on Linux and
 the actual chain fee model before production.
 
@@ -543,7 +543,7 @@ and require top-level objects. Duplicate keys, nonfinite values and arrays/scala
 are rejected with safe diagnostics. Missing inputs remain missing; no fallback
 healthy snapshot is invented and no file is rewritten. Snapshot checksum
 consistency does not authenticate an attacker who can replace protected files.
-[Review/evidence](../reports/operational-reliability-20261029/KEEPER.md).
+[Review/evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/operational-reliability-20261029/KEEPER.md).
 
 ## Unsigned journal backup and restore preparation
 
@@ -558,7 +558,7 @@ procedure below still requires fencing and canonical reconciliation.
 
 ### Actual unsigned fresh-runtime composition
 
-[c814 evidence](../reports/ubuntu-backup-recovery-20261126/REVIEW.md) binds the
+[c814 evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-backup-recovery-20261126/REVIEW.md) binds the
 original pending journal to an exact restore, separate unchanged original
 configuration and a three-runtime-path target mapping. Stock unsigned recovery
 books one canonical receipt, then a fresh dry cycle confirms current metadata.
@@ -606,7 +606,7 @@ wallets' budgets. Retain the old history and independently reviewed recovery
 record. Dry-run and verify current keeper authority and matching pins before
 starting the separately authorized replacement service.
 
-The [isolated Ubuntu record](../reports/ubuntu-key-rotation-20261124/REVIEW.md)
+The [isolated Ubuntu record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ubuntu-key-rotation-20261124/REVIEW.md)
 verifies the revocation-first reverted-receipt branch, exact old-state recovery,
 identity refusal and a separate fresh-key protected success. A later authorization
 error in the old cycle is expected after its receipt has been correctly recovered;
@@ -652,7 +652,7 @@ records remain. Pending/global-error polling stays unchanged, and a queued clear
 does not depend on unrelated router metadata. Use the maintained
 [matching-source rollout procedure](OPERATOR_MANUAL.md#configure-rebalance-confirmation),
 not a journal reset or on-chain configuration change. No existing service was updated.
-[Scoped audit](../reports/confirmation-audit-20261104/REVIEW.md).
+[Scoped audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/confirmation-audit-20261104/REVIEW.md).
 
 Installed historical releases retain the following profile-specific schedules:
 
@@ -769,7 +769,7 @@ also rechecks existing candidates, so lost in-memory continuity cannot silently
 extend an old healthy record. Independent hourly harvesting remains available
 under its own guards. Neither this mechanism nor gap expiry detects every hidden
 movement or pause/unpause between samples. No installed service was changed.
-[Scoped implementation/evidence](../reports/practical-improvements-20261028/VERIFICATION.md).
+[Scoped implementation/evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/practical-improvements-20261028/VERIFICATION.md).
 
 ## Logs, health and fallback
 
@@ -831,7 +831,7 @@ It is an estimate, not an inclusion guarantee or permission to widen limits.
 The shipped2.5Mgas ceiling remains unqualified and unchanged. Discovery may reuse
 successful metadata only within one exact canonical block/configuration/cycle;
 failures invalidate that cache. Pre-simulation and pre-signing reads remain fresh.
-[Verification](../reports/practical-improvements-20261028/VERIFICATION.md).
+[Verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/practical-improvements-20261028/VERIFICATION.md).
 
 
 The current keeper requires both `preparationActive()` and `canonicalState()` on

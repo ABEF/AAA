@@ -1,6 +1,6 @@
 # Confirmed frontend read API
 
-[Compact wallet pages](../reports/compact-wallet-20261121/REVIEW.md) replace the
+[Compact wallet pages](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/compact-wallet-20261121/REVIEW.md) replace the
 separate-route190-read shape with64 core reads for1,000 NFTs/three currencies.
 Four-currency slices also keep the16NFT/66descriptor workload within1,024 RPC
 reads per request. Existing limits, exact accounting and all final proofs stay;
@@ -14,7 +14,7 @@ retains its original profile and evidence. Direct mint preparation is disabled
 for mint2; OpenSea eligibility is unverified. Both public configurations stay
 null, source10 never constructs the unchanged shared signer (even on Anvil),
 and served current3 poplint/popldemo, services, journals and existing Anvil8902
-are unchanged. [Verification](../reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
+are unchanged. [Verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
 not actual market/provider/VRF/OpenSea/wallet/hosting or independent acceptance.
 
 
@@ -32,7 +32,7 @@ at ingestion and replay. Valid filtered-log gaps and optional historical indices
 remain supported; consistency does not prove provider/database completeness.
 Observation also rechecks final confirmation depth and signed legacy gas-price
 agreement. Contradictory evidence is an error/unavailable amount, never guessed 0.
-See [current review](../reports/whole-project-execution-20261029/BACKEND.md).
+See [current review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-project-execution-20261029/BACKEND.md).
 
 The `frontend_api` Python service reads confirmed contract state and optional
 complete indexed history. It has no private keys, signer, broadcast method or
@@ -44,7 +44,7 @@ Fresh source uses accounting7/exact LP1, maintenance3, confirmation3 and optiona
 Its exactly two LP assets are native ETH and the pinned
 `principal_exit.currentZZZ()` identity. Registry's private ZZZ constant has no
 getter; the reader never invents one or falls back after an identity failure.
-See [actual-source correction](../reports/source9-actual-entry-20261109/REVIEW.md).
+See [actual-source correction](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/source9-actual-entry-20261109/REVIEW.md).
 Ordinary samples require the physical pool and independent reference on the same
 85%-of-centre-to-boundary threshold side in ZZZ-in-ETH price, using actual rounded
 main bounds. This threshold can be reached while the main remains active. The
@@ -58,13 +58,13 @@ A separate paused governance emergency capability2 may explicitly bypass chosen
 financial/timing checks; exact custody/accounting remain, but near-total economic
 loss is possible. It is not an automatic keeper fallback or API signing feature.
 Live independent sources/routes remain unqualified. [Execution policy](LP_EXECUTION_POLICY.md),
-[optional portfolio](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md), [emergency procedure](EMERGENCY_REBALANCE.md).
+[optional portfolio](OPERATOR_MANUAL.md#portfolio-management-controls), [emergency procedure](EMERGENCY_REBALANCE.md).
 
 ## Current deployment profile
 
 Shared contract-read shortcuts now use the same request call/expiry budget as
 direct calls, including injected transports. RPC configuration is captured at
-client construction. [Evidence and limits](../reports/consolidation-20261103/VERIFICATION.md).
+client construction. [Evidence and limits](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/consolidation-20261103/VERIFICATION.md).
 No API schema, response economics or served website changes with this hardening.
 
 The shared read-only RPC client checks response-body progress against attempt and
@@ -73,7 +73,7 @@ hard preemption of every OS/header read; API workers retain independent bounded
 process supervision. Preserve confirmed ownership/raw claims when optional USD
 pricing fails, but reject inconsistent physical backing. A read503 after a mined
 action is not evidence that the transaction failed; recover the same hash rather
-than prepare a duplicate. [Action output boundaries](../reports/action-resilience-audit-20261102/ACTION_MATRIX.md).
+than prepare a duplicate. [Action output boundaries](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/action-resilience-audit-20261102/ACTION_MATRIX.md).
 Source publication does not update the currently served older integration site.
 
 Fresh configuration uses explicit `accounting_version:7`, `custody_version:5`,
@@ -130,7 +130,7 @@ includes attributed idle/compound through the existing on-chain share valuation.
 Collection/wallet chunks reuse a verified bucket only within that request; there
 is no cross-user/latest-state cache. A missing or contradictory leg fails closed. The fresh structural hash check
 adds one same-block getter per bucket; contribution preparation reuses it and
-keeps the public portfolio payload unchanged. See the [scoped audit](../reports/residual-lifecycle-20261106/VERIFICATION.md).
+keeps the public portfolio payload unchanged. See the [scoped audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/residual-lifecycle-20261106/VERIFICATION.md).
 Desired single mode does not erase a residual awaiting atomic merging.
 
 Accounting7 uses an explicit physical-only observation for this authentication.
@@ -140,7 +140,7 @@ A reference-price outage therefore leaves confirmed ownership and funded raw
 claim balances available; LP/USD valuation can remain unavailable. Contradictory
 physical evidence still fails closed. Physical-only results carry no `allowed`,
 `status` or maintenance readiness assertion. The default keeper observation
-retains price/eligibility checks. [Regression evidence](../reports/day-audit-20261031/VERIFICATION.md).
+retains price/eligibility checks. [Regression evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/day-audit-20261031/VERIFICATION.md).
 
 Optional residual mode is disabled by default. Its approved default is half of
 the corresponding main side (`residualSideBps=5000`), with an actual tick-spacing
@@ -486,7 +486,7 @@ oldest unfinished request/epoch (awaiting randomness or ordered finalization).
 The reveal condition alone does not approve handoff. Provider funding/liveness,
 pending duration and other handoff requirements remain explicitly unverified.
 It performs no signing or finalization and deploys no watcher. See [the operator
-procedure](OPERATOR_MANUAL.md#mint-and-metadata) and [evidence](../reports/api-work-limits/VERIFICATION.md).
+procedure](OPERATOR_MANUAL.md#mint-and-metadata) and [evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/api-work-limits/VERIFICATION.md).
 
 ## Independent mint control
 
@@ -505,7 +505,7 @@ is not turned off merely because minting is paused.
 All reads use the same confirmed hash and final canonicality check; missing or
 malformed getters fail rather than assuming minting is open. Deployment pins must
 match this NFT implementation. Existing deployments without `mintPaused()` need
-a compatible service version. See [controls evidence](../reports/operator-controls/VERIFICATION.md).
+a compatible service version. See [controls evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/operator-controls/VERIFICATION.md).
 
 ## Verified wallet inventory pages
 
@@ -540,8 +540,8 @@ stop assembly. Keep data explicitly partial/unavailable and retry a new complete
 snapshot; never merge changing blocks or replace missing IDs with an empty wallet.
 Use existing admission/concurrency bounds, not an unbounded page fan-out.
 
-The [workload review](../reports/whole-workload-review-20261119/REVIEW.md) records
-13 new injected/owned-loopback methods at that source. [Current website adoption](../reports/ownership-paging-20261121/REVIEW.md) adds69 NEW focused checks, with bounded all-page assembly in source9/source10 and unchanged legacy1-3 complete reads. Actual provider latency/history and populated financial workloads remain separate. Served websites/configurations are unchanged.
+The [workload review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-workload-review-20261119/REVIEW.md) records
+13 new injected/owned-loopback methods at that source. [Current website adoption](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ownership-paging-20261121/REVIEW.md) adds69 NEW focused checks, with bounded all-page assembly in source9/source10 and unchanged legacy1-3 complete reads. Actual provider latency/history and populated financial workloads remain separate. Served websites/configurations are unchanged.
 `service.py` is part of checkpoint semantic-source identity: preserve original
 checkpoint1/2/3/review/raw DB bytes and explicitly rebuild/review/re-pin for a
 separately authorized consumer rollout. No automatic hot-edit, migration or reset.
@@ -587,7 +587,7 @@ before USD rounding and paces current-profile GETs1second apart with one active
 per origin/prefix. Infeasible currency windows remain unavailable while complete
 ownership/summary can remain usable. No age, work, admission, monetary or signing
 limit changes. See [operation](OPERATOR_MANUAL.md#complete-wallet-financial-view)
-and [evidence](../reports/compact-wallet-20261121/REVIEW.md).
+and [evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/compact-wallet-20261121/REVIEW.md).
 
 Checkpoint semantic identity changes: preserve original checkpoint/review/raw DB
 bytes and explicitly rebuild/review/re-pin before separate adoption. Source
@@ -595,7 +595,7 @@ publication upgrades no installed services or consumers.
 
 ## Earlier separate wallet financial consumer
 
-[The current source qualification](../reports/wallet-view-20261121/REVIEW.md)
+[The current source qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/wallet-view-20261121/REVIEW.md)
 adds captured input/revision/expiry guards to wallet totals and earnings and
 starts the two independent financial branches together, each with serial16-ID
 pages. Each branch requires complete matching owner/chain/NFT/block/hash/time/

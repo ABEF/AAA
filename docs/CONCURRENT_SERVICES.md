@@ -86,7 +86,7 @@ all four default workers. Shared NATs share a budget; this is not cross-host
 fairness, unique-user identification or DDoS protection. Actual deployment remains
 subject to hosting qualification.
 
-[Scoped evidence](../reports/concurrent-services/VERIFICATION.md) covers Windows
+[Scoped evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/concurrent-services/VERIFICATION.md) covers Windows
 loopback burst/admission, spawned-process isolation, timeout recovery and website
 state guards. Actual Linux hosting, complete history/trace workloads, provider
 failover, ingress policy and multi-device wallet/signing rehearsals remain under
@@ -97,7 +97,7 @@ upgraded, no paused monitor resumed, and no public transaction was submitted.
 ## Capacity qualification and historical acceptance
 
 The user reported six historical local two-wallet flows passed; see the
-[manual acceptance record](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md).
+[manual acceptance record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md).
 This report does not change operator functions, roles, configuration, limits or
 stop/restart procedures. The dedicated 10/25/100-user load campaign is deferred;
 do not run it automatically or raise worker limits as part of this decision.

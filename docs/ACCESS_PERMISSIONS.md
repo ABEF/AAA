@@ -50,7 +50,7 @@ and caller class across40 concrete contracts. The source-scoped historical
 resolves241 mutable ABI entries to effective implementations, including inherited
 ERC721 functions, across37 concrete contracts.577 reads,37 constructors and13
 native receivers are its historical counts, not current catalog totals or executed tests. The
-[review](../reports/authority-audit-20261103/REVIEW.md) records scope and limits.
+[review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/authority-audit-20261103/REVIEW.md) records scope and limits.
 
 ## Fresh versus historical profiles
 

@@ -12,12 +12,12 @@ the actual deployed PoPL bindings and inventory.
 
 ## Observed tracing candidate and scope
 
-The [current independent qualification](../reports/predeployment-qualification-20261113/rpc/REVIEW.md)
+The [current independent qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/predeployment-qualification-20261113/rpc/REVIEW.md)
 establishes chain4663 genesis from the officially listed Ethereum rollup's initial
 assertion through a separate L1 RPC. All13 existing `activation_api_v1` checks
 pass at113298933 with exact retained WETH runtime, a real discarded Approval(0)
 trace/log, canonical reads, missing-hash rejection and bounded receipts/headers.
-The original [trace/fee campaign](../reports/rpc-fees-20261113/REVIEW.md) retains
+The original [trace/fee campaign](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/rpc-fees-20261113/REVIEW.md) retains
 its earlier scope.
 
 | Reviewed public identity | Exact value |
@@ -35,13 +35,13 @@ This result invokes unchanged `keeper.probe.probe()` through a recording transpo
 paced at1.5seconds. The [exact runner source](../reports/predeployment-qualification-20261113/rpc/profile-runner.py.txt)
 is inert evidence with local paths. At that source the stock CLI had no pacing
 flag; its parsing/default cadence was not the passing network execution. The
-[current source correction](../reports/open-tasks-audit-20261113/keeper-rpc/REVIEW.md)
+[current source correction](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/open-tasks-audit-20261113/keeper-rpc/REVIEW.md)
 adds optional `--request-interval-ms`, tested with inert transport/fake clocks.
 No new public profile was run. Neither that option nor this command template
 qualifies a cadence or adopts an anonymous endpoint. Honor provider limits;
 do not rerun unchanged observations simply to obtain a green result.
 
-[Specific history/logs and tiny temporary simulation](../reports/predeployment-qualification-20261113/capacity/REVIEW.md)
+[Specific history/logs and tiny temporary simulation](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/predeployment-qualification-20261113/capacity/REVIEW.md)
 also work. Full20M/24M gas/body/response/time/rate capacity, provider plan/SLA,
 lifetime archive, complete real PoPL operation/fees and independent operating
 approval remain separate. No endpoint is installed, no allowance/transaction is

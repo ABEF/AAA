@@ -135,7 +135,7 @@ provider/market/VRF/OpenSea/fees, deployment, host operation and independent aud
 remain release gates. Source publication does not change existing Anvil state,
 wallet signer restrictions, services, websites, journals or paused monitoring.
 
-See the [source-scoped report](../reports/deployment-sequence-20261116/REVIEW.md)
+See the [source-scoped report](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/deployment-sequence-20261116/REVIEW.md)
 and the [single operator manual](OPERATOR_MANUAL.md#prepare-deployment-addresses-and-nonces).
 
 The separate [unsigned pre-seal configuration planner](PRESEAL_CONFIGURATION.md) now

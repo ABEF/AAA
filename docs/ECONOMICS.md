@@ -11,7 +11,7 @@ after exit starts. Historical deployments keep their original rules.
 direct governance2 and `ZZZ_CANONICAL_SAME_CHAIN_EXACT_LP_SEADROP_V10` retain
 the economic rights below. Historical profiles retain their own layouts and
 evidence; no existing local deployment is upgraded. See [current profile boundaries](POSITION_V7.md)
-and [pruning review](../reports/architecture-pruning-20261025/REVIEW.md).
+and [pruning review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/architecture-pruning-20261025/REVIEW.md).
 
 Governance configures contribution/conversion/maintenance loss limits within
 hard 10% ceilings; defaults are 3%/1%/3%, gas separate. Captured operations,
@@ -68,7 +68,7 @@ even though incoming liquidity increases only the main. Entry swaps can reprice
 both incumbent legs; the share issue uses repriced aggregate NAV.60/40 is a
 replacement constraint, not an individual NFT's fixed allocation or maintained
 yield target. Mixed/filled residual inventory stays valued and fee-eligible where
-physically in range. [Composed multi-day evidence](../reports/portfolio-long-horizon-20261102/VERIFICATION.md)
+physically in range. [Composed multi-day evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/portfolio-long-horizon-20261102/VERIFICATION.md)
 is scoped contract execution, not a profit forecast or live-service rehearsal.
 
 ## Collected local LP fees
@@ -103,7 +103,7 @@ Optional portfolio mode does not change NFT activation or reward weights. Enabli
 permits one residual; disabling requests a later guarded merge. Harvest both
 actual legs until replacement succeeds, combine their actual asset receipts and
 apply the fixed split once. No per-leg membership, split duplication or reward
-reset occurs. The [composed lifecycle verification](../reports/lp-lifecycle-audit-20261102/VERIFICATION.md)
+reset occurs. The [composed lifecycle verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/lp-lifecycle-audit-20261102/VERIFICATION.md)
 checks both currencies, carried split dust, partial claims and reserve conservation
 through entry, disable and merge. This is scoped execution evidence, not a
 universal proof or production approval.
@@ -128,13 +128,13 @@ see [operating schedule](OPERATIONS.md#reward-timing-and-maintenance-schedule).
 An off/failed keeper leaves funded rights and purpose reserves on-chain, but does
 not promise timely reinvestment, conversion or burn.
 
-Twenty raw units split16/2/1/1; smaller receipts carry forward. Before membership/share changes or pool movement, the remaining<=19raw units go to incumbent individual shares. This existing dust exception is distinct from allocation rounding and needs asset-specific economic review. Fresh7 exact-unit LP trees assign every ALLOCATED unit, including the finite final unit; high/low phase is not money and is never swept. Historical6 indices could retain backed fractions and remain separately interpreted. No administrator can sweep principal, reward, orphan or reserve backing. Attribute principal by summing each asset across both LP legs/idle/designated compound before USD rounding; independently rounded subtotals can differ. [Exact-unit rule](EXACT_LP_ALLOCATION.md), [integration verification](../reports/exact-lp-integration-20261106/VERIFICATION.md).
+Twenty raw units split16/2/1/1; smaller receipts carry forward. Before membership/share changes or pool movement, the remaining<=19raw units go to incumbent individual shares. This existing dust exception is distinct from allocation rounding and needs asset-specific economic review. Fresh7 exact-unit LP trees assign every ALLOCATED unit, including the finite final unit; high/low phase is not money and is never swept. Historical6 indices could retain backed fractions and remain separately interpreted. No administrator can sweep principal, reward, orphan or reserve backing. Attribute principal by summing each asset across both LP legs/idle/designated compound before USD rounding; independently rounded subtotals can differ. [Exact-unit rule](EXACT_LP_ALLOCATION.md), [integration verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/exact-lp-integration-20261106/VERIFICATION.md).
 
 Already-funded dust across local buckets is settled once before entry. Fees earned by the current contribution swap are harvested under incumbent weights before issuing new shares. Only the bound Vault allocates actual local LP proceeds; an arbitrary callback or unsolicited raw Vault prefund cannot fabricate such proceeds. Actual PoolManager donations do change fee growth and fund the normal allocation at harvest; they do not prove organic trading volume. Creator inboxes and remote intake are removed.
 
 The existing hookless native ETH/ZZZ integration target has a static 1.002% LP fee; the final launch pool is not selected. Fees actually earned by PoPL's position fund the allocation above when harvested; the separate Uniswap protocol fee is not PoPL revenue. The current candidate has no Pons creator-payment intake. No creator percentage or TVL-derived entitlement is assumed.
 
-Current [native accounting](NATIVE_ETH_ARCHITECTURE.md) keeps venue ETH as ETH throughout Vault, fee reserves and Rewards. Native holder fees accrue directly through whole-unit individual/equal-collective books; no wrapper or keeper conversion is needed for those receipts. Already-converted ETH remains an attributed balance and never becomes new fee income. ZZZ rewards still need a cheaper qualified route under the **default 1% loss cap, governed up to 10%, gas separate**; the integration target's dated approximately 1.101% combined fee does not qualify that full conversion at reference prices. An explicitly configured v3/WETH conversion retains its wrapper dependency. Typed hookless static-fee v4 conversion is implemented; actual route/feed qualification remains open. Earlier [native-port evidence](../reports/native-eth-port/VERIFICATION.md) retains its source scope and does not verify later accounting V3 changes.
+Current [native accounting](NATIVE_ETH_ARCHITECTURE.md) keeps venue ETH as ETH throughout Vault, fee reserves and Rewards. Native holder fees accrue directly through whole-unit individual/equal-collective books; no wrapper or keeper conversion is needed for those receipts. Already-converted ETH remains an attributed balance and never becomes new fee income. ZZZ rewards still need a cheaper qualified route under the **default 1% loss cap, governed up to 10%, gas separate**; the integration target's dated approximately 1.101% combined fee does not qualify that full conversion at reference prices. An explicitly configured v3/WETH conversion retains its wrapper dependency. Typed hookless static-fee v4 conversion is implemented; actual route/feed qualification remains open. Earlier [native-port evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/native-eth-port/VERIFICATION.md) retains its source scope and does not verify later accounting V3 changes.
 
 The old bridge/pair execution stack, external-custodian exits and remote-fee
 intake are removed. Historical profiles retain their original ledgers and

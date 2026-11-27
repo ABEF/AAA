@@ -1,5 +1,0 @@
-# Actual Oracle/feed callback boundary
-
-One NEW composite method passes against all four adopted production-source changes. It executes both ETH→ZZZ and ZZZ→ETH swaps through the actual reference venue. For each direction, five deliberate callback changes (ETH round, disable/restore source kind, independent market movement, gas revision, unplanned selected-market trade) reject atomically, preserve balances/allowances/fees/controls and allow a fresh unchanged operation to succeed. The actual v4 core executes; Access/feed/Permit2/adversarial-token seams remain controlled.
-
-All compiled metadata dependencies match the captured source closure (raw or explicitly recorded CRLF-to-LF compiler normalization); production sources, original configuration and four protected dirty files remain stable. Only this new method was selected, not inherited old tests. Its aggregate59.6M testmethod gas is not a holder transaction or20M qualification; each scenario is a separate test-host operation. Exact full Entry cost is recorded separately.

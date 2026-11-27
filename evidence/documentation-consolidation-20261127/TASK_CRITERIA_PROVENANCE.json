@@ -1,0 +1,674 @@
+{
+  "schema": 1,
+  "kind": "task_criteria_distillation_provenance",
+  "baseline": "fdd599c7698d0e1c0709a4a8b50130e5557ba508",
+  "original_full_criteria": "https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/docs/project-todo.json",
+  "scope": "83 stable task IDs/statuses retained; four summaries corrected and dead hrefs repaired. Current clauses plus owning guides retain normative requirements; this is not a formal semantic-equivalence proof of all1091 historic transcript entries.",
+  "criteria_hash_encoding": "SHA256 of UTF-8 json.dumps(acceptance,ensure_ascii=False,separators=(comma,colon)); original hashes retain their recorded source convention.",
+  "tasks": [
+    {
+      "id": "lp-only-simplification",
+      "original_criteria_count": 10,
+      "original_criteria_sha256": "8a6e1e7dbc813345538eb91cee1d9ce7c9625dd7379cb29fe636da6b2a9319e1",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "1cae2495a6b26be7dff39fd5b5795e75c50cb9fd9ef814925424bba90bd024cd",
+      "current_owner": "docs/SIMPLIFIED_RELEASE.md"
+    },
+    {
+      "id": "immediate-governance",
+      "original_criteria_count": 2,
+      "original_criteria_sha256": "dd47641de5a7d895039cf836e35cc43db6638c6dce86e23b44777fdef271fd29",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "d190183ad0ce9a89f064a5c25e01fb4c11caa6cfeb7b17516c4cae7b8d05c3f7",
+      "current_owner": "docs/GOVERNANCE.md"
+    },
+    {
+      "id": "operator-stop-controls",
+      "original_criteria_count": 7,
+      "original_criteria_sha256": "c2e9328cc856d388e2e2750e48e6cc32a574fd88717739bfad6fecc283acc425",
+      "current_clause_count": 6,
+      "current_criteria_sha256": "e90904a8573441df36b1f200324ccbe259a57a410cd68ba315ffb9eb103615f7",
+      "current_owner": "docs/OPERATOR_MANUAL.md#stop-controls"
+    },
+    {
+      "id": "price-security",
+      "original_criteria_count": 9,
+      "original_criteria_sha256": "f01e9f64987d83a6c69207c57fb5ba12b0546cffa6abca634b9d246c70c96957",
+      "current_clause_count": 5,
+      "current_criteria_sha256": "bc5677703096cb3054ace140b8d228c618333689d7c985c18c01ccaa07cf3826",
+      "current_owner": "docs/PRICE_SECURITY.md"
+    },
+    {
+      "id": "nft-lifecycle",
+      "original_criteria_count": 0,
+      "original_criteria_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "current_clause_count": 0,
+      "current_criteria_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "current_owner": "src/ZZZVault.sol"
+    },
+    {
+      "id": "reward-ledgers",
+      "original_criteria_count": 8,
+      "original_criteria_sha256": "e07b3b0e29a4bef1a545521efad62223f0d92f87ba05ea0bf7be96b57b6750b9",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "4ddd1b113bb22e3aff14cded4694927fb0c8f007261f25194b747f4ec3daf2d4",
+      "current_owner": "docs/ECONOMICS.md"
+    },
+    {
+      "id": "lp-exact-unit-allocation",
+      "original_criteria_count": 6,
+      "original_criteria_sha256": "094cb4a73497d3fe8be1c1d2224d2379e0d413e66c82990680a54e2bf98cf8c8",
+      "current_clause_count": 5,
+      "current_criteria_sha256": "adfaa569a9b31c148f8bb54fdb18758e74fc9a90281d0e16a299f871ba945698",
+      "current_owner": "docs/EXACT_LP_ALLOCATION.md"
+    },
+    {
+      "id": "lp-eth-settlement",
+      "original_criteria_count": 17,
+      "original_criteria_sha256": "f935a5422e150eee10a5ffb04aa01c2b9fadd7015f393a516e0b6cd1ed7ddf09",
+      "current_clause_count": 6,
+      "current_criteria_sha256": "cdfe774a1f9fbb86d114ea75f9c83e997a1754db8d66e852c1a1800a410b8d52",
+      "current_owner": "docs/LP_ETH_SETTLEMENT.md"
+    },
+    {
+      "id": "royalty-eth-settlement",
+      "original_criteria_count": 29,
+      "original_criteria_sha256": "b62302c29e65b412180534e297f8a4f15c6f8d6afea29ad408950ef4c015893f",
+      "current_clause_count": 7,
+      "current_criteria_sha256": "6a1970f82fa5f7b05b42dddfdd665e9ac9d99e78e95b7b16fa5cf0bb74fce1b8",
+      "current_owner": "docs/ROYALTY_SETTLEMENT.md"
+    },
+    {
+      "id": "shared-custody",
+      "original_criteria_count": 4,
+      "original_criteria_sha256": "540cc89cb9557ed46fbf062bc03e52d2c686843ce2c0d3549237b1c0c21f413c",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "4a68d2de3c6a3daf4005bc18ca452ee6d503c6f8784fc3c358429f35a6d361f0",
+      "current_owner": "docs/ARCHITECTURE.md"
+    },
+    {
+      "id": "pons-qualification",
+      "original_criteria_count": 12,
+      "original_criteria_sha256": "ad47a277071038af793463c184a376f5269bed836ecced9e9827a5283c2d0c28",
+      "current_clause_count": 5,
+      "current_criteria_sha256": "eda062d4ab243d7db2d58c158da0cdc5816b9669c16f6f502addf694eaf8dd60",
+      "current_owner": "docs/POOL_SELECTION.md"
+    },
+    {
+      "id": "activation-assets",
+      "original_criteria_count": 21,
+      "original_criteria_sha256": "e4e530aa20ee4e629a00de0bfd5b6ef59eb662775ae2f457a7d272cc84c4db69",
+      "current_clause_count": 6,
+      "current_criteria_sha256": "7f408a1a30922cb693b0fd6641df4bf2ec740f87e291ef6ea82d84100b9a1302",
+      "current_owner": "docs/ACTIVATION_ENTRY.md"
+    },
+    {
+      "id": "fair-draw",
+      "original_criteria_count": 9,
+      "original_criteria_sha256": "f87ec15172c99d1e9a0f12ca069a910dae54bfd29872c5eb44874d9708b951e9",
+      "current_clause_count": 5,
+      "current_criteria_sha256": "5c83087863ed3cf5031a06a1786bae8aef7904cdaf376040262f52441f8f8140",
+      "current_owner": "docs/NFT_METADATA.md#random-reveal"
+    },
+    {
+      "id": "custody-composition",
+      "original_criteria_count": 10,
+      "original_criteria_sha256": "1f6be6d93e638156aacde9f89a2d01738133a78faef7b60a055db1f3ffbf4287",
+      "current_clause_count": 5,
+      "current_criteria_sha256": "5ca11b56f44ed52e9f2d87b31626fab1989441cc774a32dcc4b13460c89dc23b",
+      "current_owner": "docs/HOLDER_COLLECTIVE_EXIT.md"
+    },
+    {
+      "id": "opensea-mint",
+      "original_criteria_count": 10,
+      "original_criteria_sha256": "fd92c79183d070ca235ee2528e71456e23ea7bf6facdff513e146cb04955b1b4",
+      "current_clause_count": 7,
+      "current_criteria_sha256": "c0759e4ab987dbfde7b04fc07bacbc3bc625bbb491e2c72e7fa7eff9bc102c6f",
+      "current_owner": "docs/OPENSEA_MINT.md"
+    },
+    {
+      "id": "native-custody-recovery",
+      "original_criteria_count": 5,
+      "original_criteria_sha256": "a96433a0a2e8a1673e54431be59f717e0c540473dffc2afa0c3f01f4a231e9db",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "4f76240a712047e77d720aa782612375903211a52d6d37598c43f66cf6176dd5",
+      "current_owner": "docs/NATIVE_ETH_ARCHITECTURE.md"
+    },
+    {
+      "id": "post-seal-configuration",
+      "original_criteria_count": 11,
+      "original_criteria_sha256": "7fe7a37fc7f1b205d2a990c2b645ffc9de20f5cca2e3b2074fcd9308412ec5f7",
+      "current_clause_count": 7,
+      "current_criteria_sha256": "ccf5fa47d90f3e994c802d4b281f1546e55a57f68908ae0094939d2a9eb3bf75",
+      "current_owner": "docs/POST_SEAL_POLICY.md#configuration-boundary"
+    },
+    {
+      "id": "typed-v4-conversion",
+      "original_criteria_count": 2,
+      "original_criteria_sha256": "39cc809a9cd83e7e251467ccfd59f610a7d0de1ff8bd15b09a4f9c81f501a4b2",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "9047339b905266903edad1e6786993a94aab3701d0ed40545f8b04919240cb72",
+      "current_owner": "docs/TYPED_V4_ROUTES.md"
+    },
+    {
+      "id": "governed-loss-limits",
+      "original_criteria_count": 4,
+      "original_criteria_sha256": "d0feb6b36dd7b08466ed964e0e58c7698a58e7d3b51579765684c8282bdde20c",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "b2516720016397fdb2a02b1044833aa5ed02f370cb16ed3f66fcc508081b23d1",
+      "current_owner": "docs/EXECUTION_LOSS_POLICY.md"
+    },
+    {
+      "id": "reviewed-contribution-policy",
+      "original_criteria_count": 7,
+      "original_criteria_sha256": "dd9d47732c1ebb4af505a5421c899fa542bcc0c3adb78a843bb13d7ac3ca2827",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "c3c06212747bcca5c526ca3155a5cc30f195d50f1c92d0ed9e94459250d72678",
+      "current_owner": "docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding"
+    },
+    {
+      "id": "liquidity-placement-idle",
+      "original_criteria_count": 9,
+      "original_criteria_sha256": "f405923bebcff1a98cb421362bda960d18ed173338afaa8a08f652431dc02607",
+      "current_clause_count": 5,
+      "current_criteria_sha256": "2fede134b320b950de81fdd2250f99872c5b037b6b6988ac1f8145e69e46cc7b",
+      "current_owner": "docs/IDLE_AND_DUST.md"
+    },
+    {
+      "id": "adaptive-range-policy",
+      "original_criteria_count": 5,
+      "original_criteria_sha256": "a83deb002f1889f84ae96a71b490e90adbe8e51a729fd65a64c5289546b3eb42",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "f88072c49bbcf28163da9777200fd6387a2a1c39bee45d4457f423d2514eaad6",
+      "current_owner": "docs/RANGE_POLICY_UPDATES.md"
+    },
+    {
+      "id": "callable-reference",
+      "original_criteria_count": 10,
+      "original_criteria_sha256": "e2bc63a52c00461e8b5105a0d1b36f742c354d38b1a3586cadbedec088d3ff11",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "f7de273ea3d8da9c281d398a1abe4ebca87a85ef24e525de64e355f12cd82f58",
+      "current_owner": "docs/CONTRACT_FUNCTIONS.md"
+    },
+    {
+      "id": "lp-execution-routing",
+      "original_criteria_count": 25,
+      "original_criteria_sha256": "08a786de451d0652d71975681776635e18ed143ea3e35b7f52b1aaecf05abafa",
+      "current_clause_count": 7,
+      "current_criteria_sha256": "b439cff230a0a7aa0f3da6357728752a1ed674ddefb49cdcb9e645fd946c2e7f",
+      "current_owner": "docs/LP_EXECUTION_POLICY.md"
+    },
+    {
+      "id": "manual-reference-swap-proof",
+      "original_criteria_count": 4,
+      "original_criteria_sha256": "63b016a82b46cedea80fbc0a90a43e4d2064883fc6ff5b0f00a9dda1ba812226",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "7a33e034f07ddd501e50034a2918f0b8ef0a4064950b71db613b268eacaeb8d1",
+      "current_owner": "docs/REFERENCE_SWAP_EXECUTION.md"
+    },
+    {
+      "id": "rebalance-confirmation-buffer",
+      "original_criteria_count": 8,
+      "original_criteria_sha256": "52b8d33ce903c751f09c1858c36459ff598ce5b4927dbd533bff27f759d89c58",
+      "current_clause_count": 5,
+      "current_criteria_sha256": "d82a02d61ca65476eb7c8316893a60dd74e512bc1517c42573e3fabf15177190",
+      "current_owner": "docs/LP_EXECUTION_POLICY.md#requested-rebalance-confirmation-buffer"
+    },
+    {
+      "id": "manual-emergency-rebalance",
+      "original_criteria_count": 7,
+      "original_criteria_sha256": "23061f623c464f5914441990e720b0bd567dfd61cf6d2b05326962b580678a8c",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "221dba5655d0f27f4306ba8d0485deedec44dbe26c082e614918e840f0c99703",
+      "current_owner": "docs/EMERGENCY_REBALANCE.md"
+    },
+    {
+      "id": "passive-inventory",
+      "original_criteria_count": 15,
+      "original_criteria_sha256": "1b2be4d72eb736d3368dd04a2a15405fb7913aa446ff20cac633af1c5bdfc571",
+      "current_clause_count": 6,
+      "current_criteria_sha256": "347c464807341e4b4fc46148ca1853d7e6e9cd5e656c9c3a092b507e677db11d",
+      "current_owner": "docs/OPERATOR_MANUAL.md#portfolio-management-controls"
+    },
+    {
+      "id": "royalty-factory-gas",
+      "original_criteria_count": 1,
+      "original_criteria_sha256": "d129f730dedb1f70b74b4715c6093d75b17076b35af7b4b1740e6c4e09380043",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "8a4316b84a422d4441524db197d56427ef069c9f5848b71682cc857376b304dd",
+      "current_owner": "docs/FACTORY_CODE_STORAGE.md"
+    },
+    {
+      "id": "pool-spot-price-source",
+      "original_criteria_count": 4,
+      "original_criteria_sha256": "14a10ae78d3a4423fe15bd40d4bf9038985a13ad218fd66ff19a957f74bd9382",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "ffc5391a2b925fde24d17090e2a9703805a7c831bcbaee661cbc3b0e3f34347d",
+      "current_owner": "docs/POOL_SPOT_PRICE_SOURCE.md"
+    },
+    {
+      "id": "read-api",
+      "original_criteria_count": 25,
+      "original_criteria_sha256": "c4428f4a567e00e6c5275ee24481d17f811ea45823138ddc63067fa31d7a7027",
+      "current_clause_count": 7,
+      "current_criteria_sha256": "6141d5d6e0b1bfd24479c2df0b0bc873bdb2624c1e13b8d2d4b049013738ccdb",
+      "current_owner": "docs/FRONTEND_LINEAGE.md"
+    },
+    {
+      "id": "royalty-reporting",
+      "original_criteria_count": 6,
+      "original_criteria_sha256": "2def139f2529ea3db137042a77cf985d6ea4a50ed1231d3632fdc560170185a5",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "5f7e9bee57d5ca828b1ff40ac382f12decdc4cdf84179cc0f11b7f20cc68f901",
+      "current_owner": "docs/ROYALTY_REPORTING.md"
+    },
+    {
+      "id": "unsigned-actions",
+      "original_criteria_count": 6,
+      "original_criteria_sha256": "6197e89c070bb162114dbfb774d4c035d57f9b96010769daf6e43129e68ea941",
+      "current_clause_count": 5,
+      "current_criteria_sha256": "d5655772fe30de2316927ea7d970e4a6b5eb385e47d59bd916c0f65865fe59f7",
+      "current_owner": "docs/FRONTEND_TRANSACTIONS.md"
+    },
+    {
+      "id": "activation-quotes",
+      "original_criteria_count": 32,
+      "original_criteria_sha256": "35680904401a9187e8c0d3f845852830e244a5c35967feafe2e5b6112960edcf",
+      "current_clause_count": 7,
+      "current_criteria_sha256": "628502e32d74213b8dcbe3b71f49491477067a64c32bcc2a5aee65d767cdb254",
+      "current_owner": "docs/ACTIVATION_PREPARATION.md"
+    },
+    {
+      "id": "financial-history",
+      "original_criteria_count": 41,
+      "original_criteria_sha256": "609caba25df408be54cae7308f6dcbf50ea4e7a328eececbc9160717b54fb2ad",
+      "current_clause_count": 8,
+      "current_criteria_sha256": "07040645ba0c6c32cf5906d80e53dce9f4d061bfd0e1a275b3e33fd760894323",
+      "current_owner": "docs/EARNINGS_HISTORY.md"
+    },
+    {
+      "id": "api-client-admission",
+      "original_criteria_count": 6,
+      "original_criteria_sha256": "be8291553d2fcba2e7d152f479ec7a250979d75559cecc23891e4cab6600acba",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "3be2c171ff8b4950eb21810c6824920c6d7164ea05f2d0a242f00413933d7815",
+      "current_owner": "docs/API_INGRESS.md"
+    },
+    {
+      "id": "host-services",
+      "original_criteria_count": 40,
+      "original_criteria_sha256": "baf98a3d5e6d56c8b9f3f88caa554e30ff07029b2672b4280232f7a62265b28f",
+      "current_clause_count": 8,
+      "current_criteria_sha256": "b878708ea83c2b5cd80013fe5295800058d16bcf33702ccdae4c197d81f554b9",
+      "current_owner": "docs/FRONTEND_API.md#local-operation-and-verification"
+    },
+    {
+      "id": "holder-preflight",
+      "original_criteria_count": 2,
+      "original_criteria_sha256": "0443fe367a25a309bf6cbaa3529ce0e0aaa252ac5be76bfb914914f9faa879fa",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "4fda46fb08c38deb7cdb0df6173cd615cfe3e19ef3f801b895429d6294410201",
+      "current_owner": "docs/HOLDER_PREFLIGHT.md"
+    },
+    {
+      "id": "native-production-preflight",
+      "original_criteria_count": 22,
+      "original_criteria_sha256": "cf9a783f5a0516cd5c89c24c6f26f712c0b71c025e01f450a497c16f7922f7f1",
+      "current_clause_count": 6,
+      "current_criteria_sha256": "d89e632d8d66a2fbaa55b1a3a72489bf512063749e5f4e0ac8e3a69ad08f0544",
+      "current_owner": "docs/PRODUCTION_PREFLIGHT.md"
+    },
+    {
+      "id": "operation-review",
+      "original_criteria_count": 26,
+      "original_criteria_sha256": "99edb6f9da20a8aac9dd94209f42290b79de721db0d6e0912870c46f2ee69bc0",
+      "current_clause_count": 7,
+      "current_criteria_sha256": "3378acebc07332b3aeee96e02a5e14754f23fd5d89b35c52e3824773b63cf015",
+      "current_owner": "docs/KEEPER_COORDINATION.md#read-only-operation-review"
+    },
+    {
+      "id": "manual-recovery-gas-rehearsal",
+      "original_criteria_count": 4,
+      "original_criteria_sha256": "b27dc31722ee7e9d3c9cb468c83b75483c7c1a13bca29823128ce70fafde906a",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "375ee03a613c3c94bb85d525289306aa14be483d703324095851ef2a0124ee96",
+      "current_owner": "docs/OPERATOR_MANUAL.md#local-manual-recovery-rehearsal"
+    },
+    {
+      "id": "manual-lp-diagnostics",
+      "original_criteria_count": 5,
+      "original_criteria_sha256": "7eef060868a0ef1f9b3c38925e93e3cfed340d0e40cacecb7685ad83960aa5fd",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "a870b29f6140e192ef24eaa1307d8f4e03ce9fbc1b7d8b212cfb9ce35f7fcdc5",
+      "current_owner": "docs/MANUAL_LP_PREPARATION.md#manual-lp-failure-diagnostics"
+    },
+    {
+      "id": "parked-emergency-preparation",
+      "original_criteria_count": 4,
+      "original_criteria_sha256": "1d475f49e5235be421a1689dfcf16fad4b9e073586d4d1b069f0ac7025fe223c",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "504333bf8992480019960526ba680b2a554c923f909e32ea04d16e1a1233eaec",
+      "current_owner": "docs/MANUAL_LP_PREPARATION.md#parked-emergency-recovery-explicit-schema2"
+    },
+    {
+      "id": "operator-management-preparation",
+      "original_criteria_count": 3,
+      "original_criteria_sha256": "11eb894abe250d0af94ffa9baa8614821995bac0890740b28e308a4837273b4d",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "5d5ca76920594613b1c5f199a254268be25a290ed31453d8aa1b1601fb018e23",
+      "current_owner": "docs/MANUAL_LP_PREPARATION.md"
+    },
+    {
+      "id": "claim-batch-planner",
+      "original_criteria_count": 3,
+      "original_criteria_sha256": "bfbfe93e0b755776febf06b634cec7db941dc2c9632b8d0867c08a3b7c9042bb",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "73393af87fcb1820809ab53eb0c4d70856111024e03268f73e420426532b4180",
+      "current_owner": "docs/CLAIM_PLANNING.md"
+    },
+    {
+      "id": "preview",
+      "original_criteria_count": 0,
+      "original_criteria_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "current_clause_count": 0,
+      "current_criteria_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "current_owner": "docs/NFT_METADATA.md#fixed-visual-inventory"
+    },
+    {
+      "id": "wallet",
+      "original_criteria_count": 47,
+      "original_criteria_sha256": "c37933003f05889cc3792f0d25d352a60b1745ae96c3fe52f6b5814a733e849d",
+      "current_clause_count": 8,
+      "current_criteria_sha256": "80e97f7fa1535130eb40002f6bfeb2a4f048ae4d71ab67535f09be49b98e879d",
+      "current_owner": "docs/BROWSER_WALLET.md"
+    },
+    {
+      "id": "portfolio",
+      "original_criteria_count": 27,
+      "original_criteria_sha256": "5f313fdf1555f1fbf18bbb48e852cb9492b02384a84d891b88737906ea027c6d",
+      "current_clause_count": 6,
+      "current_criteria_sha256": "83438646d4f7fd4b649a2d000964494bb174276dcc916904353595dcdad4484e",
+      "current_owner": "docs/FRONTEND_API.md#implemented-endpoint"
+    },
+    {
+      "id": "transaction-ui",
+      "original_criteria_count": 27,
+      "original_criteria_sha256": "d45b34f9efb0f0c6d251acb25d2ed43757dc563de811bee0a61204878ba5f3c4",
+      "current_clause_count": 8,
+      "current_criteria_sha256": "cc43158d2f6b33faf602517091eeac8ba39d9047d8ab2c661567ccb9fbe9b17f",
+      "current_owner": "docs/CLAIM_ROUTER.md"
+    },
+    {
+      "id": "live-history-ui",
+      "original_criteria_count": 12,
+      "original_criteria_sha256": "b2bb30de3c20c2239f43d53e63accec972dea061c63ad0ffc92723b916f3958e",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "44b821bca97ce0fb85fa02d88b8cad165221627eb5c0b3cc25b025f8c2b580ce",
+      "current_owner": "docs/EARNINGS_HISTORY.md"
+    },
+    {
+      "id": "purchase-rights",
+      "original_criteria_count": 1,
+      "original_criteria_sha256": "4af9046112240f74ba9d506b62aac1319452b009e75e30b90724d7b84aa8cd74",
+      "current_clause_count": 1,
+      "current_criteria_sha256": "5d9828616ff7314bd71f95f8d4b5268178c9dfe73b0a9d92d934e6a9dd9f9bb2",
+      "current_owner": "docs/SITE_ENVIRONMENTS.md#decisions-and-remaining-qualification"
+    },
+    {
+      "id": "creator-zzz-price",
+      "original_criteria_count": 9,
+      "original_criteria_sha256": "5fa5f138e106288e8f4fb54a6d89126faf6f0a277ab1e60552fe979f30f08eff",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "c34bfbf6fca4a0d23687ca9d50fd19f4cf085be616ef83bdc96a6a8ee6edcbf3",
+      "current_owner": "docs/PRODUCTION_SERVICES.md#dependency-inventory"
+    },
+    {
+      "id": "creator-market-controls",
+      "original_criteria_count": 7,
+      "original_criteria_sha256": "e7391a4a73e4b580f9bedcd0b8a0e232ba32818eb23610a264f8c9f128b47ce7",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "1972fbb9d1ae959fb1eba77514e2ef2f1a3c43141a524eb172b52e1424b60c1f",
+      "current_owner": "docs/POOL_SELECTION.md"
+    },
+    {
+      "id": "creator-input-liquidity",
+      "original_criteria_count": 5,
+      "original_criteria_sha256": "d63c04a41bfa8ba6dea59ea6ece1a5096db5f97f1661662b1c991722780574ec",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "bb2e91192e5e77782bd061119999318793afab6068fa252117501a5b7e4ba6f5",
+      "current_owner": "docs/ACTIVATION_ENTRY.md"
+    },
+    {
+      "id": "local-verification",
+      "original_criteria_count": 25,
+      "original_criteria_sha256": "7c978b614dd56013ed62a938fbb9aced5301e422d1b9b2e5a7ac276dfb4ceacd",
+      "current_clause_count": 5,
+      "current_criteria_sha256": "b43f1238a9bbbd17ee9bd2c678baac6a3eba323355a3e5d7c91e23e084b09cea",
+      "current_owner": "reports/CURRENT_REVIEW.md"
+    },
+    {
+      "id": "activation-gas-six-cases",
+      "original_criteria_count": 4,
+      "original_criteria_sha256": "e3f5f0a47570f0fff6d0e730e719f945207f4568974d32c192f97bf3570b11ee",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "1fb6ed6068dc2e5ab3e28cb02faee46e5bf0fd8f07eb97fd904c6c1d19657207",
+      "current_owner": "reports/CURRENT_REVIEW.md"
+    },
+    {
+      "id": "mainnet-fork",
+      "original_criteria_count": 11,
+      "original_criteria_sha256": "8e2a4141aad3d706ba1290fab011db47148fc30df10f3641705759dadb277839",
+      "current_clause_count": 5,
+      "current_criteria_sha256": "b30e2fecf81517ace592dcc9d96007a3db397bd2a9107067373daad85bec6ad8",
+      "current_owner": "reports/CURRENT_REVIEW.md"
+    },
+    {
+      "id": "testnet-rehearsal",
+      "original_criteria_count": 6,
+      "original_criteria_sha256": "79f49bf763034cd98a0dbb5be952ab9bdc860b9cff1e3af70c94cfdbe84d2220",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "c2ffde48b177f33d663c23d0925bf3af6dd58711ebd85aea90f3ef346d3c0782",
+      "current_owner": "docs/RELEASE_CHECKLIST.md#required-testing-layers"
+    },
+    {
+      "id": "audit-release",
+      "original_criteria_count": 38,
+      "original_criteria_sha256": "6ed1fc4e54af143982b637ed108db669699abb23c71dad44515c23c922ee8130",
+      "current_clause_count": 6,
+      "current_criteria_sha256": "1fba3757f8e460e26f9e31f4c401b5703d464e10acfb8997515946cdc44ce27b",
+      "current_owner": "docs/RELEASE_CHECKLIST.md"
+    },
+    {
+      "id": "economic-rights-audit",
+      "original_criteria_count": 0,
+      "original_criteria_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "current_clause_count": 0,
+      "current_criteria_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "current_owner": "reports/CURRENT_REVIEW.md"
+    },
+    {
+      "id": "local-dollar-rehearsal",
+      "original_criteria_count": 0,
+      "original_criteria_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "current_clause_count": 0,
+      "current_criteria_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "current_owner": "docs/ONE_DOLLAR_REHEARSAL.md"
+    },
+    {
+      "id": "local-browser-stack",
+      "original_criteria_count": 5,
+      "original_criteria_sha256": "7b69b3dfa04a856e6c49461ae2306ba7291b702a5a792cdbd57139c9e60c4365",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "42153f129ccdd879d528eca0aa67dd2e3876eccf5e991d02e0f54882d28e913f",
+      "current_owner": "docs/LOCAL_TEST_STACK.md"
+    },
+    {
+      "id": "capacity-campaign",
+      "original_criteria_count": 3,
+      "original_criteria_sha256": "8c0d6146adbcdd4f438404c4f7b46fd7f6e2e6e8547eca3cefc6a730d75476b7",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "4984d4cb9c57c690f3adf066f0fde127d99b7aa35dd7172db9820e0551429da4",
+      "current_owner": "reports/CURRENT_REVIEW.md"
+    },
+    {
+      "id": "mainnet-rehearsal-retirement",
+      "original_criteria_count": 5,
+      "original_criteria_sha256": "928212a8c2820cb9c4e9ee5304df983b45e665391cccf4e759eff01b1760e7b7",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "4cd0aee542cc89096f83b2170cdb2aacba5242be4d9ba65813b69c83dbcc192b",
+      "current_owner": "docs/POST_SEAL_POLICY.md#testing-with-real-funds-on-robinhood"
+    },
+    {
+      "id": "security-governance",
+      "original_criteria_count": 14,
+      "original_criteria_sha256": "a0605c4125c6be516ddc20ccd125e5ed5f962f352a9b5bcf91c39410da29fdd6",
+      "current_clause_count": 7,
+      "current_criteria_sha256": "1e7581ec92a1efdab15d8b95001101e26c0a4a247dfdb83af960289b1b2a41e5",
+      "current_owner": "docs/SECURITY_AUDIT_PLAN.md#1-governance-permissions-and-sealing"
+    },
+    {
+      "id": "security-share-accounting",
+      "original_criteria_count": 7,
+      "original_criteria_sha256": "bbbda504c16e6d1da2bd6aa9b7b2021a1ca46fbdbc0b608a3b4e899c1672a492",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "38c9e4d7794b754b9834c8731c3d3b4be9b41a593f1c678a10d4ea004e4f3845",
+      "current_owner": "docs/SECURITY_AUDIT_PLAN.md#2-shared-lp-accounting-and-economic-manipulation"
+    },
+    {
+      "id": "security-ownership-rewards",
+      "original_criteria_count": 11,
+      "original_criteria_sha256": "88c9e535281cf7c3e4acb4f7cb14b019471783de0d110d13abde5ecaa37d769a",
+      "current_clause_count": 6,
+      "current_criteria_sha256": "aa490e91ed40201c739e9b2231de154a91fbe4e0c3fd2bdcbadc033b3764f6be",
+      "current_owner": "docs/SECURITY_AUDIT_PLAN.md#3-nft-ownership-and-reward-distribution"
+    },
+    {
+      "id": "security-strategy",
+      "original_criteria_count": 17,
+      "original_criteria_sha256": "2388fab7b54e14fbaaca38c979a1dab91a4d7d519ebf118f1e4d5c25848889fb",
+      "current_clause_count": 6,
+      "current_criteria_sha256": "9bed0380b4124c84066b5fc3a51e53064d717d9a6f87891bac893d1f2c3c80b4",
+      "current_owner": "docs/SECURITY_AUDIT_PLAN.md#4-oracle-keeper-and-strategy-vulnerabilities"
+    },
+    {
+      "id": "security-keeper-manipulation",
+      "original_criteria_count": 15,
+      "original_criteria_sha256": "17f0d534113a10ac5a0d0f57f6299935ee6967de912ab2674131ee2eb5815926",
+      "current_clause_count": 6,
+      "current_criteria_sha256": "64cd47896729c64b463923f2ba58d275424aeb4a9ec36459bb3b1dc80955abf0",
+      "current_owner": "docs/SECURITY_AUDIT_PLAN.md#keeper-originated-manipulation"
+    },
+    {
+      "id": "security-external-manipulation",
+      "original_criteria_count": 15,
+      "original_criteria_sha256": "72ea7d85c765f16849505494b1eb0b538fcbc5649355a7805277ac7b9cd65bef",
+      "current_clause_count": 6,
+      "current_criteria_sha256": "a58946eac6c6503cb22a8dbb3421eb309b27bb9748ade4592fb5aeff6b659ae7",
+      "current_owner": "docs/SECURITY_AUDIT_PLAN.md#outside-actor-manipulation"
+    },
+    {
+      "id": "security-dependencies",
+      "original_criteria_count": 11,
+      "original_criteria_sha256": "ad2e973b36be778d6b71e7b2935316fc516d9e3af185b7a52e78f083ae0f75cd",
+      "current_clause_count": 6,
+      "current_criteria_sha256": "242ed1fbfcd24b052a43d092f3bce0cf95fd90c91cb114c2bbcfd8f6946be69c",
+      "current_owner": "docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting"
+    },
+    {
+      "id": "security-chain-recovery",
+      "original_criteria_count": 14,
+      "original_criteria_sha256": "3df569272bc304764ce242486fd80e23900ce04c76fcf002e4f4569a3cae5415",
+      "current_clause_count": 7,
+      "current_criteria_sha256": "00876bd5564a01c1a90a89506cf6e3fa4aae86fc1e5f05fffacbb268f5d8acbf",
+      "current_owner": "docs/CANONICAL_HANDOFF.md"
+    },
+    {
+      "id": "security-integration",
+      "original_criteria_count": 32,
+      "original_criteria_sha256": "930086dadf9a0abaca849c4a24030fcb7265b919ba7b1f1f5c75ade2d3bf2677",
+      "current_clause_count": 6,
+      "current_criteria_sha256": "52ff078c102897d9c2bead0e6c507d1809f252ab72fda5c4432c139c573ab32e",
+      "current_owner": "docs/SECURITY_AUDIT_PLAN.md#7-cross-contract-and-infrastructure-vulnerabilities"
+    },
+    {
+      "id": "historical-findings",
+      "original_criteria_count": 15,
+      "original_criteria_sha256": "98e7a3fbfee05195ff9e0cca0cd8473ac6f4232d88cadb7919675d364c565afa",
+      "current_clause_count": 5,
+      "current_criteria_sha256": "d6d0b0915e0d53a71904716d295b70cdb0d27dc998404d7ad613016aaab887ed",
+      "current_owner": "reports/CURRENT_REVIEW.md"
+    },
+    {
+      "id": "authorities-prices",
+      "original_criteria_count": 8,
+      "original_criteria_sha256": "59b34ac3d833910dbb0cdf0227d60a27282571b78f2f393e876c08ac7bd88f34",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "4b19fa8aac045369045f64637917087e5e9ab7620bf24dacd0fd6edbe48a74fa",
+      "current_owner": "docs/DEPLOYMENT_ADDRESSES.md"
+    },
+    {
+      "id": "dual-price-qualification",
+      "original_criteria_count": 20,
+      "original_criteria_sha256": "c5b69441ebe7555128a18ebd197d1b30a98614c0acae0cef51845ad4554d4551",
+      "current_clause_count": 6,
+      "current_criteria_sha256": "52b0ceb0312f7bcbc21dd0294ca73985f0d8348541c42e897f1291a6a3e48de0",
+      "current_owner": "docs/PRICE_SECURITY.md"
+    },
+    {
+      "id": "metadata-ops",
+      "original_criteria_count": 19,
+      "original_criteria_sha256": "31f1de552920fed40989a692626dcd9408bcd452452e3b76f6675bd7ce91ce0c",
+      "current_clause_count": 6,
+      "current_criteria_sha256": "aba96666e8e8c83399f06394c2c9503e04f16f918f8c17df0b2ddce0bf27dd39",
+      "current_owner": "docs/ARTWORK_PUBLICATION.md"
+    },
+    {
+      "id": "keeper-guardrails",
+      "original_criteria_count": 76,
+      "original_criteria_sha256": "ae6b83e438f50747513f5442698b4020b912e21fff78d66b86383f17fed50ef5",
+      "current_clause_count": 8,
+      "current_criteria_sha256": "60831c9fb5aa08ca1d6517f3e8ed4317543383f857a25c22999b3d3fa02d6f9d",
+      "current_owner": "docs/KEEPER_RECOVERY.md"
+    },
+    {
+      "id": "keeper-recovery",
+      "original_criteria_count": 43,
+      "original_criteria_sha256": "904f7a0bbec07483299973d3eb037277af6ae38b9d1ec9336d27eb51d0e97cd2",
+      "current_clause_count": 8,
+      "current_criteria_sha256": "8633ed7cf5d3dd3f5d67eb827d326b155f40f571f7edccc1c8b24ce99cf3ad8f",
+      "current_owner": "docs/KEEPER_REHEARSALS.md"
+    },
+    {
+      "id": "asset-liveness-dust",
+      "original_criteria_count": 10,
+      "original_criteria_sha256": "70bdc73528f45078d15f5e8377b6e5f00382f0ed30a8d1584623b6e349bae3db",
+      "current_clause_count": 4,
+      "current_criteria_sha256": "cd6436e8f32afe5901664bcbb78d58b6d889990954e886272241b46eb4481f02",
+      "current_owner": "docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting"
+    },
+    {
+      "id": "deployment-initcode",
+      "original_criteria_count": 30,
+      "original_criteria_sha256": "c045f2e0eb42e70d6ce5ef094fc6c508d747d240cd2adee2653678b088e55457",
+      "current_clause_count": 6,
+      "current_criteria_sha256": "8986fd8949b1468b68f2c6c94e9f83f7f84ff1a88e1283cba5c90bdc0ad43145",
+      "current_owner": "docs/DEPLOYMENT_PREPARATION.md"
+    },
+    {
+      "id": "migration-framework",
+      "original_criteria_count": 4,
+      "original_criteria_sha256": "bf82e3db33a992c4ae4d7c6fc63b892dc60b098e4e26cc0382682408519c548b",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "3ff65dc36c9d0ef3187f0a7007e2863c04d7048dab3d569b52fde84a08dcda93",
+      "current_owner": "docs/GOVERNED_CUSTODY_HANDOFF.md"
+    },
+    {
+      "id": "destination-slots",
+      "original_criteria_count": 2,
+      "original_criteria_sha256": "1f736f15c4fc9f60fae5777561d27704fb66dc6cb88d48025cd646ba100c40d0",
+      "current_clause_count": 3,
+      "current_criteria_sha256": "1c8b21bc301b3ddbfa2900179d384b0b67a890f9e3f3061a770d87836915f051",
+      "current_owner": "docs/GOVERNED_CUSTODY_HANDOFF.md"
+    }
+  ]
+}

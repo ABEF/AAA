@@ -1,6 +1,6 @@
 # Offline deployment preparation
 
-The [current F6 construction rehearsal](../reports/f6-construction-20261120/REVIEW.md)
+The [current F6 construction rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/f6-construction-20261120/REVIEW.md)
 verifies all25CREATE/19binding transactions,39instances,112binding/state assertions
 and172additional defaults with real normal Access/Registry. Its separate unsealed
 control fixture verifies35permission calls. Full target release arguments, real
@@ -25,7 +25,7 @@ are refused; the planner does not install packages or fetch replacement evidence
 ## Select the exact reviewed build
 
 The default trusted build is **`activation-final-six-20261118`**, using the accepted
-normal compiler family and fresh Factory6/allocation2 immutable Royalty bytes. Exact logical LP/royalty rights and canonicalV10 wire records remain unchanged. Private LP carry uses a MAX128 sentinel/full256-bit spill; royalty books use223 compact coefficient bits/full256-bit spill and16-bit bounded status fields. Pricing Basis/marks/list share the transaction-only execution scope and clear explicitly per operation, without an extra operator step. Chain/URI, artwork-root, reservation identity, source/control and financial guards remain. See the [current review](../reports/activation-final-six-20261118/REVIEW.md).
+normal compiler family and fresh Factory6/allocation2 immutable Royalty bytes. Exact logical LP/royalty rights and canonicalV10 wire records remain unchanged. Private LP carry uses a MAX128 sentinel/full256-bit spill; royalty books use223 compact coefficient bits/full256-bit spill and16-bit bounded status fields. Pricing Basis/marks/list share the transaction-only execution scope and clear explicitly per operation, without an extra operator step. Chain/URI, artwork-root, reservation identity, source/control and financial guards remain. See the [current review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-final-six-20261118/REVIEW.md).
 Input `profile` stays `schema17/mint2/V10/execution1/LP3`;
 the distinct build ID authenticates exact bytes. Output `build_profile` and
 `accepted_build.profile` record it. Unknown IDs, mixed artifacts or changed
@@ -47,7 +47,7 @@ After a future contract change, review a new exact closed compiler/source family
 and extend the trusted registry deliberately. Never rewrite existing family pins,
 copy local addresses into production inventories or install evidence-supplied
 hashes as the trust root. The current build retains48normal size gates and the
-original compiler settings. AccessController full initcode is48,580bytes, leaving572bytes below49,152. Size admission does not verify constructors, bindings, target fees or deployment readiness. Earlier [17November source evidence](../reports/test-seal-deep-review-20261117/REVIEW.md) and construction captures retain their exact original scope; no historical gas is refreshed by selecting a new build.
+original compiler settings. AccessController full initcode is48,580bytes, leaving572bytes below49,152. Size admission does not verify constructors, bindings, target fees or deployment readiness. Earlier [17November source evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/test-seal-deep-review-20261117/REVIEW.md) and construction captures retain their exact original scope; no historical gas is refreshed by selecting a new build.
 
 ## Inputs and outputs
 
@@ -188,7 +188,7 @@ or extra gas to add again. The intended run has 25 creation transactions and
 
 ### Current F6 evidence and supplementary checks
 
-The [20November F6 record](../reports/f6-construction-20261120/REVIEW.md) runs the
+The [20November F6 record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/f6-construction-20261120/REVIEW.md) runs the
 maintained graph unchanged against current normal objects, with no compiler run.
 The worst padded NFT creation is14,214,479/32M;44transactions use144,113,280 raw
 gas in total. These are controlled local measurements, not target ETH/USD fees.
@@ -268,13 +268,13 @@ not production choices. Output includes the process/genesis identity, dependenci
 source pins, 44 transaction records, 25 CREATE traces, 39 instance proofs, binding
 reads, a plan reconciled to actual local addresses and shutdown evidence.
 
-The [first source-bound rehearsal](../reports/local-deployment-rehearsal-20261115/REVIEW.md)
+The [first source-bound rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/local-deployment-rehearsal-20261115/REVIEW.md)
 completed all 44 transactions. The largest was NFT construction: 11,337,831 gas
 used, with a 14,172,289 padded limit. Total receipt gas was 141,382,621 across many
 blocks, not one transaction or block. These are controlled local measurements,
 not reusable production transaction limits or ETH cost estimates. That run used
 the historical manual-reference family. Five later metadata objects changed;
-the [historical selective metadata2 rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md) verified those five changed constructors and required children locally.
+the [historical selective metadata2 rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/metadata2-rehearsal-20261116/REVIEW.md) verified those five changed constructors and required children locally.
 AccessController changed again in the17November family; the earlier receipts
 do not measure that new constructor or qualify its deployment gas.
 Final public release construction/dependencies and actual target fees remain
@@ -316,11 +316,11 @@ On failure, preserve the output and receipts and start a new owned chain/output
 after correcting the specific cause. Do not resend into an unknown process or
 try to resume a partial rehearsal. Shutdown terminates only the child this run
 created; it never kills Anvil by name or administers the existing node. The
-[source-scoped report](../reports/local-deployment-rehearsal-20261115/REVIEW.md)
+[source-scoped report](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/local-deployment-rehearsal-20261115/REVIEW.md)
 records actual receipts, gas, verification and remaining qualifications.
 ## Selective metadata2 local evidence
 
-The [historical metadata2 selective rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md)
+The [historical metadata2 selective rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/metadata2-rehearsal-20261116/REVIEW.md)
 executed only its five changed top-level normal constructors: AccessController,
 NFTMetadata, Migration, NFT and NFTCanonical. Seven necessary constructor-created
 children yield 12 real instances; three Access module bindings and 63 expected

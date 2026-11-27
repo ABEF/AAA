@@ -43,6 +43,10 @@ it includes no excluded file contents. Untracked paths are not inventoried.
 The exact artwork catalogue/generator inputs, static analyzer configuration and
 fixed Keccak test vectors are included. The fixed vector JSON under `reports/`
 is a required test fixture, not a copied historical qualification report.
+Schema4 also admits exactly `reports/CURRENT_REVIEW.md`, so the single public
+assessment accompanies its reviewed source. Other report narratives remain
+excluded; schema1–3 keep their original admission and archive semantics.
+
 The two exact callable-reference JSON inputs and generated Markdown are also
 included. If their generator is present, omitting any of those frozen inputs
 blocks export; unrelated/private documentation JSON remains outside the allowlist.

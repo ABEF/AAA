@@ -12,7 +12,7 @@ prices or routes, and preparation never broadcasts a transaction.
 
 ## Full-wallet freshness and read admission
 
-[The new wallet-view qualification](../reports/wallet-view-20261121/REVIEW.md)
+[The new wallet-view qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/wallet-view-20261121/REVIEW.md)
 confirms a default single-client capacity conflict:1,000 holdings need at least
 190 protocol/ownership/summary/earnings API reads before card requests. With the
 unchanged one-read/second burst12 policy, the earliest last read is178seconds;
@@ -163,7 +163,7 @@ python3 scripts/rehearse-api-ingress.py --nginx /path/to/nginx --output /externa
 The new output directory must be outside the repository. The tool adapts only
 ports and filesystem locations, validates the real includes, tests the actual HTTP
 boundary, preserves hashes/results, and shuts down its own services. See
-[scoped evidence](../reports/api-admission/VERIFICATION.md). This HTTP/Windows run
+[scoped evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/api-admission/VERIFICATION.md). This HTTP/Windows run
 does not qualify production TLS, Linux hosting, RPC load or external alerts.
 
 Directive semantics were checked against the official Nginx

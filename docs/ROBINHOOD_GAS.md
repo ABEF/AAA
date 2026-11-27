@@ -1,13 +1,13 @@
 # Robinhood gas and RPC qualification
 
-[Current manual reference-venue measurements](../reports/manual-reference-swap-fix-20261115/REVIEW.md) use the fixed
+[Current manual reference-venue measurements](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-reference-swap-fix-20261115/REVIEW.md) use the fixed
 source and actual local CLI/receipts. Worst exact25% padded manual gas16,315,867/24M;
 this supersedes the earlier non-reference manual row only for these controlled
 new-source cases. Keep12M defaults, full padding and fee/caller limits. These
 Anvil31337 execution measurements do not quote complete Robinhood4663 fees or
 approve provider, maximum workload, configuration adoption or deployment.
 
-The [isolated manual C/D rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md) adds actual local
+The [isolated manual C/D rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-recovery-rehearsal-20261115/REVIEW.md) adds actual local
 governance receipts with full25% padding. These are execution-gas measurements
 on Anvil31337, not Robinhood4663 complete-fee quotes or provider admission.
 
@@ -25,7 +25,7 @@ unchanged12M default would not admit the full padded Active C/D calls. This
 rehearsal neither raises defaults nor approves any production fee ceiling.
 
 
-The [latest external qualification](../reports/predeployment-qualification-20261113/REVIEW.md)
+The [latest external qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/predeployment-qualification-20261113/REVIEW.md)
 now proves independently derived genesis and all13 existing RPC checks through
 a paced helper call. Specific historical state/logs and tiny code-only override
 simulation work. Full-work provider caps/plan, real financial inputs, exact current
@@ -36,7 +36,7 @@ This is an operator review procedure, not a deployment or provider-adoption inst
 
 ## Current evidence
 
-The [current RPC/fee review](../reports/rpc-fees-20261113/REVIEW.md) finds a positive
+The [current RPC/fee review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/rpc-fees-20261113/REVIEW.md) finds a positive
 tracing witness at the documented public Pinax endpoint
 `https://robinhood.rpc.pinax.network`, chain4663. A discarded `approve(0)` call
 returns the actual expected Approval log through unchanged `callTracer/withLog`
@@ -51,7 +51,7 @@ ordinary receipts. Posting fees are nonzero; earlier zero snapshots were not a
 permanent waiver. PoPL itself is undeployed: these component observations do
 not supply complete mainnet PoPL quotes or approve operator spending limits.
 
-The [earlier read evidence](../reports/gas-feasibility-20261111/network/REVIEW.md)
+The [earlier read evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/gas-feasibility-20261111/network/REVIEW.md)
 establishes32M execution parameters despite the synthetic `1 << 50` header.
 BlockVectra's public tier has a900-block history limit and rejects hash-state/
 tracing; Daybreak accepts cheap hash calls but lacks tracing. Their failures
@@ -111,9 +111,9 @@ and maintenance policies separate. Website `limits.gas` must equal the configure
 activation ceiling exactly, even when the confirmed block imposes a smaller
 effective cap. Null fee approvals and unsigned profiles are not deployable policy.
 
-The [earlier provider review](../reports/gas-profiles-20261113/network/REVIEW.md)
+The [earlier provider review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/gas-profiles-20261113/network/REVIEW.md)
 retains the Daybreak/BlockVectra scope. The later
-[Pinax witness and fee observations](../reports/rpc-fees-20261113/REVIEW.md) add
+[Pinax witness and fee observations](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/rpc-fees-20261113/REVIEW.md) add
 actual trace logs and fee-component evidence, without turning the earlier local
 20M/24M estimates into complete target-chain quotes. Never estimate an empty
 mainnet account at a recorded local Entry address and call that a PoPL result.

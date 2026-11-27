@@ -1,6 +1,6 @@
 # Gas-aware unsigned claim planning
 
-[Current full-normal evidence](../reports/full-claim-admission-20261120/REVIEW.md)
+[Current full-normal evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/full-claim-admission-20261120/REVIEW.md)
 uses the normal Projection with real F6 Access/Registry and all26 API pins.
 A32-entry late-currency failure exhausted1,024 calls after healthy prefixes.
 Planning now stops at its FIRST successful prefix, then performs the same full
@@ -9,7 +9,7 @@ optimal packing is not promised. Every remaining selection stays explicit.
 Current16 claims pay under12M/full20% using885 reads; remaining review uses653.
 The previous1,000-NFT fixture/admission seam retains its original scope.
 
-[Current maximum-state evidence](../reports/lp-claims-maximum-20261120/REVIEW.md)
+[Current maximum-state evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/lp-claims-maximum-20261120/REVIEW.md)
 adds cold actual F6 claims and planner checks, with an explicit full deployment-
 admission seam. Eight unsettled LP-ETH entries fit12M/full20%;16 require13,656,959
 padded and refuse. Eight converted-direct ETH entries need1,479,617 padded in the
@@ -17,7 +17,7 @@ tested state. Entry count is never gas approval. The new planner proof cache
 reuses successful runtime verification only within the exact same canonical
 request/block/target/pin; all mutable and final checks remain fresh.
 
-The [current1000-NFT claim stress](../reports/launch-workload-20261117/claims/REVIEW.md) includes16 ERC20 royalty currencies plus ETH and four LP accounts. A19-entry pending mixed selection and32 LP entries refuse12M atomically; smaller selected batches preserve exact payments and failed-currency recovery. Stored19-entry body success is not a universal count or RPC/fee approval. Keep the planner's fresh exact simulation and existing limits; later same-test recovery chunks are functional evidence, not independent cold transaction estimates.
+The [current1000-NFT claim stress](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/launch-workload-20261117/claims/REVIEW.md) includes16 ERC20 royalty currencies plus ETH and four LP accounts. A19-entry pending mixed selection and32 LP entries refuse12M atomically; smaller selected batches preserve exact payments and failed-currency recovery. Stored19-entry body success is not a universal count or RPC/fee approval. Keep the planner's fresh exact simulation and existing limits; later same-test recovery chunks are functional evidence, not independent cold transaction estimates.
 
 **Mint-profile boundary:** backend source implements explicit opt-in
 `mint_integration_version:2` on accounting7 for V10 reads and owned reward claims.
@@ -49,7 +49,7 @@ both LP currencies in a1,000-minted/900-active fixture; this is NOT an approved
 smaller prefixes, publish only a fresh successful draft and replan the remainder
 after confirmation. A direct single-currency cold claim measured1,259,505raw gas
 in its explicit fixture. Neither measurement fixes the size of future batches;
-see [source/gas evidence](../reports/exact-lp-integration-20261106/VERIFICATION.md).
+see [source/gas evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/exact-lp-integration-20261106/VERIFICATION.md).
 
 The same controlled cold fixture's8entries (four NFTs/all four buckets) measured
 8,819,431raw gas. It fits that test's12M budget, but is not universal8-entry
@@ -157,7 +157,7 @@ Owners, claimable/wallet balances, lifecycle, simulations, estimates, fee prices
 heads and canonicality checks are not cached. No cache is retained across users,
 requests or blocks.
 
-The [11November follow-up](../reports/daily-reconciliation-audit-20261111/backend/REVIEW.md)
+The [11November follow-up](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/daily-reconciliation-audit-20261111/backend/REVIEW.md)
 adds only those two immutable selectors to the existing request-local allowlist.
 One measured fresh-profile selection/trial/final composition drops their reads
 from18 to6 while preserving the same18-unit payout. Live scope, source revision,

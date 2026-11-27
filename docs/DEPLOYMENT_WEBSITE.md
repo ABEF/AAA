@@ -7,7 +7,7 @@ retains its original profile and evidence. Direct mint preparation is disabled
 for mint2; OpenSea eligibility is unverified. Both public configurations stay
 null, source10 never constructs the unchanged shared signer (even on Anvil),
 and served current3 poplint/popldemo, services, journals and existing Anvil8902
-are unchanged. [Verification](../reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
+are unchanged. [Verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
 not actual market/provider/VRF/OpenSea/wallet/hosting or independent acceptance.
 
 
@@ -53,7 +53,7 @@ Fresh7 earnings use exact LP events/getters and optionally reviewed checkpoint2;
 checkpoint1 stays historical6-only. These are backend source boundaries, not a
 new served browser manifest or qualified production service.
 
-See [verification](../reports/deployment-adapter/VERIFICATION.md),
+See [verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/deployment-adapter/VERIFICATION.md),
 [API hosting](API_INGRESS.md), [read API](FRONTEND_API.md),
 [activation preparation](ACTIVATION_PREPARATION.md) and
 [mint/claim preparation](FRONTEND_TRANSACTIONS.md).
@@ -98,7 +98,7 @@ Current-profile GETs start at least one second apart through a shared per-origin
 API-prefix gate, with one active request, at most 32 queued and no automatic retry.
 Absent capability retains explicit earlier ownership/totals/earnings wires; unknown
 capability or a failed advertised compact read never silently falls back. The
-[controlled compact-wallet record](../reports/compact-wallet-20261121/REVIEW.md)
+[controlled compact-wallet record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/compact-wallet-20261121/REVIEW.md)
 needs 64 protocol/compact reads for 1,000 NFTs/three descriptors, or 80 including eight
 cards and their earnings. It does not qualify actual full-normal F6/V10, provider,
 hosting or elapsed-time freshness. Very large NFT/currency cross-products can leave
@@ -243,7 +243,7 @@ this change does not restart, reset or reconfigure it.
 Speed-up/cancel replacement-hash discovery is still open: do not clear the original
 journal or silently accept a different hash. Preserve evidence for operator review.
 Actual MetaMask/Rabby acceptance, real API hosting, routes, pricing, fees and
-production capacity still require qualification. [Focused evidence](../reports/deployment-local-wallet/VERIFICATION.md)
+production capacity still require qualification. [Focused evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/deployment-local-wallet/VERIFICATION.md)
 uses mocked providers and real Python response fixtures; it is not a live-chain test.
 
 The implementation follows the [EIP-1193 provider/account-event boundary](https://eips.ethereum.org/EIPS/eip-1193)
@@ -267,7 +267,7 @@ a disposable development chain; only after separately reconciling pending sends
 should its documented local activity/nonce reset be considered. That reset does
 not cancel a signed transaction on a node. Public-wallet cancellation/replacement
 reconciliation is not implemented here. See
-[scoped diagnosis and evidence](../reports/browser-wallet/PENDING_NONCE.md).
+[scoped diagnosis and evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/browser-wallet/PENDING_NONCE.md).
 
 ## Actual local API integration
 

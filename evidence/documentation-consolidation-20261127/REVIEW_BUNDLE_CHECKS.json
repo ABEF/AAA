@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "kind": "four_NEW_exact_current_report_bundle_admission_methods",
+  "ok": true,
+  "tests_run": 4,
+  "method_ids": [
+    "tests_python.test_review_bundle_current_report.ReviewBundleCurrentReportTests.test_exact_current_report_is_admitted_only_in_schema4",
+    "tests_python.test_review_bundle_current_report.ReviewBundleCurrentReportTests.test_legacy_verifiers_reject_report_even_with_valid_member_and_manifest_hashes",
+    "tests_python.test_review_bundle_current_report.ReviewBundleCurrentReportTests.test_schema4_archive_preserves_exact_public_report_bytes_without_approval",
+    "tests_python.test_review_bundle_current_report.ReviewBundleCurrentReportTests.test_unrelated_reports_and_prefix_lookalikes_remain_excluded"
+  ],
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "actual_test_body_calls": [
+    [
+      "test_review_bundle_current_report.py",
+      "test_exact_current_report_is_admitted_only_in_schema4"
+    ],
+    [
+      "test_review_bundle_current_report.py",
+      "test_legacy_verifiers_reject_report_even_with_valid_member_and_manifest_hashes"
+    ],
+    [
+      "test_review_bundle_current_report.py",
+      "test_schema4_archive_preserves_exact_public_report_bytes_without_approval"
+    ],
+    [
+      "test_review_bundle_current_report.py",
+      "test_unrelated_reports_and_prefix_lookalikes_remain_excluded"
+    ]
+  ],
+  "old_test_bodies_run": 0,
+  "source_before": {
+    "zzz_ops/review_bundle.py": {
+      "bytes": 35191,
+      "sha256": "2c6458bafdb075a3d783c96453b17318ae962c9307624c11d9f8c692810d78ff"
+    },
+    "tests_python/test_review_bundle_current_report.py": {
+      "bytes": 3127,
+      "sha256": "4a4e8da96e23697c66b9dd9bcdedad78c1f2cd194d0bf53ff46909425e2bdce0"
+    }
+  },
+  "source_after": {
+    "zzz_ops/review_bundle.py": {
+      "bytes": 35191,
+      "sha256": "2c6458bafdb075a3d783c96453b17318ae962c9307624c11d9f8c692810d78ff"
+    },
+    "tests_python/test_review_bundle_current_report.py": {
+      "bytes": 3127,
+      "sha256": "4a4e8da96e23697c66b9dd9bcdedad78c1f2cd194d0bf53ff46909425e2bdce0"
+    }
+  },
+  "source_bytes_unchanged": true,
+  "fixture_scope": "Existing inputs/build helpers supply synthetic committed-file metadata only. Real current pack/verify and old-schema verify admission run; no old TestCase method is selected.",
+  "server_network_calls": 0,
+  "production_approved": false
+}

@@ -32,10 +32,10 @@ reopens sale/grace. See [exact allocation](EXACT_ROYALTY_ALLOCATION.md).
 
 This is the implementation and operating reference for the undeployed handoff
 candidate. It is not release approval. The [central Todo](../TODO.md#task-security-chain-recovery)
-owns remaining work; the [canonical migration design](CANONICAL_MIGRATION_DESIGN.md) records deferred
+owns remaining work; the [canonical migration design](CANONICAL_HANDOFF.md) records deferred
 future-chain questions, not an implemented transport. Current schema/profile
 evidence is linked from [features](IMPLEMENTATION_STATUS.md) and the
-[report index](../reports/README.md); older handoff/native reports retain their
+[report index](../reports/CURRENT_REVIEW.md#evidence-and-history); older handoff/native reports retain their
 original source scope. **Production NOT APPROVED.**
 
 ## Supported boundary

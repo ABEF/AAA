@@ -2,7 +2,7 @@
 
 This is the fresh source candidate, not an upgrade of deployed accounting6.
 Production **NOT APPROVED**. Preserve old runtimes, wallets, journals and
-[profile6](POSITION_V6.md) readers under their original identities.
+[profile6](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/docs/POSITION_V6.md) readers under their original identities.
 
 ## Identity and unchanged economics
 
@@ -14,7 +14,7 @@ Production **NOT APPROVED**. Preserve old runtimes, wallets, journals and
 | Production inventory / read consumer | schema17/mint2; explicit backend flag2 adds V10 read/claims, default1 retains V9 |
 | LP geometry, custody and maintenance | portfolio2, custody5, maintenance3, confirmation3, compound4 |
 | Entry and pricing | direct Entry3, reviewedEntry2, pricing2, ProtocolPolicy1 |
-| Royalties | settlement4/reporting5; fresh allocation2/payload5 round books, original currencies and one-hour opening |
+| Royalties | settlement4/reporting5; fresh allocation2/payload6 round books, original currencies and one-hour opening; payload5 stays historical |
 
 Position remains the native eight-word principal record. Its equal shape is not
 runtime/accounting identity. LP custody is one logical share account per bucket,
@@ -102,9 +102,52 @@ the complete raw rolling-day suffix. Do not relabel an old checkpoint or journal
 to bypass validation. [Procedure](EARNINGS_CHECKPOINTS.md).
 
 The [operator manual](OPERATOR_MANUAL.md) owns exact caller/input/recovery steps.
-The [integration report](../reports/exact-lp-integration-20261106/REVIEW.md) owns
+The [integration report](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/exact-lp-integration-20261106/REVIEW.md) owns
 verification and remaining limits. Source publication does not deploy, seal,
 restart a service, change a website or authorize public signing.
 
 
-The fresh `activation-final-six-20261118` / payload6 build preserves public accounting7/LP-allocation1/schema17/canonicalV10 logical records. LP phase uses a MAX128 sentinel/full-width spill; Royalty status and Book coefficients use new private encodings without narrowing money or lifetime coefficients. Pricing basis/marks/list are transaction-scoped and explicitly cleared after each atomic operation. Public selectors/types/rights remain; three getter address-input names become `asset`. Use fresh exact source/runtime/data pins and logical canonical import, never old raw slots or relabelled snapshots/journals. The [current verification](../reports/activation-final-six-20261118/REVIEW.md) qualifies all13 controlled cold cases within20M/full20%; real markets/providers/fees and wider workloads remain separate.
+The fresh `activation-final-six-20261118` / payload6 build preserves public accounting7/LP-allocation1/schema17/canonicalV10 logical records. LP phase uses a MAX128 sentinel/full-width spill; Royalty status and Book coefficients use new private encodings without narrowing money or lifetime coefficients. Pricing basis/marks/list are transaction-scoped and explicitly cleared after each atomic operation. Public selectors/types/rights remain; three getter address-input names become `asset`. Use fresh exact source/runtime/data pins and logical canonical import, never old raw slots or relabelled snapshots/journals. The [current verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/activation-final-six-20261118/REVIEW.md) qualifies all13 controlled cold cases within20M/full20%; real markets/providers/fees and wider workloads remain separate.
+
+## Historical profile boundaries
+
+These rows preserve inspection compatibility, not operating instructions for the
+fresh release. The explicit declared profile, exact code/configuration/dependency
+pins and chain/deployment identity select the codec. Never infer a generation
+from an eight-word tuple, failed getter, shared version suffix or website name.
+Historical journals, checkpoints, receipts and private storage remain unchanged.
+
+| Declared generation | Position and principal/canonical boundary | Other exact recorded capabilities |
+| --- | --- | --- |
+| Accounting1/2 | Historical15-word codecs and their original status maps; never interpreted as local8-word rows. | Explicit legacy readers only; no automatic import or journal upgrade. |
+| Accounting3 | Eight local words; None0/Active1/Outbound2(external custody)/Dormant3/Parked4; no Exited5. Canonical `ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4`. | Direct governance2, fee-intake1, pricing2/routing2/review1; HTTP schema2 is a separate envelope. Retired external-custodian procedures must not run on fresh7. |
+| Accounting4 | Eight words; Outbound2 reserved and Exited5 added; custody3, canonical `ZZZ_CANONICAL_SAME_CHAIN_HOLDER_EXIT_V5`, pre-exit only. | Maintenance1 or2 must be explicit; policy2 uses Strategy2/compound3. LP routing0/1 and execution-quality0/1 are separately declared. Confirmation2's recorded900-second window/300-second maximum gap differs from fresh confirmation3. Inventory schema6 observes17helpers; API/config schemas remain separate. |
+| Accounting5 | Eight-word main/residual profile; custody4/emergency2, portfolio1, maintenance3/confirmation3/compound4; canonicalV5 retained only with both legs closed/parked. | Entry routing2/pricing2/review1, LP routing2, position-executor1/math1, governance2/fee1/execution-quality1; inventory schema7 has17modules/20helpers. Residual-exit1 requires matching actual binaries, not tuple compatibility. |
+| Accounting6 | Eight-word policy-aware profile; custody5/emergency2/residual-close1, portfolio2, maintenance3/confirmation3/compound4; ProtocolPolicy1. Canonical `ZZZ_CANONICAL_SAME_CHAIN_EXACT_ROYALTIES_V8`; older V6/V7 peers incompatible. | Direct Entry3/pricing2/review2, LP routing2/position1/math1. Inventory schema15 has17modules/18callable helpers plus2inert Factory children, with exact royalty4/recovery2/reporting5. Reinvest1/raw-exit1 require exact reviewed capability/runtime pins; schema14 and earlier do not gain them. |
+| Accounting7/source9 | Eight-word principal format with LP-allocation1 whole-unit books and exact raw LP V9 domain; source9/schema16/V9 consumer profile. | Explicit historical consumer; checkpoint1 remains accounting6-only. Matching checkpoint2 and original source/configuration pins are required. |
+| Accounting7/source10 | Current mint2/schema17/canonicalV10; exact LP V9 domain retained inside V10 plus original-recipient/phase mint records. | Current LP routing3/execution-price1;20callable helpers plus2inert Factory children. F6 explicitly selects factory payload6/allocation2/code-storage2; payload3/4/5 remain distinct historical inputs. |
+
+Inventory schema, read API envelope, activation configuration, Entry routing,
+LP routing, accounting, custody, royalty settlement and canonical wire are
+independent version families. Schema10's royalty-converting/custody5 profile,
+schema9's custody4/direct Entry3/20helpers and schema8's routed Entry2/21helpers
+remain historical inspection inputs. Source8 named custody5/direct Entry3 while
+ACCOUNTING_VERSION stayed6; served current3 names the separate older website,
+not an installed source8/source9/source10 adoption.
+
+The exact eight local fields are poolId, lpTokenId, idle0, idle1, depositUSD,
+centerX96, lastRebalance and status. lpTokenId is an actual main Uniswap NFT;
+physical amounts and both-leg backing establish custody/NAV, not tuple length or
+summed raw liquidity. Current statuses are None0/Active1/reservedOutbound2/
+Dormant3/Parked4/Exited5. Whole-collection handoff requires the exact compatible
+canonical schema and funded ordered records; legacy/trailing rows reject.
+Do not relabel fractional accounting6 or checkpoint1 data as exact accounting7,
+flatten raw pending/high/low phases, copy old private slots, reset a journal or
+roll older software over newer pending fee records.
+
+For complete historical configuration, geometry, timing, custody and codec
+semantics, use the frozen original guides at the pre-consolidation revision:
+- [Accounting3](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/docs/POSITION_V3.md).
+- [Accounting4](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/docs/POSITION_V4.md).
+- [Accounting5](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/docs/POSITION_V5.md).
+- [Accounting6](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/docs/POSITION_V6.md).

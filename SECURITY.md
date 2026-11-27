@@ -4,12 +4,12 @@ PoPL is an **undeployed development candidate; production NOT APPROVED**.
 Publishing source or passing scoped checks does not approve real funds.
 
 - [Current security model](docs/SECURITY.md) and [seven-workstream audit plan](docs/SECURITY_AUDIT_PLAN.md).
-- [Current review and remaining decisions](reports/whole-project-review-20261111/REVIEW.md)
-  and [source-scoped historical evidence](reports/README.md).
+- [Current review and remaining decisions](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-project-review-20261111/REVIEW.md)
+  and [source-scoped historical evidence](reports/CURRENT_REVIEW.md#evidence-and-history).
 - [Strict static-review selection](scripts/check-slither-review.py): its default
   must match the current source. Historical finding counts are not a fresh audit.
 - [Sole security Todo](TODO.md#security--audit), [release approval](docs/RELEASE_CHECKLIST.md),
-  [operator response](docs/OPERATOR_MANUAL.md) and [historical evidence index](reports/README.md).
+  [operator response](docs/OPERATOR_MANUAL.md) and [historical evidence index](reports/CURRENT_REVIEW.md#evidence-and-history).
 
 Holders cannot withdraw LP principal during ordinary operation. Direct governance
 can configure bounded policy, move/park both LP legs, or irreversibly return

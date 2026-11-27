@@ -5,10 +5,10 @@
 The fresh `execution_price_version:1` / `LP_ROUTING_VERSION()==3` candidate permits
 an independently reviewed external native-v4 ETH/fixed-ZZZ reference pool to be a
 reviewed swap venue on ordinary captured paths and on priced paused manual C/D
-with matching fresh runtimes. [Current fix and verification](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+with matching fresh runtimes. [Current fix and verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-reference-swap-fix-20261115/REVIEW.md)
 extend the same authenticated own-swap proof to retained bit2 or bit4; no separate
 venue is required merely because our selected trade changes that reference.
-The [earlier manual rehearsal](../reports/manual-recovery-rehearsal-20261115/REVIEW.md)
+The [earlier manual rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-recovery-rehearsal-20261115/REVIEW.md)
 at `da24f65` remains historical evidence of the former atomic rejection, not the
 new source's behavior or gas qualification. Public Oracle price reads stay live;
 no public Oracle cache or keeper-supplied price replaces them.
@@ -81,7 +81,7 @@ twice. This reduces duplicate work; it does not remove the mutable-boundary chec
 The private V1 transient codec is exactly49 static ABI words (1568bytes), written
 only by the compiler's typed encoder. Captured quote getters load named ABI words;
 full validators decode the complete structure. No caller supplies these words.
-The [gas follow-up](../reports/gas-feasibility-20261111/REVIEW.md) retains this
+The [gas follow-up](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/gas-feasibility-20261111/REVIEW.md) retains this
 codec and every validation boundary. Each complete STATIC capture/validation
 reads the governed source-call ceiling once and passes it privately through that
 chain; the next validation reads it again. Ordinary observations/admission keep
@@ -172,7 +172,7 @@ before treating them as a production provider estimate. They **fail the unchange
 12M default**. Initial and intermediate failures remain evidence, not passes.
 These are controlled market/authority fixtures, not qualified live gas prices.
 These historical values do not qualify the later manual fix. Use its
-[source-specific gas and verification record](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+[source-specific gas and verification record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-reference-swap-fix-20261115/REVIEW.md)
 for current measurements; earlier C/D gas at `da24f65` is a separate baseline.
 
 Use the already-existing optional activation policy2 only after reviewing the
@@ -186,9 +186,9 @@ retry under a higher limit. Actual Robinhood operation/cost remains unqualified.
 Operator qualification must also establish the chain's transaction ceiling and
 RPC limits, beyond the existing confirmed-block guard. The anonymous official-RPC
 probe returned403 before a valid chain response; no target limit or fee is
-claimed. [Gas qualification boundary](../reports/reference-execution-20261111/GAS_QUALIFICATION.md).
+claimed. [Gas qualification boundary](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/reference-execution-20261111/GAS_QUALIFICATION.md).
 
-Use the [source-scoped verification](../reports/reference-execution-20261111/VERIFICATION.md).
+Use the [source-scoped verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/reference-execution-20261111/VERIFICATION.md).
 Actual markets, independent references, meaningful route depth, target-chain gas,
 supported VRF/OpenSea, operating recovery and independent audit remain separate
 release requirements. Price impact, fees or source disagreement may correctly

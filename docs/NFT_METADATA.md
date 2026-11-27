@@ -1,6 +1,6 @@
 # NFT traits, royalties and live artwork
 
-The [selective metadata2 rehearsal](../reports/metadata2-rehearsal-20261116/REVIEW.md)
+The [selective metadata2 rehearsal](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/metadata2-rehearsal-20261116/REVIEW.md)
 measures actual current constructor/binding code and 20 cold read snapshots on a
 fresh isolated node. Worst tested read: 826,831 gas (992,198 with 20% padding),
 using a 41-byte URI and full-width ID. Real pricing-source cost, final content,
@@ -33,7 +33,7 @@ Legendary3), including while Dormant. Unrevealed weight is the string
 whether the economic ledger has registered activation; it is not per-currency
 readiness, canonical-deployment authority or a payment promise. The dormant ledger remains weight0 and cannot
 claim older royalties. No rarity, art path, allocation or ownership rule changes.
-[Review/evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).
+[Review/evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/comprehensive-improvement-20261025/VERIFICATION.md).
 
 
 The development candidate caps minting at **1,000 NFTs** with **600 Commun / 300 Rare / 100 Legendary**. Eight base colors form 58 palettes and four circuit patterns. The renderer supports 2,784 SVG artwork states (58×4×3×4), separate from minted identities. The earlier six-color/72-PNG library remains historical artwork.
@@ -61,7 +61,7 @@ cannot repair an already-submitted callback or create another draw. Ordinary
 pause permits tuning; preparation/canonical locks prevent configuration. A policy
 change during a mint callback invalidates that mint atomically. Review
 [operator steps](OPERATOR_MANUAL.md#mint-and-metadata), [rotation limits](ADAPTABLE_POLICY.md#planned-vrf-rotation)
-and [current scoped evidence](../reports/adaptable-policy-20261031/VERIFICATION.md).
+and [current scoped evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/adaptable-policy-20261031/VERIFICATION.md).
 
 Traits remain bound to the NFT through transfers, additions and migration. `paletteOf` and `patternOf` identify the immutable visual entry; the compatibility getter `colorOf` reports its first canonical color. Metadata publishes Color style, Palette, Color 1/2/3 as applicable, Circuit pattern, Rarity, Evolution and fixed revealed NFT-sale royalty weight (activation is separate). Unrevealed NFTs return an embedded placeholder. Revealed SVG filenames are `palette-pattern-rarity-evolution.svg`, such as `cyan-amber-onyx-arcs-rare-enhanced.svg`. The root can only be populated once before sealing; it is not a post-seal governance image switch. Production admission requires the entire supported 2,784-path publication with independent content-root/manifest review. No SVG publication, website preview or local VRF mock establishes deployment readiness.
 
@@ -180,4 +180,4 @@ coordinator fulfills existing requests and ordered finalization continues.
 Resume with `false` after provider checks; other lifecycle/global controls still
 apply. The switch does not select, cancel or reroll traits. See the
 [operator procedure](OPERATOR_MANUAL.md#mint-and-metadata) and
-[scoped control verification](../reports/operator-controls/VERIFICATION.md).
+[scoped control verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/operator-controls/VERIFICATION.md).

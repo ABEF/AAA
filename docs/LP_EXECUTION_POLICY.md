@@ -1,6 +1,6 @@
 # LP execution and operator-selected maintenance
 
-[Actual-market follow-up](../reports/market-route-qualification-20261120/REVIEW.md)
+[Actual-market follow-up](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/market-route-qualification-20261120/REVIEW.md)
 qualifies no complete route. Low fees, raw active L or positive v3 quotes do not
 admit an unsupported venue or replace complete native-v4 operation proof.
 
@@ -12,13 +12,13 @@ proof before settlement. It does not change the85% trigger,600-second sampled
 window, strict300-second gap,240-second service checks,60–300-second jitter,
 12-hour cooldown, main/residual rules or financial limits. Reference and same-
 core principal destination remain distinct. [Design](REFERENCE_SWAP_EXECUTION.md).
-The [current manual fix](../reports/manual-reference-swap-fix-20261115/REVIEW.md)
+The [current manual fix](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-reference-swap-fix-20261115/REVIEW.md)
 also covers paused forced C/D when bit2 or bit4 is retained. Budget captures
 through fixed Pricing before any manual fingerprint/harvest/unwind; Manager
 quotes and proves the exact supplied pool/direction/amount, then validates live
 sources and callbacks through settlement and final LP checks. It never chooses
 another trade or lowers a caller floor. The earlier `da24f65` manual rejection
-and gas measurements retain their [historical scope](../reports/manual-recovery-rehearsal-20261115/REVIEW.md).
+and gas measurements retain their [historical scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manual-recovery-rehearsal-20261115/REVIEW.md).
 
 Current [accounting7 / portfolio2](POSITION_V7.md) source candidate with mint2/
 canonicalV10 and optional execution-price1/LP-routing3. The original portfolio
@@ -26,12 +26,12 @@ implementation began on30October under accounting6; its earlier evidence retains
 that source scope.
 **Undeployed; production NOT APPROVED.** Normal size/runtime gates, scoped offline
 checks and local actual-v4-core integration pass within their
-[recorded scope](../reports/residual-operations-20261031/VERIFICATION.md).
+[recorded scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/residual-operations-20261031/VERIFICATION.md).
 Live dependency, target-chain operations and independent review remain open.
-[Implementation plan](OPTIONAL_PORTFOLIO_IMPLEMENTATION.md)
+[Implementation plan](OPERATOR_MANUAL.md#portfolio-management-controls)
 and [sole Todo](../TODO.md#task-passive-inventory) own scope/status. Historical
-[LP1 routing evidence](../reports/atomic-routing-20261028/VERIFICATION.md) and
-[policy2 timing evidence](../reports/maintenance-policy-20261027/VERIFICATION.md)
+[LP1 routing evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/atomic-routing-20261028/VERIFICATION.md) and
+[policy2 timing evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/maintenance-policy-20261027/VERIFICATION.md)
 retain their original source scope; they do not independently verify later
 portfolio/accounting/reference-execution changes.
 
@@ -53,7 +53,7 @@ portfolio/accounting/reference-execution changes.
 Guarded manual same-main consolidation now uses active-aware route candidates
 for the preserved bounds, including the quote's projected target tick. Normal
 full replacement already used this solver; ordinary growth/compound and explicit
-force keep their existing paths. See the [input/control audit](../reports/moving-market-flows-20261106/INPUT_MATRIX.md).
+force keep their existing paths. See the [input/control audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/moving-market-flows-20261106/INPUT_MATRIX.md).
 
 ## Requested rebalance confirmation buffer
 
@@ -117,7 +117,7 @@ Saved maturity/cooldown/jitter deadlines now cap the daemon's actual sleep.
 A recent validated head plus monotonic elapsed time estimates the wake-up only;
 fresh chain reads and on-chain guards remain authoritative. A15-minute initial
 enrollment lead is600+300seconds, not a15-minute confirmation window. See the
-[scoped timing audit](../reports/confirmation-audit-20261104/REVIEW.md) and
+[scoped timing audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/confirmation-audit-20261104/REVIEW.md) and
 [matching worker rollout](OPERATOR_MANUAL.md#configure-rebalance-confirmation).
 
 This is sampled evidence, not proof of every intervening price or MEV immunity.
@@ -180,7 +180,7 @@ already-inactive destination. Target-pool quotes bracket range entry/overshoot
 as well as existing price/output/main-floor checks. Final mint guards remain.
 Bounded search, residual gap/rounding feasibility and actual venue/depth/gas still
 require qualification; no global optimum or unsafe fallback is claimed.
-[Current audit](../reports/lp-lifecycle-audit-20261102/REVIEW.md).
+[Current audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/lp-lifecycle-audit-20261102/REVIEW.md).
 
 One excess asset may fund one residual range on the corresponding side of the
 new main, leaving at least one tick-spacing beyond spot. Policy
@@ -201,7 +201,7 @@ both legs outside on the same asset side. Fill/reversal changes token compositio
 not registered L or the two-ID bound. Entry and compound increase main only;
 NFT shares retain proportional economic rights in aggregate attributed NAV,
 not isolated main inventory or a normal principal-withdrawal right.
-[Multi-day and ordering cases](../reports/portfolio-long-horizon-20261102/CASE_MATRIX.md).
+[Multi-day and ordering cases](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/portfolio-long-horizon-20261102/CASE_MATRIX.md).
 
 Disable with `setMode(pool,false,reviewHash)`. Continue valuing, harvesting and
 closing both actual IDs until successful atomic merge into a single main. A
@@ -269,7 +269,7 @@ Profile 4/policy2 used actual physical range exit,900 second confirmation after
 cooldown and 60–600 second service jitter. Those deployments/readers/journals keep
 their old behavior. Fresh profile6 uses the 85% threshold and 600/300/240 policy
 above. Never change an old version field or journal namespace to acquire it.
-[Historical profile](POSITION_V4.md).
+[Historical profile](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/docs/POSITION_V4.md).
 
 ## Direct manual execution
 

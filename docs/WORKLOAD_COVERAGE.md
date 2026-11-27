@@ -1,109 +1,14 @@
 # Whole-project workload coverage
 
-[Keeper output and storage review](../reports/keeper-efficiency-20261127/REVIEW.md) keeps every log event and field
-while compacting JSON. Health uses at most32 confirmation bucket IDs per
-preview, with full counts/completeness/digests and the complete original
-journal retained. Exact pretty-output bounds protect64KiB selections and
-1MiB staging exports before replacement; desktop snapshots have bounded
-reads and a10,000-entry serial-collector cap, with no automatic deletion.
+The [workload plan](WORKLOAD_PLAN.json) and source-bound inventories define
+operations, functions, states and adverse cases that need evidence. The
+[current review](../reports/CURRENT_REVIEW.md) owns results and limitations;
+[findings](AUDIT_FINDINGS.md) owns remaining gaps; the [Todo](../TODO.md) owns work.
 
-Journal defaults, durable write order, financial/native limits and existing
-environments stay unchanged. Source13/19 membership stays; changed pins need
-a reviewed matching release/policy. Preserve old packages with their original
-release. Earlier [desktop-kit restart](../reports/keeper-clean-restart-20261127/REVIEW.md) evidence keeps its own
-scope. Q06/P20/P21, second-host/signer recovery, providers/channels, durability,
-sustained operation and independent live approval remain open; heartbeat stays paused.
-
-Earlier [alert evidence](../reports/keeper-alerts-20261126/REVIEW.md) retains its
-21-method original source scope; it is not re-executed or relabelled here.
-
-The [c811 daemon-storage follow-through](../reports/ubuntu-daemon-storage-20261126/REVIEW.md)
-adds one actual composed scenario plus a seven-check independent saved-vector
-reconciliation. Original overall NONPASS and missing physical after-state
-reads remain explicit. No unchanged test body reruns; production inventory
-183files/2,007definitions/278lambdas and frozen F6 maps stay unchanged.
-
-The [26 November keeper audit](../reports/keeper-full-audit-20261126/REVIEW.md) records its late cost-anchor checks,
-bounded utility capture and isolated operating verification. Historical failures,
-new source checks, reused runtime proofs and existing-server observations retain
-separate scopes. Production/adoption remains unapproved; journals and limits stay.
-
-
-The [wallet checkpoint follow-through](../reports/wallet-latency-20261123/REVIEW.md)
-adds read-only bulk validation and immutable history-only seeds after full
-checkpoint validation. That wallet-stage static inventory:182 Python files/2,003 named
-definitions (1,820 functions/183 classes),278 lambdas and2 unchanged named Yul
-helpers; F6 maps61/39/4 and1,021 ABI rows remain.28 NEW backend methods pass
-in explicit stages. Inventory and finite checks do not establish full dynamic,
-provider, all maximum NFT-by-currency workloads, operating or production acceptance.
-A controlled source9/V9 1,000-NFT/three-currency wallet now completes80 GETs and37
-assertions on Ubuntu, with3.982s remaining freshness. New unsealed F6 construction
-and live contract-code history also verify. The [current Ubuntu follow-through](../reports/ubuntu-complete-20261124/REVIEW.md)
-completes full export/reload for the NEW unsealed fixture under its explicitly
-approved isolated budget, while retaining all original refusals. Real stock
-keeper/Cast recovery, a healthy normal cycle and finite diagnostics/indexer/history
-partitions have separate receipts. Four plus7+3 NEW source methods and nine NEW
-snapshot methods pass in their exact stages; no unchanged bodies rerun.
-Use [the current inventory](../reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json)
-and the historical [24 November33-partition map](../reports/ubuntu-complete-20261124/COVERAGE.md).
-Later [supervisor](../reports/ubuntu-supervisor-20261125/REVIEW.md),
-[storage](../reports/ubuntu-storage-20261125/REVIEW.md) and
-[c810 startup recovery](../reports/keeper-full-audit-20261126/REVIEW.md) add
-separate finite scopes;33 is not a current all-feature pass count.
-Neither inventory nor a finite partition closes full F6/V10 consumer, provider,
-market, maximum workload or sustained operating approval.
-
-[Compact wallet qualification](../reports/compact-wallet-20261121/REVIEW.md) adds
-four-currency combined pages and bounded request-local canonical reuse. That source
-inventory is182 Python files/2,001 named definitions (1,818 functions/183 classes),
-278 lambdas; F6 Solidity61/dependencies39/controls4 and1,021 ABI rows are unchanged.
-Forty-five distinct new Python and90 distinct new JS methods have staged passing
-evidence; only affected failures/assertions rerun. Counts are not full dynamic
-coverage. New producer/consumer cases retain explicit synthetic V9 versus controlled
-source10 scopes; actual provider/host/freshness/full normal F6/V10 stay open.
-
-
-The [bounded Cast change](../reports/bounded-cast-20261121/REVIEW.md) adds one production helper and
-16NEW focused methods (8actual Ubuntu pipe/process cases,8composed keeper/health
-cases). No old test bodies ran. That source inventory is180files/1,984definitions;
-source-only anonymous count278. F6 source/ABI/build pins stay unchanged.
-
-The [focused keeper review](../reports/ubuntu-keeper-20261121/REVIEW.md) adds
-18distinct affected checks in explicit stages (15new/3existing), including8
-unprivileged Ubuntu lock checks. It does not qualify the unfinished stock-daemon
-journey. That earlier source inventory was179files/1,980named definitions; F6
-maps/ABI inventory remain unchanged. Earlier dynamic results and anonymous-code
-supplements retain their exact earlier source scope.
-
-The [actual-fee extension](../reports/pool-fees-20261121/REVIEW.md) reuses the saved
-normal F6 graph and original Entry history. Independent current-phase eager
-replay,17new local receipts, three harvests, seven claims and25state checkpoints
-cover fee intake/split/carry/reserves, NFT transfer and feed-fault isolation.
-Receipt count is not method count. The two-NFT/single-main/source-currency scope
-does not qualify ETH conversion, royalties, hybrid/maximum cohorts, real markets/
-provider fees, consumers or normal services. No unchanged suite is rerun.
-
-The [earlier readiness advance](../reports/readiness-advance-20261120/REVIEW.md)
-adds a strict offline saved-mint intent reviewer to the existing OpenSea tool.
-Only that production Python module changes in this advance:179files/1,979named
-definitions (1,799functions/180classes). The F6 Solidity/dependency/control/ABI
-source scope is unchanged. This is inventory, not full dynamic coverage.
-The prior [full-normal claim](../reports/full-claim-admission-20261120/REVIEW.md)
-and [maximum settlement](../reports/lp-claims-maximum-20261120/REVIEW.md) evidence
-retain their exact earlier source/inventory identities and finite boundaries.
-The earlier [anonymous supplement](../reports/readiness-advance-20261120/ANONYMOUS_CODE_INVENTORY.json)
-retains276lambdas and2named project Yul helpers with refreshed changed-source pins.
-
-The [workload plan](WORKLOAD_PLAN.json) and
-[whole-project function inventory](../reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json)
-define the scope. [The report](../reports/whole-workload-review-20261119/REVIEW.md)
-records what actually ran and what remains unqualified. The [Todo](../TODO.md)
-owns work status; this page is a verification map.
-
-A finite campaign cannot prove every possible numeric state, market or malicious
-contract. We require an explicit source/function inventory, reachable state
-partitions, boundary and adversarial cases, independent invariants, stateful
-sequences and source-bound evidence. No inventory count is a dynamic pass rate.
+A finite campaign cannot prove every numeric state or malicious contract.
+Presence, source identity and scenario counts establish scope, not dynamic
+coverage or release approval. Reuse exact applicable evidence and verify only
+changed behavior or genuinely missing partitions.
 
 ## Function and implementation scope
 
@@ -112,8 +17,8 @@ sequences and source-bound evidence. No inventory count is a dynamic pass rate.
   authenticated compiler AST;511 bodyless declarations remain separately labelled.
 - Eight internal-only objects are included, beyond the public ABI catalogue.
 - 191 production Python files and2,140 named lexical definitions, including nested
-  helpers, are in the [current source-bound inventory](../reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json).
-  The separate [anonymous-code inventory](../reports/keeper-efficiency-20261127/ANONYMOUS_CODE_INVENTORY.json)
+  helpers, are in the [current source-bound inventory](../evidence/documentation-consolidation-20261127/FUNCTION_INVENTORY.json).
+  The separate [anonymous-code inventory](../evidence/documentation-consolidation-20261127/ANONYMOUS_CODE_INVENTORY.json)
   records280 Python lambdas. Earlier anonymous inventories remain historical.
   Inventory does not establish execution coverage.
 
@@ -129,7 +34,7 @@ running application modules, tests, RPC or signing. Preserve the unrelated dirty
 fork runner: its published HEAD blob is inventoried instead of adopting it.
 
 ```text
-python scripts/build-workload-inventory.py --check reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json
+python scripts/build-workload-inventory.py --check evidence/documentation-consolidation-20261127/FUNCTION_INVENTORY.json
 ```
 
 Future F6 source/reference changes require reviewed trusted-pin/plan updates and
@@ -191,15 +96,10 @@ is inferred or executed by the inventory.
 
 ## Controlled maximum-state results
 
-[The expanded rehearsal](../reports/maximum-workload-20261119/REVIEW.md) executes
-one new populated journey and20 cold states.11/12 ETH/ZZZ contribution states
-fit32M/full20%; opening ZZZ with64 slow ERC20 royalties plus ETH needs32,571,362
-padded and remains refused. Five executable maintenance paths fit24M/full25%;
-three intended timing/source rejections reproduce. Both LPs,1,000 NFT rights,
-all65 royalty payouts, raw LP liabilities and80/10/5/5 backing reconcile.
-Only three affected growth preflights were rechecked; nine completed activation
-records keep their original checker source. This finite synthetic-depth evidence
-is not every listed scenario, token implementation, lifetime or real-provider approval.
+Use the [current assessment](../reports/CURRENT_REVIEW.md#limits-build-and-workload-qualification)
+and [open findings](AUDIT_FINDINGS.md) for results and unqualified rectangles.
+The source-scoped structured scenario and measurement records retain their
+original proofs. The following inventory and obligations are not test passes.
 
 ## Evidence and completion rules
 
@@ -208,9 +108,7 @@ for obligations and scoped evidence. A test must bind actual inputs, assertions,
 source/runtime identity and outcome. A mentioned function or successful transaction
 alone does not prove correct outputs, accounting, permissions or recovery.
 
-Current new evidence covers a repaired independent exact-unit market model and
-bounded ownership paging. It does not close every planned combination. Keep
-new execution, exact-source reuse, historical evidence, source inspection,
+Keep new execution, exact-source reuse, historical evidence, source inspection,
 unexecuted cases, external blockers and user-deferred capacity work distinct.
 
 For every successful financial action reconcile principal, individual/equal LP

@@ -1,7 +1,7 @@
 # Whole-project audit and improvement brief
 
-This is the maintained audit entrypoint. Earlier [third-pass material](THIRD_PASS_AUDIT_PROMPT.md)
-and [passive-inventory research](PASSIVE_INVENTORY_PLAN.md) preserve their exact
+This is the maintained audit entrypoint. Earlier [third-pass material](WHOLE_PROJECT_AUDIT_PROMPT.md)
+and [passive-inventory research](LP_EXECUTION_POLICY.md) preserve their exact
 historical Git text. They are research/checklist inputs, not current settings or
 approval. Maintaining this brief does not itself execute an audit or deploy anything.
 
@@ -21,7 +21,7 @@ expansion, chain reset, journal conversion or a heartbeat restart.
    dependencies/compiler/settings, services, configurations, scripts, generated
    artifacts, actual deployments and journals. Distinguish implemented source,
    published code, running environments, historical evidence and qualification.
-2. Read both applicable repository READMEs, [context](../PROJECT_CONTEXT.md),
+2. Read both applicable repository READMEs, [context](../reports/CURRENT_REVIEW.md),
    [profile](POSITION_V7.md), [architecture](ARCHITECTURE.md), [sole Todo](../TODO.md),
    [features](IMPLEMENTATION_STATUS.md), [findings](AUDIT_FINDINGS.md),
    [operator procedures](OPERATOR_MANUAL.md) and relevant original reports.

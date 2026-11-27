@@ -120,7 +120,7 @@ wallet type, signers/threshold and recovery require qualification; no mandatory
 committee is implied. Historical manifests retain their own semantics and cannot
 approve a fresh deployment.
 
-The [zero-delay review](../reports/immediate-governance/VERIFICATION.md) describes
+The [zero-delay review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/immediate-governance/VERIFICATION.md) describes
 its original scheduled controller, not this direct controller or later emergency
 authority. Current sources, exact runtime/configuration observations, operating
 rehearsals and independent audit/remediation remain required. See the

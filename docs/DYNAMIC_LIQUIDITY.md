@@ -231,7 +231,7 @@ The current compound interval defaults3600 seconds and is governed600 seconds-7 
 independently of rebalance. Policy3 uses the 85% price-distance condition or explicit
 operator width/mode/active geometry after the hard minimum. Service compound
 waits at that physical threshold or a pending change, including during cooldown;
-independent harvest continues. [Current scope](../reports/optional-portfolio-20261030/VERIFICATION.md).
+independent harvest continues. [Current scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/optional-portfolio-20261030/VERIFICATION.md).
 An eligible adaptive policy with its local range job disabled can defer compound;
 review the policy/job instead of forcing reinvestment past it.
 
@@ -311,4 +311,4 @@ An indexer `Rebalanced` event invalidates cached position identity; events alone
 cannot establish a fresh USD value. No frontend/server deployment is included.
 
 Evidence, fixed defects and remaining risks are recorded in the
-[scoped review](../reports/dynamic-liquidity/REVIEW.md). Release remains **NOT APPROVED**.
+[scoped review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/dynamic-liquidity/REVIEW.md). Release remains **NOT APPROVED**.

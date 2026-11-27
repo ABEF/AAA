@@ -41,7 +41,7 @@ Adding/changing a route or feed is security-sensitive despite immediate governan
 Review actual caller, bounds, events, dependency powers, pending transactions and
 stop/restart behavior. Source-code configuration does not qualify live feeds,
 routes, VRF, authorities or services. Historical
-[post-seal-control evidence](../reports/post-seal-controls/VERIFICATION.md) retains
+[post-seal-control evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/post-seal-controls/VERIFICATION.md) retains
 its own source scope.
 
 The existing integration target's dated approximately1.101% swap fee cannot qualify a

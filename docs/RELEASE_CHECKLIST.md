@@ -1,156 +1,16 @@
-# Release approval record - NOT APPROVED
+# Release approval record — NOT APPROVED
 
-[Keeper output and storage review](../reports/keeper-efficiency-20261127/REVIEW.md) keeps every log event and field
-while compacting JSON. Health uses at most32 confirmation bucket IDs per
-preview, with full counts/completeness/digests and the complete original
-journal retained. Exact pretty-output bounds protect64KiB selections and
-1MiB staging exports before replacement; desktop snapshots have bounded
-reads and a10,000-entry serial-collector cap, with no automatic deletion.
+No deployment, sealing or public opening is approved. Complete the fields below
+only with exact release evidence and the accountable operator's decision.
+The [current review](../reports/CURRENT_REVIEW.md) owns the consolidated assessment;
+[findings](AUDIT_FINDINGS.md) records open work, and the [roadmap](ROADMAP.md)
+orders its qualification. Local source implementation is not release approval.
 
-Journal defaults, durable write order, financial/native limits and existing
-environments stay unchanged. Source13/19 membership stays; changed pins need
-a reviewed matching release/policy. Preserve old packages with their original
-release. Earlier [desktop-kit restart](../reports/keeper-clean-restart-20261127/REVIEW.md) evidence keeps its own
-scope. Q06/P20/P21, second-host/signer recovery, providers/channels, durability,
-sustained operation and independent live approval remain open; heartbeat stays paused.
-
-[Unsigned Ubuntu scheduling](../reports/keeper-scheduling-20261126/REVIEW.md)
-adds exact pinned policy/source/configuration, explicit initialization, verified
-exclusive backup selection and state-preserving operational rebind. Backups and
-observation isolate unrelated failures; shared locking, bounded no-delete capacity
-and committed-state refusal preserve pending clocks/outboxes. Existing daemon13,
-backup/alert cores and CLIs, financial controls and journals are unchanged.
-**10 NEW focused methods and eight additional native operating stages pass**
-in c819. Original c818 is NONPASS before any test started; setup-only correction
-reuses exact38source/10method ASTs. Both nine-unit labs stop empty; five existing
-states match with zero non-ambient differences and one observer invocation.
-Current [inventory](../reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json):
-191Python files/2,140named definitions; [280lambdas](../reports/keeper-efficiency-20261127/ANONYMOUS_CODE_INVENTORY.json).
-Frozen F6 stays61/39/4 and1,021ABI rows.
-Source unit examples stay uninstalled with unknown cadence blocked. Read the
-[scheduling procedure](KEEPER_SCHEDULING.md); real timing/channels, off-host
-fencing/restore, durability/provider/sustained operation and release approval stay
-open. The desktop monitor remains paused. Earlier [day audit](../reports/keeper-day-audit-20261126/REVIEW.md)
-retains its distinct18-method/source scope and original failures.
-
-The [full-day keeper audit](../reports/keeper-day-audit-20261126/REVIEW.md)
-adds source corrections and18 distinct finite Ubuntu passes. Existing journals,
-financial controls and environments stay unchanged; original nonpasses remain.
-Matching source adoption, external notification delivery, off-host fencing and
-sustained operation still require separate review. Release remains unapproved.
-
-The [local alert rehearsal](../reports/keeper-alerts-20261126/REVIEW.md)
-adds finite unsigned observer evidence only. Actual channel delivery, off-host
-fencing, production scheduling, sustained operation and matching source/backup adoption
-remain unapproved. No deployment, sealing or existing service change occurred.
-
-Final production-pool identity is unresolved: the operator will select it later.
-The old integration target and example configuration are not launch approval.
-Actual pool/reference/routes/depth and complete-operation qualification stay open.
-
-[Full normal claim admission](../reports/full-claim-admission-20261120/REVIEW.md)
-adds finite real F6/26-pin control and claim checks, plus a confirmed bounded-
-planning fix. It does not approve real feeds/routes/complete fees, production
-HTTP/provider operation,1,000-active-NFT full-normal workloads or public launch.
-
-[Controlled maximum-state LP settlement and claims](../reports/lp-claims-maximum-20261120/REVIEW.md)
-adds local unit-accounting, gas/refusal and planner evidence, with explicit
-mock control/admission seams. One backend CPU optimization preserves existing
-limits. This is not actual route/provider/fee, service adoption or release approval.
-
-The [current F6 local construction](../reports/f6-construction-20261120/REVIEW.md)
-closes that controlled source/binding rehearsal only:25creations/19bindings,
-39instances,112binding/state plus172default reads, separate35permission calls.
-Real release inputs/providers/configuration/seal/opening fields remain unapproved.
-
-[Gate A follow-through](../reports/readiness-gate-a-20261120/REVIEW.md)
-records completed current compiler-advisory applicability review and fresh market/
-platform blockers. All production approval fields stay unapproved; no source,
-compiler, selected pool/provider or signing policy changed.
-
-Follow the [production qualification plan](ROADMAP.md) and its
-[source-bound reconciliation](../reports/production-readiness-plan-20261119/REVIEW.md).
-Deployment readiness, authorization to seal and authorization to open public
-mint/deposits are separate gates. Planning completes none of those approvals.
-
-The [current controlled maximum-state evidence](../reports/maximum-workload-20261119/REVIEW.md)
-verifies1,000 NFTs, both LPs and65 royalty assets:11/12 contributions fit32M/full20%;
-one slow-ZZZ opening state needs32,571,362 padded and remains open. All five
-executable maintenance states fit24M/full25%; three intended rejections reproduce.
-Rights/backing and actual royalty payouts reconcile. No production contract,
-default, authority, actual-provider or live-environment approval changes; broader
-source/market/currency/operating and independent release qualification remains.
-
-## Whole-project evidence boundary
-
-The [whole-workload review](../reports/whole-workload-review-20261119/REVIEW.md) expands scope beyond the gas-only recommendation.
-A [source-pinned map](WORKLOAD_COVERAGE.md) indexes all current contract/internal/
-service families and187 scenario classes. It is not a claim that every class passed.
-The old independent fractional LP model is corrected: seven affected plus two new
-composed methods pass. Thirteen new backend methods verify bounded same-block
-wallet pages, including1,000 IDs/63 pages and selected16/64currency states.
-The legacy complete endpoint remains complete-or-failed; no work limits rise.
-
-Checkpoint source identities change with service.py. Preserve original artifacts
-and require reviewed rebuild/re-pin and matching website/provider adoption.
-Cold maximum-state32M/two-LP/full-canonical/actual-provider and original Q01-Q07
-release qualification remain open. No production Solidity, gas/fee guard, NFT
-right or live environment changes; the report distinguishes all evidence scopes.
-
-Production is undeployed. The [seven-report consolidation](../reports/seven-report-consolidation-20261119/REVIEW.md)
-retains all original64 finding IDs and Q01-Q07 approval obligations, with later
-source/evidence updates kept separate. It approves no deployment or rollout.
-
-Current trusted source: `activation-final-six-20261118`, explicit F6/allocation2.
-The exact61-project/39-dependency/4-build-control source maps match. Its48 recorded
-size gates and13 controlled cold20M/full20% scenarios retain their original scope;
-all six previous matched gas refusals close. Runtime/headroom bytes are
-Royalty24562/14, Manager24459/117, Oracle23406/1170 and Vault24544/32;
-Access full initcode48580/49152. [Controlled F6 construction](../reports/f6-construction-20261120/REVIEW.md)
-now verifies39instances and bindings/defaults locally. Exact public-release
-constructor arguments, real dependencies, complete fees and approval remain unqualified.
-
-The operator selected a [32M/full20% contribution candidate](../config/activation-gas-32m.candidate.json).
-Legacy12M defaults and24M/full25% maintenance remain. Fresh actual execution/provider
-limits, complete Nitro fees, ETH budgets and populated workloads are unqualified.
-Do not infer capacity from the synthetic header or change false/null approvals.
-
-Actual independent feeds/routes/depth, authorities/contract-wallet envelopes,
-OpenSea/VRF/content, matching consumers and real normal-loop/off-host recovery,
-independent audit/remediation and final sign-off all remain release prerequisites.
-Original source-bound construction, metadata, checkpoint/history and management
-reports stay accessible through [the report map](../reports/README.md); none is
-relabeled as fresh full-graph or release acceptance.
-
-## Unsigned management extension
-
-[Manual LP diagnostics](../reports/manual-lp-diagnostics-20261115/REVIEW.md)
-are source-complete: local stage/cause, safe unknown RPC errors and uncertain
-file publication. No successful manual transaction/artifact or safeguard changes.
-New management source hashes differ; retain original saved provenance. This is
-not actual provider/manual C/D gas, wallet or operating acceptance.
-
-The [operator extension](../reports/operator-management-20261109/REVIEW.md)
-implements seven typed custody/exit preparations and verifies their input,
-permission, control-drift, gas-sensitive payout and publication handling.
-Focused injected-RPC and offline ABI evidence does not close actual governance
-wallet, provider/fee, target-gas, operating or independent approval gates.
-No public transaction, runtime upgrade or operating rollout is authorized.
-
-## Evidence and approval boundary
-
-The [latest reconciliation](../reports/seven-report-consolidation-20261119/REVIEW.md)
-and [source-reuse record](../reports/seven-report-consolidation-20261119/SOURCE_REUSE.json)
-authenticate current source identity and preserve original evidence tiers.
-No old dynamic result is relabelled current, overlapping passes are not summed,
-and integrity/source review does not provide independent security approval.
-
-The callable reference and operator examples must bind the actual final ABI and
-source. Complete market/fee/provider, actual OpenSea/VRF, maximum populated gas,
-current full canonical coordinator and real operating acceptance remain required.
-Original constructors, runtime/source profiles, checkpoints and journals keep
-their own identities. Recover a confirmed operation by its saved hash, never by
-resubmitting because a later read is unavailable.
+Require the final ABI/function examples, frozen compiler/dependencies/static
+records, exact constructors/configuration, markets/fees/providers/OpenSea/VRF,
+maximum workloads, current canonical cutover and operating acceptance. Historical
+results remain source-scoped; do not sum overlaps or relabel old deployments,
+journals, checkpoints or failure records. Recover a saved hash before retrying.
 
 ## Current candidate and evidence limits
 
@@ -167,7 +27,7 @@ resubmitting because a later read is unavailable.
 | Services/site | Schema17/mint2/reinvest1/direct Entry3/exact-unit original-currency royalty4 graph with20 callable helpers plus2 inert Factory data children, reporting5 and canonicalV10 require matching source/service/health/website acceptance. Local source9/schema4/V9 and source10/schema5/mint2/V10 consumers are implemented; actual mint2 runtime/Entry3 trace/provider/site acceptance remains open. Popldemo unchanged; served poplint current3 is not accounting7. Public signing stays disabled. Historical Anvil/journals preserved. |
 | Security | The current strict static disposition and normal size gates must bind the frozen source; earlier466/479-record stages are historical; independently audit/remediate the frozen candidate and recovery composition, refreshing analysis after changes. Maximum populated gas/dynamic URI, upstream behavior and bounded route-search/geometry liveness remain qualification limits. Internal passes are not safety guarantees. |
 
-The [residual lifecycle verification](../reports/residual-lifecycle-20261106/VERIFICATION.md)
+The [residual lifecycle verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/residual-lifecycle-20261106/VERIFICATION.md)
 strengthens fresh6 off-chain physical proof without changing Solidity. Its
 normal/static evidence is exact unchanged reuse, not a new analyzer run. New
 local-core vectors/scenarios and injected-RPC cases do not qualify actual
@@ -230,14 +90,14 @@ qualified OpenSea drop. ERC-2981 does not guarantee royalty payment.
 Residual-only capability1 is a separate optional manual write surface within
 accounting7/custody5. Qualify exact four-module getters/runtimes and all callback,
 nonce, idle, reward and terminal-holder-return composition before release. Historical
-accounting5/4 binaries do not gain new source6 policy through a manifest label. Both old portfolio
+accounting5/4 binaries do not gain current policy through a manifest label. Both old portfolio
 and current residual reports retain source/failure scope; neither is deployment approval.
 
 Fresh royalty4 retains the [one-hour sale-close activation window](ROYALTY_LAUNCH_WINDOW.md)
 and adds [exact-unit allocation](EXACT_ROYALTY_ALLOCATION.md): GCD-normalized rarity
 weights, deterministic rotating indivisible units, and no allocated rounding
 remainder after all eligible claims. Initial holding, prefunds, zero participants,
-unsupported currencies and pathological-token failures remain distinct. CanonicalV9
+unsupported currencies and pathological-token failures remain distinct. CanonicalV10
 rejects older peers. Actual OpenSea, gas/workloads and independent approval remain open.
 
 The separate [unsigned pre-seal configuration planner](PRESEAL_CONFIGURATION.md) now

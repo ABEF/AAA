@@ -1,8 +1,8 @@
 # Security audit plan
 
 Use [current findings](AUDIT_FINDINGS.md) and the [workload map](WORKLOAD_COVERAGE.md)
-for present scope. The [11 November project review](../reports/whole-project-review-20261111/REVIEW.md)
-retains its source/ABI/storage/static findings; the [26 November keeper audit](../reports/keeper-full-audit-20261126/REVIEW.md)
+for present scope. The [11 November project review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-project-review-20261111/REVIEW.md)
+retains its source/ABI/storage/static findings; the [26 November keeper audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/keeper-full-audit-20261126/REVIEW.md)
 adds separately scoped source and operating evidence. None is independent production approval.
 
 
@@ -27,15 +27,15 @@ Historical internal reports retain their original source scope and do not
 provide independent release approval. The seven workstreams below map to
 [the security Todo](../TODO.md#security--audit).
 
-[Current contract/LP audit](../reports/smart-contract-lp-audit-20261103/REVIEW.md)
-uses a researched, twice-challenged [prompt](../reports/smart-contract-lp-audit-20261103/AUDIT_PROMPT.md),
+[Current contract/LP audit](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/smart-contract-lp-audit-20261103/REVIEW.md)
+uses a researched, twice-challenged [prompt](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/smart-contract-lp-audit-20261103/AUDIT_PROMPT.md),
 current function/operation coverage and six-disclosure compiler applicability
 review. Two scoped actual-core recovery/rollback journeys complement exact
 unchanged-source normal/static evidence; no production defect or absence proof
 is established by counting source bodies. Actual qualification and independent
 audit remain open.
 
-The earlier [whole-project audit execution](../reports/whole-project-execution-20261029/REVIEW.md) includes
+The earlier [whole-project audit execution](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/whole-project-execution-20261029/REVIEW.md) includes
 two prompt challenges, exact handwritten/dependency body coverage, keeper/backend/
 tooling/artwork repairs and completed callable outputs. Its scoped verification
 and unresolved live/independent gates supersede no historical report bytes.
@@ -177,11 +177,11 @@ implemented policy3/Budget4/confirmation3 timing and explicit execution-price1/L
 from actual market qualification. Audit both physical legs, main-only entrant
 increases, stable versus liquidity-sensitive fingerprints, full-side versus
 half-side geometry and post-cost active-main 60%/residual 40% floors. Test fill,
-reversal, disable/merge and all-leg park/move/exit/canonical drains. See the [new scoped review](../reports/atomic-routing-20261028/REVIEW.md). Timing exceptions are settled: hard initial
+reversal, disable/merge and all-leg park/move/exit/canonical drains. See the [new scoped review](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/atomic-routing-20261028/REVIEW.md). Timing exceptions are settled: hard initial
 12 hours, operator width-change exception after cooldown, separate compound interval. Review route selection
 at full post-close size, on-chain versus service-only restrictions, jitter
 restart/reroll behavior, public entrant-only contribution swaps, bounded quote/single-swap costs and proxy
-upstream changes. The [current scoped verification](../reports/optional-portfolio-20261030/VERIFICATION.md)
+upstream changes. The [current scoped verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/optional-portfolio-20261030/VERIFICATION.md)
 records local actual-v4-core and offline behavior, not all economic cases; actual economic qualification remains open. Timed 10% replacement is a separate optional state-machine design, not
 a small TWAP setting or a selected release feature.
 
@@ -204,7 +204,7 @@ profit after costs and protocol loss, rather than treating a passing guard as
 economic safety. Retain pause/revocation, bounded retries and turnover/loss
 alerts; update the operator procedure for each justified change.
 
-The [current scoped hardening](../reports/manipulation-hardening-20261027/REVIEW.md)
+The [current scoped hardening](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/manipulation-hardening-20261027/REVIEW.md)
 adds post-callback keeper/pause checks to rebalance, compound and buyback and
 keeps paid-revert cooldowns visible in matching health/checkers. Controlled
 privileged/dependency callback and inert receipt fixtures do not establish
@@ -240,7 +240,7 @@ original currency at current active weights. Audit prior earned/deferred/exact-p
 exclusion, governance pre/post lifecycle checks, same-currency backing and one-time
 event replay. No swap, unwrap, price feed or converter remains for royalties.
 Review the16default/64hard ERC20 admission capacity, governance expansion evidence and cold/faulted gas budgets, pathological-token liveness, current-owner
-claims and fixed-successor forwarding. [Current scope](../reports/royalties-in-kind-20261105/REVIEW.md).
+claims and fixed-successor forwarding. [Current scope](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/royalties-in-kind-20261105/REVIEW.md).
 
 **Current controls:** exact balance deltas, admitted assets and selected runtime/
 configuration pins constrain transfers. Actual local LP fees, royalties,
@@ -278,7 +278,7 @@ expand that admission. A future compatible destination needs dependency review.
   the current importer does not carry the terminal principal-payout ledger.
   Ordinary same-pair pool moves and collective holder return leave NFT/reward
   rights on their canonical chain. There is no operator custody address for
-  bridging or issuer exchange. [Future whole-protocol cross-chain design](CANONICAL_MIGRATION_DESIGN.md)
+  bridging or issuer exchange. [Future whole-protocol cross-chain design](CANONICAL_HANDOFF.md)
   and post-halt recovery are explicitly deferred, not conditions for this release.
   Unsupported cross-chain canonical activation must continue to fail closed;
   do not imply sealed code can acquire that design from a configuration change.
@@ -318,7 +318,7 @@ intent tools and isolated keeper rehearsals exist; the website still simulates.
 
 ## Function-level adversarial review procedure
 
-Use the [652-row callable inventory](../reports/system-adversarial-20261026/COVERAGE.md)
+Use the [652-row callable inventory](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/system-adversarial-20261026/COVERAGE.md)
 for constructors, functions and receive hooks; review private/base/library paths
 with their concrete callers. Each callable needs multiple appropriate cases,
 covering caller/input/lifecycle/order/callback/dependency/market/recovery axes
@@ -363,8 +363,8 @@ terminal principal payout ledger. Repeated successor and
 funded-abort paths need version-compatible source/destination code and actual
 dependency qualification.
 
-The [former typed pair converter](PAIR_MIGRATION.md) and V3 bridge/transport
-implementations are removed. Their [historical evidence](../reports/pair-composition/VERIFICATION.md)
+The [former typed pair converter](GOVERNED_CUSTODY_HANDOFF.md) and V3 bridge/transport
+implementations are removed. Their [historical evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/pair-composition/VERIFICATION.md)
 does not verify a current execution path. Check that retired module bindings and
 selectors fail closed; do not prescribe an operator bridge switch or use old
 transport fixtures as finality evidence. Real routes, tokens/proxies, optional

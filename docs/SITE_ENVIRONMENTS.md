@@ -7,12 +7,12 @@ under a reviewed API strategy, keeping all limits and exact rights.
 
 The local [mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now implements explicit
 website schema5/source10 over accounting7, with33 browser runtime pins and
-unsigned holdings, contribution and claim/history reviews. Current source9/source10 also [assembles all verified ownership pages](../reports/ownership-paging-20261121/REVIEW.md) before publishing complete holdings, with69 NEW focused checks and no live rollout. Source9/schema4/V9
+unsigned holdings, contribution and claim/history reviews. Current source9/source10 also [assembles all verified ownership pages](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ownership-paging-20261121/REVIEW.md) before publishing complete holdings, with69 NEW focused checks and no live rollout. Source9/schema4/V9
 retains its original profile and evidence. Direct mint preparation is disabled
 for mint2; OpenSea eligibility is unverified. Both public configurations stay
 null, source10 never constructs the unchanged shared signer (even on Anvil),
 and served current3 poplint/popldemo, services, journals and existing Anvil8902
-are unchanged. [Verification](../reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
+are unchanged. [Verification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/v10-website-20261109/REVIEW.md) is synthetic backend/browser compatibility,
 not actual market/provider/VRF/OpenSea/wallet/hosting or independent acceptance.
 
 
@@ -43,7 +43,7 @@ page do not establish API availability, deployed current contracts, price-feed
 qualification or production approval. Never point public browsers at a developer's
 `127.0.0.1` RPC/API or expose disposable Anvil accounts to the internet.
 
-The [current wallet-financial source](../reports/wallet-view-20261121/REVIEW.md)
+The [current wallet-financial source](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/wallet-view-20261121/REVIEW.md)
 adds captured snapshot/cancellation/expiry guards and independent complete
 financial reads.83 NEW JS methods and controlled1/17/1,000-NFT V9 backend
 journeys retain all limits and exact accounting. These are local source/data
@@ -125,7 +125,7 @@ deploy contracts or submit transactions to Robinhood. Mock feed/VRF/authority
 dependencies must remain explicit; a usable archive RPC is not an approved
 production provider. See [development](DEVELOPMENT.md) and the owning fork task.
 
-[Published release and serving evidence](../reports/current3-website-20261026/DEPLOYMENT.md)
+[Published release and serving evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/current3-website-20261026/DEPLOYMENT.md)
 record the exact integration commit, successful HTTPS checks and preserved demo.
 The live integration remains unconfigured until reviewed contracts/API exist.
 
