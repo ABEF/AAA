@@ -1,6 +1,6 @@
 # Keeper outage and server recovery
 
-[Unsigned stock restart from a reconstructed kit](../reports/keeper-clean-restart-20261127/REVIEW.md) now verifies one actual original local harvest, exact desktop-held inputs, once-only receipt recovery and a fresh dry cycle with zero recovery sends. Use the [operator recipe](OPERATOR_MANUAL.md#unsigned-keeper-restart-from-a-reconstructed-kit); keep the expected first metadata-degraded exit1 distinct from the later dry_run_v2/exit0. Existing OS/runtime and local chain persist separately; physical-host/signer recovery, public canonical truth and live adoption remain open.
+The [output and storage review](../reports/keeper-efficiency-20261127/REVIEW.md) adds bounded diagnostic previews and exact publication/archive bounds without changing original journals, accounting or recovery rules. Use the [output/adoption procedure](OPERATOR_MANUAL.md#keeper-output-storage-and-source-adoption); old packages require their matching original release and policy. The earlier [desktop-kit stock restart](../reports/keeper-clean-restart-20261127/REVIEW.md) keeps its once-only unsigned local-chain proof; host/signer recovery and live adoption remain open.
 
 Use the [full-day audit](../reports/keeper-day-audit-20261126/REVIEW.md) and
 [updated alert procedure](KEEPER_ALERTS.md) for pending-clock continuity, source

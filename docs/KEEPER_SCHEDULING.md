@@ -1,6 +1,6 @@
 # Unsigned keeper backup and alert scheduling
 
-The [current unsigned stock restart](../reports/keeper-clean-restart-20261127/REVIEW.md) adds real local receipt reconciliation from a45-file desktop kit without changing scheduler source19, policy, queued history or existing units. It starts no production scheduler/observer and performs no rebind. The [earlier journal/sidecar reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md) retains its49-file synthetic scope; real host/signer fencing, channels and live adoption remain open.
+The [current output/storage review](../reports/keeper-efficiency-20261127/REVIEW.md) checks the exact pretty-encoded selection against64KiB before replacement, preserving the previous committed record on refusal. Source19 membership stays unchanged but updated source pins require a separately reviewed release/policy; no automatic rebind, service adoption or restart follows. The earlier [desktop-kit restart](../reports/keeper-clean-restart-20261127/REVIEW.md) and [sidecar reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md) retain their original scopes.
 
 The scheduler coordinates the existing exact-journal backup and alert tools.
 It never starts the keeper, signs, calls RPC, restores a journal or grants live

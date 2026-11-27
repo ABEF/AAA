@@ -1,37 +1,18 @@
 # AAA / ZZZ PoPL project instructions
 
-[Unsigned stock keeper restart from a desktop kit](reports/keeper-clean-restart-20261127/REVIEW.md)
-now verifies45 private files/808,416bytes, one new original stock harvest and zero
-recovery sends. Three native backup/verify/restore calls and four stock processes
-(unused-sender initialization, source harvest, unsigned recovery and dry cycle)
-retain exact pending/fee/day/nonce/anchor accounting in2,119/6,000 RPC requests.
-The first target stock cycle settles once and exits1 with expected metadata
-degradation; a fresh unsigned cycle reaches dry_run_v2/exit0 without rebooking.
-Included/final NFT/LP/rights/reserve vectors match before the separate node stops.
+[Keeper output and storage review](reports/keeper-efficiency-20261127/REVIEW.md) keeps every log event and field
+while compacting JSON. Health uses at most32 confirmation bucket IDs per
+preview, with full counts/completeness/digests and the complete original
+journal retained. Exact pretty-output bounds protect64KiB selections and
+1MiB staging exports before replacement; desktop snapshots have bounded
+reads and a10,000-entry serial-collector cap, with no automatic deletion.
 
-The first c828 target's namespace exit226 remains NONPASS/zero worker calls.
-A pinned continuation preserves the controller and same45 desktop inputs, uses
-a fresh target2 root/unit and a read-only self-bind of its own /run, and changes
-only the witness's expected-root literal. No source setup/harvest/capture replay.
-Earlier c826 client-lookup and c827 native-ETH read refusals remain separate;
-the narrow currency fix changes only the new harness, not production ABI guards.
-All new groups stop empty. Settled five-state host review matches0 nonambient
-differences/1 periodic observer invocation-ID change; the original mid-observer
-020 NONPASS remains distinct from the later settled021 comparison.
-
-Actual root/inode/mount/private-network proof retains18 read-only external OS
-runtime mounts and a separately running isolated Anvil. This reconstructs keeper
-application inputs, not lost OS/chain history or a physical second host. New
-capture uses900seconds and original real timestamps; older86400 historical-review
-evidence keeps its own scope. Signer/Cast files stay absent from the target.
-Production source41/source13/source19, financial/native/transport limits and
-existing environments/journals stay unchanged; no old test bodies rerun. Reuse
-the [191-file/2,137-definition/279-lambda inventory](reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json)
-and frozen F6 maps61/39/4 with1,021ABI rows. Earlier [49-file synthetic reconstruction](reports/keeper-reconstruction-20261127/REVIEW.md)
-and [normal keeper/timer composition](reports/ubuntu-keeper-composition-20261126/REVIEW.md)
-retain their original scopes. Q06/P20/P21, real second-host/OS/signer recovery and
-fencing, public canonical reconciliation, providers/channels, durability,
-sustained operation and independent live approval remain open. Heartbeat stays paused.
+Journal defaults, durable write order, financial/native limits and existing
+environments stay unchanged. Source13/19 membership stays; changed pins need
+a reviewed matching release/policy. Preserve old packages with their original
+release. Earlier [desktop-kit restart](reports/keeper-clean-restart-20261127/REVIEW.md) evidence keeps its own
+scope. Q06/P20/P21, second-host/signer recovery, providers/channels, durability,
+sustained operation and independent live approval remain open; heartbeat stays paused.
 
 Earlier [exact backup/restore](reports/keeper-backup-20261126/REVIEW.md) has 33 distinct
 NEW passes at its original source. The separate [c814 composition](reports/ubuntu-backup-recovery-20261126/REVIEW.md)
@@ -112,13 +93,14 @@ Adopt matching keeper/checker code with original journals preserved. These two
 Python fixes alone change no checkpoint semantic source. Earlier API/ABI source
 adoption still requires newly reviewed matching checkpoints. Sites, services,
 Anvil8902, signer/null public configurations and paused heartbeat are preserved.
-Current [inventory](reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json):
-191Python files/2,137definitions/279lambdas; frozen F6 maps61/39/4 and1,021ABI rows.
+Current [inventory](reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json):
+191Python files/2,140named definitions; [280lambdas](reports/keeper-efficiency-20261127/ANONYMOUS_CODE_INVENTORY.json).
+Frozen F6 maps61/39/4 and1,021ABI rows remain.
 Actual F6/V10 consumer, provider, market and production approval stay open.
 
-Current workload inventory:191Python files/2,137named definitions,279lambdas,
-unchanged F6 maps61/39/4 and1,021ABI rows; normal verifier checks
-reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json. The earlier forty-five distinct
+Current workload inventory:191Python files/2,140named definitions/280lambdas;
+unchanged F6 maps61/39/4 and1,021ABI rows remain. The normal verifier checks
+reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json. The earlier forty-five distinct
 NEW Python and90 NEW JS methods have precise staged scopes. Cache retention is
 encoded key+JSON bytes64KiB/entry and8MiBtotal, not process-RAM qualification.
 Original producer/cache/fixture failures and updated-only reruns remain recorded.
@@ -230,7 +212,7 @@ CLI example. All actual readiness flags stayfalse; no network/signing/queue.
 That advance's historical inventory is [here](reports/readiness-advance-20261120/FUNCTION_INVENTORY.json):
 179Pythonfiles/1,979named definitions at that source. That keeper-fix stage had1,980definitions. Use the bounded-capture inventory
 above for that historical1,984-definition stage. Current source inventory is
-reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json (2,137 definitions); Solidity61/dependencies39/controls4 stay.
+reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json; Solidity61/dependencies39/controls4 stay.
 Existing OpenSea artifacts bind this module's old hash; preserve them and rebuild/
 review new artifacts explicitly. service.py/checkpoint and runtime identities stay.
 

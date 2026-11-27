@@ -73,7 +73,7 @@ class KeeperStorageDiagnosticTests(unittest.TestCase):
         events, logged = [], []
         health_calls = 0
 
-        def write(path, value):
+        def write(path, value, **kwargs):
             nonlocal health_calls
             if Path(path) == self.k.path:
                 events.append('journal_write')
@@ -83,7 +83,7 @@ class KeeperStorageDiagnosticTests(unittest.TestCase):
             if health_calls == 1:
                 self.assertEqual(value['status'], 'running')
                 events.append('health_running')
-                return atomic_json(path, value)
+                return atomic_json(path, value, **kwargs)
             events.append('health_failure')
             raise health_error
 
@@ -118,11 +118,11 @@ class KeeperStorageDiagnosticTests(unittest.TestCase):
         health_error = OSError(errno.ENOSPC, 'SECRET health details', '/SECRET/health')
         events, logged = [], []
 
-        def write(path, value):
+        def write(path, value, **kwargs):
             self.assertEqual(Path(path), self.k.health_path)
             events.append(value['status'])
             if value['status'] == 'running':
-                return atomic_json(path, value)
+                return atomic_json(path, value, **kwargs)
             raise health_error
 
         def record(event, **fields):

@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "kind": "eleven_new_keeper_output_methods",
+  "ok": true,
+  "tests_run": 11,
+  "method_ids": [
+    "tests_python.test_keeper_output_efficiency.KeeperOutputEfficiencyTests.test_accepted_ten_thousand_id_inventories_have_bounded_health_and_exact_journal",
+    "tests_python.test_keeper_output_efficiency.KeeperOutputEfficiencyTests.test_both_formats_keep_file_sync_replace_directory_sync_order",
+    "tests_python.test_keeper_output_efficiency.KeeperOutputEfficiencyTests.test_compact_logs_preserve_critical_fields_order_duplicates_and_full_calldata",
+    "tests_python.test_keeper_output_efficiency.KeeperOutputEfficiencyTests.test_compact_output_keeps_all_nested_data_and_reduces_bytes",
+    "tests_python.test_keeper_output_efficiency.KeeperOutputEfficiencyTests.test_default_and_explicit_false_preserve_previous_output_bytes",
+    "tests_python.test_keeper_output_efficiency.KeeperOutputEfficiencyTests.test_failed_replace_preserves_original_and_cleans_synced_temporary",
+    "tests_python.test_keeper_output_efficiency.KeeperOutputEfficiencyTests.test_health_preview_zero_32_33_boundaries_keep_numeric_order_and_full_identity",
+    "tests_python.test_keeper_output_efficiency.KeeperOutputEfficiencyTests.test_initial_compact_health_refusal_preserves_files_and_prevents_cycle_or_signing",
+    "tests_python.test_keeper_output_efficiency.KeeperOutputEfficiencyTests.test_nonfinite_log_is_refused_before_any_line_is_emitted",
+    "tests_python.test_keeper_output_efficiency.KeeperOutputEfficiencyTests.test_nonfinite_write_preserves_old_file_and_removes_private_partial",
+    "tests_python.test_keeper_output_efficiency.KeeperOutputEfficiencyTests.test_stock_pending_cycle_compacts_both_health_writes_without_touching_journal"
+  ],
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "actual_test_body_calls": [
+    [
+      "test_keeper_output_efficiency.py",
+      "test_accepted_ten_thousand_id_inventories_have_bounded_health_and_exact_journal"
+    ],
+    [
+      "test_keeper_output_efficiency.py",
+      "test_both_formats_keep_file_sync_replace_directory_sync_order"
+    ],
+    [
+      "test_keeper_output_efficiency.py",
+      "test_compact_logs_preserve_critical_fields_order_duplicates_and_full_calldata"
+    ],
+    [
+      "test_keeper_output_efficiency.py",
+      "test_compact_output_keeps_all_nested_data_and_reduces_bytes"
+    ],
+    [
+      "test_keeper_output_efficiency.py",
+      "test_default_and_explicit_false_preserve_previous_output_bytes"
+    ],
+    [
+      "test_keeper_output_efficiency.py",
+      "test_failed_replace_preserves_original_and_cleans_synced_temporary"
+    ],
+    [
+      "test_keeper_output_efficiency.py",
+      "test_health_preview_zero_32_33_boundaries_keep_numeric_order_and_full_identity"
+    ],
+    [
+      "test_keeper_output_efficiency.py",
+      "test_initial_compact_health_refusal_preserves_files_and_prevents_cycle_or_signing"
+    ],
+    [
+      "test_keeper_output_efficiency.py",
+      "test_nonfinite_log_is_refused_before_any_line_is_emitted"
+    ],
+    [
+      "test_keeper_output_efficiency.py",
+      "test_nonfinite_write_preserves_old_file_and_removes_private_partial"
+    ],
+    [
+      "test_keeper_output_efficiency.py",
+      "test_stock_pending_cycle_compacts_both_health_writes_without_touching_journal"
+    ]
+  ],
+  "old_test_bodies_run": 0,
+  "source_before": {
+    "keeper/monitor.py": {
+      "bytes": 195271,
+      "sha256": "ec8a665bc0250b96b3c12987f9b6ba892158a547cbb9efc1972a2e400f69ab3a"
+    },
+    "zzz_ops/state.py": {
+      "bytes": 4835,
+      "sha256": "7d7632f6bf944dba7b2efc15e37a5b0215e135aa680bc702ee2e5b81e11a32ad"
+    },
+    "tests_python/test_keeper_output_efficiency.py": {
+      "bytes": 15929,
+      "sha256": "17aede0177698daa2d72a8e1e3f808135370e41a24d7c249b208da0a952027a0"
+    },
+    "tests_python/test_keeper_storage_diagnostics.py": {
+      "bytes": 8529,
+      "sha256": "0386df7b8f29f31efbd8174f13d7279a0804f162c0fd6a62cc46f0eb73143a5e"
+    }
+  },
+  "source_after": {
+    "keeper/monitor.py": {
+      "bytes": 195271,
+      "sha256": "ec8a665bc0250b96b3c12987f9b6ba892158a547cbb9efc1972a2e400f69ab3a"
+    },
+    "zzz_ops/state.py": {
+      "bytes": 4835,
+      "sha256": "7d7632f6bf944dba7b2efc15e37a5b0215e135aa680bc702ee2e5b81e11a32ad"
+    },
+    "tests_python/test_keeper_output_efficiency.py": {
+      "bytes": 15929,
+      "sha256": "17aede0177698daa2d72a8e1e3f808135370e41a24d7c249b208da0a952027a0"
+    },
+    "tests_python/test_keeper_storage_diagnostics.py": {
+      "bytes": 8529,
+      "sha256": "0386df7b8f29f31efbd8174f13d7279a0804f162c0fd6a62cc46f0eb73143a5e"
+    }
+  },
+  "source_bytes_unchanged": true,
+  "elapsed_seconds": 3.25,
+  "size_observation": {
+    "actual_bounded_health_bytes": 6591,
+    "old_full_list_same_object_pretty_bytes": 1781385,
+    "old_full_list_same_object_compact_bytes": 1621101,
+    "original_journal_bytes": 3841414,
+    "reset_count": 10000,
+    "awaiting_clear_count": 10000,
+    "same_synthetic_object_only_not_old_writer_execution": true,
+    "observation_did_not_modify_test_or_application_inputs": true
+  },
+  "runner_observation": "One new test is wrapped only to read temporary synthetic outputs after its assertions and before cleanup; no production guard or assertion is replaced.",
+  "network_server_native_actions": 0,
+  "fixture_boundary": "FakeRpc data/setup only; actual stock pending-wait cycle runs unsigned without a real signer, network or service."
+}

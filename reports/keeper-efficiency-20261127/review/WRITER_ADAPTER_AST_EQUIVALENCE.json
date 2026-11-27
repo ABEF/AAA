@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "kind": "mechanical_mock_writer_keyword_adapter_equivalence",
+  "file": "tests_python/test_keeper_storage_diagnostics.py",
+  "before_sha256": "1fab094e76b02977713519432ec92c0b6e74dd1d9b78be9db0e1acb68eed1a6e",
+  "after_sha256": "0386df7b8f29f31efbd8174f13d7279a0804f162c0fd6a62cc46f0eb73143a5e",
+  "normalization": {
+    "signatures": 2,
+    "forwarding": 2
+  },
+  "full_module_AST_equal_after_removing_only_kwargs_signature_and_forwarding": true,
+  "assertions_and_test_semantics_unchanged": true,
+  "old_test_bodies_run": 0,
+  "application_imports": 0
+}

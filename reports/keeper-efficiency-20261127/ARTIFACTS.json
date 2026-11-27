@@ -1,0 +1,115 @@
+{
+  "baseline": "1605dac2b2fd30e3b23e0adfc2c09ab8a913e2b7",
+  "date": "2026-11-27",
+  "distinct_NEW_passing_methods": 29,
+  "files": {
+    "ANONYMOUS_CODE_INVENTORY.json": {
+      "bytes": 32889,
+      "sha256": "c8d00456793ac18ffab5793eb07e85b036a1ca9e18524b16bf793e64027daba5"
+    },
+    "FUNCTION_INVENTORY.json": {
+      "bytes": 4984635,
+      "sha256": "49e9f0d0e9ed3fa6714030d287ab3ede92d5ad4d7e5cd164dfe00806b3bd374a"
+    },
+    "PLAN.md": {
+      "bytes": 2009,
+      "sha256": "af384fe75f7d0101dfd450658305f42a58f38d1425657201567523c9994ca41f"
+    },
+    "REVIEW.md": {
+      "bytes": 8807,
+      "sha256": "41868a0bf0bc231a9463c99a099fa6ac2de0c25f243f0880f09980d0d4ef861c"
+    },
+    "review/CORE_PEER_REVIEW.json": {
+      "bytes": 4515,
+      "sha256": "77b44bb896960224b8c12c5cd13f9f5f8f81041537ae2c426739ca8badbac15d"
+    },
+    "review/CORE_PREVIEW_SUPPLEMENT.json": {
+      "bytes": 2128,
+      "sha256": "02c17f4141a1b5c759d1f5842aae6514b251198f02b52c1c5f533ab4e52ba744"
+    },
+    "review/DESKTOP_TEST_REUSE.json": {
+      "bytes": 576,
+      "sha256": "805d979c1c5fedb6dce8e07b19fafeb62c8ff2101bec9d27744f0a1c92d292a4"
+    },
+    "review/DOCUMENTATION_REVIEW.json": {
+      "bytes": 13710,
+      "sha256": "ed354a180445bd5fefb6e553c8c870f1d9e6bb10ae8661b3eca12d246735c3f7"
+    },
+    "review/EXPANDED_IMPLEMENTATION_REVIEW.json": {
+      "bytes": 2528,
+      "sha256": "cba17e60502a603a2813890070f0f06174f96c07abcd7157d159683a8793b678"
+    },
+    "review/IMPLEMENTATION_REVIEW.json": {
+      "bytes": 2136,
+      "sha256": "9b2fde57f609b661b68fa50a2ee29b0c2671e1b751b5faef92a23c046d0f6acb"
+    },
+    "review/PUBLICATION_BOUND_SOURCE_EDITS.json": {
+      "bytes": 671,
+      "sha256": "ca0428a93af3ee6a8931ac2bc8e451182b69e61c4a189de929e5363f8c507130"
+    },
+    "review/REPORT_LINK_REVIEW.json": {
+      "bytes": 796,
+      "sha256": "be616ab6b1b8dd198eb28add1ccfa25bd9cb482d12c6c6ff671999e2cc71a9c5"
+    },
+    "review/SOURCE_REVIEW.json": {
+      "bytes": 4044,
+      "sha256": "20035e9c6fadc42f15a08159a39fe9701d229c18ee84dde215043666cd57d67d"
+    },
+    "review/WRITER_ADAPTER_AST_EQUIVALENCE.json": {
+      "bytes": 590,
+      "sha256": "7555e7f14fcbdda02b76e96c510a0610ab544c27aaa077da5de36607f79b0115"
+    },
+    "review/desktop-before-windows-ctime.py": {
+      "bytes": 5393,
+      "sha256": "530304ecf15042154f784c5e8a923ad2e769539ca1313eebb250cd9539d08b4e"
+    },
+    "review/desktop-initial-test-source.reconstructed.py": {
+      "bytes": 8858,
+      "sha256": "b12eeab0c42a9198fcf1f0efa53c69947b7bacbf6b8cccad812b5da155d9baa1"
+    },
+    "verification/FINAL_CHECKS.json": {
+      "bytes": 1446,
+      "sha256": "e1404e915bfa652caed0aab7c0fd2e9e83ee8025a54d5cc7f2a0a9871b11183e"
+    },
+    "verification/desktop/DESKTOP_STORAGE_TESTS.json": {
+      "bytes": 8286,
+      "sha256": "9e0ed5d3e82e9efa8fabefdeabbec67a033d31758a8e67c9d5dfe3d6602b55e0"
+    },
+    "verification/desktop/affected-test-metadata.stderr": {
+      "bytes": 1389,
+      "sha256": "c8cb17ebbf76bc18bcb8709c596b428a802842ef5de6e7453d53387218570ec7"
+    },
+    "verification/desktop/affected-test-metadata.stdout": {
+      "bytes": 460,
+      "sha256": "70a6b282aa0858b0fb53554fd816fa1209b6df37d1dc524518f59dbc51f8e1cd"
+    },
+    "verification/desktop/new-tests-affected-plus-two.stderr": {
+      "bytes": 731,
+      "sha256": "1e1aaf58c0d86991027d5dab4198febb5504c20aad6d82d009fd351233e9cd6b"
+    },
+    "verification/desktop/new-tests-attempt-001.stderr": {
+      "bytes": 3853,
+      "sha256": "2021824079195b1ba1586098de3a7562b772048f99e0620155bb5c061ac1039a"
+    },
+    "verification/output-001/RESULT.json": {
+      "bytes": 5550,
+      "sha256": "ee9752076fa7911b8b47198cf74529fe5ff614ff326f1d9d9854beb42f25dc91"
+    },
+    "verification/output-001/new-tests.log": {
+      "bytes": 2543,
+      "sha256": "0899c0215491c90c4356f18c28b88f8b54796049f095249827b4cca06cf35e23"
+    },
+    "verification/storage-bounds-001/RESULT.json": {
+      "bytes": 1943,
+      "sha256": "213c769e3e78ba7d4b61c69d9c18848ceba1266cbb4664236ad2d0fc62202c16"
+    },
+    "verification/storage-bounds-001/unittest.log": {
+      "bytes": 882,
+      "sha256": "63dc642e9e41912b6dccb8a2f977fe30de76d5fddcb422d1fdd5c75e7f4b9a26"
+    }
+  },
+  "old_test_bodies_run": 0,
+  "production_approved": false,
+  "public_transactions": 0,
+  "schema": 1
+}

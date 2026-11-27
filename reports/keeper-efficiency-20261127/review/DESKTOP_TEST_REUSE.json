@@ -1,0 +1,14 @@
+{
+  "current_test_pin": "75a73237fb836520574ab3e084616fa499e522843834093612dce85a80cad568",
+  "initial11_passes_reused_at_original_source": true,
+  "initial_method_bodies_identical": 12,
+  "initial_test_pin": "b12eeab0c42a9198fcf1f0efa53c69947b7bacbf6b8cccad812b5da155d9baa1",
+  "new_method_names": [
+    "test_change_time_drift_from_either_api_is_refused",
+    "test_stable_different_path_and_descriptor_change_times_are_accepted"
+  ],
+  "no_additional_test_execution": true,
+  "only_failed_plus_two_new_methods_rerun": true,
+  "schema": 1,
+  "success": true
+}

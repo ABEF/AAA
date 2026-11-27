@@ -1,0 +1,8 @@
+test_existing_read_is_limited_to_expected_length_plus_one (tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_existing_read_is_limited_to_expected_length_plus_one) ... ok
+test_stable_different_path_and_descriptor_change_times_are_accepted (tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_stable_different_path_and_descriptor_change_times_are_accepted) ... ok
+test_change_time_drift_from_either_api_is_refused (tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_change_time_drift_from_either_api_is_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.020s
+
+OK

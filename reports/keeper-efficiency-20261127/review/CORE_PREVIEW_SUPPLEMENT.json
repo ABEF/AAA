@@ -1,0 +1,42 @@
+{
+  "adapter_normalization": {
+    "forwarding": 2,
+    "signatures": 2
+  },
+  "findings": [],
+  "kind": "changed-branch-static-peer-review-supplement",
+  "new_test_bodies_run": 0,
+  "new_test_method_names_read_only": [
+    "test_health_preview_zero_32_33_boundaries_keep_numeric_order_and_full_identity",
+    "test_accepted_ten_thousand_id_inventories_have_bounded_health_and_exact_journal"
+  ],
+  "old_test_bodies_run": 0,
+  "prior_review_sha256": "77b44bb896960224b8c12c5cd13f9f5f8f81041537ae2c426739ca8badbac15d",
+  "reviewed_files": {
+    "keeper/monitor.py": {
+      "bytes": 195271,
+      "sha256": "ec8a665bc0250b96b3c12987f9b6ba892158a547cbb9efc1972a2e400f69ab3a"
+    },
+    "tests_python/test_keeper_output_efficiency.py": {
+      "bytes": 15929,
+      "sha256": "17aede0177698daa2d72a8e1e3f808135370e41a24d7c249b208da0a952027a0"
+    },
+    "tests_python/test_keeper_storage_diagnostics.py": {
+      "bytes": 8529,
+      "sha256": "0386df7b8f29f31efbd8174f13d7279a0804f162c0fd6a62cc46f0eb73143a5e"
+    }
+  },
+  "schema": 1,
+  "scope": "changed branch source/test inspection only; first peer receipt preserved; no additional app/native/test/server/network run",
+  "success": true,
+  "verified": [
+    "Keeper.save AST unchanged from baseline; full journal maps and default serialization remain",
+    "run_cycle AST outside nested health writer unchanged from baseline",
+    "all health payload fields outside two confirmation ID arrays and their two added summaries unchanged",
+    "previews contain first32 numeric-sorted IDs; full sorted compact ASCII JSON list without newline supplies SHA256",
+    "full count and complete flag distinguish omitted diagnostic IDs; awaited-clear filtering unchanged",
+    "no repository readiness consumer uses preview length as complete inventory; existing one-ID assertion remains valid",
+    "two original writer adapters differ only kwargs acceptance/forwarding; full normalized module AST equals baseline",
+    "two new test bodies inspect0/32/33 boundaries and actual admitted10k+10k maps with journal byte/inode/state equality"
+  ]
+}

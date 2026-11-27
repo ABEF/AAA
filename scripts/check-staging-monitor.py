@@ -9,6 +9,8 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
+import stat
 import sys
 import time
 ROOT=Path(__file__).resolve().parents[1]
@@ -16,6 +18,52 @@ sys.path.insert(0,str(ROOT))
 from keeper.monitor import error_context
 from keeper.ops import digest,timestamp
 from zzz_ops.read_process import run_read_process
+
+MAX_SNAPSHOT_BYTES=1048576
+MAX_ARCHIVE_FILES=10000
+
+
+def archive_snapshot(snapshot,folder):
+    if (type(snapshot)is not dict or type(snapshot.get('sha256'))is not str
+            or re.fullmatch('[0-9a-f]{64}',snapshot['sha256'])is None
+            or type(snapshot.get('payload'))is not dict or snapshot['sha256']!=digest(snapshot['payload'])):
+        raise ValueError('Invalid off-host snapshot digest')
+    raw=(json.dumps(snapshot,sort_keys=True,indent=2)+'\n').encode()
+    if len(raw)>MAX_SNAPSHOT_BYTES:raise ValueError('Off-host snapshot exceeds storage bound')
+    folder=Path(folder);folder.mkdir(parents=True,exist_ok=True)
+    directory=folder.lstat()
+    if (not stat.S_ISDIR(directory.st_mode) or stat.S_ISLNK(directory.st_mode)
+            or getattr(directory,'st_file_attributes',0)&getattr(stat,'FILE_ATTRIBUTE_REPARSE_POINT',0x400)):
+        raise ValueError('Invalid off-host archive directory')
+    target=folder/(snapshot['sha256']+'.json')
+    try:before=target.lstat()
+    except FileNotFoundError:before=None
+    if before is not None:
+        identity=lambda item:(item.st_dev,item.st_ino,item.st_mode,item.st_nlink,
+            item.st_size,item.st_mtime_ns)
+        if (not stat.S_ISREG(before.st_mode) or before.st_nlink!=1 or before.st_size!=len(raw)
+                or getattr(before,'st_file_attributes',0)&getattr(stat,'FILE_ATTRIBUTE_REPARSE_POINT',0x400)):
+            raise ValueError('Invalid existing off-host snapshot')
+        flags=os.O_RDONLY|getattr(os,'O_BINARY',0)|getattr(os,'O_NOFOLLOW',0)|getattr(os,'O_NONBLOCK',0)
+        fd=os.open(target,flags)
+        with os.fdopen(fd,'rb')as handle:
+            opened=os.fstat(handle.fileno())
+            if identity(opened)!=identity(before):raise ValueError('Off-host snapshot changed')
+            saved=handle.read(len(raw)+1)
+            after_fd=os.fstat(handle.fileno());after_path=target.lstat()
+            # Windows path/fd ctime semantics differ; compare each API to itself.
+            if (identity(after_fd)!=identity(before) or identity(after_path)!=identity(before)
+                    or after_fd.st_ctime_ns!=opened.st_ctime_ns or after_path.st_ctime_ns!=before.st_ctime_ns
+                    or saved!=raw):raise ValueError('Existing off-host snapshot differs or changed')
+    else:
+        count=0
+        with os.scandir(folder)as entries:
+            for _ in entries:
+                count+=1
+                if count>=MAX_ARCHIVE_FILES:raise ValueError('Off-host retention budget requires operator review')
+        fd=os.open(target,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
+        with os.fdopen(fd,'wb')as handle:handle.write(raw);handle.flush();os.fsync(handle.fileno())
+    return hashlib.sha256(raw).hexdigest()
 
 
 def validate_export(data,now=None):
@@ -50,15 +98,7 @@ def main():
         if result.returncode or len(result.stdout)>1048576:raise ValueError('Monitor connection/output failed')
         report,snapshot=validate_export(json.loads(result.stdout))
         if snapshot is not None:
-            folder=Path(args.backup_directory);folder.mkdir(parents=True,exist_ok=True)
-            target=folder/(snapshot['sha256']+'.json')
-            raw=(json.dumps(snapshot,sort_keys=True,indent=2)+'\n').encode()
-            if target.exists():
-                if target.read_bytes()!=raw:raise ValueError('Existing off-host snapshot differs')
-            else:
-                fd=os.open(target,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
-                with os.fdopen(fd,'wb') as handle:handle.write(raw);handle.flush();os.fsync(handle.fileno())
-            report['offhost_snapshot_sha256']=hashlib.sha256(raw).hexdigest()
+            report['offhost_snapshot_sha256']=archive_snapshot(snapshot,args.backup_directory)
     except Exception as exc:report={'ok':False,'reasons':['monitor_unavailable'],**error_context(exc)}
     print(json.dumps(report,sort_keys=True));return 0 if report['ok'] else 1
 

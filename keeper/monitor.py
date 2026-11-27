@@ -47,6 +47,7 @@ ASSET_ARGUMENTS = {
 MAX_METADATA_SUPPLY = 1000
 MAX_METADATA_BATCH = 50
 MAX_BUYBACK_TASKS = 32
+MAX_HEALTH_BUCKET_PREVIEW = 32
 OUTSIDE_REBALANCE_STATE = 'outside_rebalance_v2'
 REBALANCE_CHECK_SECONDS = 3600
 MAX_OUTSIDE_SCHEDULES = 10000
@@ -98,7 +99,16 @@ LP_EXIT_BLOCKED_ACTIONS = frozenset((
 ))
 
 def log(event: str, **fields: Any) -> None:
-    print(json.dumps({'time':dt.datetime.now(dt.timezone.utc).isoformat(),'event':event,**fields},sort_keys=True),flush=True)
+    print(json.dumps({'time':dt.datetime.now(dt.timezone.utc).isoformat(),'event':event,**fields},
+        sort_keys=True,separators=(',',':'),allow_nan=False),flush=True)
+
+def _bucket_health_preview(buckets):
+    """Bound diagnostic IDs; hash the full numeric-sorted compact JSON list."""
+    ordered = sorted(buckets,key=int)
+    summary = {'count':len(ordered),'complete':len(ordered)<=MAX_HEALTH_BUCKET_PREVIEW,
+        'all_ids_sha256':hashlib.sha256(json.dumps(ordered,separators=(',',':'),allow_nan=False).encode('ascii')).hexdigest()}
+    return ordered[:MAX_HEALTH_BUCKET_PREVIEW],summary
+
 
 def error_context(exc: Exception) -> dict[str,str]:
     # Never log exception text, signer output, RPC URLs or the full traceback.
@@ -530,6 +540,9 @@ class Keeper:
             state='pending_recovery' if started_pending else 'not_observed_this_cycle',last_error=None)
         self.gas_review_health['state'] = 'not_reviewed_this_cycle'
         def health(status: str, **extra: Any) -> None:
+            reset_ids,reset_summary = _bucket_health_preview(self.state.get(CONFIRMATION_RESETS,{}))
+            clear_ids,clear_summary = _bucket_health_preview(bucket for bucket,record in
+                self.state.get(CONFIRMATION_CLEARS,{}).items() if record['awaiting_healthy_read'])
             atomic_json(self.health_path,{'time':dt.datetime.now(dt.timezone.utc).isoformat(),
                 'health_schema':HEALTH_SCHEMA,
                 'status':status,'live':self.live,'chain_id':self.chain,'sender':self.sender,
@@ -539,9 +552,10 @@ class Keeper:
                 'rebalance_confirmation_health':{
                     'version':self.rebalance_confirmation.version,
                     'check_interval_seconds':CONFIRMATION_CHECK_SECONDS if self.rebalance_confirmation.version in (1,2,3) else None,
-                    'pending_reset_buckets':sorted(self.state.get(CONFIRMATION_RESETS,{}),key=int),
-                    'awaiting_healthy_read_buckets':sorted((bucket for bucket,record in
-                        self.state.get(CONFIRMATION_CLEARS,{}).items() if record['awaiting_healthy_read']),key=int),
+                    'pending_reset_buckets':reset_ids,
+                    'pending_reset_buckets_summary':reset_summary,
+                    'awaiting_healthy_read_buckets':clear_ids,
+                    'awaiting_healthy_read_buckets_summary':clear_summary,
                     'scope':'last_observed_latest_state_not_continuous_evidence',
                     'last_observation':self.rebalance_confirmation.last_observation,
                     'policy':self.confirmation_policy_health},
@@ -556,7 +570,7 @@ class Keeper:
                 'lp_exit_started':self.principal_exit_started,
                 'pending_action':(self.state.get('pending') or {}).get('key'),
                 'pending_day':(self.state.get('pending') or {}).get('day'),
-                'duration_seconds':round(time.monotonic()-start,3),**extra})
+                'duration_seconds':round(time.monotonic()-start,3),**extra},compact=True)
         health('running')  # A failed health write stops the cycle before signing.
         try:
             self.cycle()

@@ -1,0 +1,1596 @@
+{
+  "application_or_test_execution": 0,
+  "coverage_is_not_inferred": true,
+  "files_with_lambdas": [
+    {
+      "lambda_count": 3,
+      "locations": [
+        {
+          "end_line": 297,
+          "line": 297
+        },
+        {
+          "end_line": 304,
+          "line": 304
+        },
+        {
+          "end_line": 232,
+          "line": 232
+        }
+      ],
+      "path": "frontend_api/activation.py",
+      "sha256": "30c6e0d61e7609abd23609e13dd6055bf0e37f2a9f9a2be500c80cb0c40b5117"
+    },
+    {
+      "lambda_count": 5,
+      "locations": [
+        {
+          "end_line": 313,
+          "line": 313
+        },
+        {
+          "end_line": 328,
+          "line": 328
+        },
+        {
+          "end_line": 348,
+          "line": 348
+        },
+        {
+          "end_line": 359,
+          "line": 359
+        },
+        {
+          "end_line": 377,
+          "line": 377
+        }
+      ],
+      "path": "frontend_api/activation_config.py",
+      "sha256": "420a8ac87d3070a51cbb8d12ac323cd3456d0faa3b62195e2ba2907b990f6cdd"
+    },
+    {
+      "lambda_count": 4,
+      "locations": [
+        {
+          "end_line": 222,
+          "line": 222
+        },
+        {
+          "end_line": 408,
+          "line": 408
+        },
+        {
+          "end_line": 341,
+          "line": 341
+        },
+        {
+          "end_line": 342,
+          "line": 342
+        }
+      ],
+      "path": "frontend_api/activation_trace.py",
+      "sha256": "3f59bef3da40ea846b407291ac7eb7d5fc3111f36c8e35a747bb8b2f250a21f5"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 211,
+          "line": 211
+        }
+      ],
+      "path": "frontend_api/claim_planner.py",
+      "sha256": "7a3e720b97acf38e2ebfc7f4dde7a5912852a3eabd0a39629546aa1097cab810"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 46,
+          "line": 46
+        }
+      ],
+      "path": "frontend_api/collection.py",
+      "sha256": "33ca3f1b6787625cc774eafaaaa84039347ac30984379a877d36de5e84224929"
+    },
+    {
+      "lambda_count": 2,
+      "locations": [
+        {
+          "end_line": 80,
+          "line": 80
+        },
+        {
+          "end_line": 84,
+          "line": 84
+        }
+      ],
+      "path": "frontend_api/earnings_checkpoint.py",
+      "sha256": "b593738648a0677bbcca77b7a3a4dc0ca5131a6bb8b8ce6509e93282c17829b3"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 255,
+          "line": 255
+        }
+      ],
+      "path": "frontend_api/earnings_checkpoint_v2.py",
+      "sha256": "525dfae493248780d6025d88ab7ea7cdd0e507465ed378f0c2b56d7e4044ac98"
+    },
+    {
+      "lambda_count": 3,
+      "locations": [
+        {
+          "end_line": 114,
+          "line": 114
+        },
+        {
+          "end_line": 202,
+          "line": 202
+        },
+        {
+          "end_line": 126,
+          "line": 126
+        }
+      ],
+      "path": "frontend_api/earnings_checkpoint_v3.py",
+      "sha256": "ab00ba2b9972d336e70f0b7559ee45903939245060e3d3b1bf081cf61b1258eb"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 21,
+          "line": 21
+        }
+      ],
+      "path": "frontend_api/earnings_exact_lp.py",
+      "sha256": "77e0694b2d800dafd5dc05e760648d0ece86304ca47abb5f05d3ff76b32bb604"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 85,
+          "line": 85
+        }
+      ],
+      "path": "frontend_api/earnings_prices.py",
+      "sha256": "32921e735f7989dbf83083b0737933584a08364f55ba2d1597b4e387bf51c827"
+    },
+    {
+      "lambda_count": 2,
+      "locations": [
+        {
+          "end_line": 68,
+          "line": 68
+        },
+        {
+          "end_line": 87,
+          "line": 87
+        }
+      ],
+      "path": "frontend_api/history.py",
+      "sha256": "000af63258776ad42cc16c25b2638e1e0877a4217fb254f0d4fe52ba42a280cc"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 54,
+          "line": 54
+        }
+      ],
+      "path": "frontend_api/history_audit.py",
+      "sha256": "74a04ed5cbb47ab0e23794760cd83d75eeb59aa9a76a57453475bef8d6f1c912"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 215,
+          "line": 215
+        }
+      ],
+      "path": "frontend_api/history_recovery.py",
+      "sha256": "8e10b8a4820ca29e425707e7469032a1d0d91590edadf98b0a2afb44ad4a7a3f"
+    },
+    {
+      "lambda_count": 2,
+      "locations": [
+        {
+          "end_line": 47,
+          "line": 47
+        },
+        {
+          "end_line": 111,
+          "line": 111
+        }
+      ],
+      "path": "frontend_api/liquidity_context.py",
+      "sha256": "bb9719ad15df52457692821d9f650a0c981579748c51213698876346ba864fc3"
+    },
+    {
+      "lambda_count": 4,
+      "locations": [
+        {
+          "end_line": 71,
+          "line": 71
+        },
+        {
+          "end_line": 72,
+          "line": 72
+        },
+        {
+          "end_line": 104,
+          "line": 104
+        },
+        {
+          "end_line": 128,
+          "line": 128
+        }
+      ],
+      "path": "frontend_api/portfolio_v5.py",
+      "sha256": "e5da08e708ecb7072abf85bd0b3398bc2accdec29c7e44964e42b01e777f98c7"
+    },
+    {
+      "lambda_count": 4,
+      "locations": [
+        {
+          "end_line": 85,
+          "line": 85
+        },
+        {
+          "end_line": 86,
+          "line": 86
+        },
+        {
+          "end_line": 121,
+          "line": 121
+        },
+        {
+          "end_line": 145,
+          "line": 145
+        }
+      ],
+      "path": "frontend_api/portfolio_v6.py",
+      "sha256": "4f44737dcffeb7630bf52d6079c69519f0e7981dd72420b7fa41ee6803410c59"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 645,
+          "line": 645
+        }
+      ],
+      "path": "frontend_api/service.py",
+      "sha256": "e0d8fd9512e080f40afa26f760240d2188ae3d02ecf34c4d0fb601854b5a38ce"
+    },
+    {
+      "lambda_count": 2,
+      "locations": [
+        {
+          "end_line": 203,
+          "line": 203
+        },
+        {
+          "end_line": 205,
+          "line": 205
+        }
+      ],
+      "path": "frontend_api/transactions.py",
+      "sha256": "6fa618e58186b9bbcb7bbd2549733d973e52e733e312eefc2abfe45c4cacab8e"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 77,
+          "line": 77
+        }
+      ],
+      "path": "frontend_api/wallet_earnings.py",
+      "sha256": "a9b0155c6d94f726218d943440d7b90949444b5d4851d8783d05e0c542e03e7e"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 274,
+          "line": 274
+        }
+      ],
+      "path": "indexer/monitor.py",
+      "sha256": "ef7796e5904a995c59f46346478e952400fa5010a03694f6e45ea5c7e581ec36"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 109,
+          "line": 109
+        }
+      ],
+      "path": "keeper/alerts.py",
+      "sha256": "053ac2a70f38801b77afde8ba107c78e322a11630cb04620e1aa35a3f811fe13"
+    },
+    {
+      "lambda_count": 4,
+      "locations": [
+        {
+          "end_line": 322,
+          "line": 322
+        },
+        {
+          "end_line": 2846,
+          "line": 2846
+        },
+        {
+          "end_line": 797,
+          "line": 797
+        },
+        {
+          "end_line": 2596,
+          "line": 2596
+        }
+      ],
+      "path": "keeper/monitor.py",
+      "sha256": "ec8a665bc0250b96b3c12987f9b6ba892158a547cbb9efc1972a2e400f69ab3a"
+    },
+    {
+      "lambda_count": 17,
+      "locations": [
+        {
+          "end_line": 140,
+          "line": 140
+        },
+        {
+          "end_line": 343,
+          "line": 342
+        },
+        {
+          "end_line": 397,
+          "line": 397
+        },
+        {
+          "end_line": 404,
+          "line": 404
+        },
+        {
+          "end_line": 409,
+          "line": 409
+        },
+        {
+          "end_line": 410,
+          "line": 410
+        },
+        {
+          "end_line": 306,
+          "line": 305
+        },
+        {
+          "end_line": 547,
+          "line": 547
+        },
+        {
+          "end_line": 206,
+          "line": 206
+        },
+        {
+          "end_line": 237,
+          "line": 237
+        },
+        {
+          "end_line": 473,
+          "line": 473
+        },
+        {
+          "end_line": 498,
+          "line": 498
+        },
+        {
+          "end_line": 523,
+          "line": 523
+        },
+        {
+          "end_line": 527,
+          "line": 527
+        },
+        {
+          "end_line": 597,
+          "line": 597
+        },
+        {
+          "end_line": 462,
+          "line": 462
+        },
+        {
+          "end_line": 478,
+          "line": 478
+        }
+      ],
+      "path": "keeper/operation_review.py",
+      "sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    {
+      "lambda_count": 4,
+      "locations": [
+        {
+          "end_line": 205,
+          "line": 205
+        },
+        {
+          "end_line": 206,
+          "line": 206
+        },
+        {
+          "end_line": 207,
+          "line": 207
+        },
+        {
+          "end_line": 221,
+          "line": 221
+        }
+      ],
+      "path": "keeper/probe.py",
+      "sha256": "42142395fa2e43a6360644effdafab7e3be26b37b985a9bd3ae6fcd9d1374a10"
+    },
+    {
+      "lambda_count": 2,
+      "locations": [
+        {
+          "end_line": 29,
+          "line": 29
+        },
+        {
+          "end_line": 35,
+          "line": 35
+        }
+      ],
+      "path": "keeper/staging.py",
+      "sha256": "9ebae1142434baee326e766d6a4c69ccf3d568e7d7881c92715a3a5024c09710"
+    },
+    {
+      "lambda_count": 4,
+      "locations": [
+        {
+          "end_line": 80,
+          "line": 79
+        },
+        {
+          "end_line": 237,
+          "line": 237
+        },
+        {
+          "end_line": 238,
+          "line": 238
+        },
+        {
+          "end_line": 313,
+          "line": 313
+        }
+      ],
+      "path": "scripts/build-workload-inventory.py",
+      "sha256": "eda2e6d33c107b18e3b92e81d12808e9dbd63d4cfed16b50ac12a067c269405d"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 152,
+          "line": 152
+        }
+      ],
+      "path": "scripts/check-local-deployment-evidence.py",
+      "sha256": "fc3bb047ae882ce22639937acc9e589d5513b0e0db28941ac762081cddae439d"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 43,
+          "line": 42
+        }
+      ],
+      "path": "scripts/check-staging-monitor.py",
+      "sha256": "fd4b7e5b7768d8697328139d0fccbca44341d37e9790236913286cf96ab25ca6"
+    },
+    {
+      "lambda_count": 2,
+      "locations": [
+        {
+          "end_line": 53,
+          "line": 53
+        },
+        {
+          "end_line": 74,
+          "line": 74
+        }
+      ],
+      "path": "scripts/generate_event_schema.py",
+      "sha256": "1c47bde2c3d1e02b7c73e700a384b41610572f03baa9d94755208aff0d4fc60e"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 70,
+          "line": 70
+        }
+      ],
+      "path": "scripts/local-api-stack.py",
+      "sha256": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 40,
+          "line": 40
+        }
+      ],
+      "path": "scripts/prepare-dollar-rehearsal.py",
+      "sha256": "332539a26071b28e6b0ab3002f12bb1a0cc924e8d2d31ac1e421f599a5cf8591"
+    },
+    {
+      "lambda_count": 3,
+      "locations": [
+        {
+          "end_line": 105,
+          "line": 105
+        },
+        {
+          "end_line": 163,
+          "line": 163
+        },
+        {
+          "end_line": 227,
+          "line": 227
+        }
+      ],
+      "path": "scripts/rehearse-keeper.py",
+      "sha256": "6e76859a45b40cdbc3f930a7c976110d964fb95be6b4ada210327912eb2f4f1b"
+    },
+    {
+      "lambda_count": 6,
+      "locations": [
+        {
+          "end_line": 684,
+          "line": 684
+        },
+        {
+          "end_line": 453,
+          "line": 453
+        },
+        {
+          "end_line": 658,
+          "line": 658
+        },
+        {
+          "end_line": 132,
+          "line": 132
+        },
+        {
+          "end_line": 676,
+          "line": 676
+        },
+        {
+          "end_line": 656,
+          "line": 656
+        }
+      ],
+      "path": "scripts/rehearse-manual-recovery.py",
+      "sha256": "fabaf02efa8654efa3d3e4c606749d2632a20b09af1a2eb12e7553583119851e"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 54,
+          "line": 54
+        }
+      ],
+      "path": "scripts/rehearse-manual-reference.py",
+      "sha256": "52f94c917b8a489bdf534572dedd848847f20c49b372b81607f1d4385e0e5895"
+    },
+    {
+      "lambda_count": 3,
+      "locations": [
+        {
+          "end_line": 112,
+          "line": 112
+        },
+        {
+          "end_line": 190,
+          "line": 190
+        },
+        {
+          "end_line": 191,
+          "line": 191
+        }
+      ],
+      "path": "scripts/source9_rehearsal_fork.py",
+      "sha256": "6c52f68b6d66cfa28d18c13eee0a1930123dec82d54143446ac76ef9069629b4"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 20,
+          "line": 20
+        }
+      ],
+      "path": "scripts/source_checks.py",
+      "sha256": "04970d1947ca23ec0a52666b0d5473fd9cb03f995eeb3ddab3f0c05e8e1a15ca"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 38,
+          "line": 38
+        }
+      ],
+      "path": "scripts/sync-project-todo.py",
+      "sha256": "2f6ce95de448d4f742274d7861e97a4ff9fd965085f435e19bce3cbc3b18292a"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 46,
+          "line": 46
+        }
+      ],
+      "path": "scripts/validate-production-config.py",
+      "sha256": "dcdd205a9228050c249134b11dcde81d736f99aebdc987d8b7e44b195ed7e305"
+    },
+    {
+      "lambda_count": 3,
+      "locations": [
+        {
+          "end_line": 161,
+          "line": 161
+        },
+        {
+          "end_line": 161,
+          "line": 161
+        },
+        {
+          "end_line": 265,
+          "line": 265
+        }
+      ],
+      "path": "zzz_ops/deployment_plan.py",
+      "sha256": "1cc30fa06a8c509e2a7e56d9c5d8af4fab469aa2457e545a7366376c4ab93965"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 57,
+          "line": 57
+        }
+      ],
+      "path": "zzz_ops/factory_code_v2.py",
+      "sha256": "7764d4563269ee180ad406d6c8eef1f2f33bc1048c892b8017156ef0348f32df"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 57,
+          "line": 57
+        }
+      ],
+      "path": "zzz_ops/factory_code_v3.py",
+      "sha256": "8b27d237a39d81c2b6d3ac7a7186723569f8bef2a59ad811aca39e0b55f6665a"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 57,
+          "line": 57
+        }
+      ],
+      "path": "zzz_ops/factory_code_v4.py",
+      "sha256": "a10204b8230499f0d4f8380ae4f01b337823a15080cd6d4795c528a3f5fb517c"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 57,
+          "line": 57
+        }
+      ],
+      "path": "zzz_ops/factory_code_v5.py",
+      "sha256": "3e41c39666784e514d35a53e6ed7996b0bd3522126d22c55dcf63dfc943dfb46"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 59,
+          "line": 59
+        }
+      ],
+      "path": "zzz_ops/factory_code_v6.py",
+      "sha256": "a8596f54f4084fbf17c7a78fa13d7e6ef66cdaae4fcfab9f206fd6f9faa68552"
+    },
+    {
+      "lambda_count": 9,
+      "locations": [
+        {
+          "end_line": 47,
+          "line": 47
+        },
+        {
+          "end_line": 319,
+          "line": 319
+        },
+        {
+          "end_line": 321,
+          "line": 321
+        },
+        {
+          "end_line": 393,
+          "line": 393
+        },
+        {
+          "end_line": 506,
+          "line": 506
+        },
+        {
+          "end_line": 507,
+          "line": 507
+        },
+        {
+          "end_line": 508,
+          "line": 508
+        },
+        {
+          "end_line": 509,
+          "line": 509
+        },
+        {
+          "end_line": 453,
+          "line": 453
+        }
+      ],
+      "path": "zzz_ops/function_reference.py",
+      "sha256": "dbe5e526d94311efb82b92f572af96c12f9fe905a3493fdd63991e12dc635834"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 84,
+          "line": 84
+        }
+      ],
+      "path": "zzz_ops/management_custody.py",
+      "sha256": "7be6440b45c35bfcf43b6dd94f40c271c6dd9fa1519c1fcbc66a2df8fe0bac0f"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 100,
+          "line": 100
+        }
+      ],
+      "path": "zzz_ops/management_exit.py",
+      "sha256": "cbecf0656a38a516769876376ed4415643033009e3ee4d157f8c940fe2e0ec74"
+    },
+    {
+      "lambda_count": 10,
+      "locations": [
+        {
+          "end_line": 371,
+          "line": 371
+        },
+        {
+          "end_line": 372,
+          "line": 372
+        },
+        {
+          "end_line": 373,
+          "line": 373
+        },
+        {
+          "end_line": 374,
+          "line": 374
+        },
+        {
+          "end_line": 375,
+          "line": 375
+        },
+        {
+          "end_line": 376,
+          "line": 376
+        },
+        {
+          "end_line": 377,
+          "line": 377
+        },
+        {
+          "end_line": 378,
+          "line": 378
+        },
+        {
+          "end_line": 393,
+          "line": 393
+        },
+        {
+          "end_line": 367,
+          "line": 367
+        }
+      ],
+      "path": "zzz_ops/manual_lp_review.py",
+      "sha256": "b642b35ee885292625b81815cf3598ac01571f0afbeb8e71f85bf8efbd56fe4e"
+    },
+    {
+      "lambda_count": 3,
+      "locations": [
+        {
+          "end_line": 388,
+          "line": 388
+        },
+        {
+          "end_line": 392,
+          "line": 392
+        },
+        {
+          "end_line": 544,
+          "line": 544
+        }
+      ],
+      "path": "zzz_ops/market_evidence.py",
+      "sha256": "b7c3be52d153590490659a86df2979866398d112f8e0f99d707437e4c659c5fd"
+    },
+    {
+      "lambda_count": 2,
+      "locations": [
+        {
+          "end_line": 186,
+          "line": 186
+        },
+        {
+          "end_line": 277,
+          "line": 277
+        }
+      ],
+      "path": "zzz_ops/opensea_drop.py",
+      "sha256": "01f86be5db2a2d8102b51e1d7fe3a4aae451d53cce7726dfbf3f32e064047480"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 264,
+          "line": 263
+        }
+      ],
+      "path": "zzz_ops/operator_reference.py",
+      "sha256": "691dc2698acd86009b4bb8856cb1b5865d529f94d7f69c61ea7ef04889f2aefb"
+    },
+    {
+      "lambda_count": 53,
+      "locations": [
+        {
+          "end_line": 478,
+          "line": 478
+        },
+        {
+          "end_line": 483,
+          "line": 483
+        },
+        {
+          "end_line": 491,
+          "line": 491
+        },
+        {
+          "end_line": 496,
+          "line": 495
+        },
+        {
+          "end_line": 499,
+          "line": 498
+        },
+        {
+          "end_line": 546,
+          "line": 545
+        },
+        {
+          "end_line": 596,
+          "line": 595
+        },
+        {
+          "end_line": 604,
+          "line": 603
+        },
+        {
+          "end_line": 608,
+          "line": 607
+        },
+        {
+          "end_line": 292,
+          "line": 291
+        },
+        {
+          "end_line": 300,
+          "line": 300
+        },
+        {
+          "end_line": 334,
+          "line": 334
+        },
+        {
+          "end_line": 337,
+          "line": 337
+        },
+        {
+          "end_line": 347,
+          "line": 347
+        },
+        {
+          "end_line": 352,
+          "line": 352
+        },
+        {
+          "end_line": 422,
+          "line": 422
+        },
+        {
+          "end_line": 455,
+          "line": 454
+        },
+        {
+          "end_line": 456,
+          "line": 456
+        },
+        {
+          "end_line": 459,
+          "line": 459
+        },
+        {
+          "end_line": 460,
+          "line": 460
+        },
+        {
+          "end_line": 536,
+          "line": 536
+        },
+        {
+          "end_line": 542,
+          "line": 541
+        },
+        {
+          "end_line": 556,
+          "line": 555
+        },
+        {
+          "end_line": 558,
+          "line": 557
+        },
+        {
+          "end_line": 560,
+          "line": 559
+        },
+        {
+          "end_line": 562,
+          "line": 561
+        },
+        {
+          "end_line": 574,
+          "line": 574
+        },
+        {
+          "end_line": 598,
+          "line": 597
+        },
+        {
+          "end_line": 602,
+          "line": 601
+        },
+        {
+          "end_line": 641,
+          "line": 640
+        },
+        {
+          "end_line": 643,
+          "line": 642
+        },
+        {
+          "end_line": 646,
+          "line": 645
+        },
+        {
+          "end_line": 649,
+          "line": 648
+        },
+        {
+          "end_line": 683,
+          "line": 682
+        },
+        {
+          "end_line": 276,
+          "line": 276
+        },
+        {
+          "end_line": 311,
+          "line": 311
+        },
+        {
+          "end_line": 321,
+          "line": 321
+        },
+        {
+          "end_line": 325,
+          "line": 325
+        },
+        {
+          "end_line": 341,
+          "line": 341
+        },
+        {
+          "end_line": 354,
+          "line": 354
+        },
+        {
+          "end_line": 458,
+          "line": 457
+        },
+        {
+          "end_line": 468,
+          "line": 467
+        },
+        {
+          "end_line": 511,
+          "line": 510
+        },
+        {
+          "end_line": 518,
+          "line": 517
+        },
+        {
+          "end_line": 581,
+          "line": 580
+        },
+        {
+          "end_line": 583,
+          "line": 582
+        },
+        {
+          "end_line": 662,
+          "line": 661
+        },
+        {
+          "end_line": 689,
+          "line": 689
+        },
+        {
+          "end_line": 283,
+          "line": 283
+        },
+        {
+          "end_line": 433,
+          "line": 433
+        },
+        {
+          "end_line": 589,
+          "line": 588
+        },
+        {
+          "end_line": 671,
+          "line": 670
+        },
+        {
+          "end_line": 468,
+          "line": 468
+        }
+      ],
+      "path": "zzz_ops/production_observer.py",
+      "sha256": "e420d952a813f565958e6d94bd29cdd8dda1df8d434ebe8232c17c052c0e46fd"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 10,
+          "line": 10
+        }
+      ],
+      "path": "zzz_ops/production_observer_v10.py",
+      "sha256": "40b34711155a1746e0a2703961628204d2b7a3a6b58b4151ae5422866711c72c"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 10,
+          "line": 10
+        }
+      ],
+      "path": "zzz_ops/production_observer_v11.py",
+      "sha256": "69d137284a5d9c96a7b1f0b1bfaead102e73606e195d259bb4bdc29da957d14b"
+    },
+    {
+      "lambda_count": 2,
+      "locations": [
+        {
+          "end_line": 26,
+          "line": 26
+        },
+        {
+          "end_line": 25,
+          "line": 24
+        }
+      ],
+      "path": "zzz_ops/production_observer_v12.py",
+      "sha256": "7af8da17d1543af31e4ed8d3c3bdd01d5ca4c7281611b0ff9ef1c6be500645c5"
+    },
+    {
+      "lambda_count": 2,
+      "locations": [
+        {
+          "end_line": 23,
+          "line": 23
+        },
+        {
+          "end_line": 22,
+          "line": 21
+        }
+      ],
+      "path": "zzz_ops/production_observer_v13.py",
+      "sha256": "7275dbdef0f6a35a660355fa6ba612e07c1d95b413960544384d38c10f9a9d10"
+    },
+    {
+      "lambda_count": 6,
+      "locations": [
+        {
+          "end_line": 36,
+          "line": 36
+        },
+        {
+          "end_line": 47,
+          "line": 47
+        },
+        {
+          "end_line": 23,
+          "line": 23
+        },
+        {
+          "end_line": 30,
+          "line": 29
+        },
+        {
+          "end_line": 32,
+          "line": 31
+        },
+        {
+          "end_line": 46,
+          "line": 45
+        }
+      ],
+      "path": "zzz_ops/production_observer_v14.py",
+      "sha256": "d592358ba052ba4af78c9a8bf09da6244edd0d63b2f3b595fafded78f7141b01"
+    },
+    {
+      "lambda_count": 5,
+      "locations": [
+        {
+          "end_line": 36,
+          "line": 34
+        },
+        {
+          "end_line": 50,
+          "line": 44
+        },
+        {
+          "end_line": 148,
+          "line": 148
+        },
+        {
+          "end_line": 146,
+          "line": 146
+        },
+        {
+          "end_line": 45,
+          "line": 45
+        }
+      ],
+      "path": "zzz_ops/production_observer_v15.py",
+      "sha256": "deded3c0e07ef6f80351315d5dd65ddbd92aca7e1c2e441078873184f679cbf9"
+    },
+    {
+      "lambda_count": 8,
+      "locations": [
+        {
+          "end_line": 94,
+          "line": 90
+        },
+        {
+          "end_line": 50,
+          "line": 49
+        },
+        {
+          "end_line": 54,
+          "line": 53
+        },
+        {
+          "end_line": 67,
+          "line": 67
+        },
+        {
+          "end_line": 85,
+          "line": 84
+        },
+        {
+          "end_line": 74,
+          "line": 73
+        },
+        {
+          "end_line": 76,
+          "line": 75
+        },
+        {
+          "end_line": 91,
+          "line": 91
+        }
+      ],
+      "path": "zzz_ops/production_observer_v4.py",
+      "sha256": "2354c83760f490f35738e48afe62a4eb5f54b35b2e6ba0416a2505f9dddc08bf"
+    },
+    {
+      "lambda_count": 8,
+      "locations": [
+        {
+          "end_line": 108,
+          "line": 103
+        },
+        {
+          "end_line": 63,
+          "line": 62
+        },
+        {
+          "end_line": 67,
+          "line": 66
+        },
+        {
+          "end_line": 80,
+          "line": 80
+        },
+        {
+          "end_line": 98,
+          "line": 97
+        },
+        {
+          "end_line": 87,
+          "line": 86
+        },
+        {
+          "end_line": 89,
+          "line": 88
+        },
+        {
+          "end_line": 104,
+          "line": 104
+        }
+      ],
+      "path": "zzz_ops/production_observer_v5.py",
+      "sha256": "fa62d042cf95f45d1a3e90fba52e9ffb14ba964c9b992b611f50d4cfd70e00cc"
+    },
+    {
+      "lambda_count": 8,
+      "locations": [
+        {
+          "end_line": 108,
+          "line": 103
+        },
+        {
+          "end_line": 63,
+          "line": 62
+        },
+        {
+          "end_line": 67,
+          "line": 66
+        },
+        {
+          "end_line": 80,
+          "line": 80
+        },
+        {
+          "end_line": 98,
+          "line": 97
+        },
+        {
+          "end_line": 87,
+          "line": 86
+        },
+        {
+          "end_line": 89,
+          "line": 88
+        },
+        {
+          "end_line": 104,
+          "line": 104
+        }
+      ],
+      "path": "zzz_ops/production_observer_v6.py",
+      "sha256": "d7d9905d0ce104ce28f9f955075aa388333c2dfd98faba26acd323f78ef37623"
+    },
+    {
+      "lambda_count": 1,
+      "locations": [
+        {
+          "end_line": 291,
+          "line": 291
+        }
+      ],
+      "path": "zzz_ops/production_v15.py",
+      "sha256": "29b1a7447ef2f117b85a7330a459ce4d1efc537b05535bc448a4cb1b445a8f54"
+    },
+    {
+      "lambda_count": 16,
+      "locations": [
+        {
+          "end_line": 35,
+          "line": 35
+        },
+        {
+          "end_line": 36,
+          "line": 36
+        },
+        {
+          "end_line": 37,
+          "line": 37
+        },
+        {
+          "end_line": 568,
+          "line": 568
+        },
+        {
+          "end_line": 587,
+          "line": 587
+        },
+        {
+          "end_line": 597,
+          "line": 597
+        },
+        {
+          "end_line": 598,
+          "line": 598
+        },
+        {
+          "end_line": 599,
+          "line": 599
+        },
+        {
+          "end_line": 600,
+          "line": 600
+        },
+        {
+          "end_line": 601,
+          "line": 601
+        },
+        {
+          "end_line": 602,
+          "line": 602
+        },
+        {
+          "end_line": 603,
+          "line": 603
+        },
+        {
+          "end_line": 588,
+          "line": 588
+        },
+        {
+          "end_line": 589,
+          "line": 589
+        },
+        {
+          "end_line": 590,
+          "line": 590
+        },
+        {
+          "end_line": 591,
+          "line": 591
+        }
+      ],
+      "path": "zzz_ops/production_v4.py",
+      "sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    {
+      "lambda_count": 17,
+      "locations": [
+        {
+          "end_line": 40,
+          "line": 40
+        },
+        {
+          "end_line": 41,
+          "line": 41
+        },
+        {
+          "end_line": 42,
+          "line": 42
+        },
+        {
+          "end_line": 501,
+          "line": 501
+        },
+        {
+          "end_line": 520,
+          "line": 520
+        },
+        {
+          "end_line": 530,
+          "line": 530
+        },
+        {
+          "end_line": 531,
+          "line": 531
+        },
+        {
+          "end_line": 532,
+          "line": 532
+        },
+        {
+          "end_line": 533,
+          "line": 533
+        },
+        {
+          "end_line": 534,
+          "line": 534
+        },
+        {
+          "end_line": 535,
+          "line": 535
+        },
+        {
+          "end_line": 536,
+          "line": 536
+        },
+        {
+          "end_line": 537,
+          "line": 537
+        },
+        {
+          "end_line": 521,
+          "line": 521
+        },
+        {
+          "end_line": 522,
+          "line": 522
+        },
+        {
+          "end_line": 523,
+          "line": 523
+        },
+        {
+          "end_line": 524,
+          "line": 524
+        }
+      ],
+      "path": "zzz_ops/production_v5.py",
+      "sha256": "770fede80f4b284aa7bc7ade7f9cb492c2a2641d295cf686b952289c6ec2b153"
+    },
+    {
+      "lambda_count": 20,
+      "locations": [
+        {
+          "end_line": 40,
+          "line": 40
+        },
+        {
+          "end_line": 41,
+          "line": 41
+        },
+        {
+          "end_line": 42,
+          "line": 42
+        },
+        {
+          "end_line": 525,
+          "line": 525
+        },
+        {
+          "end_line": 507,
+          "line": 507
+        },
+        {
+          "end_line": 544,
+          "line": 544
+        },
+        {
+          "end_line": 560,
+          "line": 560
+        },
+        {
+          "end_line": 561,
+          "line": 561
+        },
+        {
+          "end_line": 562,
+          "line": 562
+        },
+        {
+          "end_line": 563,
+          "line": 563
+        },
+        {
+          "end_line": 564,
+          "line": 564
+        },
+        {
+          "end_line": 565,
+          "line": 565
+        },
+        {
+          "end_line": 566,
+          "line": 566
+        },
+        {
+          "end_line": 567,
+          "line": 567
+        },
+        {
+          "end_line": 568,
+          "line": 568
+        },
+        {
+          "end_line": 545,
+          "line": 545
+        },
+        {
+          "end_line": 548,
+          "line": 548
+        },
+        {
+          "end_line": 549,
+          "line": 549
+        },
+        {
+          "end_line": 550,
+          "line": 550
+        },
+        {
+          "end_line": 547,
+          "line": 547
+        }
+      ],
+      "path": "zzz_ops/production_v6.py",
+      "sha256": "55fb45406723a99315629d107c276a24e4bd43f3d5d3e76585cfc9e5dfa59e2f"
+    },
+    {
+      "lambda_count": 2,
+      "locations": [
+        {
+          "end_line": 138,
+          "line": 138
+        },
+        {
+          "end_line": 155,
+          "line": 155
+        }
+      ],
+      "path": "zzz_ops/review_bundle.py",
+      "sha256": "439bea792ce03b97f376485589dbf69a16f68ac23f7531d835bd9c9ad5ee8eb3"
+    }
+  ],
+  "frozen_F6_source_maps_and_named_Yul_helpers_unchanged": true,
+  "kind": "current_python_anonymous_code_supplement",
+  "lambdas": 280,
+  "named_definitions": 2140,
+  "production_approved": false,
+  "python_files": 191,
+  "schema": 1,
+  "source_inventory_sha256": "49e9f0d0e9ed3fa6714030d287ab3ede92d5ad4d7e5cd164dfe00806b3bd374a"
+}

@@ -499,3 +499,8 @@ reports/keeper-reconstruction-20261127/** -text whitespace=cr-at-eol,-blank-at-e
 
 # Exact desktop-kit stock keeper restart preparation and sanitized evidence.
 reports/keeper-clean-restart-20261127/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Exact keeper output/storage review and sanitized verification bytes.
+reports/keeper-efficiency-20261127/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+# Keep the source-pinned workload plan byte-exact across Windows/Ubuntu.
+docs/WORKLOAD_PLAN.json -text whitespace=cr-at-eol

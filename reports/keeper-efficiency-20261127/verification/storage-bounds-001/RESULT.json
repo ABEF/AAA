@@ -1,0 +1,35 @@
+{
+  "errors": 0,
+  "failures": 0,
+  "kind": "new-keeper-publication-bounds",
+  "log": {
+    "bytes": 882,
+    "sha256": "63dc642e9e41912b6dccb8a2f977fe30de76d5fddcb422d1fdd5c75e7f4b9a26"
+  },
+  "method_ids": [
+    "tests_python.test_keeper_storage_bounds.KeeperStorageBoundsTests.test_exact_export_limit_and_ascii_escaping_roundtrip_then_one_byte_refusal",
+    "tests_python.test_keeper_storage_bounds.KeeperStorageBoundsTests.test_fitting_selection_keeps_atomic_writer_format",
+    "tests_python.test_keeper_storage_bounds.KeeperStorageBoundsTests.test_indented_export_overflow_preserves_export_and_snapshot",
+    "tests_python.test_keeper_storage_bounds.KeeperStorageBoundsTests.test_indented_selection_overflow_preserves_committed_files"
+  ],
+  "old_test_bodies_run": 0,
+  "schema": 1,
+  "scope": "four new temporary-file publication-bound methods only; identity guards mocked; real atomic writer",
+  "server_or_service_actions": 0,
+  "skipped": 0,
+  "source_hashes_after": {
+    "keeper/scheduling.py": "acb1b3c948414c66fef61e4c92bbd13f620634ece4f70a7a3bd662e215da9eff",
+    "keeper/staging_observer.py": "b5b3e733306cd85bb444ee210ff4f21eebcdb3f25c9d98adf9aaafb14d51ddd7",
+    "tests_python/test_keeper_storage_bounds.py": "ca4ace25fdfd7b936ad8ef1b2af936f0d974d30e14a88d1cdaa69957456516fe",
+    "zzz_ops/state.py": "7d7632f6bf944dba7b2efc15e37a5b0215e135aa680bc702ee2e5b81e11a32ad"
+  },
+  "source_hashes_before": {
+    "keeper/scheduling.py": "acb1b3c948414c66fef61e4c92bbd13f620634ece4f70a7a3bd662e215da9eff",
+    "keeper/staging_observer.py": "b5b3e733306cd85bb444ee210ff4f21eebcdb3f25c9d98adf9aaafb14d51ddd7",
+    "tests_python/test_keeper_storage_bounds.py": "ca4ace25fdfd7b936ad8ef1b2af936f0d974d30e14a88d1cdaa69957456516fe",
+    "zzz_ops/state.py": "7d7632f6bf944dba7b2efc15e37a5b0215e135aa680bc702ee2e5b81e11a32ad"
+  },
+  "source_unchanged_during_run": true,
+  "success": true,
+  "tests_run": 4
+}

@@ -1,0 +1,20 @@
+{
+  "findings": [],
+  "kind": "final-report-local-link-review",
+  "local_links_checked": [
+    "verification/storage-bounds-001/RESULT.json",
+    "verification/output-001/RESULT.json",
+    "verification/desktop/DESKTOP_STORAGE_TESTS.json",
+    "review/WRITER_ADAPTER_AST_EQUIVALENCE.json",
+    "review/SOURCE_REVIEW.json",
+    "review/CORE_PEER_REVIEW.json",
+    "review/CORE_PREVIEW_SUPPLEMENT.json",
+    "FUNCTION_INVENTORY.json",
+    "ANONYMOUS_CODE_INVENTORY.json",
+    "../../docs/OPERATOR_MANUAL.md#keeper-output-storage-and-source-adoption"
+  ],
+  "report_sha256": "41868a0bf0bc231a9463c99a099fa6ac2de0c25f243f0880f09980d0d4ef861c",
+  "schema": 1,
+  "scope": "saved report and local files only; no app/test/native/server/network or document edits",
+  "success": true
+}

@@ -1,6 +1,6 @@
 # Documentation map
 
-Use the [unsigned keeper restart recipe](OPERATOR_MANUAL.md#unsigned-keeper-restart-from-a-reconstructed-kit) for exact restored-state preflight, stock receipt reconciliation, fresh dry-run health and the RootDirectory /run mapping boundary. [Current evidence](../reports/keeper-clean-restart-20261127/REVIEW.md) proves one original local harvest and zero recovery sends from45 desktop-held files; [earlier synthetic sidecar reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md) remains separate. OS/chain/second-host/signer adoption stays open.
+Use the [keeper output/storage procedure](OPERATOR_MANUAL.md#keeper-output-storage-and-source-adoption) for compact diagnostics, honest ID previews, exact publication bounds, explicit retention and matching-release adoption. [Current review](../reports/keeper-efficiency-20261127/REVIEW.md) keeps original journals and services intact; the [desktop-kit restart recipe](OPERATOR_MANUAL.md#unsigned-keeper-restart-from-a-reconstructed-kit) retains its earlier finite recovery scope.
 
 Use the [scheduler/alert recovery guide](KEEPER_SIDECAR_RECOVERY.md) for exact selected-generation, event-ID and pending-clock capture, verification and fresh review-only restoration. Original configuration/release and host-layout review remain separate. The [Ubuntu record](../reports/keeper-sidecar-recovery-20261126/REVIEW.md) preserves the original setup failure and eight new passes.
 

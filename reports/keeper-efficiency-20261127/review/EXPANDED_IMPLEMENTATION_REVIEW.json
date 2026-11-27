@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "kind": "expanded_compact_output_and_bounded_health_preview_unexecuted_review",
+  "source_pins": {
+    "keeper/monitor.py": {
+      "bytes": 195271,
+      "sha256": "ec8a665bc0250b96b3c12987f9b6ba892158a547cbb9efc1972a2e400f69ab3a"
+    },
+    "zzz_ops/state.py": {
+      "bytes": 4835,
+      "sha256": "7d7632f6bf944dba7b2efc15e37a5b0215e135aa680bc702ee2e5b81e11a32ad"
+    },
+    "tests_python/test_keeper_output_efficiency.py": {
+      "bytes": 15929,
+      "sha256": "17aede0177698daa2d72a8e1e3f808135370e41a24d7c249b208da0a952027a0"
+    },
+    "tests_python/test_keeper_storage_diagnostics.py": {
+      "bytes": 8529,
+      "sha256": "0386df7b8f29f31efbd8174f13d7279a0804f162c0fd6a62cc46f0eb73143a5e"
+    }
+  },
+  "new_test_methods": [
+    "test_default_and_explicit_false_preserve_previous_output_bytes",
+    "test_compact_output_keeps_all_nested_data_and_reduces_bytes",
+    "test_nonfinite_write_preserves_old_file_and_removes_private_partial",
+    "test_failed_replace_preserves_original_and_cleans_synced_temporary",
+    "test_both_formats_keep_file_sync_replace_directory_sync_order",
+    "test_compact_logs_preserve_critical_fields_order_duplicates_and_full_calldata",
+    "test_nonfinite_log_is_refused_before_any_line_is_emitted",
+    "test_stock_pending_cycle_compacts_both_health_writes_without_touching_journal",
+    "test_initial_compact_health_refusal_preserves_files_and_prevents_cycle_or_signing",
+    "test_health_preview_zero_32_33_boundaries_keep_numeric_order_and_full_identity",
+    "test_accepted_ten_thousand_id_inventories_have_bounded_health_and_exact_journal"
+  ],
+  "new_methods": 11,
+  "old_test_bodies_run": 0,
+  "application_imports_or_execution": 0,
+  "tests_run": 0,
+  "server_network_native_actions": 0,
+  "health_existing_list_fields": "Numeric-sorted first32 IDs; exactly preserved at0..32.",
+  "health_new_summary_fields": {
+    "count": "Full inventory count",
+    "complete": "True only when every ID is in the list",
+    "all_ids_sha256": "SHA256 of FULL numeric-sorted compact ASCII JSON ID list, without trailing newline"
+  },
+  "journal_and_sidecar_default_serialization_unchanged": true,
+  "all_journal_ID_maps_preserved": true,
+  "no_reader_or_financial_limit_change": true,
+  "test_plan": "Run only the11 NEW methods in KeeperOutputEfficiencyTests after root source/test-plan review. Boundary0/32/33 and actual admitted10k+10k inventories use the real stock pending-wait cycle with inert FakeRpc setup only."
+}

@@ -1,6 +1,6 @@
 # Verification evidence
 
-[Desktop-kit unsigned stock keeper restart](keeper-clean-restart-20261127/REVIEW.md) verifies45 private inputs, three native backup/verify/restore operations and four stock processes, one original harvest and zero recovery sends. Exact receipt accounting and fresh dry health pass in2,119/6,000 RPC; original c826/c827/target226 failures remain. OS/runtime and the running isolated chain are external. [Earlier synthetic reconstruction](keeper-reconstruction-20261127/REVIEW.md) keeps its separate scope.
+[Keeper output, storage bounds and current-code review](keeper-efficiency-20261127/REVIEW.md) covers compact logs/health, complete-count/digest ID previews, exact publication bounds and bounded desktop archive reads/capacity. All original journals, historical evidence and live-adoption boundaries remain; see that report for separate verification stages. [Earlier desktop-kit stock restart](keeper-clean-restart-20261127/REVIEW.md) keeps its45-input, one-original-harvest and zero-recovery-send scope.
 
 [Unsigned scheduler/alert recovery](keeper-sidecar-recovery-20261126/REVIEW.md) adds eight NEW Ubuntu passes, actual capture/verify/restore and mapped queued-alert recovery. c820 setup NONPASS remains; c821 adds only its missing dynamic dependency and lab namespace. No existing journal/service/signer adoption; real off-host recovery remains open.
 

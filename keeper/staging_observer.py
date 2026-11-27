@@ -5,6 +5,7 @@ local fixture configuration. Read access to its export gives no keeper authority
 """
 import datetime as dt
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -16,6 +17,15 @@ from zzz_ops.state import atomic_json
 CONFIG=Path('/var/lib/zzz-keeper-staging/keeper/config.json')
 EXPORT=Path('/var/lib/zzz-stage-monitor/export/status.json')
 BACKUPS=Path('/var/lib/zzz-keeper-staging/backups')
+MAX_EXPORT_BYTES=1048576
+
+
+def _publish_export(report):
+    # The installed forced-command reader returns at most one MiB.
+    encoded=json.dumps(report,indent=2,sort_keys=True,ensure_ascii=True,allow_nan=False)+'\n'
+    if len(encoded.replace('\n',os.linesep).encode('ascii'))>MAX_EXPORT_BYTES:
+        raise ValueError('Staging export exceeds its read limit')
+    atomic_json(EXPORT,report);EXPORT.chmod(0o640)
 
 
 def main():
@@ -42,7 +52,7 @@ def main():
             result=create_snapshot(config,path)
             report['backup']={**result,'snapshot':json.loads(path.read_text())}
         except Exception as exc:report['backup']={'ok':False,**error_context(exc)}
-    atomic_json(EXPORT,report);EXPORT.chmod(0o640)
+    _publish_export(report)
     print(json.dumps({'staging_export_written':True,'health_ok':report['health']['ok'],'backup_ok':report['backup']['ok']}))
 
 

@@ -8,6 +8,7 @@ Only explicit init creates state. Nothing installs or starts a service.
 from __future__ import annotations
 
 import hashlib
+import json
 import os
 from pathlib import Path
 import re
@@ -216,7 +217,9 @@ def _generation_count(context):
 def _publish(context, value, *, previous_context=None):
     directory = context['directories']['scheduler_directory']
     before = _private_inventory(directory, {LOCK_NAME, SELECTION_NAME}, required=(LOCK_NAME,))
-    _need(len(recovery._json(value)) <= MAX_SELECTION_BYTES, 'resource_budget')
+    # Match atomic_json's persisted formatting, ASCII escaping and newline.
+    encoded = json.dumps(value, indent=2, sort_keys=True, ensure_ascii=True, allow_nan=False) + '\n'
+    _need(len(encoded.replace('\n', os.linesep).encode('ascii')) <= MAX_SELECTION_BYTES, 'resource_budget')
     _stable(context)
     if previous_context is not None:
         _stable(previous_context)

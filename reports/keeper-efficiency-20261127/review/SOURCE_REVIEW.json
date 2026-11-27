@@ -1,0 +1,98 @@
+{
+  "application_imports": 0,
+  "baseline": "1605dac2b2fd30e3b23e0adfc2c09ab8a913e2b7",
+  "default_atomic_writer_AST_equivalent_after_only_explicit_option_normalization": true,
+  "default_journal_format_private_temp_fsync_replace_and_cleanup_preserved": true,
+  "duplicates_already_share_Git_blob_ids": true,
+  "finite_harness_reuse_caveats": [
+    "unexpected command exits may omit captured tool stdout/stderr",
+    "some wrappers publish execution metadata only after parsing result bodies",
+    "read-only gateway budget context commits unchanged metadata twice"
+  ],
+  "harness_caveat_disposition": "Retain frozen historical evidence; review a new driver before future reuse rather than alter old proofs.",
+  "historical_extra_duplicate_copies": 37,
+  "historical_extra_duplicate_raw_bytes": 447208,
+  "historical_files_deleted_or_rewritten": 0,
+  "historical_report_scope": {
+    "keeper-clean-restart-20261127": {
+      "bytes": 1409920,
+      "python_files_inert_not_executed": 40,
+      "unchanged_files": 203
+    },
+    "keeper-reconstruction-20261127": {
+      "bytes": 949594,
+      "python_files_inert_not_executed": 27,
+      "unchanged_files": 133
+    }
+  },
+  "log_call_sites_and_every_event_preserved": true,
+  "network_calls": 0,
+  "no_log_suppression_or_long_lived_cache": true,
+  "pending_receipt_fee_nonce_spend_and_signer_functions_AST_unchanged": true,
+  "production_approved": false,
+  "reviewed_source_changes": {
+    "keeper/monitor.py": {
+      "baseline_sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f",
+      "bytes": 195271,
+      "changed_named_definitions": [
+        "Keeper.run_cycle",
+        "Keeper.run_cycle.health",
+        "_bucket_health_preview",
+        "log"
+      ],
+      "current_sha256": "ec8a665bc0250b96b3c12987f9b6ba892158a547cbb9efc1972a2e400f69ab3a",
+      "unchanged_named_definitions": 93
+    },
+    "keeper/scheduling.py": {
+      "baseline_sha256": "d79be28db6bac2978f7c8efdfb641e037ce6d2024faa4e60e02f6f7c62049f4a",
+      "bytes": 18017,
+      "changed_named_definitions": [
+        "_publish"
+      ],
+      "current_sha256": "acb1b3c948414c66fef61e4c92bbd13f620634ece4f70a7a3bd662e215da9eff",
+      "unchanged_named_definitions": 18
+    },
+    "keeper/staging_observer.py": {
+      "baseline_sha256": "f5f5e77aa62605aa54b326e88245ff5d9f8e14bf723dad359786e706cbc021ce",
+      "bytes": 2890,
+      "changed_named_definitions": [
+        "_publish_export",
+        "main"
+      ],
+      "current_sha256": "b5b3e733306cd85bb444ee210ff4f21eebcdb3f25c9d98adf9aaafb14d51ddd7",
+      "unchanged_named_definitions": 0
+    },
+    "scripts/check-staging-monitor.py": {
+      "baseline_sha256": "f8b1f237c09e9dec0d28a4e3519a69af5c47fa4f284f2bda9f4714bdae93a4e9",
+      "bytes": 5646,
+      "changed_named_definitions": [
+        "archive_snapshot",
+        "main"
+      ],
+      "current_sha256": "fd4b7e5b7768d8697328139d0fccbca44341d37e9790236913286cf96ab25ca6",
+      "unchanged_named_definitions": 1
+    },
+    "scripts/run-keeper-tests.py": {
+      "baseline_sha256": "66581b8fbf68ce8cf5ff7aa07301328da7357206b1011dbee3b29bc04b9497aa",
+      "bytes": 7304,
+      "changed_named_definitions": [],
+      "current_sha256": "65ee20123bb9ad5f1d43b92db9e468e8ef293eeb23cadf8b669cbadb2d3e1314",
+      "unchanged_named_definitions": 6
+    },
+    "zzz_ops/state.py": {
+      "baseline_sha256": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf",
+      "bytes": 4835,
+      "changed_named_definitions": [
+        "atomic_json"
+      ],
+      "current_sha256": "7d7632f6bf944dba7b2efc15e37a5b0215e135aa680bc702ee2e5b81e11a32ad",
+      "unchanged_named_definitions": 6
+    }
+  },
+  "schema": 1,
+  "scope": "Changed definitions/callers plus exact unchanged AST/Git reuse; not a guarantee every numeric state or historical helper line is correct.",
+  "server_calls": 0,
+  "success": true,
+  "test_bodies": 0,
+  "today_previous_two_commits_production_changes": 0
+}

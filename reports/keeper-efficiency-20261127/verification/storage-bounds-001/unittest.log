@@ -1,0 +1,9 @@
+test_exact_export_limit_and_ascii_escaping_roundtrip_then_one_byte_refusal (tests_python.test_keeper_storage_bounds.KeeperStorageBoundsTests.test_exact_export_limit_and_ascii_escaping_roundtrip_then_one_byte_refusal) ... ok
+test_fitting_selection_keeps_atomic_writer_format (tests_python.test_keeper_storage_bounds.KeeperStorageBoundsTests.test_fitting_selection_keeps_atomic_writer_format) ... ok
+test_indented_export_overflow_preserves_export_and_snapshot (tests_python.test_keeper_storage_bounds.KeeperStorageBoundsTests.test_indented_export_overflow_preserves_export_and_snapshot) ... ok
+test_indented_selection_overflow_preserves_committed_files (tests_python.test_keeper_storage_bounds.KeeperStorageBoundsTests.test_indented_selection_overflow_preserves_committed_files) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.181s
+
+OK

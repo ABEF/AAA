@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "kind": "compact_keeper_output_implementation_and_unexecuted_test_plan",
+  "source_changes": {
+    "keeper/monitor.py": [
+      "log",
+      "run_cycle",
+      "health"
+    ],
+    "zzz_ops/state.py": [
+      "atomic_json"
+    ]
+  },
+  "tests": [
+    "test_default_and_explicit_false_preserve_previous_output_bytes",
+    "test_compact_output_keeps_all_nested_data_and_reduces_bytes",
+    "test_nonfinite_write_preserves_old_file_and_removes_private_partial",
+    "test_failed_replace_preserves_original_and_cleans_synced_temporary",
+    "test_both_formats_keep_file_sync_replace_directory_sync_order",
+    "test_compact_logs_preserve_critical_fields_order_duplicates_and_full_calldata",
+    "test_nonfinite_log_is_refused_before_any_line_is_emitted",
+    "test_stock_pending_cycle_compacts_both_health_writes_without_touching_journal",
+    "test_initial_compact_health_refusal_preserves_files_and_prevents_cycle_or_signing"
+  ],
+  "source_pins": {
+    "keeper/monitor.py": {
+      "bytes": 194556,
+      "sha256": "d6cd5eafabf6c225ee6440d4ee88d183575a16e181e6ef97f5ca7b0911ea1edb"
+    },
+    "zzz_ops/state.py": {
+      "bytes": 4835,
+      "sha256": "7d7632f6bf944dba7b2efc15e37a5b0215e135aa680bc702ee2e5b81e11a32ad"
+    },
+    "tests_python/test_keeper_output_efficiency.py": {
+      "bytes": 12221,
+      "sha256": "15b583f6ef445b8a3d2086c81829b57c0fcb2aa959bd5b021332f5103cb528e9"
+    }
+  },
+  "test_plan": "Run only the9 NEW KeeperOutputEfficiencyTests methods. FakeRpc data/setup only is imported; no old TestCase is inherited or selected. New actual stock run_cycle follows an unmined known-hash pending intent; no live signer/network/service.",
+  "default_journal_sidecar_format_preserved": true,
+  "only_health_opts_compact": true,
+  "all_log_calls_fields_full_calldata_flush_preserved": true,
+  "no_suppression_caching_schema_or_limit_change": true,
+  "large_health_inventory_mismatch": "Separate read-only finding retained; no truncation or cap change.",
+  "application_imports_or_execution": 0,
+  "test_bodies_run": 0,
+  "native_server_network_actions": 0
+}

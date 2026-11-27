@@ -1,0 +1,35 @@
+{
+  "F6_maps_and_1021_ABI_rows_unchanged": true,
+  "application_imports_or_network_by_final_check": 0,
+  "baseline": "1605dac2b2fd30e3b23e0adfc2c09ab8a913e2b7",
+  "desktop_monitor_stays_paused": true,
+  "distinct_NEW_passing_methods": 29,
+  "documentation_review_sha256": "ed354a180445bd5fefb6e553c8c870f1d9e6bb10ae8661b3eca12d246735c3f7",
+  "historical_bound_files_exact": 1084,
+  "historical_report_families": 13,
+  "inventory_sha256": "49e9f0d0e9ed3fa6714030d287ab3ede92d5ad4d7e5cd164dfe00806b3bd374a",
+  "lambdas": 280,
+  "live_service_adoption": false,
+  "local_links_checked": 3472,
+  "named_definitions": 2140,
+  "no_old_evidence_relabelled": true,
+  "old_test_bodies_run": 0,
+  "production_approved": false,
+  "protected": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "raw_operational_payloads_published": false,
+  "schema": 1,
+  "stable_tasks_and_statuses": 83,
+  "success": true,
+  "task_counts": {
+    "done": 35,
+    "excluded": 1,
+    "progress": 40,
+    "todo": 7
+  },
+  "test_bodies_run_by_final_check": 0
+}

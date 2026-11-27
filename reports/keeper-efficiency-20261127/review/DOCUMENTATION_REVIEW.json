@@ -1,0 +1,348 @@
+{
+  "added_local_links": [
+    {
+      "href": "reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "AGENTS.md"
+    },
+    {
+      "href": "reports/keeper-clean-restart-20261127/REVIEW.md",
+      "source": "AGENTS.md"
+    },
+    {
+      "href": "reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json",
+      "source": "AGENTS.md"
+    },
+    {
+      "href": "reports/keeper-efficiency-20261127/ANONYMOUS_CODE_INVENTORY.json",
+      "source": "AGENTS.md"
+    },
+    {
+      "href": "reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "PROJECT_CONTEXT.md"
+    },
+    {
+      "href": "reports/keeper-clean-restart-20261127/REVIEW.md",
+      "source": "PROJECT_CONTEXT.md"
+    },
+    {
+      "href": "reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json",
+      "source": "PROJECT_CONTEXT.md"
+    },
+    {
+      "href": "reports/keeper-efficiency-20261127/ANONYMOUS_CODE_INVENTORY.json",
+      "source": "PROJECT_CONTEXT.md"
+    },
+    {
+      "href": "reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "README.md"
+    },
+    {
+      "href": "reports/keeper-clean-restart-20261127/REVIEW.md",
+      "source": "README.md"
+    },
+    {
+      "href": "reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json",
+      "source": "README.md"
+    },
+    {
+      "href": "reports/keeper-efficiency-20261127/ANONYMOUS_CODE_INVENTORY.json",
+      "source": "README.md"
+    },
+    {
+      "href": "docs/KEEPER_RECOVERY.md",
+      "source": "TODO.md"
+    },
+    {
+      "href": "reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "TODO.md"
+    },
+    {
+      "href": "docs/KEEPER_REHEARSALS.md",
+      "source": "TODO.md"
+    },
+    {
+      "href": "reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "TODO.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "docs/AUDIT_FINDINGS.md"
+    },
+    {
+      "href": "../reports/keeper-clean-restart-20261127/REVIEW.md",
+      "source": "docs/AUDIT_FINDINGS.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json",
+      "source": "docs/AUDIT_FINDINGS.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/ANONYMOUS_CODE_INVENTORY.json",
+      "source": "docs/AUDIT_FINDINGS.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "docs/IMPLEMENTATION_STATUS.md"
+    },
+    {
+      "href": "../reports/keeper-clean-restart-20261127/REVIEW.md",
+      "source": "docs/IMPLEMENTATION_STATUS.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json",
+      "source": "docs/IMPLEMENTATION_STATUS.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/ANONYMOUS_CODE_INVENTORY.json",
+      "source": "docs/IMPLEMENTATION_STATUS.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "docs/KEEPER_ALERTS.md"
+    },
+    {
+      "href": "../reports/keeper-clean-restart-20261127/REVIEW.md",
+      "source": "docs/KEEPER_ALERTS.md"
+    },
+    {
+      "href": "../reports/keeper-reconstruction-20261127/REVIEW.md",
+      "source": "docs/KEEPER_ALERTS.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "docs/KEEPER_RECOVERY.md"
+    },
+    {
+      "href": "OPERATOR_MANUAL.md#keeper-output-storage-and-source-adoption",
+      "source": "docs/KEEPER_RECOVERY.md"
+    },
+    {
+      "href": "../reports/keeper-clean-restart-20261127/REVIEW.md",
+      "source": "docs/KEEPER_RECOVERY.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "docs/KEEPER_SCHEDULING.md"
+    },
+    {
+      "href": "../reports/keeper-clean-restart-20261127/REVIEW.md",
+      "source": "docs/KEEPER_SCHEDULING.md"
+    },
+    {
+      "href": "../reports/keeper-reconstruction-20261127/REVIEW.md",
+      "source": "docs/KEEPER_SCHEDULING.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "docs/OPERATOR_MANUAL.md"
+    },
+    {
+      "href": "OPERATOR_MANUAL.md#keeper-output-storage-and-source-adoption",
+      "source": "docs/README.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "docs/README.md"
+    },
+    {
+      "href": "OPERATOR_MANUAL.md#unsigned-keeper-restart-from-a-reconstructed-kit",
+      "source": "docs/README.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "docs/RELEASE_CHECKLIST.md"
+    },
+    {
+      "href": "../reports/keeper-clean-restart-20261127/REVIEW.md",
+      "source": "docs/RELEASE_CHECKLIST.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json",
+      "source": "docs/RELEASE_CHECKLIST.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/ANONYMOUS_CODE_INVENTORY.json",
+      "source": "docs/RELEASE_CHECKLIST.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "docs/ROADMAP.md"
+    },
+    {
+      "href": "../reports/keeper-clean-restart-20261127/REVIEW.md",
+      "source": "docs/ROADMAP.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json",
+      "source": "docs/ROADMAP.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/ANONYMOUS_CODE_INVENTORY.json",
+      "source": "docs/ROADMAP.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "docs/ROADMAP.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "docs/WORKLOAD_COVERAGE.md"
+    },
+    {
+      "href": "../reports/keeper-clean-restart-20261127/REVIEW.md",
+      "source": "docs/WORKLOAD_COVERAGE.md"
+    },
+    {
+      "href": "../reports/keeper-full-audit-20261126/REVIEW.md",
+      "source": "docs/WORKLOAD_COVERAGE.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json",
+      "source": "docs/WORKLOAD_COVERAGE.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json",
+      "source": "docs/WORKLOAD_COVERAGE.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json",
+      "source": "docs/WORKLOAD_COVERAGE.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/ANONYMOUS_CODE_INVENTORY.json",
+      "source": "docs/WORKLOAD_COVERAGE.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "docs/WORK_HANDOFF.md"
+    },
+    {
+      "href": "../reports/keeper-clean-restart-20261127/REVIEW.md",
+      "source": "docs/WORK_HANDOFF.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json",
+      "source": "docs/WORK_HANDOFF.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/ANONYMOUS_CODE_INVENTORY.json",
+      "source": "docs/WORK_HANDOFF.md"
+    },
+    {
+      "href": "../reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json",
+      "source": "docs/WORK_HANDOFF.md"
+    },
+    {
+      "href": "reports/keeper-clean-restart-20261127/REVIEW.md",
+      "source": "docs/project-todo.json"
+    },
+    {
+      "href": "reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "docs/project-todo.json"
+    },
+    {
+      "href": "reports/keeper-clean-restart-20261127/REVIEW.md",
+      "source": "docs/project-todo.json"
+    },
+    {
+      "href": "reports/keeper-efficiency-20261127/REVIEW.md",
+      "source": "docs/project-todo.json"
+    },
+    {
+      "href": "keeper-efficiency-20261127/REVIEW.md",
+      "source": "reports/README.md"
+    },
+    {
+      "href": "keeper-clean-restart-20261127/REVIEW.md",
+      "source": "reports/README.md"
+    }
+  ],
+  "added_local_links_checked": 64,
+  "document_hashes": {
+    ".gitattributes": "1db27966fea85318695fe11e85ea362a4d7291943ce4329dc876f8c39a7ea522",
+    "AGENTS.md": "f1ae6751770b14a45c1134406731977a0c308bbe5b22017d83e3ef1f36feae2e",
+    "PROJECT_CONTEXT.md": "12c6c63c2c32ce2b6b21290257e89c61283b902e2bcfeb75e6aa72dd4ad0d755",
+    "README.md": "e39eeba024f0815b20ed697643d4e048a38b05092c4e7be394fc639a1bab718a",
+    "TODO.md": "44373b8714f2e5be92392ad8cdd062c0d997429844976d053a40fafab907c011",
+    "docs/AUDIT_FINDINGS.md": "ad4d706b3ed8f82c1eb6e453e5c3863e8f9f7cbaa2e24fd3b92ff6b0a3dd99ba",
+    "docs/IMPLEMENTATION_STATUS.md": "6ca13d4c7843c4306db7d2a4f04b2084b462d0c20aae524a0c6fffd9e551180e",
+    "docs/KEEPER_ALERTS.md": "03099e932a96e15e121018e836ab9875601e419d3c26e9c9a0a962db0f7ecdcd",
+    "docs/KEEPER_RECOVERY.md": "a94c01fdfdfc8a040f059baf18699e9f1a86460621b17b1fe2b984ca3a7a96a8",
+    "docs/KEEPER_SCHEDULING.md": "f9e10bee4a99b7c56d33c143f52cba7c000ad12d583033f1b0e58ae626e3cc9c",
+    "docs/OPERATOR_MANUAL.md": "87ba1f3a45870850b2dab712818de8945ad7773966821f2dfa51f980c9496357",
+    "docs/README.md": "f787e0333fc3801f3284e8c16d63946b71cb79b40163858526c9681ef8904ca9",
+    "docs/RELEASE_CHECKLIST.md": "f4aac58ecc5dd49b348d52236f8b53beb0172b0418c576dc873b0e6e14b3f7b0",
+    "docs/ROADMAP.md": "9d85d1e8b4a1dc77d7c874a6c9fedf2bfe220c4527526cdcfd0538e290e7094a",
+    "docs/WORKLOAD_COVERAGE.md": "c3e0371fe19eea97ff93319320de9955d5516f93e22d9367379a666bcb7c5413",
+    "docs/WORK_HANDOFF.md": "f0ed8c31a5f50ce26b11beee61a7eb0434777380cf3abd691ef058a7295955f2",
+    "docs/project-todo.json": "a5308df96d3a3d0bb2dd5b2546a34f63d2522799e33cdc368faa8f5790f1bc23",
+    "reports/README.md": "94f8d13cbd8eeb4e601d29fe67016b6e1c8b126e3071b6315b6d15a22963eef5",
+    "reports/keeper-efficiency-20261127/REVIEW.md": "41868a0bf0bc231a9463c99a099fa6ac2de0c25f243f0880f09980d0d4ef861c"
+  },
+  "final_attribute_delta_review": {
+    "application_test_generator_inventory_server_runs": 0,
+    "current_attributes_sha256": "1db27966fea85318695fe11e85ea362a4d7291943ce4329dc876f8c39a7ea522",
+    "exact_added_lines": [
+      "# Keep the source-pinned workload plan byte-exact across Windows/Ubuntu.",
+      "docs/WORKLOAD_PLAN.json -text whitespace=cr-at-eol"
+    ],
+    "other_document_hashes_unchanged": true,
+    "previous_attributes_sha256": "cc459c3a93052583000390f0c8dc496bb5b3aaf609bdbd2c0a411b0063303049",
+    "prior_draft_archive": "cache-keeper-efficiency-20261127/core/before-final-plan-attributes/DOCUMENTATION_REVIEW.json",
+    "prior_draft_receipt_sha256": "5e743418936c45671638380ee4807c056ffc6e4c88f0163bd0cb5bd35fdb8955",
+    "reason": "The source-pinned WORKLOAD_PLAN bytes include CRLF. Explicit -text preserves those exact bytes across Windows/Ubuntu; cr-at-eol handles their reviewed carriage returns in Git whitespace checks. No plan, inventory, source, test or other document bytes changed.",
+    "supporting_artifact_and_protected_hashes_unchanged": true
+  },
+  "findings": [],
+  "kind": "keeper-efficiency-final-documentation-review",
+  "prior_acceptance_preserved": true,
+  "protected_hashes": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "report_claims_review": "manual/report concordance for compact diagnostics,32-ID full-count/digest previews, unchanged journal/default durability,64KiB/1MiB publication bounds and serial10k desktop archive; runtime stages retain source scope",
+  "review_scope": "current18publication files, final report and saved inventory/pointer metadata; no docs/prose edits or generator/test/application/native/server/network execution",
+  "reviewed_publication_files": 18,
+  "reviewer_correction": "Initial static check treated JSON-ledger acceptance links as docs-relative; corrected to repository-relative as used by the Todo renderer. Documentation bytes were valid and unchanged by this parser correction.",
+  "schema": 1,
+  "source_adoption_scope": "memberships unchanged, pins change; old packages keep matching old release/configuration/policy; no automatic rebind/restart/adoption",
+  "status_counts": {
+    "done": 35,
+    "excluded": 1,
+    "progress": 40,
+    "todo": 7
+  },
+  "success": true,
+  "supporting_artifact_hashes": {
+    "docs/WORKLOAD_PLAN.json": "71136eb3bce2bb4069be5edb4b0a0149b0652cdd7a730af5f30b13110b1850b7",
+    "reports/keeper-efficiency-20261127/ANONYMOUS_CODE_INVENTORY.json": "c8d00456793ac18ffab5793eb07e85b036a1ca9e18524b16bf793e64027daba5",
+    "reports/keeper-efficiency-20261127/FUNCTION_INVENTORY.json": "49e9f0d0e9ed3fa6714030d287ab3ede92d5ad4d7e5cd164dfe00806b3bd374a",
+    "scripts/run-keeper-tests.py": "65ee20123bb9ad5f1d43b92db9e468e8ef293eeb23cadf8b669cbadb2d3e1314",
+    "scripts/verify.sh": "7e039478c6c3ebb44b25e5c6da85b819233cfd8e82b940741188bba3601a31d0"
+  },
+  "task_count": 83,
+  "task_ids_status_order_unchanged": true,
+  "todo_snapshot_sha256": "902eb2825d3273016e594292b722c8112ea1f8aaa2f3fa7cc4390f1b3ab44850",
+  "unchanged_nonblank_raw_lines_checked": {
+    ".gitattributes": 410,
+    "AGENTS.md": 770,
+    "PROJECT_CONTEXT.md": 407,
+    "README.md": 203,
+    "TODO.md": 1515,
+    "docs/AUDIT_FINDINGS.md": 290,
+    "docs/IMPLEMENTATION_STATUS.md": 356,
+    "docs/KEEPER_ALERTS.md": 63,
+    "docs/KEEPER_RECOVERY.md": 759,
+    "docs/KEEPER_SCHEDULING.md": 163,
+    "docs/OPERATOR_MANUAL.md": 6727,
+    "docs/README.md": 203,
+    "docs/RELEASE_CHECKLIST.md": 190,
+    "docs/ROADMAP.md": 440,
+    "docs/WORKLOAD_COVERAGE.md": 169,
+    "docs/WORK_HANDOFF.md": 340,
+    "docs/project-todo.json": 1899,
+    "reports/README.md": 378
+  }
+}

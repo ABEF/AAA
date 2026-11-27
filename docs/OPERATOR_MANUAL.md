@@ -1,5 +1,35 @@
 # PoPL operator manual
 
+## Keeper output, storage and source adoption
+
+Keeper logs retain every event, field, order, duplicate and flush; only JSON
+spacing changes. Health files use compact JSON. The two confirmation bucket-ID
+lists contain the first32 IDs in numeric order; each `_summary` reports `count`,
+`complete` and `all_ids_sha256` for the full numeric-sorted compact ASCII JSON
+list, without a trailing newline. A preview is incomplete when `complete` is
+false. Use the preserved full transaction
+journal for all IDs; never infer that omitted work disappeared.
+
+| Store | Publication or retention rule |
+| --- | --- |
+| Keeper journal and recovery packages | Default journal formatting, pending/accounting and durable write order remain. Original packages, policies, timestamps and signer separation are preserved. |
+| Scheduler selection | Exact pretty JSON, ASCII escapes and final newline must fit64KiB before replacement. An oversized proposal refuses; preserve the committed selection and all generations. |
+| Staging export | Exact pretty export must fit the existing1MiB reader bound before replacement. A refusal preserves the previous export and captured snapshots; check its actual freshness. |
+| Desktop snapshot archive | One serial collector; at most10,000 entries and1MiB per new snapshot. Existing identical files are verified with bounded stable reads; linked, changed or oversized files refuse. No automatic deletion. |
+
+At capacity, preserve originals and separately trusted pins, archive/verify
+approved copies under review, then inspect the resulting inventory before
+resuming. Review real journald retention, disk capacity and alert routing on the
+actual host before live operation; this change selects no host logging policy.
+
+Source13/19 file membership stays unchanged, but updated files change its pins.
+Adopt matching keeper/checker/tools and a separately reviewed policy; a source
+migration is not an operational `rebind`. Verify old packages using their exact
+original release/configuration/policy. Never edit hashes or reset journals,
+queues or clocks to make a refusal pass. Source publication starts no service,
+installs no state and does not resume the paused desktop heartbeat. See the
+[source-scoped review](../reports/keeper-efficiency-20261127/REVIEW.md).
+
 ## Unsigned keeper restart from a reconstructed kit
 
 Verify the complete private kit against separately retained trust before starting

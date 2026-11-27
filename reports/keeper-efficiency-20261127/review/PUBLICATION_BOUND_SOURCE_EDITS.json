@@ -1,0 +1,18 @@
+{
+  "files": {
+    "keeper/scheduling.py": {
+      "baseline_bytes": 17800,
+      "baseline_sha256": "d79be28db6bac2978f7c8efdfb641e037ce6d2024faa4e60e02f6f7c62049f4a",
+      "current_bytes": 18017,
+      "current_sha256": "acb1b3c948414c66fef61e4c92bbd13f620634ece4f70a7a3bd662e215da9eff"
+    },
+    "keeper/staging_observer.py": {
+      "baseline_bytes": 2490,
+      "baseline_sha256": "f5f5e77aa62605aa54b326e88245ff5d9f8e14bf723dad359786e706cbc021ce",
+      "current_bytes": 2890,
+      "current_sha256": "b5b3e733306cd85bb444ee210ff4f21eebcdb3f25c9d98adf9aaafb14d51ddd7"
+    }
+  },
+  "kind": "keeper-publication-bound-source-edit",
+  "schema": 1
+}

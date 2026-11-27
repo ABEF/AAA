@@ -1,0 +1,140 @@
+{
+  "baseline": {
+    "bytes": 3425,
+    "sha256": "f8b1f237c09e9dec0d28a4e3519a69af5c47fa4f284f2bda9f4714bdae93a4e9"
+  },
+  "kind": "desktop-staging-archive-storage-bounds",
+  "limits": {
+    "automatic_deletion": false,
+    "collector_requirement": "one collector/writer per archive",
+    "cross_process_archive_lock": false,
+    "existing_identical_file_allowed_when_full": true,
+    "retained_entries_per_single_writer_archive": 10000,
+    "snapshot_bytes": 1048576
+  },
+  "new_tests": {
+    "bytes": 10781,
+    "distinct_new_methods": 14,
+    "path": "tests_python/test_staging_monitor_storage_bounds.py",
+    "sha256": "75a73237fb836520574ab3e084616fa499e522843834093612dce85a80cad568"
+  },
+  "ok": true,
+  "portability_correction": "Cross-API identity retains dev/inode/mode/nlink/size/mtime equality; ctime remains stable before/after separately for each API.",
+  "production": {
+    "bytes": 5646,
+    "path": "scripts/check-staging-monitor.py",
+    "sha256": "fd4b7e5b7768d8697328139d0fccbca44341d37e9790236913286cf96ab25ca6"
+  },
+  "schema": 1,
+  "separate_stdlib_metadata_probe": {
+    "application_imports": 0,
+    "file_contents_read": false,
+    "network_calls": 0,
+    "no_mismatch_observed": true,
+    "temporary_file_only": true
+  },
+  "stage1_production": {
+    "bytes": 5393,
+    "sha256": "530304ecf15042154f784c5e8a923ad2e769539ca1313eebb250cd9539d08b4e"
+  },
+  "stage1_test_archive_reconstructed_to_exact_known_initial_pin": true,
+  "stage1_tests": {
+    "bytes": 8858,
+    "sha256": "b12eeab0c42a9198fcf1f0efa53c69947b7bacbf6b8cccad812b5da155d9baa1"
+  },
+  "stages": [
+    {
+      "errors": [
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_existing_read_is_limited_to_expected_length_plus_one"
+      ],
+      "exit_code": 1,
+      "methods_run": [
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_new_snapshot_preserves_format_and_syncs_private_exclusive_file",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_identical_existing_snapshot_verifies_without_scanning_a_full_archive",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_full_archive_scan_stops_at_real_cap_and_preserves_every_existing_entry",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_archive_with_one_remaining_slot_accepts_exactly_one_new_file",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_malformed_or_mismatched_digest_refuses_before_creating_any_directory",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_oversized_new_snapshot_refuses_before_creating_any_directory",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_oversized_existing_target_is_not_opened_or_modified",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_different_existing_bytes_are_preserved",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_existing_read_is_limited_to_expected_length_plus_one",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_hardlink_and_directory_targets_are_preserved_and_refused",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_symlink_metadata_and_windows_archive_reparse_point_are_refused",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_replacement_between_metadata_and_open_is_refused_without_reading"
+      ],
+      "name": "initial-new-module",
+      "passed": [
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_new_snapshot_preserves_format_and_syncs_private_exclusive_file",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_identical_existing_snapshot_verifies_without_scanning_a_full_archive",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_full_archive_scan_stops_at_real_cap_and_preserves_every_existing_entry",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_archive_with_one_remaining_slot_accepts_exactly_one_new_file",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_malformed_or_mismatched_digest_refuses_before_creating_any_directory",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_oversized_new_snapshot_refuses_before_creating_any_directory",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_oversized_existing_target_is_not_opened_or_modified",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_different_existing_bytes_are_preserved",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_hardlink_and_directory_targets_are_preserved_and_refused",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_symlink_metadata_and_windows_archive_reparse_point_are_refused",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_replacement_between_metadata_and_open_is_refused_without_reading"
+      ],
+      "stderr": {
+        "bytes": 3853,
+        "sha256": "2021824079195b1ba1586098de3a7562b772048f99e0620155bb5c061ac1039a"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "cause": "Windows path and fd ctime differ while dev/inode/mode/nlink/size/mtime agree; original strict cross-API ctime comparison refused.",
+      "exit_code": 1,
+      "methods_run": [
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_existing_read_is_limited_to_expected_length_plus_one"
+      ],
+      "name": "bounded-metadata-diagnostic",
+      "stderr": {
+        "bytes": 1389,
+        "sha256": "c8cb17ebbf76bc18bcb8709c596b428a802842ef5de6e7453d53387218570ec7"
+      },
+      "stdout": {
+        "bytes": 460,
+        "sha256": "70a6b282aa0858b0fb53554fd816fa1209b6df37d1dc524518f59dbc51f8e1cd"
+      }
+    },
+    {
+      "exit_code": 0,
+      "methods_run": [
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_existing_read_is_limited_to_expected_length_plus_one",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_stable_different_path_and_descriptor_change_times_are_accepted",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_change_time_drift_from_either_api_is_refused"
+      ],
+      "name": "affected-plus-two-new-ctime-methods",
+      "passed": [
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_existing_read_is_limited_to_expected_length_plus_one",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_stable_different_path_and_descriptor_change_times_are_accepted",
+        "tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_change_time_drift_from_either_api_is_refused"
+      ],
+      "stderr": {
+        "bytes": 731,
+        "sha256": "1e1aaf58c0d86991027d5dab4198febb5504c20aad6d82d009fd351233e9cd6b"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "verification_scope": {
+    "actual_temporary_hardlink_and_directory_refusals_tested": true,
+    "credential_files_read": false,
+    "historical_reports_edited": false,
+    "keeper_cycles": 0,
+    "monitor_or_SSH_calls": 0,
+    "no_whole_module_rerun": true,
+    "old_test_methods_run": 0,
+    "original_retained_snapshots_modified_or_deleted": false,
+    "server_actions": 0,
+    "service_changes": 0,
+    "symlink_and_Windows_reparse_alias_metadata_tested": true
+  }
+}

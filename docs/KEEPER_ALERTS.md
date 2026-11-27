@@ -1,6 +1,6 @@
 # Keeper alerts: one-shot observation and local delivery
 
-[Current unsigned keeper restart](../reports/keeper-clean-restart-20261127/REVIEW.md) settles one original local receipt after desktop-kit reconstruction, then obtains fresh dry-run health without another send. Expected first-cycle metadata degradation does not reset an alert queue or approve notifications. The [earlier sidecar reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md) retains its separate synthetic queue/sequence/first_seen proof; real channels/host-down delivery remain open.
+The [current output/storage review](../reports/keeper-efficiency-20261127/REVIEW.md) compacts health JSON and bounds confirmation ID previews while retaining full counts/digests and the original journal. Alert queue/event IDs, sequence and pending clocks stay unchanged. Matching source adoption is separate; the earlier [desktop-kit restart](../reports/keeper-clean-restart-20261127/REVIEW.md) and [sidecar reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md) keep their source scopes. Real channels and host-down delivery remain open.
 
 The [alert module](../keeper/alerts.py) and [command](../scripts/keeper-alerts.py) inspect keeper health, the current journal and one explicitly selected recovery backup. They write a **separate alert state/outbox**, and can send sanitized events to a local test receiver. They never sign, submit transactions, read configured signer-file contents, repair a journal or approve a keeper for live use.
 
@@ -49,6 +49,8 @@ python3 -B scripts/keeper-alerts.py \
 ```
 
 ## State, delivery and recovery
+
+The health confirmation arrays `pending_reset_buckets` and `awaiting_healthy_read_buckets` are previews of at most32 IDs. Their corresponding `_summary` contains the full `count`, `complete` flag and `all_ids_sha256`; the original transaction journal retains all IDs. Do not treat an incomplete preview as the complete work inventory or as readiness approval.
 
 The alert directory must be owned by the invoking user with mode `0700`, under a protected parent. Its only supported files are `state.json` and the persistent `alert.lock`, both private. The outbox is stored inside the atomic state document. Keep this directory outside the keeper journal's parent and separate from configuration, health, lock, backup and signer paths. Linked/aliased files and unexpected directory entries are refused. Never replace the keeper's own lock or journal with alert files.
 

@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "purpose": "Whole-project workload/function/state inventory and verification plan; inventory completeness is never dynamic coverage or proof of all possible market states.",
-  "date": "2026-11-26",
-  "source_baseline": "aae84e64d7f7fa470e5767630608755df91e75c1",
+  "date": "2026-11-27",
+  "source_baseline": "1605dac2b2fd30e3b23e0adfc2c09ab8a913e2b7",
   "trusted_build_record": {
     "path": "reports/activation-final-six-20261118/build/final/normal-size-evidence.json",
     "sha256": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2"
@@ -924,7 +924,12 @@
         "keeper/zzz-keeper-observer.service",
         "keeper/zzz-keeper-observer.timer",
         "keeper/sidecar_recovery.py",
-        "scripts/keeper-sidecar-recovery.py"
+        "scripts/keeper-sidecar-recovery.py",
+        "keeper/staging_observer.py",
+        "scripts/check-staging-monitor.py",
+        "keeper/health.py",
+        "keeper/monitor.py",
+        "zzz_ops/state.py"
       ],
       "cases": [
         "wrongrelease/config/key andstaleexports/backups",
@@ -936,7 +941,11 @@
         "native systemd scheduling/readback no overlap failed rotation stale backup local outage and explicit policy update",
         "scheduler missing-state refusal is not fresh initialization; no-delete capacity needs separately reviewed archival",
         "exact raw selected manifest journal and alert-state restoration; old policy release configuration and original parent layout required separately",
-        "explicit fenced namespace mapping resumes queued IDs and pending clock without mutating original source folders"
+        "explicit fenced namespace mapping resumes queued IDs and pending clock without mutating original source folders",
+        "compact logs preserve every critical event, field and full calldata; no suppression or hidden cache",
+        "health diagnostic ID previews retain full counts and ordered-list digests; journal remains exact",
+        "scheduler selection and staging export bound actual persisted bytes before atomic replacement",
+        "serial desktop archive bound, exact-length stable reads and cross-API Windows metadata checks; no deletion"
       ]
     },
     {

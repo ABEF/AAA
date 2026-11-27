@@ -1,0 +1,17 @@
+test_existing_read_is_limited_to_expected_length_plus_one (tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_existing_read_is_limited_to_expected_length_plus_one) ... ERROR
+
+======================================================================
+ERROR: test_existing_read_is_limited_to_expected_length_plus_one (tests_python.test_staging_monitor_storage_bounds.StagingMonitorStorageBoundsTests.test_existing_read_is_limited_to_expected_length_plus_one)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_staging_monitor_storage_bounds.py", line 120, in test_existing_read_is_limited_to_expected_length_plus_one
+    monitor.archive_snapshot(self.snapshot,self.folder)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\scripts\check-staging-monitor.py", line 50, in archive_snapshot
+    if identity(os.fstat(handle.fileno()))!=identity(before):raise ValueError('Off-host snapshot changed')
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Off-host snapshot changed
+
+----------------------------------------------------------------------
+Ran 1 test in 0.012s
+
+FAILED (errors=1)

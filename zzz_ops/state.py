@@ -48,7 +48,8 @@ def read_json(path: str | Path, default: Any = None, *, encoding: str | None = N
     return json.loads(path.read_text(encoding=encoding), object_pairs_hook=_unique_object,
                       parse_constant=_reject_constant, parse_float=_finite_float)
 
-def atomic_json(path: str | Path, data: Any) -> None:
+def atomic_json(path: str | Path, data: Any, *, compact: bool = False) -> None:
+    """Publish private durable JSON; compact formatting is an explicit opt-in."""
     path = Path(path)
     path.parent.mkdir(parents=True,exist_ok=True)
     # Exclusive random creation never follows/clobbers a pre-existing .tmp link.
@@ -57,7 +58,8 @@ def atomic_json(path: str | Path, data: Any) -> None:
     temporary = Path(name)
     try:
         with os.fdopen(fd,'w') as handle:
-            json.dump(data,handle,indent=2,sort_keys=True,allow_nan=False)
+            formatting = {'separators':(',',':')} if compact else {'indent':2}
+            json.dump(data,handle,sort_keys=True,allow_nan=False,**formatting)
             handle.write('\n'); handle.flush(); os.fsync(handle.fileno())
         os.replace(temporary,path)
         # Ensure the directory entry is durable before a transaction is submitted.
