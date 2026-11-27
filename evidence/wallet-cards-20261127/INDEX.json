@@ -1,0 +1,311 @@
+{
+  "schema": 1,
+  "kind": "bounded_card_history_and_complete_wallet_follow_through",
+  "date": "2026-11-27",
+  "evidence": [
+    {
+      "source": "cache-wallet-cards-20261127/SCOPE.json",
+      "path": "evidence/wallet-cards-20261127/scope/SCOPE.json",
+      "bytes": 2439,
+      "sha256": "2e60cab33b0dff07e04267b78bf5c6b0c791e3d7c06d5a76d7ebb3c7db22d5ca"
+    },
+    {
+      "source": "cache-wallet-cards-20261127/SOURCE_REVIEW.json",
+      "path": "evidence/wallet-cards-20261127/source/WRAPPER_BODY_REVIEW.json",
+      "bytes": 1804,
+      "sha256": "4a5e78ef8e3f7a98ee6f345774c5023ce5d5f3d87b0966d5c41c45072e009c21"
+    },
+    {
+      "source": "cache-wallet-code-digest-20261127/consumer/DELTA_REVIEW.json",
+      "path": "evidence/wallet-cards-20261127/source/DIGEST_CONSUMERS_REVIEW.json",
+      "bytes": 1235,
+      "sha256": "415c35c9daa0e9e57b7b198fb410408cc93c4c405daadd6d642417bdb2ab4979"
+    },
+    {
+      "source": "cache-wallet-cards-20261127/focused-001/RESULT.json",
+      "path": "evidence/wallet-cards-20261127/focused/card-initial__RESULT.json",
+      "bytes": 2498,
+      "sha256": "24314398e556dfd03f4a3994e5059509e8ee6f1a9d235d15603e3e6894d49018"
+    },
+    {
+      "source": "cache-wallet-cards-20261127/focused-002/RESULT.json",
+      "path": "evidence/wallet-cards-20261127/focused/card-corrected__RESULT.json",
+      "bytes": 3363,
+      "sha256": "1b215d31d07eab3dd9d8e53dd51587297cfaf3316033c4cd899e2be87440216e"
+    },
+    {
+      "source": "cache-wallet-cards-20261127/runtime-digest/runner-preflight-001/RESULT.json",
+      "path": "evidence/wallet-cards-20261127/focused/runner-preflight__RESULT.json",
+      "bytes": 292,
+      "sha256": "5187c1c41429fad6cb364a82baead445964c1b60be05b18f858dd9960fb7ac63"
+    },
+    {
+      "source": "cache-wallet-cards-20261127/runtime-digest/focused-001/RESULT.json",
+      "path": "evidence/wallet-cards-20261127/focused/digest-new__RESULT.json",
+      "bytes": 1944,
+      "sha256": "a5b282ad89b127984cedb8f12b314d4095d005458d11d5661987f7038d6db404"
+    },
+    {
+      "source": "cache-wallet-cards-20261127/runtime-digest/composed-001/RESULT.json",
+      "path": "evidence/wallet-cards-20261127/focused/digest-composed__RESULT.json",
+      "bytes": 3136,
+      "sha256": "6a1e1eb42d76144abd3a765a1214c88f7201dc3551eb9a4c013b88bfc1e3702f"
+    },
+    {
+      "source": "cache-wallet-cards-20261127/MOVING_HEAD_CARD_REVIEW.json",
+      "path": "evidence/wallet-cards-20261127/source/MOVING_HEAD_CARD_REVIEW.json",
+      "bytes": 1391,
+      "sha256": "539900c39e5ce97fce88b144e233909654221e5bc90a1f0f891de6570a7ad3e6"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c835/FINAL_RECEIPT.json",
+      "path": "evidence/wallet-cards-20261127/c835/FAILED_GATE_FINAL_RECEIPT.json",
+      "bytes": 3345,
+      "sha256": "2d9e8d8836cb5a8effda705ed4b99e25afbdbd8cddbfecfb0f4a893a234b3f18"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c835/gate-evidence-001/ARCHIVE_GATE.json",
+      "path": "evidence/wallet-cards-20261127/c835/FAILED_ARCHIVE_GATE.json",
+      "bytes": 29496,
+      "sha256": "ffc2f179e8f8a6bfc231f309fd9d8531db2954c737810a3de51b2e3baee86984"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c835/derivation-001/EXECUTION.json",
+      "path": "evidence/wallet-cards-20261127/c835/REFUSED_REMOVAL_EXECUTION.json",
+      "bytes": 590,
+      "sha256": "1c8df416c0120146a09174a1946fb5b4bd1f9fcc956e41146ec182f7c759a8ac"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c835/ORDERING_RESULT.json",
+      "path": "evidence/wallet-cards-20261127/c835/ORDERING_ONLY_DERIVATION.json",
+      "bytes": 6361,
+      "sha256": "e2e3597fce7b37db2dcfd1aae754aecb37263288623d0c316a2f3f50e397cb64"
+    },
+    {
+      "source": "cache-wallet-card-read-20261127/verification/INDEPENDENT_CANONICAL_ZERO_REFERENCE.json",
+      "path": "evidence/wallet-cards-20261127/independent/CANONICAL_ZERO_REFERENCE.json",
+      "bytes": 4123,
+      "sha256": "5cfb0e5e4fd4b660da05e87eb5ffba6304883c4c8043c60333041f52f88b595d"
+    },
+    {
+      "source": "cache-wallet-card-read-20261127/verification/ACTUAL_ZERO_METADATA_REVIEW.json",
+      "path": "evidence/wallet-cards-20261127/independent/ACTUAL_ZERO_METADATA_REVIEW.json",
+      "bytes": 2515,
+      "sha256": "2b1728e8efc217e94ca3a220ca3a13e9e1514705003089e1ef5d5d815e40cc23"
+    },
+    {
+      "source": "cache-wallet-card-read-20261127/verification/ORDERING_DERIVATION_RECEIPT_REVIEW.json",
+      "path": "evidence/wallet-cards-20261127/independent/ORDERING_DERIVATION_RECEIPT_REVIEW.json",
+      "bytes": 1404,
+      "sha256": "abf68a5aae4395254feb291d548704d23da770b76791d5458a07d33f4004f071"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c836/micro-nft-001/RESULT.json",
+      "path": "evidence/wallet-cards-20261127/c836/wrapper-nft-micro__RESULT.json",
+      "bytes": 1838,
+      "sha256": "818511d3aca9311e6b16d506c0ffe38917e1ab548444acc9fd5624932f2bbb51"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c836/micro-earnings-001/RESULT.json",
+      "path": "evidence/wallet-cards-20261127/c836/wrapper-earnings-micro__RESULT.json",
+      "bytes": 1844,
+      "sha256": "6ffa238628f84c806d234074998606187c02e486548899d57314dc065bd7828d"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c836/FINAL_RECEIPT.json",
+      "path": "evidence/wallet-cards-20261127/c836/WRAPPER_ONLY_FINAL_RECEIPT.json",
+      "bytes": 11410,
+      "sha256": "4e0739188c7e42a61b7d7955a1e4543321c829de00bc27d3a40e39f978a98f77"
+    },
+    {
+      "source": "cache-wallet-cards-20261127/focused-001/test.log",
+      "path": "evidence/wallet-cards-20261127/focused/card-initial__test.log",
+      "bytes": 2051,
+      "sha256": "d8817f57f6567aa219e6c1a68bfadf69050876c6f0dd13150669f57ee0216390"
+    },
+    {
+      "source": "cache-wallet-cards-20261127/focused-002/test.log",
+      "path": "evidence/wallet-cards-20261127/focused/card-corrected__test.log",
+      "bytes": 332,
+      "sha256": "5a464c1356d5646bbda5a7c3612912bed4b8b12c8705e8f38b34e79ccd29b680"
+    },
+    {
+      "source": "cache-wallet-cards-20261127/runtime-digest/focused-001/test.log",
+      "path": "evidence/wallet-cards-20261127/focused/digest-new__test.log",
+      "bytes": 541,
+      "sha256": "6fd319f2ab7267c1719dfa40c34f5867bcd55acd99a83bc9729b4157d216c556"
+    },
+    {
+      "source": "cache-wallet-cards-20261127/runtime-digest/composed-001/test.log",
+      "path": "evidence/wallet-cards-20261127/focused/digest-composed__test.log",
+      "bytes": 332,
+      "sha256": "2cd1fc1d37537ded326724afc8dbd3e9eb20347ecdcc868880e974e6ea2592d8"
+    },
+    {
+      "source": "cache-wallet-cards-20261127/TEST_SOURCE_PINS.json",
+      "path": "evidence/wallet-cards-20261127/focused/TEST_SOURCE_PINS.json",
+      "bytes": 9236,
+      "sha256": "7d67412344c7ab5ad56c8969bdc782dde50d69fd861eb875e5bac4a50ff92341"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c837/archive-001/stdout.json",
+      "path": "evidence/wallet-cards-20261127/c837/ARCHIVE_GATE_SUMMARY.json",
+      "bytes": 1055,
+      "sha256": "6f48d28bd81e91a6a04d87f5833c7466a33592fccbf7a02acafca3d961ba7429"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c837/checkpoint-001/RESULT.json",
+      "path": "evidence/wallet-cards-20261127/c837/CHECKPOINT_RESULT.json",
+      "bytes": 3053,
+      "sha256": "2704ed9b0213296eae2fe65bd3e0757269b2d0c8e04382aad2bfdeda31efcc16"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c837/candidate-review-001/RESULT.json",
+      "path": "evidence/wallet-cards-20261127/c837/CANDIDATE_REVIEW_RESULT.json",
+      "bytes": 1277,
+      "sha256": "653dc95ae3185f8c4f0f1fdcdd7d10d9d3c4d62f8d0e7d20ea54b604d7d4cc12"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c837/bind-001/RESULT.json",
+      "path": "evidence/wallet-cards-20261127/c837/BIND_RESULT.json",
+      "bytes": 1139,
+      "sha256": "b58273f229dbbff1c418ae35f069f474711ff62038922831bd6f65f902787f61"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c837/micro-nft-001/RESULT.json",
+      "path": "evidence/wallet-cards-20261127/c837/NFT_MICRO_RESULT.json",
+      "bytes": 1836,
+      "sha256": "46db162210c46bad278d5e0aa500d35f108ffb36ccd1a3d29db8a882b4459ec2"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c837/micro-earnings-001/RESULT.json",
+      "path": "evidence/wallet-cards-20261127/c837/EARNINGS_MICRO_RESULT.json",
+      "bytes": 1843,
+      "sha256": "3152e1c9ef77251e4db73e09868f5b73c29527ec1dc4549c3c26e2d299b65409"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c837/consumer-001/RESULT.json",
+      "path": "evidence/wallet-cards-20261127/c837/INITIAL_CAPTURE_NONPASS.json",
+      "bytes": 236,
+      "sha256": "e0b22dd2050221ecd137c1d8081cd117593f1cb012c9dcca56466377aa48bcae"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c837/consumer-001/EXECUTION.json",
+      "path": "evidence/wallet-cards-20261127/c837/INITIAL_CAPTURE_EXECUTION.json",
+      "bytes": 652,
+      "sha256": "6c1cdd4ace7dbb9c7da006ea9269e149a7e06a9f939491951358196f81b5dc30"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c837/consumer-002/RESULT.json",
+      "path": "evidence/wallet-cards-20261127/c837/COMPLETE_WALLET_EIGHT_CARDS_RESULT.json",
+      "bytes": 44319,
+      "sha256": "5e337913eb0ffc2b2e54a3be8553df0d857604f9f0bc73470ca2577289e43fc7"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c837/private-consumer-002/REQUESTS.json",
+      "path": "evidence/wallet-cards-20261127/c837/COMPLETE_JOURNEY_REQUESTS.json",
+      "bytes": 65887,
+      "sha256": "fce7a185a8580b1862d09e0f1f25cbc455aa7b48d4d659807c84b658805a30f4"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c837/SPLIT_HARNESS_REVIEW.json",
+      "path": "evidence/wallet-cards-20261127/c837/SPLIT_HARNESS_REVIEW.json",
+      "bytes": 321,
+      "sha256": "b88f0f848d88c875098c1a480c40070886c01db7143397fd1c8a55ab195a0845"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c837/stop-001/stdout.json",
+      "path": "evidence/wallet-cards-20261127/c837/OWNED_UNITS_STOPPED.json",
+      "bytes": 389,
+      "sha256": "661c6790170d3a5ac4296e02edcb546055defdefb8759a8cc33fa65d7ea8ca4d"
+    },
+    {
+      "source": "cache-wallet-f6-20261127/ubuntu/c837/FINAL_RECEIPT.json",
+      "path": "evidence/wallet-cards-20261127/c837/FINAL_RECEIPT.json",
+      "bytes": 14757,
+      "sha256": "2c15b96c89022b03a5e636fe4d5c89eef906f9fab8943c645f649a90c80f1c56"
+    },
+    {
+      "source": "cache-wallet-code-digest-20261127/consumer/SPLIT_CAPTURE_STATIC_REVIEW.json",
+      "path": "evidence/wallet-cards-20261127/independent/SPLIT_CAPTURE_STATIC_REVIEW.json",
+      "bytes": 522,
+      "sha256": "8a4c96b14130e4d193dd8473ffb15a51a09091490cb106bbddf6d29efcb207a6"
+    },
+    {
+      "source": "cache-wallet-code-digest-20261127/consumer/ACTUAL_C837_INDEPENDENT_REVIEW.json",
+      "path": "evidence/wallet-cards-20261127/independent/ACTUAL_C837_INDEPENDENT_REVIEW.json",
+      "bytes": 2833,
+      "sha256": "be224640b14a5c6a9c9d29d77a779ea67e98672dd2d6d708c94818ff132da7a2"
+    },
+    {
+      "source": "cache-wallet-cards-20261127/runtime-digest/FINAL_SOURCE_REVIEW.json",
+      "path": "evidence/wallet-cards-20261127/source/FINAL_SOURCE_REVIEW.json",
+      "bytes": 4389,
+      "sha256": "a0de879a9c4612d44f4f6e995e4fd9a9267a92a3dcd1f1a5ca9ce2164a8544ff"
+    }
+  ],
+  "source_inventories": {
+    "FUNCTION_INVENTORY.json": {
+      "bytes": 5008113,
+      "sha256": "c44605d7e28be1c3f35eaa560590c72ec79a76e31771447261c298b89def012a"
+    },
+    "ANONYMOUS_CODE_INVENTORY.json": {
+      "bytes": 34600,
+      "sha256": "1f0aa2dbb25beed2d824bfccb69171315902c136a5fbb1c0a9eb6ad4da7bb26d"
+    }
+  },
+  "assessment": {
+    "contract_baseline": "0510bd7c798c2d93cd64805a7704497ee7681162",
+    "website_baseline": "cccaa5fbe6cff8fe1c51ee0a3a5d470689dc7624",
+    "source_optimization": "Opt-in request-local raw getters and authenticated actual-code digest reuse; all own expected-pin comparisons remain",
+    "distinct_NEW_test_methods": 6,
+    "unchanged_test_bodies_rerun": 0,
+    "affected_composed_method_rechecked_after_digest_change": true,
+    "prior_source_scope": "Original c834 timeout, c835 failed genesis gate, wrapper-only c836 micros and final digest candidate retain separate outcomes",
+    "all_120second_claims_require_complete_consumer_and_final_raw_checks": true,
+    "full_normal_1000NFT_lineage_moving_chain_provider_adoption_qualified": false,
+    "all_limits_financial_rights_and_existing_environments_preserved": true,
+    "public_signing_disabled_Anvil_only": true,
+    "desktop_heartbeat_user_paused": true,
+    "CWR09_moving_head_card_availability_remains_open": true,
+    "production_approved": false,
+    "actual_complete_seconds": 83.707619514,
+    "actual_API_GETs": 36,
+    "actual_direct_consumer_RPCs": 381,
+    "qualified_wallet_NFTs": 32,
+    "qualified_complete_cards": 8,
+    "financial_descriptors": 66,
+    "original_royalty_currencies": 65,
+    "history_seconds": 86400,
+    "independent_onchain_total_reads": 96,
+    "all_cards_own_anchor_native_LP_and_history_checks_completed": true,
+    "final_canonical_identity_and_strict_120s_checks_completed": true,
+    "exact_numeric_final_snapshot_age_recorded": false,
+    "elapsed_time_does_not_establish_a_36second_age_margin": true,
+    "original_83_825_second_artifact_capture": {
+      "complete": false,
+      "reason": "Combined pretty-printed output exceeded existing1MiB artifact cap AFTER application assertions; original retained"
+    },
+    "affected_capture_correction": "One wallet plus eight full cards and one hashmanifest; each artifact remains<=1MiB, exact reconstruction digest verified. Assertions/pacing/application unchanged; one corrected affected run.",
+    "actual123_account_models_original_services_files_DB_WAL_SHM_preserved": true,
+    "all_owned_nodes_API_proxy_jobs_stopped": true,
+    "full_1000NFT_normalF6_lineage_moving_boundary_provider_and_rollout_qualified": false,
+    "fixed_head_local_provider_only": true,
+    "older_1000NFT_121_438s_injected_model_not_relabelled_or_rerun": true
+  },
+  "focused_stage_assessment": {
+    "private_raw_configuration_checkpoint_database_snapshot_or_recovery_packages_included": false,
+    "only_bounded_JSON_and_test_logs": true,
+    "six_distinct_NEW_methods_pass_across_preserved_stages": true,
+    "card_initial_four_stage_retained_NONPASS": "Three new scope checks passed; composed earnings pairs ran before invalid separate NFT fixture setup correctly refused missing earnings configuration.",
+    "card_corrected_stage": "Only changed composed method passed with valid shared SQLite/checkpoint fixture and explicit bucket5 physical aliases; ONE physical leg.",
+    "digest_stage": "Two new methods cover both expected-pin consumers, exact raw key/content domain, no-own-raw fallback, conflict, bounds, expiry and cleanup.",
+    "affected_composed_stage": "Only the now-affected full economic/NFT parity method rerun; prior three scope hook bodies reused, not rerun.",
+    "runner_preflight": "Inline runner syntax typo; zero application/test statements executed. Distinct from source failures.",
+    "source_semantics": "Whole DTO parity except intentional configuration digest, actual local SQLite and source-bound checkpoint/replay with controlled wire/code/clock; not live F6 acceptance.",
+    "production_approved": false
+  },
+  "private_raw_states_databases_configs_checkpoints_wallet_parts_or_signer_material_published": false,
+  "production_approved": false,
+  "service_website_signer_or_checkpoint_adoption": false
+}

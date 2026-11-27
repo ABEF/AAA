@@ -49,6 +49,23 @@ and explicit new configuration pin. Preserve old artifacts/configuration and
 their matching release; do not edit the source map in an old checkpoint.
 [Current evidence and remaining qualification](../reports/CURRENT_REVIEW.md#actual-f6-and-provider-follow-through).
 
+## Card-reader source follow-through
+
+The explicit opt-in card reader now reuses only identical canonical raw replies
+within one NFT-detail or earnings request. All financial comparisons and live
+header/chain/final checks remain. `earnings.py` and `service.py` are checkpoint
+semantic sources: prepare a NEW checkpoint for this candidate, independently
+review it and bind its exact bytes. Keep old checkpoints and their matching
+release; changing a source map in place is invalid. The complete86,400-second
+suffix, schema2 whole-unit books and all request/cache/resource limits remain.
+
+Runtime-digest reuse is likewise request-local: each target's exact canonical
+raw code must be retained before its actual-code digest may be shared. Expected
+pins are never cached as approvals. Digest metadata shares the unchanged cache
+limits and cleanup; cache misses or full capacity use ordinary hashing. The
+matching pure physical-observer helper is part of the runtime source closure;
+preserve old writer/checker releases and journals rather than rewriting pins.
+
 ## What is authenticated
 
 The operator pins the artifact's SHA-256 through the reviewed API configuration.

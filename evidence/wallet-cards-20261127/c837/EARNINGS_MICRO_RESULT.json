@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "kind": "actual_F6_independently_cold_affected_card_read_micro",
+  "complete": true,
+  "results": [
+    {
+      "method": "earnings",
+      "complete": true,
+      "cold_projection_and_request": true,
+      "budget_seconds": 25,
+      "calls_ceiling": 1024,
+      "posts_ceiling": 2048,
+      "old_test_bodies": 0,
+      "constructor_seconds": 0.06523571722209454,
+      "method_seconds": 2.1471776999533176,
+      "total_seconds": 2.212413739413023,
+      "DTO_bytes": 46857,
+      "DTO_sha256": "f16d69bdb61020cd3324b11983d7bd6c8912da563954073c41d0ab0f5f275815",
+      "actual_block": 458,
+      "actual_block_hash": "0xa1c76551b602cb8e1abacf5a23a1f2a94716037eb04cd861acd93d93d1ace7e2",
+      "snapshot_age_seconds": 90.77487015724182,
+      "actual_transport_seconds": 0.5741448476910591,
+      "nontransport_elapsed_seconds_NOT_only_CPU": 1.6383936274796724,
+      "calls": 715,
+      "posts": 1428,
+      "elapsed_seconds": 2.212540578097105
+    }
+  ],
+  "configuration_file_sha256": "d8387add8dc4bda8b66e0f7bdbc5daafc9f0e5d52c5f41b4ac9d68fd17109032",
+  "full_window_seconds": 86400,
+  "snapshot_seconds": 120,
+  "inherited_financial_phase_baseline_seconds": 76.450377318,
+  "estimated_full_journey_seconds_NOT_acceptance": null,
+  "estimated_headroom_seconds_NOT_guarantee": null,
+  "forecast_includes3sec_finalproof_allowance": false,
+  "timing_excludes": [
+    "interpreter_and_worker_spawn",
+    "module_imports_before_timer",
+    "HTTP_Nginx_dispatch",
+    "age_between_real_head_and_request",
+    "full_journey_final_independent_and_canonical_checks"
+  ],
+  "supervisor_30s_not_established_by_this_micro": true,
+  "scope": "ONE changed publicmethod initsOWNfreshprocess;actualsource/32NFT/66descriptors;notfulljourneyproof",
+  "all_oldtests_not_rerun": true,
+  "state_changes": 0,
+  "production_approved": false
+}

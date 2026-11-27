@@ -1,0 +1,319 @@
+{
+  "schema": 1,
+  "complete": true,
+  "kind": "c837_actual_fixed_anchor_wallet_cards_and_preservation",
+  "source_scope": "Two opt-in request scopes plus bounded actual-runtime digest reuse; all original proofs retained",
+  "new_semantic_checkpoint_sha256": "367b2957ac6d257766bf68f3973ef8b3aba36d1e024c89a72c252d7ba58edb68",
+  "genesis_ordering_receipt_sha256": "e2e3597fce7b37db2dcfd1aae754aecb37263288623d0c316a2f3f50e397cb64",
+  "semantic_archive": {
+    "calls": 131,
+    "complete": true,
+    "creation_archive_gate_passed": true,
+    "elapsed_seconds": 2.6380827743560076,
+    "failed_checks": [],
+    "gate_artifact": "/opt/popl-ubuntu-backup-recovery-20261126-c814/wallet-f6-20261127-c837/control/COMPOSED_ARCHIVE_GATE.json",
+    "gate_bytes": 29485,
+    "gate_sha256": "d2f52c5b2451552f09f8e6c98ce8128781dbc36b397a4b5a257a4005866ea354",
+    "kind": "actual_F6_archive_gate_summary",
+    "mutations": 0,
+    "next_action": "Stop and review before any clock/head mutation on any failure.",
+    "original_lab_identity_unchanged": true,
+    "owned_unit": {
+      "command_sha256": "e37230b37db27d3f2c164d60b280144ac3282ab7930d6ae1b72a0655dea9dfd6",
+      "invocation_id": "d8fc498ad0b144208bebf893b0558cfe",
+      "pid": 185997,
+      "unit": "popl-wallet-f6-20261127-c837-node.service"
+    },
+    "runtime_roles_checked": 123,
+    "schema": 1,
+    "source_anchor": {
+      "hash": "0x58ac366dc4153863f8c0f65cf8a5445ef94d84d96c9f726e57cfb6f317e7dc97",
+      "number": "0x1bd",
+      "stateRoot": "0x12edc5a885f78458130f5d9c9f21167bae239552458b11e98beb1c79a61ab01e",
+      "timestamp": "0x6b005beb"
+    },
+    "transactions_submitted": 0,
+    "transport_calls_including_startup": 135
+  },
+  "micros": {
+    "nft": {
+      "method": "nft",
+      "complete": true,
+      "cold_projection_and_request": true,
+      "budget_seconds": 25,
+      "calls_ceiling": 1024,
+      "posts_ceiling": 2048,
+      "old_test_bodies": 0,
+      "constructor_seconds": 0.0653190016746521,
+      "method_seconds": 2.1564371678978205,
+      "total_seconds": 2.221756400540471,
+      "DTO_bytes": 44725,
+      "DTO_sha256": "def40858291727982ee90080d0a5a26b2b67efe76d2cf38710c2d2c23cde82b2",
+      "actual_block": 458,
+      "actual_block_hash": "0xa1c76551b602cb8e1abacf5a23a1f2a94716037eb04cd861acd93d93d1ace7e2",
+      "snapshot_age_seconds": 78.44667625427246,
+      "actual_transport_seconds": 0.5836740639060736,
+      "nontransport_elapsed_seconds_NOT_only_CPU": 1.638219203799963,
+      "calls": 726,
+      "posts": 1450,
+      "elapsed_seconds": 2.221895420923829
+    },
+    "earnings": {
+      "method": "earnings",
+      "complete": true,
+      "cold_projection_and_request": true,
+      "budget_seconds": 25,
+      "calls_ceiling": 1024,
+      "posts_ceiling": 2048,
+      "old_test_bodies": 0,
+      "constructor_seconds": 0.06523571722209454,
+      "method_seconds": 2.1471776999533176,
+      "total_seconds": 2.212413739413023,
+      "DTO_bytes": 46857,
+      "DTO_sha256": "f16d69bdb61020cd3324b11983d7bd6c8912da563954073c41d0ab0f5f275815",
+      "actual_block": 458,
+      "actual_block_hash": "0xa1c76551b602cb8e1abacf5a23a1f2a94716037eb04cd861acd93d93d1ace7e2",
+      "snapshot_age_seconds": 90.77487015724182,
+      "actual_transport_seconds": 0.5741448476910591,
+      "nontransport_elapsed_seconds_NOT_only_CPU": 1.6383936274796724,
+      "calls": 715,
+      "posts": 1428,
+      "elapsed_seconds": 2.212540578097105
+    }
+  },
+  "actual_journey_result_sha256": "5e337913eb0ffc2b2e54a3be8553df0d857604f9f0bc73470ca2577289e43fc7",
+  "actual_request_trace_sha256": "fce7a185a8580b1862d09e0f1f25cbc455aa7b48d4d659807c84b658805a30f4",
+  "statistics": {
+    "api_count": 36,
+    "direct_RPC_count": 381,
+    "all_HTTP_status_200": true,
+    "financial_first20_last_headers_seconds": 46.325915922,
+    "last_API_headers_seconds": 83.580520447,
+    "elapsed_seconds": 83.707619514
+  },
+  "original_evidence_capture_NONPASS_retained": {
+    "path": "consumer-001",
+    "cause": "Combined pretty-printed private payload exceeded perfile1MiB after all assertions",
+    "elapsed_seconds": 83.8264383
+  },
+  "corrected_evidence_only_harness_sha256": "6e41e741441a84bd8f95795200436bb830443bf859c58b89fc064974d4a5d410",
+  "all_eight_cards_full66_raw_86400_and_independent_native_LP": true,
+  "independent_wallet_native_LP_reads": 96,
+  "snapshot": {
+    "all123_accounts_unchanged": true,
+    "calls": 5,
+    "complete": true,
+    "fresh450": {
+      "baseFeePerGas": "0x7",
+      "blobGasUsed": "0x0",
+      "difficulty": "0x0",
+      "excessBlobGas": "0x0",
+      "extraData": "0x",
+      "gasLimit": "0x1e84800",
+      "gasUsed": "0xb3ac",
+      "hash": "0xae90c2ef0705f26b98b231ed5c826de4ec6690eec1b5d7f7da524184b069e892",
+      "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "miner": "0x0000000000000000000000000000000000000000",
+      "mixHash": "0xaeb1c4f5c3f19b4fefb329f1d8a726f024f08429c01a5471a8b381cf56da9998",
+      "nonce": "0x0000000000000000",
+      "number": "0x1c2",
+      "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "parentHash": "0x5392df276c9652f527bb524d380900a8e16a8dcc642497b94ca04918a8963695",
+      "receiptsRoot": "0x8ab0c5604f4814bb9fa6e88b44937eb91222afa2ec01c22f7c268fc6b610faf9",
+      "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+      "size": "0x2d6",
+      "stateRoot": "0x40e48380ea06335896425fc2cff4f06e3622634e93c9f762e31c738de55ea675",
+      "timestamp": "0x6b09d405",
+      "totalDifficulty": "0x0",
+      "transactions": [
+        "0xc408915787c07e0e98692966ba492119b962329751496188d723fdb7e5add816"
+      ],
+      "transactionsRoot": "0x277163932c772798f0fd28aa8013363ed262294d10b72dd92b8dc26c48fc074b",
+      "uncles": [],
+      "withdrawals": [],
+      "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+    },
+    "head": {
+      "baseFeePerGas": "0x7",
+      "blobGasUsed": "0x0",
+      "difficulty": "0x0",
+      "excessBlobGas": "0x0",
+      "extraData": "0x",
+      "gasLimit": "0x1e84800",
+      "gasUsed": "0x0",
+      "hash": "0xe579547f49e45ac785bf2518b8ea3d5794035e575eedd6877f57133d7cd86db1",
+      "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "miner": "0x0000000000000000000000000000000000000000",
+      "mixHash": "0xe764bd443130af76edfde15c0d54d72421094f27e8594b9789fe81b284808de5",
+      "nonce": "0x0000000000000000",
+      "number": "0x1cc",
+      "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "parentHash": "0x6cf7d19647bd9e2b9188ba2359c9f12e2364dd264a0e64120b21a3347cacfec6",
+      "receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+      "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+      "size": "0x244",
+      "stateRoot": "0x40e48380ea06335896425fc2cff4f06e3622634e93c9f762e31c738de55ea675",
+      "timestamp": "0x6b09f419",
+      "totalDifficulty": "0x0",
+      "transactions": [],
+      "transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+      "uncles": [],
+      "withdrawals": [],
+      "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+    },
+    "kind": "actual_F6_c837_current_state_recovery_capture",
+    "old445": {
+      "baseFeePerGas": "0x7",
+      "blobGasUsed": "0x0",
+      "difficulty": "0x0",
+      "excessBlobGas": "0x0",
+      "extraData": "0x",
+      "gasLimit": "0x1e84800",
+      "gasUsed": "0x20b8c",
+      "hash": "0x58ac366dc4153863f8c0f65cf8a5445ef94d84d96c9f726e57cfb6f317e7dc97",
+      "logsBloom": "0x00000000000000000000010000000000000000000080000000000000000000000000000000000001000000200000000000000000000000000000000200004000000000000000000000000000000000000000000001000000000000000000000000000000000000000200000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000020000000000010000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000001002000000000000000000000000000000000",
+      "miner": "0x0000000000000000000000000000000000000000",
+      "mixHash": "0x6350010dc1f011a3c3c4974015f1ac8d920d4140cd293cc630953e4d1a0b740b",
+      "nonce": "0x0000000000000000",
+      "number": "0x1bd",
+      "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "parentHash": "0xb021a2605d28045fa3fc0fc2d3e39e01d596487874ef4d0fb7fb51458a0e2e9a",
+      "receiptsRoot": "0x050ae6edba02f68afcd9eebd7278b2e713a66b897af66c1eb5953c11dc93e9c7",
+      "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+      "size": "0x296",
+      "stateRoot": "0x12edc5a885f78458130f5d9c9f21167bae239552458b11e98beb1c79a61ab01e",
+      "timestamp": "0x6b005beb",
+      "totalDifficulty": "0x0",
+      "transactions": [
+        "0xb414de324a095adcea0902d9cf5af00217704ddee36811c93e49bc6b6bc9c60c"
+      ],
+      "transactionsRoot": "0xd76f6ca49ec63aeb2f81b5cb8aabb2ec8c1a36ea402b682015c278fca91739c2",
+      "uncles": [],
+      "withdrawals": [],
+      "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+    },
+    "owned_identity": {
+      "cgroup_sha256": "7753bfef7b5d8f176bca0b4ef0568dc33d9e7f3e1484b7649dcfa83f84a2c176",
+      "command_sha256": "e37230b37db27d3f2c164d60b280144ac3282ab7930d6ae1b72a0655dea9dfd6",
+      "invocation_id": "d8fc498ad0b144208bebf893b0558cfe",
+      "pid": 185997,
+      "start_ticks": "912899667",
+      "unit": "popl-wallet-f6-20261127-c837-node.service"
+    },
+    "production_approved": false,
+    "schema": 1,
+    "snapshot_decoded_bytes": 101846326,
+    "snapshot_decoded_sha256": "52afd40b74496a159992dbad8a11fe7b66d383ed35cffaebe1b7855cfed0d09e",
+    "snapshot_gzip_bytes": 16065572,
+    "snapshot_gzip_sha256": "14fa199978d040beb831084fd16765d68b7d3156f3fa26cc754696f0de6f55c2",
+    "source_snapshot_sha256": "4a0a9d74d8bbe14b9dc9338a44ce93a20d34051aaf1ee8151a95ecfcd5111e47",
+    "state_changes": 0,
+    "transactions_submitted": 0
+  },
+  "own_node_stop": {
+    "lab_preserved": true,
+    "original_services_changed": false,
+    "stopped": true,
+    "unit": {
+      "ActiveState": "inactive",
+      "ControlGroup": "",
+      "ExecMainCode": "0",
+      "ExecMainStatus": "0",
+      "Group": "",
+      "Id": "popl-wallet-f6-20261127-c837-node.service",
+      "InvocationID": "",
+      "LoadState": "not-found",
+      "MainPID": "0",
+      "Restart": "no",
+      "Result": "success",
+      "RootDirectory": "",
+      "RuntimeMaxUSec": "infinity",
+      "SubState": "dead",
+      "User": ""
+    }
+  },
+  "own_stage_cleanup": {
+    "complete": true,
+    "stopped": [
+      {
+        "cgroup_empty": true,
+        "stage": "consumer",
+        "stopped": true
+      },
+      {
+        "cgroup_empty": true,
+        "stage": "catchup-consumer",
+        "stopped": true
+      },
+      {
+        "cgroup_empty": true,
+        "stage": "proxy",
+        "stopped": true
+      },
+      {
+        "cgroup_empty": true,
+        "stage": "worker",
+        "stopped": true
+      },
+      {
+        "not_started": true,
+        "stage": "proxy-validate"
+      },
+      {
+        "not_started": true,
+        "stage": "manifest"
+      },
+      {
+        "not_started": true,
+        "stage": "bind"
+      },
+      {
+        "not_started": true,
+        "stage": "candidate-review"
+      },
+      {
+        "not_started": true,
+        "stage": "checkpoint"
+      },
+      {
+        "not_started": true,
+        "stage": "catchup-checkpoint"
+      },
+      {
+        "not_started": true,
+        "stage": "features"
+      },
+      {
+        "not_started": true,
+        "stage": "micro-earnings"
+      },
+      {
+        "not_started": true,
+        "stage": "micro-nft"
+      }
+    ]
+  },
+  "preserved_baseline_fields": {
+    "files": true,
+    "listeners": true,
+    "predecessor_history_files": true,
+    "c829_lab": true,
+    "existing_services": true
+  },
+  "new_failed_own_units_retained_as_evidence": [
+    "\u25cf popl-wallet-f6-20261127-c837-consumer.service             loaded    failed   failed  /tools/node --max-old-space-size=512 /reader-next/source10_journey_ubuntu_v5.mjs --website=/source-website --manifest=/work/manifest-001/MANIFEST.json --owner=0x000000000000000000000000000000000000a0a0 --output=/work/consumer-001 --pins=/work/manifest-001/JOURNEY_PINS.json --mode=portfolio",
+    "\u25cf popl-wallet-f6-20261127-c837-proxy.service                loaded    failed   failed  /usr/sbin/nginx -p /work/nginx/ -c /work/nginx/nginx.conf",
+    "\u25cf popl-wallet-f6-20261127-c837-worker.service               loaded    failed   failed  /usr/bin/python3 -B -m frontend_api.server --config /work/binding-001/CONFIGURATION_CANDIDATE.json --port 19728 --workers 4 --max-connections 8 --per-client-active 2 --proxy-origin https://popl.example.test"
+  ],
+  "protocol_transactions": 0,
+  "new_empty_headers": 3,
+  "old_tests_rerun": 0,
+  "independent_split_reconstruction": "Pending separate verifier receipt; no more RPC required",
+  "limitations": [
+    "32NFT fixed-head isolated graph; not1000NFT production/provider capacity",
+    "Controlled external graph/periphery fixtures",
+    "Old fee-bearing receipts lie before last24h; nonzero moving24h boundary not qualified",
+    "No production signing, deployment, service or site adoption"
+  ],
+  "production_approved": false
+}

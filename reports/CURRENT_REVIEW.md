@@ -1,6 +1,6 @@
 # Current project review
 
-Reviewed 27 November 2026; F6/provider follow-through against contract baseline `4ecfadf3` and website baseline `cccaa5fb`. Earlier wallet-read implementation used `bf5c91fc` / `89a8219b`. Earlier documentation reconciliation retains baseline `fdd599c7`. PoPL is an undeployed production candidate. **Production is NOT APPROVED.** Publishing source or this consolidation authorizes no deployment, seal, public transaction, signer adoption, website rollout, service restart or chain reset.
+Reviewed 27 November 2026; latest card/history follow-through against contract baseline `0510bd7c` and unchanged website baseline `cccaa5fb`. Earlier F6/provider follow-through retains baseline `4ecfadf3`. Earlier wallet-read implementation used `bf5c91fc` / `89a8219b`. Earlier documentation reconciliation retains baseline `fdd599c7`. PoPL is an undeployed production candidate. **Production is NOT APPROVED.** Publishing source or this consolidation authorizes no deployment, seal, public transaction, signer adoption, website rollout, service restart or chain reset.
 
 This is the current cross-project assessment. [Findings](../docs/AUDIT_FINDINGS.md) owns defects, accepted trust and unresolved limits; [the task ledger](../docs/project-todo.json), [generated Todo](../TODO.md), [qualification sequence](../docs/ROADMAP.md) and [release checklist](../docs/RELEASE_CHECKLIST.md) retain their distinct roles. Technical instructions remain in their owning guides and the [operator manual](../docs/OPERATOR_MANUAL.md).
 
@@ -20,7 +20,84 @@ Default activation/growth minima remain $100/$5, subject to a higher pool minimu
 
 The selected contribution candidate is 32M gas with full 20% padding, maximum admitted estimate 26,666,666; backend decimal string and website integer must match. Keeper/manual maintenance remains 24M with full 25%; claims remain 12M with full 20%; historical defaults and source-specific evidence are not relabelled. All 13 controlled F6 cold cases fit their original 20M/full20% profile. In the expanded 1,000-NFT/64-ERC20-plus-ETH/two-LP fixture, 11/12 contributions fit 32M; the worst direct estimate remains 476,135 above admission. A separately paid preparation option does not remove that direct shortfall. Never substitute receipt/trace gas for a required fresh estimate.
 
-The source inventory is 193 Python files / 2,161 named definitions / 281 lambdas. Frozen Solidity maps remain 61 project sources / 39 dependencies / four build controls and 1,021 ABI rows. The workload plan covers 187 scenario classes with service partitions; this is an obligation map, not dynamic full coverage. The [current source-bound inventory](../evidence/wallet-f6-20261127/FUNCTION_INVENTORY.json) includes the wallet-read/bundle changes; [the current anonymous-code inventory](../evidence/wallet-f6-20261127/ANONYMOUS_CODE_INVENTORY.json) binds its exact source and line locations without claiming execution coverage. Tight EIP-170/initcode headroom remains a constraint; source size gates are not real constructor/provider approval.
+The source inventory is 193 Python files / 2,165 named definitions / 282 lambdas. Frozen Solidity maps remain 61 project sources / 39 dependencies / four build controls and 1,021 ABI rows. The workload plan covers 187 scenario classes with service partitions; this is an obligation map, not dynamic full coverage. The [current source-bound inventory](../evidence/wallet-cards-20261127/FUNCTION_INVENTORY.json) includes the wallet-read/bundle changes; [the current anonymous-code inventory](../evidence/wallet-cards-20261127/ANONYMOUS_CODE_INVENTORY.json) binds its exact source and line locations without claiming execution coverage. Tight EIP-170/initcode headroom remains a constraint; source size gates are not real constructor/provider approval.
+
+## Card and history request-cost reduction
+
+This follow-through uses contract baseline `0510bd7c` and unchanged website
+baseline `cccaa5fb`. Existing `wallet_read_batch:1` now scopes individual NFT
+detail and earnings reads to the already bounded canonical raw cache. The
+original accounting bodies are unchanged. Exact canonical raw code must be
+retained separately for each target/block/transport before its actual Ethereum
+Keccak digest may be reused. Every consumer still compares its own expected
+runtime pin; metadata shares the unchanged64KiB-entry/8MiB-total cache and clears
+on exit. Uncacheable/full entries hash normally. There is no cross-request trust,
+new source flag, crypto dependency, larger budget or relaxed age. The physical LP
+observer's optional digest callback defaults to its original keeper behavior.
+
+Six distinct NEW methods cover actual SQLite/checkpoint/replay DTO parity,
+transfer/late activation/growth/LP conversion/claims/dormant boundaries, unchanged
+live proofs, aliases, expiry, faults, cleanup and digest bounds. Both the actual
+Projection and physical observer reject their own wrong expected pin after a
+digest hit. The corrected composed method passed at the wrapper-only stage and
+was rerun only because the digest change affects it. The other three passing
+wrapper-hook bodies were not repeated. The first invalid bare-geometry fixture
+and a runner syntax refusal before any test are retained separately. These
+controlled checks are not EVM/provider/HTTP or maximum-workload qualification.
+
+The first wrapper-only Ubuntu micros still took3.226s/NFT and3.238s/earnings;
+actual transport occupied only about0.575s/0.567s. Their128.163s extrapolation
+already exceeded120s before overhead, so the full known-failing journey was not
+repeated. This measurement motivated the additional digest reuse; a forecast is
+never consumer acceptance.
+
+The isolated restore also exposed duplicate zero-height block records in the
+pinned Anvil1.4.4 serialized state. Its original strict numeric-genesis gate
+failed. One empty head/catch-up stage was mistakenly allowed by an exit-zero
+capture before that JSON failure was inspected; no protocol transaction occurred.
+Capture and runner now both refuse incomplete gates, and later mutation requires
+an authenticated admission marker. A proposed deletion derivative correctly
+refused because historical references existed. The final separate derivative
+retains all461 block records and all12 references, permuting only four existing
+zero slots so the independently authenticated genesis is loaded last. All457
+nonzero positions and five other state components remain exact; original
+snapshots/DB/WAL/SHM are untouched. The pinned loader's
+[serialized HashMap ordering and last-number insertion](https://github.com/foundry-rs/foundry/blob/05794498bf47257b144e2e2789a1d5bf8566be0e/crates/anvil/src/eth/backend/mem/storage.rs#L378-L393)
+explain the behavior. Actual fresh gates verify numeric0, creation states30/31,
+445/current and all123 accounts; this does not claim genesis-state or `earliest`
+tag recovery. The successful finite restore does not erase the failed gate.
+
+The final affected Ubuntu Source10 composition completes the full32-NFT wallet
+and all eight cards in **83.708 seconds**, with36 real API GETs and
+381 direct consumer RPCs. All66 currency descriptors, full86400-second
+history,96 independent on-chain wallet-total reads, each card's own canonical
+LP/native comparisons and the final identity/freshness checks actually finish.
+This is a scoped fixed-head/local-provider pass, not1000-NFT, moving-head,
+maximum-lineage, live market or production-provider acceptance.
+
+The first digest-candidate run reached its final application assertions in
+83.825 seconds but its combined pretty-printed evidence file exceeded the1MiB
+artifact limit. It remains NONPASS. Only evidence capture changed for the final
+run: one complete wallet file, eight complete card files and a hash manifest,
+each still bounded to1MiB. Reconstructing them must match the original compact
+payload digest. No consumer assertions, request pacing, monetary/resource limits
+or production sources changed for that affected capture rerun. New checkpoint
+construction separately passes3098logical/6194POST/4.86628s; matching adoption
+still requires explicit review. Independent economic/preservation conclusions
+are in the evidence index; original failures are not relabelled.
+
+Final source-scoped results and preserved failures are indexed in the
+[card/history evidence](../evidence/wallet-cards-20261127/INDEX.json).
+Full normal1000-NFT/lineage/provider/concurrent/moving-chain acceptance remains
+separate. CWR09 records a confirmed moving-head availability gap: separate latest
+NFT and earnings GETs can observe different confirmed hashes. Preserve the
+current exact-match check; a fixed-block capability needs separate qualification.
+
+All existing25s/1024logical/2048POST/1MiB,120s freshness,86400s history and
+financial/helper/transaction limits remain. Matching new checkpoint/review/config
+pins are required; source publication changes no site, service, old checkpoint,
+journal, signer or paused heartbeat. The pure keeper helper's hash changes but
+not source13/19 membership: keep original packages with their original release.
 
 ## Markets, prices and execution
 
@@ -192,12 +269,12 @@ queued card refuses stale input. There is no rate, connection, periphery or RPC
 budget bypass. Complete financial and all-eight-card final assertions, including
 the harness's independent96 raw-total reads, are not reached. Twenty successful
 HTTP replies cannot be promoted to a full-wallet PASS. No third whole-journey
-attempt or larger freshness/timeout allowance is used.
+attempt was made at that unchanged source and no freshness/timeout was raised.
 
-Next work is to reduce the card/history cost and qualify the complete current
-consumer under120s, then the full normal1000-NFT/two-position/lineage workloads
-and actual provider capacity. Existing current consumers, services and public
-configuration are not upgraded by these finite results.
+The later affected card/history source passes the32-NFT composition as recorded
+above. Remaining work is full normal1000-NFT/two-position/lineage workloads,
+moving-head card anchors and actual provider capacity. Existing consumers,
+services and public configuration are not upgraded by these finite results.
 
 All new Node/API/proxy processes are confined to their owned Ubuntu lab. Node is
 the exact official v24.13.1 Linux/x64 binary checked against the HTTPS official

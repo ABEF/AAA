@@ -1,0 +1,7 @@
+test_both_consumers_reject_wrong_pins_after_hits_and_exact_raw_aliases (tests_python.test_runtime_digest_scope.RuntimeDigestScopeTests.test_both_consumers_reject_wrong_pins_after_hits_and_exact_raw_aliases) ... ok
+test_metadata_charges_original_bounds_falls_back_and_expires_without_leaks (tests_python.test_runtime_digest_scope.RuntimeDigestScopeTests.test_metadata_charges_original_bounds_falls_back_and_expires_without_leaks) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 2.017s
+
+OK

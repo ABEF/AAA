@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "kind": "c835_preserved_genesis_admission_NONPASS",
+  "complete": false,
+  "production_approved": false,
+  "restore_gate": {
+    "calls": 131,
+    "complete": false,
+    "creation_archive_gate_passed": true,
+    "elapsed_seconds": 2.5935061760246754,
+    "failed_checks": [
+      "genesis"
+    ],
+    "gate_artifact": "/opt/popl-ubuntu-backup-recovery-20261126-c814/wallet-f6-20261127-c835/control/COMPOSED_ARCHIVE_GATE.json",
+    "gate_bytes": 29496,
+    "gate_sha256": "ffc2f179e8f8a6bfc231f309fd9d8531db2954c737810a3de51b2e3baee86984",
+    "kind": "actual_F6_archive_gate_summary",
+    "mutations": 0,
+    "next_action": "Stop and review before any clock/head mutation on any failure.",
+    "original_lab_identity_unchanged": true,
+    "owned_unit": {
+      "command_sha256": "e37230b37db27d3f2c164d60b280144ac3282ab7930d6ae1b72a0655dea9dfd6",
+      "invocation_id": "fa0d9bd90c2940bd8216cc5e56ece09a",
+      "pid": 183319,
+      "unit": "popl-wallet-f6-20261127-c835-node.service"
+    },
+    "runtime_roles_checked": 123,
+    "schema": 1,
+    "source_anchor": {
+      "hash": "0x58ac366dc4153863f8c0f65cf8a5445ef94d84d96c9f726e57cfb6f317e7dc97",
+      "number": "0x1bd",
+      "stateRoot": "0x12edc5a885f78458130f5d9c9f21167bae239552458b11e98beb1c79a61ab01e",
+      "timestamp": "0x6b005beb"
+    },
+    "transactions_submitted": 0,
+    "transport_calls_including_startup": 135
+  },
+  "gate_failure": [
+    "genesis"
+  ],
+  "creation30_31_passed": true,
+  "runtime_roles_passed": 123,
+  "original457_current_account_model_was_authenticated": true,
+  "orchestration_error": "Shell commands were chained after archivecapture exit0 even though recorded complete:false. ONEnewemptyhead and normalindexcatchup ran beforeinspection; no protocoltx. This is not anapprovedgatebypass.",
+  "one_unintended_new_empty_head": {
+    "number": 458,
+    "hash": "0xbb4b30b7b2a5da54ce733e4f1e1eac7b83af47bb5d2d98be23b818b293bfc6e0",
+    "account_stateRoot_unchanged": true
+  },
+  "checkpoint_or_micro_or_fullconsumer_executed": false,
+  "candidate_for_next_lab": "ORIGINALc834457 only; never thisbadgenesisbranch",
+  "stopped_before900": true,
+  "all_old_files_services_listeners_unchanged": true,
+  "predecessor_DB_WAL_SHM_allbytes_metadata_unchanged": true,
+  "all_owned_job_cgroups_empty": true,
+  "next_required": "NEWmetadata-onlyderivativeoforiginalc834457 withonlyauthenticatedcanonicalzeroheader; newstrictPASSgatebeforeANYmutation",
+  "receipts": {
+    "FREEZE.json": "f68651822bff278b471d878b75761b658dc2af6b4ff3a08c308aceabc7c42fe6",
+    "prepare-001/EXECUTION.json": "3da1df6d628f8af9500ecd31688af3a2bb51e7d0b421060265dc7f86898e3903",
+    "archive-001/EXECUTION.json": "b438ade300827c0797d2d7af74b749a48433898423f8baf31b2e862fb063f81a",
+    "head-001/EXECUTION.json": "c92fa71bcc8d0a2424608f4fd03991750ade9cf7193f4507cffae4ca6d6476ec",
+    "catchup-checkpoint-001/RESULT.json": "9b45222cab30fe8c59557371be7a12df9196b54c4338659008e7c99ee3b1c7d4",
+    "cleanup-001/EXECUTION.json": "8cf159b6b13795c4e1ea2ab9800145c25ccc13a921026ab6cf668e0f58d4a4b7",
+    "stop-001/EXECUTION.json": "ba0cff00ac46b8819c804b9526850976f2f653bc7364c5a5f7d4f2d3288dd96a",
+    "final-baseline-001/EXECUTION.json": "b9e2f32ce5b0e4b8ee7338c045ac0d1932c52a3988a9955c3f55c7d275883fda"
+  }
+}

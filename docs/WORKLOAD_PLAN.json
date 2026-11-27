@@ -2,7 +2,7 @@
   "schema": 1,
   "purpose": "Whole-project workload/function/state inventory and verification plan; inventory completeness is never dynamic coverage or proof of all possible market states.",
   "date": "2026-11-27",
-  "source_baseline": "4ecfadf3898013766dae8cee6072065681b1f3d0",
+  "source_baseline": "0510bd7c798c2d93cd64805a7704497ee7681162",
   "trusted_build_record": {
     "path": "reports/activation-final-six-20261118/build/final/normal-size-evidence.json",
     "sha256": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2"
@@ -713,7 +713,10 @@
         "frontend_api/service.py",
         "frontend_api/wallet_aggregate.py",
         "frontend_api/read_batch.py",
-        "frontend_api/canonical_cache.py"
+        "frontend_api/canonical_cache.py",
+        "frontend_api/earnings.py",
+        "frontend_api/portfolio_v6.py",
+        "keeper/compound_policy.py"
       ],
       "cases": [
         "0/1/16/17/999/1000holdings andfullwidthIDs",
@@ -724,7 +727,7 @@
         "explicitprofile2 separates16NFTownership from4currencyfullwallet earnings; oldprofile1unchanged",
         "constructoronlySTATICCALL fixedselectors:3NFT/4currency,50kplain/500kLP/1Mroyalty within24M total,returndata/initcode/artifact bindings; coldF6 scalar reference includes intrinsic/cold costs; nobroadcast/stateoverride",
         "exactwallet1000 currentIDs andperNFTrights rounding components paid/history proofs; full86400 suffix",
-        "prefetchcontradictionsfatal; isolatedfinancialfailure0verifiedfalsecomplete; unchangedexpiry/resource/cachebounds",
+        "prefetchcontradictionsfatal; isolatedfinancialfailure0verifiedfalsecomplete; unchangedexpiry/resource/cachebounds; optin1NFTdetail/earnings useexistingrequest-localcanonicalcache,legacy0unchanged,allABI/economic/finalchecksremainlive,no crossrequeststate; actual-code EthereumKeccak metadata requires own canonical raw match before sharing,each expected pin remains checked,metadata charged to original64KiB/8MiB limits,fallback hashing,expiry andcleanup",
         "conversionindex allsourcecurrencies creditedETH; selectedcurrencyglobalstate fullreplay",
         "maximumlineage/providergas/F6V10/HTTPfreshness remainseparate qualification; offlinecheckpoint optin usesexistingjoblocalcanonicalcache,60s4096logical8192POST defaults andliveheaders retained"
       ]

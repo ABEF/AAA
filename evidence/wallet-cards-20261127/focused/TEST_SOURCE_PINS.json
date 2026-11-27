@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "kind": "source_bound_focused_test_stages_not_additive_counts",
+  "stages": {
+    "card_initial_four": {
+      "receipt_path": "cache-wallet-cards-20261127/focused-001/RESULT.json",
+      "receipt_sha256": "24314398e556dfd03f4a3994e5059509e8ee6f1a9d235d15603e3e6894d49018",
+      "tests_run": 4,
+      "successful": false,
+      "failures": 0,
+      "errors": 1,
+      "source_before": {
+        "frontend_api/earnings.py": "2abfc31d2b797d8783e692c31a6d9e5d0c1a5dc2eaaa2047b0044015f92a4e14",
+        "frontend_api/service.py": "b09fe719d4e0fc0e254f7b96129866884d020a4f93ee5da98939d057e23b5cbd",
+        "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+        "frontend_api/earnings_checkpoint.py": "2537fa1d909ac42fa58ed65e27ec69800ee3cf7ef8a535d39e4c3e6a87bf45f2",
+        "frontend_api/earnings_checkpoint_build.py": "14c1d5d8407ab13193c4c15085a3a5dc82a7c9a9a23fcdc4a9eacd9b247b4571",
+        "tests_python/test_earnings_read_cache_scope.py": "d6e5c01712970f8f793286fe287e2ebfb3eb3bc4d7c1654bca6f91b49ed6e564"
+      },
+      "source_after": {
+        "frontend_api/earnings.py": "2abfc31d2b797d8783e692c31a6d9e5d0c1a5dc2eaaa2047b0044015f92a4e14",
+        "frontend_api/service.py": "b09fe719d4e0fc0e254f7b96129866884d020a4f93ee5da98939d057e23b5cbd",
+        "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+        "frontend_api/earnings_checkpoint.py": "2537fa1d909ac42fa58ed65e27ec69800ee3cf7ef8a535d39e4c3e6a87bf45f2",
+        "frontend_api/earnings_checkpoint_build.py": "14c1d5d8407ab13193c4c15085a3a5dc82a7c9a9a23fcdc4a9eacd9b247b4571",
+        "tests_python/test_earnings_read_cache_scope.py": "d6e5c01712970f8f793286fe287e2ebfb3eb3bc4d7c1654bca6f91b49ed6e564"
+      },
+      "selected": [
+        "tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_actual_exact_checkpoint_and_suffix_keep_payout_transfer_and_full_day",
+        "tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_cached_read_still_obeys_expiry_and_stricter_outer_budget",
+        "tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_getter_failure_propagates_and_cannot_poison_a_later_request",
+        "tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_optin_exact_keys_preserve_alias_boundaries_live_proofs_and_legacy"
+      ]
+    },
+    "card_corrected_composed": {
+      "receipt_path": "cache-wallet-cards-20261127/focused-002/RESULT.json",
+      "receipt_sha256": "1b215d31d07eab3dd9d8e53dd51587297cfaf3316033c4cd899e2be87440216e",
+      "tests_run": 1,
+      "successful": true,
+      "failures": 0,
+      "errors": 0,
+      "source_before": {
+        "frontend_api/earnings.py": "2abfc31d2b797d8783e692c31a6d9e5d0c1a5dc2eaaa2047b0044015f92a4e14",
+        "frontend_api/service.py": "b09fe719d4e0fc0e254f7b96129866884d020a4f93ee5da98939d057e23b5cbd",
+        "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+        "frontend_api/earnings_checkpoint.py": "2537fa1d909ac42fa58ed65e27ec69800ee3cf7ef8a535d39e4c3e6a87bf45f2",
+        "frontend_api/earnings_checkpoint_build.py": "14c1d5d8407ab13193c4c15085a3a5dc82a7c9a9a23fcdc4a9eacd9b247b4571",
+        "tests_python/test_earnings_read_cache_scope.py": "e02db410415a6a8438826699c9e9f5ec9012d3c334edc47d4f6062c6aa703e53"
+      },
+      "source_after": {
+        "frontend_api/earnings.py": "2abfc31d2b797d8783e692c31a6d9e5d0c1a5dc2eaaa2047b0044015f92a4e14",
+        "frontend_api/service.py": "b09fe719d4e0fc0e254f7b96129866884d020a4f93ee5da98939d057e23b5cbd",
+        "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+        "frontend_api/earnings_checkpoint.py": "2537fa1d909ac42fa58ed65e27ec69800ee3cf7ef8a535d39e4c3e6a87bf45f2",
+        "frontend_api/earnings_checkpoint_build.py": "14c1d5d8407ab13193c4c15085a3a5dc82a7c9a9a23fcdc4a9eacd9b247b4571",
+        "tests_python/test_earnings_read_cache_scope.py": "e02db410415a6a8438826699c9e9f5ec9012d3c334edc47d4f6062c6aa703e53"
+      },
+      "selected": [
+        "tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_actual_exact_checkpoint_and_suffix_keep_payout_transfer_and_full_day"
+      ]
+    },
+    "digest_two_NEW": {
+      "receipt_path": "cache-wallet-cards-20261127/runtime-digest/focused-001/RESULT.json",
+      "receipt_sha256": "a5b282ad89b127984cedb8f12b314d4095d005458d11d5661987f7038d6db404",
+      "tests_run": 2,
+      "successful": true,
+      "failures": 0,
+      "errors": 0,
+      "source_before": {
+        "frontend_api/canonical_cache.py": "928642d0d89849a8866ff41200afa62db995b7eedd9040cf89e281b3fd00a57b",
+        "frontend_api/service.py": "832d325b68ab569268374adcaf6973e448a0953696db75df3360c0e6f3c0def0",
+        "frontend_api/portfolio_v6.py": "c21677bfa15e007a8bdafa1b9cb6e4269429cd13de87fb9e19210a91bc1fcb9c",
+        "keeper/compound_policy.py": "b28fc99bd27fa50f58cb1560def4e5aa3a78c38877f41ba1cebefbc66aedda53",
+        "tests_python/test_runtime_digest_scope.py": "4dde8b57fb1fe1734867a0c875487b362a9ab6cbafcb659ab9b02c345b8557fb"
+      },
+      "source_after": {
+        "frontend_api/canonical_cache.py": "928642d0d89849a8866ff41200afa62db995b7eedd9040cf89e281b3fd00a57b",
+        "frontend_api/service.py": "832d325b68ab569268374adcaf6973e448a0953696db75df3360c0e6f3c0def0",
+        "frontend_api/portfolio_v6.py": "c21677bfa15e007a8bdafa1b9cb6e4269429cd13de87fb9e19210a91bc1fcb9c",
+        "keeper/compound_policy.py": "b28fc99bd27fa50f58cb1560def4e5aa3a78c38877f41ba1cebefbc66aedda53",
+        "tests_python/test_runtime_digest_scope.py": "4dde8b57fb1fe1734867a0c875487b362a9ab6cbafcb659ab9b02c345b8557fb"
+      },
+      "selected": [
+        "tests_python.test_runtime_digest_scope.RuntimeDigestScopeTests.test_both_consumers_reject_wrong_pins_after_hits_and_exact_raw_aliases",
+        "tests_python.test_runtime_digest_scope.RuntimeDigestScopeTests.test_metadata_charges_original_bounds_falls_back_and_expires_without_leaks"
+      ]
+    },
+    "digest_affected_composed": {
+      "receipt_path": "cache-wallet-cards-20261127/runtime-digest/composed-001/RESULT.json",
+      "receipt_sha256": "6a1e1eb42d76144abd3a765a1214c88f7201dc3551eb9a4c013b88bfc1e3702f",
+      "tests_run": 1,
+      "successful": true,
+      "failures": 0,
+      "errors": 0,
+      "source_before": {
+        "frontend_api/canonical_cache.py": "928642d0d89849a8866ff41200afa62db995b7eedd9040cf89e281b3fd00a57b",
+        "frontend_api/service.py": "832d325b68ab569268374adcaf6973e448a0953696db75df3360c0e6f3c0def0",
+        "frontend_api/portfolio_v6.py": "c21677bfa15e007a8bdafa1b9cb6e4269429cd13de87fb9e19210a91bc1fcb9c",
+        "keeper/compound_policy.py": "b28fc99bd27fa50f58cb1560def4e5aa3a78c38877f41ba1cebefbc66aedda53",
+        "frontend_api/earnings.py": "2abfc31d2b797d8783e692c31a6d9e5d0c1a5dc2eaaa2047b0044015f92a4e14",
+        "tests_python/test_earnings_read_cache_scope.py": "e02db410415a6a8438826699c9e9f5ec9012d3c334edc47d4f6062c6aa703e53"
+      },
+      "source_after": {
+        "frontend_api/canonical_cache.py": "928642d0d89849a8866ff41200afa62db995b7eedd9040cf89e281b3fd00a57b",
+        "frontend_api/service.py": "832d325b68ab569268374adcaf6973e448a0953696db75df3360c0e6f3c0def0",
+        "frontend_api/portfolio_v6.py": "c21677bfa15e007a8bdafa1b9cb6e4269429cd13de87fb9e19210a91bc1fcb9c",
+        "keeper/compound_policy.py": "b28fc99bd27fa50f58cb1560def4e5aa3a78c38877f41ba1cebefbc66aedda53",
+        "frontend_api/earnings.py": "2abfc31d2b797d8783e692c31a6d9e5d0c1a5dc2eaaa2047b0044015f92a4e14",
+        "tests_python/test_earnings_read_cache_scope.py": "e02db410415a6a8438826699c9e9f5ec9012d3c334edc47d4f6062c6aa703e53"
+      },
+      "selected": [
+        "tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_actual_exact_checkpoint_and_suffix_keep_payout_transfer_and_full_day"
+      ]
+    }
+  },
+  "distinct_NEW_methods": 6,
+  "affected_composed_reruns_not_extra_distinct_methods": 1,
+  "three_scope_hook_bodies_not_repeated_after_digest_change": true,
+  "scope": "Controlled transport/code/clock and SQLite/checkpoint composition only; not F6/EVM/provider/HTTP qualification",
+  "production_approved": false,
+  "preserved_failed_card_source": {
+    "path_private": "cache-wallet-cards-20261127/focused-001/test-source.py",
+    "sha256": "d6e5c01712970f8f793286fe287e2ebfb3eb3bc4d7c1654bca6f91b49ed6e564",
+    "not_in_public_mapping": true
+  },
+  "current_test_sources": {
+    "tests_python/test_earnings_read_cache_scope.py": "e02db410415a6a8438826699c9e9f5ec9012d3c334edc47d4f6062c6aa703e53",
+    "tests_python/test_runtime_digest_scope.py": "4dde8b57fb1fe1734867a0c875487b362a9ab6cbafcb659ab9b02c345b8557fb"
+  },
+  "composed_method_total_invocations": 3,
+  "composed_followup_invocations": 2,
+  "composed_followup_scopes": [
+    "Corrected invalid new NFT fixture setup after preserved NONPASS",
+    "Affected economic/NFT method only after digest consumer integration"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "kind": "actual_F6_independently_cold_affected_card_read_micro",
+  "complete": true,
+  "results": [
+    {
+      "method": "nft",
+      "complete": true,
+      "cold_projection_and_request": true,
+      "budget_seconds": 25,
+      "calls_ceiling": 1024,
+      "posts_ceiling": 2048,
+      "old_test_bodies": 0,
+      "constructor_seconds": 0.06484248489141464,
+      "method_seconds": 3.161533957347274,
+      "total_seconds": 3.226376662030816,
+      "DTO_bytes": 44725,
+      "DTO_sha256": "d04484f1c54fe380cdacefa32fbeeebbac5f3829c1adc469176d40a554ade2e6",
+      "actual_block": 458,
+      "actual_block_hash": "0x5589ef82466f6b54725c22df494a1198c1c5fef7d81f6fd67fde39d88b98737d",
+      "snapshot_age_seconds": 99.53604483604431,
+      "actual_transport_seconds": 0.5748497601598501,
+      "nontransport_elapsed_seconds_NOT_only_CPU": 2.6516563296318054,
+      "calls": 726,
+      "posts": 1450,
+      "elapsed_seconds": 3.2265080623328686
+    }
+  ],
+  "configuration_file_sha256": "366f22fde8d2f2cc09b4d87d45ed0ffda1ac4bf91936a033f784403099aa5a65",
+  "full_window_seconds": 86400,
+  "snapshot_seconds": 120,
+  "inherited_financial_phase_baseline_seconds": 76.450377318,
+  "estimated_full_journey_seconds_NOT_acceptance": null,
+  "estimated_headroom_seconds_NOT_guarantee": null,
+  "forecast_includes3sec_finalproof_allowance": false,
+  "timing_excludes": [
+    "interpreter_and_worker_spawn",
+    "module_imports_before_timer",
+    "HTTP_Nginx_dispatch",
+    "age_between_real_head_and_request",
+    "full_journey_final_independent_and_canonical_checks"
+  ],
+  "supervisor_30s_not_established_by_this_micro": true,
+  "scope": "ONE changed publicmethod initsOWNfreshprocess;actualsource/32NFT/66descriptors;notfulljourneyproof",
+  "all_oldtests_not_rerun": true,
+  "state_changes": 0,
+  "production_approved": false
+}

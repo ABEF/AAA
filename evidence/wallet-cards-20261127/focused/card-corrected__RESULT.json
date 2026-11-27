@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "kind": "corrected_NEW_composed_earnings_and_NFT_parity_only",
+  "selected_method": "tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_actual_exact_checkpoint_and_suffix_keep_payout_transfer_and_full_day",
+  "tests_run": 1,
+  "successful": true,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_seconds": 2.5,
+  "source_before": {
+    "frontend_api/earnings.py": "2abfc31d2b797d8783e692c31a6d9e5d0c1a5dc2eaaa2047b0044015f92a4e14",
+    "frontend_api/service.py": "b09fe719d4e0fc0e254f7b96129866884d020a4f93ee5da98939d057e23b5cbd",
+    "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+    "frontend_api/earnings_checkpoint.py": "2537fa1d909ac42fa58ed65e27ec69800ee3cf7ef8a535d39e4c3e6a87bf45f2",
+    "frontend_api/earnings_checkpoint_build.py": "14c1d5d8407ab13193c4c15085a3a5dc82a7c9a9a23fcdc4a9eacd9b247b4571",
+    "tests_python/test_earnings_read_cache_scope.py": "e02db410415a6a8438826699c9e9f5ec9012d3c334edc47d4f6062c6aa703e53"
+  },
+  "source_after": {
+    "frontend_api/earnings.py": "2abfc31d2b797d8783e692c31a6d9e5d0c1a5dc2eaaa2047b0044015f92a4e14",
+    "frontend_api/service.py": "b09fe719d4e0fc0e254f7b96129866884d020a4f93ee5da98939d057e23b5cbd",
+    "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+    "frontend_api/earnings_checkpoint.py": "2537fa1d909ac42fa58ed65e27ec69800ee3cf7ef8a535d39e4c3e6a87bf45f2",
+    "frontend_api/earnings_checkpoint_build.py": "14c1d5d8407ab13193c4c15085a3a5dc82a7c9a9a23fcdc4a9eacd9b247b4571",
+    "tests_python/test_earnings_read_cache_scope.py": "e02db410415a6a8438826699c9e9f5ec9012d3c334edc47d4f6062c6aa703e53"
+  },
+  "old_test_bodies_rerun": 0,
+  "previously_passing_NEW_hook_bodies_rerun": 0,
+  "network_calls": 0,
+  "EVM_or_provider_or_HTTP_or_F6_qualified": false,
+  "original_failure_preserved": "focused-001 separate bare geometry lacked required history config; normal admission correctly refused. Corrected method uses same valid exact fixture before suffix, explicit bucket5 geometry aliases, ONE physical leg only.",
+  "fixture_scope": "Controlled fresh7 RPC/code/clock and geometry; actual local SQLite, exact replay, checkpoint and current NFT body",
+  "actual_composed_metrics": [
+    {
+      "NFT": "57668834953523417335750805724198894159101674408155280880167464608522245860580",
+      "legacy_canonical_reads": 200,
+      "optin_canonical_reads": 182,
+      "live_proof_reads": 16
+    },
+    {
+      "kind": "NFT_detail_one_leg",
+      "legacy_canonical_reads": 259,
+      "optin_canonical_reads": 198,
+      "live_proof_reads": 10
+    },
+    {
+      "NFT": "57668834953523417335750805724198894159101674408155280880167464608522245860580",
+      "legacy_canonical_reads": 200,
+      "optin_canonical_reads": 182,
+      "live_proof_reads": 16
+    },
+    {
+      "NFT": "27068882852914421171683002639085201736259275685820510477982234425454308206013",
+      "legacy_canonical_reads": 200,
+      "optin_canonical_reads": 182,
+      "live_proof_reads": 16
+    },
+    {
+      "NFT": "114975682236372002624902202739763791811181480043368931296630519237646847490053",
+      "legacy_canonical_reads": 200,
+      "optin_canonical_reads": 182,
+      "live_proof_reads": 16
+    }
+  ]
+}

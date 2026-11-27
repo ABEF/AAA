@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "kind": "ONLY_affected_composed_exact_earnings_and_NFT_method_after_digest_integration",
+  "selected_method": "tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_actual_exact_checkpoint_and_suffix_keep_payout_transfer_and_full_day",
+  "tests_run": 1,
+  "successful": true,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_seconds": 6.0460000000020955,
+  "source_before": {
+    "frontend_api/canonical_cache.py": "928642d0d89849a8866ff41200afa62db995b7eedd9040cf89e281b3fd00a57b",
+    "frontend_api/service.py": "832d325b68ab569268374adcaf6973e448a0953696db75df3360c0e6f3c0def0",
+    "frontend_api/portfolio_v6.py": "c21677bfa15e007a8bdafa1b9cb6e4269429cd13de87fb9e19210a91bc1fcb9c",
+    "keeper/compound_policy.py": "b28fc99bd27fa50f58cb1560def4e5aa3a78c38877f41ba1cebefbc66aedda53",
+    "frontend_api/earnings.py": "2abfc31d2b797d8783e692c31a6d9e5d0c1a5dc2eaaa2047b0044015f92a4e14",
+    "tests_python/test_earnings_read_cache_scope.py": "e02db410415a6a8438826699c9e9f5ec9012d3c334edc47d4f6062c6aa703e53"
+  },
+  "source_after": {
+    "frontend_api/canonical_cache.py": "928642d0d89849a8866ff41200afa62db995b7eedd9040cf89e281b3fd00a57b",
+    "frontend_api/service.py": "832d325b68ab569268374adcaf6973e448a0953696db75df3360c0e6f3c0def0",
+    "frontend_api/portfolio_v6.py": "c21677bfa15e007a8bdafa1b9cb6e4269429cd13de87fb9e19210a91bc1fcb9c",
+    "keeper/compound_policy.py": "b28fc99bd27fa50f58cb1560def4e5aa3a78c38877f41ba1cebefbc66aedda53",
+    "frontend_api/earnings.py": "2abfc31d2b797d8783e692c31a6d9e5d0c1a5dc2eaaa2047b0044015f92a4e14",
+    "tests_python/test_earnings_read_cache_scope.py": "e02db410415a6a8438826699c9e9f5ec9012d3c334edc47d4f6062c6aa703e53"
+  },
+  "three_unchanged_NEW_hook_methods_rerun": 0,
+  "old_test_bodies_rerun": 0,
+  "network_calls": 0,
+  "EVM_or_provider_or_HTTP_or_F6_qualified": false,
+  "fixture_scope": "Controlled fresh7 wire/code/clock, actual SQLite/exact checkpoint/replay and one-leg full NFT body; complete DTO parity except intentional config digest",
+  "actual_composed_metrics": [
+    {
+      "NFT": "57668834953523417335750805724198894159101674408155280880167464608522245860580",
+      "legacy_canonical_reads": 200,
+      "optin_canonical_reads": 182,
+      "live_proof_reads": 16
+    },
+    {
+      "kind": "NFT_detail_one_leg",
+      "legacy_canonical_reads": 259,
+      "optin_canonical_reads": 198,
+      "live_proof_reads": 10
+    },
+    {
+      "NFT": "57668834953523417335750805724198894159101674408155280880167464608522245860580",
+      "legacy_canonical_reads": 200,
+      "optin_canonical_reads": 182,
+      "live_proof_reads": 16
+    },
+    {
+      "NFT": "27068882852914421171683002639085201736259275685820510477982234425454308206013",
+      "legacy_canonical_reads": 200,
+      "optin_canonical_reads": 182,
+      "live_proof_reads": 16
+    },
+    {
+      "NFT": "114975682236372002624902202739763791811181480043368931296630519237646847490053",
+      "legacy_canonical_reads": 200,
+      "optin_canonical_reads": 182,
+      "live_proof_reads": 16
+    }
+  ]
+}

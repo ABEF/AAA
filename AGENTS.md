@@ -36,18 +36,31 @@ This is an undeployed production candidate; production is **NOT APPROVED**.
 
 ## 27 November F6 wallet-read follow-through
 
-Actual normal F6 review found a legitimate304131-gas LP component above the old250k helper allowance. The user explicitly approved500k LP reads and three NFTs/helper, retaining24M total,50k plain/1M royalty and all API/financial/transaction limits. Adopt matching Python/Solidity/artifact and a NEW reviewed source-bound checkpoint; never relabel the old artifact. Frozen protocol F6 sources stay unchanged. The current source inventory remains193Python/2161definitions/281lambdas,61/39/4 and1021ABI rows.
+Actual normal F6 review found a legitimate304131-gas LP component above the old250k helper allowance. The user explicitly approved500k LP reads and three NFTs/helper, retaining24M total,50k plain/1M royalty and all API/financial/transaction limits. Adopt matching Python/Solidity/artifact and a NEW reviewed source-bound checkpoint; never relabel the old artifact. Frozen protocol F6 sources stay unchanged. The current source inventory is193Python/2165definitions/282lambdas,61/39/4 and1021ABI rows.
 
 Use [the current qualification](reports/CURRENT_REVIEW.md#actual-f6-and-provider-follow-through) and [machine evidence](evidence/wallet-f6-20261127/INDEX.json). The affected1000-NFT/66-descriptor model fits individual requests, but17pages take121.438s without physicalHTTP; this does not qualify120s complete-wallet/provider performance. The old1000-NFT substitute-access fixture lacks genuine normal history. Raw states/DB/configuration/runtime binaries remain outside Git. Keep all original failures, source-specific scopes and current readiness limits. No existing site, service, Anvil8902, journal, signer or paused heartbeat adoption.
 
-Actual current-source checkpoint construction passes3098logical/6194POST/
+Previous-source checkpoint construction passes3098logical/6194POST/
 5.400401s; independent32NFT/65currency/reserve-unit review passes. Runtime
 packaging also needs the exact pure `keeper.compound_policy` reader (122source
 closure; no daemon/signer adoption). The corrected wallet page passes511reads/
 1019POST/3.025s, but the full36-GET/eight-card Source10 journey stops after33GETs/
 117.628s at unchanged120s snapshot expiry.20core replies200by76.450s are not
 final consumer/independent raw-total proof. Preserve both original failures;
-reduce card/history cost next, then qualify maximumF6/lineage/provider/rollout.
+that source scope remains historical. New opt-in NFT/earnings cache scopes and
+bounded actual-code digest reuse now complete the affected32-NFT/66-descriptor
+wallet plus eight cards in83.708s/36GETs with all final independent checks.
+Keep each target's exact canonical code read and every expected-pin comparison;
+digest metadata shares existing64KiB/8MiB limits and clears per request. Ordinary
+keeper hashing defaults remain unchanged, but helper source hashes change; no
+source13/19 membership or old journal/package adoption. A NEW matching checkpoint
+is required. The first83.825s run remains NONPASS from combined evidence size;
+the final output-only partition keeps every artifact1MiB and all assertions.
+Use [current card/history evidence](evidence/wallet-cards-20261127/INDEX.json).
+Maximum normal1000F6/lineage/provider/rollout remain open. CWR09 records separate
+latest NFT/earnings anchors disagreeing on a moving head; preserve equality and
+qualify a fixed-block capability separately. Existing sites/services/journals,
+Anvil8902, public-null/Anvil-only signer and paused heartbeat stay untouched.
 
 ## Current implementation and required rights
 
@@ -115,7 +128,7 @@ reduce card/history cost next, then qualify maximumF6/lineage/provider/rollout.
 - Preserve source-specific failures/skips and distinguish new execution from exact
   reuse. Do not rerun unchanged contract/browser/keeper suites. Use focused affected
   checks; record actual method/source/fixture scopes without summing overlaps.
-- Current inventory is `evidence/wallet-f6-20261127/FUNCTION_INVENTORY.json`.
+- Current inventory is `evidence/wallet-cards-20261127/FUNCTION_INVENTORY.json`.
   Optional `wallet_read_batch:1` selects read profile2; omitted/zero remains profile1.
   Constructor-only fixed STATICCALL aggregation is read-only and outside the frozen
   protocol graph. Keep exact per-NFT accounting/full86400s/request/cache/gas bounds;

@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "action": "derive",
+  "exit_code": 1,
+  "ok": false,
+  "controller_sha256": "8eb0236ce89b06821cabc6d06b04136ba00099b0a6d16a0d158f2a8a719b05af",
+  "transport_sha256": "a7f7f91863833bca9081b0ad6af833a1cf5147e65f1c2cfe7e058449f1bddc45",
+  "input_bytes": 13314,
+  "max_output_bytes": 65536,
+  "timeout_seconds": 185,
+  "stdout_bytes": 0,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_bytes": 313,
+  "stderr_sha256": "10368efb4465aecc8bae8e1bf628cc84c8a0ac0f2eb78523ccc277c152c974a8",
+  "thread_errors": []
+}

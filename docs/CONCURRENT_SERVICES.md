@@ -69,6 +69,13 @@ batch within64KiB-entry/8MiB-total bounds fails closed. Repeated identical proof
 groups reuse their retained replies; no financial result or failed state crosses
 request boundaries. Head/chain/header/final/checkpoint proofs remain live.
 
+The explicit opt-in also scopes individual NFT and earnings reads to this same
+bounded cache. After the exact canonical code reply for each target is retained,
+identical actual runtime bytes may share their computed Keccak digest. Every
+expected-pin comparison still runs. Digest metadata consumes the existing cache
+allowance and clears at scope exit; an entry that cannot fit is hashed without
+retention. This changes neither concurrency nor any financial/resource limit.
+
 The consumer assembles independent16-ID ownership/summary and four-currency
 whole-wallet earnings axes, then checks matching complete inventory, currencies,
 history/configuration/epoch identity and final freshness. This reduces data-page

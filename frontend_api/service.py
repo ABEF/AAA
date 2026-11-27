@@ -321,7 +321,12 @@ class Projection:
         result = self.rpc.call('eth_getCode', [addr, block])
         if not isinstance(result, str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+', result):
             raise ProjectionError('Missing or malformed pinned runtime code')
-        if '0x' + keccak256(bytes.fromhex(result[2:])).hex() != expected:
+        if getattr(self, 'wallet_read_batch', 0) == 1:
+            from frontend_api.canonical_cache import runtime_digest
+            actual = runtime_digest(self, block, addr, result)
+        else:
+            actual = '0x' + keccak256(bytes.fromhex(result[2:])).hex()
+        if actual != expected:
             raise ProjectionError('Runtime code differs from deployment pin')
 
     def _verify_deployment(self, block: dict[str, Any], *, allow_locked: bool = False) -> dict[str, Any]:
@@ -584,6 +589,13 @@ class Projection:
 
     @bounded_request
     def nft(self, identifier: Any) -> dict[str, Any]:
+        if getattr(self, 'wallet_read_batch', 0) == 1:
+            from frontend_api.canonical_cache import scope
+            with scope(self):
+                return self._nft(identifier)
+        return self._nft(identifier)
+
+    def _nft(self, identifier: Any) -> dict[str, Any]:
         nft_id = token_id(identifier)
         header, head, block = self._snapshot()
         safe = header['number']

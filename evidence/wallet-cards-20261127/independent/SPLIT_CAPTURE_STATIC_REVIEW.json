@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "static_review_pass": true,
+  "original_prefix_and_suffix_byte_identical": true,
+  "changed_block_bytes": 1496,
+  "new_sha256": "6e41e741441a84bd8f95795200436bb830443bf859c58b89fc064974d4a5d410",
+  "only_evidence_save_block_changed": true,
+  "original_assertions_timers_pacing_preserved": true,
+  "explicit_root_key_order_recorded": true,
+  "new_test_or_RPC_execution": 0,
+  "prior_inspection_assertion_spelling_correction": "original_key_order, not guessed field names; source unchanged"
+}

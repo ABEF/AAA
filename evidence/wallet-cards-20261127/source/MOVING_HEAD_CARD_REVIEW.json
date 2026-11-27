@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "kind": "static_adjacent_card_request_anchor_race",
+  "website_baseline": "cccaa5fbe6cff8fe1c51ee0a3a5d470689dc7624",
+  "observed_implementation": [
+    "DeploymentAPI.portfolio requests NFT detail at the latest confirmed state",
+    "It subsequently requests /v1/nfts/{id}/earnings at the latest confirmed state",
+    "It correctly rejects earnings when the returned block hash differs from the NFT-detail block hash",
+    "Earnings.read currently chooses a fresh latest snapshot and has no caller-selected fixed-block earnings route"
+  ],
+  "risk": "A new confirmed block between the two requests can make card earnings unavailable even when both individual replies are valid. The exact same-anchor check must remain; fixed-head local rehearsal does not qualify moving-head behavior.",
+  "safe_next_design": "Add an explicit reviewed fixed-block earnings/card read capability with live canonical, depth and freshness checks; do not relax per-card anchor equality or use rolling latest totals.",
+  "affected_code": [
+    "AAA-website/deployment-api.js: portfolio card NFT/earnings assembly",
+    "frontend_api/earnings.py: Earnings._read snapshot selection",
+    "frontend_api/server.py: earnings read route"
+  ],
+  "source_changed_for_this_finding": false,
+  "runtime_claim": "Source inspection only; no moving-head rehearsal executed",
+  "production_approved": false
+}

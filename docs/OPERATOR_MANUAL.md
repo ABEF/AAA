@@ -461,6 +461,31 @@ totals/provenance assertions were not reached. Do not adopt the lab configuratio
 or increase freshness to hide that refusal; qualify reduced card/history work,
 actual maximum wallets/lineage and the provider separately. See the current review.
 
+The same explicit `wallet_read_batch:1` now also scopes NFT-detail and earnings
+reads to the existing request-local canonical cache. This removes repeated raw
+getters at one exact block; every runtime/ABI/entitlement/price comparison still
+runs, and chain/head/header/final proofs remain live. There is no new flag,
+cross-request financial cache, larger request budget or relaxed120-second age.
+Omitted/zero keeps the prior path. These source changes require another NEW
+matching checkpoint, independently reviewed and explicitly pinned; the earlier
+F6 fixture checkpoint retains its original source and must not be relabelled.
+Runtime fingerprints also reuse the Ethereum Keccak digest of identical actual
+code within that same request. Each target must first have its own exact
+canonical code reply, and each consumer still compares its own expected pin.
+Digest metadata counts against the existing64KiB-entry/8MiB-total cache; if it
+cannot fit, hashing runs normally. Expiry and scope cleanup still apply. The
+physical LP observer accepts this internal digest callback only from the
+read-only consumer; ordinary keeper callers retain the original default path.
+That helper's source hash changes without changing the source13/19 membership:
+keep old journals and releases together; this is no service or signer adoption.
+
+The affected32-NFT/66-descriptor Ubuntu wallet plus eight cards completes in
+83.708s/36GETs with final accounting and freshness checks. This fixed-head local
+pass is not full1000-NFT/lineage/provider/moving-chain acceptance. Separate latest
+NFT/earnings requests can disagree when the head advances (CWR09); retain exact
+hash equality and unavailable output until a fixed-block capability is reviewed.
+All failed capture/source stages remain in the current review.
+
 For a NEW profile2 checkpoint, the offline builder now uses the existing bounded
 canonical cache only within that build. Keep the unchanged60s/4096logical/
 8192POST build defaults,64KiB-entry/8MiB retention and complete86400-second raw

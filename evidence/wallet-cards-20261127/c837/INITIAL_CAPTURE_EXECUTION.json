@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "action": "consumer",
+  "exit_code": 0,
+  "ok": false,
+  "controller_sha256": "6dcd3b00bd1955d485c7c03d5dca5b32964f6637ba8141c656fb2bb76a9295f2",
+  "transport_sha256": "a7f7f91863833bca9081b0ad6af833a1cf5147e65f1c2cfe7e058449f1bddc45",
+  "input_bytes": 43732,
+  "max_output_bytes": 1048576,
+  "timeout_seconds": 160,
+  "stdout_bytes": 1572,
+  "stdout_sha256": "9821979ddb155051696ade1ba9676e70fea0dbff3f3d5be95676ed06960b506d",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "thread_errors": [],
+  "transport_ok": true,
+  "operation_complete": false
+}

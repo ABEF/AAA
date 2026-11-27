@@ -143,6 +143,13 @@ class Earnings:
                         'Exact NFT ticket history differs')
 
     def read(self, identifier):
+        if getattr(self.p, 'wallet_read_batch', 0) == 1:
+            from frontend_api.canonical_cache import scope
+            with scope(self.p):
+                return self._read(identifier)
+        return self._read(identifier)
+
+    def _read(self, identifier):
         p=self.p
         header,head,block=p._snapshot()
         life=p._verify_deployment(block)

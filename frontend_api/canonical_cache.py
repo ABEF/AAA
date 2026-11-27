@@ -17,6 +17,7 @@ import re
 
 from zzz_ops.work_budget import BudgetedRPC, checkpoint
 from zzz_ops.errors import RpcError, WorkLimit
+from zzz_ops.abi import keccak256
 
 
 _current = ContextVar('popl_canonical_read_cache', default=None)
@@ -26,6 +27,7 @@ MAX_ENTRY_BYTES = 64 * 1024
 # runtime hex can exceed 1MiB; this finite cache allowance is not provider or
 # maximum-workload qualification and changes no RPC/POST/body/work budget.
 MAX_RETAINED_BYTES = 8 * 1024 * 1024
+_RUNTIME_DIGEST_DOMAIN = 'popl_runtime_keccak256_v1'
 
 
 def _conflict():
@@ -131,6 +133,59 @@ class _CanonicalRPC:
 
     def __getattr__(self, name):
         return getattr(self.inner, name)
+
+
+def runtime_digest(projection, block, target, raw):
+    """Hash actual code; reuse only after its exact canonical read is retained.
+
+    The content-keyed metadata is request-local and carries no expected pin.
+    Every caller still compares this digest to its own reviewed runtime pin.
+    Metadata shares the existing entry/total byte limits and scope cleanup.
+    """
+    checkpoint()
+    if type(raw) is not str or re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+', raw) is None:
+        _conflict()
+
+    def calculate():
+        value = '0x'+keccak256(bytes.fromhex(raw[2:])).hex()
+        checkpoint()
+        return value
+
+    state, rpc = _current.get(), projection.rpc
+    if state is None or not state.active or not isinstance(rpc, _CanonicalRPC):
+        return calculate()
+    key = _key(rpc.inner, 'eth_getCode', [target, deepcopy(block)])
+    if key is None:
+        return calculate()
+    if key in state.failures:
+        _conflict()
+    if key not in state.replies:
+        return calculate()
+    if state.replies[key] != raw:
+        _conflict()
+    if getattr(projection, 'wallet_read_batch', 0) != 1:
+        return calculate()
+    # RPC keys start with a transport ID (an integer). This separate string
+    # domain cannot alias a provider reply, and shares identical actual code
+    # across roles only after each role's own canonical read matched above.
+    memo = (_RUNTIME_DIGEST_DOMAIN, raw)
+    if memo in state.replies:
+        value = state.replies[memo]
+        if type(value) is not str or _HASH.fullmatch(value) is None:
+            _conflict()
+        checkpoint()
+        return value
+    value = calculate()
+    key_bytes = _json_size(memo, MAX_ENTRY_BYTES)
+    result_bytes = _json_size(value, MAX_ENTRY_BYTES)
+    if (key_bytes is None or result_bytes is None or
+            key_bytes+result_bytes > MAX_ENTRY_BYTES or
+            state.retained_bytes+key_bytes+result_bytes > MAX_RETAINED_BYTES):
+        return value
+    state.replies[memo] = value
+    state.retained_bytes += key_bytes+result_bytes
+    checkpoint()
+    return value
 
 
 def prefetch(projection, block, entries):

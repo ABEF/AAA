@@ -532,3 +532,11 @@ evidence/wallet-aggregate-20261127/** -text whitespace=cr-at-eol,-blank-at-eol,-
 frontend_api/earnings_checkpoint_build.py -text whitespace=cr-at-eol
 tests_python/test_checkpoint_build_cache_scope.py -text whitespace=cr-at-eol
 evidence/wallet-f6-20261127/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve the scoped card/history reader and qualification receipt bytes.
+frontend_api/earnings.py -text whitespace=cr-at-eol
+tests_python/test_earnings_read_cache_scope.py -text whitespace=cr-at-eol
+evidence/wallet-cards-20261127/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+frontend_api/portfolio_v6.py -text whitespace=cr-at-eol
+keeper/compound_policy.py -text whitespace=cr-at-eol
+tests_python/test_runtime_digest_scope.py -text whitespace=cr-at-eol

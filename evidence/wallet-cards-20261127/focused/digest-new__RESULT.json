@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "kind": "TWO_NEW_bounded_runtime_digest_scope_and_expected_pin_tests",
+  "selected_methods": [
+    "tests_python.test_runtime_digest_scope.RuntimeDigestScopeTests.test_both_consumers_reject_wrong_pins_after_hits_and_exact_raw_aliases",
+    "tests_python.test_runtime_digest_scope.RuntimeDigestScopeTests.test_metadata_charges_original_bounds_falls_back_and_expires_without_leaks"
+  ],
+  "tests_run": 2,
+  "successful": true,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_seconds": 2.4059999999954016,
+  "source_before": {
+    "frontend_api/canonical_cache.py": "928642d0d89849a8866ff41200afa62db995b7eedd9040cf89e281b3fd00a57b",
+    "frontend_api/service.py": "832d325b68ab569268374adcaf6973e448a0953696db75df3360c0e6f3c0def0",
+    "frontend_api/portfolio_v6.py": "c21677bfa15e007a8bdafa1b9cb6e4269429cd13de87fb9e19210a91bc1fcb9c",
+    "keeper/compound_policy.py": "b28fc99bd27fa50f58cb1560def4e5aa3a78c38877f41ba1cebefbc66aedda53",
+    "tests_python/test_runtime_digest_scope.py": "4dde8b57fb1fe1734867a0c875487b362a9ab6cbafcb659ab9b02c345b8557fb"
+  },
+  "source_after": {
+    "frontend_api/canonical_cache.py": "928642d0d89849a8866ff41200afa62db995b7eedd9040cf89e281b3fd00a57b",
+    "frontend_api/service.py": "832d325b68ab569268374adcaf6973e448a0953696db75df3360c0e6f3c0def0",
+    "frontend_api/portfolio_v6.py": "c21677bfa15e007a8bdafa1b9cb6e4269429cd13de87fb9e19210a91bc1fcb9c",
+    "keeper/compound_policy.py": "b28fc99bd27fa50f58cb1560def4e5aa3a78c38877f41ba1cebefbc66aedda53",
+    "tests_python/test_runtime_digest_scope.py": "4dde8b57fb1fe1734867a0c875487b362a9ab6cbafcb659ab9b02c345b8557fb"
+  },
+  "old_test_bodies_rerun": 0,
+  "network_calls": 0,
+  "EVM_or_provider_or_HTTP_or_F6_qualified": false,
+  "fixture_scope": "Synthetic code transport and controlled expiry clock; actual Projection and keeper expected-pin comparisons plus unchanged finite cache accounting"
+}

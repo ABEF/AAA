@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "complete": true,
+  "reviewed_checkpoint_sha256": "367b2957ac6d257766bf68f3973ef8b3aba36d1e024c89a72c252d7ba58edb68",
+  "checkpoint_result_sha256": "2704ed9b0213296eae2fe65bd3e0757269b2d0c8e04382aad2bfdeda31efcc16",
+  "configuration_sha256": "358a48816a65645969fa71763b6a385a2178dc18e1c0eaacf873c687dcd2d5a1",
+  "index_result_sha256": "b4fcf17ac12f3b8e154b9a076de0c75b3195d9ba510662cdf893511f97438769",
+  "source_generation_sha256": "2506ddbc9d6c3df7301724d81423eacecb45e5245fbe09c0b31000ef5275a0fe",
+  "schema2_current_sources_anchor445_admitted": true,
+  "independent_NFT_rights_checked": 32,
+  "independent_original_royalty_currencies": 65,
+  "independent_royalty_allocation_events": 65,
+  "all66descriptors_preserved": true,
+  "one_hour_royalty_window_preserved": true,
+  "full_86400_history_suffix_preserved": true,
+  "exact_LP_raw_reserve_and_earned_total_conservation": true,
+  "normal_live_per_NFT_reconciliation": "Maintained successful builder; not independently rerun",
+  "scope": "Original F6 fixture has no payouts/conversions; unexpected payouts refuse this narrow independent gate. No universal market/production proof.",
+  "new_RPC_calls": 0,
+  "old_test_bodies": 0,
+  "checkpoint_or_config_adoption": false,
+  "production_approved": false
+}

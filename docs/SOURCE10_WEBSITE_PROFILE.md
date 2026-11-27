@@ -80,12 +80,18 @@ source/artifact/checkpoint pins must match. The [current report](../reports/CURR
 separates actual F6/HTTP evidence from the still-open1000-NFT, lineage, provider,
 full-journey freshness and deployed adoption requirements.
 
-The actual32-NFT/66-descriptor Ubuntu run still fails complete consumer
-acceptance.20protocol/ownership/currency GETs return200 by76.450s, but card
-history reaches120-second expiry at request33 (117.628s elapsed). No complete
-eight-card result or final independent wallet reconciliation is claimed.
-The original package's missing pure read-helper refusal is retained separately.
-Reduce duplicated card/history work and requalify; keep all freshness/work limits.
+The original missing-helper refusal and33-GET/117.628-second timeout retain
+their failed source scopes in the current review. They are not relabelled by the
+following affected-source pass. All freshness/work limits remain unchanged.
+
+Card-history follow-through also adds existing same-request raw reuse on the
+backend NFT/earnings paths only for `wallet_read_batch:1`. The website still
+performs full native/runtime/ownership, per-card own-anchor, complete history and
+final wallet freshness verification. The current32-NFT/66-descriptor Ubuntu
+wallet plus eight-card case completes in83.708s/36GETs; this does not qualify
+1000-NFT/lineage/provider/moving-chain behavior. Separate latest card/earnings
+anchors remain CWR09; never loosen exact hash equality. No source10 signing, request pacing,
+concurrency, card count, snapshot age or partial-result policy changes.
 
 ## Wallet financial snapshot guards
 

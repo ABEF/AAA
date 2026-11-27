@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "kind": "independent_actual_ordering_derivation_receipt_review",
+  "actual_derivation_receipt_sha256": "e2e3597fce7b37db2dcfd1aae754aecb37263288623d0c316a2f3f50e397cb64",
+  "reviewed_script_sha256": "f96c084b582056db98e5d4b2795038c64657351fd2ccec8447321d5f4e80deaf",
+  "source_original_c834457_verified": true,
+  "independent_original0_1_RLP_reference_and_actual4zeros_match": true,
+  "all461records_retained": true,
+  "only4zero_slots_permuted_canonical_last": true,
+  "all457nonzero_absolute_positions_and_order_preserved_by_reparsed_artifact_proof": true,
+  "all5other_topcomponents_preserved_by_reparsed_artifact_proof": true,
+  "all12historical_blockhash_references_retained": true,
+  "reference_harmlessness_not_claimed": true,
+  "derived_gzip_sha256": "4a0a9d74d8bbe14b9dc9338a44ce93a20d34051aaf1ee8151a95ecfcd5111e47",
+  "derived_decoded_sha256": "5e8439e7cf3bf53bf6226fca0e3b4b82ad21968cf31f7dca583c25fbdf734924",
+  "bounded_filesystem_only_execution": true,
+  "new_independent_RPC_or_test_execution": 0,
+  "actual_fresh_restore_genesis_and_123models_gate_still_required": true,
+  "scope": "Cross-check actual receipt against frozen independently reviewed script and independently encoded actualzero metadata. Private94MBstate not copied or republished; no universal historicalEVMcontext/physicalhostrecovery guarantee.",
+  "production_approved": false
+}

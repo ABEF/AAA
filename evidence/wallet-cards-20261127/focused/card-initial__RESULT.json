@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "kind": "NEW_optin_card_earnings_and_NFT_cache_boundaries",
+  "selected_methods": [
+    "tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_actual_exact_checkpoint_and_suffix_keep_payout_transfer_and_full_day",
+    "tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_cached_read_still_obeys_expiry_and_stricter_outer_budget",
+    "tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_getter_failure_propagates_and_cannot_poison_a_later_request",
+    "tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_optin_exact_keys_preserve_alias_boundaries_live_proofs_and_legacy"
+  ],
+  "tests_run": 4,
+  "successful": false,
+  "failures": 0,
+  "errors": 1,
+  "skipped": 0,
+  "elapsed_seconds": 2.436999999998079,
+  "source_before": {
+    "frontend_api/earnings.py": "2abfc31d2b797d8783e692c31a6d9e5d0c1a5dc2eaaa2047b0044015f92a4e14",
+    "frontend_api/service.py": "b09fe719d4e0fc0e254f7b96129866884d020a4f93ee5da98939d057e23b5cbd",
+    "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+    "frontend_api/earnings_checkpoint.py": "2537fa1d909ac42fa58ed65e27ec69800ee3cf7ef8a535d39e4c3e6a87bf45f2",
+    "frontend_api/earnings_checkpoint_build.py": "14c1d5d8407ab13193c4c15085a3a5dc82a7c9a9a23fcdc4a9eacd9b247b4571",
+    "tests_python/test_earnings_read_cache_scope.py": "d6e5c01712970f8f793286fe287e2ebfb3eb3bc4d7c1654bca6f91b49ed6e564"
+  },
+  "source_after": {
+    "frontend_api/earnings.py": "2abfc31d2b797d8783e692c31a6d9e5d0c1a5dc2eaaa2047b0044015f92a4e14",
+    "frontend_api/service.py": "b09fe719d4e0fc0e254f7b96129866884d020a4f93ee5da98939d057e23b5cbd",
+    "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+    "frontend_api/earnings_checkpoint.py": "2537fa1d909ac42fa58ed65e27ec69800ee3cf7ef8a535d39e4c3e6a87bf45f2",
+    "frontend_api/earnings_checkpoint_build.py": "14c1d5d8407ab13193c4c15085a3a5dc82a7c9a9a23fcdc4a9eacd9b247b4571",
+    "tests_python/test_earnings_read_cache_scope.py": "d6e5c01712970f8f793286fe287e2ebfb3eb3bc4d7c1654bca6f91b49ed6e564"
+  },
+  "old_test_bodies_rerun": 0,
+  "network_calls": 0,
+  "EVM_or_provider_or_HTTP_or_F6_qualified": false,
+  "fixture_scope": "Controlled fresh7 RPC/code/clock and geometry; actual local SQLite, exact replay, checkpoint and current NFT body",
+  "actual_composed_metrics": null
+}

@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "kind": "independent_final_source_and_negative_test_review",
+  "captured_utc": "2026-11-27T21:15:16.493420+00:00",
+  "production_sources_sha256": {
+    "frontend_api/canonical_cache.py": "928642d0d89849a8866ff41200afa62db995b7eedd9040cf89e281b3fd00a57b",
+    "frontend_api/service.py": "832d325b68ab569268374adcaf6973e448a0953696db75df3360c0e6f3c0def0",
+    "frontend_api/portfolio_v6.py": "c21677bfa15e007a8bdafa1b9cb6e4269429cd13de87fb9e19210a91bc1fcb9c",
+    "keeper/compound_policy.py": "b28fc99bd27fa50f58cb1560def4e5aa3a78c38877f41ba1cebefbc66aedda53",
+    "frontend_api/earnings.py": "2abfc31d2b797d8783e692c31a6d9e5d0c1a5dc2eaaa2047b0044015f92a4e14",
+    "frontend_api/earnings_checkpoint_build.py": "14c1d5d8407ab13193c4c15085a3a5dc82a7c9a9a23fcdc4a9eacd9b247b4571"
+  },
+  "test_sources_sha256": {
+    "tests_python/test_runtime_digest_scope.py": "4dde8b57fb1fe1734867a0c875487b362a9ab6cbafcb659ab9b02c345b8557fb",
+    "tests_python/test_earnings_read_cache_scope.py": "e02db410415a6a8438826699c9e9f5ec9012d3c334edc47d4f6062c6aa703e53"
+  },
+  "reviewed_existing_receipts_sha256": {
+    "cache-wallet-cards-20261127/runtime-digest/focused-001/RESULT.json": "a5b282ad89b127984cedb8f12b314d4095d005458d11d5661987f7038d6db404",
+    "cache-wallet-cards-20261127/runtime-digest/composed-001/RESULT.json": "6a1e1eb42d76144abd3a765a1214c88f7201dc3551eb9a4c013b88bfc1e3702f"
+  },
+  "review_method": "Line and control-flow inspection of the changed cache and its actual consumers, plus inspection of the exact focused negative-test bodies and retained execution receipts. No additional application test or network execution.",
+  "observations": {
+    "own_actual_code_observation_required": "Digest reuse requires exact canonical eth_getCode transport/target/block identity and equality with its retained raw reply.",
+    "expected_pin_is_not_cached": "Memo contains only a digest of actual code; Projection._code and keeper.observe each still compare their own reviewed pin.",
+    "both_consumers_negative_tests": "Actual Projection._code rejects a wrong pin after a memo hit; actual keeper.observe rejects its own wrong code_hashes with both the supplied digest callback and the unchanged default-None path.",
+    "aliasing_and_integrity": "RPC cache keys begin with a transport integer; code-content memo keys use a distinct string domain. Own raw observations remain necessary across address/block/transport aliases. A mismatched retained raw value raises ProjectionError.",
+    "bounded_retention": "Encoded code-content key plus digest is charged to the unchanged65536-byte entry and8388608-byte total accounting. No new persistent/global cache or keccak algorithm/dependency.",
+    "safe_fallback": "Inactive/disabled/unretained/noncanonical/overbound paths compute without retaining a digest. Default keeper hashing and omitted/zero website policy remain separate.",
+    "expiry_and_cleanup": "Cache hits and new computations check the active budget. Existing scope cleanup clears digest metadata together with raw replies and resets retained bytes and context.",
+    "meaningful_verification_scope": "Two new focused methods cover own-pin failures, exact-raw conflict, aliases, no-own-raw fallback, unchanged entry/total limits, expiry and cleanup. Only the affected composed exact-economic/NFT parity method was rerun; three previous scope hook bodies were reused without execution."
+  },
+  "unchanged_limits": {
+    "entry_bytes": 65536,
+    "retained_total_bytes": 8388608,
+    "API_seconds": 25,
+    "API_logical_reads": 1024,
+    "API_POSTs": 2048,
+    "wallet_snapshot_seconds": 120,
+    "earnings_window_seconds": 86400,
+    "virtual_helper_gas": 24000000
+  },
+  "conclusion": "No material source-level pin, budget or cross-request bypass identified in this limited reviewed delta. This is not a universal security or production-readiness guarantee.",
+  "application_test_bodies_executed_in_this_review": 0,
+  "new_network_calls": 0,
+  "nodes_started": 0,
+  "source_edits_during_review": 0,
+  "raw_configuration_database_checkpoint_or_recovery_data_included": false,
+  "not_qualified": [
+    "Complete actual Ubuntu HTTP wallet journey",
+    "Normal1000NFT/two-LP/lineage maximum workload",
+    "Live provider sustained capacity or market/oracle independence",
+    "Public signing, deployment or production adoption"
+  ],
+  "production_approved": false
+}

@@ -1,0 +1,20 @@
+test_actual_exact_checkpoint_and_suffix_keep_payout_transfer_and_full_day (tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_actual_exact_checkpoint_and_suffix_keep_payout_transfer_and_full_day) ... ERROR
+test_cached_read_still_obeys_expiry_and_stricter_outer_budget (tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_cached_read_still_obeys_expiry_and_stricter_outer_budget) ... ok
+test_getter_failure_propagates_and_cannot_poison_a_later_request (tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_getter_failure_propagates_and_cannot_poison_a_later_request) ... ok
+test_optin_exact_keys_preserve_alias_boundaries_live_proofs_and_legacy (tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_optin_exact_keys_preserve_alias_boundaries_live_proofs_and_legacy) ... ok
+
+======================================================================
+ERROR: test_actual_exact_checkpoint_and_suffix_keep_payout_transfer_and_full_day (tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_actual_exact_checkpoint_and_suffix_keep_payout_transfer_and_full_day)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_earnings_read_cache_scope.py", line 143, in test_actual_exact_checkpoint_and_suffix_keep_payout_transfer_and_full_day
+    p = Projection(config, nft_wire, clock=lambda: 4000)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 150, in __init__
+    raise ValueError('Wallet read batching requires explicit exact LP and earnings history')
+ValueError: Wallet read batching requires explicit exact LP and earnings history
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.860s
+
+FAILED (errors=1)

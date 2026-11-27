@@ -20,7 +20,7 @@ def classify_range(*, lower, upper, tick, range_update_pending):
             'scope': 'keeper_policy_not_contract_eligibility'}
 
 
-def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4, physical_only=False,execution_price_version=0):
+def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4, physical_only=False,execution_price_version=0,code_digest=None):
     """Caller pins every read/code callback to one canonical block hash.
 
     No scheduling, journal, nonce, reset or confirmation observation is mutated.
@@ -46,7 +46,8 @@ def observe(read, code, *, contracts, code_hashes, bucket, accounting_version=4,
         raw, expected = code(target), code_hashes.get(role)
         if (not isinstance(expected, str) or re.fullmatch(r'0x[0-9a-fA-F]{64}', expected) is None or
                 not isinstance(raw, str) or re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+', raw) is None or
-                '0x' + keccak256(bytes.fromhex(raw[2:])).hex() != expected.lower()):
+                (('0x' + keccak256(bytes.fromhex(raw[2:])).hex()) if code_digest is None else
+                 code_digest(target, raw)) != expected.lower()):
             raise ValueError('Compound policy runtime differs')
     def words(role, signature, *args, count=1):
         result = read(targets.get(role, role), signature, *args, count=count)

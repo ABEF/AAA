@@ -16,10 +16,10 @@ changed behavior or genuinely missing partitions.
 - 1,056 implemented project Solidity definitions and29 modifiers from the
   authenticated compiler AST;511 bodyless declarations remain separately labelled.
 - Eight internal-only objects are included, beyond the public ABI catalogue.
-- 193 production Python files and2,161 named lexical definitions, including nested
-  helpers, are in the [current source-bound inventory](../evidence/wallet-aggregate-20261127/FUNCTION_INVENTORY.json).
-  The separate [anonymous-code inventory](../evidence/wallet-aggregate-20261127/ANONYMOUS_CODE_INVENTORY.json)
-  records281 Python lambdas. Earlier anonymous inventories remain historical.
+- 193 production Python files and2,165 named lexical definitions, including nested
+  helpers, are in the [current source-bound inventory](../evidence/wallet-cards-20261127/FUNCTION_INVENTORY.json).
+  The separate [anonymous-code inventory](../evidence/wallet-cards-20261127/ANONYMOUS_CODE_INVENTORY.json)
+  records282 Python lambdas. Earlier anonymous inventories remain historical.
   Inventory does not establish execution coverage.
 
 The [historical published website scope](../reports/whole-workload-review-20261119/WEBSITE_SOURCE_SCOPE.json)
@@ -40,7 +40,7 @@ running application modules, tests, RPC or signing. Preserve the unrelated dirty
 fork runner: its published HEAD blob is inventoried instead of adopting it.
 
 ```text
-python scripts/build-workload-inventory.py --check evidence/wallet-aggregate-20261127/FUNCTION_INVENTORY.json
+python scripts/build-workload-inventory.py --check evidence/wallet-cards-20261127/FUNCTION_INVENTORY.json
 ```
 
 Future F6 source/reference changes require reviewed trusted-pin/plan updates and

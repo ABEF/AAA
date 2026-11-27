@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "kind": "independent_actual_original457_zero_metadata_review",
+  "input_metadata_sha256": "ba368fd75ea9393647689c09886ac71402dce17b44028f1363743cf6ecb33394",
+  "original_snapshot_gzip_sha256": "7934de82411cea9fcd133d8fcb654bcd13ef2a734fb181b591937775841bc875",
+  "original_snapshot_decoded_sha256": "d53ec27b69c6b4794a1adbc99ce2b1e8db1bd9e5481a5627dacf6aa8ca14a192",
+  "canonical_zero_unique": true,
+  "independent_complete_RLP_block1_parent_match": true,
+  "zero_rows": [
+    {
+      "index": 0,
+      "hash": "0x828f888a4efcfb571dcc20bbfa24896b388a35c21cfb8847f1623b03c7d1b307",
+      "canonical": true,
+      "referenced_by_block1": true,
+      "present_in_14historical_hashes": false,
+      "body_transactions_empty": true,
+      "header_semantic_sha256": "9d94a8f9d3d58e3d9fa18710d66b52143d799bccf89fc7bbd5ed7262c6f35329"
+    },
+    {
+      "index": 1,
+      "hash": "0xbb1634f36ed9e4eb170ff6b164017a252f94bd588f64f0f5b4662dd914f39df3",
+      "canonical": false,
+      "referenced_by_block1": false,
+      "present_in_14historical_hashes": false,
+      "body_transactions_empty": true,
+      "header_semantic_sha256": "c52fe4fab8915eb7f311dacb0180e1cf41597aa9584aa1dba8a00425af56f060"
+    },
+    {
+      "index": 2,
+      "hash": "0xd6935e8887c051ca62369bc43ca705b131bfa9dea895911f05f7135d3343dc77",
+      "canonical": false,
+      "referenced_by_block1": false,
+      "present_in_14historical_hashes": false,
+      "body_transactions_empty": true,
+      "header_semantic_sha256": "af7db67ed3ad79c22b36fef64f0a2c0aa280df86908a32b0e9b4177cb1e51b28"
+    },
+    {
+      "index": 3,
+      "hash": "0x0083ccdbd3a0ac950829803a347b7897dbd36c1e791b6d437239141f518a1910",
+      "canonical": false,
+      "referenced_by_block1": false,
+      "present_in_14historical_hashes": false,
+      "body_transactions_empty": true,
+      "header_semantic_sha256": "c7ec183ed468233f6394e4af245b7403bab6caf675ddaa4ed6daa12d5436c5a2"
+    }
+  ],
+  "all14historicalstate_hashes_exclude_removedzeros": true,
+  "allothercomponent_reference_scan_pending_actual_deriver": true,
+  "no_node_RPC_or_tests": true,
+  "local_inspection_draft_error": "First unsaved inlineinspection attempted int() for byte-only extraData0x; corrected unsignedquantity-vsrawbytesbranch before any receipt was emitted; originalinput unchanged.",
+  "scope": "Boundedactualmetadata only. Derivative stillrequires allaccount/tx/history/othercomponent preservation and outside-reference scan."
+}

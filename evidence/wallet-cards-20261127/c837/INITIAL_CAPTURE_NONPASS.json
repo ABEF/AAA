@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "complete": false,
+  "failure": {
+    "name": "Error",
+    "message": "Journey output exceeds1MiB"
+  },
+  "api_requests": 36,
+  "rpc_requests": 381,
+  "elapsed_ms": 83825.09803000001,
+  "production_approved": false
+}

@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "kind": "card_history_scoped_source_delta",
+  "baseline": "0510bd7c798c2d93cd64805a7704497ee7681162",
+  "files": {
+    "source-delta/frontend_api/earnings.py": {
+      "bytes": 18201,
+      "sha256": "2abfc31d2b797d8783e692c31a6d9e5d0c1a5dc2eaaa2047b0044015f92a4e14"
+    },
+    "source-delta/frontend_api/service.py": {
+      "bytes": 56024,
+      "sha256": "b09fe719d4e0fc0e254f7b96129866884d020a4f93ee5da98939d057e23b5cbd"
+    }
+  },
+  "proofs": {
+    "frontend_api/earnings.py": {
+      "before_sha256": "33f104d8e531ff26999197790247baebef940d72696a662d262ff585f7077be8",
+      "after_sha256": "2abfc31d2b797d8783e692c31a6d9e5d0c1a5dc2eaaa2047b0044015f92a4e14",
+      "bytes": 18201,
+      "original_body_AST_sha256": "b9e92bc530068e40dfd498b6c7479d6db34b05a2a6ee7c9aae2dd63b7c7c6f3a",
+      "body_and_signature_unchanged": true,
+      "public_decorators_unchanged": true,
+      "only_optin1_scopes_existing_raw_cache": true
+    },
+    "frontend_api/service.py": {
+      "before_sha256": "7903ce5f82b264aed3ba00564bc7e1036d610a0e7a3fd366c33c9d3c21b60b19",
+      "after_sha256": "b09fe719d4e0fc0e254f7b96129866884d020a4f93ee5da98939d057e23b5cbd",
+      "bytes": 56024,
+      "original_body_AST_sha256": "1be2947e097592ca7ce67cccefa8f4015529b3b9c07589df2fe780c1bc919934",
+      "body_and_signature_unchanged": true,
+      "public_decorators_unchanged": true,
+      "only_optin1_scopes_existing_raw_cache": true
+    }
+  },
+  "frozen_F6_or_helper_source_changed": false,
+  "financial_or_resource_limits_changed": false,
+  "new_checkpoint_required": true,
+  "production_approved": false,
+  "packet": {
+    "bytes": 18129,
+    "sha256": "90dd8265c12975275911732bfab3f3061b6092c501c4969c50a75fd13c4b7e6d"
+  },
+  "unchanged_test_bodies_run": 0
+}

@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "purpose": "Reduce card/history duplication and qualify the actual complete wallet plus eight cards within120seconds",
+  "contract_baseline": "0510bd7c798c2d93cd64805a7704497ee7681162",
+  "website_baseline": "cccaa5fbe6cff8fe1c51ee0a3a5d470689dc7624",
+  "source_changes": [
+    "Opt-in existing job-local canonical raw-cache scope around Earnings.read",
+    "Opt-in existing job-local canonical raw-cache scope around Projection.nft",
+    "Request-local actual-runtime digest reuse after exact canonical raw-read authentication; every expected-pin comparison remains",
+    "Optional physical LP observer digest callback defaults to original keeper behavior"
+  ],
+  "preserve": {
+    "wallet_snapshot_seconds": 120,
+    "history_raw_suffix_seconds": 86400,
+    "api_request_seconds": 25,
+    "api_logical_reads": 1024,
+    "api_posts": 2048,
+    "api_response_bytes": 1048576,
+    "cache_entry_bytes": 65536,
+    "cache_total_bytes": 8388608,
+    "helper_total_virtual_gas": 24000000,
+    "helper_NFTs": 3,
+    "helper_LP_child_gas": 500000,
+    "existing_checkpoints_journals_and_host_environments": true,
+    "all_NFT_rights_and_economic_checks": true,
+    "unchanged_default_profile": true,
+    "public_signing_disabled_Anvil_only": true,
+    "heartbeat_user_paused": true
+  },
+  "verification": [
+    "Independent static original-body equivalence before focused execution",
+    "Four distinct NEW card/earnings methods plus two NEW digest-boundary methods; only the affected composed accounting method rerun for the digest stage; no unchanged bodies",
+    "Fresh source-bound checkpoint and independent accounting admission on isolated Ubuntu",
+    "Cold affected NFT and earnings micro reads before one complete strict Source10 journey",
+    "All36APIcalls, all8cardhistories, independent raw totals and final canonical/freshness checks must actually finish",
+    "Preserve original c834 NONPASS and source-specific failures; no wider limit or success from partialHTTP counts"
+  ],
+  "excluded": [
+    "Public transactions/deployment/sealing",
+    "Existing website/service rollout or Anvil8902 reset",
+    "Public-provider old probes or unchanged contract/browser/keeper test suites",
+    "Cross-request financial state cache or incomplete history",
+    "Automatic qualification of full1000NFT normalF6/lineage/provider workloads"
+  ],
+  "production_approved": false
+}

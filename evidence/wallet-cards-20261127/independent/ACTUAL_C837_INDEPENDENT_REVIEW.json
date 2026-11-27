@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "kind": "sanitized_independent_actual_c837_artifact_and_consumer_review",
+  "complete": true,
+  "checkpoint_sha256": "367b2957ac6d257766bf68f3973ef8b3aba36d1e024c89a72c252d7ba58edb68",
+  "checkpoint_bytes": 566584,
+  "bound_configuration_file_sha256": "d8387add8dc4bda8b66e0f7bdbc5daafc9f0e5d52c5f41b4ac9d68fd17109032",
+  "source_generation_sha256": "2506ddbc9d6c3df7301724d81423eacecb45e5245fbe09c0b31000ef5275a0fe",
+  "semantic_source_files": 120,
+  "runtime_appendix_files": 2,
+  "runtime_closure_files": 122,
+  "actual445_economic_state_anchor_and_identity_equal_independently_reviewed_c834": true,
+  "only_state_metadata_change_authenticated_indexer_next_block": {
+    "previous": 454,
+    "current": 459
+  },
+  "semantic_source_map_correctly_LF_normalized_transport_pins_exact_bytes": true,
+  "configuration_changes_only_exact_checkpoint_binding": true,
+  "whole_raw_units_preserved": true,
+  "NFTs": 32,
+  "royalty_currencies": 65,
+  "descriptors": 66,
+  "full_window_seconds": 86400,
+  "wallet66currency_and8card_raw_earnings_equal_immutable445_accounts": true,
+  "last24h_raw_zero_consistent_with_authenticated_old_economic_snapshot": true,
+  "strict_portfolio_journey_complete": true,
+  "actual_API_GETs": 36,
+  "actual_direct_RPC": 381,
+  "independent96_final_monetary_reads_and8card_comparisons_reached": true,
+  "final_identity_canonical_freshness_gates_reached": true,
+  "gate_execution_evidence": "Unchanged strict assertions execute before complete RESULT capture; actual request log and persisted raw totals independently reviewed",
+  "elapsed_ms": 83707.619514,
+  "missing_USD_prices_not_invented": true,
+  "raw_private_artifacts_not_exported": true,
+  "bounded_capture_evidence": {
+    "manifest_sha256": "ec99f3de586c68c654165869a50dcc23502aeed8776df3788b5c8b66001b9aa6",
+    "private_parts": 9,
+    "each_part_within_1MiB": true,
+    "exact_ordered_DTO_reconstruction": true
+  },
+  "review_added_RPC": 0,
+  "review_test_bodies": 0,
+  "production_adoption": false,
+  "production_approved": false,
+  "proof_inputs": {
+    "checkpoint_result": "2704ed9b0213296eae2fe65bd3e0757269b2d0c8e04382aad2bfdeda31efcc16",
+    "candidate_review_result": "653dc95ae3185f8c4f0f1fdcdd7d10d9d3c4d62f8d0e7d20ea54b604d7d4cc12",
+    "binding_result": "b58273f229dbbff1c418ae35f069f474711ff62038922831bd6f65f902787f61",
+    "journey_result": "5e337913eb0ffc2b2e54a3be8553df0d857604f9f0bc73470ca2577289e43fc7",
+    "private_payload": "a6fe0532f795a63f410e668278b1e2f48867b7d9f6780cc8093d4255f84a3baa",
+    "requests": "fce7a185a8580b1862d09e0f1f25cbc455aa7b48d4d659807c84b658805a30f4"
+  },
+  "unqualified": [
+    "CWR09 sustained moving/fresh-head provider operation",
+    "Actual1000NFTF6 complete journey",
+    "Public-provider maximum-capacity/latency/fees",
+    "Production deployment or website adoption"
+  ]
+}

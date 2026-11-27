@@ -604,6 +604,12 @@ Checkpoint semantic identity changes: preserve original checkpoint/review/raw DB
 bytes and explicitly rebuild/review/re-pin before separate adoption. Source
 publication upgrades no installed services or consumers.
 
+With the same explicit opt-in, single-NFT and earnings requests also reuse
+identical canonical raw replies. Runtime-digest reuse requires a retained exact
+code reply for that target/block/transport; all expected-pin comparisons remain.
+Digest metadata shares64KiB-entry/8MiB-total limits and request cleanup. Full
+capacity falls back to hashing; no cross-request trust or larger budget exists.
+
 ### Opt-in whole-wallet earnings profile2
 
 Set top-level integer `"wallet_read_batch": 1` only in a reviewed accounting7

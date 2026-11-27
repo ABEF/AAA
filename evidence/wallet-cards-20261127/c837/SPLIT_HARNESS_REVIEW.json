@@ -1,0 +1,8 @@
+{
+  "original_sha256": "7476fc5aae9a2ce49c4772cfa4130834a42d6ee0fdb003e3b557e74f021ed3b2",
+  "changed_sha256": "6e41e741441a84bd8f95795200436bb830443bf859c58b89fc064974d4a5d410",
+  "bytes": 13873,
+  "original_before_and_after_save_block_byte_identical": true,
+  "production_source_changes": 0,
+  "tests_run": 0
+}

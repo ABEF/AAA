@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "complete": true,
+  "kind": "ordering_only_original_c834_457_last_canonical_zero_derivative",
+  "original_gzip_sha256": "7934de82411cea9fcd133d8fcb654bcd13ef2a734fb181b591937775841bc875",
+  "original_decoded_sha256": "d53ec27b69c6b4794a1adbc99ce2b1e8db1bd9e5481a5627dacf6aa8ca14a192",
+  "original_proof_sha256": "e10c0526c2a3b20b1e5404f1aef0b99f2762533e250d5867522c7337377d5303",
+  "derived_gzip_sha256": "4a0a9d74d8bbe14b9dc9338a44ce93a20d34051aaf1ee8151a95ecfcd5111e47",
+  "derived_gzip_bytes": 13716813,
+  "derived_decoded_sha256": "5e8439e7cf3bf53bf6226fca0e3b4b82ad21968cf31f7dca583c25fbdf734924",
+  "derived_decoded_bytes": 94208533,
+  "original_block_records": 461,
+  "retained_block_records": 461,
+  "removed_records": 0,
+  "existing_zero_slots": [
+    43,
+    100,
+    335,
+    370
+  ],
+  "zero_order_before": [
+    "0x828f888a4efcfb571dcc20bbfa24896b388a35c21cfb8847f1623b03c7d1b307",
+    "0xbb1634f36ed9e4eb170ff6b164017a252f94bd588f64f0f5b4662dd914f39df3",
+    "0xd6935e8887c051ca62369bc43ca705b131bfa9dea895911f05f7135d3343dc77",
+    "0x0083ccdbd3a0ac950829803a347b7897dbd36c1e791b6d437239141f518a1910"
+  ],
+  "zero_order_after": [
+    "0xbb1634f36ed9e4eb170ff6b164017a252f94bd588f64f0f5b4662dd914f39df3",
+    "0xd6935e8887c051ca62369bc43ca705b131bfa9dea895911f05f7135d3343dc77",
+    "0x0083ccdbd3a0ac950829803a347b7897dbd36c1e791b6d437239141f518a1910",
+    "0x828f888a4efcfb571dcc20bbfa24896b388a35c21cfb8847f1623b03c7d1b307"
+  ],
+  "extra_zero_rlp_hashes": [
+    "0x0083ccdbd3a0ac950829803a347b7897dbd36c1e791b6d437239141f518a1910",
+    "0xbb1634f36ed9e4eb170ff6b164017a252f94bd588f64f0f5b4662dd914f39df3",
+    "0xd6935e8887c051ca62369bc43ca705b131bfa9dea895911f05f7135d3343dc77"
+  ],
+  "extra_zero_references_preserved": [
+    {
+      "path": "/historical_states/0/1/block_hashes/0x0",
+      "kind": "string_value",
+      "extra_zero_hash": "0xd6935e8887c051ca62369bc43ca705b131bfa9dea895911f05f7135d3343dc77"
+    },
+    {
+      "path": "/historical_states/10/1/block_hashes/0x0",
+      "kind": "string_value",
+      "extra_zero_hash": "0x0083ccdbd3a0ac950829803a347b7897dbd36c1e791b6d437239141f518a1910"
+    },
+    {
+      "path": "/historical_states/11/1/block_hashes/0x0",
+      "kind": "string_value",
+      "extra_zero_hash": "0x0083ccdbd3a0ac950829803a347b7897dbd36c1e791b6d437239141f518a1910"
+    },
+    {
+      "path": "/historical_states/12/1/block_hashes/0x0",
+      "kind": "string_value",
+      "extra_zero_hash": "0xbb1634f36ed9e4eb170ff6b164017a252f94bd588f64f0f5b4662dd914f39df3"
+    },
+    {
+      "path": "/historical_states/13/1/block_hashes/0x0",
+      "kind": "string_value",
+      "extra_zero_hash": "0x0083ccdbd3a0ac950829803a347b7897dbd36c1e791b6d437239141f518a1910"
+    },
+    {
+      "path": "/historical_states/2/1/block_hashes/0x0",
+      "kind": "string_value",
+      "extra_zero_hash": "0xd6935e8887c051ca62369bc43ca705b131bfa9dea895911f05f7135d3343dc77"
+    },
+    {
+      "path": "/historical_states/3/1/block_hashes/0x0",
+      "kind": "string_value",
+      "extra_zero_hash": "0x0083ccdbd3a0ac950829803a347b7897dbd36c1e791b6d437239141f518a1910"
+    },
+    {
+      "path": "/historical_states/4/1/block_hashes/0x0",
+      "kind": "string_value",
+      "extra_zero_hash": "0xd6935e8887c051ca62369bc43ca705b131bfa9dea895911f05f7135d3343dc77"
+    },
+    {
+      "path": "/historical_states/6/1/block_hashes/0x0",
+      "kind": "string_value",
+      "extra_zero_hash": "0xbb1634f36ed9e4eb170ff6b164017a252f94bd588f64f0f5b4662dd914f39df3"
+    },
+    {
+      "path": "/historical_states/7/1/block_hashes/0x0",
+      "kind": "string_value",
+      "extra_zero_hash": "0xd6935e8887c051ca62369bc43ca705b131bfa9dea895911f05f7135d3343dc77"
+    },
+    {
+      "path": "/historical_states/8/1/block_hashes/0x0",
+      "kind": "string_value",
+      "extra_zero_hash": "0xd6935e8887c051ca62369bc43ca705b131bfa9dea895911f05f7135d3343dc77"
+    },
+    {
+      "path": "/historical_states/9/1/block_hashes/0x0",
+      "kind": "string_value",
+      "extra_zero_hash": "0x0083ccdbd3a0ac950829803a347b7897dbd36c1e791b6d437239141f518a1910"
+    }
+  ],
+  "reference_meaning": "Recorded exactly; not classified harmless or deleted",
+  "complete_block_record_multiset": {
+    "canonical_json_bytes": 31810,
+    "canonical_json_sha256": "e2645bf7d5fc247b0065a9eca5118bd1468c3d7110788a1880de277bffcae16d"
+  },
+  "nonzero_positions_preserved": true,
+  "canonical_genesis": "0x828f888a4efcfb571dcc20bbfa24896b388a35c21cfb8847f1623b03c7d1b307",
+  "source_block1": "0xcf0509277f76b86a553b3b5a8e9f962da3b2947af22673ce53c1a7871a0e5689",
+  "current457_hash": "0x4d53a834e91551afc529ccf8c0092fdbd80b3ecfa3dec77a561d9f25dc3a1f09",
+  "current457_state_root": "0x40e48380ea06335896425fc2cff4f06e3622634e93c9f762e31c738de55ea675",
+  "unchanged_components": {
+    "block": {
+      "canonical_json_bytes": 304,
+      "canonical_json_sha256": "d54396f28380f2b641f9acbef963bfc3685b8d04f2a927fabe47686ee24255c2"
+    },
+    "accounts": {
+      "canonical_json_bytes": 2522736,
+      "canonical_json_sha256": "eee2fd3102d66df77eaaef3092096fadd5833f8d9f8739a24470a5be3a60e1f5"
+    },
+    "best_block_number": {
+      "canonical_json_bytes": 3,
+      "canonical_json_sha256": "353767b239099863e13ca954e20a66c9d75f777baf239f56e399958de49bf79d"
+    },
+    "transactions": {
+      "canonical_json_bytes": 55742724,
+      "canonical_json_sha256": "e095a6d747d0d5b7e26b452322457c73176f0785e69eeb4483c06a518945985a"
+    },
+    "historical_states": {
+      "canonical_json_bytes": 33196357,
+      "canonical_json_sha256": "583bc3250db149406e6eb653d2d2fb7552cc430f6ff87a0ab7454d324abe0bf4"
+    }
+  },
+  "unchanged_ordered_nonzero_blocks": {
+    "canonical_json_bytes": 2740254,
+    "canonical_json_sha256": "d147a12c94dda53440ecc7cb609868d61f7ea7996bafda3eed2b732fa3fd7c1b"
+  },
+  "all_original_references_retained": true,
+  "strings_scanned": 616944,
+  "original_files_unchanged": true,
+  "source_was_original_c834_not_c835": true,
+  "accounts": 123,
+  "transactions": 448,
+  "historical_states": 14,
+  "elapsed_seconds": 26.891178723424673,
+  "RPC_calls": 0,
+  "nodes_started": 0,
+  "protocol_writes": 0,
+  "public_deployment": false,
+  "production_approved": false,
+  "next_gate": "A separately owned fresh restore must prove numeric/canonical genesis, creation30/31, current457 and all123 actual account models before any fresh head or consumer."
+}

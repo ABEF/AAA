@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "kind": "approved_optin_computed_digest_consumers",
+  "files": {
+    "frontend_api/service.py": {
+      "old_sha256": "b09fe719d4e0fc0e254f7b96129866884d020a4f93ee5da98939d057e23b5cbd",
+      "new_sha256": "832d325b68ab569268374adcaf6973e448a0953696db75df3360c0e6f3c0def0"
+    },
+    "frontend_api/portfolio_v6.py": {
+      "old_sha256": "4f44737dcffeb7630bf52d6079c69519f0e7981dd72420b7fa41ee6803410c59",
+      "new_sha256": "c21677bfa15e007a8bdafa1b9cb6e4269429cd13de87fb9e19210a91bc1fcb9c"
+    },
+    "keeper/compound_policy.py": {
+      "old_sha256": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29",
+      "new_sha256": "b28fc99bd27fa50f58cb1560def4e5aa3a78c38877f41ba1cebefbc66aedda53"
+    }
+  },
+  "helper_API": "runtime_digest(projection,block,target,raw)->actual lowercase0xKeccak; never expectedpin",
+  "service_onlyflag1_calls_helper": true,
+  "physical_onlyflag1_passes_callback": true,
+  "keeper_default_None_retains_original_keccak_expression": true,
+  "both_sites_compare_to_OWN_expected_pin": true,
+  "all_RPC_and_header_codechecks_preserved": true,
+  "no_financial_permission_budget_change": true,
+  "no_global_hash_cache": true,
+  "tests_executed": 0
+}

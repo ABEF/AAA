@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "complete": false,
+  "stage": "inline_test_runner_parse_before_any_statement",
+  "error": "SyntaxError: expected else after if expression; accidental else1 token",
+  "test_bodies_executed": 0,
+  "application_sources_changed": false,
+  "node_or_network_calls": 0
+}

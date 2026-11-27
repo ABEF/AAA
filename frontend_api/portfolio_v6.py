@@ -80,12 +80,16 @@ def _read_bucket_proof(p, bucket, block, *, accounting_version=6):
     from keeper.compound_policy import observe
     pins = {role: item.address for role, item in p.contracts.items()}
     hashes = {role: item.code_hash for role, item in p.contracts.items()}
+    code_options = {}
+    if getattr(p, 'wallet_read_batch', 0) == 1:
+        from frontend_api.canonical_cache import runtime_digest
+        code_options['code_digest'] = lambda target, raw: runtime_digest(p, block, target, raw)
     try:
         result = observe(
             lambda target, method, *args, count: p._call(target, method, *args, block=block, words=count),
             lambda target: p.rpc.call('eth_getCode', [target, block]),
             contracts=pins, code_hashes=hashes, bucket=bucket, accounting_version=accounting_version, physical_only=True,
-            execution_price_version=getattr(p,'execution_price_version',0))
+            execution_price_version=getattr(p,'execution_price_version',0), **code_options)
     except (ValueError, TypeError, KeyError) as exc:
         raise ProjectionError('Accounting6 portfolio identity or aggregate principal is inconsistent') from exc
     payload={'version': 2, 'minimum_main_bps':result['minimum_main_bps'],

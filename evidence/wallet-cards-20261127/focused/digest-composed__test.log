@@ -1,0 +1,6 @@
+test_actual_exact_checkpoint_and_suffix_keep_payout_transfer_and_full_day (tests_python.test_earnings_read_cache_scope.EarningsReadCacheScopeTests.test_actual_exact_checkpoint_and_suffix_keep_payout_transfer_and_full_day) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.374s
+
+OK
