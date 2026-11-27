@@ -1,6 +1,6 @@
 # Verification evidence
 
-[Unsigned kit and Ubuntu reconstruction](keeper-reconstruction-20261127/REVIEW.md) verifies49 private files, one native missing-config refusal and four successful review-only recovery operations with old application folders unavailable. Original c824 startup and c825 timing/helper failures remain distinct. Existing sources, limits and environments stay unchanged.
+[Desktop-kit unsigned stock keeper restart](keeper-clean-restart-20261127/REVIEW.md) verifies45 private inputs, three native backup/verify/restore operations and four stock processes, one original harvest and zero recovery sends. Exact receipt accounting and fresh dry health pass in2,119/6,000 RPC; original c826/c827/target226 failures remain. OS/runtime and the running isolated chain are external. [Earlier synthetic reconstruction](keeper-reconstruction-20261127/REVIEW.md) keeps its separate scope.
 
 [Unsigned scheduler/alert recovery](keeper-sidecar-recovery-20261126/REVIEW.md) adds eight NEW Ubuntu passes, actual capture/verify/restore and mapped queued-alert recovery. c820 setup NONPASS remains; c821 adds only its missing dynamic dependency and lab namespace. No existing journal/service/signer adoption; real off-host recovery remains open.
 

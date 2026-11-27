@@ -1,0 +1,23 @@
+{
+  "before_snapshot_sha256": "e2ec3c9cbfada3aa31f4474fe91ae41f8fdcec8ccc3aaa3edd52e90a9e268114",
+  "checks": {
+    "five_existing_units_preserved": false,
+    "new_authorized_baseline_used": true,
+    "original_HOST_BEFORE_preserved": true,
+    "owned_labs_stopped_before": true,
+    "owned_labs_stopped_final": true,
+    "unused_late_footprint_absent_before": true,
+    "unused_late_footprint_absent_final": true
+  },
+  "existing_units_checked": 5,
+  "final_snapshot_sha256": "78e582a3e8fb7ed9a3db399bd557e3e0f9e722ec1d8effbcd3350c318e3d5ed5",
+  "ignored_observer_invocation_count": 1,
+  "network_calls": 0,
+  "non_ambient_difference_count": 5,
+  "owned_labs_checked": 7,
+  "phase": "authorized_host_preservation_comparison",
+  "raw_host_details_published": false,
+  "schema": 1,
+  "service_actions": 0,
+  "success": false
+}

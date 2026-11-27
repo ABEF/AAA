@@ -1,35 +1,37 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-[Unsigned kit and clean-filesystem reconstruction](reports/keeper-reconstruction-20261127/REVIEW.md)
-now verifies49 private files/820,029bytes and restores the captured journal/sidecar
-history without access to the old application folders. One missing-configuration
-native refusal passes, then four native verify/restore calls pass in0.561s.
-Pending accounting, selected generation, queued IDs/sequence/first_seen and new
-lock separation stay exact. Signer files are absent; all adoption flags stay false.
+[Unsigned stock keeper restart from a desktop kit](reports/keeper-clean-restart-20261127/REVIEW.md)
+now verifies45 private files/808,416bytes, one new original stock harvest and zero
+recovery sends. Three native backup/verify/restore calls and four stock processes
+(unused-sender initialization, source harvest, unsigned recovery and dry cycle)
+retain exact pending/fee/day/nonce/anchor accounting in2,119/6,000 RPC requests.
+The first target stock cycle settles once and exits1 with expected metadata
+degradation; a fresh unsigned cycle reaches dry_run_v2/exit0 without rebooking.
+Included/final NFT/LP/rights/reserve vectors match before the separate node stops.
 
-The existing Ubuntu OS runtime is separately supplied through18 explicit read-only
-mounts, including six diagnosed loader-name file mappings. This is application
-input reconstruction, not a complete OS image or physical second-host failover.
-Actual capture age61,340s exceeds unchanged900s operating freshness; historical
-review uses86400s and original timestamps, with no clock override or recapture.
-Raw kit/configuration/policy/package files remain outside Git.
+The first c828 target's namespace exit226 remains NONPASS/zero worker calls.
+A pinned continuation preserves the controller and same45 desktop inputs, uses
+a fresh target2 root/unit and a read-only self-bind of its own /run, and changes
+only the witness's expected-root literal. No source setup/harvest/capture replay.
+Earlier c826 client-lookup and c827 native-ETH read refusals remain separate;
+the narrow currency fix changes only the new harness, not production ABI guards.
+All new groups stop empty. Settled five-state host review matches0 nonambient
+differences/1 periodic observer invocation-ID change; the original mid-observer
+020 NONPASS remains distinct from the later settled021 comparison.
 
-Original c824 loader startup NONPASS/zero native calls, local helper refusals
-including one uncaptured cause, and the c825 timing-parser refusal remain recorded.
-A separately pinned complete-only continuation reuses the exact passed negative
-result; no installer, negative rerun, input rewrite or guard bypass occurs.
-Both labs stop empty; original source/reference/eight retained files/locks stay
-unchanged and5existing states match0nonambient/1observer invocation-ID change.
-
-Production source, source13/19, financial/native/transport limits and existing
-environments/journals are unchanged; no old test bodies rerun. Reuse the
-[191-file/2,137-definition/279-lambda inventory](reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json)
-and F6 maps61/39/4 with1,021ABI rows. Q06/P20/P21 remain open for real second-host/
-OS/signing recovery and fencing, canonical reconciliation, actual channels/
-providers, durability/encryption, sustained operation and independent approval.
-The desktop heartbeat stays paused. Earlier [desktop round-trip](reports/keeper-offhost-20261126/REVIEW.md)
+Actual root/inode/mount/private-network proof retains18 read-only external OS
+runtime mounts and a separately running isolated Anvil. This reconstructs keeper
+application inputs, not lost OS/chain history or a physical second host. New
+capture uses900seconds and original real timestamps; older86400 historical-review
+evidence keeps its own scope. Signer/Cast files stay absent from the target.
+Production source41/source13/source19, financial/native/transport limits and
+existing environments/journals stay unchanged; no old test bodies rerun. Reuse
+the [191-file/2,137-definition/279-lambda inventory](reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json)
+and frozen F6 maps61/39/4 with1,021ABI rows. Earlier [49-file synthetic reconstruction](reports/keeper-reconstruction-20261127/REVIEW.md)
 and [normal keeper/timer composition](reports/ubuntu-keeper-composition-20261126/REVIEW.md)
-keep their distinct source and actual-transaction scopes.
+retain their original scopes. Q06/P20/P21, real second-host/OS/signer recovery and
+fencing, public canonical reconciliation, providers/channels, durability,
+sustained operation and independent live approval remain open. Heartbeat stays paused.
 
 Earlier [exact backup/restore](reports/keeper-backup-20261126/REVIEW.md) has 33 distinct
 NEW passes at its original source. The separate [c814 composition](reports/ubuntu-backup-recovery-20261126/REVIEW.md)

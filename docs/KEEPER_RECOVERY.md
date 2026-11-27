@@ -1,6 +1,6 @@
 # Keeper outage and server recovery
 
-[Complete unsigned application kit](../reports/keeper-reconstruction-20261127/REVIEW.md) now reconstructs original release/configuration/policy paths without old application folders and verifies exact journal/sidecar restore. See the [recipe](OPERATOR_MANUAL.md#unsigned-recovery-kit-and-clean-filesystem-reconstruction). Existing OS runtime is separately supplied; current chain, signer fencing, physical-host recovery and live adoption remain separate.
+[Unsigned stock restart from a reconstructed kit](../reports/keeper-clean-restart-20261127/REVIEW.md) now verifies one actual original local harvest, exact desktop-held inputs, once-only receipt recovery and a fresh dry cycle with zero recovery sends. Use the [operator recipe](OPERATOR_MANUAL.md#unsigned-keeper-restart-from-a-reconstructed-kit); keep the expected first metadata-degraded exit1 distinct from the later dry_run_v2/exit0. Existing OS/runtime and local chain persist separately; physical-host/signer recovery, public canonical truth and live adoption remain open.
 
 Use the [full-day audit](../reports/keeper-day-audit-20261126/REVIEW.md) and
 [updated alert procedure](KEEPER_ALERTS.md) for pending-clock continuity, source

@@ -1,0 +1,163 @@
+"""Finite c826 private-fixture primitives; never a production integration."""
+from pathlib import Path
+import contextlib,fcntl,hashlib,http.client,json,os,re,selectors,signal,stat,subprocess,time
+
+ROOT=Path('/run/popl-keeper-clean-restart-20261127-c826')
+SOURCE=ROOT/'source';ACTOR=ROOT/'actor';OUT=ROOT/'evidence';SHARED=ROOT/'shared'
+OWNER='0x000000000000000000000000000000000000a0a0'
+ZERO='0x'+'0'*40
+ZZZ='0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a'
+POSM='0x58daec3116aae6d93017baaea7749052e8a04fa7'
+BUCKET=47181787163762592248710325652087236475813397965818762058663276509558631703230
+CORE='0x8366a39cc670b4001a1121b8f6a443a643e40951'
+STATE='0xf3334192d15450cdd385c8b70e03f9a6bd9e673b'
+CORE_HASH='0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626'
+STATE_HASH='0x7d9c591e0956fd89d98feb4ffcfe8bf1f7a62bd485edd979fa21d104b49878a6'
+MAX_RPC=6000
+READ_METHODS={'web3_clientVersion','net_version','eth_chainId','eth_blockNumber','eth_getBlockByNumber',
+    'eth_getBlockByHash','eth_getCode','eth_getStorageAt','eth_getBalance','eth_getTransactionCount',
+    'eth_getTransactionReceipt','eth_getTransactionByHash','eth_call','eth_estimateGas','eth_gasPrice',
+    'eth_maxPriorityFeePerGas','eth_feeHistory','eth_getLogs'}
+SETUP_METHODS={'anvil_setBalance','anvil_impersonateAccount','anvil_stopImpersonatingAccount',
+    'evm_mine','evm_setAutomine','evm_setIntervalMining','eth_sendTransaction'}
+sha=lambda raw:hashlib.sha256(raw).hexdigest()
+enc=lambda value:(json.dumps(value,sort_keys=True,separators=(',',':'),allow_nan=False)+'\n').encode()
+
+
+def need(value,code='c826_refused'):
+    if not value:raise ValueError(code)
+
+
+def read(path,maximum=2097152):
+    before=path.lstat();need(stat.S_ISREG(before.st_mode)and before.st_nlink==1 and before.st_uid in(0,65534)
+        and not before.st_mode&0o022 and before.st_size<=maximum,'file_metadata')
+    fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK|os.O_CLOEXEC)
+    try:
+        raw=bytearray()
+        while True:
+            part=os.read(fd,min(65536,maximum+1-len(raw)))
+            if not part:break
+            raw.extend(part);need(len(raw)<=maximum,'file_bound')
+        key=lambda item:(item.st_dev,item.st_ino,item.st_uid,item.st_mode,item.st_nlink,item.st_size,item.st_mtime_ns)
+        need(key(before)==key(os.fstat(fd))==key(path.lstat())and len(raw)==before.st_size,'file_changed')
+        return bytes(raw)
+    finally:os.close(fd)
+
+
+def value(path,maximum=2097152):return json.loads(read(path,maximum))
+
+
+def save(name,data,folder=OUT):
+    need(re.fullmatch('[A-Z][A-Z0-9_-]*\\.json',name)is not None,'artifact_name')
+    raw=enc(data);need(len(raw)<=2097152,'artifact_bound');path=folder/name
+    fd=os.open(path,os.O_WRONLY|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o600)
+    with os.fdopen(fd,'wb')as stream:stream.write(raw);stream.flush();os.fsync(stream.fileno())
+    return{'bytes':len(raw),'sha256':sha(raw)}
+
+
+@contextlib.contextmanager
+def budget():
+    path=SHARED/'budget.lock';item=path.lstat();need(stat.S_ISREG(item.st_mode)and item.st_uid==65534
+        and item.st_nlink==1 and stat.S_IMODE(item.st_mode)==0o600,'budget_lock')
+    fd=os.open(path,os.O_RDWR|os.O_NOFOLLOW|os.O_CLOEXEC)
+    try:
+        fcntl.flock(fd,fcntl.LOCK_EX)
+        state=value(SHARED/'BUDGET.json',65536)
+        need(type(state['started_monotonic'])in(int,float)and time.monotonic()-state['started_monotonic']<900
+            and type(state['RPC_requests'])is int and state['RPC_requests']<MAX_RPC,'shared_budget')
+        state['RPC_requests']+=1
+        try:yield state
+        finally:
+            raw=enc(state);need(len(raw)<=65536,'budget_bound')
+            temp=SHARED/'BUDGET.partial';out=os.open(temp,os.O_WRONLY|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o600)
+            with os.fdopen(out,'wb')as stream:stream.write(raw);stream.flush();os.fsync(stream.fileno())
+            os.replace(temp,SHARED/'BUDGET.json')
+    finally:fcntl.flock(fd,fcntl.LOCK_UN);os.close(fd)
+
+
+def request(method,params):
+    need(method in READ_METHODS|SETUP_METHODS,'driver_method')
+    with budget()as state:
+        identifier=state['RPC_requests'];body=enc({'jsonrpc':'2.0','id':identifier,'method':method,'params':params})
+        need(len(body)<=131072,'request_bound');connection=http.client.HTTPConnection('127.0.0.1',19626,timeout=15)
+        try:
+            connection.request('POST','/',body,{'Content-Type':'application/json'})
+            response=connection.getresponse();need(response.status==200,'RPC_HTTP');raw=response.read(2097153)
+            need(len(raw)<=2097152,'RPC_response_bound');answer=json.loads(raw)
+            need(type(answer)is dict and answer.get('jsonrpc')=='2.0'and type(answer.get('id'))is int
+                and answer['id']==identifier and('result'in answer)!=('error'in answer),'RPC_identity')
+            need('error'not in answer,'RPC_refusal');return answer['result']
+        finally:connection.close()
+
+
+def command(argv,*,cwd=SOURCE,env=None,seconds=90,secret_output=False,allowed_codes=(0,)):
+    child=owned=None;parts=[bytearray(),bytearray()];size=0;end=time.monotonic()+seconds
+    try:
+        child=subprocess.Popen(list(map(str,argv)),cwd=cwd,env=env or environment(),stdin=subprocess.DEVNULL,
+            stdout=subprocess.PIPE,stderr=subprocess.PIPE,start_new_session=True,close_fds=True);owned=child
+        with selectors.DefaultSelector()as selector:
+            for index,pipe in enumerate((child.stdout,child.stderr)):
+                os.set_blocking(pipe.fileno(),False);selector.register(pipe,selectors.EVENT_READ,index)
+            while selector.get_map():
+                need(time.monotonic()<end,'command_deadline')
+                for selected,_ in selector.select(min(.1,max(.001,end-time.monotonic()))):
+                    raw=os.read(selected.fd,min(16384,65537-size))
+                    if not raw:selector.unregister(selected.fileobj);continue
+                    size+=len(raw);need(size<=65536,'command_output_bound')
+                    if not secret_output:parts[selected.data].extend(raw)
+        code=child.wait(timeout=max(.001,end-time.monotonic()));owned=None;need(code in allowed_codes,'command_exit')
+        return code,bytes(parts[0]),bytes(parts[1])
+    finally:
+        try:
+            if owned is not None:
+                if owned.poll()is None:
+                    try:os.killpg(owned.pid,signal.SIGKILL)
+                    except ProcessLookupError:pass
+                owned.wait(timeout=2)
+        finally:
+            if child is not None:child.stdout.close();child.stderr.close()
+
+
+def environment():
+    return{'PATH':str(ROOT/'tools')+':/usr/bin:/bin','LANG':'C.UTF-8','PYTHONDONTWRITEBYTECODE':'1',
+        'PYTHONNOUSERSITE':'1','HOME':str(ROOT/'empty-home'),'TMPDIR':str(ROOT/'tmp')}
+
+
+def encode(signature,*args):
+    from zzz_ops.abi import calldata
+    return calldata(signature,*args)
+
+
+def call(address,signature,*args):
+    raw=request('eth_call',[{'to':address,'data':encode(signature,*args)},'latest'])
+    need(type(raw)is str and raw.startswith('0x')and(len(raw)-2)%64==0,'call_shape')
+    return[int(raw[index:index+64],16)for index in range(2,len(raw),64)]
+
+
+def one(address,signature,*args):
+    row=call(address,signature,*args);need(len(row)==1,'one_word');return row[0]
+
+
+def fresh_head():
+    head=request('eth_getBlockByNumber',['latest',False]);stamp=int(head['timestamp'],16)
+    need(abs(stamp-time.time())<=600,'real_clock_freshness');return head
+
+
+def mine():
+    request('evm_mine',[]);return fresh_head()
+
+
+def physical(fixture):
+    roles=fixture['roles'];a=lambda role:roles[role]['address']
+    ids=[one(a('nft'),'tokenAtOrdinal(uint256)',ordinal)for ordinal in(1,2)]
+    rights=[{'id':str(item),'owner':one(a('nft'),'ownerOf(uint256)',item),'shares':one(a('vault'),'sharesOf(uint256)',item),
+        'eligible':one(a('membership'),'eligible(uint256)',item),'weight':one(a('royalty_rewards'),'weightOf(uint256)',item)}for item in ids]
+    group=call(a('vault'),'group(uint256)',BUCKET);need(len(group)==8 and group[7]==1,'physical_group')
+    position={'group':group,'secondary':one(a('liquidity'),'secondaryId(uint256)',group[1]),
+        'ticks':call(a('liquidity'),'ticks(uint256)',group[1]),'liquidity':one(POSM,'getPositionLiquidity(uint256)',group[1]),
+        'owner':one(POSM,'ownerOf(uint256)',group[1])}
+    money={token:{'compound':one(a('fees'),'compoundBalance(uint256,address)',BUCKET,token),
+        'buyback':one(a('fees'),'buybackBalance(address)',token),'liabilities':one(a('rewards'),'liabilities(address)',token),
+        'claims':[call(a('rewards'),'claimableComponents(uint256,address)',item,token)for item in ids]}for token in(ZERO,ZZZ)}
+    return{'rights':rights,'position':position,'money':money,'vault_ETH':int(request('eth_getBalance',[a('vault'),'latest']),16),
+        'vault_ZZZ':one(ZZZ,'balanceOf(address)',a('vault'))}

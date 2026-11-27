@@ -1,0 +1,459 @@
+{
+  "activity": {
+    "app_or_helper_runs": 0,
+    "application_imports": 0,
+    "native_commands_run": 0,
+    "network_calls": 0,
+    "production_source_changes": 0,
+    "server_calls": 0,
+    "test_bodies_run": 0
+  },
+  "additional_repository_JSON_resources_found": false,
+  "closure_basis": "recursive AST imports including lazy function imports, package initializers, native journal CLI and health source13 data reads",
+  "current_authorized_composition": "new disposable original stock harvest once, current exact capture and desktop kit, fenced source, reconstructed unsigned target recovery and fresh dry cycle; zero recovery sends",
+  "current_head": "d6e8a909fd2b2a12eb1bee15173e92d526178cdb",
+  "different_from_c814_193": [
+    "keeper/cast_process.py",
+    "keeper/ops.py",
+    "keeper/recovery_bundle.py"
+  ],
+  "different_from_c821_41": [],
+  "fixed_boundaries": {
+    "default_confirmations": 12,
+    "default_native_recovery_bytes": 16777216,
+    "default_native_recovery_seconds": 60,
+    "head_realclock_max_skew_seconds": 600,
+    "missing_state_must_not_initialize_a_used_sender": true,
+    "native_capture_review_allowance_seconds_is_not_head_freshness": true,
+    "target_requires_Cast_binary": false,
+    "target_signer_contents_allowed": false,
+    "unsigned_missing_journal_defaults_require_harness_preflight": true
+  },
+  "frontend_api_or_indexer_imports_required": false,
+  "historical_c814": {
+    "configuration_raw_sha256": "d6fa4ad0f5cab416ee064ab5d6c85af8c48177c2c6788533570b97cb247061da",
+    "journal_manifest_sha256": "59ca4ad5840aafdd15447d786fa967c015025dc723b74bad87a723c8452796f8",
+    "old_transaction_must_not_be_resent": true,
+    "pending_journal_sha256": "88d530f0511c65f3848c450445a71daf0c252e1c0ebf460bd5278aa09acf7193",
+    "post_inclusion_dump_producer_found_in_reviewed_model_controller": false,
+    "saved_CANONICAL_json_is_not_a_loadable_chain_dump": true,
+    "source_head": "5662a81ad9c9c5953d3578974e0c5840d626ba97"
+  },
+  "import_edges": {
+    "keeper/__init__.py": [],
+    "keeper/cast_process.py": [
+      "keeper/__init__.py"
+    ],
+    "keeper/compound_policy.py": [
+      "keeper/__init__.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/execution_price.py",
+      "zzz_ops/physical_portfolio.py",
+      "zzz_ops/position.py",
+      "zzz_ops/production_v4.py",
+      "zzz_ops/protocol_policy.py",
+      "zzz_ops/tick_math.py"
+    ],
+    "keeper/health.py": [
+      "keeper/__init__.py",
+      "keeper/monitor.py",
+      "keeper/rebalance_confirmation.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/execution_price.py",
+      "zzz_ops/rpc.py"
+    ],
+    "keeper/monitor.py": [
+      "keeper/__init__.py",
+      "keeper/cast_process.py",
+      "keeper/compound_policy.py",
+      "keeper/health.py",
+      "keeper/principal.py",
+      "keeper/rebalance_confirmation.py",
+      "keeper/royalties.py",
+      "keeper/watchdog.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/errors.py",
+      "zzz_ops/ethereum_fees.py",
+      "zzz_ops/execution_price.py",
+      "zzz_ops/lp_execution.py",
+      "zzz_ops/position.py",
+      "zzz_ops/range_policy.py",
+      "zzz_ops/rpc.py",
+      "zzz_ops/state.py"
+    ],
+    "keeper/operation_review.py": [
+      "keeper/__init__.py",
+      "keeper/compound_policy.py",
+      "keeper/monitor.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/errors.py",
+      "zzz_ops/position.py",
+      "zzz_ops/production_v4.py",
+      "zzz_ops/protocol_policy.py",
+      "zzz_ops/rpc.py",
+      "zzz_ops/state.py",
+      "zzz_ops/tick_math.py",
+      "zzz_ops/work_budget.py"
+    ],
+    "keeper/ops.py": [
+      "keeper/__init__.py",
+      "keeper/health.py",
+      "keeper/monitor.py",
+      "keeper/operation_review.py",
+      "zzz_ops/rpc.py",
+      "zzz_ops/state.py"
+    ],
+    "keeper/principal.py": [
+      "keeper/__init__.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/rpc.py"
+    ],
+    "keeper/rebalance_confirmation.py": [
+      "keeper/__init__.py",
+      "keeper/monitor.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/protocol_policy.py",
+      "zzz_ops/rebalance_confirmation.py",
+      "zzz_ops/rpc.py"
+    ],
+    "keeper/recovery_bundle.py": [
+      "keeper/__init__.py"
+    ],
+    "keeper/royalties.py": [
+      "keeper/__init__.py",
+      "keeper/monitor.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/rpc.py",
+      "zzz_ops/state.py"
+    ],
+    "keeper/watchdog.py": [
+      "keeper/__init__.py"
+    ],
+    "scripts/keeper-recovery.py": [
+      "keeper/recovery_bundle.py"
+    ],
+    "zzz_ops/__init__.py": [],
+    "zzz_ops/abi.py": [
+      "zzz_ops/__init__.py"
+    ],
+    "zzz_ops/errors.py": [
+      "zzz_ops/__init__.py"
+    ],
+    "zzz_ops/ethereum_fees.py": [
+      "zzz_ops/__init__.py"
+    ],
+    "zzz_ops/execution_price.py": [
+      "zzz_ops/__init__.py",
+      "zzz_ops/abi.py"
+    ],
+    "zzz_ops/lp_execution.py": [
+      "zzz_ops/__init__.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/execution_price.py"
+    ],
+    "zzz_ops/physical_portfolio.py": [
+      "zzz_ops/__init__.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/tick_math.py"
+    ],
+    "zzz_ops/position.py": [
+      "zzz_ops/__init__.py"
+    ],
+    "zzz_ops/price_policy.py": [
+      "zzz_ops/__init__.py",
+      "zzz_ops/abi.py"
+    ],
+    "zzz_ops/production_v2.py": [
+      "zzz_ops/__init__.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/price_policy.py",
+      "zzz_ops/range_policy.py",
+      "zzz_ops/state.py",
+      "zzz_ops/tick_math.py"
+    ],
+    "zzz_ops/production_v4.py": [
+      "zzz_ops/__init__.py",
+      "zzz_ops/abi.py",
+      "zzz_ops/production_v2.py",
+      "zzz_ops/range_policy.py",
+      "zzz_ops/tick_math.py"
+    ],
+    "zzz_ops/protocol_policy.py": [
+      "zzz_ops/__init__.py",
+      "zzz_ops/abi.py"
+    ],
+    "zzz_ops/range_policy.py": [
+      "zzz_ops/__init__.py",
+      "zzz_ops/abi.py"
+    ],
+    "zzz_ops/rebalance_confirmation.py": [
+      "zzz_ops/__init__.py",
+      "zzz_ops/abi.py"
+    ],
+    "zzz_ops/rpc.py": [
+      "zzz_ops/__init__.py",
+      "zzz_ops/errors.py",
+      "zzz_ops/work_budget.py"
+    ],
+    "zzz_ops/state.py": [
+      "zzz_ops/__init__.py"
+    ],
+    "zzz_ops/tick_math.py": [
+      "zzz_ops/__init__.py"
+    ],
+    "zzz_ops/work_budget.py": [
+      "zzz_ops/__init__.py",
+      "zzz_ops/errors.py"
+    ]
+  },
+  "kind": "stock_unsigned_clean_restart_source_design_review",
+  "missing_from_c821_41": [],
+  "reviewed_stock_functions": {
+    "__init__": {
+      "AST_sha256": "5726b2f70f1530bebab159b0f5f0a4ba36d1c192cf46911dc12a656faf5d324e",
+      "line": 140
+    },
+    "_fee_review": {
+      "AST_sha256": "f58ad19aa02ef39663349734bf096651a9541a2b50e2539fca16d4840a3262f4",
+      "line": 444
+    },
+    "_head": {
+      "AST_sha256": "18df51ef2fe24dffbb721e38158b30e17ae4e109a3feafed0a4645014dbfd34a",
+      "line": 1502
+    },
+    "_validate_checkpoint": {
+      "AST_sha256": "38a82e26a956656a8b17d7877d18b126eb3508ffe06b13c505c52b3d3fd790a9",
+      "line": 481
+    },
+    "_validate_pending_transaction": {
+      "AST_sha256": "f9443c0818f3f203926c1e2b03c107631e2a5c2f79aa35062554965cae56d429",
+      "line": 1720
+    },
+    "_validate_state": {
+      "AST_sha256": "c0a43434e14bb383873cf3c226023fc734cf5951bb9586ee3299c4901688bee1",
+      "line": 350
+    },
+    "cycle": {
+      "AST_sha256": "ed70e693f82ec53f9c24f5918c719d9e4de56aced036008a5871912998c4acbb",
+      "line": 2632
+    },
+    "main": {
+      "line": 2804
+    },
+    "poll_pending": {
+      "AST_sha256": "e2ecc0ca8f2c73299fbde5110ad0eea082ee411bcc067f23a5e49a2bd4021730",
+      "line": 1559
+    },
+    "run_cycle": {
+      "AST_sha256": "6cbb28e2d7f5617c614acb5e9995c5a29a321cdb0063873b65bd0956e234bb54",
+      "line": 513
+    },
+    "submit": {
+      "AST_sha256": "e3e27daa17871b28f70bf17cd4501ea7ce0540b255fd952e171c6b19554065d6",
+      "line": 1810
+    }
+  },
+  "schema": 1,
+  "scope": [
+    "Exact original raw config remains backup-verification input. A separate target config may change only reviewed runtime paths and an explicitly isolated provider mapping.",
+    "Native sidecar source19/policy bytes remain unchanged if retained; sidecar rebind does not authorize path/source/config migration.",
+    "Head freshness uses real current local-chain blocks. Old receipt inclusion fields and inclusion UTC spending day remain exact; no wall-clock override or old timestamp rewrite.",
+    "First restored process can settle pending then exit1 metadata-degraded; second fresh unsigned once must avoid duplicate booking and reach actual fresh dry-run metadata."
+  ],
+  "source13_matches_c814": false,
+  "source13_sha256": {
+    "keeper/cast_process.py": "5856fec6fb15e1abb66750394c2fb7a24314686e964eca0e9363b5007aa5ba3a",
+    "keeper/compound_policy.py": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29",
+    "keeper/health.py": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04",
+    "keeper/monitor.py": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f",
+    "keeper/ops.py": "da396ec9c65295fe540f9dc812a0612d8ed27f1ab677fd388b479e2f2372ad89",
+    "keeper/rebalance_confirmation.py": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d",
+    "zzz_ops/abi.py": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91",
+    "zzz_ops/execution_price.py": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2",
+    "zzz_ops/lp_execution.py": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0",
+    "zzz_ops/protocol_policy.py": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3",
+    "zzz_ops/rebalance_confirmation.py": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331",
+    "zzz_ops/rpc.py": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f",
+    "zzz_ops/state.py": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf"
+  },
+  "source19_sha256": {
+    "keeper/alerts.py": "053ac2a70f38801b77afde8ba107c78e322a11630cb04620e1aa35a3f811fe13",
+    "keeper/cast_process.py": "5856fec6fb15e1abb66750394c2fb7a24314686e964eca0e9363b5007aa5ba3a",
+    "keeper/compound_policy.py": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29",
+    "keeper/health.py": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04",
+    "keeper/monitor.py": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f",
+    "keeper/ops.py": "da396ec9c65295fe540f9dc812a0612d8ed27f1ab677fd388b479e2f2372ad89",
+    "keeper/rebalance_confirmation.py": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d",
+    "keeper/recovery_bundle.py": "022cd3b9a3692f9b5576fded8fb15d4aca2797f4ad3bd449561a4d57173de550",
+    "keeper/scheduling.py": "d79be28db6bac2978f7c8efdfb641e037ce6d2024faa4e60e02f6f7c62049f4a",
+    "scripts/keeper-alerts.py": "4f3b6b3efa9401c4039b9dcdc1fa9bf0c4136c2342f02c7286c895bc0ef027c5",
+    "scripts/keeper-recovery.py": "450b87f611b90d2cdb4139bd2bb2cc8f10696821c1ae6b72ccba7613a64ff6cf",
+    "scripts/keeper-schedule.py": "5c07ec965eba5c5a2d94895ba050f17d49b9689923cf67a05f20f2d0bf29c0b4",
+    "zzz_ops/abi.py": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91",
+    "zzz_ops/execution_price.py": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2",
+    "zzz_ops/lp_execution.py": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0",
+    "zzz_ops/protocol_policy.py": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3",
+    "zzz_ops/rebalance_confirmation.py": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331",
+    "zzz_ops/rpc.py": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f",
+    "zzz_ops/state.py": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf"
+  },
+  "source_file_count": 31,
+  "source_files": {
+    "keeper/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "keeper/cast_process.py": {
+      "bytes": 5694,
+      "sha256": "5856fec6fb15e1abb66750394c2fb7a24314686e964eca0e9363b5007aa5ba3a"
+    },
+    "keeper/compound_policy.py": {
+      "bytes": 17260,
+      "sha256": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29"
+    },
+    "keeper/health.py": {
+      "bytes": 24415,
+      "sha256": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04"
+    },
+    "keeper/monitor.py": {
+      "bytes": 194496,
+      "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f"
+    },
+    "keeper/operation_review.py": {
+      "bytes": 43774,
+      "sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    "keeper/ops.py": {
+      "bytes": 14444,
+      "sha256": "da396ec9c65295fe540f9dc812a0612d8ed27f1ab677fd388b479e2f2372ad89"
+    },
+    "keeper/principal.py": {
+      "bytes": 9171,
+      "sha256": "b602340db5c7a52ad281c6b60885e2f74cc2708b731595fac5eeb9e026da6874"
+    },
+    "keeper/rebalance_confirmation.py": {
+      "bytes": 11926,
+      "sha256": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d"
+    },
+    "keeper/recovery_bundle.py": {
+      "bytes": 36532,
+      "sha256": "022cd3b9a3692f9b5576fded8fb15d4aca2797f4ad3bd449561a4d57173de550"
+    },
+    "keeper/royalties.py": {
+      "bytes": 17321,
+      "sha256": "02e04783068eed60db827673c9c27d3a37175edd7dccfa5ddefb8b54c055904c"
+    },
+    "keeper/watchdog.py": {
+      "bytes": 5707,
+      "sha256": "59b4bb7783453a8f271fd5ab265fd5d2857d55096479be34f10ffe56c8408372"
+    },
+    "scripts/keeper-recovery.py": {
+      "bytes": 3423,
+      "sha256": "450b87f611b90d2cdb4139bd2bb2cc8f10696821c1ae6b72ccba7613a64ff6cf"
+    },
+    "zzz_ops/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "zzz_ops/abi.py": {
+      "bytes": 4797,
+      "sha256": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91"
+    },
+    "zzz_ops/errors.py": {
+      "bytes": 992,
+      "sha256": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305"
+    },
+    "zzz_ops/ethereum_fees.py": {
+      "bytes": 2464,
+      "sha256": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe"
+    },
+    "zzz_ops/execution_price.py": {
+      "bytes": 2280,
+      "sha256": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2"
+    },
+    "zzz_ops/lp_execution.py": {
+      "bytes": 6860,
+      "sha256": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0"
+    },
+    "zzz_ops/physical_portfolio.py": {
+      "bytes": 2125,
+      "sha256": "f119b665860cb4aaa9fbebe81aa1f2564906dff8466d1febf96ea4eef46e719b"
+    },
+    "zzz_ops/position.py": {
+      "bytes": 2437,
+      "sha256": "54075cb2329e6e1defb4942683378d6a3995a74a6ea5e1f239a8fcf611e30d4d"
+    },
+    "zzz_ops/price_policy.py": {
+      "bytes": 7148,
+      "sha256": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958"
+    },
+    "zzz_ops/production_v2.py": {
+      "bytes": 102622,
+      "sha256": "109531b48b9c8a85166c9585351dc40b4b534ec5eea14c5b81d895c1b2209889"
+    },
+    "zzz_ops/production_v4.py": {
+      "bytes": 65998,
+      "sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    "zzz_ops/protocol_policy.py": {
+      "bytes": 5907,
+      "sha256": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3"
+    },
+    "zzz_ops/range_policy.py": {
+      "bytes": 5859,
+      "sha256": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171"
+    },
+    "zzz_ops/rebalance_confirmation.py": {
+      "bytes": 17194,
+      "sha256": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331"
+    },
+    "zzz_ops/rpc.py": {
+      "bytes": 9709,
+      "sha256": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f"
+    },
+    "zzz_ops/state.py": {
+      "bytes": 4644,
+      "sha256": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf"
+    },
+    "zzz_ops/tick_math.py": {
+      "bytes": 4949,
+      "sha256": "5224a360f3fecbc9c1d42094863e74771cee8036a60d8b81647d9e6d45e0c70a"
+    },
+    "zzz_ops/work_budget.py": {
+      "bytes": 3633,
+      "sha256": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b"
+    }
+  },
+  "status": "design_only_not_runtime_acceptance",
+  "stdlib_roots": [
+    "__future__",
+    "argparse",
+    "contextlib",
+    "contextvars",
+    "copy",
+    "datetime",
+    "errno",
+    "fcntl",
+    "functools",
+    "hashlib",
+    "http",
+    "itertools",
+    "json",
+    "math",
+    "os",
+    "pathlib",
+    "re",
+    "secrets",
+    "selectors",
+    "shutil",
+    "signal",
+    "socket",
+    "stat",
+    "subprocess",
+    "sys",
+    "tempfile",
+    "time",
+    "typing",
+    "urllib"
+  ]
+}

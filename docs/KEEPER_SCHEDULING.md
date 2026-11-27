@@ -1,6 +1,6 @@
 # Unsigned keeper backup and alert scheduling
 
-The [complete unsigned kit](../reports/keeper-reconstruction-20261127/REVIEW.md) reconstructs the original policy/configuration/release and required logical-path parents in fresh isolated roots. Captured selection/outbox bytes and pending age remain exact; no scheduler init/rebind or service adoption occurs. OS/runtime and live host/signer recovery stay separate.
+The [current unsigned stock restart](../reports/keeper-clean-restart-20261127/REVIEW.md) adds real local receipt reconciliation from a45-file desktop kit without changing scheduler source19, policy, queued history or existing units. It starts no production scheduler/observer and performs no rebind. The [earlier journal/sidecar reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md) retains its49-file synthetic scope; real host/signer fencing, channels and live adoption remain open.
 
 The scheduler coordinates the existing exact-journal backup and alert tools.
 It never starts the keeper, signs, calls RPC, restores a journal or grants live

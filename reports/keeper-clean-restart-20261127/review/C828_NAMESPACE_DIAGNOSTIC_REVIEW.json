@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "kind": "independent_c828_failed_target_readonly_diagnostic_source_review",
+  "status": "pass_for_readonly_diagnosis_only",
+  "controller_sha256": "22d459431d168fa5822ea8917544a2de166f2e1a820b1d9f6de39516a1d31a91",
+  "source": "root/target_diagnostic.py",
+  "static_checks": [
+    "Frozen controller is hash checked and loaded under a non-main name; only its owned/read/props/run primitives are called.",
+    "Journal command is fixed to the new c828 target unit,25 JSON rows and12seconds with existing64KiB capture; each selected message is at most4096characters.",
+    "Only fixed root-path lstat metadata and exact source/target pending hashes are read; no raw pending/configuration body is emitted.",
+    "No unit start, stop, restart, RPC, native keeper, application or key operation appears."
+  ],
+  "observed_saved_result": {
+    "input": "private/target-diagnostic-001/RESULT.json",
+    "bytes": 5462,
+    "actual_failure": "Mount namespacing at the exact inner /run application actor path failed with ENOENT.",
+    "ExecMainCode": 1,
+    "ExecMainStatus": 226,
+    "MainPID": 0,
+    "source_pending_unchanged": true,
+    "target_pending_unchanged": true,
+    "independent_node_active_at_diagnostic": true,
+    "proc_sys_dev_present": true,
+    "tmp_and_var_tmp_missing": true,
+    "cause_not_inferred_from_unmentioned_tmp_paths": true
+  },
+  "continuation_constraints": [
+    "Preserve failed target and fresh root; do not restart or repair them.",
+    "A separately pinned target-only fresh-root continuation may use the original included hash and exact desktop kit; it may not replay setup, source signing or send any new transaction.",
+    "Keep existing900second node/capture limits, original180second harvest deadline and all native/financial guards.",
+    "No recovery pass is inferred from preparation or the namespace failure."
+  ],
+  "review_activity": {
+    "application_imports": 0,
+    "application_or_helper_bodies": 0,
+    "native_calls": 0,
+    "test_bodies": 0,
+    "server_calls": 0,
+    "network_calls": 0,
+    "saved_source_and_metadata_only": true
+  }
+}

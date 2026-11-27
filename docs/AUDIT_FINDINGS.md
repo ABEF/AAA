@@ -1,26 +1,37 @@
 # Consolidated audit findings and evidence
 
-[Unsigned kit and clean-filesystem reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md)
-verifies49 private files/820,029bytes, one actual missing-configuration refusal
-and four native verify/restore successes. The workers use reconstructed logical
-paths with old application folders unavailable and signer files absent. Exact
-pending/accounting/outbox history and all false adoption flags remain. Existing
-OS runtime is explicit:18 read-only file/stdlib mounts, including six diagnosed
-loader-name mappings; this is not OS/physical-second-host qualification.
+[Unsigned stock keeper restart from a desktop kit](../reports/keeper-clean-restart-20261127/REVIEW.md)
+now verifies45 private files/808,416bytes, one new original stock harvest and zero
+recovery sends. Three native backup/verify/restore calls and four stock processes
+(unused-sender initialization, source harvest, unsigned recovery and dry cycle)
+retain exact pending/fee/day/nonce/anchor accounting in2,119/6,000 RPC requests.
+The first target stock cycle settles once and exits1 with expected metadata
+degradation; a fresh unsigned cycle reaches dry_run_v2/exit0 without rebooking.
+Included/final NFT/LP/rights/reserve vectors match before the separate node stops.
 
-Original c824 startup NONPASS/zero native calls and helper/timing refusals stay
-recorded. The passed negative is reused by a separately pinned complete-only
-continuation, without input rewrites or native guard changes. Both labs stop;
-original sources/references/eight files/locks and5existing states are preserved
-(0nonambient/1observer-ID). Actual age61,340s uses reviewed86400s historical
-allowance, while900s operating freshness remains exceeded/unapproved. No old
-test body, production source or operating/native/transport limit changes.
-Reuse the [unchanged inventory](../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json).
-Q06/P20/P21, actual second-host/OS/signer recovery/fencing, canonical reconciliation,
-channels/providers, durability, sustained operation and release approval stay open.
-Earlier [desktop round-trip](../reports/keeper-offhost-20261126/REVIEW.md) and
-[normal keeper/timer](../reports/ubuntu-keeper-composition-20261126/REVIEW.md) proofs
-retain their original scopes. Heartbeat stays paused.
+The first c828 target's namespace exit226 remains NONPASS/zero worker calls.
+A pinned continuation preserves the controller and same45 desktop inputs, uses
+a fresh target2 root/unit and a read-only self-bind of its own /run, and changes
+only the witness's expected-root literal. No source setup/harvest/capture replay.
+Earlier c826 client-lookup and c827 native-ETH read refusals remain separate;
+the narrow currency fix changes only the new harness, not production ABI guards.
+All new groups stop empty. Settled five-state host review matches0 nonambient
+differences/1 periodic observer invocation-ID change; the original mid-observer
+020 NONPASS remains distinct from the later settled021 comparison.
+
+Actual root/inode/mount/private-network proof retains18 read-only external OS
+runtime mounts and a separately running isolated Anvil. This reconstructs keeper
+application inputs, not lost OS/chain history or a physical second host. New
+capture uses900seconds and original real timestamps; older86400 historical-review
+evidence keeps its own scope. Signer/Cast files stay absent from the target.
+Production source41/source13/source19, financial/native/transport limits and
+existing environments/journals stay unchanged; no old test bodies rerun. Reuse
+the [191-file/2,137-definition/279-lambda inventory](../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json)
+and frozen F6 maps61/39/4 with1,021ABI rows. Earlier [49-file synthetic reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md)
+and [normal keeper/timer composition](../reports/ubuntu-keeper-composition-20261126/REVIEW.md)
+retain their original scopes. Q06/P20/P21, real second-host/OS/signer recovery and
+fencing, public canonical reconciliation, providers/channels, durability,
+sustained operation and independent live approval remain open. Heartbeat stays paused.
 
 Earlier [alert evidence](../reports/keeper-alerts-20261126/REVIEW.md) retains its
 21-method original source scope; it is not re-executed or relabelled here.

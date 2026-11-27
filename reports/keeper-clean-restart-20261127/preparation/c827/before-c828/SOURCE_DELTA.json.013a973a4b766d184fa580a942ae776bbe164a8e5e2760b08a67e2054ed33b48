@@ -1,0 +1,64 @@
+{
+  "application_imports": 0,
+  "application_source41_changed": false,
+  "complete_kit_helper_label_only": true,
+  "current_private_release42_reused": true,
+  "helper_changes_are_label_only": {
+    "driver.py": true,
+    "gateway.py": true,
+    "runtime_support.py": true,
+    "shared.py": true,
+    "target_worker.py": true
+  },
+  "independent_delta_review_pending": true,
+  "kind": "c827-confirmed-systemd-client-lookup-delta",
+  "launch_attempt_and_client_output_retained_before_success_guard": true,
+  "native_calls": 0,
+  "new_private_packet_path": "preparation-002/packet.json",
+  "new_process_or_shell_wrapper_added": false,
+  "no_failed_or_interrupted_launch_replay": true,
+  "node_ExecSearchPath_property_added_only": true,
+  "node_absolute_Anvil_argv_unchanged": true,
+  "normalized_controller_changed_functions": [
+    "props",
+    "launch",
+    "start_node",
+    "fetch"
+  ],
+  "original_c826_archive_verified": {
+    "BUILD_RECEIPT.json": true,
+    "PARENT_REVIEW_PINS.json": true,
+    "controller_template.py": true,
+    "driver.py": true,
+    "gateway.py": true,
+    "host_control.py": true,
+    "pack.py": true,
+    "remote_capsule.py": true,
+    "runtime_support.py": true,
+    "shared.py": true,
+    "target_worker.py": true
+  },
+  "original_c826_current_files_unchanged": {
+    "BUILD_RECEIPT.json": true,
+    "PARENT_REVIEW_PINS.json": true,
+    "controller_template.py": true,
+    "driver.py": true,
+    "gateway.py": true,
+    "host_control.py": true,
+    "pack.py": true,
+    "remote_capsule.py": true,
+    "runtime_support.py": true,
+    "shared.py": true,
+    "target_worker.py": true
+  },
+  "primary_sources": [
+    "https://raw.githubusercontent.com/systemd/systemd/v255/src/run/run.c",
+    "https://raw.githubusercontent.com/systemd/systemd/v255/src/core/exec-invoke.c",
+    "https://raw.githubusercontent.com/systemd/systemd/v255/src/shared/bus-unit-util.c",
+    "https://www.freedesktop.org/software/systemd/man/255/systemd.exec.html"
+  ],
+  "schema": 1,
+  "server_actions": 0,
+  "source_or_target_signer_or_financial_or_clock_guards_changed": false,
+  "test_bodies_run": 0
+}

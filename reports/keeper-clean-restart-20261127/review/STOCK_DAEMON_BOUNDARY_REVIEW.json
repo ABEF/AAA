@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "kind": "independent_static_stock_daemon_launch_recovery_boundary_review",
+  "status": "design_requirements_pending_new_helper_review",
+  "sources_read": [
+    "keeper/monitor.py",
+    "keeper/recovery_bundle.py",
+    "cache-keeper-clean-restart-20261127/core/SOURCE_REVIEW.json",
+    "reports/ubuntu-backup-recovery-20261126/preparation/c814/model_service.py",
+    "reports/ubuntu-backup-recovery-20261126/preparation/c814/recovery_control.py"
+  ],
+  "required_launch_boundaries": [
+    "Target command is exact stock keeper.monitor --once without --live, --initialize-state or --resolve-pending.",
+    "Stock module launch cannot blindly reuse c825's -I flag because -I removes the copied working directory from module search. Use fixed -S/-B module launch in a pinned reconstructed-source working directory with sanitized Python environment, or a separately reviewed minimal bootstrap.",
+    "Target requires no Cast binary. Cast resolution, signer file reads and wallet-address execution are reached only in live initialization; omit target Cast/key/password files rather than introduce unnecessary signer dependencies.",
+    "Harness must independently require exact restored journal presence, shape and trusted hash before unsigned construction: unsigned Keeper's genuinely missing-state reader can otherwise construct a default journal.",
+    "Configuration, source release, source13 and backup identities must match the new current-source capture; three c814 production files differ, including two daemon-source identities, so old source results cannot be relabelled.",
+    "Target gateway should independently deny and count all transaction-send methods, alongside the no-live/no-signer command boundary."
+  ],
+  "time_and_chain_requirements": [
+    "Current Keeper._head still requires actual wall-clock skew at most600seconds. Native backup capture age allowance does not relax this operating RPC-head freshness check.",
+    "Fresh original source transaction, capture, desktop persistence/return and unsigned target recovery must finish against a genuinely fresh local chain head; no process clock monkeypatch or hidden historical-head waiver.",
+    "If preparing fresh local-chain time from immutable older base state, enumerate that fixture-only seam explicitly before the original transaction, retain original base pins and make no market/provider/current-production claim.",
+    "The final plan keeps the separately supervised new local Anvil running, rather than dumping/reloading it. Retain actual accepted transaction, receipt and canonical header history as saved proof; preserve the separately captured original pending journal and exact original capture timestamp. No chain-node loss or chain-image restoration is claimed.",
+    "Source capture/fence and immediate inclusion mining must fit the actual180-second transaction deadline. Any later ordinary empty-block mining for a genuine fresh local head is explicit coordinator work, with zero additional transaction sends and unchanged original receipt/header.",
+    "Recovery must independently authenticate transaction/receipt/header, confirmations, fee cap, execution price, inclusion day, nonce and booked-cost anchor before durable accounting; unchanged native code performs these checks.",
+    "Final physical financial vectors must be captured while separately supervised Anvil is still running; only then stop the chain."
+  ],
+  "historical_boundaries": [
+    "c814 proves one historical accepted hash and same-host retained-runtime recovery, not a restorable post-transaction chain image.",
+    "c813's whole-cgroup node-loss failure remains NONPASS. c826 Anvil must live outside source/target worker cgroups.",
+    "c825 proves unsigned file restoration and explicit OS runtime mapping, not stock-daemon pending reconciliation; c826 is a new composed scenario rather than a rerun of earlier passing test bodies."
+  ],
+  "review_activity": {
+    "application_imports": 0,
+    "helper_bodies": 0,
+    "test_bodies": 0,
+    "server_calls": 0,
+    "network_requests": 0
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "kind": "independent_read_only_clean_restart_scope_review",
+  "baseline": "d6e8a909fd2b2a12eb1bee15173e92d526178cdb",
+  "status": "new_c826_scope_agreed_pending_blueprint_source_review",
+  "historical_c814": {
+    "source_head": "5662a81ad9c9c5953d3578974e0c5840d626ba97",
+    "release_members": 193,
+    "accepted_hash": "0x7edd034ae1a886c82dbf252b8e8659ec7c1b138154bd186a9d74ac6cbbaff0b9",
+    "pending_journal_bytes": 2752,
+    "pending_journal_sha256": "88d530f0511c65f3848c450445a71daf0c252e1c0ebf460bd5278aa09acf7193",
+    "configuration_raw_sha256": "d6fa4ad0f5cab416ee064ab5d6c85af8c48177c2c6788533570b97cb247061da",
+    "target_configuration_raw_sha256": "7c0bb2c099860ec94daa2bdfd65a612678ed747283c5dfc37127800fa1b81564",
+    "backup_manifest_sha256": "59ca4ad5840aafdd15447d786fa967c015025dc723b74bad87a723c8452796f8",
+    "restore_plan_sha256": "15653ee0dc3d7473cc348fdf3c3ba70e711a1c15592a83b2e8e05c00d4d6d764",
+    "receipt_number": 119107337,
+    "receipt_timestamp": 1795705319,
+    "receipt_block_hash": "0xbe59a3553103a91184f0f298f3b1881dd0058bf23407e489fe32f675cb28800f",
+    "paid_wei": 9626048,
+    "gas_used": 300814,
+    "effective_gas_price_wei": 32,
+    "canonical_recovery_and_dry_cycles": "Historical same-host retained-runtime evidence only; no passing result is relabelled as clean-root/current-source recovery."
+  },
+  "bounded_local_inventory": {
+    "public_report_family": "reports/ubuntu-backup-recovery-20261126",
+    "retained_local_source_package": "cache-keeper-backup-rehearsal-20261126/c814/c814.inputs.tar.gz",
+    "retained_metadata_exports": "cache-keeper-backup-rehearsal-20261126/c814/reconnect-exports/fetch-000 through fetch-028",
+    "old_campaign_directory": "cache-keeper-backup-rehearsal-20261126/c814/campaign-001",
+    "old_campaign_directory_current_actor_read": "access_denied; no ACL or source mutation attempted",
+    "prior_base_package": "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/ubuntu-complete-20261124/keeper-lp-jobs/c7f0.inputs.tar.gz",
+    "post_c814_transaction_chain_dump_identified": false,
+    "source_boundary": "c814 model source records pending/config/receipt/financial snapshots but no accepted-transaction Anvil dump. Its inherited Anvil launcher loads immutable inputs/restore-state.json; no explicit post-transaction state-dump persistence was identified in the read source. Parent and other agents separately confirmed no usable post-c814 snapshot."
+  },
+  "authorized_new_partition": [
+    "Create a fresh disposable isolated local chain from the reviewed immutable F6 base; enumerate fixture-only funding/storage/time seams explicitly.",
+    "Use matching current release/configuration and one original stock-keeper local harvest setup, with a newly disposable local-only key. This creates new c826 evidence; it does not revive or resend c814.",
+    "Capture exact new accepted-hash pending journal, fresh native backup and matching canonical receipt/header evidence from the separately supervised continuously running local Anvil under independently retained pins; persist actual kit on desktop before returning it to a new target root.",
+    "Old application /opt and source runtime paths must be unreachable from the target; supply exact separately reviewed OS/Python/Cast dependencies rather than old-host fallback.",
+    "Fence the source writer and automatic restart/activation paths; preserve original source pending records and key material without copying signer contents to the target.",
+    "Run target stock daemon --once without --live for saved-receipt recovery, then a separate unsigned dry cycle; no target signer access or submission path is enabled.",
+    "Keep Anvil in a separate unit/cgroup from source and target workers. Capture receipt/header and independent final physical vectors before stopping the chain.",
+    "Require exactly one original local forward, zero target sends, once-only fee/day/nonce/anchor accounting, exact restored pending bytes, unchanged native defaults and false readiness/adoption/second-host/production flags.",
+    "Stop only new owned groups; preserve existing services/sites/Anvil8902/journals/paused heartbeat and four protected dirty files."
+  ],
+  "remaining_gates": [
+    "Written c826 blueprint with exact source/fixture/runtime/input closure, trust/clock/age rules and financial/RPC/capture/supervision limits.",
+    "Independent static source review before parent actions.",
+    "Saved evidence reconciliation after execution; no application/test/helper/server reruns by this reviewer."
+  ],
+  "running_node_clarification": "Final parent plan keeps the independently supervised fresh local Anvil alive through source capture, desktop return, target recovery and final physical reads. No post-inclusion chain dump/import or chain-node-loss recovery is claimed. Source capture/fence and immediate mining are automatic within the actual180-second transaction deadline; target head freshness still uses unchanged real-wall-clock checks.",
+  "scope_boundary": "Finite same-host clean-root application operating recovery against a continuously running local chain. No chain image restoration, chain-node loss recovery, physical second host, production/current-market canonical truth, cross-host signer fencing, complete OS recovery, durability, sustained operation or release approval is inferred.",
+  "review_activity": {
+    "application_imports": 0,
+    "helper_bodies": 0,
+    "test_bodies": 0,
+    "server_calls": 0,
+    "network_requests": 0
+  }
+}

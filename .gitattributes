@@ -496,3 +496,6 @@ reports/keeper-offhost-20261126/** -text whitespace=cr-at-eol,-blank-at-eol,-bla
 
 # Exact unsigned recovery-kit reconstruction preparation and sanitized evidence.
 reports/keeper-reconstruction-20261127/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Exact desktop-kit stock keeper restart preparation and sanitized evidence.
+reports/keeper-clean-restart-20261127/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

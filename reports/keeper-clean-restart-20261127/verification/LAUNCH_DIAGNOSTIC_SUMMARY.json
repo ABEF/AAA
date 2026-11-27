@@ -1,0 +1,13 @@
+{
+  "condition_prevented_execution": true,
+  "corrected_noexec_probe_exit": 0,
+  "diagnostic_units_stopped": true,
+  "namespace_binary_exists_on_host": false,
+  "original_client_error": "Failed to find executable /run/popl-keeper-clean-restart-20261127-c826/tools/anvil: No such file or directory\n",
+  "original_client_exit": 1,
+  "raw_transport_private": true,
+  "schema": 1,
+  "source_result_sha256": "85d7275cf132d9af19cccb86b10466b51b789491ac2ca2eb56ef8aaca5db073e",
+  "source_transactions": 0,
+  "systemd_version": "systemd 255 (255.4-1ubuntu8.18)"
+}

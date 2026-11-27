@@ -1,0 +1,87 @@
+{
+  "baseline": "d6e8a909fd2b2a12eb1bee15173e92d526178cdb",
+  "desktop_monitor_remains_paused": true,
+  "documentation_review_sha256": "ae66608d6266eb53d808ce35dc02da514521bc100ed569c6a1eeafe531bb86dc",
+  "existing_environment_adoption": false,
+  "historical_report_families": {
+    "keeper-alerts-20261126": {
+      "manifest_sha256": "ba28a746209efd6b081f37900bb148a51c4f23299c41acef79827ab7b604cb8f",
+      "unchanged_bound_files": 38
+    },
+    "keeper-backup-20261126": {
+      "manifest_sha256": "87ecf554727a0f214977fae01b3fc849b64b4d9db5b4ec503246c1990f7bf659",
+      "unchanged_bound_files": 31
+    },
+    "keeper-day-audit-20261126": {
+      "manifest_sha256": "2751ff48398abdc71648cef6aa7c02fec88687cde48cb11185f1a26a665537b5",
+      "unchanged_bound_files": 80
+    },
+    "keeper-doc-sync-20261126": {
+      "manifest_sha256": "3b755a99a6da6fd6442c94b88775b5dec83cc4003a76e9fc96c0727cf7cf6e8b",
+      "unchanged_bound_files": 3
+    },
+    "keeper-full-audit-20261126": {
+      "manifest_sha256": "522788216fcd0b50e0e6f78f069278d6ed47e53f876e7d388de91a490fe1feb5",
+      "unchanged_bound_files": 77
+    },
+    "keeper-offhost-20261126": {
+      "manifest_sha256": "2dc531625b6efdb92f96b5ded1ec38481176f8c310e771b609d8197cbc810f55",
+      "unchanged_bound_files": 52
+    },
+    "keeper-reconstruction-20261127": {
+      "manifest_sha256": "32fede9f21cd7869f0c5e0231de400b09ca421b13c864e5ab43a544a656df77b",
+      "unchanged_bound_files": 132
+    },
+    "keeper-scheduling-20261126": {
+      "manifest_sha256": "05ae6fe9ed024fbd83b0eabb2388df9072ee5a65fdd6314a6d3f59cae4ed65ba",
+      "unchanged_bound_files": 92
+    },
+    "keeper-sidecar-recovery-20261126": {
+      "manifest_sha256": "631030cb4b80397ba54d45dad24e42821af51774020a736344cc1c7fe1a72d79",
+      "unchanged_bound_files": 94
+    },
+    "ubuntu-backup-recovery-20261126": {
+      "manifest_sha256": "200b6bccbf3b147079c9c46eb09ce62442e438ca388b680a98cc055d42be22c2",
+      "unchanged_bound_files": 103
+    },
+    "ubuntu-daemon-storage-20261126": {
+      "manifest_sha256": "81d3f76d5973c8ef132eae0b5754087f428a6c3ded421a3a2ae616a12f046e2b",
+      "unchanged_bound_files": 88
+    },
+    "ubuntu-keeper-composition-20261126": {
+      "manifest_sha256": "f0d6e2a5ce3aa9bf81ce3b431c2d2c0bd17462c5bc941ec9d7fb34db6e3b51e4",
+      "unchanged_bound_files": 92
+    }
+  },
+  "inventory_not_regenerated": true,
+  "inventory_sha256": "c1a24939407576250dd1d5c620497860afdd6636f04cd38472b1dd5ebc4abf44",
+  "local_links_checked": 3522,
+  "production_approved": false,
+  "production_inventory_reused": "reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json",
+  "production_source_edits": 0,
+  "protected_hashes": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "raw_packages_or_transport_publication": false,
+  "report_python_files_AST_only": 40,
+  "saved_verification_not_rerun": true,
+  "saved_verification_sha256": "446cf76aaf968d522a2b123762fd55e8a19336bcb1edfa9d7eb921f04d6f7348",
+  "schema": 1,
+  "server_network_actions_by_check": 0,
+  "success": true,
+  "task_counts": {
+    "done": 35,
+    "excluded": 1,
+    "progress": 40,
+    "todo": 7
+  },
+  "test_bodies_run_by_check": 0,
+  "todo_generator_check": "Project Todo verified.",
+  "unchanged_current_lab_source_rows": 41,
+  "unchanged_historical_bound_files": 882,
+  "unchanged_tasks_and_statuses": 83,
+  "workload_plan_verifier_selector_unchanged": true
+}

@@ -1,0 +1,38 @@
+{
+  "messages": [
+    {
+      "MESSAGE": "Starting popl-keeper-clean-restart-20261127-c828-target.service - /usr/bin/python3 -S -B /run/popl-keeper-clean-restart-20261127-c828/helpers/target_worker.py...",
+      "time": "1795790303783448",
+      "unit": "init.scope"
+    },
+    {
+      "MESSAGE": "popl-keeper-clean-restart-20261127-c828-target.service: Failed to set up mount namespacing: /run/popl-keeper-clean-restart-20261127-c828/actor: No such file or directory",
+      "time": "1795790303788108",
+      "unit": "popl-keeper-clean-restart-20261127-c828-target.service"
+    },
+    {
+      "MESSAGE": "popl-keeper-clean-restart-20261127-c828-target.service: Main process exited, code=exited, status=226/NAMESPACE",
+      "time": "1795790303788742",
+      "unit": "init.scope"
+    },
+    {
+      "MESSAGE": "popl-keeper-clean-restart-20261127-c828-target.service: Failed with result 'exit-code'.",
+      "time": "1795790303788906",
+      "unit": "init.scope"
+    },
+    {
+      "MESSAGE": "Failed to start popl-keeper-clean-restart-20261127-c828-target.service - /usr/bin/python3 -S -B /run/popl-keeper-clean-restart-20261127-c828/helpers/target_worker.py.",
+      "time": "1795790303789702",
+      "unit": "init.scope"
+    }
+  ],
+  "native_or_keeper_body_run": false,
+  "node_active_at_diagnosis": true,
+  "original_target_status": "226",
+  "schema": 1,
+  "services_started": 0,
+  "source_pending_unchanged": true,
+  "source_result_sha256": "e29b93a3f980363189df149b41a88af0beab948bd70986ba16a960dbce9310b4",
+  "target_pending_unchanged": true,
+  "transactions_sent": 0
+}

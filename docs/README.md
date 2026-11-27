@@ -1,6 +1,6 @@
 # Documentation map
 
-The [unsigned recovery kit recipe](OPERATOR_MANUAL.md#unsigned-recovery-kit-and-clean-filesystem-reconstruction) covers separately retained application inputs, runtime names and clean-root reconstruction. The [current evidence](../reports/keeper-reconstruction-20261127/REVIEW.md) verifies one missing-config refusal and four native operations; it leaves actual OS/second-host/signer adoption open.
+Use the [unsigned keeper restart recipe](OPERATOR_MANUAL.md#unsigned-keeper-restart-from-a-reconstructed-kit) for exact restored-state preflight, stock receipt reconciliation, fresh dry-run health and the RootDirectory /run mapping boundary. [Current evidence](../reports/keeper-clean-restart-20261127/REVIEW.md) proves one original local harvest and zero recovery sends from45 desktop-held files; [earlier synthetic sidecar reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md) remains separate. OS/chain/second-host/signer adoption stays open.
 
 Use the [scheduler/alert recovery guide](KEEPER_SIDECAR_RECOVERY.md) for exact selected-generation, event-ID and pending-clock capture, verification and fresh review-only restoration. Original configuration/release and host-layout review remain separate. The [Ubuntu record](../reports/keeper-sidecar-recovery-20261126/REVIEW.md) preserves the original setup failure and eight new passes.
 

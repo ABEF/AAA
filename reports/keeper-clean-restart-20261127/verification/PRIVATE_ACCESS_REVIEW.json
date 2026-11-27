@@ -1,0 +1,310 @@
+{
+  "schema": 1,
+  "success": true,
+  "new_task_store_only": true,
+  "previous_private_store_changed": false,
+  "Everyone_or_public_grant": false,
+  "full_Windows_security_qualification": false,
+  "records": [
+    {
+      "relative": "",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/SOURCE_MANIFEST.json",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/keeper",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/scripts",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/tests_python",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/keeper/__init__.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/keeper/alerts.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/keeper/cast_process.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/keeper/compound_policy.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/keeper/health.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/keeper/monitor.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/keeper/operation_review.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/keeper/ops.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/keeper/principal.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/keeper/rebalance_confirmation.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/keeper/recovery_bundle.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/keeper/royalties.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/keeper/scheduling.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/keeper/sidecar_recovery.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/keeper/watchdog.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/scripts/keeper-alerts.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/scripts/keeper-recovery.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/scripts/keeper-schedule.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/scripts/keeper-sidecar-recovery.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/tests_python/__init__.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/tests_python/test_keeper_alerts.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/tests_python/test_keeper_scheduling.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/tests_python/test_keeper_sidecar_recovery.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/__init__.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/abi.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/errors.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/ethereum_fees.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/execution_price.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/lp_execution.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/physical_portfolio.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/position.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/price_policy.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/production_v2.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/production_v4.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/protocol_policy.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/range_policy.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/rebalance_confirmation.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/rpc.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/state.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/tick_math.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    },
+    {
+      "relative": "/private/release-001/source/zzz_ops/work_budget.py",
+      "rule_count": 5,
+      "allowed_principals_only": true,
+      "both_execution_accounts_present": true
+    }
+  ]
+}

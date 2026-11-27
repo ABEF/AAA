@@ -74,6 +74,11 @@ to reconstruct exact application inputs at reviewed logical paths. The
 this without old application folders, but still supplies the existing OS runtime.
 Do not invent configuration or rewrite captured hashes; physical-host/OS/signer
 recovery and live adoption remain separate reviews.
+The [later stock keeper restart](../reports/keeper-clean-restart-20261127/REVIEW.md)
+uses a separate fresh journal/configuration/release kit and real local receipt;
+it does not recapture or rerun this synthetic sidecar queue proof. Its
+[unsigned restart recipe](OPERATOR_MANUAL.md#unsigned-keeper-restart-from-a-reconstructed-kit)
+keeps actual signer/OS/chain adoption and unchanged sidecar policy separate.
 
 ## Capture and verification
 

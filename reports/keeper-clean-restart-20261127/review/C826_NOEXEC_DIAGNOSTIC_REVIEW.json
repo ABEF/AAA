@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "kind": "independent_saved_c826_guaranteed_noexec_launch_diagnostic_review",
+  "status": "pass_supporting_minimal_fresh_c827_ExecSearchPath_delta",
+  "reviewed_diagnostic_source_sha256": "43afaa2d48e298b3c9f0ef284a522e569fc4a118f8f7b08211e446f5654434b4",
+  "executed_diagnostic_payload_sha256": "10b9da75908a96661e6aa1488bcb3b98abc95638f281d7b4a2c6ad86ca695336",
+  "saved_result_bytes": 1262,
+  "saved_result_sha256": "85d7275cf132d9af19cccb86b10466b51b789491ac2ca2eb56ef8aaca5db073e",
+  "actual_systemd": "systemd 255 (255.4-1ubuntu8.18)",
+  "observations": {
+    "original_client_exit": 1,
+    "original_client_stderr_bytes": 110,
+    "namespace_binary_present_on_host": false,
+    "ExecSearchPath_probe_client_exit": 0,
+    "probe_MainPID": 0,
+    "probe_ConditionResult": "no",
+    "condition_guaranteed_no_ExecStart": true,
+    "source_transactions": 0
+  },
+  "checked": [
+    "Preserved9d controller definitions/ownership guard are reused without running its main/action dispatcher.",
+    "Both distinct diagnostic units have guaranteed-false ConditionPathExists=!/, bounded condition polling and finally-stop handling; no Anvil/gateway/bootstrap/keeper process is allowed to execute.",
+    "Frozen host helper is hash-checked before import; original controller/capture/SSH pins and private bounded transport remain.",
+    "Actual saved error establishes host executable lookup failure; adding only ExecSearchPath to the identical no-exec policy makes the client accept the unit while the condition prevents execution.",
+    "This was a launch-boundary case missed in the prior static review. c826 remains a retained preparation NONPASS rather than keeper/accounting evidence."
+  ],
+  "c826_final_stop": {
+    "bytes": 3890,
+    "sha256": "d50d6b48bd6aa01e40c8c9b42ceb98636aa6a40a5aa8205035ed3004efdf0a48",
+    "all9_roles_not_found_and_MainPID0": true,
+    "old_immutable_fixture_unchanged": true,
+    "final_physical_capture_present": false,
+    "source_transactions": 0
+  },
+  "next_scope": "Review a fresh c827 label-only fork plus the single node ExecSearchPath property, durable pre-guard launch diagnostics and exclusive attempt marker. Do not repair/restart c826 or change Anvil arguments/native/economic guards.",
+  "review_activity": {
+    "application_imports": 0,
+    "application_or_helper_bodies": 0,
+    "native_commands": 0,
+    "test_bodies": 0,
+    "server_calls": 0,
+    "network_requests": 0,
+    "own_saved_JSON_hash_checks_only": true
+  }
+}

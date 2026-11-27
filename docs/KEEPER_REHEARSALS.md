@@ -1,6 +1,6 @@
 # Keeper service qualification and rehearsal
 
-[Clean-filesystem Ubuntu reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md) adds the missing application-dependency partition:49 private inputs, old folders unavailable, one missing-config refusal and four native successes. c824 loader failure and c825 parser continuation remain explicit; the passed negative is not repeated. OS runtime, physical-second-host and live recovery remain separate.
+[Current clean-root keeper restart](../reports/keeper-clean-restart-20261127/REVIEW.md) uses45 desktop-held inputs, three native operations and four stock processes, with one original local harvest and zero recovery sends in2,119/6,000 RPC. Original c826/c827 refusals and the first c828 target226 remain; fresh target2 fixes only the new-root /run mapping, without source/setup replay. The [earlier synthetic reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md), retained OS/runtime/node and production-adoption boundaries stay explicit.
 
 [Scheduler/alert recovery rehearsal](../reports/keeper-sidecar-recovery-20261126/REVIEW.md) passes eight NEW methods and actual unsigned backup/verify/restore, followed by delivery of the original queued ID with its pending clock intact. Source folders remain unchanged under a separately fenced target namespace. The original c820 setup failure is retained; no old body runs. Same-host synthetic evidence does not qualify off-host possession/fencing, real channels or sustained operation.
 

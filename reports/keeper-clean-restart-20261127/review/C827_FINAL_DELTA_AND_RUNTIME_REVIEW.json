@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "kind": "independent_fresh_c827_minimal_launch_delta_rendered_and_runtime_gate",
+  "status": "pass_for_authorized_bounded_new_composition",
+  "reviewed_sha256": {
+    "compiled_controller": "d5e4af25a1a6539348c79131a968dc17f7cf6e00b8098035a035857cbb3b5aa4",
+    "controller_template": "bd0b9e66ac7ebe5bccdb408102b1b13e370c09a2a3ff8ff86b57944e3e38b984",
+    "host_control": "4e9362b1170df592dbd5b056ecfd3596af4ec34b3069b8ba5c679724a113b4f8",
+    "pack": "df46aa2777e77d692a4e5e96bae6fd7ca50afbef1acc0ef02abaec0076d44212",
+    "complete_kit_c827": "5e3e2f74776da7f50a6efcf26f70722f932aab6d5d718475b52ff37a31c8fc54"
+  },
+  "compiled_controller_bytes": 36846,
+  "independently_checked": [
+    "All5 helper files equal c826 bytes after c827-to-c826 label normalization; current application source41 remains unchanged.",
+    "Normalized controller AST changes exactly props, launch, start_node and fetch; no native/financial/signer/clock guard changes occur.",
+    "Node adds only ExecSearchPath at the existing namespace-only tools directory; absolute Anvil argv remains unchanged and no Python/shell process wrapper is introduced.",
+    "Exclusive ATTEMPT marker precedes service-manager I/O; bounded client stdout/stderr and launch code metadata are retained before the success guard; failed/interrupted attempts cannot be replayed.",
+    "All9 new parent file pins independently match current files; compiled controller bytes exactly reconstruct from the reviewed template plus c287-pinned41 source rows and5 actual helper rows.",
+    "c826 original sources/archive and failed no-service outcome remain retained; only a fresh c827 namespace is used."
+  ],
+  "actual_prepare_runtime": {
+    "input": "private/campaign-002/prepare/SANITIZED_RESULT.json",
+    "input_bytes": 6313,
+    "input_sha256": "3834aa7370af11204f3fae3da6cbf7b901815718ea2409fea6350aba93b9bb27",
+    "compiled_controller_sha256": "d5e4af25a1a6539348c79131a968dc17f7cf6e00b8098035a035857cbb3b5aa4",
+    "runtime_canonical_sha256": "3025d86be5de48fd1643ddd53819fe3ef1d9268dca689749827ad399247abdb6",
+    "mount_entries": 18,
+    "source_files": 41,
+    "equal_to_previously_independently_reviewed_runtime_bytes": true
+  },
+  "material_findings_remaining": [],
+  "authorized_scope": "Fresh bounded c827 node/setup/source keeper original harvest plus5 fixture feed/governance setup transactions, exact private45-member desktop return, fenced source, unsigned clean-root native recovery+dry cycle, final physical reads before separately supervised node stop, and new-group cleanup. No source replay or target signing/send is authorized.",
+  "scope_boundary": "Same-host clean application reconstruction against a continuously running disposable isolated node. No chain image restore, physical second host, current public-chain truth, cross-host signer fencing, production/durability/sustained-operation approval is inferred.",
+  "review_activity": {
+    "application_imports": 0,
+    "application_or_helper_bodies": 0,
+    "native_commands": 0,
+    "test_bodies": 0,
+    "server_calls": 0,
+    "network_requests": 0,
+    "own_static_AST_and_saved_JSON_hash_inspection_only": true
+  }
+}

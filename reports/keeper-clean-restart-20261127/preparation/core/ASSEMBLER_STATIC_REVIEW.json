@@ -1,0 +1,33 @@
+{
+  "activity": {
+    "application_imports": 0,
+    "assembler_runs": 0,
+    "network_calls": 0,
+    "production_source_changes": 0,
+    "server_calls": 0,
+    "test_bodies_run": 0
+  },
+  "all_other_AST_identical": true,
+  "before_sha256": "0125044528425944eaa14b45253e81ce9c3bdf499bb8c414da36b8493c9e7ff7",
+  "expected_release_files": 41,
+  "expected_total_members": 42,
+  "expected_total_raw_bytes": 796998,
+  "fixed_source_commit": "d6e8a909fd2b2a12eb1bee15173e92d526178cdb",
+  "kind": "unexecuted_release_assembler_static_review",
+  "only_delta_from_original": [
+    "Windows directories inherit already restricted parent DACL using mode0777; POSIX remains0700.",
+    "Child Git explicitly disables lazy fetch with GIT_NO_LAZY_FETCH=1."
+  ],
+  "read_review": [
+    "Fixed immutable Git blobs, main/head and exact source-manifest pins; no dirty-file source reads.",
+    "Bounded Git pipes, source lengths/hashes,1MiB per file/2MiB total/60-second cooperative work; no lazy network retrieval.",
+    "Fresh private release path, exclusive writes, no symlink/reparse/hardlink acceptance, two complete stable readbacks and closed inventory.",
+    "Metadata-only external receipt; config/package/signers not included.",
+    "Actual new-subtree ACL review remains required before cross-actor transfer."
+  ],
+  "schema": 1,
+  "source_bytes": 11428,
+  "source_manifest_sha256": "c287aa0c4b8e4113f7ffa1459f39a704bd17b5165f23084e3a8f26995cdb0e08",
+  "source_sha256": "8826167aa99ac93095e22040a8883b84b07a0fdf68d8c123dd27ebe7ce7cee0e",
+  "status": "reviewed_preparation_only_not_execution"
+}

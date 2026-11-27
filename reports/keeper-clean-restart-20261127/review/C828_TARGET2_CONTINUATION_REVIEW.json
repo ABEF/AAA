@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "kind": "independent_c828_target2_continuation_static_gate",
+  "status": "pass_for_same_included_hash_unsigned_target_only",
+  "sha256": {
+    "original_controller": "22d459431d168fa5822ea8917544a2de166f2e1a820b1d9f6de39516a1d31a91",
+    "continuation": "c6ef1c1ed2b1f10c9c393e6d9c5438fb81e913f6eccce53b491b70b1bf8f9e8d",
+    "tail": "7168e918d265860b9e136e962d4a8b1d3799a7cf7262f9d9de3bfd4f13d223bf",
+    "host_wrapper": "7f32aae20c1e5fb363386393d2e936f636a3838f840a19df93aac1341f735952"
+  },
+  "original_controller_embedded_byte_exact_under_nonmain_guard": true,
+  "fixed_actions": [
+    "fresh2",
+    "start2",
+    "status2",
+    "result2",
+    "private2",
+    "final2",
+    "stop2"
+  ],
+  "checked": [
+    "Original target226/root1 are preserved and required; no worker health/lock/RESULT may exist.",
+    "Exactly45 previously desktop-returned input byte/hash rows are verified before copying to freshroot2; source/config/pending are unchanged.",
+    "Freshroot2 plus four new input inode identities replace root1 identity; worker changes one fixed host-root literal only.",
+    "The only namespace-policy correction is a read-only self-bind of freshroot2/run onto inner/run; original18 explicit OS runtime mounts and five writable application directories remain.",
+    "The original900second node/capture limits,6000RPC limit, native limits and existing actual receipt/hash are retained.",
+    "fresh2 starts once and mines12 ordinary empty blocks without signing or submitting transactions.",
+    "final2 requires actual target2 success,exit0 and empty group before launching the preserved original final physical driver; no root1 success is invented.",
+    "stop2 explicitly empties target2 andfresh2 before original-controller node cleanup.",
+    "The wrapper pins the entire continuation and reviewed original transport/capture, has seven fixed actions and64KiB output, and exclusively stores bounded private outputs."
+  ],
+  "scope": "No node/source/setup replay, new signed transaction, target signer, operating policy change, secondhost assertion or production adoption.",
+  "material_findings_remaining": [],
+  "review_activity": {
+    "application_imports": 0,
+    "application_or_helper_bodies": 0,
+    "native_calls": 0,
+    "test_bodies": 0,
+    "server_calls": 0,
+    "network_requests": 0,
+    "own_static_source_hash_and_AST_only": true
+  }
+}

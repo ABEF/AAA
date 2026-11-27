@@ -1,6 +1,6 @@
 # Keeper journal backup and restore preparation
 
-The [complete application-kit rehearsal](../reports/keeper-reconstruction-20261127/REVIEW.md) verifies exact release/configuration/policy/package reconstruction in a clean Ubuntu root. Journal backup format stays unchanged and signer files stay absent. Operating900s versus historical-review86400s remains explicit; this is not a full OS/physical-host or current-canonical recovery approval.
+The [current desktop-kit stock restart](../reports/keeper-clean-restart-20261127/REVIEW.md) preserves a fresh actual known-hash journal through native backup/verify/restore, then unsigned once-only receipt accounting and a fresh dry cycle. The45-file kit excludes signers; current900-second review and all native limits remain. Existing OS/runtime and the separately retained local chain remain external dependencies; the [earlier49-file synthetic reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md) keeps its own scope.
 
 Use the [alert observer](KEEPER_ALERTS.md) to check one explicitly selected
 bundle's age and integrity against its externally retained manifest pin and

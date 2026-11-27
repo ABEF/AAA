@@ -1,0 +1,253 @@
+{
+  "all_other_argument_words_use_production_codec": true,
+  "application_imports": 0,
+  "c827_archive_verified": {
+    "BUILD_RECEIPT.json": true,
+    "PARENT_REVIEW_PINS.json": true,
+    "SOURCE_DELTA.json": true,
+    "controller_template.py": true,
+    "driver.py": true,
+    "gateway.py": true,
+    "host_control.py": true,
+    "pack.py": true,
+    "remote_capsule.py": true,
+    "runtime_support.py": true,
+    "shared.py": true,
+    "target_worker.py": true
+  },
+  "c827_current_files_unchanged": {
+    "BUILD_RECEIPT.json": true,
+    "PARENT_REVIEW_PINS.json": true,
+    "SOURCE_DELTA.json": true,
+    "controller_template.py": true,
+    "driver.py": true,
+    "gateway.py": true,
+    "host_control.py": true,
+    "pack.py": true,
+    "remote_capsule.py": true,
+    "runtime_support.py": true,
+    "shared.py": true,
+    "target_worker.py": true
+  },
+  "explicit_signed_mock_feed_setter": "set(int256,uint256,uint256); positive answer less than2^255; both timestamps from ordinary fresh block",
+  "fixed_private_failed_target_export": {
+    "all8_required_on_success": true,
+    "compressed_limit": 32768,
+    "decoded_limit": 131072,
+    "empty_target_and_ExecMainCode1_required": true,
+    "missing_and_status_explicit": true,
+    "partial_records_only_no_fill_or_restart": true,
+    "same8_allowlist": true
+  },
+  "helpers_label_only": {
+    "driver.py": true,
+    "gateway.py": true,
+    "runtime_support.py": true,
+    "target_worker.py": true
+  },
+  "independent_review_pending": false,
+  "independent_reviews": [
+    "core/C828_HELPER_API_REVIEW.json",
+    "review/C828_FINAL_ABI_DELTA_AND_RENDERED_REVIEW.json"
+  ],
+  "kind": "c828-read-currency-and-failure-export-delta",
+  "native_calls": 0,
+  "native_currency_zero_read_slots": {
+    "buybackBalance(address)": 0,
+    "claimableComponents(uint256,address)": 1,
+    "compoundBalance(uint256,address)": 1,
+    "liabilities(address)": 0
+  },
+  "normalized_changed_functions": {
+    "controller_template.py": [
+      "fetch"
+    ],
+    "shared.py": [
+      "call"
+    ]
+  },
+  "old_Case_API_static_comparison": true,
+  "old_Case_or_test_bodies_executed": false,
+  "production_ABI_or_application_source_modified": false,
+  "remaining_helper_ABI_call_sites": [
+    {
+      "argument_types": [
+        "uint256"
+      ],
+      "file": "shared.py",
+      "line": 217,
+      "signature": "group(uint256)"
+    },
+    {
+      "argument_types": [
+        "uint256"
+      ],
+      "file": "shared.py",
+      "line": 214,
+      "signature": "tokenAtOrdinal(uint256)"
+    },
+    {
+      "argument_types": [
+        "uint256"
+      ],
+      "file": "shared.py",
+      "line": 218,
+      "signature": "secondaryId(uint256)"
+    },
+    {
+      "argument_types": [
+        "uint256"
+      ],
+      "file": "shared.py",
+      "line": 219,
+      "signature": "ticks(uint256)"
+    },
+    {
+      "argument_types": [
+        "uint256"
+      ],
+      "file": "shared.py",
+      "line": 219,
+      "signature": "getPositionLiquidity(uint256)"
+    },
+    {
+      "argument_types": [
+        "uint256"
+      ],
+      "file": "shared.py",
+      "line": 220,
+      "signature": "ownerOf(uint256)"
+    },
+    {
+      "argument_types": [
+        "address"
+      ],
+      "file": "shared.py",
+      "line": 225,
+      "signature": "balanceOf(address)"
+    },
+    {
+      "argument_types": [
+        "uint256"
+      ],
+      "file": "shared.py",
+      "line": 215,
+      "signature": "ownerOf(uint256)"
+    },
+    {
+      "argument_types": [
+        "uint256"
+      ],
+      "file": "shared.py",
+      "line": 215,
+      "signature": "sharesOf(uint256)"
+    },
+    {
+      "argument_types": [
+        "uint256"
+      ],
+      "file": "shared.py",
+      "line": 216,
+      "signature": "eligible(uint256)"
+    },
+    {
+      "argument_types": [
+        "uint256"
+      ],
+      "file": "shared.py",
+      "line": 216,
+      "signature": "weightOf(uint256)"
+    },
+    {
+      "argument_types": [
+        "uint256",
+        "address"
+      ],
+      "file": "shared.py",
+      "line": 221,
+      "signature": "compoundBalance(uint256,address)"
+    },
+    {
+      "argument_types": [
+        "address"
+      ],
+      "file": "shared.py",
+      "line": 222,
+      "signature": "buybackBalance(address)"
+    },
+    {
+      "argument_types": [
+        "address"
+      ],
+      "file": "shared.py",
+      "line": 222,
+      "signature": "liabilities(address)"
+    },
+    {
+      "argument_types": [
+        "uint256",
+        "address"
+      ],
+      "file": "shared.py",
+      "line": 223,
+      "signature": "claimableComponents(uint256,address)"
+    },
+    {
+      "argument_types": [],
+      "file": "driver.py",
+      "line": 68,
+      "signature": "latestRoundData()"
+    },
+    {
+      "argument_types": [
+        "address",
+        "bool"
+      ],
+      "file": "driver.py",
+      "line": 74,
+      "signature": "setKeeper(address,bool)"
+    },
+    {
+      "argument_types": [
+        "uint256",
+        "uint256"
+      ],
+      "file": "driver.py",
+      "line": 123,
+      "signature": "collectFees(uint256,uint256)"
+    },
+    {
+      "argument_types": [],
+      "file": "driver.py",
+      "line": 52,
+      "signature": "isSealed()"
+    },
+    {
+      "argument_types": [],
+      "file": "driver.py",
+      "line": 52,
+      "signature": "mintedCount()"
+    },
+    {
+      "argument_types": [
+        "uint256"
+      ],
+      "file": "driver.py",
+      "line": 96,
+      "signature": "needsRebalance(uint256)"
+    },
+    {
+      "argument_types": [
+        "uint256"
+      ],
+      "file": "driver.py",
+      "line": 96,
+      "signature": "rangeUpdatePending(uint256)"
+    }
+  ],
+  "schema": 1,
+  "server_actions": 0,
+  "test_bodies_run": 0,
+  "write_encode_function_AST_unchanged": true,
+  "zero_exception_only_in_eth_call_helper": true
+}

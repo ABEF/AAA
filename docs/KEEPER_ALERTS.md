@@ -1,6 +1,6 @@
 # Keeper alerts: one-shot observation and local delivery
 
-[Clean-root alert-history recovery](../reports/keeper-reconstruction-20261127/REVIEW.md) preserves exact queue IDs, sequence and pending first_seen using reconstructed private application inputs. Missing configuration refuses; no init/reset, live observer adoption or actual notification/host-down qualification is implied.
+[Current unsigned keeper restart](../reports/keeper-clean-restart-20261127/REVIEW.md) settles one original local receipt after desktop-kit reconstruction, then obtains fresh dry-run health without another send. Expected first-cycle metadata degradation does not reset an alert queue or approve notifications. The [earlier sidecar reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md) retains its separate synthetic queue/sequence/first_seen proof; real channels/host-down delivery remain open.
 
 The [alert module](../keeper/alerts.py) and [command](../scripts/keeper-alerts.py) inspect keeper health, the current journal and one explicitly selected recovery backup. They write a **separate alert state/outbox**, and can send sanitized events to a local test receiver. They never sign, submit transactions, read configured signer-file contents, repair a journal or approve a keeper for live use.
 

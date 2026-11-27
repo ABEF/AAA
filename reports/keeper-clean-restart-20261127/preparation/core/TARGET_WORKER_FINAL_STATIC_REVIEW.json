@@ -1,0 +1,75 @@
+{
+  "activity": {
+    "application_imports": 0,
+    "native_calls": 0,
+    "network_calls": 0,
+    "server_calls": 0,
+    "target_worker_runs": 0,
+    "test_bodies_run": 0
+  },
+  "actual_isolation_checks": [
+    "namespace_guard actual UID/GID/groups/private network/separate retained-node cgroup",
+    "zero effective capabilities from bounded /proc/self/status",
+    "actual root inode and four copied-input inode pairs match external identity and differ from originals",
+    "fixed old application/config/signer host paths unavailable",
+    "bounded actual mountinfo and all18 exact OS runtime targets read-only",
+    "broad directory mounts accepted only as read-only systemd inaccessible masks or read-only externally bound fresh-root self-binds",
+    "exact OS file hashes and20-second/8192-entry/128MiB stdlib inventory"
+  ],
+  "daemon_source_identity_rows": 13,
+  "expected_stock_exits": [
+    1,
+    0
+  ],
+  "imports": [
+    "sys",
+    "copy",
+    "datetime",
+    "http.client",
+    "json",
+    "os",
+    "re",
+    "stat",
+    "time",
+    "pathlib",
+    "shared",
+    "runtime_support"
+  ],
+  "kind": "unexecuted_target_worker_final_source_review",
+  "max_combined_command_output_bytes": 65536,
+  "max_command_seconds": 75,
+  "max_worker_cooperative_seconds": 165,
+  "planned_operations": [
+    "native_journal_verify",
+    "native_journal_restore",
+    "fresh_stock_unsigned_recovery_once",
+    "fresh_stock_unsigned_dry_once"
+  ],
+  "private_evidence": [
+    "STATE-BEFORE.json",
+    "STATE-SETTLED.json",
+    "STATE-DRY.json",
+    "HEALTH-RECOVERY.json",
+    "HEALTH-DRY.json",
+    "four command stdout/stderr files and per-call receipts",
+    "native-restored/keeper-state.json",
+    "native-restored/RESTORE_PLAN.json"
+  ],
+  "public_output": "RESULT.json hashes/metadata only; private raw files excluded from publication",
+  "recovery_checks": [
+    "present exact pending journal before stock startup; native verify/restore stdout manifest/plan pins bound to original inputs and actual outputs",
+    "unchanged original raw config and source41/13, absent target Cast and signer files",
+    "independent real receipt/transaction/header and captured fee/day/nonce/anchor calculation",
+    "first metadata-degraded receipt settlement, second fresh configuration/source-bound dry-run observations",
+    "second financial fields unchanged; only conversion_turn/bucket_cursor allowed",
+    "new private lock stable across both stock processes",
+    "shared gateway raw/forward/transaction attempts remain one original setup submission, zero recovery delta"
+  ],
+  "schema": 1,
+  "scope": "application reconstruction against separately retained running isolated Anvil; no chain-history archive, physical second host or production adoption proof",
+  "source_bytes": 19299,
+  "source_files_checked": 41,
+  "source_manifest_sha256": "c287aa0c4b8e4113f7ffa1459f39a704bd17b5165f23084e3a8f26995cdb0e08",
+  "source_sha256": "def4836e3c87788562500586aba92ef8909a6a3265f06305a6c0dc22662eda17",
+  "syntax_AST_parse_passed": true
+}

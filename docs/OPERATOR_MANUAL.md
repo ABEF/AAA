@@ -1,5 +1,42 @@
 # PoPL operator manual
 
+## Unsigned keeper restart from a reconstructed kit
+
+Verify the complete private kit against separately retained trust before starting
+the stock keeper. Keep the exact matching release, original raw configuration and
+native journal package; retain signer recovery separately. A missing journal must
+refuse the rehearsal rather than fall back to an empty used-sender state.
+
+| Stage | Required action and check |
+| --- | --- |
+| Reconstruct inputs | Use persisted, rehashed off-host files in a fresh protected root. Verify source/configuration/package identities, original pending intent/hash/fee review and exact restored bytes. Keep original folders unavailable and target signer/Cast files absent. |
+| Review runtime | Record the external interpreter, stdlib and exact shared-library aliases. Check actual root, mount, namespace, UID and source-copy identities. For a layout under `/run`, account for `MountAPIVFS` masking; a read-only self-bind must use the **new reconstructed root's** `/run`, never the host's `/run`. |
+| Reconcile once | Fence the original keeper and restart paths. Run native journal verify/restore, then `python3 -S -B -m keeper.monitor --config REVIEWED_CONFIG --once` from the matching release, without `--live`, initialization or a resend. Check receipt inclusion, nonce, original fee bounds, inclusion-day spending and receipt anchor. |
+| Obtain fresh health | A settled receipt can produce exit1 and metadata `degraded`. Preserve that successful accounting transition; a separate fresh unsigned `--once` must obtain fresh metadata and reach `dry_run_v2`/exit0 without booking again. |
+
+Keep exact original logical configuration paths or explicitly review a separate
+target mapping. Do not rewrite the original config/package, initialize a used
+sender, reset outboxes/nonces, replace a pending hash or retry a send to recover.
+Use the [native command definitions](#off-host-backup-transfer-and-review) and
+[keeper recovery guide](KEEPER_RECOVERY.md). The
+[current finite record](../reports/keeper-clean-restart-20261127/REVIEW.md)
+preserves the failed first target and the separately pinned fresh-root continuation.
+Source scripts need their matching release on the import path; `-I -m` alone does
+not load a copied release through the working directory.
+
+Apply the actual capture-age policy and real clock. This new capture used900seconds;
+the earlier86,400-second historical-review allowance is not a new operating policy.
+The stock600-second head and30-second future-metadata guards remain. An original
+harvest must be included before its exact180-second calldata deadline; finish
+source capture/fencing/inclusion automatically before off-host transfer/review.
+Never backdate a clock, modify captured timestamps or widen those limits silently.
+
+This exercise reconstructs application inputs against a separately retained
+running isolated node. It does not restore a lost chain archive, operating system,
+physical second host or production signer. Current public-chain reconciliation,
+old-host/signer fencing, providers, durability, sustained operation and independent
+live approval remain separate. Stop new groups and preserve failed attempts.
+
 ## Unsigned recovery kit and clean-filesystem reconstruction
 
 Retain a complete private recovery kit before the original host becomes unavailable.
@@ -25,8 +62,8 @@ Do not run `init`, reset journals/outboxes/nonces, reserialize configuration or
 policy, rewrite captured hashes/timestamps, or repair a failed output in place.
 Preserve incomplete attempts and use a separately reviewed fresh destination.
 
-Use the real clock and an explicit reviewed capture-age allowance. This fixture's
-original capture is1795723324; its86,400-second historical review allowance changes
+Use the real clock and an explicit reviewed capture-age allowance. The earlier
+49-file synthetic fixture's original capture is1795723324; its86,400-second historical review allowance changes
 neither that timestamp nor the original900-second operating freshness policy.
 Exceeding the review allowance requires a new explicit decision; it does not
 authorize silently extending the limit, recapturing or calling old state fresh.

@@ -1,0 +1,62 @@
+[
+  {
+    "bytes": 6009,
+    "name": "BUILD_RECEIPT.json",
+    "sha256": "38bcaea4031c911e88a9969cc8bc862c96a94121ac429b9916aaad13ba2573cd"
+  },
+  {
+    "bytes": 31290,
+    "name": "controller_template.py",
+    "sha256": "bd0b9e66ac7ebe5bccdb408102b1b13e370c09a2a3ff8ff86b57944e3e38b984"
+  },
+  {
+    "bytes": 13350,
+    "name": "driver.py",
+    "sha256": "cabf8f8b4616d40578ba1fcd637f3c5b2d02382aee19001cf8d2379d21daecbb"
+  },
+  {
+    "bytes": 7437,
+    "name": "gateway.py",
+    "sha256": "e8a54ab499685a8f972286b944b8486b209b2b0bfc2279d54e74096a38717e08"
+  },
+  {
+    "bytes": 8149,
+    "name": "host_control.py",
+    "sha256": "4e9362b1170df592dbd5b056ecfd3596af4ec34b3069b8ba5c679724a113b4f8"
+  },
+  {
+    "bytes": 4622,
+    "name": "pack.py",
+    "sha256": "df46aa2777e77d692a4e5e96bae6fd7ca50afbef1acc0ef02abaec0076d44212"
+  },
+  {
+    "bytes": 833,
+    "name": "PARENT_REVIEW_PINS.json",
+    "sha256": "eed12eeabe310d1f55740e32b800706b3c646cf893dcc8f72ec8ee6932cef228"
+  },
+  {
+    "bytes": 36846,
+    "name": "remote_capsule.py",
+    "sha256": "d5e4af25a1a6539348c79131a968dc17f7cf6e00b8098035a035857cbb3b5aa4"
+  },
+  {
+    "bytes": 8075,
+    "name": "runtime_support.py",
+    "sha256": "d447e2571919d0bbd7b80f3f7bdd0c0a4df4e96a128a10026293125e12beac72"
+  },
+  {
+    "bytes": 11190,
+    "name": "shared.py",
+    "sha256": "8c1edb854a08dec4522c78d0261a8bbf028178f810fb377ca2a86ec811eb8a6f"
+  },
+  {
+    "bytes": 2170,
+    "name": "SOURCE_DELTA.json",
+    "sha256": "013a973a4b766d184fa580a942ae776bbe164a8e5e2760b08a67e2054ed33b48"
+  },
+  {
+    "bytes": 19299,
+    "name": "target_worker.py",
+    "sha256": "354a1f1b3fe8d97355bec93f6ab117a211125db6c856e2953e8f46169e3d8dc6"
+  }
+]

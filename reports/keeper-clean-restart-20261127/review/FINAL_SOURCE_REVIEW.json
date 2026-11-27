@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "kind": "independent_final_static_c826_source_and_rendered_controller_review",
+  "status": "pass_for_prepare_only_pending_actual_OS_runtime_receipt_before_services",
+  "baseline": "d6e8a909fd2b2a12eb1bee15173e92d526178cdb",
+  "reviewed_source_sha256": {
+    "core/prepare_release.py": "8826167aa99ac93095e22040a8883b84b07a0fdf68d8c123dd27ebe7ce7cee0e",
+    "core/target_worker.py": "def4836e3c87788562500586aba92ef8909a6a3265f06305a6c0dc22662eda17",
+    "lab/shared.py": "4e3cb4419d51643d6220c40a1212057e996aa3358b1b6a5f898f7c9d7d1b5c0c",
+    "lab/gateway.py": "b4d5b256ff92c507b3d7d51cca57a7f44d3ff62eb0065053e705c5f146df8aaf",
+    "lab/driver.py": "065cbafd9fd196d9d69f2914b5d69b12703c369fd1f9daa1ae963b1af88ba385",
+    "lab/runtime_support.py": "d447e2571919d0bbd7b80f3f7bdd0c0a4df4e96a128a10026293125e12beac72",
+    "lab/controller_template.py": "5a4c122b40f4c903beb847156ead8c754e1c8ee14b074590306fb6d6e78b8a91",
+    "lab/remote_capsule.py": "9d7985ee2fb9485ac57080bc999cfa23ede28629df12143e53728681a640c7d8",
+    "lab/host_control.py": "e319e719f679feba73cdaca6db24c3d47251c322d33a270db672daa21313dbaa",
+    "lab/pack.py": "c117c44543778dd01c73c6c15b05a7bb6ea64d01a15d376b99915cabd1f5bce0",
+    "root/complete_kit.py": "8b5c79f1e278a202ea869b43fd8242f4d850ab211c4dc679d5dde6cd06daa1fd"
+  },
+  "rendered_controller": {
+    "bytes": 35785,
+    "independent_template_byte_reconstruction_equal": true,
+    "trusted_original_manifest_sha256": "c287aa0c4b8e4113f7ffa1459f39a704bd17b5165f23084e3a8f26995cdb0e08",
+    "source_rows": 41,
+    "actual_reviewed_helper_rows": 5,
+    "parent_file_pins_independently_rehashed": 9,
+    "target_worker_copy_equal_to_final_core": true,
+    "preparation_members": 47,
+    "encoded_packet_bytes": 1148471,
+    "compressed_packet_bytes": 333488
+  },
+  "material_findings_remaining": [],
+  "reviewed_pre_execution_corrections": [
+    "Correct fixed save-name regex; strict duplicate/nonfinite JSON and exact HTTP body reads.",
+    "RPC requests charged before I/O; one source raw attempt is durably reserved before forwarding; exception paths persist counters; uncertain publication latches memory/.partial/.failed closed.",
+    "Refused send attempts count; profile1 priority fee is bounded by captured cap rather than incorrectly forced to zero; actual accepted node transaction is authenticated before mining.",
+    "Source capture requires exact collectFees bucket/deadline calldata, verified single accepted forward and automatic inclusion inside the real180-second TTL.",
+    "Node/gateway hard RuntimeMaxSec900; worker180-second supervision,900-second shared work and6000-RPC limits remain finite; Python environment is sanitized.",
+    "Read-only node readiness precedes base inspection/mutation: at most20 attempts/20seconds, each at most1second, only connection/OSError retry; wrong chain and validation failures refuse.",
+    "Final physical read action requires successful/empty target and passing target result before launch; cleanup remains available on failure and stops node last.",
+    "Private bounded eight-record target export permits independent raw reconciliation without publishing operational bytes.",
+    "Current source assembly/pack reads are bounded and stable, fixed original manifest/receipt pins precede controller-map derivation, Windows private directory inheritance is preserved, and Git lazy fetch is disabled.",
+    "Target proves actual root inode, four copied-versus-original input inode pairs, private node namespace/separate cgroup, empty effective capabilities, old application path absence and18 read-only runtime mounts; legitimate read-only systemd masks/fresh-root self-binds are distinguished from broad host mounts.",
+    "Native stdout manifest/plan hashes are explicitly bound; raw call diagnostics are saved before unexpected-outcome refusal."
+  ],
+  "verified_scope": [
+    "Exactly one new stock keeper signed harvest follows five separately disclosed impersonated fixture governance/feed setup transactions and two local balance-funding calls.",
+    "Native pending package/config/current41 source release are persisted as a45-member private desktop kit and returned from saved files, with separate capture/canonical trust receipts.",
+    "Source writer and restart path are fenced before native capture/inclusion; Anvil stays separately supervised and running through desktop return, target recovery and final physical reads.",
+    "Target uses exact original configuration and reconstructed application paths, --once without --live/initialize/resolve, absent signer/Cast files, strict read-only RPC gate and zero target send-counter delta.",
+    "Stock recovery and a distinct dry process authenticate actual canonical local receipt, fee/day/nonce/anchor accounting and once-only booking; only narrow scheduling cursor changes may follow.",
+    "Native formats, source13/19, financial/operating limits, existing services/sites/Anvil8902/journals and paused heartbeat are not changed; old test bodies are not invoked.",
+    "Raw configuration/journal/private target records/transport remain outside Git; only allowlisted sanitized evidence may later be published."
+  ],
+  "remaining_gate_before_services": "Independently review actual prepared OS runtime receipt and source/helper/tool/fixture preservation metadata. Then perform only the authorized new bounded composition; no original c814/c821/c825 result is relabelled.",
+  "scope_boundary": "Finite clean-root application recovery against a continuously running disposable same-host Anvil. No chain archive restoration, lost-node recovery, physical second host, current public canonical truth, cross-host signer fencing, OS disaster recovery, durability, sustained operation or production approval is inferred.",
+  "review_activity": {
+    "application_imports": 0,
+    "application_or_helper_bodies": 0,
+    "native_commands": 0,
+    "test_bodies": 0,
+    "server_calls": 0,
+    "network_requests": 0,
+    "own_static_AST_literal_data_inspection": true
+  }
+}

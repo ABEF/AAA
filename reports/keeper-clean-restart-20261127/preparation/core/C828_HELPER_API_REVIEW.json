@@ -1,0 +1,264 @@
+{
+  "activity": {
+    "application_imports": 0,
+    "helper_runs": 0,
+    "native_calls": 0,
+    "network_calls": 0,
+    "production_source_changes": 0,
+    "server_calls": 0,
+    "test_bodies_run": 0
+  },
+  "call_contracts": {
+    "balanceOf(address)": {
+      "arguments": [
+        "vault"
+      ],
+      "return_words": 1,
+      "role": "ZZZ",
+      "source": "IERC20 interface"
+    },
+    "buybackBalance(address)": {
+      "arguments": [
+        "ETH_zero_or_ZZZ"
+      ],
+      "return_words": 1,
+      "role": "fees",
+      "source": "src/ZZZFeeController.sol"
+    },
+    "claimableComponents(uint256,address)": {
+      "arguments": [
+        "actual_NFT_ID",
+        "ETH_zero_or_ZZZ"
+      ],
+      "return_words": 2,
+      "role": "rewards",
+      "source": "src/ZZZRewards.sol:123",
+      "word_types": [
+        "uint256_personal",
+        "uint256_shared"
+      ]
+    },
+    "collectFees(uint256,uint256)": {
+      "arguments": [
+        "BUCKET",
+        "harvest_now_plus180"
+      ],
+      "return_words": 0,
+      "role": "vault",
+      "source": "current keeper.monitor / Vault collectFees"
+    },
+    "compoundBalance(uint256,address)": {
+      "arguments": [
+        "BUCKET",
+        "ETH_zero_or_ZZZ"
+      ],
+      "return_words": 1,
+      "role": "fees",
+      "source": "src/ZZZFeeController.sol"
+    },
+    "eligible(uint256)": {
+      "arguments": [
+        "actual_NFT_ID"
+      ],
+      "return_words": 1,
+      "role": "membership",
+      "source": "src/ZZZMembership.sol"
+    },
+    "getPositionLiquidity(uint256)": {
+      "arguments": [
+        "group_lpTokenId"
+      ],
+      "return_words": 1,
+      "role": "POSM",
+      "source": "pinned POSM ABI / original Case physical"
+    },
+    "group(uint256)": {
+      "arguments": [
+        "BUCKET"
+      ],
+      "indices": {
+        "lpTokenId": 1,
+        "status_Active1": 7
+      },
+      "return_words": 8,
+      "role": "vault",
+      "source": "src/ZZZVault.sol / src/libraries/ZZZTypes.sol"
+    },
+    "isSealed()": {
+      "arguments": [],
+      "return_words": 1,
+      "role": "access",
+      "source": "src/ZZZAccessController.sol"
+    },
+    "latestRoundData()": {
+      "arguments": [],
+      "return_words": 5,
+      "role": "four_fixture_mock_feeds",
+      "source": "src/interfaces/IZZZ.sol",
+      "word_types": [
+        "uint80",
+        "int256",
+        "uint256",
+        "uint256",
+        "uint80"
+      ]
+    },
+    "liabilities(address)": {
+      "arguments": [
+        "ETH_zero_or_ZZZ"
+      ],
+      "return_words": 1,
+      "role": "rewards",
+      "source": "src/base/ZZZExactLPRewardsCanonical.sol"
+    },
+    "mintedCount()": {
+      "arguments": [],
+      "return_words": 1,
+      "role": "nft",
+      "source": "src/ZZZNFT.sol"
+    },
+    "needsRebalance(uint256)": {
+      "arguments": [
+        "BUCKET"
+      ],
+      "return_words": 1,
+      "role": "strategy",
+      "source": "src/ZZZStrategy.sol"
+    },
+    "ownerOf(uint256)": {
+      "arguments": [
+        "actual_NFT_or_LP_ID"
+      ],
+      "return_words": 1,
+      "role": "nft_or_POSM",
+      "source": "ERC721 interface / actual POSM ABI"
+    },
+    "rangeUpdatePending(uint256)": {
+      "arguments": [
+        "BUCKET"
+      ],
+      "return_words": 1,
+      "role": "strategy",
+      "source": "src/ZZZStrategy.sol"
+    },
+    "secondaryId(uint256)": {
+      "arguments": [
+        "group_lpTokenId"
+      ],
+      "return_words": 1,
+      "role": "liquidity",
+      "source": "src/ZZZLiquidityManager.sol"
+    },
+    "set(int256,uint256,uint256)": {
+      "arguments": [
+        "unchanged_positive_price_lt_2pow255",
+        "current_head_timestamp",
+        "current_head_timestamp"
+      ],
+      "encoding": "explicit positive int256 word; does not use unsupported generic int codec",
+      "return_words": 0,
+      "role": "four_fixture_mock_feeds",
+      "source": "old Case setup signature / current driver explicit selector"
+    },
+    "setKeeper(address,bool)": {
+      "arguments": [
+        "new_nonzero_sender",
+        "True"
+      ],
+      "return_words": 0,
+      "role": "access",
+      "source": "src/ZZZAccessController.sol:222"
+    },
+    "sharesOf(uint256)": {
+      "arguments": [
+        "actual_NFT_ID"
+      ],
+      "return_words": 1,
+      "role": "vault",
+      "source": "src/interfaces/IZZZ.sol"
+    },
+    "ticks(uint256)": {
+      "arguments": [
+        "group_lpTokenId"
+      ],
+      "fixture_ticks": [
+        121400,
+        132600
+      ],
+      "return_words": 2,
+      "role": "liquidity",
+      "source": "src/ZZZLiquidityManager.sol",
+      "word_types": [
+        "int24",
+        "int24"
+      ]
+    },
+    "tokenAtOrdinal(uint256)": {
+      "arguments": [
+        "ordinal1_or2"
+      ],
+      "return_words": 1,
+      "role": "nft",
+      "source": "src/ZZZNFT.sol"
+    },
+    "weightOf(uint256)": {
+      "arguments": [
+        "actual_NFT_ID"
+      ],
+      "return_words": 1,
+      "role": "royalty_rewards",
+      "source": "src/ZZZRoyaltyRewards.sol"
+    }
+  },
+  "config_concordance": [
+    "Current accounting7/custody5/portfolio2/maintenance3/confirmation3/execution_quality1/execution_price1/LP3/royalty4 and exact helper role map match working Case/c814 setup.",
+    "240second cadence,12confirmations,24M/full25percent,5gwei,1e16transaction/5e16daily/includedfee limits unchanged.",
+    "Harvest enabled; compound/idle/conversions/metadata/principal/buyback jobs disabled; bucket discovery maximum/percycle4 match original Case.",
+    "Profile1 preserved; type2 maxPriorityFeePerGas may be nonzero within cap; no schema2 zero-tip migration."
+  ],
+  "confirmed_additional_API_mismatches": [],
+  "kind": "focused_c828_helper_API_static_review",
+  "native_zero_read_slots": {
+    "buybackBalance(address)": 0,
+    "claimableComponents(uint256,address)": 1,
+    "compoundBalance(uint256,address)": 1,
+    "liabilities(address)": 0
+  },
+  "production_ABI_zero_address_guard_unchanged": true,
+  "retained_failure_scope": "c827 native-zero helper refusal before source keeper/harvest; fresh c828 is a separate attempt, no retrospective pass.",
+  "reviewed_helpers": {
+    "controller_template.py": {
+      "bytes": 31862,
+      "sha256": "a25a74da8e643be5d5b8dab480878a75517aaa772528a10adf2a898c68e7b045"
+    },
+    "driver.py": {
+      "bytes": 13350,
+      "sha256": "c1b0f4a87ca0a1a31a4a3fc7e364ac4878ec4ba7c626e37c988c68a2163195ab"
+    },
+    "gateway.py": {
+      "bytes": 7437,
+      "sha256": "3a6e380fd34c4b0479d9e5fe7d41d7b666d4fc721ec844b761e80b11ef436292"
+    },
+    "shared.py": {
+      "bytes": 12015,
+      "sha256": "f8105871fc3ee10e3456b8af29c69e076d2741e2ed90eba5d07b7641faa77128"
+    },
+    "target_worker.py": {
+      "bytes": 19299,
+      "sha256": "4e3691ed4722701d42f7abe724fc5e0d9d4cc18d2702b23b6dfba35db840f236"
+    }
+  },
+  "reviewed_reference_case": {
+    "path": "reports/ubuntu-daemon-storage-20261126/preparation/shared/job_cases.py",
+    "sha256": "7885a56f0b63db6fc73c42febcd8e7b9ea70a1e8eb4c031d0e1ec079f40146c7"
+  },
+  "schema": 1,
+  "shape_scope": "one() enforces one word; group explicitly enforces8. ticks and claims return2 according to exact pinned contracts and old vectors; generic call only checks whole-word alignment and is not a general ABI decoder qualification.",
+  "status": "no_additional_actual_API_mismatch_found_after_narrow_native_currency_fix",
+  "target_health_expectations": [
+    "A cycle starting pending skips fresh execution/confirmation health; confirmed settlement yields expected exit1/degraded with pending_recovery metadata.",
+    "Second fresh stock process must reach exit0/dry_run_v2 with source/config-bound observed_this_cycle records and unchanged pending/nonce/spent/anchor/fee/last fields.",
+    "Metadata clock guard allows at most30seconds in future, while generic head guard is600seconds; real-clock metadata proof remains mandatory."
+  ],
+  "transaction_encode_AST_unchanged_from_c827": true
+}

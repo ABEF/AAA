@@ -1,0 +1,192 @@
+{
+  "activity": {
+    "application_imports": 0,
+    "application_runs": 0,
+    "docs_or_report_prose_edits": 0,
+    "native_runs": 0,
+    "network_calls": 0,
+    "reviewed_application_or_helper_runs": 0,
+    "server_calls": 0,
+    "test_bodies": 0,
+    "todo_generator_runs_in_review": 0
+  },
+  "baseline_commit": "d6e8a909fd2b2a12eb1bee15173e92d526178cdb",
+  "current_publication_files": 21,
+  "document_hashes": {
+    ".gitattributes": "5563032c8a8a141937c0db78d7112e3a3a03401425c23046ae2fcfd4409258ee",
+    "AGENTS.md": "e25eec791d936488726f5292fc78f0d701648f025646523072baf432d3e6b12b",
+    "PROJECT_CONTEXT.md": "71e1363c3677a94b749194d4a84c35f3f97b5ca1ca75442e6941ee94ded2c48e",
+    "README.md": "99a113fa8d60ada172c49ab65cdfbc3582d92f0332a7be5936e1773518828da3",
+    "TODO.md": "f26e0ea8d867bbaf19a0418de33e884664014e1c6b30e17b829d462b0c72938a",
+    "docs/AUDIT_FINDINGS.md": "75d9bfdb08187cefac72ad639cb4abaa6cd15526bd40aa837a1095298e0b5fb6",
+    "docs/IMPLEMENTATION_STATUS.md": "1ca3b8b2e49d10085fde1e27f965285f690c6119c217d28d78a1fa7d1e4911c8",
+    "docs/KEEPER_ALERTS.md": "58c270e9677c9a0e4a83075eb4eea60ac87e6e865c9dc400d411d908242dfafc",
+    "docs/KEEPER_BACKUP.md": "a50bf64504b891f66917afaa8b5a5cb29da84f7815958bf7619a74ee458d902c",
+    "docs/KEEPER_RECOVERY.md": "f0ef52e7c0951817546fafa47d8f38e80bdeb9b42f5a0d85dd673280cc8e0d2a",
+    "docs/KEEPER_REHEARSALS.md": "e474604a130cf53ac1b26960fe83016520f55f6fc1bbfba532163b094762ef69",
+    "docs/KEEPER_SCHEDULING.md": "9af5ea53caecedd0c9cd05f2eb2a84af6ce54d5c40d12578647da2c84ab1698c",
+    "docs/KEEPER_SIDECAR_RECOVERY.md": "5ec0dabcb0dfeb5a1d77bec77521636443f468a81f483fbb71a9218ce9e73586",
+    "docs/OPERATOR_MANUAL.md": "a3ec67cfa183dff2c9a508adcc4231b5fd31ba94c9e829dfb1846c6b87fc112c",
+    "docs/README.md": "7945185662bd1d37c13f1b470f6329138325e856a597138d03066fdda08ae1aa",
+    "docs/RELEASE_CHECKLIST.md": "89035ec314325eccfd9740a4970216df62ea548ecb43710943db9260dc860b78",
+    "docs/ROADMAP.md": "89843a5dccc6cdaddc212266fb74e8e0a96a82e8e7d803855faabd9f2447c84c",
+    "docs/WORKLOAD_COVERAGE.md": "71f72d8ebef5dc3ed4cf673785fe5454f333fc97a303773cc3a55183857c54f3",
+    "docs/WORK_HANDOFF.md": "7bca900247c69f1daae8fd9189f41c78955a551df9e66678c21478191fcb54ec",
+    "docs/project-todo.json": "b503f9160c6bbc28ba7cc65491c2bfcab1299e8a6b171d4c2794c426567f79da",
+    "reports/README.md": "593040277e3ea475f47602d63c28e71abff67837c23aa17738aecd36ff7ee053",
+    "reports/keeper-clean-restart-20261127/REVIEW.md": "7aa731932cddd8c1c0e20fc4e95dec8e4da408d4a5176c3cc40e617c5389dea4"
+  },
+  "evidence_review_scope": "Static documentation and existing sanitized saved-record concordance only; no private config/key/raw journal inputs read for this review.",
+  "factual_concordance": [
+    "45-file/808416-byte actual desktop kit, three native operations and four stock processes are distinct counts.",
+    "One original local stock harvest, zero recovery sends; exact receipt cost/day/nonce/anchor and fresh metadata phases match saved evidence.",
+    "2119 final RPC count is distinguished from the2117 snapshot before final nonce reads.",
+    "Original c826/c827/target226 failures and first020 host-transition NONPASS are retained; later target2/settled021 are separately scoped.",
+    "18 external OS runtime mounts and separately retained isolated chain remain explicit dependencies; no OS/chain archive/physical second-host claim.",
+    "Source41/13/19, production ABI, operating/native/transport/financial guards, existing environments and paused heartbeat retain their boundaries.",
+    "Q06/P20/P21 and live public-chain/provider/channel/fencing/durability/sustained/independent approval remain open."
+  ],
+  "findings": [],
+  "four_protected_dirty_files_byte_identical": true,
+  "inventory_workload_plan_selectors_unchanged": true,
+  "kind": "current_clean_restart_documentation_review",
+  "line_preservation": {
+    "initial_normalizing_update_receipt_retained_as_pre_repair_scope": true,
+    "metadata_sha256": "c9a24bacfa1ba395134bcf1f3f1fa03832987cba4573976b1d8424ff3249003a",
+    "normalized_content_unchanged": true,
+    "raw_files_repaired": 14
+  },
+  "new_links_and_anchors_resolve": true,
+  "new_local_links_checked": 37,
+  "new_report_files": 1,
+  "reviewed_files": {
+    ".gitattributes": {
+      "baseline_sha256": "59ca2d4089df3dd88d7b1361581442deb1ed905638536f6f3dfe52ebf62b327d",
+      "bytes": 29931,
+      "sha256": "5563032c8a8a141937c0db78d7112e3a3a03401425c23046ae2fcfd4409258ee"
+    },
+    "AGENTS.md": {
+      "baseline_sha256": "9b5a2fd3d1680d993715a6be3ac6df8bf693287d19dc81cd1604c6b3e378bece",
+      "bytes": 65925,
+      "sha256": "e25eec791d936488726f5292fc78f0d701648f025646523072baf432d3e6b12b"
+    },
+    "PROJECT_CONTEXT.md": {
+      "baseline_sha256": "917bfcca4d5a9a6f7eac15b781636d3d73c3fd3d032eaf716763839789dc5a42",
+      "bytes": 36838,
+      "sha256": "71e1363c3677a94b749194d4a84c35f3f97b5ca1ca75442e6941ee94ded2c48e"
+    },
+    "README.md": {
+      "baseline_sha256": "15106cfcfc832da8d4506daf1345d6c3d62098706769382e1ccdf462de5a55a4",
+      "bytes": 19225,
+      "sha256": "99a113fa8d60ada172c49ab65cdfbc3582d92f0332a7be5936e1773518828da3"
+    },
+    "TODO.md": {
+      "baseline_sha256": "0a18b3c191c7aa61a15f402bb16c43dddb6e873d19b077582bbe1e60c526810c",
+      "bytes": 538079,
+      "sha256": "f26e0ea8d867bbaf19a0418de33e884664014e1c6b30e17b829d462b0c72938a"
+    },
+    "docs/AUDIT_FINDINGS.md": {
+      "baseline_sha256": "6121ef04bef6cdff571a035491df411a668e4bb8aa28883375013beaf0eaec6d",
+      "bytes": 40559,
+      "sha256": "75d9bfdb08187cefac72ad639cb4abaa6cd15526bd40aa837a1095298e0b5fb6"
+    },
+    "docs/IMPLEMENTATION_STATUS.md": {
+      "baseline_sha256": "df2e32d403d8fbf3b79dbe2ce24468e4a2b91d4831f824a76f335aa4808cfcea",
+      "bytes": 45806,
+      "sha256": "1ca3b8b2e49d10085fde1e27f965285f690c6119c217d28d78a1fa7d1e4911c8"
+    },
+    "docs/KEEPER_ALERTS.md": {
+      "baseline_sha256": "e0919c635563b176fcfb24d42f63b6b7f38ea1822590a3bf947c5b0f6ffcd5e2",
+      "bytes": 14685,
+      "sha256": "58c270e9677c9a0e4a83075eb4eea60ac87e6e865c9dc400d411d908242dfafc"
+    },
+    "docs/KEEPER_BACKUP.md": {
+      "baseline_sha256": "062f8411c01d8ed42b3184782820cba6315b8a5f27cce189c3d0b51857f2161a",
+      "bytes": 14445,
+      "sha256": "a50bf64504b891f66917afaa8b5a5cb29da84f7815958bf7619a74ee458d902c"
+    },
+    "docs/KEEPER_RECOVERY.md": {
+      "baseline_sha256": "1e8ee3a30b202d46e12df2290e305ae8b23e96d2e552733d56c6a6c29e5fcaff",
+      "bytes": 63987,
+      "sha256": "f0ef52e7c0951817546fafa47d8f38e80bdeb9b42f5a0d85dd673280cc8e0d2a"
+    },
+    "docs/KEEPER_REHEARSALS.md": {
+      "baseline_sha256": "4b040a9a950f63d49f1ce12ee8329fdce85addd5ae2bb19a9215993398dec58f",
+      "bytes": 18663,
+      "sha256": "e474604a130cf53ac1b26960fe83016520f55f6fc1bbfba532163b094762ef69"
+    },
+    "docs/KEEPER_SCHEDULING.md": {
+      "baseline_sha256": "66d18a64580bec5de4c3f6ce43154cfecf6025e66c3cd46af8de2cd456235eef",
+      "bytes": 13306,
+      "sha256": "9af5ea53caecedd0c9cd05f2eb2a84af6ce54d5c40d12578647da2c84ab1698c"
+    },
+    "docs/KEEPER_SIDECAR_RECOVERY.md": {
+      "baseline_sha256": "64efb0ca32d8f87bcdb035c3ca3be8075bda351de202369bf8f9ad996cff28bd",
+      "bytes": 9962,
+      "sha256": "5ec0dabcb0dfeb5a1d77bec77521636443f468a81f483fbb71a9218ce9e73586"
+    },
+    "docs/OPERATOR_MANUAL.md": {
+      "baseline_sha256": "b8eb49216fc6ef1c9e0efc1603ae75b295e252355f4eb07e4f09d2dce9147c08",
+      "bytes": 728815,
+      "sha256": "a3ec67cfa183dff2c9a508adcc4231b5fd31ba94c9e829dfb1846c6b87fc112c"
+    },
+    "docs/README.md": {
+      "baseline_sha256": "839338ef62114cce9032e798f01f2b700f48a3750e45ce656acbd2aee50e4dd1",
+      "bytes": 22215,
+      "sha256": "7945185662bd1d37c13f1b470f6329138325e856a597138d03066fdda08ae1aa"
+    },
+    "docs/RELEASE_CHECKLIST.md": {
+      "baseline_sha256": "4cb6d34f41fd10cbbc2153a2da03d4e9202ea1f8d544350b3c3e0d3c1cbb820b",
+      "bytes": 20106,
+      "sha256": "89035ec314325eccfd9740a4970216df62ea548ecb43710943db9260dc860b78"
+    },
+    "docs/ROADMAP.md": {
+      "baseline_sha256": "c6ca9b7488b215ebea7c1e9392bb63e1137545ca47616c6400ff1ca08a3e9992",
+      "bytes": 57360,
+      "sha256": "89843a5dccc6cdaddc212266fb74e8e0a96a82e8e7d803855faabd9f2447c84c"
+    },
+    "docs/WORKLOAD_COVERAGE.md": {
+      "baseline_sha256": "b996b7a70e0c80b310074f56e5ae2d71aae88adae3d0f67b8d561853ab89960e",
+      "bytes": 16598,
+      "sha256": "71f72d8ebef5dc3ed4cf673785fe5454f333fc97a303773cc3a55183857c54f3"
+    },
+    "docs/WORK_HANDOFF.md": {
+      "baseline_sha256": "79264ec28916fbf370e47aee8c781d48dfcbbd56ced49fd9f885f3abd2756051",
+      "bytes": 30082,
+      "sha256": "7bca900247c69f1daae8fd9189f41c78955a551df9e66678c21478191fcb54ec"
+    },
+    "docs/project-todo.json": {
+      "baseline_sha256": "0527ed7db2ac635e727aab49b97c9481b23f9855ae282e8c119b7fa18d1d33d7",
+      "bytes": 556448,
+      "sha256": "b503f9160c6bbc28ba7cc65491c2bfcab1299e8a6b171d4c2794c426567f79da"
+    },
+    "reports/README.md": {
+      "baseline_sha256": "7416584385d382d12d53ffd025f26ee20830e4f3b526406840580ecab696a0db",
+      "bytes": 47866,
+      "sha256": "593040277e3ea475f47602d63c28e71abff67837c23aa17738aecd36ff7ee053"
+    },
+    "reports/keeper-clean-restart-20261127/REVIEW.md": {
+      "bytes": 11476,
+      "sha256": "7aa731932cddd8c1c0e20fc4e95dec8e4da408d4a5176c3cc40e617c5389dea4"
+    }
+  },
+  "schema": 1,
+  "success": true,
+  "todo": {
+    "changed_tasks": [
+      "keeper-guardrails",
+      "keeper-recovery"
+    ],
+    "counts": {
+      "done": 35,
+      "excluded": 1,
+      "progress": 40,
+      "todo": 7
+    },
+    "generated_anchor_order_text_acceptance_match": true,
+    "generated_snapshot_sha256_matches": true,
+    "prior_acceptance_retained": true,
+    "snapshot_sha256": "3965b0d30e234e0abafe076f0bd384248faf23ed61f1ee7389b2f3a239d51c4b",
+    "stable_ids_statuses": 83
+  }
+}

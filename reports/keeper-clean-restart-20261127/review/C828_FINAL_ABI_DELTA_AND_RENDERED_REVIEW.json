@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "kind": "independent_c828_focused_ABI_delta_and_rendered_source_review",
+  "status": "pass_for_authorized_bounded_new_composition",
+  "controller": {
+    "bytes": 37418,
+    "sha256": "22d459431d168fa5822ea8917544a2de166f2e1a820b1d9f6de39516a1d31a91"
+  },
+  "frozen_files": {
+    "controller_template.py": "a25a74da8e643be5d5b8dab480878a75517aaa772528a10adf2a898c68e7b045",
+    "driver.py": "c1b0f4a87ca0a1a31a4a3fc7e364ac4878ec4ba7c626e37c988c68a2163195ab",
+    "gateway.py": "3a6e380fd34c4b0479d9e5fe7d41d7b666d4fc721ec844b761e80b11ef436292",
+    "host_control.py": "467c712d890a841e14bf665ab5e3eaa7299647a1b1185fc8a2f2a28b60cba8a0",
+    "pack.py": "5faf92441fc9048546c05a109d47bdf9ccb4a626583ed1de786d260cbfbfcb72",
+    "remote_capsule.py": "22d459431d168fa5822ea8917544a2de166f2e1a820b1d9f6de39516a1d31a91",
+    "runtime_support.py": "d447e2571919d0bbd7b80f3f7bdd0c0a4df4e96a128a10026293125e12beac72",
+    "shared.py": "f8105871fc3ee10e3456b8af29c69e076d2741e2ed90eba5d07b7641faa77128",
+    "target_worker.py": "4e3691ed4722701d42f7abe724fc5e0d9d4cc18d2702b23b6dfba35db840f236"
+  },
+  "normalized_function_changes": {
+    "shared.py": [
+      "call"
+    ],
+    "controller_template.py": [
+      "fetch"
+    ]
+  },
+  "all_other_six_helper_ASTs_label_and_preparation_directory_only": true,
+  "original_c827_twelve_files_and_archive_byte_equal": true,
+  "source_manifest_sha256": "c287aa0c4b8e4113f7ffa1459f39a704bd17b5165f23084e3a8f26995cdb0e08",
+  "unchanged_source_members": 41,
+  "rendered_source_and_five_helper_maps_exact": true,
+  "native_currency_read_slots": {
+    "compoundBalance(uint256,address)": 1,
+    "buybackBalance(address)": 0,
+    "liabilities(address)": 0,
+    "claimableComponents(uint256,address)": 1
+  },
+  "ABI_review": {
+    "only_four_read_signatures_accept_exact_zero_currency_slot": true,
+    "all_other_argument_words_use_unchanged_production_word": true,
+    "transaction_encode_and_production_ABI_unchanged": true,
+    "positive_mock_feed_answer_int256_range_and_exact_uint256_block_timestamps": true,
+    "all_helper_call_signatures_and_argument_positions_match_contract_sources": true,
+    "group_words": 8,
+    "group_LP_id_index": 1,
+    "group_active_status_index": 7,
+    "ticks_words": 2,
+    "ticks_representation": "raw ABI uint words; fixture ticks positive",
+    "claimable_components_words": 2,
+    "NFT_ids_from_ordinals_not_assumed_equal": true,
+    "independent_core_return_role_audit_received": true,
+    "optional_shape_assertions_for_ticks_and_claims_not_added": "Pinned contracts have the reviewed exact return ABI; no actual mismatch found."
+  },
+  "private_failure_fetch_review": {
+    "same_exact_eight_record_allowlist": true,
+    "target_group_empty_and_ExecMainCode_1_required": true,
+    "present_records_only_missing_records_and_actual_status_explicit": true,
+    "success_still_requires_exit_zero_RESULT_success_true_and_all_eight_records": true,
+    "source_config_and_pending_exact_hashes_checked": true,
+    "per_record_bytes_max": 32768,
+    "packet_bytes_max": 131072,
+    "compressed_bytes_max": 32768,
+    "no_fill_restart_or_application_execution": true,
+    "raw_private_records_not_publication_inputs": true
+  },
+  "actual_runtime_gate_pending": false,
+  "material_findings_remaining": [],
+  "retained_failure_boundaries": [
+    "c826 namespace-only executable client lookup failure precedes node startup.",
+    "c827 bootstrap native-currency ABI read failed before source harvest; zero signed raw transaction attempts per saved parent evidence, to be checked independently after curation."
+  ],
+  "scope": "One new stock source harvest plus five fixture governance/feed setup transactions, original45-member private desktop return, fenced source, unsigned clean-root recovery and dry cycle, final physical reads before independent disposable node stop.",
+  "limits": "Same-host clean application reconstruction against a continuously running isolated disposable node; no chain-image restore, physical second host, production adoption, durability or sustained-operation approval.",
+  "review_activity": {
+    "application_imports": 0,
+    "application_or_helper_bodies": 0,
+    "native_calls": 0,
+    "test_bodies": 0,
+    "server_calls": 0,
+    "network_calls": 0,
+    "own_static_AST_hash_and_saved_JSON_only": true
+  },
+  "actual_prepare_runtime": {
+    "input": "private/campaign-003/prepare/SANITIZED_RESULT.json",
+    "bytes": 6313,
+    "sha256": "949cb3900872163f478d45096f7153bbabfd18f7648a351569a5467a844c6daa",
+    "runtime_sha256": "3025d86be5de48fd1643ddd53819fe3ef1d9268dca689749827ad399247abdb6",
+    "all_runtime_fields_equal_previous_independently_reviewed_readback": true,
+    "mount_entries": 18,
+    "source_files": 41,
+    "OS_runtime_external": true,
+    "physical_second_host": false
+  }
+}
