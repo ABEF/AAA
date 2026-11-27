@@ -511,3 +511,19 @@ reports/CURRENT_REVIEW.md -text whitespace=cr-at-eol
 evidence/documentation-consolidation-20261127/** -text whitespace=cr-at-eol
 zzz_ops/review_bundle.py -text whitespace=cr-at-eol
 tests_python/test_review_bundle_current_report.py -text whitespace=cr-at-eol
+
+# Exact opt-in wallet aggregate reader, helper artifact and source-scoped proof.
+frontend_api/service.py -text whitespace=cr-at-eol
+frontend_api/earnings_replay.py -text whitespace=cr-at-eol
+frontend_api/wallet_earnings.py -text whitespace=cr-at-eol
+frontend_api/lineage.py -text whitespace=cr-at-eol
+frontend_api/server.py -text whitespace=cr-at-eol
+frontend_api/worker.py -text whitespace=cr-at-eol
+config/nginx/popl-api-locations.conf -text whitespace=cr-at-eol
+frontend_api/read_batch.py -text whitespace=cr-at-eol
+frontend_api/read_batch/** -text whitespace=cr-at-eol
+frontend_api/wallet_aggregate.py -text whitespace=cr-at-eol
+tests_python/test_read_batch.py -text whitespace=cr-at-eol
+tests_python/test_read_batch_evm.py -text whitespace=cr-at-eol
+tests_python/test_wallet_aggregate_v2.py -text whitespace=cr-at-eol
+evidence/wallet-aggregate-20261127/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

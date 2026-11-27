@@ -1,6 +1,7 @@
 """Opt-in reuse of identical canonical reads within one bounded request.
 
-Only raw successful eth_call/eth_getCode responses are memoized. Callers still
+Raw successful eth_call/eth_getCode responses and explicitly prefetched static
+getter failures are memoized. Callers still
 decode and authenticate each response, and all head/chain/header/final checks
 remain live. The proxy sits outside an existing BudgetedRPC: a miss retains its
 ordinary call/POST charges, while a hit checks the same request's deadline and
@@ -15,6 +16,7 @@ import json
 import re
 
 from zzz_ops.work_budget import BudgetedRPC, checkpoint
+from zzz_ops.errors import RpcError, WorkLimit
 
 
 _current = ContextVar('popl_canonical_read_cache', default=None)
@@ -26,9 +28,19 @@ MAX_ENTRY_BYTES = 64 * 1024
 MAX_RETAINED_BYTES = 8 * 1024 * 1024
 
 
+def _conflict():
+    # An integrity contradiction must never become an isolated financial
+    # availability error. Import at use time to avoid the Projection cycle.
+    from frontend_api.service import ProjectionError
+    raise ProjectionError('Conflicting read-only batch replies')
+
+
 class _State:
     def __init__(self):
         self.replies = {}
+        # A reviewed static batch may include a reverted getter. Remember that
+        # outcome for this request so normal consumers cannot retry around it.
+        self.failures = set()
         # Retain transports as well as their IDs; object IDs cannot be reused
         # for another transport during this scope, including nested scopes.
         self.transports = {}
@@ -88,6 +100,8 @@ class _CanonicalRPC:
         key_bytes = None if key is None else _json_size(key, MAX_ENTRY_BYTES)
         if key_bytes is None:
             return self.inner.call(method, captured)
+        if key in state.failures:
+            raise RpcError('Read-only batch getter failed')
         if key in state.replies:
             result = deepcopy(state.replies[key])
             checkpoint()
@@ -117,6 +131,99 @@ class _CanonicalRPC:
 
     def __getattr__(self, name):
         return getattr(self.inner, name)
+
+
+def prefetch(projection, block, entries):
+    """Seed exact raw getter replies from the fixed reviewed static reader.
+
+    This internal seam is not an HTTP input or an alternative trust source.
+    The reader must authenticate its fixed constructor output before calling
+    here. Existing target/ABI decoding remains in the ordinary Projection calls.
+    A None reply means that exact getter reverted, never an uncached retry.
+    All entries commit atomically within the unchanged retention bounds.
+    """
+    checkpoint()
+    state = _current.get()
+    rpc = projection.rpc
+    if state is None or not state.active or not isinstance(rpc, _CanonicalRPC):
+        raise RuntimeError('Read-only prefetch requires an active canonical scope')
+    if not isinstance(entries, (tuple, list)) or not 1 <= len(entries) <= 256:
+        raise ValueError('Invalid read-only prefetch entries')
+    pending = {}
+    size = 0
+    for row in entries:
+        checkpoint()
+        if not isinstance(row, tuple) or len(row) != 3:
+            raise ValueError('Invalid read-only prefetch row')
+        target, data, result = row
+        if (type(target) is not str or re.fullmatch(r'0x[0-9a-f]{40}', target) is None or
+                target == '0x'+'0'*40 or type(data) is not str or
+                re.fullmatch(r'0x[0-9a-f]{8}(?:[0-9a-f]{64}){1,2}', data) is None or
+                result is not None and (type(result) is not str or
+                    re.fullmatch(r'0x(?:[0-9a-f]{64}){1,2}', result) is None)):
+            raise ValueError('Invalid read-only prefetch value')
+        key = _key(rpc.inner, 'eth_call', [{'to': target, 'data': data}, deepcopy(block)])
+        key_bytes = None if key is None else _json_size(key, MAX_ENTRY_BYTES)
+        result_bytes = _json_size(result, MAX_ENTRY_BYTES)
+        if key_bytes is None or result_bytes is None or key_bytes+result_bytes > MAX_ENTRY_BYTES:
+            raise ValueError('Invalid read-only prefetch identity')
+        if key in pending:
+            if pending[key] != result:
+                _conflict()
+            continue
+        if key in state.failures:
+            if result is not None:
+                _conflict()
+            continue
+        if key in state.replies:
+            if state.replies[key] != result:
+                _conflict()
+            continue
+        pending[key] = result
+        size += key_bytes+result_bytes
+        if state.retained_bytes+size > MAX_RETAINED_BYTES:
+            raise WorkLimit('rpc_budget')
+    checkpoint()
+    for key, result in pending.items():
+        if result is None:
+            state.failures.add(key)
+        else:
+            state.replies[key] = result
+    state.transports[id(rpc.inner)] = rpc.inner
+    state.retained_bytes += size
+    checkpoint()
+
+
+def batch_rpc(projection):
+    """Return the existing budgeted transport for the fixed static reader.
+
+    Its constructor response is not retained a second time beside the decoded
+    getter replies. This does not open a budget or bypass transport accounting.
+    """
+    checkpoint()
+    state = _current.get()
+    rpc = projection.rpc
+    if state is None or not state.active or not isinstance(rpc, _CanonicalRPC):
+        raise RuntimeError('Read-only batching requires an active canonical scope')
+    if not isinstance(rpc.inner, BudgetedRPC):
+        raise TypeError('Read-only batching requires an existing budgeted RPC')
+    return rpc.inner
+
+
+def cached(projection, block, target, data):
+    """Inspect one exact same-request getter, including its remembered failure."""
+    transport = batch_rpc(projection)
+    state = _current.get()
+    key = _key(transport, 'eth_call', [{'to': target, 'data': data}, deepcopy(block)])
+    if key is None:
+        raise ValueError('Invalid read-only cache lookup identity')
+    if key in state.failures:
+        return True, None
+    if key in state.replies:
+        result = deepcopy(state.replies[key])
+        checkpoint()
+        return True, result
+    return False, None
 
 
 def _projections(projections):
@@ -179,6 +286,7 @@ def scope(projections):
         if token is not None:
             state.active = False
             state.replies.clear()
+            state.failures.clear()
             state.transports.clear()
             state.retained_bytes = 0
             _current.reset(token)

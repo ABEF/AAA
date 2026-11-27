@@ -12,18 +12,26 @@ prices or routes, and preparation never broadcasts a transaction.
 
 ## Full-wallet freshness and read admission
 
-[The new wallet-view qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/wallet-view-20261121/REVIEW.md)
-confirms a default single-client capacity conflict:1,000 holdings need at least
-190 protocol/ownership/summary/earnings API reads before card requests. With the
-unchanged one-read/second burst12 policy, the earliest last read is178seconds;
-at most132 can enter in120seconds, the maximum website snapshot age. More
-concurrent requests do not replenish tokens faster. Controlled per-request/
-saved-response passes are not full HTTP acceptance.
+The historical [separate-route wallet qualification](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/wallet-view-20261121/REVIEW.md)
+needed190 reads for1,000 holdings before cards: at one read/second with burst12,
+the earliest last read was178seconds, beyond the website's120-second snapshot
+age. Profile1 compact pages reduced the three-currency shape, but1,000 NFTs and
+66 descriptors still require63x17=1,071 two-axis data pages.
 
-Preserve admission and freshness limits. Keep this maximum wallet unqualified
-until reviewed bounded combined/selected reads reduce the request count while
-preserving exact ownership, accounting and independently unavailable metrics.
-Do not split identities, multiply services or raise rate/age limits to claim a pass.
+Explicit reviewed `wallet_read_batch: 1`/wallet_view_profile2 separates63
+ownership/summary pages from17 four-currency aggregate earnings pages:80 data
+pages, plus protocol/final proof/card reads. The new exact GET route is
+`/v1/wallets/<address>/aggregate/<confirmed-block>/<asset-offset>` and is included
+in the reviewed Nginx allowlist; an existing proxy is not updated automatically.
+The backend and isolated worker enforce the same fixed-block and bounded cursor
+validation. Never use a broader path proxy to bypass the exact route policy.
+
+This page count is not elapsed-time, provider, maximum-lineage, full F6/V10 or
+public-host acceptance. Preserve read1/s/burst12, all work/freshness/response
+limits and final canonical checks. The consumer paces requests; parallelism does
+not replenish tokens faster. Missing currencies or incomplete/mixed snapshots
+remain unavailable rather than partial totals. Do not split identities, multiply
+services or raise rate/age limits to claim a pass. See [the read profile](FRONTEND_API.md#opt-in-whole-wallet-earnings-profile2).
 
 ## Capacity and identity
 

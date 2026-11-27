@@ -56,7 +56,7 @@ class Lineage:
             _keys(item, fields, 'predecessor')
             # Do not inherit a successor's new ledger ABI/profile or converter
             # into an older deployment. Historical event replay needs no new getters.
-            previous_config = {k: v for k, v in config.items() if k not in ('predecessors', 'history', 'royalty_reporting', 'earnings_history', 'accounting_version','custody_version','mint_integration_version','execution_price_version')}
+            previous_config = {k: v for k, v in config.items() if k not in ('predecessors', 'history', 'royalty_reporting', 'earnings_history', 'accounting_version','custody_version','mint_integration_version','execution_price_version','wallet_read_batch')}
             previous_config['accounting_version'] = item.get('accounting_version', 1)
             previous_config['execution_price_version'] = item.get('execution_price_version', 0)
             if current.accounting_version in (3,4,5,6,7) and previous_config['accounting_version'] != current.accounting_version:

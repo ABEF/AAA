@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "kind": "FINAL_REVIEWED_CONSUMER_WHITELIST_AND_EVIDENCE",
+  "website_baseline": "89a8219b021403e8da542aa2a8b11ab14e833644",
+  "files": {
+    ".gitattributes": "0ddadb7c3a5119e708348e095f2fb43e2f106aa1f72391e873b7a2950b467641",
+    "AGENTS.md": "4fb2fb26c3e3912eaf052f57e013bb0303a869de2009a30129dfcba7a76e2318",
+    "PROJECT_CONTEXT.md": "97bb6582be77b07dcb8429d54cfb11b4b2fbf5dd41c46c5f80dfbef189ba3789",
+    "README.md": "e1fd1126a7d5dc13c87982bc29be1331098780a2883ed702bb1386c157e183cd",
+    "deployment-api.js": "0224683bb4b042a2f48012dd50023ad689c520abc62bfe0d30e5c6c7b041936a",
+    "deployment-wallet-view.js": "8d5689d8b3c5b5738f7ea474d67c2080e1b4ee1e745770078b558fb26373150d",
+    "package.json": "20535fa7d47a4efacd4046bb217dacf010b242aa530b0e4d9155837690b67ec1",
+    "tests/compact-wallet-view.test.mjs": "ebba3d84d712fb843388572b0e6bf8dc0baada487db938dfee0e04f73fc6c2b0",
+    "tests/wallet-aggregate-view.test.mjs": "945de2abfbe3d7b674d7a6a5eecd8743184da5d9b368b32df5642c5dc93bf2ba",
+    "tests/wallet-aggregate-producer.test.mjs": "047a8c9885687b4f67a71a31ee0e95e90d4fa7d0f588b3d537166216ca6ff456",
+    "tests/fixtures/wallet-aggregate-20261127/producer.json": "0b56b85df22d8cf3c8744409f1d9d58acf7a9760328dc3e0b1bf80a2d682d5b3"
+  },
+  "root_docs": {
+    "docs/SOURCE9_WEBSITE_PROFILE.md": "09fc55c072a946504e06205aa8f062742ae23afd85d3f0aa3517ae378344522c",
+    "docs/SOURCE10_WEBSITE_PROFILE.md": "acbcb9232ea4211a3392ec43a8ae7d57f20a033740e7263f5aaf30daf4d6c958"
+  },
+  "legacy_compact_prefix_exact": true,
+  "preserved_signer_and_null_public_configs": {
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300"
+  },
+  "distinct_new_test_methods": 25,
+  "affected_existing_test_methods": 1,
+  "unchanged_test_bodies": 0,
+  "original_composition_nonpass_preserved": {
+    "path": "composition-001/RESULT.json",
+    "sha256": "0c4b303e10d8431e830a1bdc23daf6d3723ef6c4ba47ce1808aa370f3be9094e",
+    "cause": "Incomplete injected lifecycle truth; original fixture preserved unchanged. No consumer weakening."
+  },
+  "corrected_composition": {
+    "path": "composition-002/RESULT.json",
+    "sha256": "fd5b7144abcb7779b7bf9f0eee0e532e6ddb3dcb09c3ec58452f151a591a0abc",
+    "fixture_sha256": "0b56b85df22d8cf3c8744409f1d9d58acf7a9760328dc3e0b1bf80a2d682d5b3",
+    "method_count": 1,
+    "affected_rerun_reason": "Only corrected actual-producer fixture changed; source and method unchanged; full DTO static prereview before rerun."
+  },
+  "verification_receipts": [
+    "NEW_CHECKS.json",
+    "NEW_CHECKS.tap",
+    "AFFECTED_CAPABILITY.json",
+    "AFFECTED_CAPABILITY.tap",
+    "composition-001/RESULT.json",
+    "composition-002/RESULT.json"
+  ],
+  "source_only": true,
+  "signing": "Anvil-only unchanged",
+  "config_adoption": false,
+  "build_or_rollout": false,
+  "runtime_or_provider_qualification": false,
+  "diff_whitespace_check": true
+}

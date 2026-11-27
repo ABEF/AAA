@@ -1,0 +1,163 @@
+{
+  "schema": 1,
+  "kind": "source_scoped_wallet_read_verification",
+  "original_stages_preserved": true,
+  "files": [
+    {
+      "path": "evidence/wallet-aggregate-20261127/ANONYMOUS_CODE_INVENTORY.json",
+      "sha256": "3d44f20db6aa56548cd545337c6e125474f6e612f885b5ad997202ab9704eaaf",
+      "bytes": 34532
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/BACKEND_VERIFICATION.json",
+      "sha256": "6f831ba58a563d0e6b0c1058dbc04ebd39ff34926c9543893b8efa0f989bbcd8",
+      "bytes": 19088
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/composed-001/INTERRUPTED.json",
+      "sha256": "9750ebe832158cffebb635a0d63119dc0c2a74717565acae428bfde4f82c4cda",
+      "bytes": 1716
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/composed-001/stderr.log",
+      "sha256": "1cdec51a92a973d5837bce6709ed386cf4c9e35c5af307d473b378c753267fee",
+      "bytes": 1384
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/consumer/AFFECTED_CAPABILITY.json",
+      "sha256": "4020948a610c1380b64e80754c692107898f3387b4acfedabc18a9e51cd7198c",
+      "bytes": 2639
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/consumer/BACKEND_FIXTURE.json",
+      "sha256": "e54d72561172f390c45023d3b39a723c2aa2f877031d787c48557ed53dd7c3ee",
+      "bytes": 43368
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/consumer/BACKEND_FIXTURE_V2.json",
+      "sha256": "0b56b85df22d8cf3c8744409f1d9d58acf7a9760328dc3e0b1bf80a2d682d5b3",
+      "bytes": 49481
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/consumer/composition-001/RESULT.json",
+      "sha256": "0c4b303e10d8431e830a1bdc23daf6d3723ef6c4ba47ce1808aa370f3be9094e",
+      "bytes": 5186
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/consumer/composition-002/RESULT.json",
+      "sha256": "fd5b7144abcb7779b7bf9f0eee0e532e6ddb3dcb09c3ec58452f151a591a0abc",
+      "bytes": 5340
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/consumer/CONSUMER_RECEIPT.json",
+      "sha256": "da717848aab0ef3aa72f7f226fec5f0a6043424a400fd17bff56f13136daa035",
+      "bytes": 1717
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/consumer/FINAL_CONSUMER_RECEIPT.json",
+      "sha256": "3b99a9a63643aa8f613be1b8004fbcc2e3248406f8d64a3d8d7275ac503dc15e",
+      "bytes": 3155
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/consumer/NEW_CHECKS.json",
+      "sha256": "76a6aedf09b1703a30ed7e743f074af4dfde13b8c3c788325743309677dc12fb",
+      "bytes": 4289
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/consumer/PRODUCER_V2_RECEIPT.json",
+      "sha256": "e893ab739c4416f31c7ec96f060893beb4c3844d15f099f7bf56788c4708b313",
+      "bytes": 2350
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/conversion-003/RESULT.json",
+      "sha256": "2ee503304f8f91ae999cf3ad274315c4fc197658af3090f5762520b1bd23be41",
+      "bytes": 3602
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/conversion-003/stderr.log",
+      "sha256": "dedf4deb6f6cb41592e0adadd8c373028efee389d4fd71d36a0de51e5ce478fb",
+      "bytes": 2690
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/conversion-004/RESULT.json",
+      "sha256": "5b3796ffedd017aba434082dd9c2d4af75b16c054c052e8b74bb61dcee33b35e",
+      "bytes": 3602
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/DOCUMENTATION_STATIC.json",
+      "sha256": "7b2b63ec79dc00752d2346570e42580da9827d6107c9ff48d394af654b7bb966",
+      "bytes": 2136
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/FINAL_SOURCE_STATIC.json",
+      "sha256": "893d66c085c15a5838699c024788f1d2f4a09e91b4ab16187d817b1ce2e3d012",
+      "bytes": 2992
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/FUNCTION_INVENTORY.json",
+      "sha256": "0223ada7fb1a67906c02ebb23da64673a789ef298fcf6bb8cfbb2b58996ba1d4",
+      "bytes": 5004969
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/MAXIMUM_ASSERTIONS.json",
+      "sha256": "6fc7de1915474ba96bd41f1a8d5c74af21a5f14bc87309015fc1415715b55d91",
+      "bytes": 1355
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/model-001/RESULT.json",
+      "sha256": "745fe04a8e8b7d986260e9bb8345a8d7676c0975d5a3ce31d354bad501c01f79",
+      "bytes": 6359
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/PUBLICATION_INDEX.json",
+      "sha256": "1b8ecd249167b326e76b02f5c99d2531b53c2f7a183c1b8be4e6dacc1bcd1366",
+      "bytes": 56618
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/read-batch/compiler-output.json",
+      "sha256": "860f9551f14a10d5eb90c44fbae296bf24362157ce7d53ed2d81aef9aca0f21b",
+      "bytes": 7669
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/read-batch/FROZEN.json",
+      "sha256": "3232ea936b450f13fae0507865c9d1e0ca09972dd5f819ab26b5fb022be6897c",
+      "bytes": 1438
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/read-batch/run-001/RESULT.json",
+      "sha256": "cc69b2e93807360dd9277f9378b757d072a8365997d23e93c688ff54aa0d7540",
+      "bytes": 3912
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/read-batch/run-002/RESULT.json",
+      "sha256": "87c6425d654805f9cfce55efeee2b0fd4b826bff056e51d94ea4b24a9a6602f0",
+      "bytes": 7539
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/read-batch/run-003/RESULT.json",
+      "sha256": "b70be5f11c87ccdacd858aefc90c3e657efb27eeeaf2bdf1009e0ea531bd3955",
+      "bytes": 4590
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/read-batch/run-004/RESULT.json",
+      "sha256": "57830539564501b891ef85594183feaa446ad1dc54795b242711c9b332b1513b",
+      "bytes": 1252
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/read-batch/standard-input.json",
+      "sha256": "fc7b2f449763556a357b4b49c606039ba93148c50af38acc4fce051603c7a2fb",
+      "bytes": 5011
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/remaining-002/RESULT.json",
+      "sha256": "65797727a75a97a7b7052d7fd4d9baf46e2fa3d3580f11b4f4fe996123fd02bb",
+      "bytes": 6346
+    },
+    {
+      "path": "evidence/wallet-aggregate-20261127/remaining-002/stderr.log",
+      "sha256": "4fc8be8f9171efe04f0adcb478b162d5abb907d769e0a1648ec0e7e5322e4938",
+      "bytes": 3953
+    }
+  ],
+  "no_production_adoption": true
+}

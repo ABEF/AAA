@@ -97,6 +97,9 @@ def read(engine, wallet_address, block_number, offset, *, asset_offset=None):
                 require(ordinal == ordinals[i] and peer._uint('nft', 'tokenAtOrdinal(uint256)', ordinal, block=at) == i,
                         'Predecessor earnings identity differs')
                 if not prefix:
+                    if peer.accounting_version == 7:
+                        require(ordinal == model.ordinals.get(i),
+                                'Earnings NFT ordinal differs from complete mint history')
                     bucket, shares = model.shares.get(i, (0, 0))
                     require(peer._uint('vault', 'sharesOf(uint256)', i, block=at) == shares and
                             peer._uint('vault', 'nftBucket(uint256)', i, block=at) == bucket and

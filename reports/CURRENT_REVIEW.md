@@ -1,6 +1,6 @@
 # Current project review
 
-Reviewed 27 November 2026 against source `fdd599c7`. PoPL is an undeployed production candidate. **Production is NOT APPROVED.** Publishing source or this consolidation authorizes no deployment, seal, public transaction, signer adoption, website rollout, service restart or chain reset.
+Reviewed 27 November 2026; wallet-read advance against contract baseline `bf5c91fc` and website baseline `89a8219b`. Earlier documentation reconciliation retains baseline `fdd599c7`. PoPL is an undeployed production candidate. **Production is NOT APPROVED.** Publishing source or this consolidation authorizes no deployment, seal, public transaction, signer adoption, website rollout, service restart or chain reset.
 
 This is the current cross-project assessment. [Findings](../docs/AUDIT_FINDINGS.md) owns defects, accepted trust and unresolved limits; [the task ledger](../docs/project-todo.json), [generated Todo](../TODO.md), [qualification sequence](../docs/ROADMAP.md) and [release checklist](../docs/RELEASE_CHECKLIST.md) retain their distinct roles. Technical instructions remain in their owning guides and the [operator manual](../docs/OPERATOR_MANUAL.md).
 
@@ -20,7 +20,7 @@ Default activation/growth minima remain $100/$5, subject to a higher pool minimu
 
 The selected contribution candidate is 32M gas with full 20% padding, maximum admitted estimate 26,666,666; backend decimal string and website integer must match. Keeper/manual maintenance remains 24M with full 25%; claims remain 12M with full 20%; historical defaults and source-specific evidence are not relabelled. All 13 controlled F6 cold cases fit their original 20M/full20% profile. In the expanded 1,000-NFT/64-ERC20-plus-ETH/two-LP fixture, 11/12 contributions fit 32M; the worst direct estimate remains 476,135 above admission. A separately paid preparation option does not remove that direct shortfall. Never substitute receipt/trace gas for a required fresh estimate.
 
-The source inventory is 191 Python files / 2,140 named definitions / 280 lambdas. Frozen Solidity maps remain 61 project sources / 39 dependencies / four build controls and 1,021 ABI rows. The workload plan covers 187 scenario classes with service partitions; this is an obligation map, not dynamic full coverage. The [current source-bound inventory](../evidence/documentation-consolidation-20261127/FUNCTION_INVENTORY.json) includes this consolidation's review-bundle change; [the current anonymous-code inventory](../evidence/documentation-consolidation-20261127/ANONYMOUS_CODE_INVENTORY.json) binds its exact source and line locations without claiming execution coverage. Tight EIP-170/initcode headroom remains a constraint; source size gates are not real constructor/provider approval.
+The source inventory is 193 Python files / 2,161 named definitions / 281 lambdas. Frozen Solidity maps remain 61 project sources / 39 dependencies / four build controls and 1,021 ABI rows. The workload plan covers 187 scenario classes with service partitions; this is an obligation map, not dynamic full coverage. The [current source-bound inventory](../evidence/wallet-aggregate-20261127/FUNCTION_INVENTORY.json) includes the wallet-read/bundle changes; [the current anonymous-code inventory](../evidence/wallet-aggregate-20261127/ANONYMOUS_CODE_INVENTORY.json) binds its exact source and line locations without claiming execution coverage. Tight EIP-170/initcode headroom remains a constraint; source size gates are not real constructor/provider approval.
 
 ## Markets, prices and execution
 
@@ -40,9 +40,76 @@ Randomness still needs a qualified live coordinator/service, funding, callbacks,
 
 Current source10/schema5/mint2/V10 read and unsigned-review support is implemented locally. Source9/V9, historical native/current profiles and actual served environments retain distinct identities. Public deployment/signing is null/disabled; the shared browser signer remains Anvil-only. A future production submission path needs separate review rather than silently extending that signer.
 
-Complete ownership assembly requires every fixed-block page with exact owner/chain/NFT/configuration/block/digest/count and order; at most 16 IDs per page means 63 pages for 1,000 NFTs. A final page or eight cards is not a full wallet. The controlled source9 80-GET wallet/cards run finished in 98.834 seconds; final age 116.018 left only 3.982 seconds under 120. This is thin synthetic evidence, not robust provider/HTTP/full F6/V10 qualification. The 1,000-by-66 earnings cross-product remains outside the 120-second envelope. Keep explicit incomplete/unavailable states, 1,024-read/1 MiB limits, ingress/concurrency budgets, and cache encoded key+JSON bounds of 64 KiB/entry and 8 MiB total.
+Complete ownership assembly requires every fixed-block page with exact owner/chain/NFT/configuration/block/digest/count and order; at most 16 IDs per page means 63 pages for 1,000 NFTs. A final page or eight cards is not a full wallet. The controlled source9 80-GET wallet/cards run finished in 98.834 seconds; final age 116.018 left only 3.982 seconds under 120. This is thin synthetic evidence, not robust provider/HTTP/full F6/V10 qualification. Profile1's 1,000-by-66 earnings cross-product remains outside the120-second envelope. Optional profile2 replaces that cross-product with separate63 ownership/LP plus17 full-wallet earnings slices:80 coreGETs before protocol/cards/final provenance. This is a source improvement; actual provider/F6/V10/maximum-lineage/freshness qualification remains open. Keep explicit incomplete/unavailable states, 1,024-read/1 MiB limits, ingress/concurrency budgets, and cache encoded key+JSON bounds of 64 KiB/entry and 8 MiB total.
 
 Claim planning retains fresh complete validation and first-success safe prefixes; 32 is a count ceiling, not gas or optimal packing. Historical data requires canonical lineage, reorg rollback, exact raw amounts and the complete 86,400-second suffix. Changes to checkpoint semantic source require separately reviewed rebuild/re-pin for the matching consumer; preserve original checkpoint/review/DB/WAL and explicit codec generations. [API](../docs/FRONTEND_API.md), [claims](../docs/CLAIM_PLANNING.md), [checkpoint](../docs/EARNINGS_CHECKPOINTS.md), [history recovery](../docs/HISTORY_RECOVERY.md), [ingress](../docs/API_INGRESS.md).
+
+## Complete-wallet financial read improvement
+
+The optional API configuration `wallet_read_batch:1` selects wallet view profile2
+only with accounting7 and configured complete earnings. Omitted/zero retains
+profile1. Source9/source10 consumers independently prove all16-ID ownership/LP
+pages, then assemble four-currency earnings for the complete current-owner NFT
+inventory. Every slice binds the same block/configuration/IDs/count/digest and
+complete currency coverage. Legacy compact-reader logic remains byte-identical;
+unknown capability or a failed advertised endpoint cannot silently fall back.
+
+Per-NFT whole-unit earnings and paid/converted balances are reconciled before
+wallet aggregation. Claims/conversions/transfers/imports are not extra income;
+lifetime earnings follow the currently held NFTs, including earlier owners.
+Currency filtering reduces account bookkeeping without dropping global ledger
+events, tree state, faults, cohorts or exact rounding. The complete86400-second
+raw suffix remains mandatory and boundary semantics stay unchanged.
+
+A separately pinned constructor-only STATICCALL program runs through canonical
+creation eth_call. No helper is deployed, transaction signed, state override
+used or wallet gas paid. Each call covers at most4NFTs/4royalty currencies and
+uses fixed24M total virtual gas,50k plain/250k LP/1M royalty getter bounds;
+successful wrong-size replies are integrity failures. Requests still decode and
+authenticate individual raw getters. Explicit failed getters are retained only
+inside the request, with no uncapped retry or cross-request financial cache.
+The existing25s/1024RPC/2048POST/1MiB,64KiB-entry/8MiB cache and120s freshness
+limits remain. A legitimate expensive view or long lineage may still refuse.
+
+Review found and fixed three related issues: bind live mint ordinals to replayed
+immutable mint history; classify contradictory prefetched replies as fatal
+integrity errors; index each NFT's conversion history once and avoid creating
+unselected zero paid-currency rows. ETH conversion credits retain all source
+currencies, including those outside the current slice.
+
+Checkpoint semantic source now includes the reader/helper source and artifact.
+Old artifacts keep their exact original bytes and cannot be relabelled. Adoption
+requires a NEW independently reviewed/re-pinned matching checkpoint and a
+separately authorized worker/proxy/consumer rollout. Current protocol contracts,
+public null configurations, Anvil-only signer, services/sites/chains/journals
+and paused heartbeat remain unchanged. See [operator procedure](../docs/OPERATOR_MANUAL.md#optional-profile2-separate-complete-wallet-earnings).
+
+### Focused wallet-read verification
+
+| Partition | Actual evidence and scope |
+| --- | --- |
+| Exact backend |25 distinct NEW methods have staged PASS records:21 in completed receipts and four diagnostic passes retained from an interrupted campaign without a final source-stability receipt. Full-day boundaries, exact rounding/phase, claims/conversion/transfer, checkpoint source refusal and wrong live proofs are covered. This is not one final25-method suite. [Method ledger](../evidence/wallet-aggregate-20261127/BACKEND_VERIFICATION.json). |
+| Maximum controlled wallet |1000 NFTs/66 descriptors complete all17 earnings slices, each under existing25s/1024RPC/1MiB bounds. Exact lost stdout measurements remain null; no invented latency/RPC maxima and no duplicate run. Deployment/getter/history/clock truths are injected. [Assertions](../evidence/wallet-aggregate-20261127/MAXIMUM_ASSERTIONS.json). |
+| Read helper |Nine NEW protocol methods and two NEW actual EVM methods pass in distinct stages. The affected conflict method was rerun only after its fatal-classification fix. The EVM stage uses five compiled runtimes installed on a fresh owned node; actual constructor creation eth_call/STATICCALL executes, but normal F6/Robinhood/provider support is unqualified. |
+| Browser consumer |24 NEW profile2 checks plus one affected existing future-capability assertion pass. A separate NEW actual backend-to-JS composition passes for17NFTs/five currencies, independent raw/USD/LP/ETH totals and unchanged request pacing. Its native/runtime/geometry/clock seams remain explicit. [Composition](../evidence/wallet-aggregate-20261127/consumer/composition-002/RESULT.json). |
+
+Original nonpasses remain recorded: two read-helper receipt-setup failures ran
+no EVM method bodies; the backend campaign was interrupted for repeated test
+selector hashing; two many-conversion fixture failures preceded only that
+corrected method's rerun. The first JS composition rejected an incomplete
+controlled lifecycle. Its replacement was regenerated through actual readers
+after completing the fixture truth, with no production guard weakened or DTO
+edited after production. Original and replacement fixtures retain distinct hashes.
+No unchanged test body or normal contract/browser/keeper suite was rerun.
+
+The [source and helper binding check](../evidence/wallet-aggregate-20261127/FINAL_SOURCE_STATIC.json)
+verifies compiled creation bytes, reviewed standard input/settings and exact raw
+source pin; the compiler input normalizes CRLF to LF. It also checks Python
+syntax and unchanged protected files, browser signer and public configurations.
+Callable/operator generated bytes remain exact and the83 Todo IDs/statuses stay.
+All source-scoped receipts are indexed by [the evidence manifest](../evidence/wallet-aggregate-20261127/RECEIPT_MANIFEST.json).
+Actual current-F6/provider gas, archive/maximum-lineage, complete120s journey,
+HTTP/host/concurrency and reviewed rollout remain open under CWR07/Q06/P17.
 
 ## Keeper, recovery and diagnostic data
 
@@ -74,7 +141,7 @@ The [retirement manifest](../evidence/documentation-consolidation-20261127/RETIR
 
 Compiler output, size/source maps, analyzer records, required fixtures, transaction/receipt/state evidence and recovery evidence remain byte-exact. Required structured analyzer assessments remain because verification consumes them; they are not a second human findings register. Unrelated untracked drafts, private recovery packages and the four protected dirty files were excluded.
 
-The only application-code adjustment admits exactly this report into schema4 auditor bundles, after the existing path and secret checks. Schemas1–3 and all other report admission rules remain unchanged. Four new focused methods passed once: exact schema admission, actual pack/verify and byte preservation, old-schema refusal, and lookalike/other-report exclusion. No old test bodies ran. Generated callable/operator text, Todo consistency, current links and source-bound workload inventory are checked as affected documentation/build inputs. Exact verification receipts accompany the retirement manifest; this work does not qualify a running service or production release.
+During the earlier documentation consolidation, the application-code adjustment admitted exactly this report into schema4 auditor bundles, after the existing path and secret checks. Schemas1–3 and all other report admission rules remain unchanged. Four new focused methods passed once: exact schema admission, actual pack/verify and byte preservation, old-schema refusal, and lookalike/other-report exclusion. No old test bodies ran. Generated callable/operator text, Todo consistency, current links and source-bound workload inventory are checked as affected documentation/build inputs. Exact verification receipts accompany the retirement manifest; this work does not qualify a running service or production release.
 
 The consolidated findings retain important limitations often lost in short summaries: V10 canonical peers cannot rotate SeaDrop transport; spend budgets are per sender journal rather than automatically global across rotated keys; a conditional late-fee callback accounting question needs real dependency reachability evidence; thin full-wallet freshness and direct cold maximum-state gas remain open. Raw forwarding of unadmitted late royalties to an authenticated successor is already implemented, so the old permanent-stuck-receiver claim is superseded.
 

@@ -1,0 +1,30 @@
+test_many_nft_conversion_histories_keep_unselected_source_eth_credits_and_linear_maps (tests_python.test_wallet_aggregate_v2.WalletAggregateComposedTests.test_many_nft_conversion_histories_keep_unselected_source_eth_credits_and_linear_maps) ... ERROR
+
+======================================================================
+ERROR: test_many_nft_conversion_histories_keep_unselected_source_eth_credits_and_linear_maps (tests_python.test_wallet_aggregate_v2.WalletAggregateComposedTests.test_many_nft_conversion_histories_keep_unselected_source_eth_credits_and_linear_maps)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_wallet_aggregate_v2.py", line 711, in test_many_nft_conversion_histories_keep_unselected_source_eth_credits_and_linear_maps
+    output,calls=fixture.read(0)
+                 ^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_wallet_aggregate_v2.py", line 357, in read
+    result=read(self.p,ALICE,99,offset)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\wallet_aggregate.py", line 179, in read
+    earnings = _earnings(engine, wallet, header, block, life, history, ids, assets, lp, royalties, head)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\wallet_aggregate.py", line 80, in _earnings
+    replayed = engine.history_snapshot(peer, cutoff, at, a, b, consumer=model,
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_wallet_aggregate_v2.py", line 347, in snapshot
+    model(emitter,topics,data,index+1,'0x'+format(index+1,'064x'),timestamp,transaction,index)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings_exact_lp.py", line 59, in __call__
+    require(self.last_timestamp<=timestamp<=self.timestamp,'Exact LP chronology differs')
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings_replay.py", line 48, in require
+    raise HistoryError(message)
+frontend_api.history.HistoryError: Exact LP chronology differs
+
+----------------------------------------------------------------------
+Ran 1 test in 0.305s
+
+FAILED (errors=1)

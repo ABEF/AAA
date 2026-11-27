@@ -16,17 +16,23 @@ changed behavior or genuinely missing partitions.
 - 1,056 implemented project Solidity definitions and29 modifiers from the
   authenticated compiler AST;511 bodyless declarations remain separately labelled.
 - Eight internal-only objects are included, beyond the public ABI catalogue.
-- 191 production Python files and2,140 named lexical definitions, including nested
-  helpers, are in the [current source-bound inventory](../evidence/documentation-consolidation-20261127/FUNCTION_INVENTORY.json).
-  The separate [anonymous-code inventory](../evidence/documentation-consolidation-20261127/ANONYMOUS_CODE_INVENTORY.json)
-  records280 Python lambdas. Earlier anonymous inventories remain historical.
+- 193 production Python files and2,161 named lexical definitions, including nested
+  helpers, are in the [current source-bound inventory](../evidence/wallet-aggregate-20261127/FUNCTION_INVENTORY.json).
+  The separate [anonymous-code inventory](../evidence/wallet-aggregate-20261127/ANONYMOUS_CODE_INVENTORY.json)
+  records281 Python lambdas. Earlier anonymous inventories remain historical.
   Inventory does not establish execution coverage.
 
-The [separate published website scope](../reports/whole-workload-review-20261119/WEBSITE_SOURCE_SCOPE.json)
-adds29 production JavaScript modules/1,178 function nodes and39 test/helper
-modules/2,139 function nodes, with HTML and17 classes inventoried. Parser/source
+The [historical published website scope](../reports/whole-workload-review-20261119/WEBSITE_SOURCE_SCOPE.json)
+records its original29 production modules/1,178 function nodes and39 test/helper
+modules/2,139 nodes with HTML/17classes. The wallet profile2 reader and new test
+modules extend that historical scope; do not treat those old counts as current. Parser/source
 coverage is not browser/renderer/wallet execution; public configurations and
 Anvil-only signer remain unchanged.
+
+The optional constructor-only [read helper](../frontend_api/read_batch/WalletReadBatch.sol)
+is separately source/compiler/artifact pinned outside the unchanged F6 protocol
+graph. Its fixed STATICCALL selectors and bounded responses are part of the
+read-service obligation map, not another deployed protocol module.
 
 The inventory rejects unreviewed build/source/ABI drift and incomplete family
 assignments. It reads trusted existing compiler output without compiling or
@@ -34,7 +40,7 @@ running application modules, tests, RPC or signing. Preserve the unrelated dirty
 fork runner: its published HEAD blob is inventoried instead of adopting it.
 
 ```text
-python scripts/build-workload-inventory.py --check evidence/documentation-consolidation-20261127/FUNCTION_INVENTORY.json
+python scripts/build-workload-inventory.py --check evidence/wallet-aggregate-20261127/FUNCTION_INVENTORY.json
 ```
 
 Future F6 source/reference changes require reviewed trusted-pin/plan updates and

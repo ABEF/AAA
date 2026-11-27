@@ -136,12 +136,18 @@ class Projection:
             expected.add('royalty_reporting')
         if isinstance(config, dict) and 'earnings_history' in config:
             expected.add('earnings_history')
+        if isinstance(config, dict) and 'wallet_read_batch' in config:
+            expected.add('wallet_read_batch')
         _keys(config, expected, 'configuration')
         if type(config['schema']) is not int or config['schema'] != 2:
             raise ValueError('Unsupported frontend API configuration schema')
         self.accounting_version = config.get('accounting_version', 1)
         if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3,4,5,6,7):
             raise ValueError('Unsupported deployment accounting version')
+        self.wallet_read_batch = config.get('wallet_read_batch', 0)
+        if (type(self.wallet_read_batch) is not int or self.wallet_read_batch not in (0, 1) or
+                self.wallet_read_batch == 1 and (self.accounting_version != 7 or 'earnings_history' not in config)):
+            raise ValueError('Wallet read batching requires explicit exact LP and earnings history')
         from zzz_ops.execution_price import version as execution_price_version
         self.execution_price_version = execution_price_version(config.get('execution_price_version', 0))
         if self.execution_price_version and self.accounting_version != 7:
@@ -442,7 +448,7 @@ class Projection:
                                'deployment_block': self.start, 'deployment_block_hash': self.start_hash,
                                'configuration_sha256': self.identity, 'accounting_version': self.accounting_version}}
         if self.accounting_version == 7 and self.earnings_history is not None:
-            result['wallet_view_profile'] = 1
+            result['wallet_view_profile'] = 2 if self.wallet_read_batch == 1 else 1
         return result
 
     def _admitted(self, block: dict[str, Any], *, asset_health=None,
@@ -739,6 +745,11 @@ class Projection:
     def wallet_view(self, wallet_address, block_number, offset=0, asset_offset=0):
         from frontend_api.wallet_view import read
         return read(self, wallet_address, block_number, offset, asset_offset)
+
+    @bounded_request
+    def wallet_aggregate(self, wallet_address, block_number, asset_offset=0):
+        from frontend_api.wallet_aggregate import read
+        return read(self, wallet_address, block_number, asset_offset)
 
     @bounded_request
     def wallet_page(self, wallet_address: Any, block_number: int, offset: int = 0) -> dict[str, Any]:

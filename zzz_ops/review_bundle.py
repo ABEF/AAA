@@ -24,6 +24,8 @@ HEX64 = re.compile(r'[0-9a-f]{64}\Z')
 TOP = {'README.md', 'TODO.md', 'foundry.toml', 'package.json', 'package-lock.json',
        'requirements.txt', 'requirements-dev.txt', 'remappings.txt', '.gitmodules', 'slither.config.json'}
 FIXTURES = {'reports/production/keccak-vectors.json'}
+READ_BATCH_DATA = {'frontend_api/read_batch/WalletReadBatch.sol',
+                   'frontend_api/read_batch/WalletReadBatch.json'}
 CATALOG = 'design/nft-metadata/palette-system-v1/'
 CATALOG_FILES = {'README.md', 'art-catalog.js', 'export-inventory.mjs', 'inventory.json',
                  'packed-catalog.json', 'palette-system.mjs', 'palette-system.test.mjs'}
@@ -75,6 +77,8 @@ def admitted(name, *, schema=4):
     if any(p.casefold() in {'secrets', 'keystores', 'credentials'} for p in parts):
         return False
     if schema == 4 and name == 'reports/CURRENT_REVIEW.md':
+        return True
+    if schema == 4 and name in READ_BATCH_DATA:
         return True
     if name in TOP:
         return True
@@ -174,6 +178,8 @@ def dependency_record(files, gitlinks, *, schema=4):
         require({'docs/operator-call-examples.json', 'docs/function-reference.json',
                  'docs/function-reference-notes.json', 'docs/CONTRACT_FUNCTIONS.md',
                  'docs/OPERATOR_MANUAL.md'} <= files.keys(), 'Operator-reference inputs are missing')
+    if schema == 4 and 'frontend_api/read_batch.py' in files:
+        require(READ_BATCH_DATA <= files.keys(), 'Read-only batch source/artifact inputs are missing')
     require(not gitlinks or '.gitmodules' in files, 'Gitlink source metadata is missing')
     for name in ('package-lock.json', '.gitmodules'):
         if name in files:

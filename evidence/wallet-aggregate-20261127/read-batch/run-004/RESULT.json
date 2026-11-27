@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "kind": "UPDATED_affected_fatal_conflict_assertion",
+  "successful": true,
+  "tests_run": 1,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "before": {
+    "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+    "frontend_api/read_batch.py": "b42375cbb0fbe42261cb90bac01c946c657774e226643428c53ab969ee7bcb2a",
+    "tests_python/test_read_batch.py": "6e07c0f3b1f1b5f88f1b8d6d7bf4b61a0f7db7beed6fc78ae2066cb6463fed54"
+  },
+  "after": {
+    "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+    "frontend_api/read_batch.py": "b42375cbb0fbe42261cb90bac01c946c657774e226643428c53ab969ee7bcb2a",
+    "tests_python/test_read_batch.py": "6e07c0f3b1f1b5f88f1b8d6d7bf4b61a0f7db7beed6fc78ae2066cb6463fed54"
+  },
+  "source_changed": [],
+  "actual_test_calls": [
+    [
+      "test_read_batch.py",
+      "test_existing_raw_reply_cannot_be_replaced_by_conflicting_batch"
+    ]
+  ],
+  "distinct_new_methods_added": 0,
+  "unchanged_other_methods_run": 0,
+  "scope": "Only the affected formerly NEW conflict method now requires fatal ProjectionError after rootstrengthening. This is not a12th distinct new method."
+}

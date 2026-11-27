@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "kind": "ONE_NEW_actual_backend_DTO_JS_consumer_composition",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "--test",
+    "--test-reporter=tap",
+    "tests/wallet-aggregate-producer.test.mjs"
+  ],
+  "exit_code": 1,
+  "ok": false,
+  "test_methods": 1,
+  "unchanged_test_bodies_run": 0,
+  "fixture_sha256": "e54d72561172f390c45023d3b39a723c2aa2f877031d787c48557ed53dd7c3ee",
+  "fixture_source_sha256": {
+    "frontend_api/wallet_aggregate.py": "264268edcae2e074b78a66935e2ee27fe22d74cb84f3341a5abf0b46c1273a08",
+    "frontend_api/wallet_view.py": "253976e00d6bf0471c518f9f630578a0d997a5e542111374886e8e135f8c0443",
+    "frontend_api/wallet_earnings.py": "1c93018e132e9b59be04a5d8b35141357856155a72d5b338ed0882a35e7fc4ac",
+    "frontend_api/earnings.py": "33f104d8e531ff26999197790247baebef940d72696a662d262ff585f7077be8",
+    "frontend_api/earnings_replay.py": "b99c686156da907f48af5cdd1c667e355722136ff7683071695fe8aa7f0020f1",
+    "frontend_api/earnings_exact_lp.py": "20877973954eb07f3ff2b0bd2b7d09e76ee968d2f37c33495ce7f7a57384e05f",
+    "frontend_api/read_batch.py": "b42375cbb0fbe42261cb90bac01c946c657774e226643428c53ab969ee7bcb2a",
+    "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+    "tests_python/test_wallet_aggregate_v2.py": "8c9ccdf073600def639011462c24930c2788f4b80ec3406d7cf815c0b07b0b29"
+  },
+  "source_current_at_run": {
+    "frontend_api/wallet_aggregate.py": "264268edcae2e074b78a66935e2ee27fe22d74cb84f3341a5abf0b46c1273a08",
+    "frontend_api/wallet_view.py": "253976e00d6bf0471c518f9f630578a0d997a5e542111374886e8e135f8c0443",
+    "frontend_api/wallet_earnings.py": "1c93018e132e9b59be04a5d8b35141357856155a72d5b338ed0882a35e7fc4ac",
+    "frontend_api/earnings.py": "33f104d8e531ff26999197790247baebef940d72696a662d262ff585f7077be8",
+    "frontend_api/earnings_replay.py": "b99c686156da907f48af5cdd1c667e355722136ff7683071695fe8aa7f0020f1",
+    "frontend_api/earnings_exact_lp.py": "20877973954eb07f3ff2b0bd2b7d09e76ee968d2f37c33495ce7f7a57384e05f",
+    "frontend_api/read_batch.py": "b42375cbb0fbe42261cb90bac01c946c657774e226643428c53ab969ee7bcb2a",
+    "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+    "tests_python/test_wallet_aggregate_v2.py": "8c9ccdf073600def639011462c24930c2788f4b80ec3406d7cf815c0b07b0b29"
+  },
+  "source_before": {
+    "deployment-api.js": "0224683bb4b042a2f48012dd50023ad689c520abc62bfe0d30e5c6c7b041936a",
+    "deployment-wallet-view.js": "8d5689d8b3c5b5738f7ea474d67c2080e1b4ee1e745770078b558fb26373150d",
+    "tests/wallet-aggregate-producer.test.mjs": "047a8c9885687b4f67a71a31ee0e95e90d4fa7d0f588b3d537166216ca6ff456",
+    "tests/fixtures/wallet-aggregate-20261127/producer.json": "e54d72561172f390c45023d3b39a723c2aa2f877031d787c48557ed53dd7c3ee",
+    "package.json": "20535fa7d47a4efacd4046bb217dacf010b242aa530b0e4d9155837690b67ec1",
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300"
+  },
+  "source_after": {
+    "deployment-api.js": "0224683bb4b042a2f48012dd50023ad689c520abc62bfe0d30e5c6c7b041936a",
+    "deployment-wallet-view.js": "8d5689d8b3c5b5738f7ea474d67c2080e1b4ee1e745770078b558fb26373150d",
+    "tests/wallet-aggregate-producer.test.mjs": "047a8c9885687b4f67a71a31ee0e95e90d4fa7d0f588b3d537166216ca6ff456",
+    "tests/fixtures/wallet-aggregate-20261127/producer.json": "e54d72561172f390c45023d3b39a723c2aa2f877031d787c48557ed53dd7c3ee",
+    "package.json": "20535fa7d47a4efacd4046bb217dacf010b242aa530b0e4d9155837690b67ec1",
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300"
+  },
+  "source_bytes_unchanged": true,
+  "stdout_sha256": "172846006f4f2db7e2ebf889b2c3dd271763db73613e25fc84b78e0aed9c83cf",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "scope": "Exact current Python-reader DTOs, actual production consumer/request/gate/provenance/earnings validation; immutable graph/native header/profile/runtime, prices/history and physical geometry seams are explicit. Not full F6/V10/provider/site qualification.",
+  "producer_observed_RPC": [
+    {
+      "kind": "summary",
+      "offset": 0,
+      "RPC": 136
+    },
+    {
+      "kind": "summary",
+      "offset": 16,
+      "RPC": 16
+    },
+    {
+      "kind": "aggregate",
+      "offset": 0,
+      "RPC": 49
+    },
+    {
+      "kind": "aggregate",
+      "offset": 4,
+      "RPC": 47
+    }
+  ],
+  "server_network_calls": 0,
+  "production_approved": false,
+  "pre_test_copy_attempt": "Initial PowerShell Split-Path helper error left fixture missing; reviewed test/runner copied. Missing directory/fixture then completed and all hashes verified before any test. No test was rerun for this helper error."
+}

@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "tests_run": 11,
+  "success": true,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_seconds": 14.03099999999904,
+  "method_ids": [
+    "tests_python.test_wallet_aggregate_v2.WalletAggregateExactModelTests.test_aggregate_explicit_mode_keeps_ordinary_sixteen_id_limit",
+    "tests_python.test_wallet_aggregate_v2.WalletAggregateExactModelTests.test_aggregate_semantic_sources_are_part_of_reviewed_checkpoint_identity",
+    "tests_python.test_wallet_aggregate_v2.WalletAggregateExactModelTests.test_claim_conversion_and_transfer_do_not_create_current_holdings_income",
+    "tests_python.test_wallet_aggregate_v2.WalletAggregateExactModelTests.test_empty_wallet_stays_exact_zero_without_disabling_proofs_or_asset_coverage",
+    "tests_python.test_wallet_aggregate_v2.WalletAggregateExactModelTests.test_exclusive_day_lower_boundary_and_inclusive_snapshot_boundary_are_exact",
+    "tests_python.test_wallet_aggregate_v2.WalletAggregateExactModelTests.test_literal_source_wire_keeps_eighteen_earned_units_after_the_actual_claim",
+    "tests_python.test_wallet_aggregate_v2.WalletAggregateExactModelTests.test_read_reports_and_current_usd_conversion_do_not_mutate_exact_books",
+    "tests_python.test_wallet_aggregate_v2.WalletAggregateExactModelTests.test_rotating_royalty_units_are_assigned_before_wallet_sum",
+    "tests_python.test_wallet_aggregate_v2.WalletAggregateExactModelTests.test_seeded_aggregate_keeps_full_day_and_raw_phase_without_track_all_bypass",
+    "tests_python.test_wallet_aggregate_v2.WalletAggregateExactModelTests.test_thousand_nfts_sixty_six_assets_keep_exact_current_units_and_bounded_tracking",
+    "tests_python.test_wallet_aggregate_v2.WalletAggregateExactModelTests.test_wallet_subsets_and_dormant_nft_do_not_pool_or_duplicate_earnings"
+  ],
+  "actual_test_body_calls": [
+    [
+      "tests_python/test_wallet_aggregate_v2.py",
+      "test_aggregate_explicit_mode_keeps_ordinary_sixteen_id_limit"
+    ],
+    [
+      "tests_python/test_wallet_aggregate_v2.py",
+      "test_aggregate_semantic_sources_are_part_of_reviewed_checkpoint_identity"
+    ],
+    [
+      "tests_python/test_wallet_aggregate_v2.py",
+      "test_claim_conversion_and_transfer_do_not_create_current_holdings_income"
+    ],
+    [
+      "tests_python/test_wallet_aggregate_v2.py",
+      "test_empty_wallet_stays_exact_zero_without_disabling_proofs_or_asset_coverage"
+    ],
+    [
+      "tests_python/test_wallet_aggregate_v2.py",
+      "test_exclusive_day_lower_boundary_and_inclusive_snapshot_boundary_are_exact"
+    ],
+    [
+      "tests_python/test_wallet_aggregate_v2.py",
+      "test_literal_source_wire_keeps_eighteen_earned_units_after_the_actual_claim"
+    ],
+    [
+      "tests_python/test_wallet_aggregate_v2.py",
+      "test_read_reports_and_current_usd_conversion_do_not_mutate_exact_books"
+    ],
+    [
+      "tests_python/test_wallet_aggregate_v2.py",
+      "test_rotating_royalty_units_are_assigned_before_wallet_sum"
+    ],
+    [
+      "tests_python/test_wallet_aggregate_v2.py",
+      "test_seeded_aggregate_keeps_full_day_and_raw_phase_without_track_all_bypass"
+    ],
+    [
+      "tests_python/test_wallet_aggregate_v2.py",
+      "test_thousand_nfts_sixty_six_assets_keep_exact_current_units_and_bounded_tracking"
+    ],
+    [
+      "tests_python/test_wallet_aggregate_v2.py",
+      "test_wallet_subsets_and_dormant_nft_do_not_pool_or_duplicate_earnings"
+    ]
+  ],
+  "unchanged_test_bodies_run": [],
+  "source_before": {
+    "tests_python/test_wallet_aggregate_v2.py": "0a58cf583cfc0a0310fd85d9763cf828853c05966258f232573c27cdd575a7f9",
+    "frontend_api/wallet_aggregate.py": "7da18439e660b4bbacb3a1336c759ed54120ac99903dc59752141cd64102093b",
+    "frontend_api/earnings_replay.py": "b99c686156da907f48af5cdd1c667e355722136ff7683071695fe8aa7f0020f1",
+    "frontend_api/earnings_exact_lp.py": "20877973954eb07f3ff2b0bd2b7d09e76ee968d2f37c33495ce7f7a57384e05f",
+    "frontend_api/earnings_checkpoint.py": "2537fa1d909ac42fa58ed65e27ec69800ee3cf7ef8a535d39e4c3e6a87bf45f2",
+    "frontend_api/read_batch.py": "b42375cbb0fbe42261cb90bac01c946c657774e226643428c53ab969ee7bcb2a",
+    "frontend_api/canonical_cache.py": "07c17051ea95a614ffe2b841fe10b1c4bb9db9d2b268174366c84ae057bc3e95",
+    "frontend_api/wallet_earnings.py": "1c93018e132e9b59be04a5d8b35141357856155a72d5b338ed0882a35e7fc4ac",
+    "frontend_api/service.py": "7903ce5f82b264aed3ba00564bc7e1036d610a0e7a3fd366c33c9d3c21b60b19",
+    "frontend_api/lineage.py": "1c9d810ce053d2842f0cfe8d7f82e126422b1f83d29acfc547d366b17685e6a3",
+    "frontend_api/server.py": "780fe800c9ebf6f1ede844dfc0c8ccaeb3de393ca768f75be4fef235febd4cb3",
+    "frontend_api/worker.py": "51d838785313b1e64ddd7c2a4880c0c5a85ff1a59482837a953ffd7e226140d4",
+    "zzz_ops/review_bundle.py": "ae61f1552afc249c5feaf587171f5703b5232510d98a2fd08e26dc6d4941e636"
+  },
+  "source_after": {
+    "tests_python/test_wallet_aggregate_v2.py": "0a58cf583cfc0a0310fd85d9763cf828853c05966258f232573c27cdd575a7f9",
+    "frontend_api/wallet_aggregate.py": "7da18439e660b4bbacb3a1336c759ed54120ac99903dc59752141cd64102093b",
+    "frontend_api/earnings_replay.py": "b99c686156da907f48af5cdd1c667e355722136ff7683071695fe8aa7f0020f1",
+    "frontend_api/earnings_exact_lp.py": "20877973954eb07f3ff2b0bd2b7d09e76ee968d2f37c33495ce7f7a57384e05f",
+    "frontend_api/earnings_checkpoint.py": "2537fa1d909ac42fa58ed65e27ec69800ee3cf7ef8a535d39e4c3e6a87bf45f2",
+    "frontend_api/read_batch.py": "b42375cbb0fbe42261cb90bac01c946c657774e226643428c53ab969ee7bcb2a",
+    "frontend_api/canonical_cache.py": "07c17051ea95a614ffe2b841fe10b1c4bb9db9d2b268174366c84ae057bc3e95",
+    "frontend_api/wallet_earnings.py": "1c93018e132e9b59be04a5d8b35141357856155a72d5b338ed0882a35e7fc4ac",
+    "frontend_api/service.py": "7903ce5f82b264aed3ba00564bc7e1036d610a0e7a3fd366c33c9d3c21b60b19",
+    "frontend_api/lineage.py": "1c9d810ce053d2842f0cfe8d7f82e126422b1f83d29acfc547d366b17685e6a3",
+    "frontend_api/server.py": "780fe800c9ebf6f1ede844dfc0c8ccaeb3de393ca768f75be4fef235febd4cb3",
+    "frontend_api/worker.py": "51d838785313b1e64ddd7c2a4880c0c5a85ff1a59482837a953ffd7e226140d4",
+    "zzz_ops/review_bundle.py": "ae61f1552afc249c5feaf587171f5703b5232510d98a2fd08e26dc6d4941e636"
+  },
+  "source_stable": true,
+  "production_approved": false,
+  "scope": "New focused backend checks; fixture/runtime/history seams remain explicit."
+}

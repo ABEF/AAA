@@ -1,0 +1,31 @@
+test_thousand_holdings_all_sixty_six_currencies_use_seventeen_complete_wallet_pages (tests_python.test_wallet_aggregate_v2.WalletAggregateComposedTests.test_thousand_holdings_all_sixty_six_currencies_use_seventeen_complete_wallet_pages) ... ok
+test_wrong_live_owner_ordinal_share_component_or_paid_balance_rejects (tests_python.test_wallet_aggregate_v2.WalletAggregateComposedTests.test_wrong_live_owner_ordinal_share_component_or_paid_balance_rejects) ... ok
+test_zero_typical_and_page_boundary_holdings_keep_real_batch_and_default_work_budget (tests_python.test_wallet_aggregate_v2.WalletAggregateComposedTests.test_zero_typical_and_page_boundary_holdings_keep_real_batch_and_default_work_budget) ... ok
+test_auditor_bundle_requires_and_preserves_exact_read_only_helper_inputs (tests_python.test_wallet_aggregate_v2.WalletAggregateIntegrationBoundaryTests.test_auditor_bundle_requires_and_preserves_exact_read_only_helper_inputs) ... ok
+test_exact_get_route_and_worker_dispatch_preserve_limits_and_sanitized_errors (tests_python.test_wallet_aggregate_v2.WalletAggregateIntegrationBoundaryTests.test_exact_get_route_and_worker_dispatch_preserve_limits_and_sanitized_errors) ... ok
+test_opt_in_is_exact_integer_current_only_and_not_inherited_by_predecessor (tests_python.test_wallet_aggregate_v2.WalletAggregateIntegrationBoundaryTests.test_opt_in_is_exact_integer_current_only_and_not_inherited_by_predecessor) ... ok
+test_test_transcript_selector_cache_is_byte_equivalent_and_bounded (tests_python.test_wallet_aggregate_v2.WalletAggregateIntegrationBoundaryTests.test_test_transcript_selector_cache_is_byte_equivalent_and_bounded) ... ok
+test_many_nft_conversion_histories_keep_unselected_source_eth_credits_and_linear_maps (tests_python.test_wallet_aggregate_v2.WalletAggregateComposedTests.test_many_nft_conversion_histories_keep_unselected_source_eth_credits_and_linear_maps) ... ERROR
+test_conflicting_prefetched_identity_is_fatal_not_available_earnings_failure (tests_python.test_wallet_aggregate_v2.WalletAggregateComposedTests.test_conflicting_prefetched_identity_is_fatal_not_available_earnings_failure) ... ok
+test_actual_projection_sqlite_and_new_checkpoint_preserve_transfer_claim_and_conversion (tests_python.test_wallet_aggregate_v2.WalletAggregateComposedTests.test_actual_projection_sqlite_and_new_checkpoint_preserve_transfer_claim_and_conversion) ... ok
+
+======================================================================
+ERROR: test_many_nft_conversion_histories_keep_unselected_source_eth_credits_and_linear_maps (tests_python.test_wallet_aggregate_v2.WalletAggregateComposedTests.test_many_nft_conversion_histories_keep_unselected_source_eth_credits_and_linear_maps)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_wallet_aggregate_v2.py", line 710, in test_many_nft_conversion_histories_keep_unselected_source_eth_credits_and_linear_maps
+    output,calls=fixture.read(0)
+                 ^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_wallet_aggregate_v2.py", line 357, in read
+    result=read(self.p,ALICE,99,offset)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\wallet_aggregate.py", line 173, in read
+    require(history.provenance['available'] is True and history.provenance['through_block'] == block_number and
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings_replay.py", line 48, in require
+    raise HistoryError(message)
+frontend_api.history.HistoryError: Aggregate ownership history differs
+
+----------------------------------------------------------------------
+Ran 10 tests in 155.833s
+
+FAILED (errors=1)

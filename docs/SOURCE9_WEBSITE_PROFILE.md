@@ -35,33 +35,60 @@ bounded symbols; they are not contribution assets. No token peg is inferred.
 
 ## Complete wallet reads
 
-Source9 and source10 select the combined fixed-block wallet wire only when the
-protocol explicitly advertises `wallet_view_profile:1`. Each page covers at most
-16 NFTs and four reward descriptors, binding the complete ordered NFT/currency
-inventories, their digests, the canonical block, history and lifecycle. Complete
-earnings require every NFT/currency page. LP and funded ETH summaries appear only
-at currency offset zero and are counted once per NFT page. Raw amounts are summed
-per currency and income component before USD rounding; claims, conversions and
-principal returns are not new income. The full history window remains 86,400 seconds.
+Source9/schema4 and source10/schema5 recognize two explicit protocol capabilities.
+`wallet_view_profile` is a read capability, not a website/contract schema or a
+signing permission. Omitted capability retains the earlier ownership/totals/earnings
+readers; unknown capability and failure of an advertised path never silently
+downgrade to another profile.
 
-Current-profile GETs share a per-origin/API-prefix gate: starts at least one second
-apart, one active request and at most 32 queued, without automatic retry. Missing
-capability retains the explicit earlier ownership/totals/earnings wires; an unknown
-capability or failed advertised compact page never silently falls back. Every page
-and final canonical/identity/freshness check must pass, including the check after
-the separately confirmed NFT cards finish. Cancellation or supersession rejects
-the result. Cards are not claimed to share the fixed financial snapshot block.
+| Capability | Read shape and completeness |
+| --- | --- |
+| `1` (default) | Existing fixed-block pages cover at most16 NFTs/four descriptors. Earnings need every NFT/currency page; LP and funded ETH summaries count once at currency offset0. Historical profile1 behavior is unchanged. |
+| `2` (explicit opt-in) | Collect16-ID ownership/summary pages at `view/{block}/{nftOffset}/0`, then four-currency complete-wallet pages at `aggregate/{block}/{assetOffset}`. NFT pages carry `earnings:null` / `aggregate_earnings_required`; earnings are not repeated on that axis. |
 
-The [compact-wallet source record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/compact-wallet-20261121/REVIEW.md)
-shows 64 protocol/compact reads for 1,000 NFTs/three descriptors, or 80 with eight
-NFT cards and their earnings. Sixteen NFTs/66 descriptors need 17 currency pages
-plus the protocol read. These are controlled synthetic V9/source9 workloads, not
-actual full-normal F6/V10, provider, hosting or elapsed-time freshness acceptance.
-The 1,000-by-66 cross-product still exceeds the 120-second window: complete holdings
-and totals may remain available while earnings is explicitly unavailable, never
-partial. Existing limits, exact accounting and ETH-only claimable totals remain.
-Matching checkpoint semantic sources require a newly built, reviewed and pinned
-artifact; preserve original checkpoints, reviews, raw databases and journals.
+The backend selects capability2 only with reviewed `wallet_read_batch:1`,
+accounting7 and configured earnings history. Omitted/0 retains capability1.
+This backend key is NOT a browser manifest key. A matching reviewed projection
+identity and newly reviewed checkpoint semantic sources are required before
+separate adoption; preserve original checkpoint, review, database and journal bytes.
+
+Each aggregate page binds the full sorted current-owner inventory, count and
+SHA256, the exact currency inventory, canonical block, history and lifecycle.
+Successful financial verification has `verified_count == count` and `complete:true`.
+An isolated `earnings_unavailable` envelope has `earnings:null`, `verified_count:0`
+and `complete:false`; its full inventory identity does not replace the client's
+independently verified ownership pages. Transport429/explicit503 `service_busy`
+can also leave earnings unavailable after ownership/totals are complete. Generic
+projection503, malformed proofs, conflicting batch replies, history/work failures,
+expiry and reorg remain fatal. Never publish a partial currency sum as complete.
+
+Original NFT units, independent LP/royalty components, the full86,400-second
+history and current-holdings lifetime scope remain. Claims, conversions and
+principal returns are not new income. Raw NFT earnings are summed per currency
+before USD rounding; missing prices stay unavailable except exact zero amounts.
+LP value and funded ETH totals remain independent of earnings availability.
+
+Capability2 reduces the1,000-NFT/66-descriptor core wallet grid from63*17 to63+17
+GETs:63 ownership/summary pages plus17 aggregate currency pages. Protocol and
+eight-card/NFT-earnings reads are additional. Request counts are not actual
+provider/HTTP/full-normal-F6/V10 freshness acceptance. The original profile1
+[compact-wallet record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/compact-wallet-20261121/REVIEW.md)
+retains its narrower three-currency and sixteen-NFT scopes.
+
+The read tool uses pinned constructor-only bytecode in canonical creation
+`eth_call`, with fixed bounded STATICCALL getters and finite return data. It
+does not deploy code, override state, sign or send value. Each constructor call
+covers at mostfour NFTs; prefetch accepts at most16 IDs and four royalty
+currencies. The24M call allowance is read-RPC execution, not a raised transaction gas policy.
+Actual provider support and maximum workloads still require qualification.
+
+Current-profile GETs retain one active request, starts at least one second apart
+and at most32 queued, with no automatic retry. All pages and final canonical,
+identity and freshness checks must pass, including the check after independently
+confirmed card reads. Cancellation or supersession rejects the result. Cards are
+not claimed to share the fixed financial block. Signing and public configurations
+remain unchanged. See the [backend wire](FRONTEND_API.md),
+[operator manual](OPERATOR_MANUAL.md) and [current review](../reports/CURRENT_REVIEW.md).
 
 ## Reads and user reviews
 

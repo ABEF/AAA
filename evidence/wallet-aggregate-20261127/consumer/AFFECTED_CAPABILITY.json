@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "kind": "single_changed_capability_future_profile_assertion",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=^NEW producer portfolio capability and UI branch reuse compact financials without duplicate wallet reads$",
+    "tests/compact-wallet-view.test.mjs"
+  ],
+  "exit_code": 0,
+  "selected_test_pattern": "^NEW producer portfolio capability and UI branch reuse compact financials without duplicate wallet reads$",
+  "affected_test_body_executed": 1,
+  "unchanged_test_bodies_executed": 0,
+  "stdout_sha256": "f6b70bf88010c45ed815e50a044ae48109243440733e844bd0d7fa13f4944df8",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "source_before": {
+    "deployment-api.js": "0224683bb4b042a2f48012dd50023ad689c520abc62bfe0d30e5c6c7b041936a",
+    "deployment-wallet-view.js": "8d5689d8b3c5b5738f7ea474d67c2080e1b4ee1e745770078b558fb26373150d",
+    "tests/compact-wallet-view.test.mjs": "ebba3d84d712fb843388572b0e6bf8dc0baada487db938dfee0e04f73fc6c2b0",
+    "tests/wallet-aggregate-view.test.mjs": "945de2abfbe3d7b674d7a6a5eecd8743184da5d9b368b32df5642c5dc93bf2ba",
+    "package.json": "eae4f2ff8a52ff0d69aa41a2d385ef768658eeae0119b450e66737b4a862449b",
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300"
+  },
+  "source_after": {
+    "deployment-api.js": "0224683bb4b042a2f48012dd50023ad689c520abc62bfe0d30e5c6c7b041936a",
+    "deployment-wallet-view.js": "8d5689d8b3c5b5738f7ea474d67c2080e1b4ee1e745770078b558fb26373150d",
+    "tests/compact-wallet-view.test.mjs": "ebba3d84d712fb843388572b0e6bf8dc0baada487db938dfee0e04f73fc6c2b0",
+    "tests/wallet-aggregate-view.test.mjs": "945de2abfbe3d7b674d7a6a5eecd8743184da5d9b368b32df5642c5dc93bf2ba",
+    "package.json": "eae4f2ff8a52ff0d69aa41a2d385ef768658eeae0119b450e66737b4a862449b",
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300"
+  },
+  "source_unchanged_during_run": true,
+  "scope": "Existing profile1 capability/UI routing body, only future-unsupported value2 changed to3; no other registered test body selected.",
+  "server_or_network_calls": 0,
+  "production_approved": false
+}

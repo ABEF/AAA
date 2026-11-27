@@ -90,7 +90,7 @@ class ExactReplay(Replay):
                     key=bucket,asset
                     require(key not in self.pending_lp_credit,'Repeated exact LP funding credit')
                     self.pending_lp_credit[key]=(personal,shared);self.pending_lp_transaction=transaction
-                    before={i:self.components(i,asset) for i in self.selected}
+                    before={i:self.components(i,asset) for i in self.earning_ids(asset)}
                     self.owner_trees[bucket].credit(self.pair.index(asset),personal)
                     if self.members:self.collective_tree.credit(self.pair.index(asset),shared)
                     else:self.lp_orphaned[asset]+=shared
@@ -99,7 +99,7 @@ class ExactReplay(Replay):
                          sum(t.outstanding[n] for t in self.owner_trees.values())+self.lp_orphaned[asset])
                     self.add('lp_owner_allocated',asset,personal,timestamp)
                     self.add('lp_collective_allocated' if self.members else 'lp_collective_quarantined',asset,shared,timestamp)
-                    for i in self.selected:
+                    for i in self.earning_ids(asset):
                         after=self.components(i,asset)
                         for n,metric in enumerate(('lp_individual','lp_collective')):
                             require(after[n]>=before[i][n],'Exact LP old entitlement decreased')

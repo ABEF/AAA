@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "kind": "NEW_static_batch_protocol_and_isolated_EVM",
+  "successful": false,
+  "tests_run": 9,
+  "failures": 0,
+  "errors": 1,
+  "skipped": 0,
+  "actual_method_calls": [
+    [
+      "test_read_batch.py",
+      "test_artifact_tampering_refuses_without_any_rpc"
+    ],
+    [
+      "test_read_batch.py",
+      "test_cache_capacity_refuses_atomically_instead_of_uncached_fallback"
+    ],
+    [
+      "test_read_batch.py",
+      "test_constructor_artifact_is_exact_and_isolated_from_normal_graph"
+    ],
+    [
+      "test_read_batch.py",
+      "test_existing_raw_reply_cannot_be_replaced_by_conflicting_batch"
+    ],
+    [
+      "test_read_batch.py",
+      "test_fixed_getters_seed_normal_projection_decoding_without_fallback"
+    ],
+    [
+      "test_read_batch.py",
+      "test_inner_revert_is_remembered_without_retry_and_cleared_at_scope_exit"
+    ],
+    [
+      "test_read_batch.py",
+      "test_invalid_selection_and_currency_order_refuse_before_rpc"
+    ],
+    [
+      "test_read_batch.py",
+      "test_malformed_getter_or_header_never_seeds_partial_answers"
+    ],
+    [
+      "test_read_batch.py",
+      "test_sixteen_accounts_are_four_bounded_calls_and_repeated_prefetch_is_zero"
+    ]
+  ],
+  "old_test_body_calls": 0,
+  "before": {
+    "frontend_api/read_batch.py": "b42375cbb0fbe42261cb90bac01c946c657774e226643428c53ab969ee7bcb2a",
+    "frontend_api/canonical_cache.py": "07c17051ea95a614ffe2b841fe10b1c4bb9db9d2b268174366c84ae057bc3e95",
+    "frontend_api/read_batch/WalletReadBatch.sol": "1068be2580ea8c160dcf7cb17db546e73c2bcd80cca72762f3e6df930652a92c",
+    "frontend_api/read_batch/WalletReadBatch.json": "adc72a6dac4be47c87982711436a19bcd0487f15546458bdebe78f614ea904fd",
+    "tests_python/test_read_batch.py": "c2342b538a79dcd220e362be21efdd1ca43b17ce228f11eec2187a50f06f359f",
+    "tests_python/test_read_batch_evm.py": "f0732a0f350875ab1b06a9bb065ea68d2350a80a42fb4e8222274ea8d72f1f91",
+    "zzz_ops/abi.py": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+    "frontend_api/service.py": "7903ce5f82b264aed3ba00564bc7e1036d610a0e7a3fd366c33c9d3c21b60b19"
+  },
+  "after": {
+    "frontend_api/read_batch.py": "b42375cbb0fbe42261cb90bac01c946c657774e226643428c53ab969ee7bcb2a",
+    "frontend_api/canonical_cache.py": "07c17051ea95a614ffe2b841fe10b1c4bb9db9d2b268174366c84ae057bc3e95",
+    "frontend_api/read_batch/WalletReadBatch.sol": "1068be2580ea8c160dcf7cb17db546e73c2bcd80cca72762f3e6df930652a92c",
+    "frontend_api/read_batch/WalletReadBatch.json": "adc72a6dac4be47c87982711436a19bcd0487f15546458bdebe78f614ea904fd",
+    "tests_python/test_read_batch.py": "c2342b538a79dcd220e362be21efdd1ca43b17ce228f11eec2187a50f06f359f",
+    "tests_python/test_read_batch_evm.py": "f0732a0f350875ab1b06a9bb065ea68d2350a80a42fb4e8222274ea8d72f1f91",
+    "zzz_ops/abi.py": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+    "frontend_api/service.py": "7903ce5f82b264aed3ba00564bc7e1036d610a0e7a3fd366c33c9d3c21b60b19"
+  },
+  "source_changed": [],
+  "projection_call_source_sha256": "4981222831aae509648e4a382578cadabac5d268b786faba8c9cfb35372eede3",
+  "elapsed_seconds": 8.34400000000096,
+  "production_approved": false,
+  "fixture_scope": "Fresh owned random-chain Anvil plus five newly compiled/deployed test doubles. No current-F6/provider/production qualification.",
+  "new_helper_source_compilation": "Pinned solc0.8.26 tool, isolated helper only; normalF6 source/build unchanged."
+}

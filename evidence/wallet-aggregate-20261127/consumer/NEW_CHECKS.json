@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "kind": "24_NEW_profile2_wallet_consumer_checks",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/wallet-aggregate-view.test.mjs"
+  ],
+  "exit_code": 0,
+  "test_methods": 24,
+  "passes": 24,
+  "failures": 0,
+  "skipped": 0,
+  "unchanged_test_bodies_run": 0,
+  "method_names": [
+    "NEW aggregate profile2 source9 0 NFTs completes66 currencies without cross-product reads",
+    "NEW aggregate profile2 source9 1 NFTs completes66 currencies without cross-product reads",
+    "NEW aggregate profile2 source9 17 NFTs completes66 currencies without cross-product reads",
+    "NEW aggregate profile2 source9 1000 NFTs completes66 currencies without cross-product reads",
+    "NEW aggregate profile2 source10 0 NFTs completes66 currencies without cross-product reads",
+    "NEW aggregate profile2 source10 1 NFTs completes66 currencies without cross-product reads",
+    "NEW aggregate profile2 source10 17 NFTs completes66 currencies without cross-product reads",
+    "NEW aggregate profile2 source10 1000 NFTs completes66 currencies without cross-product reads",
+    "NEW aggregate missing prices preserve exact zero versus unavailable USD",
+    "NEW aggregate cursor method rejects malformed owner block and currency offsets before fetch",
+    "NEW aggregate missing duplicated and changed inventory or currency envelopes are rejected",
+    "NEW aggregate window raw precision and contradictory provenance are rejected",
+    "NEW aggregate epoch identity is stable but ambient indexer progress is allowed",
+    "NEW aggregate isolated429 currency transport preserves complete holdings and totals",
+    "NEW aggregate isolated503 currency transport preserves complete holdings and totals",
+    "NEW aggregate explicit unavailable requires honest verification flags and complete identity",
+    "NEW aggregate generic projection failures remain fatal without fallback",
+    "NEW aggregate NFT pages require explicit profile2 marker and ordered complete identities",
+    "NEW aggregate cancellation duringview sends no later page",
+    "NEW aggregate cancellation duringaggregate sends no later page",
+    "NEW aggregate finalrevision change rejects already assembled financials",
+    "NEW aggregate finalexpiry change rejects already assembled financials",
+    "NEW aggregate finalhash change rejects already assembled financials",
+    "NEW aggregate explicit capability2 portfolio uses new path and never a signing method"
+  ],
+  "source_before": {
+    "deployment-api.js": "0224683bb4b042a2f48012dd50023ad689c520abc62bfe0d30e5c6c7b041936a",
+    "deployment-wallet-view.js": "8d5689d8b3c5b5738f7ea474d67c2080e1b4ee1e745770078b558fb26373150d",
+    "tests/compact-wallet-view.test.mjs": "ebba3d84d712fb843388572b0e6bf8dc0baada487db938dfee0e04f73fc6c2b0",
+    "package.json": "eae4f2ff8a52ff0d69aa41a2d385ef768658eeae0119b450e66737b4a862449b",
+    "tests/wallet-aggregate-view.test.mjs": "945de2abfbe3d7b674d7a6a5eecd8743184da5d9b368b32df5642c5dc93bf2ba"
+  },
+  "source_after": {
+    "deployment-api.js": "0224683bb4b042a2f48012dd50023ad689c520abc62bfe0d30e5c6c7b041936a",
+    "deployment-wallet-view.js": "8d5689d8b3c5b5738f7ea474d67c2080e1b4ee1e745770078b558fb26373150d",
+    "tests/compact-wallet-view.test.mjs": "ebba3d84d712fb843388572b0e6bf8dc0baada487db938dfee0e04f73fc6c2b0",
+    "package.json": "eae4f2ff8a52ff0d69aa41a2d385ef768658eeae0119b450e66737b4a862449b",
+    "tests/wallet-aggregate-view.test.mjs": "945de2abfbe3d7b674d7a6a5eecd8743184da5d9b368b32df5642c5dc93bf2ba"
+  },
+  "source_unchanged_during_run": true,
+  "stdout_sha256": "60a460d42825269372b52e7af4f25d4aca46c926c65783b61f7bc0ef94a10b7b",
+  "stdout_capture": "Verbatim exec_command stdout from chunkd6865d saved after the tool returned; no test was rerun for capture.",
+  "recorded_node_duration_ms": 767.241,
+  "scope": "Synthetic DTOs, advancing clocks and native proof seam; real production modules and read gate execute. No EVM/RPC/provider/hosting/signing/deployment proof.",
+  "maximum_case": {
+    "NFTs": 1000,
+    "descriptors": 66,
+    "ownership_pages": 63,
+    "aggregate_currency_pages": 17,
+    "core_GETs": 80,
+    "in_flight_maximum": 1,
+    "pacing_ms": 1000,
+    "fake_elapsed_ms": 79000
+  },
+  "server_network_calls": 0,
+  "production_approved": false
+}

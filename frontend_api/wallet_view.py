@@ -47,14 +47,19 @@ def read(p, wallet_address, block_number, offset=0, asset_offset=0):
         ownership = summary if summary is not None else p.wallet_page(wallet, block_number, offset)
         earnings = None
         earnings_error = None
-        try:
-            earnings = read_earnings(engine, wallet, block_number, offset, asset_offset=asset_offset)
-        except (WorkLimit, ProjectionError, HistoryError):
-            raise
-        except RpcError:
-            # No partial earnings survives a transport failure. The independent
-            # verified ownership/summary still needs fresh final proofs below.
-            earnings_error = 'earnings_unavailable'
+        if getattr(p, 'wallet_read_batch', 0) == 1 and asset_offset == 0:
+            # Explicit profile2 assembles this independent ownership/summary
+            # axis first, then reads four-currency full-wallet aggregates.
+            earnings_error = 'aggregate_earnings_required'
+        else:
+            try:
+                earnings = read_earnings(engine, wallet, block_number, offset, asset_offset=asset_offset)
+            except (WorkLimit, ProjectionError, HistoryError):
+                raise
+            except RpcError:
+                # No partial earnings survives a transport failure. The independent
+                # verified ownership/summary still needs fresh final proofs below.
+                earnings_error = 'earnings_unavailable'
         if earnings is not None:
             _same_page(ownership, earnings)
             for key, value in assets.items():

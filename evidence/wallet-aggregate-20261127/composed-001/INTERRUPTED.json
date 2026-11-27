@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "campaign": "interrupted_fixture_cpu_cost",
+  "full_campaign_success": false,
+  "completed_new_method_log_rows": [
+    "test_actual_projection_sqlite_and_new_checkpoint_preserve_transfer_claim_and_conversion (tests_python.test_wallet_aggregate_v2.WalletAggregateComposedTests.test_actual_projection_sqlite_and_new_checkpoint_preserve_transfer_claim_and_conversion) ... ok",
+    "test_bad_coverage_final_anchor_and_deadline_cannot_publish_partial_success (tests_python.test_wallet_aggregate_v2.WalletAggregateComposedTests.test_bad_coverage_final_anchor_and_deadline_cannot_publish_partial_success) ... ok",
+    "test_coherent_in_range_ordinal_swap_cannot_override_replayed_mint_order (tests_python.test_wallet_aggregate_v2.WalletAggregateComposedTests.test_coherent_in_range_ordinal_swap_cannot_override_replayed_mint_order) ... ok",
+    "test_current7_legacy_wallet_reader_also_rejects_a_coherent_ordinal_swap (tests_python.test_wallet_aggregate_v2.WalletAggregateComposedTests.test_current7_legacy_wallet_reader_also_rejects_a_coherent_ordinal_swap) ... ok",
+    "test_late_getter_failure_discards_earnings_and_next_request_can_recover (tests_python.test_wallet_aggregate_v2.WalletAggregateComposedTests.test_late_getter_failure_discards_earnings_and_next_request_can_recover) ... ok"
+  ],
+  "completed_methods": 5,
+  "interrupted_method": "test_thousand_holdings_all_sixty_six_currencies_use_seventeen_complete_wallet_pages",
+  "reason": "Independent test transcript recomputed identical pure-Python selector hashes; no production/network deadlock. Test-selector cache added before unfinished cases resume.",
+  "unchanged_bodies_not_selected_again": true,
+  "state_or_service_changes": false
+}

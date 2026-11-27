@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "kind": "TWO_NEW_isolated_creation_call_methods",
+  "successful": true,
+  "tests_run": 2,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "actual_method_calls": [
+    [
+      "test_read_batch_evm.py",
+      "test_actual_creation_returns_maximum_fixed_records_without_persistent_code_or_nonce"
+    ],
+    [
+      "test_read_batch_evm.py",
+      "test_actual_staticcall_refuses_child_storage_write_and_preserves_failed_getter"
+    ]
+  ],
+  "old_test_body_calls": 0,
+  "before": {
+    "frontend_api/read_batch.py": "b42375cbb0fbe42261cb90bac01c946c657774e226643428c53ab969ee7bcb2a",
+    "frontend_api/canonical_cache.py": "07c17051ea95a614ffe2b841fe10b1c4bb9db9d2b268174366c84ae057bc3e95",
+    "frontend_api/read_batch/WalletReadBatch.sol": "1068be2580ea8c160dcf7cb17db546e73c2bcd80cca72762f3e6df930652a92c",
+    "frontend_api/read_batch/WalletReadBatch.json": "adc72a6dac4be47c87982711436a19bcd0487f15546458bdebe78f614ea904fd",
+    "tests_python/test_read_batch.py": "c2342b538a79dcd220e362be21efdd1ca43b17ce228f11eec2187a50f06f359f",
+    "tests_python/test_read_batch_evm.py": "15e6e7a1966ba0b46d51b685cb9934545bbd803581b13e2cb466c971c8e5b10b",
+    "zzz_ops/abi.py": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305"
+  },
+  "after": {
+    "frontend_api/read_batch.py": "b42375cbb0fbe42261cb90bac01c946c657774e226643428c53ab969ee7bcb2a",
+    "frontend_api/canonical_cache.py": "07c17051ea95a614ffe2b841fe10b1c4bb9db9d2b268174366c84ae057bc3e95",
+    "frontend_api/read_batch/WalletReadBatch.sol": "1068be2580ea8c160dcf7cb17db546e73c2bcd80cca72762f3e6df930652a92c",
+    "frontend_api/read_batch/WalletReadBatch.json": "adc72a6dac4be47c87982711436a19bcd0487f15546458bdebe78f614ea904fd",
+    "tests_python/test_read_batch.py": "c2342b538a79dcd220e362be21efdd1ca43b17ce228f11eec2187a50f06f359f",
+    "tests_python/test_read_batch_evm.py": "15e6e7a1966ba0b46d51b685cb9934545bbd803581b13e2cb466c971c8e5b10b",
+    "zzz_ops/abi.py": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305"
+  },
+  "source_changed": [],
+  "projection_call_source_sha256": "4981222831aae509648e4a382578cadabac5d268b786faba8c9cfb35372eede3",
+  "elapsed_seconds": 1.2809999999990396,
+  "production_approved": false,
+  "anvil_sha256": "d438383b871c726407ecc5829279bea44ceac63a712be9e010813ca0a15434b6",
+  "anvil_version": "anvil Version: 1.4.4-v1.4.4\nCommit SHA: 05794498bf47257b144e2e2789a1d5bf8566be0e\nBuild Timestamp: 2025-10-30T15:20:33.723172900Z (1761837633)\nBuild Profile: maxperf\n",
+  "isolated_chain_id": 448500243238294,
+  "fixture_runtime_installs": [
+    {
+      "fixture": "ReadOnlyFixture",
+      "address": "0x00000000000000000000000197e899ae0d960001",
+      "runtime_sha256": "fcedf8736133b05fb0d176802195369eb9cb4816ba84052fe40d5f55c594feec"
+    },
+    {
+      "fixture": "ReadOnlyFixture",
+      "address": "0x00000000000000000000000197e899ae0d960002",
+      "runtime_sha256": "fcedf8736133b05fb0d176802195369eb9cb4816ba84052fe40d5f55c594feec"
+    },
+    {
+      "fixture": "ReadOnlyFixture",
+      "address": "0x00000000000000000000000197e899ae0d960003",
+      "runtime_sha256": "fcedf8736133b05fb0d176802195369eb9cb4816ba84052fe40d5f55c594feec"
+    },
+    {
+      "fixture": "ReadOnlyFixture",
+      "address": "0x00000000000000000000000197e899ae0d960004",
+      "runtime_sha256": "fcedf8736133b05fb0d176802195369eb9cb4816ba84052fe40d5f55c594feec"
+    },
+    {
+      "fixture": "WritingFixture",
+      "address": "0x00000000000000000000000197e899ae0d960005",
+      "runtime_sha256": "b90225b850993466f3215a58e4672909b38fbb6d449050865c46721b3ad2d43d"
+    }
+  ],
+  "owned_node_stopped": true,
+  "reused_prior_scope": "Nine different NEW protocol methods passed in original run-001; none of their bodies selected here.",
+  "original_setup_failure": "run-001 and run-002 fixture receipt reads timed out; EVM bodies did not run in either. Both original failed stages retained.",
+  "fixture_scope": "Fresh owned random-chain Anvil with five compiled test-double runtimes installed via anvil_setCode. Production reader uses creation eth_call only; no currentF6/Robinhood/provider qualification."
+}

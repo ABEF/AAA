@@ -43,6 +43,8 @@ def _run(output, config, activation_config, action, payload, transaction_config=
                 result = p.wallet_earnings(*payload)
             elif action == 'wallet_view':
                 result = p.wallet_view(*payload)
+            elif action == 'wallet_aggregate':
+                result = p.wallet_aggregate(*payload)
             elif action == 'earnings':
                 result = p.earnings(payload)
             elif action == 'activation' and activation_config is not None:
@@ -241,6 +243,9 @@ class WorkerClient:
     def wallet_view(self, owner, block_number, offset=0, asset_offset=0):
         return self._request('wallet_view', [owner, block_number, offset, asset_offset])
 
+    def wallet_aggregate(self, owner, block_number, asset_offset=0):
+        return self._request('wallet_aggregate', [owner, block_number, asset_offset])
+
     def earnings(self, identifier=None):
         return self._request('earnings', identifier)
 
@@ -312,6 +317,9 @@ class WorkerPool:
 
     def wallet_view(self, owner, block_number, offset=0, asset_offset=0):
         return self._dispatch('wallet_view', owner, block_number, offset, asset_offset)
+
+    def wallet_aggregate(self, owner, block_number, asset_offset=0):
+        return self._dispatch('wallet_aggregate', owner, block_number, asset_offset)
 
     def earnings(self, identifier=None):
         return self._dispatch('earnings', identifier)

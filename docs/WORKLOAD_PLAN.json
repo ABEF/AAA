@@ -2,7 +2,7 @@
   "schema": 1,
   "purpose": "Whole-project workload/function/state inventory and verification plan; inventory completeness is never dynamic coverage or proof of all possible market states.",
   "date": "2026-11-27",
-  "source_baseline": "fdd599c7698d0e1c0709a4a8b50130e5557ba508",
+  "source_baseline": "bf5c91fc073cc2973699d1d1938197ebe136b796",
   "trusted_build_record": {
     "path": "reports/activation-final-six-20261118/build/final/normal-size-evidence.json",
     "sha256": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2"
@@ -523,7 +523,9 @@
     "keeper/scheduling.py",
     "scripts/keeper-schedule.py",
     "keeper/sidecar_recovery.py",
-    "scripts/keeper-sidecar-recovery.py"
+    "scripts/keeper-sidecar-recovery.py",
+    "frontend_api/read_batch.py",
+    "frontend_api/wallet_aggregate.py"
   ],
   "axes": {
     "caller": [
@@ -708,14 +710,23 @@
       "id": "S04",
       "name": "Complete ownership inventory",
       "sources": [
-        "frontend_api/service.py"
+        "frontend_api/service.py",
+        "frontend_api/wallet_aggregate.py",
+        "frontend_api/read_batch.py",
+        "frontend_api/canonical_cache.py"
       ],
       "cases": [
         "0/1/16/17/999/1000holdings andfullwidthIDs",
         "all1000oneowner versusmixedwallets/lifecycle",
         "forged/missingowner orcanonicalcount",
         "sameblock/hash/config/digest allpageassembly",
-        "incomplete/duplicate/outoforder/finalpage alone/stale/reorg"
+        "incomplete/duplicate/outoforder/finalpage alone/stale/reorg",
+        "explicitprofile2 separates16NFTownership from4currencyfullwallet earnings; oldprofile1unchanged",
+        "constructoronlySTATICCALL fixedselectors gas returndata initcode andartifact bindings; nobroadcast/stateoverride",
+        "exactwallet1000 currentIDs andperNFTrights rounding components paid/history proofs; full86400 suffix",
+        "prefetchcontradictionsfatal; isolatedfinancialfailure0verifiedfalsecomplete; unchangedexpiry/resource/cachebounds",
+        "conversionindex allsourcecurrencies creditedETH; selectedcurrencyglobalstate fullreplay",
+        "maximumlineage/providergas/F6V10/HTTPfreshness remainseparate qualification"
       ]
     },
     {

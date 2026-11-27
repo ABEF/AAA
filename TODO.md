@@ -470,7 +470,7 @@ The data and services behind the app.
 
 <a id="task-financial-history"></a>
 
-- [ ] **[Qualify processed earnings & current-price USD](docs/EARNINGS_HISTORY.md)** - In progress. Fresh7 supports raw replay, original-deployment checkpoint2 and authenticated-lineage checkpoint3. One cumulative exact epoch cursor preserves LP trees/pending/high-low phase/direct credits and original-currency royalty tickets; completed local payout books remain separate. All later handoffs and the full24-hour window stay raw. Explicit offline import now extends reviewed compatible exact2/shorter3 prefixes. Offline history backup/verify/separate restore now preserves every retained row and exact checkpoint/review bytes without changing accounting, full24h or limits. Other consumers, actual archive/off-host/host and lifetime workloads remain unqualified. A controlled 1,000-NFT/three-epoch recovery rehearsal now verifies exact local results and bounded chunk coverage; actual provider and lifetime/host qualification remain open.
+- [ ] **[Qualify processed earnings & current-price USD](docs/EARNINGS_HISTORY.md)** - In progress. Fresh7 supports raw replay, original-deployment checkpoint2 and authenticated-lineage checkpoint3. One cumulative exact epoch cursor preserves LP trees/pending/high-low phase/direct credits and original-currency royalty tickets; completed local payout books remain separate. All later handoffs and the full24-hour window stay raw. Explicit offline import now extends reviewed compatible exact2/shorter3 prefixes. Offline history backup/verify/separate restore now preserves every retained row and exact checkpoint/review bytes without changing accounting, full24h or limits. Other consumers, actual archive/off-host/host and lifetime workloads remain unqualified. A controlled 1,000-NFT/three-epoch recovery rehearsal now verifies exact local results and bounded chunk coverage; actual provider and lifetime/host qualification remain open. Optional read profile2 removes the NFT/currency cross-product; actual provider/F6/site adoption remains open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -483,6 +483,7 @@ The data and services behind the app.
   - History backup parses strict current7 config without network, snapshots all retained SQLite rows/committed WAL and exact checkpoint/import-review bytes, binds14 semantic pins/public anchors/fixed sanitized paths/external manifest trust, enforces bounds before writing and restores independent new files only; readiness stays false.
   - Consumers must completely assemble fixed-block NFT/currency pages with exact identity/order/count/digest and final raw/component/USD/freshness proofs. Large cross-products may leave earnings unavailable while holdings remain complete; no limit or stale-snapshot bypass.
   - Qualify actual complete archive/authenticity, reorgs, Unix SQLite/storage/WAL/restore/off-host behavior, lifetime/max-currency/all-bucket latency and matching consumer/service adoption; controlled1,000-NFT/three-epoch recovery and thin wallet freshness margins remain finite evidence.
+  - Optional wallet_read_batch1/profile2 separates16-ID ownership/LP pages from four-currency complete-wallet earnings:1000NFT/65–66descriptor core reads80 versus1071. Preserve per-NFT exact-unit/current-owner/history/paid proofs and full86400s; fixed constructor-only STATICCALL gas/cache/request bounds and no public signing. Qualify actual F6/V10/provider/max-lineage/freshness separately; rebuild/review/re-pin matching checkpoints without rewriting old artifacts.
 
   </details>
 
@@ -702,7 +703,7 @@ What holders see and use.
 
 <a id="task-portfolio"></a>
 
-- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. Source9/source10 implement capability-gated complete ownership, LP/funded ETH and currency-paged earnings with final confirmed-state checks. Controlled actual Ubuntu source9/V9 now completes1000 NFTs/3currencies plus eight cards in80GETs/98.834s, leaving3.982s freshness margin. This finite synthetic pass does not qualify actual F6/V10, providers/load, portable history recovery or live adoption. Exact rights and all limits remain.
+- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. Source9/source10 implement capability-gated complete ownership, LP/funded ETH and currency-paged earnings with final confirmed-state checks. Controlled actual Ubuntu source9/V9 now completes1000 NFTs/3currencies plus eight cards in80GETs/98.834s, leaving3.982s freshness margin. This finite synthetic pass does not qualify actual F6/V10, providers/load, portable history recovery or live adoption. Exact rights and all limits remain. Optional read profile2 removes the NFT/currency cross-product; actual provider/F6/site adoption remains open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -713,6 +714,7 @@ What holders see and use.
   - Decide current UI label treatment of stable hashed token IDs versus mint ordinals without changing custody identity. Scope Updating/effects to the acted NFT and confirmed actual LP; terminal LP-exited/Dormant/paid-pending principal are distinct, with no ordinary holder exit button.
   - Keep existing admission/freshness/work bounds(1/s burst12,120s snapshot age,1,024calls/1MiB,16-ID chunks) and explicit earnings-unavailable behavior for huge cross-products. Thin finite source9 latency does not qualify full F6/V10/provider/history/max-wallet operation.
   - Keep source9/source10 and served current3/popldemo/legacy profiles separate, public configurations null and signer Anvil-only. Qualify actual current-profile extension/site/service/market rollout; do not relabel old sessions or infer signing permission from read balances.
+  - Optional wallet_read_batch1/profile2 separates16-ID ownership/LP pages from four-currency complete-wallet earnings:1000NFT/65–66descriptor core reads80 versus1071. Preserve per-NFT exact-unit/current-owner/history/paid proofs and full86400s; fixed constructor-only STATICCALL gas/cache/request bounds and no public signing. Qualify actual F6/V10/provider/max-lineage/freshness separately; rebuild/review/re-pin matching checkpoints without rewriting old artifacts.
 
   </details>
 
@@ -736,7 +738,7 @@ What holders see and use.
 
 <a id="task-live-history-ui"></a>
 
-- [ ] **[Connect live history & cumulative claims](docs/EARNINGS_HISTORY.md)** - In progress. The shared production API profile displays NFT/wallet 24h/all-time earnings and collection holder allocations at current prices. Transfers retain NFT history; claims/conversions add no income. Actual ingestion, predecessor/price availability and deployment qualification remain open.
+- [ ] **[Connect live history & cumulative claims](docs/EARNINGS_HISTORY.md)** - In progress. The shared production API profile displays NFT/wallet 24h/all-time earnings and collection holder allocations at current prices. Transfers retain NFT history; claims/conversions add no income. Actual ingestion, predecessor/price availability and deployment qualification remain open. Optional read profile2 removes the NFT/currency cross-product; actual provider/F6/site adoption remains open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -745,6 +747,7 @@ What holders see and use.
   - Preserve raw source amounts when USD is unavailable; claims/conversions/imports/principal returns are not new income, and credited conversion ETH cannot be added twice to earned/claimable totals.
   - Require complete same-snapshot ownership/currency/history chunks, full86,400s raw boundary and final identity/canonical/freshness proofs under existing work limits; show unavailable rather than partial/zero earnings when coverage or prices fail.
   - Keep legacy/current3/source9/source10 profiles, null public configurations and local-only signer separate; qualify actual ingestion/archive/market prices/maximum-wallet latency and matching site/service rollout, not merely synthetic handler/DTO or fixture recovery.
+  - Optional wallet_read_batch1/profile2 separates16-ID ownership/LP pages from four-currency complete-wallet earnings:1000NFT/65–66descriptor core reads80 versus1071. Preserve per-NFT exact-unit/current-owner/history/paid proofs and full86400s; fixed constructor-only STATICCALL gas/cache/request bounds and no public signing. Qualify actual F6/V10/provider/max-lineage/freshness separately; rebuild/review/re-pin matching checkpoints without rewriting old artifacts.
 
   </details>
 
@@ -1252,4 +1255,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `bc6996b755febc652f29901267000093994c638f0954e3238d5b8c102d3bc5f6`.
+Snapshot SHA-256: `0d09a9115f07bab53f1be3fd323c1ab0e9b019e8ba889445e774f18af8384be7`.

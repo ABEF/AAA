@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "kind": "TWO_NEW_isolated_creation_call_methods",
+  "successful": false,
+  "tests_run": 0,
+  "failures": 0,
+  "errors": 1,
+  "skipped": 0,
+  "actual_method_calls": [],
+  "old_test_body_calls": 0,
+  "before": {
+    "frontend_api/read_batch.py": "b42375cbb0fbe42261cb90bac01c946c657774e226643428c53ab969ee7bcb2a",
+    "frontend_api/canonical_cache.py": "07c17051ea95a614ffe2b841fe10b1c4bb9db9d2b268174366c84ae057bc3e95",
+    "frontend_api/read_batch/WalletReadBatch.sol": "1068be2580ea8c160dcf7cb17db546e73c2bcd80cca72762f3e6df930652a92c",
+    "frontend_api/read_batch/WalletReadBatch.json": "adc72a6dac4be47c87982711436a19bcd0487f15546458bdebe78f614ea904fd",
+    "tests_python/test_read_batch.py": "c2342b538a79dcd220e362be21efdd1ca43b17ce228f11eec2187a50f06f359f",
+    "tests_python/test_read_batch_evm.py": "a616cdbfb60e63f5f9e3b959c378958d774584af174b043c3ec2497638fdcd98",
+    "zzz_ops/abi.py": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305"
+  },
+  "after": {
+    "frontend_api/read_batch.py": "b42375cbb0fbe42261cb90bac01c946c657774e226643428c53ab969ee7bcb2a",
+    "frontend_api/canonical_cache.py": "07c17051ea95a614ffe2b841fe10b1c4bb9db9d2b268174366c84ae057bc3e95",
+    "frontend_api/read_batch/WalletReadBatch.sol": "1068be2580ea8c160dcf7cb17db546e73c2bcd80cca72762f3e6df930652a92c",
+    "frontend_api/read_batch/WalletReadBatch.json": "adc72a6dac4be47c87982711436a19bcd0487f15546458bdebe78f614ea904fd",
+    "tests_python/test_read_batch.py": "c2342b538a79dcd220e362be21efdd1ca43b17ce228f11eec2187a50f06f359f",
+    "tests_python/test_read_batch_evm.py": "a616cdbfb60e63f5f9e3b959c378958d774584af174b043c3ec2497638fdcd98",
+    "zzz_ops/abi.py": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91",
+    "zzz_ops/work_budget.py": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+    "zzz_ops/errors.py": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305"
+  },
+  "source_changed": [],
+  "projection_call_source_sha256": "4981222831aae509648e4a382578cadabac5d268b786faba8c9cfb35372eede3",
+  "elapsed_seconds": 21.125,
+  "production_approved": false,
+  "anvil_sha256": "d438383b871c726407ecc5829279bea44ceac63a712be9e010813ca0a15434b6",
+  "anvil_version": "anvil Version: 1.4.4-v1.4.4\nCommit SHA: 05794498bf47257b144e2e2789a1d5bf8566be0e\nBuild Timestamp: 2025-10-30T15:20:33.723172900Z (1761837633)\nBuild Profile: maxperf\n",
+  "isolated_chain_id": 311977918068996,
+  "fixture_deployments": [
+    {
+      "fixture": "ReadOnlyFixture",
+      "nonce": 0,
+      "transaction_hash": "0x0a30506e0fa609bb092e9c8643f841cc036b89461c70a62f0ccc4f3eb741d534",
+      "receipt": {
+        "type": "0x2",
+        "status": "0x1",
+        "cumulativeGasUsed": "0x3f924",
+        "logs": [],
+        "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "transactionHash": "0x0a30506e0fa609bb092e9c8643f841cc036b89461c70a62f0ccc4f3eb741d534",
+        "transactionIndex": "0x0",
+        "blockHash": "0xfeb692b709e790d246f35a33f790d662a6bc39def59908468d8808c673a4afd8",
+        "blockNumber": "0x1",
+        "gasUsed": "0x3f924",
+        "effectiveGasPrice": "0x3b9aca00",
+        "blobGasPrice": "0x1",
+        "from": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+        "to": null,
+        "contractAddress": "0x5fbdb2315678afecb367f032d93f642f64180aa3"
+      },
+      "read_errors": 0
+    },
+    {
+      "fixture": "ReadOnlyFixture",
+      "nonce": 1,
+      "transaction_hash": "0x0df1b6c7cb8dddc00419e06545c229583a2f967ce087318a7b170743bb7df9ba",
+      "receipt": {
+        "type": "0x2",
+        "status": "0x1",
+        "cumulativeGasUsed": "0x3f924",
+        "logs": [],
+        "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "transactionHash": "0x0df1b6c7cb8dddc00419e06545c229583a2f967ce087318a7b170743bb7df9ba",
+        "transactionIndex": "0x0",
+        "blockHash": "0x0096c6ba445206aa28684026e609ca14a39772893aff5960bb1228820131cfa4",
+        "blockNumber": "0x2",
+        "gasUsed": "0x3f924",
+        "effectiveGasPrice": "0x34488cec",
+        "blobGasPrice": "0x1",
+        "from": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+        "to": null,
+        "contractAddress": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512"
+      },
+      "read_errors": 0
+    },
+    {
+      "fixture": "ReadOnlyFixture",
+      "nonce": 2,
+      "transaction_hash": "0xe1307678aa5bb78ec2832ff63cd4b41c87c186b96b803c739683cd9a513abead",
+      "receipt": {
+        "type": "0x2",
+        "status": "0x1",
+        "cumulativeGasUsed": "0x3f924",
+        "logs": [],
+        "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "transactionHash": "0xe1307678aa5bb78ec2832ff63cd4b41c87c186b96b803c739683cd9a513abead",
+        "transactionIndex": "0x0",
+        "blockHash": "0xe4f05b8e024f7fc45e56827ebe6d5e11977063ee2a0174d65189925e70ee59cc",
+        "blockNumber": "0x3",
+        "gasUsed": "0x3f924",
+        "effectiveGasPrice": "0x2ddc865a",
+        "blobGasPrice": "0x1",
+        "from": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+        "to": null,
+        "contractAddress": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0"
+      },
+      "read_errors": 0
+    },
+    {
+      "fixture": "ReadOnlyFixture",
+      "nonce": 3,
+      "transaction_hash": "0x98109a1cf57be3ad1312d6dd9c8a7e901214755625a9673f55d6df4a31741d45",
+      "receipt": null,
+      "read_errors": 4
+    }
+  ],
+  "owned_node_stopped": true,
+  "reused_prior_scope": "Nine different NEW protocol methods passed in original run-001; none of their bodies selected here.",
+  "original_setup_failure": "run-001 fixture receipt read timed out; EVM bodies did not run. Original failed stage retained.",
+  "fixture_scope": "Fresh owned random-chain Anvil plus five new test doubles, no currentF6/Robinhood/provider qualification."
+}

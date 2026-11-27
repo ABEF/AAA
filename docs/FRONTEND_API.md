@@ -1,11 +1,14 @@
 # Confirmed frontend read API
 
-[Compact wallet pages](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/compact-wallet-20261121/REVIEW.md) replace the
-separate-route190-read shape with64 core reads for1,000 NFTs/three currencies.
-Four-currency slices also keep the16NFT/66descriptor workload within1,024 RPC
-reads per request. Existing limits, exact accounting and all final proofs stay;
-actual host/provider freshness, full F6/V10 and huge currency cross-products
-remain unqualified. Legacy routes retain their original refusal boundaries.
+The historical [compact wallet pages](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/compact-wallet-20261121/REVIEW.md)
+reduced the separate-route190-read shape to64 core reads for1,000 NFTs/three
+currencies. Optional `wallet_read_batch: 1` now separates16-ID ownership/summary
+pages from four-currency whole-wallet earnings pages. With1,000 NFTs and66
+currency descriptors, the data-page shape falls from63x17=1,071 to63+17=80;
+protocol, final proofs and card requests are additional. Existing accounting,
+limits and canonical checks remain. This count is not actual host/provider,
+freshness, full F6/V10 or maximum-lineage qualification. Legacy routes retain
+their original refusal boundaries.
 
 The local [mint2/V10 website consumer](SOURCE10_WEBSITE_PROFILE.md) now implements explicit
 website schema5/source10 over accounting7, with33 browser runtime pins and
@@ -240,7 +243,8 @@ The separate [offline history recovery tool](HISTORY_RECOVERY.md) snapshots/vali
 | `/v1/earnings` | Processed collection LP/royalty history; requires `earnings_history` |
 | `/v1/nfts/{token-id}/earnings` | That NFT's processed lifetime/24h earnings, including previous owners |
 | `/v1/wallets/{address}/earnings/{block}/{offset}` | Up to 16 current holdings' lifetime earnings; requires `earnings_history` |
-| `/v1/wallets/{address}/view/{block}/{offset}/{asset_offset}` | Combined ownership/LP/ETH plus4-currency earnings; complete both page dimensions |
+| `/v1/wallets/{address}/view/{block}/{offset}/{asset_offset}` | Profile1 combined ownership/LP/ETH plus4-currency earnings; profile2 offset0 supplies independent ownership/summary pages |
+| `/v1/wallets/{address}/aggregate/{block}/{asset_offset}` | Explicit profile2 only: all currently held NFTs' earnings for up to4 currencies; complete the currency axis and independently verify ownership pages |
 
 Base protocol/NFT/inventory/readiness responses use schema 2. Collection,
 summary and earnings chunk responses have their own schema 1 under that same
@@ -559,8 +563,11 @@ See [aggregation and recovery procedure](LOCAL_API_REHEARSAL.md#full-wallet-tota
 
 ## Compact wallet view and bounded currencies
 
-Current accounting7 with configured earnings history advertises
-`wallet_view_profile: 1` on `/v1/protocol`. Additive GET
+Accounting7 with configured earnings history advertises `wallet_view_profile: 1`
+unless the reviewed schema2 read configuration explicitly sets integer
+`wallet_read_batch: 1`. Omission or integer0 keeps profile1; booleans, other
+values, non-accounting7 or missing earnings history reject configuration.
+Profile1's additive GET
 `/v1/wallets/{owner}/view/{block}/{offset}/{asset_offset}` uses schema1/kind
 `fixed_block_wallet_view_page`; legacy wires are unchanged. NFT offsets align16
 within0..999, currency offsets align4 within the complete descriptor union.
@@ -576,13 +583,17 @@ A safe earnings transport failure yields earnings:null/earnings_error:
 requests. Selected currencies bound paid-entitlement and price reads. Full replay,
 global reconciliation and all selected NFTs' exact LP components remain checked.
 
-Only identical complete eth_call/eth_getCode canonical blockHash requests can
-reuse raw successful replies within one existing request. Decoders/runtime and
-semantic checks still run. Errors, head/chain/header and final/checkpoint proofs
-are never cached. Copied replies are cleared on every exit; misses retain work
-charges. No cross-request trust cache or higher budget is introduced.
+Identical complete eth_call/eth_getCode canonical blockHash requests can reuse
+raw successful replies within one request. Profile2 additionally seeds the exact
+fixed getter replies, including remembered failures, from the reviewed static
+reader below. Ordinary decoders/runtime and semantic checks still run. A failed
+prefetched getter is not retried; contradictory replies or malformed batch ABI
+are fatal integrity errors. Head/chain/header and final/checkpoint proofs remain
+live. Copied replies/failures clear on scope exit; misses retain work charges.
+The unchanged raw cache bounds are64KiB per entry and8MiB per request. No
+cross-request financial cache or higher budget is introduced.
 
-The website requires complete two-dimensional coverage, sums raw currencies
+The profile1 website consumer requires complete two-dimensional coverage, sums raw currencies
 before USD rounding and paces current-profile GETs1second apart with one active
 per origin/prefix. Infeasible currency windows remain unavailable while complete
 ownership/summary can remain usable. No age, work, admission, monetary or signing
@@ -592,6 +603,54 @@ and [evidence](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5
 Checkpoint semantic identity changes: preserve original checkpoint/review/raw DB
 bytes and explicitly rebuild/review/re-pin before separate adoption. Source
 publication upgrades no installed services or consumers.
+
+### Opt-in whole-wallet earnings profile2
+
+Set top-level integer `"wallet_read_batch": 1` only in a reviewed accounting7
+read configuration with earnings history and matching source/checkpoint pins.
+`/v1/protocol` then advertises `wallet_view_profile: 2`. This selection is separate
+from API schema2, response schema1, website schema5, mint2 and checkpoint2/3.
+Source publication does not install the configuration, restart a service or
+authorize website rollout or signing.
+
+First assemble every16-ID `/view/{block}/{offset}/0` page. These pages preserve
+ownership, summary and final checks but explicitly return `earnings:null` with
+`earnings_error:"aggregate_earnings_required"`. Other currency offsets retain
+the legacy tile behavior. Then request `/aggregate/{block}/0`, follow
+`next_asset_offset` (increments4), and finish the independent currency axis.
+The aggregate route has no NFT offset and never requires the NFT-by-currency
+rectangle. Ordinary ownership and legacy earnings selections still cap16 IDs.
+
+Each aggregate response uses schema1/kind `fixed_block_wallet_earnings_page` and
+binds wallet/chain/NFT, confirmed block/hash/time, configuration, lifecycle,
+history, complete ordered `token_ids`, `count`, `inventory_sha256`, and the full
+currency descriptor digest/count plus selected currency IDs/cursor. Its
+`earnings` has scope `wallet`, all-time/full24h rows, raw currencies, today's USD
+values and exact canonical-epoch provenance. It preserves each NFT's whole-unit
+allocation and rounding before summing; claims, conversions and principal are
+not new income. These are lifetime earnings of NFTs held now, including earlier
+owners, rather than the wallet's personal income.
+
+`available:true` describes the authenticated envelope; `complete:true` and
+`verified_count:count` require non-null earnings for this currency page only.
+An isolated RPC failure can leave `earnings:null`, `complete:false` and
+`verified_count:0`; no partial financial sum is returned. Integrity/history/work
+failures reject the request. Clients must compare IDs/count/digest against the
+independently assembled ownership pages, complete every matching currency page,
+and recheck freshness/canonical identity after the final asynchronous result.
+Never combine mixed snapshots or display a partial currency total as complete.
+
+The fixed read helper uses constructor-only `eth_call` with no destination,
+zero sender/value and canonical blockHash; it is never deployed or broadcast.
+It performs only STATICCALL getters for NFT identity, Vault shares/bucket,
+royalty weight, exact LP bucket/components/claimable and selected royalty
+claimable. Each invocation covers at most4 NFTs/four royalty currencies;
+prefetch accepts at most16 IDs and splits them. Gas is24M per simulation,
+50,000 per plain getter,250,000 per LP getter and1M per royalty getter. Initcode
+and returned-code bounds remain49,152/24,576 bytes. This gas cap is a bounded
+read workload, not a transaction profile or changed user fee limit. Unsupported
+provider behavior or an expensive getter fails closed. See [concurrent work
+bounds](CONCURRENT_SERVICES.md) and [checkpoint source identity](EARNINGS_CHECKPOINTS.md).
 
 ## Earlier separate wallet financial consumer
 

@@ -84,29 +84,34 @@ def handler(projection: Projection, preparer=None) -> type[BaseHTTPRequestHandle
             summary = re.fullmatch(r'/v1/wallets/(0x[0-9a-fA-F]{40})/summary/(0|[1-9][0-9]{0,15})/(0|[1-9][0-9]{0,2})', self.path)
             wallet_earnings = re.fullmatch(r'/v1/wallets/(0x[0-9a-fA-F]{40})/earnings/(0|[1-9][0-9]{0,15})/(0|[1-9][0-9]{0,2})', self.path)
             wallet_view = re.fullmatch(r'/v1/wallets/(0x[0-9a-fA-F]{40})/view/(0|[1-9][0-9]{0,15})/(0|[1-9][0-9]{0,2})/(0|[1-9][0-9]{0,3})', self.path)
+            aggregate = re.fullmatch(r'/v1/wallets/(0x[0-9a-fA-F]{40})/aggregate/(0|[1-9][0-9]{0,15})/(0|[1-9][0-9]{0,3})', self.path)
             protocol = self.path == '/v1/protocol'
             readiness = self.path == '/v1/mint-readiness'
             earned = re.fullmatch(r'/v1/nfts/(0|[1-9][0-9]{0,77})/earnings', self.path)
             collection_earnings = self.path == '/v1/earnings'
             collection = re.fullmatch(r'/v1/collection/(0|[1-9][0-9]{0,15})/(0|[1-9][0-9]{0,2})', self.path)
-            if not match and not wallet and not wallet_page and not summary and not wallet_earnings and not wallet_view and not protocol and not readiness and not earned and not collection_earnings and not collection:
+            if not match and not wallet and not wallet_page and not summary and not wallet_earnings and not wallet_view and not aggregate and not protocol and not readiness and not earned and not collection_earnings and not collection:
                 self._json(404, {'error': 'unknown_endpoint'})
                 return
             try:
-                identifier = token_id((match or earned)[1]) if match or earned else address((wallet or wallet_page or summary or wallet_earnings or wallet_view)[1]) if wallet or wallet_page or summary or wallet_earnings or wallet_view else None
+                identifier = token_id((match or earned)[1]) if match or earned else address((wallet or wallet_page or summary or wallet_earnings or wallet_view or aggregate)[1]) if wallet or wallet_page or summary or wallet_earnings or wallet_view or aggregate else None
                 cursor = wallet_page or summary or wallet_earnings or wallet_view
                 if cursor and int(cursor[3]) % 16:
                     raise ValueError('Invalid summary cursor')
                 if wallet_view and (int(wallet_view[4]) % 4 or int(wallet_view[4]) >= 2048):
                     raise ValueError('Invalid wallet currency cursor')
+                if aggregate and (int(aggregate[3]) % 4 or int(aggregate[3]) >= 2048):
+                    raise ValueError('Invalid aggregate currency cursor')
                 if collection and int(collection[2]) % 16:
                     raise ValueError('Invalid collection cursor')
             except ValueError:
-                self._json(400, {'error': 'invalid_cursor' if collection or wallet_page or wallet_view else 'invalid_token_id' if match or earned else 'invalid_wallet_address'})
+                self._json(400, {'error': 'invalid_cursor' if collection or wallet_page or wallet_view or aggregate else 'invalid_token_id' if match or earned else 'invalid_wallet_address'})
                 return
             try:
                 self.begin_work()
-                if collection:
+                if aggregate:
+                    result = projection.wallet_aggregate(identifier, int(aggregate[2]), int(aggregate[3]))
+                elif collection:
                     result = projection.collection(int(collection[1]), int(collection[2]))
                 elif wallet_view:
                     result = projection.wallet_view(identifier, int(wallet_view[2]), int(wallet_view[3]), int(wallet_view[4]))

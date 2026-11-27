@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "kind": "reviewed_consumer_patch_and_verification",
+  "website_baseline": "89a8219b021403e8da542aa2a8b11ab14e833644",
+  "files": {
+    "deployment-api.js": "0224683bb4b042a2f48012dd50023ad689c520abc62bfe0d30e5c6c7b041936a",
+    "deployment-wallet-view.js": "8d5689d8b3c5b5738f7ea474d67c2080e1b4ee1e745770078b558fb26373150d",
+    "tests/compact-wallet-view.test.mjs": "ebba3d84d712fb843388572b0e6bf8dc0baada487db938dfee0e04f73fc6c2b0",
+    "package.json": "eae4f2ff8a52ff0d69aa41a2d385ef768658eeae0119b450e66737b4a862449b",
+    "tests/wallet-aggregate-view.test.mjs": "945de2abfbe3d7b674d7a6a5eecd8743184da5d9b368b32df5642c5dc93bf2ba"
+  },
+  "legacy_compact_reader_prefix_exact": true,
+  "legacy_prefix_sha256": "d5a4f653cf35524e32332dabf0b02f25392a6e363d5f8f214f5f7d9155a6deeb",
+  "legacy_test_edit": "Only future unsupported capability2 changed to3; one affected body ran.",
+  "new_test_methods_passed_once": 24,
+  "affected_existing_methods_passed_once": 1,
+  "unchanged_test_bodies_run": 0,
+  "preserved_signer_and_null_public_configs": {
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300"
+  },
+  "source_only_no_build_rollout": true,
+  "required_backend_contract": "profile2 explicit wallet_read_batch1 opt-in; NFT view marker aggregate_earnings_required; aggregate fullinventory and successcount/true versus unavailable0/false.",
+  "receipts": [
+    "NEW_CHECKS.json",
+    "NEW_CHECKS.tap",
+    "AFFECTED_CAPABILITY.json",
+    "AFFECTED_CAPABILITY.tap"
+  ]
+}

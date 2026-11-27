@@ -83,6 +83,12 @@ Final production-pool selection is deferred. The supplied native ETH/ZZZ pool
 remains an isolated test target, including explicitly synthetic liquidity;
 it is not a production selection or independent-depth proof.
 
+An optional [complete-wallet read profile2](docs/OPERATOR_MANUAL.md#optional-profile2-separate-complete-wallet-earnings)
+separates ownership/LP pages from whole-wallet earnings slices:80 core reads
+instead of1,071 for1,000 NFTs and65–66 descriptors. Exact per-NFT rights, the full
+24-hour history and existing limits remain; actual provider/F6/site adoption is
+still unqualified. No public signing or running-site change is implied.
+
 The selected non-live contribution profile is32M gas/full20% padding;
 maintenance is24M/full25%, and claims12M/full20%. Qualification is workload-specific.
 Real prices/routes, complete provider fees/capacity, maximum states, authorities,

@@ -23,6 +23,8 @@ SOURCE_FILES = ('frontend_api/earnings_checkpoint.py', 'frontend_api/earnings_ch
     'frontend_api/earnings_replay.py', 'frontend_api/history.py', 'frontend_api/earnings.py',
     'frontend_api/service.py', 'frontend_api/wallet_earnings.py',
     'frontend_api/wallet_view.py', 'frontend_api/canonical_cache.py',
+    'frontend_api/wallet_aggregate.py', 'frontend_api/read_batch.py',
+    'frontend_api/read_batch/WalletReadBatch.sol', 'frontend_api/read_batch/WalletReadBatch.json',
     'frontend_api/portfolio.py', 'frontend_api/earnings_prices.py', 'zzz_ops/abi.py',
     'zzz_ops/log_provenance.py')
 SHARED = ('mints', 'shares', 'supply', 'members', 'weights', 'activation_order',
@@ -227,7 +229,8 @@ class Seed:
         selected=tuple(model.mints) if model.track_all else model.selected
         model.selected=selected
         all_accounts=self.payload['accounts']
-        model.accounts={i:defaultdict(int,all_accounts.get(i,{})) for i in selected}
+        model.accounts={i:defaultdict(int,{k:v for k,v in all_accounts.get(i,{}).items()
+                         if model.tracked_assets is None or k[1] in model.tracked_assets}) for i in selected}
         model.account_totals={i:defaultdict(int,{k:v//SCALE for k,v in model.accounts[i].items()}) for i in selected}
         model.totals=defaultdict(int,self.payload['collection'])
         for account in model.account_totals.values():

@@ -250,6 +250,12 @@ The ideal admission bound is68s for80 reads; actual fixed-clock producer handler
 work is83.621s, excluding real network, isolated-worker startup and card costs.
 Neither number qualifies deployed freshness. The1,000-by66 cross-product still
 cannot fit120s; earnings is unavailable without losing complete holdings/totals.
+The optional explicit `wallet_read_batch:1`/wallet profile2 now separates
+ownership/LP pages from four-currency whole-wallet earnings. The maximum core
+cross-product falls from1071 to80 GETs for1000NFTs/65–66descriptors. A pinned
+constructor-only STATICCALL reader retains live per-NFT reconciliation and fixed
+internal gas bounds. Complete provider/F6/V10/lineage/freshness/HTTP acceptance
+remains open; lower request counts alone do not close it.
 Rebuild/review/re-pin matching checkpoint semantic sources before separate
 backend/worker/Nginx/website adoption. Legacy wires and all limits remain.
 

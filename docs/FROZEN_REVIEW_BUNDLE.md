@@ -55,6 +55,20 @@ generator, implementation or test consumer requires that file, both callable
 reference JSON files, `CONTRACT_FUNCTIONS.md` and `OPERATOR_MANUAL.md`. A missing
 input blocks export and verification; arbitrary documentation JSON is excluded.
 
+Schema4 additionally admits exactly
+`frontend_api/read_batch/WalletReadBatch.sol` and
+`frontend_api/read_batch/WalletReadBatch.json`. If `frontend_api/read_batch.py`
+is included, both helper inputs are mandatory; their omission blocks creation
+and verification. This does not admit arbitrary frontend JSON/Solidity files.
+Preserve their byte-exact contents: the loader binds raw source/artifact and
+creation-bytecode hashes, and earnings checkpoints bind their semantic sources.
+The helper is a read-tool constructor used only by zero-value `eth_call` and
+fixed STATICCALL getters. It is outside the normal F6 contract graph, changes no
+production constructor/binding/authority and requires no persistent deployment.
+Archive verification does not execute or qualify it or enable wallet profile2.
+Schemas1–3 retain their original admission rules; schema4 is an archive format,
+separate from wallet_read_batch1, wallet_view_profile2 and checkpoint2/3.
+
 Local/untracked drafts, historical reports, `.git`, environment files, memories,
 private/live configuration, runtime state and dependency directories are excluded.
 Test fixtures may contain **public disposable test identities**. A filename

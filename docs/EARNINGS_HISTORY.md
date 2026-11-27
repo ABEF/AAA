@@ -125,6 +125,7 @@ original source/profile scope; current integrity evidence is linked above.
 | `/v1/earnings` | Collection processed LP revenue, allocations, processed royalties and quarantine, by asset |
 | `/v1/nfts/<decimal-token-id>/earnings` | That NFT's individual LP, collective LP and royalty earnings, including earnings already claimed by previous owners |
 | `/v1/wallets/<address>/earnings/<confirmed-block>/<offset>` | Up to 16 currently owned NFTs; sum every verified chunk for a wallet total |
+| `/v1/wallets/<address>/aggregate/<confirmed-block>/<asset-offset>` | Opt-in wallet profile2: complete current inventory, up to4 currencies per page; independently verify ownership and complete the currency axis |
 
 Each response contains `all_time` and `last_24h` asset rows, raw integer amounts,
 current-price USD values, the confirmed block and the complete verified epoch
@@ -138,8 +139,9 @@ Transfers preserve the NFT's lifetime history; they do not reset it for the buye
 
 ## Current-holdings totals
 
-Read `/v1/wallets/<address>/nfts` first. Request earnings at that inventory's
-confirmed block with offset 0, following `next_offset` until null. Each chunk
+For the legacy separate routes, read `/v1/wallets/<address>/nfts` first.
+Request earnings at that inventory's confirmed block with offset 0, following
+`next_offset` until null. Each chunk
 binds the wallet, NFT contract, ordered IDs, full count, inventory SHA-256, block
 hash and API configuration. Offsets are multiples of 16, at most 992. Missing,
 expired, reorged or mismatched chunks invalidate the entire total.
@@ -193,6 +195,38 @@ deposit or unharvested venue fee is not yet processed earnings. Exact7 LP units 
 fractional monetary reserve. Historical indexed LP units enter the period when
 their fractional carry first becomes payable. This distinction
 matters for very small amounts and is returned in the response.
+
+### Optional independent wallet page axes
+
+Reviewed schema2 read configuration can set integer `wallet_read_batch: 1` for
+accounting7 plus earnings history; `/v1/protocol` advertises wallet_view_profile2.
+Omitted/integer0 retains profile1. This does not change earnings units, pricing,
+contract profiles, rights or the exact24-hour boundary.
+
+Assemble every16-ID `/view/<block>/<offset>/0` ownership/summary page, then every
+four-currency `/aggregate/<block>/<asset-offset>` earnings page. The former
+explicitly omits earnings; the latter replays all currently held NFTs for only
+its selected currencies. NFT-level floors and exact whole-unit rights apply
+before aggregation. Complete global books, live per-NFT shares/components/paid
+checks, canonical epochs, checkpoint age and raw day suffix remain validated.
+The fixed typed STATICCALL prefetch reduces RPC count without trusting rounded
+totals or dropping current NFT proofs. Ordinary selected-NFT endpoints stay16.
+
+Require identical owner/chain/NFT/block/configuration/lifecycle/history and
+ordered inventory digest/count across both axes, exact selected currency
+coverage and final fresh/canonical verification. `available:true` alone is not
+a complete financial result: every aggregate currency page needs `complete:true`,
+`verified_count:count` and non-null earnings. A failure never becomes a partial
+sum or zero. Missing USD prices remain separate from verified raw income.
+The full response contract and bounded helper are documented in the
+[read API](FRONTEND_API.md#opt-in-whole-wallet-earnings-profile2).
+
+The1,000-NFT/66-descriptor shape is63 ownership/summary plus17 aggregate data
+pages, rather than63x17 legacy tiles. Protocol, final checks and cards add work.
+This count does not qualify real provider latency, maximum histories/lineages,
+full F6/V10 or concurrent hosting; existing work/body/deadline limits still fail
+closed. Source/checkpoint/configuration adoption requires separate review and
+service authorization. Anvil-only signing and disabled public deployment remain.
 
 ## USD valuation decision
 

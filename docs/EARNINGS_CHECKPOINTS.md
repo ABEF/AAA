@@ -1,7 +1,8 @@
 # Reviewed earnings checkpoints
 
-This optional backend profile serves collection, NFT and wallet-chunk earnings
-from an immutable reviewed checkpoint plus raw recent events. It changes no
+This optional backend profile serves collection, NFT, wallet-chunk and explicit
+wallet-profile2 aggregate earnings from an immutable reviewed checkpoint plus
+raw recent events. It changes no
 contracts, funds, reward rights, signer or running service. Default configuration
 still uses full replay. Checkpoint1 supports explicit historical accounting6/
 custody5/fee-intake1. Explicit checkpoint2 supports fresh accounting7/LP-allocation1/
@@ -93,6 +94,33 @@ the requested snapshot**. This is inclusive: its timestamp may equal the day's
 exclusive lower boundary. The entire actual24-hour window is then replayed from
 raw suffix logs. No daily buckets, interpolated history or guessed timing replace
 events. Current USD prices are applied at the final confirmed request block.
+
+### Wallet-profile2 source and restoration boundary
+
+The opt-in `wallet_read_batch: 1` read profile does not introduce a checkpoint
+codec or a trusted wallet total. The current semantic source set includes
+`wallet_aggregate.py`, `read_batch.py` and both exact files under
+`frontend_api/read_batch/` (`WalletReadBatch.sol` and `WalletReadBatch.json`).
+These files join the existing Replay/cache/reader pins. Rebuild, independently
+review and re-pin a matching artifact after a semantic source change; never edit
+an old checkpoint's source hashes or relabel its original evidence. Changing the
+read configuration also changes its reviewed projection identity. Checkpoint2/3
+and wallet_view_profile2 are separate version boundaries.
+
+Aggregate restoration retains only the requested at-most-four currencies'
+per-NFT earnings accounts, while retaining required global LP trees, weights,
+phase, direct credits and raw event transitions. Every selected NFT's exact
+allocation/rounding is preserved before sum. The entire actual86,400-second raw
+suffix and current ownership/share/entitlement/paid checks remain. The fixed
+constructor-only STATICCALL helper supplies raw getter replies within the same
+request; it cannot replace canonical/history/final proofs or create persistent
+code. A checkpoint is not an escape from RPC/cache/work/expiry bounds.
+
+The separate16-ID ownership/summary and four-currency aggregate page axes reduce
+HTTP request count, but historical source9/V9 three-currency/eight-card timing
+above is not evidence for the new profile, full F6/V10, maximum currency/lineage
+cross-products or an actual production provider. Qualify those independently.
+Package matching helper bytes through [schema4 review bundles](FROZEN_REVIEW_BUNDLE.md).
 
 ## Checkpoint3 across replacement contracts
 

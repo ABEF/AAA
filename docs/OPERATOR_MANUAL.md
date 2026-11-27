@@ -394,11 +394,49 @@ See the [full procedure](KEEPER_RECOVERY.md#journal-storage-failures-preserve-re
 
 ## Complete wallet financial view
 
-The current exact-LP API advertises `wallet_view_profile: 1` on confirmed
-`GET /v1/protocol` only with configured earnings history. Source9/source10 then
-use combined ownership, LP/funded ETH and currency-paged earnings. Missing
-capability retains the explicit legacy reader; unknown capability or failure of
-an advertised compact endpoint never silently falls back.
+With configured exact-LP earnings, omitted/zero `wallet_read_batch` retains
+`wallet_view_profile: 1`. The optional API configuration `"wallet_read_batch": 1`
+explicitly selects **profile2** for accounting7. Source9/source10 can read either
+advertised profile; unknown capabilities and failed advertised endpoints never
+silently fall back. This is a read-only source capability, not installed-service
+adoption or production signing permission.
+
+### Optional profile2: separate complete-wallet earnings
+
+| Operator action / input | Example or required check |
+| --- | --- |
+| Preserve baseline | Retain original configuration, DB/checkpoint/review and running release; change no old source pins |
+| Prepare matching candidate | Configure `"wallet_read_batch": 1` only with accounting7 and complete earnings history; explicitly select matching source9/10 consumer |
+| Qualify read transport | Provider must support EIP1898 canonical **creation eth_call** (destination omitted), the exact pinned helper and its fixed24M virtual-call allowance. This sends no transaction, deploys no persistent helper and pays no wallet gas |
+| Bound each helper | At most4 NFTs and4 royalty currencies per invocation; fixed plain/LP/royalty getter gas50k/250k/1M. An expensive valid view may refuse; no uncapped retry |
+| Ownership and LP | GET `/v1/wallets/{owner}/view/{block}/{offset}/0` for offsets0/16/32…; earnings:null with `aggregate_earnings_required` is intentional only in profile2 |
+| Wallet earnings | GET `/v1/wallets/{owner}/aggregate/{block}/{asset_offset}` for offsets0/4/8…; example owner `0x000000000000000000000000000000000000001e`, block99, offset0 are illustrative |
+| Complete assembly | Prove all ownership/summary pages first. Every aggregate slice must bind identical full current-owner IDs/count/digest, chain/NFT/configuration/block/lifecycle, full currency inventory and contiguous selected slices |
+| Financial release | Require `complete:true`, `verified_count:count`, full exact24h/all-time earnings and final live canonical/freshness proofs. Do not add claims, conversions or principal to income |
+| Honest failure | Isolated financial transport failure returns earnings:null/`earnings_unavailable`, verified_count0/complete:false; discard all aggregate earnings. Integrity contradictions, budget/expiry/history/canonical failures remain fatal |
+| Checkpoint adoption | Source semantics changed. Rebuild a NEW reviewed compatible checkpoint and review/re-pin its exact bytes with matching code; preserve the full86400-second raw suffix and original artifacts |
+| Rollback | Stop/adopt only under separately authorized rollout with matching old release/config/checkpoint; setting flag0 alone does not restore the old semantic source identity |
+
+Profile2 separates63 ownership/LP pages plus17 earnings pages for1,000 NFTs and
+65–66 descriptors: **80 core GETs**, versus profile1's1,071. Protocol, cards and
+final provenance cost extra. These counts are not an actual120-second provider,
+full F6/V10, maximum-lineage or concurrent-host acceptance proof. Multi-epoch
+work can still hit unchanged request/cache limits and must refuse honestly.
+
+The helper seeds exact raw getter results only inside one bounded request.
+Ordinary per-NFT owner/ordinal/history/rights, both LP components and paid-state
+checks still run. Selected-currency replay preserves all global ledger changes,
+whole-unit per-NFT rounding and exact86400 seconds. The cache retains encoded
+keys plus JSON64KiB/entry and8MiB total; no cross-request financial cache.
+Existing25s/1024RPC/2048POST/1MiB, freshness, ingress and signing limits remain.
+The template proxy route must be reviewed with the matched worker/consumer;
+publication changes no server, site, config, journal or Anvil state.
+
+### Existing profile1: combined NFT/currency pages
+
+Profile1 retains combined ownership, LP/funded ETH and currency-paged earnings.
+Missing capability retains the explicit legacy reader. Its original table and
+finite historical evidence below keep their original source scopes.
 
 | Read / control | Operator procedure and boundary |
 | --- | --- |

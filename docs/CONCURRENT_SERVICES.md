@@ -41,6 +41,41 @@ it is not a throughput improvement without measurements. Start smaller when the
 provider's capacity is unknown. Never increase signing concurrency in the separate
 disposable local launcher to match these read/preparation settings.
 
+## Optional bounded wallet read aggregation
+
+Only a reviewed accounting7 read configuration with earnings history and integer
+`wallet_read_batch: 1` enables wallet_view_profile2 and the aggregate earnings
+route. Omitted/integer0 keeps profile1. The new route uses the same admission,
+worker supervisor,25-second work budget,1,024 logical RPC/2,048 POST, response
+and snapshot-expiry limits. It does not add a signing path, public listener or
+operator write capability.
+
+The helper is fixed checked-in constructor bytecode passed to `eth_call` with no
+destination, zero sender/value and canonical blockHash. It cannot persist code
+or change state; only an explicit set of STATICCALL getters is available. Each
+outer call remains charged through the existing BudgetedRPC. At most16 requested
+NFTs split into at-most4-NFT constructor calls with at most4 royalty currencies;
+plain/LP/royalty getter gas caps are50,000/250,000/1M and the whole simulation
+cap is24M. Initcode/returned-code bounds are49,152/24,576 bytes. No arbitrary
+target/selector/calldata program or state override is accepted. This read gas
+bound does not change transaction profiles, network fee ceilings or any monetary
+safeguard. Provider support and expensive valid getters require qualification.
+
+Authenticated raw replies seed only the same request's canonical cache; the
+ordinary Projection decoders, deployment/identity and accounting checks still
+run. Getter failures are remembered without retry/fallthrough. Contradictory
+replies or malformed batch output fail integrity checks; inability to retain a
+batch within64KiB-entry/8MiB-total bounds fails closed. Repeated identical proof
+groups reuse their retained replies; no financial result or failed state crosses
+request boundaries. Head/chain/header/final/checkpoint proofs remain live.
+
+The consumer assembles independent16-ID ownership/summary and four-currency
+whole-wallet earnings axes, then checks matching complete inventory, currencies,
+history/configuration/epoch identity and final freshness. This reduces data-page
+count without raising workers, quotas or request ages. It does not establish
+concurrent production capacity or replace the separately deferred load campaign.
+See [the response contract](FRONTEND_API.md#opt-in-whole-wallet-earnings-profile2).
+
 ## Failures, observations and recovery
 
 1. Check startup JSON for chain ID, port, worker count and connection cap. Verify

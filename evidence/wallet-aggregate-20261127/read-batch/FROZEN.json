@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "kind": "frozen_read_batch_component",
+  "files": {
+    "frontend_api/read_batch.py": {
+      "bytes": 10229,
+      "sha256": "b42375cbb0fbe42261cb90bac01c946c657774e226643428c53ab969ee7bcb2a"
+    },
+    "frontend_api/canonical_cache.py": {
+      "bytes": 11670,
+      "sha256": "07c17051ea95a614ffe2b841fe10b1c4bb9db9d2b268174366c84ae057bc3e95"
+    },
+    "frontend_api/read_batch/WalletReadBatch.sol": {
+      "bytes": 4579,
+      "sha256": "1068be2580ea8c160dcf7cb17db546e73c2bcd80cca72762f3e6df930652a92c"
+    },
+    "frontend_api/read_batch/WalletReadBatch.json": {
+      "bytes": 8475,
+      "sha256": "adc72a6dac4be47c87982711436a19bcd0487f15546458bdebe78f614ea904fd"
+    },
+    "tests_python/test_read_batch.py": {
+      "bytes": 10774,
+      "sha256": "c2342b538a79dcd220e362be21efdd1ca43b17ce228f11eec2187a50f06f359f"
+    },
+    "tests_python/test_read_batch_evm.py": {
+      "bytes": 9818,
+      "sha256": "15e6e7a1966ba0b46d51b685cb9934545bbd803581b13e2cb466c971c8e5b10b"
+    }
+  },
+  "distinct_new_passes": 11,
+  "unchanged_test_bodies_run": 0,
+  "protocol_9_receipt": "cache-wallet-aggregate-20261127/read-batch/run-001/RESULT.json",
+  "actual_evm_2_receipt": "cache-wallet-aggregate-20261127/read-batch/run-003/RESULT.json",
+  "original_nonpasses": [
+    "run-001 EVMsetup",
+    "run-002 EVMsetup"
+  ],
+  "normal_F6_changed": false,
+  "production_approved": false
+}

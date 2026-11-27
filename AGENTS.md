@@ -100,7 +100,12 @@ This is an undeployed production candidate; production is **NOT APPROVED**.
 - Preserve source-specific failures/skips and distinguish new execution from exact
   reuse. Do not rerun unchanged contract/browser/keeper suites. Use focused affected
   checks; record actual method/source/fixture scopes without summing overlaps.
-- Current inventory is `evidence/documentation-consolidation-20261127/FUNCTION_INVENTORY.json`.
+- Current inventory is `evidence/wallet-aggregate-20261127/FUNCTION_INVENTORY.json`.
+  Optional `wallet_read_batch:1` selects read profile2; omitted/zero remains profile1.
+  Constructor-only fixed STATICCALL aggregation is read-only and outside the frozen
+  protocol graph. Keep exact per-NFT accounting/full86400s/request/cache/gas bounds;
+  matching new checkpoint/review pins and actual provider/F6/lineage/site adoption
+  remain separate. Never infer public signing from the reduced request count.
   Run its offline `--check` after relevant source/plan changes. Generate/review new
   source-scoped candidates, never bypass trusted build/source/ABI admission.
 - Keep pending-first receipt recovery and durable intent-before-signing unchanged.

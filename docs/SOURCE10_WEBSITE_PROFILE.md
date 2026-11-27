@@ -1,6 +1,6 @@
 # Mint2/V10 website read and unsigned profile
 
-The [compact-wallet source record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/compact-wallet-20261121/REVIEW.md)
+The historical profile1 [compact-wallet source record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/compact-wallet-20261121/REVIEW.md)
 reduces the controlled 1,000-NFT/three-descriptor journey to 64 protocol/compact API
 reads, or 80 including eight cards and their earnings. The previous 190 core reads
 and 178-second ideal admission bound describe the historical separate-route wire.
@@ -54,21 +54,43 @@ record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba50
 the current compact wire is covered separately above. Neither is public
 configuration, provider/hosting or financial-load approval.
 
+## Optional complete-wallet aggregate reads
+
+Explicit `wallet_view_profile:2` uses the shared read-only aggregate consumer:
+16-ID ownership/summary pages and four-currency complete-wallet earnings pages
+are separate axes. It requires backend `wallet_read_batch:1`, matching reviewed
+configuration/checkpoint sources and actual canonical creation-`eth_call`
+provider qualification. Omitted/0 retains profile1. No browser manifest key,
+deployed reader address, new runtime role or signing permission is introduced;
+the existing33 source10 browser pins and source9's29 remain distinct.
+
+The [complete wire and failure rules](SOURCE9_WEBSITE_PROFILE.md#complete-wallet-reads)
+define full inventory/currency/epoch binding, honest financial verification flags,
+unavailable handling, request pacing and the constructor-only STATICCALL tool.
+For1,000NFTs/66descriptors this removes the63*17 HTTP grid in favor of63+17 core
+wallet GETs; protocol/card requests are additional. Finite wire/model checks do
+not qualify actual full-normalF6/V10, provider/hosting or wall-clock freshness.
+The full86,400-second history and all existing limits remain.
+
 ## Wallet financial snapshot guards
 
 Current source9/source10 capture inventory and anchor before asynchronous work,
 bind full page identity/time, and refuse cancellation, revision changes or expiry
 even after the final awaited canonical/identity verification and card reads. When
 the compact capability is present, the view reuses that complete financial result
-instead of starting independent totals/earnings branches. Each currency and income
-component is summed in raw units across NFT pages before USD rounding. The full
+instead of starting independent totals/earnings branches. Profile1 sums raw income
+per currency across NFT pages before USD rounding; profile2 validates the backend
+whole-wallet raw aggregate before combining distinct currency rows. The full
 86,400-second history and existing ETH-only claimable header remain unchanged.
 
-Later optional currency reads may leave earnings unavailable while complete
-holdings/summary survive only for 429 or an explicitly classified 503 `service_busy`.
-Generic 503, integrity/history/work failures and stale/reorged proofs remain terminal.
-The 1,000-NFT/66-descriptor cross-product cannot finish within 120 seconds and is not
-published as partial income. The [earlier 83-method record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/wallet-view-20261121/REVIEW.md)
+Optional currency reads may leave earnings unavailable while complete
+holdings/summary survive for429, explicit503 `service_busy`, or a validated
+`earnings_unavailable` envelope. Profile2 requires honest zero/false financial
+verification flags on that envelope. Generic503, integrity/history/work failures
+and stale/reorged proofs remain terminal. The profile1 1,000-NFT/66-descriptor
+cross-product cannot finish within120 seconds and is not published as partial
+income; optional profile2 removes that request grid without widening the window
+or resource limits. The [earlier 83-method record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/wallet-view-20261121/REVIEW.md)
 describes the preceding separate-route stage; controlled V10 constructor/native-reader/
 NFT composition remains separately scoped. Matching checkpoint semantic sources
 require a newly built, reviewed and pinned artifact, preserving original checkpoint,

@@ -80,15 +80,32 @@ def ticket_amount(amount, supply, cursor, start, weight, *, unit=1):
 
 
 class Replay:
-    def __init__(self, timestamp, nft_id=None, *, selected=None, track_all=False):
+    def __init__(self, timestamp, nft_id=None, *, selected=None, track_all=False,
+                 wallet_ids=None, tracked_assets=None):
+        # Aggregate reads have a distinct selection domain. Ordinary NFT pages
+        # remain bounded to16; checkpoint track_all still has its original role.
+        require(wallet_ids is None or (nft_id is None and selected is None and track_all is False and
+                isinstance(wallet_ids, tuple) and len(wallet_ids) <= 1000 and
+                len(set(wallet_ids)) == len(wallet_ids) and
+                all(type(i) is int and 0 < i < 2**256 for i in wallet_ids)),
+                'Invalid aggregate wallet earnings selection')
+        require((wallet_ids is None and tracked_assets is None) or
+                (wallet_ids is not None and isinstance(tracked_assets, tuple) and
+                1 <= len(tracked_assets) <= 4 and len(set(tracked_assets)) == len(tracked_assets) and
+                all(isinstance(a, str) and len(a) == 42 and a.startswith('0x') and
+                    all(c in '0123456789abcdef' for c in a[2:]) for a in tracked_assets)),
+                'Invalid aggregate earnings currencies')
         require(type(track_all) is bool and (not track_all or (nft_id is None and selected is None)),
                 'Invalid checkpoint earnings selection')
         require(selected is None or (nft_id is None and isinstance(selected, tuple) and
                 len(selected) <= 16 and len(set(selected)) == len(selected) and
                 all(type(i) is int and 0 < i < 2**256 for i in selected)), 'Invalid earnings selection')
         self.timestamp, self.nft_id = timestamp, nft_id
-        self.selected = selected if selected is not None else (() if nft_id is None else (nft_id,))
-        self.group = selected is not None or track_all
+        self.wallet_selection = wallet_ids is not None
+        self.tracked_assets = None if tracked_assets is None else frozenset(tracked_assets)
+        self.selected = (wallet_ids if wallet_ids is not None else
+                         selected if selected is not None else (() if nft_id is None else (nft_id,)))
+        self.group = selected is not None or track_all or self.wallet_selection
         self.track_all = track_all
         self.accounts = {i: defaultdict(int) for i in self.selected}
         self.account_totals = {i: defaultdict(int) for i in self.selected}
@@ -161,8 +178,14 @@ class Replay:
         if self.timestamp - 86400 < timestamp <= self.timestamp:
             self.day[metric, asset] += amount
 
+    def earning_ids(self, asset):
+        """Filter account work only; every global ledger transition still runs."""
+        return self.selected if self.tracked_assets is None or asset in self.tracked_assets else ()
+
     def earn(self, metric, asset, scaled, timestamp, identifier):
         checkpoint()
+        if self.tracked_assets is not None and asset not in self.tracked_assets:
+            return
         key = metric, asset
         account = self.accounts[identifier]
         old = account[key]
@@ -254,7 +277,7 @@ class Replay:
             self.add('lp_collective_allocated' if self.members else 'lp_collective_quarantined', asset, collective, timestamp)
             shared_delta = collective*SCALE//len(self.members) if self.members else 0
             self.collective_index[asset] += shared_delta
-            for identifier in self.selected:
+            for identifier in self.earning_ids(asset):
                 own_bucket, shares = self.shares.get(identifier, (0, 0))
                 self.earn('lp_individual', asset, shares*owner_delta if own_bucket == bucket else 0, timestamp, identifier)
                 self.earn('lp_collective', asset, shared_delta if identifier in self.members else 0, timestamp, identifier)
@@ -323,7 +346,7 @@ class Replay:
             self.pending_exact_allocations[asset] = (amount, count, supply, transaction)
             self.royalty_cursors[asset] = after
             self.add('royalties_allocated', asset, amount, timestamp)
-            for identifier in self.selected:
+            for identifier in self.earning_ids(asset):
                 if identifier in cohort:
                     units = ticket_amount(amount,supply,before,self.ticket_offsets[identifier],self.weights[identifier],unit=unit)
                     self.earn('royalties',asset,units*SCALE,timestamp,identifier)
@@ -345,7 +368,7 @@ class Replay:
             self.add('royalties_allocated', asset, amount, timestamp)
             delta = amount*SCALE//weight if weight else 0
             self.royalty_index[asset] += delta
-            for identifier in self.selected:
+            for identifier in self.earning_ids(asset):
                 self.earn('royalties',asset,delta*self.weights[identifier] if identifier in cohort else 0,timestamp,identifier)
         elif name == 'AssetAdded':
             asset = _topic_address(topics[1])
@@ -399,7 +422,7 @@ class Replay:
             self.add('royalties_allocated',asset,amount,timestamp)
             delta=amount*SCALE//supply
             self.royalty_index[asset] += delta
-            for identifier in self.selected:
+            for identifier in self.earning_ids(asset):
                 self.earn('royalties',asset,delta*self.weights.get(identifier,0),timestamp,identifier)
         elif name == 'UnallocatedRoyaltiesRecovered':
             source = _topic_address(topics[1])
@@ -414,7 +437,7 @@ class Replay:
             self.add('royalties_allocated', ZERO, output, timestamp)
             delta = output*SCALE//supply
             self.royalty_index[ZERO] += delta
-            for identifier in self.selected:
+            for identifier in self.earning_ids(ZERO):
                 self.earn('royalties', ZERO, delta*self.weights.get(identifier, 0), timestamp, identifier)
         elif name == 'RoyaltyCustodyExited':
             identifier, asset, recipient = t[0], _topic_address(topics[2]), _topic_address(topics[3])
@@ -458,7 +481,7 @@ class Replay:
             self.add('royalties_allocated' if eligible else 'royalties_quarantined', asset, amount, timestamp)
             delta = amount*SCALE//supply if eligible and supply else 0
             self.royalty_index[asset] += delta
-            for identifier in self.selected:
+            for identifier in self.earning_ids(asset):
                 self.earn('royalties', asset, delta*self.weights[identifier] if identifier in cohort else 0, timestamp, identifier)
             if asset in self.pending_recovery:
                 require(self.pending_recovery.pop(asset) == transaction, 'Royalty cutoff recovery crossed transactions')
