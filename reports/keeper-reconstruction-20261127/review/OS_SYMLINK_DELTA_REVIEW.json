@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "kind": "independent_static_exact_OS_symlink_delta_review",
+  "status": "pass_for_fixed_unsigned_scope_pending_actual_runtime_receipt",
+  "sources": {
+    "remote_capsule.py": "f0d9253a6eef7f7ad0ee9dbe4f9efd8a8c1d670bf631da6843f412259871c7c8",
+    "worker.py": "47aa5a19542ef37622aff1ff81c33dbe855bb92b7db48b72073bf8fbc2fb1b6e",
+    "capsule_template.py": "db99d9b8fb756661ff4a2cc1aaf45f1265ef0627185c3621da1956bab7b06ee2",
+    "host_control.py_unchanged": "4ab220c177297f80dd934af23624e50a0edba67e842b8abbad0dc01c82f1dc28"
+  },
+  "trigger": "Parent reports metadata-only diagnostic completed1308 visited/1195 selected entries with exactly3 root-owned single-link symlinks. Initial export refusal and original frozen sources are retained.",
+  "allowed_selected_code_file_links": {
+    "sitecustomize.py": "/etc/python3.12/sitecustomize.py",
+    "_sysconfigdata__linux_x86_64-linux-gnu.py": "_sysconfigdata__x86_64-linux-gnu.py",
+    "config-3.12-x86_64-linux-gnu/libpython3.12.so": "../../x86_64-linux-gnu/libpython3.12.so.1"
+  },
+  "checked": [
+    "Exact relative name plus exact readlink text is required; all3 reviewed selected-file aliases must be present and all other selected .py/.so/.pyc file symlinks refuse.",
+    "Each allowed alias remains root-owned/single-link with stable device/inode/owner/mode/size/times around two readlink checks; scanner never opens or resolves these link targets.",
+    "Typed symlink metadata rows are separate from fully hashed regular-file byte rows; total/hash counts disclose both.",
+    "-I/-S/-B controller flags are asserted; native commands assert and record the same fixed flags. sitecustomize initialization stays disabled; no /etc target mount is introduced.",
+    "Existing regular-file byte/time/count bounds and exact OS mount allowlist remain; native schemas/source13/source19/configuration/policy/accounting/resource defaults are unchanged.",
+    "Manual exact diff confirms localized runtime_tree/runtime_review/run witness changes only, with original source versions retained."
+  ],
+  "scope_qualification": "The inventory covers selected .py/.so/.pyc files and exactly3 aliases. It intentionally prunes site/dist packages and does not claim every OS entry/link is inventoried. Host OS remains a separately reused dependency.",
+  "blocking_findings": [],
+  "remaining_gate": "Parent must review actual exported runtime allowlist/hash receipt before installation.",
+  "review_activity": {
+    "application_imports": 0,
+    "test_bodies": 0,
+    "server_calls": 0,
+    "network_requests": 0,
+    "optional_AST_command_executed": false
+  },
+  "review_activity_note": "Optional local AST command could not start because python was unavailable on PATH. Manual source diff/hash review completed; no Python helper or application body executed."
+}

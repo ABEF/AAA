@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "kind": "independent_static_kit_preflight_review",
+  "status": "pass_for_fixed_unsigned_scope",
+  "source": "cache-keeper-reconstruction-20261127/core/reconstruction_kit.py",
+  "source_sha256": "a944645d4d32285579c296e177255b6b0d70bc7a348f15a8da66114e7e5c4c20",
+  "source_bytes": 12343,
+  "findings": [],
+  "checked": [
+    "Fixed SOURCE_MANIFEST/configuration/policy/outer/nested trust pins precede incoming structured-data interpretation.",
+    "Closed finite49-file tree rejects extras, symlinks, reparse points, hardlinks, empty/oversized files and unstable read identities.",
+    "Declared41 release records match fixed original SOURCE_MANIFEST; original13 daemon and19 scheduler source maps agree with policy and nested/outer package identities.",
+    "Per-file1MiB, aggregate2MiB, elapsed60s and proof16KiB bounds are explicit; original captured time and900-second operating policy remain fixed.",
+    "Authenticated raw configuration is never decoded or emitted; public proof fields contain only file/hash/length and explicit false-approval metadata.",
+    "Proof destination is outside the kit but inside the fixed private store; exclusive creation, flush/fsync and stable readback precede success.",
+    "Final source rereads compare exact original bytes once per file; argument errors emit a fixed sanitized diagnostic.",
+    "No application import, native CLI execution, test execution, network, source mutation, signer access or service action occurs in this helper."
+  ],
+  "reviewed_local_corrections": "Single stable exact-byte final reread and fixed SafeParser diagnostics; no application/test/helper execution by this reviewer.",
+  "separate_review_required": [
+    "Private store ACLs and exact trusted-Git assembly/fixture export.",
+    "Fresh Linux RootDirectory installation, allowed OS runtime mounts, native commands, refusals and cleanup.",
+    "Saved execution evidence and public allowlist curation."
+  ],
+  "review_activity": {
+    "application_imports": 0,
+    "test_bodies": 0,
+    "server_calls": 0,
+    "network_requests": 0
+  }
+}

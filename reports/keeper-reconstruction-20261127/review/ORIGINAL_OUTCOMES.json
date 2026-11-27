@@ -1,0 +1,52 @@
+{
+  "old_test_bodies_run": 0,
+  "outcomes": [
+    {
+      "id": "first_OS_export",
+      "reason": "runtime_file_metadata; three exact OS aliases diagnosed; no raw references exported",
+      "status": "refused"
+    },
+    {
+      "id": "a944_desktop_preflight",
+      "reason": "Windows DirEntry reports zero link count; actual lstat link count is one",
+      "status": "refused"
+    },
+    {
+      "id": "5d_desktop_direct_preflight",
+      "reason": "uncaptured; not relabelled or retrospectively explained",
+      "status": "refused"
+    },
+    {
+      "id": "5d_traced_entrypoint",
+      "scope": "distinct traced invocation; not retroactive explanation of previous refusal",
+      "status": "pass"
+    },
+    {
+      "id": "d181_structured_CLI",
+      "scope": "final source with safe diagnostics; exact proof84114800 retained",
+      "status": "pass"
+    },
+    {
+      "id": "c824_negative_startup",
+      "reason": "dynamic loader missing libz.so.1; zero worker/native calls; complete root unstarted",
+      "status": "NONPASS"
+    },
+    {
+      "id": "c825_missing_config",
+      "scope": "one actual native expected invalid_input before any restore output",
+      "status": "pass"
+    },
+    {
+      "id": "c825_original_complete_gate",
+      "reason": "strict metadata decoder rejected two finite duration fields; no complete worker started",
+      "status": "refused"
+    },
+    {
+      "id": "c825_complete_continuation",
+      "scope": "exact saved negative reused; only two authenticated timing fields permitted; no negative rerun",
+      "status": "pass"
+    }
+  ],
+  "production_code_changes": 0,
+  "schema": 1
+}

@@ -1,0 +1,1024 @@
+{
+  "schema": 1,
+  "kind": "independent_saved_reconstruction_evidence_review",
+  "success": true,
+  "activity": {
+    "network_requests": 0,
+    "test_bodies": 0,
+    "native_calls": 0,
+    "application_or_prior_helper_reruns": 0,
+    "application_imports": 0,
+    "server_calls": 0
+  },
+  "private_kit": {
+    "files": 49,
+    "Windows_single_link_handle_metadata_checked": true,
+    "proof_sha256": "8411480086dfe7586308dd33edd5823b7500ccffc5a9e07e8dbfd2beb69fb39c",
+    "metadata": {
+      "SOURCE_MANIFEST.json": {
+        "bytes": 24910,
+        "sha256": "c287aa0c4b8e4113f7ffa1459f39a704bd17b5165f23084e3a8f26995cdb0e08",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 1900544,
+        "inode_low": 1552116
+      },
+      "package/alert-state.json": {
+        "bytes": 812,
+        "sha256": "f256fd8ca53e4d45ac11b5c75333f6b4172b8f9579460a1fd7bab48536b3dc98",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 1245184,
+        "inode_low": 1552171
+      },
+      "package/manifest.json": {
+        "bytes": 5261,
+        "sha256": "a9dea475a22014c7eb5fcf965896eb691a2ba5c8de352e0c23d6fd1611dbb05b",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 1179648,
+        "inode_low": 1552172
+      },
+      "package/selected/journal.json": {
+        "bytes": 2752,
+        "sha256": "dbb5f86672bd14f017d9c99f3b8ff6b8e6a8cf041d2aa9c2eada60b7598a9112",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 1048576,
+        "inode_low": 1552201
+      },
+      "package/selected/manifest.json": {
+        "bytes": 3867,
+        "sha256": "911d98ef86b1cd229378ae15ac685e8ce67285c0035c8cf670dfca3cccc5d0d1",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 1114112,
+        "inode_low": 1552208
+      },
+      "package/selection.json": {
+        "bytes": 2354,
+        "sha256": "dfdabc2c7d8e2510efeaab4861fb034af2536269705ee0000f805ccaadce9bb2",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 2621440,
+        "inode_low": 1552280
+      },
+      "references/keeper-config.json": {
+        "bytes": 5254,
+        "sha256": "1c3d51343b990a2abc4a87cf9dd7049237f23a34a39708f945d98f228e3f5cb8",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 1835008,
+        "inode_low": 862807
+      },
+      "references/policy.json": {
+        "bytes": 2731,
+        "sha256": "7e85ff8b6709803cb9f4e621150d05b08262599e94a2dccd9a23e01bb41452ba",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 6160384,
+        "inode_low": 873592
+      },
+      "source/keeper/__init__.py": {
+        "bytes": 1,
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 1114112,
+        "inode_low": 1549977
+      },
+      "source/keeper/alerts.py": {
+        "bytes": 23149,
+        "sha256": "053ac2a70f38801b77afde8ba107c78e322a11630cb04620e1aa35a3f811fe13",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 1179648,
+        "inode_low": 1549978
+      },
+      "source/keeper/cast_process.py": {
+        "bytes": 5694,
+        "sha256": "5856fec6fb15e1abb66750394c2fb7a24314686e964eca0e9363b5007aa5ba3a",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 1114112,
+        "inode_low": 1549980
+      },
+      "source/keeper/compound_policy.py": {
+        "bytes": 17260,
+        "sha256": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 917504,
+        "inode_low": 1549982
+      },
+      "source/keeper/health.py": {
+        "bytes": 24415,
+        "sha256": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 983040,
+        "inode_low": 1549987
+      },
+      "source/keeper/monitor.py": {
+        "bytes": 194496,
+        "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 1179648,
+        "inode_low": 1549988
+      },
+      "source/keeper/operation_review.py": {
+        "bytes": 43774,
+        "sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 1310720,
+        "inode_low": 1549989
+      },
+      "source/keeper/ops.py": {
+        "bytes": 14444,
+        "sha256": "da396ec9c65295fe540f9dc812a0612d8ed27f1ab677fd388b479e2f2372ad89",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 983040,
+        "inode_low": 1549991
+      },
+      "source/keeper/principal.py": {
+        "bytes": 9171,
+        "sha256": "b602340db5c7a52ad281c6b60885e2f74cc2708b731595fac5eeb9e026da6874",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 917504,
+        "inode_low": 1549992
+      },
+      "source/keeper/rebalance_confirmation.py": {
+        "bytes": 11926,
+        "sha256": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 983040,
+        "inode_low": 1549993
+      },
+      "source/keeper/recovery_bundle.py": {
+        "bytes": 36532,
+        "sha256": "022cd3b9a3692f9b5576fded8fb15d4aca2797f4ad3bd449561a4d57173de550",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 1048576,
+        "inode_low": 1549997
+      },
+      "source/keeper/royalties.py": {
+        "bytes": 17321,
+        "sha256": "02e04783068eed60db827673c9c27d3a37175edd7dccfa5ddefb8b54c055904c",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 1441792,
+        "inode_low": 1550001
+      },
+      "source/keeper/scheduling.py": {
+        "bytes": 17800,
+        "sha256": "d79be28db6bac2978f7c8efdfb641e037ce6d2024faa4e60e02f6f7c62049f4a",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 1310720,
+        "inode_low": 1550047
+      },
+      "source/keeper/sidecar_recovery.py": {
+        "bytes": 22768,
+        "sha256": "eda3b43e316adab4fb8a2161a7d5e5f750ba4e1e0c9b3432037d6acf39396546",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 720896,
+        "inode_low": 1550640
+      },
+      "source/keeper/watchdog.py": {
+        "bytes": 5707,
+        "sha256": "59b4bb7783453a8f271fd5ab265fd5d2857d55096479be34f10ffe56c8408372",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 786432,
+        "inode_low": 1550641
+      },
+      "source/scripts/keeper-alerts.py": {
+        "bytes": 2629,
+        "sha256": "4f3b6b3efa9401c4039b9dcdc1fa9bf0c4136c2342f02c7286c895bc0ef027c5",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 851968,
+        "inode_low": 1550678
+      },
+      "source/scripts/keeper-recovery.py": {
+        "bytes": 3423,
+        "sha256": "450b87f611b90d2cdb4139bd2bb2cc8f10696821c1ae6b72ccba7613a64ff6cf",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 655360,
+        "inode_low": 1550679
+      },
+      "source/scripts/keeper-schedule.py": {
+        "bytes": 2140,
+        "sha256": "5c07ec965eba5c5a2d94895ba050f17d49b9689923cf67a05f20f2d0bf29c0b4",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 786432,
+        "inode_low": 1550697
+      },
+      "source/scripts/keeper-sidecar-recovery.py": {
+        "bytes": 2924,
+        "sha256": "408858a48eb2eb464d9745e7767603c1142f03aa96ba7b280ae7081f8deeca58",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 655360,
+        "inode_low": 1550698
+      },
+      "source/tests_python/__init__.py": {
+        "bytes": 1,
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 983040,
+        "inode_low": 1550704
+      },
+      "source/tests_python/test_keeper_alerts.py": {
+        "bytes": 32525,
+        "sha256": "f960f5a50dd1469b3d1f9c1bfb1002e68e1c83982586bc59eec390db83915b6d",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 720896,
+        "inode_low": 1550710
+      },
+      "source/tests_python/test_keeper_scheduling.py": {
+        "bytes": 15979,
+        "sha256": "15a4f2bf088fc1853437838c3925f2eb5be9295305880dbaa052ef390bedae72",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 720896,
+        "inode_low": 1550711
+      },
+      "source/tests_python/test_keeper_sidecar_recovery.py": {
+        "bytes": 18390,
+        "sha256": "6811351e1e41563e7a7fe23c494b43938a3afeb81576b64c7b9d6d05239486ef",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 524288,
+        "inode_low": 1550716
+      },
+      "source/zzz_ops/__init__.py": {
+        "bytes": 1,
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 917504,
+        "inode_low": 1550720
+      },
+      "source/zzz_ops/abi.py": {
+        "bytes": 4797,
+        "sha256": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 1507328,
+        "inode_low": 1550721
+      },
+      "source/zzz_ops/errors.py": {
+        "bytes": 992,
+        "sha256": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 851968,
+        "inode_low": 1550723
+      },
+      "source/zzz_ops/ethereum_fees.py": {
+        "bytes": 2464,
+        "sha256": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 851968,
+        "inode_low": 1550725
+      },
+      "source/zzz_ops/execution_price.py": {
+        "bytes": 2280,
+        "sha256": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 917504,
+        "inode_low": 1550726
+      },
+      "source/zzz_ops/lp_execution.py": {
+        "bytes": 6860,
+        "sha256": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 786432,
+        "inode_low": 1550822
+      },
+      "source/zzz_ops/physical_portfolio.py": {
+        "bytes": 2125,
+        "sha256": "f119b665860cb4aaa9fbebe81aa1f2564906dff8466d1febf96ea4eef46e719b",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 720896,
+        "inode_low": 1550828
+      },
+      "source/zzz_ops/position.py": {
+        "bytes": 2437,
+        "sha256": "54075cb2329e6e1defb4942683378d6a3995a74a6ea5e1f239a8fcf611e30d4d",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 720896,
+        "inode_low": 1550829
+      },
+      "source/zzz_ops/price_policy.py": {
+        "bytes": 7148,
+        "sha256": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 786432,
+        "inode_low": 1550834
+      },
+      "source/zzz_ops/production_v2.py": {
+        "bytes": 102622,
+        "sha256": "109531b48b9c8a85166c9585351dc40b4b534ec5eea14c5b81d895c1b2209889",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 720896,
+        "inode_low": 1550840
+      },
+      "source/zzz_ops/production_v4.py": {
+        "bytes": 65998,
+        "sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 589824,
+        "inode_low": 1550842
+      },
+      "source/zzz_ops/protocol_policy.py": {
+        "bytes": 5907,
+        "sha256": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 589824,
+        "inode_low": 1550843
+      },
+      "source/zzz_ops/range_policy.py": {
+        "bytes": 5859,
+        "sha256": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 655360,
+        "inode_low": 1550866
+      },
+      "source/zzz_ops/rebalance_confirmation.py": {
+        "bytes": 17194,
+        "sha256": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 589824,
+        "inode_low": 1550883
+      },
+      "source/zzz_ops/rpc.py": {
+        "bytes": 9709,
+        "sha256": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 589824,
+        "inode_low": 1551283
+      },
+      "source/zzz_ops/state.py": {
+        "bytes": 4644,
+        "sha256": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 786432,
+        "inode_low": 1551285
+      },
+      "source/zzz_ops/tick_math.py": {
+        "bytes": 4949,
+        "sha256": "5224a360f3fecbc9c1d42094863e74771cee8036a60d8b81647d9e6d45e0c70a",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 1114112,
+        "inode_low": 1551715
+      },
+      "source/zzz_ops/work_budget.py": {
+        "bytes": 3633,
+        "sha256": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b",
+        "links": 1,
+        "volume": 2499660787,
+        "inode_high": 655360,
+        "inode_low": 1551748
+      }
+    },
+    "independently_rehashed": true,
+    "source_files": 41,
+    "bytes": 820029
+  },
+  "native": {
+    "public_transactions": 0,
+    "all_adoption_flags_false": true,
+    "positive_age_seconds": 61340,
+    "negative_calls": 1,
+    "RPC_calls": 0,
+    "signer_absent": true,
+    "positive_seconds": 0.5612400118261576,
+    "positive_calls": 4
+  },
+  "preservation": {
+    "original_selected_files": 8,
+    "c824_groups_empty": true,
+    "original_references_and_locks_unchanged": true,
+    "original_source_files": 41,
+    "c825_groups_empty": true
+  },
+  "retained_failures": {
+    "original_export_metadata_refusal_retained": true,
+    "traced5d_success_is_separate": true,
+    "c824_startup_exit127_zero_worker_results": true,
+    "original_c825_float_gate_refusal_retained": true,
+    "corrected5d_direct_refusal_cause": "uncaptured",
+    "original_Windows_DirEntry_refusal_retained": true
+  },
+  "scope": "Finite same-server application/layout reconstruction with explicit external OS runtime. No second host, OS disaster recovery, canonical transaction truth, physical durability, cross-host fencing or production readiness is proved.",
+  "independent_physical_restored_output_rehash": false,
+  "restored_output_review": "Recorded Linux worker raw equality assertions, hashes and lengths reconcile to independently rehashed desktop inputs; raw server restored outputs were not independently fetched/rehashed.",
+  "host_preservation": {
+    "existing_service_states": 5,
+    "nonambient_differences": 0,
+    "disclosed_observer_invocation_changes": 1,
+    "private_snapshots_independently_rehashed": true,
+    "exact_property_comparison": true,
+    "whole_host_byte_equality_claimed": false
+  },
+  "inputs": {
+    "PRIVATE/campaign-001/proof/KIT_PROOF-004.json": {
+      "bytes": 10079,
+      "sha256": "8411480086dfe7586308dd33edd5823b7500ccffc5a9e07e8dbfd2beb69fb39c"
+    },
+    "PRIVATE/campaign-001/proof/FINAL_CLI_EXECUTION.json": {
+      "bytes": 425,
+      "sha256": "7eae8fe512b454aa9d142f71400dd788d1a60daa8a02ff6cbed9f1bf6120c4fd"
+    },
+    "PRIVATE/campaign-001/proof/FINAL_CLI.stdout": {
+      "bytes": 221,
+      "sha256": "7d7b8f4fbe00dc1b33ea10a1a2478f553503768ba6a86ebd1d9c5232fb7b0d2f"
+    },
+    "PRIVATE/campaign-002/fetch-negative/RESULT-negative.json": {
+      "bytes": 3714,
+      "sha256": "ad5813b9433039f5cf35925988bc673833b4b5c7f7a237d3e8a5ca21d9d0390d"
+    },
+    "PRIVATE/campaign-002/fetch-complete/RESULT-complete.json": {
+      "bytes": 6598,
+      "sha256": "e3997d89f76eb1d9d2c3cd79fbac9a1da5d57579cf33dee1ec2cd8422e105824"
+    },
+    "PRIVATE/campaign-001/kit/package/alert-state.json": {
+      "bytes": 812,
+      "sha256": "f256fd8ca53e4d45ac11b5c75333f6b4172b8f9579460a1fd7bab48536b3dc98"
+    },
+    "PRIVATE/campaign-002/export/RUNTIME_REVIEW.json": {
+      "bytes": 5999,
+      "sha256": "3025d86be5de48fd1643ddd53819fe3ef1d9268dca689749827ad399247abdb6"
+    },
+    "PRIVATE/campaign-002/start-complete-continuation/EXECUTION.json": {
+      "bytes": 990,
+      "sha256": "7386e1450bedffee0454e555b1c6881071ef404278059c1e07a8985b4a06be87"
+    },
+    "PRIVATE/campaign-002/fetch-install/INSTALL.json": {
+      "bytes": 17184,
+      "sha256": "cb590b436600b292ad19969f522ec1b7d8f7e4901909bf18eae36d66522e8659"
+    },
+    "PRIVATE/campaign-002/fetch-final/FINAL.json": {
+      "bytes": 13816,
+      "sha256": "9261ffe1a6d7230e66245d2f90992d6c5c775f23063116638b8422abb2ca7928"
+    },
+    "PRIVATE/campaign-001/status-001/SANITIZED_RESULT.json": {
+      "bytes": 2190,
+      "sha256": "78cc182c6f1d52de7bdb1ee3cda1c9c9a969d45fffe17e6a557d7e2ed31b2e98"
+    },
+    "PRIVATE/campaign-001/fetch-final/FINAL.json": {
+      "bytes": 12868,
+      "sha256": "aadb229a94b32a7594d335ec369501752f327183691d383f99dd26c6c70dc971"
+    },
+    "REPOSITORY/cache-keeper-reconstruction-20261127/review/SAVED_EVIDENCE_REVIEW.json": {
+      "bytes": 19325,
+      "sha256": "583c170b96186a5287341d1248b311e1cf0560de6e58887bc195dd0e4d9539a7"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/desktop/KIT_PROOF.json": {
+      "bytes": 10079,
+      "sha256": "8411480086dfe7586308dd33edd5823b7500ccffc5a9e07e8dbfd2beb69fb39c"
+    },
+    "REPOSITORY/keeper/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "REPOSITORY/keeper/alerts.py": {
+      "bytes": 23149,
+      "sha256": "053ac2a70f38801b77afde8ba107c78e322a11630cb04620e1aa35a3f811fe13"
+    },
+    "REPOSITORY/keeper/cast_process.py": {
+      "bytes": 5694,
+      "sha256": "5856fec6fb15e1abb66750394c2fb7a24314686e964eca0e9363b5007aa5ba3a"
+    },
+    "REPOSITORY/keeper/compound_policy.py": {
+      "bytes": 17260,
+      "sha256": "129d330417c37747e16456fd18c892550cf870bdad31847e328b42a5c7270e29"
+    },
+    "REPOSITORY/keeper/health.py": {
+      "bytes": 24415,
+      "sha256": "dd25d2151295d09dcdebc4b0331b82c8d2b384a5501b49d0bfeb483d396b5c04"
+    },
+    "REPOSITORY/keeper/monitor.py": {
+      "bytes": 194496,
+      "sha256": "90e49e17ad770a9e7136e06d4dfabdcc43280815ba3540c5a5197a8cba42463f"
+    },
+    "REPOSITORY/keeper/operation_review.py": {
+      "bytes": 43774,
+      "sha256": "75f6fc17399ae28791f81d97d5afea2f98a3061662cbb6e9f072b562d6f72f48"
+    },
+    "REPOSITORY/keeper/ops.py": {
+      "bytes": 14444,
+      "sha256": "da396ec9c65295fe540f9dc812a0612d8ed27f1ab677fd388b479e2f2372ad89"
+    },
+    "REPOSITORY/keeper/principal.py": {
+      "bytes": 9171,
+      "sha256": "b602340db5c7a52ad281c6b60885e2f74cc2708b731595fac5eeb9e026da6874"
+    },
+    "REPOSITORY/keeper/rebalance_confirmation.py": {
+      "bytes": 11926,
+      "sha256": "6cc29d78aaf4c3804379e9b15d0ff177ff537da1158e66a3111ae2c85d6d317d"
+    },
+    "REPOSITORY/keeper/recovery_bundle.py": {
+      "bytes": 36532,
+      "sha256": "022cd3b9a3692f9b5576fded8fb15d4aca2797f4ad3bd449561a4d57173de550"
+    },
+    "REPOSITORY/keeper/royalties.py": {
+      "bytes": 17321,
+      "sha256": "02e04783068eed60db827673c9c27d3a37175edd7dccfa5ddefb8b54c055904c"
+    },
+    "REPOSITORY/keeper/scheduling.py": {
+      "bytes": 17800,
+      "sha256": "d79be28db6bac2978f7c8efdfb641e037ce6d2024faa4e60e02f6f7c62049f4a"
+    },
+    "REPOSITORY/keeper/sidecar_recovery.py": {
+      "bytes": 22768,
+      "sha256": "eda3b43e316adab4fb8a2161a7d5e5f750ba4e1e0c9b3432037d6acf39396546"
+    },
+    "REPOSITORY/keeper/watchdog.py": {
+      "bytes": 5707,
+      "sha256": "59b4bb7783453a8f271fd5ab265fd5d2857d55096479be34f10ffe56c8408372"
+    },
+    "REPOSITORY/scripts/keeper-alerts.py": {
+      "bytes": 2629,
+      "sha256": "4f3b6b3efa9401c4039b9dcdc1fa9bf0c4136c2342f02c7286c895bc0ef027c5"
+    },
+    "REPOSITORY/scripts/keeper-recovery.py": {
+      "bytes": 3423,
+      "sha256": "450b87f611b90d2cdb4139bd2bb2cc8f10696821c1ae6b72ccba7613a64ff6cf"
+    },
+    "REPOSITORY/scripts/keeper-schedule.py": {
+      "bytes": 2140,
+      "sha256": "5c07ec965eba5c5a2d94895ba050f17d49b9689923cf67a05f20f2d0bf29c0b4"
+    },
+    "REPOSITORY/scripts/keeper-sidecar-recovery.py": {
+      "bytes": 2924,
+      "sha256": "408858a48eb2eb464d9745e7767603c1142f03aa96ba7b280ae7081f8deeca58"
+    },
+    "REPOSITORY/tests_python/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "REPOSITORY/tests_python/test_keeper_alerts.py": {
+      "bytes": 32525,
+      "sha256": "f960f5a50dd1469b3d1f9c1bfb1002e68e1c83982586bc59eec390db83915b6d"
+    },
+    "REPOSITORY/tests_python/test_keeper_scheduling.py": {
+      "bytes": 15979,
+      "sha256": "15a4f2bf088fc1853437838c3925f2eb5be9295305880dbaa052ef390bedae72"
+    },
+    "REPOSITORY/tests_python/test_keeper_sidecar_recovery.py": {
+      "bytes": 18390,
+      "sha256": "6811351e1e41563e7a7fe23c494b43938a3afeb81576b64c7b9d6d05239486ef"
+    },
+    "REPOSITORY/zzz_ops/__init__.py": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "REPOSITORY/zzz_ops/abi.py": {
+      "bytes": 4797,
+      "sha256": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91"
+    },
+    "REPOSITORY/zzz_ops/errors.py": {
+      "bytes": 992,
+      "sha256": "1dcc2855b45af8f806835f70f7f75200aa5b93ef84ddcf862e1e0f067aba5305"
+    },
+    "REPOSITORY/zzz_ops/ethereum_fees.py": {
+      "bytes": 2464,
+      "sha256": "8c832b5e28beb7d7d5c8d90d6df102bb084a680cf251ded850a2f00fe0cb2ffe"
+    },
+    "REPOSITORY/zzz_ops/execution_price.py": {
+      "bytes": 2280,
+      "sha256": "1d0ff892d43ec450438e7d2a1c2f783e6d9f9aec66f1fe98e3c35f5b09de47e2"
+    },
+    "REPOSITORY/zzz_ops/lp_execution.py": {
+      "bytes": 6860,
+      "sha256": "90c985622387a4de8d52dd075856a4cf25e8c2e5bc62f4a3490978fc8cf746b0"
+    },
+    "REPOSITORY/zzz_ops/physical_portfolio.py": {
+      "bytes": 2125,
+      "sha256": "f119b665860cb4aaa9fbebe81aa1f2564906dff8466d1febf96ea4eef46e719b"
+    },
+    "REPOSITORY/zzz_ops/position.py": {
+      "bytes": 2437,
+      "sha256": "54075cb2329e6e1defb4942683378d6a3995a74a6ea5e1f239a8fcf611e30d4d"
+    },
+    "REPOSITORY/zzz_ops/price_policy.py": {
+      "bytes": 7148,
+      "sha256": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958"
+    },
+    "REPOSITORY/zzz_ops/production_v2.py": {
+      "bytes": 102622,
+      "sha256": "109531b48b9c8a85166c9585351dc40b4b534ec5eea14c5b81d895c1b2209889"
+    },
+    "REPOSITORY/zzz_ops/production_v4.py": {
+      "bytes": 65998,
+      "sha256": "ffa0e95b06ca1c166e7e56debcba8829764a204a3f7b7e377fa2310499073d5c"
+    },
+    "REPOSITORY/zzz_ops/protocol_policy.py": {
+      "bytes": 5907,
+      "sha256": "4d73e7a3f6d6b98c91f083e2c557a48259ac9bcc0dbe2fb7752f74c4335bb5c3"
+    },
+    "REPOSITORY/zzz_ops/range_policy.py": {
+      "bytes": 5859,
+      "sha256": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171"
+    },
+    "REPOSITORY/zzz_ops/rebalance_confirmation.py": {
+      "bytes": 17194,
+      "sha256": "77a41f2520be5d5c6768505e7bfe75f68db79d37f611062750ecd02f58185331"
+    },
+    "REPOSITORY/zzz_ops/rpc.py": {
+      "bytes": 9709,
+      "sha256": "6b76610b1bc042196198657e069b30ef1009aff3237d71979e8d21495fb6380f"
+    },
+    "REPOSITORY/zzz_ops/state.py": {
+      "bytes": 4644,
+      "sha256": "78985688f9fc0cebf4aa5912b1401a338ac1e9ce21d8c787393e0e2d421976cf"
+    },
+    "REPOSITORY/zzz_ops/tick_math.py": {
+      "bytes": 4949,
+      "sha256": "5224a360f3fecbc9c1d42094863e74771cee8036a60d8b81647d9e6d45e0c70a"
+    },
+    "REPOSITORY/zzz_ops/work_budget.py": {
+      "bytes": 3633,
+      "sha256": "d60de944ee02fc8be02cdbdde0210c84fff02dea8bb63b386cc73688061a535b"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/desktop/RELEASE_PREPARATION.json": {
+      "bytes": 7609,
+      "sha256": "449c695cf65c6959d06ca643569e98b4d9ad3bac18ab2a29800ed98ba84beb0d"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/fetch-negative/RESULT-negative.json": {
+      "bytes": 3714,
+      "sha256": "ad5813b9433039f5cf35925988bc673833b4b5c7f7a237d3e8a5ca21d9d0390d"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/fetch-complete/RESULT-complete.json": {
+      "bytes": 6598,
+      "sha256": "e3997d89f76eb1d9d2c3cd79fbac9a1da5d57579cf33dee1ec2cd8422e105824"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/fetch-install/INSTALL.json": {
+      "bytes": 17184,
+      "sha256": "cb590b436600b292ad19969f522ec1b7d8f7e4901909bf18eae36d66522e8659"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/fetch-final/FINAL.json": {
+      "bytes": 13816,
+      "sha256": "9261ffe1a6d7230e66245d2f90992d6c5c775f23063116638b8422abb2ca7928"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/start-complete-continuation/EXECUTION.json": {
+      "bytes": 990,
+      "sha256": "7386e1450bedffee0454e555b1c6881071ef404278059c1e07a8985b4a06be87"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/export/RUNTIME_REVIEW.json": {
+      "bytes": 5999,
+      "sha256": "3025d86be5de48fd1643ddd53819fe3ef1d9268dca689749827ad399247abdb6"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/status-001/SANITIZED_RESULT.json": {
+      "bytes": 2190,
+      "sha256": "78cc182c6f1d52de7bdb1ee3cda1c9c9a969d45fffe17e6a557d7e2ed31b2e98"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/fetch-final/FINAL.json": {
+      "bytes": 12868,
+      "sha256": "aadb229a94b32a7594d335ec369501752f327183691d383f99dd26c6c70dc971"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/c825/remote_capsule.py": {
+      "bytes": 56751,
+      "sha256": "f102550ea30927350c5b815fda020ccf4ea6a23fae00379668af8ccba351f10e"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/c825/continuation/complete_continuation.py": {
+      "bytes": 61737,
+      "sha256": "8bb549d88b8704afcfd73d0c4f8d408e4e6c16281ab82538a6467714759ff082"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/review/ORIGINAL_OUTCOMES.json": {
+      "bytes": 1632,
+      "sha256": "7580d780ed8af13300ce26bef35b32fabd4237ad92345b6628fc0c6db4b85d74"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/verification/HOST_PRESERVATION.json": {
+      "bytes": 848,
+      "sha256": "9fabb799205acba2698ff6d04f16fbce38ba938d80608d60189a7a3095b2361a"
+    },
+    "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/history-export-20261124/host-preservation/before-019/HOST_SNAPSHOT.json": {
+      "bytes": 7195,
+      "sha256": "c8de7b2631bc6c795eae1de594db471b7302dc781759f3fe83e58a781dbf8c60"
+    },
+    "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/history-export-20261124/host-preservation/final-019/HOST_SNAPSHOT.json": {
+      "bytes": 7194,
+      "sha256": "a53eabeec04534399fef9c24aac39488da4f039a57beae1189679b08d9ca7d25"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/elf-metadata/EXECUTION.json": {
+      "bytes": 796,
+      "sha256": "64cda6f3a9e34e1692692da99e905f01e521fc14f726360d0e9cfe59a7827eca"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/export/EXECUTION.json": {
+      "bytes": 792,
+      "sha256": "34e5363db5cdb83669bcfd1cc1a9d57521f563fec6e8dbc6e2d25ce1a9a1a417"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/export-002/EXECUTION.json": {
+      "bytes": 795,
+      "sha256": "170dd24db7dd86dc849ffc5f5714620390a9f1f32fb707793379d4b36b0708e7"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/export-002/EXPORT_METADATA.json": {
+      "bytes": 597,
+      "sha256": "5c82a3c3cd629a4e1e881c78f65f5d47319621e8c46b153a737ebb8b180526fd"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/export-002/RUNTIME_REVIEW.json": {
+      "bytes": 3239,
+      "sha256": "20f0316866aa1017b53295497ffb79a12b4df75750160dc64aa06b1e98b08d43"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/fetch-final/EXECUTION.json": {
+      "bytes": 794,
+      "sha256": "b9e46277ade423a70ef32ac919d028aea07a29fa189f56d3600a540a054a8b9d"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/fetch-install/EXECUTION.json": {
+      "bytes": 794,
+      "sha256": "2ca7fbcca7ff0d2770279087253e411389c9042f414f75fb152abe6c35ec6a9f"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/fetch-install/INSTALL.json": {
+      "bytes": 16598,
+      "sha256": "1c0387909f4e30e5216093ad6148bdae4b4af983dc1a98baa3da5aea687fa3cc"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/fetch-negative/EXECUTION.json": {
+      "bytes": 792,
+      "sha256": "336a8a7a29f1d12bd426ce99efe8193212d64e651a774a1f11691436eaa562f9"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/install/EXECUTION.json": {
+      "bytes": 804,
+      "sha256": "dceb5deb3b3b2bc8f20c89bb07c79905c31743c770d6e47f9cfb7d4564139cd0"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/install/SANITIZED_RESULT.json": {
+      "bytes": 373,
+      "sha256": "83e98b3bec61d148394a334503208e5a469a3b6705d57f6907cbc2a0103e56cd"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/os-metadata/EXECUTION.json": {
+      "bytes": 823,
+      "sha256": "58fffbb64c5b3192e21b65eca8488a2e67ea2ec84e1062ebb9e5e532ffade881"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/os-metadata/RESULT.json": {
+      "bytes": 942,
+      "sha256": "a17f2df42eaec6fe7d0c461201e0cce2cf0a1bc72107fe0afc3651a137721a78"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/start-negative/EXECUTION.json": {
+      "bytes": 799,
+      "sha256": "f7e2151ca902f771323c36442756631a6bf24ba4ffe8ede32682993cc3321801"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/start-negative/SANITIZED_RESULT.json": {
+      "bytes": 1702,
+      "sha256": "0b8a08d60f9f0830f26d7ca479530a4f22229584dfc62f661e2d5869235af5eb"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/status-001/EXECUTION.json": {
+      "bytes": 781,
+      "sha256": "59626fcc438f0e577286abe1794149d75e8ec9deca661273d0fa1d9d43e9769e"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/stop/EXECUTION.json": {
+      "bytes": 778,
+      "sha256": "73bd4797547add195843a9085f97619304a631841d4de6c4cbed2d67a1cf57a7"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-001/stop/SANITIZED_RESULT.json": {
+      "bytes": 100,
+      "sha256": "97b2a4ba8b23c05a251af027631383e90b90d395de968e2e337ce8c8da4ef5fb"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/export/EXECUTION.json": {
+      "bytes": 795,
+      "sha256": "8677a4729207a4e7d6637279c9ef458587dbc4eeee293688f6d57ce92f29ec81"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/export/EXPORT_METADATA.json": {
+      "bytes": 597,
+      "sha256": "1ac2416e280534fe329f2ba8720dbecc38778ff1d083f71a8d2192ed8bc7d77d"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/fetch-complete/EXECUTION.json": {
+      "bytes": 780,
+      "sha256": "3241c41bf44eb360038286102af13a33873264d5676a72c7119d48a854d7890e"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/fetch-final/EXECUTION.json": {
+      "bytes": 794,
+      "sha256": "edd5ef8cccd813c0bc9f952904c29f12c345efdc80751b007476e602facc590c"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/fetch-install/EXECUTION.json": {
+      "bytes": 794,
+      "sha256": "e16c1a02e73ebf0c8f326f279972727e1adac3632339f7f5bc846fb828fe8992"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/fetch-negative/EXECUTION.json": {
+      "bytes": 780,
+      "sha256": "fdcbcf71ea9262ae20be842e6047ea9ba678b61871a9692c6fddd313f59c71f2"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/install/EXECUTION.json": {
+      "bytes": 805,
+      "sha256": "a2d563e22ee91ca66cb36007a8c922fc16d17d60d5b5c961202fb59fb903d463"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/install/SANITIZED_RESULT.json": {
+      "bytes": 373,
+      "sha256": "22c7f50345c8af4889549311b3977405c2126622d6bd7531c711be6143208f01"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/start-complete/EXECUTION.json": {
+      "bytes": 798,
+      "sha256": "06f8474a2dc4985744dadcda28140942cf545f34d637bc18b6b3d7077a7646ed"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/start-complete-continuation/SANITIZED_RESULT.json": {
+      "bytes": 2561,
+      "sha256": "e8fbb1d11dfe14b40c636e7964246f3e31b820341c5d6b142639d19a75dd2404"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/start-negative/EXECUTION.json": {
+      "bytes": 799,
+      "sha256": "bb4f8a27dac83a1f67de07dd77f457e8bcb52544dbe47fc495502efd8d346893"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/start-negative/SANITIZED_RESULT.json": {
+      "bytes": 2180,
+      "sha256": "8b070452c68265e6335c6097adcecb46acd0e31e3db316cc586e7179619a83ab"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/status-negative/EXECUTION.json": {
+      "bytes": 794,
+      "sha256": "c9c3a14c90a86a9e9ba6e96126e4315cd939ce37b8da5f8c677f44e10dfd58f0"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/status-negative/SANITIZED_RESULT.json": {
+      "bytes": 2662,
+      "sha256": "970eac7aa0fdf3d9fbee370fc16682bbd9e12c29d5f904a7923e17f123c4e553"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/stop/EXECUTION.json": {
+      "bytes": 791,
+      "sha256": "b4b8110e6f99a228e32546c3a57c1366db47d905ce1b3fe85bc4229d8f4fab60"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/campaign-002/stop/SANITIZED_RESULT.json": {
+      "bytes": 100,
+      "sha256": "97b2a4ba8b23c05a251af027631383e90b90d395de968e2e337ce8c8da4ef5fb"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/desktop/CORRECTED_VERIFICATION_DIAGNOSIS.json": {
+      "bytes": 89,
+      "sha256": "c3a977f3811029e94d84d3a1c58d0662be4c3005228b9602956948d0f1a07422"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/desktop/FINAL_CLI_EXECUTION.json": {
+      "bytes": 425,
+      "sha256": "7eae8fe512b454aa9d142f71400dd788d1a60daa8a02ff6cbed9f1bf6120c4fd"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/desktop/ORIGINAL_INVENTORY_DIAGNOSIS.json": {
+      "bytes": 525,
+      "sha256": "a8df36d35d1d4c8c3513a2e45d44c632536319ad57e2f4ffcfb5bf70e147428e"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/evidence/desktop/TRACED_ENTRYPOINT_DIAGNOSIS.json": {
+      "bytes": 169,
+      "sha256": "bad95efdcb71f15340b8789f2b84e3710fb797b57755f6eeb090af0314ba5585"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/before-c825/ARCHIVE.json": {
+      "bytes": 1027,
+      "sha256": "ed65ad07cb1dd2e2276c3d9851059774a521e84c71565758fed3bf5e70921be6"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/before-os-symlinks/ARCHIVE.json": {
+      "bytes": 1027,
+      "sha256": "e82fb1ab72ede4b9b028f67024ad69d55a2f80e46707b16df5874f0795c6c946"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/c824/BUILD_RECEIPT.json": {
+      "bytes": 8469,
+      "sha256": "72da465e0ebbe59790efd967bd8b2818b53fadb8dc2266df0d18d2aa0f709dc4"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/c824/PARENT_REVIEW_PINS.json": {
+      "bytes": 271,
+      "sha256": "cd215bc5ac5a6e13440ece9870cf820000a94b03a9ce33e97b8f591ac2f49ad3"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/c825/BUILD_RECEIPT.json": {
+      "bytes": 8469,
+      "sha256": "c0774cb174a824fe81063e74d182e73e7d89d90b0c86832c3d2b4efc8ae44caa"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/c825/PARENT_REVIEW_PINS.json": {
+      "bytes": 271,
+      "sha256": "dc87b0b8050652d3fd72e0cff79d9d2b1c4e72d9e71a55c9887058827686dbc0"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/c825/continuation/BUILD_RECEIPT.json": {
+      "bytes": 809,
+      "sha256": "9ff82cdbb79289142f1f9db361468b5338f1f982e173b64a1c781851729de5ff"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/c825/continuation/PARENT_REVIEW_PINS.json": {
+      "bytes": 199,
+      "sha256": "b69475cfce32476b2c9136bd3ae87d90b68b5390267b49b8eeb65f943646a851"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/c825/continuation/STATIC_DELTA.json": {
+      "bytes": 1600,
+      "sha256": "520667c179d9e52cf799bdb5bb41601a56f7e3f7e2284b13ce77f0c63618ad34"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/desktop/KIT_REFERENCE_ASSEMBLY.json": {
+      "bytes": 626,
+      "sha256": "ed1a9395112ce375dff1f9cb3071c9d483606a127fc5e4f08a42c1d28ff9f928"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/desktop/OS_RUNTIME_GATE_C825.json": {
+      "bytes": 4554,
+      "sha256": "b48e5fa0b7c7f2185781b6edca46f41d291fb4aa7e6285375ed06003c1f47af1"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/desktop/OS_RUNTIME_GATE.json": {
+      "bytes": 2318,
+      "sha256": "ad0b0763d088c3f7b7da51a2d1adc0d0c1484e59a68aa1f0d55a4efce9a5488e"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/desktop/PRIVATE_ACCESS_REVIEW.json": {
+      "bytes": 860,
+      "sha256": "253df906e4db9dc7bf4f42d1ed655dc82e17d9ed559e808449782c682d6b0ac4"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/desktop/REFUSAL_STAGE_STATIC_REVIEW.json": {
+      "bytes": 912,
+      "sha256": "09435d8038aa618c24c5a89a4de50b318b02a482801e6ca6a7bc2a7f3bdab19b"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/diagnostic/PARENT_REVIEW_PINS.json": {
+      "bytes": 192,
+      "sha256": "6cef00d1184be1ea699dad648166d57a722932d118b23cc9382d28cdb4ab30e8"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/preparation/diagnostic-elf/PARENT_REVIEW_PINS.json": {
+      "bytes": 190,
+      "sha256": "f42513305b743ac9ac831ddef5e4b143a853ebd01893b80561c9ebfcb1533fe9"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/review/ACTUAL_C825_RUNTIME_REVIEW.json": {
+      "bytes": 1282,
+      "sha256": "c7029f47ffef9a6e0053642e67270396a0ac6152edc1f290b8062d243dbb6b71"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/review/ACTUAL_RUNTIME_REVIEW.json": {
+      "bytes": 1847,
+      "sha256": "b25f8230fac8fed45c2ac6d9c1a02816a92c0fc915943ac30cf9eb6e4fd2096f"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/review/C825_CONTINUATION_REVIEW.json": {
+      "bytes": 2736,
+      "sha256": "4faba3cf887557d1f8258d4aa78ebeec6c2d8829b36b8405134e1e22e5b4b0b9"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/review/C825_SOURCE_DELTA_REVIEW.json": {
+      "bytes": 2476,
+      "sha256": "42d2f4eb371971736d729e8e104719b83796f190a471bfd980b9c2947b54064b"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/review/CORE_REVIEW.json": {
+      "bytes": 2082,
+      "sha256": "10dfeda37863f5efc7d88fcc606c132d7a248b08af8616f903402f19865c46a6"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/review/LAB_PREEXECUTION_REVIEW.json": {
+      "bytes": 4982,
+      "sha256": "7a75c95b328d6a352cb5a37860b53e879c6ee18f8c5079f28d703164868ba3c8"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/review/LOADER_DIAGNOSTIC_REVIEW.json": {
+      "bytes": 1942,
+      "sha256": "b474abd824aee00ba697e909910aafcdf8839983b3b00d5f6f8de068b8124e47"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/review/OS_SYMLINK_DELTA_REVIEW.json": {
+      "bytes": 2817,
+      "sha256": "b1952c07d4d19b0a904772b17a4ecfe7190b890d756fbff398b82f1c51d69092"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/review/REFUSAL_STAGE_DELTA_REVIEW.json": {
+      "bytes": 1536,
+      "sha256": "95a9826297af268e8282b7f6e1a34c636acfb98778fa89f1f7f198592e7c3610"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/review/RUNTIME_DIAGNOSTIC_REVIEW.json": {
+      "bytes": 2069,
+      "sha256": "bcbe917e9e927d744a8a496394f9894688a9a6784231f3af243b1747908e0b8f"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/review/SCOPE_REVIEW.json": {
+      "bytes": 2786,
+      "sha256": "57e2317f21211023851f290c1db7b240fea56dde928834c949c8495b82d329b0"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/review/WINDOWS_INVENTORY_DELTA_REVIEW.json": {
+      "bytes": 1391,
+      "sha256": "6dce845911e45f1e450f2f9342f81ea181684056d76050be3878354ef5895559"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/verification/before-019-CAPTURE.json": {
+      "bytes": 1226,
+      "sha256": "921bc2d129691a3a0b5207e453eee62aa8893ef183ee5b3006a98b5d22b3e718"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/verification/ELF_DIAGNOSTIC_SUMMARY.json": {
+      "bytes": 3927,
+      "sha256": "c65f68256516da2011a5399798a32e2ee8206b1fc190770b51f57f621bf5ffe8"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/verification/final-019-CAPTURE.json": {
+      "bytes": 1228,
+      "sha256": "6d39b58d1c9ff6476159719b05848716422dd0ce461c7db68b75dd0003b83d42"
+    },
+    "REPOSITORY/reports/keeper-reconstruction-20261127/verification/TRUST_PROVENANCE.json": {
+      "bytes": 873,
+      "sha256": "fa1424d9e7bfd9591af47b19334e35020d74eefdc4c82a39d2067a11b0d0e73f"
+    }
+  },
+  "curated_checks": {
+    "saved_records_match_independently_reviewed_private_inputs": true,
+    "current_original_source_files": 41,
+    "Git_source_origin": "a418a567abbc3c0b7c6dd8425ef31306e8e48f17",
+    "continuation_preserved_slice_independently_equal": true,
+    "original_outcomes_retained": true,
+    "published_files_checked": 127,
+    "raw_operational_files_published": 0,
+    "forbidden_raw_secret_JSON_fields": 0
+  },
+  "verifier_source_sha256": "de279c91086f8d3f6098d63e9ebc01abbff767a16cf804ce470cf2757b1ab40f"
+}

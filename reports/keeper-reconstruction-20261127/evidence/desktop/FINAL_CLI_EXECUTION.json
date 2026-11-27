@@ -1,0 +1,11 @@
+{
+  "app_or_test_bodies_executed": 0,
+  "exit_code": 0,
+  "helper_sha256": "d1819f24c0735d1b61b961b20140e7ec2caaa83e1b4329fceba90e23bb27e5c2",
+  "schema": 1,
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 221,
+  "stdout_sha256": "7d7b8f4fbe00dc1b33ea10a1a2478f553503768ba6a86ebd1d9c5232fb7b0d2f",
+  "structured_arguments_used": true
+}

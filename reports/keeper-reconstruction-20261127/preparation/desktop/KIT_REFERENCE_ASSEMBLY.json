@@ -1,0 +1,18 @@
+{
+  "expected_kit_members": 49,
+  "raw_configuration_decoded_or_printed": false,
+  "raw_configuration_or_policy_published": false,
+  "references": {
+    "references/keeper-config.json": {
+      "bytes": 5254,
+      "sha256": "1c3d51343b990a2abc4a87cf9dd7049237f23a34a39708f945d98f228e3f5cb8"
+    },
+    "references/policy.json": {
+      "bytes": 2731,
+      "sha256": "7e85ff8b6709803cb9f4e621150d05b08262599e94a2dccd9a23e01bb41452ba"
+    }
+  },
+  "runtime_review_sha256": "20f0316866aa1017b53295497ffb79a12b4df75750160dc64aa06b1e98b08d43",
+  "schema": 1,
+  "source_or_native_backup_format_changed": false
+}

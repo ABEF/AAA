@@ -1,6 +1,6 @@
 # Keeper outage and server recovery
 
-[Unsigned off-host transfer evidence](../reports/keeper-offhost-20261126/REVIEW.md) verifies desktop-held backup possession and return to fresh Ubuntu review folders, with exact pending/outbox history and no live adoption. Original configuration/release remain server dependencies; full host-loss reconstruction, signer fencing and canonical reconciliation remain required.
+[Complete unsigned application kit](../reports/keeper-reconstruction-20261127/REVIEW.md) now reconstructs original release/configuration/policy paths without old application folders and verifies exact journal/sidecar restore. See the [recipe](OPERATOR_MANUAL.md#unsigned-recovery-kit-and-clean-filesystem-reconstruction). Existing OS runtime is separately supplied; current chain, signer fencing, physical-host recovery and live adoption remain separate.
 
 Use the [full-day audit](../reports/keeper-day-audit-20261126/REVIEW.md) and
 [updated alert procedure](KEEPER_ALERTS.md) for pending-clock continuity, source

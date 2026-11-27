@@ -1,0 +1,37 @@
+[
+  {
+    "sha256": "fb8de631070fc670a93173fe24274e6c01648067d409ef681827352d74776b81",
+    "name": "worker.py",
+    "bytes": 16339
+  },
+  {
+    "sha256": "fcbc865bdbc55e599087284a2a60524480ad2bf410f27ba25a01686d461cd3f9",
+    "name": "capsule_template.py",
+    "bytes": 24800
+  },
+  {
+    "sha256": "4ab220c177297f80dd934af23624e50a0edba67e842b8abbad0dc01c82f1dc28",
+    "name": "host_control.py",
+    "bytes": 10010
+  },
+  {
+    "sha256": "cc5f3fdf94922367d011eeee2dc6f038b29a049959ade5e969c156f14e5755ba",
+    "name": "remote_capsule.py",
+    "bytes": 51636
+  },
+  {
+    "sha256": "8ad5842746553ffe7df3bfbe2665d35af667c4b37890dca088e717b47eb7ab9e",
+    "name": "build.py",
+    "bytes": 3789
+  },
+  {
+    "sha256": "fba13128fa6018bebec0a23329bb0db3c0ebb30c5e679b5e1e4e1ecdb9bf906c",
+    "name": "BUILD_RECEIPT.json",
+    "bytes": 8469
+  },
+  {
+    "sha256": "df10a282667b78b8f126d44d6b13168ef69d89cd3f1c862ff703f007964bc982",
+    "name": "PARENT_REVIEW_PINS.json",
+    "bytes": 271
+  }
+]

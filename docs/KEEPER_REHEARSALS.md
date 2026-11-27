@@ -1,6 +1,6 @@
 # Keeper service qualification and rehearsal
 
-[Desktop possession and same-server return](../reports/keeper-offhost-20261126/REVIEW.md) adds one new transport composition using the retained synthetic c821 package. Four native operations preserve exact records; no old test bodies run. Source/configuration remain separately retained, age policy stays explicit and c823 stops. Independent second-host/fencing/sustained acceptance remains open.
+[Clean-filesystem Ubuntu reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md) adds the missing application-dependency partition:49 private inputs, old folders unavailable, one missing-config refusal and four native successes. c824 loader failure and c825 parser continuation remain explicit; the passed negative is not repeated. OS runtime, physical-second-host and live recovery remain separate.
 
 [Scheduler/alert recovery rehearsal](../reports/keeper-sidecar-recovery-20261126/REVIEW.md) passes eight NEW methods and actual unsigned backup/verify/restore, followed by delivery of the original queued ID with its pending clock intact. Source folders remain unchanged under a separately fenced target namespace. The original c820 setup failure is retained; no old body runs. Same-host synthetic evidence does not qualify off-host possession/fencing, real channels or sustained operation.
 

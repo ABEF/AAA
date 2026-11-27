@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "kind": "independent_saved_review_execution_stages",
+  "outcomes": [
+    {
+      "stage": "private_saved_record_review",
+      "status": "pass",
+      "scope": "One independent49-file/820029-byte rehash with read-only Windows handle nlink/inode/stability checks, native1+4 saved result reconciliation and original state/cleanup comparisons."
+    },
+    {
+      "stage": "curated_record_extension_original",
+      "status": "refused",
+      "reason": "Windows Join-Path produced backslash input keys while the extension looked up slash-normalized PRIVATE keys. The actual curated negative hash matched; the verifier's key lookup failed.",
+      "original_verifier_sha256": "4a7968f1257b3e98188c50da94a49face19777093792ce528b563935b85e6b9f",
+      "original_source_retained": "cache-keeper-reconstruction-20261127/review/verify_saved.before-path-normalization.ps1"
+    },
+    {
+      "stage": "curated_record_extension_corrected",
+      "status": "pass",
+      "correction": "Only input provenance path keys are normalized to slash form before private/repository prefix substitution and lookup.",
+      "scope": "Reused the prior successful private rehash receipt without repeating it; checked new curated copies/current41 source bytes/Git origin/preserved continuation slice/public data allowlist and independently rehashed private final host snapshots with exact5-state comparison.",
+      "final_verifier_sha256": "de279c91086f8d3f6098d63e9ebc01abbff767a16cf804ce470cf2757b1ab40f",
+      "final_result_sha256": "7ab9fd62a3d0769caee19f6645ebc5dab318e284c30dd9a75dd0176b836cc2c2"
+    }
+  ],
+  "application_imports": 0,
+  "application_or_prior_helper_reruns": 0,
+  "native_calls": 0,
+  "test_bodies": 0,
+  "server_calls": 0,
+  "network_requests": 0
+}

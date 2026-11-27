@@ -1,0 +1,44 @@
+{
+  "LAB_ID_or_restore_inputs_rewritten": false,
+  "all_other_decode_inputs_use_original_strict_parser": true,
+  "application_imports": 0,
+  "combined_source_bytes": 61737,
+  "combined_source_sha256": "8bb549d88b8704afcfd73d0c4f8d408e4e6c16281ab82538a6467714759ff082",
+  "embedded_original_controller_byte_equal": true,
+  "frame_limit_bytes": 65536,
+  "independent_review": "final source byte comparison and exact float gate accepted without blockers",
+  "independent_review_pending": false,
+  "installer_or_negative_native_call_in_tail": false,
+  "kind": "c825-complete-continuation-static-delta",
+  "native_calls": 0,
+  "only_saved_durations_finite_nonnegative": true,
+  "only_saved_float_paths": [
+    "elapsed_seconds",
+    "calls[0].elapsed_seconds"
+  ],
+  "original_controller_functions_or_worker_modified": false,
+  "original_start_calls_in_tail": 1,
+  "passed_negative_saved_pin_verified": true,
+  "persistent_review_only_new_private_artifact": "CONTINUATION_REVIEW.json",
+  "preserved_c825_archive_pins_verified": {
+    "BUILD_RECEIPT.json": true,
+    "PARENT_REVIEW_PINS.json": true,
+    "build.py": true,
+    "capsule_template.py": true,
+    "host_control.py": true,
+    "remote_capsule.py": true,
+    "worker.py": true
+  },
+  "preserved_c825_current_files_unchanged": {
+    "BUILD_RECEIPT.json": true,
+    "PARENT_REVIEW_PINS.json": true,
+    "build.py": true,
+    "capsule_template.py": true,
+    "host_control.py": true,
+    "remote_capsule.py": true,
+    "worker.py": true
+  },
+  "schema": 1,
+  "server_actions": 0,
+  "test_bodies_run": 0
+}

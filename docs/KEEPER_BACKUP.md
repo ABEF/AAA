@@ -1,6 +1,6 @@
 # Keeper journal backup and restore preparation
 
-The [desktop round-trip](../reports/keeper-offhost-20261126/REVIEW.md) now authenticates actual off-host possession and same-server review-only return of the exact retained package. Recovery age86400 is explicit; operating freshness900 is unchanged and exceeded. No current canonical or second-host failover approval follows. Prior [concurrent-capture evidence](../reports/ubuntu-keeper-composition-20261126/REVIEW.md) retains its distinct race/refusal/progress scope.
+The [complete application-kit rehearsal](../reports/keeper-reconstruction-20261127/REVIEW.md) verifies exact release/configuration/policy/package reconstruction in a clean Ubuntu root. Journal backup format stays unchanged and signer files stay absent. Operating900s versus historical-review86400s remains explicit; this is not a full OS/physical-host or current-canonical recovery approval.
 
 Use the [alert observer](KEEPER_ALERTS.md) to check one explicitly selected
 bundle's age and integrity against its externally retained manifest pin and

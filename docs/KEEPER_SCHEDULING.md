@@ -1,6 +1,6 @@
 # Unsigned keeper backup and alert scheduling
 
-The [desktop/Ubuntu return](../reports/keeper-offhost-20261126/REVIEW.md) preserves selected generation, outbox IDs and pending clock through exact off-host package transfer. It prepares new review folders only; no scheduler initialization or live adoption occurs. Prior [combined native scheduling](../reports/ubuntu-keeper-composition-20261126/REVIEW.md) keeps its separate actual-daemon scope.
+The [complete unsigned kit](../reports/keeper-reconstruction-20261127/REVIEW.md) reconstructs the original policy/configuration/release and required logical-path parents in fresh isolated roots. Captured selection/outbox bytes and pending age remain exact; no scheduler init/rebind or service adoption occurs. OS/runtime and live host/signer recovery stay separate.
 
 The scheduler coordinates the existing exact-journal backup and alert tools.
 It never starts the keeper, signs, calls RPC, restores a journal or grants live

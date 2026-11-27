@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "kind": "independent_static_kit_refusal_diagnostics_delta_review",
+  "status": "pass_for_fixed_unsigned_scope",
+  "source_sha256": "d1819f24c0735d1b61b961b20140e7ec2caaa83e1b4329fceba90e23bb27e5c2",
+  "source_bytes": 12938,
+  "previous_source_sha256": "5dcd535b9d4764695fcd22b336140fa4c70e3f6bccbf7e5788a364ead45c0a68",
+  "trigger": "Parent reports corrected5d direct CLI refused without a proof and its exact cause was not captured. A separate traced unchanged5d main completed49 files/820029bytes and a10079-byte proof. Those are distinct retained outcomes; no cause is inferred or retroactive passing label applied.",
+  "exact_scope": "Only main gains four literal stage assignments and failure JSON containing fixed refusal stage plus an allowlisted exception class name; unrecognized classes map to UnexpectedError.",
+  "fixed_stages": [
+    "input_paths",
+    "kit_verification",
+    "proof_encoding",
+    "proof_publication"
+  ],
+  "checked": [
+    "Manual exact diff confirms all verify/path/read/inventory/publication guards, budgets and success output remain unchanged.",
+    "No exception message, input value, raw configuration/policy/package value or private path is added to diagnostics.",
+    "Prior5d helper and earlier refusal/trace outcomes remain separate; final changed CLI must use a fresh proof destination."
+  ],
+  "blocking_findings": [],
+  "review_activity": {
+    "application_imports": 0,
+    "helper_bodies": 0,
+    "test_bodies": 0,
+    "server_calls": 0,
+    "network_requests": 0
+  }
+}

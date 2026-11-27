@@ -1,0 +1,27 @@
+{
+  "error_type": "ValueError",
+  "frames": [
+    {
+      "file": "diagnose_kit_preflight.py",
+      "function": "<module>",
+      "line": 11
+    },
+    {
+      "file": "reconstruction_kit.py",
+      "function": "verify",
+      "line": 186
+    },
+    {
+      "file": "reconstruction_kit.py",
+      "function": "inventory",
+      "line": 162
+    },
+    {
+      "file": "reconstruction_kit.py",
+      "function": "need",
+      "line": 45
+    }
+  ],
+  "schema": 1,
+  "verification_completed": false
+}

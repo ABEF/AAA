@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "kind": "independent_static_complete_only_continuation_review",
+  "status": "pass_for_one_fixed_complete_start",
+  "sources": {
+    "complete_continuation.py": "8bb549d88b8704afcfd73d0c4f8d408e4e6c16281ab82538a6467714759ff082",
+    "continuation_tail.py": "96010c24d797b8e319fd5b4af8ca8ab2884e93f2af9ac5d1e057779121438312",
+    "host_continuation.py": "da5ec2eb1e602b5d2fdc6f0d8f201a26784756939fa3f3903e02c37c8d610e81"
+  },
+  "combined_bytes": 61737,
+  "preserved_controller_bytes": 56751,
+  "preserved_controller_sha256": "f102550ea30927350c5b815fda020ccf4ea6a23fae00379668af8ccba351f10e",
+  "independent_exact_preserved_slice_comparison": true,
+  "passed_negative_sha256": "ad5813b9433039f5cf35925988bc673833b4b5c7f7a237d3e8a5ca21d9d0390d",
+  "passed_negative_bytes": 3714,
+  "trigger": "The original complete-start gate rejected the passing negative result's two duration floats via its strict JSON parser before starting a complete unit. This helper interoperability gap was missed in prior static review; original refusal remains retained.",
+  "checked": [
+    "Original coordinator is embedded byte-identically under a non-main name; independent byte-by-byte comparison confirms all56751 bytes.",
+    "Only exact3714-byte/ad5813 negative record uses a typed decoder permitting finite nonnegative floats at elapsed_seconds and calls[0].elapsed_seconds, with exact two float paths required.",
+    "Every other input uses the preserved strict decoder. Negative success/mode/unsigned/falseapproval/native-invalid_input/root/source bindings are additionally validated.",
+    "Original ACTIVE_CONTROLLER_SHA/LAB_ID identity remains f102 and original owned/start functions are used; separate continuation source hash and exclusive review marker disclose actual continuation provenance.",
+    "Complete-only action requires absent START-complete marker, absent continuation marker and not-found complete unit before original start rechecks negative group, no-rerun, source, runtime and preservation predicates.",
+    "No installer, negative rerun, worker rewrite, LAB_ID rewrite, original input mutation, accounting/native guard change or broader JSON float acceptance is introduced.",
+    "Combined source remains below64KiB; wrapper pins itself/combined source/frozen host/SSH and reuses64KiB/45-second private capture."
+  ],
+  "blocking_findings": [],
+  "remaining_evidence": "Use preserved original controller for status/stop/fetch; reconcile the separate continuation receipt, saved complete result and final cleanup without relabeling the original refusal.",
+  "review_activity": {
+    "application_imports": 0,
+    "helper_bodies": 0,
+    "test_bodies": 0,
+    "server_calls": 0,
+    "network_requests": 0
+  }
+}

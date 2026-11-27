@@ -1,0 +1,70 @@
+{
+  "OS_disaster_recovery_approved": false,
+  "OS_external": true,
+  "actual_second_host": false,
+  "final_kit_helper_sha256": "d1819f24c0735d1b61b961b20140e7ec2caaa83e1b4329fceba90e23bb27e5c2",
+  "final_kit_proof_sha256": "8411480086dfe7586308dd33edd5823b7500ccffc5a9e07e8dbfd2beb69fb39c",
+  "keeper_signers_included": false,
+  "mounts": [
+    {
+      "source": "/usr/bin/python3.12",
+      "target": "/usr/bin/python3"
+    },
+    {
+      "source": "/usr/lib/python3.12",
+      "target": "/usr/lib/python3.12"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+      "target": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libbz2.so.1.0.4",
+      "target": "/usr/lib/x86_64-linux-gnu/libbz2.so.1.0.4"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+      "target": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libcrypto.so.3",
+      "target": "/usr/lib/x86_64-linux-gnu/libcrypto.so.3"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libexpat.so.1.9.1",
+      "target": "/usr/lib/x86_64-linux-gnu/libexpat.so.1.9.1"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5",
+      "target": "/usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libm.so.6",
+      "target": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libssl.so.3",
+      "target": "/usr/lib/x86_64-linux-gnu/libssl.so.3"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libz.so.1.3",
+      "target": "/usr/lib/x86_64-linux-gnu/libz.so.1.3"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+      "target": "/lib64/ld-linux-x86-64.so.2"
+    }
+  ],
+  "old_host_opt_or_etc_bound": false,
+  "runtime_review_sha256": "20f0316866aa1017b53295497ffb79a12b4df75750160dc64aa06b1e98b08d43",
+  "schema": 1,
+  "stdlib_tree": {
+    "bytes": 24987936,
+    "entries": 1195,
+    "files": 1192,
+    "sha256": "6180b04244fcb06d9e66d4505cbede2edc58d42a4a535d6092b7205f76c9ea98",
+    "symlinks": 3
+  },
+  "success": true,
+  "version": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]"
+}

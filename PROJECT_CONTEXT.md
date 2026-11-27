@@ -1,30 +1,35 @@
 # Project context
 
-[Unsigned off-host round-trip](reports/keeper-offhost-20261126/REVIEW.md)
-now verifies desktop possession of five exact c821 package files and their return
-to fresh Ubuntu review folders. Four native journal/sidecar verify/restore
-operations pass; pending/accounting bytes, queued IDs, sequence and pending age
-stay exact. This synthetic fixture is not current canonical transaction proof.
-Original release/configuration/policy remain separately retained on Ubuntu.
+[Unsigned kit and clean-filesystem reconstruction](reports/keeper-reconstruction-20261127/REVIEW.md)
+now verifies49 private files/820,029bytes and restores the captured journal/sidecar
+history without access to the old application folders. One missing-configuration
+native refusal passes, then four native verify/restore calls pass in0.561s.
+Pending accounting, selected generation, queued IDs/sequence/first_seen and new
+lock separation stay exact. Signer files are absent; all adoption flags stay false.
 
-Actual historical age7,719s exceeds the unchanged900s operating freshness limit.
-The explicit86,400s recovery-review allowance changes no operating policy, clock
-or capture timestamp. All readiness/adoption/freshness flags remain false.
-Raw operational packages stay outside Git; only sanitized evidence is published.
-New unit stops empty, original source/package/lock metadata is unchanged, and a
-separate settled check matches5existing states with0nonambient differences/
-1observer invocation change. Initial transfer/helper and mid-observer snapshot
-failures are retained, not relabelled.
+The existing Ubuntu OS runtime is separately supplied through18 explicit read-only
+mounts, including six diagnosed loader-name file mappings. This is application
+input reconstruction, not a complete OS image or physical second-host failover.
+Actual capture age61,340s exceeds unchanged900s operating freshness; historical
+review uses86400s and original timestamps, with no clock override or recapture.
+Raw kit/configuration/policy/package files remain outside Git.
 
-Production sources, source13/19, financial/resource limits, workload plan and
-existing services/sites/Anvil8902/journals remain unchanged; no old test bodies
-rerun. Reuse the [191-file/2,137-definition/279-lambda inventory](reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json),
-with unchanged F6 maps61/39/4 and1,021ABI rows. The earlier [normal keeper/timer
-composition](reports/ubuntu-keeper-composition-20261126/REVIEW.md) retains its
-actual transaction, once-only recovery and deadline-driven health proof.
-Q06/P20/P21 remain open for second-host/host-loss recovery and fencing, actual
-providers/channels/host-down monitoring, physical durability, sustained operation
-and independent approval. The desktop heartbeat stays user-paused.
+Original c824 loader startup NONPASS/zero native calls, local helper refusals
+including one uncaptured cause, and the c825 timing-parser refusal remain recorded.
+A separately pinned complete-only continuation reuses the exact passed negative
+result; no installer, negative rerun, input rewrite or guard bypass occurs.
+Both labs stop empty; original source/reference/eight retained files/locks stay
+unchanged and5existing states match0nonambient/1observer invocation-ID change.
+
+Production source, source13/19, financial/native/transport limits and existing
+environments/journals are unchanged; no old test bodies rerun. Reuse the
+[191-file/2,137-definition/279-lambda inventory](reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json)
+and F6 maps61/39/4 with1,021ABI rows. Q06/P20/P21 remain open for real second-host/
+OS/signing recovery and fencing, canonical reconciliation, actual channels/
+providers, durability/encryption, sustained operation and independent approval.
+The desktop heartbeat stays paused. Earlier [desktop round-trip](reports/keeper-offhost-20261126/REVIEW.md)
+and [normal keeper/timer composition](reports/ubuntu-keeper-composition-20261126/REVIEW.md)
+keep their distinct source and actual-transaction scopes.
 
 Earlier [exact backup/restore](reports/keeper-backup-20261126/REVIEW.md) has 33 distinct
 NEW passes at its original source. The separate [c814 composition](reports/ubuntu-backup-recovery-20261126/REVIEW.md)

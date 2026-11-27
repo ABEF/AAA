@@ -1,0 +1,18 @@
+{
+  "application_imports": 0,
+  "bytes": 61737,
+  "kind": "c825-offline-complete-continuation-build",
+  "native_calls": 0,
+  "only_native_mode_requested": "complete",
+  "original_controller_or_worker_or_installed_inputs_modified": false,
+  "passed_negative_bytes": 3714,
+  "passed_negative_result_sha256": "ad5813b9433039f5cf35925988bc673833b4b5c7f7a237d3e8a5ca21d9d0390d",
+  "preserved_controller_byte_slice_equal": true,
+  "preserved_controller_bytes": 56751,
+  "preserved_controller_sha256": "f102550ea30927350c5b815fda020ccf4ea6a23fae00379668af8ccba351f10e",
+  "schema": 1,
+  "server_actions": 0,
+  "sha256": "8bb549d88b8704afcfd73d0c4f8d408e4e6c16281ab82538a6467714759ff082",
+  "tail_sha256": "96010c24d797b8e319fd5b4af8ca8ab2884e93f2af9ac5d1e057779121438312",
+  "test_bodies_run": 0
+}

@@ -1,0 +1,22 @@
+{
+  "historical_review_age_seconds": 86400,
+  "operating_policy_changed": false,
+  "original_operating_age_seconds": 900,
+  "schema": 1,
+  "trust_files": {
+    "SOURCE_MANIFEST.json": {
+      "bytes": 24910,
+      "incoming_derived": false,
+      "sha256": "c287aa0c4b8e4113f7ffa1459f39a704bd17b5165f23084e3a8f26995cdb0e08",
+      "source_commit": "a418a567abbc3c0b7c6dd8425ef31306e8e48f17",
+      "source_path": "reports/keeper-sidecar-recovery-20261126/preparation/c821/SOURCE_MANIFEST.json"
+    },
+    "SOURCE_RESULT.json": {
+      "bytes": 9032,
+      "incoming_derived": false,
+      "sha256": "9bec125bedd73b6f80cb3f316a7822aa09aeb9198927ca8d901c476f3798c371",
+      "source_commit": "a418a567abbc3c0b7c6dd8425ef31306e8e48f17",
+      "source_path": "reports/keeper-sidecar-recovery-20261126/evidence/c821/fetch-6/SOURCE_RESULT.json"
+    }
+  }
+}

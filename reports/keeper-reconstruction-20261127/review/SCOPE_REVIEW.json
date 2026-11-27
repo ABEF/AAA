@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "kind": "independent_static_reconstruction_scope_review",
+  "baseline": "a418a567",
+  "status": "minimal_scope_agreed_pending_helper_review",
+  "review_scope": "Read-only source/design review; no application imports, tests, network or server calls.",
+  "required_before_execution": [
+    "Fresh RootDirectory built solely from the exact49-file desktop kit:41 original release files from independently trusted Git blobs, original SOURCE_MANIFEST, two exact private fixture configuration/policy files and five persisted unsigned package files.",
+    "Release/configuration/policy and outer/nested package trust pins must derive from independently retained evidence before accepting incoming kit assertions.",
+    "No original /opt tree or old lab directory is mounted into the fresh root; enumerate and disclose all allowed read-only OS interpreter/library mounts.",
+    "Reconstruct only required protected runtime/layout paths at their exact original logical names; no configuration, policy, captured timestamp or package rewrite.",
+    "No real signer read or copy; configured signer paths must remain absent in the fresh unsigned root, or be explicitly reviewed distinct empty unreadable masks; no RPC, Cast, network transaction, live service, website or heartbeat action.",
+    "Run a deliberate missing-configuration native keeper verify refusal in a separate incomplete root before the successful path; retain its sanitized failure outcome and prove restore outputs absent.",
+    "Run existing journal verify/restore and sidecar verify/restore CLIs once each on the successful path, with defaults unchanged and explicit historical age review only.",
+    "Save exact raw record length/hash equality, pending/accounting/outbox/sequence/first_seen equality, native output bindings, new empty private lock metadata and all false approval fields.",
+    "Bound inventories, reads, transfer encodings, subprocess output, time, memory, process count and cleanup; SSH response remains64KiB, reviewed tar.gz input remains at most2MiB; preserve incomplete/uncertain outputs rather than auto-delete.",
+    "Stop only the new unit and prove its group empty; compare original source/package/configuration/policy/lock records and pre-existing host service states.",
+    "Publish only explicitly allowlisted sanitized evidence; raw packages, private configuration/policy and transport captures remain outside Git."
+  ],
+  "evidence_boundary": "Finite same-server application/layout reconstruction with explicitly reused OS runtime; not an independent second host, whole-OS disaster recovery, production fencing, physical durability, canonical transaction proof or readiness approval.",
+  "production_change": false,
+  "old_test_bodies_run": 0,
+  "server_calls_by_reviewer": 0
+}

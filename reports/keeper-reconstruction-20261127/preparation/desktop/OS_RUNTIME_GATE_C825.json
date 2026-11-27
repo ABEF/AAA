@@ -1,0 +1,139 @@
+{
+  "OS_external": true,
+  "actual_second_host": false,
+  "mounts": [
+    {
+      "source": "/usr/bin/python3.12",
+      "target": "/usr/bin/python3"
+    },
+    {
+      "source": "/usr/lib/python3.12",
+      "target": "/usr/lib/python3.12"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+      "target": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libbz2.so.1.0.4",
+      "target": "/usr/lib/x86_64-linux-gnu/libbz2.so.1.0.4"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+      "target": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libcrypto.so.3",
+      "target": "/usr/lib/x86_64-linux-gnu/libcrypto.so.3"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libexpat.so.1.9.1",
+      "target": "/usr/lib/x86_64-linux-gnu/libexpat.so.1.9.1"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5",
+      "target": "/usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libm.so.6",
+      "target": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libssl.so.3",
+      "target": "/usr/lib/x86_64-linux-gnu/libssl.so.3"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libz.so.1.3",
+      "target": "/usr/lib/x86_64-linux-gnu/libz.so.1.3"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+      "target": "/lib64/ld-linux-x86-64.so.2"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libm.so.6",
+      "target": "/lib/x86_64-linux-gnu/libm.so.6"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libz.so.1.3",
+      "target": "/lib/x86_64-linux-gnu/libz.so.1"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libexpat.so.1.9.1",
+      "target": "/lib/x86_64-linux-gnu/libexpat.so.1"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+      "target": "/lib/x86_64-linux-gnu/libc.so.6"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/libbz2.so.1.0.4",
+      "target": "/lib/x86_64-linux-gnu/libbz2.so.1.0"
+    },
+    {
+      "source": "/usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5",
+      "target": "/lib/x86_64-linux-gnu/liblzma.so.5"
+    }
+  ],
+  "old_host_opt_or_etc_bound": false,
+  "required_logical_aliases": {
+    "/lib/x86_64-linux-gnu/libbz2.so.1.0": {
+      "bytes": 78944,
+      "host_link_count": 1,
+      "host_mode": 511,
+      "host_uid": 0,
+      "sha256": "cc08c9f50a8009ffd6391e0116a100369b11ca9238fa52392c019e6645b122a1",
+      "source": "/usr/lib/x86_64-linux-gnu/libbz2.so.1.0.4"
+    },
+    "/lib/x86_64-linux-gnu/libc.so.6": {
+      "bytes": 2129424,
+      "host_link_count": 1,
+      "host_mode": 493,
+      "host_uid": 0,
+      "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+      "source": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+    },
+    "/lib/x86_64-linux-gnu/libexpat.so.1": {
+      "bytes": 186624,
+      "host_link_count": 1,
+      "host_mode": 511,
+      "host_uid": 0,
+      "sha256": "286682ecbc5e59a638963b1a4e6351e65eb32fcf4bdcb9cb7569b6a61fe06a8d",
+      "source": "/usr/lib/x86_64-linux-gnu/libexpat.so.1.9.1"
+    },
+    "/lib/x86_64-linux-gnu/liblzma.so.5": {
+      "bytes": 202904,
+      "host_link_count": 1,
+      "host_mode": 511,
+      "host_uid": 0,
+      "sha256": "26b37d25f7ca2a2d348de8ecabacda12e921cd933b21fa069a179760db77219d",
+      "source": "/usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5"
+    },
+    "/lib/x86_64-linux-gnu/libm.so.6": {
+      "bytes": 952616,
+      "host_link_count": 1,
+      "host_mode": 420,
+      "host_uid": 0,
+      "sha256": "5dcc4d25466e29ca390ed6fabb371c69b65dff6fa4e91c34561057a020d6994a",
+      "source": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+    },
+    "/lib/x86_64-linux-gnu/libz.so.1": {
+      "bytes": 113000,
+      "host_link_count": 1,
+      "host_mode": 511,
+      "host_uid": 0,
+      "sha256": "f61677c7bdb7c2aa2a243ea781bfd16afcb361cede7b4ef76127a9d8eb9a5242",
+      "source": "/usr/lib/x86_64-linux-gnu/libz.so.1.3"
+    }
+  },
+  "runtime_review_sha256": "3025d86be5de48fd1643ddd53819fe3ef1d9268dca689749827ad399247abdb6",
+  "schema": 1,
+  "stdlib_tree": {
+    "bytes": 24987936,
+    "entries": 1195,
+    "files": 1192,
+    "sha256": "6180b04244fcb06d9e66d4505cbede2edc58d42a4a535d6092b7205f76c9ea98",
+    "symlinks": 3
+  },
+  "success": true
+}

@@ -68,8 +68,12 @@ working directory and output parents must exist in the reviewed protected
 layout. Live scheduler selection, alert state and their lock files are not
 required for those two operations: their captured records come from the
 package. Other configured runtime-path metadata remains subject to validation.
-If host loss also removed the original layout, review its reconstruction or
-logical mapping first; do not invent configuration or rewrite captured hashes.
+If host loss removed the layout, use the [complete private kit procedure](OPERATOR_MANUAL.md#unsigned-recovery-kit-and-clean-filesystem-reconstruction)
+to reconstruct exact application inputs at reviewed logical paths. The
+[clean-root evidence](../reports/keeper-reconstruction-20261127/REVIEW.md) verifies
+this without old application folders, but still supplies the existing OS runtime.
+Do not invent configuration or rewrite captured hashes; physical-host/OS/signer
+recovery and live adoption remain separate reviews.
 
 ## Capture and verification
 

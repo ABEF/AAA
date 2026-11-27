@@ -1,6 +1,6 @@
 # Verification evidence
 
-[Unsigned desktop/Ubuntu round-trip](keeper-offhost-20261126/REVIEW.md) verifies five exact privately retained files, four native verify/restore operations, exact pending/outbox history and stopped isolated output. Synthetic fixture/current canonical truth and historical review/operating freshness remain distinct. Original preparation and host-snapshot failures stay preserved.
+[Unsigned kit and Ubuntu reconstruction](keeper-reconstruction-20261127/REVIEW.md) verifies49 private files, one native missing-config refusal and four successful review-only recovery operations with old application folders unavailable. Original c824 startup and c825 timing/helper failures remain distinct. Existing sources, limits and environments stay unchanged.
 
 [Unsigned scheduler/alert recovery](keeper-sidecar-recovery-20261126/REVIEW.md) adds eight NEW Ubuntu passes, actual capture/verify/restore and mapped queued-alert recovery. c820 setup NONPASS remains; c821 adds only its missing dynamic dependency and lab namespace. No existing journal/service/signer adoption; real off-host recovery remains open.
 

@@ -1,0 +1,23 @@
+{
+  "after_bytes": 12938,
+  "after_sha256": "d1819f24c0735d1b61b961b20140e7ec2caaa83e1b4329fceba90e23bb27e5c2",
+  "all_other_AST_identical": true,
+  "application_imports": 0,
+  "before_sha256": "5dcd535b9d4764695fcd22b336140fa4c70e3f6bccbf7e5788a364ead45c0a68",
+  "error_type_allowlisted": true,
+  "exception_message_or_input_value_output_added": false,
+  "fixed_refusal_stages": [
+    "input_paths",
+    "kit_verification",
+    "proof_encoding",
+    "proof_publication"
+  ],
+  "guards_verify_budgets_unchanged": true,
+  "helper_execution": 0,
+  "main_AST_identical_after_removing_only_diagnostics": true,
+  "only_changed_function": "main",
+  "read_review": "Failure output gains only a fixed stage and allowlisted exception class name. Unknown classes map to UnexpectedError. Success output and verification/publication operations are identical.",
+  "schema": 1,
+  "server_actions": 0,
+  "test_bodies_run": 0
+}

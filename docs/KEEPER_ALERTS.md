@@ -1,6 +1,6 @@
 # Keeper alerts: one-shot observation and local delivery
 
-[Off-host history preservation](../reports/keeper-offhost-20261126/REVIEW.md) verifies exact queued IDs, sequence and pending first_seen across desktop transfer and Ubuntu review restoration. Historical recovery allowance never refreshes backup age or approves observer readiness. Live host-down/remote notification and fencing remain separate.
+[Clean-root alert-history recovery](../reports/keeper-reconstruction-20261127/REVIEW.md) preserves exact queue IDs, sequence and pending first_seen using reconstructed private application inputs. Missing configuration refuses; no init/reset, live observer adoption or actual notification/host-down qualification is implied.
 
 The [alert module](../keeper/alerts.py) and [command](../scripts/keeper-alerts.py) inspect keeper health, the current journal and one explicitly selected recovery backup. They write a **separate alert state/outbox**, and can send sanitized events to a local test receiver. They never sign, submit transactions, read configured signer-file contents, repair a journal or approve a keeper for live use.
 

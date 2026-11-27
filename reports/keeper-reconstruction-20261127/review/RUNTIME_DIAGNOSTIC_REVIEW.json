@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "kind": "independent_static_OS_metadata_diagnostic_review",
+  "status": "pass_for_one_fixed_read_only_diagnostic",
+  "source": "cache-keeper-reconstruction-20261127/lab/diagnostic/runtime_metadata.py",
+  "source_sha256": "8ae648ba21c9945c8f6db42af4357af1e0377a6fef5a419edd76c2873db7f5fb",
+  "source_bytes": 3618,
+  "wrapper": "cache-keeper-reconstruction-20261127/lab/diagnostic/host_diagnostic.py",
+  "wrapper_sha256": "20176f7ce0eaf37014c8e3d7d954e4018cb5de1829ffeb9616a523ff59fdc0c9",
+  "wrapper_bytes": 2751,
+  "trigger": "Parent reports original export refused runtime_file_metadata before emitting raw reference data, installation, unit start or native application calls. Original failed export remains retained.",
+  "scope": "lstat-style metadata and bounded readlink strings under fixed /usr/lib/python3.12; no selected file body or symlink target is opened by diagnostic logic.",
+  "bounds": {
+    "seconds": 20,
+    "entries": 8192,
+    "depth": 16,
+    "problem_records": 16,
+    "symlink_target_characters": 512,
+    "stdout_bytes": 16384
+  },
+  "checked": [
+    "Prunes site-packages/dist-packages and never traverses symlink directories.",
+    "Reports only relative path, type, owner, mode, link count and exact bounded symlink text for selected .py/.so/.pyc candidates that fail current scanner/read predicates; overlong text refuses rather than truncates.",
+    "Wrapper pins diagnostic, itself, frozen host helper and opaque transport; reuses64KiB/45-second response capture and -I/-S/-B interpreter; stores raw response privately and prints only execution receipt.",
+    "No arbitrary input path, app import, test, config/journal/signer access, filesystem write, network or service action is introduced.",
+    "No frozen helper or runtime scanner change is approved merely by this diagnostic review; actual outcome and any targeted correction require separate review."
+  ],
+  "blocking_findings": [],
+  "review_activity": {
+    "application_imports": 0,
+    "test_bodies": 0,
+    "server_calls": 0,
+    "network_requests": 0
+  }
+}

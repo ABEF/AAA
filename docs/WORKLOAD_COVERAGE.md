@@ -1,21 +1,26 @@
 # Whole-project workload coverage
 
-[Unsigned off-host round-trip](../reports/keeper-offhost-20261126/REVIEW.md)
-passes desktop possession and same-server return of the exact five-file synthetic
-package, with four existing native verify/restore operations. Pending/accounting
-bytes, outbox IDs, sequence and observed pending age remain exact. Raw packages
-stay outside Git; original source/configuration/policy remain separately secured.
-New job stops; original records/locks stay unchanged; settled5-state comparison
-passes0nonambient/1observer-ID change, preserving the initial mid-run NONPASS.
+[Unsigned kit and clean-filesystem reconstruction](../reports/keeper-reconstruction-20261127/REVIEW.md)
+verifies49 private files/820,029bytes, one actual missing-configuration refusal
+and four native verify/restore successes. The workers use reconstructed logical
+paths with old application folders unavailable and signer files absent. Exact
+pending/accounting/outbox history and all false adoption flags remain. Existing
+OS runtime is explicit:18 read-only file/stdlib mounts, including six diagnosed
+loader-name mappings; this is not OS/physical-second-host qualification.
 
-Historical recovery uses real clock86,400s allowance, original timestamps and
-capture floors; unchanged900s operating freshness is not approved. All adoption
-flags stay false. Production sources/limits, source13/19 and existing environments
-are unchanged, with no old test-body reruns. Reuse the [current inventory](../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json).
-Prior [normal keeper/timer composition](../reports/ubuntu-keeper-composition-20261126/REVIEW.md)
-keeps its distinct actual transaction scope. Q06/P20/P21, second-host/host-loss
-recovery/fencing, real channels/providers, durability, sustained operation and
-independent approval remain open. Heartbeat stays paused.
+Original c824 startup NONPASS/zero native calls and helper/timing refusals stay
+recorded. The passed negative is reused by a separately pinned complete-only
+continuation, without input rewrites or native guard changes. Both labs stop;
+original sources/references/eight files/locks and5existing states are preserved
+(0nonambient/1observer-ID). Actual age61,340s uses reviewed86400s historical
+allowance, while900s operating freshness remains exceeded/unapproved. No old
+test body, production source or operating/native/transport limit changes.
+Reuse the [unchanged inventory](../reports/keeper-sidecar-recovery-20261126/FUNCTION_INVENTORY.json).
+Q06/P20/P21, actual second-host/OS/signer recovery/fencing, canonical reconciliation,
+channels/providers, durability, sustained operation and release approval stay open.
+Earlier [desktop round-trip](../reports/keeper-offhost-20261126/REVIEW.md) and
+[normal keeper/timer](../reports/ubuntu-keeper-composition-20261126/REVIEW.md) proofs
+retain their original scopes. Heartbeat stays paused.
 
 Earlier [alert evidence](../reports/keeper-alerts-20261126/REVIEW.md) retains its
 21-method original source scope; it is not re-executed or relabelled here.

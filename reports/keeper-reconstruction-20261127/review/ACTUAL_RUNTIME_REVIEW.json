@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "kind": "independent_saved_actual_runtime_allowlist_review",
+  "status": "pass_for_fixed_unsigned_scope",
+  "input": "private/campaign-001/export-002/RUNTIME_REVIEW.json",
+  "input_sha256": "20f0316866aa1017b53295497ffb79a12b4df75750160dc64aa06b1e98b08d43",
+  "runtime_version": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "mount_count": 12,
+  "mount_scope": "Explicit Python interpreter, /usr/lib/python3.12 stdlib, nine actual shared-loader/library files under /usr/lib/x86_64-linux-gnu and loader alias at /lib64/ld-linux-x86-64.so.2.",
+  "stdlib": {
+    "regular_files": 1192,
+    "reviewed_alias_metadata_rows": 3,
+    "total_selected_rows": 1195,
+    "regular_bytes": 24987936,
+    "inventory_sha256": "6180b04244fcb06d9e66d4505cbede2edc58d42a4a535d6092b7205f76c9ea98"
+  },
+  "checked": [
+    "Exact saved receipt hash matches the parent-supplied trusted review hash.",
+    "All mount sources/targets remain under /usr or /lib64; no original /opt tree, /etc, home tree, current journal, original package or signer path is mounted.",
+    "Each external binary/library target has explicit byte length and SHA-256; stdlib selected-file bytes and exact3 alias metadata have a separate aggregate digest.",
+    "site-packages is disabled; -I/-S/-B source assertions remain reviewed; no /etc sitecustomize target mount is introduced.",
+    "OS_runtime_is_external is true; OS_disaster_recovery_proved and actual_second_host are false."
+  ],
+  "blocking_findings": [],
+  "scope_boundary": "This reviews the saved external-runtime allowlist/hash receipt. It makes no independent live-server read, OS provenance/security audit, physical durability, whole-OS recovery or second-host claim.",
+  "review_activity": {
+    "application_imports": 0,
+    "test_bodies": 0,
+    "server_calls": 0,
+    "network_requests": 0
+  }
+}

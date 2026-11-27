@@ -1,5 +1,45 @@
 # PoPL operator manual
 
+## Unsigned recovery kit and clean-filesystem reconstruction
+
+Retain a complete private recovery kit before the original host becomes unavailable.
+The native package contains captured state; it does not contain its original
+configuration, scheduling policy, reviewed release, interpreter or signer recovery.
+Keep raw operational files outside Git and public evidence. Retain trusted hashes
+through a separate channel before accepting incoming bytes.
+
+| Step | Required inputs and action | Required check |
+| --- | --- | --- |
+| Retain trust | Original package and nested manifest pins; exact raw configuration/policy pins; matching reviewed release inventory | Incoming checksums alone do not establish trust |
+| Assemble the private kit | Complete native package, original raw configuration/policy and every pinned release member | Exact closed inventory, lengths and hashes; no signer file, password or signed transaction |
+| Inventory the OS runtime | Interpreter, standard library, loader and required shared libraries, including each SONAME filename/alias and its resolved target | Record versions, logical names, alias relationships and target hashes; target bytes alone do not prove loader resolution |
+| Recreate the layout | Fresh protected root with the original logical release/configuration/policy/working paths and required directory parents | Old host folders unavailable to the worker; exact original bytes and paths; signer files absent; do not invent a current journal or lock ownership |
+| Run native review | Journal verify, journal restore, sidecar verify, sidecar restore, each using trusted pins and fresh review destinations | Missing dependencies refuse; default16MiB/60-second native limits and stricter original policy budgets remain |
+| Review and stop | Compare restored raw records, plan hashes, pending/accounting, generation, queued IDs/sequence/first_seen and new empty locks | All canonical/fencing/freshness/live/adoption flags remain false; stop the isolated worker and preserve failures |
+
+Use the four existing commands and argument definitions in
+[off-host backup transfer and review](#off-host-backup-transfer-and-review)
+and the [sidecar recovery guide](KEEPER_SIDECAR_RECOVERY.md).
+The nested journal bundle is the sidecar package's `selected` directory.
+Do not run `init`, reset journals/outboxes/nonces, reserialize configuration or
+policy, rewrite captured hashes/timestamps, or repair a failed output in place.
+Preserve incomplete attempts and use a separately reviewed fresh destination.
+
+Use the real clock and an explicit reviewed capture-age allowance. This fixture's
+original capture is1795723324; its86,400-second historical review allowance changes
+neither that timestamp nor the original900-second operating freshness policy.
+Exceeding the review allowance requires a new explicit decision; it does not
+authorize silently extending the limit, recapturing or calling old state fresh.
+
+The report's preflight helper is fixed to this fixture, not a production recovery
+tool. A clean-root review is separate from a complete OS image, physical second
+host, old-host/signer/restart fencing, canonical transaction reconciliation and
+separately approved live adoption. The [reconstruction record](../reports/keeper-reconstruction-20261127/REVIEW.md)
+retains the c824 loader failure and c825 metadata-reader refusal separately.
+The corrected composition passes one missing-config refusal and four successful
+native operations. Its existing OS runtime remains an external dependency.
+
+
 ## Off-host backup transfer and review
 
 The [bounded desktop round-trip](../reports/keeper-offhost-20261126/REVIEW.md)
@@ -26,8 +66,10 @@ separate from the live observer's backup freshness policy. The rehearsal used
 Never backdate a clock, regenerate a manifest, reset pending age or call an old
 backup fresh. Default native16MiB/60s limits and stricter policy budgets remain.
 
-The native CLIs use separately retained server-only configuration/release; a
-desktop copy cannot reconstruct lost dependencies or current chain truth.
+The native CLIs require the exact separately retained configuration/release.
+The complete private kit procedure above now reconstructs those application
+inputs in a clean filesystem; OS/signer recovery and current chain truth remain
+separate prerequisites for actual adoption.
 Actual host-loss adoption additionally requires old-host/signer/restart fencing,
 reviewed path/permission reconstruction, canonical nonce/receipt/fee reconciliation,
 dry recovery and separately approved single-signer operation. Keep originals and

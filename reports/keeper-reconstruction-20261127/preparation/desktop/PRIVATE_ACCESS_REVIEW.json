@@ -1,0 +1,34 @@
+{
+  "records": [
+    {
+      "both_execution_accounts_present": true,
+      "rule_count": 5,
+      "relative": "",
+      "allowed_principals_only": true
+    },
+    {
+      "both_execution_accounts_present": true,
+      "rule_count": 5,
+      "relative": "/private",
+      "allowed_principals_only": true
+    },
+    {
+      "both_execution_accounts_present": true,
+      "rule_count": 5,
+      "relative": "/trust",
+      "allowed_principals_only": true
+    },
+    {
+      "both_execution_accounts_present": true,
+      "rule_count": 5,
+      "relative": "/private/campaign-001/kit",
+      "allowed_principals_only": true
+    }
+  ],
+  "Everyone_or_public_grant": false,
+  "previous_private_store_changed": false,
+  "full_Windows_security_qualification": false,
+  "success": true,
+  "new_task_store_only": true,
+  "schema": 1
+}
