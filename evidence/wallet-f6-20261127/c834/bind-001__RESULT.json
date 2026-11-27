@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "complete": true,
+  "configuration_path": "/work/binding-001/CONFIGURATION_CANDIDATE.json",
+  "configuration_file_sha256": "0a10e741bb77fbc635d1e89dfc321b1c4d490c145ee433e09392e5e2f09deefa",
+  "projection_sha256": "2ae2cd0845a4ecb837c358d3c5cc2f9d3fa6c95154ca33d855354a1a53be13b7",
+  "base_configuration_sha256": "358a48816a65645969fa71763b6a385a2178dc18e1c0eaacf873c687dcd2d5a1",
+  "checkpoint_result_sha256": "0b968c870206c63e3c96ab8cc0b51094b98efe4ad378165ea65530b31093d6db",
+  "checkpoint_sha256": "ec8145e27b782e3c3d4106e00f5f663b1b9764106e9f1895d66c19875776dc96",
+  "index_result_sha256": "78393c8ac88b4db2e360b415420cf352409a95af7acf095daa1ec984009840aa",
+  "actual_cutoff_block": 445,
+  "full_86400_suffix_rule_unchanged": true,
+  "current_Projection_and_Checkpoint_constructor_admission": true,
+  "network_calls": 0,
+  "old_test_bodies": 0,
+  "existing_files_changed": false,
+  "service_or_public_adoption": false,
+  "production_approved": false,
+  "scope": "Fresh separately reviewed isolated read-only lab config only. Constructor admission is not live RPC, complete-ingestion or production qualification."
+}

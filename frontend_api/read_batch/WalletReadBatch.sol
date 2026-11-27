@@ -5,13 +5,13 @@ pragma solidity 0.8.26;
 /// no deployed helper, arbitrary selector, external value or mutable call exists.
 contract WalletReadBatch {
     uint256 private constant PLAIN_GAS = 50_000;
-    uint256 private constant LP_GAS = 250_000;
+    uint256 private constant LP_GAS = 500_000;
     uint256 private constant ROYALTY_GAS = 1_000_000;
     bytes32 private constant MAGIC = keccak256("POPL_WALLET_STATIC_READ_BATCH_V1");
 
     constructor(address[4] memory modules, uint256[] memory ids,
                 address[2] memory lpAssets, address[] memory royaltyAssets) payable {
-        require(msg.value == 0 && ids.length > 0 && ids.length <= 4 &&
+        require(msg.value == 0 && ids.length > 0 && ids.length <= 3 &&
             lpAssets[0] == address(0) && lpAssets[1] != address(0) && royaltyAssets.length <= 4);
         for (uint256 i; i < 4; ++i) {
             require(modules[i] != address(0));

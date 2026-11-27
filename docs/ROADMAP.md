@@ -265,6 +265,23 @@ Qualify proxy/origin/TLS/firewall boundaries, malformed/oversized/slow input, te
 
 Owning Todo: [`read-api`](../TODO.md#task-read-api), [`api-client-admission`](../TODO.md#task-api-client-admission), [`host-services`](../TODO.md#task-host-services), [`portfolio`](../TODO.md#task-portfolio).
 
+Current27November qualification found and corrected the250k valid-LP-view
+refusal by approved500k reads/three-NFT helper groups within24M. The affected
+1000-NFT/66-descriptor model remains under each request limit, but17 independent
+pages take121.438s before a real full-wallet HTTP journey. The80-GET count alone
+does not close P17. Reuse the actual39-instance/32-NFT F6 fixture and current
+source-bound evidence; the older1000-NFT substitute-access fixture cannot supply
+normal deployment/history admission. Actual maximum-state/lineage/provider and
+120s complete-consumer acceptance remain explicit work.
+
+The actual32-NFT/66-descriptor Source10 journey exposes a concrete P17 blocker:
+20core API replies finish by76.450s, but the eight-card composition hits snapshot
+expiry at117.628s/request33, before final totals/provenance assertions. Reduce
+card/history work without wider budgets, then run only the affected composition.
+The normal F6 checkpoint itself passes3,098logical/6,194POST/5.400401s with exact
+rights and unchanged database bytes. Neither partition closes maximum/provider
+or deployment acceptance.
+
 ### P18 — History, checkpoints and durable data
 
 Reconcile NFT/wallet/collection24h and all-time earnings: individual LP80% plus collective10% plus royalties at today's reviewed prices, excluding principal/claims/conversions/imports as new income. Preserve exact raw amounts and the full86400s raw suffix.

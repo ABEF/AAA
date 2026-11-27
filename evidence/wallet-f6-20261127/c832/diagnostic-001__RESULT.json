@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "scope": "Only previously failed ETH claimableComponents; no passed admission/plain comparisons rerun",
+  "source_anchor": {
+    "baseFeePerGas": "0x7",
+    "blobGasUsed": "0x0",
+    "difficulty": "0x0",
+    "excessBlobGas": "0x0",
+    "extraData": "0x",
+    "gasLimit": "0x1e84800",
+    "gasUsed": "0x20b8c",
+    "hash": "0x58ac366dc4153863f8c0f65cf8a5445ef94d84d96c9f726e57cfb6f317e7dc97",
+    "logsBloom": "0x00000000000000000000010000000000000000000080000000000000000000000000000000000001000000200000000000000000000000000000000200004000000000000000000000000000000000000000000001000000000000000000000000000000000000000200000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000020000000000010000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000001002000000000000000000000000000000000",
+    "miner": "0x0000000000000000000000000000000000000000",
+    "mixHash": "0x6350010dc1f011a3c3c4974015f1ac8d920d4140cd293cc630953e4d1a0b740b",
+    "nonce": "0x0000000000000000",
+    "number": "0x1bd",
+    "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "parentHash": "0xb021a2605d28045fa3fc0fc2d3e39e01d596487874ef4d0fb7fb51458a0e2e9a",
+    "receiptsRoot": "0x050ae6edba02f68afcd9eebd7278b2e713a66b897af66c1eb5953c11dc93e9c7",
+    "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+    "size": "0x296",
+    "stateRoot": "0x12edc5a885f78458130f5d9c9f21167bae239552458b11e98beb1c79a61ab01e",
+    "timestamp": "0x6b005beb",
+    "totalDifficulty": "0x0",
+    "transactions": [
+      "0xb414de324a095adcea0902d9cf5af00217704ddee36811c93e49bc6b6bc9c60c"
+    ],
+    "transactionsRoot": "0xd76f6ca49ec63aeb2f81b5cb8aabb2ec8c1a36ea402b682015c278fca91739c2",
+    "uncles": [],
+    "withdrawals": [],
+    "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+  },
+  "id": "1248574744688489714149029109882129484583802244734403215086775583671941821735",
+  "helper_child_cap": 250000,
+  "reference_top_cap": 24000000,
+  "production_limits_changed": false,
+  "production_approved": false,
+  "original_constructor_params_sha256": "3e20edf921a3b7cd08148fcd128f3e06f72fcf11ad18d54026e7bbd99315821e",
+  "helper_cached_component": {
+    "found": true,
+    "status": "refused",
+    "raw": null
+  },
+  "scalar_reference24m": {
+    "available": true,
+    "value": "0x0000000000000000000000000000000000000000000000000000022a00a0a69f0000000000000000000000000000000000000000000000000000004546e56a8a"
+  },
+  "scalar_estimate": {
+    "available": true,
+    "value": "0x4a403"
+  },
+  "scalar_trace": {
+    "available": true,
+    "value": {
+      "from": "0x0000000000000000000000000000000000000000",
+      "gas": "0x16de138",
+      "gasUsed": "0x4a403",
+      "to": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+      "input": "0xe539ae5b02c2ab1339d59496a3a45758e2b1addf8b313c41dffc05ce2c4aeb8462a775270000000000000000000000000000000000000000000000000000000000000000",
+      "output": "0x0000000000000000000000000000000000000000000000000000022a00a0a69f0000000000000000000000000000000000000000000000000000004546e56a8a",
+      "calls": [
+        {
+          "from": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "gas": "0x1680698",
+          "gasUsed": "0xd82",
+          "to": "0xfa26e96e5f11a855d737cff71a19e133d8349e83",
+          "input": "0xe8cffd1d86798dfd34b3cf289e7582d0460beda645ea24721422547e964271fa9bdb63e5",
+          "output": "0x000000000000000000000000ee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "type": "STATICCALL"
+        },
+        {
+          "from": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "gas": "0x167ebfa",
+          "gasUsed": "0x102c",
+          "to": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "input": "0xaa439cf702c2ab1339d59496a3a45758e2b1addf8b313c41dffc05ce2c4aeb8462a77527",
+          "output": "0x0000000000000000000000000000000000000000000000000000000000000016",
+          "type": "STATICCALL"
+        },
+        {
+          "from": "0x05c2d0f16cc810acad17168446f52d60d4733062",
+          "gas": "0x167d826",
+          "gasUsed": "0xe06",
+          "to": "0xee893b86b3ca6ac1794f637af84f791c402d29a9",
+          "input": "0x64d406ce0000000000000000000000000000000000000000000000000000000000000016",
+          "output": "0x02c2ab1339d59496a3a45758e2b1addf8b313c41dffc05ce2c4aeb8462a77527",
+          "type": "STATICCALL"
+        }
+      ],
+      "value": "0x0",
+      "type": "CALL"
+    }
+  },
+  "anchor_unchanged": true,
+  "logical_calls": 6,
+  "elapsed_seconds": 0.0205,
+  "old_test_bodies": 0,
+  "state_changes": 0,
+  "within_declared_work_bounds": true,
+  "diagnostic_observation_accepted": true
+}

@@ -644,9 +644,9 @@ The fixed read helper uses constructor-only `eth_call` with no destination,
 zero sender/value and canonical blockHash; it is never deployed or broadcast.
 It performs only STATICCALL getters for NFT identity, Vault shares/bucket,
 royalty weight, exact LP bucket/components/claimable and selected royalty
-claimable. Each invocation covers at most4 NFTs/four royalty currencies;
+claimable. Each invocation covers at most3 NFTs/four royalty currencies;
 prefetch accepts at most16 IDs and splits them. Gas is24M per simulation,
-50,000 per plain getter,250,000 per LP getter and1M per royalty getter. Initcode
+50,000 per plain getter,500,000 per LP getter and1M per royalty getter. Initcode
 and returned-code bounds remain49,152/24,576 bytes. This gas cap is a bounded
 read workload, not a transaction profile or changed user fee limit. Unsupported
 provider behavior or an expensive getter fails closed. See [concurrent work

@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "finished_utc": "2026-11-27T18:04:36.373145+00:00",
+  "logical_calls": 2,
+  "results": [
+    {
+      "endpoint": "https://robinhood.rpc.pinax.network",
+      "started_utc": "2026-11-27T18:04:35.919420+00:00",
+      "checks": [],
+      "production_approved": false,
+      "partition_passed": false,
+      "stopped_reason": "Transport failure; no retry",
+      "finished_utc": "2026-11-27T18:04:36.246631+00:00",
+      "logical_calls": 1,
+      "physical_posts": 1,
+      "elapsed_seconds": 0.359,
+      "request_spacing_seconds": 1.5,
+      "response_limit_bytes": 1048576,
+      "retries": 0
+    },
+    {
+      "endpoint": "https://rpc.mainnet.chain.robinhood.com",
+      "started_utc": "2026-11-27T18:04:36.276759+00:00",
+      "checks": [],
+      "production_approved": false,
+      "partition_passed": false,
+      "stopped_reason": "Transport failure; no retry",
+      "finished_utc": "2026-11-27T18:04:36.372129+00:00",
+      "logical_calls": 1,
+      "physical_posts": 1,
+      "elapsed_seconds": 0.109,
+      "request_spacing_seconds": 1.5,
+      "response_limit_bytes": 1048576,
+      "retries": 0
+    }
+  ],
+  "provider_adopted": false,
+  "actual_f6_qualified": false,
+  "full_gas_capacity_qualified": false,
+  "sustained_quota_or_latency_qualified": false,
+  "production_approved": false
+}

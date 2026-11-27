@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "kind": "isolated_c829_F6_read_qualification_receipt",
+  "full_HTTP_wallet_composition_qualified": false,
+  "current_F6_state": {
+    "chain": 4663,
+    "head": 445,
+    "runtime_roles": 123,
+    "actual_NFTs": 32,
+    "actual_royalty_currencies": 65,
+    "exact_current_anchor_runtime_nonce_NFT_checks_passed": true
+  },
+  "archive_gate": {
+    "complete": false,
+    "RPC_calls": 131,
+    "seconds": 2.480138950049877,
+    "failed_checks": [
+      "nft_code_before_creation_number",
+      "nft_code_before_creation_canonical",
+      "nft_code_at_creation_number",
+      "nft_code_at_creation_canonical"
+    ],
+    "source": "final-002/ARCHIVE_GATE_V2.json"
+  },
+  "cold_reader": [
+    {
+      "stage": "normal_Projection_protocol",
+      "passed": true,
+      "normal_API_unmodified": true,
+      "configuration_sha256": "d44bb8f7fba79521a60487454dc41c66decad17b5dda13b86275c31b317acbc6",
+      "calls": 153,
+      "posts": 304,
+      "elapsed_seconds": 1.476442,
+      "history_qualified": false
+    },
+    {
+      "stage": "actual_cold_helper_scalar_equivalence",
+      "passed": false,
+      "error_kind": "RpcError",
+      "cause": "eth_call failed after bounded retries (RemoteRPCError)",
+      "completed_comparisons": 7,
+      "calls": 210,
+      "posts": 420
+    }
+  ],
+  "interpretation": "Normal runtime admission advanced; constructor/scalar LP getter gas feasibility and historical creation state remain blocked. No fabricated history, wider limits, clock changes or generic rerun.",
+  "new_own_processes": {
+    "node_stopped": true,
+    "cold_stopped": true,
+    "cgroups_empty": true,
+    "ports_closed": true,
+    "no_API_proxy_or_tunnel_started": true
+  },
+  "preservation": {
+    "schema": 1,
+    "original_fixtures_bytes_hashes_metadata_unchanged": true,
+    "original_service_states_unchanged": true,
+    "original_public_listener_inventory_unchanged": true,
+    "old_c825_c828_lab_metadata_unchanged": true,
+    "c814_parent_directory_mtime_changed_by_authorized_new_child_only": true,
+    "own_units_stopped": true,
+    "own_cgroups_empty": true,
+    "own_ports_closed": true,
+    "new_lab_preserved": true,
+    "new_control_artifact_hashes": {
+      "ARCHIVE_GATE_ABORT.json": "61d2b99a44d2ebf43768f2b59b4fc6e8f068a9e0ba8cb522f302790fd15f6ab9",
+      "ARCHIVE_GATE_V2.json": "3adf4f571b2acfe4573e3451ccadd9c80a13eade56835b5285c464d6f9a3e3c7",
+      "COLD_PREPARATION.json": "b59522c5578c003719108ddef45de79bb49cbe97fcdf8e97700c939a9a4ee4ba",
+      "COLD_UNIT_ID.json": "4399ecebfa48e98cfbec90f217de36fbbc1c6d6e3da9c1cd7bd75535768ea449",
+      "LAB_ID.json": "a78cc037f6e00426f1134be875fa2faf5f19e30de1ce1238722f07ccd6d3a975",
+      "NODE_ID.json": "d7778468762ed1fd0a9f75b70d9b832dcdd374156200dfacc43da082aaf1a682"
+    },
+    "production_approved": false
+  },
+  "helper_failures_preserved": [
+    "archive-001 root symlink rendering guard refused before0RPC; fixed with inode+hash identity in separate V2 wrapper",
+    "final-001 nested source escaping refused before execution; fixed separate V2 metadata-only helper"
+  ],
+  "protocol_source_changes": 0,
+  "contract_or_application_tests_rerun": 0,
+  "public_transactions": 0,
+  "clock_or_chain_state_changes": 0,
+  "server_files_deleted": 0,
+  "production_approved": false,
+  "file_sha256": {
+    "PLAN.json": "d364454586c606ff42fc8fbd3e33d17d248e0f1dad8c4b33773aa5841357a4d9",
+    "CONTROL_FREEZE.json": "fa6426d607fbc549beded3c65a4d258395dbac3e85301a880f4c7d2236994a76",
+    "CONTROL_FREEZE_V2.json": "8115b09df67bf3ebe377fb3e286f73e3d705108785e395a1616b576929a7972a",
+    "remote_control.py": "2470701d9d71b07a5ac2b1631b1ce7b5123741e3784961d2d092a148b043a432",
+    "host_control.py": "dad7d1446a667d31fb4027b0333f0fa250873d034802657640bdbcb830c4d1bd",
+    "archive_runner.py": "08a2c2878d14f3b730873e4d19dfbda446959f79b7219809c08da28c957c0712",
+    "archive_runner_v2.py": "896e4188cf781368f8921fabc12fc6b77c1b6d752c4375e300cc1e537a8b60bd",
+    "archive_capture.py": "820617bdec9f6512adac1ec3f37333ee7a7ca056bc51dd1e3ca925841408cae8",
+    "archive_capture_v2.py": "63c2c9d39d24b38d7bb9d9e74987bb1ae4a53b9978ec4d99cec294341cc8ee63",
+    "cold_runner.py": "0852eb0aeebb518881562013aacef8586ee8daae67161465a1992f1727a329d1",
+    "cold_capture.py": "bc3d065c226d1fa1fc1ec273214df28c9a0c3ba084b7e38fda9ac8877216a955",
+    "COLD_PACKAGE.json": "1f1b875a741e5fe4287a721138f163bbbc52137b7b2fac91a33ad8f1283814a9",
+    "cold-inputs.tar.gz": "a64c74dc952c6a08f028f4f227476d9e3d188fae460280fcd2dd8d627f7b9fd6",
+    "inventory-001/EXECUTION.json": "52a61e94357b1169835147630f1beb3f7c7064a627f1fc38f2234ba691e92f15",
+    "prepare-001/EXECUTION.json": "c009983e3049e1422c4f742098777568e28d53e1b91bc2a9809acaf673e999b9",
+    "start-001/EXECUTION.json": "356a8d75d98e5fce8cfe6b1d59e20f1e1f8465eca183b37908c54ff0e78c3d41",
+    "archive-001/EXECUTION.json": "ef08459f89d778de0b4028dfda42215008b0e9981fb662e2f2f3531befcdfb0d",
+    "root-diagnostic-001/EXECUTION.json": "20d0bacd3e29a00439f5262636dda2fe5d369817234b6ed492e28d07f453b184",
+    "archive-002/EXECUTION.json": "44d813cd192439863db4028c769362589ad523846806715e3b93167c737a4148",
+    "cold-001/EXECUTION.json": "fb9186312619be57a4a344104ccde97947e75d7af199ab0c59113ce786420d12",
+    "cold-001/RESULT.json": "4fd71deccdb0fc33c0b9582dde0d0551cbc9622e4b9c30435e81d9c6a950349c",
+    "stop-001/EXECUTION.json": "512ca84a1079d6db5268249ca52de68ba6cf5724b546f793ef629da001e61140",
+    "final-001/EXECUTION.json": "f28db916331e537f0c3c821428608a885dffe18705022b79ea67a4e637599754",
+    "final-002/EXECUTION.json": "ba79cec750598d930ff3042f1380a06da33971519465d519ae52885e4b16df82",
+    "final-002/PRESERVATION.json": "f74c0c9b1df5ee911fca5e76a18281bcd5c14a6dea1909fd84c038a129dc7c73",
+    "final-002/ARCHIVE_GATE_V2.json": "3adf4f571b2acfe4573e3451ccadd9c80a13eade56835b5285c464d6f9a3e3c7"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "date": "2026-11-27",
+  "scope": "Read-only wallet helper; no protocol transaction or financial policy change",
+  "authorization": "User explicitly approved: Yes—rebalance the read budget (Recommended)",
+  "confirmed_blocker": {
+    "original_LP_child_gas": 250000,
+    "actual_fixed_F6_reference_estimate_and_trace_gas": 304131,
+    "original_helper_result": "refused",
+    "scalar_reference24M_result": "valid exact two-word LP entitlement"
+  },
+  "approved_change": {
+    "LP_child_gas": 500000,
+    "NFTs_per_helper": 3,
+    "maximum_royalty_currencies_per_helper": 4,
+    "total_virtual_call_gas": 24000000,
+    "maximum_sum_of_declared_child_allowances": 19050000,
+    "remaining_total_call_budget_for_constructor_and_overhead": 4950000
+  },
+  "unchanged": {
+    "plain_child_gas": 50000,
+    "royalty_child_gas": 1000000,
+    "API_request_seconds": 25,
+    "API_logical_RPCs": 1024,
+    "API_physical_POSTs": 2048,
+    "API_response_bytes": 1048576,
+    "snapshot_seconds": 120,
+    "history_window_seconds": 86400,
+    "financial_rights_and_protocol_F6_sources": true,
+    "transaction_gas_fee_and_resource_policies": true,
+    "public_signing_disabled_and_Anvil_only_signer": true
+  },
+  "boundary": "More internal read calls may be required; this is not1000NFT/provider/maximum-lineage capacity approval.",
+  "production_approved": false,
+  "service_or_website_adoption_authorized": false
+}

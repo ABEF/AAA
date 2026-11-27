@@ -48,6 +48,22 @@ approval remain separate. No endpoint is installed, no allowance/transaction is
 submitted and the12M default stays. See the
 [operator procedure](OPERATOR_MANUAL.md#robinhood-rpc-fees) before adoption.
 
+## Constructor-read observations —27November2026
+
+The optional wallet helper has a separate source-scoped read-only probe. Both
+Pinax and the documented official RPC accept canonical creation eth_call for the
+current three-NFT/four-currency helper with the24M gas field and exact45-row
+output. This is cheap precompile/static wire work, not actual24M execution or
+undeployed PoPL financial getters. The changed helper has10 new observations;
+the30-attempt original source campaign remains separately retained.
+
+One old-block totalSupply read matches its retained witness at Pinax; the official
+RPC reports historical state unavailable. This finite result does not qualify
+lifetime archive, quotas, complete fees or failover and selects no provider.
+See [current evidence and boundaries](../reports/CURRENT_REVIEW.md#actual-f6-and-provider-follow-through).
+Never widen a call/age/request limit or replace missing history with current state
+to claim a pass.
+
 ## Prepare public identity and private endpoint configuration
 
 Use one to eight reviewed URLs in a private JSON file containing `chain_id` and

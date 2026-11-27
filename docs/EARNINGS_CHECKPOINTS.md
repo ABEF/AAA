@@ -27,6 +27,28 @@ This is not V9-to-V10 artifact adoption: changed source, contract pins or deploy
 requires reviewed rebuild/re-pin. The checkpoint is an earnings seed, not a backup
 or restoration codec for SeaDrop phase quotas and original-mint recipient books.
 
+## Opt-in bounded canonical reads during construction
+
+With explicit `wallet_read_batch:1`, the offline builder now reuses successful
+identical canonical-block calls/code reads only within that one build job.
+Ordinary decoders, per-NFT paid/claimable checks and conservation comparisons
+still execute. Chain/head/header/final checks are not cached. Scope exit restores
+the original transports and clears replies on success or failure. Defaults stay
+60s/4096 logical reads/8192 physical POSTs and64KiB per entry/8MiB total retention;
+HTTP25s/1024/2048/1MiB and all financial limits stay unchanged. Omitted/zero
+retains the earlier builder path.
+
+Actual normal F6 construction for32 activated NFTs/65 royalty currencies now
+passes with3,098 logical reads/6,194 POSTs in5.400401s and a566,584-byte schema2
+artifact. A separate original-event review reconciles allNFT rights and exact
+reserve units. This is a finite controlled Ubuntu proof with unchanged database
+bytes; full1000-NFT/lineage/provider/rollout qualification remains separate.
+
+The builder is a semantic source: its change requires a NEW reviewed artifact
+and explicit new configuration pin. Preserve old artifacts/configuration and
+their matching release; do not edit the source map in an old checkpoint.
+[Current evidence and remaining qualification](../reports/CURRENT_REVIEW.md#actual-f6-and-provider-follow-through).
+
 ## What is authenticated
 
 The operator pins the artifact's SHA-256 through the reviewed API configuration.

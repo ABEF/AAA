@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "kind": "c832_restored_archive_diagnostic_freshness_final",
+  "restore_gate_complete": true,
+  "restore_gate_sha256": "b45492c0669c11c584d4bf90e2c985f195d2575c7bfe12a659f4aa27a4dfe24e",
+  "LP_child250k_refused": true,
+  "valid_scalar_gas": 304131,
+  "source_update_authorized_but_not_installed_here": true,
+  "freshness_complete": true,
+  "four_ordinary_mock_transactions": 4,
+  "protected_accounts_unchanged": 117,
+  "original445_retained": true,
+  "fresh_head": 450,
+  "fresh_snapshot_gzip_bytes": 9181540,
+  "fresh_snapshot_gzip_sha256": "b3ca9f64c7a0895e5d8b67bbe45ff05c2a2eb111417bbf31000a85e4c32db004",
+  "fresh_snapshot_decoded_bytes": 76387210,
+  "fresh_snapshot_decoded_sha256": "1daec236cd8a894d907b6be6f3ebea8381d1ba3af1236a2a28e8462602d032b7",
+  "node_stopped_before900": true,
+  "own_cgroups_empty_port_closed": true,
+  "old_labs_fixtures_services_listeners_unchanged": true,
+  "source_next_or_index_or_checkpoint_or_proxy_not_run_here": true,
+  "production_approved": false,
+  "receipts": {
+    "FREEZE.json": "d6f0fffcd1c7f5c84b70ed4290c5ef9600081f4f9cf8d0c210af570c7b366ec2",
+    "archive-001/EXECUTION.json": "323b1941db9d93b9fbdb7dae2d850c704002dbcd337f8a19f298da91bca9f7f8",
+    "diagnostic-001/RESULT.json": "15a657dd2b64acbe67e5e39cd20284ac52f78291b56786a6eadc632319146ae8",
+    "diagnostic-001/RPC.json": "bf6499cebd3a78f9bdd183bc71408a44d3a8484f4146a4e483700d7e4aea2068",
+    "freshness-001/RESULT.json": "7cce11510855c4ab2e4882ab1419ab40f9069df24e91b2e84cabd47cb140b065",
+    "freshness-001/EXECUTION.json": "7b9ace6b41056866f7ff59a2e951ab3cd55bf64565bf9386bef13cd092854d42",
+    "stop-001/EXECUTION.json": "e2c3227f0be7bf20206efa1b1d7570f19f1690d43d4d00c99594b9a014ca146d",
+    "final-baseline-001/EXECUTION.json": "2ae7daccc4d1e614a1acf932c256c5561de37bbb3ceb03b28b58f19766758459"
+  }
+}

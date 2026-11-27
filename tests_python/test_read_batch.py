@@ -85,7 +85,7 @@ class FixtureRPC:
         if tx['from']!=ETH or tx['value']!='0x0' or tx['gas']!=hex(24_000_000) or header!=HEADER:
             raise AssertionError('Unexpected call envelope')
         arguments,modules,ids,pair,royalties=decode_creation(tx)
-        if not 1<=len(ids)<=4 or len(royalties)>4:
+        if not 1<=len(ids)<=3 or len(royalties)>4:
             raise AssertionError('Batch input bound differs')
         self.groups.append(ids)
         rows=list(getter_rows(modules,ids,pair,royalties))
@@ -145,15 +145,24 @@ class ReadBatchProtocolTests(unittest.TestCase):
             self.assertEqual(len(rpc.calls),1)
             self.assertEqual(budget.calls,1023)
 
-    def test_sixteen_accounts_are_four_bounded_calls_and_repeated_prefetch_is_zero(self):
+    def test_sixteen_accounts_are_six_bounded_calls_and_repeated_prefetch_is_zero(self):
         with request() as (p,rpc,budget):
             ids=tuple(range(1,17))
-            self.assertEqual(batch.prefetch_accounts(p,HEADER,ids,(ETH,ZZZ),CURRENCIES),4)
-            self.assertEqual(rpc.groups,[(1,2,3,4),(5,6,7,8),(9,10,11,12),(13,14,15,16)])
+            self.assertEqual(batch.prefetch_accounts(p,HEADER,ids,(ETH,ZZZ),CURRENCIES),6)
+            self.assertEqual(rpc.groups,[(1,2,3),(4,5,6),(7,8,9),(10,11,12),(13,14,15),(16,)])
             self.assertEqual(batch.prefetch_accounts(p,HEADER,ids,(ETH,ZZZ),CURRENCIES),0)
-            self.assertEqual(len(rpc.calls),4)
-            self.assertEqual(budget.calls,1020)
+            self.assertEqual(len(rpc.calls),6)
+            self.assertEqual(budget.calls,1018)
             self.assertEqual(p._uint('vault','sharesOf(uint256)',16,block=HEADER),160)
+
+    def test_approved_child_budget_and_three_account_envelope_preserve_top_and_selection(self):
+        self.assertEqual((batch.LP_GAS,batch.ACCOUNTS_PER_BATCH),(500_000,3))
+        self.assertEqual((batch.CALL_GAS,batch.MAX_IDS,batch.PLAIN_GAS,batch.ROYALTY_GAS),
+                         (24_000_000,16,50_000,1_000_000))
+        children=3*(7*batch.PLAIN_GAS+4*batch.LP_GAS+4*batch.ROYALTY_GAS)
+        returned=128+3*(11+4)*96
+        self.assertEqual((children,returned),(19_050_000,4448))
+        self.assertLess(children+returned*200, batch.CALL_GAS)
 
     def test_inner_revert_is_remembered_without_retry_and_cleared_at_scope_exit(self):
         rpc=FixtureRPC()

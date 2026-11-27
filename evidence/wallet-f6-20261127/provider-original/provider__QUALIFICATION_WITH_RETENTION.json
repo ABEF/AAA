@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "kind": "bounded_provider_partition_with_retention",
+  "original_qualification": {
+    "path": "cache-wallet-f6-20261127\\provider\\QUALIFICATION.json",
+    "sha256": "e640a45aa45b05a07cde2f9ebdef28747b9e9a1d816e1338f890eafe9681bed1"
+  },
+  "retention": {
+    "path": "cache-wallet-f6-20261127\\provider-retention\\RESULT.json",
+    "sha256": "9b9a01eedc99e838924d72e798862820f59c5ebf454dc0a78155171ba6a8b3c9",
+    "checks": [
+      {
+        "endpoint": "https://robinhood.rpc.pinax.network",
+        "old_block": 113298933,
+        "old_hash": "0xde25040f9dfd29027a0517ade5c0b44e86494f2bb7a02914a059df0e0a1a8342",
+        "passed": true,
+        "result_identical_to_old_witness": true,
+        "calls": 1
+      },
+      {
+        "endpoint": "https://rpc.mainnet.chain.robinhood.com",
+        "old_block": 113298933,
+        "old_hash": "0xde25040f9dfd29027a0517ade5c0b44e86494f2bb7a02914a059df0e0a1a8342",
+        "passed": false,
+        "result_identical_to_old_witness": false,
+        "rpc_refused": true,
+        "calls": 1
+      }
+    ]
+  },
+  "total_public_attempts": 30,
+  "further_public_calls_performed": 0,
+  "retention_scope": "One actual canonical old-block read per endpoint; Pinax matches preserved20261113 value, official RPC reports unavailable historical state. No archive uptime/service or failover guarantee.",
+  "evidence_sha256": {
+    "cache-wallet-f6-20261127\\provider-retention\\endpoint1-call01.json": "1dba29835a6473a2ef3e983f547abb46247547ddfa63269052aa6a45f4e6bc58",
+    "cache-wallet-f6-20261127\\provider-retention\\endpoint2-call01.json": "656af5071defde3d0ac0c63db8d99aecdb27ecac359d236fd3570a6546538502",
+    "cache-wallet-f6-20261127\\provider-retention\\PLAN_REVIEW.json": "00c8e964aba9273d13ba8eab49e8965442db5fff36e8e0bc21ca8cc695125e12",
+    "cache-wallet-f6-20261127\\provider-retention\\RESULT.json": "9b9a01eedc99e838924d72e798862820f59c5ebf454dc0a78155171ba6a8b3c9"
+  },
+  "production_approved": false
+}

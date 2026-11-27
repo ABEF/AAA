@@ -26,6 +26,10 @@ class BuildBudget(Budget):
 
 def build(engine, number, *, budget=None):
     with request_scope(budget or BuildBudget()):
+        if getattr(engine.p, 'wallet_read_batch', 0) == 1:
+            from frontend_api.canonical_cache import scope
+            with scope(engine.p):
+                return _build(engine,number)
         return _build(engine,number)
 
 

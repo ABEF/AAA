@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "kind": "approved_standalone_helper_500k_three_account_candidate",
+  "compiler_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+  "compiler_exit_code": 0,
+  "compiler_error_count": 0,
+  "settings": {
+    "evmVersion": "cancun",
+    "optimizer": {
+      "details": {
+        "yul": false
+      },
+      "enabled": true,
+      "runs": 1
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode.object",
+          "evm.deployedBytecode.object"
+        ]
+      }
+    },
+    "viaIR": true
+  },
+  "files": {
+    "frontend_api/read_batch.py": {
+      "before": "b42375cbb0fbe42261cb90bac01c946c657774e226643428c53ab969ee7bcb2a",
+      "candidate": "9474abd7141d6e4a45c5e504daee495057dd27dfd93294ffb281c222610c8ed0"
+    },
+    "frontend_api/read_batch/WalletReadBatch.sol": {
+      "before": "1068be2580ea8c160dcf7cb17db546e73c2bcd80cca72762f3e6df930652a92c",
+      "candidate": "7230cfb3f72c818a0cb8f2289c19b7924d6b05222df4d5cf09ee6946c6b56700"
+    },
+    "frontend_api/read_batch/WalletReadBatch.json": {
+      "before": "adc72a6dac4be47c87982711436a19bcd0487f15546458bdebe78f614ea904fd",
+      "candidate": "e528d6ae3ef71c435ad3a451c0918ce66a0d90ba4fabd7e4a16dcc769814908b"
+    }
+  },
+  "creation_bytes": 3495,
+  "creation_sha256": "6f8ba510e07f808f74358817a744b1d73bf9f0512e54a43cd92eef46e443c044",
+  "source_sha256": "7230cfb3f72c818a0cb8f2289c19b7924d6b05222df4d5cf09ee6946c6b56700",
+  "artifact_sha256": "e528d6ae3ef71c435ad3a451c0918ce66a0d90ba4fabd7e4a16dcc769814908b",
+  "limits": {
+    "LP_child": 500000,
+    "accounts_per_constructor": 3,
+    "prefetch_selection": 16,
+    "top_gas": 24000000,
+    "plain_child": 50000,
+    "royalty_child": 1000000,
+    "maximum_payload_bytes": 4448,
+    "maximum_child_gas_sum": 19050000,
+    "maximum_return_code_deposit": 889600
+  },
+  "user_approved": true,
+  "normal_F6_compiled_or_changed": false,
+  "tests_run": 0,
+  "candidate_applied": false,
+  "production_files_unchanged_during_preparation": true
+}

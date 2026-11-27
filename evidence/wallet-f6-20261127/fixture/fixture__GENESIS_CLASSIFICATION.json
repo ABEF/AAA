@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "kind": "offline_duplicate_genesis_classification",
+  "complete": true,
+  "block_shape_sha256": "c7b137d12d01c9208a8e3bda420c458cbf215015ed47dcaeda2e4609062986c0",
+  "authenticated_prefix_sha256": "96d1abb7045c5c8669f5b58c3cbbb4b92de6cab6798562f030dd240acc97ec7a",
+  "canonical_source_genesis_hash": "0x828f888a4efcfb571dcc20bbfa24896b388a35c21cfb8847f1623b03c7d1b307",
+  "source_block1_hash": "0xcf0509277f76b86a553b3b5a8e9f962da3b2947af22673ce53c1a7871a0e5689",
+  "source_block1_parent_hash": "0x828f888a4efcfb571dcc20bbfa24896b388a35c21cfb8847f1623b03c7d1b307",
+  "classified": [
+    {
+      "header_sha256": "af7db67ed3ad79c22b36fef64f0a2c0aa280df86908a32b0e9b4177cb1e51b28",
+      "rlp_hash": "0xd6935e8887c051ca62369bc43ca705b131bfa9dea895911f05f7135d3343dc77",
+      "timestamp": "0x6b09d230",
+      "source_genesis_exact_match": false,
+      "is_block1_parent": false,
+      "classification": "extra_genesis_record_not_source_block1_ancestor",
+      "different_fields_from_source_genesis": [
+        "timestamp"
+      ]
+    },
+    {
+      "header_sha256": "9d94a8f9d3d58e3d9fa18710d66b52143d799bccf89fc7bbd5ed7262c6f35329",
+      "rlp_hash": "0x828f888a4efcfb571dcc20bbfa24896b388a35c21cfb8847f1623b03c7d1b307",
+      "timestamp": "0x6b004699",
+      "source_genesis_exact_match": true,
+      "is_block1_parent": true,
+      "classification": "authenticated_original_source_genesis",
+      "different_fields_from_source_genesis": []
+    }
+  ],
+  "no_authenticated_prefix_block_references_extra": true,
+  "original_snapshot_rewritten": false,
+  "nodes_started": 0,
+  "network_calls": 0,
+  "tests_run": 0,
+  "required_next_gate": "Actual restored numeric block0 must match authenticated original genesis; this offline classification is not that live check. Full1..450 ancestry remains separately bound by the unchanged fresh-state proof."
+}

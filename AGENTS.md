@@ -34,6 +34,21 @@ This is an undeployed production candidate; production is **NOT APPROVED**.
 | `tests_python/test_fork_runner.py` | `6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9` |
 | `tests_python/test_frontend_history.py` | `361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb` |
 
+## 27 November F6 wallet-read follow-through
+
+Actual normal F6 review found a legitimate304131-gas LP component above the old250k helper allowance. The user explicitly approved500k LP reads and three NFTs/helper, retaining24M total,50k plain/1M royalty and all API/financial/transaction limits. Adopt matching Python/Solidity/artifact and a NEW reviewed source-bound checkpoint; never relabel the old artifact. Frozen protocol F6 sources stay unchanged. The current source inventory remains193Python/2161definitions/281lambdas,61/39/4 and1021ABI rows.
+
+Use [the current qualification](reports/CURRENT_REVIEW.md#actual-f6-and-provider-follow-through) and [machine evidence](evidence/wallet-f6-20261127/INDEX.json). The affected1000-NFT/66-descriptor model fits individual requests, but17pages take121.438s without physicalHTTP; this does not qualify120s complete-wallet/provider performance. The old1000-NFT substitute-access fixture lacks genuine normal history. Raw states/DB/configuration/runtime binaries remain outside Git. Keep all original failures, source-specific scopes and current readiness limits. No existing site, service, Anvil8902, journal, signer or paused heartbeat adoption.
+
+Actual current-source checkpoint construction passes3098logical/6194POST/
+5.400401s; independent32NFT/65currency/reserve-unit review passes. Runtime
+packaging also needs the exact pure `keeper.compound_policy` reader (122source
+closure; no daemon/signer adoption). The corrected wallet page passes511reads/
+1019POST/3.025s, but the full36-GET/eight-card Source10 journey stops after33GETs/
+117.628s at unchanged120s snapshot expiry.20core replies200by76.450s are not
+final consumer/independent raw-total proof. Preserve both original failures;
+reduce card/history cost next, then qualify maximumF6/lineage/provider/rollout.
+
 ## Current implementation and required rights
 
 - Fresh normal Solidity is the reviewed `activation-final-six-20261118` build:
@@ -100,7 +115,7 @@ This is an undeployed production candidate; production is **NOT APPROVED**.
 - Preserve source-specific failures/skips and distinguish new execution from exact
   reuse. Do not rerun unchanged contract/browser/keeper suites. Use focused affected
   checks; record actual method/source/fixture scopes without summing overlaps.
-- Current inventory is `evidence/wallet-aggregate-20261127/FUNCTION_INVENTORY.json`.
+- Current inventory is `evidence/wallet-f6-20261127/FUNCTION_INVENTORY.json`.
   Optional `wallet_read_batch:1` selects read profile2; omitted/zero remains profile1.
   Constructor-only fixed STATICCALL aggregation is read-only and outside the frozen
   protocol graph. Keep exact per-NFT accounting/full86400s/request/cache/gas bounds;

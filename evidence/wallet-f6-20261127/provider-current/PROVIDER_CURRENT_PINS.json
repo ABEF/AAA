@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "source_sha256": {
+    "frontend_api/read_batch.py": "9474abd7141d6e4a45c5e504daee495057dd27dfd93294ffb281c222610c8ed0",
+    "frontend_api/read_batch/WalletReadBatch.sol": "7230cfb3f72c818a0cb8f2289c19b7924d6b05222df4d5cf09ee6946c6b56700",
+    "frontend_api/read_batch/WalletReadBatch.json": "e528d6ae3ef71c435ad3a451c0918ce66a0d90ba4fabd7e4a16dcc769814908b"
+  },
+  "limits": {
+    "calls": 10,
+    "endpoints": 2,
+    "seconds_each": 90,
+    "spacing_seconds": 1.5,
+    "response_bytes": 1048576
+  },
+  "prior_stage_closed_attempts": 30,
+  "only_new_source_witness": true,
+  "no_submission_signer_or_deployment": true
+}

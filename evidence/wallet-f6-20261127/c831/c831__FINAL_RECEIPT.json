@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "kind": "c831_execution_and_separate_export_final",
+  "original_execution_result_preserved_nonpass": true,
+  "execution_failure": "MemoryError validating large hex at historical export, after31exacttransactions/32mines/31completedoriginalblocks",
+  "separate_read_only_export_complete": true,
+  "source31_exact_headers_receipts_roots": true,
+  "new_empty32_labeled": true,
+  "read_only_export_calls": 9,
+  "gzip_bytes": 9027429,
+  "gzip_sha256": "2d83edc869932a5fcb709176ea2268c475b4e2bd7b1c08235fbb8f37ba067ff1",
+  "decoded_bytes": 33878997,
+  "historical_states": 32,
+  "own_node_stopped_cgroup_empty_port_closed": true,
+  "original_fixtures_c829_c830_and_services_listeners_unchanged": true,
+  "derived_snapshot_created": false,
+  "public_transactions": 0,
+  "signing_keys": 0,
+  "old_test_bodies": 0,
+  "production_approved": false,
+  "evidence": {
+    "FREEZE.json": "bd1091ccd88f270eba30278966003b5fde2afa653a0f9e62ccd3a350ee3954ca",
+    "replay-001/RESULT.json": "e383cfc2a097a9c07a6eaa8ae7b355447654c10297c4fe7490a2a2987181b081",
+    "replay-001/completed-blocks.jsonl": "52302b10fbee59dfbfc8882ee5f5643888e7f01b2344badd7e29ff0f1795cf97",
+    "replay-001/NEW_EMPTY_CAPTURE_BLOCK32.json": "282a05318a80fea6a394dd5b0bebf89e8db83a500bfe63ee2e3ab8480654c483",
+    "export_runner.py": "043a4f27b5b662c42b5c7ddcca577753a0ccab3779199c426289c445a2bc9178",
+    "export-001/RESULT.json": "315a9ab8522437870c2bb9f3140979cdb4f0da2347b24dbd81cd97e2504d0f90",
+    "export-001/EXECUTION.json": "926805a645585ad024bcc80655f508faa665e9a3b39a4bf6ef66f3bf97f4f7d5",
+    "stop-001/EXECUTION.json": "23c3111f4a3a6f6fb58faa399a937f4a9cd41040215b606a897bdeed423ee31a",
+    "final-baseline-001/EXECUTION.json": "a48b49b8f41932cf389b48528185b49376fd32f59aa2586e86a8a6cf0cd6a250"
+  }
+}

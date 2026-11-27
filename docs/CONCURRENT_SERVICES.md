@@ -54,8 +54,8 @@ The helper is fixed checked-in constructor bytecode passed to `eth_call` with no
 destination, zero sender/value and canonical blockHash. It cannot persist code
 or change state; only an explicit set of STATICCALL getters is available. Each
 outer call remains charged through the existing BudgetedRPC. At most16 requested
-NFTs split into at-most4-NFT constructor calls with at most4 royalty currencies;
-plain/LP/royalty getter gas caps are50,000/250,000/1M and the whole simulation
+NFTs split into at-most3-NFT constructor calls with at most4 royalty currencies;
+plain/LP/royalty getter gas caps are50,000/500,000/1M and the whole simulation
 cap is24M. Initcode/returned-code bounds are49,152/24,576 bytes. No arbitrary
 target/selector/calldata program or state override is accepted. This read gas
 bound does not change transaction profiles, network fee ceilings or any monetary

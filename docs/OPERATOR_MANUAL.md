@@ -408,7 +408,7 @@ adoption or production signing permission.
 | Preserve baseline | Retain original configuration, DB/checkpoint/review and running release; change no old source pins |
 | Prepare matching candidate | Configure `"wallet_read_batch": 1` only with accounting7 and complete earnings history; explicitly select matching source9/10 consumer |
 | Qualify read transport | Provider must support EIP1898 canonical **creation eth_call** (destination omitted), the exact pinned helper and its fixed24M virtual-call allowance. This sends no transaction, deploys no persistent helper and pays no wallet gas |
-| Bound each helper | At most4 NFTs and4 royalty currencies per invocation; fixed plain/LP/royalty getter gas50k/250k/1M. An expensive valid view may refuse; no uncapped retry |
+| Bound each helper | At most3 NFTs and4 royalty currencies per invocation; fixed plain/LP/royalty getter gas50k/500k/1M. An expensive valid view may refuse; no uncapped retry |
 | Ownership and LP | GET `/v1/wallets/{owner}/view/{block}/{offset}/0` for offsets0/16/32…; earnings:null with `aggregate_earnings_required` is intentional only in profile2 |
 | Wallet earnings | GET `/v1/wallets/{owner}/aggregate/{block}/{asset_offset}` for offsets0/4/8…; example owner `0x000000000000000000000000000000000000001e`, block99, offset0 are illustrative |
 | Complete assembly | Prove all ownership/summary pages first. Every aggregate slice must bind identical full current-owner IDs/count/digest, chain/NFT/configuration/block/lifecycle, full currency inventory and contiguous selected slices |
@@ -431,6 +431,43 @@ keys plus JSON64KiB/entry and8MiB total; no cross-request financial cache.
 Existing25s/1024RPC/2048POST/1MiB, freshness, ingress and signing limits remain.
 The template proxy route must be reviewed with the matched worker/consumer;
 publication changes no server, site, config, journal or Anvil state.
+
+The27November actual F6 view exposed the old250k LP-read refusal. The approved
+500k/three-NFT revision redistributes the unchanged24M read budget; it does not
+increase payable transaction gas or alter financial guards. Three NFTs with four
+royalty currencies have19.05M maximum child allowances, before bounded constructor
+and return work. More internal RPC calls may be needed; every request still has
+the same25s/1024RPC/2048POST/1MiB limits. Do not infer120s maximum-wallet acceptance
+from the unchanged80 core-GET count.
+
+Adopt the matching helper source/artifact/Python together and rebuild/review/pin
+a NEW checkpoint for that semantic source. Retain old source, checkpoint, review
+and database bytes. Actual32-NFT/65-currency F6 build evidence fits the unchanged
+offline defaults (3,098 logical reads/6,194 POSTs/5.400401s); do not adopt its
+controlled local addresses, prices or checkpoint as release configuration.
+Include the physical read dependency `keeper.compound_policy` when packaging
+the API, even if no keeper daemon is installed. An incomplete isolated package
+correctly failed503 before physical LP authentication completed.
+A saved Anvil snapshot needs genuine creation-before/at state,
+not merely old headers; do not invent historical replies, edit its old capture
+clock or relabel a latest-only dump as archive-capable. The isolated reconstruction
+is verification evidence, not a general production snapshot-repair procedure.
+See the [current qualification and limits](../reports/CURRENT_REVIEW.md#actual-f6-and-provider-follow-through).
+
+Actual full Source10 qualification is still blocked: after completing the20
+protocol/ownership/currency GETs by76.450s, the all-eight-card journey expires at
+the unchanged120-second snapshot boundary (33requests/117.628s). Its final exact
+totals/provenance assertions were not reached. Do not adopt the lab configuration
+or increase freshness to hide that refusal; qualify reduced card/history work,
+actual maximum wallets/lineage and the provider separately. See the current review.
+
+For a NEW profile2 checkpoint, the offline builder now uses the existing bounded
+canonical cache only within that build. Keep the unchanged60s/4096logical/
+8192POST build defaults,64KiB-entry/8MiB retention and complete86400-second raw
+suffix. All per-NFT entitlement checks still run; chain/head/header/final checks
+stay live. This is separate from HTTP25s/1024RPC/2048POST/1MiB limits. Use matching
+builder/checkpoint/read-service source, preserve the old release and never
+reinterpret old seed bytes. Legacy flag0 construction is unchanged.
 
 ### Existing profile1: combined NFT/currency pages
 

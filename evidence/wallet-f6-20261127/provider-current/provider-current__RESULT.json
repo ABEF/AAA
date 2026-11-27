@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "kind": "new_helper_bounded_public_provider_witness",
+  "source_sha256": {
+    "frontend_api/read_batch.py": "9474abd7141d6e4a45c5e504daee495057dd27dfd93294ffb281c222610c8ed0",
+    "frontend_api/read_batch/WalletReadBatch.sol": "7230cfb3f72c818a0cb8f2289c19b7924d6b05222df4d5cf09ee6946c6b56700",
+    "frontend_api/read_batch/WalletReadBatch.json": "e528d6ae3ef71c435ad3a451c0918ce66a0d90ba4fabd7e4a16dcc769814908b"
+  },
+  "results": [
+    {
+      "endpoint": "https://robinhood.rpc.pinax.network",
+      "partition_passed": true,
+      "production_approved": false,
+      "anchor": {
+        "number": 124474173,
+        "hash": "0x9798f5ebabf58eea97c245bc4c18db7a90956e283e6eb58c8ec6e3c7f9cba22f",
+        "timestamp": 1795806192
+      },
+      "rows": 45,
+      "parsed_entries": 45,
+      "response_data_bytes": 4448,
+      "total_virtual_gas": 24000000,
+      "LP_child_allowance": 500000,
+      "NFTs_per_helper": 3,
+      "actual_f6_getters_qualified": false,
+      "actual24m_execution_capacity_qualified": false,
+      "logical_calls": 5,
+      "elapsed_seconds": 6.343
+    },
+    {
+      "endpoint": "https://rpc.mainnet.chain.robinhood.com",
+      "partition_passed": true,
+      "production_approved": false,
+      "anchor": {
+        "number": 124474216,
+        "hash": "0xb09ed4d43b0e7598b77020b3ad01e39d7fb4dc15513adf9a04d6a2bc7e4c4844",
+        "timestamp": 1795806197
+      },
+      "rows": 45,
+      "parsed_entries": 45,
+      "response_data_bytes": 4448,
+      "total_virtual_gas": 24000000,
+      "LP_child_allowance": 500000,
+      "NFTs_per_helper": 3,
+      "actual_f6_getters_qualified": false,
+      "actual24m_execution_capacity_qualified": false,
+      "logical_calls": 5,
+      "elapsed_seconds": 6.141
+    }
+  ],
+  "logical_calls": 10,
+  "prior_closed_campaign_attempts": 30,
+  "prior_results_modified": false,
+  "source_stable": true,
+  "actual_F6_provider_or_gas_capacity_qualified": false,
+  "provider_adopted": false,
+  "production_approved": false,
+  "limitations": [
+    "Cheap precompile/static wire only; no PoPL public deployment or financial getter.",
+    "Latest canonical header rechecked; this new stage makes no finality claim.",
+    "No historical-retention, trace, quota or sustained-service test repeated."
+  ]
+}

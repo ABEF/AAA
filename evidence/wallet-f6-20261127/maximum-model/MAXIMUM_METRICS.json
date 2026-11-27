@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "kind": "affected_500k_3NFT_maximum_composition",
+  "metrics": {
+    "actual_provider_or_full_journey_qualified": false,
+    "aggregate_pages": 17,
+    "descriptors": 66,
+    "full_86400_window": true,
+    "maximum_response_bytes": 173175,
+    "maximum_rpc_per_request": 603,
+    "nfts": 1000,
+    "per_page": [
+      {
+        "asset_offset": 0,
+        "constructor_calls": 375,
+        "elapsed_seconds": 6.531,
+        "injected_transport_posts": 0,
+        "logical_rpc": 602,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 173175
+      },
+      {
+        "asset_offset": 4,
+        "constructor_calls": 375,
+        "elapsed_seconds": 7.031,
+        "injected_transport_posts": 0,
+        "logical_rpc": 603,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 173022
+      },
+      {
+        "asset_offset": 8,
+        "constructor_calls": 375,
+        "elapsed_seconds": 6.985,
+        "injected_transport_posts": 0,
+        "logical_rpc": 603,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 173026
+      },
+      {
+        "asset_offset": 12,
+        "constructor_calls": 375,
+        "elapsed_seconds": 7.235,
+        "injected_transport_posts": 0,
+        "logical_rpc": 603,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 173028
+      },
+      {
+        "asset_offset": 16,
+        "constructor_calls": 375,
+        "elapsed_seconds": 6.86,
+        "injected_transport_posts": 0,
+        "logical_rpc": 603,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 173028
+      },
+      {
+        "asset_offset": 20,
+        "constructor_calls": 375,
+        "elapsed_seconds": 6.937,
+        "injected_transport_posts": 0,
+        "logical_rpc": 603,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 173028
+      },
+      {
+        "asset_offset": 24,
+        "constructor_calls": 375,
+        "elapsed_seconds": 6.985,
+        "injected_transport_posts": 0,
+        "logical_rpc": 603,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 173030
+      },
+      {
+        "asset_offset": 28,
+        "constructor_calls": 375,
+        "elapsed_seconds": 6.828,
+        "injected_transport_posts": 0,
+        "logical_rpc": 603,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 173032
+      },
+      {
+        "asset_offset": 32,
+        "constructor_calls": 375,
+        "elapsed_seconds": 6.938,
+        "injected_transport_posts": 0,
+        "logical_rpc": 603,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 173032
+      },
+      {
+        "asset_offset": 36,
+        "constructor_calls": 375,
+        "elapsed_seconds": 6.906,
+        "injected_transport_posts": 0,
+        "logical_rpc": 603,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 173032
+      },
+      {
+        "asset_offset": 40,
+        "constructor_calls": 375,
+        "elapsed_seconds": 6.938,
+        "injected_transport_posts": 0,
+        "logical_rpc": 603,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 173032
+      },
+      {
+        "asset_offset": 44,
+        "constructor_calls": 375,
+        "elapsed_seconds": 7.062,
+        "injected_transport_posts": 0,
+        "logical_rpc": 603,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 173032
+      },
+      {
+        "asset_offset": 48,
+        "constructor_calls": 375,
+        "elapsed_seconds": 6.797,
+        "injected_transport_posts": 0,
+        "logical_rpc": 603,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 173033
+      },
+      {
+        "asset_offset": 52,
+        "constructor_calls": 375,
+        "elapsed_seconds": 7.312,
+        "injected_transport_posts": 0,
+        "logical_rpc": 603,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 173036
+      },
+      {
+        "asset_offset": 56,
+        "constructor_calls": 375,
+        "elapsed_seconds": 6.969,
+        "injected_transport_posts": 0,
+        "logical_rpc": 603,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 173036
+      },
+      {
+        "asset_offset": 60,
+        "constructor_calls": 375,
+        "elapsed_seconds": 7.437,
+        "injected_transport_posts": 0,
+        "logical_rpc": 603,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 173036
+      },
+      {
+        "asset_offset": 64,
+        "constructor_calls": 375,
+        "elapsed_seconds": 5.703,
+        "injected_transport_posts": 0,
+        "logical_rpc": 601,
+        "maximum_ids_per_constructor": 3,
+        "response_bytes": 171432
+      }
+    ],
+    "transport_scope": "Injected constructor/scalar responses; no HTTP posts or actual EVM gas proof."
+  },
+  "reviewed_unchanged_limits": {
+    "api_seconds": 25,
+    "logical_rpc_per_request": 1024,
+    "response_bytes": 1048576,
+    "helper_top_gas": 24000000,
+    "full_window_seconds": 86400
+  },
+  "approved_changed_helper_bounds": {
+    "LP_child_gas": 500000,
+    "NFTs_per_constructor": 3
+  },
+  "test_receipt_sha256": "5ac92aad92ce07e58e02559824b471f5593941768bc550a4143fad3dd273acfc",
+  "source_sha256": {
+    "tests_python/test_wallet_aggregate_v2.py": "bb1e7d7f8ceadab592b341788a7590af8d17e0d33ca65d1336ebe7faa9b72353",
+    "frontend_api/wallet_aggregate.py": "264268edcae2e074b78a66935e2ee27fe22d74cb84f3341a5abf0b46c1273a08",
+    "frontend_api/earnings_replay.py": "b99c686156da907f48af5cdd1c667e355722136ff7683071695fe8aa7f0020f1",
+    "frontend_api/earnings_exact_lp.py": "20877973954eb07f3ff2b0bd2b7d09e76ee968d2f37c33495ce7f7a57384e05f",
+    "frontend_api/earnings_checkpoint.py": "2537fa1d909ac42fa58ed65e27ec69800ee3cf7ef8a535d39e4c3e6a87bf45f2",
+    "frontend_api/read_batch.py": "9474abd7141d6e4a45c5e504daee495057dd27dfd93294ffb281c222610c8ed0",
+    "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+    "frontend_api/wallet_earnings.py": "1c93018e132e9b59be04a5d8b35141357856155a72d5b338ed0882a35e7fc4ac",
+    "frontend_api/service.py": "7903ce5f82b264aed3ba00564bc7e1036d610a0e7a3fd366c33c9d3c21b60b19",
+    "frontend_api/lineage.py": "1c9d810ce053d2842f0cfe8d7f82e126422b1f83d29acfc547d366b17685e6a3",
+    "frontend_api/server.py": "780fe800c9ebf6f1ede844dfc0c8ccaeb3de393ca768f75be4fef235febd4cb3",
+    "frontend_api/worker.py": "51d838785313b1e64ddd7c2a4880c0c5a85ff1a59482837a953ffd7e226140d4",
+    "zzz_ops/review_bundle.py": "ae61f1552afc249c5feaf587171f5703b5232510d98a2fd08e26dc6d4941e636"
+  },
+  "zero_old_test_bodies": true,
+  "whole_journey_or_real_provider_qualified": false,
+  "production_approved": false
+}

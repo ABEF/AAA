@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "complete": true,
+  "kind": "affected_static_documentation_source_preservation_checks",
+  "protected_hashes": {
+    "reports/source-checks.json": "049dca6943d06ba63de682dc8cdec2cf3935af1dc2e5479e9f3cf14e1af793c4",
+    "scripts/run-fork-checks.py": "875d27fb56963d92e6e7ec25b9f296b5559b830e007ad411afb856f0f0226f1b",
+    "tests_python/test_fork_runner.py": "6d50a612ec490ec0f3754d930ac6610173d96d0a684bbc5e4894eaedf4d9abc9",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "python_syntax_files": [
+    "frontend_api/earnings_checkpoint_build.py",
+    "frontend_api/read_batch.py",
+    "tests_python/test_checkpoint_build_cache_scope.py",
+    "tests_python/test_read_batch.py",
+    "tests_python/test_read_batch_evm.py",
+    "tests_python/test_wallet_aggregate_v2.py"
+  ],
+  "modified_markdown_local_links_checked": 1625,
+  "generated_operator_suffix_sha256": "db9b94d28acd9262a302457c28b8d9b4b492a4a613bc875ca70b824255b20c4e",
+  "function_guide_sha256": "d9a11c1b0ce577b55b74482db8e05dda68add824088c1cc1872a4ed720c2f81a",
+  "todo_ids_and_statuses_unchanged": 83,
+  "frozen_F6_source_maps_unchanged": true,
+  "website_tracked_tree_unchanged": true,
+  "application_test_bodies": 0,
+  "network_requests": 0,
+  "production_approved": false
+}

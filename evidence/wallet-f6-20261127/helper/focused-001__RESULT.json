@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "kind": "approved_500k_three_account_affected_checks",
+  "selected_methods": [
+    "tests_python.test_read_batch.ReadBatchProtocolTests.test_constructor_artifact_is_exact_and_isolated_from_normal_graph",
+    "tests_python.test_read_batch.ReadBatchProtocolTests.test_sixteen_accounts_are_six_bounded_calls_and_repeated_prefetch_is_zero",
+    "tests_python.test_read_batch.ReadBatchProtocolTests.test_approved_child_budget_and_three_account_envelope_preserve_top_and_selection",
+    "tests_python.test_read_batch_evm.ReadBatchEVMTests.test_actual_creation_splits_four_accounts_without_persistent_code_or_nonce",
+    "tests_python.test_read_batch_evm.ReadBatchEVMTests.test_approved_child_gas_serves_heavier_lp_getters_and_rejects_four_in_one_constructor"
+  ],
+  "tests_run": 5,
+  "successful": false,
+  "failures": 0,
+  "errors": 1,
+  "skipped": 0,
+  "elapsed_seconds": 6.952999999997701,
+  "source_before": {
+    "frontend_api/read_batch.py": "9474abd7141d6e4a45c5e504daee495057dd27dfd93294ffb281c222610c8ed0",
+    "frontend_api/read_batch/WalletReadBatch.sol": "7230cfb3f72c818a0cb8f2289c19b7924d6b05222df4d5cf09ee6946c6b56700",
+    "frontend_api/read_batch/WalletReadBatch.json": "e528d6ae3ef71c435ad3a451c0918ce66a0d90ba4fabd7e4a16dcc769814908b",
+    "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+    "tests_python/test_read_batch.py": "38b4bd680fb98257fd8e08dba875ce285cd30d034518b9e9e6ef755539d371d2",
+    "tests_python/test_read_batch_evm.py": "2ff2aeb5a149b47670484a548cb9339920c64fa142abca726b9564770cfce555"
+  },
+  "source_after": {
+    "frontend_api/read_batch.py": "9474abd7141d6e4a45c5e504daee495057dd27dfd93294ffb281c222610c8ed0",
+    "frontend_api/read_batch/WalletReadBatch.sol": "7230cfb3f72c818a0cb8f2289c19b7924d6b05222df4d5cf09ee6946c6b56700",
+    "frontend_api/read_batch/WalletReadBatch.json": "e528d6ae3ef71c435ad3a451c0918ce66a0d90ba4fabd7e4a16dcc769814908b",
+    "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+    "tests_python/test_read_batch.py": "38b4bd680fb98257fd8e08dba875ce285cd30d034518b9e9e6ef755539d371d2",
+    "tests_python/test_read_batch_evm.py": "2ff2aeb5a149b47670484a548cb9339920c64fa142abca726b9564770cfce555"
+  },
+  "source_changed_during_run": [],
+  "new_method_count": 2,
+  "affected_existing_method_count": 3,
+  "unchanged_other_test_bodies_run": 0,
+  "EVM_fixture_seam": "Only newly compiled mock runtimes installed via anvil_setCode on a fresh owned random-chain node; not actualF6/provider qualification.",
+  "owned_node_stopped": true,
+  "anvil_sha256": "d438383b871c726407ecc5829279bea44ceac63a712be9e010813ca0a15434b6",
+  "anvil_version": "anvil Version: 1.4.4-v1.4.4\nCommit SHA: 05794498bf47257b144e2e2789a1d5bf8566be0e\nBuild Timestamp: 2025-10-30T15:20:33.723172900Z (1761837633)\nBuild Profile: maxperf\n",
+  "fixture_installs": [
+    {
+      "fixture": "ReadOnlyFixture",
+      "address": "0x000000000000000000000001c5e694a49c130001",
+      "runtime_sha256": "a4f1b8858fb77e2f4513b8ac117074766c1c2d17b5b473a59482dddd66a8540b"
+    },
+    {
+      "fixture": "ReadOnlyFixture",
+      "address": "0x000000000000000000000001c5e694a49c130002",
+      "runtime_sha256": "a4f1b8858fb77e2f4513b8ac117074766c1c2d17b5b473a59482dddd66a8540b"
+    },
+    {
+      "fixture": "ReadOnlyFixture",
+      "address": "0x000000000000000000000001c5e694a49c130003",
+      "runtime_sha256": "a4f1b8858fb77e2f4513b8ac117074766c1c2d17b5b473a59482dddd66a8540b"
+    },
+    {
+      "fixture": "ReadOnlyFixture",
+      "address": "0x000000000000000000000001c5e694a49c130004",
+      "runtime_sha256": "a4f1b8858fb77e2f4513b8ac117074766c1c2d17b5b473a59482dddd66a8540b"
+    },
+    {
+      "fixture": "WritingFixture",
+      "address": "0x000000000000000000000001c5e694a49c130005",
+      "runtime_sha256": "d345c8cadaefe409d59f89a4c06f41927440e80052d85b39ed88f18cb8fd0d82"
+    },
+    {
+      "fixture": "LargerLPFixture",
+      "address": "0x000000000000000000000001c5e694a49c130006",
+      "runtime_sha256": "aed1ac2c4513f0680a225ba85a1853452e1d196d6606e0f0669428c6063fe66d"
+    }
+  ]
+}

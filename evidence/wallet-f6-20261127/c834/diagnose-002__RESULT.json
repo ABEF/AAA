@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "complete": true,
+  "scope": "One new diagnostic of failed actual wallet-view stage; no entirejourney rerun",
+  "old_test_bodies": 0,
+  "production_approved": false,
+  "block": 456,
+  "result_bytes": 10751,
+  "result_sha256": "49ddcbc082d9bc2ea5e0ea567c6fceb27d9c3a3d9b7f27f23654106f84c70bf5",
+  "calls": 511,
+  "posts": 1019,
+  "elapsed_seconds": 3.025304479524493,
+  "last_rpc": {
+    "method": "eth_chainId",
+    "params": [],
+    "ok": true
+  }
+}

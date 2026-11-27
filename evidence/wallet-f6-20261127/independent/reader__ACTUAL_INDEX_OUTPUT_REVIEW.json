@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "kind": "independent_actual_index_output_review",
+  "actual_result_sha256": "19d25bcac6b1d4e5bb1d934b8e47145813f241cd923e65a72457967e718e241d",
+  "actual_config_file_sha256": "358a48816a65645969fa71763b6a385a2178dc18e1c0eaacf873c687dcd2d5a1",
+  "semantic_config_identity_verified": true,
+  "independent_saved_receipt_emitter_log_count": 898,
+  "all7emitters_match_actual_fixture": true,
+  "headers31_through445": 415,
+  "actual_through": 452,
+  "genuine_full_suffix_seconds": 622661,
+  "actual_ingress_checks_recorded_passed": true,
+  "new_RPC_calls": 0,
+  "old_test_bodies": 0,
+  "local_SQLite_copy_reviewed": false,
+  "SQLite_content_qualification_scope": "Maintained frozen index tool checked actualDB headers/logs against authentic original receipt/header artifacts; host retained and hashed closedDB. This independent review rechecks emitted result/config and saved receipt truths, no independent extraDB read.",
+  "production_approved": false
+}

@@ -72,6 +72,21 @@ wallet GETs; protocol/card requests are additional. Finite wire/model checks do
 not qualify actual full-normalF6/V10, provider/hosting or wall-clock freshness.
 The full86,400-second history and all existing limits remain.
 
+The27November follow-through uses a genuine32-activated-NFT/65-royalty-currency
+normal F6 fixture, rather than promoting the old controlled1000-NFT fixture.
+The approved read helper now groups at most three NFTs with500k LP-view allowance
+inside the same24M total; page size16 and the HTTP wire remain unchanged. Current
+source/artifact/checkpoint pins must match. The [current report](../reports/CURRENT_REVIEW.md#actual-f6-and-provider-follow-through)
+separates actual F6/HTTP evidence from the still-open1000-NFT, lineage, provider,
+full-journey freshness and deployed adoption requirements.
+
+The actual32-NFT/66-descriptor Ubuntu run still fails complete consumer
+acceptance.20protocol/ownership/currency GETs return200 by76.450s, but card
+history reaches120-second expiry at request33 (117.628s elapsed). No complete
+eight-card result or final independent wallet reconciliation is claimed.
+The original package's missing pure read-helper refusal is retained separately.
+Reduce duplicated card/history work and requalify; keep all freshness/work limits.
+
 ## Wallet financial snapshot guards
 
 Current source9/source10 capture inventory and anchor before asynchronous work,

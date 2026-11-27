@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "kind": "c830_once_only_prefix_replay_final",
+  "complete": false,
+  "failure_stage": "prepare_block:1",
+  "failed_method": "anvil_setPrevRandao",
+  "calls": 6,
+  "submitted_transactions": 0,
+  "mined_blocks": 0,
+  "specific_RPC_cause": "Not retained by original transport; no guess or corrective rerun.",
+  "owned_node_stopped": true,
+  "owned_cgroup_empty": true,
+  "owned_port_closed": true,
+  "source_fixtures_and_c829_files_hashes_metadata_unchanged": true,
+  "original_services_and_public_listeners_unchanged": true,
+  "new_lab_preserved": true,
+  "derived_snapshot_created": false,
+  "c831_started": false,
+  "public_transactions": 0,
+  "old_test_bodies": 0,
+  "production_approved": false,
+  "evidence": {
+    "FREEZE.json": "e953cc6d8dfbb9411bec16bc3b22de569a87491328cb27d05aaa3b356579d86e",
+    "baseline-001/EXECUTION.json": "a9dc131968cc2324a81d6f8efa730ae02d0eded6ac1fa81ba3639aed3f55562b",
+    "prepare-001/EXECUTION.json": "39eadd79e9e664b36de47b8554076e22816384983fc087cc8c61ae68984bd069",
+    "start-001/EXECUTION.json": "dc9cbc45934acbb4a47bc55659c55397713c9eba6cf3c1b28c94218dcb00f370",
+    "replay-001/EXECUTION.json": "2002f2dc0fcde3f9d6f64c665e0042d54f7f74e1d6f05863c6ea744a439f4e2f",
+    "replay-001/RESULT.json": "5956244e779b25a663b57dbe06a59b531ef3e012e224a1ea61c4c4afd38864cf",
+    "stop-001/EXECUTION.json": "ae272de9ab1d6546d0218b4202c360baaaa0cfe213658667cbcee87203d66edf",
+    "final-baseline-001/EXECUTION.json": "2f15d2eba3f353e0414e3ee487ee36d3e1c0b267250fdd5f0949c44389d7f3a4"
+  }
+}

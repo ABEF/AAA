@@ -11,6 +11,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import time
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 import unittest
@@ -253,7 +254,7 @@ class StaticBatchRPC:
         count=read(256)
         ids=tuple(read(288+i*32) for i in range(count))
         royalty_offset=read(224)
-        if not 1<=count<=4 or pair!=(ZERO,ZZZ) or royalty_offset!=288+count*32:
+        if not 1<=count<=3 or pair!=(ZERO,ZZZ) or royalty_offset!=288+count*32:
             raise AssertionError('Unexpected constructor selection')
         royalty_count=read(royalty_offset)
         royalties=tuple(address(read(royalty_offset+32+i*32)) for i in range(royalty_count))
@@ -355,6 +356,7 @@ class AggregateComposition:
         budget=Budget()
         with request_scope(budget):
             result=read(self.p,ALICE,99,offset)
+        self.last_post_observation=2048-budget.posts
         return result,1024-budget.calls
 
 
@@ -634,14 +636,24 @@ class WalletAggregateComposedTests(unittest.TestCase):
     def test_thousand_holdings_all_sixty_six_currencies_use_seventeen_complete_wallet_pages(self):
         from frontend_api.worker import MAX_RESULT
         fixture=AggregateComposition(1000,unit_scale=10**21)
-        coverage=[];requests=[];maximum_calls=0;maximum_bytes=0
+        coverage=[];requests=[];maximum_calls=0;maximum_bytes=0;observed=[]
         for offset in range(0,len(fixture.events.assets),4):
+            started=time.monotonic()
             output,calls=fixture.read(offset)
+            elapsed=time.monotonic()-started
             self.check_rows(fixture,output)
             coverage.extend(output['selected_asset_ids']);requests.append(output)
             maximum_calls=max(maximum_calls,calls)
             maximum_bytes=max(maximum_bytes,len(json.dumps({'ok':output},separators=(',',':'),allow_nan=False).encode()))
             self.assertLessEqual(len(output['selected_asset_ids']),4)
+            self.assertEqual(len(fixture.transport.batch_sizes),375)
+            metric=dict(asset_offset=offset,logical_rpc=calls,
+                injected_transport_posts=fixture.last_post_observation,
+                constructor_calls=len(fixture.transport.batch_sizes),maximum_ids_per_constructor=max(fixture.transport.batch_sizes),
+                response_bytes=len(json.dumps({'ok':output},separators=(',',':'),allow_nan=False).encode()),
+                elapsed_seconds=round(elapsed,6))
+            observed.append(metric)
+            print('WALLET_AGGREGATE_PAGE='+json.dumps(metric,sort_keys=True),flush=True)
         self.assertEqual(len(requests),17)
         self.assertEqual(coverage,list(fixture.events.assets))
         self.assertEqual(len(set(coverage)),66)
@@ -652,7 +664,9 @@ class WalletAggregateComposedTests(unittest.TestCase):
         self.assertLess(maximum_bytes,MAX_RESULT)
         print('WALLET_AGGREGATE_MAXIMUM='+json.dumps(dict(nfts=1000,descriptors=66,
             aggregate_pages=17,maximum_rpc_per_request=maximum_calls,maximum_response_bytes=maximum_bytes,
-            full_86400_window=True,actual_provider_or_full_journey_qualified=False),sort_keys=True))
+            full_86400_window=True,actual_provider_or_full_journey_qualified=False,
+            transport_scope='Injected constructor/scalar responses; no HTTP posts or actual EVM gas proof.',
+            per_page=observed),sort_keys=True),flush=True)
 
     def test_late_getter_failure_discards_earnings_and_next_request_can_recover(self):
         fixture=AggregateComposition(17)

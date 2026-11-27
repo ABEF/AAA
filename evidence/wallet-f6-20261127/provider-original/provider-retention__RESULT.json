@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "results": [
+    {
+      "endpoint": "https://robinhood.rpc.pinax.network",
+      "old_block": 113298933,
+      "old_hash": "0xde25040f9dfd29027a0517ade5c0b44e86494f2bb7a02914a059df0e0a1a8342",
+      "passed": true,
+      "result_identical_to_old_witness": true,
+      "calls": 1
+    },
+    {
+      "endpoint": "https://rpc.mainnet.chain.robinhood.com",
+      "old_block": 113298933,
+      "old_hash": "0xde25040f9dfd29027a0517ade5c0b44e86494f2bb7a02914a059df0e0a1a8342",
+      "passed": false,
+      "result_identical_to_old_witness": false,
+      "rpc_refused": true,
+      "calls": 1
+    }
+  ],
+  "total_public_attempts_all_stages": 30,
+  "no_further_public_calls": true,
+  "archive_service_qualified": false,
+  "runtime_refetched": false,
+  "header_refetched": false,
+  "production_approved": false
+}

@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "complete": false,
+  "scope": "One new diagnostic of failed actual wallet-view stage; no entirejourney rerun",
+  "old_test_bodies": 0,
+  "production_approved": false,
+  "error_kind": "ModuleNotFoundError",
+  "reason": "No module named 'keeper'",
+  "traceback": "Traceback (most recent call last):\n  File \"<string>\", line 57, in <module>\n  File \"/source-next/zzz_ops/work_budget.py\", line 93, in bounded\n    return function(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/source-next/frontend_api/service.py\", line 747, in wallet_view\n    return read(self, wallet_address, block_number, offset, asset_offset)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/source-next/frontend_api/wallet_view.py\", line 45, in read\n    summary = (read_summary(p, wallet, block_number, offset, include_history=True)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/source-next/frontend_api/portfolio.py\", line 74, in read\n    read_bucket(p,bucket,block);verified_buckets.add(bucket)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/source-next/frontend_api/portfolio_v7.py\", line 14, in read_bucket\n    return geometry._read_bucket_proof(p,bucket,block,accounting_version=7)[0]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/source-next/frontend_api/portfolio_v6.py\", line 80, in _read_bucket_proof\n    from keeper.compound_policy import observe\nModuleNotFoundError: No module named 'keeper'\n",
+  "calls": 356,
+  "posts": 711,
+  "elapsed_seconds": 2.328795950859785,
+  "last_rpc": {
+    "method": "eth_call",
+    "params": [
+      {
+        "to": "0x6e113da826ec57f968fff0f7cb7c0163b6b31db1",
+        "data": "0x21d15169684ff1f77b871bb5fe917f14950c031246cf106b4a05d9c2a14ddbd9417a22be"
+      },
+      {
+        "blockHash": "0x7c52aa922539d888ace7db4720bbf93c8ca11199a71f91c6e8bd4a9472ce5c52",
+        "requireCanonical": true
+      }
+    ],
+    "ok": true
+  }
+}

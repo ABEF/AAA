@@ -2,7 +2,7 @@
   "schema": 1,
   "purpose": "Whole-project workload/function/state inventory and verification plan; inventory completeness is never dynamic coverage or proof of all possible market states.",
   "date": "2026-11-27",
-  "source_baseline": "bf5c91fc073cc2973699d1d1938197ebe136b796",
+  "source_baseline": "4ecfadf3898013766dae8cee6072065681b1f3d0",
   "trusted_build_record": {
     "path": "reports/activation-final-six-20261118/build/final/normal-size-evidence.json",
     "sha256": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2"
@@ -722,11 +722,11 @@
         "sameblock/hash/config/digest allpageassembly",
         "incomplete/duplicate/outoforder/finalpage alone/stale/reorg",
         "explicitprofile2 separates16NFTownership from4currencyfullwallet earnings; oldprofile1unchanged",
-        "constructoronlySTATICCALL fixedselectors gas returndata initcode andartifact bindings; nobroadcast/stateoverride",
+        "constructoronlySTATICCALL fixedselectors:3NFT/4currency,50kplain/500kLP/1Mroyalty within24M total,returndata/initcode/artifact bindings; coldF6 scalar reference includes intrinsic/cold costs; nobroadcast/stateoverride",
         "exactwallet1000 currentIDs andperNFTrights rounding components paid/history proofs; full86400 suffix",
         "prefetchcontradictionsfatal; isolatedfinancialfailure0verifiedfalsecomplete; unchangedexpiry/resource/cachebounds",
         "conversionindex allsourcecurrencies creditedETH; selectedcurrencyglobalstate fullreplay",
-        "maximumlineage/providergas/F6V10/HTTPfreshness remainseparate qualification"
+        "maximumlineage/providergas/F6V10/HTTPfreshness remainseparate qualification; offlinecheckpoint optin usesexistingjoblocalcanonicalcache,60s4096logical8192POST defaults andliveheaders retained"
       ]
     },
     {

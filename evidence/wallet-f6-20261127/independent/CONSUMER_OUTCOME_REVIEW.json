@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "kind": "independent_saved_receipt_and_request_timing_review",
+  "actual_final_receipt_sha256": "963a9281d3e6c92eb6debc4c2b7492ef7174c4de4e6e75d4f219b1fd52471e1d",
+  "referenced_receipt_hashes_checked": 21,
+  "API_requests": 33,
+  "direct_RPC_requests": 261,
+  "successful_HTTP200": 31,
+  "first20_HTTP200": true,
+  "currency_slice_replies": 17,
+  "first20_last_headers_ms": 76450.377318,
+  "whole_journey_passed": false,
+  "independent_final_raw96_and_card_assertions_executed": false,
+  "all123_accounts_preserved": true,
+  "owned_stages_stopped": true,
+  "new_network_calls": 0,
+  "application_test_bodies": 0,
+  "production_approved": false
+}

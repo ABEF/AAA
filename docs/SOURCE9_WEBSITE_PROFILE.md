@@ -78,7 +78,7 @@ retains its narrower three-currency and sixteen-NFT scopes.
 The read tool uses pinned constructor-only bytecode in canonical creation
 `eth_call`, with fixed bounded STATICCALL getters and finite return data. It
 does not deploy code, override state, sign or send value. Each constructor call
-covers at mostfour NFTs; prefetch accepts at most16 IDs and four royalty
+covers at mostthree NFTs; prefetch accepts at most16 IDs and four royalty
 currencies. The24M call allowance is read-RPC execution, not a raised transaction gas policy.
 Actual provider support and maximum workloads still require qualification.
 

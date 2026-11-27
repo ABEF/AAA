@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "kind": "bounded_existing_maximum_fixture_reuse_assessment",
+  "same_current_normal_f6_full_graph_reusable": false,
+  "exports_inspected": [
+    {
+      "name": "setup.setup.json",
+      "bytes": 799656,
+      "sha256": "758ff6b7b9d782d72da89bea75a5451986d69930cd7d0fc031c68d467a953788",
+      "accounts": 29,
+      "account_fields": [
+        "nonce",
+        "balance",
+        "code",
+        "storage"
+      ],
+      "blocks_present": false,
+      "transactions_present": false,
+      "historical_states_present": false
+    },
+    {
+      "name": "max1000-lp2-harvest.json",
+      "bytes": 36260541,
+      "sha256": "2f3b1db50161d7877031721e3162d00c3990d7d9830e4f39960d4f20b8d86370",
+      "accounts": 119,
+      "account_fields": [
+        "nonce",
+        "balance",
+        "code",
+        "storage"
+      ],
+      "blocks_present": false,
+      "transactions_present": false,
+      "historical_states_present": false
+    }
+  ],
+  "source_sha256": {
+    "reports/maximum-workload-20261119/VERIFICATION.json": "6ee16b4b5abeba854912a5d2726b799595edcca5c01164d29d690f5b06bee411",
+    "reports/maximum-workload-20261119/producer/MaximumWorkload20261119.t.sol.txt": "1cd6df66b470f3ee9da4cb1c8a823a56572a09dcb25e80c4ea608c558b5d9a9e",
+    "reports/maximum-workload-20261119/tools/run_producer.py": "431fcfe104872de1c4d01435fb9951a13a08e8712fc419f20370f09a51b7a7e7",
+    "test/ReferenceExecutionContext.t.sol": "02de7cd31580d16c8e97ea53e9ccc6642733973c1c0d4ec84ee71f9ef7d3e78d",
+    "test/GasProfileQualification.t.sol": "1ec4df10cb994e26697d587c666c35aa01818f7551c9bed9266320170ee0d124"
+  },
+  "source_producer": "producer06",
+  "actual_population_and_two_lp_test_scope_retained": true,
+  "reasons": [
+    "Producer inherits ReferenceExecutionContextTest: current lines199/216 create MockAccess and ContextExecutionPools instead of normal AccessController and PoolRegistry.",
+    "Original VERIFICATION explicitly lists src/ZZZAccessController.sol,src/ZZZPoolRegistry.sol,src/ZZZPythPriceFeed.sol as uncompiled; actual 1000 Entries do not establish complete normal graph admission.",
+    "Inspected Forge vm.dumpState exports retain only account nonce/balance/code/storage; they contain no canonical blocks,transactions,receipts or historical_states.",
+    "These account snapshots cannot establish authentic full mint/activation/royalty event chronology or creation-before/at archive checks required by normal current Projection/history.",
+    "Keep existing1000/twoLP gas/accounting evidence at its original controlled source scope; never relabel it as current33-pin fullnormal wallet qualification."
+  ],
+  "best_reusable_fullnormal_fixture": "portable.tar.gz (actual32NFT/65royalty finite F6 graph; separate historical archive gate remains)",
+  "remaining_partition": "1000 active NFTs/two physical LP legs under genuine normal graph with authenticated complete history and archive availability",
+  "nodes_started": 0,
+  "tests_run": 0,
+  "network_requests": 0,
+  "production_approved": false
+}

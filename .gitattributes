@@ -527,3 +527,8 @@ tests_python/test_read_batch.py -text whitespace=cr-at-eol
 tests_python/test_read_batch_evm.py -text whitespace=cr-at-eol
 tests_python/test_wallet_aggregate_v2.py -text whitespace=cr-at-eol
 evidence/wallet-aggregate-20261127/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Exact current F6 wallet/helper/checkpoint qualification bytes on both hosts.
+frontend_api/earnings_checkpoint_build.py -text whitespace=cr-at-eol
+tests_python/test_checkpoint_build_cache_scope.py -text whitespace=cr-at-eol
+evidence/wallet-f6-20261127/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

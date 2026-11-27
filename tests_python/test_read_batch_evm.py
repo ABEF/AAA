@@ -40,6 +40,25 @@ contract ReadOnlyFixture {
 contract WritingFixture {
  fallback() external {assembly{sstore(0,1)}}
 }
+contract LargerLPFixture {
+ function rewardBucket(uint256) external pure returns(uint256){return 1;}
+ function burnAbove250k() private view {
+  require(gasleft()>300_000,"old LP child budget is insufficient");
+  assembly("memory-safe") {for {} gt(gas(),190000) {} {pop(keccak256(0,32))}}
+ }
+ function claimableComponents(uint256 id,address) external view returns(uint256,uint256){burnAbove250k();return(id*13,id*7);}
+ function claimable(uint256 id,address) external view returns(uint256){burnAbove250k();return id*20;}
+}
+contract NegativeProbeFixture {
+ function lpRead(address target,uint256 gasCap,uint256 id,address asset) external view returns(bool ok) {
+  (ok,)=target.staticcall{gas:gasCap}(abi.encodeWithSignature("claimableComponents(uint256,address)",id,asset));
+ }
+ function creation(bytes calldata code) external returns(bool ok) {
+  bytes memory init=code;address target;
+  assembly("memory-safe"){target:=create(0,add(init,32),mload(init))}
+  return target!=address(0);
+ }
+}
 '''
 
 
@@ -144,7 +163,7 @@ class ReadBatchEVMTests(unittest.TestCase):
         header=self.wire.call('eth_getBlockByNumber',['latest',False])
         return p,{'blockHash':header['hash'],'requireCanonical':True}
 
-    def test_actual_creation_returns_maximum_fixed_records_without_persistent_code_or_nonce(self):
+    def test_actual_creation_splits_four_accounts_without_persistent_code_or_nonce(self):
         p,block=self.view()
         nonce=self.wire.call('eth_getTransactionCount',[ETH,'latest'])
         creation_address='0x'+keccak256(bytes.fromhex('d694'+'00'*20+'80')).hex()[-40:]
@@ -152,19 +171,42 @@ class ReadBatchEVMTests(unittest.TestCase):
         self.assertEqual(self.wire.call('eth_getCode',[creation_address,'latest']),'0x')
         first=len(self.wire.calls)
         with request_scope(Budget(seconds=25,calls=1024,posts=2048)),cache.scope(p):
-            self.assertEqual(batch.prefetch_accounts(p,block,(11,12,13,14),(ETH,ZZZ),CURRENCIES),1)
+            self.assertEqual(batch.prefetch_accounts(p,block,(11,12,13,14),(ETH,ZZZ),CURRENCIES),2)
             self.assertEqual(p._addr('nft','ownerOf(uint256)',11,block=block),OWNER)
             self.assertEqual(p._uint('nft','tokenAtOrdinal(uint256)',21,block=block),14)
             self.assertEqual(p._uint('rewards','claimable(uint256,address)',12,ETH,block=block),240)
             self.assertEqual(p._uint('royalties','claimable(uint256,address)',14,CURRENCIES[-1],block=block),280)
             self.assertEqual(batch.prefetch_accounts(p,block,(11,12,13,14),(ETH,ZZZ),CURRENCIES),0)
         reads=self.wire.calls[first:]
-        self.assertEqual(len(reads),1)
-        self.assertEqual(reads[0][0],'eth_call')
-        self.assertNotIn('to',reads[0][1][0])
+        self.assertEqual(len(reads),2)
+        for row in reads:
+            self.assertEqual(row[0],'eth_call')
+            self.assertNotIn('to',row[1][0])
         self.assertNotEqual(batch.MAGIC[0],0xef)
         self.assertEqual(self.wire.call('eth_getTransactionCount',[ETH,'latest']),nonce)
         self.assertEqual(self.wire.call('eth_getCode',[creation_address,'latest']),'0x')
+
+    def test_approved_child_gas_serves_heavier_lp_getters_and_rejects_four_in_one_constructor(self):
+        heavy=self.install('LargerLPFixture',5)
+        modules=(*self.modules[:3],heavy)
+        p,block=self.view(modules)
+        with request_scope(Budget(seconds=25,calls=1024,posts=2048)),cache.scope(p):
+            self.assertEqual(batch.prefetch_accounts(p,block,(11,12,13),(ETH,ZZZ),CURRENCIES),1)
+            self.assertEqual(tuple(int(v,16)for v in p._call(heavy,'claimableComponents(uint256,address)',
+                             13,ETH,block=block,words=2)),(169,91))
+            self.assertEqual(p._uint('rewards','claimable(uint256,address)',12,ZZZ,block=block),240)
+        probe=self.install('NegativeProbeFixture',6)
+        fields=(int(heavy,16),250_000,11,0)
+        query='0x'+keccak256(b'lpRead(address,uint256,uint256,address)')[:4].hex()+''.join(f'{v:064x}'for v in fields)
+        old={'to':probe,'data':query,'gas':hex(batch.CALL_GAS)}
+        self.assertEqual(self.wire.call('eth_call',[old,block]),'0x'+'0'*64)
+        init=batch._creation()+batch._arguments(modules,(11,12,13,14),(ETH,ZZZ),CURRENCIES)
+        data=keccak256(b'creation(bytes)')[:4]+(32).to_bytes(32,'big')+len(init).to_bytes(32,'big')+init
+        data+=b'\0'*(-len(init)%32)
+        invalid={'to':probe,'from':ETH,'value':'0x0','gas':hex(batch.CALL_GAS),'data':'0x'+data.hex()}
+        self.assertEqual(self.wire.call('eth_call',[invalid,block]),'0x'+'0'*64)
+        self.assertEqual(self.wire.call('eth_getTransactionCount',[probe,'latest']),'0x0')
+        self.assertEqual(self.wire.call('eth_getTransactionCount',[ETH,'latest']),'0x0')
 
     def test_actual_staticcall_refuses_child_storage_write_and_preserves_failed_getter(self):
         modules=(self.modules[0],self.modules[1],self.writing,self.modules[3])

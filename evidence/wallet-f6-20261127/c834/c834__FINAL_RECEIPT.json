@@ -1,0 +1,162 @@
+{
+  "schema": 1,
+  "kind": "actual_F6_Ubuntu_worker_proxy_Source10_rehearsal_final",
+  "production_approved": false,
+  "full_wallet_qualified": false,
+  "entire_journey_complete": false,
+  "known_blocker": "Actual120second snapshot expired while completing first8NFT cards",
+  "first_failure": {
+    "schema": 1,
+    "complete": false,
+    "failure": {
+      "name": "Error",
+      "message": "Service temporarily unavailable. Retry the read or review; no transaction was submitted."
+    },
+    "api_requests": 2,
+    "rpc_requests": 184,
+    "elapsed_ms": 4467.844547,
+    "production_approved": false
+  },
+  "second_failure": {
+    "schema": 1,
+    "complete": false,
+    "failure": {
+      "name": "Error",
+      "message": "Service temporarily unavailable. Retry the read or review; no transaction was submitted."
+    },
+    "api_requests": 33,
+    "rpc_requests": 261,
+    "elapsed_ms": 117628.376633,
+    "production_approved": false
+  },
+  "original_failures_retained": true,
+  "whole_journey_runs": 2,
+  "failed_view_diagnostics": {
+    "first": "ModuleNotFoundError keeper",
+    "after_exact_missing_runtime_closure": "PASS511logical1019POST3.025s;onlyfailedstagechecked"
+  },
+  "source_generation": {
+    "semantic_files": 120,
+    "append_only_physical_reader_files": 2,
+    "runtime_closure_files": 122,
+    "existing120source_bytes_unchanged": true,
+    "existing_checkpoint_semantic_map_unchanged": true,
+    "original_install_zero_field_scope": "Zero existing production-byte/chain-state mutations; TWOnew labruntimefileswereadded"
+  },
+  "qualified_prerequisites": {
+    "strict_restored123runtime_actual445_30_31_and_current452": true,
+    "official_Node_actual_version_platform_arch": true,
+    "nginx_exact_configuration_validation": true,
+    "real_indexed_original_headers": 415,
+    "real_indexed_original_financial_logs": 898,
+    "full86400suffix": true,
+    "checkpoint": {
+      "stage": "actual_source_checkpoint445",
+      "passed": true,
+      "schema": 2,
+      "bytes": 566584,
+      "sha256": "ec8145e27b782e3c3d4106e00f5f663b1b9764106e9f1895d66c19875776dc96",
+      "candidate_path": "/work/checkpoint-002/CHECKPOINT_CANDIDATE.json",
+      "operator_approved_or_adopted": false,
+      "clock": "Real actual wall clock; no override",
+      "calls": 3098,
+      "posts": 6194,
+      "elapsed_seconds": 5.400401
+    },
+    "independent_exact32NFT65originalcurrency66descriptor_review": true,
+    "normal_Projection_Checkpoint_Activation_Transaction_manifest_admission": true,
+    "actual_unsigned33runtime_manifest": true
+  },
+  "consumer_progress_only": {
+    "API_requests": 33,
+    "direct_RPC": 261,
+    "successful_HTTP200": 31,
+    "first20_financial_GETs_all200": true,
+    "financial_phase_last_response_ms": 76450.377318,
+    "final_independent_raw96totals_and_card_assertions_ran": false,
+    "all8cards_qualified": false,
+    "first_deadline_route": "/api/v1/nfts/16882515172615937576241688667802215726124669151437896759329054964477900678677/earnings",
+    "first_deadline_start_ms": 114254.300047,
+    "first_deadline_headers_elapsed_ms": 3175.5273149999994,
+    "worker_recorded_outcome": "deadline",
+    "snapshot_seconds_unchanged": 120,
+    "old_fee_bearing_history_older_than24h": true,
+    "no_live_recent_earnings_boundary_qualification": true
+  },
+  "preservation": {
+    "all123_actual_account_models_exact_to_restored452": true,
+    "original445_header_unchanged": true,
+    "fresh450_header_unchanged": true,
+    "all_existing_baseline_files_metadata_and_hashes_unchanged": true,
+    "existing_services_listeners_unchanged": true,
+    "only_new_failed_unit_records_retained": true,
+    "owned_stage_cgroups_empty": true,
+    "node_stopped_before900": true,
+    "no_public_transactions_signing_or_services_adopted": true,
+    "only5NEWempty_heads_on_c834": true,
+    "no31transaction_replay_or4mock_feed_repetition": true
+  },
+  "final_head": {
+    "baseFeePerGas": "0x7",
+    "blobGasUsed": "0x0",
+    "difficulty": "0x0",
+    "excessBlobGas": "0x0",
+    "extraData": "0x",
+    "gasLimit": "0x1e84800",
+    "gasUsed": "0x0",
+    "hash": "0x4d53a834e91551afc529ccf8c0092fdbd80b3ecfa3dec77a561d9f25dc3a1f09",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "miner": "0x0000000000000000000000000000000000000000",
+    "mixHash": "0xf6daa913ef5cb341531289677822b7b879b06b3af697d657b5add0876d8d7311",
+    "nonce": "0x0000000000000000",
+    "number": "0x1c9",
+    "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "parentHash": "0xcd02d69810a7ff35ce52aacc43657531fba89788307897f45bb8aadf022ac582",
+    "receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+    "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+    "size": "0x244",
+    "stateRoot": "0x40e48380ea06335896425fc2cff4f06e3622634e93c9f762e31c738de55ea675",
+    "timestamp": "0x6b09e1ad",
+    "totalDifficulty": "0x0",
+    "transactions": [],
+    "transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+    "uncles": [],
+    "withdrawals": [],
+    "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+  },
+  "final_snapshot": {
+    "snapshot_decoded_bytes": 94208532,
+    "snapshot_decoded_sha256": "d53ec27b69c6b4794a1adbc99ce2b1e8db1bd9e5481a5627dacf6aa8ca14a192",
+    "snapshot_gzip_bytes": 13984772,
+    "snapshot_gzip_sha256": "7934de82411cea9fcd133d8fcb654bcd13ef2a734fb181b591937775841bc875"
+  },
+  "private_artifacts_NOT_for_publication": [
+    "CHECKPOINT_CANDIDATE.json",
+    "BOUND_CONFIGURATION.json",
+    "chain snapshots",
+    "SQLite database"
+  ],
+  "receipts": {
+    "FREEZE.json": "9c15a75b57173048714e3053cdee8dfe47bbefd0cc29193ffa2d4b14a501cd84",
+    "prepare-001/EXECUTION.json": "9bbf395a876dfd0953f1b22904e1a4c68bc9b0ec12eb9a80941cbb7df6033e45",
+    "features-001/EXECUTION.json": "9772c58484d0d24417903291898f02dadd97eb0ecc7453897043950190ad425b",
+    "proxy-validate-001/EXECUTION.json": "5a2cff3ebbe172c64c18fe5c4fd02c0353c5e67bd5daa2cfb9c3527d4d5096a5",
+    "archive-001/EXECUTION.json": "97f063abdfa1fdd35dc4a1581b53b7e8a721055b8971cd32192319ac71beea8a",
+    "catchup-checkpoint-001/RESULT.json": "78393c8ac88b4db2e360b415420cf352409a95af7acf095daa1ec984009840aa",
+    "checkpoint-001/RESULT.json": "0b968c870206c63e3c96ab8cc0b51094b98efe4ad378165ea65530b31093d6db",
+    "candidate-review-001/RESULT.json": "bb4ff67f9c1f4d55531548c0b6e6b549552a2ff2a097dd6b2044f8deb0f8f5ab",
+    "bind-001/RESULT.json": "52fe3d95b5416d4532accc57511b266779c33dee33d05a775327c9a636bedbce",
+    "manifest-001/EXECUTION.json": "4d0d7719c4185399abe8f2e8eb246d93d6c1873ff5cdf370f5e9215a0ac9d6fc",
+    "consumer-001/RESULT.json": "7c3b72bb0d37a6971ddce90be4bf7fe644c910654478cab8584b77a8e98d9402",
+    "diagnose-001/RESULT.json": "f8c3d8bf865c543bcfd8e09367d61ab85147c17f18aef35e7b52fe4d4b6824ff",
+    "closure-install-001/EXECUTION.json": "62d097bd3c0d606bfdf43299bb4460318eeba180052e1907d26e7c9d9c0c364e",
+    "diagnose-002/RESULT.json": "74b23052443126e33986c3ee7cd0bad2040d6a380778aef2f90a17bc5336051c",
+    "consumer-002/RESULT.json": "ce1560eb4569c750c48bb210b733b49807a00d8f7df924f8964b6d255725f9bd",
+    "diagnostic-artifacts-002/root__work__consumer-002__REQUESTS.json": "6fedcc77c3a8cde5d793f821750989ab57467365899bc2e3c177d66f5a5cb903",
+    "cleanup-001/EXECUTION.json": "7b7d7e5704136389fdf16e051ce876b5eb8f32e6713fb8a8e216ce3792e5b86c",
+    "cleanup-g2-001/EXECUTION.json": "96c54604177a3090b51c3b2498a52d27418e4d2ab5814f897e3fb8842b4aeeab",
+    "final-state-001/EXECUTION.json": "b1c99a059b995ce874c197ac96c4bb83eb7063d17af38b2df89ebc6831107c05",
+    "stop-001/EXECUTION.json": "200148c6a903ee18e05fd2d89ff2e392e8dbb999c14eeaa222497af3f20c6838",
+    "final-baseline-001/EXECUTION.json": "e169f615b3cd5cffe697fdf73f096021ec9654afb6619af1b83d630d563f69f7"
+  }
+}

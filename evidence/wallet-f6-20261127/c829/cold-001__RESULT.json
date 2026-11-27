@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "outcomes": [
+    {
+      "stage": "normal_Projection_protocol",
+      "passed": true,
+      "normal_API_unmodified": true,
+      "configuration_sha256": "d44bb8f7fba79521a60487454dc41c66decad17b5dda13b86275c31b317acbc6",
+      "calls": 153,
+      "posts": 304,
+      "elapsed_seconds": 1.476442,
+      "history_qualified": false
+    },
+    {
+      "stage": "actual_cold_helper_scalar_equivalence",
+      "passed": false,
+      "error_kind": "RpcError",
+      "cause": "eth_call failed after bounded retries (RemoteRPCError)",
+      "completed_comparisons": 7,
+      "calls": 210,
+      "posts": 420
+    }
+  ],
+  "complete": false,
+  "clock_kind": "EXPLICIT_ORIGINAL_CAPTURE_CLOCK",
+  "history_or_full_wallet_qualified": false,
+  "archive_gate_required_before_history": true,
+  "actual_source_chain_id": 4663,
+  "old_test_bodies": 0,
+  "state_changes": 0,
+  "production_approved": false
+}

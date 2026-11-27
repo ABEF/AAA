@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "kind": "NEW_optin_checkpoint_build_cache_boundaries",
+  "tests_run": 4,
+  "successful": true,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_seconds": 0.21900000000096043,
+  "source_before": {
+    "frontend_api/earnings_checkpoint_build.py": "14c1d5d8407ab13193c4c15085a3a5dc82a7c9a9a23fcdc4a9eacd9b247b4571",
+    "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+    "frontend_api/earnings_checkpoint.py": "2537fa1d909ac42fa58ed65e27ec69800ee3cf7ef8a535d39e4c3e6a87bf45f2",
+    "tests_python/test_checkpoint_build_cache_scope.py": "fca6fb0b9a71752c112ba830fee897eadd2480f92cd47920545796147275d9cf"
+  },
+  "source_after": {
+    "frontend_api/earnings_checkpoint_build.py": "14c1d5d8407ab13193c4c15085a3a5dc82a7c9a9a23fcdc4a9eacd9b247b4571",
+    "frontend_api/canonical_cache.py": "11be35d62c75bca2eff9c0f519ee2757dc39111f247773c29aa4c85e4a53496f",
+    "frontend_api/earnings_checkpoint.py": "2537fa1d909ac42fa58ed65e27ec69800ee3cf7ef8a535d39e4c3e6a87bf45f2",
+    "tests_python/test_checkpoint_build_cache_scope.py": "fca6fb0b9a71752c112ba830fee897eadd2480f92cd47920545796147275d9cf"
+  },
+  "old_test_bodies_rerun": 0,
+  "network_calls": 0,
+  "economic_replay_qualified": false
+}

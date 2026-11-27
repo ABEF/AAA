@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "actual_Cancun_RLP_header_hashes": [
+    {
+      "timestamp": "0x6b09d230",
+      "header_keccak256": "0xd6935e8887c051ca62369bc43ca705b131bfa9dea895911f05f7135d3343dc77"
+    },
+    {
+      "timestamp": "0x6b004699",
+      "header_keccak256": "0x828f888a4efcfb571dcc20bbfa24896b388a35c21cfb8847f1623b03c7d1b307"
+    }
+  ],
+  "keccak_source_sha256": "c4c755f1a9bf8db70b1ecb81e2b4e6765581961289f6f550502983e375293d91",
+  "EVM_or_network_calls": 0,
+  "original_genesis_hash": "0x828f888a4efcfb571dcc20bbfa24896b388a35c21cfb8847f1623b03c7d1b307",
+  "actual_original_block1_parent": "0x828f888a4efcfb571dcc20bbfa24896b388a35c21cfb8847f1623b03c7d1b307",
+  "extra_startup_genesis_hash": "0xd6935e8887c051ca62369bc43ca705b131bfa9dea895911f05f7135d3343dc77",
+  "extra_referenced_by_canonical_chain": false,
+  "canonical_parent_inventory_count": 451,
+  "original_raw_chain_sha256": "d61f8e233711a1fe53e0c205820af2d6c91dc9af237d8a97c4fa14ca1afb72e5",
+  "freshness_result_sha256": "7cce11510855c4ab2e4882ab1419ab40f9069df24e91b2e84cabd47cb140b065",
+  "stored_snapshot_bytes_modified": false,
+  "actual_RPC_genesis_still_required": true
+}

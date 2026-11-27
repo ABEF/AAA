@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "script": "derive_activation_config.py",
+  "script_sha256": "3679d4aaae72c89a0c98791590000f1bd029c16977a76e45fa61be6dcde70488",
+  "inputs": {
+    "fixture_manifest_sha256": "701be4bc3d52f7cbb1519f297f1b9ff4bc12a097fcb6fb291fe477a78690b2d5",
+    "actual_setup_script_sha256": "734736e6bb8fdb6435c6703d44d3df9cd30476e6980fbd2126ee068d699dba9a"
+  },
+  "outputs": {
+    "ACTIVATION_CONFIG.json": {
+      "sha256": "2cdca9c5de555774968b9bf0aa8af3749c98311ab0f25f59aea9710bed67dff0",
+      "bytes": 8854
+    },
+    "FEE_REVIEW_BASIS.json": {
+      "sha256": "7d02e46a82757146ad533dcf9aa6aaf4d93e6275a6d4800c8cdd82478b028158",
+      "bytes": 9658
+    },
+    "MANIFEST_LIMITS.json": {
+      "sha256": "30c90f7538b3785faacb976346474e74770534bec87cd2d29c65f7e498bad5e2",
+      "bytes": 236
+    },
+    "MOCK_FEED_INPUTS.json": {
+      "sha256": "a0e8ae51b246af1458915bcdc58421ca8348ea4edba46ad506955bdf60f64c52",
+      "bytes": 2129
+    },
+    "RESULT.json": {
+      "sha256": "6c560c331cb372834c0861dee26961e85e5795d3244bb31072b7f0d462cea65d",
+      "bytes": 3749
+    }
+  },
+  "preserved_original_stage": "activation-derived-001/",
+  "source_or_economic_changes": 0,
+  "network_calls": 0,
+  "old_test_or_population_bodies_run": 0,
+  "parent_reviewed_lab_limits": {
+    "native_value_wei": "55000000000000000",
+    "contribution_usd_18": "110000000000000000000",
+    "maximum_contribution_loss_bps": 300,
+    "gas": 32000000,
+    "fee_policy_scope": "Existing Anvil-only local fixture unsigned-review policy, not production fees"
+  },
+  "still_required": "Bind genuine final source/profile2 projection/checkpoint configuration before building the actual Source10 manifest.",
+  "production_approved": false
+}

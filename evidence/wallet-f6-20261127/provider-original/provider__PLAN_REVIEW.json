@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "probe_sha256": "bb1cee59d3d53493a3b853e0b21d7343f5703e2beda619c92c58b509cafbf0bc",
+  "manual_review_complete": true,
+  "allowed_methods": [
+    "eth_call",
+    "eth_chainId",
+    "eth_getBlockByNumber"
+  ],
+  "max_endpoints": 2,
+  "max_calls_total": 30,
+  "actual_planned_calls_per_complete_endpoint": 13,
+  "pacing_seconds": 1.5,
+  "endpoint_elapsed_budget_seconds": 90,
+  "response_cap_bytes": 1048576,
+  "no_retry": true,
+  "stop_on_access_or_quota_refusal": true,
+  "no_state_override": true,
+  "no_transaction_facilities": true,
+  "helper_semantic_witness": "Five positive SHA256/RIPEMD160 words per ID; remaining bounded static unknown-getter calls must revert. No PoPL state or getter support inferred.",
+  "genesis_pin_provenance": "Preserved independent rollup assertion proof from20261113; no fresh L1 proof claimed.",
+  "limits": "Small static calls accepting24M gas field do not qualify24M actual execution capacity, full F6, archive reliability or sustained rate/latency."
+}

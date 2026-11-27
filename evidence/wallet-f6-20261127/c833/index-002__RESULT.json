@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "complete": false,
+  "stage": "index_preflight_refusal",
+  "error_kind": "FileNotFoundError",
+  "reason": "[Errno 2] No such file or directory: '/source-next/indexer/event_schema.json'",
+  "checkpoint_built": false,
+  "old_test_bodies": 0,
+  "production_approved": false
+}

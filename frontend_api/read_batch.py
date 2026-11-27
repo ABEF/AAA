@@ -20,18 +20,18 @@ from zzz_ops.work_budget import checkpoint
 
 ZERO = '0x'+'0'*40
 MAX_IDS = 16
-ACCOUNTS_PER_BATCH = 4
+ACCOUNTS_PER_BATCH = 3
 MAX_ROYALTY_ASSETS = 4
 CALL_GAS = 24_000_000
 PLAIN_GAS = 50_000
-LP_GAS = 250_000
+LP_GAS = 500_000
 ROYALTY_GAS = 1_000_000
 MAX_INITCODE_BYTES = 49_152
 MAX_RETURN_BYTES = 24_576
 MAGIC = keccak256(b'POPL_WALLET_STATIC_READ_BATCH_V1')
-SOURCE_SHA256 = '1068be2580ea8c160dcf7cb17db546e73c2bcd80cca72762f3e6df930652a92c'
-CREATION_SHA256 = 'e79b7fa1fab776b5dfc2ee7d39d8fe2b2326054084e0189e7db0a912163741eb'
-ARTIFACT_SHA256 = 'adc72a6dac4be47c87982711436a19bcd0487f15546458bdebe78f614ea904fd'
+SOURCE_SHA256 = '7230cfb3f72c818a0cb8f2289c19b7924d6b05222df4d5cf09ee6946c6b56700'
+CREATION_SHA256 = '6f8ba510e07f808f74358817a744b1d73bf9f0512e54a43cd92eef46e443c044'
+ARTIFACT_SHA256 = 'e528d6ae3ef71c435ad3a451c0918ce66a0d90ba4fabd7e4a16dcc769814908b'
 FILES = ('frontend_api/read_batch/WalletReadBatch.sol',
          'frontend_api/read_batch/WalletReadBatch.json')
 
@@ -171,7 +171,7 @@ def _account_cached(p,block,modules,identifier,lp_assets,royalty_assets):
 
 
 def prefetch_accounts(p, block, ids, lp_assets, royalty_assets):
-    """Seed at most16 account proofs, using fixed groups of at most4 accounts.
+    """Seed at most16 account proofs, using fixed groups of at most3 accounts.
 
     An inner failure remains a failed normal getter. No fallback reads, hidden
     retry, new request budget or unbounded retention occurs. Provider support

@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "action": "read_only_forwarding_preflight",
+  "exit_code": 0,
+  "transport_sha256": "a7f7f91863833bca9081b0ad6af833a1cf5147e65f1c2cfe7e058449f1bddc45",
+  "public_identity_sha256": "3d9429c21216081fa570c0404f5040f644f60fa64b6fb98fba0e7c7f2bec3122",
+  "stdout_bytes": 762,
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "sanitized_error": null,
+  "authorization_changes": 0,
+  "production_approved": false,
+  "observation": {
+    "schema": 1,
+    "matched_existing_public_identity_records": [
+      {
+        "restrict": true,
+        "explicit_port_forwarding": false,
+        "no_port_forwarding": false,
+        "definitely_forbidden": true,
+        "option_classification_complete": true,
+        "permitopen_present": false,
+        "requested_destinations_permitted_by_key": true
+      }
+    ],
+    "effective_selected_sshd_flags": {
+      "gatewayports": "no",
+      "allowtcpforwarding": "yes",
+      "disableforwarding": "no"
+    },
+    "requested_destinations_permitted_by_global_restriction": true,
+    "forwarding_definitely_forbidden": true,
+    "all_authorization_sources_or_hostname_matches_proved": false,
+    "scope": "Read-only matching public-key options and selected effective flags. No keys/configuration exported; actual forwarding remains unverified.",
+    "authorization_or_service_changes": 0
+  }
+}

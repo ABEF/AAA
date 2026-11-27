@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "kind": "corrected_NEW_actual_negative_witness_only",
+  "selected_method": "tests_python.test_read_batch_evm.ReadBatchEVMTests.test_approved_child_gas_serves_heavier_lp_getters_and_rejects_four_in_one_constructor",
+  "tests_run": 1,
+  "successful": true,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_seconds": 1.25,
+  "source_before": {
+    "frontend_api/read_batch.py": "9474abd7141d6e4a45c5e504daee495057dd27dfd93294ffb281c222610c8ed0",
+    "frontend_api/read_batch/WalletReadBatch.sol": "7230cfb3f72c818a0cb8f2289c19b7924d6b05222df4d5cf09ee6946c6b56700",
+    "frontend_api/read_batch/WalletReadBatch.json": "e528d6ae3ef71c435ad3a451c0918ce66a0d90ba4fabd7e4a16dcc769814908b",
+    "tests_python/test_read_batch_evm.py": "2b1ff9adcf562cab6081b9c0324603efb0c3ec63809e31275f09fe5ad9ed02e1"
+  },
+  "source_after": {
+    "frontend_api/read_batch.py": "9474abd7141d6e4a45c5e504daee495057dd27dfd93294ffb281c222610c8ed0",
+    "frontend_api/read_batch/WalletReadBatch.sol": "7230cfb3f72c818a0cb8f2289c19b7924d6b05222df4d5cf09ee6946c6b56700",
+    "frontend_api/read_batch/WalletReadBatch.json": "e528d6ae3ef71c435ad3a451c0918ce66a0d90ba4fabd7e4a16dcc769814908b",
+    "tests_python/test_read_batch_evm.py": "2b1ff9adcf562cab6081b9c0324603efb0c3ec63809e31275f09fe5ad9ed02e1"
+  },
+  "source_changed_during_run": [],
+  "previously_passing_bodies_rerun": 0,
+  "prior_failure_preserved": "focused-001 direct reverting localRPC timed out; never accepted as a revert. Actual test-only STATICCALL/CREATE probes now return false through successful JSONRPC envelopes.",
+  "owned_node_stopped": true,
+  "anvil_sha256": "d438383b871c726407ecc5829279bea44ceac63a712be9e010813ca0a15434b6",
+  "fixture_installs": [
+    {
+      "fixture": "ReadOnlyFixture",
+      "address": "0x0000000000000000000000018815b4c29c770001",
+      "runtime_sha256": "326f14bf4209df167d0745892245c7a20e80ef789a6c3fdb55b2505139fa9edd"
+    },
+    {
+      "fixture": "ReadOnlyFixture",
+      "address": "0x0000000000000000000000018815b4c29c770002",
+      "runtime_sha256": "326f14bf4209df167d0745892245c7a20e80ef789a6c3fdb55b2505139fa9edd"
+    },
+    {
+      "fixture": "ReadOnlyFixture",
+      "address": "0x0000000000000000000000018815b4c29c770003",
+      "runtime_sha256": "326f14bf4209df167d0745892245c7a20e80ef789a6c3fdb55b2505139fa9edd"
+    },
+    {
+      "fixture": "ReadOnlyFixture",
+      "address": "0x0000000000000000000000018815b4c29c770004",
+      "runtime_sha256": "326f14bf4209df167d0745892245c7a20e80ef789a6c3fdb55b2505139fa9edd"
+    },
+    {
+      "fixture": "WritingFixture",
+      "address": "0x0000000000000000000000018815b4c29c770005",
+      "runtime_sha256": "8884b9c000fc8b89081b402cd127925f04614bda5fe9fd5b06435f12dfaf62e8"
+    },
+    {
+      "fixture": "LargerLPFixture",
+      "address": "0x0000000000000000000000018815b4c29c770006",
+      "runtime_sha256": "b2ba077e91deb89572dd01cf499ad9cd2fe3ff0219d869f5f67d669b6bfca7f5"
+    },
+    {
+      "fixture": "NegativeProbeFixture",
+      "address": "0x0000000000000000000000018815b4c29c770007",
+      "runtime_sha256": "d562b8d93bcc8d5318e3673e0b972fe7a47c27ff653e90bc140b58814d6266fe"
+    }
+  ],
+  "scope": "Standalone helper EVM/mock fixture only; actual F6 proof is separate."
+}
